@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #1a2233;
+
+  --color-muted: #f5f6f8;
+  --color-muted-foreground: #4b5567;
+
+  --color-border: #e3e7ee;
+  --color-card: #ffffff;
+
+  --color-primary: #cc3846;
+  --color-primary-hover: #ac2c39;
+  --color-primary-soft: #fbeef0;
+
+  --color-ring: #cc3846;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+@keyframes myth-message-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.myth-buster-panel {
+  border-radius: 8px;
+}
+
+.myth-buster-message {
+  animation: myth-message-float 3s ease-in-out infinite;
+}
+
+.myth-buster-message-delay {
+  animation-delay: 0.5s;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
