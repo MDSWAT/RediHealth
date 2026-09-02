@@ -6,8 +6,9 @@ import { useLanguage } from "@/lib/i18n/language-context";
 
 const heroChatFrom = ["them", "us", "us", "us", "us"] as const;
 
-const heroChatStepSeconds = 0.7;
-const heroChatTypingSeconds = 0.5;
+const heroChatTypingSeconds = 1;
+const heroChatTextDelaySeconds = 0.25;
+const heroChatStepSeconds = heroChatTypingSeconds + heroChatTextDelaySeconds;
 const heroFactcheckDelay = heroChatFrom.length * heroChatStepSeconds + 0.2;
 
 export function Hero() {
@@ -40,7 +41,7 @@ export function Hero() {
           </div>
 
           <div className="relative flex min-h-72 items-center justify-center">
-            <div className="relative aspect-[9/19] w-full max-w-[16rem] rounded-[3rem] border-[10px] border-foreground/90 bg-foreground/90 shadow-2xl sm:max-w-[18rem]">
+            <div className="relative aspect-[9/19] w-full max-w-[13rem] overflow-hidden rounded-[3rem] border-[10px] border-foreground/90 bg-foreground/90 shadow-2xl sm:max-w-[18rem]">
               <div className="absolute left-1/2 top-0 z-10 h-6 w-32 -translate-x-1/2 rounded-b-2xl bg-foreground/90" />
 
               <div className="flex h-full w-full flex-col overflow-hidden rounded-[2.25rem] bg-muted">
@@ -57,16 +58,17 @@ export function Hero() {
                 <div className="flex flex-1 flex-col gap-2 overflow-hidden px-3 py-4">
                   {heroChatFrom.map((from, index) => {
                     const typingDelay = index * heroChatStepSeconds;
-                    const messageDelay = typingDelay + heroChatTypingSeconds;
+                    const messageDelay = typingDelay + heroChatTypingSeconds + heroChatTextDelaySeconds;
                     const isOwn = from === "us";
                     const bubbleClasses = isOwn
                       ? "justify-self-end rounded-tr-none bg-primary text-white"
                       : "justify-self-start rounded-tl-none bg-white text-foreground";
+                    const typingMotionClass = isOwn ? "hero-typing-bubble-slide" : "";
 
                     return (
                       <div key={index} className="grid">
                         <div
-                          className={`hero-typing-bubble col-start-1 row-start-1 flex w-12 items-center gap-1 rounded-lg px-3 py-2 shadow-sm ${bubbleClasses}`}
+                          className={`hero-typing-bubble ${typingMotionClass} col-start-1 row-start-1 flex w-12 items-center gap-1 rounded-lg px-3 py-2 shadow-sm ${bubbleClasses}`}
                           style={{ animationDuration: `${heroChatTypingSeconds}s`, animationDelay: `${typingDelay}s` }}
                         >
                           <span className="hero-typing-dot h-1.5 w-1.5 rounded-full bg-current" />

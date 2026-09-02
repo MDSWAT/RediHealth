@@ -125,11 +125,32 @@ body {
   }
 }
 
+@keyframes hero-typing-slide-life {
+  0% {
+    opacity: 1;
+    transform: translateY(-2.25rem);
+  }
+
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
 .hero-typing-bubble {
   opacity: 0;
   animation-name: hero-typing-life;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+}
+
+.hero-typing-bubble-slide {
+  animation-name: hero-typing-slide-life;
 }
 
 @keyframes hero-factcheck-in {
