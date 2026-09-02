@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import type { ResultSetHeader } from "mysql2";
 import { auth } from "@/auth";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type ResultSetHeader } from "@/lib/database";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 
 const validUrgencies = ["low", "moderate", "high", "urgent"];
@@ -93,14 +92,16 @@ export async function POST(request: Request) {
     const [caseResult] = await connection.query<ResultSetHeader>(
       `INSERT INTO mediator_cases
         (mediator_worker_id, county, full_name, phone, address, care_category, urgency, barriers, target_date, notes)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       RETURNING id`,
       [worker.workerId, county, fullName, phone || null, address || null, careCategory, urgency, JSON.stringify(barriers), targetDate || null, notes || null],
     );
 
     const [patientResult] = await connection.query<ResultSetHeader>(
       `INSERT INTO patients
         (assigned_worker_id, full_name, phone, email, address, condition_notes, status, priority)
-       VALUES (?, ?, ?, ?, ?, ?, 'active', ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, 'active', ?)
+       RETURNING id`,
       [worker.workerId, fullName, phone, email, address || null, conditionNotes, priorityByUrgency[urgency as keyof typeof priorityByUrgency]],
     );
     await connection.commit();
@@ -113,15 +114,15 @@ export async function POST(request: Request) {
     console.error("Failed to create mediator case", error);
     const databaseError = error as { code?: string };
     const schemaError =
-      databaseError.code === "ER_NO_SUCH_TABLE" ||
-      databaseError.code === "ER_BAD_FIELD_ERROR";
+      databaseError.code === "42P01" || // undefined_table
+      databaseError.code === "42703"; // undefined_column
     return NextResponse.json(
       {
         error: schemaError
           ? "The mediator case database table is not ready. Apply migration 008, including the phone and address columns."
           : "Could not save the case. Please try again.",
       },
-      { status: 500 },
+      { status: 503 },
     );
   } finally {
     connection.release();

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import type { RowDataPacket } from "mysql2";
 import { auth } from "@/auth";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type RowDataPacket } from "@/lib/database";
 import { AdminShell } from "@/components/panel/AdminShell";
 import { PatientProfileView } from "@/components/panel/PatientProfileView";
 import { Container } from "@/components/ui/Container";

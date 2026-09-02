@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
 import { GoogleIcon } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
 
 type Stage = "email" | "code";
 
@@ -24,6 +25,8 @@ export function SignInForm({
   initialError?: string;
 }) {
   const router = useRouter();
+  const { t } = useLanguage();
+  const form = t.signInPage.form;
   const [stage, setStage] = useState<Stage>("email");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -33,7 +36,7 @@ export function SignInForm({
   async function requestCode() {
     const normalizedEmail = email.trim().toLowerCase();
     if (!emailPattern.test(normalizedEmail)) {
-      setError("Enter a valid email address.");
+      setError(form.emailInvalid);
       return;
     }
 
@@ -47,12 +50,12 @@ export function SignInForm({
       });
       const result = (await response.json()) as { error?: string };
       if (!response.ok) {
-        setError(result.error || "We could not send a code. Please try again.");
+        setError(result.error || form.genericSendError);
         return;
       }
       setStage("code");
     } catch {
-      setError("We could not send a code. Please try again.");
+      setError(form.genericSendError);
     } finally {
       setIsSubmitting(false);
     }
@@ -60,7 +63,7 @@ export function SignInForm({
 
   async function verifyCode() {
     if (!/^\d{6}$/.test(code.trim())) {
-      setError("Enter the six-digit code from your email.");
+      setError(form.codeInvalid);
       return;
     }
 
@@ -83,9 +86,7 @@ export function SignInForm({
           redirectTo?: string;
         };
         if (!response.ok) {
-          setError(
-            result.error || "That code is not correct or has expired. Try again.",
-          );
+          setError(result.error || form.genericVerifyError);
           return;
         }
         router.push(result.redirectTo || "/panel");
@@ -94,7 +95,7 @@ export function SignInForm({
 
       router.push("/panel");
     } catch {
-      setError("We could not verify that code. Please try again.");
+      setError(form.genericVerifyError);
     } finally {
       setIsSubmitting(false);
     }
@@ -111,7 +112,7 @@ export function SignInForm({
           noValidate
         >
           <label htmlFor="email" className="text-sm font-semibold text-foreground">
-            Email address
+            {form.emailLabel}
           </label>
           <input
             id="email"
@@ -124,7 +125,7 @@ export function SignInForm({
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "email-error" : "email-hint"}
             className={inputClass}
-            placeholder="you@example.com"
+            placeholder={form.emailPlaceholder}
           />
           {error ? (
             <p id="email-error" className="mt-2 text-sm text-primary">
@@ -132,12 +133,12 @@ export function SignInForm({
             </p>
           ) : (
             <p id="email-hint" className="mt-2 text-sm text-muted-foreground">
-              We&apos;ll send a six-digit code to this address.
+              {form.emailHint}
             </p>
           )}
           <div className="mt-7">
             <Button type="submit" size="lg" disabled={isSubmitting}>
-              {isSubmitting ? "Sending code..." : "Email me a code"}
+              {isSubmitting ? form.sendingCode : form.emailMeCode}
             </Button>
           </div>
         </form>
@@ -149,12 +150,12 @@ export function SignInForm({
           }}
           noValidate
         >
-          <h2 className="text-xl font-semibold text-foreground">Check your email</h2>
+          <h2 className="text-xl font-semibold text-foreground">{form.checkEmailTitle}</h2>
           <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-            We sent a six-digit code to <strong className="font-semibold text-foreground">{email}</strong>. It expires in 10 minutes.
+            {form.codeSentBody(email)}
           </p>
           <label htmlFor="code" className="mt-6 block text-sm font-semibold text-foreground">
-            Six-digit code
+            {form.codeLabel}
           </label>
           <input
             id="code"
@@ -177,7 +178,7 @@ export function SignInForm({
           ) : null}
           <div className="mt-7 flex flex-wrap items-center gap-4">
             <Button type="submit" size="lg" disabled={isSubmitting}>
-              {isSubmitting ? "Signing in..." : "Continue"}
+              {isSubmitting ? form.signingIn : form.continueLabel}
             </Button>
             <button
               type="button"
@@ -188,7 +189,7 @@ export function SignInForm({
                 setStage("email");
               }}
             >
-              Use a different email
+              {form.useDifferentEmail}
             </button>
           </div>
         </form>
@@ -198,7 +199,7 @@ export function SignInForm({
         <>
           <div className="my-8 flex items-center gap-4" aria-hidden="true">
             <span className="h-px flex-1 bg-border" />
-            <span className="text-sm text-muted-foreground">or</span>
+            <span className="text-sm text-muted-foreground">{form.or}</span>
             <span className="h-px flex-1 bg-border" />
           </div>
 
@@ -209,7 +210,7 @@ export function SignInForm({
             onClick={() => void signIn("google", { callbackUrl: "/panel" })}
           >
             <GoogleIcon className="h-5 w-5" />
-            Continue with Google
+            {form.continueWithGoogle}
           </Button>
         </>
       ) : null}

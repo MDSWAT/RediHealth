@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import type { ResultSetHeader, RowDataPacket } from "mysql2";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
   isPatientPriority,
@@ -58,7 +57,7 @@ export async function GET(request: Request, { params }: Params) {
     return NextResponse.json({ patient });
   } catch (error) {
     console.error("Failed to fetch patient portal profile", error);
-    return NextResponse.json({ error: "Database query failed." }, { status: 500 });
+    return NextResponse.json({ error: "Database query failed." }, { status: 503 });
   }
 }
 
@@ -155,6 +154,6 @@ export async function PATCH(request: Request, { params }: Params) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to update patient portal profile", error);
-    return NextResponse.json({ error: "Failed to update profile." }, { status: 500 });
+    return NextResponse.json({ error: "Failed to update profile." }, { status: 503 });
   }
 }

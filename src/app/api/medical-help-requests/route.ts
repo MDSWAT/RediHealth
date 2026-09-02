@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import type { ResultSetHeader, RowDataPacket } from "mysql2";
 import { auth } from "@/auth";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { sendHelpRequestConfirmationEmail } from "@/lib/email";
 import type { RequestStatus, RequestPriority } from "@/lib/types/medical-request";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -19,6 +19,14 @@ function text(value: unknown) {
 }
 
 export async function POST(request: Request) {
+  const rateLimit = checkRateLimit(`medical-help-requests:${getClientIp(request)}`, { limit: 5, windowMs: 60_000 });
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait a moment and try again." },
+      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
+    );
+  }
+
   let body: RequestPayload;
 
   try {
@@ -119,7 +127,7 @@ export async function GET(request: Request) {
     console.error("Failed to fetch medical help requests", error);
     return NextResponse.json(
       { error: "Could not fetch requests." },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }
@@ -197,7 +205,7 @@ export async function PATCH(request: Request) {
     console.error("Failed to update medical help request", error);
     return NextResponse.json(
       { error: "Could not update request. Ensure database migration 002 is applied." },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }

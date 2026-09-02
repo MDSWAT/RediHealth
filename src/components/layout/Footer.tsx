@@ -1,33 +1,38 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
-
-const linkGroups: { heading: string; links: { label: string; href: string }[] }[] = [
-  {
-    heading: "Health",
-    links: [
-      { label: "Health Information", href: "/health-information" },
-      { label: "Find Medical Help", href: "/find-help" },
-    ],
-  },
-  {
-    heading: "Platform",
-    links: [
-      { label: "About the Platform", href: "/about" },
-      { label: "Contact", href: "/contact" },
-      { label: "Accessibility", href: "/accessibility" },
-    ],
-  },
-  {
-    heading: "Legal",
-    links: [
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-    ],
-  },
-];
+import { useLanguage } from "@/lib/i18n/language-context";
 
 export function Footer() {
+  const { t } = useLanguage();
+
+  const linkGroups: { heading: string; links: { label: string; href: string }[] }[] = [
+    {
+      heading: t.footer.groups.health.heading,
+      links: [
+        { label: t.footer.groups.health.healthInformation, href: "/health-information" },
+        { label: t.footer.groups.health.findHelp, href: "/find-help" },
+      ],
+    },
+    {
+      heading: t.footer.groups.platform.heading,
+      links: [
+        { label: t.footer.groups.platform.about, href: "/about" },
+        { label: t.footer.groups.platform.contact, href: "/contact" },
+        { label: t.footer.groups.platform.accessibility, href: "/accessibility" },
+      ],
+    },
+    {
+      heading: t.footer.groups.legal.heading,
+      links: [
+        { label: t.footer.groups.legal.privacy, href: "/privacy" },
+        { label: t.footer.groups.legal.terms, href: "/terms" },
+      ],
+    },
+  ];
+
   return (
     <footer className="border-t border-border bg-muted/50">
       <Container className="py-12">
@@ -35,19 +40,19 @@ export function Footer() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Health information on this platform is educational and does not
-              replace professional medical advice.
+              {t.footer.disclaimer}
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <span className="flex h-12 items-center rounded-lg border border-dashed border-border bg-card px-4 text-xs font-medium text-muted-foreground">
-                Government Partner
+                {t.footer.govPartner}
               </span>
               <span className="flex h-12 items-center rounded-lg border border-dashed border-border bg-card px-4 text-xs font-medium text-muted-foreground">
-                Healthcare Partners
+                {t.footer.healthcarePartners}
               </span>
             </div>
           </div>
+
 
           <nav aria-label="Footer" className="grid grid-cols-2 gap-8 sm:grid-cols-3">
             {linkGroups.map((group) => (

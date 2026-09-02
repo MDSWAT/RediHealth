@@ -1,5 +1,4 @@
-import type { RowDataPacket } from "mysql2";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type RowDataPacket } from "@/lib/database";
 
 /** Number of medical help requests still awaiting triage. */
 export async function countPendingRequests(): Promise<number> {

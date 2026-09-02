@@ -1,5 +1,4 @@
-import type { RowDataPacket } from "mysql2";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type RowDataPacket } from "@/lib/database";
 
 export type UserWorkerContext = {
   workerId: string | null;

@@ -1,8 +1,7 @@
 import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
-import type { ResultSetHeader } from "mysql2";
 import { auth } from "@/auth";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type ResultSetHeader } from "@/lib/database";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
   PATIENT_COLUMNS,
@@ -90,7 +89,7 @@ export async function GET(request: Request) {
     console.error("Failed to fetch patients", error);
     return NextResponse.json(
       { error: "Could not fetch patients. Ensure migrations 003–007 are applied." },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }
@@ -129,6 +128,18 @@ export async function POST(request: Request) {
     );
   }
 
+  if (
+    fullName.length > 200 ||
+    phone.length > 50 ||
+    email.length > 320 ||
+    address.length > 500
+  ) {
+    return NextResponse.json(
+      { error: "One or more fields are too long." },
+      { status: 400 },
+    );
+  }
+
   if (body.status !== undefined && !isPatientStatus(body.status)) {
     return NextResponse.json({ error: "Invalid patient status." }, { status: 400 });
   }
@@ -146,7 +157,8 @@ export async function POST(request: Request) {
     const db = getDatabase();
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO patients (request_id, assigned_worker_id, access_token, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       RETURNING id`,
       [
         requestId,
         assignedWorkerId,
@@ -183,7 +195,7 @@ export async function POST(request: Request) {
     console.error("Failed to create patient profile", error);
     return NextResponse.json(
       { error: "Could not create patient profile. Ensure migrations 003–007 are applied." },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }
@@ -296,7 +308,7 @@ export async function PATCH(request: Request) {
     console.error("Failed to update patient profile", error);
     return NextResponse.json(
       { error: "Could not update patient profile." },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }

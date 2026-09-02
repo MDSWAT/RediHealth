@@ -64,7 +64,7 @@ function patchFsReadlink() {
 patchFsReadlink();
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["mysql2"],
+  serverExternalPackages: ["pg"],
   webpack: (config) => {
     config.resolve.symlinks = false;
     config.cache = false;

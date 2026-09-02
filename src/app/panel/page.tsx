@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import type { RowDataPacket } from "mysql2";
 import { auth } from "@/auth";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type RowDataPacket } from "@/lib/database";
 import { WorkerDashboard } from "@/components/panel/WorkerDashboard";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
 import { getUserWorkerContext } from "@/lib/worker-auth";

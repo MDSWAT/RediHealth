@@ -1,5 +1,4 @@
-import type { RowDataPacket } from "mysql2";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type RowDataPacket } from "@/lib/database";
 import type { WorkerItem, WorkerStatus } from "@/lib/types/worker";
 
 export interface DBWorkerRow extends RowDataPacket {

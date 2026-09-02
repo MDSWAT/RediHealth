@@ -1,7 +1,13 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { ShieldIcon } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
 
 export function MythBuster() {
+  const { t } = useLanguage();
+  const messages = t.hero.phone.messages;
+
   return (
     <section className="border-b border-border bg-background py-16 sm:py-20">
       <Container>
@@ -11,40 +17,39 @@ export function MythBuster() {
               <ShieldIcon className="h-6 w-6" />
             </span>
             <h2 className="mt-5 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              Bust a viral myth
+              {t.landing.mythBuster.title}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-              False health claims spread fast. Check the facts before making a
-              decision about your health.
+              {t.landing.mythBuster.subtitle}
             </p>
           </div>
 
           <div className="myth-buster-panel border border-border bg-card p-5 shadow-sm sm:p-6">
-            <p className="text-sm font-semibold text-primary">Message</p>
+            <p className="text-sm font-semibold text-primary">{t.landing.mythBuster.messageLabel}</p>
             <div className="mt-4 space-y-3">
               <p className="myth-buster-message ml-6 w-fit max-w-[calc(100%-1.5rem)] rounded-lg bg-muted px-4 py-3 text-base leading-relaxed text-foreground shadow-sm">
-                The flu vaccine causes the flu.
+                {messages[0]}
               </p>
               <p className="myth-buster-message myth-buster-message-delay ml-auto w-fit max-w-[calc(100%-1.5rem)] rounded-lg bg-primary-soft px-4 py-3 text-base leading-relaxed text-foreground shadow-sm">
-                False.
+                {messages[1]}
               </p>
               <p
                 className="myth-buster-message ml-auto w-fit max-w-[calc(100%-1.5rem)] rounded-lg bg-primary-soft px-4 py-3 text-base leading-relaxed text-foreground shadow-sm"
                 style={{ animationDelay: "1s" }}
               >
-                Flu vaccines cannot give you the flu.
+                {messages[2]}
               </p>
               <p
                 className="myth-buster-message ml-auto w-fit max-w-[calc(100%-1.5rem)] rounded-lg bg-primary-soft px-4 py-3 text-base leading-relaxed text-foreground shadow-sm"
                 style={{ animationDelay: "1.5s" }}
               >
-                Your life is more important than made-up stories.
+                {messages[3]}
               </p>
               <p
                 className="myth-buster-message ml-auto w-fit max-w-[calc(100%-1.5rem)] rounded-lg bg-primary-soft px-4 py-3 text-base leading-relaxed text-foreground shadow-sm"
                 style={{ animationDelay: "2s" }}
               >
-                Get health advice from trusted medical sources.
+                {messages[4]}
               </p>
             </div>
           </div>

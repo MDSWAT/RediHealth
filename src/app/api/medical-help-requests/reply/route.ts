@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import type { RowDataPacket } from "mysql2";
 import { auth } from "@/auth";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type RowDataPacket } from "@/lib/database";
 import { isEmailConfigured, sendEmail } from "@/lib/email";
 
 type ReplyTemplateId = "acknowledgment" | "consultation" | "referral";

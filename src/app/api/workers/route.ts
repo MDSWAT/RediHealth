@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import type { ResultSetHeader } from "mysql2";
 import { auth } from "@/auth";
-import { getDatabase } from "@/lib/database";
+import { getDatabase, type ResultSetHeader } from "@/lib/database";
 import { type DBWorkerRow, mapWorkerRow } from "@/lib/data/workers";
 import type { CreateWorkerPayload, WorkerStatus } from "@/lib/types/worker";
 import { getUserWorkerContext } from "@/lib/worker-auth";
@@ -13,7 +12,7 @@ function text(value: unknown) {
 }
 
 function isDuplicateEntryError(error: unknown): boolean {
-  return (error as { code?: string })?.code === "ER_DUP_ENTRY";
+  return (error as { code?: string })?.code === "23505"; // unique_violation
 }
 
 export async function GET(request: Request) {
@@ -65,7 +64,7 @@ export async function GET(request: Request) {
     console.error("Failed to fetch workers", error);
     return NextResponse.json(
       { error: "Could not fetch workers." },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }
@@ -107,11 +106,19 @@ export async function POST(request: Request) {
     );
   }
 
+  if (fullName.length > 200 || email.length > 320 || phone.length > 50 || role.length > 100 || department.length > 100) {
+    return NextResponse.json(
+      { error: "One or more fields are too long." },
+      { status: 400 },
+    );
+  }
+
   try {
     const db = getDatabase();
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO workers (full_name, email, phone, role, department, status)
-       VALUES (?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?)
+       RETURNING id`,
       [fullName, email, phone || null, role, department || null, status],
     );
 
@@ -129,7 +136,7 @@ export async function POST(request: Request) {
     console.error("Failed to create worker", error);
     return NextResponse.json(
       { error: "Could not create worker profile." },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }
@@ -226,7 +233,7 @@ export async function PATCH(request: Request) {
     console.error("Failed to update worker", error);
     return NextResponse.json(
       { error: "Could not update worker profile." },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }

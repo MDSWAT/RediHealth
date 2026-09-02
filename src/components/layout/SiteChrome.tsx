@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { LanguageProvider } from "@/lib/i18n/language-context";
 
 type SiteChromeProps = {
   children: ReactNode;
@@ -14,10 +15,10 @@ export function SiteChrome({ children }: SiteChromeProps) {
   const isWorkerPanel = pathname.startsWith("/panel");
 
   return (
-    <>
+    <LanguageProvider>
       {isWorkerPanel ? null : <Header />}
       {children}
       {isWorkerPanel ? null : <Footer />}
-    </>
+    </LanguageProvider>
   );
 }

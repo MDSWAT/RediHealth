@@ -7,7 +7,8 @@ type Size = "md" | "lg";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-lg font-semibold " +
-  "transition-colors focus-visible:outline-none focus-visible:ring-2 " +
+  "transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 " +
+  "focus-visible:outline-none focus-visible:ring-2 " +
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
   "disabled:pointer-events-none disabled:opacity-60";
 

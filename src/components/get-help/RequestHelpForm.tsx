@@ -4,6 +4,8 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { ClipboardCheckIcon, LockIcon } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
+import type { Translations } from "@/lib/i18n/translations";
 
 type Fields = {
   name: string;
@@ -22,28 +24,30 @@ const inputClass =
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
   "aria-[invalid=true]:border-primary";
 
-function validate(values: Fields): Errors {
+function validate(values: Fields, t: Translations["getHelpPage"]["form"]): Errors {
   const errors: Errors = {};
 
   if (!values.phone.trim()) {
-    errors.phone = "Please enter a phone number we can reach you on.";
+    errors.phone = t.errorPhone;
   }
 
   if (!values.email.trim()) {
-    errors.email = "Please enter your email address.";
+    errors.email = t.errorEmailRequired;
   } else if (!emailPattern.test(values.email.trim())) {
-    errors.email = "Please enter a valid email address.";
+    errors.email = t.errorEmailInvalid;
   }
 
   if (values.description.trim().length < 10) {
-    errors.description =
-      "Please describe what's wrong in a little more detail (at least 10 characters).";
+    errors.description = t.errorDescription;
   }
 
   return errors;
 }
 
 export function RequestHelpForm() {
+  const { t } = useLanguage();
+  const form = t.getHelpPage.form;
+
   const [values, setValues] = useState<Fields>({
     name: "",
     phone: "",
@@ -65,7 +69,7 @@ export function RequestHelpForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const nextErrors = validate(values);
+    const nextErrors = validate(values, form);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length !== 0) {
       return;
@@ -83,12 +87,10 @@ export function RequestHelpForm() {
       if (response.ok) {
       setSubmitted(true);
       } else {
-        setSubmissionError(
-          result.error || "We could not save your request. Please try again.",
-        );
+        setSubmissionError(result.error || form.genericError);
       }
     } catch {
-      setSubmissionError("We could not save your request. Please try again.");
+      setSubmissionError(form.genericError);
     } finally {
       setIsSubmitting(false);
     }
@@ -101,21 +103,16 @@ export function RequestHelpForm() {
           <ClipboardCheckIcon className="h-6 w-6" />
         </span>
         <h2 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
-          Your request has been received
+          {form.successTitle}
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          Thank you, {values.name.trim() || "we've got your details"}. We have sent a confirmation email to{" "}
-          <span className="font-medium text-foreground">{values.email.trim()}</span>. A
-          healthcare support worker will review what you&apos;ve shared and get
-          in touch using the contact details you provided.
+          {form.successBody}
         </p>
         <p className="mt-4 rounded-lg bg-muted px-4 py-3 text-sm leading-relaxed text-muted-foreground">
-          This service does not provide emergency care. If you think you may be
-          experiencing a medical emergency, contact your local emergency service
-          immediately.
+          {form.successNotice}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href="/">Back to home</Button>
+          <Button href="/">{form.backHome}</Button>
           <Button
             variant="outline"
             onClick={() => {
@@ -123,7 +120,7 @@ export function RequestHelpForm() {
               setSubmitted(false);
             }}
           >
-            Submit another request
+            {form.submitAnother}
           </Button>
         </div>
       </div>
@@ -147,8 +144,8 @@ export function RequestHelpForm() {
       <div className="grid gap-6">
         <div>
           <label htmlFor="name" className="text-sm font-semibold text-foreground">
-            Full name{" "}
-            <span className="font-normal text-muted-foreground">(optional)</span>
+            {form.fullNameLabel}{" "}
+            <span className="font-normal text-muted-foreground">{form.fullNameOptional}</span>
           </label>
           <input
             id="name"
@@ -158,7 +155,7 @@ export function RequestHelpForm() {
             value={values.name}
             onChange={(event) => update("name", event.target.value)}
             className={`${inputClass} h-11`}
-            placeholder="Your name"
+            placeholder={form.fullNamePlaceholder}
           />
         </div>
 
@@ -168,7 +165,7 @@ export function RequestHelpForm() {
               htmlFor="phone"
               className="text-sm font-semibold text-foreground"
             >
-              Phone number
+              {form.phoneLabel}
             </label>
             <input
               id="phone"
@@ -182,7 +179,7 @@ export function RequestHelpForm() {
               aria-invalid={Boolean(errors.phone)}
               aria-describedby={errors.phone ? "phone-error" : undefined}
               className={`${inputClass} h-11`}
-              placeholder="e.g. 0123 456 789"
+              placeholder={form.phonePlaceholder}
             />
             {errors.phone ? (
               <p id="phone-error" className="mt-1.5 text-sm text-primary">
@@ -196,7 +193,7 @@ export function RequestHelpForm() {
               htmlFor="email"
               className="text-sm font-semibold text-foreground"
             >
-              Email address
+              {form.emailLabel}
             </label>
             <input
               id="email"
@@ -210,7 +207,7 @@ export function RequestHelpForm() {
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? "email-error" : undefined}
               className={`${inputClass} h-11`}
-              placeholder="you@example.com"
+              placeholder={form.emailPlaceholder}
             />
             {errors.email ? (
               <p id="email-error" className="mt-1.5 text-sm text-primary">
@@ -225,7 +222,7 @@ export function RequestHelpForm() {
             htmlFor="description"
             className="text-sm font-semibold text-foreground"
           >
-            Briefly, what&apos;s wrong?
+            {form.descriptionLabel}
           </label>
           <textarea
             id="description"
@@ -239,7 +236,7 @@ export function RequestHelpForm() {
               errors.description ? "description-error" : "description-hint"
             }
             className={`${inputClass} py-2.5`}
-            placeholder="Tell us what you need help with, such as your symptoms or the kind of care you're trying to arrange."
+            placeholder={form.descriptionPlaceholder}
           />
           {errors.description ? (
             <p id="description-error" className="mt-1.5 text-sm text-primary">
@@ -247,7 +244,7 @@ export function RequestHelpForm() {
             </p>
           ) : (
             <p id="description-hint" className="mt-1.5 text-sm text-muted-foreground">
-              Please don&apos;t include more personal detail than you need to.
+              {form.descriptionHint}
             </p>
           )}
         </div>
@@ -255,14 +252,13 @@ export function RequestHelpForm() {
         <div className="flex items-start gap-2.5 rounded-lg bg-muted px-4 py-3">
           <LockIcon className="mt-0.5 h-5 w-5 flex-none text-primary" />
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Your details are used only to respond to your request and are handled
-            confidentially.
+            {form.privacyNote}
           </p>
         </div>
 
         <div>
           <Button type="submit" size="lg" disabled={isSubmitting}>
-            {isSubmitting ? "Sending request..." : "Send request"}
+            {isSubmitting ? form.submitting : form.submit}
           </Button>
         </div>
       </div>

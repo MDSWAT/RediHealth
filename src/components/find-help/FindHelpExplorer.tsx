@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { medicalInstitutes } from "@/lib/medical-institutes";
 import { PhoneIcon } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
 
 const InstitutesMap = dynamic(
   () => import("@/components/find-help/InstitutesMapInner"),
@@ -18,6 +19,9 @@ const InstitutesMap = dynamic(
 );
 
 export function FindHelpExplorer() {
+  const { t } = useLanguage();
+  const page = t.findHelpPage;
+
   const institutes = useMemo(() => medicalInstitutes, []);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -25,11 +29,12 @@ export function FindHelpExplorer() {
     <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
       <div>
         <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-          Medical institutes
+          {page.listTitle}
         </h2>
         <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-          Select a place to highlight it on the map.
+          {page.listSubtitle}
         </p>
+
 
         <ul className="mt-6 space-y-3">
           {institutes.map((institute) => {
@@ -92,7 +97,7 @@ export function FindHelpExplorer() {
           </div>
         </div>
         <p className="mt-3 text-xs text-muted-foreground">
-          Map data © OpenStreetMap contributors © CARTO.
+          {page.mapAttribution}
         </p>
       </div>
     </div>

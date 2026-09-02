@@ -13,25 +13,27 @@ import {
   MenuIcon,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
-
-const navLinks = [
-  { label: "Health Information", href: "/health-information" },
-  { label: "Find Medical Help", href: "/find-help" },
-  { label: "About", href: "/about" },
-];
+import { languages, type Lang } from "@/lib/i18n/translations";
+import { useLanguage } from "@/lib/i18n/language-context";
 
 function LanguageSelector({ className }: { className?: string }) {
+  const { lang, setLang } = useLanguage();
+
   return (
     <div className={cn("relative", className)}>
       <GlobeIcon className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
       <ChevronDownIcon className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
       <select
         aria-label="Select language"
-        defaultValue="en"
+        value={lang}
+        onChange={(event) => setLang(event.target.value as Lang)}
         className="h-11 cursor-pointer appearance-none rounded-lg border border-border bg-card pl-8 pr-8 text-sm font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
-        <option value="en">English</option>
-        <option value="ro">Română</option>
+        {languages.map((option) => (
+          <option key={option.code} value={option.code}>
+            {option.label}
+          </option>
+        ))}
       </select>
     </div>
   );
@@ -40,14 +42,22 @@ function LanguageSelector({ className }: { className?: string }) {
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     void getSession().then((session) => setAuthenticated(Boolean(session)));
   }, []);
 
+  const navLinks = [
+    { label: t.nav.healthInformation, href: "/health-information" },
+    { label: t.nav.healthCheck, href: "/health-check" },
+    { label: t.nav.findHelp, href: "/find-help" },
+    { label: t.nav.about, href: "/about" },
+  ];
+
   const accountLink = authenticated
-    ? { href: "/panel", label: "Panel" }
-    : { href: "/sign-in", label: "Sign In" };
+    ? { href: "/panel", label: t.account.panel }
+    : { href: "/sign-in", label: t.account.signIn };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -79,7 +89,7 @@ export function Header() {
               {accountLink.label}
             </Link>
             <Button href="/get-help" size="md" className="text-sm">
-              Get Help
+              {t.header.getHelp}
             </Button>
           </div>
 
@@ -129,7 +139,7 @@ export function Header() {
                 {accountLink.label}
               </Link>
               <Button href="/get-help" size="lg" fullWidth onClick={() => setMobileOpen(false)}>
-                Get Help
+                {t.header.getHelp}
               </Button>
             </div>
           </Container>
