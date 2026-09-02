@@ -67,7 +67,7 @@ export async function POST(request: Request) {
     });
   }
 
-  const apiKey = process.env.OPENROUTER_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY?.trim().replace(/^["']|["']$/g, "");
   if (!apiKey) {
     return NextResponse.json({ error: "The AI assistant is not configured yet. Add OPENROUTER_API_KEY to .env.local." }, { status: 503 });
   }
@@ -80,7 +80,7 @@ export async function POST(request: Request) {
     content.push({ type: "image_url", image_url: { url: `data:${imageMimeType};base64,${imageData}` } });
   }
 
-  const model = process.env.OPENROUTER_MODEL || "openai/gpt-4o-mini";
+  const model = process.env.OPENROUTER_MODEL?.trim().replace(/^["']|["']$/g, "") || "openai/gpt-4o-mini";
   const openRouterResponse = await fetch(
     "https://openrouter.ai/api/v1/chat/completions",
     {
