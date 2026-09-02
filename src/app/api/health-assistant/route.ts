@@ -105,9 +105,13 @@ export async function POST(request: Request) {
   );
 
   if (!openRouterResponse.ok) {
-    console.error("OpenRouter health assistant request failed", openRouterResponse.status);
+    const errorBody = await openRouterResponse.text().catch(() => "");
+    console.error("OpenRouter health assistant request failed", openRouterResponse.status, errorBody.slice(0, 500));
     if (openRouterResponse.status === 429) {
       return NextResponse.json({ error: "The AI assistant has reached its request limit. Please try again in a few minutes." }, { status: 429 });
+    }
+    if (openRouterResponse.status === 401 || openRouterResponse.status === 403) {
+      return NextResponse.json({ error: "The AI assistant is misconfigured. Please contact support." }, { status: 503 });
     }
     return NextResponse.json({ error: "The AI assistant is temporarily unavailable. Please try again shortly." }, { status: 502 });
   }
