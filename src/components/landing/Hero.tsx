@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -15,6 +15,18 @@ const heroFactcheckDelay = heroChatFrom.length * heroChatStepSeconds + 0.2;
 export function Hero() {
   const { lang, t } = useLanguage();
   const phone = t.hero.phone;
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timers = heroChatFrom.map((_, index) => {
+      const messageDelay = index * heroChatStepSeconds + heroChatTypingSeconds + heroChatTextDelaySeconds;
+      return setTimeout(() => {
+        chatRef.current?.scrollTo({ top: chatRef.current.scrollHeight, behavior: "smooth" });
+      }, messageDelay * 1000);
+    });
+
+    return () => timers.forEach(clearTimeout);
+  }, [lang]);
 
   return (
     <section className="relative overflow-hidden border-b border-border bg-muted/40">
@@ -56,7 +68,7 @@ export function Hero() {
                   </div>
                 </div>
 
-                <div className="flex flex-1 flex-col gap-2 overflow-hidden px-3 py-4">
+                <div ref={chatRef} className="no-scrollbar flex flex-1 flex-col gap-2 overflow-y-auto px-3 py-4">
                   {heroChatFrom.map((from, index) => {
                     const typingDelay = index * heroChatStepSeconds;
                     const messageDelay = typingDelay + heroChatTypingSeconds + heroChatTextDelaySeconds;
@@ -88,7 +100,7 @@ export function Hero() {
                 </div>
 
                 <div
-                  className="hero-factcheck-card border-t border-border bg-card px-6 py-8 text-xs text-foreground"
+                  className="hero-factcheck-card border-t border-border bg-card px-5 py-4 text-xs text-foreground"
                   style={{ animationDelay: `${heroFactcheckDelay}s` }}
                 >
                   <p>

@@ -116,8 +116,20 @@ export function Header() {
         </div>
       </Container>
 
-      {mobileOpen ? (
-        <div id="mobile-menu" className="border-t border-border bg-background lg:hidden">
+      <div
+        id="mobile-menu"
+        aria-hidden={!mobileOpen}
+        className={cn(
+          "grid bg-background transition-[grid-template-rows] duration-300 ease-out lg:hidden",
+          mobileOpen ? "grid-rows-[1fr] border-t border-border" : "grid-rows-[0fr]",
+        )}
+      >
+        <div
+          className={cn(
+            "overflow-hidden transition-opacity duration-200",
+            mobileOpen ? "opacity-100 delay-100" : "opacity-0",
+          )}
+        >
           <Container className="py-4">
             <nav aria-label="Primary (mobile)">
               <ul className="flex flex-col gap-1">
@@ -157,7 +169,7 @@ export function Header() {
             </div>
           </Container>
         </div>
-      ) : null}
+      </div>
     </header>
   );
 }

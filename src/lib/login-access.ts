@@ -33,7 +33,8 @@ export async function hasLoginAccess(
     ]);
 
     return patientRows[0].length > 0 || workerRows[0].length > 0;
-  } catch {
+  } catch (error) {
+    console.error("hasLoginAccess: database check failed", error);
     return false;
   }
 }
