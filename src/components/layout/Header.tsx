@@ -88,6 +88,12 @@ export function Header() {
             >
               {accountLink.label}
             </Link>
+            <Link
+              href="/demo"
+              className="inline-flex min-h-[44px] items-center rounded-lg border border-border px-3 text-sm font-semibold text-foreground hover:bg-muted"
+            >
+              {t.header.demo}
+            </Link>
             <Button href="/get-help" size="md" className="text-sm">
               {t.header.getHelp}
             </Button>
@@ -137,6 +143,13 @@ export function Header() {
                 onClick={() => setMobileOpen(false)}
               >
                 {accountLink.label}
+              </Link>
+              <Link
+                href="/demo"
+                className="flex min-h-[48px] items-center justify-center rounded-lg border border-border px-4 text-base font-semibold text-foreground hover:bg-muted"
+                onClick={() => setMobileOpen(false)}
+              >
+                {t.header.demo}
               </Link>
               <Button href="/get-help" size="lg" fullWidth onClick={() => setMobileOpen(false)}>
                 {t.header.getHelp}

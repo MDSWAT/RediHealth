@@ -273,163 +273,7 @@ export function RequestsTable({
           </p>
         </div>
       ) : (
-        <>
-          <div className="hidden overflow-x-auto rounded-2xl border border-border bg-card shadow-sm lg:block">
-          <table className="w-full min-w-[800px] text-left">
-            <thead className="border-b border-border bg-muted/60 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              <tr>
-                <th scope="col" className="px-5 py-3.5">Status & Priority</th>
-                <th scope="col" className="px-5 py-3.5">Received</th>
-                <th scope="col" className="px-5 py-3.5">Person</th>
-                <th scope="col" className="px-5 py-3.5">Contact</th>
-                <th scope="col" className="px-5 py-3.5">Enquiry</th>
-                <th scope="col" className="px-5 py-3.5 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {filteredRequests.map((request) => {
-                const isDeleting = deletingId === request.id;
-                const isConfirmingDelete = confirmingDeleteId === request.id;
-
-                return (
-                  <tr
-                    key={request.id}
-                    className="align-top hover:bg-muted/30 transition-colors"
-                  >
-                    <td className="whitespace-nowrap px-5 py-4">
-                      <div className="flex flex-col gap-1.5 items-start">
-                        <select
-                          value={request.status}
-                          onChange={(e) =>
-                            handleQuickStatusChange(
-                              request.id,
-                              e.target.value as RequestStatus,
-                            )
-                          }
-                          className={`rounded-full px-2.5 py-1 text-xs font-bold capitalize border-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                            request.status === "pending"
-                              ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
-                              : request.status === "in_progress"
-                              ? "bg-purple-500/10 text-purple-600 dark:text-purple-400"
-                              : request.status === "resolved"
-                              ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                              : "bg-gray-500/10 text-gray-600 dark:text-gray-400"
-                          }`}
-                        >
-                          <option value="pending">Pending</option>
-                          <option value="in_progress">In Progress</option>
-                          <option value="resolved">Resolved</option>
-                          <option value="archived">Archived</option>
-                        </select>
-
-                        {request.priority === "urgent" ? (
-                          <span className="inline-flex items-center gap-1 rounded-md bg-red-500/10 px-2 py-0.5 text-[10px] font-bold text-red-600 dark:text-red-400">
-                            <AlertCircleIcon className="h-3 w-3" /> Urgent
-                          </span>
-                        ) : null}
-                      </div>
-                    </td>
-
-                    <td className="whitespace-nowrap px-5 py-4 text-xs text-muted-foreground font-medium">
-                      {new Intl.DateTimeFormat("en", {
-                        dateStyle: "medium",
-                        timeStyle: "short",
-                      }).format(new Date(request.created_at))}
-                    </td>
-
-                    <td className="px-5 py-4 text-sm font-semibold text-foreground">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedRequest(request)}
-                        className="text-left hover:text-primary transition-colors focus-visible:underline"
-                      >
-                        {request.full_name || "Not provided"}
-                      </button>
-                    </td>
-
-                    <td className="px-5 py-4 text-xs text-muted-foreground whitespace-nowrap">
-                      <a
-                        href={`tel:${request.phone}`}
-                        className="inline-flex items-center gap-1 font-semibold text-primary hover:underline"
-                      >
-                        <PhoneIcon className="h-3.5 w-3.5" />
-                        {request.phone}
-                      </a>
-                      <a
-                        href={`mailto:${request.email}`}
-                        className="mt-1 block hover:text-foreground truncate max-w-[180px]"
-                        title={request.email}
-                      >
-                        {request.email}
-                      </a>
-                    </td>
-
-                    <td className="max-w-xs px-5 py-4 text-xs leading-relaxed text-muted-foreground">
-                      <p className="line-clamp-2">{request.description}</p>
-                      {request.internal_notes ? (
-                        <span className="mt-1.5 inline-flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-foreground">
-                          Note attached
-                        </span>
-                      ) : null}
-                    </td>
-
-                    <td className="whitespace-nowrap px-5 py-4 text-right text-xs">
-                      {isConfirmingDelete ? (
-                        <div className="flex items-center justify-end gap-1.5">
-                          <span className="text-red-600 dark:text-red-400 font-semibold">
-                            Delete?
-                          </span>
-                          <button
-                            type="button"
-                            disabled={isDeleting}
-                            onClick={() => handleDelete(request.id)}
-                            className="rounded-md bg-red-600 px-2.5 py-1 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
-                          >
-                            {isDeleting ? "..." : "Yes"}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setConfirmingDeleteId(null)}
-                            className="rounded-md border border-border bg-card px-2 py-1 font-semibold text-foreground hover:bg-muted"
-                          >
-                            No
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="flex items-center justify-end gap-2">
-                          <button
-                            type="button"
-                            onClick={() => setSelectedRequest(request)}
-                            className="rounded-lg bg-primary/10 px-3 py-1.5 font-semibold text-primary hover:bg-primary/20 transition-colors"
-                          >
-                            View Details
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setTemplateRequest(request)}
-                            className="rounded-lg border border-border bg-card p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
-                            title="Quick Email Templates"
-                          >
-                            <MailIcon className="h-4 w-4" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setConfirmingDeleteId(request.id)}
-                            className="rounded-lg p-1.5 text-red-600 dark:text-red-400 hover:bg-red-500/10"
-                            title="Delete Request"
-                          >
-                            <TrashIcon className="h-4 w-4" />
-                          </button>
-                        </div>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          </div>
-          <div className="space-y-3 lg:hidden">
+        <div className="space-y-3">
           {filteredRequests.map((request) => {
             const isDeleting = deletingId === request.id;
             const isConfirmingDelete = confirmingDeleteId === request.id;
@@ -437,32 +281,76 @@ export function RequestsTable({
               <article key={request.id} className="rounded-lg border border-border bg-card p-4 shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <button type="button" onClick={() => setSelectedRequest(request)} className="min-w-0 text-left">
-                    <span className="block truncate text-sm font-semibold text-foreground">{request.full_name || "Not provided"}</span>
-                    <span className="mt-1 block text-xs text-muted-foreground">{new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date(request.created_at))}</span>
+                    <span className="block truncate text-sm font-semibold text-foreground hover:text-primary transition-colors">{request.full_name || "Not provided"}</span>
+                    <span className="mt-1 block text-xs text-muted-foreground">
+                      {new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(request.created_at))}
+                    </span>
                   </button>
-                  <select value={request.status} onChange={(event) => handleQuickStatusChange(request.id, event.target.value as RequestStatus)} className="shrink-0 rounded-lg border border-border bg-background px-2 py-1.5 text-xs font-semibold text-foreground">
-                    <option value="pending">Pending</option><option value="in_progress">In Progress</option><option value="resolved">Resolved</option><option value="archived">Archived</option>
+                  <select
+                    value={request.status}
+                    onChange={(event) => handleQuickStatusChange(request.id, event.target.value as RequestStatus)}
+                    className={`shrink-0 rounded-full border-0 px-2.5 py-1 text-[0.65rem] font-semibold capitalize cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      request.status === "pending"
+                        ? "bg-amber-100 text-amber-800 dark:bg-amber-500/10 dark:text-amber-400"
+                        : request.status === "in_progress"
+                        ? "bg-blue-100 text-blue-800 dark:bg-blue-500/10 dark:text-blue-400"
+                        : request.status === "resolved"
+                        ? "bg-emerald-100 text-emerald-950 dark:bg-emerald-500/10 dark:text-emerald-400"
+                        : "bg-slate-100 text-slate-700 dark:bg-gray-500/10 dark:text-gray-400"
+                    }`}
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="in_progress">In progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="archived">Archived</option>
                   </select>
                 </div>
                 <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{request.description}</p>
                 <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
-                  <a href={`tel:${request.phone}`} className="inline-flex items-center gap-1 font-semibold text-primary"><PhoneIcon className="h-3.5 w-3.5" />{request.phone}</a>
-                  <a href={`mailto:${request.email}`} className="max-w-full truncate text-muted-foreground">{request.email}</a>
-                  {request.priority === "urgent" ? <span className="inline-flex items-center gap-1 font-semibold text-red-600"><AlertCircleIcon className="h-3.5 w-3.5" />Urgent</span> : null}
+                  <a href={`tel:${request.phone}`} className="inline-flex items-center gap-1 font-semibold text-primary">
+                    <PhoneIcon className="h-3.5 w-3.5" />
+                    {request.phone}
+                  </a>
+                  <a href={`mailto:${request.email}`} className="max-w-full truncate text-muted-foreground">
+                    {request.email}
+                  </a>
+                  {request.priority === "urgent" ? (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 font-semibold text-red-700 dark:bg-red-500/10 dark:text-red-400">
+                      <AlertCircleIcon className="h-3.5 w-3.5" /> Urgent
+                    </span>
+                  ) : null}
+                  {request.internal_notes ? (
+                    <span className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 font-semibold text-foreground">Note attached</span>
+                  ) : null}
                 </div>
                 <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
                   {isConfirmingDelete ? (
-                    <div className="flex items-center gap-2"><button type="button" disabled={isDeleting} onClick={() => handleDelete(request.id)} className="rounded-lg bg-red-600 px-3 py-2 text-xs font-semibold text-white">{isDeleting ? "Deleting..." : "Delete"}</button><button type="button" onClick={() => setConfirmingDeleteId(null)} className="rounded-lg border border-border px-3 py-2 text-xs font-semibold text-foreground">Cancel</button></div>
+                    <div className="flex items-center gap-2">
+                      <button type="button" disabled={isDeleting} onClick={() => handleDelete(request.id)} className="rounded-lg bg-red-600 px-3 py-2 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50">
+                        {isDeleting ? "Deleting..." : "Delete"}
+                      </button>
+                      <button type="button" onClick={() => setConfirmingDeleteId(null)} className="rounded-lg border border-border px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted">
+                        Cancel
+                      </button>
+                    </div>
                   ) : (
-                    <button type="button" onClick={() => setConfirmingDeleteId(request.id)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-red-600 hover:bg-red-500/10" aria-label="Delete request"><TrashIcon className="h-4 w-4" /></button>
+                    <button type="button" onClick={() => setConfirmingDeleteId(request.id)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-red-600 hover:bg-red-500/10 dark:text-red-400" aria-label="Delete request">
+                      <TrashIcon className="h-4 w-4" />
+                    </button>
                   )}
-                  <div className="flex items-center gap-2"><button type="button" onClick={() => setTemplateRequest(request)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground hover:bg-muted" aria-label="Open email templates"><MailIcon className="h-4 w-4" /></button><button type="button" onClick={() => setSelectedRequest(request)} className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-hover">Details</button></div>
+                  <div className="flex items-center gap-2">
+                    <button type="button" onClick={() => setTemplateRequest(request)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground hover:bg-muted hover:text-foreground" aria-label="Open email templates">
+                      <MailIcon className="h-4 w-4" />
+                    </button>
+                    <button type="button" onClick={() => setSelectedRequest(request)} className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-hover">
+                      Details
+                    </button>
+                  </div>
                 </div>
               </article>
             );
           })}
-          </div>
-        </>
+        </div>
       )}
 
       {selectedRequest ? (

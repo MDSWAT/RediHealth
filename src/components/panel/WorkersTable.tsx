@@ -37,6 +37,7 @@ export function WorkersTable({
   const [editingWorker, setEditingWorker] = useState<WorkerItem | null>(null);
   const [assigningWorker, setAssigningWorker] = useState<WorkerItem | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [createRoleTemplate, setCreateRoleTemplate] = useState<string | null>(null);
 
   const [confirmingDeleteId, setConfirmingDeleteId] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -159,6 +160,10 @@ export function WorkersTable({
         statusFilter={statusFilter}
         onChangeStatusFilter={setStatusFilter}
         onAddWorker={() => setShowCreateModal(true)}
+        onAddMediator={() => {
+          setCreateRoleTemplate("Mediator");
+          setShowCreateModal(true);
+        }}
         onExportCSV={handleExportCSV}
         exportDisabled={filteredWorkers.length === 0}
         onRefresh={onRefresh}
@@ -196,148 +201,110 @@ export function WorkersTable({
           </p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
-          <table className="w-full min-w-[800px] text-left">
-            <thead className="border-b border-border bg-muted/60 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              <tr>
-                <th scope="col" className="px-5 py-3.5">Worker / Staff</th>
-                <th scope="col" className="px-5 py-3.5">Role & Department</th>
-                <th scope="col" className="px-5 py-3.5">Contact</th>
-                <th scope="col" className="px-5 py-3.5">Assigned Patients</th>
-                <th scope="col" className="px-5 py-3.5">Status</th>
-                <th scope="col" className="px-5 py-3.5 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {filteredWorkers.map((worker) => {
-                const isDeleting = deletingId === worker.id;
-                const isConfirmingDelete = confirmingDeleteId === worker.id;
+        <div className="space-y-3">
+          {filteredWorkers.map((worker) => {
+            const isDeleting = deletingId === worker.id;
+            const isConfirmingDelete = confirmingDeleteId === worker.id;
+            const assignedCount = patients.filter((p) => p.assigned_worker_id === worker.id).length;
 
-                const assignedCount = patients.filter(
-                  (p) => p.assigned_worker_id === worker.id,
-                ).length;
-
-                return (
-                  <tr
-                    key={worker.id}
-                    className="align-top hover:bg-muted/30 transition-colors"
+            return (
+              <article key={worker.id} className="rounded-lg border border-border bg-card p-4 shadow-sm">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-semibold text-foreground">{worker.full_name}</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">Staff ID #{worker.id}</p>
+                    <p className="mt-0.5 text-xs">
+                      <span className="font-semibold text-primary">{worker.role}</span>
+                      <span className="text-muted-foreground"> · {worker.department || "General Staff"}</span>
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleToggleStatus(worker)}
+                    className={`shrink-0 rounded-full border-0 px-2.5 py-1 text-[0.65rem] font-semibold capitalize cursor-pointer ${
+                      worker.status === "active"
+                        ? "bg-emerald-100 text-emerald-950 dark:bg-emerald-500/10 dark:text-emerald-400"
+                        : "bg-slate-100 text-slate-700 dark:bg-gray-500/10 dark:text-gray-400"
+                    }`}
+                    title="Click to toggle status"
                   >
-                    <td className="px-5 py-4">
-                      <p className="font-bold text-sm text-foreground">
-                        {worker.full_name}
-                      </p>
-                      <span className="text-[11px] text-muted-foreground">
-                        Staff ID #{worker.id}
-                      </span>
-                    </td>
+                    {worker.status}
+                  </button>
+                </div>
 
-                    <td className="px-5 py-4 text-xs font-semibold text-foreground whitespace-nowrap">
-                      <span className="block font-bold text-primary">{worker.role}</span>
-                      <span className="text-[11px] text-muted-foreground block">
-                        {worker.department || "General Staff"}
-                      </span>
-                    </td>
+                <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+                  <a href={`mailto:${worker.email}`} className="inline-flex items-center gap-1 font-semibold text-primary hover:underline">
+                    <MailIcon className="h-3.5 w-3.5" />
+                    {worker.email}
+                  </a>
+                  {worker.phone ? (
+                    <a href={`tel:${worker.phone}`} className="inline-flex items-center gap-1 hover:text-foreground">
+                      <PhoneIcon className="h-3.5 w-3.5" />
+                      {worker.phone}
+                    </a>
+                  ) : null}
+                  <button
+                    type="button"
+                    onClick={() => setAssigningWorker(worker)}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-2.5 py-0.5 font-semibold text-primary hover:bg-primary/20 transition-colors"
+                  >
+                    <UserIcon className="h-3.5 w-3.5" />
+                    {assignedCount} assigned patient{assignedCount === 1 ? "" : "s"}
+                  </button>
+                </div>
 
-                    <td className="px-5 py-4 text-xs text-muted-foreground whitespace-nowrap">
-                      <a
-                        href={`mailto:${worker.email}`}
-                        className="inline-flex items-center gap-1 font-semibold text-primary hover:underline"
-                      >
-                        <MailIcon className="h-3.5 w-3.5" />
-                        {worker.email}
-                      </a>
-                      {worker.phone ? (
-                        <a
-                          href={`tel:${worker.phone}`}
-                          className="mt-1 block hover:text-foreground"
-                        >
-                          <PhoneIcon className="h-3.5 w-3.5 inline mr-1" />
-                          {worker.phone}
-                        </a>
-                      ) : null}
-                    </td>
-
-                    <td className="px-5 py-4 text-xs whitespace-nowrap">
+                <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
+                  {isConfirmingDelete ? (
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-red-600 dark:text-red-400">Delete this worker?</span>
                       <button
                         type="button"
-                        onClick={() => setAssigningWorker(worker)}
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary hover:bg-primary/20 transition-colors"
+                        disabled={isDeleting}
+                        onClick={() => handleDelete(worker.id)}
+                        className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50"
                       >
-                        <UserIcon className="h-3.5 w-3.5" />
-                        <span>{assignedCount} Assigned Patients</span>
+                        {isDeleting ? "..." : "Yes, delete"}
                       </button>
-                    </td>
-
-                    <td className="whitespace-nowrap px-5 py-4">
                       <button
                         type="button"
-                        onClick={() => handleToggleStatus(worker)}
-                        className={`rounded-full px-2.5 py-1 text-xs font-bold capitalize border-0 cursor-pointer ${
-                          worker.status === "active"
-                            ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                            : "bg-gray-500/10 text-gray-600 dark:text-gray-400"
-                        }`}
-                        title="Click to toggle status"
+                        onClick={() => setConfirmingDeleteId(null)}
+                        className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
                       >
-                        {worker.status}
+                        Cancel
                       </button>
-                    </td>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setConfirmingDeleteId(worker.id)}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-red-600 hover:bg-red-500/10 dark:text-red-400"
+                      title="Delete Worker"
+                    >
+                      <TrashIcon className="h-4 w-4" />
+                    </button>
+                  )}
 
-                    <td className="whitespace-nowrap px-5 py-4 text-right text-xs">
-                      {isConfirmingDelete ? (
-                        <div className="flex items-center justify-end gap-1.5">
-                          <span className="text-red-600 dark:text-red-400 font-semibold">
-                            Delete?
-                          </span>
-                          <button
-                            type="button"
-                            disabled={isDeleting}
-                            onClick={() => handleDelete(worker.id)}
-                            className="rounded-md bg-red-600 px-2.5 py-1 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
-                          >
-                            {isDeleting ? "..." : "Yes"}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setConfirmingDeleteId(null)}
-                            className="rounded-md border border-border bg-card px-2 py-1 font-semibold text-foreground hover:bg-muted"
-                          >
-                            No
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="flex items-center justify-end gap-2">
-                          <button
-                            type="button"
-                            onClick={() => setAssigningWorker(worker)}
-                            className="rounded-lg bg-primary px-3 py-1.5 font-semibold text-white hover:bg-primary-hover transition-colors"
-                          >
-                            Assign Patients
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setEditingWorker(worker)}
-                            className="rounded-lg border border-border bg-card p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
-                            title="Edit Worker Profile"
-                          >
-                            <EditIcon className="h-4 w-4" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setConfirmingDeleteId(worker.id)}
-                            className="rounded-lg p-1.5 text-red-600 dark:text-red-400 hover:bg-red-500/10"
-                            title="Delete Worker"
-                          >
-                            <TrashIcon className="h-4 w-4" />
-                          </button>
-                        </div>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setEditingWorker(worker)}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
+                      title="Edit Worker Profile"
+                    >
+                      <EditIcon className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setAssigningWorker(worker)}
+                      className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-hover transition-colors"
+                    >
+                      Assign Patients
+                    </button>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       )}
 
@@ -357,9 +324,12 @@ export function WorkersTable({
       {showCreateModal || editingWorker ? (
         <CreateWorkerModal
           worker={editingWorker || undefined}
+          defaultRole={createRoleTemplate || undefined}
+          defaultDepartment={createRoleTemplate === "Mediator" ? "Mediation" : undefined}
           onClose={() => {
             setShowCreateModal(false);
             setEditingWorker(null);
+            setCreateRoleTemplate(null);
           }}
           onSuccess={(saved) => {
             if (editingWorker) {

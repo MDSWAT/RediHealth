@@ -6,12 +6,16 @@ import type { CreateWorkerPayload, WorkerItem, WorkerStatus } from "@/lib/types/
 
 interface CreateWorkerModalProps {
   worker?: WorkerItem;
+  defaultRole?: string;
+  defaultDepartment?: string;
   onClose: () => void;
   onSuccess: (savedWorker: WorkerItem) => void;
 }
 
 export function CreateWorkerModal({
   worker,
+  defaultRole,
+  defaultDepartment,
   onClose,
   onSuccess,
 }: CreateWorkerModalProps) {
@@ -20,8 +24,8 @@ export function CreateWorkerModal({
   const [fullName, setFullName] = useState(worker?.full_name || "");
   const [email, setEmail] = useState(worker?.email || "");
   const [phone, setPhone] = useState(worker?.phone || "");
-  const [role, setRole] = useState(worker?.role || "Healthcare Worker");
-  const [department, setDepartment] = useState(worker?.department || "");
+  const [role, setRole] = useState(worker?.role || defaultRole || "Healthcare Worker");
+  const [department, setDepartment] = useState(worker?.department || defaultDepartment || "");
   const [status, setStatus] = useState<WorkerStatus>(worker?.status || "active");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -101,10 +105,12 @@ export function CreateWorkerModal({
             </span>
             <div>
               <h2 className="text-lg font-bold text-foreground">
-                {isEditing ? "Edit Staff Worker" : "Add New Staff Worker"}
+                {isEditing ? "Edit Staff Worker" : defaultRole === "Mediator" ? "Add New Mediator" : "Add New Staff Worker"}
               </h2>
               <p className="text-xs text-muted-foreground">
-                Healthcare worker profile and role details
+                {!isEditing && defaultRole === "Mediator"
+                  ? "Sets up a mediator workspace with access to New Mediator Case"
+                  : "Healthcare worker profile and role details"}
               </p>
             </div>
           </div>

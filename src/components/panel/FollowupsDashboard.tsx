@@ -613,144 +613,100 @@ export function FollowupsDashboard({
                   </p>
                 </div>
               ) : (
-                <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
-                  <table className="w-full min-w-[850px] text-left">
-                    <thead className="border-b border-border bg-muted/60 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      <tr>
-                        <th scope="col" className="px-5 py-3.5">Client / Patient</th>
-                        <th scope="col" className="px-5 py-3.5">Priority & Care Status</th>
-                        <th scope="col" className="px-5 py-3.5">Contact</th>
-                        <th scope="col" className="px-5 py-3.5">Latest / Next Follow-up</th>
-                        <th scope="col" className="px-5 py-3.5">Follow-up Status</th>
-                        <th scope="col" className="px-5 py-3.5 text-right">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border">
-                      {filteredClients.map(({ patient, followupInfo }) => {
-                        const pMeta = getPriorityMeta(patient.priority);
-                        const latestF = followupInfo.latest;
+                <div className="space-y-3">
+                  {filteredClients.map(({ patient, followupInfo }) => {
+                    const pMeta = getPriorityMeta(patient.priority);
+                    const latestF = followupInfo.latest;
 
-                        return (
-                          <tr
-                            key={patient.id}
-                            className="align-top hover:bg-muted/30 transition-colors"
+                    return (
+                      <article key={patient.id} className="rounded-lg border border-border bg-card p-4 shadow-sm">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <Link
+                              href={`/panel/patients/${patient.id}`}
+                              className="block truncate text-sm font-semibold text-foreground hover:text-primary transition-colors"
+                            >
+                              {patient.full_name}
+                            </Link>
+                            <p className="mt-0.5 text-xs text-muted-foreground">Record ID #{patient.id}</p>
+                          </div>
+                          <div className="flex shrink-0 flex-col items-end gap-1.5">
+                            <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[0.65rem] font-semibold ${pMeta.badgeClass}`}>
+                              <span className={`h-1.5 w-1.5 rounded-full ${pMeta.dotClass}`} />
+                              {pMeta.label}
+                            </span>
+                            <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[0.65rem] font-semibold ${followupInfo.badgeClass}`}>
+                              {followupInfo.label}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="mt-3 text-xs leading-relaxed text-foreground">
+                          {latestF ? (
+                            <div>
+                              <p className="font-semibold text-foreground">{latestF.title}</p>
+                              <p className="mt-0.5 text-muted-foreground">
+                                Date: <span className="font-semibold">{latestF.date}</span>
+                              </p>
+                              {latestF.notes ? (
+                                <p className="mt-1 line-clamp-2 text-muted-foreground">{latestF.notes}</p>
+                              ) : null}
+                              {latestF.completion_notes ? (
+                                <p className="mt-1 line-clamp-2 text-emerald-700 dark:text-emerald-400">
+                                  Outcome: {latestF.completion_notes}
+                                </p>
+                              ) : null}
+                            </div>
+                          ) : (
+                            <span className="italic text-muted-foreground">No follow-up logged</span>
+                          )}
+                        </div>
+
+                        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+                          <a href={`tel:${patient.phone}`} className="inline-flex items-center gap-1 font-semibold text-primary">
+                            <PhoneIcon className="h-3.5 w-3.5" />
+                            {patient.phone}
+                          </a>
+                          <a href={`mailto:${patient.email}`} className="max-w-full truncate">{patient.email}</a>
+                          <span className="capitalize">{patient.status} care</span>
+                        </div>
+
+                        <div className="mt-4 flex flex-wrap items-center justify-end gap-2 border-t border-border pt-3 text-xs">
+                          {latestF && latestF.status === "scheduled" ? (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setCompletingFollowup({ patient, followupId: latestF.id });
+                                setCompletionNotes("");
+                              }}
+                              className="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-2.5 py-1.5 font-semibold text-white hover:bg-emerald-700 transition-colors"
+                              title="Mark latest follow-up as completed"
+                            >
+                              <CheckCircleIcon className="h-3.5 w-3.5" />
+                              <span>Complete</span>
+                            </button>
+                          ) : null}
+
+                          <button
+                            type="button"
+                            onClick={() => handleOpenScheduleModal(patient)}
+                            className="inline-flex items-center gap-1 rounded-lg border border-border bg-card px-2.5 py-1.5 font-semibold text-foreground hover:bg-muted transition-colors"
+                            title="Schedule new follow-up"
                           >
-                            <td className="px-5 py-4">
-                              <Link
-                                href={`/panel/patients/${patient.id}`}
-                                className="font-bold text-sm text-foreground hover:text-primary transition-colors focus-visible:underline block"
-                              >
-                                {patient.full_name}
-                              </Link>
-                              <span className="text-[11px] text-muted-foreground">
-                                Record ID #{patient.id}
-                              </span>
-                            </td>
+                            <PlusIcon className="h-3.5 w-3.5 text-primary" />
+                            <span>Schedule</span>
+                          </button>
 
-                            <td className="whitespace-nowrap px-5 py-4">
-                              <div className="flex flex-col gap-1 items-start">
-                                <span
-                                  className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-bold ${pMeta.badgeClass}`}
-                                >
-                                  <span className={`h-2 w-2 rounded-full ${pMeta.dotClass}`} />
-                                  <span>{pMeta.label}</span>
-                                </span>
-                                <span className="text-[11px] font-semibold text-muted-foreground capitalize ml-1">
-                                  {patient.status} Care
-                                </span>
-                              </div>
-                            </td>
-
-                            <td className="px-5 py-4 text-xs text-muted-foreground whitespace-nowrap">
-                              <a
-                                href={`tel:${patient.phone}`}
-                                className="inline-flex items-center gap-1 font-semibold text-primary hover:underline"
-                              >
-                                <PhoneIcon className="h-3.5 w-3.5" />
-                                {patient.phone}
-                              </a>
-                              <a
-                                href={`mailto:${patient.email}`}
-                                className="mt-1 block hover:text-foreground truncate max-w-[170px]"
-                                title={patient.email}
-                              >
-                                {patient.email}
-                              </a>
-                            </td>
-
-                            <td className="max-w-xs px-5 py-4 text-xs leading-relaxed text-foreground">
-                              {latestF ? (
-                                <div>
-                                  <p className="font-bold text-foreground">{latestF.title}</p>
-                                  <p className="text-[11px] text-muted-foreground mt-0.5">
-                                    Date: <span className="font-semibold">{latestF.date}</span>
-                                  </p>
-                                  {latestF.notes ? (
-                                    <p className="mt-1 text-[11px] text-muted-foreground line-clamp-2">
-                                      {latestF.notes}
-                                    </p>
-                                  ) : null}
-                                  {latestF.completion_notes ? (
-                                    <p className="mt-1 text-[11px] text-emerald-700 dark:text-emerald-400 line-clamp-2">
-                                      Outcome: {latestF.completion_notes}
-                                    </p>
-                                  ) : null}
-                                </div>
-                              ) : (
-                                <span className="text-muted-foreground italic">
-                                  No follow-up logged
-                                </span>
-                              )}
-                            </td>
-
-                            <td className="whitespace-nowrap px-5 py-4">
-                              <span
-                                className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-bold ${followupInfo.badgeClass}`}
-                              >
-                                <span>{followupInfo.label}</span>
-                              </span>
-                            </td>
-
-                            <td className="whitespace-nowrap px-5 py-4 text-right text-xs">
-                              <div className="flex items-center justify-end gap-2">
-                                {latestF && latestF.status === "scheduled" ? (
-                                  <button
-                                    type="button"
-                                    onClick={() => {
-                                      setCompletingFollowup({ patient, followupId: latestF.id });
-                                      setCompletionNotes("");
-                                    }}
-                                    className="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-2.5 py-1.5 font-semibold text-white hover:bg-emerald-700 transition-colors"
-                                    title="Mark latest follow-up as completed"
-                                  >
-                                    <CheckCircleIcon className="h-3.5 w-3.5" />
-                                    <span>Complete</span>
-                                  </button>
-                                ) : null}
-
-                                <button
-                                  type="button"
-                                  onClick={() => handleOpenScheduleModal(patient)}
-                                  className="inline-flex items-center gap-1 rounded-lg border border-border bg-card px-2.5 py-1.5 font-semibold text-foreground hover:bg-muted transition-colors"
-                                  title="Schedule new follow-up"
-                                >
-                                  <PlusIcon className="h-3.5 w-3.5 text-primary" />
-                                  <span>Schedule</span>
-                                </button>
-
-                                <Link
-                                  href={`/panel/patients/${patient.id}`}
-                                  className="rounded-lg bg-primary/10 px-2.5 py-1.5 font-semibold text-primary hover:bg-primary/20 transition-colors"
-                                >
-                                  Profile
-                                </Link>
-                              </div>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                          <Link
+                            href={`/panel/patients/${patient.id}`}
+                            className="rounded-lg bg-primary px-2.5 py-1.5 font-semibold text-white hover:bg-primary-hover transition-colors"
+                          >
+                            Profile
+                          </Link>
+                        </div>
+                      </article>
+                    );
+                  })}
                 </div>
               )}
             </div>

@@ -20,6 +20,7 @@ export type Translations = {
   };
   header: {
     getHelp: string;
+    demo: string;
   };
   hero: {
     titleLine1: string;
@@ -184,6 +185,7 @@ export const translations: Record<Lang, Translations> = {
     },
     header: {
       getHelp: "Get Help",
+      demo: "Demo",
     },
     hero: {
       titleLine1: "Better Health",
@@ -415,6 +417,7 @@ export const translations: Record<Lang, Translations> = {
     },
     header: {
       getHelp: "Cere ajutor",
+      demo: "Demo",
     },
     hero: {
       titleLine1: "O sănătate mai bună",
@@ -646,6 +649,7 @@ export const translations: Record<Lang, Translations> = {
     },
     header: {
       getHelp: "Kërko ndihmë",
+      demo: "Demo",
     },
     hero: {
       titleLine1: "Shëndet më i mirë",
@@ -877,6 +881,7 @@ export const translations: Record<Lang, Translations> = {
     },
     header: {
       getHelp: "Richiedi aiuto",
+      demo: "Demo",
     },
     hero: {
       titleLine1: "Una salute migliore",

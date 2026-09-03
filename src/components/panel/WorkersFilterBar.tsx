@@ -3,6 +3,7 @@
 import {
   DownloadIcon,
   FilterIcon,
+  HandHelpingIcon,
   RefreshIcon,
   SearchIcon,
   StethoscopeIcon,
@@ -15,6 +16,7 @@ interface WorkersFilterBarProps {
   statusFilter: WorkerStatus | "all";
   onChangeStatusFilter: (value: WorkerStatus | "all") => void;
   onAddWorker: () => void;
+  onAddMediator: () => void;
   onExportCSV: () => void;
   exportDisabled: boolean;
   onRefresh?: () => Promise<void>;
@@ -33,6 +35,7 @@ export function WorkersFilterBar({
   statusFilter,
   onChangeStatusFilter,
   onAddWorker,
+  onAddMediator,
   onExportCSV,
   exportDisabled,
   onRefresh,
@@ -60,6 +63,16 @@ export function WorkersFilterBar({
           >
             <StethoscopeIcon className="h-4 w-4" />
             <span>Add Staff Worker</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={onAddMediator}
+            title="Quick-create a mediator workspace"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+          >
+            <HandHelpingIcon className="h-4 w-4 text-primary" />
+            <span>Add Mediator</span>
           </button>
 
           <button

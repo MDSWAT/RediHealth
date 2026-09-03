@@ -79,6 +79,10 @@ body {
 .hero-chat-message {
   opacity: 0;
   animation: hero-message-pop 0.4s ease-out forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 @keyframes hero-typing-bounce {
@@ -128,25 +132,32 @@ body {
 @keyframes hero-typing-slide-life {
   0% {
     opacity: 1;
-    transform: translateY(-2.25rem);
+    transform: translateY(-2.75rem);
   }
 
-  85% {
+  70% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  82% {
     opacity: 1;
     transform: translateY(0);
   }
 
   100% {
-    opacity: 0;
+    opacity: 1;
     transform: translateY(0);
   }
 }
 
 .hero-typing-bubble {
   opacity: 0;
-  animation-name: hero-typing-life;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
+  animation: hero-typing-life var(--hero-anim-duration, 1s) ease-in-out var(--hero-anim-delay, 0s) forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .hero-typing-bubble-slide {
@@ -168,6 +179,10 @@ body {
 .hero-factcheck-card {
   opacity: 0;
   animation: hero-factcheck-in 0.5s ease-out forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 @keyframes hero-text-in {
@@ -185,6 +200,10 @@ body {
 .hero-text-in {
   opacity: 0;
   animation: hero-text-in 0.6s ease-out forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -193,6 +212,54 @@ body {
     transform: none;
     animation: none;
   }
+}
+
+@keyframes demo-scan-sweep {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  6% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.demo-scan-line {
+  opacity: 0;
+  animation: demo-scan-sweep 2.2s ease-in-out forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@keyframes demo-decoded-line-in {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.demo-decoded-line {
+  opacity: 0;
+  animation: demo-decoded-line-in 0.45s ease-out forwards;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 @keyframes hc-step-in {

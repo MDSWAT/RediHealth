@@ -25,7 +25,7 @@ export function getPriorityMeta(priority: PatientPriority = "moderate") {
       return {
         label: "Critical Priority",
         shortLabel: "Critical",
-        badgeClass: "bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20",
+        badgeClass: "bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-400",
         recommendedDays: 1,
         dotClass: "bg-red-500 animate-pulse",
       };
@@ -33,7 +33,7 @@ export function getPriorityMeta(priority: PatientPriority = "moderate") {
       return {
         label: "High Priority",
         shortLabel: "High",
-        badgeClass: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20",
+        badgeClass: "bg-orange-100 text-orange-800 dark:bg-amber-500/10 dark:text-amber-400",
         recommendedDays: 3,
         dotClass: "bg-amber-500",
       };
@@ -41,7 +41,7 @@ export function getPriorityMeta(priority: PatientPriority = "moderate") {
       return {
         label: "Moderate Priority",
         shortLabel: "Moderate",
-        badgeClass: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20",
+        badgeClass: "bg-blue-100 text-blue-800 dark:bg-blue-500/10 dark:text-blue-400",
         recommendedDays: 7,
         dotClass: "bg-blue-500",
       };
@@ -49,7 +49,7 @@ export function getPriorityMeta(priority: PatientPriority = "moderate") {
       return {
         label: "Low Priority",
         shortLabel: "Low",
-        badgeClass: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20",
+        badgeClass: "bg-slate-100 text-slate-700 dark:bg-emerald-500/10 dark:text-emerald-400",
         recommendedDays: 14,
         dotClass: "bg-emerald-500",
       };
@@ -61,7 +61,7 @@ export function getFollowupState(followups?: FollowupItem[] | null) {
     return {
       state: "none" as const,
       label: "No Follow-up Scheduled",
-      badgeClass: "bg-gray-500/10 text-gray-500 dark:text-gray-400",
+      badgeClass: "bg-slate-100 text-slate-700 dark:bg-gray-500/10 dark:text-gray-400",
       latest: null,
     };
   }
@@ -73,7 +73,7 @@ export function getFollowupState(followups?: FollowupItem[] | null) {
     return {
       state: "completed" as const,
       label: "Completed",
-      badgeClass: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+      badgeClass: "bg-emerald-100 text-emerald-950 dark:bg-emerald-500/10 dark:text-emerald-400",
       latest: latestCompleted,
     };
   }
@@ -105,7 +105,7 @@ export function getFollowupState(followups?: FollowupItem[] | null) {
   return {
     state: "upcoming" as const,
     label: "Upcoming",
-    badgeClass: "bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold",
+    badgeClass: "bg-blue-100 text-blue-800 dark:bg-blue-500/10 dark:text-blue-400 font-semibold",
     latest: nextUp,
   };
 }

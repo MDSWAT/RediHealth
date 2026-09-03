@@ -190,148 +190,114 @@ export function PatientsTable({
           </p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
-          <table className="w-full min-w-[800px] text-left">
-            <thead className="border-b border-border bg-muted/60 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              <tr>
-                <th scope="col" className="px-5 py-3.5">Patient Name</th>
-                <th scope="col" className="px-5 py-3.5">Priority & Status</th>
-                <th scope="col" className="px-5 py-3.5">Contact</th>
-                <th scope="col" className="px-5 py-3.5">Demographics</th>
-                <th scope="col" className="px-5 py-3.5">Condition Summary</th>
-                <th scope="col" className="px-5 py-3.5 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {filteredPatients.map((patient) => {
-                const isDeleting = deletingId === patient.id;
-                const isConfirmingDelete = confirmingDeleteId === patient.id;
+        <div className="space-y-3">
+          {filteredPatients.map((patient) => {
+            const isDeleting = deletingId === patient.id;
+            const isConfirmingDelete = confirmingDeleteId === patient.id;
+            const priorityMeta = getPriorityMeta(patient.priority);
 
-                return (
-                  <tr
-                    key={patient.id}
-                    className="align-top hover:bg-muted/30 transition-colors"
-                  >
-                    <td className="px-5 py-4">
-                      <Link
-                        href={`/panel/patients/${patient.id}`}
-                        className="font-bold text-sm text-foreground hover:text-primary transition-colors focus-visible:underline block"
+            return (
+              <article key={patient.id} className="rounded-lg border border-border bg-card p-4 shadow-sm">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <Link
+                      href={`/panel/patients/${patient.id}`}
+                      className="block truncate text-sm font-semibold text-foreground hover:text-primary transition-colors"
+                    >
+                      {patient.full_name}
+                    </Link>
+                    <p className="mt-0.5 text-xs text-muted-foreground">
+                      ID #{patient.id} {patient.request_id ? `(Req #${patient.request_id})` : ""}
+                    </p>
+                    <p className="mt-0.5 text-xs font-semibold text-primary">
+                      Worker: {patient.assigned_worker_name || "Unassigned"}
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 flex-col items-end gap-1.5">
+                    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[0.65rem] font-semibold ${priorityMeta.badgeClass}`}>
+                      <span className={`h-1.5 w-1.5 rounded-full ${priorityMeta.dotClass}`} />
+                      {priorityMeta.label}
+                    </span>
+                    <select
+                      value={patient.status}
+                      onChange={(e) => handleUpdateStatus(patient.id, e.target.value as PatientStatus)}
+                      className={`rounded-full border-0 px-2.5 py-1 text-[0.65rem] font-semibold capitalize cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                        patient.status === "active"
+                          ? "bg-emerald-100 text-emerald-950 dark:bg-emerald-500/10 dark:text-emerald-400"
+                          : patient.status === "inactive"
+                          ? "bg-amber-100 text-amber-800 dark:bg-amber-500/10 dark:text-amber-400"
+                          : "bg-slate-100 text-slate-700 dark:bg-gray-500/10 dark:text-gray-400"
+                      }`}
+                    >
+                      <option value="active">Active Care</option>
+                      <option value="inactive">Inactive</option>
+                      <option value="archived">Archived</option>
+                    </select>
+                  </div>
+                </div>
+
+                <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                  {patient.condition_notes || "No condition notes recorded."}
+                </p>
+
+                <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+                  <span className="font-semibold text-foreground">{patient.phone}</span>
+                  <span className="max-w-[220px] truncate">{patient.email}</span>
+                  <span>{patient.date_of_birth || "DOB not provided"}</span>
+                  <span>{patient.gender || "Gender not specified"}</span>
+                </div>
+
+                <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
+                  {isConfirmingDelete ? (
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-red-600 dark:text-red-400">Delete this patient?</span>
+                      <button
+                        type="button"
+                        disabled={isDeleting}
+                        onClick={() => handleDelete(patient.id)}
+                        className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50"
                       >
-                        {patient.full_name}
-                      </Link>
-                      <span className="text-[11px] text-muted-foreground block">
-                        ID #{patient.id}{" "}
-                        {patient.request_id ? `(Req #${patient.request_id})` : ""}
-                      </span>
-                      <span className="text-[11px] text-primary font-semibold block mt-0.5">
-                        Worker: {patient.assigned_worker_name || "Unassigned"}
-                      </span>
-                    </td>
+                        {isDeleting ? "..." : "Yes, delete"}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setConfirmingDeleteId(null)}
+                        className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setConfirmingDeleteId(patient.id)}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-red-600 hover:bg-red-500/10 dark:text-red-400"
+                      title="Delete Patient"
+                    >
+                      <TrashIcon className="h-4 w-4" />
+                    </button>
+                  )}
 
-                    <td className="whitespace-nowrap px-5 py-4">
-                      <div className="flex flex-col gap-1 items-start">
-                        <span
-                          className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-bold ${
-                            getPriorityMeta(patient.priority).badgeClass
-                          }`}
-                        >
-                          <span
-                            className={`h-2 w-2 rounded-full ${
-                              getPriorityMeta(patient.priority).dotClass
-                            }`}
-                          />
-                          <span>{getPriorityMeta(patient.priority).label}</span>
-                        </span>
-                        <select
-                          value={patient.status}
-                          onChange={(e) =>
-                            handleUpdateStatus(patient.id, e.target.value as PatientStatus)
-                          }
-                          className={`mt-1 rounded-full px-2 py-0.5 text-[11px] font-bold capitalize border-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                            patient.status === "active"
-                              ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                              : patient.status === "inactive"
-                              ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
-                              : "bg-gray-500/10 text-gray-600 dark:text-gray-400"
-                          }`}
-                        >
-                          <option value="active">Active Care</option>
-                          <option value="inactive">Inactive</option>
-                          <option value="archived">Archived</option>
-                        </select>
-                      </div>
-                    </td>
-
-                    <td className="whitespace-nowrap px-5 py-4 text-xs text-muted-foreground">
-                      <p className="font-medium text-foreground">{patient.phone}</p>
-                      <p className="truncate max-w-[160px]">{patient.email}</p>
-                    </td>
-
-                    <td className="whitespace-nowrap px-5 py-4 text-xs text-muted-foreground">
-                      <p>{patient.date_of_birth || "DOB not provided"}</p>
-                      <p>{patient.gender || "Gender not specified"}</p>
-                    </td>
-
-                    <td className="max-w-xs px-5 py-4 text-xs leading-relaxed text-muted-foreground">
-                      <p className="line-clamp-2">
-                        {patient.condition_notes || "No condition notes recorded."}
-                      </p>
-                    </td>
-
-                    <td className="whitespace-nowrap px-5 py-4 text-right text-xs">
-                      {isConfirmingDelete ? (
-                        <div className="flex items-center justify-end gap-1.5">
-                          <span className="text-red-600 dark:text-red-400 font-semibold">
-                            Delete?
-                          </span>
-                          <button
-                            type="button"
-                            disabled={isDeleting}
-                            onClick={() => handleDelete(patient.id)}
-                            className="rounded-md bg-red-600 px-2.5 py-1 font-semibold text-white hover:bg-red-700 disabled:opacity-50"
-                          >
-                            {isDeleting ? "..." : "Yes"}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setConfirmingDeleteId(null)}
-                            className="rounded-md border border-border bg-card px-2 py-1 font-semibold text-foreground hover:bg-muted"
-                          >
-                            No
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="flex items-center justify-end gap-2">
-                          <Link
-                            href={`/panel/patients/${patient.id}`}
-                            className="rounded-lg bg-primary/10 px-3 py-1.5 font-semibold text-primary hover:bg-primary/20 transition-colors"
-                          >
-                            View Details
-                          </Link>
-                          <button
-                            type="button"
-                            onClick={() => setEditingPatient(patient)}
-                            className="rounded-lg border border-border bg-card p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
-                            title="Edit Profile"
-                          >
-                            <EditIcon className="h-4 w-4" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setConfirmingDeleteId(patient.id)}
-                            className="rounded-lg p-1.5 text-red-600 dark:text-red-400 hover:bg-red-500/10"
-                            title="Delete Patient"
-                          >
-                            <TrashIcon className="h-4 w-4" />
-                          </button>
-                        </div>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setEditingPatient(patient)}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
+                      title="Edit Profile"
+                    >
+                      <EditIcon className="h-4 w-4" />
+                    </button>
+                    <Link
+                      href={`/panel/patients/${patient.id}`}
+                      className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-hover transition-colors"
+                    >
+                      View Details
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       )}
 
