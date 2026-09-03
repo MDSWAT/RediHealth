@@ -12,9 +12,14 @@ function createDatabasePool() {
     throw new Error("DATABASE_URL is not configured.");
   }
 
+  const isLocalhost =
+    connectionString.includes("localhost") || connectionString.includes("127.0.0.1");
+
   const useSsl =
     process.env.DATABASE_SSL === "true" ||
-    (process.env.DATABASE_SSL !== "false" && connectionString.includes("supabase.co"));
+    (process.env.DATABASE_SSL !== "false" &&
+      (connectionString.includes("supabase") ||
+        (process.env.NODE_ENV === "production" && !isLocalhost)));
 
   return new Pool({
     connectionString,
