@@ -5,7 +5,7 @@ import {
   decryptEmailCode,
   emailAuthCookies,
 } from "@/lib/email-auth";
-import { hasLoginAccess } from "@/lib/login-access";
+import { checkLoginAccess } from "@/lib/login-access";
 
 export async function POST(request: Request) {
   const { code } = (await request.json()) as { code?: string };
@@ -29,7 +29,15 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!(await hasLoginAccess(stored.email))) {
+    const access = await checkLoginAccess(stored.email);
+    if (access.reason === "database-unavailable") {
+      return NextResponse.json(
+        { error: "Sign-in is temporarily unavailable. Please try again shortly." },
+        { status: 503 },
+      );
+    }
+
+    if (!access.allowed) {
       cookieStore.delete(emailAuthCookies.otp);
       return NextResponse.json(
         { error: "This email address is not authorized to sign in." },

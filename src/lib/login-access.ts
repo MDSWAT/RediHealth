@@ -6,12 +6,23 @@ type AccessRow = RowDataPacket & {
   id: number | string;
 };
 
-export async function hasLoginAccess(
+export type LoginAccessResultReason =
+  | "authorized"
+  | "unauthorized"
+  | "invalid-email"
+  | "database-unavailable";
+
+export type LoginAccessResult = {
+  allowed: boolean;
+  reason: LoginAccessResultReason;
+};
+
+export async function checkLoginAccess(
   email: string | null | undefined,
-): Promise<boolean> {
+): Promise<LoginAccessResult> {
   const normalizedEmail = email?.trim().toLowerCase();
   if (!normalizedEmail || !process.env.DATABASE_URL) {
-    return false;
+    return { allowed: false, reason: "invalid-email" };
   }
 
   try {
@@ -32,9 +43,20 @@ export async function hasLoginAccess(
       ),
     ]);
 
-    return patientRows[0].length > 0 || workerRows[0].length > 0;
+    const allowed = patientRows[0].length > 0 || workerRows[0].length > 0;
+    return {
+      allowed,
+      reason: allowed ? "authorized" : "unauthorized",
+    };
   } catch (error) {
     console.error("hasLoginAccess: database check failed", error);
-    return false;
+    return { allowed: false, reason: "database-unavailable" };
   }
+}
+
+export async function hasLoginAccess(
+  email: string | null | undefined,
+): Promise<boolean> {
+  const result = await checkLoginAccess(email);
+  return result.allowed;
 }

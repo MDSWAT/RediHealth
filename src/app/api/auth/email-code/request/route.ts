@@ -6,7 +6,7 @@ import {
   encryptEmailCode,
 } from "@/lib/email-auth";
 import { isEmailConfigured, sendEmail } from "@/lib/email";
-import { hasLoginAccess } from "@/lib/login-access";
+import { checkLoginAccess } from "@/lib/login-access";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -28,7 +28,16 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!(await hasLoginAccess(normalizedEmail))) {
+  const access = await checkLoginAccess(normalizedEmail);
+
+  if (access.reason === "database-unavailable") {
+    return NextResponse.json(
+      { error: "Sign-in is temporarily unavailable. Please try again shortly." },
+      { status: 503 },
+    );
+  }
+
+  if (!access.allowed) {
     return NextResponse.json(
       { error: "This email address is not authorized to sign in." },
       { status: 403 },
