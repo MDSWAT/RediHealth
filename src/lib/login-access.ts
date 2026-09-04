@@ -1,4 +1,8 @@
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import {
+  getDatabase,
+  hasDatabaseConnectionConfig,
+  type RowDataPacket,
+} from "@/lib/database";
 
 const allowedWorkerRoles = ["administrator", "admin", "doctor", "mediator"];
 
@@ -21,8 +25,12 @@ export async function checkLoginAccess(
   email: string | null | undefined,
 ): Promise<LoginAccessResult> {
   const normalizedEmail = email?.trim().toLowerCase();
-  if (!normalizedEmail || !process.env.DATABASE_URL) {
+  if (!normalizedEmail) {
     return { allowed: false, reason: "invalid-email" };
+  }
+
+  if (!hasDatabaseConnectionConfig()) {
+    return { allowed: false, reason: "database-unavailable" };
   }
 
   try {

@@ -1,4 +1,11 @@
-import { Pool, type PoolClient, type QueryResultRow } from "pg";
+import mysql, {
+  type Pool,
+  type PoolConnection,
+  type ResultSetHeader,
+  type RowDataPacket,
+} from "mysql2/promise";
+
+export type { ResultSetHeader, RowDataPacket };
 
 type GlobalWithDatabase = typeof globalThis & {
   databasePool?: Pool;
@@ -6,62 +13,91 @@ type GlobalWithDatabase = typeof globalThis & {
 
 const globalWithDatabase = globalThis as GlobalWithDatabase;
 
-function createDatabasePool() {
-  const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL;
-  if (!connectionString) {
-    throw new Error("DATABASE_URL or POSTGRES_URL is not configured.");
+function resolveDatabaseConnectionString() {
+  const isProduction = process.env.NODE_ENV === "production";
+
+  if (isProduction) {
+    const url =
+      process.env.DATABASE_URL_PRODUCTION ||
+      process.env.DATABASE_URL;
+
+    return url?.startsWith("mysql://") ? url : undefined;
   }
 
-  const isLocalhost =
-    connectionString.includes("localhost") || connectionString.includes("127.0.0.1");
+  const url =
+    process.env.DATABASE_URL ||
+    process.env.DATABASE_URL_PRODUCTION;
 
-  const useSsl =
-    process.env.DATABASE_SSL === "true" ||
-    (process.env.DATABASE_SSL !== "false" &&
-      (connectionString.includes("supabase") ||
-        (process.env.NODE_ENV === "production" && !isLocalhost)));
+  return url?.startsWith("mysql://") ? url : undefined;
+}
 
-  return new Pool({
-    connectionString,
-    connectionTimeoutMillis: 5_000,
+export function hasDatabaseConnectionConfig() {
+  return Boolean(
+    resolveDatabaseConnectionString() ||
+      (process.env.DB_HOST && process.env.DB_USER && process.env.DB_NAME),
+  );
+}
+
+function createDatabasePool() {
+  const connectionString = resolveDatabaseConnectionString();
+  const useSsl = process.env.DATABASE_SSL === "true";
+
+  const baseConfig = {
+    waitForConnections: true,
+    connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 10),
+    queueLimit: 0,
+    connectTimeout: 5_000,
+    enableKeepAlive: true,
     ssl: useSsl ? { rejectUnauthorized: false } : undefined,
+  };
+
+  if (connectionString) {
+    const url = new URL(connectionString);
+    const database = url.pathname.replace(/^\//, "");
+    if (!database) {
+      throw new Error("MySQL connection URL must include a database name.");
+    }
+
+    return mysql.createPool({
+      ...baseConfig,
+      host: url.hostname,
+      port: Number(url.port || 3306),
+      user: decodeURIComponent(url.username),
+      password: decodeURIComponent(url.password),
+      database,
+    });
+  }
+
+  const host = process.env.DB_HOST;
+  const user = process.env.DB_USER;
+  const database = process.env.DB_NAME;
+
+  if (!host || !user || !database) {
+    throw new Error(
+      "Configure MySQL using DATABASE_URL (mysql://...) or DB_HOST, DB_USER, and DB_NAME.",
+    );
+  }
+
+  return mysql.createPool({
+    ...baseConfig,
+    host,
+    port: Number(process.env.DB_PORT || 3306),
+    user,
+    password: process.env.DB_PASSWORD,
+    database,
   });
 }
 
-/** Row shape returned by SELECT queries; kept generic like `pg`'s own row type. */
-export type RowDataPacket = QueryResultRow;
+type MysqlQueryable = Pool | PoolConnection;
 
-/** Mirrors mysql2's ResultSetHeader so INSERT/UPDATE/DELETE call sites need no changes. */
-export type ResultSetHeader = {
-  affectedRows: number;
-  insertId: number | string;
-};
-
-/** Converts mysql-style `?` positional placeholders into Postgres `$1, $2, ...`. */
-function toPostgresParams(sql: string): string {
-  let index = 0;
-  return sql.replace(/\?/g, () => `$${++index}`);
-}
-
-type PgQueryable = Pool | PoolClient;
-
-/** Wraps a pg pool/client with a `query<T>()` signature matching mysql2's `[rows]` tuple result. */
-function makeQueryable(client: PgQueryable) {
+function makeQueryable(client: MysqlQueryable) {
   return {
     async query<T extends RowDataPacket[] | ResultSetHeader>(
       sql: string,
       params: unknown[] = [],
     ): Promise<[T, undefined]> {
-      const result = await client.query(toPostgresParams(sql), params);
-      if (result.command === "SELECT") {
-        return [result.rows as unknown as T, undefined];
-      }
-
-      const header: ResultSetHeader = {
-        affectedRows: result.rowCount ?? 0,
-        insertId: result.rows[0]?.id ?? 0,
-      };
-      return [header as unknown as T, undefined];
+      const [rows] = await client.query(sql, params);
+      return [rows as T, undefined];
     },
   };
 }
@@ -75,17 +111,17 @@ export function getDatabase() {
   return {
     ...makeQueryable(pool),
     async getConnection() {
-      const client = await pool.connect();
+      const client = await pool.getConnection();
       return {
         ...makeQueryable(client),
         async beginTransaction() {
-          await client.query("BEGIN");
+          await client.beginTransaction();
         },
         async commit() {
-          await client.query("COMMIT");
+          await client.commit();
         },
         async rollback() {
-          await client.query("ROLLBACK");
+          await client.rollback();
         },
         release() {
           client.release();

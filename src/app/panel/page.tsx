@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import { getDatabase, hasDatabaseConnectionConfig, type RowDataPacket } from "@/lib/database";
 import { WorkerDashboard } from "@/components/panel/WorkerDashboard";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
 import { getUserWorkerContext } from "@/lib/worker-auth";
@@ -31,7 +31,7 @@ export default async function PanelPage() {
   }
 
   let requests: DBMedicalHelpRequest[] = [];
-  let databaseAvailable = Boolean(process.env.DATABASE_URL);
+  let databaseAvailable = hasDatabaseConnectionConfig();
 
   if (databaseAvailable) {
     try {

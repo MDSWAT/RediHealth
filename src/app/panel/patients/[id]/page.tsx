@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import { getDatabase, hasDatabaseConnectionConfig, type RowDataPacket } from "@/lib/database";
 import { AdminShell } from "@/components/panel/AdminShell";
 import { PatientProfileView } from "@/components/panel/PatientProfileView";
 import { Container } from "@/components/ui/Container";
@@ -62,7 +62,7 @@ export default async function PatientPage({ params }: PageProps) {
   let patientRecord: DBPatient | null = null;
   let pendingRequestsCount = 0;
 
-  if (Boolean(process.env.DATABASE_URL)) {
+  if (hasDatabaseConnectionConfig()) {
     try {
       const db = getDatabase();
 

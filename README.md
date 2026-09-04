@@ -37,10 +37,15 @@ Required variables:
 
 ## 3. Set up the database
 
-Run the base schema, then apply migrations **in order**:
+For a fresh MySQL install, run only the base schema:
 
 ```bash
 mysql -h <host> -u <user> -p <database> < database/schema.sql
+```
+
+If you are upgrading an existing deployment created before the base schema file included all current tables/columns, apply migrations **in order**:
+
+```bash
 mysql -h <host> -u <user> -p <database> < database/migrations/001_create_medical_help_requests.sql
 mysql -h <host> -u <user> -p <database> < database/migrations/002_add_status_and_notes.sql
 mysql -h <host> -u <user> -p <database> < database/migrations/003_create_patients.sql

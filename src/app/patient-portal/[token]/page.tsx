@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import { getDatabase, hasDatabaseConnectionConfig, type RowDataPacket } from "@/lib/database";
 import { PatientPortalView } from "@/components/portal/PatientPortalView";
 import type { FollowupItem, PatientItem, PatientPhoto, PatientPriority, TreatmentPlan } from "@/lib/types/patient";
 
@@ -57,7 +57,7 @@ export default async function PatientPortalPage({ params }: PageProps) {
 
   let patientRecord: DBPatient | null = null;
 
-  if (Boolean(process.env.DATABASE_URL)) {
+  if (hasDatabaseConnectionConfig()) {
     try {
       const db = getDatabase();
       const [rows] = await db.query<DBPatient[]>(

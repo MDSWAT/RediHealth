@@ -5,6 +5,7 @@ import { WorkersDashboard } from "@/components/panel/WorkersDashboard";
 import { loadPatients } from "@/lib/data/patients";
 import { loadWorkers } from "@/lib/data/workers";
 import { countPendingRequests } from "@/lib/data/requests";
+import { hasDatabaseConnectionConfig } from "@/lib/database";
 import type { PatientItem } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
 import { getFollowupState } from "@/lib/patient-helpers";
@@ -31,7 +32,7 @@ export default async function WorkersPage() {
   let workers: WorkerItem[] = [];
   let patients: PatientItem[] = [];
   let pendingRequestsCount = 0;
-  let databaseAvailable = Boolean(process.env.DATABASE_URL);
+  let databaseAvailable = hasDatabaseConnectionConfig();
 
   if (databaseAvailable) {
     try {

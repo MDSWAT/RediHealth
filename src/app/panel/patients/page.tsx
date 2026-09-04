@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { PatientsDashboard } from "@/components/panel/PatientsDashboard";
 import { loadPatients } from "@/lib/data/patients";
 import { countPendingRequests } from "@/lib/data/requests";
+import { hasDatabaseConnectionConfig } from "@/lib/database";
 import type { PatientItem } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 
@@ -23,7 +24,7 @@ export default async function PatientsPage() {
 
   let patients: PatientItem[] = [];
   let pendingRequestsCount = 0;
-  let databaseAvailable = Boolean(process.env.DATABASE_URL);
+  let databaseAvailable = hasDatabaseConnectionConfig();
 
   if (databaseAvailable) {
     try {

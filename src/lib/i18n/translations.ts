@@ -117,6 +117,7 @@ export type Translations = {
     heroParagraphNoGoogle: string;
     terms: string;
     unauthorizedGoogle: string;
+    authUnavailable: string;
     form: {
       emailLabel: string;
       emailPlaceholder: string;
@@ -347,6 +348,7 @@ export const translations: Record<Lang, Translations> = {
       heroParagraphNoGoogle: "Use your email address to receive a one-time sign-in code.",
       terms: "By continuing, you agree to our Terms and acknowledge our Privacy Notice.",
       unauthorizedGoogle: "This Google account is not authorized to access RediHealth.",
+      authUnavailable: "Sign-in is temporarily unavailable. Please try again shortly.",
       form: {
         emailLabel: "Email address",
         emailPlaceholder: "you@example.com",
@@ -579,6 +581,7 @@ export const translations: Record<Lang, Translations> = {
       heroParagraphNoGoogle: "Folosește adresa ta de email pentru a primi un cod de autentificare unic.",
       terms: "Continuând, ești de acord cu Termenii noștri și confirmi Politica de confidențialitate.",
       unauthorizedGoogle: "Acest cont Google nu este autorizat să acceseze RediHealth.",
+      authUnavailable: "Autentificarea este temporar indisponibilă. Te rugăm să încerci din nou în curând.",
       form: {
         emailLabel: "Adresă de email",
         emailPlaceholder: "tu@exemplu.com",
@@ -811,6 +814,7 @@ export const translations: Record<Lang, Translations> = {
       heroParagraphNoGoogle: "Përdor adresën tënde të emailit për të marrë një kod identifikimi një-përdorimësh.",
       terms: "Duke vazhduar, pranon Kushtet tona dhe konfirmon Njoftimin tonë të Privatësisë.",
       unauthorizedGoogle: "Kjo llogari Google nuk është e autorizuar të aksesojë RediHealth.",
+      authUnavailable: "Identifikimi është përkohësisht i padisponueshëm. Të lutemi provo përsëri së shpejti.",
       form: {
         emailLabel: "Adresa e emailit",
         emailPlaceholder: "ti@shembull.com",
@@ -1043,6 +1047,7 @@ export const translations: Record<Lang, Translations> = {
       heroParagraphNoGoogle: "Usa il tuo indirizzo email per ricevere un codice di accesso monouso.",
       terms: "Continuando, accetti i nostri Termini e prendi atto della nostra Informativa sulla Privacy.",
       unauthorizedGoogle: "Questo account Google non è autorizzato ad accedere a RediHealth.",
+      authUnavailable: "L'accesso è temporaneamente non disponibile. Riprova tra poco.",
       form: {
         emailLabel: "Indirizzo email",
         emailPlaceholder: "tu@esempio.com",

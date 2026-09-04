@@ -8,13 +8,19 @@ import { useLanguage } from "@/lib/i18n/language-context";
 
 export function SignInPageContent({
   googleConfigured,
-  isUnauthorizedEmail,
+  initialError,
 }: {
   googleConfigured: boolean;
-  isUnauthorizedEmail: boolean;
+  initialError?: "unauthorized" | "unavailable";
 }) {
   const { t } = useLanguage();
   const page = t.signInPage;
+  const initialErrorMessage =
+    initialError === "unauthorized"
+      ? page.unauthorizedGoogle
+      : initialError === "unavailable"
+        ? page.authUnavailable
+        : undefined;
 
   return (
     <main id="main-content" className="flex-1">
@@ -39,7 +45,7 @@ export function SignInPageContent({
           <Reveal className="mx-auto max-w-xl">
             <SignInForm
               googleConfigured={googleConfigured}
-              initialError={isUnauthorizedEmail ? page.unauthorizedGoogle : undefined}
+              initialError={initialErrorMessage}
             />
             <p className="mt-5 text-center text-sm leading-relaxed text-muted-foreground">
               {page.terms}

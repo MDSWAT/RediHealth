@@ -3,7 +3,7 @@ import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
 import { decryptEmailCode, emailAuthCookies } from "@/lib/email-auth";
-import { hasLoginAccess } from "@/lib/login-access";
+import { checkLoginAccess, hasLoginAccess } from "@/lib/login-access";
 
 const googleConfigured = Boolean(
   process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET,
@@ -49,10 +49,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async signIn({ user }) {
-      return (
-        (await hasLoginAccess(user.email)) ||
-        "/sign-in?error=unauthorized-email"
-      );
+      const access = await checkLoginAccess(user.email);
+      if (access.reason === "database-unavailable") {
+        return "/sign-in?error=auth-unavailable";
+      }
+
+      return access.allowed || "/sign-in?error=unauthorized-email";
     },
   },
   session: { strategy: "jwt" },
