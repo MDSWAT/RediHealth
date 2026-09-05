@@ -1083,7 +1083,7 @@ export function CalendarDashboard({
 
                               <div className="flex items-center gap-2 self-end sm:self-auto">
                                 <Link
-                                  href={withLangPrefix(lang, `/panel/patients/${ev.patient.id}`)}
+                                  href={withLangPrefix(`/panel/patients/${ev.patient.id}`, lang)}
                                   className="rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/20"
                                 >
                                   {t.profile}
@@ -1211,7 +1211,7 @@ export function CalendarDashboard({
                     </span>
                   </button>
                   <Link
-                    href={withLangPrefix(lang, `/panel/patients/${selectedEvent.patient.id}`)}
+                    href={withLangPrefix(`/panel/patients/${selectedEvent.patient.id}`, lang)}
                     className="rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover"
                   >
                     {t.viewProfile}
