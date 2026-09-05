@@ -15,6 +15,7 @@ import {
 import { cn } from "@/lib/cn";
 import { languages, type Lang } from "@/lib/i18n/translations";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
 
 function LanguageSelector({ className }: { className?: string }) {
   const { lang, setLang } = useLanguage();
@@ -42,7 +43,7 @@ function LanguageSelector({ className }: { className?: string }) {
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   useEffect(() => {
     void getSession().then((session) => setAuthenticated(Boolean(session)));
@@ -63,14 +64,14 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <Container>
         <div className="flex h-16 items-center justify-between gap-4 lg:h-20">
-          <Logo />
+          <Logo href={withLangPrefix("/", lang)} />
 
           <nav aria-label="Primary" className="hidden lg:block">
             <ul className="flex items-center gap-1">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    href={link.href}
+                    href={withLangPrefix(link.href, lang)}
                     className="inline-flex min-h-[44px] items-center rounded-md px-3 text-sm font-medium text-foreground hover:bg-muted"
                   >
                     {link.label}
@@ -83,18 +84,18 @@ export function Header() {
           <div className="hidden items-center gap-2 lg:flex">
             <LanguageSelector />
             <Link
-              href={accountLink.href}
+              href={withLangPrefix(accountLink.href, lang)}
               className="inline-flex min-h-[44px] items-center rounded-lg px-3 text-sm font-semibold text-foreground hover:bg-muted"
             >
               {accountLink.label}
             </Link>
             <Link
-              href="/demo"
+              href={withLangPrefix("/demo", lang)}
               className="inline-flex min-h-[44px] items-center rounded-lg border border-border px-3 text-sm font-semibold text-foreground hover:bg-muted"
             >
               {t.header.demo}
             </Link>
-            <Button href="/get-help" size="md" className="text-sm">
+            <Button href={withLangPrefix("/get-help", lang)} size="md" className="text-sm">
               {t.header.getHelp}
             </Button>
           </div>
@@ -136,7 +137,7 @@ export function Header() {
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link
-                      href={link.href}
+                      href={withLangPrefix(link.href, lang)}
                       className="flex min-h-[48px] items-center rounded-lg px-3 text-base font-medium text-foreground hover:bg-muted"
                       onClick={() => setMobileOpen(false)}
                     >
@@ -150,20 +151,20 @@ export function Header() {
             <div className="mt-4 flex flex-col gap-3 border-t border-border pt-4">
               <LanguageSelector className="w-full [&>select]:w-full" />
               <Link
-                href={accountLink.href}
+                href={withLangPrefix(accountLink.href, lang)}
                 className="flex min-h-[48px] items-center justify-center rounded-lg border border-border px-4 text-base font-semibold text-foreground hover:bg-muted"
                 onClick={() => setMobileOpen(false)}
               >
                 {accountLink.label}
               </Link>
               <Link
-                href="/demo"
+                href={withLangPrefix("/demo", lang)}
                 className="flex min-h-[48px] items-center justify-center rounded-lg border border-border px-4 text-base font-semibold text-foreground hover:bg-muted"
                 onClick={() => setMobileOpen(false)}
               >
                 {t.header.demo}
               </Link>
-              <Button href="/get-help" size="lg" fullWidth onClick={() => setMobileOpen(false)}>
+              <Button href={withLangPrefix("/get-help", lang)} size="lg" fullWidth onClick={() => setMobileOpen(false)}>
                 {t.header.getHelp}
               </Button>
             </div>

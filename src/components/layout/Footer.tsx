@@ -4,9 +4,10 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const linkGroups: { heading: string; links: { label: string; href: string }[] }[] = [
     {
@@ -38,7 +39,7 @@ export function Footer() {
       <Container className="py-12">
         <div className="grid gap-10 lg:grid-cols-[1.5fr_2fr]">
           <div className="max-w-sm">
-            <Logo />
+            <Logo href={withLangPrefix("/", lang)} />
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               {t.footer.disclaimer}
             </p>
@@ -64,7 +65,7 @@ export function Footer() {
                   {group.links.map((link) => (
                     <li key={link.href}>
                       <Link
-                        href={link.href}
+                        href={withLangPrefix(link.href, lang)}
                         className="inline-flex min-h-[40px] items-center rounded-md text-sm text-muted-foreground hover:text-foreground"
                       >
                         {link.label}

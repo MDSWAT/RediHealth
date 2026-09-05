@@ -80,7 +80,7 @@ export function AdminShell({
   const navigation = (
     <>
       <div className={`flex h-20 items-center border-b border-border ${sidebarCollapsed ? "justify-center px-3" : "px-5"}`}>
-        <Logo className={`[&_img]:h-10 [&_img]:w-10 ${sidebarCollapsed ? "sr-only" : ""}`} />
+        <Logo href={withLangPrefix("/", lang)} className={`[&_img]:h-10 [&_img]:w-10 ${sidebarCollapsed ? "sr-only" : ""}`} />
         <button
           type="button"
           onClick={() => setSidebarCollapsed((collapsed) => !collapsed)}
@@ -180,7 +180,7 @@ export function AdminShell({
 
       <div className="min-w-0">
         <header className="sticky top-0 z-40 flex h-14 items-center justify-between border-b border-border bg-card px-4 sm:h-16 sm:px-6 xl:hidden">
-          <Logo className="[&_img]:h-9 [&_img]:w-9" />
+          <Logo href={withLangPrefix("/", lang)} className="[&_img]:h-9 [&_img]:w-9" />
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
