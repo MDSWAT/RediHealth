@@ -1,9 +1,9 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, type ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { translations, type Lang, type Translations } from "@/lib/i18n/translations";
-
-const STORAGE_KEY = "redihealth-lang";
+import { DEFAULT_LANG, LOCALE_COOKIE, getLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 
 type LanguageContextValue = {
   lang: Lang;
@@ -14,20 +14,19 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+  const router = useRouter();
+  const pathname = usePathname();
+  const lang = getLangFromPathname(pathname) ?? DEFAULT_LANG;
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored && stored in translations) {
-      // reading persisted preference after mount to avoid SSR/client hydration mismatch
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setLangState(stored as Lang);
-    }
-  }, []);
+    document.documentElement.lang = lang;
+    document.cookie = `${LOCALE_COOKIE}=${lang}; path=/; max-age=31536000; samesite=lax`;
+    window.localStorage.setItem(LOCALE_COOKIE, lang);
+  }, [lang]);
 
   const setLang = (next: Lang) => {
-    setLangState(next);
-    window.localStorage.setItem(STORAGE_KEY, next);
+    if (next === lang) return;
+    router.push(withLangPrefix(pathname, next));
   };
 
   const value = useMemo(() => ({ lang, setLang, t: translations[lang] }), [lang]);

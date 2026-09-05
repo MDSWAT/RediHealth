@@ -7,6 +7,7 @@ import {
   SearchIcon,
   UserIcon,
 } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
 import type { PatientPriority, PatientStatus } from "@/lib/types/patient";
 
 interface PatientsFilterBarProps {
@@ -51,6 +52,112 @@ export function PatientsFilterBar({
   onRefresh,
   isRefreshing = false,
 }: PatientsFilterBarProps) {
+  const { lang } = useLanguage();
+  const t = {
+    en: {
+      search: "Search patients by name, phone, email, notes...",
+      add: "Add Patient Profile",
+      exportCsv: "Export CSV",
+      refreshTitle: "Refresh patient records",
+      refreshing: "Refreshing...",
+      refresh: "Refresh",
+      careStatus: "Care Status",
+      priority: "Priority Level",
+      allPatients: "All Patients",
+      active: "Active Care",
+      inactive: "Inactive Care",
+      archived: "Archived",
+      allPriorities: "All Priorities",
+      critical: "Critical",
+      high: "High",
+      moderate: "Moderate",
+      low: "Low",
+    },
+    ro: {
+      search: "Cauta pacienti dupa nume, telefon, email, notite...",
+      add: "Adauga profil pacient",
+      exportCsv: "Export CSV",
+      refreshTitle: "Reimprospateaza dosarele pacientilor",
+      refreshing: "Se actualizeaza...",
+      refresh: "Reimprospateaza",
+      careStatus: "Status ingrijire",
+      priority: "Nivel prioritate",
+      allPatients: "Toti pacientii",
+      active: "Ingrijire activa",
+      inactive: "Ingrijire inactiva",
+      archived: "Arhivat",
+      allPriorities: "Toate prioritatile",
+      critical: "Critic",
+      high: "Ridicata",
+      moderate: "Moderata",
+      low: "Scazuta",
+    },
+    sq: {
+      search: "Kerko paciente sipas emrit, telefonit, emailit, shenimeve...",
+      add: "Shto profil pacienti",
+      exportCsv: "Eksporto CSV",
+      refreshTitle: "Perditeso dosjet e pacienteve",
+      refreshing: "Duke perditesuar...",
+      refresh: "Perditeso",
+      careStatus: "Statusi i kujdesit",
+      priority: "Niveli i prioritetit",
+      allPatients: "Te gjithe pacientet",
+      active: "Kujdes aktiv",
+      inactive: "Kujdes joaktiv",
+      archived: "Arkivuar",
+      allPriorities: "Te gjitha prioritetet",
+      critical: "Kritik",
+      high: "E larte",
+      moderate: "Mesatare",
+      low: "E ulet",
+    },
+    it: {
+      search: "Cerca pazienti per nome, telefono, email, note...",
+      add: "Aggiungi profilo paziente",
+      exportCsv: "Esporta CSV",
+      refreshTitle: "Aggiorna cartelle pazienti",
+      refreshing: "Aggiornamento...",
+      refresh: "Aggiorna",
+      careStatus: "Stato cura",
+      priority: "Livello priorita",
+      allPatients: "Tutti i pazienti",
+      active: "Cura attiva",
+      inactive: "Cura inattiva",
+      archived: "Archiviato",
+      allPriorities: "Tutte le priorita",
+      critical: "Critica",
+      high: "Alta",
+      moderate: "Moderata",
+      low: "Bassa",
+    },
+  }[lang];
+
+  const localizedStatusFilters = statusFilters.map((item) => ({
+    ...item,
+    label:
+      item.id === "all"
+        ? t.allPatients
+        : item.id === "active"
+        ? t.active
+        : item.id === "inactive"
+        ? t.inactive
+        : t.archived,
+  }));
+
+  const localizedPriorityFilters = priorityFilters.map((item) => ({
+    ...item,
+    label:
+      item.id === "all"
+        ? t.allPriorities
+        : item.id === "critical"
+        ? t.critical
+        : item.id === "high"
+        ? t.high
+        : item.id === "moderate"
+        ? t.moderate
+        : t.low,
+  }));
+
   return (
     <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-4 sm:p-5 mb-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -60,7 +167,7 @@ export function PatientsFilterBar({
             type="text"
             value={searchQuery}
             onChange={(e) => onChangeSearchQuery(e.target.value)}
-            placeholder="Search patients by name, phone, email, notes..."
+            placeholder={t.search}
             className="w-full rounded-xl border border-border bg-background pl-9 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
@@ -72,7 +179,7 @@ export function PatientsFilterBar({
             className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-xs font-semibold text-white hover:bg-primary-hover transition-colors"
           >
             <UserIcon className="h-4 w-4" />
-            <span>Add Patient Profile</span>
+            <span>{t.add}</span>
           </button>
 
           <button
@@ -82,7 +189,7 @@ export function PatientsFilterBar({
             className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50"
           >
             <DownloadIcon className="h-4 w-4 text-primary" />
-            <span className="hidden sm:inline">Export CSV</span>
+            <span className="hidden sm:inline">{t.exportCsv}</span>
           </button>
 
           {onRefresh ? (
@@ -91,7 +198,7 @@ export function PatientsFilterBar({
               onClick={onRefresh}
               disabled={isRefreshing}
               className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50"
-              title="Refresh patient records"
+              title={t.refreshTitle}
             >
               <RefreshIcon
                 className={`h-4 w-4 text-primary transition-transform ${
@@ -99,7 +206,7 @@ export function PatientsFilterBar({
                 }`}
               />
               <span className="hidden sm:inline">
-                {isRefreshing ? "Refreshing..." : "Refresh"}
+                {isRefreshing ? t.refreshing : t.refresh}
               </span>
             </button>
           ) : null}
@@ -109,10 +216,10 @@ export function PatientsFilterBar({
       <div className="flex flex-col gap-2 pt-1 border-t border-border">
         <div className="flex items-center gap-2 overflow-x-auto text-xs">
           <span className="text-muted-foreground font-semibold flex items-center gap-1 mr-1">
-            <FilterIcon className="h-3.5 w-3.5" /> Care Status:
+            <FilterIcon className="h-3.5 w-3.5" /> {t.careStatus}:
           </span>
 
-          {statusFilters.map((item) => (
+          {localizedStatusFilters.map((item) => (
             <button
               key={item.id}
               type="button"
@@ -130,10 +237,10 @@ export function PatientsFilterBar({
 
         <div className="flex items-center gap-2 overflow-x-auto text-xs">
           <span className="text-muted-foreground font-semibold flex items-center gap-1 mr-1">
-            Priority Level:
+            {t.priority}:
           </span>
 
-          {priorityFilters.map((item) => (
+          {localizedPriorityFilters.map((item) => (
             <button
               key={item.id}
               type="button"

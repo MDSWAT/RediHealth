@@ -7,6 +7,7 @@ import { countPendingRequests } from "@/lib/data/requests";
 import { hasDatabaseConnectionConfig } from "@/lib/database";
 import type { PatientItem } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
+import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
 export const metadata: Metadata = {
   title: "Calendar — RediHealth Panel",
@@ -16,14 +17,14 @@ export default async function CalendarPage() {
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/sign-in");
+    redirect(await withRequestLangPrefix("/sign-in"));
   }
 
   const userEmail = session.user.email || "staff account";
   const workerContext = await getUserWorkerContext(userEmail);
 
   if (workerContext.role.trim().toLowerCase() === "mediator" && !workerContext.isAdmin) {
-    redirect("/panel");
+    redirect(await withRequestLangPrefix("/panel"));
   }
 
   let patients: PatientItem[] = [];

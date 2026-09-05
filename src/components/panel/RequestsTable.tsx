@@ -12,6 +12,8 @@ import {
   SearchIcon,
   TrashIcon,
 } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { langToLocale, panelTranslations } from "@/lib/i18n/panel-translations";
 import type { MedicalHelpRequestItem, RequestStatus } from "@/lib/types/medical-request";
 import { RequestDetailModal } from "./RequestDetailModal";
 import { QuickTemplatesModal } from "./QuickTemplatesModal";
@@ -33,6 +35,9 @@ export function RequestsTable({
   onRefresh,
   isRefreshing = false,
 }: RequestsTableProps) {
+  const { lang } = useLanguage();
+  const t = panelTranslations[lang].requestsTable;
+  const locale = langToLocale[lang];
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"newest" | "oldest" | "priority">("newest");
   const [selectedRequest, setSelectedRequest] = useState<MedicalHelpRequestItem | null>(null);
@@ -82,14 +87,14 @@ export function RequestsTable({
       const data = (await response.json()) as { error?: string; success?: boolean };
 
       if (!response.ok) {
-        setErrorMessage(data.error || "Failed to delete request.");
+        setErrorMessage(data.error || t.errorDelete);
         return;
       }
 
       setRequests((prev) => prev.filter((req) => req.id !== id));
       setConfirmingDeleteId(null);
     } catch {
-      setErrorMessage("An error occurred while deleting the request.");
+      setErrorMessage(t.errorDeleteUnexpected);
     } finally {
       setDeletingId(null);
     }
@@ -109,7 +114,7 @@ export function RequestsTable({
         );
       }
     } catch {
-      setErrorMessage("Failed to update request status.");
+      setErrorMessage(t.errorUpdateStatus);
     }
   }
 
@@ -166,7 +171,7 @@ export function RequestsTable({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by name, phone, email or description..."
+              placeholder={t.searchPlaceholder}
               className="w-full rounded-xl border border-border bg-background pl-9 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
@@ -177,9 +182,9 @@ export function RequestsTable({
               onChange={(e) => setSortBy(e.target.value as "newest" | "oldest" | "priority")}
               className="col-span-3 rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:col-auto"
             >
-              <option value="newest">Sort: Newest First</option>
-              <option value="oldest">Sort: Oldest First</option>
-              <option value="priority">Sort: Priority First</option>
+              <option value="newest">{t.sortNewest}</option>
+              <option value="oldest">{t.sortOldest}</option>
+              <option value="priority">{t.sortPriority}</option>
             </select>
 
             <button
@@ -189,7 +194,7 @@ export function RequestsTable({
               className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50"
             >
               <DownloadIcon className="h-4 w-4 text-primary" />
-              <span className="hidden md:inline">Export CSV</span>
+              <span className="hidden md:inline">{t.exportCsv}</span>
             </button>
 
             {onRefresh ? (
@@ -198,7 +203,7 @@ export function RequestsTable({
                 onClick={onRefresh}
                 disabled={isRefreshing}
                 className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50"
-                title="Refresh medical help requests"
+                title={t.refreshTitle}
               >
                 <RefreshIcon
                   className={`h-4 w-4 text-primary transition-transform ${
@@ -206,7 +211,7 @@ export function RequestsTable({
                   }`}
                 />
                 <span className="hidden md:inline">
-                  {isRefreshing ? "Refreshing..." : "Refresh"}
+                  {isRefreshing ? t.refreshing : t.refresh}
                 </span>
               </button>
             ) : null}
@@ -215,16 +220,16 @@ export function RequestsTable({
 
         <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
           <span className="text-muted-foreground font-medium flex items-center gap-1 mr-1">
-            <FilterIcon className="h-3.5 w-3.5" /> Filter:
+            <FilterIcon className="h-3.5 w-3.5" /> {t.filter}:
           </span>
 
           {(
             [
-              { id: "all", label: "All Requests" },
-              { id: "pending", label: "Pending" },
-              { id: "in_progress", label: "In Progress" },
-              { id: "resolved", label: "Resolved" },
-              { id: "archived", label: "Archived" },
+              { id: "all", label: t.allRequests },
+              { id: "pending", label: t.pending },
+              { id: "in_progress", label: t.inProgress },
+              { id: "resolved", label: t.resolved },
+              { id: "archived", label: t.archived },
             ] as const
           ).map((item) => (
             <button
@@ -253,23 +258,23 @@ export function RequestsTable({
             onClick={() => setErrorMessage(null)}
             className="text-xs font-semibold underline hover:no-underline ml-4"
           >
-            Dismiss
+            {t.dismiss}
           </button>
         </div>
       ) : null}
 
       <div className="flex items-center justify-between mb-4 px-1">
         <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          Showing {filteredRequests.length} of {requests.length} requests
+          {t.showing(filteredRequests.length, requests.length)}
         </p>
       </div>
 
       {filteredRequests.length === 0 ? (
         <div className="rounded-2xl border border-border bg-card p-12 text-center">
           <FileTextIcon className="mx-auto h-8 w-8 text-muted-foreground" />
-          <h3 className="mt-3 text-base font-semibold text-foreground">No requests found</h3>
+          <h3 className="mt-3 text-base font-semibold text-foreground">{t.noRequests}</h3>
           <p className="mt-1 text-xs text-muted-foreground">
-            Try adjusting your search criteria or status filter.
+            {t.noRequestsHint}
           </p>
         </div>
       ) : (
@@ -281,9 +286,9 @@ export function RequestsTable({
               <article key={request.id} className="rounded-lg border border-border bg-card p-4 shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <button type="button" onClick={() => setSelectedRequest(request)} className="min-w-0 text-left">
-                    <span className="block truncate text-sm font-semibold text-foreground hover:text-primary transition-colors">{request.full_name || "Not provided"}</span>
+                    <span className="block truncate text-sm font-semibold text-foreground hover:text-primary transition-colors">{request.full_name || t.notProvided}</span>
                     <span className="mt-1 block text-xs text-muted-foreground">
-                      {new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(request.created_at))}
+                      {new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeStyle: "short" }).format(new Date(request.created_at))}
                     </span>
                   </button>
                   <select
@@ -299,10 +304,10 @@ export function RequestsTable({
                         : "bg-slate-100 text-slate-700 dark:bg-gray-500/10 dark:text-gray-400"
                     }`}
                   >
-                    <option value="pending">Pending</option>
-                    <option value="in_progress">In progress</option>
-                    <option value="resolved">Resolved</option>
-                    <option value="archived">Archived</option>
+                    <option value="pending">{t.pending}</option>
+                    <option value="in_progress">{t.inProgress}</option>
+                    <option value="resolved">{t.resolved}</option>
+                    <option value="archived">{t.archived}</option>
                   </select>
                 </div>
                 <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{request.description}</p>
@@ -316,34 +321,34 @@ export function RequestsTable({
                   </a>
                   {request.priority === "urgent" ? (
                     <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 font-semibold text-red-700 dark:bg-red-500/10 dark:text-red-400">
-                      <AlertCircleIcon className="h-3.5 w-3.5" /> Urgent
+                      <AlertCircleIcon className="h-3.5 w-3.5" /> {t.urgent}
                     </span>
                   ) : null}
                   {request.internal_notes ? (
-                    <span className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 font-semibold text-foreground">Note attached</span>
+                    <span className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 font-semibold text-foreground">{t.noteAttached}</span>
                   ) : null}
                 </div>
                 <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
                   {isConfirmingDelete ? (
                     <div className="flex items-center gap-2">
                       <button type="button" disabled={isDeleting} onClick={() => handleDelete(request.id)} className="rounded-lg bg-red-600 px-3 py-2 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50">
-                        {isDeleting ? "Deleting..." : "Delete"}
+                        {isDeleting ? t.deleting : t.delete}
                       </button>
                       <button type="button" onClick={() => setConfirmingDeleteId(null)} className="rounded-lg border border-border px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted">
-                        Cancel
+                        {t.cancel}
                       </button>
                     </div>
                   ) : (
-                    <button type="button" onClick={() => setConfirmingDeleteId(request.id)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-red-600 hover:bg-red-500/10 dark:text-red-400" aria-label="Delete request">
+                    <button type="button" onClick={() => setConfirmingDeleteId(request.id)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-red-600 hover:bg-red-500/10 dark:text-red-400" aria-label={t.deleteRequest}>
                       <TrashIcon className="h-4 w-4" />
                     </button>
                   )}
                   <div className="flex items-center gap-2">
-                    <button type="button" onClick={() => setTemplateRequest(request)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground hover:bg-muted hover:text-foreground" aria-label="Open email templates">
+                    <button type="button" onClick={() => setTemplateRequest(request)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground hover:bg-muted hover:text-foreground" aria-label={t.openEmailTemplates}>
                       <MailIcon className="h-4 w-4" />
                     </button>
                     <button type="button" onClick={() => setSelectedRequest(request)} className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-hover">
-                      Details
+                      {t.details}
                     </button>
                   </div>
                 </div>

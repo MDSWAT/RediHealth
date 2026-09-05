@@ -54,10 +54,10 @@ export function Hero() {
           </div>
 
           <div className="relative flex min-h-72 items-center justify-center lg:justify-end lg:self-end">
-            <div key={lang} className="relative aspect-[9/19] w-full max-w-[13rem] overflow-hidden rounded-[3rem] border-[10px] border-foreground/90 bg-foreground/90 shadow-2xl [-webkit-mask-image:-webkit-radial-gradient(white,black)] sm:max-w-[18rem]">
+            <div key={lang} className="relative aspect-[9/19] w-[min(88vw,18rem)] overflow-hidden rounded-[2.75rem] border-[8px] border-foreground/90 bg-foreground/90 shadow-2xl [-webkit-mask-image:-webkit-radial-gradient(white,black)] sm:rounded-[3rem] sm:border-[10px] lg:w-full lg:max-w-[18rem]">
               <div className="absolute left-1/2 top-0 z-10 h-6 w-32 -translate-x-1/2 rounded-b-2xl bg-foreground/90" />
 
-              <div className="flex h-full w-full flex-col overflow-hidden rounded-[2.25rem] bg-muted [-webkit-mask-image:-webkit-radial-gradient(white,black)]">
+              <div className="flex h-full w-full flex-col overflow-hidden rounded-[2rem] bg-muted [-webkit-mask-image:-webkit-radial-gradient(white,black)] sm:rounded-[2.25rem]">
                 <div className="flex items-center gap-3 bg-primary px-4 pb-3 pt-8 text-white">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-sm font-semibold">
                     ?
@@ -89,7 +89,7 @@ export function Hero() {
                           <span className="hero-typing-dot h-1.5 w-1.5 rounded-full bg-current" />
                         </div>
                         <div
-                          className={`hero-chat-message relative z-10 col-start-1 row-start-1 max-w-[80%] rounded-lg px-3 py-2 text-xs shadow-sm ${bubbleClasses}`}
+                          className={`hero-chat-message relative z-10 col-start-1 row-start-1 max-w-[80%] break-words rounded-lg px-3 py-2 text-xs leading-relaxed shadow-sm ${bubbleClasses}`}
                           style={{ animationDelay: `${messageDelay}s` }}
                         >
                           {phone.messages[index]}
@@ -100,7 +100,7 @@ export function Hero() {
                 </div>
 
                 <div
-                  className="hero-factcheck-card border-t border-border bg-card px-5 py-4 text-xs text-foreground"
+                  className="hero-factcheck-card border-t border-border bg-card px-5 py-4 text-xs leading-relaxed text-foreground"
                   style={{ animationDelay: `${heroFactcheckDelay}s` }}
                 >
                   <p>

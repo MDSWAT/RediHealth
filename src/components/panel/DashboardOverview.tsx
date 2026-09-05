@@ -7,6 +7,8 @@ import {
   FileTextIcon,
   ShieldIcon,
 } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { panelTranslations } from "@/lib/i18n/panel-translations";
 import type { DashboardMetrics, RequestStatus } from "@/lib/types/medical-request";
 
 interface DashboardOverviewProps {
@@ -20,10 +22,13 @@ export function DashboardOverview({
   activeStatusFilter,
   onSelectStatusFilter,
 }: DashboardOverviewProps) {
+  const { lang } = useLanguage();
+  const t = panelTranslations[lang].dashboardOverview;
+
   const cards = [
     {
       id: "all",
-      label: "Total Requests",
+      label: t.totalRequests,
       count: metrics.total,
       icon: FileTextIcon,
       bgColor: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
@@ -31,7 +36,7 @@ export function DashboardOverview({
     },
     {
       id: "pending",
-      label: "Pending Action",
+      label: t.pendingAction,
       count: metrics.pending,
       icon: ClockIcon,
       bgColor: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
@@ -39,7 +44,7 @@ export function DashboardOverview({
     },
     {
       id: "in_progress",
-      label: "In Progress",
+      label: t.inProgress,
       count: metrics.inProgress,
       icon: AlertCircleIcon,
       bgColor: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
@@ -47,7 +52,7 @@ export function DashboardOverview({
     },
     {
       id: "resolved",
-      label: "Resolved",
+      label: t.resolved,
       count: metrics.resolved,
       icon: CheckCircleIcon,
       bgColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
@@ -55,7 +60,7 @@ export function DashboardOverview({
     },
     {
       id: "today",
-      label: "Received Today",
+      label: t.receivedToday,
       count: metrics.todayCount,
       icon: ShieldIcon,
       bgColor: "bg-primary-soft text-primary",
@@ -91,7 +96,7 @@ export function DashboardOverview({
               </span>
               {card.id === activeStatusFilter ? (
                 <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
-                  Active
+                  {t.active}
                 </span>
               ) : null}
             </div>

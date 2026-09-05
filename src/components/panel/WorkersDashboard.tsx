@@ -7,6 +7,8 @@ import { AdminShell } from "./AdminShell";
 import { WorkersTable } from "./WorkersTable";
 import { Container } from "@/components/ui/Container";
 import { StethoscopeIcon, UserIcon, UsersIcon } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { panelTranslations } from "@/lib/i18n/panel-translations";
 
 interface WorkersDashboardProps {
   initialWorkers: WorkerItem[];
@@ -29,6 +31,8 @@ export function WorkersDashboard({
   pendingRequestsCount = 0,
   overdueFollowupsCount = 0,
 }: WorkersDashboardProps) {
+  const { lang } = useLanguage();
+  const t = panelTranslations[lang].workersDashboard;
   const [workers, setWorkers] = useState<WorkerItem[]>(initialWorkers);
   const [patients, setPatients] = useState<PatientItem[]>(initialPatients);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -127,20 +131,20 @@ export function WorkersDashboard({
           <div className="mb-8 flex flex-col gap-2 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase text-primary">
-                Staff Management
+                {t.eyebrow}
               </p>
               <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Healthcare Workers & Staff
+                {t.title}
               </h1>
               <p className="mt-1 text-sm text-muted-foreground">
-                Manage staff profiles, assign clients/patients to workers, and track active staff directory.
+                {t.subtitle}
               </p>
             </div>
           </div>
 
           {!databaseAvailable ? (
             <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
-              Connect MySQL and apply migration 006 to manage healthcare workers.
+              {t.noDatabase}
             </p>
           ) : (
             <div className="space-y-8">
@@ -156,7 +160,7 @@ export function WorkersDashboard({
                       {metrics.totalWorkers}
                     </p>
                     <p className="mt-1 text-xs font-medium text-muted-foreground">
-                      Total Staff Workers
+                      {t.totalStaffWorkers}
                     </p>
                   </div>
                 </div>
@@ -172,7 +176,7 @@ export function WorkersDashboard({
                       {metrics.activeWorkers}
                     </p>
                     <p className="mt-1 text-xs font-medium text-muted-foreground">
-                      Active Staff
+                      {t.activeStaff}
                     </p>
                   </div>
                 </div>
@@ -188,7 +192,7 @@ export function WorkersDashboard({
                       {metrics.assignedPatients}
                     </p>
                     <p className="mt-1 text-xs font-medium text-muted-foreground">
-                      Assigned Patients
+                      {t.assignedPatients}
                     </p>
                   </div>
                 </div>
@@ -204,7 +208,7 @@ export function WorkersDashboard({
                       {metrics.unassignedPatients}
                     </p>
                     <p className="mt-1 text-xs font-medium text-muted-foreground">
-                      Unassigned Patients
+                      {t.unassignedPatients}
                     </p>
                   </div>
                 </div>

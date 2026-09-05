@@ -8,6 +8,7 @@ import {
   StethoscopeIcon,
   UserIcon,
 } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
 import type { PatientItem } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
 
@@ -24,6 +25,78 @@ export function AssignPatientsModal({
   onClose,
   onSuccess,
 }: AssignPatientsModalProps) {
+  const { lang } = useLanguage();
+  const t = {
+    en: {
+      errSave: "Failed to save assignments.",
+      errUnexpected: "An error occurred while saving assignments.",
+      title: "Assign Patients to Worker",
+      assignedCount: (count: number) => `${count} patient(s) assigned`,
+      success: "Assignments saved successfully!",
+      search: "Search patients to assign...",
+      none: "No matching patients found.",
+      assignedTo: "Assigned to",
+      otherWorker: "other worker",
+      assigned: "Assigned",
+      unassigned: "Unassigned",
+      selectedCount: (count: number) => `${count} patient(s) selected`,
+      cancel: "Cancel",
+      saving: "Saving...",
+      save: "Save Assignments",
+    },
+    ro: {
+      errSave: "Salvarea alocarilor a esuat.",
+      errUnexpected: "A aparut o eroare la salvarea alocarilor.",
+      title: "Aloca pacienti lucratorului",
+      assignedCount: (count: number) => `${count} pacient(i) alocat(i)`,
+      success: "Alocarile au fost salvate!",
+      search: "Cauta pacienti pentru alocare...",
+      none: "Nu exista pacienti care corespund cautarii.",
+      assignedTo: "Alocat la",
+      otherWorker: "alt lucrator",
+      assigned: "Alocat",
+      unassigned: "Nealocat",
+      selectedCount: (count: number) => `${count} pacient(i) selectat(i)`,
+      cancel: "Anuleaza",
+      saving: "Se salveaza...",
+      save: "Salveaza alocarile",
+    },
+    sq: {
+      errSave: "Ruajtja e caktimeve deshtoi.",
+      errUnexpected: "Ndodhi nje gabim gjate ruajtjes se caktimeve.",
+      title: "Cakto pacientet te punonjesi",
+      assignedCount: (count: number) => `${count} pacient(e) te caktuar`,
+      success: "Caktimet u ruajten me sukses!",
+      search: "Kerko paciente per caktim...",
+      none: "Nuk u gjeten paciente qe perputhen.",
+      assignedTo: "I caktuar te",
+      otherWorker: "punonjes tjeter",
+      assigned: "I caktuar",
+      unassigned: "Pacaktuar",
+      selectedCount: (count: number) => `${count} pacient(e) te zgjedhur`,
+      cancel: "Anulo",
+      saving: "Duke ruajtur...",
+      save: "Ruaj caktimet",
+    },
+    it: {
+      errSave: "Salvataggio assegnazioni non riuscito.",
+      errUnexpected: "Si e verificato un errore durante il salvataggio delle assegnazioni.",
+      title: "Assegna pazienti all'operatore",
+      assignedCount: (count: number) => `${count} paziente(i) assegnato(i)`,
+      success: "Assegnazioni salvate con successo!",
+      search: "Cerca pazienti da assegnare...",
+      none: "Nessun paziente corrispondente trovato.",
+      assignedTo: "Assegnato a",
+      otherWorker: "altro operatore",
+      assigned: "Assegnato",
+      unassigned: "Non assegnato",
+      selectedCount: (count: number) => `${count} paziente(i) selezionato(i)`,
+      cancel: "Annulla",
+      saving: "Salvataggio...",
+      save: "Salva assegnazioni",
+    },
+  }[lang];
+
   const [patientList] = useState<PatientItem[]>(patients);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -95,7 +168,7 @@ export function AssignPatientsModal({
 
       if (!response.ok) {
         const data = (await response.json()) as { error?: string };
-        setErrorMessage(data.error || "Failed to save assignments.");
+        setErrorMessage(data.error || t.errSave);
         return;
       }
 
@@ -125,7 +198,7 @@ export function AssignPatientsModal({
         onClose();
       }, 1000);
     } catch {
-      setErrorMessage("An error occurred while saving assignments.");
+      setErrorMessage(t.errUnexpected);
     } finally {
       setIsSaving(false);
     }
@@ -141,10 +214,10 @@ export function AssignPatientsModal({
             </span>
             <div>
               <h2 className="text-lg font-bold text-foreground">
-                Assign Patients to Worker
+                {t.title}
               </h2>
               <p className="text-xs text-muted-foreground">
-                {worker.full_name} ({worker.role}) &bull; {assignedIds.size} patient(s) assigned
+                {worker.full_name} ({worker.role}) &bull; {t.assignedCount(assignedIds.size)}
               </p>
             </div>
           </div>
@@ -166,7 +239,7 @@ export function AssignPatientsModal({
         {saveSuccess ? (
           <div className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs text-emerald-600 dark:text-emerald-400">
             <CheckCircleIcon className="h-4 w-4" />
-            <span>Assignments saved successfully!</span>
+            <span>{t.success}</span>
           </div>
         ) : null}
 
@@ -176,7 +249,7 @@ export function AssignPatientsModal({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search patients to assign..."
+            placeholder={t.search}
             className="w-full rounded-xl border border-border bg-background pl-9 pr-4 py-2 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
@@ -185,7 +258,7 @@ export function AssignPatientsModal({
           {filteredPatients.length === 0 ? (
             <div className="p-8 text-center text-xs text-muted-foreground">
               <UserIcon className="mx-auto h-6 w-6 text-muted-foreground mb-2" />
-              <span>No matching patients found.</span>
+              <span>{t.none}</span>
             </div>
           ) : (
             filteredPatients.map((patient) => {
@@ -222,14 +295,14 @@ export function AssignPatientsModal({
 
                   {isAssignedToOther ? (
                     <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">
-                      Assigned to {patient.assigned_worker_name || "other worker"}
+                      {t.assignedTo} {patient.assigned_worker_name || t.otherWorker}
                     </span>
                   ) : isChecked ? (
                     <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">
-                      Assigned
+                      {t.assigned}
                     </span>
                   ) : (
-                    <span className="text-[10px] text-muted-foreground">Unassigned</span>
+                    <span className="text-[10px] text-muted-foreground">{t.unassigned}</span>
                   )}
                 </label>
               );
@@ -239,7 +312,7 @@ export function AssignPatientsModal({
 
         <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
           <span className="text-xs font-medium text-muted-foreground">
-            {assignedIds.size} patient(s) selected
+            {t.selectedCount(assignedIds.size)}
           </span>
 
           <div className="flex items-center gap-3">
@@ -248,7 +321,7 @@ export function AssignPatientsModal({
               onClick={onClose}
               className="rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
             >
-              Cancel
+              {t.cancel}
             </button>
             <button
               type="button"
@@ -256,7 +329,7 @@ export function AssignPatientsModal({
               onClick={handleSaveAssignments}
               className="rounded-lg bg-primary px-5 py-2 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
             >
-              {isSaving ? "Saving..." : "Save Assignments"}
+              {isSaving ? t.saving : t.save}
             </button>
           </div>
         </div>

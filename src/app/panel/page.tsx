@@ -5,6 +5,7 @@ import { getDatabase, hasDatabaseConnectionConfig, type RowDataPacket } from "@/
 import { WorkerDashboard } from "@/components/panel/WorkerDashboard";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
 import { getUserWorkerContext } from "@/lib/worker-auth";
+import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
 export const metadata: Metadata = {
   title: "Worker Panel Dashboard — RediHealth",
@@ -27,7 +28,7 @@ export default async function PanelPage() {
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/sign-in");
+    redirect(await withRequestLangPrefix("/sign-in"));
   }
 
   let requests: DBMedicalHelpRequest[] = [];

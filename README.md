@@ -32,8 +32,9 @@ Required variables:
 | `DATABASE_URL` | Full MySQL connection string (used by the app) |
 | `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET` | Optional Google OAuth sign-in |
 | `HOSTINGER_MAIL_API_TOKEN`, `HOSTINGER_MAIL_FROM`, `HOSTINGER_MAIL_DISPLAY_NAME` | Used to send one-time login codes and patient portal links |
-| `OPENROUTER_API_KEY` | OpenRouter key for the Health Assistant's symptom intake and prescription-image transcription |
-| `OPENROUTER_MODEL` | Optional model override; defaults to `openai/gpt-4o-mini` for lower-cost image requests |
+| `LLMSRELAY_API_KEY` or `ANTHROPIC_API_KEY` | API key for the Health Assistant's symptom intake and prescription-image transcription |
+| `LLMSRELAY_MODEL` / `ANTHROPIC_MODEL` | Optional model override; defaults to `claude-haiku-4.5` |
+| `ANTHROPIC_BASE_URL` | Optional Anthropic-compatible endpoint override; defaults to `https://api.llmsrelay.com` |
 
 ## 3. Set up the database
 

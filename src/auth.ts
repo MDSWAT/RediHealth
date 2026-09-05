@@ -4,10 +4,17 @@ import Credentials from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
 import { decryptEmailCode, emailAuthCookies } from "@/lib/email-auth";
 import { checkLoginAccess, hasLoginAccess } from "@/lib/login-access";
+import { DEFAULT_LANG, LOCALE_COOKIE, isSupportedLang, withLangPrefix } from "@/lib/i18n/routing";
 
 const googleConfigured = Boolean(
   process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET,
 );
+
+async function getLocalizedSignInPath(errorCode: string) {
+  const cookieLang = (await cookies()).get(LOCALE_COOKIE)?.value;
+  const lang = cookieLang && isSupportedLang(cookieLang) ? cookieLang : DEFAULT_LANG;
+  return `${withLangPrefix("/sign-in", lang)}?error=${errorCode}`;
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -51,10 +58,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async signIn({ user }) {
       const access = await checkLoginAccess(user.email);
       if (access.reason === "database-unavailable") {
-        return "/sign-in?error=auth-unavailable";
+        return getLocalizedSignInPath("auth-unavailable");
       }
 
-      return access.allowed || "/sign-in?error=unauthorized-email";
+      return access.allowed || (await getLocalizedSignInPath("unauthorized-email"));
     },
   },
   session: { strategy: "jwt" },

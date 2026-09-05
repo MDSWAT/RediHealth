@@ -6,6 +6,7 @@ import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
 import { GoogleIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
 
 type Stage = "email" | "code";
 
@@ -25,7 +26,7 @@ export function SignInForm({
   initialError?: string;
 }) {
   const router = useRouter();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const form = t.signInPage.form;
   const [stage, setStage] = useState<Stage>("email");
   const [email, setEmail] = useState("");
@@ -89,11 +90,11 @@ export function SignInForm({
           setError(result.error || form.genericVerifyError);
           return;
         }
-        router.push(result.redirectTo || "/panel");
+        router.push(result.redirectTo || withLangPrefix("/panel", lang));
         return;
       }
 
-      router.push("/panel");
+      router.push(withLangPrefix("/panel", lang));
     } catch {
       setError(form.genericVerifyError);
     } finally {
@@ -207,7 +208,11 @@ export function SignInForm({
             type="button"
             variant="outline"
             fullWidth
-            onClick={() => void signIn("google", { callbackUrl: "/panel" })}
+            onClick={() =>
+              void signIn("google", {
+                callbackUrl: withLangPrefix("/panel", lang),
+              })
+            }
           >
             <GoogleIcon className="h-5 w-5" />
             {form.continueWithGoogle}

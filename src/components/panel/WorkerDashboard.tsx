@@ -6,6 +6,8 @@ import { AdminShell } from "./AdminShell";
 import { DashboardOverview } from "./DashboardOverview";
 import { RequestsTable } from "./RequestsTable";
 import { Container } from "@/components/ui/Container";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { panelTranslations } from "@/lib/i18n/panel-translations";
 
 interface WorkerDashboardProps {
   initialRequests: MedicalHelpRequestItem[];
@@ -24,6 +26,8 @@ export function WorkerDashboard({
   databaseAvailable,
   overdueFollowupsCount = 0,
 }: WorkerDashboardProps) {
+  const { lang } = useLanguage();
+  const t = panelTranslations[lang].workerDashboard;
   const [requests, setRequests] = useState<MedicalHelpRequestItem[]>(initialRequests);
   const [activeStatusFilter, setActiveStatusFilter] = useState<RequestStatus | "all">("all");
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -98,19 +102,17 @@ export function WorkerDashboard({
         <Container>
           <div className="mb-6 flex flex-col gap-2 border-b border-border pb-5 sm:mb-8 sm:pb-6">
             <div>
-              <p className="text-xs font-bold uppercase text-primary">Requests</p>
-              <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Medical Help Requests
-              </h1>
+              <p className="text-xs font-bold uppercase text-primary">{t.eyebrow}</p>
+              <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{t.title}</h1>
               <p className="mt-1 text-sm text-muted-foreground">
-                Review, prioritize, and respond to incoming requests.
+                {t.subtitle}
               </p>
             </div>
           </div>
 
           {!databaseAvailable ? (
             <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
-              Connect MySQL and apply the database migrations to view and manage medical help requests.
+              {t.noDatabase}
             </p>
           ) : (
             <div className="space-y-6 sm:space-y-8">
@@ -122,7 +124,7 @@ export function WorkerDashboard({
 
               <section aria-labelledby="requests-heading">
                 <h2 id="requests-heading" className="text-xl font-bold text-foreground mb-4">
-                  Medical Help Requests Queue
+                  {t.queueTitle}
                 </h2>
                 <RequestsTable
                   requests={requests}

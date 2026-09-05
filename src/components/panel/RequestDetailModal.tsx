@@ -13,6 +13,9 @@ import {
   UserIcon,
   UsersIcon,
 } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { langToLocale } from "@/lib/i18n/panel-translations";
+import { withLangPrefix } from "@/lib/i18n/routing";
 import type { MedicalHelpRequestItem, RequestPriority, RequestStatus } from "@/lib/types/medical-request";
 import { CreatePatientModal } from "./CreatePatientModal";
 
@@ -31,6 +34,158 @@ export function RequestDetailModal({
   onDelete,
   onOpenTemplates,
 }: RequestDetailModalProps) {
+  const { lang } = useLanguage();
+  const locale = langToLocale[lang];
+  const tx = {
+    en: {
+      urgent: "Urgent",
+      unnamed: "Unnamed Requester",
+      receivedOn: "Received on",
+      success: "Changes saved successfully!",
+      contactPhone: "Contact Phone",
+      contactEmail: "Contact Email",
+      enquiry: "Patient Enquiry / Description",
+      updateStatus: "Update Request Status",
+      pendingAction: "Pending (Needs Action)",
+      inProgress: "In Progress",
+      resolved: "Resolved",
+      archived: "Archived",
+      setPriority: "Set Priority Level",
+      normalPriority: "Normal Priority",
+      urgentPriority: "Urgent Priority",
+      internalNotes: "Internal Worker Notes (Staff Confidential)",
+      internalNotesPlaceholder: "Record worker actions taken, phone attempt logs, or internal comments here...",
+      profileManagement: "Patient Profile Management",
+      profileCreated: "Patient profile created! Click to open profile page.",
+      profileConvert: "Convert this request into a permanent patient record in the Patients directory.",
+      viewProfile: "View Patient Profile",
+      createProfile: "Create Patient Profile",
+      needReply: "Need to reply to this requester?",
+      needReplyHint: "Choose a template and send it by email.",
+      quickTemplates: "Quick Templates",
+      sure: "Are you sure?",
+      deleting: "Deleting...",
+      confirmDelete: "Confirm Delete",
+      cancel: "Cancel",
+      deleteRequest: "Delete Request",
+      saving: "Saving...",
+      saveChanges: "Save Changes",
+      errorUpdate: "Failed to update request.",
+      errorSave: "An error occurred while saving changes.",
+      errorDelete: "Failed to delete request.",
+    },
+    ro: {
+      urgent: "Urgent",
+      unnamed: "Solicitant fara nume",
+      receivedOn: "Primit la",
+      success: "Modificarile au fost salvate!",
+      contactPhone: "Telefon de contact",
+      contactEmail: "Email de contact",
+      enquiry: "Solicitare / descriere pacient",
+      updateStatus: "Actualizeaza statusul cererii",
+      pendingAction: "In asteptare (necesita actiune)",
+      inProgress: "In curs",
+      resolved: "Rezolvata",
+      archived: "Arhivata",
+      setPriority: "Seteaza nivelul de prioritate",
+      normalPriority: "Prioritate normala",
+      urgentPriority: "Prioritate urgenta",
+      internalNotes: "Note interne lucrator (confidential)",
+      internalNotesPlaceholder: "Inregistreaza actiunile, apelurile sau comentariile interne...",
+      profileManagement: "Gestionare profil pacient",
+      profileCreated: "Profilul pacientului a fost creat! Apasa pentru deschidere.",
+      profileConvert: "Transforma aceasta cerere intr-un dosar permanent in directorul pacienti.",
+      viewProfile: "Vezi profilul pacientului",
+      createProfile: "Creeaza profil pacient",
+      needReply: "Trebuie sa raspunzi solicitantului?",
+      needReplyHint: "Alege un sablon si trimite-l pe email.",
+      quickTemplates: "Sabloane rapide",
+      sure: "Esti sigur?",
+      deleting: "Se sterge...",
+      confirmDelete: "Confirma stergerea",
+      cancel: "Anuleaza",
+      deleteRequest: "Sterge cererea",
+      saving: "Se salveaza...",
+      saveChanges: "Salveaza modificarile",
+      errorUpdate: "Actualizarea cererii a esuat.",
+      errorSave: "A aparut o eroare la salvare.",
+      errorDelete: "Stergerea cererii a esuat.",
+    },
+    sq: {
+      urgent: "Urgjente",
+      unnamed: "Kerkues pa emer",
+      receivedOn: "Marre me",
+      success: "Ndryshimet u ruajten me sukses!",
+      contactPhone: "Telefon kontakti",
+      contactEmail: "Email kontakti",
+      enquiry: "Pershkrimi i pacientit",
+      updateStatus: "Perditeso statusin e kerkeses",
+      pendingAction: "Ne pritje (kerkon veprim)",
+      inProgress: "Ne progres",
+      resolved: "E zgjidhur",
+      archived: "E arkivuar",
+      setPriority: "Vendos prioritetin",
+      normalPriority: "Prioritet normal",
+      urgentPriority: "Prioritet urgjent",
+      internalNotes: "Shenime te brendshme (konfidenciale)",
+      internalNotesPlaceholder: "Regjistro veprimet, tentativat e telefonates ose komente te brendshme...",
+      profileManagement: "Menaxhimi i profilit te pacientit",
+      profileCreated: "Profili i pacientit u krijua! Kliko per ta hapur.",
+      profileConvert: "Ktheje kete kerkese ne dosje te perhershme pacienti.",
+      viewProfile: "Shiko profilin e pacientit",
+      createProfile: "Krijo profil pacienti",
+      needReply: "Duhet t'i pergjigjeni kerkuesit?",
+      needReplyHint: "Zgjidh nje model dhe dergoje me email.",
+      quickTemplates: "Modele te shpejta",
+      sure: "A jeni i sigurt?",
+      deleting: "Duke fshire...",
+      confirmDelete: "Konfirmo fshirjen",
+      cancel: "Anulo",
+      deleteRequest: "Fshij kerkesen",
+      saving: "Duke ruajtur...",
+      saveChanges: "Ruaj ndryshimet",
+      errorUpdate: "Perditesimi i kerkeses deshtoi.",
+      errorSave: "Ndodhi nje gabim gjate ruajtjes.",
+      errorDelete: "Fshirja e kerkeses deshtoi.",
+    },
+    it: {
+      urgent: "Urgente",
+      unnamed: "Richiedente senza nome",
+      receivedOn: "Ricevuta il",
+      success: "Modifiche salvate con successo!",
+      contactPhone: "Telefono di contatto",
+      contactEmail: "Email di contatto",
+      enquiry: "Richiesta / descrizione paziente",
+      updateStatus: "Aggiorna stato richiesta",
+      pendingAction: "In attesa (richiede azione)",
+      inProgress: "In corso",
+      resolved: "Risolta",
+      archived: "Archiviata",
+      setPriority: "Imposta priorita",
+      normalPriority: "Priorita normale",
+      urgentPriority: "Priorita urgente",
+      internalNotes: "Note interne operatore (riservato)",
+      internalNotesPlaceholder: "Registra azioni, tentativi di chiamata o commenti interni...",
+      profileManagement: "Gestione profilo paziente",
+      profileCreated: "Profilo paziente creato! Clicca per aprire la pagina.",
+      profileConvert: "Converti questa richiesta in una scheda paziente permanente.",
+      viewProfile: "Visualizza profilo paziente",
+      createProfile: "Crea profilo paziente",
+      needReply: "Devi rispondere a questo richiedente?",
+      needReplyHint: "Scegli un modello e invialo via email.",
+      quickTemplates: "Modelli rapidi",
+      sure: "Sei sicuro?",
+      deleting: "Eliminazione...",
+      confirmDelete: "Conferma eliminazione",
+      cancel: "Annulla",
+      deleteRequest: "Elimina richiesta",
+      saving: "Salvataggio...",
+      saveChanges: "Salva modifiche",
+      errorUpdate: "Aggiornamento richiesta non riuscito.",
+      errorSave: "Si e verificato un errore durante il salvataggio.",
+      errorDelete: "Eliminazione richiesta non riuscita.",
+    },
+  }[lang];
   const [status, setStatus] = useState<RequestStatus>(request.status || "pending");
   const [priority, setPriority] = useState<RequestPriority>(request.priority || "normal");
   const [notes, setNotes] = useState<string>(request.internal_notes || "");
@@ -62,7 +217,7 @@ export function RequestDetailModal({
       const data = (await response.json()) as { error?: string };
 
       if (!response.ok) {
-        setErrorMessage(data.error || "Failed to update request.");
+        setErrorMessage(data.error || tx.errorUpdate);
         return;
       }
 
@@ -76,7 +231,7 @@ export function RequestDetailModal({
 
       setTimeout(() => setSaveSuccess(false), 2500);
     } catch {
-      setErrorMessage("An error occurred while saving changes.");
+      setErrorMessage(tx.errorSave);
     } finally {
       setIsSaving(false);
     }
@@ -88,7 +243,7 @@ export function RequestDetailModal({
       await onDelete(request.id);
       onClose();
     } catch {
-      setErrorMessage("Failed to delete request.");
+      setErrorMessage(tx.errorDelete);
     } finally {
       setIsDeleting(false);
     }
@@ -119,16 +274,16 @@ export function RequestDetailModal({
               {priority === "urgent" ? (
                 <span className="inline-flex items-center gap-1 rounded-full bg-red-500/10 px-2 py-0.5 text-xs font-bold text-red-600 dark:text-red-400">
                   <AlertCircleIcon className="h-3 w-3" />
-                  Urgent
+                  {tx.urgent}
                 </span>
               ) : null}
             </div>
             <h2 className="text-xl font-bold text-foreground mt-1">
-              {request.full_name || "Unnamed Requester"}
+              {request.full_name || tx.unnamed}
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Received on{" "}
-              {new Intl.DateTimeFormat("en", {
+              {tx.receivedOn}{" "}
+              {new Intl.DateTimeFormat(locale, {
                 dateStyle: "full",
                 timeStyle: "short",
               }).format(new Date(request.created_at))}
@@ -153,7 +308,7 @@ export function RequestDetailModal({
         {saveSuccess ? (
           <div className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs text-emerald-600 dark:text-emerald-400">
             <CheckCircleIcon className="h-4 w-4" />
-            <span>Changes saved successfully!</span>
+            <span>{tx.success}</span>
           </div>
         ) : null}
 
@@ -161,7 +316,7 @@ export function RequestDetailModal({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl border border-border bg-muted/30 p-4">
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                Contact Phone
+                {tx.contactPhone}
               </p>
               <a
                 href={`tel:${request.phone}`}
@@ -174,7 +329,7 @@ export function RequestDetailModal({
 
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                Contact Email
+                {tx.contactEmail}
               </p>
               <a
                 href={`mailto:${request.email}`}
@@ -189,7 +344,7 @@ export function RequestDetailModal({
           <div>
             <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
               <UserIcon className="h-4 w-4 text-primary" />
-              <span>Patient Enquiry / Description</span>
+              <span>{tx.enquiry}</span>
             </h3>
             <div className="rounded-xl border border-border bg-card p-4 text-sm leading-relaxed text-foreground whitespace-pre-wrap">
               {request.description}
@@ -199,31 +354,31 @@ export function RequestDetailModal({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-xs font-semibold text-foreground mb-1.5 block">
-                Update Request Status
+                {tx.updateStatus}
               </label>
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value as RequestStatus)}
                 className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <option value="pending">Pending (Needs Action)</option>
-                <option value="in_progress">In Progress</option>
-                <option value="resolved">Resolved</option>
-                <option value="archived">Archived</option>
+                <option value="pending">{tx.pendingAction}</option>
+                <option value="in_progress">{tx.inProgress}</option>
+                <option value="resolved">{tx.resolved}</option>
+                <option value="archived">{tx.archived}</option>
               </select>
             </div>
 
             <div>
               <label className="text-xs font-semibold text-foreground mb-1.5 block">
-                Set Priority Level
+                {tx.setPriority}
               </label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as RequestPriority)}
                 className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <option value="normal">Normal Priority</option>
-                <option value="urgent">Urgent Priority</option>
+                <option value="normal">{tx.normalPriority}</option>
+                <option value="urgent">{tx.urgentPriority}</option>
               </select>
             </div>
           </div>
@@ -231,13 +386,13 @@ export function RequestDetailModal({
           <div>
             <label className="text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
               <EditIcon className="h-4 w-4 text-primary" />
-              <span>Internal Worker Notes (Staff Confidential)</span>
+              <span>{tx.internalNotes}</span>
             </label>
             <textarea
               rows={4}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Record worker actions taken, phone attempt logs, or internal comments here..."
+              placeholder={tx.internalNotesPlaceholder}
               className="w-full rounded-xl border border-border bg-card p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
@@ -246,21 +401,21 @@ export function RequestDetailModal({
             <div className="text-xs">
               <p className="font-semibold text-foreground flex items-center gap-1.5">
                 <UsersIcon className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                <span>Patient Profile Management</span>
+                <span>{tx.profileManagement}</span>
               </p>
               <p className="text-muted-foreground mt-0.5">
                 {createdPatientId
-                  ? "Patient profile created! Click to open profile page."
-                  : "Convert this request into a permanent patient record in the Patients directory."}
+                  ? tx.profileCreated
+                  : tx.profileConvert}
               </p>
             </div>
             {createdPatientId ? (
               <Link
-                href={`/panel/patients/${createdPatientId}`}
+                href={withLangPrefix(`/panel/patients/${createdPatientId}`, lang)}
                 className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors whitespace-nowrap self-start sm:self-auto"
               >
                 <UsersIcon className="h-4 w-4" />
-                <span>View Patient Profile</span>
+                <span>{tx.viewProfile}</span>
               </Link>
             ) : (
               <button
@@ -269,15 +424,15 @@ export function RequestDetailModal({
                 className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors whitespace-nowrap self-start sm:self-auto"
               >
                 <UsersIcon className="h-4 w-4" />
-                <span>Create Patient Profile</span>
+                <span>{tx.createProfile}</span>
               </button>
             )}
           </div>
 
           <div className="flex items-center justify-between rounded-xl border border-primary/20 bg-primary-soft p-3.5">
             <div className="text-xs">
-              <p className="font-semibold text-foreground">Need to reply to this requester?</p>
-              <p className="text-muted-foreground">Choose a template and send it by email.</p>
+              <p className="font-semibold text-foreground">{tx.needReply}</p>
+              <p className="text-muted-foreground">{tx.needReplyHint}</p>
             </div>
             <button
               type="button"
@@ -285,7 +440,7 @@ export function RequestDetailModal({
               className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover"
             >
               <MailIcon className="h-3.5 w-3.5" />
-              <span>Quick Templates</span>
+              <span>{tx.quickTemplates}</span>
             </button>
           </div>
         </div>
@@ -294,7 +449,7 @@ export function RequestDetailModal({
           {isConfirmingDelete ? (
             <div className="flex items-center gap-2">
               <span className="text-xs font-medium text-red-600 dark:text-red-400">
-                Are you sure?
+                {tx.sure}
               </span>
               <button
                 type="button"
@@ -302,14 +457,14 @@ export function RequestDetailModal({
                 onClick={handleDelete}
                 className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50"
               >
-                {isDeleting ? "Deleting..." : "Confirm Delete"}
+                {isDeleting ? tx.deleting : tx.confirmDelete}
               </button>
               <button
                 type="button"
                 onClick={() => setIsConfirmingDelete(false)}
                 className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
               >
-                Cancel
+                {tx.cancel}
               </button>
             </div>
           ) : (
@@ -319,7 +474,7 @@ export function RequestDetailModal({
               className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-500/10"
             >
               <TrashIcon className="h-4 w-4" />
-              <span>Delete Request</span>
+              <span>{tx.deleteRequest}</span>
             </button>
           )}
 
@@ -329,7 +484,7 @@ export function RequestDetailModal({
               onClick={onClose}
               className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground hover:bg-muted"
             >
-              Cancel
+              {tx.cancel}
             </button>
             <button
               type="button"
@@ -337,7 +492,7 @@ export function RequestDetailModal({
               onClick={handleSaveChanges}
               className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
             >
-              {isSaving ? "Saving..." : "Save Changes"}
+              {isSaving ? tx.saving : tx.saveChanges}
             </button>
           </div>
         </div>

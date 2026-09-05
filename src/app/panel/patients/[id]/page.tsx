@@ -7,6 +7,7 @@ import { PatientProfileView } from "@/components/panel/PatientProfileView";
 import { Container } from "@/components/ui/Container";
 import type { PatientItem, PatientPriority } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
+import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
 export const metadata: Metadata = {
   title: "Patient Profile — RediHealth Panel",
@@ -52,7 +53,7 @@ export default async function PatientPage({ params }: PageProps) {
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/sign-in");
+    redirect(await withRequestLangPrefix("/sign-in"));
   }
 
   const { id } = await params;

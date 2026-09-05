@@ -6,6 +6,8 @@ import { getFollowupState } from "@/lib/patient-helpers";
 import { AdminShell } from "./AdminShell";
 import { PatientsTable } from "./PatientsTable";
 import { Container } from "@/components/ui/Container";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { panelTranslations } from "@/lib/i18n/panel-translations";
 
 interface PatientsDashboardProps {
   initialPatients: PatientItem[];
@@ -24,6 +26,8 @@ export function PatientsDashboard({
   databaseAvailable,
   pendingRequestsCount = 0,
 }: PatientsDashboardProps) {
+  const { lang } = useLanguage();
+  const t = panelTranslations[lang].patientsDashboard;
   const [patients, setPatients] = useState<PatientItem[]>(initialPatients);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -85,19 +89,19 @@ export function PatientsDashboard({
         <Container>
           <div className="mb-8 flex flex-col gap-2 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase text-primary">Patients</p>
+              <p className="text-xs font-bold uppercase text-primary">{t.eyebrow}</p>
               <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Patient Profiles & Records
+                {t.title}
               </h1>
               <p className="mt-1 text-sm text-muted-foreground">
-                Manage medical profiles, care status, condition notes, and treatment histories.
+                {t.subtitle}
               </p>
             </div>
           </div>
 
           {!databaseAvailable ? (
             <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
-              Connect MySQL and apply migration 003 to view and manage patient profiles.
+              {t.noDatabase}
             </p>
           ) : (
             <PatientsTable

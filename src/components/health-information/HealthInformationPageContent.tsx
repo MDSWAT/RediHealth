@@ -21,6 +21,7 @@ import {
   StethoscopeIcon,
 } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
@@ -49,7 +50,7 @@ const topicIcons: IconComponent[] = [
 const usingInfoIcons: IconComponent[] = [BookIcon, ShieldIcon, StethoscopeIcon];
 
 export function HealthInformationPageContent() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const page = t.healthInfoPage;
   const topics = t.landing.healthTopics.topics;
 
@@ -81,7 +82,7 @@ export function HealthInformationPageContent() {
                 <Reveal key={topicHrefs[index]} delay={(index % 4) * 80} className="h-full">
                   <li className="h-full list-none">
                     <Link
-                      href={topicHrefs[index]}
+                      href={withLangPrefix(topicHrefs[index], lang)}
                       className="hover-lift group flex h-full flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-soft text-primary">
@@ -158,10 +159,10 @@ export function HealthInformationPageContent() {
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button href="/get-help" size="lg">
+                  <Button href={withLangPrefix("/get-help", lang)} size="lg">
                     {t.landing.medicalAssistance.requestHelp}
                   </Button>
-                  <Button href="/find-help" size="lg" variant="outline">
+                  <Button href={withLangPrefix("/find-help", lang)} size="lg" variant="outline">
                     {t.landing.medicalAssistance.findServices}
                   </Button>
                 </div>

@@ -29,6 +29,8 @@ import {
 } from "@/lib/patient-helpers";
 import { AdminShell } from "./AdminShell";
 import { Container } from "@/components/ui/Container";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { panelTranslations } from "@/lib/i18n/panel-translations";
 
 interface FollowupsDashboardProps {
   initialPatients: PatientItem[];
@@ -55,6 +57,39 @@ export function FollowupsDashboard({
   databaseAvailable,
   pendingRequestsCount = 0,
 }: FollowupsDashboardProps) {
+  const { lang } = useLanguage();
+  const t = panelTranslations[lang].followupsDashboard;
+  const priorityLabelMap: Record<PatientPriority, string> = {
+    critical: "Critical",
+    high: "High",
+    moderate: "Moderate",
+    low: "Low",
+  };
+  if (lang === "ro") {
+    priorityLabelMap.critical = "Critic";
+    priorityLabelMap.high = "Ridicata";
+    priorityLabelMap.moderate = "Moderata";
+    priorityLabelMap.low = "Scazuta";
+  } else if (lang === "sq") {
+    priorityLabelMap.critical = "Kritik";
+    priorityLabelMap.high = "E larte";
+    priorityLabelMap.moderate = "Mesatare";
+    priorityLabelMap.low = "E ulet";
+  } else if (lang === "it") {
+    priorityLabelMap.critical = "Critica";
+    priorityLabelMap.high = "Alta";
+    priorityLabelMap.moderate = "Moderata";
+    priorityLabelMap.low = "Bassa";
+  }
+
+  const followupStateLabelMap = {
+    all: t.allStates,
+    overdue: t.stateOverdue,
+    today: t.stateToday,
+    upcoming: t.stateUpcoming,
+    completed: t.stateCompleted,
+    none: t.stateNone,
+  } as const;
   const [patients, setPatients] = useState<PatientItem[]>(initialPatients);
   const [searchQuery, setSearchQuery] = useState("");
   const [stateFilter, setStateFilter] = useState<FollowupStateFilter>("all");
@@ -221,10 +256,10 @@ export function FollowupsDashboard({
         setCompletionNotes("");
       } else {
         const data = (await response.json()) as { error?: string };
-        setErrorMessage(data.error || "Failed to update follow-up status.");
+        setErrorMessage(data.error || t.errorUpdateStatus);
       }
     } catch {
-      setErrorMessage("Failed to update follow-up status.");
+      setErrorMessage(t.errorUpdateStatus);
     } finally {
       setIsCompleting(false);
     }
@@ -232,7 +267,7 @@ export function FollowupsDashboard({
 
   function handleOpenScheduleModal(p: PatientItem) {
     setSchedulingPatient(p);
-    setNewTitle(`Follow-up Check-in (${p.priority.toUpperCase()} priority)`);
+    setNewTitle(`${t.schedule} (${priorityLabelMap[p.priority]})`);
     setNewDate(getRecommendedFollowupDate(p.priority));
     setNewNotes("");
     setNewReminder(true);
@@ -268,7 +303,7 @@ export function FollowupsDashboard({
 
       if (!response.ok) {
         const data = (await response.json()) as { error?: string };
-        setErrorMessage(data.error || "Failed to schedule follow-up.");
+        setErrorMessage(data.error || t.errorSchedule);
         return;
       }
 
@@ -280,7 +315,7 @@ export function FollowupsDashboard({
 
       setSchedulingPatient(null);
     } catch {
-      setErrorMessage("An error occurred while saving follow-up.");
+      setErrorMessage(t.errorScheduleUnexpected);
     } finally {
       setIsSavingFollowup(false);
     }
@@ -292,28 +327,28 @@ export function FollowupsDashboard({
     const headers = [
       "Patient ID",
       "Full Name",
-      "Priority",
+      t.patientPriority,
       "Care Status",
       "Phone",
       "Email",
       "Latest Follow-up Date",
       "Follow-up Title",
       "Follow-up Status",
-      "Follow-up State",
+      t.followupState,
       "Notes",
     ];
 
     const rows = filteredClients.map(({ patient, followupInfo }) => [
       patient.id,
       `"${patient.full_name.replace(/"/g, '""')}"`,
-      patient.priority,
+      priorityLabelMap[patient.priority],
       patient.status,
       `"${patient.phone.replace(/"/g, '""')}"`,
       `"${patient.email.replace(/"/g, '""')}"`,
       followupInfo.latest?.date || "",
       `"${(followupInfo.latest?.title || "").replace(/"/g, '""')}"`,
-      followupInfo.latest?.status || "none",
-      followupInfo.label,
+      followupInfo.latest?.status || t.stateNone,
+      followupStateLabelMap[followupInfo.state],
       `"${(followupInfo.latest?.notes || "").replace(/"/g, '""')}"`,
     ]);
 
@@ -346,20 +381,20 @@ export function FollowupsDashboard({
           <div className="mb-8 flex flex-col gap-2 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase text-primary">
-                Follow-ups Queue
+                {t.eyebrow}
               </p>
               <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Patient Follow-ups & Reminders
+                {t.title}
               </h1>
               <p className="mt-1 text-sm text-muted-foreground">
-                Track scheduled consultations, overdue care reminders, and patient check-ins.
+                {t.subtitle}
               </p>
             </div>
           </div>
 
           {!databaseAvailable ? (
             <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
-              Connect MySQL to manage patient follow-ups and care schedules.
+              {t.noDatabase}
             </p>
           ) : (
             <div className="space-y-8">
@@ -386,7 +421,7 @@ export function FollowupsDashboard({
                       {metrics.totalPatients}
                     </p>
                     <p className="mt-1 text-xs font-medium text-muted-foreground">
-                      Total Clients / Patients
+                      {t.totalClients}
                     </p>
                   </div>
                 </button>
@@ -406,7 +441,7 @@ export function FollowupsDashboard({
                     </span>
                     {metrics.overdue > 0 ? (
                       <span className="rounded-full bg-red-600 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
-                        Attention
+                        {t.attention}
                       </span>
                     ) : null}
                   </div>
@@ -415,7 +450,7 @@ export function FollowupsDashboard({
                       {metrics.overdue}
                     </p>
                     <p className="mt-1 text-xs font-semibold text-muted-foreground">
-                      Overdue Follow-ups
+                      {t.overdue}
                     </p>
                   </div>
                 </button>
@@ -439,7 +474,7 @@ export function FollowupsDashboard({
                       {metrics.dueToday}
                     </p>
                     <p className="mt-1 text-xs font-medium text-muted-foreground">
-                      Due Today
+                      {t.dueToday}
                     </p>
                   </div>
                 </button>
@@ -463,7 +498,7 @@ export function FollowupsDashboard({
                       {metrics.upcoming}
                     </p>
                     <p className="mt-1 text-xs font-medium text-muted-foreground">
-                      Upcoming Scheduled
+                      {t.upcoming}
                     </p>
                   </div>
                 </button>
@@ -487,7 +522,7 @@ export function FollowupsDashboard({
                       {metrics.criticalCount}
                     </p>
                     <p className="mt-1 text-xs font-medium text-muted-foreground">
-                      Critical Patients
+                      {t.criticalPatients}
                     </p>
                   </div>
                 </button>
@@ -501,7 +536,7 @@ export function FollowupsDashboard({
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search clients by name, phone, title, notes..."
+                      placeholder={t.searchPlaceholder}
                       className="w-full rounded-xl border border-border bg-background pl-9 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     />
                   </div>
@@ -514,7 +549,7 @@ export function FollowupsDashboard({
                       className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3.5 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50"
                     >
                       <DownloadIcon className="h-4 w-4 text-primary" />
-                      <span className="hidden sm:inline">Export CSV</span>
+                      <span className="hidden sm:inline">{t.exportCsv}</span>
                     </button>
 
                     <button
@@ -522,7 +557,7 @@ export function FollowupsDashboard({
                       onClick={handleRefresh}
                       disabled={isRefreshing}
                       className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3.5 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50"
-                      title="Refresh follow-up records"
+                      title={t.refreshTitle}
                     >
                       <RefreshIcon
                         className={`h-4 w-4 text-primary transition-transform ${
@@ -530,7 +565,7 @@ export function FollowupsDashboard({
                         }`}
                       />
                       <span className="hidden sm:inline">
-                        {isRefreshing ? "Refreshing..." : "Refresh"}
+                        {isRefreshing ? t.refreshing : t.refresh}
                       </span>
                     </button>
                   </div>
@@ -539,16 +574,16 @@ export function FollowupsDashboard({
                 <div className="flex flex-col gap-2 pt-1 border-t border-border">
                   <div className="flex items-center gap-2 overflow-x-auto text-xs">
                     <span className="text-muted-foreground font-semibold flex items-center gap-1 mr-1">
-                      <FilterIcon className="h-3.5 w-3.5" /> Follow-up State:
+                      <FilterIcon className="h-3.5 w-3.5" /> {t.followupState}:
                     </span>
                     {(
                       [
-                        { id: "all", label: "All States" },
-                        { id: "overdue", label: "OVERDUE" },
-                        { id: "today", label: "Due Today" },
-                        { id: "upcoming", label: "Upcoming" },
-                        { id: "completed", label: "Completed" },
-                        { id: "none", label: "No Follow-up" },
+                        { id: "all", label: t.allStates },
+                        { id: "overdue", label: t.stateOverdue },
+                        { id: "today", label: t.stateToday },
+                        { id: "upcoming", label: t.stateUpcoming },
+                        { id: "completed", label: t.stateCompleted },
+                        { id: "none", label: t.stateNone },
                       ] as const
                     ).map((item) => (
                       <button
@@ -568,15 +603,15 @@ export function FollowupsDashboard({
 
                   <div className="flex items-center gap-2 overflow-x-auto text-xs">
                     <span className="text-muted-foreground font-semibold flex items-center gap-1 mr-1">
-                      <BellIcon className="h-3.5 w-3.5" /> Patient Priority:
+                      <BellIcon className="h-3.5 w-3.5" /> {t.patientPriority}:
                     </span>
                     {(
                       [
-                        { id: "all", label: "All Priorities" },
-                        { id: "critical", label: "Critical" },
-                        { id: "high", label: "High" },
-                        { id: "moderate", label: "Moderate" },
-                        { id: "low", label: "Low" },
+                        { id: "all", label: t.allPriorities },
+                        { id: "critical", label: priorityLabelMap.critical },
+                        { id: "high", label: priorityLabelMap.high },
+                        { id: "moderate", label: priorityLabelMap.moderate },
+                        { id: "low", label: priorityLabelMap.low },
                       ] as const
                     ).map((item) => (
                       <button
@@ -606,10 +641,10 @@ export function FollowupsDashboard({
                 <div className="rounded-2xl border border-border bg-card p-12 text-center">
                   <CalendarIcon className="mx-auto h-8 w-8 text-muted-foreground" />
                   <h3 className="mt-3 text-base font-semibold text-foreground">
-                    No follow-ups match criteria
+                    {t.noMatches}
                   </h3>
                   <p className="mt-1 text-xs text-muted-foreground">
-                    Try clearing search query or adjusting filter options.
+                    {t.noMatchesHint}
                   </p>
                 </div>
               ) : (
@@ -628,15 +663,15 @@ export function FollowupsDashboard({
                             >
                               {patient.full_name}
                             </Link>
-                            <p className="mt-0.5 text-xs text-muted-foreground">Record ID #{patient.id}</p>
+                            <p className="mt-0.5 text-xs text-muted-foreground">{t.recordId(patient.id)}</p>
                           </div>
                           <div className="flex shrink-0 flex-col items-end gap-1.5">
                             <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[0.65rem] font-semibold ${pMeta.badgeClass}`}>
                               <span className={`h-1.5 w-1.5 rounded-full ${pMeta.dotClass}`} />
-                              {pMeta.label}
+                              {priorityLabelMap[patient.priority]}
                             </span>
                             <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[0.65rem] font-semibold ${followupInfo.badgeClass}`}>
-                              {followupInfo.label}
+                              {followupStateLabelMap[followupInfo.state]}
                             </span>
                           </div>
                         </div>
@@ -646,19 +681,19 @@ export function FollowupsDashboard({
                             <div>
                               <p className="font-semibold text-foreground">{latestF.title}</p>
                               <p className="mt-0.5 text-muted-foreground">
-                                Date: <span className="font-semibold">{latestF.date}</span>
+                                {t.date}: <span className="font-semibold">{latestF.date}</span>
                               </p>
                               {latestF.notes ? (
                                 <p className="mt-1 line-clamp-2 text-muted-foreground">{latestF.notes}</p>
                               ) : null}
                               {latestF.completion_notes ? (
                                 <p className="mt-1 line-clamp-2 text-emerald-700 dark:text-emerald-400">
-                                  Outcome: {latestF.completion_notes}
+                                  {t.outcome}: {latestF.completion_notes}
                                 </p>
                               ) : null}
                             </div>
                           ) : (
-                            <span className="italic text-muted-foreground">No follow-up logged</span>
+                            <span className="italic text-muted-foreground">{t.noFollowupLogged}</span>
                           )}
                         </div>
 
@@ -668,7 +703,7 @@ export function FollowupsDashboard({
                             {patient.phone}
                           </a>
                           <a href={`mailto:${patient.email}`} className="max-w-full truncate">{patient.email}</a>
-                          <span className="capitalize">{patient.status} care</span>
+                          <span className="capitalize">{patient.status} {t.careSuffix}</span>
                         </div>
 
                         <div className="mt-4 flex flex-wrap items-center justify-end gap-2 border-t border-border pt-3 text-xs">
@@ -680,10 +715,10 @@ export function FollowupsDashboard({
                                 setCompletionNotes("");
                               }}
                               className="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-2.5 py-1.5 font-semibold text-white hover:bg-emerald-700 transition-colors"
-                              title="Mark latest follow-up as completed"
+                              title={t.markCompleteTitle}
                             >
                               <CheckCircleIcon className="h-3.5 w-3.5" />
-                              <span>Complete</span>
+                              <span>{t.complete}</span>
                             </button>
                           ) : null}
 
@@ -691,17 +726,17 @@ export function FollowupsDashboard({
                             type="button"
                             onClick={() => handleOpenScheduleModal(patient)}
                             className="inline-flex items-center gap-1 rounded-lg border border-border bg-card px-2.5 py-1.5 font-semibold text-foreground hover:bg-muted transition-colors"
-                            title="Schedule new follow-up"
+                            title={t.scheduleTitle}
                           >
                             <PlusIcon className="h-3.5 w-3.5 text-primary" />
-                            <span>Schedule</span>
+                            <span>{t.schedule}</span>
                           </button>
 
                           <Link
                             href={`/panel/patients/${patient.id}`}
                             className="rounded-lg bg-primary px-2.5 py-1.5 font-semibold text-white hover:bg-primary-hover transition-colors"
                           >
-                            Profile
+                            {t.profile}
                           </Link>
                         </div>
                       </article>
@@ -721,7 +756,7 @@ export function FollowupsDashboard({
               <div className="flex items-center gap-2">
                 <CalendarIcon className="h-5 w-5 text-primary" />
                 <h3 className="text-lg font-bold text-foreground">
-                  Schedule Follow-Up
+                  {t.modalScheduleTitle}
                 </h3>
               </div>
               <button
@@ -735,36 +770,36 @@ export function FollowupsDashboard({
 
             <div className="mt-3 rounded-lg bg-muted/50 p-3 text-xs">
               <p className="font-bold text-foreground">
-                Client: {schedulingPatient.full_name}
+                {t.modalClient}: {schedulingPatient.full_name}
               </p>
               <p className="text-muted-foreground mt-0.5">
-                Priority:{" "}
+                {t.modalPriority}:{" "}
                 <span className="font-bold uppercase text-primary">
                   {schedulingPatient.priority}
                 </span>{" "}
-                &bull; Suggested follow-up interval:{" "}
-                {getPriorityMeta(schedulingPatient.priority).recommendedDays} days
+                &bull; {t.modalSuggestedInterval}:{" "}
+                {getPriorityMeta(schedulingPatient.priority).recommendedDays} {t.modalDays}
               </p>
             </div>
 
             <form onSubmit={handleSaveNewFollowup} className="mt-4 space-y-4 text-xs">
               <div>
                 <label className="font-semibold text-foreground mb-1 block">
-                  Follow-Up Title / Purpose <span className="text-red-500">*</span>
+                  {t.modalTitleLabel} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   required
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  placeholder="e.g. Call to check medication progress"
+                  placeholder={t.modalTitlePlaceholder}
                   className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
 
               <div>
                 <label className="font-semibold text-foreground mb-1 block">
-                  Scheduled Date <span className="text-red-500">*</span>
+                  {t.modalDateLabel} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="date"
@@ -777,13 +812,13 @@ export function FollowupsDashboard({
 
               <div>
                 <label className="font-semibold text-foreground mb-1 block">
-                  Staff Instructions / Notes
+                  {t.modalNotesLabel}
                 </label>
                 <textarea
                   rows={3}
                   value={newNotes}
                   onChange={(e) => setNewNotes(e.target.value)}
-                  placeholder="Notes for staff member performing the follow-up..."
+                  placeholder={t.modalNotesPlaceholder}
                   className="w-full rounded-lg border border-border bg-background p-2.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
@@ -795,7 +830,7 @@ export function FollowupsDashboard({
                   onChange={(e) => setNewReminder(e.target.checked)}
                   className="rounded border-border text-primary focus:ring-primary h-4 w-4"
                 />
-                <span>Set active notification reminder</span>
+                <span>{t.modalReminder}</span>
               </label>
 
               <div className="flex items-center justify-end gap-3 border-t border-border pt-4">
@@ -804,14 +839,14 @@ export function FollowupsDashboard({
                   onClick={() => setSchedulingPatient(null)}
                   className="rounded-lg border border-border bg-card px-4 py-2 font-semibold text-foreground hover:bg-muted"
                 >
-                  Cancel
+                  {panelTranslations[lang].requestsTable.cancel}
                 </button>
                 <button
                   type="submit"
                   disabled={isSavingFollowup}
                   className="rounded-lg bg-primary px-5 py-2 font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
                 >
-                  {isSavingFollowup ? "Scheduling..." : "Save Follow-Up"}
+                  {isSavingFollowup ? t.scheduling : t.saveFollowup}
                 </button>
               </div>
             </form>
@@ -824,37 +859,37 @@ export function FollowupsDashboard({
           <div className="w-full max-w-lg rounded-lg border border-border bg-card p-5 shadow-xl sm:p-6">
             <div className="flex items-start justify-between gap-4 border-b border-border pb-4">
               <div>
-                <h3 className="text-lg font-bold text-foreground">Complete follow-up</h3>
+                <h3 className="text-lg font-bold text-foreground">{t.completeFollowupTitle}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Add an outcome note for {completingFollowup.patient.full_name}.
+                  {t.completeFollowupSubtitle(completingFollowup.patient.full_name)}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setCompletingFollowup(null)}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted"
-                aria-label="Close completion form"
+                aria-label={t.closeCompletion}
               >
                 <CloseIcon className="h-5 w-5" />
               </button>
             </div>
             <label className="mt-5 block text-sm font-semibold text-foreground">
-              Follow-up notes
+              {t.followupNotes}
               <textarea
                 value={completionNotes}
                 onChange={(event) => setCompletionNotes(event.target.value)}
                 rows={5}
                 maxLength={4000}
-                placeholder="Record contact made, outcome, next steps, or concerns."
+                placeholder={t.completionPlaceholder}
                 className="mt-2 block w-full rounded-lg border border-border bg-background p-3 text-sm font-normal text-foreground"
               />
             </label>
             <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
               <button type="button" disabled={isCompleting} onClick={() => setCompletingFollowup(null)} className="rounded-lg border border-border px-4 py-2.5 text-sm font-semibold text-foreground hover:bg-muted">
-                Cancel
+                {panelTranslations[lang].requestsTable.cancel}
               </button>
               <button type="button" disabled={isCompleting} onClick={() => void handleMarkComplete(completingFollowup.patient, completingFollowup.followupId, completionNotes)} className="rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 disabled:opacity-60">
-                {isCompleting ? "Saving..." : "Complete follow-up"}
+                {isCompleting ? t.saving : t.completeFollowup}
               </button>
             </div>
           </div>

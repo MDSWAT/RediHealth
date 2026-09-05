@@ -25,6 +25,9 @@ import {
   getPriorityMeta,
   getRecommendedFollowupDate,
 } from "@/lib/patient-helpers";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { langToLocale } from "@/lib/i18n/panel-translations";
+import { withLangPrefix } from "@/lib/i18n/routing";
 import { AdminShell } from "./AdminShell";
 import { Container } from "@/components/ui/Container";
 
@@ -52,6 +55,254 @@ export function CalendarDashboard({
   databaseAvailable,
   pendingRequestsCount = 0,
 }: CalendarDashboardProps) {
+  const { lang } = useLanguage();
+  const locale = langToLocale[lang];
+  const t = {
+    en: {
+      errSelectPatient: "Please select a valid patient.",
+      errSchedule: "Failed to schedule follow-up.",
+      errSave: "An error occurred while saving follow-up.",
+      errUpdate: "Failed to update status.",
+      errDelete: "Failed to delete follow-up.",
+      scheduleDefault: "Follow-up Consultation",
+      eyebrow: "Calendar Schedule",
+      title: "Interactive Follow-up Calendar",
+      subtitle: "View, manage, and schedule client follow-ups across day, week, and month views.",
+      scheduleBtn: "Schedule Follow-up",
+      noDb: "Connect MySQL to view and schedule patient follow-ups.",
+      prev: "Previous period",
+      today: "Today",
+      next: "Next period",
+      refresh: "Refresh calendar data",
+      search: "Search by client name, title, or notes...",
+      filter: "Filter",
+      allEvents: "All Events",
+      scheduled: "Scheduled",
+      overdue: "OVERDUE",
+      completed: "Completed",
+      weekDays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      addOnDate: (date: string) => `Schedule follow-up for ${date}`,
+      dayAdd: "Add",
+      dayScheduleFor: "Schedule for",
+      dayEvents: (count: number) => `${count} follow-up events`,
+      addToday: "Add Event for Today",
+      noEventsTitle: "No follow-ups scheduled for this date",
+      noEventsHint: "Click \"Add Event for Today\" to schedule a check-in.",
+      prioritySuffix: "Priority",
+      client: "Client",
+      profile: "Profile",
+      callPatient: "Call patient",
+      eventDetails: "Follow-up Event Details",
+      clientName: "Client Name",
+      eventTitle: "Title / Purpose",
+      scheduledDate: "Scheduled Date",
+      staffNotes: "Staff Notes",
+      call: "Call",
+      email: "Email",
+      deleteEvent: "Delete Event",
+      markPending: "Mark Pending",
+      markComplete: "Mark Complete",
+      viewProfile: "View Profile",
+      scheduleEvent: "Schedule Follow-Up Event",
+      selectPatient: "Select Patient / Client",
+      choosePatient: "-- Choose a patient --",
+      priorityText: "priority",
+      followupTitle: "Follow-Up Title / Purpose",
+      followupTitlePh: "e.g. Call to review symptom recovery",
+      dateLabel: "Scheduled Date",
+      notesLabel: "Staff Instructions / Notes",
+      notesPh: "Instructions or phone script for staff member...",
+      reminder: "Set active notification reminder",
+      cancel: "Cancel",
+      scheduling: "Scheduling...",
+      month: "Month",
+      week: "Week",
+      day: "Day",
+    },
+    ro: {
+      errSelectPatient: "Te rugam sa selectezi un pacient valid.",
+      errSchedule: "Programarea monitorizarii a esuat.",
+      errSave: "A aparut o eroare la salvarea monitorizarii.",
+      errUpdate: "Actualizarea statusului a esuat.",
+      errDelete: "Stergerea monitorizarii a esuat.",
+      scheduleDefault: "Consultatie de monitorizare",
+      eyebrow: "Program calendar",
+      title: "Calendar interactiv de monitorizare",
+      subtitle: "Vezi, gestioneaza si programeaza monitorizarile clientilor in vizualizari zi, saptamana si luna.",
+      scheduleBtn: "Programeaza monitorizare",
+      noDb: "Conecteaza MySQL pentru a vedea si programa monitorizari.",
+      prev: "Perioada anterioara",
+      today: "Astazi",
+      next: "Perioada urmatoare",
+      refresh: "Reimprospateaza calendarul",
+      search: "Cauta dupa client, titlu sau notite...",
+      filter: "Filtru",
+      allEvents: "Toate evenimentele",
+      scheduled: "Programate",
+      overdue: "INTARZIATE",
+      completed: "Finalizate",
+      weekDays: ["Lun", "Mar", "Mie", "Joi", "Vin", "Sam", "Dum"],
+      addOnDate: (date: string) => `Programeaza monitorizare pentru ${date}`,
+      dayAdd: "Adauga",
+      dayScheduleFor: "Program pentru",
+      dayEvents: (count: number) => `${count} evenimente de monitorizare`,
+      addToday: "Adauga eveniment pentru astazi",
+      noEventsTitle: "Nu exista monitorizari programate pentru aceasta data",
+      noEventsHint: "Apasa \"Adauga eveniment pentru astazi\" pentru programare.",
+      prioritySuffix: "Prioritate",
+      client: "Client",
+      profile: "Profil",
+      callPatient: "Suna pacientul",
+      eventDetails: "Detalii eveniment monitorizare",
+      clientName: "Nume client",
+      eventTitle: "Titlu / scop",
+      scheduledDate: "Data programata",
+      staffNotes: "Notite personal",
+      call: "Apeleaza",
+      email: "Email",
+      deleteEvent: "Sterge eveniment",
+      markPending: "Marcheaza in asteptare",
+      markComplete: "Marcheaza finalizat",
+      viewProfile: "Vezi profil",
+      scheduleEvent: "Programeaza eveniment",
+      selectPatient: "Selecteaza pacient / client",
+      choosePatient: "-- Alege un pacient --",
+      priorityText: "prioritate",
+      followupTitle: "Titlu / scop monitorizare",
+      followupTitlePh: "ex. Apel pentru verificarea recuperarii",
+      dateLabel: "Data programata",
+      notesLabel: "Instructiuni / notite",
+      notesPh: "Instructiuni sau script telefonic pentru personal...",
+      reminder: "Seteaza notificare activa",
+      cancel: "Anuleaza",
+      scheduling: "Se programeaza...",
+      month: "Luna",
+      week: "Saptamana",
+      day: "Zi",
+    },
+    sq: {
+      errSelectPatient: "Ju lutem zgjidhni nje pacient te vlefshem.",
+      errSchedule: "Planifikimi i ndjekjes deshtoi.",
+      errSave: "Ndodhi nje gabim gjate ruajtjes se ndjekjes.",
+      errUpdate: "Perditesimi i statusit deshtoi.",
+      errDelete: "Fshirja e ndjekjes deshtoi.",
+      scheduleDefault: "Konsulte ndjekjeje",
+      eyebrow: "Orari i kalendarit",
+      title: "Kalendari interaktiv i ndjekjeve",
+      subtitle: "Shiko, menaxho dhe planifiko ndjekjet e klienteve ne pamjet ditore, javore dhe mujore.",
+      scheduleBtn: "Planifiko ndjekje",
+      noDb: "Lidh MySQL per te pare dhe planifikuar ndjekjet.",
+      prev: "Periudha e meparshme",
+      today: "Sot",
+      next: "Periudha tjeter",
+      refresh: "Perditeso kalendarin",
+      search: "Kerko sipas klientit, titullit ose shenimeve...",
+      filter: "Filter",
+      allEvents: "Te gjitha ngjarjet",
+      scheduled: "Te planifikuara",
+      overdue: "VONUAR",
+      completed: "Te perfunduara",
+      weekDays: ["Hen", "Mar", "Mer", "Enj", "Pre", "Sht", "Die"],
+      addOnDate: (date: string) => `Planifiko ndjekje per ${date}`,
+      dayAdd: "Shto",
+      dayScheduleFor: "Orari per",
+      dayEvents: (count: number) => `${count} ngjarje ndjekjeje`,
+      addToday: "Shto ngjarje per sot",
+      noEventsTitle: "Nuk ka ndjekje te planifikuara per kete date",
+      noEventsHint: "Kliko \"Shto ngjarje per sot\" per te planifikuar.",
+      prioritySuffix: "Prioritet",
+      client: "Klient",
+      profile: "Profili",
+      callPatient: "Telefono pacientin",
+      eventDetails: "Detajet e ngjarjes se ndjekjes",
+      clientName: "Emri i klientit",
+      eventTitle: "Titulli / qellimi",
+      scheduledDate: "Data e planifikuar",
+      staffNotes: "Shenime stafi",
+      call: "Telefono",
+      email: "Email",
+      deleteEvent: "Fshij ngjarjen",
+      markPending: "Sheno ne pritje",
+      markComplete: "Sheno te perfunduar",
+      viewProfile: "Shiko profilin",
+      scheduleEvent: "Planifiko ngjarje ndjekjeje",
+      selectPatient: "Zgjidh pacient / klient",
+      choosePatient: "-- Zgjidh pacient --",
+      priorityText: "prioritet",
+      followupTitle: "Titulli / qellimi i ndjekjes",
+      followupTitlePh: "p.sh. Telefonate per kontrollin e rikuperimit",
+      dateLabel: "Data e planifikuar",
+      notesLabel: "Udhezime / shenime",
+      notesPh: "Udhezime ose skript telefoni per stafin...",
+      reminder: "Vendos kujtues aktiv",
+      cancel: "Anulo",
+      scheduling: "Duke planifikuar...",
+      month: "Muaj",
+      week: "Jave",
+      day: "Dite",
+    },
+    it: {
+      errSelectPatient: "Seleziona un paziente valido.",
+      errSchedule: "Pianificazione follow-up non riuscita.",
+      errSave: "Si e verificato un errore durante il salvataggio del follow-up.",
+      errUpdate: "Aggiornamento stato non riuscito.",
+      errDelete: "Eliminazione follow-up non riuscita.",
+      scheduleDefault: "Consulto di follow-up",
+      eyebrow: "Programma calendario",
+      title: "Calendario interattivo follow-up",
+      subtitle: "Visualizza, gestisci e pianifica i follow-up dei clienti nelle viste giorno, settimana e mese.",
+      scheduleBtn: "Pianifica follow-up",
+      noDb: "Connetti MySQL per visualizzare e pianificare i follow-up.",
+      prev: "Periodo precedente",
+      today: "Oggi",
+      next: "Periodo successivo",
+      refresh: "Aggiorna calendario",
+      search: "Cerca per cliente, titolo o note...",
+      filter: "Filtro",
+      allEvents: "Tutti gli eventi",
+      scheduled: "Pianificati",
+      overdue: "IN RITARDO",
+      completed: "Completati",
+      weekDays: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"],
+      addOnDate: (date: string) => `Pianifica follow-up per ${date}`,
+      dayAdd: "Aggiungi",
+      dayScheduleFor: "Programma per",
+      dayEvents: (count: number) => `${count} eventi follow-up`,
+      addToday: "Aggiungi evento per oggi",
+      noEventsTitle: "Nessun follow-up pianificato per questa data",
+      noEventsHint: "Clicca \"Aggiungi evento per oggi\" per pianificare.",
+      prioritySuffix: "Priorita",
+      client: "Cliente",
+      profile: "Profilo",
+      callPatient: "Chiama paziente",
+      eventDetails: "Dettagli evento follow-up",
+      clientName: "Nome cliente",
+      eventTitle: "Titolo / obiettivo",
+      scheduledDate: "Data pianificata",
+      staffNotes: "Note staff",
+      call: "Chiama",
+      email: "Email",
+      deleteEvent: "Elimina evento",
+      markPending: "Segna in attesa",
+      markComplete: "Segna completato",
+      viewProfile: "Vedi profilo",
+      scheduleEvent: "Pianifica evento follow-up",
+      selectPatient: "Seleziona paziente / cliente",
+      choosePatient: "-- Scegli un paziente --",
+      priorityText: "priorita",
+      followupTitle: "Titolo / obiettivo follow-up",
+      followupTitlePh: "es. Chiamata per verificare recupero sintomi",
+      dateLabel: "Data pianificata",
+      notesLabel: "Istruzioni / note staff",
+      notesPh: "Istruzioni o script telefonico per l'operatore...",
+      reminder: "Imposta promemoria attivo",
+      cancel: "Annulla",
+      scheduling: "Pianificazione...",
+      month: "Mese",
+      week: "Settimana",
+      day: "Giorno",
+    },
+  }[lang];
   const [patients, setPatients] = useState<PatientItem[]>(initialPatients);
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [viewMode, setViewMode] = useState<CalendarViewMode>("month");
@@ -194,7 +445,7 @@ export function CalendarDashboard({
 
   function handleOpenScheduleForDate(dateStr: string) {
     setScheduleDate(dateStr);
-    setScheduleTitle("Follow-up Consultation");
+    setScheduleTitle(t.scheduleDefault);
     setScheduleNotes("");
     setScheduleReminder(true);
     if (patients.length > 0) {
@@ -212,7 +463,7 @@ export function CalendarDashboard({
 
     const targetPatient = patients.find((p) => p.id === selectedPatientId);
     if (!targetPatient) {
-      setErrorMessage("Please select a valid patient.");
+      setErrorMessage(t.errSelectPatient);
       setIsSaving(false);
       return;
     }
@@ -240,7 +491,7 @@ export function CalendarDashboard({
 
       if (!response.ok) {
         const data = (await response.json()) as { error?: string };
-        setErrorMessage(data.error || "Failed to schedule follow-up.");
+        setErrorMessage(data.error || t.errSchedule);
         return;
       }
 
@@ -254,7 +505,7 @@ export function CalendarDashboard({
       setScheduleTitle("");
       setScheduleNotes("");
     } catch {
-      setErrorMessage("An error occurred while saving follow-up.");
+      setErrorMessage(t.errSave);
     } finally {
       setIsSaving(false);
     }
@@ -289,7 +540,7 @@ export function CalendarDashboard({
         });
       }
     } catch {
-      setErrorMessage("Failed to update status.");
+      setErrorMessage(t.errUpdate);
     }
   }
 
@@ -317,7 +568,7 @@ export function CalendarDashboard({
         setSelectedEvent(null);
       }
     } catch {
-      setErrorMessage("Failed to delete follow-up.");
+      setErrorMessage(t.errDelete);
     }
   }
 
@@ -388,23 +639,23 @@ export function CalendarDashboard({
 
   const calendarTitle = useMemo(() => {
     if (viewMode === "month") {
-      return currentDate.toLocaleDateString("en-US", {
+      return currentDate.toLocaleDateString(locale, {
         month: "long",
         year: "numeric",
       });
     } else if (viewMode === "week") {
-      const start = weekDays[0].date.toLocaleDateString("en-US", {
+      const start = weekDays[0].date.toLocaleDateString(locale, {
         month: "short",
         day: "numeric",
       });
-      const end = weekDays[6].date.toLocaleDateString("en-US", {
+      const end = weekDays[6].date.toLocaleDateString(locale, {
         month: "short",
         day: "numeric",
         year: "numeric",
       });
       return `${start} - ${end}`;
     } else {
-      return currentDate.toLocaleDateString("en-US", {
+      return currentDate.toLocaleDateString(locale, {
         weekday: "long",
         month: "long",
         day: "numeric",
@@ -428,13 +679,13 @@ export function CalendarDashboard({
           <div className="mb-6 flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase text-primary">
-                Calendar Schedule
+                {t.eyebrow}
               </p>
               <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Interactive Follow-up Calendar
+                {t.title}
               </h1>
               <p className="mt-1 text-sm text-muted-foreground">
-                View, manage, and schedule client follow-ups across day, week, and month views.
+                {t.subtitle}
               </p>
             </div>
 
@@ -445,14 +696,14 @@ export function CalendarDashboard({
                 className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-hover shadow-sm transition-colors"
               >
                 <PlusIcon className="h-4 w-4" />
-                <span>Schedule Follow-up</span>
+                <span>{t.scheduleBtn}</span>
               </button>
             </div>
           </div>
 
           {!databaseAvailable ? (
             <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
-              Connect MySQL to view and schedule patient follow-ups.
+              {t.noDb}
             </p>
           ) : (
             <div className="space-y-6">
@@ -464,7 +715,7 @@ export function CalendarDashboard({
                         type="button"
                         onClick={handlePrev}
                         className="rounded-lg p-1.5 text-foreground hover:bg-muted"
-                        title="Previous period"
+                        title={t.prev}
                       >
                         <ChevronLeftIcon className="h-4 w-4" />
                       </button>
@@ -473,13 +724,13 @@ export function CalendarDashboard({
                         onClick={handleToday}
                         className="px-3 py-1 text-xs font-bold text-foreground hover:bg-muted rounded-lg"
                       >
-                        Today
+                        {t.today}
                       </button>
                       <button
                         type="button"
                         onClick={handleNext}
                         className="rounded-lg p-1.5 text-foreground hover:bg-muted"
-                        title="Next period"
+                        title={t.next}
                       >
                         <ChevronRightIcon className="h-4 w-4" />
                       </button>
@@ -497,13 +748,13 @@ export function CalendarDashboard({
                           key={mode}
                           type="button"
                           onClick={() => setViewMode(mode)}
-                          className={`rounded-lg px-3 py-1.5 text-xs font-bold capitalize transition-colors ${
+                          className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-colors ${
                             viewMode === mode
                               ? "bg-primary text-white"
                               : "text-muted-foreground hover:text-foreground"
                           }`}
                         >
-                          {mode}
+                          {mode === "month" ? t.month : mode === "week" ? t.week : t.day}
                         </button>
                       ))}
                     </div>
@@ -513,7 +764,7 @@ export function CalendarDashboard({
                       onClick={handleRefresh}
                       disabled={isRefreshing}
                       className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background p-2.5 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50"
-                      title="Refresh calendar data"
+                      title={t.refresh}
                     >
                       <RefreshIcon
                         className={`h-4 w-4 text-primary ${
@@ -531,21 +782,21 @@ export function CalendarDashboard({
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search by client name, title, or notes..."
+                      placeholder={t.search}
                       className="w-full rounded-xl border border-border bg-background pl-9 pr-4 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     />
                   </div>
 
                   <div className="flex items-center gap-2 text-xs overflow-x-auto">
                     <span className="text-muted-foreground font-semibold flex items-center gap-1">
-                      Filter:
+                      {t.filter}:
                     </span>
                     {(
                       [
-                        { id: "all", label: "All Events" },
-                        { id: "scheduled", label: "Scheduled" },
-                        { id: "overdue", label: "OVERDUE" },
-                        { id: "completed", label: "Completed" },
+                        { id: "all", label: t.allEvents },
+                        { id: "scheduled", label: t.scheduled },
+                        { id: "overdue", label: t.overdue },
+                        { id: "completed", label: t.completed },
                       ] as const
                     ).map((f) => (
                       <button
@@ -574,13 +825,9 @@ export function CalendarDashboard({
               {viewMode === "month" ? (
                 <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
                   <div className="grid grid-cols-7 border-b border-border bg-muted/60 text-center text-xs font-bold uppercase text-muted-foreground py-2.5">
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
-                    <div>Sun</div>
+                    {t.weekDays.map((day) => (
+                      <div key={day}>{day}</div>
+                    ))}
                   </div>
 
                   <div className="grid grid-cols-7 divide-x divide-y divide-border bg-border">
@@ -610,7 +857,7 @@ export function CalendarDashboard({
                               type="button"
                               onClick={() => handleOpenScheduleForDate(cell.dateStr)}
                               className="opacity-0 group-hover:opacity-100 p-1 text-muted-foreground hover:text-primary rounded"
-                              title={`Schedule follow-up for ${cell.dateStr}`}
+                              title={t.addOnDate(cell.dateStr)}
                             >
                               <PlusIcon className="h-3.5 w-3.5" />
                             </button>
@@ -665,7 +912,7 @@ export function CalendarDashboard({
                       return (
                         <div key={w.dateStr} className="py-3 px-2">
                           <p className="uppercase text-[10px] text-muted-foreground">
-                            {w.date.toLocaleDateString("en-US", {
+                            {w.date.toLocaleDateString(locale, {
                               weekday: "short",
                             })}
                           </p>
@@ -733,7 +980,7 @@ export function CalendarDashboard({
                             className="mt-4 w-full py-1.5 rounded-lg border border-dashed border-border text-xs font-semibold text-muted-foreground hover:border-primary hover:text-primary flex items-center justify-center gap-1"
                           >
                             <PlusIcon className="h-3.5 w-3.5" />
-                            <span>Add</span>
+                            <span>{t.dayAdd}</span>
                           </button>
                         </div>
                       );
@@ -747,10 +994,10 @@ export function CalendarDashboard({
                   <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
                     <div>
                       <h3 className="text-lg font-bold text-foreground">
-                        Schedule for {currentDate.toLocaleDateString("en-US", { dateStyle: "full" })}
+                        {t.dayScheduleFor} {currentDate.toLocaleDateString(locale, { dateStyle: "full" })}
                       </h3>
                       <p className="text-xs text-muted-foreground mt-0.5">
-                        {eventsByDate.get(currentDate.toISOString().slice(0, 10))?.length || 0} follow-up events
+                        {t.dayEvents(eventsByDate.get(currentDate.toISOString().slice(0, 10))?.length || 0)}
                       </p>
                     </div>
 
@@ -764,7 +1011,7 @@ export function CalendarDashboard({
                       className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-xs font-semibold text-white hover:bg-primary-hover"
                     >
                       <PlusIcon className="h-4 w-4" />
-                      <span>Add Event for Today</span>
+                      <span>{t.addToday}</span>
                     </button>
                   </div>
 
@@ -777,10 +1024,10 @@ export function CalendarDashboard({
                         <div className="p-12 text-center text-xs text-muted-foreground">
                           <CalendarIcon className="mx-auto h-8 w-8 text-muted-foreground mb-3" />
                           <p className="font-semibold text-foreground text-sm">
-                            No follow-ups scheduled for this date
+                            {t.noEventsTitle}
                           </p>
                           <p className="mt-1">
-                            Click &quot;Add Event for Today&quot; to schedule a check-in.
+                            {t.noEventsHint}
                           </p>
                         </div>
                       );
@@ -820,11 +1067,11 @@ export function CalendarDashboard({
                                     <span
                                       className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${pMeta.badgeClass}`}
                                     >
-                                      {pMeta.shortLabel} Priority
+                                      {pMeta.shortLabel} {t.prioritySuffix}
                                     </span>
                                   </div>
                                   <p className="text-xs font-semibold text-primary mt-1">
-                                    Client: {ev.patient.full_name} &bull; {ev.patient.phone}
+                                    {t.client}: {ev.patient.full_name} &bull; {ev.patient.phone}
                                   </p>
                                   {ev.followup.notes ? (
                                     <p className="text-xs text-muted-foreground mt-1">
@@ -836,15 +1083,15 @@ export function CalendarDashboard({
 
                               <div className="flex items-center gap-2 self-end sm:self-auto">
                                 <Link
-                                  href={`/panel/patients/${ev.patient.id}`}
+                                  href={withLangPrefix(lang, `/panel/patients/${ev.patient.id}`)}
                                   className="rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/20"
                                 >
-                                  Profile
+                                  {t.profile}
                                 </Link>
                                 <a
                                   href={`tel:${ev.patient.phone}`}
                                   className="rounded-lg border border-border bg-card p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
-                                  title="Call patient"
+                                  title={t.callPatient}
                                 >
                                   <PhoneIcon className="h-4 w-4" />
                                 </a>
@@ -869,7 +1116,7 @@ export function CalendarDashboard({
               <div className="flex items-center gap-2">
                 <CalendarIcon className="h-5 w-5 text-primary" />
                 <h3 className="text-base font-bold text-foreground">
-                  Follow-up Event Details
+                  {t.eventDetails}
                 </h3>
               </div>
               <button
@@ -885,7 +1132,7 @@ export function CalendarDashboard({
               <div className="rounded-xl bg-muted/40 p-4 space-y-2">
                 <div>
                   <p className="text-[10px] font-bold text-muted-foreground uppercase">
-                    Client Name
+                    {t.clientName}
                   </p>
                   <p className="text-sm font-bold text-foreground">
                     {selectedEvent.patient.full_name}
@@ -893,7 +1140,7 @@ export function CalendarDashboard({
                 </div>
                 <div>
                   <p className="text-[10px] font-bold text-muted-foreground uppercase">
-                    Title / Purpose
+                    {t.eventTitle}
                   </p>
                   <p className="text-xs font-semibold text-foreground">
                     {selectedEvent.followup.title}
@@ -901,7 +1148,7 @@ export function CalendarDashboard({
                 </div>
                 <div>
                   <p className="text-[10px] font-bold text-muted-foreground uppercase">
-                    Scheduled Date
+                    {t.scheduledDate}
                   </p>
                   <p className="text-xs font-medium text-foreground">
                     {selectedEvent.followup.date}
@@ -910,7 +1157,7 @@ export function CalendarDashboard({
                 {selectedEvent.followup.notes ? (
                   <div>
                     <p className="text-[10px] font-bold text-muted-foreground uppercase">
-                      Staff Notes
+                      {t.staffNotes}
                     </p>
                     <p className="text-xs text-foreground whitespace-pre-wrap">
                       {selectedEvent.followup.notes}
@@ -925,14 +1172,14 @@ export function CalendarDashboard({
                   className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-border bg-card py-2 text-xs font-semibold text-foreground hover:bg-muted"
                 >
                   <PhoneIcon className="h-3.5 w-3.5 text-primary" />
-                  <span>Call {selectedEvent.patient.phone}</span>
+                  <span>{t.call} {selectedEvent.patient.phone}</span>
                 </a>
                 <a
                   href={`mailto:${selectedEvent.patient.email}`}
                   className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-border bg-card py-2 text-xs font-semibold text-foreground hover:bg-muted"
                 >
                   <MailIcon className="h-3.5 w-3.5 text-primary" />
-                  <span>Email</span>
+                  <span>{t.email}</span>
                 </a>
               </div>
 
@@ -943,7 +1190,7 @@ export function CalendarDashboard({
                   className="inline-flex items-center gap-1 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-500/10 rounded px-2 py-1"
                 >
                   <TrashIcon className="h-3.5 w-3.5" />
-                  <span>Delete Event</span>
+                  <span>{t.deleteEvent}</span>
                 </button>
 
                 <div className="flex items-center gap-2">
@@ -959,15 +1206,15 @@ export function CalendarDashboard({
                     <CheckCircleIcon className="h-3.5 w-3.5" />
                     <span>
                       {selectedEvent.followup.status === "completed"
-                        ? "Mark Pending"
-                        : "Mark Complete"}
+                        ? t.markPending
+                        : t.markComplete}
                     </span>
                   </button>
                   <Link
-                    href={`/panel/patients/${selectedEvent.patient.id}`}
+                    href={withLangPrefix(lang, `/panel/patients/${selectedEvent.patient.id}`)}
                     className="rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover"
                   >
-                    View Profile
+                    {t.viewProfile}
                   </Link>
                 </div>
               </div>
@@ -983,7 +1230,7 @@ export function CalendarDashboard({
               <div className="flex items-center gap-2">
                 <CalendarIcon className="h-5 w-5 text-primary" />
                 <h3 className="text-base font-bold text-foreground">
-                  Schedule Follow-Up Event
+                  {t.scheduleEvent}
                 </h3>
               </div>
               <button
@@ -998,7 +1245,7 @@ export function CalendarDashboard({
             <form onSubmit={handleSaveNewFollowup} className="mt-4 space-y-4 text-xs">
               <div>
                 <label className="font-semibold text-foreground mb-1 block">
-                  Select Patient / Client <span className="text-red-500">*</span>
+                  {t.selectPatient} <span className="text-red-500">*</span>
                 </label>
                 <select
                   required
@@ -1012,10 +1259,10 @@ export function CalendarDashboard({
                   }}
                   className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
-                  <option value="">-- Choose a patient --</option>
+                  <option value="">{t.choosePatient}</option>
                   {patients.map((p) => (
                     <option key={p.id} value={p.id}>
-                      {p.full_name} ({p.phone}) - {p.priority.toUpperCase()} priority
+                      {p.full_name} ({p.phone}) - {p.priority.toUpperCase()} {t.priorityText}
                     </option>
                   ))}
                 </select>
@@ -1023,21 +1270,21 @@ export function CalendarDashboard({
 
               <div>
                 <label className="font-semibold text-foreground mb-1 block">
-                  Follow-Up Title / Purpose <span className="text-red-500">*</span>
+                  {t.followupTitle} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   required
                   value={scheduleTitle}
                   onChange={(e) => setScheduleTitle(e.target.value)}
-                  placeholder="e.g. Call to review symptom recovery"
+                  placeholder={t.followupTitlePh}
                   className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
 
               <div>
                 <label className="font-semibold text-foreground mb-1 block">
-                  Scheduled Date <span className="text-red-500">*</span>
+                  {t.dateLabel} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="date"
@@ -1050,13 +1297,13 @@ export function CalendarDashboard({
 
               <div>
                 <label className="font-semibold text-foreground mb-1 block">
-                  Staff Instructions / Notes
+                  {t.notesLabel}
                 </label>
                 <textarea
                   rows={3}
                   value={scheduleNotes}
                   onChange={(e) => setScheduleNotes(e.target.value)}
-                  placeholder="Instructions or phone script for staff member..."
+                  placeholder={t.notesPh}
                   className="w-full rounded-lg border border-border bg-background p-2.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
@@ -1068,7 +1315,7 @@ export function CalendarDashboard({
                   onChange={(e) => setScheduleReminder(e.target.checked)}
                   className="rounded border-border text-primary focus:ring-primary h-4 w-4"
                 />
-                <span>Set active notification reminder</span>
+                <span>{t.reminder}</span>
               </label>
 
               <div className="flex items-center justify-end gap-3 border-t border-border pt-4">
@@ -1077,14 +1324,14 @@ export function CalendarDashboard({
                   onClick={() => setShowScheduleModal(false)}
                   className="rounded-lg border border-border bg-card px-4 py-2 font-semibold text-foreground hover:bg-muted"
                 >
-                  Cancel
+                  {t.cancel}
                 </button>
                 <button
                   type="submit"
                   disabled={isSaving}
                   className="rounded-lg bg-primary px-5 py-2 font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
                 >
-                  {isSaving ? "Scheduling..." : "Schedule Follow-up"}
+                  {isSaving ? t.scheduling : t.scheduleBtn}
                 </button>
               </div>
             </form>

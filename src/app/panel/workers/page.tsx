@@ -10,6 +10,7 @@ import type { PatientItem } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
 import { getFollowupState } from "@/lib/patient-helpers";
 import { getUserWorkerContext } from "@/lib/worker-auth";
+import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
 export const metadata: Metadata = {
   title: "Workers — RediHealth Panel",
@@ -19,14 +20,14 @@ export default async function WorkersPage() {
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/sign-in");
+    redirect(await withRequestLangPrefix("/sign-in"));
   }
 
   const userEmail = session.user.email || "staff account";
   const workerContext = await getUserWorkerContext(userEmail);
 
   if (!workerContext.isAdmin) {
-    redirect("/panel");
+    redirect(await withRequestLangPrefix("/panel"));
   }
 
   let workers: WorkerItem[] = [];

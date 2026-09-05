@@ -6,6 +6,7 @@ import {
   emailAuthCookies,
 } from "@/lib/email-auth";
 import { checkLoginAccess } from "@/lib/login-access";
+import { withLangPrefix, LOCALE_COOKIE, DEFAULT_LANG, isSupportedLang } from "@/lib/i18n/routing";
 
 export async function POST(request: Request) {
   const { code } = (await request.json()) as { code?: string };
@@ -55,7 +56,9 @@ export async function POST(request: Request) {
       path: "/",
     });
 
-    return NextResponse.json({ success: true, redirectTo: "/panel" });
+    const cookieLang = cookieStore.get(LOCALE_COOKIE)?.value;
+    const lang = cookieLang && isSupportedLang(cookieLang) ? cookieLang : DEFAULT_LANG;
+    return NextResponse.json({ success: true, redirectTo: withLangPrefix("/panel", lang) });
   } catch {
     cookieStore.delete(emailAuthCookies.otp);
     return NextResponse.json(
