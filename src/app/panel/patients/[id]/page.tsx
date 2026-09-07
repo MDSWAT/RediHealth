@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   title: "Patient Profile — RediHealth Panel",
 };
 
+export const dynamic = "force-dynamic";
+
 type DBPatient = RowDataPacket & {
   id: string;
   request_id?: string | null;

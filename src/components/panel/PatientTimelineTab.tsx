@@ -2,6 +2,7 @@
 "use client";
 
 import { CalendarIcon, ImageIcon, UserIcon } from "@/components/ui/icons";
+import { useLanguage } from "@/lib/i18n/language-context";
 import type { FollowupItem, PatientItem, PatientPhoto } from "@/lib/types/patient";
 
 interface PatientTimelineTabProps {
@@ -11,14 +12,49 @@ interface PatientTimelineTabProps {
 }
 
 export function PatientTimelineTab({ patient, followups, photos }: PatientTimelineTabProps) {
+  const { lang } = useLanguage();
+  const t = {
+    en: {
+      title: "Unified Medical History & Activity Log",
+      subtitle: "Chronological record of patient enquiries, care plans, follow-ups, and attachments.",
+      initial: "Initial Request / Enquiry Received",
+      noInitial: "No initial enquiry text recorded.",
+      scheduledDate: "Scheduled Date",
+      attachedOn: "Attached on",
+    },
+    ro: {
+      title: "Istoric medical unificat si jurnal activitati",
+      subtitle: "Evidenta cronologica a cererilor, planurilor, follow-up-urilor si atasamentelor.",
+      initial: "Cerere initiala / solicitare primita",
+      noInitial: "Nu exista text initial inregistrat.",
+      scheduledDate: "Data programata",
+      attachedOn: "Atasat la",
+    },
+    sq: {
+      title: "Historik i unifikuar mjekesor dhe aktivitetesh",
+      subtitle: "Regjister kronologjik i kerkesave, planeve, ndjekjeve dhe bashkengjitjeve.",
+      initial: "Kerkesa fillestare / pyetja e marre",
+      noInitial: "Nuk ka tekst fillestar te regjistruar.",
+      scheduledDate: "Data e planifikuar",
+      attachedOn: "Bashkengjitur me",
+    },
+    it: {
+      title: "Storico medico unificato e registro attivita",
+      subtitle: "Registro cronologico di richieste paziente, piani di cura, follow-up e allegati.",
+      initial: "Richiesta iniziale ricevuta",
+      noInitial: "Nessun testo iniziale registrato.",
+      scheduledDate: "Data programmata",
+      attachedOn: "Allegato il",
+    },
+  }[lang];
   return (
     <div className="space-y-4 rounded-2xl border border-border bg-card p-6">
       <div>
         <h3 className="text-sm font-semibold text-foreground">
-          Unified Medical History & Activity Log
+          {t.title}
         </h3>
         <p className="text-xs text-muted-foreground">
-          Chronological record of patient enquiries, care plans, follow-ups, and attachments.
+          {t.subtitle}
         </p>
       </div>
 
@@ -29,13 +65,13 @@ export function PatientTimelineTab({ patient, followups, photos }: PatientTimeli
           </span>
           <div className="rounded-xl border border-border bg-background p-4 text-xs">
             <p className="font-bold text-foreground text-sm">
-              Initial Request / Enquiry Received
+              {t.initial}
             </p>
             <p className="text-muted-foreground text-[11px] mt-0.5">
               {new Date(patient.created_at).toLocaleString()}
             </p>
             <div className="mt-2 p-2.5 rounded-lg bg-muted/40 text-foreground whitespace-pre-wrap">
-              {patient.condition_notes || "No initial enquiry text recorded."}
+              {patient.condition_notes || t.noInitial}
             </div>
           </div>
         </div>
@@ -53,7 +89,7 @@ export function PatientTimelineTab({ patient, followups, photos }: PatientTimeli
                 </span>
               </div>
               <p className="text-muted-foreground text-[11px] mt-0.5">
-                Scheduled Date: {item.date}
+                {t.scheduledDate}: {item.date}
               </p>
               {item.notes ? (
                 <p className="mt-2 text-foreground">{item.notes}</p>
@@ -75,7 +111,7 @@ export function PatientTimelineTab({ patient, followups, photos }: PatientTimeli
               />
               <div>
                 <p className="font-bold text-foreground text-sm">{photo.name}</p>
-                <p className="text-muted-foreground text-[11px]">Attached on {photo.date}</p>
+                <p className="text-muted-foreground text-[11px]">{t.attachedOn} {photo.date}</p>
                 {photo.notes ? <p className="mt-1 text-foreground">{photo.notes}</p> : null}
               </div>
             </div>

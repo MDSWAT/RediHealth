@@ -4,6 +4,7 @@ import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/dat
 import { sendHelpRequestConfirmationEmail } from "@/lib/email";
 import type { RequestStatus, RequestPriority } from "@/lib/types/medical-request";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { getUserWorkerContext } from "@/lib/worker-auth";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -40,9 +41,16 @@ export async function POST(request: Request) {
   const email = text(body.email).toLowerCase();
   const description = text(body.description);
 
-  if (!phone || !emailPattern.test(email) || description.length < 10) {
+  if (!phone || description.length < 10) {
     return NextResponse.json(
-      { error: "Please provide a phone number, valid email, and description." },
+      { error: "Please provide a phone number and description." },
+      { status: 400 },
+    );
+  }
+
+  if (email && !emailPattern.test(email)) {
+    return NextResponse.json(
+      { error: "Please provide a valid email address or leave it blank." },
       { status: 400 },
     );
   }
@@ -63,7 +71,7 @@ export async function POST(request: Request) {
     await getDatabase().query(
       `INSERT INTO medical_help_requests (full_name, phone, email, description)
        VALUES (?, ?, ?, ?)`,
-      [name || null, phone, email, description],
+      [name || null, phone, email || null, description],
     );
   } catch (error) {
     console.error("Failed to store medical help request", error);
@@ -73,14 +81,17 @@ export async function POST(request: Request) {
     );
   }
 
-  await sendHelpRequestConfirmationEmail({
-    name,
-    phone,
-    email,
-    description,
-  });
+  let emailSent = false;
+  if (email) {
+    emailSent = await sendHelpRequestConfirmationEmail({
+      name,
+      phone,
+      email,
+      description,
+    });
+  }
 
-  return NextResponse.json({ success: true }, { status: 201 });
+  return NextResponse.json({ success: true, email_sent: emailSent }, { status: 201 });
 }
 
 export async function GET(request: Request) {
@@ -88,6 +99,11 @@ export async function GET(request: Request) {
 
   if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
+  const workerContext = await getUserWorkerContext(session.user.email);
+  if (!workerContext.workerId) {
+    return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
   }
 
   const { searchParams } = new URL(request.url);
@@ -98,6 +114,7 @@ export async function GET(request: Request) {
     const db = getDatabase();
     let query = `SELECT id, full_name, phone, email, description, 
                   COALESCE(status, 'pending') AS status, 
+                  status_updated_by_name, status_updated_by_email, status_updated_at,
                   COALESCE(priority, 'normal') AS priority, 
                   internal_notes, created_at, updated_at
                  FROM medical_help_requests`;
@@ -139,6 +156,11 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
   }
 
+  const workerContext = await getUserWorkerContext(session.user.email);
+  if (!workerContext.workerId) {
+    return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
+  }
+
   let body: {
     id?: string | number;
     status?: RequestStatus;
@@ -169,6 +191,11 @@ export async function PATCH(request: Request) {
     }
     updates.push("status = ?");
     params.push(body.status);
+    updates.push("status_updated_by_name = ?");
+    params.push(text(session.user.name) || null);
+    updates.push("status_updated_by_email = ?");
+    params.push(text(session.user.email) || null);
+    updates.push("status_updated_at = CURRENT_TIMESTAMP");
   }
 
   if (body.priority !== undefined) {
@@ -191,7 +218,8 @@ export async function PATCH(request: Request) {
   params.push(id);
 
   try {
-    const [result] = await getDatabase().query<ResultSetHeader>(
+    const db = getDatabase();
+    const [result] = await db.query<ResultSetHeader>(
       `UPDATE medical_help_requests SET ${updates.join(", ")} WHERE id = ?`,
       params,
     );
@@ -200,7 +228,19 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "Request not found." }, { status: 404 });
     }
 
-    return NextResponse.json({ success: true });
+    const [rows] = await db.query<RowDataPacket[]>(
+      `SELECT id, full_name, phone, email, description,
+              COALESCE(status, 'pending') AS status,
+              status_updated_by_name, status_updated_by_email, status_updated_at,
+              COALESCE(priority, 'normal') AS priority,
+              internal_notes, created_at, updated_at
+       FROM medical_help_requests
+       WHERE id = ?
+       LIMIT 1`,
+      [id],
+    );
+
+    return NextResponse.json({ success: true, request: rows[0] || null });
   } catch (error) {
     console.error("Failed to update medical help request", error);
     return NextResponse.json(
@@ -215,6 +255,11 @@ export async function DELETE(request: Request) {
 
   if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
+  const workerContext = await getUserWorkerContext(session.user.email);
+  if (!workerContext.workerId) {
+    return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
   }
 
   const { searchParams } = new URL(request.url);

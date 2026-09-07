@@ -7,9 +7,14 @@ export type FollowupItem = {
   date: string;
   notes?: string;
   completion_notes?: string;
+  completion_photos?: PatientPhoto[];
   completed_at?: string;
   status: "scheduled" | "completed" | "cancelled";
   reminder_set?: boolean;
+  meeting_id?: string;
+  meeting_url?: string;
+  meeting_transcript?: string;
+  meeting_notes?: string;
 };
 
 export type PatientPhoto = {
@@ -32,7 +37,9 @@ export type PatientItem = {
   id: string;
   request_id?: string | null;
   assigned_worker_id?: string | null;
+  assigned_worker_ids?: string[];
   assigned_worker_name?: string | null;
+  assigned_worker_names?: string[];
   access_token?: string | null;
   full_name: string;
   phone: string;
@@ -55,6 +62,7 @@ export type CreatePatientPayload = {
   id?: string | number;
   request_id?: string | number | null;
   assigned_worker_id?: string | number | null;
+  assigned_worker_ids?: Array<string | number>;
   access_token?: string | null;
   full_name?: string;
   phone?: string;

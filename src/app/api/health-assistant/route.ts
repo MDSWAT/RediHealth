@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { DEFAULT_LANG, isSupportedLang } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 
 const urgentPattern = /chest pain|difficulty breathing|shortness of breath|unconscious|fainting|seizure|stroke|face droop|severe bleeding|suicid|overdose/i;
 
 type AssistantRequest = {
   symptoms?: unknown;
   history?: unknown;
+  lang?: unknown;
   prescriptionContext?: unknown;
   prescription?: { mimeType?: unknown; data?: unknown };
 };
@@ -85,7 +88,53 @@ function normalizeJsonPayload(raw: string): string {
   return trimmed;
 }
 
-const systemInstruction = `You are RediHealth's patient-intake assistant. Give a useful preliminary assessment, but never state a diagnosis as fact, prescribe, recommend medication changes, or state that a medicine is safe. For every response, identify one most plausible possible cause using wording such as "This could be consistent with...". If the information is too limited, say what information is needed rather than inventing a cause. Set careLevel to "emergency", "urgent", "soon", or "routine". Emergency means call 112 or visit emergency care immediately; urgent means same-day clinical assessment; soon means contact a clinician within 24-48 hours; routine means monitor and arrange non-urgent care if symptoms continue. Identify possible emergency red flags and tell the patient to call 112 or visit emergency care immediately. Use calm, plain language. If an image is supplied, transcribe only legible prescription text. Mark uncertain words with [unclear]. Never infer missing medicine names, strengths, or directions. Return only valid JSON with urgency ("emergency" or "routine"), careLevel, possibleCause, message, questions (array), and prescriptionText (string, optional).`;
+function readEnv(name: string): string {
+  return process.env[name]?.trim().replace(/^["']|["']$/g, "") || "";
+}
+
+const responseLanguageLabel: Record<Lang, string> = {
+  en: "English",
+  ro: "Romanian",
+  sq: "Albanian",
+  it: "Italian",
+};
+
+const emergencyResponseByLang: Record<Lang, { possibleCause: string; message: string }> = {
+  en: {
+    possibleCause: "These symptoms can be caused by serious conditions that need emergency assessment.",
+    message: "Your symptoms may need emergency assessment. Call 112 now or go to the nearest emergency department. Do not wait for an online response.",
+  },
+  ro: {
+    possibleCause: "Aceste simptome pot fi cauzate de afectiuni grave care necesita evaluare de urgenta.",
+    message: "Simptomele tale pot necesita evaluare de urgenta. Suna acum la 112 sau mergi la cel mai apropiat serviciu de urgente. Nu astepta un raspuns online.",
+  },
+  sq: {
+    possibleCause: "Keto simptoma mund te shkaktohen nga gjendje serioze qe kerkojne vleresim urgjent.",
+    message: "Simptomat e tua mund te kerkojne vleresim urgjent. Telefono 112 tani ose shko ne urgjencen me te afert. Mos prit per nje pergjigje online.",
+  },
+  it: {
+    possibleCause: "Questi sintomi possono essere causati da condizioni gravi che richiedono una valutazione urgente.",
+    message: "I tuoi sintomi potrebbero richiedere una valutazione urgente. Chiama subito il 112 o vai al pronto soccorso piu vicino. Non aspettare una risposta online.",
+  },
+};
+
+const defaultPossibleCauseByLang: Record<Lang, string> = {
+  en: "There is not enough information yet to suggest a possible cause.",
+  ro: "Nu exista inca suficiente informatii pentru a sugera o cauza posibila.",
+  sq: "Nuk ka ende informacion te mjaftueshem per te sugjeruar nje shkak te mundshem.",
+  it: "Non ci sono ancora informazioni sufficienti per suggerire una possibile causa.",
+};
+
+const defaultMessageByLang: Record<Lang, string> = {
+  en: "Please share this information with a healthcare professional.",
+  ro: "Te rugam sa impartasesti aceste informatii cu un profesionist medical.",
+  sq: "Te lutem ndaj kete informacion me nje profesionist shendetesor.",
+  it: "Condividi queste informazioni con un professionista sanitario.",
+};
+
+function buildSystemInstruction(lang: Lang) {
+  return `You are RediHealth's patient-intake assistant. Give a useful preliminary assessment, but never state a diagnosis as fact, prescribe, recommend medication changes, or state that a medicine is safe. For every response, identify one most plausible possible cause using wording such as "This could be consistent with...". If the information is too limited, say what information is needed rather than inventing a cause. Set careLevel to "emergency", "urgent", "soon", or "routine". Emergency means call 112 or visit emergency care immediately; urgent means same-day clinical assessment; soon means contact a clinician within 24-48 hours; routine means monitor and arrange non-urgent care if symptoms continue. Identify possible emergency red flags and tell the patient to call 112 or visit emergency care immediately. Use calm, plain language. If an image is supplied, transcribe only legible prescription text. Mark uncertain words with [unclear]. Never infer missing medicine names, strengths, or directions. IMPORTANT: Write all patient-facing text fields (possibleCause, message, and questions) in ${responseLanguageLabel[lang]}. Return only valid JSON with urgency ("emergency" or "routine"), careLevel, possibleCause, message, questions (array), and prescriptionText (string, optional).`;
+}
 
 export async function POST(request: Request) {
   const rateLimit = checkRateLimit(`health-assistant:${getClientIp(request)}`, { limit: 10, windowMs: 60_000 });
@@ -103,6 +152,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body. Please send valid JSON." }, { status: 400 });
   }
   const symptoms = typeof body.symptoms === "string" ? body.symptoms.trim() : "";
+  const lang = typeof body.lang === "string" && isSupportedLang(body.lang) ? body.lang : DEFAULT_LANG;
   const history = Array.isArray(body.history)
     ? body.history.slice(-12).flatMap((item) => {
         if (!item || typeof item !== "object") return [];
@@ -129,21 +179,18 @@ export async function POST(request: Request) {
   }
 
   if (urgentPattern.test(symptoms)) {
+    const emergencyCopy = emergencyResponseByLang[lang];
     return NextResponse.json({
       urgency: "emergency",
       careLevel: "emergency",
-      possibleCause: "These symptoms can be caused by serious conditions that need emergency assessment.",
-      message: "Your symptoms may need emergency assessment. Call 112 now or go to the nearest emergency department. Do not wait for an online response.",
+      possibleCause: emergencyCopy.possibleCause,
+      message: emergencyCopy.message,
       questions: [],
     });
   }
 
-  const apiKey =
-    process.env.ANTHROPIC_API_KEY?.trim().replace(/^["']|["']$/g, "")
-    || process.env.LLMSRELAY_API_KEY?.trim().replace(/^["']|["']$/g, "");
-  if (!apiKey) {
-    return NextResponse.json({ error: "The AI assistant is not configured yet. Add ANTHROPIC_API_KEY or LLMSRELAY_API_KEY to .env.local." }, { status: 503 });
-  }
+  const anthropicApiKey = readEnv("ANTHROPIC_API_KEY");
+  const relayApiKey = readEnv("LLMSRELAY_API_KEY");
 
   const content: Array<{ type: "input_text"; text: string } | { type: "input_image"; image_url: string }> = [{
     type: "input_text",
@@ -161,10 +208,34 @@ export async function POST(request: Request) {
     chatCompletionsContent.push({ type: "image_url", image_url: { url: `data:${imageMimeType};base64,${imageData}` } });
   }
 
-  const model = process.env.LLMSRELAY_MODEL?.trim().replace(/^["']|["']$/g, "")
-    || process.env.ANTHROPIC_MODEL?.trim().replace(/^["']|["']$/g, "")
+  const model = readEnv("LLMSRELAY_MODEL")
+    || readEnv("ANTHROPIC_MODEL")
     || "claude-haiku-4.5";
-  const anthropicBaseUrl = process.env.ANTHROPIC_BASE_URL?.trim().replace(/\/$/, "") || "https://api.llmsrelay.com";
+  const anthropicBaseUrl = readEnv("ANTHROPIC_BASE_URL").replace(/\/$/, "") || "https://api.llmsrelay.com";
+  const relayHost = "api.llmsrelay.com";
+  let endpointHost = relayHost;
+  try {
+    endpointHost = new URL(anthropicBaseUrl).hostname.toLowerCase();
+  } catch {
+    return NextResponse.json({ error: "ANTHROPIC_BASE_URL must be a valid URL (for example, https://api.llmsrelay.com)." }, { status: 503 });
+  }
+  const usesRelayMessagesEndpoint = endpointHost === relayHost;
+  const claudeApiKey = usesRelayMessagesEndpoint ? relayApiKey : anthropicApiKey;
+  const relayApiKeyForResponses = relayApiKey || anthropicApiKey;
+  if (!claudeApiKey && model.startsWith("claude-")) {
+    return NextResponse.json(
+      {
+        error: usesRelayMessagesEndpoint
+          ? "The AI assistant is not configured yet. Add LLMSRELAY_API_KEY to .env.local."
+          : "The AI assistant is not configured yet. Add ANTHROPIC_API_KEY to .env.local.",
+      },
+      { status: 503 },
+    );
+  }
+  if (!relayApiKeyForResponses && !model.startsWith("claude-")) {
+    return NextResponse.json({ error: "The AI assistant is not configured yet. Add LLMSRELAY_API_KEY to .env.local." }, { status: 503 });
+  }
+  const systemInstruction = buildSystemInstruction(lang);
 
   const requestText = `Current message: ${symptoms || "Not provided"}\nConversation history:\n${history.join("\n") || "Not provided"}\nWhy the prescription was given: ${prescriptionContext || "Not provided"}`;
   let generatedText: string | undefined;
@@ -190,7 +261,9 @@ export async function POST(request: Request) {
       {
         method: "POST",
         headers: {
-          "x-api-key": apiKey,
+          ...(usesRelayMessagesEndpoint
+            ? { Authorization: `Bearer ${claudeApiKey}` }
+            : { "x-api-key": claudeApiKey! }),
           "anthropic-version": "2023-06-01",
           "Content-Type": "application/json",
         },
@@ -230,7 +303,7 @@ export async function POST(request: Request) {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${apiKey}`,
+          Authorization: `Bearer ${relayApiKeyForResponses}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -264,7 +337,7 @@ export async function POST(request: Request) {
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${apiKey}`,
+            Authorization: `Bearer ${relayApiKeyForResponses}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -320,8 +393,8 @@ export async function POST(request: Request) {
     const response: AssistantResponse = {
       urgency: generated.urgency === "emergency" ? "emergency" : "routine",
       careLevel: generated.careLevel === "emergency" || generated.careLevel === "urgent" || generated.careLevel === "soon" ? generated.careLevel : "routine",
-      possibleCause: typeof generated.possibleCause === "string" ? generated.possibleCause : "There is not enough information yet to suggest a possible cause.",
-      message: typeof generated.message === "string" ? generated.message : "Please share this information with a healthcare professional.",
+      possibleCause: typeof generated.possibleCause === "string" ? generated.possibleCause : defaultPossibleCauseByLang[lang],
+      message: typeof generated.message === "string" ? generated.message : defaultMessageByLang[lang],
       questions: Array.isArray(generated.questions) ? generated.questions.filter((question): question is string => typeof question === "string").slice(0, 3) : [],
       prescriptionText: typeof generated.prescriptionText === "string" ? generated.prescriptionText : undefined,
     };

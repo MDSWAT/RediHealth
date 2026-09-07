@@ -10,6 +10,9 @@ export type MedicalHelpRequestItem = {
   status: RequestStatus;
   priority: RequestPriority;
   internal_notes: string | null;
+  status_updated_by_name?: string | null;
+  status_updated_by_email?: string | null;
+  status_updated_at?: string;
   created_at: string;
   updated_at?: string;
 };

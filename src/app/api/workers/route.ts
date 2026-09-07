@@ -12,7 +12,13 @@ function text(value: unknown) {
 }
 
 function isDuplicateEntryError(error: unknown): boolean {
-  return (error as { code?: string })?.code === "23505"; // unique_violation
+  const dbError = error as { code?: string; errno?: number; sqlState?: string; message?: string };
+  return (
+    dbError.code === "ER_DUP_ENTRY"
+    || dbError.errno === 1062
+    || dbError.sqlState === "23000"
+    || /duplicate entry/i.test(dbError.message || "")
+  );
 }
 
 export async function GET(request: Request) {
@@ -20,6 +26,11 @@ export async function GET(request: Request) {
 
   if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
+  const workerContext = await getUserWorkerContext(session.user.email);
+  if (!workerContext.workerId) {
+    return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
   }
 
   const { searchParams } = new URL(request.url);
@@ -117,10 +128,16 @@ export async function POST(request: Request) {
     const db = getDatabase();
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO workers (full_name, email, phone, role, department, status)
-       VALUES (?, ?, ?, ?, ?, ?)
-       RETURNING id`,
+       VALUES (?, ?, ?, ?, ?, ?)`,
       [fullName, email, phone || null, role, department || null, status],
     );
+
+    if (!result.insertId) {
+      return NextResponse.json(
+        { error: "Worker was created but no insert id was returned by the database." },
+        { status: 503 },
+      );
+    }
 
     return NextResponse.json(
       { success: true, id: result.insertId },
@@ -215,15 +232,15 @@ export async function PATCH(request: Request) {
     if (Array.isArray(body.assign_patient_ids) && body.assign_patient_ids.length > 0) {
       const placeholders = body.assign_patient_ids.map(() => "?").join(", ");
       await db.query(
-        `UPDATE patients SET assigned_worker_id = ? WHERE id IN (${placeholders})`,
-        [id, ...body.assign_patient_ids],
+        `UPDATE patients SET assigned_worker_id = ?, assigned_worker_ids = JSON_ARRAY(?) WHERE id IN (${placeholders})`,
+        [id, id, ...body.assign_patient_ids],
       );
     }
 
     if (Array.isArray(body.unassign_patient_ids) && body.unassign_patient_ids.length > 0) {
       const placeholders = body.unassign_patient_ids.map(() => "?").join(", ");
       await db.query(
-        `UPDATE patients SET assigned_worker_id = NULL WHERE id IN (${placeholders})`,
+        `UPDATE patients SET assigned_worker_id = NULL, assigned_worker_ids = NULL WHERE id IN (${placeholders})`,
         body.unassign_patient_ids,
       );
     }

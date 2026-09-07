@@ -12,6 +12,11 @@ const heroChatTextDelaySeconds = 0.2;
 const heroChatStepSeconds = heroChatTypingSeconds + heroChatTextDelaySeconds;
 const heroFactcheckDelay = heroChatFrom.length * heroChatStepSeconds + 0.2;
 
+type HeroTypingStyle = CSSProperties & {
+  "--hero-anim-duration": string;
+  "--hero-anim-delay": string;
+};
+
 export function Hero() {
   const { lang, t } = useLanguage();
   const phone = t.hero.phone;
@@ -33,24 +38,24 @@ export function Hero() {
       <Container className="relative py-16 sm:py-20 lg:py-24">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,40rem)] lg:gap-16">
           <div className="max-w-2xl">
-          <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
-            <span className="hero-text-in block" style={{ animationDelay: "0.05s" }}>{t.hero.titleLine1}</span>
-            <span className="hero-text-in block" style={{ animationDelay: "0.2s" }}>{t.hero.titleLine2}</span>
-            <span className="hero-text-in block text-primary" style={{ animationDelay: "0.35s" }}>{t.hero.titleLine3}</span>
-          </h1>
+            <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
+              <span className="hero-text-in block" style={{ animationDelay: "0.05s" }}>{t.hero.titleLine1}</span>
+              <span className="hero-text-in block" style={{ animationDelay: "0.2s" }}>{t.hero.titleLine2}</span>
+              <span className="hero-text-in block text-primary" style={{ animationDelay: "0.35s" }}>{t.hero.titleLine3}</span>
+            </h1>
 
-          <p className="hero-text-in mt-5 text-lg leading-relaxed text-muted-foreground" style={{ animationDelay: "0.5s" }}>
-            {t.hero.paragraph}
-          </p>
+            <p className="hero-text-in mt-5 text-lg leading-relaxed text-muted-foreground" style={{ animationDelay: "0.5s" }}>
+              {t.hero.paragraph}
+            </p>
 
-          <div className="hero-text-in mt-8" style={{ animationDelay: "0.65s" }}>
-            <Button href="/get-help" size="lg">
-              {t.hero.cta}
-            </Button>
-            <a href="/health-assistant" className="ml-5 inline-flex min-h-11 items-center text-sm font-semibold text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary">
-              Try the health assistant
-            </a>
-          </div>
+            <div className="hero-text-in mt-8" style={{ animationDelay: "0.65s" }}>
+              <Button href="/get-help" size="lg">
+                {t.hero.cta}
+              </Button>
+              <a href="/health-assistant" className="ml-5 inline-flex min-h-11 items-center text-sm font-semibold text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary">
+                Try the health assistant
+              </a>
+            </div>
           </div>
 
           <div className="relative flex min-h-72 items-center justify-center lg:justify-end lg:self-end">
@@ -77,12 +82,16 @@ export function Hero() {
                       ? "justify-self-end rounded-tr-none bg-primary text-white"
                       : "justify-self-start rounded-tl-none bg-white text-foreground";
                     const typingMotionClass = isOwn ? "hero-typing-bubble-slide" : "";
+                    const typingStyle: HeroTypingStyle = {
+                      "--hero-anim-duration": `${heroChatTypingSeconds}s`,
+                      "--hero-anim-delay": `${typingDelay}s`,
+                    };
 
                     return (
                       <div key={index} className="grid">
                         <div
                           className={`hero-typing-bubble ${typingMotionClass} col-start-1 row-start-1 flex w-12 items-center gap-1 rounded-lg px-3 py-2 shadow-sm ${bubbleClasses}`}
-                          style={{ "--hero-anim-duration": `${heroChatTypingSeconds}s`, "--hero-anim-delay": `${typingDelay}s` } as CSSProperties}
+                          style={typingStyle}
                         >
                           <span className="hero-typing-dot h-1.5 w-1.5 rounded-full bg-current" />
                           <span className="hero-typing-dot h-1.5 w-1.5 rounded-full bg-current" />

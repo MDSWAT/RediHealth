@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { signOut } from "next-auth/react";
-import { ArrowRightIcon, BellIcon, CalendarIcon, ChevronLeftIcon, ChevronRightIcon, ClockIcon, CloseIcon, FileTextIcon, LogOutIcon, MenuIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, BellIcon, CalendarIcon, CameraIcon, ChevronLeftIcon, ChevronRightIcon, CloseIcon, FileTextIcon, LogOutIcon, MenuIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { panelTranslations } from "@/lib/i18n/panel-translations";
@@ -16,7 +16,6 @@ type AdminShellProps = {
   userRole?: string;
   isAdmin?: boolean;
   pendingCount?: number;
-  overdueCount?: number;
 };
 
 export function AdminShell({
@@ -25,7 +24,6 @@ export function AdminShell({
   userRole = "Administrator",
   isAdmin = true,
   pendingCount = 0,
-  overdueCount = 0,
 }: AdminShellProps) {
   const pathname = usePathname();
   const { lang } = useLanguage();
@@ -33,6 +31,11 @@ export function AdminShell({
   const normalizedPathname = stripLangFromPathname(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   const adminItems = [
     {
@@ -51,14 +54,14 @@ export function AdminShell({
       icon: StethoscopeIcon,
     },
     {
-      label: t.followups,
-      href: "/panel/followups",
-      icon: ClockIcon,
-    },
-    {
       label: t.calendar,
       href: "/panel/calendar",
       icon: CalendarIcon,
+    },
+    {
+      label: "Meet",
+      href: "/panel/meet",
+      icon: CameraIcon,
     },
     {
       label: t.mediator,
@@ -97,7 +100,7 @@ export function AdminShell({
           {t.manage}
         </p>
         <ul className="mt-2 space-y-1">
-          {visibleItems.map((item) => {
+          {(hydrated ? visibleItems : []).map((item) => {
             const Icon = item.icon;
             const active =
               item.href === "/panel"
@@ -125,14 +128,6 @@ export function AdminShell({
                     >
                       <BellIcon className="h-3.5 w-3.5" />
                       <span>{pendingCount}</span>
-                    </span>
-                  ) : item.href === "/panel/followups" && overdueCount > 0 && !sidebarCollapsed ? (
-                    <span
-                      className="ml-auto inline-flex items-center gap-1 rounded-full bg-red-600 px-2 py-0.5 text-xs font-bold text-white animate-pulse"
-                      title={t.overdueFollowups(overdueCount)}
-                    >
-                      <BellIcon className="h-3.5 w-3.5" />
-                      <span>{overdueCount}</span>
                     </span>
                   ) : active && !sidebarCollapsed ? (
                     <span className="ml-auto h-2 w-2 rounded-full bg-primary" />

@@ -31,9 +31,7 @@ function validate(values: Fields, t: Translations["getHelpPage"]["form"]): Error
     errors.phone = t.errorPhone;
   }
 
-  if (!values.email.trim()) {
-    errors.email = t.errorEmailRequired;
-  } else if (!emailPattern.test(values.email.trim())) {
+  if (values.email.trim() && !emailPattern.test(values.email.trim())) {
     errors.email = t.errorEmailInvalid;
   }
 
@@ -193,7 +191,8 @@ export function RequestHelpForm() {
               htmlFor="email"
               className="text-sm font-semibold text-foreground"
             >
-              {form.emailLabel}
+              {form.emailLabel}{" "}
+              <span className="font-normal text-muted-foreground">{form.fullNameOptional}</span>
             </label>
             <input
               id="email"
@@ -201,7 +200,6 @@ export function RequestHelpForm() {
               type="email"
               inputMode="email"
               autoComplete="email"
-              required
               value={values.email}
               onChange={(event) => update("email", event.target.value)}
               aria-invalid={Boolean(errors.email)}

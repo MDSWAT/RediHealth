@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import {
   AlertCircleIcon,
@@ -15,9 +14,7 @@ import {
 } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { langToLocale } from "@/lib/i18n/panel-translations";
-import { withLangPrefix } from "@/lib/i18n/routing";
 import type { MedicalHelpRequestItem, RequestPriority, RequestStatus } from "@/lib/types/medical-request";
-import { CreatePatientModal } from "./CreatePatientModal";
 
 interface RequestDetailModalProps {
   request: MedicalHelpRequestItem;
@@ -25,7 +22,21 @@ interface RequestDetailModalProps {
   onUpdate: (updatedRequest: MedicalHelpRequestItem) => void;
   onDelete: (id: string) => Promise<void>;
   onOpenTemplates: () => void;
+  onCreatePatient: (request: MedicalHelpRequestItem) => void;
 }
+
+type RequestPatchResponse = {
+  error?: string;
+  request?: {
+    status?: RequestStatus;
+    priority?: RequestPriority;
+    internal_notes?: string | null;
+    status_updated_by_name?: string | null;
+    status_updated_by_email?: string | null;
+    status_updated_at?: string;
+    updated_at?: string;
+  } | null;
+};
 
 export function RequestDetailModal({
   request,
@@ -33,6 +44,7 @@ export function RequestDetailModal({
   onUpdate,
   onDelete,
   onOpenTemplates,
+  onCreatePatient,
 }: RequestDetailModalProps) {
   const { lang } = useLanguage();
   const locale = langToLocale[lang];
@@ -194,8 +206,6 @@ export function RequestDetailModal({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [showCreatePatient, setShowCreatePatient] = useState(false);
-  const [createdPatientId, setCreatedPatientId] = useState<string | null>(null);
 
   async function handleSaveChanges() {
     setIsSaving(true);
@@ -214,7 +224,7 @@ export function RequestDetailModal({
         }),
       });
 
-      const data = (await response.json()) as { error?: string };
+      const data = (await response.json()) as RequestPatchResponse;
 
       if (!response.ok) {
         setErrorMessage(data.error || tx.errorUpdate);
@@ -224,9 +234,13 @@ export function RequestDetailModal({
       setSaveSuccess(true);
       onUpdate({
         ...request,
-        status,
-        priority,
-        internal_notes: notes.trim() || null,
+        status: data.request?.status || status,
+        priority: data.request?.priority || priority,
+        internal_notes: data.request?.internal_notes ?? (notes.trim() || null),
+        status_updated_by_name: data.request?.status_updated_by_name ?? request.status_updated_by_name,
+        status_updated_by_email: data.request?.status_updated_by_email ?? request.status_updated_by_email,
+        status_updated_at: data.request?.status_updated_at || request.status_updated_at,
+        updated_at: data.request?.updated_at || request.updated_at,
       });
 
       setTimeout(() => setSaveSuccess(false), 2500);
@@ -404,29 +418,17 @@ export function RequestDetailModal({
                 <span>{tx.profileManagement}</span>
               </p>
               <p className="text-muted-foreground mt-0.5">
-                {createdPatientId
-                  ? tx.profileCreated
-                  : tx.profileConvert}
+                {tx.profileConvert}
               </p>
             </div>
-            {createdPatientId ? (
-              <Link
-                href={withLangPrefix(`/panel/patients/${createdPatientId}`, lang)}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors whitespace-nowrap self-start sm:self-auto"
-              >
-                <UsersIcon className="h-4 w-4" />
-                <span>{tx.viewProfile}</span>
-              </Link>
-            ) : (
-              <button
-                type="button"
-                onClick={() => setShowCreatePatient(true)}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors whitespace-nowrap self-start sm:self-auto"
-              >
-                <UsersIcon className="h-4 w-4" />
-                <span>{tx.createProfile}</span>
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => onCreatePatient(request)}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors whitespace-nowrap self-start sm:self-auto"
+            >
+              <UsersIcon className="h-4 w-4" />
+              <span>{tx.createProfile}</span>
+            </button>
           </div>
 
           <div className="flex items-center justify-between rounded-xl border border-primary/20 bg-primary-soft p-3.5">
@@ -498,16 +500,6 @@ export function RequestDetailModal({
         </div>
       </div>
 
-      {showCreatePatient ? (
-        <CreatePatientModal
-          request={request}
-          onClose={() => setShowCreatePatient(false)}
-          onSuccess={(saved) => {
-            setCreatedPatientId(saved.id);
-            setShowCreatePatient(false);
-          }}
-        />
-      ) : null}
     </div>
   );
 }

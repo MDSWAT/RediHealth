@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import {
   createEmailSession,
   decryptEmailCode,
@@ -8,11 +9,43 @@ import {
 import { checkLoginAccess } from "@/lib/login-access";
 import { withLangPrefix, LOCALE_COOKIE, DEFAULT_LANG, isSupportedLang } from "@/lib/i18n/routing";
 
+function rateLimitResponse(retryAfterSeconds: number) {
+  return NextResponse.json(
+    { error: "Too many verification attempts. Please wait and try again." },
+    { status: 429, headers: { "Retry-After": String(retryAfterSeconds) } },
+  );
+}
+
 export async function POST(request: Request) {
-  const { code } = (await request.json()) as { code?: string };
+  const ipRateLimit = checkRateLimit(`email-code-verify:ip:${getClientIp(request)}`, {
+    limit: 12,
+    windowMs: 60_000,
+  });
+  if (!ipRateLimit.allowed) {
+    return rateLimitResponse(ipRateLimit.retryAfterSeconds);
+  }
+
+  let body: { code?: string };
+  try {
+    body = (await request.json()) as { code?: string };
+  } catch {
+    return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
+  }
+
+  const { code } = body;
   const normalizedCode = code?.trim();
   const cookieStore = await cookies();
   const codeToken = cookieStore.get(emailAuthCookies.otp)?.value;
+
+  if (codeToken) {
+    const tokenRateLimit = checkRateLimit(`email-code-verify:token:${codeToken}`, {
+      limit: 6,
+      windowMs: 10 * 60_000,
+    });
+    if (!tokenRateLimit.allowed) {
+      return rateLimitResponse(tokenRateLimit.retryAfterSeconds);
+    }
+  }
 
   if (!codeToken || !normalizedCode) {
     return NextResponse.json(

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { useMemo, useState, type ReactNode } from "react";
 import {
   AlertCircleIcon,
   BellIcon,
@@ -16,20 +17,451 @@ import {
   UserIcon,
 } from "@/components/ui/icons";
 import type { PatientItem, PatientPriority } from "@/lib/types/patient";
-import { Container } from "@/components/ui/Container";
 import { usePatientPortal } from "@/components/portal/usePatientPortal";
+import { useLanguage } from "@/lib/i18n/language-context";
 
 interface PatientPortalViewProps {
   initialPatient: PatientItem;
   token: string;
 }
 
+type PortalTab = "actions" | "plan" | "photos" | "notes";
+
+const portalTranslations = {
+  en: {
+    emergencyTitle: "Medical Emergency Notice:",
+    emergencyBody:
+      "This portal supports routine communication and care management. For life-threatening emergencies, call 112 or visit the nearest emergency room.",
+    careLabel: "care",
+    portalRecord: "RediHealth Patient Portal - Record ID",
+    assignedStaff: "Assigned healthcare staff",
+    fallbackTeam: "RediHealth Clinical Team",
+    phone: "Phone:",
+    email: "Email:",
+    location: "Location:",
+    notSpecified: "Not specified",
+    treatmentTitle: "Clinical Treatment Plan",
+    diagnosis: "Primary Diagnosis",
+    goals: "Care Goals",
+    meds: "Medications and Therapies",
+    instructions: "Care Instructions",
+    attached: "Attached Scans and Prescriptions",
+    noTreatment:
+      "No formal treatment plan has been added yet. The care team will update this section after review.",
+    symptomsTitle: "Report Symptoms and Urgency",
+    symptomsSaved: "Symptoms and status updated. Your care team has been notified.",
+    howFeeling: "How are you feeling?",
+    symptomsPlaceholder:
+      "Describe new symptoms, pain levels, side effects, or recovery changes...",
+    priorityLevel: "Priority level",
+    priorityCritical: "Critical priority",
+    priorityHigh: "High priority",
+    priorityModerate: "Moderate priority",
+    priorityLow: "Low priority",
+    saving: "Saving...",
+    updateSymptoms: "Update symptoms",
+    followupsTitle: "Follow-ups and Appointments",
+    requestFollowup: "Request follow-up",
+    followupTitle: "Follow-up title",
+    followupTitlePlaceholder: "Follow-up on recovery progress",
+    preferredDate: "Preferred date",
+    notes: "Notes",
+    notesPlaceholder: "Availability details or questions for staff",
+    cancel: "Cancel",
+    submitting: "Submitting...",
+    submitRequest: "Submit request",
+    date: "Date:",
+    noFollowups: "No follow-up requests yet. Use the button above to schedule one.",
+    photosTitle: "Medical Photos and Documents",
+    selectImage: "Select image file",
+    photoTitle: "Photo title",
+    photoTitlePlaceholder: "Skin photo, blood test report",
+    photoNotesPlaceholder: "Describe what this image shows",
+    readyPhoto: "Photo ready to attach",
+    uploading: "Uploading...",
+    attachPhoto: "Attach photo",
+    noPhotos: "No photos uploaded yet.",
+    stepUpdate: "1. Update your symptoms",
+    stepFollowups: "2. Manage your follow-ups",
+    actionHint: "Start here so your care team can prioritize your case quickly.",
+    noNotes: "No additional notes",
+    completeFollowup: "Complete follow-up",
+    completionNotes: "Completion notes",
+    completionNotesPlaceholder: "What happened during this follow-up?",
+    completionPhotoTitle: "Attachment title",
+    completionPhotoTitlePlaceholder: "Follow-up image or document",
+    completionPhotoNote: "Attachment note",
+    completionPhotoNotePlaceholder: "Describe this attachment",
+    addAttachment: "Add attachment",
+    attachments: "Attachments",
+    markCompleted: "Mark completed",
+    completing: "Completing...",
+    completedOn: "Completed on",
+    notesTabTitle: "Patient Notes Log",
+    noNoteEntries: "No note entries yet.",
+    noteFromSymptoms: "Symptoms update",
+    noteFromPhoto: "Photo note",
+    noteFromFollowup: "Follow-up note",
+    noteFromFollowupCompletion: "Follow-up completion",
+    tabs: {
+      actions: "My Actions",
+      plan: "Treatment Plan",
+      photos: "Photos",
+      notes: "Notes",
+    },
+  },
+  ro: {
+    emergencyTitle: "Atentie urgenta medicala:",
+    emergencyBody:
+      "Acest portal este pentru comunicare de rutina si managementul ingrijirii. Pentru urgente care pun viata in pericol, sunati la 112 sau mergeti la cea mai apropiata camera de garda.",
+    careLabel: "ingrijire",
+    portalRecord: "Portal pacient RediHealth - ID dosar",
+    assignedStaff: "Personal medical alocat",
+    fallbackTeam: "Echipa clinica RediHealth",
+    phone: "Telefon:",
+    email: "Email:",
+    location: "Locatie:",
+    notSpecified: "Nespecificat",
+    treatmentTitle: "Plan clinic de tratament",
+    diagnosis: "Diagnostic principal",
+    goals: "Obiective de ingrijire",
+    meds: "Medicamente si terapii",
+    instructions: "Instructiuni de ingrijire",
+    attached: "Scanari si prescriptii atasate",
+    noTreatment:
+      "Nu exista inca un plan formal de tratament. Echipa medicala va actualiza aceasta sectiune dupa evaluare.",
+    symptomsTitle: "Raporteaza simptomele si urgenta",
+    symptomsSaved: "Simptomele si statusul au fost actualizate. Echipa medicala a fost notificata.",
+    howFeeling: "Cum va simtiti?",
+    symptomsPlaceholder:
+      "Descrieti simptome noi, nivelul durerii, efecte adverse sau schimbari in recuperare...",
+    priorityLevel: "Nivel prioritate",
+    priorityCritical: "Prioritate critica",
+    priorityHigh: "Prioritate ridicata",
+    priorityModerate: "Prioritate moderata",
+    priorityLow: "Prioritate scazuta",
+    saving: "Se salveaza...",
+    updateSymptoms: "Actualizeaza simptomele",
+    followupsTitle: "Monitorizari si programari",
+    requestFollowup: "Solicita monitorizare",
+    followupTitle: "Titlu monitorizare",
+    followupTitlePlaceholder: "Monitorizare progres recuperare",
+    preferredDate: "Data preferata",
+    notes: "Note",
+    notesPlaceholder: "Detalii despre disponibilitate sau intrebari pentru personal",
+    cancel: "Anuleaza",
+    submitting: "Se trimite...",
+    submitRequest: "Trimite solicitarea",
+    date: "Data:",
+    noFollowups: "Nu exista solicitari de monitorizare. Folositi butonul de mai sus pentru a programa una.",
+    photosTitle: "Poze si documente medicale",
+    selectImage: "Selecteaza fisier imagine",
+    photoTitle: "Titlu poza",
+    photoTitlePlaceholder: "Poza piele, buletin analize",
+    photoNotesPlaceholder: "Descrieti ce se vede in aceasta imagine",
+    readyPhoto: "Poza gata de atasat",
+    uploading: "Se incarca...",
+    attachPhoto: "Ataseaza poza",
+    noPhotos: "Nu exista poze incarcate.",
+    stepUpdate: "1. Actualizeaza simptomele",
+    stepFollowups: "2. Gestioneaza monitorizarile",
+    actionHint: "Incepeti aici pentru ca echipa medicala sa va prioritizeze rapid cazul.",
+    noNotes: "Fara note suplimentare",
+    completeFollowup: "Finalizeaza monitorizarea",
+    completionNotes: "Note la finalizare",
+    completionNotesPlaceholder: "Ce s-a intamplat in timpul acestei monitorizari?",
+    completionPhotoTitle: "Titlu atasament",
+    completionPhotoTitlePlaceholder: "Imagine sau document pentru monitorizare",
+    completionPhotoNote: "Nota atasament",
+    completionPhotoNotePlaceholder: "Descrieti acest atasament",
+    addAttachment: "Adauga atasament",
+    attachments: "Atasamente",
+    markCompleted: "Marcheaza finalizat",
+    completing: "Se finalizeaza...",
+    completedOn: "Finalizat la",
+    notesTabTitle: "Jurnal note pacient",
+    noNoteEntries: "Nu exista note inca.",
+    noteFromSymptoms: "Actualizare simptome",
+    noteFromPhoto: "Nota foto",
+    noteFromFollowup: "Nota monitorizare",
+    noteFromFollowupCompletion: "Finalizare monitorizare",
+    tabs: {
+      actions: "Actiunile mele",
+      plan: "Plan de tratament",
+      photos: "Poze",
+      notes: "Note",
+    },
+  },
+  sq: {
+    emergencyTitle: "Njoftim per urgence mjekesore:",
+    emergencyBody:
+      "Ky portal mbeshtet komunikimin rutinor dhe menaxhimin e kujdesit. Per urgjenca qe rrezikojne jeten, telefononi 112 ose shkoni ne urgjencen me te afert.",
+    careLabel: "kujdes",
+    portalRecord: "Portali i pacientit RediHealth - ID karteles",
+    assignedStaff: "Stafi mjekesor i caktuar",
+    fallbackTeam: "Ekipi klinik RediHealth",
+    phone: "Telefon:",
+    email: "Email:",
+    location: "Vendndodhja:",
+    notSpecified: "E paspecifikuar",
+    treatmentTitle: "Plani klinik i trajtimit",
+    diagnosis: "Diagnoza kryesore",
+    goals: "Qellimet e kujdesit",
+    meds: "Ilaçe dhe terapi",
+    instructions: "Udhezime kujdesi",
+    attached: "Skanime dhe receta te bashkengjitura",
+    noTreatment:
+      "Ende nuk eshte shtuar nje plan formal trajtimi. Ekipi i kujdesit do ta perditesoje kete seksion pas shqyrtimit.",
+    symptomsTitle: "Raporto simptomat dhe urgjencen",
+    symptomsSaved: "Simptomat dhe statusi u perditesuan. Ekipi i kujdesit u njoftua.",
+    howFeeling: "Si po ndiheni?",
+    symptomsPlaceholder:
+      "Pershkruani simptoma te reja, nivel dhimbjeje, efekte anesore ose ndryshime ne rikuperim...",
+    priorityLevel: "Niveli i prioritetit",
+    priorityCritical: "Prioritet kritik",
+    priorityHigh: "Prioritet i larte",
+    priorityModerate: "Prioritet mesatar",
+    priorityLow: "Prioritet i ulet",
+    saving: "Duke ruajtur...",
+    updateSymptoms: "Perditeso simptomat",
+    followupsTitle: "Ndjekje dhe takime",
+    requestFollowup: "Kerko ndjekje",
+    followupTitle: "Titulli i ndjekjes",
+    followupTitlePlaceholder: "Ndjekje e progresit te rikuperimit",
+    preferredDate: "Data e preferuar",
+    notes: "Shenime",
+    notesPlaceholder: "Detaje mbi disponueshmerine ose pyetje per stafin",
+    cancel: "Anulo",
+    submitting: "Duke derguar...",
+    submitRequest: "Dergo kerkesen",
+    date: "Data:",
+    noFollowups: "Nuk ka ende kerkesa ndjekjeje. Perdorni butonin me lart per te planifikuar nje.",
+    photosTitle: "Foto dhe dokumente mjekesore",
+    selectImage: "Zgjidh skedarin e fotos",
+    photoTitle: "Titulli i fotos",
+    photoTitlePlaceholder: "Foto lekure, raport analize gjaku",
+    photoNotesPlaceholder: "Pershkruani cfare tregon kjo foto",
+    readyPhoto: "Foto gati per ngarkim",
+    uploading: "Duke ngarkuar...",
+    attachPhoto: "Bashkengjit foton",
+    noPhotos: "Nuk ka ende foto te ngarkuara.",
+    stepUpdate: "1. Perditeso simptomat",
+    stepFollowups: "2. Menaxho ndjekjet",
+    actionHint: "Nisni ketu qe ekipi i kujdesit ta prioritetizoje shpejt rastin tuaj.",
+    noNotes: "Pa shenime shtese",
+    completeFollowup: "Perfundo ndjekjen",
+    completionNotes: "Shenime perfundimi",
+    completionNotesPlaceholder: "Cfare ndodhi gjate kesaj ndjekjeje?",
+    completionPhotoTitle: "Titulli i bashkengjitjes",
+    completionPhotoTitlePlaceholder: "Imazh ose dokument i ndjekjes",
+    completionPhotoNote: "Shenim i bashkengjitjes",
+    completionPhotoNotePlaceholder: "Pershkruani kete bashkengjitje",
+    addAttachment: "Shto bashkengjitje",
+    attachments: "Bashkengjitje",
+    markCompleted: "Sheno te perfunduar",
+    completing: "Duke perfunduar...",
+    completedOn: "Perfunduar me",
+    notesTabTitle: "Regjistri i shenimeve te pacientit",
+    noNoteEntries: "Nuk ka ende shenime.",
+    noteFromSymptoms: "Perditesim simptomash",
+    noteFromPhoto: "Shenim fotoje",
+    noteFromFollowup: "Shenim ndjekjeje",
+    noteFromFollowupCompletion: "Perfundim ndjekjeje",
+    tabs: {
+      actions: "Veprimet e mia",
+      plan: "Plani i trajtimit",
+      photos: "Fotot",
+      notes: "Shenime",
+    },
+  },
+  it: {
+    emergencyTitle: "Avviso emergenza medica:",
+    emergencyBody:
+      "Questo portale supporta la comunicazione di routine e la gestione della cura. Per emergenze potenzialmente letali, chiama il 112 o vai al pronto soccorso piu vicino.",
+    careLabel: "cura",
+    portalRecord: "Portale paziente RediHealth - ID cartella",
+    assignedStaff: "Personale sanitario assegnato",
+    fallbackTeam: "Team clinico RediHealth",
+    phone: "Telefono:",
+    email: "Email:",
+    location: "Posizione:",
+    notSpecified: "Non specificato",
+    treatmentTitle: "Piano clinico di trattamento",
+    diagnosis: "Diagnosi principale",
+    goals: "Obiettivi di cura",
+    meds: "Farmaci e terapie",
+    instructions: "Istruzioni di cura",
+    attached: "Scansioni e prescrizioni allegate",
+    noTreatment:
+      "Non e stato ancora aggiunto un piano di trattamento formale. Il team di cura aggiornera questa sezione dopo la revisione.",
+    symptomsTitle: "Segnala sintomi e urgenza",
+    symptomsSaved: "Sintomi e stato aggiornati. Il tuo team di cura e stato avvisato.",
+    howFeeling: "Come ti senti?",
+    symptomsPlaceholder:
+      "Descrivi nuovi sintomi, livello di dolore, effetti collaterali o cambiamenti nel recupero...",
+    priorityLevel: "Livello priorita",
+    priorityCritical: "Priorita critica",
+    priorityHigh: "Priorita alta",
+    priorityModerate: "Priorita moderata",
+    priorityLow: "Priorita bassa",
+    saving: "Salvataggio...",
+    updateSymptoms: "Aggiorna sintomi",
+    followupsTitle: "Follow-up e appuntamenti",
+    requestFollowup: "Richiedi follow-up",
+    followupTitle: "Titolo follow-up",
+    followupTitlePlaceholder: "Follow-up sul progresso del recupero",
+    preferredDate: "Data preferita",
+    notes: "Note",
+    notesPlaceholder: "Dettagli sulla disponibilita o domande per lo staff",
+    cancel: "Annulla",
+    submitting: "Invio...",
+    submitRequest: "Invia richiesta",
+    date: "Data:",
+    noFollowups: "Nessuna richiesta di follow-up al momento. Usa il pulsante sopra per programmarne una.",
+    photosTitle: "Foto e documenti medici",
+    selectImage: "Seleziona file immagine",
+    photoTitle: "Titolo foto",
+    photoTitlePlaceholder: "Foto pelle, referto esami sangue",
+    photoNotesPlaceholder: "Descrivi cosa mostra questa immagine",
+    readyPhoto: "Foto pronta da allegare",
+    uploading: "Caricamento...",
+    attachPhoto: "Allega foto",
+    noPhotos: "Nessuna foto caricata.",
+    stepUpdate: "1. Aggiorna i sintomi",
+    stepFollowups: "2. Gestisci i follow-up",
+    actionHint: "Inizia da qui cosi il team di cura puo dare priorita rapidamente al tuo caso.",
+    noNotes: "Nessuna nota aggiuntiva",
+    completeFollowup: "Completa follow-up",
+    completionNotes: "Note di completamento",
+    completionNotesPlaceholder: "Cosa e successo durante questo follow-up?",
+    completionPhotoTitle: "Titolo allegato",
+    completionPhotoTitlePlaceholder: "Immagine o documento follow-up",
+    completionPhotoNote: "Nota allegato",
+    completionPhotoNotePlaceholder: "Descrivi questo allegato",
+    addAttachment: "Aggiungi allegato",
+    attachments: "Allegati",
+    markCompleted: "Segna completato",
+    completing: "Completamento...",
+    completedOn: "Completato il",
+    notesTabTitle: "Registro note paziente",
+    noNoteEntries: "Nessuna nota al momento.",
+    noteFromSymptoms: "Aggiornamento sintomi",
+    noteFromPhoto: "Nota foto",
+    noteFromFollowup: "Nota follow-up",
+    noteFromFollowupCompletion: "Completamento follow-up",
+    tabs: {
+      actions: "Le mie azioni",
+      plan: "Piano di trattamento",
+      photos: "Foto",
+      notes: "Note",
+    },
+  },
+} as const;
+
+function SectionTitle({ icon, title }: { icon: ReactNode; title: string }) {
+  return (
+    <div className="mb-2 flex items-center gap-2">
+      <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary-soft text-primary">
+        {icon}
+      </span>
+      <h2 className="text-base font-bold text-foreground sm:text-lg">{title}</h2>
+    </div>
+  );
+}
+
+function PortalTabButton({
+  isActive,
+  label,
+  onClick,
+}: {
+  isActive: boolean;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-xs font-semibold transition-colors sm:text-sm ${
+        isActive
+          ? "bg-primary text-white"
+          : "border border-border bg-white text-foreground hover:bg-muted"
+      }`}
+    >
+      {label}
+    </button>
+  );
+}
+
 export function PatientPortalView({
   initialPatient,
   token,
 }: PatientPortalViewProps) {
+  const { lang } = useLanguage();
+  const t = portalTranslations[lang];
+  const [activeTab, setActiveTab] = useState<PortalTab>("actions");
   const { patient, priorityMeta, errorMessage, symptoms, followup, photo } =
     usePatientPortal({ initialPatient, token });
+  const sortedFollowups = useMemo(
+    () => [...(patient.followups || [])].sort((a, b) => a.date.localeCompare(b.date)),
+    [patient.followups],
+  );
+  const notesLog = useMemo(() => {
+    const entries: Array<{ id: string; date: string; title: string; text: string }> = [];
+
+    if (patient.condition_notes?.trim()) {
+      entries.push({
+        id: `symptoms-${patient.id}`,
+        date: new Date().toISOString().slice(0, 10),
+        title: t.noteFromSymptoms,
+        text: patient.condition_notes,
+      });
+    }
+
+    for (const photoEntry of patient.photos || []) {
+      if (photoEntry.notes?.trim()) {
+        entries.push({
+          id: `photo-${photoEntry.id}`,
+          date: photoEntry.date,
+          title: t.noteFromPhoto,
+          text: photoEntry.notes,
+        });
+      }
+    }
+
+    for (const followupEntry of patient.followups || []) {
+      if (followupEntry.notes?.trim()) {
+        entries.push({
+          id: `followup-${followupEntry.id}`,
+          date: followupEntry.date,
+          title: t.noteFromFollowup,
+          text: followupEntry.notes,
+        });
+      }
+
+      if (followupEntry.completion_notes?.trim()) {
+        entries.push({
+          id: `followup-complete-${followupEntry.id}`,
+          date: followupEntry.completed_at || followupEntry.date,
+          title: t.noteFromFollowupCompletion,
+          text: followupEntry.completion_notes,
+        });
+      }
+
+      for (const completionPhoto of followupEntry.completion_photos || []) {
+        if (completionPhoto.notes?.trim()) {
+          entries.push({
+            id: `followup-photo-${completionPhoto.id}`,
+            date: completionPhoto.date,
+            title: t.noteFromFollowupCompletion,
+            text: completionPhoto.notes,
+          });
+        }
+      }
+    }
+
+    return entries.sort((a, b) => b.date.localeCompare(a.date));
+  }, [patient, t.noteFromFollowup, t.noteFromFollowupCompletion, t.noteFromPhoto, t.noteFromSymptoms]);
 
   const {
     text: symptomsText,
@@ -52,6 +484,22 @@ export function PatientPortalView({
     setNotes: setNewFollowupNotes,
     isSaving: isSavingFollowup,
     submit: handleAddFollowup,
+    completingId: completingFollowupId,
+    completionNotes,
+    setCompletionNotes,
+    completionPhotoName,
+    setCompletionPhotoName,
+    completionPhotoNote,
+    setCompletionPhotoNote,
+    completionPhotoData,
+    completionPhotos,
+    openCompletionForm,
+    closeCompletionForm,
+    onCompletionPhotoFileChange: handleCompletionPhotoFileChange,
+    addCompletionPhotoDraft,
+    removeCompletionPhotoDraft,
+    completeSubmit: handleCompleteFollowup,
+    isSavingCompletion,
   } = followup;
 
   const {
@@ -66,468 +514,537 @@ export function PatientPortalView({
   } = photo;
 
   return (
-    <div className="min-h-screen bg-muted py-8 sm:py-12">
-      <Container>
-        <div className="mb-6 flex items-start gap-3 rounded-2xl bg-red-600 p-4 text-white shadow-sm">
-          <AlertCircleIcon className="h-5 w-5 flex-none mt-0.5" />
-          <div className="text-xs leading-relaxed">
-            <strong className="font-bold">Medical Emergency Notice:</strong>{" "}
-            This portal is for routine communication and care management. If you are experiencing a life-threatening medical emergency, please call <strong>112</strong> or visit your nearest emergency room immediately.
-          </div>
+    <div className="min-h-screen bg-white py-6 sm:py-10">
+      <main className="mx-auto w-full max-w-6xl px-3 sm:px-6">
+        <div className="mb-4 flex items-start gap-3 rounded-2xl border border-red-700/20 bg-red-600 p-4 text-white">
+          <AlertCircleIcon className="mt-0.5 h-5 w-5 flex-none" />
+          <p className="text-xs leading-relaxed sm:text-sm">
+            <strong>{t.emergencyTitle}</strong> {t.emergencyBody}
+          </p>
         </div>
 
-        <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm mb-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
-            <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary font-bold text-xl">
-                <UserIcon className="h-6 w-6" />
-              </span>
-              <div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                    {patient.full_name}
-                  </h1>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 capitalize">
-                    {patient.status} Care
-                  </span>
-                  <span
-                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${priorityMeta.badgeClass}`}
-                  >
-                    <span className={`h-2 w-2 rounded-full ${priorityMeta.dotClass}`} />
-                    <span>{priorityMeta.label}</span>
-                  </span>
+        <article className="overflow-hidden rounded-3xl border border-border/80 bg-card shadow-sm">
+          <header className="border-b border-border/80 bg-white px-4 py-5 sm:px-8 sm:py-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div className="flex items-center gap-3">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
+                  <UserIcon className="h-6 w-6" />
+                </span>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h1 className="text-xl font-bold tracking-tight text-foreground sm:text-3xl">
+                      {patient.full_name}
+                    </h1>
+                    <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-bold capitalize text-emerald-700 dark:text-emerald-400">
+                      {patient.status} {t.careLabel}
+                    </span>
+                    <span
+                      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${priorityMeta.badgeClass}`}
+                    >
+                      <span className={`h-2 w-2 rounded-full ${priorityMeta.dotClass}`} />
+                      <span>{priorityMeta.label}</span>
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
+                    {t.portalRecord} #{patient.id}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">
-                  RediHealth Patient Portal &bull; Record ID #{patient.id}
+              </div>
+
+              <div className="grid grid-cols-1 gap-2 text-xs sm:text-right">
+                <p className="font-semibold text-foreground">{t.assignedStaff}</p>
+                <p className="font-bold text-primary">
+                  {patient.assigned_worker_name || t.fallbackTeam}
                 </p>
               </div>
             </div>
 
-            <div className="text-xs text-muted-foreground sm:text-right">
-              <p className="font-semibold text-foreground">Assigned Healthcare Staff:</p>
-              <p className="text-primary font-bold mt-0.5">
-                {patient.assigned_worker_name || "RediHealth Clinical Team"}
+            <div className="mt-5 grid grid-cols-1 gap-2 text-xs sm:grid-cols-3 sm:gap-4 sm:text-sm">
+              <p className="flex items-center gap-2">
+                <PhoneIcon className="h-4 w-4 text-primary" />
+                <span className="text-muted-foreground">{t.phone}</span>
+                <strong className="text-foreground">{patient.phone}</strong>
+              </p>
+              <p className="flex items-center gap-2">
+                <MailIcon className="h-4 w-4 text-primary" />
+                <span className="text-muted-foreground">{t.email}</span>
+                <strong className="break-all text-foreground">{patient.email}</strong>
+              </p>
+              <p className="flex items-center gap-2">
+                <ShieldIcon className="h-4 w-4 text-primary" />
+                <span className="text-muted-foreground">{t.location}</span>
+                <strong className="break-words text-foreground">{patient.address || t.notSpecified}</strong>
               </p>
             </div>
-          </div>
 
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-            <div className="flex items-center gap-2">
-              <PhoneIcon className="h-4 w-4 text-primary" />
-              <span className="text-muted-foreground">Phone:</span>
-              <strong className="text-foreground">{patient.phone}</strong>
+            <div className="no-scrollbar mt-5 flex items-center gap-2 overflow-x-auto border-t border-border pb-1 pt-4">
+              <PortalTabButton
+                isActive={activeTab === "actions"}
+                label={t.tabs.actions}
+                onClick={() => setActiveTab("actions")}
+              />
+              <PortalTabButton
+                isActive={activeTab === "plan"}
+                label={t.tabs.plan}
+                onClick={() => setActiveTab("plan")}
+              />
+              <PortalTabButton
+                isActive={activeTab === "photos"}
+                label={t.tabs.photos}
+                onClick={() => setActiveTab("photos")}
+              />
+              <PortalTabButton
+                isActive={activeTab === "notes"}
+                label={t.tabs.notes}
+                onClick={() => setActiveTab("notes")}
+              />
             </div>
-            <div className="flex items-center gap-2">
-              <MailIcon className="h-4 w-4 text-primary" />
-              <span className="text-muted-foreground">Email:</span>
-              <strong className="text-foreground">{patient.email}</strong>
+          </header>
+
+          {errorMessage ? (
+            <div className="border-b border-red-500/20 bg-red-500/10 px-4 py-3 text-xs text-red-700 dark:text-red-300 sm:px-8 sm:text-sm">
+              {errorMessage}
             </div>
-            <div className="flex items-center gap-2">
-              <ShieldIcon className="h-4 w-4 text-primary" />
-              <span className="text-muted-foreground">Location:</span>
-              <strong className="text-foreground">{patient.address || "Not specified"}</strong>
-            </div>
-          </div>
-        </div>
+          ) : null}
 
-        {errorMessage ? (
-          <div className="mb-6 rounded-2xl bg-red-500/10 border border-red-500/20 p-4 text-xs text-red-600 dark:text-red-400">
-            {errorMessage}
-          </div>
-        ) : null}
+          {activeTab === "actions" ? (
+            <section className="grid grid-cols-1 gap-0 lg:grid-cols-2">
+              <div className="border-b border-border/70 px-4 py-5 sm:px-6 lg:border-b-0 lg:border-r lg:px-8">
+                <SectionTitle icon={<BellIcon className="h-4 w-4" />} title={t.stepUpdate} />
+                <p className="mb-4 text-xs text-muted-foreground sm:text-sm">{t.actionHint}</p>
 
-        <section className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm mb-8 space-y-4">
-          <div className="flex items-center gap-2 border-b border-border pb-3">
-            <EditIcon className="h-5 w-5 text-primary" />
-            <h2 className="text-lg font-bold text-foreground">
-              Your Clinical Treatment Plan & Care Directives
-            </h2>
-          </div>
-
-          {patient.treatment_plan ? (
-            <div className="space-y-4 text-xs leading-relaxed">
-              {patient.treatment_plan.diagnosis ? (
-                <div className="rounded-xl border border-primary/20 bg-primary-soft/30 p-4">
-                  <p className="font-bold text-primary uppercase text-[10px] tracking-wider">
-                    Primary Diagnosis / Findings
-                  </p>
-                  <p className="mt-1 font-semibold text-foreground text-sm whitespace-pre-wrap">
-                    {patient.treatment_plan.diagnosis}
-                  </p>
-                </div>
-              ) : null}
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {patient.treatment_plan.goals ? (
-                  <div className="rounded-xl border border-border bg-background p-4">
-                    <p className="font-bold text-muted-foreground uppercase text-[10px]">
-                      Care Goals
-                    </p>
-                    <p className="mt-1 text-foreground whitespace-pre-wrap">
-                      {patient.treatment_plan.goals}
-                    </p>
+                {symptomsSavedMsg ? (
+                  <div className="mb-4 flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-700 dark:text-emerald-300 sm:text-sm">
+                    <CheckCircleIcon className="h-4 w-4" />
+                    <span>{t.symptomsSaved}</span>
                   </div>
                 ) : null}
 
-                {patient.treatment_plan.medications ? (
-                  <div className="rounded-xl border border-border bg-background p-4">
-                    <p className="font-bold text-muted-foreground uppercase text-[10px]">
-                      Prescribed Medications / Therapies
-                    </p>
-                    <p className="mt-1 text-foreground whitespace-pre-wrap">
-                      {patient.treatment_plan.medications}
-                    </p>
+                <form onSubmit={handleUpdateSymptoms} className="grid grid-cols-1 gap-4 text-xs sm:text-sm">
+                  <div>
+                    <label className="mb-1 block font-semibold text-foreground">{t.howFeeling}</label>
+                    <textarea
+                      rows={5}
+                      value={symptomsText}
+                      onChange={(e) => setSymptomsText(e.target.value)}
+                      placeholder={t.symptomsPlaceholder}
+                      className="w-full rounded-xl border border-border bg-white p-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    />
                   </div>
-                ) : null}
+
+                  <div>
+                    <label className="mb-1 block font-semibold text-foreground">{t.priorityLevel}</label>
+                    <select
+                      value={selectedPriority}
+                      onChange={(e) => setSelectedPriority(e.target.value as PatientPriority)}
+                      className="w-full rounded-xl border border-border bg-white px-3 py-2.5 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <option value="critical">{t.priorityCritical}</option>
+                      <option value="high">{t.priorityHigh}</option>
+                      <option value="moderate">{t.priorityModerate}</option>
+                      <option value="low">{t.priorityLow}</option>
+                    </select>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSavingSymptoms}
+                    className="w-full rounded-xl bg-primary px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-60 sm:w-auto"
+                  >
+                    {isSavingSymptoms ? t.saving : t.updateSymptoms}
+                  </button>
+                </form>
               </div>
 
-              {patient.treatment_plan.care_instructions ? (
-                <div className="rounded-xl border border-border bg-background p-4">
-                  <p className="font-bold text-muted-foreground uppercase text-[10px]">
-                    Care Instructions & Lifestyle Advice
-                  </p>
-                  <p className="mt-1 text-foreground whitespace-pre-wrap">
-                    {patient.treatment_plan.care_instructions}
-                  </p>
+              <div className="px-4 py-5 sm:px-6 lg:px-8">
+                <div className="mb-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <SectionTitle
+                    icon={<CalendarIcon className="h-4 w-4" />}
+                    title={`${t.stepFollowups} (${sortedFollowups.length})`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowAddFollowup(!showAddFollowup)}
+                    className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-primary px-3 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-primary-hover sm:w-auto"
+                  >
+                    <PlusIcon className="h-4 w-4" />
+                    <span>{t.requestFollowup}</span>
+                  </button>
                 </div>
-              ) : null}
 
-              {patient.treatment_plan.photos && patient.treatment_plan.photos.length > 0 ? (
-                <div>
-                  <p className="font-bold text-foreground text-xs mb-2">
-                    Attached Treatment Scans & Prescriptions ({patient.treatment_plan.photos.length}):
-                  </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {patient.treatment_plan.photos.map((photo) => (
-                      <div key={photo.id} className="rounded-xl border border-border bg-background p-2 text-xs">
-                        <img
-                          src={photo.data_url}
-                          alt={photo.name}
-                          className="h-24 w-full object-cover rounded-lg border border-border mb-1"
+                {showAddFollowup ? (
+                  <form onSubmit={handleAddFollowup} className="mb-4 grid grid-cols-1 gap-3 rounded-xl border border-border bg-muted/40 p-4 text-xs sm:text-sm">
+                    <div>
+                      <label className="mb-1 block font-semibold text-foreground">{t.followupTitle}</label>
+                      <input
+                        type="text"
+                        required
+                        value={newFollowupTitle}
+                        onChange={(e) => setNewFollowupTitle(e.target.value)}
+                        placeholder={t.followupTitlePlaceholder}
+                        className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <div>
+                        <label className="mb-1 block font-semibold text-foreground">{t.preferredDate}</label>
+                        <input
+                          type="date"
+                          required
+                          value={newFollowupDate}
+                          onChange={(e) => setNewFollowupDate(e.target.value)}
+                          className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         />
-                        <p className="font-bold text-foreground truncate" title={photo.name}>
-                          {photo.name}
-                        </p>
+                      </div>
+                      <div>
+                        <label className="mb-1 block font-semibold text-foreground">{t.notes}</label>
+                        <input
+                          type="text"
+                          value={newFollowupNotes}
+                          onChange={(e) => setNewFollowupNotes(e.target.value)}
+                          placeholder={t.notesPlaceholder}
+                          className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col-reverse items-stretch gap-2 sm:flex-row sm:items-center sm:justify-end">
+                      <button
+                        type="button"
+                        onClick={() => setShowAddFollowup(false)}
+                        className="rounded-lg border border-border bg-white px-3 py-2.5 text-xs font-semibold text-foreground hover:bg-muted"
+                      >
+                        {t.cancel}
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={isSavingFollowup}
+                        className="rounded-lg bg-primary px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
+                      >
+                        {isSavingFollowup ? t.submitting : t.submitRequest}
+                      </button>
+                    </div>
+                  </form>
+                ) : null}
+
+                {sortedFollowups.length > 0 ? (
+                  <div className="divide-y divide-border rounded-xl border border-border/80 bg-white">
+                    {sortedFollowups.map((item) => (
+                      <div key={item.id}>
+                        <div className="flex flex-col gap-2 p-4 text-xs sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+                          <div className="flex items-start gap-3">
+                            <span className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-primary-soft text-primary">
+                              <ClockIcon className="h-3.5 w-3.5" />
+                            </span>
+                            <div className="min-w-0">
+                              <p className="font-semibold text-foreground">{item.title}</p>
+                              <p className="text-muted-foreground">
+                                {t.date} <strong className="text-foreground">{item.date}</strong>
+                              </p>
+                              <p className="break-words text-muted-foreground">{item.notes || t.noNotes}</p>
+                            </div>
+                          </div>
+                          <span
+                            className={`inline-flex w-fit rounded-full px-2.5 py-1 text-[11px] font-bold capitalize ${
+                              item.status === "completed"
+                                ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                                : "bg-amber-500/10 text-amber-700 dark:text-amber-400"
+                            }`}
+                          >
+                            {item.status}
+                          </span>
+                        </div>
+
+                        {item.status !== "completed" ? (
+                          <div className="border-t border-border/70 p-4">
+                            {completingFollowupId === item.id ? (
+                              <form onSubmit={handleCompleteFollowup} className="grid grid-cols-1 gap-3">
+                            <div>
+                              <label className="mb-1 block text-xs font-semibold text-foreground">{t.completionNotes}</label>
+                              <textarea
+                                rows={3}
+                                value={completionNotes}
+                                onChange={(e) => setCompletionNotes(e.target.value)}
+                                placeholder={t.completionNotesPlaceholder}
+                                className="w-full rounded-lg border border-border bg-white p-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                              />
+                            </div>
+
+                            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                              <div>
+                                <label className="mb-1 block text-xs font-semibold text-foreground">{t.completionPhotoTitle}</label>
+                                <input
+                                  type="text"
+                                  value={completionPhotoName}
+                                  onChange={(e) => setCompletionPhotoName(e.target.value)}
+                                  placeholder={t.completionPhotoTitlePlaceholder}
+                                  className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                />
+                              </div>
+                              <div>
+                                <label className="mb-1 block text-xs font-semibold text-foreground">{t.completionPhotoNote}</label>
+                                <input
+                                  type="text"
+                                  value={completionPhotoNote}
+                                  onChange={(e) => setCompletionPhotoNote(e.target.value)}
+                                  placeholder={t.completionPhotoNotePlaceholder}
+                                  className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 gap-2 sm:grid-cols-[1fr_auto]">
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleCompletionPhotoFileChange}
+                                className="w-full text-xs text-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary/10 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary hover:file:bg-primary/20"
+                              />
+                              <button
+                                type="button"
+                                disabled={!completionPhotoData}
+                                onClick={addCompletionPhotoDraft}
+                                className="rounded-lg border border-border bg-white px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50"
+                              >
+                                {t.addAttachment}
+                              </button>
+                            </div>
+
+                            {completionPhotos.length > 0 ? (
+                              <div>
+                                <p className="mb-1 text-xs font-semibold text-foreground">{t.attachments}</p>
+                                <div className="space-y-1">
+                                  {completionPhotos.map((photoItem) => (
+                                    <div key={photoItem.id} className="flex items-center justify-between rounded-lg border border-border bg-muted/30 px-2.5 py-2 text-xs">
+                                      <span className="truncate text-foreground">{photoItem.name}</span>
+                                      <button
+                                        type="button"
+                                        onClick={() => removeCompletionPhotoDraft(photoItem.id)}
+                                        className="font-semibold text-red-600 hover:underline"
+                                      >
+                                        {t.cancel}
+                                      </button>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : null}
+
+                            <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+                              <button
+                                type="button"
+                                onClick={closeCompletionForm}
+                                className="rounded-lg border border-border bg-white px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted"
+                              >
+                                {t.cancel}
+                              </button>
+                              <button
+                                type="submit"
+                                disabled={isSavingCompletion}
+                                className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
+                              >
+                                {isSavingCompletion ? t.completing : t.markCompleted}
+                              </button>
+                            </div>
+                              </form>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => openCompletionForm(item.id)}
+                                className="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white hover:bg-emerald-700"
+                              >
+                                {t.completeFollowup}
+                              </button>
+                            )}
+                          </div>
+                        ) : (
+                          <div className="border-t border-border/70 p-4 text-xs text-muted-foreground">
+                            {item.completed_at ? `${t.completedOn} ${item.completed_at}` : null}
+                            {item.completion_notes ? (
+                              <p className="mt-1 break-words text-foreground">{item.completion_notes}</p>
+                            ) : null}
+                            {item.completion_photos && item.completion_photos.length > 0 ? (
+                              <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                                {item.completion_photos.map((photoItem) => (
+                                  <div key={photoItem.id} className="overflow-hidden rounded-lg border border-border bg-white">
+                                    <img src={photoItem.data_url} alt={photoItem.name} className="h-16 w-full object-cover" />
+                                    <p className="truncate px-2 py-1 text-[11px] text-foreground">{photoItem.name}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : null}
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
-                </div>
-              ) : null}
-            </div>
-          ) : (
-            <div className="p-8 text-center text-xs text-muted-foreground">
-              No formal treatment plan has been issued yet. Our medical staff will update this section after reviewing your condition.
-            </div>
-          )}
-        </section>
-
-        <section className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm mb-8 space-y-4">
-          <div className="flex items-center gap-2 border-b border-border pb-3">
-            <BellIcon className="h-5 w-5 text-primary" />
-            <h2 className="text-lg font-bold text-foreground">
-              Report Symptoms & Urgency Status
-            </h2>
-          </div>
-
-          {symptomsSavedMsg ? (
-            <div className="flex items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3.5 text-xs text-emerald-600 dark:text-emerald-400">
-              <CheckCircleIcon className="h-4 w-4" />
-              <span>Symptoms & status updated! Our healthcare team has been notified.</span>
-            </div>
+                ) : (
+                  <p className="text-xs text-muted-foreground sm:text-sm">{t.noFollowups}</p>
+                )}
+              </div>
+            </section>
           ) : null}
 
-          <form onSubmit={handleUpdateSymptoms} className="space-y-4 text-xs">
-            <div>
-              <label className="font-semibold text-foreground mb-1 block">
-                How are you feeling? Update your symptoms or enquiry notes:
-              </label>
-              <textarea
-                rows={4}
-                value={symptomsText}
-                onChange={(e) => setSymptomsText(e.target.value)}
-                placeholder="Describe any new symptoms, pain levels, side effects, or changes in how you feel..."
-                className="w-full rounded-xl border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              />
-            </div>
+          {activeTab === "plan" ? (
+            <section className="px-4 py-5 sm:px-8 sm:py-6">
+              <SectionTitle icon={<EditIcon className="h-4 w-4" />} title={t.treatmentTitle} />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="font-semibold text-foreground mb-1 block">
-                  Symptom Urgency / Care Priority Level
-                </label>
-                <select
-                  value={selectedPriority}
-                  onChange={(e) =>
-                    setSelectedPriority(e.target.value as PatientPriority)
-                  }
-                  className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm font-bold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <option value="critical">🔴 Critical Priority (Severe Symptoms / Immediate Care)</option>
-                  <option value="high">🟠 High Priority (Urgent Attention Needed)</option>
-                  <option value="moderate">🟡 Moderate Priority (Routine Progress Check)</option>
-                  <option value="low">🟢 Low Priority (General Update)</option>
-                </select>
-              </div>
-
-              <div className="flex items-end justify-end">
-                <button
-                  type="submit"
-                  disabled={isSavingSymptoms}
-                  className="w-full sm:w-auto rounded-xl bg-primary px-6 py-2.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60 shadow-sm transition-colors"
-                >
-                  {isSavingSymptoms ? "Saving..." : "Update Symptoms & Priority"}
-                </button>
-              </div>
-            </div>
-          </form>
-        </section>
-
-        <section className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm mb-8 space-y-5">
-          <div className="flex items-center justify-between border-b border-border pb-3">
-            <div className="flex items-center gap-2">
-              <CalendarIcon className="h-5 w-5 text-primary" />
-              <h2 className="text-lg font-bold text-foreground">
-                Follow-ups & Care Appointments ({patient.followups?.length || 0})
-              </h2>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setShowAddFollowup(!showAddFollowup)}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-xs font-semibold text-white hover:bg-primary-hover shadow-sm"
-            >
-              <PlusIcon className="h-4 w-4" />
-              <span>Request Follow-up</span>
-            </button>
-          </div>
-
-          {showAddFollowup ? (
-            <form
-              onSubmit={handleAddFollowup}
-              className="rounded-xl border border-border bg-muted/40 p-4 space-y-3 text-xs"
-            >
-              <h3 className="font-bold text-foreground uppercase tracking-wide">
-                Request New Follow-Up Check-in
-              </h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="font-semibold text-foreground mb-1 block">
-                    Follow-up Reason / Title <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={newFollowupTitle}
-                    onChange={(e) => setNewFollowupTitle(e.target.value)}
-                    placeholder="e.g. Follow-up check on recovery progress"
-                    className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  />
-                </div>
-
-                <div>
-                  <label className="font-semibold text-foreground mb-1 block">
-                    Preferred Date <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    value={newFollowupDate}
-                    onChange={(e) => setNewFollowupDate(e.target.value)}
-                    className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="font-semibold text-foreground mb-1 block">
-                  Additional Notes for Staff
-                </label>
-                <input
-                  type="text"
-                  value={newFollowupNotes}
-                  onChange={(e) => setNewFollowupNotes(e.target.value)}
-                  placeholder="Any details on your availability or questions..."
-                  className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                />
-              </div>
-
-              <div className="flex justify-end gap-2 pt-1">
-                <button
-                  type="button"
-                  onClick={() => setShowAddFollowup(false)}
-                  className="rounded-lg border border-border bg-card px-3 py-1.5 font-semibold text-foreground hover:bg-muted"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isSavingFollowup}
-                  className="rounded-lg bg-primary px-4 py-1.5 font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
-                >
-                  {isSavingFollowup ? "Scheduling..." : "Submit Follow-up Request"}
-                </button>
-              </div>
-            </form>
-          ) : null}
-
-          {patient.followups && patient.followups.length > 0 ? (
-            <div className="space-y-2.5">
-              {patient.followups.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-xl border border-border bg-background p-4 text-xs"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-primary-soft text-primary font-bold">
-                      <ClockIcon className="h-3.5 w-3.5" />
-                    </span>
+              {patient.treatment_plan ? (
+                <div className="grid grid-cols-1 gap-5 text-xs sm:text-sm">
+                  {patient.treatment_plan.diagnosis ? (
                     <div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <p className="font-bold text-foreground text-sm">{item.title}</p>
-                        <span
-                          className={`rounded-md px-2 py-0.5 text-[10px] font-bold capitalize ${
-                            item.status === "completed"
-                              ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                              : "bg-amber-500/10 text-amber-600 dark:text-amber-400"
-                          }`}
-                        >
-                          {item.status}
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-muted-foreground mt-0.5">
-                        Date: <strong className="text-foreground">{item.date}</strong>
-                        {item.notes ? ` &bull; ${item.notes}` : ""}
-                      </p>
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-primary sm:text-xs">{t.diagnosis}</p>
+                      <p className="mt-1 whitespace-pre-wrap text-foreground">{patient.treatment_plan.diagnosis}</p>
                     </div>
-                  </div>
+                  ) : null}
+
+                  {patient.treatment_plan.goals ? (
+                    <div>
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">{t.goals}</p>
+                      <p className="mt-1 whitespace-pre-wrap text-foreground">{patient.treatment_plan.goals}</p>
+                    </div>
+                  ) : null}
+
+                  {patient.treatment_plan.medications ? (
+                    <div>
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">{t.meds}</p>
+                      <p className="mt-1 whitespace-pre-wrap text-foreground">{patient.treatment_plan.medications}</p>
+                    </div>
+                  ) : null}
+
+                  {patient.treatment_plan.care_instructions ? (
+                    <div>
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">{t.instructions}</p>
+                      <p className="mt-1 whitespace-pre-wrap text-foreground">{patient.treatment_plan.care_instructions}</p>
+                    </div>
+                  ) : null}
+
+                  {patient.treatment_plan.photos && patient.treatment_plan.photos.length > 0 ? (
+                    <div>
+                      <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">{t.attached}</p>
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                        {patient.treatment_plan.photos.map((item) => (
+                          <div key={item.id} className="overflow-hidden rounded-xl border border-border/80 bg-white">
+                            <img src={item.data_url} alt={item.name} className="h-24 w-full object-cover" />
+                            <p className="truncate px-2 py-1 text-[11px] font-semibold text-foreground" title={item.name}>
+                              {item.name}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="p-8 text-center text-xs text-muted-foreground">
-              No follow-ups requested yet. Click &quot;Request Follow-up&quot; above to add a check-in date.
-            </div>
-          )}
-        </section>
+              ) : (
+                <p className="text-xs text-muted-foreground sm:text-sm">{t.noTreatment}</p>
+              )}
+            </section>
+          ) : null}
 
-        <section className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm space-y-5">
-          <div className="flex items-center justify-between border-b border-border pb-3">
-            <div className="flex items-center gap-2">
-              <ImageIcon className="h-5 w-5 text-primary" />
-              <h2 className="text-lg font-bold text-foreground">
-                Your Attached Medical Photos & Documents ({patient.photos?.length || 0})
-              </h2>
-            </div>
-          </div>
+          {activeTab === "photos" ? (
+            <section className="px-4 py-5 sm:px-8 sm:py-6">
+              <SectionTitle icon={<ImageIcon className="h-4 w-4" />} title={`${t.photosTitle} (${patient.photos?.length || 0})`} />
 
-          <form
-            onSubmit={handleUploadPhoto}
-            className="rounded-xl border border-border bg-muted/40 p-4 space-y-3 text-xs"
-          >
-            <h3 className="font-bold text-foreground uppercase tracking-wide">
-              Upload New Medical Photo / Document
-            </h3>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label className="font-semibold text-foreground mb-1 block">
-                  Select Image File <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handlePhotoFileChange}
-                  className="w-full text-xs text-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary/10 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary hover:file:bg-primary/20"
-                />
-              </div>
-
-              <div>
-                <label className="font-semibold text-foreground mb-1 block">
-                  Photo Title / Label
-                </label>
-                <input
-                  type="text"
-                  value={newPhotoName}
-                  onChange={(e) => setNewPhotoName(e.target.value)}
-                  placeholder="e.g. Skin Rash Photo, Blood Test Report"
-                  className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="font-semibold text-foreground mb-1 block">
-                Caption / Notes for Doctor
-              </label>
-              <input
-                type="text"
-                value={newPhotoNote}
-                onChange={(e) => setNewPhotoNote(e.target.value)}
-                placeholder="Describe what is shown in this image..."
-                className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              />
-            </div>
-
-            {newPhotoData ? (
-              <div className="flex items-center gap-3 bg-card p-2 rounded-lg border border-border">
-                <img
-                  src={newPhotoData}
-                  alt="Preview"
-                  className="h-12 w-12 object-cover rounded border border-border"
-                />
-                <span className="text-xs text-emerald-600 font-semibold">
-                  Photo ready to attach
-                </span>
-              </div>
-            ) : null}
-
-            <div className="flex justify-end pt-1">
-              <button
-                type="submit"
-                disabled={!newPhotoData || isSavingPhoto}
-                className="rounded-xl bg-primary px-5 py-2 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-50 shadow-sm"
-              >
-                {isSavingPhoto ? "Uploading..." : "Attach Photo"}
-              </button>
-            </div>
-          </form>
-
-          {patient.photos && patient.photos.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {patient.photos.map((photo) => (
-                <div
-                  key={photo.id}
-                  className="flex flex-col justify-between rounded-xl border border-border bg-background p-2.5 shadow-sm"
-                >
-                  <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border bg-muted">
-                    <img
-                      src={photo.data_url}
-                      alt={photo.name}
-                      className="h-full w-full object-cover"
+              <form onSubmit={handleUploadPhoto} className="mb-4 grid grid-cols-1 gap-3 rounded-xl border border-border bg-muted/40 p-4 text-xs sm:text-sm">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1 block font-semibold text-foreground">{t.selectImage}</label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handlePhotoFileChange}
+                      className="w-full text-xs text-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary/10 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary hover:file:bg-primary/20"
                     />
                   </div>
-                  <div className="mt-2 text-xs">
-                    <p className="font-bold text-foreground truncate" title={photo.name}>
-                      {photo.name}
-                    </p>
-                    <p className="text-[10px] text-muted-foreground">{photo.date}</p>
-                    {photo.notes ? (
-                      <p className="mt-1 text-[11px] text-muted-foreground line-clamp-2">
-                        {photo.notes}
-                      </p>
-                    ) : null}
+
+                  <div>
+                    <label className="mb-1 block font-semibold text-foreground">{t.photoTitle}</label>
+                    <input
+                      type="text"
+                      value={newPhotoName}
+                      onChange={(e) => setNewPhotoName(e.target.value)}
+                      placeholder={t.photoTitlePlaceholder}
+                      className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    />
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="p-8 text-center text-xs text-muted-foreground">
-              No medical photos uploaded. Use the form above to upload images for your medical team.
-            </div>
-          )}
-        </section>
-      </Container>
+
+                <div>
+                  <label className="mb-1 block font-semibold text-foreground">{t.notes}</label>
+                  <input
+                    type="text"
+                    value={newPhotoNote}
+                    onChange={(e) => setNewPhotoNote(e.target.value)}
+                    placeholder={t.photoNotesPlaceholder}
+                    className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  />
+                </div>
+
+                {newPhotoData ? (
+                  <div className="flex items-center gap-3 rounded-lg border border-border bg-white p-2">
+                    <img src={newPhotoData} alt="Preview" className="h-12 w-12 rounded border border-border object-cover" />
+                    <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-300">{t.readyPhoto}</span>
+                  </div>
+                ) : null}
+
+                <div className="flex justify-end">
+                  <button
+                    type="submit"
+                    disabled={!newPhotoData || isSavingPhoto}
+                    className="w-full rounded-xl bg-primary px-5 py-2.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-50 sm:w-auto"
+                  >
+                    {isSavingPhoto ? t.uploading : t.attachPhoto}
+                  </button>
+                </div>
+              </form>
+
+              {patient.photos && patient.photos.length > 0 ? (
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {patient.photos.map((item) => (
+                    <div key={item.id} className="overflow-hidden rounded-xl border border-border/80 bg-white">
+                      <div className="aspect-square w-full overflow-hidden bg-muted">
+                        <img src={item.data_url} alt={item.name} className="h-full w-full object-cover" />
+                      </div>
+                      <div className="p-2 text-xs">
+                        <p className="truncate font-semibold text-foreground" title={item.name}>{item.name}</p>
+                        <p className="text-[11px] text-muted-foreground">{item.date}</p>
+                        {item.notes ? (
+                          <p className="mt-1 line-clamp-2 text-[11px] text-muted-foreground">{item.notes}</p>
+                        ) : null}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xs text-muted-foreground sm:text-sm">{t.noPhotos}</p>
+              )}
+            </section>
+          ) : null}
+
+          {activeTab === "notes" ? (
+            <section className="px-4 py-5 sm:px-8 sm:py-6">
+              <SectionTitle icon={<EditIcon className="h-4 w-4" />} title={t.notesTabTitle} />
+
+              {notesLog.length > 0 ? (
+                <div className="space-y-2">
+                  {notesLog.map((entry) => (
+                    <article key={entry.id} className="rounded-xl border border-border bg-white p-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-xs font-semibold text-foreground">{entry.title}</p>
+                        <p className="text-[11px] text-muted-foreground">{entry.date}</p>
+                      </div>
+                      <p className="mt-1 whitespace-pre-wrap break-words text-sm text-foreground">{entry.text}</p>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xs text-muted-foreground sm:text-sm">{t.noNoteEntries}</p>
+              )}
+            </section>
+          ) : null}
+        </article>
+      </main>
     </div>
   );
 }

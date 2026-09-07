@@ -15,7 +15,6 @@ interface WorkerDashboardProps {
   userRole?: string;
   isAdmin?: boolean;
   databaseAvailable: boolean;
-  overdueFollowupsCount?: number;
 }
 
 export function WorkerDashboard({
@@ -24,7 +23,6 @@ export function WorkerDashboard({
   userRole,
   isAdmin,
   databaseAvailable,
-  overdueFollowupsCount = 0,
 }: WorkerDashboardProps) {
   const { lang } = useLanguage();
   const t = panelTranslations[lang].workerDashboard;
@@ -46,6 +44,12 @@ export function WorkerDashboard({
             email: String(r.email || ""),
             description: String(r.description || ""),
             status: (r.status as RequestStatus) || "pending",
+            status_updated_by_name:
+              typeof r.status_updated_by_name === "string" ? r.status_updated_by_name : null,
+            status_updated_by_email:
+              typeof r.status_updated_by_email === "string" ? r.status_updated_by_email : null,
+            status_updated_at:
+              typeof r.status_updated_at === "string" ? r.status_updated_at : undefined,
             priority: (r.priority as MedicalHelpRequestItem["priority"]) || "normal",
             internal_notes: typeof r.internal_notes === "string" ? r.internal_notes : null,
             created_at:
@@ -96,7 +100,6 @@ export function WorkerDashboard({
       userRole={userRole}
       isAdmin={isAdmin}
       pendingCount={metrics.pending}
-      overdueCount={overdueFollowupsCount}
     >
       <main id="main-content" className="min-h-screen py-5 sm:py-8 lg:py-10">
         <Container>

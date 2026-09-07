@@ -206,10 +206,15 @@ export function CreateWorkerModal({
         return;
       }
 
+      if (!isEditing && !data.id) {
+        setErrorMessage(t.errUnexpected);
+        return;
+      }
+
       setSaveSuccess(true);
 
       const savedWorker: WorkerItem = {
-        id: String(data.id || worker?.id || "0"),
+        id: String(isEditing ? worker?.id : data.id),
         full_name: payload.full_name,
         email: payload.email,
         phone: payload.phone || null,

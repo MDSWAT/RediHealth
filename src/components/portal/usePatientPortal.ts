@@ -60,6 +60,14 @@ export function usePatientPortal({ initialPatient, token }: UsePatientPortalArgs
   const [newPhotoData, setNewPhotoData] = useState<string | null>(null);
   const [isSavingPhoto, setIsSavingPhoto] = useState(false);
 
+  const [completingFollowupId, setCompletingFollowupId] = useState<string | null>(null);
+  const [completionNotes, setCompletionNotes] = useState("");
+  const [completionPhotoName, setCompletionPhotoName] = useState("");
+  const [completionPhotoNote, setCompletionPhotoNote] = useState("");
+  const [completionPhotoData, setCompletionPhotoData] = useState<string | null>(null);
+  const [completionPhotos, setCompletionPhotos] = useState<PatientPhoto[]>([]);
+  const [isSavingCompletion, setIsSavingCompletion] = useState(false);
+
   const priorityMeta = useMemo(
     () => getPriorityMeta(patient.priority),
     [patient.priority],
@@ -170,6 +178,108 @@ export function usePatientPortal({ initialPatient, token }: UsePatientPortalArgs
     }
   }
 
+  function handleCompletionPhotoFileChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > MAX_PHOTO_BYTES) {
+      setErrorMessage("File size must be under 5MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (loadEvent) => {
+      const dataUrl = loadEvent.target?.result as string;
+      setCompletionPhotoData(dataUrl);
+      if (!completionPhotoName) {
+        setCompletionPhotoName(file.name);
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function addCompletionPhotoDraft() {
+    if (!completionPhotoData) return;
+
+    const draft: PatientPhoto = {
+      id: String(Date.now()),
+      name: completionPhotoName.trim() || "Follow-up Attachment",
+      data_url: completionPhotoData,
+      date: new Date().toISOString().slice(0, 10),
+      notes: completionPhotoNote.trim() || undefined,
+    };
+
+    setCompletionPhotos((prev) => [...prev, draft]);
+    setCompletionPhotoData(null);
+    setCompletionPhotoName("");
+    setCompletionPhotoNote("");
+  }
+
+  function removeCompletionPhotoDraft(photoId: string) {
+    setCompletionPhotos((prev) => prev.filter((photo) => photo.id !== photoId));
+  }
+
+  function openCompletionForm(followupId: string) {
+    setCompletingFollowupId(followupId);
+    setCompletionNotes("");
+    setCompletionPhotos([]);
+    setCompletionPhotoData(null);
+    setCompletionPhotoName("");
+    setCompletionPhotoNote("");
+    setErrorMessage(null);
+  }
+
+  function closeCompletionForm() {
+    setCompletingFollowupId(null);
+    setCompletionNotes("");
+    setCompletionPhotos([]);
+    setCompletionPhotoData(null);
+    setCompletionPhotoName("");
+    setCompletionPhotoNote("");
+  }
+
+  async function handleCompleteFollowup(event: FormEvent) {
+    event.preventDefault();
+    if (!completingFollowupId) return;
+
+    setIsSavingCompletion(true);
+    setErrorMessage(null);
+
+    const payload = {
+      complete_followup: {
+        followup_id: completingFollowupId,
+        completion_notes: completionNotes.trim() || undefined,
+        completion_photos: completionPhotos,
+        completed_at: new Date().toISOString().slice(0, 10),
+      },
+    };
+
+    try {
+      await patchPortal(token, payload);
+      setPatient((prev) => ({
+        ...prev,
+        followups: (prev.followups || []).map((item) =>
+          item.id === completingFollowupId
+            ? {
+                ...item,
+                status: "completed",
+                completion_notes: completionNotes.trim() || undefined,
+                completed_at: new Date().toISOString().slice(0, 10),
+                completion_photos: completionPhotos,
+              }
+            : item,
+        ),
+      }));
+      closeCompletionForm();
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : "Failed to complete follow-up.",
+      );
+    } finally {
+      setIsSavingCompletion(false);
+    }
+  }
+
   return {
     patient,
     priorityMeta,
@@ -194,6 +304,22 @@ export function usePatientPortal({ initialPatient, token }: UsePatientPortalArgs
       setNotes: setNewFollowupNotes,
       isSaving: isSavingFollowup,
       submit: handleAddFollowup,
+      completingId: completingFollowupId,
+      completionNotes,
+      setCompletionNotes,
+      completionPhotoName,
+      setCompletionPhotoName,
+      completionPhotoNote,
+      setCompletionPhotoNote,
+      completionPhotoData,
+      completionPhotos,
+      openCompletionForm,
+      closeCompletionForm,
+      onCompletionPhotoFileChange: handleCompletionPhotoFileChange,
+      addCompletionPhotoDraft,
+      removeCompletionPhotoDraft,
+      completeSubmit: handleCompleteFollowup,
+      isSavingCompletion,
     },
     photo: {
       name: newPhotoName,

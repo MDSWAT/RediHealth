@@ -2,13 +2,14 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { getDatabase, type RowDataPacket } from "@/lib/database";
 import { isEmailConfigured, sendEmail } from "@/lib/email";
+import { getUserWorkerContext } from "@/lib/worker-auth";
 
 type ReplyTemplateId = "acknowledgment" | "consultation" | "referral";
 
 type RequesterRow = RowDataPacket & {
   full_name: string | null;
   phone: string;
-  email: string;
+  email: string | null;
   description: string;
 };
 
@@ -40,6 +41,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
   }
 
+  const workerContext = await getUserWorkerContext(session.user.email);
+  if (!workerContext.workerId) {
+    return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
+  }
+
   let body: { requestId?: unknown; templateId?: unknown };
   try {
     body = await request.json();
@@ -66,9 +72,12 @@ export async function POST(request: Request) {
     if (!requester) {
       return NextResponse.json({ error: "Request not found." }, { status: 404 });
     }
+    if (!requester.email?.trim()) {
+      return NextResponse.json({ error: "This request has no email address." }, { status: 400 });
+    }
 
     const template = getTemplate(templateId as ReplyTemplateId, requester);
-    await sendEmail({ to: requester.email, ...template });
+    await sendEmail({ to: requester.email.trim(), ...template });
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to send request reply", error);

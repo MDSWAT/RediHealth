@@ -1,8 +1,11 @@
+-- Consolidated migration: mediator case intake
+
 CREATE TABLE IF NOT EXISTS mediator_cases (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   mediator_worker_id BIGINT NOT NULL,
   county VARCHAR(100) NOT NULL,
   full_name VARCHAR(200) NOT NULL,
+  date_of_birth VARCHAR(50) NULL,
   phone VARCHAR(50) NULL,
   address VARCHAR(500) NULL,
   care_category VARCHAR(100) NOT NULL,

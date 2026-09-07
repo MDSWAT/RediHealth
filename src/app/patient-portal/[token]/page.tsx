@@ -31,6 +31,8 @@ type DBPatient = RowDataPacket & {
   updated_at?: Date | string;
 };
 
+const TOKEN_PATTERN = /^[A-Za-z0-9_-]{16,128}$/;
+
 function parseJson<T>(val: unknown): T | null {
   if (!val) return null;
   if (typeof val === "object") return val as T;
@@ -49,9 +51,10 @@ interface PageProps {
 }
 
 export default async function PatientPortalPage({ params }: PageProps) {
-  const { token } = await params;
+  const { token: rawToken } = await params;
+  const token = rawToken.trim();
 
-  if (!token) {
+  if (!TOKEN_PATTERN.test(token)) {
     notFound();
   }
 
@@ -70,6 +73,7 @@ export default async function PatientPortalPage({ params }: PageProps) {
          FROM patients p
          LEFT JOIN workers w ON w.id = p.assigned_worker_id
          WHERE p.access_token = ?
+           AND (p.access_token_expires_at IS NULL OR p.access_token_expires_at > UTC_TIMESTAMP())
          LIMIT 1`,
         [token],
       );

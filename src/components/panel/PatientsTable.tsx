@@ -5,8 +5,9 @@ import { useMemo, useState } from "react";
 import { EditIcon, TrashIcon, UsersIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { PatientItem, PatientPriority, PatientStatus } from "@/lib/types/patient";
-import { getPriorityMeta } from "@/lib/patient-helpers";
+import { getFollowupState, getPriorityMeta } from "@/lib/patient-helpers";
 import { withLangPrefix } from "@/lib/i18n/routing";
+import { patientsTableTranslations } from "@/lib/i18n/panel-component-translations";
 import { CreatePatientModal } from "./CreatePatientModal";
 import { PatientsFilterBar } from "./PatientsFilterBar";
 
@@ -16,110 +17,30 @@ interface PatientsTableProps {
   isRefreshing?: boolean;
 }
 
+type UrgencyFilter = "all" | "overdue" | "today" | "upcoming" | "none" | "completed";
+
+function toIsoDate(value: string): string {
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) {
+    return "";
+  }
+  return d.toISOString().slice(0, 10);
+}
+
 export function PatientsTable({
   initialPatients,
   onRefresh,
   isRefreshing = false,
 }: PatientsTableProps) {
   const { lang } = useLanguage();
-  const t = {
-    en: {
-      errDelete: "Failed to delete patient.",
-      errDeleteUnexpected: "An error occurred while deleting patient.",
-      errUpdateStatus: "Failed to update patient status.",
-      dismiss: "Dismiss",
-      showing: (v: number, total: number) => `Showing ${v} of ${total} patient profiles`,
-      noneTitle: "No patient records found",
-      noneHint: "Create a patient profile or convert a request to start building patient profiles.",
-      worker: "Worker",
-      unassigned: "Unassigned",
-      activeCare: "Active Care",
-      inactive: "Inactive",
-      archived: "Archived",
-      noNotes: "No condition notes recorded.",
-      dobMissing: "DOB not provided",
-      genderMissing: "Gender not specified",
-      deleteQ: "Delete this patient?",
-      yesDelete: "Yes, delete",
-      cancel: "Cancel",
-      deletePatient: "Delete Patient",
-      editProfile: "Edit Profile",
-      viewDetails: "View Details",
-    },
-    ro: {
-      errDelete: "Stergerea pacientului a esuat.",
-      errDeleteUnexpected: "A aparut o eroare la stergerea pacientului.",
-      errUpdateStatus: "Actualizarea statusului pacientului a esuat.",
-      dismiss: "Inchide",
-      showing: (v: number, total: number) => `Se afiseaza ${v} din ${total} profiluri`,
-      noneTitle: "Nu exista dosare pacient",
-      noneHint: "Creeaza un profil pacient sau converteste o cerere pentru a incepe.",
-      worker: "Lucrator",
-      unassigned: "Nealocat",
-      activeCare: "Ingrijire activa",
-      inactive: "Inactiv",
-      archived: "Arhivat",
-      noNotes: "Nu exista notite clinice.",
-      dobMissing: "Data nasterii nespecificata",
-      genderMissing: "Gen nespecificat",
-      deleteQ: "Stergi acest pacient?",
-      yesDelete: "Da, sterge",
-      cancel: "Anuleaza",
-      deletePatient: "Sterge pacient",
-      editProfile: "Editeaza profil",
-      viewDetails: "Vezi detalii",
-    },
-    sq: {
-      errDelete: "Deshtoi fshirja e pacientit.",
-      errDeleteUnexpected: "Ndodhi nje gabim gjate fshirjes se pacientit.",
-      errUpdateStatus: "Deshtoi perditesimi i statusit te pacientit.",
-      dismiss: "Mbyll",
-      showing: (v: number, total: number) => `Shfaqen ${v} nga ${total} profile pacientesh`,
-      noneTitle: "Nuk u gjeten dosje pacientesh",
-      noneHint: "Krijo nje profil pacienti ose konverto nje kerkese per te filluar.",
-      worker: "Punonjes",
-      unassigned: "Pacaktuar",
-      activeCare: "Kujdes aktiv",
-      inactive: "Joaktiv",
-      archived: "Arkivuar",
-      noNotes: "Nuk ka shenime mbi gjendjen.",
-      dobMissing: "Datelindja nuk eshte dhene",
-      genderMissing: "Gjinia nuk eshte specifikuar",
-      deleteQ: "Ta fshijme kete pacient?",
-      yesDelete: "Po, fshije",
-      cancel: "Anulo",
-      deletePatient: "Fshij pacientin",
-      editProfile: "Ndrysho profilin",
-      viewDetails: "Shiko detaje",
-    },
-    it: {
-      errDelete: "Eliminazione paziente non riuscita.",
-      errDeleteUnexpected: "Si e verificato un errore durante l'eliminazione del paziente.",
-      errUpdateStatus: "Aggiornamento stato paziente non riuscito.",
-      dismiss: "Chiudi",
-      showing: (v: number, total: number) => `Mostrati ${v} di ${total} profili paziente`,
-      noneTitle: "Nessuna scheda paziente trovata",
-      noneHint: "Crea un profilo paziente o converti una richiesta per iniziare.",
-      worker: "Operatore",
-      unassigned: "Non assegnato",
-      activeCare: "Cura attiva",
-      inactive: "Inattivo",
-      archived: "Archiviato",
-      noNotes: "Nessuna nota clinica registrata.",
-      dobMissing: "Data di nascita non indicata",
-      genderMissing: "Genere non specificato",
-      deleteQ: "Eliminare questo paziente?",
-      yesDelete: "Si, elimina",
-      cancel: "Annulla",
-      deletePatient: "Elimina paziente",
-      editProfile: "Modifica profilo",
-      viewDetails: "Vedi dettagli",
-    },
-  }[lang];
+  const t = patientsTableTranslations[lang];
   const [patients, setPatients] = useState<PatientItem[]>(initialPatients);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeStatusFilter, setActiveStatusFilter] = useState<PatientStatus | "all">("all");
   const [priorityFilter, setPriorityFilter] = useState<PatientPriority | "all">("all");
+  const [urgencyFilter, setUrgencyFilter] = useState<UrgencyFilter>("all");
+  const [createdFrom, setCreatedFrom] = useState("");
+  const [createdTo, setCreatedTo] = useState("");
   const [editingPatient, setEditingPatient] = useState<PatientItem | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [confirmingDeleteId, setConfirmingDeleteId] = useState<string | null>(null);
@@ -136,6 +57,21 @@ export function PatientsTable({
         return false;
       }
 
+      if (urgencyFilter !== "all") {
+        const followupState = getFollowupState(patient.followups).state;
+        if (followupState !== urgencyFilter) {
+          return false;
+        }
+      }
+
+      const createdDate = toIsoDate(patient.created_at);
+      if (createdFrom && createdDate && createdDate < createdFrom) {
+        return false;
+      }
+      if (createdTo && createdDate && createdDate > createdTo) {
+        return false;
+      }
+
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase();
         const nameMatch = patient.full_name.toLowerCase().includes(query);
@@ -143,13 +79,16 @@ export function PatientsTable({
         const phoneMatch = patient.phone.includes(query);
         const notesMatch = patient.condition_notes?.toLowerCase().includes(query);
         const addressMatch = patient.address?.toLowerCase().includes(query);
+        const assignedWorkersMatch = patient.assigned_worker_names?.some((name) =>
+          name.toLowerCase().includes(query),
+        ) || patient.assigned_worker_name?.toLowerCase().includes(query);
 
-        return nameMatch || emailMatch || phoneMatch || notesMatch || addressMatch;
+        return nameMatch || emailMatch || phoneMatch || notesMatch || addressMatch || assignedWorkersMatch;
       }
 
       return true;
     });
-  }, [patients, activeStatusFilter, priorityFilter, searchQuery]);
+  }, [patients, activeStatusFilter, priorityFilter, urgencyFilter, createdFrom, createdTo, searchQuery]);
 
   async function handleDelete(id: string) {
     setDeletingId(id);
@@ -241,8 +180,25 @@ export function PatientsTable({
     document.body.removeChild(link);
   }
 
+  function resetFilters() {
+    setSearchQuery("");
+    setActiveStatusFilter("all");
+    setPriorityFilter("all");
+    setUrgencyFilter("all");
+    setCreatedFrom("");
+    setCreatedTo("");
+  }
+
+  const hasActiveFilters =
+    searchQuery.trim().length > 0 ||
+    activeStatusFilter !== "all" ||
+    priorityFilter !== "all" ||
+    urgencyFilter !== "all" ||
+    createdFrom.length > 0 ||
+    createdTo.length > 0;
+
   return (
-    <div>
+    <section className="overflow-hidden rounded-3xl border border-border/80 bg-card shadow-sm">
       <PatientsFilterBar
         searchQuery={searchQuery}
         onChangeSearchQuery={setSearchQuery}
@@ -250,6 +206,14 @@ export function PatientsTable({
         onChangeStatusFilter={setActiveStatusFilter}
         priorityFilter={priorityFilter}
         onChangePriorityFilter={setPriorityFilter}
+        urgencyFilter={urgencyFilter}
+        onChangeUrgencyFilter={setUrgencyFilter}
+        createdFrom={createdFrom}
+        onChangeCreatedFrom={setCreatedFrom}
+        createdTo={createdTo}
+        onChangeCreatedTo={setCreatedTo}
+        onResetFilters={resetFilters}
+        hasActiveFilters={hasActiveFilters}
         onAddPatient={() => setShowCreateModal(true)}
         onExportCSV={handleExportCSV}
         exportDisabled={filteredPatients.length === 0}
@@ -260,42 +224,48 @@ export function PatientsTable({
       {errorMessage ? (
         <div
           role="alert"
-          className="mb-4 rounded-lg bg-red-500/10 border border-red-500/20 p-4 text-sm text-red-600 dark:text-red-400 flex items-center justify-between"
+          className="mx-4 mb-4 flex items-center justify-between rounded-xl border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400"
         >
           <span>{errorMessage}</span>
           <button
             onClick={() => setErrorMessage(null)}
-            className="text-xs font-semibold underline hover:no-underline ml-4"
+            className="ml-4 text-xs font-semibold underline hover:no-underline"
           >
             {t.dismiss}
           </button>
         </div>
       ) : null}
 
-      <div className="flex items-center justify-between mb-4 px-1">
+      <div className="flex items-center justify-between border-y border-border/80 bg-muted/30 px-4 py-2.5">
         <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           {t.showing(filteredPatients.length, patients.length)}
         </p>
       </div>
 
       {filteredPatients.length === 0 ? (
-        <div className="rounded-2xl border border-border bg-card p-12 text-center">
-          <UsersIcon className="mx-auto h-8 w-8 text-muted-foreground" />
-          <h3 className="mt-3 text-base font-semibold text-foreground">{t.noneTitle}</h3>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {t.noneHint}
-          </p>
+        <div className="p-12 text-center">
+          <div className="mx-auto max-w-sm rounded-2xl border border-dashed border-border bg-white p-8">
+            <UsersIcon className="mx-auto h-8 w-8 text-muted-foreground" />
+            <h3 className="mt-3 text-base font-semibold text-foreground">{t.noneTitle}</h3>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {t.noneHint}
+            </p>
+          </div>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="divide-y divide-border/70">
           {filteredPatients.map((patient) => {
             const isDeleting = deletingId === patient.id;
             const isConfirmingDelete = confirmingDeleteId === patient.id;
             const priorityMeta = getPriorityMeta(patient.priority);
+            const assignedWorkersLabel =
+              patient.assigned_worker_names && patient.assigned_worker_names.length > 0
+                ? patient.assigned_worker_names.join(", ")
+                : patient.assigned_worker_name || t.unassigned;
 
             return (
-              <article key={patient.id} className="rounded-lg border border-border bg-card p-4 shadow-sm">
-                <div className="flex items-start justify-between gap-3">
+              <article key={patient.id} className="p-4 sm:p-5">
+                <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
                     <Link
                       href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}
@@ -307,7 +277,7 @@ export function PatientsTable({
                       ID #{patient.id} {patient.request_id ? `(Req #${patient.request_id})` : ""}
                     </p>
                     <p className="mt-0.5 text-xs font-semibold text-primary">
-                      {t.worker}: {patient.assigned_worker_name || t.unassigned}
+                      {t.worker}: {assignedWorkersLabel}
                     </p>
                   </div>
                   <div className="flex shrink-0 flex-col items-end gap-1.5">
@@ -344,7 +314,7 @@ export function PatientsTable({
                   <span>{patient.gender || t.genderMissing}</span>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
+                <div className="mt-4 flex items-center justify-between border-t border-border/70 pt-3">
                   {isConfirmingDelete ? (
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-semibold text-red-600 dark:text-red-400">{t.deleteQ}</span>
@@ -368,6 +338,7 @@ export function PatientsTable({
                     <button
                       type="button"
                       onClick={() => setConfirmingDeleteId(patient.id)}
+                      aria-label={`${t.deletePatient}: ${patient.full_name}`}
                       className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-red-600 hover:bg-red-500/10 dark:text-red-400"
                       title={t.deletePatient}
                     >
@@ -379,6 +350,7 @@ export function PatientsTable({
                     <button
                       type="button"
                       onClick={() => setEditingPatient(patient)}
+                      aria-label={`${t.editProfile}: ${patient.full_name}`}
                       className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
                       title={t.editProfile}
                     >
@@ -416,6 +388,6 @@ export function PatientsTable({
           }}
         />
       ) : null}
-    </div>
+    </section>
   );
 }

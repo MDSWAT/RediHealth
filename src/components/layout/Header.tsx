@@ -49,6 +49,17 @@ export function Header() {
     void getSession().then((session) => setAuthenticated(Boolean(session)));
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [mobileOpen]);
+
   const navLinks = [
     { label: t.nav.healthInformation, href: "/health-information" },
     { label: t.nav.healthCheck, href: "/health-check" },
@@ -121,16 +132,13 @@ export function Header() {
         id="mobile-menu"
         aria-hidden={!mobileOpen}
         className={cn(
-          "grid bg-background transition-[grid-template-rows] duration-300 ease-out lg:hidden",
-          mobileOpen ? "grid-rows-[1fr] border-t border-border" : "grid-rows-[0fr]",
+          "overflow-hidden bg-background transition-[max-height,opacity] duration-300 ease-out lg:hidden",
+          mobileOpen
+            ? "max-h-[85vh] border-t border-border opacity-100"
+            : "pointer-events-none max-h-0 opacity-0",
         )}
       >
-        <div
-          className={cn(
-            "overflow-hidden transition-opacity duration-200",
-            mobileOpen ? "opacity-100 delay-100" : "opacity-0",
-          )}
-        >
+        <div className="overflow-y-auto">
           <Container className="py-4">
             <nav aria-label="Primary (mobile)">
               <ul className="flex flex-col gap-1">

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { CheckCircleIcon, CloseIcon, UserIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
 import type { PatientItem, PatientPriority, PatientStatus } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
@@ -23,186 +24,11 @@ export function CreatePatientModal({
   onSuccess,
 }: PatientModalProps) {
   const { lang } = useLanguage();
-  const t = {
-    en: {
-      errSave: "Failed to save patient profile.",
-      errUnexpected: "An unexpected error occurred while saving.",
-      titleEdit: "Edit Patient Profile",
-      titleCreate: "Create Patient Profile",
-      convertedFrom: (id: string) => `Converted from Request #${id}`,
-      subtitleCreate: "Enter medical profile details for staff record",
-      successEdit: "Patient profile saved successfully!",
-      successCreate: "Patient profile created and portal link emailed to patient!",
-      fullName: "Full Name",
-      fullNamePh: "e.g. Maria Popescu",
-      phone: "Phone Number",
-      phonePh: "e.g. 0721 234 567",
-      email: "Email Address",
-      emailPh: "you@example.com",
-      dob: "Date of Birth",
-      gender: "Gender",
-      selectGender: "Select gender",
-      female: "Female",
-      male: "Male",
-      other: "Other",
-      preferNot: "Prefer not to say",
-      patientStatus: "Patient Status",
-      activeCare: "Active Care",
-      inactive: "Inactive",
-      archived: "Archived Record",
-      assignedWorker: "Assigned Healthcare Worker",
-      unassigned: "-- Unassigned --",
-      priority: "Priority / Urgency Level",
-      pCritical: "Critical (< 24h)",
-      pHigh: "High (< 3 days)",
-      pModerate: "Moderate (< 7 days)",
-      pLow: "Low (< 14 days)",
-      address: "Address / Location",
-      addressPh: "e.g. Main Street no. 12, Bucharest",
-      condition: "Condition and Symptoms Notes",
-      conditionPh: "Details regarding current symptoms, request notes, or initial findings...",
-      history: "Medical History / Care Plan",
-      historyPh: "Known allergies, ongoing treatments, or recommended health steps...",
-      cancel: "Cancel",
-      saving: "Saving...",
-      update: "Update Patient Profile",
-      create: "Create Patient Profile",
-    },
-    ro: {
-      errSave: "Salvarea profilului pacientului a esuat.",
-      errUnexpected: "A aparut o eroare neasteptata la salvare.",
-      titleEdit: "Editeaza profil pacient",
-      titleCreate: "Creeaza profil pacient",
-      convertedFrom: (id: string) => `Convertit din cererea #${id}`,
-      subtitleCreate: "Introdu detaliile profilului medical",
-      successEdit: "Profilul pacientului a fost salvat!",
-      successCreate: "Profilul pacientului a fost creat si linkul portalului a fost trimis!",
-      fullName: "Nume complet",
-      fullNamePh: "ex. Maria Popescu",
-      phone: "Numar telefon",
-      phonePh: "ex. 0721 234 567",
-      email: "Adresa email",
-      emailPh: "tu@exemplu.com",
-      dob: "Data nasterii",
-      gender: "Gen",
-      selectGender: "Selecteaza genul",
-      female: "Feminin",
-      male: "Masculin",
-      other: "Altul",
-      preferNot: "Prefer sa nu spun",
-      patientStatus: "Status pacient",
-      activeCare: "Ingrijire activa",
-      inactive: "Inactiv",
-      archived: "Dosar arhivat",
-      assignedWorker: "Lucrator medical alocat",
-      unassigned: "-- Nealocat --",
-      priority: "Prioritate / Urgenta",
-      pCritical: "Critic (< 24h)",
-      pHigh: "Ridicata (< 3 zile)",
-      pModerate: "Moderata (< 7 zile)",
-      pLow: "Scazuta (< 14 zile)",
-      address: "Adresa / Locatie",
-      addressPh: "ex. Strada Principala nr. 12, Bucuresti",
-      condition: "Notite despre afectiune si simptome",
-      conditionPh: "Detalii despre simptomele curente, cerere sau observatii initiale...",
-      history: "Istoric medical / Plan de ingrijire",
-      historyPh: "Alergii cunoscute, tratamente in curs sau recomandari...",
-      cancel: "Anuleaza",
-      saving: "Se salveaza...",
-      update: "Actualizeaza profilul",
-      create: "Creeaza profilul",
-    },
-    sq: {
-      errSave: "Ruajtja e profilit te pacientit deshtoi.",
-      errUnexpected: "Ndodhi nje gabim i papritur gjate ruajtjes.",
-      titleEdit: "Ndrysho profilin e pacientit",
-      titleCreate: "Krijo profil pacienti",
-      convertedFrom: (id: string) => `Konvertuar nga kerkesa #${id}`,
-      subtitleCreate: "Vendos detajet e profilit mjekesor",
-      successEdit: "Profili i pacientit u ruajt me sukses!",
-      successCreate: "Profili i pacientit u krijua dhe lidhja e portalit u dergua me email!",
-      fullName: "Emri i plote",
-      fullNamePh: "p.sh. Maria Popescu",
-      phone: "Numri i telefonit",
-      phonePh: "p.sh. 0721 234 567",
-      email: "Adresa email",
-      emailPh: "ti@shembull.com",
-      dob: "Datelindja",
-      gender: "Gjinia",
-      selectGender: "Zgjidh gjinine",
-      female: "Femer",
-      male: "Mashkull",
-      other: "Tjeter",
-      preferNot: "Preferoj te mos them",
-      patientStatus: "Statusi i pacientit",
-      activeCare: "Kujdes aktiv",
-      inactive: "Joaktiv",
-      archived: "Dosje e arkivuar",
-      assignedWorker: "Punonjesi i caktuar",
-      unassigned: "-- Pacaktuar --",
-      priority: "Prioritet / Urgjence",
-      pCritical: "Kritik (< 24h)",
-      pHigh: "I larte (< 3 dite)",
-      pModerate: "Mesatar (< 7 dite)",
-      pLow: "I ulet (< 14 dite)",
-      address: "Adresa / Vendndodhja",
-      addressPh: "p.sh. Rruga Kryesore nr. 12, Bukuresht",
-      condition: "Shenime mbi gjendjen dhe simptomat",
-      conditionPh: "Detaje mbi simptomat aktuale, kerkesen ose gjetjet fillestare...",
-      history: "Historia mjekesore / Plani i kujdesit",
-      historyPh: "Alergji te njohura, trajtime ne vazhdim ose hapa te rekomanduar...",
-      cancel: "Anulo",
-      saving: "Duke ruajtur...",
-      update: "Perditeso profilin",
-      create: "Krijo profilin",
-    },
-    it: {
-      errSave: "Salvataggio profilo paziente non riuscito.",
-      errUnexpected: "Si e verificato un errore imprevisto durante il salvataggio.",
-      titleEdit: "Modifica profilo paziente",
-      titleCreate: "Crea profilo paziente",
-      convertedFrom: (id: string) => `Convertito dalla richiesta #${id}`,
-      subtitleCreate: "Inserisci i dettagli del profilo medico",
-      successEdit: "Profilo paziente salvato con successo!",
-      successCreate: "Profilo paziente creato e link del portale inviato via email!",
-      fullName: "Nome completo",
-      fullNamePh: "es. Maria Popescu",
-      phone: "Numero di telefono",
-      phonePh: "es. 0721 234 567",
-      email: "Indirizzo email",
-      emailPh: "tuo@esempio.com",
-      dob: "Data di nascita",
-      gender: "Genere",
-      selectGender: "Seleziona genere",
-      female: "Femmina",
-      male: "Maschio",
-      other: "Altro",
-      preferNot: "Preferisco non dirlo",
-      patientStatus: "Stato paziente",
-      activeCare: "Cura attiva",
-      inactive: "Inattivo",
-      archived: "Scheda archiviata",
-      assignedWorker: "Operatore assegnato",
-      unassigned: "-- Non assegnato --",
-      priority: "Priorita / Urgenza",
-      pCritical: "Critica (< 24h)",
-      pHigh: "Alta (< 3 giorni)",
-      pModerate: "Moderata (< 7 giorni)",
-      pLow: "Bassa (< 14 giorni)",
-      address: "Indirizzo / Localita",
-      addressPh: "es. Via Principale 12, Bucarest",
-      condition: "Note su condizione e sintomi",
-      conditionPh: "Dettagli su sintomi attuali, richiesta o rilievi iniziali...",
-      history: "Storia clinica / Piano di cura",
-      historyPh: "Allergie note, trattamenti in corso o passi consigliati...",
-      cancel: "Annulla",
-      saving: "Salvataggio...",
-      update: "Aggiorna profilo",
-      create: "Crea profilo",
-    },
-  }[lang];
+  const t = createPatientModalTranslations[lang];
 
   const isEditing = Boolean(patient);
+  const dialogTitleId = useId();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const [fullName, setFullName] = useState(
     patient?.full_name || request?.full_name || "",
@@ -229,12 +55,58 @@ export function CreatePatientModal({
   const [priority, setPriority] = useState<PatientPriority>(
     patient?.priority || "moderate",
   );
-  const [assignedWorkerId, setAssignedWorkerId] = useState<string>(
-    patient?.assigned_worker_id || "",
+  const [assignedWorkerIds, setAssignedWorkerIds] = useState<string[]>(
+    patient?.assigned_worker_ids && patient.assigned_worker_ids.length > 0
+      ? patient.assigned_worker_ids
+      : patient?.assigned_worker_id
+      ? [patient.assigned_worker_id]
+      : [],
   );
   const [workersList, setWorkersList] = useState<WorkerItem[]>(
     initialWorkers || [],
   );
+  const [workerSearchQuery, setWorkerSearchQuery] = useState("");
+  const [showOnlySelectedWorkers, setShowOnlySelectedWorkers] = useState(false);
+
+  const filteredWorkers = useMemo(() => {
+    const query = workerSearchQuery.trim().toLowerCase();
+    const byQuery = !query
+      ? workersList
+      : workersList.filter((worker) => {
+          const haystack = `${worker.full_name} ${worker.role} ${worker.email || ""}`.toLowerCase();
+          return haystack.includes(query);
+        });
+
+    if (!showOnlySelectedWorkers) {
+      return byQuery;
+    }
+
+    return byQuery.filter((worker) => assignedWorkerIds.includes(worker.id));
+  }, [workersList, workerSearchQuery, showOnlySelectedWorkers, assignedWorkerIds]);
+
+  const selectedWorkers = useMemo(() => {
+    const byId = new Map(workersList.map((worker) => [worker.id, worker]));
+    return assignedWorkerIds
+      .map((id) => byId.get(id))
+      .filter((worker): worker is WorkerItem => Boolean(worker));
+  }, [workersList, assignedWorkerIds]);
+
+  function selectAllVisibleWorkers() {
+    if (filteredWorkers.length === 0) {
+      return;
+    }
+    setAssignedWorkerIds((current) => {
+      const next = new Set(current);
+      for (const worker of filteredWorkers) {
+        next.add(worker.id);
+      }
+      return [...next];
+    });
+  }
+
+  function removeSelectedWorker(workerId: string) {
+    setAssignedWorkerIds((current) => current.filter((id) => id !== workerId));
+  }
 
   useEffect(() => {
     if (!initialWorkers || initialWorkers.length === 0) {
@@ -252,17 +124,37 @@ export function CreatePatientModal({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [warningMessage, setWarningMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    closeButtonRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsSubmitting(true);
     setErrorMessage(null);
+    setWarningMessage(null);
     setSaveSuccess(false);
 
     const payload = {
       id: patient?.id,
       request_id: request?.id || patient?.request_id,
-      assigned_worker_id: assignedWorkerId || undefined,
+      assigned_worker_id: assignedWorkerIds[0] || undefined,
+      assigned_worker_ids: assignedWorkerIds,
       full_name: fullName.trim(),
       phone: phone.trim(),
       email: email.trim().toLowerCase(),
@@ -290,6 +182,8 @@ export function CreatePatientModal({
         id?: number;
         access_token?: string;
         success?: boolean;
+        email_sent?: boolean;
+        warning?: string;
       };
 
       if (!response.ok) {
@@ -297,15 +191,21 @@ export function CreatePatientModal({
         return;
       }
 
+      if (data.email_sent === false) {
+        setWarningMessage(data.warning || t.warnEmail);
+      }
+
       setSaveSuccess(true);
 
-      const matchedWorker = workersList.find((w) => w.id === assignedWorkerId);
+      const matchedWorkers = workersList.filter((w) => assignedWorkerIds.includes(w.id));
 
       const savedPatient: PatientItem = {
         id: String(data.id || patient?.id || "0"),
         request_id: payload.request_id ? String(payload.request_id) : null,
-        assigned_worker_id: assignedWorkerId || null,
-        assigned_worker_name: matchedWorker?.full_name || null,
+        assigned_worker_id: assignedWorkerIds[0] || null,
+        assigned_worker_ids: assignedWorkerIds,
+        assigned_worker_name: matchedWorkers[0]?.full_name || null,
+        assigned_worker_names: matchedWorkers.map((w) => w.full_name),
         access_token: data.access_token || patient?.access_token || null,
         full_name: payload.full_name,
         phone: payload.phone,
@@ -335,15 +235,20 @@ export function CreatePatientModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="relative w-full max-w-2xl rounded-2xl border border-border bg-card p-6 shadow-xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-2 backdrop-blur-sm sm:items-center sm:p-4">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={dialogTitleId}
+        className="relative my-4 w-full max-w-4xl rounded-2xl border border-border bg-card p-4 shadow-xl sm:my-0 sm:p-6"
+      >
         <div className="flex items-center justify-between border-b border-border pb-4">
           <div className="flex items-center gap-2">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-soft text-primary">
               <UserIcon className="h-5 w-5" />
             </span>
             <div>
-              <h2 className="text-lg font-bold text-foreground">
+              <h2 id={dialogTitleId} className="text-lg font-bold text-foreground">
                 {isEditing ? t.titleEdit : t.titleCreate}
               </h2>
               <p className="text-xs text-muted-foreground">
@@ -354,8 +259,10 @@ export function CreatePatientModal({
             </div>
           </div>
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={onClose}
+            aria-label={t.close}
             className="rounded-lg p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
           >
             <CloseIcon className="h-5 w-5" />
@@ -379,8 +286,14 @@ export function CreatePatientModal({
           </div>
         ) : null}
 
-        <form onSubmit={handleSubmit} className="mt-5 space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {warningMessage ? (
+          <div className="mt-4 rounded-lg bg-amber-500/10 border border-amber-500/20 p-3 text-xs text-amber-700 dark:text-amber-300">
+            {warningMessage}
+          </div>
+        ) : null}
+
+        <form onSubmit={handleSubmit} className="mt-5 space-y-5">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">
                 {t.fullName} <span className="text-red-500">*</span>
@@ -410,21 +323,7 @@ export function CreatePatientModal({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
-                {t.email} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t.emailPh}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              />
-            </div>
-
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">
                 {t.dob}
@@ -436,9 +335,7 @@ export function CreatePatientModal({
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">
                 {t.gender}
@@ -471,25 +368,6 @@ export function CreatePatientModal({
               </select>
             </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
-                {t.assignedWorker}
-              </label>
-              <select
-                value={assignedWorkerId}
-                onChange={(e) => setAssignedWorkerId(e.target.value)}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <option value="">{t.unassigned}</option>
-                {workersList.map((w) => (
-                  <option key={w.id} value={w.id}>
-                    {w.full_name} ({w.role})
-                  </option>
-                ))}
-              </select>
-            </div>
-
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">
                 {t.priority}
@@ -499,26 +377,127 @@ export function CreatePatientModal({
                 onChange={(e) => setPriority(e.target.value as PatientPriority)}
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <option value="critical">🔴 {t.pCritical}</option>
-                <option value="high">🟠 {t.pHigh}</option>
-                <option value="moderate">🟡 {t.pModerate}</option>
-                <option value="low">🟢 {t.pLow}</option>
+                <option value="critical">{t.pCritical}</option>
+                <option value="high">{t.pHigh}</option>
+                <option value="moderate">{t.pModerate}</option>
+                <option value="low">{t.pLow}</option>
               </select>
             </div>
           </div>
-          </div>
 
-          <div>
-            <label className="text-xs font-semibold text-foreground mb-1 block">
-              {t.address}
-            </label>
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder={t.addressPh}
-              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label className="text-xs font-semibold text-foreground mb-1 block">
+                {t.assignedWorker}
+              </label>
+              <div className="rounded-lg border border-border bg-background p-2.5">
+                <div className="mb-2 flex items-center justify-between gap-2 text-xs">
+                  <span className="font-semibold text-foreground">
+                    {assignedWorkerIds.length > 0
+                      ? `${assignedWorkerIds.length} selected`
+                      : t.unassigned}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={selectAllVisibleWorkers}
+                      className="text-primary hover:underline disabled:opacity-50"
+                      disabled={filteredWorkers.length === 0}
+                    >
+                      Select visible
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setAssignedWorkerIds([])}
+                      className="text-primary hover:underline disabled:opacity-50"
+                      disabled={assignedWorkerIds.length === 0}
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </div>
+                {selectedWorkers.length > 0 ? (
+                  <div className="mb-2 flex flex-wrap gap-1.5">
+                    {selectedWorkers.slice(0, 5).map((worker) => (
+                      <button
+                        key={worker.id}
+                        type="button"
+                        onClick={() => removeSelectedWorker(worker.id)}
+                        className="rounded-full bg-primary-soft px-2 py-0.5 text-[11px] font-semibold text-primary hover:bg-primary/15"
+                        title="Remove selection"
+                      >
+                        {worker.full_name}
+                      </button>
+                    ))}
+                    {selectedWorkers.length > 5 ? (
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">
+                        +{selectedWorkers.length - 5} more
+                      </span>
+                    ) : null}
+                  </div>
+                ) : null}
+                <input
+                  type="text"
+                  value={workerSearchQuery}
+                  onChange={(event) => setWorkerSearchQuery(event.target.value)}
+                  placeholder="Search doctor or role..."
+                  className="mb-2 w-full rounded-md border border-border bg-card px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                />
+                <label className="mb-2 flex items-center gap-1.5 px-0.5 text-xs text-muted-foreground">
+                  <input
+                    type="checkbox"
+                    checked={showOnlySelectedWorkers}
+                    onChange={(event) => setShowOnlySelectedWorkers(event.target.checked)}
+                    className="h-3.5 w-3.5 rounded border-border text-primary focus:ring-ring"
+                  />
+                  Show selected only
+                </label>
+                {workersList.length === 0 ? (
+                  <p className="px-2 py-1.5 text-xs text-muted-foreground">{t.unassigned}</p>
+                ) : filteredWorkers.length === 0 ? (
+                  <p className="px-2 py-1.5 text-xs text-muted-foreground">No matches for this search.</p>
+                ) : (
+                  <div className="max-h-40 space-y-1 overflow-y-auto pr-1">
+                    {filteredWorkers.map((w) => {
+                      const isSelected = assignedWorkerIds.includes(w.id);
+                      return (
+                        <label
+                          key={w.id}
+                          className="flex cursor-pointer items-start gap-2 rounded-md px-2 py-1.5 text-xs text-foreground hover:bg-muted"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isSelected}
+                            onChange={() => {
+                              setAssignedWorkerIds((current) =>
+                                current.includes(w.id)
+                                  ? current.filter((id) => id !== w.id)
+                                  : [...current, w.id],
+                              );
+                            }}
+                            className="mt-0.5 h-4 w-4 rounded border-border text-primary focus:ring-ring"
+                          />
+                          <span className="leading-5">{w.full_name} ({w.role})</span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold text-foreground mb-1 block">
+                {t.address}
+              </label>
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder={t.addressPh}
+                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              />
+            </div>
           </div>
 
           <div>
@@ -547,18 +526,18 @@ export function CreatePatientModal({
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 border-t border-border pt-4">
+          <div className="flex flex-col-reverse items-stretch gap-2 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-end sm:gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground hover:bg-muted"
+              className="rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground hover:bg-muted"
             >
               {t.cancel}
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
+              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
             >
               {isSubmitting
                 ? t.saving

@@ -65,7 +65,21 @@ type PanelTranslations = {
     refreshTitle: string;
     refresh: string;
     refreshing: string;
+    view: string;
+    viewList: string;
+    viewGrid: string;
+    pin: string;
+    unpin: string;
+    pinned: string;
+    statusUpdatedBy: (name: string) => string;
     filter: string;
+    urgency: string;
+    urgencyAll: string;
+    urgencyUrgent: string;
+    urgencyNormal: string;
+    createdFrom: string;
+    createdTo: string;
+    clearDates: string;
     allRequests: string;
     pending: string;
     inProgress: string;
@@ -136,6 +150,8 @@ type PanelTranslations = {
     modalNotesLabel: string;
     modalNotesPlaceholder: string;
     modalReminder: string;
+    createMeeting: string;
+    openMeeting: string;
     scheduling: string;
     saveFollowup: string;
     completeFollowupTitle: string;
@@ -210,7 +226,21 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       refreshTitle: "Refresh medical help requests",
       refresh: "Refresh",
       refreshing: "Refreshing...",
+      view: "View",
+      viewList: "List",
+      viewGrid: "Grid",
+      pin: "Pin request",
+      unpin: "Unpin request",
+      pinned: "Pinned",
+      statusUpdatedBy: (name) => `Status updated by ${name}`,
       filter: "Filter",
+      urgency: "Urgency",
+      urgencyAll: "All",
+      urgencyUrgent: "Urgent",
+      urgencyNormal: "Normal",
+      createdFrom: "Created From",
+      createdTo: "Created To",
+      clearDates: "Clear Dates",
       allRequests: "All Requests",
       pending: "Pending",
       inProgress: "In Progress",
@@ -281,6 +311,8 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       modalNotesLabel: "Staff Instructions / Notes",
       modalNotesPlaceholder: "Notes for staff member performing the follow-up...",
       modalReminder: "Set active notification reminder",
+      createMeeting: "Create a video meeting for this follow-up",
+      openMeeting: "Open meeting",
       scheduling: "Scheduling...",
       saveFollowup: "Save Follow-Up",
       completeFollowupTitle: "Complete follow-up",
@@ -353,7 +385,21 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       refreshTitle: "Reimprospateaza cererile medicale",
       refresh: "Reimprospateaza",
       refreshing: "Se actualizeaza...",
+      view: "Vizualizare",
+      viewList: "Lista",
+      viewGrid: "Grila",
+      pin: "Fixeaza cererea",
+      unpin: "Elimina fixarea",
+      pinned: "Fixata",
+      statusUpdatedBy: (name) => `Status actualizat de ${name}`,
       filter: "Filtru",
+      urgency: "Urgenta",
+      urgencyAll: "Toate",
+      urgencyUrgent: "Urgent",
+      urgencyNormal: "Normal",
+      createdFrom: "Creat din data",
+      createdTo: "Creat pana la",
+      clearDates: "Sterge datele",
       allRequests: "Toate cererile",
       pending: "In asteptare",
       inProgress: "In curs",
@@ -424,6 +470,8 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       modalNotesLabel: "Instructiuni / notite personal",
       modalNotesPlaceholder: "Notite pentru membrul echipei care face monitorizarea...",
       modalReminder: "Seteaza notificare activa",
+      createMeeting: "Creeaza o intalnire video pentru aceasta monitorizare",
+      openMeeting: "Deschide intalnirea",
       scheduling: "Se programeaza...",
       saveFollowup: "Salveaza monitorizarea",
       completeFollowupTitle: "Finalizeaza monitorizarea",
@@ -496,7 +544,21 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       refreshTitle: "Perditeso kerkesat mjekesore",
       refresh: "Perditeso",
       refreshing: "Duke perditesuar...",
+      view: "Pamja",
+      viewList: "Liste",
+      viewGrid: "Rrjete",
+      pin: "Fikso kerkesen",
+      unpin: "Hiq fiksimin",
+      pinned: "E fiksuar",
+      statusUpdatedBy: (name) => `Statusi u perditesua nga ${name}`,
       filter: "Filtër",
+      urgency: "Urgjenca",
+      urgencyAll: "Te gjitha",
+      urgencyUrgent: "Urgjente",
+      urgencyNormal: "Normale",
+      createdFrom: "Krijuar nga data",
+      createdTo: "Krijuar deri me",
+      clearDates: "Pastro datat",
       allRequests: "Te gjitha kerkesat",
       pending: "Ne pritje",
       inProgress: "Ne progres",
@@ -567,6 +629,8 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       modalNotesLabel: "Udhezime / shenime per stafin",
       modalNotesPlaceholder: "Shenime per anetarin e stafit qe kryen ndjekjen...",
       modalReminder: "Vendos kujtues aktiv",
+      createMeeting: "Krijo nje takim me video per kete ndjekje",
+      openMeeting: "Hap takimin",
       scheduling: "Duke planifikuar...",
       saveFollowup: "Ruaj ndjekjen",
       completeFollowupTitle: "Perfundo ndjekjen",
@@ -639,7 +703,21 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       refreshTitle: "Aggiorna richieste mediche",
       refresh: "Aggiorna",
       refreshing: "Aggiornamento...",
+      view: "Vista",
+      viewList: "Elenco",
+      viewGrid: "Griglia",
+      pin: "Fissa richiesta",
+      unpin: "Rimuovi fissaggio",
+      pinned: "Fissata",
+      statusUpdatedBy: (name) => `Stato aggiornato da ${name}`,
       filter: "Filtro",
+      urgency: "Urgenza",
+      urgencyAll: "Tutte",
+      urgencyUrgent: "Urgente",
+      urgencyNormal: "Normale",
+      createdFrom: "Creato dal",
+      createdTo: "Creato al",
+      clearDates: "Azzera date",
       allRequests: "Tutte le richieste",
       pending: "In attesa",
       inProgress: "In corso",
@@ -710,6 +788,8 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       modalNotesLabel: "Istruzioni / note staff",
       modalNotesPlaceholder: "Note per l'operatore che eseguira il follow-up...",
       modalReminder: "Imposta promemoria attivo",
+      createMeeting: "Crea una riunione video per questo follow-up",
+      openMeeting: "Apri riunione",
       scheduling: "Pianificazione...",
       saveFollowup: "Salva follow-up",
       completeFollowupTitle: "Completa follow-up",

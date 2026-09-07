@@ -7,6 +7,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "tunnel": "cloudflared tunnel --url http://localhost:3000",
+    "tunel": "npm run tunnel",
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest"

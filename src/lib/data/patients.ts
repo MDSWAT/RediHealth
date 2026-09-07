@@ -16,6 +16,15 @@ import type {
  */
 
 export const PATIENT_COLUMNS = `p.id, p.request_id, p.assigned_worker_id, w.full_name AS assigned_worker_name,
+  p.assigned_worker_ids,
+  (
+    SELECT GROUP_CONCAT(w2.full_name ORDER BY w2.full_name SEPARATOR '||')
+    FROM workers w2
+    WHERE FIND_IN_SET(
+      CAST(w2.id AS CHAR(32)),
+      REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', '')
+    ) > 0
+  ) AS assigned_worker_names_concat,
   p.access_token, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address,
   p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
   COALESCE(p.status, 'active') AS status,
@@ -28,7 +37,9 @@ export interface DBPatientRow extends RowDataPacket {
   id: string | number;
   request_id?: string | number | null;
   assigned_worker_id?: string | number | null;
+  assigned_worker_ids?: string | object | null;
   assigned_worker_name?: string | null;
+  assigned_worker_names_concat?: string | null;
   access_token?: string | null;
   full_name: string;
   phone: string;
@@ -53,12 +64,32 @@ function toIsoString(value: Date | string | null | undefined): string | undefine
 }
 
 export function mapPatientRow(row: DBPatientRow): PatientItem {
+  const multiAssignedWorkerIds = parseJsonColumn<Array<string | number>>(row.assigned_worker_ids)
+    ?.map((id) => String(id))
+    .filter((id) => id.length > 0) || [];
+  const assignedWorkerIds =
+    multiAssignedWorkerIds.length > 0
+      ? [...new Set(multiAssignedWorkerIds)]
+      : row.assigned_worker_id != null
+      ? [String(row.assigned_worker_id)]
+      : [];
+  const assignedWorkerNames = row.assigned_worker_names_concat
+    ? row.assigned_worker_names_concat
+        .split("||")
+        .map((name) => name.trim())
+        .filter((name) => name.length > 0)
+    : row.assigned_worker_name
+    ? [row.assigned_worker_name]
+    : [];
+
   return {
     id: String(row.id),
     request_id: row.request_id != null ? String(row.request_id) : null,
     assigned_worker_id:
       row.assigned_worker_id != null ? String(row.assigned_worker_id) : null,
+    assigned_worker_ids: assignedWorkerIds,
     assigned_worker_name: row.assigned_worker_name || null,
+    assigned_worker_names: [...new Set(assignedWorkerNames)],
     access_token: row.access_token || null,
     full_name: row.full_name,
     phone: row.phone,
@@ -94,8 +125,14 @@ export async function loadPatients(
   let sql = `SELECT ${PATIENT_COLUMNS} ${PATIENT_FROM}`;
 
   if (scopeToWorkerId) {
-    sql += ` WHERE p.assigned_worker_id = ?`;
-    params.push(scopeToWorkerId);
+    sql += ` WHERE (
+      p.assigned_worker_id = ?
+      OR FIND_IN_SET(
+        ?,
+        REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', '')
+      ) > 0
+    )`;
+    params.push(scopeToWorkerId, scopeToWorkerId);
   }
 
   sql += ` ORDER BY p.created_at DESC LIMIT ?`;

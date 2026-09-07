@@ -2,13 +2,14 @@
 
 import { useMemo, useState } from "react";
 import type { PatientItem } from "@/lib/types/patient";
-import type { WorkerItem, WorkerStatus } from "@/lib/types/worker";
+import type { WorkerItem } from "@/lib/types/worker";
 import { AdminShell } from "./AdminShell";
 import { WorkersTable } from "./WorkersTable";
 import { Container } from "@/components/ui/Container";
 import { StethoscopeIcon, UserIcon, UsersIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { panelTranslations } from "@/lib/i18n/panel-translations";
+import { normalizePatientsFromApi, normalizeWorkersFromApi } from "@/lib/api-normalizers";
 
 interface WorkersDashboardProps {
   initialWorkers: WorkerItem[];
@@ -18,7 +19,6 @@ interface WorkersDashboardProps {
   isAdmin?: boolean;
   databaseAvailable: boolean;
   pendingRequestsCount?: number;
-  overdueFollowupsCount?: number;
 }
 
 export function WorkersDashboard({
@@ -29,7 +29,6 @@ export function WorkersDashboard({
   isAdmin,
   databaseAvailable,
   pendingRequestsCount = 0,
-  overdueFollowupsCount = 0,
 }: WorkersDashboardProps) {
   const { lang } = useLanguage();
   const t = panelTranslations[lang].workersDashboard;
@@ -46,48 +45,13 @@ export function WorkersDashboard({
       ]);
 
       if (wRes.ok) {
-        const wData = (await wRes.json()) as { workers?: Record<string, unknown>[] };
-        if (Array.isArray(wData.workers)) {
-          const formatted: WorkerItem[] = wData.workers.map((w) => ({
-            id: String(w.id),
-            full_name: String(w.full_name || ""),
-            email: String(w.email || ""),
-            phone: typeof w.phone === "string" ? w.phone : null,
-            role: String(w.role || "Healthcare Worker"),
-            department: typeof w.department === "string" ? w.department : null,
-            status: (w.status as WorkerStatus) || "active",
-            assigned_patients_count: Number(w.assigned_patients_count || 0),
-            created_at: typeof w.created_at === "string" ? w.created_at : new Date().toISOString(),
-          }));
-          setWorkers(formatted);
-        }
+        const wData = (await wRes.json()) as { workers?: unknown };
+        setWorkers(normalizeWorkersFromApi(wData.workers));
       }
 
       if (pRes.ok) {
-        const pData = (await pRes.json()) as { patients?: Record<string, unknown>[] };
-        if (Array.isArray(pData.patients)) {
-          const formatted: PatientItem[] = pData.patients.map((p) => ({
-            id: String(p.id),
-            request_id: p.request_id ? String(p.request_id) : null,
-            assigned_worker_id: p.assigned_worker_id ? String(p.assigned_worker_id) : null,
-            assigned_worker_name: typeof p.assigned_worker_name === "string" ? p.assigned_worker_name : null,
-            full_name: String(p.full_name || ""),
-            phone: String(p.phone || ""),
-            email: String(p.email || ""),
-            date_of_birth: typeof p.date_of_birth === "string" ? p.date_of_birth : null,
-            gender: typeof p.gender === "string" ? p.gender : null,
-            address: typeof p.address === "string" ? p.address : null,
-            condition_notes: typeof p.condition_notes === "string" ? p.condition_notes : null,
-            medical_history: typeof p.medical_history === "string" ? p.medical_history : null,
-            treatment_plan: typeof p.treatment_plan === "object" ? (p.treatment_plan as PatientItem["treatment_plan"]) : null,
-            followups: Array.isArray(p.followups) ? (p.followups as PatientItem["followups"]) : [],
-            photos: Array.isArray(p.photos) ? (p.photos as PatientItem["photos"]) : [],
-            status: (p.status as PatientItem["status"]) || "active",
-            priority: (p.priority as PatientItem["priority"]) || "moderate",
-            created_at: typeof p.created_at === "string" ? p.created_at : new Date().toISOString(),
-          }));
-          setPatients(formatted);
-        }
+        const pData = (await pRes.json()) as { patients?: unknown };
+        setPatients(normalizePatientsFromApi(pData.patients));
       }
     } catch (err) {
       console.error("Failed to refresh workers data", err);
@@ -124,7 +88,6 @@ export function WorkersDashboard({
       userRole={userRole}
       isAdmin={isAdmin}
       pendingCount={pendingRequestsCount}
-      overdueCount={overdueFollowupsCount}
     >
       <main id="main-content" className="min-h-screen py-8 sm:py-10">
         <Container>

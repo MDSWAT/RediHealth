@@ -14,11 +14,19 @@ function cleanupExpired(now: number) {
 }
 
 export function getClientIp(request: Request): string {
+  if (process.env.REDIHEALTH_TRUST_PROXY_HEADERS !== "true") {
+    return "unknown";
+  }
+
   const forwardedFor = request.headers.get("x-forwarded-for");
   if (forwardedFor) {
-    return forwardedFor.split(",")[0].trim();
+    const firstForwardedIp = forwardedFor.split(",")[0].trim();
+    if (firstForwardedIp) {
+      return firstForwardedIp;
+    }
   }
-  return request.headers.get("x-real-ip") || "unknown";
+
+  return request.headers.get("x-real-ip")?.trim() || "unknown";
 }
 
 export type RateLimitResult = {

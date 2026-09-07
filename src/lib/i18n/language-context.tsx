@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, type ReactNode } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { translations, type Lang, type Translations } from "@/lib/i18n/translations";
 import { DEFAULT_LANG, LOCALE_COOKIE, getLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 
@@ -14,7 +14,6 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const router = useRouter();
   const pathname = usePathname();
   const lang = getLangFromPathname(pathname) ?? DEFAULT_LANG;
 
@@ -26,7 +25,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLang = (next: Lang) => {
     if (next === lang) return;
-    router.push(withLangPrefix(pathname, next));
+    window.location.assign(withLangPrefix(pathname, next));
   };
 
   const value = useMemo(() => ({ lang, setLang, t: translations[lang] }), [lang]);

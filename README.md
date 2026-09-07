@@ -27,6 +27,7 @@ Required variables:
 | --- | --- |
 | `AUTH_SECRET` | Session/JWT secret. Generate with `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"` |
 | `AUTH_TRUST_HOST` | Set to `true` for local/dev |
+| `REDIHEALTH_TRUST_PROXY_HEADERS` | Set to `true` only behind a trusted reverse proxy/CDN that overwrites `X-Forwarded-For`/`X-Real-IP` |
 | `AUTH_URL` | Base URL of the app (e.g. `http://localhost:3000`) |
 | `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` | MySQL connection details |
 | `DATABASE_URL` | Full MySQL connection string (used by the app) |
@@ -35,6 +36,8 @@ Required variables:
 | `LLMSRELAY_API_KEY` or `ANTHROPIC_API_KEY` | API key for the Health Assistant's symptom intake and prescription-image transcription |
 | `LLMSRELAY_MODEL` / `ANTHROPIC_MODEL` | Optional model override; defaults to `claude-haiku-4.5` |
 | `ANTHROPIC_BASE_URL` | Optional Anthropic-compatible endpoint override; defaults to `https://api.llmsrelay.com` |
+| `LLMSRELAY_TRANSCRIPTION_MODEL` | Optional server transcription model for follow-up meeting audio (default `whisper-1`) |
+| `LLMSRELAY_BASE_URL` | Optional base URL used by server transcription fallback (default `https://api.llmsrelay.com`) |
 
 ## 3. Set up the database
 
@@ -44,18 +47,27 @@ For a fresh MySQL install, run only the base schema:
 mysql -h <host> -u <user> -p <database> < database/schema.sql
 ```
 
-If you are upgrading an existing deployment created before the base schema file included all current tables/columns, apply migrations **in order**:
+Before running consolidated migrations on an existing database, run the precheck:
 
 ```bash
-mysql -h <host> -u <user> -p <database> < database/migrations/001_create_medical_help_requests.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/002_add_status_and_notes.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/003_create_patients.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/004_add_treatment_plan_followups_photos.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/005_add_patient_priority.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/006_create_workers_and_assignments.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/007_add_patient_access_token.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/008_create_mediator_cases.sql
+mysql -h <host> -u <user> -p <database> < database/migration-precheck.sql
 ```
+
+Use the precheck result as a guide:
+- If most core tables are missing, use consolidated migrations.
+- If schema is partially present and duplicate checks return rows, run `database/cleanup-patient-duplicates.sql` before patient uniqueness constraints.
+- If schema already matches current columns/indexes, skip migrations.
+
+If you are using consolidated staged migrations, apply them **in order**:
+
+```bash
+mysql -h <host> -u <user> -p <database> < database/migrations/001_requests_and_staff.sql
+mysql -h <host> -u <user> -p <database> < database/migrations/002_patients_identity_and_portal.sql
+mysql -h <host> -u <user> -p <database> < database/migrations/003_mediator_cases.sql
+mysql -h <host> -u <user> -p <database> < database/migrations/004_meetings_and_followups.sql
+```
+
+For existing databases that already contain patient duplicates by email/phone, run [database/cleanup-patient-duplicates.sql](database/cleanup-patient-duplicates.sql) before adding unique constraints.
 
 To grant a user administrator access to the panel, see [`database/set-administrator.sql`](database/set-administrator.sql).
 
@@ -66,6 +78,8 @@ npm run dev
 ```
 
 The app runs at [http://localhost:3000](http://localhost:3000).
+
+Note for phone transcription: live browser speech recognition often needs HTTPS on real mobile devices. Use `npm run tunnel` and open the HTTPS URL when testing transcription on phone.
 
 ## Other scripts
 

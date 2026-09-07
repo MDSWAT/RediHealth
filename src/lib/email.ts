@@ -183,6 +183,10 @@ export async function sendPatientPortalLinkEmail({
   const baseUrl =
     process.env.APP_URL || process.env.AUTH_URL || "http://localhost:3000";
   const portalUrl = `${baseUrl.replace(/\/$/, "")}/patient-portal/${accessToken}`;
+  const configuredTtlDays = Number(process.env.PATIENT_PORTAL_TOKEN_TTL_DAYS || 30);
+  const tokenTtlDays = Number.isFinite(configuredTtlDays) && configuredTtlDays > 0
+    ? configuredTtlDays
+    : 30;
 
   const textContent = `Hello ${recipientName},
 
@@ -191,6 +195,8 @@ Your RediHealth Patient Profile & Portal Access is ready!
 You can view your medical profile, condition notes, care instructions, report new symptoms, add photos, and request follow-ups by visiting your personal link:
 
 ${portalUrl}
+
+This link expires in ${tokenTtlDays} day${tokenTtlDays === 1 ? "" : "s"}.
 
 ${conditionNotes ? `Condition / Symptoms Summary:\n${conditionNotes}\n` : ""}
 ${treatmentPlan?.diagnosis ? `Diagnosis:\n${treatmentPlan.diagnosis}\n` : ""}
@@ -218,6 +224,8 @@ The RediHealth Team`;
   <div style="text-align: center; margin: 28px 0;">
     <a href="${portalUrl}" style="background-color: #2563eb; color: #ffffff; padding: 12px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 15px; display: inline-block;">Access Your Patient Portal</a>
   </div>
+
+  <p style="font-size: 14px; line-height: 1.6; color: #475569; margin: 0 0 16px 0;">This secure link expires in <strong>${tokenTtlDays} day${tokenTtlDays === 1 ? "" : "s"}</strong>.</p>
 
   <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin: 24px 0;">
     <h3 style="margin-top: 0; font-size: 15px; font-weight: 600; color: #1e293b; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px;">Portal Features Available to You:</h3>
@@ -250,6 +258,57 @@ The RediHealth Team`;
     return true;
   } catch (error) {
     console.error("Failed to send patient portal link email:", error);
+    return false;
+  }
+}
+
+export async function sendMeetingInvitationEmail({
+  name,
+  email,
+  title,
+  meetingUrl,
+}: {
+  name: string;
+  email: string;
+  title: string;
+  meetingUrl: string;
+}) {
+  if (!isEmailConfigured()) {
+    console.warn("Hostinger Mail API is not configured. Skipping meeting invitation email.");
+    return false;
+  }
+
+  const recipientName = name.trim() || "Patient";
+  const textContent = `Hello ${recipientName},
+
+You have been invited to a RediHealth video appointment: ${title}.
+
+Join the meeting at:
+${meetingUrl}
+
+If you need help joining, please contact your healthcare team.
+
+Best regards,
+The RediHealth Team`;
+  const htmlContent = `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1a2233;">
+  <h1 style="font-size: 22px; color: #cc3846;">RediHealth</h1>
+  <p>Hello <strong>${escapeHtml(recipientName)}</strong>,</p>
+  <p>You have been invited to a video appointment: <strong>${escapeHtml(title)}</strong>.</p>
+  <p style="margin: 28px 0;"><a href="${escapeHtml(meetingUrl)}" style="display: inline-block; background: #cc3846; color: #ffffff; padding: 12px 20px; text-decoration: none; font-weight: 600;">Join video appointment</a></p>
+  <p>If you need help joining, please contact your healthcare team.</p>
+  <p>Best regards,<br /><strong>The RediHealth Team</strong></p>
+</div>`;
+
+  try {
+    await sendEmail({
+      to: email,
+      subject: `Invitation: ${title} — RediHealth`,
+      text: textContent,
+      html: htmlContent,
+    });
+    return true;
+  } catch (error) {
+    console.error("Failed to send meeting invitation email:", error);
     return false;
   }
 }

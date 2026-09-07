@@ -18,6 +18,9 @@ type DBMedicalHelpRequest = RowDataPacket & {
   email: string;
   description: string;
   status?: string;
+  status_updated_by_name?: string | null;
+  status_updated_by_email?: string | null;
+  status_updated_at?: Date | string;
   priority?: string;
   internal_notes?: string | null;
   created_at: Date | string;
@@ -31,6 +34,13 @@ export default async function PanelPage() {
     redirect(await withRequestLangPrefix("/sign-in"));
   }
 
+  const userEmail = session.user.email || "staff account";
+  const workerContext = await getUserWorkerContext(userEmail);
+
+  if (!workerContext.workerId) {
+    redirect(await withRequestLangPrefix("/sign-in"));
+  }
+
   let requests: DBMedicalHelpRequest[] = [];
   let databaseAvailable = hasDatabaseConnectionConfig();
 
@@ -40,6 +50,7 @@ export default async function PanelPage() {
       const [rows] = await db.query<DBMedicalHelpRequest[]>(
         `SELECT id, full_name, phone, email, description, 
                 COALESCE(status, 'pending') AS status, 
+                status_updated_by_name, status_updated_by_email, status_updated_at,
                 COALESCE(priority, 'normal') AS priority, 
                 internal_notes, created_at, updated_at
          FROM medical_help_requests
@@ -60,6 +71,14 @@ export default async function PanelPage() {
     email: r.email,
     description: r.description,
     status: (r.status as MedicalHelpRequestItem["status"]) || "pending",
+    status_updated_by_name: r.status_updated_by_name || null,
+    status_updated_by_email: r.status_updated_by_email || null,
+    status_updated_at:
+      r.status_updated_at instanceof Date
+        ? r.status_updated_at.toISOString()
+        : r.status_updated_at
+        ? String(r.status_updated_at)
+        : undefined,
     priority: (r.priority as MedicalHelpRequestItem["priority"]) || "normal",
     internal_notes: r.internal_notes || null,
     created_at:
@@ -73,9 +92,6 @@ export default async function PanelPage() {
         ? String(r.updated_at)
         : undefined,
   }));
-
-  const userEmail = session.user.email || "staff account";
-  const workerContext = await getUserWorkerContext(userEmail);
 
   return (
     <WorkerDashboard

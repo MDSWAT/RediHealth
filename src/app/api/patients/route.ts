@@ -20,9 +20,35 @@ import { getUserWorkerContext } from "@/lib/worker-auth";
 import { sendPatientPortalLinkEmail } from "@/lib/email";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const DEFAULT_PORTAL_TOKEN_TTL_DAYS = 30;
 
 function text(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function isDuplicateEntryError(error: unknown): boolean {
+  const dbError = error as { code?: string; errno?: number; sqlState?: string; message?: string };
+  return (
+    dbError.code === "ER_DUP_ENTRY"
+    || dbError.errno === 1062
+    || dbError.sqlState === "23000"
+    || /duplicate entry/i.test(dbError.message || "")
+  );
+}
+
+function normalizeWorkerIds(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return [...new Set(value
+    .map((item) => (item == null ? "" : String(item).trim()))
+    .filter((item) => item.length > 0))];
+}
+
+function resolvePortalTokenExpiryDate() {
+  const configuredTtlDays = Number(process.env.PATIENT_PORTAL_TOKEN_TTL_DAYS || DEFAULT_PORTAL_TOKEN_TTL_DAYS);
+  const ttlDays = Number.isFinite(configuredTtlDays) && configuredTtlDays > 0
+    ? configuredTtlDays
+    : DEFAULT_PORTAL_TOKEN_TTL_DAYS;
+  return new Date(Date.now() + ttlDays * 24 * 60 * 60 * 1000);
 }
 
 export async function GET(request: Request) {
@@ -33,6 +59,9 @@ export async function GET(request: Request) {
   }
 
   const workerContext = await getUserWorkerContext(session.user.email);
+  if (!workerContext.workerId) {
+    return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
+  }
 
   const { searchParams } = new URL(request.url);
   const statusParam = searchParams.get("status");
@@ -48,14 +77,14 @@ export async function GET(request: Request) {
 
     // Non-admins may only ever see patients assigned to them.
     if (!workerContext.isAdmin && workerContext.workerId) {
-      conditions.push("p.assigned_worker_id = ?");
-      params.push(workerContext.workerId);
+      conditions.push("(p.assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0)");
+      params.push(workerContext.workerId, workerContext.workerId);
     } else if (workerIdParam && workerIdParam !== "all") {
       if (workerIdParam === "unassigned") {
-        conditions.push("p.assigned_worker_id IS NULL");
+        conditions.push("(p.assigned_worker_id IS NULL AND (p.assigned_worker_ids IS NULL OR JSON_LENGTH(p.assigned_worker_ids) = 0))");
       } else {
-        conditions.push("p.assigned_worker_id = ?");
-        params.push(workerIdParam);
+        conditions.push("(p.assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0)");
+        params.push(workerIdParam, workerIdParam);
       }
     }
 
@@ -101,6 +130,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
   }
 
+  const workerContext = await getUserWorkerContext(session.user.email);
+  if (!workerContext.workerId) {
+    return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
+  }
+
   let body: CreatePatientPayload;
 
   try {
@@ -118,8 +152,12 @@ export async function POST(request: Request) {
   const conditionNotes = text(body.condition_notes);
   const medicalHistory = text(body.medical_history);
   const requestId = body.request_id ? String(body.request_id) : null;
-  const assignedWorkerId = body.assigned_worker_id ? String(body.assigned_worker_id) : null;
+  const requestedAssignedWorkerIds = normalizeWorkerIds(body.assigned_worker_ids);
+  const requestedAssignedWorkerId = body.assigned_worker_id
+    ? String(body.assigned_worker_id)
+    : requestedAssignedWorkerIds[0] || null;
   const accessToken = body.access_token || randomUUID().replace(/-/g, "");
+  const accessTokenExpiresAt = resolvePortalTokenExpiryDate();
 
   if (!fullName || !phone || !emailPattern.test(email)) {
     return NextResponse.json(
@@ -147,22 +185,43 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid patient priority." }, { status: 400 });
   }
 
+  if (!workerContext.isAdmin) {
+    const assignsOtherWorker =
+      (requestedAssignedWorkerId && requestedAssignedWorkerId !== workerContext.workerId) ||
+      requestedAssignedWorkerIds.some((workerId) => workerId !== workerContext.workerId);
+
+    if (assignsOtherWorker) {
+      return NextResponse.json(
+        { error: "Only administrators can assign patients to other workers." },
+        { status: 403 },
+      );
+    }
+  }
+
   const status: PatientStatus = body.status ?? "active";
   const priority: PatientPriority = body.priority ?? "moderate";
   const treatmentPlan = stringifyJsonColumn(body.treatment_plan);
   const followups = stringifyJsonColumn(body.followups);
   const photos = stringifyJsonColumn(body.photos);
+  const assignedWorkerIds = workerContext.isAdmin
+    ? requestedAssignedWorkerIds
+    : [workerContext.workerId];
+  const assignedWorkerId = workerContext.isAdmin
+    ? requestedAssignedWorkerId
+    : workerContext.workerId;
+  let createdPatientId: number | undefined;
 
   try {
     const db = getDatabase();
     const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO patients (request_id, assigned_worker_id, access_token, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-       RETURNING id`,
+      `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         requestId,
-        assignedWorkerId,
+        assignedWorkerId ?? workerContext.workerId,
+        stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
         accessToken,
+        accessTokenExpiresAt,
         fullName,
         phone,
         email,
@@ -178,7 +237,22 @@ export async function POST(request: Request) {
         priority,
       ],
     );
+    createdPatientId = result.insertId;
+  } catch (error) {
+    if (isDuplicateEntryError(error)) {
+      return NextResponse.json(
+        { error: "A patient with this email or portal token already exists." },
+        { status: 409 },
+      );
+    }
+    console.error("Failed to create patient profile", error);
+    return NextResponse.json(
+      { error: "Could not create patient profile. Ensure migrations 003–007 are applied." },
+      { status: 503 },
+    );
+  }
 
+  try {
     await sendPatientPortalLinkEmail({
       name: fullName,
       email,
@@ -186,18 +260,24 @@ export async function POST(request: Request) {
       treatmentPlan: parseJsonColumn<TreatmentPlan>(treatmentPlan),
       conditionNotes,
     });
-
+  } catch (error) {
+    console.error("Failed to send patient portal link email", error);
     return NextResponse.json(
-      { success: true, id: result.insertId, access_token: accessToken },
+      {
+        success: true,
+        id: createdPatientId,
+        access_token: accessToken,
+        email_sent: false,
+        warning: "Patient was created, but portal email could not be sent.",
+      },
       { status: 201 },
     );
-  } catch (error) {
-    console.error("Failed to create patient profile", error);
-    return NextResponse.json(
-      { error: "Could not create patient profile. Ensure migrations 003–007 are applied." },
-      { status: 503 },
-    );
   }
+
+  return NextResponse.json(
+    { success: true, id: createdPatientId, access_token: accessToken, email_sent: true },
+    { status: 201 },
+  );
 }
 
 export async function PATCH(request: Request) {
@@ -205,6 +285,11 @@ export async function PATCH(request: Request) {
 
   if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
+  const workerContext = await getUserWorkerContext(session.user.email);
+  if (!workerContext.workerId) {
+    return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
   }
 
   let body: Partial<CreatePatientPayload> & { id?: string | number };
@@ -231,16 +316,37 @@ export async function PATCH(request: Request) {
   const params: unknown[] = [];
 
   if (body.full_name !== undefined) {
+    const nextFullName = text(body.full_name);
+    if (!nextFullName) {
+      return NextResponse.json({ error: "Patient name cannot be empty." }, { status: 400 });
+    }
+    if (nextFullName.length > 200) {
+      return NextResponse.json({ error: "Patient name is too long." }, { status: 400 });
+    }
     updates.push("full_name = ?");
-    params.push(text(body.full_name));
+    params.push(nextFullName);
   }
   if (body.phone !== undefined) {
+    const nextPhone = text(body.phone);
+    if (!nextPhone) {
+      return NextResponse.json({ error: "Patient phone cannot be empty." }, { status: 400 });
+    }
+    if (nextPhone.length > 50) {
+      return NextResponse.json({ error: "Patient phone is too long." }, { status: 400 });
+    }
     updates.push("phone = ?");
-    params.push(text(body.phone));
+    params.push(nextPhone);
   }
   if (body.email !== undefined) {
+    const nextEmail = text(body.email).toLowerCase();
+    if (!emailPattern.test(nextEmail)) {
+      return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
+    }
+    if (nextEmail.length > 320) {
+      return NextResponse.json({ error: "Patient email is too long." }, { status: 400 });
+    }
     updates.push("email = ?");
-    params.push(text(body.email).toLowerCase());
+    params.push(nextEmail);
   }
   if (body.date_of_birth !== undefined) {
     updates.push("date_of_birth = ?");
@@ -251,8 +357,12 @@ export async function PATCH(request: Request) {
     params.push(text(body.gender) || null);
   }
   if (body.address !== undefined) {
+    const nextAddress = text(body.address);
+    if (nextAddress.length > 500) {
+      return NextResponse.json({ error: "Patient address is too long." }, { status: 400 });
+    }
     updates.push("address = ?");
-    params.push(text(body.address) || null);
+    params.push(nextAddress || null);
   }
   if (body.condition_notes !== undefined) {
     updates.push("condition_notes = ?");
@@ -283,8 +393,32 @@ export async function PATCH(request: Request) {
     params.push(body.priority);
   }
   if (body.assigned_worker_id !== undefined) {
+    if (!workerContext.isAdmin) {
+      return NextResponse.json(
+        { error: "Only administrators can change patient assignments." },
+        { status: 403 },
+      );
+    }
+
+    const nextAssignedWorkerId = body.assigned_worker_id ? String(body.assigned_worker_id) : null;
     updates.push("assigned_worker_id = ?");
-    params.push(body.assigned_worker_id ? String(body.assigned_worker_id) : null);
+    params.push(nextAssignedWorkerId);
+    updates.push("assigned_worker_ids = ?");
+    params.push(stringifyJsonColumn(nextAssignedWorkerId ? [nextAssignedWorkerId] : null));
+  }
+  if (body.assigned_worker_ids !== undefined) {
+    if (!workerContext.isAdmin) {
+      return NextResponse.json(
+        { error: "Only administrators can change patient assignments." },
+        { status: 403 },
+      );
+    }
+
+    const nextAssignedWorkerIds = normalizeWorkerIds(body.assigned_worker_ids);
+    updates.push("assigned_worker_ids = ?");
+    params.push(stringifyJsonColumn(nextAssignedWorkerIds.length > 0 ? nextAssignedWorkerIds : null));
+    updates.push("assigned_worker_id = ?");
+    params.push(nextAssignedWorkerIds[0] || null);
   }
 
   if (updates.length === 0) {
@@ -293,18 +427,31 @@ export async function PATCH(request: Request) {
 
   params.push(id);
 
+  // Non-admins may only update patients assigned to them.
+  let whereClause = "id = ?";
+  if (!workerContext.isAdmin) {
+    whereClause += " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0)";
+    params.push(workerContext.workerId, workerContext.workerId);
+  }
+
   try {
     const [result] = await getDatabase().query<ResultSetHeader>(
-      `UPDATE patients SET ${updates.join(", ")} WHERE id = ?`,
+      `UPDATE patients SET ${updates.join(", ")} WHERE ${whereClause}`,
       params,
     );
 
     if (result.affectedRows === 0) {
-      return NextResponse.json({ error: "Patient not found." }, { status: 404 });
+      return NextResponse.json({ error: "Patient not found or not assigned to you." }, { status: 404 });
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
+    if (isDuplicateEntryError(error)) {
+      return NextResponse.json(
+        { error: "A patient with this email already exists." },
+        { status: 409 },
+      );
+    }
     console.error("Failed to update patient profile", error);
     return NextResponse.json(
       { error: "Could not update patient profile." },
@@ -318,6 +465,11 @@ export async function DELETE(request: Request) {
 
   if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
+  const workerContext = await getUserWorkerContext(session.user.email);
+  if (!workerContext.workerId) {
+    return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
   }
 
   const { searchParams } = new URL(request.url);
@@ -339,14 +491,22 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Patient ID is required." }, { status: 400 });
   }
 
+  // Non-admins may only delete patients assigned to them.
+  let whereClause = "id = ?";
+  const deleteParams: unknown[] = [id];
+  if (!workerContext.isAdmin) {
+    whereClause += " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0)";
+    deleteParams.push(workerContext.workerId, workerContext.workerId);
+  }
+
   try {
     const [result] = await getDatabase().query<ResultSetHeader>(
-      `DELETE FROM patients WHERE id = ?`,
-      [id],
+      `DELETE FROM patients WHERE ${whereClause}`,
+      deleteParams,
     );
 
     if (result.affectedRows === 0) {
-      return NextResponse.json({ error: "Patient not found." }, { status: 404 });
+      return NextResponse.json({ error: "Patient not found or not assigned to you." }, { status: 404 });
     }
 
     return NextResponse.json({ success: true });

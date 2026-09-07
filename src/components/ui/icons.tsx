@@ -340,6 +340,14 @@ export function BellIcon(props: IconProps) {
   );
 }
 
+export function PinIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="M9 3h6v2l-1.2 3L17 11v1h-4v7.5L12 21l-1-1.5V12H7v-1l3.2-3L9 5Z" />
+    </svg>
+  );
+}
+
 export function CopyIcon(props: IconProps) {
   return (
     <svg {...baseProps(props)}>
@@ -436,6 +444,16 @@ export function CalendarIcon(props: IconProps) {
       <line x1="16" x2="16" y1="2" y2="6" />
       <line x1="8" x2="8" y1="2" y2="6" />
       <line x1="3" x2="21" y1="10" y2="10" />
+    </svg>
+  );
+}
+
+export function CameraIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <rect x="3" y="7" width="13" height="10" rx="2" />
+      <path d="M16 10.5 21 8v8l-5-2.5" />
+      <circle cx="9.5" cy="12" r="2.2" />
     </svg>
   );
 }

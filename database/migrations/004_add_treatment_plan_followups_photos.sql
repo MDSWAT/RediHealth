@@ -1,4 +1,0 @@
-ALTER TABLE patients
-  ADD COLUMN treatment_plan TEXT NULL,
-  ADD COLUMN followups LONGTEXT NULL,
-  ADD COLUMN photos LONGTEXT NULL;

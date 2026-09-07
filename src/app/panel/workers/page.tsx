@@ -8,7 +8,6 @@ import { countPendingRequests } from "@/lib/data/requests";
 import { hasDatabaseConnectionConfig } from "@/lib/database";
 import type { PatientItem } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
-import { getFollowupState } from "@/lib/patient-helpers";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
@@ -48,12 +47,6 @@ export default async function WorkersPage() {
     }
   }
 
-  const overdueFollowupsCount = patients.reduce(
-    (total, patient) =>
-      getFollowupState(patient.followups).state === "overdue" ? total + 1 : total,
-    0,
-  );
-
   return (
     <WorkersDashboard
       initialWorkers={workers}
@@ -63,7 +56,6 @@ export default async function WorkersPage() {
       isAdmin={workerContext.isAdmin}
       databaseAvailable={databaseAvailable}
       pendingRequestsCount={pendingRequestsCount}
-      overdueFollowupsCount={overdueFollowupsCount}
     />
   );
 }

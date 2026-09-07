@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
   isPatientPriority,
+  validateFollowupCompletionInput,
   validateFollowupInput,
   validatePhotoInput,
 } from "@/lib/validation";
@@ -13,16 +15,34 @@ import type {
 } from "@/lib/types/patient";
 
 const MAX_CONDITION_NOTES_LENGTH = 4_000;
+const TOKEN_PATTERN = /^[A-Za-z0-9_-]{16,128}$/;
+
+function getTokenOrReject(token: string): string | null {
+  const trimmed = token.trim();
+  return TOKEN_PATTERN.test(trimmed) ? trimmed : null;
+}
 
 interface Params {
   params: Promise<{ token: string }>;
 }
 
 export async function GET(request: Request, { params }: Params) {
-  const { token } = await params;
+  const { token: rawToken } = await params;
+  const token = getTokenOrReject(rawToken);
 
   if (!token) {
     return NextResponse.json({ error: "Invalid token." }, { status: 400 });
+  }
+
+  const rateLimit = checkRateLimit(`patient-portal:get:${token}:${getClientIp(request)}`, {
+    limit: 40,
+    windowMs: 60_000,
+  });
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait a moment and try again." },
+      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
+    );
   }
 
   try {
@@ -38,6 +58,7 @@ export async function GET(request: Request, { params }: Params) {
        FROM patients p
        LEFT JOIN workers w ON w.id = p.assigned_worker_id
        WHERE p.access_token = ?
+         AND (p.access_token_expires_at IS NULL OR p.access_token_expires_at > UTC_TIMESTAMP())
        LIMIT 1`,
       [token],
     );
@@ -62,10 +83,22 @@ export async function GET(request: Request, { params }: Params) {
 }
 
 export async function PATCH(request: Request, { params }: Params) {
-  const { token } = await params;
+  const { token: rawToken } = await params;
+  const token = getTokenOrReject(rawToken);
 
   if (!token) {
     return NextResponse.json({ error: "Invalid token." }, { status: 400 });
+  }
+
+  const rateLimit = checkRateLimit(`patient-portal:patch:${token}:${getClientIp(request)}`, {
+    limit: 20,
+    windowMs: 60_000,
+  });
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait a moment and try again." },
+      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
+    );
   }
 
   let body: {
@@ -73,6 +106,7 @@ export async function PATCH(request: Request, { params }: Params) {
     priority?: unknown;
     new_followup?: unknown;
     new_photo?: unknown;
+    complete_followup?: unknown;
   };
 
   try {
@@ -84,7 +118,11 @@ export async function PATCH(request: Request, { params }: Params) {
   try {
     const db = getDatabase();
     const [rows] = await db.query<RowDataPacket[]>(
-      `SELECT id, condition_notes, priority, followups, photos FROM patients WHERE access_token = ? LIMIT 1`,
+      `SELECT id, condition_notes, priority, followups, photos
+       FROM patients
+       WHERE access_token = ?
+         AND (access_token_expires_at IS NULL OR access_token_expires_at > UTC_TIMESTAMP())
+       LIMIT 1`,
       [token],
     );
 
@@ -138,6 +176,39 @@ export async function PATCH(request: Request, { params }: Params) {
         parseJsonColumn<PatientPhoto[]>(patient.photos) || [];
       updates.push("photos = ?");
       updateParams.push(stringifyJsonColumn([result.value, ...existingPhotos]));
+    }
+
+    if (body.complete_followup !== undefined) {
+      const result = validateFollowupCompletionInput(body.complete_followup);
+      if (!result.ok) {
+        return NextResponse.json({ error: result.error }, { status: 400 });
+      }
+
+      const existingFollowups = parseJsonColumn<FollowupItem[]>(patient.followups) || [];
+      const followupIndex = existingFollowups.findIndex(
+        (item) => item.id === result.value.followup_id,
+      );
+
+      if (followupIndex < 0) {
+        return NextResponse.json({ error: "Follow-up not found." }, { status: 404 });
+      }
+
+      const current = existingFollowups[followupIndex];
+      const completionPhotos = result.value.completion_photos;
+      const merged: FollowupItem = {
+        ...current,
+        status: "completed",
+        completion_notes: result.value.completion_notes || current.completion_notes,
+        completed_at: result.value.completed_at,
+        completion_photos:
+          completionPhotos.length > 0
+            ? completionPhotos
+            : current.completion_photos || [],
+      };
+
+      existingFollowups[followupIndex] = merged;
+      updates.push("followups = ?");
+      updateParams.push(stringifyJsonColumn(existingFollowups));
     }
 
     if (updates.length === 0) {

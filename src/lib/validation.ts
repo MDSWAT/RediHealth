@@ -140,3 +140,63 @@ export function validatePhotoInput(
     },
   };
 }
+
+export type FollowupCompletionInput = {
+  followup_id: string;
+  completion_notes?: string;
+  completion_photos: PatientPhoto[];
+  completed_at: string;
+};
+
+export function validateFollowupCompletionInput(
+  value: unknown,
+): ValidationResult<FollowupCompletionInput> {
+  if (!isRecord(value)) {
+    return { ok: false, error: "Follow-up completion must be an object." };
+  }
+
+  const followupId =
+    typeof value.followup_id === "string" ? value.followup_id.trim() : "";
+  if (!followupId) {
+    return { ok: false, error: "Follow-up id is required." };
+  }
+
+  const completionNotes =
+    typeof value.completion_notes === "string"
+      ? value.completion_notes.trim()
+      : undefined;
+  if (completionNotes && completionNotes.length > 2_000) {
+    return { ok: false, error: "Completion notes are too long (max 2000 chars)." };
+  }
+
+  const photoInputs = Array.isArray(value.completion_photos)
+    ? value.completion_photos
+    : [];
+  if (photoInputs.length > 8) {
+    return { ok: false, error: "Too many completion photos (max 8)." };
+  }
+
+  const photos: PatientPhoto[] = [];
+  for (const input of photoInputs) {
+    const validated = validatePhotoInput(input);
+    if (!validated.ok) {
+      return { ok: false, error: validated.error };
+    }
+    photos.push(validated.value);
+  }
+
+  const completedAt =
+    typeof value.completed_at === "string" && ISO_DATE_PATTERN.test(value.completed_at.slice(0, 10))
+      ? value.completed_at.slice(0, 10)
+      : new Date().toISOString().slice(0, 10);
+
+  return {
+    ok: true,
+    value: {
+      followup_id: followupId,
+      completion_notes: completionNotes || undefined,
+      completion_photos: photos,
+      completed_at: completedAt,
+    },
+  };
+}

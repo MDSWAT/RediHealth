@@ -4,9 +4,12 @@ CREATE TABLE IF NOT EXISTS medical_help_requests (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   full_name VARCHAR(200),
   phone VARCHAR(50) NOT NULL,
-  email VARCHAR(320) NOT NULL,
+  email VARCHAR(320) NULL,
   description TEXT NOT NULL,
   status ENUM('pending', 'in_progress', 'resolved', 'archived') NOT NULL DEFAULT 'pending',
+  status_updated_by_name VARCHAR(200) NULL,
+  status_updated_by_email VARCHAR(320) NULL,
+  status_updated_at TIMESTAMP NULL,
   priority ENUM('normal', 'urgent') NOT NULL DEFAULT 'normal',
   internal_notes TEXT,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -32,7 +35,9 @@ CREATE TABLE IF NOT EXISTS patients (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   request_id BIGINT,
   assigned_worker_id BIGINT NULL,
+  assigned_worker_ids JSON NULL,
   access_token VARCHAR(64) NULL,
+  access_token_expires_at DATETIME NULL,
   full_name VARCHAR(200) NOT NULL,
   phone VARCHAR(50) NOT NULL,
   email VARCHAR(320) NOT NULL,
@@ -42,17 +47,18 @@ CREATE TABLE IF NOT EXISTS patients (
   condition_notes TEXT NULL,
   medical_history TEXT NULL,
   treatment_plan TEXT NULL,
-  followups TEXT NULL,
-  photos TEXT NULL,
+  followups LONGTEXT NULL,
+  photos LONGTEXT NULL,
   status ENUM('active', 'inactive', 'archived') NOT NULL DEFAULT 'active',
   priority ENUM('critical', 'high', 'moderate', 'low') NOT NULL DEFAULT 'moderate',
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   INDEX patients_created_at_idx (created_at),
-  INDEX patients_email_idx (email),
+  UNIQUE INDEX patients_email_unique_idx (email),
   INDEX patients_priority_idx (priority),
   INDEX patients_assigned_worker_id_idx (assigned_worker_id),
-  INDEX patients_access_token_idx (access_token),
+  UNIQUE INDEX patients_access_token_unique_idx (access_token),
+  INDEX patients_access_token_expires_idx (access_token_expires_at),
   CONSTRAINT patients_assigned_worker_fk
     FOREIGN KEY (assigned_worker_id) REFERENCES workers(id)
 );
@@ -62,6 +68,7 @@ CREATE TABLE IF NOT EXISTS mediator_cases (
   mediator_worker_id BIGINT NOT NULL,
   county VARCHAR(100) NOT NULL,
   full_name VARCHAR(200) NOT NULL,
+  date_of_birth VARCHAR(50) NULL,
   phone VARCHAR(50) NULL,
   address VARCHAR(500) NULL,
   care_category VARCHAR(100) NOT NULL,
@@ -76,4 +83,21 @@ CREATE TABLE IF NOT EXISTS mediator_cases (
   INDEX mediator_cases_target_date_idx (target_date),
   CONSTRAINT mediator_cases_worker_fk
     FOREIGN KEY (mediator_worker_id) REFERENCES workers(id)
+);
+
+CREATE TABLE IF NOT EXISTS meetings (
+  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  organizer_worker_id BIGINT NOT NULL,
+  patient_id BIGINT NULL,
+  followup_id VARCHAR(64) NULL,
+  title VARCHAR(200) NOT NULL,
+  meeting_url VARCHAR(2048) NOT NULL,
+  transcript LONGTEXT NULL,
+  notes TEXT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX meetings_created_at_idx (created_at),
+  INDEX meetings_patient_followup_idx (patient_id, followup_id),
+  CONSTRAINT meetings_organizer_worker_fk
+    FOREIGN KEY (organizer_worker_id) REFERENCES workers(id)
 );

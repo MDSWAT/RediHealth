@@ -288,7 +288,7 @@ export function WorkersTable({
             const assignedCount = patients.filter((p) => p.assigned_worker_id === worker.id).length;
 
             return (
-              <article key={worker.id} className="rounded-lg border border-border bg-card p-4 shadow-sm">
+              <article key={`${worker.id}-${worker.email}`} className="rounded-lg border border-border bg-card p-4 shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-semibold text-foreground">{worker.full_name}</p>
