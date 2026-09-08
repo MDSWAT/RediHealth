@@ -544,10 +544,13 @@ function DemoMediatorForm() {
 }
 
 const demoMeetingReasons = ["General check-in", "Follow-up on treatment", "New symptoms", "Prescription question", "Other"];
+const demoMeetingHours = Array.from({ length: 24 }, (_, hour) => String(hour).padStart(2, "0"));
+const demoMeetingMinutes = ["00", "15", "30", "45"];
 
 function DemoBookMeetingSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [meeting, setMeeting] = useState<{ name: string; date: string; time: string; url: string } | null>(null);
+  const [meetingNotes, setMeetingNotes] = useState("");
 
   // Demo only: simulates booking a meeting locally, nothing is sent to a server or stored anywhere.
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -556,7 +559,9 @@ function DemoBookMeetingSection() {
     const data = new FormData(form);
     const name = String(data.get("fullName") || "").trim() || "Guest";
     const date = String(data.get("date") || "");
-    const time = String(data.get("time") || "");
+    const hour = String(data.get("hour") || "");
+    const minute = String(data.get("minute") || "");
+    const time = hour && minute ? `${hour}:${minute}` : "";
 
     setIsSubmitting(true);
     setTimeout(() => {
@@ -591,7 +596,7 @@ function DemoBookMeetingSection() {
             <div className="rounded-lg bg-muted/40 p-3 text-xs text-foreground">
               <p><span className="font-semibold">Name:</span> {meeting.name}</p>
               {meeting.date ? <p><span className="font-semibold">Date:</span> {meeting.date}</p> : null}
-              {meeting.time ? <p><span className="font-semibold">Time:</span> {meeting.time}</p> : null}
+              {meeting.time ? <p><span className="font-semibold">Time:</span> {meeting.time} (24h)</p> : null}
               <a
                 href={meeting.url}
                 target="_blank"
@@ -608,9 +613,23 @@ function DemoBookMeetingSection() {
               allow="camera; microphone; fullscreen; display-capture; autoplay"
               className="h-[26rem] w-full rounded-lg border border-border bg-muted"
             />
+            <label className="block text-xs font-semibold text-foreground">
+              Meeting notes
+              <textarea
+                value={meetingNotes}
+                onChange={(event) => setMeetingNotes(event.target.value)}
+                rows={3}
+                maxLength={2000}
+                placeholder="Jot down notes while the meeting is happening..."
+                className="mt-1.5 block w-full rounded-lg border border-border bg-background p-2.5 text-xs font-normal text-foreground"
+              />
+            </label>
             <button
               type="button"
-              onClick={() => setMeeting(null)}
+              onClick={() => {
+                setMeeting(null);
+                setMeetingNotes("");
+              }}
               className="rounded-lg border border-border px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
             >
               Book another meeting
@@ -637,8 +656,20 @@ function DemoBookMeetingSection() {
                 <input type="date" name="date" className="mt-1.5 block h-9 w-full rounded-lg border border-border bg-background px-2.5 text-xs font-normal text-foreground" />
               </label>
               <label className="text-xs font-semibold text-foreground">
-                Preferred time
-                <input type="time" name="time" className="mt-1.5 block h-9 w-full rounded-lg border border-border bg-background px-2.5 text-xs font-normal text-foreground" />
+                Preferred time (24h)
+                <div className="mt-1.5 flex items-center gap-1.5">
+                  <select name="hour" defaultValue="09" aria-label="Hour" className="h-9 w-full rounded-lg border border-border bg-background px-2.5 text-xs font-normal text-foreground">
+                    {demoMeetingHours.map((hour) => (
+                      <option key={hour} value={hour}>{hour}</option>
+                    ))}
+                  </select>
+                  <span className="text-xs font-semibold text-muted-foreground">:</span>
+                  <select name="minute" defaultValue="00" aria-label="Minute" className="h-9 w-full rounded-lg border border-border bg-background px-2.5 text-xs font-normal text-foreground">
+                    {demoMeetingMinutes.map((minute) => (
+                      <option key={minute} value={minute}>{minute}</option>
+                    ))}
+                  </select>
+                </div>
               </label>
             </div>
             <button type="submit" disabled={isSubmitting} className="w-full rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60 sm:w-auto">
