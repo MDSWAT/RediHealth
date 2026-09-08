@@ -2,7 +2,7 @@
 
 import { useState, type CSSProperties, type ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
-import { StethoscopeIcon, FileTextIcon, UsersIcon, ClockIcon, CalendarIcon, CheckCircleIcon } from "@/components/ui/icons";
+import { StethoscopeIcon, FileTextIcon, UsersIcon, ClockIcon, CalendarIcon, CheckCircleIcon, GlobeIcon } from "@/components/ui/icons";
 
 const userMessageDelay = 0.3;
 const typingStartDelay = userMessageDelay + 0.5;
@@ -349,19 +349,35 @@ function DemoFollowupsTab() {
   );
 }
 
+// Demo only: meet.jit.si is a free public video service, so these rooms are real and joinable, but ephemeral and unrelated to any patient data.
+function createDemoMeetingRoomUrl() {
+  return `https://meet.jit.si/redihealth-demo-${Math.random().toString(36).slice(2, 10)}`;
+}
+
 const demoCalendarDays = [
-  { label: "Mon", date: 1, followups: [] as string[] },
-  { label: "Tue", date: 2, followups: ["Physical therapy review — Elena Marinescu"] },
+  { label: "Mon", date: 1, followups: [] as { id: string; title: string }[] },
+  { label: "Tue", date: 2, followups: [{ id: "c1", title: "Physical therapy review — Elena Marinescu" }] },
   { label: "Wed", date: 3, followups: [] },
-  { label: "Thu", date: 4, followups: ["Blood sugar check-up — Vasile Constantin"] },
+  { label: "Thu", date: 4, followups: [{ id: "c2", title: "Blood sugar check-up — Vasile Constantin" }] },
   { label: "Fri", date: 5, followups: [] },
   { label: "Sat", date: 6, followups: [] },
-  { label: "Sun", date: 7, followups: ["Cardiology check-up — Gheorghe Radu"] },
+  { label: "Sun", date: 7, followups: [{ id: "c3", title: "Cardiology check-up — Gheorghe Radu" }] },
 ];
 
 function DemoCalendarTab() {
   const [selectedDate, setSelectedDate] = useState(2);
+  const [creatingMeetingId, setCreatingMeetingId] = useState<string | null>(null);
+  const [meetingUrls, setMeetingUrls] = useState<Record<string, string>>({});
   const selectedDay = demoCalendarDays.find((day) => day.date === selectedDate) ?? demoCalendarDays[0];
+
+  // Demo only: creates a real, joinable video room, nothing is sent to a server or stored anywhere.
+  function handleCreateMeeting(id: string) {
+    setCreatingMeetingId(id);
+    setTimeout(() => {
+      setMeetingUrls((current) => ({ ...current, [id]: createDemoMeetingRoomUrl() }));
+      setCreatingMeetingId(null);
+    }, 500);
+  }
 
   return (
     <div>
@@ -388,10 +404,37 @@ function DemoCalendarTab() {
 
       <div className="mt-3 rounded-lg border border-border bg-card p-3">
         {selectedDay.followups.length > 0 ? (
-          <ul className="space-y-1.5">
-            {selectedDay.followups.map((followup) => (
-              <li key={followup} className="text-xs text-foreground">{followup}</li>
-            ))}
+          <ul className="space-y-2">
+            {selectedDay.followups.map((followup) => {
+              const meetingUrl = meetingUrls[followup.id];
+              const isCreating = creatingMeetingId === followup.id;
+              return (
+                <li key={followup.id} className="flex items-center justify-between gap-2 rounded-lg bg-muted/40 px-2.5 py-2">
+                  <span className="text-xs text-foreground">{followup.title}</span>
+                  {meetingUrl ? (
+                    <a
+                      href={meetingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex flex-none items-center gap-1.5 rounded-lg border border-primary/30 bg-primary-soft/40 px-2.5 py-1.5 text-[0.65rem] font-semibold text-primary hover:bg-primary-soft"
+                    >
+                      <GlobeIcon className="h-3.5 w-3.5" />
+                      Join meeting
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => handleCreateMeeting(followup.id)}
+                      disabled={isCreating}
+                      className="inline-flex flex-none items-center gap-1.5 rounded-lg border border-primary/30 bg-primary-soft/40 px-2.5 py-1.5 text-[0.65rem] font-semibold text-primary hover:bg-primary-soft disabled:opacity-60"
+                    >
+                      <GlobeIcon className="h-3.5 w-3.5" />
+                      {isCreating ? "Creating..." : "Schedule meeting"}
+                    </button>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <p className="text-xs text-muted-foreground">No follow-ups scheduled for this day.</p>
@@ -497,6 +540,114 @@ function DemoMediatorForm() {
         {isSubmitting ? "Saving case..." : "Save case"}
       </button>
     </form>
+  );
+}
+
+const demoMeetingReasons = ["General check-in", "Follow-up on treatment", "New symptoms", "Prescription question", "Other"];
+
+function DemoBookMeetingSection() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [meeting, setMeeting] = useState<{ name: string; date: string; time: string; url: string } | null>(null);
+
+  // Demo only: simulates booking a meeting locally, nothing is sent to a server or stored anywhere.
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("fullName") || "").trim() || "Guest";
+    const date = String(data.get("date") || "");
+    const time = String(data.get("time") || "");
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setMeeting({
+        name,
+        date,
+        time,
+        url: createDemoMeetingRoomUrl(),
+      });
+      setIsSubmitting(false);
+      form.reset();
+    }, 500);
+  }
+
+  return (
+    <div className="mx-auto mt-14 max-w-2xl">
+      <h2 className="text-center text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        Book a Meeting
+      </h2>
+      <p className="mx-auto mt-2 max-w-xl text-center text-xs text-muted-foreground">
+        Try scheduling a video meeting with a healthcare worker — this is a standalone demo and is not connected to a
+        database.
+      </p>
+
+      <div className="mt-4 rounded-xl border border-border bg-card p-4 sm:p-6">
+        {meeting ? (
+          <div className="space-y-3">
+            <p className="flex items-center justify-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs font-medium text-emerald-700" role="status">
+              <CheckCircleIcon className="h-4 w-4 flex-none" />
+              Meeting booked (demo only — nothing was actually scheduled).
+            </p>
+            <div className="rounded-lg bg-muted/40 p-3 text-xs text-foreground">
+              <p><span className="font-semibold">Name:</span> {meeting.name}</p>
+              {meeting.date ? <p><span className="font-semibold">Date:</span> {meeting.date}</p> : null}
+              {meeting.time ? <p><span className="font-semibold">Time:</span> {meeting.time}</p> : null}
+              <a
+                href={meeting.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1.5 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+              >
+                <GlobeIcon className="h-3.5 w-3.5" />
+                Open in a new tab
+              </a>
+            </div>
+            <iframe
+              src={`${meeting.url}#config.prejoinPageEnabled=false`}
+              title="Video meeting"
+              allow="camera; microphone; fullscreen; display-capture; autoplay"
+              className="h-[26rem] w-full rounded-lg border border-border bg-muted"
+            />
+            <button
+              type="button"
+              onClick={() => setMeeting(null)}
+              className="rounded-lg border border-border px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
+            >
+              Book another meeting
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <label className="text-xs font-semibold text-foreground">
+                Full name
+                <input name="fullName" maxLength={200} placeholder="e.g. Elena Radu" className="mt-1.5 block h-9 w-full rounded-lg border border-border bg-background px-2.5 text-xs font-normal text-foreground" />
+              </label>
+              <label className="text-xs font-semibold text-foreground">
+                Reason for visit
+                <select name="reason" defaultValue="" className="mt-1.5 block h-9 w-full rounded-lg border border-border bg-background px-2.5 text-xs font-normal text-foreground">
+                  <option value="" disabled>Select a reason</option>
+                  {demoMeetingReasons.map((reason) => (
+                    <option key={reason} value={reason}>{reason}</option>
+                  ))}
+                </select>
+              </label>
+              <label className="text-xs font-semibold text-foreground">
+                Preferred date
+                <input type="date" name="date" className="mt-1.5 block h-9 w-full rounded-lg border border-border bg-background px-2.5 text-xs font-normal text-foreground" />
+              </label>
+              <label className="text-xs font-semibold text-foreground">
+                Preferred time
+                <input type="time" name="time" className="mt-1.5 block h-9 w-full rounded-lg border border-border bg-background px-2.5 text-xs font-normal text-foreground" />
+              </label>
+            </div>
+            <button type="submit" disabled={isSubmitting} className="w-full rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60 sm:w-auto">
+              {isSubmitting ? "Booking meeting..." : "Book meeting"}
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -648,6 +799,8 @@ export function DemoPageContent() {
             <PanelWorkspaceShowcase />
           </div>
         </div>
+
+        <DemoBookMeetingSection />
       </Container>
     </section>
   );
