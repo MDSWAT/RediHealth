@@ -73,6 +73,17 @@ function isDuplicateEntryError(error: unknown): boolean {
   );
 }
 
+function getMissingInsertColumn(error: unknown): string | null {
+  const dbError = error as { code?: string; errno?: number; sqlMessage?: string; message?: string };
+  if (dbError.code !== "ER_BAD_FIELD_ERROR" && dbError.errno !== 1054) {
+    return null;
+  }
+
+  const text = dbError.sqlMessage || dbError.message || "";
+  const match = text.match(/Unknown column '([^']+)' in 'INSERT INTO'/i);
+  return match?.[1] || null;
+}
+
 function parseWorkerIds(value: unknown): string[] {
   if (!value) return [];
   if (Array.isArray(value)) {
@@ -205,12 +216,42 @@ export async function POST(request: Request) {
     );
 
     const existingPatient = existingPatientRows[0] || null;
-    const [caseResult] = await connection.query<ResultSetHeader>(
-      `INSERT INTO mediator_cases
-        (mediator_worker_id, county, full_name, date_of_birth, phone, address, care_category, urgency, barriers, target_date, notes)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [worker.workerId, county, fullName, dateOfBirth || null, phone || null, address || null, careCategory, urgency, JSON.stringify(barriers), targetDate || null, notes || null],
-    );
+    const optionalLegacyColumns = new Set(["date_of_birth", "phone", "address"]);
+    const excludedColumns = new Set<string>();
+    let caseResult: ResultSetHeader;
+
+    while (true) {
+      const columns: Array<{ name: string; value: unknown }> = [
+        { name: "mediator_worker_id", value: worker.workerId },
+        { name: "county", value: county },
+        { name: "full_name", value: fullName },
+        { name: "date_of_birth", value: dateOfBirth || null },
+        { name: "phone", value: phone || null },
+        { name: "address", value: address || null },
+        { name: "care_category", value: careCategory },
+        { name: "urgency", value: urgency },
+        { name: "barriers", value: JSON.stringify(barriers) },
+        { name: "target_date", value: targetDate || null },
+        { name: "notes", value: notes || null },
+      ].filter((column) => !excludedColumns.has(column.name));
+
+      try {
+        const [insertResult] = await connection.query<ResultSetHeader>(
+          `INSERT INTO mediator_cases (${columns.map((column) => column.name).join(", ")})
+           VALUES (${columns.map(() => "?").join(", ")})`,
+          columns.map((column) => column.value),
+        );
+        caseResult = insertResult;
+        break;
+      } catch (insertError) {
+        const missingColumn = getMissingInsertColumn(insertError);
+        if (missingColumn && optionalLegacyColumns.has(missingColumn) && !excludedColumns.has(missingColumn)) {
+          excludedColumns.add(missingColumn);
+          continue;
+        }
+        throw insertError;
+      }
+    }
 
     let patientId = "";
 
@@ -295,7 +336,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: schemaError
-          ? "The mediator case database table is not ready. Apply migration 008, including the phone and address columns."
+          ? "The mediator case database table is not ready. Apply migration 003, including date_of_birth, phone, and address columns."
           : "Could not save the case. Please try again.",
       },
       { status: 503 },

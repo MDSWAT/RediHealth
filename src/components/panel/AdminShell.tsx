@@ -29,6 +29,8 @@ export function AdminShell({
   const { lang } = useLanguage();
   const t = panelTranslations[lang].adminShell;
   const normalizedPathname = stripLangFromPathname(pathname);
+  const normalizedUserRole = userRole.trim().toLowerCase();
+  const isMediatorOnly = normalizedUserRole === "mediator" && !isAdmin;
   const [menuOpen, setMenuOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [hydrated, setHydrated] = useState(false);
@@ -71,10 +73,13 @@ export function AdminShell({
   ];
 
   const visibleItems = adminItems.filter((item) => {
+    if (isMediatorOnly && ["/panel/patients", "/panel/calendar", "/panel/meet"].includes(item.href)) {
+      return false;
+    }
     if (item.href === "/panel/workers" && !isAdmin) {
       return false;
     }
-    if (item.href === "/panel/mediator" && userRole.trim().toLowerCase() !== "mediator" && !isAdmin) {
+    if (item.href === "/panel/mediator" && normalizedUserRole !== "mediator" && !isAdmin) {
       return false;
     }
     return true;

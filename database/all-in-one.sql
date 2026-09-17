@@ -125,6 +125,12 @@ PREPARE patients_access_token_expires_idx_stmt FROM @patients_access_token_expir
 EXECUTE patients_access_token_expires_idx_stmt;
 DEALLOCATE PREPARE patients_access_token_expires_idx_stmt;
 
+-- Repair older installations where mediator_cases was created before intake fields were added.
+ALTER TABLE mediator_cases
+  ADD COLUMN IF NOT EXISTS date_of_birth VARCHAR(50) NULL AFTER full_name,
+  ADD COLUMN IF NOT EXISTS phone VARCHAR(50) NULL AFTER date_of_birth,
+  ADD COLUMN IF NOT EXISTS address VARCHAR(500) NULL AFTER phone;
+
 -- Optional: promote a specific worker account to Administrator.
 -- Update these values before running the optional admin promotion statement.
 SET @admin_full_name = 'Administrator';
