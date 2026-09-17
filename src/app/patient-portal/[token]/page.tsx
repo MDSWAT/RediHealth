@@ -33,6 +33,14 @@ type DBPatient = RowDataPacket & {
 
 const TOKEN_PATTERN = /^[A-Za-z0-9_-]{16,128}$/;
 
+function isMissingAccessTokenExpiryColumnError(error: unknown): boolean {
+  const dbError = error as { code?: string; errno?: number; sqlMessage?: string; message?: string };
+  return (
+    (dbError.code === "ER_BAD_FIELD_ERROR" || dbError.errno === 1054)
+    && /access_token_expires_at/i.test(dbError.sqlMessage || dbError.message || "")
+  );
+}
+
 function parseJson<T>(val: unknown): T | null {
   if (!val) return null;
   if (typeof val === "object") return val as T;
@@ -63,20 +71,44 @@ export default async function PatientPortalPage({ params }: PageProps) {
   if (hasDatabaseConnectionConfig()) {
     try {
       const db = getDatabase();
-      const [rows] = await db.query<DBPatient[]>(
-        `SELECT p.id, p.request_id, p.assigned_worker_id, w.full_name AS assigned_worker_name,
-                p.access_token, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, 
-                p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
-                COALESCE(p.status, 'active') AS status, 
-                COALESCE(p.priority, 'moderate') AS priority, 
-                p.created_at, p.updated_at
-         FROM patients p
-         LEFT JOIN workers w ON w.id = p.assigned_worker_id
-         WHERE p.access_token = ?
-           AND (p.access_token_expires_at IS NULL OR p.access_token_expires_at > UTC_TIMESTAMP())
-         LIMIT 1`,
-        [token],
-      );
+      let rows: DBPatient[] = [];
+
+      try {
+        const [primaryRows] = await db.query<DBPatient[]>(
+          `SELECT p.id, p.request_id, p.assigned_worker_id, w.full_name AS assigned_worker_name,
+                  p.access_token, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, 
+                  p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
+                  COALESCE(p.status, 'active') AS status, 
+                  COALESCE(p.priority, 'moderate') AS priority, 
+                  p.created_at, p.updated_at
+           FROM patients p
+           LEFT JOIN workers w ON w.id = p.assigned_worker_id
+           WHERE p.access_token = ?
+             AND (p.access_token_expires_at IS NULL OR p.access_token_expires_at > UTC_TIMESTAMP())
+           LIMIT 1`,
+          [token],
+        );
+        rows = primaryRows;
+      } catch (queryError) {
+        if (!isMissingAccessTokenExpiryColumnError(queryError)) {
+          throw queryError;
+        }
+
+        const [fallbackRows] = await db.query<DBPatient[]>(
+          `SELECT p.id, p.request_id, p.assigned_worker_id, w.full_name AS assigned_worker_name,
+                  p.access_token, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, 
+                  p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
+                  COALESCE(p.status, 'active') AS status, 
+                  COALESCE(p.priority, 'moderate') AS priority, 
+                  p.created_at, p.updated_at
+           FROM patients p
+           LEFT JOIN workers w ON w.id = p.assigned_worker_id
+           WHERE p.access_token = ?
+           LIMIT 1`,
+          [token],
+        );
+        rows = fallbackRows;
+      }
 
       if (rows.length > 0) {
         patientRecord = rows[0];

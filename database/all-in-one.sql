@@ -103,6 +103,28 @@ CREATE TABLE IF NOT EXISTS meetings (
     FOREIGN KEY (organizer_worker_id) REFERENCES workers(id)
 );
 
+-- Repair older installations where the patients table was created before portal expiry support.
+ALTER TABLE patients
+  ADD COLUMN IF NOT EXISTS access_token_expires_at DATETIME NULL;
+
+SET @patients_access_token_expires_idx_exists = (
+  SELECT COUNT(*)
+  FROM information_schema.statistics
+  WHERE table_schema = DATABASE()
+    AND table_name = 'patients'
+    AND index_name = 'patients_access_token_expires_idx'
+);
+
+SET @patients_access_token_expires_idx_sql = IF(
+  @patients_access_token_expires_idx_exists = 0,
+  'CREATE INDEX patients_access_token_expires_idx ON patients (access_token_expires_at)',
+  'SELECT 1'
+);
+
+PREPARE patients_access_token_expires_idx_stmt FROM @patients_access_token_expires_idx_sql;
+EXECUTE patients_access_token_expires_idx_stmt;
+DEALLOCATE PREPARE patients_access_token_expires_idx_stmt;
+
 -- Optional: promote a specific worker account to Administrator.
 -- Update these values before running the optional admin promotion statement.
 SET @admin_full_name = 'Administrator';

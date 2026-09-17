@@ -235,23 +235,23 @@ export function CreatePatientModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-2 backdrop-blur-sm sm:items-center sm:p-4">
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-1.5 backdrop-blur-sm sm:items-center sm:p-4">
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={dialogTitleId}
-        className="relative my-4 w-full max-w-4xl rounded-2xl border border-border bg-card p-4 shadow-xl sm:my-0 sm:p-6"
+        className="relative my-4 flex min-h-0 w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-xl max-h-[calc(100dvh-0.75rem)] sm:my-0 sm:max-h-[calc(100dvh-2rem)] sm:p-6"
       >
-        <div className="flex items-center justify-between border-b border-border pb-4">
-          <div className="flex items-center gap-2">
+        <div className="flex items-start justify-between gap-3 border-b border-border pb-4 sm:items-center">
+          <div className="flex min-w-0 items-start gap-2 sm:items-center">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-soft text-primary">
               <UserIcon className="h-5 w-5" />
             </span>
-            <div>
-              <h2 id={dialogTitleId} className="text-lg font-bold text-foreground">
+            <div className="min-w-0">
+              <h2 id={dialogTitleId} className="text-base font-bold text-foreground sm:text-lg">
                 {isEditing ? t.titleEdit : t.titleCreate}
               </h2>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground break-words">
                 {request
                   ? t.convertedFrom(String(request.id))
                   : t.subtitleCreate}
@@ -292,7 +292,7 @@ export function CreatePatientModal({
           </div>
         ) : null}
 
-        <form onSubmit={handleSubmit} className="mt-5 space-y-5">
+        <form onSubmit={handleSubmit} className="mt-5 flex-1 space-y-5 overflow-y-auto pr-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">

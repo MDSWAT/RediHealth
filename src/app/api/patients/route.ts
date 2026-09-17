@@ -36,6 +36,14 @@ function isDuplicateEntryError(error: unknown): boolean {
   );
 }
 
+function isMissingAccessTokenExpiryColumnError(error: unknown): boolean {
+  const dbError = error as { code?: string; errno?: number; sqlMessage?: string; message?: string };
+  return (
+    (dbError.code === "ER_BAD_FIELD_ERROR" || dbError.errno === 1054)
+    && /access_token_expires_at/i.test(dbError.sqlMessage || dbError.message || "")
+  );
+}
+
 function normalizeWorkerIds(value: unknown): string[] {
   if (!Array.isArray(value)) return [];
   return [...new Set(value
@@ -213,31 +221,65 @@ export async function POST(request: Request) {
 
   try {
     const db = getDatabase();
-    const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        requestId,
-        assignedWorkerId ?? workerContext.workerId,
-        stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
-        accessToken,
-        accessTokenExpiresAt,
-        fullName,
-        phone,
-        email,
-        dateOfBirth || null,
-        gender || null,
-        address || null,
-        conditionNotes || null,
-        medicalHistory || null,
-        treatmentPlan,
-        followups,
-        photos,
-        status,
-        priority,
-      ],
-    );
-    createdPatientId = result.insertId;
+    const baseInsertParams = [
+      requestId,
+      assignedWorkerId ?? workerContext.workerId,
+      stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
+      accessToken,
+      fullName,
+      phone,
+      email,
+      dateOfBirth || null,
+      gender || null,
+      address || null,
+      conditionNotes || null,
+      medicalHistory || null,
+      treatmentPlan,
+      followups,
+      photos,
+      status,
+      priority,
+    ];
+
+    try {
+      const [result] = await db.query<ResultSetHeader>(
+        `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          requestId,
+          assignedWorkerId ?? workerContext.workerId,
+          stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
+          accessToken,
+          accessTokenExpiresAt,
+          fullName,
+          phone,
+          email,
+          dateOfBirth || null,
+          gender || null,
+          address || null,
+          conditionNotes || null,
+          medicalHistory || null,
+          treatmentPlan,
+          followups,
+          photos,
+          status,
+          priority,
+        ],
+      );
+      createdPatientId = result.insertId;
+    } catch (insertError) {
+      if (!isMissingAccessTokenExpiryColumnError(insertError)) {
+        throw insertError;
+      }
+
+      // Backward compatibility for databases that predate the token-expiry column.
+      const [fallbackResult] = await db.query<ResultSetHeader>(
+        `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        baseInsertParams,
+      );
+      createdPatientId = fallbackResult.insertId;
+    }
   } catch (error) {
     if (isDuplicateEntryError(error)) {
       return NextResponse.json(
@@ -247,7 +289,7 @@ export async function POST(request: Request) {
     }
     console.error("Failed to create patient profile", error);
     return NextResponse.json(
-      { error: "Could not create patient profile. Ensure migrations 003–007 are applied." },
+      { error: "Could not create patient profile. Ensure migrations 001–004 are applied." },
       { status: 503 },
     );
   }
