@@ -73,7 +73,7 @@ export function AdminShell({
   ];
 
   const visibleItems = adminItems.filter((item) => {
-    if (isMediatorOnly && ["/panel/patients", "/panel/calendar", "/panel/meet"].includes(item.href)) {
+    if (isMediatorOnly && ["/panel/calendar", "/panel/meet"].includes(item.href)) {
       return false;
     }
     if (item.href === "/panel/workers" && !isAdmin) {
