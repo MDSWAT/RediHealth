@@ -78,6 +78,24 @@ export function AdminShell({
 
   const userInitial = (userEmail || "U").charAt(0).toUpperCase();
 
+  // Extra links for the mobile "More" sheet, excluding anything already in the bottom tab bar.
+  const sheetQuickLinks = [
+    ...(isAdmin ? [{ label: t.workers, href: "/panel/workers", icon: StethoscopeIcon }] : []),
+    ...(role === "mediator" || isAdmin
+      ? [{ label: t.mediator, href: "/panel/mediator", icon: FileTextIcon }]
+      : []),
+  ].filter((link) => !mobilePrimaryTabs.some((tab) => tab.href === link.href));
+
+  const handleSignOut = () => {
+    const target = withLangPrefix("/sign-in", lang);
+    void signOut({ redirect: false })
+      .catch(() => undefined)
+      .finally(() => {
+        // Hard same-origin navigation so sign-out does not depend on AUTH_URL.
+        window.location.assign(target);
+      });
+  };
+
   return (
     <div className="care-panel min-h-screen bg-slate-50/50">
       <a
@@ -153,36 +171,30 @@ export function AdminShell({
 
             {/* Quick Navigation Links */}
             <div className="mt-4 space-y-1">
-              <p className="px-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-2">
-                {copy.quickActions}
-              </p>
+              {sheetQuickLinks.length > 0 ? (
+                <>
+                  <p className="px-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-2">
+                    {copy.quickActions}
+                  </p>
 
-              {isAdmin ? (
-                <Link
-                  href={withLangPrefix("/panel/workers", lang)}
-                  onClick={() => setMobileAccountSheetOpen(false)}
-                  className="flex min-h-11 items-center justify-between rounded-xl px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
-                >
-                  <span className="flex items-center gap-2.5">
-                    <StethoscopeIcon className="h-5 w-5 text-primary" />
-                    <span>{t.workers}</span>
-                  </span>
-                  <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
-                </Link>
-              ) : null}
-
-              {(role === "mediator" || isAdmin) ? (
-                <Link
-                  href={withLangPrefix("/panel/mediator", lang)}
-                  onClick={() => setMobileAccountSheetOpen(false)}
-                  className="flex min-h-11 items-center justify-between rounded-xl px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
-                >
-                  <span className="flex items-center gap-2.5">
-                    <FileTextIcon className="h-5 w-5 text-primary" />
-                    <span>{t.mediator}</span>
-                  </span>
-                  <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
-                </Link>
+                  {sheetQuickLinks.map((link) => {
+                    const Icon = link.icon;
+                    return (
+                      <Link
+                        key={link.href}
+                        href={withLangPrefix(link.href, lang)}
+                        onClick={() => setMobileAccountSheetOpen(false)}
+                        className="flex min-h-11 items-center justify-between rounded-xl px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <Icon className="h-5 w-5 text-primary" />
+                          <span>{link.label}</span>
+                        </span>
+                        <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
+                      </Link>
+                    );
+                  })}
+                </>
               ) : null}
 
               <Link
@@ -201,7 +213,7 @@ export function AdminShell({
             <div className="mt-5 border-t border-border pt-4">
               <button
                 type="button"
-                onClick={() => void signOut({ callbackUrl: withLangPrefix("/sign-in", lang) })}
+                onClick={handleSignOut}
                 className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-red-50 text-sm font-bold text-primary transition-colors hover:bg-red-100 active:scale-[0.99]"
               >
                 <LogOutIcon className="h-4 w-4" />
@@ -284,7 +296,7 @@ export function AdminShell({
               </Link>
               <button
                 type="button"
-                onClick={() => void signOut({ callbackUrl: withLangPrefix("/sign-in", lang) })}
+                onClick={handleSignOut}
                 className="flex h-9 w-full items-center justify-between rounded-lg px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-red-50 hover:text-primary"
               >
                 <span>{t.signOut}</span>

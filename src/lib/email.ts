@@ -165,6 +165,8 @@ export type PatientPortalEmailParams = {
     care_instructions?: string;
   } | null;
   conditionNotes?: string | null;
+  /** Origin of the incoming request (e.g. https://example.com). Used as a fallback when APP_URL is not set. */
+  baseUrl?: string;
 };
 
 export async function sendPatientPortalLinkEmail({
@@ -173,6 +175,7 @@ export async function sendPatientPortalLinkEmail({
   accessToken,
   treatmentPlan,
   conditionNotes,
+  baseUrl: requestBaseUrl,
 }: PatientPortalEmailParams) {
   if (!isEmailConfigured()) {
     console.warn("Hostinger Mail API is not configured. Skipping patient portal email.");
@@ -181,7 +184,10 @@ export async function sendPatientPortalLinkEmail({
 
   const recipientName = name.trim() || "Valued Customer";
   const baseUrl =
-    process.env.APP_URL || process.env.AUTH_URL || "http://localhost:3000";
+    process.env.APP_URL ||
+    requestBaseUrl ||
+    process.env.AUTH_URL ||
+    "http://localhost:3000";
   const portalUrl = `${baseUrl.replace(/\/$/, "")}/patient-portal/${accessToken}`;
   const configuredTtlDays = Number(process.env.PATIENT_PORTAL_TOKEN_TTL_DAYS || 30);
   const tokenTtlDays = Number.isFinite(configuredTtlDays) && configuredTtlDays > 0

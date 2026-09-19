@@ -73,6 +73,7 @@ export async function POST(request: Request) {
       accessToken: newAccessToken,
       treatmentPlan: parseJsonColumn<TreatmentPlan>(patient.treatment_plan),
       conditionNotes: patient.condition_notes,
+      baseUrl: new URL(request.url).origin,
     });
 
     return NextResponse.json({ success: true });

@@ -37,12 +37,15 @@ export default async function PanelPage() {
   const userEmail = session.user.email || "staff account";
   const workerContext = await getUserWorkerContext(userEmail);
 
-  if (!workerContext.workerId) {
+  // Only bounce to sign-in when the user is genuinely not a worker.
+  // On a transient database error, render the dashboard's unavailable state instead.
+  if (!workerContext.workerId && !workerContext.lookupFailed) {
     redirect(await withRequestLangPrefix("/sign-in"));
   }
 
   let requests: DBMedicalHelpRequest[] = [];
-  let databaseAvailable = hasDatabaseConnectionConfig();
+  let databaseAvailable =
+    hasDatabaseConnectionConfig() && !workerContext.lookupFailed;
 
   if (databaseAvailable) {
     try {

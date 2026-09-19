@@ -5,6 +5,8 @@ export type UserWorkerContext = {
   workerName: string | null;
   role: string;
   isAdmin: boolean;
+  /** True when the worker lookup itself failed (e.g. database error), as opposed to the user simply not being a worker. */
+  lookupFailed: boolean;
 };
 
 type DBWorkerAuthRow = RowDataPacket & {
@@ -23,6 +25,7 @@ export async function getUserWorkerContext(
       workerName: null,
       role: "Unauthorized",
       isAdmin: false,
+      lookupFailed: false,
     };
   }
 
@@ -44,6 +47,7 @@ export async function getUserWorkerContext(
         workerName: null,
         role: "Unauthorized",
         isAdmin: false,
+        lookupFailed: false,
       };
     }
 
@@ -56,6 +60,7 @@ export async function getUserWorkerContext(
       workerName: worker.full_name,
       role: worker.role,
       isAdmin,
+      lookupFailed: false,
     };
   } catch {
     return {
@@ -63,6 +68,7 @@ export async function getUserWorkerContext(
       workerName: null,
       role: "Unauthorized",
       isAdmin: false,
+      lookupFailed: true,
     };
   }
 }

@@ -328,6 +328,7 @@ export async function POST(request: Request) {
       accessToken,
       treatmentPlan: parseJsonColumn<TreatmentPlan>(treatmentPlan),
       conditionNotes,
+      baseUrl: new URL(request.url).origin,
     });
   } catch (error) {
     console.error("Failed to send patient portal link email", error);
