@@ -205,15 +205,17 @@ export function AssignPatientsModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="relative w-full max-w-xl rounded-2xl border border-border bg-card p-6 shadow-xl max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-xs p-0 sm:p-4">
+      <div className="app-sheet-slide-up relative w-full max-w-xl rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] flex flex-col care-panel-bottom-bar">
+        {/* Mobile bottom sheet drag handle */}
+        <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
         <div className="flex items-center justify-between border-b border-border pb-4">
-          <div className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-soft text-primary">
+          <div className="flex items-center gap-2.5">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-soft text-primary">
               <StethoscopeIcon className="h-5 w-5" />
             </span>
             <div>
-              <h2 className="text-lg font-bold text-foreground">
+              <h2 className="text-base font-bold text-foreground sm:text-lg">
                 {t.title}
               </h2>
               <p className="text-xs text-muted-foreground">
@@ -224,33 +226,33 @@ export function AssignPatientsModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+            className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
           >
             <CloseIcon className="h-5 w-5" />
           </button>
         </div>
 
         {errorMessage ? (
-          <div className="mt-4 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-xs text-red-600 dark:text-red-400">
+          <div className="mt-4 rounded-xl bg-red-500/10 border border-red-500/20 p-3 text-xs font-medium text-red-600 dark:text-red-400">
             {errorMessage}
           </div>
         ) : null}
 
         {saveSuccess ? (
-          <div className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs text-emerald-600 dark:text-emerald-400">
+          <div className="mt-4 flex items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs font-medium text-emerald-700 dark:text-emerald-400">
             <CheckCircleIcon className="h-4 w-4" />
             <span>{t.success}</span>
           </div>
         ) : null}
 
         <div className="mt-4 relative">
-          <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t.search}
-            className="w-full rounded-xl border border-border bg-background pl-9 pr-4 py-2 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full rounded-xl border border-border bg-background pl-10 pr-4 py-2 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -270,7 +272,7 @@ export function AssignPatientsModal({
               return (
                 <label
                   key={patient.id}
-                  className={`flex items-center justify-between gap-3 p-3 rounded-lg border transition-colors cursor-pointer ${
+                  className={`flex items-center justify-between gap-3 p-3 rounded-xl border transition-colors cursor-pointer ${
                     isChecked
                       ? "bg-primary-soft/50 border-primary/40 text-foreground"
                       : "bg-card border-border hover:bg-muted/50"
@@ -294,11 +296,11 @@ export function AssignPatientsModal({
                   </div>
 
                   {isAssignedToOther ? (
-                    <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">
                       {t.assignedTo} {patient.assigned_worker_name || t.otherWorker}
                     </span>
                   ) : isChecked ? (
-                    <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-bold text-primary bg-primary-soft border border-primary/20 px-2 py-0.5 rounded-full">
                       {t.assigned}
                     </span>
                   ) : (
@@ -315,11 +317,11 @@ export function AssignPatientsModal({
             {t.selectedCount(assignedIds.size)}
           </span>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
+              className="rounded-xl border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
             >
               {t.cancel}
             </button>
@@ -327,7 +329,7 @@ export function AssignPatientsModal({
               type="button"
               disabled={isSaving}
               onClick={handleSaveAssignments}
-              className="rounded-lg bg-primary px-5 py-2 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
+              className="rounded-xl bg-primary px-5 py-2 text-xs font-bold text-white hover:bg-primary-hover disabled:opacity-60 shadow-2xs transition-colors"
             >
               {isSaving ? t.saving : t.save}
             </button>

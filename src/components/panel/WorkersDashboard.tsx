@@ -106,15 +106,15 @@ export function WorkersDashboard({
           </div>
 
           {!databaseAvailable ? (
-            <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p className="rounded-2xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
               {t.noDatabase}
             </p>
           ) : (
             <div className="space-y-8">
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-all hover:shadow-sm">
                   <div className="flex items-center justify-between">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-soft text-primary">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
                       <StethoscopeIcon className="h-5 w-5" />
                     </span>
                   </div>
@@ -122,15 +122,15 @@ export function WorkersDashboard({
                     <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                       {metrics.totalWorkers}
                     </p>
-                    <p className="mt-1 text-xs font-medium text-muted-foreground">
+                    <p className="mt-1 text-xs font-semibold text-muted-foreground">
                       {t.totalStaffWorkers}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5">
+                <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-all hover:shadow-sm">
                   <div className="flex items-center justify-between">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
                       <StethoscopeIcon className="h-5 w-5" />
                     </span>
                   </div>
@@ -138,15 +138,15 @@ export function WorkersDashboard({
                     <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                       {metrics.activeWorkers}
                     </p>
-                    <p className="mt-1 text-xs font-medium text-muted-foreground">
+                    <p className="mt-1 text-xs font-semibold text-muted-foreground">
                       {t.activeStaff}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5">
+                <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-all hover:shadow-sm">
                   <div className="flex items-center justify-between">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-50 text-sky-700">
                       <UsersIcon className="h-5 w-5" />
                     </span>
                   </div>
@@ -154,15 +154,15 @@ export function WorkersDashboard({
                     <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                       {metrics.assignedPatients}
                     </p>
-                    <p className="mt-1 text-xs font-medium text-muted-foreground">
+                    <p className="mt-1 text-xs font-semibold text-muted-foreground">
                       {t.assignedPatients}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5">
+                <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-all hover:shadow-sm">
                   <div className="flex items-center justify-between">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
                       <UserIcon className="h-5 w-5" />
                     </span>
                   </div>
@@ -170,7 +170,7 @@ export function WorkersDashboard({
                     <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                       {metrics.unassignedPatients}
                     </p>
-                    <p className="mt-1 text-xs font-medium text-muted-foreground">
+                    <p className="mt-1 text-xs font-semibold text-muted-foreground">
                       {t.unassignedPatients}
                     </p>
                   </div>

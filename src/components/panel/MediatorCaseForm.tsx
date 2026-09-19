@@ -9,7 +9,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 const counties = ["Alba", "Arad", "Arges", "Bacau", "Bihor", "Bistrita-Nasaud", "Botosani", "Brasov", "Braila", "Bucuresti", "Buzau", "Caras-Severin", "Calarasi", "Cluj", "Constanta", "Covasna", "Dambovita", "Dolj", "Galati", "Giurgiu", "Gorj", "Harghita", "Hunedoara", "Ialomita", "Iasi", "Ilfov", "Maramures", "Mehedinti", "Mures", "Neamt", "Olt", "Prahova", "Salaj", "Satu Mare", "Sibiu", "Suceava", "Teleorman", "Timis", "Tulcea", "Vaslui", "Valcea", "Vrancea"];
 const categoryKeys = ["Routine examination", "Dental care", "Vaccination", "General practitioner registration", "Specialist consultation", "Maternal care", "Child health", "Chronic condition management", "Mental health support", "Medication access", "Screening or tests", "Emergency referral", "Other"];
 const barrierKeys = ["No GP / family doctor", "No insurance / unclear entitlement", "Missing documents", "Language barrier", "Digital literacy barrier", "Transport problem", "Childcare problem", "Mobility limitation", "Financial barrier", "Discrimination concern", "Fear or lack of trust", "Previous negative experience", "Missed appointment", "Unstable housing", "Cross-border mobility", "No phone or internet", "Difficulty understanding medication", "Other"];
-const inputClassName = "mt-1.5 block h-11 w-full rounded-lg border border-border bg-background px-3 text-sm font-normal text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20";
+const inputClassName = "mt-1.5 block min-h-11 w-full rounded-xl border border-border bg-background px-3.5 text-sm font-normal text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20";
 
 type MediatorCaseFormProps = {
   userEmail: string;
@@ -215,57 +215,66 @@ export function MediatorCaseForm({ userEmail, userRole, isAdmin = false }: Media
     <AdminShell userEmail={userEmail} userRole={userRole} isAdmin={isAdmin}>
       <main id="main-content" className="min-h-screen py-5 sm:py-8 lg:py-10">
         <Container>
-          <div className="mb-5 flex flex-col gap-4 border border-border border-l-4 border-l-primary bg-card px-5 py-5 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <div className="mb-6 flex flex-col gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary">{t.eyebrow}</p>
-              <h1 className="mt-1 text-2xl font-bold text-foreground sm:text-3xl">{t.title}</h1>
-              <p className="mt-1 text-sm text-muted-foreground">{t.subtitle}</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-primary">{t.eyebrow}</p>
+              <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{t.title}</h1>
+              <p className="mt-1.5 text-sm text-muted-foreground">{t.subtitle}</p>
             </div>
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-primary">
               <ClipboardCheckIcon className="h-6 w-6" />
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="max-w-6xl space-y-4">
-            {error ? <p className="border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-600" role="alert">{error}</p> : null}
-            {saved ? <p className="flex items-center gap-2 border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-700" role="status"><CheckCircleIcon className="h-5 w-5" />{t.saved}</p> : null}
+          <form onSubmit={handleSubmit} className="max-w-6xl space-y-6">
+            {error ? (
+              <p className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-xs font-medium text-red-600" role="alert">
+                {error}
+              </p>
+            ) : null}
+            {saved ? (
+              <p className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-xs font-medium text-emerald-700" role="status">
+                <CheckCircleIcon className="h-4 w-4" />
+                <span>{t.saved}</span>
+              </p>
+            ) : null}
 
-            <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
-              <div className="space-y-4">
-                <section className="border border-border border-t-2 border-t-primary bg-card p-5 shadow-sm sm:p-6">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
+              <div className="space-y-6">
+                <section className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
                   <div className="mb-5 border-b border-border pb-3">
                     <h2 className="text-base font-bold text-foreground">{t.personDetails}</h2>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <label className="text-sm font-semibold text-foreground">{t.fullName}
+                    <label className="text-xs font-bold text-foreground">{t.fullName}
                       <input name="fullName" required maxLength={200} className={inputClassName} />
                     </label>
-                    <label className="text-sm font-semibold text-foreground">{t.county}
+                    <label className="text-xs font-bold text-foreground">{t.county}
                       <select name="county" required defaultValue="" className={inputClassName}>
                         <option value="" disabled>{t.selectCounty}</option>
                         {counties.map((county) => <option key={county} value={county}>{county}</option>)}
                       </select>
                     </label>
-                    <label className="text-sm font-semibold text-foreground">{t.dateOfBirth}
+                    <label className="text-xs font-bold text-foreground">{t.dateOfBirth}
                       <input name="dateOfBirth" type="date" className={inputClassName} />
                     </label>
-                    <label className="text-sm font-semibold text-foreground">{t.phone}
+                    <label className="text-xs font-bold text-foreground">{t.phone}
                       <input name="phone" type="tel" inputMode="tel" required maxLength={50} className={inputClassName} />
                     </label>
-                    <label className="text-sm font-semibold text-foreground">{t.email}
+                    <label className="text-xs font-bold text-foreground">{t.email}
                       <input name="email" type="email" inputMode="email" autoComplete="email" required maxLength={320} className={inputClassName} />
                     </label>
-                    <label className="text-sm font-semibold text-foreground sm:col-span-2">{t.address}
+                    <label className="text-xs font-bold text-foreground sm:col-span-2">{t.address}
                       <input name="address" maxLength={500} autoComplete="street-address" className={inputClassName} />
                     </label>
                   </div>
                 </section>
 
-                <section className="border border-border border-t-2 border-t-primary bg-card p-5 shadow-sm sm:p-6">
+                <section className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
                   <div className="mb-5 border-b border-border pb-3">
                     <h2 className="text-base font-bold text-foreground">{t.supportNeeded}</h2>
                   </div>
-                  <label className="text-sm font-semibold text-foreground">{t.careCategory}
+                  <label className="text-xs font-bold text-foreground">{t.careCategory}
                     <select name="careCategory" required defaultValue="" className={inputClassName}>
                       <option value="" disabled>{t.selectCategory}</option>
                       {categoryOptions.map((category) => <option key={category.value} value={category.value}>{category.label}</option>)}
@@ -274,36 +283,44 @@ export function MediatorCaseForm({ userEmail, userRole, isAdmin = false }: Media
                 </section>
               </div>
 
-              <aside className="h-fit border border-border border-t-2 border-t-amber-500 bg-amber-50/40 p-5 shadow-sm">
-                <div className="border-b border-border pb-3">
-                  <h2 className="text-base font-bold text-foreground">{t.caseTiming}</h2>
+              <aside className="h-fit rounded-2xl border border-amber-200/80 bg-amber-50/50 p-5 shadow-xs">
+                <div className="border-b border-amber-200/60 pb-3">
+                  <h2 className="text-base font-bold text-amber-950">{t.caseTiming}</h2>
                 </div>
                 <div className="mt-4 space-y-4">
-                  <label className="block text-sm font-semibold text-foreground">{t.urgency}
-                    <select name="urgency" defaultValue="moderate" className={inputClassName}>
+                  <label className="block text-xs font-bold text-amber-950">{t.urgency}
+                    <select name="urgency" defaultValue="moderate" className="mt-1.5 block min-h-11 w-full rounded-xl border border-amber-200 bg-white px-3.5 text-sm font-normal text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
                       <option value="low">{t.low}</option><option value="moderate">{t.moderate}</option><option value="high">{t.high}</option><option value="urgent">{t.urgent}</option>
                     </select>
                   </label>
-                  <label className="block text-sm font-semibold text-foreground">{t.targetDate}
-                    <input name="targetDate" type="date" className={inputClassName} />
+                  <label className="block text-xs font-bold text-amber-950">{t.targetDate}
+                    <input name="targetDate" type="date" className="mt-1.5 block min-h-11 w-full rounded-xl border border-amber-200 bg-white px-3.5 text-sm font-normal text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
                   </label>
                 </div>
               </aside>
             </div>
 
-            <fieldset className="border border-border border-t-2 border-t-foreground bg-card p-5 shadow-sm sm:p-6">
+            <fieldset className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
               <legend className="px-1 text-base font-bold text-foreground">{t.barriers}</legend>
-              <div className="mt-4 grid gap-x-6 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
-                {barrierOptions.map((barrier) => <label key={barrier.value} className="flex min-h-10 items-center gap-2 border-b border-border/70 px-2 text-sm text-foreground transition-colors hover:bg-muted"><input type="checkbox" checked={selectedBarriers.includes(barrier.value)} onChange={() => toggleBarrier(barrier.value)} className="h-4 w-4 rounded border-border text-primary focus:ring-primary" />{barrier.label}</label>)}
+              <div className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+                {barrierOptions.map((barrier) => (
+                  <label key={barrier.value} className="flex min-h-10 items-center gap-2.5 rounded-xl border border-border/60 bg-background px-3 text-xs font-medium text-foreground transition-colors hover:bg-muted cursor-pointer">
+                    <input type="checkbox" checked={selectedBarriers.includes(barrier.value)} onChange={() => toggleBarrier(barrier.value)} className="h-4 w-4 rounded border-border text-primary focus:ring-primary" />
+                    <span>{barrier.label}</span>
+                  </label>
+                ))}
               </div>
             </fieldset>
 
-            <label className="block border border-border border-t-2 border-t-foreground bg-card p-5 text-sm font-semibold text-foreground shadow-sm sm:p-6">{t.notes}
-              <textarea name="notes" rows={5} maxLength={4000} className="mt-2 block w-full rounded-lg border border-border bg-background p-3 text-sm font-normal text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder={t.notesPlaceholder} />
+            <label className="block rounded-2xl border border-border bg-card p-5 sm:p-6 text-xs font-bold text-foreground shadow-xs">
+              {t.notes}
+              <textarea name="notes" rows={5} maxLength={4000} className="mt-2 block w-full rounded-xl border border-border bg-background p-3.5 text-sm font-normal text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder={t.notesPlaceholder} />
             </label>
 
-            <div className="sticky bottom-0 flex justify-end border-t border-border bg-muted/95 py-4 backdrop-blur-sm">
-              <button type="submit" disabled={isSubmitting} className="min-h-11 w-full rounded-lg bg-primary px-6 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-hover disabled:opacity-60 sm:w-auto">{isSubmitting ? t.saving : t.save}</button>
+            <div className="flex justify-end pt-2">
+              <button type="submit" disabled={isSubmitting} className="min-h-11 w-full rounded-xl bg-primary px-6 text-sm font-bold text-white shadow-2xs transition-colors hover:bg-primary-hover disabled:opacity-60 sm:w-auto">
+                {isSubmitting ? t.saving : t.save}
+              </button>
             </div>
           </form>
         </Container>

@@ -40,7 +40,8 @@ export type PatientItem = {
   assigned_worker_ids?: string[];
   assigned_worker_name?: string | null;
   assigned_worker_names?: string[];
-  access_token?: string | null;
+  /** Indicates whether a portal link exists for this patient. The raw token is never exposed to the panel. */
+  has_portal_access?: boolean;
   full_name: string;
   phone: string;
   email: string;
@@ -63,7 +64,6 @@ export type CreatePatientPayload = {
   request_id?: string | number | null;
   assigned_worker_id?: string | number | null;
   assigned_worker_ids?: Array<string | number>;
-  access_token?: string | null;
   full_name?: string;
   phone?: string;
   email?: string;

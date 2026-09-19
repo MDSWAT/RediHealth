@@ -25,7 +25,7 @@ export const PATIENT_COLUMNS = `p.id, p.request_id, p.assigned_worker_id, w.full
       REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', '')
     ) > 0
   ) AS assigned_worker_names_concat,
-  p.access_token, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address,
+  p.access_token_hash, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address,
   p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
   COALESCE(p.status, 'active') AS status,
   COALESCE(p.priority, 'moderate') AS priority,
@@ -40,7 +40,7 @@ export interface DBPatientRow extends RowDataPacket {
   assigned_worker_ids?: string | object | null;
   assigned_worker_name?: string | null;
   assigned_worker_names_concat?: string | null;
-  access_token?: string | null;
+  access_token_hash?: string | null;
   full_name: string;
   phone: string;
   email: string;
@@ -90,7 +90,7 @@ export function mapPatientRow(row: DBPatientRow): PatientItem {
     assigned_worker_ids: assignedWorkerIds,
     assigned_worker_name: row.assigned_worker_name || null,
     assigned_worker_names: [...new Set(assignedWorkerNames)],
-    access_token: row.access_token || null,
+    has_portal_access: Boolean(row.access_token_hash),
     full_name: row.full_name,
     phone: row.phone,
     email: row.email,

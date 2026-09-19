@@ -288,12 +288,12 @@ export function WorkersTable({
             const assignedCount = patients.filter((p) => p.assigned_worker_id === worker.id).length;
 
             return (
-              <article key={`${worker.id}-${worker.email}`} className="rounded-lg border border-border bg-card p-4 shadow-sm">
+              <article key={`${worker.id}-${worker.email}`} className="rounded-2xl border border-border bg-card p-5 shadow-xs transition-all hover:border-border hover:shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-foreground">{worker.full_name}</p>
+                    <p className="truncate text-base font-bold text-foreground">{worker.full_name}</p>
                     <p className="mt-0.5 text-xs text-muted-foreground">{t.staffId} #{worker.id}</p>
-                    <p className="mt-0.5 text-xs">
+                    <p className="mt-1 text-xs">
                       <span className="font-semibold text-primary">{worker.role}</span>
                       <span className="text-muted-foreground"> · {worker.department || t.general}</span>
                     </p>
@@ -301,10 +301,10 @@ export function WorkersTable({
                   <button
                     type="button"
                     onClick={() => handleToggleStatus(worker)}
-                    className={`shrink-0 rounded-full border-0 px-2.5 py-1 text-[0.65rem] font-semibold capitalize cursor-pointer ${
+                    className={`shrink-0 rounded-xl border px-2.5 py-1 text-xs font-bold capitalize cursor-pointer transition-colors ${
                       worker.status === "active"
-                        ? "bg-emerald-100 text-emerald-950 dark:bg-emerald-500/10 dark:text-emerald-400"
-                        : "bg-slate-100 text-slate-700 dark:bg-gray-500/10 dark:text-gray-400"
+                        ? "border-emerald-200 bg-emerald-50/80 text-emerald-800"
+                        : "border-slate-200 bg-slate-100 text-slate-700"
                     }`}
                     title={t.statusToggle}
                   >
@@ -312,7 +312,7 @@ export function WorkersTable({
                   </button>
                 </div>
 
-                <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+                <div className="mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
                   <a href={`mailto:${worker.email}`} className="inline-flex items-center gap-1 font-semibold text-primary hover:underline">
                     <MailIcon className="h-3.5 w-3.5" />
                     {worker.email}
@@ -326,7 +326,7 @@ export function WorkersTable({
                   <button
                     type="button"
                     onClick={() => setAssigningWorker(worker)}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-2.5 py-0.5 font-semibold text-primary hover:bg-primary/20 transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary-soft px-2.5 py-0.5 font-semibold text-primary hover:bg-primary-soft/80 transition-colors"
                   >
                     <UserIcon className="h-3.5 w-3.5" />
                     {t.assigned(assignedCount)}
@@ -341,14 +341,14 @@ export function WorkersTable({
                         type="button"
                         disabled={isDeleting}
                         onClick={() => handleDelete(worker.id)}
-                        className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+                        className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50 transition-colors"
                       >
                         {isDeleting ? "..." : t.yesDelete}
                       </button>
                       <button
                         type="button"
                         onClick={() => setConfirmingDeleteId(null)}
-                        className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
+                        className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
                       >
                         {t.cancel}
                       </button>
@@ -357,7 +357,7 @@ export function WorkersTable({
                     <button
                       type="button"
                       onClick={() => setConfirmingDeleteId(worker.id)}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-red-600 hover:bg-red-500/10 dark:text-red-400"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-red-600 hover:bg-red-50 transition-colors"
                       title={t.deleteWorker}
                     >
                       <TrashIcon className="h-4 w-4" />
@@ -368,7 +368,7 @@ export function WorkersTable({
                     <button
                       type="button"
                       onClick={() => setEditingWorker(worker)}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                       title={t.editWorker}
                     >
                       <EditIcon className="h-4 w-4" />
@@ -376,7 +376,7 @@ export function WorkersTable({
                     <button
                       type="button"
                       onClick={() => setAssigningWorker(worker)}
-                      className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-hover transition-colors"
+                      className="inline-flex items-center justify-center min-h-10 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white hover:bg-primary-hover shadow-2xs transition-colors"
                     >
                       {t.assignPatients}
                     </button>

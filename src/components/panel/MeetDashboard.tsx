@@ -299,10 +299,10 @@ export function MeetDashboard({
     >
       <main id="main-content" className="min-h-screen px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <section className="mx-auto w-full max-w-7xl space-y-6">
-          <div className="rounded-2xl border border-border bg-card p-5 sm:p-6">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary">{t.title}</p>
-            <h1 className="mt-1 text-2xl font-bold text-foreground sm:text-3xl">{t.title}</h1>
-            <p className="mt-2 max-w-3xl text-sm text-muted-foreground">{t.subtitle}</p>
+          <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
+            <p className="text-xs font-bold uppercase tracking-wider text-primary">{t.title}</p>
+            <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{t.title}</h1>
+            <p className="mt-1.5 max-w-3xl text-sm text-muted-foreground">{t.subtitle}</p>
           </div>
 
           {!databaseAvailable ? (
@@ -311,24 +311,24 @@ export function MeetDashboard({
             </p>
           ) : (
             <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
-              <aside className="rounded-2xl border border-border bg-card p-4 sm:p-5">
-                <h2 className="flex items-center gap-2 text-base font-semibold text-foreground">
-                  <UserIcon className="h-4 w-4" /> {t.assignedPatients}
+              <aside className="rounded-2xl border border-border bg-card p-5 shadow-xs">
+                <h2 className="flex items-center gap-2 text-base font-bold text-foreground">
+                  <UserIcon className="h-4 w-4 text-primary" /> {t.assignedPatients}
                 </h2>
                 {assignedPatients.length === 0 ? (
-                  <p className="mt-3 text-sm text-muted-foreground">{t.noAssignedPatients}</p>
+                  <p className="mt-3 text-xs text-muted-foreground">{t.noAssignedPatients}</p>
                 ) : (
                   <ul className="mt-3 space-y-2">
                     {assignedPatients.map((patient) => (
-                      <li key={patient.id} className="rounded-xl border border-border bg-white p-3">
-                        <p className="text-sm font-semibold text-foreground">{patient.full_name}</p>
-                        <p className="mt-1 text-xs text-muted-foreground">#{patient.id}</p>
+                      <li key={patient.id} className="rounded-xl border border-border bg-background p-3.5 transition-colors hover:border-primary/40">
+                        <p className="text-sm font-bold text-foreground">{patient.full_name}</p>
+                        <p className="mt-0.5 text-xs text-muted-foreground">ID #{patient.id}</p>
                         <button
                           type="button"
                           onClick={() => preselectPatient(patient.id)}
-                          className="mt-2 inline-flex min-h-10 items-center gap-2 rounded-lg border border-border px-3 text-xs font-semibold text-foreground hover:bg-muted"
+                          className="mt-2.5 inline-flex min-h-9 items-center gap-1.5 rounded-lg border border-border bg-card px-3 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
                         >
-                          <PlusIcon className="h-4 w-4" /> {t.quickCreate}
+                          <PlusIcon className="h-3.5 w-3.5 text-primary" /> {t.quickCreate}
                         </button>
                       </li>
                     ))}
@@ -337,18 +337,18 @@ export function MeetDashboard({
               </aside>
 
               <div className="space-y-6">
-                <form onSubmit={handleCreateMeet} className="rounded-2xl border border-border bg-card p-4 sm:p-5">
-                  <h2 className="flex items-center gap-2 text-base font-semibold text-foreground">
-                    <GlobeIcon className="h-4 w-4" /> {t.createMeet}
+                <form onSubmit={handleCreateMeet} className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
+                  <h2 className="flex items-center gap-2 text-base font-bold text-foreground">
+                    <GlobeIcon className="h-4 w-4 text-primary" /> {t.createMeet}
                   </h2>
 
                   <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <label className="block">
-                      <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t.pickPatient}</span>
+                      <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.pickPatient}</span>
                       <select
                         value={selectedPatientId}
                         onChange={(event) => setSelectedPatientId(event.target.value)}
-                        className="min-h-11 w-full rounded-lg border border-border bg-white px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="min-h-11 w-full rounded-xl border border-border bg-background px-3 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         required
                       >
                         {assignedPatients.length === 0 ? <option value="">{t.pickPatientPlaceholder}</option> : null}
@@ -361,13 +361,13 @@ export function MeetDashboard({
                     </label>
 
                     <label className="block">
-                      <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t.meetTitle}</span>
+                      <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t.meetTitle}</span>
                       <input
                         type="text"
                         value={title}
                         onChange={(event) => setTitle(event.target.value)}
                         placeholder={t.meetTitlePlaceholder}
-                        className="min-h-11 w-full rounded-lg border border-border bg-white px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="min-h-11 w-full rounded-xl border border-border bg-background px-3 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         maxLength={200}
                         required
                       />
@@ -376,21 +376,21 @@ export function MeetDashboard({
 
                   <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
                     <label className="block">
-                      <span className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                        <FileTextIcon className="h-4 w-4" /> {t.transcript}
+                      <span className="mb-1.5 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        <FileTextIcon className="h-3.5 w-3.5" /> {t.transcript}
                       </span>
                       <textarea
                         value={transcript}
                         onChange={(event) => setTranscript(event.target.value)}
                         placeholder={t.transcriptPlaceholder}
                         rows={6}
-                        className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="w-full rounded-xl border border-border bg-background p-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       />
                     </label>
 
                     <label className="block">
-                      <span className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                        <MailIcon className="h-4 w-4" /> {t.notes}
+                      <span className="mb-1.5 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        <MailIcon className="h-3.5 w-3.5" /> {t.notes}
                       </span>
                       <textarea
                         value={notes}
@@ -398,52 +398,52 @@ export function MeetDashboard({
                         placeholder={t.notesPlaceholder}
                         rows={6}
                         maxLength={4000}
-                        className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="w-full rounded-xl border border-border bg-background p-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       />
                       <span className="mt-1 block text-xs text-muted-foreground">{t.notesHint}</span>
                     </label>
                   </div>
 
-                  {error ? <p className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-700">{error}</p> : null}
-                  {status ? <p className="mt-4 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-700">{status}</p> : null}
+                  {error ? <p className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs font-medium text-red-700">{error}</p> : null}
+                  {status ? <p className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs font-medium text-emerald-700">{status}</p> : null}
 
-                  <div className="mt-4 flex justify-end">
+                  <div className="mt-5 flex justify-end">
                     <button
                       type="submit"
                       disabled={isSaving || assignedPatients.length === 0}
-                      className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
+                      className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-primary px-4 text-xs font-bold text-white hover:bg-primary-hover disabled:opacity-60 shadow-2xs transition-colors"
                     >
                       <CheckCircleIcon className="h-4 w-4" /> {isSaving ? t.creatingButton : t.createButton}
                     </button>
                   </div>
                 </form>
 
-                <section className="rounded-2xl border border-border bg-card p-4 sm:p-5">
-                  <h2 className="flex items-center gap-2 text-base font-semibold text-foreground">
-                    <ClockIcon className="h-4 w-4" /> {t.historyTitle}
+                <section className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
+                  <h2 className="flex items-center gap-2 text-base font-bold text-foreground">
+                    <ClockIcon className="h-4 w-4 text-primary" /> {t.historyTitle}
                   </h2>
 
                   {meetings.length === 0 ? (
-                    <p className="mt-3 text-sm text-muted-foreground">{t.emptyMeetings}</p>
+                    <p className="mt-3 text-xs text-muted-foreground">{t.emptyMeetings}</p>
                   ) : (
-                    <div className="mt-3 space-y-3">
+                    <div className="mt-4 space-y-3">
                       {meetings.map((meeting) => (
-                        <article key={meeting.id} className="rounded-xl border border-border bg-white p-3 sm:p-4">
-                          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                        <article key={meeting.id} className="rounded-xl border border-border bg-background p-4 transition-colors hover:border-border/80">
+                          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                             <div>
-                              <p className="text-sm font-semibold text-foreground">{meeting.title}</p>
+                              <p className="text-sm font-bold text-foreground">{meeting.title}</p>
                               <p className="mt-1 text-xs text-muted-foreground">
-                                {t.patientLabel}: {meeting.patient_name || "-"}
+                                {t.patientLabel}: <span className="font-semibold text-foreground">{meeting.patient_name || "-"}</span>
                               </p>
                               <p className="text-xs text-muted-foreground">
                                 {t.createdAt}: {formatDate(meeting.created_at)}
                               </p>
                             </div>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
                               {meeting.patient_id ? (
                                 <Link
                                   href={withLangPrefix(`/panel/patients/${meeting.patient_id}/meet/${meeting.id}`, lang)}
-                                  className="inline-flex min-h-10 items-center rounded-lg bg-primary px-3 text-xs font-semibold text-white hover:bg-primary-hover"
+                                  className="inline-flex min-h-9 items-center rounded-lg bg-primary px-3 text-xs font-bold text-white hover:bg-primary-hover shadow-2xs transition-colors"
                                 >
                                   {t.openWorkspace}
                                 </Link>
@@ -452,7 +452,7 @@ export function MeetDashboard({
                                 href={toStableMeetingUrl(meeting.meeting_url, meeting.id)}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex min-h-10 items-center rounded-lg border border-border px-3 text-xs font-semibold text-foreground hover:bg-muted"
+                                className="inline-flex min-h-9 items-center rounded-lg border border-border bg-card px-3 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
                               >
                                 {t.openRoom}
                               </a>

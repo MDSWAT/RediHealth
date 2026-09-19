@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getDatabase, hasDatabaseConnectionConfig, type RowDataPacket } from "@/lib/database";
 import { PatientPortalView } from "@/components/portal/PatientPortalView";
 import type { FollowupItem, PatientItem, PatientPhoto, PatientPriority, TreatmentPlan } from "@/lib/types/patient";
+import { hashPortalToken } from "@/lib/security/portal-token";
 
 export const metadata: Metadata = {
   title: "Patient Portal — RediHealth",
@@ -13,7 +14,6 @@ type DBPatient = RowDataPacket & {
   request_id?: string | null;
   assigned_worker_id?: string | null;
   assigned_worker_name?: string | null;
-  access_token?: string | null;
   full_name: string;
   phone: string;
   email: string;
@@ -66,6 +66,7 @@ export default async function PatientPortalPage({ params }: PageProps) {
     notFound();
   }
 
+  const tokenHash = hashPortalToken(token);
   let patientRecord: DBPatient | null = null;
 
   if (hasDatabaseConnectionConfig()) {
@@ -76,17 +77,17 @@ export default async function PatientPortalPage({ params }: PageProps) {
       try {
         const [primaryRows] = await db.query<DBPatient[]>(
           `SELECT p.id, p.request_id, p.assigned_worker_id, w.full_name AS assigned_worker_name,
-                  p.access_token, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, 
+                  p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, 
                   p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
                   COALESCE(p.status, 'active') AS status, 
                   COALESCE(p.priority, 'moderate') AS priority, 
                   p.created_at, p.updated_at
            FROM patients p
            LEFT JOIN workers w ON w.id = p.assigned_worker_id
-           WHERE p.access_token = ?
+           WHERE p.access_token_hash = ?
              AND (p.access_token_expires_at IS NULL OR p.access_token_expires_at > UTC_TIMESTAMP())
            LIMIT 1`,
-          [token],
+          [tokenHash],
         );
         rows = primaryRows;
       } catch (queryError) {
@@ -96,16 +97,16 @@ export default async function PatientPortalPage({ params }: PageProps) {
 
         const [fallbackRows] = await db.query<DBPatient[]>(
           `SELECT p.id, p.request_id, p.assigned_worker_id, w.full_name AS assigned_worker_name,
-                  p.access_token, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, 
+                  p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, 
                   p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
                   COALESCE(p.status, 'active') AS status, 
                   COALESCE(p.priority, 'moderate') AS priority, 
                   p.created_at, p.updated_at
            FROM patients p
            LEFT JOIN workers w ON w.id = p.assigned_worker_id
-           WHERE p.access_token = ?
+           WHERE p.access_token_hash = ?
            LIMIT 1`,
-          [token],
+          [tokenHash],
         );
         rows = fallbackRows;
       }
@@ -126,7 +127,7 @@ export default async function PatientPortalPage({ params }: PageProps) {
     request_id: patientRecord.request_id ? String(patientRecord.request_id) : null,
     assigned_worker_id: patientRecord.assigned_worker_id ? String(patientRecord.assigned_worker_id) : null,
     assigned_worker_name: patientRecord.assigned_worker_name || null,
-    access_token: patientRecord.access_token || null,
+    has_portal_access: true,
     full_name: patientRecord.full_name,
     phone: patientRecord.phone,
     email: patientRecord.email,

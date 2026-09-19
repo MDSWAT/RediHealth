@@ -8,10 +8,10 @@ import {
   CalendarIcon,
   CheckCircleIcon,
   ClockIcon,
-  CopyIcon,
   EditIcon,
   GlobeIcon,
   ImageIcon,
+  MailIcon,
   PrinterIcon,
   TrashIcon,
   UserIcon,
@@ -81,6 +81,9 @@ export function PatientProfileView({ initialPatient }: PatientProfileViewProps) 
       failedDeleteMeeting: "Could not delete the linked meeting.",
       failedDeleteHistory: "Could not delete meeting history.",
       photoSize: "Photo size must be under 5MB.",
+      resendPortalLink: "Resend portal link",
+      resendingPortalLink: "Resending...",
+      portalLinkSent: "Link sent!",
     },
     ro: {
       backToList: "Inapoi la lista pacientilor",
@@ -114,6 +117,9 @@ export function PatientProfileView({ initialPatient }: PatientProfileViewProps) 
       failedDeleteMeeting: "Nu s-a putut sterge intalnirea asociata.",
       failedDeleteHistory: "Nu s-a putut sterge istoricul intalnirii.",
       photoSize: "Dimensiunea pozei trebuie sa fie sub 5MB.",
+      resendPortalLink: "Retrimite link portal",
+      resendingPortalLink: "Se retrimite...",
+      portalLinkSent: "Link trimis!",
     },
     sq: {
       backToList: "Kthehu te lista e pacienteve",
@@ -147,6 +153,9 @@ export function PatientProfileView({ initialPatient }: PatientProfileViewProps) 
       failedDeleteMeeting: "Nuk u fshi takimi i lidhur.",
       failedDeleteHistory: "Nuk u fshi historiku i takimit.",
       photoSize: "Madhesia e fotos duhet te jete nen 5MB.",
+      resendPortalLink: "Ridërgo lidhjen e portalit",
+      resendingPortalLink: "Duke ridërguar...",
+      portalLinkSent: "Lidhja u dërgua!",
     },
     it: {
       backToList: "Torna all'elenco pazienti",
@@ -180,12 +189,12 @@ export function PatientProfileView({ initialPatient }: PatientProfileViewProps) 
       failedDeleteMeeting: "Impossibile eliminare la riunione collegata.",
       failedDeleteHistory: "Impossibile eliminare la cronologia riunione.",
       photoSize: "La foto deve essere inferiore a 5MB.",
+      resendPortalLink: "Reinvia link portale",
+      resendingPortalLink: "Reinvio...",
+      portalLinkSent: "Link inviato!",
     },
   }[activeLang];
   const [patient, setPatient] = useState<PatientItem>(initialPatient);
-  const portalPath = patient.access_token
-    ? withLangPrefix(`/patient-portal/${patient.access_token}`, lang)
-    : null;
   const [activeTab, setActiveTab] = useState<TabType>("overview");
   const [status, setStatus] = useState<PatientStatus>(patient.status);
   const [priority, setPriority] = useState<PatientPriority>(patient.priority || "moderate");
@@ -254,15 +263,32 @@ export function PatientProfileView({ initialPatient }: PatientProfileViewProps) 
   const [newPhotoData, setNewPhotoData] = useState<string | null>(null);
 
   const [isPrintMode, setIsPrintMode] = useState(false);
-  const [copiedPortalLink, setCopiedPortalLink] = useState(false);
+  const [isResendingPortalLink, setIsResendingPortalLink] = useState(false);
+  const [portalLinkSentMsg, setPortalLinkSentMsg] = useState(false);
 
-  function handleCopyPortalLink() {
-    if (!portalPath) return;
-    const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
-    const link = `${origin}${portalPath}`;
-    void navigator.clipboard.writeText(link);
-    setCopiedPortalLink(true);
-    setTimeout(() => setCopiedPortalLink(false), 2500);
+  async function handleResendPortalLink() {
+    setIsResendingPortalLink(true);
+    setErrorMessage(null);
+    try {
+      const response = await fetch("/api/patients/send-portal-link", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: patient.id }),
+      });
+
+      if (!response.ok) {
+        const data = (await response.json()) as { error?: string };
+        setErrorMessage(data.error || t.failedUpdate);
+        return;
+      }
+
+      setPortalLinkSentMsg(true);
+      setTimeout(() => setPortalLinkSentMsg(false), 2500);
+    } catch {
+      setErrorMessage(t.failedSave);
+    } finally {
+      setIsResendingPortalLink(false);
+    }
   }
 
   async function savePatientField(
@@ -577,117 +603,111 @@ export function PatientProfileView({ initialPatient }: PatientProfileViewProps) 
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-border pb-6">
-        <div>
-          <Link
-            href={withLangPrefix("/panel/patients", lang)}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline mb-2"
-          >
-            <ArrowLeftIcon className="h-3.5 w-3.5" />
-            <span>{t.backToList}</span>
-          </Link>
-          <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              {patient.full_name}
-            </h1>
-            <span
-              className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold capitalize ${
-                status === "active"
-                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                  : status === "inactive"
-                  ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
-                  : "bg-gray-500/10 text-gray-600 dark:text-gray-400"
-              }`}
-            >
-              {status} {t.careSuffix}
-            </span>
-            <span
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${
-                getPriorityMeta(priority).badgeClass
-              }`}
-            >
-              <span className={`h-2 w-2 rounded-full ${getPriorityMeta(priority).dotClass}`} />
-              <span>{getPriorityMeta(priority).label}</span>
-            </span>
+      <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
+        <Link
+          href={withLangPrefix("/panel/patients", lang)}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline mb-3"
+        >
+          <ArrowLeftIcon className="h-3.5 w-3.5" />
+          <span>{t.backToList}</span>
+        </Link>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="flex items-center gap-3 flex-wrap">
+              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                {patient.full_name}
+              </h1>
+              <span
+                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold capitalize ${
+                  status === "active"
+                    ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
+                    : status === "inactive"
+                    ? "bg-amber-50 text-amber-800 border border-amber-200"
+                    : "bg-slate-100 text-slate-700 border border-slate-200"
+                }`}
+              >
+                {status} {t.careSuffix}
+              </span>
+              <span
+                className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-bold ${
+                  getPriorityMeta(priority).badgeClass
+                }`}
+              >
+                <span className={`h-2 w-2 rounded-full ${getPriorityMeta(priority).dotClass}`} />
+                <span>{getPriorityMeta(priority).label}</span>
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              {t.patientRecordId}: #{patient.id}{" "}
+              {patient.request_id ? `(${t.convertedFrom} #${patient.request_id})` : ""} &bull;{" "}
+              {t.assignedWorker}: <span className="font-bold text-foreground">{assignedWorkerNames.length > 0 ? assignedWorkerNames.join(", ") : t.unassigned}</span> &bull;{" "}
+              {t.registeredOn} {new Date(patient.created_at).toLocaleDateString(activeLang, { dateStyle: "long" })}
+            </p>
           </div>
-          <p className="text-xs text-muted-foreground mt-1">
-            {t.patientRecordId}: #{patient.id}{" "}
-            {patient.request_id ? `(${t.convertedFrom} #${patient.request_id})` : ""} &bull;{" "}
-            {t.assignedWorker}: <span className="font-bold text-foreground">{assignedWorkerNames.length > 0 ? assignedWorkerNames.join(", ") : t.unassigned}</span> &bull;{" "}
-            {t.registeredOn} {new Date(patient.created_at).toLocaleDateString(activeLang, { dateStyle: "long" })}
-          </p>
-        </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
-          <button
-            type="button"
-            onClick={() => setShowEditModal(true)}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-card px-3.5 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors shadow-sm"
-          >
-            <EditIcon className="h-4 w-4 text-primary" />
-            <span>{t.editDemographics}</span>
-          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={() => setShowEditModal(true)}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3.5 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+            >
+              <EditIcon className="h-4 w-4 text-primary" />
+              <span>{t.editDemographics}</span>
+            </button>
 
-          <button
-            type="button"
-            onClick={() => setIsPrintMode(true)}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-white hover:bg-primary-hover transition-colors shadow-sm"
-          >
-            <PrinterIcon className="h-4 w-4" />
-            <span>{t.printPdf}</span>
-          </button>
+            <button
+              type="button"
+              onClick={() => setIsPrintMode(true)}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white hover:bg-primary-hover transition-colors shadow-2xs"
+            >
+              <PrinterIcon className="h-4 w-4" />
+              <span>{t.printPdf}</span>
+            </button>
+          </div>
         </div>
       </div>
 
       {errorMessage ? (
-        <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4 text-xs text-red-600 dark:text-red-400">
+        <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4 text-xs font-medium text-red-600 dark:text-red-400">
           {errorMessage}
         </div>
       ) : null}
 
-      {patient.access_token ? (
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-primary/20 bg-primary-soft/30 p-4">
+      {patient.has_portal_access ? (
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-primary/20 bg-primary-soft/40 p-4 sm:p-5 shadow-xs">
           <div className="text-xs">
-            <p className="font-bold text-foreground flex items-center gap-1.5">
+            <p className="font-bold text-foreground flex items-center gap-1.5 text-sm">
               <GlobeIcon className="h-4 w-4 text-primary" />
               <span>{t.portalLinkTitle}</span>
             </p>
-            <p className="text-muted-foreground mt-0.5">
+            <p className="text-muted-foreground mt-1">
               {t.portalLinkHint}
             </p>
           </div>
-          <div className="flex items-center gap-2 self-start sm:self-auto">
+          <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
             <button
               type="button"
-              onClick={handleCopyPortalLink}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3.5 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+              onClick={handleResendPortalLink}
+              disabled={isResendingPortalLink}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-xs font-bold text-white hover:bg-primary-hover shadow-2xs transition-colors disabled:opacity-60"
             >
-              {copiedPortalLink ? (
+              {portalLinkSentMsg ? (
                 <>
-                  <CheckCircleIcon className="h-3.5 w-3.5 text-emerald-600" />
-                  <span className="text-emerald-600">{t.linkCopied}</span>
+                  <CheckCircleIcon className="h-4 w-4" />
+                  <span>{t.portalLinkSent}</span>
                 </>
               ) : (
                 <>
-                  <CopyIcon className="h-3.5 w-3.5 text-primary" />
-                  <span>{t.copyPortalLink}</span>
+                  <MailIcon className="h-4 w-4" />
+                  <span>{isResendingPortalLink ? t.resendingPortalLink : t.resendPortalLink}</span>
                 </>
               )}
             </button>
-            <a
-              href={portalPath ?? "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover transition-colors"
-            >
-              <GlobeIcon className="h-3.5 w-3.5" />
-              <span>{t.openPortal}</span>
-            </a>
           </div>
         </div>
       ) : null}
 
-      <div className="flex items-center gap-1 border-b border-border overflow-x-auto text-xs font-semibold">
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
         {[
           { id: "overview", label: t.tabProfile, icon: UserIcon },
           { id: "treatment", label: t.tabTreatment, icon: EditIcon },
@@ -702,10 +722,10 @@ export function PatientProfileView({ initialPatient }: PatientProfileViewProps) 
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id as TabType)}
-              className={`inline-flex items-center gap-1.5 border-b-2 px-4 py-3.5 whitespace-nowrap transition-colors ${
+              className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all whitespace-nowrap ${
                 active
-                  ? "border-primary text-primary"
-                  : "border-transparent text-muted-foreground hover:text-foreground"
+                  ? "bg-primary text-white shadow-2xs"
+                  : "bg-card border border-border text-muted-foreground hover:bg-muted hover:text-foreground"
               }`}
             >
               <Icon className="h-4 w-4" />

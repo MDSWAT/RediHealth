@@ -68,7 +68,7 @@ export function normalizePatientFromApi(value: unknown): PatientItem | null {
           .map((item) => toPrimitiveString(item))
           .filter((item) => item.length > 0)
       : [],
-    access_token: toOptionalString(patient.access_token),
+    has_portal_access: Boolean(patient.access_token_hash),
     full_name: fullName,
     phone,
     email,

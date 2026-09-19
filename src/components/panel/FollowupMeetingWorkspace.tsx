@@ -340,33 +340,58 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
 
   return (
     <AdminShell userEmail={userEmail} userRole={userRole} isAdmin={isAdmin}>
-      <main id="main-content" className="min-h-screen py-5 sm:py-7">
+      <main id="main-content" className="min-h-screen py-5 sm:py-8">
         <Container className="max-w-6xl">
-          <Link href={`/panel/patients/${patientId}`} className="inline-flex text-sm font-semibold text-primary hover:underline">Back to patient profile</Link>
-          <div className="mt-3 border border-border border-l-4 border-l-primary bg-card px-5 py-5 shadow-sm sm:px-6">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary">Follow-up meeting</p>
-            <h1 className="mt-1 text-2xl font-bold text-foreground sm:text-3xl">{meeting?.title || "Loading meeting..."}</h1>
+          <Link
+            href={`/panel/patients/${patientId}`}
+            className="inline-flex text-xs font-semibold text-primary hover:underline mb-3"
+          >
+            &larr; Back to patient profile
+          </Link>
+          <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
+            <p className="text-xs font-bold uppercase tracking-wider text-primary">Follow-up meeting</p>
+            <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              {meeting?.title || "Loading meeting..."}
+            </h1>
           </div>
 
-          {error ? <p className="mt-4 border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-600" role="alert">{error}</p> : null}
-          {status ? <p className="mt-4 border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-700" role="status">{status}</p> : null}
+          {error ? (
+            <p className="mt-4 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-xs font-medium text-red-600" role="alert">
+              {error}
+            </p>
+          ) : null}
+          {status ? (
+            <p className="mt-4 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-xs font-medium text-emerald-700" role="status">
+              {status}
+            </p>
+          ) : null}
 
           {meeting ? (
-            <section className="mt-4 border border-border border-t-2 border-t-primary bg-card shadow-sm">
-              <div className="flex flex-col gap-3 border-b border-border p-5 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <section className="mt-6 rounded-2xl border border-border bg-card shadow-xs overflow-hidden">
+              <div className="flex flex-col gap-3 border-b border-border p-4 sm:p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-2 text-xs font-bold text-foreground sm:text-sm">
                   <span className={`h-2.5 w-2.5 rounded-full ${isListening ? "bg-red-600 animate-pulse" : "bg-muted-foreground/40"}`} />
                   {isListening ? "Listening" : "Live transcription"}
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <button type="button" onClick={() => void toggleTranscription()} className={`min-h-11 rounded-lg px-4 text-sm font-semibold transition-colors ${isListening ? "bg-foreground text-white hover:bg-foreground/90" : "bg-primary text-white hover:bg-primary-hover"}`}>
+                  <button
+                    type="button"
+                    onClick={() => void toggleTranscription()}
+                    className={`min-h-10 rounded-xl px-4 text-xs font-bold transition-colors ${
+                      isListening ? "bg-foreground text-white hover:bg-foreground/90" : "bg-primary text-white hover:bg-primary-hover shadow-2xs"
+                    }`}
+                  >
                     {isListening ? "Stop transcription" : "Start transcription"}
                   </button>
                   <button
                     type="button"
                     onClick={() => void toggleFallbackRecording()}
                     disabled={isTranscribingFallback}
-                    className={`min-h-11 rounded-lg px-4 text-sm font-semibold transition-colors ${isRecordingFallback ? "bg-amber-600 text-white hover:bg-amber-700" : "bg-card border border-border text-foreground hover:bg-muted"} disabled:opacity-60`}
+                    className={`min-h-10 rounded-xl px-4 text-xs font-semibold transition-colors ${
+                      isRecordingFallback
+                        ? "bg-amber-600 text-white hover:bg-amber-700"
+                        : "bg-card border border-border text-foreground hover:bg-muted"
+                    } disabled:opacity-60`}
                   >
                     {isTranscribingFallback
                       ? "Transcribing..."
@@ -374,24 +399,63 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
                       ? "Stop recording"
                       : "Record and transcribe"}
                   </button>
-                  <button type="button" onClick={() => void invitePatient()} disabled={isInviting} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted disabled:opacity-60">
-                    <MailIcon className="h-4 w-4" /> {isInviting ? "Sending..." : "Email patient"}
+                  <button
+                    type="button"
+                    onClick={() => void invitePatient()}
+                    disabled={isInviting}
+                    className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-border bg-card px-4 text-xs font-semibold text-foreground transition-colors hover:bg-muted disabled:opacity-60"
+                  >
+                    <MailIcon className="h-4 w-4 text-primary" />
+                    <span>{isInviting ? "Sending..." : "Email patient"}</span>
                   </button>
                 </div>
               </div>
 
-              <div className="p-5 sm:p-6">
-                <iframe src={`${roomUrl}#config.prejoinPageEnabled=false`} title={meeting.title} allow="camera; microphone; fullscreen; display-capture; autoplay" className="h-[min(62vw,36rem)] min-h-80 w-full border border-border bg-muted" />
-                <label className="mt-5 block text-sm font-semibold text-foreground">Transcript with patient
-                  <textarea value={transcript} onChange={(event) => setTranscript(event.target.value)} placeholder="Start transcription to capture the consultation transcript." className="mt-2 min-h-48 w-full border border-border bg-muted/30 p-4 text-sm font-normal leading-relaxed text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
-                </label>
-                {interimTranscript ? <p className="border border-dashed border-border px-4 py-3 text-sm text-muted-foreground">{interimTranscript}</p> : null}
-                <label className="mt-4 block text-sm font-semibold text-foreground">Doctor-only notes
-                  <textarea value={notes} onChange={(event) => setNotes(event.target.value)} rows={4} maxLength={4000} placeholder="Add private clinical decisions, actions, or sensitive context." className="mt-2 block w-full border border-border bg-background p-3 text-sm font-normal leading-relaxed text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
-                </label>
-                <div className="mt-4 flex justify-end border-t border-border pt-4">
-                  <button type="button" onClick={() => void saveMeetingRecord()} disabled={isSaving} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-60">
-                    <CheckCircleIcon className="h-4 w-4" /> {isSaving ? "Saving..." : "Save to patient follow-up"}
+              <div className="p-4 sm:p-6 space-y-5">
+                <iframe
+                  src={`${roomUrl}#config.prejoinPageEnabled=false`}
+                  title={meeting.title}
+                  allow="camera; microphone; fullscreen; display-capture; autoplay"
+                  className="h-[min(62vw,36rem)] min-h-80 w-full rounded-xl border border-border bg-muted overflow-hidden"
+                />
+                <div>
+                  <label className="block text-xs font-bold text-foreground">
+                    Transcript with patient
+                  </label>
+                  <textarea
+                    value={transcript}
+                    onChange={(event) => setTranscript(event.target.value)}
+                    placeholder="Start transcription to capture the consultation transcript."
+                    className="mt-1.5 min-h-40 w-full rounded-xl border border-border bg-background p-3.5 text-sm font-normal leading-relaxed text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  />
+                </div>
+                {interimTranscript ? (
+                  <p className="rounded-xl border border-dashed border-border bg-muted/30 px-4 py-2.5 text-xs text-muted-foreground">
+                    {interimTranscript}
+                  </p>
+                ) : null}
+                <div>
+                  <label className="block text-xs font-bold text-foreground">
+                    Doctor-only notes
+                  </label>
+                  <textarea
+                    value={notes}
+                    onChange={(event) => setNotes(event.target.value)}
+                    rows={4}
+                    maxLength={4000}
+                    placeholder="Add private clinical decisions, actions, or sensitive context."
+                    className="mt-1.5 block w-full rounded-xl border border-border bg-background p-3.5 text-sm font-normal leading-relaxed text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  />
+                </div>
+                <div className="flex justify-end border-t border-border pt-4">
+                  <button
+                    type="button"
+                    onClick={() => void saveMeetingRecord()}
+                    disabled={isSaving}
+                    className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-primary-hover disabled:opacity-60 shadow-2xs"
+                  >
+                    <CheckCircleIcon className="h-4 w-4" />
+                    <span>{isSaving ? "Saving..." : "Save to patient follow-up"}</span>
                   </button>
                 </div>
               </div>

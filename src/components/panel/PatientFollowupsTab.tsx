@@ -152,7 +152,7 @@ export function PatientFollowupsTab({
     },
   }[lang];
   return (
-    <div className="space-y-5 rounded-2xl border border-border bg-card p-6">
+    <div className="space-y-5 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-foreground">

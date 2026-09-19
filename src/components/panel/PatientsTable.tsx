@@ -198,7 +198,7 @@ export function PatientsTable({
     createdTo.length > 0;
 
   return (
-    <section className="overflow-hidden rounded-3xl border border-border/80 bg-card shadow-sm">
+    <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-xs">
       <PatientsFilterBar
         searchQuery={searchQuery}
         onChangeSearchQuery={setSearchQuery}
@@ -224,27 +224,27 @@ export function PatientsTable({
       {errorMessage ? (
         <div
           role="alert"
-          className="mx-4 mb-4 flex items-center justify-between rounded-xl border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400"
+          className="mx-4 mb-4 flex items-center justify-between rounded-xl border border-red-500/20 bg-red-500/10 p-3 text-xs font-medium text-red-600 dark:text-red-400"
         >
           <span>{errorMessage}</span>
           <button
             onClick={() => setErrorMessage(null)}
-            className="ml-4 text-xs font-semibold underline hover:no-underline"
+            className="ml-4 font-bold underline hover:no-underline"
           >
             {t.dismiss}
           </button>
         </div>
       ) : null}
 
-      <div className="flex items-center justify-between border-y border-border/80 bg-muted/30 px-4 py-2.5">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+      <div className="flex items-center justify-between border-y border-border bg-muted/40 px-4 py-2.5 text-xs text-muted-foreground">
+        <p className="font-medium">
           {t.showing(filteredPatients.length, patients.length)}
         </p>
       </div>
 
       {filteredPatients.length === 0 ? (
-        <div className="p-12 text-center">
-          <div className="mx-auto max-w-sm rounded-2xl border border-dashed border-border bg-white p-8">
+        <div className="px-6 py-12 text-center">
+          <div className="mx-auto max-w-sm">
             <UsersIcon className="mx-auto h-8 w-8 text-muted-foreground" />
             <h3 className="mt-3 text-base font-semibold text-foreground">{t.noneTitle}</h3>
             <p className="mt-1 text-xs text-muted-foreground">
@@ -253,7 +253,7 @@ export function PatientsTable({
           </div>
         </div>
       ) : (
-        <div className="divide-y divide-border/70">
+        <div className="divide-y divide-border">
           {filteredPatients.map((patient) => {
             const isDeleting = deletingId === patient.id;
             const isConfirmingDelete = confirmingDeleteId === patient.id;
@@ -264,36 +264,36 @@ export function PatientsTable({
                 : patient.assigned_worker_name || t.unassigned;
 
             return (
-              <article key={patient.id} className="p-4 sm:p-5">
-                <div className="flex items-start justify-between gap-4">
+              <article key={patient.id} className="p-4 sm:p-5 transition-colors hover:bg-muted/20">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0">
                     <Link
                       href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}
-                      className="block truncate text-sm font-semibold text-foreground hover:text-primary transition-colors"
+                      className="block truncate text-base font-bold text-foreground hover:text-primary transition-colors"
                     >
                       {patient.full_name}
                     </Link>
                     <p className="mt-0.5 text-xs text-muted-foreground">
                       ID #{patient.id} {patient.request_id ? `(Req #${patient.request_id})` : ""}
                     </p>
-                    <p className="mt-0.5 text-xs font-semibold text-primary">
+                    <p className="mt-1 text-xs font-semibold text-primary">
                       {t.worker}: {assignedWorkersLabel}
                     </p>
                   </div>
-                  <div className="flex shrink-0 flex-col items-end gap-1.5">
-                    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[0.65rem] font-semibold ${priorityMeta.badgeClass}`}>
+                  <div className="flex shrink-0 items-center gap-2 self-start sm:self-auto">
+                    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-bold ${priorityMeta.badgeClass}`}>
                       <span className={`h-1.5 w-1.5 rounded-full ${priorityMeta.dotClass}`} />
                       {priorityMeta.label}
                     </span>
                     <select
                       value={patient.status}
                       onChange={(e) => handleUpdateStatus(patient.id, e.target.value as PatientStatus)}
-                      className={`rounded-full border-0 px-2.5 py-1 text-[0.65rem] font-semibold capitalize cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      className={`rounded-xl border px-2.5 py-1 text-xs font-bold capitalize cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                         patient.status === "active"
-                          ? "bg-emerald-100 text-emerald-950 dark:bg-emerald-500/10 dark:text-emerald-400"
+                          ? "border-emerald-200 bg-emerald-50/80 text-emerald-800"
                           : patient.status === "inactive"
-                          ? "bg-amber-100 text-amber-800 dark:bg-amber-500/10 dark:text-amber-400"
-                          : "bg-slate-100 text-slate-700 dark:bg-gray-500/10 dark:text-gray-400"
+                          ? "border-amber-200 bg-amber-50/80 text-amber-800"
+                          : "border-slate-200 bg-slate-100 text-slate-700"
                       }`}
                     >
                       <option value="active">{t.activeCare}</option>
@@ -307,14 +307,24 @@ export function PatientsTable({
                   {patient.condition_notes || t.noNotes}
                 </p>
 
-                <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
-                  <span className="font-semibold text-foreground">{patient.phone}</span>
-                  <span className="max-w-[220px] truncate">{patient.email}</span>
-                  <span>{patient.date_of_birth || t.dobMissing}</span>
-                  <span>{patient.gender || t.genderMissing}</span>
+                <div className="mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
+                  <a
+                    href={`tel:${patient.phone}`}
+                    className="font-semibold text-primary hover:underline"
+                  >
+                    {patient.phone}
+                  </a>
+                  <a
+                    href={`mailto:${patient.email}`}
+                    className="max-w-[220px] truncate text-muted-foreground hover:text-foreground"
+                  >
+                    {patient.email}
+                  </a>
+                  <span className="text-muted-foreground">{patient.date_of_birth || t.dobMissing}</span>
+                  <span className="text-muted-foreground">{patient.gender || t.genderMissing}</span>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between border-t border-border/70 pt-3">
+                <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
                   {isConfirmingDelete ? (
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-semibold text-red-600 dark:text-red-400">{t.deleteQ}</span>
@@ -322,14 +332,14 @@ export function PatientsTable({
                         type="button"
                         disabled={isDeleting}
                         onClick={() => handleDelete(patient.id)}
-                        className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+                        className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50 transition-colors"
                       >
                         {isDeleting ? "..." : t.yesDelete}
                       </button>
                       <button
                         type="button"
                         onClick={() => setConfirmingDeleteId(null)}
-                        className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
+                        className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
                       >
                         {t.cancel}
                       </button>
@@ -339,7 +349,7 @@ export function PatientsTable({
                       type="button"
                       onClick={() => setConfirmingDeleteId(patient.id)}
                       aria-label={`${t.deletePatient}: ${patient.full_name}`}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-red-600 hover:bg-red-500/10 dark:text-red-400"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-red-600 hover:bg-red-50 transition-colors"
                       title={t.deletePatient}
                     >
                       <TrashIcon className="h-4 w-4" />
@@ -351,14 +361,14 @@ export function PatientsTable({
                       type="button"
                       onClick={() => setEditingPatient(patient)}
                       aria-label={`${t.editProfile}: ${patient.full_name}`}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                       title={t.editProfile}
                     >
                       <EditIcon className="h-4 w-4" />
                     </button>
                     <Link
                       href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}
-                      className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-hover transition-colors"
+                      className="inline-flex items-center justify-center min-h-10 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white hover:bg-primary-hover shadow-2xs transition-colors"
                     >
                       {t.viewDetails}
                     </Link>

@@ -180,8 +180,6 @@ export function CreatePatientModal({
       const data = (await response.json()) as {
         error?: string;
         id?: number;
-        access_token?: string;
-        success?: boolean;
         email_sent?: boolean;
         warning?: string;
       };
@@ -206,7 +204,7 @@ export function CreatePatientModal({
         assigned_worker_ids: assignedWorkerIds,
         assigned_worker_name: matchedWorkers[0]?.full_name || null,
         assigned_worker_names: matchedWorkers.map((w) => w.full_name),
-        access_token: data.access_token || patient?.access_token || null,
+        has_portal_access: true,
         full_name: payload.full_name,
         phone: payload.phone,
         email: payload.email,
@@ -235,16 +233,18 @@ export function CreatePatientModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-1.5 backdrop-blur-sm sm:items-center sm:p-4">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4 backdrop-blur-xs">
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={dialogTitleId}
-        className="relative my-4 flex min-h-0 w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-xl max-h-[calc(100dvh-0.75rem)] sm:my-0 sm:max-h-[calc(100dvh-2rem)] sm:p-6"
+        className="app-sheet-slide-up relative my-0 flex min-h-0 w-full max-w-4xl flex-col overflow-hidden rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 shadow-2xl max-h-[92dvh] sm:max-h-[calc(100dvh-2rem)] sm:p-6 care-panel-bottom-bar"
       >
+        {/* Mobile bottom sheet drag handle */}
+        <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
         <div className="flex items-start justify-between gap-3 border-b border-border pb-4 sm:items-center">
-          <div className="flex min-w-0 items-start gap-2 sm:items-center">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-soft text-primary">
+          <div className="flex min-w-0 items-start gap-2.5 sm:items-center">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-soft text-primary">
               <UserIcon className="h-5 w-5" />
             </span>
             <div className="min-w-0">
@@ -263,20 +263,20 @@ export function CreatePatientModal({
             type="button"
             onClick={onClose}
             aria-label={t.close}
-            className="rounded-lg p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+            className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
           >
             <CloseIcon className="h-5 w-5" />
           </button>
         </div>
 
         {errorMessage ? (
-          <div className="mt-4 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-xs text-red-600 dark:text-red-400">
+          <div className="mt-4 rounded-xl bg-red-500/10 border border-red-500/20 p-3 text-xs font-medium text-red-600 dark:text-red-400">
             {errorMessage}
           </div>
         ) : null}
 
         {saveSuccess ? (
-          <div className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs text-emerald-600 dark:text-emerald-400">
+          <div className="mt-4 flex items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs font-medium text-emerald-700 dark:text-emerald-400">
             <CheckCircleIcon className="h-4 w-4" />
             <span>
               {isEditing
@@ -287,7 +287,7 @@ export function CreatePatientModal({
         ) : null}
 
         {warningMessage ? (
-          <div className="mt-4 rounded-lg bg-amber-500/10 border border-amber-500/20 p-3 text-xs text-amber-700 dark:text-amber-300">
+          <div className="mt-4 rounded-xl bg-amber-500/10 border border-amber-500/20 p-3 text-xs font-medium text-amber-800 dark:text-amber-300">
             {warningMessage}
           </div>
         ) : null}
@@ -304,7 +304,7 @@ export function CreatePatientModal({
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder={t.fullNamePh}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
@@ -318,7 +318,7 @@ export function CreatePatientModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder={t.phonePh}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
@@ -332,7 +332,7 @@ export function CreatePatientModal({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t.emailPh}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
@@ -346,7 +346,7 @@ export function CreatePatientModal({
                 type="date"
                 value={dateOfBirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
@@ -357,7 +357,7 @@ export function CreatePatientModal({
               <select
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="">{t.selectGender}</option>
                 <option value="Female">{t.female}</option>
@@ -374,7 +374,7 @@ export function CreatePatientModal({
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value as PatientStatus)}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="active">{t.activeCare}</option>
                 <option value="inactive">{t.inactive}</option>
@@ -389,7 +389,7 @@ export function CreatePatientModal({
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as PatientPriority)}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="critical">{t.pCritical}</option>
                 <option value="high">{t.pHigh}</option>
@@ -404,7 +404,7 @@ export function CreatePatientModal({
               <label className="text-xs font-semibold text-foreground mb-1 block">
                 {t.assignedWorker}
               </label>
-              <div className="rounded-lg border border-border bg-background p-2.5">
+              <div className="rounded-xl border border-border bg-background p-3">
                 <div className="mb-2 flex items-center justify-between gap-2 text-xs">
                   <span className="font-semibold text-foreground">
                     {assignedWorkerIds.length > 0
@@ -415,7 +415,7 @@ export function CreatePatientModal({
                     <button
                       type="button"
                       onClick={selectAllVisibleWorkers}
-                      className="text-primary hover:underline disabled:opacity-50"
+                      className="text-primary hover:underline disabled:opacity-50 font-semibold"
                       disabled={filteredWorkers.length === 0}
                     >
                       Select visible
@@ -423,7 +423,7 @@ export function CreatePatientModal({
                     <button
                       type="button"
                       onClick={() => setAssignedWorkerIds([])}
-                      className="text-primary hover:underline disabled:opacity-50"
+                      className="text-primary hover:underline disabled:opacity-50 font-semibold"
                       disabled={assignedWorkerIds.length === 0}
                     >
                       Clear
@@ -437,7 +437,7 @@ export function CreatePatientModal({
                         key={worker.id}
                         type="button"
                         onClick={() => removeSelectedWorker(worker.id)}
-                        className="rounded-full bg-primary-soft px-2 py-0.5 text-[11px] font-semibold text-primary hover:bg-primary/15"
+                        className="rounded-full bg-primary-soft px-2.5 py-0.5 text-[11px] font-semibold text-primary hover:bg-primary/15"
                         title="Remove selection"
                       >
                         {worker.full_name}
@@ -455,9 +455,9 @@ export function CreatePatientModal({
                   value={workerSearchQuery}
                   onChange={(event) => setWorkerSearchQuery(event.target.value)}
                   placeholder="Search doctor or role..."
-                  className="mb-2 w-full rounded-md border border-border bg-card px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="mb-2 w-full rounded-lg border border-border bg-card px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
-                <label className="mb-2 flex items-center gap-1.5 px-0.5 text-xs text-muted-foreground">
+                <label className="mb-2 flex items-center gap-1.5 px-0.5 text-xs text-muted-foreground cursor-pointer">
                   <input
                     type="checkbox"
                     checked={showOnlySelectedWorkers}
@@ -477,7 +477,7 @@ export function CreatePatientModal({
                       return (
                         <label
                           key={w.id}
-                          className="flex cursor-pointer items-start gap-2 rounded-md px-2 py-1.5 text-xs text-foreground hover:bg-muted"
+                          className="flex cursor-pointer items-start gap-2 rounded-lg px-2 py-1.5 text-xs text-foreground hover:bg-muted transition-colors"
                         >
                           <input
                             type="checkbox"
@@ -509,7 +509,7 @@ export function CreatePatientModal({
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder={t.addressPh}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
@@ -523,7 +523,7 @@ export function CreatePatientModal({
               value={conditionNotes}
               onChange={(e) => setConditionNotes(e.target.value)}
               placeholder={t.conditionPh}
-              className="w-full rounded-lg border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full rounded-xl border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
@@ -536,7 +536,7 @@ export function CreatePatientModal({
               value={medicalHistory}
               onChange={(e) => setMedicalHistory(e.target.value)}
               placeholder={t.historyPh}
-              className="w-full rounded-lg border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full rounded-xl border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
@@ -544,14 +544,14 @@ export function CreatePatientModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground hover:bg-muted"
+              className="rounded-xl border border-border bg-card px-4 py-2.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
             >
               {t.cancel}
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
+              className="rounded-xl bg-primary px-5 py-2.5 text-xs font-bold text-white hover:bg-primary-hover disabled:opacity-60 shadow-2xs transition-colors"
             >
               {isSubmitting
                 ? t.saving

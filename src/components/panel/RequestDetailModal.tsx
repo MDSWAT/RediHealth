@@ -264,8 +264,10 @@ export function RequestDetailModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="relative w-full max-w-2xl rounded-2xl border border-border bg-card p-6 shadow-xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-xs p-0 sm:p-4">
+      <div className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
+        {/* Mobile bottom sheet drag handle */}
+        <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
         <div className="flex items-start justify-between border-b border-border pb-4">
           <div>
             <div className="flex items-center gap-2">
@@ -273,26 +275,26 @@ export function RequestDetailModal({
                 Request #{request.id}
               </span>
               <span
-                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize ${
+                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold capitalize ${
                   status === "pending"
-                    ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                    ? "border border-amber-200 bg-amber-50 text-amber-800"
                     : status === "in_progress"
-                    ? "bg-purple-500/10 text-purple-600 dark:text-purple-400"
+                    ? "border border-sky-200 bg-sky-50 text-sky-800"
                     : status === "resolved"
-                    ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                    : "bg-gray-500/10 text-gray-600 dark:text-gray-400"
+                    ? "border border-emerald-200 bg-emerald-50 text-emerald-800"
+                    : "border border-slate-200 bg-slate-100 text-slate-700"
                 }`}
               >
                 {status.replace("_", " ")}
               </span>
               {priority === "urgent" ? (
-                <span className="inline-flex items-center gap-1 rounded-full bg-red-500/10 px-2 py-0.5 text-xs font-bold text-red-600 dark:text-red-400">
+                <span className="inline-flex items-center gap-1 rounded-full border border-red-200 bg-red-50 px-2.5 py-0.5 text-xs font-bold text-red-700">
                   <AlertCircleIcon className="h-3 w-3" />
                   {tx.urgent}
                 </span>
               ) : null}
             </div>
-            <h2 className="text-xl font-bold text-foreground mt-1">
+            <h2 className="text-xl font-bold text-foreground mt-1.5">
               {request.full_name || tx.unnamed}
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
@@ -307,20 +309,20 @@ export function RequestDetailModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+            className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
           >
             <CloseIcon className="h-5 w-5" />
           </button>
         </div>
 
         {errorMessage ? (
-          <div className="mt-4 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-xs text-red-600 dark:text-red-400">
+          <div className="mt-4 rounded-xl bg-red-500/10 border border-red-500/20 p-3 text-xs font-medium text-red-600 dark:text-red-400">
             {errorMessage}
           </div>
         ) : null}
 
         {saveSuccess ? (
-          <div className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs text-emerald-600 dark:text-emerald-400">
+          <div className="mt-4 flex items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs font-medium text-emerald-700 dark:text-emerald-400">
             <CheckCircleIcon className="h-4 w-4" />
             <span>{tx.success}</span>
           </div>
@@ -356,11 +358,11 @@ export function RequestDetailModal({
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+            <h3 className="text-xs font-bold text-foreground mb-1.5 flex items-center gap-2 uppercase tracking-wide">
               <UserIcon className="h-4 w-4 text-primary" />
               <span>{tx.enquiry}</span>
             </h3>
-            <div className="rounded-xl border border-border bg-card p-4 text-sm leading-relaxed text-foreground whitespace-pre-wrap">
+            <div className="rounded-xl border border-border bg-background p-4 text-sm leading-relaxed text-foreground whitespace-pre-wrap">
               {request.description}
             </div>
           </div>
@@ -373,7 +375,7 @@ export function RequestDetailModal({
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value as RequestStatus)}
-                className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="pending">{tx.pendingAction}</option>
                 <option value="in_progress">{tx.inProgress}</option>
@@ -389,7 +391,7 @@ export function RequestDetailModal({
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as RequestPriority)}
-                className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="normal">{tx.normalPriority}</option>
                 <option value="urgent">{tx.urgentPriority}</option>
@@ -398,7 +400,7 @@ export function RequestDetailModal({
           </div>
 
           <div>
-            <label className="text-sm font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
+            <label className="text-xs font-bold text-foreground mb-1.5 flex items-center gap-1.5 uppercase tracking-wide">
               <EditIcon className="h-4 w-4 text-primary" />
               <span>{tx.internalNotes}</span>
             </label>
@@ -407,7 +409,7 @@ export function RequestDetailModal({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder={tx.internalNotesPlaceholder}
-              className="w-full rounded-xl border border-border bg-card p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full rounded-xl border border-border bg-background p-3.5 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
@@ -424,22 +426,22 @@ export function RequestDetailModal({
             <button
               type="button"
               onClick={() => onCreatePatient(request)}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors whitespace-nowrap self-start sm:self-auto"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-3.5 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition-colors whitespace-nowrap self-start sm:self-auto shadow-2xs"
             >
               <UsersIcon className="h-4 w-4" />
               <span>{tx.createProfile}</span>
             </button>
           </div>
 
-          <div className="flex items-center justify-between rounded-xl border border-primary/20 bg-primary-soft p-3.5">
+          <div className="flex items-center justify-between rounded-xl border border-primary/20 bg-primary-soft/40 p-4">
             <div className="text-xs">
-              <p className="font-semibold text-foreground">{tx.needReply}</p>
+              <p className="font-bold text-foreground">{tx.needReply}</p>
               <p className="text-muted-foreground">{tx.needReplyHint}</p>
             </div>
             <button
               type="button"
               onClick={onOpenTemplates}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-xs font-bold text-white hover:bg-primary-hover shadow-2xs transition-colors"
             >
               <MailIcon className="h-3.5 w-3.5" />
               <span>{tx.quickTemplates}</span>
@@ -457,14 +459,14 @@ export function RequestDetailModal({
                 type="button"
                 disabled={isDeleting}
                 onClick={handleDelete}
-                className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50"
+                className="rounded-xl bg-red-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50 transition-colors"
               >
                 {isDeleting ? tx.deleting : tx.confirmDelete}
               </button>
               <button
                 type="button"
                 onClick={() => setIsConfirmingDelete(false)}
-                className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
+                className="rounded-xl border border-border bg-card px-3.5 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
               >
                 {tx.cancel}
               </button>
@@ -473,33 +475,33 @@ export function RequestDetailModal({
             <button
               type="button"
               onClick={() => setIsConfirmingDelete(true)}
-              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-500/10"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-600 dark:text-red-400 hover:underline"
             >
               <TrashIcon className="h-4 w-4" />
               <span>{tx.deleteRequest}</span>
             </button>
           )}
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground hover:bg-muted"
+              className="rounded-xl border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
             >
               {tx.cancel}
             </button>
+
             <button
               type="button"
               disabled={isSaving}
               onClick={handleSaveChanges}
-              className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
+              className="rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white hover:bg-primary-hover disabled:opacity-50 shadow-2xs transition-colors"
             >
               {isSaving ? tx.saving : tx.saveChanges}
             </button>
           </div>
         </div>
       </div>
-
     </div>
   );
 }

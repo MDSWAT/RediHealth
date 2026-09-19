@@ -212,7 +212,7 @@ export function PatientOverviewTab({
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-2xl border border-border bg-card p-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-2xl border border-border bg-card p-5 shadow-xs">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             {t.phone}
@@ -240,7 +240,7 @@ export function PatientOverviewTab({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-2xl border border-border bg-card p-5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-2xl border border-border bg-card p-5 shadow-xs">
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             {t.dob}

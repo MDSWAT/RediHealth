@@ -1,5 +1,6 @@
 "use client";
 
+import { panelDesignTranslations } from "@/lib/i18n/panel-design-translations";
 import { useState } from "react";
 import type { PatientItem } from "@/lib/types/patient";
 import { AdminShell } from "./AdminShell";
@@ -27,6 +28,7 @@ export function PatientsDashboard({
 }: PatientsDashboardProps) {
   const { lang } = useLanguage();
   const t = panelTranslations[lang].patientsDashboard;
+  const copy = panelDesignTranslations[lang];
   const [patients, setPatients] = useState<PatientItem[]>(initialPatients);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -54,6 +56,11 @@ export function PatientsDashboard({
     >
       <main id="main-content" className="min-h-screen px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <section className="mx-auto w-full max-w-7xl">
+          <header className="mb-7">
+            <p className="text-sm font-medium text-primary">{copy.workspace}</p>
+            <h1 className="mt-1 text-3xl font-bold tracking-tight">{copy.patientTitle}</h1>
+            <p className="mt-2 text-sm text-muted-foreground">{copy.patientSubtitle}</p>
+          </header>
           {!databaseAvailable ? (
             <p className="rounded-2xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
               {t.noDatabase}

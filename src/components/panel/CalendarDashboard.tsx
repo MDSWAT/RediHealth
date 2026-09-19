@@ -495,14 +495,14 @@ export function CalendarDashboard({
       isAdmin={isAdmin}
       pendingCount={pendingRequestsCount}
     >
-      <main id="main-content" className="min-h-screen py-5 sm:py-7">
+      <main id="main-content" className="min-h-screen py-5 sm:py-8">
         <Container>
-          <div className="mb-5 flex flex-col gap-5 border border-border border-l-4 border-l-primary bg-card px-5 py-5 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <div className="mb-6 flex flex-col gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary">
+              <p className="text-xs font-bold uppercase tracking-wider text-primary">
                 {t.eyebrow}
               </p>
-              <h1 className="mt-1 text-2xl font-bold text-foreground sm:text-3xl">
+              <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                 {t.title}
               </h1>
               <p className="mt-1 text-sm text-muted-foreground">
@@ -514,7 +514,7 @@ export function CalendarDashboard({
               <button
                 type="button"
                 onClick={() => handleOpenScheduleForDate(todayStr)}
-                className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white shadow-2xs transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <PlusIcon className="h-4 w-4" />
                 <span>{t.scheduleBtn}</span>
@@ -523,19 +523,19 @@ export function CalendarDashboard({
           </div>
 
           {!databaseAvailable ? (
-            <p className="border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p className="rounded-2xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
               {t.noDb}
             </p>
           ) : (
-            <div className="space-y-4">
-              <div className="border border-border border-t-2 border-t-foreground bg-card shadow-sm">
+            <div className="space-y-6">
+              <div className="rounded-2xl border border-border bg-card shadow-xs overflow-hidden">
                 <div className="flex flex-col gap-4 border-b border-border p-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                    <div className="flex items-center rounded-lg border border-border bg-muted/40 p-1">
+                    <div className="flex items-center rounded-xl border border-border bg-muted/40 p-1">
                       <button
                         type="button"
                         onClick={handlePrev}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded text-foreground transition-colors hover:bg-card"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-card"
                         title={t.prev}
                       >
                         <ChevronLeftIcon className="h-4 w-4" />
@@ -543,35 +543,35 @@ export function CalendarDashboard({
                       <button
                         type="button"
                         onClick={handleToday}
-                        className="rounded px-3 py-1.5 text-xs font-bold text-foreground transition-colors hover:bg-card"
+                        className="rounded-lg px-3 py-1.5 text-xs font-bold text-foreground transition-colors hover:bg-card"
                       >
                         {t.today}
                       </button>
                       <button
                         type="button"
                         onClick={handleNext}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded text-foreground transition-colors hover:bg-card"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-card"
                         title={t.next}
                       >
                         <ChevronRightIcon className="h-4 w-4" />
                       </button>
                     </div>
 
-                    <h2 className="border-l-2 border-primary pl-3 text-base font-bold text-foreground sm:text-lg">
+                    <h2 className="text-base font-bold text-foreground sm:text-lg">
                       {calendarTitle}
                     </h2>
                   </div>
 
                   <div className="flex items-center justify-between gap-2 sm:justify-end">
-                    <div className="flex items-center rounded-lg border border-border bg-muted/40 p-1 shadow-inner">
+                    <div className="flex items-center rounded-xl border border-border bg-muted/40 p-1">
                       {(["month", "week", "day"] as const).map((mode) => (
                         <button
                           key={mode}
                           type="button"
                           onClick={() => setViewMode(mode)}
-                          className={`rounded px-3 py-1.5 text-xs font-bold transition-colors ${
+                          className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${
                             viewMode === mode
-                              ? "bg-foreground text-white shadow-sm"
+                              ? "bg-primary text-white shadow-2xs"
                               : "text-muted-foreground hover:text-foreground"
                           }`}
                         >
@@ -584,7 +584,7 @@ export function CalendarDashboard({
                       type="button"
                       onClick={handleRefresh}
                       disabled={isRefreshing}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-xs font-semibold text-foreground transition-colors hover:bg-muted disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-xs font-semibold text-foreground transition-colors hover:bg-muted disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       title={t.refresh}
                     >
                       <RefreshIcon
@@ -596,7 +596,7 @@ export function CalendarDashboard({
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 border-b-2 border-b-primary/20 bg-muted/40 p-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+                <div className="flex flex-col gap-3 border-b border-border bg-muted/20 p-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
                   <div className="relative w-full sm:max-w-sm">
                     <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <input
@@ -604,14 +604,11 @@ export function CalendarDashboard({
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder={t.search}
-                      className="min-h-10 w-full rounded-lg border border-border bg-card py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="w-full rounded-xl border border-border bg-card py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     />
                   </div>
 
-                  <div className="flex items-center gap-2 overflow-x-auto text-xs">
-                    <span className="flex items-center gap-1 font-semibold text-muted-foreground">
-                      {t.filter}:
-                    </span>
+                  <div className="flex items-center gap-1.5 overflow-x-auto text-xs no-scrollbar">
                     {(
                       [
                         { id: "all", label: t.allEvents },
@@ -624,10 +621,10 @@ export function CalendarDashboard({
                         key={f.id}
                         type="button"
                         onClick={() => setStatusFilter(f.id)}
-                        className={`rounded px-2.5 py-1.5 font-semibold transition-colors whitespace-nowrap ${
+                        className={`rounded-xl px-3 py-1.5 font-semibold transition-all whitespace-nowrap ${
                           statusFilter === f.id
-                            ? "bg-foreground text-background"
-                            : "bg-muted text-foreground hover:bg-muted/80"
+                            ? "bg-primary text-white shadow-2xs"
+                            : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                         }`}
                       >
                         {f.label}
@@ -638,15 +635,15 @@ export function CalendarDashboard({
               </div>
 
               {errorMessage ? (
-                <div className="border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-600 dark:text-red-400">
+                <div className="rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-xs font-medium text-red-600 dark:text-red-400">
                   {errorMessage}
                 </div>
               ) : null}
 
               {viewMode === "month" ? (
-                <div className="overflow-x-auto border border-border border-t-2 border-t-primary bg-card shadow-sm">
+                <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-xs">
                   <div className="min-w-[42rem]">
-                    <div className="grid grid-cols-7 border-b border-border bg-muted/70 py-3 text-center text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground">
+                    <div className="grid grid-cols-7 border-b border-border bg-muted/50 py-3 text-center text-xs font-bold uppercase tracking-wider text-muted-foreground">
                       {t.weekDays.map((day) => (
                         <div key={day}>{day}</div>
                       ))}
@@ -660,15 +657,15 @@ export function CalendarDashboard({
                         return (
                           <div
                             key={cell.dateStr}
-                            className={`group flex min-h-[116px] flex-col justify-between bg-card p-2 transition-colors hover:bg-primary-soft/30 sm:min-h-[132px] ${
-                              !cell.isCurrentMonth ? "bg-muted/30 text-muted-foreground" : ""
+                            className={`group flex min-h-[116px] flex-col justify-between bg-card p-2 transition-colors hover:bg-muted/30 sm:min-h-[132px] ${
+                              !cell.isCurrentMonth ? "bg-muted/20 text-muted-foreground" : ""
                             }`}
                           >
                             <div className="mb-2 flex items-center justify-between">
                               <span
                                 className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
                                   isToday
-                                    ? "bg-primary text-white"
+                                    ? "bg-primary text-white shadow-2xs"
                                     : "text-foreground"
                                 }`}
                               >
@@ -678,7 +675,7 @@ export function CalendarDashboard({
                               <button
                                 type="button"
                                 onClick={() => handleOpenScheduleForDate(cell.dateStr)}
-                                className="rounded p-1 text-muted-foreground opacity-0 transition-opacity hover:bg-primary-soft hover:text-primary group-hover:opacity-100 focus:opacity-100"
+                                className="rounded-lg p-1 text-muted-foreground opacity-0 transition-opacity hover:bg-primary-soft hover:text-primary group-hover:opacity-100 focus:opacity-100"
                                 title={t.addOnDate(cell.dateStr)}
                               >
                                 <PlusIcon className="h-3.5 w-3.5" />
@@ -700,12 +697,12 @@ export function CalendarDashboard({
                                       e.stopPropagation();
                                       setSelectedEvent(ev);
                                     }}
-                                    className={`w-full border-l-2 px-1.5 py-1 text-left text-[10px] font-semibold leading-tight transition-colors ${
+                                    className={`w-full rounded-md border-l-3 px-2 py-1 text-left text-[11px] font-semibold leading-tight transition-colors ${
                                       isDone
-                                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-700 line-through dark:text-emerald-400"
+                                        ? "border-emerald-500 bg-emerald-50 text-emerald-800 line-through"
                                         : isOverdue
-                                        ? "border-red-600 bg-red-500/10 text-red-700 font-bold"
-                                        : "border-primary bg-primary-soft/70 text-primary hover:bg-primary-soft"
+                                        ? "border-red-600 bg-red-50 text-red-800 font-bold"
+                                        : "border-primary bg-primary-soft/60 text-primary hover:bg-primary-soft"
                                     }`}
                                     title={`${ev.patient.full_name}: ${ev.followup.title}`}
                                   >
@@ -728,14 +725,14 @@ export function CalendarDashboard({
               ) : null}
 
               {viewMode === "week" ? (
-                <div className="overflow-x-auto border border-border border-t-2 border-t-primary bg-card shadow-sm">
+                <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-xs">
                   <div className="min-w-[42rem]">
-                    <div className="grid grid-cols-7 divide-x divide-border border-b border-border bg-muted/70 text-center text-xs font-bold text-foreground">
+                    <div className="grid grid-cols-7 divide-x divide-border border-b border-border bg-muted/50 text-center text-xs font-bold text-foreground">
                       {weekDays.map((w) => {
                         const isToday = w.dateStr === todayStr;
                         return (
                           <div key={w.dateStr} className="px-2 py-3">
-                            <p className="text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+                            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
                               {w.date.toLocaleDateString(locale, {
                                 weekday: "short",
                               })}
@@ -743,7 +740,7 @@ export function CalendarDashboard({
                             <p
                               className={`mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-sm ${
                                 isToday
-                                  ? "bg-primary text-white font-bold"
+                                  ? "bg-primary text-white font-bold shadow-2xs"
                                   : "font-bold text-foreground"
                               }`}
                             >
@@ -761,7 +758,7 @@ export function CalendarDashboard({
                         return (
                         <div
                           key={w.dateStr}
-                          className="group flex flex-col justify-between p-2 transition-colors hover:bg-primary-soft/30"
+                          className="group flex flex-col justify-between p-2 transition-colors hover:bg-muted/30"
                         >
                           <div className="space-y-2 flex-1">
                             {dayEvents.map((ev) => {
@@ -775,12 +772,12 @@ export function CalendarDashboard({
                                   key={ev.followup.id}
                                   type="button"
                                   onClick={() => setSelectedEvent(ev)}
-                                  className={`w-full border-l-2 px-2.5 py-2 text-left text-xs transition-colors ${
+                                  className={`w-full rounded-md border-l-3 px-2.5 py-2 text-left text-xs transition-colors ${
                                     isDone
-                                      ? "border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                                      ? "border-emerald-500 bg-emerald-50 text-emerald-800"
                                       : isOverdue
-                                      ? "border-red-600 bg-red-500/10 text-red-700 font-bold"
-                                      : "border-primary bg-primary-soft/70 text-primary hover:bg-primary-soft"
+                                      ? "border-red-600 bg-red-50 text-red-800 font-bold"
+                                      : "border-primary bg-primary-soft/60 text-primary hover:bg-primary-soft"
                                   }`}
                                 >
                                   <p className="font-bold truncate">
@@ -802,7 +799,7 @@ export function CalendarDashboard({
                           <button
                             type="button"
                             onClick={() => handleOpenScheduleForDate(w.dateStr)}
-                            className="mt-4 flex w-full items-center justify-center gap-1 border border-dashed border-border py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary hover:bg-primary-soft/50 hover:text-primary"
+                            className="mt-4 flex w-full items-center justify-center gap-1 rounded-lg border border-dashed border-border py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary hover:bg-primary-soft/50 hover:text-primary"
                           >
                             <PlusIcon className="h-3.5 w-3.5" />
                             <span>{t.dayAdd}</span>
@@ -816,7 +813,7 @@ export function CalendarDashboard({
               ) : null}
 
               {viewMode === "day" ? (
-                <div className="border border-border border-t-2 border-t-primary bg-card p-5 shadow-sm sm:p-6">
+                <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
                   <div className="mb-6 flex flex-col gap-3 border-b border-border pb-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <h3 className="text-lg font-bold text-foreground">
@@ -834,7 +831,7 @@ export function CalendarDashboard({
                           currentDate.toISOString().slice(0, 10),
                         )
                       }
-                      className="inline-flex min-h-10 items-center gap-1.5 rounded-lg bg-primary px-3.5 text-xs font-semibold text-white transition-colors hover:bg-primary-hover"
+                      className="inline-flex min-h-10 items-center gap-1.5 rounded-xl bg-primary px-3.5 text-xs font-bold text-white transition-colors hover:bg-primary-hover shadow-2xs"
                     >
                       <PlusIcon className="h-4 w-4" />
                       <span>{t.addToday}</span>
@@ -868,13 +865,13 @@ export function CalendarDashboard({
                           return (
                             <div
                               key={ev.followup.id}
-                              className="flex flex-col justify-between gap-4 border border-border border-l-4 border-l-primary bg-background p-4 sm:flex-row sm:items-center"
+                              className="flex flex-col justify-between gap-4 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-center shadow-2xs hover:border-border transition-colors"
                             >
                               <div className="flex items-start gap-3">
                                 <button
                                   type="button"
                                   onClick={() => handleToggleCompletion(ev)}
-                                  className={`mt-1 flex h-5 w-5 items-center justify-center rounded-full border transition-colors ${
+                                  className={`mt-1 flex h-5 w-5 items-center justify-center rounded-md border transition-colors ${
                                     isDone
                                       ? "bg-emerald-600 border-emerald-600 text-white"
                                       : "border-border hover:border-primary"
@@ -914,13 +911,13 @@ export function CalendarDashboard({
                               <div className="flex items-center gap-2 self-end sm:self-auto">
                                 <Link
                                   href={withLangPrefix(`/panel/patients/${ev.patient.id}`, lang)}
-                                  className="rounded bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary/20"
+                                  className="rounded-lg bg-primary-soft px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary/20"
                                 >
                                   {t.profile}
                                 </Link>
                                 <a
                                   href={`tel:${ev.patient.phone}`}
-                                  className="rounded border border-border bg-card p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                                  className="rounded-lg border border-border bg-card p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                                   title={t.callPatient}
                                 >
                                   <PhoneIcon className="h-4 w-4" />
@@ -940,8 +937,10 @@ export function CalendarDashboard({
       </main>
 
       {selectedEvent ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="relative w-full max-w-md rounded-2xl border border-border bg-card p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-xs p-0 sm:p-4">
+          <div className="app-sheet-slide-up relative w-full max-w-md rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
+            {/* Mobile bottom sheet drag handle */}
+            <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
             <div className="flex items-center justify-between border-b border-border pb-4">
               <div className="flex items-center gap-2">
                 <CalendarIcon className="h-5 w-5 text-primary" />
@@ -1076,8 +1075,10 @@ export function CalendarDashboard({
       ) : null}
 
       {showScheduleModal ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="relative w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-xs p-0 sm:p-4">
+          <div className="app-sheet-slide-up relative w-full max-w-lg rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
+            {/* Mobile bottom sheet drag handle */}
+            <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
             <div className="flex items-center justify-between border-b border-border pb-4">
               <div className="flex items-center gap-2">
                 <CalendarIcon className="h-5 w-5 text-primary" />

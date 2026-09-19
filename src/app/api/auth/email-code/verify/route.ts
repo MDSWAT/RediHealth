@@ -57,8 +57,9 @@ export async function POST(request: Request) {
   try {
     const stored = await decryptEmailCode(codeToken);
     if (stored.code !== normalizedCode) {
+      cookieStore.delete(emailAuthCookies.otp);
       return NextResponse.json(
-        { error: "That code is not correct. Try again." },
+        { error: "That code is not correct. Request a new one." },
         { status: 400 },
       );
     }

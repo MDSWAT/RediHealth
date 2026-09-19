@@ -1,7 +1,6 @@
-import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { getDatabase, type ResultSetHeader } from "@/lib/database";
+import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
   PATIENT_COLUMNS,
@@ -18,6 +17,7 @@ import type {
 } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { sendPatientPortalLinkEmail } from "@/lib/email";
+import { generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DEFAULT_PORTAL_TOKEN_TTL_DAYS = 30;
@@ -76,6 +76,12 @@ export async function GET(request: Request) {
   const priorityParam = searchParams.get("priority");
   const workerIdParam = searchParams.get("assigned_worker_id");
   const searchParam = searchParams.get("search")?.trim().toLowerCase();
+  const pageParam = searchParams.get("page");
+  const limitParam = searchParams.get("limit");
+
+  const page = Math.max(1, Number(pageParam) || 1);
+  const limit = Math.min(100, Math.max(10, Number(limitParam) || 50));
+  const offset = (page - 1) * limit;
 
   try {
     const db = getDatabase();
@@ -118,10 +124,30 @@ export async function GET(request: Request) {
       query += ` WHERE ${conditions.join(" AND ")}`;
     }
 
-    query += ` ORDER BY p.created_at DESC LIMIT 100`;
+    // Get total count for pagination
+    let totalQuery = `SELECT COUNT(*) as total ${PATIENT_FROM}`;
+    const totalParams: unknown[] = [];
+    if (conditions.length > 0) {
+      totalQuery += ` WHERE ${conditions.join(" AND ")}`;
+      totalParams.push(...params);
+    }
+    const [totalRows] = await db.query<RowDataPacket[]>(totalQuery, totalParams);
+    const total = Number(totalRows[0]?.total || 0);
+
+    query += ` ORDER BY p.created_at DESC LIMIT ? OFFSET ?`;
+    params.push(limit, offset);
 
     const [rows] = await db.query<DBPatientRow[]>(query, params);
-    return NextResponse.json({ patients: rows.map(mapPatientRow) });
+    return NextResponse.json({
+      patients: rows.map(mapPatientRow),
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+        hasMore: page * limit < total,
+      },
+    });
   } catch (error) {
     console.error("Failed to fetch patients", error);
     return NextResponse.json(
@@ -164,7 +190,8 @@ export async function POST(request: Request) {
   const requestedAssignedWorkerId = body.assigned_worker_id
     ? String(body.assigned_worker_id)
     : requestedAssignedWorkerIds[0] || null;
-  const accessToken = body.access_token || randomUUID().replace(/-/g, "");
+  const accessToken = generatePortalToken();
+  const accessTokenHash = hashPortalToken(accessToken);
   const accessTokenExpiresAt = resolvePortalTokenExpiryDate();
 
   if (!fullName || !phone || !emailPattern.test(email)) {
@@ -225,7 +252,7 @@ export async function POST(request: Request) {
       requestId,
       assignedWorkerId ?? workerContext.workerId,
       stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
-      accessToken,
+      accessTokenHash,
       fullName,
       phone,
       email,
@@ -243,13 +270,13 @@ export async function POST(request: Request) {
 
     try {
       const [result] = await db.query<ResultSetHeader>(
-        `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
+        `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token_hash, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           requestId,
           assignedWorkerId ?? workerContext.workerId,
           stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
-          accessToken,
+          accessTokenHash,
           accessTokenExpiresAt,
           fullName,
           phone,
@@ -274,7 +301,7 @@ export async function POST(request: Request) {
 
       // Backward compatibility for databases that predate the token-expiry column.
       const [fallbackResult] = await db.query<ResultSetHeader>(
-        `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
+        `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token_hash, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         baseInsertParams,
       );
@@ -308,7 +335,6 @@ export async function POST(request: Request) {
       {
         success: true,
         id: createdPatientId,
-        access_token: accessToken,
         email_sent: false,
         warning: "Patient was created, but portal email could not be sent.",
       },
@@ -317,7 +343,7 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json(
-    { success: true, id: createdPatientId, access_token: accessToken, email_sent: true },
+    { success: true, id: createdPatientId, email_sent: true },
     { status: 201 },
   );
 }

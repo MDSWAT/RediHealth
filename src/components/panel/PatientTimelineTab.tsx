@@ -48,7 +48,7 @@ export function PatientTimelineTab({ patient, followups, photos }: PatientTimeli
     },
   }[lang];
   return (
-    <div className="space-y-4 rounded-2xl border border-border bg-card p-6">
+    <div className="space-y-4 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
       <div>
         <h3 className="text-sm font-semibold text-foreground">
           {t.title}

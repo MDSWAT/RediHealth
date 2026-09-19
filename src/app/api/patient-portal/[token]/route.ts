@@ -13,6 +13,7 @@ import type {
   PatientPhoto,
   TreatmentPlan,
 } from "@/lib/types/patient";
+import { hashPortalToken } from "@/lib/security/portal-token";
 
 const MAX_CONDITION_NOTES_LENGTH = 4_000;
 const TOKEN_PATTERN = /^[A-Za-z0-9_-]{16,128}$/;
@@ -42,7 +43,8 @@ export async function GET(request: Request, { params }: Params) {
     return NextResponse.json({ error: "Invalid token." }, { status: 400 });
   }
 
-  const rateLimit = checkRateLimit(`patient-portal:get:${token}:${getClientIp(request)}`, {
+  const tokenHash = hashPortalToken(token);
+  const rateLimit = checkRateLimit(`patient-portal:get:${tokenHash}:${getClientIp(request)}`, {
     limit: 40,
     windowMs: 60_000,
   });
@@ -59,7 +61,7 @@ export async function GET(request: Request, { params }: Params) {
 
     try {
       const [primaryRows] = await db.query<RowDataPacket[]>(
-        `SELECT p.id, p.request_id, p.access_token, p.full_name, p.phone, p.email, 
+        `SELECT p.id, p.request_id, p.access_token_hash, p.full_name, p.phone, p.email, 
                 p.date_of_birth, p.gender, p.address, p.condition_notes, p.medical_history, 
                 p.treatment_plan, p.followups, p.photos, 
                 COALESCE(p.status, 'active') AS status, 
@@ -68,10 +70,10 @@ export async function GET(request: Request, { params }: Params) {
                 p.created_at, p.updated_at
          FROM patients p
          LEFT JOIN workers w ON w.id = p.assigned_worker_id
-         WHERE p.access_token = ?
+         WHERE p.access_token_hash = ?
            AND (p.access_token_expires_at IS NULL OR p.access_token_expires_at > UTC_TIMESTAMP())
          LIMIT 1`,
-        [token],
+        [tokenHash],
       );
       rows = primaryRows;
     } catch (queryError) {
@@ -80,7 +82,7 @@ export async function GET(request: Request, { params }: Params) {
       }
 
       const [fallbackRows] = await db.query<RowDataPacket[]>(
-        `SELECT p.id, p.request_id, p.access_token, p.full_name, p.phone, p.email, 
+        `SELECT p.id, p.request_id, p.access_token_hash, p.full_name, p.phone, p.email, 
                 p.date_of_birth, p.gender, p.address, p.condition_notes, p.medical_history, 
                 p.treatment_plan, p.followups, p.photos, 
                 COALESCE(p.status, 'active') AS status, 
@@ -89,9 +91,9 @@ export async function GET(request: Request, { params }: Params) {
                 p.created_at, p.updated_at
          FROM patients p
          LEFT JOIN workers w ON w.id = p.assigned_worker_id
-         WHERE p.access_token = ?
+         WHERE p.access_token_hash = ?
          LIMIT 1`,
-        [token],
+        [tokenHash],
       );
       rows = fallbackRows;
     }
@@ -123,7 +125,8 @@ export async function PATCH(request: Request, { params }: Params) {
     return NextResponse.json({ error: "Invalid token." }, { status: 400 });
   }
 
-  const rateLimit = checkRateLimit(`patient-portal:patch:${token}:${getClientIp(request)}`, {
+  const tokenHash = hashPortalToken(token);
+  const rateLimit = checkRateLimit(`patient-portal:patch:${tokenHash}:${getClientIp(request)}`, {
     limit: 20,
     windowMs: 60_000,
   });
@@ -156,10 +159,10 @@ export async function PATCH(request: Request, { params }: Params) {
       const [primaryRows] = await db.query<RowDataPacket[]>(
         `SELECT id, condition_notes, priority, followups, photos
          FROM patients
-         WHERE access_token = ?
+         WHERE access_token_hash = ?
            AND (access_token_expires_at IS NULL OR access_token_expires_at > UTC_TIMESTAMP())
          LIMIT 1`,
-        [token],
+        [tokenHash],
       );
       rows = primaryRows;
     } catch (queryError) {
@@ -170,9 +173,9 @@ export async function PATCH(request: Request, { params }: Params) {
       const [fallbackRows] = await db.query<RowDataPacket[]>(
         `SELECT id, condition_notes, priority, followups, photos
          FROM patients
-         WHERE access_token = ?
+         WHERE access_token_hash = ?
          LIMIT 1`,
-        [token],
+        [tokenHash],
       );
       rows = fallbackRows;
     }

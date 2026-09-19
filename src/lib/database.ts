@@ -44,10 +44,11 @@ function createDatabasePool() {
 
   const baseConfig = {
     waitForConnections: true,
-    connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 10),
+    connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 25),
     queueLimit: 0,
-    connectTimeout: 5_000,
+    connectTimeout: 10_000,
     enableKeepAlive: true,
+    keepAliveInitialDelay: 30_000,
     ssl: useSsl ? { rejectUnauthorized: false } : undefined,
   };
 

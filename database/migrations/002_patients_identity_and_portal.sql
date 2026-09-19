@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS patients (
   request_id BIGINT,
   assigned_worker_id BIGINT NULL,
   assigned_worker_ids JSON NULL,
-  access_token VARCHAR(64) NULL,
+  access_token_hash CHAR(64) NULL,
   access_token_expires_at DATETIME NULL,
   full_name VARCHAR(200) NOT NULL,
   phone VARCHAR(50) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS patients (
   UNIQUE INDEX patients_email_unique_idx (email),
   INDEX patients_priority_idx (priority),
   INDEX patients_assigned_worker_id_idx (assigned_worker_id),
-  UNIQUE INDEX patients_access_token_unique_idx (access_token),
+  UNIQUE INDEX patients_access_token_hash_unique_idx (access_token_hash),
   INDEX patients_access_token_expires_idx (access_token_expires_at),
   CONSTRAINT patients_assigned_worker_fk
     FOREIGN KEY (assigned_worker_id) REFERENCES workers(id)

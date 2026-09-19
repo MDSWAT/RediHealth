@@ -125,7 +125,7 @@ export function PatientTreatmentTab({
     },
   }[lang];
   return (
-    <div className="space-y-5 rounded-2xl border border-border bg-card p-6">
+    <div className="space-y-5 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
       {treatmentSavedMsg ? (
         <div className="flex items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3.5 text-xs text-emerald-600 dark:text-emerald-400">
           <CheckCircleIcon className="h-4 w-4" />
