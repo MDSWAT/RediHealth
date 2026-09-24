@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { DEFAULT_LANG, isSupportedLang } from "@/lib/i18n/routing";
+import { notifyOperationalIssue } from "@/lib/operational-alerts";
 import type { Lang } from "@/lib/i18n/translations";
 
 const urgentPattern = /chest pain|difficulty breathing|shortness of breath|unconscious|fainting|seizure|stroke|face droop|severe bleeding|suicid|overdose/i;
@@ -137,7 +138,8 @@ function buildSystemInstruction(lang: Lang) {
 }
 
 export async function POST(request: Request) {
-  const rateLimit = checkRateLimit(`health-assistant:${getClientIp(request)}`, { limit: 10, windowMs: 60_000 });
+  const clientIp = getClientIp(request);
+  const rateLimit = checkRateLimit(`health-assistant:${clientIp}`, { limit: 10, windowMs: 60_000 });
   if (!rateLimit.allowed) {
     return NextResponse.json(
       { error: "Too many requests. Please wait a moment and try again." },
@@ -153,6 +155,31 @@ export async function POST(request: Request) {
   }
   const symptoms = typeof body.symptoms === "string" ? body.symptoms.trim() : "";
   const lang = typeof body.lang === "string" && isSupportedLang(body.lang) ? body.lang : DEFAULT_LANG;
+  const alertContextBase = {
+    ip: clientIp,
+    lang,
+  };
+
+  const sendAssistantAlert = (
+    key: string,
+    title: string,
+    summary: string,
+    details?: Record<string, unknown>,
+    severity: "warning" | "critical" = "warning",
+  ) => {
+    void notifyOperationalIssue({
+      key,
+      title,
+      summary,
+      source: "/api/health-assistant",
+      severity,
+      details: {
+        ...alertContextBase,
+        ...(details || {}),
+      },
+      cooldownMs: 15 * 60_000,
+    });
+  };
   const history = Array.isArray(body.history)
     ? body.history.slice(-12).flatMap((item) => {
         if (!item || typeof item !== "object") return [];
@@ -223,6 +250,13 @@ export async function POST(request: Request) {
   const claudeApiKey = usesRelayMessagesEndpoint ? relayApiKey : anthropicApiKey;
   const relayApiKeyForResponses = relayApiKey || anthropicApiKey;
   if (!claudeApiKey && model.startsWith("claude-")) {
+    sendAssistantAlert(
+      "ai:misconfigured:claude",
+      "AI assistant misconfigured",
+      "Claude model selected but API credentials are missing.",
+      { model, usesRelayMessagesEndpoint },
+      "critical",
+    );
     return NextResponse.json(
       {
         error: usesRelayMessagesEndpoint
@@ -233,6 +267,13 @@ export async function POST(request: Request) {
     );
   }
   if (!relayApiKeyForResponses && !model.startsWith("claude-")) {
+    sendAssistantAlert(
+      "ai:misconfigured:relay",
+      "AI assistant misconfigured",
+      "Relay model selected but relay credentials are missing.",
+      { model },
+      "critical",
+    );
     return NextResponse.json({ error: "The AI assistant is not configured yet. Add LLMSRELAY_API_KEY to .env.local." }, { status: 503 });
   }
   const systemInstruction = buildSystemInstruction(lang);
@@ -281,6 +322,18 @@ export async function POST(request: Request) {
       const errorBody = await anthropicResponse.text().catch(() => "");
       const relayError = parseRelayError(errorBody);
       console.error("LLMsRelay Claude messages request failed", anthropicResponse.status, errorBody.slice(0, 500));
+      sendAssistantAlert(
+        `ai:claude:${anthropicResponse.status}`,
+        "AI assistant provider error",
+        "Claude messages request failed.",
+        {
+          model,
+          status: anthropicResponse.status,
+          relayCode: relayError.code || "",
+          relayMessage: (relayError.message || "").slice(0, 240),
+        },
+        anthropicResponse.status >= 500 ? "critical" : "warning",
+      );
       if (anthropicResponse.status === 429) {
         return NextResponse.json({ error: "The AI assistant has reached its request limit. Please try again in a few minutes." }, { status: 429 });
       }
@@ -356,6 +409,17 @@ export async function POST(request: Request) {
       if (!fallbackResponse.ok) {
         const fallbackErrorBody = await fallbackResponse.text().catch(() => "");
         console.error("LLMsRelay health assistant fallback failed", fallbackResponse.status, fallbackErrorBody.slice(0, 500));
+        sendAssistantAlert(
+          `ai:relay-fallback:${fallbackResponse.status}`,
+          "AI assistant fallback error",
+          "Fallback call to relay chat completions failed.",
+          {
+            model,
+            status: fallbackResponse.status,
+            errorSnippet: fallbackErrorBody.slice(0, 240),
+          },
+          fallbackResponse.status >= 500 ? "critical" : "warning",
+        );
         if (fallbackResponse.status === 429) {
           return NextResponse.json({ error: "The AI assistant has reached its request limit. Please try again in a few minutes." }, { status: 429 });
         }
@@ -371,6 +435,18 @@ export async function POST(request: Request) {
       const errorBody = await relayResponse.text().catch(() => "");
       const relayError = parseRelayError(errorBody);
       console.error("LLMsRelay health assistant request failed", relayResponse.status, errorBody.slice(0, 500));
+      sendAssistantAlert(
+        `ai:relay:${relayResponse.status}`,
+        "AI assistant provider error",
+        "Relay responses request failed.",
+        {
+          model,
+          status: relayResponse.status,
+          relayCode: relayError.code || "",
+          relayMessage: (relayError.message || "").slice(0, 240),
+        },
+        relayResponse.status >= 500 ? "critical" : "warning",
+      );
       if (relayResponse.status === 429) {
         return NextResponse.json({ error: "The AI assistant has reached its request limit. Please try again in a few minutes." }, { status: 429 });
       }
@@ -385,6 +461,13 @@ export async function POST(request: Request) {
   }
 
   if (!generatedText) {
+    sendAssistantAlert(
+      "ai:no-response",
+      "AI assistant empty response",
+      "AI provider request completed without content.",
+      { model },
+      "warning",
+    );
     return NextResponse.json({ error: "The AI assistant did not return a response. Please try again." }, { status: 502 });
   }
 
@@ -400,6 +483,13 @@ export async function POST(request: Request) {
     };
     return NextResponse.json(response);
   } catch {
+    sendAssistantAlert(
+      "ai:unreadable-response",
+      "AI assistant unreadable response",
+      "AI provider returned a response that could not be parsed as valid JSON.",
+      { model, responseSnippet: generatedText.slice(0, 240) },
+      "warning",
+    );
     return NextResponse.json({ error: "The AI assistant returned an unreadable response. Please try again." }, { status: 502 });
   }
 }

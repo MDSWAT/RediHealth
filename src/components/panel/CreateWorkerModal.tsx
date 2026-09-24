@@ -45,6 +45,7 @@ export function CreateWorkerModal({
       caseWorker: "Case Worker",
       gp: "General Practitioner",
       admin: "Administrator",
+      superAdmin: "Super Admin",
       department: "Department / Specialty",
       deptPh: "e.g. Cardiology, Primary Care",
       accountStatus: "Account Status",
@@ -78,6 +79,7 @@ export function CreateWorkerModal({
       caseWorker: "Lucrator de caz",
       gp: "Medic de familie",
       admin: "Administrator",
+      superAdmin: "Super Admin",
       department: "Departament / Specialitate",
       deptPh: "ex. Cardiologie, Medicina de familie",
       accountStatus: "Status cont",
@@ -111,6 +113,7 @@ export function CreateWorkerModal({
       caseWorker: "Punonjes rasti",
       gp: "Mjek i pergjithshem",
       admin: "Administrator",
+      superAdmin: "Super Admin",
       department: "Departamenti / Specialiteti",
       deptPh: "p.sh. Kardiologji, Kujdes paresor",
       accountStatus: "Statusi i llogarise",
@@ -144,6 +147,7 @@ export function CreateWorkerModal({
       caseWorker: "Case worker",
       gp: "Medico di base",
       admin: "Amministratore",
+      superAdmin: "Super Admin",
       department: "Reparto / Specialita",
       deptPh: "es. Cardiologia, Cure primarie",
       accountStatus: "Stato account",
@@ -341,6 +345,7 @@ export function CreateWorkerModal({
                 <option value="Case Worker">{t.caseWorker}</option>
                 <option value="General Practitioner">{t.gp}</option>
                 <option value="Administrator">{t.admin}</option>
+                <option value="Super Admin">{t.superAdmin}</option>
               </select>
             </div>
 

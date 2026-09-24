@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { HeartIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
-  title: "About — RediHealth",
+  title: "About - RediHealth",
   description:
     "RediHealth helps people understand their health risks and connects them with medical assistance and healthcare workers.",
 };
@@ -30,7 +30,7 @@ export default function AboutPage() {
         <Container>
           <div className="max-w-2xl space-y-4 text-base leading-relaxed text-muted-foreground">
             <p>
-              We built RediHealth to make it easier for people to know what to do next when they have a health concern —
+              We built RediHealth to make it easier for people to know what to do next when they have a health concern -
               whether that means checking symptoms, learning about a condition, or requesting help from a medical
               professional or mediator.
             </p>

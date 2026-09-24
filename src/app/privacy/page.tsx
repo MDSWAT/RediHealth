@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { LockIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
-  title: "Privacy Notice — RediHealth",
+  title: "Privacy Notice - RediHealth",
   description: "How RediHealth collects, uses, and protects your information.",
 };
 

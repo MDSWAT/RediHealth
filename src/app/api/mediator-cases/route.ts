@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
+import { logActivity } from "@/lib/activity-log";
 import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { getClientIp } from "@/lib/rate-limit";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 
 const validUrgencies = ["low", "moderate", "high", "urgent"];
@@ -314,6 +316,24 @@ export async function POST(request: Request) {
     }
 
     await connection.commit();
+
+    await logActivity({
+      actorWorkerId: worker.workerId,
+      actorName: worker.workerName,
+      actorEmail: userEmail,
+      actorRole: worker.role,
+      action: "mediator_case.created",
+      entityType: "mediator_case",
+      entityId: String(caseResult.insertId),
+      details: {
+        patient_id: patientId,
+        county,
+        urgency,
+        care_category: careCategory,
+      },
+      ipAddress: getClientIp(request),
+    });
+
     return NextResponse.json(
       { success: true, id: String(caseResult.insertId), patientId },
       { status: 201 },

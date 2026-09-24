@@ -8,7 +8,7 @@ import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
 export const metadata: Metadata = {
-  title: "Worker Panel Dashboard — RediHealth",
+  title: "Worker Panel Dashboard - RediHealth",
 };
 
 type DBMedicalHelpRequest = RowDataPacket & {

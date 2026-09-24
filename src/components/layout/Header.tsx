@@ -65,6 +65,7 @@ export function Header() {
     { label: t.nav.healthCheck, href: "/health-check" },
     { label: t.nav.findHelp, href: "/find-help" },
     { label: t.nav.about, href: "/about" },
+    { label: t.nav.reportIssue, href: "/report-issue" },
   ];
 
   const accountLink = authenticated

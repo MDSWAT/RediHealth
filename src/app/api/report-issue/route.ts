@@ -1,0 +1,149 @@
+import { NextResponse } from "next/server";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
+
+const REPORT_EMAIL_TO = "babinciucmihai4@gmail.com";
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type ReportIssuePayload = {
+  message?: unknown;
+  email?: unknown;
+  pageUrl?: unknown;
+  userAgent?: unknown;
+};
+
+function text(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function truncate(value: string, maxLength: number): string {
+  if (value.length <= maxLength) return value;
+  return `${value.slice(0, Math.max(0, maxLength - 3))}...`;
+}
+
+export async function POST(request: Request) {
+  const ipAddress = getClientIp(request);
+  const rateLimit = checkRateLimit(`issue-report:${ipAddress}`, {
+    limit: 5,
+    windowMs: 10 * 60_000,
+  });
+
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Too many reports submitted. Please wait and try again." },
+      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
+    );
+  }
+
+  let body: ReportIssuePayload;
+
+  try {
+    body = (await request.json()) as ReportIssuePayload;
+  } catch {
+    return NextResponse.json({ error: "Invalid request data." }, { status: 400 });
+  }
+
+  const message = text(body.message);
+  const email = text(body.email).toLowerCase();
+  const pageUrl = text(body.pageUrl);
+  const userAgent = text(body.userAgent);
+
+  if (message.length < 10) {
+    return NextResponse.json(
+      { error: "Please include a short description of the issue (at least 10 characters)." },
+      { status: 400 },
+    );
+  }
+
+  if (message.length > 4000 || email.length > 320 || pageUrl.length > 1000 || userAgent.length > 800) {
+    return NextResponse.json({ error: "One or more fields are too long." }, { status: 400 });
+  }
+
+  if (email && !emailPattern.test(email)) {
+    return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
+  }
+
+  if (!isEmailConfigured()) {
+    return NextResponse.json(
+      { error: "Issue reporting is temporarily unavailable." },
+      { status: 503 },
+    );
+  }
+
+  const createdAt = new Date().toISOString();
+  const subjectPreview = truncate(message.replace(/\s+/g, " "), 80);
+
+  const textBody = [
+    "New RediHealth issue report",
+    "",
+    `Reported at (UTC): ${createdAt}`,
+    `Reporter email: ${email || "not provided"}`,
+    `Page URL: ${pageUrl || "not provided"}`,
+    `IP address: ${ipAddress || "unknown"}`,
+    `User agent: ${userAgent || "not provided"}`,
+    "",
+    "Issue details:",
+    message,
+  ].join("\n");
+
+  const detailsHtml = `
+      <tr>
+        <td style="padding: 0 0 18px 0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
+            <tr>
+              <td style="padding: 12px 16px; font-size: 12px; line-height: 18px; color: #475569; border-bottom: 1px solid #e2e8f0;">
+                <p style="margin: 0 0 6px 0;"><strong style="color: #0f172a;">Reported at (UTC):</strong> ${escapeHtml(createdAt)}</p>
+                <p style="margin: 0 0 6px 0;"><strong style="color: #0f172a;">Reporter email:</strong> ${escapeHtml(email || "not provided")}</p>
+                <p style="margin: 0 0 6px 0;"><strong style="color: #0f172a;">Page URL:</strong> ${escapeHtml(pageUrl || "not provided")}</p>
+                <p style="margin: 0 0 6px 0;"><strong style="color: #0f172a;">IP address:</strong> ${escapeHtml(ipAddress || "unknown")}</p>
+                <p style="margin: 0;"><strong style="color: #0f172a;">User agent:</strong> ${escapeHtml(userAgent || "not provided")}</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 14px 16px;">
+                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 18px; font-weight: 700; color: #0f172a; text-transform: uppercase; letter-spacing: 0.04em;">Issue details</p>
+                <div style="white-space: pre-wrap; font-size: 14px; line-height: 22px; color: #334155; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff; padding: 12px;">${escapeHtml(message)}</div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>`;
+
+  const htmlBody = renderBrandEmail({
+    previewText: "A new issue report was submitted on RediHealth.",
+    badgeText: "Issue Report",
+    heading: "New website issue report",
+    intro: "A user submitted an issue from the website.",
+    contentHtml: detailsHtml,
+    closingText: "Please review and triage this issue.",
+    footerReason: "This alert was generated by the RediHealth issue reporting form.",
+    align: "left",
+  });
+
+  try {
+    await sendEmail({
+      to: REPORT_EMAIL_TO,
+      subject: `RediHealth issue report: ${subjectPreview}`,
+      text: textBody,
+      html: htmlBody,
+      displayName: "RediHealth Alerts",
+    });
+  } catch (error) {
+    console.error("Failed to send issue report email", error);
+    return NextResponse.json(
+      { error: "We could not submit your issue right now. Please try again shortly." },
+      { status: 503 },
+    );
+  }
+
+  return NextResponse.json({ success: true }, { status: 201 });
+}

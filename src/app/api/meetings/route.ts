@@ -1,8 +1,10 @@
 import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
+import { logActivity } from "@/lib/activity-log";
 import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { sendMeetingInvitationEmail } from "@/lib/email";
+import { getClientIp } from "@/lib/rate-limit";
 import type { FollowupItem } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 
@@ -145,6 +147,22 @@ export async function POST(request: Request) {
       });
     }
 
+    await logActivity({
+      actorWorkerId: access.worker.workerId,
+      actorName: access.worker.workerName,
+      actorRole: access.worker.role,
+      action: "meeting.created",
+      entityType: "meeting",
+      entityId: result.insertId,
+      details: {
+        title,
+        patient_id: patientId || null,
+        followup_id: followupId || null,
+        invitation_email_sent: emailSent ?? false,
+      },
+      ipAddress: getClientIp(request),
+    });
+
     return NextResponse.json(
       {
         id: String(result.insertId),
@@ -225,6 +243,23 @@ export async function PATCH(request: Request) {
     }
 
     await connection.commit();
+
+    await logActivity({
+      actorWorkerId: access.worker.workerId,
+      actorName: access.worker.workerName,
+      actorRole: access.worker.role,
+      action: "meeting.updated",
+      entityType: "meeting",
+      entityId: id,
+      details: {
+        transcript_length: transcript.length,
+        notes_length: notes.length,
+        patient_id: meeting.patient_id,
+        followup_id: meeting.followup_id,
+      },
+      ipAddress: getClientIp(request),
+    });
+
     return NextResponse.json({ success: true });
   } catch (error) {
     await connection.rollback();
@@ -280,6 +315,21 @@ export async function DELETE(request: Request) {
 
     await connection.query<ResultSetHeader>("DELETE FROM meetings WHERE id = ?", [id]);
     await connection.commit();
+
+    await logActivity({
+      actorWorkerId: access.worker.workerId,
+      actorName: access.worker.workerName,
+      actorRole: access.worker.role,
+      action: "meeting.deleted",
+      entityType: "meeting",
+      entityId: id,
+      details: {
+        patient_id: meeting.patient_id,
+        followup_id: meeting.followup_id,
+      },
+      ipAddress: getClientIp(request),
+    });
+
     return NextResponse.json({ success: true });
   } catch (error) {
     await connection.rollback();

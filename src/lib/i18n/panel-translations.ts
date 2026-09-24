@@ -12,6 +12,8 @@ type PanelTranslations = {
     requests: string;
     patients: string;
     workers: string;
+    logs: string;
+    reportIssue: string;
     followups: string;
     calendar: string;
     mediator: string;
@@ -55,6 +57,22 @@ type PanelTranslations = {
     activeStaff: string;
     assignedPatients: string;
     unassignedPatients: string;
+  };
+  activityLogs: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    searchPlaceholder: string;
+    refresh: string;
+    refreshing: string;
+    noDatabase: string;
+    noEntries: string;
+    when: string;
+    actor: string;
+    action: string;
+    entity: string;
+    details: string;
+    unknownActor: string;
   };
   requestsTable: {
     searchPlaceholder: string;
@@ -173,6 +191,8 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       requests: "Requests",
       patients: "Patients",
       workers: "Workers",
+      logs: "Activity Logs",
+      reportIssue: "Report an issue",
       followups: "Follow-ups",
       calendar: "Calendar",
       mediator: "New mediator case",
@@ -216,6 +236,22 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       activeStaff: "Active Staff",
       assignedPatients: "Assigned Patients",
       unassignedPatients: "Unassigned Patients",
+    },
+    activityLogs: {
+      eyebrow: "Audit Trail",
+      title: "Administrator Activity Logs",
+      subtitle: "Track who changed statuses, created patients, added follow-ups, and managed workers.",
+      searchPlaceholder: "Search by actor, action, entity, or details...",
+      refresh: "Refresh",
+      refreshing: "Refreshing...",
+      noDatabase: "Connect MySQL and apply migration 006 to view activity logs.",
+      noEntries: "No activity entries found.",
+      when: "When",
+      actor: "Actor",
+      action: "Action",
+      entity: "Entity",
+      details: "Details",
+      unknownActor: "Unknown actor",
     },
     requestsTable: {
       searchPlaceholder: "Search by name, phone, email or description...",
@@ -332,6 +368,8 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       requests: "Cereri",
       patients: "Pacienti",
       workers: "Lucratori",
+      logs: "Jurnal activitate",
+      reportIssue: "Raporteaza o problema",
       followups: "Monitorizari",
       calendar: "Calendar",
       mediator: "Caz nou mediator",
@@ -375,6 +413,22 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       activeStaff: "Personal activ",
       assignedPatients: "Pacienti alocati",
       unassignedPatients: "Pacienti nealocati",
+    },
+    activityLogs: {
+      eyebrow: "Audit",
+      title: "Jurnal activitate administratori",
+      subtitle: "Urmareste cine schimba statusuri, creeaza pacienti, adauga monitorizari si gestioneaza lucratori.",
+      searchPlaceholder: "Cauta dupa actor, actiune, entitate sau detalii...",
+      refresh: "Reimprospateaza",
+      refreshing: "Se actualizeaza...",
+      noDatabase: "Conecteaza MySQL si aplica migrarea 006 pentru jurnalul de activitate.",
+      noEntries: "Nu exista inregistrari de activitate.",
+      when: "Cand",
+      actor: "Actor",
+      action: "Actiune",
+      entity: "Entitate",
+      details: "Detalii",
+      unknownActor: "Actor necunoscut",
     },
     requestsTable: {
       searchPlaceholder: "Cauta dupa nume, telefon, email sau descriere...",
@@ -491,6 +545,8 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       requests: "Kerkesa",
       patients: "Pacientet",
       workers: "Punonjesit",
+      logs: "Regjistri i aktivitetit",
+      reportIssue: "Raporto nje problem",
       followups: "Ndjekje",
       calendar: "Kalendari",
       mediator: "Rast i ri per mediator",
@@ -534,6 +590,22 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       activeStaff: "Staf aktiv",
       assignedPatients: "Pacient te caktuar",
       unassignedPatients: "Pacient pa caktim",
+    },
+    activityLogs: {
+      eyebrow: "Auditim",
+      title: "Regjistri i aktivitetit te administratoreve",
+      subtitle: "Ndiq kush ndryshon statuset, krijon paciente, shton ndjekje dhe menaxhon punonjesit.",
+      searchPlaceholder: "Kerko sipas aktorit, veprimit, entitetit ose detajeve...",
+      refresh: "Perditeso",
+      refreshing: "Duke perditesuar...",
+      noDatabase: "Lidh MySQL dhe apliko migrimin 006 per regjistrin e aktivitetit.",
+      noEntries: "Nuk u gjeten hyrje aktiviteti.",
+      when: "Kur",
+      actor: "Aktori",
+      action: "Veprimi",
+      entity: "Entiteti",
+      details: "Detaje",
+      unknownActor: "Aktor i panjohur",
     },
     requestsTable: {
       searchPlaceholder: "Kerko sipas emrit, telefonit, emailit ose pershkrimit...",
@@ -650,6 +722,8 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       requests: "Richieste",
       patients: "Pazienti",
       workers: "Operatori",
+      logs: "Registro attivita",
+      reportIssue: "Segnala un problema",
       followups: "Follow-up",
       calendar: "Calendario",
       mediator: "Nuovo caso mediatore",
@@ -693,6 +767,22 @@ export const panelTranslations: Record<Lang, PanelTranslations> = {
       activeStaff: "Staff attivo",
       assignedPatients: "Pazienti assegnati",
       unassignedPatients: "Pazienti non assegnati",
+    },
+    activityLogs: {
+      eyebrow: "Audit",
+      title: "Registro attivita amministratori",
+      subtitle: "Tieni traccia di chi cambia stati, crea pazienti, aggiunge follow-up e gestisce operatori.",
+      searchPlaceholder: "Cerca per attore, azione, entita o dettagli...",
+      refresh: "Aggiorna",
+      refreshing: "Aggiornamento...",
+      noDatabase: "Connetti MySQL e applica la migrazione 006 per visualizzare i log di attivita.",
+      noEntries: "Nessuna voce di attivita trovata.",
+      when: "Quando",
+      actor: "Attore",
+      action: "Azione",
+      entity: "Entita",
+      details: "Dettagli",
+      unknownActor: "Attore sconosciuto",
     },
     requestsTable: {
       searchPlaceholder: "Cerca per nome, telefono, email o descrizione...",

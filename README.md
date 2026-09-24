@@ -15,7 +15,7 @@ npm install
 
 ## 2. Configure environment variables
 
-Copy the example file and fill in your own values — never commit `.env.local`:
+Copy the example file and fill in your own values - never commit `.env.local`:
 
 ```bash
 cp .env.example .env.local
@@ -94,7 +94,7 @@ npm run tunnel        # expose localhost via a Cloudflare tunnel
 
 ## Project structure
 
-- `src/app` — Next.js App Router pages and API routes
-- `src/components` — UI split by feature area (`landing`, `panel`, `portal`, `get-help`, `find-help`, `auth`, `ui`)
-- `src/lib` — database access, validation, auth helpers, and shared types
-- `database` — SQL schema and migrations
+- `src/app` - Next.js App Router pages and API routes
+- `src/components` - UI split by feature area (`landing`, `panel`, `portal`, `get-help`, `find-help`, `auth`, `ui`)
+- `src/lib` - database access, validation, auth helpers, and shared types
+- `database` - SQL schema and migrations

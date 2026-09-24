@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
+import { logActivity } from "@/lib/activity-log";
 import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
@@ -18,6 +19,7 @@ import type {
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { sendPatientPortalLinkEmail } from "@/lib/email";
 import { generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
+import { getClientIp } from "@/lib/rate-limit";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DEFAULT_PORTAL_TOKEN_TTL_DAYS = 30;
@@ -343,6 +345,25 @@ export async function POST(request: Request) {
     );
   }
 
+  await logActivity({
+    actorWorkerId: workerContext.workerId,
+    actorName: workerContext.workerName,
+    actorEmail: text(session.user.email),
+    actorRole: workerContext.role,
+    action: "patient.created",
+    entityType: "patient",
+    entityId: createdPatientId,
+    details: {
+      full_name: fullName,
+      email,
+      status,
+      priority,
+      assigned_worker_id: assignedWorkerId,
+      assigned_worker_ids: assignedWorkerIds,
+    },
+    ipAddress: getClientIp(request),
+  });
+
   return NextResponse.json(
     { success: true, id: createdPatientId, email_sent: true },
     { status: 201 },
@@ -504,6 +525,10 @@ export async function PATCH(request: Request) {
   }
 
   try {
+    const updateFieldNames = updates
+      .map((entry) => entry.split("=")[0]?.trim())
+      .filter(Boolean);
+
     const [result] = await getDatabase().query<ResultSetHeader>(
       `UPDATE patients SET ${updates.join(", ")} WHERE ${whereClause}`,
       params,
@@ -512,6 +537,23 @@ export async function PATCH(request: Request) {
     if (result.affectedRows === 0) {
       return NextResponse.json({ error: "Patient not found or not assigned to you." }, { status: 404 });
     }
+
+    await logActivity({
+      actorWorkerId: workerContext.workerId,
+      actorName: workerContext.workerName,
+      actorEmail: text(session.user.email),
+      actorRole: workerContext.role,
+      action: body.followups !== undefined ? "patient.followups_updated" : "patient.updated",
+      entityType: "patient",
+      entityId: id,
+      details: {
+        updated_fields: updateFieldNames,
+        status: body.status,
+        priority: body.priority,
+        followups_count: Array.isArray(body.followups) ? body.followups.length : undefined,
+      },
+      ipAddress: getClientIp(request),
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
@@ -569,6 +611,19 @@ export async function DELETE(request: Request) {
   }
 
   try {
+    const db = getDatabase();
+    const [existingRows] = await db.query<RowDataPacket[]>(
+      `SELECT id, full_name, email
+       FROM patients
+       WHERE ${whereClause}
+       LIMIT 1`,
+      deleteParams,
+    );
+
+    if (!existingRows[0]) {
+      return NextResponse.json({ error: "Patient not found or not assigned to you." }, { status: 404 });
+    }
+
     const [result] = await getDatabase().query<ResultSetHeader>(
       `DELETE FROM patients WHERE ${whereClause}`,
       deleteParams,
@@ -577,6 +632,21 @@ export async function DELETE(request: Request) {
     if (result.affectedRows === 0) {
       return NextResponse.json({ error: "Patient not found or not assigned to you." }, { status: 404 });
     }
+
+    await logActivity({
+      actorWorkerId: workerContext.workerId,
+      actorName: workerContext.workerName,
+      actorEmail: text(session.user.email),
+      actorRole: workerContext.role,
+      action: "patient.deleted",
+      entityType: "patient",
+      entityId: id,
+      details: {
+        full_name: existingRows[0].full_name ?? null,
+        email: existingRows[0].email ?? null,
+      },
+      ipAddress: getClientIp(request),
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {

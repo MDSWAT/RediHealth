@@ -5,6 +5,7 @@ export type UserWorkerContext = {
   workerName: string | null;
   role: string;
   isAdmin: boolean;
+  isSuperAdmin: boolean;
   /** True when the worker lookup itself failed (e.g. database error), as opposed to the user simply not being a worker. */
   lookupFailed: boolean;
 };
@@ -25,6 +26,7 @@ export async function getUserWorkerContext(
       workerName: null,
       role: "Unauthorized",
       isAdmin: false,
+      isSuperAdmin: false,
       lookupFailed: false,
     };
   }
@@ -47,19 +49,22 @@ export async function getUserWorkerContext(
         workerName: null,
         role: "Unauthorized",
         isAdmin: false,
+        isSuperAdmin: false,
         lookupFailed: false,
       };
     }
 
     const worker = rows[0];
     const roleLower = worker.role.trim().toLowerCase();
+    const isSuperAdmin = roleLower === "super admin" || roleLower === "superadmin";
     const isAdmin = roleLower === "administrator" || roleLower === "admin";
 
     return {
       workerId: String(worker.id),
       workerName: worker.full_name,
       role: worker.role,
-      isAdmin,
+      isAdmin: isAdmin || isSuperAdmin,
+      isSuperAdmin,
       lookupFailed: false,
     };
   } catch {
@@ -68,6 +73,7 @@ export async function getUserWorkerContext(
       workerName: null,
       role: "Unauthorized",
       isAdmin: false,
+      isSuperAdmin: false,
       lookupFailed: true,
     };
   }

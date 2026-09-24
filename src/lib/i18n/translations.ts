@@ -13,6 +13,7 @@ export type Translations = {
     healthCheck: string;
     findHelp: string;
     about: string;
+    reportIssue: string;
   };
   account: {
     signIn: string;
@@ -179,6 +180,7 @@ export const translations: Record<Lang, Translations> = {
       healthCheck: "Health Check",
       findHelp: "Find Medical Help",
       about: "About",
+      reportIssue: "Report an issue",
     },
     account: {
       signIn: "Sign In",
@@ -412,6 +414,7 @@ export const translations: Record<Lang, Translations> = {
       healthCheck: "Verificare medicală",
       findHelp: "Găsește ajutor medical",
       about: "Despre noi",
+      reportIssue: "Raportează o problemă",
     },
     account: {
       signIn: "Autentificare",
@@ -645,6 +648,7 @@ export const translations: Record<Lang, Translations> = {
       healthCheck: "Kontroll shëndetësor",
       findHelp: "Gjej ndihmë mjekësore",
       about: "Rreth nesh",
+      reportIssue: "Raporto një problem",
     },
     account: {
       signIn: "Identifikohu",
@@ -878,6 +882,7 @@ export const translations: Record<Lang, Translations> = {
       healthCheck: "Controllo sanitario",
       findHelp: "Trova assistenza medica",
       about: "Chi siamo",
+      reportIssue: "Segnala un problema",
     },
     account: {
       signIn: "Accedi",

@@ -21,7 +21,11 @@ WHERE table_schema = DATABASE() AND table_name = 'mediator_cases'
 UNION ALL
 SELECT 'meetings' AS table_name, COUNT(*) > 0 AS exists_flag
 FROM information_schema.tables
-WHERE table_schema = DATABASE() AND table_name = 'meetings';
+WHERE table_schema = DATABASE() AND table_name = 'meetings'
+UNION ALL
+SELECT 'activity_logs' AS table_name, COUNT(*) > 0 AS exists_flag
+FROM information_schema.tables
+WHERE table_schema = DATABASE() AND table_name = 'activity_logs';
 
 SELECT 'patients.assigned_worker_ids' AS column_name, COUNT(*) > 0 AS exists_flag
 FROM information_schema.columns
@@ -53,14 +57,18 @@ SELECT index_name,
        non_unique
 FROM information_schema.statistics
 WHERE table_schema = DATABASE()
-  AND table_name IN ('patients', 'medical_help_requests', 'meetings', 'workers')
+  AND table_name IN ('patients', 'medical_help_requests', 'meetings', 'workers', 'activity_logs')
   AND index_name IN (
     'patients_email_unique_idx',
     'patients_access_token_unique_idx',
     'patients_access_token_expires_idx',
     'meetings_patient_followup_idx',
     'medical_help_requests_status_idx',
-    'workers_email_idx'
+    'workers_email_idx',
+    'activity_logs_created_at_idx',
+    'activity_logs_action_idx',
+    'activity_logs_entity_idx',
+    'activity_logs_actor_email_idx'
   )
 GROUP BY index_name, table_name, non_unique
 ORDER BY table_name, index_name;

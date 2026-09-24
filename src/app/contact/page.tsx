@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MailIcon, PhoneIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
-  title: "Contact — RediHealth",
+  title: "Contact - RediHealth",
   description: "Get in touch with the RediHealth team.",
 };
 

@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "RediHealth — Better health starts with knowing what to do next",
+  title: "RediHealth - Better health starts with knowing what to do next",
   description:
     "Understand your health risks, learn how to protect your health, and get help accessing the medical care you need.",
 };

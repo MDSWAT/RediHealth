@@ -376,7 +376,7 @@ export function PatientDetailModal({
                       <td className="p-2 font-medium">{item.date}</td>
                       <td className="p-2 font-semibold">{item.title}</td>
                       <td className="p-2 capitalize font-bold text-slate-700">{item.status}</td>
-                      <td className="p-2 text-slate-600">{item.notes || "—"}</td>
+                      <td className="p-2 text-slate-600">{item.notes || "-"}</td>
                     </tr>
                   ))}
                 </tbody>

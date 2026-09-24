@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FileTextIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
-  title: "Terms of Use — RediHealth",
+  title: "Terms of Use - RediHealth",
   description: "The terms that apply when you use RediHealth.",
 };
 

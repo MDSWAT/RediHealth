@@ -61,7 +61,7 @@ const redFlagsByPart: Record<PartId, string[]> = {
 
 type ExtraQuestion = { key: string; options: string[] };
 
-// part-specific follow-up questions (ids only — text comes from healthCheckTranslations)
+// part-specific follow-up questions (ids only - text comes from healthCheckTranslations)
 const partQuestions: Record<PartId, ExtraQuestion[]> = {
   head: [
     { key: "location", options: ["head_loc_one_side", "head_loc_both_sides", "head_loc_behind_eyes", "head_loc_back_head"] },

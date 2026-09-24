@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SignInPageContent } from "@/components/auth/SignInPageContent";
 
 export const metadata: Metadata = {
-  title: "Sign In — RediHealth",
+  title: "Sign In - RediHealth",
   description: "Sign in securely to RediHealth with Google or a one-time email code.",
 };
 

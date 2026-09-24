@@ -6,7 +6,7 @@ import { HealthCheckExplorer } from "@/components/health-check/HealthCheckExplor
 import { ClipboardCheckIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
-  title: "Health Check — RediHealth",
+  title: "Health Check - RediHealth",
   description:
     "Tap where it hurts, answer a few quick questions, and get plain-language guidance on possible next steps.",
 };

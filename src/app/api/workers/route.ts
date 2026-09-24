@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
+import { logActivity } from "@/lib/activity-log";
 import { getDatabase, type ResultSetHeader } from "@/lib/database";
 import { type DBWorkerRow, mapWorkerRow } from "@/lib/data/workers";
+import { getClientIp } from "@/lib/rate-limit";
 import type { CreateWorkerPayload, WorkerStatus } from "@/lib/types/worker";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 
@@ -9,6 +11,11 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function text(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function isSuperAdminRole(role: string) {
+  const normalized = role.trim().toLowerCase();
+  return normalized === "super admin" || normalized === "superadmin";
 }
 
 function isDuplicateEntryError(error: unknown): boolean {
@@ -124,6 +131,13 @@ export async function POST(request: Request) {
     );
   }
 
+  if (isSuperAdminRole(role) && !workerContext.isSuperAdmin) {
+    return NextResponse.json(
+      { error: "Only super admins can create super admin users." },
+      { status: 403 },
+    );
+  }
+
   try {
     const db = getDatabase();
     const [result] = await db.query<ResultSetHeader>(
@@ -138,6 +152,24 @@ export async function POST(request: Request) {
         { status: 503 },
       );
     }
+
+    await logActivity({
+      actorWorkerId: workerContext.workerId,
+      actorName: workerContext.workerName,
+      actorEmail: text(session.user.email),
+      actorRole: workerContext.role,
+      action: "worker.created",
+      entityType: "worker",
+      entityId: result.insertId,
+      details: {
+        full_name: fullName,
+        email,
+        role,
+        department: department || null,
+        status,
+      },
+      ipAddress: getClientIp(request),
+    });
 
     return NextResponse.json(
       { success: true, id: result.insertId },
@@ -206,8 +238,15 @@ export async function PATCH(request: Request) {
     params.push(text(body.phone) || null);
   }
   if (body.role !== undefined) {
+    const nextRole = text(body.role) || "Healthcare Worker";
+    if (isSuperAdminRole(nextRole) && !workerContext.isSuperAdmin) {
+      return NextResponse.json(
+        { error: "Only super admins can assign the super admin role." },
+        { status: 403 },
+      );
+    }
     updates.push("role = ?");
-    params.push(text(body.role) || "Healthcare Worker");
+    params.push(nextRole);
   }
   if (body.department !== undefined) {
     updates.push("department = ?");
@@ -221,6 +260,10 @@ export async function PATCH(request: Request) {
   const db = getDatabase();
 
   try {
+    const changedFields = updates
+      .map((entry) => entry.split("=")[0]?.trim())
+      .filter(Boolean);
+
     if (updates.length > 0) {
       params.push(id);
       await db.query<ResultSetHeader>(
@@ -244,6 +287,22 @@ export async function PATCH(request: Request) {
         body.unassign_patient_ids,
       );
     }
+
+    await logActivity({
+      actorWorkerId: workerContext.workerId,
+      actorName: workerContext.workerName,
+      actorEmail: text(session.user.email),
+      actorRole: workerContext.role,
+      action: "worker.updated",
+      entityType: "worker",
+      entityId: id,
+      details: {
+        updated_fields: changedFields,
+        assigned_patient_ids: body.assign_patient_ids || [],
+        unassigned_patient_ids: body.unassign_patient_ids || [],
+      },
+      ipAddress: getClientIp(request),
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
@@ -291,12 +350,37 @@ export async function DELETE(request: Request) {
 
   try {
     const db = getDatabase();
+    const [existingRows] = await db.query<DBWorkerRow[]>(
+      `SELECT id, full_name, email, role FROM workers WHERE id = ? LIMIT 1`,
+      [id],
+    );
+    const existing = existingRows[0];
+    if (!existing) {
+      return NextResponse.json({ error: "Worker not found." }, { status: 404 });
+    }
+
     await db.query(`UPDATE patients SET assigned_worker_id = NULL WHERE assigned_worker_id = ?`, [id]);
     const [result] = await db.query<ResultSetHeader>(`DELETE FROM workers WHERE id = ?`, [id]);
 
     if (result.affectedRows === 0) {
       return NextResponse.json({ error: "Worker not found." }, { status: 404 });
     }
+
+    await logActivity({
+      actorWorkerId: workerContext.workerId,
+      actorName: workerContext.workerName,
+      actorEmail: text(session.user.email),
+      actorRole: workerContext.role,
+      action: "worker.deleted",
+      entityType: "worker",
+      entityId: id,
+      details: {
+        full_name: existing.full_name,
+        email: existing.email,
+        role: existing.role,
+      },
+      ipAddress: getClientIp(request),
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {

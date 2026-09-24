@@ -10,7 +10,7 @@ import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
 export const metadata: Metadata = {
-  title: "Calendar — RediHealth Panel",
+  title: "Calendar - RediHealth Panel",
 };
 
 export default async function CalendarPage() {

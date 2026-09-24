@@ -356,12 +356,12 @@ function createDemoMeetingRoomUrl() {
 
 const demoCalendarDays = [
   { label: "Mon", date: 1, followups: [] as { id: string; title: string }[] },
-  { label: "Tue", date: 2, followups: [{ id: "c1", title: "Physical therapy review — Elena Marinescu" }] },
+  { label: "Tue", date: 2, followups: [{ id: "c1", title: "Physical therapy review - Elena Marinescu" }] },
   { label: "Wed", date: 3, followups: [] },
-  { label: "Thu", date: 4, followups: [{ id: "c2", title: "Blood sugar check-up — Vasile Constantin" }] },
+  { label: "Thu", date: 4, followups: [{ id: "c2", title: "Blood sugar check-up - Vasile Constantin" }] },
   { label: "Fri", date: 5, followups: [] },
   { label: "Sat", date: 6, followups: [] },
-  { label: "Sun", date: 7, followups: [{ id: "c3", title: "Cardiology check-up — Gheorghe Radu" }] },
+  { label: "Sun", date: 7, followups: [{ id: "c3", title: "Cardiology check-up - Gheorghe Radu" }] },
 ];
 
 function DemoCalendarTab() {
@@ -476,7 +476,7 @@ function DemoMediatorForm() {
       {saved ? (
         <p className="flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs font-medium text-emerald-700" role="status">
           <CheckCircleIcon className="h-4 w-4 flex-none" />
-          Case saved (demo only — nothing was actually submitted).
+          Case saved (demo only - nothing was actually submitted).
         </p>
       ) : null}
 
@@ -582,7 +582,7 @@ function DemoBookMeetingSection() {
         Book a Meeting
       </h2>
       <p className="mx-auto mt-2 max-w-xl text-center text-xs text-muted-foreground">
-        Try scheduling a video meeting with a healthcare worker — this is a standalone demo and is not connected to a
+        Try scheduling a video meeting with a healthcare worker - this is a standalone demo and is not connected to a
         database.
       </p>
 
@@ -591,7 +591,7 @@ function DemoBookMeetingSection() {
           <div className="space-y-3">
             <p className="flex items-center justify-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs font-medium text-emerald-700" role="status">
               <CheckCircleIcon className="h-4 w-4 flex-none" />
-              Meeting booked (demo only — nothing was actually scheduled).
+              Meeting booked (demo only - nothing was actually scheduled).
             </p>
             <div className="rounded-lg bg-muted/40 p-3 text-xs text-foreground">
               <p><span className="font-semibold">Name:</span> {meeting.name}</p>
@@ -702,7 +702,7 @@ const tabContent: Record<TabKey, { eyebrow: string; title: string; description: 
   requests: {
     eyebrow: "Requests",
     title: "Medical help requests",
-    description: "Click a status pill to see it update instantly — nothing here is sent anywhere.",
+    description: "Click a status pill to see it update instantly - nothing here is sent anywhere.",
     render: () => <DemoRequestsTab />,
   },
   patients: {
@@ -732,7 +732,7 @@ const tabContent: Record<TabKey, { eyebrow: string; title: string; description: 
   mediator: {
     eyebrow: "Mediator workspace",
     title: "New support case",
-    description: "This is a live form for demo purposes — it is not connected to a database.",
+    description: "This is a live form for demo purposes - it is not connected to a database.",
     render: () => <DemoMediatorForm />,
   },
 };
@@ -823,7 +823,7 @@ export function DemoPageContent() {
             Staff Panel (Live Preview)
           </h2>
           <p className="mx-auto mt-2 max-w-xl text-center text-xs text-muted-foreground">
-            Click around the sidebar below — requests, patients, workers, follow-ups, and calendar all respond
+            Click around the sidebar below - requests, patients, workers, follow-ups, and calendar all respond
             instantly. It&apos;s a self-contained preview, so nothing you do here is saved anywhere.
           </p>
           <div className="mt-4">

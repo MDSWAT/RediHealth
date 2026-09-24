@@ -10,7 +10,7 @@ import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
 export const metadata: Metadata = {
-  title: "Patient Profile — RediHealth Panel",
+  title: "Patient Profile - RediHealth Panel",
 };
 
 export const dynamic = "force-dynamic";

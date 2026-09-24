@@ -6,7 +6,7 @@ import type { FollowupItem, PatientItem, PatientPhoto, PatientPriority, Treatmen
 import { hashPortalToken } from "@/lib/security/portal-token";
 
 export const metadata: Metadata = {
-  title: "Patient Portal — RediHealth",
+  title: "Patient Portal - RediHealth",
 };
 
 type DBPatient = RowDataPacket & {

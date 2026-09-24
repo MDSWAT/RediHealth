@@ -5,7 +5,7 @@ import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
 export const metadata = {
-  title: "New Mediator Case — RediHealth Panel",
+  title: "New Mediator Case - RediHealth Panel",
 };
 
 export default async function MediatorCasesPage() {

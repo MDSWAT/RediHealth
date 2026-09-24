@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { logActivity } from "@/lib/activity-log";
 import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
@@ -157,7 +158,7 @@ export async function PATCH(request: Request, { params }: Params) {
 
     try {
       const [primaryRows] = await db.query<RowDataPacket[]>(
-        `SELECT id, condition_notes, priority, followups, photos
+        `SELECT id, full_name, email, condition_notes, priority, followups, photos
          FROM patients
          WHERE access_token_hash = ?
            AND (access_token_expires_at IS NULL OR access_token_expires_at > UTC_TIMESTAMP())
@@ -171,7 +172,7 @@ export async function PATCH(request: Request, { params }: Params) {
       }
 
       const [fallbackRows] = await db.query<RowDataPacket[]>(
-        `SELECT id, condition_notes, priority, followups, photos
+        `SELECT id, full_name, email, condition_notes, priority, followups, photos
          FROM patients
          WHERE access_token_hash = ?
          LIMIT 1`,
@@ -275,6 +276,32 @@ export async function PATCH(request: Request, { params }: Params) {
       `UPDATE patients SET ${updates.join(", ")} WHERE id = ?`,
       updateParams,
     );
+
+    const changedKeys = updates
+      .map((entry) => entry.split("=")[0]?.trim())
+      .filter(Boolean);
+
+    await logActivity({
+      actorName: typeof patient.full_name === "string" ? patient.full_name : null,
+      actorEmail: typeof patient.email === "string" ? patient.email : null,
+      actorRole: "patient_portal",
+      action:
+        body.complete_followup !== undefined
+          ? "followup.completed_by_patient"
+          : body.new_followup !== undefined
+          ? "followup.created_by_patient"
+          : "patient.portal_updated",
+      entityType: "patient",
+      entityId: patientId,
+      details: {
+        updated_fields: changedKeys,
+        new_followup: body.new_followup !== undefined,
+        complete_followup: body.complete_followup !== undefined,
+        new_photo: body.new_photo !== undefined,
+        priority: body.priority,
+      },
+      ipAddress: getClientIp(request),
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {

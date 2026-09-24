@@ -10,7 +10,7 @@ import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
 export const metadata: Metadata = {
-  title: "Patients — RediHealth Panel",
+  title: "Patients - RediHealth Panel",
 };
 
 export default async function PatientsPage() {

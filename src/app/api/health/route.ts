@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getDatabase, hasDatabaseConnectionConfig } from "@/lib/database";
 import { isEmailConfigured } from "@/lib/email";
+import { notifyOperationalIssue } from "@/lib/operational-alerts";
 
 export const dynamic = "force-dynamic";
 
@@ -36,10 +37,26 @@ export async function GET() {
 
   const hasError = Object.values(checks).some((check) => check.status === "error");
   const hasMissingConfig = Object.values(checks).some((check) => check.status === "not-configured");
+  const status = hasError ? "error" : hasMissingConfig ? "degraded" : "ok";
+
+  if (status !== "ok") {
+    void notifyOperationalIssue({
+      key: `health:${status}`,
+      title: `Health endpoint reported ${status}`,
+      summary: "One or more core services are failing or not configured.",
+      source: "/api/health",
+      severity: status === "error" ? "critical" : "warning",
+      details: {
+        status,
+        checks: JSON.stringify(checks),
+      },
+      cooldownMs: 30 * 60_000,
+    });
+  }
 
   return NextResponse.json(
     {
-      status: hasError ? "error" : hasMissingConfig ? "degraded" : "ok",
+      status,
       timestamp: new Date().toISOString(),
       checks,
     },

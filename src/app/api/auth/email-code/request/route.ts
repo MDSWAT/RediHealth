@@ -6,7 +6,7 @@ import {
   emailAuthCookies,
   encryptEmailCode,
 } from "@/lib/email-auth";
-import { isEmailConfigured, sendEmail } from "@/lib/email";
+import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
 import { checkLoginAccess } from "@/lib/login-access";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -78,11 +78,41 @@ export async function POST(request: Request) {
   const code = createOneTimeCode();
   const token = await encryptEmailCode({ email: normalizedEmail, code });
 
+  const signInHtml = renderBrandEmail({
+    previewText: `Your RediHealth verification code is ${code}`,
+    badgeText: "Verification Code",
+    heading: "Sign in to RediHealth",
+    recipientName: normalizedEmail,
+    intro: "Use the one-time verification code below to securely access your RediHealth account.",
+    codeBlock: {
+      code,
+      expiresInText: "10 minutes",
+    },
+    closingText: "For your security, never share this code with anyone.",
+    footerReason: "You received this email because a sign-in attempt was initiated for your email address.",
+  });
+
+  const plainTextContent = `Hello,
+
+Your verification code for RediHealth is:
+${code}
+
+This code will expire in 10 minutes.
+
+If you did not request this verification code, you can safely ignore this email. No changes have been made to your account.
+
+For your security, never share this code with anyone.
+
+Best regards,
+The RediHealth Team
+https://redihealth.org`;
+
   try {
     await sendEmail({
       to: normalizedEmail,
-      subject: "Your RediHealth sign-in code",
-      text: `Your RediHealth sign-in code is ${code}. It expires in 10 minutes. If you did not request this code, you can ignore this email.`,
+      subject: `Your RediHealth verification code: ${code}`,
+      text: plainTextContent,
+      html: signInHtml,
     });
   } catch {
     return NextResponse.json(

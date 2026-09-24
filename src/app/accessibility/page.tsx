@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { UsersIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
-  title: "Accessibility — RediHealth",
+  title: "Accessibility - RediHealth",
   description: "RediHealth's commitment to an accessible experience for all users.",
 };
 

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { logActivity } from "@/lib/activity-log";
 import { sendHelpRequestConfirmationEmail } from "@/lib/email";
 import type { RequestStatus, RequestPriority } from "@/lib/types/medical-request";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
@@ -68,11 +69,27 @@ export async function POST(request: Request) {
   }
 
   try {
-    await getDatabase().query(
+    const [result] = await getDatabase().query<ResultSetHeader>(
       `INSERT INTO medical_help_requests (full_name, phone, email, description)
        VALUES (?, ?, ?, ?)`,
       [name || null, phone, email || null, description],
     );
+
+    await logActivity({
+      actorName: name || null,
+      actorEmail: email || null,
+      actorRole: "public_user",
+      action: "request.submitted",
+      entityType: "medical_help_request",
+      entityId: result.insertId || null,
+      details: {
+        has_name: Boolean(name),
+        has_email: Boolean(email),
+        phone,
+        description_length: description.length,
+      },
+      ipAddress: getClientIp(request),
+    });
   } catch (error) {
     console.error("Failed to store medical help request", error);
     return NextResponse.json(
@@ -219,6 +236,16 @@ export async function PATCH(request: Request) {
 
   try {
     const db = getDatabase();
+    const [existingRows] = await db.query<RowDataPacket[]>(
+      "SELECT id, status, priority, internal_notes FROM medical_help_requests WHERE id = ? LIMIT 1",
+      [id],
+    );
+
+    const existing = existingRows[0];
+    if (!existing) {
+      return NextResponse.json({ error: "Request not found." }, { status: 404 });
+    }
+
     const [result] = await db.query<ResultSetHeader>(
       `UPDATE medical_help_requests SET ${updates.join(", ")} WHERE id = ?`,
       params,
@@ -239,6 +266,24 @@ export async function PATCH(request: Request) {
        LIMIT 1`,
       [id],
     );
+
+    await logActivity({
+      actorWorkerId: workerContext.workerId,
+      actorName: text(session.user.name) || workerContext.workerName,
+      actorEmail: text(session.user.email),
+      actorRole: workerContext.role,
+      action: body.status !== undefined ? "request.status_changed" : "request.updated",
+      entityType: "medical_help_request",
+      entityId: id,
+      details: {
+        previous_status: existing.status ?? null,
+        next_status: body.status ?? existing.status ?? null,
+        previous_priority: existing.priority ?? null,
+        next_priority: body.priority ?? existing.priority ?? null,
+        internal_notes_changed: body.internal_notes !== undefined,
+      },
+      ipAddress: getClientIp(request),
+    });
 
     return NextResponse.json({ success: true, request: rows[0] || null });
   } catch (error) {
@@ -282,6 +327,16 @@ export async function DELETE(request: Request) {
   }
 
   try {
+    const db = getDatabase();
+    const [rows] = await db.query<RowDataPacket[]>(
+      "SELECT id, status, priority FROM medical_help_requests WHERE id = ? LIMIT 1",
+      [id],
+    );
+    const existing = rows[0];
+    if (!existing) {
+      return NextResponse.json({ error: "Request not found." }, { status: 404 });
+    }
+
     const [result] = await getDatabase().query<ResultSetHeader>(
       `DELETE FROM medical_help_requests WHERE id = ?`,
       [id],
@@ -290,6 +345,21 @@ export async function DELETE(request: Request) {
     if (result.affectedRows === 0) {
       return NextResponse.json({ error: "Request not found." }, { status: 404 });
     }
+
+    await logActivity({
+      actorWorkerId: workerContext.workerId,
+      actorName: text(session.user.name) || workerContext.workerName,
+      actorEmail: text(session.user.email),
+      actorRole: workerContext.role,
+      action: "request.deleted",
+      entityType: "medical_help_request",
+      entityId: id,
+      details: {
+        status: existing.status ?? null,
+        priority: existing.priority ?? null,
+      },
+      ipAddress: getClientIp(request),
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
