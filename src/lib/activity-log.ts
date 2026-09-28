@@ -1,4 +1,8 @@
-import { getDatabase, type ResultSetHeader } from "@/lib/database";
+import {
+  getDatabase,
+  type ResultSetHeader,
+  type RowDataPacket,
+} from "@/lib/database";
 
 export type ActivityLogInput = {
   actorWorkerId?: string | null;
@@ -13,7 +17,10 @@ export type ActivityLogInput = {
 };
 
 type Queryable = {
-  query<T>(sql: string, params?: unknown[]): Promise<[T, undefined]>;
+  query<T extends RowDataPacket[] | ResultSetHeader>(
+    sql: string,
+    params?: unknown[],
+  ): Promise<[T, undefined]>;
 };
 
 function stringifyDetails(details: Record<string, unknown> | null | undefined) {
