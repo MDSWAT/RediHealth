@@ -53,7 +53,7 @@ export function Hero() {
                 {t.hero.cta}
               </Button>
               <a href="/health-assistant" className="ml-5 inline-flex min-h-11 items-center text-sm font-semibold text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary">
-                Try the health assistant
+                {t.hero.assistantCta}
               </a>
             </div>
           </div>

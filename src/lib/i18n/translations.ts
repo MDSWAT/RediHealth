@@ -29,6 +29,7 @@ export type Translations = {
     titleLine3: string;
     paragraph: string;
     cta: string;
+    assistantCta: string;
     phone: {
       status: string;
       messages: string[];
@@ -205,6 +206,7 @@ export const translations: Record<Lang, Translations> = {
       paragraph:
         "REDI Health helps families, including Roma communities, understand health information and equips mediators with digital tools to educate, guide, refer, and follow up.",
       cta: "Request Medical Help",
+      assistantCta: "Try the health assistant",
       phone: {
         status: "online",
         messages: [
@@ -447,6 +449,7 @@ export const translations: Record<Lang, Translations> = {
       paragraph:
         "REDI Health ajută familiile, inclusiv comunitățile de romi, să înțeleagă informațiile medicale și oferă mediatorilor instrumente digitale pentru a educa, ghida, îndruma și urmări cazurile.",
       cta: "Solicită ajutor medical",
+      assistantCta: "Încearcă asistentul de sănătate",
       phone: {
         status: "online",
         messages: [
@@ -689,6 +692,7 @@ export const translations: Record<Lang, Translations> = {
       paragraph:
         "REDI Health ndihmon familjet, përfshirë komunitetet rome, të kuptojnë informacionin shëndetësor dhe u ofron ndërmjetësve mjete digjitale për të edukuar, udhëzuar, referuar dhe ndjekur rastet.",
       cta: "Kërko ndihmë mjekësore",
+      assistantCta: "Provo asistentin shëndetësor",
       phone: {
         status: "online",
         messages: [
@@ -931,6 +935,7 @@ export const translations: Record<Lang, Translations> = {
       paragraph:
         "REDI Health aiuta le famiglie, comprese le comunità rom, a comprendere le informazioni sanitarie e fornisce ai mediatori strumenti digitali per educare, guidare, indirizzare e seguire i casi.",
       cta: "Richiedi assistenza medica",
+      assistantCta: "Prova l'assistente sanitario",
       phone: {
         status: "online",
         messages: [
