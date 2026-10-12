@@ -2,7 +2,7 @@
 
 import { useState, type CSSProperties, type ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
-import { StethoscopeIcon, FileTextIcon, UsersIcon, ClockIcon, CalendarIcon, CheckCircleIcon, GlobeIcon } from "@/components/ui/icons";
+import { StethoscopeIcon, FileTextIcon, UsersIcon, ClockIcon, CalendarIcon, CheckCircleIcon, GlobeIcon, ArrowRightIcon } from "@/components/ui/icons";
 
 const userMessageDelay = 0.3;
 const typingStartDelay = userMessageDelay + 0.5;
@@ -51,9 +51,7 @@ function PhoneInputBar({ placeholder }: { placeholder: string }) {
       <div className="flex items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-2">
         <span className="flex-1 truncate text-[0.65rem] text-muted-foreground">{placeholder}</span>
         <span className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-primary text-white">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
+          <ArrowRightIcon className="h-3.5 w-3.5" />
         </span>
       </div>
     </div>

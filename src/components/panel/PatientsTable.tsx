@@ -1,18 +1,23 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import { EditIcon, TrashIcon, UsersIcon } from "@/components/ui/icons";
+import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
+import { UsersIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { PatientItem, PatientPriority, PatientStatus } from "@/lib/types/patient";
-import { getFollowupState, getPriorityMeta } from "@/lib/patient-helpers";
+import { getFollowupState } from "@/lib/patient-helpers";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { patientsTableTranslations } from "@/lib/i18n/panel-component-translations";
 import { CreatePatientModal } from "./CreatePatientModal";
 import { PatientsFilterBar } from "./PatientsFilterBar";
+import { crmTranslations } from "@/lib/i18n/crm-translations";
+import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 
 interface PatientsTableProps {
   initialPatients: PatientItem[];
+  onPatientsChange: Dispatch<SetStateAction<PatientItem[]>>;
+  isAdmin?: boolean;
   onRefresh?: () => Promise<void>;
   isRefreshing?: boolean;
 }
@@ -29,12 +34,17 @@ function toIsoDate(value: string): string {
 
 export function PatientsTable({
   initialPatients,
+  onPatientsChange,
+  isAdmin = false,
   onRefresh,
   isRefreshing = false,
 }: PatientsTableProps) {
   const { lang } = useLanguage();
   const t = patientsTableTranslations[lang];
-  const [patients, setPatients] = useState<PatientItem[]>(initialPatients);
+  const patients = initialPatients;
+  const setPatients = onPatientsChange;
+  const crm = crmTranslations[lang];
+  const fields = createPatientModalTranslations[lang];
   const [searchQuery, setSearchQuery] = useState("");
   const [activeStatusFilter, setActiveStatusFilter] = useState<PatientStatus | "all">("all");
   const [priorityFilter, setPriorityFilter] = useState<PatientPriority | "all">("all");
@@ -112,24 +122,6 @@ export function PatientsTable({
       setErrorMessage(t.errDeleteUnexpected);
     } finally {
       setDeletingId(null);
-    }
-  }
-
-  async function handleUpdateStatus(id: string, newStatus: PatientStatus) {
-    try {
-      const response = await fetch("/api/patients", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, status: newStatus }),
-      });
-
-      if (response.ok) {
-        setPatients((prev) =>
-          prev.map((p) => (p.id === id ? { ...p, status: newStatus } : p)),
-        );
-      }
-    } catch {
-      setErrorMessage(t.errUpdateStatus);
     }
   }
 
@@ -254,134 +246,17 @@ export function PatientsTable({
         </div>
       ) : (
         <div className="divide-y divide-border">
-          {filteredPatients.map((patient) => {
-            const isDeleting = deletingId === patient.id;
-            const isConfirmingDelete = confirmingDeleteId === patient.id;
-            const priorityMeta = getPriorityMeta(patient.priority);
-            const assignedWorkersLabel =
-              patient.assigned_worker_names && patient.assigned_worker_names.length > 0
-                ? patient.assigned_worker_names.join(", ")
-                : patient.assigned_worker_name || t.unassigned;
-
-            return (
-              <article key={patient.id} className="p-4 sm:p-5 transition-colors hover:bg-muted/20">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="min-w-0">
-                    <Link
-                      href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}
-                      className="block truncate text-base font-bold text-foreground hover:text-primary transition-colors"
-                    >
-                      {patient.full_name}
-                    </Link>
-                    <p className="mt-0.5 text-xs text-muted-foreground">
-                      ID #{patient.id} {patient.request_id ? `(Req #${patient.request_id})` : ""}
-                    </p>
-                    <p className="mt-1 text-xs font-semibold text-primary">
-                      {t.worker}: {assignedWorkersLabel}
-                    </p>
-                  </div>
-                  <div className="flex shrink-0 items-center gap-2 self-start sm:self-auto">
-                    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-bold ${priorityMeta.badgeClass}`}>
-                      <span className={`h-1.5 w-1.5 rounded-full ${priorityMeta.dotClass}`} />
-                      {priorityMeta.label}
-                    </span>
-                    <select
-                      value={patient.status}
-                      onChange={(e) => handleUpdateStatus(patient.id, e.target.value as PatientStatus)}
-                      className={`rounded-xl border px-2.5 py-1 text-xs font-bold capitalize cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                        patient.status === "active"
-                          ? "border-emerald-200 bg-emerald-50/80 text-emerald-800"
-                          : patient.status === "inactive"
-                          ? "border-amber-200 bg-amber-50/80 text-amber-800"
-                          : "border-slate-200 bg-slate-100 text-slate-700"
-                      }`}
-                    >
-                      <option value="active">{t.activeCare}</option>
-                      <option value="inactive">{t.inactive}</option>
-                      <option value="archived">{t.archived}</option>
-                    </select>
-                  </div>
-                </div>
-
-                <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-                  {patient.condition_notes || t.noNotes}
-                </p>
-
-                <div className="mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
-                  <a
-                    href={`tel:${patient.phone}`}
-                    className="font-semibold text-primary hover:underline"
-                  >
-                    {patient.phone}
-                  </a>
-                  <a
-                    href={`mailto:${patient.email}`}
-                    className="max-w-[220px] truncate text-muted-foreground hover:text-foreground"
-                  >
-                    {patient.email}
-                  </a>
-                  <span className="text-muted-foreground">{patient.date_of_birth || t.dobMissing}</span>
-                  <span className="text-muted-foreground">{patient.gender || t.genderMissing}</span>
-                </div>
-
-                <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
-                  {isConfirmingDelete ? (
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold text-red-600 dark:text-red-400">{t.deleteQ}</span>
-                      <button
-                        type="button"
-                        disabled={isDeleting}
-                        onClick={() => handleDelete(patient.id)}
-                        className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50 transition-colors"
-                      >
-                        {isDeleting ? "..." : t.yesDelete}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setConfirmingDeleteId(null)}
-                        className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
-                      >
-                        {t.cancel}
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => setConfirmingDeleteId(patient.id)}
-                      aria-label={`${t.deletePatient}: ${patient.full_name}`}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-red-600 hover:bg-red-50 transition-colors"
-                      title={t.deletePatient}
-                    >
-                      <TrashIcon className="h-4 w-4" />
-                    </button>
-                  )}
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setEditingPatient(patient)}
-                      aria-label={`${t.editProfile}: ${patient.full_name}`}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                      title={t.editProfile}
-                    >
-                      <EditIcon className="h-4 w-4" />
-                    </button>
-                    <Link
-                      href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}
-                      className="inline-flex items-center justify-center min-h-10 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white hover:bg-primary-hover shadow-2xs transition-colors"
-                    >
-                      {t.viewDetails}
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+          {filteredPatients.map((patient) => <article key={patient.id} className="flex flex-col justify-between gap-3 p-4 hover:bg-muted/20 sm:flex-row sm:items-center">
+            <div className="flex min-w-0 flex-1 items-center gap-3"><div className="flex h-11 w-11 flex-none items-center justify-center overflow-hidden rounded-full bg-primary-soft text-sm font-semibold text-primary">{patient.profile_photo ? <img src={patient.profile_photo} alt="" className="h-full w-full object-cover" /> : patient.full_name.trim().charAt(0).toUpperCase()}</div><div className="min-w-0"><Link href={withLangPrefix(`/panel/patients/${patient.id}`, lang)} className="block text-base font-medium hover:text-primary">{patient.full_name}</Link><div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground"><a href={`tel:${patient.phone}`}>{patient.phone}</a><a className="break-all" href={`mailto:${patient.email}`}>{patient.email}</a></div><p className="mt-1 line-clamp-1 text-xs text-muted-foreground">{patient.condition_notes || t.noNotes}</p></div></div>
+            <div className="flex flex-wrap items-center gap-3 text-xs"><span className="text-muted-foreground">{patient.status === "active" ? t.activeCare : patient.status === "inactive" ? t.inactive : t.archived}</span><span className={patient.priority === "critical" || patient.priority === "high" ? "text-red-700" : "text-muted-foreground"}>{patient.priority === "critical" ? fields.pCritical : patient.priority === "high" ? fields.pHigh : patient.priority === "low" ? fields.pLow : fields.pModerate}</span><Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}>{crm.openPatient}</Link><details className="crm-menu"><summary className="crm-button">{crm.more}</summary><div><button onClick={() => setEditingPatient(patient)}>{crm.edit}</button><button onClick={() => setConfirmingDeleteId(patient.id)}>{crm.delete}</button></div></details></div>
+            {confirmingDeleteId === patient.id && <div className="flex flex-wrap items-center gap-2"><span className="text-xs text-red-700">{t.deleteQ}</span><button className="crm-button" disabled={deletingId === patient.id} onClick={() => handleDelete(patient.id)}>{t.yesDelete}</button><button className="crm-button" onClick={() => setConfirmingDeleteId(null)}>{t.cancel}</button></div>}
+          </article>)}
         </div>
       )}
 
       {showCreateModal || editingPatient ? (
         <CreatePatientModal
+          isAdmin={isAdmin}
           patient={editingPatient || undefined}
           onClose={() => {
             setShowCreateModal(false);

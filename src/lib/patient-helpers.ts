@@ -1,3 +1,4 @@
+import { localDateKey, sortFollowups } from "./panel-dates";
 import type { FollowupItem, PatientPriority } from "@/lib/types/patient";
 
 export function getRecommendedFollowupDate(priority: PatientPriority = "moderate"): string {
@@ -16,7 +17,7 @@ export function getRecommendedFollowupDate(priority: PatientPriority = "moderate
       d.setDate(d.getDate() + 14);
       break;
   }
-  return d.toISOString().slice(0, 10);
+  return localDateKey(d);
 }
 
 export function getPriorityMeta(priority: PatientPriority = "moderate") {
@@ -78,10 +79,9 @@ export function getFollowupState(followups?: FollowupItem[] | null) {
     };
   }
 
-  scheduled.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  const nextUp = scheduled[0];
+  const nextUp = sortFollowups(scheduled)[0];
 
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayStr = localDateKey();
   const targetDateStr = nextUp.date.slice(0, 10);
 
   if (targetDateStr < todayStr) {

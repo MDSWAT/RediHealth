@@ -18,6 +18,7 @@ describe("normalizePatientFromApi", () => {
       full_name: "Ada Lovelace",
       phone: "+40 700 000 000",
       email: "ada@example.com",
+      profile_photo: "data:image/png;base64,AAAA",
       status: "inactive",
       priority: "high",
       followups: [{ id: "f1" }],
@@ -31,6 +32,7 @@ describe("normalizePatientFromApi", () => {
     expect(patient?.priority).toBe("high");
     expect(patient?.followups).toHaveLength(1);
     expect(patient?.photos).toHaveLength(1);
+    expect(patient?.profile_photo).toBe("data:image/png;base64,AAAA");
   });
 });
 

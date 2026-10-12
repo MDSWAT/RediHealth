@@ -65,6 +65,10 @@ mysql -h <host> -u <user> -p <database> < database/migrations/001_requests_and_s
 mysql -h <host> -u <user> -p <database> < database/migrations/002_patients_identity_and_portal.sql
 mysql -h <host> -u <user> -p <database> < database/migrations/003_mediator_cases.sql
 mysql -h <host> -u <user> -p <database> < database/migrations/004_meetings_and_followups.sql
+mysql -h <host> -u <user> -p <database> < database/migrations/005_hash_portal_tokens.sql
+mysql -h <host> -u <user> -p <database> < database/migrations/006_activity_logs.sql
+mysql -h <host> -u <user> -p <database> < database/migrations/007_medical_institutes.sql
+mysql -h <host> -u <user> -p <database> < database/migrations/008_patient_profile_photo.sql
 ```
 
 For existing databases that already contain patient duplicates by email/phone, run [database/cleanup-patient-duplicates.sql](database/cleanup-patient-duplicates.sql) before adding unique constraints.
@@ -79,7 +83,55 @@ npm run dev
 
 The app runs at [http://localhost:3000](http://localhost:3000).
 
+For LAN testing, run `npm run dev -- --hostname 0.0.0.0` and open
+`http://192.168.0.61:3000`. This address is allowed by `allowedDevOrigins` in
+`next.config.ts`; update it if your LAN IP changes and restart the dev server.
+Use development mode for email-code sign-in over local HTTP; production sign-in
+requires HTTPS for secure cookies.
+
+If email-code sign-in fails, check the server's `Email-code sign-in rejected`
+diagnostic for a missing verification cookie, a code mismatch, token validation,
+or a failed login access check. Request and submit codes on the same host and
+protocol and use the latest code. These diagnostics do not log emails, codes,
+or cookie values.
+
 Note for phone transcription: live browser speech recognition often needs HTTPS on real mobile devices. Use `npm run tunnel` and open the HTTPS URL when testing transcription on phone.
+
+## Patient treatment plans
+
+The patient's Care Plan tab supports multiple named treatment plans, each with
+start and end dates, diagnosis, goals, medications, instructions, and its own
+attachments. Date ranges may overlap. Add, edit, or remove plans and use
+**Save all treatment plans** to persist changes. The portal and printable report
+show all plans, and the patient history includes their start dates and photos.
+
+Plans are stored as `entries` in the existing `patients.treatment_plan` JSON
+column; no database migration is required. Previous single-plan records remain
+visible as an existing undated plan, retaining their clinical details and photos.
+Dates can be added without overwriting other plans.
+
+## Find help map (medical institutes)
+
+The public `/find-help` page reads medical institutes for Romania, Albania and
+Italy from the `medical_institutes` table (migration `007`). It asks the browser
+for the visitor's location and shows the nearest institutes. Without location
+permission it falls back to the visitor's country, taken from the CDN country
+header (`cf-ipcountry`, `x-vercel-ip-country`, …). If there is no such header,
+it uses the site language. On a first visit the same country header also picks
+the site language (RO → ro, AL → sq, IT → it).
+
+Super Admins manage the list at **Panel → Medical institutes**
+(`/panel/institutes`). From there they can add, edit, hide or delete entries,
+pick coordinates on a map, and re-import a country from OpenStreetMap. Entries
+edited by hand are never overwritten by later imports. You can also run the
+bulk import from the CLI (it uses the free public Overpass API and needs no API
+key):
+
+```bash
+npm run import:institutes -- RO AL IT
+```
+
+Map data © OpenStreetMap contributors (ODbL).
 
 ## Other scripts
 
@@ -91,6 +143,10 @@ npm test             # run tests once (Vitest)
 npm run test:watch   # run tests in watch mode
 npm run tunnel        # expose localhost via a Cloudflare tunnel
 ```
+
+Production builds type-check the application and tests. The ignored `build/`
+directory contains local output and QA artifacts and is excluded from the
+TypeScript project.
 
 ## Project structure
 

@@ -113,12 +113,13 @@ export interface LoadPatientsOptions {
   /** When set, only patients assigned to this worker are returned. */
   scopeToWorkerId?: string | null;
   limit?: number;
+  id?: string;
 }
 
 export async function loadPatients(
   options: LoadPatientsOptions = {},
 ): Promise<PatientItem[]> {
-  const { scopeToWorkerId, limit = 100 } = options;
+  const { scopeToWorkerId, limit = 100, id } = options;
   const db = getDatabase();
 
   const params: unknown[] = [];
@@ -133,6 +134,11 @@ export async function loadPatients(
       ) > 0
     )`;
     params.push(scopeToWorkerId, scopeToWorkerId);
+  }
+
+  if (id) {
+    sql += `${scopeToWorkerId ? " AND" : " WHERE"} p.id = ?`;
+    params.push(id);
   }
 
   sql += ` ORDER BY p.created_at DESC LIMIT ?`;

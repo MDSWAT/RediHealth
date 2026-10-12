@@ -4,11 +4,15 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
-import { ArrowRightIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, BookIcon, ClipboardCheckIcon, PinIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 
 const optionHrefs = ["/health-information", "/health-check", "/find-help"];
-const optionIcons = ["/Icons/Learn.svg", "/Icons/Check.svg", "/Icons/Map.svg"];
+const optionIcons = [
+  { Icon: BookIcon, tone: "bg-red-50 text-red-600" },
+  { Icon: ClipboardCheckIcon, tone: "bg-blue-50 text-slate-800" },
+  { Icon: PinIcon, tone: "bg-green-50 text-green-700" },
+];
 
 export function HelpOptions() {
   const { t } = useLanguage();
@@ -35,11 +39,14 @@ export function HelpOptions() {
                   href={optionHrefs[index]}
                   className="hover-lift group flex h-full flex-col rounded-xl border border-border bg-card p-7 transition-colors hover:border-primary/40 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
-                  <img
-                    src={optionIcons[index]}
-                    alt=""
-                    className="h-14 w-14 object-contain"
-                  />
+                  {(() => {
+                    const { Icon, tone } = optionIcons[index];
+                    return (
+                      <span className={`flex h-14 w-14 items-center justify-center rounded-full ${tone}`}>
+                        <Icon className="h-8 w-8" />
+                      </span>
+                    );
+                  })()}
                   <h3 className="mt-5 text-xl font-semibold text-foreground">
                     {title}
                   </h3>

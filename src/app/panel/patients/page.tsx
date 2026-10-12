@@ -22,6 +22,7 @@ export default async function PatientsPage() {
 
   const userEmail = session.user.email || "staff account";
   const workerContext = await getUserWorkerContext(userEmail);
+  if (!workerContext.workerId) redirect(await withRequestLangPrefix("/sign-in"));
 
   let patients: PatientItem[] = [];
   let pendingRequestsCount = 0;

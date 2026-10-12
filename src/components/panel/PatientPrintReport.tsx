@@ -2,6 +2,7 @@
 "use client";
 
 import { PrinterIcon } from "@/components/ui/icons";
+import { TreatmentPlansView } from "./TreatmentPlansView";
 import type {
   FollowupItem,
   PatientItem,
@@ -112,53 +113,9 @@ export function PatientPrintReport({
 
         <div className="mt-6">
           <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-            2. Clinical Treatment Plan & Directives
+            2. Clinical Treatment Plans & Directives
           </h2>
-          <div className="space-y-3 text-xs">
-            <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
-              <p className="font-bold text-slate-800 mb-0.5">Primary Diagnosis / Clinical Findings:</p>
-              <p className="text-slate-700 whitespace-pre-wrap">
-                {treatmentPlan.diagnosis || "No primary diagnosis recorded."}
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
-                <p className="font-bold text-slate-800 mb-0.5">Treatment Goals:</p>
-                <p className="text-slate-700 whitespace-pre-wrap">
-                  {treatmentPlan.goals || "No goals recorded."}
-                </p>
-              </div>
-              <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
-                <p className="font-bold text-slate-800 mb-0.5">Prescribed Medications:</p>
-                <p className="text-slate-700 whitespace-pre-wrap">
-                  {treatmentPlan.medications || "No medications specified."}
-                </p>
-              </div>
-            </div>
-            <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
-              <p className="font-bold text-slate-800 mb-0.5">Care Instructions & Advice:</p>
-              <p className="text-slate-700 whitespace-pre-wrap">
-                {treatmentPlan.care_instructions || "No specific instructions specified."}
-              </p>
-            </div>
-            {treatmentPlan.photos && treatmentPlan.photos.length > 0 ? (
-              <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
-                <p className="font-bold text-slate-800 mb-2">Attached Treatment Plan Photos / Prescriptions ({treatmentPlan.photos.length}):</p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {treatmentPlan.photos.map((photo) => (
-                    <div key={photo.id} className="border border-slate-200 rounded p-1.5 bg-white">
-                      <img
-                        src={photo.data_url}
-                        alt={photo.name}
-                        className="h-20 w-full object-cover rounded border border-slate-200 mb-1"
-                      />
-                      <p className="font-semibold text-[10px] text-slate-800 truncate">{photo.name}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-          </div>
+          <TreatmentPlansView plan={treatmentPlan} />
         </div>
 
         <div className="mt-6">
@@ -180,7 +137,7 @@ export function PatientPrintReport({
               <tbody className="divide-y divide-slate-200">
                 {followups.map((item) => (
                   <tr key={item.id}>
-                    <td className="p-2 font-medium">{item.date}</td>
+                    <td className="p-2 font-medium">{item.date}{item.time ? ` ${item.time} (${item.timezone || ""})` : ""}</td>
                     <td className="p-2 font-semibold">{item.title}</td>
                     <td className="p-2 capitalize font-bold text-slate-700">{item.status}</td>
                     <td className="p-2 text-slate-600">{item.notes || "-"}</td>

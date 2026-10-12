@@ -1,3 +1,4 @@
+import type { PatientItem } from "@/lib/types/patient";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
@@ -19,6 +20,7 @@ type MeetingRow = RowDataPacket & {
   transcript: string | null;
   notes: string | null;
   patient_id: number | string | null;
+  followup_id: string | null;
   patient_name: string | null;
   created_at: Date | string;
 };
@@ -39,7 +41,7 @@ export default async function MeetPage() {
 
   let databaseAvailable = hasDatabaseConnectionConfig();
   let pendingRequestsCount = 0;
-  let assignedPatients: { id: string; full_name: string; priority?: string | null }[] = [];
+  let assignedPatients: PatientItem[] = [];
   let meetings: {
     id: string;
     title: string;
@@ -58,22 +60,16 @@ export default async function MeetPage() {
         countPendingRequests(),
       ]);
 
-      assignedPatients = patients
-        .filter((patient) => (workerContext.isAdmin ? Boolean(patient.assigned_worker_id) : true))
-        .map((patient) => ({
-          id: patient.id,
-          full_name: patient.full_name,
-          priority: patient.priority,
-        }));
+      assignedPatients = patients;
       pendingRequestsCount = pendingCount;
 
       const meetingsQuery = workerContext.isAdmin
-        ? `SELECT m.id, m.title, m.meeting_url, m.transcript, m.notes, m.patient_id, p.full_name AS patient_name, m.created_at
+        ? `SELECT m.id, m.title, m.meeting_url, m.transcript, m.notes, m.patient_id, m.followup_id, p.full_name AS patient_name, m.created_at
            FROM meetings m
            LEFT JOIN patients p ON p.id = m.patient_id
            ORDER BY m.created_at DESC
            LIMIT 120`
-        : `SELECT m.id, m.title, m.meeting_url, m.transcript, m.notes, m.patient_id, p.full_name AS patient_name, m.created_at
+        : `SELECT m.id, m.title, m.meeting_url, m.transcript, m.notes, m.patient_id, m.followup_id, p.full_name AS patient_name, m.created_at
            FROM meetings m
            LEFT JOIN patients p ON p.id = m.patient_id
            WHERE m.organizer_worker_id = ?
@@ -88,6 +84,7 @@ export default async function MeetPage() {
         transcript: row.transcript,
         notes: row.notes,
         patient_id: row.patient_id == null ? null : String(row.patient_id),
+        followup_id: row.followup_id || null,
         patient_name: row.patient_name,
         created_at: row.created_at instanceof Date ? row.created_at.toISOString() : String(row.created_at),
       }));

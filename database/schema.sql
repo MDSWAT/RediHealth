@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS patients (
   address VARCHAR(500) NULL,
   condition_notes TEXT NULL,
   medical_history TEXT NULL,
+  profile_photo MEDIUMTEXT NULL,
   treatment_plan TEXT NULL,
   followups LONGTEXT NULL,
   photos LONGTEXT NULL,
@@ -122,3 +123,29 @@ CREATE TABLE IF NOT EXISTS activity_logs (
     FOREIGN KEY (actor_worker_id) REFERENCES workers(id)
     ON DELETE SET NULL
 );
+
+-- Medical institutes for the public Find help map (managed from /panel/institutes).
+CREATE TABLE IF NOT EXISTS medical_institutes (
+  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  country_code CHAR(2) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(32) NOT NULL DEFAULT 'clinic',
+  address VARCHAR(500) NULL,
+  city VARCHAR(160) NULL,
+  phone VARCHAR(120) NULL,
+  website VARCHAR(500) NULL,
+  hours VARCHAR(255) NULL,
+  emergency TINYINT(1) NOT NULL DEFAULT 0,
+  lat DECIMAL(9, 6) NOT NULL,
+  lng DECIMAL(9, 6) NOT NULL,
+  is_active TINYINT(1) NOT NULL DEFAULT 1,
+  source VARCHAR(16) NOT NULL DEFAULT 'manual',
+  osm_ref VARCHAR(40) NULL,
+  manually_edited TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY medical_institutes_osm_ref_uq (osm_ref),
+  INDEX medical_institutes_geo_idx (is_active, lat, lng),
+  INDEX medical_institutes_country_idx (country_code, is_active, category),
+  INDEX medical_institutes_name_idx (name)
+) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;

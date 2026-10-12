@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
+import { errors } from "jose";
 import { cookies } from "next/headers";
 import { decryptEmailCode, emailAuthCookies } from "@/lib/email-auth";
 import { checkLoginAccess, hasLoginAccess } from "@/lib/login-access";
@@ -28,29 +29,44 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials) {
         const code =
           typeof credentials?.code === "string" ? credentials.code.trim() : "";
-        if (!code) return null;
-
-        const cookieStore = await cookies();
-        const codeToken = cookieStore.get(emailAuthCookies.otp)?.value;
-        if (!codeToken) return null;
-
-        try {
-          const stored = await decryptEmailCode(codeToken);
-          if (
-            stored.code === code &&
-            (await hasLoginAccess(stored.email))
-          ) {
-            cookieStore.delete(emailAuthCookies.otp);
-            return {
-              id: stored.email,
-              email: stored.email,
-            };
-          }
-        } catch {
+        if (!code) {
+          console.warn("Email-code sign-in rejected: missing code.");
           return null;
         }
 
-        return null;
+        const cookieStore = await cookies();
+        const codeToken = cookieStore.get(emailAuthCookies.otp)?.value;
+        if (!codeToken) {
+          console.warn("Email-code sign-in rejected: missing verification cookie. Request a new code on the same host and protocol.");
+          return null;
+        }
+
+        let stored: Awaited<ReturnType<typeof decryptEmailCode>>;
+        try {
+          stored = await decryptEmailCode(codeToken);
+        } catch (error) {
+          if (error instanceof errors.JOSEError) {
+            console.warn("Email-code sign-in rejected: verification token validation failed.", error.code);
+            return null;
+          }
+          throw error;
+        }
+
+        if (stored.code !== code) {
+          console.warn("Email-code sign-in rejected: code mismatch. Use the most recently requested code.");
+          return null;
+        }
+
+        if (!(await hasLoginAccess(stored.email))) {
+          console.warn("Email-code sign-in rejected: login access check failed.");
+          return null;
+        }
+
+        cookieStore.delete(emailAuthCookies.otp);
+        return {
+          id: stored.email,
+          email: stored.email,
+        };
       },
     }),
   ],

@@ -4,12 +4,18 @@ import type { Lang } from "@/lib/i18n/translations";
 import {
   DEFAULT_LANG,
   LOCALE_COOKIE,
+  REQUEST_LANG_HEADER,
   isSupportedLang,
   withLangPrefix,
 } from "@/lib/i18n/routing";
 
-export async function getRequestLang(): Promise<Lang> {
-  const headerLang = (await headers()).get("x-redihealth-lang");
+export async function getRequestLang(request?: Request): Promise<Lang> {
+  const explicitLang = request?.headers.get(REQUEST_LANG_HEADER);
+  if (explicitLang && isSupportedLang(explicitLang)) {
+    return explicitLang;
+  }
+
+  const headerLang = (await headers()).get(REQUEST_LANG_HEADER);
   if (headerLang && isSupportedLang(headerLang)) {
     return headerLang;
   }

@@ -28,7 +28,7 @@ function LanguageSelector({ className }: { className?: string }) {
         aria-label="Select language"
         value={lang}
         onChange={(event) => setLang(event.target.value as Lang)}
-        className="h-11 cursor-pointer appearance-none rounded-lg border border-border bg-card pl-8 pr-8 text-sm font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="h-11 cursor-pointer appearance-none whitespace-nowrap rounded-lg border border-border bg-card pl-8 pr-8 text-sm font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         {languages.map((option) => (
           <option key={option.code} value={option.code}>
@@ -75,16 +75,16 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <Container>
-        <div className="flex h-16 items-center justify-between gap-4 lg:h-20">
-          <Logo href={withLangPrefix("/", lang)} />
+        <div className="flex h-16 items-center justify-between gap-3 xl:h-20">
+          <Logo className="shrink-0 whitespace-nowrap" href={withLangPrefix("/", lang)} />
 
-          <nav aria-label="Primary" className="hidden lg:block">
-            <ul className="flex items-center gap-1">
+          <nav aria-label="Primary" className="hidden shrink-0 xl:block">
+            <ul className="flex items-center gap-0.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={withLangPrefix(link.href, lang)}
-                    className="inline-flex min-h-[44px] items-center rounded-md px-3 text-sm font-medium text-foreground hover:bg-muted"
+                    className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-md px-2 text-[13px] font-medium text-foreground hover:bg-muted"
                   >
                     {link.label}
                   </Link>
@@ -93,28 +93,28 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="hidden items-center gap-2 lg:flex">
+          <div className="hidden shrink-0 items-center gap-1 xl:flex">
             <LanguageSelector />
             <Link
               href={withLangPrefix(accountLink.href, lang)}
-              className="inline-flex min-h-[44px] items-center rounded-lg px-3 text-sm font-semibold text-foreground hover:bg-muted"
+              className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-[13px] font-semibold text-foreground hover:bg-muted"
             >
               {accountLink.label}
             </Link>
             <Link
               href={withLangPrefix("/demo", lang)}
-              className="inline-flex min-h-[44px] items-center rounded-lg border border-border px-3 text-sm font-semibold text-foreground hover:bg-muted"
+              className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-border px-2 text-[13px] font-semibold text-foreground hover:bg-muted"
             >
               {t.header.demo}
             </Link>
-            <Button href={withLangPrefix("/get-help", lang)} size="md" className="text-sm">
+            <Button href={withLangPrefix("/get-help", lang)} size="md" className="whitespace-nowrap px-3 text-[13px]">
               {t.header.getHelp}
             </Button>
           </div>
 
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 xl:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -133,7 +133,7 @@ export function Header() {
         id="mobile-menu"
         aria-hidden={!mobileOpen}
         className={cn(
-          "overflow-hidden bg-background transition-[max-height,opacity] duration-300 ease-out lg:hidden",
+          "overflow-hidden bg-background transition-[max-height,opacity] duration-300 ease-out xl:hidden",
           mobileOpen
             ? "max-h-[85vh] border-t border-border opacity-100"
             : "pointer-events-none max-h-0 opacity-0",

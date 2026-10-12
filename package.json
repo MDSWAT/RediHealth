@@ -10,7 +10,8 @@
     "tunel": "npm run tunnel",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "import:institutes": "npx --yes tsx scripts/import-medical-institutes.ts"
   },
   "dependencies": {
     "hostinger-mail-api-sdk": "^1.19.0",

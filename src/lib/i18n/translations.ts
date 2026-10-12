@@ -126,6 +126,14 @@ export type Translations = {
       emailInvalid: string;
       sendingCode: string;
       emailMeCode: string;
+      portalRecoveryTitle: string;
+      portalRecoveryHint: string;
+      portalRecoveryEmailLabel: string;
+      portalRecoveryEmailPlaceholder: string;
+      portalRecoveryButton: string;
+      portalRecoverySending: string;
+      portalRecoverySent: string;
+      portalRecoveryError: string;
       genericSendError: string;
       checkEmailTitle: string;
       codeSentBody: (email: string) => string;
@@ -358,6 +366,14 @@ export const translations: Record<Lang, Translations> = {
         emailInvalid: "Enter a valid email address.",
         sendingCode: "Sending code...",
         emailMeCode: "Email me a code",
+        portalRecoveryTitle: "Patient portal access",
+        portalRecoveryHint: "Lost your patient portal link? Enter your email and we’ll send you a new one.",
+        portalRecoveryEmailLabel: "Patient email address",
+        portalRecoveryEmailPlaceholder: "you@example.com",
+        portalRecoveryButton: "Email me a new portal link",
+        portalRecoverySending: "Sending portal link...",
+        portalRecoverySent: "If a patient portal is registered to that email, a new link will be sent shortly.",
+        portalRecoveryError: "We could not process your request. Please try again shortly.",
         genericSendError: "We could not send a code. Please try again.",
         checkEmailTitle: "Check your email",
         codeSentBody: (email: string) => `We sent a six-digit code to ${email}. It expires in 10 minutes.`,
@@ -377,7 +393,7 @@ export const translations: Record<Lang, Translations> = {
       listTitle: "Medical institutes",
       listSubtitle: "Select a place to highlight it on the map.",
       loadingMap: "Loading map…",
-      mapAttribution: "Map data © OpenStreetMap contributors © CARTO.",
+      mapAttribution: "Map data © OpenStreetMap contributors.",
       ctaTitle: "Not sure where to go?",
       ctaBody: "If you need help choosing or arranging care, our support team can guide you. In a medical emergency, contact your local emergency service immediately.",
       ctaButton: "Request Medical Help",
@@ -592,6 +608,14 @@ export const translations: Record<Lang, Translations> = {
         emailInvalid: "Introdu o adresă de email validă.",
         sendingCode: "Se trimite codul...",
         emailMeCode: "Trimite-mi un cod",
+        portalRecoveryTitle: "Acces la portalul pacientului",
+        portalRecoveryHint: "Ai pierdut linkul către portalul pacientului? Introdu adresa de email și îți vom trimite un link nou.",
+        portalRecoveryEmailLabel: "Adresa de email a pacientului",
+        portalRecoveryEmailPlaceholder: "tu@exemplu.com",
+        portalRecoveryButton: "Trimite-mi un link nou către portal",
+        portalRecoverySending: "Se trimite linkul către portal...",
+        portalRecoverySent: "Dacă există un portal de pacient asociat acestei adrese, un link nou va fi trimis în curând.",
+        portalRecoveryError: "Nu am putut procesa solicitarea. Te rugăm să încerci din nou în curând.",
         genericSendError: "Nu am putut trimite un cod. Te rugăm să încerci din nou.",
         checkEmailTitle: "Verifică-ți emailul",
         codeSentBody: (email: string) => `Am trimis un cod din șase cifre la ${email}. Expiră în 10 minute.`,
@@ -611,7 +635,7 @@ export const translations: Record<Lang, Translations> = {
       listTitle: "Instituții medicale",
       listSubtitle: "Selectează un loc pentru a-l evidenția pe hartă.",
       loadingMap: "Se încarcă harta…",
-      mapAttribution: "Date hartă © contribuitori OpenStreetMap © CARTO.",
+      mapAttribution: "Date hartă © contribuitori OpenStreetMap.",
       ctaTitle: "Nu știi unde să mergi?",
       ctaBody: "Dacă ai nevoie de ajutor pentru a alege sau a organiza îngrijirea, echipa noastră de sprijin te poate ghida. În caz de urgență medicală, contactează imediat serviciul local de urgență.",
       ctaButton: "Solicită ajutor medical",
@@ -826,6 +850,14 @@ export const translations: Record<Lang, Translations> = {
         emailInvalid: "Shkruaj një adresë emaili të vlefshme.",
         sendingCode: "Duke dërguar kodin...",
         emailMeCode: "Më dërgo një kod",
+        portalRecoveryTitle: "Qasja në portalin e pacientit",
+        portalRecoveryHint: "E ke humbur lidhjen e portalit të pacientit? Shkruaj emailin dhe do të të dërgojmë një lidhje të re.",
+        portalRecoveryEmailLabel: "Adresa e emailit të pacientit",
+        portalRecoveryEmailPlaceholder: "ti@shembull.com",
+        portalRecoveryButton: "Më dërgo një lidhje të re të portalit",
+        portalRecoverySending: "Duke dërguar lidhjen e portalit...",
+        portalRecoverySent: "Nëse ka një portal pacienti të regjistruar me këtë email, së shpejti do të dërgohet një lidhje e re.",
+        portalRecoveryError: "Nuk mundëm ta përpunonim kërkesën. Të lutemi provo përsëri së shpejti.",
         genericSendError: "Nuk mundëm të dërgojmë një kod. Të lutemi provo përsëri.",
         checkEmailTitle: "Kontrollo emailin tënd",
         codeSentBody: (email: string) => `Dërguam një kod gjashtë-shifror në ${email}. Skadon pas 10 minutash.`,
@@ -845,7 +877,7 @@ export const translations: Record<Lang, Translations> = {
       listTitle: "Institucionet shëndetësore",
       listSubtitle: "Zgjidh një vend për ta theksuar në hartë.",
       loadingMap: "Duke ngarkuar hartën…",
-      mapAttribution: "Të dhënat e hartës © kontribuesit e OpenStreetMap © CARTO.",
+      mapAttribution: "Të dhënat e hartës © kontribuesit e OpenStreetMap.",
       ctaTitle: "Nuk je i sigurt ku të shkosh?",
       ctaBody: "Nëse ke nevojë për ndihmë në zgjedhjen ose organizimin e kujdesit, ekipi ynë i mbështetjes mund të të udhëzojë. Në rast urgjence mjekësore, kontakto menjëherë shërbimin lokal të urgjencës.",
       ctaButton: "Kërko ndihmë mjekësore",
@@ -1060,6 +1092,14 @@ export const translations: Record<Lang, Translations> = {
         emailInvalid: "Inserisci un indirizzo email valido.",
         sendingCode: "Invio del codice...",
         emailMeCode: "Inviami un codice",
+        portalRecoveryTitle: "Accesso al portale paziente",
+        portalRecoveryHint: "Hai perso il link al portale paziente? Inserisci la tua email e te ne invieremo uno nuovo.",
+        portalRecoveryEmailLabel: "Indirizzo email del paziente",
+        portalRecoveryEmailPlaceholder: "tu@esempio.com",
+        portalRecoveryButton: "Inviami un nuovo link al portale",
+        portalRecoverySending: "Invio del link al portale...",
+        portalRecoverySent: "Se esiste un portale paziente associato a questo indirizzo email, riceverai presto un nuovo link.",
+        portalRecoveryError: "Non è stato possibile elaborare la richiesta. Riprova tra poco.",
         genericSendError: "Non siamo riusciti a inviare un codice. Riprova.",
         checkEmailTitle: "Controlla la tua email",
         codeSentBody: (email: string) => `Abbiamo inviato un codice di sei cifre a ${email}. Scade tra 10 minuti.`,
@@ -1079,7 +1119,7 @@ export const translations: Record<Lang, Translations> = {
       listTitle: "Strutture sanitarie",
       listSubtitle: "Seleziona un luogo per evidenziarlo sulla mappa.",
       loadingMap: "Caricamento mappa…",
-      mapAttribution: "Dati mappa © collaboratori di OpenStreetMap © CARTO.",
+      mapAttribution: "Dati mappa © collaboratori di OpenStreetMap.",
       ctaTitle: "Non sai dove andare?",
       ctaBody: "Se hai bisogno di aiuto per scegliere o organizzare l'assistenza, il nostro team di supporto può guidarti. In caso di emergenza medica, contatta immediatamente il servizio di emergenza locale.",
       ctaButton: "Richiedi assistenza medica",

@@ -4,34 +4,19 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { FindHelpExplorer } from "@/components/find-help/FindHelpExplorer";
-import { HandHelpingIcon, PhoneIcon } from "@/components/ui/icons";
+import { PhoneIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import type { CountryCode } from "@/lib/medical-institutes";
 
-export function FindHelpPageContent() {
+export function FindHelpPageContent({ initialCountry }: { initialCountry: CountryCode }) {
   const { t } = useLanguage();
   const page = t.findHelpPage;
 
   return (
     <main id="main-content" className="flex-1">
-      <section className="border-b border-border bg-muted/40 py-16 sm:py-20">
-        <Container>
-          <Reveal className="max-w-2xl">
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary">
-              <HandHelpingIcon className="h-6 w-6" />
-            </span>
-            <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-              {page.heroTitle}
-            </h1>
-            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-              {page.heroParagraph}
-            </p>
-          </Reveal>
-        </Container>
-      </section>
-
       <section className="py-16 sm:py-20">
         <Container>
-          <FindHelpExplorer />
+          <FindHelpExplorer initialCountry={initialCountry} />
         </Container>
       </section>
 

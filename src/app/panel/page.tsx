@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { getDatabase, hasDatabaseConnectionConfig, type RowDataPacket } from "@/lib/database";
+import { hasDatabaseConnectionConfig } from "@/lib/database";
 import { WorkerDashboard } from "@/components/panel/WorkerDashboard";
-import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
+import { loadRequestInbox, type InboxPage } from "@/lib/data/request-inbox";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 
@@ -11,98 +11,22 @@ export const metadata: Metadata = {
   title: "Worker Panel Dashboard - RediHealth",
 };
 
-type DBMedicalHelpRequest = RowDataPacket & {
-  id: string;
-  full_name: string | null;
-  phone: string;
-  email: string;
-  description: string;
-  status?: string;
-  status_updated_by_name?: string | null;
-  status_updated_by_email?: string | null;
-  status_updated_at?: Date | string;
-  priority?: string;
-  internal_notes?: string | null;
-  created_at: Date | string;
-  updated_at?: Date | string;
-};
-
-export default async function PanelPage() {
+export default async function PanelPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const session = await auth();
-
-  if (!session?.user) {
-    redirect(await withRequestLangPrefix("/sign-in"));
-  }
-
+  if (!session?.user) redirect(await withRequestLangPrefix("/sign-in"));
   const userEmail = session.user.email || "staff account";
   const workerContext = await getUserWorkerContext(userEmail);
-
-  // Only bounce to sign-in when the user is genuinely not a worker.
-  // On a transient database error, render the dashboard's unavailable state instead.
-  if (!workerContext.workerId && !workerContext.lookupFailed) {
-    redirect(await withRequestLangPrefix("/sign-in"));
-  }
-
-  let requests: DBMedicalHelpRequest[] = [];
-  let databaseAvailable =
-    hasDatabaseConnectionConfig() && !workerContext.lookupFailed;
-
+  if (!workerContext.workerId && !workerContext.lookupFailed) redirect(await withRequestLangPrefix("/sign-in"));
+  let databaseAvailable = hasDatabaseConnectionConfig() && !workerContext.lookupFailed;
+  let inbox: InboxPage = { requests: [], counts: { attention: 0, all: 0, pending: 0, in_progress: 0, resolved: 0, archived: 0 }, page: 1, hasMore: false, total: 0 };
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(await searchParams)) if (typeof value === "string") params.set(key, value);
+  if (!params.has("folder")) params.set("folder", "attention");
+  params.set("limit", "50");
+  params.delete("page");
   if (databaseAvailable) {
-    try {
-      const db = getDatabase();
-      const [rows] = await db.query<DBMedicalHelpRequest[]>(
-        `SELECT id, full_name, phone, email, description, 
-                COALESCE(status, 'pending') AS status, 
-                status_updated_by_name, status_updated_by_email, status_updated_at,
-                COALESCE(priority, 'normal') AS priority, 
-                internal_notes, created_at, updated_at
-         FROM medical_help_requests
-         ORDER BY created_at DESC
-         LIMIT 100`,
-      );
-      requests = rows;
-    } catch (error) {
-      console.error("Failed to load medical help requests", error);
-      databaseAvailable = false;
-    }
+    try { inbox = await loadRequestInbox(params, String(workerContext.workerId), workerContext.isAdmin); }
+    catch (error) { console.error("Failed to load request inbox", error); databaseAvailable = false; }
   }
-
-  const formattedRequests: MedicalHelpRequestItem[] = requests.map((r) => ({
-    id: String(r.id),
-    full_name: r.full_name,
-    phone: r.phone,
-    email: r.email,
-    description: r.description,
-    status: (r.status as MedicalHelpRequestItem["status"]) || "pending",
-    status_updated_by_name: r.status_updated_by_name || null,
-    status_updated_by_email: r.status_updated_by_email || null,
-    status_updated_at:
-      r.status_updated_at instanceof Date
-        ? r.status_updated_at.toISOString()
-        : r.status_updated_at
-        ? String(r.status_updated_at)
-        : undefined,
-    priority: (r.priority as MedicalHelpRequestItem["priority"]) || "normal",
-    internal_notes: r.internal_notes || null,
-    created_at:
-      r.created_at instanceof Date
-        ? r.created_at.toISOString()
-        : String(r.created_at),
-    updated_at:
-      r.updated_at instanceof Date
-        ? r.updated_at.toISOString()
-        : r.updated_at
-        ? String(r.updated_at)
-        : undefined,
-  }));
-
-  return (
-    <WorkerDashboard
-      initialRequests={formattedRequests}
-      userEmail={userEmail}
-      userRole={workerContext.role}
-      isAdmin={workerContext.isAdmin}
-      databaseAvailable={databaseAvailable}
-    />
-  );
+  return <WorkerDashboard initialInbox={inbox} userEmail={userEmail} userRole={workerContext.role} isAdmin={workerContext.isAdmin} databaseAvailable={databaseAvailable} />;
 }

@@ -6,6 +6,7 @@ import { sendPatientPortalLinkEmail } from "@/lib/email";
 import { parseJsonColumn } from "@/lib/json";
 import { generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
 import type { TreatmentPlan } from "@/lib/types/patient";
+import { getRequestLang } from "@/lib/i18n/server-routing";
 
 export async function POST(request: Request) {
   const session = await auth();
@@ -56,21 +57,17 @@ export async function POST(request: Request) {
     // Generate a new token, update the hash, and send the email
     const newAccessToken = generatePortalToken();
     const newAccessTokenHash = hashPortalToken(newAccessToken);
-    const configuredTtlDays = Number(process.env.PATIENT_PORTAL_TOKEN_TTL_DAYS || 30);
-    const ttlDays = Number.isFinite(configuredTtlDays) && configuredTtlDays > 0
-      ? configuredTtlDays
-      : 30;
-    const accessTokenExpiresAt = new Date(Date.now() + ttlDays * 24 * 60 * 60 * 1000);
 
     await db.query<ResultSetHeader>(
-      `UPDATE patients SET access_token_hash = ?, access_token_expires_at = ? WHERE id = ?`,
-      [newAccessTokenHash, accessTokenExpiresAt, patientId],
+      `UPDATE patients SET access_token_hash = ?, access_token_expires_at = NULL WHERE id = ?`,
+      [newAccessTokenHash, patientId],
     );
 
     await sendPatientPortalLinkEmail({
       name: patient.full_name,
       email: patient.email,
       accessToken: newAccessToken,
+      lang: await getRequestLang(request),
       treatmentPlan: parseJsonColumn<TreatmentPlan>(patient.treatment_plan),
       conditionNotes: patient.condition_notes,
       baseUrl: new URL(request.url).origin,

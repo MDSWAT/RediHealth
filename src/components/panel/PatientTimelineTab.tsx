@@ -1,123 +1,54 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-
-import { CalendarIcon, ImageIcon, UserIcon } from "@/components/ui/icons";
+import Link from "next/link";
+import { MoreVerticalIcon, TrashIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { crmTranslations } from "@/lib/i18n/crm-translations";
+import { langToLocale } from "@/lib/i18n/panel-translations";
+import { withLangPrefix } from "@/lib/i18n/routing";
+import { followupLabel } from "@/lib/panel-dates";
+import { getTreatmentEntries } from "@/lib/treatments";
+import { treatmentTranslations } from "@/lib/i18n/treatment-translations";
 import type { FollowupItem, PatientItem, PatientPhoto } from "@/lib/types/patient";
 
-interface PatientTimelineTabProps {
-  patient: PatientItem;
-  followups: FollowupItem[];
-  photos: PatientPhoto[];
-}
-
-export function PatientTimelineTab({ patient, followups, photos }: PatientTimelineTabProps) {
+type TimelineEvent = { id: string; date: string; title: string; note?: string; followup?: FollowupItem; photo?: PatientPhoto };
+export function PatientTimelineTab({ patient, followups, photos, compact = false, busy = false, onToggleStatus, onSelectFollowup, onCreateMeeting, onDeleteFollowup }: {
+  patient: PatientItem; followups: FollowupItem[]; photos: PatientPhoto[]; compact?: boolean; busy?: boolean;
+  onToggleStatus?: (id: string, status: FollowupItem["status"]) => void;
+  onSelectFollowup?: (item: FollowupItem) => void;
+  onCreateMeeting?: (item: FollowupItem) => void;
+  onDeleteFollowup?: (item: FollowupItem) => void;
+}) {
   const { lang } = useLanguage();
-  const t = {
-    en: {
-      title: "Unified Medical History & Activity Log",
-      subtitle: "Chronological record of patient enquiries, care plans, follow-ups, and attachments.",
-      initial: "Initial Request / Enquiry Received",
-      noInitial: "No initial enquiry text recorded.",
-      scheduledDate: "Scheduled Date",
-      attachedOn: "Attached on",
-    },
-    ro: {
-      title: "Istoric medical unificat si jurnal activitati",
-      subtitle: "Evidenta cronologica a cererilor, planurilor, follow-up-urilor si atasamentelor.",
-      initial: "Cerere initiala / solicitare primita",
-      noInitial: "Nu exista text initial inregistrat.",
-      scheduledDate: "Data programata",
-      attachedOn: "Atasat la",
-    },
-    sq: {
-      title: "Historik i unifikuar mjekesor dhe aktivitetesh",
-      subtitle: "Regjister kronologjik i kerkesave, planeve, ndjekjeve dhe bashkengjitjeve.",
-      initial: "Kerkesa fillestare / pyetja e marre",
-      noInitial: "Nuk ka tekst fillestar te regjistruar.",
-      scheduledDate: "Data e planifikuar",
-      attachedOn: "Bashkengjitur me",
-    },
-    it: {
-      title: "Storico medico unificato e registro attivita",
-      subtitle: "Registro cronologico di richieste paziente, piani di cura, follow-up e allegati.",
-      initial: "Richiesta iniziale ricevuta",
-      noInitial: "Nessun testo iniziale registrato.",
-      scheduledDate: "Data programmata",
-      attachedOn: "Allegato il",
-    },
-  }[lang];
-  return (
-    <div className="space-y-4 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
-      <div>
-        <h3 className="text-sm font-semibold text-foreground">
-          {t.title}
-        </h3>
-        <p className="text-xs text-muted-foreground">
-          {t.subtitle}
-        </p>
-      </div>
-
-      <div className="relative pl-6 border-l-2 border-border space-y-6 pt-2">
-        <div className="relative">
-          <span className="absolute -left-[31px] top-0 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white text-xs">
-            <UserIcon className="h-3.5 w-3.5" />
-          </span>
-          <div className="rounded-xl border border-border bg-background p-4 text-xs">
-            <p className="font-bold text-foreground text-sm">
-              {t.initial}
-            </p>
-            <p className="text-muted-foreground text-[11px] mt-0.5">
-              {new Date(patient.created_at).toLocaleString()}
-            </p>
-            <div className="mt-2 p-2.5 rounded-lg bg-muted/40 text-foreground whitespace-pre-wrap">
-              {patient.condition_notes || t.noInitial}
-            </div>
+  const t = crmTranslations[lang];
+  const treatments = getTreatmentEntries(patient.treatment_plan);
+  const events: TimelineEvent[] = [
+    { id: "created", date: patient.created_at, title: t.registered, note: patient.condition_notes || undefined },
+    ...followups.map((f) => ({ id: `followup-${f.id}`, date: f.completed_at || f.date, title: f.title, note: f.notes, followup: f })),
+    ...treatments.filter((entry) => entry.start_date).map((entry) => ({ id: `treatment-${entry.id}`, date: entry.start_date!, title: entry.title || treatmentTranslations[lang].legacy, note: [entry.diagnosis, entry.medications, entry.care_instructions].filter(Boolean).join("\n\n") })),
+    ...[...photos, ...treatments.flatMap((entry) => entry.photos || [])].map((p) => ({ id: `photo-${p.id}`, date: p.date, title: p.name, note: p.notes, photo: p })),
+  ].sort((a, b) => b.date.localeCompare(a.date));
+  return <section className="crm-card"><h2>{compact ? t.recentActivity : t.history}</h2><div className="divide-y divide-border">
+    {(compact ? events.slice(0, 3) : events).map((event) => <article key={event.id} className="py-4">
+      <div className="flex flex-wrap items-start justify-between gap-2"><h3 className="text-sm font-medium">{event.title}</h3>{event.followup && <span className="text-xs text-muted-foreground">{t[event.followup.status]}</span>}</div>
+      <p className="mt-1 text-xs text-muted-foreground">{event.followup ? followupLabel(event.followup, langToLocale[lang], t.allDay) : new Date(event.date.length === 10 ? `${event.date}T12:00:00` : event.date).toLocaleDateString(langToLocale[lang])}</p>
+      {!compact && <>
+        {event.note && <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed">{event.note}</p>}
+        {event.photo && <a href={event.photo.data_url} target="_blank" rel="noreferrer"><img src={event.photo.data_url} alt={event.photo.name} className="mt-3 max-h-52 max-w-full rounded-md object-contain" /></a>}
+        {event.followup && <>
+          {event.followup.completion_notes && <div className="mt-3"><h4 className="text-xs font-medium text-muted-foreground">{t.completionNotes}</h4><p className="mt-1 whitespace-pre-wrap text-sm">{event.followup.completion_notes}</p></div>}
+          {event.followup.completed_at && <p className="mt-2 text-xs text-muted-foreground">{t.completed}: {new Date(event.followup.completed_at).toLocaleString(langToLocale[lang])}</p>}
+          {event.followup.completion_photos?.map((photo) => <a key={photo.id} href={photo.data_url} target="_blank" rel="noreferrer"><img src={photo.data_url} alt={photo.name} className="mt-3 max-h-40 max-w-full rounded-md object-contain" /></a>)}
+          {(event.followup.meeting_notes || event.followup.meeting_transcript) && <details className="mt-3"><summary className="cursor-pointer text-sm text-primary">{t.consultationNotes}</summary>{event.followup.meeting_notes && <p className="mt-3 whitespace-pre-wrap text-sm">{event.followup.meeting_notes}</p>}{event.followup.meeting_transcript && <div className="mt-3"><h4 className="text-xs font-medium">{t.transcript}</h4><p className="mt-1 whitespace-pre-wrap text-sm">{event.followup.meeting_transcript}</p></div>}</details>}
+          <div className="mt-3 flex flex-wrap gap-2">
+            {event.followup.meeting_id && <Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${event.followup.meeting_id}`, lang)}>{t.join}</Link>}
+            {onSelectFollowup && <button className="crm-button" disabled={busy} onClick={() => onSelectFollowup(event.followup!)}>{event.followup.status === "completed" ? t.reopen : t.markComplete}</button>}
+            {!onSelectFollowup && onToggleStatus && <button className="crm-button" disabled={busy} onClick={() => onToggleStatus(event.followup!.id, event.followup!.status === "completed" ? "scheduled" : "completed")}>{event.followup.status === "completed" ? t.reopen : t.markComplete}</button>}
+            {onCreateMeeting && !event.followup.meeting_id && <button className="crm-button" disabled={busy} onClick={() => onCreateMeeting(event.followup!)}>{t.createMeeting}</button>}
+            {onDeleteFollowup && <details className="crm-menu"><summary className="crm-button flex h-10 w-10 items-center justify-center p-0" aria-label={t.more} title={t.more}><MoreVerticalIcon className="h-5 w-5" /></summary><div><button aria-label={t.delete} title={t.delete} disabled={busy} onClick={() => onDeleteFollowup(event.followup!)}><TrashIcon className="h-4 w-4" /></button></div></details>}
           </div>
-        </div>
-
-        {followups.map((item) => (
-          <div key={item.id} className="relative">
-            <span className="absolute -left-[31px] top-0 flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-white text-xs">
-              <CalendarIcon className="h-3.5 w-3.5" />
-            </span>
-            <div className="rounded-xl border border-border bg-background p-4 text-xs">
-              <div className="flex items-center justify-between">
-                <p className="font-bold text-foreground text-sm">{item.title}</p>
-                <span className="capitalize font-bold text-amber-600 dark:text-amber-400">
-                  {item.status}
-                </span>
-              </div>
-              <p className="text-muted-foreground text-[11px] mt-0.5">
-                {t.scheduledDate}: {item.date}
-              </p>
-              {item.notes ? (
-                <p className="mt-2 text-foreground">{item.notes}</p>
-              ) : null}
-            </div>
-          </div>
-        ))}
-
-        {photos.map((photo) => (
-          <div key={photo.id} className="relative">
-            <span className="absolute -left-[31px] top-0 flex h-6 w-6 items-center justify-center rounded-full bg-purple-500 text-white text-xs">
-              <ImageIcon className="h-3.5 w-3.5" />
-            </span>
-            <div className="rounded-xl border border-border bg-background p-4 text-xs flex gap-3">
-              <img
-                src={photo.data_url}
-                alt={photo.name}
-                className="h-14 w-14 object-cover rounded border border-border flex-none"
-              />
-              <div>
-                <p className="font-bold text-foreground text-sm">{photo.name}</p>
-                <p className="text-muted-foreground text-[11px]">{t.attachedOn} {photo.date}</p>
-                {photo.notes ? <p className="mt-1 text-foreground">{photo.notes}</p> : null}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+        </>}
+      </>}
+    </article>)}
+  </div></section>;
 }

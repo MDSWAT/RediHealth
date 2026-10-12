@@ -17,23 +17,40 @@ import {
   UserIcon,
 } from "@/components/ui/icons";
 import type { PatientItem, PatientPriority } from "@/lib/types/patient";
+import { followupLabel, sortFollowups } from "@/lib/panel-dates";
+import { crmTranslations } from "@/lib/i18n/crm-translations";
+import { langToLocale } from "@/lib/i18n/panel-translations";
 import { usePatientPortal } from "@/components/portal/usePatientPortal";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { TreatmentPlansView } from "@/components/panel/TreatmentPlansView";
+import { treatmentTranslations } from "@/lib/i18n/treatment-translations";
 
 interface PatientPortalViewProps {
   initialPatient: PatientItem;
   token: string;
 }
 
-type PortalTab = "actions" | "plan" | "photos" | "notes";
+type PortalTab = "home" | "actions" | "plan" | "photos" | "notes";
+type PortalAction = "symptoms" | "followups";
 
 const portalTranslations = {
   en: {
+    homeTitle: "Your care, made simple",
+    homeIntro: "Choose what you would like to do.",
+    actionSymptomsTitle: "Tell us how you feel",
+    actionSymptomsHint: "Share a new symptom or update your care team.",
+    actionFollowupTitle: "Appointments and follow-up",
+    actionFollowupHint: "Ask your care team to contact you or arrange a follow-up.",
+    actionPlanTitle: "View your care plan",
+    actionPlanHint: "See your treatment and care instructions.",
+    actionPhotosTitle: "Add photos",
+    actionPhotosHint: "Share photos or documents with your care team.",
+    moreOptions: "More options",
+    backHome: "Back to home",
+    contactDetails: "Contact and patient details",
     emergencyTitle: "Medical Emergency Notice:",
     emergencyBody:
       "This portal supports routine communication and care management. For life-threatening emergencies, call 112 or visit the nearest emergency room.",
-    careLabel: "care",
-    portalRecord: "RediHealth Patient Portal - Record ID",
     assignedStaff: "Assigned healthcare staff",
     fallbackTeam: "RediHealth Clinical Team",
     phone: "Phone:",
@@ -111,11 +128,22 @@ const portalTranslations = {
     },
   },
   ro: {
+    homeTitle: "Îngrijirea ta, pe înțelesul tău",
+    homeIntro: "Alege ce dorești să faci.",
+    actionSymptomsTitle: "Spune-ne cum te simți",
+    actionSymptomsHint: "Raportează un simptom nou sau actualizează echipa medicală.",
+    actionFollowupTitle: "Programări și monitorizare",
+    actionFollowupHint: "Cere echipei medicale să te contacteze sau să programeze o monitorizare.",
+    actionPlanTitle: "Vezi planul tău de îngrijire",
+    actionPlanHint: "Consultă tratamentul și recomandările de îngrijire.",
+    actionPhotosTitle: "Adaugă fotografii",
+    actionPhotosHint: "Trimite fotografii sau documente echipei medicale.",
+    moreOptions: "Mai multe opțiuni",
+    backHome: "Înapoi la pagina principală",
+    contactDetails: "Date de contact și informații despre pacient",
     emergencyTitle: "Atentie urgenta medicala:",
     emergencyBody:
       "Acest portal este pentru comunicare de rutina si managementul ingrijirii. Pentru urgente care pun viata in pericol, sunati la 112 sau mergeti la cea mai apropiata camera de garda.",
-    careLabel: "ingrijire",
-    portalRecord: "Portal pacient RediHealth - ID dosar",
     assignedStaff: "Personal medical alocat",
     fallbackTeam: "Echipa clinica RediHealth",
     phone: "Telefon:",
@@ -193,11 +221,22 @@ const portalTranslations = {
     },
   },
   sq: {
+    homeTitle: "Kujdesi yt, i thjeshtuar",
+    homeIntro: "Zgjidh çfarë dëshiron të bësh.",
+    actionSymptomsTitle: "Na trego si ndihesh",
+    actionSymptomsHint: "Raporto një simptomë të re ose përditëso ekipin tënd shëndetësor.",
+    actionFollowupTitle: "Takime dhe ndjekje",
+    actionFollowupHint: "Kërko që ekipi yt shëndetësor të të kontaktojë ose të caktojë një ndjekje.",
+    actionPlanTitle: "Shiko planin tënd të kujdesit",
+    actionPlanHint: "Shiko trajtimin dhe udhëzimet e kujdesit.",
+    actionPhotosTitle: "Shto fotografi",
+    actionPhotosHint: "Ndaj fotografi ose dokumente me ekipin tënd shëndetësor.",
+    moreOptions: "Më shumë opsione",
+    backHome: "Kthehu në faqen kryesore",
+    contactDetails: "Të dhënat e kontaktit dhe pacientit",
     emergencyTitle: "Njoftim per urgence mjekesore:",
     emergencyBody:
       "Ky portal mbeshtet komunikimin rutinor dhe menaxhimin e kujdesit. Per urgjenca qe rrezikojne jeten, telefononi 112 ose shkoni ne urgjencen me te afert.",
-    careLabel: "kujdes",
-    portalRecord: "Portali i pacientit RediHealth - ID karteles",
     assignedStaff: "Stafi mjekesor i caktuar",
     fallbackTeam: "Ekipi klinik RediHealth",
     phone: "Telefon:",
@@ -275,11 +314,22 @@ const portalTranslations = {
     },
   },
   it: {
+    homeTitle: "La tua assistenza, in modo semplice",
+    homeIntro: "Scegli cosa vuoi fare.",
+    actionSymptomsTitle: "Dicci come ti senti",
+    actionSymptomsHint: "Segnala un nuovo sintomo o aggiorna il tuo team sanitario.",
+    actionFollowupTitle: "Appuntamenti e controlli",
+    actionFollowupHint: "Chiedi al tuo team sanitario di contattarti o fissare un controllo.",
+    actionPlanTitle: "Visualizza il tuo piano di cura",
+    actionPlanHint: "Consulta il trattamento e le indicazioni di cura.",
+    actionPhotosTitle: "Aggiungi foto",
+    actionPhotosHint: "Condividi foto o documenti con il tuo team sanitario.",
+    moreOptions: "Altre opzioni",
+    backHome: "Torna alla home",
+    contactDetails: "Contatti e dati del paziente",
     emergencyTitle: "Avviso emergenza medica:",
     emergencyBody:
       "Questo portale supporta la comunicazione di routine e la gestione della cura. Per emergenze potenzialmente letali, chiama il 112 o vai al pronto soccorso piu vicino.",
-    careLabel: "cura",
-    portalRecord: "Portale paziente RediHealth - ID cartella",
     assignedStaff: "Personale sanitario assegnato",
     fallbackTeam: "Team clinico RediHealth",
     phone: "Telefono:",
@@ -369,41 +419,18 @@ function SectionTitle({ icon, title }: { icon: ReactNode; title: string }) {
   );
 }
 
-function PortalTabButton({
-  isActive,
-  label,
-  onClick,
-}: {
-  isActive: boolean;
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-xs font-semibold transition-colors sm:text-sm ${
-        isActive
-          ? "bg-primary text-white"
-          : "border border-border bg-white text-foreground hover:bg-muted"
-      }`}
-    >
-      {label}
-    </button>
-  );
-}
-
 export function PatientPortalView({
   initialPatient,
   token,
 }: PatientPortalViewProps) {
   const { lang } = useLanguage();
   const t = portalTranslations[lang];
-  const [activeTab, setActiveTab] = useState<PortalTab>("actions");
-  const { patient, priorityMeta, errorMessage, symptoms, followup, photo } =
+  const [activeTab, setActiveTab] = useState<PortalTab>("home");
+  const [activeAction, setActiveAction] = useState<PortalAction>("symptoms");
+  const { patient, errorMessage, symptoms, followup, photo } =
     usePatientPortal({ initialPatient, token });
   const sortedFollowups = useMemo(
-    () => [...(patient.followups || [])].sort((a, b) => a.date.localeCompare(b.date)),
+    () => sortFollowups(patient.followups || []),
     [patient.followups],
   );
   const notesLog = useMemo(() => {
@@ -525,80 +552,62 @@ export function PatientPortalView({
 
         <article className="overflow-hidden rounded-3xl border border-border/80 bg-card shadow-sm">
           <header className="border-b border-border/80 bg-white px-4 py-5 sm:px-8 sm:py-6">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div className="flex items-center gap-3">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-                  <UserIcon className="h-6 w-6" />
-                </span>
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h1 className="text-xl font-bold tracking-tight text-foreground sm:text-3xl">
-                      {patient.full_name}
-                    </h1>
-                    <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-bold capitalize text-emerald-700 dark:text-emerald-400">
-                      {patient.status} {t.careLabel}
-                    </span>
-                    <span
-                      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${priorityMeta.badgeClass}`}
-                    >
-                      <span className={`h-2 w-2 rounded-full ${priorityMeta.dotClass}`} />
-                      <span>{priorityMeta.label}</span>
-                    </span>
-                  </div>
-                  <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
-                    {t.portalRecord} #{patient.id}
-                  </p>
-                </div>
-              </div>
+            {activeTab !== "home" ? (
+              <button
+                type="button"
+                onClick={() => setActiveTab("home")}
+                className="mb-4 inline-flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm font-semibold text-primary hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <span aria-hidden="true">←</span>
+                {t.backHome}
+              </button>
+            ) : null}
 
-              <div className="grid grid-cols-1 gap-2 text-xs sm:text-right">
-                <p className="font-semibold text-foreground">{t.assignedStaff}</p>
-                <p className="font-bold text-primary">
-                  {patient.assigned_worker_name || t.fallbackTeam}
+            <div className="flex items-center gap-3">
+              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
+                <UserIcon className="h-6 w-6" />
+              </span>
+              <div>
+                <h1 className="text-xl font-bold tracking-tight text-foreground sm:text-3xl">
+                  {patient.full_name}
+                </h1>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {activeTab === "home"
+                    ? t.homeTitle
+                    : activeTab === "actions"
+                      ? activeAction === "symptoms" ? t.symptomsTitle : t.followupsTitle
+                      : activeTab === "plan" ? t.tabs.plan
+                        : activeTab === "photos" ? t.tabs.photos : t.tabs.notes}
                 </p>
               </div>
             </div>
 
-            <div className="mt-5 grid grid-cols-1 gap-2 text-xs sm:grid-cols-3 sm:gap-4 sm:text-sm">
-              <p className="flex items-center gap-2">
-                <PhoneIcon className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground">{t.phone}</span>
-                <strong className="text-foreground">{patient.phone}</strong>
-              </p>
-              <p className="flex items-center gap-2">
-                <MailIcon className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground">{t.email}</span>
-                <strong className="break-all text-foreground">{patient.email}</strong>
-              </p>
-              <p className="flex items-center gap-2">
-                <ShieldIcon className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground">{t.location}</span>
-                <strong className="break-words text-foreground">{patient.address || t.notSpecified}</strong>
-              </p>
-            </div>
-
-            <div className="no-scrollbar mt-5 flex items-center gap-2 overflow-x-auto border-t border-border pb-1 pt-4">
-              <PortalTabButton
-                isActive={activeTab === "actions"}
-                label={t.tabs.actions}
-                onClick={() => setActiveTab("actions")}
-              />
-              <PortalTabButton
-                isActive={activeTab === "plan"}
-                label={t.tabs.plan}
-                onClick={() => setActiveTab("plan")}
-              />
-              <PortalTabButton
-                isActive={activeTab === "photos"}
-                label={t.tabs.photos}
-                onClick={() => setActiveTab("photos")}
-              />
-              <PortalTabButton
-                isActive={activeTab === "notes"}
-                label={t.tabs.notes}
-                onClick={() => setActiveTab("notes")}
-              />
-            </div>
+            <details className="mt-4 rounded-xl border border-border bg-muted/30 px-4 py-3">
+              <summary className="cursor-pointer text-sm font-semibold text-foreground">
+                {t.contactDetails}
+              </summary>
+              <div className="mt-3 grid gap-3 border-t border-border pt-3 text-sm sm:grid-cols-2">
+                <p className="flex items-center gap-2">
+                  <PhoneIcon className="h-4 w-4 flex-none text-primary" />
+                  <span className="text-muted-foreground">{t.phone}</span>
+                  <strong className="text-foreground">{patient.phone}</strong>
+                </p>
+                <p className="flex items-center gap-2">
+                  <MailIcon className="h-4 w-4 flex-none text-primary" />
+                  <span className="text-muted-foreground">{t.email}</span>
+                  <strong className="break-all text-foreground">{patient.email}</strong>
+                </p>
+                <p className="flex items-center gap-2">
+                  <ShieldIcon className="h-4 w-4 flex-none text-primary" />
+                  <span className="text-muted-foreground">{t.location}</span>
+                  <strong className="break-words text-foreground">{patient.address || t.notSpecified}</strong>
+                </p>
+                <p>
+                  <span className="text-muted-foreground">{t.assignedStaff}: </span>
+                  <strong className="text-primary">{patient.assigned_worker_name || t.fallbackTeam}</strong>
+                </p>
+              </div>
+            </details>
           </header>
 
           {errorMessage ? (
@@ -607,9 +616,90 @@ export function PatientPortalView({
             </div>
           ) : null}
 
+          {activeTab === "home" ? (
+            <section className="px-4 py-6 sm:px-8 sm:py-8">
+              <p className="text-sm text-muted-foreground">{t.homeIntro}</p>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveAction("symptoms");
+                    setActiveTab("actions");
+                  }}
+                  className="group flex min-h-36 items-start gap-4 rounded-2xl border border-border bg-white p-5 text-left transition hover:border-primary/50 hover:bg-primary-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary-soft text-primary">
+                    <BellIcon className="h-5 w-5" />
+                  </span>
+                  <span>
+                    <span className="block font-bold text-foreground">{t.actionSymptomsTitle}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{t.actionSymptomsHint}</span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveAction("followups");
+                    setShowAddFollowup(true);
+                    setActiveTab("actions");
+                  }}
+                  className="group flex min-h-36 items-start gap-4 rounded-2xl border border-border bg-white p-5 text-left transition hover:border-primary/50 hover:bg-primary-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary-soft text-primary">
+                    <CalendarIcon className="h-5 w-5" />
+                  </span>
+                  <span>
+                    <span className="block font-bold text-foreground">{t.actionFollowupTitle}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{t.actionFollowupHint}</span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("plan")}
+                  className="group flex min-h-36 items-start gap-4 rounded-2xl border border-border bg-white p-5 text-left transition hover:border-primary/50 hover:bg-primary-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary-soft text-primary">
+                    <EditIcon className="h-5 w-5" />
+                  </span>
+                  <span>
+                    <span className="block font-bold text-foreground">{t.actionPlanTitle}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{t.actionPlanHint}</span>
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("photos")}
+                  className="group flex min-h-36 items-start gap-4 rounded-2xl border border-border bg-white p-5 text-left transition hover:border-primary/50 hover:bg-primary-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary-soft text-primary">
+                    <ImageIcon className="h-5 w-5" />
+                  </span>
+                  <span>
+                    <span className="block font-bold text-foreground">{t.actionPhotosTitle}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{t.actionPhotosHint}</span>
+                  </span>
+                </button>
+              </div>
+
+              <div className="mt-8 border-t border-border pt-5">
+                <h3 className="text-sm font-bold text-foreground">{t.moreOptions}</h3>
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <button type="button" onClick={() => setActiveTab("notes")} className="rounded-lg border border-border px-4 py-2 text-sm font-semibold text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                    {t.tabs.notes}
+                  </button>
+                </div>
+              </div>
+            </section>
+          ) : null}
+
           {activeTab === "actions" ? (
-            <section className="grid grid-cols-1 gap-0 lg:grid-cols-2">
-              <div className="border-b border-border/70 px-4 py-5 sm:px-6 lg:border-b-0 lg:border-r lg:px-8">
+            <section className="grid grid-cols-1 gap-0">
+              {activeAction === "symptoms" ? (
+              <div className="px-4 py-5 sm:px-6 sm:py-8 lg:px-8">
                 <SectionTitle icon={<BellIcon className="h-4 w-4" />} title={t.stepUpdate} />
                 <p className="mb-4 text-xs text-muted-foreground sm:text-sm">{t.actionHint}</p>
 
@@ -655,7 +745,9 @@ export function PatientPortalView({
                   </button>
                 </form>
               </div>
+              ) : null}
 
+              {activeAction === "followups" ? (
               <div className="px-4 py-5 sm:px-6 lg:px-8">
                 <div className="mb-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <SectionTitle
@@ -740,7 +832,7 @@ export function PatientPortalView({
                             <div className="min-w-0">
                               <p className="font-semibold text-foreground">{item.title}</p>
                               <p className="text-muted-foreground">
-                                {t.date} <strong className="text-foreground">{item.date}</strong>
+                                {t.date} <strong className="text-foreground">{followupLabel(item, langToLocale[lang], crmTranslations[lang].allDay)}</strong>
                               </p>
                               <p className="break-words text-muted-foreground">{item.notes || t.noNotes}</p>
                             </div>
@@ -883,62 +975,15 @@ export function PatientPortalView({
                   <p className="text-xs text-muted-foreground sm:text-sm">{t.noFollowups}</p>
                 )}
               </div>
+              ) : null}
             </section>
           ) : null}
 
           {activeTab === "plan" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
-              <SectionTitle icon={<EditIcon className="h-4 w-4" />} title={t.treatmentTitle} />
+              <SectionTitle icon={<EditIcon className="h-4 w-4" />} title={treatmentTranslations[lang].title} />
 
-              {patient.treatment_plan ? (
-                <div className="grid grid-cols-1 gap-5 text-xs sm:text-sm">
-                  {patient.treatment_plan.diagnosis ? (
-                    <div>
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-primary sm:text-xs">{t.diagnosis}</p>
-                      <p className="mt-1 whitespace-pre-wrap text-foreground">{patient.treatment_plan.diagnosis}</p>
-                    </div>
-                  ) : null}
-
-                  {patient.treatment_plan.goals ? (
-                    <div>
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">{t.goals}</p>
-                      <p className="mt-1 whitespace-pre-wrap text-foreground">{patient.treatment_plan.goals}</p>
-                    </div>
-                  ) : null}
-
-                  {patient.treatment_plan.medications ? (
-                    <div>
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">{t.meds}</p>
-                      <p className="mt-1 whitespace-pre-wrap text-foreground">{patient.treatment_plan.medications}</p>
-                    </div>
-                  ) : null}
-
-                  {patient.treatment_plan.care_instructions ? (
-                    <div>
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">{t.instructions}</p>
-                      <p className="mt-1 whitespace-pre-wrap text-foreground">{patient.treatment_plan.care_instructions}</p>
-                    </div>
-                  ) : null}
-
-                  {patient.treatment_plan.photos && patient.treatment_plan.photos.length > 0 ? (
-                    <div>
-                      <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground sm:text-xs">{t.attached}</p>
-                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                        {patient.treatment_plan.photos.map((item) => (
-                          <div key={item.id} className="overflow-hidden rounded-xl border border-border/80 bg-white">
-                            <img src={item.data_url} alt={item.name} className="h-24 w-full object-cover" />
-                            <p className="truncate px-2 py-1 text-[11px] font-semibold text-foreground" title={item.name}>
-                              {item.name}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-              ) : (
-                <p className="text-xs text-muted-foreground sm:text-sm">{t.noTreatment}</p>
-              )}
+              <TreatmentPlansView plan={patient.treatment_plan} />
             </section>
           ) : null}
 

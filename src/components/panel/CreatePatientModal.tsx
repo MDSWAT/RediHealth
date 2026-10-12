@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
+import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { CheckCircleIcon, CloseIcon, UserIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -12,6 +15,7 @@ interface PatientModalProps {
   request?: MedicalHelpRequestItem;
   patient?: PatientItem;
   workers?: WorkerItem[];
+  isAdmin?: boolean;
   onClose: () => void;
   onSuccess?: (patient: PatientItem) => void;
 }
@@ -22,9 +26,12 @@ export function CreatePatientModal({
   workers: initialWorkers,
   onClose,
   onSuccess,
+  isAdmin = false,
 }: PatientModalProps) {
   const { lang } = useLanguage();
   const t = createPatientModalTranslations[lang];
+  const crm = crmTranslations[lang];
+  const router = useRouter();
 
   const isEditing = Boolean(patient);
   const dialogTitleId = useId();
@@ -153,8 +160,8 @@ export function CreatePatientModal({
     const payload = {
       id: patient?.id,
       request_id: request?.id || patient?.request_id,
-      assigned_worker_id: assignedWorkerIds[0] || undefined,
-      assigned_worker_ids: assignedWorkerIds,
+      assigned_worker_id: isAdmin ? assignedWorkerIds[0] || undefined : undefined,
+      assigned_worker_ids: isAdmin ? assignedWorkerIds : undefined,
       full_name: fullName.trim(),
       phone: phone.trim(),
       email: email.trim().toLowerCase(),
@@ -173,7 +180,7 @@ export function CreatePatientModal({
 
       const response = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", [REQUEST_LANG_HEADER]: lang },
         body: JSON.stringify(payload),
       });
 
@@ -198,6 +205,7 @@ export function CreatePatientModal({
       const matchedWorkers = workersList.filter((w) => assignedWorkerIds.includes(w.id));
 
       const savedPatient: PatientItem = {
+        ...patient,
         id: String(data.id || patient?.id || "0"),
         request_id: payload.request_id ? String(payload.request_id) : null,
         assigned_worker_id: assignedWorkerIds[0] || null,
@@ -218,13 +226,14 @@ export function CreatePatientModal({
         created_at: patient?.created_at || new Date().toISOString(),
       };
 
-      if (onSuccess) {
-        onSuccess(savedPatient);
+      onSuccess?.(savedPatient);
+      if (!isEditing && data.id) {
+        if (data.email_sent === false) sessionStorage.setItem(`patient-portal-warning:${data.id}`, "1");
+        router.push(withLangPrefix(`/panel/patients/${data.id}`, lang));
+      } else {
+        onClose();
       }
 
-      setTimeout(() => {
-        onClose();
-      }, 1200);
     } catch {
       setErrorMessage(t.errUnexpected);
     } finally {
@@ -337,6 +346,21 @@ export function CreatePatientModal({
             </div>
           </div>
 
+          <div>
+            <label className="text-xs font-semibold text-foreground mb-1 block">
+              {t.condition}
+            </label>
+            <textarea
+              rows={3}
+              value={conditionNotes}
+              onChange={(e) => setConditionNotes(e.target.value)}
+              placeholder={t.conditionPh}
+              className="w-full rounded-xl border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            />
+          </div>
+
+          <details open={isEditing} className="space-y-4">
+            <summary className="cursor-pointer text-sm font-medium text-primary">{crm.additional}</summary>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">
@@ -400,6 +424,7 @@ export function CreatePatientModal({
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {isAdmin ? (
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">
                 {t.assignedWorker}
@@ -408,7 +433,7 @@ export function CreatePatientModal({
                 <div className="mb-2 flex items-center justify-between gap-2 text-xs">
                   <span className="font-semibold text-foreground">
                     {assignedWorkerIds.length > 0
-                      ? `${assignedWorkerIds.length} selected`
+                      ? `${assignedWorkerIds.length} ${crm.selected}`
                       : t.unassigned}
                   </span>
                   <div className="flex items-center gap-2">
@@ -418,7 +443,7 @@ export function CreatePatientModal({
                       className="text-primary hover:underline disabled:opacity-50 font-semibold"
                       disabled={filteredWorkers.length === 0}
                     >
-                      Select visible
+                      {crm.selectVisible}
                     </button>
                     <button
                       type="button"
@@ -426,7 +451,7 @@ export function CreatePatientModal({
                       className="text-primary hover:underline disabled:opacity-50 font-semibold"
                       disabled={assignedWorkerIds.length === 0}
                     >
-                      Clear
+                      {crm.clear}
                     </button>
                   </div>
                 </div>
@@ -438,7 +463,7 @@ export function CreatePatientModal({
                         type="button"
                         onClick={() => removeSelectedWorker(worker.id)}
                         className="rounded-full bg-primary-soft px-2.5 py-0.5 text-[11px] font-semibold text-primary hover:bg-primary/15"
-                        title="Remove selection"
+                        title={crm.removeSelection}
                       >
                         {worker.full_name}
                       </button>
@@ -454,7 +479,7 @@ export function CreatePatientModal({
                   type="text"
                   value={workerSearchQuery}
                   onChange={(event) => setWorkerSearchQuery(event.target.value)}
-                  placeholder="Search doctor or role..."
+                  placeholder={crm.selectWorkers}
                   className="mb-2 w-full rounded-lg border border-border bg-card px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
                 <label className="mb-2 flex items-center gap-1.5 px-0.5 text-xs text-muted-foreground cursor-pointer">
@@ -464,12 +489,12 @@ export function CreatePatientModal({
                     onChange={(event) => setShowOnlySelectedWorkers(event.target.checked)}
                     className="h-3.5 w-3.5 rounded border-border text-primary focus:ring-ring"
                   />
-                  Show selected only
+                  {crm.selectedOnly}
                 </label>
                 {workersList.length === 0 ? (
                   <p className="px-2 py-1.5 text-xs text-muted-foreground">{t.unassigned}</p>
                 ) : filteredWorkers.length === 0 ? (
-                  <p className="px-2 py-1.5 text-xs text-muted-foreground">No matches for this search.</p>
+                  <p className="px-2 py-1.5 text-xs text-muted-foreground">{crm.noMatches}</p>
                 ) : (
                   <div className="max-h-40 space-y-1 overflow-y-auto pr-1">
                     {filteredWorkers.map((w) => {
@@ -499,6 +524,7 @@ export function CreatePatientModal({
                 )}
               </div>
             </div>
+            ) : null}
 
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">
@@ -516,19 +542,6 @@ export function CreatePatientModal({
 
           <div>
             <label className="text-xs font-semibold text-foreground mb-1 block">
-              {t.condition}
-            </label>
-            <textarea
-              rows={3}
-              value={conditionNotes}
-              onChange={(e) => setConditionNotes(e.target.value)}
-              placeholder={t.conditionPh}
-              className="w-full rounded-xl border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            />
-          </div>
-
-          <div>
-            <label className="text-xs font-semibold text-foreground mb-1 block">
               {t.history}
             </label>
             <textarea
@@ -540,6 +553,7 @@ export function CreatePatientModal({
             />
           </div>
 
+          </details>
           <div className="flex flex-col-reverse items-stretch gap-2 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-end sm:gap-3">
             <button
               type="button"

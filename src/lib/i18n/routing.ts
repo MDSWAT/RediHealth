@@ -2,6 +2,7 @@ import { languages, type Lang } from "@/lib/i18n/translations";
 
 export const DEFAULT_LANG: Lang = "en";
 export const LOCALE_COOKIE = "redihealth-lang";
+export const REQUEST_LANG_HEADER = "x-redihealth-lang";
 
 const supportedLangSet = new Set<Lang>(languages.map((item) => item.code));
 

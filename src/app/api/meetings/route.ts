@@ -7,6 +7,7 @@ import { sendMeetingInvitationEmail } from "@/lib/email";
 import { getClientIp } from "@/lib/rate-limit";
 import type { FollowupItem } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
+import { getRequestLang } from "@/lib/i18n/server-routing";
 
 type MeetingRow = RowDataPacket & {
   id: number;
@@ -115,35 +116,84 @@ export async function POST(request: Request) {
   try {
     let patientEmail = "";
     let patientName = "";
+    let followup: FollowupItem | undefined;
+    const db = getDatabase();
+    const connection = await db.getConnection();
 
-    if (patientId) {
-      const patientQuery = access.worker.isAdmin
-        ? "SELECT id, full_name, email FROM patients WHERE id = ? LIMIT 1"
-        : "SELECT id, full_name, email FROM patients WHERE id = ? AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0) LIMIT 1";
-      const patientParams = access.worker.isAdmin
-        ? [patientId]
-        : [patientId, access.worker.workerId, access.worker.workerId];
-      const [patientRows] = await getDatabase().query<RowDataPacket[]>(patientQuery, patientParams);
-      if (!patientRows[0]) {
-        return NextResponse.json({ error: "Patient not found or not assigned to you." }, { status: 404 });
+    let result: ResultSetHeader;
+    try {
+      await connection.beginTransaction();
+      if (patientId) {
+        const patientQuery = access.worker.isAdmin
+          ? "SELECT id, full_name, email, followups FROM patients WHERE id = ? LIMIT 1 FOR UPDATE"
+          : "SELECT id, full_name, email, followups FROM patients WHERE id = ? AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0) LIMIT 1 FOR UPDATE";
+        const patientParams = access.worker.isAdmin
+          ? [patientId]
+          : [patientId, access.worker.workerId, access.worker.workerId];
+        const [patientRows] = await connection.query<(RowDataPacket & { followups: string | null })[]>(patientQuery, patientParams);
+        if (!patientRows[0]) {
+          await connection.rollback();
+          return NextResponse.json({ error: "Patient not found or not assigned to you." }, { status: 404 });
+        }
+
+        patientEmail = text(patientRows[0].email);
+        patientName = text(patientRows[0].full_name);
+        if (followupId) {
+          const followups = parseFollowups(patientRows[0].followups);
+          const index = followups.findIndex((item) => item.id === followupId);
+          if (index < 0) {
+            await connection.rollback();
+            return NextResponse.json({ error: "Follow-up not found." }, { status: 404 });
+          }
+          if (followups[index].meeting_id) {
+            await connection.rollback();
+            return NextResponse.json({ error: "A meeting is already linked to this follow-up." }, { status: 409 });
+          }
+
+          followup = { ...followups[index], meeting_url: "" };
+          const [meetingResult] = await connection.query<ResultSetHeader>(
+            "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [access.worker.workerId, patientId, followupId, title, meetingUrl, transcript || null, notes || null],
+          );
+          followup.meeting_id = String(meetingResult.insertId);
+          followup.meeting_url = meetingUrl;
+          followups[index] = followup;
+          await connection.query<ResultSetHeader>(
+            "UPDATE patients SET followups = ? WHERE id = ?",
+            [JSON.stringify(followups), patientId],
+          );
+          result = meetingResult;
+        } else {
+          const [meetingResult] = await connection.query<ResultSetHeader>(
+            "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [access.worker.workerId, patientId, null, title, meetingUrl, transcript || null, notes || null],
+          );
+          result = meetingResult;
+        }
+      } else {
+        const [meetingResult] = await connection.query<ResultSetHeader>(
+          "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
+          [access.worker.workerId, null, null, title, meetingUrl, transcript || null, notes || null],
+        );
+        result = meetingResult;
       }
 
-      patientEmail = text(patientRows[0].email);
-      patientName = text(patientRows[0].full_name);
+      await connection.commit();
+    } catch (error) {
+      await connection.rollback();
+      throw error;
+    } finally {
+      connection.release();
     }
-
-    const [result] = await getDatabase().query<ResultSetHeader>(
-      "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [access.worker.workerId, patientId || null, followupId || null, title, meetingUrl, transcript || null, notes || null],
-    );
 
     let emailSent: boolean | undefined;
     if (patientId && patientEmail) {
       emailSent = await sendMeetingInvitationEmail({
-        name: patientName || "Patient",
+        name: patientName,
         email: patientEmail,
         title,
         meetingUrl,
+        lang: await getRequestLang(request),
       });
     }
 
@@ -168,6 +218,7 @@ export async function POST(request: Request) {
         id: String(result.insertId),
         meetingUrl,
         email_sent: emailSent,
+        followup,
       },
       { status: 201 },
     );

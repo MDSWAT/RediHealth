@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { REQUEST_LANG_HEADER } from "@/lib/i18n/routing";
 import { AdminShell } from "./AdminShell";
 import { Container } from "@/components/ui/Container";
 import { CheckCircleIcon, MailIcon } from "@/components/ui/icons";
@@ -93,6 +95,7 @@ function toStableMeetingUrl(rawUrl: string, meetingId: string) {
 }
 
 export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, userRole, isAdmin }: FollowupMeetingWorkspaceProps) {
+  const { lang } = useLanguage();
   const [meeting, setMeeting] = useState<Meeting | null>(null);
   const [transcript, setTranscript] = useState("");
   const [notes, setNotes] = useState("");
@@ -328,7 +331,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
     setIsInviting(true);
     setError("");
     setStatus("");
-    const response = await fetch(`/api/meetings/${meeting.id}/invite`, { method: "POST" });
+    const response = await fetch(`/api/meetings/${meeting.id}/invite`, { method: "POST", headers: { [REQUEST_LANG_HEADER]: lang } });
     const data = (await response.json()) as { error?: string };
     setIsInviting(false);
     if (!response.ok) {

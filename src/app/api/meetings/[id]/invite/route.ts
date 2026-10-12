@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { getDatabase, type RowDataPacket } from "@/lib/database";
 import { sendMeetingInvitationEmail } from "@/lib/email";
 import { getUserWorkerContext } from "@/lib/worker-auth";
+import { getRequestLang } from "@/lib/i18n/server-routing";
 
 type InvitationRow = RowDataPacket & {
   id: number;
@@ -30,7 +31,7 @@ function normalizeMeetingUrl(rawUrl: string, meetingId: number) {
 }
 
 export async function POST(
-  _request: Request,
+  request: Request,
   { params }: RouteContext<"/api/meetings/[id]/invite">,
 ) {
   const session = await auth();
@@ -64,6 +65,7 @@ export async function POST(
       email: meeting.email,
       title: meeting.title,
       meetingUrl: normalizeMeetingUrl(meeting.meeting_url, meeting.id),
+      lang: await getRequestLang(request),
     });
     return NextResponse.json({ success: true });
   } catch (error) {

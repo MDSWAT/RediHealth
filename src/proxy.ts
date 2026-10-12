@@ -1,11 +1,18 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { DEFAULT_LANG, LOCALE_COOKIE, getLangFromPathname, isSupportedLang, stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
+import { countryFromHeaders, langForCountry } from "@/lib/medical-institutes";
 
 function getPreferredLang(request: NextRequest) {
   const cookieLang = request.cookies.get(LOCALE_COOKIE)?.value;
   if (cookieLang && isSupportedLang(cookieLang)) {
     return cookieLang;
+  }
+
+  // First visit: use the language of the country the visitor is browsing from.
+  const countryLang = langForCountry(countryFromHeaders(request.headers));
+  if (countryLang) {
+    return countryLang;
   }
 
   const acceptLanguage = request.headers.get("accept-language") || "";

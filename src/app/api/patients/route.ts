@@ -9,7 +9,7 @@ import {
   mapPatientRow,
   type DBPatientRow,
 } from "@/lib/data/patients";
-import { isPatientPriority, isPatientStatus } from "@/lib/validation";
+import { isPatientPriority, isPatientStatus, validateTreatmentPlanInput } from "@/lib/validation";
 import type {
   CreatePatientPayload,
   PatientPriority,
@@ -18,11 +18,11 @@ import type {
 } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { sendPatientPortalLinkEmail } from "@/lib/email";
+import { getRequestLang } from "@/lib/i18n/server-routing";
 import { generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
 import { getClientIp } from "@/lib/rate-limit";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const DEFAULT_PORTAL_TOKEN_TTL_DAYS = 30;
 
 function text(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
@@ -51,14 +51,6 @@ function normalizeWorkerIds(value: unknown): string[] {
   return [...new Set(value
     .map((item) => (item == null ? "" : String(item).trim()))
     .filter((item) => item.length > 0))];
-}
-
-function resolvePortalTokenExpiryDate() {
-  const configuredTtlDays = Number(process.env.PATIENT_PORTAL_TOKEN_TTL_DAYS || DEFAULT_PORTAL_TOKEN_TTL_DAYS);
-  const ttlDays = Number.isFinite(configuredTtlDays) && configuredTtlDays > 0
-    ? configuredTtlDays
-    : DEFAULT_PORTAL_TOKEN_TTL_DAYS;
-  return new Date(Date.now() + ttlDays * 24 * 60 * 60 * 1000);
 }
 
 export async function GET(request: Request) {
@@ -194,7 +186,6 @@ export async function POST(request: Request) {
     : requestedAssignedWorkerIds[0] || null;
   const accessToken = generatePortalToken();
   const accessTokenHash = hashPortalToken(accessToken);
-  const accessTokenExpiresAt = resolvePortalTokenExpiryDate();
 
   if (!fullName || !phone || !emailPattern.test(email)) {
     return NextResponse.json(
@@ -237,7 +228,11 @@ export async function POST(request: Request) {
 
   const status: PatientStatus = body.status ?? "active";
   const priority: PatientPriority = body.priority ?? "moderate";
-  const treatmentPlan = stringifyJsonColumn(body.treatment_plan);
+  const validatedTreatment = validateTreatmentPlanInput(body.treatment_plan ?? null);
+  if (!validatedTreatment.ok) {
+    return NextResponse.json({ error: validatedTreatment.error }, { status: 400 });
+  }
+  const treatmentPlan = stringifyJsonColumn(validatedTreatment.value);
   const followups = stringifyJsonColumn(body.followups);
   const photos = stringifyJsonColumn(body.photos);
   const assignedWorkerIds = workerContext.isAdmin
@@ -279,7 +274,7 @@ export async function POST(request: Request) {
           assignedWorkerId ?? workerContext.workerId,
           stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
           accessTokenHash,
-          accessTokenExpiresAt,
+          null,
           fullName,
           phone,
           email,
@@ -328,6 +323,7 @@ export async function POST(request: Request) {
       name: fullName,
       email,
       accessToken,
+      lang: await getRequestLang(request),
       treatmentPlan: parseJsonColumn<TreatmentPlan>(treatmentPlan),
       conditionNotes,
       baseUrl: new URL(request.url).origin,
@@ -462,9 +458,34 @@ export async function PATCH(request: Request) {
     updates.push("medical_history = ?");
     params.push(text(body.medical_history) || null);
   }
+  if (body.profile_photo !== undefined) {
+    if (body.profile_photo === null || body.profile_photo === "") {
+      updates.push("profile_photo = ?");
+      params.push(null);
+    } else if (typeof body.profile_photo !== "string") {
+      return NextResponse.json({ error: "Invalid profile photo." }, { status: 400 });
+    } else {
+      const imageMatch = /^data:image\/(?:jpeg|png|webp|gif);base64,([A-Za-z0-9+/]+={0,2})$/.exec(body.profile_photo);
+      const imageData = imageMatch?.[1];
+      const padding = imageData?.endsWith("==") ? 2 : imageData?.endsWith("=") ? 1 : 0;
+      const imageBytes = imageData ? Math.floor((imageData.length * 3) / 4) - padding : 0;
+      if (!imageData || imageData.length % 4 !== 0 || imageBytes > 5 * 1024 * 1024) {
+        return NextResponse.json(
+          { error: "Profile photos must be PNG, JPEG, GIF, or WebP images no larger than 5 MB." },
+          { status: 400 },
+        );
+      }
+      updates.push("profile_photo = ?");
+      params.push(body.profile_photo);
+    }
+  }
   if (body.treatment_plan !== undefined) {
+    const validatedTreatment = validateTreatmentPlanInput(body.treatment_plan);
+    if (!validatedTreatment.ok) {
+      return NextResponse.json({ error: validatedTreatment.error }, { status: 400 });
+    }
     updates.push("treatment_plan = ?");
-    params.push(stringifyJsonColumn(body.treatment_plan));
+    params.push(stringifyJsonColumn(validatedTreatment.value));
   }
   if (body.followups !== undefined) {
     updates.push("followups = ?");

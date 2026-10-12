@@ -85,7 +85,6 @@ export default async function PatientPortalPage({ params }: PageProps) {
            FROM patients p
            LEFT JOIN workers w ON w.id = p.assigned_worker_id
            WHERE p.access_token_hash = ?
-             AND (p.access_token_expires_at IS NULL OR p.access_token_expires_at > UTC_TIMESTAMP())
            LIMIT 1`,
           [tokenHash],
         );

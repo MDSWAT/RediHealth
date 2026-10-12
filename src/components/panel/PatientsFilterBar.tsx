@@ -1,11 +1,10 @@
 "use client";
 
+import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { useState } from "react";
 import {
   CalendarIcon,
-  DownloadIcon,
   FilterIcon,
-  RefreshIcon,
   SearchIcon,
   UserIcon,
 } from "@/components/ui/icons";
@@ -82,6 +81,7 @@ export function PatientsFilterBar({
 }: PatientsFilterBarProps) {
   const { lang } = useLanguage();
   const copy = panelDesignTranslations[lang];
+  const crm = crmTranslations[lang];
   const [showFilters, setShowFilters] = useState(false);
   const t = {
     en: {
@@ -289,32 +289,16 @@ export function PatientsFilterBar({
             <span>{t.add}</span>
           </button>
 
-          <button
-            type="button"
-            onClick={onExportCSV}
-            disabled={exportDisabled}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50 transition-colors"
-          >
-            <DownloadIcon className="h-4 w-4 text-primary" />
-            <span className="hidden sm:inline">{t.exportCsv}</span>
-          </button>
-
-          {onRefresh ? (
-            <button
-              type="button"
-              onClick={onRefresh}
-              disabled={isRefreshing}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50 transition-colors"
-              title={t.refreshTitle}
-            >
-              <RefreshIcon
-                className={`h-4 w-4 text-primary ${isRefreshing ? "animate-spin" : ""}`}
-              />
-            </button>
-          ) : null}
+          <details className="crm-menu"><summary className="crm-button">{crm.more}</summary><div>
+            <button type="button" onClick={onExportCSV} disabled={exportDisabled}>{t.exportCsv}</button>
+            {onRefresh && <button type="button" onClick={onRefresh} disabled={isRefreshing}>{t.refresh}</button>}
+          </div></details>
         </div>
       </div>
 
+      {/* Collapsible secondary filters */}
+      {showFilters ? (
+        <div className="border-t border-border pt-4 space-y-3">
       {/* Care Status pills */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
         {localizedStatusFilters.map((item) => (
@@ -334,9 +318,6 @@ export function PatientsFilterBar({
         ))}
       </div>
 
-      {/* Collapsible secondary filters */}
-      {showFilters ? (
-        <div className="border-t border-border pt-4 space-y-3">
           <div className="flex flex-wrap items-center gap-1.5 text-xs">
             <span className="mr-1 text-xs font-semibold text-muted-foreground">
               {t.priority}:

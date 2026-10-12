@@ -3,6 +3,7 @@ export type RequestPriority = "normal" | "urgent";
 
 export type MedicalHelpRequestItem = {
   id: string;
+  patient_id?: string | null;
   full_name: string | null;
   phone: string;
   email: string;

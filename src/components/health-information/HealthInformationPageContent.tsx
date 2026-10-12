@@ -56,17 +56,6 @@ export function HealthInformationPageContent() {
 
   return (
     <main id="main-content" className="flex-1">
-      <section className="border-b border-border bg-muted/40 py-16 sm:py-20">
-        <Container>
-          <SectionHeading
-            as="h1"
-            eyebrow={page.eyebrow}
-            title={page.heroTitle}
-            subtitle={page.heroSubtitle}
-          />
-        </Container>
-      </section>
-
       <section className="py-16 sm:py-20">
         <Container>
           <SectionHeading

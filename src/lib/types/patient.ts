@@ -5,6 +5,8 @@ export type FollowupItem = {
   id: string;
   title: string;
   date: string;
+  time?: string;
+  timezone?: string;
   notes?: string;
   completion_notes?: string;
   completion_photos?: PatientPhoto[];
@@ -25,12 +27,23 @@ export type PatientPhoto = {
   notes?: string;
 };
 
-export type TreatmentPlan = {
+export type TreatmentDetails = {
   diagnosis?: string;
   goals?: string;
   medications?: string;
   care_instructions?: string;
   photos?: PatientPhoto[];
+};
+
+export type TreatmentEntry = TreatmentDetails & {
+  id: string;
+  title: string;
+  start_date?: string;
+  end_date?: string;
+};
+
+export type TreatmentPlan = TreatmentDetails & {
+  entries?: TreatmentEntry[];
 };
 
 export type PatientItem = {
@@ -50,6 +63,7 @@ export type PatientItem = {
   address?: string | null;
   condition_notes?: string | null;
   medical_history?: string | null;
+  profile_photo?: string | null;
   treatment_plan?: TreatmentPlan | null;
   followups?: FollowupItem[] | null;
   photos?: PatientPhoto[] | null;
@@ -72,6 +86,7 @@ export type CreatePatientPayload = {
   address?: string;
   condition_notes?: string;
   medical_history?: string;
+  profile_photo?: string | null;
   treatment_plan?: TreatmentPlan | string;
   followups?: FollowupItem[] | string;
   photos?: PatientPhoto[] | string;

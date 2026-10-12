@@ -1,3 +1,4 @@
+import { loadRequestInbox } from "@/lib/data/request-inbox";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
@@ -123,46 +124,12 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
   }
 
-  const { searchParams } = new URL(request.url);
-  const statusParam = searchParams.get("status");
-  const searchParam = searchParams.get("search")?.trim().toLowerCase();
-
   try {
-    const db = getDatabase();
-    let query = `SELECT id, full_name, phone, email, description, 
-                  COALESCE(status, 'pending') AS status, 
-                  status_updated_by_name, status_updated_by_email, status_updated_at,
-                  COALESCE(priority, 'normal') AS priority, 
-                  internal_notes, created_at, updated_at
-                 FROM medical_help_requests`;
-    const params: unknown[] = [];
-    const conditions: string[] = [];
-
-    if (statusParam && statusParam !== "all") {
-      conditions.push("status = ?");
-      params.push(statusParam);
-    }
-
-    if (searchParam) {
-      conditions.push("(LOWER(full_name) LIKE ? OR LOWER(email) LIKE ? OR phone LIKE ? OR LOWER(description) LIKE ?)");
-      const term = `%${searchParam}%`;
-      params.push(term, term, term, term);
-    }
-
-    if (conditions.length > 0) {
-      query += ` WHERE ${conditions.join(" AND ")}`;
-    }
-
-    query += ` ORDER BY created_at DESC LIMIT 100`;
-
-    const [rows] = await db.query<RowDataPacket[]>(query, params);
-    return NextResponse.json({ requests: rows });
+    const data = await loadRequestInbox(new URL(request.url).searchParams, String(workerContext.workerId), workerContext.isAdmin);
+    return NextResponse.json(data);
   } catch (error) {
     console.error("Failed to fetch medical help requests", error);
-    return NextResponse.json(
-      { error: "Could not fetch requests." },
-      { status: 503 },
-    );
+    return NextResponse.json({ error: "Could not fetch requests." }, { status: 503 });
   }
 }
 

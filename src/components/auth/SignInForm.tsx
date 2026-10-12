@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
 import { GoogleIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { withLangPrefix } from "@/lib/i18n/routing";
+import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 
 type Stage = "email" | "code";
 
@@ -30,9 +30,47 @@ export function SignInForm({
   const form = t.signInPage.form;
   const [stage, setStage] = useState<Stage>("email");
   const [email, setEmail] = useState("");
+  const [portalEmail, setPortalEmail] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState(initialError);
+  const [portalRecoveryMessage, setPortalRecoveryMessage] = useState("");
+  const [portalRecoveryError, setPortalRecoveryError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRequestingPortal, setIsRequestingPortal] = useState(false);
+
+  async function requestPortalLink(event: React.FormEvent) {
+    event.preventDefault();
+    const normalizedEmail = portalEmail.trim().toLowerCase();
+    if (!emailPattern.test(normalizedEmail)) {
+      setPortalRecoveryError(form.emailInvalid);
+      setPortalRecoveryMessage("");
+      return;
+    }
+
+    setPortalRecoveryError("");
+    setPortalRecoveryMessage("");
+    setIsRequestingPortal(true);
+    try {
+      const response = await fetch("/api/patient-portal/request-link", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          [REQUEST_LANG_HEADER]: lang,
+        },
+        body: JSON.stringify({ email: normalizedEmail }),
+      });
+      const result = (await response.json()) as { error?: string };
+      if (!response.ok) {
+        setPortalRecoveryError(result.error || form.portalRecoveryError);
+        return;
+      }
+      setPortalRecoveryMessage(form.portalRecoverySent);
+    } catch {
+      setPortalRecoveryError(form.portalRecoveryError);
+    } finally {
+      setIsRequestingPortal(false);
+    }
+  }
 
   async function requestCode() {
     const normalizedEmail = email.trim().toLowerCase();
@@ -195,6 +233,42 @@ export function SignInForm({
           </div>
         </form>
       )}
+
+      <form onSubmit={requestPortalLink} className="mt-8 border-t border-border pt-6">
+        <h2 className="text-base font-semibold text-foreground">{form.portalRecoveryTitle}</h2>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{form.portalRecoveryHint}</p>
+        <label htmlFor="portal-recovery-email" className="mt-4 block text-sm font-semibold text-foreground">
+          {form.portalRecoveryEmailLabel}
+        </label>
+        <input
+          id="portal-recovery-email"
+          name="portal-recovery-email"
+          type="email"
+          inputMode="email"
+          autoComplete="email"
+          value={portalEmail}
+          onChange={(event) => setPortalEmail(event.target.value)}
+          aria-invalid={Boolean(portalRecoveryError)}
+          aria-describedby={portalRecoveryError ? "portal-recovery-error" : portalRecoveryMessage ? "portal-recovery-message" : undefined}
+          className={inputClass}
+          placeholder={form.portalRecoveryEmailPlaceholder}
+        />
+        {portalRecoveryError ? (
+          <p id="portal-recovery-error" className="mt-2 text-sm text-primary" role="alert">
+            {portalRecoveryError}
+          </p>
+        ) : null}
+        {portalRecoveryMessage ? (
+          <p id="portal-recovery-message" className="mt-2 text-sm text-muted-foreground" role="status">
+            {portalRecoveryMessage}
+          </p>
+        ) : null}
+        <div className="mt-4">
+          <Button type="submit" size="md" disabled={isRequestingPortal}>
+            {isRequestingPortal ? form.portalRecoverySending : form.portalRecoveryButton}
+          </Button>
+        </div>
+      </form>
 
       {googleConfigured ? (
         <>

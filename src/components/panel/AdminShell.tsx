@@ -14,6 +14,7 @@ import {
   ClockIcon,
   FileTextIcon,
   LogOutIcon,
+  PinIcon,
   StethoscopeIcon,
   UserIcon,
   UsersIcon,
@@ -23,6 +24,8 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { panelTranslations } from "@/lib/i18n/panel-translations";
 import { panelDesignTranslations } from "@/lib/i18n/panel-design-translations";
 import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
+import { crmTranslations } from "@/lib/i18n/crm-translations";
+import { institutesAdminTranslations } from "@/lib/i18n/institutes-admin-translations";
 import "./panel.css";
 
 type AdminShellProps = {
@@ -44,6 +47,8 @@ export function AdminShell({
   const { lang } = useLanguage();
   const t = panelTranslations[lang].adminShell;
   const copy = panelDesignTranslations[lang];
+  const crm = crmTranslations[lang];
+  const institutesCopy = institutesAdminTranslations[lang];
   const currentPath = stripLangFromPathname(pathname);
   const role = userRole.trim().toLowerCase();
   const isSuperAdmin = role === "super admin" || role === "superadmin";
@@ -58,10 +63,10 @@ export function AdminShell({
 
   // All desktop items
   const desktopItems = [
-    { label: copy.requests, href: "/panel", icon: FileTextIcon },
+    { label: crm.requests, href: "/panel", icon: FileTextIcon },
     { label: t.patients, href: "/panel/patients", icon: UsersIcon },
     { label: t.calendar, href: "/panel/calendar", icon: CalendarIcon },
-    { label: copy.video, href: "/panel/meet", icon: CameraIcon },
+    { label: crm.meetings, href: "/panel/meet", icon: CameraIcon },
     { label: t.mediator, href: "/panel/mediator", icon: FileTextIcon },
     { label: t.workers, href: "/panel/workers", icon: StethoscopeIcon },
   ].filter((item) => {
@@ -74,15 +79,15 @@ export function AdminShell({
   // Mobile App Bottom Navigation Bar items (primary quick tabs)
   const mobilePrimaryTabs = isMediatorOnly
     ? [
-        { label: copy.requests, href: "/panel", icon: FileTextIcon },
+        { label: crm.requests, href: "/panel", icon: FileTextIcon },
         { label: t.patients, href: "/panel/patients", icon: UsersIcon },
         { label: t.mediator, href: "/panel/mediator", icon: FileTextIcon },
       ]
     : [
-        { label: copy.requests, href: "/panel", icon: FileTextIcon },
+        { label: crm.requests, href: "/panel", icon: FileTextIcon },
         { label: t.patients, href: "/panel/patients", icon: UsersIcon },
         { label: t.calendar, href: "/panel/calendar", icon: CalendarIcon },
-        { label: copy.video, href: "/panel/meet", icon: CameraIcon },
+        { label: crm.meetings, href: "/panel/meet", icon: CameraIcon },
       ];
 
   const userInitial = (userEmail || "U").charAt(0).toUpperCase();
@@ -95,6 +100,7 @@ export function AdminShell({
       ? [{ label: t.mediator, href: "/panel/mediator", icon: FileTextIcon }]
       : []),
     ...(isSuperAdmin ? [{ label: t.logs, href: "/panel/logs", icon: ClockIcon }] : []),
+    ...(isSuperAdmin ? [{ label: institutesCopy.navLabel, href: "/panel/institutes", icon: PinIcon }] : []),
   ].filter((link) => !mobilePrimaryTabs.some((tab) => tab.href === link.href));
 
   const reportCopyByLang = {
@@ -355,16 +361,16 @@ export function AdminShell({
       ) : null}
 
       {/* Desktop Sticky Sidebar */}
-      <div className="lg:grid lg:grid-cols-[256px_minmax(0,1fr)]">
+      <div className="lg:grid lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[216px_minmax(0,1fr)]">
         <aside className="hidden border-r border-border bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col">
-          <div className="flex flex-col gap-1 border-b border-border/80 px-6 py-6">
+          <div className="flex flex-col gap-1 border-b border-border/80 px-5 py-4">
             <Logo href={withLangPrefix("/", lang)} className="[&_img]:h-9 [&_img]:w-9" />
             <p className="mt-1 text-xs font-medium text-muted-foreground">{copy.workspace}</p>
           </div>
 
           <nav aria-label={copy.navigation} className="flex-1 overflow-y-auto px-3 py-4">
             <ul className="space-y-1">
-              {desktopItems.map((item) => {
+              {desktopItems.filter((item) => !["/panel/mediator", "/panel/workers"].includes(item.href)).map((item) => {
                 const active =
                   item.href === "/panel"
                     ? currentPath === "/panel"
@@ -375,9 +381,9 @@ export function AdminShell({
                     <Link
                       href={withLangPrefix(item.href, lang)}
                       aria-current={active ? "page" : undefined}
-                      className={`flex min-h-11 items-center gap-3 rounded-xl px-3.5 text-sm font-semibold transition-all ${
+                      className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-all ${
                         active
-                          ? "bg-primary text-white shadow-xs"
+                          ? "bg-primary-soft text-primary"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground"
                       }`}
                     >
@@ -386,7 +392,43 @@ export function AdminShell({
                       {item.href === "/panel" && pendingCount > 0 ? (
                         <span
                           className={`ml-auto rounded-full px-2 py-0.5 text-xs font-bold ${
-                            active ? "bg-white text-primary" : "bg-primary-soft text-primary"
+                            active ? "bg-primary/10 text-primary" : "bg-primary-soft text-primary"
+                          }`}
+                          aria-label={t.pendingRequests(pendingCount)}
+                        >
+                          {pendingCount}
+                        </span>
+                      ) : null}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            {desktopItems.some((item) => ["/panel/mediator", "/panel/workers"].includes(item.href)) ? <p className="mt-7 mb-2 px-3 text-xs text-muted-foreground">{crm.administration}</p> : null}
+            <ul className="space-y-1">
+              {desktopItems.filter((item) => ["/panel/mediator", "/panel/workers"].includes(item.href)).map((item) => {
+                const active =
+                  item.href === "/panel"
+                    ? currentPath === "/panel"
+                    : currentPath === item.href || currentPath.startsWith(`${item.href}/`);
+                const Icon = item.icon;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={withLangPrefix(item.href, lang)}
+                      aria-current={active ? "page" : undefined}
+                      className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-all ${
+                        active
+                          ? "bg-primary-soft text-primary"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      }`}
+                    >
+                      <Icon className="h-5 w-5 shrink-0" />
+                      <span>{item.label}</span>
+                      {item.href === "/panel" && pendingCount > 0 ? (
+                        <span
+                          className={`ml-auto rounded-full px-2 py-0.5 text-xs font-bold ${
+                            active ? "bg-primary/10 text-primary" : "bg-primary-soft text-primary"
                           }`}
                           aria-label={t.pendingRequests(pendingCount)}
                         >
@@ -404,14 +446,26 @@ export function AdminShell({
                 <Link
                   href={withLangPrefix("/panel/logs", lang)}
                   aria-current={currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/") ? "page" : undefined}
-                  className={`flex min-h-11 items-center gap-3 rounded-xl px-3.5 text-sm font-semibold transition-all ${
+                  className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-all ${
                     currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/")
-                      ? "bg-primary text-white shadow-xs"
+                      ? "bg-primary-soft text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
                   <ClockIcon className="h-5 w-5 shrink-0" />
                   <span>{t.logs}</span>
+                </Link>
+                <Link
+                  href={withLangPrefix("/panel/institutes", lang)}
+                  aria-current={currentPath === "/panel/institutes" ? "page" : undefined}
+                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-all ${
+                    currentPath === "/panel/institutes"
+                      ? "bg-primary-soft text-primary"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  <PinIcon className="h-5 w-5 shrink-0" />
+                  <span>{institutesCopy.navLabel}</span>
                 </Link>
               </div>
             ) : null}

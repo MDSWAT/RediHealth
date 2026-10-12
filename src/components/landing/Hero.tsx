@@ -36,9 +36,9 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border bg-muted/40">
       <Container className="relative py-16 sm:py-20 lg:py-24">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,40rem)] lg:gap-16">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,20rem)] lg:gap-12 xl:gap-16">
           <div className="max-w-2xl">
-            <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
+            <h1 className="text-balance text-[clamp(2.25rem,4vw,3rem)] font-semibold leading-tight tracking-tight text-foreground">
               <span className="hero-text-in block" style={{ animationDelay: "0.05s" }}>{t.hero.titleLine1}</span>
               <span className="hero-text-in block" style={{ animationDelay: "0.2s" }}>{t.hero.titleLine2}</span>
               <span className="hero-text-in block text-primary" style={{ animationDelay: "0.35s" }}>{t.hero.titleLine3}</span>
