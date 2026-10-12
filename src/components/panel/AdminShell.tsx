@@ -10,6 +10,8 @@ import {
   ArrowRightIcon,
   CalendarIcon,
   CameraIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
   CloseIcon,
   ClockIcon,
   FileTextIcon,
@@ -54,6 +56,7 @@ export function AdminShell({
   const isSuperAdmin = role === "super admin" || role === "superadmin";
   const isMediatorOnly = role === "mediator" && !isAdmin;
   const [mobileAccountSheetOpen, setMobileAccountSheetOpen] = useState(false);
+  const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
   const [reportIssueOpen, setReportIssueOpen] = useState(false);
   const [reportEmail, setReportEmail] = useState("");
   const [reportMessage, setReportMessage] = useState("");
@@ -361,14 +364,37 @@ export function AdminShell({
       ) : null}
 
       {/* Desktop Sticky Sidebar */}
-      <div className="lg:grid lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[216px_minmax(0,1fr)]">
-        <aside className="hidden border-r border-border bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col">
-          <div className="flex flex-col gap-1 border-b border-border/80 px-5 py-4">
-            <Logo href={withLangPrefix("/", lang)} className="[&_img]:h-9 [&_img]:w-9" />
-            <p className="mt-1 text-xs font-medium text-muted-foreground">{copy.workspace}</p>
+      <div className={`panel-sidebar-layout lg:grid ${desktopSidebarCollapsed ? "lg:grid-cols-[72px_minmax(0,1fr)]" : "lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[216px_minmax(0,1fr)]"}`}>
+        <aside className={`hidden border-r border-border bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col ${desktopSidebarCollapsed ? "lg:w-[72px]" : ""}`}>
+          <div className={`relative flex min-h-[88px] border-b border-border/80 py-4 ${desktopSidebarCollapsed ? "justify-center px-2" : "flex-col gap-1 px-5"}`}>
+            {desktopSidebarCollapsed ? (
+              <button
+                type="button"
+                onClick={() => setDesktopSidebarCollapsed(false)}
+                aria-label={copy.expandSidebar}
+                title={copy.expandSidebar}
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              >
+                <ChevronRightIcon className="h-5 w-5" />
+              </button>
+            ) : (
+              <>
+                <Logo href={withLangPrefix("/", lang)} className="[&_img]:h-9 [&_img]:w-9" />
+                <p className="mt-1 text-xs font-medium text-muted-foreground">{copy.workspace}</p>
+                <button
+                  type="button"
+                  onClick={() => setDesktopSidebarCollapsed(true)}
+                  aria-label={copy.collapseSidebar}
+                  title={copy.collapseSidebar}
+                  className="absolute right-3 top-5 flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                >
+                  <ChevronLeftIcon className="h-5 w-5" />
+                </button>
+              </>
+            )}
           </div>
 
-          <nav aria-label={copy.navigation} className="flex-1 overflow-y-auto px-3 py-4">
+          <nav aria-label={copy.navigation} className={`panel-sidebar-nav flex-1 overflow-y-auto py-4 ${desktopSidebarCollapsed ? "panel-sidebar-nav-collapsed px-2" : "px-3"}`}>
             <ul className="space-y-1">
               {desktopItems.filter((item) => !["/panel/mediator", "/panel/workers"].includes(item.href)).map((item) => {
                 const active =
@@ -381,17 +407,21 @@ export function AdminShell({
                     <Link
                       href={withLangPrefix(item.href, lang)}
                       aria-current={active ? "page" : undefined}
-                      className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-all ${
+                      title={desktopSidebarCollapsed ? item.label : undefined}
+                      aria-label={`${item.label}${item.href === "/panel" && pendingCount > 0 ? `, ${t.pendingRequests(pendingCount)}` : ""}`}
+                      className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${
+                        desktopSidebarCollapsed ? "relative justify-center px-2" : "px-3"
+                      } ${
                         active
                           ? "bg-primary-soft text-primary"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground"
                       }`}
                     >
                       <Icon className="h-5 w-5 shrink-0" />
-                      <span>{item.label}</span>
+                      {!desktopSidebarCollapsed ? <span>{item.label}</span> : null}
                       {item.href === "/panel" && pendingCount > 0 ? (
                         <span
-                          className={`ml-auto rounded-full px-2 py-0.5 text-xs font-bold ${
+                          className={`${desktopSidebarCollapsed ? "absolute right-1 top-0.5 rounded-full px-1.5 py-0.5 text-[10px]" : "ml-auto rounded-full px-2 py-0.5 text-xs"} font-bold ${
                             active ? "bg-primary/10 text-primary" : "bg-primary-soft text-primary"
                           }`}
                           aria-label={t.pendingRequests(pendingCount)}
@@ -404,7 +434,14 @@ export function AdminShell({
                 );
               })}
             </ul>
-            {desktopItems.some((item) => ["/panel/mediator", "/panel/workers"].includes(item.href)) ? <p className="mt-7 mb-2 px-3 text-xs text-muted-foreground">{crm.administration}</p> : null}
+            {desktopItems.some((item) => ["/panel/mediator", "/panel/workers"].includes(item.href)) ? (
+              <p
+                aria-hidden={desktopSidebarCollapsed || undefined}
+                className={`mt-7 mb-2 px-3 text-xs text-muted-foreground ${desktopSidebarCollapsed ? "invisible" : ""}`}
+              >
+                {crm.administration}
+              </p>
+            ) : null}
             <ul className="space-y-1">
               {desktopItems.filter((item) => ["/panel/mediator", "/panel/workers"].includes(item.href)).map((item) => {
                 const active =
@@ -417,14 +454,18 @@ export function AdminShell({
                     <Link
                       href={withLangPrefix(item.href, lang)}
                       aria-current={active ? "page" : undefined}
-                      className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-all ${
+                      title={desktopSidebarCollapsed ? item.label : undefined}
+                      aria-label={`${item.label}${item.href === "/panel" && pendingCount > 0 ? `, ${t.pendingRequests(pendingCount)}` : ""}`}
+                      className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${
+                        desktopSidebarCollapsed ? "relative justify-center px-2" : "px-3"
+                      } ${
                         active
                           ? "bg-primary-soft text-primary"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground"
                       }`}
                     >
                       <Icon className="h-5 w-5 shrink-0" />
-                      <span>{item.label}</span>
+                      {!desktopSidebarCollapsed ? <span>{item.label}</span> : null}
                       {item.href === "/panel" && pendingCount > 0 ? (
                         <span
                           className={`ml-auto rounded-full px-2 py-0.5 text-xs font-bold ${
@@ -446,26 +487,30 @@ export function AdminShell({
                 <Link
                   href={withLangPrefix("/panel/logs", lang)}
                   aria-current={currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/") ? "page" : undefined}
-                  className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-all ${
+                  title={desktopSidebarCollapsed ? t.logs : undefined}
+                  aria-label={t.logs}
+                  className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
                     currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/")
                       ? "bg-primary-soft text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
                   <ClockIcon className="h-5 w-5 shrink-0" />
-                  <span>{t.logs}</span>
+                  {!desktopSidebarCollapsed ? <span>{t.logs}</span> : null}
                 </Link>
                 <Link
                   href={withLangPrefix("/panel/institutes", lang)}
                   aria-current={currentPath === "/panel/institutes" ? "page" : undefined}
-                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-all ${
+                  title={desktopSidebarCollapsed ? institutesCopy.navLabel : undefined}
+                  aria-label={institutesCopy.navLabel}
+                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
                     currentPath === "/panel/institutes"
                       ? "bg-primary-soft text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
                   <PinIcon className="h-5 w-5 shrink-0" />
-                  <span>{institutesCopy.navLabel}</span>
+                  {!desktopSidebarCollapsed ? <span>{institutesCopy.navLabel}</span> : null}
                 </Link>
               </div>
             ) : null}
@@ -478,44 +523,53 @@ export function AdminShell({
                   setReportError(null);
                   setReportSuccess(null);
                 }}
-                className="flex min-h-11 w-full items-center gap-3 rounded-xl px-3.5 text-left text-sm font-semibold text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                aria-label={t.reportIssue}
+                title={desktopSidebarCollapsed ? t.reportIssue : undefined}
+                className={`flex min-h-11 w-full items-center gap-3 rounded-xl text-left text-sm font-semibold text-muted-foreground transition-all hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3.5"}`}
               >
                 <AlertCircleIcon className="h-5 w-5 shrink-0" />
-                <span>{t.reportIssue}</span>
+                {!desktopSidebarCollapsed ? <span>{t.reportIssue}</span> : null}
               </button>
             </div>
           </nav>
 
-          <div className="space-y-3 border-t border-border p-4 bg-muted/20">
-            <div className="flex items-center gap-3 rounded-xl border border-border/60 bg-white p-2.5 shadow-2xs">
+          <div className={`border-t border-border bg-muted/20 ${desktopSidebarCollapsed ? "space-y-2 p-2" : "space-y-3 p-4"}`}>
+            <div
+              title={desktopSidebarCollapsed ? `${userRole} — ${userEmail}` : undefined}
+              className={`flex items-center rounded-xl border border-border/60 bg-white shadow-2xs ${desktopSidebarCollapsed ? "justify-center p-2" : "gap-3 p-2.5"}`}
+            >
               <span
                 aria-hidden="true"
                 className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-soft font-bold text-primary"
               >
                 {userInitial}
               </span>
-              <div className="min-w-0 flex-1">
+              {!desktopSidebarCollapsed ? <div className="min-w-0 flex-1">
                 <p className="truncate text-xs font-bold text-foreground">{userRole}</p>
                 <p className="truncate text-[11px] text-muted-foreground" title={userEmail}>
                   {userEmail}
                 </p>
-              </div>
+              </div> : null}
             </div>
 
             <div className="space-y-1">
               <Link
                 href={withLangPrefix("/", lang)}
-                className="flex h-9 items-center justify-between rounded-lg px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                aria-label={t.returnToWebsite}
+                title={desktopSidebarCollapsed ? t.returnToWebsite : undefined}
+                className={`flex h-9 items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
               >
-                <span>{t.returnToWebsite}</span>
+                {!desktopSidebarCollapsed ? <span>{t.returnToWebsite}</span> : null}
                 <ArrowRightIcon className="h-3.5 w-3.5" />
               </Link>
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="flex h-9 w-full items-center justify-between rounded-lg px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-red-50 hover:text-primary"
+                aria-label={t.signOut}
+                title={desktopSidebarCollapsed ? t.signOut : undefined}
+                className={`flex h-9 w-full items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-red-50 hover:text-primary ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
               >
-                <span>{t.signOut}</span>
+                {!desktopSidebarCollapsed ? <span>{t.signOut}</span> : null}
                 <LogOutIcon className="h-3.5 w-3.5" />
               </button>
             </div>

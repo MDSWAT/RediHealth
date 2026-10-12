@@ -19,6 +19,8 @@ export const panelDesignTranslations = {
     more: "More",
     account: "Account",
     quickActions: "Quick actions",
+    collapseSidebar: "Collapse sidebar",
+    expandSidebar: "Expand sidebar",
   },
   ro: {
     workspace: "Spațiu de îngrijire",
@@ -40,6 +42,8 @@ export const panelDesignTranslations = {
     more: "Meniu",
     account: "Cont",
     quickActions: "Acțiuni rapide",
+    collapseSidebar: "Restrânge meniul lateral",
+    expandSidebar: "Extinde meniul lateral",
   },
   sq: {
     workspace: "Hapësira e kujdesit",
@@ -61,6 +65,8 @@ export const panelDesignTranslations = {
     more: "Më shumë",
     account: "Llogaria",
     quickActions: "Veprime të shpejta",
+    collapseSidebar: "Palos menunë anësore",
+    expandSidebar: "Zgjero menunë anësore",
   },
   it: {
     workspace: "Spazio di cura",
@@ -82,5 +88,7 @@ export const panelDesignTranslations = {
     more: "Altro",
     account: "Account",
     quickActions: "Azioni rapide",
+    collapseSidebar: "Comprimi barra laterale",
+    expandSidebar: "Espandi barra laterale",
   },
 };
