@@ -7,7 +7,7 @@ import { getClientIp } from "@/lib/rate-limit";
 import { requireSuperAdmin } from "@/lib/super-admin";
 
 // Importing a whole country from OpenStreetMap can take a few minutes (Italy is the largest).
-export const maxDuration = 800;
+export const maxDuration = 300;
 
 export async function POST(request: Request) {
   const access = await requireSuperAdmin();
