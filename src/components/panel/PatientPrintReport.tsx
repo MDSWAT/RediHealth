@@ -3,6 +3,9 @@
 
 import { PrinterIcon } from "@/components/ui/icons";
 import { TreatmentPlansView } from "./TreatmentPlansView";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { langToLocale } from "@/lib/i18n/panel-translations";
+import { printReportTranslations } from "@/lib/i18n/print-report-translations";
 import type {
   FollowupItem,
   PatientItem,
@@ -28,13 +31,17 @@ export function PatientPrintReport({
   photos,
   onClose,
 }: PatientPrintReportProps) {
+  const { lang } = useLanguage();
+  const t = printReportTranslations[lang];
+  const statusLabel = status === "active" ? t.active : status === "inactive" ? t.inactive : t.archived;
+
   return (
     <div className="min-h-screen bg-background p-6 print:p-0 print:static">
       <div className="mx-auto max-w-4xl mb-6 flex items-center justify-between rounded-xl border border-border bg-card p-4 shadow-sm print:hidden">
         <div className="flex items-center gap-2">
           <PrinterIcon className="h-5 w-5 text-primary" />
           <span className="font-bold text-foreground text-sm">
-            Printable Medical Report
+            {t.title}
           </span>
         </div>
         <div className="flex items-center gap-3">
@@ -43,7 +50,7 @@ export function PatientPrintReport({
             onClick={onClose}
             className="rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
           >
-            Back to Profile
+            {t.backToProfile}
           </button>
           <button
             type="button"
@@ -51,7 +58,7 @@ export function PatientPrintReport({
             className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-5 py-2 text-xs font-semibold text-white hover:bg-primary-hover shadow-sm"
           >
             <PrinterIcon className="h-4 w-4" />
-            <span>Print / Save PDF</span>
+            <span>{t.printSave}</span>
           </button>
         </div>
       </div>
@@ -60,78 +67,78 @@ export function PatientPrintReport({
         <div className="flex items-start justify-between border-b-2 border-primary pb-6">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-primary">
-              RediHealth Clinical Center
+              {t.clinicName}
             </h1>
             <p className="text-xs text-slate-500 mt-1">
-              Official Patient Medical Profile & Health History Report
+              {t.subtitle}
             </p>
           </div>
           <div className="text-right text-xs text-slate-500">
-            <p className="font-bold text-slate-800">CONFIDENTIAL MEDICAL RECORD</p>
+            <p className="font-bold text-slate-800">{t.confidential}</p>
             <p className="mt-0.5">
-              Report Date: {new Date().toLocaleDateString("en-US", { dateStyle: "full" })}
+              {t.reportDate}: {new Date().toLocaleDateString(langToLocale[lang], { dateStyle: "full" })}
             </p>
-            <p>Patient Record ID: #{patient.id}</p>
+            <p>{t.recordId}: #{patient.id}</p>
           </div>
         </div>
 
         <div className="mt-6">
           <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-            1. Patient Identification & Demographics
+            {t.s1}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs bg-slate-50 p-4 rounded-xl border border-slate-200">
             <div>
-              <p className="text-slate-500 font-semibold">Full Name:</p>
+              <p className="text-slate-500 font-semibold">{t.fullName}</p>
               <p className="font-bold text-slate-900 text-sm">{patient.full_name}</p>
             </div>
             <div>
-              <p className="text-slate-500 font-semibold">Phone Number:</p>
+              <p className="text-slate-500 font-semibold">{t.phone}</p>
               <p className="font-medium text-slate-800">{patient.phone}</p>
             </div>
             <div>
-              <p className="text-slate-500 font-semibold">Email Address:</p>
+              <p className="text-slate-500 font-semibold">{t.email}</p>
               <p className="font-medium text-slate-800">{patient.email}</p>
             </div>
             <div>
-              <p className="text-slate-500 font-semibold">Date of Birth:</p>
-              <p className="font-medium text-slate-800">{patient.date_of_birth || "Not specified"}</p>
+              <p className="text-slate-500 font-semibold">{t.dob}</p>
+                            <p className="font-medium text-slate-800">{patient.date_of_birth || t.notSpecified}</p>
             </div>
             <div>
-              <p className="text-slate-500 font-semibold">Gender:</p>
-              <p className="font-medium text-slate-800">{patient.gender || "Not specified"}</p>
+              <p className="text-slate-500 font-semibold">{t.gender}</p>
+                            <p className="font-medium text-slate-800">{patient.gender || t.notSpecified}</p>
             </div>
             <div>
-              <p className="text-slate-500 font-semibold">Care Status:</p>
-              <p className="font-bold uppercase text-primary">{status} Care</p>
+                            <p className="text-slate-500 font-semibold">{t.careStatus}</p>
+                            <p className="font-bold uppercase text-primary">{statusLabel}</p>
             </div>
             <div className="col-span-2 sm:col-span-3">
-              <p className="text-slate-500 font-semibold">Location / Address:</p>
-              <p className="font-medium text-slate-800">{patient.address || "Not specified"}</p>
+                            <p className="text-slate-500 font-semibold">{t.address}</p>
+                            <p className="font-medium text-slate-800">{patient.address || t.notSpecified}</p>
             </div>
           </div>
         </div>
 
         <div className="mt-6">
           <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-            2. Clinical Treatment Plans & Directives
+            {t.s2}
           </h2>
           <TreatmentPlansView plan={treatmentPlan} />
         </div>
 
         <div className="mt-6">
           <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-            3. Scheduled Follow-ups & Care Log
+            {t.s3}
           </h2>
           {followups.length === 0 ? (
-            <p className="text-xs text-slate-500 italic">No follow-ups recorded.</p>
+            <p className="text-xs text-slate-500 italic">{t.noFollowups}</p>
           ) : (
             <table className="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden">
               <thead className="bg-slate-100 text-slate-700 font-bold uppercase text-[10px]">
                 <tr>
-                  <th className="p-2 border-b">Scheduled Date</th>
-                  <th className="p-2 border-b">Follow-up Goal</th>
-                  <th className="p-2 border-b">Status</th>
-                  <th className="p-2 border-b">Clinical Notes</th>
+                  <th className="p-2 border-b">{t.scheduledDate}</th>
+                  <th className="p-2 border-b">{t.goal}</th>
+                  <th className="p-2 border-b">{t.status}</th>
+                  <th className="p-2 border-b">{t.notes}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
@@ -139,7 +146,7 @@ export function PatientPrintReport({
                   <tr key={item.id}>
                     <td className="p-2 font-medium">{item.date}{item.time ? ` ${item.time} (${item.timezone || ""})` : ""}</td>
                     <td className="p-2 font-semibold">{item.title}</td>
-                    <td className="p-2 capitalize font-bold text-slate-700">{item.status}</td>
+                    <td className="p-2 capitalize font-bold text-slate-700">{t[item.status]}</td>
                     <td className="p-2 text-slate-600">{item.notes || "-"}</td>
                   </tr>
                 ))}
@@ -150,19 +157,19 @@ export function PatientPrintReport({
 
         <div className="mt-6">
           <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-            4. Patient Symptoms & Medical History
+            {t.s4}
           </h2>
           <div className="space-y-3 text-xs">
             <div>
-              <p className="font-bold text-slate-800 mb-1">Initial Enquiry / Symptoms Notes:</p>
+              <p className="font-bold text-slate-800 mb-1">              {t.symptoms}</p>
               <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 whitespace-pre-wrap">
-                {patient.condition_notes || "None recorded."}
+                              {patient.condition_notes || t.noneRecorded}
               </div>
             </div>
             <div>
-              <p className="font-bold text-slate-800 mb-1">Medical History & Allergies:</p>
+                            <p className="font-bold text-slate-800 mb-1">{t.history}</p>
               <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 whitespace-pre-wrap">
-                {patient.medical_history || "None recorded."}
+                              {patient.medical_history || t.noneRecorded}
               </div>
             </div>
           </div>
@@ -171,7 +178,7 @@ export function PatientPrintReport({
         {photos.length > 0 ? (
           <div className="mt-6">
             <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-              5. Attached Medical Images & Documentation ({photos.length})
+              {t.s5} ({photos.length})
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {photos.map((photo) => (
@@ -191,13 +198,13 @@ export function PatientPrintReport({
 
         <div className="mt-12 border-t border-slate-300 pt-6 flex items-end justify-between text-xs text-slate-500">
           <div>
-            <p className="font-bold text-slate-700">RediHealth Staff Signature:</p>
+            <p className="font-bold text-slate-700">{t.signature}</p>
             <div className="mt-6 border-b border-slate-400 w-48" />
-            <p className="mt-1 text-[10px]">Authorized Healthcare Worker</p>
+            <p className="mt-1 text-[10px]">{t.authorizedWorker}</p>
           </div>
           <div className="text-right text-[10px] text-slate-400">
-            <p>Generated by RediHealth Platform</p>
-            <p>Document strictly confidential</p>
+            <p>{t.generatedBy}</p>
+            <p>{t.strictlyConfidential}</p>
           </div>
         </div>
       </div>
