@@ -17,7 +17,7 @@ type HeroTypingStyle = CSSProperties & {
   "--hero-anim-delay": string;
 };
 
-export function Hero() {
+export function Hero({ showAssistantCta }: { showAssistantCta: boolean }) {
   const { lang, t } = useLanguage();
   const phone = t.hero.phone;
   const chatRef = useRef<HTMLDivElement>(null);
@@ -52,9 +52,11 @@ export function Hero() {
               <Button href="/get-help" size="lg">
                 {t.hero.cta}
               </Button>
-              <a href="/health-assistant" className="ml-5 inline-flex min-h-11 items-center text-sm font-semibold text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary">
-                {t.hero.assistantCta}
-              </a>
+              {showAssistantCta && (
+                <a href="/health-assistant" className="ml-5 inline-flex min-h-11 items-center text-sm font-semibold text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary">
+                  {t.hero.assistantCta}
+                </a>
+              )}
             </div>
           </div>
 

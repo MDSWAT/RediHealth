@@ -205,7 +205,7 @@ export const translations: Record<Lang, Translations> = {
       titleLine3: "Health mediators better supported.",
       paragraph:
         "REDI Health helps families, including Roma communities, understand health information and equips mediators with digital tools to educate, guide, refer, and follow up.",
-      cta: "Request Medical Help",
+      cta: "Request Medical Information",
       assistantCta: "Try the health assistant",
       phone: {
         status: "online",
@@ -398,7 +398,7 @@ export const translations: Record<Lang, Translations> = {
       mapAttribution: "Map data © OpenStreetMap contributors.",
       ctaTitle: "Not sure where to go?",
       ctaBody: "If you need help choosing or arranging care, our support team can guide you. In a medical emergency, contact your local emergency service immediately.",
-      ctaButton: "Request Medical Help",
+      ctaButton: "Request Medical Information",
     },
     healthInfoPage: {
       eyebrow: "Health Information",
@@ -448,7 +448,7 @@ export const translations: Record<Lang, Translations> = {
       titleLine3: "Mediatorii sanitari, mai bine sprijiniți.",
       paragraph:
         "REDI Health ajută familiile, inclusiv comunitățile de romi, să înțeleagă informațiile medicale și oferă mediatorilor instrumente digitale pentru a educa, ghida, îndruma și urmări cazurile.",
-      cta: "Solicită ajutor medical",
+      cta: "Solicită informații medicale",
       assistantCta: "Încearcă asistentul de sănătate",
       phone: {
         status: "online",
@@ -641,7 +641,7 @@ export const translations: Record<Lang, Translations> = {
       mapAttribution: "Date hartă © contribuitori OpenStreetMap.",
       ctaTitle: "Nu știi unde să mergi?",
       ctaBody: "Dacă ai nevoie de ajutor pentru a alege sau a organiza îngrijirea, echipa noastră de sprijin te poate ghida. În caz de urgență medicală, contactează imediat serviciul local de urgență.",
-      ctaButton: "Solicită ajutor medical",
+      ctaButton: "Solicită informații medicale",
     },
     healthInfoPage: {
       eyebrow: "Informații medicale",
@@ -691,7 +691,7 @@ export const translations: Record<Lang, Translations> = {
       titleLine3: "Ndërmjetësit shëndetësorë, të mbështetur më mirë.",
       paragraph:
         "REDI Health ndihmon familjet, përfshirë komunitetet rome, të kuptojnë informacionin shëndetësor dhe u ofron ndërmjetësve mjete digjitale për të edukuar, udhëzuar, referuar dhe ndjekur rastet.",
-      cta: "Kërko ndihmë mjekësore",
+      cta: "Kërko informacion mjekësor",
       assistantCta: "Provo asistentin shëndetësor",
       phone: {
         status: "online",
@@ -884,7 +884,7 @@ export const translations: Record<Lang, Translations> = {
       mapAttribution: "Të dhënat e hartës © kontribuesit e OpenStreetMap.",
       ctaTitle: "Nuk je i sigurt ku të shkosh?",
       ctaBody: "Nëse ke nevojë për ndihmë në zgjedhjen ose organizimin e kujdesit, ekipi ynë i mbështetjes mund të të udhëzojë. Në rast urgjence mjekësore, kontakto menjëherë shërbimin lokal të urgjencës.",
-      ctaButton: "Kërko ndihmë mjekësore",
+      ctaButton: "Kërko informacion mjekësor",
     },
     healthInfoPage: {
       eyebrow: "Informacion shëndetësor",
@@ -934,7 +934,7 @@ export const translations: Record<Lang, Translations> = {
       titleLine3: "Mediatori sanitari meglio supportati.",
       paragraph:
         "REDI Health aiuta le famiglie, comprese le comunità rom, a comprendere le informazioni sanitarie e fornisce ai mediatori strumenti digitali per educare, guidare, indirizzare e seguire i casi.",
-      cta: "Richiedi assistenza medica",
+      cta: "Richiedi informazioni mediche",
       assistantCta: "Prova l'assistente sanitario",
       phone: {
         status: "online",
@@ -1127,7 +1127,7 @@ export const translations: Record<Lang, Translations> = {
       mapAttribution: "Dati mappa © collaboratori di OpenStreetMap.",
       ctaTitle: "Non sai dove andare?",
       ctaBody: "Se hai bisogno di aiuto per scegliere o organizzare l'assistenza, il nostro team di supporto può guidarti. In caso di emergenza medica, contatta immediatamente il servizio di emergenza locale.",
-      ctaButton: "Richiedi assistenza medica",
+      ctaButton: "Richiedi informazioni mediche",
     },
     healthInfoPage: {
       eyebrow: "Informazioni sanitarie",
