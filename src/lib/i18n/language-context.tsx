@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { translations, type Lang, type Translations } from "@/lib/i18n/translations";
 import { DEFAULT_LANG, LOCALE_COOKIE, getLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
@@ -23,12 +23,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(LOCALE_COOKIE, lang);
   }, [lang]);
 
-  const setLang = (next: Lang) => {
+  const setLang = useCallback((next: Lang) => {
     if (next === lang) return;
-    window.location.assign(withLangPrefix(pathname, next));
-  };
+    const currentUrl = new URL(window.location.href);
+    currentUrl.pathname = withLangPrefix(currentUrl.pathname, next);
+    window.location.assign(currentUrl.toString());
+  }, [lang]);
 
-  const value = useMemo(() => ({ lang, setLang, t: translations[lang] }), [lang]);
+  const value = useMemo(() => ({ lang, setLang, t: translations[lang] }), [lang, setLang]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
