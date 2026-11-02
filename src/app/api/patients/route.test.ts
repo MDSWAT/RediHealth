@@ -1,4 +1,5 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { decryptField } from "@/lib/security/field-encryption";
 
 const mocks = vi.hoisted(() => ({ auth: vi.fn(), worker: vi.fn(), query: vi.fn(), log: vi.fn() }));
 vi.mock("@/auth", () => ({ auth: mocks.auth }));
@@ -20,6 +21,7 @@ function request(method: string, body: object) {
 }
 
 describe("patient treatment persistence", () => {
+  afterEach(() => vi.unstubAllEnvs());
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.auth.mockResolvedValue({ user: { email: "staff@example.com" } });
@@ -42,7 +44,7 @@ describe("patient treatment persistence", () => {
     expect(response.status).toBe(201);
     expect(mocks.query.mock.calls[0][0]).toContain("INSERT INTO patients");
     expect(mocks.query.mock.calls[0][0]).toContain("priority, county");
-    expect(mocks.query.mock.calls[0][1].at(-1)).toBe("Cluj");
+    expect(mocks.query.mock.calls[0][1].at(-2)).toBe("Cluj");
     expect(JSON.parse(mocks.query.mock.calls[0][1][13])).toEqual({ entries });
   });
 
@@ -93,5 +95,35 @@ describe("patient treatment persistence", () => {
   it("reports missing patients instead of claiming success", async () => {
     mocks.query.mockResolvedValueOnce([{ affectedRows: 0 }]);
     expect((await PATCH(request("PATCH", { id: "7", treatment_plan: { entries } }))).status).toBe(404);
+  });
+
+  it("encrypts intake on create and update while retaining staff assignment restrictions", async () => {
+    vi.stubEnv("DATA_ENCRYPTION_KEY_RO", Buffer.alloc(32, 7).toString("base64"));
+    const intake = { has_documents: true, documents: [{ id: "doc", name: "id.pdf", category: "identity", data_url: `data:application/pdf;base64,${Buffer.from("%PDF-1.7\nexample").toString("base64")}` }], location: { latitude: 0, longitude: 0, accuracy: 5 } };
+    mocks.query.mockResolvedValueOnce([{ insertId: 7 }]);
+    expect((await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", county: "Cluj", intake }))).status).toBe(201);
+    const stored = mocks.query.mock.calls[0][1].at(-1);
+    expect(stored).toMatch(/^enc:v1:/);
+    expect(JSON.parse(decryptField("RO", stored)!)).toEqual(intake);
+    expect((await PATCH(request("PATCH", { id: "7", intake }))).status).toBe(200);
+    expect(mocks.query.mock.calls[1][0]).toContain("assigned_worker_id = ?");
+    expect(JSON.parse(decryptField("RO", mocks.query.mock.calls[1][1][0])!)).toEqual(intake);
+    expect(mocks.query.mock.calls[1][1].slice(1)).toEqual(["7", "2", "2"]);
+  });
+
+  it("rejects invalid intake before writing on create and update", async () => {
+    for (const method of ["POST", "PATCH"]) {
+      const body = { id: "7", full_name: "Test", email: "test@example.com", phone: "123", county: "Cluj", intake: { has_documents: false, documents: [], location: { latitude: 91, longitude: 0, accuracy: 1 } } };
+      expect((await (method === "POST" ? POST : PATCH)(request(method, body))).status).toBe(400);
+    }
+    expect(mocks.query).not.toHaveBeenCalled();
+  });
+
+  it("does not store GPS or documents without an encryption key", async () => {
+    vi.stubEnv("DATA_ENCRYPTION_KEY_RO", "");
+    const intake = { has_documents: false, documents: [], location: { latitude: 0, longitude: 0, accuracy: 5 } };
+    expect((await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", county: "Cluj", intake }))).status).toBe(503);
+    expect((await PATCH(request("PATCH", { id: "7", intake }))).status).toBe(503);
+    expect(mocks.query).not.toHaveBeenCalled();
   });
 });

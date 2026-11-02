@@ -50,6 +50,7 @@ export async function findPatientByPortalToken(rawToken: string, country?: Count
 export function toPortalPatient(row: DBPatientRow, country: CountryCode): PatientItem {
   return {
     ...mapPatientRow(row, country),
+    intake: null,
     request_id: null,
     assigned_worker_id: null,
     assigned_worker_ids: [],

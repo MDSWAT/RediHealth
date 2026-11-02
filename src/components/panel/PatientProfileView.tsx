@@ -22,6 +22,7 @@ import { PatientPrintReport } from "./PatientPrintReport";
 import { ScheduleFollowupDialog } from "./ScheduleFollowupDialog";
 import { FollowupDetailDialog } from "./FollowupDetailDialog";
 import { useUnsavedChanges } from "./useUnsavedChanges";
+import { PatientIntakeSummary } from "./PatientIntakeSummary";
 
 export function PatientProfileView({ initialPatient, isAdmin = false, isRomania }: { initialPatient: PatientItem; isAdmin?: boolean; isRomania: boolean }) {
   const { lang } = useLanguage();
@@ -184,6 +185,7 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
     }}>{t[id]}</button>)}</div>
     <section id={`content-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`} className="space-y-5">
       {tab === "summary" && <>
+        <PatientIntakeSummary intake={patient.intake} />
         <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
           <div className="space-y-5"><section className="crm-card"><h2>{t.contact}</h2><div className="space-y-3 text-sm"><a className="block text-primary" href={`tel:${patient.phone}`}>{patient.phone}</a><a className="block break-all text-primary" href={`mailto:${patient.email}`}>{patient.email}</a>{patient.date_of_birth && <p>{fields.dob}: {patient.date_of_birth}</p>}{patient.address && <p>{patient.address}</p>}</div><h2 className="mt-6">{t.careTeam}</h2><p className="text-sm text-muted-foreground">{patient.assigned_worker_names?.join(", ") || patient.assigned_worker_name || fields.unassigned}</p></section><section className="crm-card"><h2>{t.nextFollowup}</h2>{next ? <><p className="font-medium">{next.title}</p><p className="mt-2 text-sm text-muted-foreground">{followupLabel(next, langToLocale[lang], t.allDay)}</p>{next.notes && <p className="mt-3 text-sm">{next.notes}</p>}{next.meeting_id && <Link className="crm-button mt-4" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${next.meeting_id}`, lang)}>{t.join}</Link>}<button className="crm-button mt-4" disabled={saving} onClick={() => setSelectedFollowup(next)}>{t.markComplete}</button></> : <p className="text-sm text-muted-foreground">{t.noFollowup}</p>}</section></div>
           <div className="space-y-5"><section className="crm-card"><h2>{t.condition}</h2><p className="whitespace-pre-wrap text-sm leading-relaxed">{patient.condition_notes || "—"}</p><div className="mt-5 border-t border-border pt-4"><h2>{treatmentTranslations[lang].title} ({treatmentEntries.length})</h2>{treatmentEntries.slice(0, 3).map((entry) => <div key={entry.id} className="mt-3 text-sm"><p className="font-medium">{entry.title || treatmentTranslations[lang].legacy}</p><p className="text-xs text-muted-foreground">{entry.start_date ? `${entry.start_date} - ${entry.end_date}` : treatmentTranslations[lang].undated}</p><p className="line-clamp-2 text-muted-foreground">{entry.diagnosis || entry.care_instructions}</p></div>)}<button className="mt-3 text-sm font-medium text-primary" onClick={() => setTab("carePlan")}>{t.carePlan} →</button></div></section><PatientTimelineTab patient={patient} followups={followups} photos={photos} compact /></div>

@@ -52,6 +52,9 @@ if (isWindowsDev) {
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    proxyClientMaxBodySize: "16mb",
+  },
   allowedDevOrigins: (process.env.DEV_ALLOWED_ORIGINS || "")
     .split(",")
     .map((origin) => origin.trim())

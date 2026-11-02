@@ -22,8 +22,9 @@ import { getRequestLang } from "@/lib/i18n/server-routing";
 import { PORTAL_LINK_TTL_DAYS, generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
 import { getClientIp } from "@/lib/rate-limit";
 import { isValidEmail, text } from "@/lib/text";
-import { encryptField } from "@/lib/security/field-encryption";
+import { encryptField, isEncryptionConfigured } from "@/lib/security/field-encryption";
 import { isRomanianCounty } from "@/lib/romanian-counties";
+import { validatePatientIntake } from "@/lib/patient-intake";
 
 function isDuplicateEntryError(error: unknown): boolean {
   const dbError = error as { code?: string; errno?: number; sqlState?: string; message?: string };
@@ -134,7 +135,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("Failed to fetch patients", error);
     return NextResponse.json(
-      { error: "Could not fetch patients. Ensure migrations 003–007 and 012 are applied." },
+      { error: "Could not fetch patients. Ensure migrations 003–007, 012 and 013 are applied." },
       { status: 503 },
     );
   }
@@ -158,6 +159,15 @@ export async function POST(request: Request) {
     body = (await request.json()) as CreatePatientPayload;
   } catch {
     return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
+  }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
+  }
+  const intake = validatePatientIntake(body.intake);
+  if (!intake.ok) return NextResponse.json({ error: intake.error }, { status: 400 });
+  if ((intake.value?.documents.length || intake.value?.location) && !isEncryptionConfigured(workerContext.country)) {
+    return NextResponse.json({ error: "Document and GPS storage requires a configured country encryption key." }, { status: 503 });
   }
 
   const fullName = text(body.full_name);
@@ -240,8 +250,8 @@ export async function POST(request: Request) {
   try {
     const db = getCountryDatabase(workerContext.country);
     const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token_hash, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority, county)
-       VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL ? DAY), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token_hash, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority, county, intake)
+       VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL ? DAY), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         requestId,
         assignedWorkerId ?? workerContext.workerId,
@@ -262,6 +272,7 @@ export async function POST(request: Request) {
         status,
         priority,
         county || null,
+        encryptField(workerContext.country, stringifyJsonColumn(intake.value)),
       ],
     );
     createdPatientId = result.insertId;
@@ -274,7 +285,7 @@ export async function POST(request: Request) {
     }
     console.error("Failed to create patient profile", error);
     return NextResponse.json(
-      { error: "Could not create patient profile. Ensure migrations 001–004 and 012 are applied." },
+      { error: "Could not create patient profile. Ensure migrations 001–004, 012 and 013 are applied." },
       { status: 503 },
     );
   }
@@ -353,6 +364,9 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
   }
 
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
+  }
   const id = body.id ? String(body.id) : null;
   if (!id) {
     return NextResponse.json({ error: "Patient ID is required." }, { status: 400 });
@@ -368,6 +382,15 @@ export async function PATCH(request: Request) {
   const updates: string[] = [];
   const params: unknown[] = [];
 
+  if (body.intake !== undefined) {
+    const intake = validatePatientIntake(body.intake);
+    if (!intake.ok) return NextResponse.json({ error: intake.error }, { status: 400 });
+    if ((intake.value?.documents.length || intake.value?.location) && !isEncryptionConfigured(workerContext.country)) {
+      return NextResponse.json({ error: "Document and GPS storage requires a configured country encryption key." }, { status: 503 });
+    }
+    updates.push("intake = ?");
+    params.push(encryptField(workerContext.country, stringifyJsonColumn(intake.value)));
+  }
   if (body.full_name !== undefined) {
     const nextFullName = text(body.full_name);
     if (!nextFullName) {

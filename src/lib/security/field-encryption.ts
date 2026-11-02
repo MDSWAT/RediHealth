@@ -2,7 +2,7 @@ import { createCipheriv, createDecipheriv, randomBytes } from "crypto";
 import type { CountryCode } from "@/lib/countries";
 
 /**
- * Application-level encryption for the most sensitive patient fields (medical history and photos).
+ * Application-level encryption for sensitive patient fields, including intake documents and GPS.
  * Every country has its own key, so a leaked database dump or key for one country reveals nothing
  * about the others. Values are stored as `enc:v1:<iv>:<tag>:<ciphertext>` (AES-256-GCM, base64url);
  * anything without that prefix is treated as plaintext written before encryption was enabled.

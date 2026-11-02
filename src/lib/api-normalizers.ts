@@ -1,5 +1,6 @@
 import type { PatientItem, PatientPriority, PatientStatus } from "@/lib/types/patient";
 import type { WorkerItem, WorkerStatus } from "@/lib/types/worker";
+import { validatePatientIntake } from "@/lib/patient-intake";
 
 const EPOCH_ISO = new Date(0).toISOString();
 
@@ -52,6 +53,11 @@ export function normalizePatientFromApi(value: unknown): PatientItem | null {
   if (!id || !fullName || !phone || !email) {
     return null;
   }
+  const intake = validatePatientIntake(patient.intake);
+  if (!intake.ok) {
+    console.error("Invalid patient intake returned by API", { id });
+    return null;
+  }
 
   return {
     id,
@@ -76,6 +82,7 @@ export function normalizePatientFromApi(value: unknown): PatientItem | null {
     gender: toOptionalString(patient.gender),
     address: toOptionalString(patient.address),
     county: toOptionalString(patient.county),
+    intake: intake.value,
     condition_notes: toOptionalString(patient.condition_notes),
     medical_history: toOptionalString(patient.medical_history),
     profile_photo: toOptionalString(patient.profile_photo),

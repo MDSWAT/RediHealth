@@ -47,6 +47,10 @@ SELECT 'patients.access_token_expires_at' AS column_name, COUNT(*) > 0 AS exists
 FROM information_schema.columns
 WHERE table_schema = DATABASE() AND table_name = 'patients' AND column_name = 'access_token_expires_at'
 UNION ALL
+SELECT 'patients.intake' AS column_name, COUNT(*) > 0 AS exists_flag
+FROM information_schema.columns
+WHERE table_schema = DATABASE() AND table_name = 'patients' AND column_name = 'intake'
+UNION ALL
 SELECT 'medical_help_requests.status_updated_by_name' AS column_name, COUNT(*) > 0 AS exists_flag
 FROM information_schema.columns
 WHERE table_schema = DATABASE() AND table_name = 'medical_help_requests' AND column_name = 'status_updated_by_name'

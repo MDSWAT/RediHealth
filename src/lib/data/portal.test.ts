@@ -20,6 +20,7 @@ const row = {
   phone: "123",
   email: "ana@example.com",
   profile_photo: "data:image/jpeg;base64,AAAA",
+  intake: '{"has_documents":true,"documents":[{"id":"identity-secret"}],"location":{"latitude":1,"longitude":2,"accuracy":3}}',
   created_at: new Date("2026-01-01T00:00:00Z"),
 };
 
@@ -59,8 +60,10 @@ describe("patient portal lookup", () => {
       assigned_worker_id: null,
       assigned_worker_ids: [],
       profile_photo: null,
+      intake: null,
       has_portal_access: true,
     });
     expect(JSON.stringify(patient)).not.toContain("stored-hash");
+    expect(JSON.stringify(patient)).not.toContain("identity-secret");
   });
 });

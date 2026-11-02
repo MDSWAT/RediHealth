@@ -5,6 +5,7 @@ import { parseJsonColumn } from "@/lib/json";
 import type {
   FollowupItem,
   PatientItem,
+  PatientIntake,
   PatientPhoto,
   PatientPriority,
   PatientStatus,
@@ -28,7 +29,7 @@ export const PATIENT_COLUMNS = `p.id, p.request_id, p.assigned_worker_id, w.full
     ) > 0
   ) AS assigned_worker_names_concat,
   p.access_token_hash, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, p.county,
-  p.condition_notes, p.medical_history, p.profile_photo, p.treatment_plan, p.followups, p.photos,
+  p.condition_notes, p.medical_history, p.profile_photo, p.treatment_plan, p.followups, p.photos, p.intake,
   COALESCE(p.status, 'active') AS status,
   COALESCE(p.priority, 'moderate') AS priority,
   p.created_at, p.updated_at`;
@@ -56,6 +57,7 @@ export interface DBPatientRow extends RowDataPacket {
   treatment_plan?: string | object | null;
   followups?: string | object | null;
   photos?: string | object | null;
+  intake?: string | null;
   status?: string;
   priority?: string;
   created_at: Date | string;
@@ -102,6 +104,7 @@ export function mapPatientRow(row: DBPatientRow, country: CountryCode): PatientI
     gender: row.gender || null,
     address: row.address || null,
     county: row.county || null,
+    intake: parseJsonColumn<PatientIntake>(decryptField(country, row.intake)),
     condition_notes: row.condition_notes || null,
     medical_history: decryptField(country, row.medical_history) || null,
     profile_photo: decryptField(country, row.profile_photo) || null,

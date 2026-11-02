@@ -8,9 +8,11 @@ import { CheckCircleIcon, CloseIcon, UserIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
-import type { PatientItem, PatientPriority, PatientStatus } from "@/lib/types/patient";
+import type { PatientIntake, PatientItem, PatientPriority, PatientStatus } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
+import { patientIntakeTranslations } from "@/lib/i18n/patient-intake-translations";
+import { PatientIntakeFields } from "./PatientIntakeFields";
 
 interface PatientModalProps {
   request?: MedicalHelpRequestItem;
@@ -34,10 +36,13 @@ export function CreatePatientModal({
   const { lang } = useLanguage();
   const t = createPatientModalTranslations[lang];
   const crm = crmTranslations[lang];
+  const intakeCopy = patientIntakeTranslations[lang];
   const router = useRouter();
 
   const isEditing = Boolean(patient);
   const dialogTitleId = useId();
+  const formId = useId();
+  const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const [fullName, setFullName] = useState(
@@ -49,6 +54,8 @@ export function CreatePatientModal({
   const [gender, setGender] = useState(patient?.gender || "");
   const [address, setAddress] = useState(patient?.address || "");
   const [county, setCounty] = useState(patient?.county || request?.county || "");
+  const [intake, setIntake] = useState<PatientIntake>(patient?.intake || { has_documents: false, documents: [], location: null });
+  const [intakeBusy, setIntakeBusy] = useState(false);
   const [conditionNotes, setConditionNotes] = useState(
     patient?.condition_notes ||
       (request
@@ -138,13 +145,29 @@ export function CreatePatientModal({
   const [warningMessage, setWarningMessage] = useState<string | null>(null);
 
   useEffect(() => {
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      if (previousFocus instanceof HTMLElement) previousFocus.focus();
+    };
   }, []);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && !isSubmitting && !intakeBusy) {
         onClose();
+      }
+      if (event.key === "Tab") {
+        const elements = Array.from(dialogRef.current?.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href], summary',
+        ) || []).filter((element) => element.getClientRects().length > 0);
+        const first = elements[0];
+        const last = elements[elements.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
       }
     }
 
@@ -152,10 +175,11 @@ export function CreatePatientModal({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose]);
+  }, [onClose, isSubmitting, intakeBusy]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (isSubmitting || intakeBusy) return;
     setIsSubmitting(true);
     setErrorMessage(null);
     setWarningMessage(null);
@@ -173,6 +197,7 @@ export function CreatePatientModal({
       gender: gender.trim() || undefined,
       address: address.trim() || undefined,
       county: isRomania && county ? county : undefined,
+      intake,
       condition_notes: conditionNotes.trim() || undefined,
       medical_history: medicalHistory.trim() || undefined,
       status,
@@ -225,6 +250,7 @@ export function CreatePatientModal({
         gender: payload.gender || null,
         address: payload.address || null,
         county: payload.county || null,
+        intake: payload.intake,
         condition_notes: payload.condition_notes || null,
         medical_history: payload.medical_history || null,
         status: payload.status,
@@ -248,16 +274,15 @@ export function CreatePatientModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4 backdrop-blur-xs">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-0 sm:p-4 backdrop-blur-xs">
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={dialogTitleId}
-        className="app-sheet-slide-up relative my-0 flex min-h-0 w-full max-w-4xl flex-col overflow-hidden rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 shadow-2xl max-h-[92dvh] sm:max-h-[calc(100dvh-2rem)] sm:p-6 care-panel-bottom-bar"
+        className="app-sheet-slide-up relative flex h-dvh min-h-0 w-full max-w-3xl flex-col overflow-hidden border-border bg-card shadow-2xl sm:h-auto sm:max-h-[calc(100dvh-2rem)] sm:rounded-3xl sm:border"
       >
-        {/* Mobile bottom sheet drag handle */}
-        <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
-        <div className="flex items-start justify-between gap-3 border-b border-border pb-4 sm:items-center">
+        <div className="flex shrink-0 items-start justify-between gap-3 border-b border-border bg-muted/30 p-5 sm:items-center sm:px-6">
           <div className="flex min-w-0 items-start gap-2.5 sm:items-center">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-soft text-primary">
               <UserIcon className="h-5 w-5" />
@@ -277,6 +302,7 @@ export function CreatePatientModal({
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
+            disabled={isSubmitting || intakeBusy}
             aria-label={t.close}
             className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
           >
@@ -307,14 +333,16 @@ export function CreatePatientModal({
           </div>
         ) : null}
 
-        <form onSubmit={handleSubmit} className="mt-5 flex-1 space-y-5 overflow-y-auto pr-1">
+        <form id={formId} onSubmit={handleSubmit} className="min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain p-5 sm:p-6">
+          <h3 className="text-sm font-bold text-foreground">{intakeCopy.contact}</h3>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {isRomania ? (
               <div>
-                <label className="text-xs font-semibold text-foreground mb-1 block">
+                <label htmlFor={`${formId}-county`} className="text-xs font-semibold text-foreground mb-1 block">
                   {t.county} <span className="text-red-500">*</span>
                 </label>
                 <select
+                  id={`${formId}-county`}
                   required={!isEditing || Boolean(patient?.county)}
                   value={county}
                   onChange={(event) => setCounty(event.target.value)}
@@ -326,10 +354,11 @@ export function CreatePatientModal({
               </div>
             ) : null}
             <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-name`} className="text-xs font-semibold text-foreground mb-1 block">
                 {t.fullName} <span className="text-red-500">*</span>
               </label>
               <input
+                id={`${formId}-name`}
                 type="text"
                 required
                 value={fullName}
@@ -340,11 +369,12 @@ export function CreatePatientModal({
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-phone`} className="text-xs font-semibold text-foreground mb-1 block">
                 {t.phone} <span className="text-red-500">*</span>
               </label>
               <input
                 type="tel"
+                id={`${formId}-phone`}
                 required
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -354,11 +384,12 @@ export function CreatePatientModal({
             </div>
 
             <div className="sm:col-span-2">
-              <label className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-email`} className="text-xs font-semibold text-foreground mb-1 block">
                 {t.email} <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
+                id={`${formId}-email`}
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -368,11 +399,13 @@ export function CreatePatientModal({
             </div>
           </div>
 
-          <div>
-            <label className="text-xs font-semibold text-foreground mb-1 block">
+          <div className="rounded-2xl border border-border bg-muted/30 p-4">
+            <h3 className="mb-3 text-sm font-bold text-foreground">{intakeCopy.care}</h3>
+            <label htmlFor={`${formId}-condition`} className="text-xs font-semibold text-foreground mb-1 block">
               {t.condition}
             </label>
             <textarea
+              id={`${formId}-condition`}
               rows={3}
               value={conditionNotes}
               onChange={(e) => setConditionNotes(e.target.value)}
@@ -381,8 +414,15 @@ export function CreatePatientModal({
             />
           </div>
 
-          <details open={isEditing} className="space-y-4">
-            <summary className="cursor-pointer text-sm font-medium text-primary">{crm.additional}</summary>
+          <div>
+            <label htmlFor={`${formId}-address`} className="mb-1 block text-xs font-semibold text-foreground">{t.address}</label>
+            <input id={`${formId}-address`} type="text" value={address} onChange={(event) => setAddress(event.target.value)} placeholder={t.addressPh}
+              className="min-h-11 w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+          </div>
+          <PatientIntakeFields value={intake} onChange={setIntake} disabled={isSubmitting} onBusyChange={setIntakeBusy} />
+
+          <details open={isEditing} className="space-y-4 rounded-2xl border border-border p-4">
+            <summary className="min-h-8 cursor-pointer text-sm font-semibold text-primary">{intakeCopy.more}</summary>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">
@@ -548,18 +588,6 @@ export function CreatePatientModal({
             </div>
             ) : null}
 
-            <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
-                {t.address}
-              </label>
-              <input
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder={t.addressPh}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              />
-            </div>
           </div>
 
           <div>
@@ -576,18 +604,21 @@ export function CreatePatientModal({
           </div>
 
           </details>
-          <div className="flex flex-col-reverse items-stretch gap-2 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-end sm:gap-3">
+        </form>
+          <div className="flex shrink-0 items-center justify-end gap-3 border-t border-border bg-card p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
             <button
               type="button"
               onClick={onClose}
+              disabled={isSubmitting || intakeBusy}
               className="rounded-xl border border-border bg-card px-4 py-2.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
             >
               {t.cancel}
             </button>
             <button
               type="submit"
-              disabled={isSubmitting}
-              className="rounded-xl bg-primary px-5 py-2.5 text-xs font-bold text-white hover:bg-primary-hover disabled:opacity-60 shadow-2xs transition-colors"
+              form={formId}
+              disabled={isSubmitting || intakeBusy}
+              className="min-h-12 flex-1 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-primary-hover disabled:opacity-60 shadow-2xs transition-colors sm:flex-none"
             >
               {isSubmitting
                 ? t.saving
@@ -596,7 +627,6 @@ export function CreatePatientModal({
                 : t.create}
             </button>
           </div>
-        </form>
       </div>
     </div>
   );

@@ -73,12 +73,14 @@ describe("mapPatientRow", () => {
           medical_history: encryptField("RO", "Asthma since 2019"),
           profile_photo: encryptField("RO", "data:image/jpeg;base64,AAAA"),
           photos: encryptField("RO", '[{"id":"p1","name":"Rash","data_url":"data:image/png;base64,BBBB","date":"2026-01-01"}]'),
+          intake: encryptField("RO", '{"has_documents":true,"documents":[],"location":{"latitude":0,"longitude":0,"accuracy":10}}'),
         }),
         "RO",
       );
       expect(patient.medical_history).toBe("Asthma since 2019");
       expect(patient.profile_photo).toBe("data:image/jpeg;base64,AAAA");
       expect(patient.photos?.[0]).toMatchObject({ id: "p1", name: "Rash" });
+      expect(patient.intake).toEqual({ has_documents: true, documents: [], location: { latitude: 0, longitude: 0, accuracy: 10 } });
     } finally {
       vi.unstubAllEnvs();
     }

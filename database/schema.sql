@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS patients (
   treatment_plan TEXT NULL,
   followups LONGTEXT NULL,
   photos LONGTEXT NULL,
+  intake LONGTEXT NULL,
   status ENUM('active', 'inactive', 'archived') NOT NULL DEFAULT 'active',
   priority ENUM('critical', 'high', 'moderate', 'low') NOT NULL DEFAULT 'moderate',
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

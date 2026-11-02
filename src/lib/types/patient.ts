@@ -27,6 +27,23 @@ export type PatientPhoto = {
   notes?: string;
 };
 
+export type PatientDocument = {
+  id: string;
+  name: string;
+  category: "medical" | "identity";
+  data_url: string;
+};
+
+export type PatientIntake = {
+  has_documents: boolean;
+  documents: PatientDocument[];
+  location: {
+    latitude: number;
+    longitude: number;
+    accuracy: number;
+  } | null;
+};
+
 export type TreatmentDetails = {
   diagnosis?: string;
   goals?: string;
@@ -62,6 +79,7 @@ export type PatientItem = {
   gender?: string | null;
   address?: string | null;
   county?: string | null;
+  intake?: PatientIntake | null;
   condition_notes?: string | null;
   medical_history?: string | null;
   profile_photo?: string | null;
@@ -86,6 +104,7 @@ export type CreatePatientPayload = {
   gender?: string;
   address?: string;
   county?: string;
+  intake?: PatientIntake | null;
   condition_notes?: string;
   medical_history?: string;
   profile_photo?: string | null;

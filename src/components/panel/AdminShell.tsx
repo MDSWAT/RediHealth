@@ -673,7 +673,7 @@ export function AdminShell({
               aria-label={createPatientModalTranslations[lang].titleCreate}
               title={createPatientModalTranslations[lang].titleCreate}
               onClick={() => setCreatingPatient(true)}
-              className="fixed left-1/2 bottom-[calc(5rem+env(safe-area-inset-bottom))] z-40 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full border-4 border-white bg-red-600 text-white shadow-[0_6px_20px_rgba(220,38,38,0.25)] transition-[background-color,scale] hover:bg-red-700 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600 lg:hidden"
+              className="fixed right-5 bottom-[calc(5rem+env(safe-area-inset-bottom))] z-40 flex h-16 w-16 items-center justify-center rounded-full border-4 border-white bg-red-600 text-white shadow-[0_6px_20px_rgba(220,38,38,0.25)] transition-[background-color,scale] hover:bg-red-700 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600 lg:hidden"
             >
               <PlusIcon aria-hidden="true" className="h-8 w-8 shrink-0" />
             </button>

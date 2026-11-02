@@ -29,9 +29,9 @@ describe("mediator mobile patient creation", () => {
     const html = renderShell("Mediator");
     expect(html).toContain(`aria-label="${createPatientModalTranslations.ro.titleCreate}"`);
     expect(html).toMatch(/class="[^"]*h-16 w-16[^"]*bg-red-600[^"]*lg:hidden"/);
-    expect(html).toMatch(/class="[^"]*left-1\/2[^"]*-translate-x-1\/2/);
+    expect(html).toMatch(/class="[^"]*fixed right-5/);
     expect(html).toContain('class="h-8 w-8 shrink-0"');
-    expect(html).not.toContain("right-5");
+    expect(html).not.toContain("-translate-x-1/2");
     expect(html).toContain("safe-area-inset-bottom");
   });
 

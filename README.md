@@ -87,6 +87,7 @@ mysql -h <host> -u <user> -p <database> < database/migrations/009_rate_limits_an
 mysql -h <host> -u <user> -p <database> < database/migrations/010_portal_link_expiry.sql
 mysql -h <host> -u <user> -p <database> < database/migrations/011_case_mapping_and_request_consent.sql
 mysql -h <host> -u <user> -p <database> < database/migrations/012_worker_and_patient_counties.sql
+mysql -h <host> -u <user> -p <database> < database/migrations/013_patient_intake.sql
 ```
 
 Migration `009` adds the shared rate-limit counters and the settings table (apply it to the control
@@ -96,6 +97,17 @@ database); `007` (institutes) also belongs to the control database, and the othe
 `011` adds county and recorded consent to public help requests, plus locality/UAT, approximate case
 map locations, planned home visits, and closure tracking to mediator cases. Apply it to every
 country database.
+
+`013` adds patient intake details to each country database. The patient form supports an optional
+document checkbox, medical/identity uploads (PDF, JPEG, PNG, WebP; up to 5 files, 5 MB each,
+10 MB total), and current GPS coordinates alongside the typed address. GPS is requested only
+after a click and requires browser permission and HTTPS (or localhost); no geocoding service is used.
+Documents and GPS are stored in the encrypted `patients.intake` field and require the country's
+`DATA_ENCRYPTION_KEY_<CC>`. They are available only in the authorized staff panel, not the
+patient portal, portal emails or printed reports. Apply the migration before deploying this version.
+Allow at least 32 MB for MySQL's `max_allowed_packet` and the reverse proxy's request-body limit
+to accommodate base64 encoding and encrypted storage at the documented upload limit.
+Next.js buffers up to 16 MB through its proxy for the base64-encoded upload request.
 
 For existing databases that already contain patient duplicates by email/phone, run [database/cleanup-patient-duplicates.sql](database/cleanup-patient-duplicates.sql) before adding unique constraints.
 
@@ -132,7 +144,7 @@ Personal data never shares a database across countries:
   rate-limit counters, settings and the public institute directory. It holds nothing personal.
 - **One database per country** (`DATABASE_URL_RO`, `DATABASE_URL_AL`, ...): patients, help requests,
   staff, meetings and the audit log of that country, created from [`database/schema.sql`](database/schema.sql)
-  and migrations `001`-`006`, `008`, `010`-`012`. Give each its own MySQL user that can only reach that database.
+  and migrations `001`-`006`, `008`, `010`-`013`. Give each its own MySQL user that can only reach that database.
   A country without settings is simply not offered.
 
 How requests are routed:
