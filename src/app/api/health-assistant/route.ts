@@ -10,6 +10,7 @@ import { DEFAULT_LANG, isSupportedLang } from "@/lib/i18n/routing";
 import { LlmError, generateText } from "@/lib/llm";
 import { notifyOperationalIssue } from "@/lib/operational-alerts";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 type AssistantRequest = {
   symptoms?: unknown;
@@ -17,6 +18,7 @@ type AssistantRequest = {
   lang?: unknown;
   prescriptionContext?: unknown;
   prescription?: { mimeType?: unknown; data?: unknown };
+  captchaToken?: unknown;
 };
 
 const MAX_TEXT_LENGTH = 4_000;
@@ -96,6 +98,12 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json({ error: "Invalid request body. Please send valid JSON." }, { status: 400 });
   }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+  }
+  const captchaError = await verifyRecaptcha(body.captchaToken, "health_assistant");
+  if (captchaError) return captchaError;
 
   const symptoms = typeof body.symptoms === "string" ? body.symptoms.trim() : "";
   const lang = typeof body.lang === "string" && isSupportedLang(body.lang) ? body.lang : DEFAULT_LANG;

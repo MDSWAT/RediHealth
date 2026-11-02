@@ -5,6 +5,7 @@ import { SiteChrome } from "@/components/layout/SiteChrome";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { siteMetadata } from "@/lib/i18n/site-metadata";
 import { getSiteUrl } from "@/lib/site-url";
+import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const lang = await getRequestLang();
+  const nonce = (await headers()).get("x-nonce") || undefined;
 
   return (
     <html
@@ -61,7 +63,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         >
           {siteMetadata[lang].skipLink}
         </a>
-        <SiteChrome>{children}</SiteChrome>
+        <SiteChrome nonce={nonce} captchaEnabled={process.env.RECAPTCHA_ENABLED === "true"}>{children}</SiteChrome>
       </body>
     </html>
   );

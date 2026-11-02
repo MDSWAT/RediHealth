@@ -14,6 +14,7 @@ import {
 import type { FollowupItem, PatientPhoto } from "@/lib/types/patient";
 import { PORTAL_TOKEN_PATTERN } from "@/lib/security/portal-token";
 import { decryptField, encryptField } from "@/lib/security/field-encryption";
+import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 const MAX_CONDITION_NOTES_LENGTH = 4_000;
 
@@ -45,6 +46,7 @@ export async function PATCH(request: Request, { params }: Params) {
     new_followup?: unknown;
     new_photo?: unknown;
     complete_followup?: unknown;
+    captchaToken?: unknown;
   };
 
   try {
@@ -52,6 +54,12 @@ export async function PATCH(request: Request, { params }: Params) {
   } catch {
     return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
   }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
+  }
+  const captchaError = await verifyRecaptcha(body.captchaToken, "patient_portal");
+  if (captchaError) return captchaError;
 
   try {
     const lookup = await findPatientByPortalToken(token, parseCountry(new URL(request.url).searchParams.get("c")));

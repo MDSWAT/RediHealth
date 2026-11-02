@@ -3,12 +3,16 @@ import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
 import { getAlertRecipient } from "@/lib/settings";
 import { escapeHtml, isValidEmail, text } from "@/lib/text";
+import { auth } from "@/auth";
+import { getUserWorkerContext } from "@/lib/worker-auth";
+import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 type ReportIssuePayload = {
   message?: unknown;
   email?: unknown;
   pageUrl?: unknown;
   userAgent?: unknown;
+  captchaToken?: unknown;
 };
 
 function truncate(value: string, maxLength: number): string {
@@ -36,6 +40,16 @@ export async function POST(request: Request) {
     body = (await request.json()) as ReportIssuePayload;
   } catch {
     return NextResponse.json({ error: "Invalid request data." }, { status: 400 });
+  }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request data." }, { status: 400 });
+  }
+  const session = await auth();
+  const staff = session?.user?.email ? await getUserWorkerContext(session.user.email) : null;
+  if (!staff?.workerId || staff.lookupFailed) {
+    const captchaError = await verifyRecaptcha(body.captchaToken, "issue_report");
+    if (captchaError) return captchaError;
   }
 
   const message = text(body.message);

@@ -18,12 +18,20 @@ describe("buildContentSecurityPolicy", () => {
     expect(policy).not.toContain("upgrade-insecure-requests");
   });
 
-  it("locks down framing, plugins and base URI, and only embeds the meeting provider", () => {
+  it("locks down framing, plugins and base URI", () => {
     const policy = buildContentSecurityPolicy({ ...base, isDevelopment: false });
     expect(policy).toContain("frame-ancestors 'none'");
     expect(policy).toContain("object-src 'none'");
     expect(policy).toContain("base-uri 'self'");
     expect(policy).toContain("frame-src https://meet.jit.si");
+  });
+
+  it("allows CAPTCHA connections and frames without weakening script nonces", () => {
+    const policy = buildContentSecurityPolicy({ ...base, isDevelopment: false });
+    expect(policy).toContain("connect-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/");
+    expect(policy).toContain("https://recaptcha.google.com/recaptcha/");
+    expect(policy).toContain("'strict-dynamic'");
+    expect(policy).not.toMatch(/script-src[^;]*unsafe-inline/);
   });
 });
 

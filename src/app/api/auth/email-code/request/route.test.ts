@@ -4,12 +4,14 @@ const mocks = vi.hoisted(() => ({
   access: vi.fn(),
   sendEmail: vi.fn(),
   set: vi.fn(),
+  captcha: vi.fn(),
 }));
 
 vi.mock("next/headers", () => ({
   cookies: async () => ({ set: mocks.set }),
 }));
 vi.mock("@/lib/login-access", () => ({ checkLoginAccess: mocks.access }));
+vi.mock("@/lib/security/recaptcha", () => ({ verifyRecaptcha: mocks.captcha }));
 vi.mock("@/lib/email", () => ({
   isEmailConfigured: () => true,
   renderBrandEmail: () => "<p>code</p>",
@@ -33,6 +35,7 @@ describe("email code request route", () => {
     mocks.access.mockReset().mockResolvedValue({ allowed: true, reason: "authorized" });
     mocks.sendEmail.mockReset().mockResolvedValue(undefined);
     mocks.set.mockReset();
+    mocks.captcha.mockReset().mockResolvedValue(null);
   });
 
   afterEach(() => {
@@ -56,6 +59,15 @@ describe("email code request route", () => {
       expect.objectContaining({ to: "staff@example.com", subject: "Your RediHealth verification code" }),
     );
     expect(mocks.set).toHaveBeenCalledWith("redihealth_email_otp", expect.any(String), expect.objectContaining({ httpOnly: true }));
+  });
+
+  it("blocks email sending and account lookups when bot verification fails", async () => {
+    mocks.captcha.mockResolvedValue(new Response(JSON.stringify({ error: "Bot verification failed." }), { status: 400 }));
+    const response = await POST(request(JSON.stringify({ email: "staff@example.com" }), "198.51.100.50"));
+    expect(response.status).toBe(400);
+    expect(mocks.sendEmail).not.toHaveBeenCalled();
+    expect(mocks.access).not.toHaveBeenCalled();
+    expect(mocks.set).not.toHaveBeenCalled();
   });
 
   it("answers unknown addresses exactly like known ones without sending anything", async () => {

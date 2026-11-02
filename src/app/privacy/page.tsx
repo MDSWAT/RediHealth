@@ -5,6 +5,7 @@ import { LockIcon } from "@/components/ui/icons";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { getLegalCopy } from "@/lib/i18n/legal-translations";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
+import { RecaptchaNotice } from "@/components/security/RecaptchaProvider";
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
@@ -36,6 +37,11 @@ export default async function PrivacyPage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="max-w-2xl space-y-6 text-base leading-relaxed text-muted-foreground">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground">{copy.botTitle}</h2>
+              <p className="mt-2">{copy.botBody}</p>
+              <RecaptchaNotice />
+            </div>
             <div>
               <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground">{copy.collectTitle}</h2>
               <p className="mt-2">

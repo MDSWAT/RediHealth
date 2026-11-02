@@ -10,6 +10,7 @@ import type { RequestStatus, RequestPriority } from "@/lib/types/medical-request
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { isValidEmail, text } from "@/lib/text";
 import { getUserWorkerContext } from "@/lib/worker-auth";
+import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 type RequestPayload = {
   name?: unknown;
@@ -19,6 +20,7 @@ type RequestPayload = {
   country?: unknown;
   county?: unknown;
   privacyConsent?: unknown;
+  captchaToken?: unknown;
 };
 
 export async function POST(request: Request) {
@@ -37,6 +39,12 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json({ error: "Invalid request data." }, { status: 400 });
   }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request data." }, { status: 400 });
+  }
+  const captchaError = await verifyRecaptcha(body.captchaToken, "help_request");
+  if (captchaError) return captchaError;
 
   // The request is stored in the database of the country the person chose, never anywhere else.
   const available = configuredCountries();

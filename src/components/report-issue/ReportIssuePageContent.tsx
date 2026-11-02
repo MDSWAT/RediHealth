@@ -1,5 +1,7 @@
 "use client";
 
+import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
+
 import { useMemo, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -78,6 +80,7 @@ const copyByLang: Record<"en" | "ro" | "sq" | "it", Copy> = {
 
 export function ReportIssuePageContent() {
   const { lang } = useLanguage();
+  const executeCaptcha = useRecaptcha();
   const t = useMemo(() => copyByLang[lang], [lang]);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -97,6 +100,7 @@ export function ReportIssuePageContent() {
 
     setIsSubmitting(true);
     try {
+      const captchaToken = await executeCaptcha("issue_report");
       const response = await fetch("/api/report-issue", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -105,6 +109,7 @@ export function ReportIssuePageContent() {
           message: message.trim(),
           pageUrl: window.location.href,
           userAgent: navigator.userAgent,
+          captchaToken,
         }),
       });
 
@@ -117,8 +122,8 @@ export function ReportIssuePageContent() {
       setEmail("");
       setMessage("");
       setSuccess(t.success);
-    } catch {
-      setError(t.genericError);
+    } catch (error) {
+      setError(captchaErrorMessage(error, t.genericError));
     } finally {
       setIsSubmitting(false);
     }

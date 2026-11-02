@@ -9,6 +9,7 @@ import {
 import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
 import { checkLoginAccess } from "@/lib/login-access";
 import { isValidEmail } from "@/lib/text";
+import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 function rateLimitResponse(retryAfterSeconds: number) {
   return NextResponse.json(
@@ -26,15 +27,17 @@ export async function POST(request: Request) {
     return rateLimitResponse(ipRateLimit.retryAfterSeconds);
   }
 
-  let body: { email?: string };
+  let body: { email?: unknown; captchaToken?: unknown };
   try {
-    body = (await request.json()) as { email?: string };
+    body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
   }
 
-  const { email } = body;
-  const normalizedEmail = email?.trim().toLowerCase();
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
+  }
+  const normalizedEmail = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
 
   if (!normalizedEmail || !isValidEmail(normalizedEmail)) {
     return NextResponse.json(
@@ -42,6 +45,9 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   }
+
+  const captchaError = await verifyRecaptcha(body.captchaToken, "email_code");
+  if (captchaError) return captchaError;
 
   const emailRateLimit = await checkRateLimit(`email-code-request:email:${normalizedEmail}`, {
     limit: 5,

@@ -4,6 +4,7 @@ const mocks = vi.hoisted(() => ({
   query: vi.fn(),
   sendEmail: vi.fn(),
   checkRateLimit: vi.fn(),
+  captcha: vi.fn(),
 }));
 
 vi.mock("@/lib/database", () => ({
@@ -18,6 +19,7 @@ vi.mock("@/lib/rate-limit", () => ({
   checkRateLimit: mocks.checkRateLimit,
   getClientIp: () => "127.0.0.1",
 }));
+vi.mock("@/lib/security/recaptcha", () => ({ verifyRecaptcha: mocks.captcha }));
 
 import { POST } from "./route";
 
@@ -27,6 +29,7 @@ describe("patient portal link recovery", () => {
     mocks.checkRateLimit.mockResolvedValue({ allowed: true, retryAfterSeconds: 0 });
     mocks.query.mockResolvedValue([[]]);
     mocks.sendEmail.mockResolvedValue(true);
+    mocks.captcha.mockResolvedValue(null);
   });
 
   function request(email: string, lang = "en") {
@@ -41,6 +44,14 @@ describe("patient portal link recovery", () => {
     const response = await POST(request("unknown@example.com"));
     expect(response.status).toBe(200);
     expect(await response.json()).toMatchObject({ success: true });
+    expect(mocks.sendEmail).not.toHaveBeenCalled();
+  });
+
+  it("blocks recovery emails and token rotation when bot verification fails", async () => {
+    mocks.captcha.mockResolvedValue(new Response(JSON.stringify({ error: "Bot verification failed." }), { status: 400 }));
+    const response = await POST(request("ana@example.com"));
+    expect(response.status).toBe(400);
+    expect(mocks.query).not.toHaveBeenCalled();
     expect(mocks.sendEmail).not.toHaveBeenCalled();
   });
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
+
 import { useId, useMemo, useState } from "react";
 import { AlertCircleIcon, CloseIcon, MailIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
@@ -81,6 +83,7 @@ const reportIssueCopy: Record<"en" | "ro" | "sq" | "it", Copy> = {
 
 export function ReportIssueWidget() {
   const { lang } = useLanguage();
+  const executeCaptcha = useRecaptcha();
   const t = useMemo(() => reportIssueCopy[lang], [lang]);
 
   const [open, setOpen] = useState(false);
@@ -103,6 +106,7 @@ export function ReportIssueWidget() {
 
     setIsSubmitting(true);
     try {
+      const captchaToken = await executeCaptcha("issue_report");
       const response = await fetch("/api/report-issue", {
         method: "POST",
         headers: {
@@ -113,6 +117,7 @@ export function ReportIssueWidget() {
           message: message.trim(),
           pageUrl: window.location.href,
           userAgent: navigator.userAgent,
+          captchaToken,
         }),
       });
 
@@ -125,8 +130,8 @@ export function ReportIssueWidget() {
       setSuccess(t.success);
       setMessage("");
       setEmail("");
-    } catch {
-      setError(t.genericError);
+    } catch (error) {
+      setError(captchaErrorMessage(error, t.genericError));
     } finally {
       setIsSubmitting(false);
     }

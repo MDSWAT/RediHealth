@@ -10,6 +10,7 @@ import type {
 } from "@/lib/types/patient";
 import { getPriorityMeta } from "@/lib/patient-helpers";
 import type { CountryCode } from "@/lib/countries";
+import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 
 const MAX_PHOTO_BYTES = 5 * 1024 * 1024;
 const SAVED_MESSAGE_TIMEOUT_MS = 3_000;
@@ -39,7 +40,11 @@ async function patchPortal(token: string, country: CountryCode, payload: unknown
  * after the server confirms the change.
  */
 export function usePatientPortal({ initialPatient, token, country }: UsePatientPortalArgs) {
-  const patch = (payload: unknown) => patchPortal(token, country, payload);
+  const executeCaptcha = useRecaptcha();
+  const patch = async (payload: object) => {
+    const captchaToken = await executeCaptcha("patient_portal");
+    return patchPortal(token, country, { ...payload, captchaToken });
+  };
   const [patient, setPatient] = useState<PatientItem>(initialPatient);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 

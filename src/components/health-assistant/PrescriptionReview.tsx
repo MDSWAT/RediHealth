@@ -1,4 +1,6 @@
 "use client";
+
+import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 /* eslint-disable @next/next/no-img-element -- the preview is a data URL of the file the visitor just chose */
 
 import { useRef, useState } from "react";
@@ -11,6 +13,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 type ReviewResponse = { message: string; prescriptionText?: string };
 
 export function PrescriptionReview() {
+  const executeCaptcha = useRecaptcha();
   const { lang } = useLanguage();
   const t = {
     en: {
@@ -134,7 +137,8 @@ export function PrescriptionReview() {
         reader.onerror = () => reject(new Error(t.readErr));
         reader.readAsDataURL(file);
       });
-      const response = await fetch("/api/health-assistant", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ prescriptionContext: context, prescription, lang }) });
+      const captchaToken = await executeCaptcha("health_assistant");
+      const response = await fetch("/api/health-assistant", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ prescriptionContext: context, prescription, lang, captchaToken }) });
       const data = await response.json() as ReviewResponse & { error?: string };
       if (!response.ok) throw new Error(data.error ?? t.reviewErr);
       setResult(data);

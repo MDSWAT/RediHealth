@@ -204,6 +204,31 @@ Map data © OpenStreetMap contributors (ODbL).
 
 The app runs on Vercel or on a single Node server (VPS).
 
+### Bot protection
+
+Bot protection is **disabled by default** (`RECAPTCHA_ENABLED=false`). When enabled,
+public submissions use **Google reCAPTCHA v3**: help requests, email sign-in
+(both requesting and verifying codes), portal recovery emails, issue reports,
+the AI assistant/prescription review, and patient portal updates. Authenticated
+staff forms are not challenged. Search filters, local health questionnaires,
+and demo forms do not submit data and do not need CAPTCHA.
+
+1. Register a **v3** site in the [Google reCAPTCHA console](https://www.google.com/recaptcha/admin/create).
+   Register your production hostname(s) and `localhost` if testing locally.
+2. Set `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY`, and
+   `RECAPTCHA_ALLOWED_HOSTNAMES` in the hosting environment. The hostname list
+   is comma-separated, without protocols, paths, or ports.
+3. Set `RECAPTCHA_ENABLED=true`, then rebuild and deploy: the public site key is
+   embedded at build time. Keep `RECAPTCHA_ENABLED=false` to leave forms working
+   without CAPTCHA; no Google CAPTCHA script or verification call runs in that mode.
+
+Every submission obtains a fresh token. Server checks require success, score
+**at least 0.5**, the expected action, an allowed hostname, and a token no older
+than two minutes. Existing rate limits remain in place. Missing configuration
+or an unavailable verification service **blocks submissions when enabled** with an explicit
+error; it never silently disables protection. No medical or form content is
+included in the verification request to Google.
+
 On a VPS:
 
 ```bash

@@ -1,15 +1,16 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { HeartIcon } from "@/components/ui/icons";
-import { createPageMetadata } from "@/lib/i18n/page-metadata";
+import { getRequestLang } from "@/lib/i18n/server-routing";
+import { getLegalCopy } from "@/lib/i18n/legal-translations";
 
-export const generateMetadata = createPageMetadata(
-  "about",
-  "About - RediHealth",
-  "RediHealth helps people understand their health risks and connects them with medical assistance and healthcare workers.",
-);
+export async function generateMetadata() {
+  const copy = getLegalCopy(await getRequestLang()).about;
+  return { title: copy.title, description: copy.description };
+}
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const copy = getLegalCopy(await getRequestLang()).about;
   return (
     <main id="main-content" className="flex-1">
       <section className="border-b border-border bg-muted/40 py-16 sm:py-20">
@@ -20,8 +21,8 @@ export default function AboutPage() {
           <SectionHeading
             as="h1"
             className="mt-5 max-w-none"
-            title="About RediHealth"
-            subtitle="RediHealth is a healthcare coordination platform that helps people understand their health, find medical assistance, and connect with the healthcare workers who can help."
+            title={copy.title}
+            subtitle={copy.description}
           />
         </Container>
       </section>
@@ -29,20 +30,7 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="max-w-2xl space-y-4 text-base leading-relaxed text-muted-foreground">
-            <p>
-              We built RediHealth to make it easier for people to know what to do next when they have a health concern -
-              whether that means checking symptoms, learning about a condition, or requesting help from a medical
-              professional or mediator.
-            </p>
-            <p>
-              Our platform combines plain-language health information with tools that connect patients to healthcare
-              workers, track care plans and follow-ups, and give people a simple way to ask for help when they need it
-              most.
-            </p>
-            <p>
-              RediHealth is not a substitute for professional medical advice, diagnosis, or treatment. If you are
-              experiencing a medical emergency, call your local emergency number immediately.
-            </p>
+            {copy.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
         </Container>
       </section>

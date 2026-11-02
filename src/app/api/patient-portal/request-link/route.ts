@@ -7,6 +7,7 @@ import { getRequestLang } from "@/lib/i18n/server-routing";
 import { parseJsonColumn } from "@/lib/json";
 import { isValidEmail } from "@/lib/text";
 import type { TreatmentPlan } from "@/lib/types/patient";
+import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 const genericResponse = {
   success: true,
@@ -25,17 +26,23 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: { email?: unknown };
+  let body: { email?: unknown; captchaToken?: unknown };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
   }
 
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
+  }
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   if (!isValidEmail(email)) {
     return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
   }
+
+  const captchaError = await verifyRecaptcha(body.captchaToken, "portal_link");
+  if (captchaError) return captchaError;
 
   const emailRateLimit = await checkRateLimit(`patient-portal-link:email:${email}`, {
     limit: 3,

@@ -7,6 +7,7 @@ import { decryptEmailCode, emailAuthCookies } from "@/lib/email-auth";
 import { checkLoginAccess, hasLoginAccess } from "@/lib/login-access";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { DEFAULT_LANG, LOCALE_COOKIE, isSupportedLang, withLangPrefix } from "@/lib/i18n/routing";
+import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 const googleConfigured = Boolean(
   process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET,
@@ -26,6 +27,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       name: "Email Code",
       credentials: {
         code: { label: "Code", type: "text" },
+        captchaToken: { label: "Bot verification", type: "text" },
       },
       async authorize(credentials, request) {
         const ipLimit = await checkRateLimit(`email-code-verify:ip:${getClientIp(request)}`, {
@@ -34,6 +36,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         });
         if (!ipLimit.allowed) {
           console.warn("Email-code sign-in rejected: too many attempts from this client.");
+          return null;
+        }
+
+        if (await verifyRecaptcha(credentials?.captchaToken, "verify_code")) {
+          console.warn("Email-code sign-in rejected: bot verification failed.");
           return null;
         }
 

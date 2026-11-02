@@ -8,6 +8,7 @@ import { GoogleIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { isValidEmail } from "@/lib/text";
+import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 
 type Stage = "email" | "code";
 
@@ -26,6 +27,7 @@ export function SignInForm({
 }) {
   const router = useRouter();
   const { t, lang } = useLanguage();
+  const executeCaptcha = useRecaptcha();
   const form = t.signInPage.form;
   const [stage, setStage] = useState<Stage>("email");
   const [email, setEmail] = useState("");
@@ -50,13 +52,14 @@ export function SignInForm({
     setPortalRecoveryMessage("");
     setIsRequestingPortal(true);
     try {
+      const captchaToken = await executeCaptcha("portal_link");
       const response = await fetch("/api/patient-portal/request-link", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           [REQUEST_LANG_HEADER]: lang,
         },
-        body: JSON.stringify({ email: normalizedEmail }),
+        body: JSON.stringify({ email: normalizedEmail, captchaToken }),
       });
       const result = (await response.json()) as { error?: string };
       if (!response.ok) {
@@ -64,8 +67,8 @@ export function SignInForm({
         return;
       }
       setPortalRecoveryMessage(form.portalRecoverySent);
-    } catch {
-      setPortalRecoveryError(form.portalRecoveryError);
+    } catch (error) {
+      setPortalRecoveryError(captchaErrorMessage(error, form.portalRecoveryError));
     } finally {
       setIsRequestingPortal(false);
     }
@@ -81,10 +84,11 @@ export function SignInForm({
     setError("");
     setIsSubmitting(true);
     try {
+      const captchaToken = await executeCaptcha("email_code");
       const response = await fetch("/api/auth/email-code/request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: normalizedEmail }),
+        body: JSON.stringify({ email: normalizedEmail, captchaToken }),
       });
       const result = (await response.json()) as { error?: string };
       if (!response.ok) {
@@ -92,8 +96,8 @@ export function SignInForm({
         return;
       }
       setStage("code");
-    } catch {
-      setError(form.genericSendError);
+    } catch (error) {
+      setError(captchaErrorMessage(error, form.genericSendError));
     } finally {
       setIsSubmitting(false);
     }
@@ -108,8 +112,10 @@ export function SignInForm({
     setError("");
     setIsSubmitting(true);
     try {
+      const captchaToken = await executeCaptcha("verify_code");
       const res = await signIn("email-code", {
         code: code.trim(),
+        captchaToken,
         redirect: false,
       });
 
@@ -119,8 +125,8 @@ export function SignInForm({
       }
 
       router.push(withLangPrefix("/panel", lang));
-    } catch {
-      setError(form.genericVerifyError);
+    } catch (error) {
+      setError(captchaErrorMessage(error, form.genericVerifyError));
     } finally {
       setIsSubmitting(false);
     }

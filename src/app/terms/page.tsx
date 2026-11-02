@@ -1,15 +1,16 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FileTextIcon } from "@/components/ui/icons";
-import { createPageMetadata } from "@/lib/i18n/page-metadata";
+import { getRequestLang } from "@/lib/i18n/server-routing";
+import { getLegalCopy } from "@/lib/i18n/legal-translations";
 
-export const generateMetadata = createPageMetadata(
-  "terms",
-  "Terms of Use - RediHealth",
-  "The terms that apply when you use RediHealth.",
-);
+export async function generateMetadata() {
+  const copy = getLegalCopy(await getRequestLang()).terms;
+  return { title: `${copy.title} - RediHealth`, description: copy.description };
+}
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const copy = getLegalCopy(await getRequestLang()).terms;
   return (
     <main id="main-content" className="flex-1">
       <section className="border-b border-border bg-muted/40 py-16 sm:py-20">
@@ -20,8 +21,8 @@ export default function TermsPage() {
           <SectionHeading
             as="h1"
             className="mt-5 max-w-none"
-            title="Terms of Use"
-            subtitle="By using RediHealth, you agree to the following terms."
+            title={copy.title}
+            subtitle={copy.description}
           />
         </Container>
       </section>
@@ -29,38 +30,12 @@ export default function TermsPage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="max-w-2xl space-y-6 text-base leading-relaxed text-muted-foreground">
-            <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground">Not a substitute for medical care</h2>
-              <p className="mt-2">
-                RediHealth provides general health information and helps coordinate access to care. It does not
-                provide medical diagnoses and is not a substitute for professional medical advice. In an emergency,
-                call your local emergency number immediately.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground">Your account</h2>
-              <p className="mt-2">
-                You are responsible for the accuracy of the information you provide and for keeping your account
-                credentials secure.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground">Acceptable use</h2>
-              <p className="mt-2">
-                You agree not to misuse the platform, including submitting false medical information, attempting to
-                access accounts that are not yours, or interfering with the operation of the service.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground">Changes</h2>
-              <p className="mt-2">
-                We may update these terms from time to time. Continued use of RediHealth after changes take effect
-                means you accept the updated terms.
-              </p>
-            </div>
+            {copy.sections.map((section) => (
+              <div key={section.title}>
+                <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground">{section.title}</h2>
+                <p className="mt-2">{section.body}</p>
+              </div>
+            ))}
           </div>
         </Container>
       </section>

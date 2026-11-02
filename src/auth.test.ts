@@ -9,6 +9,7 @@ const mocks = vi.hoisted(() => ({
   delete: vi.fn(),
   access: vi.fn(),
   rateLimit: vi.fn(),
+  captcha: vi.fn(),
 }));
 
 vi.mock("next-auth", () => ({
@@ -31,6 +32,7 @@ vi.mock("@/lib/rate-limit", () => ({
   checkRateLimit: mocks.rateLimit,
   getClientIp: () => "198.51.100.1",
 }));
+vi.mock("@/lib/security/recaptcha", () => ({ verifyRecaptcha: mocks.captcha }));
 
 import "@/auth";
 
@@ -50,6 +52,7 @@ describe("email-code credentials", () => {
     mocks.delete.mockReset();
     mocks.access.mockReset().mockResolvedValue(true);
     mocks.rateLimit.mockReset().mockResolvedValue({ allowed: true, retryAfterSeconds: 0 });
+    mocks.captcha.mockReset().mockResolvedValue(null);
     vi.spyOn(console, "warn").mockImplementation(() => {});
   });
 
@@ -69,6 +72,14 @@ describe("email-code credentials", () => {
     expect(await authorize("123456")).toEqual({ id: "test@example.com", email: "test@example.com" });
     expect(mocks.delete).toHaveBeenCalledWith(emailAuthCookies.otp);
     expect(console.warn).not.toHaveBeenCalled();
+  });
+
+  it("rejects bot verification failures before reading or consuming the code cookie", async () => {
+    mocks.captcha.mockResolvedValue(new Response(null, { status: 400 }));
+    expect(await authorize("123456")).toBeNull();
+    expect(mocks.get).not.toHaveBeenCalled();
+    expect(mocks.delete).not.toHaveBeenCalled();
+    expect(mocks.access).not.toHaveBeenCalled();
   });
 
   it("identifies a missing cookie without logging credentials", async () => {

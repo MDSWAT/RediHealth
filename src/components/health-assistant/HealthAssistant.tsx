@@ -1,5 +1,7 @@
 "use client";
 
+import { useRecaptcha } from "@/components/security/RecaptchaProvider";
+
 import { useEffect, useRef, useState } from "react";
 import { AlertCircleIcon, StethoscopeIcon } from "@/components/ui/icons";
 import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
@@ -26,6 +28,7 @@ type ChatMessage = {
 };
 
 export function HealthAssistant() {
+  const executeCaptcha = useRecaptcha();
   const { lang } = useLanguage();
   const t = {
     en: {
@@ -135,14 +138,15 @@ export function HealthAssistant() {
     if (!submittedMessage) return;
     const nextMessages = [...messages, { id: nextMessageId(), role: "user" as const, content: submittedMessage }];
     setError("");
-    setMessages(nextMessages);
-    setSymptoms("");
     setIsSubmitting(true);
     try {
+      const captchaToken = await executeCaptcha("health_assistant");
+      setMessages(nextMessages);
+      setSymptoms("");
       const response = await fetch("/api/health-assistant", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ symptoms: submittedMessage, history: nextMessages.slice(-12), lang }),
+        body: JSON.stringify({ symptoms: submittedMessage, history: nextMessages.slice(-12), lang, captchaToken }),
       });
       const data = await response.json() as Response & { error?: string };
       if (!response.ok) throw new Error(data.error ?? t.reviewErr);

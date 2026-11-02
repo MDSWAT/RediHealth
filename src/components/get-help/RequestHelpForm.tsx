@@ -10,6 +10,7 @@ import { isValidEmail } from "@/lib/text";
 import { COUNTRY_LABELS, type CountryCode } from "@/lib/countries";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import { withLangPrefix } from "@/lib/i18n/routing";
+import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 
 type Fields = {
   name: string;
@@ -54,6 +55,7 @@ export function RequestHelpForm({
   initialCountry: CountryCode | null;
 }) {
   const { t, lang } = useLanguage();
+  const executeCaptcha = useRecaptcha();
   const form = t.getHelpPage.form;
 
   const [country, setCountry] = useState<CountryCode | "">(initialCountry ?? "");
@@ -94,10 +96,11 @@ export function RequestHelpForm({
     setSubmissionError("");
     setIsSubmitting(true);
     try {
+      const captchaToken = await executeCaptcha("help_request");
       const response = await fetch("/api/medical-help-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, country, county, privacyConsent }),
+        body: JSON.stringify({ ...values, country, county, privacyConsent, captchaToken }),
       });
       const result = (await response.json()) as { error?: string };
       if (response.ok) {
@@ -105,8 +108,8 @@ export function RequestHelpForm({
       } else {
         setSubmissionError(result.error || form.genericError);
       }
-    } catch {
-      setSubmissionError(form.genericError);
+    } catch (error) {
+      setSubmissionError(captchaErrorMessage(error, form.genericError));
     } finally {
       setIsSubmitting(false);
     }
