@@ -19,6 +19,7 @@ import { WorkersFilterBar } from "./WorkersFilterBar";
 interface WorkersTableProps {
   initialWorkers: WorkerItem[];
   patients: PatientItem[];
+  isRomania: boolean;
   onRefresh?: () => Promise<void>;
   isRefreshing?: boolean;
   onUpdatePatients?: (updatedPatients: PatientItem[]) => void;
@@ -27,6 +28,7 @@ interface WorkersTableProps {
 export function WorkersTable({
   initialWorkers,
   patients,
+  isRomania,
   onRefresh,
   isRefreshing = false,
   onUpdatePatients,
@@ -403,6 +405,7 @@ export function WorkersTable({
 
       {showCreateModal || editingWorker ? (
         <CreateWorkerModal
+          isRomania={isRomania}
           worker={editingWorker || undefined}
           defaultRole={createRoleTemplate || undefined}
           defaultDepartment={createRoleTemplate === "Mediator" ? "Mediation" : undefined}

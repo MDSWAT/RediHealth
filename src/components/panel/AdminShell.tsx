@@ -8,6 +8,7 @@ import { signOut } from "next-auth/react";
 import {
   AlertCircleIcon,
   ArrowRightIcon,
+  BellIcon,
   CalendarIcon,
   CameraIcon,
   ChevronLeftIcon,
@@ -22,12 +23,14 @@ import {
   UsersIcon,
 } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
+import { CountrySwitcher } from "@/components/panel/CountrySwitcher";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { panelTranslations } from "@/lib/i18n/panel-translations";
 import { panelDesignTranslations } from "@/lib/i18n/panel-design-translations";
 import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { institutesAdminTranslations } from "@/lib/i18n/institutes-admin-translations";
+import { settingsTranslations } from "@/lib/i18n/settings-translations";
 import "./panel.css";
 
 type AdminShellProps = {
@@ -51,6 +54,7 @@ export function AdminShell({
   const copy = panelDesignTranslations[lang];
   const crm = crmTranslations[lang];
   const institutesCopy = institutesAdminTranslations[lang];
+  const settingsCopy = settingsTranslations[lang];
   const currentPath = stripLangFromPathname(pathname);
   const role = userRole.trim().toLowerCase();
   const isSuperAdmin = role === "super admin" || role === "superadmin";
@@ -70,12 +74,10 @@ export function AdminShell({
     { label: t.patients, href: "/panel/patients", icon: UsersIcon },
     { label: t.calendar, href: "/panel/calendar", icon: CalendarIcon },
     { label: crm.meetings, href: "/panel/meet", icon: CameraIcon },
-    { label: t.mediator, href: "/panel/mediator", icon: FileTextIcon },
     { label: t.workers, href: "/panel/workers", icon: StethoscopeIcon },
   ].filter((item) => {
     if (isMediatorOnly && ["/panel/calendar", "/panel/meet"].includes(item.href)) return false;
     if (item.href === "/panel/workers" && !isAdmin) return false;
-    if (item.href === "/panel/mediator" && role !== "mediator" && !isAdmin) return false;
     return true;
   });
 
@@ -84,7 +86,6 @@ export function AdminShell({
     ? [
         { label: crm.requests, href: "/panel", icon: FileTextIcon },
         { label: t.patients, href: "/panel/patients", icon: UsersIcon },
-        { label: t.mediator, href: "/panel/mediator", icon: FileTextIcon },
       ]
     : [
         { label: crm.requests, href: "/panel", icon: FileTextIcon },
@@ -99,11 +100,9 @@ export function AdminShell({
   const sheetQuickLinks = [
     { label: t.reportIssue, href: "#report-issue", icon: AlertCircleIcon },
     ...(isAdmin ? [{ label: t.workers, href: "/panel/workers", icon: StethoscopeIcon }] : []),
-    ...(role === "mediator" || isAdmin
-      ? [{ label: t.mediator, href: "/panel/mediator", icon: FileTextIcon }]
-      : []),
     ...(isSuperAdmin ? [{ label: t.logs, href: "/panel/logs", icon: ClockIcon }] : []),
     ...(isSuperAdmin ? [{ label: institutesCopy.navLabel, href: "/panel/institutes", icon: PinIcon }] : []),
+    ...(isSuperAdmin ? [{ label: settingsCopy.navLabel, href: "/panel/settings", icon: BellIcon }] : []),
   ].filter((link) => !mobilePrimaryTabs.some((tab) => tab.href === link.href));
 
   const reportCopyByLang = {
@@ -265,6 +264,10 @@ export function AdminShell({
             {/* Grab Handle */}
             <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border" />
 
+            <div className="mb-3">
+              <CountrySwitcher />
+            </div>
+
             <div className="flex items-center justify-between pb-3 border-b border-border">
               <div className="flex items-center gap-3">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-soft text-base font-bold text-primary">
@@ -396,7 +399,7 @@ export function AdminShell({
 
           <nav aria-label={copy.navigation} className={`panel-sidebar-nav flex-1 overflow-y-auto py-4 ${desktopSidebarCollapsed ? "panel-sidebar-nav-collapsed px-2" : "px-3"}`}>
             <ul className="space-y-1">
-              {desktopItems.filter((item) => !["/panel/mediator", "/panel/workers"].includes(item.href)).map((item) => {
+              {desktopItems.filter((item) => item.href !== "/panel/workers").map((item) => {
                 const active =
                   item.href === "/panel"
                     ? currentPath === "/panel"
@@ -434,7 +437,7 @@ export function AdminShell({
                 );
               })}
             </ul>
-            {desktopItems.some((item) => ["/panel/mediator", "/panel/workers"].includes(item.href)) ? (
+            {desktopItems.some((item) => item.href === "/panel/workers") ? (
               <p
                 aria-hidden={desktopSidebarCollapsed || undefined}
                 className={`mt-7 mb-2 px-3 text-xs text-muted-foreground ${desktopSidebarCollapsed ? "invisible" : ""}`}
@@ -443,7 +446,7 @@ export function AdminShell({
               </p>
             ) : null}
             <ul className="space-y-1">
-              {desktopItems.filter((item) => ["/panel/mediator", "/panel/workers"].includes(item.href)).map((item) => {
+              {desktopItems.filter((item) => item.href === "/panel/workers").map((item) => {
                 const active =
                   item.href === "/panel"
                     ? currentPath === "/panel"
@@ -512,6 +515,20 @@ export function AdminShell({
                   <PinIcon className="h-5 w-5 shrink-0" />
                   {!desktopSidebarCollapsed ? <span>{institutesCopy.navLabel}</span> : null}
                 </Link>
+                <Link
+                  href={withLangPrefix("/panel/settings", lang)}
+                  aria-current={currentPath === "/panel/settings" ? "page" : undefined}
+                  title={desktopSidebarCollapsed ? settingsCopy.navLabel : undefined}
+                  aria-label={settingsCopy.navLabel}
+                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
+                    currentPath === "/panel/settings"
+                      ? "bg-primary-soft text-primary"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  <BellIcon className="h-5 w-5 shrink-0" />
+                  {!desktopSidebarCollapsed ? <span>{settingsCopy.navLabel}</span> : null}
+                </Link>
               </div>
             ) : null}
 
@@ -534,6 +551,7 @@ export function AdminShell({
           </nav>
 
           <div className={`border-t border-border bg-muted/20 ${desktopSidebarCollapsed ? "space-y-2 p-2" : "space-y-3 p-4"}`}>
+            <CountrySwitcher compact={desktopSidebarCollapsed} />
             <div
               title={desktopSidebarCollapsed ? `${userRole} — ${userEmail}` : undefined}
               className={`flex items-center rounded-xl border border-border/60 bg-white shadow-2xs ${desktopSidebarCollapsed ? "justify-center p-2" : "gap-3 p-2.5"}`}

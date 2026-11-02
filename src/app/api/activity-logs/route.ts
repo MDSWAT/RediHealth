@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type RowDataPacket } from "@/lib/database";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 
 type ActivityLogRow = RowDataPacket & {
@@ -87,7 +87,7 @@ export async function GET(request: Request) {
   params.push(limit);
 
   try {
-    const [rows] = await getDatabase().query<ActivityLogRow[]>(query, params);
+    const [rows] = await getCountryDatabase(workerContext.country).query<ActivityLogRow[]>(query, params);
 
     return NextResponse.json({
       logs: rows.map((row) => ({

@@ -61,6 +61,7 @@ export type PatientItem = {
   date_of_birth?: string | null;
   gender?: string | null;
   address?: string | null;
+  county?: string | null;
   condition_notes?: string | null;
   medical_history?: string | null;
   profile_photo?: string | null;
@@ -84,6 +85,7 @@ export type CreatePatientPayload = {
   date_of_birth?: string;
   gender?: string;
   address?: string;
+  county?: string;
   condition_notes?: string;
   medical_history?: string;
   profile_photo?: string | null;

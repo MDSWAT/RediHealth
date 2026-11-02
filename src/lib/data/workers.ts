@@ -1,4 +1,5 @@
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type RowDataPacket } from "@/lib/database";
+import type { CountryCode } from "@/lib/countries";
 import type { WorkerItem, WorkerStatus } from "@/lib/types/worker";
 
 export interface DBWorkerRow extends RowDataPacket {
@@ -8,6 +9,7 @@ export interface DBWorkerRow extends RowDataPacket {
   phone?: string | null;
   role?: string | null;
   department?: string | null;
+  county?: string | null;
   status?: string;
   assigned_patients_count?: number;
   created_at: Date | string;
@@ -27,6 +29,7 @@ export function mapWorkerRow(row: DBWorkerRow): WorkerItem {
     phone: row.phone || null,
     role: row.role || "Healthcare Worker",
     department: row.department || null,
+    county: row.county || null,
     status: (row.status as WorkerStatus) || "active",
     assigned_patients_count: Number(row.assigned_patients_count || 0),
     created_at: toIsoString(row.created_at) ?? new Date(0).toISOString(),
@@ -35,10 +38,10 @@ export function mapWorkerRow(row: DBWorkerRow): WorkerItem {
 }
 
 /** Loads workers together with a count of their currently assigned patients. */
-export async function loadWorkers(): Promise<WorkerItem[]> {
-  const db = getDatabase();
+export async function loadWorkers(country: CountryCode): Promise<WorkerItem[]> {
+  const db = getCountryDatabase(country);
   const [rows] = await db.query<DBWorkerRow[]>(
-    `SELECT w.id, w.full_name, w.email, w.phone, w.role, w.department,
+    `SELECT w.id, w.full_name, w.email, w.phone, w.role, w.department, w.county,
             COALESCE(w.status, 'active') AS status,
             COUNT(p.id) AS assigned_patients_count,
             w.created_at, w.updated_at

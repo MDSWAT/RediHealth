@@ -1,28 +1,28 @@
 import { loadRequestInbox } from "@/lib/data/request-inbox";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { configuredCountries, getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { parseCountry } from "@/lib/countries";
+import { isRomanianCounty } from "@/lib/romanian-counties";
 import { logActivity } from "@/lib/activity-log";
 import { sendHelpRequestConfirmationEmail } from "@/lib/email";
 import type { RequestStatus, RequestPriority } from "@/lib/types/medical-request";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { isValidEmail, text } from "@/lib/text";
 import { getUserWorkerContext } from "@/lib/worker-auth";
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type RequestPayload = {
   name?: unknown;
   phone?: unknown;
   email?: unknown;
   description?: unknown;
+  country?: unknown;
+  county?: unknown;
+  privacyConsent?: unknown;
 };
 
-function text(value: unknown) {
-  return typeof value === "string" ? value.trim() : "";
-}
-
 export async function POST(request: Request) {
-  const rateLimit = checkRateLimit(`medical-help-requests:${getClientIp(request)}`, { limit: 5, windowMs: 60_000 });
+  const rateLimit = await checkRateLimit(`medical-help-requests:${getClientIp(request)}`, { limit: 5, windowMs: 60_000 });
   if (!rateLimit.allowed) {
     return NextResponse.json(
       { error: "Too many requests. Please wait a moment and try again." },
@@ -38,6 +38,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request data." }, { status: 400 });
   }
 
+  // The request is stored in the database of the country the person chose, never anywhere else.
+  const available = configuredCountries();
+  const country = parseCountry(body.country) ?? (available.length === 1 ? available[0] : null);
+  if (!country || !available.includes(country)) {
+    return NextResponse.json({ error: "Please choose your country." }, { status: 400 });
+  }
+
+  const county = country === "RO" ? text(body.county) : "";
+  if (body.privacyConsent !== true) {
+    return NextResponse.json({ error: "Please agree to the Privacy Policy." }, { status: 400 });
+  }
+  if (country === "RO" && !isRomanianCounty(county)) {
+    return NextResponse.json({ error: "Please choose a valid Romanian county." }, { status: 400 });
+  }
+
   const name = text(body.name);
   const phone = text(body.phone);
   const email = text(body.email).toLowerCase();
@@ -50,7 +65,7 @@ export async function POST(request: Request) {
     );
   }
 
-  if (email && !emailPattern.test(email)) {
+  if (email && !isValidEmail(email)) {
     return NextResponse.json(
       { error: "Please provide a valid email address or leave it blank." },
       { status: 400 },
@@ -70,13 +85,15 @@ export async function POST(request: Request) {
   }
 
   try {
-    const [result] = await getDatabase().query<ResultSetHeader>(
-      `INSERT INTO medical_help_requests (full_name, phone, email, description)
-       VALUES (?, ?, ?, ?)`,
-      [name || null, phone, email || null, description],
+    const [result] = await getCountryDatabase(country).query<ResultSetHeader>(
+      `INSERT INTO medical_help_requests
+        (full_name, phone, email, description, county, privacy_consent_at)
+       VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`,
+      [name || null, phone, email || null, description, county || null],
     );
 
     await logActivity({
+      country,
       actorName: name || null,
       actorEmail: email || null,
       actorRole: "public_user",
@@ -125,7 +142,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const data = await loadRequestInbox(new URL(request.url).searchParams, String(workerContext.workerId), workerContext.isAdmin);
+    const data = await loadRequestInbox(workerContext.country, new URL(request.url).searchParams, String(workerContext.workerId), workerContext.isAdmin);
     return NextResponse.json(data);
   } catch (error) {
     console.error("Failed to fetch medical help requests", error);
@@ -202,7 +219,7 @@ export async function PATCH(request: Request) {
   params.push(id);
 
   try {
-    const db = getDatabase();
+    const db = getCountryDatabase(workerContext.country);
     const [existingRows] = await db.query<RowDataPacket[]>(
       "SELECT id, status, priority, internal_notes FROM medical_help_requests WHERE id = ? LIMIT 1",
       [id],
@@ -227,7 +244,7 @@ export async function PATCH(request: Request) {
               COALESCE(status, 'pending') AS status,
               status_updated_by_name, status_updated_by_email, status_updated_at,
               COALESCE(priority, 'normal') AS priority,
-              internal_notes, created_at, updated_at
+              internal_notes, created_at, updated_at, county, privacy_consent_at
        FROM medical_help_requests
        WHERE id = ?
        LIMIT 1`,
@@ -235,6 +252,7 @@ export async function PATCH(request: Request) {
     );
 
     await logActivity({
+      country: workerContext.country,
       actorWorkerId: workerContext.workerId,
       actorName: text(session.user.name) || workerContext.workerName,
       actorEmail: text(session.user.email),
@@ -294,7 +312,7 @@ export async function DELETE(request: Request) {
   }
 
   try {
-    const db = getDatabase();
+    const db = getCountryDatabase(workerContext.country);
     const [rows] = await db.query<RowDataPacket[]>(
       "SELECT id, status, priority FROM medical_help_requests WHERE id = ? LIMIT 1",
       [id],
@@ -304,7 +322,7 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: "Request not found." }, { status: 404 });
     }
 
-    const [result] = await getDatabase().query<ResultSetHeader>(
+    const [result] = await db.query<ResultSetHeader>(
       `DELETE FROM medical_help_requests WHERE id = ?`,
       [id],
     );
@@ -314,6 +332,7 @@ export async function DELETE(request: Request) {
     }
 
     await logActivity({
+      country: workerContext.country,
       actorWorkerId: workerContext.workerId,
       actorName: text(session.user.name) || workerContext.workerName,
       actorEmail: text(session.user.email),

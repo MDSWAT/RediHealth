@@ -8,6 +8,8 @@ export type MedicalHelpRequestItem = {
   phone: string;
   email: string;
   description: string;
+  county?: string | null;
+  privacy_consent_at?: string | null;
   status: RequestStatus;
   priority: RequestPriority;
   internal_notes: string | null;

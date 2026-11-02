@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { HealthCheckExplorer } from "@/components/health-check/HealthCheckExplorer";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Health Check - RediHealth",
-  description:
-    "Tap where it hurts, answer a few quick questions, and get plain-language guidance on possible next steps.",
-};
+export const generateMetadata = createPageMetadata(
+  "health-check",
+  "Health Check - RediHealth",
+  "Tap where it hurts, answer a few quick questions, and get plain-language guidance on possible next steps.",
+);
 
 export default function HealthCheckPage() {
   return (

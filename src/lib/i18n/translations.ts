@@ -82,6 +82,8 @@ export type Translations = {
     heroTitle: string;
     heroParagraph: string;
     form: {
+      countyLabel: string;
+      selectCounty: string;
       fullNameLabel: string;
       fullNameOptional: string;
       fullNamePlaceholder: string;
@@ -93,6 +95,10 @@ export type Translations = {
       descriptionPlaceholder: string;
       descriptionHint: string;
       privacyNote: string;
+      privacyConsent: string;
+      privacyPolicyLabel: string;
+      privacyConsentRequired: string;
+      errorCounty: string;
       submitting: string;
       submit: string;
       genericError: string;
@@ -319,6 +325,8 @@ export const translations: Record<Lang, Translations> = {
       heroParagraph:
         "If you're having difficulty finding a doctor or arranging an appointment, tell us a little about what you need. A healthcare support worker will review your request and get in touch.",
       form: {
+        countyLabel: "County",
+        selectCounty: "Select a county",
         fullNameLabel: "Full name",
         fullNameOptional: "(optional)",
         fullNamePlaceholder: "Your name",
@@ -330,6 +338,10 @@ export const translations: Record<Lang, Translations> = {
         descriptionPlaceholder: "Tell us what you need help with, such as your symptoms or the kind of care you're trying to arrange.",
         descriptionHint: "Please don't include more personal detail than you need to.",
         privacyNote: "Your details are used only to respond to your request and are handled confidentially.",
+        privacyConsent: "I have read and agree to the",
+        privacyPolicyLabel: "Privacy Policy",
+        privacyConsentRequired: "Please confirm that you have read and agree to the Privacy Policy.",
+        errorCounty: "Please select your county.",
         submitting: "Sending request...",
         submit: "Send request",
         genericError: "We could not save your request. Please try again.",
@@ -463,7 +475,7 @@ export const translations: Record<Lang, Translations> = {
         factcheckLine2:
           "Vaccinul gripal nu conține virus viu capabil să provoace gripă în forma prezentă în mesaj.",
         source: "Sursa: OMS, Ministerul Sănătății",
-        button: "Solicită ajutorul mediatorilor",
+        button: "Solicită ajutorul medicului",
       },
     },
     footer: {
@@ -558,10 +570,12 @@ export const translations: Record<Lang, Translations> = {
       },
     },
     getHelpPage: {
-      heroTitle: "Solicită ajutor medical",
+      heroTitle: "Solicită ajutorul medicului",
       heroParagraph:
         "Dacă întâmpini dificultăți în a găsi un medic sau a programa o consultație, spune-ne pe scurt de ce ai nevoie. Un lucrător medical de sprijin îți va analiza cererea și te va contacta.",
       form: {
+        countyLabel: "Județ",
+        selectCounty: "Selectează județul",
         fullNameLabel: "Nume complet",
         fullNameOptional: "(opțional)",
         fullNamePlaceholder: "Numele tău",
@@ -573,6 +587,10 @@ export const translations: Record<Lang, Translations> = {
         descriptionPlaceholder: "Spune-ne cu ce ai nevoie de ajutor, precum simptomele tale sau tipul de îngrijire pe care încerci să o organizezi.",
         descriptionHint: "Te rugăm să nu incluzi mai multe detalii personale decât este necesar.",
         privacyNote: "Detaliile tale sunt folosite doar pentru a răspunde cererii tale și sunt tratate confidențial.",
+        privacyConsent: "Am citit și sunt de acord cu",
+        privacyPolicyLabel: "Politica de confidențialitate",
+        privacyConsentRequired: "Te rugăm să confirmi că ai citit și ești de acord cu Politica de confidențialitate.",
+        errorCounty: "Te rugăm să selectezi județul.",
         submitting: "Se trimite cererea...",
         submit: "Trimite cererea",
         genericError: "Nu am putut salva cererea ta. Te rugăm să încerci din nou.",
@@ -805,6 +823,8 @@ export const translations: Record<Lang, Translations> = {
       heroParagraph:
         "Nëse po has vështirësi në gjetjen e një mjeku ose organizimin e një takimi, na thuaj shkurtimisht çfarë të duhet. Një punonjës mbështetës shëndetësor do ta shqyrtojë kërkesën tënde dhe do të të kontaktojë.",
       form: {
+        countyLabel: "Qarku",
+        selectCounty: "Zgjidh qarkun",
         fullNameLabel: "Emri i plotë",
         fullNameOptional: "(opsionale)",
         fullNamePlaceholder: "Emri yt",
@@ -816,6 +836,10 @@ export const translations: Record<Lang, Translations> = {
         descriptionPlaceholder: "Na thuaj për çfarë ke nevojë për ndihmë, si simptomat e tua ose llojin e kujdesit që po përpiqesh të organizosh.",
         descriptionHint: "Të lutemi mos përfshi më shumë detaje personale sesa të nevojshme.",
         privacyNote: "Detajet e tua përdoren vetëm për t'iu përgjigjur kërkesës tënde dhe trajtohen në mënyrë konfidenciale.",
+        privacyConsent: "E kam lexuar dhe pranoj",
+        privacyPolicyLabel: "Politikën e Privatësisë",
+        privacyConsentRequired: "Të lutemi konfirmo se e ke lexuar dhe pranon Politikën e Privatësisë.",
+        errorCounty: "Të lutemi zgjidh qarkun.",
         submitting: "Duke dërguar kërkesën...",
         submit: "Dërgo kërkesën",
         genericError: "Nuk mundëm ta ruajmë kërkesën tënde. Të lutemi provo përsëri.",
@@ -1048,6 +1072,8 @@ export const translations: Record<Lang, Translations> = {
       heroParagraph:
         "Se hai difficoltà a trovare un medico o a organizzare un appuntamento, raccontaci brevemente di cosa hai bisogno. Un operatore sanitario di supporto esaminerà la tua richiesta e ti contatterà.",
       form: {
+        countyLabel: "Provincia",
+        selectCounty: "Seleziona una provincia",
         fullNameLabel: "Nome completo",
         fullNameOptional: "(facoltativo)",
         fullNamePlaceholder: "Il tuo nome",
@@ -1059,6 +1085,10 @@ export const translations: Record<Lang, Translations> = {
         descriptionPlaceholder: "Raccontaci di cosa hai bisogno, ad esempio i tuoi sintomi o il tipo di assistenza che stai cercando di organizzare.",
         descriptionHint: "Ti preghiamo di non includere più dettagli personali del necessario.",
         privacyNote: "I tuoi dati vengono utilizzati solo per rispondere alla tua richiesta e sono trattati in modo riservato.",
+        privacyConsent: "Ho letto e accetto",
+        privacyPolicyLabel: "l'Informativa sulla privacy",
+        privacyConsentRequired: "Conferma di aver letto e accettato l'Informativa sulla privacy.",
+        errorCounty: "Seleziona la provincia.",
         submitting: "Invio della richiesta...",
         submit: "Invia richiesta",
         genericError: "Non siamo riusciti a salvare la tua richiesta. Riprova.",

@@ -1,21 +1,21 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { logActivity } from "@/lib/activity-log";
-import { getDatabase, type ResultSetHeader } from "@/lib/database";
+import { getCountryDatabase, type ResultSetHeader } from "@/lib/database";
 import { type DBWorkerRow, mapWorkerRow } from "@/lib/data/workers";
 import { getClientIp } from "@/lib/rate-limit";
 import type { CreateWorkerPayload, WorkerStatus } from "@/lib/types/worker";
+import { isValidEmail, text } from "@/lib/text";
 import { getUserWorkerContext } from "@/lib/worker-auth";
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function text(value: unknown) {
-  return typeof value === "string" ? value.trim() : "";
-}
+import { isRomanianCounty } from "@/lib/romanian-counties";
 
 function isSuperAdminRole(role: string) {
   const normalized = role.trim().toLowerCase();
   return normalized === "super admin" || normalized === "superadmin";
+}
+
+function needsCounty(role: string) {
+  return ["mediator", "doctor", "general practitioner"].includes(role.trim().toLowerCase());
 }
 
 function isDuplicateEntryError(error: unknown): boolean {
@@ -45,9 +45,9 @@ export async function GET(request: Request) {
   const searchParam = searchParams.get("search")?.trim().toLowerCase();
 
   try {
-    const db = getDatabase();
+    const db = getCountryDatabase(workerContext.country);
     let query = `
-      SELECT w.id, w.full_name, w.email, w.phone, w.role, w.department, 
+      SELECT w.id, w.full_name, w.email, w.phone, w.role, w.department, w.county,
              COALESCE(w.status, 'active') AS status,
              COUNT(p.id) AS assigned_patients_count,
              w.created_at, w.updated_at
@@ -81,7 +81,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("Failed to fetch workers", error);
     return NextResponse.json(
-      { error: "Could not fetch workers." },
+      { error: "Could not fetch workers. Ensure migration 012 is applied." },
       { status: 503 },
     );
   }
@@ -115,9 +115,10 @@ export async function POST(request: Request) {
   const phone = text(body.phone);
   const role = text(body.role) || "Healthcare Worker";
   const department = text(body.department);
+  const county = workerContext.country === "RO" ? text(body.county) : "";
   const status: WorkerStatus = body.status || "active";
 
-  if (!fullName || !emailPattern.test(email)) {
+  if (!fullName || !isValidEmail(email)) {
     return NextResponse.json(
       { error: "Please provide a full name and valid email address for the worker." },
       { status: 400 },
@@ -138,12 +139,16 @@ export async function POST(request: Request) {
     );
   }
 
+  if (workerContext.country === "RO" && needsCounty(role) && !isRomanianCounty(county)) {
+    return NextResponse.json({ error: "Please select a valid county for this worker." }, { status: 400 });
+  }
+
   try {
-    const db = getDatabase();
+    const db = getCountryDatabase(workerContext.country);
     const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO workers (full_name, email, phone, role, department, status)
-       VALUES (?, ?, ?, ?, ?, ?)`,
-      [fullName, email, phone || null, role, department || null, status],
+      `INSERT INTO workers (full_name, email, phone, role, department, county, status)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [fullName, email, phone || null, role, department || null, county || null, status],
     );
 
     if (!result.insertId) {
@@ -154,6 +159,7 @@ export async function POST(request: Request) {
     }
 
     await logActivity({
+      country: workerContext.country,
       actorWorkerId: workerContext.workerId,
       actorName: workerContext.workerName,
       actorEmail: text(session.user.email),
@@ -166,6 +172,7 @@ export async function POST(request: Request) {
         email,
         role,
         department: department || null,
+        county: county || null,
         status,
       },
       ipAddress: getClientIp(request),
@@ -252,12 +259,20 @@ export async function PATCH(request: Request) {
     updates.push("department = ?");
     params.push(text(body.department) || null);
   }
+  if (body.county !== undefined) {
+    const county = workerContext.country === "RO" ? text(body.county) : "";
+    if (county && !isRomanianCounty(county)) {
+      return NextResponse.json({ error: "Please select a valid county for this worker." }, { status: 400 });
+    }
+    updates.push("county = ?");
+    params.push(county || null);
+  }
   if (body.status !== undefined) {
     updates.push("status = ?");
     params.push(body.status);
   }
 
-  const db = getDatabase();
+  const db = getCountryDatabase(workerContext.country);
 
   try {
     const changedFields = updates
@@ -289,6 +304,7 @@ export async function PATCH(request: Request) {
     }
 
     await logActivity({
+      country: workerContext.country,
       actorWorkerId: workerContext.workerId,
       actorName: workerContext.workerName,
       actorEmail: text(session.user.email),
@@ -349,7 +365,7 @@ export async function DELETE(request: Request) {
   }
 
   try {
-    const db = getDatabase();
+    const db = getCountryDatabase(workerContext.country);
     const [existingRows] = await db.query<DBWorkerRow[]>(
       `SELECT id, full_name, email, role FROM workers WHERE id = ? LIMIT 1`,
       [id],
@@ -367,6 +383,7 @@ export async function DELETE(request: Request) {
     }
 
     await logActivity({
+      country: workerContext.country,
       actorWorkerId: workerContext.workerId,
       actorName: workerContext.workerName,
       actorEmail: text(session.user.email),

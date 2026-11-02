@@ -13,7 +13,7 @@ import { CreatePatientModal } from "./CreatePatientModal";
 import { QuickTemplatesModal } from "./QuickTemplatesModal";
 import { useUnsavedChanges } from "./useUnsavedChanges";
 
-export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false }: { isAdmin?: boolean; initialInbox: InboxPage; onPendingChange: (count: number) => void }) {
+export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, isRomania }: { isAdmin?: boolean; isRomania: boolean; initialInbox: InboxPage; onPendingChange: (count: number) => void }) {
   const { lang } = useLanguage();
   const t = crmTranslations[lang];
   const locale = langToLocale[lang];
@@ -84,7 +84,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false }
   }
   function exportCsv() {
     const quote = (value: string) => `"${(/^[=+@-]/.test(value) ? "'" : "") + value.replaceAll('"', '""')}"`;
-    const csv = ["Name,Phone,Email,Description,Status,Received", ...inbox.requests.map((r) => [r.full_name || "", r.phone, r.email, r.description, r.status, r.created_at].map(quote).join(","))].join("\r\n");
+    const csv = ["Name,Phone,Email,County,Description,Status,Received", ...inbox.requests.map((r) => [r.full_name || "", r.phone, r.email, r.county || "", r.description, r.status, r.created_at].map(quote).join(","))].join("\r\n");
     const url = URL.createObjectURL(new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" }));
     const link = document.createElement("a"); link.href = url; link.download = "redihealth-requests.csv"; link.click(); URL.revokeObjectURL(url);
   }
@@ -116,7 +116,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false }
         }} /> : <p className="m-auto p-10 text-center text-muted-foreground">{requestId ? t.loading : t.selectRequest}</p>}
       </section>
     </div>
-    {creating && <CreatePatientModal isAdmin={isAdmin} request={creating} onClose={() => setCreating(null)} />}
+    {creating && <CreatePatientModal isAdmin={isAdmin} isRomania={isRomania} request={creating} onClose={() => setCreating(null)} />}
     {replying && <QuickTemplatesModal request={replying} onClose={() => setReplying(null)} />}
   </>;
 }
@@ -133,24 +133,24 @@ function RequestReader({ request, onDirtyChange, onUpdate, onBack, onCreate, onR
   const [error, setError] = useState("");
   const dirty = status !== request.status || priority !== request.priority || notes !== (request.internal_notes || "");
   useEffect(() => { onDirtyChange(dirty); }, [dirty, onDirtyChange]);
-  async function save() {
+  async function save(nextStatus = status) {
     setSaving(true); setError("");
     try {
-      const response = await fetch("/api/medical-help-requests", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: request.id, status, priority, internal_notes: notes.trim() || null }) });
+      const response = await fetch("/api/medical-help-requests", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: request.id, status: nextStatus, priority, internal_notes: notes.trim() || null }) });
       const data = await response.json() as { request?: Partial<MedicalHelpRequestItem>; error?: string };
       if (!response.ok) { setError(data.error || t.error); return; }
-      setNotes(notes.trim()); onUpdate({ ...request, ...data.request, status, priority, internal_notes: notes.trim() || null });
+      setStatus(nextStatus); setNotes(notes.trim()); onUpdate({ ...request, ...data.request, status: nextStatus, priority, internal_notes: notes.trim() || null });
     } catch { setError(t.error); } finally { setSaving(false); }
   }
   return <div className="crm-reader-content">
     <div className="flex items-center justify-between"><button className="crm-button crm-reader-back" onClick={onBack}>{t.back}</button><span className="text-xs text-muted-foreground">#{request.id} · {new Date(request.created_at).toLocaleString(langToLocale[lang])}</span><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button disabled={saving} onClick={async () => { if (!window.confirm(t.deleteConfirm)) return; setSaving(true); try { await onDelete(); } catch { setError(t.error); setSaving(false); } }}>{t.delete}</button></div></details></div>
     <h2 className="mt-6 text-2xl font-semibold">{request.full_name || t.unnamed}</h2>
-    <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm"><a className="text-primary" href={`tel:${request.phone}`}>{request.phone}</a>{request.email && <a className="break-all text-primary" href={`mailto:${request.email}`}>{request.email}</a>}</div>
+    <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm"><a className="text-primary" href={`tel:${request.phone}`}>{request.phone}</a>{request.email && <a className="break-all text-primary" href={`mailto:${request.email}`}>{request.email}</a>}{request.county && <span className="text-muted-foreground">{request.county}</span>}</div>
     <p className="my-7 whitespace-pre-wrap text-base leading-relaxed">{request.description}</p>
     <div className="mb-6 flex flex-wrap gap-2">{request.patient_id ? <Link className="crm-button crm-primary" href={withLangPrefix(`/panel/patients/${request.patient_id}`, lang)}>{t.openPatient}</Link> : <button className="crm-button crm-primary" onClick={onCreate}>{t.createPatient}</button>}<button className="crm-button" disabled={!request.email} onClick={onReply}>{t.reply}</button></div>
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2"><label className="crm-label">{t.status}<select className="crm-input" value={status} onChange={(e) => setStatus(e.target.value as RequestStatus)} disabled={saving}>{(["pending", "in_progress", "resolved", "archived"] as const).map((id) => <option value={id} key={id}>{t[id]}</option>)}</select></label><label className="crm-label">{t.priority}<select className="crm-input" value={priority} onChange={(e) => setPriority(e.target.value as RequestPriority)} disabled={saving}><option value="normal">{t.normal}</option><option value="urgent">{t.urgent}</option></select></label></div>
     <label className="crm-label mt-5">{t.notes}<textarea rows={5} maxLength={4000} className="crm-input" value={notes} onChange={(e) => setNotes(e.target.value)} disabled={saving} /></label>
     {error && <p className="crm-error mt-3" role="alert">{error}</p>}
-    <div className="mt-5 flex items-center gap-3"><button className="crm-button crm-primary" disabled={!dirty || saving} onClick={save}>{saving ? t.saving : t.save}</button>{!dirty && <span className="text-sm text-muted-foreground" role="status">{t.saved}</span>}</div>
+    <div className="mt-5 flex flex-wrap items-center gap-3"><button className="crm-button crm-primary" disabled={!dirty || saving} onClick={() => void save()}>{saving ? t.saving : t.save}</button>{status !== "resolved" && status !== "archived" && <button className="crm-button" disabled={saving} onClick={() => { if (window.confirm(t.closeRequestConfirm)) void save("resolved"); }}>{t.closeRequest}</button>}{!dirty && <span className="text-sm text-muted-foreground" role="status">{t.saved}</span>}</div>
   </div>;
 }

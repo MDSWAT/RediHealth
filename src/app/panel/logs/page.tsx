@@ -1,15 +1,13 @@
-import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { ActivityLogsDashboard } from "@/components/panel/ActivityLogsDashboard";
-import { getDatabase, hasDatabaseConnectionConfig, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, isCountryConfigured, type RowDataPacket } from "@/lib/database";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 import type { ActivityLogItem } from "@/lib/types/activity-log";
 import { getUserWorkerContext } from "@/lib/worker-auth";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Activity Logs - RediHealth Panel",
-};
+export const generateMetadata = createPageMetadata("logs", "Activity Logs - RediHealth Panel", "");
 
 type ActivityLogRow = RowDataPacket & {
   id: string | number;
@@ -52,12 +50,12 @@ export default async function ActivityLogsPage() {
     redirect(await withRequestLangPrefix("/panel"));
   }
 
-  let databaseAvailable = hasDatabaseConnectionConfig();
+  let databaseAvailable = isCountryConfigured(workerContext.country);
   let logs: ActivityLogItem[] = [];
 
   if (databaseAvailable) {
     try {
-      const [rows] = await getDatabase().query<ActivityLogRow[]>(
+      const [rows] = await getCountryDatabase(workerContext.country).query<ActivityLogRow[]>(
         `SELECT id, actor_worker_id, actor_name, actor_email, actor_role,
                 action, entity_type, entity_id, details_json, ip_address, created_at
          FROM activity_logs

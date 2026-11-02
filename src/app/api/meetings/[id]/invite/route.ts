@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type RowDataPacket } from "@/lib/database";
 import { sendMeetingInvitationEmail } from "@/lib/email";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { getRequestLang } from "@/lib/i18n/server-routing";
@@ -54,7 +54,7 @@ export async function POST(
       ? "SELECT m.id, m.title, m.meeting_url, p.full_name, p.email FROM meetings m INNER JOIN patients p ON p.id = m.patient_id WHERE m.id = ? LIMIT 1"
       : "SELECT m.id, m.title, m.meeting_url, p.full_name, p.email FROM meetings m INNER JOIN patients p ON p.id = m.patient_id WHERE m.id = ? AND m.organizer_worker_id = ? LIMIT 1";
     const params = worker.isAdmin ? [id] : [id, worker.workerId];
-    const [rows] = await getDatabase().query<InvitationRow[]>(query, params);
+    const [rows] = await getCountryDatabase(worker.country).query<InvitationRow[]>(query, params);
     const meeting = rows[0];
     if (!meeting) {
       return NextResponse.json({ error: "A linked patient meeting was not found." }, { status: 404 });

@@ -8,6 +8,7 @@ const mocks = vi.hoisted(() => ({
   get: vi.fn(),
   delete: vi.fn(),
   access: vi.fn(),
+  rateLimit: vi.fn(),
 }));
 
 vi.mock("next-auth", () => ({
@@ -25,6 +26,10 @@ vi.mock("next/headers", () => ({
 vi.mock("@/lib/login-access", () => ({
   hasLoginAccess: mocks.access,
   checkLoginAccess: vi.fn(),
+}));
+vi.mock("@/lib/rate-limit", () => ({
+  checkRateLimit: mocks.rateLimit,
+  getClientIp: () => "198.51.100.1",
 }));
 
 import "@/auth";
@@ -44,6 +49,7 @@ describe("email-code credentials", () => {
     mocks.get.mockReset();
     mocks.delete.mockReset();
     mocks.access.mockReset().mockResolvedValue(true);
+    mocks.rateLimit.mockReset().mockResolvedValue({ allowed: true, retryAfterSeconds: 0 });
     vi.spyOn(console, "warn").mockImplementation(() => {});
   });
 
@@ -98,6 +104,22 @@ describe("email-code credentials", () => {
     mocks.access.mockResolvedValue(false);
     expect(await authorize("123456")).toBeNull();
     expect(console.warn).toHaveBeenCalledWith(expect.stringContaining("login access check failed"));
+  });
+
+  it("rejects further guesses once a code has used up its attempts", async () => {
+    await setCodeCookie();
+    mocks.rateLimit
+      .mockResolvedValueOnce({ allowed: true, retryAfterSeconds: 0 })
+      .mockResolvedValueOnce({ allowed: false, retryAfterSeconds: 300 });
+    expect(await authorize("123456")).toBeNull();
+    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining("too many attempts for this code"));
+    expect(mocks.delete).not.toHaveBeenCalled();
+  });
+
+  it("rejects clients that exceed the per-IP limit before reading the cookie", async () => {
+    mocks.rateLimit.mockResolvedValueOnce({ allowed: false, retryAfterSeconds: 30 });
+    expect(await authorize("123456")).toBeNull();
+    expect(mocks.get).not.toHaveBeenCalled();
   });
 
   it("does not disguise cookie mutation failures as invalid credentials", async () => {

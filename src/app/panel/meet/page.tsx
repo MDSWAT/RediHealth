@@ -1,17 +1,15 @@
 import type { PatientItem } from "@/lib/types/patient";
-import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { MeetDashboard } from "@/components/panel/MeetDashboard";
 import { loadPatients } from "@/lib/data/patients";
 import { countPendingRequests } from "@/lib/data/requests";
-import { getDatabase, hasDatabaseConnectionConfig, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, isCountryConfigured, type RowDataPacket } from "@/lib/database";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Meet - RediHealth Panel",
-};
+export const generateMetadata = createPageMetadata("meet", "Meet - RediHealth Panel", "");
 
 type MeetingRow = RowDataPacket & {
   id: number | string;
@@ -39,7 +37,7 @@ export default async function MeetPage() {
     redirect(await withRequestLangPrefix("/panel"));
   }
 
-  let databaseAvailable = hasDatabaseConnectionConfig();
+  let databaseAvailable = isCountryConfigured(workerContext.country);
   let pendingRequestsCount = 0;
   let assignedPatients: PatientItem[] = [];
   let meetings: {
@@ -56,8 +54,8 @@ export default async function MeetPage() {
   if (databaseAvailable) {
     try {
       const [patients, pendingCount] = await Promise.all([
-        loadPatients({ scopeToWorkerId: workerContext.isAdmin ? null : workerContext.workerId, limit: 200 }),
-        countPendingRequests(),
+        loadPatients({ country: workerContext.country, scopeToWorkerId: workerContext.isAdmin ? null : workerContext.workerId, limit: 200 }),
+        countPendingRequests(workerContext.country),
       ]);
 
       assignedPatients = patients;
@@ -76,7 +74,7 @@ export default async function MeetPage() {
            ORDER BY m.created_at DESC
            LIMIT 120`;
       const meetingsParams = workerContext.isAdmin ? [] : [workerContext.workerId];
-      const [meetingRows] = await getDatabase().query<MeetingRow[]>(meetingsQuery, meetingsParams);
+      const [meetingRows] = await getCountryDatabase(workerContext.country).query<MeetingRow[]>(meetingsQuery, meetingsParams);
       meetings = meetingRows.map((row) => ({
         id: String(row.id),
         title: row.title,

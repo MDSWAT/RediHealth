@@ -1,156 +1,40 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getDatabase, hasDatabaseConnectionConfig, type RowDataPacket } from "@/lib/database";
 import { PatientPortalView } from "@/components/portal/PatientPortalView";
-import type { FollowupItem, PatientItem, PatientPhoto, PatientPriority, TreatmentPlan } from "@/lib/types/patient";
-import { hashPortalToken } from "@/lib/security/portal-token";
+import { PortalLinkExpired } from "@/components/portal/PortalLinkExpired";
+import { parseCountry } from "@/lib/countries";
+import { findPatientByPortalToken, toPortalPatient } from "@/lib/data/portal";
+import { configuredCountries } from "@/lib/database";
+import { PORTAL_TOKEN_PATTERN } from "@/lib/security/portal-token";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Patient Portal - RediHealth",
-};
-
-type DBPatient = RowDataPacket & {
-  id: string;
-  request_id?: string | null;
-  assigned_worker_id?: string | null;
-  assigned_worker_name?: string | null;
-  full_name: string;
-  phone: string;
-  email: string;
-  date_of_birth?: string | null;
-  gender?: string | null;
-  address?: string | null;
-  condition_notes?: string | null;
-  medical_history?: string | null;
-  treatment_plan?: string | object | null;
-  followups?: string | object | null;
-  photos?: string | object | null;
-  status?: string;
-  priority?: string;
-  created_at: Date | string;
-  updated_at?: Date | string;
-};
-
-const TOKEN_PATTERN = /^[A-Za-z0-9_-]{16,128}$/;
-
-function isMissingAccessTokenExpiryColumnError(error: unknown): boolean {
-  const dbError = error as { code?: string; errno?: number; sqlMessage?: string; message?: string };
-  return (
-    (dbError.code === "ER_BAD_FIELD_ERROR" || dbError.errno === 1054)
-    && /access_token_expires_at/i.test(dbError.sqlMessage || dbError.message || "")
-  );
-}
-
-function parseJson<T>(val: unknown): T | null {
-  if (!val) return null;
-  if (typeof val === "object") return val as T;
-  if (typeof val === "string") {
-    try {
-      return JSON.parse(val) as T;
-    } catch {
-      return null;
-    }
-  }
-  return null;
-}
+export const generateMetadata = createPageMetadata(
+  "patient-portal",
+  "Patient Portal - RediHealth",
+  "",
+  { robots: { index: false, follow: false } },
+);
 
 interface PageProps {
   params: Promise<{ token: string }>;
+  searchParams: Promise<{ c?: string | string[] }>;
 }
 
-export default async function PatientPortalPage({ params }: PageProps) {
-  const { token: rawToken } = await params;
-  const token = rawToken.trim();
+export default async function PatientPortalPage({ params, searchParams }: PageProps) {
+  const token = (await params).token.trim();
+  const { c } = await searchParams;
 
-  if (!TOKEN_PATTERN.test(token)) {
+  if (!PORTAL_TOKEN_PATTERN.test(token) || configuredCountries().length === 0) {
     notFound();
   }
 
-  const tokenHash = hashPortalToken(token);
-  let patientRecord: DBPatient | null = null;
+  const lookup = await findPatientByPortalToken(token, parseCountry(Array.isArray(c) ? c[0] : c));
 
-  if (hasDatabaseConnectionConfig()) {
-    try {
-      const db = getDatabase();
-      let rows: DBPatient[] = [];
-
-      try {
-        const [primaryRows] = await db.query<DBPatient[]>(
-          `SELECT p.id, p.request_id, p.assigned_worker_id, w.full_name AS assigned_worker_name,
-                  p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, 
-                  p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
-                  COALESCE(p.status, 'active') AS status, 
-                  COALESCE(p.priority, 'moderate') AS priority, 
-                  p.created_at, p.updated_at
-           FROM patients p
-           LEFT JOIN workers w ON w.id = p.assigned_worker_id
-           WHERE p.access_token_hash = ?
-           LIMIT 1`,
-          [tokenHash],
-        );
-        rows = primaryRows;
-      } catch (queryError) {
-        if (!isMissingAccessTokenExpiryColumnError(queryError)) {
-          throw queryError;
-        }
-
-        const [fallbackRows] = await db.query<DBPatient[]>(
-          `SELECT p.id, p.request_id, p.assigned_worker_id, w.full_name AS assigned_worker_name,
-                  p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, 
-                  p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
-                  COALESCE(p.status, 'active') AS status, 
-                  COALESCE(p.priority, 'moderate') AS priority, 
-                  p.created_at, p.updated_at
-           FROM patients p
-           LEFT JOIN workers w ON w.id = p.assigned_worker_id
-           WHERE p.access_token_hash = ?
-           LIMIT 1`,
-          [tokenHash],
-        );
-        rows = fallbackRows;
-      }
-
-      if (rows.length > 0) {
-        patientRecord = rows[0];
-      }
-    } catch {
-    }
+  if (lookup.status === "expired") {
+    return <PortalLinkExpired />;
   }
-
-  if (!patientRecord) {
+  if (lookup.status === "not-found") {
     notFound();
   }
 
-  const formattedPatient: PatientItem = {
-    id: String(patientRecord.id),
-    request_id: patientRecord.request_id ? String(patientRecord.request_id) : null,
-    assigned_worker_id: patientRecord.assigned_worker_id ? String(patientRecord.assigned_worker_id) : null,
-    assigned_worker_name: patientRecord.assigned_worker_name || null,
-    has_portal_access: true,
-    full_name: patientRecord.full_name,
-    phone: patientRecord.phone,
-    email: patientRecord.email,
-    date_of_birth: patientRecord.date_of_birth || null,
-    gender: patientRecord.gender || null,
-    address: patientRecord.address || null,
-    condition_notes: patientRecord.condition_notes || null,
-    medical_history: patientRecord.medical_history || null,
-    treatment_plan: parseJson<TreatmentPlan>(patientRecord.treatment_plan),
-    followups: parseJson<FollowupItem[]>(patientRecord.followups) || [],
-    photos: parseJson<PatientPhoto[]>(patientRecord.photos) || [],
-    status: (patientRecord.status as PatientItem["status"]) || "active",
-    priority: (patientRecord.priority as PatientPriority) || "moderate",
-    created_at:
-      patientRecord.created_at instanceof Date
-        ? patientRecord.created_at.toISOString()
-        : String(patientRecord.created_at),
-    updated_at:
-      patientRecord.updated_at instanceof Date
-        ? patientRecord.updated_at.toISOString()
-        : patientRecord.updated_at
-        ? String(patientRecord.updated_at)
-        : undefined,
-  };
-
-  return <PatientPortalView initialPatient={formattedPatient} token={token} />;
+  return <PatientPortalView initialPatient={toPortalPatient(lookup.row, lookup.country)} token={token} country={lookup.country} />;
 }

@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { sendPatientPortalLinkEmail } from "@/lib/email";
 import { parseJsonColumn } from "@/lib/json";
-import { generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
+import { PORTAL_LINK_TTL_DAYS, generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
 import type { TreatmentPlan } from "@/lib/types/patient";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const db = getDatabase();
+    const db = getCountryDatabase(workerContext.country);
 
     let query = `SELECT id, full_name, email, condition_notes, treatment_plan, access_token_hash
                  FROM patients WHERE id = ?`;
@@ -59,21 +59,22 @@ export async function POST(request: Request) {
     const newAccessTokenHash = hashPortalToken(newAccessToken);
 
     await db.query<ResultSetHeader>(
-      `UPDATE patients SET access_token_hash = ?, access_token_expires_at = NULL WHERE id = ?`,
-      [newAccessTokenHash, patientId],
+      `UPDATE patients SET access_token_hash = ?, access_token_expires_at = DATE_ADD(NOW(), INTERVAL ? DAY) WHERE id = ?`,
+      [newAccessTokenHash, PORTAL_LINK_TTL_DAYS, patientId],
     );
 
-    await sendPatientPortalLinkEmail({
+    const emailSent = await sendPatientPortalLinkEmail({
       name: patient.full_name,
       email: patient.email,
       accessToken: newAccessToken,
+      country: workerContext.country,
       lang: await getRequestLang(request),
       treatmentPlan: parseJsonColumn<TreatmentPlan>(patient.treatment_plan),
       conditionNotes: patient.condition_notes,
       baseUrl: new URL(request.url).origin,
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, email_sent: emailSent });
   } catch (error) {
     console.error("Failed to resend patient portal link", error);
     return NextResponse.json(

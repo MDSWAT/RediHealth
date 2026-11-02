@@ -9,6 +9,7 @@ import type {
   PatientPriority,
 } from "@/lib/types/patient";
 import { getPriorityMeta } from "@/lib/patient-helpers";
+import type { CountryCode } from "@/lib/countries";
 
 const MAX_PHOTO_BYTES = 5 * 1024 * 1024;
 const SAVED_MESSAGE_TIMEOUT_MS = 3_000;
@@ -16,10 +17,11 @@ const SAVED_MESSAGE_TIMEOUT_MS = 3_000;
 interface UsePatientPortalArgs {
   initialPatient: PatientItem;
   token: string;
+  country: CountryCode;
 }
 
-async function patchPortal(token: string, payload: unknown): Promise<void> {
-  const response = await fetch(`/api/patient-portal/${encodeURIComponent(token)}`, {
+async function patchPortal(token: string, country: CountryCode, payload: unknown): Promise<void> {
+  const response = await fetch(`/api/patient-portal/${encodeURIComponent(token)}?c=${country.toLowerCase()}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -36,7 +38,8 @@ async function patchPortal(token: string, payload: unknown): Promise<void> {
  * component stays presentational. Handlers optimistically update local state only
  * after the server confirms the change.
  */
-export function usePatientPortal({ initialPatient, token }: UsePatientPortalArgs) {
+export function usePatientPortal({ initialPatient, token, country }: UsePatientPortalArgs) {
+  const patch = (payload: unknown) => patchPortal(token, country, payload);
   const [patient, setPatient] = useState<PatientItem>(initialPatient);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -81,7 +84,7 @@ export function usePatientPortal({ initialPatient, token }: UsePatientPortalArgs
 
     const condition_notes = symptomsText.trim();
     try {
-      await patchPortal(token, { condition_notes, priority: selectedPriority });
+      await patch({ condition_notes, priority: selectedPriority });
       setPatient((prev) => ({ ...prev, condition_notes, priority: selectedPriority }));
       setSymptomsSavedMsg(true);
       setTimeout(() => setSymptomsSavedMsg(false), SAVED_MESSAGE_TIMEOUT_MS);
@@ -111,7 +114,7 @@ export function usePatientPortal({ initialPatient, token }: UsePatientPortalArgs
     };
 
     try {
-      await patchPortal(token, { new_followup: newFollowup });
+      await patch({ new_followup: newFollowup });
       setPatient((prev) => ({
         ...prev,
         followups: [newFollowup, ...(prev.followups || [])],
@@ -164,7 +167,7 @@ export function usePatientPortal({ initialPatient, token }: UsePatientPortalArgs
     };
 
     try {
-      await patchPortal(token, { new_photo: photo });
+      await patch({ new_photo: photo });
       setPatient((prev) => ({ ...prev, photos: [photo, ...(prev.photos || [])] }));
       setNewPhotoData(null);
       setNewPhotoName("");
@@ -255,7 +258,7 @@ export function usePatientPortal({ initialPatient, token }: UsePatientPortalArgs
     };
 
     try {
-      await patchPortal(token, payload);
+      await patch(payload);
       setPatient((prev) => ({
         ...prev,
         followups: (prev.followups || []).map((item) =>

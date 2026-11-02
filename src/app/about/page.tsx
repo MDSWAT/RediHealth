@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { HeartIcon } from "@/components/ui/icons";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "About - RediHealth",
-  description:
-    "RediHealth helps people understand their health risks and connects them with medical assistance and healthcare workers.",
-};
+export const generateMetadata = createPageMetadata(
+  "about",
+  "About - RediHealth",
+  "RediHealth helps people understand their health risks and connects them with medical assistance and healthcare workers.",
+);
 
 export default function AboutPage() {
   return (

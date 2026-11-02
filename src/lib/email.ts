@@ -7,6 +7,9 @@ import {
 import type { TreatmentPlan } from "@/lib/types/patient";
 import { getTreatmentEntries, sortTreatments } from "@/lib/treatments";
 import type { Lang } from "@/lib/i18n/translations";
+import type { CountryCode } from "@/lib/countries";
+import { portalPath } from "@/lib/security/portal-token";
+import { escapeHtml } from "@/lib/text";
 
 type PanelEmailCopy = {
   greeting: string;
@@ -70,7 +73,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
       intro: "Your personal patient portal is now active. Access your profile to review your care instructions, report symptoms, and connect with your care team.",
       textIntro: "Your RediHealth Patient Profile & Portal Access is ready! You can view your medical profile, condition notes, care instructions, report new symptoms, add photos, and request follow-ups using your personal link:",
       cta: "Open Patient Portal",
-      linkDuration: "This secure portal link does not expire. If you lose it, request a new link from the RediHealth sign-in page.",
+      linkDuration: "This secure portal link is valid for 90 days. After that, or if you lose it, request a new link from the RediHealth sign-in page.",
       conditionSummary: "Condition / Symptoms Summary",
       portalDetailsHeading: "In your patient portal",
       portalDetails: [
@@ -118,7 +121,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
       intro: "Portalul tău personal de pacient este activ. Accesează-ți profilul pentru a consulta recomandările de îngrijire, a raporta simptome și a lua legătura cu echipa medicală.",
       textIntro: "Profilul tău RediHealth și accesul la portal sunt pregătite! Îți poți consulta profilul medical, notele despre afecțiune, recomandările de îngrijire, poți raporta simptome noi, adăuga fotografii și solicita consultații de urmărire folosind linkul personal:",
       cta: "Deschide portalul pacientului",
-      linkDuration: "Acest link securizat către portal nu expiră. Dacă îl pierzi, poți solicita un link nou din pagina de autentificare RediHealth.",
+      linkDuration: "Acest link securizat către portal este valabil 90 de zile. După aceea, sau dacă îl pierzi, poți solicita un link nou din pagina de autentificare RediHealth.",
       conditionSummary: "Rezumatul afecțiunii și simptomelor",
       portalDetailsHeading: "În portalul pacientului poți",
       portalDetails: [
@@ -166,7 +169,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
       intro: "Portali juaj personal i pacientit është aktiv. Hyni në profilin tuaj për të parë udhëzimet e kujdesit, për të raportuar simptoma dhe për t'u lidhur me ekipin tuaj të kujdesit.",
       textIntro: "Profili juaj i pacientit dhe qasja në portalin RediHealth janë gati! Mund të shikoni profilin mjekësor, shënimet për gjendjen dhe udhëzimet e kujdesit, të raportoni simptoma të reja, të shtoni fotografi dhe të kërkoni vizita pasuese përmes lidhjes suaj personale:",
       cta: "Hap portalin e pacientit",
-      linkDuration: "Kjo lidhje e sigurt e portalit nuk skadon. Nëse e humb, mund të kërkosh një lidhje të re nga faqja e identifikimit në RediHealth.",
+      linkDuration: "Kjo lidhje e sigurt e portalit është e vlefshme për 90 ditë. Pas kësaj, ose nëse e humb, mund të kërkosh një lidhje të re nga faqja e identifikimit në RediHealth.",
       conditionSummary: "Përmbledhje e gjendjes / simptomave",
       portalDetailsHeading: "Në portalin tuaj të pacientit",
       portalDetails: [
@@ -214,7 +217,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
       intro: "Il tuo portale personale è attivo. Accedi al tuo profilo per consultare le indicazioni di cura, segnalare sintomi e contattare il tuo team sanitario.",
       textIntro: "Il tuo profilo paziente RediHealth e l'accesso al portale sono pronti! Puoi consultare il profilo medico, le note sulla condizione e le indicazioni di cura, segnalare nuovi sintomi, aggiungere foto e richiedere visite di controllo tramite il tuo link personale:",
       cta: "Apri il portale paziente",
-      linkDuration: "Questo link sicuro al portale non scade. Se lo perdi, puoi richiedere un nuovo link dalla pagina di accesso RediHealth.",
+      linkDuration: "Questo link sicuro al portale è valido per 90 giorni. Dopo, o se lo perdi, puoi richiedere un nuovo link dalla pagina di accesso RediHealth.",
       conditionSummary: "Riepilogo della condizione / dei sintomi",
       portalDetailsHeading: "Nel tuo portale paziente",
       portalDetails: [
@@ -305,15 +308,6 @@ export async function sendEmail({ to, subject, text, html, displayName }: EmailM
   } as V1SendRequest;
 
   await new SendApi(sdkConfig).sendEmail(mailboxResourceId, message);
-}
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }
 
 export type BrandEmailOptions = {
@@ -679,6 +673,8 @@ export type PatientPortalEmailParams = {
   name: string;
   email: string;
   accessToken: string;
+  /** Country the patient belongs to; the link carries it so the portal reads the right database. */
+  country: CountryCode;
   lang?: Lang;
   treatmentPlan?: TreatmentPlan | null;
   conditionNotes?: string | null;
@@ -690,6 +686,7 @@ export async function sendPatientPortalLinkEmail({
   name,
   email,
   accessToken,
+  country,
   lang = "en",
   treatmentPlan,
   conditionNotes,
@@ -708,7 +705,7 @@ export async function sendPatientPortalLinkEmail({
     requestBaseUrl ||
     process.env.AUTH_URL ||
     "http://localhost:3000";
-  const portalUrl = `${baseUrl.replace(/\/$/, "")}/patient-portal/${accessToken}`;
+  const portalUrl = `${baseUrl.replace(/\/$/, "")}${portalPath(accessToken, country)}`;
 
   const textContent = `${copy.greeting} ${recipientName},
 

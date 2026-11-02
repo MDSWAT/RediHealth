@@ -3,7 +3,6 @@ import { logActivity } from "@/lib/activity-log";
 import { createInstitute, listInstitutesForAdmin } from "@/lib/data/medical-institutes";
 import {
   isInstituteCategory,
-  isSupportedCountry,
   validateInstituteInput,
 } from "@/lib/medical-institutes";
 import { getClientIp } from "@/lib/rate-limit";
@@ -14,14 +13,14 @@ export async function GET(request: Request) {
   if ("error" in access) return access.error;
 
   const { searchParams } = new URL(request.url);
-  const country = searchParams.get("country")?.toUpperCase();
   const category = searchParams.get("category");
   const status = searchParams.get("status");
 
   try {
     const result = await listInstitutesForAdmin({
       search: (searchParams.get("search") || "").slice(0, 100),
-      country: isSupportedCountry(country) ? country : null,
+      // Super admins only see the directory of the country they are working in.
+      country: access.worker.country,
       category: isInstituteCategory(category) ? category : null,
       status: status === "active" || status === "hidden" ? status : "all",
       page: Number(searchParams.get("page") || 1) || 1,
@@ -46,10 +45,14 @@ export async function POST(request: Request) {
   if (!validation.ok) {
     return NextResponse.json({ error: validation.error }, { status: 400 });
   }
+  if (validation.value.country_code !== access.worker.country) {
+    return NextResponse.json({ error: "You can only manage institutes of your own country." }, { status: 403 });
+  }
 
   try {
     const institute = await createInstitute(validation.value);
     await logActivity({
+      country: access.worker.country,
       actorWorkerId: access.worker.workerId,
       actorName: access.worker.workerName,
       actorEmail: access.email,

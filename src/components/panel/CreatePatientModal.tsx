@@ -10,11 +10,13 @@ import { createPatientModalTranslations } from "@/lib/i18n/panel-component-trans
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
 import type { PatientItem, PatientPriority, PatientStatus } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
+import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 
 interface PatientModalProps {
   request?: MedicalHelpRequestItem;
   patient?: PatientItem;
   workers?: WorkerItem[];
+  isRomania: boolean;
   isAdmin?: boolean;
   onClose: () => void;
   onSuccess?: (patient: PatientItem) => void;
@@ -24,6 +26,7 @@ export function CreatePatientModal({
   request,
   patient,
   workers: initialWorkers,
+  isRomania,
   onClose,
   onSuccess,
   isAdmin = false,
@@ -45,6 +48,7 @@ export function CreatePatientModal({
   const [dateOfBirth, setDateOfBirth] = useState(patient?.date_of_birth || "");
   const [gender, setGender] = useState(patient?.gender || "");
   const [address, setAddress] = useState(patient?.address || "");
+  const [county, setCounty] = useState(patient?.county || request?.county || "");
   const [conditionNotes, setConditionNotes] = useState(
     patient?.condition_notes ||
       (request
@@ -168,6 +172,7 @@ export function CreatePatientModal({
       date_of_birth: dateOfBirth.trim() || undefined,
       gender: gender.trim() || undefined,
       address: address.trim() || undefined,
+      county: isRomania && county ? county : undefined,
       condition_notes: conditionNotes.trim() || undefined,
       medical_history: medicalHistory.trim() || undefined,
       status,
@@ -219,6 +224,7 @@ export function CreatePatientModal({
         date_of_birth: payload.date_of_birth || null,
         gender: payload.gender || null,
         address: payload.address || null,
+        county: payload.county || null,
         condition_notes: payload.condition_notes || null,
         medical_history: payload.medical_history || null,
         status: payload.status,
@@ -303,6 +309,22 @@ export function CreatePatientModal({
 
         <form onSubmit={handleSubmit} className="mt-5 flex-1 space-y-5 overflow-y-auto pr-1">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {isRomania ? (
+              <div>
+                <label className="text-xs font-semibold text-foreground mb-1 block">
+                  {t.county} <span className="text-red-500">*</span>
+                </label>
+                <select
+                  required={!isEditing || Boolean(patient?.county)}
+                  value={county}
+                  onChange={(event) => setCounty(event.target.value)}
+                  className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <option value="">{t.selectCounty}</option>
+                  {ROMANIAN_COUNTIES.map((countyName) => <option key={countyName} value={countyName}>{countyName}</option>)}
+                </select>
+              </div>
+            ) : null}
             <div>
               <label className="text-xs font-semibold text-foreground mb-1 block">
                 {t.fullName} <span className="text-red-500">*</span>

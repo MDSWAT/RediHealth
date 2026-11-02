@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
-
-const REPORT_EMAIL_TO = "babinciucmihai4@gmail.com";
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { getAlertRecipient } from "@/lib/settings";
+import { escapeHtml, isValidEmail, text } from "@/lib/text";
 
 type ReportIssuePayload = {
   message?: unknown;
@@ -12,19 +11,6 @@ type ReportIssuePayload = {
   userAgent?: unknown;
 };
 
-function text(value: unknown): string {
-  return typeof value === "string" ? value.trim() : "";
-}
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
 function truncate(value: string, maxLength: number): string {
   if (value.length <= maxLength) return value;
   return `${value.slice(0, Math.max(0, maxLength - 3))}...`;
@@ -32,7 +18,7 @@ function truncate(value: string, maxLength: number): string {
 
 export async function POST(request: Request) {
   const ipAddress = getClientIp(request);
-  const rateLimit = checkRateLimit(`issue-report:${ipAddress}`, {
+  const rateLimit = await checkRateLimit(`issue-report:${ipAddress}`, {
     limit: 5,
     windowMs: 10 * 60_000,
   });
@@ -68,11 +54,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "One or more fields are too long." }, { status: 400 });
   }
 
-  if (email && !emailPattern.test(email)) {
+  if (email && !isValidEmail(email)) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
   }
 
-  if (!isEmailConfigured()) {
+  const { email: recipient } = await getAlertRecipient();
+  if (!recipient || !isEmailConfigured()) {
     return NextResponse.json(
       { error: "Issue reporting is temporarily unavailable." },
       { status: 503 },
@@ -131,7 +118,7 @@ export async function POST(request: Request) {
 
   try {
     await sendEmail({
-      to: REPORT_EMAIL_TO,
+      to: recipient,
       subject: `RediHealth issue report: ${subjectPreview}`,
       text: textBody,
       html: htmlBody,

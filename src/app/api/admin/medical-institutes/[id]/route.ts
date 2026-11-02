@@ -27,6 +27,12 @@ export async function PATCH(
   const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
   if (!body) return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
 
+  // Super admins only manage the directory of the country they are working in.
+  const current = await getInstituteForAdmin(id);
+  if (!current || current.country_code !== access.worker.country) {
+    return NextResponse.json({ error: "Not found." }, { status: 404 });
+  }
+
   try {
     let institute;
     let action: string;
@@ -40,6 +46,9 @@ export async function PATCH(
       if (!validation.ok) {
         return NextResponse.json({ error: validation.error }, { status: 400 });
       }
+      if (validation.value.country_code !== access.worker.country) {
+        return NextResponse.json({ error: "You can only manage institutes of your own country." }, { status: 403 });
+      }
       institute = await updateInstitute(id, validation.value);
       action = "medical_institute.updated";
     }
@@ -47,6 +56,7 @@ export async function PATCH(
     if (!institute) return NextResponse.json({ error: "Not found." }, { status: 404 });
 
     await logActivity({
+      country: access.worker.country,
       actorWorkerId: access.worker.workerId,
       actorName: access.worker.workerName,
       actorEmail: access.email,
@@ -77,10 +87,14 @@ export async function DELETE(
 
   try {
     const existing = await getInstituteForAdmin(id);
+    if (!existing || existing.country_code !== access.worker.country) {
+      return NextResponse.json({ error: "Not found." }, { status: 404 });
+    }
     const outcome = await deleteInstitute(id);
     if (!outcome) return NextResponse.json({ error: "Not found." }, { status: 404 });
 
     await logActivity({
+      country: access.worker.country,
       actorWorkerId: access.worker.workerId,
       actorName: access.worker.workerName,
       actorEmail: access.email,
@@ -88,7 +102,7 @@ export async function DELETE(
       action: outcome === "deleted" ? "medical_institute.deleted" : "medical_institute.hidden",
       entityType: "medical_institute",
       entityId: id,
-      details: { name: existing?.name ?? null, country: existing?.country_code ?? null },
+      details: { name: existing.name, country: existing.country_code },
       ipAddress: getClientIp(request),
     });
 

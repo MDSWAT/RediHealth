@@ -6,6 +6,8 @@ CREATE TABLE IF NOT EXISTS medical_help_requests (
   phone VARCHAR(50) NOT NULL,
   email VARCHAR(320) NULL,
   description TEXT NOT NULL,
+  county VARCHAR(100) NULL,
+  privacy_consent_at TIMESTAMP NULL,
   status ENUM('pending', 'in_progress', 'resolved', 'archived') NOT NULL DEFAULT 'pending',
   status_updated_by_name VARCHAR(200) NULL,
   status_updated_by_email VARCHAR(320) NULL,
@@ -25,6 +27,7 @@ CREATE TABLE IF NOT EXISTS workers (
   phone VARCHAR(50) NULL,
   role VARCHAR(100) NOT NULL DEFAULT 'Healthcare Worker',
   department VARCHAR(100) NULL,
+  county VARCHAR(100) NULL,
   status ENUM('active', 'inactive') NOT NULL DEFAULT 'active',
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -44,6 +47,7 @@ CREATE TABLE IF NOT EXISTS patients (
   date_of_birth VARCHAR(50) NULL,
   gender VARCHAR(50) NULL,
   address VARCHAR(500) NULL,
+  county VARCHAR(100) NULL,
   condition_notes TEXT NULL,
   medical_history TEXT NULL,
   profile_photo MEDIUMTEXT NULL,
@@ -68,6 +72,8 @@ CREATE TABLE IF NOT EXISTS mediator_cases (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   mediator_worker_id BIGINT NOT NULL,
   county VARCHAR(100) NOT NULL,
+  locality VARCHAR(200) NULL,
+  uat VARCHAR(200) NULL,
   full_name VARCHAR(200) NOT NULL,
   date_of_birth VARCHAR(50) NULL,
   phone VARCHAR(50) NULL,
@@ -76,6 +82,12 @@ CREATE TABLE IF NOT EXISTS mediator_cases (
   urgency ENUM('low', 'moderate', 'high', 'urgent') NOT NULL DEFAULT 'moderate',
   barriers JSON NOT NULL,
   target_date DATE NULL,
+  home_visit_date DATE NULL,
+  map_lat DECIMAL(9, 6) NULL,
+  map_lng DECIMAL(9, 6) NULL,
+  status ENUM('open', 'closed') NOT NULL DEFAULT 'open',
+  closed_at TIMESTAMP NULL,
+  closed_by_worker_id BIGINT NULL,
   notes TEXT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -149,3 +161,19 @@ CREATE TABLE IF NOT EXISTS medical_institutes (
   INDEX medical_institutes_country_idx (country_code, is_active, category),
   INDEX medical_institutes_name_idx (name)
 ) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- Shared rate limiting (works across server instances).
+CREATE TABLE IF NOT EXISTS rate_limits (
+  bucket_key CHAR(64) NOT NULL PRIMARY KEY,
+  hits INT NOT NULL,
+  reset_at BIGINT NOT NULL,
+  INDEX rate_limits_reset_at_idx (reset_at)
+);
+
+-- Runtime settings editable by super admins (e.g. the operational alert recipient).
+CREATE TABLE IF NOT EXISTS app_settings (
+  setting_key VARCHAR(100) NOT NULL PRIMARY KEY,
+  setting_value TEXT NULL,
+  updated_by VARCHAR(320) NULL,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

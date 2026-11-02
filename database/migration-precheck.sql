@@ -25,7 +25,15 @@ WHERE table_schema = DATABASE() AND table_name = 'meetings'
 UNION ALL
 SELECT 'activity_logs' AS table_name, COUNT(*) > 0 AS exists_flag
 FROM information_schema.tables
-WHERE table_schema = DATABASE() AND table_name = 'activity_logs';
+WHERE table_schema = DATABASE() AND table_name = 'activity_logs'
+UNION ALL
+SELECT 'rate_limits' AS table_name, COUNT(*) > 0 AS exists_flag
+FROM information_schema.tables
+WHERE table_schema = DATABASE() AND table_name = 'rate_limits'
+UNION ALL
+SELECT 'app_settings' AS table_name, COUNT(*) > 0 AS exists_flag
+FROM information_schema.tables
+WHERE table_schema = DATABASE() AND table_name = 'app_settings';
 
 SELECT 'patients.assigned_worker_ids' AS column_name, COUNT(*) > 0 AS exists_flag
 FROM information_schema.columns

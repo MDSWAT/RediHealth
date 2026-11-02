@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { countryCenter, findNearbyInstitutes } from "@/lib/data/medical-institutes";
-import { hasDatabaseConnectionConfig } from "@/lib/database";
+import { hasControlDatabase } from "@/lib/database";
 import {
   countryFromHeaders,
   isInstituteCategory,
@@ -21,7 +21,7 @@ function parseCoordinate(value: string | null, max: number) {
  * - neither: country detected from CDN headers, falling back to Romania.
  */
 export async function GET(request: Request) {
-  if (!hasDatabaseConnectionConfig()) {
+  if (!hasControlDatabase()) {
     return NextResponse.json({ error: "Directory unavailable." }, { status: 503 });
   }
 

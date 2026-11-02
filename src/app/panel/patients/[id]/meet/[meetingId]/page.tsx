@@ -3,10 +3,9 @@ import { auth } from "@/auth";
 import { FollowupMeetingWorkspace } from "@/components/panel/FollowupMeetingWorkspace";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata = {
-  title: "Follow-up Meeting - RediHealth Panel",
-};
+export const generateMetadata = createPageMetadata("follow-up-meeting", "Follow-up Meeting - RediHealth Panel", "");
 
 export default async function PatientFollowupMeetingPage({
   params,

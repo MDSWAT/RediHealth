@@ -1,71 +1,61 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/ban-ts-comment */
 import fs from "fs";
 import type { NextConfig } from "next";
+import { meetingOriginFromEnv } from "./src/lib/security/csp";
 
-function patchFsReadlink() {
-  const origReadlink = fs.readlink;
-  const origReadlinkSync = fs.readlinkSync;
-  const origPromisesReadlink = fs.promises?.readlink;
+const isProduction = process.env.NODE_ENV === "production";
+const jitsiOrigin = meetingOriginFromEnv();
 
-  // @ts-ignore
-  fs.readlink = function (path: any, ...args: any[]) {
-    const callback = typeof args[args.length - 1] === "function" ? args.pop() : null;
-
-    return origReadlink.call(this, path, (err: any, linkString: any) => {
-      if (err && err.code === "EISDIR") {
-        const einval: any = new Error(`EINVAL: invalid argument, readlink '${path}'`);
-        einval.code = "EINVAL";
-        einval.errno = -22;
-        einval.syscall = "readlink";
-        einval.path = path;
-        if (callback) return callback(einval);
-      }
-      if (callback) return callback(err, linkString);
+// On Windows (notably inside synced folders) readlink() on a regular directory fails with EISDIR,
+// which makes webpack abort. Node reports EINVAL for the same case on other platforms, so translate it.
+function patchWindowsReadlink() {
+  const toEinval = (error: NodeJS.ErrnoException, path: fs.PathLike) => {
+    if (error?.code !== "EISDIR") return error;
+    return Object.assign(new Error(`EINVAL: invalid argument, readlink '${path}'`), {
+      code: "EINVAL",
+      errno: -22,
+      syscall: "readlink",
+      path: String(path),
     });
   };
 
-  // @ts-ignore
-  fs.readlinkSync = function (path: any, options: any) {
-    try {
-      return origReadlinkSync.call(this, path, options);
-    } catch (err: any) {
-      if (err && err.code === "EISDIR") {
-        const einval: any = new Error(`EINVAL: invalid argument, readlink '${path}'`);
-        einval.code = "EINVAL";
-        einval.errno = -22;
-        einval.syscall = "readlink";
-        einval.path = path;
-        throw einval;
-      }
-      throw err;
-    }
-  };
+  const readlink = fs.readlink;
+  fs.readlink = ((path: fs.PathLike, ...args: unknown[]) => {
+    const callback = args.pop() as (error: NodeJS.ErrnoException | null, link?: string) => void;
+    return (readlink as (...a: unknown[]) => void)(path, ...args, (error: NodeJS.ErrnoException | null, link?: string) =>
+      callback(error && toEinval(error, path), link),
+    );
+  }) as typeof fs.readlink;
 
-  if (origPromisesReadlink) {
-    // @ts-ignore
-    fs.promises.readlink = async function (path: any, options: any) {
-      try {
-        return await origPromisesReadlink.call(this, path, options);
-      } catch (err: any) {
-        if (err && err.code === "EISDIR") {
-          const einval: any = new Error(`EINVAL: invalid argument, readlink '${path}'`);
-          einval.code = "EINVAL";
-          einval.errno = -22;
-          einval.syscall = "readlink";
-          einval.path = path;
-          throw einval;
-        }
-        throw err;
-      }
-    };
-  }
+  const readlinkSync = fs.readlinkSync;
+  fs.readlinkSync = ((path: fs.PathLike, options?: fs.EncodingOption) => {
+    try {
+      return readlinkSync(path, options);
+    } catch (error) {
+      throw toEinval(error as NodeJS.ErrnoException, path);
+    }
+  }) as typeof fs.readlinkSync;
+
+  const readlinkPromise = fs.promises.readlink;
+  fs.promises.readlink = (async (path: fs.PathLike, options?: fs.EncodingOption) => {
+    try {
+      return await readlinkPromise(path, options);
+    } catch (error) {
+      throw toEinval(error as NodeJS.ErrnoException, path);
+    }
+  }) as typeof fs.promises.readlink;
 }
 
-patchFsReadlink();
+const isWindowsDev = process.platform === "win32" && !isProduction;
+if (isWindowsDev) {
+  patchWindowsReadlink();
+}
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["192.168.0.61"],
-  serverExternalPackages: ["pg"],
+  poweredByHeader: false,
+  allowedDevOrigins: (process.env.DEV_ALLOWED_ORIGINS || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean),
   async headers() {
     return [
       {
@@ -74,22 +64,12 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          // geolocation=(self): the Find help map uses the visitor's location to show nearby institutes.
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(self)" },
+          // Meetings embed Jitsi and record audio for transcription; the Find help map reads the visitor's location.
           {
-            key: "Content-Security-Policy",
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'", // Next.js requires unsafe-inline/unsafe-eval for hydration and webpack in dev
-              "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob: https:",
-              "font-src 'self' data:",
-              "connect-src 'self' https://api.llmsrelay.com https://meet.jit.si",
-              "frame-src https://meet.jit.si",
-              "media-src 'self' blob:",
-            ].join("; "),
+            key: "Permissions-Policy",
+            value: `camera=(self "${jitsiOrigin}"), microphone=(self "${jitsiOrigin}"), display-capture=(self "${jitsiOrigin}"), geolocation=(self)`,
           },
-          ...(process.env.NODE_ENV === "production"
+          ...(isProduction
             ? [{ key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" }]
             : []),
         ],
@@ -97,8 +77,10 @@ const nextConfig: NextConfig = {
     ];
   },
   webpack: (config) => {
-    config.resolve.symlinks = false;
-    config.cache = false;
+    if (isWindowsDev) {
+      config.resolve.symlinks = false;
+      config.cache = false;
+    }
     return config;
   },
 };

@@ -1,12 +1,9 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MailIcon, PhoneIcon } from "@/components/ui/icons";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Contact - RediHealth",
-  description: "Get in touch with the RediHealth team.",
-};
+export const generateMetadata = createPageMetadata("contact", "Contact - RediHealth", "Get in touch with the RediHealth team.");
 
 export default function ContactPage() {
   return (

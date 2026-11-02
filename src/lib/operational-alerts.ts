@@ -1,4 +1,7 @@
 import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
+import { checkRateLimit } from "@/lib/rate-limit";
+import { getAlertRecipient } from "@/lib/settings";
+import { escapeHtml } from "@/lib/text";
 
 type OperationalAlertInput = {
   key: string;
@@ -10,18 +13,7 @@ type OperationalAlertInput = {
   cooldownMs?: number;
 };
 
-const lastSentByKey = new Map<string, number>();
-const DEFAULT_ALERT_EMAIL = "babinciucmihai4@gmail.com";
 const DEFAULT_COOLDOWN_MS = 15 * 60_000;
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
 
 function formatDetails(details?: Record<string, unknown>): string {
   if (!details) return "";
@@ -32,15 +24,17 @@ function formatDetails(details?: Record<string, unknown>): string {
 }
 
 export async function notifyOperationalIssue(input: OperationalAlertInput) {
-  const now = Date.now();
-  const cooldownMs = input.cooldownMs ?? DEFAULT_COOLDOWN_MS;
-  const previous = lastSentByKey.get(input.key);
-  if (previous && now - previous < cooldownMs) {
+  const { email: toAddress } = await getAlertRecipient();
+  if (!toAddress || !isEmailConfigured()) {
     return false;
   }
 
-  const toAddress = (process.env.OPERATIONAL_ALERT_EMAIL || DEFAULT_ALERT_EMAIL).trim();
-  if (!toAddress || !isEmailConfigured()) {
+  // One alert per key per cooldown window, shared across server instances.
+  const cooldown = await checkRateLimit(`operational-alert:${input.key}`, {
+    limit: 1,
+    windowMs: input.cooldownMs ?? DEFAULT_COOLDOWN_MS,
+  });
+  if (!cooldown.allowed) {
     return false;
   }
 
@@ -93,7 +87,6 @@ export async function notifyOperationalIssue(input: OperationalAlertInput) {
       html: htmlBody,
       displayName: "RediHealth Ops Alerts",
     });
-    lastSentByKey.set(input.key, now);
     return true;
   } catch (error) {
     console.error("Failed to send operational alert", error);

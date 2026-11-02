@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { logActivity } from "@/lib/activity-log";
-import { getDatabase } from "@/lib/database";
-import { isSupportedCountry } from "@/lib/medical-institutes";
+import { getControlDatabase } from "@/lib/database";
+import { SUPPORTED_COUNTRIES, isSupportedCountry } from "@/lib/medical-institutes";
 import { importCountryFromOsm } from "@/lib/osm-import";
 import { getClientIp } from "@/lib/rate-limit";
 import { requireSuperAdmin } from "@/lib/super-admin";
@@ -16,12 +16,16 @@ export async function POST(request: Request) {
   const body = (await request.json().catch(() => null)) as { country?: unknown } | null;
   const country = typeof body?.country === "string" ? body.country.toUpperCase() : "";
   if (!isSupportedCountry(country)) {
-    return NextResponse.json({ error: "Country must be one of RO, AL, IT." }, { status: 400 });
+    return NextResponse.json({ error: `Country must be one of ${SUPPORTED_COUNTRIES.join(", ")}.` }, { status: 400 });
+  }
+  if (country !== access.worker.country) {
+    return NextResponse.json({ error: "You can only import institutes for your own country." }, { status: 403 });
   }
 
   try {
-    const result = await importCountryFromOsm(getDatabase(), country);
+    const result = await importCountryFromOsm(getControlDatabase(), country);
     await logActivity({
+      country: access.worker.country,
       actorWorkerId: access.worker.workerId,
       actorName: access.worker.workerName,
       actorEmail: access.email,

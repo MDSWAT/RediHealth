@@ -1,10 +1,13 @@
 import {
-  getDatabase,
+  getCountryDatabase,
   type ResultSetHeader,
   type RowDataPacket,
 } from "@/lib/database";
+import type { CountryCode } from "@/lib/countries";
 
 export type ActivityLogInput = {
+  /** Whose audit log the entry belongs to. */
+  country: CountryCode;
   actorWorkerId?: string | null;
   actorName?: string | null;
   actorEmail?: string | null;
@@ -38,9 +41,8 @@ export async function logActivity(
   input: ActivityLogInput,
   queryable?: Queryable,
 ): Promise<boolean> {
-  const db = queryable ?? getDatabase();
-
   try {
+    const db = queryable ?? getCountryDatabase(input.country);
     await db.query<ResultSetHeader>(
       `INSERT INTO activity_logs (
          actor_worker_id,

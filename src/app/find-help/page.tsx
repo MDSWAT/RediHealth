@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { FindHelpPageContent } from "@/components/find-help/FindHelpPageContent";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { countryForLang, countryFromHeaders, isSupportedCountry } from "@/lib/medical-institutes";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Find Medical Help - RediHealth",
-  description:
-    "Find medical institutes near you. Browse hospitals, clinics, GP practices, pharmacies, and more with addresses and an interactive map.",
-};
+export const generateMetadata = createPageMetadata(
+  "find-help",
+  "Find Medical Help - RediHealth",
+  "Find medical institutes near you. Browse hospitals, clinics, GP practices, pharmacies, and more with addresses and an interactive map.",
+);
 
 export default async function FindHelpPage() {
   const ipCountry = countryFromHeaders(await headers());

@@ -3,8 +3,9 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const mocks = vi.hoisted(() => ({ auth: vi.fn(), worker: vi.fn(), query: vi.fn(), log: vi.fn() }));
 vi.mock("@/auth", () => ({ auth: mocks.auth }));
 vi.mock("@/lib/worker-auth", () => ({ getUserWorkerContext: mocks.worker }));
-vi.mock("@/lib/database", () => ({ getDatabase: () => ({ query: mocks.query }) }));
-vi.mock("@/lib/email", () => ({ sendPatientPortalLinkEmail: vi.fn() }));
+vi.mock("@/lib/database", () => ({ getCountryDatabase: () => ({ query: mocks.query }) }));
+vi.mock("@/lib/email", () => ({ sendPatientPortalLinkEmail: vi.fn().mockResolvedValue(false) }));
+vi.mock("@/lib/i18n/server-routing", () => ({ getRequestLang: async () => "en" }));
 vi.mock("@/lib/activity-log", () => ({ logActivity: mocks.log }));
 vi.mock("@/lib/rate-limit", () => ({ getClientIp: () => "127.0.0.1" }));
 
@@ -22,7 +23,7 @@ describe("patient treatment persistence", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.auth.mockResolvedValue({ user: { email: "staff@example.com" } });
-    mocks.worker.mockResolvedValue({ workerId: "2", isAdmin: false });
+    mocks.worker.mockResolvedValue({ country: "RO", workerId: "2", isAdmin: false });
     mocks.query.mockResolvedValue([{ affectedRows: 1 }]);
     mocks.log.mockResolvedValue(undefined);
   });
@@ -37,10 +38,27 @@ describe("patient treatment persistence", () => {
 
   it("creates a patient with multiple treatment plans in the existing JSON column", async () => {
     mocks.query.mockResolvedValueOnce([{ insertId: 7 }]);
-    const response = await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", treatment_plan: { entries } }));
+    const response = await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", county: "Cluj", treatment_plan: { entries } }));
     expect(response.status).toBe(201);
     expect(mocks.query.mock.calls[0][0]).toContain("INSERT INTO patients");
+    expect(mocks.query.mock.calls[0][0]).toContain("priority, county");
+    expect(mocks.query.mock.calls[0][1].at(-1)).toBe("Cluj");
     expect(JSON.parse(mocks.query.mock.calls[0][1][13])).toEqual({ entries });
+  });
+
+  it("records the creation even when the portal email cannot be sent", async () => {
+    mocks.query.mockResolvedValueOnce([{ insertId: 9 }]);
+    const response = await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", county: "Cluj" }));
+    expect(response.status).toBe(201);
+    expect(await response.json()).toMatchObject({ id: 9, email_sent: false });
+    expect(mocks.log).toHaveBeenCalledWith(expect.objectContaining({ action: "patient.created", entityId: 9 }));
+  });
+
+  it("gives new portal links a 90 day expiry", async () => {
+    mocks.query.mockResolvedValueOnce([{ insertId: 10 }]);
+    await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", county: "Cluj" }));
+    expect(mocks.query.mock.calls[0][0]).toContain("DATE_ADD(NOW(), INTERVAL ? DAY)");
+    expect(mocks.query.mock.calls[0][1][4]).toBe(90);
   });
 
   it("persists editing and deletion without dropping another course", async () => {
@@ -51,10 +69,24 @@ describe("patient treatment persistence", () => {
     expect(mocks.query.mock.calls[1][1][0]).toBe('{"entries":[]}');
   });
 
+  it("archives a patient when closing the patient record", async () => {
+    const response = await PATCH(request("PATCH", { id: "7", status: "archived" }));
+
+    expect(response.status).toBe(200);
+    expect(mocks.query.mock.calls[0][0]).toContain("status = ?");
+    expect(mocks.query.mock.calls[0][1]).toEqual(["archived", "7", "2", "2"]);
+  });
+
   it("rejects invalid dates before any write for both create and update", async () => {
     const treatment_plan = { entries: [{ ...entries[0], end_date: "2026-09-01" }] };
     expect((await PATCH(request("PATCH", { id: "7", treatment_plan }))).status).toBe(400);
-    expect((await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", treatment_plan }))).status).toBe(400);
+    expect((await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", county: "Cluj", treatment_plan }))).status).toBe(400);
+    expect(mocks.query).not.toHaveBeenCalled();
+  });
+
+  it("requires a valid county when creating patients in Romania", async () => {
+    const response = await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", county: "Invalid" }));
+    expect(response.status).toBe(400);
     expect(mocks.query).not.toHaveBeenCalled();
   });
 

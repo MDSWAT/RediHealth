@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
+import { toAvatarDataUrl } from "@/lib/image";
 import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
@@ -22,7 +23,7 @@ import { ScheduleFollowupDialog } from "./ScheduleFollowupDialog";
 import { FollowupDetailDialog } from "./FollowupDetailDialog";
 import { useUnsavedChanges } from "./useUnsavedChanges";
 
-export function PatientProfileView({ initialPatient, isAdmin = false }: { initialPatient: PatientItem; isAdmin?: boolean }) {
+export function PatientProfileView({ initialPatient, isAdmin = false, isRomania }: { initialPatient: PatientItem; isAdmin?: boolean; isRomania: boolean }) {
   const { lang } = useLanguage();
   const t = crmTranslations[lang];
   const fields = createPatientModalTranslations[lang];
@@ -153,13 +154,9 @@ export function PatientProfileView({ initialPatient, isAdmin = false }: { initia
       setError(t.imageError);
       return;
     }
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (typeof reader.result === "string") void save({ profile_photo: reader.result });
-      else setError(t.error);
-    };
-    reader.onerror = () => setError(t.error);
-    reader.readAsDataURL(file);
+    toAvatarDataUrl(file)
+      .then((dataUrl) => save({ profile_photo: dataUrl }))
+      .catch(() => setError(t.error));
   }
   async function addPhoto(event: FormEvent) {
     event.preventDefault(); if (!photoData || saving) return;
@@ -202,6 +199,6 @@ export function PatientProfileView({ initialPatient, isAdmin = false }: { initia
     </section>
     {scheduling && <ScheduleFollowupDialog patients={[patient]} patientId={patient.id} onClose={() => setScheduling(false)} onSaved={(_, item, emailSent) => { setPatient((current) => ({ ...current, followups: [item, ...(current.followups || []).filter((f) => f.id !== item.id)] })); setNotice(emailSent === false ? t.invitationWarning : ""); }} />}
     {selectedFollowup && followups.some((item) => item.id === selectedFollowup.id) && <FollowupDetailDialog patient={patient} followup={followups.find((item) => item.id === selectedFollowup.id)!} busy={saving} error={error} onClose={() => setSelectedFollowup(null)} onToggle={(notes) => toggleFollowup(selectedFollowup.id, selectedFollowup.status === "completed" ? "scheduled" : "completed", notes)} onCreateMeeting={() => createFollowupMeeting(selectedFollowup)} onDelete={() => deleteFollowup(selectedFollowup)} />}
-    {editing && <CreatePatientModal patient={patient} isAdmin={isAdmin} onClose={() => setEditing(false)} onSuccess={(updated) => { setPatient((current) => ({ ...current, ...updated })); setEditing(false); }} />}
+    {editing && <CreatePatientModal patient={patient} isAdmin={isAdmin} isRomania={isRomania} onClose={() => setEditing(false)} onSuccess={(updated) => { setPatient((current) => ({ ...current, ...updated })); setEditing(false); }} />}
   </div>;
 }

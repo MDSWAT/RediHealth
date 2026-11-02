@@ -1,15 +1,13 @@
-import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { MedicalInstitutesDashboard } from "@/components/panel/MedicalInstitutesDashboard";
 import { listInstitutesForAdmin } from "@/lib/data/medical-institutes";
-import { hasDatabaseConnectionConfig } from "@/lib/database";
+import { hasControlDatabase } from "@/lib/database";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 import { getUserWorkerContext } from "@/lib/worker-auth";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Medical institutes - RediHealth Panel",
-};
+export const generateMetadata = createPageMetadata("institutes", "Medical institutes - RediHealth Panel", "");
 
 export default async function MedicalInstitutesPage() {
   const session = await auth();
@@ -25,12 +23,12 @@ export default async function MedicalInstitutesPage() {
     redirect(await withRequestLangPrefix("/panel"));
   }
 
-  let databaseAvailable = hasDatabaseConnectionConfig();
+  let databaseAvailable = hasControlDatabase();
   let initialData: Awaited<ReturnType<typeof listInstitutesForAdmin>> | null = null;
 
   if (databaseAvailable) {
     try {
-      initialData = await listInstitutesForAdmin({ page: 1, pageSize: 50 });
+      initialData = await listInstitutesForAdmin({ country: workerContext.country, page: 1, pageSize: 50 });
     } catch (error) {
       console.error("Failed to load medical institutes page", error);
       databaseAvailable = false;
@@ -43,6 +41,7 @@ export default async function MedicalInstitutesPage() {
       userEmail={userEmail}
       userRole={workerContext.role}
       databaseAvailable={databaseAvailable}
+      workingCountry={workerContext.country}
     />
   );
 }

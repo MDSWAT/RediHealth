@@ -7,6 +7,7 @@ export type WorkerItem = {
   phone?: string | null;
   role: string;
   department?: string | null;
+  county?: string | null;
   status: WorkerStatus;
   assigned_patients_count?: number;
   created_at: string;
@@ -20,5 +21,6 @@ export type CreateWorkerPayload = {
   phone?: string;
   role?: string;
   department?: string;
+  county?: string;
   status?: WorkerStatus;
 };

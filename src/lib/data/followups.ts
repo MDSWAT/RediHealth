@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
-import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import type { CountryCode } from "@/lib/countries";
 import { parseJsonColumn } from "@/lib/json";
 import { validateFollowupInput } from "@/lib/validation";
 import type { FollowupItem } from "@/lib/types/patient";
@@ -8,13 +9,13 @@ export class FollowupError extends Error {
   constructor(message: string, public status: number) { super(message); }
 }
 
-export async function createFollowup(patientId: string, workerId: string, isAdmin: boolean, input: unknown) {
+export async function createFollowup(country: CountryCode, patientId: string, workerId: string, isAdmin: boolean, input: unknown) {
   const parsed = validateFollowupInput(input);
   if (!parsed.ok) throw new FollowupError(parsed.error, 400);
   const body = input as Record<string, unknown>;
   const id = typeof body.id === "string" && /^[a-zA-Z0-9-]{1,64}$/.test(body.id) ? body.id : randomUUID();
   const item: FollowupItem = { ...parsed.value, id, status: "scheduled" };
-  const connection = await getDatabase().getConnection();
+  const connection = await getCountryDatabase(country).getConnection();
   try {
     await connection.beginTransaction();
     const [rows] = await connection.query<RowDataPacket[]>(

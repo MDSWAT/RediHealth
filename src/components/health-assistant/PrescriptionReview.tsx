@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element -- the preview is a data URL of the file the visitor just chose */
 
 import { useRef, useState } from "react";
 import { CheckCircleIcon, FileTextIcon, ImageIcon } from "@/components/ui/icons";

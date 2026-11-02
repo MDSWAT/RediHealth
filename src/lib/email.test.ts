@@ -40,6 +40,7 @@ describe("panel email localization", () => {
       name: "Ana",
       email: "ana@example.com",
       accessToken: "secure-token",
+      country: "RO",
       lang: "ro",
     })).resolves.toBe(true);
 
@@ -54,9 +55,10 @@ describe("panel email localization", () => {
     const sentMessage = mailMocks.send.mock.calls[0][1] as { text: string; html: string };
     expect(sentMessage.text).toContain("Profilul tău RediHealth");
     expect(sentMessage.text).not.toContain("Your RediHealth Patient Profile");
-    expect(sentMessage.text).toContain("Acest link securizat către portal nu expiră.");
+    expect(sentMessage.text).toContain("Acest link securizat către portal este valabil 90 de zile.");
     expect(sentMessage.text).not.toContain("30 de zile");
     expect(sentMessage.html).toContain("Portalul pacientului");
+    expect(sentMessage.text).toContain("/patient-portal/secure-token?c=ro");
   });
 
   it("sends appointment invitations in the selected Romanian language", async () => {

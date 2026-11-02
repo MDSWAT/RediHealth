@@ -14,6 +14,7 @@ interface PatientsDashboardProps {
   userEmail: string;
   userRole?: string;
   isAdmin?: boolean;
+  isRomania: boolean;
   databaseAvailable: boolean;
   pendingRequestsCount?: number;
 }
@@ -23,6 +24,7 @@ export function PatientsDashboard({
   userEmail,
   userRole,
   isAdmin,
+  isRomania,
   databaseAvailable,
   pendingRequestsCount = 0,
 }: PatientsDashboardProps) {
@@ -66,6 +68,7 @@ export function PatientsDashboard({
           ) : (
             <PatientsTable
               isAdmin={isAdmin}
+              isRomania={isRomania}
               initialPatients={patients}
               onPatientsChange={setPatients}
               onRefresh={handleRefresh}

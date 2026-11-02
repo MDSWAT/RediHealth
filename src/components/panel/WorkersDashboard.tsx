@@ -17,6 +17,7 @@ interface WorkersDashboardProps {
   userEmail: string;
   userRole?: string;
   isAdmin?: boolean;
+  isRomania: boolean;
   databaseAvailable: boolean;
   pendingRequestsCount?: number;
 }
@@ -27,6 +28,7 @@ export function WorkersDashboard({
   userEmail,
   userRole,
   isAdmin,
+  isRomania,
   databaseAvailable,
   pendingRequestsCount = 0,
 }: WorkersDashboardProps) {
@@ -178,6 +180,7 @@ export function WorkersDashboard({
               </div>
 
               <WorkersTable
+                isRomania={isRomania}
                 initialWorkers={workers}
                 patients={patients}
                 onRefresh={handleRefresh}

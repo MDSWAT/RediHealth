@@ -5,8 +5,15 @@ import { Reveal } from "@/components/ui/Reveal";
 import { RequestHelpForm } from "@/components/get-help/RequestHelpForm";
 import { HandHelpingIcon, PhoneIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import type { CountryCode } from "@/lib/countries";
 
-export function GetHelpPageContent() {
+export function GetHelpPageContent({
+  countries,
+  initialCountry,
+}: {
+  countries: CountryCode[];
+  initialCountry: CountryCode | null;
+}) {
   const { t } = useLanguage();
   const page = t.getHelpPage;
 
@@ -32,7 +39,7 @@ export function GetHelpPageContent() {
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
             <Reveal>
-              <RequestHelpForm />
+              <RequestHelpForm countries={countries} initialCountry={initialCountry} />
             </Reveal>
 
             <Reveal delay={150} className="lg:pt-2">

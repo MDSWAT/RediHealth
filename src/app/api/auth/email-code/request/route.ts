@@ -8,8 +8,7 @@ import {
 } from "@/lib/email-auth";
 import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
 import { checkLoginAccess } from "@/lib/login-access";
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { isValidEmail } from "@/lib/text";
 
 function rateLimitResponse(retryAfterSeconds: number) {
   return NextResponse.json(
@@ -19,7 +18,7 @@ function rateLimitResponse(retryAfterSeconds: number) {
 }
 
 export async function POST(request: Request) {
-  const ipRateLimit = checkRateLimit(`email-code-request:ip:${getClientIp(request)}`, {
+  const ipRateLimit = await checkRateLimit(`email-code-request:ip:${getClientIp(request)}`, {
     limit: 8,
     windowMs: 60_000,
   });
@@ -37,14 +36,14 @@ export async function POST(request: Request) {
   const { email } = body;
   const normalizedEmail = email?.trim().toLowerCase();
 
-  if (!normalizedEmail || !emailPattern.test(normalizedEmail)) {
+  if (!normalizedEmail || !isValidEmail(normalizedEmail)) {
     return NextResponse.json(
       { error: "Enter a valid email address." },
       { status: 400 },
     );
   }
 
-  const emailRateLimit = checkRateLimit(`email-code-request:email:${normalizedEmail}`, {
+  const emailRateLimit = await checkRateLimit(`email-code-request:email:${normalizedEmail}`, {
     limit: 5,
     windowMs: 10 * 60_000,
   });
@@ -68,18 +67,16 @@ export async function POST(request: Request) {
     );
   }
 
+  // Answer the same way for unknown addresses so this endpoint cannot be used to discover staff accounts.
   if (!access.allowed) {
-    return NextResponse.json(
-      { error: "This email address is not authorized to sign in." },
-      { status: 403 },
-    );
+    return NextResponse.json({ success: true });
   }
 
   const code = createOneTimeCode();
   const token = await encryptEmailCode({ email: normalizedEmail, code });
 
   const signInHtml = renderBrandEmail({
-    previewText: `Your RediHealth verification code is ${code}`,
+    previewText: "Your RediHealth verification code",
     badgeText: "Verification Code",
     heading: "Sign in to RediHealth",
     recipientName: normalizedEmail,
@@ -110,7 +107,7 @@ https://redihealth.org`;
   try {
     await sendEmail({
       to: normalizedEmail,
-      subject: `Your RediHealth verification code: ${code}`,
+      subject: "Your RediHealth verification code",
       text: plainTextContent,
       html: signInHtml,
     });

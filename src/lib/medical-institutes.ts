@@ -1,7 +1,8 @@
 import type { Lang } from "@/lib/i18n/translations";
+import { COUNTRY_INFO, SUPPORTED_COUNTRIES, isSupportedCountry, type CountryCode } from "@/lib/countries";
 
-export const SUPPORTED_COUNTRIES = ["RO", "AL", "IT"] as const;
-export type CountryCode = (typeof SUPPORTED_COUNTRIES)[number];
+export { COUNTRY_INFO, SUPPORTED_COUNTRIES, isSupportedCountry };
+export type { CountryCode };
 
 export const INSTITUTE_CATEGORIES = [
   "hospital",
@@ -12,15 +13,6 @@ export const INSTITUTE_CATEGORIES = [
   "other",
 ] as const;
 export type InstituteCategory = (typeof INSTITUTE_CATEGORIES)[number];
-
-export const COUNTRY_INFO: Record<
-  CountryCode,
-  { lang: Lang; center: [number, number] }
-> = {
-  RO: { lang: "ro", center: [44.4268, 26.1025] },
-  AL: { lang: "sq", center: [41.3275, 19.8187] },
-  IT: { lang: "it", center: [41.9028, 12.4964] },
-};
 
 /** Maps a visitor's (ISO 3166-1) country to the site language spoken there. */
 const COUNTRY_TO_LANG: Record<string, Lang> = {
@@ -77,13 +69,6 @@ export type MedicalInstituteInput = {
   lat: number;
   lng: number;
   is_active: boolean;
-};
-
-export function isSupportedCountry(value: unknown): value is CountryCode {
-  return (
-    typeof value === "string" &&
-    (SUPPORTED_COUNTRIES as readonly string[]).includes(value)
-  );
 }
 
 export function isInstituteCategory(value: unknown): value is InstituteCategory {
@@ -163,7 +148,7 @@ export function validateInstituteInput(body: unknown): InstituteValidationResult
 
   const country = typeof input.country_code === "string" ? input.country_code.toUpperCase() : "";
   if (!isSupportedCountry(country)) {
-    return { ok: false, error: "Country must be one of RO, AL, IT." };
+    return { ok: false, error: `Country must be one of ${SUPPORTED_COUNTRIES.join(", ")}.` };
   }
 
   const category = input.category ?? "clinic";

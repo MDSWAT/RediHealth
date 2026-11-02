@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FileTextIcon } from "@/components/ui/icons";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Terms of Use - RediHealth",
-  description: "The terms that apply when you use RediHealth.",
-};
+export const generateMetadata = createPageMetadata(
+  "terms",
+  "Terms of Use - RediHealth",
+  "The terms that apply when you use RediHealth.",
+);
 
 export default function TermsPage() {
   return (

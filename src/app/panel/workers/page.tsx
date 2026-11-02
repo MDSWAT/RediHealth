@@ -1,19 +1,17 @@
-import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { WorkersDashboard } from "@/components/panel/WorkersDashboard";
 import { loadPatients } from "@/lib/data/patients";
 import { loadWorkers } from "@/lib/data/workers";
 import { countPendingRequests } from "@/lib/data/requests";
-import { hasDatabaseConnectionConfig } from "@/lib/database";
+import { isCountryConfigured } from "@/lib/database";
 import type { PatientItem } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Workers - RediHealth Panel",
-};
+export const generateMetadata = createPageMetadata("workers", "Workers - RediHealth Panel", "");
 
 export default async function WorkersPage() {
   const session = await auth();
@@ -32,14 +30,14 @@ export default async function WorkersPage() {
   let workers: WorkerItem[] = [];
   let patients: PatientItem[] = [];
   let pendingRequestsCount = 0;
-  let databaseAvailable = hasDatabaseConnectionConfig();
+  let databaseAvailable = isCountryConfigured(workerContext.country);
 
   if (databaseAvailable) {
     try {
       [workers, patients, pendingRequestsCount] = await Promise.all([
-        loadWorkers(),
-        loadPatients(),
-        countPendingRequests(),
+        loadWorkers(workerContext.country),
+        loadPatients({ country: workerContext.country }),
+        countPendingRequests(workerContext.country),
       ]);
     } catch (error) {
       console.error("Failed to load workers dashboard data", error);
@@ -54,6 +52,7 @@ export default async function WorkersPage() {
       userEmail={userEmail}
       userRole={workerContext.role}
       isAdmin={workerContext.isAdmin}
+      isRomania={workerContext.country === "RO"}
       databaseAvailable={databaseAvailable}
       pendingRequestsCount={pendingRequestsCount}
     />

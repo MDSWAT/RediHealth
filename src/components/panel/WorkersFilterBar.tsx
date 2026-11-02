@@ -2,7 +2,6 @@
 
 import {
   DownloadIcon,
-  FilterIcon,
   HandHelpingIcon,
   RefreshIcon,
   SearchIcon,

@@ -7,10 +7,9 @@ import { Button } from "@/components/ui/Button";
 import { GoogleIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
+import { isValidEmail } from "@/lib/text";
 
 type Stage = "email" | "code";
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const inputClass =
   "mt-1.5 block h-12 w-full rounded-lg border border-border bg-card px-3.5 text-base text-foreground " +
@@ -41,7 +40,7 @@ export function SignInForm({
   async function requestPortalLink(event: React.FormEvent) {
     event.preventDefault();
     const normalizedEmail = portalEmail.trim().toLowerCase();
-    if (!emailPattern.test(normalizedEmail)) {
+    if (!isValidEmail(normalizedEmail)) {
       setPortalRecoveryError(form.emailInvalid);
       setPortalRecoveryMessage("");
       return;
@@ -74,7 +73,7 @@ export function SignInForm({
 
   async function requestCode() {
     const normalizedEmail = email.trim().toLowerCase();
-    if (!emailPattern.test(normalizedEmail)) {
+    if (!isValidEmail(normalizedEmail)) {
       setError(form.emailInvalid);
       return;
     }
@@ -115,20 +114,7 @@ export function SignInForm({
       });
 
       if (res?.error) {
-        const response = await fetch("/api/auth/email-code/verify", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ code: code.trim() }),
-        });
-        const result = (await response.json()) as {
-          error?: string;
-          redirectTo?: string;
-        };
-        if (!response.ok) {
-          setError(result.error || form.genericVerifyError);
-          return;
-        }
-        router.push(result.redirectTo || withLangPrefix("/panel", lang));
+        setError(form.genericVerifyError);
         return;
       }
 

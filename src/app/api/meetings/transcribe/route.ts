@@ -1,15 +1,14 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { text } from "@/lib/text";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 
 type TranscriptionResponse = {
   text?: unknown;
 };
 
-function text(value: unknown) {
-  return typeof value === "string" ? value.trim() : "";
-}
+const TRANSCRIPTION_TIMEOUT_MS = 120_000;
 
 async function requireWorker() {
   const session = await auth();
@@ -59,6 +58,7 @@ async function requestRelayTranscription({
     method: "POST",
     headers,
     body,
+    signal: AbortSignal.timeout(TRANSCRIPTION_TIMEOUT_MS),
   });
 
   if (primary.status !== 404) {
@@ -69,6 +69,7 @@ async function requestRelayTranscription({
     method: "POST",
     headers,
     body,
+    signal: AbortSignal.timeout(TRANSCRIPTION_TIMEOUT_MS),
   });
 
   return legacy;
@@ -78,7 +79,7 @@ export async function POST(request: Request) {
   const access = await requireWorker();
   if ("error" in access) return access.error;
 
-  const rateLimit = checkRateLimit(`meetings-transcribe:${access.worker.workerId}:${getClientIp(request)}`, {
+  const rateLimit = await checkRateLimit(`meetings-transcribe:${access.worker.workerId}:${getClientIp(request)}`, {
     limit: 20,
     windowMs: 60_000,
   });
@@ -92,7 +93,7 @@ export async function POST(request: Request) {
   const relayApiKey = process.env.LLMSRELAY_API_KEY?.trim().replace(/^["']|["']$/g, "") || "";
   if (!relayApiKey) {
     return NextResponse.json(
-      { error: "Transcription is not configured. Add LLMSRELAY_API_KEY to .env.local." },
+      { error: "Transcription is not available right now." },
       { status: 503 },
     );
   }
@@ -134,7 +135,7 @@ export async function POST(request: Request) {
 
       if (response.status === 401 || response.status === 403) {
         return NextResponse.json(
-          { error: "Transcription authentication failed. Re-check LLMSRELAY_API_KEY." },
+          { error: "Transcription is not available right now." },
           { status: 503 },
         );
       }

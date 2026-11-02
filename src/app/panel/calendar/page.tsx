@@ -1,17 +1,15 @@
-import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { CalendarDashboard } from "@/components/panel/CalendarDashboard";
 import { loadPatients } from "@/lib/data/patients";
 import { countPendingRequests } from "@/lib/data/requests";
-import { hasDatabaseConnectionConfig } from "@/lib/database";
+import { isCountryConfigured } from "@/lib/database";
 import type { PatientItem } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Calendar - RediHealth Panel",
-};
+export const generateMetadata = createPageMetadata("calendar", "Calendar - RediHealth Panel", "");
 
 export default async function CalendarPage() {
   const session = await auth();
@@ -30,15 +28,16 @@ export default async function CalendarPage() {
 
   let patients: PatientItem[] = [];
   let pendingRequestsCount = 0;
-  let databaseAvailable = hasDatabaseConnectionConfig();
+  let databaseAvailable = isCountryConfigured(workerContext.country);
 
   if (databaseAvailable) {
     try {
       [patients, pendingRequestsCount] = await Promise.all([
         loadPatients({
+          country: workerContext.country,
           scopeToWorkerId: workerContext.isAdmin ? null : workerContext.workerId,
         }),
-        countPendingRequests(),
+        countPendingRequests(workerContext.country),
       ]);
     } catch (error) {
       console.error("Failed to load calendar dashboard data", error);

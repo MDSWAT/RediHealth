@@ -7,18 +7,19 @@
     "build": "next build --webpack",
     "start": "next start",
     "tunnel": "cloudflared tunnel --url http://localhost:3000",
-    "tunel": "npm run tunnel",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "import:institutes": "npx --yes tsx scripts/import-medical-institutes.ts"
+    "import:institutes": "tsx scripts/import-medical-institutes.ts",
+    "encrypt:patients": "tsx scripts/encrypt-patient-data.ts"
   },
   "dependencies": {
     "hostinger-mail-api-sdk": "^1.19.0",
     "jose": "^6.2.10",
     "leaflet": "^1.9.4",
     "mysql2": "^3.24.3",
-    "next": "16.3.3",
+    "next": "16.4.1",
     "next-auth": "^5.0.0-beta.32",
     "react": "19.2.8",
     "react-body-highlighter": "^2.0.5",
@@ -32,8 +33,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.3.3",
+    "eslint-config-next": "16.4.1",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^2.1.9"
   },

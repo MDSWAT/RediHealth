@@ -11,7 +11,6 @@ import { institutesAdminTranslations } from "@/lib/i18n/institutes-admin-transla
 import {
   COUNTRY_INFO,
   INSTITUTE_CATEGORIES,
-  SUPPORTED_COUNTRIES,
   type AdminMedicalInstitute,
   type CountryCode,
   type InstituteCategory,
@@ -35,6 +34,7 @@ type Props = {
   userEmail: string;
   userRole?: string;
   databaseAvailable: boolean;
+  workingCountry: CountryCode;
 };
 
 type FormState = {
@@ -93,15 +93,17 @@ function formFromInstitute(item: AdminMedicalInstitute): FormState {
 const inputClass =
   "min-h-10 w-full rounded-xl border border-border bg-white px-3 text-sm outline-none focus:border-primary";
 
-export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, databaseAvailable }: Props) {
+export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, databaseAvailable, workingCountry }: Props) {
   const { lang } = useLanguage();
   const t = institutesAdminTranslations[lang];
   const labels = findHelpTranslations[lang];
+  // The directory is managed per country; a super admin only edits the country they are working in.
+  const ownCountries: CountryCode[] = [workingCountry];
 
   const [data, setData] = useState<ListData | null>(initialData);
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
-  const [country, setCountry] = useState<CountryCode | "">("");
+  const [country, setCountry] = useState<CountryCode | "">(workingCountry);
   const [category, setCategory] = useState<InstituteCategory | "">("");
   const [status, setStatus] = useState<"all" | "active" | "hidden">("all");
   const [page, setPage] = useState(1);
@@ -232,7 +234,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                 type="button"
                 onClick={() => {
                   setFormError(null);
-                  setForm(emptyForm(country || "RO"));
+                  setForm(emptyForm(workingCountry));
                 }}
                 className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover"
               >
@@ -253,7 +255,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                   <h2 className="text-sm font-semibold text-foreground">{t.importTitle}</h2>
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{t.importHelp}</p>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    {SUPPORTED_COUNTRIES.map((code) => {
+                    {ownCountries.map((code) => {
                       const stat = data?.stats.find((item) => item.country_code === code);
                       return (
                         <button
@@ -315,7 +317,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                   className={`${inputClass} lg:w-44`}
                 >
                   <option value="">{t.allCountries}</option>
-                  {SUPPORTED_COUNTRIES.map((code) => (
+                  {ownCountries.map((code) => (
                     <option key={code} value={code}>
                       {labels.countries[code]}
                     </option>
@@ -497,7 +499,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                       }}
                       className={`${inputClass} mt-1`}
                     >
-                      {SUPPORTED_COUNTRIES.map((code) => (
+                      {ownCountries.map((code) => (
                         <option key={code} value={code}>
                           {labels.countries[code]}
                         </option>

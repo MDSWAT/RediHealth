@@ -1,18 +1,21 @@
 /**
  * Imports medical institutes from OpenStreetMap into the database.
  *
- *   npm run import:institutes            # RO, AL and IT
+ *   npm run import:institutes            # every supported country
  *   npm run import:institutes -- IT      # a single country
  *
- * Super admins can also run the same import from /panel/institutes.
+ * Writes to the control database. Super admins can also run the same import for their own
+ * country from /panel/institutes.
  */
 import { existsSync } from "node:fs";
 import { SUPPORTED_COUNTRIES, isSupportedCountry, type CountryCode } from "@/lib/medical-institutes";
 
-if (existsSync(".env")) process.loadEnvFile(".env");
+for (const file of [".env.local", ".env"]) {
+  if (existsSync(file)) process.loadEnvFile(file);
+}
 
 async function main() {
-  const { getDatabase } = await import("@/lib/database");
+  const { getControlDatabase } = await import("@/lib/database");
   const { importCountryFromOsm } = await import("@/lib/osm-import");
 
   const requested = process.argv.slice(2).map((value) => value.toUpperCase());
@@ -20,7 +23,7 @@ async function main() {
     ? requested.filter(isSupportedCountry)
     : [...SUPPORTED_COUNTRIES];
 
-  const db = getDatabase();
+  const db = getControlDatabase();
   for (const country of countries) {
     const started = Date.now();
     console.log(`Importing ${country} from OpenStreetMap…`);

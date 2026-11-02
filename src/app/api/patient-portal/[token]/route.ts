@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { logActivity } from "@/lib/activity-log";
-import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type ResultSetHeader } from "@/lib/database";
+import { parseCountry } from "@/lib/countries";
+import { findPatientByPortalToken } from "@/lib/data/portal";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
@@ -9,124 +11,24 @@ import {
   validateFollowupInput,
   validatePhotoInput,
 } from "@/lib/validation";
-import type {
-  FollowupItem,
-  PatientPhoto,
-  TreatmentPlan,
-} from "@/lib/types/patient";
-import { hashPortalToken } from "@/lib/security/portal-token";
+import type { FollowupItem, PatientPhoto } from "@/lib/types/patient";
+import { PORTAL_TOKEN_PATTERN } from "@/lib/security/portal-token";
+import { decryptField, encryptField } from "@/lib/security/field-encryption";
 
 const MAX_CONDITION_NOTES_LENGTH = 4_000;
-const TOKEN_PATTERN = /^[A-Za-z0-9_-]{16,128}$/;
-
-function isMissingAccessTokenExpiryColumnError(error: unknown): boolean {
-  const dbError = error as { code?: string; errno?: number; sqlMessage?: string; message?: string };
-  return (
-    (dbError.code === "ER_BAD_FIELD_ERROR" || dbError.errno === 1054)
-    && /access_token_expires_at/i.test(dbError.sqlMessage || dbError.message || "")
-  );
-}
-
-function getTokenOrReject(token: string): string | null {
-  const trimmed = token.trim();
-  return TOKEN_PATTERN.test(trimmed) ? trimmed : null;
-}
 
 interface Params {
   params: Promise<{ token: string }>;
 }
 
-export async function GET(request: Request, { params }: Params) {
-  const { token: rawToken } = await params;
-  const token = getTokenOrReject(rawToken);
-
-  if (!token) {
-    return NextResponse.json({ error: "Invalid token." }, { status: 400 });
-  }
-
-  const tokenHash = hashPortalToken(token);
-  const rateLimit = checkRateLimit(`patient-portal:get:${tokenHash}:${getClientIp(request)}`, {
-    limit: 40,
-    windowMs: 60_000,
-  });
-  if (!rateLimit.allowed) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment and try again." },
-      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
-    );
-  }
-
-  try {
-    const db = getDatabase();
-    let rows: RowDataPacket[] = [];
-
-    try {
-      const [primaryRows] = await db.query<RowDataPacket[]>(
-        `SELECT p.id, p.request_id, p.access_token_hash, p.full_name, p.phone, p.email, 
-                p.date_of_birth, p.gender, p.address, p.condition_notes, p.medical_history, 
-                p.treatment_plan, p.followups, p.photos, 
-                COALESCE(p.status, 'active') AS status, 
-                COALESCE(p.priority, 'moderate') AS priority, 
-                w.full_name AS assigned_worker_name,
-                p.created_at, p.updated_at
-         FROM patients p
-         LEFT JOIN workers w ON w.id = p.assigned_worker_id
-         WHERE p.access_token_hash = ?
-         LIMIT 1`,
-        [tokenHash],
-      );
-      rows = primaryRows;
-    } catch (queryError) {
-      if (!isMissingAccessTokenExpiryColumnError(queryError)) {
-        throw queryError;
-      }
-
-      const [fallbackRows] = await db.query<RowDataPacket[]>(
-        `SELECT p.id, p.request_id, p.access_token_hash, p.full_name, p.phone, p.email, 
-                p.date_of_birth, p.gender, p.address, p.condition_notes, p.medical_history, 
-                p.treatment_plan, p.followups, p.photos, 
-                COALESCE(p.status, 'active') AS status, 
-                COALESCE(p.priority, 'moderate') AS priority, 
-                w.full_name AS assigned_worker_name,
-                p.created_at, p.updated_at
-         FROM patients p
-         LEFT JOIN workers w ON w.id = p.assigned_worker_id
-         WHERE p.access_token_hash = ?
-         LIMIT 1`,
-        [tokenHash],
-      );
-      rows = fallbackRows;
-    }
-
-    if (rows.length === 0) {
-      return NextResponse.json({ error: "Patient portal link not found or expired." }, { status: 404 });
-    }
-
-    const r = rows[0];
-    const patient = {
-      ...r,
-      treatment_plan: parseJsonColumn<TreatmentPlan>(r.treatment_plan),
-      followups: parseJsonColumn<FollowupItem[]>(r.followups) || [],
-      photos: parseJsonColumn<PatientPhoto[]>(r.photos) || [],
-    };
-
-    return NextResponse.json({ patient });
-  } catch (error) {
-    console.error("Failed to fetch patient portal profile", error);
-    return NextResponse.json({ error: "Database query failed." }, { status: 503 });
-  }
-}
-
 export async function PATCH(request: Request, { params }: Params) {
-  const { token: rawToken } = await params;
-  const token = getTokenOrReject(rawToken);
+  const token = (await params).token.trim();
 
-  if (!token) {
+  if (!PORTAL_TOKEN_PATTERN.test(token)) {
     return NextResponse.json({ error: "Invalid token." }, { status: 400 });
   }
 
-  const tokenHash = hashPortalToken(token);
-  const rateLimit = checkRateLimit(`patient-portal:patch:${tokenHash}:${getClientIp(request)}`, {
+  const rateLimit = await checkRateLimit(`patient-portal:patch:${token}:${getClientIp(request)}`, {
     limit: 20,
     windowMs: 60_000,
   });
@@ -152,38 +54,15 @@ export async function PATCH(request: Request, { params }: Params) {
   }
 
   try {
-    const db = getDatabase();
-    let rows: RowDataPacket[] = [];
-
-    try {
-      const [primaryRows] = await db.query<RowDataPacket[]>(
-        `SELECT id, full_name, email, condition_notes, priority, followups, photos
-         FROM patients
-         WHERE access_token_hash = ?
-         LIMIT 1`,
-        [tokenHash],
-      );
-      rows = primaryRows;
-    } catch (queryError) {
-      if (!isMissingAccessTokenExpiryColumnError(queryError)) {
-        throw queryError;
-      }
-
-      const [fallbackRows] = await db.query<RowDataPacket[]>(
-        `SELECT id, full_name, email, condition_notes, priority, followups, photos
-         FROM patients
-         WHERE access_token_hash = ?
-         LIMIT 1`,
-        [tokenHash],
-      );
-      rows = fallbackRows;
+    const lookup = await findPatientByPortalToken(token, parseCountry(new URL(request.url).searchParams.get("c")));
+    if (lookup.status === "expired") {
+      return NextResponse.json({ error: "This portal link has expired.", code: "link_expired" }, { status: 410 });
     }
-
-    if (rows.length === 0) {
+    if (lookup.status === "not-found") {
       return NextResponse.json({ error: "Patient portal link not found." }, { status: 404 });
     }
 
-    const patient = rows[0];
+    const patient = lookup.row;
     const patientId = patient.id;
 
     const updates: string[] = [];
@@ -226,9 +105,9 @@ export async function PATCH(request: Request, { params }: Params) {
         return NextResponse.json({ error: result.error }, { status: 400 });
       }
       const existingPhotos =
-        parseJsonColumn<PatientPhoto[]>(patient.photos) || [];
+        parseJsonColumn<PatientPhoto[]>(decryptField(lookup.country, patient.photos)) || [];
       updates.push("photos = ?");
-      updateParams.push(stringifyJsonColumn([result.value, ...existingPhotos]));
+      updateParams.push(encryptField(lookup.country, stringifyJsonColumn([result.value, ...existingPhotos])));
     }
 
     if (body.complete_followup !== undefined) {
@@ -270,7 +149,7 @@ export async function PATCH(request: Request, { params }: Params) {
 
     updateParams.push(patientId);
 
-    await db.query<ResultSetHeader>(
+    await getCountryDatabase(lookup.country).query<ResultSetHeader>(
       `UPDATE patients SET ${updates.join(", ")} WHERE id = ?`,
       updateParams,
     );
@@ -280,8 +159,9 @@ export async function PATCH(request: Request, { params }: Params) {
       .filter(Boolean);
 
     await logActivity({
-      actorName: typeof patient.full_name === "string" ? patient.full_name : null,
-      actorEmail: typeof patient.email === "string" ? patient.email : null,
+      country: lookup.country,
+      actorName: patient.full_name,
+      actorEmail: patient.email,
       actorRole: "patient_portal",
       action:
         body.complete_followup !== undefined

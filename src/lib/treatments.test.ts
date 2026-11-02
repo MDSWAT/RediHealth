@@ -50,7 +50,7 @@ describe("multiple treatment plans", () => {
       id: 7, full_name: "Test patient", phone: "123", email: "patient@example.com",
       created_at: new Date("2026-10-01T00:00:00Z"), treatment_plan: stored,
     } as DBPatientRow;
-    const mapped = mapPatientRow(row);
+    const mapped = mapPatientRow(row, "RO");
     const normalized = normalizePatientFromApi(mapped);
     expect(getTreatmentEntries(normalized?.treatment_plan)).toEqual([first, second]);
   });

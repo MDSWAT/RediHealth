@@ -1,4 +1,4 @@
-import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { getControlDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import {
   COUNTRY_INFO,
   isInstituteCategory,
@@ -79,7 +79,7 @@ const DISTANCE_SQL =
 
 /** Returns active institutes ordered by distance from a point, widening the search box until enough are found. */
 export async function findNearbyInstitutes(query: NearbyQuery): Promise<MedicalInstitute[]> {
-  const db = getDatabase();
+  const db = getControlDatabase();
   const limit = Math.min(200, Math.max(1, query.limit ?? 80));
   const search = query.search?.trim().toLowerCase() || "";
 
@@ -146,7 +146,7 @@ export type AdminListQuery = {
 };
 
 export async function listInstitutesForAdmin(query: AdminListQuery) {
-  const db = getDatabase();
+  const db = getControlDatabase();
   const pageSize = Math.min(100, Math.max(10, query.pageSize ?? 50));
   const page = Math.max(1, query.page ?? 1);
   const conditions: string[] = [];
@@ -205,7 +205,7 @@ export async function listInstitutesForAdmin(query: AdminListQuery) {
 }
 
 export async function getInstituteForAdmin(id: string) {
-  const [rows] = await getDatabase().query<InstituteRow[]>(
+  const [rows] = await getControlDatabase().query<InstituteRow[]>(
     `SELECT ${PUBLIC_COLUMNS}, is_active, source, osm_ref, manually_edited, updated_at
      FROM medical_institutes WHERE id = ? LIMIT 1`,
     [id],
@@ -231,7 +231,7 @@ function inputParams(input: MedicalInstituteInput) {
 }
 
 export async function createInstitute(input: MedicalInstituteInput) {
-  const [result] = await getDatabase().query<ResultSetHeader>(
+  const [result] = await getControlDatabase().query<ResultSetHeader>(
     `INSERT INTO medical_institutes
        (country_code, name, category, address, city, phone, website, hours, emergency, lat, lng, is_active, source, manually_edited)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'manual', 1)`,
@@ -241,7 +241,7 @@ export async function createInstitute(input: MedicalInstituteInput) {
 }
 
 export async function updateInstitute(id: string, input: MedicalInstituteInput) {
-  const [result] = await getDatabase().query<ResultSetHeader>(
+  const [result] = await getControlDatabase().query<ResultSetHeader>(
     `UPDATE medical_institutes
      SET country_code = ?, name = ?, category = ?, address = ?, city = ?, phone = ?, website = ?,
          hours = ?, emergency = ?, lat = ?, lng = ?, is_active = ?, manually_edited = 1
@@ -252,7 +252,7 @@ export async function updateInstitute(id: string, input: MedicalInstituteInput) 
 }
 
 export async function setInstituteActive(id: string, active: boolean) {
-  const [result] = await getDatabase().query<ResultSetHeader>(
+  const [result] = await getControlDatabase().query<ResultSetHeader>(
     "UPDATE medical_institutes SET is_active = ?, manually_edited = 1 WHERE id = ?",
     [active ? 1 : 0, id],
   );
@@ -270,6 +270,6 @@ export async function deleteInstitute(id: string): Promise<"deleted" | "hidden" 
     await setInstituteActive(id, false);
     return "hidden";
   }
-  await getDatabase().query<ResultSetHeader>("DELETE FROM medical_institutes WHERE id = ?", [id]);
+  await getControlDatabase().query<ResultSetHeader>("DELETE FROM medical_institutes WHERE id = ?", [id]);
   return "deleted";
 }

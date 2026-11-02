@@ -17,7 +17,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   let body: unknown;
   try { body = await request.json(); } catch { return NextResponse.json({ error: "Invalid appointment." }, { status: 400 }); }
   try {
-    const result = await createFollowup(id, String(worker.workerId), worker.isAdmin, body);
+    const result = await createFollowup(worker.country, id, String(worker.workerId), worker.isAdmin, body);
     let emailSent: boolean | undefined;
     if (result.created && result.followup.meeting_url) {
       try {
@@ -25,7 +25,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       } catch { emailSent = false; }
     }
     if (result.created) {
-      await logActivity({ actorWorkerId: worker.workerId, actorName: worker.workerName, actorRole: worker.role, action: "patient.followup_created", entityType: "patient", entityId: id, details: { followup_id: result.followup.id, meeting_id: result.followup.meeting_id }, ipAddress: getClientIp(request) }).catch((error) => console.error("Failed to log appointment", error));
+      await logActivity({ country: worker.country, actorWorkerId: worker.workerId, actorName: worker.workerName, actorRole: worker.role, action: "patient.followup_created", entityType: "patient", entityId: id, details: { followup_id: result.followup.id, meeting_id: result.followup.meeting_id }, ipAddress: getClientIp(request) }).catch((error) => console.error("Failed to log appointment", error));
     }
     return NextResponse.json({ followup: result.followup, email_sent: emailSent }, { status: result.created ? 201 : 200 });
   } catch (error) {

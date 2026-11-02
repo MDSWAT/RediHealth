@@ -22,6 +22,9 @@ export const patientsTableTranslations: Record<Lang, {
   deletePatient: string;
   editProfile: string;
   viewDetails: string;
+  closePatient: string;
+  closePatientConfirm: string;
+  closingPatient: string;
 }> = {
   en: {
     errDelete: "Failed to delete patient.",
@@ -45,6 +48,9 @@ export const patientsTableTranslations: Record<Lang, {
     deletePatient: "Delete Patient",
     editProfile: "Edit Profile",
     viewDetails: "View Details",
+    closePatient: "Close patient",
+    closePatientConfirm: "Archive this patient record?",
+    closingPatient: "Closing…",
   },
   ro: {
     errDelete: "Stergerea pacientului a esuat.",
@@ -68,6 +74,9 @@ export const patientsTableTranslations: Record<Lang, {
     deletePatient: "Sterge pacient",
     editProfile: "Editeaza profil",
     viewDetails: "Vezi detalii",
+    closePatient: "Închide pacientul",
+    closePatientConfirm: "Arhivezi dosarul acestui pacient?",
+    closingPatient: "Se închide…",
   },
   sq: {
     errDelete: "Deshtoi fshirja e pacientit.",
@@ -91,6 +100,9 @@ export const patientsTableTranslations: Record<Lang, {
     deletePatient: "Fshij pacientin",
     editProfile: "Ndrysho profilin",
     viewDetails: "Shiko detaje",
+    closePatient: "Mbyll pacientin",
+    closePatientConfirm: "Ta arkivojmë dosjen e këtij pacienti?",
+    closingPatient: "Duke mbyllur…",
   },
   it: {
     errDelete: "Eliminazione paziente non riuscita.",
@@ -114,6 +126,9 @@ export const patientsTableTranslations: Record<Lang, {
     deletePatient: "Elimina paziente",
     editProfile: "Modifica profilo",
     viewDetails: "Vedi dettagli",
+    closePatient: "Chiudi paziente",
+    closePatientConfirm: "Archiviare la scheda di questo paziente?",
+    closingPatient: "Chiusura…",
   },
 };
 
@@ -153,6 +168,8 @@ export const createPatientModalTranslations: Record<Lang, {
   pLow: string;
   address: string;
   addressPh: string;
+  county: string;
+  selectCounty: string;
   condition: string;
   conditionPh: string;
   history: string;
@@ -199,6 +216,8 @@ export const createPatientModalTranslations: Record<Lang, {
     pLow: "Low (< 14 days)",
     address: "Address / Location",
     addressPh: "e.g. Main Street no. 12, Bucharest",
+    county: "Patient county",
+    selectCounty: "Select a county",
     condition: "Condition and Symptoms Notes",
     conditionPh: "Details regarding current symptoms, request notes, or initial findings...",
     history: "Medical History / Care Plan",
@@ -245,6 +264,8 @@ export const createPatientModalTranslations: Record<Lang, {
     pLow: "Scazuta (< 14 zile)",
     address: "Adresa / Locatie",
     addressPh: "ex. Strada Principala nr. 12, Bucuresti",
+    county: "Județul pacientului",
+    selectCounty: "Selectează un județ",
     condition: "Notite despre afectiune si simptome",
     conditionPh: "Detalii despre simptomele curente, cerere sau observatii initiale...",
     history: "Istoric medical / Plan de ingrijire",
@@ -291,6 +312,8 @@ export const createPatientModalTranslations: Record<Lang, {
     pLow: "I ulet (< 14 dite)",
     address: "Adresa / Vendndodhja",
     addressPh: "p.sh. Rruga Kryesore nr. 12, Bukuresht",
+    county: "Qarku i pacientit",
+    selectCounty: "Zgjidh nje qark",
     condition: "Shenime mbi gjendjen dhe simptomat",
     conditionPh: "Detaje mbi simptomat aktuale, kerkesen ose gjetjet fillestare...",
     history: "Historia mjekesore / Plani i kujdesit",
@@ -337,6 +360,8 @@ export const createPatientModalTranslations: Record<Lang, {
     pLow: "Bassa (< 14 giorni)",
     address: "Indirizzo / Localita",
     addressPh: "es. Via Principale 12, Bucarest",
+    county: "Provincia del paziente",
+    selectCounty: "Seleziona una provincia",
     condition: "Note su condizione e sintomi",
     conditionPh: "Dettagli su sintomi attuali, richiesta o rilievi iniziali...",
     history: "Storia clinica / Piano di cura",

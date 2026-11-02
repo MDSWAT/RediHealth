@@ -2,12 +2,13 @@ import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { logActivity } from "@/lib/activity-log";
-import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { sendMeetingInvitationEmail } from "@/lib/email";
 import { getClientIp } from "@/lib/rate-limit";
 import type { FollowupItem } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { getRequestLang } from "@/lib/i18n/server-routing";
+import { text } from "@/lib/text";
 
 type MeetingRow = RowDataPacket & {
   id: number;
@@ -20,10 +21,6 @@ type MeetingRow = RowDataPacket & {
   created_at: string;
   updated_at: string;
 };
-
-function text(value: unknown) {
-  return typeof value === "string" ? value.trim() : "";
-}
 
 function resolveMeetingDomain() {
   const configured = text(process.env.JITSI_DOMAIN).replace(/^https?:\/\//i, "");
@@ -72,7 +69,7 @@ export async function GET(request: Request) {
       ? "SELECT id, title, meeting_url, transcript, notes, patient_id, followup_id, created_at, updated_at FROM meetings WHERE id = ? LIMIT 1"
       : "SELECT id, title, meeting_url, transcript, notes, patient_id, followup_id, created_at, updated_at FROM meetings WHERE id = ? AND organizer_worker_id = ? LIMIT 1";
     const params = access.worker.isAdmin ? [id] : [id, access.worker.workerId];
-    const [rows] = await getDatabase().query<MeetingRow[]>(query, params);
+    const [rows] = await getCountryDatabase(access.worker.country).query<MeetingRow[]>(query, params);
     if (!rows[0]) {
       return NextResponse.json({ error: "Meeting not found." }, { status: 404 });
     }
@@ -117,7 +114,7 @@ export async function POST(request: Request) {
     let patientEmail = "";
     let patientName = "";
     let followup: FollowupItem | undefined;
-    const db = getDatabase();
+    const db = getCountryDatabase(access.worker.country);
     const connection = await db.getConnection();
 
     let result: ResultSetHeader;
@@ -198,6 +195,7 @@ export async function POST(request: Request) {
     }
 
     await logActivity({
+      country: access.worker.country,
       actorWorkerId: access.worker.workerId,
       actorName: access.worker.workerName,
       actorRole: access.worker.role,
@@ -247,7 +245,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Invalid meeting record data." }, { status: 400 });
   }
 
-  const db = getDatabase();
+  const db = getCountryDatabase(access.worker.country);
   const connection = await db.getConnection();
   try {
     await connection.beginTransaction();
@@ -296,6 +294,7 @@ export async function PATCH(request: Request) {
     await connection.commit();
 
     await logActivity({
+      country: access.worker.country,
       actorWorkerId: access.worker.workerId,
       actorName: access.worker.workerName,
       actorRole: access.worker.role,
@@ -330,7 +329,7 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Invalid meeting." }, { status: 400 });
   }
 
-  const connection = await getDatabase().getConnection();
+  const connection = await getCountryDatabase(access.worker.country).getConnection();
   try {
     await connection.beginTransaction();
     const meetingQuery = access.worker.isAdmin
@@ -368,6 +367,7 @@ export async function DELETE(request: Request) {
     await connection.commit();
 
     await logActivity({
+      country: access.worker.country,
       actorWorkerId: access.worker.workerId,
       actorName: access.worker.workerName,
       actorRole: access.worker.role,

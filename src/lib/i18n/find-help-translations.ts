@@ -30,7 +30,7 @@ export type FindHelpCopy = {
 
 export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
   en: {
-    countries: { RO: "Romania", AL: "Albania", IT: "Italy" },
+    countries: { RO: "Romania", AL: "Albania", IT: "Italy", MD: "Moldova" },
     categories: {
       hospital: "Hospital",
       clinic: "Clinic",
@@ -63,7 +63,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     resultsCount: (count) => `${count} places`,
   },
   ro: {
-    countries: { RO: "România", AL: "Albania", IT: "Italia" },
+    countries: { RO: "România", AL: "Albania", IT: "Italia", MD: "Republica Moldova" },
     categories: {
       hospital: "Spital",
       clinic: "Clinică",
@@ -96,7 +96,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     resultsCount: (count) => `${count} locuri`,
   },
   sq: {
-    countries: { RO: "Rumania", AL: "Shqipëria", IT: "Italia" },
+    countries: { RO: "Rumania", AL: "Shqipëria", IT: "Italia", MD: "Moldavia" },
     categories: {
       hospital: "Spital",
       clinic: "Klinikë",
@@ -129,7 +129,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     resultsCount: (count) => `${count} vende`,
   },
   it: {
-    countries: { RO: "Romania", AL: "Albania", IT: "Italia" },
+    countries: { RO: "Romania", AL: "Albania", IT: "Italia", MD: "Moldavia" },
     categories: {
       hospital: "Ospedale",
       clinic: "Clinica",

@@ -1,10 +1,8 @@
 import { createHash, randomInt } from "crypto";
-import { EncryptJWT, SignJWT, jwtDecrypt } from "jose";
+import { EncryptJWT, jwtDecrypt } from "jose";
 
 const OTP_COOKIE = "redihealth_email_otp";
-const SESSION_COOKIE = "redihealth_email_session";
 const OTP_LIFETIME_SECONDS = 10 * 60;
-const SESSION_LIFETIME_SECONDS = 7 * 24 * 60 * 60;
 
 type EmailCodePayload = {
   email: string;
@@ -41,17 +39,7 @@ export async function decryptEmailCode(token: string) {
   return { email: payload.email, code: payload.code };
 }
 
-export async function createEmailSession(email: string) {
-  return new SignJWT({ email, method: "email-code" })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime(`${SESSION_LIFETIME_SECONDS}s`)
-    .sign(secretKey());
-}
-
 export const emailAuthCookies = {
   otp: OTP_COOKIE,
-  session: SESSION_COOKIE,
   otpLifetime: OTP_LIFETIME_SECONDS,
-  sessionLifetime: SESSION_LIFETIME_SECONDS,
 };

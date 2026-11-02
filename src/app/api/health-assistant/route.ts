@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
-import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import {
+  buildEmergencyResponse,
+  buildSystemInstruction,
+  buildUserText,
+  parseAssistantReply,
+  urgentPattern,
+} from "@/lib/health-assistant";
 import { DEFAULT_LANG, isSupportedLang } from "@/lib/i18n/routing";
+import { LlmError, generateText } from "@/lib/llm";
 import { notifyOperationalIssue } from "@/lib/operational-alerts";
-import type { Lang } from "@/lib/i18n/translations";
-
-const urgentPattern = /chest pain|difficulty breathing|shortness of breath|unconscious|fainting|seizure|stroke|face droop|severe bleeding|suicid|overdose/i;
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 type AssistantRequest = {
   symptoms?: unknown;
@@ -14,132 +19,70 @@ type AssistantRequest = {
   prescription?: { mimeType?: unknown; data?: unknown };
 };
 
-type AssistantResponse = {
-  urgency: "emergency" | "routine";
-  careLevel: "emergency" | "urgent" | "soon" | "routine";
-  possibleCause: string;
-  message: string;
-  questions: string[];
-  prescriptionText?: string;
-};
+const MAX_TEXT_LENGTH = 4_000;
+const MAX_HISTORY_ITEMS = 12;
+const MAX_HISTORY_ITEM_LENGTH = 1_000;
+// Base64 of an 8 MB image.
+const MAX_IMAGE_DATA_LENGTH = 11_200_000;
 
-type ResponsesApiResponse = {
-  output_text?: string;
-  output?: Array<{ content?: Array<{ type?: string; text?: string }> }>;
-};
+function parseHistory(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
 
-type ChatCompletionsApiResponse = {
-  choices?: Array<{ message?: { content?: string } }>;
-};
-
-type AnthropicMessagesApiResponse = {
-  content?: Array<{ type?: string; text?: string }>;
-};
-
-type RelayErrorResponse = {
-  error?: {
-    code?: string;
-    message?: string;
-    type?: string;
-  };
-  type?: string;
-};
-
-function extractGeneratedText(payload: ResponsesApiResponse): string | undefined {
-  if (typeof payload.output_text === "string" && payload.output_text.trim()) {
-    return payload.output_text;
-  }
-
-  for (const outputItem of payload.output ?? []) {
-    for (const contentItem of outputItem.content ?? []) {
-      if (typeof contentItem.text === "string" && contentItem.text.trim()) {
-        return contentItem.text;
-      }
-    }
-  }
-
-  return undefined;
+  return value.slice(-MAX_HISTORY_ITEMS).flatMap((item) => {
+    if (!item || typeof item !== "object") return [];
+    const { role, content } = item as { role?: unknown; content?: unknown };
+    return (role === "assistant" || role === "user") && typeof content === "string"
+      ? [`${role}: ${content.slice(0, MAX_HISTORY_ITEM_LENGTH)}`]
+      : [];
+  });
 }
 
-function parseRelayError(raw: string): { code?: string; message?: string } {
-  try {
-    const parsed = JSON.parse(raw) as RelayErrorResponse;
-    return {
-      code: parsed.error?.code,
-      message: parsed.error?.message,
-    };
-  } catch {
-    return {};
-  }
+function alertProviderFailure(error: LlmError) {
+  const configurationProblem = error.kind === "not-configured" || error.kind === "unauthorized";
+  void notifyOperationalIssue({
+    key: `ai:${error.kind}:${error.status ?? ""}`,
+    title: configurationProblem ? "AI assistant misconfigured" : "AI assistant provider error",
+    summary: error.message,
+    source: "/api/health-assistant",
+    severity: configurationProblem || (error.status ?? 0) >= 500 ? "critical" : "warning",
+    details: {
+      kind: error.kind,
+      status: error.status ?? "",
+      providerCode: error.providerCode ?? "",
+      providerMessage: error.providerMessage ?? "",
+    },
+    cooldownMs: 15 * 60_000,
+  });
 }
 
-function normalizeJsonPayload(raw: string): string {
-  const trimmed = raw.trim();
-  const fencedMatch = trimmed.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
-  if (fencedMatch?.[1]) {
-    return fencedMatch[1].trim();
+function failureResponse(error: LlmError) {
+  switch (error.kind) {
+    case "rate-limited":
+      return NextResponse.json(
+        { error: "The AI assistant has reached its request limit. Please try again in a few minutes." },
+        { status: 429 },
+      );
+    case "not-configured":
+    case "unauthorized":
+      return NextResponse.json(
+        { error: "The AI assistant is not available right now. Please contact support." },
+        { status: 503 },
+      );
+    case "bad-response":
+      return NextResponse.json(
+        { error: "The AI assistant returned an unreadable response. Please try again." },
+        { status: 502 },
+      );
+    default:
+      return NextResponse.json(
+        { error: "The AI assistant is temporarily unavailable. Please try again shortly." },
+        { status: 502 },
+      );
   }
-
-  const firstBrace = trimmed.indexOf("{");
-  const lastBrace = trimmed.lastIndexOf("}");
-  if (firstBrace >= 0 && lastBrace > firstBrace) {
-    return trimmed.slice(firstBrace, lastBrace + 1);
-  }
-
-  return trimmed;
-}
-
-function readEnv(name: string): string {
-  return process.env[name]?.trim().replace(/^["']|["']$/g, "") || "";
-}
-
-const responseLanguageLabel: Record<Lang, string> = {
-  en: "English",
-  ro: "Romanian",
-  sq: "Albanian",
-  it: "Italian",
-};
-
-const emergencyResponseByLang: Record<Lang, { possibleCause: string; message: string }> = {
-  en: {
-    possibleCause: "These symptoms can be caused by serious conditions that need emergency assessment.",
-    message: "Your symptoms may need emergency assessment. Call 112 now or go to the nearest emergency department. Do not wait for an online response.",
-  },
-  ro: {
-    possibleCause: "Aceste simptome pot fi cauzate de afectiuni grave care necesita evaluare de urgenta.",
-    message: "Simptomele tale pot necesita evaluare de urgenta. Suna acum la 112 sau mergi la cel mai apropiat serviciu de urgente. Nu astepta un raspuns online.",
-  },
-  sq: {
-    possibleCause: "Keto simptoma mund te shkaktohen nga gjendje serioze qe kerkojne vleresim urgjent.",
-    message: "Simptomat e tua mund te kerkojne vleresim urgjent. Telefono 112 tani ose shko ne urgjencen me te afert. Mos prit per nje pergjigje online.",
-  },
-  it: {
-    possibleCause: "Questi sintomi possono essere causati da condizioni gravi che richiedono una valutazione urgente.",
-    message: "I tuoi sintomi potrebbero richiedere una valutazione urgente. Chiama subito il 112 o vai al pronto soccorso piu vicino. Non aspettare una risposta online.",
-  },
-};
-
-const defaultPossibleCauseByLang: Record<Lang, string> = {
-  en: "There is not enough information yet to suggest a possible cause.",
-  ro: "Nu exista inca suficiente informatii pentru a sugera o cauza posibila.",
-  sq: "Nuk ka ende informacion te mjaftueshem per te sugjeruar nje shkak te mundshem.",
-  it: "Non ci sono ancora informazioni sufficienti per suggerire una possibile causa.",
-};
-
-const defaultMessageByLang: Record<Lang, string> = {
-  en: "Please share this information with a healthcare professional.",
-  ro: "Te rugam sa impartasesti aceste informatii cu un profesionist medical.",
-  sq: "Te lutem ndaj kete informacion me nje profesionist shendetesor.",
-  it: "Condividi queste informazioni con un professionista sanitario.",
-};
-
-function buildSystemInstruction(lang: Lang) {
-  return `You are RediHealth's patient-intake assistant. Give a useful preliminary assessment, but never state a diagnosis as fact, prescribe, recommend medication changes, or state that a medicine is safe. For every response, identify one most plausible possible cause using wording such as "This could be consistent with...". If the information is too limited, say what information is needed rather than inventing a cause. Set careLevel to "emergency", "urgent", "soon", or "routine". Emergency means call 112 or visit emergency care immediately; urgent means same-day clinical assessment; soon means contact a clinician within 24-48 hours; routine means monitor and arrange non-urgent care if symptoms continue. Identify possible emergency red flags and tell the patient to call 112 or visit emergency care immediately. Use calm, plain language. If an image is supplied, transcribe only legible prescription text. Mark uncertain words with [unclear]. Never infer missing medicine names, strengths, or directions. IMPORTANT: Write all patient-facing text fields (possibleCause, message, and questions) in ${responseLanguageLabel[lang]}. Return only valid JSON with urgency ("emergency" or "routine"), careLevel, possibleCause, message, questions (array), and prescriptionText (string, optional).`;
 }
 
 export async function POST(request: Request) {
-  const clientIp = getClientIp(request);
-  const rateLimit = checkRateLimit(`health-assistant:${clientIp}`, { limit: 10, windowMs: 60_000 });
+  const rateLimit = await checkRateLimit(`health-assistant:${getClientIp(request)}`, { limit: 10, windowMs: 60_000 });
   if (!rateLimit.allowed) {
     return NextResponse.json(
       { error: "Too many requests. Please wait a moment and try again." },
@@ -149,51 +92,18 @@ export async function POST(request: Request) {
 
   let body: AssistantRequest;
   try {
-    body = await request.json() as AssistantRequest;
+    body = (await request.json()) as AssistantRequest;
   } catch {
     return NextResponse.json({ error: "Invalid request body. Please send valid JSON." }, { status: 400 });
   }
+
   const symptoms = typeof body.symptoms === "string" ? body.symptoms.trim() : "";
   const lang = typeof body.lang === "string" && isSupportedLang(body.lang) ? body.lang : DEFAULT_LANG;
-  const alertContextBase = {
-    ip: clientIp,
-    lang,
-  };
-
-  const sendAssistantAlert = (
-    key: string,
-    title: string,
-    summary: string,
-    details?: Record<string, unknown>,
-    severity: "warning" | "critical" = "warning",
-  ) => {
-    void notifyOperationalIssue({
-      key,
-      title,
-      summary,
-      source: "/api/health-assistant",
-      severity,
-      details: {
-        ...alertContextBase,
-        ...(details || {}),
-      },
-      cooldownMs: 15 * 60_000,
-    });
-  };
-  const history = Array.isArray(body.history)
-    ? body.history.slice(-12).flatMap((item) => {
-        if (!item || typeof item !== "object") return [];
-        const message = item as { role?: unknown; content?: unknown };
-        return (message.role === "assistant" || message.role === "user") && typeof message.content === "string"
-          ? [`${message.role}: ${message.content.slice(0, 1_000)}`]
-          : [];
-      })
-    : [];
   const prescriptionContext = typeof body.prescriptionContext === "string" ? body.prescriptionContext.trim() : "";
   const imageData = typeof body.prescription?.data === "string" ? body.prescription.data : "";
   const imageMimeType = typeof body.prescription?.mimeType === "string" ? body.prescription.mimeType : "";
 
-  if (imageData && (!/^image\/(jpeg|png|webp)$/.test(imageMimeType) || imageData.length > 11_200_000)) {
+  if (imageData && (!/^image\/(jpeg|png|webp)$/.test(imageMimeType) || imageData.length > MAX_IMAGE_DATA_LENGTH)) {
     return NextResponse.json({ error: "Choose a JPEG, PNG, or WebP image smaller than 8 MB." }, { status: 400 });
   }
 
@@ -201,295 +111,33 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please describe symptoms or upload a prescription image." }, { status: 400 });
   }
 
-  if (symptoms.length > 4_000 || prescriptionContext.length > 4_000) {
+  if (symptoms.length > MAX_TEXT_LENGTH || prescriptionContext.length > MAX_TEXT_LENGTH) {
     return NextResponse.json({ error: "Please shorten your message." }, { status: 400 });
   }
 
   if (urgentPattern.test(symptoms)) {
-    const emergencyCopy = emergencyResponseByLang[lang];
-    return NextResponse.json({
-      urgency: "emergency",
-      careLevel: "emergency",
-      possibleCause: emergencyCopy.possibleCause,
-      message: emergencyCopy.message,
-      questions: [],
+    return NextResponse.json(buildEmergencyResponse(lang));
+  }
+
+  let generated: { text: string; model: string };
+  try {
+    generated = await generateText({
+      system: buildSystemInstruction(lang),
+      text: buildUserText({ symptoms, history: parseHistory(body.history), prescriptionContext }),
+      image: imageData ? { mimeType: imageMimeType, data: imageData } : undefined,
     });
-  }
-
-  const anthropicApiKey = readEnv("ANTHROPIC_API_KEY");
-  const relayApiKey = readEnv("LLMSRELAY_API_KEY");
-
-  const content: Array<{ type: "input_text"; text: string } | { type: "input_image"; image_url: string }> = [{
-    type: "input_text",
-    text: `Current message: ${symptoms || "Not provided"}\nConversation history:\n${history.join("\n") || "Not provided"}\nWhy the prescription was given: ${prescriptionContext || "Not provided"}`,
-  }];
-  if (imageData) {
-    content.push({ type: "input_image", image_url: `data:${imageMimeType};base64,${imageData}` });
-  }
-
-  const chatCompletionsContent: Array<{ type: "text"; text: string } | { type: "image_url"; image_url: { url: string } }> = [{
-    type: "text",
-    text: `Current message: ${symptoms || "Not provided"}\nConversation history:\n${history.join("\n") || "Not provided"}\nWhy the prescription was given: ${prescriptionContext || "Not provided"}`,
-  }];
-  if (imageData) {
-    chatCompletionsContent.push({ type: "image_url", image_url: { url: `data:${imageMimeType};base64,${imageData}` } });
-  }
-
-  const model = readEnv("LLMSRELAY_MODEL")
-    || readEnv("ANTHROPIC_MODEL")
-    || "claude-haiku-4.5";
-  const anthropicBaseUrl = readEnv("ANTHROPIC_BASE_URL").replace(/\/$/, "") || "https://api.llmsrelay.com";
-  const relayHost = "api.llmsrelay.com";
-  let endpointHost = relayHost;
-  try {
-    endpointHost = new URL(anthropicBaseUrl).hostname.toLowerCase();
-  } catch {
-    return NextResponse.json({ error: "ANTHROPIC_BASE_URL must be a valid URL (for example, https://api.llmsrelay.com)." }, { status: 503 });
-  }
-  const usesRelayMessagesEndpoint = endpointHost === relayHost;
-  const claudeApiKey = usesRelayMessagesEndpoint ? relayApiKey : anthropicApiKey;
-  const relayApiKeyForResponses = relayApiKey || anthropicApiKey;
-  if (!claudeApiKey && model.startsWith("claude-")) {
-    sendAssistantAlert(
-      "ai:misconfigured:claude",
-      "AI assistant misconfigured",
-      "Claude model selected but API credentials are missing.",
-      { model, usesRelayMessagesEndpoint },
-      "critical",
-    );
-    return NextResponse.json(
-      {
-        error: usesRelayMessagesEndpoint
-          ? "The AI assistant is not configured yet. Add LLMSRELAY_API_KEY to .env.local."
-          : "The AI assistant is not configured yet. Add ANTHROPIC_API_KEY to .env.local.",
-      },
-      { status: 503 },
-    );
-  }
-  if (!relayApiKeyForResponses && !model.startsWith("claude-")) {
-    sendAssistantAlert(
-      "ai:misconfigured:relay",
-      "AI assistant misconfigured",
-      "Relay model selected but relay credentials are missing.",
-      { model },
-      "critical",
-    );
-    return NextResponse.json({ error: "The AI assistant is not configured yet. Add LLMSRELAY_API_KEY to .env.local." }, { status: 503 });
-  }
-  const systemInstruction = buildSystemInstruction(lang);
-
-  const requestText = `Current message: ${symptoms || "Not provided"}\nConversation history:\n${history.join("\n") || "Not provided"}\nWhy the prescription was given: ${prescriptionContext || "Not provided"}`;
-  let generatedText: string | undefined;
-
-  if (model.startsWith("claude-")) {
-    const anthropicContent: Array<
-      { type: "text"; text: string }
-      | { type: "image"; source: { type: "base64"; media_type: string; data: string } }
-    > = [{ type: "text", text: requestText }];
-    if (imageData) {
-      anthropicContent.push({
-        type: "image",
-        source: {
-          type: "base64",
-          media_type: imageMimeType,
-          data: imageData,
-        },
-      });
-    }
-
-    const anthropicResponse = await fetch(
-      `${anthropicBaseUrl}/v1/messages`,
-      {
-        method: "POST",
-        headers: {
-          ...(usesRelayMessagesEndpoint
-            ? { Authorization: `Bearer ${claudeApiKey}` }
-            : { "x-api-key": claudeApiKey! }),
-          "anthropic-version": "2023-06-01",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 600,
-          temperature: 0.2,
-          system: systemInstruction,
-          messages: [{ role: "user", content: anthropicContent }],
-        }),
-      },
-    );
-
-    if (!anthropicResponse.ok) {
-      const errorBody = await anthropicResponse.text().catch(() => "");
-      const relayError = parseRelayError(errorBody);
-      console.error("LLMsRelay Claude messages request failed", anthropicResponse.status, errorBody.slice(0, 500));
-      sendAssistantAlert(
-        `ai:claude:${anthropicResponse.status}`,
-        "AI assistant provider error",
-        "Claude messages request failed.",
-        {
-          model,
-          status: anthropicResponse.status,
-          relayCode: relayError.code || "",
-          relayMessage: (relayError.message || "").slice(0, 240),
-        },
-        anthropicResponse.status >= 500 ? "critical" : "warning",
-      );
-      if (anthropicResponse.status === 429) {
-        return NextResponse.json({ error: "The AI assistant has reached its request limit. Please try again in a few minutes." }, { status: 429 });
-      }
-      if (anthropicResponse.status === 401 || anthropicResponse.status === 403) {
-        return NextResponse.json({ error: "The AI assistant is misconfigured. Please contact support." }, { status: 503 });
-      }
-      if (anthropicResponse.status === 400 && /temporarily unavailable/i.test(relayError.message || "")) {
-        return NextResponse.json({ error: "The AI provider is temporarily unavailable. Please try again shortly." }, { status: 503 });
-      }
-      return NextResponse.json({ error: "The AI assistant is temporarily unavailable. Please try again shortly." }, { status: 502 });
-    } else {
-      const anthropicData = await anthropicResponse.json() as AnthropicMessagesApiResponse;
-      generatedText = anthropicData.content?.find((item) => item.type === "text" && typeof item.text === "string")?.text;
-    }
-  }
-
-  if (!generatedText && !model.startsWith("claude-")) {
-    const relayResponse = await fetch(
-      "https://api.llmsrelay.com/v1/responses",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${relayApiKeyForResponses}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model,
-          input: [
-            {
-              role: "system",
-              content: [{ type: "input_text", text: systemInstruction }],
-            },
-            {
-              role: "user",
-              content,
-            },
-          ],
-          text: { format: { type: "json_object" } },
-          temperature: 0.2,
-          max_output_tokens: 600,
-        }),
-      },
-    );
-
-    if (relayResponse.ok) {
-      const relayData = await relayResponse.json() as ResponsesApiResponse;
-      generatedText = extractGeneratedText(relayData);
-    } else if (relayResponse.status === 404) {
-      const errorBody = await relayResponse.text().catch(() => "");
-      console.warn("LLMsRelay /v1/responses unavailable, retrying with /v1/chat/completions", errorBody.slice(0, 500));
-
-      const fallbackResponse = await fetch(
-        "https://api.llmsrelay.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${relayApiKeyForResponses}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model,
-            messages: [
-              { role: "system", content: systemInstruction },
-              { role: "user", content: chatCompletionsContent },
-            ],
-            response_format: { type: "json_object" },
-            temperature: 0.2,
-            max_tokens: 600,
-          }),
-        },
-      );
-
-      if (!fallbackResponse.ok) {
-        const fallbackErrorBody = await fallbackResponse.text().catch(() => "");
-        console.error("LLMsRelay health assistant fallback failed", fallbackResponse.status, fallbackErrorBody.slice(0, 500));
-        sendAssistantAlert(
-          `ai:relay-fallback:${fallbackResponse.status}`,
-          "AI assistant fallback error",
-          "Fallback call to relay chat completions failed.",
-          {
-            model,
-            status: fallbackResponse.status,
-            errorSnippet: fallbackErrorBody.slice(0, 240),
-          },
-          fallbackResponse.status >= 500 ? "critical" : "warning",
-        );
-        if (fallbackResponse.status === 429) {
-          return NextResponse.json({ error: "The AI assistant has reached its request limit. Please try again in a few minutes." }, { status: 429 });
-        }
-        if (fallbackResponse.status === 401 || fallbackResponse.status === 403) {
-          return NextResponse.json({ error: "The AI assistant is misconfigured. Please contact support." }, { status: 503 });
-        }
-        return NextResponse.json({ error: "The AI assistant is temporarily unavailable. Please try again shortly." }, { status: 502 });
-      }
-
-      const fallbackData = await fallbackResponse.json() as ChatCompletionsApiResponse;
-      generatedText = fallbackData.choices?.[0]?.message?.content;
-    } else {
-      const errorBody = await relayResponse.text().catch(() => "");
-      const relayError = parseRelayError(errorBody);
-      console.error("LLMsRelay health assistant request failed", relayResponse.status, errorBody.slice(0, 500));
-      sendAssistantAlert(
-        `ai:relay:${relayResponse.status}`,
-        "AI assistant provider error",
-        "Relay responses request failed.",
-        {
-          model,
-          status: relayResponse.status,
-          relayCode: relayError.code || "",
-          relayMessage: (relayError.message || "").slice(0, 240),
-        },
-        relayResponse.status >= 500 ? "critical" : "warning",
-      );
-      if (relayResponse.status === 429) {
-        return NextResponse.json({ error: "The AI assistant has reached its request limit. Please try again in a few minutes." }, { status: 429 });
-      }
-      if (relayResponse.status === 401 || relayResponse.status === 403) {
-        return NextResponse.json({ error: "The AI assistant is misconfigured. Please contact support." }, { status: 503 });
-      }
-      if (relayResponse.status === 400 && /temporarily unavailable/i.test(relayError.message || "")) {
-        return NextResponse.json({ error: "The AI provider is temporarily unavailable. Please try again shortly." }, { status: 503 });
-      }
-      return NextResponse.json({ error: "The AI assistant is temporarily unavailable. Please try again shortly." }, { status: 502 });
-    }
-  }
-
-  if (!generatedText) {
-    sendAssistantAlert(
-      "ai:no-response",
-      "AI assistant empty response",
-      "AI provider request completed without content.",
-      { model },
-      "warning",
-    );
-    return NextResponse.json({ error: "The AI assistant did not return a response. Please try again." }, { status: 502 });
+  } catch (error) {
+    if (!(error instanceof LlmError)) throw error;
+    console.error("AI assistant request failed", error.kind, error.status ?? "", error.providerCode ?? "");
+    alertProviderFailure(error);
+    return failureResponse(error);
   }
 
   try {
-    const generated = JSON.parse(normalizeJsonPayload(generatedText)) as Partial<AssistantResponse>;
-    const response: AssistantResponse = {
-      urgency: generated.urgency === "emergency" ? "emergency" : "routine",
-      careLevel: generated.careLevel === "emergency" || generated.careLevel === "urgent" || generated.careLevel === "soon" ? generated.careLevel : "routine",
-      possibleCause: typeof generated.possibleCause === "string" ? generated.possibleCause : defaultPossibleCauseByLang[lang],
-      message: typeof generated.message === "string" ? generated.message : defaultMessageByLang[lang],
-      questions: Array.isArray(generated.questions) ? generated.questions.filter((question): question is string => typeof question === "string").slice(0, 3) : [],
-      prescriptionText: typeof generated.prescriptionText === "string" ? generated.prescriptionText : undefined,
-    };
-    return NextResponse.json(response);
+    return NextResponse.json(parseAssistantReply(generated.text, lang));
   } catch {
-    sendAssistantAlert(
-      "ai:unreadable-response",
-      "AI assistant unreadable response",
-      "AI provider returned a response that could not be parsed as valid JSON.",
-      { model, responseSnippet: generatedText.slice(0, 240) },
-      "warning",
-    );
-    return NextResponse.json({ error: "The AI assistant returned an unreadable response. Please try again." }, { status: 502 });
+    console.error("AI assistant returned a reply that is not valid JSON");
+    alertProviderFailure(new LlmError("bad-response", "The AI provider returned a reply that could not be parsed."));
+    return failureResponse(new LlmError("bad-response", "unreadable"));
   }
 }

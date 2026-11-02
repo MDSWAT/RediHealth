@@ -5,6 +5,7 @@ import { errors } from "jose";
 import { cookies } from "next/headers";
 import { decryptEmailCode, emailAuthCookies } from "@/lib/email-auth";
 import { checkLoginAccess, hasLoginAccess } from "@/lib/login-access";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { DEFAULT_LANG, LOCALE_COOKIE, isSupportedLang, withLangPrefix } from "@/lib/i18n/routing";
 
 const googleConfigured = Boolean(
@@ -26,7 +27,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       credentials: {
         code: { label: "Code", type: "text" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
+        const ipLimit = await checkRateLimit(`email-code-verify:ip:${getClientIp(request)}`, {
+          limit: 12,
+          windowMs: 60_000,
+        });
+        if (!ipLimit.allowed) {
+          console.warn("Email-code sign-in rejected: too many attempts from this client.");
+          return null;
+        }
+
         const code =
           typeof credentials?.code === "string" ? credentials.code.trim() : "";
         if (!code) {
@@ -38,6 +48,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const codeToken = cookieStore.get(emailAuthCookies.otp)?.value;
         if (!codeToken) {
           console.warn("Email-code sign-in rejected: missing verification cookie. Request a new code on the same host and protocol.");
+          return null;
+        }
+
+        // Each issued code only gets a handful of guesses, however many clients replay the cookie.
+        const tokenLimit = await checkRateLimit(`email-code-verify:token:${codeToken}`, {
+          limit: 6,
+          windowMs: 10 * 60_000,
+        });
+        if (!tokenLimit.allowed) {
+          console.warn("Email-code sign-in rejected: too many attempts for this code.");
           return null;
         }
 

@@ -4,9 +4,11 @@ import { useState } from "react";
 import { CheckCircleIcon, CloseIcon, StethoscopeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { CreateWorkerPayload, WorkerItem, WorkerStatus } from "@/lib/types/worker";
+import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 
 interface CreateWorkerModalProps {
   worker?: WorkerItem;
+  isRomania: boolean;
   defaultRole?: string;
   defaultDepartment?: string;
   onClose: () => void;
@@ -15,6 +17,7 @@ interface CreateWorkerModalProps {
 
 export function CreateWorkerModal({
   worker,
+  isRomania,
   defaultRole,
   defaultDepartment,
   onClose,
@@ -55,22 +58,24 @@ export function CreateWorkerModal({
       saving: "Saving...",
       update: "Update Worker",
       create: "Create Worker",
+      county: "County of activity",
+      selectCounty: "Select a county",
     },
     ro: {
-      healthcareWorker: "Lucrator medical",
-      errSave: "Salvarea profilului lucratorului a esuat.",
-      errUnexpected: "A aparut o eroare neasteptata la salvare.",
-      titleEdit: "Editeaza lucrator",
-      titleMediator: "Adauga mediator nou",
-      titleWorker: "Adauga lucrator nou",
+      healthcareWorker: "Lucrător medical",
+      errSave: "Salvarea profilului lucrătorului a eșuat.",
+      errUnexpected: "A apărut o eroare neașteptată la salvare.",
+      titleEdit: "Editează lucrător",
+      titleMediator: "Adaugă mediator nou",
+      titleWorker: "Adaugă lucrător nou",
       subtitleMediator: "Configureaza un spatiu de lucru mediator cu acces la Caz nou mediator",
       subtitleWorker: "Profil lucrator medical si detalii de rol",
       success: "Profilul lucratorului a fost salvat!",
       fullName: "Nume complet",
       fullNamePh: "ex. Dr. Alex Munteanu",
-      email: "Adresa email",
+      email: "Adresă de email",
       emailPh: "lucrator@redihealth.org",
-      phone: "Numar telefon",
+      phone: "Număr de telefon",
       phonePh: "ex. 0722 123 456",
       role: "Rol / Titlu",
       doctor: "Medic",
@@ -82,13 +87,15 @@ export function CreateWorkerModal({
       superAdmin: "Super Admin",
       department: "Departament / Specialitate",
       deptPh: "ex. Cardiologie, Medicina de familie",
-      accountStatus: "Status cont",
+      accountStatus: "Starea contului",
       activeStaff: "Personal activ",
       inactiveStaff: "Personal inactiv",
-      cancel: "Anuleaza",
+      cancel: "Anulează",
       saving: "Se salveaza...",
       update: "Actualizeaza lucrator",
-      create: "Creeaza lucrator",
+      create: "Creează lucrător",
+      county: "Județul în care activează",
+      selectCounty: "Selectează un județ",
     },
     sq: {
       healthcareWorker: "Punonjes shendetesor",
@@ -123,6 +130,8 @@ export function CreateWorkerModal({
       saving: "Duke ruajtur...",
       update: "Perditeso punonjesin",
       create: "Krijo punonjes",
+      county: "Qarku ku punon",
+      selectCounty: "Zgjidh nje qark",
     },
     it: {
       healthcareWorker: "Operatore sanitario",
@@ -157,6 +166,8 @@ export function CreateWorkerModal({
       saving: "Salvataggio...",
       update: "Aggiorna operatore",
       create: "Crea operatore",
+      county: "Provincia di attività",
+      selectCounty: "Seleziona una provincia",
     },
   }[lang];
 
@@ -167,7 +178,10 @@ export function CreateWorkerModal({
   const [phone, setPhone] = useState(worker?.phone || "");
   const [role, setRole] = useState(worker?.role || defaultRole || t.healthcareWorker);
   const [department, setDepartment] = useState(worker?.department || defaultDepartment || "");
+  const [county, setCounty] = useState(worker?.county || "");
   const [status, setStatus] = useState<WorkerStatus>(worker?.status || "active");
+  const countyRequired = isRomania && ["mediator", "doctor", "general practitioner"].includes(role.trim().toLowerCase());
+  const countySelectionRequired = countyRequired && (!isEditing || role !== worker?.role || Boolean(worker?.county));
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -186,6 +200,7 @@ export function CreateWorkerModal({
       phone: phone.trim() || undefined,
       role: role.trim() || t.healthcareWorker,
       department: department.trim() || undefined,
+      county: isRomania && countyRequired && county ? county : undefined,
       status,
     };
 
@@ -224,6 +239,7 @@ export function CreateWorkerModal({
         phone: payload.phone || null,
         role: payload.role || t.healthcareWorker,
         department: payload.department || null,
+        county: payload.county || null,
         status: payload.status || "active",
         assigned_patients_count: worker?.assigned_patients_count || 0,
         created_at: worker?.created_at || new Date().toISOString(),
@@ -291,7 +307,7 @@ export function CreateWorkerModal({
             </label>
             <input
               type="text"
-              required
+              required={countySelectionRequired}
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder={t.fullNamePh}
@@ -313,6 +329,23 @@ export function CreateWorkerModal({
                 className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
+
+            {isRomania && countyRequired ? (
+              <div>
+                <label className="font-semibold text-foreground mb-1 block">
+                  {t.county} <span className="text-red-500">*</span>
+                </label>
+                <select
+                  required
+                  value={county}
+                  onChange={(e) => setCounty(e.target.value)}
+                  className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <option value="">{t.selectCounty}</option>
+                  {ROMANIAN_COUNTIES.map((countyName) => <option key={countyName} value={countyName}>{countyName}</option>)}
+                </select>
+              </div>
+            ) : null}
 
             <div>
               <label className="font-semibold text-foreground mb-1 block">

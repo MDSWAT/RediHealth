@@ -1,12 +1,13 @@
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type RowDataPacket } from "@/lib/database";
+import type { CountryCode } from "@/lib/countries";
 import type { MedicalHelpRequestItem, RequestStatus } from "@/lib/types/medical-request";
 
 import { inboxOptions, type InboxPage, type QueueCounts } from "@/lib/request-inbox";
 export type { InboxPage, QueueCounts } from "@/lib/request-inbox";
 
-export async function loadRequestInbox(params: URLSearchParams, workerId: string, isAdmin: boolean): Promise<InboxPage> {
+export async function loadRequestInbox(country: CountryCode, params: URLSearchParams, workerId: string, isAdmin: boolean): Promise<InboxPage> {
   const options = inboxOptions(params);
-  const db = getDatabase();
+  const db = getCountryDatabase(country);
   const clauses: string[] = [];
   const values: unknown[] = [];
   if (options.id) { clauses.push("r.id = ?"); values.push(options.id); }
@@ -36,7 +37,7 @@ export async function loadRequestInbox(params: URLSearchParams, workerId: string
   counts.attention = counts.pending + counts.in_progress;
   const iso = (value: unknown) => value instanceof Date ? value.toISOString() : typeof value === "string" ? value : undefined;
   const requests = rows.map((r): MedicalHelpRequestItem => ({
-    id: String(r.id), patient_id: r.patient_id == null ? null : String(r.patient_id), full_name: r.full_name || null, phone: r.phone || "", email: r.email || "", description: r.description || "", status: r.status || "pending", priority: r.priority || "normal", internal_notes: r.internal_notes || null,
+    id: String(r.id), patient_id: r.patient_id == null ? null : String(r.patient_id), full_name: r.full_name || null, phone: r.phone || "", email: r.email || "", description: r.description || "", county: r.county || null, privacy_consent_at: iso(r.privacy_consent_at) || null, status: r.status || "pending", priority: r.priority || "normal", internal_notes: r.internal_notes || null,
     status_updated_by_name: r.status_updated_by_name || null, status_updated_by_email: r.status_updated_by_email || null, status_updated_at: iso(r.status_updated_at), created_at: iso(r.created_at) || "", updated_at: iso(r.updated_at),
   }));
   const total = Number(totals[0]?.total || 0);

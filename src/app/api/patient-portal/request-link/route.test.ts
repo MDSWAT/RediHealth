@@ -7,7 +7,8 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock("@/lib/database", () => ({
-  getDatabase: () => ({ query: mocks.query }),
+  getCountryDatabase: () => ({ query: mocks.query }),
+  configuredCountries: () => ["RO", "IT"],
 }));
 vi.mock("@/lib/email", () => ({
   isEmailConfigured: () => true,
@@ -23,7 +24,7 @@ import { POST } from "./route";
 describe("patient portal link recovery", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mocks.checkRateLimit.mockReturnValue({ allowed: true, retryAfterSeconds: 0 });
+    mocks.checkRateLimit.mockResolvedValue({ allowed: true, retryAfterSeconds: 0 });
     mocks.query.mockResolvedValue([[]]);
     mocks.sendEmail.mockResolvedValue(true);
   });
@@ -43,7 +44,7 @@ describe("patient portal link recovery", () => {
     expect(mocks.sendEmail).not.toHaveBeenCalled();
   });
 
-  it("replaces a patient's token with a permanent Romanian portal link", async () => {
+  it("replaces a patient's token with a fresh Romanian portal link that expires", async () => {
     mocks.query
       .mockResolvedValueOnce([[
         { id: 14, full_name: "Ana", email: "ana@example.com", treatment_plan: null, condition_notes: null },
@@ -55,13 +56,28 @@ describe("patient portal link recovery", () => {
     expect(await response.json()).toMatchObject({ success: true });
     expect(mocks.query).toHaveBeenNthCalledWith(
       2,
-      expect.stringContaining("access_token_expires_at = NULL"),
-      [expect.any(String), 14],
+      expect.stringContaining("DATE_ADD(NOW(), INTERVAL ? DAY)"),
+      [expect.any(String), 90, 14],
     );
     expect(mocks.sendEmail).toHaveBeenCalledWith(expect.objectContaining({
       email: "ana@example.com",
+      country: "RO",
       lang: "ro",
       accessToken: expect.any(String),
     }));
+  });
+
+  it("finds a patient registered in another country and issues the link for that country", async () => {
+    mocks.query
+      .mockResolvedValueOnce([[]])
+      .mockResolvedValueOnce([[
+        { id: 3, full_name: "Marco", email: "marco@example.com", treatment_plan: null, condition_notes: null },
+      ]])
+      .mockResolvedValueOnce([{ affectedRows: 1 }]);
+
+    const response = await POST(request("marco@example.com", "it"));
+    expect(response.status).toBe(200);
+    expect(mocks.sendEmail).toHaveBeenCalledTimes(1);
+    expect(mocks.sendEmail).toHaveBeenCalledWith(expect.objectContaining({ country: "IT", email: "marco@example.com" }));
   });
 });

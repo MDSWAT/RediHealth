@@ -1,5 +1,4 @@
-import { cookies } from "next/headers";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import type { Lang } from "@/lib/i18n/translations";
 import {
   DEFAULT_LANG,

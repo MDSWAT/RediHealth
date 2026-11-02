@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/SiteChrome";
+import { getRequestLang } from "@/lib/i18n/server-routing";
+import { siteMetadata } from "@/lib/i18n/site-metadata";
+import { getSiteUrl } from "@/lib/site-url";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,16 +23,35 @@ export const viewport: Viewport = {
   themeColor: "#cc3846",
 };
 
-export const metadata: Metadata = {
-  title: "RediHealth - Better health starts with knowing what to do next",
-  description:
-    "Understand your health risks, learn how to protect your health, and get help accessing the medical care you need.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = siteMetadata[await getRequestLang()];
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+  return {
+    metadataBase: new URL(getSiteUrl()),
+    title: site.title,
+    description: site.description,
+    applicationName: "RediHealth",
+    openGraph: {
+      type: "website",
+      siteName: "RediHealth",
+      title: site.title,
+      description: site.description,
+      locale: site.openGraphLocale,
+    },
+    twitter: {
+      card: "summary",
+      title: site.title,
+      description: site.description,
+    },
+  };
+}
+
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const lang = await getRequestLang();
+
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
@@ -37,7 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           href="#main-content"
           className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[100] focus-visible:rounded-lg focus-visible:bg-foreground focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-semibold focus-visible:text-white"
         >
-          Skip to main content
+          {siteMetadata[lang].skipLink}
         </a>
         <SiteChrome>{children}</SiteChrome>
       </body>

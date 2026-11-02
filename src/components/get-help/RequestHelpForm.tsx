@@ -6,6 +6,10 @@ import { Button } from "@/components/ui/Button";
 import { ClipboardCheckIcon, LockIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Translations } from "@/lib/i18n/translations";
+import { isValidEmail } from "@/lib/text";
+import { COUNTRY_LABELS, type CountryCode } from "@/lib/countries";
+import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
+import { withLangPrefix } from "@/lib/i18n/routing";
 
 type Fields = {
   name: string;
@@ -15,8 +19,6 @@ type Fields = {
 };
 
 type Errors = Partial<Record<keyof Fields, string>>;
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const inputClass =
   "mt-1.5 block w-full rounded-lg border border-border bg-card px-3.5 text-base text-foreground " +
@@ -31,7 +33,7 @@ function validate(values: Fields, t: Translations["getHelpPage"]["form"]): Error
     errors.phone = t.errorPhone;
   }
 
-  if (values.email.trim() && !emailPattern.test(values.email.trim())) {
+  if (values.email.trim() && !isValidEmail(values.email.trim())) {
     errors.email = t.errorEmailInvalid;
   }
 
@@ -42,10 +44,23 @@ function validate(values: Fields, t: Translations["getHelpPage"]["form"]): Error
   return errors;
 }
 
-export function RequestHelpForm() {
-  const { t } = useLanguage();
+const countryLabel = { en: "Country", ro: "Țara", sq: "Shteti", it: "Paese" } as const;
+
+export function RequestHelpForm({
+  countries,
+  initialCountry,
+}: {
+  countries: CountryCode[];
+  initialCountry: CountryCode | null;
+}) {
+  const { t, lang } = useLanguage();
   const form = t.getHelpPage.form;
 
+  const [country, setCountry] = useState<CountryCode | "">(initialCountry ?? "");
+  const [county, setCounty] = useState("");
+  const [privacyConsent, setPrivacyConsent] = useState(false);
+  const [countyError, setCountyError] = useState(false);
+  const [consentAttempted, setConsentAttempted] = useState(false);
   const [values, setValues] = useState<Fields>({
     name: "",
     phone: "",
@@ -69,7 +84,10 @@ export function RequestHelpForm() {
     event.preventDefault();
     const nextErrors = validate(values, form);
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length !== 0) {
+    const missingCounty = country === "RO" && !county;
+    setCountyError(missingCounty);
+    setConsentAttempted(true);
+    if (Object.keys(nextErrors).length !== 0 || missingCounty || !privacyConsent) {
       return;
     }
 
@@ -79,7 +97,7 @@ export function RequestHelpForm() {
       const response = await fetch("/api/medical-help-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, country, county, privacyConsent }),
       });
       const result = (await response.json()) as { error?: string };
       if (response.ok) {
@@ -115,6 +133,10 @@ export function RequestHelpForm() {
             variant="outline"
             onClick={() => {
               setValues({ name: "", phone: "", email: "", description: "" });
+              setCounty("");
+              setCountyError(false);
+              setPrivacyConsent(false);
+              setConsentAttempted(false);
               setSubmitted(false);
             }}
           >
@@ -140,6 +162,60 @@ export function RequestHelpForm() {
         </p>
       ) : null}
       <div className="grid gap-6">
+        {countries.length > 1 ? (
+          <div>
+            <label htmlFor="country" className="text-sm font-semibold text-foreground">
+              {countryLabel[lang]}
+            </label>
+            <select
+              id="country"
+              name="country"
+              value={country}
+              onChange={(event) => {
+                setCountry(event.target.value as CountryCode);
+                setCounty("");
+                setCountyError(false);
+              }}
+              className={`${inputClass} h-11`}
+            >
+              {countries.map((code) => (
+                <option key={code} value={code}>
+                  {COUNTRY_LABELS[code][lang]}
+                </option>
+              ))}
+            </select>
+          </div>
+        ) : null}
+
+        {country === "RO" ? (
+          <div>
+            <label htmlFor="county" className="text-sm font-semibold text-foreground">
+              {form.countyLabel}
+            </label>
+            <select
+              id="county"
+              name="county"
+              required
+              value={county}
+              onChange={(event) => {
+                setCounty(event.target.value);
+                setCountyError(false);
+              }}
+              className={`${inputClass} h-11`}
+              aria-invalid={countyError}
+              aria-describedby={countyError ? "county-error" : undefined}
+            >
+              <option value="">{form.selectCounty}</option>
+              {ROMANIAN_COUNTIES.map((name) => (
+                <option key={name} value={name}>{name}</option>
+              ))}
+            </select>
+            {countyError ? (
+              <p id="county-error" className="mt-1.5 text-sm text-primary">{form.errorCounty}</p>
+            ) : null}
+          </div>
+        ) : null}
+
         <div>
           <label htmlFor="name" className="text-sm font-semibold text-foreground">
             {form.fullNameLabel}{" "}
@@ -252,6 +328,29 @@ export function RequestHelpForm() {
           <p className="text-sm leading-relaxed text-muted-foreground">
             {form.privacyNote}
           </p>
+        </div>
+
+        <div>
+          <label className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+            <input
+              type="checkbox"
+              name="privacyConsent"
+              required
+              checked={privacyConsent}
+              onChange={(event) => setPrivacyConsent(event.target.checked)}
+              aria-invalid={consentAttempted && !privacyConsent}
+              className="mt-1 h-4 w-4 flex-none rounded border-border text-primary focus:ring-primary"
+            />
+            <span>
+              {form.privacyConsent}{" "}
+              <a href={withLangPrefix("/privacy", lang)} className="font-semibold text-primary hover:underline">
+                {form.privacyPolicyLabel}
+              </a>.
+            </span>
+          </label>
+          {consentAttempted && !privacyConsent ? (
+            <p className="mt-1.5 text-sm text-muted-foreground">{form.privacyConsentRequired}</p>
+          ) : null}
         </div>
 
         <div>

@@ -1,4 +1,6 @@
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type RowDataPacket } from "@/lib/database";
+import type { CountryCode } from "@/lib/countries";
+import { decryptField } from "@/lib/security/field-encryption";
 import { parseJsonColumn } from "@/lib/json";
 import type {
   FollowupItem,
@@ -25,8 +27,8 @@ export const PATIENT_COLUMNS = `p.id, p.request_id, p.assigned_worker_id, w.full
       REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', '')
     ) > 0
   ) AS assigned_worker_names_concat,
-  p.access_token_hash, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address,
-  p.condition_notes, p.medical_history, p.treatment_plan, p.followups, p.photos,
+  p.access_token_hash, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, p.county,
+  p.condition_notes, p.medical_history, p.profile_photo, p.treatment_plan, p.followups, p.photos,
   COALESCE(p.status, 'active') AS status,
   COALESCE(p.priority, 'moderate') AS priority,
   p.created_at, p.updated_at`;
@@ -47,8 +49,10 @@ export interface DBPatientRow extends RowDataPacket {
   date_of_birth?: string | null;
   gender?: string | null;
   address?: string | null;
+  county?: string | null;
   condition_notes?: string | null;
   medical_history?: string | null;
+  profile_photo?: string | null;
   treatment_plan?: string | object | null;
   followups?: string | object | null;
   photos?: string | object | null;
@@ -63,7 +67,7 @@ function toIsoString(value: Date | string | null | undefined): string | undefine
   return value instanceof Date ? value.toISOString() : String(value);
 }
 
-export function mapPatientRow(row: DBPatientRow): PatientItem {
+export function mapPatientRow(row: DBPatientRow, country: CountryCode): PatientItem {
   const multiAssignedWorkerIds = parseJsonColumn<Array<string | number>>(row.assigned_worker_ids)
     ?.map((id) => String(id))
     .filter((id) => id.length > 0) || [];
@@ -97,11 +101,13 @@ export function mapPatientRow(row: DBPatientRow): PatientItem {
     date_of_birth: row.date_of_birth || null,
     gender: row.gender || null,
     address: row.address || null,
+    county: row.county || null,
     condition_notes: row.condition_notes || null,
-    medical_history: row.medical_history || null,
+    medical_history: decryptField(country, row.medical_history) || null,
+    profile_photo: decryptField(country, row.profile_photo) || null,
     treatment_plan: parseJsonColumn<TreatmentPlan>(row.treatment_plan),
     followups: parseJsonColumn<FollowupItem[]>(row.followups) || [],
-    photos: parseJsonColumn<PatientPhoto[]>(row.photos) || [],
+    photos: parseJsonColumn<PatientPhoto[]>(decryptField(country, row.photos)) || [],
     status: (row.status as PatientStatus) || "active",
     priority: (row.priority as PatientPriority) || "moderate",
     created_at: toIsoString(row.created_at) ?? new Date(0).toISOString(),
@@ -110,6 +116,8 @@ export function mapPatientRow(row: DBPatientRow): PatientItem {
 }
 
 export interface LoadPatientsOptions {
+  /** Country whose database is read. */
+  country: CountryCode;
   /** When set, only patients assigned to this worker are returned. */
   scopeToWorkerId?: string | null;
   limit?: number;
@@ -117,10 +125,10 @@ export interface LoadPatientsOptions {
 }
 
 export async function loadPatients(
-  options: LoadPatientsOptions = {},
+  options: LoadPatientsOptions,
 ): Promise<PatientItem[]> {
-  const { scopeToWorkerId, limit = 100, id } = options;
-  const db = getDatabase();
+  const { country, scopeToWorkerId, limit = 100, id } = options;
+  const db = getCountryDatabase(country);
 
   const params: unknown[] = [];
   let sql = `SELECT ${PATIENT_COLUMNS} ${PATIENT_FROM}`;
@@ -145,5 +153,5 @@ export async function loadPatients(
   params.push(limit);
 
   const [rows] = await db.query<DBPatientRow[]>(sql, params);
-  return rows.map(mapPatientRow);
+  return rows.map((row) => mapPatientRow(row, country));
 }

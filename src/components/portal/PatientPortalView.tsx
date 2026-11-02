@@ -24,10 +24,12 @@ import { usePatientPortal } from "@/components/portal/usePatientPortal";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { TreatmentPlansView } from "@/components/panel/TreatmentPlansView";
 import { treatmentTranslations } from "@/lib/i18n/treatment-translations";
+import type { CountryCode } from "@/lib/countries";
 
 interface PatientPortalViewProps {
   initialPatient: PatientItem;
   token: string;
+  country: CountryCode;
 }
 
 type PortalTab = "home" | "actions" | "plan" | "photos" | "notes";
@@ -422,13 +424,14 @@ function SectionTitle({ icon, title }: { icon: ReactNode; title: string }) {
 export function PatientPortalView({
   initialPatient,
   token,
+  country,
 }: PatientPortalViewProps) {
   const { lang } = useLanguage();
   const t = portalTranslations[lang];
   const [activeTab, setActiveTab] = useState<PortalTab>("home");
   const [activeAction, setActiveAction] = useState<PortalAction>("symptoms");
   const { patient, errorMessage, symptoms, followup, photo } =
-    usePatientPortal({ initialPatient, token });
+    usePatientPortal({ initialPatient, token, country });
   const sortedFollowups = useMemo(
     () => sortFollowups(patient.followups || []),
     [patient.followups],

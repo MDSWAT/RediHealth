@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { logActivity } from "@/lib/activity-log";
-import { getDatabase, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type RowDataPacket } from "@/lib/database";
 import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
 import { getClientIp } from "@/lib/rate-limit";
+import { escapeHtml } from "@/lib/text";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 
 type ReplyTemplateId = "acknowledgment" | "consultation" | "referral";
@@ -14,15 +15,6 @@ type RequesterRow = RowDataPacket & {
   email: string | null;
   description: string;
 };
-
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
 
 function getTemplate(templateId: ReplyTemplateId, requester: RequesterRow) {
   const name = requester.full_name?.trim() || "Valued Customer";
@@ -138,7 +130,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const [rows] = await getDatabase().query<RequesterRow[]>(
+    const [rows] = await getCountryDatabase(workerContext.country).query<RequesterRow[]>(
       "SELECT full_name, phone, email, description FROM medical_help_requests WHERE id = ? LIMIT 1",
       [requestId],
     );
@@ -154,6 +146,7 @@ export async function POST(request: Request) {
     await sendEmail({ to: requester.email.trim(), ...template });
 
     await logActivity({
+      country: workerContext.country,
       actorWorkerId: workerContext.workerId,
       actorName: workerContext.workerName,
       actorEmail: session.user.email || null,

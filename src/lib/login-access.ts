@@ -1,14 +1,6 @@
-import {
-  getDatabase,
-  hasDatabaseConnectionConfig,
-  type RowDataPacket,
-} from "@/lib/database";
+import { configuredCountries } from "@/lib/database";
+import { getWorkerMemberships, hasPanelRole } from "@/lib/worker-auth";
 
-const allowedWorkerRoles = ["administrator", "admin", "doctor", "mediator"];
-
-type AccessRow = RowDataPacket & {
-  id: number | string;
-};
 
 export type LoginAccessResultReason =
   | "authorized"
@@ -29,37 +21,17 @@ export async function checkLoginAccess(
     return { allowed: false, reason: "invalid-email" };
   }
 
-  if (!hasDatabaseConnectionConfig()) {
+  if (configuredCountries().length === 0) {
     return { allowed: false, reason: "database-unavailable" };
   }
 
-  try {
-    const db = getDatabase();
-    const [patientRows, workerRows] = await Promise.all([
-      db.query<AccessRow[]>(
-        "SELECT id FROM patients WHERE LOWER(email) = ? LIMIT 1",
-        [normalizedEmail],
-      ),
-      db.query<AccessRow[]>(
-        `SELECT id
-         FROM workers
-         WHERE LOWER(email) = ?
-           AND status = 'active'
-           AND LOWER(TRIM(role)) IN (?, ?, ?, ?)
-         LIMIT 1`,
-        [normalizedEmail, ...allowedWorkerRoles],
-      ),
-    ]);
-
-    const allowed = patientRows[0].length > 0 || workerRows[0].length > 0;
-    return {
-      allowed,
-      reason: allowed ? "authorized" : "unauthorized",
-    };
-  } catch (error) {
-    console.error("hasLoginAccess: database check failed", error);
-    return { allowed: false, reason: "database-unavailable" };
+  const { memberships, lookupFailed } = await getWorkerMemberships(normalizedEmail);
+  if (memberships.some(hasPanelRole)) {
+    return { allowed: true, reason: "authorized" };
   }
+
+  // A failing country database could be the one holding this account, so do not report "unauthorized".
+  return { allowed: false, reason: lookupFailed ? "database-unavailable" : "unauthorized" };
 }
 
 export async function hasLoginAccess(

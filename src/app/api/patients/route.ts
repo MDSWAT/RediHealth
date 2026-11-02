@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { logActivity } from "@/lib/activity-log";
-import { getDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
   PATIENT_COLUMNS,
@@ -19,14 +19,11 @@ import type {
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { sendPatientPortalLinkEmail } from "@/lib/email";
 import { getRequestLang } from "@/lib/i18n/server-routing";
-import { generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
+import { PORTAL_LINK_TTL_DAYS, generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
 import { getClientIp } from "@/lib/rate-limit";
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function text(value: unknown) {
-  return typeof value === "string" ? value.trim() : "";
-}
+import { isValidEmail, text } from "@/lib/text";
+import { encryptField } from "@/lib/security/field-encryption";
+import { isRomanianCounty } from "@/lib/romanian-counties";
 
 function isDuplicateEntryError(error: unknown): boolean {
   const dbError = error as { code?: string; errno?: number; sqlState?: string; message?: string };
@@ -35,14 +32,6 @@ function isDuplicateEntryError(error: unknown): boolean {
     || dbError.errno === 1062
     || dbError.sqlState === "23000"
     || /duplicate entry/i.test(dbError.message || "")
-  );
-}
-
-function isMissingAccessTokenExpiryColumnError(error: unknown): boolean {
-  const dbError = error as { code?: string; errno?: number; sqlMessage?: string; message?: string };
-  return (
-    (dbError.code === "ER_BAD_FIELD_ERROR" || dbError.errno === 1054)
-    && /access_token_expires_at/i.test(dbError.sqlMessage || dbError.message || "")
   );
 }
 
@@ -78,7 +67,7 @@ export async function GET(request: Request) {
   const offset = (page - 1) * limit;
 
   try {
-    const db = getDatabase();
+    const db = getCountryDatabase(workerContext.country);
     let query = `SELECT ${PATIENT_COLUMNS} ${PATIENT_FROM}`;
     const params: unknown[] = [];
     const conditions: string[] = [];
@@ -133,7 +122,7 @@ export async function GET(request: Request) {
 
     const [rows] = await db.query<DBPatientRow[]>(query, params);
     return NextResponse.json({
-      patients: rows.map(mapPatientRow),
+      patients: rows.map((row) => mapPatientRow(row, workerContext.country)),
       pagination: {
         page,
         limit,
@@ -145,7 +134,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("Failed to fetch patients", error);
     return NextResponse.json(
-      { error: "Could not fetch patients. Ensure migrations 003–007 are applied." },
+      { error: "Could not fetch patients. Ensure migrations 003–007 and 012 are applied." },
       { status: 503 },
     );
   }
@@ -177,6 +166,7 @@ export async function POST(request: Request) {
   const dateOfBirth = text(body.date_of_birth);
   const gender = text(body.gender);
   const address = text(body.address);
+  const county = workerContext.country === "RO" ? text(body.county) : "";
   const conditionNotes = text(body.condition_notes);
   const medicalHistory = text(body.medical_history);
   const requestId = body.request_id ? String(body.request_id) : null;
@@ -187,11 +177,15 @@ export async function POST(request: Request) {
   const accessToken = generatePortalToken();
   const accessTokenHash = hashPortalToken(accessToken);
 
-  if (!fullName || !phone || !emailPattern.test(email)) {
+  if (!fullName || !phone || !isValidEmail(email)) {
     return NextResponse.json(
       { error: "Please provide patient name, phone, and a valid email address." },
       { status: 400 },
     );
+  }
+
+  if (workerContext.country === "RO" && !isRomanianCounty(county)) {
+    return NextResponse.json({ error: "Please select a valid county for the patient." }, { status: 400 });
   }
 
   if (
@@ -234,7 +228,7 @@ export async function POST(request: Request) {
   }
   const treatmentPlan = stringifyJsonColumn(validatedTreatment.value);
   const followups = stringifyJsonColumn(body.followups);
-  const photos = stringifyJsonColumn(body.photos);
+  const photos = encryptField(workerContext.country, stringifyJsonColumn(body.photos));
   const assignedWorkerIds = workerContext.isAdmin
     ? requestedAssignedWorkerIds
     : [workerContext.workerId];
@@ -244,66 +238,33 @@ export async function POST(request: Request) {
   let createdPatientId: number | undefined;
 
   try {
-    const db = getDatabase();
-    const baseInsertParams = [
-      requestId,
-      assignedWorkerId ?? workerContext.workerId,
-      stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
-      accessTokenHash,
-      fullName,
-      phone,
-      email,
-      dateOfBirth || null,
-      gender || null,
-      address || null,
-      conditionNotes || null,
-      medicalHistory || null,
-      treatmentPlan,
-      followups,
-      photos,
-      status,
-      priority,
-    ];
-
-    try {
-      const [result] = await db.query<ResultSetHeader>(
-        `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token_hash, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [
-          requestId,
-          assignedWorkerId ?? workerContext.workerId,
-          stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
-          accessTokenHash,
-          null,
-          fullName,
-          phone,
-          email,
-          dateOfBirth || null,
-          gender || null,
-          address || null,
-          conditionNotes || null,
-          medicalHistory || null,
-          treatmentPlan,
-          followups,
-          photos,
-          status,
-          priority,
-        ],
-      );
-      createdPatientId = result.insertId;
-    } catch (insertError) {
-      if (!isMissingAccessTokenExpiryColumnError(insertError)) {
-        throw insertError;
-      }
-
-      // Backward compatibility for databases that predate the token-expiry column.
-      const [fallbackResult] = await db.query<ResultSetHeader>(
-        `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token_hash, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        baseInsertParams,
-      );
-      createdPatientId = fallbackResult.insertId;
-    }
+    const db = getCountryDatabase(workerContext.country);
+    const [result] = await db.query<ResultSetHeader>(
+      `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token_hash, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority, county)
+       VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL ? DAY), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        requestId,
+        assignedWorkerId ?? workerContext.workerId,
+        stringifyJsonColumn(assignedWorkerIds.length > 0 ? assignedWorkerIds : null),
+        accessTokenHash,
+        PORTAL_LINK_TTL_DAYS,
+        fullName,
+        phone,
+        email,
+        dateOfBirth || null,
+        gender || null,
+        address || null,
+        conditionNotes || null,
+        encryptField(workerContext.country, medicalHistory || null),
+        treatmentPlan,
+        followups,
+        photos,
+        status,
+        priority,
+        county || null,
+      ],
+    );
+    createdPatientId = result.insertId;
   } catch (error) {
     if (isDuplicateEntryError(error)) {
       return NextResponse.json(
@@ -313,35 +274,13 @@ export async function POST(request: Request) {
     }
     console.error("Failed to create patient profile", error);
     return NextResponse.json(
-      { error: "Could not create patient profile. Ensure migrations 001–004 are applied." },
+      { error: "Could not create patient profile. Ensure migrations 001–004 and 012 are applied." },
       { status: 503 },
     );
   }
 
-  try {
-    await sendPatientPortalLinkEmail({
-      name: fullName,
-      email,
-      accessToken,
-      lang: await getRequestLang(request),
-      treatmentPlan: parseJsonColumn<TreatmentPlan>(treatmentPlan),
-      conditionNotes,
-      baseUrl: new URL(request.url).origin,
-    });
-  } catch (error) {
-    console.error("Failed to send patient portal link email", error);
-    return NextResponse.json(
-      {
-        success: true,
-        id: createdPatientId,
-        email_sent: false,
-        warning: "Patient was created, but portal email could not be sent.",
-      },
-      { status: 201 },
-    );
-  }
-
   await logActivity({
+    country: workerContext.country,
     actorWorkerId: workerContext.workerId,
     actorName: workerContext.workerName,
     actorEmail: text(session.user.email),
@@ -359,6 +298,34 @@ export async function POST(request: Request) {
     },
     ipAddress: getClientIp(request),
   });
+
+  let emailSent = false;
+  try {
+    emailSent = await sendPatientPortalLinkEmail({
+      name: fullName,
+      email,
+      accessToken,
+      country: workerContext.country,
+      lang: await getRequestLang(request),
+      treatmentPlan: parseJsonColumn<TreatmentPlan>(treatmentPlan),
+      conditionNotes,
+      baseUrl: new URL(request.url).origin,
+    });
+  } catch (error) {
+    console.error("Failed to send patient portal link email", error);
+  }
+
+  if (!emailSent) {
+    return NextResponse.json(
+      {
+        success: true,
+        id: createdPatientId,
+        email_sent: false,
+        warning: "Patient was created, but portal email could not be sent.",
+      },
+      { status: 201 },
+    );
+  }
 
   return NextResponse.json(
     { success: true, id: createdPatientId, email_sent: true },
@@ -425,11 +392,8 @@ export async function PATCH(request: Request) {
   }
   if (body.email !== undefined) {
     const nextEmail = text(body.email).toLowerCase();
-    if (!emailPattern.test(nextEmail)) {
+    if (!isValidEmail(nextEmail)) {
       return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
-    }
-    if (nextEmail.length > 320) {
-      return NextResponse.json({ error: "Patient email is too long." }, { status: 400 });
     }
     updates.push("email = ?");
     params.push(nextEmail);
@@ -450,13 +414,21 @@ export async function PATCH(request: Request) {
     updates.push("address = ?");
     params.push(nextAddress || null);
   }
+  if (body.county !== undefined) {
+    const nextCounty = workerContext.country === "RO" ? text(body.county) : "";
+    if (workerContext.country === "RO" && !isRomanianCounty(nextCounty)) {
+      return NextResponse.json({ error: "Please select a valid county for the patient." }, { status: 400 });
+    }
+    updates.push("county = ?");
+    params.push(nextCounty || null);
+  }
   if (body.condition_notes !== undefined) {
     updates.push("condition_notes = ?");
     params.push(text(body.condition_notes) || null);
   }
   if (body.medical_history !== undefined) {
     updates.push("medical_history = ?");
-    params.push(text(body.medical_history) || null);
+    params.push(encryptField(workerContext.country, text(body.medical_history) || null));
   }
   if (body.profile_photo !== undefined) {
     if (body.profile_photo === null || body.profile_photo === "") {
@@ -476,7 +448,7 @@ export async function PATCH(request: Request) {
         );
       }
       updates.push("profile_photo = ?");
-      params.push(body.profile_photo);
+      params.push(encryptField(workerContext.country, body.profile_photo));
     }
   }
   if (body.treatment_plan !== undefined) {
@@ -488,12 +460,18 @@ export async function PATCH(request: Request) {
     params.push(stringifyJsonColumn(validatedTreatment.value));
   }
   if (body.followups !== undefined) {
+    if (!Array.isArray(body.followups)) {
+      return NextResponse.json({ error: "Follow-ups must be an array." }, { status: 400 });
+    }
     updates.push("followups = ?");
     params.push(stringifyJsonColumn(body.followups));
   }
   if (body.photos !== undefined) {
+    if (!Array.isArray(body.photos)) {
+      return NextResponse.json({ error: "Photos must be an array." }, { status: 400 });
+    }
     updates.push("photos = ?");
-    params.push(stringifyJsonColumn(body.photos));
+    params.push(encryptField(workerContext.country, stringifyJsonColumn(body.photos)));
   }
   if (body.status !== undefined) {
     updates.push("status = ?");
@@ -550,7 +528,7 @@ export async function PATCH(request: Request) {
       .map((entry) => entry.split("=")[0]?.trim())
       .filter(Boolean);
 
-    const [result] = await getDatabase().query<ResultSetHeader>(
+    const [result] = await getCountryDatabase(workerContext.country).query<ResultSetHeader>(
       `UPDATE patients SET ${updates.join(", ")} WHERE ${whereClause}`,
       params,
     );
@@ -560,6 +538,7 @@ export async function PATCH(request: Request) {
     }
 
     await logActivity({
+      country: workerContext.country,
       actorWorkerId: workerContext.workerId,
       actorName: workerContext.workerName,
       actorEmail: text(session.user.email),
@@ -632,7 +611,7 @@ export async function DELETE(request: Request) {
   }
 
   try {
-    const db = getDatabase();
+    const db = getCountryDatabase(workerContext.country);
     const [existingRows] = await db.query<RowDataPacket[]>(
       `SELECT id, full_name, email
        FROM patients
@@ -645,7 +624,7 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: "Patient not found or not assigned to you." }, { status: 404 });
     }
 
-    const [result] = await getDatabase().query<ResultSetHeader>(
+    const [result] = await db.query<ResultSetHeader>(
       `DELETE FROM patients WHERE ${whereClause}`,
       deleteParams,
     );
@@ -655,6 +634,7 @@ export async function DELETE(request: Request) {
     }
 
     await logActivity({
+      country: workerContext.country,
       actorWorkerId: workerContext.workerId,
       actorName: workerContext.workerName,
       actorEmail: text(session.user.email),

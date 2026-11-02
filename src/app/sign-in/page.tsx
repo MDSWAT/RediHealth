@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import { SignInPageContent } from "@/components/auth/SignInPageContent";
+import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Sign In - RediHealth",
-  description: "Sign in securely to RediHealth with Google or a one-time email code.",
-};
+export const generateMetadata = createPageMetadata(
+  "sign-in",
+  "Sign In - RediHealth",
+  "Sign in securely to RediHealth with Google or a one-time email code.",
+);
 
 type SignInPageProps = {
   searchParams: Promise<{ error?: string | string[] }>;
