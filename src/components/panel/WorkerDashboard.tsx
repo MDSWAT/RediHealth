@@ -10,7 +10,7 @@ export function WorkerDashboard({ initialInbox, userEmail, userRole, isAdmin, is
 }) {
   const { lang } = useLanguage();
   const [pending, setPending] = useState(initialInbox.counts.pending);
-  return <AdminShell userEmail={userEmail} userRole={userRole} isAdmin={isAdmin} pendingCount={pending}>
+  return <AdminShell userEmail={userEmail} userRole={userRole} isAdmin={isAdmin} pendingCount={pending} mobilePatientCreation={databaseAvailable ? { isRomania } : undefined}>
     <main id="main-content" className="crm-workspace">
       {databaseAvailable ? <RequestsInbox isAdmin={isAdmin} isRomania={isRomania} initialInbox={initialInbox} onPendingChange={setPending} /> : <p role="alert" className="crm-error m-6">{panelTranslations[lang].workerDashboard.noDatabase}</p>}
     </main>

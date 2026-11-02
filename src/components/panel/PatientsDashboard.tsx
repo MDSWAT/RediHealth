@@ -55,6 +55,7 @@ export function PatientsDashboard({
       userRole={userRole}
       isAdmin={isAdmin}
       pendingCount={pendingRequestsCount}
+      mobilePatientCreation={databaseAvailable ? { isRomania } : undefined}
     >
       <main id="main-content" className="crm-page">
         <section className="mx-auto w-full max-w-7xl">

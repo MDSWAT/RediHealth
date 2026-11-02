@@ -31,6 +31,8 @@ import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { institutesAdminTranslations } from "@/lib/i18n/institutes-admin-translations";
 import { settingsTranslations } from "@/lib/i18n/settings-translations";
+import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
+import { CreatePatientModal } from "./CreatePatientModal";
 import "./panel.css";
 
 type AdminShellProps = {
@@ -39,6 +41,7 @@ type AdminShellProps = {
   userRole?: string;
   isAdmin?: boolean;
   pendingCount?: number;
+  mobilePatientCreation?: { isRomania: boolean };
 };
 
 export function AdminShell({
@@ -47,6 +50,7 @@ export function AdminShell({
   userRole = "Administrator",
   isAdmin = true,
   pendingCount = 0,
+  mobilePatientCreation,
 }: AdminShellProps) {
   const pathname = usePathname();
   const { lang } = useLanguage();
@@ -67,6 +71,7 @@ export function AdminShell({
   const [reportError, setReportError] = useState<string | null>(null);
   const [reportSuccess, setReportSuccess] = useState<string | null>(null);
   const [reportSubmitting, setReportSubmitting] = useState(false);
+  const [creatingPatient, setCreatingPatient] = useState(false);
 
   // All desktop items
   const desktopItems = [
@@ -658,6 +663,29 @@ export function AdminShell({
           </li>
         </ul>
       </nav>
+
+      {isMediatorOnly && mobilePatientCreation ? (
+        <>
+          {!mobileAccountSheetOpen && !reportIssueOpen && !creatingPatient ? (
+            <button
+              type="button"
+              aria-label={createPatientModalTranslations[lang].titleCreate}
+              title={createPatientModalTranslations[lang].titleCreate}
+              onClick={() => setCreatingPatient(true)}
+              className="fixed right-5 bottom-[calc(6rem+env(safe-area-inset-bottom))] z-40 flex h-16 w-16 items-center justify-center rounded-full bg-red-600 text-white shadow-xl transition hover:bg-red-700 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600 lg:hidden"
+            >
+              <span aria-hidden="true" className="text-5xl leading-none">+</span>
+            </button>
+          ) : null}
+          {creatingPatient ? (
+            <CreatePatientModal
+              isRomania={mobilePatientCreation.isRomania}
+              isAdmin={isAdmin}
+              onClose={() => setCreatingPatient(false)}
+            />
+          ) : null}
+        </>
+      ) : null}
 
       {reportIssueOpen ? (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 backdrop-blur-xs sm:items-center sm:p-4">
