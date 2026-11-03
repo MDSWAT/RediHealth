@@ -2,6 +2,21 @@
 
 A Next.js healthcare coordination platform (patient intake, worker assignments, mediator cases, and a patient self-service portal).
 
+## Interactive panel demo
+
+`/demo` replaces the old showcase with the same panel components used by staff, with mediator
+and doctor roles. Requests, patients, care plans, documents, photos, follow-ups, calendar and
+meeting notes use fictional data stored under `redihealth-panel-demo-v1` in browser localStorage.
+The **Reset demo** button restores the sample records. Demo navigation stays under `/demo`;
+no sign-in or database is needed.
+
+A scoped `PanelRuntimeProvider` routes demo actions to `DemoPanelStore`, never to live API routes.
+The real panel retains its normal fetch/navigation behavior when no provider is present. Email
+and report actions are simulated; video/transcription and GPS use local examples rather than
+external services or device permissions. Phone/email links are intercepted inside the demo.
+Do not enter real patient information. Browser storage errors are shown and unsaved changes
+are not reported as successful; large uploaded files may exceed the browser's storage quota.
+
 ## Prerequisites
 
 - Node.js 20+

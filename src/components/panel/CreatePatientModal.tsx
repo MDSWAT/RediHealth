@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePanelRouter as useRouter, usePanelRuntime } from "./PanelRuntime";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
@@ -34,6 +34,7 @@ export function CreatePatientModal({
   isAdmin = false,
 }: PatientModalProps) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const t = createPatientModalTranslations[lang];
   const crm = crmTranslations[lang];
   const intakeCopy = patientIntakeTranslations[lang];
@@ -137,7 +138,7 @@ export function CreatePatientModal({
         })
         .catch(() => {});
     }
-  }, [initialWorkers]);
+  }, [initialWorkers, fetch]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);

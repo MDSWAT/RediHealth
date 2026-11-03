@@ -6,6 +6,7 @@ import { REQUEST_LANG_HEADER } from "@/lib/i18n/routing";
 import { localDateKey } from "@/lib/panel-dates";
 import type { FollowupItem } from "@/lib/types/patient";
 import { useUnsavedChanges } from "./useUnsavedChanges";
+import { usePanelRuntime } from "./PanelRuntime";
 
 type PatientChoice = { id: string; full_name: string };
 export function ScheduleFollowupDialog({ patients, patientId = "", date = localDateKey(), onClose, onSaved }: {
@@ -13,6 +14,7 @@ export function ScheduleFollowupDialog({ patients, patientId = "", date = localD
   onSaved: (patientId: string, followup: FollowupItem, emailSent?: boolean) => void;
 }) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
   const dialog = useRef<HTMLDialogElement>(null);
   const requestId = useRef<string>("");

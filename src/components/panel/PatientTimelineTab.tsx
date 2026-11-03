@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import Link from "next/link";
+import { PanelLink as Link } from "./PanelRuntime";
 import { MoreVerticalIcon, TrashIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { crmTranslations } from "@/lib/i18n/crm-translations";

@@ -17,7 +17,8 @@ type SiteChromeProps = {
 
 export function SiteChrome({ children, nonce, captchaEnabled }: SiteChromeProps) {
   const pathname = usePathname();
-  const isWorkerPanel = stripLangFromPathname(pathname).startsWith("/panel");
+  const path = stripLangFromPathname(pathname);
+  const isWorkerPanel = path.startsWith("/panel") || path === "/demo" || path.startsWith("/demo/");
 
   return (
     <LanguageProvider>

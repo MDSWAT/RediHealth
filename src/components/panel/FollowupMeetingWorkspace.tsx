@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import { PanelLink as Link, usePanelRuntime } from "./PanelRuntime";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { REQUEST_LANG_HEADER } from "@/lib/i18n/routing";
+import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { AdminShell } from "./AdminShell";
 import { Container } from "@/components/ui/Container";
 import { CheckCircleIcon, MailIcon } from "@/components/ui/icons";
+import { demoPanelTranslations } from "@/lib/i18n/demo-panel-translations";
 
 type Meeting = {
   id: number;
@@ -96,6 +97,7 @@ function toStableMeetingUrl(rawUrl: string, meetingId: string) {
 
 export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, userRole, isAdmin }: FollowupMeetingWorkspaceProps) {
   const { lang } = useLanguage();
+  const { request: fetch, demo } = usePanelRuntime();
   const [meeting, setMeeting] = useState<Meeting | null>(null);
   const [transcript, setTranscript] = useState("");
   const [notes, setNotes] = useState("");
@@ -127,7 +129,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
       setNotes(data.meeting.notes || "");
     }
     void loadMeeting();
-  }, [meetingId]);
+  }, [meetingId, fetch]);
 
   useEffect(() => () => {
     recognitionRef.current?.stop();
@@ -158,6 +160,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
   }
 
   async function toggleTranscription() {
+    if (demo) { setTranscript((current) => `${current}${current ? "\n" : ""}${demoPanelTranslations[lang].transcript}`); return; }
     if (isListening) {
       recognitionRef.current?.stop();
       return;
@@ -252,6 +255,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
   }
 
   async function toggleFallbackRecording() {
+    if (demo) { setTranscript((current) => `${current}${current ? "\n" : ""}${demoPanelTranslations[lang].transcript}`); return; }
     if (isRecordingFallback) {
       recorderRef.current?.stop();
       setIsRecordingFallback(false);
@@ -346,7 +350,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
       <main id="main-content" className="min-h-screen py-5 sm:py-8">
         <Container className="max-w-6xl">
           <Link
-            href={`/panel/patients/${patientId}`}
+            href={withLangPrefix(`/panel/patients/${patientId}`, lang)}
             className="inline-flex text-xs font-semibold text-primary hover:underline mb-3"
           >
             &larr; Back to patient profile
@@ -415,12 +419,12 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
               </div>
 
               <div className="p-4 sm:p-6 space-y-5">
-                <iframe
+                {demo ? <div className="flex h-[min(62vw,36rem)] min-h-80 w-full items-center justify-center rounded-xl border border-border bg-muted p-8 text-center text-sm text-muted-foreground">{demoPanelTranslations[lang].video}</div> : <iframe
                   src={`${roomUrl}#config.prejoinPageEnabled=false`}
                   title={meeting.title}
                   allow="camera; microphone; fullscreen; display-capture; autoplay"
                   className="h-[min(62vw,36rem)] min-h-80 w-full rounded-xl border border-border bg-muted overflow-hidden"
-                />
+                />}
                 <div>
                   <label className="block text-xs font-bold text-foreground">
                     Transcript with patient

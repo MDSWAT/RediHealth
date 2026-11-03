@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { PanelLink as Link, usePanelRouter as useRouter, usePanelRuntime } from "./PanelRuntime";
 import { useCallback, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
@@ -26,6 +25,7 @@ import { PatientIntakeSummary } from "./PatientIntakeSummary";
 
 export function PatientProfileView({ initialPatient, isAdmin = false, isRomania }: { initialPatient: PatientItem; isAdmin?: boolean; isRomania: boolean }) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
   const fields = createPatientModalTranslations[lang];
   const router = useRouter();

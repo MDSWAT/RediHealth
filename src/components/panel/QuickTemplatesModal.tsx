@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CheckCircleIcon, CloseIcon, CopyIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
+import { usePanelRuntime } from "./PanelRuntime";
 
 interface QuickTemplatesModalProps {
   request: MedicalHelpRequestItem;
@@ -12,6 +13,7 @@ interface QuickTemplatesModalProps {
 
 export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalProps) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const nameFallback = {
     en: "Valued Customer",
     ro: "Stimate pacient",

@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { PanelLink as Link, usePanelRuntime } from "./PanelRuntime";
 import { useState } from "react";
 import { AdminShell } from "./AdminShell";
 import { ScheduleFollowupDialog } from "./ScheduleFollowupDialog";
@@ -18,6 +18,7 @@ export function CalendarDashboard({ initialPatients, userEmail, userRole, isAdmi
   initialPatients: PatientItem[]; userEmail: string; userRole?: string; isAdmin?: boolean; databaseAvailable: boolean; pendingRequestsCount?: number;
 }) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
   const locale = langToLocale[lang];
   const [patients, setPatients] = useState(initialPatients);

@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { PanelLink as Link, usePanelRuntime } from "./PanelRuntime";
 import { useState } from "react";
 import { AdminShell } from "./AdminShell";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -13,6 +13,7 @@ export function MeetDashboard({ userEmail, userRole, isAdmin, pendingRequestsCou
   userEmail: string; userRole: string; isAdmin: boolean; pendingRequestsCount: number; databaseAvailable: boolean; assignedPatients: PatientItem[]; initialMeetings: MeetItem[];
 }) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
   const [patients, setPatients] = useState(assignedPatients);
   const [meetings, setMeetings] = useState(initialMeetings);

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Link from "next/link";
+import { PanelLink as Link, usePanelRuntime } from "./PanelRuntime";
 import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { UsersIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -42,6 +42,7 @@ export function PatientsTable({
   isRefreshing = false,
 }: PatientsTableProps) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const t = patientsTableTranslations[lang];
   const patients = initialPatients;
   const setPatients = onPatientsChange;

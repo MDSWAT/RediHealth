@@ -6,6 +6,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { patientIntakeTranslations } from "@/lib/i18n/patient-intake-translations";
 import { DOCUMENT_ACCEPT, MAX_DOCUMENT_BYTES, MAX_PATIENT_DOCUMENTS, validatePatientIntake } from "@/lib/patient-intake";
 import type { PatientDocument, PatientIntake } from "@/lib/types/patient";
+import { usePanelRuntime } from "./PanelRuntime";
 
 export function PatientIntakeFields({ value, onChange, disabled, onBusyChange }: {
   value: PatientIntake;
@@ -14,6 +15,7 @@ export function PatientIntakeFields({ value, onChange, disabled, onBusyChange }:
   onBusyChange: (busy: boolean) => void;
 }) {
   const { lang } = useLanguage();
+  const { demo } = usePanelRuntime();
   const t = patientIntakeTranslations[lang];
   const id = useId();
   const [reading, setReading] = useState(false);
@@ -31,6 +33,7 @@ export function PatientIntakeFields({ value, onChange, disabled, onBusyChange }:
 
   function getLocation() {
     setGpsError("");
+    if (demo) { onChange({ ...value, location: { latitude: 46.77, longitude: 23.59, accuracy: 10 } }); return; }
     if (!window.isSecureContext || !navigator.geolocation) { setGpsError(t.gpsUnsupported); return; }
     setLocating(true);
     onBusyChange(true);

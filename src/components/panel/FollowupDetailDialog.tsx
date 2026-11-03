@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { PanelLink as Link } from "./PanelRuntime";
 import { TrashIcon } from "@/components/ui/icons";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";

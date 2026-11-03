@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { COUNTRY_LABELS, type CountryCode } from "@/lib/countries";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
+import { usePanelRuntime } from "./PanelRuntime";
 
 type CountryAccess = {
   active: CountryCode | null;
@@ -19,6 +20,7 @@ const labelByLang: Record<Lang, string> = {
 
 /** Shows which country's data the panel is working with, and lets staff with several countries switch. */
 export function CountrySwitcher({ compact = false }: { compact?: boolean }) {
+  const { request: fetch } = usePanelRuntime();
   const { lang } = useLanguage();
   const [access, setAccess] = useState<CountryAccess | null>(null);
   const [switching, setSwitching] = useState(false);
@@ -34,7 +36,7 @@ export function CountrySwitcher({ compact = false }: { compact?: boolean }) {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [fetch]);
 
   if (!access?.active) return null;
 

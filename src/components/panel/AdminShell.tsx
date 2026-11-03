@@ -1,8 +1,7 @@
 
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { PanelLink as Link, usePanelPathname as usePathname, usePanelRuntime } from "./PanelRuntime";
 import { useState, type ReactNode } from "react";
 import { signOut } from "next-auth/react";
 import {
@@ -54,6 +53,7 @@ export function AdminShell({
   mobilePatientCreation,
 }: AdminShellProps) {
   const pathname = usePathname();
+  const { request: fetch, demo } = usePanelRuntime();
   const { lang } = useLanguage();
   const t = panelTranslations[lang].adminShell;
   const copy = panelDesignTranslations[lang];
@@ -210,6 +210,7 @@ export function AdminShell({
   }
 
   const handleSignOut = () => {
+    if (demo) { window.location.assign(withLangPrefix("/", lang)); return; }
     const target = withLangPrefix("/sign-in", lang);
     void signOut({ redirect: false })
       .catch(() => undefined)

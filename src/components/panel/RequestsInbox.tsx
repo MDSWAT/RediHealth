@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { PanelLink as Link, usePanelRuntime } from "./PanelRuntime";
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -15,6 +15,7 @@ import { useUnsavedChanges } from "./useUnsavedChanges";
 
 export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, isRomania }: { isAdmin?: boolean; isRomania: boolean; initialInbox: InboxPage; onPendingChange: (count: number) => void }) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
   const locale = langToLocale[lang];
   const pathname = usePathname();
@@ -60,7 +61,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
       finally { if (!controller.signal.aborted) setLoading(false); }
     }, 250);
     return () => { controller.abort(); window.clearTimeout(timeout); };
-  }, [queryString, refreshKey, onPendingChange, t.loadError]);
+  }, [queryString, refreshKey, onPendingChange, t.loadError, fetch]);
   useEffect(() => {
     if (!requestId || selected) return;
     const controller = new AbortController();
@@ -69,7 +70,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
       .then((data) => { if (!controller.signal.aborted) { setDetached(data.requests[0] || null); if (!data.requests[0]) setError(t.loadError); } })
       .catch(() => { if (!controller.signal.aborted) setError(t.loadError); });
     return () => controller.abort();
-  }, [requestId, selected, t.loadError]);
+  }, [requestId, selected, t.loadError, fetch]);
   async function loadMore() {
     if (loading) return;
     const version = fetchVersion.current;
@@ -125,6 +126,7 @@ function RequestReader({ request, onDirtyChange, onUpdate, onBack, onCreate, onR
   request: MedicalHelpRequestItem; onDirtyChange: (value: boolean) => void; onUpdate: (request: MedicalHelpRequestItem) => void; onBack: () => void; onCreate: () => void; onReply: () => void; onDelete: () => Promise<void>;
 }) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
   const [status, setStatus] = useState<RequestStatus>(request.status);
   const [priority, setPriority] = useState<RequestPriority>(request.priority);

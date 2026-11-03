@@ -8,6 +8,7 @@ import { PatientsTable } from "./PatientsTable";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { panelTranslations } from "@/lib/i18n/panel-translations";
 import { normalizePatientsFromApi } from "@/lib/api-normalizers";
+import { usePanelRuntime } from "./PanelRuntime";
 
 interface PatientsDashboardProps {
   initialPatients: PatientItem[];
@@ -29,6 +30,7 @@ export function PatientsDashboard({
   pendingRequestsCount = 0,
 }: PatientsDashboardProps) {
   const { lang } = useLanguage();
+  const { request: fetch } = usePanelRuntime();
   const t = panelTranslations[lang].patientsDashboard;
   const copy = panelDesignTranslations[lang];
   const [patients, setPatients] = useState<PatientItem[]>(initialPatients);
