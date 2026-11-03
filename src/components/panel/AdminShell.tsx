@@ -2,7 +2,7 @@
 "use client";
 
 import { PanelLink as Link, usePanelPathname as usePathname, usePanelRuntime } from "./PanelRuntime";
-import { useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { signOut } from "next-auth/react";
 import {
   AlertCircleIcon,
@@ -33,6 +33,7 @@ import { institutesAdminTranslations } from "@/lib/i18n/institutes-admin-transla
 import { settingsTranslations } from "@/lib/i18n/settings-translations";
 import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 import { CreatePatientModal } from "./CreatePatientModal";
+import { hasOfflineVault } from "@/lib/offline-vault";
 import "./panel.css";
 
 type AdminShellProps = {
@@ -44,7 +45,36 @@ type AdminShellProps = {
   mobilePatientCreation?: { isRomania: boolean };
 };
 
-export function AdminShell({
+type PageShellOptions = Pick<AdminShellProps, "pendingCount" | "mobilePatientCreation">;
+const PersistentShellContext = createContext<((options: PageShellOptions) => void) | null>(null);
+
+export function PersistentPanelShell(props: AdminShellProps) {
+  const [pageOptions, setPageOptions] = useState<PageShellOptions>({
+    pendingCount: props.pendingCount,
+    mobilePatientCreation: props.mobilePatientCreation,
+  });
+  return <PersistentShellContext.Provider value={setPageOptions}>
+    <AdminShellFrame {...props} {...pageOptions} />
+  </PersistentShellContext.Provider>;
+}
+
+function PageShellContent({ children, pendingCount = 0, mobilePatientCreation, update }: AdminShellProps & {
+  update: (options: PageShellOptions) => void;
+}) {
+  const creationAvailable = mobilePatientCreation !== undefined;
+  const isRomania = mobilePatientCreation?.isRomania ?? false;
+  useEffect(() => {
+    update({ pendingCount, mobilePatientCreation: creationAvailable ? { isRomania } : undefined });
+  }, [update, pendingCount, creationAvailable, isRomania]);
+  return children;
+}
+
+export function AdminShell(props: AdminShellProps) {
+  const update = useContext(PersistentShellContext);
+  return update ? <PageShellContent {...props} update={update} /> : <AdminShellFrame {...props} />;
+}
+
+function AdminShellFrame({
   children,
   userEmail,
   userRole = "Administrator",
@@ -53,7 +83,7 @@ export function AdminShell({
   mobilePatientCreation,
 }: AdminShellProps) {
   const pathname = usePathname();
-  const { request: fetch, demo } = usePanelRuntime();
+  const { request: fetch, demo, offline, signOut: offlineSignOut } = usePanelRuntime();
   const { lang } = useLanguage();
   const t = panelTranslations[lang].adminShell;
   const copy = panelDesignTranslations[lang];
@@ -209,8 +239,16 @@ export function AdminShell({
     }
   }
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    if (offline && offlineSignOut) { offlineSignOut(); return; }
     if (demo) { window.location.assign(withLangPrefix("/", lang)); return; }
+    try {
+      if (await hasOfflineVault()) { window.location.assign(withLangPrefix("/offline?signout=1", lang)); return; }
+    } catch (error) {
+      console.error("Could not check offline sign-out protection", error);
+      window.alert("Could not check encrypted offline changes. Open the offline workspace before signing out.");
+      return;
+    }
     const target = withLangPrefix("/sign-in", lang);
     void signOut({ redirect: false })
       .catch(() => undefined)
@@ -602,7 +640,10 @@ export function AdminShell({
         </aside>
 
         {/* Main Content Area - with bottom padding for mobile app bar */}
-        <div className="min-w-0 flex-1 pb-20 lg:pb-0">{children}</div>
+        <div className="min-w-0 flex-1 pb-20 lg:pb-0">
+          {!demo && !offline && ["doctor", "mediator"].includes(role) && <div className="border-b border-border bg-card px-4 py-2 text-right text-sm"><a className="font-medium text-primary" href={withLangPrefix("/offline", lang)}>{lang === "ro" ? "Lucrează offline pe acest dispozitiv" : "Encrypted offline workspace"}</a></div>}
+          {children}
+        </div>
       </div>
 
       {/* Native App Bottom Tab Bar (Mobile only) */}

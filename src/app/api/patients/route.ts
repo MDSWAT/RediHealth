@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { logActivity } from "@/lib/activity-log";
-import { getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { getCountryDatabase, isOfflineSyncTransaction, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
   PATIENT_COLUMNS,
@@ -316,6 +316,9 @@ export async function POST(request: Request) {
   });
 
   let emailSent = false;
+  if (isOfflineSyncTransaction()) {
+    return NextResponse.json({ success: true, id: createdPatientId, email_sent: false, warning: "Saved from offline queue. Send the portal invitation separately while online." }, { status: 201 });
+  }
   try {
     emailSent = await sendPatientPortalLinkEmail({
       name: fullName,

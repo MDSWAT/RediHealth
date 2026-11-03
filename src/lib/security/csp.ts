@@ -19,6 +19,7 @@ export function buildContentSecurityPolicy({ nonce, isDevelopment, meetingOrigin
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https:",
     "font-src 'self' data:",
+    "worker-src 'self'",
     "connect-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/",
     `frame-src ${[...new Set([meetingOrigin, "https://meet.jit.si", "https://www.google.com/recaptcha/", "https://recaptcha.google.com/recaptcha/"])].join(" ")}`,
     "media-src 'self' blob:",

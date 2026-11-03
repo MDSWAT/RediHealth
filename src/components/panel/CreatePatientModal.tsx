@@ -13,6 +13,7 @@ import type { WorkerItem } from "@/lib/types/worker";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import { patientIntakeTranslations } from "@/lib/i18n/patient-intake-translations";
 import { PatientIntakeFields } from "./PatientIntakeFields";
+import { normalizePatientFromApi } from "@/lib/api-normalizers";
 
 interface PatientModalProps {
   request?: MedicalHelpRequestItem;
@@ -34,7 +35,7 @@ export function CreatePatientModal({
   isAdmin = false,
 }: PatientModalProps) {
   const { lang } = useLanguage();
-  const { request: fetch } = usePanelRuntime();
+  const { request: fetch, offline } = usePanelRuntime();
   const t = createPatientModalTranslations[lang];
   const crm = crmTranslations[lang];
   const intakeCopy = patientIntakeTranslations[lang];
@@ -220,6 +221,7 @@ export function CreatePatientModal({
         id?: number;
         email_sent?: boolean;
         warning?: string;
+        patient?: unknown;
       };
 
       if (!response.ok) {
@@ -259,9 +261,9 @@ export function CreatePatientModal({
         created_at: patient?.created_at || new Date().toISOString(),
       };
 
-      onSuccess?.(savedPatient);
+      onSuccess?.(normalizePatientFromApi(data.patient) || savedPatient);
       if (!isEditing && data.id) {
-        if (data.email_sent === false) sessionStorage.setItem(`patient-portal-warning:${data.id}`, "1");
+        if (data.email_sent === false && !offline) sessionStorage.setItem(`patient-portal-warning:${data.id}`, "1");
         router.push(withLangPrefix(`/panel/patients/${data.id}`, lang));
       } else {
         onClose();

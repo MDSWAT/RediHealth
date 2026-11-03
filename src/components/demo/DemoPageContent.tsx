@@ -2,21 +2,27 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { WorkerDashboard } from "@/components/panel/WorkerDashboard";
 import { PatientsDashboard } from "@/components/panel/PatientsDashboard";
 import { PatientProfileView } from "@/components/panel/PatientProfileView";
 import { CalendarDashboard } from "@/components/panel/CalendarDashboard";
 import { MeetDashboard } from "@/components/panel/MeetDashboard";
 import { FollowupMeetingWorkspace } from "@/components/panel/FollowupMeetingWorkspace";
-import { AdminShell } from "@/components/panel/AdminShell";
+import { AdminShell, PersistentPanelShell } from "@/components/panel/AdminShell";
 import { PanelRuntimeProvider } from "@/components/panel/PanelRuntime";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 import { createDemoData, DEMO_STORAGE_KEY, DEMO_WORKERS, DemoPanelStore, demoInbox, parseDemoData, type DemoRole } from "@/lib/demo-panel";
 import { demoPanelTranslations } from "@/lib/i18n/demo-panel-translations";
 
-export function DemoPageContent() {
+const DemoScreenContext = createContext<ReactNode>(null);
+
+export function DemoPanelScreen() {
+  return useContext(DemoScreenContext);
+}
+
+export function DemoPageContent({ children }: { children: ReactNode }) {
   const { lang } = useLanguage();
   const t = demoPanelTranslations[lang];
   const pathname = usePathname();
@@ -111,7 +117,7 @@ export function DemoPageContent() {
   else if (meetingMatch && data.meetings.some((m) => m.id === meetingMatch[2] && m.patient_id === meetingMatch[1] && patients.some((p) => p.id === m.patient_id))) content = <FollowupMeetingWorkspace {...props} meetingId={meetingMatch[2]} patientId={meetingMatch[1]} />;
   else content = <AdminShell {...props}><main id="main-content" className="crm-page"><p role="alert">{t.notFound}</p><Link href={withLangPrefix("/demo", lang)} className="crm-button mt-4">{t.back}</Link></main></AdminShell>;
 
-  return <PanelRuntimeProvider value={runtime}>{toolbar}<div key={`${pathname}:${revision}`} onClickCapture={(event) => {
+  return <PanelRuntimeProvider value={runtime}>{toolbar}<div onClickCapture={(event) => {
     const target = event.target;
     if (target instanceof Element) {
       const anchor = target.closest("a");
@@ -120,5 +126,9 @@ export function DemoPageContent() {
         window.alert(t.notice);
       }
     }
-  }}>{content}</div></PanelRuntimeProvider>;
+  }}><PersistentPanelShell {...props}>
+    <DemoScreenContext.Provider value={<div key={`${pathname}:${revision}`}>{content}</div>}>
+      {children}
+    </DemoScreenContext.Provider>
+  </PersistentPanelShell></div></PanelRuntimeProvider>;
 }

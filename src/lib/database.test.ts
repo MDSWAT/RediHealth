@@ -8,6 +8,8 @@ import {
   configuredCountries,
   getCountryDatabase,
   isCountryConfigured,
+  inOfflineTransaction,
+  isOfflineSyncTransaction,
 } from "@/lib/database";
 
 const envKeys = [
@@ -37,6 +39,28 @@ function clearEnv() {
 }
 
 describe("country databases", () => {
+  it("uses the same connection for offline mutations and releases it after commit or rollback", async () => {
+    clearEnv();
+    vi.stubEnv("DB_RO_HOST", "db-ro");
+    vi.stubEnv("DB_RO_USER", "test");
+    vi.stubEnv("DB_RO_NAME", "test");
+    const connection = { query: vi.fn().mockResolvedValue([[]]), beginTransaction: vi.fn(), commit: vi.fn(), rollback: vi.fn(), release: vi.fn() };
+    const pool = { query: vi.fn(), getConnection: vi.fn().mockResolvedValue(connection) };
+    createPool.mockReturnValueOnce(pool);
+    await inOfflineTransaction("RO", async () => {
+      expect(isOfflineSyncTransaction()).toBe(true);
+      await getCountryDatabase("RO").query("SELECT 1");
+    });
+    expect(connection.query).toHaveBeenCalledWith("SELECT 1", []);
+    expect(pool.query).not.toHaveBeenCalled();
+    expect(connection.commit).toHaveBeenCalledTimes(1);
+    expect(connection.release).toHaveBeenCalledTimes(1);
+    expect(isOfflineSyncTransaction()).toBe(false);
+    await expect(inOfflineTransaction("RO", async () => { throw new Error("conflict"); })).rejects.toThrow("conflict");
+    expect(connection.rollback).toHaveBeenCalledTimes(1);
+    expect(connection.release).toHaveBeenCalledTimes(2);
+  });
+
   it("has no databases when nothing is configured", () => {
     clearEnv();
     expect(configuredCountries()).toEqual([]);

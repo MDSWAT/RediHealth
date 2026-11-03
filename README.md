@@ -17,13 +17,73 @@ external services or device permissions. Phone/email links are intercepted insid
 Do not enter real patient information. Browser storage errors are shown and unsaved changes
 are not reported as successful; large uploaded files may exceed the browser's storage quota.
 
-## Prerequisites
+## Encrypted offline workspace (doctors and mediators)
+
+After online sign-in, choose **Encrypted offline workspace** in the panel and explicitly
+enable it on a private, trusted device at `/offline`, acknowledging the browser-access warning.
+No offline password is required; prepared data opens automatically on subsequent visits.
+Existing password-protected vaults require their old passphrase once and explicit consent
+to migrate, preserving records and unsynced work. Only the latest 100 assigned patient records
+(including archived records and attachments) and 100 requests in the active country are
+prepared. Patients that were never downloaded are not available offline.
+
+The IndexedDB vault, including attachments and pending edits, uses AES-256-GCM with fresh
+96-bit IVs and a random, non-extractable AES-256 key stored alongside ciphertext in IndexedDB
+using structured cloning. Ciphertext and key are saved/deleted together atomically.
+Legacy PBKDF2-derived keys remain usable during migration. Medical data and keys are never put into the
+service worker's Cache Storage. Only the data-free offline shell and same-origin immutable
+app assets are cached. HTTPS, service workers, Web Crypto, IndexedDB and Web Locks are required.
+Unlocking is not offline sign-in: the device must first be authorized online. Access expires
+after 30 days and pauses after 10 idle minutes or page close. Reopening needs no password;
+pause is not an authentication barrier. Renewing requires the same
+online account and country. Revocation cannot be learned while disconnected; do not enable
+this on shared/unmanaged devices. Anyone using the browser profile can decrypt the data:
+non-extractability prevents raw key export, not use of the key. Encryption does not protect
+against browser-profile access, device malware, XSS or a compromised OS. Use device disk encryption,
+screen locking and regular synchronization too.
+
+Text edits, care plans, photos/documents, new patients, non-video follow-ups, completion and
+request status/notes save to the encrypted queue. While unlocked, reconnecting retries sync;
+online changes in this workspace also sync after a short debounce. Email/video/invitations,
+permanent deletion, assignment changes and admin functions remain online-only. New offline
+patients do not automatically send portal emails; send them separately in the online panel.
+The toolbar distinguishes device saves from server synchronization.
+
+Apply **migration 014 to every country database**, and configure its `DATA_ENCRYPTION_KEY_<CC>`
+before enabling the feature. Sync rechecks live staff membership and assignment, locks the
+row, compares its full-record SHA-256 revision and commits via the existing mutation validators
+in the same transaction as a staff-scoped idempotency receipt. Keep receipts permanently:
+deleting them can duplicate an old retried creation. Conflicts stay pending until the user
+compares the two versions and chooses online data or explicitly retries changed fields.
+There is no automatic last-writer-wins policy.
+
+Normal sign-out is blocked when queued changes exist. The explicit discard action removes
+all device data and unsynced work; sign-out without pending work also removes the vault.
+Closing/pausing the workspace preserves ciphertext, its device key and pending work. Browser clearing,
+private browsing, storage eviction or loss of the device key can destroy unsynced work. Storage
+failures are reported and changes are not acknowledged before encrypted persistence completes.
+Only one open workspace tab per device is allowed. Sync runs in the foreground, not while paused
+or after the browser is closed. After deployments, reconnect and sync to refresh shell assets.
+
+## Panel loading and performance
 
 The Workers dashboard uses a lightweight patient assignment projection on initial load and
 refresh (`GET /api/patients?view=assignment`, administrators only). Documents, photos, medical
 history, treatment plans and follow-ups are not loaded for assignment controls; clinical
 screens retain full records. Database connection resets/timeouts still require checking
 the production database network, SSL and provider limits.
+
+Panel and demo routes include a prefetched Next.js loading boundary: navigation can show
+localized, responsive list/calendar/profile skeletons before server data finishes loading.
+Their shared layouts retain the real navigation shell, sidebar state and mobile menu while
+only page content changes to a skeleton. Page-level shells publish badge/action updates to
+the persistent shell instead of mounting a second menu. Authorization remains enforced by
+each server page and API; the live layout also checks staff access on entry.
+Skeletons contain no account or patient data, announce loading to assistive technology,
+and respect reduced-motion preferences. Self-hosted reverse proxies must allow response
+streaming (for Nginx, disable proxy buffering) to avoid holding the fallback until completion.
+
+## Prerequisites
 
 - Node.js 20+
 - A MySQL database (schema is in [`database/schema.sql`](database/schema.sql) and [`database/migrations`](database/migrations))

@@ -2,7 +2,7 @@ import type { PatientItem, FollowupItem } from "./types/patient";
 import type { MedicalHelpRequestItem } from "./types/medical-request";
 import type { WorkerItem } from "./types/worker";
 import type { MeetItem } from "@/components/panel/MeetDashboard";
-import { inboxOptions, type InboxPage } from "./request-inbox";
+import { filterLocalInbox, type InboxPage } from "./request-inbox";
 import { normalizePatientFromApi } from "./api-normalizers";
 import { isPatientPriority, isPatientStatus, validateFollowupInput, validateTreatmentPlanInput } from "./validation";
 import { validatePatientIntake } from "./patient-intake";
@@ -92,17 +92,8 @@ function json(value: unknown, status = 200) { return Response.json(value, { stat
 function fail(error: string, status = 400) { return json({ error }, status); }
 function nextId(items: { id: string }[]) { return String(Math.max(0, ...items.map((item) => Number(item.id) || 0)) + 1); }
 
-export function demoInbox(data: DemoData, params = new URLSearchParams("folder=attention")): InboxPage {
-  const options = inboxOptions(params);
-  const counts: InboxPage["counts"] = { attention: 0, all: data.requests.length, pending: 0, in_progress: 0, resolved: 0, archived: 0 };
-  for (const request of data.requests) { counts[request.status]++; if (request.status === "pending" || request.status === "in_progress") counts.attention++; }
-  const filtered = data.requests.filter((r) =>
-    (options.folder === "all" || options.folder === "attention" ? options.folder === "all" || ["pending", "in_progress"].includes(r.status) : r.status === options.folder)
-    && (!options.id || r.id === options.id) && (!options.priority || r.priority === options.priority)
-    && (!options.from || r.created_at.slice(0, 10) >= options.from) && (!options.to || r.created_at.slice(0, 10) <= options.to)
-    && `${r.full_name} ${r.email} ${r.phone} ${r.description}`.toLowerCase().includes(options.search.toLowerCase()));
-  const start = (options.page - 1) * options.limit;
-  return { requests: filtered.slice(start, start + options.limit), counts, page: options.page, total: filtered.length, hasMore: start + options.limit < filtered.length };
+export function demoInbox(data: Pick<DemoData, "requests">, params = new URLSearchParams("folder=attention")): InboxPage {
+  return filterLocalInbox(data.requests, params);
 }
 
 export class DemoPanelStore {

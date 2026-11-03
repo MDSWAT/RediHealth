@@ -1,5 +1,14 @@
 -- Fresh-install schema for RediHealth (MySQL 8+).
 
+CREATE TABLE IF NOT EXISTS offline_sync_receipts (
+  worker_id BIGINT NOT NULL,
+  operation_id CHAR(36) NOT NULL,
+  entity_id VARCHAR(64) NULL,
+  revision CHAR(64) NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (worker_id, operation_id)
+);
+
 CREATE TABLE IF NOT EXISTS medical_help_requests (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   full_name VARCHAR(200),

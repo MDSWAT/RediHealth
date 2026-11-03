@@ -5,6 +5,7 @@ import mysql, {
   type RowDataPacket,
 } from "mysql2/promise";
 import { SUPPORTED_COUNTRIES, isSupportedCountry, type CountryCode } from "@/lib/countries";
+import { AsyncLocalStorage } from "node:async_hooks";
 
 export type { ResultSetHeader, RowDataPacket };
 
@@ -198,6 +199,35 @@ function wrapPool(pool: Pool) {
 }
 
 export type Database = ReturnType<typeof wrapPool>;
+const transactionScope = new AsyncLocalStorage<{ country: CountryCode; database: Database; offline: boolean }>();
+
+export function isOfflineSyncTransaction() {
+  return transactionScope.getStore()?.offline === true;
+}
+
+/** Reuse the normal validated mutation handlers inside one idempotent sync transaction. */
+export async function inOfflineTransaction<T>(country: CountryCode, run: () => Promise<T>): Promise<T> {
+  const db = getCountryDatabase(country);
+  const connection = await db.getConnection();
+  let started = false;
+  try {
+    await connection.query("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ");
+    await connection.beginTransaction();
+    started = true;
+    const scoped: Database = {
+      query: connection.query,
+      getConnection: async () => { throw new Error("Nested offline transactions are not supported."); },
+    };
+    const result = await transactionScope.run({ country, database: scoped, offline: true }, run);
+    await connection.commit();
+    return result;
+  } catch (error) {
+    if (started) await connection.rollback();
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
 
 function poolFor(key: string, settings: ConnectionSettings, label: string) {
   const pools = (globalWithDatabase.databasePools ??= new Map());
@@ -223,6 +253,8 @@ export function getControlDatabase(): Database {
  * credentials, so a query for one country cannot reach another country's tables.
  */
 export function getCountryDatabase(country: CountryCode): Database {
+  const scoped = transactionScope.getStore();
+  if (scoped?.country === country) return scoped.database;
   const settings = resolveCountrySettings(country);
   if (!settings) {
     throw new CountryNotConfiguredError(country);

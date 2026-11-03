@@ -5,7 +5,7 @@ import { countryFromHeaders, langForCountry } from "@/lib/medical-institutes";
 import { buildContentSecurityPolicy, createNonce, meetingOriginFromEnv } from "@/lib/security/csp";
 
 const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
-const PRIVATE_PREFIXES = ["/panel", "/sign-in", "/patient-portal"];
+const PRIVATE_PREFIXES = ["/panel", "/offline", "/sign-in", "/patient-portal"];
 
 function getPreferredLang(request: NextRequest) {
   const cookieLang = request.cookies.get(LOCALE_COOKIE)?.value;

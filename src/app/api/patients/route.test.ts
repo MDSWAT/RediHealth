@@ -4,7 +4,7 @@ import { decryptField } from "@/lib/security/field-encryption";
 const mocks = vi.hoisted(() => ({ auth: vi.fn(), worker: vi.fn(), query: vi.fn(), log: vi.fn() }));
 vi.mock("@/auth", () => ({ auth: mocks.auth }));
 vi.mock("@/lib/worker-auth", () => ({ getUserWorkerContext: mocks.worker }));
-vi.mock("@/lib/database", () => ({ getCountryDatabase: () => ({ query: mocks.query }) }));
+vi.mock("@/lib/database", () => ({ getCountryDatabase: () => ({ query: mocks.query }), isOfflineSyncTransaction: () => false }));
 vi.mock("@/lib/email", () => ({ sendPatientPortalLinkEmail: vi.fn().mockResolvedValue(false) }));
 vi.mock("@/lib/i18n/server-routing", () => ({ getRequestLang: async () => "en" }));
 vi.mock("@/lib/activity-log", () => ({ logActivity: mocks.log }));
