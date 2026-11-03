@@ -67,6 +67,12 @@ or after the browser is closed. After deployments, reconnect and sync to refresh
 
 ## Panel loading and performance
 
+New patients use a three-step intake dialog: contact details, optional care/documents/GPS,
+then a review before saving. Moving between steps preserves entered data and attachments;
+contact validation runs before advancing, and only the final step creates the patient.
+Editing existing patients keeps its single-form flow. Live, demo and offline panels share
+this form and retain their existing transport, assignment and document validation rules.
+
 The Jitsi consultation workspace prioritizes video, with a collapsible notes/transcript
 sidebar on desktop and a stacked layout on mobile. Tabs and hiding the sidebar preserve
 drafts and keep the video mounted. Both fields save together to the existing meeting record;

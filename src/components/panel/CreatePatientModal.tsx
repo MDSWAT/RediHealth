@@ -4,7 +4,7 @@ import { usePanelRouter as useRouter, usePanelRuntime } from "./PanelRuntime";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { CheckCircleIcon, CloseIcon, UserIcon } from "@/components/ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, CheckCircleIcon, CloseIcon, UserIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
@@ -14,6 +14,7 @@ import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import { patientIntakeTranslations } from "@/lib/i18n/patient-intake-translations";
 import { PatientIntakeFields } from "./PatientIntakeFields";
 import { normalizePatientFromApi } from "@/lib/api-normalizers";
+import { patientWizardTranslations } from "@/lib/i18n/patient-wizard-translations";
 
 interface PatientModalProps {
   request?: MedicalHelpRequestItem;
@@ -39,6 +40,7 @@ export function CreatePatientModal({
   const t = createPatientModalTranslations[lang];
   const crm = crmTranslations[lang];
   const intakeCopy = patientIntakeTranslations[lang];
+  const wizard = patientWizardTranslations[lang];
   const router = useRouter();
 
   const isEditing = Boolean(patient);
@@ -46,6 +48,10 @@ export function CreatePatientModal({
   const formId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const stepHeadingRef = useRef<HTMLHeadingElement>(null);
+  const [step, setStep] = useState(0);
+  const [furthestStep, setFurthestStep] = useState(0);
 
   const [fullName, setFullName] = useState(
     patient?.full_name || request?.full_name || "",
@@ -179,9 +185,38 @@ export function CreatePatientModal({
     };
   }, [onClose, isSubmitting, intakeBusy]);
 
+  function goToStep(next: number) {
+    if (isSubmitting || intakeBusy) return;
+    if (next > 0) {
+      const invalid = Array.from(formRef.current?.querySelectorAll<HTMLInputElement | HTMLSelectElement>('[data-patient-contact] input, [data-patient-contact] select') || [])
+        .find((field) => !field.validity.valid || (field.required && !field.value.trim()));
+      if (invalid) {
+        if (invalid.required && !invalid.value.trim()) invalid.setCustomValidity(wizard.required);
+        setStep(0);
+        requestAnimationFrame(() => { invalid.focus(); invalid.reportValidity(); });
+        return;
+      }
+    }
+    setStep(next);
+    setFurthestStep((current) => Math.max(current, next));
+    setErrorMessage(null);
+    requestAnimationFrame(() => { formRef.current?.scrollTo(0, 0); stepHeadingRef.current?.focus(); });
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (isSubmitting || intakeBusy) return;
+    if (!isEditing && step < 2) { goToStep(step + 1); return; }
+    if (!isEditing) {
+      const invalid = Array.from(formRef.current?.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("input, select, textarea") || [])
+        .find((field) => !field.validity.valid || (field.required && !field.value.trim()));
+      if (invalid) {
+        if (invalid.required && !invalid.value.trim()) invalid.setCustomValidity(wizard.required);
+        setStep(invalid.closest("[data-patient-contact]") ? 0 : 1);
+        requestAnimationFrame(() => { invalid.closest("details")?.setAttribute("open", ""); invalid.focus(); invalid.reportValidity(); });
+        return;
+      }
+    }
     setIsSubmitting(true);
     setErrorMessage(null);
     setWarningMessage(null);
@@ -283,7 +318,7 @@ export function CreatePatientModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={dialogTitleId}
-        className="app-sheet-slide-up relative flex h-dvh min-h-0 w-full max-w-3xl flex-col overflow-hidden border-border bg-card shadow-2xl sm:h-auto sm:max-h-[calc(100dvh-2rem)] sm:rounded-3xl sm:border"
+        className="app-sheet-slide-up relative flex h-dvh min-h-0 w-full max-w-3xl flex-col overflow-hidden border-border bg-card shadow-2xl sm:h-[min(850px,calc(100dvh-2rem))] sm:rounded-3xl sm:border"
       >
         <div className="flex shrink-0 items-start justify-between gap-3 border-b border-border bg-muted/30 p-5 sm:items-center sm:px-6">
           <div className="flex min-w-0 items-start gap-2.5 sm:items-center">
@@ -313,8 +348,19 @@ export function CreatePatientModal({
           </button>
         </div>
 
+        {!isEditing && <nav aria-label={wizard.progress} className="shrink-0 border-b border-border bg-card px-4 py-4 sm:px-6">
+          <ol className="grid grid-cols-3 gap-2">
+            {wizard.steps.map((label, index) => <li key={label}>
+              <button type="button" disabled={index > furthestStep || isSubmitting || intakeBusy} onClick={() => goToStep(index)} aria-current={step === index ? "step" : undefined}
+                className={`flex w-full flex-col items-start gap-2 rounded-xl p-2 text-left text-xs font-semibold transition-colors disabled:cursor-default sm:flex-row sm:items-center ${step === index ? "bg-primary-soft text-primary" : index < step ? "text-primary" : "text-muted-foreground"}`}>
+                <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full ${index <= step ? "bg-primary text-white" : "bg-muted"}`}>{index < step ? <CheckCircleIcon className="h-4 w-4" /> : index + 1}</span>{label}
+              </button>
+            </li>)}
+          </ol>
+        </nav>}
+
         {errorMessage ? (
-          <div className="mt-4 rounded-xl bg-red-500/10 border border-red-500/20 p-3 text-xs font-medium text-red-600 dark:text-red-400">
+          <div role="alert" className="mx-5 mt-4 rounded-xl bg-red-500/10 border border-red-500/20 p-3 text-xs font-medium text-red-600 dark:text-red-400">
             {errorMessage}
           </div>
         ) : null}
@@ -336,8 +382,17 @@ export function CreatePatientModal({
           </div>
         ) : null}
 
-        <form id={formId} onSubmit={handleSubmit} className="min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain p-5 sm:p-6">
+        <form ref={formRef} id={formId} noValidate={!isEditing} onSubmit={handleSubmit} onInput={(event) => {
+          if (event.target instanceof HTMLInputElement || event.target instanceof HTMLSelectElement || event.target instanceof HTMLTextAreaElement) event.target.setCustomValidity("");
+        }} className="min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain p-5 sm:p-6">
+          {!isEditing && <div>
+            <h3 ref={stepHeadingRef} tabIndex={-1} className="text-xl font-bold tracking-tight outline-none">{wizard.steps[step]}</h3>
+            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{wizard.hints[step]}</p>
+          </div>}
+          <div data-patient-contact hidden={!isEditing && step !== 0} className="space-y-4">
+          {isEditing &&
           <h3 className="text-sm font-bold text-foreground">{intakeCopy.contact}</h3>
+          }
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {isRomania ? (
               <div>
@@ -370,7 +425,6 @@ export function CreatePatientModal({
                 className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
-
             <div>
               <label htmlFor={`${formId}-phone`} className="text-xs font-semibold text-foreground mb-1 block">
                 {t.phone} <span className="text-red-500">*</span>
@@ -401,7 +455,9 @@ export function CreatePatientModal({
               />
             </div>
           </div>
+          </div>
 
+          <div hidden={!isEditing && step !== 1} className="space-y-5">
           <div className="rounded-2xl border border-border bg-muted/30 p-4">
             <h3 className="mb-3 text-sm font-bold text-foreground">{intakeCopy.care}</h3>
             <label htmlFor={`${formId}-condition`} className="text-xs font-semibold text-foreground mb-1 block">
@@ -428,10 +484,11 @@ export function CreatePatientModal({
             <summary className="min-h-8 cursor-pointer text-sm font-semibold text-primary">{intakeCopy.more}</summary>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-dob`} className="text-xs font-semibold text-foreground mb-1 block">
                 {t.dob}
               </label>
               <input
+                id={`${formId}-dob`}
                 type="date"
                 value={dateOfBirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
@@ -440,10 +497,11 @@ export function CreatePatientModal({
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-gender`} className="text-xs font-semibold text-foreground mb-1 block">
                 {t.gender}
               </label>
               <select
+                id={`${formId}-gender`}
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
                 className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -457,10 +515,11 @@ export function CreatePatientModal({
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-status`} className="text-xs font-semibold text-foreground mb-1 block">
                 {t.patientStatus}
               </label>
               <select
+                id={`${formId}-status`}
                 value={status}
                 onChange={(e) => setStatus(e.target.value as PatientStatus)}
                 className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -472,10 +531,11 @@ export function CreatePatientModal({
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-priority`} className="text-xs font-semibold text-foreground mb-1 block">
                 {t.priority}
               </label>
               <select
+                id={`${formId}-priority`}
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as PatientPriority)}
                 className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -491,7 +551,7 @@ export function CreatePatientModal({
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {isAdmin ? (
             <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-history`} className="text-xs font-semibold text-foreground mb-1 block">
                 {t.assignedWorker}
               </label>
               <div className="rounded-xl border border-border bg-background p-3">
@@ -598,6 +658,7 @@ export function CreatePatientModal({
               {t.history}
             </label>
             <textarea
+              id={`${formId}-history`}
               rows={3}
               value={medicalHistory}
               onChange={(e) => setMedicalHistory(e.target.value)}
@@ -607,15 +668,40 @@ export function CreatePatientModal({
           </div>
 
           </details>
+          </div>
+          {!isEditing && step === 2 && <div className="space-y-4">
+            <div className="rounded-2xl border border-primary/20 bg-primary-soft p-4">
+              <p className="mb-3 flex items-center gap-2 text-xs font-semibold text-primary"><CheckCircleIcon className="h-4 w-4" />{wizard.ready}</p>
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0"><p className="break-words text-xl font-bold">{fullName}</p><p className="mt-1 break-all text-sm">{phone} · {email}</p>{county && <p className="mt-1 text-sm text-muted-foreground">{county}</p>}</div>
+                <button type="button" onClick={() => goToStep(0)} className="min-h-10 shrink-0 px-2 text-sm font-semibold text-primary">{wizard.edit}</button>
+              </div>
+            </div>
+            <section className="rounded-2xl border border-border p-4">
+              <div className="mb-4 flex items-center justify-between gap-3"><h4 className="font-semibold">{wizard.steps[1]}</h4><button type="button" onClick={() => goToStep(1)} className="min-h-10 px-2 text-sm font-semibold text-primary">{wizard.edit}</button></div>
+              <dl className="grid gap-4 text-sm sm:grid-cols-2">
+                {([
+                  [t.address, address], [t.condition, conditionNotes], [t.history, medicalHistory],
+                  [t.dob, dateOfBirth], [t.gender, gender ? ({ Female: t.female, Male: t.male, Other: t.other, "Prefer not to say": t.preferNot }[gender] || gender) : ""],
+                  [t.patientStatus, status === "active" ? t.activeCare : status === "inactive" ? t.inactive : t.archived],
+                  [t.priority, priority === "critical" ? t.pCritical : priority === "high" ? t.pHigh : priority === "low" ? t.pLow : t.pModerate],
+                  ...(isAdmin ? [[t.assignedWorker, selectedWorkers.map((worker) => worker.full_name).join(", ")]] : []),
+                  [intakeCopy.documents, intake.has_documents ? intakeCopy.hasDocuments : intakeCopy.noDocuments],
+                  [wizard.gps, intake.location ? `${intake.location.latitude.toFixed(6)}, ${intake.location.longitude.toFixed(6)}` : ""],
+                ]).map(([label, value]) => <div key={label} className="min-w-0"><dt className="text-xs font-medium text-muted-foreground">{label}</dt><dd className="mt-1 whitespace-pre-wrap break-words">{value || wizard.empty}</dd></div>)}
+              </dl>
+              {intake.documents.length > 0 && <div className="mt-4 border-t border-border pt-4"><h4 className="text-xs font-medium text-muted-foreground">{wizard.documents} ({intake.documents.length})</h4><ul className="mt-2 space-y-2">{intake.documents.map((document) => <li key={document.id} className="break-words rounded-lg bg-muted p-2 text-sm">{document.name} · {document.category === "identity" ? intakeCopy.identity : intakeCopy.medical}</li>)}</ul></div>}
+            </section>
+          </div>}
         </form>
-          <div className="flex shrink-0 items-center justify-end gap-3 border-t border-border bg-card p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
+          <div className="flex shrink-0 items-center justify-between gap-3 border-t border-border bg-card p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
             <button
               type="button"
-              onClick={onClose}
+              onClick={() => !isEditing && step > 0 ? goToStep(step - 1) : onClose()}
               disabled={isSubmitting || intakeBusy}
               className="rounded-xl border border-border bg-card px-4 py-2.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
             >
-              {t.cancel}
+              {!isEditing && step > 0 ? <span className="inline-flex items-center gap-2"><ArrowLeftIcon className="h-4 w-4" />{wizard.back}</span> : t.cancel}
             </button>
             <button
               type="submit"
@@ -627,7 +713,7 @@ export function CreatePatientModal({
                 ? t.saving
                 : isEditing
                 ? t.update
-                : t.create}
+                : step === 2 ? t.create : <span className="inline-flex items-center gap-2">{wizard.next}<ArrowRightIcon className="h-4 w-4" /></span>}
             </button>
           </div>
       </div>
