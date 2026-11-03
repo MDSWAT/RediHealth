@@ -67,6 +67,13 @@ or after the browser is closed. After deployments, reconnect and sync to refresh
 
 ## Panel loading and performance
 
+The Jitsi consultation workspace prioritizes video, with a collapsible notes/transcript
+sidebar on desktop and a stacked layout on mobile. Tabs and hiding the sidebar preserve
+drafts and keep the video mounted. Both fields save together to the existing meeting record;
+invitation and transcription actions retain their existing endpoints. Transcription uses
+the device microphone, not audio captured from the embedded call; obtain consent first.
+The demo uses the same workspace with simulated video/transcription and local-only saves.
+
 The Workers dashboard uses a lightweight patient assignment projection on initial load and
 refresh (`GET /api/patients?view=assignment`, administrators only). Documents, photos, medical
 history, treatment plans and follow-ups are not loaded for assignment controls; clinical
