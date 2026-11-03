@@ -10,7 +10,7 @@ vi.mock("@/lib/i18n/server-routing", () => ({ getRequestLang: async () => "en" }
 vi.mock("@/lib/activity-log", () => ({ logActivity: mocks.log }));
 vi.mock("@/lib/rate-limit", () => ({ getClientIp: () => "127.0.0.1" }));
 
-import { PATCH, POST } from "./route";
+import { GET, PATCH, POST } from "./route";
 
 const entries = [
   { id: "one", title: "First course", start_date: "2026-10-01", end_date: "2026-10-07", medications: "First therapy" },
@@ -36,6 +36,24 @@ describe("patient treatment persistence", () => {
     expect(mocks.query).toHaveBeenCalledWith(expect.stringContaining("assigned_worker_id = ?"), [expect.any(String), "7", "2", "2"]);
     expect(JSON.parse(mocks.query.mock.calls[0][1][0])).toEqual({ entries });
     expect(await response.json()).toEqual({ success: true });
+  });
+
+  it("loads lightweight assignment records for administrators without clinical or binary fields", async () => {
+    mocks.worker.mockResolvedValueOnce({ country: "RO", workerId: "2", isAdmin: true });
+    mocks.query.mockResolvedValueOnce([[{ total: 1 }]]).mockResolvedValueOnce([[
+      { id: 7, full_name: "Example", email: "example@example.test", phone: "000", created_at: "2026-01-01", assigned_worker_id: 2 },
+    ]]);
+    const response = await GET(new Request("http://localhost/api/patients?view=assignment&limit=100"));
+    expect(response.status).toBe(200);
+    const sql = mocks.query.mock.calls[1][0];
+    for (const column of ["p.intake", "p.photos", "p.profile_photo", "p.medical_history", "p.treatment_plan", "p.followups", "GROUP_CONCAT"]) expect(sql).not.toContain(column);
+    expect((await response.json()).patients[0]).toMatchObject({ id: "7", assigned_worker_id: "2" });
+  });
+
+  it("rejects assignment-view access for non-administrators before querying patients", async () => {
+    const response = await GET(new Request("http://localhost/api/patients?view=assignment"));
+    expect(response.status).toBe(403);
+    expect(mocks.query).not.toHaveBeenCalled();
   });
 
   it("creates a patient with multiple treatment plans in the existing JSON column", async () => {

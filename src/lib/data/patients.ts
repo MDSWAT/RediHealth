@@ -36,6 +36,12 @@ export const PATIENT_COLUMNS = `p.id, p.request_id, p.assigned_worker_id, w.full
 
 export const PATIENT_FROM = `FROM patients p LEFT JOIN workers w ON w.id = p.assigned_worker_id`;
 
+/** Assignment controls do not need clinical records or inline document/photo data. */
+export const PATIENT_ASSIGNMENT_COLUMNS = `p.id, p.assigned_worker_id, p.assigned_worker_ids,
+  w.full_name AS assigned_worker_name, p.full_name, p.phone, p.email,
+  COALESCE(p.status, 'active') AS status, COALESCE(p.priority, 'moderate') AS priority,
+  p.created_at, p.updated_at`;
+
 export interface DBPatientRow extends RowDataPacket {
   id: string | number;
   request_id?: string | number | null;
@@ -125,16 +131,17 @@ export interface LoadPatientsOptions {
   scopeToWorkerId?: string | null;
   limit?: number;
   id?: string;
+  projection?: "full" | "assignment";
 }
 
 export async function loadPatients(
   options: LoadPatientsOptions,
 ): Promise<PatientItem[]> {
-  const { country, scopeToWorkerId, limit = 100, id } = options;
+  const { country, scopeToWorkerId, limit = 100, id, projection = "full" } = options;
   const db = getCountryDatabase(country);
 
   const params: unknown[] = [];
-  let sql = `SELECT ${PATIENT_COLUMNS} ${PATIENT_FROM}`;
+  let sql = `SELECT ${projection === "assignment" ? PATIENT_ASSIGNMENT_COLUMNS : PATIENT_COLUMNS} ${PATIENT_FROM}`;
 
   if (scopeToWorkerId) {
     sql += ` WHERE (

@@ -43,7 +43,7 @@ export function WorkersDashboard({
     try {
       const [wRes, pRes] = await Promise.all([
         fetch("/api/workers"),
-        fetch("/api/patients"),
+        fetch("/api/patients?view=assignment&limit=100"),
       ]);
 
       if (wRes.ok) {

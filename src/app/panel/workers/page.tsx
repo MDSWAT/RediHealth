@@ -36,7 +36,7 @@ export default async function WorkersPage() {
     try {
       [workers, patients, pendingRequestsCount] = await Promise.all([
         loadWorkers(workerContext.country),
-        loadPatients({ country: workerContext.country }),
+        loadPatients({ country: workerContext.country, projection: "assignment" }),
         countPendingRequests(workerContext.country),
       ]);
     } catch (error) {

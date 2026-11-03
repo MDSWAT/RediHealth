@@ -19,6 +19,12 @@ are not reported as successful; large uploaded files may exceed the browser's st
 
 ## Prerequisites
 
+The Workers dashboard uses a lightweight patient assignment projection on initial load and
+refresh (`GET /api/patients?view=assignment`, administrators only). Documents, photos, medical
+history, treatment plans and follow-ups are not loaded for assignment controls; clinical
+screens retain full records. Database connection resets/timeouts still require checking
+the production database network, SSL and provider limits.
+
 - Node.js 20+
 - A MySQL database (schema is in [`database/schema.sql`](database/schema.sql) and [`database/migrations`](database/migrations))
 

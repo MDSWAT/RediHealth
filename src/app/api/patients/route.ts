@@ -5,6 +5,7 @@ import { getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
   PATIENT_COLUMNS,
+  PATIENT_ASSIGNMENT_COLUMNS,
   PATIENT_FROM,
   mapPatientRow,
   type DBPatientRow,
@@ -56,6 +57,10 @@ export async function GET(request: Request) {
   }
 
   const { searchParams } = new URL(request.url);
+  const assignmentView = searchParams.get("view") === "assignment";
+  if (assignmentView && !workerContext.isAdmin) {
+    return NextResponse.json({ error: "Administrator access is required." }, { status: 403 });
+  }
   const statusParam = searchParams.get("status");
   const priorityParam = searchParams.get("priority");
   const workerIdParam = searchParams.get("assigned_worker_id");
@@ -69,7 +74,7 @@ export async function GET(request: Request) {
 
   try {
     const db = getCountryDatabase(workerContext.country);
-    let query = `SELECT ${PATIENT_COLUMNS} ${PATIENT_FROM}`;
+    let query = `SELECT ${assignmentView ? PATIENT_ASSIGNMENT_COLUMNS : PATIENT_COLUMNS} ${PATIENT_FROM}`;
     const params: unknown[] = [];
     const conditions: string[] = [];
 

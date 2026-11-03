@@ -1,7 +1,32 @@
 import { describe, expect, it, vi } from "vitest";
-import { mapPatientRow, type DBPatientRow } from "@/lib/data/patients";
+import { loadPatients, mapPatientRow, type DBPatientRow } from "@/lib/data/patients";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import { encryptField } from "@/lib/security/field-encryption";
+
+const mocks = vi.hoisted(() => ({ query: vi.fn() }));
+vi.mock("@/lib/database", () => ({ getCountryDatabase: () => ({ query: mocks.query }) }));
+
+describe("assignment patient loading", () => {
+  it("omits clinical and binary columns while keeping assignment and search fields", async () => {
+    mocks.query.mockResolvedValueOnce([[row({ assigned_worker_id: 3, assigned_worker_ids: '["3","4"]' })]]);
+    const patients = await loadPatients({ country: "RO", projection: "assignment" });
+    const sql = mocks.query.mock.calls.at(-1)![0];
+    for (const column of ["intake", "photos", "profile_photo", "medical_history", "treatment_plan", "followups", "GROUP_CONCAT"]) {
+      expect(sql).not.toContain(column);
+    }
+    for (const column of ["p.full_name", "p.phone", "p.email", "p.assigned_worker_ids"]) expect(sql).toContain(column);
+    expect(patients[0].assigned_worker_ids).toEqual(["3", "4"]);
+    expect(patients[0].medical_history).toBeNull();
+    expect(patients[0].intake).toBeNull();
+  });
+
+  it("keeps the full projection as the default for clinical screens", async () => {
+    mocks.query.mockResolvedValueOnce([[]]);
+    await loadPatients({ country: "RO" });
+    expect(mocks.query.mock.calls.at(-1)![0]).toContain("p.intake");
+    expect(mocks.query.mock.calls.at(-1)![0]).toContain("p.medical_history");
+  });
+});
 
 function row(overrides: Record<string, unknown> = {}): DBPatientRow {
   return {
