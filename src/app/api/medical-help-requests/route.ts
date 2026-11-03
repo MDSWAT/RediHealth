@@ -97,7 +97,8 @@ export async function POST(request: Request) {
       `INSERT INTO medical_help_requests
         (full_name, phone, email, description, county, privacy_consent_at)
        VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`,
-      [name || null, phone, email || null, description, county || null],
+      // Older country databases define email as NOT NULL; an omitted email remains optional.
+      [name || null, phone, email, description, county || null],
     );
 
     await logActivity({

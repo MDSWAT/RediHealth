@@ -62,7 +62,36 @@ describe("patient intake form layout", () => {
     expect(html).toContain('value="Synthetic request"');
     expect(html).toContain('value="request@example.test"');
     expect(html).toContain("Synthetic care need");
-    expect(html).toContain("Synthetic Doctor (Doctor)");
+    expect(html).toContain("Synthetic Doctor");
+    expect(html).toContain('type="search"');
+    expect(html).toContain("Echipa de îngrijire");
+    expect(html).toContain("Informații personale");
+    expect(html).toContain("Setări de îngrijire");
+    expect(html).not.toContain("<details");
+    expect(html).not.toContain("Selectează vizibili");
+    expect(html).not.toContain("Arată doar selectați");
     expect(html).toContain("Continuă");
+  });
+
+  it("shows every selected team member with an accessible remove action and keeps assignments admin-only", () => {
+    const workers = Array.from({ length: 7 }, (_, index) => ({
+      id: String(index + 1), full_name: `Synthetic Doctor ${index + 1}`, email: `doctor${index + 1}@example.test`,
+      role: "Doctor", status: "active" as const, county: "Cluj", created_at: "2026-01-01",
+    }));
+    const patient: PatientItem = {
+      id: "7", full_name: "Test", email: "test@example.test", phone: "123",
+      status: "active", priority: "moderate", created_at: "2026-01-01",
+      assigned_worker_ids: workers.map((worker) => worker.id),
+    };
+    const props = { patient, workers, isRomania: true, onClose: vi.fn() };
+    const html = renderToStaticMarkup(createElement(CreatePatientModal, { ...props, isAdmin: true }));
+    for (const worker of workers) {
+      expect(html).toContain(`aria-label="Elimină selecția: ${worker.full_name}"`);
+    }
+    expect(html).toContain("Doctor · Cluj");
+    expect(html).toContain('aria-live="polite"');
+    const staffHtml = renderToStaticMarkup(createElement(CreatePatientModal, props));
+    expect(staffHtml).not.toContain('type="search"');
+    expect(staffHtml).not.toContain("Echipa de îngrijire");
   });
 });

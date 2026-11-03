@@ -72,6 +72,9 @@ then a review before saving. Moving between steps preserves entered data and att
 contact validation runs before advancing, and only the final step creates the patient.
 Editing existing patients keeps its single-form flow. Live, demo and offline panels share
 this form and retain their existing transport, assignment and document validation rules.
+Personal information and care settings are shown in separate, always-visible sections.
+Administrators select the care team using searchable cards (name, role, email or county);
+all selected members remain visible above the results and can be removed individually.
 
 The Jitsi consultation workspace prioritizes video, with a collapsible notes/transcript
 sidebar on desktop and a stacked layout on mobile. Tabs and hiding the sidebar preserve
@@ -192,6 +195,10 @@ database); `007` (institutes) also belongs to the control database, and the othe
 map locations, planned home visits, and closure tracking to mediator cases. Apply it to every
 country database.
 
+Public help requests require a phone number, not an email address. When email is omitted,
+the API stores an empty string for compatibility with older `NOT NULL` email columns and
+does not send a confirmation email. No schema change is needed for this compatibility fix.
+
 `013` adds patient intake details to each country database. The patient form supports an optional
 document checkbox, medical/identity uploads (PDF, JPEG, PNG, WebP; up to 5 files, 5 MB each,
 10 MB total), and current GPS coordinates alongside the typed address. GPS is requested only
@@ -199,6 +206,25 @@ after a click and requires browser permission and HTTPS (or localhost); no geoco
 Documents and GPS are stored in the encrypted `patients.intake` field and require the country's
 `DATA_ENCRYPTION_KEY_<CC>`. They are available only in the authorized staff panel, not the
 patient portal, portal emails or printed reports. Apply the migration before deploying this version.
+
+On Vercel, an error saying document/GPS storage requires a configured country encryption key
+means the deployment is missing this server-side environment variable. For **first-time setup**
+in Romania, generate a random 32-byte Base64 key locally. In PowerShell, this copies it without
+printing the key to terminal logs:
+
+```powershell
+node -e "process.stdout.write(require('node:crypto').randomBytes(32).toString('base64'))" | Set-Clipboard
+```
+
+In **Project → Settings → Environment Variables**, add `DATA_ENCRYPTION_KEY_RO`, paste the value,
+and enable it for Production (and Preview/Development only if those environments use the same
+database). Redeploy: existing deployments do not receive newly added variables. Keep a secure
+backup of the key outside Git, then clear the clipboard. Use separate keys for isolated country
+databases (`AL`, `IT`, `MD`) and separate test databases. All deployments sharing a database must
+use its same key. If encrypted records already exist, **restore their original key** instead of
+generating a replacement: changing or losing it makes those records unreadable. Never use a
+`NEXT_PUBLIC_` variable, commit a key, or disable encryption to work around this error.
+
 Allow at least 32 MB for MySQL's `max_allowed_packet` and the reverse proxy's request-body limit
 to accommodate base64 encoding and encrypted storage at the documented upload limit.
 Next.js buffers up to 16 MB through its proxy for the base64-encoded upload request.
