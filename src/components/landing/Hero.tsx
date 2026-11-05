@@ -52,8 +52,8 @@ export function Hero({ showAssistantCta }: { showAssistantCta: boolean }) {
               <Button href="/get-help" size="lg">
                 {t.hero.cta}
               </Button>
-              {showAssistantCta && (
-                <a href="/health-assistant" className="ml-5 inline-flex min-h-11 items-center text-sm font-semibold text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary">
+              {(showAssistantCta || t.hero.assistantAlwaysVisible) && (
+                <a href={t.hero.assistantHref} className="ml-5 inline-flex min-h-11 items-center text-sm font-semibold text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary">
                   {t.hero.assistantCta}
                 </a>
               )}

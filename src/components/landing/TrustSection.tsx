@@ -51,6 +51,9 @@ export function TrustSection() {
         </ul>
 
         <Reveal className="mt-12">
+          <p className="mb-6 text-center text-base font-semibold text-foreground">
+            {t.landing.trustSection.builtWith}
+          </p>
           <div className="rounded-xl border border-dashed border-border bg-muted/40 p-8">
             <p className="text-center text-sm font-medium uppercase tracking-wide text-muted-foreground">
               {t.landing.trustSection.partnersLabel}

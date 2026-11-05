@@ -7,7 +7,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon, BookIcon, ClipboardCheckIcon, PinIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 
-const optionHrefs = ["/health-information", "/health-check", "/find-help"];
 const optionIcons = [
   { Icon: BookIcon, tone: "bg-red-50 text-red-600" },
   { Icon: ClipboardCheckIcon, tone: "bg-blue-50 text-slate-800" },
@@ -32,11 +31,11 @@ export function HelpOptions() {
         </Reveal>
 
         <ul className="mt-10 grid gap-6 md:grid-cols-3">
-          {t.landing.helpOptions.options.map(({ title, description, cta }, index) => (
-            <Reveal key={optionHrefs[index]} delay={index * 100} className="h-full">
+          {t.landing.helpOptions.options.map(({ title, description, cta, href }, index) => (
+            <Reveal key={href} delay={index * 100} className="h-full">
               <li className="h-full list-none">
                 <Link
-                  href={optionHrefs[index]}
+                  href={href}
                   className="hover-lift group flex h-full flex-col rounded-xl border border-border bg-card p-7 transition-colors hover:border-primary/40 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   {(() => {
@@ -62,6 +61,19 @@ export function HelpOptions() {
             </Reveal>
           ))}
         </ul>
+
+        <Reveal className="mt-8">
+          <div className="flex flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-border bg-muted/40 px-5 py-3 text-center text-sm sm:flex-row sm:gap-3">
+            <span className="text-muted-foreground">{t.landing.helpOptions.mediatorBand.text}</span>
+            <Link
+              href="/panel"
+              className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              {t.landing.helpOptions.mediatorBand.cta}
+              <ArrowRightIcon className="h-4 w-4" />
+            </Link>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

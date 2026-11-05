@@ -30,6 +30,8 @@ export type Translations = {
     paragraph: string;
     cta: string;
     assistantCta: string;
+    assistantHref: string;
+    assistantAlwaysVisible: boolean;
     phone: {
       status: string;
       messages: string[];
@@ -54,7 +56,8 @@ export type Translations = {
     helpOptions: {
       title: string;
       subtitle: string;
-      options: { title: string; description: string; cta: string }[];
+      options: { title: string; description: string; cta: string; href: string }[];
+      mediatorBand: { text: string; cta: string };
     };
     healthTopics: {
       title: string;
@@ -72,6 +75,7 @@ export type Translations = {
     trustSection: {
       title: string;
       subtitle: string;
+      builtWith: string;
       partnersLabel: string;
       partnerLogo: string;
       commitments: { title: string; description: string }[];
@@ -213,6 +217,8 @@ export const translations: Record<Lang, Translations> = {
         "REDI Health helps families, including Roma communities, understand health information and equips mediators with digital tools to educate, guide, refer, and follow up.",
       cta: "Request Medical Information",
       assistantCta: "Try the health assistant",
+      assistantHref: "/health-assistant",
+      assistantAlwaysVisible: false,
       phone: {
         status: "online",
         messages: [
@@ -254,18 +260,22 @@ export const translations: Record<Lang, Translations> = {
             title: "Learn About Your Health",
             description: "Understand common health risks and learn practical ways to protect your health.",
             cta: "Explore Health Topics",
+            href: "/health-information",
           },
           {
             title: "Check Your Health Risks",
             description: "Answer a few simple questions to better understand potential health risks.",
             cta: "Start Health Check",
+            href: "/health-check",
           },
           {
             title: "Get Medical Help",
             description: "Find healthcare services or ask for help arranging an appointment.",
             cta: "Find Help",
+            href: "/find-help",
           },
         ],
+        mediatorBand: { text: "Are you a health mediator?", cta: "Go to the mediators' module" },
       },
       healthTopics: {
         title: "Take care of your health",
@@ -306,6 +316,7 @@ export const translations: Record<Lang, Translations> = {
       trustSection: {
         title: "A trusted public health service",
         subtitle: "Built to support everyone, with care taken over accuracy, privacy, and accessibility.",
+        builtWith: "Built together with communities",
         partnersLabel: "Government and healthcare partners",
         partnerLogo: "Partner logo",
         commitments: [
@@ -455,13 +466,15 @@ export const translations: Record<Lang, Translations> = {
       demo: "Demo",
     },
     hero: {
-      titleLine1: "O sănătate mai bună",
-      titleLine2: "începe cu tine.",
-      titleLine3: "Mediatorii sanitari, mai bine sprijiniți.",
+      titleLine1: "Informații medicale pe înțelesul tău",
+      titleLine2: "și îndrumare către",
+      titleLine3: "îngrijirea potrivită.",
       paragraph:
-        "REDI Health ajută familiile, inclusiv comunitățile de romi, să înțeleagă informațiile medicale și oferă mediatorilor instrumente digitale pentru a educa, ghida, îndruma și urmări cazurile.",
-      cta: "Solicită informații medicale",
-      assistantCta: "Încearcă asistentul de sănătate",
+        "REDI Health oferă persoanelor din comunitățile vulnerabile, inclusiv celor rome, educație medicală pe înțelesul lor, îndrumare și acces la medici online.",
+      cta: "Spune-ne ce te îngrijorează",
+      assistantCta: "Află despre sănătatea ta",
+      assistantHref: "/health-information",
+      assistantAlwaysVisible: true,
       phone: {
         status: "online",
         messages: [
@@ -491,7 +504,7 @@ export const translations: Record<Lang, Translations> = {
     },
     landing: {
       mythBuster: {
-        title: "Demontează un mit viral",
+        title: "Ce e adevărat și ce nu",
         subtitle: "Informațiile medicale false se răspândesc rapid. Verifică faptele înainte de a lua o decizie despre sănătatea ta.",
         messageLabel: "Mesaj",
       },
@@ -500,21 +513,25 @@ export const translations: Record<Lang, Translations> = {
         subtitle: "Alege de ce ai nevoie și te vom ghida spre următorii pași.",
         options: [
           {
-            title: "Află despre sănătatea ta",
+            title: "Află",
             description: "Înțelege riscurile comune pentru sănătate și învață modalități practice de a te proteja.",
             cta: "Explorează informații medicale",
+            href: "/health-information",
           },
           {
-            title: "Verifică-ți riscurile de sănătate",
-            description: "Răspunde la câteva întrebări simple pentru a înțelege mai bine riscurile posibile.",
-            cta: "Începe verificarea",
+            title: "Cere îndrumare",
+            description: "Spune-ne ce te îngrijorează și primești informația și pașii de urmat, în limbaj simplu.",
+            cta: "Cere îndrumare",
+            href: "/get-help",
           },
           {
-            title: "Obține ajutor medical",
-            description: "Găsește servicii medicale sau cere ajutor pentru a programa o consultație.",
+            title: "Vorbește cu un medic",
+            description: "Dacă e nevoie, vorbești cu un medic online.",
             cta: "Găsește ajutor",
+            href: "/find-help",
           },
         ],
+        mediatorBand: { text: "Ești mediator sanitar?", cta: "Mergi la modulul mediatorilor" },
       },
       healthTopics: {
         title: "Ai grijă de sănătatea ta",
@@ -533,28 +550,28 @@ export const translations: Record<Lang, Translations> = {
       },
       medicalAssistance: {
         title: "Ai nevoie de ajutor pentru a obține îngrijire medicală?",
-        subtitle:
-          "Dacă întâmpini dificultăți în a găsi un medic sau a programa o consultație, echipa noastră de suport te poate ghida în acest proces.",
+        subtitle: "Un lucrător de sprijin îți analizează cererea.",
         requestHelp: "Solicită ajutor",
         findServices: "Găsește servicii medicale",
         steps: [
           {
-            title: "Spune-ne de ce ai nevoie",
+            title: "Spune ce te îngrijorează",
             description: "Oferă câteva detalii despre ajutorul pe care îl cauți. Limbaj simplu, fără formulare pline de termeni tehnici.",
           },
           {
-            title: "Un lucrător de sprijin îți analizează cererea",
-            description: "Un lucrător medical de sprijin îți citește cererea și stabilește cum te poate ajuta cel mai bine.",
+            title: "Primești informația și pașii de urmat",
+            description: "Totul în limbaj simplu, ușor de înțeles.",
           },
           {
-            title: "Te ajutăm să găsești serviciul potrivit",
-            description: "Te îndrumăm către serviciul potrivit și te sprijinim pe tot parcursul procesului.",
+            title: "Vorbești cu un medic online",
+            description: "Dacă e nevoie, te pun în legătură cu un medic.",
           },
         ],
       },
       trustSection: {
         title: "Un serviciu public de sănătate de încredere",
         subtitle: "Construit pentru a sprijini pe toată lumea, cu atenție la acuratețe, confidențialitate și accesibilitate.",
+        builtWith: "Construit împreună cu comunitățile",
         partnersLabel: "Parteneri guvernamentali și medicali",
         partnerLogo: "Logo partener",
         commitments: [
@@ -711,6 +728,8 @@ export const translations: Record<Lang, Translations> = {
         "REDI Health ndihmon familjet, përfshirë komunitetet rome, të kuptojnë informacionin shëndetësor dhe u ofron ndërmjetësve mjete digjitale për të edukuar, udhëzuar, referuar dhe ndjekur rastet.",
       cta: "Kërko informacion mjekësor",
       assistantCta: "Provo asistentin shëndetësor",
+      assistantHref: "/health-assistant",
+      assistantAlwaysVisible: false,
       phone: {
         status: "online",
         messages: [
@@ -752,18 +771,22 @@ export const translations: Record<Lang, Translations> = {
             title: "Mëso rreth shëndetit tënd",
             description: "Kupto rreziqet e zakonshme shëndetësore dhe mëso mënyra praktike për të mbrojtur shëndetin tënd.",
             cta: "Eksploro temat shëndetësore",
+            href: "/health-information",
           },
           {
             title: "Kontrollo rreziqet e tua shëndetësore",
             description: "Përgjigju disa pyetjeve të thjeshta për të kuptuar më mirë rreziqet e mundshme.",
             cta: "Fillo kontrollin shëndetësor",
+            href: "/health-check",
           },
           {
             title: "Merr ndihmë mjekësore",
             description: "Gjej shërbime shëndetësore ose kërko ndihmë për të organizuar një takim.",
             cta: "Gjej ndihmë",
+            href: "/find-help",
           },
         ],
+        mediatorBand: { text: "Je ndërmjetës shëndetësor?", cta: "Shko te moduli i ndërmjetësve" },
       },
       healthTopics: {
         title: "Kujdesu për shëndetin tënd",
@@ -804,6 +827,7 @@ export const translations: Record<Lang, Translations> = {
       trustSection: {
         title: "Një shërbim shëndetësor publik i besueshëm",
         subtitle: "Ndërtuar për të mbështetur të gjithë, me kujdes ndaj saktësisë, privatësisë dhe aksesueshmërisë.",
+        builtWith: "Ndërtuar së bashku me komunitetet",
         partnersLabel: "Partnerë qeveritarë dhe shëndetësorë",
         partnerLogo: "Logo partneri",
         commitments: [
@@ -960,6 +984,8 @@ export const translations: Record<Lang, Translations> = {
         "REDI Health aiuta le famiglie, comprese le comunità rom, a comprendere le informazioni sanitarie e fornisce ai mediatori strumenti digitali per educare, guidare, indirizzare e seguire i casi.",
       cta: "Richiedi informazioni mediche",
       assistantCta: "Prova l'assistente sanitario",
+      assistantHref: "/health-assistant",
+      assistantAlwaysVisible: false,
       phone: {
         status: "online",
         messages: [
@@ -1001,18 +1027,22 @@ export const translations: Record<Lang, Translations> = {
             title: "Scopri di più sulla tua salute",
             description: "Comprendi i rischi sanitari comuni e impara modi pratici per proteggere la tua salute.",
             cta: "Esplora gli argomenti sanitari",
+            href: "/health-information",
           },
           {
             title: "Controlla i tuoi rischi sanitari",
             description: "Rispondi ad alcune semplici domande per comprendere meglio i possibili rischi per la salute.",
             cta: "Avvia il controllo sanitario",
+            href: "/health-check",
           },
           {
             title: "Ottieni assistenza medica",
             description: "Trova servizi sanitari o chiedi aiuto per organizzare un appuntamento.",
             cta: "Trova assistenza",
+            href: "/find-help",
           },
         ],
+        mediatorBand: { text: "Sei un mediatore sanitario?", cta: "Vai al modulo dei mediatori" },
       },
       healthTopics: {
         title: "Prenditi cura della tua salute",
@@ -1053,6 +1083,7 @@ export const translations: Record<Lang, Translations> = {
       trustSection: {
         title: "Un servizio sanitario pubblico affidabile",
         subtitle: "Costruito per supportare tutti, con attenzione all'accuratezza, alla privacy e all'accessibilità.",
+        builtWith: "Costruito insieme alle comunità",
         partnersLabel: "Partner governativi e sanitari",
         partnerLogo: "Logo partner",
         commitments: [
