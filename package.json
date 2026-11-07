@@ -18,6 +18,8 @@
     "hostinger-mail-api-sdk": "^1.19.0",
     "jose": "^6.2.10",
     "leaflet": "^1.9.4",
+    "lottie-web": "^5.13.0",
+    "motion": "^14.10.1",
     "mysql2": "^3.24.3",
     "next": "16.4.1",
     "next-auth": "^5.0.0-beta.32",

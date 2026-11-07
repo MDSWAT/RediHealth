@@ -16,14 +16,23 @@
   --color-border-subtle: #edf2f7;
   --color-card: #ffffff;
 
-  /* Clinical Ruby (Primary Brand and Emergency) */
-  --color-primary: #e63946;
-  --color-primary-hover: #d90429;
-  --color-primary-active: #b80322;
+  /* Clinical Ruby (Primary Brand and Emergency).
+     #c62f3c keeps white text at 5:1 (WCAG AA); the previous #e63946 was 3.9:1. */
+  --color-primary: #c62f3c;
+  --color-primary-hover: #a8242f;
+  --color-primary-active: #8f1d27;
   --color-primary-soft: #fde8ea;
-  --color-primary-ring: rgba(230, 57, 70, 0.25);
+  --color-primary-ring: rgba(198, 47, 60, 0.25);
 
-  --color-ring: #e63946;
+  --color-ring: #c62f3c;
+  --color-ruby-300: #f3a0a7;
+
+  /* Hero ground: obsidian ink, warm paper, and a cool mist for secondary text on dark */
+  --color-ink-950: #0a1226;
+  --color-ink-900: #101a33;
+  --color-ink-800: #1b2744;
+  --color-paper: #fbfaf6;
+  --color-mist: #a9b3c6;
 
   /* Deep Sapphire (Telemedicine and Clinical Authority) */
   --color-sapphire: #1d3557;
@@ -83,170 +92,6 @@ body {
   animation-delay: 0.5s;
 }
 
-@keyframes hero-icon-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.hero-floating-icon {
-  animation: hero-icon-float 4s ease-in-out infinite;
-}
-
-@keyframes hero-message-pop {
-  0% {
-    opacity: 0;
-    transform: translateY(8px) scale(0.9);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.hero-chat-message {
-  opacity: 0;
-  animation: hero-message-pop 0.4s ease-out forwards;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-@keyframes hero-typing-bounce {
-  0%,
-  60%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.4;
-  }
-
-  30% {
-    transform: translateY(-3px);
-    opacity: 1;
-  }
-}
-
-.hero-typing-dot {
-  animation: hero-typing-bounce 1s ease-in-out infinite;
-}
-
-.hero-typing-dot:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
-.hero-typing-dot:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-@keyframes hero-typing-life {
-  0% {
-    opacity: 0;
-  }
-
-  15% {
-    opacity: 1;
-  }
-
-  85% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes hero-typing-slide-life {
-  0% {
-    opacity: 1;
-    transform: translateY(-2.75rem);
-  }
-
-  70% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  82% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-typing-bubble {
-  opacity: 0;
-  animation: hero-typing-life var(--hero-anim-duration, 1s) ease-in-out var(--hero-anim-delay, 0s) forwards;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-.hero-typing-bubble-slide {
-  animation-name: hero-typing-slide-life;
-}
-
-@keyframes hero-factcheck-in {
-  0% {
-    opacity: 0;
-    transform: translateY(48px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-factcheck-card {
-  opacity: 0;
-  animation: hero-factcheck-in 0.5s ease-out forwards;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-@keyframes hero-text-in {
-  0% {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-text-in {
-  opacity: 0;
-  animation: hero-text-in 0.6s ease-out forwards;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-text-in {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-}
 
 @keyframes demo-scan-sweep {
   0% {
@@ -349,139 +194,61 @@ body {
 }
 
 
-/* Clinical micro-status indicator quarantine */
-.micro-status-dot {
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 9999px;
-  background-color: var(--color-live-sage);
-  flex-shrink: 0;
-}
-
-/* Emergency beacon alert pulse */
-@keyframes emergency-beacon {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.45);
-  }
-  50% {
-    transform: scale(1.03);
-    box-shadow: 0 0 0 8px rgba(230, 57, 70, 0);
-  }
-}
-
-.emergency-beacon-active {
-  animation: emergency-beacon 2.4s infinite ease-in-out;
-}
-
-/* Aceternity-grade luminous card border beam */
-@keyframes hero-border-beam {
-  0% {
-    offset-distance: 0%;
-  }
-  100% {
-    offset-distance: 100%;
-  }
-}
-
-.hero-luminous-card {
-  position: relative;
-  background: var(--color-surface-card);
-  border-radius: 1.25rem;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 16px 36px -12px rgba(11, 19, 43, 0.08),
-              0 0 0 1px rgba(226, 232, 240, 0.7);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
-}
-
-.hero-luminous-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 24px 48px -12px rgba(11, 19, 43, 0.12),
-              0 0 0 1px rgba(230, 57, 70, 0.25);
-}
-
-.hero-border-beam {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  pointer-events: none;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  padding: 1.5px;
-}
-
-.hero-border-beam::after {
-  content: "";
-  position: absolute;
-  aspect-ratio: 1;
-  width: 96px;
-  background: linear-gradient(to right, #e63946, #1d3557, transparent);
-  offset-path: rect(0 auto auto 0 round 1.25rem);
-  animation: hero-border-beam 8s infinite linear;
-}
-
-/* Prescription laser scanner animation */
-@keyframes prescription-scan-sweep {
-  0% {
-    top: 0%;
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    top: 100%;
-    opacity: 0;
-  }
-}
-
-.prescription-scan-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #d97706, #e63946, transparent);
-  box-shadow: 0 0 8px rgba(217, 119, 6, 0.6);
-  animation: prescription-scan-sweep 2.8s ease-in-out infinite;
-}
-
-/* Soundwave audio playback animation */
-@keyframes soundwave-pulse {
-  0%, 100% {
-    height: 4px;
-  }
-  50% {
-    height: 14px;
-  }
-}
-
-.soundwave-bar {
-  animation: soundwave-pulse 1s ease-in-out infinite;
-}
-.soundwave-bar:nth-child(2) { animation-delay: 0.15s; }
-.soundwave-bar:nth-child(3) { animation-delay: 0.3s; }
-.soundwave-bar:nth-child(4) { animation-delay: 0.45s; }
-
-/* Red-flag shake trigger */
-@keyframes triage-shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-4px); }
-  40%, 80% { transform: translateX(4px); }
-}
-
-.animate-triage-shake {
-  animation: triage-shake 0.4s ease-in-out;
-}
 
 :focus-visible {
   outline: 2px solid var(--color-ring);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* ---------- Landing hero ---------- */
+
+.hero-title {
+  font-size: clamp(2.125rem, 1.25rem + 2.9vw, 3.3rem);
+  line-height: 1.05;
+  letter-spacing: -0.032em;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+/* Focus ring that reads on the dark ground (the global ruby ring does not). */
+.hero-focus:focus-visible {
+  outline: 2px solid var(--color-paper);
+  outline-offset: 3px;
+}
+
+/* Static hairline grid, faded out toward the edges. It never moves. */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 30% 35%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 35%, #000 20%, transparent 75%);
+}
+
+/* Aceternity-style spotlight: one entrance, then still. */
+@keyframes hero-spotlight-in {
+  from {
+    opacity: 0;
+    transform: translate(-6%, -8%) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.hero-spotlight {
+  opacity: 0;
+  animation: hero-spotlight-in 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-spotlight {
+    opacity: 1;
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
