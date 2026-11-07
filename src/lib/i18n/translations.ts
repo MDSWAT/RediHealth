@@ -24,6 +24,7 @@ export type Translations = {
     demo: string;
   };
   hero: {
+    trustBadge: string;
     titleLine1: string;
     titleLine2: string;
     titleLine3: string;
@@ -32,6 +33,28 @@ export type Translations = {
     assistantCta: string;
     assistantHref: string;
     assistantAlwaysVisible: boolean;
+    mediatorPill: string;
+    mediatorHref: string;
+    telemedicinePill: string;
+    emergencyNoticeVerbatim: string;
+    triage: {
+      badge: string;
+      question: string;
+      subQuestion: string;
+      options: {
+        id: string;
+        icon: string;
+        title: string;
+        desc: string;
+        actionLabel: string;
+        actionHref: string;
+      }[];
+      doctorPrompt: string;
+      doctorScheduleCta: string;
+      doctorOnDutyCta: string;
+      backButton: string;
+      reassurance: string;
+    };
     phone: {
       status: string;
       messages: string[];
@@ -210,15 +233,73 @@ export const translations: Record<Lang, Translations> = {
       demo: "Demo",
     },
     hero: {
-      titleLine1: "Better Health",
-      titleLine2: "starts with you.",
-      titleLine3: "Health mediators better supported.",
+      trustBadge: "Free public service · Built together with communities",
+      titleLine1: "Clear medical guidance",
+      titleLine2: "in plain language for",
+      titleLine3: "the care you need.",
       paragraph:
-        "REDI Health helps families, including Roma communities, understand health information and equips mediators with digital tools to educate, guide, refer, and follow up.",
-      cta: "Request Medical Information",
-      assistantCta: "Try the health assistant",
-      assistantHref: "/health-assistant",
-      assistantAlwaysVisible: false,
+        "REDI Health provides people from vulnerable communities, including Roma communities, with accessible health literacy, navigation, and direct access to online doctors.",
+      cta: "Tell us what worries you",
+      assistantCta: "Learn about your health",
+      assistantHref: "/health-information",
+      assistantAlwaysVisible: true,
+      mediatorPill: "Are you a health mediator? Open dedicated workspace",
+      mediatorHref: "/panel",
+      telemedicinePill: "Virtual clinic",
+      emergencyNoticeVerbatim:
+        "Alarm signs and «Call 112 yourself» — this application does not call automatically",
+      triage: {
+        badge: "Interactive 3-step navigation",
+        question: "What worries you today?",
+        subQuestion: "Choose an option below to receive clear guidance in plain words:",
+        options: [
+          {
+            id: "learn",
+            icon: "BookIcon",
+            title: "I want to learn about health",
+            desc: "Plain language guides and medical myths explained clearly.",
+            actionLabel: "Explore verified health guides",
+            actionHref: "/health-information",
+          },
+          {
+            id: "check",
+            icon: "ClipboardCheckIcon",
+            title: "I want to check my health risk",
+            desc: "A fast 2-minute questionnaire to review your health status.",
+            actionLabel: "Start risk assessment",
+            actionHref: "/health-check",
+          },
+          {
+            id: "symptoms",
+            icon: "ActivityIcon",
+            title: "I have a health symptom",
+            desc: "Review critical alarm signs and connect with an on-call physician.",
+            actionLabel: "Connect with on-call doctor",
+            actionHref: "/get-help?mode=doctor",
+          },
+          {
+            id: "prescription",
+            icon: "PrescriptionIcon",
+            title: "I want a prescription explained",
+            desc: "Learn how to take your medications and what precautions to observe.",
+            actionLabel: "Review prescription in plain terms",
+            actionHref: "/health-assistant?tab=prescription",
+          },
+          {
+            id: "navigation",
+            icon: "HandHelpingIcon",
+            title: "I do not know where to go / family doctor / CNAS",
+            desc: "Step-by-step guidance for family doctors, clinics, and insurance.",
+            actionLabel: "Request assistance from a health mediator",
+            actionHref: "/get-help?mode=mediator",
+          },
+        ],
+        doctorPrompt: "Would you like to speak with a doctor online?",
+        doctorScheduleCta: "Book a video consultation",
+        doctorOnDutyCta: "Connect with on-call doctor",
+        backButton: "Back to choices",
+        reassurance: "Confidential · No mandatory registration · Resolution in 3 steps or fewer",
+      },
       phone: {
         status: "online",
         messages: [
@@ -466,15 +547,73 @@ export const translations: Record<Lang, Translations> = {
       demo: "Demo",
     },
     hero: {
+      trustBadge: "Serviciu public gratuit · Construit împreună cu comunitățile",
       titleLine1: "Informații medicale pe înțelesul tău",
       titleLine2: "și îndrumare către",
       titleLine3: "îngrijirea potrivită.",
       paragraph:
-        "REDI Health oferă persoanelor din comunitățile vulnerabile, inclusiv celor rome, educație medicală pe înțelesul lor, îndrumare și acces la medici online.",
+        "REDI Health oferă persoanelor din comunitățile vulnerabile, inclusiv celor rome, educație medicală pe înțelesul lor, îndrumare și acces direct la medici online.",
       cta: "Spune-ne ce te îngrijorează",
       assistantCta: "Află despre sănătatea ta",
       assistantHref: "/health-information",
       assistantAlwaysVisible: true,
+      mediatorPill: "Ești mediator sanitar? Deschide panoul dedicat",
+      mediatorHref: "/panel",
+      telemedicinePill: "Clinica virtuală",
+      emergencyNoticeVerbatim:
+        "Semnele de alarmă și «Sună tu la 112» — aplicația nu apelează automat",
+      triage: {
+        badge: "Ghidaj interactiv în 3 pași",
+        question: "Ce te îngrijorează astăzi?",
+        subQuestion: "Alege o opțiune pentru îndrumare imediată în limbaj simplu:",
+        options: [
+          {
+            id: "learn",
+            icon: "BookIcon",
+            title: "Vreau să aflu despre sănătate",
+            desc: "Lecții simple și mituri medicale explicate pe înțelesul tuturor.",
+            actionLabel: "Vezi lecțiile validate de medici",
+            actionHref: "/health-information",
+          },
+          {
+            id: "check",
+            icon: "ClipboardCheckIcon",
+            title: "Vreau să-mi verific riscul",
+            desc: "Chestionar rapid de 2 minute pentru evaluarea stării tale de sănătate.",
+            actionLabel: "Începe verificarea riscului",
+            actionHref: "/health-check",
+          },
+          {
+            id: "symptoms",
+            icon: "ActivityIcon",
+            title: "Am o problemă de sănătate",
+            desc: "Verifică semnele de alarmă și vorbește cu un medic online de gardă.",
+            actionLabel: "Vezi medicul de gardă",
+            actionHref: "/get-help?mode=doctor",
+          },
+          {
+            id: "prescription",
+            icon: "PrescriptionIcon",
+            title: "Am o rețetă explicată",
+            desc: "Află cum se ia tratamentul prescris, orarul pastilelor și ce să eviți.",
+            actionLabel: "Explică rețeta pas cu pas",
+            actionHref: "/health-assistant?tab=prescription",
+          },
+          {
+            id: "navigation",
+            icon: "HandHelpingIcon",
+            title: "Nu știu unde să merg / medic de familie / CNAS",
+            desc: "Ghid clar pentru înscriere la medic de familie, pachet de urgență și acte.",
+            actionLabel: "Cere ajutor de la mediator",
+            actionHref: "/get-help?mode=mediator",
+          },
+        ],
+        doctorPrompt: "Vrei să vorbești cu un medic online?",
+        doctorScheduleCta: "Programează consultație video",
+        doctorOnDutyCta: "Vezi medicul de gardă",
+        backButton: "Înapoi la opțiuni",
+        reassurance: "Confidențial · Fără cont obligatoriu · Răspuns în cel mult 3 pași",
+      },
       phone: {
         status: "online",
         messages: [
@@ -721,15 +860,73 @@ export const translations: Record<Lang, Translations> = {
       demo: "Demo",
     },
     hero: {
-      titleLine1: "Shëndet më i mirë",
-      titleLine2: "fillon me ty.",
-      titleLine3: "Ndërmjetësit shëndetësorë, të mbështetur më mirë.",
+      trustBadge: "Shërbim publik falas · Ndërtuar së bashku me komunitetet",
+      titleLine1: "Informacione mjekësore të qarta",
+      titleLine2: "në gjuhë të thjeshtë për",
+      titleLine3: "kujdesin e duhur shëndetësor.",
       paragraph:
-        "REDI Health ndihmon familjet, përfshirë komunitetet rome, të kuptojnë informacionin shëndetësor dhe u ofron ndërmjetësve mjete digjitale për të edukuar, udhëzuar, referuar dhe ndjekur rastet.",
-      cta: "Kërko informacion mjekësor",
-      assistantCta: "Provo asistentin shëndetësor",
-      assistantHref: "/health-assistant",
-      assistantAlwaysVisible: false,
+        "REDI Health ndihmon personat nga komunitetet vulnerabël, duke përfshirë komunitetet rome, me edukim shëndetësor të kuptueshëm, udhëzime dhe lidhje të drejtpërdrejtë me mjekët në internet.",
+      cta: "Na trego çfarë të shqetëson",
+      assistantCta: "Mëso rreth shëndetit tënd",
+      assistantHref: "/health-information",
+      assistantAlwaysVisible: true,
+      mediatorPill: "Je ndërmjetës shëndetësor? Hape panelin e punës",
+      mediatorHref: "/panel",
+      telemedicinePill: "Klinika virtuale",
+      emergencyNoticeVerbatim:
+        "Shenjat e alarmit dhe «Telefono vetë 112» — aplikacioni nuk telefonon automatikisht",
+      triage: {
+        badge: "Udhëzues ndërveprues me 3 hapa",
+        question: "Çfarë të shqetëson sot?",
+        subQuestion: "Zgjidh një mundësi për udhëzim të menjëhershëm me fjalë të thjeshta:",
+        options: [
+          {
+            id: "learn",
+            icon: "BookIcon",
+            title: "Dua të mësoj rreth shëndetit",
+            desc: "Mësime të thjeshta dhe mite mjekësore të shpjeguara qartë.",
+            actionLabel: "Shiko mësimet e vërtetuara nga mjekët",
+            actionHref: "/health-information",
+          },
+          {
+            id: "check",
+            icon: "ClipboardCheckIcon",
+            title: "Dua të kontrolloj rrezikun tim",
+            desc: "Pyetësor i shpejtë 2-minutësh për të vlerësuar shëndetin tënd.",
+            actionLabel: "Fillo kontrollin e rrezikut",
+            actionHref: "/health-check",
+          },
+          {
+            id: "symptoms",
+            icon: "ActivityIcon",
+            title: "Kam një problem shëndetësor",
+            desc: "Kontrollo shenjat e alarmit dhe bisedo me mjekun kujdestar në internet.",
+            actionLabel: "Shiko mjekun kujdestar",
+            actionHref: "/get-help?mode=doctor",
+          },
+          {
+            id: "prescription",
+            icon: "PrescriptionIcon",
+            title: "Dua shpjegim për recetën time",
+            desc: "Mëso si merret trajtimi, orari i barnave dhe çfarë duhet të shmangësh.",
+            actionLabel: "Shpjego recetën hap pas hapi",
+            actionHref: "/health-assistant?tab=prescription",
+          },
+          {
+            id: "navigation",
+            icon: "HandHelpingIcon",
+            title: "Nuk di ku të shkoj / mjek familjeje / sigurime",
+            desc: "Udhëzues i qartë për regjistrim te mjeku i familjes, paketa e urgjencës dhe dokumentet.",
+            actionLabel: "Kërko ndihmë nga ndërmjetësi shëndetësor",
+            actionHref: "/get-help?mode=mediator",
+          },
+        ],
+        doctorPrompt: "Dëshiron të flasësh me një mjek në internet?",
+        doctorScheduleCta: "Programo konsultë video",
+        doctorOnDutyCta: "Shiko mjekun kujdestar",
+        backButton: "Kthehu te mundësitë",
+        reassurance: "Konfidenciale · Pa regjistrim të detyrueshëm · Përgjigje në më së shumti 3 hapa",
+      },
       phone: {
         status: "online",
         messages: [
@@ -977,15 +1174,73 @@ export const translations: Record<Lang, Translations> = {
       demo: "Demo",
     },
     hero: {
-      titleLine1: "Una salute migliore",
-      titleLine2: "inizia da te.",
-      titleLine3: "Mediatori sanitari meglio supportati.",
+      trustBadge: "Servizio pubblico gratuito · Costruito insieme alle comunità",
+      titleLine1: "Informazioni mediche chiare",
+      titleLine2: "e orientamento verso",
+      titleLine3: "le cure più adatte.",
       paragraph:
-        "REDI Health aiuta le famiglie, comprese le comunità rom, a comprendere le informazioni sanitarie e fornisce ai mediatori strumenti digitali per educare, guidare, indirizzare e seguire i casi.",
-      cta: "Richiedi informazioni mediche",
-      assistantCta: "Prova l'assistente sanitario",
-      assistantHref: "/health-assistant",
-      assistantAlwaysVisible: false,
+        "REDI Health supporta le persone delle comunità vulnerabili, comprese le comunità rom, con educazione sanitaria accessibile, orientamento e contatto diretto con medici online.",
+      cta: "Spiegaci cosa ti preoccupa",
+      assistantCta: "Scopri di più sulla tua salute",
+      assistantHref: "/health-information",
+      assistantAlwaysVisible: true,
+      mediatorPill: "Sei un mediatore sanitario? Apri l'area dedicata",
+      mediatorHref: "/panel",
+      telemedicinePill: "Clinica virtuale",
+      emergencyNoticeVerbatim:
+        "Segnali di allarme e «Chiama tu il 112» — l'applicazione non chiama automaticamente",
+      triage: {
+        badge: "Guida interattiva in 3 passaggi",
+        question: "Cosa ti preoccupa oggi?",
+        subQuestion: "Scegli un'opzione per ricevere indicazioni chiare in parole semplici:",
+        options: [
+          {
+            id: "learn",
+            icon: "BookIcon",
+            title: "Voglio imparare sulla salute",
+            desc: "Lezioni semplici e miti medici spiegati con chiarezza per tutti.",
+            actionLabel: "Consulta le guide validate dai medici",
+            actionHref: "/health-information",
+          },
+          {
+            id: "check",
+            icon: "ClipboardCheckIcon",
+            title: "Voglio verificare il mio rischio",
+            desc: "Questionario rapido di 2 minuti per valutare il tuo stato di salute.",
+            actionLabel: "Avvia la valutazione del rischio",
+            actionHref: "/health-check",
+          },
+          {
+            id: "symptoms",
+            icon: "ActivityIcon",
+            title: "Ho un problema di salute",
+            desc: "Verifica i segnali di allarme e parla con un medico di guardia online.",
+            actionLabel: "Parla con il medico di guardia",
+            actionHref: "/get-help?mode=doctor",
+          },
+          {
+            id: "prescription",
+            icon: "PrescriptionIcon",
+            title: "Voglio spiegata la mia ricetta",
+            desc: "Scopri come assumere il trattamento, gli orari delle compresse e le precauzioni.",
+            actionLabel: "Spiega la ricetta passo dopo passo",
+            actionHref: "/health-assistant?tab=prescription",
+          },
+          {
+            id: "navigation",
+            icon: "HandHelpingIcon",
+            title: "Non so dove andare / medico di base / SSN",
+            desc: "Guida chiara per iscrizione al medico di base, cure d'urgenza e documenti.",
+            actionLabel: "Chiedi aiuto al mediatore sanitario",
+            actionHref: "/get-help?mode=mediator",
+          },
+        ],
+        doctorPrompt: "Vuoi parlare con un medico online?",
+        doctorScheduleCta: "Prenota consulto video",
+        doctorOnDutyCta: "Parla con il medico di guardia",
+        backButton: "Torna alle opzioni",
+        reassurance: "Riservato · Nessuna registrazione obbligatoria · Risposta in massimo 3 passaggi",
+      },
       phone: {
         status: "online",
         messages: [

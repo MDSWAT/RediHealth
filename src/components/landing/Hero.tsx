@@ -1,131 +1,126 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useState } from "react";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import {
+  HeartHandshakeIcon,
+  UsersIcon,
+  VideoIcon,
+} from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { HeroEmergencyNotice } from "@/components/landing/HeroEmergencyNotice";
+import { HeroDecisionTree } from "@/components/landing/HeroDecisionTree";
+import { HeroPortals } from "@/components/landing/HeroPortals";
 
-const heroChatFrom = ["them", "us", "us", "us", "us"] as const;
+export function Hero({ showAssistantCta }: { showAssistantCta?: boolean }) {
+  const { t } = useLanguage();
+  const [emergencyModalOpen, setEmergencyModalOpen] = useState(false);
 
-const heroChatTypingSeconds = 0.75;
-const heroChatTextDelaySeconds = 0.2;
-const heroChatStepSeconds = heroChatTypingSeconds + heroChatTextDelaySeconds;
-const heroFactcheckDelay = heroChatFrom.length * heroChatStepSeconds + 0.2;
-
-type HeroTypingStyle = CSSProperties & {
-  "--hero-anim-duration": string;
-  "--hero-anim-delay": string;
-};
-
-export function Hero({ showAssistantCta }: { showAssistantCta: boolean }) {
-  const { lang, t } = useLanguage();
-  const phone = t.hero.phone;
-  const chatRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const timers = heroChatFrom.map((_, index) => {
-      const messageDelay = index * heroChatStepSeconds + heroChatTypingSeconds + heroChatTextDelaySeconds;
-      return setTimeout(() => {
-        chatRef.current?.scrollTo({ top: chatRef.current.scrollHeight, behavior: "smooth" });
-      }, messageDelay * 1000);
-    });
-
-    return () => timers.forEach(clearTimeout);
-  }, [lang]);
+  const handleScrollToDecisionTree = () => {
+    const el = document.getElementById("hero-decision-tree-anchor");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
-    <section className="relative overflow-hidden border-b border-border bg-muted/40">
-      <Container className="relative py-16 sm:py-20 lg:py-24">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,20rem)] lg:gap-12 xl:gap-16">
-          <div className="max-w-2xl">
-            <h1 className="text-balance text-[clamp(2.25rem,4vw,3rem)] font-semibold leading-tight tracking-tight text-foreground">
-              <span className="hero-text-in block" style={{ animationDelay: "0.05s" }}>{t.hero.titleLine1}</span>
-              <span className="hero-text-in block" style={{ animationDelay: "0.2s" }}>{t.hero.titleLine2}</span>
-              <span className="hero-text-in block text-primary" style={{ animationDelay: "0.35s" }}>{t.hero.titleLine3}</span>
-            </h1>
+    <section className="relative overflow-hidden border-b border-border bg-[#fcfbf9]">
+      {/* Persistent 112 Emergency Apex Ribbon */}
+      <HeroEmergencyNotice
+        isOpen={emergencyModalOpen}
+        onOpenChange={setEmergencyModalOpen}
+      />
 
-            <p className="hero-text-in mt-5 text-lg leading-relaxed text-muted-foreground" style={{ animationDelay: "0.5s" }}>
-              {t.hero.paragraph}
-            </p>
+      {/* Ambient Aceternity Spotlight Illumination */}
+      <div
+        className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-80 w-[48rem] rounded-full bg-gradient-to-b from-sapphire/15 via-primary/10 to-transparent blur-3xl"
+        aria-hidden="true"
+      />
 
-            <div className="hero-text-in mt-8" style={{ animationDelay: "0.65s" }}>
-              <Button href="/get-help" size="lg">
-                {t.hero.cta}
-              </Button>
-              {(showAssistantCta || t.hero.assistantAlwaysVisible) && (
-                <a href={t.hero.assistantHref} className="ml-5 inline-flex min-h-11 items-center text-sm font-semibold text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary">
-                  {t.hero.assistantCta}
-                </a>
-              )}
-            </div>
+      <Container className="relative py-8 sm:py-12 lg:py-14">
+        {/* Top utility row with dual audience pills and trust badge */}
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-care-border bg-amber-care-soft/80 px-3.5 py-1 text-xs font-semibold text-amber-care">
+            <HeartHandshakeIcon className="h-3.5 w-3.5 text-amber-care" />
+            <span>{t.hero.trustBadge}</span>
           </div>
 
-          <div className="relative flex min-h-72 items-center justify-center lg:justify-end lg:self-end">
-            <div key={lang} className="relative aspect-[9/19] w-[min(88vw,18rem)] overflow-hidden rounded-[2.75rem] border-[8px] border-foreground/90 bg-foreground/90 shadow-2xl [-webkit-mask-image:-webkit-radial-gradient(white,black)] sm:rounded-[3rem] sm:border-[10px] lg:w-full lg:max-w-[18rem]">
-              <div className="absolute left-1/2 top-0 z-10 h-6 w-32 -translate-x-1/2 rounded-b-2xl bg-foreground/90" />
+          <div className="flex items-center gap-2">
+            <Link
+              href="/get-help?mode=doctor"
+              className="inline-flex items-center gap-1.5 rounded-full border border-sapphire-border bg-sapphire-soft px-3 py-1 text-xs font-medium text-sapphire transition hover:bg-sapphire hover:text-white"
+            >
+              <VideoIcon className="h-3.5 w-3.5" />
+              {t.hero.telemedicinePill}
+            </Link>
+            <Link
+              href="/panel"
+              className="inline-flex items-center gap-1.5 rounded-full border border-amber-care-border bg-amber-care-soft px-3 py-1 text-xs font-semibold text-amber-care transition hover:bg-amber-care hover:text-white"
+            >
+              <UsersIcon className="h-3.5 w-3.5" />
+              {t.hero.mediatorPill}
+            </Link>
+          </div>
+        </div>
 
-              <div className="flex h-full w-full flex-col overflow-hidden rounded-[2rem] bg-muted [-webkit-mask-image:-webkit-radial-gradient(white,black)] sm:rounded-[2.25rem]">
-                <div className="flex items-center gap-3 bg-primary px-4 pb-3 pt-8 text-white">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-sm font-semibold">
-                    ?
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold leading-tight">Unknown number</p>
-                    <p className="text-xs text-white/80 leading-tight">{phone.status}</p>
-                  </div>
-                </div>
+        {/* 1280x800 Viewport Fold Layout: Two Column Grid */}
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(22rem,1fr)] lg:gap-12 xl:gap-16">
+          {/* Left Column: Narrative, Primary CTAs and Dual Portals */}
+          <div className="flex flex-col justify-between">
+            <div>
+              {/* Bilingual cultural greeting */}
+              <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                <span>Bună ziua</span>
+                <span className="text-border">·</span>
+                <span className="text-amber-care">Lacho dive</span>
+                <span className="text-border">·</span>
+                <span>Hello</span>
+              </div>
 
-                <div ref={chatRef} className="no-scrollbar flex flex-1 flex-col gap-2 overflow-y-auto px-3 py-4">
-                  {heroChatFrom.map((from, index) => {
-                    const typingDelay = index * heroChatStepSeconds;
-                    const messageDelay = typingDelay + heroChatTypingSeconds + heroChatTextDelaySeconds;
-                    const isOwn = from === "us";
-                    const bubbleClasses = isOwn
-                      ? "justify-self-end rounded-tr-none bg-primary text-white"
-                      : "justify-self-start rounded-tl-none bg-white text-foreground";
-                    const typingMotionClass = isOwn ? "hero-typing-bubble-slide" : "";
-                    const typingStyle: HeroTypingStyle = {
-                      "--hero-anim-duration": `${heroChatTypingSeconds}s`,
-                      "--hero-anim-delay": `${typingDelay}s`,
-                    };
+              {/* Main Headline strictly following sentence casing */}
+              <h1 className="mt-3 text-balance text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem]">
+                <span className="block">{t.hero.titleLine1}</span>
+                <span className="block text-foreground/90">{t.hero.titleLine2}</span>
+                <span className="block text-primary">{t.hero.titleLine3}</span>
+              </h1>
 
-                    return (
-                      <div key={index} className="grid">
-                        <div
-                          className={`hero-typing-bubble ${typingMotionClass} col-start-1 row-start-1 flex w-12 items-center gap-1 rounded-lg px-3 py-2 shadow-sm ${bubbleClasses}`}
-                          style={typingStyle}
-                        >
-                          <span className="hero-typing-dot h-1.5 w-1.5 rounded-full bg-current" />
-                          <span className="hero-typing-dot h-1.5 w-1.5 rounded-full bg-current" />
-                          <span className="hero-typing-dot h-1.5 w-1.5 rounded-full bg-current" />
-                        </div>
-                        <div
-                          className={`hero-chat-message relative z-10 col-start-1 row-start-1 max-w-[80%] break-words rounded-lg px-3 py-2 text-xs leading-relaxed shadow-sm ${bubbleClasses}`}
-                          style={{ animationDelay: `${messageDelay}s` }}
-                        >
-                          {phone.messages[index]}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+              {/* Description Paragraph */}
+              <p className="mt-4 text-base sm:text-lg leading-relaxed text-muted-foreground">
+                {t.hero.paragraph}
+              </p>
 
-                <div
-                  className="hero-factcheck-card border-t border-border bg-card px-5 py-4 text-xs leading-relaxed text-foreground"
-                  style={{ animationDelay: `${heroFactcheckDelay}s` }}
+              {/* Primary Call to Action Buttons */}
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <Button
+                  onClick={handleScrollToDecisionTree}
+                  size="lg"
+                  className="bg-primary hover:bg-primary-hover text-white shadow-md font-bold"
                 >
-                  <p>
-                    &quot;{phone.factcheckLine1}
-                    <br />
-                    {phone.factcheckLine2}&quot;
-                  </p>
-                  <p className="mt-1 text-muted-foreground">{phone.source}</p>
-                  <Button href="/get-help" fullWidth className="mt-2 min-h-0 px-3 py-2 text-xs">
-                    {phone.button}
-                  </Button>
-                </div>
+                  {t.hero.cta}
+                </Button>
+
+                {(showAssistantCta || t.hero.assistantAlwaysVisible) && (
+                  <Link
+                    href={t.hero.assistantHref}
+                    className="inline-flex min-h-11 items-center text-xs sm:text-sm font-semibold text-foreground underline decoration-primary/60 underline-offset-4 hover:text-primary transition"
+                  >
+                    {t.hero.assistantCta}
+                  </Link>
+                )}
               </div>
             </div>
+
+            {/* Dual Audience Portals for Telemedicine and Mediators */}
+            <HeroPortals />
+          </div>
+
+          {/* Right Column: Interactive 3-Click Decision Tree Engine */}
+          <div id="hero-decision-tree-anchor" className="scroll-mt-24">
+            <HeroDecisionTree
+              onTriggerEmergency={() => setEmergencyModalOpen(true)}
+            />
           </div>
         </div>
       </Container>

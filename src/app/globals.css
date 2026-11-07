@@ -1,20 +1,45 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #1a2233;
+  --color-background: #fcfbf9;
+  --color-foreground: #0b132b;
 
-  --color-muted: #f5f6f8;
-  --color-muted-foreground: #4b5567;
+  --color-obsidian-navy: #0b132b;
+  --color-surface-subtle: #f3f4f7;
+  --color-surface-card: #f8f9fa;
+  --color-surface-elevated: #ffffff;
 
-  --color-border: #e3e7ee;
+  --color-muted: #f0f2f6;
+  --color-muted-foreground: #475569;
+
+  --color-border: #e2e8f0;
+  --color-border-subtle: #edf2f7;
   --color-card: #ffffff;
 
-  --color-primary: #cc3846;
-  --color-primary-hover: #ac2c39;
-  --color-primary-soft: #fbeef0;
+  /* Clinical Ruby (Primary Brand and Emergency) */
+  --color-primary: #e63946;
+  --color-primary-hover: #d90429;
+  --color-primary-active: #b80322;
+  --color-primary-soft: #fde8ea;
+  --color-primary-ring: rgba(230, 57, 70, 0.25);
 
-  --color-ring: #cc3846;
+  --color-ring: #e63946;
+
+  /* Deep Sapphire (Telemedicine and Clinical Authority) */
+  --color-sapphire: #1d3557;
+  --color-sapphire-light: #2a4d7c;
+  --color-sapphire-soft: #eff6ff;
+  --color-sapphire-border: #bfdbfe;
+
+  /* Amber Gold (Community Health Mediators) */
+  --color-amber-care: #d97706;
+  --color-amber-care-hover: #b45309;
+  --color-amber-care-soft: #fef3c7;
+  --color-amber-care-border: #fde68a;
+
+  /* Micro-status Sage (Restricted strictly to micro indicators) */
+  --color-live-sage: #059669;
+  --color-live-sage-soft: #ecfdf5;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -323,6 +348,135 @@ body {
   box-shadow: 0 12px 24px -12px rgb(0 0 0 / 0.18);
 }
 
+
+/* Clinical micro-status indicator quarantine */
+.micro-status-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 9999px;
+  background-color: var(--color-live-sage);
+  flex-shrink: 0;
+}
+
+/* Emergency beacon alert pulse */
+@keyframes emergency-beacon {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.45);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 8px rgba(230, 57, 70, 0);
+  }
+}
+
+.emergency-beacon-active {
+  animation: emergency-beacon 2.4s infinite ease-in-out;
+}
+
+/* Aceternity-grade luminous card border beam */
+@keyframes hero-border-beam {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.hero-luminous-card {
+  position: relative;
+  background: var(--color-surface-card);
+  border-radius: 1.25rem;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 16px 36px -12px rgba(11, 19, 43, 0.08),
+              0 0 0 1px rgba(226, 232, 240, 0.7);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.hero-luminous-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 48px -12px rgba(11, 19, 43, 0.12),
+              0 0 0 1px rgba(230, 57, 70, 0.25);
+}
+
+.hero-border-beam {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  padding: 1.5px;
+}
+
+.hero-border-beam::after {
+  content: "";
+  position: absolute;
+  aspect-ratio: 1;
+  width: 96px;
+  background: linear-gradient(to right, #e63946, #1d3557, transparent);
+  offset-path: rect(0 auto auto 0 round 1.25rem);
+  animation: hero-border-beam 8s infinite linear;
+}
+
+/* Prescription laser scanner animation */
+@keyframes prescription-scan-sweep {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.prescription-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d97706, #e63946, transparent);
+  box-shadow: 0 0 8px rgba(217, 119, 6, 0.6);
+  animation: prescription-scan-sweep 2.8s ease-in-out infinite;
+}
+
+/* Soundwave audio playback animation */
+@keyframes soundwave-pulse {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 14px;
+  }
+}
+
+.soundwave-bar {
+  animation: soundwave-pulse 1s ease-in-out infinite;
+}
+.soundwave-bar:nth-child(2) { animation-delay: 0.15s; }
+.soundwave-bar:nth-child(3) { animation-delay: 0.3s; }
+.soundwave-bar:nth-child(4) { animation-delay: 0.45s; }
+
+/* Red-flag shake trigger */
+@keyframes triage-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+.animate-triage-shake {
+  animation: triage-shake 0.4s ease-in-out;
+}
 
 :focus-visible {
   outline: 2px solid var(--color-ring);

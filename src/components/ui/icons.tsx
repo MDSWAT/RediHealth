@@ -441,3 +441,67 @@ export function CameraIcon(props: IconProps) {
     </svg>
   );
 }
+
+// bx-capsule / prescription
+export function PrescriptionIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="M19.707 4.293a5.999 5.999 0 0 0-8.486 0l-6.928 6.929a6.002 6.002 0 0 0 8.486 8.485l6.928-6.928a6.002 6.002 0 0 0 0-8.486zm-1.414 7.072-3.182 3.181-4.243-4.242 3.182-3.182a4 4 0 0 1 5.657 5.657l-1.414-1.414z" />
+    </svg>
+  );
+}
+
+// bx-volume-full
+export function VolumeIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.611 1.388 4.414 4.09 4.414 7s-1.803 5.612-4.414 7v2z" /><path d="M16 7v10c1.225-1.1 2-2.921 2-5s-.775-3.9-2-5zM4 17h2.697L14 21.868V2.132L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2zm0-8h2.09l5.91-3.94v13.88L6.09 15H4V9z" />
+    </svg>
+  );
+}
+
+// bx-volume-mute
+export function VolumeMuteIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="m3.293 1.293-1.414 1.414L4.758 5.586A1.986 1.986 0 0 0 4 7H2c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2h2.697L12 21.868V12.828l7.879 7.879 1.414-1.414L3.293 1.293zM4 9h1.91l4.09 2.727v4.469L5.91 15H4V9zm8-6.868L8.604 4.444l1.45 1.45L12 4.618v-2.486z" />
+    </svg>
+  );
+}
+
+// bx-video / camcorder
+export function VideoIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="M18 7c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-3.333L22 17V7l-4 3.333V7zm-2 10H4V7h12v10z" />
+    </svg>
+  );
+}
+
+// bx-check
+export function CheckIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z" />
+    </svg>
+  );
+}
+
+// bx-support / handshake / empathy
+export function HeartHandshakeIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" /><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5c0 1.492.936 2.766 2.25 3.25V14h2.5v-1.25c1.314-.484 2.25-1.758 2.25-3.25A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+    </svg>
+  );
+}
+
+// bx-sparkles
+export function SparklesIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="M12 2 9.5 7.5 4 10l5.5 2.5L12 18l2.5-5.5L20 10l-5.5-2.5zM19 16l-1 2.5L15.5 19.5 18 20.5 19 23l1-2.5 2.5-1-2.5-1z" />
+    </svg>
+  );
+}
+
