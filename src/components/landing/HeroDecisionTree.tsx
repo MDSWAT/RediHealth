@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ActivityIcon,
@@ -39,6 +39,15 @@ export function HeroDecisionTree({ onTriggerEmergency }: HeroDecisionTreeProps) 
 
   const { t } = useLanguage();
   const triage = t.hero.triage;
+
+  // Cleanup speech synthesis on unmount
+  useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   // Audio speech synthesis helper (Change 31)
   const handleToggleAudio = () => {
@@ -491,19 +500,19 @@ export function HeroDecisionTree({ onTriggerEmergency }: HeroDecisionTreeProps) 
                 {/* Dosage Schedule Timeline */}
                 <div className="grid grid-cols-3 gap-1.5 text-center text-xs">
                   <div className="rounded-xl border border-border bg-white p-2.5">
-                    <p className="font-bold text-amber-care">Dimineața</p>
+                    <p className="font-bold text-amber-700">Dimineața</p>
                     <p className="mt-0.5 text-[10px] text-muted-foreground leading-tight">
                       După micul dejun cu apă
                     </p>
                   </div>
                   <div className="rounded-xl border border-border bg-white p-2.5">
-                    <p className="font-bold text-amber-care">Prânz</p>
+                    <p className="font-bold text-amber-700">Prânz</p>
                     <p className="mt-0.5 text-[10px] text-muted-foreground leading-tight">
                       În timpul mesei de zi
                     </p>
                   </div>
                   <div className="rounded-xl border border-border bg-white p-2.5">
-                    <p className="font-bold text-amber-care">Seara</p>
+                    <p className="font-bold text-amber-700">Seara</p>
                     <p className="mt-0.5 text-[10px] text-muted-foreground leading-tight">
                       Înainte de culcare
                     </p>

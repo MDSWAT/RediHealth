@@ -45,6 +45,21 @@ export function HeroEmergencyNotice({
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === "Escape") {
           setModalOpen(false);
+        } else if (e.key === "Tab" && modalRef.current) {
+          const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          if (focusable.length > 0) {
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
         }
       };
       window.addEventListener("keydown", handleKeyDown);
@@ -65,12 +80,12 @@ export function HeroEmergencyNotice({
         className="relative z-40 w-full border-b border-[#d90429]/40 bg-[#e63946] px-4 py-2 text-white shadow-sm"
       >
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
-          <div className="flex min-w-0 items-center gap-2.5">
+          <div className="flex min-w-0 flex-1 items-center gap-2.5">
             <span className="relative flex h-2.5 w-2.5 shrink-0" aria-hidden="true">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
             </span>
-            <p className="font-semibold tracking-tight text-white line-clamp-1">
+            <p className="font-semibold tracking-tight text-white leading-snug break-words">
               {verbatimNotice}
             </p>
           </div>

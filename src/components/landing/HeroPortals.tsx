@@ -68,7 +68,7 @@ export function HeroPortals() {
         <div className="mt-4 pt-3 border-t border-border/60">
           <Link
             href="/panel"
-            className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-amber-care-border bg-white px-4 py-2.5 text-xs font-bold text-amber-care transition hover:bg-amber-care-soft active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-care"
+            className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-amber-care-border bg-white px-4 py-2.5 text-xs font-bold text-amber-700 transition hover:bg-amber-care-soft active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700"
           >
             Deschide panoul mediatorului
             <ArrowRightIcon className="h-3.5 w-3.5" />

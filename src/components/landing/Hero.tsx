@@ -42,7 +42,7 @@ export function Hero({ showAssistantCta }: { showAssistantCta?: boolean }) {
       <Container className="relative py-8 sm:py-12 lg:py-14">
         {/* Top utility row with dual audience pills and trust badge */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-amber-care-border bg-amber-care-soft/80 px-3.5 py-1 text-xs font-semibold text-amber-care">
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-care-border bg-amber-care-soft/80 px-3.5 py-1 text-xs font-semibold text-amber-700">
             <HeartHandshakeIcon className="h-3.5 w-3.5 text-amber-care" />
             <span>{t.hero.trustBadge}</span>
           </div>
@@ -57,7 +57,7 @@ export function Hero({ showAssistantCta }: { showAssistantCta?: boolean }) {
             </Link>
             <Link
               href="/panel"
-              className="inline-flex items-center gap-1.5 rounded-full border border-amber-care-border bg-amber-care-soft px-3 py-1 text-xs font-semibold text-amber-care transition hover:bg-amber-care hover:text-white"
+              className="inline-flex items-center gap-1.5 rounded-full border border-amber-care-border bg-amber-care-soft px-3 py-1 text-xs font-semibold text-amber-700 transition hover:bg-amber-care hover:text-white"
             >
               <UsersIcon className="h-3.5 w-3.5" />
               {t.hero.mediatorPill}
@@ -71,7 +71,7 @@ export function Hero({ showAssistantCta }: { showAssistantCta?: boolean }) {
           <div className="flex flex-col justify-between">
             <div>
               {/* Bilingual cultural greeting */}
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+              <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-muted-foreground">
                 <span>Bună ziua</span>
                 <span className="text-border">·</span>
                 <span className="text-amber-care">Lacho dive</span>
