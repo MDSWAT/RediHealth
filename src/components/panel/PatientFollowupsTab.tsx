@@ -51,7 +51,7 @@ export function PatientFollowupsTab({
   const { lang } = useLanguage();
   const t = {
     en: {
-      title: "Care Follow-ups & Reminders",
+      title: "Care follow-ups and reminders",
       subtitle: "Schedule check-ins, call reminders, or consultation appointments.",
       newFollowup: "New Follow-up",
       schedule: "Schedule New Follow-Up",
@@ -177,7 +177,7 @@ export function PatientFollowupsTab({
           onSubmit={onAddFollowup}
           className="rounded-xl border border-border bg-muted/30 p-4 space-y-3"
         >
-          <h4 className="text-xs font-bold text-foreground uppercase tracking-wide">
+          <h4 className="text-xs font-bold text-foreground">
             {t.schedule}
           </h4>
 

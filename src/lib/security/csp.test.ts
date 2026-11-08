@@ -7,7 +7,9 @@ describe("buildContentSecurityPolicy", () => {
   it("only allows nonce-tagged scripts in production", () => {
     const policy = buildContentSecurityPolicy({ ...base, isDevelopment: false });
     expect(policy).toContain("script-src 'self' 'nonce-abc123' 'strict-dynamic'");
-    expect(policy).not.toContain("unsafe-eval");
+    // JS eval stays blocked; only WASM compilation (dotLottie player) is allowed.
+    expect(policy).not.toContain("'unsafe-eval'");
+    expect(policy).toContain("'wasm-unsafe-eval'");
     expect(policy).not.toMatch(/script-src[^;]*unsafe-inline/);
     expect(policy).toContain("upgrade-insecure-requests");
   });

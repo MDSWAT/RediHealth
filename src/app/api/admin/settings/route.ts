@@ -24,7 +24,7 @@ export async function PUT(request: Request) {
 
   const alertEmail = text(body.alertEmail).toLowerCase();
   if (alertEmail && !isValidEmail(alertEmail)) {
-    return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
+    return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
   }
 
   try {

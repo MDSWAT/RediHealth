@@ -1,0 +1,783 @@
+import type { Lang } from "@/lib/i18n/translations";
+
+export interface PlateSectorData {
+  id: "vegetables" | "grains" | "protein" | "water";
+  percentage: number;
+  name: string;
+  handRuleTitle: string;
+  handRuleDesc: string;
+  clinicalWhy: string;
+  culturalStaples: string[];
+  smartTip: string;
+}
+
+export interface BalancedPlateCopy {
+  title: string;
+  subtitle: string;
+  handRuleSectionTitle: string;
+  staplesTitle: string;
+  smartTipTitle: string;
+  interactiveHelper: string;
+  sectors: Record<"vegetables" | "grains" | "protein" | "water", PlateSectorData>;
+  builderTitle: string;
+  builderSubtitle: string;
+  builderStatusBalanced: string;
+  builderStatusNeedsVeg: string;
+  builderStatusNeedsProtein: string;
+  builderStatusNeedsGrains: string;
+  /** Short checklist labels shown under the builder status. */
+  builderChecklist: Record<"vegetables" | "grains" | "protein", string>;
+  builderReset: string;
+  credit: string;
+  ariaPlateLabel: string;
+  tabPlate: string;
+  tabCalculator: string;
+}
+
+export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
+  ro: {
+    title: "Cum îți împarți farfuria",
+    subtitle: "Jumătate legume, un sfert cereale, un sfert proteine. Nu ai nevoie de cântar.",
+    handRuleSectionTitle: "Măsura cu mâna",
+    staplesTitle: "Ce poți pune în farfurie",
+    smartTipTitle: "Sfat",
+    interactiveHelper: "Apasă pe o parte a farfuriei. Vezi cât pui și ce alimente se potrivesc.",
+    ariaPlateLabel: "Farfurie cu trei părți: jumătate legume, un sfert cereale integrale, un sfert proteine",
+    builderTitle: "Fă-ți farfuria",
+    builderSubtitle: "Alege ce mănânci la o masă. Vezi dacă porțiile sunt potrivite.",
+    builderStatusBalanced: "Farfuria ta e echilibrată. Are legume, cereale integrale și proteine cât trebuie.",
+    builderStatusNeedsVeg: "Mai pune legume, de exemplu varză crudă, spanac sau ardei. Ele umplu jumătate de farfurie.",
+    builderStatusNeedsProtein: "Mai pune o proteină: fasole boabe, un ou fiert, urdă sau pește.",
+    builderStatusNeedsGrains: "Mai pune un sfert de cereale integrale: mămăligă, pâine de secară sau ovăz.",
+    builderChecklist: { vegetables: "Legume (1/2)", grains: "Cereale integrale (1/4)", protein: "Proteine (1/4)" },
+    builderReset: "Golește farfuria",
+    credit: "Surse: Harvard T.H. Chan School of Public Health (Healthy Eating Plate) și ghidurile OMS pentru o alimentație sănătoasă.",
+    tabPlate: "Farfuria echilibrată",
+    tabCalculator: "Câtă sare mănânci",
+    sectors: {
+      vegetables: {
+        id: "vegetables",
+        percentage: 50,
+        name: "Jumătate: legume și fructe",
+        handRuleTitle: "Două palme făcute căuș",
+        handRuleDesc: "Atâtea legume să ai la fiecare masă. Crude, fierte sau la abur.",
+        clinicalWhy: "Fibrele din legume încetinesc creșterea zahărului în sânge. Te țin sătul mai mult și ajută intestinul.",
+        culturalStaples: [
+          "Varză albă sau roșie (crudă în salată sau călită cu puțin ulei)",
+          "Fasole verde păstăi, spanac, urzici sau ștevie",
+          "Morcovi, țelină, sfeclă roșie",
+          "Ardei gras, dovlecei, roșii de sezon sau murături cu puțină sare",
+        ],
+        smartTip: "Legumele congelate, fără sos, au tot atâtea vitamine ca cele proaspete. Iarna sunt mai ieftine.",
+      },
+      grains: {
+        id: "grains",
+        percentage: 25,
+        name: "Un sfert: cereale integrale",
+        handRuleTitle: "Un pumn strâns",
+        handRuleDesc: "O porție cât pumnul tău e de ajuns. Îți dă energie constantă peste zi.",
+        clinicalWhy: "Cerealele integrale ridică încet zahărul din sânge. Așa eviți oboseala de după masă.",
+        culturalStaples: [
+          "Mămăligă din mălai integral",
+          "Pâine de secară sau graham, în loc de pâine albă",
+          "Fulgi de ovăz sau terci simplu dimineața",
+          "Hrișcă, orez brun sau cartofi fierți în coajă",
+        ],
+        smartTip: "Lasă cartofii sau mămăliga să se răcească puțin înainte să mănânci. Așa se formează un amidon bun pentru intestin.",
+      },
+      protein: {
+        id: "protein",
+        percentage: 25,
+        name: "Un sfert: proteine",
+        handRuleTitle: "Cât palma ta, fără degete",
+        handRuleDesc: "Bucata de carne, pește, brânză sau fasole să fie cât palma ta, și la fel de groasă.",
+        clinicalWhy: "Proteinele țin mușchii puternici și repară corpul. Te ajută să te simți sătul.",
+        culturalStaples: [
+          "Fasole boabe uscată, linte sau mazăre galbenă",
+          "Ouă fierte sau poșate",
+          "Urdă sau brânză de vaci slabă",
+          "Pește proaspăt (păstrăv, macrou) sau conservă de pește în suc propriu",
+          "Carne de pui fără piele, la cuptor",
+        ],
+        smartTip: "Mănâncă fasole sau linte în loc de carne roșie de 2 ori pe săptămână. E bine pentru inimă și te costă mai puțin.",
+      },
+      water: {
+        id: "water",
+        percentage: 0,
+        name: "Alături: apă și grăsimi bune",
+        handRuleTitle: "Un pahar mare de apă la fiecare masă",
+        handRuleDesc: "Bea apă de la robinet sau ceai fără zahăr. Ulei pune doar o linguriță la o porție.",
+        clinicalWhy: "Sucurile și băuturile acidulate cu zahăr au multe calorii. Ele ajută la strângerea grăsimii în ficat.",
+        culturalStaples: [
+          "Apă cu o felie de lămâie sau frunze de mentă",
+          "Ceai de mușețel, mentă sau fructe, fără zahăr",
+          "Ulei de floarea-soarelui presat la rece sau ulei de măsline folosit crud",
+          "Miez de nucă (câteva jumătăți)",
+        ],
+        smartTip: "Dacă ai poftă de dulce după masă, bea întâi un pahar cu apă. Uneori setea seamănă cu foamea.",
+      },
+    },
+  },
+  en: {
+    title: "How to fill your plate",
+    subtitle: "Half vegetables, a quarter grains, a quarter protein. You don't need scales.",
+    handRuleSectionTitle: "Measure with your hand",
+    staplesTitle: "What to put on your plate",
+    smartTipTitle: "Tip",
+    interactiveHelper: "Tap a part of the plate. See how much to eat and which foods fit.",
+    ariaPlateLabel: "Plate with three parts: half vegetables, a quarter whole grains, a quarter protein",
+    builderTitle: "Build your plate",
+    builderSubtitle: "Pick what you eat at one meal. See if the portions are right.",
+    builderStatusBalanced: "Your plate is balanced. It has the right amount of vegetables, whole grains and protein.",
+    builderStatusNeedsVeg: "Add more vegetables, like raw cabbage, spinach or peppers. They fill half the plate.",
+    builderStatusNeedsProtein: "Add a protein: beans, a boiled egg, fresh curd cheese or fish.",
+    builderStatusNeedsGrains: "Add a quarter of whole grains: polenta, rye bread or oats.",
+    builderChecklist: { vegetables: "Vegetables (1/2)", grains: "Whole grains (1/4)", protein: "Protein (1/4)" },
+    builderReset: "Clear the plate",
+    credit: "Sources: Harvard T.H. Chan School of Public Health (Healthy Eating Plate) and WHO healthy diet guidance.",
+    tabPlate: "Balanced plate",
+    tabCalculator: "How much salt you eat",
+    sectors: {
+      vegetables: {
+        id: "vegetables",
+        percentage: 50,
+        name: "Half: vegetables and fruit",
+        handRuleTitle: "Two cupped hands",
+        handRuleDesc: "Have this much vegetables at every meal. Raw, boiled or steamed.",
+        clinicalWhy: "Fiber in vegetables slows the rise of sugar in your blood. It keeps you full longer and helps your gut.",
+        culturalStaples: [
+          "White or red cabbage (raw in salad or cooked with a little oil)",
+          "Green beans, spinach, nettles or sorrel",
+          "Carrots, celery root, beetroot",
+          "Peppers, zucchini, tomatoes in season or pickles with little salt",
+        ],
+        smartTip: "Plain frozen vegetables have as many vitamins as fresh ones. In winter they cost less.",
+      },
+      grains: {
+        id: "grains",
+        percentage: 25,
+        name: "Quarter: whole grains",
+        handRuleTitle: "One closed fist",
+        handRuleDesc: "A portion the size of your fist is enough. It gives you steady energy through the day.",
+        clinicalWhy: "Whole grains raise your blood sugar slowly. This helps you avoid feeling tired after a meal.",
+        culturalStaples: [
+          "Polenta made from wholegrain cornmeal",
+          "Rye or wholemeal bread instead of white bread",
+          "Oats or plain porridge for breakfast",
+          "Buckwheat, brown rice or potatoes boiled in their skins",
+        ],
+        smartTip: "Let potatoes or polenta cool a little before you eat. This makes a kind of starch that is good for your gut.",
+      },
+      protein: {
+        id: "protein",
+        percentage: 25,
+        name: "Quarter: protein",
+        handRuleTitle: "The size of your palm, without fingers",
+        handRuleDesc: "A piece of meat, fish, cheese or beans should be as big and as thick as your palm.",
+        clinicalWhy: "Protein keeps your muscles strong and repairs your body. It helps you feel full.",
+        culturalStaples: [
+          "Dried beans, lentils, or yellow split peas",
+          "Boiled or poached eggs",
+          "Fresh curd cheese (urda) or low-fat cottage cheese",
+          "Fresh fish (trout, mackerel) or canned fish in water",
+          "Chicken without skin, baked in the oven",
+        ],
+        smartTip: "Eat beans or lentils instead of red meat 2 times a week. It is good for your heart and costs less.",
+      },
+      water: {
+        id: "water",
+        percentage: 0,
+        name: "Alongside: water and healthy fats",
+        handRuleTitle: "One large glass of water with every meal",
+        handRuleDesc: "Drink tap water or tea without sugar. Use only 1 teaspoon of oil per portion.",
+        clinicalWhy: "Sweet fizzy drinks and juices have a lot of calories. They help fat build up in the liver.",
+        culturalStaples: [
+          "Water with lemon or fresh mint",
+          "Chamomile, mint or fruit tea without sugar",
+          "Cold-pressed sunflower or olive oil, used raw",
+          "Walnuts (4 to 5 halves)",
+        ],
+        smartTip: "If you want something sweet after a meal, drink a glass of water first. Sometimes thirst feels like hunger.",
+      },
+    },
+  },
+  sq: {
+    title: "Si ta mbushësh pjatën",
+    subtitle: "Gjysma perime, një çerek drithëra, një çerek proteina. Nuk të duhet peshore.",
+    handRuleSectionTitle: "Mat me dorë",
+    staplesTitle: "Çfarë të vësh në pjatë",
+    smartTipTitle: "Këshillë",
+    interactiveHelper: "Prek një pjesë të pjatës. Shiko sa të hash dhe cilat ushqime përshtaten.",
+    ariaPlateLabel: "Pjatë me tri pjesë: gjysma perime, një çerek drithëra integrale, një çerek proteina",
+    builderTitle: "Bëj pjatën tënde",
+    builderSubtitle: "Zgjidh çfarë ha në një vakt. Shiko nëse porcionet janë të duhura.",
+    builderStatusBalanced: "Pjata jote është e ekuilibruar. Ka perime, drithëra integrale dhe proteina sa duhet.",
+    builderStatusNeedsVeg: "Shto më shumë perime, si lakër të freskët, spinaq ose speca. Ato mbushin gjysmën e pjatës.",
+    builderStatusNeedsProtein: "Shto një proteinë: fasule, një vezë të zier, gjizë ose peshk.",
+    builderStatusNeedsGrains: "Shto një çerek me drithëra integrale: polentë, bukë thekre ose tërshërë.",
+    builderChecklist: { vegetables: "Perime (1/2)", grains: "Drithëra integrale (1/4)", protein: "Proteina (1/4)" },
+    builderReset: "Boshatis pjatën",
+    credit: "Burimet: Harvard T.H. Chan School of Public Health (Healthy Eating Plate) dhe udhëzimet e OBSH-së për ushqyerje të shëndetshme.",
+    tabPlate: "Pjata e ekuilibruar",
+    tabCalculator: "Sa kripë ha",
+    sectors: {
+      vegetables: {
+        id: "vegetables",
+        percentage: 50,
+        name: "Gjysma: perime dhe fruta",
+        handRuleTitle: "Dy pëllëmbë të bashkuara si kupë",
+        handRuleDesc: "Kaq perime duhet të kesh në çdo vakt. Të freskëta, të ziera ose në avull.",
+        clinicalWhy: "Fibrat e perimeve ngadalësojnë rritjen e sheqerit në gjak. Të mbajnë të ngopur më gjatë dhe ndihmojnë zorrët.",
+        culturalStaples: [
+          "Lakër e bardhë ose e kuqe, në sallatë",
+          "Spinaq, lëpjetë, bishtaja ose kungulleshka",
+          "Karota, selino, panxhar i kuq",
+          "Speca, domate të stinës ose turshi me pak kripë",
+        ],
+        smartTip: "Perimet e ngrira, pa salcë, kanë po aq vitamina sa të freskëtat. Në dimër kushtojnë më pak.",
+      },
+      grains: {
+        id: "grains",
+        percentage: 25,
+        name: "Një çerek: drithëra integrale",
+        handRuleTitle: "Një grusht i mbyllur",
+        handRuleDesc: "Një porcion sa grushti yt mjafton. Të jep energji të qëndrueshme gjatë ditës.",
+        clinicalWhy: "Drithërat integrale e rrisin ngadalë sheqerin në gjak. Kështu nuk lodhesh pas ngrënies.",
+        culturalStaples: [
+          "Bukë thekre ose integrale në vend të bukës së bardhë",
+          "Tërshërë e thjeshtë për mëngjes",
+          "Polentë nga miell misri integral",
+          "Oriz kaf, elb ose patate të ziera me lëkurë",
+        ],
+        smartTip: "Lëri patatet ose polentën të ftohen pak para se t'i hash. Kështu krijohet një niseshte e mirë për zorrët.",
+      },
+      protein: {
+        id: "protein",
+        percentage: 25,
+        name: "Një çerek: proteina",
+        handRuleTitle: "Sa pëllëmba jote, pa gishtat",
+        handRuleDesc: "Copa e mishit, peshkut ose fasuleve duhet të jetë sa pëllëmba jote, edhe në trashësi.",
+        clinicalWhy: "Proteinat i mbajnë muskujt të fortë dhe e riparojnë trupin. Të ndihmojnë të ndihesh i ngopur.",
+        culturalStaples: [
+          "Fasule të thata, thjerrëza ose qiqra",
+          "Vezë të ziera",
+          "Gjizë e freskët ose djathë i butë pa kripë",
+          "Peshk i freskët (sardele, troftë) ose peshk në lëngun e vet",
+          "Mish pule pa lëkurë, në furrë",
+        ],
+        smartTip: "Ha fasule ose thjerrëza në vend të mishit të kuq 2 herë në javë. Është mirë për zemrën dhe kushton më pak.",
+      },
+      water: {
+        id: "water",
+        percentage: 0,
+        name: "Pranë: ujë dhe yndyra të mira",
+        handRuleTitle: "Një gotë e madhe ujë në çdo vakt",
+        handRuleDesc: "Pi ujë ose çaj pa sheqer. Vaj vër vetëm një lugë të vogël për porcion.",
+        clinicalWhy: "Pijet e gazuara me sheqer dhe lëngjet kanë shumë kalori. Ato ndihmojnë që dhjami të mblidhet në mëlçi.",
+        culturalStaples: [
+          "Ujë me një fetë limoni ose me mente",
+          "Çaj mali ose kamomili pa sheqer",
+          "Vaj ulliri i virgjër ose vaj luledielli i shtypur në të ftohtë",
+          "Arra (disa thelpinj)",
+        ],
+        smartTip: "Kur do diçka të ëmbël pas ngrënies, pi fillimisht një gotë ujë. Shpesh etja ngatërrohet me urinë.",
+      },
+    },
+  },
+  it: {
+    title: "Come riempire il piatto",
+    subtitle: "Metà verdure, un quarto cereali, un quarto proteine. Non serve la bilancia.",
+    handRuleSectionTitle: "Misura con la mano",
+    staplesTitle: "Cosa mettere nel piatto",
+    smartTipTitle: "Consiglio",
+    interactiveHelper: "Tocca una parte del piatto. Vedi quanto mangiare e quali cibi vanno bene.",
+    ariaPlateLabel: "Piatto con tre parti: metà verdure, un quarto cereali integrali, un quarto proteine",
+    builderTitle: "Componi il tuo piatto",
+    builderSubtitle: "Scegli cosa mangi in un pasto. Vedi se le porzioni sono giuste.",
+    builderStatusBalanced: "Il tuo piatto è equilibrato. Ha verdure, cereali integrali e proteine nella giusta quantità.",
+    builderStatusNeedsVeg: "Aggiungi verdure, per esempio cavolo crudo, spinaci o peperoni. Riempiono metà del piatto.",
+    builderStatusNeedsProtein: "Aggiungi una proteina: legumi, un uovo sodo, ricotta magra o pesce.",
+    builderStatusNeedsGrains: "Aggiungi un quarto di cereali integrali: polenta, pane di segale o avena.",
+    builderChecklist: { vegetables: "Verdure (1/2)", grains: "Cereali integrali (1/4)", protein: "Proteine (1/4)" },
+    builderReset: "Svuota il piatto",
+    credit: "Fonti: Harvard T.H. Chan School of Public Health (Healthy Eating Plate) e linee guida OMS per una sana alimentazione.",
+    tabPlate: "Piatto equilibrato",
+    tabCalculator: "Quanto sale mangi",
+    sectors: {
+      vegetables: {
+        id: "vegetables",
+        percentage: 50,
+        name: "Metà: verdura e frutta",
+        handRuleTitle: "Due mani a coppa",
+        handRuleDesc: "Tanta verdura così a ogni pasto. Cruda, bollita o al vapore.",
+        clinicalWhy: "Le fibre della verdura rallentano l'aumento dello zucchero nel sangue. Ti saziano più a lungo e aiutano l'intestino.",
+        culturalStaples: [
+          "Cavolo cappuccio o verza (in insalata o stufato con un filo d'olio)",
+          "Spinaci, bietole, fagiolini o zucchine",
+          "Carote, sedano rapa, barbabietola",
+          "Peperoni, pomodori di stagione o cetrioli",
+        ],
+        smartTip: "Le verdure surgelate al naturale hanno le stesse vitamine di quelle fresche. E costano poco.",
+      },
+      grains: {
+        id: "grains",
+        percentage: 25,
+        name: "Un quarto: cereali integrali",
+        handRuleTitle: "Un pugno chiuso",
+        handRuleDesc: "Basta una porzione grande come il tuo pugno. Ti dà energia costante durante il giorno.",
+        clinicalWhy: "I cereali integrali alzano piano lo zucchero nel sangue. Così eviti la stanchezza dopo i pasti.",
+        culturalStaples: [
+          "Pane di segale o integrale al posto del pane bianco",
+          "Fiocchi d'avena o porridge semplice a colazione",
+          "Polenta di farina di mais integrale",
+          "Farro, orzo, riso integrale o patate bollite con la buccia",
+        ],
+        smartTip: "Lascia raffreddare un po' patate o polenta prima di mangiarle. Si forma un amido che fa bene all'intestino.",
+      },
+      protein: {
+        id: "protein",
+        percentage: 25,
+        name: "Un quarto: proteine",
+        handRuleTitle: "Grande come il palmo, senza le dita",
+        handRuleDesc: "La porzione di carne, pesce o legumi deve essere grande e spessa come il tuo palmo.",
+        clinicalWhy: "Le proteine tengono forti i muscoli e riparano il corpo. Ti aiutano a sentirti sazio.",
+        culturalStaples: [
+          "Legumi secchi: fagioli, lenticchie o ceci",
+          "Uova sode o in camicia",
+          "Ricotta magra o fiocchi di latte",
+          "Pesce azzurro (sgombro, alici) o pesce fresco al forno",
+          "Pollo senza pelle, al forno",
+        ],
+        smartTip: "Mangia legumi al posto della carne rossa 2 volte a settimana. Fa bene al cuore e spendi meno.",
+      },
+      water: {
+        id: "water",
+        percentage: 0,
+        name: "Accanto: acqua e grassi sani",
+        handRuleTitle: "Un grande bicchiere d'acqua a ogni pasto",
+        handRuleDesc: "Bevi acqua del rubinetto o tisane senza zucchero. Usa solo 1 cucchiaino d'olio a porzione.",
+        clinicalWhy: "Bibite gassate e succhi zuccherati hanno molte calorie. Aiutano il grasso ad accumularsi nel fegato.",
+        culturalStaples: [
+          "Acqua con una fetta di limone o foglie di menta",
+          "Tisana alla camomilla o ai frutti, senza zucchero",
+          "Olio extravergine d'oliva, a crudo",
+          "Noci (4 o 5 gherigli)",
+        ],
+        smartTip: "Se hai voglia di dolce dopo il pasto, bevi prima un bicchiere d'acqua. A volte la sete sembra fame.",
+      },
+    },
+  },
+};
+
+export interface SaltFoodItem {
+  id: string;
+  name: string;
+  portion: string;
+  saltGrams: number;
+  swapName: string;
+  swapSaltGrams: number;
+  swapSavingsDesc: string;
+}
+
+export interface SaltCalculatorCopy {
+  title: string;
+  subtitle: string;
+  whoLimitLabel: string;
+  currentIntakeLabel: string;
+  teaspoonFullLabel: string;
+  zoneOptimalTitle: string;
+  zoneOptimalDesc: string;
+  zoneCautionTitle: string;
+  zoneCautionDesc: string;
+  zoneHazardTitle: string;
+  zoneHazardDesc: string;
+  swapsSectionTitle: string;
+  swapsSectionSubtitle: string;
+  resetLabel: string;
+  /** Unit after the running total, e.g. "g pe zi". */
+  unitPerDay: string;
+  /** Label under the gauge's 5 g marker. */
+  limitMarkerLabel: string;
+  foodsHeading: string;
+  swapInsteadOf: string;
+  items: SaltFoodItem[];
+}
+
+export const SALT_CALCULATOR_COPY: Record<Lang, SaltCalculatorCopy> = {
+  ro: {
+    title: "Câtă sare mănânci într-o zi",
+    subtitle: "Peste 75% din sare vine deja din pâine, mezeluri și brânză sărată. Nu din solniță.",
+    whoLimitLabel: "OMS recomandă cel mult 5 g de sare pe zi (o linguriță rasă).",
+    currentIntakeLabel: "Sare din ce ai ales",
+    teaspoonFullLabel: "{percent}% dintr-o linguriță de sare",
+    zoneOptimalTitle: "În limită (până la 5 g pe zi)",
+    zoneOptimalDesc: "Mănânci cât e recomandat. Asta te ajută să ai tensiunea bună.",
+    zoneCautionTitle: "Peste limită (5,1–8 g pe zi)",
+    zoneCautionDesc: "Tensiunea poate crește fără să simți nimic. Dacă schimbi 2 alimente sărate, poți ajunge sub limită.",
+    zoneHazardTitle: "Mult peste limită (peste 8 g pe zi)",
+    zoneHazardDesc: "Atâta sare, zi de zi, crește tensiunea și riscul de accident vascular cerebral. Schimbările de mai jos ajută mult.",
+    swapsSectionTitle: "Ce poți mânca în loc",
+    swapsSectionSubtitle: "Variante cu mai puțină sare pentru ce ai ales:",
+    resetLabel: "Șterge selecția",
+    unitPerDay: "g pe zi",
+    limitMarkerLabel: "Limita OMS: 5 g",
+    foodsHeading: "Ce ai mâncat astăzi?",
+    swapInsteadOf: "În loc de",
+    items: [
+      {
+        id: "bread",
+        name: "Pâine albă",
+        portion: "3 felii medii (~100 g)",
+        saltGrams: 1.4,
+        swapName: "Pâine de secară sau mămăligă fără sare",
+        swapSaltGrams: 0.3,
+        swapSavingsDesc: "Mănânci cu 1,1 g mai puțină sare și primești fibre pentru digestie.",
+      },
+      {
+        id: "telemea",
+        name: "Telemea sau brânză sărată",
+        portion: "O felie medie (~50 g)",
+        saltGrams: 1.8,
+        swapName: "Urdă sau brânză de vaci slabă, cu mărar",
+        swapSaltGrams: 0.2,
+        swapSavingsDesc: "Mănânci cu 1,6 g mai puțină sare și primești proteine cu mai puțină grăsime.",
+      },
+      {
+        id: "mezeluri",
+        name: "Mezeluri (salam, parizer)",
+        portion: "2–3 felii sau un crenvurșt (~50 g)",
+        saltGrams: 1.8,
+        swapName: "Piept de pui la cuptor, cu cimbru și usturoi",
+        swapSaltGrams: 0.2,
+        swapSavingsDesc: "Mănânci cu 1,6 g mai puțină sare și eviți nitriții din mezeluri.",
+      },
+      {
+        id: "pickles",
+        name: "Murături în saramură",
+        portion: "O porție mică (~100 g)",
+        saltGrams: 2.2,
+        swapName: "Salată de varză crudă cu lămâie și puțin ulei",
+        swapSaltGrams: 0.1,
+        swapSavingsDesc: "Mănânci cu peste 2 g mai puțină sare și primești vitamina C.",
+      },
+      {
+        id: "bouillon",
+        name: "Cub de supă sau condimente",
+        portion: "Un cub sau o linguriță în mâncare",
+        saltGrams: 2.5,
+        swapName: "Rădăcinoase fierte (țelină, păstârnac, morcov) și leuștean",
+        swapSaltGrams: 0.1,
+        swapSavingsDesc: "Mănânci cu 2,4 g mai puțină sare, iar mâncarea rămâne gustoasă.",
+      },
+      {
+        id: "snacks",
+        name: "Covrigi cu sare sau chipsuri",
+        portion: "Un covrig mare sau o pungă mică",
+        saltGrams: 1.6,
+        swapName: "Miez de nucă sau felii de măr",
+        swapSaltGrams: 0.0,
+        swapSavingsDesc: "Mănânci cu 1,6 g mai puțină sare și primești grăsimi bune (omega-3).",
+      },
+      {
+        id: "pate",
+        name: "Pateu de ficat la conservă",
+        portion: "O cutie mică (~100 g)",
+        saltGrams: 1.7,
+        swapName: "Fasole bătută făcută în casă, cu usturoi",
+        swapSaltGrams: 0.3,
+        swapSavingsDesc: "Mănânci cu 1,4 g mai puțină sare și primești fibre, care te țin sătul.",
+      },
+      {
+        id: "shaker",
+        name: "Sare adăugată din solniță",
+        portion: "2–3 scuturări în farfurie",
+        saltGrams: 1.2,
+        swapName: "Zeamă de lămâie, piper, usturoi sau cimbru uscat",
+        swapSaltGrams: 0.0,
+        swapSavingsDesc: "Mănânci cu 1,2 g mai puțină sare. Lămâia și condimentele dau gust fără să crească tensiunea.",
+      },
+    ],
+  },
+  en: {
+    title: "How much salt you eat in a day",
+    subtitle: "Over 75% of salt already comes from bread, cured meats and salty cheese. Not from the salt shaker.",
+    whoLimitLabel: "WHO advises no more than 5 g of salt a day (one level teaspoon).",
+    currentIntakeLabel: "Salt in what you picked",
+    teaspoonFullLabel: "{percent}% of a level teaspoon of salt",
+    zoneOptimalTitle: "Within the limit (up to 5 g a day)",
+    zoneOptimalDesc: "You eat the amount advised. This helps keep your blood pressure healthy.",
+    zoneCautionTitle: "Over the limit (5.1–8 g a day)",
+    zoneCautionDesc: "Blood pressure can go up without you feeling anything. If you swap 2 salty foods, you may get back under the limit.",
+    zoneHazardTitle: "Far over the limit (over 8 g a day)",
+    zoneHazardDesc: "This much salt, every day, raises blood pressure and the risk of stroke. The swaps below help a lot.",
+    swapsSectionTitle: "What to eat instead",
+    swapsSectionSubtitle: "Foods with less salt for what you picked:",
+    resetLabel: "Clear selection",
+    unitPerDay: "g per day",
+    limitMarkerLabel: "WHO limit: 5 g",
+    foodsHeading: "What did you eat today?",
+    swapInsteadOf: "Instead of",
+    items: [
+      {
+        id: "bread",
+        name: "White bread",
+        portion: "3 medium slices (~100 g)",
+        saltGrams: 1.4,
+        swapName: "Rye bread or polenta made without salt",
+        swapSaltGrams: 0.3,
+        swapSavingsDesc: "You eat 1.1 g less salt and get fiber for digestion.",
+      },
+      {
+        id: "telemea",
+        name: "Salty cheese (telemea or feta)",
+        portion: "One medium slice (~50 g)",
+        saltGrams: 1.8,
+        swapName: "Fresh curd cheese (urda) or low-fat cottage cheese with dill",
+        swapSaltGrams: 0.2,
+        swapSavingsDesc: "You eat 1.6 g less salt and get protein with less fat.",
+      },
+      {
+        id: "mezeluri",
+        name: "Salami, sausages or deli meat",
+        portion: "2–3 slices or 1 sausage (~50 g)",
+        saltGrams: 1.8,
+        swapName: "Chicken breast baked with thyme and garlic",
+        swapSaltGrams: 0.2,
+        swapSavingsDesc: "You eat 1.6 g less salt and avoid the nitrites in cured meat.",
+      },
+      {
+        id: "pickles",
+        name: "Pickles in brine",
+        portion: "One small serving (~100 g)",
+        saltGrams: 2.2,
+        swapName: "Raw cabbage salad with lemon and a little oil",
+        swapSaltGrams: 0.1,
+        swapSavingsDesc: "You eat over 2 g less salt and get vitamin C.",
+      },
+      {
+        id: "bouillon",
+        name: "Stock cube or seasoning",
+        portion: "One cube or teaspoon in soup",
+        saltGrams: 2.5,
+        swapName: "Boiled root vegetables (celery root, parsnip, carrot) with bay leaves",
+        swapSaltGrams: 0.1,
+        swapSavingsDesc: "You eat 2.4 g less salt and the soup still tastes good.",
+      },
+      {
+        id: "snacks",
+        name: "Salted pretzels or chips",
+        portion: "One large pretzel or small bag",
+        saltGrams: 1.6,
+        swapName: "Walnuts or apple slices",
+        swapSaltGrams: 0.0,
+        swapSavingsDesc: "You eat 1.6 g less salt and get healthy fats (omega-3).",
+      },
+      {
+        id: "pate",
+        name: "Canned liver pâté",
+        portion: "One small can (~100 g)",
+        saltGrams: 1.7,
+        swapName: "Homemade mashed beans with garlic and parsley",
+        swapSaltGrams: 0.3,
+        swapSavingsDesc: "You eat 1.4 g less salt and get fiber that keeps you full.",
+      },
+      {
+        id: "shaker",
+        name: "Salt added at the table",
+        portion: "2–3 shakes from the shaker",
+        saltGrams: 1.2,
+        swapName: "Lemon juice, black pepper, garlic or dried herbs",
+        swapSaltGrams: 0.0,
+        swapSavingsDesc: "You eat 1.2 g less salt. Lemon and herbs add flavor without raising blood pressure.",
+      },
+    ],
+  },
+  sq: {
+    title: "Sa kripë ha në ditë",
+    subtitle: "Mbi 75% e kripës vjen nga buka, sallamet dhe djathi i kripur. Jo nga kriporja.",
+    whoLimitLabel: "OBSH këshillon jo më shumë se 5 g kripë në ditë (një lugë e vogël e rrafshët).",
+    currentIntakeLabel: "Kripa në atë që zgjodhe",
+    teaspoonFullLabel: "{percent}% e një luge të vogël kripe",
+    zoneOptimalTitle: "Brenda kufirit (deri në 5 g në ditë)",
+    zoneOptimalDesc: "Ha aq kripë sa këshillohet. Kjo të ndihmon ta mbash tensionin të mirë.",
+    zoneCautionTitle: "Mbi kufi (5,1–8 g në ditë)",
+    zoneCautionDesc: "Tensioni mund të rritet pa ndier asgjë. Nëse ndërron 2 ushqime të kripura, mund të kthehesh nën kufi.",
+    zoneHazardTitle: "Shumë mbi kufi (mbi 8 g në ditë)",
+    zoneHazardDesc: "Kaq shumë kripë çdo ditë rrit tensionin dhe rrezikun e goditjes në tru. Ndërrimet më poshtë ndihmojnë shumë.",
+    swapsSectionTitle: "Çfarë të hash në vend të tyre",
+    swapsSectionSubtitle: "Ushqime me më pak kripë për ato që zgjodhe:",
+    resetLabel: "Pastro zgjedhjen",
+    unitPerDay: "g në ditë",
+    limitMarkerLabel: "Kufiri i OBSH-së: 5 g",
+    foodsHeading: "Çfarë ke ngrënë sot?",
+    swapInsteadOf: "Në vend të",
+    items: [
+      {
+        id: "bread",
+        name: "Bukë e bardhë",
+        portion: "3 feta mesatare (~100 g)",
+        saltGrams: 1.4,
+        swapName: "Bukë thekre ose polentë pa kripë",
+        swapSaltGrams: 0.3,
+        swapSavingsDesc: "Ha 1,1 g më pak kripë dhe merr fibra për tretjen.",
+      },
+      {
+        id: "telemea",
+        name: "Djathë i bardhë i kripur",
+        portion: "Një fetë mesatare (~50 g)",
+        saltGrams: 1.8,
+        swapName: "Gjizë e freskët pa kripë, me kopër ose rigon",
+        swapSaltGrams: 0.2,
+        swapSavingsDesc: "Ha 1,6 g më pak kripë dhe merr proteina me më pak yndyrë.",
+      },
+      {
+        id: "mezeluri",
+        name: "Sallamra, proshuta ose virshe",
+        portion: "2–3 feta ose një virshe (~50 g)",
+        saltGrams: 1.8,
+        swapName: "Gjoks pule i pjekur në furrë me hudhër dhe trumzë",
+        swapSaltGrams: 0.2,
+        swapSavingsDesc: "Ha 1,6 g më pak kripë dhe shmang nitritet e sallameve.",
+      },
+      {
+        id: "pickles",
+        name: "Turshi në shëllirë",
+        portion: "Një racion i vogël (~100 g)",
+        saltGrams: 2.2,
+        swapName: "Sallatë lakre e freskët me limon dhe pak vaj",
+        swapSaltGrams: 0.1,
+        swapSavingsDesc: "Ha mbi 2 g më pak kripë dhe merr vitaminë C.",
+      },
+      {
+        id: "bouillon",
+        name: "Kub supe ose erëza me kripë",
+        portion: "Një kub ose një lugë në gjellë",
+        saltGrams: 2.5,
+        swapName: "Perime rrënjore të ziera (karota, selino) me gjethe dafine",
+        swapSaltGrams: 0.1,
+        swapSavingsDesc: "Ha 2,4 g më pak kripë dhe gjella mbetet e shijshme.",
+      },
+      {
+        id: "snacks",
+        name: "Gjevrekë me kripë ose patatina",
+        portion: "Një gjevrek ose qese e vogël",
+        saltGrams: 1.6,
+        swapName: "Arra ose feta molle",
+        swapSaltGrams: 0.0,
+        swapSavingsDesc: "Ha 1,6 g më pak kripë dhe merr yndyra të mira (omega-3).",
+      },
+      {
+        id: "pate",
+        name: "Pate mëlçie në kuti",
+        portion: "Një kuti e vogël (~100 g)",
+        saltGrams: 1.7,
+        swapName: "Pure fasulesh e bërë në shtëpi, me hudhër dhe majdanoz",
+        swapSaltGrams: 0.3,
+        swapSavingsDesc: "Ha 1,4 g më pak kripë dhe merr fibra që të mbajnë të ngopur.",
+      },
+      {
+        id: "shaker",
+        name: "Kripë e shtuar nga kriporja",
+        portion: "2–3 herë në pjatë",
+        saltGrams: 1.2,
+        swapName: "Lëng limoni, piper i zi, hudhër ose rigon",
+        swapSaltGrams: 0.0,
+        swapSavingsDesc: "Ha 1,2 g më pak kripë. Limoni dhe erëzat japin shije pa rritur tensionin.",
+      },
+    ],
+  },
+  it: {
+    title: "Quanto sale mangi in un giorno",
+    subtitle: "Oltre il 75% del sale arriva già da pane, salumi e formaggi. Non dalla saliera.",
+    whoLimitLabel: "L'OMS consiglia al massimo 5 g di sale al giorno (un cucchiaino raso).",
+    currentIntakeLabel: "Sale in quello che hai scelto",
+    teaspoonFullLabel: "{percent}% di un cucchiaino di sale",
+    zoneOptimalTitle: "Entro il limite (fino a 5 g al giorno)",
+    zoneOptimalDesc: "Mangi la quantità di sale consigliata. Questo aiuta a tenere buona la pressione.",
+    zoneCautionTitle: "Sopra il limite (5,1–8 g al giorno)",
+    zoneCautionDesc: "La pressione può salire senza che tu senta niente. Se cambi 2 cibi salati, puoi tornare sotto il limite.",
+    zoneHazardTitle: "Molto sopra il limite (più di 8 g al giorno)",
+    zoneHazardDesc: "Tanto sale, ogni giorno, alza la pressione e il rischio di ictus. I cambi qui sotto aiutano molto.",
+    swapsSectionTitle: "Cosa mangiare al posto",
+    swapsSectionSubtitle: "Cibi con meno sale per quello che hai scelto:",
+    resetLabel: "Azzera la selezione",
+    unitPerDay: "g al giorno",
+    limitMarkerLabel: "Limite OMS: 5 g",
+    foodsHeading: "Che cosa hai mangiato oggi?",
+    swapInsteadOf: "Invece di",
+    items: [
+      {
+        id: "bread",
+        name: "Pane bianco",
+        portion: "3 fette medie (~100 g)",
+        saltGrams: 1.4,
+        swapName: "Pane di segale o polenta senza sale",
+        swapSaltGrams: 0.3,
+        swapSavingsDesc: "Mangi 1,1 g di sale in meno e prendi fibre per la digestione.",
+      },
+      {
+        id: "telemea",
+        name: "Formaggio salato o stagionato",
+        portion: "Una fetta media (~50 g)",
+        saltGrams: 1.8,
+        swapName: "Ricotta magra o fiocchi di latte con erbe",
+        swapSaltGrams: 0.2,
+        swapSavingsDesc: "Mangi 1,6 g di sale in meno e prendi proteine con meno grassi.",
+      },
+      {
+        id: "mezeluri",
+        name: "Salumi (salame, mortadella)",
+        portion: "2–3 fette o un wurstel (~50 g)",
+        saltGrams: 1.8,
+        swapName: "Petto di pollo al forno con timo e aglio",
+        swapSaltGrams: 0.2,
+        swapSavingsDesc: "Mangi 1,6 g di sale in meno ed eviti i conservanti dei salumi.",
+      },
+      {
+        id: "pickles",
+        name: "Sottaceti in salamoia",
+        portion: "Una porzione piccola (~100 g)",
+        saltGrams: 2.2,
+        swapName: "Insalata di cavolo crudo con limone e un filo d'olio",
+        swapSaltGrams: 0.1,
+        swapSavingsDesc: "Mangi più di 2 g di sale in meno e prendi vitamina C.",
+      },
+      {
+        id: "bouillon",
+        name: "Dado da brodo o insaporitore",
+        portion: "Un dado o un cucchiaino",
+        saltGrams: 2.5,
+        swapName: "Brodo di verdure fresche (sedano, carote, alloro)",
+        swapSaltGrams: 0.1,
+        swapSavingsDesc: "Mangi 2,4 g di sale in meno e il brodo resta saporito.",
+      },
+      {
+        id: "snacks",
+        name: "Salatini o patatine",
+        portion: "Un pacchetto piccolo",
+        saltGrams: 1.6,
+        swapName: "Noci o fettine di mela",
+        swapSaltGrams: 0.0,
+        swapSavingsDesc: "Mangi 1,6 g di sale in meno e prendi grassi buoni (omega-3).",
+      },
+      {
+        id: "pate",
+        name: "Paté di fegato in scatola",
+        portion: "Una scatoletta piccola (~100 g)",
+        saltGrams: 1.7,
+        swapName: "Crema di fagioli fatta in casa, con aglio e prezzemolo",
+        swapSaltGrams: 0.3,
+        swapSavingsDesc: "Mangi 1,4 g di sale in meno e prendi fibre che saziano.",
+      },
+      {
+        id: "shaker",
+        name: "Sale aggiunto a tavola",
+        portion: "2–3 colpi di saliera",
+        saltGrams: 1.2,
+        swapName: "Succo di limone, pepe, aglio o origano",
+        swapSaltGrams: 0.0,
+        swapSavingsDesc: "Mangi 1,2 g di sale in meno. Limone ed erbe danno sapore senza alzare la pressione.",
+      },
+    ],
+  },
+};

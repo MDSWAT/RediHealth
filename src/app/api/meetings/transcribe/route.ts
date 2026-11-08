@@ -85,7 +85,7 @@ export async function POST(request: Request) {
   });
   if (!rateLimit.allowed) {
     return NextResponse.json(
-      { error: "Too many transcription requests. Please try again shortly." },
+      { error: "Too many transcription requests. Try again in a minute." },
       { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
     );
   }
@@ -143,10 +143,10 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Audio file is too large for transcription." }, { status: 400 });
       }
       if (response.status === 429) {
-        return NextResponse.json({ error: "Transcription provider is rate-limiting requests. Please retry shortly." }, { status: 429 });
+        return NextResponse.json({ error: "Transcription is busy. Try again in a minute." }, { status: 429 });
       }
 
-      return NextResponse.json({ error: "Transcription provider is unavailable right now." }, { status: 502 });
+      return NextResponse.json({ error: "Transcription is not available right now." }, { status: 502 });
     }
 
     const data = (await response.json()) as TranscriptionResponse;

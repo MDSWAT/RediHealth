@@ -1,0 +1,151 @@
+"use client";
+
+import { useState } from "react";
+import type { HealthMyth } from "@/lib/i18n/health-myths";
+import { ShieldIcon } from "@/components/ui/icons";
+import { MythDoctorHandoverButton } from "@/components/landing/MythDoctorHandoverButton";
+import { InlineAudioNarratorButton } from "./InlineAudioNarratorButton";
+import { useLanguage } from "@/lib/i18n/language-context";
+import type { Lang } from "@/lib/i18n/translations";
+import {
+  HEALTH_DETAIL_SHARED_STRINGS,
+  SPEECH_LANG_BY_LOCALE,
+} from "@/lib/i18n/health-myths";
+
+export interface TopicMythCardProps {
+  myth: HealthMyth;
+  className?: string;
+  lang?: Lang;
+}
+
+function useSafeLanguageContext(): { lang: Lang } {
+  try {
+    return useLanguage();
+  } catch {
+    return { lang: "ro" };
+  }
+}
+
+const QUOTES: Record<Lang, [string, string]> = {
+  ro: ["„", "”"],
+  en: ["“", "”"],
+  sq: ["«", "»"],
+  it: ["«", "»"],
+};
+
+export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps) {
+  const { lang: ctxLang } = useSafeLanguageContext();
+  const currentLang: Lang = lang ?? ctxLang ?? "ro";
+  const s = HEALTH_DETAIL_SHARED_STRINGS.topicMyth;
+  const speechLang = SPEECH_LANG_BY_LOCALE[currentLang] ?? "ro-RO";
+  const quotes = QUOTES[currentLang] ?? QUOTES.ro;
+
+  const [selectedAnswer, setSelectedAnswer] = useState<boolean | null>(null);
+
+  const hasAnswered = selectedAnswer !== null;
+  const isMatch = selectedAnswer === myth.isTrue;
+
+  return (
+    <section
+      aria-labelledby="topic-myth-title"
+      className={`rounded-lg border border-border bg-card p-6 shadow-xs sm:p-8 ${className}`}
+    >
+      <div className="flex items-center justify-between gap-4">
+        <h2 className="text-sm font-semibold text-sapphire">{s.badge[currentLang]}</h2>
+
+        <InlineAudioNarratorButton
+          textToSpeak={s.audioPrompt[currentLang].replace("{statement}", myth.statement)}
+          label={s.audioPrompt[currentLang].replace("{statement}", myth.statement)}
+          lang={speechLang}
+          variant="ghost"
+          className="-mr-2"
+        />
+      </div>
+
+      <h3
+        id="topic-myth-title"
+        className="mt-2.5 text-xl font-semibold leading-snug text-foreground text-balance sm:text-2xl"
+      >
+        {quotes[0]}
+        {myth.statement}
+        {quotes[1]}
+      </h3>
+
+      {!hasAnswered ? (
+        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <button
+            type="button"
+            onClick={() => setSelectedAnswer(true)}
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors hover:border-sapphire/50 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          >
+            <svg
+              className="h-5 w-5 text-sapphire"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12.5 9.5 17 19 7" />
+            </svg>
+            <span>{s.trueBtn[currentLang]}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSelectedAnswer(false)}
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors hover:border-sapphire/50 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          >
+            <svg
+              className="h-5 w-5 text-stone-500"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M7 7l10 10M17 7 7 17" />
+            </svg>
+            <span>{s.falseBtn[currentLang]}</span>
+          </button>
+        </div>
+      ) : (
+        <div className="mt-6 space-y-4 border-t border-border pt-5" aria-live="polite">
+          <div className="flex items-center gap-2">
+            <span
+              className={`rounded-md px-3 py-1 text-xs font-semibold ${
+                isMatch
+                  ? "border border-live-sage-border bg-live-sage-soft text-foreground"
+                  : "border border-amber-care-border bg-amber-care-soft text-amber-care-hover"
+              }`}
+            >
+              {isMatch ? s.correctBadge[currentLang] : myth.statusTag}
+            </span>
+          </div>
+
+          <p className="text-sm leading-relaxed text-foreground">
+            {myth.explanation}
+          </p>
+
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground border-t border-border/50 pt-3">
+            <ShieldIcon className="h-3.5 w-3.5 text-sapphire shrink-0" />
+            <span>
+              {myth.doctorName} · {s.sourcePrefix[currentLang]} {myth.source}
+            </span>
+          </div>
+
+          <div>
+            <MythDoctorHandoverButton
+              mythId={myth.id}
+              mythStatement={myth.statement}
+            />
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}

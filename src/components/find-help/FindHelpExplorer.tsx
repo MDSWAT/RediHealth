@@ -2,17 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import dynamic from "next/dynamic";
-import {
-  ClipboardCheckIcon,
-  GlobeIcon,
-  HandHelpingIcon,
-  HeartIcon,
-  PhoneIcon,
-  PinIcon,
-  SearchIcon,
-  ShieldIcon,
-  StethoscopeIcon,
-} from "@/components/ui/icons";
+import { GlobeIcon, PhoneIcon, PinIcon, SearchIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { findHelpTranslations, formatOpeningHours } from "@/lib/i18n/find-help-translations";
 import {
@@ -24,26 +14,26 @@ import {
   type MedicalInstitute,
 } from "@/lib/medical-institutes";
 
-const InstitutesMap = dynamic(
-  () => import("@/components/find-help/InstitutesMapInner"),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="flex h-full min-h-96 items-center justify-center rounded-2xl border border-border bg-muted text-sm text-muted-foreground">
-        …
-      </div>
-    ),
-  },
-);
+function MapLoading() {
+  const { t } = useLanguage();
+  return (
+    <div className="flex h-full items-center justify-center bg-muted text-sm text-muted-foreground">
+      {t.findHelpPage.loadingMap}
+    </div>
+  );
+}
 
-const CATEGORY_ICONS: Record<InstituteCategory, typeof HeartIcon> = {
-  hospital: HeartIcon,
-  clinic: StethoscopeIcon,
-  gp: ClipboardCheckIcon,
-  dentist: HandHelpingIcon,
-  pharmacy: ShieldIcon,
-  other: PinIcon,
-};
+const InstitutesMap = dynamic(() => import("@/components/find-help/InstitutesMapInner"), {
+  ssr: false,
+  loading: () => <MapLoading />,
+});
+
+/** Results shown before "Show more": enough to compare, short enough to reach the footer on a phone. */
+const PAGE_SIZE = 20;
+
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 type SearchArea =
   | { kind: "country"; country: CountryCode }
@@ -57,20 +47,32 @@ type ApiResponse = {
   institutes: MedicalInstitute[];
 };
 
-export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCode }) {
+const linkClass =
+  "inline-flex min-h-8 items-center gap-1.5 font-medium text-primary hover:text-primary-hover " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm";
+
+export function FindHelpExplorer({
+  initialCountry,
+  initialCategory = null,
+}: {
+  initialCountry: CountryCode;
+  initialCategory?: InstituteCategory | null;
+}) {
   const { t, lang } = useLanguage();
   const page = t.findHelpPage;
   const copy = findHelpTranslations[lang];
 
   const [area, setArea] = useState<SearchArea>({ kind: "country", country: initialCountry });
   const [activeCountry, setActiveCountry] = useState<CountryCode>(initialCountry);
-  const [category, setCategory] = useState<InstituteCategory | null>(null);
+  const [category, setCategory] = useState<InstituteCategory | null>(initialCategory);
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
   const [institutes, setInstitutes] = useState<MedicalInstitute[]>([]);
   const [reloadKey, setReloadKey] = useState(0);
   const [settled, setSettled] = useState<{ key: string; failed: boolean } | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const pendingScrollId = useRef<string | null>(null);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [locationStatus, setLocationStatus] = useState<LocationStatus>("idle");
   const itemRefs = useRef(new Map<string, HTMLLIElement>());
@@ -125,6 +127,7 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
         setInstitutes(Array.isArray(data.institutes) ? data.institutes : []);
         if (data.country) setActiveCountry(data.country);
         setSelectedId(null);
+        setVisibleCount(PAGE_SIZE);
         setSettled({ key: requestKey, failed: false });
       })
       .catch((fetchError: unknown) => {
@@ -137,10 +140,25 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
     return () => controller.abort();
   }, [requestQuery, requestKey]);
 
-  const selectInstitute = useCallback((id: string) => {
-    setSelectedId(id);
-    itemRefs.current.get(id)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  }, []);
+  // A pin tapped on the map brings its entry into view in the list, revealing more rows if needed.
+  const selectInstitute = useCallback(
+    (id: string) => {
+      setSelectedId(id);
+      const index = institutes.findIndex((item) => item.id === id);
+      if (index >= visibleCount) setVisibleCount(index + 1);
+      pendingScrollId.current = id;
+    },
+    [institutes, visibleCount],
+  );
+
+  useEffect(() => {
+    const id = pendingScrollId.current;
+    if (!id) return;
+    pendingScrollId.current = null;
+    itemRefs.current
+      .get(id)
+      ?.scrollIntoView({ block: "nearest", behavior: prefersReducedMotion() ? "auto" : "smooth" });
+  }, [selectedId, visibleCount]);
 
   function chooseCountry(country: CountryCode) {
     setActiveCountry(country);
@@ -152,6 +170,12 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
     setSearch(searchInput.trim());
   }
 
+  function clearFilters() {
+    setCategory(null);
+    setSearch("");
+    setSearchInput("");
+  }
+
   const statusText =
     locationStatus === "locating"
       ? copy.locating
@@ -161,15 +185,17 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
           ? copy.locationDenied
           : copy.showingCountry(copy.countries[activeCountry]);
 
+  const filtered = Boolean(category || search);
+
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
-      <div className="min-w-0">
+    // Phones: filters, then the map, then the list. Desktop: filters and list on the left,
+    // the map held in view on the right.
+    <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:gap-x-10 lg:gap-y-0">
+      <div className="min-w-0 lg:col-start-1 lg:row-start-1">
         <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
           {page.listTitle}
         </h2>
-        <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-          {page.listSubtitle}
-        </p>
+        <p className="mt-2 text-base leading-relaxed text-muted-foreground">{page.listSubtitle}</p>
 
         <div className="mt-6 space-y-4">
           <div className="flex flex-wrap items-center gap-2" role="group" aria-label={copy.countryLabel}>
@@ -181,7 +207,7 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
                   type="button"
                   onClick={() => chooseCountry(country)}
                   aria-pressed={active}
-                  className={`min-h-10 rounded-full border px-4 text-sm font-semibold transition-colors ${
+                  className={`min-h-10 rounded-lg border px-4 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ${
                     active
                       ? "border-primary bg-primary-soft text-primary"
                       : "border-border bg-card text-muted-foreground hover:border-primary/40"
@@ -195,9 +221,9 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
               type="button"
               onClick={locateUser}
               disabled={locationStatus === "locating"}
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-border bg-card px-4 text-sm font-semibold text-primary transition-colors hover:border-primary/40 disabled:opacity-60"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-border bg-card px-4 text-sm font-semibold text-primary transition-colors duration-[var(--dur-fast)] hover:border-primary/40 disabled:opacity-60"
             >
-              <PinIcon className="h-4 w-4" />
+              <PinIcon className="h-4 w-4" aria-hidden="true" />
               {copy.useMyLocation}
             </button>
           </div>
@@ -206,10 +232,13 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
             {statusText}
           </p>
 
-          <form onSubmit={submitSearch} className="flex gap-2">
+          <form onSubmit={submitSearch} className="flex gap-2" role="search">
             <label className="relative flex-1">
               <span className="sr-only">{copy.searchPlaceholder}</span>
-              <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <SearchIcon
+                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                aria-hidden="true"
+              />
               <input
                 type="search"
                 value={searchInput}
@@ -218,12 +247,12 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
                   if (!event.target.value) setSearch("");
                 }}
                 placeholder={copy.searchPlaceholder}
-                className="min-h-11 w-full rounded-xl border border-border bg-card pl-9 pr-3 text-sm outline-none focus:border-primary"
+                className="min-h-11 w-full rounded-xl border border-border bg-card pl-9 pr-3 text-sm outline-none focus:border-primary focus-visible:ring-2 focus-visible:ring-ring"
               />
             </label>
             <button
               type="submit"
-              className="min-h-11 rounded-xl bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover"
+              className="min-h-11 rounded-xl bg-primary px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover"
             >
               {copy.searchButton}
             </button>
@@ -238,9 +267,9 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
                   type="button"
                   onClick={() => setCategory(item)}
                   aria-pressed={active}
-                  className={`min-h-9 rounded-full px-3 text-xs font-semibold transition-colors ${
+                  className={`min-h-9 rounded-lg px-3 text-sm font-medium transition-colors duration-[var(--dur-fast)] ${
                     active
-                      ? "bg-primary text-white"
+                      ? "bg-foreground text-background"
                       : "bg-muted text-muted-foreground hover:bg-primary-soft hover:text-primary"
                   }`}
                 >
@@ -250,135 +279,11 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
             })}
           </div>
         </div>
-
-        {loading ? (
-          <p className="mt-6 rounded-xl border border-border bg-card p-5 text-sm text-muted-foreground" aria-live="polite">
-            {copy.loading}
-          </p>
-        ) : error ? (
-          <div className="mt-6 rounded-xl border border-primary/20 bg-primary-soft p-5 text-sm text-foreground">
-            <p>{copy.loadError}</p>
-            <button
-              type="button"
-              onClick={() => setReloadKey((value) => value + 1)}
-              className="mt-3 font-semibold text-primary hover:text-primary-hover"
-            >
-              {copy.retry}
-            </button>
-          </div>
-        ) : institutes.length === 0 ? (
-          <p className="mt-6 rounded-xl border border-border bg-card p-5 text-sm text-muted-foreground">
-            {copy.noResults}
-          </p>
-        ) : (
-          <>
-            <p className="mt-6 text-xs font-medium text-muted-foreground">
-              {copy.resultsCount(institutes.length)}
-            </p>
-            <ul className="mt-2 max-h-[40rem] space-y-3 overflow-y-auto pr-1">
-              {institutes.map((institute) => {
-                const Icon = CATEGORY_ICONS[institute.category];
-                const active = institute.id === selectedId;
-                const hours = formatOpeningHours(institute.hours, copy);
-                const location = [institute.address, institute.city].filter(Boolean).join(", ");
-                return (
-                  <li
-                    key={institute.id}
-                    ref={(node) => {
-                      if (node) itemRefs.current.set(institute.id, node);
-                      else itemRefs.current.delete(institute.id);
-                    }}
-                  >
-                    <div
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => setSelectedId(institute.id)}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter" || event.key === " ") {
-                          event.preventDefault();
-                          setSelectedId(institute.id);
-                        }
-                      }}
-                      aria-pressed={active}
-                      className={`flex w-full cursor-pointer items-start gap-4 rounded-xl border p-5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                        active
-                          ? "border-primary bg-primary-soft"
-                          : "border-border bg-card hover:border-primary/40"
-                      }`}
-                    >
-                      <span className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-primary-soft text-primary">
-                        <Icon className="h-6 w-6" />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="flex flex-wrap items-center gap-2">
-                          <span className="text-lg font-semibold text-foreground">{institute.name}</span>
-                          <span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
-                            {copy.categories[institute.category]}
-                          </span>
-                          {institute.emergency ? (
-                            <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-white">
-                              {copy.emergency}
-                            </span>
-                          ) : null}
-                        </span>
-                        {location ? (
-                          <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{location}</span>
-                        ) : null}
-                        {institute.distance_km != null && area.kind === "point" ? (
-                          <span className="mt-1 block text-xs font-medium text-foreground/70">
-                            {copy.kmAway(institute.distance_km.toLocaleString(lang))}
-                          </span>
-                        ) : null}
-                        <span className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-                          {institute.phone ? (
-                            <a
-                              href={`tel:${institute.phone.replace(/[^\d+]/g, "")}`}
-                              className="inline-flex items-center gap-1.5 font-medium text-primary hover:text-primary-hover"
-                              onClick={(event) => event.stopPropagation()}
-                            >
-                              <PhoneIcon className="h-4 w-4" />
-                              {institute.phone}
-                            </a>
-                          ) : null}
-                          {hours ? <span>{hours}</span> : null}
-                        </span>
-                        <span className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                          <a
-                            href={directionsUrl(institute)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 font-medium text-primary hover:text-primary-hover"
-                            onClick={(event) => event.stopPropagation()}
-                          >
-                            <PinIcon className="h-4 w-4" />
-                            {copy.directions}
-                          </a>
-                          {institute.website ? (
-                            <a
-                              href={institute.website}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 font-medium text-primary hover:text-primary-hover"
-                              onClick={(event) => event.stopPropagation()}
-                            >
-                              <GlobeIcon className="h-4 w-4" />
-                              {copy.website}
-                            </a>
-                          ) : null}
-                        </span>
-                      </span>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </>
-        )}
       </div>
 
-      <div className="lg:sticky lg:top-24 lg:self-start">
+      <div className="lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
         <div className="overflow-hidden rounded-2xl border border-border bg-card">
-          <div className="h-[28rem] w-full lg:h-[36rem]">
+          <div className="h-72 w-full sm:h-[24rem] lg:h-[36rem]">
             <InstitutesMap
               institutes={institutes}
               selectedId={selectedId}
@@ -392,6 +297,144 @@ export function FindHelpExplorer({ initialCountry }: { initialCountry: CountryCo
           </div>
         </div>
         <p className="mt-3 text-xs text-muted-foreground">{page.mapAttribution}</p>
+      </div>
+
+      <div className="min-w-0 lg:col-start-1 lg:row-start-2" aria-busy={loading}>
+        {loading ? (
+          <p className="mt-2 rounded-xl border border-border bg-card p-5 text-sm text-muted-foreground lg:mt-6" role="status">
+            {copy.loading}
+          </p>
+        ) : error ? (
+          <div className="mt-2 rounded-xl border border-border bg-card p-5 text-sm text-foreground lg:mt-6" role="alert">
+            <p>{copy.loadError}</p>
+            <button
+              type="button"
+              onClick={() => setReloadKey((value) => value + 1)}
+              className="mt-3 min-h-9 font-semibold text-primary hover:text-primary-hover"
+            >
+              {copy.retry}
+            </button>
+          </div>
+        ) : institutes.length === 0 ? (
+          <div className="mt-2 rounded-xl border border-dashed border-border p-5 lg:mt-6" role="status">
+            <p className="text-sm text-muted-foreground">{copy.noResults}</p>
+            {filtered ? (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="mt-3 min-h-9 text-sm font-semibold text-primary hover:text-primary-hover"
+              >
+                {copy.clearFilters}
+              </button>
+            ) : null}
+          </div>
+        ) : (
+          <>
+            <p className="mt-2 text-sm font-medium text-muted-foreground lg:mt-6" role="status">
+              {copy.resultsCount(institutes.length)}
+            </p>
+            <ul className="mt-3 space-y-3 lg:max-h-[40rem] lg:overflow-y-auto lg:overscroll-contain lg:pr-1">
+              {institutes.slice(0, visibleCount).map((institute) => {
+                const active = institute.id === selectedId;
+                const hours = formatOpeningHours(institute.hours, copy);
+                const location = [institute.address, institute.city].filter(Boolean).join(", ");
+                return (
+                  <li
+                    key={institute.id}
+                    ref={(node) => {
+                      if (node) itemRefs.current.set(institute.id, node);
+                      else itemRefs.current.delete(institute.id);
+                    }}
+                  >
+                    {/* The whole entry is a large click target; the name button is the keyboard control. */}
+                    <article
+                      onClick={() => setSelectedId(institute.id)}
+                      className={`cursor-pointer rounded-xl border p-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] sm:p-5 ${
+                        active ? "border-primary bg-primary-soft" : "border-border bg-card hover:border-primary/40"
+                      }`}
+                    >
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                        <h3 className="text-base font-semibold leading-snug text-foreground sm:text-lg">
+                          <button
+                            type="button"
+                            aria-pressed={active}
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              setSelectedId(institute.id);
+                            }}
+                            className="rounded-sm text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                          >
+                            {institute.name}
+                          </button>
+                        </h3>
+                        <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
+                          {copy.categories[institute.category]}
+                        </span>
+                        {institute.emergency ? (
+                          <span className="rounded-md border border-primary/30 px-2 py-0.5 text-xs font-semibold text-primary">
+                            {copy.emergency}
+                          </span>
+                        ) : null}
+                      </div>
+                      {location ? (
+                        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{location}</p>
+                      ) : null}
+                      {institute.distance_km != null && area.kind === "point" ? (
+                        <p className="mt-0.5 text-sm tabular-nums text-foreground/70">
+                          {copy.kmAway(institute.distance_km.toLocaleString(lang))}
+                        </p>
+                      ) : null}
+                      {hours ? <p className="mt-1 text-sm text-muted-foreground">{hours}</p> : null}
+                      <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm">
+                        {institute.phone ? (
+                          <a
+                            href={`tel:${institute.phone.replace(/[^\d+]/g, "")}`}
+                            className={linkClass}
+                            onClick={(event) => event.stopPropagation()}
+                          >
+                            <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+                            <span className="tabular-nums">{institute.phone}</span>
+                          </a>
+                        ) : null}
+                        <a
+                          href={directionsUrl(institute)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={linkClass}
+                          onClick={(event) => event.stopPropagation()}
+                        >
+                          <PinIcon className="h-4 w-4" aria-hidden="true" />
+                          {copy.directions}
+                        </a>
+                        {institute.website ? (
+                          <a
+                            href={institute.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={linkClass}
+                            onClick={(event) => event.stopPropagation()}
+                          >
+                            <GlobeIcon className="h-4 w-4" aria-hidden="true" />
+                            {copy.website}
+                          </a>
+                        ) : null}
+                      </div>
+                    </article>
+                  </li>
+                );
+              })}
+            </ul>
+            {institutes.length > visibleCount ? (
+              <button
+                type="button"
+                onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+                className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-border bg-card px-4 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                {copy.showMore(Math.min(PAGE_SIZE, institutes.length - visibleCount))}
+              </button>
+            ) : null}
+          </>
+        )}
       </div>
     </div>
   );

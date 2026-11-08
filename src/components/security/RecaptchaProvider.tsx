@@ -18,7 +18,7 @@ declare global {
 
 const copy = {
   en: {
-    unavailable: "Bot verification is unavailable. Please reload the page or contact support.",
+    unavailable: "The bot check is not working. Reload the page or write to us.",
     notice: "Protected by reCAPTCHA. Google's",
     privacy: "Privacy Policy",
     and: "and",
@@ -26,7 +26,7 @@ const copy = {
     apply: "apply.",
   },
   ro: {
-    unavailable: "Verificarea anti-boți nu este disponibilă. Reîncarcă pagina sau contactează echipa de suport.",
+    unavailable: "Verificarea anti-roboți nu merge acum. Reîncarcă pagina sau scrie-ne.",
     notice: "Protejat de reCAPTCHA. Se aplică",
     privacy: "Politica de confidențialitate",
     and: "și",
@@ -34,7 +34,7 @@ const copy = {
     apply: "Google.",
   },
   sq: {
-    unavailable: "Verifikimi kundër robotëve nuk është i disponueshëm. Rifresko faqen ose kontakto mbështetjen.",
+    unavailable: "Kontrolli kundër robotëve nuk funksionon tani. Rifresko faqen ose na shkruaj.",
     notice: "Mbrojtur nga reCAPTCHA. Zbatohen",
     privacy: "Politika e privatësisë",
     and: "dhe",
@@ -42,7 +42,7 @@ const copy = {
     apply: "të Google.",
   },
   it: {
-    unavailable: "Verifica anti-bot non disponibile. Ricarica la pagina o contatta l'assistenza.",
+    unavailable: "Il controllo anti-bot non funziona. Ricarica la pagina o scrivici.",
     notice: "Protetto da reCAPTCHA. Si applicano",
     privacy: "l'Informativa sulla privacy",
     and: "e",

@@ -32,59 +32,59 @@ export function PatientPhotosTab({
   const { lang } = useLanguage();
   const t = {
     en: {
-      title: "Medical Photos & Document Attachments",
-      subtitle: "Attach clinical photos, lab results, or prescribed documentation.",
-      attachNew: "Attach New Photo / Document",
-      selectImage: "Select Image File",
-      label: "Title / Label",
-      labelPh: "e.g. Skin Rash Photo, Blood Test Result",
-      notes: "Caption / Staff Notes",
-      notesPh: "Short description or clinical findings regarding this photo...",
-      ready: "Image ready to attach",
-      attach: "Attach Photo",
-      empty: "No medical photos attached. Use the form above to upload images.",
+      title: "Photos and documents",
+      subtitle: "Clinical photos, lab results or prescriptions.",
+      attachNew: "Add a photo or document",
+      selectImage: "Choose image",
+      label: "Title",
+      labelPh: "e.g. Skin rash, Blood test result",
+      notes: "Note",
+      notesPh: "What the photo shows",
+      ready: "Image ready",
+      attach: "Attach",
+      empty: "No photos yet.",
       remove: "Remove photo",
     },
     ro: {
-      title: "Poze medicale si documente atasate",
-      subtitle: "Ataseaza poze clinice, rezultate de laborator sau documente prescrise.",
-      attachNew: "Ataseaza poza / document nou",
-      selectImage: "Selecteaza fisier imagine",
-      label: "Titlu / eticheta",
-      labelPh: "ex. Poza eruptie cutanata, rezultat analiza sange",
-      notes: "Legenda / notite personal",
-      notesPh: "Descriere scurta sau constatari clinice pentru aceasta poza...",
-      ready: "Imagine gata de atasare",
-      attach: "Ataseaza poza",
-      empty: "Nu exista poze medicale atasate. Foloseste formularul de mai sus.",
-      remove: "Sterge poza",
+      title: "Poze și documente",
+      subtitle: "Poze clinice, rezultate de analize sau rețete.",
+      attachNew: "Adaugă o poză sau un document",
+      selectImage: "Alege imaginea",
+      label: "Titlu",
+      labelPh: "ex. Erupție pe piele, analize de sânge",
+      notes: "Notă",
+      notesPh: "Ce se vede în poză",
+      ready: "Imagine pregătită",
+      attach: "Atașează",
+      empty: "Nu există poze încă.",
+      remove: "Șterge poza",
     },
     sq: {
-      title: "Foto mjekesore dhe dokumente te bashkengjitura",
-      subtitle: "Bashkengjit foto klinike, rezultate laboratori ose dokumente mjekesore.",
-      attachNew: "Bashkengjit foto / dokument te ri",
+      title: "Foto dhe dokumente",
+      subtitle: "Foto klinike, analiza ose receta.",
+      attachNew: "Shto një foto ose dokument",
       selectImage: "Zgjidh imazh",
-      label: "Titull / etikete",
-      labelPh: "p.sh. Foto skuqjeje, rezultat analize gjaku",
-      notes: "Pershkrim / shenime stafi",
-      notesPh: "Pershkrim i shkurter ose gjetje klinike per kete foto...",
-      ready: "Imazhi eshte gati per bashkengjitje",
-      attach: "Bashkengjit foto",
-      empty: "Nuk ka foto mjekesore te bashkengjitura. Përdor formen me siper.",
+      label: "Titulli",
+      labelPh: "p.sh. Skuqje lëkure, analiza gjaku",
+      notes: "Shënim",
+      notesPh: "Çfarë tregon fotoja",
+      ready: "Imazhi është gati",
+      attach: "Bashkëngjit",
+      empty: "Ende nuk ka foto.",
       remove: "Hiq foton",
     },
     it: {
-      title: "Foto mediche e documenti allegati",
-      subtitle: "Allega foto cliniche, risultati di laboratorio o documentazione prescritta.",
-      attachNew: "Allega nuova foto / documento",
-      selectImage: "Seleziona file immagine",
-      label: "Titolo / etichetta",
-      labelPh: "es. Foto eruzione cutanea, risultato esame sangue",
-      notes: "Didascalia / note staff",
-      notesPh: "Breve descrizione o riscontri clinici su questa foto...",
-      ready: "Immagine pronta da allegare",
-      attach: "Allega foto",
-      empty: "Nessuna foto medica allegata. Usa il modulo sopra per caricare immagini.",
+      title: "Foto e documenti",
+      subtitle: "Foto cliniche, esami o ricette.",
+      attachNew: "Aggiungi una foto o un documento",
+      selectImage: "Scegli immagine",
+      label: "Titolo",
+      labelPh: "es. Eruzione cutanea, esame del sangue",
+      notes: "Nota",
+      notesPh: "Cosa mostra la foto",
+      ready: "Immagine pronta",
+      attach: "Allega",
+      empty: "Ancora nessuna foto.",
       remove: "Rimuovi foto",
     },
   }[lang];
@@ -103,7 +103,7 @@ export function PatientPhotosTab({
         onSubmit={onAddPhoto}
         className="rounded-xl border border-border bg-muted/30 p-4 space-y-3"
       >
-        <h4 className="text-xs font-bold text-foreground uppercase tracking-wide">
+        <h4 className="text-xs font-bold text-foreground">
           {t.attachNew}
         </h4>
 
@@ -181,7 +181,7 @@ export function PatientPhotosTab({
           {photos.map((photo) => (
             <div
               key={photo.id}
-              className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-2.5 shadow-sm hover:shadow-md transition-all"
+              className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-2.5 shadow-sm hover:shadow-md transition-colors"
             >
               <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border bg-muted">
                 <img

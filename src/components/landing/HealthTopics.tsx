@@ -4,7 +4,6 @@ import type { ComponentType, SVGProps } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Reveal } from "@/components/ui/Reveal";
 import {
   ActivityIcon,
   AppleIcon,
@@ -17,78 +16,64 @@ import {
   ShieldIcon,
 } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
 
-const topicHrefs = [
-  "/health-information/heart-health",
-  "/health-information/diabetes",
-  "/health-information/healthy-eating",
-  "/health-information/physical-activity",
-  "/health-information/mental-wellbeing",
-  "/health-information/smoking",
-  "/health-information/preventive-screening",
-  "/health-information/womens-health",
+const TOPICS: { href: string; Icon: ComponentType<SVGProps<SVGSVGElement>> }[] = [
+  { href: "/health-information/heart-health", Icon: HeartIcon },
+  { href: "/health-information/diabetes", Icon: DropletIcon },
+  { href: "/health-information/healthy-eating", Icon: AppleIcon },
+  { href: "/health-information/physical-activity", Icon: ActivityIcon },
+  { href: "/health-information/mental-wellbeing", Icon: BrainIcon },
+  { href: "/health-information/smoking", Icon: NoSmokingIcon },
+  { href: "/health-information/preventive-screening", Icon: SearchIcon },
+  { href: "/health-information/womens-health", Icon: ShieldIcon },
 ];
 
-const topicIcons: ComponentType<SVGProps<SVGSVGElement>>[] = [
-  HeartIcon,
-  DropletIcon,
-  AppleIcon,
-  ActivityIcon,
-  BrainIcon,
-  NoSmokingIcon,
-  SearchIcon,
-  ShieldIcon,
-];
-
+/**
+ * Eight health topics as a ruled index (a hairline above each entry), not a
+ * grid of identical cards. Titles and descriptions come from
+ * `translations[lang].landing.healthTopics`, defined in every locale.
+ */
 export function HealthTopics() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
+  const { title, subtitle, viewAll, topics } = t.landing.healthTopics;
 
   return (
     <section className="border-y border-border bg-muted/40 py-16 sm:py-20">
       <Container>
-        <Reveal>
-          <SectionHeading
-            as="h2"
-            title={t.landing.healthTopics.title}
-            subtitle={t.landing.healthTopics.subtitle}
-          />
-        </Reveal>
+        <SectionHeading as="h2" title={title} subtitle={subtitle} />
 
-        <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {t.landing.healthTopics.topics.map(({ title, description }, index) => {
-            const Icon = topicIcons[index];
+        <ul className="mt-10 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
+          {topics.map(({ title: topicTitle, description }, index) => {
+            const topic = TOPICS[index];
+            if (!topic) return null;
+            const { href, Icon } = topic;
             return (
-              <Reveal key={topicHrefs[index]} delay={(index % 4) * 80} className="h-full">
-                <li className="h-full list-none">
-                  <Link
-                    href={topicHrefs[index]}
-                    className="hover-lift group flex h-full flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                  >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-soft text-primary">
-                      <Icon className="h-6 w-6" />
+              <li key={href} className="border-t border-border">
+                <Link
+                  href={withLangPrefix(href, lang)}
+                  className="group flex h-full gap-3.5 rounded-sm py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                >
+                  <Icon className="mt-0.5 h-5 w-5 shrink-0 text-sapphire" />
+                  <span>
+                    <span className="block text-base font-semibold leading-snug text-foreground transition-colors duration-150 group-hover:text-sapphire">
+                      {topicTitle}
                     </span>
-                    <h3 className="mt-4 text-lg font-semibold text-foreground">
-                      {title}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {description}
-                    </p>
-                  </Link>
-                </li>
-              </Reveal>
+                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{description}</span>
+                  </span>
+                </Link>
+              </li>
             );
           })}
         </ul>
 
-        <div className="mt-8">
-          <Link
-            href="/health-information"
-            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg text-base font-semibold text-primary hover:text-primary-hover"
-          >
-            {t.landing.healthTopics.viewAll}
-            <ArrowRightIcon className="h-5 w-5" />
-          </Link>
-        </div>
+        <Link
+          href={withLangPrefix("/health-information", lang)}
+          className="group mt-6 inline-flex min-h-11 items-center gap-1.5 rounded-lg text-base font-semibold text-sapphire transition-colors hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          {viewAll}
+          <ArrowRightIcon className="h-5 w-5 transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transition-none" />
+        </Link>
       </Container>
     </section>
   );

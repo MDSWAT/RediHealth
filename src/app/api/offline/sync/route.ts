@@ -10,7 +10,7 @@ class SyncFailure extends Error {
 
 export async function POST(request: Request) {
   const identity = await offlineIdentity();
-  if (!identity) return Response.json({ error: "Online sign-in as a doctor or mediator is required." }, { status: 403 });
+  if (!identity) return Response.json({ error: "Sign in online as a doctor or mediator." }, { status: 403 });
   // Do not allow cross-origin sites to submit a cookie-authenticated offline write.
   const origin = request.headers.get("origin");
   if (origin && origin !== new URL(request.url).origin) return Response.json({ error: "Invalid origin." }, { status: 403 });
@@ -62,6 +62,6 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof SyncFailure) return error.response;
     console.error("Offline sync failed", error);
-    return Response.json({ error: "Sync failed. Changes remain on this device. Ensure migration 014 is applied to the country database." }, { status: 503 });
+    return Response.json({ error: "Sync failed. Your changes are still on this device. Check that migration 014 is applied to the country database." }, { status: 503 });
   }
 }

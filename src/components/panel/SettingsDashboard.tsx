@@ -68,7 +68,7 @@ export function SettingsDashboard({
       <main id="main-content" className="min-h-screen py-8 sm:py-10">
         <Container>
           <div className="mb-6 border-b border-border pb-6">
-            <p className="text-xs font-bold uppercase text-primary">{t.eyebrow}</p>
+            <p className="text-xs font-bold text-primary">{t.eyebrow}</p>
             <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{t.title}</h1>
             <p className="mt-1 text-sm text-muted-foreground">{t.subtitle}</p>
           </div>

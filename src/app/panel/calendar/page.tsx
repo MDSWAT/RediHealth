@@ -22,9 +22,6 @@ export default async function CalendarPage() {
   const workerContext = await getUserWorkerContext(userEmail);
   if (!workerContext.workerId) redirect(await withRequestLangPrefix("/sign-in"));
 
-  if (workerContext.role.trim().toLowerCase() === "mediator" && !workerContext.isAdmin) {
-    redirect(await withRequestLangPrefix("/panel"));
-  }
 
   let patients: PatientItem[] = [];
   let pendingRequestsCount = 0;

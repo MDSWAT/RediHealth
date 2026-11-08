@@ -1,0 +1,1161 @@
+"use client";
+
+import { useContext, useEffect, useRef, useState } from "react";
+import { AlertCircleIcon } from "@/components/ui/icons";
+import { LanguageContext } from "@/lib/i18n/language-context";
+import type { Lang } from "@/lib/i18n/translations";
+
+export interface GlucoseDynamicsModuleProps {
+  lang?: Lang;
+}
+
+export type ScenarioId = "fasting" | "high_carb" | "balanced_meal" | "exercise";
+
+interface ScenarioLocalization {
+  title: string;
+  badge: string;
+  description: string;
+  peakTime: string;
+  clinicalNote: string;
+}
+
+interface GlucoseScenario {
+  id: ScenarioId;
+  points: number[]; // Points across 0h, 1h, 2h, 3h, 4h
+  peakMgDl: number;
+  colorClass: string;
+  /** Curve colour (a design token, so the chart follows the theme). */
+  strokeColor: string;
+}
+
+const SCENARIOS_BASE: GlucoseScenario[] = [
+  {
+    id: "fasting",
+    points: [85, 84, 86, 85, 84],
+    peakMgDl: 86,
+    colorClass: "text-sapphire bg-sapphire-soft border-sapphire-border",
+    strokeColor: "var(--color-sapphire)",
+  },
+  {
+    id: "high_carb",
+    points: [90, 195, 175, 130, 95],
+    peakMgDl: 195,
+    colorClass: "text-amber-care bg-amber-care-soft border-amber-care-border",
+    strokeColor: "var(--color-amber-care)",
+  },
+  {
+    id: "balanced_meal",
+    points: [88, 128, 122, 105, 90],
+    peakMgDl: 128,
+    colorClass: "text-live-sage bg-live-sage-soft border-live-sage/30",
+    strokeColor: "var(--color-live-sage)",
+  },
+  {
+    id: "exercise",
+    points: [90, 115, 102, 88, 85],
+    peakMgDl: 115,
+    colorClass: "text-sapphire bg-sapphire-soft border-sapphire-border",
+    strokeColor: "var(--color-sapphire-light)",
+  },
+];
+
+const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalization>> = {
+  ro: {
+    fasting: {
+      title: "Dimineața, pe nemâncate",
+      badge: "Stabil",
+      description:
+        "Zahărul din sânge stă între 80 și 90 mg/dL. Ficatul dă încet zahăr în sânge, iar insulina de fond îl ține în echilibru.",
+      peakTime: "0 ore",
+      clinicalNote:
+        "Ficatul dă zahăr în sânge ca să hrănească creierul și celulele cât te odihnești.",
+    },
+    high_carb: {
+      title: "Masă cu mult zahăr și făină albă",
+      badge: "Urcă brusc, scade brusc",
+      description:
+        "Dulciurile, sucurile și pâinea albă urcă zahărul din sânge foarte repede. Apoi scade la fel de repede și te simți obosit și flămând.",
+      peakTime: "45–60 de minute",
+      clinicalNote:
+        "Pancreasul trebuie să dea repede multă insulină, ca zahărul să revină la normal.",
+    },
+    balanced_meal: {
+      title: "Masă cu legume, proteine și fibre",
+      badge: "Urcă încet, energia ține mai mult",
+      description:
+        "Legumele, carnea slabă sau ouăle și cerealele integrale fac zahărul să intre mai încet în sânge. Valorile rămân bune.",
+      peakTime: "75–90 de minute",
+      clinicalNote:
+        "Fibrele fac în intestin un fel de gel, care încetinește trecerea zahărului în sânge.",
+    },
+    exercise: {
+      title: "Plimbare după masă",
+      badge: "Mușchii folosesc zahărul",
+      description:
+        "O plimbare grăbită de 20–30 de minute după masă face mușchii să ia zahăr direct din sânge. Vârful scade mult.",
+      peakTime: "30 de minute",
+      clinicalNote:
+        "Mușchii care lucrează iau zahăr din sânge chiar și cu puțină insulină. De aceea vârful de după masă e mai mic.",
+    },
+  },
+  en: {
+    fasting: {
+      title: "In the morning, before eating",
+      badge: "Steady",
+      description:
+        "Blood sugar stays between 80 and 90 mg/dL. The liver slowly releases sugar, and background insulin keeps it in balance.",
+      peakTime: "0 hours",
+      clinicalNote:
+        "The liver releases sugar into the blood to feed the brain and cells while you rest.",
+    },
+    high_carb: {
+      title: "Meal with lots of sugar and white flour",
+      badge: "Shoots up, drops fast",
+      description:
+        "Sweets, sugary drinks and white bread push blood sugar up very fast. Then it drops just as fast, and you feel tired and hungry.",
+      peakTime: "45–60 minutes",
+      clinicalNote:
+        "The pancreas has to release a lot of insulin quickly to bring blood sugar back to normal.",
+    },
+    balanced_meal: {
+      title: "Meal with vegetables, protein and fiber",
+      badge: "Rises slowly, energy lasts",
+      description:
+        "Vegetables, lean meat or eggs, and whole grains make sugar enter the blood more slowly. Your numbers stay good.",
+      peakTime: "75–90 minutes",
+      clinicalNote:
+        "Fiber forms a kind of gel in the gut that slows sugar going into the blood.",
+    },
+    exercise: {
+      title: "A walk after eating",
+      badge: "Muscles use the sugar",
+      description:
+        "A brisk 20–30 minute walk after a meal makes your muscles take sugar straight from the blood. The peak is much lower.",
+      peakTime: "30 minutes",
+      clinicalNote:
+        "Working muscles take sugar from the blood even with little insulin. That is why the after-meal peak is lower.",
+    },
+  },
+  sq: {
+    fasting: {
+      title: "Në mëngjes, pa ngrënë",
+      badge: "I qëndrueshëm",
+      description:
+        "Sheqeri në gjak qëndron mes 80 dhe 90 mg/dL. Mëlçia lëshon ngadalë sheqer, dhe insulina bazë e mban në ekuilibër.",
+      peakTime: "0 orë",
+      clinicalNote:
+        "Mëlçia lëshon sheqer në gjak për të ushqyer trurin dhe qelizat kur pushon.",
+    },
+    high_carb: {
+      title: "Vakt me shumë sheqer dhe miell të bardhë",
+      badge: "Ngrihet shpejt, bie shpejt",
+      description:
+        "Ëmbëlsirat, pijet me sheqer dhe buka e bardhë e ngrenë sheqerin shumë shpejt. Pastaj bie po aq shpejt dhe ndihesh i lodhur dhe i uritur.",
+      peakTime: "45–60 minuta",
+      clinicalNote:
+        "Pankreasi duhet të lëshojë shpejt shumë insulinë, që sheqeri të kthehet në normë.",
+    },
+    balanced_meal: {
+      title: "Vakt me perime, proteina dhe fibra",
+      badge: "Ngrihet ngadalë, energjia zgjat",
+      description:
+        "Perimet, mishi pa yndyrë ose vezët dhe drithërat integrale e bëjnë sheqerin të hyjë më ngadalë në gjak. Vlerat mbeten të mira.",
+      peakTime: "75–90 minuta",
+      clinicalNote:
+        "Fibrat bëjnë në zorrë një lloj xheli që e ngadalëson kalimin e sheqerit në gjak.",
+    },
+    exercise: {
+      title: "Shëtitje pas ngrënies",
+      badge: "Muskujt e përdorin sheqerin",
+      description:
+        "Një ecje e shpejtë 20–30 minuta pas vaktit i bën muskujt të marrin sheqer drejt nga gjaku. Kulmi ulet shumë.",
+      peakTime: "30 minuta",
+      clinicalNote:
+        "Muskujt që punojnë marrin sheqer nga gjaku edhe me pak insulinë. Prandaj kulmi pas vaktit është më i ulët.",
+    },
+  },
+  it: {
+    fasting: {
+      title: "Al mattino, a digiuno",
+      badge: "Stabile",
+      description:
+        "La glicemia resta tra 80 e 90 mg/dL. Il fegato rilascia piano lo zucchero e l'insulina di base lo tiene in equilibrio.",
+      peakTime: "0 ore",
+      clinicalNote:
+        "Il fegato manda zucchero nel sangue per nutrire il cervello e le cellule mentre riposi.",
+    },
+    high_carb: {
+      title: "Pasto con molto zucchero e farina bianca",
+      badge: "Sale di colpo, scende di colpo",
+      description:
+        "Dolci, bibite zuccherate e pane bianco fanno salire la glicemia molto in fretta. Poi scende altrettanto in fretta e ti senti stanco e affamato.",
+      peakTime: "45–60 minuti",
+      clinicalNote:
+        "Il pancreas deve rilasciare in fretta molta insulina per riportare la glicemia alla normalità.",
+    },
+    balanced_meal: {
+      title: "Pasto con verdure, proteine e fibre",
+      badge: "Sale piano, l'energia dura di più",
+      description:
+        "Verdure, carne magra o uova e cereali integrali fanno entrare lo zucchero nel sangue più lentamente. I valori restano buoni.",
+      peakTime: "75–90 minuti",
+      clinicalNote:
+        "Le fibre formano nell'intestino una specie di gel che rallenta il passaggio dello zucchero nel sangue.",
+    },
+    exercise: {
+      title: "Una passeggiata dopo mangiato",
+      badge: "I muscoli usano lo zucchero",
+      description:
+        "Una camminata veloce di 20–30 minuti dopo il pasto fa prendere ai muscoli lo zucchero direttamente dal sangue. Il picco scende molto.",
+      peakTime: "30 minuti",
+      clinicalNote:
+        "I muscoli che lavorano prendono zucchero dal sangue anche con poca insulina. Per questo il picco dopo il pasto è più basso.",
+    },
+  },
+};
+
+interface ModuleUiStrings {
+  moduleAriaLabel: string;
+  title: string;
+  description: string;
+  chartSectionTitle: string;
+  chartSectionSubtitle: string;
+  scenarioSelectAria: string;
+  /** Use {scenario}. */
+  chartAria: string;
+  peakLabel: string;
+  optimalRangeLabel: string;
+  attentionThresholdLabel: string;
+  peakEstimated: string;
+  atTime: string;
+  physioExplanation: string;
+  timeLabels: [string, string, string, string, string];
+  simulatorTitle: string;
+  simulatorSubtitle: string;
+  stepMinusAria: string;
+  stepNormalAria: string;
+  stepNormalLabel: string;
+  stepPlusAria: string;
+  selectedValueLabel: string;
+  /** Use {value} and {label}. */
+  valueText: string;
+  /** Names of the zones on the strip under the slider. */
+  zoneNames: [string, string, string, string, string];
+  physioReactionTitle: string;
+  symptomsHeading: string;
+  guidanceHeading: string;
+  emergencyActionHeading: string;
+  scrubberHeading: string;
+  scrubberSubtitle: string;
+  scrubberLabel: string;
+  scrubberPhaseLabel: string;
+  phases: {
+    ingestion: string;
+    influx: string;
+    peak: string;
+    uptake: string;
+    homeostasis: string;
+  };
+}
+
+const UI_STRINGS: Record<Lang, ModuleUiStrings> = {
+  ro: {
+    moduleAriaLabel: "Zahărul din sânge",
+    title: "Cum se schimbă zahărul din sânge",
+    description: "Glicemia înseamnă cât zahăr ai în sânge. Vezi cum o schimbă mâncarea și mișcarea și ce înseamnă fiecare valoare.",
+    chartSectionTitle: "Zahărul după masă și după mișcare",
+    chartSectionSubtitle: "Alege un exemplu și vezi ce se întâmplă în 4 ore.",
+    scenarioSelectAria: "Alege un exemplu de masă sau de mișcare",
+    chartAria: "Zahărul din sânge în 4 ore: {scenario}",
+    peakLabel: "Vârf:",
+    optimalRangeLabel: "Bine după masă (sub 140 mg/dL)",
+    attentionThresholdLabel: "Atenție (180 mg/dL)",
+    peakEstimated: "Cel mai sus",
+    atTime: "la",
+    physioExplanation: "De ce",
+    timeLabels: ["0h (masă)", "1h", "2h", "3h", "4h"],
+    simulatorTitle: "Ce înseamnă valoarea ta",
+    simulatorSubtitle: "Mută bara între 50 și 300 mg/dL. Vezi ce se întâmplă în corp și ce să faci.",
+    stepMinusAria: "Scade cu 10",
+    stepNormalAria: "Pune valoarea normală pe nemâncate, 85 mg/dL",
+    stepNormalLabel: "Normal (85)",
+    stepPlusAria: "Crește cu 10",
+    selectedValueLabel: "Valoarea ta:",
+    valueText: "{value} miligrame pe decilitru: {label}",
+    zoneNames: ["Prea mic", "Normal", "Prediabet", "Diabet", "Foarte mare"],
+    physioReactionTitle: "Ce se întâmplă la",
+    symptomsHeading: "Ce poți simți:",
+    guidanceHeading: "Ce înseamnă:",
+    emergencyActionHeading: "Ce faci acum",
+    scrubberHeading: "Minut cu minut după masă (0–240 de minute)",
+    scrubberSubtitle: "Mută bara ca să vezi zahărul din sânge la fiecare minut după masă.",
+    scrubberLabel: "După masă:",
+    scrubberPhaseLabel: "Ce se întâmplă:",
+    phases: {
+      ingestion: "Mâncarea se digeră. Zahărul începe să intre în sânge.",
+      influx: "Zahărul din masă trece în sânge. Valoarea urcă.",
+      peak: "Pancreasul dă insulină. Zahărul ajunge la vârf.",
+      uptake: "Mușchii și ficatul iau zahărul. Valoarea scade.",
+      homeostasis: "Zahărul revine la cât era înainte de masă.",
+    },
+  },
+  en: {
+    moduleAriaLabel: "Blood sugar",
+    title: "How blood sugar changes",
+    description: "Blood sugar (glucose) is how much sugar is in your blood. See how food and movement change it, and what each number means.",
+    chartSectionTitle: "Blood sugar after meals and activity",
+    chartSectionSubtitle: "Choose an example to see what happens over 4 hours.",
+    scenarioSelectAria: "Choose a meal or activity example",
+    chartAria: "Blood sugar over 4 hours: {scenario}",
+    peakLabel: "Peak:",
+    optimalRangeLabel: "Good after a meal (under 140 mg/dL)",
+    attentionThresholdLabel: "Warning (180 mg/dL)",
+    peakEstimated: "Highest",
+    atTime: "at",
+    physioExplanation: "Why",
+    timeLabels: ["0h (meal)", "1h", "2h", "3h", "4h"],
+    simulatorTitle: "What your number means",
+    simulatorSubtitle: "Move the slider between 50 and 300 mg/dL. See what happens in your body and what to do.",
+    stepMinusAria: "Lower by 10",
+    stepNormalAria: "Set the normal fasting value, 85 mg/dL",
+    stepNormalLabel: "Normal (85)",
+    stepPlusAria: "Raise by 10",
+    selectedValueLabel: "Your number:",
+    valueText: "{value} milligrams per decilitre: {label}",
+    zoneNames: ["Too low", "Normal", "Prediabetes", "Diabetes", "Very high"],
+    physioReactionTitle: "What happens at",
+    symptomsHeading: "What you may feel:",
+    guidanceHeading: "What it means:",
+    emergencyActionHeading: "What to do now",
+    scrubberHeading: "Minute by minute after a meal (0–240 minutes)",
+    scrubberSubtitle: "Move the slider to see blood sugar at each minute after the meal.",
+    scrubberLabel: "After the meal:",
+    scrubberPhaseLabel: "What is happening:",
+    phases: {
+      ingestion: "Food is being digested. Sugar starts to enter the blood.",
+      influx: "Sugar from the meal goes into the blood. The number rises.",
+      peak: "The pancreas releases insulin. Blood sugar peaks.",
+      uptake: "Muscles and liver take up the sugar. The number falls.",
+      homeostasis: "Blood sugar is back to where it was before the meal.",
+    },
+  },
+  sq: {
+    moduleAriaLabel: "Sheqeri në gjak",
+    title: "Si ndryshon sheqeri në gjak",
+    description: "Glicemia tregon sa sheqer ke në gjak. Shiko si e ndryshojnë ushqimi dhe lëvizja, dhe çfarë do të thotë çdo vlerë.",
+    chartSectionTitle: "Sheqeri pas ngrënies dhe pas lëvizjes",
+    chartSectionSubtitle: "Zgjidh një shembull dhe shiko çfarë ndodh për 4 orë.",
+    scenarioSelectAria: "Zgjidh një shembull vakti ose lëvizjeje",
+    chartAria: "Sheqeri në gjak për 4 orë: {scenario}",
+    peakLabel: "Kulmi:",
+    optimalRangeLabel: "Mirë pas ngrënies (nën 140 mg/dL)",
+    attentionThresholdLabel: "Kujdes (180 mg/dL)",
+    peakEstimated: "Më i larti",
+    atTime: "në",
+    physioExplanation: "Pse",
+    timeLabels: ["0h (vakti)", "1h", "2h", "3h", "4h"],
+    simulatorTitle: "Çfarë do të thotë vlera jote",
+    simulatorSubtitle: "Lëviz shiritin mes 50 dhe 300 mg/dL. Shiko çfarë ndodh në trup dhe çfarë të bësh.",
+    stepMinusAria: "Ul me 10",
+    stepNormalAria: "Vendos vlerën normale pa ngrënë, 85 mg/dL",
+    stepNormalLabel: "Normale (85)",
+    stepPlusAria: "Rrit me 10",
+    selectedValueLabel: "Vlera jote:",
+    valueText: "{value} miligramë për decilitër: {label}",
+    zoneNames: ["Shumë i ulët", "Normal", "Prediabet", "Diabet", "Shumë i lartë"],
+    physioReactionTitle: "Çfarë ndodh në",
+    symptomsHeading: "Çfarë mund të ndiesh:",
+    guidanceHeading: "Çfarë do të thotë:",
+    emergencyActionHeading: "Çfarë të bësh tani",
+    scrubberHeading: "Minutë pas minute pas ngrënies (0–240 minuta)",
+    scrubberSubtitle: "Lëviz shiritin për të parë sheqerin në çdo minutë pas vaktit.",
+    scrubberLabel: "Pas vaktit:",
+    scrubberPhaseLabel: "Çfarë ndodh:",
+    phases: {
+      ingestion: "Ushqimi po tretet. Sheqeri fillon të hyjë në gjak.",
+      influx: "Sheqeri nga vakti kalon në gjak. Vlera rritet.",
+      peak: "Pankreasi lëshon insulinë. Sheqeri arrin kulmin.",
+      uptake: "Muskujt dhe mëlçia marrin sheqerin. Vlera ulet.",
+      homeostasis: "Sheqeri kthehet aty ku ishte para vaktit.",
+    },
+  },
+  it: {
+    moduleAriaLabel: "Lo zucchero nel sangue",
+    title: "Come cambia la glicemia",
+    description: "La glicemia dice quanto zucchero hai nel sangue. Guarda come la cambiano cibo e movimento, e cosa vuol dire ogni valore.",
+    chartSectionTitle: "La glicemia dopo i pasti e il movimento",
+    chartSectionSubtitle: "Scegli un esempio e guarda cosa succede in 4 ore.",
+    scenarioSelectAria: "Scegli un esempio di pasto o di movimento",
+    chartAria: "Glicemia in 4 ore: {scenario}",
+    peakLabel: "Picco:",
+    optimalRangeLabel: "Buona dopo il pasto (sotto 140 mg/dL)",
+    attentionThresholdLabel: "Attenzione (180 mg/dL)",
+    peakEstimated: "Il punto più alto",
+    atTime: "a",
+    physioExplanation: "Perché",
+    timeLabels: ["0h (pasto)", "1h", "2h", "3h", "4h"],
+    simulatorTitle: "Cosa vuol dire il tuo valore",
+    simulatorSubtitle: "Sposta la barra tra 50 e 300 mg/dL. Guarda cosa succede nel corpo e cosa fare.",
+    stepMinusAria: "Abbassa di 10",
+    stepNormalAria: "Imposta il valore normale a digiuno, 85 mg/dL",
+    stepNormalLabel: "Normale (85)",
+    stepPlusAria: "Alza di 10",
+    selectedValueLabel: "Il tuo valore:",
+    valueText: "{value} milligrammi per decilitro: {label}",
+    zoneNames: ["Troppo bassa", "Normale", "Prediabete", "Diabete", "Molto alta"],
+    physioReactionTitle: "Cosa succede a",
+    symptomsHeading: "Cosa puoi sentire:",
+    guidanceHeading: "Cosa vuol dire:",
+    emergencyActionHeading: "Cosa fare subito",
+    scrubberHeading: "Minuto per minuto dopo il pasto (0–240 minuti)",
+    scrubberSubtitle: "Sposta la barra per vedere la glicemia a ogni minuto dopo il pasto.",
+    scrubberLabel: "Dopo il pasto:",
+    scrubberPhaseLabel: "Cosa succede:",
+    phases: {
+      ingestion: "Il cibo viene digerito. Lo zucchero inizia a entrare nel sangue.",
+      influx: "Lo zucchero del pasto passa nel sangue. Il valore sale.",
+      peak: "Il pancreas rilascia insulina. La glicemia arriva al picco.",
+      uptake: "Muscoli e fegato prendono lo zucchero. Il valore scende.",
+      homeostasis: "La glicemia torna com'era prima del pasto.",
+    },
+  },
+};
+
+interface BloodSugarInterpretation {
+  category: "hypo" | "normal" | "prediabetes" | "diabetes" | "severe_hyper";
+  label: string;
+  toneClass: string;
+  badgeClass: string;
+  symptoms: string;
+  guidance: string;
+  emergencyRule?: string;
+}
+
+const TIER_TRANSLATIONS: Record<
+  Lang,
+  Record<
+    "hypo" | "normal" | "prediabetes" | "diabetes" | "severe_hyper",
+    { label: string; symptoms: string; guidance: string; emergencyRule?: string }
+  >
+> = {
+  ro: {
+    hypo: {
+      label: "Zahăr prea mic (hipoglicemie)",
+      symptoms:
+        "Tremuri la mâini, transpirație rece, amețeală, inima bate tare, foame mare, te încurci la gândire sau vezi dublu.",
+      guidance:
+        "Creierul nu are destul zahăr ca să lucreze bine. Ia zahăr chiar acum.",
+      emergencyRule:
+        "Regula 15/15: mănâncă sau bea acum 15 grame de zahăr rapid. De exemplu, 3 cuburi de zahăr topite în puțină apă, 120 ml de suc de fructe sau o lingură de miere. Stai liniștit 15 minute, apoi măsoară din nou. Dacă e tot sub 70 mg/dL, mai fă o dată.",
+    },
+    normal: {
+      label: "Normal pe nemâncate",
+      symptoms:
+        "Ai energie la fel toată ziua, te concentrezi bine, nu ești somnoros și nu ți-e sete prea des.",
+      guidance:
+        "Pe nemâncate, normal e între 70 și 99 mg/dL. După masă, normal e sub 140 mg/dL.",
+    },
+    prediabetes: {
+      label: "Prediabet",
+      symptoms:
+        "De multe ori nu simți nimic. Poți fi puțin obosit după mese mari sau te poți îngrășa pe burtă.",
+      guidance:
+        "Pe nemâncate, între 100 și 125 mg/dL, corpul răspunde mai slab la insulină. Vestea bună: poți întoarce asta dacă mănânci echilibrat și te miști zilnic.",
+    },
+    diabetes: {
+      label: "Valoare de diabet (zahăr mare)",
+      symptoms:
+        "Sete mare și gură uscată, urinezi des, ești mereu obosit, zgârieturile se vindecă greu.",
+      guidance:
+        "Mergi la medic și cere analiza HbA1c dacă ai 126 mg/dL sau mai mult pe nemâncate, la 2 măsurări diferite. La fel dacă după masă ai peste 140 mg/dL.",
+    },
+    severe_hyper: {
+      label: "Zahăr foarte mare (urgență)",
+      symptoms:
+        "Gură foarte uscată, greață, vărsături, respirație rapidă cu miros dulce, ca de mere sau de acetonă, somnolență, nu mai gândești limpede.",
+      guidance:
+        "Valoarea e atât de mare încât rinichii nu mai fac față. E nevoie urgent de medic, ca să nu apară cetoacidoza sau coma diabetică.",
+      emergencyRule:
+        "Verifică dacă omul e treaz și răspunde. Dă-i să bea apă simplă, fără zahăr. Sună imediat la 112 dacă e confuz, foarte somnoros sau leșină.",
+    },
+  },
+  en: {
+    hypo: {
+      label: "Blood sugar too low (hypoglycemia)",
+      symptoms:
+        "Shaky hands, cold sweat, dizziness, a pounding heart, strong hunger, confusion or double vision.",
+      guidance:
+        "Your brain does not have enough sugar to work well. Take sugar right now.",
+      emergencyRule:
+        "The 15/15 rule: eat or drink 15 grams of fast sugar now. For example, 3 sugar cubes dissolved in a little water, 120 ml of fruit juice or 1 tablespoon of honey. Rest for 15 minutes, then measure again. If it is still under 70 mg/dL, do it again.",
+    },
+    normal: {
+      label: "Normal before eating",
+      symptoms:
+        "Steady energy all day, clear focus, no sleepiness and no unusual thirst.",
+      guidance:
+        "Before eating, normal is 70–99 mg/dL. After a meal, normal is under 140 mg/dL.",
+    },
+    prediabetes: {
+      label: "Prediabetes",
+      symptoms:
+        "Often you feel nothing. You may feel a bit tired after big meals or put on weight around the belly.",
+      guidance:
+        "Before eating, 100 to 125 mg/dL means your body responds less to insulin. The good news: you can turn this around by eating well and moving every day.",
+    },
+    diabetes: {
+      label: "Diabetes range (high blood sugar)",
+      symptoms:
+        "Strong thirst and dry mouth, peeing often, always tired, scratches that heal slowly.",
+      guidance:
+        "See a doctor and ask for an HbA1c test if you have 126 mg/dL or more before eating, on 2 different tests. Do the same if you are over 140 mg/dL after meals.",
+    },
+    severe_hyper: {
+      label: "Very high blood sugar (emergency)",
+      symptoms:
+        "Very dry mouth, nausea, vomiting, fast breathing with a sweet, fruity or nail-polish smell, sleepiness and confusion.",
+      guidance:
+        "The level is so high that the kidneys cannot cope. You need a doctor urgently to prevent ketoacidosis or a diabetic coma.",
+      emergencyRule:
+        "Check that the person is awake and answers. Give plain water with no sugar. Call 112 at once if they are confused, very sleepy or pass out.",
+    },
+  },
+  sq: {
+    hypo: {
+      label: "Sheqer shumë i ulët (hipoglicemi)",
+      symptoms:
+        "Dridhje në duar, djersë e ftohtë, marramendje, zemra rreh fort, uri e madhe, ngatërrim ose shikim i dyfishtë.",
+      guidance:
+        "Truri nuk ka sheqer të mjaftueshëm për të punuar mirë. Merr sheqer menjëherë.",
+      emergencyRule:
+        "Rregulli 15/15: ha ose pi tani 15 gramë sheqer të shpejtë. Për shembull, 3 kube sheqer të tretura në pak ujë, 120 ml lëng frutash ose 1 lugë mjaltë. Pusho 15 minuta, pastaj mate përsëri. Nëse është ende nën 70 mg/dL, përsërite.",
+    },
+    normal: {
+      label: "Normal pa ngrënë",
+      symptoms:
+        "Energji e njëjtë gjithë ditën, përqendrim i mirë, pa përgjumje dhe pa etje të tepërt.",
+      guidance:
+        "Pa ngrënë, normale është 70–99 mg/dL. Pas ngrënies, normale është nën 140 mg/dL.",
+    },
+    prediabetes: {
+      label: "Prediabet",
+      symptoms:
+        "Shpesh nuk ndien asgjë. Mund të lodhesh pak pas vakteve të mëdha ose të shtosh peshë rreth barkut.",
+      guidance:
+        "Pa ngrënë, 100 deri 125 mg/dL do të thotë që trupi reagon më pak ndaj insulinës. Lajmi i mirë: mund ta kthesh mbrapsht me ushqim të balancuar dhe lëvizje çdo ditë.",
+    },
+    diabetes: {
+      label: "Vlerë diabeti (sheqer i lartë)",
+      symptoms:
+        "Etje e madhe dhe gojë e thatë, urinon shpesh, je gjithmonë i lodhur, gërvishtjet shërohen ngadalë.",
+      guidance:
+        "Shko te mjeku dhe kërko analizën HbA1c nëse ke 126 mg/dL ose më shumë pa ngrënë, në 2 matje të ndryshme. Po ashtu nëse pas ngrënies ke mbi 140 mg/dL.",
+    },
+    severe_hyper: {
+      label: "Sheqer shumë i lartë (urgjencë)",
+      symptoms:
+        "Gojë shumë e thatë, të përziera, të vjella, frymëmarrje e shpejtë me erë të ëmbël si mollë ose aceton, përgjumje dhe ngatërrim.",
+      guidance:
+        "Vlera është aq e lartë sa veshkat nuk e përballojnë. Duhet mjek urgjentisht, që të mos vijë ketoacidoza ose koma diabetike.",
+      emergencyRule:
+        "Shiko nëse personi është zgjuar dhe përgjigjet. Jepi të pijë ujë të thjeshtë, pa sheqer. Telefono menjëherë 112 nëse ngatërrohet, është shumë i përgjumur ose humb ndjenjat.",
+    },
+  },
+  it: {
+    hypo: {
+      label: "Glicemia troppo bassa (ipoglicemia)",
+      symptoms:
+        "Mani che tremano, sudore freddo, capogiri, cuore che batte forte, molta fame, confusione o vista doppia.",
+      guidance:
+        "Il cervello non ha abbastanza zucchero per funzionare bene. Prendi zucchero subito.",
+      emergencyRule:
+        "La regola 15/15: mangia o bevi subito 15 grammi di zucchero rapido. Per esempio 3 zollette sciolte in poca acqua, 120 ml di succo di frutta o 1 cucchiaio di miele. Riposa 15 minuti, poi misura di nuovo. Se è ancora sotto 70 mg/dL, ripeti.",
+    },
+    normal: {
+      label: "Normale a digiuno",
+      symptoms:
+        "Energia costante tutto il giorno, buona concentrazione, niente sonnolenza e niente sete insolita.",
+      guidance:
+        "A digiuno, il normale è 70–99 mg/dL. Dopo i pasti, il normale è sotto 140 mg/dL.",
+    },
+    prediabetes: {
+      label: "Prediabete",
+      symptoms:
+        "Spesso non senti niente. Puoi sentirti un po' stanco dopo pasti abbondanti o ingrassare sulla pancia.",
+      guidance:
+        "A digiuno, tra 100 e 125 mg/dL il corpo risponde meno all'insulina. La buona notizia: puoi tornare indietro mangiando in modo equilibrato e camminando ogni giorno.",
+    },
+    diabetes: {
+      label: "Valore da diabete (glicemia alta)",
+      symptoms:
+        "Molta sete e bocca secca, urini spesso, sei sempre stanco, i graffi guariscono lentamente.",
+      guidance:
+        "Vai dal medico e chiedi l'esame HbA1c se hai 126 mg/dL o più a digiuno, in 2 misurazioni diverse. Fai lo stesso se dopo i pasti superi 140 mg/dL.",
+    },
+    severe_hyper: {
+      label: "Glicemia molto alta (emergenza)",
+      symptoms:
+        "Bocca molto secca, nausea, vomito, respiro veloce con odore dolce di frutta o di acetone, sonnolenza e confusione.",
+      guidance:
+        "Il valore è così alto che i reni non ce la fanno. Serve subito un medico, per evitare la chetoacidosi o il coma diabetico.",
+      emergencyRule:
+        "Controlla che la persona sia sveglia e risponda. Dalle solo acqua naturale, senza zucchero. Chiama subito il 112 se è confusa, molto assonnata o perde i sensi.",
+    },
+  },
+};
+
+function getBloodSugarInterpretation(value: number, lang: Lang = "ro"): BloodSugarInterpretation {
+  const t = TIER_TRANSLATIONS[lang] || TIER_TRANSLATIONS.ro;
+
+  if (value < 70) {
+    return {
+      category: "hypo",
+      label: t.hypo.label,
+      toneClass: "border-primary/40 bg-primary-soft",
+      badgeClass: "bg-primary text-white",
+      symptoms: t.hypo.symptoms,
+      guidance: t.hypo.guidance,
+      emergencyRule: t.hypo.emergencyRule,
+    };
+  }
+
+  if (value <= 99) {
+    return {
+      category: "normal",
+      label: t.normal.label,
+      toneClass: "border-live-sage/40 bg-live-sage-soft/30",
+      badgeClass: "bg-live-sage text-white",
+      symptoms: t.normal.symptoms,
+      guidance: t.normal.guidance,
+    };
+  }
+
+  if (value <= 125) {
+    return {
+      category: "prediabetes",
+      label: t.prediabetes.label,
+      toneClass: "border-amber-care-border bg-amber-care-soft/40",
+      badgeClass: "bg-amber-care text-white",
+      symptoms: t.prediabetes.symptoms,
+      guidance: t.prediabetes.guidance,
+    };
+  }
+
+  if (value < 200) {
+    return {
+      category: "diabetes",
+      label: t.diabetes.label,
+      toneClass: "border-sapphire-border bg-sapphire-soft/50",
+      badgeClass: "bg-sapphire text-white",
+      symptoms: t.diabetes.symptoms,
+      guidance: t.diabetes.guidance,
+    };
+  }
+
+  return {
+    category: "severe_hyper",
+    label: t.severe_hyper.label,
+    toneClass: "border-primary/50 bg-primary-soft",
+    badgeClass: "bg-primary text-white",
+    symptoms: t.severe_hyper.symptoms,
+    guidance: t.severe_hyper.guidance,
+    emergencyRule: t.severe_hyper.emergencyRule,
+  };
+}
+
+// Cubic spline interpolation for continuous 0–240 min scrubbing
+function interpolateSpline(points: number[], minute: number): number {
+  const clampedMinute = Math.max(0, Math.min(240, minute));
+  const segmentDuration = 60; // 4 segments of 60 mins: 0-60, 60-120, 120-180, 180-240
+  const index = Math.floor(clampedMinute / segmentDuration);
+  const t = (clampedMinute - index * segmentDuration) / segmentDuration;
+
+  if (index >= points.length - 1) {
+    return points[points.length - 1];
+  }
+
+  const p0 = points[Math.max(0, index - 1)];
+  const p1 = points[index];
+  const p2 = points[index + 1];
+  const p3 = points[Math.min(points.length - 1, index + 2)];
+
+  // Catmull-Rom spline formulation
+  const t2 = t * t;
+  const t3 = t2 * t;
+
+  const interpolated =
+    0.5 *
+    (2 * p1 +
+      (-p0 + p2) * t +
+      (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
+      (-p0 + 3 * p1 - 3 * p2 + p3) * t3);
+
+  return Math.round(interpolated);
+}
+
+function useSafeLanguage(propLang?: Lang): Lang {
+  const ctx = useContext(LanguageContext);
+  if (propLang && UI_STRINGS[propLang]) return propLang;
+  if (ctx?.lang && UI_STRINGS[ctx.lang]) return ctx.lang;
+  return "ro";
+}
+
+/** Zone strip under the slider: [from, to) in mg/dL and its colour. */
+const SLIDER_MIN = 50;
+const SLIDER_MAX = 300;
+const ZONE_TICKS = [70, 100, 126, 200];
+const pct = (v: number) => ((v - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) * 100;
+
+export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleProps) {
+  // HOOK ORDER IS CONTRACTUALLY PRESERVED FOR EMPIRICAL STRESS TESTS:
+  // Hook 0: activeScenarioId
+  // Hook 1: sliderValue
+  // Hook 2: scrubbedMinute
+  const [activeScenarioId, setActiveScenarioId] = useState<ScenarioId>("balanced_meal");
+  const [sliderValue, setSliderValue] = useState<number>(105);
+  const [scrubbedMinute, setScrubbedMinute] = useState<number>(60);
+  const chartContainerRef = useRef<HTMLDivElement | null>(null);
+  const [svgWidth, setSvgWidth] = useState<number>(620);
+
+  useEffect(() => {
+    const el = chartContainerRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(([entry]) => {
+      const next = Math.round(entry.contentRect.width);
+      if (next > 0) setSvgWidth(next);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const activeLang = useSafeLanguage(propLang);
+  const ui = UI_STRINGS[activeLang] || UI_STRINGS.ro;
+  const scenarioLocales = SCENARIO_TRANSLATIONS[activeLang] || SCENARIO_TRANSLATIONS.ro;
+
+  const activeScenarioBase =
+    SCENARIOS_BASE.find((item) => item.id === activeScenarioId) ?? SCENARIOS_BASE[2];
+  const activeScenarioLocale = scenarioLocales[activeScenarioId] || scenarioLocales.balanced_meal;
+  const activeScenario = { ...activeScenarioBase, ...activeScenarioLocale };
+
+  const interpretation = getBloodSugarInterpretation(sliderValue, activeLang);
+
+  const scrubbedGlucose = interpolateSpline(activeScenarioBase.points, scrubbedMinute);
+
+  const currentPhase =
+    scrubbedMinute <= 15
+      ? ui.phases.ingestion
+      : scrubbedMinute <= 45
+      ? ui.phases.influx
+      : scrubbedMinute <= 75
+      ? ui.phases.peak
+      : scrubbedMinute <= 120
+      ? ui.phases.uptake
+      : ui.phases.homeostasis;
+
+  // Chart geometry (CSS px). Narrow screens get a little less side padding.
+  const svgHeight = 260;
+  const compact = svgWidth < 480;
+  const paddingLeft = compact ? 40 : 56;
+  const paddingRight = compact ? 16 : 24;
+  const paddingTop = 28;
+  const paddingBottom = 42;
+  const chartWidth = svgWidth - paddingLeft - paddingRight;
+  const chartHeight = svgHeight - paddingTop - paddingBottom;
+
+  // Y-axis: 40 to 220 mg/dL
+  const minY = 40;
+  const maxY = 220;
+  const scaleY = (val: number) => {
+    const clamped = Math.max(minY, Math.min(maxY, val));
+    return paddingTop + chartHeight - ((clamped - minY) / (maxY - minY)) * chartHeight;
+  };
+
+  // X-axis: 0 to 4 hours (5 points)
+  const timeLabels = ui.timeLabels;
+  const scaleX = (index: number) => paddingLeft + (index / (timeLabels.length - 1)) * chartWidth;
+
+  const coords = activeScenario.points.map((val, idx) => ({ x: scaleX(idx), y: scaleY(val) }));
+
+  const buildSmoothPath = (pts: { x: number; y: number }[]) => {
+    if (pts.length === 0) return "";
+    let d = `M ${pts[0].x} ${pts[0].y}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i];
+      const p1 = pts[i + 1];
+      const midX = (p0.x + p1.x) / 2;
+      d += ` C ${midX} ${p0.y}, ${midX} ${p1.y}, ${p1.x} ${p1.y}`;
+    }
+    return d;
+  };
+
+  const linePath = buildSmoothPath(coords);
+  const areaPath = `${linePath} L ${coords[coords.length - 1].x} ${paddingTop + chartHeight} L ${coords[0].x} ${paddingTop + chartHeight} Z`;
+
+  const scrubX = paddingLeft + (scrubbedMinute / 240) * chartWidth;
+  const scrubY = scaleY(scrubbedGlucose);
+
+  const stepButtonClass =
+    "min-h-[44px] min-w-[44px] rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire";
+
+  return (
+    <section
+      aria-label={ui.moduleAriaLabel}
+      className="space-y-8 rounded-lg border border-border bg-card p-5 shadow-xs sm:p-7"
+    >
+      <header className="space-y-2">
+        <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{ui.title}</h3>
+        <p className="max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-base">{ui.description}</p>
+      </header>
+
+      {/* Part 1: curves by scenario */}
+      <div className="space-y-5 border-t border-border pt-6">
+        <div>
+          <h4 className="text-base font-semibold text-foreground sm:text-lg">{ui.chartSectionTitle}</h4>
+          <p className="mt-0.5 text-sm text-muted-foreground">{ui.chartSectionSubtitle}</p>
+        </div>
+
+        <div
+          role="tablist"
+          aria-label={ui.scenarioSelectAria}
+          className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
+        >
+          {SCENARIOS_BASE.map((sc) => {
+            const isSelected = sc.id === activeScenarioId;
+            const loc = scenarioLocales[sc.id] || scenarioLocales.balanced_meal;
+            return (
+              <button
+                key={sc.id}
+                type="button"
+                role="tab"
+                id={`scenario-tab-${sc.id}`}
+                aria-selected={isSelected}
+                aria-controls="glucose-curve-display"
+                onClick={() => setActiveScenarioId(sc.id)}
+                className={`flex min-h-[60px] flex-col justify-center rounded-lg border px-4 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                  isSelected
+                    ? "border-foreground bg-surface-subtle"
+                    : "border-border bg-card hover:border-foreground/30 hover:bg-surface-subtle/50"
+                }`}
+              >
+                <span className="text-sm font-semibold leading-snug text-foreground">{loc.title}</span>
+                <span className="mt-1 text-xs tabular-nums text-muted-foreground">
+                  {ui.peakLabel} {sc.peakMgDl} mg/dL
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div
+          id="glucose-curve-display"
+          role="region"
+          aria-label={ui.chartAria.replace("{scenario}", activeScenario.title)}
+          className="space-y-5 pt-1"
+        >
+          <div ref={chartContainerRef} className="w-full rounded-lg border border-border bg-surface-subtle/30 p-3 sm:p-4">
+            <svg
+              viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+              width="100%"
+              height={svgHeight}
+              className="block select-none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id={`areaGrad-${activeScenario.id}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor={activeScenario.strokeColor} stopOpacity="0.16" />
+                  <stop offset="100%" stopColor={activeScenario.strokeColor} stopOpacity="0" />
+                </linearGradient>
+              </defs>
+
+              {/* Healthy after-meal range: 70 to 140 mg/dL */}
+              <rect
+                x={paddingLeft}
+                y={scaleY(140)}
+                width={chartWidth}
+                height={scaleY(70) - scaleY(140)}
+                fill="var(--color-live-sage-soft)"
+              />
+
+              {[60, 100, 140, 180, 220].map((val) => {
+                const y = scaleY(val);
+                const isAlertLine = val === 180;
+                return (
+                  <g key={val}>
+                    <line
+                      x1={paddingLeft}
+                      y1={y}
+                      x2={paddingLeft + chartWidth}
+                      y2={y}
+                      stroke={isAlertLine ? "var(--color-ruby-300)" : "var(--color-border)"}
+                      strokeDasharray={isAlertLine ? "4 4" : undefined}
+                      strokeWidth={1}
+                    />
+                    <text
+                      x={paddingLeft - 8}
+                      y={y + 4}
+                      textAnchor="end"
+                      fontSize="11"
+                      fill="var(--color-muted-foreground)"
+                      style={{ fontVariantNumeric: "tabular-nums" }}
+                    >
+                      {val}
+                    </text>
+                  </g>
+                );
+              })}
+
+              {timeLabels.map((lbl, idx) => {
+                const x = scaleX(idx);
+                const anchor = idx === 0 ? "start" : idx === timeLabels.length - 1 ? "end" : "middle";
+                return (
+                  <g key={lbl}>
+                    <line
+                      x1={x}
+                      y1={paddingTop + chartHeight}
+                      x2={x}
+                      y2={paddingTop + chartHeight + 5}
+                      stroke="var(--color-muted-foreground)"
+                      strokeWidth={1}
+                    />
+                    <text
+                      x={idx === 0 ? x - 4 : idx === timeLabels.length - 1 ? x + 2 : x}
+                      y={paddingTop + chartHeight + 20}
+                      textAnchor={anchor}
+                      fontSize="12"
+                      fill="var(--color-foreground)"
+                    >
+                      {compact ? lbl.replace(/\s*\(.*\)$/, "") : lbl}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <path d={areaPath} fill={`url(#areaGrad-${activeScenario.id})`} />
+
+              <path
+                d={linePath}
+                fill="none"
+                stroke={activeScenario.strokeColor}
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+
+              {coords.map((pt, idx) => (
+                <g key={idx}>
+                  <circle cx={pt.x} cy={pt.y} r={4} fill={activeScenario.strokeColor} stroke="var(--color-card)" strokeWidth={2} />
+                  <text
+                    x={pt.x}
+                    y={pt.y - 10}
+                    textAnchor={idx === 0 ? "start" : idx === coords.length - 1 ? "end" : "middle"}
+                    fontSize="12"
+                    fontWeight="600"
+                    fill="var(--color-foreground)"
+                    style={{ fontVariantNumeric: "tabular-nums" }}
+                  >
+                    {activeScenario.points[idx]}
+                  </text>
+                </g>
+              ))}
+
+              {/* Time cursor, driven by the slider below */}
+              <g className="pointer-events-none">
+                <line
+                  x1={scrubX}
+                  y1={paddingTop}
+                  x2={scrubX}
+                  y2={paddingTop + chartHeight}
+                  stroke={activeScenario.strokeColor}
+                  strokeWidth="1"
+                  strokeDasharray="3 3"
+                />
+                <circle cx={scrubX} cy={scrubY} r="6" fill="var(--color-card)" stroke={activeScenario.strokeColor} strokeWidth="2.5" />
+              </g>
+            </svg>
+
+            {/* Legend for the bands drawn on the chart */}
+            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 border-t border-border/60 pt-2.5 text-xs text-muted-foreground">
+              <li className="flex items-center gap-2">
+                <span className="h-2.5 w-3.5 rounded-xs bg-live-sage-soft ring-1 ring-live-sage/30" aria-hidden="true" />
+                {ui.optimalRangeLabel}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-3.5 border-t border-dashed border-primary" aria-hidden="true" />
+                {ui.attentionThresholdLabel}
+              </li>
+            </ul>
+          </div>
+
+          {/* Minute-by-minute cursor */}
+          <div className="space-y-3 border-t border-border pt-5">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <h5 className="text-sm font-semibold text-foreground">{ui.scrubberHeading}</h5>
+                <p className="text-sm text-muted-foreground">{ui.scrubberSubtitle}</p>
+              </div>
+              <p className="shrink-0 text-sm text-muted-foreground" aria-live="polite">
+                {ui.scrubberLabel}{" "}
+                <strong className="font-semibold tabular-nums text-foreground">{scrubbedMinute} min</strong>
+                {" · "}
+                <strong className="font-semibold tabular-nums text-foreground">{scrubbedGlucose} mg/dL</strong>
+              </p>
+            </div>
+
+            <input
+              type="range"
+              min={0}
+              max={240}
+              step={1}
+              value={scrubbedMinute}
+              onChange={(e) => setScrubbedMinute(Number(e.target.value))}
+              aria-label={ui.scrubberHeading}
+              aria-valuetext={`${scrubbedMinute} min, ${scrubbedGlucose} mg/dL`}
+              className="h-2 w-full cursor-pointer accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            />
+            <div className="flex justify-between text-xs tabular-nums text-muted-foreground" aria-hidden="true">
+              <span>0 min</span>
+              <span>1 h</span>
+              <span>2 h</span>
+              <span>3 h</span>
+              <span>4 h</span>
+            </div>
+
+            <p className="text-sm text-foreground">
+              <span className="text-muted-foreground">{ui.scrubberPhaseLabel}</span>{" "}
+              <span className="font-semibold">{currentPhase}</span>
+            </p>
+          </div>
+
+          {/* What this scenario means */}
+          <div className="space-y-3 border-t border-border pt-5">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <span className="text-sm font-semibold text-foreground">
+                {activeScenario.badge}
+              </span>
+              <span className="text-sm text-muted-foreground">
+                {ui.peakEstimated}: <strong>{activeScenario.peakMgDl} mg/dL</strong> {ui.atTime} {activeScenario.peakTime}
+              </span>
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <p className="text-sm leading-relaxed text-foreground">{activeScenario.description}</p>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                <strong className="font-semibold text-foreground">{ui.physioExplanation}:</strong> {activeScenario.clinicalNote}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Part 2: what a single reading means — zero nested cards, zero colored dots */}
+      <div className="space-y-6 border-t border-border pt-6">
+        <div>
+          <h4 className="text-base font-semibold text-foreground sm:text-lg">{ui.simulatorTitle}</h4>
+          <p className="mt-0.5 text-sm text-muted-foreground">{ui.simulatorSubtitle}</p>
+        </div>
+
+        <div className="space-y-5">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <label htmlFor="glucose-level-slider" className="text-sm font-medium text-muted-foreground">
+                {ui.selectedValueLabel}
+              </label>
+              <div className="mt-0.5 flex items-baseline gap-1.5">
+                <span className="text-3xl font-semibold tabular-nums tracking-tight text-foreground">{sliderValue}</span>
+                <span className="text-sm font-medium text-muted-foreground">mg/dL</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => setSliderValue((prev) => Math.max(SLIDER_MIN, prev - 10))}
+                className={stepButtonClass}
+                aria-label={ui.stepMinusAria}
+              >
+                -10
+              </button>
+              <button type="button" onClick={() => setSliderValue(85)} className={stepButtonClass} aria-label={ui.stepNormalAria}>
+                {ui.stepNormalLabel}
+              </button>
+              <button
+                type="button"
+                onClick={() => setSliderValue((prev) => Math.min(SLIDER_MAX, prev + 10))}
+                className={stepButtonClass}
+                aria-label={ui.stepPlusAria}
+              >
+                +10
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <input
+              id="glucose-level-slider"
+              type="range"
+              min={SLIDER_MIN}
+              max={SLIDER_MAX}
+              step={1}
+              value={sliderValue}
+              onChange={(e) => setSliderValue(Number(e.target.value))}
+              aria-valuemin={SLIDER_MIN}
+              aria-valuemax={SLIDER_MAX}
+              aria-valuenow={sliderValue}
+              aria-valuetext={ui.valueText.replace("{value}", String(sliderValue)).replace("{label}", interpretation.label)}
+              className="h-2 w-full cursor-pointer accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            />
+            <div className="relative mt-2 h-4 text-xs tabular-nums text-muted-foreground" aria-hidden="true">
+              <span className="absolute left-0">{SLIDER_MIN}</span>
+              {ZONE_TICKS.map((v) => (
+                <span key={v} className="absolute -translate-x-1/2" style={{ left: `${pct(v)}%` }}>
+                  {v}
+                </span>
+              ))}
+              <span className="absolute right-0">{SLIDER_MAX}</span>
+            </div>
+            <ul className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+              {ui.zoneNames.map((name, i) => (
+                <li key={name} className="flex items-center gap-3">
+                  {i > 0 && <span aria-hidden="true" className="text-border">·</span>}
+                  <span>{name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-4 border-t border-border pt-5" aria-live="polite">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="text-base font-semibold text-foreground">
+                {ui.physioReactionTitle} {sliderValue} mg/dL
+              </span>
+              <span className={`rounded-md border px-2.5 py-1 text-xs font-semibold text-foreground ${interpretation.toneClass}`}>
+                {interpretation.label}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="space-y-1">
+                <h5 className="text-sm font-semibold text-foreground">{ui.symptomsHeading}</h5>
+                <p className="text-sm leading-relaxed text-muted-foreground">{interpretation.symptoms}</p>
+              </div>
+
+              <div className="space-y-1">
+                <h5 className="text-sm font-semibold text-foreground">{ui.guidanceHeading}</h5>
+                <p className="text-sm leading-relaxed text-muted-foreground">{interpretation.guidance}</p>
+              </div>
+            </div>
+
+            {/* 15/15 rule for hypoglycaemia, 112 for severe hyperglycaemia */}
+            {interpretation.emergencyRule && (
+              <div className="space-y-1.5 border-t border-border pt-4">
+                <div className="flex items-center gap-2 text-sm font-semibold text-primary">
+                  <AlertCircleIcon className="h-4 w-4 shrink-0" />
+                  {ui.emergencyActionHeading}
+                </div>
+                <p className="text-sm leading-relaxed text-foreground">{interpretation.emergencyRule}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

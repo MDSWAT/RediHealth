@@ -5,7 +5,6 @@ import { captchaErrorMessage, useRecaptcha } from "@/components/security/Recaptc
 import { useMemo, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { AlertCircleIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
 
@@ -25,56 +24,56 @@ type Copy = {
 
 const copyByLang: Record<"en" | "ro" | "sq" | "it", Copy> = {
   en: {
-    title: "Report an issue",
-    subtitle: "Tell us what happened and we will send it to our team for investigation.",
+    title: "Report a problem",
+    subtitle: "Tell us what went wrong. Our team will look at it.",
     emailLabel: "Your email (optional)",
     emailPlaceholder: "you@example.com",
-    issueLabel: "Issue details",
-    issuePlaceholder: "Describe what happened, what you expected, and what happened instead.",
+    issueLabel: "What happened?",
+    issuePlaceholder: "What did you want to do, and what happened instead?",
     send: "Send report",
-    sending: "Sending...",
-    success: "Thanks. Your issue was sent successfully.",
-    genericError: "We could not send your issue. Please try again.",
-    detailError: "Please include at least 10 characters so we can investigate.",
+    sending: "Sending…",
+    success: "Thank you. Your report has been sent.",
+    genericError: "The report was not sent. Try again.",
+    detailError: "Write at least 10 characters so we understand the problem.",
   },
   ro: {
     title: "Raportează o problemă",
-    subtitle: "Spune-ne ce s-a întâmplat și vom trimite sesizarea echipei noastre pentru investigație.",
+    subtitle: "Spune-ne ce n-a mers. Echipa noastră se uită.",
     emailLabel: "Emailul tău (opțional)",
     emailPlaceholder: "tu@exemplu.com",
-    issueLabel: "Detalii problemă",
-    issuePlaceholder: "Descrie ce s-a întâmplat, ce te așteptai și ce s-a întâmplat în schimb.",
+    issueLabel: "Ce s-a întâmplat?",
+    issuePlaceholder: "Ce voiai să faci și ce s-a întâmplat de fapt?",
     send: "Trimite raportul",
-    sending: "Se trimite...",
-    success: "Mulțumim. Problema a fost trimisă cu succes.",
-    genericError: "Nu am putut trimite problema. Te rugăm să încerci din nou.",
-    detailError: "Te rugăm să scrii cel puțin 10 caractere pentru a putea investiga.",
+    sending: "Se trimite…",
+    success: "Mulțumim. Raportul tău a fost trimis.",
+    genericError: "Raportul nu s-a trimis. Încearcă din nou.",
+    detailError: "Scrie cel puțin 10 caractere, ca să înțelegem problema.",
   },
   sq: {
     title: "Raporto një problem",
-    subtitle: "Na tregoni çfarë ndodhi dhe ne do t'ia dërgojmë ekipit për hetim.",
-    emailLabel: "Emaili juaj (opsional)",
-    emailPlaceholder: "ju@shembull.com",
-    issueLabel: "Detajet e problemit",
-    issuePlaceholder: "Përshkruani çfarë ndodhi, çfarë prisnit dhe çfarë ndodhi në vend të kësaj.",
+    subtitle: "Na trego çfarë nuk funksionoi. Ekipi ynë do ta shohë.",
+    emailLabel: "Emaili yt (nuk është i detyrueshëm)",
+    emailPlaceholder: "ti@shembull.com",
+    issueLabel: "Çfarë ndodhi?",
+    issuePlaceholder: "Çfarë doje të bëje dhe çfarë ndodhi në fakt?",
     send: "Dërgo raportin",
-    sending: "Duke u dërguar...",
-    success: "Faleminderit. Problemi u dërgua me sukses.",
-    genericError: "Nuk mundëm ta dërgojmë problemin. Ju lutemi provoni përsëri.",
-    detailError: "Ju lutemi shkruani të paktën 10 karaktere që të mund të hetojmë.",
+    sending: "Po dërgohet…",
+    success: "Faleminderit. Raporti yt u dërgua.",
+    genericError: "Raporti nuk u dërgua. Provo përsëri.",
+    detailError: "Shkruaj të paktën 10 shkronja, që ta kuptojmë problemin.",
   },
   it: {
     title: "Segnala un problema",
-    subtitle: "Raccontaci cosa è successo e lo invieremo al nostro team per la verifica.",
-    emailLabel: "La tua email (opzionale)",
+    subtitle: "Dicci cosa non ha funzionato. Il nostro team lo controlla.",
+    emailLabel: "La tua email (facoltativa)",
     emailPlaceholder: "tu@esempio.com",
-    issueLabel: "Dettagli del problema",
-    issuePlaceholder: "Descrivi cosa è successo, cosa ti aspettavi e cosa è successo invece.",
+    issueLabel: "Cosa è successo?",
+    issuePlaceholder: "Cosa volevi fare e cosa è successo invece?",
     send: "Invia segnalazione",
-    sending: "Invio in corso...",
-    success: "Grazie. La segnalazione è stata inviata con successo.",
-    genericError: "Non siamo riusciti a inviare la segnalazione. Riprova.",
-    detailError: "Inserisci almeno 10 caratteri per consentirci di verificare.",
+    sending: "Invio in corso…",
+    success: "Grazie. La segnalazione è stata inviata.",
+    genericError: "La segnalazione non è stata inviata. Riprova.",
+    detailError: "Scrivi almeno 10 caratteri, così capiamo il problema.",
   },
 };
 
@@ -113,9 +112,9 @@ export function ReportIssuePageContent() {
         }),
       });
 
-      const data = (await response.json().catch(() => ({}))) as { error?: string };
       if (!response.ok) {
-        setError(data.error || t.genericError);
+        // Server messages are English-only; keep the reader's language.
+        setError(t.genericError);
         return;
       }
 
@@ -131,32 +130,32 @@ export function ReportIssuePageContent() {
 
   return (
     <main id="main-content" className="flex-1">
-      <section className="border-b border-border bg-muted/40 py-16 sm:py-20">
+      <section className="border-b border-border bg-muted/40 py-10 sm:py-14">
         <Container>
-          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary">
-            <AlertCircleIcon className="h-6 w-6" />
-          </span>
-          <SectionHeading as="h1" className="mt-5 max-w-none" title={t.title} subtitle={t.subtitle} />
+          <SectionHeading as="h1" title={t.title} subtitle={t.subtitle} />
         </Container>
       </section>
 
-      <section className="py-12 sm:py-16">
+      <section className="py-10 sm:py-14">
         <Container>
           <form onSubmit={onSubmit} className="mx-auto max-w-2xl space-y-5 rounded-2xl border border-border bg-card p-5 sm:p-6">
             <div>
-              <label className="mb-1 block text-xs font-semibold text-foreground">{t.emailLabel}</label>
+              <label htmlFor="report-email" className="mb-1.5 block text-sm font-semibold text-foreground">{t.emailLabel}</label>
               <input
+                id="report-email"
                 type="email"
+                autoComplete="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder={t.emailPlaceholder}
-                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="min-h-11 w-full rounded-xl border border-border bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
               />
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-semibold text-foreground">{t.issueLabel}</label>
+              <label htmlFor="report-message" className="mb-1.5 block text-sm font-semibold text-foreground">{t.issueLabel}</label>
               <textarea
+                id="report-message"
                 required
                 minLength={10}
                 rows={8}
@@ -167,8 +166,16 @@ export function ReportIssuePageContent() {
               />
             </div>
 
-            {error ? <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p> : null}
-            {success ? <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">{success}</p> : null}
+            {error ? (
+              <p role="alert" className="fhs-fade rounded-xl border border-primary/20 bg-primary-soft px-3 py-2 text-sm text-foreground">
+                {error}
+              </p>
+            ) : null}
+            {success ? (
+              <p role="status" className="fhs-fade rounded-xl border border-border bg-muted/60 px-3 py-2 text-sm text-foreground">
+                {success}
+              </p>
+            ) : null}
 
             <div className="flex justify-end">
               <Button type="submit" disabled={isSubmitting}>

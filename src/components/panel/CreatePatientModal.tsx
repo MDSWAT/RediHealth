@@ -67,8 +67,8 @@ export function CreatePatientModal({
   const [conditionNotes, setConditionNotes] = useState(
     patient?.condition_notes ||
       (request
-        ? `Request: ${request.description}${
-            request.internal_notes ? `\n\nNotes: ${request.internal_notes}` : ""
+        ? `${t.prefillRequest}: ${request.description}${
+            request.internal_notes ? `\n\n${t.prefillNotes}: ${request.internal_notes}` : ""
           }`
         : ""),
   );
@@ -304,7 +304,7 @@ export function CreatePatientModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-0 sm:p-4 backdrop-blur-xs">
+    <div className="panel-scrim fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-0 sm:p-4">
       <div
         ref={dialogRef}
         role="dialog"
@@ -358,8 +358,8 @@ export function CreatePatientModal({
         ) : null}
 
         {saveSuccess ? (
-          <div className="mt-4 flex items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs font-medium text-emerald-700 dark:text-emerald-400">
-            <CheckCircleIcon className="h-4 w-4" />
+          <div className="mt-4 flex items-center gap-2 rounded-xl bg-sapphire-soft/60 border border-sapphire/20 p-3 text-xs font-medium text-sapphire dark:text-blue-300">
+            <CheckCircleIcon className="h-4 w-4 text-sapphire" />
             <span>
               {isEditing
                 ? t.successEdit
@@ -555,7 +555,7 @@ export function CreatePatientModal({
             <section aria-labelledby={`${formId}-team`} className="space-y-4 rounded-2xl border border-border p-4 sm:p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0 flex-1"><h4 id={`${formId}-team`} className="font-semibold">{wizard.team}</h4><p className="mt-1 text-xs leading-relaxed text-muted-foreground">{wizard.teamHint}</p></div>
-                  <span aria-live="polite" className="shrink-0 rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">{assignedWorkerIds.length} {crm.selected}</span>
+                  <span aria-live="polite" className="shrink-0 rounded-md bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">{assignedWorkerIds.length} {crm.selected}</span>
                 </div>
                 {assignedWorkerIds.length > 0 ? (
                   <div className="flex flex-wrap gap-2 rounded-xl bg-muted/50 p-3">

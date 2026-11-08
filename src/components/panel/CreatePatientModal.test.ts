@@ -7,15 +7,22 @@ vi.mock("@/lib/i18n/language-context", () => ({ useLanguage: () => ({ lang: "ro"
 
 import { CreatePatientModal } from "./CreatePatientModal";
 import type { PatientItem } from "@/lib/types/patient";
+import { patientWizardTranslations } from "@/lib/i18n/patient-wizard-translations";
+import { patientIntakeTranslations } from "@/lib/i18n/patient-intake-translations";
+import { crmTranslations } from "@/lib/i18n/crm-translations";
+
+// Copy is asserted through the translation files so wording edits do not break layout tests.
+const wizard = patientWizardTranslations.ro;
+const intake = patientIntakeTranslations.ro;
 
 describe("patient intake form layout", () => {
   it("starts creation at contact details, keeps later steps mounted but hidden and uses Continue before saving", () => {
     const html = renderToStaticMarkup(createElement(CreatePatientModal, { isRomania: true, onClose: vi.fn() }));
-    expect(html).toContain('aria-label="Progresul adăugării pacientului"');
+    expect(html).toContain(`aria-label="${wizard.progress}"`);
     expect(html).toContain('aria-current="step"');
-    expect(html).toContain("Îngrijire și documente");
-    expect(html).toContain("Verificare");
-    expect(html).toContain("Continuă");
+    expect(html).toContain(wizard.steps[1]);
+    expect(html).toContain(wizard.steps[2]);
+    expect(html).toContain(wizard.next);
     expect(html).toContain("noValidate");
     expect(html).toContain('data-patient-contact="true"');
     expect(html).toContain('hidden="" class="space-y-5"');
@@ -28,8 +35,8 @@ describe("patient intake form layout", () => {
     expect(html).toContain(`form="${formId}"`);
     expect(html).toContain("h-dvh");
     expect(html).toContain("overflow-y-auto overscroll-contain");
-    expect(html).toContain("Pacientul are documente");
-    expect(html).toContain("Folosește locația curentă");
+    expect(html).toContain(intake.hasDocuments);
+    expect(html).toContain(intake.useGps);
     expect(html).not.toContain('type="file"');
   });
 
@@ -42,10 +49,10 @@ describe("patient intake form layout", () => {
     const html = renderToStaticMarkup(createElement(CreatePatientModal, { patient, isRomania: true, onClose: vi.fn() }));
     expect(html).toContain('type="file"');
     expect(html).toContain("identity.pdf");
-    expect(html).toContain("Document de identitate");
+    expect(html).toContain(intake.identity);
     expect(html).toContain("0.000000");
-    expect(html).toContain("Precizie");
-    expect(html).not.toContain('aria-label="Progresul adăugării pacientului"');
+    expect(html).toContain(intake.accuracy);
+    expect(html).not.toContain(`aria-label="${wizard.progress}"`);
     expect(html).not.toContain("noValidate");
   });
 
@@ -64,13 +71,13 @@ describe("patient intake form layout", () => {
     expect(html).toContain("Synthetic care need");
     expect(html).toContain("Synthetic Doctor");
     expect(html).toContain('type="search"');
-    expect(html).toContain("Echipa de îngrijire");
-    expect(html).toContain("Informații personale");
-    expect(html).toContain("Setări de îngrijire");
+    expect(html).toContain(wizard.team);
+    expect(html).toContain(wizard.personal);
+    expect(html).toContain(wizard.care);
     expect(html).not.toContain("<details");
     expect(html).not.toContain("Selectează vizibili");
     expect(html).not.toContain("Arată doar selectați");
-    expect(html).toContain("Continuă");
+    expect(html).toContain(wizard.next);
   });
 
   it("shows every selected team member with an accessible remove action and keeps assignments admin-only", () => {
@@ -86,12 +93,12 @@ describe("patient intake form layout", () => {
     const props = { patient, workers, isRomania: true, onClose: vi.fn() };
     const html = renderToStaticMarkup(createElement(CreatePatientModal, { ...props, isAdmin: true }));
     for (const worker of workers) {
-      expect(html).toContain(`aria-label="Elimină selecția: ${worker.full_name}"`);
+      expect(html).toContain(`aria-label="${crmTranslations.ro.removeSelection}: ${worker.full_name}"`);
     }
     expect(html).toContain("Doctor · Cluj");
     expect(html).toContain('aria-live="polite"');
     const staffHtml = renderToStaticMarkup(createElement(CreatePatientModal, props));
     expect(staffHtml).not.toContain('type="search"');
-    expect(staffHtml).not.toContain("Echipa de îngrijire");
+    expect(staffHtml).not.toContain(wizard.team);
   });
 });

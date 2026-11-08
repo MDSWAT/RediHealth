@@ -83,7 +83,7 @@ export function PatientPrintReport({
         </div>
 
         <div className="mt-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
+          <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
             {t.s1}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs bg-slate-50 p-4 rounded-xl border border-slate-200">
@@ -109,7 +109,7 @@ export function PatientPrintReport({
             </div>
             <div>
                             <p className="text-slate-500 font-semibold">{t.careStatus}</p>
-                            <p className="font-bold uppercase text-primary">{statusLabel}</p>
+                            <p className="font-bold text-primary capitalize">{statusLabel}</p>
             </div>
             <div className="col-span-2 sm:col-span-3">
                             <p className="text-slate-500 font-semibold">{t.address}</p>
@@ -119,21 +119,21 @@ export function PatientPrintReport({
         </div>
 
         <div className="mt-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
+          <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
             {t.s2}
           </h2>
           <TreatmentPlansView plan={treatmentPlan} />
         </div>
 
         <div className="mt-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
+          <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
             {t.s3}
           </h2>
           {followups.length === 0 ? (
             <p className="text-xs text-slate-500 italic">{t.noFollowups}</p>
           ) : (
             <table className="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden">
-              <thead className="bg-slate-100 text-slate-700 font-bold uppercase text-[10px]">
+              <thead className="bg-slate-100 text-slate-700 font-semibold text-xs">
                 <tr>
                   <th className="p-2 border-b">{t.scheduledDate}</th>
                   <th className="p-2 border-b">{t.goal}</th>
@@ -156,7 +156,7 @@ export function PatientPrintReport({
         </div>
 
         <div className="mt-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
+          <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
             {t.s4}
           </h2>
           <div className="space-y-3 text-xs">
@@ -177,7 +177,7 @@ export function PatientPrintReport({
 
         {photos.length > 0 ? (
           <div className="mt-6">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
+            <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
               {t.s5} ({photos.length})
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">

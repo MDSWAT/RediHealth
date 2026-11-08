@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   const rateLimit = await checkRateLimit(`medical-help-requests:${getClientIp(request)}`, { limit: 5, windowMs: 60_000 });
   if (!rateLimit.allowed) {
     return NextResponse.json(
-      { error: "Too many requests. Please wait a moment and try again." },
+      { error: "Too many requests. Wait a moment and try again." },
       { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
     );
   }
@@ -50,15 +50,15 @@ export async function POST(request: Request) {
   const available = configuredCountries();
   const country = parseCountry(body.country) ?? (available.length === 1 ? available[0] : null);
   if (!country || !available.includes(country)) {
-    return NextResponse.json({ error: "Please choose your country." }, { status: 400 });
+    return NextResponse.json({ error: "Choose your country." }, { status: 400 });
   }
 
   const county = country === "RO" ? text(body.county) : "";
   if (body.privacyConsent !== true) {
-    return NextResponse.json({ error: "Please agree to the Privacy Policy." }, { status: 400 });
+    return NextResponse.json({ error: "Agree to the privacy policy to continue." }, { status: 400 });
   }
   if (country === "RO" && !isRomanianCounty(county)) {
-    return NextResponse.json({ error: "Please choose a valid Romanian county." }, { status: 400 });
+    return NextResponse.json({ error: "Choose a county." }, { status: 400 });
   }
 
   const name = text(body.name);
@@ -68,14 +68,14 @@ export async function POST(request: Request) {
 
   if (!phone || description.length < 10) {
     return NextResponse.json(
-      { error: "Please provide a phone number and description." },
+      { error: "Enter a phone number and describe the problem." },
       { status: 400 },
     );
   }
 
   if (email && !isValidEmail(email)) {
     return NextResponse.json(
-      { error: "Please provide a valid email address or leave it blank." },
+      { error: "Enter a valid email or leave it empty." },
       { status: 400 },
     );
   }
@@ -120,7 +120,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Failed to store medical help request", error);
     return NextResponse.json(
-      { error: "We could not save your request. Please try again." },
+      { error: "Your request was not saved. Try again." },
       { status: 503 },
     );
   }
@@ -360,7 +360,7 @@ export async function DELETE(request: Request) {
   } catch (error) {
     console.error("Failed to delete medical help request", error);
     return NextResponse.json(
-      { error: "We could not delete the request. Please try again." },
+      { error: "Could not delete the request. Try again." },
       { status: 503 },
     );
   }

@@ -6,11 +6,20 @@ import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
 import { GoogleIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import type { Lang } from "@/lib/i18n/translations";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { isValidEmail } from "@/lib/text";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 
 type Stage = "email" | "code";
+
+// The sign-in APIs answer in English; a rate limit gets its own sentence, anything else the form's own message.
+const TOO_MANY: Record<Lang, string> = {
+  ro: "Prea multe încercări. Așteaptă puțin și încearcă din nou.",
+  en: "Too many attempts. Please wait a little and try again.",
+  sq: "Shumë përpjekje. Prit pak dhe provo përsëri.",
+  it: "Troppi tentativi. Attendi un momento e riprova.",
+};
 
 const inputClass =
   "mt-1.5 block h-12 w-full rounded-lg border border-border bg-card px-3.5 text-base text-foreground " +
@@ -61,9 +70,10 @@ export function SignInForm({
         },
         body: JSON.stringify({ email: normalizedEmail, captchaToken }),
       });
-      const result = (await response.json()) as { error?: string };
       if (!response.ok) {
-        setPortalRecoveryError(result.error || form.portalRecoveryError);
+        setPortalRecoveryError(
+          response.status === 429 ? TOO_MANY[lang] : response.status === 400 ? form.emailInvalid : form.portalRecoveryError,
+        );
         return;
       }
       setPortalRecoveryMessage(form.portalRecoverySent);
@@ -90,9 +100,8 @@ export function SignInForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: normalizedEmail, captchaToken }),
       });
-      const result = (await response.json()) as { error?: string };
       if (!response.ok) {
-        setError(result.error || form.genericSendError);
+        setError(response.status === 429 ? TOO_MANY[lang] : response.status === 400 ? form.emailInvalid : form.genericSendError);
         return;
       }
       setStage("code");
@@ -133,7 +142,7 @@ export function SignInForm({
   }
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-8 sm:p-10">
+    <div className="rounded-2xl border border-border bg-card p-6 sm:p-10">
       {stage === "email" ? (
         <form
           onSubmit={(event) => {
@@ -159,7 +168,7 @@ export function SignInForm({
             placeholder={form.emailPlaceholder}
           />
           {error ? (
-            <p id="email-error" className="mt-2 text-sm text-primary">
+            <p id="email-error" role="alert" className="mt-2 text-sm text-primary">
               {error}
             </p>
           ) : (
@@ -203,7 +212,7 @@ export function SignInForm({
             placeholder="123456"
           />
           {error ? (
-            <p id="code-error" className="mt-2 text-sm text-primary">
+            <p id="code-error" role="alert" className="mt-2 text-sm text-primary">
               {error}
             </p>
           ) : null}

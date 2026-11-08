@@ -1,758 +1,1755 @@
+import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 
-export type PartId = "head" | "chest" | "stomach" | "back" | "arm" | "leg";
-export type Severity = "mild" | "moderate" | "severe";
-export type Duration = "today" | "days" | "weeks";
-export type Urgency = "low" | "medium" | "high";
+export type BodyPartId = "head" | "chest" | "stomach" | "back" | "arm" | "leg";
+export type PartId = BodyPartId;
 
-export type ResultKey =
-  | "head_migraine"
-  | "head_tension"
-  | "head_dehydration"
-  | "head_fever"
-  | "head_sudden_severe"
-  | "head_fever_light"
-  | "chest_warning"
-  | "chest_exertion"
-  | "chest_reflux"
-  | "chest_rest_severe"
-  | "stomach_lower_sharp"
-  | "stomach_upper_reflux"
-  | "stomach_upper_sharp"
-  | "stomach_cramping_fever"
-  | "stomach_cramping_mild"
-  | "stomach_appendicitis"
-  | "stomach_severe_widespread"
-  | "back_strain_lift"
-  | "back_chronic"
-  | "back_fever"
-  | "back_severe_difficulty"
-  | "arm_fracture"
-  | "arm_sprain"
-  | "arm_numbness"
-  | "arm_sudden_swelling"
-  | "leg_fracture"
-  | "leg_sprain"
-  | "leg_numbness"
-  | "leg_sudden_swelling";
+export type SeverityId = "mild" | "moderate" | "severe";
+export type Severity = SeverityId;
 
-export type HealthCheckTranslations = {
-  ui: {
-    tapWhereItHurts: string;
-    chooseBodyArea: string;
-    selectedPrefix: string;
-    tapToBegin: string;
-    front: string;
-    back: string;
-    questionOf: (current: number, total: number) => string;
-    severityQuestion: string;
-    durationQuestion: string;
-    symptomsQuestion: string;
-    backButton: string;
-    next: string;
-    seeResult: string;
-    startOver: string;
-    thingsThatMayHelp: string;
-    disclaimer: string;
-    requestMediatorHelp: string;
+export type DurationId = "today" | "days" | "weeks" | "chronic";
+export type Duration = DurationId;
+
+export type UrgencyLevel = "low" | "medium" | "high";
+export type Urgency = UrgencyLevel;
+
+export interface SymptomChoice {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  isRedFlag: boolean;
+  selfCareTip: string;
+  guidance: string;
+}
+
+export interface Viewer3DStrings {
+  ariaLabel: string;
+  loading: string;
+  subModelInfo: string;
+  front: string;
+  back: string;
+  perspective: string;
+  rotate360: string;
+  zoomIn: string;
+  zoomOut: string;
+  resetView: string;
+  tip: string;
+  searchPlaceholder?: string;
+  selected3DStructure?: string;
+  activeAreaPrefix?: string;
+  leftSide?: string;
+  rightSide?: string;
+  selectRegionPrefix?: string;
+  rotateTooltip?: string;
+  layerHybrid?: string;
+  layerMuscular?: string;
+  layerOrgans?: string;
+  layerSurface?: string;
+  legendSkeletalMuscles?: string;
+  legendTendonsJoints?: string;
+  legendInternalOrgans?: string;
+  legendSelectedStructure?: string;
+}
+
+export interface EmergencyStrings {
+  badge: string;
+  title: string;
+  description: string;
+  whyEmergencyPrefix: string;
+  call112Now: string;
+  continueReview: string;
+}
+
+export interface HealthCheckWizardUI {
+  eyebrow: string;
+  heading: string;
+  subtitle: string;
+  resetButton: string;
+  backButton: string;
+  nextButton: string;
+  finishButton: string;
+  stepIndicator: string;
+  step1Title: string;
+  step2Title: string;
+  step3Title: string;
+  step4Title: string;
+  step1Question: string;
+  step1Prompt: string;
+  step2Question: string;
+  step2Prompt: string;
+  urgentBadge: string;
+  step3Question: string;
+  step3Prompt: string;
+  severityHeading: string;
+  durationHeading: string;
+  step4Question: string;
+  step4Prompt: string;
+  summaryHeading: string;
+  areaLabel: string;
+  symptomLabel: string;
+  intensityLabel: string;
+  durationLabel: string;
+  recommendationHeading: string;
+  safeSelfCareHeading: string;
+  copySummary: string;
+  copied: string;
+  sendWhatsApp: string;
+  showDoctor: string;
+  requestMediatorHelp: string;
+  scheduleDoctor: string;
+  readEducationalTopic: string;
+  disclaimer: string;
+  structure3DLabel?: string;
+  sensationLabel?: string;
+  triggersLabel?: string;
+  specialtyLabel?: string;
+  warningNoticeRedFlag?: string;
+  warningNoticeSafe?: string;
+  viewer3D: Viewer3DStrings;
+  emergency: EmergencyStrings;
+}
+
+export interface HealthCheckWizardLocaleData {
+  ui: HealthCheckWizardUI;
+  bodyParts: Record<BodyPartId, { title: string; subtitle: string }>;
+  symptomsByRegion: Record<BodyPartId, SymptomChoice[]>;
+  symptoms: Record<BodyPartId, SymptomChoice[]>;
+  severity: Record<SeverityId, { title: string; description: string }>;
+  duration: Record<DurationId, { label: string; hint: string }>;
+  urgency: Record<UrgencyLevel, { title: string; intro: string }>;
+}
+
+export type HealthCheckTranslations = HealthCheckWizardLocaleData;
+export type HealthCheckDictionary = HealthCheckWizardLocaleData;
+
+const rawTranslations = {
+  "ro": {
+    "ui": {
+      "eyebrow": "Verificare de sănătate",
+      "heading": "Verifică simptomele",
+      "subtitle": "Arată pe corp unde te doare și răspunde la 3 întrebări. Apoi afli ce poți face.",
+      "resetButton": "De la capăt",
+      "backButton": "Înapoi",
+      "nextButton": "Continuă",
+      "finishButton": "Vezi rezultatul",
+      "stepIndicator": "Pasul {current} din {total}",
+      "step1Title": "Zona",
+      "step2Title": "Simptomul",
+      "step3Title": "Intensitatea",
+      "step4Title": "Rezultatul",
+      "step1Question": "Unde simți durere sau disconfort?",
+      "step1Prompt": "Atinge zona pe corp sau alege din listă.",
+      "step2Question": "Care seamănă cel mai mult cu ce simți?",
+      "step2Prompt": "Alege simptomul cel mai puternic.",
+      "urgentBadge": "Semn de urgență",
+      "step3Question": "Cât de tare și de când?",
+      "step3Prompt": "Alege câte o variantă din fiecare grup.",
+      "severityHeading": "Cât de tare este?",
+      "durationHeading": "De când ai simptomul?",
+      "step4Question": "Ce poți face acum",
+      "step4Prompt": "Pe baza răspunsurilor tale. Nu este un diagnostic.",
+      "summaryHeading": "Rezumatul răspunsurilor",
+      "areaLabel": "Zona",
+      "symptomLabel": "Simptomul",
+      "intensityLabel": "Intensitate",
+      "durationLabel": "Durată",
+      "recommendationHeading": "Ce să faci mai departe",
+      "safeSelfCareHeading": "Ce poți face acasă",
+      "copySummary": "Copiază rezumatul",
+      "copied": "Copiat",
+      "sendWhatsApp": "Trimite pe WhatsApp",
+      "showDoctor": "Arată medicului",
+      "requestMediatorHelp": "Vorbește cu un mediator",
+      "scheduleDoctor": "Programează-te online",
+      "readEducationalTopic": "Citește ghidul",
+      "disclaimer": "Acesta nu este un diagnostic. Dacă te simți mai rău sau te doare foarte tare, sună la 112.",
+      "viewer3D": {
+        "ariaLabel": "Corp 3D. Rotește-l și atinge locul care te doare.",
+        "loading": "Se încarcă modelul 3D ({progress}%)",
+        "subModelInfo": "Corpul 3D",
+        "front": "Față",
+        "back": "Spate",
+        "perspective": "Unghi",
+        "rotate360": "360°",
+        "zoomIn": "Apropie",
+        "zoomOut": "Depărtează",
+        "resetView": "Resetează unghiul",
+        "tip": "Trage stânga sau dreapta ca să rotești corpul. Atinge zona care te doare.",
+        "searchPlaceholder": "Caută un organ sau un mușchi (ex. inimă, biceps)",
+        "selected3DStructure": "Ai ales:",
+        "activeAreaPrefix": "Zona:",
+        "leftSide": "Stânga",
+        "rightSide": "Dreapta",
+        "selectRegionPrefix": "Alege",
+        "rotateTooltip": "Rotește corpul la 180°",
+        "layerHybrid": "Mușchi și organe",
+        "layerMuscular": "Mușchi și tendoane",
+        "layerOrgans": "Organe interne",
+        "layerSurface": "Pielea",
+        "legendSkeletalMuscles": "Mușchi",
+        "legendTendonsJoints": "Tendoane și articulații",
+        "legendInternalOrgans": "Organe interne",
+        "legendSelectedStructure": "Structură selectată"
+      },
+      "emergency": {
+        "badge": "Urgență medicală 112",
+        "title": "Poate fi o urgență: sună acum la 112",
+        "description": "Nu aștepta. Dacă nu poți suna, mergi repede la Urgențe. Nu conduce singur.",
+        "whyEmergencyPrefix": "Ai ales:",
+        "call112Now": "Sună la 112",
+        "continueReview": "Am înțeles"
+      },
+      "structure3DLabel": "Structură 3D",
+      "sensationLabel": "Senzație",
+      "triggersLabel": "Ce agravează",
+      "specialtyLabel": "Medic specialist",
+      "warningNoticeRedFlag": "Au apărut semne de urgență.",
+      "warningNoticeSafe": "Nu au apărut semne de urgență."
+    },
+    "bodyParts": {
+      "head": {
+        "title": "Cap și gât",
+        "subtitle": "Dureri de cap, ceafă înțepenită, amețeli sau vedere tulbure"
+      },
+      "chest": {
+        "title": "Piept și respirație",
+        "subtitle": "Apăsare în piept, respirație grea sau bătăi rapide de inimă"
+      },
+      "stomach": {
+        "title": "Stomac și burtă",
+        "subtitle": "Arsuri, crampe, greață, balonare sau dureri de burtă"
+      },
+      "back": {
+        "title": "Spate și șale",
+        "subtitle": "Durere jos pe spate, mușchi blocați sau durere între omoplați"
+      },
+      "arm": {
+        "title": "Brațe și mâini",
+        "subtitle": "Amorțeli, dureri de umăr ori de cot sau încheieturi umflate"
+      },
+      "leg": {
+        "title": "Picioare și tălpi",
+        "subtitle": "Dureri de genunchi, gleznă umflată sau greutate la mers"
+      }
+    },
+    "symptomsByRegion": {
+      "head": [
+        {
+          "id": "head_migraine",
+          "label": "Durere care bate pe o parte a capului, cu greață sau deranj la lumină",
+          "isRedFlag": false,
+          "selfCareTip": "Odihnește-te într-o cameră întunecată și liniștită. Bea apă și pune o compresă rece pe frunte.",
+          "guidance": "Seamănă cu o migrenă. Dacă revine des, întreabă medicul de familie despre un tratament care o previne.",
+          "title": "Migrenă sau durere care bate",
+          "description": "Durere care pulsează, de obicei pe o parte a capului. Te pot deranja lumina, zgomotul sau poți avea greață."
+        },
+        {
+          "id": "head_tension",
+          "label": "Apăsare ca o bandă strânsă în jurul capului, după stres sau oboseală",
+          "isRedFlag": false,
+          "selfCareTip": "Ia o pauză de la ecrane și masează ușor gâtul. Ieși puțin la aer.",
+          "guidance": "Apare des din cauza stresului, a somnului puțin sau a statului mult la birou.",
+          "title": "Durere de cap de la stres",
+          "description": "Apăsare ca o bandă strânsă pe frunte sau tâmple. Apare des după stres, mult ecran sau gât încordat."
+        },
+        {
+          "id": "head_dehydration",
+          "label": "Durere surdă, continuă, după o zi caldă sau după ce ai băut puțină apă",
+          "isRedFlag": false,
+          "selfCareTip": "Bea încet 1–2 pahare mari de apă sau ceai călduț. Evită băuturile cu cofeină sau zahăr.",
+          "guidance": "De multe ori trece dacă bei apă și stai la umbră.",
+          "title": "Durere de cap de la căldură sau sete",
+          "description": "Durere surdă în tot capul, mai rea când miști capul. Apare după soare, căldură sau când ai băut prea puțină apă."
+        },
+        {
+          "id": "head_fever",
+          "label": "Durere de cap cu febră, frisoane sau nas înfundat",
+          "isRedFlag": false,
+          "selfCareTip": "Stai în pat, măsoară-ți temperatura și bea multe lichide.",
+          "guidance": "Poate fi o răceală sau o viroză. Dacă febra trece de 38,5 °C sau ține mai mult de 3 zile, mergi la medic.",
+          "title": "Durere de cap cu febră",
+          "description": "Te doare capul și ai temperatură, frisoane, dureri de corp sau nasul înfundat."
+        },
+        {
+          "id": "head_sudden_severe",
+          "label": "Durere de cap bruscă și foarte puternică, sau cu confuzie ori slăbiciune",
+          "isRedFlag": true,
+          "selfCareTip": "Așază-te undeva în siguranță și sună imediat la 112.",
+          "guidance": "O durere de cap foarte puternică, apărută brusc, este o urgență. Ai nevoie de un medic imediat.",
+          "title": "Durere de cap bruscă și foarte puternică",
+          "description": "Cea mai puternică durere de cap din viața ta, apărută în câteva secunde. Poate veni cu ceafă țeapănă, vedere încețoșată sau confuzie."
+        }
+      ],
+      "chest": [
+        {
+          "id": "chest_reflux",
+          "label": "Arsură în capul pieptului sau gust acru după masă ori când te apleci",
+          "isRedFlag": false,
+          "selfCareTip": "Nu te întinde imediat după masă. Renunță o vreme la mâncarea picantă și la cafea.",
+          "guidance": "Arsurile vin de obicei de la acidul din stomac. Dacă nu trec, medicul de familie îți poate da un tratament.",
+          "title": "Arsuri în capul pieptului",
+          "description": "Arsură care urcă din stomac spre gât. E mai rea când te apleci sau după mese grele ori acide."
+        },
+        {
+          "id": "chest_exertion",
+          "label": "Strânsoare sau apăsare în piept la efort sau la urcatul scărilor",
+          "isRedFlag": false,
+          "selfCareTip": "Oprește efortul, așază-te și respiră liniștit.",
+          "guidance": "O apăsare în piept la efort trebuie verificată de un medic, chiar dacă trece repede când te oprești.",
+          "title": "Apăsare în piept la efort",
+          "description": "Strânsoare în mijlocul pieptului care apare când mergi repede, urci scări sau faci efort."
+        },
+        {
+          "id": "chest_stitch",
+          "label": "Înțepătură pe o parte a pieptului, mai rea când respiri adânc sau tușești",
+          "isRedFlag": false,
+          "selfCareTip": "Respiră încet, fără să tragi aer prea adânc, câteva minute. Pune ceva călduț pe locul care doare.",
+          "guidance": "De obicei e un mușchi întins și trece singur. Dacă îți e greu să respiri, sună la 112.",
+          "title": "Înțepătură când respiri",
+          "description": "Durere ascuțită într-un punct din piept, mai rea când tragi aer adânc, tușești sau te răsucești."
+        },
+        {
+          "id": "chest_warning",
+          "label": "Durere puternică în piept care se întinde spre brațul stâng, gât sau maxilar, cu lipsă de aer",
+          "isRedFlag": true,
+          "selfCareTip": "Sună imediat la 112. Așază-te și desfă hainele strâmte.",
+          "guidance": "Această durere în piept poate fi un infarct. Fiecare minut contează.",
+          "title": "Durere puternică în piept care se întinde",
+          "description": "Apăsare grea în piept care merge spre brațul stâng, gât, maxilar sau spate. Poate veni cu transpirație rece sau sufocare."
+        }
+      ],
+      "stomach": [
+        {
+          "id": "stomach_upper_reflux",
+          "label": "Arsură sau greutate în partea de sus a stomacului",
+          "isRedFlag": false,
+          "selfCareTip": "Mănâncă simplu, mâncare fiartă. Bea apă care nu e rece și evită mesele mari.",
+          "guidance": "Stomacul e iritat, lucru des întâlnit. Dacă te deranjează în fiecare zi, fă o programare la medic.",
+          "title": "Arsuri sus, în stomac",
+          "description": "Arsură sau aciditate sub coaste. Te saturi repede sau îți vine acru în gură după masă."
+        },
+        {
+          "id": "stomach_cramping_mild",
+          "label": "Crampe în toată burta, cu balonare sau scaun mai des ori mai rar",
+          "isRedFlag": false,
+          "selfCareTip": "Bea ceai de mentă sau mușețel și pune ceva călduț pe burtă. Evită lactatele câteva zile.",
+          "guidance": "Crampele de scurtă durată țin de obicei de digestie sau de ce ai mâncat.",
+          "title": "Crampe și balonare",
+          "description": "Burta te strânge din când în când, e umflată, ai gaze sau mergi mai des ori mai rar la toaletă."
+        },
+        {
+          "id": "stomach_lower_sharp",
+          "label": "Durere ascuțită într-un punct, în dreapta jos a burții",
+          "isRedFlag": true,
+          "selfCareTip": "Până te vede un medic, nu lua calmante puternice și nu pune nimic fierbinte pe burtă.",
+          "guidance": "O durere care stă în dreapta jos a burții trebuie văzută repede de un medic. Poate fi apendicită.",
+          "title": "Durere în dreapta jos",
+          "description": "Durere în partea dreaptă de jos a burții, care se înrăutățește și e mai rea când tușești, mergi sau apeși pe burtă."
+        },
+        {
+          "id": "stomach_severe_widespread",
+          "label": "Durere de burtă foarte puternică și continuă, cu vărsături repetate, burtă tare sau febră",
+          "isRedFlag": true,
+          "selfCareTip": "Nu mânca și nu bea mult. Mergi imediat la Urgențe sau sună la 112.",
+          "guidance": "O durere foarte puternică, cu burta tare, poate cere o operație de urgență.",
+          "title": "Durere foarte puternică în toată burta",
+          "description": "Burta te doare tare și e tare ca lemnul, vomiți întruna sau te simți gata să leșini."
+        }
+      ],
+      "back": [
+        {
+          "id": "back_strain_lift",
+          "label": "Durere ascuțită în șale, apărută brusc după ridicarea unei greutăți",
+          "isRedFlag": false,
+          "selfCareTip": "Nu te apleca și nu ridica greutăți. Odihnește-te, dar fă și plimbări scurte. Pune o compresă caldă.",
+          "guidance": "Se întâmplă des. Mișcarea ușoară ajută mai mult decât statul în pat.",
+          "title": "Durere de spate după ce ai ridicat ceva",
+          "description": "Mușchii de jos ai spatelui s-au blocat imediat după ce ai ridicat ceva greu sau te-ai răsucit brusc."
+        },
+        {
+          "id": "back_chronic",
+          "label": "Durere surdă jos pe spate, de câteva săptămâni",
+          "isRedFlag": false,
+          "selfCareTip": "Fă exerciții ușoare de întindere pentru spate. Potrivește înălțimea scaunului și nu sta mult nemișcat.",
+          "guidance": "Durerea de spate veche se îmbunătățește cu exerciții arătate de un kinetoterapeut și cu mușchi de burtă mai puternici.",
+          "title": "Durere de spate care nu trece",
+          "description": "Durere surdă jos pe spate, de câteva săptămâni, mai rea când stai mult pe scaun sau în picioare."
+        },
+        {
+          "id": "back_stiffness",
+          "label": "Spate înțepenit dimineața sau după mult stat pe scaun",
+          "isRedFlag": false,
+          "selfCareTip": "Dimineața, rotește ușor umerii și apleacă-te încet de câteva ori înainte să începi ziua.",
+          "guidance": "Apare des când mușchii sunt încordați sau după ce ai stat mult în aceeași poziție.",
+          "title": "Spate înțepenit dimineața",
+          "description": "Dimineața spatele e țeapăn și te apleci greu. Se îmbunătățește după ce te miști puțin."
+        },
+        {
+          "id": "back_severe_difficulty",
+          "label": "Durere puternică de spate cu amorțeli în ambele picioare, slăbiciune sau pierderea controlului urinei",
+          "isRedFlag": true,
+          "selfCareTip": "Stai culcat și sună imediat la 112.",
+          "guidance": "Nervii din spate pot fi apăsați grav. Ai nevoie de spital, de urgență.",
+          "title": "Durere de spate cu amorțeli în picioare",
+          "description": "Durere puternică de spate cu amorțeli sau slăbiciune în ambele picioare, ori probleme noi cu urina sau scaunul."
+        }
+      ],
+      "arm": [
+        {
+          "id": "arm_sprain",
+          "label": "Durere la umăr, cot sau încheietură după o căzătură sau o mișcare bruscă",
+          "isRedFlag": false,
+          "selfCareTip": "Pune gheață învelită într-un prosop pe locul care doare. Ține brațul sprijinit.",
+          "guidance": "Loviturile și întinderile ușoare trec de obicei în câteva zile dacă ții încheietura în repaus.",
+          "title": "Durere la încheietură după o căzătură",
+          "description": "Încheietura, cotul sau umărul te doare și e umflat după o lovitură sau după ce ai căzut în palme."
+        },
+        {
+          "id": "arm_numbness",
+          "label": "Amorțeli ușoare sau furnicături în degete după mult timp la tastatură sau pe telefon",
+          "isRedFlag": false,
+          "selfCareTip": "Fă des pauze de 5 minute. Scutură mâinile și rotește ușor încheieturile.",
+          "guidance": "Poate fi un nerv apăsat la încheietură. Spune-i medicului dacă nu trece.",
+          "title": "Furnicături în degete",
+          "description": "Amorțeală sau furnicături în palmă, în degetul mare, arătător și mijlociu, mai ales noaptea sau când scrii la tastatură."
+        },
+        {
+          "id": "arm_ache",
+          "label": "Mușchii brațului dor și sunt obosiți după un efort fizic mare",
+          "isRedFlag": false,
+          "selfCareTip": "Fă un duș călduț, masează ușor mușchii și odihnește-te o zi.",
+          "guidance": "E normal după un efort neobișnuit. Trece singur în 2–3 zile.",
+          "title": "Febră musculară în braț",
+          "description": "Mușchii brațului te dor după un efort neobișnuit, sport sau cărat greutăți."
+        },
+        {
+          "id": "arm_sudden_swelling",
+          "label": "Braț slăbit brusc, care nu se mai mișcă deloc sau se umflă mult și repede",
+          "isRedFlag": true,
+          "selfCareTip": "Nu forța brațul. Sună imediat la 112.",
+          "guidance": "Un braț slăbit brusc poate fi semn de accident vascular (AVC) sau de fractură gravă.",
+          "title": "Slăbiciune bruscă într-un braț",
+          "description": "Dintr-odată nu poți ridica sau ține mâna. Poate veni cu fața strâmbă pe o parte sau vorbire încurcată."
+        }
+      ],
+      "leg": [
+        {
+          "id": "leg_sprain",
+          "label": "Gleznă umflată sau dureroasă după ce ai călcat strâmb",
+          "isRedFlag": false,
+          "selfCareTip": "Ține piciorul ridicat pe o pernă și pune comprese reci 15 minute. Nu te sprijini cu toată greutatea pe el.",
+          "guidance": "Ține glezna în repaus câteva zile. Dacă se umflă tot mai tare sau nu poți călca, mergi la o radiografie.",
+          "title": "Gleznă sucită",
+          "description": "Glezna te doare și e umflată după ce ai călcat strâmb. Calci greu pe ea."
+        },
+        {
+          "id": "leg_cramp",
+          "label": "Cârcel dureros în gambă, noaptea sau după efort",
+          "isRedFlag": false,
+          "selfCareTip": "Întinde piciorul și trage ușor degetele spre tine. Masează pulpa și bea un pahar cu apă.",
+          "guidance": "Cârceii apar des după oboseală, transpirație multă sau când bei prea puțină apă.",
+          "title": "Cârcel în gambă",
+          "description": "Mușchiul gambei se strânge brusc și dureros, des noaptea sau când ai băut prea puțină apă."
+        },
+        {
+          "id": "leg_knee_ache",
+          "label": "Durere de genunchi la coborâtul scărilor sau după mers mult",
+          "isRedFlag": false,
+          "selfCareTip": "Nu sta pe vine și nu căra greutăți. Poartă pantofi comozi, cu talpă moale.",
+          "guidance": "Genunchiul se uzează în timp. Exercițiile care întăresc mușchii piciorului îl ajută.",
+          "title": "Durere de genunchi la scări",
+          "description": "Genunchiul te doare când cobori scări, te ghemuiești sau după ce ai stat mult cu genunchii îndoiți."
+        },
+        {
+          "id": "leg_sudden_swelling",
+          "label": "Un singur picior umflat brusc, cald, roșu și foarte dureros, sau nu poți călca pe el",
+          "isRedFlag": true,
+          "selfCareTip": "Stai liniștit și nu masa gamba. Mergi repede la un medic sau la Urgențe.",
+          "guidance": "O gambă umflată brusc poate fi un cheag de sânge (tromboză). Trebuie tratată de urgență.",
+          "title": "Gambă umflată brusc, doar pe un picior",
+          "description": "O singură gambă s-a umflat brusc, e caldă, roșie și dureroasă."
+        }
+      ]
+    },
+    "severity": {
+      "mild": {
+        "title": "Ușor",
+        "description": "Se simte, dar îți faci treburile obișnuite."
+      },
+      "moderate": {
+        "title": "Mediu",
+        "description": "Te încurcă la muncă, la mers sau la somn."
+      },
+      "severe": {
+        "title": "Puternic",
+        "description": "Nu poți face aproape nimic."
+      }
+    },
+    "duration": {
+      "today": {
+        "label": "Azi sau ieri",
+        "hint": "Sub 24 de ore"
+      },
+      "days": {
+        "label": "De 2–7 zile",
+        "hint": "2 până la 7 zile"
+      },
+      "weeks": {
+        "label": "De 1–2 săptămâni",
+        "hint": "1 până la 2 săptămâni"
+      },
+      "chronic": {
+        "label": "De peste 2 săptămâni",
+        "hint": "Nu trece sau tot revine"
+      }
+    },
+    "urgency": {
+      "low": {
+        "title": "Poți avea grijă de tine acasă",
+        "intro": "Odihnește-te, bea apă și urmărește cum te simți câteva zile. Dacă se înrăutățește sau apar semne noi, sună medicul de familie sau 112."
+      },
+      "medium": {
+        "title": "Mergi la medicul de familie în câteva zile",
+        "intro": "Ce simți merită văzut de un medic. Dacă se înrăutățește între timp, sună la 112."
+      },
+      "high": {
+        "title": "Vezi un medic azi",
+        "intro": "Nu amâna. Sună medicul de familie sau mergi azi la o clinică. Dacă se înrăutățește, sună la 112."
+      }
+    }
+  },
+  "en": {
+    "ui": {
+      "eyebrow": "Health check",
+      "heading": "Check your symptoms",
+      "subtitle": "Show on the body where it hurts and answer 3 questions. Then see what to do next.",
+      "resetButton": "Start over",
+      "backButton": "Back",
+      "nextButton": "Continue",
+      "finishButton": "See result",
+      "stepIndicator": "Step {current} of {total}",
+      "step1Title": "Area",
+      "step2Title": "Symptom",
+      "step3Title": "Severity",
+      "step4Title": "Result",
+      "step1Question": "Where do you feel pain or discomfort?",
+      "step1Prompt": "Tap the area on the body or pick it from the list.",
+      "step2Question": "Which of these is closest to what you feel?",
+      "step2Prompt": "Pick the symptom that bothers you most.",
+      "urgentBadge": "Emergency sign",
+      "step3Question": "How strong, and since when?",
+      "step3Prompt": "Pick one option in each group.",
+      "severityHeading": "How bad is it?",
+      "durationHeading": "How long have you had it?",
+      "step4Question": "What you can do now",
+      "step4Prompt": "Based on your answers. This is not a diagnosis.",
+      "summaryHeading": "Summary of your answers",
+      "areaLabel": "Body area",
+      "symptomLabel": "Symptom",
+      "intensityLabel": "Intensity",
+      "durationLabel": "Duration",
+      "recommendationHeading": "What to do next",
+      "safeSelfCareHeading": "What you can do at home",
+      "copySummary": "Copy summary",
+      "copied": "Copied",
+      "sendWhatsApp": "Share on WhatsApp",
+      "showDoctor": "Show the doctor",
+      "requestMediatorHelp": "Talk to a mediator",
+      "scheduleDoctor": "Book a doctor online",
+      "readEducationalTopic": "Read the guide",
+      "disclaimer": "This is not a diagnosis. If you feel worse or the pain is very bad, call 112.",
+      "viewer3D": {
+        "ariaLabel": "3D body. Turn it and tap where it hurts.",
+        "loading": "Loading the 3D model ({progress}%)",
+        "subModelInfo": "3D body",
+        "front": "Front",
+        "back": "Back",
+        "perspective": "Angle",
+        "rotate360": "360°",
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out",
+        "resetView": "Reset view",
+        "tip": "Drag left or right to turn the body. Tap where it hurts.",
+        "searchPlaceholder": "Search for an organ or muscle (e.g. heart, biceps)",
+        "selected3DStructure": "You chose:",
+        "activeAreaPrefix": "Area:",
+        "leftSide": "Left",
+        "rightSide": "Right",
+        "selectRegionPrefix": "Choose",
+        "rotateTooltip": "Turn the body 180°",
+        "layerHybrid": "Muscles and organs",
+        "layerMuscular": "Muscles and tendons",
+        "layerOrgans": "Internal organs",
+        "layerSurface": "Skin",
+        "legendSkeletalMuscles": "Muscles",
+        "legendTendonsJoints": "Tendons and joints",
+        "legendInternalOrgans": "Internal organs",
+        "legendSelectedStructure": "Selected structure"
+      },
+      "emergency": {
+        "badge": "Medical emergency 112",
+        "title": "This may be an emergency: call 112 now",
+        "description": "Don't wait. If you can't call, go to the emergency department quickly. Don't drive yourself.",
+        "whyEmergencyPrefix": "You chose:",
+        "call112Now": "Call 112 now",
+        "continueReview": "I understand"
+      },
+      "structure3DLabel": "3D structure",
+      "sensationLabel": "Sensation",
+      "triggersLabel": "What makes it worse",
+      "specialtyLabel": "Specialist to see",
+      "warningNoticeRedFlag": "Emergency warning signs reported.",
+      "warningNoticeSafe": "No emergency warning signs reported."
+    },
+    "bodyParts": {
+      "head": {
+        "title": "Head and neck",
+        "subtitle": "Headaches, stiff neck, dizziness or blurry vision"
+      },
+      "chest": {
+        "title": "Chest and breathing",
+        "subtitle": "Chest pressure, hard breathing or a racing heart"
+      },
+      "stomach": {
+        "title": "Stomach and abdomen",
+        "subtitle": "Heartburn, cramps, nausea, bloating or belly pain"
+      },
+      "back": {
+        "title": "Back and spine",
+        "subtitle": "Lower back pain, tense muscles or pain between the shoulder blades"
+      },
+      "arm": {
+        "title": "Arms and hands",
+        "subtitle": "Numbness, shoulder or elbow pain, or swollen joints"
+      },
+      "leg": {
+        "title": "Legs and feet",
+        "subtitle": "Knee pain, a swollen ankle or trouble walking"
+      }
+    },
+    "symptomsByRegion": {
+      "head": [
+        {
+          "id": "head_migraine",
+          "label": "Throbbing pain on one side of the head, with nausea or sensitivity to light",
+          "isRedFlag": false,
+          "selfCareTip": "Rest in a quiet, dark room. Drink some water and put a cool cloth on your forehead.",
+          "guidance": "This looks like a migraine. If it keeps coming back, ask your family doctor about treatment that prevents it.",
+          "title": "Migraine or throbbing pain",
+          "description": "Pulsing pain, usually on one side of the head. Light or noise may bother you, or you may feel sick."
+        },
+        {
+          "id": "head_tension",
+          "label": "Pressure like a tight band around the head, after stress or tiredness",
+          "isRedFlag": false,
+          "selfCareTip": "Take a break from screens and gently rub your neck. Get some fresh air.",
+          "guidance": "It often comes from stress, too little sleep or long hours at a desk.",
+          "title": "Stress headache",
+          "description": "Pressure like a tight band across the forehead or temples. Often after stress, long screen time or a tense neck."
+        },
+        {
+          "id": "head_dehydration",
+          "label": "Dull, constant ache after a hot day or after drinking too little water",
+          "isRedFlag": false,
+          "selfCareTip": "Slowly drink 1 to 2 large glasses of water or warm tea. Avoid drinks with caffeine or sugar.",
+          "guidance": "It often goes away if you drink water and stay out of the heat.",
+          "title": "Headache from heat or thirst",
+          "description": "Dull ache all over the head, worse when you move it. Often after sun, heat or not drinking enough water."
+        },
+        {
+          "id": "head_fever",
+          "label": "Headache with fever, chills or a blocked nose",
+          "isRedFlag": false,
+          "selfCareTip": "Rest in bed, check your temperature and drink plenty of fluids.",
+          "guidance": "It may be a cold or a virus. If the fever goes above 38.5 °C or lasts more than 3 days, see a doctor.",
+          "title": "Headache with fever",
+          "description": "Your head hurts and you have a temperature, chills, body aches or a blocked nose."
+        },
+        {
+          "id": "head_sudden_severe",
+          "label": "Sudden, very severe headache, or headache with confusion or weakness",
+          "isRedFlag": true,
+          "selfCareTip": "Sit down somewhere safe and call 112 now.",
+          "guidance": "A very bad headache that starts suddenly is an emergency. You need a doctor now.",
+          "title": "Sudden, very bad headache",
+          "description": "The worst headache of your life, reaching full strength within seconds. It may come with a stiff neck, blurred vision or confusion."
+        }
+      ],
+      "chest": [
+        {
+          "id": "chest_reflux",
+          "label": "Burning in the chest or a sour taste after meals or when bending over",
+          "isRedFlag": false,
+          "selfCareTip": "Don't lie down right after eating. Cut out spicy or acidic food and coffee for a while.",
+          "guidance": "Heartburn usually comes from stomach acid. If it doesn't go away, your family doctor can give you treatment.",
+          "title": "Heartburn",
+          "description": "Burning that rises from the stomach towards the throat. Worse when you bend over or after heavy or acidic meals."
+        },
+        {
+          "id": "chest_exertion",
+          "label": "Chest tightness or pressure during effort or when climbing stairs",
+          "isRedFlag": false,
+          "selfCareTip": "Stop what you are doing, sit down and breathe slowly.",
+          "guidance": "Chest pressure during effort should be checked by a doctor, even if it goes away quickly when you stop.",
+          "title": "Chest tightness when active",
+          "description": "Squeezing in the middle of the chest when you walk fast, climb stairs or make an effort."
+        },
+        {
+          "id": "chest_stitch",
+          "label": "Sharp pain on one side of the chest, worse with a deep breath or a cough",
+          "isRedFlag": false,
+          "selfCareTip": "Breathe gently for a few minutes. Put something warm on the sore spot.",
+          "guidance": "It is usually a strained muscle and goes away by itself. If breathing becomes hard, call 112.",
+          "title": "Sharp pain when breathing",
+          "description": "Sharp pain in one spot of the chest, worse when you breathe in deeply, cough or twist."
+        },
+        {
+          "id": "chest_warning",
+          "label": "Heavy chest pain spreading to the left arm, neck or jaw, with shortness of breath",
+          "isRedFlag": true,
+          "selfCareTip": "Call 112 now. Sit down and loosen tight clothes.",
+          "guidance": "This chest pain can be a heart attack. Every minute counts.",
+          "title": "Severe chest pain that spreads",
+          "description": "Heavy pressure in the chest that spreads to the left arm, neck, jaw or back. It may come with cold sweat or breathlessness."
+        }
+      ],
+      "stomach": [
+        {
+          "id": "stomach_upper_reflux",
+          "label": "Burning or a heavy feeling in the upper stomach",
+          "isRedFlag": false,
+          "selfCareTip": "Eat plain, light food. Drink water that is not cold, and avoid big or greasy meals.",
+          "guidance": "An irritated stomach is common. If it bothers you every day, book a doctor's visit.",
+          "title": "Burning in the upper stomach",
+          "description": "Burning or acid under the ribs. You feel full quickly or taste something sour after eating."
+        },
+        {
+          "id": "stomach_cramping_mild",
+          "label": "Cramps across the belly, with bloating or going to the toilet more or less often",
+          "isRedFlag": false,
+          "selfCareTip": "Drink mint or chamomile tea, put something warm on your belly and rest.",
+          "guidance": "Short cramps usually come from digestion or something you ate.",
+          "title": "Cramps and bloating",
+          "description": "Your belly tightens now and then, feels swollen, you have gas or go to the toilet more or less often."
+        },
+        {
+          "id": "stomach_lower_sharp",
+          "label": "Sharp pain in one spot, in the lower right belly",
+          "isRedFlag": true,
+          "selfCareTip": "Until a doctor sees you, don't take strong painkillers or put anything hot on your belly.",
+          "guidance": "Pain that stays in the lower right belly needs a doctor quickly. It may be appendicitis.",
+          "title": "Pain in the lower right belly",
+          "description": "Pain in the lower right part of the belly that keeps getting worse, and hurts more when you cough, walk or press on it."
+        },
+        {
+          "id": "stomach_severe_widespread",
+          "label": "Severe, constant belly pain with repeated vomiting, a hard belly or fever",
+          "isRedFlag": true,
+          "selfCareTip": "Don't eat and don't drink much. Go to the emergency department now or call 112.",
+          "guidance": "Very bad pain with a hard belly may need emergency surgery.",
+          "title": "Very bad pain across the belly",
+          "description": "Your whole belly hurts badly and feels hard, you keep vomiting or feel close to fainting."
+        }
+      ],
+      "back": [
+        {
+          "id": "back_strain_lift",
+          "label": "Sharp lower back pain that started right after lifting something heavy",
+          "isRedFlag": false,
+          "selfCareTip": "Don't bend or lift heavy things. Rest, but also take short walks. Use a warm compress.",
+          "guidance": "This is very common. Gentle movement helps more than staying in bed.",
+          "title": "Back pain after lifting",
+          "description": "The lower back muscles locked up right after lifting something heavy or twisting suddenly."
+        },
+        {
+          "id": "back_chronic",
+          "label": "Dull lower back ache for several weeks",
+          "isRedFlag": false,
+          "selfCareTip": "Do gentle back stretches. Adjust your chair height and don't sit still for long.",
+          "guidance": "Long-lasting back pain gets better with exercises shown by a physiotherapist and stronger belly muscles.",
+          "title": "Back pain that won't go away",
+          "description": "Dull lower back pain for weeks, worse after sitting or standing for a long time."
+        },
+        {
+          "id": "back_stiffness",
+          "label": "Stiff back in the morning or after sitting for a long time",
+          "isRedFlag": false,
+          "selfCareTip": "In the morning, gently roll your shoulders and bend slowly a few times before you start the day.",
+          "guidance": "It often comes from tense muscles or staying in one position for a long time.",
+          "title": "Stiff back in the morning",
+          "description": "Your back is stiff when you wake up and bending is hard. It gets better after you move a little."
+        },
+        {
+          "id": "back_severe_difficulty",
+          "label": "Severe back pain with numbness in both legs, weakness or loss of bladder control",
+          "isRedFlag": true,
+          "selfCareTip": "Lie down and call 112 now.",
+          "guidance": "The nerves in your back may be badly pressed. You need a hospital now.",
+          "title": "Back pain with numb legs",
+          "description": "Strong back pain with numbness or weakness in both legs, or new problems controlling urine or stool."
+        }
+      ],
+      "arm": [
+        {
+          "id": "arm_sprain",
+          "label": "Shoulder, elbow or wrist pain after a fall, a twist or a knock",
+          "isRedFlag": false,
+          "selfCareTip": "Put ice wrapped in a towel on the sore spot. Rest the arm and keep it supported.",
+          "guidance": "Mild knocks and sprains usually get better in a few days if you rest the joint.",
+          "title": "Wrist or joint pain after a fall",
+          "description": "Your wrist, elbow or shoulder hurts and is swollen after a knock or falling onto your hands."
+        },
+        {
+          "id": "arm_numbness",
+          "label": "Mild numbness or pins and needles in the fingers after typing or phone use",
+          "isRedFlag": false,
+          "selfCareTip": "Take 5-minute breaks often. Shake your hands and gently turn your wrists.",
+          "guidance": "It may be a pinched nerve at the wrist. Tell your doctor if it doesn't go away.",
+          "title": "Tingling fingers",
+          "description": "Numbness or pins and needles in the thumb, index and middle fingers, often at night or when typing."
+        },
+        {
+          "id": "arm_ache",
+          "label": "Aching, tired arm muscles after heavy physical work or sports",
+          "isRedFlag": false,
+          "selfCareTip": "Take a warm shower, gently rub the muscles and rest for a day.",
+          "guidance": "This is normal after unusual effort. It goes away by itself in 2 to 3 days.",
+          "title": "Sore arm muscles",
+          "description": "Your arm muscles ache after unusual effort, sport or carrying heavy things."
+        },
+        {
+          "id": "arm_sudden_swelling",
+          "label": "Sudden weakness in one arm, can't lift it, or fast, heavy swelling",
+          "isRedFlag": true,
+          "selfCareTip": "Don't force the arm. Call 112 now.",
+          "guidance": "Sudden weakness in an arm can be a stroke or a serious injury.",
+          "title": "Sudden weakness in one arm",
+          "description": "Suddenly you cannot lift or hold up one arm. It may come with a drooping face or slurred speech."
+        }
+      ],
+      "leg": [
+        {
+          "id": "leg_sprain",
+          "label": "Swollen or painful ankle after a misstep",
+          "isRedFlag": false,
+          "selfCareTip": "Rest your leg up on a cushion and put a cold cloth on it for 15 minutes. Don't put your full weight on it.",
+          "guidance": "Rest the ankle for a few days. If the swelling keeps growing or you cannot stand on it, get an X-ray.",
+          "title": "Twisted ankle",
+          "description": "Your ankle hurts and is swollen after you rolled it. It is hard to stand on."
+        },
+        {
+          "id": "leg_cramp",
+          "label": "Painful muscle spasm or sudden tightness in the calf during the night",
+          "isRedFlag": false,
+          "selfCareTip": "Straighten your leg and gently pull your toes towards you. Rub the calf and drink some water.",
+          "guidance": "Cramps often come after tiredness, heavy sweating or not drinking enough water.",
+          "title": "Calf cramp",
+          "description": "The calf muscle tightens suddenly and painfully, often at night or when you have not drunk enough."
+        },
+        {
+          "id": "leg_knee_ache",
+          "label": "Knee pain going downstairs or after a long walk",
+          "isRedFlag": false,
+          "selfCareTip": "Avoid squatting and carrying heavy things. Wear comfortable shoes with soft soles.",
+          "guidance": "Knees wear over time. Exercises that strengthen the leg muscles help.",
+          "title": "Knee pain on stairs",
+          "description": "Your knee hurts when you go down stairs, squat, or after sitting long with bent knees."
+        },
+        {
+          "id": "leg_sudden_swelling",
+          "label": "One leg suddenly swollen, warm, red and painful, or you can't stand on it",
+          "isRedFlag": true,
+          "selfCareTip": "Stay seated and don't rub the leg. See a doctor or go to the emergency department quickly.",
+          "guidance": "Sudden swelling in one leg can be a blood clot. It needs treatment fast.",
+          "title": "Sudden swelling in one leg",
+          "description": "Only one calf swelled up suddenly and is warm, red and painful."
+        }
+      ]
+    },
+    "severity": {
+      "mild": {
+        "title": "Mild",
+        "description": "You notice it but can do your usual things."
+      },
+      "moderate": {
+        "title": "Moderate",
+        "description": "It gets in the way of work, moving or sleep."
+      },
+      "severe": {
+        "title": "Severe",
+        "description": "You can hardly do anything."
+      }
+    },
+    "duration": {
+      "today": {
+        "label": "Today or yesterday",
+        "hint": "Under 24 hours"
+      },
+      "days": {
+        "label": "2–7 days",
+        "hint": "2 to 7 days"
+      },
+      "weeks": {
+        "label": "1–2 weeks",
+        "hint": "1 to 2 weeks"
+      },
+      "chronic": {
+        "label": "Over 2 weeks",
+        "hint": "Won't go away or keeps coming back"
+      }
+    },
+    "urgency": {
+      "low": {
+        "title": "You can likely look after this at home",
+        "intro": "Rest, drink water and watch how you feel for a few days. If it gets worse or new signs appear, call your doctor or 112."
+      },
+      "medium": {
+        "title": "See your family doctor in the next few days",
+        "intro": "This is worth showing to a doctor. If it gets worse in the meantime, call 112."
+      },
+      "high": {
+        "title": "See a doctor today",
+        "intro": "Don't put it off. Call your doctor or go to a clinic today. If it gets worse, call 112."
+      }
+    }
+  },
+  "sq": {
+    "ui": {
+      "eyebrow": "Kontroll shëndetësor",
+      "heading": "Kontrollo simptomat",
+      "subtitle": "Trego në trup ku të dhemb dhe përgjigju 3 pyetjeve. Pastaj shiko çfarë të bësh.",
+      "resetButton": "Fillo nga e para",
+      "backButton": "Kthehu",
+      "nextButton": "Vazhdo",
+      "finishButton": "Shiko rezultatin",
+      "stepIndicator": "Hapi {current} nga {total}",
+      "step1Title": "Zona",
+      "step2Title": "Simptoma",
+      "step3Title": "Intensiteti",
+      "step4Title": "Rezultati",
+      "step1Question": "Ku ndien dhimbje ose shqetësim?",
+      "step1Prompt": "Prek zonën në trup ose zgjidhe nga lista.",
+      "step2Question": "Cila i ngjan më shumë asaj që ndien?",
+      "step2Prompt": "Zgjidh simptomën që të shqetëson më shumë.",
+      "urgentBadge": "Shenjë urgjence",
+      "step3Question": "Sa fort dhe që kur?",
+      "step3Prompt": "Zgjidh një mundësi në çdo grup.",
+      "severityHeading": "Sa fort të shqetëson?",
+      "durationHeading": "Prej sa kohësh e ke?",
+      "step4Question": "Çfarë mund të bësh tani",
+      "step4Prompt": "Sipas përgjigjeve të tua. Nuk është diagnozë.",
+      "summaryHeading": "Përmbledhja e përgjigjeve",
+      "areaLabel": "Zona",
+      "symptomLabel": "Simptoma",
+      "intensityLabel": "Intensiteti",
+      "durationLabel": "Kohëzgjatja",
+      "recommendationHeading": "Çfarë të bësh më pas",
+      "safeSelfCareHeading": "Çfarë mund të bësh në shtëpi",
+      "copySummary": "Kopjo përmbledhjen",
+      "copied": "U kopjua",
+      "sendWhatsApp": "Ndaj në WhatsApp",
+      "showDoctor": "Tregoja mjekut",
+      "requestMediatorHelp": "Fol me një ndërmjetës",
+      "scheduleDoctor": "Lër takim me mjekun online",
+      "readEducationalTopic": "Lexo udhëzuesin",
+      "disclaimer": "Kjo nuk është diagnozë. Nëse ndihesh më keq ose të dhemb shumë, telefono 112.",
+      "viewer3D": {
+        "ariaLabel": "Trupi 3D. Rrotulloje dhe prek vendin ku të dhemb.",
+        "loading": "Po ngarkohet modeli 3D ({progress}%)",
+        "subModelInfo": "Trupi 3D",
+        "front": "Përpara",
+        "back": "Prapa",
+        "perspective": "Këndi",
+        "rotate360": "360°",
+        "zoomIn": "Zmadho",
+        "zoomOut": "Zvogëlo",
+        "resetView": "Rivendos pamjen",
+        "tip": "Tërhiq majtas ose djathtas për ta rrotulluar trupin. Prek ku të dhemb.",
+        "searchPlaceholder": "Kërko një organ ose muskul (p.sh. zemra, biceps)",
+        "selected3DStructure": "Zgjodhe:",
+        "activeAreaPrefix": "Zona:",
+        "leftSide": "Majtas",
+        "rightSide": "Djathtas",
+        "selectRegionPrefix": "Zgjidh",
+        "rotateTooltip": "Rrotullo trupin 180°",
+        "layerHybrid": "Muskujt dhe organet",
+        "layerMuscular": "Muskujt dhe tendinat",
+        "layerOrgans": "Organet e brendshme",
+        "layerSurface": "Lëkura",
+        "legendSkeletalMuscles": "Muskujt",
+        "legendTendonsJoints": "Tendinat dhe kyçet",
+        "legendInternalOrgans": "Organet e brendshme",
+        "legendSelectedStructure": "Struktura e zgjedhur"
+      },
+      "emergency": {
+        "badge": "Urgjencë mjekësore 112",
+        "title": "Mund të jetë urgjencë: telefono tani 112",
+        "description": "Mos prit. Nëse nuk mund të telefonosh, shko shpejt në Urgjencë. Mos e drejto vetë makinën.",
+        "whyEmergencyPrefix": "Zgjodhe:",
+        "call112Now": "Telefono 112",
+        "continueReview": "E kuptova"
+      },
+      "structure3DLabel": "Struktura 3D",
+      "sensationLabel": "Ndjesia",
+      "triggersLabel": "Çfarë e përkeqëson",
+      "specialtyLabel": "Mjeku specialist",
+      "warningNoticeRedFlag": "U raportuan shenja urgjence.",
+      "warningNoticeSafe": "Nuk u raportuan shenja urgjence."
+    },
+    "bodyParts": {
+      "head": {
+        "title": "Koka dhe qafa",
+        "subtitle": "Dhimbje koke, qafë e ngurtë, marramendje ose shikim i turbullt"
+      },
+      "chest": {
+        "title": "Gjoksi dhe frymëmarrja",
+        "subtitle": "Shtrëngim në gjoks, frymëmarrje e rëndë ose rrahje të shpejta të zemrës"
+      },
+      "stomach": {
+        "title": "Stomaku dhe barku",
+        "subtitle": "Djegie, ngërçe, të përziera, fryrje ose dhimbje barku"
+      },
+      "back": {
+        "title": "Shpina dhe mesi",
+        "subtitle": "Dhimbje në fund të shpinës, muskuj të bllokuar ose dhimbje mes shpatullave"
+      },
+      "arm": {
+        "title": "Krahët dhe duart",
+        "subtitle": "Mpirje, dhimbje shpatulle apo bërryli ose kyçe të fryra"
+      },
+      "leg": {
+        "title": "Këmbët dhe shputat",
+        "subtitle": "Dhimbje gjuri, kyç i këmbës i ënjtur ose vështirësi në ecje"
+      }
+    },
+    "symptomsByRegion": {
+      "head": [
+        {
+          "id": "head_migraine",
+          "label": "Dhimbje pulsuese në njërën anë të kokës, me të përziera ose ndjeshmëri ndaj dritës",
+          "isRedFlag": false,
+          "selfCareTip": "Pusho në një dhomë të qetë e të errët, pi ujë dhe vendos një kompresë të freskët në ballë.",
+          "guidance": "Duket si migrenë. Nëse kthehet shpesh, pyet mjekun e familjes për një trajtim që e parandalon.",
+          "title": "Migrenë ose dhimbje që rreh",
+          "description": "Dhimbje që rreh, zakonisht në njërën anë të kokës. Mund të të shqetësojë drita, zhurma ose të vjen për të vjellë."
+        },
+        {
+          "id": "head_tension",
+          "label": "Shtrëngim si brez rreth kokës, pas stresit ose lodhjes",
+          "isRedFlag": false,
+          "selfCareTip": "Bëj një pushim nga ekranet dhe masazho lehtë qafën. Dil pak në ajër të pastër.",
+          "guidance": "Shpesh vjen nga stresi, gjumi i pakët ose shumë orë në tavolinë.",
+          "title": "Dhimbje koke nga stresi",
+          "description": "Shtrëngim si një rrip rreth ballit ose tëmthave. Ndodh shpesh pas stresit, shumë orë para ekranit ose kur qafa është e tendosur."
+        },
+        {
+          "id": "head_dehydration",
+          "label": "Dhimbje e shurdhër dhe e vazhdueshme pas një dite të nxehtë ose kur ke pirë pak ujë",
+          "isRedFlag": false,
+          "selfCareTip": "Pi ngadalë 1 deri në 2 gota të mëdha me ujë ose çaj të vakët. Shmang pijet me kafeinë ose sheqer.",
+          "guidance": "Shpesh kalon nëse pi ujë dhe qëndron larg vapës.",
+          "title": "Dhimbje koke nga vapa ose etja",
+          "description": "Dhimbje e shurdhër në gjithë kokën, më e fortë kur e lëviz. Ndodh pas diellit, vapës ose kur ke pirë pak ujë."
+        },
+        {
+          "id": "head_fever",
+          "label": "Dhimbje koke me temperaturë, të dridhura ose hundë të zënë",
+          "isRedFlag": false,
+          "selfCareTip": "Pusho në shtrat, mat temperaturën dhe pi shumë lëngje.",
+          "guidance": "Mund të jetë ftohje ose virus. Nëse temperatura kalon 38,5 °C ose zgjat mbi 3 ditë, shko te mjeku.",
+          "title": "Dhimbje koke me temperaturë",
+          "description": "Të dhemb koka dhe ke temperaturë, të dridhura, dhimbje trupi ose hundë të zënë."
+        },
+        {
+          "id": "head_sudden_severe",
+          "label": "Dhimbje koke e papritur dhe shumë e fortë, ose me hutim a dobësi",
+          "isRedFlag": true,
+          "selfCareTip": "Ulu diku të sigurt dhe telefono menjëherë 112.",
+          "guidance": "Një dhimbje koke shumë e fortë që vjen papritur është urgjencë. Të duhet mjek menjëherë.",
+          "title": "Dhimbje koke e papritur dhe shumë e fortë",
+          "description": "Dhimbja më e fortë e kokës në jetën tënde, e ardhur brenda pak sekondave. Mund të ketë qafë të ngurtë, shikim të turbullt ose hutim."
+        }
+      ],
+      "chest": [
+        {
+          "id": "chest_reflux",
+          "label": "Djegie në gjoks ose shije e thartë pas ngrënies ose kur përkulesh",
+          "isRedFlag": false,
+          "selfCareTip": "Mos u shtri menjëherë pas ngrënies. Për ca kohë ha më pak ushqime pikante dhe pi më pak kafe.",
+          "guidance": "Djegia zakonisht vjen nga acidi i stomakut. Nëse nuk kalon, mjeku i familjes mund të të japë trajtim.",
+          "title": "Djegie në gjoks",
+          "description": "Djegie që ngjitet nga stomaku drejt fytit. Është më keq kur përkulesh ose pas ushqimeve të rënda a të athëta."
+        },
+        {
+          "id": "chest_exertion",
+          "label": "Shtrëngim ose shtypje në gjoks kur lodhesh ose ngjit shkallë",
+          "isRedFlag": false,
+          "selfCareTip": "Ndalo, ulu dhe merr frymë ngadalë.",
+          "guidance": "Shtrëngimi në gjoks kur lodhesh duhet parë nga mjeku, edhe nëse kalon shpejt kur ndalon.",
+          "title": "Shtrëngim në gjoks kur lodhesh",
+          "description": "Shtrëngim në mes të gjoksit kur ecën shpejt, ngjit shkallë ose bën përpjekje."
+        },
+        {
+          "id": "chest_stitch",
+          "label": "Therje në njërën anë të gjoksit, më e fortë kur merr frymë thellë ose kollitesh",
+          "isRedFlag": false,
+          "selfCareTip": "Merr frymë lehtë dhe ngadalë për disa minuta. Vendos diçka të ngrohtë ku të dhemb.",
+          "guidance": "Zakonisht është një muskul i tendosur dhe kalon vetë. Nëse merr frymë me vështirësi, telefono 112.",
+          "title": "Therje kur merr frymë",
+          "description": "Dhimbje e mprehtë në një pikë të gjoksit, më e fortë kur merr frymë thellë, kollitesh ose rrotullohesh."
+        },
+        {
+          "id": "chest_warning",
+          "label": "Dhimbje e rëndë në gjoks që shkon te krahu i majtë, qafa ose nofulla, me vështirësi në frymëmarrje",
+          "isRedFlag": true,
+          "selfCareTip": "Telefono menjëherë 112. Ulu dhe liro rrobat e ngushta.",
+          "guidance": "Kjo dhimbje gjoksi mund të jetë infarkt. Çdo minutë ka rëndësi.",
+          "title": "Dhimbje e fortë në gjoks që përhapet",
+          "description": "Shtypje e rëndë në gjoks që shkon drejt krahut të majtë, qafës, nofullës ose shpinës. Mund të ketë djersë të ftohtë ose mungesë fryme."
+        }
+      ],
+      "stomach": [
+        {
+          "id": "stomach_upper_reflux",
+          "label": "Djegie ose rëndesë në pjesën e sipërme të stomakut",
+          "isRedFlag": false,
+          "selfCareTip": "Ha ushqime të thjeshta e të lehta. Pi ujë jo të ftohtë dhe shmang vaktet e mëdha.",
+          "guidance": "Stomaku i irrituar është i shpeshtë. Nëse të shqetëson çdo ditë, lër një takim te mjeku.",
+          "title": "Djegie në pjesën e sipërme të stomakut",
+          "description": "Djegie ose acid poshtë brinjëve. Ngopesh shpejt ose ndien shije të thartë pas ngrënies."
+        },
+        {
+          "id": "stomach_cramping_mild",
+          "label": "Ngërçe në gjithë barkun, me fryrje, tretje të vështirë ose pak të përziera",
+          "isRedFlag": false,
+          "selfCareTip": "Pi çaj menteje ose kamomili, vendos një peshqir të ngrohtë në bark dhe pusho.",
+          "guidance": "Ngërçet e shkurtra zakonisht vijnë nga tretja ose nga ajo që ke ngrënë.",
+          "title": "Ngërçe dhe fryrje",
+          "description": "Barku të shtrëngohet herë pas here, është i fryrë, ke gazra ose shkon në tualet më shpesh ose më rrallë."
+        },
+        {
+          "id": "stomach_lower_sharp",
+          "label": "Dhimbje e mprehtë në një pikë, poshtë djathtas në bark",
+          "isRedFlag": true,
+          "selfCareTip": "Derisa të të shohë mjeku, mos merr qetësues të fortë dhe mos vendos asgjë të nxehtë në bark.",
+          "guidance": "Dhimbja që qëndron poshtë djathtas në bark duhet parë shpejt nga mjeku. Mund të jetë apendicit.",
+          "title": "Dhimbje poshtë djathtas",
+          "description": "Dhimbje në pjesën e poshtme djathtas të barkut që përkeqësohet, më e fortë kur kollitesh, ecën ose shtyp."
+        },
+        {
+          "id": "stomach_severe_widespread",
+          "label": "Dhimbje barku shumë e fortë dhe e vazhdueshme, me të vjella të përsëritura, bark të fortë ose temperaturë",
+          "isRedFlag": true,
+          "selfCareTip": "Mos ha dhe mos pi shumë. Shko menjëherë në Urgjencë ose telefono 112.",
+          "guidance": "Dhimbja shumë e fortë me bark të fortë mund të kërkojë operacion urgjent.",
+          "title": "Dhimbje shumë e fortë në gjithë barkun",
+          "description": "Gjithë barku të dhemb shumë dhe është i fortë, vjell vazhdimisht ose ndihesh sikur do të të bjerë të fikët."
+        }
+      ],
+      "back": [
+        {
+          "id": "back_strain_lift",
+          "label": "Dhimbje e mprehtë në fund të shpinës, menjëherë pas ngritjes së një peshe",
+          "isRedFlag": false,
+          "selfCareTip": "Mos u përkul dhe mos ngri pesha. Pusho, por bëj edhe ecje të shkurtra. Vendos një kompresë të ngrohtë.",
+          "guidance": "Ndodh shpesh. Lëvizja e lehtë ndihmon më shumë se qëndrimi në shtrat.",
+          "title": "Dhimbje shpine pasi ngrite diçka",
+          "description": "Muskujt e poshtëm të shpinës u bllokuan menjëherë pasi ngrite diçka të rëndë ose u rrotullove papritur."
+        },
+        {
+          "id": "back_chronic",
+          "label": "Dhimbje e shurdhër në fund të shpinës prej disa javësh",
+          "isRedFlag": false,
+          "selfCareTip": "Bëj ushtrime të lehta shtrirjeje për shpinën. Mos rri gjatë ulur pa lëvizur.",
+          "guidance": "Dhimbja e shpinës që zgjat përmirësohet me ushtrime me fizioterapist dhe me muskuj barku më të fortë.",
+          "title": "Dhimbje shpine që nuk kalon",
+          "description": "Dhimbje e shurdhër poshtë në shpinë prej javësh, më e fortë kur rri gjatë ulur ose në këmbë."
+        },
+        {
+          "id": "back_stiffness",
+          "label": "Shpinë e ngurtë në mëngjes ose pasi rri gjatë ulur",
+          "isRedFlag": false,
+          "selfCareTip": "Në mëngjes rrotullo lehtë shpatullat dhe përkulu ngadalë disa herë para se të nisësh ditën.",
+          "guidance": "Shpesh vjen nga muskujt e tendosur ose nga qëndrimi gjatë në të njëjtin pozicion.",
+          "title": "Shpinë e ngurtë në mëngjes",
+          "description": "Në mëngjes shpina është e ngurtë dhe përkulesh me vështirësi. Bëhet më mirë pasi lëviz pak."
+        },
+        {
+          "id": "back_severe_difficulty",
+          "label": "Dhimbje e fortë shpine me mpirje në të dyja këmbët, dobësi muskulore ose humbje të kontrollit të urinimit",
+          "isRedFlag": true,
+          "selfCareTip": "Rri shtrirë dhe telefono menjëherë 112.",
+          "guidance": "Nervat e shpinës mund të jenë shtypur rëndë. Duhet të shkosh urgjent në spital.",
+          "title": "Dhimbje shpine me mpirje në këmbë",
+          "description": "Dhimbje e fortë shpine me mpirje ose dobësi në të dyja këmbët, ose probleme të reja me urinën ose jashtëqitjen."
+        }
+      ],
+      "arm": [
+        {
+          "id": "arm_sprain",
+          "label": "Dhimbje në shpatull, bërryl ose kyç pas një rënieje, përdredhjeje apo goditjeje",
+          "isRedFlag": false,
+          "selfCareTip": "Vendos akull të mbështjellë me një peshqir ku të dhemb. Pushoje krahun dhe mbaje të mbështetur.",
+          "guidance": "Goditjet dhe përdredhjet e lehta zakonisht përmirësohen brenda disa ditëve nëse e mban nyjën në pushim.",
+          "title": "Dhimbje kyçi pas një rënieje",
+          "description": "Kyçi, bërryli ose supi të dhemb dhe është i ënjtur pas një goditjeje ose rënieje mbi duar."
+        },
+        {
+          "id": "arm_numbness",
+          "label": "Mpirje e lehtë ose shpime në gishta pasi ke punuar gjatë me tastierë ose telefon",
+          "isRedFlag": false,
+          "selfCareTip": "Bëj shpesh pushime 5-minutëshe. Shkund duart dhe rrotullo lehtë kyçet.",
+          "guidance": "Mund të jetë një nerv i shtypur te kyçi. Thuaji mjekut nëse nuk kalon.",
+          "title": "Mpirje në gishta",
+          "description": "Mpirje ose ndjesi si gjilpëra në dorë, në gishtin e madh, tregues dhe të mesëm, shpesh natën ose kur shkruan në tastierë."
+        },
+        {
+          "id": "arm_ache",
+          "label": "Muskuj të lodhur dhe me dhimbje në krah pas punëve të rënda fizike ose sportit",
+          "isRedFlag": false,
+          "selfCareTip": "Bëj një dush të ngrohtë, masazho muskujt dhe pusho një ditë.",
+          "guidance": "Është normale pas një përpjekjeje të pazakontë. Kalon vetë brenda 2 deri në 3 ditë.",
+          "title": "Muskuj krahu të lodhur",
+          "description": "Muskujt e krahut të dhembin pas një përpjekjeje të pazakontë, sportit ose mbajtjes së peshave."
+        },
+        {
+          "id": "arm_sudden_swelling",
+          "label": "Krahu humb fuqinë papritur, nuk ngrihet dot ose ënjtet shumë dhe shpejt",
+          "isRedFlag": true,
+          "selfCareTip": "Mos e sforco krahun. Telefono menjëherë 112.",
+          "guidance": "Dobësia e papritur e krahut mund të jetë goditje në tru ose dëmtim serioz.",
+          "title": "Dobësi e papritur në një krah",
+          "description": "Papritur nuk mund ta ngresh ose ta mbash një krah. Mund të ketë fytyrë të shtrembër ose të folur të ngatërruar."
+        }
+      ],
+      "leg": [
+        {
+          "id": "leg_sprain",
+          "label": "Kyç i këmbës i ënjtur ose me dhimbje pas një përdredhjeje",
+          "isRedFlag": false,
+          "selfCareTip": "Mbaje këmbën lart mbi një jastëk dhe vendos kompresë të ftohtë për 15 minuta. Mos u mbështet me gjithë peshën mbi të.",
+          "guidance": "Mbaje kyçin e këmbës në pushim disa ditë. Nëse ënjtja rritet ose nuk shkel dot, bëj një radiografi.",
+          "title": "Kyç këmbe i përdredhur",
+          "description": "Kyçi i këmbës të dhemb dhe është i ënjtur pasi e përdrodhe. Shkel me vështirësi."
+        },
+        {
+          "id": "leg_cramp",
+          "label": "Ngërç i dhimbshëm ose shtrëngim i papritur i pulpës gjatë natës ose pas vrapimit",
+          "isRedFlag": false,
+          "selfCareTip": "Zgjate butësisht këmbën duke tërhequr gishtat drejt vetes, masazhoje pulpën dhe pi ujë.",
+          "guidance": "Ngërçet vijnë shpesh nga lodhja, djersitja e madhe ose kur pi pak ujë.",
+          "title": "Ngërç në pulpë",
+          "description": "Muskuli i pulpës shtrëngohet papritur dhe me dhimbje, shpesh natën ose kur ke pirë pak ujë."
+        },
+        {
+          "id": "leg_knee_ache",
+          "label": "Dhimbje gjuri kur zbret shkallët ose pas një ecjeje të gjatë",
+          "isRedFlag": false,
+          "selfCareTip": "Mos rri galiç dhe mos mbaj pesha të rënda. Vish këpucë të rehatshme me taban të butë.",
+          "guidance": "Gjuri konsumohet me kohën. Ushtrimet që forcojnë muskujt e këmbës ndihmojnë.",
+          "title": "Dhimbje gjuri në shkallë",
+          "description": "Gjuri të dhemb kur zbret shkallët, ulesh galiç ose pasi ke ndenjur gjatë me gjunjë të përkulur."
+        },
+        {
+          "id": "leg_sudden_swelling",
+          "label": "Njëra këmbë e ënjtur papritur, e nxehtë, e kuqe dhe me shumë dhimbje, ose nuk shkel dot mbi të",
+          "isRedFlag": true,
+          "selfCareTip": "Rri i qetë dhe mos e masazho pulpën. Shko shpejt te mjeku ose në Urgjencë.",
+          "guidance": "Ënjtja e papritur e njërës këmbë mund të jetë mpiksje gjaku (trombozë). Duhet trajtuar shpejt.",
+          "title": "Pulpë e ënjtur papritur, vetëm në një këmbë",
+          "description": "Vetëm njëra pulpë u ënjt papritur dhe është e ngrohtë, e kuqe dhe me dhimbje."
+        }
+      ]
+    },
+    "severity": {
+      "mild": {
+        "title": "E lehtë",
+        "description": "E ndien, por i bën punët e zakonshme."
+      },
+      "moderate": {
+        "title": "Mesatare",
+        "description": "Të pengon në punë, në lëvizje ose në gjumë."
+      },
+      "severe": {
+        "title": "E rëndë",
+        "description": "Nuk mund të bësh pothuajse asgjë."
+      }
+    },
+    "duration": {
+      "today": {
+        "label": "Sot ose dje",
+        "hint": "Nën 24 orë"
+      },
+      "days": {
+        "label": "2–7 ditë",
+        "hint": "2 deri në 7 ditë"
+      },
+      "weeks": {
+        "label": "1–2 javë",
+        "hint": "1 deri në 2 javë"
+      },
+      "chronic": {
+        "label": "Mbi 2 javë",
+        "hint": "Nuk kalon ose kthehet shpesh"
+      }
+    },
+    "urgency": {
+      "low": {
+        "title": "Mund të kujdesesh vetë në shtëpi",
+        "intro": "Pusho, pi ujë dhe shiko si ndihesh për disa ditë. Nëse përkeqësohet ose shfaqen shenja të reja, telefono mjekun ose 112."
+      },
+      "medium": {
+        "title": "Shko te mjeku i familjes brenda disa ditëve",
+        "intro": "Kjo ia vlen ta shohë një mjek. Nëse përkeqësohet ndërkohë, telefono 112."
+      },
+      "high": {
+        "title": "Shko te një mjek sot",
+        "intro": "Mos e shty. Telefono mjekun ose shko sot në një klinikë. Nëse përkeqësohet, telefono 112."
+      }
+    }
+  },
+  "it": {
+    "ui": {
+      "eyebrow": "Controllo dei sintomi",
+      "heading": "Controlla i sintomi",
+      "subtitle": "Indica sul corpo dove ti fa male e rispondi a 3 domande. Poi vedi cosa fare.",
+      "resetButton": "Ricomincia",
+      "backButton": "Indietro",
+      "nextButton": "Continua",
+      "finishButton": "Vedi il risultato",
+      "stepIndicator": "Passo {current} di {total}",
+      "step1Title": "Zona",
+      "step2Title": "Sintomo",
+      "step3Title": "Intensità",
+      "step4Title": "Risultato",
+      "step1Question": "Dove senti dolore o fastidio?",
+      "step1Prompt": "Tocca la zona sul corpo o sceglila dall'elenco.",
+      "step2Question": "Quale somiglia di più a quello che senti?",
+      "step2Prompt": "Scegli il sintomo che ti disturba di più.",
+      "urgentBadge": "Segnale di emergenza",
+      "step3Question": "Quanto forte e da quando?",
+      "step3Prompt": "Scegli un'opzione per ogni gruppo.",
+      "severityHeading": "Quanto è forte?",
+      "durationHeading": "Da quanto tempo ce l'hai?",
+      "step4Question": "Cosa puoi fare ora",
+      "step4Prompt": "In base alle tue risposte. Non è una diagnosi.",
+      "summaryHeading": "Riepilogo delle tue risposte",
+      "areaLabel": "Zona",
+      "symptomLabel": "Sintomo",
+      "intensityLabel": "Intensità",
+      "durationLabel": "Durata",
+      "recommendationHeading": "Cosa fare ora",
+      "safeSelfCareHeading": "Cosa puoi fare a casa",
+      "copySummary": "Copia riepilogo",
+      "copied": "Copiato",
+      "sendWhatsApp": "Condividi su WhatsApp",
+      "showDoctor": "Mostra al medico",
+      "requestMediatorHelp": "Parla con un mediatore",
+      "scheduleDoctor": "Prenota un medico online",
+      "readEducationalTopic": "Leggi la guida",
+      "disclaimer": "Questa non è una diagnosi. Se ti senti peggio o il dolore è molto forte, chiama il 112.",
+      "viewer3D": {
+        "ariaLabel": "Corpo 3D. Giralo e tocca dove fa male.",
+        "loading": "Caricamento del modello 3D ({progress}%)",
+        "subModelInfo": "Corpo 3D",
+        "front": "Davanti",
+        "back": "Dietro",
+        "perspective": "Angolo",
+        "rotate360": "360°",
+        "zoomIn": "Ingrandisci",
+        "zoomOut": "Riduci",
+        "resetView": "Ripristina vista",
+        "tip": "Trascina a sinistra o a destra per girare il corpo. Tocca dove fa male.",
+        "searchPlaceholder": "Cerca un organo o un muscolo (es. cuore, bicipite)",
+        "selected3DStructure": "Hai scelto:",
+        "activeAreaPrefix": "Zona:",
+        "leftSide": "Sinistra",
+        "rightSide": "Destra",
+        "selectRegionPrefix": "Scegli",
+        "rotateTooltip": "Ruota il corpo di 180°",
+        "layerHybrid": "Muscoli e organi",
+        "layerMuscular": "Muscoli e tendini",
+        "layerOrgans": "Organi interni",
+        "layerSurface": "Pelle",
+        "legendSkeletalMuscles": "Muscoli",
+        "legendTendonsJoints": "Tendini e articolazioni",
+        "legendInternalOrgans": "Organi interni",
+        "legendSelectedStructure": "Struttura selezionata"
+      },
+      "emergency": {
+        "badge": "Emergenza medica 112",
+        "title": "Può essere un'emergenza: chiama subito il 112",
+        "description": "Non aspettare. Se non puoi chiamare, vai subito al pronto soccorso. Non guidare da solo.",
+        "whyEmergencyPrefix": "Hai scelto:",
+        "call112Now": "Chiama il 112",
+        "continueReview": "Ho capito"
+      },
+      "structure3DLabel": "Struttura 3D",
+      "sensationLabel": "Sensazione",
+      "triggersLabel": "Cosa lo peggiora",
+      "specialtyLabel": "Specialista da vedere",
+      "warningNoticeRedFlag": "Segnalati segni di emergenza.",
+      "warningNoticeSafe": "Nessun segno di emergenza segnalato."
+    },
+    "bodyParts": {
+      "head": {
+        "title": "Testa e collo",
+        "subtitle": "Mal di testa, collo rigido, vertigini o vista offuscata"
+      },
+      "chest": {
+        "title": "Petto e respirazione",
+        "subtitle": "Pressione al petto, respiro affannoso o cuore che batte forte"
+      },
+      "stomach": {
+        "title": "Stomaco e addome",
+        "subtitle": "Bruciore, crampi, nausea, gonfiore o mal di pancia"
+      },
+      "back": {
+        "title": "Schiena e zona lombare",
+        "subtitle": "Mal di schiena in basso, muscoli tesi o dolore tra le scapole"
+      },
+      "arm": {
+        "title": "Braccia e mani",
+        "subtitle": "Intorpidimento, dolore alla spalla o al gomito o articolazioni gonfie"
+      },
+      "leg": {
+        "title": "Gambe e piedi",
+        "subtitle": "Dolore al ginocchio, caviglia gonfia o difficoltà a camminare"
+      }
+    },
+    "symptomsByRegion": {
+      "head": [
+        {
+          "id": "head_migraine",
+          "label": "Dolore pulsante su un lato della testa, con nausea o fastidio alla luce",
+          "isRedFlag": false,
+          "selfCareTip": "Riposa in una stanza tranquilla e buia, bevi acqua e appoggia un panno fresco sulla fronte.",
+          "guidance": "Sembra un'emicrania. Se torna spesso, chiedi al medico di famiglia una cura per prevenirla.",
+          "title": "Emicrania o dolore pulsante",
+          "description": "Dolore che pulsa, di solito su un lato della testa. Luce o rumore possono darti fastidio, o puoi avere nausea."
+        },
+        {
+          "id": "head_tension",
+          "label": "Pressione a fascia attorno alla testa, legata a stress o stanchezza",
+          "isRedFlag": false,
+          "selfCareTip": "Fai una pausa dagli schermi, massaggia delicatamente il collo e fai una breve camminata all'aria aperta.",
+          "guidance": "Spesso dipende da stress, poco sonno o tante ore alla scrivania.",
+          "title": "Mal di testa da stress",
+          "description": "Pressione come una fascia stretta su fronte o tempie. Capita spesso dopo stress, tanto schermo o collo teso."
+        },
+        {
+          "id": "head_dehydration",
+          "label": "Dolore sordo e costante dopo una giornata calda o dopo aver bevuto poca acqua",
+          "isRedFlag": false,
+          "selfCareTip": "Bevi piano 1 o 2 bicchieri grandi di acqua o tisana tiepida. Evita bevande con caffeina o zucchero.",
+          "guidance": "Spesso passa se bevi acqua e stai lontano dal caldo.",
+          "title": "Mal di testa da caldo o sete",
+          "description": "Dolore sordo in tutta la testa, peggiore quando la muovi. Capita dopo sole, caldo o se hai bevuto poco."
+        },
+        {
+          "id": "head_fever",
+          "label": "Mal di testa con febbre, brividi o naso chiuso",
+          "isRedFlag": false,
+          "selfCareTip": "Riposa a letto, misura la febbre e bevi molti liquidi.",
+          "guidance": "Può essere un raffreddore o un virus. Se la febbre supera 38,5 °C o dura più di 3 giorni, vai dal medico.",
+          "title": "Mal di testa con febbre",
+          "description": "Ti fa male la testa e hai febbre, brividi, dolori nel corpo o naso chiuso."
+        },
+        {
+          "id": "head_sudden_severe",
+          "label": "Mal di testa improvviso e fortissimo, o con confusione o debolezza",
+          "isRedFlag": true,
+          "selfCareTip": "Siediti in un posto sicuro e chiama subito il 112.",
+          "guidance": "Un mal di testa fortissimo che arriva all'improvviso è un'emergenza. Ti serve subito un medico.",
+          "title": "Mal di testa improvviso e fortissimo",
+          "description": "Il peggior mal di testa della tua vita, arrivato in pochi secondi. Può esserci collo rigido, vista offuscata o confusione."
+        }
+      ],
+      "chest": [
+        {
+          "id": "chest_reflux",
+          "label": "Bruciore al petto o sapore acido dopo i pasti o quando ti pieghi in avanti",
+          "isRedFlag": false,
+          "selfCareTip": "Non sdraiarti subito dopo mangiato. Per un po' riduci cibi piccanti e caffè.",
+          "guidance": "Il bruciore di solito viene dall'acido dello stomaco. Se non passa, il medico di famiglia può darti una cura.",
+          "title": "Bruciore di stomaco",
+          "description": "Bruciore che sale dallo stomaco verso la gola. Peggiora se ti pieghi o dopo pasti pesanti o acidi."
+        },
+        {
+          "id": "chest_exertion",
+          "label": "Stretta o pressione al petto sotto sforzo o salendo le scale",
+          "isRedFlag": false,
+          "selfCareTip": "Fermati, siediti e respira piano.",
+          "guidance": "Una stretta al petto sotto sforzo va controllata da un medico, anche se passa in fretta quando ti fermi.",
+          "title": "Oppressione al petto sotto sforzo",
+          "description": "Stretta al centro del petto quando cammini veloce, sali le scale o fai fatica."
+        },
+        {
+          "id": "chest_stitch",
+          "label": "Fitta su un lato del petto, più forte con un respiro profondo o con la tosse",
+          "isRedFlag": false,
+          "selfCareTip": "Per qualche minuto respira piano, senza riempire troppo i polmoni. Metti qualcosa di tiepido dove fa male.",
+          "guidance": "Di solito è un muscolo stirato e passa da solo. Se respirare diventa difficile, chiama il 112.",
+          "title": "Fitta quando respiri",
+          "description": "Dolore acuto in un punto del petto, peggiore quando respiri a fondo, tossisci o ti giri."
+        },
+        {
+          "id": "chest_warning",
+          "label": "Forte dolore al petto che va verso braccio sinistro, collo o mandibola, con fiato corto",
+          "isRedFlag": true,
+          "selfCareTip": "Chiama subito il 112. Siediti e allenta i vestiti stretti.",
+          "guidance": "Questo dolore al petto può essere un infarto. Ogni minuto conta.",
+          "title": "Forte dolore al petto che si allarga",
+          "description": "Pressione pesante al petto che va verso braccio sinistro, collo, mascella o schiena. Può esserci sudore freddo o fiato corto."
+        }
+      ],
+      "stomach": [
+        {
+          "id": "stomach_upper_reflux",
+          "label": "Bruciore o pesantezza nella parte alta dello stomaco",
+          "isRedFlag": false,
+          "selfCareTip": "Mangia cibi semplici e leggeri. Bevi acqua non fredda ed evita i pasti abbondanti.",
+          "guidance": "Lo stomaco irritato è comune. Se ti disturba ogni giorno, prenota una visita.",
+          "title": "Bruciore nella parte alta dello stomaco",
+          "description": "Bruciore o acidità sotto le costole. Ti senti pieno presto o hai un sapore acido in bocca dopo mangiato."
+        },
+        {
+          "id": "stomach_cramping_mild",
+          "label": "Crampi in tutta la pancia, con gonfiore, digestione lenta o un po' di nausea",
+          "isRedFlag": false,
+          "selfCareTip": "Bevi una tisana di menta o camomilla, applica un panno tiepido sulla pancia e riposa.",
+          "guidance": "I crampi brevi di solito dipendono dalla digestione o da cosa hai mangiato.",
+          "title": "Crampi e gonfiore",
+          "description": "La pancia si stringe ogni tanto, è gonfia, hai gas o vai in bagno più o meno spesso."
+        },
+        {
+          "id": "stomach_lower_sharp",
+          "label": "Dolore acuto in un punto, in basso a destra nella pancia",
+          "isRedFlag": true,
+          "selfCareTip": "Finché non ti vede un medico, non prendere antidolorifici forti e non mettere niente di caldo sulla pancia.",
+          "guidance": "Un dolore fisso in basso a destra nella pancia va visto presto da un medico. Può essere appendicite.",
+          "title": "Dolore in basso a destra",
+          "description": "Dolore nella parte bassa destra della pancia che peggiora, più forte se tossisci, cammini o premi."
+        },
+        {
+          "id": "stomach_severe_widespread",
+          "label": "Mal di pancia fortissimo e continuo, con vomito ripetuto, pancia dura o febbre",
+          "isRedFlag": true,
+          "selfCareTip": "Non mangiare e non bere molto. Vai subito al pronto soccorso o chiama il 112.",
+          "guidance": "Un dolore fortissimo con la pancia dura può richiedere un intervento chirurgico urgente.",
+          "title": "Dolore fortissimo in tutta la pancia",
+          "description": "Tutta la pancia fa molto male ed è dura, vomiti di continuo o ti senti svenire."
+        }
+      ],
+      "back": [
+        {
+          "id": "back_strain_lift",
+          "label": "Dolore acuto in basso alla schiena subito dopo aver sollevato un peso",
+          "isRedFlag": false,
+          "selfCareTip": "Non piegarti e non sollevare pesi. Riposa, ma fai anche brevi camminate. Usa un panno tiepido.",
+          "guidance": "Succede spesso. Muoversi con calma aiuta più che stare a letto.",
+          "title": "Mal di schiena dopo aver sollevato",
+          "description": "I muscoli in basso della schiena si sono bloccati subito dopo aver sollevato un peso o esserti girato di colpo."
+        },
+        {
+          "id": "back_chronic",
+          "label": "Dolore sordo in basso alla schiena da qualche settimana",
+          "isRedFlag": false,
+          "selfCareTip": "Fai esercizi leggeri di allungamento per la schiena. Regola l'altezza della sedia e non stare fermo troppo a lungo.",
+          "guidance": "Il mal di schiena che dura migliora con esercizi insegnati da un fisioterapista e muscoli della pancia più forti.",
+          "title": "Mal di schiena che non passa",
+          "description": "Dolore sordo in basso alla schiena da settimane, peggiore se stai a lungo seduto o in piedi."
+        },
+        {
+          "id": "back_stiffness",
+          "label": "Schiena bloccata al mattino o dopo tanto tempo seduti",
+          "isRedFlag": false,
+          "selfCareTip": "Al mattino ruota piano le spalle e piegati lentamente qualche volta prima di iniziare la giornata.",
+          "guidance": "Spesso dipende da muscoli tesi o dallo stare a lungo nella stessa posizione.",
+          "title": "Schiena rigida al mattino",
+          "description": "Al risveglio la schiena è rigida e fai fatica a piegarti. Migliora dopo un po' di movimento."
+        },
+        {
+          "id": "back_severe_difficulty",
+          "label": "Forte dolore alla schiena con intorpidimento a entrambe le gambe, debolezza o perdita del controllo dell'urina",
+          "isRedFlag": true,
+          "selfCareTip": "Resta disteso e chiama subito il 112.",
+          "guidance": "I nervi della schiena possono essere schiacciati in modo grave. Devi andare subito in ospedale.",
+          "title": "Mal di schiena con gambe intorpidite",
+          "description": "Forte dolore alla schiena con formicolio o debolezza in entrambe le gambe, o nuovi problemi a trattenere urina o feci."
+        }
+      ],
+      "arm": [
+        {
+          "id": "arm_sprain",
+          "label": "Dolore a spalla, gomito o polso dopo una caduta, un movimento brusco o un urto",
+          "isRedFlag": false,
+          "selfCareTip": "Metti del ghiaccio avvolto in un panno dove fa male. Tieni il braccio a riposo e sostenuto.",
+          "guidance": "Colpi e distorsioni lievi di solito migliorano in pochi giorni se tieni a riposo l'articolazione.",
+          "title": "Dolore al polso dopo una caduta",
+          "description": "Polso, gomito o spalla fanno male e sono gonfi dopo un colpo o una caduta sulle mani."
+        },
+        {
+          "id": "arm_numbness",
+          "label": "Lieve formicolio o intorpidimento alle dita dopo tanto tempo su tastiera o cellulare",
+          "isRedFlag": false,
+          "selfCareTip": "Fai spesso pause di 5 minuti. Scuoti le mani e ruota piano i polsi.",
+          "guidance": "Può essere un nervo schiacciato al polso. Dillo al medico se non passa.",
+          "title": "Formicolio alle dita",
+          "description": "Intorpidimento o formicolio nella mano, in pollice, indice e medio, spesso di notte o quando scrivi al computer."
+        },
+        {
+          "id": "arm_ache",
+          "label": "Muscoli delle braccia stanchi e indolenziti dopo lavori pesanti o sport",
+          "isRedFlag": false,
+          "selfCareTip": "Fai una doccia tiepida, massaggia piano i muscoli e riposa per un giorno.",
+          "guidance": "È normale dopo uno sforzo insolito. Passa da solo in 2 o 3 giorni.",
+          "title": "Muscoli del braccio indolenziti",
+          "description": "I muscoli del braccio fanno male dopo uno sforzo insolito, sport o dopo aver portato pesi."
+        },
+        {
+          "id": "arm_sudden_swelling",
+          "label": "Braccio che perde forza all'improvviso, non si alza o si gonfia molto e in fretta",
+          "isRedFlag": true,
+          "selfCareTip": "Non forzare il braccio. Chiama subito il 112.",
+          "guidance": "Un braccio debole all'improvviso può essere un ictus o una lesione grave.",
+          "title": "Debolezza improvvisa a un braccio",
+          "description": "All'improvviso non riesci ad alzare o tenere su un braccio. Può esserci la bocca storta o parli in modo confuso."
+        }
+      ],
+      "leg": [
+        {
+          "id": "leg_sprain",
+          "label": "Caviglia gonfia o dolorante dopo aver messo male il piede",
+          "isRedFlag": false,
+          "selfCareTip": "Tieni la gamba alzata su un cuscino e metti impacchi freddi per 15 minuti. Non caricarci tutto il peso.",
+          "guidance": "Tieni a riposo la caviglia per qualche giorno. Se il gonfiore cresce o non riesci ad appoggiarla, fai una radiografia.",
+          "title": "Caviglia storta",
+          "description": "La caviglia fa male ed è gonfia dopo aver preso una storta. È difficile appoggiarla."
+        },
+        {
+          "id": "leg_cramp",
+          "label": "Crampo doloroso o contrattura improvvisa del polpaccio di notte o dopo la corsa",
+          "isRedFlag": false,
+          "selfCareTip": "Distendi la gamba tirando le dita verso di te, massaggia il polpaccio e bevi un bicchiere d'acqua.",
+          "guidance": "I crampi vengono spesso dopo stanchezza, molto sudore o se bevi poco.",
+          "title": "Crampo al polpaccio",
+          "description": "Il polpaccio si contrae all'improvviso e fa male, spesso di notte o se hai bevuto poco."
+        },
+        {
+          "id": "leg_knee_ache",
+          "label": "Dolore al ginocchio scendendo le scale o dopo una lunga camminata",
+          "isRedFlag": false,
+          "selfCareTip": "Evita di accovacciarti e di portare pesi. Usa scarpe comode con la suola morbida.",
+          "guidance": "Il ginocchio si consuma col tempo. Gli esercizi che rinforzano i muscoli della gamba aiutano.",
+          "title": "Dolore al ginocchio sulle scale",
+          "description": "Il ginocchio fa male quando scendi le scale, ti accovacci o dopo essere stato seduto a lungo."
+        },
+        {
+          "id": "leg_sudden_swelling",
+          "label": "Una sola gamba gonfia all'improvviso, calda, rossa e molto dolorante, o non riesci ad appoggiare il piede",
+          "isRedFlag": true,
+          "selfCareTip": "Resta a riposo e non massaggiare il polpaccio. Vai presto da un medico o al pronto soccorso.",
+          "guidance": "Il gonfiore improvviso di una sola gamba può essere un coagulo di sangue (trombosi). Va curato in fretta.",
+          "title": "Gamba gonfia all'improvviso, solo una",
+          "description": "Un solo polpaccio si è gonfiato all'improvviso ed è caldo, rosso e dolente."
+        }
+      ]
+    },
+    "severity": {
+      "mild": {
+        "title": "Lieve",
+        "description": "Lo senti, ma fai le tue cose di sempre."
+      },
+      "moderate": {
+        "title": "Moderato",
+        "description": "Ti ostacola nel lavoro, nei movimenti o nel sonno."
+      },
+      "severe": {
+        "title": "Grave",
+        "description": "Non riesci a fare quasi niente."
+      }
+    },
+    "duration": {
+      "today": {
+        "label": "Oggi o ieri",
+        "hint": "Meno di 24 ore"
+      },
+      "days": {
+        "label": "2–7 giorni",
+        "hint": "Da 2 a 7 giorni"
+      },
+      "weeks": {
+        "label": "1–2 settimane",
+        "hint": "Da 1 a 2 settimane"
+      },
+      "chronic": {
+        "label": "Più di 2 settimane",
+        "hint": "Non passa o torna spesso"
+      }
+    },
+    "urgency": {
+      "low": {
+        "title": "Probabilmente puoi curarti a casa",
+        "intro": "Riposa, bevi acqua e osserva come ti senti per qualche giorno. Se peggiora o compaiono nuovi segni, chiama il medico o il 112."
+      },
+      "medium": {
+        "title": "Vai dal medico di famiglia nei prossimi giorni",
+        "intro": "Vale la pena farlo vedere a un medico. Se nel frattempo peggiora, chiama il 112."
+      },
+      "high": {
+        "title": "Vai da un medico oggi",
+        "intro": "Non rimandare. Chiama il medico o vai oggi in un ambulatorio. Se peggiora, chiama il 112."
+      }
+    }
+  }
+};
+
+export const healthCheckTranslations: Record<Lang, HealthCheckWizardLocaleData> = {
+  ro: { ...rawTranslations.ro, symptoms: rawTranslations.ro.symptomsByRegion },
+  en: { ...rawTranslations.en, symptoms: rawTranslations.en.symptomsByRegion },
+  sq: { ...rawTranslations.sq, symptoms: rawTranslations.sq.symptomsByRegion },
+  it: { ...rawTranslations.it, symptoms: rawTranslations.it.symptomsByRegion },
+};
+
+export interface HealthCheckSummaryExportPrefixes {
+  structure3D: string;
+  sensation: string;
+  triggers: string;
+  specialty: string;
+  warningNoticeRedFlag: string;
+  warningNoticeSafe: string;
+}
+
+/**
+ * Returns the health-check dictionary for the requested language.
+ * Safely falls back to DEFAULT_LANG ("en") if lang is undefined or unrecognized.
+ */
+export function getHealthCheckTranslations(lang?: Lang): HealthCheckWizardLocaleData {
+  const targetLang = lang && lang in healthCheckTranslations ? lang : DEFAULT_LANG;
+  return healthCheckTranslations[targetLang] ?? healthCheckTranslations[DEFAULT_LANG];
+}
+
+/**
+ * Convenience alias for getHealthCheckTranslations.
+ */
+export function getHealthCheckWizard(lang?: Lang): HealthCheckWizardLocaleData {
+  return getHealthCheckTranslations(lang);
+}
+
+/**
+ * Returns localized prefixes for clipboard and WhatsApp export.
+ */
+export function getSummaryExportPrefixes(lang?: Lang): HealthCheckSummaryExportPrefixes {
+  const d = getHealthCheckTranslations(lang);
+  const targetLang = lang && lang in healthCheckTranslations ? lang : DEFAULT_LANG;
+  return {
+    structure3D: d.ui.structure3DLabel ?? (targetLang === "ro" ? "Structură 3D" : targetLang === "en" ? "3D structure" : targetLang === "sq" ? "Struktura 3D" : "Struttura 3D"),
+    sensation: d.ui.sensationLabel ?? (targetLang === "ro" ? "Senzație" : targetLang === "en" ? "Sensation" : targetLang === "sq" ? "Ndjesi" : "Sensazione"),
+    triggers: d.ui.triggersLabel ?? (targetLang === "ro" ? "Ce agravează" : targetLang === "en" ? "What makes it worse" : targetLang === "sq" ? "Çfarë e përkeqëson" : "Cosa lo peggiora"),
+    specialty: d.ui.specialtyLabel ?? (targetLang === "ro" ? "Medic specialist" : targetLang === "en" ? "Specialist to see" : targetLang === "sq" ? "Mjeku specialist" : "Specialista da vedere"),
+    warningNoticeRedFlag: d.ui.warningNoticeRedFlag ?? (targetLang === "ro" ? "Au apărut semne de urgență." : targetLang === "en" ? "Emergency warning signs reported." : targetLang === "sq" ? "U raportuan shenja urgjence." : "Segnalati segni di emergenza."),
+    warningNoticeSafe: d.ui.warningNoticeSafe ?? (targetLang === "ro" ? "Nu au apărut semne de urgență." : targetLang === "en" ? "No emergency warning signs reported." : targetLang === "sq" ? "Nuk u raportuan shenja urgjence." : "Nessun segno di emergenza segnalato."),
   };
-  bodyParts: Record<PartId, string>;
-  severity: Record<Severity, string>;
-  duration: Record<Duration, string>;
-  labels: Record<string, string>;
-  questionText: Record<PartId, Record<string, string>>;
-  urgency: Record<Urgency, { title: string; intro: string }>;
-  selfCareTips: Record<PartId, string[]>;
-  resultText: Record<ResultKey, { title: string; intro: string }>;
-};
-
-export const healthCheckTranslations: Record<Lang, HealthCheckTranslations> = {
-  en: {
-    ui: {
-      tapWhereItHurts: "Tap where it hurts",
-      chooseBodyArea: "Choose a body area to begin.",
-      selectedPrefix: "Selected: ",
-      tapToBegin: "Tap a highlighted area of the body to answer a few quick questions.",
-      front: "Front",
-      back: "Back",
-      questionOf: (current, total) => `Question ${current} of ${total}`,
-      severityQuestion: "How intense is it?",
-      durationQuestion: "How long has this been going on?",
-      symptomsQuestion: "Any of these as well?",
-      backButton: "Back",
-      next: "Next",
-      seeResult: "See my result",
-      startOver: "Start over",
-      thingsThatMayHelp: "A few things that may help",
-      disclaimer:
-        "This tool provides general health information only and is not a medical diagnosis. It is not 100% accurate and does not replace advice from a qualified doctor. If you're worried, your symptoms are severe, or they get worse, please consult a doctor or request help from a mediator by filling out the form on the Get Help page.",
-      requestMediatorHelp: "Request Mediator Help",
-    },
-    bodyParts: { head: "Head", chest: "Chest", stomach: "Stomach", back: "Back", arm: "Arm", leg: "Leg" },
-    severity: {
-      mild: "Mild - noticeable but manageable",
-      moderate: "Moderate - hard to ignore",
-      severe: "Severe - very intense",
-    },
-    duration: { today: "Started today", days: "A few days", weeks: "Two weeks or more" },
-    labels: {
-      head_fever: "Fever",
-      head_nausea: "Nausea",
-      head_light: "Sensitivity to light",
-      head_vision: "Sudden vision changes",
-      chest_breath: "Shortness of breath",
-      chest_radiate: "Pain spreading to arm or jaw",
-      chest_heartbeat: "Fast or irregular heartbeat",
-      stomach_fever: "Fever",
-      stomach_vomit: "Vomiting",
-      stomach_blood: "Blood in stool",
-      back_numbness: "Numbness or tingling in legs",
-      back_difficulty: "Difficulty moving",
-      back_fever: "Fever",
-      arm_swelling: "Swelling",
-      arm_numbness: "Numbness or tingling",
-      arm_cantmove: "Can't move it normally",
-      leg_swelling: "Swelling",
-      leg_numbness: "Numbness or tingling",
-      leg_cantbear: "Can't put weight on it",
-      head_loc_one_side: "One side of the head",
-      head_loc_both_sides: "Both sides / band-like",
-      head_loc_behind_eyes: "Behind the eyes or forehead",
-      head_loc_back_head: "Back of the head or neck",
-      head_char_throbbing: "Throbbing / pulsing",
-      head_char_dull: "Dull, constant ache",
-      head_char_sharp: "Sharp / stabbing",
-      head_char_pressure: "Pressure or tightness",
-      head_trig_stress: "Stress or lack of sleep",
-      head_trig_screen: "Bright light or screen time",
-      head_trig_water: "Haven't had much water today",
-      head_trig_none: "No clear trigger",
-      chest_char_sharp: "Sharp, stabbing",
-      chest_char_tight: "Tight or pressure-like",
-      chest_char_burning: "Burning",
-      chest_trig_activity: "With physical activity",
-      chest_trig_rest: "At rest",
-      chest_trig_eating: "After eating",
-      stomach_loc_upper: "Upper stomach",
-      stomach_loc_lower: "Lower stomach",
-      stomach_loc_allover: "All over / cramping",
-      stomach_char_cramping: "Cramping",
-      stomach_char_burning: "Burning",
-      stomach_char_sharp: "Sharp and localized",
-      back_loc_upper: "Upper back",
-      back_loc_lower: "Lower back",
-      back_trig_lifting: "After lifting or a sudden movement",
-      back_trig_gradual: "Gradually, with no clear trigger",
-      limb_trig_injury: "After a fall or injury",
-      limb_trig_gradual: "Gradually, with no injury",
-      limb_char_aching: "Aching",
-      limb_char_sharp: "Sharp pain",
-      limb_char_numbness: "Mostly numbness or tingling",
-    },
-    questionText: {
-      head: {
-        location: "Where is the pain mostly felt?",
-        character: "What does it feel like?",
-        trigger: "Anything that may have brought it on?",
-      },
-      chest: { character: "What does it feel like?", trigger: "When does it happen?" },
-      stomach: { location: "Where is it mostly felt?", character: "What does it feel like?" },
-      back: { location: "Where is it mostly felt?", trigger: "How did it start?" },
-      arm: { trigger: "How did it start?", character: "What does it feel like?" },
-      leg: { trigger: "How did it start?", character: "What does it feel like?" },
-    },
-    urgency: {
-      low: {
-        title: "Likely something you can manage at home for now",
-        intro: "Your answers don't point to warning signs. A few self-care steps may help while you keep an eye on things.",
-      },
-      medium: {
-        title: "Worth keeping an eye on - consider getting checked",
-        intro: "Your symptoms have lasted a while or are fairly noticeable. It's a good idea to get a professional opinion soon.",
-      },
-      high: {
-        title: "This could need prompt medical attention",
-        intro: "The combination of symptoms you selected can sometimes signal something more serious. Please don't wait to get checked.",
-      },
-    },
-    selfCareTips: {
-      head: [
-        "Rest in a quiet, dimly lit room.",
-        "Stay hydrated and consider a light snack if you haven't eaten.",
-        "An over-the-counter pain reliever can help, if suitable for you.",
-      ],
-      chest: [
-        "Sit down and rest, avoiding physical exertion.",
-        "Avoid caffeine and stimulants until the discomfort passes.",
-        "Note when the discomfort happens and how long it lasts.",
-      ],
-      stomach: [
-        "Sip water or a light electrolyte drink.",
-        "Stick to plain, easy-to-digest food for a few hours.",
-        "Avoid alcohol and spicy or fatty foods until you feel better.",
-      ],
-      back: [
-        "Avoid heavy lifting and sudden twisting movements.",
-        "Gentle stretching or short walks can help more than bed rest.",
-        "A warm compress may ease muscle tension.",
-      ],
-      arm: [
-        "Rest the arm and avoid repetitive movements.",
-        "A cold pack can help with swelling in the first day.",
-        "Gently move the joint if pain allows, to avoid stiffness.",
-      ],
-      leg: [
-        "Rest and elevate the leg when possible.",
-        "A cold pack can help with swelling in the first day.",
-        "Avoid putting full weight on it if it feels unstable.",
-      ],
-    },
-    resultText: {
-      head_migraine: { title: "This looks like it could be a migraine-type headache", intro: "One-sided, throbbing pain with nausea or light sensitivity is a common migraine pattern." },
-      head_tension: { title: "This looks like it could be a tension headache", intro: "Band-like pressure on both sides is often linked to stress, tiredness, or muscle tension." },
-      head_dehydration: { title: "This could be a dehydration-related headache", intro: "Not drinking enough water is a common, easily fixable cause of headaches." },
-      head_fever: { title: "Headache with fever", intro: "A headache alongside fever can point to an infection. It's worth getting checked if it persists." },
-      head_sudden_severe: { title: "Sudden, severe headache - please seek urgent care", intro: "A sudden and severe headache, especially one that feels different from headaches you've had before, can occasionally signal something serious and is worth urgent assessment." },
-      head_fever_light: { title: "Headache with fever and light sensitivity - get checked promptly", intro: "This combination can occasionally point to an infection affecting the brain or its lining, which needs prompt assessment." },
-      chest_warning: { title: "Possible warning signs around the chest", intro: "Shortness of breath, pain spreading to the arm or jaw, or a fast heartbeat alongside chest discomfort should never be ignored." },
-      chest_exertion: { title: "Possible exertion-related chest tightness", intro: "Tightness that appears with physical activity is worth discussing with a doctor, even if it's mild." },
-      chest_reflux: { title: "This could be heartburn or acid reflux", intro: "Burning discomfort after eating is commonly linked to acid reflux." },
-      chest_rest_severe: { title: "Severe chest discomfort at rest - seek urgent care", intro: "Intense chest discomfort that appears without physical exertion should be assessed urgently, even without other symptoms." },
-      stomach_lower_sharp: { title: "Possible localized lower-abdominal pain", intro: "Sharp pain in a specific lower-abdominal spot is worth getting checked, since it can sometimes point to appendicitis or another localized cause." },
-      stomach_upper_reflux: { title: "This could be acid reflux or gastritis-type discomfort", intro: "Burning pain in the upper stomach is often linked to acid or stomach lining irritation." },
-      stomach_upper_sharp: { title: "Possible gallbladder or ulcer-type pain", intro: "Sharp, localized pain in the upper stomach can sometimes be linked to the gallbladder or stomach lining. Worth a professional check, especially if it keeps returning." },
-      stomach_cramping_fever: { title: "Possible stomach bug or infection (gastroenteritis)", intro: "Cramping with fever or vomiting can point to a stomach infection. Stay hydrated and see a doctor if it persists or you can't keep fluids down." },
-      stomach_cramping_mild: { title: "Possible cramping from mild digestive upset", intro: "Cramping on its own, without fever or vomiting, is often linked to diet or mild digestive upset." },
-      stomach_appendicitis: { title: "This pattern can be consistent with appendicitis-type pain", intro: "Sharp, localized lower-abdominal pain with fever or vomiting is a pattern sometimes seen with appendicitis. This can worsen quickly, so please get seen promptly - this is not something to wait out at home." },
-      stomach_severe_widespread: { title: "Severe, widespread stomach pain with fever - seek urgent care", intro: "Severe pain across the whole abdomen with fever can occasionally signal a more serious abdominal problem and should be assessed urgently." },
-      back_strain_lift: { title: "This looks like a muscle strain in the lower back", intro: "Pain that started right after lifting or a sudden movement is often a muscle or ligament strain." },
-      back_chronic: { title: "Possible chronic back strain", intro: "Pain that built up gradually and has lasted for weeks is worth having a professional take a look at." },
-      back_fever: { title: "Back pain with fever - worth urgent assessment", intro: "Back pain combined with fever can occasionally point to an infection that needs prompt attention." },
-      back_severe_difficulty: { title: "Severe back pain with difficulty moving - seek urgent care", intro: "Severe pain that's stopping you from moving normally is worth having assessed urgently." },
-      arm_fracture: { title: "Possible fracture or serious arm injury", intro: "Being unable to move the arm after an injury can mean something is broken or badly sprained." },
-      arm_sprain: { title: "Possible sprain or strain from an injury", intro: "Sharp pain that started right after a fall or injury often points to a sprain or strain." },
-      arm_numbness: { title: "Possible nerve-related irritation", intro: "Numbness or tingling can point to nerve irritation or pressure and is worth mentioning to a doctor." },
-      arm_sudden_swelling: { title: "Sudden arm swelling - worth getting checked soon", intro: "New, noticeable swelling that came on quickly is worth having assessed rather than waiting." },
-      leg_fracture: { title: "Possible fracture or serious leg injury", intro: "Being unable to put weight on the leg after an injury can mean something is broken or badly sprained." },
-      leg_sprain: { title: "Possible sprain or strain from an injury", intro: "Sharp pain that started right after a fall or injury often points to a sprain or strain." },
-      leg_numbness: { title: "Possible nerve-related irritation", intro: "Numbness or tingling can point to nerve irritation or pressure and is worth mentioning to a doctor." },
-      leg_sudden_swelling: { title: "Sudden leg swelling - worth getting checked soon", intro: "New swelling in one leg that came on quickly can occasionally be linked to circulation problems and is worth getting checked promptly." },
-    },
-  },
-  ro: {
-    ui: {
-      tapWhereItHurts: "Atinge zona care te doare",
-      chooseBodyArea: "Alege o zonă a corpului pentru a începe.",
-      selectedPrefix: "Selectat: ",
-      tapToBegin: "Atinge o zonă evidențiată a corpului pentru a răspunde la câteva întrebări scurte.",
-      front: "Față",
-      back: "Spate",
-      questionOf: (current, total) => `Întrebarea ${current} din ${total}`,
-      severityQuestion: "Cât de intens este?",
-      durationQuestion: "De cât timp se întâmplă asta?",
-      symptomsQuestion: "Ai și una dintre acestea?",
-      backButton: "Înapoi",
-      next: "Continuă",
-      seeResult: "Vezi rezultatul",
-      startOver: "Ia-o de la capăt",
-      thingsThatMayHelp: "Câteva lucruri care te-ar putea ajuta",
-      disclaimer:
-        "Acest instrument oferă doar informații medicale generale și nu reprezintă un diagnostic medical. Nu este 100% exact și nu înlocuiește sfatul unui medic calificat. Dacă ești îngrijorat, simptomele sunt severe sau se agravează, te rugăm să consulți un medic sau să soliciți ajutorul unui mediator completând formularul din pagina Cere ajutor.",
-      requestMediatorHelp: "Solicită ajutorul mediatorilor",
-    },
-    bodyParts: { head: "Cap", chest: "Piept", stomach: "Stomac", back: "Spate", arm: "Braț", leg: "Picior" },
-    severity: {
-      mild: "Ușor - perceptibil dar suportabil",
-      moderate: "Moderat - greu de ignorat",
-      severe: "Sever - foarte intens",
-    },
-    duration: { today: "A început azi", days: "De câteva zile", weeks: "De două săptămâni sau mai mult" },
-    labels: {
-      head_fever: "Febră",
-      head_nausea: "Greață",
-      head_light: "Sensibilitate la lumină",
-      head_vision: "Schimbări bruște de vedere",
-      chest_breath: "Dificultăți de respirație",
-      chest_radiate: "Durere ce se extinde spre braț sau maxilar",
-      chest_heartbeat: "Bătăi rapide sau neregulate ale inimii",
-      stomach_fever: "Febră",
-      stomach_vomit: "Vărsături",
-      stomach_blood: "Sânge în scaun",
-      back_numbness: "Amorțeală sau furnicături în picioare",
-      back_difficulty: "Dificultate la mișcare",
-      back_fever: "Febră",
-      arm_swelling: "Umflătură",
-      arm_numbness: "Amorțeală sau furnicături",
-      arm_cantmove: "Nu îl poți mișca normal",
-      leg_swelling: "Umflătură",
-      leg_numbness: "Amorțeală sau furnicături",
-      leg_cantbear: "Nu poți pune greutate pe el",
-      head_loc_one_side: "Pe o parte a capului",
-      head_loc_both_sides: "Ambele părți / ca o bandă",
-      head_loc_behind_eyes: "În spatele ochilor sau pe frunte",
-      head_loc_back_head: "Partea din spate a capului sau gâtul",
-      head_char_throbbing: "Pulsatilă",
-      head_char_dull: "Surdă, constantă",
-      head_char_sharp: "Ascuțită / înjunghiere",
-      head_char_pressure: "Presiune sau tensiune",
-      head_trig_stress: "Stres sau lipsă de somn",
-      head_trig_screen: "Lumină puternică sau timp petrecut pe ecran",
-      head_trig_water: "Nu ai băut multă apă azi",
-      head_trig_none: "Fără cauză clară",
-      chest_char_sharp: "Ascuțită, ca o înjunghiere",
-      chest_char_tight: "Strânsoare sau presiune",
-      chest_char_burning: "Arsură",
-      chest_trig_activity: "La efort fizic",
-      chest_trig_rest: "În repaus",
-      chest_trig_eating: "După ce mănânci",
-      stomach_loc_upper: "Partea de sus a stomacului",
-      stomach_loc_lower: "Partea de jos a abdomenului",
-      stomach_loc_allover: "Peste tot / crampe",
-      stomach_char_cramping: "Crampe",
-      stomach_char_burning: "Arsură",
-      stomach_char_sharp: "Ascuțită și localizată",
-      back_loc_upper: "Partea superioară a spatelui",
-      back_loc_lower: "Partea inferioară a spatelui",
-      back_trig_lifting: "După ridicarea unei greutăți sau o mișcare bruscă",
-      back_trig_gradual: "Treptat, fără o cauză clară",
-      limb_trig_injury: "După o cădere sau accidentare",
-      limb_trig_gradual: "Treptat, fără accidentare",
-      limb_char_aching: "Dureros surd",
-      limb_char_sharp: "Durere ascuțită",
-      limb_char_numbness: "Mai ales amorțeală sau furnicături",
-    },
-    questionText: {
-      head: {
-        location: "Unde simți durerea cel mai mult?",
-        character: "Cum se simte?",
-        trigger: "A existat ceva ce a provocat-o?",
-      },
-      chest: { character: "Cum se simte?", trigger: "Când apare?" },
-      stomach: { location: "Unde este resimțită cel mai mult?", character: "Cum se simte?" },
-      back: { location: "Unde este resimțită cel mai mult?", trigger: "Cum a început?" },
-      arm: { trigger: "Cum a început?", character: "Cum se simte?" },
-      leg: { trigger: "Cum a început?", character: "Cum se simte?" },
-    },
-    urgency: {
-      low: {
-        title: "Probabil este ceva ce poți gestiona acasă deocamdată",
-        intro: "Răspunsurile tale nu indică semne de alarmă. Câțiva pași de îngrijire personală te-ar putea ajuta cât timp urmărești evoluția.",
-      },
-      medium: {
-        title: "Merită să fii atent - ia în considerare un control medical",
-        intro: "Simptomele tale au durat o vreme sau sunt destul de vizibile. Este bine să obții o părere de la un specialist în curând.",
-      },
-      high: {
-        title: "Acest lucru ar putea necesita asistență medicală promptă",
-        intro: "Combinația de simptome pe care ai selectat-o poate uneori semnala ceva mai serios. Te rugăm să nu aștepți și să te prezinți la control.",
-      },
-    },
-    selfCareTips: {
-      head: [
-        "Odihnește-te într-o cameră liniștită și slab luminată.",
-        "Hidratează-te și ia o gustare ușoară dacă nu ai mâncat.",
-        "Un calmant fără prescripție poate ajuta, dacă este potrivit pentru tine.",
-      ],
-      chest: [
-        "Stai jos și odihnește-te, evitând efortul fizic.",
-        "Evită cofeina și stimulentele până trece disconfortul.",
-        "Notează când apare disconfortul și cât durează.",
-      ],
-      stomach: [
-        "Bea apă sau o băutură ușoară cu electroliți.",
-        "Rămâi la alimente simple, ușor de digerat, câteva ore.",
-        "Evită alcoolul și mâncarea picantă sau grasă până te simți mai bine.",
-      ],
-      back: [
-        "Evită ridicarea greutăților și mișcările bruște de răsucire.",
-        "Întinderile ușoare sau plimbările scurte pot ajuta mai mult decât repausul la pat.",
-        "O compresă caldă poate reduce tensiunea musculară.",
-      ],
-      arm: [
-        "Odihnește brațul și evită mișcările repetitive.",
-        "O compresă rece poate ajuta cu umflătura în prima zi.",
-        "Mișcă ușor articulația dacă durerea permite, pentru a evita rigiditatea.",
-      ],
-      leg: [
-        "Odihnește-te și ține piciorul ridicat când este posibil.",
-        "O compresă rece poate ajuta cu umflătura în prima zi.",
-        "Evită să pui toată greutatea pe el dacă simți instabilitate.",
-      ],
-    },
-    resultText: {
-      head_migraine: { title: "Acest tipar ar putea fi o durere de cap de tip migrenă", intro: "Durerea pulsatilă pe o singură parte, cu greață sau sensibilitate la lumină, este un tipar comun al migrenei." },
-      head_tension: { title: "Acest tipar ar putea fi o durere de cap de tensiune", intro: "Presiunea ca o bandă pe ambele părți este adesea legată de stres, oboseală sau tensiune musculară." },
-      head_dehydration: { title: "Aceasta ar putea fi o durere de cap legată de deshidratare", intro: "Consumul insuficient de apă este o cauză comună și ușor de rezolvat a durerilor de cap." },
-      head_fever: { title: "Durere de cap cu febră", intro: "O durere de cap însoțită de febră poate indica o infecție. Merită să te prezinți la control dacă persistă." },
-      head_sudden_severe: { title: "Durere de cap bruscă și severă - te rugăm să ceri asistență medicală urgentă", intro: "O durere de cap bruscă și severă, mai ales una diferită de cele avute anterior, poate semnala ocazional ceva serios și merită o evaluare urgentă." },
-      head_fever_light: { title: "Durere de cap cu febră și sensibilitate la lumină - mergi la control cât mai curând", intro: "Această combinație poate indica ocazional o infecție care afectează creierul sau membranele sale, ceea ce necesită evaluare promptă." },
-      chest_warning: { title: "Posibile semne de alarmă în zona pieptului", intro: "Dificultăți de respirație, durere ce se extinde spre braț sau maxilar, sau bătăi rapide ale inimii alături de disconfort toracic nu trebuie niciodată ignorate." },
-      chest_exertion: { title: "Posibilă tensiune toracică legată de efort", intro: "Senzația de strânsoare care apare la efort fizic merită discutată cu un medic, chiar dacă este ușoară." },
-      chest_reflux: { title: "Aceasta ar putea fi arsuri la stomac sau reflux acid", intro: "Disconfortul de tip arsură după masă este adesea legat de refluxul acid." },
-      chest_rest_severe: { title: "Disconfort toracic sever în repaus - solicită asistență urgentă", intro: "Un disconfort toracic intens care apare fără efort fizic trebuie evaluat urgent, chiar și fără alte simptome." },
-      stomach_lower_sharp: { title: "Posibilă durere localizată în partea inferioară a abdomenului", intro: "Durerea ascuțită într-un punct specific al abdomenului inferior merită verificată, deoarece poate indica uneori apendicită sau altă cauză localizată." },
-      stomach_upper_reflux: { title: "Aceasta ar putea fi reflux acid sau disconfort de tip gastrită", intro: "Durerea de tip arsură în partea superioară a stomacului este adesea legată de acid sau iritația mucoasei stomacului." },
-      stomach_upper_sharp: { title: "Posibilă durere legată de vezica biliară sau de tip ulcer", intro: "Durerea ascuțită și localizată în partea superioară a stomacului poate fi uneori legată de vezica biliară sau de mucoasa stomacului. Merită un control de specialitate, mai ales dacă revine." },
-      stomach_cramping_fever: { title: "Posibilă infecție digestivă (gastroenterită)", intro: "Crampele cu febră sau vărsături pot indica o infecție digestivă. Hidratează-te și mergi la medic dacă persistă sau nu poți reține lichide." },
-      stomach_cramping_mild: { title: "Posibile crampe cauzate de o tulburare digestivă ușoară", intro: "Crampele singure, fără febră sau vărsături, sunt adesea legate de alimentație sau o tulburare digestivă ușoară." },
-      stomach_appendicitis: { title: "Acest tipar poate fi asociat cu o durere de tip apendicită", intro: "Durerea ascuțită și localizată în abdomenul inferior, cu febră sau vărsături, este un tipar întâlnit uneori în apendicită. Se poate agrava rapid, așa că te rugăm să te prezinți la control cât mai curând - nu este ceva de așteptat acasă." },
-      stomach_severe_widespread: { title: "Durere abdominală severă și extinsă cu febră - solicită asistență urgentă", intro: "Durerea severă pe toată suprafața abdomenului, cu febră, poate semnala ocazional o problemă abdominală mai serioasă și trebuie evaluată urgent." },
-      back_strain_lift: { title: "Acest tipar pare o întindere musculară în partea inferioară a spatelui", intro: "Durerea care a început imediat după ridicarea unei greutăți sau o mișcare bruscă este adesea o întindere musculară sau ligamentară." },
-      back_chronic: { title: "Posibilă întindere cronică a spatelui", intro: "Durerea care a apărut treptat și a durat săptămâni merită evaluată de un specialist." },
-      back_fever: { title: "Durere de spate cu febră - merită o evaluare urgentă", intro: "Durerea de spate combinată cu febră poate indica ocazional o infecție care necesită atenție promptă." },
-      back_severe_difficulty: { title: "Durere severă de spate cu dificultate la mișcare - solicită asistență urgentă", intro: "Durerea severă care te împiedică să te miști normal merită evaluată urgent." },
-      arm_fracture: { title: "Posibilă fractură sau accidentare severă a brațului", intro: "Incapacitatea de a mișca brațul după o accidentare poate însemna că ceva este rupt sau grav întins." },
-      arm_sprain: { title: "Posibilă entorsă sau întindere cauzată de o accidentare", intro: "Durerea ascuțită care a început imediat după o cădere sau accidentare indică adesea o entorsă sau întindere." },
-      arm_numbness: { title: "Posibilă iritație a unui nerv", intro: "Amorțeala sau furnicăturile pot indica iritație sau presiune asupra unui nerv și merită menționate unui medic." },
-      arm_sudden_swelling: { title: "Umflătură bruscă a brațului - merită un control cât mai curând", intro: "O umflătură nouă și vizibilă apărută rapid merită evaluată, nu așteptată." },
-      leg_fracture: { title: "Posibilă fractură sau accidentare severă a piciorului", intro: "Incapacitatea de a pune greutate pe picior după o accidentare poate însemna că ceva este rupt sau grav întins." },
-      leg_sprain: { title: "Posibilă entorsă sau întindere cauzată de o accidentare", intro: "Durerea ascuțită care a început imediat după o cădere sau accidentare indică adesea o entorsă sau întindere." },
-      leg_numbness: { title: "Posibilă iritație a unui nerv", intro: "Amorțeala sau furnicăturile pot indica iritație sau presiune asupra unui nerv și merită menționate unui medic." },
-      leg_sudden_swelling: { title: "Umflătură bruscă a piciorului - merită un control cât mai curând", intro: "O umflătură nouă apărută rapid la un singur picior poate fi ocazional legată de probleme de circulație și merită evaluată promt." },
-    },
-  },
-  sq: {
-    ui: {
-      tapWhereItHurts: "Prek aty ku të dhemb",
-      chooseBodyArea: "Zgjidh një zonë të trupit për të filluar.",
-      selectedPrefix: "Zgjedhur: ",
-      tapToBegin: "Prek një zonë të theksuar të trupit për t'iu përgjigjur disa pyetjeve të shpejta.",
-      front: "Përpara",
-      back: "Prapa",
-      questionOf: (current, total) => `Pyetja ${current} nga ${total}`,
-      severityQuestion: "Sa intensive është?",
-      durationQuestion: "Sa kohë e ke pasur këtë?",
-      symptomsQuestion: "A ke ndonjë nga këto gjithashtu?",
-      backButton: "Prapa",
-      next: "Vazhdo",
-      seeResult: "Shiko rezultatin",
-      startOver: "Fillo nga e para",
-      thingsThatMayHelp: "Disa gjëra që mund të ndihmojnë",
-      disclaimer:
-        "Ky mjet ofron vetëm informacion të përgjithshëm shëndetësor dhe nuk përbën diagnozë mjekësore. Nuk është 100% i saktë dhe nuk zëvendëson këshillën e një mjeku të kualifikuar. Nëse je i shqetësuar, simptomat janë të rënda, ose përkeqësohen, të lutemi konsulto një mjek ose kërko ndihmën e një ndërmjetësi duke plotësuar formularin në faqen Kërko Ndihmë.",
-      requestMediatorHelp: "Kërko ndihmën e ndërmjetësve",
-    },
-    bodyParts: { head: "Koka", chest: "Gjoksi", stomach: "Stomaku", back: "Shpina", arm: "Krahu", leg: "Këmba" },
-    severity: {
-      mild: "E lehtë - e dukshme por e menaxhueshme",
-      moderate: "Mesatare - e vështirë për t'u shpërfillur",
-      severe: "E rëndë - shumë intensive",
-    },
-    duration: { today: "Filloi sot", days: "Disa ditë", weeks: "Dy javë ose më shumë" },
-    labels: {
-      head_fever: "Ethe",
-      head_nausea: "Të përziera",
-      head_light: "Ndjeshmëri ndaj dritës",
-      head_vision: "Ndryshime të papritura të shikimit",
-      chest_breath: "Vështirësi në frymëmarrje",
-      chest_radiate: "Dhimbje që përhapet te krahu ose nofulla",
-      chest_heartbeat: "Rrahje të shpejta ose të parregullta të zemrës",
-      stomach_fever: "Ethe",
-      stomach_vomit: "Të vjella",
-      stomach_blood: "Gjak në jashtëqitje",
-      back_numbness: "Mpirje ose gjilpërim në këmbë",
-      back_difficulty: "Vështirësi në lëvizje",
-      back_fever: "Ethe",
-      arm_swelling: "Ënjtje",
-      arm_numbness: "Mpirje ose gjilpërim",
-      arm_cantmove: "Nuk mund ta lëvizësh normalisht",
-      leg_swelling: "Ënjtje",
-      leg_numbness: "Mpirje ose gjilpërim",
-      leg_cantbear: "Nuk mund të mbështetesh mbi të",
-      head_loc_one_side: "Njëra anë e kokës",
-      head_loc_both_sides: "Të dyja anët / si brez",
-      head_loc_behind_eyes: "Pas syve ose në ballë",
-      head_loc_back_head: "Pjesa e pasme e kokës ose qafa",
-      head_char_throbbing: "Rrahëse / pulsuese",
-      head_char_dull: "E mekët, e vazhdueshme",
-      head_char_sharp: "E mprehtë / therëse",
-      head_char_pressure: "Presion ose shtrëngim",
-      head_trig_stress: "Stres ose mungesë gjumi",
-      head_trig_screen: "Dritë e fortë ose kohë ekrani",
-      head_trig_water: "Nuk ke pirë shumë ujë sot",
-      head_trig_none: "Pa shkak të qartë",
-      chest_char_sharp: "E mprehtë, therëse",
-      chest_char_tight: "Shtrëngim ose presion",
-      chest_char_burning: "Djegie",
-      chest_trig_activity: "Me aktivitet fizik",
-      chest_trig_rest: "Në pushim",
-      chest_trig_eating: "Pas ngrënies",
-      stomach_loc_upper: "Pjesa e sipërme e stomakut",
-      stomach_loc_lower: "Pjesa e poshtme e barkut",
-      stomach_loc_allover: "Kudo / me kolikë",
-      stomach_char_cramping: "Kolikë",
-      stomach_char_burning: "Djegie",
-      stomach_char_sharp: "E mprehtë dhe e lokalizuar",
-      back_loc_upper: "Pjesa e sipërme e shpinës",
-      back_loc_lower: "Pjesa e poshtme e shpinës",
-      back_trig_lifting: "Pas ngritjes së diçkaje ose lëvizjeje të papritur",
-      back_trig_gradual: "Gradualisht, pa shkak të qartë",
-      limb_trig_injury: "Pas një rënieje ose dëmtimi",
-      limb_trig_gradual: "Gradualisht, pa dëmtim",
-      limb_char_aching: "Dhimbje e mekët",
-      limb_char_sharp: "Dhimbje e mprehtë",
-      limb_char_numbness: "Kryesisht mpirje ose gjilpërim",
-    },
-    questionText: {
-      head: {
-        location: "Ku ndihet dhimbja kryesisht?",
-        character: "Si ndihet?",
-        trigger: "A ka diçka që mund ta ketë shkaktuar?",
-      },
-      chest: { character: "Si ndihet?", trigger: "Kur ndodh?" },
-      stomach: { location: "Ku ndihet kryesisht?", character: "Si ndihet?" },
-      back: { location: "Ku ndihet kryesisht?", trigger: "Si filloi?" },
-      arm: { trigger: "Si filloi?", character: "Si ndihet?" },
-      leg: { trigger: "Si filloi?", character: "Si ndihet?" },
-    },
-    urgency: {
-      low: {
-        title: "Ka gjasa të jetë diçka që mund ta menaxhosh vetë tani për tani",
-        intro: "Përgjigjet e tua nuk tregojnë shenja alarmuese. Disa hapa vetë-kujdesi mund të ndihmojnë ndërkohë që e ndjek nga afër.",
-      },
-      medium: {
-        title: "Vlen të kihet parasysh - konsidero një kontroll mjekësor",
-        intro: "Simptomat e tua kanë vazhduar për një kohë ose janë mjaft të dukshme. Është mirë të marrësh një mendim profesional së shpejti.",
-      },
-      high: {
-        title: "Kjo mund të kërkojë kujdes mjekësor të menjëhershëm",
-        intro: "Kombinimi i simptomave që zgjodhe mund të nënkuptojë ndonjëherë diçka më serioze. Të lutemi mos prit dhe shkove për kontroll.",
-      },
-    },
-    selfCareTips: {
-      head: [
-        "Pusho në një dhomë të qetë dhe me dritë të zbehtë.",
-        "Hidratohu dhe konsidero një meze të lehtë nëse s'ke ngrënë.",
-        "Një ilaç dhimbjeje pa recetë mund të ndihmojë, nëse është i përshtatshëm për ty.",
-      ],
-      chest: [
-        "Ulu dhe pusho, duke shmangur përpjekjen fizike.",
-        "Shmang kafeinën dhe stimulantët derisa të kalojë siklet.",
-        "Vër re kur ndodh sikleti dhe sa zgjat.",
-      ],
-      stomach: [
-        "Pi ujë ose një pije të lehtë me elektrolite.",
-        "Qëndro me ushqime të thjeshta, lehtë të tretshme, për disa orë.",
-        "Shmang alkoolin dhe ushqimet pikante ose yndyrore derisa të ndihesh më mirë.",
-      ],
-      back: [
-        "Shmang ngritjen e rëndë dhe lëvizjet e papritura të rrotullimit.",
-        "Shtrirjet e buta ose ecjet e shkurtra mund të ndihmojnë më shumë se pushimi në shtrat.",
-        "Një kompresë e ngrohtë mund të lehtësojë tensionin muskulor.",
-      ],
-      arm: [
-        "Pusho krahun dhe shmang lëvizjet e përsëritura.",
-        "Një kompresë e ftohtë mund të ndihmojë me ënjtjen ditën e parë.",
-        "Lëviz butësisht nyjën nëse dhimbja e lejon, për të shmangur ngurtësimin.",
-      ],
-      leg: [
-        "Pusho dhe ngrije këmbën kur të jetë e mundur.",
-        "Një kompresë e ftohtë mund të ndihmojë me ënjtjen ditën e parë.",
-        "Shmang vendosjen e plotë të peshës nëse ndjehet e paqëndrueshme.",
-      ],
-    },
-    resultText: {
-      head_migraine: { title: "Kjo mund të jetë një dhimbje koke e tipit migrenë", intro: "Dhimbja rrahëse në njërën anë, me të përziera ose ndjeshmëri ndaj dritës, është një model i zakonshëm i migrenës." },
-      head_tension: { title: "Kjo mund të jetë një dhimbje koke tensioni", intro: "Presioni si brez në të dyja anët shpesh lidhet me stresin, lodhjen ose tensionin muskulor." },
-      head_dehydration: { title: "Kjo mund të jetë një dhimbje koke e lidhur me dehidrim", intro: "Mospirja e ujit të mjaftueshëm është një shkak i zakonshëm dhe i lehtë për t'u rregulluar i dhimbjeve të kokës." },
-      head_fever: { title: "Dhimbje koke me ethe", intro: "Një dhimbje koke e shoqëruar me ethe mund të tregojë një infeksion. Vlen të kontrollohesh nëse vazhdon." },
-      head_sudden_severe: { title: "Dhimbje koke e papritur dhe e rëndë - kërko kujdes urgjent", intro: "Një dhimbje koke e papritur dhe e rëndë, veçanërisht një ndryshe nga ato që ke pasur më parë, mund të tregojë ndonjëherë diçka serioze dhe vlen për vlerësim urgjent." },
-      head_fever_light: { title: "Dhimbje koke me ethe dhe ndjeshmëri ndaj dritës - kontrollohu menjëherë", intro: "Ky kombinim mund të tregojë ndonjëherë një infeksion që prek trurin ose membranat e tij, i cili kërkon vlerësim të menjëhershëm." },
-      chest_warning: { title: "Shenja të mundshme alarmuese rreth gjoksit", intro: "Vështirësia në frymëmarrje, dhimbja që përhapet te krahu ose nofulla, ose rrahjet e shpejta të zemrës së bashku me siklet gjoksi nuk duhen shpërfillur kurrë." },
-      chest_exertion: { title: "Shtrëngim i mundshëm gjoksi i lidhur me përpjekjen", intro: "Shtrëngimi që shfaqet me aktivitet fizik vlen të diskutohet me një mjek, edhe nëse është i lehtë." },
-      chest_reflux: { title: "Kjo mund të jetë djegie stomaku ose reflux acid", intro: "Sikleti i tipit djegie pas ngrënies shpesh lidhet me refluksin acid." },
-      chest_rest_severe: { title: "Siklet i rëndë gjoksi në pushim - kërko kujdes urgjent", intro: "Sikleti intensiv i gjoksit që shfaqet pa përpjekje fizike duhet vlerësuar urgjentisht, edhe pa simptoma të tjera." },
-      stomach_lower_sharp: { title: "Dhimbje e mundshme e lokalizuar në pjesën e poshtme të barkut", intro: "Dhimbja e mprehtë në një pikë specifike të barkut të poshtëm vlen të kontrollohet, pasi mund të tregojë ndonjëherë apendicit ose një shkak tjetër të lokalizuar." },
-      stomach_upper_reflux: { title: "Kjo mund të jetë reflux acid ose siklet i tipit gastrit", intro: "Dhimbja e tipit djegie në pjesën e sipërme të stomakut shpesh lidhet me acidin ose irritimin e mukozës së stomakut." },
-      stomach_upper_sharp: { title: "Dhimbje e mundshme e lidhur me tëmthin ose e tipit ulçerë", intro: "Dhimbja e mprehtë dhe e lokalizuar në pjesën e sipërme të stomakut ndonjëherë mund të lidhet me tëmthin ose mukozën e stomakut. Vlen për një kontroll profesional, veçanërisht nëse rikthehet." },
-      stomach_cramping_fever: { title: "Infeksion i mundshëm stomaku (gastroenterit)", intro: "Kolika me ethe ose të vjella mund të tregojnë një infeksion stomaku. Hidratohu dhe shko te mjeku nëse vazhdon ose nuk mund të mbash lëngje." },
-      stomach_cramping_mild: { title: "Kolikë e mundshme nga një çrregullim i lehtë tretës", intro: "Kolika e vetme, pa ethe ose të vjella, shpesh lidhet me dietën ose një çrregullim të lehtë tretës." },
-      stomach_appendicitis: { title: "Ky model mund të përputhet me dhimbje të tipit apendicit", intro: "Dhimbja e mprehtë dhe e lokalizuar në pjesën e poshtme të barkut, me ethe ose të vjella, është një model që shihet ndonjëherë me apendicitin. Kjo mund të përkeqësohet shpejt, prandaj të lutemi kontrollohu sa më shpejt - kjo nuk është diçka për t'u pritur në shtëpi." },
-      stomach_severe_widespread: { title: "Dhimbje e rëndë dhe e përhapur e stomakut me ethe - kërko kujdes urgjent", intro: "Dhimbja e rëndë në të gjithë barkun, me ethe, mund të tregojë ndonjëherë një problem më serioz abdominal dhe duhet vlerësuar urgjentisht." },
-      back_strain_lift: { title: "Kjo duket si një grip muskulor në pjesën e poshtme të shpinës", intro: "Dhimbja që filloi menjëherë pas ngritjes së diçkaje ose një lëvizjeje të papritur shpesh është një grip muskuli ose ligamenti." },
-      back_chronic: { title: "Grip i mundshëm kronik i shpinës", intro: "Dhimbja që u shfaq gradualisht dhe ka zgjatur javë vlen të shihet nga një profesionist." },
-      back_fever: { title: "Dhimbje shpine me ethe - vlen për vlerësim urgjent", intro: "Dhimbja e shpinës e kombinuar me ethe mund të tregojë ndonjëherë një infeksion që kërkon vëmendje të menjëhershme." },
-      back_severe_difficulty: { title: "Dhimbje e rëndë shpine me vështirësi në lëvizje - kërko kujdes urgjent", intro: "Dhimbja e rëndë që po të pengon të lëvizësh normalisht vlen të vlerësohet urgjentisht." },
-      arm_fracture: { title: "Thyerje e mundshme ose dëmtim i rëndë i krahut", intro: "Pamundësia për të lëvizur krahun pas një dëmtimi mund të nënkuptojë diçka të thyer ose të rënduar keq." },
-      arm_sprain: { title: "Grip ose ngërdheshje e mundshme nga një dëmtim", intro: "Dhimbja e mprehtë që filloi menjëherë pas një rënieje ose dëmtimi shpesh tregon një grip ose ngërdheshje." },
-      arm_numbness: { title: "Irritim i mundshëm nervor", intro: "Mpirja ose gjilpërimi mund të tregojë irritim ose presion mbi një nerv dhe vlen t'i përmendet një mjeku." },
-      arm_sudden_swelling: { title: "Ënjtje e papritur e krahut - vlen për kontroll sa më shpejt", intro: "Një ënjtje e re dhe e dukshme e shfaqur shpejt vlen të vlerësohet në vend që të pritet." },
-      leg_fracture: { title: "Thyerje e mundshme ose dëmtim i rëndë i këmbës", intro: "Pamundësia për të mbështetur peshën mbi këmbë pas një dëmtimi mund të nënkuptojë diçka të thyer ose të rënduar keq." },
-      leg_sprain: { title: "Grip ose ngërdheshje e mundshme nga një dëmtim", intro: "Dhimbja e mprehtë që filloi menjëherë pas një rënieje ose dëmtimi shpesh tregon një grip ose ngërdheshje." },
-      leg_numbness: { title: "Irritim i mundshëm nervor", intro: "Mpirja ose gjilpërimi mund të tregojë irritim ose presion mbi një nerv dhe vlen t'i përmendet një mjeku." },
-      leg_sudden_swelling: { title: "Ënjtje e papritur e këmbës - vlen për kontroll sa më shpejt", intro: "Një ënjtje e re e shfaqur shpejt në një këmbë mund të lidhet ndonjëherë me probleme qarkullimi dhe vlen të kontrollohet menjëherë." },
-    },
-  },
-  it: {
-    ui: {
-      tapWhereItHurts: "Tocca dove fa male",
-      chooseBodyArea: "Scegli una zona del corpo per iniziare.",
-      selectedPrefix: "Selezionato: ",
-      tapToBegin: "Tocca un'area evidenziata del corpo per rispondere ad alcune domande rapide.",
-      front: "Fronte",
-      back: "Retro",
-      questionOf: (current, total) => `Domanda ${current} di ${total}`,
-      severityQuestion: "Quanto è intenso?",
-      durationQuestion: "Da quanto tempo dura?",
-      symptomsQuestion: "Hai anche uno di questi?",
-      backButton: "Indietro",
-      next: "Avanti",
-      seeResult: "Vedi il mio risultato",
-      startOver: "Ricomincia",
-      thingsThatMayHelp: "Alcune cose che potrebbero aiutare",
-      disclaimer:
-        "Questo strumento fornisce solo informazioni sanitarie generali e non costituisce una diagnosi medica. Non è accurato al 100% e non sostituisce il parere di un medico qualificato. Se sei preoccupato, i sintomi sono gravi o peggiorano, consulta un medico o richiedi l'aiuto di un mediatore compilando il modulo nella pagina Richiedi Aiuto.",
-      requestMediatorHelp: "Richiedi l'aiuto dei mediatori",
-    },
-    bodyParts: { head: "Testa", chest: "Petto", stomach: "Stomaco", back: "Schiena", arm: "Braccio", leg: "Gamba" },
-    severity: {
-      mild: "Lieve - percettibile ma gestibile",
-      moderate: "Moderato - difficile da ignorare",
-      severe: "Grave - molto intenso",
-    },
-    duration: { today: "Iniziato oggi", days: "Da qualche giorno", weeks: "Da due settimane o più" },
-    labels: {
-      head_fever: "Febbre",
-      head_nausea: "Nausea",
-      head_light: "Sensibilità alla luce",
-      head_vision: "Improvvisi cambiamenti della vista",
-      chest_breath: "Difficoltà respiratorie",
-      chest_radiate: "Dolore che si diffonde al braccio o alla mascella",
-      chest_heartbeat: "Battito cardiaco veloce o irregolare",
-      stomach_fever: "Febbre",
-      stomach_vomit: "Vomito",
-      stomach_blood: "Sangue nelle feci",
-      back_numbness: "Intorpidimento o formicolio alle gambe",
-      back_difficulty: "Difficoltà a muoversi",
-      back_fever: "Febbre",
-      arm_swelling: "Gonfiore",
-      arm_numbness: "Intorpidimento o formicolio",
-      arm_cantmove: "Non riesci a muoverlo normalmente",
-      leg_swelling: "Gonfiore",
-      leg_numbness: "Intorpidimento o formicolio",
-      leg_cantbear: "Non riesci a caricarci peso sopra",
-      head_loc_one_side: "Un lato della testa",
-      head_loc_both_sides: "Entrambi i lati / a fascia",
-      head_loc_behind_eyes: "Dietro gli occhi o sulla fronte",
-      head_loc_back_head: "Parte posteriore della testa o del collo",
-      head_char_throbbing: "Pulsante",
-      head_char_dull: "Sordo, costante",
-      head_char_sharp: "Acuto / trafittivo",
-      head_char_pressure: "Pressione o tensione",
-      head_trig_stress: "Stress o mancanza di sonno",
-      head_trig_screen: "Luce intensa o tempo davanti allo schermo",
-      head_trig_water: "Non hai bevuto molta acqua oggi",
-      head_trig_none: "Nessuna causa chiara",
-      chest_char_sharp: "Acuto, trafittivo",
-      chest_char_tight: "Stretta o pressione",
-      chest_char_burning: "Bruciore",
-      chest_trig_activity: "Con attività fisica",
-      chest_trig_rest: "A riposo",
-      chest_trig_eating: "Dopo aver mangiato",
-      stomach_loc_upper: "Stomaco superiore",
-      stomach_loc_lower: "Addome inferiore",
-      stomach_loc_allover: "Diffuso / crampi",
-      stomach_char_cramping: "Crampi",
-      stomach_char_burning: "Bruciore",
-      stomach_char_sharp: "Acuto e localizzato",
-      back_loc_upper: "Parte alta della schiena",
-      back_loc_lower: "Parte bassa della schiena",
-      back_trig_lifting: "Dopo aver sollevato un peso o un movimento brusco",
-      back_trig_gradual: "Gradualmente, senza una causa chiara",
-      limb_trig_injury: "Dopo una caduta o un infortunio",
-      limb_trig_gradual: "Gradualmente, senza infortunio",
-      limb_char_aching: "Dolore sordo",
-      limb_char_sharp: "Dolore acuto",
-      limb_char_numbness: "Prevalentemente intorpidimento o formicolio",
-    },
-    questionText: {
-      head: {
-        location: "Dove senti principalmente il dolore?",
-        character: "Che sensazione ti dà?",
-        trigger: "C'è qualcosa che potrebbe averlo causato?",
-      },
-      chest: { character: "Che sensazione ti dà?", trigger: "Quando si presenta?" },
-      stomach: { location: "Dove lo senti principalmente?", character: "Che sensazione ti dà?" },
-      back: { location: "Dove lo senti principalmente?", trigger: "Come è iniziato?" },
-      arm: { trigger: "Come è iniziato?", character: "Che sensazione ti dà?" },
-      leg: { trigger: "Come è iniziato?", character: "Che sensazione ti dà?" },
-    },
-    urgency: {
-      low: {
-        title: "Probabilmente qualcosa che puoi gestire a casa per ora",
-        intro: "Le tue risposte non indicano segnali di allarme. Alcuni accorgimenti possono aiutare mentre tieni la situazione sotto controllo.",
-      },
-      medium: {
-        title: "Da tenere d'occhio - valuta un controllo medico",
-        intro: "I tuoi sintomi durano da un po' o sono abbastanza evidenti. È una buona idea ottenere un parere professionale a breve.",
-      },
-      high: {
-        title: "Questo potrebbe richiedere attenzione medica tempestiva",
-        intro: "La combinazione di sintomi selezionata può a volte indicare qualcosa di più serio. Non aspettare, fatti controllare.",
-      },
-    },
-    selfCareTips: {
-      head: [
-        "Riposa in una stanza tranquilla e poco illuminata.",
-        "Resta idratato e considera uno spuntino leggero se non hai mangiato.",
-        "Un antidolorifico da banco può aiutare, se adatto a te.",
-      ],
-      chest: [
-        "Siediti e riposa, evitando sforzi fisici.",
-        "Evita caffeina e stimolanti finché il disturbo non passa.",
-        "Annota quando si presenta il disturbo e quanto dura.",
-      ],
-      stomach: [
-        "Sorseggia acqua o una bevanda leggera con elettroliti.",
-        "Attieniti a cibi semplici e facilmente digeribili per qualche ora.",
-        "Evita alcolici e cibi piccanti o grassi finché non ti senti meglio.",
-      ],
-      back: [
-        "Evita sollevamenti pesanti e movimenti bruschi di torsione.",
-        "Stretching leggero o brevi passeggiate possono aiutare più del riposo a letto.",
-        "Un impacco caldo può alleviare la tensione muscolare.",
-      ],
-      arm: [
-        "Riposa il braccio ed evita movimenti ripetitivi.",
-        "Un impacco freddo può aiutare con il gonfiore nel primo giorno.",
-        "Muovi delicatamente l'articolazione se il dolore lo permette, per evitare rigidità.",
-      ],
-      leg: [
-        "Riposa e solleva la gamba quando possibile.",
-        "Un impacco freddo può aiutare con il gonfiore nel primo giorno.",
-        "Evita di caricare tutto il peso se si sente instabile.",
-      ],
-    },
-    resultText: {
-      head_migraine: { title: "Questo potrebbe essere un mal di testa di tipo emicranico", intro: "Il dolore pulsante su un lato, con nausea o sensibilità alla luce, è uno schema comune dell'emicrania." },
-      head_tension: { title: "Questo potrebbe essere un mal di testa da tensione", intro: "La pressione a fascia su entrambi i lati è spesso legata a stress, stanchezza o tensione muscolare." },
-      head_dehydration: { title: "Questo potrebbe essere un mal di testa legato alla disidratazione", intro: "Non bere abbastanza acqua è una causa comune e facilmente risolvibile di mal di testa." },
-      head_fever: { title: "Mal di testa con febbre", intro: "Un mal di testa accompagnato da febbre può indicare un'infezione. Vale la pena farsi controllare se persiste." },
-      head_sudden_severe: { title: "Mal di testa improvviso e grave - richiedi assistenza urgente", intro: "Un mal di testa improvviso e grave, specialmente se diverso da quelli avuti in passato, può occasionalmente segnalare qualcosa di serio e merita una valutazione urgente." },
-      head_fever_light: { title: "Mal di testa con febbre e sensibilità alla luce - fatti controllare tempestivamente", intro: "Questa combinazione può occasionalmente indicare un'infezione che colpisce il cervello o le sue membrane, che richiede una valutazione tempestiva." },
-      chest_warning: { title: "Possibili segnali di allarme nella zona del petto", intro: "Difficoltà respiratorie, dolore che si diffonde al braccio o alla mascella, o battito cardiaco accelerato insieme a disagio toracico non vanno mai ignorati." },
-      chest_exertion: { title: "Possibile tensione toracica legata allo sforzo", intro: "La tensione che compare con l'attività fisica merita di essere discussa con un medico, anche se lieve." },
-      chest_reflux: { title: "Questo potrebbe essere bruciore di stomaco o reflusso acido", intro: "Il disagio di tipo bruciore dopo i pasti è spesso legato al reflusso acido." },
-      chest_rest_severe: { title: "Grave disagio toracico a riposo - richiedi assistenza urgente", intro: "Un disagio toracico intenso che compare senza sforzo fisico deve essere valutato urgentemente, anche senza altri sintomi." },
-      stomach_lower_sharp: { title: "Possibile dolore localizzato nell'addome inferiore", intro: "Il dolore acuto in un punto specifico dell'addome inferiore merita un controllo, poiché a volte può indicare appendicite o un'altra causa localizzata." },
-      stomach_upper_reflux: { title: "Questo potrebbe essere reflusso acido o disagio di tipo gastrite", intro: "Il dolore di tipo bruciore nella parte superiore dello stomaco è spesso legato all'acido o all'irritazione della mucosa gastrica." },
-      stomach_upper_sharp: { title: "Possibile dolore legato alla cistifellea o di tipo ulcera", intro: "Il dolore acuto e localizzato nella parte superiore dello stomaco può a volte essere legato alla cistifellea o alla mucosa gastrica. Merita un controllo professionale, specialmente se ricorre." },
-      stomach_cramping_fever: { title: "Possibile infezione gastrointestinale (gastroenterite)", intro: "I crampi con febbre o vomito possono indicare un'infezione gastrointestinale. Resta idratato e rivolgiti a un medico se persiste o non riesci a trattenere i liquidi." },
-      stomach_cramping_mild: { title: "Possibili crampi da lieve disturbo digestivo", intro: "I crampi da soli, senza febbre o vomito, sono spesso legati all'alimentazione o a un lieve disturbo digestivo." },
-      stomach_appendicitis: { title: "Questo schema può essere compatibile con un dolore di tipo appendicite", intro: "Il dolore acuto e localizzato nell'addome inferiore, con febbre o vomito, è uno schema a volte osservato nell'appendicite. Può peggiorare rapidamente, quindi fatti vedere al più presto - non è qualcosa da aspettare a casa." },
-      stomach_severe_widespread: { title: "Dolore addominale grave e diffuso con febbre - richiedi assistenza urgente", intro: "Un dolore grave su tutto l'addome, con febbre, può occasionalmente segnalare un problema addominale più serio e deve essere valutato urgentemente." },
-      back_strain_lift: { title: "Questo sembra uno stiramento muscolare nella parte bassa della schiena", intro: "Il dolore iniziato subito dopo aver sollevato un peso o un movimento brusco è spesso uno stiramento muscolare o legamentoso." },
-      back_chronic: { title: "Possibile stiramento cronico della schiena", intro: "Il dolore che si è sviluppato gradualmente e dura da settimane merita un controllo professionale." },
-      back_fever: { title: "Mal di schiena con febbre - merita una valutazione urgente", intro: "Il mal di schiena combinato con febbre può occasionalmente indicare un'infezione che richiede attenzione tempestiva." },
-      back_severe_difficulty: { title: "Grave mal di schiena con difficoltà a muoversi - richiedi assistenza urgente", intro: "Un dolore grave che ti impedisce di muoverti normalmente merita una valutazione urgente." },
-      arm_fracture: { title: "Possibile frattura o grave infortunio al braccio", intro: "Non riuscire a muovere il braccio dopo un infortunio può significare che qualcosa è rotto o gravemente distorto." },
-      arm_sprain: { title: "Possibile distorsione o stiramento da infortunio", intro: "Il dolore acuto iniziato subito dopo una caduta o un infortunio spesso indica una distorsione o uno stiramento." },
-      arm_numbness: { title: "Possibile irritazione nervosa", intro: "L'intorpidimento o il formicolio possono indicare irritazione o pressione su un nervo e vale la pena menzionarlo a un medico." },
-      arm_sudden_swelling: { title: "Gonfiore improvviso al braccio - merita un controllo al più presto", intro: "Un gonfiore nuovo e evidente comparso rapidamente merita di essere valutato piuttosto che atteso." },
-      leg_fracture: { title: "Possibile frattura o grave infortunio alla gamba", intro: "Non riuscire a caricare peso sulla gamba dopo un infortunio può significare che qualcosa è rotto o gravemente distorto." },
-      leg_sprain: { title: "Possibile distorsione o stiramento da infortunio", intro: "Il dolore acuto iniziato subito dopo una caduta o un infortunio spesso indica una distorsione o uno stiramento." },
-      leg_numbness: { title: "Possibile irritazione nervosa", intro: "L'intorpidimento o il formicolio possono indicare irritazione o pressione su un nervo e vale la pena menzionarlo a un medico." },
-      leg_sudden_swelling: { title: "Gonfiore improvviso alla gamba - merita un controllo al più presto", intro: "Un nuovo gonfiore comparso rapidamente in una gamba può occasionalmente essere legato a problemi circolatori e merita un controllo tempestivo." },
-    },
-  },
-};
+}

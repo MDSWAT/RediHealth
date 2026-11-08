@@ -1,43 +1,20 @@
-"use client";
-
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { cn } from "@/lib/cn";
+import type { ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
   className?: string;
+  /**
+   * @deprecated Ignored. Sections no longer fly in one after another on scroll;
+   * content is visible from the first paint. Kept so existing call sites compile.
+   */
   delay?: number;
 };
 
-export function Reveal({ children, className, delay = 0 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={cn("reveal-on-scroll", visible && "reveal-on-scroll-visible", className)}
-      style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
-    >
-      {children}
-    </div>
-  );
+/**
+ * Plain layout wrapper (formerly a scroll-triggered fade-in).
+ * Staggered on-scroll entrances read as busy on a calm medical site and can hide
+ * content when scripts fail, so this now renders its children immediately.
+ */
+export function Reveal({ children, className }: RevealProps) {
+  return <div className={className}>{children}</div>;
 }

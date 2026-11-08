@@ -4,6 +4,10 @@ import { cn } from "@/lib/cn";
 type SectionHeadingProps = {
   title: ReactNode;
   subtitle?: ReactNode;
+  /**
+   * @deprecated Not rendered. Kicker labels above headings are noise; the heading carries
+   * its own weight. Kept so existing call sites compile; remove it where you pass it.
+   */
   eyebrow?: ReactNode;
   align?: "left" | "center";
   as?: "h1" | "h2" | "h3";
@@ -14,7 +18,6 @@ type SectionHeadingProps = {
 export function SectionHeading({
   title,
   subtitle,
-  eyebrow,
   align = "left",
   as: Heading = "h2",
   className,
@@ -28,11 +31,6 @@ export function SectionHeading({
         className,
       )}
     >
-      {eyebrow ? (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">
-          {eyebrow}
-        </p>
-      ) : null}
       <Heading
         className={cn(
           "text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl",

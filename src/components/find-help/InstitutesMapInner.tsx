@@ -21,6 +21,10 @@ type Props = {
 
 const iconCache = new Map<string, L.DivIcon>();
 
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 function pinIcon(selected: boolean, emergency: boolean) {
   const key = `${selected}-${emergency}`;
   const cached = iconCache.get(key);
@@ -56,15 +60,18 @@ function MapController({
     // Frame the closest results (and the user) rather than every far-away match.
     const framed = points.slice(0, 25);
     if (userLocation) framed.push([userLocation.lat, userLocation.lng]);
-    map.fitBounds(L.latLngBounds(framed), { padding: [48, 48], maxZoom: 15 });
+    map.fitBounds(L.latLngBounds(framed), { padding: [48, 48], maxZoom: 15, animate: !prefersReducedMotion() });
   }, [institutes, userLocation, map]);
 
   useEffect(() => {
     if (!selectedId) return;
     const institute = institutes.find((item) => item.id === selectedId);
-    if (institute) {
-      map.flyTo([institute.lat, institute.lng], Math.max(map.getZoom(), 15), { duration: 0.6 });
-    }
+    if (!institute) return;
+    const target: [number, number] = [institute.lat, institute.lng];
+    const zoom = Math.max(map.getZoom(), 15);
+    // A short, decelerating glide to the chosen place; a plain jump under reduced motion.
+    if (prefersReducedMotion()) map.setView(target, zoom, { animate: false });
+    else map.flyTo(target, zoom, { duration: 0.6, easeLinearity: 0.5 });
   }, [selectedId, institutes, map]);
 
   return null;
@@ -99,7 +106,7 @@ function SearchAreaButton({ label, onSearch }: { label: string; onSearch: (cente
           setMoved(false);
           onSearch({ lat: center.lat, lng: center.lng });
         }}
-        className="pointer-events-auto rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-md ring-1 ring-black/5 hover:bg-primary-soft"
+        className="pointer-events-auto min-h-10 rounded-lg bg-card px-4 text-sm font-semibold text-primary shadow-md ring-1 ring-black/5 transition-colors duration-[var(--dur-fast)] hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {label}
       </button>
@@ -124,13 +131,15 @@ export default function InstitutesMapInner({
       : [44.4268, 26.1025];
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative isolate z-0 h-full w-full">
       <MapContainer
         center={center}
         zoom={13}
         scrollWheelZoom={false}
-        className="h-full w-full"
-        style={{ minHeight: "24rem" }}
+        zoomAnimation={!prefersReducedMotion()}
+        markerZoomAnimation={!prefersReducedMotion()}
+        fadeAnimation={!prefersReducedMotion()}
+        className="isolate z-0 h-full w-full"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

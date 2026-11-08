@@ -2,7 +2,7 @@
 "use client";
 
 import { PanelLink as Link, usePanelPathname as usePathname, usePanelRuntime } from "./PanelRuntime";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useId, useState, type ReactNode } from "react";
 import { signOut } from "next-auth/react";
 import {
   AlertCircleIcon,
@@ -46,6 +46,14 @@ type AdminShellProps = {
 };
 
 type PageShellOptions = Pick<AdminShellProps, "pendingCount" | "mobilePatientCreation">;
+
+/** Staff roles are stored in English; show them in the reader's language (same wording as the worker form). */
+const ROLE_LABELS: Record<"en" | "ro" | "sq" | "it", Record<string, string>> = {
+  en: { "healthcare worker": "Health worker", "case worker": "Case worker", "general practitioner": "Family doctor", "super admin": "Super admin", superadmin: "Super admin" },
+  ro: { doctor: "Medic", mediator: "Mediator", nurse: "Asistent medical", "case worker": "Responsabil de caz", "general practitioner": "Medic de familie", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Personal medical" },
+  sq: { doctor: "Mjek", mediator: "Ndërmjetës", nurse: "Infermier", "case worker": "Përgjegjës rasti", "general practitioner": "Mjek familje", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Punonjës shëndetësor" },
+  it: { doctor: "Medico", mediator: "Mediatore", nurse: "Infermiere", "case worker": "Referente del caso", "general practitioner": "Medico di base", administrator: "Amministratore", "super admin": "Super amministratore", superadmin: "Super amministratore", "healthcare worker": "Operatore sanitario" },
+};
 const PersistentShellContext = createContext<((options: PageShellOptions) => void) | null>(null);
 
 export function PersistentPanelShell(props: AdminShellProps) {
@@ -94,6 +102,7 @@ function AdminShellFrame({
   const role = userRole.trim().toLowerCase();
   const isSuperAdmin = role === "super admin" || role === "superadmin";
   const isMediatorOnly = role === "mediator" && !isAdmin;
+  const roleLabel = ROLE_LABELS[lang][role] || userRole;
   const [mobileAccountSheetOpen, setMobileAccountSheetOpen] = useState(false);
   const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
   const [reportIssueOpen, setReportIssueOpen] = useState(false);
@@ -103,6 +112,19 @@ function AdminShellFrame({
   const [reportSuccess, setReportSuccess] = useState<string | null>(null);
   const [reportSubmitting, setReportSubmitting] = useState(false);
   const [creatingPatient, setCreatingPatient] = useState(false);
+  const reportFieldId = useId();
+
+  // Escape closes the account sheet and the report dialog, like any other panel dialog.
+  useEffect(() => {
+    if (!mobileAccountSheetOpen && !reportIssueOpen) return;
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setMobileAccountSheetOpen(false);
+      if (!reportSubmitting) setReportIssueOpen(false);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mobileAccountSheetOpen, reportIssueOpen, reportSubmitting]);
 
   // All desktop items
   const desktopItems = [
@@ -112,23 +134,17 @@ function AdminShellFrame({
     { label: crm.meetings, href: "/panel/meet", icon: CameraIcon },
     { label: t.workers, href: "/panel/workers", icon: StethoscopeIcon },
   ].filter((item) => {
-    if (isMediatorOnly && ["/panel/calendar", "/panel/meet"].includes(item.href)) return false;
     if (item.href === "/panel/workers" && !isAdmin) return false;
     return true;
   });
 
   // Mobile App Bottom Navigation Bar items (primary quick tabs)
-  const mobilePrimaryTabs = isMediatorOnly
-    ? [
-        { label: crm.requests, href: "/panel", icon: FileTextIcon },
-        { label: t.patients, href: "/panel/patients", icon: UsersIcon },
-      ]
-    : [
-        { label: crm.requests, href: "/panel", icon: FileTextIcon },
-        { label: t.patients, href: "/panel/patients", icon: UsersIcon },
-        { label: t.calendar, href: "/panel/calendar", icon: CalendarIcon },
-        { label: crm.meetings, href: "/panel/meet", icon: CameraIcon },
-      ];
+  const mobilePrimaryTabs = [
+    { label: crm.requests, href: "/panel", icon: FileTextIcon },
+    { label: t.patients, href: "/panel/patients", icon: UsersIcon },
+    { label: t.calendar, href: "/panel/calendar", icon: CalendarIcon },
+    { label: crm.meetings, href: "/panel/meet", icon: CameraIcon },
+  ];
 
   const userInitial = (userEmail || "U").charAt(0).toUpperCase();
 
@@ -143,56 +159,64 @@ function AdminShellFrame({
 
   const reportCopyByLang = {
     en: {
-      title: "Report an issue",
-      subtitle: "Tell us what happened and we will investigate.",
+      title: "Report a problem",
+      subtitle: "Tell us what went wrong. We will look into it.",
       email: "Your email (optional)",
-      message: "Issue details",
+      message: "What happened",
       send: "Send report",
       sending: "Sending...",
       cancel: "Cancel",
       success: "Thanks. Your report has been sent.",
-      genericError: "We could not send your report. Please try again.",
-      detailError: "Please include at least 10 characters so we can investigate.",
-      placeholder: "Describe what happened, what you expected, and what happened instead.",
+      genericError: "Could not send the report. Try again.",
+      detailError: "Write at least 10 characters so we can understand the problem.",
+      placeholder: "What did you do, what did you expect, and what happened?",
+      offline: "Work offline on this device",
+      offlineCheckError: "Could not check offline changes. Open offline mode before you sign out.",
     },
     ro: {
-      title: "Raporteaza o problema",
-      subtitle: "Spune-ne ce s-a intamplat si vom investiga.",
-      email: "Emailul tau (optional)",
-      message: "Detalii problema",
+      title: "Raportează o problemă",
+      subtitle: "Spune-ne ce nu a mers. Ne uităm noi.",
+      email: "Emailul tău (opțional)",
+      message: "Ce s-a întâmplat",
       send: "Trimite raportul",
       sending: "Se trimite...",
-      cancel: "Anuleaza",
-      success: "Multumim. Raportul a fost trimis.",
-      genericError: "Nu am putut trimite raportul. Te rugam sa incerci din nou.",
-      detailError: "Te rugam sa scrii cel putin 10 caractere pentru a putea investiga.",
-      placeholder: "Descrie ce s-a intamplat, ce te asteptai si ce s-a intamplat in schimb.",
+      cancel: "Anulează",
+      success: "Mulțumim. Raportul a fost trimis.",
+      genericError: "Raportul nu a putut fi trimis. Încearcă din nou.",
+      detailError: "Scrie cel puțin 10 caractere ca să înțelegem problema.",
+      placeholder: "Ce ai făcut, ce te așteptai și ce s-a întâmplat?",
+      offline: "Lucrează offline pe acest dispozitiv",
+      offlineCheckError: "Nu am putut verifica modificările offline. Deschide modul offline înainte să ieși din cont.",
     },
     sq: {
-      title: "Raporto nje problem",
-      subtitle: "Na trego cfare ndodhi dhe ne do ta hetojme.",
-      email: "Emaili juaj (opsional)",
-      message: "Detajet e problemit",
-      send: "Dergo raportin",
-      sending: "Duke u derguar...",
+      title: "Raporto një problem",
+      subtitle: "Na trego çfarë nuk shkoi. Do ta shohim ne.",
+      email: "Emaili yt (nëse do)",
+      message: "Çfarë ndodhi",
+      send: "Dërgo raportin",
+      sending: "Duke dërguar...",
       cancel: "Anulo",
-      success: "Faleminderit. Raporti juaj u dergua.",
-      genericError: "Nuk mundem ta dergojme raportin. Ju lutemi provoni perseri.",
-      detailError: "Ju lutemi shkruani te pakten 10 karaktere qe te mund te hetojme.",
-      placeholder: "Pershkruani cfare ndodhi, cfare prisnit dhe cfare ndodhi ne vend te kesaj.",
+      success: "Faleminderit. Raporti u dërgua.",
+      genericError: "Raporti nuk u dërgua. Provo përsëri.",
+      detailError: "Shkruaj të paktën 10 shkronja që ta kuptojmë problemin.",
+      placeholder: "Çfarë bëre, çfarë prisje dhe çfarë ndodhi?",
+      offline: "Puno pa internet në këtë pajisje",
+      offlineCheckError: "Nuk i kontrolluam dot ndryshimet pa internet. Hap modalitetin pa internet para se të dalësh.",
     },
     it: {
       title: "Segnala un problema",
-      subtitle: "Raccontaci cosa e successo e verificheremo.",
-      email: "La tua email (opzionale)",
-      message: "Dettagli del problema",
+      subtitle: "Dicci cosa non ha funzionato. Ci pensiamo noi.",
+      email: "La tua email (facoltativa)",
+      message: "Cosa è successo",
       send: "Invia segnalazione",
-      sending: "Invio in corso...",
+      sending: "Invio...",
       cancel: "Annulla",
-      success: "Grazie. La segnalazione e stata inviata.",
-      genericError: "Non siamo riusciti a inviare la segnalazione. Riprova.",
-      detailError: "Inserisci almeno 10 caratteri per consentirci di verificare.",
-      placeholder: "Descrivi cosa e successo, cosa ti aspettavi e cosa e successo invece.",
+      success: "Grazie. La segnalazione è stata inviata.",
+      genericError: "Impossibile inviare la segnalazione. Riprova.",
+      detailError: "Scrivi almeno 10 caratteri così capiamo il problema.",
+      placeholder: "Cosa hai fatto, cosa ti aspettavi e cosa è successo?",
+      offline: "Lavora offline su questo dispositivo",
+      offlineCheckError: "Impossibile controllare le modifiche offline. Apri la modalità offline prima di uscire.",
     },
   } as const;
 
@@ -246,7 +270,7 @@ function AdminShellFrame({
       if (await hasOfflineVault()) { window.location.assign(withLangPrefix("/offline?signout=1", lang)); return; }
     } catch (error) {
       console.error("Could not check offline sign-out protection", error);
-      window.alert("Could not check encrypted offline changes. Open the offline workspace before signing out.");
+      window.alert(reportText.offlineCheckError);
       return;
     }
     const target = withLangPrefix("/sign-in", lang);
@@ -268,18 +292,15 @@ function AdminShellFrame({
       </a>
 
       {/* Mobile Native-style Header */}
-      <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-white/95 px-4 backdrop-blur-md lg:hidden">
+      <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-white px-4 lg:hidden">
         <div className="flex items-center gap-2">
           <Logo href={withLangPrefix("/", lang)} className="[&_img]:h-7 [&_img]:w-7 text-sm" />
-          <span className="rounded-full bg-primary-soft px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
-            Care
-          </span>
         </div>
 
         <div className="flex items-center gap-2">
           {pendingCount > 0 ? (
             <span
-              className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-[11px] font-bold text-white shadow-2xs"
+              className="inline-flex h-5 min-w-5 items-center justify-center rounded-md bg-primary px-1.5 text-xs font-bold text-white shadow-2xs tabular-nums"
               aria-label={t.pendingRequests(pendingCount)}
             >
               {pendingCount}
@@ -290,7 +311,7 @@ function AdminShellFrame({
             type="button"
             onClick={() => setMobileAccountSheetOpen(true)}
             aria-label={copy.account}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-soft text-xs font-bold text-primary ring-2 ring-primary/20 transition-transform active:scale-95"
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-soft text-xs font-bold text-primary"
           >
             {userInitial}
           </button>
@@ -299,15 +320,15 @@ function AdminShellFrame({
 
       {/* Mobile Account Bottom Sheet */}
       {mobileAccountSheetOpen ? (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs lg:hidden">
+        <div className="panel-scrim fixed inset-0 z-50 flex items-end justify-center bg-slate-950/50 lg:hidden">
           <div
             className="fixed inset-0"
             onClick={() => setMobileAccountSheetOpen(false)}
             aria-hidden="true"
           />
-          <aside className="app-sheet-slide-up relative w-full rounded-t-3xl border-t border-border bg-card p-5 shadow-2xl max-h-[85dvh] overflow-y-auto care-panel-bottom-bar">
+          <aside role="dialog" aria-modal="true" aria-label={copy.account} className="app-sheet-slide-up relative w-full rounded-t-3xl border-t border-border bg-card p-5 shadow-xl max-h-[85dvh] overflow-y-auto care-panel-bottom-bar">
             {/* Grab Handle */}
-            <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border" />
+            <div className="mx-auto mb-3 h-1.5 w-12 rounded-sm bg-border" />
 
             <div className="mb-3">
               <CountrySwitcher />
@@ -315,11 +336,11 @@ function AdminShellFrame({
 
             <div className="flex items-center justify-between pb-3 border-b border-border">
               <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-soft text-base font-bold text-primary">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-base font-bold text-primary">
                   {userInitial}
                 </span>
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-bold text-foreground">{userRole}</p>
+                  <p className="truncate text-sm font-bold text-foreground">{roleLabel}</p>
                   <p className="truncate text-xs text-muted-foreground" title={userEmail}>
                     {userEmail}
                   </p>
@@ -328,7 +349,7 @@ function AdminShellFrame({
               <button
                 type="button"
                 onClick={() => setMobileAccountSheetOpen(false)}
-                className="rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
+                className="rounded-lg p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
                 aria-label={t.closeMenu}
               >
                 <CloseIcon className="h-5 w-5" />
@@ -339,7 +360,7 @@ function AdminShellFrame({
             <div className="mt-4 space-y-1">
               {sheetQuickLinks.length > 0 ? (
                 <>
-                  <p className="px-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-2">
+                  <p className="px-2 text-xs font-semibold text-muted-foreground mb-2">
                     {copy.quickActions}
                   </p>
 
@@ -393,7 +414,6 @@ function AdminShellFrame({
                   <ArrowRightIcon className="h-5 w-5 text-muted-foreground rotate-180" />
                   <span>{t.returnToWebsite}</span>
                 </span>
-                <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
               </Link>
             </div>
 
@@ -401,7 +421,7 @@ function AdminShellFrame({
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-red-50 text-sm font-bold text-primary transition-colors hover:bg-red-100 active:scale-[0.99]"
+                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-red-50 text-sm font-bold text-primary transition-colors hover:bg-red-100"
               >
                 <LogOutIcon className="h-4 w-4" />
                 <span>{t.signOut}</span>
@@ -457,7 +477,7 @@ function AdminShellFrame({
                       aria-current={active ? "page" : undefined}
                       title={desktopSidebarCollapsed ? item.label : undefined}
                       aria-label={`${item.label}${item.href === "/panel" && pendingCount > 0 ? `, ${t.pendingRequests(pendingCount)}` : ""}`}
-                      className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${
+                      className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
                         desktopSidebarCollapsed ? "relative justify-center px-2" : "px-3"
                       } ${
                         active
@@ -469,7 +489,7 @@ function AdminShellFrame({
                       {!desktopSidebarCollapsed ? <span>{item.label}</span> : null}
                       {item.href === "/panel" && pendingCount > 0 ? (
                         <span
-                          className={`${desktopSidebarCollapsed ? "absolute right-1 top-0.5 rounded-full px-1.5 py-0.5 text-[10px]" : "ml-auto rounded-full px-2 py-0.5 text-xs"} font-bold ${
+                          className={`${desktopSidebarCollapsed ? "absolute right-1 top-0.5 rounded-md px-1.5 py-0.5 text-[10px]" : "ml-auto rounded-md px-2 py-0.5 text-xs"} font-bold tabular-nums ${
                             active ? "bg-primary/10 text-primary" : "bg-primary-soft text-primary"
                           }`}
                           aria-label={t.pendingRequests(pendingCount)}
@@ -504,7 +524,7 @@ function AdminShellFrame({
                       aria-current={active ? "page" : undefined}
                       title={desktopSidebarCollapsed ? item.label : undefined}
                       aria-label={`${item.label}${item.href === "/panel" && pendingCount > 0 ? `, ${t.pendingRequests(pendingCount)}` : ""}`}
-                      className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${
+                      className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
                         desktopSidebarCollapsed ? "relative justify-center px-2" : "px-3"
                       } ${
                         active
@@ -516,7 +536,7 @@ function AdminShellFrame({
                       {!desktopSidebarCollapsed ? <span>{item.label}</span> : null}
                       {item.href === "/panel" && pendingCount > 0 ? (
                         <span
-                          className={`ml-auto rounded-full px-2 py-0.5 text-xs font-bold ${
+                          className={`ml-auto rounded-md px-2 py-0.5 text-xs font-bold tabular-nums ${
                             active ? "bg-primary/10 text-primary" : "bg-primary-soft text-primary"
                           }`}
                           aria-label={t.pendingRequests(pendingCount)}
@@ -537,7 +557,7 @@ function AdminShellFrame({
                   aria-current={currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/") ? "page" : undefined}
                   title={desktopSidebarCollapsed ? t.logs : undefined}
                   aria-label={t.logs}
-                  className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
+                  className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
                     currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/")
                       ? "bg-primary-soft text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -551,7 +571,7 @@ function AdminShellFrame({
                   aria-current={currentPath === "/panel/institutes" ? "page" : undefined}
                   title={desktopSidebarCollapsed ? institutesCopy.navLabel : undefined}
                   aria-label={institutesCopy.navLabel}
-                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
+                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
                     currentPath === "/panel/institutes"
                       ? "bg-primary-soft text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -565,7 +585,7 @@ function AdminShellFrame({
                   aria-current={currentPath === "/panel/settings" ? "page" : undefined}
                   title={desktopSidebarCollapsed ? settingsCopy.navLabel : undefined}
                   aria-label={settingsCopy.navLabel}
-                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-all ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
+                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
                     currentPath === "/panel/settings"
                       ? "bg-primary-soft text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -587,7 +607,7 @@ function AdminShellFrame({
                 }}
                 aria-label={t.reportIssue}
                 title={desktopSidebarCollapsed ? t.reportIssue : undefined}
-                className={`flex min-h-11 w-full items-center gap-3 rounded-xl text-left text-sm font-semibold text-muted-foreground transition-all hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3.5"}`}
+                className={`flex min-h-11 w-full items-center gap-3 rounded-xl text-left text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3.5"}`}
               >
                 <AlertCircleIcon className="h-5 w-5 shrink-0" />
                 {!desktopSidebarCollapsed ? <span>{t.reportIssue}</span> : null}
@@ -598,17 +618,17 @@ function AdminShellFrame({
           <div className={`border-t border-border bg-muted/20 ${desktopSidebarCollapsed ? "space-y-2 p-2" : "space-y-3 p-4"}`}>
             <CountrySwitcher compact={desktopSidebarCollapsed} />
             <div
-              title={desktopSidebarCollapsed ? `${userRole} — ${userEmail}` : undefined}
+              title={desktopSidebarCollapsed ? `${roleLabel} — ${userEmail}` : undefined}
               className={`flex items-center rounded-xl border border-border/60 bg-white shadow-2xs ${desktopSidebarCollapsed ? "justify-center p-2" : "gap-3 p-2.5"}`}
             >
               <span
                 aria-hidden="true"
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-soft font-bold text-primary"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-soft font-bold text-primary"
               >
                 {userInitial}
               </span>
               {!desktopSidebarCollapsed ? <div className="min-w-0 flex-1">
-                <p className="truncate text-xs font-bold text-foreground">{userRole}</p>
+                <p className="truncate text-xs font-bold text-foreground">{roleLabel}</p>
                 <p className="truncate text-[11px] text-muted-foreground" title={userEmail}>
                   {userEmail}
                 </p>
@@ -641,7 +661,7 @@ function AdminShellFrame({
 
         {/* Main Content Area - with bottom padding for mobile app bar */}
         <div className="min-w-0 flex-1 pb-20 lg:pb-0">
-          {!demo && !offline && ["doctor", "mediator"].includes(role) && <div className="border-b border-border bg-card px-4 py-2 text-right text-sm"><a className="font-medium text-primary" href={withLangPrefix("/offline", lang)}>{lang === "ro" ? "Lucrează offline pe acest dispozitiv" : "Encrypted offline workspace"}</a></div>}
+          {!demo && !offline && ["doctor", "mediator"].includes(role) && <div className="border-b border-border bg-card px-4 py-2 text-right text-sm"><a className="font-medium text-primary" href={withLangPrefix("/offline", lang)}>{reportText.offline}</a></div>}
           {children}
         </div>
       </div>
@@ -649,7 +669,7 @@ function AdminShellFrame({
       {/* Native App Bottom Tab Bar (Mobile only) */}
       <nav
         aria-label={copy.navigation}
-        className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-white/95 backdrop-blur-md lg:hidden care-panel-bottom-bar shadow-[0_-4px_20px_rgba(0,0,0,0.05)]"
+        className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-white lg:hidden care-panel-bottom-bar"
       >
         <ul className="flex items-center justify-around h-14 px-1">
           {mobilePrimaryTabs.map((item) => {
@@ -663,7 +683,7 @@ function AdminShellFrame({
                 <Link
                   href={withLangPrefix(item.href, lang)}
                   aria-current={active ? "page" : undefined}
-                  className={`flex flex-col items-center justify-center py-1 text-center transition-colors active:scale-95 ${
+                  className={`flex flex-col items-center justify-center py-1 text-center transition-colors ${
                     active ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -671,7 +691,7 @@ function AdminShellFrame({
                     <Icon className="h-5 w-5" />
                     {item.href === "/panel" && pendingCount > 0 ? (
                       <span
-                        className="absolute -top-1 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-bold text-white shadow-2xs"
+                        className="absolute -top-1 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-md bg-primary px-1 text-[9px] font-bold text-white shadow-2xs tabular-nums"
                         aria-label={t.pendingRequests(pendingCount)}
                       >
                         {pendingCount}
@@ -692,7 +712,7 @@ function AdminShellFrame({
               type="button"
               onClick={() => setMobileAccountSheetOpen(true)}
               aria-label={copy.more}
-              className={`flex flex-col items-center justify-center py-1 text-center w-full transition-colors active:scale-95 ${
+              className={`flex flex-col items-center justify-center py-1 text-center w-full transition-colors ${
                 mobileAccountSheetOpen
                   ? "text-primary font-bold"
                   : "text-muted-foreground hover:text-foreground"
@@ -715,7 +735,7 @@ function AdminShellFrame({
               aria-label={createPatientModalTranslations[lang].titleCreate}
               title={createPatientModalTranslations[lang].titleCreate}
               onClick={() => setCreatingPatient(true)}
-              className="fixed right-5 bottom-[calc(5rem+env(safe-area-inset-bottom))] z-40 flex h-16 w-16 items-center justify-center rounded-full border-4 border-white bg-red-600 text-white shadow-[0_6px_20px_rgba(220,38,38,0.25)] transition-[background-color,scale] hover:bg-red-700 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600 lg:hidden"
+              className="fixed right-5 bottom-[calc(5rem+env(safe-area-inset-bottom))] z-40 flex h-16 w-16 items-center justify-center rounded-2xl border-4 border-white bg-red-600 text-white shadow-md transition-colors hover:bg-red-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600 lg:hidden"
             >
               <PlusIcon aria-hidden="true" className="h-8 w-8 shrink-0" />
             </button>
@@ -731,7 +751,7 @@ function AdminShellFrame({
       ) : null}
 
       {reportIssueOpen ? (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 backdrop-blur-xs sm:items-center sm:p-4">
+        <div className="panel-scrim fixed inset-0 z-50 flex items-end justify-center bg-slate-950/50 p-0 sm:items-center sm:p-4">
           <div
             className="fixed inset-0"
             onClick={() => setReportIssueOpen(false)}
@@ -740,19 +760,20 @@ function AdminShellFrame({
           <div
             role="dialog"
             aria-modal="true"
-            className="relative w-full max-w-2xl rounded-t-3xl border-t border-border bg-card p-5 shadow-2xl sm:rounded-2xl sm:border sm:p-6"
+            aria-labelledby={`${reportFieldId}-title`}
+            className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-3xl border-t border-border bg-card p-5 shadow-xl sm:rounded-2xl sm:border sm:p-6"
           >
-            <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
+            <div className="mx-auto mb-3 h-1.5 w-12 rounded-sm bg-border sm:hidden" />
             <div className="mb-4 flex items-start justify-between gap-3 border-b border-border pb-4 sm:items-center">
               <div className="min-w-0">
-                <h2 className="text-base font-bold text-foreground sm:text-lg">{reportText.title}</h2>
+                <h2 id={`${reportFieldId}-title`} className="text-base font-bold text-foreground sm:text-lg">{reportText.title}</h2>
                 <p className="text-sm text-muted-foreground">{reportText.subtitle}</p>
               </div>
               <button
                 type="button"
                 onClick={() => setReportIssueOpen(false)}
                 aria-label={reportText.cancel}
-                className="rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
+                className="rounded-lg p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
               >
                 <CloseIcon className="h-5 w-5" />
               </button>
@@ -760,9 +781,11 @@ function AdminShellFrame({
 
             <form onSubmit={handleSubmitIssue} className="space-y-4">
               <div>
-                <label className="mb-1 block text-xs font-semibold text-foreground">{reportText.email}</label>
+                <label htmlFor={`${reportFieldId}-email`} className="mb-1 block text-xs font-semibold text-foreground">{reportText.email}</label>
                 <input
+                  id={`${reportFieldId}-email`}
                   type="email"
+                  autoComplete="email"
                   value={reportEmail}
                   onChange={(event) => setReportEmail(event.target.value)}
                   placeholder="you@example.com"
@@ -771,8 +794,9 @@ function AdminShellFrame({
               </div>
 
               <div>
-                <label className="mb-1 block text-xs font-semibold text-foreground">{reportText.message}</label>
+                <label htmlFor={`${reportFieldId}-message`} className="mb-1 block text-xs font-semibold text-foreground">{reportText.message}</label>
                 <textarea
+                  id={`${reportFieldId}-message`}
                   required
                   minLength={10}
                   rows={7}
@@ -784,11 +808,13 @@ function AdminShellFrame({
               </div>
 
               {reportError ? (
-                <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{reportError}</p>
+                <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{reportError}</p>
               ) : null}
 
               {reportSuccess ? (
-                <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">{reportSuccess}</p>
+                <p role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+                  {reportSuccess}
+                </p>
               ) : null}
 
               <div className="flex justify-end gap-2">

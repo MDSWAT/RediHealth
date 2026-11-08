@@ -2,15 +2,17 @@
 
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent, type MouseEvent } from "react";
 import { AlertCircleIcon, CloseIcon, MailIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
+import type { Lang } from "@/lib/i18n/translations";
 
 type Copy = {
   trigger: string;
   modalTitle: string;
   modalBody: string;
+  close: string;
   emailLabel: string;
   emailPlaceholder: string;
   messageLabel: string;
@@ -19,88 +21,174 @@ type Copy = {
   sending: string;
   send: string;
   success: string;
+  tooShort: string;
+  invalidEmail: string;
+  invalidRequest: string;
+  tooMany: string;
+  captchaFailed: string;
+  unavailable: string;
   genericError: string;
 };
 
-const reportIssueCopy: Record<"en" | "ro" | "sq" | "it", Copy> = {
+const reportIssueCopy: Record<Lang, Copy> = {
   en: {
-    trigger: "Report an issue",
-    modalTitle: "Report an issue",
-    modalBody: "Tell us what happened and we will investigate.",
+    trigger: "Report a problem",
+    modalTitle: "Report a problem",
+    modalBody: "Tell us what went wrong. We will look at it.",
+    close: "Close",
     emailLabel: "Your email (optional)",
     emailPlaceholder: "you@example.com",
     messageLabel: "What happened?",
-    messagePlaceholder: "Describe the issue, what you expected, and what happened instead.",
+    messagePlaceholder: "What did you want to do, and what happened instead?",
     cancel: "Cancel",
-    sending: "Sending...",
+    sending: "Sending…",
     send: "Send report",
-    success: "Thanks. Your report has been sent.",
-    genericError: "We could not send your report. Please try again.",
+    success: "Thank you. Your report has been sent.",
+    tooShort: "Write a bit more, at least 10 characters, so we can check it.",
+    invalidEmail: "This email address looks wrong. Check it or leave it empty.",
+    invalidRequest: "We could not read the report. Check the email and the text, then try again.",
+    tooMany: "You sent several reports in a short time. Try again in a few minutes.",
+    captchaFailed: "The security check failed. Try again.",
+    unavailable: "Reports cannot be sent right now. Try again later.",
+    genericError: "The report was not sent. Try again.",
   },
   ro: {
     trigger: "Raportează o problemă",
     modalTitle: "Raportează o problemă",
-    modalBody: "Spune-ne ce s-a întâmplat și vom investiga.",
+    modalBody: "Spune-ne ce n-a mers și ne uităm.",
+    close: "Închide",
     emailLabel: "Emailul tău (opțional)",
-    emailPlaceholder: "tu@exemplu.com",
+    emailPlaceholder: "tu@exemplu.ro",
     messageLabel: "Ce s-a întâmplat?",
-    messagePlaceholder: "Descrie problema, ce te așteptai să se întâmple și ce s-a întâmplat de fapt.",
+    messagePlaceholder: "Ce voiai să faci și ce s-a întâmplat de fapt?",
     cancel: "Anulează",
-    sending: "Se trimite...",
+    sending: "Se trimite…",
     send: "Trimite raportul",
     success: "Mulțumim. Raportul a fost trimis.",
-    genericError: "Nu am putut trimite raportul. Te rugăm să încerci din nou.",
+    tooShort: "Scrie puțin mai mult, cel puțin 10 caractere, ca să putem verifica.",
+    invalidEmail: "Adresa de email pare greșită. Verific-o sau lasă câmpul gol.",
+    invalidRequest: "Nu am putut citi raportul. Verifică emailul și textul, apoi încearcă din nou.",
+    tooMany: "Ai trimis mai multe rapoarte într-un timp scurt. Încearcă din nou peste câteva minute.",
+    captchaFailed: "Verificarea de securitate n-a mers. Încearcă din nou.",
+    unavailable: "Acum nu poți trimite rapoarte. Încearcă mai târziu.",
+    genericError: "Raportul nu s-a trimis. Încearcă din nou.",
   },
   sq: {
     trigger: "Raporto një problem",
     modalTitle: "Raporto një problem",
-    modalBody: "Na tregoni çfarë ndodhi dhe ne do ta hetojmë.",
-    emailLabel: "Emaili juaj (opsional)",
-    emailPlaceholder: "ju@shembull.com",
+    modalBody: "Na trego çfarë nuk funksionoi. Do ta shohim.",
+    close: "Mbyll",
+    emailLabel: "Emaili yt (nuk është i detyrueshëm)",
+    emailPlaceholder: "ti@shembull.com",
     messageLabel: "Çfarë ndodhi?",
-    messagePlaceholder: "Përshkruani problemin, çfarë prisnit dhe çfarë ndodhi në vend të kësaj.",
+    messagePlaceholder: "Çfarë doje të bëje dhe çfarë ndodhi në fakt?",
     cancel: "Anulo",
-    sending: "Duke u dërguar...",
+    sending: "Po dërgohet…",
     send: "Dërgo raportin",
-    success: "Faleminderit. Raporti juaj u dërgua.",
-    genericError: "Nuk mundëm ta dërgojmë raportin. Ju lutemi provoni përsëri.",
+    success: "Faleminderit. Raporti u dërgua.",
+    tooShort: "Shkruaj pak më shumë, të paktën 10 shkronja, që ta kontrollojmë.",
+    invalidEmail: "Kjo adresë emaili duket e gabuar. Kontrolloje ose lëre bosh.",
+    invalidRequest: "Nuk arritëm ta lexojmë raportin. Kontrollo emailin dhe tekstin, pastaj provo përsëri.",
+    tooMany: "Dërgove disa raporte brenda pak kohe. Provo përsëri pas disa minutash.",
+    captchaFailed: "Kontrolli i sigurisë nuk kaloi. Provo përsëri.",
+    unavailable: "Tani nuk mund të dërgosh raporte. Provo më vonë.",
+    genericError: "Raporti nuk u dërgua. Provo përsëri.",
   },
   it: {
     trigger: "Segnala un problema",
     modalTitle: "Segnala un problema",
-    modalBody: "Raccontaci cosa è successo e verificheremo.",
-    emailLabel: "La tua email (opzionale)",
-    emailPlaceholder: "tu@esempio.com",
+    modalBody: "Dicci cosa non ha funzionato. Lo controlliamo.",
+    close: "Chiudi",
+    emailLabel: "La tua email (facoltativa)",
+    emailPlaceholder: "tu@esempio.it",
     messageLabel: "Cosa è successo?",
-    messagePlaceholder: "Descrivi il problema, cosa ti aspettavi e cosa è successo invece.",
+    messagePlaceholder: "Cosa volevi fare e cosa è successo invece?",
     cancel: "Annulla",
-    sending: "Invio in corso...",
+    sending: "Invio in corso…",
     send: "Invia segnalazione",
     success: "Grazie. La segnalazione è stata inviata.",
-    genericError: "Non siamo riusciti a inviare la segnalazione. Riprova.",
+    tooShort: "Scrivi un po' di più, almeno 10 caratteri, così possiamo controllare.",
+    invalidEmail: "L'indirizzo email sembra sbagliato. Controllalo o lascia il campo vuoto.",
+    invalidRequest: "Non riusciamo a leggere la segnalazione. Controlla l'email e il testo, poi riprova.",
+    tooMany: "Hai inviato diverse segnalazioni in poco tempo. Riprova tra qualche minuto.",
+    captchaFailed: "Il controllo di sicurezza non è riuscito. Riprova.",
+    unavailable: "Ora non puoi inviare segnalazioni. Riprova più tardi.",
+    genericError: "La segnalazione non è stata inviata. Riprova.",
   },
 };
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** The server answers in English; show the visitor's own language instead, chosen by status and code. */
+function errorForResponse(status: number, code: string | undefined, t: Copy): string {
+  if (status === 429) return t.tooMany;
+  if (code === "captcha_invalid") return t.captchaFailed;
+  if (status === 400) return t.invalidRequest;
+  if (status === 503) return t.unavailable;
+  return t.genericError;
+}
+
+/**
+ * Floating "report an issue" button and its form, in a native modal dialog
+ * (focus stays inside, Escape closes, the page behind is inert). Every message,
+ * including server errors, is shown in the page language.
+ */
 export function ReportIssueWidget() {
   const { lang } = useLanguage();
   const executeCaptcha = useRecaptcha();
-  const t = useMemo(() => reportIssueCopy[lang], [lang]);
+  const t = reportIssueCopy[lang] ?? reportIssueCopy.ro;
 
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{ text: string; field?: "email" | "message" } | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const dialogTitleId = useId();
+  const dialogBodyId = useId();
+  const emailId = useId();
+  const messageId = useId();
+  const errorId = useId();
 
-  async function submitReport(event: React.FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (open && !dialog.open) {
+      dialog.showModal();
+      const root = document.documentElement;
+      const previous = root.style.overflow;
+      root.style.overflow = "hidden";
+      return () => {
+        root.style.overflow = previous;
+      };
+    }
+    if (!open && dialog.open) dialog.close();
+  }, [open]);
+
+  function openDialog() {
+    setError(null);
+    setSuccess(null);
+    setOpen(true);
+  }
+
+  function handleBackdropClick(event: MouseEvent<HTMLDialogElement>) {
+    // Clicks on the dimmed area land on the <dialog> itself; clicks inside land on its children.
+    if (event.target === event.currentTarget) setOpen(false);
+  }
+
+  async function submitReport(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
     setSuccess(null);
 
+    const trimmedEmail = email.trim();
+    if (trimmedEmail && !EMAIL_PATTERN.test(trimmedEmail)) {
+      setError({ text: t.invalidEmail, field: "email" });
+      return;
+    }
     if (message.trim().length < 10) {
-      setError("Please add a bit more detail so we can investigate.");
+      setError({ text: t.tooShort, field: "message" });
       return;
     }
 
@@ -113,7 +201,7 @@ export function ReportIssueWidget() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: email.trim(),
+          email: trimmedEmail,
           message: message.trim(),
           pageUrl: window.location.href,
           userAgent: navigator.userAgent,
@@ -121,112 +209,140 @@ export function ReportIssueWidget() {
         }),
       });
 
-      const data = (await response.json().catch(() => ({}))) as { error?: string };
       if (!response.ok) {
-        setError(data.error || t.genericError);
+        const data = (await response.json().catch(() => ({}))) as { code?: string };
+        setError({ text: errorForResponse(response.status, data.code, t) });
         return;
       }
 
       setSuccess(t.success);
       setMessage("");
       setEmail("");
-    } catch (error) {
-      setError(captchaErrorMessage(error, t.genericError));
+    } catch (caught) {
+      setError({ text: captchaErrorMessage(caught, t.genericError) });
     } finally {
       setIsSubmitting(false);
     }
   }
 
+  const fieldClass =
+    "w-full rounded-lg border bg-background text-base text-foreground placeholder:text-muted-foreground/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
+
   return (
     <>
       <button
         type="button"
-        onClick={() => {
-          setOpen(true);
-          setError(null);
-          setSuccess(null);
-        }}
-        className="fixed bottom-4 right-4 z-40 inline-flex min-h-11 items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5 hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        onClick={openDialog}
+        aria-label={t.trigger}
+        aria-haspopup="dialog"
+        className="report-issue-trigger group fixed bottom-3 right-3 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-xs transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        <AlertCircleIcon className="h-4 w-4" />
-        <span>{t.trigger}</span>
+        <AlertCircleIcon className="h-[18px] w-[18px]" aria-hidden="true" />
+        {/* Label on hover or keyboard focus only, to the left of the icon; touch opens the form directly. */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute right-full mr-2 whitespace-nowrap rounded-md bg-ink-950 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-xs transition-opacity duration-(--dur-fast) group-hover:opacity-100 group-focus-visible:opacity-100"
+        >
+          {t.trigger}
+        </span>
       </button>
 
-      {open ? (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 backdrop-blur-xs sm:items-center sm:p-4">
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={dialogTitleId}
-            className="relative flex w-full max-w-xl flex-col rounded-t-3xl border-t border-border bg-card p-5 shadow-2xl sm:rounded-2xl sm:border"
-          >
-            <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
-            <div className="mb-4 flex items-start justify-between gap-3 border-b border-border pb-4 sm:items-center">
-              <div className="min-w-0">
-                <h2 id={dialogTitleId} className="text-base font-bold text-foreground sm:text-lg">
-                  {t.modalTitle}
-                </h2>
-                <p className="text-sm text-muted-foreground">{t.modalBody}</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label={t.cancel}
-                className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <CloseIcon className="h-5 w-5" />
-              </button>
+      <dialog
+        ref={dialogRef}
+        aria-labelledby={dialogTitleId}
+        aria-describedby={dialogBodyId}
+        onClose={() => setOpen(false)}
+        onClick={handleBackdropClick}
+        className={[
+          "m-0 mt-auto w-full max-w-none overflow-visible bg-transparent p-0 text-foreground",
+          "sm:m-auto sm:w-[calc(100%-2rem)] sm:max-w-xl",
+          "backdrop:bg-ink-950/45",
+          "transition-[opacity,translate] duration-(--dur-base) ease-(--ease-out-calm)",
+          "starting:open:translate-y-2 starting:open:opacity-0",
+        ].join(" ")}
+      >
+        <div className="flex max-h-[90dvh] flex-col overflow-y-auto rounded-t-2xl border-t border-border bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl sm:rounded-2xl sm:border sm:pb-5">
+          <div className="mb-4 flex items-start justify-between gap-3 border-b border-border pb-4">
+            <div className="min-w-0">
+              <h2 id={dialogTitleId} className="text-lg font-semibold text-foreground">
+                {t.modalTitle}
+              </h2>
+              <p id={dialogBodyId} className="mt-0.5 text-sm text-muted-foreground">
+                {t.modalBody}
+              </p>
             </div>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label={t.close}
+              className="-mr-1.5 -mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <CloseIcon className="h-5 w-5" />
+            </button>
+          </div>
 
-            <form onSubmit={submitReport} className="space-y-4">
-              <div>
-                <label className="mb-1 block text-xs font-semibold text-foreground">{t.emailLabel}</label>
-                <div className="relative">
-                  <MailIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    placeholder={t.emailPlaceholder}
-                    className="w-full rounded-xl border border-border bg-background py-2 pl-9 pr-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="mb-1 block text-xs font-semibold text-foreground">{t.messageLabel}</label>
-                <textarea
-                  required
-                  value={message}
-                  onChange={(event) => setMessage(event.target.value)}
-                  placeholder={t.messagePlaceholder}
-                  minLength={10}
-                  rows={6}
-                  className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          <form onSubmit={submitReport} noValidate className="space-y-4">
+            <div>
+              <label htmlFor={emailId} className="mb-1.5 block text-sm font-medium text-foreground">
+                {t.emailLabel}
+              </label>
+              <div className="relative">
+                <MailIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <input
+                  id={emailId}
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder={t.emailPlaceholder}
+                  aria-invalid={error?.field === "email" || undefined}
+                  aria-describedby={error?.field === "email" ? errorId : undefined}
+                  className={`${fieldClass} min-h-[44px] py-2 pl-9 pr-3 ${error?.field === "email" ? "border-primary" : "border-border"}`}
                 />
               </div>
+            </div>
 
-              {error ? (
-                <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>
-              ) : null}
-              {success ? (
-                <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
-                  {success}
-                </p>
-              ) : null}
+            <div>
+              <label htmlFor={messageId} className="mb-1.5 block text-sm font-medium text-foreground">
+                {t.messageLabel}
+              </label>
+              <textarea
+                id={messageId}
+                required
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+                placeholder={t.messagePlaceholder}
+                rows={5}
+                aria-invalid={error?.field === "message" || undefined}
+                aria-describedby={error?.field === "message" ? errorId : undefined}
+                className={`${fieldClass} px-3 py-2 ${error?.field === "message" ? "border-primary" : "border-border"}`}
+              />
+            </div>
 
-              <div className="flex items-center justify-end gap-2">
-                <Button type="button" variant="ghost" onClick={() => setOpen(false)}>
-                  {t.cancel}
-                </Button>
-                <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? t.sending : t.send}
-                </Button>
-              </div>
-            </form>
-          </div>
+            {error ? (
+              <p id={errorId} role="alert" className="flex items-start gap-2 rounded-lg border border-primary/30 bg-primary-soft/50 px-3 py-2 text-sm text-primary-active">
+                <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0" />
+                <span>{error.text}</span>
+              </p>
+            ) : null}
+            {success ? (
+              <p role="status" className="rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm font-medium text-foreground">
+                {success}
+              </p>
+            ) : null}
+
+            <div className="flex items-center justify-end gap-2">
+              <Button type="button" variant="ghost" onClick={() => setOpen(false)}>
+                {t.cancel}
+              </Button>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? t.sending : t.send}
+              </Button>
+            </div>
+          </form>
         </div>
-      ) : null}
+      </dialog>
     </>
   );
 }

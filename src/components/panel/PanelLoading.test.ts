@@ -15,8 +15,10 @@ describe("panel route loading", () => {
     expect(html).toContain(panelTranslations.ro.adminShell.workers);
     expect(html).toContain('aria-busy="true"');
     expect(html).toContain('role="status"');
-    expect(html).toContain("Se încarcă datele paginii");
-    expect(html).toContain("motion-safe:animate-pulse");
+    expect(html).toContain("Se încarcă…");
+    // Quiet skeleton: no infinite pulse; a single delayed fade-in instead.
+    expect(html).toContain("panel-skeleton");
+    expect(html).not.toContain("animate-pulse");
     expect(html).not.toContain("<a ");
     expect(html).not.toContain("<aside");
     expect(html).not.toContain("<nav");

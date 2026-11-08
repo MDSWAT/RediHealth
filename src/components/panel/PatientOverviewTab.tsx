@@ -73,18 +73,18 @@ export function PatientOverviewTab({
       clear: "Clear",
       searchWorker: "Search doctor or role...",
       noMatches: "No matches for this search.",
-      summary: "Condition & Symptoms Summary",
+      summary: "Condition and symptoms summary",
       noCondition: "No condition notes recorded.",
       history: "Medical History Notes",
       noHistory: "No medical history recorded.",
       treatmentTitle: "Current Active Treatment Plan",
       editTreatment: "Edit Treatment Plan",
       setupTreatment: "Set Up Treatment Plan",
-      diagnosis: "Primary Diagnosis & Findings",
-      goals: "Care Goals & Objectives",
-      meds: "Prescribed Medications & Therapies",
+      diagnosis: "Primary diagnosis and findings",
+      goals: "Care goals and objectives",
+      meds: "Prescribed medications and therapies",
       instructions: "Care Instructions",
-      treatmentPhotos: "Treatment Plan Photos & Documents",
+      treatmentPhotos: "Treatment plan photos and documents",
     },
     ro: {
       phone: "Telefon contact",
@@ -214,7 +214,7 @@ export function PatientOverviewTab({
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-2xl border border-border bg-card p-5 shadow-xs">
         <div>
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-semibold text-muted-foreground">
             {t.phone}
           </p>
           <a
@@ -227,7 +227,7 @@ export function PatientOverviewTab({
         </div>
 
         <div>
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-semibold text-muted-foreground">
             {t.email}
           </p>
           <a
@@ -242,7 +242,7 @@ export function PatientOverviewTab({
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-2xl border border-border bg-card p-5 shadow-xs">
         <div>
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-semibold text-muted-foreground">
             {t.dob}
           </p>
           <p className="mt-1 text-sm font-medium text-foreground">
@@ -251,7 +251,7 @@ export function PatientOverviewTab({
         </div>
 
         <div>
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-semibold text-muted-foreground">
             {t.gender}
           </p>
           <p className="mt-1 text-sm font-medium text-foreground">
@@ -260,7 +260,7 @@ export function PatientOverviewTab({
         </div>
 
         <div>
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-semibold text-muted-foreground">
             {t.address}
           </p>
           <p className="mt-1 text-sm font-medium text-foreground">
@@ -412,7 +412,7 @@ export function PatientOverviewTab({
           <div className="rounded-2xl border border-primary/20 bg-primary-soft/30 p-5 space-y-4">
             {treatmentPlan.diagnosis ? (
               <div>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
+                <p className="text-xs font-bold text-muted-foreground">
                   {t.diagnosis}
                 </p>
                 <p className="mt-1 text-sm text-foreground whitespace-pre-wrap font-medium">
@@ -423,7 +423,7 @@ export function PatientOverviewTab({
 
             {treatmentPlan.goals ? (
               <div>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
+                <p className="text-xs font-bold text-muted-foreground">
                   {t.goals}
                 </p>
                 <p className="mt-1 text-sm text-foreground whitespace-pre-wrap">
@@ -434,7 +434,7 @@ export function PatientOverviewTab({
 
             {treatmentPlan.medications ? (
               <div>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
+                <p className="text-xs font-bold text-muted-foreground">
                   {t.meds}
                 </p>
                 <p className="mt-1 text-sm text-foreground whitespace-pre-wrap">
@@ -445,7 +445,7 @@ export function PatientOverviewTab({
 
             {treatmentPlan.care_instructions ? (
               <div>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
+                <p className="text-xs font-bold text-muted-foreground">
                   {t.instructions}
                 </p>
                 <p className="mt-1 text-sm text-foreground whitespace-pre-wrap">
@@ -456,7 +456,7 @@ export function PatientOverviewTab({
 
             {treatmentPlan.photos && treatmentPlan.photos.length > 0 ? (
               <div>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2">
+                <p className="text-xs font-bold text-muted-foreground mb-2">
                   {t.treatmentPhotos} ({treatmentPlan.photos.length})
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

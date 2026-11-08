@@ -40,7 +40,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("OpenStreetMap import failed", error);
     return NextResponse.json(
-      { error: "Import from OpenStreetMap failed. The public Overpass server may be busy, try again in a few minutes." },
+      { error: "Import from OpenStreetMap failed. The server may be busy. Try again in a few minutes." },
       { status: 502 },
     );
   }

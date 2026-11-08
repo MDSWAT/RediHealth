@@ -21,7 +21,9 @@ describe("patient profile contact layout", () => {
     expect(header).toContain('href="tel:0000000000"');
     expect(header).toContain('href="mailto:patient@example.test"');
     expect(header).toContain("12 Example Street");
-    expect(header).toContain("1980-01-02");
+    // Date of birth is shown in the reader's locale, not as a raw ISO string.
+    expect(header).toContain("Jan 2, 1980");
+    expect(header).not.toContain("1980-01-02");
     expect(header.indexOf("</h1>")).toBeLessThan(header.indexOf('href="tel:'));
     expect(html.match(/href="tel:/g)).toHaveLength(1);
     expect(html.match(/href="mailto:/g)).toHaveLength(1);

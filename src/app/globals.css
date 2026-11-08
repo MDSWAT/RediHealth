@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-background: #fcfbf9;
@@ -26,6 +27,10 @@
 
   --color-ring: #c62f3c;
   --color-ruby-300: #f3a0a7;
+  --color-clinical-ruby: #c62f3c;
+  --color-clinical-ruby-hover: #a8242f;
+  --color-clinical-ruby-active: #8f1d27;
+  --color-clinical-ruby-soft: #fde8ea;
 
   /* Hero ground: obsidian ink, warm paper, and a cool mist for secondary text on dark */
   --color-ink-950: #0a1226;
@@ -40,9 +45,9 @@
   --color-sapphire-soft: #eff6ff;
   --color-sapphire-border: #bfdbfe;
 
-  /* Amber Gold (Community Health Mediators) */
-  --color-amber-care: #d97706;
-  --color-amber-care-hover: #b45309;
+  /* Amber Gold (Community Health Mediators - WCAG AA compliant 5.02:1) */
+  --color-amber-care: #b45309;
+  --color-amber-care-hover: #92400e;
   --color-amber-care-soft: #fef3c7;
   --color-amber-care-border: #fde68a;
 
@@ -54,10 +59,34 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Shared motion tokens (mirror src/lib/motion/tokens.ts). Calm, decelerating, no overshoot. */
+:root {
+  --ease-out-calm: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-calm: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-in-calm: cubic-bezier(0.5, 0, 0.75, 0);
+  --dur-fast: 160ms;
+  --dur-base: 240ms;
+  --dur-slow: 420ms;
+}
+
+:root {
+  /* Height of the pinned site chrome (112 bar + header), published by those components. */
+  --chrome-h: calc(var(--emergency-bar-h, 0px) + var(--site-header-h, 0px));
+}
+
+html {
+  scroll-padding-top: calc(var(--chrome-h) + 0.75rem);
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Text selection in the site palette (sapphire tint) instead of the browser's default blue. */
+::selection {
+  background: rgb(29 53 87 / 0.16);
 }
 
 .no-scrollbar {
@@ -69,120 +98,74 @@ body {
   display: none;
 }
 
-@keyframes myth-message-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
 .myth-buster-panel {
   border-radius: 8px;
 }
 
-.myth-buster-message {
-  animation: myth-message-float 3s ease-in-out infinite;
-}
 
-.myth-buster-message-delay {
-  animation-delay: 0.5s;
-}
-
-
-@keyframes demo-scan-sweep {
-  0% {
-    top: 0%;
-    opacity: 0;
-  }
-
-  6% {
-    opacity: 1;
-  }
-
-  92% {
-    opacity: 1;
-  }
-
-  100% {
-    top: 100%;
-    opacity: 0;
-  }
-}
-
-.demo-scan-line {
-  opacity: 0;
-  animation: demo-scan-sweep 2.2s ease-in-out forwards;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-@keyframes demo-decoded-line-in {
-  0% {
-    opacity: 0;
-    transform: translateX(10px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.demo-decoded-line {
-  opacity: 0;
-  animation: demo-decoded-line-in 0.45s ease-out forwards;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
+/*
+ * Health check. One calm entrance when the question changes (8px from the side you are moving
+ * towards), and dialogs that fade in. Shared tokens only; fully static under reduced motion.
+ */
 @keyframes hc-step-in {
-  0% {
+  from {
     opacity: 0;
-    transform: translateX(16px);
+    transform: translateX(var(--hc-step-from, 8px));
   }
 
-  100% {
+  to {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
+  }
+}
+
+@keyframes hc-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hc-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
 .hc-step {
-  animation: hc-step-in 0.35s ease-out forwards;
+  animation: hc-step-in var(--dur-base) var(--ease-out-calm) both;
+}
+
+.hc-step[data-dir="back"] {
+  --hc-step-from: -8px;
+}
+
+.hc-backdrop {
+  animation: hc-fade-in var(--dur-base) var(--ease-out-calm) both;
+}
+
+.hc-sheet {
+  animation: hc-sheet-in var(--dur-base) var(--ease-out-calm) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hc-step {
+  .hc-step,
+  .hc-backdrop,
+  .hc-sheet {
     animation: none;
   }
 }
 
 
-
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.reveal-on-scroll-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-on-scroll {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
 
 .hover-lift {
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
@@ -201,12 +184,32 @@ body {
   border-radius: 4px;
 }
 
+/* Headings and regions that only receive focus from code (to be announced) are not controls. */
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 /* ---------- Landing hero ---------- */
 
+/* One motion language for the hero: the shared calm ease-out, no overshoot. */
+.hero {
+  --hero-ease: var(--ease-out-calm);
+}
+
+.hero ::selection {
+  background: rgb(198 47 60 / 0.9);
+  color: #fff;
+}
+
+.hero-panel ::selection {
+  background: rgb(29 53 87 / 0.18);
+  color: inherit;
+}
+
 .hero-title {
-  font-size: clamp(2.125rem, 1.25rem + 2.9vw, 3.3rem);
-  line-height: 1.05;
-  letter-spacing: -0.032em;
+  font-size: clamp(2rem, 1.2rem + 2.3vw, 3.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
   overflow-wrap: break-word;
   min-width: 0;
 }
@@ -217,37 +220,42 @@ body {
   outline-offset: 3px;
 }
 
-/* Static hairline grid, faded out toward the edges. It never moves. */
-.hero-grid {
-  background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 70% 60% at 30% 35%, #000 20%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 35%, #000 20%, transparent 75%);
-}
-
-/* Aceternity-style spotlight: one entrance, then still. */
-@keyframes hero-spotlight-in {
-  from {
-    opacity: 0;
-    transform: translate(-6%, -8%) scale(0.6);
-  }
-  to {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-}
-
-.hero-spotlight {
+/* Triage panel views share one grid cell; only the active one is visible.
+   The outgoing view fades in place; the incoming one fades in from 8px.
+   Transform resets only after the fade, so nothing jumps while visible. */
+.triage-view {
   opacity: 0;
-  animation: hero-spotlight-in 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+  visibility: hidden;
+  transform: translateX(8px);
+  transition:
+    opacity 120ms var(--ease-out-calm),
+    transform 0s linear 120ms,
+    visibility 0s linear 120ms;
+}
+
+/* Starts once the outgoing view is nearly gone, so two texts never overlap. */
+.triage-view[data-active="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity var(--dur-base) var(--ease-out-calm) 100ms,
+    transform var(--dur-base) var(--ease-out-calm) 100ms,
+    visibility 0s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-spotlight {
-    opacity: 1;
-    animation: none;
+  .triage-view,
+  .triage-view[data-active="true"] {
+    transform: none;
+    transition: none;
+  }
+
+  /* The global reduced-motion rule gives every element a 0.01ms transition on `all`. Inside the
+     views that makes the inherited `visibility` lag one frame, so the new heading could not take
+     focus when a view switches. Nothing in the views animates under reduced motion anyway. */
+  .triage-view * {
+    transition: none;
   }
 }
 
@@ -259,5 +267,250 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Hero entrance: the copy column fades in once from 8px. The triage panel is a
+   tool, so it is simply there (no entrance). No word reveal, no blur, no scale,
+   no stagger. */
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-enter {
+  animation: hero-enter var(--dur-slow) var(--hero-ease) both;
+}
+
+/* Quiz result: space reserved, revealed on answer, mark draws itself in. */
+.quiz-result {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity var(--dur-base) var(--hero-ease),
+    transform var(--dur-base) var(--hero-ease),
+    visibility 0s linear var(--dur-base);
+}
+
+.quiz-result.is-shown {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dur-base) var(--hero-ease),
+    transform var(--dur-base) var(--hero-ease),
+    visibility 0s;
+}
+
+.quiz-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.quiz-draw.is-drawn {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset var(--dur-slow) var(--hero-ease) 120ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter {
+    animation: none;
+  }
+
+  .quiz-result,
+  .quiz-result.is-shown {
+    transform: none;
+    transition: none;
+  }
+
+  .quiz-draw.is-drawn {
+    transition: none;
+  }
+}
+/* ---------- End landing hero ---------- */
+
+/* Tools with a pinned bottom action bar lift the floating report button above it. */
+body:has([data-sticky-actions]) .report-issue-trigger {
+  bottom: calc(5.25rem + env(safe-area-inset-bottom));
+}
+@media (max-width: 1023px) {
+  /* On phones the tool's own bar carries every action; the floating report button would cover it. */
+  body:has([data-sticky-actions]) .report-issue-trigger {
+    display: none;
+  }
+}
+
+
+
+/* Home hero on phones and tablets: the "Ce te îngrijorează?" panel as a bottom sheet. */
+@keyframes hero-sheet-up { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes hero-sheet-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 1023.98px) {
+  body:has(.hero-sheet) .report-issue-trigger { display: none; }
+  .hero-sheet { animation: hero-sheet-up var(--dur-slow) var(--ease-out-calm); }
+  .hero-sheet-backdrop { animation: hero-sheet-fade var(--dur-base) var(--ease-out-calm); }
+  .hero-sheet .hero-panel { border-radius: 0; box-shadow: none; background: var(--color-paper, #fff); }
+  .hero-sheet .hero-panel > header { height: 3rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-sheet, .hero-sheet-backdrop { animation: none; }
+}
+
+/* News modals (/stiri, county picker): rise from the bottom on phones, settle in place from sm up.
+   Shared calm tokens; 8px entrance offset (ENTRANCE_OFFSET_PX); transform and opacity only. */
+@keyframes news-sheet-up { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes news-sheet-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes news-sheet-fade { from { opacity: 0; } to { opacity: 1; } }
+.news-sheet { animation: news-sheet-up var(--dur-slow) var(--ease-out-calm); }
+.news-sheet-backdrop { animation: news-sheet-fade var(--dur-base) var(--ease-out-calm); }
+@media (min-width: 640px) {
+  .news-sheet { animation: news-sheet-in var(--dur-base) var(--ease-out-calm); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .news-sheet, .news-sheet-backdrop { animation: none; }
+}
+
+/* Health assistant (/health-assistant, /prescription-review): one calm settle when a triage
+   step or result appears; an indeterminate line while a prescription is being read. */
+@keyframes assistant-step-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.assistant-step-in { animation: assistant-step-in var(--dur-slow) var(--ease-out-calm) both; }
+@keyframes assistant-reading {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+.assistant-reading-bar { animation: assistant-reading 1.6s var(--ease-in-out-calm) infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .assistant-step-in { animation: none; }
+  .assistant-reading-bar { animation: none; transform: none; width: 100%; opacity: 0.35; }
+}
+
+/* Phones: pages with a bottom action bar (guides) lift the report icon above it instead of covering it. */
+@media (max-width: 1023px) {
+  body:has([data-bottom-bar]) .report-issue-trigger {
+    bottom: calc(3.5rem + 0.75rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ---------- fhs-: find help, get help, mediators, static and error pages ---------- */
+/* One state swap (form → confirmation, dialog open): a short fade with an 8px settle. */
+@keyframes fhs-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes fhs-fade { from { opacity: 0; } to { opacity: 1; } }
+.fhs-enter { animation: fhs-enter var(--dur-slow) var(--ease-out-calm) both; }
+.fhs-fade { animation: fhs-fade var(--dur-base) var(--ease-out-calm) both; }
+/* 404: the route line draws once, left to right, and stops short of the destination. */
+@keyframes fhs-route-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.fhs-route { stroke-dasharray: 1; stroke-dashoffset: 0; animation: fhs-route-draw 900ms var(--ease-out-calm) 150ms both; }
+@media (prefers-reduced-motion: reduce) {
+  .fhs-enter, .fhs-fade, .fhs-route { animation: none; }
+}
+
+/* Heart-health diagram (HeartDiagram.tsx): one beat per --hh-beat (64 bpm), ventricles
+   shorten towards the base, atria contract just before them, a monitor gap sweeps the ECG.
+   Transform and opacity only; no animation off-screen or under reduced motion. */
+.hh-diagram {
+  --hh-ink: #5b2b36;
+  --hh-muscle: #f4d9d8;
+  --hh-muscle-deep: #ecc3c4;
+  --hh-atrium: #f7e4e3;
+  --hh-artery: #e4a2a6;
+  --hh-vein: #c8d4e6;
+  --hh-vein-ink: #34496b;
+  --hh-coronary: #c62f3c;
+  --hh-ecg: #c62f3c;
+  --hh-grid: #f6e3e4;
+}
+.hh-diagram .hh-part { transition: opacity var(--dur-base) var(--ease-out-calm); }
+.hh-diagram .hh-part[data-dim="true"] { opacity: 0.32; }
+.hh-diagram .hh-ventricles { transform-box: fill-box; transform-origin: 41% 6%; }
+.hh-diagram .hh-atria { transform-box: fill-box; transform-origin: 80% 15%; }
+.hh-diagram .hh-atria-left { transform-box: fill-box; transform-origin: 0% 40%; }
+@keyframes hh-ventricle-beat {
+  0% { transform: scale(1); animation-timing-function: linear; }
+  4% { transform: scale(1); animation-timing-function: cubic-bezier(0.3, 0, 0.2, 1); }
+  30% { transform: scale(0.955); animation-timing-function: var(--ease-in-out-calm); }
+  56%, 100% { transform: scale(1); }
+}
+@keyframes hh-atrial-beat {
+  0%, 84% { transform: scale(1); animation-timing-function: cubic-bezier(0.3, 0, 0.2, 1); }
+  92% { transform: scale(0.97); animation-timing-function: var(--ease-in-out-calm); }
+  100% { transform: scale(1); }
+}
+@keyframes hh-ecg-sweep {
+  from { transform: translateX(calc(var(--hh-ecg-width) * -1)); }
+  to { transform: translateX(0); }
+}
+.hh-diagram[data-playing="true"] .hh-ventricles {
+  animation: hh-ventricle-beat var(--hh-beat) linear infinite;
+  animation-delay: calc(var(--hh-beat) * var(--hh-phase));
+}
+.hh-diagram[data-playing="true"] .hh-atria,
+.hh-diagram[data-playing="true"] .hh-atria-left {
+  animation: hh-atrial-beat var(--hh-beat) linear infinite;
+  animation-delay: calc(var(--hh-beat) * var(--hh-phase));
+}
+.hh-diagram[data-playing="true"] .hh-sweep {
+  animation: hh-ecg-sweep calc(var(--hh-beat) * 2) linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hh-diagram .hh-ventricles, .hh-diagram .hh-atria, .hh-diagram .hh-atria-left, .hh-diagram .hh-sweep { animation: none !important; }
+  .hh-diagram .hh-part { transition: none; }
+}
+
+/* Isolate Leaflet map panes (z-index 200–1000) inside their own stacking context so they never bleed over site chrome or the mobile menu. */
+.leaflet-container {
+  isolation: isolate;
+  z-index: 0 !important;
+}
+
+/* ---------- Print stylesheet (PDF & paper handouts) ---------- */
+@media print {
+  @page {
+    margin: 14mm 12mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0b162a !important;
+  }
+
+  /* Never print persistent site chrome, sticky navbars, fixed bottom thumb bars, or floating triggers */
+  .emergency-banner,
+  header.site-header,
+  footer,
+  .report-issue-trigger,
+  [data-bottom-bar],
+  [data-sticky-actions] {
+    display: none !important;
+  }
+
+  /* Prevent cards and checklist rows from splitting awkwardly across pages */
+  section,
+  article,
+  li,
+  dl {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Focused 1-page printout when clicking "Tipărește lista" in PreventiveScreeningSelector */
+  html[data-print-mode="screening-checklist"] [data-print-guide-section] {
+    display: none !important;
+  }
+
+  html[data-print-mode="screening-checklist"] [data-print-screening-card] {
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
   }
 }

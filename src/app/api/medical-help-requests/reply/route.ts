@@ -25,11 +25,11 @@ function getTemplate(templateId: ReplyTemplateId, requester: RequesterRow) {
   switch (templateId) {
     case "acknowledgment":
       return {
-        subject: "RediHealth: Medical Request Received",
+        subject: "RediHealth: Medical request received",
         text: `Hello ${name},\n\nWe have received your medical help request regarding: "${descriptionPreview}...". A healthcare support worker is reviewing your request and will call you at ${requester.phone} shortly.\n\nBest regards,\nRediHealth Staff`,
         html: renderBrandEmail({
           previewText: "Your RediHealth request was received.",
-          badgeText: "Request Update",
+          badgeText: "Request update",
           heading: "Medical request received",
           recipientName: name,
           intro:
@@ -53,7 +53,7 @@ function getTemplate(templateId: ReplyTemplateId, requester: RequesterRow) {
       };
     case "consultation":
       return {
-        subject: "RediHealth: Support Consultation Options",
+        subject: "RediHealth: Support consultation options",
         text: `Hello ${name},\n\nThank you for reaching out to RediHealth. Based on your enquiry, we would like to schedule a quick call or direct you to a nearby health institute. Please let us know your preferred time to speak.\n\nContact phone: ${requester.phone}\n\nBest regards,\nRediHealth Staff`,
         html: renderBrandEmail({
           previewText: "Consultation options from RediHealth.",
@@ -81,17 +81,17 @@ function getTemplate(templateId: ReplyTemplateId, requester: RequesterRow) {
       };
     case "referral":
       return {
-        subject: "RediHealth: Help & Next Steps",
+        subject: "RediHealth: Help and next steps",
         text: `Hello ${name},\n\nRegarding your enquiry, we recommend contacting your primary healthcare provider or local clinic. If you need assistance finding medical institutes in your area, please visit our Find Help map at https://redihealth.org/find-help.\n\nBest regards,\nRediHealth Staff`,
         html: renderBrandEmail({
           previewText: "Recommended next steps from RediHealth.",
-          badgeText: "Medical Guidance",
+          badgeText: "Medical guidance",
           heading: "Help and next steps",
           recipientName: name,
           intro:
             "Based on your enquiry, we recommend contacting your primary healthcare provider or a nearby clinic.",
           cta: {
-            label: "Open Find Help Map",
+            label: "Open Find Help map",
             url: "https://redihealth.org/find-help",
           },
           closingText: "If needed, our team can still guide you to suitable local services.",
@@ -165,7 +165,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Failed to send request reply", error);
     return NextResponse.json(
-      { error: "We could not send the email. Please try again." },
+      { error: "Could not send the email. Try again." },
       { status: 502 },
     );
   }

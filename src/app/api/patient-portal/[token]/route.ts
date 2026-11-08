@@ -35,7 +35,7 @@ export async function PATCH(request: Request, { params }: Params) {
   });
   if (!rateLimit.allowed) {
     return NextResponse.json(
-      { error: "Too many requests. Please wait a moment and try again." },
+      { error: "Too many requests. Wait a moment and try again." },
       { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
     );
   }
@@ -192,6 +192,6 @@ export async function PATCH(request: Request, { params }: Params) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to update patient portal profile", error);
-    return NextResponse.json({ error: "Failed to update profile." }, { status: 503 });
+    return NextResponse.json({ error: "Could not update the profile." }, { status: 503 });
   }
 }

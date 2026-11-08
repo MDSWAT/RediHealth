@@ -13,6 +13,21 @@ function baseProps(props: IconProps) {
   };
 }
 
+// For the few glyphs drawn in-house: a 2px round stroke, the same visual weight as the Boxicons set.
+function strokeProps(props: IconProps) {
+  return {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+    focusable: false,
+    ...props,
+  };
+}
+
 // bx-heart
 export function HeartIcon(props: IconProps) {
   return (
@@ -112,11 +127,13 @@ export function SearchIcon(props: IconProps) {
   );
 }
 
-// bx-plus-medical
+// Stethoscope (in-house outline; replaces the solid medical cross that outweighed the set)
 export function StethoscopeIcon(props: IconProps) {
   return (
-    <svg {...baseProps(props)}>
-      <path d="M15 2.013H9V9H2v6h7v6.987h6V15h7V9h-7z" />
+    <svg {...strokeProps(props)}>
+      <path d="M6 3H5v5a5 5 0 0 0 10 0V3h-1" />
+      <path d="M10 13v2a5 5 0 0 0 10 0v-2" />
+      <circle cx="20" cy="11" r="2" />
     </svg>
   );
 }
@@ -189,6 +206,8 @@ export function CloseIcon(props: IconProps) {
     </svg>
   );
 }
+export const XIcon = CloseIcon;
+export const ShieldCheckIcon = ShieldIcon;
 
 // bx-trash
 export function TrashIcon(props: IconProps) {
@@ -442,11 +461,12 @@ export function CameraIcon(props: IconProps) {
   );
 }
 
-// bx-capsule / prescription
+// Capsule (in-house outline, matches the set's line weight)
 export function PrescriptionIcon(props: IconProps) {
   return (
-    <svg {...baseProps(props)}>
-      <path d="M19.707 4.293a5.999 5.999 0 0 0-8.486 0l-6.928 6.929a6.002 6.002 0 0 0 8.486 8.485l6.928-6.928a6.002 6.002 0 0 0 0-8.486zm-1.414 7.072-3.182 3.181-4.243-4.242 3.182-3.182a4 4 0 0 1 5.657 5.657l-1.414-1.414z" />
+    <svg {...strokeProps(props)}>
+      <rect x="2.5" y="8" width="19" height="8" rx="4" transform="rotate(-45 12 12)" />
+      <path d="m8.5 8.5 7 7" />
     </svg>
   );
 }
@@ -460,11 +480,12 @@ export function VolumeIcon(props: IconProps) {
   );
 }
 
-// bx-volume-mute
+// Volume off (in-house outline: the speaker of VolumeIcon with a cross)
 export function VolumeMuteIcon(props: IconProps) {
   return (
-    <svg {...baseProps(props)}>
-      <path d="m3.293 1.293-1.414 1.414L4.758 5.586A1.986 1.986 0 0 0 4 7H2c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2h2.697L12 21.868V12.828l7.879 7.879 1.414-1.414L3.293 1.293zM4 9h1.91l4.09 2.727v4.469L5.91 15H4V9zm8-6.868L8.604 4.444l1.45 1.45L12 4.618v-2.486z" />
+    <svg {...strokeProps(props)}>
+      <path d="M4 9h3l5-4v14l-5-4H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z" />
+      <path d="m16 9.5 5 5m0-5-5 5" />
     </svg>
   );
 }
@@ -487,15 +508,6 @@ export function CheckIcon(props: IconProps) {
   );
 }
 
-// bx-support / handshake / empathy
-export function HeartHandshakeIcon(props: IconProps) {
-  return (
-    <svg {...baseProps(props)}>
-      <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" /><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5c0 1.492.936 2.766 2.25 3.25V14h2.5v-1.25c1.314-.484 2.25-1.758 2.25-3.25A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-    </svg>
-  );
-}
-
 // bx-sparkles
 export function SparklesIcon(props: IconProps) {
   return (
@@ -505,3 +517,22 @@ export function SparklesIcon(props: IconProps) {
   );
 }
 
+// bx-message-rounded-dots
+export function MessageDotsIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <circle cx="9.5" cy="9.5" r="1.5" />
+      <circle cx="14.5" cy="9.5" r="1.5" />
+      <path d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.897 5.515 5 6.934V22l5.34-4.004C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8zm0 14h-.333L9 18v-2.417l-.641-.247C5.671 14.301 4 12.256 4 10c0-3.309 3.589-6 8-6s8 2.691 8 6-3.589 6-8 6z" />
+    </svg>
+  );
+}
+
+// bx-list-check
+export function ListCheckIcon(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="M4 7h11v2H4zm0 4h11v2H4zm0 4h7v2H4zm15.299-2.708-4.3 4.291-1.292-1.291-1.414 1.415 2.706 2.704 5.712-5.703z" />
+    </svg>
+  );
+}

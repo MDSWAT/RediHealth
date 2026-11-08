@@ -13,7 +13,7 @@ import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 function rateLimitResponse(retryAfterSeconds: number) {
   return NextResponse.json(
-    { error: "Too many sign-in attempts. Please wait and try again." },
+    { error: "Too many sign-in attempts. Wait a moment and try again." },
     { status: 429, headers: { "Retry-After": String(retryAfterSeconds) } },
   );
 }
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
 
   if (access.reason === "database-unavailable") {
     return NextResponse.json(
-      { error: "Sign-in is temporarily unavailable. Please try again shortly." },
+      { error: "Sign-in is not working right now. Try again in a few minutes." },
       { status: 503 },
     );
   }
@@ -119,7 +119,7 @@ https://redihealth.org`;
     });
   } catch {
     return NextResponse.json(
-      { error: "We could not send your sign-in code. Please try again." },
+      { error: "Could not send your sign-in code. Try again." },
       { status: 502 },
     );
   }

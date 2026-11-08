@@ -97,7 +97,7 @@ export async function POST(request: Request) {
   const workerContext = await getUserWorkerContext(session.user.email);
   if (!workerContext.isAdmin) {
     return NextResponse.json(
-      { error: "Only administrators can create worker profiles." },
+      { error: "Only administrators can add staff." },
       { status: 403 },
     );
   }
@@ -120,7 +120,7 @@ export async function POST(request: Request) {
 
   if (!fullName || !isValidEmail(email)) {
     return NextResponse.json(
-      { error: "Please provide a full name and valid email address for the worker." },
+      { error: "Enter a full name and a valid email." },
       { status: 400 },
     );
   }
@@ -140,7 +140,7 @@ export async function POST(request: Request) {
   }
 
   if (workerContext.country === "RO" && needsCounty(role) && !isRomanianCounty(county)) {
-    return NextResponse.json({ error: "Please select a valid county for this worker." }, { status: 400 });
+    return NextResponse.json({ error: "Choose a valid county for this staff member." }, { status: 400 });
   }
 
   try {
@@ -153,7 +153,7 @@ export async function POST(request: Request) {
 
     if (!result.insertId) {
       return NextResponse.json(
-        { error: "Worker was created but no insert id was returned by the database." },
+        { error: "The staff member was saved, but the database returned no ID." },
         { status: 503 },
       );
     }
@@ -185,13 +185,13 @@ export async function POST(request: Request) {
   } catch (error) {
     if (isDuplicateEntryError(error)) {
       return NextResponse.json(
-        { error: "A worker with this email address already exists." },
+        { error: "A staff member with this email already exists." },
         { status: 400 },
       );
     }
     console.error("Failed to create worker", error);
     return NextResponse.json(
-      { error: "Could not create worker profile." },
+      { error: "Could not add the staff member." },
       { status: 503 },
     );
   }
@@ -207,7 +207,7 @@ export async function PATCH(request: Request) {
   const workerContext = await getUserWorkerContext(session.user.email);
   if (!workerContext.isAdmin) {
     return NextResponse.json(
-      { error: "Only administrators can update worker profiles." },
+      { error: "Only administrators can edit staff." },
       { status: 403 },
     );
   }
@@ -226,7 +226,7 @@ export async function PATCH(request: Request) {
 
   const id = body.id ? String(body.id) : null;
   if (!id) {
-    return NextResponse.json({ error: "Worker ID is required." }, { status: 400 });
+    return NextResponse.json({ error: "Staff ID is required." }, { status: 400 });
   }
 
   const updates: string[] = [];
@@ -262,7 +262,7 @@ export async function PATCH(request: Request) {
   if (body.county !== undefined) {
     const county = workerContext.country === "RO" ? text(body.county) : "";
     if (county && !isRomanianCounty(county)) {
-      return NextResponse.json({ error: "Please select a valid county for this worker." }, { status: 400 });
+      return NextResponse.json({ error: "Choose a valid county for this staff member." }, { status: 400 });
     }
     updates.push("county = ?");
     params.push(county || null);
@@ -324,7 +324,7 @@ export async function PATCH(request: Request) {
   } catch (error) {
     console.error("Failed to update worker", error);
     return NextResponse.json(
-      { error: "Could not update worker profile." },
+      { error: "Could not update the staff member." },
       { status: 503 },
     );
   }
@@ -340,7 +340,7 @@ export async function DELETE(request: Request) {
   const workerContext = await getUserWorkerContext(session.user.email);
   if (!workerContext.isAdmin) {
     return NextResponse.json(
-      { error: "Only administrators can delete worker profiles." },
+      { error: "Only administrators can delete staff." },
       { status: 403 },
     );
   }
@@ -361,7 +361,7 @@ export async function DELETE(request: Request) {
   }
 
   if (!id) {
-    return NextResponse.json({ error: "Worker ID is required." }, { status: 400 });
+    return NextResponse.json({ error: "Staff ID is required." }, { status: 400 });
   }
 
   try {
@@ -372,14 +372,14 @@ export async function DELETE(request: Request) {
     );
     const existing = existingRows[0];
     if (!existing) {
-      return NextResponse.json({ error: "Worker not found." }, { status: 404 });
+      return NextResponse.json({ error: "Staff member not found." }, { status: 404 });
     }
 
     await db.query(`UPDATE patients SET assigned_worker_id = NULL WHERE assigned_worker_id = ?`, [id]);
     const [result] = await db.query<ResultSetHeader>(`DELETE FROM workers WHERE id = ?`, [id]);
 
     if (result.affectedRows === 0) {
-      return NextResponse.json({ error: "Worker not found." }, { status: 404 });
+      return NextResponse.json({ error: "Staff member not found." }, { status: 404 });
     }
 
     await logActivity({
@@ -403,7 +403,7 @@ export async function DELETE(request: Request) {
   } catch (error) {
     console.error("Failed to delete worker", error);
     return NextResponse.json(
-      { error: "Could not delete worker profile." },
+      { error: "Could not delete the staff member." },
       { status: 503 },
     );
   }

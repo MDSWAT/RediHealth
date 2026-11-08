@@ -1,11 +1,23 @@
+import type { Metadata } from "next";
 import { SignInPageContent } from "@/components/auth/SignInPageContent";
-import { createPageMetadata } from "@/lib/i18n/page-metadata";
+import { localizedPageTitle } from "@/lib/i18n/page-metadata";
+import { getRequestLang } from "@/lib/i18n/server-routing";
+import type { Lang } from "@/lib/i18n/translations";
 
-export const generateMetadata = createPageMetadata(
-  "sign-in",
-  "Sign In - RediHealth",
-  "Sign in securely to RediHealth with Google or a one-time email code.",
-);
+const descriptions: Record<Lang, string> = {
+  ro: "Intră în RediHealth cu un cod primit pe email sau cu contul Google.",
+  en: "Sign in to RediHealth with a code sent to your email, or with Google.",
+  sq: "Hyr në RediHealth me një kod që vjen në email ose me llogarinë Google.",
+  it: "Accedi a RediHealth con un codice ricevuto via email o con Google.",
+};
+
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await getRequestLang();
+  return {
+    title: localizedPageTitle(lang, "sign-in", "Sign in - RediHealth"),
+    description: descriptions[lang] ?? descriptions.en,
+  };
+}
 
 type SignInPageProps = {
   searchParams: Promise<{ error?: string | string[] }>;

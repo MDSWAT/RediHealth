@@ -92,7 +92,7 @@ export function DemoPageContent({ children }: { children: ReactNode }) {
           </select>
         </label>
         <button type="button" onClick={reset} className="min-h-10 rounded-lg border border-amber-300 bg-white px-3 text-xs font-semibold">{t.reset}</button>
-        <Link href={withLangPrefix("/", lang)} className="min-h-10 rounded-lg px-3 py-3 text-xs font-semibold underline">{t.exit}</Link>
+        <Link href={withLangPrefix("/", lang)} className="inline-flex min-h-10 items-center rounded-lg px-3 text-xs font-semibold underline underline-offset-2">{t.exit}</Link>
       </div>
     </div>
     {error && <p role="alert" className="mt-2 text-sm font-semibold text-red-700">{error}</p>}

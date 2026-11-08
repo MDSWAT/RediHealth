@@ -9,6 +9,10 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "coverage/**",
+    ".agents/**",
+    "docs/**",
+    ".piper-*/**",
     "next-env.d.ts",
   ]),
 ]);

@@ -11,6 +11,51 @@ import type {
 import { getPriorityMeta } from "@/lib/patient-helpers";
 import type { CountryCode } from "@/lib/countries";
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
+import { useLanguage } from "@/lib/i18n/language-context";
+import type { Lang } from "@/lib/i18n/translations";
+
+function useSafeLang(): Lang {
+  try {
+    return useLanguage().lang;
+  } catch {
+    return "ro";
+  }
+}
+
+const portalMessages: Record<Lang, { symptoms: string; followup: string; photo: string; complete: string; tooBig: string; photoName: string }> = {
+  ro: {
+    symptoms: "Simptomele nu s-au salvat. Încearcă din nou.",
+    followup: "Controlul nu s-a salvat. Încearcă din nou.",
+    photo: "Poza nu s-a încărcat. Încearcă din nou.",
+    complete: "Nu am putut marca vizita ca făcută. Încearcă din nou.",
+    tooBig: "Fișierul e prea mare. Alege unul sub 5 MB.",
+    photoName: "Poză de la pacient",
+  },
+  en: {
+    symptoms: "Your symptoms were not saved. Try again.",
+    followup: "The check-up was not saved. Try again.",
+    photo: "The photo did not upload. Try again.",
+    complete: "We could not mark the visit as done. Try again.",
+    tooBig: "The file is too big. Choose one under 5 MB.",
+    photoName: "Photo from patient",
+  },
+  sq: {
+    symptoms: "Shqetësimet nuk u ruajtën. Provo përsëri.",
+    followup: "Kontrolli nuk u ruajt. Provo përsëri.",
+    photo: "Fotoja nuk u ngarkua. Provo përsëri.",
+    complete: "Nuk e shënuam vizitën si të bërë. Provo përsëri.",
+    tooBig: "Skedari është shumë i madh. Zgjidh një nën 5 MB.",
+    photoName: "Foto nga pacienti",
+  },
+  it: {
+    symptoms: "I sintomi non sono stati salvati. Riprova.",
+    followup: "Il controllo non è stato salvato. Riprova.",
+    photo: "La foto non è stata caricata. Riprova.",
+    complete: "Non siamo riusciti a segnare la visita come fatta. Riprova.",
+    tooBig: "Il file è troppo grande. Scegline uno sotto i 5 MB.",
+    photoName: "Foto del paziente",
+  },
+};
 
 const MAX_PHOTO_BYTES = 5 * 1024 * 1024;
 const SAVED_MESSAGE_TIMEOUT_MS = 3_000;
@@ -30,7 +75,7 @@ async function patchPortal(token: string, country: CountryCode, payload: unknown
 
   if (!response.ok) {
     const data = (await response.json().catch(() => ({}))) as { error?: string };
-    throw new Error(data.error || "The request could not be completed.");
+    throw new Error(data.error || "");
   }
 }
 
@@ -41,6 +86,9 @@ async function patchPortal(token: string, country: CountryCode, payload: unknown
  */
 export function usePatientPortal({ initialPatient, token, country }: UsePatientPortalArgs) {
   const executeCaptcha = useRecaptcha();
+  const messages = portalMessages[useSafeLang()] ?? portalMessages.ro;
+  const errorText = (error: unknown, fallback: string) =>
+    error instanceof Error && error.message ? error.message : fallback;
   const patch = async (payload: object) => {
     const captchaToken = await executeCaptcha("patient_portal");
     return patchPortal(token, country, { ...payload, captchaToken });
@@ -94,9 +142,7 @@ export function usePatientPortal({ initialPatient, token, country }: UsePatientP
       setSymptomsSavedMsg(true);
       setTimeout(() => setSymptomsSavedMsg(false), SAVED_MESSAGE_TIMEOUT_MS);
     } catch (error) {
-      setErrorMessage(
-        error instanceof Error ? error.message : "Failed to update symptoms.",
-      );
+      setErrorMessage(errorText(error, messages.symptoms));
     } finally {
       setIsSavingSymptoms(false);
     }
@@ -128,9 +174,7 @@ export function usePatientPortal({ initialPatient, token, country }: UsePatientP
       setNewFollowupTitle("");
       setNewFollowupNotes("");
     } catch (error) {
-      setErrorMessage(
-        error instanceof Error ? error.message : "Failed to schedule follow-up.",
-      );
+      setErrorMessage(errorText(error, messages.followup));
     } finally {
       setIsSavingFollowup(false);
     }
@@ -141,7 +185,7 @@ export function usePatientPortal({ initialPatient, token, country }: UsePatientP
     if (!file) return;
 
     if (file.size > MAX_PHOTO_BYTES) {
-      setErrorMessage("File size must be under 5MB.");
+      setErrorMessage(messages.tooBig);
       return;
     }
 
@@ -165,7 +209,7 @@ export function usePatientPortal({ initialPatient, token, country }: UsePatientP
 
     const photo: PatientPhoto = {
       id: String(Date.now()),
-      name: newPhotoName.trim() || "Patient Attachment",
+      name: newPhotoName.trim() || messages.photoName,
       data_url: newPhotoData,
       date: new Date().toISOString().slice(0, 10),
       notes: newPhotoNote.trim() || undefined,
@@ -178,9 +222,7 @@ export function usePatientPortal({ initialPatient, token, country }: UsePatientP
       setNewPhotoName("");
       setNewPhotoNote("");
     } catch (error) {
-      setErrorMessage(
-        error instanceof Error ? error.message : "Failed to upload photo.",
-      );
+      setErrorMessage(errorText(error, messages.photo));
     } finally {
       setIsSavingPhoto(false);
     }
@@ -191,7 +233,7 @@ export function usePatientPortal({ initialPatient, token, country }: UsePatientP
     if (!file) return;
 
     if (file.size > MAX_PHOTO_BYTES) {
-      setErrorMessage("File size must be under 5MB.");
+      setErrorMessage(messages.tooBig);
       return;
     }
 
@@ -280,9 +322,7 @@ export function usePatientPortal({ initialPatient, token, country }: UsePatientP
       }));
       closeCompletionForm();
     } catch (error) {
-      setErrorMessage(
-        error instanceof Error ? error.message : "Failed to complete follow-up.",
-      );
+      setErrorMessage(errorText(error, messages.complete));
     } finally {
       setIsSavingCompletion(false);
     }

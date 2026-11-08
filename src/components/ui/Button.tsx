@@ -5,9 +5,10 @@ import { cn } from "@/lib/cn";
 type Variant = "primary" | "secondary" | "outline" | "ghost";
 type Size = "md" | "lg";
 
+// Calm feedback: colour changes only, no lift or bounce (see src/lib/motion/tokens.ts).
 const base =
   "inline-flex items-center justify-center gap-2 rounded-lg font-semibold " +
-  "transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 " +
+  "transition-[background-color,border-color,color,box-shadow,opacity] duration-(--dur-fast) ease-(--ease-out-calm) " +
   "focus-visible:outline-none focus-visible:ring-2 " +
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
   "disabled:pointer-events-none disabled:opacity-60";

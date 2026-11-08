@@ -4,12 +4,13 @@ import {
   getPriorityMeta,
   getRecommendedFollowupDate,
 } from "@/lib/patient-helpers";
+import { localDateKey } from "./panel-dates";
 import type { FollowupItem } from "@/lib/types/patient";
 
 function isoDaysFromNow(days: number): string {
   const d = new Date();
   d.setDate(d.getDate() + days);
-  return d.toISOString().slice(0, 10);
+  return localDateKey(d);
 }
 
 function scheduled(date: string): FollowupItem {
@@ -33,7 +34,7 @@ describe("getPriorityMeta", () => {
   it("returns the matching label and recommended days", () => {
     expect(getPriorityMeta("critical").recommendedDays).toBe(1);
     expect(getPriorityMeta("high").shortLabel).toBe("High");
-    expect(getPriorityMeta("low").label).toBe("Low Priority");
+    expect(getPriorityMeta("low").label).toBe("Low priority");
   });
 });
 

@@ -31,6 +31,6 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   } catch (error) {
     if (error instanceof FollowupError) return NextResponse.json({ error: error.message }, { status: error.status });
     console.error("Failed to schedule follow-up", error);
-    return NextResponse.json({ error: "Could not save appointment. Please try again." }, { status: 503 });
+    return NextResponse.json({ error: "Could not save the appointment. Try again." }, { status: 503 });
   }
 }

@@ -7,9 +7,10 @@ import { siteMetadata } from "@/lib/i18n/site-metadata";
 import { getSiteUrl } from "@/lib/site-url";
 import { headers } from "next/headers";
 
+// latin-ext carries ă, ș, ț (Romanian, the default locale): preload it with latin so diacritics never flash in the fallback face.
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
 
 const geistMono = Geist_Mono({
@@ -21,7 +22,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#cc3846",
+  // Browser bar matches the page ground; a red bar on every page read as an alarm.
+  themeColor: "#fcfbf9",
 };
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -10,6 +10,8 @@ import { CameraIcon, CheckCircleIcon, FileTextIcon, MailIcon } from "@/component
 import { demoPanelTranslations } from "@/lib/i18n/demo-panel-translations";
 import { meetingWorkspaceTranslations } from "@/lib/i18n/meeting-workspace-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
+import { ConsultationVitalsStreamOverlay } from "./ConsultationVitalsStreamOverlay";
+import { DoctorRecommendationPublisher } from "@/components/telemed/DoctorRecommendationPublisher";
 
 type Meeting = {
   id: number;
@@ -102,7 +104,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
   const t = meetingWorkspaceTranslations[lang];
   const { request: fetch, demo } = usePanelRuntime();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activeTab, setActiveTab] = useState<"notes" | "transcript">("notes");
+  const [activeTab, setActiveTab] = useState<"notes" | "transcript" | "recommendations">("notes");
   const sidebarId = useId();
   const [savedRecord, setSavedRecord] = useState({ notes: "", transcript: "" });
   const [meeting, setMeeting] = useState<Meeting | null>(null);
@@ -153,19 +155,19 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
     switch (errorCode) {
       case "not-allowed":
       case "service-not-allowed":
-        return "Microphone access is blocked. Allow microphone permission in your browser settings and try again.";
+        return t.speech.micBlocked;
       case "audio-capture":
-        return "No microphone was found. Connect a microphone or check device permissions.";
+        return t.speech.noMic;
       case "network":
-        return "Speech recognition network error. Check your internet connection and retry.";
+        return t.speech.network;
       case "no-speech":
-        return "No speech was detected. Speak clearly and keep the microphone close.";
+        return t.speech.noSpeech;
       case "language-not-supported":
-        return "This browser does not support the selected recognition language.";
+        return t.speech.languageUnsupported;
       case "aborted":
-        return "Transcription was stopped.";
+        return t.speech.stopped;
       default:
-        return "Live transcription stopped. Check microphone access and try again.";
+        return t.speech.stoppedGeneric;
     }
   }
 
@@ -178,7 +180,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
 
     const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
     if (!window.isSecureContext && !isLocalhost) {
-      setError("Live transcription needs HTTPS on mobile browsers. Open the site over HTTPS and try again.");
+      setError(t.speech.needsHttps);
       return;
     }
 
@@ -186,7 +188,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
       try {
         const micPermission = await navigator.permissions.query({ name: "microphone" as PermissionName });
         if (micPermission.state === "denied") {
-          setError("Microphone permission is denied. Enable it in browser settings, then reload this page.");
+          setError(t.speech.micDenied);
           return;
         }
       } catch {
@@ -196,7 +198,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      setError("Live transcription is not supported in this browser. Use Chrome or Edge on desktop/Android, or type notes manually.");
+      setError(t.speech.unsupported);
       return;
     }
 
@@ -230,7 +232,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
       setIsListening(true);
     } catch {
       setIsListening(false);
-      setError("Could not start transcription. Close other microphone apps/tabs and try again.");
+      setError(t.speech.startFailed);
     }
   }
 
@@ -251,14 +253,14 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
 
       const data = (await response.json().catch(() => ({}))) as { error?: string; text?: string };
       if (!response.ok || !data.text) {
-        setError(data.error || "Server transcription failed. Please type notes manually.");
+        setError(data.error || t.speech.serverFailed);
         return;
       }
 
       setTranscript((current) => `${current}${current ? " " : ""}${data.text}`.trim());
-      setStatus("Recording transcribed and added to the transcript.");
+      setStatus(t.speech.transcribed);
     } catch {
-      setError("Server transcription failed. Check your connection and try again.");
+      setError(t.speech.serverFailedConnection);
     } finally {
       setIsTranscribingFallback(false);
     }
@@ -273,13 +275,13 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
     }
 
     if (!navigator.mediaDevices?.getUserMedia) {
-      setError("Audio recording is not supported in this browser.");
+      setError(t.speech.recordingUnsupported);
       return;
     }
 
     const Recorder = window.MediaRecorder;
     if (!Recorder) {
-      setError("Audio recording is not supported in this browser. Use Chrome or Edge.");
+      setError(t.speech.recordingUnsupported);
       return;
     }
 
@@ -299,7 +301,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
       };
       recorder.onerror = () => {
         setIsRecordingFallback(false);
-        setError("Recording failed. Check microphone permission and retry.");
+        setError(t.speech.recordingFailed);
       };
       recorder.onstop = () => {
         setIsRecordingFallback(false);
@@ -316,9 +318,9 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
       recorderRef.current = recorder;
       recorder.start();
       setIsRecordingFallback(true);
-      setStatus("Recording audio for server transcription...");
+      setStatus(t.speech.recordingForServer);
     } catch {
-      setError("Could not access microphone. Allow permission and try again.");
+      setError(t.speech.micAccess);
     }
   }
 
@@ -370,8 +372,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
           </Link>
           <header className="flex flex-wrap items-center justify-between gap-4 py-2">
             <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-wider text-primary">{t.heading}</p>
-              <h1 className="mt-1 break-words text-xl font-bold tracking-tight sm:text-2xl">{meeting?.title || t.loading}</h1>
+              <h1 className="break-words text-xl font-bold tracking-tight sm:text-2xl">{meeting?.title || t.loading}</h1>
             </div>
             {meeting && <div className="flex flex-wrap gap-2">
               <button type="button" onClick={() => void invitePatient()} disabled={isInviting} className="crm-button inline-flex items-center gap-2">
@@ -397,7 +398,15 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
 
           {meeting ? (
             <section className={`mt-4 grid min-w-0 gap-4 ${sidebarOpen ? "lg:grid-cols-[minmax(0,1fr)_22rem]" : "grid-cols-1"}`}>
-              <section aria-label={t.video} className="min-w-0 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 text-white shadow-sm">
+              <div className="flex flex-col gap-3 min-w-0">
+                <ConsultationVitalsStreamOverlay
+                  meetingId={meeting.id}
+                  patientId={meeting.patient_id}
+                  onInsertToNotes={(vitalsSummary) => {
+                    setNotes((curr) => curr ? curr + "\n\n" + vitalsSummary : vitalsSummary);
+                  }}
+                />
+                <section aria-label={t.video} className="min-w-0 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 text-white shadow-sm">
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 px-4 py-3">
                   <span className="inline-flex items-center gap-2 text-sm font-semibold"><CameraIcon className="h-4 w-4 text-slate-400" />{t.heading}</span>
                   <span role="status" className="inline-flex items-center gap-2 text-xs text-slate-300">
@@ -417,21 +426,22 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
                 />}
                 <p className="border-t border-white/10 px-4 py-3 text-xs leading-relaxed text-slate-400">{t.callHelp}</p>
               </section>
+              </div>
 
               <aside id={sidebarId} aria-label={t.workspace} hidden={!sidebarOpen} className="min-w-0 rounded-2xl border border-border bg-card shadow-sm">
                 <div className="border-b border-border p-4">
                   <h2 className="text-sm font-bold">{t.workspace}</h2>
                   <p className={`mt-1 text-xs ${dirty ? "text-amber-700" : "text-muted-foreground"}`}>{dirty ? t.unsaved : t.saved}</p>
                 </div>
-                <div role="tablist" aria-label={t.workspace} className="m-4 grid grid-cols-2 gap-1 rounded-xl bg-muted p-1">
-                  {(["notes", "transcript"] as const).map((tab) => <button key={tab} type="button" role="tab" id={`${sidebarId}-${tab}-tab`} aria-selected={activeTab === tab} aria-controls={`${sidebarId}-${tab}`} tabIndex={activeTab === tab ? 0 : -1}
+                <div role="tablist" aria-label={t.workspace} className="m-4 grid grid-cols-3 gap-1 rounded-xl bg-muted p-1">
+                  {(["notes", "transcript", "recommendations"] as const).map((tab) => <button key={tab} type="button" role="tab" id={`${sidebarId}-${tab}-tab`} aria-selected={activeTab === tab} aria-controls={`${sidebarId}-${tab}`} tabIndex={activeTab === tab ? 0 : -1}
                     onClick={() => setActiveTab(tab)} onKeyDown={(event) => {
                       if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
                         event.preventDefault();
-                        const next = event.key === "Home" ? "notes" : event.key === "End" ? "transcript" : tab === "notes" ? "transcript" : "notes";
+                        const next = event.key === "Home" ? "notes" : event.key === "End" ? "recommendations" : tab === "notes" ? "transcript" : tab === "transcript" ? "recommendations" : "notes";
                         setActiveTab(next); document.getElementById(`${sidebarId}-${next}-tab`)?.focus();
                       }
-                    }} className={`min-h-10 rounded-lg px-2 text-xs font-semibold ${activeTab === tab ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>{t[tab]}</button>)}
+                    }} className={`min-h-10 min-w-0 rounded-lg px-1.5 py-1 text-xs font-semibold leading-tight hyphens-auto break-words ${activeTab === tab ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>{t[tab]}</button>)}
                 </div>
                 <div role="tabpanel" id={`${sidebarId}-notes`} aria-labelledby={`${sidebarId}-notes-tab`} hidden={activeTab !== "notes"} className="space-y-3 px-4 pb-4">
                   <p id={`${sidebarId}-notes-help`} className="text-xs leading-relaxed text-muted-foreground">{t.notesHelp}</p>
@@ -448,6 +458,17 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
                   <label htmlFor={`${sidebarId}-transcript-input`} className="sr-only">{t.transcript}</label>
                   <textarea id={`${sidebarId}-transcript-input`} aria-describedby={`${sidebarId}-transcript-help`} value={transcript} onChange={(event) => { setTranscript(event.target.value); setStatus(""); }} rows={10} placeholder={t.transcriptPlaceholder} className="crm-input min-h-56 resize-y text-sm" />
                   {interimTranscript && <p className="rounded-lg border border-dashed border-border p-3 text-xs text-muted-foreground">{interimTranscript}</p>}
+                </div>
+                <div role="tabpanel" id={`${sidebarId}-recommendations`} aria-labelledby={`${sidebarId}-recommendations-tab`} hidden={activeTab !== "recommendations"} className="space-y-3 px-4 pb-4">
+                  <DoctorRecommendationPublisher
+                    meetingId={meeting.id}
+                    patientName={meeting.title}
+                    onPublished={(rec) => {
+                      setStatus(t.recommendationsPublished);
+                      const summaryText = `[${t.recommendationNote}: ${rec.primaryDiagnosis} | ${t.recommendationSteps}: ${rec.actionSteps.map((s) => s.text).join("; ")}]`;
+                      setNotes((curr) => curr ? curr + "\n\n" + summaryText : summaryText);
+                    }}
+                  />
                 </div>
                 <div className="border-t border-border p-4">
                   <button type="button" onClick={() => void saveMeetingRecord()} disabled={isSaving} className="crm-button crm-primary inline-flex w-full items-center justify-center gap-2">

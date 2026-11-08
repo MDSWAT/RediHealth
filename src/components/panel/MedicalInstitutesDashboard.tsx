@@ -225,7 +225,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
         <Container>
           <div className="mb-6 flex flex-col gap-3 border-b border-border pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase text-primary">{t.eyebrow}</p>
+              <p className="text-xs font-bold text-primary">{t.eyebrow}</p>
               <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{t.title}</h1>
               <p className="mt-1 text-sm text-muted-foreground">{t.subtitle}</p>
             </div>
@@ -284,7 +284,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                   role="status"
                   className={`mb-4 rounded-xl border p-3 text-sm ${
                     notice.tone === "ok"
-                      ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                      ? "border-sapphire/20 bg-sapphire-soft text-sapphire"
                       : "border-primary/20 bg-primary-soft text-foreground"
                   }`}
                 >
@@ -357,7 +357,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
               ) : (
                 <div className="overflow-x-auto rounded-2xl border border-border bg-card">
                   <table className="min-w-full text-left text-sm">
-                    <thead className="border-b border-border bg-slate-50 text-xs uppercase tracking-wide text-slate-600">
+                    <thead className="border-b border-border bg-slate-50 text-xs font-semibold text-slate-600">
                       <tr>
                         <th className="px-4 py-3">{t.colName}</th>
                         <th className="px-4 py-3">{t.colType}</th>
@@ -386,8 +386,10 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                           </td>
                           <td className="px-4 py-3">
                             <span
-                              className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                                item.is_active ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"
+                              className={`rounded-md px-2 py-0.5 text-xs font-semibold ${
+                                item.is_active
+                                  ? "border border-sapphire/20 bg-sapphire-soft text-sapphire"
+                                  : "border border-border bg-slate-100 text-slate-600"
                               }`}
                             >
                               {item.is_active ? t.active : t.hidden}

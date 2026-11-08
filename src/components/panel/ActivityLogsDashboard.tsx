@@ -90,7 +90,7 @@ export function ActivityLogsDashboard({
         <Container>
           <div className="mb-6 flex flex-col gap-3 border-b border-border pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase text-primary">{t.eyebrow}</p>
+              <p className="text-xs font-bold text-primary">{t.eyebrow}</p>
               <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                 {t.title}
               </h1>
@@ -124,7 +124,7 @@ export function ActivityLogsDashboard({
           ) : (
             <div className="overflow-x-auto rounded-2xl border border-border bg-card">
               <table className="min-w-full text-left text-sm">
-                <thead className="border-b border-border bg-slate-50 text-xs uppercase tracking-wide text-slate-600">
+                <thead className="border-b border-border bg-slate-50 text-xs font-semibold text-slate-600">
                   <tr>
                     <th className="px-4 py-3">{t.when}</th>
                     <th className="px-4 py-3">{t.actor}</th>

@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { DEFAULT_LANG, LOCALE_COOKIE, REQUEST_LANG_HEADER, getLangFromPathname, isSupportedLang, stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 import { countryFromHeaders, langForCountry } from "@/lib/medical-institutes";
 import { buildContentSecurityPolicy, createNonce, meetingOriginFromEnv } from "@/lib/security/csp";
+import { resolveCountyFromHeaders, USER_COUNTY_HEADER, REDIHEALTH_COUNTY_HEADER } from "@/lib/geo-ip-server";
 
 const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 const PRIVATE_PREFIXES = ["/panel", "/offline", "/sign-in", "/patient-portal"];
@@ -57,10 +58,18 @@ export function proxy(request: NextRequest) {
   requestHeaders.set("x-nonce", nonce);
   requestHeaders.set("Content-Security-Policy", csp);
 
+  const cookieString = request.headers.get("cookie") || "";
+  const county = resolveCountyFromHeaders(request.headers, cookieString);
+  const encodedCounty = encodeURIComponent(county);
+  requestHeaders.set(USER_COUNTY_HEADER, encodedCounty);
+  requestHeaders.set(REDIHEALTH_COUNTY_HEADER, encodedCounty);
+
   const rewriteUrl = request.nextUrl.clone();
   rewriteUrl.pathname = barePath;
   const response = NextResponse.rewrite(rewriteUrl, { request: { headers: requestHeaders } });
   response.headers.set("Content-Security-Policy", csp);
+  response.headers.set(USER_COUNTY_HEADER, encodedCounty);
+  response.headers.set(REDIHEALTH_COUNTY_HEADER, encodedCounty);
   response.cookies.set(LOCALE_COOKIE, localeInPath, { path: "/", sameSite: "lax", maxAge: LOCALE_COOKIE_MAX_AGE });
 
   if (PRIVATE_PREFIXES.some((prefix) => barePath === prefix || barePath.startsWith(`${prefix}/`))) {

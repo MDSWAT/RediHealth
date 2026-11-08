@@ -28,72 +28,72 @@ export function AssignPatientsModal({
   const { lang } = useLanguage();
   const t = {
     en: {
-      errSave: "Failed to save assignments.",
-      errUnexpected: "An error occurred while saving assignments.",
-      title: "Assign Patients to Worker",
-      assignedCount: (count: number) => `${count} patient(s) assigned`,
-      success: "Assignments saved successfully!",
-      search: "Search patients to assign...",
-      none: "No matching patients found.",
+      errSave: "Could not save.",
+      errUnexpected: "Could not save. Try again.",
+      title: "Assign patients",
+      assignedCount: (count: number) => `Assigned patients: ${count}`,
+      success: "Saved.",
+      search: "Search patients",
+      none: "No patients found.",
       assignedTo: "Assigned to",
-      otherWorker: "other worker",
+      otherWorker: "someone else",
       assigned: "Assigned",
       unassigned: "Unassigned",
-      selectedCount: (count: number) => `${count} patient(s) selected`,
+      selectedCount: (count: number) => `Selected: ${count}`,
       cancel: "Cancel",
       saving: "Saving...",
-      save: "Save Assignments",
+      save: "Save",
     },
     ro: {
-      errSave: "Salvarea alocarilor a esuat.",
-      errUnexpected: "A aparut o eroare la salvarea alocarilor.",
-      title: "Aloca pacienti lucratorului",
-      assignedCount: (count: number) => `${count} pacient(i) alocat(i)`,
-      success: "Alocarile au fost salvate!",
-      search: "Cauta pacienti pentru alocare...",
-      none: "Nu exista pacienti care corespund cautarii.",
-      assignedTo: "Alocat la",
-      otherWorker: "alt lucrator",
+      errSave: "Nu s-a putut salva.",
+      errUnexpected: "Nu s-a putut salva. Încearcă din nou.",
+      title: "Alocă pacienți",
+      assignedCount: (count: number) => `Pacienți alocați: ${count}`,
+      success: "Salvat.",
+      search: "Caută pacienți",
+      none: "Nu am găsit pacienți.",
+      assignedTo: "Alocat lui",
+      otherWorker: "altcuiva",
       assigned: "Alocat",
       unassigned: "Nealocat",
-      selectedCount: (count: number) => `${count} pacient(i) selectat(i)`,
-      cancel: "Anuleaza",
-      saving: "Se salveaza...",
-      save: "Salveaza alocarile",
+      selectedCount: (count: number) => `Selectați: ${count}`,
+      cancel: "Anulează",
+      saving: "Se salvează...",
+      save: "Salvează",
     },
     sq: {
-      errSave: "Ruajtja e caktimeve deshtoi.",
-      errUnexpected: "Ndodhi nje gabim gjate ruajtjes se caktimeve.",
-      title: "Cakto pacientet te punonjesi",
-      assignedCount: (count: number) => `${count} pacient(e) te caktuar`,
-      success: "Caktimet u ruajten me sukses!",
-      search: "Kerko paciente per caktim...",
-      none: "Nuk u gjeten paciente qe perputhen.",
+      errSave: "Nuk u ruajt.",
+      errUnexpected: "Nuk u ruajt. Provo përsëri.",
+      title: "Cakto pacientë",
+      assignedCount: (count: number) => `Pacientë të caktuar: ${count}`,
+      success: "U ruajt.",
+      search: "Kërko pacientë",
+      none: "Nuk u gjet asnjë pacient.",
       assignedTo: "I caktuar te",
-      otherWorker: "punonjes tjeter",
+      otherWorker: "dikush tjetër",
       assigned: "I caktuar",
-      unassigned: "Pacaktuar",
-      selectedCount: (count: number) => `${count} pacient(e) te zgjedhur`,
+      unassigned: "Pa caktim",
+      selectedCount: (count: number) => `Të zgjedhur: ${count}`,
       cancel: "Anulo",
       saving: "Duke ruajtur...",
-      save: "Ruaj caktimet",
+      save: "Ruaj",
     },
     it: {
-      errSave: "Salvataggio assegnazioni non riuscito.",
-      errUnexpected: "Si e verificato un errore durante il salvataggio delle assegnazioni.",
-      title: "Assegna pazienti all'operatore",
-      assignedCount: (count: number) => `${count} paziente(i) assegnato(i)`,
-      success: "Assegnazioni salvate con successo!",
-      search: "Cerca pazienti da assegnare...",
-      none: "Nessun paziente corrispondente trovato.",
+      errSave: "Impossibile salvare.",
+      errUnexpected: "Impossibile salvare. Riprova.",
+      title: "Assegna pazienti",
+      assignedCount: (count: number) => `Pazienti assegnati: ${count}`,
+      success: "Salvato.",
+      search: "Cerca pazienti",
+      none: "Nessun paziente trovato.",
       assignedTo: "Assegnato a",
-      otherWorker: "altro operatore",
+      otherWorker: "un altro operatore",
       assigned: "Assegnato",
       unassigned: "Non assegnato",
-      selectedCount: (count: number) => `${count} paziente(i) selezionato(i)`,
+      selectedCount: (count: number) => `Selezionati: ${count}`,
       cancel: "Annulla",
       saving: "Salvataggio...",
-      save: "Salva assegnazioni",
+      save: "Salva",
     },
   }[lang];
 
@@ -205,7 +205,7 @@ export function AssignPatientsModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-xs p-0 sm:p-4">
+    <div className="panel-scrim fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/50 p-0 sm:p-4">
       <div className="app-sheet-slide-up relative w-full max-w-xl rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] flex flex-col care-panel-bottom-bar">
         {/* Mobile bottom sheet drag handle */}
         <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
@@ -296,11 +296,11 @@ export function AssignPatientsModal({
                   </div>
 
                   {isAssignedToOther ? (
-                    <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-md">
                       {t.assignedTo} {patient.assigned_worker_name || t.otherWorker}
                     </span>
                   ) : isChecked ? (
-                    <span className="text-[10px] font-bold text-primary bg-primary-soft border border-primary/20 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-bold text-primary bg-primary-soft border border-primary/20 px-2 py-0.5 rounded-md">
                       {t.assigned}
                     </span>
                   ) : (

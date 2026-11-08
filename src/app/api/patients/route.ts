@@ -172,7 +172,7 @@ export async function POST(request: Request) {
   const intake = validatePatientIntake(body.intake);
   if (!intake.ok) return NextResponse.json({ error: intake.error }, { status: 400 });
   if ((intake.value?.documents.length || intake.value?.location) && !isEncryptionConfigured(workerContext.country)) {
-    return NextResponse.json({ error: "Document and GPS storage requires a configured country encryption key." }, { status: 503 });
+    return NextResponse.json({ error: "Documents and GPS cannot be saved until the country encryption key is set." }, { status: 503 });
   }
 
   const fullName = text(body.full_name);
@@ -194,13 +194,13 @@ export async function POST(request: Request) {
 
   if (!fullName || !phone || !isValidEmail(email)) {
     return NextResponse.json(
-      { error: "Please provide patient name, phone, and a valid email address." },
+      { error: "Enter the patient's name, phone and a valid email." },
       { status: 400 },
     );
   }
 
   if (workerContext.country === "RO" && !isRomanianCounty(county)) {
-    return NextResponse.json({ error: "Please select a valid county for the patient." }, { status: 400 });
+    return NextResponse.json({ error: "Choose a valid county for the patient." }, { status: 400 });
   }
 
   if (
@@ -229,7 +229,7 @@ export async function POST(request: Request) {
 
     if (assignsOtherWorker) {
       return NextResponse.json(
-        { error: "Only administrators can assign patients to other workers." },
+        { error: "Only administrators can assign patients to other staff." },
         { status: 403 },
       );
     }
@@ -394,7 +394,7 @@ export async function PATCH(request: Request) {
     const intake = validatePatientIntake(body.intake);
     if (!intake.ok) return NextResponse.json({ error: intake.error }, { status: 400 });
     if ((intake.value?.documents.length || intake.value?.location) && !isEncryptionConfigured(workerContext.country)) {
-      return NextResponse.json({ error: "Document and GPS storage requires a configured country encryption key." }, { status: 503 });
+      return NextResponse.json({ error: "Documents and GPS cannot be saved until the country encryption key is set." }, { status: 503 });
     }
     updates.push("intake = ?");
     params.push(encryptField(workerContext.country, stringifyJsonColumn(intake.value)));
@@ -424,7 +424,7 @@ export async function PATCH(request: Request) {
   if (body.email !== undefined) {
     const nextEmail = text(body.email).toLowerCase();
     if (!isValidEmail(nextEmail)) {
-      return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
+      return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
     }
     updates.push("email = ?");
     params.push(nextEmail);
@@ -448,7 +448,7 @@ export async function PATCH(request: Request) {
   if (body.county !== undefined) {
     const nextCounty = workerContext.country === "RO" ? text(body.county) : "";
     if (workerContext.country === "RO" && !isRomanianCounty(nextCounty)) {
-      return NextResponse.json({ error: "Please select a valid county for the patient." }, { status: 400 });
+      return NextResponse.json({ error: "Choose a valid county for the patient." }, { status: 400 });
     }
     updates.push("county = ?");
     params.push(nextCounty || null);
@@ -474,7 +474,7 @@ export async function PATCH(request: Request) {
       const imageBytes = imageData ? Math.floor((imageData.length * 3) / 4) - padding : 0;
       if (!imageData || imageData.length % 4 !== 0 || imageBytes > 5 * 1024 * 1024) {
         return NextResponse.json(
-          { error: "Profile photos must be PNG, JPEG, GIF, or WebP images no larger than 5 MB." },
+          { error: "Use a PNG, JPEG, GIF or WebP photo up to 5 MB." },
           { status: 400 },
         );
       }
@@ -596,7 +596,7 @@ export async function PATCH(request: Request) {
     }
     console.error("Failed to update patient profile", error);
     return NextResponse.json(
-      { error: "Could not update patient profile." },
+      { error: "Could not update the patient." },
       { status: 503 },
     );
   }
@@ -684,7 +684,7 @@ export async function DELETE(request: Request) {
   } catch (error) {
     console.error("Failed to delete patient profile", error);
     return NextResponse.json(
-      { error: "Could not delete patient profile." },
+      { error: "Could not delete the patient." },
       { status: 503 },
     );
   }

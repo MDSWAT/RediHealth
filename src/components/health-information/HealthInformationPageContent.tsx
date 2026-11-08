@@ -1,188 +1,130 @@
 "use client";
 
-import type { ComponentType, SVGProps } from "react";
-import Link from "next/link";
+import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Button } from "@/components/ui/Button";
-import { Reveal } from "@/components/ui/Reveal";
-import {
-  ActivityIcon,
-  AppleIcon,
-  ArrowRightIcon,
-  BookIcon,
-  BrainIcon,
-  DropletIcon,
-  HeartIcon,
-  NoSmokingIcon,
-  PhoneIcon,
-  SearchIcon,
-  ShieldIcon,
-  StethoscopeIcon,
-} from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { withLangPrefix } from "@/lib/i18n/routing";
+import { translations, type Lang } from "@/lib/i18n/translations";
+import { HealthInformationTopicGrid } from "./HealthInformationTopicGrid";
+import { RomanesGlossaryDrawer } from "./RomanesGlossaryDrawer";
+import { RomanianDualRegisterGlossary } from "./RomanianDualRegisterGlossary";
+import { MedicalSafetyDisclaimer } from "./MedicalSafetyDisclaimer";
+import { DoctorValidatedBadge } from "./DoctorValidatedBadge";
+import { TopicDoctorExitBanner } from "./TopicDoctorExitBanner";
+import { FindHelpPrompt } from "@/components/find-help/FindHelpPrompt";
+import { TrueFalseQuizSection } from "@/components/landing/TrueFalseQuizSection";
 
-type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+/** Kept for links that still pass a view; the page now has a single view. */
+export type HealthInfoView = "menu" | "topics" | "triage";
 
-const topicHrefs = [
-  "/health-information/heart-health",
-  "/health-information/diabetes",
-  "/health-information/healthy-eating",
-  "/health-information/physical-activity",
-  "/health-information/mental-wellbeing",
-  "/health-information/smoking",
-  "/health-information/preventive-screening",
-  "/health-information/womens-health",
-];
+export interface HealthInformationPageContentProps {
+  initialView?: HealthInfoView;
+  initialViewMode?: HealthInfoView;
+  initialCategory?: string;
+}
 
-const topicIcons: IconComponent[] = [
-  HeartIcon,
-  DropletIcon,
-  AppleIcon,
-  ActivityIcon,
-  BrainIcon,
-  NoSmokingIcon,
-  SearchIcon,
-  ShieldIcon,
-];
+const dictionaryTabLabels: Record<Lang, { dictionary: string; romanes: string }> = {
+  ro: { dictionary: "Dicționar", romanes: "În romani" },
+  en: { dictionary: "Dictionary", romanes: "In Romani" },
+  sq: { dictionary: "Fjalori", romanes: "Në gjuhën rome" },
+  it: { dictionary: "Dizionario", romanes: "In romanì" },
+};
 
-const usingInfoIcons: IconComponent[] = [BookIcon, ShieldIcon, StethoscopeIcon];
+function useSafeLanguage() {
+  try {
+    const ctx = useLanguage();
+    return ctx;
+  } catch {
+    return { lang: "ro" as Lang, t: translations.ro, setLang: () => {} };
+  }
+}
 
-export function HealthInformationPageContent() {
-  const { t, lang } = useLanguage();
+/**
+ * Health information: one library. A short hero, then a single card with search,
+ * categories, reading settings and every guide; no menu screen and no tabs.
+ * "Check a symptom" opens the 3D health check at /health-check.
+ */
+export function HealthInformationPageContent(props: HealthInformationPageContentProps = {}) {
+  const { initialCategory = "toate" } = props;
+  const { lang, t } = useSafeLanguage();
   const page = t.healthInfoPage;
-  const topics = t.landing.healthTopics.topics;
+
+  const [readingLevel, setReadingLevel] = useState<"simple" | "complete">("simple");
+  const [openDrawer, setOpenDrawer] = useState<"dictionary" | "romanes" | null>(null);
+
+  const tabLabels = dictionaryTabLabels[lang] ?? dictionaryTabLabels.ro;
+  const drawerTabs = {
+    dictionaryLabel: tabLabels.dictionary,
+    romanesLabel: tabLabels.romanes,
+    onSelect: (tab: "dictionary" | "romanes") => setOpenDrawer(tab),
+  };
 
   return (
-    <main id="main-content" className="flex-1">
-      <section className="py-16 sm:py-20">
-        <Container>
-          <SectionHeading
-            as="h2"
-            title={page.browseTitle}
-            subtitle={page.browseSubtitle}
-          />
-
-          <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {topics.map(({ title, description }, index) => {
-              const Icon = topicIcons[index];
-              return (
-                <Reveal key={topicHrefs[index]} delay={(index % 4) * 80} className="h-full">
-                  <li className="h-full list-none">
-                    <Link
-                      href={withLangPrefix(topicHrefs[index], lang)}
-                      className="hover-lift group flex h-full flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    >
-                      <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-soft text-primary">
-                        <Icon className="h-6 w-6" />
-                      </span>
-                      <h3 className="mt-4 text-lg font-semibold text-foreground">
-                        {title}
-                      </h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                        {description}
-                      </p>
-                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                        {page.readMore}
-                        <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                      </span>
-                    </Link>
-                  </li>
-                </Reveal>
-              );
-            })}
-          </ul>
+    <main id="main-content" className="flex-1 bg-background">
+      <section className="bg-background">
+        <Container className="pt-8 sm:pt-10">
+          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-4xl">
+            {page.heroTitle}
+          </h1>
+          <p className="mt-3 max-w-[65ch] text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+            {page.heroSubtitle}
+          </p>
+          <DoctorValidatedBadge variant="inline" doctorName="Dr. Elena Radu" className="mt-3 -ml-0.5" />
         </Container>
       </section>
 
-      <section className="border-y border-border bg-muted/40 py-16 sm:py-20">
+      <section className="py-6 sm:py-8">
         <Container>
-          <SectionHeading
-            as="h2"
-            title={page.usingInfoTitle}
-            subtitle={page.usingInfoSubtitle}
+          <HealthInformationTopicGrid
+            initialCategory={initialCategory}
+            readingLevel={readingLevel}
+            onReadingLevelChange={setReadingLevel}
+            onOpenDictionary={() => setOpenDrawer("dictionary")}
           />
+        </Container>
+      </section>
 
-          <ol className="mt-10 grid gap-6 md:grid-cols-3">
-            {page.usingInfoSteps.map(({ title, description }, index) => {
-              const Icon = usingInfoIcons[index];
-              return (
-                <Reveal key={title} delay={index * 100} className="h-full">
-                  <li className="hover-lift flex h-full list-none flex-col rounded-xl border border-border bg-card p-7">
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">
-                        {index + 1}
-                      </span>
-                      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-soft text-primary">
-                        <Icon className="h-6 w-6" />
-                      </span>
-                    </div>
-                    <h3 className="mt-4 text-lg font-semibold text-foreground">
-                      {title}
-                    </h3>
-                    <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-                      {description}
-                    </p>
-                  </li>
-                </Reveal>
-              );
-            })}
+      <TrueFalseQuizSection className="border-t border-border" />
+
+      <section className="border-b border-border py-12 sm:py-16">
+        <Container>
+          <SectionHeading as="h2" title={page.usingInfoTitle} subtitle={page.usingInfoSubtitle} />
+          {/* Three short steps as a plain numbered list: no cards, no icons, no entrance cascade. */}
+          <ol className="mt-8 grid gap-x-8 gap-y-6 md:grid-cols-3">
+            {page.usingInfoSteps.map(({ title, description }, index) => (
+              <li key={title} className="flex gap-3 border-t border-border pt-4">
+                <span className="w-5 shrink-0 text-lg font-semibold tabular-nums text-muted-foreground">{index + 1}</span>
+                <div>
+                  <h3 className="text-lg font-semibold leading-snug text-foreground">{title}</h3>
+                  <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">{description}</p>
+                </div>
+              </li>
+            ))}
           </ol>
         </Container>
       </section>
 
-      <section className="py-16 sm:py-20">
-        <Container>
-          <Reveal className="overflow-hidden rounded-2xl border border-border bg-card">
-            <div className="grid gap-8 p-8 sm:p-12 lg:grid-cols-[1.5fr_1fr] lg:items-center">
-              <div className="max-w-xl">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary">
-                  <StethoscopeIcon className="h-6 w-6" />
-                </span>
-                <h2 className="mt-5 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                  {page.ctaTitle}
-                </h2>
-                <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                  {page.ctaBody}
-                </p>
+      <Container className="py-10">
+        <TopicDoctorExitBanner />
+        <FindHelpPrompt lang={lang} className="mt-4" />
+      </Container>
 
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button href={withLangPrefix("/get-help", lang)} size="lg">
-                    {t.landing.medicalAssistance.requestHelp}
-                  </Button>
-                  <Button href={withLangPrefix("/find-help", lang)} size="lg" variant="outline">
-                    {t.landing.medicalAssistance.findServices}
-                  </Button>
-                </div>
+      <Container className="pb-10">
+        <MedicalSafetyDisclaimer lang={lang} />
+      </Container>
 
-                <p className="mt-6 rounded-lg bg-muted px-4 py-3 text-sm leading-relaxed text-muted-foreground">
-                  {page.ctaDisclaimer}
-                </p>
-              </div>
-
-              <div
-                className="hidden rounded-xl bg-muted/60 p-8 lg:block"
-                aria-hidden="true"
-              >
-                <div className="flex items-start gap-3">
-                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-primary text-white">
-                    <PhoneIcon className="h-6 w-6" />
-                  </span>
-                  <div>
-                    <p className="text-base font-semibold text-foreground">
-                      {t.landing.emergencyNotice.title}
-                    </p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                      {t.landing.emergencyNotice.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
+      <RomanianDualRegisterGlossary
+        isOpen={openDrawer === "dictionary"}
+        onClose={() => setOpenDrawer(null)}
+        tabs={drawerTabs}
+        lang={lang}
+      />
+      <RomanesGlossaryDrawer
+        isOpen={openDrawer === "romanes"}
+        onClose={() => setOpenDrawer(null)}
+        tabs={drawerTabs}
+        lang={lang}
+      />
     </main>
   );
 }

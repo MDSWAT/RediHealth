@@ -21,7 +21,7 @@ export async function POST(request: Request) {
   });
   if (!ipRateLimit.allowed) {
     return NextResponse.json(
-      { error: "Too many requests. Please wait and try again." },
+      { error: "Too many requests. Wait a moment and try again." },
       { status: 429, headers: { "Retry-After": String(ipRateLimit.retryAfterSeconds) } },
     );
   }
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
   });
   if (!emailRateLimit.allowed) {
     return NextResponse.json(
-      { error: "Too many requests. Please wait and try again." },
+      { error: "Too many requests. Wait a moment and try again." },
       { status: 429, headers: { "Retry-After": String(emailRateLimit.retryAfterSeconds) } },
     );
   }
@@ -108,7 +108,7 @@ export async function POST(request: Request) {
 
   if (countries.length === 0 || failures === countries.length) {
     return NextResponse.json(
-      { error: "Could not process your request. Please try again shortly." },
+      { error: "Could not process your request. Try again in a few minutes." },
       { status: 503 },
     );
   }

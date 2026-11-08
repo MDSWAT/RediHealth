@@ -3,6 +3,9 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 vi.mock("@/lib/i18n/language-context", () => ({ useLanguage: () => ({ lang: "en" }) }));
 import { TreatmentPlansView } from "./TreatmentPlansView";
+import { treatmentTranslations } from "@/lib/i18n/treatment-translations";
+
+const t = treatmentTranslations.en;
 
 describe("portal and printable treatment plans", () => {
   it("renders every course with its own dates, details and attachments", () => {
@@ -24,10 +27,10 @@ describe("portal and printable treatment plans", () => {
 
   it("still renders legacy clinical details and distinguishes an empty collection", () => {
     const legacy = renderToStaticMarkup(createElement(TreatmentPlansView, { plan: { diagnosis: "Original diagnosis", goals: "Original goal" } }));
-    expect(legacy).toContain("Existing treatment plan");
-    expect(legacy).toContain("Dates not recorded");
+    expect(legacy).toContain(t.legacy);
+    expect(legacy).toContain(t.undated);
     expect(legacy).toContain("Original diagnosis");
     expect(legacy).toContain("Original goal");
-    expect(renderToStaticMarkup(createElement(TreatmentPlansView, { plan: { entries: [] } }))).toContain("No treatment plans yet");
+    expect(renderToStaticMarkup(createElement(TreatmentPlansView, { plan: { entries: [] } }))).toContain(t.empty);
   });
 });

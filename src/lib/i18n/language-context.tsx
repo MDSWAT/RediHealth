@@ -11,7 +11,7 @@ type LanguageContextValue = {
   t: Translations;
 };
 
-const LanguageContext = createContext<LanguageContextValue | null>(null);
+export const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();

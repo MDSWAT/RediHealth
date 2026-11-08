@@ -15,7 +15,7 @@ describe("calendar quick completion", () => {
     const html = renderToStaticMarkup(createElement(CalendarDashboard, {
       initialPatients: data.patients, userEmail: "doctor@example.test", databaseAvailable: true,
     }));
-    const labels = html.match(/aria-label="Mark complete:[^"]*"/gi) || [];
+    const labels = html.match(new RegExp(`aria-label="${crmTranslations.en.markComplete}:[^"]*"`, "gi")) || [];
     expect(labels).toHaveLength(6);
     expect(html).toContain(`${crmTranslations.en.markComplete}: Follow-up consultation · Maria Demo`);
     expect(html).not.toContain(`${crmTranslations.en.markComplete}: Initial assessment`);

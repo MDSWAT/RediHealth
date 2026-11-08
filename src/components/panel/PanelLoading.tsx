@@ -8,15 +8,16 @@ import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { institutesAdminTranslations } from "@/lib/i18n/institutes-admin-translations";
 import { settingsTranslations } from "@/lib/i18n/settings-translations";
 
+/** Static placeholder block. No pulsing: the whole skeleton fades in once, after a short delay (see .panel-skeleton). */
 function Placeholder({ className = "" }: { className?: string }) {
-  return <div className={`rounded-md bg-border/70 motion-safe:animate-pulse ${className}`} />;
+  return <div className={`rounded-md bg-border/60 ${className}`} />;
 }
 
 export default function PanelLoading() {
   const { lang } = useLanguage();
   const pathname = stripLangFromPathname(usePathname()).replace(/^\/demo(?=\/|$)/, "/panel");
   const t = panelTranslations[lang].adminShell;
-  const loading = { en: "Loading page data…", ro: "Se încarcă datele paginii…", sq: "Po ngarkohen të dhënat e faqes…", it: "Caricamento dei dati della pagina…" }[lang];
+  const loading = { en: "Loading…", ro: "Se încarcă…", sq: "Duke ngarkuar…", it: "Caricamento…" }[lang];
   const profile = /^\/panel\/patients\/[^/]+/.test(pathname);
   const calendar = pathname === "/panel/calendar";
   const title = pathname.startsWith("/panel/patients") ? t.patients
@@ -31,10 +32,10 @@ export default function PanelLoading() {
   return <main id="main-content" aria-busy="true" className="mx-auto w-full max-w-7xl space-y-6 p-4 pb-24 sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h1 className="text-2xl font-semibold">{title}</h1>
-          <Placeholder className="h-10 w-36" />
+          <Placeholder className="panel-skeleton h-10 w-36" />
         </div>
         <p role="status" className="text-sm text-muted-foreground">{loading}</p>
-        <div aria-hidden="true" className="space-y-5">
+        <div aria-hidden="true" className="panel-skeleton space-y-5">
           {profile ? <>
             <div className="flex items-start gap-4"><Placeholder className="h-16 w-16 shrink-0 !rounded-full" /><div className="w-full max-w-sm space-y-3"><Placeholder className="h-7 w-3/4" /><Placeholder className="h-4 w-full" /><Placeholder className="h-4 w-2/3" /></div></div>
             <div className="flex gap-4 border-b border-border pb-4">{[0, 1, 2].map((i) => <Placeholder key={i} className="h-8 w-24" />)}</div>

@@ -34,26 +34,26 @@ export function createDemoData(now = new Date()): DemoData {
     has_portal_access: true, address: "12 Example Street, Demo Town", county: "Cluj",
     date_of_birth: `19${70 + index}-05-12`, gender: index % 2 ? "Male" : "Female",
     status: index === 5 ? "archived" : "active", priority: index === 0 ? "high" : "moderate",
-    condition_notes: "Synthetic example: routine care coordination and follow-up.",
-    medical_history: "Fictional history for demonstration only. Not medical advice.",
-    treatment_plan: { entries: [{ id: `plan-${index}`, title: "Example care plan", start_date: date(-7), end_date: date(14), goals: "Review progress at the next appointment.", care_instructions: "Demonstration content only." }] },
+    condition_notes: "Made-up example. Routine care and follow-up.",
+    medical_history: "Made-up history for the demo. Not medical advice.",
+    treatment_plan: { entries: [{ id: `plan-${index}`, title: "Example care plan", start_date: date(-7), end_date: date(14), goals: "Review progress at the next appointment.", care_instructions: "Demo text only." }] },
     followups: [
       { id: `f-${index}-1`, title: index % 2 ? "Home visit" : "Follow-up consultation", date: date(index - 1), time: "10:00", timezone: "Europe/Bucharest", status: "scheduled", reminder_set: true, ...(index === 0 ? { meeting_id: "1", meeting_url: "/demo/patients/1/meet/1" } : {}) },
-      { id: `f-${index}-2`, title: "Initial assessment", date: date(-10), status: "completed", completed_at: `${date(-10)}T10:00:00Z`, completion_notes: "Synthetic assessment completed." },
+      { id: `f-${index}-2`, title: "Initial assessment", date: date(-10), status: "completed", completed_at: `${date(-10)}T10:00:00Z`, completion_notes: "Made-up assessment, done." },
     ],
     intake: { has_documents: index === 0, documents: index === 0 ? [{ id: "sample", name: "demo-document.png", category: "medical", data_url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=" }] : [], location: null },
     photos: [], created_at: `${date(-14)}T09:00:00Z`,
   }));
   const requests: MedicalHelpRequestItem[] = Array.from({ length: 8 }, (_, index) => ({
     id: String(index + 1), full_name: names[index % names.length], email: `request${index + 1}@example.test`, phone: `000000001${index}`,
-    county: "Cluj", description: "Fictional request: help arranging an appointment and a home visit.",
+    county: "Cluj", description: "Made-up request. Needs help booking an appointment and a home visit.",
     status: index < 4 ? "pending" : index < 6 ? "in_progress" : index === 6 ? "resolved" : "archived",
-    priority: index === 0 ? "urgent" : "normal", internal_notes: index > 3 ? "Demo staff contacted the fictional patient." : null,
+    priority: index === 0 ? "urgent" : "normal", internal_notes: index > 3 ? "Demo staff called the made-up patient." : null,
     patient_id: index < 3 ? String(index + 1) : null, created_at: `${date(-index)}T08:00:00Z`,
   }));
   return { version: 1, role: "mediator", patients, requests, events: [], meetings: [{
     id: "1", title: "Demo consultation", meeting_url: "/demo/patients/1/meet/1", patient_id: "1", patient_name: names[0], followup_id: "f-0-1",
-    transcript: "Synthetic consultation transcript.", notes: "Demo notes.", created_at: `${date(-1)}T08:00:00Z`,
+    transcript: "Made-up consultation transcript.", notes: "Demo notes.", created_at: `${date(-1)}T08:00:00Z`,
   }] };
 }
 
@@ -61,11 +61,11 @@ export function parseDemoData(raw: string): DemoData {
   const value: unknown = JSON.parse(raw);
   if (!record(value) || value.version !== 1 || (value.role !== "mediator" && value.role !== "doctor")
     || !Array.isArray(value.patients) || !Array.isArray(value.requests) || !Array.isArray(value.meetings)
-    || !Array.isArray(value.events) || !value.events.every((item) => typeof item === "string")) throw new Error("Invalid saved demo data. Reset the demo to start again.");
+    || !Array.isArray(value.events) || !value.events.every((item) => typeof item === "string")) throw new Error("The saved demo data is broken. Reset the demo to start again.");
   const patients = value.patients.map(normalizePatientFromApi);
   if (patients.some((p) => p === null)
     || !value.requests.every(isDemoRequest)
-    || !value.meetings.every(isDemoMeeting)) throw new Error("Invalid saved demo records. Reset the demo to start again.");
+    || !value.meetings.every(isDemoMeeting)) throw new Error("The saved demo records are broken. Reset the demo to start again.");
   return { version: 1, role: value.role, patients: patients.filter((p): p is PatientItem => p !== null), requests: value.requests, meetings: value.meetings, events: value.events };
 }
 
@@ -108,7 +108,7 @@ export class DemoPanelStore {
     if (init?.signal?.aborted) throw new DOMException("Aborted", "AbortError");
     const raw = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
     const url = new URL(raw, "https://demo.invalid");
-    if (url.origin !== "https://demo.invalid") return fail("External services are disabled in the demo.", 403);
+    if (url.origin !== "https://demo.invalid") return fail("Outside services are off in the demo.", 403);
     const method = init?.method || (input instanceof Request ? input.method : "GET");
     let body: Record<string, unknown> = {};
     if (init?.body) {
@@ -122,7 +122,7 @@ export class DemoPanelStore {
     const patient = (id: unknown) => draft.patients.find((p) => p.id === String(id) && p.assigned_worker_ids?.includes(worker.id));
     const save = (result: unknown, status = 200) => {
       try { this.commit(draft); return json(result, status); }
-      catch (cause) { return fail(cause instanceof Error ? cause.message : "Browser storage failed. Your change was not saved.", 507); }
+      catch (cause) { return fail(cause instanceof Error ? cause.message : "Your change was not saved. Browser storage failed.", 507); }
     };
 
     if (path === "/api/staff/country" && method === "GET") return json({ active: "RO", available: [{ country: "RO", role: worker.role }] });
@@ -148,7 +148,7 @@ export class DemoPanelStore {
     }
     if (path === "/api/patients" && ["POST", "PATCH", "DELETE"].includes(method)) {
       const existing = patient(body.id || url.searchParams.get("id"));
-      if (method !== "POST" && !existing) return fail("Demo patient not found or not assigned to this role.", 404);
+      if (method !== "POST" && !existing) return fail("Demo patient not found for this role.", 404);
       if (method === "DELETE") {
         draft.patients = draft.patients.filter((p) => p.id !== existing!.id);
         draft.meetings = draft.meetings.filter((m) => m.patient_id !== existing!.id);
@@ -156,7 +156,7 @@ export class DemoPanelStore {
         return save({ success: true });
       }
       const fields = { ...existing, ...body };
-      if (!String(fields.full_name || "").trim() || !String(fields.phone || "").trim() || !isValidEmail(String(fields.email || "")) || !isRomanianCounty(fields.county || "")) return fail("Provide a name, phone, valid email and county.");
+      if (!String(fields.full_name || "").trim() || !String(fields.phone || "").trim() || !isValidEmail(String(fields.email || "")) || !isRomanianCounty(fields.county || "")) return fail("Enter a name, phone, valid email and county.");
       if (fields.status !== undefined && !isPatientStatus(fields.status) || fields.priority !== undefined && !isPatientPriority(fields.priority)) return fail("Invalid patient status or priority.");
       if (String(fields.full_name).length > 200 || String(fields.phone).length > 50 || String(fields.email).length > 320 || String(fields.address || "").length > 500) return fail("One or more fields are too long.");
       if (draft.patients.some((p) => p.id !== existing?.id && p.email.toLowerCase() === String(fields.email).trim().toLowerCase())) return fail("A demo patient with this email already exists.", 409);
@@ -217,7 +217,7 @@ export class DemoPanelStore {
       draft.events.push(`Simulated ${path} at ${new Date().toISOString()}`);
       return save({ success: true, email_sent: true });
     }
-    return fail("This action is not available in the offline demo. No live request was sent.", 403);
+    return fail("This does not work in the demo. Nothing was sent.", 403);
   };
 
   private addMeeting(data: DemoData, owner: PatientItem, followup: FollowupItem) {

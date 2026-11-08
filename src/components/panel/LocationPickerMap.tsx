@@ -35,7 +35,7 @@ function Recenter({ lat, lng }: Pick<Props, "lat" | "lng">) {
 
 export default function LocationPickerMap({ lat, lng, onChange }: Props) {
   return (
-    <MapContainer center={[lat, lng]} zoom={14} className="h-full w-full" scrollWheelZoom>
+    <MapContainer center={[lat, lng]} zoom={14} className="isolate z-0 h-full w-full" scrollWheelZoom>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"

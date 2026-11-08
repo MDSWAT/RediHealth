@@ -202,7 +202,7 @@ export function OfflineWorkspace() {
   async function logout(discard = false) {
     const active = current.current;
     if (busy) return;
-    if (discard && !window.confirm(ro ? "Renunți definitiv la TOATE modificările nesincronizate și ștergi datele medicale criptate de pe dispozitiv? Acțiunea nu poate fi anulată." : "Permanently discard ALL unsynced changes and delete this device's encrypted medical data? This cannot be undone.")) return;
+    if (discard && !window.confirm(ro ? "Renunți definitiv la toate modificările nesincronizate și ștergi datele medicale criptate de pe dispozitiv? Nu mai poți reveni." : "Permanently discard all unsynced changes and delete the encrypted medical data on this device? This cannot be undone.")) return;
     setBusy(true); setError(""); setNotice("");
     try {
       if (active) {
@@ -249,7 +249,7 @@ export function OfflineWorkspace() {
     {exists === null ? <p role="status">{ro ? "Se verifică stocarea criptată…" : "Checking encrypted device storage…"}</p> : <form className="space-y-4" onSubmit={(event) => { event.preventDefault(); void openVault(); }}>
       {legacy && <label className="crm-label">{ro ? "Parola offline existentă (o singură dată, pentru migrare)" : "Existing offline passphrase (once, to migrate)"}<input className="crm-input" type="password" autoComplete="off" required value={passphrase} onChange={(event) => setPassphrase(event.target.value)} disabled={busy} /></label>}
       {(!exists || legacy) && <label className="flex items-start gap-2 text-sm"><input type="checkbox" required checked={trustedDevice} onChange={(event) => setTrustedDevice(event.target.checked)} disabled={busy} />{ro ? "Confirm că acesta este un dispozitiv privat și accept că oricine folosește acest profil de browser poate deschide datele offline fără parolă." : "This is a private device. I understand anyone using this browser profile can open offline records without a password."}</label>}
-      <button className="crm-button crm-primary" disabled={busy}>{busy ? (ro ? "Te rugăm să aștepți…" : "Please wait…") : legacy ? (ro ? "Migrează la acces automat" : "Migrate to automatic access") : exists ? (ro ? "Redeschide spațiul offline" : "Reopen offline workspace") : (ro ? "Activează offline pe acest dispozitiv" : "Enable offline on this device")}</button>
+      <button className="crm-button crm-primary" disabled={busy}>{busy ? (ro ? "Așteaptă…" : "Please wait…") : legacy ? (ro ? "Migrează la acces automat" : "Migrate to automatic access") : exists ? (ro ? "Redeschide spațiul offline" : "Reopen offline workspace") : (ro ? "Activează offline pe acest dispozitiv" : "Enable offline on this device")}</button>
     </form>}
     {error && <p role="alert" className="crm-error">{error}</p>}{notice && <p role="status" className="crm-notice">{notice}</p>}
     {exists && <button className="crm-button text-red-700" disabled={busy} onClick={() => void logout(true)}>{ro ? "Renunță la modificări și șterge datele dispozitivului" : "Discard pending changes and remove device data"}</button>}

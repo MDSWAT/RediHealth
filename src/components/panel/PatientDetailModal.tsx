@@ -272,7 +272,7 @@ export function PatientDetailModal({
                 RediHealth Clinical Center
               </h1>
               <p className="text-xs text-slate-500 mt-1">
-                Official Patient Medical Profile & Health History Report
+                Official Patient Medical Profile and Health History Report
               </p>
             </div>
             <div className="text-right text-xs text-slate-500">
@@ -285,8 +285,8 @@ export function PatientDetailModal({
           </div>
 
           <div className="mt-6">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-              1. Patient Identification & Demographics
+            <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
+              1. Patient Identification and Demographics
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs bg-slate-50 p-4 rounded-xl border border-slate-200">
               <div>
@@ -311,7 +311,7 @@ export function PatientDetailModal({
               </div>
               <div>
                 <p className="text-slate-500 font-semibold">Care Status:</p>
-                <p className="font-bold uppercase text-primary">{status} Care</p>
+                <p className="font-bold text-primary capitalize">{status} care</p>
               </div>
               <div className="col-span-2 sm:col-span-3">
                 <p className="text-slate-500 font-semibold">Location / Address:</p>
@@ -321,8 +321,8 @@ export function PatientDetailModal({
           </div>
 
           <div className="mt-6">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-              2. Clinical Treatment Plan & Directives
+            <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
+              2. Clinical Treatment Plan and Directives
             </h2>
             <div className="space-y-3 text-xs">
               <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
@@ -346,7 +346,7 @@ export function PatientDetailModal({
                 </div>
               </div>
               <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200">
-                <p className="font-bold text-slate-800 mb-0.5">Care Instructions & Advice:</p>
+                <p className="font-bold text-slate-800 mb-0.5">Care Instructions and Advice:</p>
                 <p className="text-slate-700 whitespace-pre-wrap">
                   {treatmentPlan.care_instructions || "No specific instructions specified."}
                 </p>
@@ -355,14 +355,14 @@ export function PatientDetailModal({
           </div>
 
           <div className="mt-6">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-              3. Scheduled Follow-ups & Care Log
+            <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
+              3. Scheduled Follow-ups and Care Log
             </h2>
             {followups.length === 0 ? (
               <p className="text-xs text-slate-500 italic">No follow-ups recorded.</p>
             ) : (
               <table className="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden">
-                <thead className="bg-slate-100 text-slate-700 font-bold uppercase text-[10px]">
+                <thead className="bg-slate-100 text-slate-700 font-semibold text-xs">
                   <tr>
                     <th className="p-2 border-b">Scheduled Date</th>
                     <th className="p-2 border-b">Follow-up Goal</th>
@@ -385,8 +385,8 @@ export function PatientDetailModal({
           </div>
 
           <div className="mt-6">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-              4. Patient Symptoms & Medical History
+            <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
+              4. Patient Symptoms and Medical History
             </h2>
             <div className="space-y-3 text-xs">
               <div>
@@ -396,7 +396,7 @@ export function PatientDetailModal({
                 </div>
               </div>
               <div>
-                <p className="font-bold text-slate-800 mb-1">Medical History & Allergies:</p>
+                <p className="font-bold text-slate-800 mb-1">Medical History and Allergies:</p>
                 <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 whitespace-pre-wrap">
                   {patient.medical_history || "None recorded."}
                 </div>
@@ -406,8 +406,8 @@ export function PatientDetailModal({
 
           {photos.length > 0 ? (
             <div className="mt-6">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200 pb-1 mb-3">
-                5. Attached Medical Images & Documentation ({photos.length})
+              <h2 className="text-sm font-bold text-slate-700 border-b border-slate-200 pb-1 mb-3">
+                5. Attached Medical Images and Documentation ({photos.length})
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {photos.map((photo) => (
@@ -455,15 +455,15 @@ export function PatientDetailModal({
                   {patient.full_name}
                 </h2>
                 <span
-                  className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold capitalize ${
+                  className={`inline-flex items-center gap-1 rounded-md px-2.5 py-0.5 text-xs font-medium capitalize border border-border ${
                     status === "active"
-                      ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                      ? "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200"
                       : status === "inactive"
-                      ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
-                      : "bg-gray-500/10 text-gray-600 dark:text-gray-400"
+                      ? "bg-amber-500/10 text-amber-700 dark:text-amber-400"
+                      : "bg-gray-500/10 text-gray-700 dark:text-gray-400"
                   }`}
                 >
-                  {status} Care
+                  {status} care
                 </span>
               </div>
               <p className="text-xs text-muted-foreground mt-0.5">
@@ -482,7 +482,7 @@ export function PatientDetailModal({
               title="Compile and print full medical record to PDF"
             >
               <PrinterIcon className="h-4 w-4" />
-              <span>Compile & Print PDF</span>
+              <span>Compile and Print PDF</span>
             </button>
 
             <button
@@ -506,7 +506,7 @@ export function PatientDetailModal({
             { id: "overview", label: "Patient Profile", icon: UserIcon },
             { id: "treatment", label: "Treatment Plan", icon: EditIcon },
             { id: "followups", label: `Follow-ups (${followups.length})`, icon: CalendarIcon },
-            { id: "photos", label: `Photos & Files (${photos.length})`, icon: ImageIcon },
+            { id: "photos", label: `Photos and Files (${photos.length})`, icon: ImageIcon },
             { id: "timeline", label: "Medical History Timeline", icon: ClockIcon },
           ].map((tab) => {
             const Icon = tab.icon;
@@ -534,8 +534,8 @@ export function PatientDetailModal({
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl border border-border bg-muted/30 p-4">
                 <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                    Phone Number
+                  <p className="text-xs font-semibold text-muted-foreground">
+                    Phone number
                   </p>
                   <a
                     href={`tel:${patient.phone}`}
@@ -547,8 +547,8 @@ export function PatientDetailModal({
                 </div>
 
                 <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                    Email Address
+                  <p className="text-xs font-semibold text-muted-foreground">
+                    Email address
                   </p>
                   <a
                     href={`mailto:${patient.email}`}
@@ -562,8 +562,8 @@ export function PatientDetailModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-xl border border-border bg-card p-4">
                 <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                    Date of Birth
+                  <p className="text-xs font-semibold text-muted-foreground">
+                    Date of birth
                   </p>
                   <p className="mt-1 text-sm font-medium text-foreground">
                     {patient.date_of_birth || "Not provided"}
@@ -571,7 +571,7 @@ export function PatientDetailModal({
                 </div>
 
                 <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                  <p className="text-xs font-semibold text-muted-foreground">
                     Gender
                   </p>
                   <p className="mt-1 text-sm font-medium text-foreground">
@@ -580,8 +580,8 @@ export function PatientDetailModal({
                 </div>
 
                 <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                    Address / Location
+                  <p className="text-xs font-semibold text-muted-foreground">
+                    Address / location
                   </p>
                   <p className="mt-1 text-sm font-medium text-foreground">
                     {patient.address || "Not provided"}
@@ -608,7 +608,7 @@ export function PatientDetailModal({
               <div>
                 <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-1.5">
                   <EditIcon className="h-4 w-4 text-primary" />
-                  <span>Condition & Symptoms Summary</span>
+                  <span>Condition and Symptoms Summary</span>
                 </h3>
                 <div className="rounded-xl border border-border bg-card p-4 text-sm leading-relaxed text-foreground whitespace-pre-wrap">
                   {patient.condition_notes || "No condition notes recorded."}
@@ -630,15 +630,15 @@ export function PatientDetailModal({
           {activeTab === "treatment" ? (
             <div className="space-y-5">
               {treatmentSavedMsg ? (
-                <div className="flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs text-emerald-600 dark:text-emerald-400">
-                  <CheckCircleIcon className="h-4 w-4" />
+                <div className="flex items-center gap-2 rounded-lg bg-sapphire-soft/60 border border-sapphire/20 p-3 text-xs text-sapphire dark:text-blue-300">
+                  <CheckCircleIcon className="h-4 w-4 text-sapphire" />
                   <span>Treatment plan saved successfully!</span>
                 </div>
               ) : null}
 
               <div>
                 <label className="text-xs font-semibold text-foreground mb-1 block">
-                  Primary Diagnosis & Clinical Findings
+                  Primary Diagnosis and Clinical Findings
                 </label>
                 <textarea
                   rows={3}
@@ -654,7 +654,7 @@ export function PatientDetailModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs font-semibold text-foreground mb-1 block">
-                    Care Goals & Objectives
+                    Care Goals and Objectives
                   </label>
                   <textarea
                     rows={3}
@@ -662,7 +662,7 @@ export function PatientDetailModal({
                     onChange={(e) =>
                       setTreatmentPlan({ ...treatmentPlan, goals: e.target.value })
                     }
-                    placeholder="Short & long term health targets..."
+                    placeholder="Short and long term health targets..."
                     className="w-full rounded-xl border border-border bg-card p-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   />
                 </div>
@@ -685,7 +685,7 @@ export function PatientDetailModal({
 
               <div>
                 <label className="text-xs font-semibold text-foreground mb-1 block">
-                  Care Instructions & Patient Directives
+                  Care Instructions and Patient Directives
                 </label>
                 <textarea
                   rows={3}
@@ -719,7 +719,7 @@ export function PatientDetailModal({
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-semibold text-foreground">
-                    Care Follow-ups & Reminders
+                    Care Follow-ups and Reminders
                   </h3>
                   <p className="text-xs text-muted-foreground">
                     Schedule check-ins, call reminders, or consultation appointments.
@@ -740,8 +740,8 @@ export function PatientDetailModal({
                   onSubmit={handleAddFollowup}
                   className="rounded-xl border border-border bg-muted/30 p-4 space-y-3"
                 >
-                  <h4 className="text-xs font-bold text-foreground uppercase tracking-wide">
-                    Schedule New Follow-Up
+                  <h4 className="text-xs font-bold text-foreground">
+                    Schedule new follow-up
                   </h4>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -906,7 +906,7 @@ export function PatientDetailModal({
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-semibold text-foreground">
-                    Medical Photos & Document Attachments
+                    Medical Photos and Document Attachments
                   </h3>
                   <p className="text-xs text-muted-foreground">
                     Attach clinical photos, lab results, or prescribed documentation.
@@ -918,8 +918,8 @@ export function PatientDetailModal({
                 onSubmit={handleAddPhoto}
                 className="rounded-xl border border-border bg-muted/30 p-4 space-y-3"
               >
-                <h4 className="text-xs font-bold text-foreground uppercase tracking-wide">
-                  Attach New Photo / Document
+                <h4 className="text-xs font-bold text-foreground">
+                  Attach new photo / document
                 </h4>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -1036,7 +1036,7 @@ export function PatientDetailModal({
             <div className="space-y-4">
               <div>
                 <h3 className="text-sm font-semibold text-foreground">
-                  Unified Medical History & Activity Log
+                  Unified Medical History and Activity Log
                 </h3>
                 <p className="text-xs text-muted-foreground">
                   Chronological record of patient enquiries, care plans, follow-ups, and attachments.

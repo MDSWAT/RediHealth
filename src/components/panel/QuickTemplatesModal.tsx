@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { CheckCircleIcon, CloseIcon, CopyIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { REQUEST_LANG_HEADER } from "@/lib/i18n/routing";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
 import { usePanelRuntime } from "./PanelRuntime";
 
@@ -15,75 +16,77 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
   const { lang } = useLanguage();
   const { request: fetch } = usePanelRuntime();
   const nameFallback = {
-    en: "Valued Customer",
-    ro: "Stimate pacient",
-    sq: "I nderuar pacient",
-    it: "Gentile paziente",
+    en: "",
+    ro: "",
+    sq: "",
+    it: "",
   }[lang];
+  // Greeting line: "Bună, Maria," or just "Bună," when the name is missing.
+  const greet = (hello: string, name: string) => (name ? `${hello}, ${name},` : `${hello},`);
   const ui = {
     en: {
-      title: "Quick Communication Templates",
-      subtitle: "Pre-formatted messages for",
+      title: "Email templates",
+      subtitle: "Ready messages for",
       email: "Email",
       call: "Call",
-      sendErr: "We could not send the email.",
-      sendEmail: "Send Email",
+      sendErr: "Could not send the email.",
+      sendEmail: "Send email",
       sending: "Sending...",
       sent: "Sent",
       copied: "Copied",
-      copyBody: "Copy Body",
+      copyBody: "Copy text",
       close: "Close",
-      t1: "1. Acknowledgment & Contact Pending",
-      t2: "2. Appointment / Consultation Options",
-      t3: "3. Referral & Direct Contact Info",
+      t1: "1. We got your request",
+      t2: "2. Offer a call or a visit",
+      t3: "3. Where to go for care",
     },
     ro: {
-      title: "Sabloane rapide de comunicare",
-      subtitle: "Mesaje preformatate pentru",
+      title: "Șabloane de email",
+      subtitle: "Mesaje gata scrise pentru",
       email: "Email",
-      call: "Apel",
-      sendErr: "Nu am putut trimite emailul.",
+      call: "Sună",
+      sendErr: "Emailul nu a putut fi trimis.",
       sendEmail: "Trimite email",
       sending: "Se trimite...",
       sent: "Trimis",
       copied: "Copiat",
-      copyBody: "Copiaza mesajul",
-      close: "Inchide",
-      t1: "1. Confirmare primire & contact in asteptare",
-      t2: "2. Optiuni programare / consultatie",
-      t3: "3. Trimitere si date de contact",
+      copyBody: "Copiază textul",
+      close: "Închide",
+      t1: "1. Am primit solicitarea",
+      t2: "2. Propune un apel sau o vizită",
+      t3: "3. Unde să meargă pentru îngrijire",
     },
     sq: {
-      title: "Modele te shpejta komunikimi",
-      subtitle: "Mesazhe te gatshme per",
+      title: "Modele emaili",
+      subtitle: "Mesazhe të gatshme për",
       email: "Email",
       call: "Telefono",
-      sendErr: "Nuk mund te dergonim emailin.",
-      sendEmail: "Dergo email",
-      sending: "Duke derguar...",
-      sent: "Derguar",
-      copied: "Kopjuar",
-      copyBody: "Kopjo mesazhin",
+      sendErr: "Emaili nuk u dërgua.",
+      sendEmail: "Dërgo email",
+      sending: "Duke dërguar...",
+      sent: "Dërguar",
+      copied: "U kopjua",
+      copyBody: "Kopjo tekstin",
       close: "Mbyll",
-      t1: "1. Konfirmim marrjeje & kontakt ne pritje",
-      t2: "2. Opsione takimi / konsultimi",
-      t3: "3. Referim dhe informacion kontakti",
+      t1: "1. E morëm kërkesën",
+      t2: "2. Propozo telefonatë ose vizitë",
+      t3: "3. Ku të shkojë për kujdes",
     },
     it: {
-      title: "Modelli rapidi di comunicazione",
-      subtitle: "Messaggi precompilati per",
+      title: "Modelli di email",
+      subtitle: "Messaggi pronti per",
       email: "Email",
       call: "Chiama",
-      sendErr: "Non siamo riusciti a inviare l'email.",
+      sendErr: "Impossibile inviare l'email.",
       sendEmail: "Invia email",
-      sending: "Invio in corso...",
+      sending: "Invio...",
       sent: "Inviata",
       copied: "Copiata",
       copyBody: "Copia testo",
       close: "Chiudi",
-      t1: "1. Conferma ricezione e contatto in attesa",
-      t2: "2. Opzioni appuntamento / consulenza",
-      t3: "3. Invio e contatti utili",
+      t1: "1. Abbiamo ricevuto la richiesta",
+      t2: "2. Proponi una chiamata o una visita",
+      t3: "3. Dove andare per le cure",
     },
   }[lang];
 
@@ -94,15 +97,15 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       body: (req: MedicalHelpRequestItem) => {
         const name = req.full_name?.trim() || nameFallback;
         if (lang === "ro") {
-          return `Buna, ${name},\n\nAm primit cererea ta de ajutor medical legata de: "${req.description.slice(0, 100)}...". Un lucrator de sprijin medical revizuieste cererea si te va suna in curand la ${req.phone}.\n\nCu stima,\nEchipa RediHealth`;
+          return `${greet("Bună", name)}\n\nAm primit mesajul tău: "${req.description.slice(0, 100)}...". Un coleg din echipă îl citește acum și te sună în curând la ${req.phone}.\n\nToate cele bune,\nEchipa RediHealth`;
         }
         if (lang === "sq") {
-          return `Pershendetje, ${name},\n\nKemi marre kerkesen tuaj per ndihme mjekesore ne lidhje me: "${req.description.slice(0, 100)}...". Nje punonjes shendetesor po e shqyrton kerkesen dhe do t'ju telefonoje se shpejti ne ${req.phone}.\n\nMe respekt,\nEkipi RediHealth`;
+          return `${greet("Përshëndetje", name)}\n\nE morëm mesazhin tënd: "${req.description.slice(0, 100)}...". Një koleg nga ekipi po e lexon dhe do të të telefonojë së shpejti në ${req.phone}.\n\nMe respekt,\nEkipi RediHealth`;
         }
         if (lang === "it") {
-          return `Buongiorno ${name},\n\nAbbiamo ricevuto la tua richiesta di aiuto medico riguardo: "${req.description.slice(0, 100)}...". Un operatore sanitario sta esaminando la richiesta e ti chiamera presto al numero ${req.phone}.\n\nCordiali saluti,\nTeam RediHealth`;
+          return `${greet("Ciao", name)}\n\nAbbiamo ricevuto il tuo messaggio: "${req.description.slice(0, 100)}...". Un operatore lo sta leggendo e ti chiamerà presto al numero ${req.phone}.\n\nUn saluto,\nIl team RediHealth`;
         }
-        return `Hello ${name},\n\nWe have received your medical help request regarding: "${req.description.slice(0, 100)}...". A healthcare support worker is reviewing your request and will call you at ${req.phone} shortly.\n\nBest regards,\nRediHealth Staff`;
+        return `${greet("Hello", name)}\n\nWe got your message: "${req.description.slice(0, 100)}...". Someone from our team is reading it now and will call you soon at ${req.phone}.\n\nBest wishes,\nThe RediHealth team`;
       },
     },
     {
@@ -111,15 +114,15 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       body: (req: MedicalHelpRequestItem) => {
         const name = req.full_name?.trim() || nameFallback;
         if (lang === "ro") {
-          return `Buna, ${name},\n\nIti multumim ca ai contactat RediHealth. Pe baza solicitarii tale, putem programa un apel scurt sau te putem indruma catre o institutie medicala apropiata. Spune-ne te rugam cand iti este convenabil sa vorbim.\n\nTelefon contact: ${req.phone}\n\nCu stima,\nEchipa RediHealth`;
+          return `${greet("Bună", name)}\n\nÎți mulțumim că ne-ai scris. Putem să te sunăm pentru o discuție scurtă sau să-ți spunem unde e cel mai apropiat medic. Scrie-ne când poți vorbi.\n\nTelefonul tău: ${req.phone}\n\nToate cele bune,\nEchipa RediHealth`;
         }
         if (lang === "sq") {
-          return `Pershendetje, ${name},\n\nFaleminderit qe kontaktuat RediHealth. Sipas kerkeses suaj, mund te planifikojme nje telefonate te shkurter ose t'ju drejtojme tek nje institucion mjekesor afer jush. Na njoftoni kur ju pershtatet te flasim.\n\nTelefon kontakti: ${req.phone}\n\nMe respekt,\nEkipi RediHealth`;
+          return `${greet("Përshëndetje", name)}\n\nFaleminderit që na shkrove. Mund të të telefonojmë për një bisedë të shkurtër ose të të tregojmë mjekun më të afërt. Na shkruaj kur mund të flasësh.\n\nTelefoni yt: ${req.phone}\n\nMe respekt,\nEkipi RediHealth`;
         }
         if (lang === "it") {
-          return `Buongiorno ${name},\n\nGrazie per aver contattato RediHealth. In base alla tua richiesta, possiamo organizzare una breve chiamata o indirizzarti verso una struttura sanitaria vicina. Facci sapere quando preferisci essere contattato.\n\nTelefono di contatto: ${req.phone}\n\nCordiali saluti,\nTeam RediHealth`;
+          return `${greet("Ciao", name)}\n\nGrazie per averci scritto. Possiamo chiamarti per parlare un momento o dirti dov'è il medico più vicino. Scrivici quando puoi parlare.\n\nIl tuo telefono: ${req.phone}\n\nUn saluto,\nIl team RediHealth`;
         }
-        return `Hello ${name},\n\nThank you for reaching out to RediHealth. Based on your enquiry, we would like to schedule a quick call or direct you to a nearby health institute. Please let us know your preferred time to speak.\n\nContact phone: ${req.phone}\n\nBest regards,\nRediHealth Staff`;
+        return `${greet("Hello", name)}\n\nThank you for writing to us. We can call you for a short talk, or tell you where the nearest doctor is. Let us know when you can talk.\n\nYour phone: ${req.phone}\n\nBest wishes,\nThe RediHealth team`;
       },
     },
     {
@@ -128,18 +131,31 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       body: (req: MedicalHelpRequestItem) => {
         const name = req.full_name?.trim() || nameFallback;
         if (lang === "ro") {
-          return `Buna, ${name},\n\nIn legatura cu solicitarea ta, iti recomandam sa contactezi medicul de familie sau clinica locala. Daca ai nevoie de ajutor pentru a gasi institutii medicale in zona ta, foloseste harta noastra la https://redihealth.org/find-help.\n\nCu stima,\nEchipa RediHealth`;
+          return `${greet("Bună", name)}\n\nPentru ce ne-ai scris, cel mai bine este să mergi la medicul de familie sau la clinica din zona ta. Găsești clinici și farmacii aproape de tine pe harta noastră: https://redihealth.org/find-help.\n\nToate cele bune,\nEchipa RediHealth`;
         }
         if (lang === "sq") {
-          return `Pershendetje, ${name},\n\nLidhur me kerkesen tuaj, ju rekomandojme te kontaktoni mjekun e familjes ose kliniken lokale. Nese ju duhet ndihme per te gjetur institucione mjekesore ne zonen tuaj, perdorni harten tone ne https://redihealth.org/find-help.\n\nMe respekt,\nEkipi RediHealth`;
+          return `${greet("Përshëndetje", name)}\n\nPër atë që na shkrove, më mirë shko te mjeku i familjes ose te klinika në zonën tënde. Klinika dhe farmaci afër teje gjen në hartën tonë: https://redihealth.org/find-help.\n\nMe respekt,\nEkipi RediHealth`;
         }
         if (lang === "it") {
-          return `Buongiorno ${name},\n\nIn merito alla tua richiesta, ti consigliamo di contattare il tuo medico di base o la clinica locale. Se hai bisogno di aiuto per trovare strutture mediche nella tua zona, consulta la nostra mappa su https://redihealth.org/find-help.\n\nCordiali saluti,\nTeam RediHealth`;
+          return `${greet("Ciao", name)}\n\nPer quello che ci hai scritto, la cosa migliore è andare dal tuo medico di base o da una clinica della tua zona. Trovi cliniche e farmacie vicino a te sulla nostra mappa: https://redihealth.org/find-help.\n\nUn saluto,\nIl team RediHealth`;
         }
-        return `Hello ${name},\n\nRegarding your enquiry, we recommend contacting your primary healthcare provider or local clinic. If you need assistance finding medical institutes in your area, please visit our Find Help map at https://redihealth.org/find-help.\n\nBest regards,\nRediHealth Staff`;
+        return `${greet("Hello", name)}\n\nFor what you wrote to us, it is best to see your family doctor or a local clinic. You can find clinics and pharmacies near you on our map: https://redihealth.org/find-help.\n\nBest wishes,\nThe RediHealth team`;
       },
     },
   ];
+
+  const titleId = useId();
+  const closeRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const previous = document.activeElement;
+    closeRef.current?.focus();
+    function onKeyDown(event: KeyboardEvent) { if (event.key === "Escape") onClose(); }
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      if (previous instanceof HTMLElement) previous.focus();
+    };
+  }, [onClose]);
 
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [sendingIndex, setSendingIndex] = useState<number | null>(null);
@@ -160,7 +176,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
     try {
       const response = await fetch("/api/medical-help-requests/reply", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", [REQUEST_LANG_HEADER]: lang },
         body: JSON.stringify({ requestId: request.id, templateId }),
       });
       const result = (await response.json()) as { error?: string };
@@ -179,25 +195,27 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-xs p-0 sm:p-4">
-      <div className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
+    <div className="panel-scrim fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/50 p-0 sm:p-4">
+      <div role="dialog" aria-modal="true" aria-labelledby={titleId} className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
         {/* Mobile bottom sheet drag handle */}
         <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
         <div className="flex items-center justify-between border-b border-border pb-4">
           <div>
-            <h3 className="text-base font-bold text-foreground sm:text-lg">
+            <h2 id={titleId} className="text-base font-bold text-foreground sm:text-lg">
               {ui.title}
-            </h3>
+            </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
               {ui.subtitle} <span className="font-semibold text-foreground">{request.full_name || request.email}</span>
             </p>
           </div>
           <button
+            ref={closeRef}
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+            aria-label={ui.close}
+            className="rounded-lg p-2 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
           >
-            <CloseIcon className="h-5 w-5" />
+            <CloseIcon aria-hidden="true" className="h-5 w-5" />
           </button>
         </div>
 
@@ -224,7 +242,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
           </p>
         ) : null}
 
-        <div className="mt-6 space-y-4">
+        <div className="mt-2 divide-y divide-border">
           {templates.map((tmpl, idx) => {
             const bodyText = tmpl.body(request);
             const isCopied = copiedIndex === idx;
@@ -232,14 +250,11 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
             const isSent = sentIndex === idx;
 
             return (
-              <div
-                key={tmpl.title}
-                className="rounded-2xl border border-border bg-muted/30 p-4 transition-colors hover:bg-muted/40"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold text-foreground sm:text-sm">
+              <section key={tmpl.id} aria-labelledby={`${titleId}-${tmpl.id}`} className="py-4">
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                  <h3 id={`${titleId}-${tmpl.id}`} className="text-sm font-semibold text-foreground">
                     {tmpl.title}
-                  </span>
+                  </h3>
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
@@ -269,10 +284,10 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
                     </button>
                   </div>
                 </div>
-                <pre className="whitespace-pre-wrap rounded-xl border border-border/60 bg-card p-3.5 font-sans text-xs leading-relaxed text-muted-foreground">
+                <pre className="whitespace-pre-wrap rounded-lg bg-muted/50 p-3.5 font-sans text-xs leading-relaxed text-foreground/80">
                   {bodyText}
                 </pre>
-              </div>
+              </section>
             );
           })}
         </div>

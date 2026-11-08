@@ -70,6 +70,6 @@ export async function POST(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to send meeting invitation", error);
-    return NextResponse.json({ error: "Could not send the meeting invitation. Check email configuration and try again." }, { status: 503 });
+    return NextResponse.json({ error: "Could not send the invitation. Check the email settings and try again." }, { status: 503 });
   }
 }

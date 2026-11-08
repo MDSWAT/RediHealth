@@ -54,10 +54,22 @@ describe("hero copy", () => {
     }
   });
 
-  it("keeps the Romanian 112 notice verbatim from the platform concept", () => {
-    expect(heroCopy.ro.emergency.notice).toBe(
-      "Semnele de alarmă și «Sună tu la 112» — aplicația nu apelează automat",
-    );
+  it("lists the alarm signs and a 112 call on the health-problem branch in every locale", () => {
+    // The site-wide 112 bar lives in the layout; the hero's own emergency path is the problem branch.
+    for (const lang of LANGS) {
+      const copy = heroCopy[lang];
+      expect(copy.emergency.alarmSigns.length, lang).toBeGreaterThanOrEqual(5);
+      expect(copy.panel.needs.problem.action.href, lang).toBe("tel:112");
+      expect(copy.panel.needs.problem.action.label, lang).toContain("112");
+      expect(copy.panel.needs.problem.body, lang).toContain("112");
+    }
+  });
+
+  it("says the same headline promise in every locale as the Romanian concept wording", () => {
+    expect(heroCopy.ro.title).toBe("Informații medicale pe înțelesul tău și îndrumare către îngrijirea potrivită.");
+    expect(heroCopy.en.title).toMatch(/right care/);
+    expect(heroCopy.sq.title).toMatch(/kujdes\S* (e|të) duhur/);
+    expect(heroCopy.it.title).toMatch(/cure giuste/);
   });
 
   it("has no Romanian in the English locale", () => {
@@ -91,7 +103,7 @@ describe("hero copy", () => {
   it("offers a way to reach a doctor from every branch", () => {
     for (const lang of LANGS) {
       const { panel } = heroCopy[lang];
-      expect(HERO_NEED_ORDER).toHaveLength(5);
+      expect(HERO_NEED_ORDER).toHaveLength(6);
       expect(panel.doctorPrompt).toMatch(/\?$/);
       expect(panel.problemDoctorLink.length).toBeGreaterThan(0);
       expect(panel.needs.problem.action.href).toBe("tel:112");
@@ -111,14 +123,16 @@ describe("hero render", () => {
     currentLang.value = "en";
   });
 
-  it.each(LANGS)("renders the question, five needs and the 112 line in %s", (lang) => {
+  it.each(LANGS)("renders the question, five needs, mediator entry, and 112 action without top emergency popup in %s", (lang) => {
     const html = renderHero(lang);
     const copy = heroCopy[lang];
 
     expect(html).toContain(copy.panel.question.replace(/'/g, "&#x27;"));
     for (const id of HERO_NEED_ORDER) expect(html).toContain(copy.panel.needs[id].label.replace(/'/g, "&#x27;"));
-    expect(html).toContain(copy.emergency.notice.replace(/'/g, "&#x27;"));
+    expect(html).not.toContain('role="tooltip"');
+    expect(html).not.toContain("<dialog");
     expect(html).toContain('href="tel:112"');
+    expect(html).toContain(`href="/${lang}/mediatori"`);
     expect(html).toContain(`href="/${lang}/health-information"`);
   });
 
@@ -131,16 +145,76 @@ describe("hero render", () => {
     expect(html.match(/<h1\b/g)).toHaveLength(1);
     expect(html).not.toMatch(/rounded-full[^"]*px-2\.5[^"]*py-0\.5/); // no badge pills
   });
+
+  it("renders every panel view in one grid cell, with only the first one active", () => {
+    // Stacking all views makes the panel as tall as its tallest view, so
+    // switching steps can never resize the panel or the hero.
+    const html = renderHero("en");
+    expect(html.match(/class="triage-view /g)).toHaveLength(1 + HERO_NEED_ORDER.length);
+    expect(html.match(/data-active="true"/g)).toHaveLength(1);
+    expect(html.match(/\binert=""/g)).toHaveLength(HERO_NEED_ORDER.length);
+  });
+
+  it("fills the first screen below the sticky header", () => {
+    expect(renderHero("en")).toMatch(/min-h-\[calc\(100svh-65px\)\][^"]*xl:min-h-\[calc\(100svh-81px\)\]/);
+  });
+
+  it.each(LANGS)("shows the three-step journey as an ordered list in %s", (lang) => {
+    const html = renderHero(lang);
+    const list = html.match(/<ol\b[^>]*>([\s\S]*?)<\/ol>/)?.[1] ?? "";
+    expect(list.match(/<li\b/g)).toHaveLength(3);
+    for (const step of heroCopy[lang].journey) expect(list).toContain(step.replace(/'/g, "&#x27;"));
+  });
+
+  it("sets the headline as one plain sentence: no per-word spans, no aria-label override", () => {
+    const html = renderHero("ro");
+    const h1 = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/);
+    expect(h1?.[1]).toBe(heroCopy.ro.title);
+    expect(h1?.[0]).not.toContain("aria-label");
+    expect(html).not.toContain("hero-word");
+  });
+
+  it.each(LANGS)("renders no Romanian fallback strings in the panel chrome in %s", (lang) => {
+    if (lang === "ro") return;
+    const html = renderHero(lang);
+    expect(html).not.toContain("Pentru mediatori");
+    expect(html).not.toContain("voce de rezervă");
+    expect(html).toContain(heroCopy[lang].panel.mediators);
+  });
 });
 
 describe("hero motion safety", () => {
   const css = readFileSync(path.resolve(__dirname, "../../app/globals.css"), "utf8");
+  const heroStart = css.indexOf("/* ---------- Landing hero ---------- */");
+  const heroEnd = css.indexOf("/* ---------- End landing hero ---------- */");
+  const heroRules = css.slice(heroStart, heroEnd);
 
-  it("has no travelling shapes: no offset-path and no infinite animation on hero elements", () => {
+  it("keeps the hero block delimited so these checks read the right rules", () => {
+    expect(heroStart).toBeGreaterThan(-1);
+    expect(heroEnd).toBeGreaterThan(heroStart);
+  });
+
+  it("has no travelling shapes, loops, blur or staggered word reveal", () => {
     expect(css).not.toMatch(/offset-path/);
-    const heroRules = css.slice(css.indexOf("/* ---------- Landing hero ---------- */"));
     expect(heroRules).not.toMatch(/infinite/);
-    expect(heroRules).toMatch(/\.hero-spotlight\s*{[^}]*forwards/);
-    expect(heroRules).toMatch(/prefers-reduced-motion: reduce[\s\S]*\.hero-spotlight/);
+    expect(heroRules).not.toMatch(/filter:\s*blur/);
+    expect(heroRules).not.toMatch(/hero-word|hero-spotlight|care-rail/);
+    expect(heroRules).not.toMatch(/var\(--i/); // no per-item stagger delays
+  });
+
+  it("enters once with the shared calm tokens and an 8px offset", () => {
+    expect(heroRules).toMatch(/--hero-ease:\s*var\(--ease-out-calm\)/);
+    expect(heroRules).toMatch(/\.hero-enter\s*{[^}]*var\(--dur-slow\)/);
+    expect(heroRules).toMatch(/@keyframes hero-enter\s*{\s*from\s*{\s*opacity:\s*0;\s*transform:\s*translateY\(8px\)/);
+  });
+
+  it("goes static under reduced motion", () => {
+    expect(heroRules).toMatch(/prefers-reduced-motion: reduce\)\s*{\s*\.hero-enter\s*{\s*animation: none/);
+    expect(heroRules).toMatch(/prefers-reduced-motion: reduce[\s\S]*\.triage-view/);
+  });
+
+  it("animates only transform and opacity in the hero (no height or layout transitions)", () => {
+    const transitioned = heroRules.match(/transition:[^;]*;/g) ?? [];
+    for (const rule of transitioned) expect(rule, rule).not.toMatch(/\b(height|width|top|left|margin|padding)\b/);
   });
 });

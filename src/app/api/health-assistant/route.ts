@@ -61,23 +61,23 @@ function failureResponse(error: LlmError) {
   switch (error.kind) {
     case "rate-limited":
       return NextResponse.json(
-        { error: "The AI assistant has reached its request limit. Please try again in a few minutes." },
+        { error: "The assistant is busy. Try again in a few minutes." },
         { status: 429 },
       );
     case "not-configured":
     case "unauthorized":
       return NextResponse.json(
-        { error: "The AI assistant is not available right now. Please contact support." },
+        { error: "The assistant is not available right now. Contact us if this keeps happening." },
         { status: 503 },
       );
     case "bad-response":
       return NextResponse.json(
-        { error: "The AI assistant returned an unreadable response. Please try again." },
+        { error: "The assistant gave an answer we could not read. Try again." },
         { status: 502 },
       );
     default:
       return NextResponse.json(
-        { error: "The AI assistant is temporarily unavailable. Please try again shortly." },
+        { error: "The assistant is not working right now. Try again in a few minutes." },
         { status: 502 },
       );
   }
@@ -87,7 +87,7 @@ export async function POST(request: Request) {
   const rateLimit = await checkRateLimit(`health-assistant:${getClientIp(request)}`, { limit: 10, windowMs: 60_000 });
   if (!rateLimit.allowed) {
     return NextResponse.json(
-      { error: "Too many requests. Please wait a moment and try again." },
+      { error: "Too many requests. Wait a moment and try again." },
       { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
     );
   }
@@ -112,15 +112,15 @@ export async function POST(request: Request) {
   const imageMimeType = typeof body.prescription?.mimeType === "string" ? body.prescription.mimeType : "";
 
   if (imageData && (!/^image\/(jpeg|png|webp)$/.test(imageMimeType) || imageData.length > MAX_IMAGE_DATA_LENGTH)) {
-    return NextResponse.json({ error: "Choose a JPEG, PNG, or WebP image smaller than 8 MB." }, { status: 400 });
+    return NextResponse.json({ error: "Choose a JPEG, PNG or WebP image under 8 MB." }, { status: 400 });
   }
 
   if (!symptoms && !imageData) {
-    return NextResponse.json({ error: "Please describe symptoms or upload a prescription image." }, { status: 400 });
+    return NextResponse.json({ error: "Describe the symptoms or add a photo of the prescription." }, { status: 400 });
   }
 
   if (symptoms.length > MAX_TEXT_LENGTH || prescriptionContext.length > MAX_TEXT_LENGTH) {
-    return NextResponse.json({ error: "Please shorten your message." }, { status: 400 });
+    return NextResponse.json({ error: "Make your message shorter." }, { status: 400 });
   }
 
   if (urgentPattern.test(symptoms)) {

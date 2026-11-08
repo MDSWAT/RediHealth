@@ -36,79 +36,79 @@ export function WorkersTable({
   const { lang } = useLanguage();
   const t = {
     en: {
-      errDelete: "Failed to delete worker.",
-      errDeleteUnexpected: "An error occurred while deleting worker.",
-      errUpdate: "Failed to update status.",
-      dismiss: "Dismiss",
-      showing: (v: number, total: number) => `Showing ${v} of ${total} staff workers`,
-      noneTitle: "No staff workers found",
-      noneHint: "Click \"Add Staff Worker\" to register a healthcare worker or administrator.",
-      staffId: "Staff ID",
-      general: "General Staff",
-      statusToggle: "Click to toggle status",
+      errDelete: "Could not delete.",
+      errDeleteUnexpected: "Could not delete. Try again.",
+      errUpdate: "Could not change the status.",
+      dismiss: "Close",
+      showing: (v: number, total: number) => `${v} of ${total} staff`,
+      noneTitle: "No staff yet",
+      noneHint: "Add a health worker or an administrator.",
+      staffId: "Staff no.",
+      general: "General",
+      statusToggle: "Change status",
       assigned: (count: number) => `${count} assigned patient${count === 1 ? "" : "s"}`,
-      deleteQ: "Delete this worker?",
+      deleteQ: "Delete this staff member?",
       yesDelete: "Yes, delete",
       cancel: "Cancel",
-      deleteWorker: "Delete Worker",
-      editWorker: "Edit Worker Profile",
-      assignPatients: "Assign Patients",
+      deleteWorker: "Delete",
+      editWorker: "Edit",
+      assignPatients: "Assign patients",
     },
     ro: {
-      errDelete: "Stergerea lucratorului a esuat.",
-      errDeleteUnexpected: "A aparut o eroare la stergerea lucratorului.",
-      errUpdate: "Actualizarea statusului a esuat.",
-      dismiss: "Inchide",
-      showing: (v: number, total: number) => `Se afiseaza ${v} din ${total} lucratori`,
-      noneTitle: "Nu exista lucratori",
-      noneHint: "Apasa \"Adauga lucrator\" pentru a inregistra personal medical sau administrator.",
-      staffId: "ID personal",
-      general: "Personal general",
-      statusToggle: "Apasa pentru schimbarea statusului",
-      assigned: (count: number) => `${count} pacient${count === 1 ? "" : "i"} alocat`,
-      deleteQ: "Stergi acest lucrator?",
-      yesDelete: "Da, sterge",
-      cancel: "Anuleaza",
-      deleteWorker: "Sterge lucrator",
-      editWorker: "Editeaza profil lucrator",
-      assignPatients: "Aloca pacienti",
+      errDelete: "Nu s-a putut șterge.",
+      errDeleteUnexpected: "Nu s-a putut șterge. Încearcă din nou.",
+      errUpdate: "Statusul nu a putut fi schimbat.",
+      dismiss: "Închide",
+      showing: (v: number, total: number) => `${v} din ${total} persoane`,
+      noneTitle: "Nu există personal încă",
+      noneHint: "Adaugă personal medical sau un administrator.",
+      staffId: "Nr.",
+      general: "General",
+      statusToggle: "Schimbă statusul",
+      assigned: (count: number) => `${count} ${count === 1 ? "pacient alocat" : "pacienți alocați"}`,
+      deleteQ: "Ștergi această persoană?",
+      yesDelete: "Da, șterge",
+      cancel: "Anulează",
+      deleteWorker: "Șterge",
+      editWorker: "Editează",
+      assignPatients: "Alocă pacienți",
     },
     sq: {
-      errDelete: "Deshtoi fshirja e punonjesit.",
-      errDeleteUnexpected: "Ndodhi nje gabim gjate fshirjes se punonjesit.",
-      errUpdate: "Deshtoi perditesimi i statusit.",
+      errDelete: "Nuk u fshi.",
+      errDeleteUnexpected: "Nuk u fshi. Provo përsëri.",
+      errUpdate: "Statusi nuk u ndryshua.",
       dismiss: "Mbyll",
-      showing: (v: number, total: number) => `Shfaqen ${v} nga ${total} punonjes`,
-      noneTitle: "Nuk u gjet staf",
-      noneHint: "Kliko \"Shto punonjes\" per te regjistruar nje punonjes shendetesor ose administrator.",
-      staffId: "ID stafi",
-      general: "Staf i pergjithshem",
-      statusToggle: "Kliko per te ndryshuar statusin",
-      assigned: (count: number) => `${count} pacient${count === 1 ? "" : "e"} i caktuar`,
-      deleteQ: "Ta fshijme kete punonjes?",
+      showing: (v: number, total: number) => `${v} nga ${total} punonjës`,
+      noneTitle: "Ende pa staf",
+      noneHint: "Shto një punonjës shëndetësor ose një administrator.",
+      staffId: "Nr.",
+      general: "I përgjithshëm",
+      statusToggle: "Ndrysho statusin",
+      assigned: (count: number) => `${count} ${count === 1 ? "pacient i caktuar" : "pacientë të caktuar"}`,
+      deleteQ: "Ta fshish këtë punonjës?",
       yesDelete: "Po, fshije",
       cancel: "Anulo",
-      deleteWorker: "Fshij punonjesin",
-      editWorker: "Ndrysho profilin",
-      assignPatients: "Cakto paciente",
+      deleteWorker: "Fshi",
+      editWorker: "Ndrysho",
+      assignPatients: "Cakto pacientë",
     },
     it: {
-      errDelete: "Eliminazione operatore non riuscita.",
-      errDeleteUnexpected: "Si e verificato un errore durante l'eliminazione dell'operatore.",
-      errUpdate: "Aggiornamento stato non riuscito.",
+      errDelete: "Impossibile eliminare.",
+      errDeleteUnexpected: "Impossibile eliminare. Riprova.",
+      errUpdate: "Impossibile cambiare lo stato.",
       dismiss: "Chiudi",
-      showing: (v: number, total: number) => `Mostrati ${v} di ${total} operatori`,
-      noneTitle: "Nessun operatore trovato",
-      noneHint: "Clicca \"Aggiungi operatore\" per registrare personale sanitario o amministratore.",
-      staffId: "ID staff",
-      general: "Staff generale",
-      statusToggle: "Clicca per cambiare stato",
-      assigned: (count: number) => `${count} paziente${count === 1 ? "" : "i"} assegnato`,
+      showing: (v: number, total: number) => `${v} di ${total} operatori`,
+      noneTitle: "Ancora nessun operatore",
+      noneHint: "Aggiungi un operatore sanitario o un amministratore.",
+      staffId: "N.",
+      general: "Generale",
+      statusToggle: "Cambia stato",
+      assigned: (count: number) => `${count} ${count === 1 ? "paziente assegnato" : "pazienti assegnati"}`,
       deleteQ: "Eliminare questo operatore?",
-      yesDelete: "Si, elimina",
+      yesDelete: "Sì, elimina",
       cancel: "Annulla",
-      deleteWorker: "Elimina operatore",
-      editWorker: "Modifica profilo operatore",
+      deleteWorker: "Elimina",
+      editWorker: "Modifica",
       assignPatients: "Assegna pazienti",
     },
   }[lang];
@@ -269,7 +269,7 @@ export function WorkersTable({
       ) : null}
 
       <div className="flex items-center justify-between mb-4 px-1">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <p className="text-xs font-semibold text-muted-foreground">
           {t.showing(filteredWorkers.length, workers.length)}
         </p>
       </div>
@@ -290,7 +290,7 @@ export function WorkersTable({
             const assignedCount = patients.filter((p) => p.assigned_worker_id === worker.id).length;
 
             return (
-              <article key={`${worker.id}-${worker.email}`} className="rounded-2xl border border-border bg-card p-5 shadow-xs transition-all hover:border-border hover:shadow-sm">
+              <article key={`${worker.id}-${worker.email}`} className="rounded-2xl border border-border bg-card p-5 shadow-xs transition-colors hover:border-border hover:shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-base font-bold text-foreground">{worker.full_name}</p>
@@ -328,7 +328,7 @@ export function WorkersTable({
                   <button
                     type="button"
                     onClick={() => setAssigningWorker(worker)}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary-soft px-2.5 py-0.5 font-semibold text-primary hover:bg-primary-soft/80 transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-md border border-primary/20 bg-primary-soft px-2.5 py-0.5 font-semibold text-primary hover:bg-primary-soft/80 transition-colors"
                   >
                     <UserIcon className="h-3.5 w-3.5" />
                     {t.assigned(assignedCount)}

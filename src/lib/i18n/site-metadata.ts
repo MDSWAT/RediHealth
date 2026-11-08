@@ -9,30 +9,30 @@ type SiteMetadata = {
 
 export const siteMetadata: Record<Lang, SiteMetadata> = {
   en: {
-    title: "RediHealth - Better health starts with knowing what to do next",
+    title: "RediHealth: health information and help finding care",
     description:
-      "Understand your health risks, learn how to protect your health, and get help accessing the medical care you need.",
+      "Free health information in plain words. Check your symptoms, find a pharmacy or doctor, and get help from a health mediator.",
     skipLink: "Skip to main content",
     openGraphLocale: "en_US",
   },
   ro: {
-    title: "RediHealth - O sănătate mai bună începe cu a ști ce ai de făcut mai departe",
+    title: "RediHealth: informații de sănătate și ajutor să ajungi la medic",
     description:
-      "Înțelege-ți riscurile pentru sănătate, află cum să te protejezi și primește ajutor pentru a accesa îngrijirea medicală de care ai nevoie.",
+      "Informații de sănătate gratuite, pe înțelesul tău. Verifică-ți simptomele, găsește o farmacie sau un medic și cere ajutor de la un mediator sanitar.",
     skipLink: "Sari la conținutul principal",
     openGraphLocale: "ro_RO",
   },
   sq: {
-    title: "RediHealth - Shëndeti më i mirë fillon me dijen se çfarë të bësh më pas",
+    title: "RediHealth: informacion për shëndetin dhe ndihmë për të gjetur mjekun",
     description:
-      "Kupto rreziqet për shëndetin tënd, mëso si të mbrohesh dhe merr ndihmë për të hyrë te kujdesi mjekësor që të nevojitet.",
+      "Informacion falas për shëndetin, me fjalë të thjeshta. Kontrollo simptomat, gjej një farmaci ose mjek dhe kërko ndihmë nga një ndërmjetës shëndetësor.",
     skipLink: "Kalo te përmbajtja kryesore",
     openGraphLocale: "sq_AL",
   },
   it: {
-    title: "RediHealth - Una salute migliore inizia sapendo cosa fare dopo",
+    title: "RediHealth: informazioni sulla salute e aiuto per trovare le cure",
     description:
-      "Comprendi i tuoi rischi per la salute, scopri come proteggerti e ricevi aiuto per accedere alle cure mediche di cui hai bisogno.",
+      "Informazioni gratuite sulla salute, in parole semplici. Controlla i sintomi, trova una farmacia o un medico e chiedi aiuto a un mediatore sanitario.",
     skipLink: "Vai al contenuto principale",
     openGraphLocale: "it_IT",
   },

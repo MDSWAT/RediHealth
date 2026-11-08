@@ -10,26 +10,26 @@ type ErrorCopy = {
 export const errorTranslations: Record<Lang, ErrorCopy> = {
   en: {
     title: "Something went wrong",
-    body: "We could not load this page. Please try again. If the problem continues, come back in a few minutes.",
+    body: "This page did not load. Try again. If it still does not work, come back in a few minutes.",
     retry: "Try again",
-    home: "Back to home",
+    home: "Go to home page",
   },
   ro: {
-    title: "Ceva nu a funcționat",
-    body: "Nu am putut încărca această pagină. Te rugăm să încerci din nou. Dacă problema persistă, revino peste câteva minute.",
+    title: "Ceva n-a mers",
+    body: "Pagina nu s-a încărcat. Încearcă din nou. Dacă tot nu merge, revino peste câteva minute.",
     retry: "Încearcă din nou",
-    home: "Înapoi la pagina principală",
+    home: "Mergi la prima pagină",
   },
   sq: {
     title: "Diçka shkoi keq",
-    body: "Nuk mundëm ta ngarkonim këtë faqe. Të lutemi provo përsëri. Nëse problemi vazhdon, kthehu pas disa minutash.",
+    body: "Faqja nuk u hap. Provo përsëri. Nëse ende nuk funksionon, kthehu pas disa minutash.",
     retry: "Provo përsëri",
-    home: "Kthehu në faqen kryesore",
+    home: "Shko te faqja kryesore",
   },
   it: {
     title: "Qualcosa è andato storto",
-    body: "Non siamo riusciti a caricare questa pagina. Riprova. Se il problema continua, torna tra qualche minuto.",
+    body: "La pagina non si è caricata. Riprova. Se ancora non funziona, torna tra qualche minuto.",
     retry: "Riprova",
-    home: "Torna alla home",
+    home: "Vai alla pagina iniziale",
   },
 };

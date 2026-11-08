@@ -52,7 +52,6 @@
 .crm-calendar-event { display: block; width: 100%; margin-top: 6px; border-radius: 4px; background: #f1f5f9; padding: 6px; text-align: left; font-size: 12px; }
 .crm-calendar-event:hover { background: var(--color-primary-soft, #fff1f2); }
 @media (min-width: 1024px) {
-  .panel-sidebar-layout { transition: grid-template-columns 240ms cubic-bezier(0.2, 0, 0, 1); }
   .panel-sidebar-nav-collapsed { scrollbar-width: none; }
   .panel-sidebar-nav-collapsed::-webkit-scrollbar { display: none; }
   .crm-reader-back { display: none; }
@@ -66,7 +65,8 @@
 @media (max-width: 1023px) {
   .crm-inbox-grid { grid-template-columns: 150px minmax(0, 1fr); padding-bottom: 85px; }
   .crm-reading-pane { display: none; }
-  .crm-reading-pane.is-open { display: flex; position: fixed; inset: 0; z-index: 40; overflow-y: auto; }
+  /* Full-screen reader sits above the bottom tab bar and the add-patient button; it has its own Back button. */
+  .crm-reading-pane.is-open { display: flex; position: fixed; inset: 0; z-index: 45; overflow-y: auto; padding-bottom: env(safe-area-inset-bottom); }
 }
 @media (max-width: 639px) {
   .crm-page { padding: 18px 12px 100px; }
@@ -103,24 +103,60 @@
   padding-bottom: max(0.4rem, env(safe-area-inset-bottom));
 }
 
-/* App mobile sheet animations */
-@keyframes app-sheet-slide-up {
-  from {
-    transform: translateY(100%);
-    opacity: 0.95;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+/*
+ * Panel motion: quiet and fast. Scrims fade, dialogs rise 8px and settle (no overshoot),
+ * mobile bottom sheets slide up from the edge. Transform/opacity only, shared tokens.
+ */
+@keyframes panel-scrim-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes panel-dialog-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes panel-sheet-in {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+
+@keyframes panel-content-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.panel-scrim {
+  animation: panel-scrim-in var(--dur-fast) var(--ease-out-calm) both;
+}
+
+/* Bottom sheet on phones, centred dialog from 640px up. */
+.app-sheet-slide-up {
+  animation: panel-sheet-in var(--dur-base) var(--ease-out-calm) both;
+}
+
+@media (min-width: 640px) {
+  .app-sheet-slide-up {
+    animation-name: panel-dialog-in;
   }
 }
 
-.app-sheet-slide-up {
-  animation: app-sheet-slide-up 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.crm-dialog[open] {
+  animation: panel-dialog-in var(--dur-base) var(--ease-out-calm) both;
+}
+
+.crm-dialog[open]::backdrop {
+  animation: panel-scrim-in var(--dur-fast) var(--ease-out-calm) both;
+}
+
+/* Loading placeholders stay still; they only fade in after a short delay so fast loads never flash. */
+.panel-skeleton {
+  animation: panel-content-in var(--dur-slow) var(--ease-out-calm) 180ms both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .care-panel *, .care-panel *::before, .care-panel *::after {
+  .care-panel, .care-panel::backdrop, .care-panel *, .care-panel *::before, .care-panel *::after {
     animation: none !important;
     transition: none !important;
   }

@@ -48,11 +48,11 @@ export function getPriorityMeta(priority: PatientPriority = "moderate") {
       };
     case "low":
       return {
-        label: "Low Priority",
+        label: "Low priority",
         shortLabel: "Low",
-        badgeClass: "bg-slate-100 text-slate-700 dark:bg-emerald-500/10 dark:text-emerald-400",
+        badgeClass: "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300",
         recommendedDays: 14,
-        dotClass: "bg-emerald-500",
+        dotClass: "bg-slate-400",
       };
   }
 }
@@ -61,7 +61,7 @@ export function getFollowupState(followups?: FollowupItem[] | null) {
   if (!followups || followups.length === 0) {
     return {
       state: "none" as const,
-      label: "No Follow-up Scheduled",
+      label: "No follow-up scheduled",
       badgeClass: "bg-slate-100 text-slate-700 dark:bg-gray-500/10 dark:text-gray-400",
       latest: null,
     };
@@ -74,7 +74,7 @@ export function getFollowupState(followups?: FollowupItem[] | null) {
     return {
       state: "completed" as const,
       label: "Completed",
-      badgeClass: "bg-emerald-100 text-emerald-950 dark:bg-emerald-500/10 dark:text-emerald-400",
+      badgeClass: "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200",
       latest: latestCompleted,
     };
   }
@@ -87,7 +87,7 @@ export function getFollowupState(followups?: FollowupItem[] | null) {
   if (targetDateStr < todayStr) {
     return {
       state: "overdue" as const,
-      label: "OVERDUE",
+      label: "Overdue",
       badgeClass: "bg-red-600 text-white font-bold animate-pulse",
       latest: nextUp,
     };
@@ -96,7 +96,7 @@ export function getFollowupState(followups?: FollowupItem[] | null) {
   if (targetDateStr === todayStr) {
     return {
       state: "today" as const,
-      label: "DUE TODAY",
+      label: "Due today",
       badgeClass: "bg-amber-500 text-white font-bold",
       latest: nextUp,
     };

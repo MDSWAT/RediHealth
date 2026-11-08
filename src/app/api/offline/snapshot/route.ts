@@ -7,7 +7,7 @@ import { OFFLINE_CACHE_LIMIT, OFFLINE_DAYS, type OfflineSnapshot } from "@/lib/o
 
 export async function GET() {
   const identity = await offlineIdentity();
-  if (!identity) return Response.json({ error: "Online sign-in as a doctor or mediator is required." }, { status: 403 });
+  if (!identity) return Response.json({ error: "Sign in online as a doctor or mediator." }, { status: 403 });
   try {
     if (!isEncryptionConfigured(identity.country)) return Response.json({ error: "Configure the country's data encryption key before enabling offline medical records." }, { status: 503 });
     const snapshot = await inOfflineTransaction(identity.country, async (): Promise<OfflineSnapshot> => {

@@ -4,7 +4,7 @@ import { createPageMetadata } from "@/lib/i18n/page-metadata";
 export const generateMetadata = createPageMetadata(
   "demo",
   "Demo - RediHealth",
-  "Explore the mediator and doctor panels with fictional, browser-local data.",
+  "Try the mediator and doctor panels with made-up data that stays in your browser.",
 );
 
 export default function DemoPage() {

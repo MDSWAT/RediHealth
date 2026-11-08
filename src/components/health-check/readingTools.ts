@@ -1,0 +1,187 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import type { Lang } from "@/lib/i18n/translations";
+import voiceManifest from "@/components/health-check/voice-manifest.json";
+import { isVoiceLang, normaliseSegment, segmentId, segmentUrl, spokenForm, type VoiceLang } from "@/components/health-check/spoken-segments";
+import { findBestVoice } from "@/lib/audio/speech-engine";
+
+/* ---------- Larger text: one switch that scales the whole page, remembered on this device ---------- */
+
+const TEXT_KEY = "redihealth-large-text";
+const textListeners = new Set<() => void>();
+
+function readLargeText(): boolean {
+  try {
+    return window.localStorage.getItem(TEXT_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function subscribeLargeText(listener: () => void) {
+  textListeners.add(listener);
+  return () => textListeners.delete(listener);
+}
+
+export function useLargeText(): [boolean, () => void] {
+  const enabled = useSyncExternalStore(subscribeLargeText, readLargeText, () => false);
+
+  useEffect(() => {
+    if (!enabled) return;
+    const root = document.documentElement;
+    const previous = root.style.fontSize;
+    root.style.fontSize = "115%";
+    return () => {
+      root.style.fontSize = previous;
+    };
+  }, [enabled]);
+
+  const toggle = useCallback(() => {
+    try {
+      window.localStorage.setItem(TEXT_KEY, readLargeText() ? "0" : "1");
+    } catch {
+      // Storage blocked: nothing to remember, the switch simply does not persist.
+    }
+    textListeners.forEach((l) => l());
+  }, []);
+
+  return [enabled, toggle];
+}
+
+/* ---------- Read aloud ----------
+ * English and Italian: clips recorded ahead of time with Piper (scripts/health-check-voice).
+ * Romanian: the best voice installed on the device (Piper's Romanian voice drops first sounds).
+ * Albanian: no read-aloud at all.
+ */
+
+const RECORDED: Partial<Record<Lang, ReadonlySet<string>>> = Object.fromEntries(
+  Object.entries(voiceManifest.clips).map(([lang, ids]) => [lang, new Set(ids)]),
+);
+const DEVICE_VOICE_LANG: Partial<Record<Lang, string>> = {
+  ro: "ro-RO",
+  en: "en-GB",
+  it: "it-IT",
+};
+
+/** True when every sentence has a recorded clip for this language. */
+function hasClips(lang: VoiceLang, parts: string[]): boolean {
+  const set = RECORDED[lang];
+  return !!set && parts.every((p) => set.has(segmentId(p)));
+}
+
+function subscribeVoices(listener: () => void) {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return () => {};
+  window.speechSynthesis.addEventListener("voiceschanged", listener);
+  return () => window.speechSynthesis.removeEventListener("voiceschanged", listener);
+}
+
+function findDeviceVoice(lang: Lang): SpeechSynthesisVoice | null {
+  const tag = DEVICE_VOICE_LANG[lang];
+  if (!tag || typeof window === "undefined" || !("speechSynthesis" in window)) return null;
+  const { voice, isFallback } = findBestVoice(window.speechSynthesis.getVoices(), tag);
+  return isFallback ? null : voice;
+}
+
+export function useReadAloud(lang: Lang) {
+  const recorded = isVoiceLang(lang) && (RECORDED[lang]?.size ?? 0) > 0;
+  const hasDeviceVoice = useSyncExternalStore(
+    subscribeVoices,
+    () => findDeviceVoice(lang) !== null,
+    () => false,
+  );
+  const available = recorded || hasDeviceVoice;
+  const [speaking, setSpeaking] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const activeUtterancesRef = useRef<Set<SpeechSynthesisUtterance>>(new Set());
+  const runRef = useRef(0);
+
+  const stop = useCallback(() => {
+    runRef.current += 1;
+    const audio = audioRef.current;
+    if (audio) {
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
+    }
+    activeUtterancesRef.current.clear();
+    if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.cancel();
+    setSpeaking(false);
+  }, []);
+
+  const speakWithDevice = useCallback(
+    (queue: string[], run: number) => {
+      const voice = findDeviceVoice(lang);
+      if (!voice) return false;
+      let index = 0;
+      const next = () => {
+        if (run !== runRef.current) return;
+        if (index >= queue.length) {
+          setSpeaking(false);
+          return;
+        }
+        const utterance = new SpeechSynthesisUtterance(spokenForm(lang, queue[index]));
+        activeUtterancesRef.current.add(utterance);
+        index += 1;
+        utterance.voice = voice;
+        utterance.lang = voice.lang;
+        utterance.rate = 0.95;
+        utterance.onend = () => {
+          activeUtterancesRef.current.delete(utterance);
+          next();
+        };
+        utterance.onerror = () => {
+          activeUtterancesRef.current.delete(utterance);
+          if (run === runRef.current) setSpeaking(false);
+        };
+        window.speechSynthesis.speak(utterance);
+      };
+      setSpeaking(true);
+      next();
+      return true;
+    },
+    [lang],
+  );
+
+  const speak = useCallback(
+    (parts: string[]) => {
+      const queue = parts.map(normaliseSegment).filter(Boolean);
+      if (!queue.length) return;
+      stop();
+      const run = runRef.current;
+      if (!isVoiceLang(lang) || !hasClips(lang, queue)) {
+        speakWithDevice(queue, run);
+        return;
+      }
+      // A fresh element per reading: no stale handlers from a reading that was stopped.
+      const audio = new Audio();
+      audio.preload = "auto";
+      audioRef.current = audio;
+      let index = 0;
+      const playNext = () => {
+        if (run !== runRef.current) return;
+        if (index >= queue.length) {
+          setSpeaking(false);
+          return;
+        }
+        audio.src = segmentUrl(lang, queue[index]);
+        index += 1;
+        audio.play().catch(() => {
+          if (run === runRef.current) setSpeaking(false);
+        });
+      };
+      audio.onended = playNext;
+      audio.onerror = () => {
+        if (run === runRef.current) setSpeaking(false);
+      };
+      setSpeaking(true);
+      playNext();
+    },
+    [lang, stop, speakWithDevice],
+  );
+
+  // Never keep talking after the person leaves the page or changes language.
+  useEffect(() => stop, [stop, lang]);
+
+  return { available, speaking, speak, stop };
+}

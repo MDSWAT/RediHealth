@@ -176,6 +176,11 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
   if (printing) return <PatientPrintReport patient={patient} status={patient.status} treatmentPlan={treatment} followups={followups} photos={photos} onClose={() => setPrinting(false)} />;
   const statusLabel = patient.status === "active" ? fields.activeCare : patient.status === "inactive" ? fields.inactive : fields.archived;
   const priorityLabel = patient.priority === "critical" ? fields.pCritical : patient.priority === "high" ? fields.pHigh : patient.priority === "low" ? fields.pLow : fields.pModerate;
+  const formatDay = (iso?: string | null) => {
+    if (!iso) return "";
+    const date = new Date(/^\d{4}-\d{2}-\d{2}$/.test(iso) ? `${iso}T12:00:00` : iso);
+    return Number.isNaN(date.getTime()) ? iso : date.toLocaleDateString(langToLocale[lang], { day: "numeric", month: "short", year: "numeric" });
+  };
   const careTeam = (patient.assigned_worker_names?.length ? patient.assigned_worker_names : [patient.assigned_worker_name || ""])
     .map((name) => name.trim()).filter(Boolean);
   return <div className="space-y-5">
@@ -191,7 +196,7 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
                 <a className="text-primary" href={`tel:${patient.phone}`}>{patient.phone}</a>
                 <a className="min-w-0 break-all text-primary" href={`mailto:${patient.email}`}>{patient.email}</a>
               </div>
-              {patient.date_of_birth && <p>{fields.dob}: {patient.date_of_birth}</p>}
+              {patient.date_of_birth && <p>{fields.dob}: {formatDay(patient.date_of_birth)}</p>}
               {patient.address && <p className="break-words">{patient.address}</p>}
             </div>
             <p className="mt-2 text-sm text-muted-foreground">#{patient.id} · {statusLabel} · {priorityLabel}</p>
@@ -214,7 +219,7 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
             <section className="crm-card">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <h2 className="!mb-0">{t.careTeam}</h2>
-                <span className="rounded-full bg-primary-soft px-2.5 py-1 text-xs font-semibold text-primary">{careTeam.length}</span>
+                <span className="rounded-md bg-primary-soft px-2.5 py-1 text-xs font-semibold text-primary">{careTeam.length}</span>
               </div>
               {careTeam.length ? <ul aria-label={t.careTeam} className="space-y-2">
                 {careTeam.map((name, index) => <li key={`${name}:${index}`} className="flex items-center gap-3 rounded-xl border border-border bg-muted/30 p-3">
@@ -227,7 +232,7 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
             </section>
             <section className="crm-card"><h2>{t.nextFollowup}</h2>{next ? <><p className="font-medium">{next.title}</p><p className="mt-2 text-sm text-muted-foreground">{followupLabel(next, langToLocale[lang], t.allDay)}</p>{next.notes && <p className="mt-3 text-sm">{next.notes}</p>}{next.meeting_id && <Link className="crm-button mt-4" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${next.meeting_id}`, lang)}>{t.join}</Link>}<button className="crm-button mt-4" disabled={saving} onClick={() => setSelectedFollowup(next)}>{t.markComplete}</button></> : <p className="text-sm text-muted-foreground">{t.noFollowup}</p>}</section>
           </div>
-          <div className="space-y-5"><section className="crm-card"><h2>{t.condition}</h2><p className="whitespace-pre-wrap text-sm leading-relaxed">{patient.condition_notes || "—"}</p><div className="mt-5 border-t border-border pt-4"><h2>{treatmentTranslations[lang].title} ({treatmentEntries.length})</h2>{treatmentEntries.slice(0, 3).map((entry) => <div key={entry.id} className="mt-3 text-sm"><p className="font-medium">{entry.title || treatmentTranslations[lang].legacy}</p><p className="text-xs text-muted-foreground">{entry.start_date ? `${entry.start_date} - ${entry.end_date}` : treatmentTranslations[lang].undated}</p><p className="line-clamp-2 text-muted-foreground">{entry.diagnosis || entry.care_instructions}</p></div>)}<button className="mt-3 text-sm font-medium text-primary" onClick={() => setTab("carePlan")}>{t.carePlan} →</button></div></section><PatientTimelineTab patient={patient} followups={followups} photos={photos} compact /></div>
+          <div className="space-y-5"><section className="crm-card"><h2>{t.condition}</h2><p className="whitespace-pre-wrap text-sm leading-relaxed">{patient.condition_notes || "—"}</p><div className="mt-5 border-t border-border pt-4"><h2>{treatmentTranslations[lang].title} ({treatmentEntries.length})</h2>{treatmentEntries.slice(0, 3).map((entry) => <div key={entry.id} className="mt-3 text-sm"><p className="font-medium">{entry.title || treatmentTranslations[lang].legacy}</p><p className="text-xs text-muted-foreground">{entry.start_date ? `${formatDay(entry.start_date)} – ${formatDay(entry.end_date)}` : treatmentTranslations[lang].undated}</p><p className="line-clamp-2 text-muted-foreground">{entry.diagnosis || entry.care_instructions}</p></div>)}<button className="mt-3 text-sm font-medium text-primary" onClick={() => setTab("carePlan")}>{t.carePlan} →</button></div></section><PatientTimelineTab patient={patient} followups={followups} photos={photos} compact /></div>
         </div>
         <section className="crm-card"><div className="mb-3 flex flex-wrap items-center justify-between gap-3"><h2>{t.upcoming}</h2><button className="crm-button" onClick={() => setScheduling(true)}>{t.schedule}</button></div>{upcoming.length ? upcoming.map((item) => <div key={item.id} className="flex flex-wrap items-center justify-between gap-3 border-t border-border py-4"><div><p className="font-medium text-sm">{item.title}</p><p className="mt-1 text-sm text-muted-foreground">{followupLabel(item, langToLocale[lang], t.allDay)}</p></div><div className="flex gap-2">{item.meeting_id && <Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${item.meeting_id}`, lang)}>{t.join}</Link>}<button className="crm-button" disabled={saving} onClick={() => setSelectedFollowup(item)}>{t.markComplete}</button></div></div>) : <p className="text-sm text-muted-foreground">{t.noFollowup}</p>}</section>
       </>}

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import { ClipboardCheckIcon, LockIcon } from "@/components/ui/icons";
+import { CheckCircleIcon, LockIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Translations } from "@/lib/i18n/translations";
 import { isValidEmail } from "@/lib/text";
@@ -73,6 +73,13 @@ export function RequestHelpForm({
   const [submitted, setSubmitted] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
+
+  // After sending, move focus to the confirmation so it is announced and in view.
+  useEffect(() => {
+    if (submitted) successHeadingRef.current?.focus();
+  }, [submitted]);
 
   function update<K extends keyof Fields>(key: K, value: string) {
     setValues((prev) => ({ ...prev, [key]: value }));
@@ -90,6 +97,11 @@ export function RequestHelpForm({
     setCountyError(missingCounty);
     setConsentAttempted(true);
     if (Object.keys(nextErrors).length !== 0 || missingCounty || !privacyConsent) {
+      // Take the reader to the first field that needs attention, in form order.
+      const firstInvalid = missingCounty
+        ? "county"
+        : (["phone", "email", "description"] as const).find((key) => nextErrors[key]) ?? "privacyConsent";
+      formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
       return;
     }
 
@@ -102,11 +114,12 @@ export function RequestHelpForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...values, country, county, privacyConsent, captchaToken }),
       });
-      const result = (await response.json()) as { error?: string };
       if (response.ok) {
-      setSubmitted(true);
+        setSubmitted(true);
       } else {
-        setSubmissionError(result.error || form.genericError);
+        // The API answers in English; the fields were already checked here, so show the
+        // reader's own-language message rather than leaking server text.
+        setSubmissionError(form.genericError);
       }
     } catch (error) {
       setSubmissionError(captchaErrorMessage(error, form.genericError));
@@ -117,11 +130,13 @@ export function RequestHelpForm({
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-border bg-card p-8 sm:p-10">
-        <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-soft text-primary">
-          <ClipboardCheckIcon className="h-6 w-6" />
-        </span>
-        <h2 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
+      <div className="fhs-enter rounded-2xl border border-border bg-card p-6 sm:p-10">
+        <CheckCircleIcon className="h-7 w-7 text-live-sage" aria-hidden="true" />
+        <h2
+          ref={successHeadingRef}
+          tabIndex={-1}
+          className="mt-4 text-2xl font-semibold tracking-tight text-foreground focus:outline-none"
+        >
           {form.successTitle}
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">
@@ -131,7 +146,7 @@ export function RequestHelpForm({
           {form.successNotice}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href="/">{form.backHome}</Button>
+          <Button href={withLangPrefix("/", lang)}>{form.backHome}</Button>
           <Button
             variant="outline"
             onClick={() => {
@@ -152,14 +167,15 @@ export function RequestHelpForm({
 
   return (
     <form
+      ref={formRef}
       noValidate
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-border bg-card p-8 sm:p-10"
+      className="rounded-2xl border border-border bg-card p-5 sm:p-10"
     >
       {submissionError ? (
         <p
           role="alert"
-          className="mb-6 rounded-lg bg-primary-soft px-4 py-3 text-sm leading-relaxed text-foreground"
+          className="fhs-fade mb-6 rounded-lg border border-primary/20 bg-primary-soft px-4 py-3 text-sm leading-relaxed text-foreground"
         >
           {submissionError}
         </p>
@@ -327,7 +343,7 @@ export function RequestHelpForm({
         </div>
 
         <div className="flex items-start gap-2.5 rounded-lg bg-muted px-4 py-3">
-          <LockIcon className="mt-0.5 h-5 w-5 flex-none text-primary" />
+          <LockIcon className="mt-0.5 h-5 w-5 flex-none text-muted-foreground" aria-hidden="true" />
           <p className="text-sm leading-relaxed text-muted-foreground">
             {form.privacyNote}
           </p>
@@ -342,7 +358,8 @@ export function RequestHelpForm({
               checked={privacyConsent}
               onChange={(event) => setPrivacyConsent(event.target.checked)}
               aria-invalid={consentAttempted && !privacyConsent}
-              className="mt-1 h-4 w-4 flex-none rounded border-border text-primary focus:ring-primary"
+              aria-describedby={consentAttempted && !privacyConsent ? "consent-error" : undefined}
+              className="mt-1 h-4 w-4 flex-none rounded border-border accent-primary"
             />
             <span>
               {form.privacyConsent}{" "}
@@ -352,7 +369,7 @@ export function RequestHelpForm({
             </span>
           </label>
           {consentAttempted && !privacyConsent ? (
-            <p className="mt-1.5 text-sm text-muted-foreground">{form.privacyConsentRequired}</p>
+            <p id="consent-error" className="mt-1.5 text-sm text-primary">{form.privacyConsentRequired}</p>
           ) : null}
         </div>
 

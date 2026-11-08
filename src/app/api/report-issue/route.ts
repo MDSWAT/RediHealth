@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
   if (!rateLimit.allowed) {
     return NextResponse.json(
-      { error: "Too many reports submitted. Please wait and try again." },
+      { error: "Too many reports. Wait a moment and try again." },
       { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
     );
   }
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
 
   if (message.length < 10) {
     return NextResponse.json(
-      { error: "Please include a short description of the issue (at least 10 characters)." },
+      { error: "Describe the problem in at least 10 characters." },
       { status: 400 },
     );
   }
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
   }
 
   if (email && !isValidEmail(email)) {
-    return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
+    return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
   }
 
   const { email: recipient } = await getAlertRecipient();
@@ -141,7 +141,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Failed to send issue report email", error);
     return NextResponse.json(
-      { error: "We could not submit your issue right now. Please try again shortly." },
+      { error: "Could not send your report. Try again in a few minutes." },
       { status: 503 },
     );
   }
