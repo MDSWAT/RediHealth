@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 vi.mock("@/lib/i18n/language-context", () => ({ useLanguage: () => ({ lang: "en" }) }));
 import { TreatmentPlansView } from "./TreatmentPlansView";
 import { treatmentTranslations } from "@/lib/i18n/treatment-translations";
+import { formatDateKey } from "@/lib/panel-dates";
 
 const t = treatmentTranslations.en;
 
@@ -18,8 +19,10 @@ describe("portal and printable treatment plans", () => {
     expect(html.match(/<article /g)).toHaveLength(2);
     expect(html).toContain("First course");
     expect(html).toContain("Second course");
-    expect(html).toContain("2026-10-01 - 2026-10-10");
-    expect(html).toContain("2026-10-05 - 2026-10-15");
+    // Dates print in the reader's language, not as raw ISO keys.
+    expect(html).not.toContain("2026-10-01 - 2026-10-10");
+    expect(html).toContain(`${formatDateKey("2026-10-01", "en-US")} – ${formatDateKey("2026-10-10", "en-US")}`);
+    expect(html).toContain(`${formatDateKey("2026-10-05", "en-US")} – ${formatDateKey("2026-10-15", "en-US")}`);
     expect(html).toContain("Therapy A");
     expect(html).toContain("Therapy B");
     expect(html).toContain("Prescription A");

@@ -70,7 +70,6 @@ export type Translations = {
         actionHref: string;
       }[];
       doctorPrompt: string;
-      doctorScheduleCta: string;
       doctorOnDutyCta: string;
       backButton: string;
       reassurance: string;
@@ -137,7 +136,6 @@ export type Translations = {
       title: string;
       subtitle: string;
       viewAll: string;
-      topics: { title: string; description: string }[];
     };
     medicalAssistance: {
       title: string;
@@ -353,7 +351,6 @@ export type Translations = {
   newsRibbon: {
     ariaLabel: string;
     changeCountyTitle: string;
-    countyPrefix: string;
     changeLabel: string;
     noActiveAlerts: string;
     viewAllNews: string;
@@ -399,7 +396,6 @@ export type Translations = {
     cta: string;
   };
   newsPage: {
-    heroEyebrow: string;
     heroTitle: string;
     heroSubtitle: string;
     countyLabel: string;
@@ -418,7 +414,6 @@ export type Translations = {
     emptySubtitle: string;
     resetFilter: string;
     backToNews: string;
-    verifiedByDoctor: string;
     listenNarration: string;
     playAudio: string;
     pauseAudio: string;
@@ -430,7 +425,6 @@ export type Translations = {
     saveSelection: string;
   };
   medicOnlinePage: {
-    heroEyebrow: string;
     heroTitle: string;
     heroSubtitle: string;
     cardOnCallTitle: string;
@@ -442,9 +436,6 @@ export type Translations = {
     cardPortalTitle: string;
     cardPortalSubtitle: string;
     cardPortalAction: string;
-    onCallBannerActive: string;
-    onCallBannerDoctor: string;
-    onCallBannerConnect: string;
     bookingTitle: string;
     bookingSubtitle: string;
     backToDoctorOnline: string;
@@ -606,7 +597,6 @@ export const translations: Record<Lang, Translations> = {
           },
         ],
         doctorPrompt: "Do you want to talk to a doctor online?",
-        doctorScheduleCta: "Book a video call",
         doctorOnDutyCta: "Talk to the on-call doctor",
         backButton: "Back to choices",
         reassurance: "Confidential. No account needed.",
@@ -647,7 +637,7 @@ export const translations: Record<Lang, Translations> = {
       col1Link3: "Check your symptoms",
       col1Link4: "Local news and health alerts",
       col2Heading: "Clinical services",
-      col2Link1: "Online doctor (video consultations)",
+      col2Link1: "Talk to a doctor online",
       col2Link2: "On-call doctor appointments",
       col2Link3: "Find a clinic or hospital",
       col2Link4: "My account and prescriptions",
@@ -706,17 +696,7 @@ export const translations: Record<Lang, Translations> = {
       healthTopics: {
         title: "Take care of your health",
         subtitle: "Small steps you take today can lower your health risks over time.",
-        viewAll: "View all health topics",
-        topics: [
-          { title: "Heart health", description: "Simple habits that support a healthy heart and blood pressure." },
-          { title: "Diabetes", description: "Understand risk factors and everyday ways to stay in balance." },
-          { title: "Healthy eating", description: "Practical, affordable food choices for better wellbeing." },
-          { title: "Physical activity", description: "Easy ways to move more, whatever your starting point." },
-          { title: "Mental wellbeing", description: "Care for your mind and know when to reach out for support." },
-          { title: "Smoking", description: "What you gain by quitting, and steps that help you succeed." },
-          { title: "Preventive screening", description: "Check-ups that can catch problems early, before symptoms." },
-          { title: "Women's health", description: "Guidance across different life stages and health needs." },
-        ],
+        viewAll: "See all health guides",
       },
       medicalAssistance: {
         title: "We help you reach a doctor",
@@ -748,8 +728,7 @@ export const translations: Record<Lang, Translations> = {
         commitments: [
           { title: "Free for everyone", description: "You pay nothing. Anyone can use it." },
           { title: "Your data stays private", description: "We look after your information and do not make it public." },
-          { title: "Plain language", description: "We write short and avoid hard words." },
-          { title: "Checked by specialists", description: "Doctors and other health specialists check the information." },
+          { title: "Plain language", description: "We keep it short and avoid hard words." },
         ],
       },
       emergencyNotice: {
@@ -779,7 +758,7 @@ export const translations: Record<Lang, Translations> = {
         privacyPolicyLabel: "Privacy Policy",
         privacyConsentRequired: "Tick the box to agree to the Privacy Policy.",
         errorCounty: "Choose your county.",
-        submitting: "Sending request...",
+        submitting: "Sending…",
         submit: "Send request",
         genericError: "Your request was not sent. Try again.",
         errorPhone: "Enter a phone number where we can reach you.",
@@ -841,7 +820,7 @@ export const translations: Record<Lang, Translations> = {
     findHelpPage: {
       heroTitle: "Find medical help",
       heroParagraph: "See health services near you on the map. Tap a place to see its address and phone number.",
-      listTitle: "Clinics and hospitals",
+      listTitle: "Pharmacies, clinics and hospitals",
       listSubtitle: "Tap a place to see it on the map.",
       loadingMap: "Loading map…",
       mapAttribution: "Map data © OpenStreetMap contributors.",
@@ -1005,7 +984,6 @@ export const translations: Record<Lang, Translations> = {
     newsRibbon: {
       ariaLabel: "Local news and health alerts",
       changeCountyTitle: "Change county",
-      countyPrefix: "County",
       changeLabel: "(change)",
       noActiveAlerts: "No alerts right now",
       viewAllNews: "See all news",
@@ -1024,7 +1002,7 @@ export const translations: Record<Lang, Translations> = {
     },
     quiz: {
       sectionTitle: "True or false",
-      sectionSubtitle: "Much health information spreads by word of mouth. Find out what doctors actually say.",
+      sectionSubtitle: "Much health information spreads by word of mouth. Here is what is true and what is not.",
       filterAriaLabel: "Filter myths by category",
       audioNarratorLabel: "Listen to the question and explanation",
       trueButton: "True",
@@ -1047,13 +1025,12 @@ export const translations: Record<Lang, Translations> = {
     },
     mediatorBand: {
       question: "Are you a community health mediator?",
-      description: "Access dedicated tools for field visits, guided triage, and records of supported families.",
+      description: "Tools for field visits, guided triage and records of the families you support.",
       cta: "Open the mediator module",
     },
     newsPage: {
-      heroEyebrow: "News",
       heroTitle: "Health news and local alerts",
-      heroSubtitle: "Checked by doctors, for your area.",
+      heroSubtitle: "Health alerts, mobile clinics and vaccination campaigns in your area.",
       countyLabel: "County:",
       allCounties: "All counties",
       categories: {
@@ -1070,7 +1047,6 @@ export const translations: Record<Lang, Translations> = {
       emptySubtitle: "Choose another county or see news for the whole country.",
       resetFilter: "See all news",
       backToNews: "Back to news",
-      verifiedByDoctor: "Checked by a doctor",
       listenNarration: "Listen to a simple summary",
       playAudio: "Listen",
       pauseAudio: "Pause",
@@ -1082,22 +1058,18 @@ export const translations: Record<Lang, Translations> = {
       saveSelection: "Save",
     },
     medicOnlinePage: {
-      heroEyebrow: "Online doctor",
       heroTitle: "Talk to a doctor from home",
-      heroSubtitle: "No queues and no long trips. The doctor listens on video or phone and tells you what to do.",
+      heroSubtitle: "No queues and no long trips. The doctor listens to you on the phone and tells you what to do.",
       cardOnCallTitle: "Talk to the on-call doctor now",
       cardOnCallSubtitle: "You usually wait less than 10 minutes",
       cardOnCallAction: "Enter the waiting room",
-      cardBookingTitle: "Book a video consultation",
+      cardBookingTitle: "Book a call with a doctor",
       cardBookingSubtitle: "Pick a day and time",
       cardBookingAction: "Book now",
       cardPortalTitle: "My medical record",
       cardPortalSubtitle: "See prescriptions, visit notes and the doctor's advice",
       cardPortalAction: "Open my record",
-      onCallBannerActive: "The on-call doctor can see you now",
-      onCallBannerDoctor: "Family doctor on duty",
-      onCallBannerConnect: "Join from your browser",
-      bookingTitle: "Book an online consultation",
+      bookingTitle: "Book a call with a doctor",
       bookingSubtitle: "Pick a day and time, for you or someone in your family. It is free and you talk on your phone.",
       backToDoctorOnline: "Back to Online doctor",
       backToTelemed: "Back",
@@ -1149,7 +1121,7 @@ export const translations: Record<Lang, Translations> = {
       title: "Open your medical record",
       subtitle: "Enter the phone number you used to book. We'll text you a code.",
       phoneLabel: "Phone number",
-      phonePlaceholder: "07xxxxxxxx",
+      phonePlaceholder: "0721 000 000",
       sendCode: "Send code",
       codeLabel: "4-digit code from the text message",
       verifyCode: "Verify code",
@@ -1256,7 +1228,6 @@ export const translations: Record<Lang, Translations> = {
           },
         ],
         doctorPrompt: "Vrei să vorbești cu un medic online?",
-        doctorScheduleCta: "Programează un apel video",
         doctorOnDutyCta: "Vorbește cu medicul de gardă",
         backButton: "Înapoi la opțiuni",
         reassurance: "Confidențial. Nu ai nevoie de cont.",
@@ -1297,7 +1268,7 @@ export const translations: Record<Lang, Translations> = {
       col1Link3: "Verifică simptomele",
       col1Link4: "Știri locale și alerte de sănătate",
       col2Heading: "Servicii clinice",
-      col2Link1: "Medic online (consultații video)",
+      col2Link1: "Vorbește cu un medic online",
       col2Link2: "Programare la medic de gardă",
       col2Link3: "Găsește dispensar sau spital",
       col2Link4: "Contul meu și rețete",
@@ -1356,17 +1327,7 @@ export const translations: Record<Lang, Translations> = {
       healthTopics: {
         title: "Ai grijă de sănătatea ta",
         subtitle: "Pașii mici pe care îi faci azi îți pot reduce riscurile de sănătate pe termen lung.",
-        viewAll: "Vezi toate subiectele de sănătate",
-        topics: [
-          { title: "Sănătatea inimii", description: "Obiceiuri simple care susțin o inimă și o tensiune arterială sănătoase." },
-          { title: "Diabet", description: "Înțelege factorii de risc și cum îți păstrezi echilibrul de la o zi la alta." },
-          { title: "Alimentație sănătoasă", description: "Alegeri practice și accesibile la masă, pentru o stare mai bună." },
-          { title: "Activitate fizică", description: "Moduri simple de a te mișca mai mult, oricare ar fi punctul de plecare." },
-          { title: "Bunăstare mentală", description: "Ai grijă de mintea ta și află când să ceri sprijin." },
-          { title: "Fumatul", description: "Ce câștigi când renunți și pașii care te ajută să reușești." },
-          { title: "Screening preventiv", description: "Controale care pot depista probleme din timp, înainte de apariția simptomelor." },
-          { title: "Sănătatea femeii", description: "Îndrumări pentru diferite etape de viață și nevoi de sănătate." },
-        ],
+        viewAll: "Vezi toate ghidurile de sănătate",
       },
       medicalAssistance: {
         title: "Te ajutăm să ajungi la medic",
@@ -1398,7 +1359,6 @@ export const translations: Record<Lang, Translations> = {
           { title: "Gratuit pentru toți", description: "Nu plătești nimic. Oricine îl poate folosi." },
           { title: "Datele tale sunt private", description: "Avem grijă de informațiile tale și nu le facem publice." },
           { title: "Limbaj simplu", description: "Scriem scurt și fără cuvinte grele." },
-          { title: "Verificat de specialiști", description: "Informațiile sunt verificate de medici și alți specialiști în sănătate." },
         ],
       },
       emergencyNotice: {
@@ -1428,7 +1388,7 @@ export const translations: Record<Lang, Translations> = {
         privacyPolicyLabel: "Politica de confidențialitate",
         privacyConsentRequired: "Bifează că ești de acord cu Politica de confidențialitate.",
         errorCounty: "Alege județul.",
-        submitting: "Se trimite cererea...",
+        submitting: "Se trimite…",
         submit: "Trimite cererea",
         genericError: "Cererea nu s-a trimis. Încearcă din nou.",
         errorPhone: "Scrie un număr de telefon la care te putem găsi.",
@@ -1490,7 +1450,7 @@ export const translations: Record<Lang, Translations> = {
     findHelpPage: {
       heroTitle: "Găsește ajutor medical",
       heroParagraph: "Vezi pe hartă unitățile medicale din apropiere. Apasă pe un loc ca să vezi adresa și telefonul.",
-      listTitle: "Unități medicale",
+      listTitle: "Farmacii, clinici și spitale",
       listSubtitle: "Apasă pe un loc ca să-l vezi pe hartă.",
       loadingMap: "Se încarcă harta…",
       mapAttribution: "Date hartă © contribuitori OpenStreetMap.",
@@ -1643,18 +1603,17 @@ export const translations: Record<Lang, Translations> = {
       dialerGateTitle: "Apel la 112",
       closeWindowAria: "Închide fereastra",
       dialerNotice: "Urmează să suni la 112. Se deschide tastatura telefonului. Apelul nu pornește singur. Apasă tu butonul verde de apel.",
-      dialerFreeNote: "Apelul este gratuit în orice rețea din România.",
+      dialerFreeNote: "Apelul este gratuit din orice rețea mobilă.",
       openDialerButton: "Formează 112",
       cancelButton: "Anulează",
       desktopDialTitle: "Sună la 112 de pe telefon",
       desktopDialSubtitle: "Formează numărul de pe mobil sau de pe telefonul fix.",
-      desktopFreeNote: "Apelul este gratuit în orice rețea din România, chiar fără credit sau cartelă SIM.",
+      desktopFreeNote: "Apelul este gratuit din orice rețea, chiar fără credit sau cartelă SIM.",
       desktopRuralNote: "Dacă stai într-un sat izolat și ambulanța poate întârzia, roagă un vecin cu mașină să te ducă la cea mai apropiată Unitate de Primiri Urgențe (UPU).",
     },
     newsRibbon: {
       ariaLabel: "Știri locale și alerte de sănătate",
       changeCountyTitle: "Schimbă județul",
-      countyPrefix: "Județul",
       changeLabel: "(schimbă)",
       noActiveAlerts: "Nicio alertă acum",
       viewAllNews: "Vezi toate știrile",
@@ -1673,7 +1632,7 @@ export const translations: Record<Lang, Translations> = {
     },
     quiz: {
       sectionTitle: "Adevărat sau fals",
-      sectionSubtitle: "Multe informații despre sănătate se transmit din om în om. Află ce spun medicii cu adevărat.",
+      sectionSubtitle: "Multe informații despre sănătate se transmit din om în om. Aici afli ce e adevărat și ce nu.",
       filterAriaLabel: "Filtrează miturile după categorie",
       audioNarratorLabel: "Ascultă întrebarea și explicația",
       trueButton: "Adevărat",
@@ -1696,13 +1655,12 @@ export const translations: Record<Lang, Translations> = {
     },
     mediatorBand: {
       question: "Ești mediator sanitar în comunitate?",
-      description: "Accesează instrumentele dedicate pentru vizite pe teren, triaj ghidat și evidența familiilor sprijinite.",
+      description: "Instrumente pentru vizitele pe teren, triaj ghidat și evidența familiilor pe care le sprijini.",
       cta: "Deschide modulul mediatorilor",
     },
     newsPage: {
-      heroEyebrow: "Știri",
       heroTitle: "Știri de sănătate și alerte locale",
-      heroSubtitle: "Verificate de medici, pentru zona ta.",
+      heroSubtitle: "Alerte de sănătate, caravane medicale și campanii de vaccinare din zona ta.",
       countyLabel: "Județul:",
       allCounties: "Toate județele",
       categories: {
@@ -1719,7 +1677,6 @@ export const translations: Record<Lang, Translations> = {
       emptySubtitle: "Alege alt județ sau vezi știrile din toată țara.",
       resetFilter: "Vezi toate știrile",
       backToNews: "Înapoi la știri",
-      verifiedByDoctor: "Verificat de medic",
       listenNarration: "Ascultă știrea explicată simplu",
       playAudio: "Ascultă",
       pauseAudio: "Pauză",
@@ -1731,22 +1688,18 @@ export const translations: Record<Lang, Translations> = {
       saveSelection: "Salvează",
     },
     medicOnlinePage: {
-      heroEyebrow: "Medic online",
       heroTitle: "Vorbește cu un medic de acasă",
-      heroSubtitle: "Nu stai la coadă și nu faci drumuri. Medicul te ascultă pe video sau la telefon și îți spune ce să faci.",
+      heroSubtitle: "Nu stai la coadă și nu faci drumuri. Medicul te ascultă la telefon și îți spune ce să faci.",
       cardOnCallTitle: "Vorbește acum cu medicul de gardă",
       cardOnCallSubtitle: "De obicei aștepți sub 10 minute",
       cardOnCallAction: "Intră în sala de așteptare",
-      cardBookingTitle: "Programează o consultație video",
+      cardBookingTitle: "Programează un apel cu medicul",
       cardBookingSubtitle: "Alege ziua și ora",
       cardBookingAction: "Programează-te",
       cardPortalTitle: "Dosarul meu medical",
       cardPortalSubtitle: "Vezi rețetele, fișele de consultație și sfaturile medicului",
       cardPortalAction: "Deschide dosarul",
-      onCallBannerActive: "Medicul de gardă te poate vedea acum",
-      onCallBannerDoctor: "Medic de familie de serviciu",
-      onCallBannerConnect: "Intri direct din browser",
-      bookingTitle: "Programează o consultație online",
+      bookingTitle: "Programează un apel cu medicul",
       bookingSubtitle: "Alege ziua și ora, pentru tine sau pentru cineva din familie. Este gratuit și vorbești de pe telefon.",
       backToDoctorOnline: "Înapoi la Medic online",
       backToTelemed: "Înapoi",
@@ -1798,7 +1751,7 @@ export const translations: Record<Lang, Translations> = {
       title: "Intră în dosarul medical",
       subtitle: "Scrie numărul de telefon de la programare. Îți trimitem un cod prin SMS.",
       phoneLabel: "Număr de telefon",
-      phonePlaceholder: "07xxxxxxxx",
+      phonePlaceholder: "0721 000 000",
       sendCode: "Trimite codul",
       codeLabel: "Codul primit prin SMS (4 cifre)",
       verifyCode: "Verifică codul",
@@ -1829,7 +1782,7 @@ export const translations: Record<Lang, Translations> = {
       navMedicSub: "Takime dhe mjeku kujdestar",
       navStiri: "Lajme",
       navStiriSub: "Njoftime lokale dhe karvane mjekësore",
-      forMediators: "Për ndërmjetësit",
+      forMediators: "Për mediatorët",
       myAccount: "Llogaria ime",
       medicalPanel: "Paneli mjekësor",
       startHere: "Fillo këtu",
@@ -1839,8 +1792,8 @@ export const translations: Record<Lang, Translations> = {
       emergencyCallPrompt: "Telefono menjëherë 112",
       call112: "Telefono 112",
       mediatorProfessionals: "Për profesionistët",
-      mediatorDrawerDescription: "Je ndërmjetës shëndetësor? Këtu gjen modulin e terrenit dhe regjistrin e familjeve.",
-      enterMediatorModule: "Hap modulin e ndërmjetësve",
+      mediatorDrawerDescription: "Je mediator shëndetësor? Këtu gjen modulin e terrenit dhe regjistrin e familjeve.",
+      enterMediatorModule: "Hap modulin e mediatorëve",
     },
     hero: {
       trustBadge: "Shërbim publik falas, i bërë së bashku me komunitetet",
@@ -1905,7 +1858,6 @@ export const translations: Record<Lang, Translations> = {
           },
         ],
         doctorPrompt: "Do të flasësh me një mjek online?",
-        doctorScheduleCta: "Cakto një telefonatë video",
         doctorOnDutyCta: "Fol me mjekun kujdestar",
         backButton: "Kthehu te mundësitë",
         reassurance: "Konfidenciale. Nuk të duhet llogari.",
@@ -1938,23 +1890,23 @@ export const translations: Record<Lang, Translations> = {
       },
       brandDescription:
         "RediHealth i ndihmon njerëzit në komunitetet në nevojë të kuptojnë shëndetin e tyre, të dinë çfarë të bëjnë dhe të arrijnë te një mjek.",
-      mediatorPartnershipBadge: "Partneritet me rrjetin e ndërmjetësve shëndetësorë",
+      mediatorPartnershipBadge: "Partneritet me rrjetin e mediatorëve shëndetësorë",
       whoStandardBadge: "Shërbim falas sipas standardeve të OBSH-së",
       col1Heading: "Informacion mjekësor",
       col1Link1: "Udhëzues shëndetësorë",
       col1Link2: "Kërko udhëzim",
       col1Link3: "Kontrollo simptomat",
-      col1Link4: "Lajme lokale dhe paralajmërime",
+      col1Link4: "Lajme lokale dhe njoftime shëndetësore",
       col2Heading: "Shërbime klinike",
-      col2Link1: "Mjek online (konsulta video)",
+      col2Link1: "Fol me një mjek online",
       col2Link2: "Takim me mjekun kujdestar",
       col2Link3: "Gjej qendër shëndetësore ose spital",
       col2Link4: "Llogaria ime dhe recetat",
-      col3Heading: "Për ndërmjetësit dhe mjekët",
-      col3Link1: "Moduli i ndërmjetësve shëndetësorë",
+      col3Heading: "Për mediatorët dhe mjekët",
+      col3Link1: "Moduli i mediatorëve shëndetësorë",
       col3Link2: "Paneli i terrenit",
       col3Link3: "Portali për mjekët",
-      col3Link4: "Si punojnë bashkë mjeku dhe ndërmjetësi",
+      col3Link4: "Si punojnë bashkë mjeku dhe mediatori",
       col4Heading: "Rreth nesh dhe kushtet",
       col4Link1: "Rreth RediHealth",
       col4Link2: "Kontakt dhe raportime",
@@ -2000,22 +1952,12 @@ export const translations: Record<Lang, Translations> = {
             href: "/find-help",
           },
         ],
-        mediatorBand: { text: "Je ndërmjetës shëndetësor?", cta: "Hap modulin e ndërmjetësve" },
+        mediatorBand: { text: "Je mediator shëndetësor?", cta: "Hap modulin e mediatorëve" },
       },
       healthTopics: {
         title: "Kujdesu për shëndetin tënd",
         subtitle: "Hapat e vegjël që bën sot mund të ulin rreziqet për shëndetin tënd me kalimin e kohës.",
-        viewAll: "Shiko të gjitha temat shëndetësore",
-        topics: [
-          { title: "Shëndeti i zemrës", description: "Zakone të thjeshta që mbështesin një zemër dhe presion gjaku të shëndetshëm." },
-          { title: "Diabeti", description: "Kupto faktorët e rrezikut dhe mënyrat e përditshme për të ruajtur ekuilibrin." },
-          { title: "Ushqyerja e shëndetshme", description: "Zgjedhje ushqimore praktike dhe të përballueshme për mirëqenie më të mirë." },
-          { title: "Aktiviteti fizik", description: "Mënyra të thjeshta për të lëvizur më shumë, pavarësisht nga pikënisja jote." },
-          { title: "Mirëqenia mendore", description: "Kujdesu për mendjen tënde dhe mëso kur të kërkosh mbështetje." },
-          { title: "Duhani", description: "Çfarë fiton kur e lë duhanin dhe hapat që të ndihmojnë t'ia dalësh." },
-          { title: "Kontrollet parandaluese", description: "Kontrolle që mund të zbulojnë problemet herët, para simptomave." },
-          { title: "Shëndeti i gruas", description: "Udhëzime për faza të ndryshme jetësore dhe nevoja shëndetësore." },
-        ],
+        viewAll: "Shiko të gjithë udhëzuesit shëndetësorë",
       },
       medicalAssistance: {
         title: "Të ndihmojmë të arrish te mjeku",
@@ -2048,7 +1990,6 @@ export const translations: Record<Lang, Translations> = {
           { title: "Falas për të gjithë", description: "Nuk paguan asgjë. Çdokush mund ta përdorë." },
           { title: "Të dhënat e tua mbeten private", description: "Kujdesemi për informacionin tënd dhe nuk e bëjmë publik." },
           { title: "Gjuhë e thjeshtë", description: "Shkruajmë shkurt dhe pa fjalë të vështira." },
-          { title: "Kontrolluar nga specialistë", description: "Mjekët dhe specialistë të tjerë të shëndetit e kontrollojnë informacionin." },
         ],
       },
       emergencyNotice: {
@@ -2064,7 +2005,7 @@ export const translations: Record<Lang, Translations> = {
         countyLabel: "Qarku",
         selectCounty: "Zgjidh qarkun",
         fullNameLabel: "Emri i plotë",
-        fullNameOptional: "(opsionale)",
+        fullNameOptional: "(sipas dëshirës)",
         fullNamePlaceholder: "Emri yt",
         phoneLabel: "Numri i telefonit",
         phonePlaceholder: "p.sh. 067 123 4567",
@@ -2078,7 +2019,7 @@ export const translations: Record<Lang, Translations> = {
         privacyPolicyLabel: "Politikën e Privatësisë",
         privacyConsentRequired: "Shëno kutinë që pranon Politikën e Privatësisë.",
         errorCounty: "Zgjidh qarkun.",
-        submitting: "Duke dërguar kërkesën...",
+        submitting: "Po dërgohet…",
         submit: "Dërgo kërkesën",
         genericError: "Kërkesa nuk u dërgua. Provo përsëri.",
         errorPhone: "Shkruaj një numër telefoni ku mund të të gjejmë.",
@@ -2140,7 +2081,7 @@ export const translations: Record<Lang, Translations> = {
     findHelpPage: {
       heroTitle: "Gjej ndihmë mjekësore",
       heroParagraph: "Shiko në hartë shërbimet shëndetësore pranë teje. Prek një vend për të parë adresën dhe telefonin.",
-      listTitle: "Klinika dhe spitale",
+      listTitle: "Farmaci, klinika dhe spitale",
       listSubtitle: "Prek një vend për ta parë në hartë.",
       loadingMap: "Duke ngarkuar hartën…",
       mapAttribution: "Të dhënat e hartës © kontribuesit e OpenStreetMap.",
@@ -2190,7 +2131,7 @@ export const translations: Record<Lang, Translations> = {
       romanesGlossaryButton: "Fjalë mjekësore në Romanes",
       topicGrid: {
         eyebrow: "Kontrolluar nga mjekët",
-        searchPlaceholder: "Kërko një udhëzues ose simptomë",
+        searchPlaceholder: "Kërko një udhëzues",
         searchAriaLabel: "Kërko një udhëzues ose simptomë",
         clearSearchAriaLabel: "Pastro kërkimin",
         filterListAriaLabel: "Filtro udhëzuesit",
@@ -2200,7 +2141,7 @@ export const translations: Record<Lang, Translations> = {
         doctorValidatedBadge: "Kontrolluar nga mjeku",
         featuredRecommendationEyebrow: "Këshilla e mjekut",
         featuredRecommendationBody: "Matja periodike e tensionit dhe ulja e kripës parandalojnë mbi 80% të komplikimeve madhore kardiovaskulare.",
-        cardActionLabel: "Lexo ose dëgjo",
+        cardActionLabel: "Lexo udhëzuesin",
         emptyTitle: "Nuk gjetëm asnjë udhëzues",
         emptyDescription: "Provo një fjalë tjetër ose shiko të gjithë udhëzuesit.",
         emptyResetButton: "Shiko të gjithë udhëzuesit",
@@ -2290,7 +2231,7 @@ export const translations: Record<Lang, Translations> = {
       dispatcherImportantNote: "Qëndro në telefon derisa dispeçeri të thotë se mund ta mbyllësh. Ambulanca niset ndërkohë që flet.",
       freeServiceNotice: "Falas nga çdo telefon, edhe pa kredit",
       understandButton: "E kuptova",
-      dialerGateTitle: "Telefonatë në 112",
+      dialerGateTitle: "Thirrje në 112",
       closeWindowAria: "Mbyll dritaren",
       dialerNotice: "Do të telefonosh 112. Hapet tastiera e telefonit. Thirrja nuk fillon vetë. Shtyp ti butonin e gjelbër.",
       dialerFreeNote: "Telefonata është falas në çdo rrjet celular.",
@@ -2304,7 +2245,6 @@ export const translations: Record<Lang, Translations> = {
     newsRibbon: {
       ariaLabel: "Lajme lokale dhe paralajmërime shëndetësore",
       changeCountyTitle: "Ndrysho qarkun",
-      countyPrefix: "Qarku",
       changeLabel: "(ndrysho)",
       noActiveAlerts: "Nuk ka paralajmërime tani",
       viewAllNews: "Shiko të gjitha lajmet",
@@ -2323,7 +2263,7 @@ export const translations: Record<Lang, Translations> = {
     },
     quiz: {
       sectionTitle: "E vërtetë apo e rreme",
-      sectionSubtitle: "Shumë informacione shëndetësore kalojnë nga goja në gojë. Mëso çfarë thonë vërtet mjekët.",
+      sectionSubtitle: "Shumë informacione shëndetësore kalojnë nga goja në gojë. Këtu mëson çfarë është e vërtetë dhe çfarë jo.",
       filterAriaLabel: "Filtro mitet sipas kategorisë",
       audioNarratorLabel: "Dëgjo pyetjen dhe shpjegimin",
       trueButton: "E vërtetë",
@@ -2345,14 +2285,13 @@ export const translations: Record<Lang, Translations> = {
       nextMythAria: "Miti tjetër",
     },
     mediatorBand: {
-      question: "Je ndërmjetës shëndetësor në komunitet?",
-      description: "Përdor mjetet për vizitat në terren, triazhin e udhëhequr dhe regjistrin e familjeve që mbështet.",
-      cta: "Hap modulin e ndërmjetësve",
+      question: "Je mediator shëndetësor në komunitet?",
+      description: "Mjete për vizitat në terren, triazhin e udhëhequr dhe regjistrin e familjeve që mbështet.",
+      cta: "Hap modulin e mediatorëve",
     },
     newsPage: {
-      heroEyebrow: "Lajme",
       heroTitle: "Lajme për shëndetin dhe njoftime lokale",
-      heroSubtitle: "Të kontrolluara nga mjekët, për zonën tënde.",
+      heroSubtitle: "Njoftime shëndetësore, karvane mjekësore dhe fushata vaksinimi në zonën tënde.",
       countyLabel: "Qarku:",
       allCounties: "Të gjitha qarqet",
       categories: {
@@ -2369,34 +2308,29 @@ export const translations: Record<Lang, Translations> = {
       emptySubtitle: "Zgjidh një qark tjetër ose shiko lajmet për gjithë vendin.",
       resetFilter: "Shiko të gjitha lajmet",
       backToNews: "Kthehu te lajmet",
-      verifiedByDoctor: "Kontrolluar nga mjeku",
       listenNarration: "Dëgjo një përmbledhje të thjeshtë",
       playAudio: "Dëgjo",
       pauseAudio: "Ndalo",
       handoverTitle: "Ke nevojë për ndihmë mjekësore?",
-      handoverSubtitle: "Fol me një mjek online ose kërko ndihmë nga një ndërmjetës.",
+      handoverSubtitle: "Fol me një mjek online ose kërko ndihmë nga një mediator shëndetësor.",
       handoverTelemed: "Fol me një mjek",
-      handoverMediator: "Gjej një ndërmjetës shëndetësor",
+      handoverMediator: "Gjej një mediator shëndetësor",
       changeCounty: "Ndrysho qarkun",
       saveSelection: "Ruaj",
     },
     medicOnlinePage: {
-      heroEyebrow: "Mjek online",
       heroTitle: "Fol me një mjek nga shtëpia",
-      heroSubtitle: "Pa radhë dhe pa udhëtime të gjata. Mjeku të dëgjon me video ose telefon dhe të thotë çfarë të bësh.",
+      heroSubtitle: "Pa radhë dhe pa udhëtime të gjata. Mjeku të dëgjon në telefon dhe të thotë çfarë të bësh.",
       cardOnCallTitle: "Fol tani me mjekun kujdestar",
       cardOnCallSubtitle: "Zakonisht pret më pak se 10 minuta",
       cardOnCallAction: "Hyr në dhomën e pritjes",
-      cardBookingTitle: "Cakto një konsultë video",
+      cardBookingTitle: "Cakto një thirrje me mjekun",
       cardBookingSubtitle: "Zgjidh ditën dhe orën",
-      cardBookingAction: "Cakto takimin",
+      cardBookingAction: "Cakto thirrjen",
       cardPortalTitle: "Dosja ime mjekësore",
       cardPortalSubtitle: "Shiko recetat, shënimet e vizitave dhe këshillat e mjekut",
       cardPortalAction: "Hap dosjen",
-      onCallBannerActive: "Mjeku kujdestar mund të të shohë tani",
-      onCallBannerDoctor: "Mjek i familjes në shërbim",
-      onCallBannerConnect: "Hyr direkt nga shfletuesi",
-      bookingTitle: "Cakto një konsultë online",
+      bookingTitle: "Cakto një thirrje me mjekun",
       bookingSubtitle: "Zgjidh ditën dhe orën, për veten ose për dikë nga familja. Është falas dhe flet nga telefoni.",
       backToDoctorOnline: "Kthehu te Mjek online",
       backToTelemed: "Kthehu",
@@ -2412,10 +2346,10 @@ export const translations: Record<Lang, Translations> = {
       bandwidthAudioOnly: "Kalojmë vetëm me zë që të mos ndërpritet",
     },
     mediatorsPage: {
-      heroTitle: "Ndërmjetësit shëndetësorë",
-      heroSubtitle: "Një ndërmjetës shëndetësor të ndihmon me dokumentet e identitetit, regjistrimin te mjeku i familjes, vizitat në spital dhe trajtimet falas.",
-      requestHelpButton: "Kërko një ndërmjetës",
-      modalTitle: "Kërko një ndërmjetës në zonën tënde",
+      heroTitle: "Mediatorët shëndetësorë",
+      heroSubtitle: "Një mediator shëndetësor të ndihmon me dokumentet e identitetit, regjistrimin te mjeku i familjes, vizitat në spital dhe trajtimet falas.",
+      requestHelpButton: "Kërko një mediator",
+      modalTitle: "Kërko një mediator në zonën tënde",
       nameLabel: "Emri dhe mbiemri",
       phoneLabel: "Telefoni",
       countyLabel: "Qarku",
@@ -2448,7 +2382,7 @@ export const translations: Record<Lang, Translations> = {
       title: "Hyr në dosjen mjekësore",
       subtitle: "Shkruaj numrin e telefonit që përdore për takimin. Të dërgojmë një kod me SMS.",
       phoneLabel: "Numri i telefonit",
-      phonePlaceholder: "07xxxxxxxx",
+      phonePlaceholder: "0721 000 000",
       sendCode: "Dërgo kodin",
       codeLabel: "Kodi me 4 shifra nga SMS-ja",
       verifyCode: "Kontrollo kodin",
@@ -2555,7 +2489,6 @@ export const translations: Record<Lang, Translations> = {
           },
         ],
         doctorPrompt: "Vuoi parlare con un medico online?",
-        doctorScheduleCta: "Prenota una videochiamata",
         doctorOnDutyCta: "Parla con il medico di guardia",
         backButton: "Torna alle opzioni",
         reassurance: "Riservato. Non serve un account.",
@@ -2596,7 +2529,7 @@ export const translations: Record<Lang, Translations> = {
       col1Link3: "Controlla i sintomi",
       col1Link4: "Notizie locali e avvisi di salute",
       col2Heading: "Servizi clinici",
-      col2Link1: "Medico online (video-visita)",
+      col2Link1: "Parla con un medico online",
       col2Link2: "Prenotazione medico di guardia",
       col2Link3: "Trova ambulatorio o ospedale",
       col2Link4: "Il mio account e ricette",
@@ -2655,17 +2588,7 @@ export const translations: Record<Lang, Translations> = {
       healthTopics: {
         title: "Prenditi cura della tua salute",
         subtitle: "I piccoli passi che fai oggi possono ridurre nel tempo i rischi per la tua salute.",
-        viewAll: "Vedi tutti gli argomenti sanitari",
-        topics: [
-          { title: "Salute del cuore", description: "Abitudini semplici che favoriscono un cuore e una pressione sanguigna sani." },
-          { title: "Diabete", description: "Comprendi i fattori di rischio e i modi quotidiani per mantenere l'equilibrio." },
-          { title: "Alimentazione sana", description: "Scelte alimentari pratiche ed economiche per un benessere migliore." },
-          { title: "Attività fisica", description: "Modi semplici per muoverti di più, qualunque sia il tuo punto di partenza." },
-          { title: "Benessere mentale", description: "Prenditi cura della tua mente e sappi quando chiedere supporto." },
-          { title: "Fumo", description: "Cosa guadagni smettendo e i passi che ti aiutano a riuscirci." },
-          { title: "Screening preventivo", description: "Controlli che possono individuare i problemi precocemente, prima dei sintomi." },
-          { title: "Salute della donna", description: "Indicazioni per le diverse fasi della vita e i bisogni di salute." },
-        ],
+        viewAll: "Vedi tutte le guide alla salute",
       },
       medicalAssistance: {
         title: "Ti aiutiamo ad arrivare dal medico",
@@ -2697,8 +2620,7 @@ export const translations: Record<Lang, Translations> = {
         commitments: [
           { title: "Gratis per tutti", description: "Non paghi niente. Chiunque può usarlo." },
           { title: "I tuoi dati restano privati", description: "Abbiamo cura delle tue informazioni e non le rendiamo pubbliche." },
-          { title: "Parole semplici", description: "Scriviamo in breve e senza parole difficili." },
-          { title: "Controllato da specialisti", description: "Medici e altri specialisti della salute controllano le informazioni." },
+          { title: "Parole semplici", description: "Frasi brevi, senza parole difficili." },
         ],
       },
       emergencyNotice: {
@@ -2717,7 +2639,7 @@ export const translations: Record<Lang, Translations> = {
         fullNameOptional: "(facoltativo)",
         fullNamePlaceholder: "Il tuo nome",
         phoneLabel: "Numero di telefono",
-        phonePlaceholder: "es. 0123 456 789",
+        phonePlaceholder: "es. 333 123 4567",
         emailLabel: "Indirizzo email",
         emailPlaceholder: "tu@esempio.com",
         descriptionLabel: "Qual è il problema?",
@@ -2728,7 +2650,7 @@ export const translations: Record<Lang, Translations> = {
         privacyPolicyLabel: "l'Informativa sulla privacy",
         privacyConsentRequired: "Spunta la casella per accettare l'Informativa sulla privacy.",
         errorCounty: "Scegli la provincia.",
-        submitting: "Invio della richiesta...",
+        submitting: "Invio in corso…",
         submit: "Invia richiesta",
         genericError: "La richiesta non è partita. Riprova.",
         errorPhone: "Scrivi un numero di telefono a cui possiamo trovarti.",
@@ -2790,7 +2712,7 @@ export const translations: Record<Lang, Translations> = {
     findHelpPage: {
       heroTitle: "Trova assistenza medica",
       heroParagraph: "Guarda sulla mappa i servizi sanitari vicino a te. Tocca un luogo per vedere indirizzo e telefono.",
-      listTitle: "Ambulatori e ospedali",
+      listTitle: "Farmacie, ambulatori e ospedali",
       listSubtitle: "Tocca un luogo per vederlo sulla mappa.",
       loadingMap: "Caricamento mappa…",
       mapAttribution: "Dati mappa © collaboratori di OpenStreetMap.",
@@ -2954,7 +2876,6 @@ export const translations: Record<Lang, Translations> = {
     newsRibbon: {
       ariaLabel: "Notizie locali e avvisi di salute",
       changeCountyTitle: "Cambia provincia",
-      countyPrefix: "Provincia",
       changeLabel: "(cambia)",
       noActiveAlerts: "Nessun avviso adesso",
       viewAllNews: "Vedi tutte le notizie",
@@ -2973,7 +2894,7 @@ export const translations: Record<Lang, Translations> = {
     },
     quiz: {
       sectionTitle: "Vero o falso",
-      sectionSubtitle: "Molte informazioni sulla salute passano di bocca in bocca. Scopri cosa dicono realmente i medici.",
+      sectionSubtitle: "Molte informazioni sulla salute passano di bocca in bocca. Qui scopri cosa è vero e cosa no.",
       filterAriaLabel: "Filtra i miti per categoria",
       audioNarratorLabel: "Ascolta la domanda e la spiegazione",
       trueButton: "Vero",
@@ -2996,13 +2917,12 @@ export const translations: Record<Lang, Translations> = {
     },
     mediatorBand: {
       question: "Sei un mediatore sanitario nella comunità?",
-      description: "Accedi agli strumenti dedicati per visite sul campo, triage guidato e registro delle famiglie seguite.",
+      description: "Strumenti per le visite sul campo, il triage guidato e il registro delle famiglie che segui.",
       cta: "Apri il modulo per i mediatori",
     },
     newsPage: {
-      heroEyebrow: "Notizie",
       heroTitle: "Notizie sulla salute e avvisi locali",
-      heroSubtitle: "Controllate dai medici, per la tua zona.",
+      heroSubtitle: "Avvisi sanitari, ambulatori mobili e campagne di vaccinazione nella tua zona.",
       countyLabel: "Provincia:",
       allCounties: "Tutte le province",
       categories: {
@@ -3019,7 +2939,6 @@ export const translations: Record<Lang, Translations> = {
       emptySubtitle: "Scegli un'altra provincia o guarda le notizie di tutto il paese.",
       resetFilter: "Vedi tutte le notizie",
       backToNews: "Torna alle notizie",
-      verifiedByDoctor: "Controllato dal medico",
       listenNarration: "Ascolta un riassunto semplice",
       playAudio: "Ascolta",
       pauseAudio: "Pausa",
@@ -3031,22 +2950,18 @@ export const translations: Record<Lang, Translations> = {
       saveSelection: "Salva",
     },
     medicOnlinePage: {
-      heroEyebrow: "Medico online",
       heroTitle: "Parla con un medico da casa",
-      heroSubtitle: "Niente code e niente viaggi lunghi. Il medico ti ascolta in video o al telefono e ti dice cosa fare.",
+      heroSubtitle: "Niente code e niente viaggi lunghi. Il medico ti ascolta al telefono e ti dice cosa fare.",
       cardOnCallTitle: "Parla ora con il medico di guardia",
       cardOnCallSubtitle: "Di solito aspetti meno di 10 minuti",
       cardOnCallAction: "Entra nella sala d'attesa",
-      cardBookingTitle: "Prenota una videovisita",
+      cardBookingTitle: "Prenota una chiamata con il medico",
       cardBookingSubtitle: "Scegli giorno e ora",
       cardBookingAction: "Prenota ora",
       cardPortalTitle: "Il mio fascicolo sanitario",
       cardPortalSubtitle: "Guarda ricette, referti delle visite e consigli del medico",
       cardPortalAction: "Apri il fascicolo",
-      onCallBannerActive: "Il medico di guardia può vederti adesso",
-      onCallBannerDoctor: "Medico di base in servizio",
-      onCallBannerConnect: "Entra direttamente dal browser",
-      bookingTitle: "Prenota una visita online",
+      bookingTitle: "Prenota una chiamata con il medico",
       bookingSubtitle: "Scegli giorno e ora, per te o per qualcuno della tua famiglia. È gratis e parli dal telefono.",
       backToDoctorOnline: "Torna a Medico online",
       backToTelemed: "Indietro",
@@ -3098,7 +3013,7 @@ export const translations: Record<Lang, Translations> = {
       title: "Apri il tuo fascicolo sanitario",
       subtitle: "Scrivi il numero di telefono che hai usato per prenotare. Ti mandiamo un codice via SMS.",
       phoneLabel: "Numero di telefono",
-      phonePlaceholder: "07xxxxxxxx",
+      phonePlaceholder: "0721 000 000",
       sendCode: "Invia il codice",
       codeLabel: "Codice di 4 cifre ricevuto via SMS",
       verifyCode: "Controlla il codice",

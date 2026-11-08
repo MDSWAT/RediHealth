@@ -62,48 +62,31 @@ export function RelatedTopicsCarousel({
       aria-labelledby="related-topics-heading"
       className={`my-12 border-t border-border pt-10 ${className}`}
     >
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <h2
-            id="related-topics-heading"
-            className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
-          >
-            {s.heading[currentLang]}
-          </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {s.subtitle[currentLang]}
-          </p>
-        </div>
-      </div>
+      <h2
+        id="related-topics-heading"
+        className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
+      >
+        {s.heading[currentLang]}
+      </h2>
 
-      <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* One surface with hairline rows (one column on phones, three on wide screens). */}
+      <ul className="mt-6 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card lg:grid lg:grid-cols-3 lg:divide-x lg:divide-y-0">
         {topics.map((t) => {
           const Icon = iconsBySlug[t.slug] || HeartIcon;
           return (
-            <li
-              key={t.slug}
-              className="flex flex-col justify-between rounded-lg border border-border bg-card p-5 shadow-xs transition-colors hover:border-sapphire/50"
-            >
-              <div>
-                <h3 className="flex items-center gap-2.5 text-lg font-semibold text-foreground">
-                  <Icon className="h-5 w-5 shrink-0 text-sapphire" aria-hidden="true" />
-                  <span>{t.title}</span>
-                </h3>
-
-                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                  {t.description}
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-border/40">
+            <li key={t.slug} className="group relative flex flex-col p-5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/40 focus-within:bg-muted/40">
+              <h3 className="flex items-center gap-2.5 text-base font-semibold text-foreground sm:text-lg">
+                <Icon className="h-5 w-5 shrink-0 text-sapphire" aria-hidden="true" />
+                {/* The link covers the whole row, so the row is one tap target. */}
                 <Link
                   href={withLangPrefix(`/health-information/${t.slug}`, currentLang)}
-                  className="inline-flex min-h-[44px] items-center gap-1.5 text-xs font-semibold text-sapphire hover:text-sapphire-light"
+                  className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-inset focus-visible:after:ring-sapphire group-hover:text-sapphire"
                 >
-                  <span>{s.readOrListen[currentLang]}</span>
-                  <ArrowRightIcon className="h-3.5 w-3.5" />
+                  {t.title}
                 </Link>
-              </div>
+                <ArrowRightIcon className="ml-auto h-4 w-4 shrink-0 text-muted-foreground group-hover:text-sapphire" aria-hidden="true" />
+              </h3>
+              <p className="mt-1.5 pl-[30px] text-sm leading-relaxed text-muted-foreground">{t.description}</p>
             </li>
           );
         })}

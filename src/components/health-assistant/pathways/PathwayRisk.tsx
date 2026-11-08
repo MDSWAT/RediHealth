@@ -21,7 +21,8 @@ const QUESTION_IDS = ["q1", "q2", "q3"] as const;
 const LEVEL_TONE: Record<RiskLevel, { bar: string; text: string }> = {
   low: { bar: "bg-sapphire", text: "text-sapphire dark:text-sapphire-border" },
   moderate: { bar: "bg-amber-care", text: "text-amber-care" },
-  high: { bar: "bg-primary", text: "text-primary" },
+  // Raised risk is a warning, not an emergency: red stays reserved for 112 (the fill count shows the step).
+  high: { bar: "bg-amber-care", text: "text-amber-care" },
 };
 
 export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickResolve }: PathwayRiskProps) {
@@ -96,7 +97,7 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
             type="button"
             data-risk-submit
             onClick={onQuickResolve}
-            className="mt-5 min-h-[48px] w-full rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary/90"
+            className="mt-5 min-h-[48px] w-full rounded-lg bg-sapphire px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light"
           >
             {risk.submit}
           </button>

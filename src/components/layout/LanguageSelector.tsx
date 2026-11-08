@@ -14,7 +14,7 @@ export type LanguageSelectorProps = {
   tone?: "default" | "light";
 };
 
-const selectorCopy: Record<Lang, { label: string; romaniNote: string }> = {
+export const languageSelectorCopy: Record<Lang, { label: string; romaniNote: string }> = {
   ro: {
     label: "Limba site-ului",
     romaniNote: "Termenii medicali sunt explicați și în limba romani, în glosarul din secțiunea Află.",
@@ -32,6 +32,12 @@ const selectorCopy: Record<Lang, { label: string; romaniNote: string }> = {
     romaniNote: "I termini medici sono spiegati anche in lingua romaní, nel glossario della sezione Scopri.",
   },
 };
+
+// Romanian first (the site's default language), then the others in a fixed order on every page.
+const LANGUAGE_ORDER: Lang[] = ["ro", "en", "sq", "it"];
+const orderedLanguages = [...languages].sort(
+  (a, b) => LANGUAGE_ORDER.indexOf(a.code) - LANGUAGE_ORDER.indexOf(b.code),
+);
 
 /**
  * Language choice. Each option is a real link to the same page in that language
@@ -52,7 +58,7 @@ export function LanguageSelector({
   const labelId = useId();
 
   const activeLang = languages.find((l) => l.code === lang) || languages[0];
-  const copy = selectorCopy[lang] ?? selectorCopy.ro;
+  const copy = languageSelectorCopy[lang] ?? languageSelectorCopy.ro;
 
   useEffect(() => {
     if (!open) return;
@@ -87,7 +93,7 @@ export function LanguageSelector({
           {copy.label}
         </p>
         <ul className="grid grid-cols-2 gap-2">
-          {languages.map((item) => {
+          {orderedLanguages.map((item) => {
             const isSelected = item.code === lang;
             return (
               <li key={item.code}>
@@ -98,7 +104,7 @@ export function LanguageSelector({
                   aria-current={isSelected ? "true" : undefined}
                   onClick={(event) => handleSelect(event, item.code)}
                   className={cn(
-                    "flex min-h-[48px] items-center justify-between gap-2 rounded-lg border px-3.5 text-base transition-colors duration-(--dur-fast)",
+                    "flex min-h-[48px] items-center justify-between gap-2 rounded-lg border px-3.5 text-base transition-colors duration-(--dur-fast) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     isSelected
                       ? "border-foreground/60 bg-card font-semibold text-foreground"
                       : "border-border bg-card font-medium text-foreground/85 hover:bg-muted"
@@ -153,7 +159,7 @@ export function LanguageSelector({
         )}
       >
         <ul aria-label={copy.label}>
-          {languages.map((item) => {
+          {orderedLanguages.map((item) => {
             const isSelected = item.code === lang;
             return (
               <li key={item.code}>

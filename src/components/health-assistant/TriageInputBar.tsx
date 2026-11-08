@@ -61,13 +61,13 @@ export function TriageInputBar({ onSubmitQuery, className = "" }: TriageInputBar
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.placeholder}
-            className="min-h-[52px] w-full rounded-lg border border-border bg-background py-3 pl-11 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:pr-40"
+            className="min-h-[52px] w-full rounded-lg border border-border bg-background py-3 pl-11 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:pr-28"
           />
         </div>
         <button
           type="submit"
           disabled={!query.trim()}
-          className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md bg-primary px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary/90 disabled:opacity-50 sm:absolute sm:right-1.5 sm:top-1/2 sm:-translate-y-1/2 sm:text-xs"
+          className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg bg-sapphire px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:absolute sm:right-1.5 sm:top-1/2 sm:-translate-y-1/2 sm:text-xs"
         >
           <span>{t.buttonLabel}</span>
           <ArrowRightIcon className="h-3.5 w-3.5" />

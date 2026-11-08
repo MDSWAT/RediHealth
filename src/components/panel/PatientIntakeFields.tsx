@@ -92,10 +92,10 @@ export function PatientIntakeFields({ value, onChange, disabled, onBusyChange }:
 
   const busy = disabled || reading || locating;
   return <div className="space-y-5">
-    <section className="rounded-2xl border border-border bg-muted/30 p-4">
+    <section className="rounded-xl border border-border bg-muted/30 p-4">
       <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold"><PinIcon className="h-5 w-5 text-primary" />{t.location}</h3>
       <p className="mb-3 text-xs leading-relaxed text-muted-foreground">{t.gpsHint}</p>
-      <button type="button" disabled={busy} onClick={getLocation} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-primary/20 bg-primary-soft px-4 py-2 text-sm font-semibold text-primary disabled:opacity-50">
+      <button type="button" disabled={busy} onClick={getLocation} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary/20 bg-primary-soft px-4 py-2 text-sm font-semibold text-primary disabled:bg-muted disabled:text-muted-foreground">
         <PinIcon className="h-4 w-4" />{locating ? t.locating : t.useGps}
       </button>
       {value.location && <div role="status" className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl bg-card p-3 text-xs">
@@ -104,7 +104,7 @@ export function PatientIntakeFields({ value, onChange, disabled, onBusyChange }:
       </div>}
       {gpsError && <p role="alert" className="mt-3 text-sm text-red-700">{gpsError}</p>}
     </section>
-    <section className="rounded-2xl border border-border bg-muted/30 p-4">
+    <section className="rounded-xl border border-border bg-muted/30 p-4">
       <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold"><FileTextIcon className="h-5 w-5 text-primary" />{t.documents}</h3>
       <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border border-border bg-card p-3 text-sm font-medium">
         <input type="checkbox" checked={value.has_documents} disabled={busy} aria-controls={`${id}-uploads`} aria-expanded={value.has_documents}
@@ -114,7 +114,7 @@ export function PatientIntakeFields({ value, onChange, disabled, onBusyChange }:
       {value.has_documents && <div id={`${id}-uploads`} className="mt-4 space-y-3">
         <p id={`${id}-hint`} className="text-xs leading-relaxed text-muted-foreground">{t.documentHint}</p>
         <select aria-label={t.documents} disabled={busy} value={category} onChange={(event) => setCategory(event.target.value === "identity" ? "identity" : "medical")}
-          className="min-h-11 w-full rounded-xl border border-border bg-card px-3 text-sm">
+          className="min-h-11 w-full rounded-lg border border-border bg-card px-3 text-sm">
           <option value="medical">{t.medical}</option><option value="identity">{t.identity}</option>
         </select>
         <label className={`flex min-h-20 items-center justify-center rounded-xl border-2 border-dashed border-primary/30 bg-card p-4 text-sm font-semibold text-primary focus-within:ring-2 focus-within:ring-ring ${busy ? "opacity-50" : "cursor-pointer hover:bg-primary-soft"}`}>

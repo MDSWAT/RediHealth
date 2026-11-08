@@ -34,7 +34,8 @@ export function GetHelpPageContent({
           <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
             <RequestHelpForm countries={countries} initialCountry={initialCountry} />
 
-            <aside className="space-y-8 lg:pt-2">
+            {/* Shorter than the form, so it stays in view on desktop instead of leaving an empty column. */}
+            <aside className="space-y-8 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1.5rem)] lg:self-start lg:pt-2">
               <div className="flex items-start gap-3 rounded-xl border border-primary/20 bg-primary-soft p-5">
                 <PhoneIcon className="mt-0.5 h-5 w-5 flex-none text-primary" aria-hidden="true" />
                 <div>

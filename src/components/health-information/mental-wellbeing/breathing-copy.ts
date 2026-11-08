@@ -28,6 +28,8 @@ export const MAX_SESSION_SECONDS = 5 * 60;
 export interface BreathingCopy {
   title: string;
   intro: string;
+  /** Intro shown under reduced motion, when the circle stays still and the word and seconds lead. */
+  introReduced: string;
   patterns: Record<BreathingPatternId, string>;
   patternGroupLabel: string;
   phases: Record<BreathPhaseKind, string>;
@@ -38,7 +40,6 @@ export interface BreathingCopy {
   /** Use {count}. */
   cycles: string;
   safety: string;
-  call112: string;
   listen: string;
   ariaLabel: string;
   credit: string;
@@ -52,6 +53,8 @@ export const BREATHING_COPY: Record<Lang, BreathingCopy> = {
     title: "Respiră liniștit",
     intro:
       "Stai comod, cu umerii relaxați. Urmărește cercul. Inspiră pe nas cât crește și expiră încet pe gură cât scade. Expirația mai lungă ajută corpul să se liniștească.",
+    introReduced:
+      "Stai comod, cu umerii relaxați. Urmărește cuvântul din cerc și secundele de sub el. Inspiră pe nas la „Inspiră” și expiră încet pe gură la „Expiră”. Expirația mai lungă ajută corpul să se liniștească.",
     patterns: {
       relaxed: "Respirație lentă (4 s / 6 s)",
       box: "Respirație în pătrat (4–4–4–4)",
@@ -65,7 +68,6 @@ export const BREATHING_COPY: Record<Lang, BreathingCopy> = {
     cycles: "Respirații complete: {count}",
     safety:
       "Dacă simți amețeală, oprește-te și respiră normal. Dacă ești în criză sau te gândești să îți faci rău, sună imediat la 112.",
-    call112: "Sună la 112",
     listen: "Ascultă instrucțiunile",
     ariaLabel: "Cerc care crește la inspirație și scade la expirație",
     credit: "Exercițiu adaptat după ghidul NHS „Breathing exercises for stress”.",
@@ -77,6 +79,8 @@ export const BREATHING_COPY: Record<Lang, BreathingCopy> = {
     title: "Calm breathing",
     intro:
       "Sit comfortably with your shoulders relaxed. Follow the circle. Breathe in through your nose while it grows. Breathe out slowly through your mouth while it shrinks. A longer out-breath helps your body calm down.",
+    introReduced:
+      "Sit comfortably with your shoulders relaxed. Follow the word in the circle and the seconds under it. Breathe in through your nose on “Breathe in” and out slowly through your mouth on “Breathe out”. A longer out-breath helps your body calm down.",
     patterns: {
       relaxed: "Slow breathing (4 s / 6 s)",
       box: "Box breathing (4–4–4–4)",
@@ -90,7 +94,6 @@ export const BREATHING_COPY: Record<Lang, BreathingCopy> = {
     cycles: "Full breaths: {count}",
     safety:
       "If you feel dizzy, stop and breathe normally. If you are in crisis or thinking about hurting yourself, call 112 right away.",
-    call112: "Call 112",
     listen: "Listen to the instructions",
     ariaLabel: "A circle that grows as you breathe in and shrinks as you breathe out",
     credit: "Exercise adapted from the NHS guide “Breathing exercises for stress”.",
@@ -102,6 +105,8 @@ export const BREATHING_COPY: Record<Lang, BreathingCopy> = {
     title: "Frymëmarrje e qetë",
     intro:
       "Ulu rehat, me supet të lëshuara. Ndiq rrethin. Merr frymë nga hunda kur rritet dhe nxirre ngadalë nga goja kur zvogëlohet. Kur e nxjerr frymën më gjatë, trupi qetësohet më lehtë.",
+    introReduced:
+      "Ulu rehat, me supet të lëshuara. Ndiq fjalën në rreth dhe sekondat poshtë saj. Merr frymë nga hunda kur shkruan „Merr frymë” dhe nxirre ngadalë nga goja kur shkruan „Nxirre frymën”. Kur e nxjerr frymën më gjatë, trupi qetësohet më lehtë.",
     patterns: {
       relaxed: "Frymëmarrje e ngadaltë (4 s / 6 s)",
       box: "Frymëmarrje katrore (4–4–4–4)",
@@ -115,7 +120,6 @@ export const BREATHING_COPY: Record<Lang, BreathingCopy> = {
     cycles: "Frymëmarrje të plota: {count}",
     safety:
       "Nëse ndien marramendje, ndalo dhe merr frymë normalisht. Nëse je në krizë ose mendon të lëndosh veten, telefono menjëherë 112.",
-    call112: "Telefono 112",
     listen: "Dëgjo udhëzimet",
     ariaLabel: "Një rreth që rritet kur merr frymë dhe zvogëlohet kur e nxjerr",
     credit: "Ushtrim i përshtatur nga udhëzuesi i NHS “Breathing exercises for stress”.",
@@ -127,6 +131,8 @@ export const BREATHING_COPY: Record<Lang, BreathingCopy> = {
     title: "Respirazione calma",
     intro:
       "Siediti comodo, con le spalle rilassate. Segui il cerchio. Inspira dal naso mentre cresce ed espira piano dalla bocca mentre si rimpicciolisce. Un'espirazione più lunga aiuta il corpo a calmarsi.",
+    introReduced:
+      "Siediti comodo, con le spalle rilassate. Segui la parola nel cerchio e i secondi sotto. Inspira dal naso quando leggi «Inspira» ed espira piano dalla bocca quando leggi «Espira». Un'espirazione più lunga aiuta il corpo a calmarsi.",
     patterns: {
       relaxed: "Respiro lento (4 s / 6 s)",
       box: "Respiro quadrato (4–4–4–4)",
@@ -140,7 +146,6 @@ export const BREATHING_COPY: Record<Lang, BreathingCopy> = {
     cycles: "Respiri completi: {count}",
     safety:
       "Se ti gira la testa, fermati e respira normalmente. Se sei in crisi o pensi di farti del male, chiama subito il 112.",
-    call112: "Chiama il 112",
     listen: "Ascolta le istruzioni",
     ariaLabel: "Un cerchio che cresce quando inspiri e si rimpicciolisce quando espiri",
     credit: "Esercizio adattato dalla guida NHS “Breathing exercises for stress”.",

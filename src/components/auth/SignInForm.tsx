@@ -25,7 +25,7 @@ const inputClass =
   "mt-1.5 block h-12 w-full rounded-lg border border-border bg-card px-3.5 text-base text-foreground " +
   "placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 " +
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
-  "aria-[invalid=true]:border-primary";
+  "aria-[invalid=true]:border-amber-care";
 
 export function SignInForm({
   googleConfigured,
@@ -142,7 +142,7 @@ export function SignInForm({
   }
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 sm:p-10">
+    <div className="rounded-xl border border-border bg-card p-6 sm:p-10">
       {stage === "email" ? (
         <form
           onSubmit={(event) => {
@@ -168,7 +168,7 @@ export function SignInForm({
             placeholder={form.emailPlaceholder}
           />
           {error ? (
-            <p id="email-error" role="alert" className="mt-2 text-sm text-primary">
+            <p id="email-error" role="alert" className="mt-2 text-sm text-amber-care dark:text-amber-care-border">
               {error}
             </p>
           ) : (
@@ -212,7 +212,7 @@ export function SignInForm({
             placeholder="123456"
           />
           {error ? (
-            <p id="code-error" role="alert" className="mt-2 text-sm text-primary">
+            <p id="code-error" role="alert" className="mt-2 text-sm text-amber-care dark:text-amber-care-border">
               {error}
             </p>
           ) : null}
@@ -222,7 +222,7 @@ export function SignInForm({
             </Button>
             <button
               type="button"
-              className="text-sm font-semibold text-primary hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="min-h-[44px] text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               onClick={() => {
                 setCode("");
                 setError("");
@@ -255,7 +255,7 @@ export function SignInForm({
           placeholder={form.portalRecoveryEmailPlaceholder}
         />
         {portalRecoveryError ? (
-          <p id="portal-recovery-error" className="mt-2 text-sm text-primary" role="alert">
+          <p id="portal-recovery-error" className="mt-2 text-sm text-amber-care dark:text-amber-care-border" role="alert">
             {portalRecoveryError}
           </p>
         ) : null}

@@ -1,9 +1,10 @@
 import type { ComponentType, SVGProps } from "react";
-import { ListCheckIcon, MessageDotsIcon, VideoIcon } from "@/components/ui/icons";
+import { ListCheckIcon, MessageDotsIcon, PhoneIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
 // Boxicons (regular), same family as the triage panel: tell us, get next steps, talk to a doctor.
-const STEP_ICONS: readonly ComponentType<SVGProps<SVGSVGElement>>[] = [MessageDotsIcon, ListCheckIcon, VideoIcon];
+// The doctor step is a phone: online consultations are voice-only.
+const STEP_ICONS: readonly ComponentType<SVGProps<SVGSVGElement>>[] = [MessageDotsIcon, ListCheckIcon, PhoneIcon];
 
 /**
  * How it works, in three steps. Informational, not interactive: the triage

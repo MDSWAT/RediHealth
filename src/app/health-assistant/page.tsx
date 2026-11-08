@@ -7,7 +7,7 @@ import type { Lang } from "@/lib/i18n/translations";
 const descriptions: Record<Lang, string> = {
   ro: "Răspunde la câteva întrebări scurte. Te trimitem spre informații, un medic sau un mediator sanitar.",
   en: "Answer a few short questions. We point you to information, a doctor or a health mediator.",
-  sq: "Përgjigju disa pyetjeve të shkurtra. Të tregojmë ku gjen informacion, një mjek ose një ndërmjetës shëndetësor.",
+  sq: "Përgjigju disa pyetjeve të shkurtra. Të tregojmë ku gjen informacion, një mjek ose një mediator shëndetësor.",
   it: "Rispondi a qualche breve domanda. Ti indichiamo informazioni, un medico o un mediatore sanitario.",
 };
 

@@ -5,10 +5,10 @@ import { getRequestLang } from "@/lib/i18n/server-routing";
 import type { Lang } from "@/lib/i18n/translations";
 
 const descriptions: Record<Lang, string> = {
-  ro: "Fă o poză rețetei. Primești textul pe înțeles și un orar pentru fiecare zi.",
-  en: "Take a photo of your prescription. Get it in plain words, with a schedule for each day.",
-  sq: "Bëj një foto të recetës. Merr tekstin me fjalë të thjeshta dhe një orar për çdo ditë.",
-  it: "Fai una foto alla ricetta. Ricevi il testo in parole semplici e un orario per ogni giorno.",
+  ro: "Fă o poză rețetei. Asistentul citește textul și ți-l explică pe înțeles.",
+  en: "Take a photo of your prescription. The assistant reads the text and explains it in plain words.",
+  sq: "Bëj një foto të recetës. Asistenti e lexon tekstin dhe ta shpjegon me fjalë të thjeshta.",
+  it: "Fai una foto alla ricetta. L'assistente legge il testo e te lo spiega in parole semplici.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {

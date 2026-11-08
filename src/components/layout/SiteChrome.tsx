@@ -9,11 +9,14 @@ import { ReportIssueWidget } from "@/components/layout/ReportIssueWidget";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { RecaptchaProvider, RecaptchaNotice } from "@/components/security/RecaptchaProvider";
+import type { Lang } from "@/lib/i18n/translations";
 
 type SiteChromeProps = {
   children: ReactNode;
   nonce?: string;
   captchaEnabled: boolean;
+  /** Locale resolved on the server for this request; see LanguageProvider. */
+  lang: Lang;
 };
 
 /**
@@ -37,14 +40,14 @@ function useSkipLinkTarget(pathname: string) {
   }, [pathname]);
 }
 
-export function SiteChrome({ children, nonce, captchaEnabled }: SiteChromeProps) {
+export function SiteChrome({ children, nonce, captchaEnabled, lang }: SiteChromeProps) {
   const pathname = usePathname();
   const path = stripLangFromPathname(pathname);
   const isWorkerPanel = path.startsWith("/panel") || path === "/demo" || path.startsWith("/demo/") || path === "/offline" || path.startsWith("/offline/");
   useSkipLinkTarget(pathname);
 
   return (
-    <LanguageProvider>
+    <LanguageProvider requestLang={lang}>
       <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isWorkerPanel}>
         {path === "/" || isWorkerPanel ? null : <UniversalEmergencyBanner />}
         {isWorkerPanel ? null : <Header />}

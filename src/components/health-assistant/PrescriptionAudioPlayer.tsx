@@ -20,22 +20,22 @@ export function PrescriptionAudioPlayer({ speechText, className = "" }: Prescrip
 
   const dict = {
     en: {
-      listen: "Listen to how to take it",
+      listen: "Listen to the explanation",
       stop: "Stop listening",
       speechLang: "en-GB",
     },
     ro: {
-      listen: "Ascultă cum se ia",
+      listen: "Ascultă explicația",
       stop: "Oprește",
       speechLang: "ro-RO",
     },
     sq: {
-      listen: "Dëgjo si merret",
+      listen: "Dëgjo shpjegimin",
       stop: "Ndalo zërin",
       speechLang: "sq-AL",
     },
     it: {
-      listen: "Ascolta come prenderlo",
+      listen: "Ascolta la spiegazione",
       stop: "Ferma",
       speechLang: "it-IT",
     },

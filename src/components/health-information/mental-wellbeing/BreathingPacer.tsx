@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { LazyMotion, domAnimation, useInView, useReducedMotion } from "motion/react";
 import type { Lang } from "@/lib/i18n/translations";
 import { VolumeIcon, VolumeMuteIcon } from "@/components/ui/icons";
@@ -8,7 +8,6 @@ import { InlineAudioNarratorButton } from "../InlineAudioNarratorButton";
 import { BreathingPacerScene, type BreathPhaseKind } from "../explainers/scenes/BreathingPacerScene";
 import { SPEECH_LANG } from "../explainers/explainer-copy";
 import {
-  STAGE_CANVAS_CLASS,
   STAGE_CARD_CLASS,
   STAGE_CREDIT_CLASS,
   STAGE_PRIMARY_CONTROL_CLASS,
@@ -20,6 +19,7 @@ import {
   getPhaseAt,
   type BreathingPatternId,
 } from "./breathing-copy";
+import { TAB_LIST_CLASS, tabClass, handleTabKey } from "../diabetes/choice-styles";
 
 export interface BreathingPacerProps {
   lang: Lang;
@@ -34,17 +34,22 @@ const TONE_HZ: Record<BreathPhaseKind, number> = {
   holdEmpty: 262,
 };
 
+const noopSubscribe = () => () => {};
+
+const PATTERN_IDS = Object.keys(BREATHING_PATTERNS) as BreathingPatternId[];
+
 /** How often the session clock is read. Phases start within this many ms of their real time. */
 const TICK_MS = 100;
 
 /**
  * Guided breathing pacer for the emotional-wellbeing topic.
  *
- * Nothing starts on its own. The phase word is DOM text in an aria-live region
- * (the seconds counter is hidden from screen readers so it does not chatter).
- * Under prefers-reduced-motion the circle stays still and only its colour and
- * the words change. The session pauses when scrolled out of view and stops
- * itself after five minutes. The 112 safety line is always visible.
+ * Nothing starts on its own. The stage holds only the circle, its faint ring
+ * and the phase word; screen readers hear the phase from an aria-live line.
+ * Under prefers-reduced-motion the circle stays still and only its colour,
+ * the word and a seconds count change. The session pauses when scrolled out of view and stops
+ * itself after five minutes. The safety line (stop if dizzy, 112 in a crisis) is
+ * always visible; the page's warning card carries the 112 button.
  */
 export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
   const copy = BREATHING_COPY[lang] ?? BREATHING_COPY.ro;
@@ -150,6 +155,10 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
     setFinished(false);
   };
 
+
+  // The server cannot know the motion setting, so the reduced-motion intro swaps in after hydration.
+  const hydrated = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  const intro = hydrated && reducedMotion ? copy.introReduced : copy.intro;
   const statusText = running ? copy.phases[current.phase.kind] : finished ? copy.finished : copy.ready;
   const completedBreaths = running || finished ? current.cycles : 0;
   const secondsLeft = Math.max(1, Math.ceil(current.secondsLeft - 0.05));
@@ -161,13 +170,13 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
       data-testid="breathing-pacer"
     >
       <div className="flex items-center justify-between gap-4">
-        <h4 className="text-base font-semibold text-foreground">{copy.title}</h4>
+        <h3 className="text-lg font-semibold text-foreground">{copy.title}</h3>
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={() => setTonesEnabled((on) => !on)}
             aria-pressed={tonesEnabled}
-            className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border px-3 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+            className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
               tonesEnabled
                 ? "border-sapphire-border bg-sapphire-soft text-sapphire"
                 : "border-border bg-card text-muted-foreground hover:text-foreground"
@@ -183,27 +192,28 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
             <span className="sr-only sm:hidden">{copy.chimesToggle}</span>
           </button>
           <InlineAudioNarratorButton
-            textToSpeak={`${copy.title}. ${copy.intro} ${copy.safety}`}
+            textToSpeak={`${copy.title}. ${intro} ${copy.safety}`}
             label={copy.listen}
             lang={SPEECH_LANG[lang] ?? SPEECH_LANG.ro}
           />
         </div>
       </div>
 
-      <div role="group" aria-label={copy.patternGroupLabel} className="mt-4 flex flex-wrap gap-2">
-        {(Object.keys(BREATHING_PATTERNS) as BreathingPatternId[]).map((id) => {
+      <div role="tablist" aria-label={copy.patternGroupLabel} className={`mt-4 ${TAB_LIST_CLASS} grid-cols-2`}>
+        {PATTERN_IDS.map((id) => {
           const selected = id === patternId;
           return (
             <button
               key={id}
               type="button"
+              role="tab"
+              id={`breathing-tab-${id}`}
+              aria-selected={selected}
+              aria-controls="breathing-stage"
+              tabIndex={selected ? 0 : -1}
               onClick={() => choosePattern(id)}
-              aria-pressed={selected}
-              className={`inline-flex min-h-[44px] items-center rounded-lg border px-3.5 py-2 text-sm font-semibold leading-snug transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                selected
-                  ? "border-foreground bg-surface-subtle text-foreground"
-                  : "border-border bg-card text-muted-foreground hover:border-foreground/30 hover:text-foreground"
-              }`}
+              onKeyDown={(event) => handleTabKey(event, PATTERN_IDS, patternId, choosePattern)}
+              className={tabClass(selected)}
             >
               {copy.patterns[id]}
             </button>
@@ -211,12 +221,16 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
         })}
       </div>
 
-      <div ref={stageRef} className={STAGE_CANVAS_CLASS}>
+      <div
+        ref={stageRef}
+        id="breathing-stage"
+        role="tabpanel"
+        aria-labelledby={`breathing-tab-${patternId}`}
+        className="relative mx-auto mt-6 aspect-square w-full max-w-[15rem]"
+      >
         <div role="img" aria-label={copy.ariaLabel} className="h-full w-full">
           <LazyMotion features={domAnimation} strict>
             <BreathingPacerScene
-              step={current.index}
-              playing={ticking}
               phase={running ? { kind: current.phase.kind, seconds: current.secondsLeft } : undefined}
               reducedMotion={reducedMotion}
             />
@@ -224,21 +238,25 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
         </div>
         {running && (
           <span
-            className="pointer-events-none absolute bottom-3 right-4 text-2xl font-semibold tabular-nums text-sapphire"
+            className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center"
             aria-hidden="true"
           >
-            {secondsLeft}
+            <span className="text-lg font-semibold leading-tight text-sapphire">{copy.phases[current.phase.kind]}</span>
+            {/* The still circle shows no timing under reduced motion, so the seconds stand in for it. */}
+            {reducedMotion && (
+              <span className="mt-1 text-sm font-medium tabular-nums text-sapphire/80">{secondsLeft}</span>
+            )}
           </span>
         )}
       </div>
 
       <p
-        className="text-center text-lg font-semibold text-foreground"
+        className="mt-3 min-h-[1.75rem] text-center text-base font-medium text-foreground"
         aria-live="polite"
         aria-atomic="true"
         data-testid="breathing-status"
       >
-        {statusText}
+        <span className={running ? "sr-only" : undefined}>{statusText}</span>
       </p>
 
       <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
@@ -254,17 +272,9 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
         </span>
       </div>
 
-      <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{copy.intro}</p>
+      <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{intro}</p>
 
-      <div className="mt-5 flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm leading-relaxed text-foreground">{copy.safety}</p>
-        <a
-          href="tel:112"
-          className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-lg border border-primary/30 px-4 text-sm font-semibold text-primary hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary print:hidden"
-        >
-          {copy.call112}
-        </a>
-      </div>
+      <p className="mt-5 border-t border-border pt-5 text-sm leading-relaxed text-foreground">{copy.safety}</p>
 
       <p className={STAGE_CREDIT_CLASS}>{copy.credit}</p>
     </section>

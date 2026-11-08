@@ -1,8 +1,7 @@
 "use client";
 
-import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
-
 import { useMemo, useState } from "react";
+import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
@@ -22,7 +21,7 @@ type Copy = {
   detailError: string;
 };
 
-const copyByLang: Record<"en" | "ro" | "sq" | "it", Copy> = {
+export const copyByLang: Record<"en" | "ro" | "sq" | "it", Copy> = {
   en: {
     title: "Report a problem",
     subtitle: "Tell us what went wrong. Our team will look at it.",
@@ -138,7 +137,7 @@ export function ReportIssuePageContent() {
 
       <section className="py-10 sm:py-14">
         <Container>
-          <form onSubmit={onSubmit} className="mx-auto max-w-2xl space-y-5 rounded-2xl border border-border bg-card p-5 sm:p-6">
+          <form onSubmit={onSubmit} className="mx-auto max-w-2xl space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6">
             <div>
               <label htmlFor="report-email" className="mb-1.5 block text-sm font-semibold text-foreground">{t.emailLabel}</label>
               <input
@@ -148,7 +147,7 @@ export function ReportIssuePageContent() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder={t.emailPlaceholder}
-                className="min-h-11 w-full rounded-xl border border-border bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                className="min-h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
               />
             </div>
 
@@ -162,23 +161,23 @@ export function ReportIssuePageContent() {
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
                 placeholder={t.issuePlaceholder}
-                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
               />
             </div>
 
             {error ? (
-              <p role="alert" className="fhs-fade rounded-xl border border-primary/20 bg-primary-soft px-3 py-2 text-sm text-foreground">
+              <p role="alert" className="fhs-fade rounded-lg border border-primary/20 bg-primary-soft px-3 py-2 text-sm text-foreground">
                 {error}
               </p>
             ) : null}
             {success ? (
-              <p role="status" className="fhs-fade rounded-xl border border-border bg-muted/60 px-3 py-2 text-sm text-foreground">
+              <p role="status" className="fhs-fade rounded-lg border border-border bg-muted/60 px-3 py-2 text-sm text-foreground">
                 {success}
               </p>
             ) : null}
 
             <div className="flex justify-end">
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" variant="secondary" disabled={isSubmitting} className="disabled:bg-muted disabled:text-muted-foreground">
                 {isSubmitting ? t.sending : t.send}
               </Button>
             </div>

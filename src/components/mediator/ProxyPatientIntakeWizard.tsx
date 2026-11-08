@@ -50,7 +50,6 @@ const intakeCopy = {
       copil: "Copil bolnav sau vaccinuri",
       general: "Altă problemă de sănătate",
     } as Record<SymptomCategoryId, string>,
-    eyebrow: "Vizită la domiciliu",
     title: "Înregistrează un pacient",
     stepOf: (n: number) => `Pasul ${n} din 3`,
     scriptLabel: "Ce poți spune",
@@ -95,7 +94,6 @@ const intakeCopy = {
       copil: "Sick child or vaccines",
       general: "Other health problem",
     } as Record<SymptomCategoryId, string>,
-    eyebrow: "Home visit",
     title: "Register a patient",
     stepOf: (n: number) => `Step ${n} of 3`,
     scriptLabel: "What you can say",
@@ -140,7 +138,6 @@ const intakeCopy = {
       copil: "Fëmijë i sëmurë ose vaksina",
       general: "Problem tjetër shëndetësor",
     } as Record<SymptomCategoryId, string>,
-    eyebrow: "Vizitë në shtëpi",
     title: "Regjistro një pacient",
     stepOf: (n: number) => `Hapi ${n} nga 3`,
     scriptLabel: "Çfarë mund të thuash",
@@ -185,7 +182,6 @@ const intakeCopy = {
       copil: "Bambino malato o vaccini",
       general: "Altro problema di salute",
     } as Record<SymptomCategoryId, string>,
-    eyebrow: "Visita a domicilio",
     title: "Registra un paziente",
     stepOf: (n: number) => `Passo ${n} di 3`,
     scriptLabel: "Cosa puoi dire",
@@ -349,10 +345,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
       {/* Wizard Step Bar */}
       <div className="flex items-center justify-between pb-3 mb-4 border-b border-border">
         <div>
-          <span className="text-[11px] font-semibold text-sapphire dark:text-sapphire-border">
-            {copy.eyebrow}
-          </span>
-          <h2 className="text-base font-bold text-foreground">
+          <h2 className="text-base font-semibold text-foreground">
             {copy.title}
           </h2>
         </div>
@@ -425,7 +418,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                     type="button"
                     aria-pressed={isSelected}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`min-h-[48px] flex items-center gap-2.5 rounded-lg border p-3 text-left text-xs font-medium transition-all ${
+                    className={`min-h-[48px] flex items-center gap-2.5 rounded-lg border p-3 text-left text-xs font-medium transition-colors duration-[var(--dur-fast)] ${
                       isSelected
                         ? "border-sapphire bg-sapphire text-white shadow-xs font-semibold"
                         : "border-border bg-background text-foreground hover:bg-muted"
@@ -464,9 +457,9 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 setErrorMessage("");
                 setStep(2);
               }}
-              className="min-h-[44px] rounded-lg bg-sapphire px-5 py-2 text-xs font-semibold text-white hover:bg-sapphire-light"
+              className="min-h-[44px] rounded-lg bg-foreground px-5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
-              {copy.next} &rarr;
+              {copy.next}
             </button>
           </div>
         </div>
@@ -504,7 +497,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               <button
                 type="button"
                 onClick={() => setIdDocumentData(null)}
-                className="mt-3 text-xs text-red-600 hover:underline font-semibold"
+                className="mt-3 text-xs font-semibold text-sapphire underline-offset-4 hover:underline"
               >
                 {copy.retakePhoto}
               </button>
@@ -530,17 +523,17 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
             <button
               type="button"
               onClick={() => setStep(1)}
-              className="min-h-[44px] rounded-lg border border-border px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
+              className="min-h-[44px] rounded-lg px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              &larr; {copy.back}
+              {copy.back}
             </button>
 
             <button
               type="button"
               onClick={() => setStep(3)}
-              className="min-h-[44px] rounded-lg bg-sapphire px-5 py-2 text-xs font-semibold text-white hover:bg-sapphire-light"
+              className="min-h-[44px] rounded-lg bg-foreground px-5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
-              {copy.next} &rarr;
+              {copy.next}
             </button>
           </div>
         </div>
@@ -598,16 +591,16 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="min-h-[44px] rounded-lg border border-border px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
+              className="min-h-[44px] rounded-lg px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              &larr; {copy.back}
+              {copy.back}
             </button>
 
             <button
               type="button"
               disabled={isSubmitting}
               onClick={handleFinalSubmit}
-              className="min-h-[44px] rounded-lg bg-sapphire px-6 py-2 text-xs font-semibold text-white hover:bg-sapphire-light disabled:opacity-60"
+              className="min-h-[44px] rounded-lg bg-foreground px-6 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
             >
               {isSubmitting ? copy.submitting : copy.submit}
             </button>

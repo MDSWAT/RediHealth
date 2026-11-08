@@ -32,7 +32,7 @@ export function FindHelpPrompt({ lang: langProp, className }: { lang?: Lang; cla
       <div className="sm:shrink-0">
         <Link
           href={withLangPrefix(findHelpHref("pharmacy"), lang)}
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
         >
           <PinIcon className="h-4 w-4 text-sapphire" aria-hidden="true" />
           <span>{copy.nearestPharmacy}</span>

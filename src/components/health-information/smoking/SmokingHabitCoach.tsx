@@ -15,7 +15,7 @@ const RING_RADIUS = 52;
 const RING_LENGTH = 2 * Math.PI * RING_RADIUS;
 
 const BUTTON =
-  "inline-flex min-h-11 items-center justify-center rounded-lg px-4 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
+  "inline-flex min-h-11 items-center justify-center rounded-lg px-4 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 function formatTime(totalSec: number) {
   const mins = Math.floor(totalSec / 60);
@@ -107,7 +107,7 @@ export function SmokingHabitCoach({ lang, className = "" }: SmokingHabitCoachPro
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeDasharray={RING_LENGTH}
-                className="transition-[stroke-dashoffset] duration-1000 ease-linear motion-reduce:transition-none"
+                className="transition-[stroke-dashoffset] duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] motion-reduce:transition-none"
                 style={{ strokeDashoffset: (RING_LENGTH * elapsed) / TOTAL_SECONDS }}
               />
             </svg>
@@ -162,7 +162,7 @@ export function SmokingHabitCoach({ lang, className = "" }: SmokingHabitCoachPro
                 onClick={() => setSelectedTriggerId(trigger.id)}
                 aria-pressed={isSelected}
                 className={cn(
-                  "min-h-[44px] rounded-lg border px-3.5 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+                  "min-h-[44px] rounded-lg border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
                   isSelected
                     ? "border-foreground bg-surface-subtle text-foreground"
                     : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",

@@ -18,7 +18,7 @@ export function DictionaryTabs({ active, dictionaryLabel, romanesLabel, onSelect
           role="tab"
           aria-selected={active === tab}
           onClick={() => active !== tab && onSelect(tab)}
-          className={`-mb-px min-h-11 border-b-2 px-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire ${
+          className={`-mb-px min-h-11 border-b-2 px-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire ${
             active === tab ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
           }`}
         >

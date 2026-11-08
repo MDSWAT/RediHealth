@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { Lang } from "@/lib/i18n/translations";
 import { ArrowRightIcon, CheckIcon } from "@/components/ui/icons";
 import { SALT_CALCULATOR_COPY, type SaltFoodItem } from "./healthy-eating-copy";
-import { STAGE_CARD_CLASS } from "../explainers/stage-styles";
+import { ROW_CLASS, ROW_LIST_CLASS, tickBoxClass } from "../diabetes/choice-styles";
 
 export interface SaltIntakeCalculatorProps {
   lang: Lang;
@@ -18,34 +18,37 @@ const HIGH_G = 8;
 /** Right end of the gauge. */
 const GAUGE_MAX_G = 12;
 
-const NUMBER_LOCALE: Record<Lang, string> = { ro: "ro-RO", en: "en-GB", sq: "sq-AL", it: "it-IT" };
+/**
+ * Grams with at most one decimal and the locale's decimal mark (comma in ro, sq, it).
+ * Formatted by hand so server and browser always agree, even where a browser has no
+ * Albanian number data.
+ */
+function formatGrams(value: number, lang: Lang): string {
+  const text = Number.isInteger(value) ? String(value) : value.toFixed(1);
+  return lang === "en" ? text : text.replace(".", ",");
+}
 
 type Zone = "optimal" | "caution" | "high";
 
-const ZONE_STYLE: Record<Zone, { badge: string; bar: string; title: string }> = {
+/** Red stays reserved for 112 and emergencies, so "well over the limit" is a deeper amber. */
+const ZONE_STYLE: Record<Zone, { badge: string; bar: string }> = {
   optimal: {
-    badge: "border-live-sage-border bg-live-sage-soft text-foreground",
+    badge: "border-live-sage/30 bg-live-sage-soft text-foreground",
     bar: "bg-live-sage",
-    title: "text-live-sage",
   },
   caution: {
     badge: "border-amber-care-border bg-amber-care-soft text-amber-care-hover",
     bar: "bg-amber-care",
-    title: "text-amber-care",
   },
   high: {
-    badge: "border-primary/30 bg-primary-soft text-primary",
-    bar: "bg-primary",
-    title: "text-primary",
+    badge: "border-amber-care bg-amber-care-soft text-amber-care-hover",
+    bar: "bg-amber-care-hover",
   },
 };
 
 export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalculatorProps) {
   const copy = SALT_CALCULATOR_COPY[lang] ?? SALT_CALCULATOR_COPY.ro;
-  const grams = new Intl.NumberFormat(NUMBER_LOCALE[lang] ?? "ro-RO", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 1,
-  });
+  const grams = { format: (value: number) => formatGrams(value, lang) };
 
   // Default: three everyday sources of hidden salt (bread, salty cheese, cured meats).
   const [selectedIds, setSelectedIds] = useState<string[]>(["bread", "telemea", "mezeluri"]);
@@ -70,7 +73,7 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
 
   return (
     <section
-      className={`${STAGE_CARD_CLASS} ${className}`}
+      className={className}
       aria-label={copy.title}
       data-testid="salt-intake-calculator"
     >
@@ -142,14 +145,14 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
             <button
               type="button"
               onClick={() => setSelectedIds([])}
-              className="min-h-[44px] rounded-md px-1 text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+              className="min-h-[44px] rounded-lg px-1 text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
             >
               {copy.resetLabel}
             </button>
           )}
         </div>
 
-        <div className="mt-2.5 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className={`mt-2.5 ${ROW_LIST_CLASS}`}>
           {copy.items.map((item: SaltFoodItem) => {
             const isSelected = selectedIds.includes(item.id);
             return (
@@ -158,23 +161,14 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
                 type="button"
                 onClick={() => toggleItem(item.id)}
                 aria-pressed={isSelected}
-                className={`flex min-h-[60px] items-center justify-between gap-3 rounded-lg border px-3.5 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                  isSelected ? "border-sapphire bg-sapphire-soft" : "border-border bg-card hover:bg-surface-subtle"
-                }`}
+                className={`${ROW_CLASS} items-start`}
               >
-                <span className="flex min-w-0 items-start gap-3">
-                  <span
-                    className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors ${
-                      isSelected ? "border-sapphire bg-sapphire text-white" : "border-border bg-card"
-                    }`}
-                    aria-hidden="true"
-                  >
-                    {isSelected && <CheckIcon className="h-3.5 w-3.5" />}
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-sm font-semibold leading-snug text-foreground">{item.name}</span>
-                    <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">{item.portion}</span>
-                  </span>
+                <span className={`mt-0.5 ${tickBoxClass(isSelected)}`} aria-hidden="true">
+                  {isSelected && <CheckIcon className="h-3 w-3" />}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm font-semibold leading-snug text-foreground">{item.name}</span>
+                  <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">{item.portion}</span>
                 </span>
                 <span className="shrink-0 text-sm font-semibold tabular-nums text-foreground">
                   +{grams.format(item.saltGrams)} g

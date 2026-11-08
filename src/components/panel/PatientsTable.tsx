@@ -12,6 +12,8 @@ import { patientsTableTranslations } from "@/lib/i18n/panel-component-translatio
 import { CreatePatientModal } from "./CreatePatientModal";
 import { PatientsFilterBar } from "./PatientsFilterBar";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
+import { localDateKey } from "@/lib/panel-dates";
+import { csvTimestamp, downloadCsv } from "./panel-csv";
 import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 
 interface PatientsTableProps {
@@ -156,50 +158,13 @@ export function PatientsTable({
 
   function handleExportCSV() {
     if (filteredPatients.length === 0) return;
-
-    const headers = [
-      "ID",
-      "Full Name",
-      "Phone",
-      "Email",
-      "DOB",
-      "Gender",
-      "Address",
-      "Status",
-      "Condition Notes",
-      "Medical History",
-      "Created At",
-    ];
-
-    const rows = filteredPatients.map((p) => [
-      p.id,
-      `"${p.full_name.replace(/"/g, '""')}"`,
-      `"${p.phone.replace(/"/g, '""')}"`,
-      `"${p.email.replace(/"/g, '""')}"`,
-      `"${(p.date_of_birth || "").replace(/"/g, '""')}"`,
-      `"${(p.gender || "").replace(/"/g, '""')}"`,
-      `"${(p.address || "").replace(/"/g, '""')}"`,
-      p.status,
-      `"${(p.condition_notes || "").replace(/"/g, '""')}"`,
-      `"${(p.medical_history || "").replace(/"/g, '""')}"`,
-      new Date(p.created_at).toISOString(),
-    ]);
-
-    const csvContent =
-      "data:text/csv;charset=utf-8," +
-      [headers.join(","), ...rows.map((e) => e.join(","))].join("\n");
-
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute(
-      "download",
-      `redihealth-patients-${new Date().toISOString().slice(0, 10)}.csv`,
-    );
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const header = [crm.csvId, crm.csvName, crm.csvPhone, crm.csvEmail, crm.csvDob, crm.csvGender, crm.csvAddress, crm.status, crm.condition, crm.medicalHistory, crm.csvCreated];
+    downloadCsv(`redihealth-patients-${localDateKey()}.csv`, header, filteredPatients.map((p) => [
+      p.id, p.full_name, p.phone, p.email, p.date_of_birth || "", p.gender || "", p.address || "",
+      p.status, p.condition_notes || "", p.medical_history || "", csvTimestamp(p.created_at),
+    ]));
   }
+
 
   function resetFilters() {
     setSearchQuery("");
@@ -219,7 +184,7 @@ export function PatientsTable({
     createdTo.length > 0;
 
   return (
-    <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-xs">
+    <section className="overflow-hidden rounded-xl border border-border bg-card shadow-xs">
       <PatientsFilterBar
         searchQuery={searchQuery}
         onChangeSearchQuery={setSearchQuery}
@@ -277,7 +242,7 @@ export function PatientsTable({
         <div className="divide-y divide-border">
           {filteredPatients.map((patient) => <article key={patient.id} className="flex flex-col justify-between gap-3 p-4 hover:bg-muted/20 sm:flex-row sm:items-center">
             <div className="flex min-w-0 flex-1 items-center gap-3"><div className="flex h-11 w-11 flex-none items-center justify-center overflow-hidden rounded-full bg-primary-soft text-sm font-semibold text-primary">{patient.profile_photo ? <img src={patient.profile_photo} alt="" className="h-full w-full object-cover" /> : patient.full_name.trim().charAt(0).toUpperCase()}</div><div className="min-w-0"><Link href={withLangPrefix(`/panel/patients/${patient.id}`, lang)} className="block text-base font-medium hover:text-primary">{patient.full_name}</Link><div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground"><a href={`tel:${patient.phone}`}>{patient.phone}</a><a className="break-all" href={`mailto:${patient.email}`}>{patient.email}</a></div><p className="mt-1 line-clamp-1 text-xs text-muted-foreground">{patient.condition_notes || t.noNotes}</p></div></div>
-            <div className="flex flex-wrap items-center gap-3 text-xs"><span className="text-muted-foreground">{patient.status === "active" ? t.activeCare : patient.status === "inactive" ? t.inactive : t.archived}</span><span className={patient.priority === "critical" || patient.priority === "high" ? "text-red-700" : "text-muted-foreground"}>{patient.priority === "critical" ? fields.pCritical : patient.priority === "high" ? fields.pHigh : patient.priority === "low" ? fields.pLow : fields.pModerate}</span><Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}>{crm.openPatient}</Link><details className="crm-menu"><summary className="crm-button">{crm.more}</summary><div><button onClick={() => setEditingPatient(patient)}>{crm.edit}</button>{patient.status !== "archived" && <button disabled={closingPatientId === patient.id} onClick={() => void handleClosePatient(patient)}>{closingPatientId === patient.id ? t.closingPatient : t.closePatient}</button>}<button onClick={() => setConfirmingDeleteId(patient.id)}>{crm.delete}</button></div></details></div>
+            <div className="flex flex-wrap items-center gap-3 text-xs"><span className="text-muted-foreground">{patient.status === "active" ? t.activeCare : patient.status === "inactive" ? t.inactive : t.archived}</span><span className={patient.priority === "critical" ? "text-red-700" : patient.priority === "high" ? "text-amber-800" : "text-muted-foreground"}>{patient.priority === "critical" ? fields.pCritical : patient.priority === "high" ? fields.pHigh : patient.priority === "low" ? fields.pLow : fields.pModerate}</span><Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}>{crm.openPatient}</Link><details className="crm-menu"><summary className="crm-button">{crm.more}</summary><div><button onClick={() => setEditingPatient(patient)}>{crm.edit}</button>{patient.status !== "archived" && <button disabled={closingPatientId === patient.id} onClick={() => void handleClosePatient(patient)}>{closingPatientId === patient.id ? t.closingPatient : t.closePatient}</button>}<button onClick={() => setConfirmingDeleteId(patient.id)}>{crm.delete}</button></div></details></div>
             {confirmingDeleteId === patient.id && <div className="flex flex-wrap items-center gap-2"><span className="text-xs text-red-700">{t.deleteQ}</span><button className="crm-button" disabled={deletingId === patient.id} onClick={() => handleDelete(patient.id)}>{t.yesDelete}</button><button className="crm-button" onClick={() => setConfirmingDeleteId(null)}>{t.cancel}</button></div>}
           </article>)}
         </div>

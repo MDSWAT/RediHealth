@@ -12,7 +12,6 @@ import { HEALTH_DETAIL_SHARED_STRINGS } from "@/lib/i18n/health-myths";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { playEarcon } from "@/lib/audio/earcon";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
-import { DoctorValidatedBadge } from "./DoctorValidatedBadge";
 import { ReadingLevelSwitcher } from "./ReadingLevelSwitcher";
 import { TopicMetaBadge } from "./TopicMetaBadge";
 
@@ -22,6 +21,9 @@ export interface TopicHeroSectionProps {
   topic: HealthTopicContent;
   icon: IconComponent;
   readingLevel: "simple" | "complete";
+  /** Estimated reading and listening time for this topic, in minutes. */
+  readMinutes?: number;
+  audioMinutes?: number;
   onReadingLevelChange: (level: "simple" | "complete") => void;
   onListenClick: () => void;
   onStopClick?: () => void;
@@ -42,6 +44,8 @@ export function TopicHeroSection({
   topic,
   icon: Icon,
   readingLevel,
+  readMinutes = 3,
+  audioMinutes = 2,
   onReadingLevelChange,
   onListenClick,
   onStopClick,
@@ -93,24 +97,21 @@ export function TopicHeroSection({
             </h1>
 
             <div className="print:hidden">
-              <TopicMetaBadge readMinutes={3} audioMinutes={2} bordered={false} lang={currentLang} />
+              <TopicMetaBadge readMinutes={readMinutes} audioMinutes={audioMinutes} bordered={false} lang={currentLang} />
             </div>
 
+            {/* The intro itself is the first paragraph of the guide text below. */}
             <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {readingLevel === "simple"
-                ? topic.description
-                : topic.intro}
+              {topic.description}
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1">
-              <DoctorValidatedBadge variant="inline" />
-
-              {voiceEnabled && (
+            {voiceEnabled && (
+              <div className="pt-1">
                 <button
                   type="button"
                   onClick={handleAudioAction}
                   aria-pressed={isPlayingAudio}
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-sapphire px-4 py-2.5 text-xs font-semibold text-white shadow-xs transition-all hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire active:scale-[0.98] print:hidden"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-sapphire px-4 py-2.5 text-xs font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 print:hidden"
                 >
                   {isPlayingAudio ? (
                     <svg
@@ -139,8 +140,8 @@ export function TopicHeroSection({
                   )}
                   <span>{isPlayingAudio ? s.stopAudio[currentLang] : s.listenGuide[currentLang]}</span>
                 </button>
-              )}
-            </div>
+              </div>
+            )}
           </div>
 
           <div className="flex shrink-0 items-center lg:pt-4 print:hidden">

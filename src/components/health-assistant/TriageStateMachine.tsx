@@ -15,6 +15,8 @@ import { classifyLocalIntent } from "@/components/health-assistant/intent-keywor
 import { useLanguage } from "@/lib/i18n/language-context";
 import { initialTriageState, PathwayId, triageReducer } from "@/lib/triage-state";
 
+const READING_LEVEL_KEY = "redihealth_reading_level";
+
 interface TriageStateMachineProps {
   initialPathway?: PathwayId;
   initialCampaign?: string;
@@ -32,6 +34,8 @@ export function TriageStateMachine({
   const { lang } = useLanguage();
   const [state, dispatch] = useReducer(triageReducer, {
     ...initialTriageState,
+    // Plain language is the default reading level, as on the topic pages.
+    plainLanguage: true,
     step: initialPathway ? 2 : 1,
     pathway: initialPathway || null,
     campaign: initialCampaign,
@@ -47,17 +51,31 @@ export function TriageStateMachine({
   const contentRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
 
-  // Restore plain language preference from localStorage
+  // Restore the reader's reading level. The topic pages store it under redihealth_reading_level;
+  // redihealth_plain_language is the assistant's older key, still read for returning visitors.
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("redihealth_plain_language");
-      if (stored === "true") {
-        dispatch({ type: "TOGGLE_PLAIN_LANGUAGE", value: true });
+      const shared = localStorage.getItem(READING_LEVEL_KEY);
+      const legacy = localStorage.getItem("redihealth_plain_language");
+      const storedPlain =
+        shared === "simple" ? true : shared === "complete" ? false : legacy === "false" ? false : null;
+      if (storedPlain === false) {
+        dispatch({ type: "TOGGLE_PLAIN_LANGUAGE", value: false });
       }
     } catch {
       // Ignore
     }
   }, []);
+
+  function toggleReadingLevel() {
+    const nextPlain = !state.plainLanguage;
+    dispatch({ type: "TOGGLE_PLAIN_LANGUAGE", value: nextPlain });
+    try {
+      localStorage.setItem(READING_LEVEL_KEY, nextPlain ? "simple" : "complete");
+    } catch {
+      // Ignore
+    }
+  }
 
   // Handle keyboard Escape to go back
   useEffect(() => {
@@ -92,7 +110,7 @@ export function TriageStateMachine({
       ref={cardRef}
       data-triage-card
       aria-label={copy.machine.intro}
-      className={`mx-auto max-w-2xl rounded-xl border border-border bg-card p-5 shadow-xs sm:p-8 ${className}`}
+      className={`max-w-2xl rounded-xl border border-border bg-card p-5 shadow-xs sm:p-8 ${className}`}
     >
       <div className="mb-6 border-b border-border pb-4">
         <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
@@ -101,20 +119,20 @@ export function TriageStateMachine({
               <button
                 type="button"
                 onClick={() => dispatch({ type: "GO_BACK" })}
-                className="-ml-2 inline-flex min-h-[44px] items-center gap-1.5 rounded-md px-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted"
+                className="-ml-2 inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted"
               >
                 <ArrowLeftIcon className="h-4 w-4" />
                 <span>{copy.machine.back}</span>
               </button>
             ) : null}
             <p className="text-sm text-muted-foreground tabular-nums">
-              {state.step === 1 ? `${copy.machine.intro} · ${stepLabel}` : stepLabel}
+              {stepLabel}
             </p>
           </div>
 
           <TriagePlainLanguageToggle
             enabled={state.plainLanguage}
-            onToggle={() => dispatch({ type: "TOGGLE_PLAIN_LANGUAGE" })}
+            onToggle={toggleReadingLevel}
           />
         </div>
 
@@ -131,7 +149,7 @@ export function TriageStateMachine({
             <div
               key={segment}
               className={`h-1 flex-1 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
-                state.step >= segment ? "bg-primary" : "bg-muted"
+                state.step >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-muted"
               }`}
             />
           ))}

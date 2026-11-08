@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { useUserCounty } from "@/lib/geo-ip";
 import { ArrowRightIcon, PinIcon } from "@/components/ui/icons";
 import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
+import { countyLabel } from "@/components/news/news-format";
 import { NEWS_ARTICLES, articleCountry, getLocalizedArticle, isNationalCounty } from "@/lib/data/news";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations } from "@/lib/i18n/translations";
@@ -51,7 +52,7 @@ export function RegionalHealthRibbon() {
               className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 rounded-sm font-semibold text-paper transition-colors duration-[var(--dur-fast)] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <PinIcon className="h-3.5 w-3.5 text-amber-400" />
-              <span>{isNationalCounty(county) ? nr.allCountiesNational : `${nr.countyPrefix} ${county}`}</span>
+              <span>{isNationalCounty(county) ? nr.allCountiesNational : countyLabel(county, lang)}</span>
               <span className="text-xs font-normal text-paper/60 underline underline-offset-2">{nr.changeLabel}</span>
             </button>
 

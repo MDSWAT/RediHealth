@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useState } from "react";
-import { useReducedMotion } from "motion/react";
 import type { Lang } from "@/lib/i18n/translations";
 import { HeartDiagram } from "../explainers/scenes/HeartDiagram";
 import { HEART_ANATOMY_UI_COPY, HEART_PARTS, type HeartPartId } from "./heart-anatomy-copy";
@@ -17,14 +16,15 @@ export interface HeartAnatomyPanelProps {
  */
 export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelProps) {
   const copy = HEART_ANATOMY_UI_COPY[lang] ?? HEART_ANATOMY_UI_COPY.ro;
-  const reducedMotion = useReducedMotion() ?? false;
   const [paused, setPaused] = useState(false);
   const [selected, setSelected] = useState<HeartPartId | null>(null);
   const baseId = useId();
   const headingId = `${baseId}-heading`;
   const listLabelId = `${baseId}-parts`;
 
-  const playing = !reducedMotion && !paused;
+  // Under reduced motion the CSS keeps the diagram still and hides the pause button,
+  // so server and client render the same markup (no hydration mismatch).
+  const playing = !paused;
   const toggle = (id: HeartPartId) => setSelected((prev) => (prev === id ? null : id));
 
   return (
@@ -35,7 +35,7 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
       <p className="mt-1 max-w-prose text-sm leading-relaxed text-muted-foreground">{copy.intro}</p>
 
       <div className="mt-5 grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:items-start">
-        <figure className="relative rounded-lg border border-border bg-surface-elevated p-3 sm:p-4">
+        <figure className="relative">
           <div role="img" aria-label={copy.diagramLabel} className="mx-auto max-w-[320px]">
             <HeartDiagram
               playing={playing}
@@ -44,27 +44,25 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
               onMarkerSelect={toggle}
             />
           </div>
-          {!reducedMotion && (
-            <button
-              type="button"
-              onClick={() => setPaused((p) => !p)}
-              aria-pressed={!paused}
-              aria-label={paused ? copy.play : copy.pause}
-              title={paused ? copy.play : copy.pause}
-              className="absolute right-2 top-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-            >
-              {paused ? (
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z" />
-                </svg>
-              ) : (
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <rect x="6" y="4" width="4" height="16" rx="1" />
-                  <rect x="14" y="4" width="4" height="16" rx="1" />
-                </svg>
-              )}
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            aria-pressed={!paused}
+            aria-label={paused ? copy.play : copy.pause}
+            title={paused ? copy.play : copy.pause}
+            className="absolute right-0 top-0 inline-flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:hidden"
+          >
+            {paused ? (
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z" />
+              </svg>
+            ) : (
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="6" y="4" width="4" height="16" rx="1" />
+                <rect x="14" y="4" width="4" height="16" rx="1" />
+              </svg>
+            )}
+          </button>
           <figcaption className="mt-2 text-xs leading-relaxed text-muted-foreground">
             {copy.ecgCaption}
           </figcaption>
@@ -85,11 +83,11 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
                     onClick={() => toggle(part.id)}
                     aria-expanded={open}
                     aria-controls={detailId}
-                    className="flex min-h-[44px] w-full items-start gap-3 rounded-md px-2.5 py-3 text-left transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                    className="flex min-h-[44px] w-full items-start gap-3 rounded-lg px-2.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
                   >
                     <span
                       aria-hidden="true"
-                      className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-xs font-semibold tabular-nums transition-colors ${
+                      className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-xs font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
                         open
                           ? "border-foreground bg-foreground text-background"
                           : "border-border text-muted-foreground"

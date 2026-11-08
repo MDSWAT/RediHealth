@@ -43,7 +43,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       },
       {
         title: "Vorbește cu un medic online",
-        description: "Sfat gratuit de la medicul de gardă, prin video sau la telefon.",
+        description: "Sfat gratuit de la medicul de gardă, printr-un apel.",
         cta: "Vezi medicii de gardă",
       },
       {
@@ -69,7 +69,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       },
       {
         title: "Talk to a doctor online",
-        description: "Free advice from the on-call doctor, by video or phone.",
+        description: "Free advice from the on-call doctor, over a call.",
         cta: "See on-call doctors",
       },
       {
@@ -95,7 +95,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       },
       {
         title: "Fol me një mjek online",
-        description: "Këshillë falas nga mjeku kujdestar, me video ose me telefon.",
+        description: "Këshillë falas nga mjeku kujdestar, me një thirrje.",
         cta: "Shiko mjekët kujdestarë",
       },
       {
@@ -121,7 +121,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       },
       {
         title: "Parla con un medico online",
-        description: "Consigli gratuiti dal medico di guardia, in video o al telefono.",
+        description: "Consigli gratuiti dal medico di guardia, con una chiamata.",
         cta: "Vedi i medici di guardia",
       },
       {
@@ -135,8 +135,8 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
 
 /**
  * "How can we help?": one index of the four ways in, set as a single
- * ruled panel (1px dividers) rather than four floating cards. Calm hover:
- * the cell tints and the arrow moves 2px.
+ * ruled panel (1px dividers) rather than four floating cards. Hover is
+ * colour-only: the cell tints.
  */
 export function HelpOptions() {
   const { lang } = useLanguage();
@@ -154,14 +154,14 @@ export function HelpOptions() {
           className="mx-auto"
         />
 
-        <ul className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {copy.options.map(({ title, description, cta }, index) => {
             const { href, Icon } = OPTION_LINKS[index];
             return (
               <li key={href} className="bg-card">
                 <Link
                   href={withLangPrefix(href, lang)}
-                  className="group flex h-full flex-col p-5 transition-colors duration-150 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none sm:p-6"
+                  className="group flex h-full flex-col p-5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none sm:p-6"
                 >
                   <div className="flex items-start gap-3">
                     <Icon className="mt-px h-[22px] w-[22px] shrink-0 text-sapphire" />
@@ -170,7 +170,7 @@ export function HelpOptions() {
                   <p className="mt-2.5 text-[15px] leading-relaxed text-muted-foreground">{description}</p>
                   <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-semibold text-sapphire">
                     {cta}
-                    <ArrowRightIcon className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                    <ArrowRightIcon className="h-4 w-4" />
                   </span>
                 </Link>
               </li>

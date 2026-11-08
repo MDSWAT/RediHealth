@@ -65,7 +65,7 @@ export function PatientsDashboard({
             <h1 className="mt-1 text-2xl font-semibold">{copy.patientTitle}</h1>
           </header>
           {!databaseAvailable ? (
-            <p className="rounded-2xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
               {t.noDatabase}
             </p>
           ) : (

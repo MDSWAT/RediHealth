@@ -22,7 +22,7 @@ const calendarCopy = {
     stepOf: (n: number) => `Pasul ${n} din 3`,
     chooseDay: "Alege ziua",
     availableHours: (formatted: string) => `Ore libere, ${formatted}`,
-    slotDuration: "O consultație durează 20 min",
+    slotDuration: "Un apel durează 20 min",
     continueToContact: "Continuă",
     contactTitle: "Unde îți trimitem confirmarea",
     bookingFor: (formatted: string, time: string) => `Programare: ${formatted}, ora ${time}`,
@@ -39,17 +39,17 @@ const calendarCopy = {
     monthNames: ["ian.", "feb.", "mar.", "apr.", "mai", "iun.", "iul.", "aug.", "sept.", "oct.", "nov.", "dec."],
     monthNamesLong: ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"],
     sms: (date: string, time: string, link: string) =>
-      `RediHealth: Ai programare la medic prin video ${date}, ora ${time}. La ora asta, deschide linkul ca să intri în apel: ${link}`,
+      `RediHealth: Ai un apel programat cu medicul ${date}, ora ${time}. La ora asta, deschide linkul ca să intri în apel: ${link}`,
   },
   en: {
     steps: ["Day and time", "Your phone", "Done"],
     stepOf: (n: number) => `Step ${n} of 3`,
     chooseDay: "Choose a day",
     availableHours: (formatted: string) => `Free times, ${formatted}`,
-    slotDuration: "An appointment lasts 20 min",
+    slotDuration: "A call lasts 20 min",
     continueToContact: "Continue",
     contactTitle: "Where we send the confirmation",
-    bookingFor: (formatted: string, time: string) => `Appointment: ${formatted} at ${time}`,
+    bookingFor: (formatted: string, time: string) => `Call: ${formatted} at ${time}`,
     changeTime: "Change time",
     back: "Back",
     confirmBooking: "Book",
@@ -63,41 +63,41 @@ const calendarCopy = {
     monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     monthNamesLong: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     sms: (date: string, time: string, link: string) =>
-      `RediHealth: You have a video appointment on ${date} at ${time}. At that time, open this link to join the call: ${link}`,
+      `RediHealth: You have a call with a doctor on ${date} at ${time}. At that time, open this link to join the call: ${link}`,
   },
   sq: {
     steps: ["Dita dhe ora", "Telefoni yt", "Gati"],
     stepOf: (n: number) => `Hapi ${n} nga 3`,
     chooseDay: "Zgjidh ditën",
     availableHours: (formatted: string) => `Orë të lira, ${formatted}`,
-    slotDuration: "Një vizitë zgjat 20 min",
+    slotDuration: "Një thirrje zgjat 20 min",
     continueToContact: "Vazhdo",
     contactTitle: "Ku ta dërgojmë konfirmimin",
-    bookingFor: (formatted: string, time: string) => `Vizita: ${formatted}, ora ${time}`,
+    bookingFor: (formatted: string, time: string) => `Thirrja: ${formatted}, ora ${time}`,
     changeTime: "Ndrysho orën",
     back: "Kthehu",
-    confirmBooking: "Cakto vizitën",
+    confirmBooking: "Cakto thirrjen",
     confirming: "Po caktohet…",
     errorSelectTime: "Zgjidh një orë.",
     errorName: "Shkruaj emrin e atij që flet me mjekun.",
     errorPhone: "Shkruaj një numër celulari, për shembull 0721 000 000.",
-    errorGeneric: "Vizita nuk u caktua. Provo përsëri.",
+    errorGeneric: "Thirrja nuk u caktua. Provo përsëri.",
     dayNames: ["Die", "Hën", "Mar", "Mër", "Enj", "Pre", "Sht"],
     dayNamesLong: ["e diel", "e hënë", "e martë", "e mërkurë", "e enjte", "e premte", "e shtunë"],
     monthNames: ["jan", "shk", "mar", "pri", "maj", "qer", "korr", "gush", "sht", "tet", "nën", "dhj"],
     monthNamesLong: ["janar", "shkurt", "mars", "prill", "maj", "qershor", "korrik", "gusht", "shtator", "tetor", "nëntor", "dhjetor"],
     sms: (date: string, time: string, link: string) =>
-      `RediHealth: Ke një vizitë me video ${date}, ora ${time}. Në atë orë, hap këtë lidhje që të hysh në thirrje: ${link}`,
+      `RediHealth: Ke një thirrje me mjekun ${date}, ora ${time}. Në atë orë, hap këtë lidhje që të hysh në thirrje: ${link}`,
   },
   it: {
     steps: ["Giorno e ora", "Il tuo telefono", "Fatto"],
     stepOf: (n: number) => `Passo ${n} di 3`,
     chooseDay: "Scegli il giorno",
     availableHours: (formatted: string) => `Orari liberi, ${formatted}`,
-    slotDuration: "Una visita dura 20 min",
+    slotDuration: "Una chiamata dura 20 min",
     continueToContact: "Continua",
     contactTitle: "Dove ti mandiamo la conferma",
-    bookingFor: (formatted: string, time: string) => `Visita: ${formatted}, ore ${time}`,
+    bookingFor: (formatted: string, time: string) => `Chiamata: ${formatted}, ore ${time}`,
     changeTime: "Cambia orario",
     back: "Indietro",
     confirmBooking: "Prenota",
@@ -111,7 +111,7 @@ const calendarCopy = {
     monthNames: ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"],
     monthNamesLong: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"],
     sms: (date: string, time: string, link: string) =>
-      `RediHealth: Hai una visita in video ${date}, ore ${time}. A quell'ora, apri questo link per entrare nella chiamata: ${link}`,
+      `RediHealth: Hai una chiamata con il medico ${date}, ore ${time}. A quell'ora, apri questo link per entrare nella chiamata: ${link}`,
   },
 };
 
@@ -146,12 +146,16 @@ const AVAILABLE_TIME_SLOTS = [
   "17:00", "17:20", "17:40",
 ];
 
-const choiceBase =
-  "rounded-lg border text-center transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
-const choiceOn = "border-sapphire bg-sapphire text-white";
-const choiceOff = "border-border bg-background text-foreground hover:border-foreground/30 hover:bg-muted";
+// Day and time pickers are one surface of cells split by hairlines (no grid of bordered boxes);
+// the chosen cell is filled with ink. The focus ring sits inside the cell so the surface does not clip it.
+const cellBase =
+  "text-center transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring";
+const cellOn = "bg-foreground text-background";
+const cellOff = "bg-card text-foreground hover:bg-muted";
+const nextButton =
+  "inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-2.5 text-sm font-semibold text-background transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
 
-/** Booking a video consultation: pick a day and time, give contact details, see the confirmation. */
+/** Booking a voice call with a doctor: pick a day and time, give contact details, see the confirmation. */
 export function AppointmentBookingCalendar() {
   const { lang } = useSafeLanguage();
   const copy = calendarCopy[lang] ?? calendarCopy.ro;
@@ -183,6 +187,7 @@ export function AppointmentBookingCalendar() {
 
   const goTo = (next: 1 | 2) => {
     movedStep.current = true;
+    setError("");
     setStep(next);
   };
 
@@ -245,6 +250,13 @@ export function AppointmentBookingCalendar() {
     }
   };
 
+  // The error sits right above the button that caused it, so it is seen on a phone without scrolling up.
+  const errorNote = error ? (
+    <p role="alert" className="mt-6 rounded-lg border border-amber-care-border bg-amber-care-soft/40 px-3.5 py-3 text-sm font-medium text-foreground dark:bg-amber-care/10">
+      {error}
+    </p>
+  ) : null;
+
   if (step === 3 && confirmationData) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-8">
@@ -274,7 +286,7 @@ export function AppointmentBookingCalendar() {
                 aria-hidden="true"
                 className={cn(
                   "block h-1 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)]",
-                  reached ? "bg-sapphire" : "bg-muted",
+                  reached ? "bg-foreground" : "bg-border",
                 )}
               />
               <span className={cn("mt-2 block text-xs leading-snug", reached ? "font-semibold text-foreground" : "text-muted-foreground")}>
@@ -285,20 +297,14 @@ export function AppointmentBookingCalendar() {
         })}
       </ol>
 
-      {error && (
-        <p role="alert" className="mb-6 rounded-lg border border-primary/25 bg-primary-soft/60 px-3.5 py-3 text-sm font-medium text-primary">
-          {error}
-        </p>
-      )}
-
       {step === 1 && (
-        <div className="rounded-xl border border-border bg-card p-5 sm:p-6">
+        <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
           <h2 ref={stepHeadingRef} tabIndex={-1} className="flex items-center gap-2 text-lg font-semibold text-foreground focus:outline-none">
             <CalendarIcon className="h-5 w-5 text-sapphire" />
             {copy.chooseDay}
           </h2>
 
-          <div className="-mx-1 mt-4 flex gap-2 overflow-x-auto px-1 pb-2 pt-1 [scrollbar-width:none]">
+          <div className="mt-4 grid grid-cols-7 divide-x divide-border overflow-hidden rounded-lg border border-border">
             {days.map((d) => {
               const isSelected = selectedDate === d.isoDate;
               return (
@@ -311,11 +317,11 @@ export function AppointmentBookingCalendar() {
                     setSelectedDate(d.isoDate);
                     setSelectedTime("");
                   }}
-                  className={cn(choiceBase, "flex min-h-[64px] min-w-[64px] flex-1 flex-col items-center justify-center px-2 py-2", isSelected ? choiceOn : choiceOff)}
+                  className={cn(cellBase, "flex min-h-[64px] min-w-0 flex-col items-center justify-center px-0.5 py-2", isSelected ? cellOn : cellOff)}
                 >
-                  <span className={cn("text-xs", isSelected ? "text-white/80" : "text-muted-foreground")}>{d.dayName}</span>
+                  <span className={cn("text-xs", isSelected ? "text-background/80" : "text-muted-foreground")}>{d.dayName}</span>
                   <span className="text-lg font-semibold tabular-nums leading-tight">{d.dayNum}</span>
-                  <span className={cn("text-[11px]", isSelected ? "text-white/80" : "text-muted-foreground")}>{d.monthName}</span>
+                  <span className={cn("text-[11px]", isSelected ? "text-background/80" : "text-muted-foreground")}>{d.monthName}</span>
                 </button>
               );
             })}
@@ -330,7 +336,8 @@ export function AppointmentBookingCalendar() {
               <span className="text-xs text-muted-foreground">{copy.slotDuration}</span>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+            {/* 21 slots: 3 × 7 on a phone, 7 × 3 wider, so every row is full and the hairlines meet. */}
+            <div className="grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-7">
               {AVAILABLE_TIME_SLOTS.map((slot) => {
                 const isSelected = selectedTime === slot;
                 return (
@@ -342,7 +349,7 @@ export function AppointmentBookingCalendar() {
                       setSelectedTime(slot);
                       setError("");
                     }}
-                    className={cn(choiceBase, "min-h-[48px] text-sm font-semibold tabular-nums", isSelected ? choiceOn : choiceOff)}
+                    className={cn(cellBase, "min-h-[48px] text-sm font-semibold tabular-nums", isSelected ? cellOn : cellOff)}
                   >
                     {slot}
                   </button>
@@ -351,12 +358,10 @@ export function AppointmentBookingCalendar() {
             </div>
           </div>
 
+          {errorNote}
+
           <div className="mt-6 flex justify-end border-t border-border pt-4">
-            <button
-              type="button"
-              onClick={handleNextToContact}
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-sapphire px-6 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
+            <button type="button" onClick={handleNextToContact} className={nextButton}>
               {copy.continueToContact}
               <ArrowRightIcon className="h-4 w-4" />
             </button>
@@ -365,7 +370,7 @@ export function AppointmentBookingCalendar() {
       )}
 
       {step === 2 && (
-        <div className="rounded-xl border border-border bg-card p-5 sm:p-6">
+        <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
           <div className="mb-5 flex flex-wrap items-start justify-between gap-3 border-b border-border pb-4">
             <div>
               <h2 ref={stepHeadingRef} tabIndex={-1} className="text-lg font-semibold text-foreground focus:outline-none">
@@ -376,7 +381,7 @@ export function AppointmentBookingCalendar() {
             <button
               type="button"
               onClick={() => goTo(1)}
-              className="min-h-[44px] rounded-sm text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="min-h-[44px] rounded-sm text-sm font-medium text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.changeTime}
             </button>
@@ -384,11 +389,13 @@ export function AppointmentBookingCalendar() {
 
           <FamilyBookingSelector value={partyData} onChange={setPartyData} />
 
+          {errorNote}
+
           <div className="mt-8 flex items-center justify-between gap-3 border-t border-border pt-5">
             <button
               type="button"
               onClick={() => goTo(1)}
-              className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="-mx-2 inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-2 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <ArrowLeftIcon className="h-4 w-4" />
               {copy.back}
@@ -398,7 +405,7 @@ export function AppointmentBookingCalendar() {
               type="button"
               disabled={isSubmitting}
               onClick={handleConfirmBooking}
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-sapphire px-6 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60"
+              className={nextButton}
             >
               {isSubmitting ? copy.confirming : copy.confirmBooking}
             </button>

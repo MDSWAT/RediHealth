@@ -10,7 +10,7 @@ import type {
 } from "@/lib/types/patient";
 import { getPriorityMeta } from "@/lib/patient-helpers";
 import type { CountryCode } from "@/lib/countries";
-import { useRecaptcha } from "@/components/security/RecaptchaProvider";
+import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 
@@ -22,7 +22,10 @@ function useSafeLang(): Lang {
   }
 }
 
-const portalMessages: Record<Lang, { symptoms: string; followup: string; photo: string; complete: string; tooBig: string; photoName: string }> = {
+const portalMessages: Record<
+  Lang,
+  { symptoms: string; followup: string; photo: string; complete: string; tooBig: string; photoName: string; tooMany: string; expired: string }
+> = {
   ro: {
     symptoms: "Simptomele nu s-au salvat. Încearcă din nou.",
     followup: "Controlul nu s-a salvat. Încearcă din nou.",
@@ -30,6 +33,8 @@ const portalMessages: Record<Lang, { symptoms: string; followup: string; photo: 
     complete: "Nu am putut marca vizita ca făcută. Încearcă din nou.",
     tooBig: "Fișierul e prea mare. Alege unul sub 5 MB.",
     photoName: "Poză de la pacient",
+    tooMany: "Ai trimis de prea multe ori. Așteaptă puțin și încearcă din nou.",
+    expired: "Linkul spre pagina ta a expirat. Cere un link nou din pagina de intrare.",
   },
   en: {
     symptoms: "Your symptoms were not saved. Try again.",
@@ -38,6 +43,8 @@ const portalMessages: Record<Lang, { symptoms: string; followup: string; photo: 
     complete: "We could not mark the visit as done. Try again.",
     tooBig: "The file is too big. Choose one under 5 MB.",
     photoName: "Photo from patient",
+    tooMany: "Too many tries. Wait a little and try again.",
+    expired: "The link to your page has expired. Ask for a new one on the sign-in page.",
   },
   sq: {
     symptoms: "Shqetësimet nuk u ruajtën. Provo përsëri.",
@@ -46,6 +53,8 @@ const portalMessages: Record<Lang, { symptoms: string; followup: string; photo: 
     complete: "Nuk e shënuam vizitën si të bërë. Provo përsëri.",
     tooBig: "Skedari është shumë i madh. Zgjidh një nën 5 MB.",
     photoName: "Foto nga pacienti",
+    tooMany: "Provove shumë herë. Prit pak dhe provo përsëri.",
+    expired: "Lidhja e faqes sate ka skaduar. Kërko një të re te faqja e hyrjes.",
   },
   it: {
     symptoms: "I sintomi non sono stati salvati. Riprova.",
@@ -54,6 +63,8 @@ const portalMessages: Record<Lang, { symptoms: string; followup: string; photo: 
     complete: "Non siamo riusciti a segnare la visita come fatta. Riprova.",
     tooBig: "Il file è troppo grande. Scegline uno sotto i 5 MB.",
     photoName: "Foto del paziente",
+    tooMany: "Troppi tentativi. Aspetta un po' e riprova.",
+    expired: "Il link alla tua pagina è scaduto. Chiedine uno nuovo dalla pagina di accesso.",
   },
 };
 
@@ -73,9 +84,15 @@ async function patchPortal(token: string, country: CountryCode, payload: unknown
     body: JSON.stringify(payload),
   });
 
-  if (!response.ok) {
-    const data = (await response.json().catch(() => ({}))) as { error?: string };
-    throw new Error(data.error || "");
+  // The API answers in English; only the status is used, so the reader sees their own language.
+  if (!response.ok) throw new PortalRequestError(response.status);
+}
+
+class PortalRequestError extends Error {
+  status: number;
+  constructor(status: number) {
+    super(`portal-request-${status}`);
+    this.status = status;
   }
 }
 
@@ -87,8 +104,14 @@ async function patchPortal(token: string, country: CountryCode, payload: unknown
 export function usePatientPortal({ initialPatient, token, country }: UsePatientPortalArgs) {
   const executeCaptcha = useRecaptcha();
   const messages = portalMessages[useSafeLang()] ?? portalMessages.ro;
-  const errorText = (error: unknown, fallback: string) =>
-    error instanceof Error && error.message ? error.message : fallback;
+  const errorText = (error: unknown, fallback: string) => {
+    if (error instanceof PortalRequestError) {
+      if (error.status === 429) return messages.tooMany;
+      if (error.status === 410) return messages.expired;
+      return fallback;
+    }
+    return captchaErrorMessage(error, fallback);
+  };
   const patch = async (payload: object) => {
     const captchaToken = await executeCaptcha("patient_portal");
     return patchPortal(token, country, { ...payload, captchaToken });

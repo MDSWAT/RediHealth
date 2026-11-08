@@ -28,7 +28,7 @@ export function getPriorityMeta(priority: PatientPriority = "moderate") {
         shortLabel: "Critical",
         badgeClass: "bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-400",
         recommendedDays: 1,
-        dotClass: "bg-red-500 animate-pulse",
+        dotClass: "bg-red-600",
       };
     case "high":
       return {
@@ -88,7 +88,7 @@ export function getFollowupState(followups?: FollowupItem[] | null) {
     return {
       state: "overdue" as const,
       label: "Overdue",
-      badgeClass: "bg-red-600 text-white font-bold animate-pulse",
+      badgeClass: "bg-red-50 text-red-800 font-semibold dark:bg-red-500/10 dark:text-red-300",
       latest: nextUp,
     };
   }

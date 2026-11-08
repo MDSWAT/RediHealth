@@ -1,9 +1,19 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
-import { LazyMotion, domAnimation, m, useReducedMotion } from "motion/react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { LazyMotion, domAnimation, m, useInView, useReducedMotion } from "motion/react";
 import { DURATION, EASE_IN_OUT, EASE_OUT } from "@/lib/motion/tokens";
 import { LanguageContext } from "@/lib/i18n/language-context";
+import {
+  BACK_BUTTON_CLASS,
+  NEXT_BUTTON_CLASS,
+  ROW_CLASS,
+  ROW_LIST_CLASS,
+  STEP_LIST_CLASS,
+  radioDotClass,
+  stepCellClass,
+  stepNumberClass,
+} from "./choice-styles";
 import type { Lang } from "@/lib/i18n/translations";
 
 export interface InsulinMechanicsModuleProps {
@@ -25,8 +35,6 @@ interface StepDescription {
 interface ModeDetail {
   modeName: string;
   badge: string;
-  badgeClass: string;
-  subtitle: string;
   overview: string;
   steps: StepDescription[];
 }
@@ -40,13 +48,11 @@ interface InsulinUiStrings {
   stageLabel: string;
   ofFour: string;
   prevStep: string;
-  prevStepAria: string;
   playAuto: string;
   playAutoAria: string;
   pause: string;
   pauseAria: string;
   nextStep: string;
-  nextStepAria: string;
   stepIndicator: string;
   organBloodBehavior: string;
   cellularBehavior: string;
@@ -86,13 +92,11 @@ const UI_STRINGS: Record<Lang, InsulinUiStrings> = {
     stageLabel: "Pasul",
     ofFour: "din 4",
     prevStep: "Înapoi",
-    prevStepAria: "Pasul de dinainte",
     playAuto: "Pornește",
     playAutoAria: "Pornește derularea pașilor",
     pause: "Oprește",
     pauseAria: "Oprește derularea pașilor",
     nextStep: "Înainte",
-    nextStepAria: "Pasul următor",
     stepIndicator: "Pasul",
     organBloodBehavior: "În pancreas și în sânge:",
     cellularBehavior: "La celulă:",
@@ -129,13 +133,11 @@ const UI_STRINGS: Record<Lang, InsulinUiStrings> = {
     stageLabel: "Step",
     ofFour: "of 4",
     prevStep: "Back",
-    prevStepAria: "Previous step",
     playAuto: "Play",
     playAutoAria: "Play the steps",
     pause: "Pause",
     pauseAria: "Pause the steps",
     nextStep: "Next",
-    nextStepAria: "Next step",
     stepIndicator: "Step",
     organBloodBehavior: "In the pancreas and the blood:",
     cellularBehavior: "At the cell:",
@@ -171,14 +173,12 @@ const UI_STRINGS: Record<Lang, InsulinUiStrings> = {
     modeSelectAria: "Zgjidh trupin e shëndetshëm ose një lloj diabeti",
     stageLabel: "Hapi",
     ofFour: "nga 4",
-    prevStep: "Kthehu",
-    prevStepAria: "Hapi i mëparshëm",
+    prevStep: "Mbrapa",
     playAuto: "Nis",
     playAutoAria: "Nis hapat",
     pause: "Ndalo",
     pauseAria: "Ndalo hapat",
-    nextStep: "Para",
-    nextStepAria: "Hapi tjetër",
+    nextStep: "Përpara",
     stepIndicator: "Hapi",
     organBloodBehavior: "Në pankreas dhe në gjak:",
     cellularBehavior: "Te qeliza:",
@@ -215,13 +215,11 @@ const UI_STRINGS: Record<Lang, InsulinUiStrings> = {
     stageLabel: "Passo",
     ofFour: "di 4",
     prevStep: "Indietro",
-    prevStepAria: "Passo precedente",
     playAuto: "Avvia",
     playAutoAria: "Avvia i passi",
     pause: "Pausa",
     pauseAria: "Metti in pausa i passi",
     nextStep: "Avanti",
-    nextStepAria: "Passo successivo",
     stepIndicator: "Passo",
     organBloodBehavior: "Nel pancreas e nel sangue:",
     cellularBehavior: "Nella cellula:",
@@ -256,8 +254,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     healthy: {
       modeName: "Corp sănătos",
       badge: "Totul merge bine",
-      badgeClass: "bg-live-sage-soft text-live-sage border-live-sage/30",
-      subtitle: "Zahăr normal, încuietori care răspund",
       overview:
         "Într-un corp sănătos, pancreasul face exact câtă insulină trebuie. Cheia deschide ușa celulei și zahărul intră pentru energie.",
       steps: [
@@ -306,8 +302,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     type1: {
       modeName: "Diabet de tip 1",
       badge: "Nu se face insulină",
-      badgeClass: "bg-primary-soft text-primary border-primary/30",
-      subtitle: "Corpul își distruge celulele care fac insulina",
       overview:
         "În diabetul de tip 1, corpul își atacă singur celulele beta din pancreas. Nu se mai face insulină. Fără cheie, zahărul rămâne în sânge.",
       steps: [
@@ -356,8 +350,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     type2: {
       modeName: "Diabet de tip 2",
       badge: "Celulele nu mai ascultă de insulină",
-      badgeClass: "bg-amber-care-soft text-amber-care border-amber-care-border",
-      subtitle: "Rezistență la insulină",
       overview:
         "În diabetul de tip 2, pancreasul face insulină, dar celulele nu mai răspund bine la ea. Încuietorile merg greu, adesea din cauza grăsimii de pe burtă, iar ușile se deschid puțin.",
       steps: [
@@ -408,8 +400,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     healthy: {
       modeName: "Healthy body",
       badge: "Everything works",
-      badgeClass: "bg-live-sage-soft text-live-sage border-live-sage/30",
-      subtitle: "Normal sugar, locks that respond",
       overview:
         "In a healthy body, the pancreas makes just the right amount of insulin. The key opens the cell door and sugar goes in for energy.",
       steps: [
@@ -458,8 +448,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     type1: {
       modeName: "Type 1 diabetes",
       badge: "No insulin is made",
-      badgeClass: "bg-primary-soft text-primary border-primary/30",
-      subtitle: "The body destroys the cells that make insulin",
       overview:
         "In type 1 diabetes, the body attacks its own beta cells in the pancreas. No more insulin is made. Without the key, sugar stays in the blood.",
       steps: [
@@ -508,8 +496,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     type2: {
       modeName: "Type 2 diabetes",
       badge: "Cells stop listening to insulin",
-      badgeClass: "bg-amber-care-soft text-amber-care border-amber-care-border",
-      subtitle: "Insulin resistance",
       overview:
         "In type 2 diabetes, the pancreas makes insulin, but the cells do not respond well. The locks work badly, often because of belly fat, and the doors open only a little.",
       steps: [
@@ -560,8 +546,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     healthy: {
       modeName: "Trup i shëndetshëm",
       badge: "Gjithçka punon mirë",
-      badgeClass: "bg-live-sage-soft text-live-sage border-live-sage/30",
-      subtitle: "Sheqer normal, brava që reagojnë",
       overview:
         "Në një trup të shëndetshëm, pankreasi bën aq insulinë sa duhet. Çelësi hap derën e qelizës dhe sheqeri hyn për energji.",
       steps: [
@@ -610,8 +594,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     type1: {
       modeName: "Diabeti tip 1",
       badge: "Nuk bëhet insulinë",
-      badgeClass: "bg-primary-soft text-primary border-primary/30",
-      subtitle: "Trupi shkatërron qelizat që bëjnë insulinë",
       overview:
         "Te diabeti tip 1, trupi sulmon vetë qelizat beta të pankreasit. Nuk bëhet më insulinë. Pa çelës, sheqeri mbetet në gjak.",
       steps: [
@@ -660,8 +642,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     type2: {
       modeName: "Diabeti tip 2",
       badge: "Qelizat nuk i binden më insulinës",
-      badgeClass: "bg-amber-care-soft text-amber-care border-amber-care-border",
-      subtitle: "Rezistencë ndaj insulinës",
       overview:
         "Te diabeti tip 2, pankreasi bën insulinë, por qelizat nuk reagojnë mirë. Bravat punojnë keq, shpesh për shkak të yndyrës në bark, dhe dyert hapen pak.",
       steps: [
@@ -677,7 +657,7 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
         },
         {
           stepNumber: 2,
-          stepTitle: "Çelësat arrijnë te qeliza që nuk reagojnë",
+          stepTitle: "Çelësat arrijnë te qelizat që nuk reagojnë",
           pancreasState: "Pankreasi punon me të gjitha forcat.",
           bloodState: "Gjaku është plot sheqer dhe insulinë.",
           receptorState: "Brava është ndryshuar ose e mbuluar nga yndyra brenda muskulit.",
@@ -687,7 +667,7 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
         },
         {
           stepNumber: 3,
-          stepTitle: "Çelësi nuk hap më mirë",
+          stepTitle: "Çelësi nuk hap më si duhet",
           pancreasState: "Me kohën, qelizat beta lodhen dhe dobësohen.",
           bloodState: "Sheqeri në gjak rritet, sepse nuk hyn mjaftueshëm në qeliza.",
           receptorState: "Çelësi hyn, por sinjali nuk kalon si duhet.",
@@ -712,8 +692,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     healthy: {
       modeName: "Corpo sano",
       badge: "Tutto funziona",
-      badgeClass: "bg-live-sage-soft text-live-sage border-live-sage/30",
-      subtitle: "Zucchero normale, serrature che rispondono",
       overview:
         "In un corpo sano, il pancreas fa la giusta quantità di insulina. La chiave apre la porta della cellula e lo zucchero entra per dare energia.",
       steps: [
@@ -762,8 +740,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     type1: {
       modeName: "Diabete di tipo 1",
       badge: "Non si produce insulina",
-      badgeClass: "bg-primary-soft text-primary border-primary/30",
-      subtitle: "Il corpo distrugge le cellule che fanno l'insulina",
       overview:
         "Nel diabete di tipo 1, il corpo attacca da solo le cellule beta del pancreas. L'insulina non viene più prodotta. Senza chiave, lo zucchero resta nel sangue.",
       steps: [
@@ -812,8 +788,6 @@ const MODE_TRANSLATIONS: Record<Lang, Record<InsulinMode, ModeDetail>> = {
     type2: {
       modeName: "Diabete di tipo 2",
       badge: "Le cellule non ascoltano più l'insulina",
-      badgeClass: "bg-amber-care-soft text-amber-care border-amber-care-border",
-      subtitle: "Insulino-resistenza",
       overview:
         "Nel diabete di tipo 2, il pancreas fa insulina, ma le cellule non rispondono bene. Le serrature funzionano male, spesso per il grasso sulla pancia, e le porte si aprono poco.",
       steps: [
@@ -873,8 +847,9 @@ function useSafeLanguage(propLang?: Lang): Lang {
 /* Cell diagram geometry (viewBox 600 x 280).                                 */
 /* ------------------------------------------------------------------------- */
 
+/** Same fine line as the other explainer diagrams. */
 const STROKE = {
-  strokeWidth: 2,
+  strokeWidth: 1.5,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
   vectorEffect: "non-scaling-stroke" as const,
@@ -935,14 +910,28 @@ function hexagon(cx: number, cy: number, r: number) {
   }).join(" ");
 }
 
+/*
+ * On phones the 600-unit drawing is shown at about half size, so the moving parts are
+ * drawn larger there (CSS scale; strokes do not scale). Glucose grows around its centre,
+ * a key around the tip of its blade, so a docked key still sits in the receptor and a
+ * key that does not fit still hovers above it.
+ */
 function GlucoseGlyph() {
-  return <polygon points={hexagon(0, 0, 8)} fill="var(--color-card)" stroke="var(--color-sapphire)" {...STROKE} />;
+  return (
+    <polygon
+      points={hexagon(0, 0, 8)}
+      fill="var(--color-card)"
+      stroke="var(--color-sapphire)"
+      {...STROKE}
+      className="max-sm:scale-[1.4]"
+    />
+  );
 }
 
 /** Insulin as a key, drawn around its head at (0, 0) with the blade pointing down. */
 function KeyGlyph() {
   return (
-    <g stroke="var(--color-amber-care)" {...STROKE}>
+    <g stroke="var(--color-amber-care)" {...STROKE} className="origin-[0px_24px] max-sm:scale-[1.45]">
       <circle cx="0" cy="0" r="7" fill="var(--color-amber-care-soft)" />
       <path d="M0 7 V24 M0 16 H5 M0 21 H5" />
     </g>
@@ -1081,20 +1070,22 @@ function CellDiagram({ mode, step, reduced }: CellDiagramProps) {
         </m.g>
       ))}
 
-      {/* Glucose in the blood; the first ones pass through the open gate */}
+      {/* Glucose in the blood; the first ones pass through the open gate. Glucose
+          never flows back out: when the reader steps back, it fades in again in the blood. */}
       {BLOOD_GLUCOSE.map(([x, y], i) => {
         const goesIn = i < crossing;
         const target = CELL_GLUCOSE[i];
-        const animate = goesIn
-          ? { x: [x, GATE_X, target[0]], y: [y, GATE_Y, target[1]] }
-          : { x, y };
-        return (
+        return goesIn ? (
           <m.g
-            key={`glu-${x}`}
-            initial={false}
-            animate={animate}
-            transition={goesIn ? { duration: reduced ? 0 : 1.4, times: [0, 0.5, 1], ease: EASE_IN_OUT, delay: reduced ? 0 : 0.5 + i * 0.15 } : move}
+            key={`glu-in-${x}`}
+            initial={{ x, y, opacity: 1 }}
+            animate={{ x: [x, GATE_X, target[0]], y: [y, GATE_Y, target[1]] }}
+            transition={{ duration: reduced ? 0 : 1.4, times: [0, 0.5, 1], ease: EASE_IN_OUT, delay: reduced ? 0 : 0.5 + i * 0.15 }}
           >
+            <GlucoseGlyph />
+          </m.g>
+        ) : (
+          <m.g key={`glu-${x}`} initial={reduced ? false : { x, y, opacity: 0 }} animate={{ x, y, opacity: 1 }} transition={fade}>
             <GlucoseGlyph />
           </m.g>
         );
@@ -1111,14 +1102,12 @@ function CellDiagram({ mode, step, reduced }: CellDiagramProps) {
 }
 
 export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModuleProps) {
-  // HOOK ORDER CONTRACT FOR EMPIRICAL STRESS TESTS:
-  // Hook 0: activeMode
-  // Hook 1: currentStepIndex
-  // Hook 2: isPlaying
   const [activeMode, setActiveMode] = useState<InsulinMode>("healthy");
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const reduced = useReducedMotion() ?? false;
+  const visualizerRef = useRef<HTMLDivElement | null>(null);
+  const inView = useInView(visualizerRef, { amount: 0.3 });
 
   const activeLang = useSafeLanguage(propLang);
   const ui = UI_STRINGS[activeLang] || UI_STRINGS.ro;
@@ -1128,13 +1117,14 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
   const currentStep = activeModeData.steps[currentStepIndex];
 
   // Auto-play walks through the four stages; the reader starts and stops it.
+  // It waits while the diagram is scrolled out of view.
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying || !inView) return;
     const timer = setInterval(() => {
       setCurrentStepIndex((prev) => (prev + 1) % 4);
     }, 5000);
     return () => clearInterval(timer);
-  }, [isPlaying]);
+  }, [isPlaying, inView]);
 
   const handleModeChange = (mode: InsulinMode) => {
     setActiveMode(mode);
@@ -1152,13 +1142,13 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
   const gateIsOpen = currentStepIndex === 3 && activeMode !== "type1";
   const energised = activeMode === "healthy" && currentStepIndex === 3;
 
-  const controlClass =
-    "min-h-[44px] rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire";
+  const playClass =
+    "min-h-[44px] rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2";
 
   return (
     <section
       aria-label={ui.moduleAriaLabel}
-      className="space-y-8 rounded-lg border border-border bg-card p-5 shadow-xs sm:p-7"
+      className="space-y-8"
     >
       <header className="space-y-2">
         <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{ui.title}</h3>
@@ -1168,48 +1158,41 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
       {/* Condition switcher */}
       <div className="space-y-3 border-t border-border pt-6">
         <p className="text-sm font-semibold text-foreground">{ui.modeSelectorPrompt}</p>
-        <div role="tablist" aria-label={ui.modeSelectAria} className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+        <div role="radiogroup" aria-label={ui.modeSelectAria} className={`${ROW_LIST_CLASS} sm:grid-cols-3 sm:gap-x-6`}>
           {(["healthy", "type1", "type2"] as InsulinMode[]).map((mode) => {
             const isSelected = activeMode === mode;
-            const data = modes[mode];
             return (
-              <button
-                key={mode}
-                type="button"
-                role="tab"
-                id={`mode-tab-${mode}`}
-                aria-selected={isSelected}
-                aria-controls="insulin-mechanics-visualizer"
-                onClick={() => handleModeChange(mode)}
-                className={`flex min-h-[60px] flex-col justify-center rounded-lg border px-4 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                  isSelected
-                    ? "border-foreground bg-surface-subtle"
-                    : "border-border bg-card hover:border-foreground/30 hover:bg-surface-subtle/50"
-                }`}
-              >
-                <span className="text-sm font-semibold leading-snug text-foreground">{data.modeName}</span>
-                <span className="mt-1 text-xs leading-snug break-words text-muted-foreground">{data.subtitle}</span>
-              </button>
+              <label key={mode} className={`${ROW_CLASS} cursor-pointer items-start`}>
+                <input
+                  type="radio"
+                  name="insulin-mode"
+                  value={mode}
+                  checked={isSelected}
+                  onChange={() => handleModeChange(mode)}
+                  className="sr-only"
+                />
+                <span className={`mt-0.5 ${radioDotClass(isSelected)}`} aria-hidden="true" />
+                <span className="min-w-0">
+                  <span className="block text-sm font-semibold leading-snug text-foreground">{modes[mode].modeName}</span>
+                  <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">{modes[mode].badge}</span>
+                </span>
+              </label>
             );
           })}
         </div>
-        <p className="max-w-prose pt-1 text-sm leading-relaxed text-foreground">
-          <span className={`mr-2 inline-block rounded-md border px-2 py-0.5 text-xs font-semibold ${activeModeData.badgeClass}`}>
-            {activeModeData.badge}
-          </span>
-          {activeModeData.overview}
-        </p>
+        <p className="max-w-prose pt-1 text-sm leading-relaxed text-foreground">{activeModeData.overview}</p>
       </div>
 
-      {/* Visualizer — clean hairline section, 2x2 step grid, zero duplicate title */}
+      {/* Steps and cell diagram */}
       <div
+        ref={visualizerRef}
         id="insulin-mechanics-visualizer"
         role="region"
         aria-label={ui.visualizerAria.replace("{mode}", activeModeData.modeName)}
         className="space-y-6 border-t border-border pt-6"
       >
-        {/* 2x2 Step selector grid */}
-        <ol className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+        {/* Step selector */}
+        <ol className={`${STEP_LIST_CLASS} sm:grid-cols-2`}>
           {activeModeData.steps.map((st, idx) => {
             const isCurrent = idx === currentStepIndex;
             return (
@@ -1221,22 +1204,14 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
                     setCurrentStepIndex(idx);
                     setIsPlaying(false);
                   }}
-                  className={`flex h-full min-h-[56px] w-full items-center gap-3 rounded-lg border px-3.5 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                    isCurrent
-                      ? "border-foreground bg-surface-subtle text-foreground"
-                      : "border-border bg-card text-muted-foreground hover:border-foreground/30 hover:bg-surface-subtle/50"
-                  }`}
+                  className={stepCellClass(isCurrent)}
                 >
+                  <span className={stepNumberClass(isCurrent)}>{st.stepNumber}</span>
                   <span
-                    className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-semibold tabular-nums ${
-                      isCurrent
-                        ? "bg-foreground text-white"
-                        : "bg-surface-subtle text-muted-foreground"
+                    className={`min-w-0 text-sm leading-snug break-words ${
+                      isCurrent ? "font-semibold text-foreground" : "font-medium text-muted-foreground group-hover:text-foreground"
                     }`}
                   >
-                    {st.stepNumber}
-                  </span>
-                  <span className="text-sm font-semibold leading-snug break-words text-foreground">
                     {st.stepTitle}
                   </span>
                 </button>
@@ -1246,7 +1221,7 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
         </ol>
 
         {/* Cell diagram */}
-        <div className="overflow-hidden rounded-lg border border-border bg-surface-subtle/30 p-3 sm:p-5">
+        <div>
           <LazyMotion features={domAnimation} strict>
             <CellDiagram mode={activeMode} step={currentStepIndex} reduced={reduced} />
           </LazyMotion>
@@ -1271,7 +1246,7 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
                 </svg>
                 <span>
                   {ui.insulinKeyLabel}
-                  {activeMode === "type1" && <span className="text-primary"> · {ui.type1AbsenceKeys}</span>}
+                  {activeMode === "type1" && <span className="text-amber-care-hover"> · {ui.type1AbsenceKeys}</span>}
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -1350,30 +1325,24 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
-              onClick={() => setCurrentStepIndex((prev) => (prev - 1 + 4) % 4)}
-              className={controlClass}
-              aria-label={ui.prevStepAria}
-            >
-              {ui.prevStep}
-            </button>
-            <button
-              type="button"
               onClick={() => setIsPlaying(!isPlaying)}
               aria-pressed={isPlaying}
-              className={`min-h-[44px] rounded-lg px-3.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
-                isPlaying
-                  ? "bg-amber-care text-white hover:bg-amber-care-hover"
-                  : "bg-sapphire text-white hover:bg-sapphire-light"
-              }`}
+              className={playClass}
               aria-label={isPlaying ? ui.pauseAria : ui.playAutoAria}
             >
               {isPlaying ? ui.pause : ui.playAuto}
             </button>
             <button
               type="button"
+              onClick={() => setCurrentStepIndex((prev) => (prev - 1 + 4) % 4)}
+              className={BACK_BUTTON_CLASS}
+            >
+              {ui.prevStep}
+            </button>
+            <button
+              type="button"
               onClick={() => setCurrentStepIndex((prev) => (prev + 1) % 4)}
-              className={controlClass}
-              aria-label={ui.nextStepAria}
+              className={NEXT_BUTTON_CLASS}
             >
               {ui.nextStep}
             </button>

@@ -5,6 +5,7 @@ import { speechEngine, formatSpeechText } from "@/lib/audio/speech-engine";
 import { playEarcon } from "@/lib/audio/earcon";
 import { useVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { CloseIcon } from "@/components/ui/icons";
 import type { Lang } from "@/lib/i18n/translations";
 import {
   HEALTH_DETAIL_SHARED_STRINGS,
@@ -21,11 +22,6 @@ export interface GlobalHealthAudioPlayerProps {
   onActiveSentenceIndexChange?: (index: number) => void;
   lang?: Lang;
 }
-
-const BAR_HEIGHTS = [
-  35, 60, 85, 45, 95, 70, 50, 80, 100, 65, 40, 75,
-  90, 55, 30, 85, 95, 60, 40, 70, 85, 50, 65, 45,
-];
 
 function useSafeLanguageContext(): { lang: Lang } {
   try {
@@ -170,17 +166,19 @@ export function GlobalHealthAudioPlayer({
     }
   };
 
-  const handleScrub = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const pct = Math.max(0, Math.min(100, Math.round((clickX / rect.width) * 100)));
-    setProgressPercent(pct);
-
-    const charOffset = Math.floor((pct / 100) * formattedNarration.length);
+  const seekTo = (pct: number) => {
+    const clamped = Math.max(0, Math.min(100, Math.round(pct)));
+    setProgressPercent(clamped);
+    const charOffset = Math.floor((clamped / 100) * formattedNarration.length);
     speechEngine.stop();
     if (isPlaying) {
       startSpeechFromOffset(charOffset, speed);
     }
+  };
+
+  const handleScrub = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    seekTo(((e.clientX - rect.left) / rect.width) * 100);
   };
 
   const handleRewind15 = () => {
@@ -198,9 +196,9 @@ export function GlobalHealthAudioPlayer({
         <button
           type="button"
           onClick={() => setIsMinimized(false)}
-          className="inline-flex min-h-[48px] items-center gap-2 rounded-lg border-2 border-sapphire/40 bg-card px-4 py-2 text-xs font-semibold text-sapphire shadow-lg backdrop-blur-md hover:bg-sapphire-soft"
+          className="inline-flex min-h-[48px] items-center gap-2 rounded-lg border border-sapphire-border bg-card px-4 py-2 text-xs font-semibold text-sapphire shadow-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
         >
-          <span className="flex h-2 w-2 rounded-full bg-sapphire animate-pulse" />
+          <span className="flex h-2 w-2 rounded-full bg-sapphire" aria-hidden="true" />
           <span>{s.minimizedText[currentLang].replace("{progressPercent}", String(progressPercent))}</span>
         </button>
       </div>
@@ -211,7 +209,7 @@ export function GlobalHealthAudioPlayer({
     <div
       role="region"
       aria-label={s.playerAria[currentLang]}
-      className={`fixed bottom-4 inset-x-4 z-40 mx-auto max-w-xl rounded-lg border-2 border-sapphire/30 bg-card/95 p-3.5 shadow-2xl backdrop-blur-md sm:p-4 ${className}`}
+      className={`hh-dialog fixed bottom-4 inset-x-4 z-40 mx-auto max-w-xl rounded-lg border border-border bg-card p-3.5 shadow-xl sm:p-4 ${className}`}
     >
       {/* Top row: Title, progress indicator, and minimize/close */}
       <div className="flex items-center justify-between gap-3 border-b border-border/50 pb-2.5">
@@ -240,23 +238,25 @@ export function GlobalHealthAudioPlayer({
           <button
             type="button"
             onClick={() => setIsMinimized(true)}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-border text-xs text-muted-foreground hover:bg-muted"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
             aria-label={s.minimizeAria[currentLang]}
           >
-            _
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <path d="M6 12h12" />
+            </svg>
           </button>
           <button
             type="button"
             onClick={handleClose}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-border text-xs text-muted-foreground hover:bg-muted"
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
             aria-label={s.closeAria[currentLang]}
           >
-            ✕
+            <CloseIcon className="h-5 w-5" />
           </button>
         </div>
       </div>
 
-      {/* Progressive 24-Bar Soundwave Scrubber Visualizer */}
+      {/* Progress: a plain track; tap or use the arrow keys to move through the guide. */}
       <div className="my-3">
         <div className="mb-1.5 flex items-center justify-between text-xs font-medium text-muted-foreground tabular-nums">
           <span>{isPlaying ? s.statusPlaying[currentLang] : s.statusPaused[currentLang]}</span>
@@ -269,43 +269,30 @@ export function GlobalHealthAudioPlayer({
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={progressPercent}
+          aria-valuetext={s.progressSummary[currentLang].replace("{progressPercent}", String(progressPercent))}
           tabIndex={0}
           onClick={handleScrub}
           onKeyDown={(e) => {
-            if (e.key === "ArrowRight") {
-              const next = Math.min(100, progressPercent + 5);
-              setProgressPercent(next);
-            } else if (e.key === "ArrowLeft") {
-              const prev = Math.max(0, progressPercent - 5);
-              setProgressPercent(prev);
+            if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+              e.preventDefault();
+              seekTo(progressPercent + 5);
+            } else if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+              e.preventDefault();
+              seekTo(progressPercent - 5);
+            } else if (e.key === "Home") {
+              e.preventDefault();
+              seekTo(0);
             }
           }}
-          className="group flex h-10 w-full items-center justify-between gap-1 rounded-lg border border-border/50 bg-muted/30 px-2.5 py-1.5 cursor-pointer hover:bg-muted/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="flex h-11 w-full cursor-pointer items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           title={s.scrubberTitle[currentLang]}
         >
-          {BAR_HEIGHTS.map((height, i) => {
-            const barPct = (i / 24) * 100;
-            const isFilled = progressPercent >= barPct;
-            const isCurrent = isFilled && progressPercent < ((i + 1) / 24) * 100;
-
-            return (
-              <div
-                key={i}
-                className="flex h-full flex-1 items-center justify-center"
-              >
-                <div
-                  className={`w-full max-w-[5px] rounded-xs transition-all duration-150 ${
-                    isFilled
-                      ? isPlaying && isCurrent
-                        ? "bg-sapphire scale-y-110 animate-pulse"
-                        : "bg-sapphire"
-                      : "bg-muted-foreground/25 group-hover:bg-muted-foreground/40"
-                  }`}
-                  style={{ height: `${height}%` }}
-                />
-              </div>
-            );
-          })}
+          <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted">
+            <div
+              className="absolute inset-0 origin-left rounded-full bg-sapphire transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none"
+              style={{ transform: `scaleX(${progressPercent / 100})` }}
+            />
+          </div>
         </div>
       </div>
 
@@ -338,12 +325,12 @@ export function GlobalHealthAudioPlayer({
         <button
           type="button"
           onClick={handleTogglePlay}
-          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           aria-label={isPlaying ? s.pauseAria[currentLang] : s.playAria[currentLang]}
         >
           {isPlaying ? (
             <span className="flex items-center gap-2">
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <rect x="6" y="4" width="4" height="16" />
                 <rect x="14" y="4" width="4" height="16" />
               </svg>
@@ -351,7 +338,7 @@ export function GlobalHealthAudioPlayer({
             </span>
           ) : (
             <span className="flex items-center gap-2">
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <polygon points="5 3 19 12 5 21 5 3" />
               </svg>
               <span>{s.playButton[currentLang]}</span>
@@ -359,7 +346,7 @@ export function GlobalHealthAudioPlayer({
           )}
         </button>
 
-        {/* Dedicated 0.85x / 1.0x Speed Toggle for Elderly Listeners */}
+        {/* Voice speed */}
         <div
           role="group"
           aria-label={s.speedGroupAria[currentLang]}
@@ -369,7 +356,7 @@ export function GlobalHealthAudioPlayer({
             type="button"
             onClick={() => handleSetSpeed(0.85)}
             aria-pressed={speed === 0.85}
-            className={`inline-flex min-h-[44px] items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+            className={`inline-flex min-h-[44px] items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
               speed === 0.85
                 ? "bg-card text-sapphire shadow-xs font-bold"
                 : "text-muted-foreground hover:text-foreground"
@@ -384,7 +371,7 @@ export function GlobalHealthAudioPlayer({
             type="button"
             onClick={() => handleSetSpeed(1.0)}
             aria-pressed={speed === 1.0}
-            className={`inline-flex min-h-[44px] items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+            className={`inline-flex min-h-[44px] items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
               speed === 1.0
                 ? "bg-card text-sapphire shadow-xs font-bold"
                 : "text-muted-foreground hover:text-foreground"

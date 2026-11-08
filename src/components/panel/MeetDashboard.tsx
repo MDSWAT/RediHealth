@@ -6,13 +6,15 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
 import { withLangPrefix } from "@/lib/i18n/routing";
-import { followupLabel } from "@/lib/panel-dates";
+import { followupLabel, formatPanelDate } from "@/lib/panel-dates";
+import { useViewerTimeZone } from "./useViewerTimeZone";
 import type { PatientItem } from "@/lib/types/patient";
 export type MeetItem = { id: string; title: string; meeting_url: string; transcript: string | null; notes: string | null; patient_id: string | null; followup_id?: string | null; patient_name: string | null; created_at: string };
 export function MeetDashboard({ userEmail, userRole, isAdmin, pendingRequestsCount, databaseAvailable, assignedPatients, initialMeetings }: {
   userEmail: string; userRole: string; isAdmin: boolean; pendingRequestsCount: number; databaseAvailable: boolean; assignedPatients: PatientItem[]; initialMeetings: MeetItem[];
 }) {
   const { lang } = useLanguage();
+  const viewerZone = useViewerTimeZone();
   const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
   const [patients, setPatients] = useState(assignedPatients);
@@ -44,7 +46,7 @@ export function MeetDashboard({ userEmail, userRole, isAdmin, pendingRequestsCou
       <div className="crm-tabs" role="tablist" aria-label={t.meetings}>{(["upcoming", "history"] as const).map((id) => <button key={id} id={`meetings-tab-${id}`} role="tab" aria-selected={tab === id} aria-controls="meeting-list" onClick={() => setTab(id)}>{t[id]}</button>)}</div>
       <section id="meeting-list" role="tabpanel" aria-labelledby={`meetings-tab-${tab}`} className="overflow-hidden rounded-lg border border-border bg-white">
         {!visible.length && <p className="p-8 text-center text-muted-foreground">{t.empty}</p>}
-        {visible.map((meeting) => { const appointment = followup(meeting); return <article key={meeting.id} className="flex flex-col justify-between gap-4 border-b border-border p-5 sm:flex-row sm:items-center"><div className="min-w-0"><h2 className="text-base font-medium">{meeting.title}</h2><p className="mt-1 text-sm text-muted-foreground">{meeting.patient_name || t.unnamed}</p><p className="mt-2 text-xs text-muted-foreground">{appointment ? followupLabel(appointment, langToLocale[lang], t.allDay) : new Date(meeting.created_at).toLocaleDateString(langToLocale[lang])}</p></div><div className="flex flex-wrap gap-2">{meeting.patient_id ? <Link className="crm-button crm-primary" href={withLangPrefix(`/panel/patients/${meeting.patient_id}/meet/${meeting.id}`, lang)}>{t.join}</Link> : <a className="crm-button crm-primary" href={meeting.meeting_url} target="_blank" rel="noreferrer">{t.join}</a>}<button className="crm-button" onClick={() => copy(meeting)}>{copied === meeting.id ? t.copied : t.copyLink}</button><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div>{meeting.patient_id && <Link href={withLangPrefix(`/panel/patients/${meeting.patient_id}`, lang)}>{t.openPatient}</Link>}<button onClick={() => remove(meeting)}>{t.delete}</button></div></details></div></article>; })}
+        {visible.map((meeting) => { const appointment = followup(meeting); return <article key={meeting.id} className="flex flex-col justify-between gap-4 border-b border-border p-5 sm:flex-row sm:items-center"><div className="min-w-0"><h2 className="text-base font-medium">{meeting.title}</h2><p className="mt-1 text-sm text-muted-foreground">{meeting.patient_name || t.unnamed}</p><p className="mt-2 text-xs text-muted-foreground">{appointment ? followupLabel(appointment, langToLocale[lang], t.allDay, viewerZone) : formatPanelDate(meeting.created_at, langToLocale[lang], "date")}</p></div><div className="flex flex-wrap gap-2">{meeting.patient_id ? <Link className="crm-button crm-primary" href={withLangPrefix(`/panel/patients/${meeting.patient_id}/meet/${meeting.id}`, lang)}>{t.join}</Link> : <a className="crm-button crm-primary" href={meeting.meeting_url} target="_blank" rel="noreferrer">{t.join}</a>}<button className="crm-button" onClick={() => copy(meeting)}>{copied === meeting.id ? t.copied : t.copyLink}</button><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div>{meeting.patient_id && <Link href={withLangPrefix(`/panel/patients/${meeting.patient_id}`, lang)}>{t.openPatient}</Link>}<button onClick={() => remove(meeting)}>{t.delete}</button></div></details></div></article>; })}
       </section>
     </>}
   </main></AdminShell>;

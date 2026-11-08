@@ -8,6 +8,7 @@ import { OfflineStore } from "@/lib/offline-store";
 import { createOfflineVault, deleteOfflineVault, openOfflineData, readOfflineEnvelope, saveOfflineVault } from "@/lib/offline-vault";
 import type { OfflineData, OfflineOperation, OfflineSnapshot } from "@/lib/offline-types";
 import { OFFLINE_CACHE_LIMIT } from "@/lib/offline-types";
+import { Button } from "@/components/ui/Button";
 import { PanelRuntimeProvider } from "@/components/panel/PanelRuntime";
 import { AdminShell, PersistentPanelShell } from "@/components/panel/AdminShell";
 import { WorkerDashboard } from "@/components/panel/WorkerDashboard";
@@ -15,14 +16,15 @@ import { PatientsDashboard } from "@/components/panel/PatientsDashboard";
 import { PatientProfileView } from "@/components/panel/PatientProfileView";
 import { CalendarDashboard } from "@/components/panel/CalendarDashboard";
 import { filterLocalInbox } from "@/lib/request-inbox";
+import { offlineCopy, offlineDateLocale, type OfflineCopy } from "./offline-copy";
 
-async function prepareShell(lang: string) {
-  if (!isSecureContext || !("serviceWorker" in navigator)) throw new Error("Offline access requires HTTPS and a browser with service worker support.");
+async function prepareShell(lang: string, errors: OfflineCopy["errors"]) {
+  if (!isSecureContext || !("serviceWorker" in navigator)) throw new Error(errors.needsHttps);
   await navigator.serviceWorker.register("/offline-worker.js", { scope: "/" });
   const registration = await navigator.serviceWorker.ready;
   await new Promise<void>((resolve, reject) => {
     const channel = new MessageChannel();
-    const timer = setTimeout(() => reject(new Error("Timed out preparing the offline app. Stay online and try again.")), 60_000);
+    const timer = setTimeout(() => reject(new Error(errors.prepareTimeout)), 60_000);
     channel.port1.onmessage = (event) => {
       clearTimeout(timer);
       channel.port1.close();
@@ -32,16 +34,17 @@ async function prepareShell(lang: string) {
     registration.active!.postMessage({ type: "PREPARE_OFFLINE", lang, assets }, [channel.port2]);
   });
 }
-async function getSnapshot(): Promise<OfflineSnapshot> {
+async function getSnapshot(errors: OfflineCopy["errors"]): Promise<OfflineSnapshot> {
   const response = await fetch("/api/offline/snapshot", { cache: "no-store", signal: AbortSignal.timeout(30_000) });
   const result = await response.json();
-  if (!response.ok) throw new Error(result.error || "Online authorization failed.");
+  if (!response.ok) throw new Error(result.error || errors.authFailed);
   return result;
 }
 
 export function OfflineWorkspace() {
   const { lang } = useLanguage();
-  const ro = lang === "ro";
+  const copy = offlineCopy[lang] ?? offlineCopy.en;
+  const errors = copy.errors;
   const [store, setStore] = useState<OfflineStore | null>(null);
   const [exists, setExists] = useState<boolean | null>(null);
   const [passphrase, setPassphrase] = useState("");
@@ -121,10 +124,10 @@ export function OfflineWorkspace() {
   }, [store, lock]);
 
   async function acquireDeviceLock() {
-    if (!navigator.locks) throw new Error("This browser cannot safely lock offline storage across tabs. Use a current Chrome, Edge, Firefox or Safari.");
+    if (!navigator.locks) throw new Error(errors.noLocks);
     await new Promise<void>((resolve, reject) => {
       void navigator.locks.request("redihealth-offline-vault", { ifAvailable: true }, async (held) => {
-        if (!held) { reject(new Error("Offline data is already open in another tab. Pause that tab first.")); return; }
+        if (!held) { reject(new Error(errors.otherTab)); return; }
         await new Promise<void>((done) => { release.current = done; resolve(); });
       }).catch(reject);
     });
@@ -134,39 +137,39 @@ export function OfflineWorkspace() {
     opening.current = true;
     setBusy(true); setError(""); setNotice("");
     try {
-      if ((!exists || legacy) && !trustedDevice) throw new Error(ro ? "Confirmă că acesta este un dispozitiv privat și de încredere." : "Confirm this is a private, trusted device.");
+      if ((!exists || legacy) && !trustedDevice) throw new Error(errors.confirmTrusted);
       await acquireDeviceLock();
       let data: OfflineData; let key: CryptoKey; let salt: string;
       if (exists) {
         const envelope = await readOfflineEnvelope();
-        if (!envelope) throw new Error("Encrypted device storage was removed.");
+        if (!envelope) throw new Error(errors.storageRemoved);
         ({ data, key, salt } = await openOfflineData(envelope, passphrase));
       } else {
-        const snapshot = await getSnapshot();
-        await prepareShell(lang);
+        const snapshot = await getSnapshot(errors);
+        await prepareShell(lang, errors);
         data = { ...snapshot, version: 1, queue: [], deviceId: crypto.randomUUID() };
         ({ key, salt } = await createOfflineVault(data));
         const persisted = await navigator.storage?.persist?.();
-        if (!persisted) setNotice("Encrypted storage is available, but this browser may evict it. Synchronize frequently and do not clear site data.");
+        if (!persisted) setNotice(errors.evictionWarning);
       }
       let renewal: OfflineSnapshot | null = null;
       if (Date.now() >= data.expiresAt) {
-        const snapshot = await getSnapshot();
-        if (snapshot.identity.email !== data.identity.email || snapshot.identity.workerId !== data.identity.workerId || snapshot.identity.country !== data.identity.country) throw new Error("Sign in to the original staff account and country to renew this expired device.");
+        const snapshot = await getSnapshot(errors);
+        if (snapshot.identity.email !== data.identity.email || snapshot.identity.workerId !== data.identity.workerId || snapshot.identity.country !== data.identity.country) throw new Error(errors.renewMismatch);
         renewal = snapshot;
       }
-      if (!alive.current) throw new Error("Offline workspace closed.");
+      if (!alive.current) throw new Error(errors.workspaceClosed);
       const next = new OfflineStore(data, (value) => saveOfflineVault(value, key, salt), () => { setNotice(""); setRevision((value) => value + 1); });
       if (renewal) await next.refresh(renewal);
       else if (legacy) await saveOfflineVault(data, key, salt);
-      if (!alive.current) throw new Error("Offline workspace closed.");
+      if (!alive.current) throw new Error(errors.workspaceClosed);
       current.current = next;
       setStore(next);
       setExists(true); setLegacy(false);
       setPassphrase("");
     } catch (cause) {
       release.current?.(); release.current = null;
-      setError(cause instanceof Error ? cause.message : "Could not open encrypted device storage.");
+      setError(cause instanceof Error ? cause.message : errors.openFailed);
     } finally { opening.current = false; setBusy(false); }
   }
   async function sync() {
@@ -175,16 +178,14 @@ export function OfflineWorkspace() {
     syncing.current = true; setBusy(true); setError("");
     try {
       const mappings = await active.sync();
-      const snapshot = await getSnapshot();
+      const snapshot = await getSnapshot(errors);
       await active.exclusive(() => active.refresh(snapshot));
-      await prepareShell(lang);
+      await prepareShell(lang, errors);
       const match = /\/patients\/(-\d+)$/.exec(location.pathname);
       if (match && mappings[match[1]]) navigate(withLangPrefix(`/offline/patients/${mappings[match[1]]}`, lang), true);
-      setNotice(active.data.queue.length
-        ? ro ? "Unele modificări necesită verificare mai jos. Datele online nu au fost suprascrise." : "Some changes need review below. They have not overwritten online records."
-        : ro ? "Toate modificările au fost sincronizate. Nu s-au trimis automat emailuri sau invitații video." : "All changes synchronized. No emails or video invitations were sent automatically.");
+      setNotice(active.data.queue.length ? errors.needsReview : errors.synced);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Sync failed. Changes remain encrypted on this device.");
+      setError(cause instanceof Error ? cause.message : errors.syncFailed);
     } finally { syncing.current = false; setBusy(false); }
   }
   useEffect(() => {
@@ -202,12 +203,12 @@ export function OfflineWorkspace() {
   async function logout(discard = false) {
     const active = current.current;
     if (busy) return;
-    if (discard && !window.confirm(ro ? "Renunți definitiv la toate modificările nesincronizate și ștergi datele medicale criptate de pe dispozitiv? Nu mai poți reveni." : "Permanently discard all unsynced changes and delete the encrypted medical data on this device? This cannot be undone.")) return;
+    if (discard && !window.confirm(errors.discardConfirm)) return;
     setBusy(true); setError(""); setNotice("");
     try {
       if (active) {
         await active.exclusive(async () => {
-          if (active.data.queue.length && !discard) throw new Error("Sign-out blocked: synchronize pending changes, or explicitly discard them and remove this device's data.");
+          if (active.data.queue.length && !discard) throw new Error(errors.signOutBlocked);
           await deleteOfflineVault();
           active.locked = true;
         });
@@ -217,10 +218,10 @@ export function OfflineWorkspace() {
       }
       lock(); setExists(false); setLegacy(false); setTrustedDevice(false);
       if (navigator.onLine) { await signOut({ redirect: false }); location.assign(withLangPrefix("/sign-in", lang)); }
-      else setNotice("Encrypted device data removed. Connect online to finish signing out of the web session.");
+      else setNotice(errors.deviceDataRemoved);
     } catch (cause) {
       if (!active) { release.current?.(); release.current = null; }
-      setError(cause instanceof Error ? cause.message : "Could not remove encrypted data.");
+      setError(cause instanceof Error ? cause.message : errors.removeFailed);
     }
     finally { setBusy(false); }
   }
@@ -241,19 +242,34 @@ export function OfflineWorkspace() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   } : null, [store, path, busy]);
 
-  const title = ro ? "Spațiu offline criptat" : "Encrypted offline workspace";
-  if (!store || !runtime) return <main id="main-content" className="mx-auto w-full max-w-xl space-y-5 p-6">
-    <h1 className="text-2xl font-semibold">{title}</h1>
-    <p className="text-sm">{ro ? "Datele medicale și documentele rămân criptate, dar cheia este salvată în acest browser pentru deschidere automată, fără parolă. Oricine folosește acest profil de browser poate accesa datele. Folosește doar un dispozitiv privat, protejat prin blocarea ecranului." : "Medical records and attachments remain encrypted, but the key is stored in this browser for automatic access without a password. Anyone using this browser profile can access the records. Use only a private device protected by a screen lock."}</p>
-    <p className="text-sm">{ro ? `Pregătește online maximum ${OFFLINE_CACHE_LIMIT} de pacienți alocați recent și ${OFFLINE_CACHE_LIMIT} de cereri recente. Accesul expiră după 30 de zile; pauză după 10 minute de inactivitate. Redeschiderea nu cere parolă. Nu este autentificare offline.` : `Prepare up to ${OFFLINE_CACHE_LIMIT} recent assigned patients and ${OFFLINE_CACHE_LIMIT} recent requests while online. Access expires after 30 days; pauses after 10 idle minutes. Reopening does not require a password. This is not offline sign-in.`}</p>
-    {exists === null ? <p role="status">{ro ? "Se verifică stocarea criptată…" : "Checking encrypted device storage…"}</p> : <form className="space-y-4" onSubmit={(event) => { event.preventDefault(); void openVault(); }}>
-      {legacy && <label className="crm-label">{ro ? "Parola offline existentă (o singură dată, pentru migrare)" : "Existing offline passphrase (once, to migrate)"}<input className="crm-input" type="password" autoComplete="off" required value={passphrase} onChange={(event) => setPassphrase(event.target.value)} disabled={busy} /></label>}
-      {(!exists || legacy) && <label className="flex items-start gap-2 text-sm"><input type="checkbox" required checked={trustedDevice} onChange={(event) => setTrustedDevice(event.target.checked)} disabled={busy} />{ro ? "Confirm că acesta este un dispozitiv privat și accept că oricine folosește acest profil de browser poate deschide datele offline fără parolă." : "This is a private device. I understand anyone using this browser profile can open offline records without a password."}</label>}
-      <button className="crm-button crm-primary" disabled={busy}>{busy ? (ro ? "Așteaptă…" : "Please wait…") : legacy ? (ro ? "Migrează la acces automat" : "Migrate to automatic access") : exists ? (ro ? "Redeschide spațiul offline" : "Reopen offline workspace") : (ro ? "Activează offline pe acest dispozitiv" : "Enable offline on this device")}</button>
-    </form>}
-    {error && <p role="alert" className="crm-error">{error}</p>}{notice && <p role="status" className="crm-notice">{notice}</p>}
-    {exists && <button className="crm-button text-red-700" disabled={busy} onClick={() => void logout(true)}>{ro ? "Renunță la modificări și șterge datele dispozitivului" : "Discard pending changes and remove device data"}</button>}
-    <a className="block text-primary" href={withLangPrefix("/panel", lang)}>{ro ? "Înapoi la panoul online" : "Back to online panel"}</a>
+  const title = copy.title;
+  // Locked screen: the same measure and type scale as the report form, an ink action (red is
+  // kept for 112), the site checkbox, and the destructive option as a quiet text button.
+  if (!store || !runtime) return <main id="main-content" className="flex-1 px-4 py-10 sm:py-16">
+    <div className="mx-auto w-full max-w-xl">
+      <h1 className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{title}</h1>
+      <div className="mt-3 space-y-3 text-base leading-relaxed text-muted-foreground">
+        <p>{copy.intro}</p>
+        <p>{copy.limits(OFFLINE_CACHE_LIMIT)}</p>
+      </div>
+      {exists === null ? <p role="status" className="mt-8 border-t border-border pt-6 text-sm text-muted-foreground">{copy.checkingStorage}</p> : <form className="mt-8 space-y-5 border-t border-border pt-6" onSubmit={(event) => { event.preventDefault(); void openVault(); }}>
+        {legacy && <div>
+          <label htmlFor="offline-passphrase" className="mb-1.5 block text-sm font-semibold text-foreground">{copy.legacyPassphrase}</label>
+          <input id="offline-passphrase" className="min-h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm" type="password" autoComplete="off" required value={passphrase} onChange={(event) => setPassphrase(event.target.value)} disabled={busy} />
+        </div>}
+        {(!exists || legacy) && <label className="flex items-start gap-3 text-sm leading-relaxed text-foreground">
+          <input type="checkbox" className="mt-0.5 h-5 w-5 shrink-0 rounded border-border accent-sapphire" required checked={trustedDevice} onChange={(event) => setTrustedDevice(event.target.checked)} disabled={busy} />
+          <span>{copy.trustedDevice}</span>
+        </label>}
+        <Button type="submit" variant="secondary" disabled={busy} className="disabled:bg-muted disabled:text-muted-foreground">{busy ? copy.wait : legacy ? copy.migrate : exists ? copy.reopen : copy.enable}</Button>
+      </form>}
+      {error && <p role="alert" className="fhs-fade mt-5 rounded-lg border border-primary/20 bg-primary-soft px-3 py-2 text-sm text-foreground">{error}</p>}
+      {notice && <p role="status" className="fhs-fade mt-5 rounded-lg border border-border bg-muted/60 px-3 py-2 text-sm text-foreground">{notice}</p>}
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-border pt-5 text-sm">
+        <a className="font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire" href={withLangPrefix("/panel", lang)}>{copy.backToPanel}</a>
+        {exists && <button type="button" className="min-h-9 rounded-sm font-medium text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed" disabled={busy} onClick={() => void logout(true)}>{copy.discardAndRemove}</button>}
+      </div>
+    </div>
   </main>;
 
   const data = store.data;
@@ -268,54 +284,54 @@ export function OfflineWorkspace() {
   else if (path === "/patients") content = <PatientsDashboard {...props} isRomania={isRomania} initialPatients={data.patients} pendingRequestsCount={pendingRequestsCount} />;
   else if (patient) content = <AdminShell {...props} pendingCount={pendingRequestsCount} mobilePatientCreation={{ isRomania }}><main id="main-content" className="crm-page"><PatientProfileView initialPatient={patient} isRomania={isRomania} /></main></AdminShell>;
   else if (path === "/calendar" && data.identity.role.toLowerCase() === "doctor") content = <CalendarDashboard {...props} initialPatients={data.patients} pendingRequestsCount={pendingRequestsCount} />;
-  else content = <main id="main-content" className="crm-page"><p role="alert">{ro ? "Această pagină necesită internet sau pacientul nu este salvat pe acest dispozitiv." : "This page is online-only or the patient is not cached on this device."}</p></main>;
+  else content = <main id="main-content" className="crm-page"><p role="alert">{copy.onlineOnlyPage}</p></main>;
 
   return <PanelRuntimeProvider value={runtime}><PersistentPanelShell {...props}>
     <section className="space-y-3 border-b border-amber-300 bg-amber-50 p-4 text-amber-950" aria-label={title}>
-      <div className="flex flex-wrap items-center justify-between gap-3"><div><p className="font-semibold">{title} · {online ? "Online" : "Offline"}</p><p className="text-xs">{data.identity.workerName} · {data.identity.country} · {pending} {ro ? "modificări în așteptare" : "pending changes"} · {ro ? "Expiră" : "Expires"} {new Date(data.expiresAt).toLocaleDateString()}</p></div>
-        <div className="flex flex-wrap gap-2"><button className="crm-button" disabled={busy || !online} onClick={() => void sync()}>{busy ? (ro ? "Se sincronizează…" : "Syncing…") : ro ? "Sincronizează" : "Sync now"}</button><button className="crm-button" disabled={busy} onClick={lock}>{ro ? "Pauză" : "Pause"}</button><button className="crm-button" disabled={busy} onClick={() => void logout()}>{ro ? "Deconectare" : "Sign out"}</button></div>
+      <div className="flex flex-wrap items-center justify-between gap-3"><div><p className="font-semibold">{title} · {online ? copy.online : copy.offline}</p><p className="text-xs">{data.identity.workerName} · {data.identity.country} · {copy.pendingChanges(pending)} · {copy.expires} {new Date(data.expiresAt).toLocaleDateString(offlineDateLocale[lang])}</p></div>
+        <div className="flex flex-wrap gap-2"><button className="crm-button" disabled={busy || !online} onClick={() => void sync()}>{busy ? copy.syncing : copy.syncNow}</button><button className="crm-button" disabled={busy} onClick={lock}>{copy.pause}</button><button className="crm-button" disabled={busy} onClick={() => void logout()}>{copy.signOut}</button></div>
       </div>
-      <p className="text-xs">{ro ? "Modificările sunt salvate criptat local și trimise la reconectare, cât timp spațiul este deblocat. Emailurile, invitațiile și video necesită panoul online." : "Edits save encrypted locally and sync on reconnect while unlocked. Email, invitations and video require the online panel."}</p>
-      <p className="text-xs">{ro ? "Acces automat: cheia este salvată în browser. Pauza nu blochează accesul; redeschiderea nu cere parolă." : "Automatic access: the key is stored in this browser. Pausing is not an access lock; reopening requires no password."}</p>
-      {online && <a className="inline-block text-xs font-semibold underline" href={withLangPrefix("/panel", lang)}>{ro ? "Deschide panoul online" : "Open online panel"}</a>}
+      <p className="text-xs">{copy.editsNote}</p>
+      <p className="text-xs">{copy.autoAccessNote}</p>
+      {online && <a className="inline-block text-xs font-semibold underline" href={withLangPrefix("/panel", lang)}>{copy.openPanel}</a>}
       {error && <p role="alert" className="crm-error">{error}</p>}{notice && <p role="status" className="text-sm">{notice}</p>}
-      {pending > 0 && <button className="text-xs font-semibold text-red-700 underline" disabled={busy} onClick={() => void logout(true)}>{ro ? "Renunță la modificări și șterge datele dispozitivului" : "Discard pending changes and remove device data"}</button>}
+      {pending > 0 && <button type="button" className="text-xs font-semibold underline underline-offset-4" disabled={busy} onClick={() => void logout(true)}>{copy.discardAndRemove}</button>}
       {data.queue.filter((op) => op.error).map((op) => <div key={op.operationId} className="rounded border border-amber-300 bg-white p-3 text-sm">
         <p>{op.entity} #{op.id}: {op.error}</p>
-        <button className="crm-button mt-2" disabled={!online || busy} onClick={() => { void getSnapshot().then((snapshot) => {
-          if (snapshot.identity.email !== data.identity.email || snapshot.identity.country !== data.identity.country || snapshot.identity.workerId !== data.identity.workerId) throw new Error("Sign in to the original staff account and country.");
+        <button className="crm-button mt-2" disabled={!online || busy} onClick={() => { void getSnapshot(errors).then((snapshot) => {
+          if (snapshot.identity.email !== data.identity.email || snapshot.identity.country !== data.identity.country || snapshot.identity.workerId !== data.identity.workerId) throw new Error(errors.sameAccount);
           setReview({ op, snapshot });
-        }).catch((cause) => setError(cause.message)); }}>{ro ? "Compară și rezolvă" : "Compare and resolve"}</button>
+        }).catch((cause) => setError(cause.message)); }}>{copy.compareResolve}</button>
       </div>)}
       {review && <section className="space-y-3 rounded border border-border bg-white p-4">
-        <h2 className="font-semibold">{ro ? "Verifică diferențele" : "Review conflict"} · {review.op.entity} #{review.op.id}</h2>
-        <p className="text-sm">{ro ? "Compară câmpurile modificate cu datele online. Pentru conținutul documentelor și imaginilor, deschide pacientul în panoul online. Datele nu sunt suprascrise fără alegerea ta explicită." : "Compare your changed fields with the current online record. Open the patient online to inspect attachment and image content. No overwrite occurs until you explicitly choose."}</p>
+        <h2 className="font-semibold">{copy.reviewTitle} · {review.op.entity} #{review.op.id}</h2>
+        <p className="text-sm">{copy.reviewBody}</p>
         <div className="max-h-80 space-y-2 overflow-auto text-xs">{Object.entries(review.op.changes).map(([field, local]) => {
           const remote = review.op.entity === "patient" ? review.snapshot.patients.find((p) => p.id === review.op.id) : review.snapshot.requests.find((r) => r.id === review.op.id);
-          const readable = (value: unknown) => JSON.stringify(value, (key, entry) => key === "data_url" || key === "profile_photo" ? "[image/document]" : entry)?.slice(0, 4000) || "(empty)";
-          return <div key={field} className="border-b border-border p-2"><strong>{field}</strong><p className="break-all">{ro ? "Dispozitiv" : "Device"}: {field === "profile_photo" ? "[image]" : readable(local)}</p><p className="break-all">Online: {remote ? readable(Reflect.get(remote, field)) : ro ? "(nu este disponibil în datele autorizate actuale)" : "(not in current authorized snapshot)"}</p></div>;
+          const readable = (value: unknown) => JSON.stringify(value, (key, entry) => key === "data_url" || key === "profile_photo" ? "[image/document]" : entry)?.slice(0, 4000) || copy.empty;
+          return <div key={field} className="border-b border-border p-2"><strong>{field}</strong><p className="break-all">{copy.deviceValue}: {field === "profile_photo" ? "[image]" : readable(local)}</p><p className="break-all">{copy.onlineValue}: {remote ? readable(Reflect.get(remote, field)) : copy.notInSnapshot}</p></div>;
         })}</div>
-        <div className="flex flex-wrap gap-2"><button className="crm-button" onClick={() => void resolveConflict(false)}>{ro ? "Folosește datele online / renunță la modificare" : "Use online / discard this pending edit"}</button><button className="crm-button" disabled={!review.op.create && !review.snapshot.revisions[`${review.op.entity}:${review.op.id}`]} onClick={() => void resolveConflict(true)}>{review.op.create ? (ro ? "Reîncearcă adăugarea pacientului" : "Retry creating this patient") : (ro ? "Păstrează câmpurile mele (reîncearcă pe această versiune)" : "Keep my changed fields (retry against this version)")}</button><button className="crm-button" onClick={() => setReview(null)}>{ro ? "Anulează" : "Cancel"}</button></div>
+        <div className="flex flex-wrap gap-2"><button className="crm-button" onClick={() => void resolveConflict(false)}>{copy.useOnline}</button><button className="crm-button" disabled={!review.op.create && !review.snapshot.revisions[`${review.op.entity}:${review.op.id}`]} onClick={() => void resolveConflict(true)}>{review.op.create ? copy.retryCreate : copy.keepMine}</button><button className="crm-button" onClick={() => setReview(null)}>{copy.cancel}</button></div>
       </section>}
     </section>
     <div key={`${path}:${screenRevision}`} onClickCapture={(event) => {
       if (event.target instanceof Element) {
         const href = event.target.closest("a")?.getAttribute("href") || "";
-        if (/^(tel:|mailto:|https?:)/.test(href) && !online) { event.preventDefault(); setError("Calls, email and external links require connectivity."); }
+        if (/^(tel:|mailto:|https?:)/.test(href) && !online) { event.preventDefault(); setError(errors.needsConnection); }
       }
     }}>{content}</div>
   </PersistentPanelShell></PanelRuntimeProvider>;
 
   async function resolveConflict(keepLocal: boolean) {
     if (!review || !current.current || busy) return;
-    if (keepLocal && !window.confirm(ro ? "Reîncerci modificările tale peste versiunea online verificată? Dacă datele se modifică din nou, sincronizarea se va opri pentru o nouă verificare." : "Retry your changed fields over the reviewed online version? If it changes again, sync will stop for another review.")) return;
+    if (keepLocal && !window.confirm(errors.retryConfirm)) return;
     setBusy(true); setError("");
     try {
       const { op, snapshot } = review;
       await current.current.exclusive(async () => {
         const draft = structuredClone(current.current!.data);
         const pendingOp = draft.queue.find((item) => item.operationId === op.operationId);
-        if (!pendingOp) throw new Error("This pending change has already been processed.");
+        if (!pendingOp) throw new Error(errors.alreadyProcessed);
         if (keepLocal) {
           pendingOp.revision = op.create ? null : snapshot.revisions[`${op.entity}:${op.id}`];
           pendingOp.operationId = crypto.randomUUID(); delete pendingOp.error; delete pendingOp.submitted;
@@ -329,7 +345,7 @@ export function OfflineWorkspace() {
         await current.current!.commit(draft);
       });
       setReview(null); setScreenRevision((value) => value + 1);
-    } catch (cause) { setError(cause instanceof Error ? cause.message : "Conflict resolution failed."); }
+    } catch (cause) { setError(cause instanceof Error ? cause.message : errors.conflictFailed); }
     finally { setBusy(false); }
   }
 }

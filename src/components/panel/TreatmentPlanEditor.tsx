@@ -127,7 +127,7 @@ export function TreatmentPlanEditor({
     },
   }[lang];
   return (
-    <div className="space-y-5 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
+    <div className="space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6 shadow-xs">
       <fieldset disabled={isSavingTreatment} className="grid gap-4 sm:grid-cols-2">
         <label className="crm-label sm:col-span-2">
           {copy.name}
@@ -160,7 +160,7 @@ export function TreatmentPlanEditor({
             onChangeTreatmentPlan({ ...treatmentPlan, diagnosis: e.target.value })
           }
           placeholder={t.diagnosisPh}
-          className="w-full rounded-xl border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full rounded-lg border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
 
@@ -176,7 +176,7 @@ export function TreatmentPlanEditor({
               onChangeTreatmentPlan({ ...treatmentPlan, goals: e.target.value })
             }
             placeholder={t.goalsPh}
-            className="w-full rounded-xl border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full rounded-lg border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -191,7 +191,7 @@ export function TreatmentPlanEditor({
               onChangeTreatmentPlan({ ...treatmentPlan, medications: e.target.value })
             }
             placeholder={t.medsPh}
-            className="w-full rounded-xl border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full rounded-lg border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
       </div>
@@ -210,7 +210,7 @@ export function TreatmentPlanEditor({
             })
           }
           placeholder={t.instructionsPh}
-          className="w-full rounded-xl border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full rounded-lg border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
 
@@ -260,7 +260,7 @@ export function TreatmentPlanEditor({
             <div className="flex items-center gap-3 bg-card p-2 rounded-lg border border-border">
               <img
                 src={tpPhotoData}
-                alt="Preview"
+                alt=""
                 className="h-12 w-12 object-cover rounded border border-border"
               />
               <span className="text-xs text-emerald-600 font-semibold">
@@ -273,7 +273,7 @@ export function TreatmentPlanEditor({
             <button
               type="submit"
               disabled={!tpPhotoData}
-              className="rounded-lg bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary hover:bg-primary/20 disabled:opacity-50"
+              className="rounded-lg bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary hover:bg-primary/20 disabled:bg-muted disabled:text-muted-foreground"
             >
               {t.attachButton}
             </button>
@@ -289,7 +289,7 @@ export function TreatmentPlanEditor({
               {treatmentPlan.photos.map((photo) => (
                 <div
                   key={photo.id}
-                  className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-2 shadow-sm"
+                  className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-2"
                 >
                   <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border bg-muted">
                     <img
@@ -300,8 +300,9 @@ export function TreatmentPlanEditor({
                     <button
                       type="button"
                       onClick={() => onDeleteTpPhoto(photo.id)}
-                      className="absolute right-1.5 top-1.5 rounded bg-black/60 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-600"
+                      className="absolute right-1.5 top-1.5 rounded bg-black/60 p-1.5 text-white transition-opacity hover:bg-red-600 focus-visible:opacity-100 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100"
                       title={t.removePhoto}
+                      aria-label={`${t.removePhoto}: ${photo.name}`}
                     >
                       <TrashIcon className="h-3.5 w-3.5" />
                     </button>
@@ -324,7 +325,7 @@ export function TreatmentPlanEditor({
           type="button"
           disabled={isSavingTreatment}
           onClick={onSaveTreatmentPlan}
-          className="rounded-xl bg-primary px-6 py-2.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60 shadow-sm"
+          className="rounded-lg bg-primary px-6 py-2.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground shadow-sm"
         >
           {isSavingTreatment ? copy.saving : copy.save}
         </button>

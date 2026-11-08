@@ -27,11 +27,7 @@ function useSafeLanguage() {
   }
 }
 
-/**
- * DispatcherScriptAccordion (Change 79):
- * Expandable communication guide for calling 112 dispatchers.
- * Helps rural and vulnerable patients articulate their location and medical status clearly.
- */
+/** What to tell the 112 dispatcher: where you are, who needs help, what happened. Closed by default. */
 export function DispatcherScriptAccordion({
   defaultOpen = false,
   className,
@@ -52,6 +48,7 @@ export function DispatcherScriptAccordion({
       >
         <span>{e.dispatcherGuideTitle}</span>
         <ChevronDownIcon
+          aria-hidden="true"
           className={cn(
             "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
             isOpen && "rotate-180"

@@ -113,7 +113,7 @@ export function RomanesGlossaryDrawer({
             {filteredTerms.map((term) => (
               <li key={term.id} className="py-5">
                 <div className="flex items-start justify-between gap-3">
-                  <h4 className="text-lg font-semibold leading-snug text-foreground">{term.romanesTerm}</h4>
+                  <h3 className="text-lg font-semibold leading-snug text-foreground">{term.romanesTerm}</h3>
                   {voiceEnabled && (
                     <DictionarySpeakButton
                       speaking={speakingId === term.id}

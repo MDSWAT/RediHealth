@@ -36,7 +36,7 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
                   type="button"
                   data-triage-option={id}
                   onClick={() => onSelectScenario(id)}
-                  className="flex min-h-[56px] w-full flex-col items-start bg-card px-4 py-4 text-left transition-colors duration-[var(--dur-fast)] hover:bg-muted/50 focus-visible:relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary sm:px-5"
+                  className="flex min-h-[56px] w-full flex-col items-start bg-card px-4 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:px-5"
                 >
                   <span className="text-base font-semibold text-foreground">{scenario.title}</span>
                   <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{scenario.desc}</span>
@@ -62,7 +62,7 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
           <li key={item.title} className="flex gap-3">
             <span
               aria-hidden="true"
-              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border text-sm font-semibold tabular-nums text-foreground"
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-border text-sm font-semibold tabular-nums text-foreground"
             >
               {idx + 1}
             </span>

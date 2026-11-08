@@ -4,53 +4,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
-import { formatNewsDate } from "@/components/news/news-format";
+import { formatNewsDate, placeName } from "@/components/news/news-format";
 import { ITALY_WIDE, NEWS_ARTICLES, articleCountry, getLocalizedArticle, isNationalCounty } from "@/lib/data/news";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { speechEngine, formatSpeechText } from "@/lib/audio/speech-engine";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
-
-// Specialties stored in Romanian on older items; newer items carry their own translation.
-const DOCTOR_SPECIALTIES: Partial<Record<Lang, Record<string, string>>> = {
-  en: {
-    "Medic primar epidemiolog, DSP Iași": "Senior epidemiologist, Iași Public Health Directorate",
-    "Senior epidemiologist, DSP Iași": "Senior epidemiologist, Iași Public Health Directorate",
-    "Medic medicină de familie, Coordonator caravană": "Family doctor, mobile clinic coordinator",
-    "Medic infecționist, Institutul Matei Balș": "Infectious disease specialist, Matei Balș Institute",
-    "Medic specialist pediatrie": "Paediatric specialist",
-    "Medic igienist DSP Cluj": "Public health hygienist, Cluj Public Health Directorate",
-    "Public health hygienist, DSP Cluj": "Public health hygienist, Cluj Public Health Directorate",
-    "Medic stomatolog pediatru, Voluntari pentru Sănătate": "Paediatric dentist, Volunteers for Health",
-    "Medic primar obstetrică-ginecologie și sănătate publică": "Senior obstetrician-gynaecologist and public health specialist",
-    "Medic primar pneumolog, Institutul Marius Nasta": "Senior pulmonologist, Marius Nasta Institute",
-  },
-  sq: {
-    "Medic primar epidemiolog, DSP Iași": "Epidemiologe kryesore, Drejtoria e Shëndetit Publik Iași",
-    "Epidemiologe kryesore, DSP Iași": "Epidemiologe kryesore, Drejtoria e Shëndetit Publik Iași",
-    "Medic medicină de familie, Coordonator caravană": "Mjek familjeje, koordinator i karvanit mjekësor",
-    "Medic infecționist, Institutul Matei Balș": "Mjek infeksionist, Instituti Matei Balș",
-    "Medic specialist pediatrie": "Mjek specialist pediatër",
-    "Medic igienist DSP Cluj": "Mjeke higjieniste, Drejtoria e Shëndetit Publik Cluj",
-    "Mjeke higjieniste, DSP Cluj": "Mjeke higjieniste, Drejtoria e Shëndetit Publik Cluj",
-    "Medic stomatolog pediatru, Voluntari pentru Sănătate": "Stomatolog pediatrik, Vullnetarë për Shëndetin",
-    "Medic primar obstetrică-ginecologie și sănătate publică": "Mjeke kryesore obstetër-gjinekologe dhe e shëndetit publik",
-    "Medic primar pneumolog, Institutul Marius Nasta": "Pneumolog kryesor, Instituti Marius Nasta",
-  },
-  it: {
-    "Medic primar epidemiolog, DSP Iași": "Medico epidemiologo primario, Direzione di Sanità Pubblica di Iași",
-    "Medico epidemiologo primario, DSP Iași": "Medico epidemiologo primario, Direzione di Sanità Pubblica di Iași",
-    "Medic medicină de familie, Coordonator caravană": "Medico di medicina generale, coordinatore dell'ambulatorio mobile",
-    "Medic infecționist, Institutul Matei Balș": "Infettivologo, Istituto Matei Balș",
-    "Medic specialist pediatrie": "Medico specialista in pediatria",
-    "Medic igienist DSP Cluj": "Medico igienista, Direzione di Sanità Pubblica di Cluj",
-    "Medico igienista, DSP Cluj": "Medico igienista, Direzione di Sanità Pubblica di Cluj",
-    "Medic stomatolog pediatru, Voluntari pentru Sănătate": "Odontoiatra pediatrico, Volontari per la Salute",
-    "Medic primar obstetrică-ginecologie și sănătate publică": "Medico primario in ostetricia-ginecologia e sanità pubblica",
-    "Medic primar pneumolog, Institutul Marius Nasta": "Pneumologo primario, Istituto Marius Nasta",
-  },
-};
 
 // Tags stored in Romanian; items with their own translation already carry localized tags.
 const TAG_LABELS: Partial<Record<Lang, Record<string, string>>> = {
@@ -108,7 +68,7 @@ function PauseIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-/** One news item: header, doctor check, body, measures, related items. */
+/** One news item: header, body, measures, related items. */
 export function NewsArticleView({ id }: { id: string }) {
   const { lang, t } = useLanguage();
   const np = t.newsPage;
@@ -166,9 +126,8 @@ export function NewsArticleView({ id }: { id: string }) {
   }
 
   const placeLabel = (place: string) =>
-    place === ITALY_WIDE ? (t.countyMap?.allItaly ?? ITALY_WIDE) : isNationalCounty(place) ? np.allCounties : place;
+    place === ITALY_WIDE ? (t.countyMap?.allItaly ?? ITALY_WIDE) : isNationalCounty(place) ? np.allCounties : placeName(place, lang);
   const category = categoryLabels[article.category] ?? article.categoryLabel ?? article.category;
-  const specialty = DOCTOR_SPECIALTIES[lang]?.[article.verifiedDoctor.specialty] ?? article.verifiedDoctor.specialty;
   const tags = article.tags.map((tag) => TAG_LABELS[lang]?.[tag] ?? tag);
 
   return (
@@ -209,27 +168,18 @@ export function NewsArticleView({ id }: { id: string }) {
             {article.summary}
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              <span className="font-medium text-foreground">{np.verifiedByDoctor}:</span> {article.verifiedDoctor.name}
-              <span className="block text-xs">
-                {specialty} · {formatNewsDate(article.verifiedDoctor.verifiedDate, lang)}
-              </span>
-            </p>
-
-            {voiceEnabled && (
-              <button
-                type="button"
-                onClick={handleToggleAudio}
-                aria-pressed={isPlayingAudio}
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                {isPlayingAudio ? <PauseIcon className="h-4 w-4" /> : <PlayIcon className="h-4 w-4" />}
-                <span>{isPlayingAudio ? np.pauseAudio : np.playAudio}</span>
-                <span className="text-muted-foreground tabular-nums">{article.audioNarrationDuration}</span>
-              </button>
-            )}
-          </div>
+          {/* Read aloud (hidden where no voice is available, e.g. Albanian). No reviewer line: none is confirmed yet. */}
+          {voiceEnabled && (
+            <button
+              type="button"
+              onClick={handleToggleAudio}
+              aria-pressed={isPlayingAudio}
+              className="mt-6 inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              {isPlayingAudio ? <PauseIcon className="h-4 w-4" /> : <PlayIcon className="h-4 w-4" />}
+              <span>{isPlayingAudio ? np.pauseAudio : np.playAudio}</span>
+            </button>
+          )}
         </header>
 
         <div lang={article.language} className="mt-8 max-w-[68ch] space-y-5 text-[17px] leading-relaxed text-foreground/90">
@@ -295,11 +245,11 @@ export function NewsArticleView({ id }: { id: string }) {
                       <span className="block text-xs text-muted-foreground">
                         {categoryLabels[rel.category] ?? rel.category} · {placeLabel(rel.county)}
                       </span>
-                      <span lang={rel.language} className="mt-1 block text-[15px] font-medium leading-snug text-foreground group-hover:text-primary">
+                      <span lang={rel.language} className="mt-1 block text-[15px] font-medium leading-snug text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire dark:group-hover:text-sapphire-border">
                         {rel.title}
                       </span>
                     </span>
-                    <span className="mt-5 inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-primary">
+                    <span className="mt-5 inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-sapphire dark:text-sapphire-border">
                       <span className="sr-only sm:not-sr-only">{c.read}</span>
                       <ArrowRightIcon className="h-4 w-4 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
                     </span>

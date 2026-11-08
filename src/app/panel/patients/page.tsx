@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { PatientsDashboard } from "@/components/panel/PatientsDashboard";
 import { loadPatients } from "@/lib/data/patients";
-import { countPendingRequests } from "@/lib/data/requests";
+import { countAttentionRequests } from "@/lib/data/requests";
 import { isCountryConfigured } from "@/lib/database";
 import type { PatientItem } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
@@ -33,7 +33,7 @@ export default async function PatientsPage() {
           country: workerContext.country,
           scopeToWorkerId: workerContext.isAdmin ? null : workerContext.workerId,
         }),
-        countPendingRequests(workerContext.country),
+        countAttentionRequests(workerContext.country),
       ]);
     } catch (error) {
       console.error("Failed to load patients dashboard data", error);

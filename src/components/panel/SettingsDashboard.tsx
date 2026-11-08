@@ -74,11 +74,11 @@ export function SettingsDashboard({
           </div>
 
           {!databaseAvailable ? (
-            <p className="rounded-2xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
               {t.noDatabase}
             </p>
           ) : (
-            <form onSubmit={save} className="max-w-xl rounded-2xl border border-border bg-card p-6">
+            <form onSubmit={save} className="max-w-xl rounded-xl border border-border bg-card p-6">
               <h2 className="text-lg font-semibold text-foreground">{t.alertSectionTitle}</h2>
               <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t.alertSectionHelp}</p>
 
@@ -93,7 +93,7 @@ export function SettingsDashboard({
                 placeholder={t.alertEmailPlaceholder}
                 maxLength={320}
                 autoComplete="off"
-                className="mt-1.5 block min-h-11 w-full rounded-lg border border-border bg-white px-3.5 text-base outline-none focus:border-primary"
+                className="mt-1.5 block min-h-11 w-full rounded-lg border border-border bg-white px-3.5 text-base outline-none focus:border-ring"
               />
               <p className="mt-2 text-xs text-muted-foreground">{sourceText}</p>
 
@@ -109,7 +109,7 @@ export function SettingsDashboard({
               <button
                 type="submit"
                 disabled={saving}
-                className="mt-5 min-h-10 rounded-xl bg-primary px-5 text-sm font-semibold text-white disabled:opacity-60"
+                className="mt-5 min-h-10 rounded-lg bg-primary px-5 text-sm font-semibold text-white disabled:bg-muted disabled:text-muted-foreground"
               >
                 {saving ? t.saving : t.save}
               </button>

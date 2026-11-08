@@ -30,7 +30,7 @@ export default async function AccessibilityPage() {
             {copy.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <p>
               {copy.contactLead}{" "}
-              <a href="mailto:support@redihealth.app" className="text-primary hover:underline">
+              <a href="mailto:support@redihealth.app" className="text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire">
                 support@redihealth.app
               </a>{" "}
               {copy.contact}

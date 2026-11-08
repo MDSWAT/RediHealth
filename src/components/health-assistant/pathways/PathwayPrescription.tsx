@@ -68,17 +68,18 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
         <h2 className="text-lg font-semibold text-foreground">{rx.heading}</h2>
         <p className="mt-1 text-sm text-muted-foreground">{rx.lead}</p>
 
-        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {/* One surface, two ways in: no overflow clipping, so the medicine suggestions can extend below. */}
+        <div className="mt-5 grid grid-cols-1 divide-y divide-border rounded-lg border border-border bg-card sm:grid-cols-2 sm:divide-x sm:divide-y-0">
           <Link
             href={withLangPrefix("/prescription-review", lang)}
-            className="flex min-h-[56px] flex-col items-start rounded-lg border border-border bg-card p-5 text-left transition-colors duration-[var(--dur-fast)] hover:border-primary/40 hover:bg-muted/50"
+            className="flex min-h-[56px] flex-col items-start rounded-t-lg p-5 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:rounded-l-lg sm:rounded-tr-none"
           >
-            <CameraIcon className="h-6 w-6 text-primary" />
+            <CameraIcon className="h-6 w-6 text-sapphire dark:text-sapphire-border" />
             <span className="mt-3 text-sm font-semibold text-foreground">{rx.photoTitle}</span>
             <span className="mt-1 text-sm text-muted-foreground">{rx.photoDesc}</span>
           </Link>
 
-          <form onSubmit={handleTextSubmit} className="rounded-lg border border-border bg-card p-5">
+          <form onSubmit={handleTextSubmit} className="p-5">
             <label htmlFor={inputId} className="block text-sm font-semibold text-foreground">
               {rx.searchTitle}
             </label>
@@ -101,7 +102,7 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
                 onFocus={() => setShowAutocomplete(true)}
                 onBlur={() => setShowAutocomplete(false)}
                 placeholder={rx.placeholder}
-                className="min-h-[44px] w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="min-h-[44px] w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
               />
 
               {listOpen && (
@@ -131,7 +132,7 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
             <button
               type="submit"
               disabled={!medicineSearch.trim()}
-              className="mt-3 min-h-[44px] w-full rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary/90 disabled:opacity-50"
+              className="mt-3 min-h-[44px] w-full rounded-lg bg-sapphire px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
             >
               {rx.submit}
             </button>

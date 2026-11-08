@@ -4,7 +4,7 @@ import { usePanelRouter as useRouter, usePanelRuntime } from "./PanelRuntime";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { ArrowLeftIcon, ArrowRightIcon, CheckCircleIcon, CloseIcon, UserIcon } from "@/components/ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, CheckCircleIcon, CloseIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
@@ -310,23 +310,16 @@ export function CreatePatientModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={dialogTitleId}
-        className="app-sheet-slide-up relative flex h-dvh min-h-0 w-full max-w-3xl flex-col overflow-hidden border-border bg-card shadow-2xl sm:h-[min(850px,calc(100dvh-2rem))] sm:rounded-3xl sm:border"
+        className="app-sheet-slide-up relative flex h-dvh min-h-0 w-full max-w-3xl flex-col overflow-hidden border-border bg-card shadow-2xl sm:h-auto sm:max-h-[min(850px,calc(100dvh-2rem))] sm:rounded-xl sm:border"
       >
         <div className="flex shrink-0 items-start justify-between gap-3 border-b border-border bg-muted/30 p-5 sm:items-center sm:px-6">
-          <div className="flex min-w-0 items-start gap-2.5 sm:items-center">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-soft text-primary">
-              <UserIcon className="h-5 w-5" />
-            </span>
-            <div className="min-w-0">
-              <h2 id={dialogTitleId} className="text-base font-bold text-foreground sm:text-lg">
-                {isEditing ? t.titleEdit : t.titleCreate}
-              </h2>
-              <p className="text-xs text-muted-foreground break-words">
-                {request
-                  ? t.convertedFrom(String(request.id))
-                  : t.subtitleCreate}
-              </p>
-            </div>
+          <div className="min-w-0">
+            <h2 id={dialogTitleId} className="text-base font-bold text-foreground sm:text-lg">
+              {isEditing ? t.titleEdit : t.titleCreate}
+            </h2>
+            <p className="text-xs text-muted-foreground break-words">
+              {request ? t.convertedFrom(String(request.id)) : t.subtitleCreate}
+            </p>
           </div>
           <button
             ref={closeButtonRef}
@@ -341,11 +334,12 @@ export function CreatePatientModal({
         </div>
 
         {!isEditing && <nav aria-label={wizard.progress} className="shrink-0 border-b border-border bg-card px-4 py-4 sm:px-6">
-          <ol className="grid grid-cols-3 gap-2">
-            {wizard.steps.map((label, index) => <li key={label}>
+          {/* One surface of numbered cells with hairline dividers, like the other step pickers on the site. */}
+          <ol className="grid grid-cols-3 divide-x divide-border overflow-hidden rounded-lg border border-border">
+            {wizard.steps.map((label, index) => <li key={label} className="min-w-0">
               <button type="button" disabled={index > furthestStep || isSubmitting || intakeBusy} onClick={() => goToStep(index)} aria-current={step === index ? "step" : undefined}
-                className={`flex w-full flex-col items-start gap-2 rounded-xl p-2 text-left text-xs font-semibold transition-colors disabled:cursor-default sm:flex-row sm:items-center ${step === index ? "bg-primary-soft text-primary" : index < step ? "text-primary" : "text-muted-foreground"}`}>
-                <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full ${index <= step ? "bg-primary text-white" : "bg-muted"}`}>{index < step ? <CheckCircleIcon className="h-4 w-4" /> : index + 1}</span>{label}
+                className={`flex h-full min-h-12 w-full flex-col items-start gap-1.5 px-3 py-2.5 text-left text-xs font-medium leading-snug transition-colors disabled:cursor-default sm:flex-row sm:items-center sm:gap-2.5 ${step === index ? "bg-slate-50 text-foreground" : index < step ? "bg-card text-foreground hover:bg-slate-50" : "bg-card text-muted-foreground"}`}>
+                <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-semibold tabular-nums ${step === index ? "bg-primary text-white" : "bg-muted text-muted-foreground"}`}>{index < step ? <CheckCircleIcon aria-hidden="true" className="h-4 w-4" /> : index + 1}</span>{label}
               </button>
             </li>)}
           </ol>
@@ -396,7 +390,7 @@ export function CreatePatientModal({
                   required={!isEditing || Boolean(patient?.county)}
                   value={county}
                   onChange={(event) => setCounty(event.target.value)}
-                  className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <option value="">{t.selectCounty}</option>
                   {ROMANIAN_COUNTIES.map((countyName) => <option key={countyName} value={countyName}>{countyName}</option>)}
@@ -414,7 +408,7 @@ export function CreatePatientModal({
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder={t.fullNamePh}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
             <div>
@@ -428,7 +422,7 @@ export function CreatePatientModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder={t.phonePh}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
@@ -443,14 +437,14 @@ export function CreatePatientModal({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t.emailPh}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
           </div>
 
           <div hidden={!isEditing && step !== 1} className="space-y-5">
-          <div className="rounded-2xl border border-border bg-muted/30 p-4">
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
             <h3 className="mb-3 text-sm font-bold text-foreground">{intakeCopy.care}</h3>
             <label htmlFor={`${formId}-condition`} className="text-xs font-semibold text-foreground mb-1 block">
               {t.condition}
@@ -461,18 +455,18 @@ export function CreatePatientModal({
               value={conditionNotes}
               onChange={(e) => setConditionNotes(e.target.value)}
               placeholder={t.conditionPh}
-              className="w-full rounded-xl border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full rounded-lg border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
           <div>
             <label htmlFor={`${formId}-address`} className="mb-1 block text-xs font-semibold text-foreground">{t.address}</label>
             <input id={`${formId}-address`} type="text" value={address} onChange={(event) => setAddress(event.target.value)} placeholder={t.addressPh}
-              className="min-h-11 w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+              className="min-h-11 w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
           </div>
           <PatientIntakeFields value={intake} onChange={setIntake} disabled={isSubmitting} onBusyChange={setIntakeBusy} />
 
-          <section aria-labelledby={`${formId}-personal`} className="space-y-4 rounded-2xl border border-border p-4 sm:p-5">
+          <section aria-labelledby={`${formId}-personal`} className="space-y-4 rounded-xl border border-border p-4 sm:p-5">
             <div><h4 id={`${formId}-personal`} className="font-semibold">{wizard.personal}</h4><p className="mt-1 text-xs text-muted-foreground">{wizard.personalHint}</p></div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
@@ -484,7 +478,7 @@ export function CreatePatientModal({
                 type="date"
                 value={dateOfBirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
@@ -496,7 +490,7 @@ export function CreatePatientModal({
                 id={`${formId}-gender`}
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="">{t.selectGender}</option>
                 <option value="Female">{t.female}</option>
@@ -509,11 +503,11 @@ export function CreatePatientModal({
           <div>
             <label htmlFor={`${formId}-history`} className="mb-1 block text-xs font-semibold text-foreground">{t.history}</label>
             <textarea id={`${formId}-history`} rows={3} value={medicalHistory} onChange={(e) => setMedicalHistory(e.target.value)}
-              placeholder={t.historyPh} className="w-full rounded-xl border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+              placeholder={t.historyPh} className="w-full rounded-lg border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
           </div>
           </section>
 
-          <section aria-labelledby={`${formId}-care`} className="space-y-4 rounded-2xl border border-border p-4 sm:p-5">
+          <section aria-labelledby={`${formId}-care`} className="space-y-4 rounded-xl border border-border p-4 sm:p-5">
             <div><h4 id={`${formId}-care`} className="font-semibold">{wizard.care}</h4><p className="mt-1 text-xs text-muted-foreground">{wizard.careHint}</p></div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
@@ -524,7 +518,7 @@ export function CreatePatientModal({
                 id={`${formId}-status`}
                 value={status}
                 onChange={(e) => setStatus(e.target.value as PatientStatus)}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="active">{t.activeCare}</option>
                 <option value="inactive">{t.inactive}</option>
@@ -540,7 +534,7 @@ export function CreatePatientModal({
                 id={`${formId}-priority`}
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as PatientPriority)}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="critical">{t.pCritical}</option>
                 <option value="high">{t.pHigh}</option>
@@ -552,7 +546,7 @@ export function CreatePatientModal({
           </section>
 
             {isAdmin ? (
-            <section aria-labelledby={`${formId}-team`} className="space-y-4 rounded-2xl border border-border p-4 sm:p-5">
+            <section aria-labelledby={`${formId}-team`} className="space-y-4 rounded-xl border border-border p-4 sm:p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0 flex-1"><h4 id={`${formId}-team`} className="font-semibold">{wizard.team}</h4><p className="mt-1 text-xs leading-relaxed text-muted-foreground">{wizard.teamHint}</p></div>
                   <span aria-live="polite" className="shrink-0 rounded-md bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">{assignedWorkerIds.length} {crm.selected}</span>
@@ -567,7 +561,7 @@ export function CreatePatientModal({
                         type="button"
                         onClick={() => removeSelectedWorker(id)}
                         aria-label={`${crm.removeSelection}: ${worker?.full_name || id}`}
-                        className="inline-flex min-h-11 max-w-full items-center gap-2 rounded-xl border border-primary/20 bg-primary-soft px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/15"
+                        className="inline-flex min-h-11 max-w-full items-center gap-2 rounded-lg border border-primary/20 bg-primary-soft px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/15"
                       >
                         <span className="break-words">{worker?.full_name || id}</span><CloseIcon className="h-4 w-4 shrink-0" />
                       </button>
@@ -582,7 +576,7 @@ export function CreatePatientModal({
                   value={workerSearchQuery}
                   onChange={(event) => setWorkerSearchQuery(event.target.value)}
                   placeholder={wizard.searchTeam}
-                  className="min-h-11 w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="min-h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
                 {workersLoading ? <p role="status" className="text-sm text-muted-foreground">{wizard.loadingTeam}</p>
                 : workersError ? <div role="alert" className="flex flex-wrap items-center gap-3 text-sm text-red-600 dark:text-red-400">
@@ -627,14 +621,14 @@ export function CreatePatientModal({
             ) : null}
           </div>
           {!isEditing && step === 2 && <div className="space-y-4">
-            <div className="rounded-2xl border border-primary/20 bg-primary-soft p-4">
+            <div className="rounded-xl border border-primary/20 bg-primary-soft p-4">
               <p className="mb-3 flex items-center gap-2 text-xs font-semibold text-primary"><CheckCircleIcon className="h-4 w-4" />{wizard.ready}</p>
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0"><p className="break-words text-xl font-bold">{fullName}</p><p className="mt-1 break-all text-sm">{phone} · {email}</p>{county && <p className="mt-1 text-sm text-muted-foreground">{county}</p>}</div>
                 <button type="button" onClick={() => goToStep(0)} className="min-h-10 shrink-0 px-2 text-sm font-semibold text-primary">{wizard.edit}</button>
               </div>
             </div>
-            <section className="rounded-2xl border border-border p-4">
+            <section className="rounded-xl border border-border p-4">
               <div className="mb-4 flex items-center justify-between gap-3"><h4 className="font-semibold">{wizard.steps[1]}</h4><button type="button" onClick={() => goToStep(1)} className="min-h-10 px-2 text-sm font-semibold text-primary">{wizard.edit}</button></div>
               <dl className="grid gap-4 text-sm sm:grid-cols-2">
                 {([
@@ -656,7 +650,7 @@ export function CreatePatientModal({
               type="button"
               onClick={() => !isEditing && step > 0 ? goToStep(step - 1) : onClose()}
               disabled={isSubmitting || intakeBusy}
-              className="rounded-xl border border-border bg-card px-4 py-2.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+              className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
             >
               {!isEditing && step > 0 ? <span className="inline-flex items-center gap-2"><ArrowLeftIcon className="h-4 w-4" />{wizard.back}</span> : t.cancel}
             </button>
@@ -664,7 +658,7 @@ export function CreatePatientModal({
               type="submit"
               form={formId}
               disabled={isSubmitting || intakeBusy}
-              className="min-h-12 flex-1 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-primary-hover disabled:opacity-60 shadow-2xs transition-colors sm:flex-none"
+              className="min-h-11 flex-1 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground sm:flex-none"
             >
               {isSubmitting
                 ? t.saving

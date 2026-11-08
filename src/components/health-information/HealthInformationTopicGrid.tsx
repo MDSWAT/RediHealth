@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon, SearchIcon } from "@/components/ui/icons";
@@ -14,19 +14,9 @@ import {
 } from "@/lib/i18n/health-information-topics";
 import { TopicMetaBadge } from "./TopicMetaBadge";
 import { ReadingLevelSwitcher } from "./ReadingLevelSwitcher";
-import { TOPIC_PICTOGRAMS } from "./TopicIcons";
-import { useRowMasonry } from "./useRowMasonry";
 
 export type { TopicItem };
 export { getHealthTopicsList, HEALTH_TOPICS_LIST };
-
-/**
- * Checkerboard masonry rhythm across 4-column desktop and 2-column tablet grids:
- * Row 1 alternates [Feature, Compact, Feature, Compact] and Row 2 alternates [Compact, Feature, Compact, Feature].
- * Every column gets 1 Feature + 1 Compact card (4 cols) or 2 Feature + 2 Compact cards (2 cols),
- * staggering the horizontal interior seam while keeping the bottom edge balanced.
- */
-const MASONRY_FEATURE_INDICES = new Set([0, 2, 5, 7]);
 
 export interface HealthInformationTopicGridProps {
   initialCategory?: string;
@@ -96,8 +86,6 @@ export function HealthInformationTopicGrid({
     );
   });
 
-  // Bento only when every topic is visible; filtered results use the plain grid.
-
   const resultCountText =
     filteredTopics.length === 1
       ? gridCopy.countSingular
@@ -111,13 +99,11 @@ export function HealthInformationTopicGrid({
   const checkSymptomLabel = t?.healthInfoPage?.tabs?.triage ?? lib.checkSymptom;
   const [showAll, setShowAll] = useState(false);
   const visibleTopics = showAll ? filteredTopics : filteredTopics.slice(0, FIRST_VIEW_LIMIT);
-  const listRef = useRef<HTMLUListElement | null>(null);
-  useRowMasonry(listRef, [visibleTopics, readingLevel, lang]);
 
   return (
     <section
       aria-labelledby="health-library-title"
-      className={`rounded-xl border border-border bg-card p-4 shadow-xs sm:p-5 ${className}`}
+      className={className}
     >
       {/* The page H1 already names the library; this heading is for screen readers. */}
       <h2 id="health-library-title" className="sr-only">
@@ -134,12 +120,12 @@ export function HealthInformationTopicGrid({
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={gridCopy.searchPlaceholder}
             aria-label={gridCopy.searchAriaLabel}
-            className="min-h-12 w-full rounded-lg border border-border bg-background pl-9 pr-3 text-base text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none"
+            className="min-h-12 w-full rounded-lg border border-border bg-card pl-9 pr-3 text-base text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none"
           />
         </div>
         <Link
           href={withLangPrefix("/health-check", lang)}
-          className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-base font-semibold text-white transition-colors hover:bg-ink-800"
+          className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-foreground px-5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
         >
           {checkSymptomLabel}
           <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
@@ -163,7 +149,7 @@ export function HealthInformationTopicGrid({
                 setSelectedCategory(chip.slug);
                 setShowAll(false);
               }}
-              className={`-mb-px inline-flex min-h-11 shrink-0 items-center border-b-2 px-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire ${
+              className={`-mb-px inline-flex min-h-11 shrink-0 items-center border-b-2 px-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire ${
                 isActive
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground"
@@ -201,7 +187,7 @@ export function HealthInformationTopicGrid({
       </div>
 
       {filteredTopics.length === 0 ? (
-        <div className="mt-6 rounded-lg border border-dashed border-border px-6 py-10 text-center">
+        <div className="mt-4 px-6 py-10 text-center">
           <p className="text-base font-semibold text-foreground">{gridCopy.emptyTitle}</p>
           <p className="mx-auto mt-1 max-w-md text-sm text-muted-foreground">{gridCopy.emptyDescription}</p>
           <button
@@ -217,106 +203,50 @@ export function HealthInformationTopicGrid({
         </div>
       ) : (
         <>
-          {/* Row-first masonry grid combining editorial topic photography with custom health pictograms. */}
-          <ul
-            ref={listRef}
-            className="mt-4 grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {visibleTopics.map((topic, index) => {
-              const Pictogram = TOPIC_PICTOGRAMS[topic.slug];
-              const categoryLabel =
-                filterChips.find((c) => c.slug === topic.categorySlug)?.label ?? "";
-              const isFeatureCard = MASONRY_FEATURE_INDICES.has(index % 8);
-              const showTakeaway =
-                isFeatureCard ||
-                readingLevel === "complete" ||
-                filteredTopics.length <= 2;
-              const showExtraStep =
-                isFeatureCard &&
-                readingLevel === "complete" &&
-                Boolean(topic.recommendationTitle);
+          {/* Guides: one 3:2 photo, the title and one short description per card.
+              Rows stretch to the tallest card so the meta line sits on one baseline. */}
+          <ul className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {visibleTopics.map((topic) => (
+              <li key={topic.slug} className="flex">
+                <Link
+                  href={withLangPrefix(`/health-information/${topic.slug}`, lang)}
+                  className="group flex w-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 motion-reduce:transition-none"
+                >
+                  <div className="relative aspect-[3/2] w-full overflow-hidden border-b border-border/60 bg-surface-subtle">
+                    <Image
+                      src={topic.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover"
+                    />
+                  </div>
 
-              return (
-                <li key={topic.slug} className="block">
-                  <Link
-                    href={withLangPrefix(`/health-information/${topic.slug}`, lang)}
-                    className="group flex w-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-[0_1px_2px_rgb(28_25_23/0.04)] transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-foreground/30 hover:shadow-[0_14px_34px_-18px_rgb(28_25_23/0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
-                  >
-                    <div
-                      className={`relative w-full overflow-hidden border-b border-border/60 bg-surface-subtle ${
-                        isFeatureCard
-                          ? "aspect-[16/10] sm:aspect-[4/3]"
-                          : "aspect-[16/10] sm:aspect-[2/1]"
-                      }`}
-                    >
-                      <Image
-                        src={topic.image}
-                        alt=""
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
+                  <div className="flex flex-1 flex-col p-4 sm:p-5">
+                    <h3 className="text-base font-semibold leading-snug tracking-[-0.01em] text-foreground text-balance sm:text-lg">
+                      {topic.title}
+                    </h3>
+                    <p className="mt-1.5 text-base leading-relaxed text-muted-foreground text-pretty sm:text-sm">
+                      {topic.description}
+                    </p>
+
+                    <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+                      <TopicMetaBadge
+                        readMinutes={topic.readMinutes}
+                        audioMinutes={topic.audioMinutes}
+                        compact={true}
+                        bordered={false}
                       />
-                      <div
+                      <ArrowRightIcon
                         aria-hidden="true"
-                        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/20 to-transparent"
+                        className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-foreground motion-reduce:transition-none"
                       />
                     </div>
-
-                    <div className="flex flex-1 flex-col px-4 pb-4 pt-0 sm:px-5 sm:pb-5">
-                      <div className="flex items-end justify-between gap-3">
-                        {Pictogram && (
-                          <span className="relative z-10 -mt-6 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-border bg-card text-foreground shadow-xs transition-colors duration-200 group-hover:border-foreground group-hover:bg-foreground group-hover:text-background">
-                            <Pictogram className="h-7 w-7" />
-                          </span>
-                        )}
-                        {categoryLabel && (
-                          <span className="pt-2.5 text-xs font-medium text-muted-foreground">
-                            {categoryLabel}
-                          </span>
-                        )}
-                      </div>
-
-                      <h3 className="mt-3 text-base font-semibold leading-snug tracking-[-0.01em] text-foreground text-balance sm:text-lg">
-                        {topic.title}
-                      </h3>
-                      <p className="mt-1.5 text-base leading-relaxed text-muted-foreground text-pretty sm:text-sm">
-                        {topic.description}
-                      </p>
-
-                      {showTakeaway && topic.keyFact && (
-                        <div className="mt-3.5 border-t border-border/70 pt-3">
-                          <p className="text-xs leading-relaxed text-foreground/85 text-pretty">
-                            {topic.keyFact}
-                          </p>
-                          {showExtraStep && (
-                            <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground text-pretty">
-                              <span className="font-semibold text-foreground">
-                                {topic.recommendationTitle}:
-                              </span>{" "}
-                              {topic.recommendationBody}
-                            </p>
-                          )}
-                        </div>
-                      )}
-
-                      <div className="mt-auto flex items-center justify-between gap-3 pt-4">
-                        <TopicMetaBadge
-                          readMinutes={topic.readMinutes}
-                          audioMinutes={topic.audioMinutes}
-                          compact={true}
-                          bordered={false}
-                        />
-                        <ArrowRightIcon
-                          aria-hidden="true"
-                          className="h-4 w-4 shrink-0 text-muted-foreground transition-[transform,color] duration-200 group-hover:translate-x-0.5 group-hover:text-foreground motion-reduce:transition-none"
-                        />
-                      </div>
-                      <span className="sr-only">{gridCopy.cardActionLabel}</span>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
+                    <span className="sr-only">{gridCopy.cardActionLabel}</span>
+                  </div>
+                </Link>
+              </li>
+            ))}
           </ul>
           {!showAll && filteredTopics.length > FIRST_VIEW_LIMIT && (
             <div className="mt-5 text-center">

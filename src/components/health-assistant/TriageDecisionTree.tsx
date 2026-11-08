@@ -18,10 +18,10 @@ interface TriageDecisionTreeProps {
   plainLanguage: boolean;
 }
 
-const PATHWAYS: { id: PathwayId; icon: typeof BookIcon; urgent?: boolean }[] = [
+const PATHWAYS: { id: PathwayId; icon: typeof BookIcon }[] = [
   { id: "learn", icon: BookIcon },
   { id: "risk", icon: ClipboardCheckIcon },
-  { id: "symptoms", icon: ActivityIcon, urgent: true },
+  { id: "symptoms", icon: ActivityIcon },
   { id: "prescription", icon: FileTextIcon },
   { id: "navigation", icon: HandHelpingIcon },
 ];
@@ -41,7 +41,7 @@ export function TriageDecisionTree({
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{tree.lead}</p>
 
       <ul className="mt-5 divide-y divide-border overflow-hidden rounded-lg border border-border">
-        {PATHWAYS.map(({ id, icon: Icon, urgent }) => {
+        {PATHWAYS.map(({ id, icon: Icon }) => {
           const option = tree.options[id];
           return (
             <li key={id}>
@@ -49,11 +49,9 @@ export function TriageDecisionTree({
                 type="button"
                 data-triage-option={id}
                 onClick={() => onSelectPathway(id)}
-                className="group flex min-h-[64px] w-full items-start gap-3.5 bg-card px-4 py-4 text-left transition-colors duration-[var(--dur-fast)] hover:bg-muted/50 focus-visible:relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary sm:px-5"
+                className="flex min-h-[64px] w-full items-start gap-3.5 bg-card px-4 py-4 text-left transition-colors duration-[var(--dur-fast)] hover:bg-muted/50 focus-visible:relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:px-5"
               >
-                <Icon
-                  className={`mt-0.5 h-5 w-5 shrink-0 ${urgent ? "text-primary" : "text-sapphire dark:text-sapphire-border"}`}
-                />
+                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-sapphire dark:text-sapphire-border" />
                 <span className="min-w-0 flex-1">
                   <span className="block text-base font-semibold text-foreground">
                     {plainLanguage ? option.plainTitle : option.title}
@@ -62,7 +60,7 @@ export function TriageDecisionTree({
                     {option.subtitle}
                   </span>
                 </span>
-                <ChevronRightIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5" />
+                <ChevronRightIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
               </button>
             </li>
           );

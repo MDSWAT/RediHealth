@@ -1,5 +1,5 @@
 import type { ResultSetHeader, RowDataPacket } from "@/lib/database";
-import type { CountryCode, InstituteCategory } from "@/lib/medical-institutes";
+import { normalizeInstitutePhone, type CountryCode, type InstituteCategory } from "@/lib/medical-institutes";
 
 const OVERPASS_ENDPOINTS = [
   "https://overpass-api.de/api/interpreter",
@@ -104,7 +104,7 @@ export function mapOsmElement(
     category,
     address,
     city,
-    phone: firstValue(tags.phone || tags["contact:phone"] || tags["contact:mobile"], 120),
+    phone: normalizeInstitutePhone(firstValue(tags.phone || tags["contact:phone"] || tags["contact:mobile"], 120), country),
     website: (() => {
       const raw = firstValue(tags.website || tags["contact:website"] || tags.url, 500);
       if (!raw) return null;

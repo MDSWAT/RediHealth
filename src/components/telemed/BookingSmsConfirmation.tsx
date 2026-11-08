@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { CheckCircleIcon, CalendarIcon, PhoneIcon, VideoIcon } from "@/components/ui/icons";
+import { CheckCircleIcon, CalendarIcon, PhoneIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -17,7 +18,7 @@ function useSafeLanguage() {
 
 const confirmationCopy = {
   ro: {
-    title: "Ai programare la medic",
+    title: "Apelul cu medicul este programat",
     codeLabel: "Codul programării",
     atHour: "ora",
     forPatient: "Pentru:",
@@ -26,11 +27,11 @@ const confirmationCopy = {
     openRoom: "Intră în apel",
     addToCalendar: "Pune în calendar",
     anotherBooking: "Fă altă programare",
-    calSummary: (code: string) => `Consultație video RediHealth (${code})`,
-    calDesc: (link: string) => `Consultație video cu un medic voluntar RediHealth. Intri de aici: ${link}`,
+    calSummary: (code: string) => `Apel cu medicul RediHealth (${code})`,
+    calDesc: (link: string) => `Apel cu un medic voluntar RediHealth. Intri de aici: ${link}`,
   },
   en: {
-    title: "Your appointment is booked",
+    title: "Your call is booked",
     codeLabel: "Booking code",
     atHour: "at",
     forPatient: "For:",
@@ -39,12 +40,12 @@ const confirmationCopy = {
     openRoom: "Join the call",
     addToCalendar: "Add to calendar",
     anotherBooking: "Book another",
-    calSummary: (code: string) => `RediHealth video appointment (${code})`,
-    calDesc: (link: string) => `Video appointment with a RediHealth volunteer doctor. Join here: ${link}`,
+    calSummary: (code: string) => `RediHealth call with a doctor (${code})`,
+    calDesc: (link: string) => `Call with a RediHealth volunteer doctor. Join here: ${link}`,
   },
   sq: {
-    title: "Vizita jote u caktua",
-    codeLabel: "Kodi i vizitës",
+    title: "Thirrja jote u caktua",
+    codeLabel: "Kodi i rezervimit",
     atHour: "ora",
     forPatient: "Për:",
     smsTitle: (phone: string) => `Të dërguam një SMS në ${phone}`,
@@ -52,11 +53,11 @@ const confirmationCopy = {
     openRoom: "Hyr në thirrje",
     addToCalendar: "Shto në kalendar",
     anotherBooking: "Cakto një tjetër",
-    calSummary: (code: string) => `Vizitë me video RediHealth (${code})`,
-    calDesc: (link: string) => `Vizitë me video me një mjek vullnetar të RediHealth. Hyr këtu: ${link}`,
+    calSummary: (code: string) => `Thirrje me mjekun RediHealth (${code})`,
+    calDesc: (link: string) => `Thirrje me një mjek vullnetar të RediHealth. Hyr këtu: ${link}`,
   },
   it: {
-    title: "La visita è prenotata",
+    title: "La chiamata è prenotata",
     codeLabel: "Codice della prenotazione",
     atHour: "ore",
     forPatient: "Per:",
@@ -64,9 +65,9 @@ const confirmationCopy = {
     whatsAppSent: "Ti abbiamo mandato la conferma anche su WhatsApp.",
     openRoom: "Entra nella chiamata",
     addToCalendar: "Aggiungi al calendario",
-    anotherBooking: "Prenota un'altra visita",
-    calSummary: (code: string) => `Visita video RediHealth (${code})`,
-    calDesc: (link: string) => `Visita video con un medico volontario RediHealth. Entra da qui: ${link}`,
+    anotherBooking: "Prenota un'altra chiamata",
+    calSummary: (code: string) => `Chiamata con il medico RediHealth (${code})`,
+    calDesc: (link: string) => `Chiamata con un medico volontario RediHealth. Entra da qui: ${link}`,
   },
 };
 
@@ -108,6 +109,13 @@ export function BookingSmsConfirmation({
 }) {
   const { lang } = useSafeLanguage();
   const copy = confirmationCopy[lang] ?? confirmationCopy.ro;
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  // The confirmation replaces the form: move focus to it so screen-reader and keyboard users hear it.
+  useEffect(() => {
+    headingRef.current?.focus({ preventScroll: true });
+    headingRef.current?.closest("div")?.scrollIntoView({ block: "nearest" });
+  }, []);
 
   // A calendar entry at the booked time (20 minutes), in the phone's own time zone.
   const handleDownloadCalendar = () => {
@@ -144,7 +152,7 @@ export function BookingSmsConfirmation({
     <div className="mx-auto max-w-xl rounded-xl border border-border bg-card p-6 sm:p-8">
       <div className="flex items-start gap-3">
         <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground">{copy.title}</h1>
+        <h2 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold tracking-tight text-foreground focus:outline-none">{copy.title}</h2>
       </div>
 
       <p className="mt-2 text-base font-medium text-foreground tabular-nums">
@@ -153,7 +161,7 @@ export function BookingSmsConfirmation({
 
       <dl className="mt-5 grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 border-y border-border py-4 text-sm">
         <dt className="text-muted-foreground">{copy.codeLabel}</dt>
-        <dd className="font-mono text-lg font-semibold tracking-wide text-foreground">{confirmation.bookingCode}</dd>
+        <dd className="font-mono text-lg font-semibold text-foreground">{confirmation.bookingCode}</dd>
         <dt className="text-muted-foreground">{copy.forPatient}</dt>
         <dd className="text-foreground">{confirmation.patientName}</dd>
       </dl>
@@ -172,7 +180,7 @@ export function BookingSmsConfirmation({
           href={withLangPrefix(`/medic-online/meet/${confirmation.magicRoomId}`, lang)}
           className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          <VideoIcon className="h-4 w-4" />
+          <PhoneIcon className="h-4 w-4" />
           {copy.openRoom}
         </Link>
 

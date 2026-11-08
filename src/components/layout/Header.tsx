@@ -168,12 +168,11 @@ export function Header() {
       <header
         ref={headerRef}
         className={cn(
-          "site-header sticky top-[var(--emergency-bar-h,0px)] z-50 transition-[background-color,border-color,box-shadow] duration-(--dur-base) ease-(--ease-out-calm)",
+          "site-header sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-(--dur-base) ease-(--ease-out-calm)",
+          // Solid ground once the page moves under it: no translucent glass.
           isTransparent
             ? "border-b border-transparent bg-transparent text-paper"
-            : mobileOpen
-              ? "border-b border-border bg-background text-foreground shadow-2xs"
-              : "border-b border-border/80 bg-background/95 text-foreground shadow-2xs backdrop-blur-md supports-[backdrop-filter]:bg-background/85"
+            : "border-b border-border bg-background text-foreground shadow-2xs"
         )}
       >
         <Container>
@@ -257,7 +256,13 @@ export function Header() {
                 <Link
                   href={withLangPrefix("/health-assistant#triage", lang)}
                   onClick={() => setStartMenuOpen(false)}
-                  className="inline-flex min-h-[40px] items-center gap-1.5 whitespace-nowrap rounded-lg bg-primary px-3.5 py-2 text-sm font-semibold text-white shadow-xs transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className={cn(
+                    "inline-flex min-h-[40px] items-center gap-1.5 whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2",
+                    // Ink, not red: red is kept for 112. Over the dark home hero it inverts to paper.
+                    isTransparent
+                      ? "bg-paper text-foreground hover:bg-white focus-visible:ring-paper/70"
+                      : "bg-foreground text-white hover:bg-foreground/90 focus-visible:ring-ring"
+                  )}
                 >
                   <span>{tHeader.startHere}</span>
                   <ArrowRightIcon className="h-4 w-4" />
@@ -277,7 +282,7 @@ export function Header() {
                       onClick={() => setStartMenuOpen(false)}
                       className="flex items-start gap-3 rounded-lg p-3 text-left transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
-                      <ActivityIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                      <ActivityIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
                       <span className="min-w-0 flex-1">
                         <span className="block text-sm font-semibold text-foreground">{tHeader.navCere}</span>
                         <span className="mt-0.5 block text-sm leading-snug text-muted-foreground">{tHeader.navCereSub}</span>
@@ -289,7 +294,7 @@ export function Header() {
                       onClick={() => setStartMenuOpen(false)}
                       className="flex items-start gap-3 rounded-lg p-3 text-left transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
-                      <UsersIcon className="mt-0.5 h-5 w-5 shrink-0 text-amber-care" />
+                      <UsersIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
                       <span className="min-w-0 flex-1">
                         <span className="block text-sm font-semibold text-foreground">{tHeader.forMediators}</span>
                         <span className="mt-0.5 block text-sm leading-snug text-muted-foreground">{tHeader.mediatorProfessionals}</span>
@@ -349,7 +354,7 @@ export function Header() {
                   setMobileOpen(false);
                   setDialerOpen(true);
                 }}
-                className="inline-flex min-h-[44px] shrink-0 items-center rounded-md bg-primary px-4 text-sm font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-[44px] shrink-0 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 {tHeader.call112}
               </button>
@@ -384,34 +389,37 @@ export function Header() {
             <Link
               href={withLangPrefix("/health-assistant#triage", lang)}
               onClick={closeMobile}
-              className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 text-base font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-lg bg-foreground px-4 text-base font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <span>{tHeader.startHere}</span>
               <ArrowRightIcon className="h-5 w-5" />
             </Link>
 
-            <div className="grid gap-2">
-              <Link
-                href={withLangPrefix(portalLink.href, lang)}
-                onClick={closeMobile}
-                className="flex min-h-[52px] items-center gap-3 rounded-lg border border-border bg-card px-4 text-base font-semibold text-foreground transition-colors duration-(--dur-fast) hover:bg-muted"
-              >
-                <UserIcon className="h-5 w-5 shrink-0 text-muted-foreground" />
-                <span>{portalLink.label}</span>
-              </Link>
-
-              <Link
-                href={withLangPrefix("/mediatori", lang)}
-                onClick={closeMobile}
-                className="flex min-h-[52px] items-start gap-3 rounded-lg border border-border bg-card px-4 py-3 transition-colors duration-(--dur-fast) hover:bg-muted"
-              >
-                <UsersIcon className="mt-0.5 h-5 w-5 shrink-0 text-amber-care" />
-                <span className="min-w-0">
-                  <span className="block text-base font-semibold text-foreground">{tHeader.forMediators}</span>
-                  <span className="mt-0.5 block text-sm text-muted-foreground">{tHeader.mediatorDrawerDescription}</span>
-                </span>
-              </Link>
-            </div>
+            <ul className="divide-y divide-border border-y border-border">
+              <li>
+                <Link
+                  href={withLangPrefix(portalLink.href, lang)}
+                  onClick={closeMobile}
+                  className="flex min-h-[52px] items-center gap-3 py-3 text-base font-semibold text-foreground transition-colors duration-(--dur-fast) hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                >
+                  <UserIcon className="h-5 w-5 shrink-0 text-muted-foreground" />
+                  <span>{portalLink.label}</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={withLangPrefix("/mediatori", lang)}
+                  onClick={closeMobile}
+                  className="flex min-h-[52px] items-start gap-3 py-3 transition-colors duration-(--dur-fast) hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                >
+                  <UsersIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
+                  <span className="min-w-0">
+                    <span className="block text-base font-semibold text-foreground">{tHeader.forMediators}</span>
+                    <span className="mt-0.5 block text-sm text-muted-foreground">{tHeader.mediatorDrawerDescription}</span>
+                  </span>
+                </Link>
+              </li>
+            </ul>
 
             <LanguageSelector variant="drawer" />
           </Container>

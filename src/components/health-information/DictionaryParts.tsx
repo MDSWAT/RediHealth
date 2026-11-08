@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { CloseIcon, SearchIcon, VolumeIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
@@ -25,12 +25,31 @@ export function DictionaryDrawerFrame({
   className?: string;
   children: ReactNode;
 }) {
+  // Focus moves to the close button, Escape closes, focus returns to the opener.
+  const closeRef = useRef<HTMLButtonElement | null>(null);
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+  useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onCloseRef.current();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      opener?.focus?.();
+    };
+  }, []);
+
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby={labelledBy}
-      className="fixed inset-0 z-50 flex justify-end bg-black/50"
+      className="hh-scrim fixed inset-0 z-50 flex justify-end bg-black/50"
       onClick={onClose}
     >
       <div
@@ -42,12 +61,13 @@ export function DictionaryDrawerFrame({
       >
         <div className="flex items-start justify-between gap-3 px-4 pt-4 sm:px-6 sm:pt-6">
           <div className="min-w-0">
-            <h3 id={labelledBy} className="text-xl font-semibold text-foreground text-balance">
+            <h2 id={labelledBy} className="text-xl font-semibold text-foreground text-balance">
               {title}
-            </h3>
+            </h2>
             <p className="mt-0.5 text-base text-muted-foreground text-pretty">{subtitle}</p>
           </div>
           <button
+            ref={closeRef}
             type="button"
             onClick={onClose}
             aria-label={closeLabel}
@@ -110,7 +130,7 @@ export function DictionaryFilters<T extends string>({
             aria-pressed={isSelected}
             onClick={() => onSelect(option.value)}
             className={cn(
-              "min-h-10 shrink-0 whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+              "min-h-10 shrink-0 whitespace-nowrap rounded-md px-3 text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
               isSelected ? "bg-foreground text-background" : "text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
           >
@@ -139,7 +159,7 @@ export function DictionarySpeakButton({
       aria-pressed={speaking}
       title={label}
       className={cn(
-        "-mr-2 -mt-1.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+        "-mr-2 -mt-1.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
         speaking ? "bg-foreground text-background" : "text-muted-foreground hover:bg-muted hover:text-foreground",
       )}
     >

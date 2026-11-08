@@ -58,7 +58,7 @@ export default async function PrivacyPage() {
               <h2 className="text-base font-semibold text-foreground">{copy.choicesTitle}</h2>
               <p className="mt-2">
                 {copy.choicesBody}{" "}
-                <a href="mailto:support@redihealth.app" className="text-primary hover:underline">
+                <a href="mailto:support@redihealth.app" className="text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire">
                   support@redihealth.app
                 </a>
                 .

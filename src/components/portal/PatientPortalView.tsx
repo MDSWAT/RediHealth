@@ -4,18 +4,21 @@
 import { useMemo, useState, type ReactNode } from "react";
 import {
   AlertCircleIcon,
+  ArrowLeftIcon,
   BellIcon,
   CalendarIcon,
   CheckCircleIcon,
+  ChevronRightIcon,
   ClockIcon,
   EditIcon,
   ImageIcon,
   MailIcon,
   PhoneIcon,
+  PinIcon,
   PlusIcon,
-  ShieldIcon,
   UserIcon,
 } from "@/components/ui/icons";
+import { formatNewsDate } from "@/components/news/news-format";
 import type { PatientItem, PatientPriority } from "@/lib/types/patient";
 import { followupLabel, sortFollowups } from "@/lib/panel-dates";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
@@ -100,8 +103,10 @@ const portalTranslations = {
     uploading: "Uploading…",
     attachPhoto: "Send photo",
     noPhotos: "No photos yet.",
-    stepUpdate: "1. Tell us how you feel",
-    stepFollowups: "2. Appointments and check-ups",
+    statusScheduled: "Scheduled",
+    statusCompleted: "Done",
+    statusCancelled: "Cancelled",
+    photoPreview: "Photo you chose",
     actionHint: "Start here so your care team quickly sees what is most urgent.",
     noNotes: "No other notes",
     completeFollowup: "Close check-up",
@@ -193,8 +198,10 @@ const portalTranslations = {
     uploading: "Se încarcă…",
     attachPhoto: "Trimite poza",
     noPhotos: "Nu ai încărcat încă poze.",
-    stepUpdate: "1. Spune cum te simți",
-    stepFollowups: "2. Programări și controale",
+    statusScheduled: "Programat",
+    statusCompleted: "Făcut",
+    statusCancelled: "Anulat",
+    photoPreview: "Poza aleasă",
     actionHint: "Începe de aici, ca echipa medicală să vadă repede ce e mai urgent.",
     noNotes: "Fără alte note",
     completeFollowup: "Încheie controlul",
@@ -286,8 +293,10 @@ const portalTranslations = {
     uploading: "Po ngarkohet…",
     attachPhoto: "Dërgo foton",
     noPhotos: "Ende nuk ke ngarkuar foto.",
-    stepUpdate: "1. Trego si ndihesh",
-    stepFollowups: "2. Takime dhe kontrolle",
+    statusScheduled: "I caktuar",
+    statusCompleted: "U bë",
+    statusCancelled: "I anuluar",
+    photoPreview: "Fotoja që zgjodhe",
     actionHint: "Fillo këtu, që ekipi mjekësor të shohë shpejt çfarë është më urgjente.",
     noNotes: "Pa shënime të tjera",
     completeFollowup: "Mbyll kontrollin",
@@ -379,8 +388,10 @@ const portalTranslations = {
     uploading: "Caricamento…",
     attachPhoto: "Invia la foto",
     noPhotos: "Non hai ancora caricato foto.",
-    stepUpdate: "1. Di' come ti senti",
-    stepFollowups: "2. Appuntamenti e controlli",
+    statusScheduled: "In programma",
+    statusCompleted: "Fatto",
+    statusCancelled: "Annullato",
+    photoPreview: "La foto che hai scelto",
     actionHint: "Inizia da qui, così il team sanitario vede subito cosa è più urgente.",
     noNotes: "Nessun'altra nota",
     completeFollowup: "Chiudi il controllo",
@@ -410,14 +421,25 @@ const portalTranslations = {
   },
 } as const;
 
-function SectionTitle({ icon, title }: { icon: ReactNode; title: string }) {
+const labelClass = "mb-1.5 block text-sm font-semibold text-foreground";
+const fieldClass =
+  "w-full rounded-lg border border-border bg-background text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
+const fileClass =
+  "w-full text-sm text-foreground file:mr-3 file:min-h-[40px] file:rounded-lg file:border-0 file:bg-muted file:px-3 file:text-sm file:font-semibold file:text-foreground hover:file:bg-muted/70";
+const primaryButton =
+  "inline-flex min-h-[44px] items-center justify-center rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
+const secondaryButton =
+  "inline-flex min-h-[44px] items-center justify-center rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground";
+
+function SectionTitle({ icon, title, count }: { icon: ReactNode; title: string; count?: number }) {
   return (
-    <div className="mb-2 flex items-center gap-2">
-      <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary-soft text-primary">
+    <h2 className="mb-2 flex items-center gap-2.5 text-lg font-semibold text-foreground">
+      <span aria-hidden="true" className="text-sapphire">
         {icon}
       </span>
-      <h2 className="text-base font-bold text-foreground sm:text-lg">{title}</h2>
-    </div>
+      {title}
+      {count !== undefined ? <span className="font-normal text-muted-foreground tabular-nums">{count}</span> : null}
+    </h2>
   );
 }
 
@@ -543,551 +565,453 @@ export function PatientPortalView({
     submit: handleUploadPhoto,
   } = photo;
 
-  return (
-    <div className="min-h-screen bg-white py-6 sm:py-10">
-      <main className="mx-auto w-full max-w-6xl px-3 sm:px-6">
-        <div className="mb-4 flex items-start gap-3 rounded-2xl border border-red-700/20 bg-red-600 p-4 text-white">
-          <AlertCircleIcon className="mt-0.5 h-5 w-5 flex-none" />
-          <p className="text-xs leading-relaxed sm:text-sm">
-            <strong>{t.emergencyTitle}</strong> {t.emergencyBody}
-          </p>
-        </div>
+  const fmtDate = (value?: string | null) => (value ? formatNewsDate(value, lang) : "");
+  const statusLabel = (status: string) =>
+    status === "completed" ? t.statusCompleted : status === "cancelled" ? t.statusCancelled : t.statusScheduled;
+  const homeActions = [
+    { key: "symptoms", Icon: BellIcon, title: t.actionSymptomsTitle, hint: t.actionSymptomsHint, onClick: () => { setActiveAction("symptoms"); setActiveTab("actions"); } },
+    { key: "followups", Icon: CalendarIcon, title: t.actionFollowupTitle, hint: t.actionFollowupHint, onClick: () => { setActiveAction("followups"); setShowAddFollowup(true); setActiveTab("actions"); } },
+    { key: "plan", Icon: EditIcon, title: t.actionPlanTitle, hint: t.actionPlanHint, onClick: () => setActiveTab("plan") },
+    { key: "photos", Icon: ImageIcon, title: t.actionPhotosTitle, hint: t.actionPhotosHint, onClick: () => setActiveTab("photos") },
+    { key: "notes", Icon: EditIcon, title: t.tabs.notes, hint: t.notesTabTitle, onClick: () => setActiveTab("notes") },
+  ];
 
-        <article className="overflow-hidden rounded-3xl border border-border/80 bg-card shadow-sm">
-          <header className="border-b border-border/80 bg-white px-4 py-5 sm:px-8 sm:py-6">
+  return (
+    <div className="min-h-screen bg-background py-6 sm:py-10">
+      <main id="main-content" className="mx-auto w-full max-w-4xl px-4 sm:px-6">
+        {/* Calm, always-visible reminder: this page is not for emergencies. */}
+        <p className="mb-4 flex items-start gap-2.5 rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted-foreground">
+          <PhoneIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+          <span>
+            <strong className="font-semibold text-foreground">{t.emergencyTitle}</strong> {t.emergencyBody}
+          </span>
+        </p>
+
+        <article className="overflow-hidden rounded-xl border border-border bg-card">
+          <header className="border-b border-border px-4 py-5 sm:px-8 sm:py-6">
             {activeTab !== "home" ? (
               <button
                 type="button"
                 onClick={() => setActiveTab("home")}
-                className="mb-4 inline-flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm font-semibold text-primary hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="-ml-2 mb-3 inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-2 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <span aria-hidden="true">←</span>
+                <ArrowLeftIcon className="h-4 w-4" />
                 {t.backHome}
               </button>
             ) : null}
 
-            <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-                <UserIcon className="h-6 w-6" />
-              </span>
-              <div>
-                <h1 className="text-xl font-bold tracking-tight text-foreground sm:text-3xl">
-                  {patient.full_name}
-                </h1>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {activeTab === "home"
-                    ? t.homeTitle
-                    : activeTab === "actions"
-                      ? activeAction === "symptoms" ? t.symptomsTitle : t.followupsTitle
-                      : activeTab === "plan" ? t.tabs.plan
-                        : activeTab === "photos" ? t.tabs.photos : t.tabs.notes}
-                </p>
-              </div>
-            </div>
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{patient.full_name}</h1>
+            <p className="mt-1 text-sm text-muted-foreground">{t.homeTitle}</p>
 
-            <details className="mt-4 rounded-xl border border-border bg-muted/30 px-4 py-3">
-              <summary className="cursor-pointer text-sm font-semibold text-foreground">
+            <details className="group mt-4 border-t border-border pt-3">
+              <summary className="flex min-h-[44px] cursor-pointer list-none items-center gap-2 text-sm font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+                <ChevronRightIcon aria-hidden="true" className="h-4 w-4 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-open:rotate-90 motion-reduce:transition-none" />
                 {t.contactDetails}
               </summary>
-              <div className="mt-3 grid gap-3 border-t border-border pt-3 text-sm sm:grid-cols-2">
-                <p className="flex items-center gap-2">
-                  <PhoneIcon className="h-4 w-4 flex-none text-primary" />
-                  <span className="text-muted-foreground">{t.phone}</span>
-                  <strong className="text-foreground">{patient.phone}</strong>
-                </p>
-                <p className="flex items-center gap-2">
-                  <MailIcon className="h-4 w-4 flex-none text-primary" />
-                  <span className="text-muted-foreground">{t.email}</span>
-                  <strong className="break-all text-foreground">{patient.email}</strong>
-                </p>
-                <p className="flex items-center gap-2">
-                  <ShieldIcon className="h-4 w-4 flex-none text-primary" />
-                  <span className="text-muted-foreground">{t.location}</span>
-                  <strong className="break-words text-foreground">{patient.address || t.notSpecified}</strong>
-                </p>
-                <p>
-                  <span className="text-muted-foreground">{t.assignedStaff}: </span>
-                  <strong className="text-primary">{patient.assigned_worker_name || t.fallbackTeam}</strong>
-                </p>
-              </div>
+              <dl className="mt-2 grid gap-x-6 gap-y-2 pb-1 text-sm sm:grid-cols-2">
+                <div className="flex items-center gap-2">
+                  <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  <dt className="text-muted-foreground">{t.phone}</dt>
+                  <dd className="font-medium text-foreground tabular-nums">{patient.phone}</dd>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MailIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  <dt className="text-muted-foreground">{t.email}</dt>
+                  <dd className="break-all font-medium text-foreground">{patient.email}</dd>
+                </div>
+                <div className="flex items-center gap-2">
+                  <PinIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  <dt className="text-muted-foreground">{t.location}</dt>
+                  <dd className="break-words font-medium text-foreground">{patient.address || t.notSpecified}</dd>
+                </div>
+                <div className="flex items-center gap-2">
+                  <UserIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  <dt className="text-muted-foreground">{t.assignedStaff}:</dt>
+                  <dd className="font-medium text-foreground">{patient.assigned_worker_name || t.fallbackTeam}</dd>
+                </div>
+              </dl>
             </details>
           </header>
 
           {errorMessage ? (
-            <div className="border-b border-red-500/20 bg-red-500/10 px-4 py-3 text-xs text-red-700 dark:text-red-300 sm:px-8 sm:text-sm">
-              {errorMessage}
-            </div>
+            <p role="alert" className="flex items-start gap-2 border-b border-amber-care-border bg-amber-care-soft/40 px-4 py-3 text-sm font-medium text-foreground dark:bg-amber-care/10 sm:px-8">
+              <AlertCircleIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
+              <span>{errorMessage}</span>
+            </p>
           ) : null}
 
           {activeTab === "home" ? (
-            <section className="px-4 py-6 sm:px-8 sm:py-8">
+            <section aria-label={t.homeIntro} className="px-4 py-5 sm:px-8 sm:py-6">
               <p className="text-sm text-muted-foreground">{t.homeIntro}</p>
-
-              <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveAction("symptoms");
-                    setActiveTab("actions");
-                  }}
-                  className="group flex min-h-36 items-start gap-4 rounded-2xl border border-border bg-white p-5 text-left transition hover:border-primary/50 hover:bg-primary-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary-soft text-primary">
-                    <BellIcon className="h-5 w-5" />
-                  </span>
-                  <span>
-                    <span className="block font-bold text-foreground">{t.actionSymptomsTitle}</span>
-                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{t.actionSymptomsHint}</span>
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveAction("followups");
-                    setShowAddFollowup(true);
-                    setActiveTab("actions");
-                  }}
-                  className="group flex min-h-36 items-start gap-4 rounded-2xl border border-border bg-white p-5 text-left transition hover:border-primary/50 hover:bg-primary-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary-soft text-primary">
-                    <CalendarIcon className="h-5 w-5" />
-                  </span>
-                  <span>
-                    <span className="block font-bold text-foreground">{t.actionFollowupTitle}</span>
-                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{t.actionFollowupHint}</span>
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("plan")}
-                  className="group flex min-h-36 items-start gap-4 rounded-2xl border border-border bg-white p-5 text-left transition hover:border-primary/50 hover:bg-primary-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary-soft text-primary">
-                    <EditIcon className="h-5 w-5" />
-                  </span>
-                  <span>
-                    <span className="block font-bold text-foreground">{t.actionPlanTitle}</span>
-                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{t.actionPlanHint}</span>
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("photos")}
-                  className="group flex min-h-36 items-start gap-4 rounded-2xl border border-border bg-white p-5 text-left transition hover:border-primary/50 hover:bg-primary-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-primary-soft text-primary">
-                    <ImageIcon className="h-5 w-5" />
-                  </span>
-                  <span>
-                    <span className="block font-bold text-foreground">{t.actionPhotosTitle}</span>
-                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{t.actionPhotosHint}</span>
-                  </span>
-                </button>
-              </div>
-
-              <div className="mt-8 border-t border-border pt-5">
-                <h3 className="text-sm font-bold text-foreground">{t.moreOptions}</h3>
-                <div className="mt-3 flex flex-wrap gap-3">
-                  <button type="button" onClick={() => setActiveTab("notes")} className="rounded-lg border border-border px-4 py-2 text-sm font-semibold text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                    {t.tabs.notes}
-                  </button>
-                </div>
-              </div>
+              <ul className="mt-3 divide-y divide-border border-y border-border">
+                {homeActions.map(({ key, Icon, title, hint, onClick }) => (
+                  <li key={key}>
+                    <button
+                      type="button"
+                      onClick={onClick}
+                      className="group flex min-h-[64px] w-full items-center gap-4 px-1 py-4 text-left transition-colors duration-[var(--dur-fast)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                    >
+                      <Icon aria-hidden="true" className="h-5 w-5 shrink-0 text-sapphire" />
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-semibold text-foreground">{title}</span>
+                        <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{hint}</span>
+                      </span>
+                      <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </section>
           ) : null}
 
-          {activeTab === "actions" ? (
-            <section className="grid grid-cols-1 gap-0">
-              {activeAction === "symptoms" ? (
-              <div className="px-4 py-5 sm:px-6 sm:py-8 lg:px-8">
-                <SectionTitle icon={<BellIcon className="h-4 w-4" />} title={t.stepUpdate} />
-                <p className="mb-4 text-xs text-muted-foreground sm:text-sm">{t.actionHint}</p>
+          {activeTab === "actions" && activeAction === "symptoms" ? (
+            <section className="px-4 py-5 sm:px-8 sm:py-6">
+              <SectionTitle icon={<BellIcon className="h-5 w-5" />} title={t.symptomsTitle} />
+              <p className="mb-4 text-sm text-muted-foreground">{t.actionHint}</p>
 
-                {symptomsSavedMsg ? (
-                  <div className="mb-4 flex items-center gap-2 rounded-xl border border-sapphire/20 bg-sapphire-soft/60 px-3 py-2 text-xs text-sapphire dark:text-blue-300 sm:text-sm">
-                    <CheckCircleIcon className="h-4 w-4 text-sapphire" />
-                    <span>{t.symptomsSaved}</span>
-                  </div>
-                ) : null}
+              {symptomsSavedMsg ? (
+                <p role="status" className="mb-4 flex items-center gap-2 text-sm text-foreground">
+                  <CheckCircleIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-sapphire" />
+                  <span>{t.symptomsSaved}</span>
+                </p>
+              ) : null}
 
-                <form onSubmit={handleUpdateSymptoms} className="grid grid-cols-1 gap-4 text-xs sm:text-sm">
+              <form onSubmit={handleUpdateSymptoms} className="grid grid-cols-1 gap-4 text-sm">
+                <div>
+                  <label htmlFor="portal-symptoms" className={labelClass}>{t.howFeeling}</label>
+                  <textarea
+                    id="portal-symptoms"
+                    rows={5}
+                    value={symptomsText}
+                    onChange={(e) => setSymptomsText(e.target.value)}
+                    placeholder={t.symptomsPlaceholder}
+                    className={`${fieldClass} p-3`}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="portal-priority" className={labelClass}>{t.priorityLevel}</label>
+                  <select
+                    id="portal-priority"
+                    value={selectedPriority}
+                    onChange={(e) => setSelectedPriority(e.target.value as PatientPriority)}
+                    className={`${fieldClass} min-h-[44px] px-3`}
+                  >
+                    <option value="critical">{t.priorityCritical}</option>
+                    <option value="high">{t.priorityHigh}</option>
+                    <option value="moderate">{t.priorityModerate}</option>
+                    <option value="low">{t.priorityLow}</option>
+                  </select>
+                </div>
+
+                <div>
+                  <button type="submit" disabled={isSavingSymptoms} className={`${primaryButton} w-full sm:w-auto`}>
+                    {isSavingSymptoms ? t.saving : t.updateSymptoms}
+                  </button>
+                </div>
+              </form>
+            </section>
+          ) : null}
+
+          {activeTab === "actions" && activeAction === "followups" ? (
+            <section className="px-4 py-5 sm:px-8 sm:py-6">
+              <div className="mb-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <SectionTitle icon={<CalendarIcon className="h-5 w-5" />} title={t.followupsTitle} count={sortedFollowups.length} />
+                <button
+                  type="button"
+                  aria-expanded={showAddFollowup}
+                  onClick={() => setShowAddFollowup(!showAddFollowup)}
+                  className={`${primaryButton} w-full gap-1.5 sm:w-auto`}
+                >
+                  <PlusIcon aria-hidden="true" className="h-4 w-4" />
+                  <span>{t.requestFollowup}</span>
+                </button>
+              </div>
+
+              {showAddFollowup ? (
+                <form onSubmit={handleAddFollowup} className="mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-sm">
                   <div>
-                    <label className="mb-1 block font-semibold text-foreground">{t.howFeeling}</label>
-                    <textarea
-                      rows={5}
-                      value={symptomsText}
-                      onChange={(e) => setSymptomsText(e.target.value)}
-                      placeholder={t.symptomsPlaceholder}
-                      className="w-full rounded-xl border border-border bg-white p-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    <label htmlFor="portal-followup-title" className={labelClass}>{t.followupTitle}</label>
+                    <input
+                      id="portal-followup-title"
+                      type="text"
+                      required
+                      value={newFollowupTitle}
+                      onChange={(e) => setNewFollowupTitle(e.target.value)}
+                      placeholder={t.followupTitlePlaceholder}
+                      className={`${fieldClass} min-h-[44px] px-3`}
                     />
                   </div>
 
-                  <div>
-                    <label className="mb-1 block font-semibold text-foreground">{t.priorityLevel}</label>
-                    <select
-                      value={selectedPriority}
-                      onChange={(e) => setSelectedPriority(e.target.value as PatientPriority)}
-                      className="w-full rounded-xl border border-border bg-white px-3 py-2.5 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
-                      <option value="critical">{t.priorityCritical}</option>
-                      <option value="high">{t.priorityHigh}</option>
-                      <option value="moderate">{t.priorityModerate}</option>
-                      <option value="low">{t.priorityLow}</option>
-                    </select>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSavingSymptoms}
-                    className="w-full rounded-xl bg-primary px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-60 sm:w-auto"
-                  >
-                    {isSavingSymptoms ? t.saving : t.updateSymptoms}
-                  </button>
-                </form>
-              </div>
-              ) : null}
-
-              {activeAction === "followups" ? (
-              <div className="px-4 py-5 sm:px-6 lg:px-8">
-                <div className="mb-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <SectionTitle
-                    icon={<CalendarIcon className="h-4 w-4" />}
-                    title={`${t.stepFollowups} (${sortedFollowups.length})`}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowAddFollowup(!showAddFollowup)}
-                    className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-primary px-3 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-primary-hover sm:w-auto"
-                  >
-                    <PlusIcon className="h-4 w-4" />
-                    <span>{t.requestFollowup}</span>
-                  </button>
-                </div>
-
-                {showAddFollowup ? (
-                  <form onSubmit={handleAddFollowup} className="mb-4 grid grid-cols-1 gap-3 rounded-xl border border-border bg-muted/40 p-4 text-xs sm:text-sm">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="mb-1 block font-semibold text-foreground">{t.followupTitle}</label>
+                      <label htmlFor="portal-followup-date" className={labelClass}>{t.preferredDate}</label>
                       <input
-                        type="text"
+                        id="portal-followup-date"
+                        type="date"
                         required
-                        value={newFollowupTitle}
-                        onChange={(e) => setNewFollowupTitle(e.target.value)}
-                        placeholder={t.followupTitlePlaceholder}
-                        className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        value={newFollowupDate}
+                        onChange={(e) => setNewFollowupDate(e.target.value)}
+                        className={`${fieldClass} min-h-[44px] px-3`}
                       />
                     </div>
-
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <div>
-                        <label className="mb-1 block font-semibold text-foreground">{t.preferredDate}</label>
-                        <input
-                          type="date"
-                          required
-                          value={newFollowupDate}
-                          onChange={(e) => setNewFollowupDate(e.target.value)}
-                          className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                        />
-                      </div>
-                      <div>
-                        <label className="mb-1 block font-semibold text-foreground">{t.notes}</label>
-                        <input
-                          type="text"
-                          value={newFollowupNotes}
-                          onChange={(e) => setNewFollowupNotes(e.target.value)}
-                          placeholder={t.notesPlaceholder}
-                          className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                        />
-                      </div>
+                    <div>
+                      <label htmlFor="portal-followup-notes" className={labelClass}>{t.notes}</label>
+                      <input
+                        id="portal-followup-notes"
+                        type="text"
+                        value={newFollowupNotes}
+                        onChange={(e) => setNewFollowupNotes(e.target.value)}
+                        placeholder={t.notesPlaceholder}
+                        className={`${fieldClass} min-h-[44px] px-3`}
+                      />
                     </div>
+                  </div>
 
-                    <div className="flex flex-col-reverse items-stretch gap-2 sm:flex-row sm:items-center sm:justify-end">
-                      <button
-                        type="button"
-                        onClick={() => setShowAddFollowup(false)}
-                        className="rounded-lg border border-border bg-white px-3 py-2.5 text-xs font-semibold text-foreground hover:bg-muted"
-                      >
-                        {t.cancel}
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={isSavingFollowup}
-                        className="rounded-lg bg-primary px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
-                      >
-                        {isSavingFollowup ? t.submitting : t.submitRequest}
-                      </button>
-                    </div>
-                  </form>
-                ) : null}
+                  <div className="flex flex-col-reverse items-stretch gap-2 sm:flex-row sm:items-center sm:justify-end">
+                    <button type="button" onClick={() => setShowAddFollowup(false)} className={secondaryButton}>
+                      {t.cancel}
+                    </button>
+                    <button type="submit" disabled={isSavingFollowup} className={primaryButton}>
+                      {isSavingFollowup ? t.submitting : t.submitRequest}
+                    </button>
+                  </div>
+                </form>
+              ) : null}
 
-                {sortedFollowups.length > 0 ? (
-                  <div className="divide-y divide-border rounded-xl border border-border/80 bg-white">
-                    {sortedFollowups.map((item) => (
-                      <div key={item.id}>
-                        <div className="flex flex-col gap-2 p-4 text-xs sm:flex-row sm:items-center sm:justify-between sm:text-sm">
-                          <div className="flex items-start gap-3">
-                            <span className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-md bg-primary-soft text-primary">
-                              <ClockIcon className="h-3.5 w-3.5" />
-                            </span>
-                            <div className="min-w-0">
-                              <p className="font-semibold text-foreground">{item.title}</p>
-                              <p className="text-muted-foreground">
-                                {t.date} <strong className="text-foreground">{followupLabel(item, langToLocale[lang], crmTranslations[lang].allDay)}</strong>
-                              </p>
-                              <p className="break-words text-muted-foreground">{item.notes || t.noNotes}</p>
-                            </div>
+              {sortedFollowups.length > 0 ? (
+                <ul className="divide-y divide-border border-y border-border">
+                  {sortedFollowups.map((item) => (
+                    <li key={item.id} className="py-4 text-sm">
+                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                        <div className="flex min-w-0 items-start gap-3">
+                          <ClockIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                          <div className="min-w-0">
+                            <p className="font-semibold text-foreground">{item.title}</p>
+                            <p className="text-muted-foreground">
+                              {t.date} <span className="font-medium text-foreground tabular-nums">{followupLabel(item, langToLocale[lang], crmTranslations[lang].allDay)}</span>
+                            </p>
+                            <p className="break-words text-muted-foreground">{item.notes || t.noNotes}</p>
                           </div>
-                          <span
-                            className={`inline-flex w-fit rounded-md px-2.5 py-1 text-xs font-bold capitalize ${
-                              item.status === "completed"
-                                ? "bg-sapphire-soft text-sapphire dark:text-blue-300"
-                                : "bg-amber-500/10 text-amber-700 dark:text-amber-400"
-                            }`}
-                          >
-                            {item.status}
-                          </span>
                         </div>
+                        <span
+                          className={`inline-flex w-fit shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold ${
+                            item.status === "completed" ? "bg-sapphire-soft text-sapphire dark:text-sapphire-border" : "bg-muted text-foreground"
+                          }`}
+                        >
+                          {statusLabel(item.status)}
+                        </span>
+                      </div>
 
-                        {item.status !== "completed" ? (
-                          <div className="border-t border-border/70 p-4">
-                            {completingFollowupId === item.id ? (
-                              <form onSubmit={handleCompleteFollowup} className="grid grid-cols-1 gap-3">
-                            <div>
-                              <label className="mb-1 block text-xs font-semibold text-foreground">{t.completionNotes}</label>
-                              <textarea
-                                rows={3}
-                                value={completionNotes}
-                                onChange={(e) => setCompletionNotes(e.target.value)}
-                                placeholder={t.completionNotesPlaceholder}
-                                className="w-full rounded-lg border border-border bg-white p-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                              />
-                            </div>
-
-                            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      {item.status !== "completed" ? (
+                        <div className="mt-3 pl-7">
+                          {completingFollowupId === item.id ? (
+                            <form onSubmit={handleCompleteFollowup} className="grid grid-cols-1 gap-4">
                               <div>
-                                <label className="mb-1 block text-xs font-semibold text-foreground">{t.completionPhotoTitle}</label>
-                                <input
-                                  type="text"
-                                  value={completionPhotoName}
-                                  onChange={(e) => setCompletionPhotoName(e.target.value)}
-                                  placeholder={t.completionPhotoTitlePlaceholder}
-                                  className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                <label htmlFor={`portal-complete-notes-${item.id}`} className={labelClass}>{t.completionNotes}</label>
+                                <textarea
+                                  id={`portal-complete-notes-${item.id}`}
+                                  rows={3}
+                                  value={completionNotes}
+                                  onChange={(e) => setCompletionNotes(e.target.value)}
+                                  placeholder={t.completionNotesPlaceholder}
+                                  className={`${fieldClass} p-3`}
                                 />
                               </div>
-                              <div>
-                                <label className="mb-1 block text-xs font-semibold text-foreground">{t.completionPhotoNote}</label>
-                                <input
-                                  type="text"
-                                  value={completionPhotoNote}
-                                  onChange={(e) => setCompletionPhotoNote(e.target.value)}
-                                  placeholder={t.completionPhotoNotePlaceholder}
-                                  className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                                />
-                              </div>
-                            </div>
 
-                            <div className="grid grid-cols-1 gap-2 sm:grid-cols-[1fr_auto]">
-                              <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleCompletionPhotoFileChange}
-                                className="w-full text-xs text-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary/10 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary hover:file:bg-primary/20"
-                              />
-                              <button
-                                type="button"
-                                disabled={!completionPhotoData}
-                                onClick={addCompletionPhotoDraft}
-                                className="rounded-lg border border-border bg-white px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50"
-                              >
-                                {t.addAttachment}
-                              </button>
-                            </div>
-
-                            {completionPhotos.length > 0 ? (
-                              <div>
-                                <p className="mb-1 text-xs font-semibold text-foreground">{t.attachments}</p>
-                                <div className="space-y-1">
-                                  {completionPhotos.map((photoItem) => (
-                                    <div key={photoItem.id} className="flex items-center justify-between rounded-lg border border-border bg-muted/30 px-2.5 py-2 text-xs">
-                                      <span className="truncate text-foreground">{photoItem.name}</span>
-                                      <button
-                                        type="button"
-                                        onClick={() => removeCompletionPhotoDraft(photoItem.id)}
-                                        className="font-semibold text-red-600 hover:underline"
-                                      >
-                                        {t.cancel}
-                                      </button>
-                                    </div>
-                                  ))}
+                              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div>
+                                  <label htmlFor={`portal-complete-name-${item.id}`} className={labelClass}>{t.completionPhotoTitle}</label>
+                                  <input
+                                    id={`portal-complete-name-${item.id}`}
+                                    type="text"
+                                    value={completionPhotoName}
+                                    onChange={(e) => setCompletionPhotoName(e.target.value)}
+                                    placeholder={t.completionPhotoTitlePlaceholder}
+                                    className={`${fieldClass} min-h-[44px] px-3`}
+                                  />
+                                </div>
+                                <div>
+                                  <label htmlFor={`portal-complete-note-${item.id}`} className={labelClass}>{t.completionPhotoNote}</label>
+                                  <input
+                                    id={`portal-complete-note-${item.id}`}
+                                    type="text"
+                                    value={completionPhotoNote}
+                                    onChange={(e) => setCompletionPhotoNote(e.target.value)}
+                                    placeholder={t.completionPhotoNotePlaceholder}
+                                    className={`${fieldClass} min-h-[44px] px-3`}
+                                  />
                                 </div>
                               </div>
-                            ) : null}
 
-                            <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-                              <button
-                                type="button"
-                                onClick={closeCompletionForm}
-                                className="rounded-lg border border-border bg-white px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted"
-                              >
-                                {t.cancel}
-                              </button>
-                              <button
-                                type="submit"
-                                disabled={isSavingCompletion}
-                                className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
-                              >
-                                {isSavingCompletion ? t.completing : t.markCompleted}
-                              </button>
-                            </div>
-                              </form>
-                            ) : (
-                              <button
-                                type="button"
-                                onClick={() => openCompletionForm(item.id)}
-                                className="rounded-lg bg-sapphire px-3 py-2 text-xs font-semibold text-white hover:bg-sapphire/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-                              >
-                                {t.completeFollowup}
-                              </button>
-                            )}
-                          </div>
-                        ) : (
-                          <div className="border-t border-border/70 p-4 text-xs text-muted-foreground">
-                            {item.completed_at ? `${t.completedOn} ${item.completed_at}` : null}
-                            {item.completion_notes ? (
-                              <p className="mt-1 break-words text-foreground">{item.completion_notes}</p>
-                            ) : null}
-                            {item.completion_photos && item.completion_photos.length > 0 ? (
-                              <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                                {item.completion_photos.map((photoItem) => (
-                                  <div key={photoItem.id} className="overflow-hidden rounded-lg border border-border bg-white">
-                                    <img src={photoItem.data_url} alt={photoItem.name} className="h-16 w-full object-cover" />
-                                    <p className="truncate px-2 py-1 text-xs text-foreground">{photoItem.name}</p>
-                                  </div>
-                                ))}
+                              <div className="grid grid-cols-1 gap-2 sm:grid-cols-[1fr_auto] sm:items-center">
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  aria-label={t.completionPhotoTitle}
+                                  onChange={handleCompletionPhotoFileChange}
+                                  className={fileClass}
+                                />
+                                <button type="button" disabled={!completionPhotoData} onClick={addCompletionPhotoDraft} className={secondaryButton}>
+                                  {t.addAttachment}
+                                </button>
                               </div>
-                            ) : null}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-xs text-muted-foreground sm:text-sm">{t.noFollowups}</p>
-                )}
-              </div>
-              ) : null}
+
+                              {completionPhotos.length > 0 ? (
+                                <div>
+                                  <p className="mb-1 text-sm font-semibold text-foreground">{t.attachments}</p>
+                                  <ul className="divide-y divide-border rounded-lg border border-border">
+                                    {completionPhotos.map((photoItem) => (
+                                      <li key={photoItem.id} className="flex items-center justify-between gap-3 px-3 py-1 text-sm">
+                                        <span className="truncate text-foreground">{photoItem.name}</span>
+                                        <button
+                                          type="button"
+                                          onClick={() => removeCompletionPhotoDraft(photoItem.id)}
+                                          className="min-h-[44px] shrink-0 rounded-sm px-1 font-medium text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                        >
+                                          {t.cancel}
+                                        </button>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ) : null}
+
+                              <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+                                <button type="button" onClick={closeCompletionForm} className={secondaryButton}>
+                                  {t.cancel}
+                                </button>
+                                <button type="submit" disabled={isSavingCompletion} className={primaryButton}>
+                                  {isSavingCompletion ? t.completing : t.markCompleted}
+                                </button>
+                              </div>
+                            </form>
+                          ) : (
+                            <button type="button" onClick={() => openCompletionForm(item.id)} className={secondaryButton}>
+                              {t.completeFollowup}
+                            </button>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="mt-2 pl-7 text-sm text-muted-foreground">
+                          {item.completed_at ? <p className="tabular-nums">{`${t.completedOn} ${fmtDate(item.completed_at)}`}</p> : null}
+                          {item.completion_notes ? <p className="mt-1 break-words text-foreground">{item.completion_notes}</p> : null}
+                          {item.completion_photos && item.completion_photos.length > 0 ? (
+                            <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                              {item.completion_photos.map((photoItem) => (
+                                <figure key={photoItem.id} className="overflow-hidden rounded-lg border border-border bg-card">
+                                  <img src={photoItem.data_url} alt={photoItem.name} className="h-16 w-full object-cover" />
+                                  <figcaption className="truncate px-2 py-1 text-xs text-foreground">{photoItem.name}</figcaption>
+                                </figure>
+                              ))}
+                            </div>
+                          ) : null}
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm text-muted-foreground">{t.noFollowups}</p>
+              )}
             </section>
           ) : null}
 
           {activeTab === "plan" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
-              <SectionTitle icon={<EditIcon className="h-4 w-4" />} title={treatmentTranslations[lang].title} />
-
+              <SectionTitle icon={<EditIcon className="h-5 w-5" />} title={treatmentTranslations[lang].title} />
               <TreatmentPlansView plan={patient.treatment_plan} />
             </section>
           ) : null}
 
           {activeTab === "photos" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
-              <SectionTitle icon={<ImageIcon className="h-4 w-4" />} title={`${t.photosTitle} (${patient.photos?.length || 0})`} />
+              <SectionTitle icon={<ImageIcon className="h-5 w-5" />} title={t.photosTitle} count={patient.photos?.length || 0} />
 
-              <form onSubmit={handleUploadPhoto} className="mb-4 grid grid-cols-1 gap-3 rounded-xl border border-border bg-muted/40 p-4 text-xs sm:text-sm">
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <form onSubmit={handleUploadPhoto} className="mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-sm">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1 block font-semibold text-foreground">{t.selectImage}</label>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handlePhotoFileChange}
-                      className="w-full text-xs text-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary/10 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary hover:file:bg-primary/20"
-                    />
+                    <label htmlFor="portal-photo-file" className={labelClass}>{t.selectImage}</label>
+                    <input id="portal-photo-file" type="file" accept="image/*" onChange={handlePhotoFileChange} className={fileClass} />
                   </div>
-
                   <div>
-                    <label className="mb-1 block font-semibold text-foreground">{t.photoTitle}</label>
+                    <label htmlFor="portal-photo-name" className={labelClass}>{t.photoTitle}</label>
                     <input
+                      id="portal-photo-name"
                       type="text"
                       value={newPhotoName}
                       onChange={(e) => setNewPhotoName(e.target.value)}
                       placeholder={t.photoTitlePlaceholder}
-                      className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className={`${fieldClass} min-h-[44px] px-3`}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="mb-1 block font-semibold text-foreground">{t.notes}</label>
+                  <label htmlFor="portal-photo-note" className={labelClass}>{t.notes}</label>
                   <input
+                    id="portal-photo-note"
                     type="text"
                     value={newPhotoNote}
                     onChange={(e) => setNewPhotoNote(e.target.value)}
                     placeholder={t.photoNotesPlaceholder}
-                    className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className={`${fieldClass} min-h-[44px] px-3`}
                   />
                 </div>
 
                 {newPhotoData ? (
-                  <div className="flex items-center gap-3 rounded-lg border border-border bg-white p-2">
-                    <img src={newPhotoData} alt="Preview" className="h-12 w-12 rounded border border-border object-cover" />
-                    <span className="text-xs font-semibold text-sapphire dark:text-blue-300">{t.readyPhoto}</span>
+                  <div className="flex items-center gap-3">
+                    <img src={newPhotoData} alt={t.photoPreview} className="h-12 w-12 rounded-md border border-border object-cover" />
+                    <span className="text-sm font-medium text-foreground">{t.readyPhoto}</span>
                   </div>
                 ) : null}
 
                 <div className="flex justify-end">
-                  <button
-                    type="submit"
-                    disabled={!newPhotoData || isSavingPhoto}
-                    className="w-full rounded-xl bg-primary px-5 py-2.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-50 sm:w-auto"
-                  >
+                  <button type="submit" disabled={!newPhotoData || isSavingPhoto} className={`${primaryButton} w-full sm:w-auto`}>
                     {isSavingPhoto ? t.uploading : t.attachPhoto}
                   </button>
                 </div>
               </form>
 
               {patient.photos && patient.photos.length > 0 ? (
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                   {patient.photos.map((item) => (
-                    <div key={item.id} className="overflow-hidden rounded-xl border border-border/80 bg-white">
+                    <li key={item.id} className="overflow-hidden rounded-lg border border-border bg-card">
                       <div className="aspect-square w-full overflow-hidden bg-muted">
                         <img src={item.data_url} alt={item.name} className="h-full w-full object-cover" />
                       </div>
                       <div className="p-2 text-xs">
                         <p className="truncate font-semibold text-foreground" title={item.name}>{item.name}</p>
-                        <p className="text-xs text-muted-foreground">{item.date}</p>
-                        {item.notes ? (
-                          <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{item.notes}</p>
-                        ) : null}
+                        <p className="text-muted-foreground tabular-nums">{fmtDate(item.date)}</p>
+                        {item.notes ? <p className="mt-1 text-muted-foreground">{item.notes}</p> : null}
                       </div>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               ) : (
-                <p className="text-xs text-muted-foreground sm:text-sm">{t.noPhotos}</p>
+                <p className="text-sm text-muted-foreground">{t.noPhotos}</p>
               )}
             </section>
           ) : null}
 
           {activeTab === "notes" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
-              <SectionTitle icon={<EditIcon className="h-4 w-4" />} title={t.notesTabTitle} />
+              <SectionTitle icon={<EditIcon className="h-5 w-5" />} title={t.notesTabTitle} />
 
               {notesLog.length > 0 ? (
-                <div className="space-y-2">
+                <ul className="divide-y divide-border border-y border-border">
                   {notesLog.map((entry) => (
-                    <article key={entry.id} className="rounded-xl border border-border bg-white p-3">
-                      <div className="flex items-center justify-between gap-2">
-                        <p className="text-xs font-semibold text-foreground">{entry.title}</p>
-                        <p className="text-xs text-muted-foreground">{entry.date}</p>
+                    <li key={entry.id} className="py-3">
+                      <div className="flex items-baseline justify-between gap-3">
+                        <p className="text-sm font-semibold text-foreground">{entry.title}</p>
+                        <p className="shrink-0 text-xs text-muted-foreground tabular-nums">{fmtDate(entry.date)}</p>
                       </div>
                       <p className="mt-1 whitespace-pre-wrap break-words text-sm text-foreground">{entry.text}</p>
-                    </article>
+                    </li>
                   ))}
-                </div>
+                </ul>
               ) : (
-                <p className="text-xs text-muted-foreground sm:text-sm">{t.noNoteEntries}</p>
+                <p className="text-sm text-muted-foreground">{t.noNoteEntries}</p>
               )}
             </section>
           ) : null}

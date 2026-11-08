@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { HealthMyth } from "@/lib/i18n/health-myths";
-import { ShieldIcon } from "@/components/ui/icons";
 import { MythDoctorHandoverButton } from "@/components/landing/MythDoctorHandoverButton";
 import { InlineAudioNarratorButton } from "./InlineAudioNarratorButton";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -48,35 +47,34 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
   return (
     <section
       aria-labelledby="topic-myth-title"
-      className={`rounded-lg border border-border bg-card p-6 shadow-xs sm:p-8 ${className}`}
+      className={`rounded-xl border border-border bg-card p-6 sm:p-8 ${className}`}
     >
-      <div className="flex items-center justify-between gap-4">
-        <h2 className="text-sm font-semibold text-sapphire">{s.badge[currentLang]}</h2>
+      <div className="flex items-start justify-between gap-4">
+        <h2 id="topic-myth-title" className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+          {s.badge[currentLang]}
+        </h2>
 
         <InlineAudioNarratorButton
           textToSpeak={s.audioPrompt[currentLang].replace("{statement}", myth.statement)}
           label={s.audioPrompt[currentLang].replace("{statement}", myth.statement)}
           lang={speechLang}
           variant="ghost"
-          className="-mr-2"
+          className="-mr-2 -mt-1"
         />
       </div>
 
-      <h3
-        id="topic-myth-title"
-        className="mt-2.5 text-xl font-semibold leading-snug text-foreground text-balance sm:text-2xl"
-      >
+      <p className="mt-3 max-w-prose text-lg font-medium leading-snug text-foreground text-balance sm:text-xl">
         {quotes[0]}
         {myth.statement}
         {quotes[1]}
-      </h3>
+      </p>
 
       {!hasAnswered ? (
         <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <button
             type="button"
             onClick={() => setSelectedAnswer(true)}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors hover:border-sapphire/50 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-foreground/30 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           >
             <svg
               className="h-5 w-5 text-sapphire"
@@ -96,7 +94,7 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
           <button
             type="button"
             onClick={() => setSelectedAnswer(false)}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors hover:border-sapphire/50 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-foreground/30 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           >
             <svg
               className="h-5 w-5 text-stone-500"
@@ -131,12 +129,10 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
             {myth.explanation}
           </p>
 
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground border-t border-border/50 pt-3">
-            <ShieldIcon className="h-3.5 w-3.5 text-sapphire shrink-0" />
-            <span>
-              {myth.doctorName} · {s.sourcePrefix[currentLang]} {myth.source}
-            </span>
-          </div>
+          {/* Source only: no reviewer name is shown until a real medical reviewer is confirmed. */}
+          <p className="text-xs text-muted-foreground">
+            {s.sourcePrefix[currentLang]} {myth.source}
+          </p>
 
           <div>
             <MythDoctorHandoverButton

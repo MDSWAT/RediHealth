@@ -7,13 +7,16 @@ import { useRef, useState } from "react";
 import { AlertCircleIcon, CameraIcon, ImageIcon } from "@/components/ui/icons";
 import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { PrescriptionStructuredResult } from "@/components/health-assistant/PrescriptionStructuredResult";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
-import { parsePrescriptionText } from "@/lib/prescription-parser";
 
-type ReviewResponse = { message: string; prescriptionText?: string };
+type ReviewResponse = {
+  message: string;
+  prescriptionText?: string;
+  urgency?: "emergency" | "routine";
+  careLevel?: "emergency" | "urgent" | "soon" | "routine";
+};
 
 class ReadError extends Error {}
 
@@ -24,7 +27,7 @@ export function PrescriptionReview() {
   const dict = {
     en: {
       title: "Prescription review",
-      subtitle: "Take a photo of your prescription. Get it in plain words, with a schedule for each day. Always check it with your pharmacist or doctor.",
+      subtitle: "Take a photo of your prescription. The assistant reads the text and explains it in plain words. Always check it with your pharmacist or doctor.",
       dropTitle: "Take a photo of your prescription",
       cameraCapture: "Take a photo",
       galleryUpload: "Choose from gallery",
@@ -46,7 +49,7 @@ export function PrescriptionReview() {
     },
     ro: {
       title: "Verificarea rețetei",
-      subtitle: "Fă o poză rețetei. Primești textul pe înțeles și un orar pentru fiecare zi. Verifică mereu cu farmacistul sau cu medicul.",
+      subtitle: "Fă o poză rețetei. Asistentul citește textul și ți-l explică pe înțeles. Verifică mereu cu farmacistul sau cu medicul.",
       dropTitle: "Fă o poză rețetei",
       cameraCapture: "Fă o poză",
       galleryUpload: "Alege din galerie",
@@ -68,14 +71,14 @@ export function PrescriptionReview() {
     },
     sq: {
       title: "Verifikimi i recetës",
-      subtitle: "Bëj një foto të recetës. Merr tekstin me fjalë të thjeshta dhe një orar për çdo ditë. Kontrolloje gjithmonë me farmacistin ose mjekun.",
+      subtitle: "Bëj një foto të recetës. Asistenti e lexon tekstin dhe ta shpjegon me fjalë të thjeshta. Kontrolloje gjithmonë me farmacistin ose mjekun.",
       dropTitle: "Fotografo recetën",
       cameraCapture: "Bëj një foto",
       galleryUpload: "Zgjidh nga galeria",
       hint: "Një foto e qartë dhe e ndriçuar mirë e gjithë recetës (JPEG, PNG ose WebP, deri në 8 MB)",
       qualityWarning:
         "Fotoja duket pak e errët ose e paqartë. Provo përsëri në dritë natyrale, që teksti të lexohet mirë.",
-      whyLabel: "Pse të është dhënë kjo recetë? (opsionale)",
+      whyLabel: "Pse të është dhënë kjo recetë? (sipas dëshirës)",
       whyHint: "E ndihmon asistentin ta kuptojë recetën. Nuk të duhet ta dish diagnozën.",
       whyPh: "Për shembull: e mora pas një vizite te mjeku për dhimbje fyti dhe temperaturë…",
       reviewButton: "Lexo recetën",
@@ -90,7 +93,7 @@ export function PrescriptionReview() {
     },
     it: {
       title: "Revisione della ricetta",
-      subtitle: "Fai una foto alla ricetta. Ricevi il testo in parole semplici e un orario per ogni giorno. Verificalo sempre con il farmacista o con il medico.",
+      subtitle: "Fai una foto alla ricetta. L'assistente legge il testo e te lo spiega in parole semplici. Verificalo sempre con il farmacista o con il medico.",
       dropTitle: "Fotografa la ricetta",
       cameraCapture: "Scatta una foto",
       galleryUpload: "Scegli dalla galleria",
@@ -123,6 +126,7 @@ export function PrescriptionReview() {
   const [qualityWarning, setQualityWarning] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   // Client-side lighting and blur pre-check (Change 44)
   function checkImageQuality(imageUrl: string) {
@@ -225,148 +229,167 @@ export function PrescriptionReview() {
     }
   }
 
-  const parsed = result
-    ? parsePrescriptionText(result.prescriptionText || result.message)
-    : null;
-
   return (
-    <main id="main-content" className="flex-1 bg-muted/40 py-6 sm:py-10">
+    // Same shell as /health-check and /health-assistant: tabs span the site container,
+    // the page content sits in one max-w-2xl column under them.
+    <main id="main-content" className="flex-1 pt-0.5 pb-10 sm:pt-2 sm:pb-14">
       <Container>
-        <div className="mx-auto max-w-4xl">
-          <AssistantNavigation />
+        <AssistantNavigation />
 
-          <header className="mt-6 max-w-2xl print:hidden sm:mt-8">
-            <h1 className="text-3xl font-semibold tracking-tight text-foreground text-balance sm:text-4xl">
-              {t.title}
-            </h1>
-            <p className="mt-2 max-w-prose text-base leading-relaxed text-muted-foreground sm:text-lg">{t.subtitle}</p>
-          </header>
+        <header className="max-w-2xl print:hidden">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl">
+            {t.title}
+          </h1>
+          <p className="mt-2 max-w-prose text-base leading-relaxed text-muted-foreground">{t.subtitle}</p>
+        </header>
 
-          <section className="mt-6 rounded-xl border border-border bg-card shadow-xs print:hidden sm:mt-8">
-            <form onSubmit={handleSubmit} className="space-y-6 p-5 sm:p-7" aria-busy={isSubmitting}>
-              {/* Separate inputs: one opens the camera directly on phones, the other the gallery. */}
-              <input
-                ref={cameraInput}
-                type="file"
-                accept="image/*"
-                capture="environment"
-                tabIndex={-1}
-                aria-hidden="true"
-                onChange={(e) => handleFileSelected(e.target.files?.[0] ?? null)}
-                className="sr-only"
-              />
-              <input
-                ref={galleryInput}
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                tabIndex={-1}
-                aria-hidden="true"
-                onChange={(e) => handleFileSelected(e.target.files?.[0] ?? null)}
-                className="sr-only"
-              />
+        <section className="mt-6 max-w-2xl rounded-xl border border-border bg-card shadow-xs print:hidden sm:mt-8">
+          <form onSubmit={handleSubmit} className="space-y-6 p-5 sm:p-7" aria-busy={isSubmitting}>
+            {/* Separate inputs: one opens the camera directly on phones, the other the gallery. */}
+            <input
+              ref={cameraInput}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              tabIndex={-1}
+              aria-hidden="true"
+              onChange={(e) => handleFileSelected(e.target.files?.[0] ?? null)}
+              className="sr-only"
+            />
+            <input
+              ref={galleryInput}
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              tabIndex={-1}
+              aria-hidden="true"
+              onChange={(e) => handleFileSelected(e.target.files?.[0] ?? null)}
+              className="sr-only"
+            />
 
-              <div className="rounded-lg border border-dashed border-border bg-muted/30 p-5 text-center sm:p-8">
-                {preview ? (
-                  <figure className="flex flex-col items-center">
-                    <img
-                      src={preview}
-                      alt={t.previewAlt}
-                      className="max-h-64 w-auto rounded-lg border border-border object-contain"
-                    />
-                    <figcaption className="mt-2 max-w-full truncate text-sm text-muted-foreground">{file?.name}</figcaption>
-                  </figure>
-                ) : (
-                  <div>
-                    <ImageIcon className="mx-auto h-7 w-7 text-muted-foreground" />
-                    <h2 className="mt-3 text-base font-semibold text-foreground">{t.dropTitle}</h2>
-                    <p className="mx-auto mt-1 max-w-sm text-sm text-muted-foreground">{t.hint}</p>
-                  </div>
-                )}
-
-                <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <button
-                    type="button"
-                    onClick={() => cameraInput.current?.click()}
-                    className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary/90 sm:w-auto"
-                  >
-                    <CameraIcon className="h-4 w-4" />
-                    <span>{t.cameraCapture}</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => galleryInput.current?.click()}
-                    className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted sm:w-auto"
-                  >
-                    <ImageIcon className="h-4 w-4" />
-                    <span>{t.galleryUpload}</span>
-                  </button>
+            {/* Desktop: a photo can also be dropped onto this area. */}
+            <div
+              onDragOver={(event) => {
+                event.preventDefault();
+                setIsDragging(true);
+              }}
+              onDragLeave={() => setIsDragging(false)}
+              onDrop={(event) => {
+                event.preventDefault();
+                setIsDragging(false);
+                handleFileSelected(event.dataTransfer.files?.[0] ?? null);
+              }}
+              className={`rounded-lg border border-dashed p-5 text-center transition-colors duration-[var(--dur-fast)] sm:p-8 ${
+                isDragging ? "border-sapphire bg-sapphire-soft dark:bg-sapphire/10" : "border-border"
+              }`}
+            >
+              {preview ? (
+                <figure className="flex flex-col items-center">
+                  <img
+                    src={preview}
+                    alt={t.previewAlt}
+                    className="max-h-64 w-auto rounded-lg border border-border object-contain"
+                  />
+                  <figcaption className="mt-2 max-w-full truncate text-sm text-muted-foreground">{file?.name}</figcaption>
+                </figure>
+              ) : (
+                <div>
+                  <ImageIcon className="mx-auto h-7 w-7 text-muted-foreground" />
+                  <h2 className="mt-3 text-base font-semibold text-foreground">{t.dropTitle}</h2>
+                  <p className="mx-auto mt-1 max-w-sm text-sm text-muted-foreground">{t.hint}</p>
                 </div>
-
-                {qualityWarning && (
-                  <p className="mt-4 flex items-start gap-2 rounded-md border border-amber-500/30 bg-amber-500/10 p-3 text-left text-sm leading-relaxed text-amber-900 dark:text-amber-200">
-                    <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-700 dark:text-amber-400" />
-                    <span>{t.qualityWarning}</span>
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <label className="text-sm font-semibold text-foreground" htmlFor="prescription-context">
-                  {t.whyLabel}
-                </label>
-                <p id="prescription-context-hint" className="mt-1 text-sm text-muted-foreground">
-                  {t.whyHint}
-                </p>
-                <textarea
-                  id="prescription-context"
-                  aria-describedby="prescription-context-hint"
-                  rows={3}
-                  maxLength={4000}
-                  value={context}
-                  onChange={(event) => setContext(event.target.value)}
-                  placeholder={t.whyPh}
-                  className="mt-2 w-full resize-none rounded-lg border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                />
-              </div>
-
-              {error && (
-                <p role="alert" className="text-sm font-medium text-red-700 dark:text-red-300">
-                  {error}
-                </p>
               )}
 
-              <div>
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting || !file}
-                  className="min-h-[48px] w-full rounded-lg text-sm font-semibold sm:w-auto"
+              <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <button
+                  type="button"
+                  onClick={() => cameraInput.current?.click()}
+                  // Filled until a photo is chosen; then "Read the prescription" becomes the one filled action.
+                  className={`inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] sm:w-auto ${
+                    preview
+                      ? "border border-border bg-card text-foreground hover:bg-muted"
+                      : "bg-sapphire text-white hover:bg-sapphire-light"
+                  }`}
                 >
-                  {isSubmitting ? t.reviewing : t.reviewButton}
-                </Button>
+                  <CameraIcon className="h-4 w-4" />
+                  <span>{t.cameraCapture}</span>
+                </button>
 
-                {/* Honest progress: a calm indeterminate line, no fake percentages or scanning effects. */}
-                <div role="status" aria-live="polite" className="mt-3">
-                  {isSubmitting ? (
-                    <>
-                      <div className="h-0.5 w-full overflow-hidden rounded-full bg-muted sm:max-w-xs" aria-hidden="true">
-                        <div className="assistant-reading-bar h-full w-2/5 rounded-full bg-primary" />
-                      </div>
-                      <p className="mt-2 text-sm text-muted-foreground">{t.reviewingHint}</p>
-                    </>
-                  ) : null}
-                </div>
+                <button
+                  type="button"
+                  onClick={() => galleryInput.current?.click()}
+                  className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted sm:w-auto"
+                >
+                  <ImageIcon className="h-4 w-4" />
+                  <span>{t.galleryUpload}</span>
+                </button>
               </div>
-            </form>
-          </section>
 
-          {result && parsed && (
-            <section className="assistant-step-in mt-6 rounded-xl border border-border bg-card p-5 shadow-xs sm:p-7">
-              <PrescriptionStructuredResult parsed={parsed} aiMessage={result.message} />
-            </section>
-          )}
-        </div>
+              {qualityWarning && (
+                <p className="mt-4 flex items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 text-left text-sm leading-relaxed text-amber-900 dark:text-amber-200">
+                  <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-700 dark:text-amber-400" />
+                  <span>{t.qualityWarning}</span>
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="text-sm font-semibold text-foreground" htmlFor="prescription-context">
+                {t.whyLabel}
+              </label>
+              <p id="prescription-context-hint" className="mt-1 text-sm text-muted-foreground">
+                {t.whyHint}
+              </p>
+              <textarea
+                id="prescription-context"
+                aria-describedby="prescription-context-hint"
+                rows={3}
+                maxLength={4000}
+                value={context}
+                onChange={(event) => setContext(event.target.value)}
+                placeholder={t.whyPh}
+                className="mt-2 w-full resize-none rounded-lg border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+              />
+            </div>
+
+            {error && (
+              <p role="alert" className="text-sm font-medium text-red-700 dark:text-red-300">
+                {error}
+              </p>
+            )}
+
+            <div>
+              <button
+                type="submit"
+                disabled={isSubmitting || !file}
+                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-sapphire px-7 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:w-auto"
+              >
+                {isSubmitting ? t.reviewing : t.reviewButton}
+              </button>
+
+              {/* Honest progress: a calm indeterminate line, no fake percentages or scanning effects. */}
+              <div role="status" aria-live="polite" className="mt-3">
+                {isSubmitting ? (
+                  <>
+                    <div className="h-0.5 w-full overflow-hidden rounded-full bg-muted sm:max-w-xs" aria-hidden="true">
+                      <div className="assistant-reading-bar h-full w-2/5 rounded-full bg-sapphire dark:bg-sapphire-border" />
+                    </div>
+                    <p className="mt-2 text-sm text-muted-foreground">{t.reviewingHint}</p>
+                  </>
+                ) : null}
+              </div>
+            </div>
+          </form>
+        </section>
+
+        {result && (
+          <section className="assistant-step-in mt-6 max-w-2xl rounded-xl border border-border bg-card p-5 shadow-xs sm:p-7">
+            <PrescriptionStructuredResult
+              aiMessage={result.message}
+              prescriptionText={result.prescriptionText}
+              emergency={result.urgency === "emergency" || result.careLevel === "emergency"}
+            />
+          </section>
+        )}
       </Container>
     </main>
   );

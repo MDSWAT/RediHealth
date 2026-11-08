@@ -29,7 +29,7 @@ export function Logo({ className, muted = false, tone = "default", href = "/", l
       <span
         className={cn(
           "text-lg tracking-tight transition-colors duration-(--dur-base) ease-(--ease-out-calm)",
-          tone === "light" ? "text-paper" : muted ? "text-foreground" : "text-foreground",
+          tone === "light" ? "text-paper" : muted ? "text-muted-foreground" : "text-foreground",
         )}
       >
         {BRAND_NAME}

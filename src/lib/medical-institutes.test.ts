@@ -3,6 +3,7 @@ import {
   countryForLang,
   countryFromHeaders,
   langForCountry,
+  normalizeInstitutePhone,
   validateInstituteInput,
 } from "@/lib/medical-institutes";
 import { mapOsmElement } from "@/lib/osm-import";
@@ -103,5 +104,53 @@ describe("mapOsmElement", () => {
     expect(
       mapOsmElement({ type: "node", id: 3, lat: 1, lon: 1, tags: { name: "A", disused: "yes" } }, "RO", "pharmacy"),
     ).toBeNull();
+  });
+});
+
+describe("Italian phone numbers", () => {
+  // Real shapes seen in the OpenStreetMap import, including "Farmacia Castro Pretorio" in Rome,
+  // which showed the Afghanistan code (+93) in front of a Rome landline.
+  const raw = [
+    "+93 06 491813",
+    "+44 0814003125",
+    "0815752610",
+    "3455219773",
+    "0039 02 1234567",
+    "+39 06 4991 1234",
+    "+390612345678",
+    "0823 232167 (direttore)",
+    "06 1234567; 06 7654321",
+  ];
+
+  it("start with +39 after normalization", () => {
+    for (const phone of raw) {
+      const normalized = normalizeInstitutePhone(phone, "IT")!;
+      for (const part of normalized.split("; ")) expect(part, phone).toMatch(/^\+39/);
+    }
+  });
+
+  it("keeps the Italian leading 0 and the rest of the number", () => {
+    expect(normalizeInstitutePhone("+93 06 491813", "IT")).toBe("+39 06 491813");
+    expect(normalizeInstitutePhone("+44 0814003125", "IT")).toBe("+39 0814003125");
+    expect(normalizeInstitutePhone("0815752610", "IT")).toBe("+39 0815752610");
+    expect(normalizeInstitutePhone("0039 02 1234567", "IT")).toBe("+39 02 1234567");
+    expect(normalizeInstitutePhone("06 1234567; 06 7654321", "IT")).toBe("+39 06 1234567; +39 06 7654321");
+  });
+
+  it("is applied on import and on admin input", () => {
+    const row = mapOsmElement(
+      { type: "node", id: 25129, lat: 41.902265, lon: 12.504937, tags: { name: "Farmacia Castro Pretorio", amenity: "pharmacy", phone: "+93 06 491813" } },
+      "IT",
+      "pharmacy",
+    );
+    expect(row?.phone).toBe("+39 06 491813");
+    const input = validateInstituteInput({ name: "Farmacia", country_code: "it", lat: 41.9, lng: 12.5, phone: "06 491813" });
+    expect(input.ok && input.value.phone).toBe("+39 06 491813");
+  });
+
+  it("leaves other countries alone", () => {
+    expect(normalizeInstitutePhone("0213 456 789", "RO")).toBe("0213 456 789");
+    expect(normalizeInstitutePhone("+355 4 222 3344", "AL")).toBe("+355 4 222 3344");
+    expect(normalizeInstitutePhone(null, "IT")).toBeNull();
   });
 });

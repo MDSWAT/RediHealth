@@ -8,6 +8,7 @@ import {
   BookIcon,
   ChevronRightIcon,
   ClipboardCheckIcon,
+  CloseIcon,
   HandHelpingIcon,
   PhoneIcon,
   PinIcon,
@@ -36,12 +37,15 @@ type View = "question" | HeroNeedId;
 const VIEWS: View[] = ["question", ...HERO_NEED_ORDER];
 const headingId = (view: View) => `triage-heading-${view}`;
 
-const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
 type TriagePanelProps = {
   copy: HeroCopy["panel"];
   alarmSigns: string[];
   lang: Lang;
+  /** In the phone bottom sheet: a close button joins the voice control in the panel header. */
+  onClose?: () => void;
+  closeLabel?: string;
 };
 
 /**
@@ -52,7 +56,7 @@ type TriagePanelProps = {
  * tall as its tallest view: switching steps never resizes it or the hero.
  * Inactive views are `inert`, so keyboards and screen readers skip them.
  */
-export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
+export function TriagePanel({ copy, alarmSigns, lang, onClose, closeLabel }: TriagePanelProps) {
   const [view, setView] = useState<View>("question");
   // Bumped on every navigation so per-visit state (the quiz) starts fresh.
   const [visit, setVisit] = useState(0);
@@ -97,7 +101,7 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
   return (
     <section
       aria-labelledby={headingId(view)}
-      className="hero-panel relative rounded-2xl bg-paper text-ink-950 shadow-[0_24px_60px_-40px_rgba(2,6,23,0.7)] lg:ml-auto lg:max-w-[460px]"
+      className="hero-panel relative rounded-xl bg-paper text-ink-950 shadow-[0_24px_60px_-40px_rgba(2,6,23,0.7)] lg:ml-auto lg:max-w-[460px]"
     >
       <header className="flex h-16 items-center justify-between gap-3 border-b border-stone-200/80 px-6 sm:px-7">
         <div className="flex items-center gap-2.5">
@@ -106,34 +110,50 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
           <img src="/Icons/Logo.svg" alt="" width={22} height={22} className="h-[22px] w-[22px]" />
           <span className="text-[14px] font-medium text-stone-700">{copy.label}</span>
         </div>
-        {/* Fixed slot so the header never shifts when the voice list loads. Absent in no-voice languages. */}
-        {voiceEnabled && (
-          <span className="-mr-2 flex h-10 w-10 items-center justify-center">
+        <div className="-mr-2 flex items-center gap-1">
+          {/* Fixed slot so the header never shifts when the voice list loads. Absent in no-voice languages. */}
+          {voiceEnabled && (
+            <span className="flex h-10 w-10 items-center justify-center">
+              <button
+                type="button"
+                onClick={handleToggleSound}
+                disabled={!canSpeak && typeof window !== "undefined" && !("speechSynthesis" in window)}
+                aria-pressed={speaking}
+                aria-label={speaking ? copy.stopListening : copy.listen}
+                title={
+                  speaking
+                    ? copy.stopListening
+                    : isFallback
+                      ? `${copy.listen} (${copy.fallbackVoice})`
+                      : copy.listen
+                }
+                className={cn(
+                  "flex h-10 w-10 items-center justify-center rounded-lg transition-[background-color,color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
+                  speaking
+                    ? "bg-sapphire-soft text-sapphire ring-1 ring-sapphire/25"
+                    : "text-stone-500 hover:bg-stone-200/70 hover:text-ink-950",
+                  focusRing,
+                )}
+              >
+                {speaking ? <VolumeMuteIcon className="h-5 w-5" /> : <VolumeIcon className="h-5 w-5" />}
+              </button>
+            </span>
+          )}
+          {onClose && (
             <button
               type="button"
-              onClick={handleToggleSound}
-              disabled={!canSpeak && typeof window !== "undefined" && !("speechSynthesis" in window)}
-              aria-pressed={speaking}
-              aria-label={speaking ? copy.stopListening : copy.listen}
-              title={
-                speaking
-                  ? copy.stopListening
-                  : isFallback
-                    ? `${copy.listen} (${copy.fallbackVoice})`
-                    : copy.listen
-              }
+              onClick={onClose}
+              aria-label={closeLabel}
+              data-autofocus
               className={cn(
-                "flex h-10 w-10 items-center justify-center rounded-full transition-[background-color,color,transform,box-shadow] duration-150 active:scale-95",
-                speaking
-                  ? "bg-primary/10 text-primary shadow-xs ring-1 ring-primary/30"
-                  : "text-stone-500 hover:bg-stone-200/70 hover:text-ink-950",
+                "flex h-11 w-11 items-center justify-center rounded-lg text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-stone-200/70 hover:text-ink-950",
                 focusRing,
               )}
             >
-              {speaking ? <VolumeMuteIcon className="h-5 w-5" /> : <VolumeIcon className="h-5 w-5" />}
+              <CloseIcon className="h-5 w-5" />
             </button>
-          </span>
-        )}
+          )}
+        </div>
       </header>
 
       <p className="sr-only" aria-live="polite">
@@ -200,21 +220,14 @@ function QuestionView({
                 type="button"
                 id={`triage-option-${id}`}
                 onClick={() => onChoose(id)}
-                className="group relative -mx-3 flex min-h-[56px] w-[calc(100%+1.5rem)] items-center gap-3.5 rounded-xl px-3 py-2 text-left transition-[background-color,transform] duration-150 hover:bg-stone-200/50 active:scale-[0.99] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
+                className="group relative -mx-3 flex min-h-[56px] w-[calc(100%+1.5rem)] items-center gap-3.5 rounded-lg px-3 py-2 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-stone-200/50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none"
               >
-                <span
-                  className={cn(
-                    "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-150",
-                    // Only the urgent path carries the brand red; every other row stays neutral.
-                    id === "problem"
-                      ? "bg-primary/[0.08] text-primary"
-                      : "bg-ink-950/[0.04] text-ink-950/65 group-hover:bg-ink-950/[0.07] group-hover:text-ink-950"
-                  )}
-                >
+                {/* Every row is the same neutral tile: red stays for the 112 action itself. */}
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink-950/[0.04] text-ink-950/65 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-ink-950/[0.07] group-hover:text-ink-950">
                   <Icon className="h-[19px] w-[19px]" />
                 </span>
                 <span className="flex-1 text-[15.5px] font-medium leading-snug">{copy.needs[id].label}</span>
-                <ChevronRightIcon className="h-5 w-5 shrink-0 text-stone-400 transition-[transform,color] duration-200 group-hover:translate-x-1 group-hover:text-ink-950 motion-reduce:transition-none" />
+                <ChevronRightIcon className="h-5 w-5 shrink-0 text-stone-400 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-ink-950 motion-reduce:transition-none" />
               </button>
             </li>
           );
@@ -226,13 +239,13 @@ function QuestionView({
           <Link
             href={localHref("/mediatori", lang)}
             className={cn(
-              "group inline-flex items-center gap-2 rounded font-medium text-stone-600 transition-colors hover:text-ink-950",
+              "group inline-flex items-center gap-2 rounded font-medium text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-ink-950",
               focusRing,
             )}
           >
-            <UsersIcon className="h-4 w-4 text-stone-500 transition-colors group-hover:text-ink-950" />
+            <UsersIcon className="h-4 w-4 text-stone-500 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-ink-950" />
             <span>{copy.mediators}</span>
-            <ChevronRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none" />
+            <ChevronRightIcon className="h-4 w-4" />
           </Link>
         </div>
       </div>
@@ -259,11 +272,11 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
         type="button"
         onClick={onBack}
         className={cn(
-          "group -ml-2 inline-flex min-h-9 items-center gap-1.5 self-start rounded-lg px-2 text-[14px] font-medium text-stone-600 transition-colors hover:bg-stone-100 hover:text-ink-950",
+          "-ml-2 inline-flex min-h-9 items-center gap-1.5 self-start rounded-lg px-2 text-[14px] font-medium text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-stone-100 hover:text-ink-950",
           focusRing,
         )}
       >
-        <ArrowLeftIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5 motion-reduce:transition-none" />
+        <ArrowLeftIcon className="h-4 w-4" />
         {copy.back}
       </button>
 
@@ -283,7 +296,7 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
             <li key={text} className={cn("flex gap-3 leading-snug", isProblem ? "text-[15px] font-medium" : "text-[16px]")}>
               <span
                 aria-hidden="true"
-                className={cn("mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full", isProblem ? "bg-primary" : "bg-sapphire/70")}
+                className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-sapphire/70"
               />
               {text}
             </li>
@@ -298,7 +311,7 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
           <a
             href="tel:112"
             className={cn(
-              "flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-4 text-[16px] font-semibold text-white transition-[background-color,transform] duration-150 hover:bg-primary-hover active:scale-[0.98]",
+              "flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-[16px] font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover",
               focusRing,
             )}
           >
@@ -309,12 +322,12 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
           <Link
             href={localHref(need.action.href, lang)}
             className={cn(
-              "group flex min-h-12 items-center justify-center gap-2 rounded-xl bg-ink-950 px-4 text-center text-[16px] font-semibold text-paper transition-[background-color,transform] duration-150 hover:bg-ink-800 active:scale-[0.98]",
+              "flex min-h-12 items-center justify-center gap-2 rounded-lg bg-ink-950 px-4 text-center text-[16px] font-semibold text-paper transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800",
               focusRing,
             )}
           >
             {need.action.label}
-            <ChevronRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none" />
+            <ChevronRightIcon className="h-4 w-4" />
           </Link>
         )}
 
@@ -323,7 +336,7 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
           <Link
             href={localHref("/get-help?mode=doctor", lang)}
             className={cn(
-              "rounded font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors hover:decoration-sapphire",
+              "rounded font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire",
               focusRing,
             )}
           >
@@ -361,10 +374,11 @@ function Quiz({ quiz }: { quiz: HeroQuiz }) {
               aria-pressed={picked}
               onClick={() => setChoice(value)}
               className={cn(
-                "min-h-11 rounded-xl border text-[15px] font-semibold transition-[background-color,border-color,color,opacity,transform] duration-200 active:scale-[0.97]",
+                "min-h-11 rounded-lg border text-[15px] font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
                 !answered && "border-stone-300 bg-white hover:border-stone-400 hover:bg-stone-50",
                 answered && isAnswer && "border-sapphire bg-sapphire text-white",
-                answered && !isAnswer && picked && "border-primary/40 bg-primary/5 text-primary line-through decoration-2",
+                // A wrong pick is amber, like the myth quiz below: red stays reserved for 112.
+                answered && !isAnswer && picked && "border-amber-care/40 bg-amber-care-soft text-amber-care-hover line-through decoration-2",
                 answered && !isAnswer && !picked && "border-stone-200 bg-white text-stone-400",
                 focusRing,
               )}
@@ -394,10 +408,10 @@ function ResultMark({ right, drawn }: { right: boolean; drawn: boolean }) {
     <svg
       aria-hidden="true"
       viewBox="0 0 20 20"
-      className={cn("mt-px h-5 w-5 shrink-0", right ? "text-sapphire" : "text-primary")}
+      className={cn("mt-px h-5 w-5 shrink-0", right ? "text-sapphire" : "text-amber-care-hover")}
       fill="none"
       stroke="currentColor"
-      strokeWidth="2.2"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     >

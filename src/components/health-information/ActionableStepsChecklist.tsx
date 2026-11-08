@@ -44,26 +44,20 @@ export function ActionableStepsChecklist({
   const speechLang = SPEECH_LANG_BY_LOCALE[currentLang] ?? "ro-RO";
 
   const storageKey = `redihealth_habits_${slug}`;
-  const [checkedIds, setCheckedIds] = useState<string[]>(() => {
-    if (typeof window === "undefined") return [];
-    try {
-      const saved = localStorage.getItem(storageKey);
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  // Starts empty on the server and on first paint; saved ticks load after hydration.
+  const [checkedIds, setCheckedIds] = useState<string[]>([]);
 
   useEffect(() => {
+    let saved: unknown = null;
     try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        const timer = setTimeout(() => setCheckedIds(JSON.parse(saved)), 0);
-        return () => clearTimeout(timer);
-      }
+      saved = JSON.parse(localStorage.getItem(storageKey) ?? "null");
     } catch {
-      // LocalStorage access restricted
+      // LocalStorage access restricted or corrupt
     }
+    if (!Array.isArray(saved)) return;
+    const ids = saved.filter((id): id is string => typeof id === "string");
+    const timer = setTimeout(() => setCheckedIds(ids), 0);
+    return () => clearTimeout(timer);
   }, [storageKey]);
 
   const toggleCheck = (id: string) => {
@@ -104,8 +98,8 @@ export function ActionableStepsChecklist({
         </div>
 
         {totalCount > 0 && (
-          <div className="flex items-center gap-2 print:hidden">
-            <span className="rounded-md border border-border bg-muted/40 px-3 py-1.5 text-xs font-semibold text-foreground">
+          <div className="print:hidden">
+            <span className="text-sm font-medium tabular-nums text-muted-foreground">
               {s.completedBadge[currentLang]
                 .replace("{completed}", String(completedCount))
                 .replace("{total}", String(totalCount))}
@@ -114,16 +108,14 @@ export function ActionableStepsChecklist({
         )}
       </div>
 
-      <div className="mt-6 space-y-3">
+      <ul className="mt-6 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
         {steps.map((step) => {
           const isChecked = checkedIds.includes(step.id);
           return (
-            <div
+            <li
               key={step.id}
-              className={`flex items-start justify-between gap-3 rounded-lg border p-4 transition-colors break-inside-avoid ${
-                isChecked
-                  ? "border-foreground bg-surface-subtle"
-                  : "border-border bg-card hover:border-foreground/30"
+              className={`flex items-start justify-between gap-3 px-4 py-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] break-inside-avoid sm:px-5 ${
+                isChecked ? "bg-surface-subtle" : "hover:bg-muted/30"
               }`}
             >
               <button
@@ -133,10 +125,10 @@ export function ActionableStepsChecklist({
                 aria-pressed={isChecked}
               >
                 <span
-                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors ${
+                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] border transition-colors duration-[var(--dur-fast)] ${
                     isChecked
                       ? "border-foreground bg-foreground text-white"
-                      : "border-border bg-card"
+                      : "border-foreground/30 bg-card"
                   }`}
                   aria-hidden="true"
                 >
@@ -172,10 +164,10 @@ export function ActionableStepsChecklist({
                 variant="ghost"
                 className="-my-2 -mr-2 shrink-0"
               />
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </section>
   );
 }

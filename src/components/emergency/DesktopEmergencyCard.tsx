@@ -30,9 +30,8 @@ function useSafeLanguage() {
 }
 
 /**
- * DesktopEmergencyCard (Change 80):
- * Non-mobile desktop telephony fallback and visual instruction card.
- * Prevents broken FaceTime/Skype protocol links on desktop computers.
+ * On a computer, tel: links open FaceTime or Skype or nothing at all, so the dialer gate
+ * shows the number to dial from a phone instead.
  */
 export function DesktopEmergencyCard({
   onDismiss,
@@ -45,7 +44,7 @@ export function DesktopEmergencyCard({
   return (
     <div
       className={cn(
-        "relative rounded-2xl border border-border bg-card p-6 shadow-xl sm:p-7",
+        "relative rounded-xl border border-border bg-card p-6 shadow-xl sm:p-7",
         className
       )}
     >

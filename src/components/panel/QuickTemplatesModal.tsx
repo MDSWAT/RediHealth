@@ -15,14 +15,11 @@ interface QuickTemplatesModalProps {
 export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalProps) {
   const { lang } = useLanguage();
   const { request: fetch } = usePanelRuntime();
-  const nameFallback = {
-    en: "",
-    ro: "",
-    sq: "",
-    it: "",
-  }[lang];
   // Greeting line: "Bună, Maria," or just "Bună," when the name is missing.
   const greet = (hello: string, name: string) => (name ? `${hello}, ${name},` : `${hello},`);
+  // Quote the start of the request; add an ellipsis only when the text was actually cut.
+  // A full stop follows the closing quote, so a trailing one inside the quote is dropped (never two full stops).
+  const excerpt = (text: string) => (text.length > 100 ? `${text.slice(0, 100).trimEnd()}…` : text.trim().replace(/\.+$/, ""));
   const ui = {
     en: {
       title: "Email templates",
@@ -36,9 +33,9 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       copied: "Copied",
       copyBody: "Copy text",
       close: "Close",
-      t1: "1. We got your request",
-      t2: "2. Offer a call or a visit",
-      t3: "3. Where to go for care",
+      t1: "We got your request",
+      t2: "Offer a call or a visit",
+      t3: "Where to go for care",
     },
     ro: {
       title: "Șabloane de email",
@@ -52,9 +49,9 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       copied: "Copiat",
       copyBody: "Copiază textul",
       close: "Închide",
-      t1: "1. Am primit solicitarea",
-      t2: "2. Propune un apel sau o vizită",
-      t3: "3. Unde să meargă pentru îngrijire",
+      t1: "Am primit solicitarea",
+      t2: "Propune un apel sau o vizită",
+      t3: "Unde să meargă pentru îngrijire",
     },
     sq: {
       title: "Modele emaili",
@@ -68,9 +65,9 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       copied: "U kopjua",
       copyBody: "Kopjo tekstin",
       close: "Mbyll",
-      t1: "1. E morëm kërkesën",
-      t2: "2. Propozo telefonatë ose vizitë",
-      t3: "3. Ku të shkojë për kujdes",
+      t1: "E morëm kërkesën",
+      t2: "Propozo telefonatë ose vizitë",
+      t3: "Ku të shkojë për kujdes",
     },
     it: {
       title: "Modelli di email",
@@ -84,9 +81,9 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       copied: "Copiata",
       copyBody: "Copia testo",
       close: "Chiudi",
-      t1: "1. Abbiamo ricevuto la richiesta",
-      t2: "2. Proponi una chiamata o una visita",
-      t3: "3. Dove andare per le cure",
+      t1: "Abbiamo ricevuto la richiesta",
+      t2: "Proponi una chiamata o una visita",
+      t3: "Dove andare per le cure",
     },
   }[lang];
 
@@ -95,24 +92,24 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       id: "acknowledgment",
       title: ui.t1,
       body: (req: MedicalHelpRequestItem) => {
-        const name = req.full_name?.trim() || nameFallback;
+        const name = req.full_name?.trim() || "";
         if (lang === "ro") {
-          return `${greet("Bună", name)}\n\nAm primit mesajul tău: "${req.description.slice(0, 100)}...". Un coleg din echipă îl citește acum și te sună în curând la ${req.phone}.\n\nToate cele bune,\nEchipa RediHealth`;
+          return `${greet("Bună", name)}\n\nAm primit mesajul tău: „${excerpt(req.description)}”. Un coleg din echipă îl citește acum și te sună în curând la ${req.phone}.\n\nToate cele bune,\nEchipa RediHealth`;
         }
         if (lang === "sq") {
-          return `${greet("Përshëndetje", name)}\n\nE morëm mesazhin tënd: "${req.description.slice(0, 100)}...". Një koleg nga ekipi po e lexon dhe do të të telefonojë së shpejti në ${req.phone}.\n\nMe respekt,\nEkipi RediHealth`;
+          return `${greet("Përshëndetje", name)}\n\nE morëm mesazhin tënd: "${excerpt(req.description)}". Një koleg nga ekipi po e lexon dhe do të të telefonojë së shpejti në ${req.phone}.\n\nMe respekt,\nEkipi RediHealth`;
         }
         if (lang === "it") {
-          return `${greet("Ciao", name)}\n\nAbbiamo ricevuto il tuo messaggio: "${req.description.slice(0, 100)}...". Un operatore lo sta leggendo e ti chiamerà presto al numero ${req.phone}.\n\nUn saluto,\nIl team RediHealth`;
+          return `${greet("Ciao", name)}\n\nAbbiamo ricevuto il tuo messaggio: «${excerpt(req.description)}». Un operatore lo sta leggendo e ti chiamerà presto al numero ${req.phone}.\n\nUn saluto,\nIl team RediHealth`;
         }
-        return `${greet("Hello", name)}\n\nWe got your message: "${req.description.slice(0, 100)}...". Someone from our team is reading it now and will call you soon at ${req.phone}.\n\nBest wishes,\nThe RediHealth team`;
+        return `${greet("Hello", name)}\n\nWe got your message: "${excerpt(req.description)}". Someone from our team is reading it now and will call you soon at ${req.phone}.\n\nBest wishes,\nThe RediHealth team`;
       },
     },
     {
       id: "consultation",
       title: ui.t2,
       body: (req: MedicalHelpRequestItem) => {
-        const name = req.full_name?.trim() || nameFallback;
+        const name = req.full_name?.trim() || "";
         if (lang === "ro") {
           return `${greet("Bună", name)}\n\nÎți mulțumim că ne-ai scris. Putem să te sunăm pentru o discuție scurtă sau să-ți spunem unde e cel mai apropiat medic. Scrie-ne când poți vorbi.\n\nTelefonul tău: ${req.phone}\n\nToate cele bune,\nEchipa RediHealth`;
         }
@@ -129,7 +126,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       id: "referral",
       title: ui.t3,
       body: (req: MedicalHelpRequestItem) => {
-        const name = req.full_name?.trim() || nameFallback;
+        const name = req.full_name?.trim() || "";
         if (lang === "ro") {
           return `${greet("Bună", name)}\n\nPentru ce ne-ai scris, cel mai bine este să mergi la medicul de familie sau la clinica din zona ta. Găsești clinici și farmacii aproape de tine pe harta noastră: https://redihealth.org/find-help.\n\nToate cele bune,\nEchipa RediHealth`;
         }
@@ -196,7 +193,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
 
   return (
     <div className="panel-scrim fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/50 p-0 sm:p-4">
-      <div role="dialog" aria-modal="true" aria-labelledby={titleId} className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
+      <div role="dialog" aria-modal="true" aria-labelledby={titleId} className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-xl sm:rounded-xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
         {/* Mobile bottom sheet drag handle */}
         <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
         <div className="flex items-center justify-between border-b border-border pb-4">
@@ -260,7 +257,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
                       type="button"
                       disabled={isSending}
                       onClick={() => void sendTemplate(tmpl.id, idx)}
-                      className="inline-flex items-center gap-1 rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-white hover:bg-primary-hover disabled:opacity-60 shadow-2xs transition-colors"
+                      className="inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground shadow-2xs transition-colors"
                     >
                       {isSent ? <CheckCircleIcon className="h-3.5 w-3.5" /> : <MailIcon className="h-3.5 w-3.5" />}
                       <span>{isSending ? ui.sending : isSent ? ui.sent : ui.sendEmail}</span>
@@ -268,7 +265,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
                     <button
                       type="button"
                       onClick={() => copyToClipboard(bodyText, idx)}
-                      className="inline-flex items-center gap-1 rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+                      className="inline-flex items-center gap-1 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
                     >
                       {isCopied ? (
                         <>
@@ -296,7 +293,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+            className="rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
           >
             {ui.close}
           </button>

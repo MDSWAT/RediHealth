@@ -74,3 +74,11 @@ describe("getFollowupState", () => {
     expect(result.latest?.date).toBe(isoDaysFromNow(3));
   });
 });
+
+describe("static status styling", () => {
+  it("never loops an attention animation on the critical dot or the overdue badge", () => {
+    expect(getPriorityMeta("critical").dotClass).not.toMatch(/animate-/);
+    expect(getFollowupState([scheduled(isoDaysFromNow(-2))]).badgeClass).not.toMatch(/animate-/);
+  });
+});
+

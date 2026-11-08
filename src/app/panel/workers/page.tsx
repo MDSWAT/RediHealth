@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import { WorkersDashboard } from "@/components/panel/WorkersDashboard";
 import { loadPatients } from "@/lib/data/patients";
 import { loadWorkers } from "@/lib/data/workers";
-import { countPendingRequests } from "@/lib/data/requests";
+import { countAttentionRequests } from "@/lib/data/requests";
 import { isCountryConfigured } from "@/lib/database";
 import type { PatientItem } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
@@ -37,7 +37,7 @@ export default async function WorkersPage() {
       [workers, patients, pendingRequestsCount] = await Promise.all([
         loadWorkers(workerContext.country),
         loadPatients({ country: workerContext.country, projection: "assignment" }),
-        countPendingRequests(workerContext.country),
+        countAttentionRequests(workerContext.country),
       ]);
     } catch (error) {
       console.error("Failed to load workers dashboard data", error);

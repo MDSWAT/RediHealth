@@ -4,9 +4,14 @@ import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { LazyMotion, domAnimation } from "motion/react";
 import type { Lang } from "@/lib/i18n/translations";
 import { cn } from "@/lib/cn";
-import { AlertCircleIcon, CheckIcon, PhoneIcon } from "@/components/ui/icons";
+import { AlertCircleIcon, CheckIcon } from "@/components/ui/icons";
 import { WOMENS_HEALTH_COPY } from "./womens-health-copy";
-import { WomensHealthScene } from "./WomensHealthScene";
+import {
+  WOMENS_SCENE_VIEWBOX,
+  WOMENS_SCENE_WEEK_MARKS,
+  WomensHealthScene,
+  womensSceneWeekLeft,
+} from "./WomensHealthScene";
 
 interface WomensHealthInteractiveStepperProps {
   lang: Lang;
@@ -67,7 +72,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
       <div
         role="tablist"
         aria-label={copy.trackAriaLabel}
-        className="grid grid-cols-1 gap-2.5 border-t border-border pt-6 sm:grid-cols-2"
+        className="grid grid-cols-2 gap-x-4 border-b border-border sm:flex sm:gap-x-0"
       >
         {TRACKS.map((t, index) => {
           const selected = track === t;
@@ -86,10 +91,10 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
               onClick={() => setTrack(t)}
               onKeyDown={trackTabs.onKeyDown}
               className={cn(
-                "flex min-h-[52px] items-center justify-between rounded-lg border px-4 py-3 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+                "-mb-px flex min-h-11 items-end gap-2 border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:mr-6",
                 selected
-                  ? "border-foreground bg-surface-subtle text-foreground"
-                  : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
+                  ? "border-foreground text-foreground"
+                  : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
               <span>{copy.tabs[t]}</span>
@@ -105,7 +110,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
             <div
               role="radiogroup"
               aria-label={copy.trimesterGroupLabel}
-              className="grid grid-cols-1 gap-2.5 sm:grid-cols-3"
+              className="grid grid-cols-1 divide-y divide-border overflow-hidden rounded-lg border border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0"
             >
               {steps.map((step, index) => {
                 const selected = index === trimester;
@@ -122,10 +127,8 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                     onClick={() => setTrimester(index)}
                     onKeyDown={trimesterRadio.onKeyDown}
                     className={cn(
-                      "flex min-h-[60px] items-center gap-3 rounded-lg border px-3.5 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
-                      selected
-                        ? "border-foreground bg-surface-subtle text-foreground"
-                        : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
+                      "flex min-h-[60px] items-center gap-3 px-3.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire",
+                      selected ? "bg-surface-subtle text-foreground" : "bg-card text-foreground hover:bg-surface-subtle/50",
                     )}
                   >
                     <span
@@ -145,15 +148,43 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
               })}
             </div>
 
-            <div
-              role="img"
-              aria-label={`${current.name}, ${current.weeks}. ${copy.whoContactTitle}: ${current.whoContact}`}
-              className="flex h-36 w-full items-center justify-center overflow-hidden rounded-lg border border-border bg-surface-subtle/50 sm:h-44"
-            >
-              <LazyMotion features={domAnimation} strict>
-                <WomensHealthScene step={trimester} playing={false} />
-              </LazyMotion>
-            </div>
+            <figure>
+              <div role="img" aria-label={`${current.name}, ${current.weeks}. ${copy.whoContactTitle}: ${current.whoContact}`}>
+                <div
+                  className="w-full"
+                  style={{ aspectRatio: `${WOMENS_SCENE_VIEWBOX.width} / ${WOMENS_SCENE_VIEWBOX.height}` }}
+                >
+                  <LazyMotion features={domAnimation} strict>
+                    <WomensHealthScene step={trimester} playing={false} />
+                  </LazyMotion>
+                </div>
+                {/* Week numbers under the trimester boundaries */}
+                <div aria-hidden="true" className="relative mt-1 h-4 text-xs font-semibold tabular-nums text-muted-foreground">
+                  {WOMENS_SCENE_WEEK_MARKS.map((week) => (
+                    <span
+                      key={week}
+                      className="absolute top-0"
+                      style={{
+                        left: womensSceneWeekLeft(week),
+                        transform: week === 40 ? "translateX(-100%)" : "translateX(-50%)",
+                      }}
+                    >
+                      {week}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <figcaption className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5 border-t border-border pt-3 text-sm text-foreground">
+                <span className="inline-flex items-center gap-2.5">
+                  <span aria-hidden="true" className="block h-3.5 w-1 rounded-full bg-sapphire" />
+                  {copy.whoContactTitle}
+                </span>
+                <span className="inline-flex items-center gap-2.5">
+                  <span aria-hidden="true" className="block h-2.5 w-6 rounded-full bg-sapphire" />
+                  {current.name}, {current.weeks.charAt(0).toLowerCase() + current.weeks.slice(1)}
+                </span>
+              </figcaption>
+            </figure>
 
             <div aria-live="polite" className="space-y-5 border-t border-border pt-5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -204,7 +235,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
             <div
               role="radiogroup"
               aria-label={copy.checkGroupLabel}
-              className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
+              className="grid grid-cols-1 divide-y divide-border overflow-hidden rounded-lg border border-border sm:grid-cols-2 sm:divide-x sm:divide-y-0"
             >
               {[breast, cervical].map((check, index) => {
                 const selected = check.id === checkId;
@@ -221,10 +252,8 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                     onClick={() => setCheckId(check.id)}
                     onKeyDown={checkRadio.onKeyDown}
                     className={cn(
-                      "flex min-h-[52px] items-center justify-between rounded-lg border px-4 py-3 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
-                      selected
-                        ? "border-foreground bg-surface-subtle text-foreground"
-                        : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
+                      "flex min-h-[52px] items-center justify-between px-4 py-3 text-left text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire",
+                      selected ? "bg-surface-subtle text-foreground" : "bg-card text-foreground hover:bg-surface-subtle/50",
                     )}
                   >
                     <span>{check.title}</span>
@@ -310,16 +339,9 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
         )}
       </div>
 
-      {/* Emergency: calm and clear */}
-      <div className="flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-[60ch] text-sm leading-relaxed text-foreground">{copy.emergencyNote}</p>
-        <a
-          href="tel:112"
-          className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-lg border border-primary/30 px-4 text-sm font-semibold text-primary transition-colors hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:self-center print:hidden"
-        >
-          <PhoneIcon className="h-4 w-4" aria-hidden="true" />
-          {copy.call112Label}
-        </a>
+      {/* Emergency: calm and clear. The page's warning card holds the one 112 button. */}
+      <div className="border-t border-border pt-5">
+        <p className="max-w-[65ch] text-sm leading-relaxed text-foreground">{copy.emergencyNote}</p>
       </div>
 
       <p className="text-xs leading-snug text-muted-foreground">{copy.credit}</p>

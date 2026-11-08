@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRightIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { StethoscopeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -15,38 +15,33 @@ function useSafeLanguage() {
   }
 }
 
-const bannerCopy: Record<
-  Lang,
-  {
-    statusDot: string;
-    title: string;
-    description: string;
-    buttonText: string;
-  }
-> = {
+export interface DoctorBannerCopy {
+  title: string;
+  description: string;
+  buttonText: string;
+}
+
+/** The online doctor is a voice call (no video, no written questions). */
+export const DOCTOR_BANNER_COPY: Record<Lang, DoctorBannerCopy> = {
   ro: {
-    statusDot: "Medic de gardă disponibil acum",
     title: "Ai întrebări despre sănătatea ta?",
-    description: "Vorbește pe video cu un medic voluntar sau scrie-i o întrebare. Este gratuit și confidențial.",
-    buttonText: "Vorbește cu un medic online",
+    description: "Vorbește cu un medic voluntar într-un apel de voce. Este gratuit și confidențial.",
+    buttonText: "Vorbește cu un medic",
   },
   en: {
-    statusDot: "On-call doctor available now",
     title: "Questions about your health?",
-    description: "Talk to a volunteer doctor on video, or write them a question. It is free and confidential.",
-    buttonText: "Talk to a doctor online",
+    description: "Talk to a volunteer doctor in a voice call. It is free and confidential.",
+    buttonText: "Talk to a doctor",
   },
   sq: {
-    statusDot: "Mjeku kujdestar është i disponueshëm tani",
     title: "Ke pyetje për shëndetin tënd?",
-    description: "Fol me video me një mjek vullnetar ose shkruaji një pyetje. Është falas dhe konfidenciale.",
-    buttonText: "Fol me një mjek online",
+    description: "Fol me një mjek vullnetar me një thirrje zanore. Është falas dhe konfidenciale.",
+    buttonText: "Fol me një mjek",
   },
   it: {
-    statusDot: "Medico di guardia disponibile ora",
     title: "Hai domande sulla tua salute?",
-    description: "Parla in videochiamata con un medico volontario o scrivigli una domanda. È gratis e riservato.",
-    buttonText: "Parla con un medico online",
+    description: "Parla con un medico volontario in una chiamata vocale. È gratis e riservato.",
+    buttonText: "Parla con un medico",
   },
 };
 
@@ -62,7 +57,7 @@ export function TopicDoctorExitBanner({
   className = "",
 }: TopicDoctorExitBannerProps) {
   const { lang } = useSafeLanguage();
-  const copy = bannerCopy[lang] ?? bannerCopy.ro;
+  const copy = DOCTOR_BANNER_COPY[lang] ?? DOCTOR_BANNER_COPY.ro;
 
   const queryParams = new URLSearchParams();
   if (topicSlug) queryParams.set("context", `topic_${topicSlug}`);
@@ -75,16 +70,16 @@ export function TopicDoctorExitBanner({
   return (
     <section
       aria-labelledby="doctor-exit-title"
-      className={`relative overflow-hidden rounded-lg border border-border bg-card p-6 shadow-sm sm:p-8 ${className}`}
+      className={`rounded-lg border border-border bg-card p-6 shadow-xs sm:p-8 ${className}`}
     >
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div className="max-w-2xl space-y-3">
-          <h3
+          <h2
             id="doctor-exit-title"
             className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
           >
             {copy.title}
-          </h3>
+          </h2>
 
           <p className="text-base leading-relaxed text-muted-foreground">
             {copy.description}
@@ -94,11 +89,10 @@ export function TopicDoctorExitBanner({
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
           <Link
             href={targetHref}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-xs transition-all hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:scale-[0.98]"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
           >
             <StethoscopeIcon className="h-4 w-4" />
             <span>{copy.buttonText}</span>
-            <ArrowRightIcon className="h-4 w-4" />
           </Link>
         </div>
       </div>

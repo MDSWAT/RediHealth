@@ -32,8 +32,8 @@ export function PatientIntakeSummary({ intake }: { intake?: PatientIntake | null
       <p className="text-xs text-muted-foreground">{t.accuracy}: {Math.round(intake.location.accuracy)} m</p>
     </div>}
     <div><h2>{t.documents}</h2>
-      <p className="text-sm text-muted-foreground">{intake.has_documents ? t.hasDocuments : t.noDocuments}</p>
-      {intake.has_documents && <ul className="mt-3 space-y-2">{intake.documents.map((document) => <li key={document.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-border p-3">
+      {intake.has_documents && intake.documents.length ? null : <p className="text-sm text-muted-foreground">{intake.has_documents ? t.hasDocuments : t.noDocuments}</p>}
+      {intake.has_documents && <ul className="divide-y divide-border border-t border-border">{intake.documents.map((document) => <li key={document.id} className="flex flex-wrap items-center justify-between gap-2 py-2.5">
         <div className="min-w-0"><p className="break-all text-sm font-medium">{document.name}</p><p className="text-xs text-muted-foreground">{document.category === "identity" ? t.identity : t.medical}</p></div>
         <button type="button" onClick={() => download(document)} className="min-h-11 px-2 text-sm font-semibold text-primary">{t.download}</button>
       </li>)}</ul>}

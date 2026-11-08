@@ -2,7 +2,7 @@
 
 import { DictionaryTabs, type DictionaryTabsProps } from "./DictionaryTabs";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { DictionaryDrawerFrame, DictionaryFilters, DictionarySearch, DictionarySpeakButton } from "./DictionaryParts";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
@@ -74,17 +74,6 @@ export function RomanianDualRegisterGlossary({
   >(initialCategory);
   const [speakingId, setSpeakingId] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
-
   const filteredEntries = useMemo(() => {
     const q = normalizeForSearch(searchQuery);
     const matching = ROMANIAN_MEDICAL_GLOSSARY.filter((entry) => {
@@ -155,10 +144,10 @@ export function RomanianDualRegisterGlossary({
               return (
                 <li key={entry.id} className="py-5">
                   <div className="flex items-start justify-between gap-3">
-                    <h4 className="text-lg font-semibold leading-snug text-foreground text-balance">
+                    <h3 className="text-lg font-semibold leading-snug text-foreground text-balance">
                       <span className="sr-only">{copy.plainLabel}: </span>
                       {loc.plainTerm}
-                    </h4>
+                    </h3>
                     {voiceEnabled && (
                       <DictionarySpeakButton
                         speaking={speakingId === entry.id}
@@ -175,7 +164,7 @@ export function RomanianDualRegisterGlossary({
 
                   <p className="mt-3 text-base leading-relaxed text-foreground/90">{loc.layExplanation}</p>
 
-                  <p className="mt-3 border-l-2 border-border pl-3 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3 border-l border-border pl-3 text-sm leading-relaxed text-muted-foreground">
                     <span className="font-semibold text-foreground">{copy.clinicalSignificanceLabel} </span>
                     {loc.clinicalSignificance}
                   </p>

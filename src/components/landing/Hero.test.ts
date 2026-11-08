@@ -110,6 +110,28 @@ describe("hero copy", () => {
     }
   });
 
+  it("asks a different true-or-false question than the myth quiz further down the page", async () => {
+    const { getHealthMyths } = await import("@/lib/i18n/health-myths");
+    // Word stems of a statement; a large overlap means the same myth asked twice on one page.
+    const stems = (text: string) =>
+      new Set(
+        text
+          .toLowerCase()
+          .split(/[^\p{L}]+/u)
+          .filter((word) => word.length >= 3)
+          .map((word) => word.slice(0, 4)),
+      );
+    for (const lang of LANGS) {
+      const hero = stems(heroCopy[lang].panel.needs.learn.quiz!.statement);
+      for (const myth of getHealthMyths(lang)) {
+        const other = stems(myth.statement);
+        const shared = [...other].filter((stem) => hero.has(stem)).length;
+        const overlap = shared / new Set([...hero, ...other]).size;
+        expect(overlap, `${lang}: ${myth.statement}`).toBeLessThan(0.34);
+      }
+    }
+  });
+
   it("keeps links in the visitor's language except tel: and the staff panel", () => {
     expect(localHref("/health-check", "ro")).toBe("/ro/health-check");
     expect(localHref("/get-help?mode=doctor", "it")).toBe("/it/get-help?mode=doctor");
@@ -174,12 +196,96 @@ describe("hero render", () => {
     expect(html).not.toContain("hero-word");
   });
 
-  it.each(LANGS)("renders no Romanian fallback strings in the panel chrome in %s", (lang) => {
+  it.each(LANGS)("shows one calm 112 line under the promise in %s", (lang) => {
+    // The site-wide 112 bar is hidden on the home page, so the hero carries the page's one 112 line.
+    const html = renderHero(lang);
+    const { callLead, callLink } = heroCopy[lang].emergency;
+    expect(callLink).toContain("112");
+    const line = html.match(/<p\b[^>]*>(?:(?!<\/p>)[\s\S])*href="tel:112"(?:(?!<\/p>)[\s\S])*<\/p>/)?.[0] ?? "";
+    expect(line).toContain(callLead);
+    expect(line).toContain(callLink);
+  });
+
+  it("makes no unconfirmed 'checked by doctors' claim", () => {
+    for (const lang of LANGS) {
+      for (const text of allStrings(heroCopy[lang])) {
+        expect(text, `${lang}: ${text}`).not.toMatch(/checked by|verificat|verifikuar|kontrolluar|verificat[ei]/i);
+      }
+    }
+  });
+
+    it.each(LANGS)("renders no Romanian fallback strings in the panel chrome in %s", (lang) => {
     if (lang === "ro") return;
     const html = renderHero(lang);
     expect(html).not.toContain("Pentru mediatori");
     expect(html).not.toContain("voce de rezervă");
     expect(html).toContain(heroCopy[lang].panel.mediators);
+  });
+});
+
+describe("landing interaction rules", () => {
+  const landingDir = path.resolve(__dirname);
+  const sources = ["Hero.tsx", "hero/CarePath.tsx", "hero/TriagePanel.tsx", "HelpOptions.tsx", "HelpOptionsMediatorBand.tsx", "HealthTopics.tsx", "TrueFalseQuizSection.tsx", "QuizFeedbackCard.tsx", "MythCardCarousel.tsx", "MythCategoryFilter.tsx", "TrustSection.tsx"].map(
+    (file) => [file, readFileSync(path.join(landingDir, file), "utf8")] as const,
+  );
+
+  it("uses colour-only press feedback on the shared duration tokens", () => {
+    for (const [file, source] of sources) {
+      expect(source, file).not.toMatch(/active:scale/);
+      expect(source, file).not.toMatch(/\bduration-(\d+|\[\d+ms\])/);
+    }
+  });
+
+  it("shows a phone, not a camera, for the voice-only online doctor", () => {
+    const carePath = sources.find(([file]) => file === "hero/CarePath.tsx")![1];
+    expect(carePath).not.toMatch(/VideoIcon|CameraIcon/);
+    expect(carePath).toMatch(/PhoneIcon/);
+  });
+
+  it("exposes quiz keys through aria-keyshortcuts, with 'r' for the Albanian 'e rreme'", () => {
+    const quiz = sources.find(([file]) => file === "TrueFalseQuizSection.tsx")![1];
+    expect(quiz).toMatch(/aria-keyshortcuts=/);
+    expect(quiz).toMatch(/sq:\s*{\s*true:\s*\["v", "1"\],\s*false:\s*\["r", "2"\]/);
+    expect(quiz).not.toMatch(/Shortcuts:|Scurtături|Shkurtore|Scorciatoie/);
+  });
+});
+
+describe("landing accent roles and one source of copy", () => {
+  const read = (file: string) => readFileSync(path.resolve(__dirname, file), "utf8");
+
+  it("keeps red in the triage panel for the 112 call only, and focus on the ring token", () => {
+    const panel = read("hero/TriagePanel.tsx");
+    expect(panel).not.toMatch(/outline-primary|ring-primary|text-primary/);
+    expect(panel.match(/(?<!:)bg-primary(?![\w-])/g) ?? []).toHaveLength(1);
+    expect(panel).toMatch(/href="tel:112"[\s\S]{0,200}bg-primary/);
+    expect(panel).toMatch(/outline-ring/);
+  });
+
+  it("sets the mediator band link in sapphire, not amber", () => {
+    const band = read("HelpOptionsMediatorBand.tsx");
+    expect(band).not.toMatch(/(text|decoration)-amber/);
+    expect(band).toMatch(/text-sapphire/);
+  });
+
+  it("shows the myth categories as one scrolling row, never wrapped", () => {
+    const filter = read("MythCategoryFilter.tsx");
+    expect(filter).not.toMatch(/flex-wrap/);
+    expect(filter).toMatch(/overflow-x-auto/);
+    expect(filter).toMatch(/maskImage/);
+  });
+
+  it("reads the topic titles and blurbs from the guide index", () => {
+    const topics = read("HealthTopics.tsx");
+    expect(topics).toMatch(/getHealthTopicsList\(lang\)/);
+    expect(topics).not.toMatch(/healthTopics\.topics|\btopics\b\s*}\s*=\s*t\./);
+  });
+
+  it("calls health mediators 'mediator' in Albanian, never 'ndërmjetës'", () => {
+    for (const file of ["Hero.tsx", "HelpOptions.tsx", "HelpOptionsMediatorBand.tsx", "TrustSection.tsx"]) {
+      expect(read(file), file).not.toMatch(/ndërmjetës/i);
+    }
+    expect(JSON.stringify(heroCopy.sq)).not.toMatch(/ndërmjetës/i);
+    expect(heroCopy.sq.panel.mediators).toMatch(/mediator/);
   });
 });
 

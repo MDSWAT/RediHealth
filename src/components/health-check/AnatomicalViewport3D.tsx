@@ -9,6 +9,7 @@ import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { getHealthCheckTranslations, type BodyPartId } from "@/lib/i18n/health-check-translations";
 import { DURATION, EASE_IN_OUT, EASE_OUT } from "@/lib/motion/tokens";
+import { WEBGL_ERROR, hasWebGL } from "./webgl-support";
 import {
   SUB_REGION_INFO,
   getLocalizedSubRegion,
@@ -119,7 +120,8 @@ const MUSCLE_LIGHT = new THREE.Color(0xc74434);
 const TENDON_COLOR = new THREE.Color(0xe4cda0);
 const SURFACE_ACCENT_COLOR = new THREE.Color(0xc8b39e);
 const SELECTED_COLOR = new THREE.Color(0x2f6fd6);
-const HOVER_COLOR = new THREE.Color(0xff9a66);
+/** Hover previews the selection in a pale tint of the same blue (a warm hover read as inflamed tissue). */
+const HOVER_COLOR = new THREE.Color(0xa9c4ec);
 /** Once an area is chosen, everything outside it fades towards this warm grey. */
 const DIM_COLOR = new THREE.Color(0xd3cdc6);
 const DIM_AMOUNT = 0.62;
@@ -283,38 +285,34 @@ function sideForVertex(x: number): "Left" | "Right" {
 
 const VIEWPORT_LABELS: Record<
   Lang,
-  { canvasAria: string; loadingTitle: string; left: string; right: string; webglError: string; loadError: string }
+  { canvasAria: string; loadingTitle: string; left: string; right: string; loadError: string }
 > = {
   ro: {
     canvasAria: "Corp 3D. Folosește săgețile stânga și dreapta ca să îl rotești. Alege zona din listă.",
     loadingTitle: "Se încarcă corpul 3D",
-    left: "Stânga",
-    right: "Dreapta",
-    webglError: "Corpul 3D nu se poate deschide pe acest dispozitiv. Alege zona din listă.",
+    left: "stânga",
+    right: "dreapta",
     loadError: "Corpul 3D nu s-a încărcat. Alege zona din listă.",
   },
   en: {
     canvasAria: "3D body. Use the left and right arrow keys to turn it. Choose the area from the list.",
     loadingTitle: "Loading the 3D body",
-    left: "Left",
-    right: "Right",
-    webglError: "The 3D body cannot open on this device. Choose the area from the list.",
+    left: "left",
+    right: "right",
     loadError: "The 3D body did not load. Choose the area from the list.",
   },
   sq: {
     canvasAria: "Trupi 3D. Përdor shigjetat majtas dhe djathtas për ta rrotulluar. Zgjidh zonën nga lista.",
     loadingTitle: "Po ngarkohet trupi 3D",
-    left: "Majtas",
-    right: "Djathtas",
-    webglError: "Trupi 3D nuk hapet në këtë pajisje. Zgjidh zonën nga lista.",
+    left: "majtas",
+    right: "djathtas",
     loadError: "Trupi 3D nuk u ngarkua. Zgjidh zonën nga lista.",
   },
   it: {
     canvasAria: "Corpo 3D. Usa le frecce sinistra e destra per girarlo. Scegli la zona dall'elenco.",
     loadingTitle: "Caricamento del corpo 3D",
-    left: "Sinistra",
-    right: "Destra",
-    webglError: "Il corpo 3D non si apre su questo dispositivo. Scegli la zona dall'elenco.",
+    left: "sinistra",
+    right: "destra",
     loadError: "Il corpo 3D non si è caricato. Scegli la zona dall'elenco.",
   },
 };
@@ -402,6 +400,7 @@ export function AnatomicalViewport3D({
   cameraRef,
 }: AnatomicalViewport3DProps) {
   const labels = VIEWPORT_LABELS[lang] ?? VIEWPORT_LABELS[DEFAULT_LANG];
+  const webglError = WEBGL_ERROR[lang] ?? WEBGL_ERROR[DEFAULT_LANG];
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -494,6 +493,14 @@ export function AnatomicalViewport3D({
     const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
     camera.position.set(0, 0.05, idealDistance);
 
+    // Ask the browser first: without WebGL, three.js would log several console errors before failing.
+    if (!hasWebGL()) {
+      queueMicrotask(() => {
+        if (!disposed) setLoadError(webglError);
+      });
+      return;
+    }
+
     let renderer: THREE.WebGLRenderer;
     try {
       renderer = new THREE.WebGLRenderer({
@@ -505,7 +512,7 @@ export function AnatomicalViewport3D({
     } catch {
       queueMicrotask(() => {
         if (!disposed) {
-          setLoadError(labels.webglError);
+          setLoadError(webglError);
         }
       });
       return;
@@ -516,13 +523,20 @@ export function AnatomicalViewport3D({
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.08;
 
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const controls = new OrbitControls(camera, canvasEl);
-    controls.enableDamping = true;
+    // A short glide after a drag; with reduced motion the body stops where the finger lets go.
+    controls.enableDamping = !reduceMotionQuery.matches;
     controls.dampingFactor = 0.075;
+    const onReduceMotionChange = () => {
+      controls.enableDamping = !reduceMotionQuery.matches;
+    };
+    reduceMotionQuery.addEventListener("change", onReduceMotionChange);
     controls.enablePan = false;
     controls.minDistance = 6.2;
     controls.maxDistance = 22;
-    controls.target.set(0, 0.1, 0);
+    // Same target as the view presets, so the first framing does not drift on load.
+    controls.target.set(0, 0.05, 0);
     controls.rotateSpeed = 0.68;
     controls.zoomSpeed = 0.85;
     // The body turns like a turntable and stays upright: a little tilt, never tumbling over.
@@ -777,8 +791,7 @@ export function AnatomicalViewport3D({
      * Timing comes from the shared motion tokens and grows a little with the angle turned.
      */
     let animationToken = 0;
-    let inFlight: { toPos: THREE.Vector3; toTarget: THREE.Vector3 } | null = null;
-    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let inFlight: { toPos: THREE.Vector3; toTarget: THREE.Vector3; endsAt: number } | null = null;
     const UP = new THREE.Vector3(0, 1, 0);
 
     function cancelCameraMove() {
@@ -819,9 +832,9 @@ export function AnatomicalViewport3D({
       const ms = reduceMotionQuery.matches
         ? 0
         : (duration ?? DURATION.slow * 1000 * (1 + 0.6 * turn + 0.3 * Math.max(zoom, pan)));
-      inFlight = { toPos: destination.clone(), toTarget };
-      isAnimating = true;
       const start = performance.now();
+      inFlight = { toPos: destination.clone(), toTarget, endsAt: start + ms };
+      isAnimating = true;
       const sph = new THREE.Spherical();
       const tgt = new THREE.Vector3();
 
@@ -858,7 +871,9 @@ export function AnatomicalViewport3D({
       requestAnimationFrame(step);
     }
 
-    function animateToPreset(preset: CameraViewPreset) {
+    type MoveOptions = { ease?: (t: number) => number; duration?: number };
+
+    function animateToPreset(preset: CameraViewPreset, opts?: MoveOptions) {
       const d = idealDistance;
       const target = new THREE.Vector3(0, 0.05, 0);
       const position =
@@ -869,7 +884,7 @@ export function AnatomicalViewport3D({
             : preset === "three-quarter"
               ? new THREE.Vector3(d * 0.58, 0.35, d * 0.82)
               : new THREE.Vector3(0, 0.05, d);
-      animateCamera(position, target);
+      animateCamera(position, target, opts);
     }
 
     /** Where the camera is heading (or is): repeated presses build on the move in flight. */
@@ -911,7 +926,8 @@ export function AnatomicalViewport3D({
       meshes: THREE.Mesh[],
       preferBack: boolean,
       side: "Left" | "Right" | "Center",
-      context: { height: number; width: number }
+      context: { height: number; width: number },
+      opts?: MoveOptions
     ) {
       if (!meshes.length) return;
       const box = new THREE.Box3();
@@ -934,21 +950,22 @@ export function AnatomicalViewport3D({
 
       animateCamera(
         new THREE.Vector3(worldCenter.x * 0.6, worldCenter.y + 0.12, worldCenter.z + zSign * distance),
-        worldCenter
+        worldCenter,
+        opts
       );
     }
 
     /** One exact structure (a precise tap or a search result). */
-    function focusSubRegion(subRegion: SubRegionId, side: "Left" | "Right" | "Center" = "Center") {
+    function focusSubRegion(subRegion: SubRegionId, side: "Left" | "Right" | "Center" = "Center", opts?: MoveOptions) {
       const matching = selectableMeshes.filter((m) => m.userData.subRegion === subRegion);
-      frameMeshes(matching, SUB_REGION_INFO[subRegion]?.defaultView === "back", side, { height: 2.4, width: 2.0 });
+      frameMeshes(matching, SUB_REGION_INFO[subRegion]?.defaultView === "back", side, { height: 2.4, width: 2.0 }, opts);
     }
 
     /** A whole area (chosen from the list, or a first tap on a phone). */
-    function focusArea(macroPart: BodyPartId) {
+    function focusArea(macroPart: BodyPartId, opts?: MoveOptions) {
       const all = selectableMeshes.filter((m) => m.userData.macroPart === macroPart);
       const visible = all.filter((m) => m.visible);
-      frameMeshes(visible.length ? visible : all, macroPart === "back", "Center", { height: 1.5, width: 1.3 });
+      frameMeshes(visible.length ? visible : all, macroPart === "back", "Center", { height: 1.5, width: 1.3 }, opts);
     }
 
     controlsApiRef.current = {
@@ -1115,21 +1132,38 @@ export function AnatomicalViewport3D({
       idealDistance = Math.max(reqDistY, reqDistX, compact ? 16.5 : 17.2);
 
       camera.updateProjectionMatrix();
+
+      if (!lastSize && !inFlight) {
+        // First measurement: start at the distance this stage needs, not zoom out to it on load.
+        camera.position.sub(controls.target).setLength(idealDistance).add(controls.target);
+        controls.update();
+      }
+      // Resizing clears the canvas, and this runs after the frame's animation callbacks: draw now,
+      // or the stage shows one empty frame when it collapses between steps.
+      renderer.render(scene, camera);
       requestRender();
 
-      // Re-frame once the stage settles at its new size (e.g. tall on step 1, short on step 2).
+      // Re-frame for the new size (e.g. tall stage on step 1, short on step 2).
       if (lastSize && (Math.abs(lastSize.w - w) > 24 || Math.abs(lastSize.h - h) > 24)) {
         if (reframeTimer) clearTimeout(reframeTimer);
-        reframeTimer = setTimeout(() => {
-          if (disposed) return;
-          const st = stateRef.current;
-          if (st.selectedSubRegion) focusSubRegion(st.selectedSubRegion, st.selectedSide);
-          else if (st.selectedPart) focusArea(st.selectedPart);
-          else animateToPreset(st.viewAngle);
-        }, 140);
+        if (inFlight) {
+          // The stage changed under a camera move: steer that move to the new framing in the time it
+          // had left, decelerating, instead of stopping and starting a second move.
+          reframe({ ease: easeNudge, duration: Math.max(inFlight.endsAt - performance.now(), DURATION.base * 1000) });
+        } else {
+          reframeTimer = setTimeout(() => {
+            if (!disposed) reframe();
+          }, 140);
+        }
       }
       lastSize = { w, h };
     };
+    function reframe(opts?: MoveOptions) {
+      const st = stateRef.current;
+      if (st.selectedSubRegion) focusSubRegion(st.selectedSubRegion, st.selectedSide, opts);
+      else if (st.selectedPart) focusArea(st.selectedPart, opts);
+      else animateToPreset(st.viewAngle, opts);
+    }
     let lastSize: { w: number; h: number } | null = null;
     let reframeTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -1226,6 +1260,8 @@ export function AnatomicalViewport3D({
     };
 
     const onPointerUp = (e: PointerEvent) => {
+      // A finished drag must not leave a stale drag behind for the next touch.
+      touchDrag = null;
       if (
         stateRef.current.decorative ||
         !pointerDownPos ||
@@ -1233,7 +1269,6 @@ export function AnatomicalViewport3D({
       ) {
         return;
       }
-      touchDrag = null;
       const hit = hitTest(e.clientX, e.clientY);
       if (!hit) return;
       const sel = resolveHitSelection(hit);
@@ -1301,10 +1336,8 @@ export function AnatomicalViewport3D({
       const activeLang = stateRef.current.lang || DEFAULT_LANG;
       const info = getLocalizedSubRegion(sel.subRegion, activeLang);
       const areaTitle = getHealthCheckTranslations(activeLang).bodyParts[info.macroPart]?.title ?? "";
-      const sideText =
-        sel.side !== "Center"
-          ? ` (${sel.side === "Left" ? labels.left : labels.right})`
-          : "";
+      // Same "structure, side" form as the summary, so a label never ends in two sets of brackets.
+      const sideText = sel.side !== "Center" ? `, ${sel.side === "Left" ? labels.left : labels.right}` : "";
       const rect = wrapEl.getBoundingClientRect();
       canvasEl.style.cursor = "pointer";
       setHoverBadge({
@@ -1348,6 +1381,7 @@ export function AnatomicalViewport3D({
       canvasEl.removeEventListener("pointercancel", onPointerEnd);
       controls.removeEventListener("change", requestRender);
       controls.removeEventListener("start", onControlsStart);
+      reduceMotionQuery.removeEventListener("change", onReduceMotionChange);
       controls.dispose();
       muscleMaterial.dispose();
       tendonMaterial.dispose();
@@ -1356,7 +1390,7 @@ export function AnatomicalViewport3D({
       skinShellMaterial.dispose();
       renderer.dispose();
     };
-  }, [labels.webglError, labels.loadError, compact, labels.left, labels.right]);
+  }, [webglError, labels.loadError, compact, labels.left, labels.right]);
 
   // Synchronize prop changes (selection, layerMode, viewAngle) with the live 3D scene
   useEffect(() => {
@@ -1424,7 +1458,9 @@ export function AnatomicalViewport3D({
         aria-hidden={decorative || undefined}
         aria-label={decorative ? undefined : labels.canvasAria}
         onKeyDown={handleKeyDown}
-        className="block h-full w-full cursor-grab touch-pan-y outline-none active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire"
+        className={`block h-full w-full cursor-grab touch-pan-y outline-none active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire ${
+          modelReady ? "hc-reveal" : "opacity-0"
+        }`}
       />
 
       {!modelReady && !loadError && (
@@ -1443,7 +1479,7 @@ export function AnatomicalViewport3D({
       )}
 
       {loadError && (
-        <div className="absolute inset-x-3 top-3 z-20 rounded-lg border border-border bg-card p-3 text-sm text-foreground">
+        <div className="absolute inset-x-3 top-3 z-20 rounded-xl border border-border bg-card p-3 text-sm text-foreground">
           {loadError}
         </div>
       )}

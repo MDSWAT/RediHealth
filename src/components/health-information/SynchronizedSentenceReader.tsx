@@ -129,6 +129,22 @@ export function SynchronizedSentenceReader({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [activePopoverTerm, setActivePopoverTerm] = useState<RomanesGlossaryTerm | null>(null);
   const [isPlayingTermAudio, setIsPlayingTermAudio] = useState(false);
+  const popoverCloseRef = useRef<HTMLButtonElement | null>(null);
+
+  // Popover: focus moves into it, Escape closes it, focus returns to the word.
+  useEffect(() => {
+    if (!activePopoverTerm) return;
+    const opener = document.activeElement as HTMLElement | null;
+    popoverCloseRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActivePopoverTerm(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      opener?.focus?.();
+    };
+  }, [activePopoverTerm]);
 
   // Split all paragraphs into sentences while preserving paragraph grouping
   let globalSentenceCounter = 0;
@@ -150,7 +166,8 @@ export function SynchronizedSentenceReader({
       `[data-sentence-id="${activeSentenceIndex}"]`
     );
     if (activeEl) {
-      activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      activeEl.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
     }
   }, [activeSentenceIndex]);
 
@@ -188,7 +205,7 @@ export function SynchronizedSentenceReader({
                   key={index}
                   data-sentence-id={index}
                   onClick={sentencesClickable ? () => handleSentenceClick(text, index) : undefined}
-                  className={`rounded-md transition-colors duration-200 motion-reduce:transition-none ${
+                  className={`rounded-md transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
                     sentencesClickable ? "cursor-pointer" : ""
                   } ${
                     isActive
@@ -220,7 +237,7 @@ export function SynchronizedSentenceReader({
                             setActivePopoverTerm(seg.term!);
                           }
                         }}
-                        className="relative inline-block cursor-pointer rounded-xs border-b border-dashed border-sapphire px-0.5 font-medium text-sapphire transition-colors hover:bg-sapphire-soft"
+                        className="relative inline-block cursor-pointer rounded-xs border-b border-dashed border-sapphire px-0.5 font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft"
                         title={str.termTitleTemplate[currentLang].replace("{term}", seg.term.romanesTerm)}
                       >
                         {seg.text}
@@ -238,22 +255,23 @@ export function SynchronizedSentenceReader({
       {activePopoverTerm && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/40"
+            className="hh-scrim fixed inset-0 z-40 bg-black/40"
             onClick={() => setActivePopoverTerm(null)}
             aria-hidden="true"
           />
 
           <div
             role="dialog"
+            aria-modal="true"
             aria-label={str.popoverAria[currentLang]}
-            className="fixed inset-x-4 bottom-20 z-50 mx-auto max-w-md rounded-lg border border-border bg-card p-5 shadow-xl sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2"
+            className="hh-fade fixed inset-x-4 bottom-20 z-50 mx-auto max-w-md rounded-lg border border-border bg-card p-5 shadow-xl sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2"
           >
             {/* Popover Header */}
             <div className="flex items-start justify-between gap-3 border-b border-border/50 pb-3">
               <div>
-                <h4 className="text-xl font-semibold text-foreground">
+                <h2 className="text-xl font-semibold text-foreground">
                   {activePopoverTerm.romanesTerm}
-                </h4>
+                </h2>
                 <p className="mt-0.5 text-sm text-muted-foreground">
                   {str.popoverBadge[currentLang]} · {str.romanianLabel[currentLang]}{" "}
                   <strong className="text-foreground">
@@ -263,6 +281,7 @@ export function SynchronizedSentenceReader({
               </div>
 
               <button
+                ref={popoverCloseRef}
                 type="button"
                 onClick={() => setActivePopoverTerm(null)}
                 className="-mr-2 -mt-2 flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
@@ -290,7 +309,7 @@ export function SynchronizedSentenceReader({
                   type="button"
                   onClick={handleSpeakPopoverTerm}
                   aria-label={str.listenPronunciationAria[currentLang]}
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-sapphire px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-sapphire px-3.5 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
                 >
                   {isPlayingTermAudio ? (
                     <svg
@@ -324,7 +343,7 @@ export function SynchronizedSentenceReader({
             </div>
 
             {/* Meaning & plain explanation */}
-            <p className="mt-3.5 text-xs leading-relaxed text-muted-foreground">
+            <p className="mt-3.5 text-sm leading-relaxed text-muted-foreground">
               {activePopoverTerm.explanation}
             </p>
 
@@ -332,7 +351,7 @@ export function SynchronizedSentenceReader({
               <button
                 type="button"
                 onClick={() => setActivePopoverTerm(null)}
-                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-border bg-muted/40 px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
               >
                 {str.dismissButton[currentLang]}
               </button>

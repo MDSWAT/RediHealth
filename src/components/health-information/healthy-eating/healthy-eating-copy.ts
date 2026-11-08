@@ -14,7 +14,6 @@ export interface PlateSectorData {
 export interface BalancedPlateCopy {
   title: string;
   subtitle: string;
-  handRuleSectionTitle: string;
   staplesTitle: string;
   smartTipTitle: string;
   interactiveHelper: string;
@@ -38,7 +37,6 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
   ro: {
     title: "Cum îți împarți farfuria",
     subtitle: "Jumătate legume, un sfert cereale, un sfert proteine. Nu ai nevoie de cântar.",
-    handRuleSectionTitle: "Măsura cu mâna",
     staplesTitle: "Ce poți pune în farfurie",
     smartTipTitle: "Sfat",
     interactiveHelper: "Apasă pe o parte a farfuriei. Vezi cât pui și ce alimente se potrivesc.",
@@ -60,11 +58,11 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
         percentage: 50,
         name: "Jumătate: legume și fructe",
         handRuleTitle: "Două palme făcute căuș",
-        handRuleDesc: "Atâtea legume să ai la fiecare masă. Crude, fierte sau la abur.",
+        handRuleDesc: "Pune atâtea legume la fiecare masă. Crude, fierte sau la abur.",
         clinicalWhy: "Fibrele din legume încetinesc creșterea zahărului în sânge. Te țin sătul mai mult și ajută intestinul.",
         culturalStaples: [
           "Varză albă sau roșie (crudă în salată sau călită cu puțin ulei)",
-          "Fasole verde păstăi, spanac, urzici sau ștevie",
+          "Fasole verde, spanac, urzici sau ștevie",
           "Morcovi, țelină, sfeclă roșie",
           "Ardei gras, dovlecei, roșii de sezon sau murături cu puțină sare",
         ],
@@ -106,8 +104,8 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
         percentage: 0,
         name: "Alături: apă și grăsimi bune",
         handRuleTitle: "Un pahar mare de apă la fiecare masă",
-        handRuleDesc: "Bea apă de la robinet sau ceai fără zahăr. Ulei pune doar o linguriță la o porție.",
-        clinicalWhy: "Sucurile și băuturile acidulate cu zahăr au multe calorii. Ele ajută la strângerea grăsimii în ficat.",
+        handRuleDesc: "Bea apă de la robinet sau ceai fără zahăr. Pune doar o linguriță de ulei la o porție.",
+        clinicalWhy: "Sucurile și băuturile acidulate cu zahăr au multe calorii. Pot duce la grăsime pe ficat.",
         culturalStaples: [
           "Apă cu o felie de lămâie sau frunze de mentă",
           "Ceai de mușețel, mentă sau fructe, fără zahăr",
@@ -121,7 +119,6 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
   en: {
     title: "How to fill your plate",
     subtitle: "Half vegetables, a quarter grains, a quarter protein. You don't need scales.",
-    handRuleSectionTitle: "Measure with your hand",
     staplesTitle: "What to put on your plate",
     smartTipTitle: "Tip",
     interactiveHelper: "Tap a part of the plate. See how much to eat and which foods fit.",
@@ -143,7 +140,7 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
         percentage: 50,
         name: "Half: vegetables and fruit",
         handRuleTitle: "Two cupped hands",
-        handRuleDesc: "Have this much vegetables at every meal. Raw, boiled or steamed.",
+        handRuleDesc: "Have this many vegetables at every meal. Raw, boiled or steamed.",
         clinicalWhy: "Fiber in vegetables slows the rise of sugar in your blood. It keeps you full longer and helps your gut.",
         culturalStaples: [
           "White or red cabbage (raw in salad or cooked with a little oil)",
@@ -178,7 +175,7 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
         culturalStaples: [
           "Dried beans, lentils, or yellow split peas",
           "Boiled or poached eggs",
-          "Fresh curd cheese (urda) or low-fat cottage cheese",
+          "Fresh curd cheese or low-fat cottage cheese",
           "Fresh fish (trout, mackerel) or canned fish in water",
           "Chicken without skin, baked in the oven",
         ],
@@ -204,12 +201,11 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
   sq: {
     title: "Si ta mbushësh pjatën",
     subtitle: "Gjysma perime, një çerek drithëra, një çerek proteina. Nuk të duhet peshore.",
-    handRuleSectionTitle: "Mat me dorë",
     staplesTitle: "Çfarë të vësh në pjatë",
     smartTipTitle: "Këshillë",
     interactiveHelper: "Prek një pjesë të pjatës. Shiko sa të hash dhe cilat ushqime përshtaten.",
     ariaPlateLabel: "Pjatë me tri pjesë: gjysma perime, një çerek drithëra integrale, një çerek proteina",
-    builderTitle: "Bëj pjatën tënde",
+    builderTitle: "Bëje pjatën tënde",
     builderSubtitle: "Zgjidh çfarë ha në një vakt. Shiko nëse porcionet janë të duhura.",
     builderStatusBalanced: "Pjata jote është e ekuilibruar. Ka perime, drithëra integrale dhe proteina sa duhet.",
     builderStatusNeedsVeg: "Shto më shumë perime, si lakër të freskët, spinaq ose speca. Ato mbushin gjysmën e pjatës.",
@@ -272,13 +268,13 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
         percentage: 0,
         name: "Pranë: ujë dhe yndyra të mira",
         handRuleTitle: "Një gotë e madhe ujë në çdo vakt",
-        handRuleDesc: "Pi ujë ose çaj pa sheqer. Vaj vër vetëm një lugë të vogël për porcion.",
+        handRuleDesc: "Pi ujë ose çaj pa sheqer. Përdor vetëm një lugë të vogël vaj për porcion.",
         clinicalWhy: "Pijet e gazuara me sheqer dhe lëngjet kanë shumë kalori. Ato ndihmojnë që dhjami të mblidhet në mëlçi.",
         culturalStaples: [
           "Ujë me një fetë limoni ose me mente",
           "Çaj mali ose kamomili pa sheqer",
           "Vaj ulliri i virgjër ose vaj luledielli i shtypur në të ftohtë",
-          "Arra (disa thelpinj)",
+          "Arra (4–5 gjysma)",
         ],
         smartTip: "Kur do diçka të ëmbël pas ngrënies, pi fillimisht një gotë ujë. Shpesh etja ngatërrohet me urinë.",
       },
@@ -287,7 +283,6 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
   it: {
     title: "Come riempire il piatto",
     subtitle: "Metà verdure, un quarto cereali, un quarto proteine. Non serve la bilancia.",
-    handRuleSectionTitle: "Misura con la mano",
     staplesTitle: "Cosa mettere nel piatto",
     smartTipTitle: "Consiglio",
     interactiveHelper: "Tocca una parte del piatto. Vedi quanto mangiare e quali cibi vanno bene.",
@@ -309,7 +304,7 @@ export const BALANCED_PLATE_COPY: Record<Lang, BalancedPlateCopy> = {
         percentage: 50,
         name: "Metà: verdura e frutta",
         handRuleTitle: "Due mani a coppa",
-        handRuleDesc: "Tanta verdura così a ogni pasto. Cruda, bollita o al vapore.",
+        handRuleDesc: "Mangia questa quantità di verdura a ogni pasto. Cruda, bollita o al vapore.",
         clinicalWhy: "Le fibre della verdura rallentano l'aumento dello zucchero nel sangue. Ti saziano più a lungo e aiutano l'intestino.",
         culturalStaples: [
           "Cavolo cappuccio o verza (in insalata o stufato con un filo d'olio)",
@@ -406,7 +401,7 @@ export interface SaltCalculatorCopy {
 export const SALT_CALCULATOR_COPY: Record<Lang, SaltCalculatorCopy> = {
   ro: {
     title: "Câtă sare mănânci într-o zi",
-    subtitle: "Peste 75% din sare vine deja din pâine, mezeluri și brânză sărată. Nu din solniță.",
+    subtitle: "Peste 75% din sarea pe care o mănânci vine din pâine, mezeluri și brânză sărată, nu din solniță.",
     whoLimitLabel: "OMS recomandă cel mult 5 g de sare pe zi (o linguriță rasă).",
     currentIntakeLabel: "Sare din ce ai ales",
     teaspoonFullLabel: "{percent}% dintr-o linguriță de sare",
@@ -462,7 +457,7 @@ export const SALT_CALCULATOR_COPY: Record<Lang, SaltCalculatorCopy> = {
       },
       {
         id: "bouillon",
-        name: "Cub de supă sau condimente",
+        name: "Cub de supă sau condimente cu sare",
         portion: "Un cub sau o linguriță în mâncare",
         saltGrams: 2.5,
         swapName: "Rădăcinoase fierte (țelină, păstârnac, morcov) și leuștean",
@@ -500,7 +495,7 @@ export const SALT_CALCULATOR_COPY: Record<Lang, SaltCalculatorCopy> = {
   },
   en: {
     title: "How much salt you eat in a day",
-    subtitle: "Over 75% of salt already comes from bread, cured meats and salty cheese. Not from the salt shaker.",
+    subtitle: "Over 75% of the salt you eat comes from bread, cured meats and salty cheese, not from the salt shaker.",
     whoLimitLabel: "WHO advises no more than 5 g of salt a day (one level teaspoon).",
     currentIntakeLabel: "Salt in what you picked",
     teaspoonFullLabel: "{percent}% of a level teaspoon of salt",
@@ -529,10 +524,10 @@ export const SALT_CALCULATOR_COPY: Record<Lang, SaltCalculatorCopy> = {
       },
       {
         id: "telemea",
-        name: "Salty cheese (telemea or feta)",
+        name: "Salty white cheese, like feta",
         portion: "One medium slice (~50 g)",
         saltGrams: 1.8,
-        swapName: "Fresh curd cheese (urda) or low-fat cottage cheese with dill",
+        swapName: "Fresh curd cheese or low-fat cottage cheese with dill",
         swapSaltGrams: 0.2,
         swapSavingsDesc: "You eat 1.6 g less salt and get protein with less fat.",
       },
@@ -594,12 +589,12 @@ export const SALT_CALCULATOR_COPY: Record<Lang, SaltCalculatorCopy> = {
   },
   sq: {
     title: "Sa kripë ha në ditë",
-    subtitle: "Mbi 75% e kripës vjen nga buka, sallamet dhe djathi i kripur. Jo nga kriporja.",
+    subtitle: "Mbi 75% e kripës që ha vjen nga buka, sallamet dhe djathi i kripur, jo nga kriporja.",
     whoLimitLabel: "OBSH këshillon jo më shumë se 5 g kripë në ditë (një lugë e vogël e rrafshët).",
     currentIntakeLabel: "Kripa në atë që zgjodhe",
     teaspoonFullLabel: "{percent}% e një luge të vogël kripe",
     zoneOptimalTitle: "Brenda kufirit (deri në 5 g në ditë)",
-    zoneOptimalDesc: "Ha aq kripë sa këshillohet. Kjo të ndihmon ta mbash tensionin të mirë.",
+    zoneOptimalDesc: "Kripa që ha është sa këshillohet. Kjo të ndihmon ta mbash tensionin të mirë.",
     zoneCautionTitle: "Mbi kufi (5,1–8 g në ditë)",
     zoneCautionDesc: "Tensioni mund të rritet pa ndier asgjë. Nëse ndërron 2 ushqime të kripura, mund të kthehesh nën kufi.",
     zoneHazardTitle: "Shumë mbi kufi (mbi 8 g në ditë)",
@@ -632,8 +627,8 @@ export const SALT_CALCULATOR_COPY: Record<Lang, SaltCalculatorCopy> = {
       },
       {
         id: "mezeluri",
-        name: "Sallamra, proshuta ose virshe",
-        portion: "2–3 feta ose një virshe (~50 g)",
+        name: "Sallam, proshutë ose salsiçe",
+        portion: "2–3 feta ose një salsiçe (~50 g)",
         saltGrams: 1.8,
         swapName: "Gjoks pule i pjekur në furrë me hudhër dhe trumzë",
         swapSaltGrams: 0.2,
@@ -688,7 +683,7 @@ export const SALT_CALCULATOR_COPY: Record<Lang, SaltCalculatorCopy> = {
   },
   it: {
     title: "Quanto sale mangi in un giorno",
-    subtitle: "Oltre il 75% del sale arriva già da pane, salumi e formaggi. Non dalla saliera.",
+    subtitle: "Oltre il 75% del sale che mangi arriva da pane, salumi e formaggi, non dalla saliera.",
     whoLimitLabel: "L'OMS consiglia al massimo 5 g di sale al giorno (un cucchiaino raso).",
     currentIntakeLabel: "Sale in quello che hai scelto",
     teaspoonFullLabel: "{percent}% di un cucchiaino di sale",
@@ -698,7 +693,7 @@ export const SALT_CALCULATOR_COPY: Record<Lang, SaltCalculatorCopy> = {
     zoneCautionDesc: "La pressione può salire senza che tu senta niente. Se cambi 2 cibi salati, puoi tornare sotto il limite.",
     zoneHazardTitle: "Molto sopra il limite (più di 8 g al giorno)",
     zoneHazardDesc: "Tanto sale, ogni giorno, alza la pressione e il rischio di ictus. I cambi qui sotto aiutano molto.",
-    swapsSectionTitle: "Cosa mangiare al posto",
+    swapsSectionTitle: "Cosa mangiare invece",
     swapsSectionSubtitle: "Cibi con meno sale per quello che hai scelto:",
     resetLabel: "Azzera la selezione",
     unitPerDay: "g al giorno",

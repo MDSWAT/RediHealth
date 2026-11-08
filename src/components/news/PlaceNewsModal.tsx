@@ -4,7 +4,8 @@ import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { AlertCircleIcon, ArrowRightIcon, CheckIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
 import { ALL_ITALY, isItalianRegion } from "@/components/ui/RomaniaCountyMap";
-import { formatNewsDate } from "@/components/news/news-format";
+import { countyLabel, formatNewsDate, placeName } from "@/components/news/news-format";
+import { useSheetDialog } from "@/components/news/use-sheet-dialog";
 import { cn } from "@/lib/cn";
 import {
   ITALY_WIDE,
@@ -34,7 +35,6 @@ const COPY: Record<Lang, {
   national: string;
   count: (n: number) => string;
   noLocal: (place: string) => string;
-  county: (name: string) => string;
   highAlert: string;
   seasonalAlert: string;
   measures: string;
@@ -50,9 +50,8 @@ const COPY: Record<Lang, {
     tabsLabel: "Tipuri de știri",
     local: "Local",
     national: "Din toată țara",
-    count: (n) => (n === 1 ? "1 știre verificată de medici" : `${n} știri verificate de medici`),
+    count: (n) => (n === 1 ? "1 știre" : n % 100 === 0 || n % 100 >= 20 ? `${n} de știri` : `${n} știri`),
     noLocal: (p) => `Încă nu avem știri pentru ${p}. Mai jos sunt știrile din toată țara.`,
-    county: (n) => `Județul ${n}`,
     highAlert: "Alertă de sănătate",
     seasonalAlert: "Avertizare de sezon",
     measures: "Cum te protejezi:",
@@ -68,9 +67,8 @@ const COPY: Record<Lang, {
     tabsLabel: "Types of news",
     local: "Local",
     national: "Whole country",
-    count: (n) => (n === 1 ? "1 news item checked by doctors" : `${n} news items checked by doctors`),
+    count: (n) => (n === 1 ? "1 news item" : `${n} news items`),
     noLocal: (p) => `No news for ${p} yet. Below is news for the whole country.`,
-    county: (n) => `${n} County`,
     highAlert: "Health alert",
     seasonalAlert: "Seasonal warning",
     measures: "How to protect yourself:",
@@ -86,9 +84,8 @@ const COPY: Record<Lang, {
     tabsLabel: "Llojet e lajmeve",
     local: "Lokale",
     national: "Gjithë vendi",
-    count: (n) => (n === 1 ? "1 lajm i kontrolluar nga mjekët" : `${n} lajme të kontrolluara nga mjekët`),
+    count: (n) => (n === 1 ? "1 lajm" : `${n} lajme`),
     noLocal: (p) => `Ende nuk ka lajme për ${p}. Më poshtë janë lajmet për gjithë vendin.`,
-    county: (n) => `Qarku ${n}`,
     highAlert: "Alarm shëndetësor",
     seasonalAlert: "Paralajmërim stinor",
     measures: "Si të mbrohesh:",
@@ -104,9 +101,8 @@ const COPY: Record<Lang, {
     tabsLabel: "Tipi di notizie",
     local: "Locali",
     national: "Tutto il paese",
-    count: (n) => (n === 1 ? "1 notizia controllata dai medici" : `${n} notizie controllate dai medici`),
+    count: (n) => (n === 1 ? "1 notizia" : `${n} notizie`),
     noLocal: (p) => `Non ci sono ancora notizie per ${p}. Qui sotto trovi quelle di tutto il paese.`,
-    county: (n) => `Provincia di ${n}`,
     highAlert: "Allerta sanitaria",
     seasonalAlert: "Avviso di stagione",
     measures: "Come proteggerti:",
@@ -198,22 +194,7 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [all, np]);
 
-  useEffect(() => {
-    if (!open) return;
-    const previouslyFocused = document.activeElement as HTMLElement | null;
-    panelRef.current?.focus({ preventScroll: true });
-    const { overflow } = document.body.style;
-    document.body.style.overflow = "hidden";
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") onClose();
-    }
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = overflow;
-      if (previouslyFocused && previouslyFocused !== document.body) previouslyFocused.focus({ preventScroll: true });
-    };
-  }, [open, onClose]);
+  useSheetDialog(open, panelRef, onClose);
 
   // A new tab starts at the top of its list.
   useEffect(() => {
@@ -229,8 +210,8 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
       ? (t.countyMap?.allItaly ?? place)
       : isItaly
         ? place
-        : c.county(place);
-  const noteName = place === ALL_ITALY ? (t.countyMap?.italy ?? place) : place;
+        : countyLabel(place, lang);
+  const noteName = place === ALL_ITALY ? (t.countyMap?.italy ?? place) : placeName(place, lang);
   const inTab = (list: NewsArticle[]) => (tab === "all" ? list : list.filter((a) => a.category === tab));
   const local = inTab(groups.local);
   const national = inTab(groups.national);
@@ -262,7 +243,7 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="news-sheet relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl bg-card text-foreground shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] sm:max-h-[85dvh] sm:rounded-2xl focus:outline-none"
+        className="news-sheet relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] sm:max-h-[85dvh] sm:rounded-xl focus:outline-none"
       >
         {/* Pinned header and tabs */}
         <div className="shrink-0 border-b border-border px-5 pt-5 sm:px-7 sm:pt-6">
@@ -277,7 +258,7 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
               type="button"
               onClick={onClose}
               aria-label={c.close}
-              className="-mr-2 -mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="-mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <CloseIcon className="h-5 w-5" />
             </button>
@@ -299,20 +280,20 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
                     onClick={() => setTab(x.key)}
                     onKeyDown={(e) => onTabKeyDown(e, i)}
                     className={cn(
-                      "relative flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
+                      "relative flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
                       selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                     )}
                   >
                     {x.label}
                     <span
                       className={cn(
-                        "min-w-5 rounded-full px-1.5 text-center text-xs leading-5 tabular-nums transition-colors",
+                        "min-w-5 rounded-full px-1.5 text-center text-xs leading-5 tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
                         selected ? "bg-foreground text-background" : "bg-muted text-muted-foreground",
                       )}
                     >
                       {x.count}
                     </span>
-                    {selected && <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-primary" />}
+                    {selected && <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-foreground" />}
                   </button>
                 );
               })}
@@ -384,7 +365,7 @@ function NewsList({ heading, items, ...rest }: ItemProps & { heading?: string; i
 
 function Meta({ article: a, labels, c, lang, np, showCategory, showRegion, allItalyLabel, lead }: ItemProps & { article: NewsArticle; lead?: React.ReactNode }) {
   const date = formatNewsDate(a.date, lang, { short: true, year: false });
-  const region = a.county === ITALY_WIDE && articleCountry(a) === "it" ? allItalyLabel : isNationalCounty(a.county) ? np.allCounties : a.county;
+  const region = a.county === ITALY_WIDE && articleCountry(a) === "it" ? allItalyLabel : isNationalCounty(a.county) ? np.allCounties : placeName(a.county, lang);
   return (
     <p className="flex flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground tabular-nums">
       {lead ?? (showCategory && <span className="font-semibold text-foreground/80">{labels[a.category] ?? a.category}</span>)}
@@ -406,10 +387,10 @@ function Meta({ article: a, labels, c, lang, np, showCategory, showRegion, allIt
 
 /** A regular article: the whole row opens it. */
 function ArticleItem(props: ItemProps & { article: NewsArticle }) {
-  const { article: a, c, lang, np } = props;
+  const { article: a, c, lang } = props;
   const caravan = a.category === "Caravane medicale" ? a.caravanDetails : undefined;
   return (
-    <article className="group relative -mx-3 rounded-xl px-3 py-3.5 transition-colors hover:bg-muted/50 has-[a:focus-visible]:bg-muted/50">
+    <article className="group relative -mx-3 rounded-xl px-3 py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 has-[a:focus-visible]:bg-muted/50">
       <Meta {...props} />
       <h4 lang={a.language} className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-pretty">
         <Link
@@ -444,11 +425,8 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
         </dl>
       )}
 
-      <div className="mt-3 flex items-center justify-between gap-3 text-xs">
-        <span className="text-muted-foreground">
-          {np.verifiedByDoctor}: <span className="font-medium text-foreground">{a.verifiedDoctor.name}</span>
-        </span>
-        <span aria-hidden="true" className="inline-flex shrink-0 items-center gap-1 font-semibold text-primary">
+      <div className="mt-3 flex justify-end text-xs">
+        <span aria-hidden="true" className="inline-flex shrink-0 items-center gap-1 font-semibold text-sapphire dark:text-sapphire-border">
           {c.read}
           <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
         </span>
@@ -463,8 +441,8 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
   const high = a.epidemicSeverity === "high";
   const href = withLangPrefix(`/stiri/${a.slug}`, lang);
   const tone = high
-    ? { surface: "bg-primary-soft/60", label: "text-primary", ink: "text-[#5c1a1a]/80", icon: "text-primary", rule: "border-primary/15" }
-    : { surface: "bg-amber-care-soft/70", label: "text-amber-900", ink: "text-amber-950/75", icon: "text-amber-care", rule: "border-amber-care/20" };
+    ? { surface: "bg-amber-care-soft/70 dark:bg-amber-care/10", label: "text-amber-care dark:text-amber-care-border", icon: "text-amber-care dark:text-amber-care-border", rule: "border-amber-care/20" }
+    : { surface: "bg-muted/60", label: "text-foreground", icon: "text-sapphire dark:text-sapphire-border", rule: "border-border" };
 
   return (
     <article className={cn("my-2 rounded-xl p-4 sm:p-5", tone.surface)}>
@@ -478,11 +456,11 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
         }
       />
       <h4 lang={a.language} className="mt-2 text-[17px] font-semibold leading-snug tracking-tight text-foreground text-pretty">
-        <Link href={href} className="rounded-sm hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+        <Link href={href} className="rounded-sm underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           {a.title}
         </Link>
       </h4>
-      <p lang={a.language} className={cn("mt-1 text-sm leading-relaxed text-pretty", tone.ink)}>{a.summary}</p>
+      <p lang={a.language} className="mt-1 text-sm leading-relaxed text-foreground/80 text-pretty">{a.summary}</p>
 
       {a.preventiveSteps && a.preventiveSteps.length > 0 && (
         <>
@@ -499,20 +477,17 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
       )}
 
       <div className={cn("mt-4 border-t pt-3", tone.rule)}>
-        <p className={cn("text-xs", tone.ink)}>
-          {np.verifiedByDoctor}: <span className="font-medium text-foreground">{a.verifiedDoctor.name}</span> · {a.verifiedDoctor.specialty}
-        </p>
-        <div className="mt-3 flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Link
             href={withLangPrefix("/medic-online", lang)}
-            className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg bg-card px-3 text-xs font-semibold text-sapphire shadow-[0_1px_2px_rgb(15_23_42/0.08)] transition-colors hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg bg-card px-3 text-xs font-semibold text-sapphire shadow-[0_1px_2px_rgb(15_23_42/0.08)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft dark:text-sapphire-border dark:hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <StethoscopeIcon aria-hidden="true" className="h-4 w-4" />
             {np.handoverTelemed}
           </Link>
           <Link
             href={href}
-            className="group inline-flex min-h-[40px] items-center gap-1 rounded-lg px-2 text-xs font-semibold text-foreground hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="group inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {c.readGuide}
             <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />

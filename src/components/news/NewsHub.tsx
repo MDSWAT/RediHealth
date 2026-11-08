@@ -7,7 +7,7 @@ import { ALL_ITALY, RomaniaCountyMap, isItalianRegion } from "@/components/ui/Ro
 import { useUserCounty } from "@/lib/geo-ip";
 import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
 import { PlaceNewsModal } from "@/components/news/PlaceNewsModal";
-import { formatNewsDate } from "@/components/news/news-format";
+import { countyLabel, formatNewsDate, placeName } from "@/components/news/news-format";
 import { ArrowRightIcon, PinIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
 import {
   ITALY_WIDE,
@@ -89,10 +89,10 @@ export function NewsHub() {
       : italyRegion
     : isNationalCounty(county)
       ? np.allCounties
-      : `${t.newsRibbon.countyPrefix} ${county}`;
+      : countyLabel(county, lang);
 
   const placeLabel = (place: string) =>
-    place === ITALY_WIDE ? (t.countyMap?.allItaly ?? ITALY_WIDE) : isNationalCounty(place) ? np.allCounties : place;
+    place === ITALY_WIDE ? (t.countyMap?.allItaly ?? ITALY_WIDE) : isNationalCounty(place) ? np.allCounties : placeName(place, lang);
 
   return (
     <main id="main-content" className="min-h-[85vh] bg-background">
@@ -145,7 +145,7 @@ export function NewsHub() {
               <button
                 type="button"
                 onClick={() => setNewsPlace(country === "it" ? ALL_ITALY : "Toate județele")}
-                className="group inline-flex min-h-[44px] items-center gap-1 rounded-sm text-sm font-semibold text-primary hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="group inline-flex min-h-[44px] items-center gap-1 rounded-sm text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {np.resetFilter}
                 <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
@@ -158,7 +158,7 @@ export function NewsHub() {
                     href={withLangPrefix(`/stiri/${article.slug}`, lang)}
                     className="group flex flex-col gap-1 py-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
                   >
-                    <span lang={article.language} className="text-[15px] font-medium leading-snug text-foreground group-hover:text-primary">
+                    <span lang={article.language} className="text-[15px] font-medium leading-snug text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire dark:group-hover:text-sapphire-border">
                       {article.title}
                     </span>
                     <span className="shrink-0 text-xs text-muted-foreground tabular-nums">

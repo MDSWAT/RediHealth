@@ -45,11 +45,13 @@ export default function PanelLoading() {
             <div className="grid grid-cols-7 gap-1">{Array.from({ length: 35 }, (_, i) => <Placeholder key={i} className="h-20 sm:h-28" />)}</div>
           </> : <>
             <div className="flex flex-wrap gap-3"><Placeholder className="h-10 w-72 max-w-full" /><Placeholder className="h-10 w-28" /></div>
-            {Array.from({ length: 6 }, (_, i) => <div key={i} className="flex items-center gap-4 rounded-xl border border-border bg-card p-4">
-              <Placeholder className="h-11 w-11 shrink-0 !rounded-full" />
-              <div className="min-w-0 flex-1 space-y-3"><Placeholder className="h-4 w-40 max-w-full" /><Placeholder className="h-3 w-72 max-w-full" /></div>
-              <Placeholder className="hidden h-8 w-24 sm:block" />
-            </div>)}
+            <div className="divide-y divide-border rounded-lg border border-border bg-card">
+              {Array.from({ length: 6 }, (_, i) => <div key={i} className="flex items-center gap-4 p-4">
+                <Placeholder className="h-11 w-11 shrink-0 !rounded-full" />
+                <div className="min-w-0 flex-1 space-y-3"><Placeholder className="h-4 w-40 max-w-full" /><Placeholder className="h-3 w-72 max-w-full" /></div>
+                <Placeholder className="hidden h-8 w-24 sm:block" />
+              </div>)}
+            </div>
           </>}
         </div>
   </main>;

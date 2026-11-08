@@ -6,10 +6,10 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { heroCopy } from "@/lib/i18n/hero-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { PhoneIcon } from "@/components/ui/icons";
 import { CarePath } from "./hero/CarePath";
 import { TriagePanel } from "./hero/TriagePanel";
 import { useDialogFocus } from "@/components/health-check/useDialogFocus";
-import { CloseIcon } from "@/components/ui/icons";
 
 /**
  * Landing hero:
@@ -99,11 +99,25 @@ export function Hero() {
                 </>
               ) : null}
             </p>
+            {/* The page's one 112 line: calm, under the promise, tappable on phones. */}
+            <p className="mt-4 flex items-center gap-2 text-[15px] leading-snug text-mist sm:text-[16px]">
+              <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-paper/70" />
+              <span>
+                {copy.emergency.callLead}{" "}
+                <a
+                  href="tel:112"
+                  className="hero-focus rounded-sm py-2 font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-paper"
+                >
+                  {copy.emergency.callLink}
+                </a>
+                .
+              </span>
+            </p>
 
             <a
               href="#triage"
               onClick={goToTriage}
-              className="hero-focus mt-7 inline-flex min-h-[48px] w-full items-center justify-center rounded-xl bg-primary px-6 text-[15.5px] font-semibold text-white transition-[background-color,transform] duration-150 hover:bg-primary-hover active:scale-[0.98] sm:w-auto lg:hidden"
+              className="hero-focus mt-7 inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-paper px-6 text-[15.5px] font-semibold text-ink-950 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-stone-200 sm:w-auto lg:hidden"
             >
               {copy.primaryCta}
             </a>
@@ -126,20 +140,17 @@ export function Hero() {
                 role="dialog"
                 aria-modal="true"
                 aria-label={copy.panel.label}
-                className="hero-sheet fixed inset-x-0 bottom-0 z-[81] max-h-[90dvh] overflow-y-auto overscroll-contain rounded-t-[20px] bg-paper pb-[env(safe-area-inset-bottom)] text-ink-950"
+                className="hero-sheet fixed inset-x-0 bottom-0 z-[81] max-h-[90dvh] overflow-y-auto overscroll-contain rounded-t-xl bg-paper pb-[env(safe-area-inset-bottom)] text-ink-950"
               >
-                <div className="sticky top-0 z-10 flex items-center justify-end bg-paper px-4 pt-2">
-                  <span aria-hidden="true" className="absolute left-1/2 top-2 h-1 w-10 -translate-x-1/2 rounded-full bg-stone-300" />
-                  <button
-                    type="button"
-                    onClick={closeSheet}
-                    aria-label={copy.emergency.close}
-                    className="mt-2 flex h-11 w-11 items-center justify-center rounded-full text-stone-600 hover:bg-stone-200/70 focus-visible:outline-2 focus-visible:outline-primary"
-                  >
-                    <CloseIcon className="h-5 w-5" />
-                  </button>
-                </div>
-                <TriagePanel copy={copy.panel} alarmSigns={copy.emergency.alarmSigns} lang={lang} />
+                {/* One header row: the panel's own, with the close button beside the voice control. */}
+                <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-20 h-1 w-10 -translate-x-1/2 rounded-full bg-stone-300" />
+                <TriagePanel
+                  copy={copy.panel}
+                  alarmSigns={copy.emergency.alarmSigns}
+                  lang={lang}
+                  onClose={closeSheet}
+                  closeLabel={copy.emergency.close}
+                />
               </div>
             </>,
             document.body,

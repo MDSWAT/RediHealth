@@ -5,7 +5,17 @@ import { LazyMotion, domAnimation } from "motion/react";
 import type { Lang } from "@/lib/i18n/translations";
 import { cn } from "@/lib/cn";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/ui/icons";
-import { PhysicalActivityScene } from "./PhysicalActivityScene";
+import {
+  ACTIVITY_COL_GAP,
+  ACTIVITY_COL_W,
+  ACTIVITY_DAYS,
+  ACTIVITY_GRID_MINUTES,
+  ACTIVITY_LEFT,
+  ACTIVITY_VIEWBOX,
+  PhysicalActivityScene,
+  StrengthMarkPath,
+  activityMinuteY,
+} from "./PhysicalActivityScene";
 import { WeeklyActivityPlanner } from "./WeeklyActivityPlanner";
 import { ACTIVITY_COPY } from "./activity-copy";
 
@@ -18,8 +28,43 @@ export interface ActivityEveryMoveCountsModuleProps {
 type Mode = "stepper" | "ring";
 const MODES: Mode[] = ["stepper", "ring"];
 
-const NAV_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:opacity-40";
+/** Step navigation, as on every explainer: Back is a quiet text button, Next is ink-filled. */
+const BACK_BUTTON =
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:text-muted-foreground/50 disabled:hover:bg-transparent";
+const NEXT_BUTTON =
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
+
+/** Day labels and minute labels share the chart's geometry, as percentages of its box. */
+const pctX = (units: number) => `${(units / ACTIVITY_VIEWBOX.width) * 100}%`;
+const pctY = (units: number) => `${(units / ACTIVITY_VIEWBOX.height) * 100}%`;
+const CHART_RIGHT = ACTIVITY_LEFT + ACTIVITY_DAYS * ACTIVITY_COL_W + (ACTIVITY_DAYS - 1) * ACTIVITY_COL_GAP;
+const DAY_ROW_STYLE = {
+  paddingLeft: pctX(ACTIVITY_LEFT),
+  paddingRight: pctX(ACTIVITY_VIEWBOX.width - CHART_RIGHT),
+  columnGap: pctX(ACTIVITY_COL_GAP),
+  gridTemplateColumns: `repeat(${ACTIVITY_DAYS}, minmax(0, 1fr))`,
+} as const;
+const MINUTE_LABEL = "absolute left-0 -translate-y-1/2 text-[11px] font-medium leading-none tabular-nums text-muted-foreground";
+
+/** Legend swatches, drawn like the four layers of the chart. */
+function LayerSwatch({ layer }: { layer: number }) {
+  if (layer === 0) {
+    return (
+      <svg viewBox="0 0 16 12" className="h-3 w-4" fill="none" stroke="var(--color-sapphire)" strokeLinecap="round">
+        <path d="M2 10.5 H14" strokeWidth="1" opacity="0.4" />
+        <path d="M2 2 V10.5 M6 2 V10.5 M10 2 V10.5 M14 2 V10.5" strokeWidth="1.5" />
+      </svg>
+    );
+  }
+  if (layer === 3) {
+    return (
+      <svg viewBox="0 0 22 12" className="h-3 w-[22px]" fill="none">
+        <StrengthMarkPath cx={11} cy={6} />
+      </svg>
+    );
+  }
+  return <span className={cn("block h-3 w-2.5 rounded-[2px]", layer === 1 ? "bg-sapphire-border" : "bg-sapphire")} />;
+}
 
 /** Physical activity explainer: four ways to move (progression diagram) and a weekly-minutes planner. */
 export function ActivityEveryMoveCountsModule({
@@ -78,11 +123,10 @@ export function ActivityEveryMoveCountsModule({
         </p>
       </div>
 
-      {/* Mode selector — clean 2-column grid matching DiabetesStepTutorialsModule */}
       <div
         role="tablist"
         aria-label={copy.tabsLabel}
-        className="grid grid-cols-1 gap-2.5 border-t border-border pt-6 sm:grid-cols-2"
+        className="grid grid-cols-2 gap-x-4 border-b border-border sm:flex sm:gap-x-0"
       >
         {MODES.map((mode) => {
           const selected = activeMode === mode;
@@ -101,10 +145,10 @@ export function ActivityEveryMoveCountsModule({
               onClick={() => setActiveMode(mode)}
               onKeyDown={onTabKeyDown}
               className={cn(
-                "flex min-h-[52px] items-center justify-between rounded-lg border px-4 py-3 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+                "-mb-px flex min-h-11 items-end gap-2 border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:mr-6",
                 selected
-                  ? "border-foreground bg-surface-subtle text-foreground"
-                  : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
+                  ? "border-foreground text-foreground"
+                  : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
               <span>{labels[mode]}</span>
@@ -116,11 +160,10 @@ export function ActivityEveryMoveCountsModule({
       <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${activeMode}`} className="space-y-6">
         {activeMode === "stepper" ? (
           <>
-            {/* 2x2 Step Selector Grid — matching HeartAnatomyPanel and InsulinMechanicsModule */}
             <div
               role="radiogroup"
               aria-label={copy.stepper.groupLabel}
-              className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
+              className="grid grid-cols-1 divide-y divide-border overflow-hidden rounded-lg border border-border sm:grid-cols-4 sm:divide-x sm:divide-y-0"
             >
               {stages.map((s, index) => {
                 const selected = index === stageIdx;
@@ -137,10 +180,8 @@ export function ActivityEveryMoveCountsModule({
                     onClick={() => selectStage(index)}
                     onKeyDown={onStageKeyDown}
                     className={cn(
-                      "flex min-h-[60px] items-center gap-3 rounded-lg border px-3.5 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
-                      selected
-                        ? "border-foreground bg-surface-subtle text-foreground"
-                        : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
+                      "flex min-h-[60px] items-start gap-3 px-3.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire",
+                      selected ? "bg-surface-subtle text-foreground" : "bg-card text-foreground hover:bg-surface-subtle/50",
                     )}
                   >
                     <span
@@ -164,16 +205,53 @@ export function ActivityEveryMoveCountsModule({
               })}
             </div>
 
-            {/* Visual Stage */}
-            <div
-              role="img"
-              aria-label={stage.title}
-              className="flex h-44 w-full items-center justify-center overflow-hidden rounded-lg border border-border bg-surface-subtle/50 px-4 py-3 sm:h-52"
-            >
-              <LazyMotion features={domAnimation} strict>
-                <PhysicalActivityScene step={stageIdx} playing={false} />
-              </LazyMotion>
-            </div>
+            {/* The week, filled in step by step. Day names and the legend are DOM text. */}
+            <figure>
+              <div role="img" aria-label={`${copy.stepper.weekCaption} ${stage.title}`}>
+                <div className="relative w-full" style={{ aspectRatio: `${ACTIVITY_VIEWBOX.width} / ${ACTIVITY_VIEWBOX.height}` }}>
+                  <LazyMotion features={domAnimation} strict>
+                    <PhysicalActivityScene step={stageIdx} playing={false} lang={lang} />
+                  </LazyMotion>
+                  {/* Minute scale for the walking bars */}
+                  <div aria-hidden="true">
+                    <span className={MINUTE_LABEL} style={{ top: pctY(activityMinuteY(45) - 18) }}>
+                      min
+                    </span>
+                    {ACTIVITY_GRID_MINUTES.map((min) => (
+                      <span key={min} className={MINUTE_LABEL} style={{ top: pctY(activityMinuteY(min)) }}>
+                        {min}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div aria-hidden="true" className="mt-1.5 grid text-center text-xs font-semibold text-muted-foreground" style={DAY_ROW_STYLE}>
+                  {copy.stepper.dayInitials.map((initial, day) => (
+                    <span key={day}>{initial}</span>
+                  ))}
+                </div>
+              </div>
+              <figcaption className="mt-4 border-t border-border pt-3">
+                <p className="text-xs text-muted-foreground">{copy.stepper.weekCaption}</p>
+                <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1.5 text-sm sm:grid-cols-2">
+                  {stages.map((s, layer) => (
+                    <li
+                      key={s.id}
+                      className={cn(
+                        "flex items-center gap-2.5 transition-opacity duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+                        layer > stageIdx ? "opacity-45" : "opacity-100",
+                      )}
+                    >
+                      <span className="flex w-[22px] shrink-0 justify-center" aria-hidden="true">
+                        <LayerSwatch layer={layer} />
+                      </span>
+                      <span className={layer === stageIdx ? "font-semibold text-foreground" : "text-foreground"}>
+                        {s.title}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </figcaption>
+            </figure>
 
             {/* Hairline-divided 2-column step breakdown */}
             <div aria-live="polite" className="space-y-4 border-t border-border pt-5">
@@ -199,11 +277,11 @@ export function ActivityEveryMoveCountsModule({
                 {copy.stepper.stepOfTemplate.replace("{n}", String(stageIdx + 1)).replace("{total}", String(stages.length))}
               </span>
               <div className="flex items-center gap-2">
-                <button type="button" onClick={() => selectStage(stageIdx - 1)} disabled={stageIdx === 0} className={NAV_BUTTON}>
+                <button type="button" onClick={() => selectStage(stageIdx - 1)} disabled={stageIdx === 0} className={BACK_BUTTON}>
                   <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
                   {copy.stepper.prevButton}
                 </button>
-                <button type="button" onClick={() => selectStage(stageIdx + 1)} disabled={stageIdx === last} className={NAV_BUTTON}>
+                <button type="button" onClick={() => selectStage(stageIdx + 1)} disabled={stageIdx === last} className={NEXT_BUTTON}>
                   {copy.stepper.nextButton}
                   <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
                 </button>

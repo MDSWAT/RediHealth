@@ -28,7 +28,7 @@ function MissingRoute() {
       aria-hidden="true"
       focusable="false"
     >
-      <circle cx="14" cy="40" r="4.5" className="fill-primary" />
+      <circle cx="14" cy="40" r="4.5" className="fill-sapphire" />
       <path
         className="fhs-route"
         pathLength={1}
@@ -58,7 +58,7 @@ export default function NotFound() {
             {page.subtitle}
           </p>
           <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-            <Button href={withLangPrefix("/", lang)} className="sm:whitespace-nowrap">
+            <Button href={withLangPrefix("/", lang)} variant="secondary" className="sm:whitespace-nowrap">
               {page.backHome}
             </Button>
             <Button

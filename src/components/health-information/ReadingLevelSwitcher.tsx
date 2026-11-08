@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 
@@ -66,18 +66,19 @@ export function ReadingLevelSwitcher({
   const simpleText = labels?.simple ?? copy.simple;
   const completeText = labels?.complete ?? copy.complete;
 
+  // Restore the reader's last choice once, on mount. Later changes come from clicks.
+  const initialRef = useRef({ level, onChange });
   useEffect(() => {
+    const { level: initialLevel, onChange: restore } = initialRef.current;
     try {
       const stored = localStorage.getItem("redihealth_reading_level");
-      if (stored === "simple" || stored === "complete") {
-        if (stored !== level) {
-          onChange(stored);
-        }
+      if ((stored === "simple" || stored === "complete") && stored !== initialLevel) {
+        restore(stored);
       }
     } catch {
       // LocalStorage access restricted in private mode
     }
-  }, [level, onChange]);
+  }, []);
 
   const handleSelect = (newLevel: "simple" | "complete") => {
     onChange(newLevel);
@@ -98,9 +99,9 @@ export function ReadingLevelSwitcher({
         type="button"
         onClick={() => handleSelect("simple")}
         aria-pressed={level === "simple"}
-        className={`inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md px-3.5 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+        className={`inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md px-3.5 py-2 text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
           level === "simple"
-            ? "bg-foreground text-white font-semibold"
+            ? "bg-foreground font-semibold text-background"
             : "text-foreground hover:bg-card"
         }`}
       >
@@ -111,9 +112,9 @@ export function ReadingLevelSwitcher({
         type="button"
         onClick={() => handleSelect("complete")}
         aria-pressed={level === "complete"}
-        className={`inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md px-3.5 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+        className={`inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md px-3.5 py-2 text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
           level === "complete"
-            ? "bg-foreground text-white font-semibold"
+            ? "bg-foreground font-semibold text-background"
             : "text-foreground hover:bg-card"
         }`}
       >

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { AlertCircleIcon, ShieldIcon } from "@/components/ui/icons";
+import { AlertCircleIcon, CheckCircleIcon, PhoneIcon } from "@/components/ui/icons";
+import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 import {
@@ -32,7 +33,7 @@ const BP_PRESETS: BpPresetConfig[] = [
 ];
 
 const SECTION_CLASS =
-  "rounded-lg border border-border bg-card p-5 shadow-xs sm:p-7";
+  "rounded-xl border border-border bg-card p-5 sm:p-7";
 
 function useSafeLang(langProp?: Lang): Lang {
   let hookLang: Lang = "ro";
@@ -52,6 +53,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
   const [diastolic, setDiastolic] = useState<number>(78);
   const [hasRedFlags, setHasRedFlags] = useState<boolean>(false);
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
+  const [dialerOpen, setDialerOpen] = useState(false);
 
   const evaluation = evaluateBloodPressure(systolic, diastolic, { hasRedFlags, lang });
   const ui = BP_SIMULATOR_UI_STRINGS;
@@ -75,19 +77,16 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
             dot: "bg-primary",
           };
 
-  const stageCountLabel = esh.stageCountTemplate[lang]
-    .replace("{current}", String(activeStepIndex + 1))
-    .replace("{total}", String(steps.length));
-
   const sliders = [
     {
       id: "bp-systolic-slider",
       label: ui.systolicLabel[lang],
       hint: ui.systolicSubtext[lang],
       value: systolic,
-      min: 70,
+      min: 80,
       max: 220,
-      ticks: ["70", "120", "140", "180+"],
+      // A regular scale, every 20 mmHg, drawn where each value really sits on the bar.
+      ticks: [80, 100, 120, 140, 160, 180, 200, 220],
       onChange: setSystolic,
     },
     {
@@ -97,7 +96,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
       value: diastolic,
       min: 40,
       max: 140,
-      ticks: ["40", "80", "90", "120+"],
+      ticks: [40, 60, 80, 100, 120, 140],
       onChange: setDiastolic,
     },
   ];
@@ -115,7 +114,9 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
 
         <div className="mt-5">
           <p className="text-xs font-medium text-muted-foreground">{ui.quickExamples[lang]}</p>
-          <div className="mt-2 grid grid-cols-2 gap-1.5 sm:flex sm:items-center">
+          {/* Phones: one row that scrolls sideways (no orphan chip). From sm up: equal cells. */}
+          <div className="-mx-5 mt-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0">
+          <div className="flex w-max gap-1.5 sm:w-auto">
             {BP_PRESETS.map((preset) => {
               const isSelected =
                 systolic === preset.systolic &&
@@ -131,7 +132,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                     setDiastolic(preset.diastolic);
                     setHasRedFlags(Boolean(preset.hasRedFlags));
                   }}
-                  className={`inline-flex min-h-[40px] items-center justify-center rounded-lg border px-2 text-center text-xs font-semibold leading-tight tracking-[-0.01em] tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:flex-1 sm:whitespace-nowrap ${
+                  className={`inline-flex min-h-[44px] shrink-0 items-center justify-center whitespace-nowrap rounded-lg border px-3 text-center text-xs font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:shrink sm:grow sm:basis-0 sm:px-2 sm:tracking-[-0.01em] ${
                     isSelected
                       ? "border-foreground bg-foreground text-white"
                       : "border-border bg-card text-foreground hover:border-foreground/40 hover:bg-muted/40"
@@ -141,6 +142,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                 </button>
               );
             })}
+          </div>
           </div>
         </div>
 
@@ -171,10 +173,26 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                   aria-valuetext={`${s.value} mmHg, ${evaluation.label[lang]}`}
                   className="w-full cursor-pointer accent-sapphire"
                 />
-                <div className="mt-1 flex justify-between text-xs tabular-nums text-muted-foreground" aria-hidden="true">
-                  {s.ticks.map((t) => (
-                    <span key={t}>{t}</span>
-                  ))}
+                {/*
+                  The native thumb is 16px wide, so its centre travels from 8px to (100% - 8px).
+                  Each value gets a hairline at its true position; the end labels align to the edges.
+                */}
+                <div className="relative mt-0.5 h-6 text-[11px] tabular-nums text-muted-foreground sm:text-xs" aria-hidden="true">
+                  {s.ticks.map((t, i) => {
+                    const left = `calc(8px + (100% - 16px) * ${(t - s.min) / (s.max - s.min)})`;
+                    const edge = i === 0 ? "left-0" : i === s.ticks.length - 1 ? "right-0" : "-translate-x-1/2";
+                    return (
+                      <span key={t}>
+                        <span className="absolute top-0 h-1 w-px bg-border" style={{ left }} />
+                        <span
+                          className={`absolute top-1.5 ${edge}`}
+                          style={i === 0 || i === s.ticks.length - 1 ? undefined : { left }}
+                        >
+                          {t}
+                        </span>
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -182,7 +200,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
         </div>
 
         <label
-          className={`mt-6 flex min-h-[48px] cursor-pointer items-start gap-3 rounded-lg border px-4 py-3.5 text-sm text-foreground transition-colors ${
+          className={`mt-6 flex min-h-[48px] cursor-pointer items-start gap-3 rounded-lg border px-4 py-3.5 text-sm text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
             hasRedFlags
               ? "border-primary/40 bg-primary-soft/30"
               : "border-border bg-card hover:border-foreground/30 hover:bg-muted/30"
@@ -196,7 +214,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
           />
           <span
             aria-hidden="true"
-            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] border transition-colors ${
+            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
               hasRedFlags
                 ? "border-primary bg-primary text-white"
                 : "border-border bg-card"
@@ -250,14 +268,17 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
           </div>
 
           {evaluation.isEmergency112 && (
-            <div className="mt-4 flex flex-col gap-3 rounded-lg border border-primary/30 bg-primary-soft/50 p-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm font-medium leading-relaxed text-foreground">{ui.emergencyNotice[lang]}</p>
-              <a
-                href="tel:112"
-                className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-lg bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            <div className="mt-4 flex flex-col gap-3 border-t border-border/70 pt-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm font-semibold leading-relaxed text-foreground">{ui.emergencyNotice[lang]}</p>
+              <button
+                type="button"
+                onClick={() => setDialerOpen(true)}
+                aria-haspopup="dialog"
+                className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
+                <PhoneIcon className="h-4 w-4" />
                 {ui.call112Btn[lang]}
-              </a>
+              </button>
             </div>
           )}
         </div>
@@ -274,7 +295,8 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
         </h3>
         <p className="mt-1 text-sm text-muted-foreground">{esh.headerEyebrow[lang]}</p>
 
-        <ol className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+        {/* Step picker: one surface of numbered cells split by hairlines. */}
+        <ol className="mt-5 grid grid-cols-1 divide-y divide-border overflow-hidden rounded-lg border border-border md:grid-cols-4 md:divide-x md:divide-y-0">
           {steps.map((st, idx) => {
             const isCurrent = idx === activeStepIndex;
             return (
@@ -283,16 +305,14 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                   type="button"
                   onClick={() => setActiveStepIndex(idx)}
                   aria-current={isCurrent ? "step" : undefined}
-                  className={`flex h-full min-h-[52px] w-full items-center gap-3 rounded-lg border px-4 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                    isCurrent
-                      ? "border-foreground bg-surface-subtle"
-                      : "border-border bg-card hover:border-foreground/40 hover:bg-muted/30"
+                  className={`flex h-full min-h-[52px] w-full items-center gap-3 px-3.5 py-3 text-left md:flex-col md:items-start md:gap-2 md:py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire ${
+                    isCurrent ? "bg-surface-subtle" : "bg-card hover:bg-surface-subtle/50"
                   }`}
                 >
                   <span
                     aria-hidden="true"
                     className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-semibold tabular-nums ${
-                      isCurrent ? "bg-foreground text-background" : "border border-border text-muted-foreground"
+                      isCurrent ? "bg-foreground text-white" : "bg-surface-subtle text-muted-foreground"
                     }`}
                   >
                     {st.number}
@@ -315,8 +335,8 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
           <div className="mt-5 grid grid-cols-1 gap-6 border-t border-border/70 pt-5 sm:grid-cols-2">
             <div>
               <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                <ShieldIcon className="h-4 w-4 shrink-0 text-live-sage" />
-                {esh.doctorTipLabel[lang]}
+                <CheckCircleIcon className="h-4 w-4 shrink-0 text-live-sage" />
+                {esh.goodToKnowLabel[lang]}
               </p>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 {currentStep.doctorTip[lang]}
@@ -333,29 +353,29 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
             </div>
           </div>
 
+          {/* The picker above already shows which step is open, so there is no "Step 1 of 4" counter. */}
           <div className="mt-6 flex items-center justify-between gap-3 border-t border-border pt-4">
             <button
               type="button"
               onClick={() => setActiveStepIndex((prev) => Math.max(0, prev - 1))}
               disabled={activeStepIndex === 0}
-              className="inline-flex min-h-[44px] items-center rounded-lg border border-border bg-card px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:opacity-40"
+              className="-ml-3 inline-flex min-h-[44px] items-center rounded-lg px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:text-muted-foreground disabled:hover:bg-transparent"
             >
               {esh.prevStep[lang]}
             </button>
-            <span className="text-xs font-medium tabular-nums text-muted-foreground">
-              {stageCountLabel}
-            </span>
             <button
               type="button"
               onClick={() => setActiveStepIndex((prev) => Math.min(steps.length - 1, prev + 1))}
               disabled={activeStepIndex === steps.length - 1}
-              className="inline-flex min-h-[44px] items-center rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40"
+              className="inline-flex min-h-[44px] items-center rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
             >
               {esh.nextStep[lang]}
             </button>
           </div>
         </div>
       </section>
+
+      <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} />
     </div>
   );
 }

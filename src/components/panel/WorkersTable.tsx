@@ -15,6 +15,9 @@ import type { WorkerItem, WorkerStatus } from "@/lib/types/worker";
 import { CreateWorkerModal } from "./CreateWorkerModal";
 import { AssignPatientsModal } from "./AssignPatientsModal";
 import { WorkersFilterBar } from "./WorkersFilterBar";
+import { crmTranslations } from "@/lib/i18n/crm-translations";
+import { localDateKey } from "@/lib/panel-dates";
+import { csvTimestamp, downloadCsv } from "./panel-csv";
 
 interface WorkersTableProps {
   initialWorkers: WorkerItem[];
@@ -193,46 +196,13 @@ export function WorkersTable({
 
   function handleExportCSV() {
     if (filteredWorkers.length === 0) return;
-
-    const headers = [
-      "Worker ID",
-      "Full Name",
-      "Email",
-      "Phone",
-      "Role",
-      "Department",
-      "Status",
-      "Assigned Patients Count",
-      "Created At",
-    ];
-
-    const rows = filteredWorkers.map((w) => [
-      w.id,
-      `"${w.full_name.replace(/"/g, '""')}"`,
-      `"${w.email.replace(/"/g, '""')}"`,
-      `"${(w.phone || "").replace(/"/g, '""')}"`,
-      `"${w.role.replace(/"/g, '""')}"`,
-      `"${(w.department || "").replace(/"/g, '""')}"`,
-      w.status,
-      w.assigned_patients_count || 0,
-      new Date(w.created_at).toISOString(),
-    ]);
-
-    const csvContent =
-      "data:text/csv;charset=utf-8," +
-      [headers.join(","), ...rows.map((e) => e.join(","))].join("\n");
-
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute(
-      "download",
-      `redihealth-workers-${new Date().toISOString().slice(0, 10)}.csv`,
-    );
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const crm = crmTranslations[lang];
+    const header = [crm.csvId, crm.csvName, crm.csvEmail, crm.csvPhone, crm.csvRole, crm.csvDepartment, crm.status, crm.csvAssignedPatients, crm.csvCreated];
+    downloadCsv(`redihealth-workers-${localDateKey()}.csv`, header, filteredWorkers.map((w) => [
+      w.id, w.full_name, w.email, w.phone || "", w.role, w.department || "", w.status, w.assigned_patients_count || 0, csvTimestamp(w.created_at),
+    ]));
   }
+
 
   return (
     <div>
@@ -275,7 +245,7 @@ export function WorkersTable({
       </div>
 
       {filteredWorkers.length === 0 ? (
-        <div className="rounded-2xl border border-border bg-card p-12 text-center">
+        <div className="rounded-xl border border-border bg-card p-12 text-center">
           <StethoscopeIcon className="mx-auto h-8 w-8 text-muted-foreground" />
           <h3 className="mt-3 text-base font-semibold text-foreground">{t.noneTitle}</h3>
           <p className="mt-1 text-xs text-muted-foreground">
@@ -290,7 +260,7 @@ export function WorkersTable({
             const assignedCount = patients.filter((p) => p.assigned_worker_id === worker.id).length;
 
             return (
-              <article key={`${worker.id}-${worker.email}`} className="rounded-2xl border border-border bg-card p-5 shadow-xs transition-colors hover:border-border hover:shadow-sm">
+              <article key={`${worker.id}-${worker.email}`} className="rounded-xl border border-border bg-card p-5 shadow-xs transition-colors hover:border-border hover:shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-base font-bold text-foreground">{worker.full_name}</p>
@@ -303,7 +273,7 @@ export function WorkersTable({
                   <button
                     type="button"
                     onClick={() => handleToggleStatus(worker)}
-                    className={`shrink-0 rounded-xl border px-2.5 py-1 text-xs font-bold capitalize cursor-pointer transition-colors ${
+                    className={`shrink-0 rounded-lg border px-2.5 py-1 text-xs font-bold capitalize cursor-pointer transition-colors ${
                       worker.status === "active"
                         ? "border-emerald-200 bg-emerald-50/80 text-emerald-800"
                         : "border-slate-200 bg-slate-100 text-slate-700"
@@ -343,7 +313,7 @@ export function WorkersTable({
                         type="button"
                         disabled={isDeleting}
                         onClick={() => handleDelete(worker.id)}
-                        className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:opacity-50 transition-colors"
+                        className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700 disabled:bg-muted disabled:text-muted-foreground transition-colors"
                       >
                         {isDeleting ? "..." : t.yesDelete}
                       </button>
@@ -359,7 +329,7 @@ export function WorkersTable({
                     <button
                       type="button"
                       onClick={() => setConfirmingDeleteId(worker.id)}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-red-600 hover:bg-red-50 transition-colors"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-red-600 hover:bg-red-50 transition-colors"
                       title={t.deleteWorker}
                     >
                       <TrashIcon className="h-4 w-4" />
@@ -370,7 +340,7 @@ export function WorkersTable({
                     <button
                       type="button"
                       onClick={() => setEditingWorker(worker)}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                       title={t.editWorker}
                     >
                       <EditIcon className="h-4 w-4" />
@@ -378,7 +348,7 @@ export function WorkersTable({
                     <button
                       type="button"
                       onClick={() => setAssigningWorker(worker)}
-                      className="inline-flex items-center justify-center min-h-10 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-white hover:bg-primary-hover shadow-2xs transition-colors"
+                      className="inline-flex items-center justify-center min-h-10 rounded-lg bg-primary px-4 py-2 text-xs font-bold text-white hover:bg-primary-hover shadow-2xs transition-colors"
                     >
                       {t.assignPatients}
                     </button>

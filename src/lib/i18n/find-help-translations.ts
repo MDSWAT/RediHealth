@@ -8,6 +8,8 @@ export type FindHelpCopy = {
   countryLabel: string;
   categoryLabel: string;
   searchPlaceholder: string;
+  /** Short placeholder that fits a 375px phone; the label keeps the full searchPlaceholder. */
+  searchHint: string;
   searchButton: string;
   useMyLocation: string;
   locating: string;
@@ -26,6 +28,10 @@ export type FindHelpCopy = {
   directions: string;
   website: string;
   youAreHere: string;
+  /** Accessible name of the two-item key under the map. */
+  mapLegendLabel: string;
+  legendPlace: string;
+  legendEmergency: string;
   resultsCount: (count: number) => string;
   showMore: (remaining: number) => string;
   /** OpenStreetMap opening_hours day codes (Mo…Su, PH) and "off", in this language. */
@@ -47,6 +53,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     countryLabel: "Country",
     categoryLabel: "Type",
     searchPlaceholder: "Search by name, city or address",
+    searchHint: "Name, city or address",
     searchButton: "Search",
     useMyLocation: "Use my location",
     locating: "Finding your location…",
@@ -65,6 +72,9 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     directions: "Directions",
     website: "Website",
     youAreHere: "You are here",
+    mapLegendLabel: "Map key",
+    legendPlace: "Health facility",
+    legendEmergency: "Has an emergency department",
     showMore: (remaining) => (remaining === 1 ? "Show 1 more place" : `Show ${remaining} more places`),
     resultsCount: (count) => (count === 1 ? "1 place" : `${count} places`),
     hoursTokens: { Mo: "Mon", Tu: "Tue", We: "Wed", Th: "Thu", Fr: "Fri", Sa: "Sat", Su: "Sun", PH: "Public holidays", off: "closed" },
@@ -83,6 +93,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     countryLabel: "Țară",
     categoryLabel: "Tip",
     searchPlaceholder: "Caută după nume, oraș sau adresă",
+    searchHint: "Nume, oraș sau adresă",
     searchButton: "Caută",
     useMyLocation: "Folosește locația mea",
     locating: "Căutăm unde ești…",
@@ -101,6 +112,9 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     directions: "Traseu",
     website: "Site web",
     youAreHere: "Ești aici",
+    mapLegendLabel: "Legenda hărții",
+    legendPlace: "Unitate medicală",
+    legendEmergency: "Are primiri urgențe",
     showMore: (remaining) =>
       remaining === 1
         ? "Arată încă un loc"
@@ -126,6 +140,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     countryLabel: "Shteti",
     categoryLabel: "Lloji",
     searchPlaceholder: "Kërko sipas emrit, qytetit ose adresës",
+    searchHint: "Emri, qyteti ose adresa",
     searchButton: "Kërko",
     useMyLocation: "Përdor vendndodhjen time",
     locating: "Po kërkojmë ku je…",
@@ -141,9 +156,12 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     kmAway: (km) => `${km} km larg`,
     open24h: "Hapur 24 orë",
     emergency: "Urgjencë",
-    directions: "Rruga",
+    directions: "Udhëzime",
     website: "Faqja web",
     youAreHere: "Ti je këtu",
+    mapLegendLabel: "Legjenda e hartës",
+    legendPlace: "Institucion shëndetësor",
+    legendEmergency: "Ka shërbim urgjence",
     showMore: (remaining) => (remaining === 1 ? "Shfaq edhe 1 vend" : `Shfaq edhe ${remaining} vende`),
     resultsCount: (count) => (count === 1 ? "1 vend" : `${count} vende`),
     hoursTokens: { Mo: "Hën", Tu: "Mar", We: "Mër", Th: "Enj", Fr: "Pre", Sa: "Sht", Su: "Die", PH: "Festat zyrtare", off: "mbyllur" },
@@ -162,6 +180,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     countryLabel: "Paese",
     categoryLabel: "Tipo",
     searchPlaceholder: "Cerca per nome, città o indirizzo",
+    searchHint: "Nome, città o indirizzo",
     searchButton: "Cerca",
     useMyLocation: "Usa la mia posizione",
     locating: "Cerchiamo dove sei…",
@@ -180,6 +199,9 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     directions: "Indicazioni",
     website: "Sito web",
     youAreHere: "Sei qui",
+    mapLegendLabel: "Legenda della mappa",
+    legendPlace: "Struttura sanitaria",
+    legendEmergency: "Con pronto soccorso",
     showMore: (remaining) => (remaining === 1 ? "Mostra un altro posto" : `Mostra altri ${remaining} posti`),
     resultsCount: (count) => (count === 1 ? "1 posto" : `${count} posti`),
     hoursTokens: { Mo: "Lun", Tu: "Mar", We: "Mer", Th: "Gio", Fr: "Ven", Sa: "Sab", Su: "Dom", PH: "Festivi", off: "chiuso" },

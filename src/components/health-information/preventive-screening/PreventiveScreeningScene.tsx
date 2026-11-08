@@ -17,6 +17,16 @@ const BASELINE_Y = 148;
 const SYMPTOM_Y = 58;
 const CHECK_X = 124;
 const CHECK_Y = 136;
+/** Points the DOM labels around the drawing are anchored to (viewBox units, 320 × 180). */
+export const SCREENING_SCENE_GEOMETRY = {
+  width: 320,
+  height: 180,
+  baselineY: BASELINE_Y,
+  symptomY: SYMPTOM_Y,
+  checkX: CHECK_X,
+  plotRight: 290,
+} as const;
+
 /** Untreated course: slow and silent at first, then rising past the symptom line. */
 const SILENT_PART = `M36 ${BASELINE_Y - 2} C70 ${BASELINE_Y - 3} 100 ${BASELINE_Y - 6} ${CHECK_X} ${CHECK_Y}`;
 const UNTREATED_PART = `M${CHECK_X} ${CHECK_Y} C170 118 214 84 250 ${SYMPTOM_Y} C262 50 274 42 286 36`;
@@ -24,7 +34,8 @@ const UNTREATED_PART = `M${CHECK_X} ${CHECK_Y} C170 118 214 84 250 ${SYMPTOM_Y} 
 const TREATED_PART = `M${CHECK_X} ${CHECK_Y} C150 132 176 ${BASELINE_Y - 3} 286 ${BASELINE_Y - 3}`;
 
 /**
- * How early detection works, as a calm line diagram (four steps):
+ * How early detection works, as a calm line diagram (four steps). Pure drawing:
+ * the selector places DOM labels ("symptoms appear", "found early" …) on top.
  * 0 you feel well while a change starts silently; 1 a short check;
  * 2 the change is found early, long before symptoms; 3 simpler treatment.
  */
@@ -56,7 +67,7 @@ export function PreventiveScreeningScene({ step, playing }: ExplainerSceneProps)
         stroke="var(--color-sapphire)"
         initial={false}
         animate={{ pathLength: draw ? [0, 1] : 1 }}
-        transition={draw ? { duration: 0.9, ease: EASE_OUT } : { duration: 0 }}
+        transition={draw ? { duration: DURATION.slow * 2, ease: EASE_OUT } : { duration: 0 }}
         {...LINE}
       />
 
@@ -84,7 +95,7 @@ export function PreventiveScreeningScene({ step, playing }: ExplainerSceneProps)
         stroke="var(--color-sapphire)"
         initial={false}
         animate={{ opacity: phase >= 3 ? 1 : 0, pathLength: phase >= 3 ? 1 : 0 }}
-        transition={reduceMotion ? { duration: 0 } : { duration: 0.6, ease: EASE_OUT }}
+        transition={reduceMotion ? { duration: 0 } : { duration: DURATION.slow * 1.5, ease: EASE_OUT }}
         {...LINE}
         strokeWidth={2.5}
       />

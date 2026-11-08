@@ -150,7 +150,7 @@ function OptionRow({
       aria-checked={checked}
       tabIndex={checked || focusable ? 0 : -1}
       onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
-      className={`flex w-full items-start gap-3 rounded-lg border bg-card text-left transition-[border-color,box-shadow,background-color] duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
+      className={`flex w-full items-start gap-3 rounded-lg border bg-card text-left transition-[border-color,box-shadow,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
         compact ? "min-h-11 px-3 py-2.5" : "min-h-12 px-3.5 py-3"
       } ${
         checked
@@ -270,6 +270,8 @@ export function HealthCheckExplorer() {
   const [duration, setDuration] = useState<DurationId | null>(null);
   const [showEmergencyOverlay, setShowEmergencyOverlay] = useState(false);
   const [doctorOpen, setDoctorOpen] = useState(false);
+  // Without the 3D body (data saver, no WebGL) the tool is one column: the note, then the list.
+  const [bodyShown, setBodyShown] = useState(true);
   const [largeText, toggleLargeText] = useLargeText();
   const voice = useReadAloud(activeLang);
 
@@ -533,7 +535,7 @@ export function HealthCheckExplorer() {
 
   const sectionLabel = "text-sm font-semibold text-foreground";
   const secondaryBtn =
-    "inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-card px-5 text-base font-medium text-foreground transition-colors hover:bg-muted";
+    "inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-card px-5 text-base font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted";
 
   /* What "Listen" reads on each step: the question, then what matters on screen. */
   // One entry per recorded clip (see spoken-segments.ts), read in order.
@@ -613,14 +615,14 @@ export function HealthCheckExplorer() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl">
+    <div>
       <AssistantNavigation />
 
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
         {`${stepIndicatorText}: ${stepTitles[step - 1]}`}
       </div>
 
-      <header ref={headerRef} className="scroll-mt-4 pb-4 sm:pb-6">
+      <header ref={headerRef} className={`scroll-mt-4 pb-4 sm:pb-6 ${bodyShown ? "" : "max-w-2xl"}`}>
         <div className="flex items-baseline justify-between gap-x-4 gap-y-1 sm:flex-wrap sm:gap-x-6">
           <h1 className="text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl">
             {dict.ui.heading}
@@ -657,7 +659,7 @@ export function HealthCheckExplorer() {
               <li
                 key={title}
                 aria-current={i + 1 === step ? "step" : undefined}
-                className={`h-1 rounded-full transition-colors duration-[var(--dur-base)] ${
+                className={`h-1 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
                   i + 1 <= step ? "bg-foreground" : "bg-border"
                 }`}
               >
@@ -668,13 +670,15 @@ export function HealthCheckExplorer() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 gap-x-10 gap-y-5 lg:grid-cols-12">
+      <div className={bodyShown ? "grid grid-cols-1 gap-x-10 gap-y-5 lg:grid-cols-12" : "grid max-w-2xl grid-cols-1 gap-y-5"}>
         {/* The body stays mounted across steps: one WebGL context, the selection travels with you. */}
         <section
           aria-label={dict.ui.viewer3D.subModelInfo}
-          className={`lg:col-span-7 lg:row-span-2 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:self-start ${
-            step === 4 ? "hidden lg:block" : ""
-          }`}
+          className={
+            bodyShown
+              ? `lg:col-span-7 lg:row-span-2 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:self-start ${step === 4 ? "hidden lg:block" : ""}`
+              : step === 1 ? "" : "hidden"
+          }
         >
           <AnatomicalBodyMap
             selectedPart={selectedPart}
@@ -683,15 +687,17 @@ export function HealthCheckExplorer() {
             selectedSide={detail?.side ?? "Center"}
             onSelectDetailedAnatomy={(_part, subRegion, side) => setDetail({ subRegion, side })}
             lang={activeLang}
-            stageClassName={`-mx-5 w-[calc(100%+2.5rem)] sm:mx-0 sm:w-full sm:rounded-lg sm:border sm:border-border ${stageHeight}`}
-            toolsClassName={step === 1 ? "" : "hidden lg:block"}
+            stageClassName={`-mx-5 w-[calc(100%+2.5rem)] sm:mx-0 sm:w-full sm:rounded-xl sm:border sm:border-border ${stageHeight}`}
+            /* The "tap the body" tip only where a tap chooses something; later the body is context. */
+            toolsClassName={step === 1 ? "" : "hidden"}
             controlsClassName={step === 1 ? "flex" : "hidden lg:flex"}
             decorative={step > 1}
             selectionLabel={step === 1 ? areaLabel : null}
+            onBodyShownChange={setBodyShown}
           />
         </section>
 
-        <section aria-labelledby={`${baseId}-q`} className="min-w-0 lg:col-span-5">
+        <section aria-labelledby={`${baseId}-q`} className={`min-w-0 ${bodyShown ? "lg:col-span-5" : ""}`}>
           <div key={step} className={stepDir ? "hc-step" : undefined} data-dir={stepDir ?? undefined}>
           <h2
             id={`${baseId}-q`}
@@ -750,12 +756,12 @@ export function HealthCheckExplorer() {
               </fieldset>
 
               <div>
-                <p className={`${sectionLabel} mb-2 lg:hidden`}>{c.orList}</p>
+                {bodyShown && <p className={`${sectionLabel} mb-2 lg:hidden`}>{c.orList}</p>}
                 <div
                   role="radiogroup"
                   aria-labelledby={`${baseId}-q`}
                   onKeyDown={handleRadioKeys}
-                  className="grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-1"
+                  className={`grid grid-cols-1 gap-1.5 ${bodyShown ? "sm:grid-cols-2 lg:grid-cols-1" : ""}`}
                 >
                   {BODY_PARTS.map((id) => (
                     <OptionRow
@@ -869,7 +875,7 @@ export function HealthCheckExplorer() {
                       return (
                         <label
                           key={symptom.id}
-                          className={`flex min-h-12 cursor-pointer items-start gap-3 rounded-lg border bg-card px-3.5 py-3 transition-colors ${
+                          className={`flex min-h-12 cursor-pointer items-start gap-3 rounded-lg border bg-card px-3.5 py-3 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
                             checked ? "border-sapphire shadow-[inset_0_0_0_1px_var(--color-sapphire)]" : "border-border hover:border-foreground/30"
                           }`}
                         >
@@ -899,7 +905,7 @@ export function HealthCheckExplorer() {
               {/* 1. The verdict */}
               {isEmergency ? (
                 <div>
-                  <div role="alert" className="rounded-lg bg-primary p-5 text-white">
+                  <div role="alert" className="rounded-xl bg-primary p-5 text-white">
                     <h3 className="text-lg font-semibold leading-snug">{dict.ui.emergency.title}</h3>
                     <p className="mt-1.5 text-base leading-relaxed text-white/90">{dict.ui.emergency.description}</p>
                   </div>
@@ -1005,7 +1011,7 @@ export function HealthCheckExplorer() {
         </section>
 
         {/* Action bar: pinned to the bottom of the screen while the tool is in view. */}
-        <div data-sticky-actions className="sticky bottom-0 z-20 -mx-5 border-t border-border bg-background px-5 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 sm:mx-0 sm:px-0 lg:col-span-5 lg:col-start-8">
+        <div data-sticky-actions className={`sticky bottom-0 z-20 -mx-5 border-t border-border bg-background px-5 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 sm:mx-0 sm:px-0 ${bodyShown ? "lg:col-span-5 lg:col-start-8" : ""}`}>
           {step < 4 && (
             <p className="mb-2 text-sm leading-snug text-muted-foreground" aria-live="polite">
               {isEmergency && step > 1 ? (
@@ -1040,7 +1046,7 @@ export function HealthCheckExplorer() {
               <button
                 type="button"
                 onClick={goBack}
-                className="inline-flex min-h-12 shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-card px-4 text-base font-medium text-foreground transition-colors hover:bg-muted"
+                className="inline-flex min-h-12 shrink-0 items-center justify-center gap-1.5 rounded-lg px-3 text-base font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted"
               >
                 <ArrowLeftIcon className="h-4 w-4" />
                 {dict.ui.backButton}
@@ -1049,7 +1055,7 @@ export function HealthCheckExplorer() {
             {isEmergency && step > 1 ? (
               <a
                 href="tel:112"
-                className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-base font-semibold text-white transition-colors hover:bg-primary-hover"
+                className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover"
               >
                 <PhoneIcon className="h-5 w-5" />
                 {dict.ui.emergency.call112Now}
@@ -1059,7 +1065,7 @@ export function HealthCheckExplorer() {
                 type="button"
                 disabled={!canContinue}
                 onClick={() => goToStep((step + 1) as Step)}
-                className="inline-flex min-h-12 flex-1 items-center justify-center gap-1.5 rounded-lg bg-foreground px-5 text-base font-semibold text-white transition-[background-color,transform] duration-[var(--dur-fast)] hover:bg-ink-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-border disabled:text-muted-foreground disabled:active:scale-100"
+                className="inline-flex min-h-12 flex-1 items-center justify-center gap-1.5 rounded-lg bg-foreground px-5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 disabled:cursor-not-allowed disabled:bg-border disabled:text-muted-foreground"
               >
                 {step === 3 ? dict.ui.finishButton : dict.ui.nextButton}
                 <ArrowRightIcon className="h-4 w-4" />
@@ -1068,7 +1074,7 @@ export function HealthCheckExplorer() {
               <button
                 type="button"
                 onClick={() => openModal("doctor")}
-                className="inline-flex min-h-12 flex-1 items-center justify-center rounded-lg bg-foreground px-5 text-base font-semibold text-white transition-colors hover:bg-ink-800"
+                className="inline-flex min-h-12 flex-1 items-center justify-center rounded-lg bg-foreground px-5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800"
               >
                 {dict.ui.showDoctor}
               </button>
@@ -1085,7 +1091,7 @@ export function HealthCheckExplorer() {
             aria-modal="true"
             aria-labelledby={`${baseId}-em-title`}
             aria-describedby={`${baseId}-em-desc`}
-            className="hc-sheet w-full max-w-lg rounded-t-2xl bg-card p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-xl sm:rounded-lg sm:p-7"
+            className="hc-sheet w-full max-w-lg rounded-t-xl bg-card p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-xl sm:rounded-xl sm:p-7"
           >
             <h3 id={`${baseId}-em-title`} className="text-xl font-semibold leading-snug text-foreground">
               {dict.ui.emergency.title}
@@ -1100,7 +1106,7 @@ export function HealthCheckExplorer() {
               <a
                 data-autofocus
                 href="tel:112"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-base font-semibold text-white transition-colors hover:bg-primary-hover"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover"
               >
                 <PhoneIcon className="h-5 w-5" />
                 {dict.ui.emergency.call112Now}

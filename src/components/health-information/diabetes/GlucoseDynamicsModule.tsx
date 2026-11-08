@@ -1,8 +1,11 @@
 "use client";
 
 import { useContext, useEffect, useRef, useState } from "react";
+import { LazyMotion, domAnimation, m, useReducedMotion } from "motion/react";
 import { AlertCircleIcon } from "@/components/ui/icons";
+import { DURATION, EASE_OUT } from "@/lib/motion/tokens";
 import { LanguageContext } from "@/lib/i18n/language-context";
+import { ROW_CLASS, ROW_LIST_CLASS, radioDotClass } from "./choice-styles";
 import type { Lang } from "@/lib/i18n/translations";
 
 export interface GlucoseDynamicsModuleProps {
@@ -15,15 +18,13 @@ interface ScenarioLocalization {
   title: string;
   badge: string;
   description: string;
-  peakTime: string;
   clinicalNote: string;
 }
 
 interface GlucoseScenario {
   id: ScenarioId;
-  points: number[]; // Points across 0h, 1h, 2h, 3h, 4h
-  peakMgDl: number;
-  colorClass: string;
+  /** Readings at 0, 1, 2, 3 and 4 h. The peak shown anywhere on screen is derived from these. */
+  points: number[];
   /** Curve colour (a design token, so the chart follows the theme). */
   strokeColor: string;
 }
@@ -32,29 +33,21 @@ const SCENARIOS_BASE: GlucoseScenario[] = [
   {
     id: "fasting",
     points: [85, 84, 86, 85, 84],
-    peakMgDl: 86,
-    colorClass: "text-sapphire bg-sapphire-soft border-sapphire-border",
     strokeColor: "var(--color-sapphire)",
   },
   {
     id: "high_carb",
     points: [90, 195, 175, 130, 95],
-    peakMgDl: 195,
-    colorClass: "text-amber-care bg-amber-care-soft border-amber-care-border",
     strokeColor: "var(--color-amber-care)",
   },
   {
     id: "balanced_meal",
     points: [88, 128, 122, 105, 90],
-    peakMgDl: 128,
-    colorClass: "text-live-sage bg-live-sage-soft border-live-sage/30",
     strokeColor: "var(--color-live-sage)",
   },
   {
     id: "exercise",
     points: [90, 115, 102, 88, 85],
-    peakMgDl: 115,
-    colorClass: "text-sapphire bg-sapphire-soft border-sapphire-border",
     strokeColor: "var(--color-sapphire-light)",
   },
 ];
@@ -66,7 +59,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Stabil",
       description:
         "Zahărul din sânge stă între 80 și 90 mg/dL. Ficatul dă încet zahăr în sânge, iar insulina de fond îl ține în echilibru.",
-      peakTime: "0 ore",
       clinicalNote:
         "Ficatul dă zahăr în sânge ca să hrănească creierul și celulele cât te odihnești.",
     },
@@ -75,7 +67,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Urcă brusc, scade brusc",
       description:
         "Dulciurile, sucurile și pâinea albă urcă zahărul din sânge foarte repede. Apoi scade la fel de repede și te simți obosit și flămând.",
-      peakTime: "45–60 de minute",
       clinicalNote:
         "Pancreasul trebuie să dea repede multă insulină, ca zahărul să revină la normal.",
     },
@@ -84,7 +75,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Urcă încet, energia ține mai mult",
       description:
         "Legumele, carnea slabă sau ouăle și cerealele integrale fac zahărul să intre mai încet în sânge. Valorile rămân bune.",
-      peakTime: "75–90 de minute",
       clinicalNote:
         "Fibrele fac în intestin un fel de gel, care încetinește trecerea zahărului în sânge.",
     },
@@ -93,7 +83,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Mușchii folosesc zahărul",
       description:
         "O plimbare grăbită de 20–30 de minute după masă face mușchii să ia zahăr direct din sânge. Vârful scade mult.",
-      peakTime: "30 de minute",
       clinicalNote:
         "Mușchii care lucrează iau zahăr din sânge chiar și cu puțină insulină. De aceea vârful de după masă e mai mic.",
     },
@@ -104,7 +93,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Steady",
       description:
         "Blood sugar stays between 80 and 90 mg/dL. The liver slowly releases sugar, and background insulin keeps it in balance.",
-      peakTime: "0 hours",
       clinicalNote:
         "The liver releases sugar into the blood to feed the brain and cells while you rest.",
     },
@@ -113,7 +101,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Shoots up, drops fast",
       description:
         "Sweets, sugary drinks and white bread push blood sugar up very fast. Then it drops just as fast, and you feel tired and hungry.",
-      peakTime: "45–60 minutes",
       clinicalNote:
         "The pancreas has to release a lot of insulin quickly to bring blood sugar back to normal.",
     },
@@ -122,7 +109,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Rises slowly, energy lasts",
       description:
         "Vegetables, lean meat or eggs, and whole grains make sugar enter the blood more slowly. Your numbers stay good.",
-      peakTime: "75–90 minutes",
       clinicalNote:
         "Fiber forms a kind of gel in the gut that slows sugar going into the blood.",
     },
@@ -131,7 +117,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Muscles use the sugar",
       description:
         "A brisk 20–30 minute walk after a meal makes your muscles take sugar straight from the blood. The peak is much lower.",
-      peakTime: "30 minutes",
       clinicalNote:
         "Working muscles take sugar from the blood even with little insulin. That is why the after-meal peak is lower.",
     },
@@ -142,7 +127,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "I qëndrueshëm",
       description:
         "Sheqeri në gjak qëndron mes 80 dhe 90 mg/dL. Mëlçia lëshon ngadalë sheqer, dhe insulina bazë e mban në ekuilibër.",
-      peakTime: "0 orë",
       clinicalNote:
         "Mëlçia lëshon sheqer në gjak për të ushqyer trurin dhe qelizat kur pushon.",
     },
@@ -151,7 +135,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Ngrihet shpejt, bie shpejt",
       description:
         "Ëmbëlsirat, pijet me sheqer dhe buka e bardhë e ngrenë sheqerin shumë shpejt. Pastaj bie po aq shpejt dhe ndihesh i lodhur dhe i uritur.",
-      peakTime: "45–60 minuta",
       clinicalNote:
         "Pankreasi duhet të lëshojë shpejt shumë insulinë, që sheqeri të kthehet në normë.",
     },
@@ -160,7 +143,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Ngrihet ngadalë, energjia zgjat",
       description:
         "Perimet, mishi pa yndyrë ose vezët dhe drithërat integrale e bëjnë sheqerin të hyjë më ngadalë në gjak. Vlerat mbeten të mira.",
-      peakTime: "75–90 minuta",
       clinicalNote:
         "Fibrat bëjnë në zorrë një lloj xheli që e ngadalëson kalimin e sheqerit në gjak.",
     },
@@ -169,7 +151,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Muskujt e përdorin sheqerin",
       description:
         "Një ecje e shpejtë 20–30 minuta pas vaktit i bën muskujt të marrin sheqer drejt nga gjaku. Kulmi ulet shumë.",
-      peakTime: "30 minuta",
       clinicalNote:
         "Muskujt që punojnë marrin sheqer nga gjaku edhe me pak insulinë. Prandaj kulmi pas vaktit është më i ulët.",
     },
@@ -180,7 +161,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Stabile",
       description:
         "La glicemia resta tra 80 e 90 mg/dL. Il fegato rilascia piano lo zucchero e l'insulina di base lo tiene in equilibrio.",
-      peakTime: "0 ore",
       clinicalNote:
         "Il fegato manda zucchero nel sangue per nutrire il cervello e le cellule mentre riposi.",
     },
@@ -189,7 +169,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Sale di colpo, scende di colpo",
       description:
         "Dolci, bibite zuccherate e pane bianco fanno salire la glicemia molto in fretta. Poi scende altrettanto in fretta e ti senti stanco e affamato.",
-      peakTime: "45–60 minuti",
       clinicalNote:
         "Il pancreas deve rilasciare in fretta molta insulina per riportare la glicemia alla normalità.",
     },
@@ -198,7 +177,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "Sale piano, l'energia dura di più",
       description:
         "Verdure, carne magra o uova e cereali integrali fanno entrare lo zucchero nel sangue più lentamente. I valori restano buoni.",
-      peakTime: "75–90 minuti",
       clinicalNote:
         "Le fibre formano nell'intestino una specie di gel che rallenta il passaggio dello zucchero nel sangue.",
     },
@@ -207,7 +185,6 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
       badge: "I muscoli usano lo zucchero",
       description:
         "Una camminata veloce di 20–30 minuti dopo il pasto fa prendere ai muscoli lo zucchero direttamente dal sangue. Il picco scende molto.",
-      peakTime: "30 minuti",
       clinicalNote:
         "I muscoli che lavorano prendono zucchero dal sangue anche con poca insulina. Per questo il picco dopo il pasto è più basso.",
     },
@@ -271,7 +248,7 @@ const UI_STRINGS: Record<Lang, ModuleUiStrings> = {
     optimalRangeLabel: "Bine după masă (sub 140 mg/dL)",
     attentionThresholdLabel: "Atenție (180 mg/dL)",
     peakEstimated: "Cel mai sus",
-    atTime: "la",
+    atTime: "după",
     physioExplanation: "De ce",
     timeLabels: ["0h (masă)", "1h", "2h", "3h", "4h"],
     simulatorTitle: "Ce înseamnă valoarea ta",
@@ -311,7 +288,7 @@ const UI_STRINGS: Record<Lang, ModuleUiStrings> = {
     optimalRangeLabel: "Good after a meal (under 140 mg/dL)",
     attentionThresholdLabel: "Warning (180 mg/dL)",
     peakEstimated: "Highest",
-    atTime: "at",
+    atTime: "after",
     physioExplanation: "Why",
     timeLabels: ["0h (meal)", "1h", "2h", "3h", "4h"],
     simulatorTitle: "What your number means",
@@ -351,7 +328,7 @@ const UI_STRINGS: Record<Lang, ModuleUiStrings> = {
     optimalRangeLabel: "Mirë pas ngrënies (nën 140 mg/dL)",
     attentionThresholdLabel: "Kujdes (180 mg/dL)",
     peakEstimated: "Më i larti",
-    atTime: "në",
+    atTime: "pas",
     physioExplanation: "Pse",
     timeLabels: ["0h (vakti)", "1h", "2h", "3h", "4h"],
     simulatorTitle: "Çfarë do të thotë vlera jote",
@@ -391,7 +368,7 @@ const UI_STRINGS: Record<Lang, ModuleUiStrings> = {
     optimalRangeLabel: "Buona dopo il pasto (sotto 140 mg/dL)",
     attentionThresholdLabel: "Attenzione (180 mg/dL)",
     peakEstimated: "Il punto più alto",
-    atTime: "a",
+    atTime: "dopo",
     physioExplanation: "Perché",
     timeLabels: ["0h (pasto)", "1h", "2h", "3h", "4h"],
     simulatorTitle: "Cosa vuol dire il tuo valore",
@@ -425,7 +402,6 @@ interface BloodSugarInterpretation {
   category: "hypo" | "normal" | "prediabetes" | "diabetes" | "severe_hyper";
   label: string;
   toneClass: string;
-  badgeClass: string;
   symptoms: string;
   guidance: string;
   emergencyRule?: string;
@@ -612,7 +588,6 @@ function getBloodSugarInterpretation(value: number, lang: Lang = "ro"): BloodSug
       category: "hypo",
       label: t.hypo.label,
       toneClass: "border-primary/40 bg-primary-soft",
-      badgeClass: "bg-primary text-white",
       symptoms: t.hypo.symptoms,
       guidance: t.hypo.guidance,
       emergencyRule: t.hypo.emergencyRule,
@@ -624,7 +599,6 @@ function getBloodSugarInterpretation(value: number, lang: Lang = "ro"): BloodSug
       category: "normal",
       label: t.normal.label,
       toneClass: "border-live-sage/40 bg-live-sage-soft/30",
-      badgeClass: "bg-live-sage text-white",
       symptoms: t.normal.symptoms,
       guidance: t.normal.guidance,
     };
@@ -635,7 +609,6 @@ function getBloodSugarInterpretation(value: number, lang: Lang = "ro"): BloodSug
       category: "prediabetes",
       label: t.prediabetes.label,
       toneClass: "border-amber-care-border bg-amber-care-soft/40",
-      badgeClass: "bg-amber-care text-white",
       symptoms: t.prediabetes.symptoms,
       guidance: t.prediabetes.guidance,
     };
@@ -646,7 +619,6 @@ function getBloodSugarInterpretation(value: number, lang: Lang = "ro"): BloodSug
       category: "diabetes",
       label: t.diabetes.label,
       toneClass: "border-sapphire-border bg-sapphire-soft/50",
-      badgeClass: "bg-sapphire text-white",
       symptoms: t.diabetes.symptoms,
       guidance: t.diabetes.guidance,
     };
@@ -656,41 +628,59 @@ function getBloodSugarInterpretation(value: number, lang: Lang = "ro"): BloodSug
     category: "severe_hyper",
     label: t.severe_hyper.label,
     toneClass: "border-primary/50 bg-primary-soft",
-    badgeClass: "bg-primary text-white",
     symptoms: t.severe_hyper.symptoms,
     guidance: t.severe_hyper.guidance,
     emergencyRule: t.severe_hyper.emergencyRule,
   };
 }
 
-// Cubic spline interpolation for continuous 0–240 min scrubbing
-function interpolateSpline(points: number[], minute: number): number {
-  const clampedMinute = Math.max(0, Math.min(240, minute));
-  const segmentDuration = 60; // 4 segments of 60 mins: 0-60, 60-120, 120-180, 180-240
-  const index = Math.floor(clampedMinute / segmentDuration);
-  const t = (clampedMinute - index * segmentDuration) / segmentDuration;
+/**
+ * Smooth curve through the hourly readings (0–240 min), drawn with monotone cubic
+ * interpolation: it never overshoots a reading, so the highest point on the line is
+ * the peak printed on the card. The chart line and the minute cursor both use it,
+ * so the cursor always sits on the drawn curve.
+ */
+function splineValue(points: number[], minute: number): number {
+  const segmentDuration = 60; // 4 segments of 60 min: 0-60, 60-120, 120-180, 180-240
+  const last = points.length - 1;
+  const position = Math.max(0, Math.min(last, minute / segmentDuration));
+  const index = Math.min(last - 1, Math.floor(position));
+  const t = position - index;
 
-  if (index >= points.length - 1) {
-    return points[points.length - 1];
-  }
+  const slope = (k: number) => points[k + 1] - points[k];
+  // Flat at the ends; zero at a peak or dip; otherwise the harmonic mean of the two slopes.
+  const tangent = (k: number) => {
+    if (k === 0 || k === last) return 0;
+    const before = slope(k - 1);
+    const after = slope(k);
+    return before * after <= 0 ? 0 : (2 * before * after) / (before + after);
+  };
 
-  const p0 = points[Math.max(0, index - 1)];
-  const p1 = points[index];
-  const p2 = points[index + 1];
-  const p3 = points[Math.min(points.length - 1, index + 2)];
-
-  // Catmull-Rom spline formulation
   const t2 = t * t;
   const t3 = t2 * t;
+  return (
+    (2 * t3 - 3 * t2 + 1) * points[index] +
+    (t3 - 2 * t2 + t) * tangent(index) +
+    (-2 * t3 + 3 * t2) * points[index + 1] +
+    (t3 - t2) * tangent(index + 1)
+  );
+}
 
-  const interpolated =
-    0.5 *
-    (2 * p1 +
-      (-p0 + p2) * t +
-      (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
-      (-p0 + 3 * p1 - 3 * p2 + p3) * t3);
+/** Minutes between the samples that draw the chart line. */
+const CURVE_STEP_MIN = 4;
 
-  return Math.round(interpolated);
+/**
+ * Highest point of the drawn curve and the minute it is reached. Read from the same
+ * spline as the line, so the numbers in the list and under the chart always match
+ * the curve on screen (the monotone spline peaks at one of the hourly readings).
+ */
+function curvePeak(points: number[]): { value: number; minute: number } {
+  let best = { value: -Infinity, minute: 0 };
+  for (let minute = 0; minute <= 240; minute++) {
+    const value = splineValue(points, minute);
+    if (value > best.value + 1e-9) best = { value, minute };
+  }
+  return { value: Math.round(best.value), minute: best.minute };
 }
 
 function useSafeLanguage(propLang?: Lang): Lang {
@@ -705,17 +695,30 @@ const SLIDER_MIN = 50;
 const SLIDER_MAX = 300;
 const ZONE_TICKS = [70, 100, 126, 200];
 const pct = (v: number) => ((v - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) * 100;
+/** The five ranges on the strip, in the order of `zoneNames`, as [from, to) in mg/dL. */
+const ZONE_RANGES: [number, number][] = [
+  [SLIDER_MIN, 70],
+  [70, 100],
+  [100, 126],
+  [126, 200],
+  [200, SLIDER_MAX],
+];
+const zoneIndexOf = (v: number) => {
+  const i = ZONE_RANGES.findIndex(([, to]) => v < to);
+  return i === -1 ? ZONE_RANGES.length - 1 : i;
+};
 
 export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleProps) {
-  // HOOK ORDER IS CONTRACTUALLY PRESERVED FOR EMPIRICAL STRESS TESTS:
-  // Hook 0: activeScenarioId
-  // Hook 1: sliderValue
-  // Hook 2: scrubbedMinute
   const [activeScenarioId, setActiveScenarioId] = useState<ScenarioId>("balanced_meal");
   const [sliderValue, setSliderValue] = useState<number>(105);
   const [scrubbedMinute, setScrubbedMinute] = useState<number>(60);
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const [svgWidth, setSvgWidth] = useState<number>(620);
+  const reduced = useReducedMotion() ?? false;
+  // The first render (server and hydration) shows the finished curve; only a curve the
+  // reader asks for by picking another example draws itself.
+  const [hasPickedScenario, setHasPickedScenario] = useState(false);
+  const drawIn = hasPickedScenario && !reduced;
 
   useEffect(() => {
     const el = chartContainerRef.current;
@@ -739,7 +742,16 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
 
   const interpretation = getBloodSugarInterpretation(sliderValue, activeLang);
 
-  const scrubbedGlucose = interpolateSpline(activeScenarioBase.points, scrubbedMinute);
+  const scrubbedGlucose = Math.round(splineValue(activeScenarioBase.points, scrubbedMinute));
+  const peak = curvePeak(activeScenarioBase.points);
+  const activeZone = zoneIndexOf(sliderValue);
+  const [zoneFrom, zoneTo] = ZONE_RANGES[activeZone];
+  // The active range's name sits under its own stretch of the strip: left-aligned from the
+  // range start on the left half, right-aligned to the range end on the right half.
+  const zoneLabelStyle =
+    pct((zoneFrom + zoneTo) / 2) <= 50
+      ? { left: `${pct(zoneFrom)}%` }
+      : { right: `${100 - pct(zoneTo)}%` };
 
   const currentPhase =
     scrubbedMinute <= 15
@@ -775,32 +787,29 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
   const scaleX = (index: number) => paddingLeft + (index / (timeLabels.length - 1)) * chartWidth;
 
   const coords = activeScenario.points.map((val, idx) => ({ x: scaleX(idx), y: scaleY(val) }));
+  const minuteToX = (minute: number) => paddingLeft + (minute / 240) * chartWidth;
 
-  const buildSmoothPath = (pts: { x: number; y: number }[]) => {
-    if (pts.length === 0) return "";
-    let d = `M ${pts[0].x} ${pts[0].y}`;
-    for (let i = 0; i < pts.length - 1; i++) {
-      const p0 = pts[i];
-      const p1 = pts[i + 1];
-      const midX = (p0.x + p1.x) / 2;
-      d += ` C ${midX} ${p0.y}, ${midX} ${p1.y}, ${p1.x} ${p1.y}`;
-    }
-    return d;
-  };
+  const curve = Array.from({ length: 240 / CURVE_STEP_MIN + 1 }, (_, i) => {
+    const minute = i * CURVE_STEP_MIN;
+    return `${minuteToX(minute).toFixed(1)} ${scaleY(splineValue(activeScenarioBase.points, minute)).toFixed(1)}`;
+  });
+  const linePath = `M ${curve.join(" L ")}`;
 
-  const linePath = buildSmoothPath(coords);
-  const areaPath = `${linePath} L ${coords[coords.length - 1].x} ${paddingTop + chartHeight} L ${coords[0].x} ${paddingTop + chartHeight} Z`;
+  const scrubX = minuteToX(scrubbedMinute);
+  const scrubY = scaleY(splineValue(activeScenarioBase.points, scrubbedMinute));
 
-  const scrubX = paddingLeft + (scrubbedMinute / 240) * chartWidth;
-  const scrubY = scaleY(scrubbedGlucose);
+  // When the reader picks another example, the new curve draws itself once, left to right.
+  const draw = { duration: reduced ? 0 : 0.7, ease: EASE_OUT };
+  const fadeIn = { duration: reduced ? 0 : DURATION.slow, ease: EASE_OUT, delay: reduced ? 0 : 0.35 };
+  const peakIndex = Math.round(peak.minute / 60);
 
   const stepButtonClass =
-    "min-h-[44px] min-w-[44px] rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire";
+    "min-h-[44px] min-w-[44px] rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire";
 
   return (
     <section
       aria-label={ui.moduleAriaLabel}
-      className="space-y-8 rounded-lg border border-border bg-card p-5 shadow-xs sm:p-7"
+      className="space-y-8"
     >
       <header className="space-y-2">
         <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{ui.title}</h3>
@@ -814,34 +823,29 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
           <p className="mt-0.5 text-sm text-muted-foreground">{ui.chartSectionSubtitle}</p>
         </div>
 
-        <div
-          role="tablist"
-          aria-label={ui.scenarioSelectAria}
-          className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
-        >
+        <div role="radiogroup" aria-label={ui.scenarioSelectAria} className={ROW_LIST_CLASS}>
           {SCENARIOS_BASE.map((sc) => {
             const isSelected = sc.id === activeScenarioId;
             const loc = scenarioLocales[sc.id] || scenarioLocales.balanced_meal;
             return (
-              <button
-                key={sc.id}
-                type="button"
-                role="tab"
-                id={`scenario-tab-${sc.id}`}
-                aria-selected={isSelected}
-                aria-controls="glucose-curve-display"
-                onClick={() => setActiveScenarioId(sc.id)}
-                className={`flex min-h-[60px] flex-col justify-center rounded-lg border px-4 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                  isSelected
-                    ? "border-foreground bg-surface-subtle"
-                    : "border-border bg-card hover:border-foreground/30 hover:bg-surface-subtle/50"
-                }`}
-              >
-                <span className="text-sm font-semibold leading-snug text-foreground">{loc.title}</span>
-                <span className="mt-1 text-xs tabular-nums text-muted-foreground">
-                  {ui.peakLabel} {sc.peakMgDl} mg/dL
+              <label key={sc.id} className={`${ROW_CLASS} cursor-pointer`}>
+                <input
+                  type="radio"
+                  name="glucose-scenario"
+                  value={sc.id}
+                  checked={isSelected}
+                  onChange={() => {
+                    setHasPickedScenario(true);
+                    setActiveScenarioId(sc.id);
+                  }}
+                  className="sr-only"
+                />
+                <span className={radioDotClass(isSelected)} aria-hidden="true" />
+                <span className="min-w-0 flex-1 text-sm font-semibold leading-snug text-foreground">{loc.title}</span>
+                <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+                  {ui.peakLabel} {curvePeak(sc.points).value} mg/dL
                 </span>
-              </button>
+              </label>
             );
           })}
         </div>
@@ -852,7 +856,8 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
           aria-label={ui.chartAria.replace("{scenario}", activeScenario.title)}
           className="space-y-5 pt-1"
         >
-          <div ref={chartContainerRef} className="w-full rounded-lg border border-border bg-surface-subtle/30 p-3 sm:p-4">
+          <div ref={chartContainerRef} className="w-full">
+            <LazyMotion features={domAnimation} strict>
             <svg
               viewBox={`0 0 ${svgWidth} ${svgHeight}`}
               width="100%"
@@ -860,13 +865,6 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               className="block select-none"
               aria-hidden="true"
             >
-              <defs>
-                <linearGradient id={`areaGrad-${activeScenario.id}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={activeScenario.strokeColor} stopOpacity="0.16" />
-                  <stop offset="100%" stopColor={activeScenario.strokeColor} stopOpacity="0" />
-                </linearGradient>
-              </defs>
-
               {/* Healthy after-meal range: 70 to 140 mg/dL */}
               <rect
                 x={paddingLeft}
@@ -886,7 +884,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
                       y1={y}
                       x2={paddingLeft + chartWidth}
                       y2={y}
-                      stroke={isAlertLine ? "var(--color-ruby-300)" : "var(--color-border)"}
+                      stroke={isAlertLine ? "var(--color-muted-foreground)" : "var(--color-border)"}
                       strokeDasharray={isAlertLine ? "4 4" : undefined}
                       strokeWidth={1}
                     />
@@ -930,32 +928,42 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
                 );
               })}
 
-              <path d={areaPath} fill={`url(#areaGrad-${activeScenario.id})`} />
-
-              <path
+              <m.path
+                key={`line-${activeScenario.id}`}
                 d={linePath}
                 fill="none"
                 stroke={activeScenario.strokeColor}
                 strokeWidth={2.5}
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                initial={drawIn ? { pathLength: 0 } : false}
+                animate={{ pathLength: 1 }}
+                transition={draw}
               />
 
+              {/* A dot at each hourly reading; only the peak carries its number. */}
               {coords.map((pt, idx) => (
-                <g key={idx}>
-                  <circle cx={pt.x} cy={pt.y} r={4} fill={activeScenario.strokeColor} stroke="var(--color-card)" strokeWidth={2} />
-                  <text
-                    x={pt.x}
-                    y={pt.y - 10}
-                    textAnchor={idx === 0 ? "start" : idx === coords.length - 1 ? "end" : "middle"}
-                    fontSize="12"
-                    fontWeight="600"
-                    fill="var(--color-foreground)"
-                    style={{ fontVariantNumeric: "tabular-nums" }}
-                  >
-                    {activeScenario.points[idx]}
-                  </text>
-                </g>
+                <m.g
+                  key={`${activeScenario.id}-${idx}`}
+                  initial={drawIn ? { opacity: 0 } : false}
+                  animate={{ opacity: 1 }}
+                  transition={fadeIn}
+                >
+                  <circle cx={pt.x} cy={pt.y} r={3.5} fill={activeScenario.strokeColor} stroke="var(--color-card)" strokeWidth={1.5} />
+                  {idx === peakIndex && (
+                    <text
+                      x={pt.x}
+                      y={pt.y - 12}
+                      textAnchor={idx === 0 ? "start" : idx === coords.length - 1 ? "end" : "middle"}
+                      fontSize="12"
+                      fontWeight="600"
+                      fill="var(--color-foreground)"
+                      style={{ fontVariantNumeric: "tabular-nums" }}
+                    >
+                      {peak.value}
+                    </text>
+                  )}
+                </m.g>
               ))}
 
               {/* Time cursor, driven by the slider below */}
@@ -972,6 +980,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
                 <circle cx={scrubX} cy={scrubY} r="6" fill="var(--color-card)" stroke={activeScenario.strokeColor} strokeWidth="2.5" />
               </g>
             </svg>
+            </LazyMotion>
 
             {/* Legend for the bands drawn on the chart */}
             <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 border-t border-border/60 pt-2.5 text-xs text-muted-foreground">
@@ -980,7 +989,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
                 {ui.optimalRangeLabel}
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-3.5 border-t border-dashed border-primary" aria-hidden="true" />
+                <span className="w-3.5 border-t border-dashed border-muted-foreground" aria-hidden="true" />
                 {ui.attentionThresholdLabel}
               </li>
             </ul>
@@ -1033,7 +1042,8 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
                 {activeScenario.badge}
               </span>
               <span className="text-sm text-muted-foreground">
-                {ui.peakEstimated}: <strong>{activeScenario.peakMgDl} mg/dL</strong> {ui.atTime} {activeScenario.peakTime}
+                {ui.peakEstimated}: <strong className="font-semibold tabular-nums text-foreground">{peak.value} mg/dL</strong> {ui.atTime}{" "}
+                <span className="tabular-nums">{peak.minute} min</span>
               </span>
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -1046,7 +1056,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
         </div>
       </div>
 
-      {/* Part 2: what a single reading means — zero nested cards, zero colored dots */}
+      {/* Part 2: what a single reading means */}
       <div className="space-y-6 border-t border-border pt-6">
         <div>
           <h4 className="text-base font-semibold text-foreground sm:text-lg">{ui.simulatorTitle}</h4>
@@ -1103,7 +1113,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               className="h-2 w-full cursor-pointer accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
             />
             <div className="relative mt-2 h-4 text-xs tabular-nums text-muted-foreground" aria-hidden="true">
-              <span className="absolute left-0">{SLIDER_MIN}</span>
+              <span className="absolute left-0 hidden sm:inline">{SLIDER_MIN}</span>
               {ZONE_TICKS.map((v) => (
                 <span key={v} className="absolute -translate-x-1/2" style={{ left: `${pct(v)}%` }}>
                   {v}
@@ -1111,14 +1121,23 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               ))}
               <span className="absolute right-0">{SLIDER_MAX}</span>
             </div>
-            <ul className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-              {ui.zoneNames.map((name, i) => (
-                <li key={name} className="flex items-center gap-3">
-                  {i > 0 && <span aria-hidden="true" className="text-border">·</span>}
-                  <span>{name}</span>
-                </li>
+            {/* Zone strip: five ranges on the same scale as the slider; the active one is inked and named. */}
+            <div className="relative mt-3 h-1 w-full" aria-hidden="true">
+              {ZONE_RANGES.map(([from, to], i) => (
+                <span
+                  key={from}
+                  className={`absolute inset-y-0 rounded-full transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+                    i === activeZone ? "bg-foreground" : "bg-border"
+                  }`}
+                  style={{ left: `calc(${pct(from)}% + 1px)`, width: `calc(${pct(to) - pct(from)}% - 2px)` }}
+                />
               ))}
-            </ul>
+            </div>
+            <div className="relative mt-1.5 h-5 text-xs font-semibold text-foreground" aria-hidden="true">
+              <span className="absolute whitespace-nowrap" style={zoneLabelStyle}>
+                {ui.zoneNames[activeZone]}
+              </span>
+            </div>
           </div>
 
           <div className="space-y-4 border-t border-border pt-5" aria-live="polite">

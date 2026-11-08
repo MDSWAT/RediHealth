@@ -288,7 +288,7 @@ export function TriageSummaryCard({
   }
   const screenNotes = showRomanian && romanian ? romanian.notes : doctorNotes;
   const secondaryBtn =
-    "inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 text-base font-medium text-foreground transition-colors hover:bg-muted";
+    "inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 text-base font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted";
 
   return (
     <section className={`${bare ? "pt-2" : "border-t border-border pt-6"} ${className}`}>
@@ -330,7 +330,7 @@ export function TriageSummaryCard({
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="col-span-2 inline-flex min-h-12 items-center justify-center rounded-lg bg-foreground px-4 text-base font-semibold text-white transition-colors hover:bg-ink-800 sm:col-span-1"
+            className="col-span-2 inline-flex min-h-12 items-center justify-center rounded-lg bg-foreground px-4 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 sm:col-span-1"
           >
             {dict.ui.showDoctor}
           </button>
@@ -354,7 +354,7 @@ export function TriageSummaryCard({
             role="dialog"
             aria-modal="true"
             aria-label={t.patientSummary}
-            className="hc-sheet relative flex w-full max-w-xl flex-col overflow-y-auto bg-card p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:max-h-[90vh] sm:rounded-lg sm:p-8"
+            className="hc-sheet relative flex w-full max-w-xl flex-col overflow-y-auto bg-card p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:max-h-[90vh] sm:rounded-xl sm:p-8"
           >
             <div lang={showRomanian ? "ro" : activeLang}>
             <h3 className="text-2xl font-semibold text-foreground">

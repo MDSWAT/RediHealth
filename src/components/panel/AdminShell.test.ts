@@ -11,6 +11,7 @@ vi.mock("./CountrySwitcher", () => ({ CountrySwitcher: () => null }));
 vi.mock("./CreatePatientModal", () => ({ CreatePatientModal: () => null }));
 
 import { AdminShell, PersistentPanelShell } from "./AdminShell";
+import { PanelRuntimeProvider } from "./PanelRuntime";
 import PanelLoading from "./PanelLoading";
 import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 
@@ -40,10 +41,12 @@ describe("mediator mobile patient creation", () => {
     }
   });
 
-  it("renders a large red mobile-only button with a localized accessible label", () => {
+  it("renders a large mobile-only add button (not emergency red) with a localized accessible label", () => {
     const html = renderShell("Mediator");
     expect(html).toContain(`aria-label="${createPatientModalTranslations.ro.titleCreate}"`);
-    expect(html).toMatch(/class="[^"]*h-16 w-16[^"]*bg-red-600[^"]*lg:hidden"/);
+    expect(html).toMatch(/class="[^"]*h-16 w-16[^"]*bg-primary[^"]*lg:hidden"/);
+    // Red is reserved for 112 and emergency actions.
+    expect(html).not.toMatch(/class="[^"]*h-16 w-16[^"]*bg-red-/);
     expect(html).toMatch(/class="[^"]*fixed right-5/);
     expect(html).toContain('class="h-8 w-8 shrink-0"');
     expect(html).not.toContain("-translate-x-1/2");
@@ -58,5 +61,23 @@ describe("mediator mobile patient creation", () => {
     ]) {
       expect(html).not.toContain(`aria-label="${createPatientModalTranslations.ro.titleCreate}"`);
     }
+  });
+});
+
+describe("role navigation", () => {
+  it("hides menu items the runtime cannot open for the active role", () => {
+    const runtime = { request: fetch, demo: true, navigate: () => {}, canOpen: (href: string) => !["/panel/calendar", "/panel/meet"].includes(href) };
+    const shellProps = { userEmail: "mediator@example.test", userRole: "Mediator", isAdmin: false, children: "Content" };
+    const providerProps = { value: runtime, children: createElement(AdminShell, shellProps) };
+    const html = renderToStaticMarkup(createElement(PanelRuntimeProvider, providerProps));
+    expect(html).toContain('href="/ro/demo/patients"');
+    expect(html).not.toContain('href="/ro/demo/calendar"');
+    expect(html).not.toContain('href="/ro/demo/meet"');
+  });
+
+  it("keeps every item when no runtime limits access", () => {
+    const html = renderShell("Mediator");
+    expect(html).toContain('href="/ro/panel/calendar"');
+    expect(html).toContain('href="/ro/panel/meet"');
   });
 });

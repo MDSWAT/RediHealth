@@ -25,25 +25,25 @@ export function UniversalDoctorExit({
   const dict = {
     en: {
       heading: "Would you like to talk to a doctor?",
-      body: "If something is unclear, you can talk to a volunteer doctor for free, by video or phone.",
+      body: "If something is unclear, you can talk to a volunteer doctor for free, by phone.",
       bookOnline: "Book a call",
       checkOnCall: "See on-call hours",
     },
     ro: {
       heading: "Vrei să vorbești cu un medic?",
-      body: "Dacă nu înțelegi ceva, poți vorbi gratuit cu un medic voluntar, prin video sau la telefon.",
+      body: "Dacă nu înțelegi ceva, poți vorbi gratuit cu un medic voluntar, la telefon.",
       bookOnline: "Programează-te",
       checkOnCall: "Vezi orele de gardă",
     },
     sq: {
       heading: "Do të flasësh me një mjek?",
-      body: "Nëse diçka nuk është e qartë, mund të flasësh falas me një mjek vullnetar, me video ose në telefon.",
+      body: "Nëse diçka nuk është e qartë, mund të flasësh falas me një mjek vullnetar, në telefon.",
       bookOnline: "Rezervo",
       checkOnCall: "Shiko orët e kujdestarisë",
     },
     it: {
       heading: "Vuoi parlare con un medico?",
-      body: "Se qualcosa non ti è chiaro, puoi parlare gratis con un medico volontario, in video o al telefono.",
+      body: "Se qualcosa non ti è chiaro, puoi parlare gratis con un medico volontario, al telefono.",
       bookOnline: "Prenota",
       checkOnCall: "Vedi gli orari di guardia",
     },

@@ -7,6 +7,7 @@ import { translations } from "@/lib/i18n/translations";
 import { ROMANIA_COUNTIES_MAP, type CountryMap } from "@/lib/geo/romania-counties";
 import { ITALY_REGIONS_MAP } from "@/lib/geo/italy-regions";
 import { ITALY_WIDE } from "@/lib/data/news";
+import { placeName } from "@/components/news/news-format";
 
 /** The value that means "no county chosen": national news, every hub. */
 const ALL = "Toate județele";
@@ -17,6 +18,15 @@ export const ALL_ITALY = ITALY_WIDE;
 export type MapCountry = "ro" | "it";
 
 const MAPS: Record<MapCountry, CountryMap> = { ro: ROMANIA_COUNTIES_MAP, it: ITALY_REGIONS_MAP };
+
+/** Bucharest is a municipality, not a county, so the line under the map names it as a place. */
+const BUCHAREST = "București";
+const PLACE_PREFIX: Record<string, string> = {
+  ro: "Locul ales:",
+  en: "Chosen place:",
+  sq: "Vendi i zgjedhur:",
+  it: "Luogo scelto:",
+};
 
 function useSafeLanguage() {
   try {
@@ -85,8 +95,15 @@ export function RomaniaCountyMap({
   const selectedInThisMap = map.areas.some((a) => a.name === selectedCounty);
   // Only a choice on the map in view is named; a county stays out of the Italy view and vice versa.
   const shown = hovered ?? (selectedInThisMap ? selectedCounty : null);
-  const prefix = (shown ? countryOf(shown) : country) === "it" ? m.selectedRegionPrefix : m.selectedCountyPrefix;
+  const prefix =
+    shown === BUCHAREST
+      ? (PLACE_PREFIX[lang] ?? PLACE_PREFIX.ro)
+      : (shown ? countryOf(shown) : country) === "it"
+        ? m.selectedRegionPrefix
+        : m.selectedCountyPrefix;
   const visibleHubs = activeHubs.filter((h) => map.areas.some((a) => a.name === h));
+  // Values stay the Romanian names; what the reader sees follows their language ("Bukureshti", "Bucharest").
+  const label = (name: string) => placeName(name, lang);
 
   return (
     <div className={cn("rounded-xl border border-border bg-card p-4 sm:p-6", className)}>
@@ -98,7 +115,8 @@ export function RomaniaCountyMap({
 
         <div className="flex shrink-0 flex-wrap items-center gap-2">
           {countries.length > 1 && (
-            <div role="group" aria-label={`${m.romania} / ${m.italy}`} className="inline-flex rounded-lg border border-border p-0.5">
+            // Which map: an underline band like every section switch on the site, not a pill toggle.
+            <div role="group" aria-label={`${m.romania} / ${m.italy}`} className="flex gap-4 border-b border-border">
               {countries.map((c) => (
                 <button
                   key={c}
@@ -109,8 +127,8 @@ export function RomaniaCountyMap({
                     setHovered(null);
                   }}
                   className={cn(
-                    "min-h-[40px] rounded-md px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                    country === c ? "bg-foreground text-background" : "text-foreground hover:bg-muted",
+                    "-mb-px min-h-[44px] border-b-2 px-0.5 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                    country === c ? "border-foreground font-semibold text-foreground" : "border-transparent font-medium text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {c === "ro" ? m.romania : m.italy}
@@ -123,7 +141,7 @@ export function RomaniaCountyMap({
             aria-pressed={isAll}
             onClick={() => onSelectCounty(allValue)}
             className={cn(
-              "min-h-[44px] rounded-lg border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              "min-h-[44px] rounded-lg border px-3 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               isAll ? "border-foreground bg-foreground text-background" : "border-border bg-background text-foreground hover:bg-muted",
             )}
           >
@@ -140,7 +158,8 @@ export function RomaniaCountyMap({
           aria-label={country === "it" ? m.italyMapAriaLabel : m.mapAriaLabel}
           onPointerLeave={() => setHovered(null)}
         >
-          {map.areas.map((area) => {
+          {/* The chosen area is drawn last, so its outline sits above its neighbours'. */}
+          {[...map.areas.filter((a) => a.name !== selectedCounty), ...map.areas.filter((a) => a.name === selectedCounty)].map((area) => {
             const selected = area.name === selectedCounty;
             const hub = hubs.has(area.name);
             return (
@@ -151,18 +170,19 @@ export function RomaniaCountyMap({
                 onClick={() => onSelectCounty(area.name)}
                 onPointerEnter={() => setHovered(area.name)}
                 className={cn(
-                  "cursor-pointer stroke-card transition-colors duration-150 [stroke-linejoin:round]",
+                  "cursor-pointer stroke-card transition-colors duration-(--dur-fast) ease-(--ease-out-calm) [stroke-linejoin:round]",
+                  // One highlight for every chosen area, Bucharest included: the light fill plus an ink outline.
                   selected
-                    ? "fill-sapphire"
+                    ? "fill-sapphire-border stroke-foreground dark:fill-sapphire-light"
                     : hovered === area.name
                       ? "fill-slate-300 dark:fill-slate-500"
                       : hub
                         ? "fill-sapphire-border dark:fill-sapphire-light"
                         : "fill-slate-200 dark:fill-slate-700",
                 )}
-                style={{ strokeWidth: country === "it" ? 1.2 : 1.5 }}
+                style={{ strokeWidth: selected ? (country === "it" ? 2.4 : 3) : country === "it" ? 1.2 : 1.5 }}
               >
-                <title>{area.name}</title>
+                <title>{label(area.name)}</title>
               </path>
             );
           })}
@@ -176,11 +196,12 @@ export function RomaniaCountyMap({
                 aria-hidden="true"
                 className={cn(
                   "pointer-events-none hidden font-semibold tabular-nums sm:block",
-                  area.name === selectedCounty ? "fill-white" : "fill-slate-600 dark:fill-slate-300",
+                  area.name === selectedCounty ? "fill-foreground" : "fill-slate-600 dark:fill-slate-300",
                 )}
-                style={{ fontSize: country === "it" ? 19 : area.id === "B" || area.id === "IF" ? 11 : 15 }}
+                style={{ fontSize: country === "it" ? 19 : 15 }}
               >
-                {area.id === "IF" ? "" : area.id}
+                {/* Bucharest and Ilfov are too small for a letter; the line under the map names them. */}
+                {area.id === "IF" || area.id === "B" ? "" : area.id}
               </text>
             ))}
         </svg>
@@ -189,7 +210,7 @@ export function RomaniaCountyMap({
       <p className="mt-3 min-h-6 text-sm text-muted-foreground" aria-live="polite">
         {shown ? (
           <>
-            {prefix} <strong className="font-semibold text-foreground">{shown}</strong>
+            {prefix} <strong className="font-semibold text-foreground">{label(shown)}</strong>
             {hubs.has(shown) && <span> · {m.hasAlertsSuffix}</span>}
           </>
         ) : (
@@ -214,13 +235,13 @@ export function RomaniaCountyMap({
                   aria-pressed={selectedCounty === hub}
                   onClick={() => onSelectCounty(hub)}
                   className={cn(
-                    "min-h-[44px] rounded-lg border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "min-h-[44px] rounded-lg border px-3 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     selectedCounty === hub
                       ? "border-sapphire bg-sapphire text-white"
                       : "border-border bg-background text-foreground hover:bg-muted",
                   )}
                 >
-                  {hub}
+                  {label(hub)}
                 </button>
               ))}
             </div>
@@ -242,7 +263,7 @@ export function RomaniaCountyMap({
             <option value="">{allLabel}</option>
             {sortedAreas.map((a) => (
               <option key={a.id} value={a.name}>
-                {a.name}
+                {label(a.name)}
               </option>
             ))}
           </select>

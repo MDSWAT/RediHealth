@@ -47,9 +47,20 @@ type ApiResponse = {
   institutes: MedicalInstitute[];
 };
 
+// Country and type filters share one chip: a hairline border, sapphire when chosen.
+function chipClass(active: boolean) {
+  return (
+    "min-h-10 rounded-lg border px-3.5 text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] " +
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring " +
+    (active
+      ? "border-sapphire/50 bg-sapphire-soft text-sapphire"
+      : "border-border bg-card text-muted-foreground hover:border-foreground/30 hover:text-foreground")
+  );
+}
+
 const linkClass =
-  "inline-flex min-h-8 items-center gap-1.5 font-medium text-primary hover:text-primary-hover " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm";
+  "inline-flex min-h-8 items-center gap-1.5 rounded-sm font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] " +
+  "hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function FindHelpExplorer({
   initialCountry,
@@ -190,11 +201,12 @@ export function FindHelpExplorer({
   return (
     // Phones: filters, then the map, then the list. Desktop: filters and list on the left,
     // the map held in view on the right.
-    <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:gap-x-10 lg:gap-y-0">
+    // The second row is flexible so the tall map does not push the list down while it loads.
+    <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:grid-rows-[auto_1fr] lg:gap-x-10 lg:gap-y-0">
       <div className="min-w-0 lg:col-start-1 lg:row-start-1">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+        <h1 className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
           {page.listTitle}
-        </h2>
+        </h1>
         <p className="mt-2 text-base leading-relaxed text-muted-foreground">{page.listSubtitle}</p>
 
         <div className="mt-6 space-y-4">
@@ -207,30 +219,29 @@ export function FindHelpExplorer({
                   type="button"
                   onClick={() => chooseCountry(country)}
                   aria-pressed={active}
-                  className={`min-h-10 rounded-lg border px-4 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ${
-                    active
-                      ? "border-primary bg-primary-soft text-primary"
-                      : "border-border bg-card text-muted-foreground hover:border-primary/40"
-                  }`}
+                  className={chipClass(active)}
                 >
                   {copy.countries[country]}
                 </button>
               );
             })}
+          </div>
+
+          {/* What the list shows, and the action that changes it, on one line. */}
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+            <p className="text-sm text-muted-foreground" aria-live="polite">
+              {statusText}
+            </p>
             <button
               type="button"
               onClick={locateUser}
               disabled={locationStatus === "locating"}
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-border bg-card px-4 text-sm font-semibold text-primary transition-colors duration-[var(--dur-fast)] hover:border-primary/40 disabled:opacity-60"
+              className={`${linkClass} text-sm disabled:cursor-not-allowed disabled:text-muted-foreground`}
             >
               <PinIcon className="h-4 w-4" aria-hidden="true" />
               {copy.useMyLocation}
             </button>
           </div>
-
-          <p className="text-sm text-muted-foreground" aria-live="polite">
-            {statusText}
-          </p>
 
           <form onSubmit={submitSearch} className="flex gap-2" role="search">
             <label className="relative flex-1">
@@ -246,13 +257,13 @@ export function FindHelpExplorer({
                   setSearchInput(event.target.value);
                   if (!event.target.value) setSearch("");
                 }}
-                placeholder={copy.searchPlaceholder}
-                className="min-h-11 w-full rounded-xl border border-border bg-card pl-9 pr-3 text-sm outline-none focus:border-primary focus-visible:ring-2 focus-visible:ring-ring"
+                placeholder={copy.searchHint}
+                className="min-h-11 w-full rounded-lg border border-border bg-card pl-9 pr-3 text-base outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus:border-sapphire focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
               />
             </label>
             <button
               type="submit"
-              className="min-h-11 rounded-xl bg-primary px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover"
+              className="min-h-11 rounded-lg bg-sapphire px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {copy.searchButton}
             </button>
@@ -267,11 +278,7 @@ export function FindHelpExplorer({
                   type="button"
                   onClick={() => setCategory(item)}
                   aria-pressed={active}
-                  className={`min-h-9 rounded-lg px-3 text-sm font-medium transition-colors duration-[var(--dur-fast)] ${
-                    active
-                      ? "bg-foreground text-background"
-                      : "bg-muted text-muted-foreground hover:bg-primary-soft hover:text-primary"
-                  }`}
+                  className={chipClass(active)}
                 >
                   {item ? copy.categories[item] : copy.allCategories}
                 </button>
@@ -281,9 +288,12 @@ export function FindHelpExplorer({
         </div>
       </div>
 
+      {/* Desktop: the map stays in view below the header while the list scrolls past it. Its
+          height follows the viewport (not the header, which shrinks on scroll, so the map never
+          resizes mid-scroll) and leaves room for the key and credit under it. */}
       <div className="lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
-        <div className="overflow-hidden rounded-2xl border border-border bg-card">
-          <div className="h-72 w-full sm:h-[24rem] lg:h-[36rem]">
+        <div className="overflow-hidden rounded-xl border border-border bg-card">
+          <div className="h-72 w-full sm:h-[24rem] lg:h-[min(44rem,calc(100dvh-15.5rem))] lg:min-h-[24rem]">
             <InstitutesMap
               institutes={institutes}
               selectedId={selectedId}
@@ -296,33 +306,53 @@ export function FindHelpExplorer({
             />
           </div>
         </div>
-        <p className="mt-3 text-xs text-muted-foreground">{page.mapAttribution}</p>
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+          <ul aria-label={copy.mapLegendLabel} className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted-foreground">
+            <li className="inline-flex items-center gap-2">
+              <span className="h-2.5 w-2.5 flex-none rounded-full bg-sapphire" aria-hidden="true" />
+              {copy.legendPlace}
+            </li>
+            <li className="inline-flex items-center gap-2">
+              <span className="h-2.5 w-2.5 flex-none rounded-full bg-primary" aria-hidden="true" />
+              {copy.legendEmergency}
+            </li>
+          </ul>
+          {/* The one map credit, in the page language (Leaflet's own English credit is turned off). */}
+          <a
+            href="https://www.openstreetmap.org/copyright"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-sm text-xs text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            {page.mapAttribution}
+          </a>
+        </div>
       </div>
 
       <div className="min-w-0 lg:col-start-1 lg:row-start-2" aria-busy={loading}>
         {loading ? (
-          <p className="mt-2 rounded-xl border border-border bg-card p-5 text-sm text-muted-foreground lg:mt-6" role="status">
+          <p className="mt-2 border-t border-border pt-5 text-sm text-muted-foreground lg:mt-6" role="status">
             {copy.loading}
           </p>
         ) : error ? (
-          <div className="mt-2 rounded-xl border border-border bg-card p-5 text-sm text-foreground lg:mt-6" role="alert">
+          <div className="mt-2 border-t border-border pt-5 text-sm text-foreground lg:mt-6" role="alert">
             <p>{copy.loadError}</p>
             <button
               type="button"
               onClick={() => setReloadKey((value) => value + 1)}
-              className="mt-3 min-h-9 font-semibold text-primary hover:text-primary-hover"
+              className="mt-2 min-h-9 rounded-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.retry}
             </button>
           </div>
         ) : institutes.length === 0 ? (
-          <div className="mt-2 rounded-xl border border-dashed border-border p-5 lg:mt-6" role="status">
+          <div className="mt-2 border-t border-border pt-5 lg:mt-6" role="status">
             <p className="text-sm text-muted-foreground">{copy.noResults}</p>
             {filtered ? (
               <button
                 type="button"
                 onClick={clearFilters}
-                className="mt-3 min-h-9 text-sm font-semibold text-primary hover:text-primary-hover"
+                className="mt-2 min-h-9 rounded-sm text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {copy.clearFilters}
               </button>
@@ -333,7 +363,9 @@ export function FindHelpExplorer({
             <p className="mt-2 text-sm font-medium text-muted-foreground lg:mt-6" role="status">
               {copy.resultsCount(institutes.length)}
             </p>
-            <ul className="mt-3 space-y-3 lg:max-h-[40rem] lg:overflow-y-auto lg:overscroll-contain lg:pr-1">
+            {/* One surface with hairline dividers between places, not a stack of bordered cards.
+                It grows with the page (no inner scroll box); the sticky map keeps pace. */}
+            <ul className="mt-3 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
               {institutes.slice(0, visibleCount).map((institute) => {
                 const active = institute.id === selectedId;
                 const hours = formatOpeningHours(institute.hours, copy);
@@ -349,8 +381,8 @@ export function FindHelpExplorer({
                     {/* The whole entry is a large click target; the name button is the keyboard control. */}
                     <article
                       onClick={() => setSelectedId(institute.id)}
-                      className={`cursor-pointer rounded-xl border p-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] sm:p-5 ${
-                        active ? "border-primary bg-primary-soft" : "border-border bg-card hover:border-primary/40"
+                      className={`cursor-pointer px-4 py-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] sm:px-5 ${
+                        active ? "bg-sapphire-soft" : "hover:bg-muted/50"
                       }`}
                     >
                       <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -428,7 +460,7 @@ export function FindHelpExplorer({
               <button
                 type="button"
                 onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
-                className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-border bg-card px-4 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-border bg-card px-4 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {copy.showMore(Math.min(PAGE_SIZE, institutes.length - visibleCount))}
               </button>

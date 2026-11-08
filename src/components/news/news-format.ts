@@ -47,3 +47,45 @@ export function formatNewsDate(value: string, lang: Lang, { short = false, year 
   const month = (short ? names.short : names.long)[parsed.m];
   return year ? `${parsed.d} ${month} ${parsed.y}` : `${parsed.d} ${month}`;
 }
+
+/** Bucharest is a municipality, not a county, and has its own name in each language. */
+const BUCHAREST: Record<Lang, string> = { ro: "București", en: "Bucharest", sq: "Bukureshti", it: "Bucarest" };
+
+/** A place name as readers of `lang` write it ("Bucharest" in English); other names pass through. */
+export function placeName(place: string, lang: Lang): string {
+  return place === "București" ? (BUCHAREST[lang] ?? place) : place;
+}
+
+/**
+ * A Romanian county in the reader's word order: "Județul Iași", "Iași County", "Qarku Iași",
+ * "Provincia di Iași". Bucharest is named on its own, never "Județul București".
+ */
+export function countyLabel(county: string, lang: Lang): string {
+  if (county === "București") return placeName(county, lang);
+  switch (lang) {
+    case "en":
+      return `${county} County`;
+    case "sq":
+      return `Qarku ${county}`;
+    case "it":
+      return `Provincia di ${county}`;
+    default:
+      return `Județul ${county}`;
+  }
+}
+
+/** Lower case without diacritics, so "iasi" finds "Iași" and "bucuresti" finds "București". */
+export function foldForSearch(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase("ro")
+    .trim();
+}
+
+/** A typed search term quoted the way each language quotes. */
+export function quoteTerm(term: string, lang: Lang): string {
+  if (lang === "ro") return `„${term}”`;
+  if (lang === "it") return `«${term}»`;
+  return `“${term}”`;
+}

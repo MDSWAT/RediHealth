@@ -5,7 +5,7 @@ import { AdminShell } from "@/components/panel/AdminShell";
 import { PatientProfileView } from "@/components/panel/PatientProfileView";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
-import { countPendingRequests } from "@/lib/data/requests";
+import { countAttentionRequests } from "@/lib/data/requests";
 import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
 export const generateMetadata = createPageMetadata("patient-profile", "Patient Profile - RediHealth Panel", "");
@@ -19,7 +19,7 @@ export default async function PatientPage({ params }: { params: Promise<{ id: st
   if (!/^\d+$/.test(id)) notFound();
   const [patients, pendingCount] = await Promise.all([
     loadPatients({ country: worker.country, id, scopeToWorkerId: worker.isAdmin ? null : worker.workerId, limit: 1 }),
-    countPendingRequests(worker.country).catch(() => 0),
+    countAttentionRequests(worker.country).catch(() => 0),
   ]);
   if (!patients[0]) notFound();
   return <AdminShell userEmail={session.user.email} userRole={worker.role} isAdmin={worker.isAdmin} pendingCount={pendingCount}>

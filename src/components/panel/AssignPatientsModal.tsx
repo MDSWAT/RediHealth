@@ -206,7 +206,7 @@ export function AssignPatientsModal({
 
   return (
     <div className="panel-scrim fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/50 p-0 sm:p-4">
-      <div className="app-sheet-slide-up relative w-full max-w-xl rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] flex flex-col care-panel-bottom-bar">
+      <div className="app-sheet-slide-up relative w-full max-w-xl rounded-t-xl sm:rounded-xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] flex flex-col care-panel-bottom-bar">
         {/* Mobile bottom sheet drag handle */}
         <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
         <div className="flex items-center justify-between border-b border-border pb-4">
@@ -252,7 +252,7 @@ export function AssignPatientsModal({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t.search}
-            className="w-full rounded-xl border border-border bg-background pl-10 pr-4 py-2 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full rounded-lg border border-border bg-background pl-10 pr-4 py-2 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -283,7 +283,7 @@ export function AssignPatientsModal({
                       type="checkbox"
                       checked={isChecked}
                       onChange={() => togglePatientAssignment(patient.id)}
-                      className="rounded border-border text-primary focus:ring-primary h-4 w-4"
+                      className="rounded border-border text-primary focus:ring-ring h-4 w-4"
                     />
                     <div>
                       <p className="text-xs font-bold text-foreground">
@@ -321,7 +321,7 @@ export function AssignPatientsModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+              className="rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
             >
               {t.cancel}
             </button>
@@ -329,7 +329,7 @@ export function AssignPatientsModal({
               type="button"
               disabled={isSaving}
               onClick={handleSaveAssignments}
-              className="rounded-xl bg-primary px-5 py-2 text-xs font-bold text-white hover:bg-primary-hover disabled:opacity-60 shadow-2xs transition-colors"
+              className="rounded-lg bg-primary px-5 py-2 text-xs font-bold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground shadow-2xs transition-colors"
             >
               {isSaving ? t.saving : t.save}
             </button>

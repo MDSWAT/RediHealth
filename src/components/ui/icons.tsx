@@ -452,11 +452,12 @@ export function CalendarIcon(props: IconProps) {
   );
 }
 
-// bx-video
+// bx-camera (still camera: body, lens, top bump). For video calls use VideoIcon.
 export function CameraIcon(props: IconProps) {
   return (
     <svg {...baseProps(props)}>
-      <path d="M18 7c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-3.333L22 17V7l-4 3.333V7zm-1.998 10H4V7h12l.001 4.999L16 12l.001.001.001 4.999z" />
+      <path d="M12 8c-2.168 0-4 1.832-4 4s1.832 4 4 4 4-1.832 4-4-1.832-4-4-4zm0 6c-1.065 0-2-.935-2-2s.935-2 2-2 2 .935 2 2-.935 2-2 2z" />
+      <path d="M20 5h-2.586l-2.707-2.707A.996.996 0 0 0 14 2h-4a.996.996 0 0 0-.707.293L6.586 5H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zM4 18V7h3c.266 0 .52-.105.707-.293L10.414 4h3.172l2.707 2.707A.996.996 0 0 0 17 7h3l.002 11H4z" />
     </svg>
   );
 }
@@ -504,15 +505,6 @@ export function CheckIcon(props: IconProps) {
   return (
     <svg {...baseProps(props)}>
       <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z" />
-    </svg>
-  );
-}
-
-// bx-sparkles
-export function SparklesIcon(props: IconProps) {
-  return (
-    <svg {...baseProps(props)}>
-      <path d="M12 2 9.5 7.5 4 10l5.5 2.5L12 18l2.5-5.5L20 10l-5.5-2.5zM19 16l-1 2.5L15.5 19.5 18 20.5 19 23l1-2.5 2.5-1-2.5-1z" />
     </svg>
   );
 }

@@ -699,8 +699,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
     heading: {
       ro: "Semne că ai nevoie de ajutor acum",
       en: "Signs you need help now",
-      sq: "Shenja që të duhet ndihmë tani",
-      it: "Segni che ti serve aiuto subito",
+      sq: "Kur të kërkosh ndihmë menjëherë",
+      it: "Quando chiedere aiuto subito",
     },
     subtitleWarning: {
       ro: "Sună tu la 112. Aplicația nu sună în locul tău.",
@@ -719,12 +719,6 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       en: "When to call 112",
       sq: "Kur të telefonosh në 112",
       it: "Quando chiamare il 112",
-    },
-    disclaimer: {
-      ro: "Formează 112 de pe telefonul tău.",
-      en: "Dial 112 on your own phone.",
-      sq: "Formo 112 nga telefoni yt.",
-      it: "Componi il 112 dal tuo telefono.",
     },
     modalTitle: {
       ro: "Urgență medicală 112",
@@ -790,10 +784,10 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   topicMyth: {
     badge: {
-      ro: "Adevărat sau fals",
-      en: "True or false",
-      sq: "E vërtetë apo e gabuar",
-      it: "Vero o falso",
+      ro: "Adevărat sau fals?",
+      en: "True or false?",
+      sq: "E vërtetë apo e gabuar?",
+      it: "Vero o falso?",
     },
     audioPrompt: {
       ro: "{statement} E adevărat sau fals?",
@@ -838,13 +832,19 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       ro: "{minutes} min de citit",
       en: "{minutes} min read",
       sq: "{minutes} min lexim",
-      it: "{minutes} min lettura",
+      it: "{minutes} min di lettura",
     },
     audioMinutes: {
+      ro: "{minutes} min audio",
+      en: "{minutes} min audio",
+      sq: "{minutes} min audio",
+      it: "{minutes} min di audio",
+    },
+    audioMinutesLong: {
       ro: "{minutes} minute audio",
       en: "{minutes} min audio",
       sq: "{minutes} minuta audio",
-      it: "{minutes} minuti audio",
+      it: "{minutes} minuti di audio",
     },
   },
 
@@ -887,18 +887,6 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       en: "More health guides",
       sq: "Udhëzues të tjerë për shëndetin",
       it: "Altre guide sulla salute",
-    },
-    subtitle: {
-      ro: "Subiecte apropiate, explicate de medici.",
-      en: "Related topics, explained by doctors.",
-      sq: "Tema të afërta, të shpjeguara nga mjekët.",
-      it: "Argomenti collegati, spiegati dai medici.",
-    },
-    readOrListen: {
-      ro: "Citește sau ascultă",
-      en: "Read or listen",
-      sq: "Lexo ose dëgjo",
-      it: "Leggi o ascolta",
     },
   },
 

@@ -210,7 +210,7 @@ export function HomeVisitsList({
           return (
             <div
               key={visit.id}
-              className={`rounded-lg border p-4 transition-all ${
+              className={`rounded-lg border p-4 transition-colors duration-[var(--dur-base)] ${
                 isCompleted
                   ? "border-border bg-muted/40 opacity-80"
                   : isArrived
@@ -310,7 +310,7 @@ export function HomeVisitsList({
                     <button
                       type="button"
                       onClick={() => updateStatus(visit.id, "completed")}
-                      className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover"
+                      className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90"
                     >
                       {copy.endVisit}
                     </button>

@@ -148,7 +148,7 @@ export const HEART_ANATOMY_UI_COPY: Record<Lang, HeartAnatomyUiCopy> = {
     intro:
       "Në qetësi, zemra rreh rreth 64 herë në minutë. Me çdo rrahje shtyn gjak në arterie. Tensioni i gjakut është forca e këtij gjaku mbi muret e arterieve.",
     diagramLabel:
-      "Zemra e parë nga përpara, duke rrahur me ritmin e qetësisë, me gjurmën e EKG-së poshtë.",
+      "Zemra e parë nga përpara, që rreh me ritëm të qetë, me gjurmën e EKG-së poshtë.",
     ecgCaption:
       "Vija poshtë tregon sinjalin elektrik të zemrës (EKG). Çdo kulm nis një rrahje.",
     partsLabel: "Zgjidh një pjesë të zemrës",

@@ -10,6 +10,13 @@ const TRACK_Y = 104;
 const TRACK_H = 14;
 const weekX = (week: number) => START_X + (week / 40) * (END_X - START_X);
 
+/** The drawing is cropped to its content (a wide strip) so it fills the stage width.
+    Week numbers are DOM text placed with `womensSceneWeekLeft`. */
+export const WOMENS_SCENE_VIEWBOX = { x: 0, y: 48, width: 320, height: 86 } as const;
+export const WOMENS_SCENE_WEEK_MARKS = [12, 27, 40] as const;
+/** Horizontal position of a week on the drawing, as a percentage of its width. */
+export const womensSceneWeekLeft = (week: number) => `${(weekX(week) / WOMENS_SCENE_VIEWBOX.width) * 100}%`;
+
 /** Trimesters in weeks: 1–12, 13–27, 28–40. */
 const TRIMESTERS = [
   { from: 0, to: 12 },
@@ -32,7 +39,7 @@ const CONTACTS = [
 /**
  * Pregnancy as a 40-week timeline: three trimester segments, with the eight WHO antenatal
  * contacts as short marks above them. The selected trimester and its visits fill in sapphire
- * with a short cross-fade. No loops, no figures.
+ * with a short cross-fade. The stepper places the week numbers and the legend in the DOM. No loops, no figures.
  */
 export function WomensHealthScene({ step }: ExplainerSceneProps) {
   const reduceMotion = useReducedMotion();
@@ -41,7 +48,12 @@ export function WomensHealthScene({ step }: ExplainerSceneProps) {
   const trackTop = TRACK_Y - TRACK_H / 2;
 
   return (
-    <svg viewBox="0 0 320 180" className="h-full w-full" fill="none" aria-hidden="true">
+    <svg
+      viewBox={`${WOMENS_SCENE_VIEWBOX.x} ${WOMENS_SCENE_VIEWBOX.y} ${WOMENS_SCENE_VIEWBOX.width} ${WOMENS_SCENE_VIEWBOX.height}`}
+      className="h-full w-full"
+      fill="none"
+      aria-hidden="true"
+    >
       {/* Week ticks every 4 weeks; longer ticks at the trimester boundaries */}
       {Array.from({ length: 11 }, (_, i) => i * 4).map((week) => (
         <path
@@ -54,14 +66,15 @@ export function WomensHealthScene({ step }: ExplainerSceneProps) {
         />
       ))}
       {[0, 12, 27, 40].map((week) => (
-        <path
-          key={`b-${week}`}
-          d={`M${weekX(week)} ${TRACK_Y + 14} V${TRACK_Y + 28}`}
-          stroke="var(--color-muted-foreground)"
-          strokeWidth="1.25"
-          opacity="0.7"
-          vectorEffect="non-scaling-stroke"
-        />
+        <g key={`b-${week}`}>
+          <path
+            d={`M${weekX(week)} ${TRACK_Y + 14} V${TRACK_Y + 26}`}
+            stroke="var(--color-muted-foreground)"
+            strokeWidth="1.25"
+            opacity="0.7"
+            vectorEffect="non-scaling-stroke"
+          />
+        </g>
       ))}
 
       {/* Trimester segments */}

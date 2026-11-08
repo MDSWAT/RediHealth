@@ -96,10 +96,10 @@ export function LegalRightsCard({ className = "" }: LegalRightsCardProps) {
   }
 
   return (
-    <section className={`rounded-lg border border-sapphire/25 bg-sapphire/5 p-5 dark:bg-sapphire/10 sm:p-6 ${className}`}>
+    <section className={`border-t border-border pt-6 ${className}`}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-foreground">{t.heading}</h3>
+          <h3 className="text-base font-semibold text-foreground">{t.heading}</h3>
           <p className="mt-0.5 text-sm text-muted-foreground">{t.lawRef}</p>
         </div>
         {voiceEnabled && (
@@ -117,7 +117,7 @@ export function LegalRightsCard({ className = "" }: LegalRightsCardProps) {
 
       <p className="mt-3 max-w-prose text-base leading-relaxed text-foreground">{t.body}</p>
 
-      <ul className="mt-4 space-y-2 border-t border-sapphire/20 pt-4">
+      <ul className="mt-4 space-y-2">
         {t.keyRights.map((right) => (
           <li key={right} className="flex items-start gap-2 text-sm leading-relaxed text-foreground">
             <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />

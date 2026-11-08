@@ -26,15 +26,13 @@ export default function ErrorPage({
     <main id="main-content" className="flex flex-1 items-center py-20 sm:py-28">
       <Container>
         <div role="alert" className="mx-auto max-w-xl text-center">
-          <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-            <AlertCircleIcon className="h-7 w-7" />
-          </span>
+          <AlertCircleIcon className="mx-auto h-8 w-8 text-muted-foreground" aria-hidden="true" />
           <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {copy.title}
           </h1>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{copy.body}</p>
+          <p className="mx-auto mt-4 max-w-md text-pretty text-lg leading-relaxed text-muted-foreground">{copy.body}</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button size="lg" onClick={() => retry()}>
+            <Button size="lg" variant="secondary" onClick={() => retry()}>
               {copy.retry}
             </Button>
             <Button href={withLangPrefix("/", lang)} size="lg" variant="outline">

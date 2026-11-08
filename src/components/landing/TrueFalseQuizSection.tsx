@@ -14,6 +14,7 @@ import { MythCategoryFilter } from "./MythCategoryFilter";
 import { MythCardCarousel, type MythResult } from "./MythCardCarousel";
 import { QuizFeedbackCard } from "./QuizFeedbackCard";
 import { InlineAudioNarratorButton } from "@/components/health-information/InlineAudioNarratorButton";
+import { CheckIcon, CloseIcon } from "@/components/ui/icons";
 
 const ANSWERS_STORAGE_KEY = "redihealth_myth_answers_v1";
 
@@ -24,7 +25,6 @@ const extraCopy: Record<
     doneTitle: (correct: number, total: number) => string;
     doneBody: string;
     restart: string;
-    shortcuts: string;
   }
 > = {
   ro: {
@@ -32,42 +32,39 @@ const extraCopy: Record<
     doneTitle: (c, t) => `Ai răspuns corect la ${c} din ${t}`,
     doneBody: "Răspunsurile tale sunt salvate pe acest dispozitiv.",
     restart: "Începe din nou",
-    shortcuts:
-      "Scurtături: A adevărat · F fals · ← → mitul anterior sau următor",
   },
   en: {
     score: (c, a) => `${c} of ${a} correct`,
     doneTitle: (c, t) => `You got ${c} of ${t} right`,
     doneBody: "Your answers are saved on this device.",
     restart: "Start over",
-    shortcuts: "Shortcuts: T true · F false · ← → previous or next myth",
   },
   sq: {
     score: (c, a) => `${c} nga ${a} të sakta`,
     doneTitle: (c, t) => `Iu përgjigje saktë ${c} nga ${t}`,
     doneBody: "Përgjigjet e tua ruhen në këtë pajisje.",
     restart: "Fillo nga e para",
-    shortcuts:
-      "Shkurtore: V e vërtetë · F e rreme · ← → miti i mëparshëm ose tjetri",
   },
   it: {
     score: (c, a) => `${c} su ${a} corrette`,
     doneTitle: (c, t) => `Hai risposto bene a ${c} su ${t}`,
     doneBody: "Le tue risposte sono salvate su questo dispositivo.",
     restart: "Ricomincia",
-    shortcuts:
-      "Scorciatoie: V vero · F falso · ← → mito precedente o successivo",
   },
 };
 
-/** First letter of each language's "true" word, used as its keyboard shortcut. */
-const TRUE_KEYS: Record<Lang, string[]> = {
-  ro: ["a", "1"],
-  en: ["t", "1"],
-  sq: ["v", "1"],
-  it: ["v", "1"],
+/**
+ * Keyboard answers, active only while focus is inside the quiz: the first
+ * letter of each language's word for "true" / "false", or 1 / 2. Announced
+ * through aria-keyshortcuts on the answer buttons, not as visible text.
+ */
+const ANSWER_KEYS: Record<Lang, { true: string[]; false: string[] }> = {
+  ro: { true: ["a", "1"], false: ["f", "2"] }, // adevărat / fals
+  en: { true: ["t", "1"], false: ["f", "2"] }, // true / false
+  sq: { true: ["v", "1"], false: ["r", "2"] }, // e vërtetë / e rreme
+  it: { true: ["v", "1"], false: ["f", "2"] }, // vero / falso
 };
-const FALSE_KEYS = ["f", "2"];
+const keyShortcuts = (keys: string[]) => keys.map((key) => key.toUpperCase()).join(" ");
 
 /** Quotation marks around the myth, in each language's own typographic style. */
 const QUOTES: Record<Lang, [string, string]> = {
@@ -140,6 +137,7 @@ export function TrueFalseQuizSection({
   const { lang, t } = useLanguage();
   const q = t.quiz;
   const extra = extraCopy[lang as Lang] ?? extraCopy.ro;
+  const answerKeys = ANSWER_KEYS[lang as Lang] ?? ANSWER_KEYS.ro;
   const allMyths = useMemo(() => getHealthMyths(lang), [lang]);
   const categories = getMythCategories(lang);
 
@@ -237,9 +235,9 @@ export function TrueFalseQuizSection({
     } else if (e.key === "ArrowLeft" && currentIndex > 0) {
       e.preventDefault();
       setCurrentIndex((i) => i - 1);
-    } else if ((TRUE_KEYS[lang as Lang] ?? TRUE_KEYS.ro).includes(key)) {
+    } else if (answerKeys.true.includes(key)) {
       handleAnswer(true);
-    } else if (FALSE_KEYS.includes(key)) {
+    } else if (answerKeys.false.includes(key)) {
       handleAnswer(false);
     }
   };
@@ -275,7 +273,8 @@ export function TrueFalseQuizSection({
           />
         </div>
 
-        <div className="mx-auto mt-8 max-w-5xl">
+        {/* The filter band shares the quiz card's column, so both start on one edge. */}
+        <div className="mx-auto mt-8 max-w-2xl">
           <MythCategoryFilter
             categories={categories}
             activeCategory={selectedCategory}
@@ -284,11 +283,11 @@ export function TrueFalseQuizSection({
           />
         </div>
 
-        <div className="mx-auto mt-10 max-w-2xl" onKeyDown={handleKeyDown}>
+        <div className="mx-auto mt-6 max-w-2xl" onKeyDown={handleKeyDown}>
           {allAnsweredInView && (
             <div
               role="status"
-              className="mb-4 flex flex-col gap-3 rounded-xl border border-border bg-muted/40 px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
+              className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
               <div>
                 <p className="text-sm font-semibold text-foreground">
@@ -299,7 +298,7 @@ export function TrueFalseQuizSection({
               <button
                 type="button"
                 onClick={handleRestart}
-                className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-lg border border-border bg-card px-4 text-sm font-semibold text-foreground transition-colors duration-150 hover:border-sapphire/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="inline-flex min-h-[44px] shrink-0 items-center justify-center self-start rounded-lg border border-border bg-card px-4 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/40 sm:self-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
               >
                 {extra.restart}
               </button>
@@ -320,21 +319,21 @@ export function TrueFalseQuizSection({
               ) : null
             }
           >
-            <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-              <div className="flex items-center justify-between gap-4">
-                <span className="text-sm font-medium text-sapphire">{currentMyth.category}</span>
+            <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
+              {/* The statement leads; no category label above it (the filter above already names it). */}
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="text-xl font-semibold leading-snug text-foreground sm:text-2xl">
+                  {quotes[0]}
+                  {currentMyth.statement}
+                  {quotes[1]}
+                </h3>
                 <InlineAudioNarratorButton
-                  textToSpeak={`${currentMyth.statement}. ${q.verifiedClarification ? `${q.verifiedClarification}:` : ""} ${currentMyth.explanation}`}
+                  textToSpeak={`${currentMyth.statement} ${currentMyth.explanation}`}
                   label={q.audioNarratorLabel}
                   lang={SPEECH_LANG[lang as Lang] ?? SPEECH_LANG.ro}
+                  className="shrink-0"
                 />
               </div>
-
-              <h3 className="mt-3 text-xl font-semibold leading-snug text-foreground sm:text-2xl">
-                {quotes[0]}
-                {currentMyth.statement}
-                {quotes[1]}
-              </h3>
 
               {!hasAnswered ? (
                 <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -343,20 +342,14 @@ export function TrueFalseQuizSection({
                       key={String(value)}
                       type="button"
                       onClick={() => handleAnswer(value)}
-                      className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-base font-semibold text-foreground transition-[background-color,border-color,transform] duration-150 hover:border-sapphire/50 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire active:scale-[0.98] motion-reduce:transition-none"
+                      aria-keyshortcuts={keyShortcuts(value ? answerKeys.true : answerKeys.false)}
+                      className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none"
                     >
-                      <svg
-                        className={value ? "h-5 w-5 text-sapphire" : "h-5 w-5 text-stone-500"}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        {value ? <path d="M5 12.5 9.5 17 19 7" /> : <path d="M7 7l10 10M17 7 7 17" />}
-                      </svg>
+                      {value ? (
+                        <CheckIcon className="h-5 w-5 text-sapphire" />
+                      ) : (
+                        <CloseIcon className="h-5 w-5 text-stone-500" />
+                      )}
                       <span>{value ? q.trueButton : q.falseButton}</span>
                     </button>
                   ))}
@@ -373,10 +366,6 @@ export function TrueFalseQuizSection({
               )}
             </div>
           </MythCardCarousel>
-
-          <p className="mt-4 hidden text-center text-xs text-muted-foreground sm:block">
-            {extra.shortcuts}
-          </p>
         </div>
       </Container>
     </section>

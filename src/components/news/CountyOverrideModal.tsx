@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
-import { CheckIcon, CloseIcon, SearchIcon } from "@/components/ui/icons";
+import { CloseIcon, SearchIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
+import { foldForSearch, placeName, quoteTerm } from "@/components/news/news-format";
+import { useSheetDialog } from "@/components/news/use-sheet-dialog";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations } from "@/lib/i18n/translations";
 
@@ -32,33 +34,22 @@ const NATIONAL = "Toate județele";
  * Bottom sheet on phones, centred dialog from sm up; the same calm entrance as the news sheet.
  */
 export function CountyOverrideModal({ open, onOpenChange, currentCounty, onSelectCounty }: CountyOverrideModalProps) {
-  const { t } = useSafeLanguage();
+  const { lang, t } = useSafeLanguage();
   const nr = t.newsRibbon;
   const [searchTerm, setSearchTerm] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const previouslyFocused = document.activeElement as HTMLElement | null;
-    searchRef.current?.focus({ preventScroll: true });
-    const { overflow } = document.body.style;
-    document.body.style.overflow = "hidden";
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") onOpenChange(false);
-    }
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = overflow;
-      if (previouslyFocused && previouslyFocused !== document.body) previouslyFocused.focus({ preventScroll: true });
-    };
-  }, [open, onOpenChange]);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const close = useCallback(() => onOpenChange(false), [onOpenChange]);
+  useSheetDialog(open, panelRef, close, searchRef);
 
   const filteredCounties = useMemo(() => {
-    const query = searchTerm.toLocaleLowerCase("ro").trim();
+    // Diacritics are optional: most phones type "iasi", not "Iași". English names find their county too.
+    const query = foldForSearch(searchTerm);
     const all = ROMANIAN_COUNTIES as readonly string[];
-    return query ? all.filter((county) => county.toLocaleLowerCase("ro").includes(query)) : all;
-  }, [searchTerm]);
+    return query
+      ? all.filter((county) => foldForSearch(county).includes(query) || foldForSearch(placeName(county, lang)).includes(query))
+      : all;
+  }, [searchTerm, lang]);
 
   function handleSelect(county: string) {
     onSelectCounty(county);
@@ -68,23 +59,32 @@ export function CountyOverrideModal({ open, onOpenChange, currentCounty, onSelec
 
   if (!open) return null;
 
-  const option = (county: string, label: string, wide = false) => {
+  // One choice from a list: radio rows split by hairlines, not a grid of bordered boxes.
+  const option = (county: string, label: string) => {
     const selected = currentCounty === county;
     return (
-      <button
-        key={county}
-        type="button"
-        onClick={() => handleSelect(county)}
-        aria-pressed={selected}
-        className={cn(
-          "flex min-h-[44px] items-center justify-between gap-2 rounded-lg border px-3 py-2 text-left text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-          wide && "col-span-full",
-          selected ? "border-sapphire bg-sapphire-soft font-semibold text-sapphire" : "border-border bg-card text-foreground hover:bg-muted",
-        )}
-      >
-        <span className="truncate">{label}</span>
-        {selected ? <CheckIcon className="h-4 w-4 shrink-0" /> : null}
-      </button>
+      <li key={county}>
+        <button
+          type="button"
+          onClick={() => handleSelect(county)}
+          aria-pressed={selected}
+          className={cn(
+            "flex min-h-[48px] w-full items-center gap-3 px-5 py-2.5 text-left text-sm text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+            selected && "font-semibold",
+          )}
+        >
+          <span
+            aria-hidden="true"
+            className={cn(
+              "flex h-4 w-4 shrink-0 items-center justify-center rounded-full border",
+              selected ? "border-foreground" : "border-muted-foreground/50",
+            )}
+          >
+            {selected && <span className="h-2 w-2 rounded-full bg-foreground" />}
+          </span>
+          <span>{label}</span>
+        </button>
+      </li>
     );
   };
 
@@ -96,9 +96,9 @@ export function CountyOverrideModal({ open, onOpenChange, currentCounty, onSelec
       aria-describedby="county-modal-subtitle"
       className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4"
     >
-      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-slate-950/45" onClick={() => onOpenChange(false)} aria-hidden="true" />
+      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-slate-950/45" onClick={close} aria-hidden="true" />
 
-      <div className="news-sheet relative flex max-h-[88dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-2xl bg-card shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] sm:max-h-[80dvh] sm:rounded-2xl">
+      <div ref={panelRef} className="news-sheet relative flex max-h-[88dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-xl bg-card shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] sm:max-h-[80dvh] sm:rounded-xl">
         <div className="flex items-start justify-between gap-3 border-b border-border px-5 pb-4 pt-5">
           <div>
             <h2 id="county-modal-title" className="text-lg font-semibold text-foreground">
@@ -133,15 +133,15 @@ export function CountyOverrideModal({ open, onOpenChange, currentCounty, onSelec
           </div>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-5">
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-            {!searchTerm.trim() && option(NATIONAL, nr.allCountiesNational, true)}
-            {filteredCounties.map((county) => option(county, county))}
-          </div>
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+          <ul className="divide-y divide-border">
+            {!searchTerm.trim() && option(NATIONAL, nr.allCountiesNational)}
+            {filteredCounties.map((county) => option(county, placeName(county, lang)))}
+          </ul>
 
           {filteredCounties.length === 0 && (
-            <p role="status" className="py-8 text-center text-sm text-muted-foreground">
-              {nr.noCountyFound} «{searchTerm}».
+            <p role="status" className="px-5 py-8 text-center text-sm text-muted-foreground">
+              {nr.noCountyFound} {quoteTerm(searchTerm.trim(), lang)}.
             </p>
           )}
         </div>

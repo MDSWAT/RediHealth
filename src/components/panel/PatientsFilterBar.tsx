@@ -3,7 +3,6 @@
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { useState } from "react";
 import {
-  CalendarIcon,
   FilterIcon,
   SearchIcon,
   UserIcon,
@@ -102,21 +101,21 @@ export function PatientsFilterBar({
       high: "High",
       moderate: "Medium",
       low: "Low",
-      urgency: "Urgency",
+      urgency: "Follow-up",
       allUrgency: "All",
       overdue: "Overdue",
       dueToday: "Due today",
       upcoming: "Upcoming",
       noFollowup: "No follow-up",
       completed: "Done",
-      createdFrom: "From",
-      createdTo: "To",
+      createdFrom: "Added from",
+      createdTo: "Added until",
       clearDates: "Clear dates",
     },
     ro: {
       search: "Caută după nume, telefon, email sau notițe",
       add: "Adaugă pacient",
-      exportCsv: "Export CSV",
+      exportCsv: "Exportă CSV",
       refreshTitle: "Actualizează lista de pacienți",
       refreshing: "Se actualizează...",
       refresh: "Actualizează",
@@ -131,15 +130,15 @@ export function PatientsFilterBar({
       high: "Ridicată",
       moderate: "Medie",
       low: "Scăzută",
-      urgency: "Urgență",
+      urgency: "Control",
       allUrgency: "Toate",
       overdue: "Întârziat",
       dueToday: "Azi",
       upcoming: "Următor",
       noFollowup: "Fără control",
       completed: "Efectuat",
-      createdFrom: "De la",
-      createdTo: "Până la",
+      createdFrom: "Adăugat de la",
+      createdTo: "Adăugat până la",
       clearDates: "Șterge datele",
     },
     sq: {
@@ -160,15 +159,15 @@ export function PatientsFilterBar({
       high: "E lartë",
       moderate: "Mesatare",
       low: "E ulët",
-      urgency: "Urgjenca",
+      urgency: "Kontrolli",
       allUrgency: "Të gjitha",
       overdue: "Me vonesë",
       dueToday: "Sot",
       upcoming: "Në vijim",
       noFollowup: "Pa kontroll",
       completed: "Kryer",
-      createdFrom: "Nga",
-      createdTo: "Deri",
+      createdFrom: "Shtuar nga",
+      createdTo: "Shtuar deri më",
       clearDates: "Pastro datat",
     },
     it: {
@@ -189,15 +188,15 @@ export function PatientsFilterBar({
       high: "Alta",
       moderate: "Media",
       low: "Bassa",
-      urgency: "Urgenza",
+      urgency: "Controllo",
       allUrgency: "Tutte",
       overdue: "In ritardo",
       dueToday: "Oggi",
       upcoming: "Prossimo",
       noFollowup: "Nessun controllo",
       completed: "Fatto",
-      createdFrom: "Dal",
-      createdTo: "Al",
+      createdFrom: "Aggiunto dal",
+      createdTo: "Aggiunto fino al",
       clearDates: "Azzera date",
     },
   }[lang];
@@ -260,7 +259,7 @@ export function PatientsFilterBar({
             onChange={(e) => onChangeSearchQuery(e.target.value)}
             placeholder={t.search}
             aria-label={t.search}
-            className="w-full rounded-xl border border-border bg-background pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full rounded-lg border border-border bg-white pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -269,22 +268,14 @@ export function PatientsFilterBar({
             type="button"
             onClick={() => setShowFilters((prev) => !prev)}
             aria-expanded={showFilters}
-            className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-semibold transition-colors ${
-              showFilters || hasAdvancedFilters
-                ? "border-primary/40 bg-primary-soft text-primary"
-                : "border-border bg-background text-foreground hover:bg-muted"
-            }`}
+            className={`crm-button ${showFilters || hasAdvancedFilters ? "!border-primary/40 !bg-primary-soft !text-primary" : ""}`}
           >
-            <FilterIcon className="h-3.5 w-3.5" />
+            <FilterIcon className="h-4 w-4" />
             <span>{copy.filters}</span>
-            {hasAdvancedFilters ? <span className="h-2 w-2 rounded-full bg-primary" /> : null}
+            {hasAdvancedFilters ? <span aria-hidden="true" className="h-2 w-2 rounded-full bg-primary" /> : null}
           </button>
 
-          <button
-            type="button"
-            onClick={onAddPatient}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-xs font-bold text-white transition-colors hover:bg-primary-hover shadow-2xs"
-          >
+          <button type="button" onClick={onAddPatient} className="crm-button crm-primary">
             <UserIcon className="h-4 w-4" />
             <span>{t.add}</span>
           </button>
@@ -296,121 +287,45 @@ export function PatientsFilterBar({
         </div>
       </div>
 
-      {/* Collapsible secondary filters */}
+      {/* Filters: one row of labelled fields, the same controls the inbox filters use. */}
       {showFilters ? (
-        <div className="border-t border-border pt-4 space-y-3">
-      {/* Care Status pills */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
-        {localizedStatusFilters.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => onChangeStatusFilter(item.id)}
-            aria-pressed={activeStatusFilter === item.id}
-            className={`whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-semibold transition-colors ${
-              activeStatusFilter === item.id
-                ? "bg-primary text-white shadow-2xs"
-                : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
-
-          <div className="flex flex-wrap items-center gap-1.5 text-xs">
-            <span className="mr-1 text-xs font-semibold text-muted-foreground">
-              {t.priority}:
-            </span>
-            {localizedPriorityFilters.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => onChangePriorityFilter(item.id)}
-                aria-pressed={priorityFilter === item.id}
-                className={`rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-colors ${
-                  priorityFilter === item.id
-                    ? "bg-foreground text-background"
-                    : "bg-muted text-foreground hover:bg-muted/80"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-end gap-3 text-xs">
-            <div className="min-w-[160px] flex-1">
-              <label className="mb-1.5 flex items-center gap-1 font-semibold text-muted-foreground">
-                <FilterIcon className="h-3.5 w-3.5" /> {t.urgency}
-              </label>
-              <select
-                aria-label={t.urgency}
-                value={urgencyFilter}
-                onChange={(e) =>
-                  onChangeUrgencyFilter(
-                    e.target.value as "all" | "overdue" | "today" | "upcoming" | "none" | "completed",
-                  )
-                }
-                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                {localizedUrgencyFilters.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="min-w-[140px] flex-1">
-              <label className="mb-1.5 flex items-center gap-1 font-semibold text-muted-foreground">
-                <CalendarIcon className="h-3.5 w-3.5" /> {t.createdFrom}
-              </label>
-              <input
-                type="date"
-                aria-label={t.createdFrom}
-                value={createdFrom}
-                onChange={(e) => onChangeCreatedFrom(e.target.value)}
-                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              />
-            </div>
-
-            <div className="min-w-[140px] flex-1">
-              <label className="mb-1.5 flex items-center gap-1 font-semibold text-muted-foreground">
-                <CalendarIcon className="h-3.5 w-3.5" /> {t.createdTo}
-              </label>
-              <input
-                type="date"
-                aria-label={t.createdTo}
-                value={createdTo}
-                onChange={(e) => onChangeCreatedTo(e.target.value)}
-                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              />
-            </div>
-
-            {(createdFrom || createdTo) && (
-              <button
-                type="button"
-                onClick={() => {
-                  onChangeCreatedFrom("");
-                  onChangeCreatedTo("");
-                }}
-                className="rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
-              >
-                {t.clearDates}
-              </button>
-            )}
-          </div>
+        <div className="grid grid-cols-1 items-end gap-3 border-t border-border pt-4 sm:grid-cols-2 lg:grid-cols-[repeat(5,minmax(0,1fr))_auto]">
+          <label className="crm-label">{t.careStatus}
+            <select className="crm-input" value={activeStatusFilter} onChange={(e) => onChangeStatusFilter(e.target.value as typeof activeStatusFilter)}>
+              {localizedStatusFilters.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
+            </select>
+          </label>
+          <label className="crm-label">{t.priority}
+            <select className="crm-input" value={priorityFilter} onChange={(e) => onChangePriorityFilter(e.target.value as typeof priorityFilter)}>
+              {localizedPriorityFilters.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
+            </select>
+          </label>
+          <label className="crm-label">{t.urgency}
+            <select className="crm-input" value={urgencyFilter} onChange={(e) => onChangeUrgencyFilter(e.target.value as typeof urgencyFilter)}>
+              {localizedUrgencyFilters.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
+            </select>
+          </label>
+          <label className="crm-label">{t.createdFrom}
+            <input type="date" className="crm-input" value={createdFrom} onChange={(e) => onChangeCreatedFrom(e.target.value)} />
+          </label>
+          <label className="crm-label">{t.createdTo}
+            <input type="date" className="crm-input" value={createdTo} onChange={(e) => onChangeCreatedTo(e.target.value)} />
+          </label>
+          {createdFrom || createdTo ? (
+            <button type="button" className="crm-button" onClick={() => { onChangeCreatedFrom(""); onChangeCreatedTo(""); }}>
+              {t.clearDates}
+            </button>
+          ) : null}
         </div>
       ) : null}
 
       {hasActiveFilters ? (
-        <div className="flex items-center justify-between rounded-xl border border-border/80 bg-muted/40 px-3.5 py-2 text-xs">
+        <div className="flex items-center gap-3 text-xs">
           <span className="text-muted-foreground">{copy.activeFilters}</span>
           <button
             type="button"
             onClick={onResetFilters}
-            className="font-bold text-primary hover:underline"
+            className="font-semibold text-primary underline-offset-2 hover:underline"
           >
             {copy.reset}
           </button>

@@ -13,9 +13,15 @@ type LanguageContextValue = {
 
 export const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
+/**
+ * `requestLang` is the locale the server resolved for this request (the proxy puts it in a
+ * header). The proxy rewrites /ro/about to /about, and usePathname() can return that rewritten
+ * path on one side of hydration, which has no locale in it. Falling back to the request's
+ * locale (instead of DEFAULT_LANG) keeps the server and client renders in the same language.
+ */
+export function LanguageProvider({ children, requestLang }: { children: ReactNode; requestLang?: Lang }) {
   const pathname = usePathname();
-  const lang = getLangFromPathname(pathname) ?? DEFAULT_LANG;
+  const lang = getLangFromPathname(pathname) ?? requestLang ?? DEFAULT_LANG;
 
   useEffect(() => {
     document.documentElement.lang = lang;

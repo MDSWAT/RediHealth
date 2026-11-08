@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PhoneIcon } from "@/components/ui/icons";
+import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { InlineAudioNarratorButton } from "./InlineAudioNarratorButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -14,7 +15,6 @@ export interface WarningSignsEmergencyCardProps {
   topicTitle: string;
   warningSigns: string[];
   className?: string;
-  onOpenEmergencyModal?: () => void;
   lang?: Lang;
 }
 
@@ -30,7 +30,6 @@ export function WarningSignsEmergencyCard({
   topicTitle,
   warningSigns,
   className = "",
-  onOpenEmergencyModal,
   lang,
 }: WarningSignsEmergencyCardProps) {
   const { lang: ctxLang } = useSafeLanguageContext();
@@ -38,61 +37,43 @@ export function WarningSignsEmergencyCard({
   const s = HEALTH_DETAIL_SHARED_STRINGS.warningSigns;
   const speechLang = SPEECH_LANG_BY_LOCALE[currentLang] ?? "ro-RO";
 
+  // Two layers: the "when to call" explainer, and the shared 112 dial gate (the site never dials by itself).
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dialerOpen, setDialerOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const closeRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     if (!isModalOpen) return;
+    const trigger = triggerRef.current;
+    closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsModalOpen(false);
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      trigger?.focus();
+    };
   }, [isModalOpen]);
-
-  const handleOpen = () => {
-    if (onOpenEmergencyModal) {
-      onOpenEmergencyModal();
-    } else {
-      setIsModalOpen(true);
-    }
-  };
 
   return (
     <>
       <section
         aria-labelledby="warning-signs-heading"
-        className={`rounded-lg border border-primary/30 bg-primary-soft/40 p-6 sm:p-8 break-inside-avoid ${className}`}
+        className={`rounded-xl border border-border bg-card p-6 sm:p-8 break-inside-avoid ${className}`}
       >
         <div className="flex items-start justify-between gap-3">
-          <div className="flex flex-1 min-w-0 items-start gap-3.5">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary text-white">
-              <svg
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                <line x1="12" y1="9" x2="12" y2="13" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
-              </svg>
-            </span>
-
-            <div className="flex-1 min-w-0">
-              <h2
-                id="warning-signs-heading"
-                className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl leading-snug break-words"
-              >
-                {s.heading[currentLang]}
-              </h2>
-              <p className="mt-1 text-sm font-medium text-primary leading-normal">
-                {s.subtitleWarning[currentLang]}
-              </p>
-            </div>
+          <div className="min-w-0 flex-1">
+            <h2
+              id="warning-signs-heading"
+              className="text-xl font-semibold leading-snug tracking-tight text-foreground text-balance sm:text-3xl"
+            >
+              {s.heading[currentLang]}
+            </h2>
+            <p className="mt-1 text-sm font-medium leading-normal text-foreground">
+              {s.subtitleWarning[currentLang]}
+            </p>
           </div>
 
           <div className="shrink-0 self-start">
@@ -108,20 +89,20 @@ export function WarningSignsEmergencyCard({
           {s.prompt[currentLang].replace("{topic}", topicTitle.toLowerCase())}
         </p>
 
-        <ul className="mt-4 space-y-2.5">
+        <ul className="mt-4 divide-y divide-border border-y border-border">
           {warningSigns.map((sign, idx) => (
             <li
               key={idx}
-              className="flex items-start justify-between gap-3 rounded-md border border-primary/20 bg-card p-3 text-sm font-medium text-foreground"
+              className="flex items-start justify-between gap-3 py-3 text-base font-medium text-foreground"
             >
-              <div className="flex items-start gap-2.5">
-                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+              <div className="flex items-start gap-3">
+                <span className="mt-[11px] h-1 w-1 shrink-0 rounded-full bg-foreground" aria-hidden="true" />
                 <span className="leading-relaxed">{sign}</span>
               </div>
 
               <InlineAudioNarratorButton
                 textToSpeak={sign}
-                label={`${s.heading[currentLang]} ${idx + 1}`}
+                label={HEALTH_DETAIL_SHARED_STRINGS.actionableSteps.listenStepLabel[currentLang].replace("{title}", sign)}
                 lang={speechLang}
                 variant="ghost"
                 className="-my-2 -mr-2 shrink-0"
@@ -130,19 +111,26 @@ export function WarningSignsEmergencyCard({
           ))}
         </ul>
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="mt-6 flex flex-col items-start gap-x-6 gap-y-2 sm:flex-row sm:items-center print:hidden">
           <button
             type="button"
-            onClick={handleOpen}
-            className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 print:hidden"
+            onClick={() => setDialerOpen(true)}
+            aria-haspopup="dialog"
+            className="inline-flex min-h-[48px] w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
           >
             <PhoneIcon className="h-4 w-4" />
-            <span>{s.modalTrigger[currentLang]}</span>
+            <span>{s.dialBtn[currentLang]}</span>
           </button>
 
-          <span className="text-sm leading-relaxed text-muted-foreground">
-            {s.disclaimer[currentLang]}
-          </span>
+          <button
+            ref={triggerRef}
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            aria-haspopup="dialog"
+            className="inline-flex min-h-[44px] items-center rounded-sm text-sm font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          >
+            {s.modalTrigger[currentLang]}
+          </button>
         </div>
       </section>
 
@@ -152,35 +140,31 @@ export function WarningSignsEmergencyCard({
           role="dialog"
           aria-modal="true"
           aria-labelledby="emergency-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs"
+          className="hh-scrim fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-4 sm:items-center"
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="w-full max-w-lg rounded-lg border border-border bg-card p-6 shadow-xl"
+            className="hh-dialog w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
-                  <PhoneIcon className="h-6 w-6" />
-                </span>
-                <div>
-                  <h3
-                    id="emergency-modal-title"
-                    className="text-xl font-bold text-foreground"
-                  >
-                    {s.modalTitle[currentLang]}
-                  </h3>
-                  <p className="text-xs font-semibold text-primary">
-                    {s.modalSubtitle[currentLang]}
-                  </p>
-                </div>
+              <div>
+                <h3
+                  id="emergency-modal-title"
+                  className="text-xl font-semibold tracking-tight text-foreground"
+                >
+                  {s.modalTitle[currentLang]}
+                </h3>
+                <p className="mt-0.5 text-sm text-muted-foreground">
+                  {s.modalSubtitle[currentLang]}
+                </p>
               </div>
 
               <button
+                ref={closeRef}
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
                 aria-label={s.closeAria[currentLang]}
               >
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
@@ -190,18 +174,11 @@ export function WarningSignsEmergencyCard({
             </div>
 
             <div className="mt-5 space-y-4 text-sm text-foreground">
-              <div className="rounded-lg border border-primary/30 bg-primary-soft/50 p-4">
-                <p className="font-semibold text-primary">
-                  {s.subtitleWarning[currentLang]}
-                </p>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {s.disclaimer[currentLang]}
-                </p>
-              </div>
+              <p className="font-semibold">{s.subtitleWarning[currentLang]}</p>
 
               <div>
                 <p className="font-semibold">{s.dispatchTitle[currentLang]}</p>
-                <ol className="mt-2 list-inside list-decimal space-y-1.5 text-xs text-muted-foreground">
+                <ol className="mt-2 list-outside list-decimal space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                   <li>{s.dispatchStep1[currentLang]}</li>
                   <li>{s.dispatchStep2[currentLang]}</li>
                   <li>{s.dispatchStep3[currentLang]}</li>
@@ -214,21 +191,28 @@ export function WarningSignsEmergencyCard({
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="min-h-[44px] rounded-lg border border-border px-4 py-2 text-sm font-semibold text-muted-foreground hover:bg-muted"
+                className="min-h-[44px] rounded-lg px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
               >
                 {s.closeBtn[currentLang]}
               </button>
-              <a
-                href="tel:112"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-primary-hover"
+              <button
+                type="button"
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setDialerOpen(true);
+                }}
+                aria-haspopup="dialog"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <PhoneIcon className="h-4 w-4" />
                 <span>{s.dialBtn[currentLang]}</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>
       )}
+
+      <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} />
     </>
   );
 }

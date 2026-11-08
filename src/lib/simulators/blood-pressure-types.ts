@@ -255,7 +255,7 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
       physiologicEffect:
         "Tensiunea atât de mare poate da apă la plămâni, sângerare în creier sau o ruptură în peretele aortei.",
       actionProtocol:
-        "Sună acum la 112 de pe telefonul tău. Stai jos și încearcă să rămâi calm. Nu lua doze duble de medicamente dacă nu îți spune dispecerul.",
+        "Sună acum la 112 de pe telefonul tău. Stai jos și încearcă să rămâi calm. Nu lua doze duble de medicamente dacă nu îți spune operatorul de la 112.",
     },
     en: {
       label: "Hypertensive crisis (emergency)",
@@ -269,14 +269,14 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
       physiologicEffect:
         "Tensioni kaq i lartë mund të shkaktojë ujë në mushkëri, gjakderdhje në tru ose çarje të aortës.",
       actionProtocol:
-        "Telefono tani 112 nga telefoni yt. Rri ulur dhe përpiqu të qëndrosh i qetë. Mos merr doza të dyfishta ilaçesh pa ta thënë mjeku.",
+        "Telefono tani 112 nga telefoni yt. Rri ulur dhe përpiqu të qëndrosh i qetë. Mos merr doza të dyfishta ilaçesh nëse nuk ta thotë operatori i 112.",
     },
     it: {
       label: "Crisi ipertensiva (emergenza)",
       physiologicEffect:
         "Una pressione così alta può causare acqua nei polmoni, emorragia nel cervello o una lacerazione dell'aorta.",
       actionProtocol:
-        "Chiama subito il 112 dal tuo telefono. Stai seduto e cerca di restare calmo. Non prendere dosi doppie di farmaci se non te lo dice il medico.",
+        "Chiama subito il 112 dal tuo telefono. Stai seduto e cerca di restare calmo. Non prendere dosi doppie di farmaci se non te lo dice l'operatore del 112.",
     },
   },
 };
@@ -319,10 +319,10 @@ export const BP_PRESET_STRINGS: Record<
 
 export const BP_SIMULATOR_UI_STRINGS = {
   guidelineBadge: {
-    ro: "După ghidul ESC și SRC 2024",
-    en: "Based on ESC and SRC 2024 guidelines",
-    sq: "Sipas udhëzuesit ESC dhe SRC 2024",
-    it: "Secondo le linee guida ESC e SRC 2024",
+    ro: "Grupele de tensiune urmează ghidul european ESC 2024, folosit și de Societatea Română de Cardiologie.",
+    en: "The blood pressure groups follow the 2024 guidelines of the European Society of Cardiology (ESC).",
+    sq: "Grupet e tensionit ndjekin udhëzuesin e vitit 2024 të Shoqatës Evropiane të Kardiologjisë (ESC).",
+    it: "I gruppi di pressione seguono le linee guida 2024 della Società Europea di Cardiologia (ESC).",
   },
   title: {
     ro: "Ce înseamnă tensiunea ta",
@@ -343,7 +343,7 @@ export const BP_SIMULATOR_UI_STRINGS = {
     it: "Esempi:",
   },
   systolicLabel: {
-    ro: "Numărul mare (sistolica)",
+    ro: "Numărul mare (sistolică)",
     en: "Top number (systolic)",
     sq: "Numri i madh (sistolik)",
     it: "Numero alto (sistolica)",
@@ -355,7 +355,7 @@ export const BP_SIMULATOR_UI_STRINGS = {
     it: "La pressione nelle arterie quando il cuore si contrae.",
   },
   diastolicLabel: {
-    ro: "Numărul mic (diastolica)",
+    ro: "Numărul mic (diastolică)",
     en: "Bottom number (diastolic)",
     sq: "Numri i vogël (diastolik)",
     it: "Numero basso (diastolica)",
@@ -387,7 +387,7 @@ export const BP_SIMULATOR_UI_STRINGS = {
   emergencyNotice: {
     ro: "Sună tu la 112. Aplicația nu sună în locul tău.",
     en: "Call 112 yourself. The app does not call for you.",
-    sq: "Telefono vetë 112. Aplikacioni nuk telefonon në vendin tënd.",
+    sq: "Telefono vetë në 112. Aplikacioni nuk telefonon për ty.",
     it: "Chiama tu il 112. L'app non chiama al posto tuo.",
   },
   call112Btn: {
@@ -429,35 +429,17 @@ export const ESH_STEPPER_STRINGS = {
     sq: "Hapi",
     it: "Passo",
   },
-  stageCountTemplate: {
-    ro: "Pasul {current} din {total}",
-    en: "Step {current} of {total}",
-    sq: "Hapi {current} nga {total}",
-    it: "Passo {current} di {total}",
-  },
-  stepCompleted: {
-    ro: "Pas bifat",
-    en: "Done",
-    sq: "U krye",
-    it: "Fatto",
-  },
-  markUnderstood: {
-    ro: "Am înțeles",
-    en: "Got it",
-    sq: "E kuptova",
-    it: "Ho capito",
-  },
   actionLabel: {
     ro: "Ce faci:",
     en: "What to do:",
     sq: "Çfarë të bësh:",
     it: "Cosa fare:",
   },
-  doctorTipLabel: {
-    ro: "Sfatul medicului",
-    en: "Doctor's tip",
-    sq: "Këshilla e mjekut",
-    it: "Il consiglio del medico",
+  goodToKnowLabel: {
+    ro: "Bine de știut",
+    en: "Good to know",
+    sq: "Mirë ta dish",
+    it: "Da sapere",
   },
   mistakeLabel: {
     ro: "Greșeală frecventă",

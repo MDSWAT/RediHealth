@@ -3,22 +3,19 @@ import Link from "next/link";
 import { ArrowLeftIcon } from "@/components/ui/icons";
 import { AppointmentBookingCalendar } from "@/components/telemed/AppointmentBookingCalendar";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
-import { localizedPageTitle } from "@/lib/i18n/page-metadata";
 import { translations, type Lang } from "@/lib/i18n/translations";
+
+// Own titles here: the shared page-title table still says "video" for this page, and the call is voice only.
+const META: Record<Lang, { title: string; description: string }> = {
+  ro: { title: "Programează un apel cu medicul - RediHealth", description: "Alege ziua și ora pentru un apel gratuit cu un medic voluntar." },
+  en: { title: "Book a call with a doctor - RediHealth", description: "Choose a day and time for a free call with a volunteer doctor." },
+  sq: { title: "Cakto një thirrje me mjekun - RediHealth", description: "Zgjidh ditën dhe orën për një thirrje falas me një mjek vullnetar." },
+  it: { title: "Prenota una chiamata con il medico - RediHealth", description: "Scegli il giorno e l'ora per una chiamata gratuita con un medico volontario." },
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
-  const descriptions: Record<Lang, string> = {
-    ro: "Alege ziua și ora pentru o consultație video gratuită.",
-    en: "Choose a day and time for a free video appointment.",
-    sq: "Zgjidh ditën dhe orën për një vizitë falas me video.",
-    it: "Scegli il giorno e l'ora per una visita video gratuita.",
-  };
-
-  return {
-    title: localizedPageTitle(lang, "medic-online-programare", "Schedule video consultation - RediHealth"),
-    description: descriptions[lang] ?? descriptions.en,
-  };
+  return META[lang] ?? META.ro;
 }
 
 export default async function AppointmentBookingPage() {

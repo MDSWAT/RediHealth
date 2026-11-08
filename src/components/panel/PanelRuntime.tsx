@@ -12,10 +12,13 @@ export type PanelRuntime = {
   pathname?: string;
   signOut?: () => void;
   navigate: (href: string, replace?: boolean) => void;
+  /** Whether this runtime can open a panel route (e.g. a demo role without a calendar). Missing means yes. */
+  canOpen?: (panelHref: string) => boolean;
 };
 
 const Context = createContext<PanelRuntime | null>(null);
 const liveRequest: typeof fetch = (...args) => fetch(...args);
+const openAnyPanelRoute = () => true;
 
 export function PanelRuntimeProvider({ value, children }: { value: PanelRuntime; children: ReactNode }) {
   return <Context.Provider value={value}>{children}</Context.Provider>;
@@ -27,7 +30,7 @@ export function demoPanelHref(href: string): string {
 
 export function usePanelRuntime() {
   const runtime = useContext(Context);
-  return { request: runtime?.request || liveRequest, demo: runtime?.demo || false, offline: runtime?.offline || false, signOut: runtime?.signOut };
+  return { request: runtime?.request || liveRequest, demo: runtime?.demo || false, offline: runtime?.offline || false, signOut: runtime?.signOut, canOpen: runtime?.canOpen || openAnyPanelRoute };
 }
 
 export function usePanelRouter() {

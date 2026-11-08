@@ -91,7 +91,7 @@ function formFromInstitute(item: AdminMedicalInstitute): FormState {
 }
 
 const inputClass =
-  "min-h-10 w-full rounded-xl border border-border bg-white px-3 text-sm outline-none focus:border-primary";
+  "min-h-10 w-full rounded-xl border border-border bg-white px-3 text-sm outline-none focus:border-ring";
 
 export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, databaseAvailable, workingCountry }: Props) {
   const { lang } = useLanguage();
@@ -236,7 +236,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                   setFormError(null);
                   setForm(emptyForm(workingCountry));
                 }}
-                className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover"
+                className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover"
               >
                 <PlusIcon className="h-4 w-4" />
                 {t.add}
@@ -245,13 +245,13 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
           </div>
 
           {!databaseAvailable ? (
-            <p className="rounded-2xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
               {t.noDatabase}
             </p>
           ) : (
             <>
               <section className="mb-6 grid gap-4 lg:grid-cols-[1fr_auto]">
-                <div className="rounded-2xl border border-border bg-card p-5">
+                <div className="rounded-xl border border-border bg-card p-5">
                   <h2 className="text-sm font-semibold text-foreground">{t.importTitle}</h2>
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{t.importHelp}</p>
                   <div className="mt-3 flex flex-wrap gap-2">
@@ -263,7 +263,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                           type="button"
                           disabled={importing !== null}
                           onClick={() => runImport(code)}
-                          className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-border bg-white px-3 text-sm font-semibold text-foreground hover:border-primary/40 disabled:opacity-60"
+                          className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-border bg-white px-3 text-sm font-semibold text-foreground hover:border-primary/40 disabled:bg-muted disabled:text-muted-foreground"
                         >
                           <RefreshIcon className={`h-4 w-4 ${importing === code ? "animate-spin" : ""}`} />
                           {importing === code ? t.importing : t.importButton(labels.countries[code])}
@@ -351,11 +351,11 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
               </p>
 
               {!data || data.institutes.length === 0 ? (
-                <p className="rounded-2xl border border-border bg-card p-6 text-sm text-muted-foreground">
+                <p className="rounded-xl border border-border bg-card p-6 text-sm text-muted-foreground">
                   {loading ? t.loading : t.noEntries}
                 </p>
               ) : (
-                <div className="overflow-x-auto rounded-2xl border border-border bg-card">
+                <div className="overflow-x-auto rounded-xl border border-border bg-card">
                   <table className="min-w-full text-left text-sm">
                     <thead className="border-b border-border bg-slate-50 text-xs font-semibold text-slate-600">
                       <tr>
@@ -439,7 +439,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                     type="button"
                     disabled={page <= 1 || loading}
                     onClick={() => setPage((value) => value - 1)}
-                    className="min-h-10 rounded-xl border border-border bg-white px-4 font-semibold disabled:opacity-50"
+                    className="min-h-10 rounded-lg border border-border bg-white px-4 font-semibold disabled:bg-muted disabled:text-muted-foreground"
                   >
                     {t.previous}
                   </button>
@@ -448,7 +448,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
                     type="button"
                     disabled={page >= totalPages || loading}
                     onClick={() => setPage((value) => value + 1)}
-                    className="min-h-10 rounded-xl border border-border bg-white px-4 font-semibold disabled:opacity-50"
+                    className="min-h-10 rounded-lg border border-border bg-white px-4 font-semibold disabled:bg-muted disabled:text-muted-foreground"
                   >
                     {t.next}
                   </button>
@@ -468,7 +468,7 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
         >
           <form
             onSubmit={submitForm}
-            className="w-full max-w-3xl rounded-2xl bg-white p-6 shadow-xl"
+            className="w-full max-w-3xl rounded-xl bg-white p-6 shadow-xl"
           >
             <h2 id="institute-form-title" className="text-lg font-bold text-foreground">
               {form.id ? t.formEditTitle : t.formAddTitle}
@@ -636,14 +636,14 @@ export function MedicalInstitutesDashboard({ initialData, userEmail, userRole, d
               <button
                 type="button"
                 onClick={() => setForm(null)}
-                className="min-h-10 rounded-xl border border-border px-4 text-sm font-semibold"
+                className="min-h-10 rounded-lg border border-border px-4 text-sm font-semibold"
               >
                 {t.cancel}
               </button>
               <button
                 type="submit"
                 disabled={saving}
-                className="min-h-10 rounded-xl bg-primary px-4 text-sm font-semibold text-white disabled:opacity-60"
+                className="min-h-10 rounded-lg bg-primary px-4 text-sm font-semibold text-white disabled:bg-muted disabled:text-muted-foreground"
               >
                 {saving ? t.saving : t.save}
               </button>

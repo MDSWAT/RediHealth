@@ -10,8 +10,9 @@ import type { HeartPartId } from "../../heart-health/heart-anatomy-copy";
  *
  * Motion (CSS, see the "hh-" block in globals.css):
  * - one heartbeat every BEAT_SECONDS (64 bpm);
- * - the ventricles shorten towards the base (scale on a fixed origin, eased
- *   systole then diastole, no overshoot); the atria contract just before them;
+ * - the whole heart muscle (atria and ventricles together, so nothing detaches)
+ *   shortens towards the base: scale on one fixed origin, eased systole then
+ *   diastole, no overshoot; the atria add a small kick just before;
  * - a monitor-style gap sweeps across the ECG trace, two beats per sweep, so each
  *   QRS spike is drawn at the moment the ventricles start to contract.
  * - Animates transform only, stops off-screen and under prefers-reduced-motion,
@@ -59,15 +60,15 @@ interface Marker {
   y: number;
 }
 
-/** Markers on structures that do not move during the beat. */
-const STATIC_MARKERS: Marker[] = [
+/**
+ * Numbered markers. They sit on a still layer above the drawing, so the numbers never
+ * pulse with the beat (the muscle moves under them by about 3 units at most).
+ */
+const MARKERS: Marker[] = [
   { id: "aorta", n: 1, x: 150, y: 39.5 },
-  { id: "vena-cava", n: 4, x: 83, y: 54 },
-];
-/** Markers on the ventricles move with them. */
-const MOVING_MARKERS: Marker[] = [
   { id: "left-ventricle", n: 2, x: 164, y: 150 },
   { id: "coronary-arteries", n: 3, x: 142, y: 136 },
+  { id: "vena-cava", n: 4, x: 83, y: 54 },
 ];
 
 export interface HeartDiagramProps {
@@ -162,8 +163,13 @@ export function HeartDiagram({
         </mask>
       </defs>
 
-      <g strokeLinejoin="round" strokeLinecap="round" strokeWidth={1.5}>
-        {/* Aorta and its three branches (oxygen-rich, behind the heart). */}
+      <g strokeLinejoin="round" strokeLinecap="round" strokeWidth={1.35}>
+        {/* Right pulmonary artery: runs under the arch, behind the aorta and the vena cava. */}
+        <g className="hh-part" data-dim={dim("other")} fill="var(--hh-vein)" stroke="var(--hh-vein-ink)">
+          <path d="M146 62 C128 61 104 62 80 66 L80 79 C104 76 128 75 146 76 Z" />
+        </g>
+
+        {/* Aorta and its three branches (oxygen-rich). The descending part goes behind the pulmonary artery. */}
         <g className="hh-part" data-dim={dim("aorta")} fill="var(--hh-artery)" stroke="var(--hh-ink)">
           <path d="M121 46 L115 18 L124 16 L130 41 Z" />
           <ellipse cx="119.5" cy="17" rx="4.6" ry="1.6" transform="rotate(-12 119.5 17)" />
@@ -171,13 +177,16 @@ export function HeartDiagram({
           <ellipse cx="143" cy="9" rx="4" ry="1.5" />
           <path d="M157 34 L160 11 L168 12 L165 37 Z" />
           <ellipse cx="164" cy="11.5" rx="4" ry="1.5" transform="rotate(8 164 11.5)" />
-          <path d="M106 106 C104 86 104 68 110 55 C118 39 134 30 150 31 C166 32 178 42 180 58 L181 86 L164 86 L163 61 C162 53 156 48 149 48 C139 48 131 55 127 65 C124 75 124 92 126 106 Z" />
+          <path d="M106 106 C104 86 104 68 110 55 C118 39 134 30 150 31 C166 32 178 42 180 58 L181 74 L164 74 L163 61 C162 53 156 48 149 48 C139 48 131 55 127 65 C124 75 124 92 126 106 Z" />
         </g>
 
-        {/* Pulmonary trunk (oxygen-poor), in front of the aorta, behind the ventricles. */}
+        {/*
+          Pulmonary trunk (oxygen-poor): rises from the right ventricle in front of the
+          aortic root and divides under the arch. Its left branch is drawn here; the right
+          branch is the vessel behind the aorta above.
+        */}
         <g className="hh-part" data-dim={dim("other")} fill="var(--hh-vein)" stroke="var(--hh-vein-ink)">
-          <path d="M112 112 C110 94 116 80 128 72 C136 67 146 64 156 63 L192 59 C195 64 195 72 192 76 L160 80 C150 82 142 88 140 100 L138 112 Z" />
-          <ellipse cx="192.6" cy="67.5" rx="2.6" ry="8.5" />
+          <path d="M121 108 C120 94 124 82 131 74 C136 68 143 63 151 61 C165 58 181 61 192 67 C197 70 198 77 194 80 C190 83 185 81 181 79 C172 75 163 74 157 76 C151 78 147 85 146 94 L146 108 Z" />
         </g>
 
         {/* Superior vena cava. */}
@@ -186,47 +195,51 @@ export function HeartDiagram({
           <ellipse cx="82" cy="26" rx="10" ry="3" />
         </g>
 
-        {/* Right atrium. */}
-        <g className="hh-atria hh-part" data-dim={dim("vena-cava")}>
-          <path
-            d="M82 88 C64 90 56 108 59 126 C62 142 71 155 88 163 L100 150 C94 132 96 114 106 102 C100 94 92 88 82 88 Z"
-            fill="var(--hh-atrium)"
-            stroke="var(--hh-ink)"
-          />
-        </g>
+        {/*
+          The beating heart: atria, auricles and ventricles share one transform, scaled
+          from a fixed point on the base (121.6, 91) so no seam can open between them.
+          The invisible frame pins the fill-box to the viewBox origin, so the origin below
+          is in drawing units. The atria add their own small kick just before systole.
+        */}
+        <g className="hh-heart">
+          <rect x="0" y="0" width="240" height="210" fill="none" stroke="none" />
 
-        {/* Ventricles: they shorten towards the base with every beat. */}
-        <g className="hh-ventricles">
+          {/* Right atrium. */}
+          <g className="hh-atria hh-part" data-dim={dim("vena-cava")}>
+            <path
+              d="M82 88 C64 90 56 108 59 126 C62 142 71 155 88 163 L100 150 C94 132 96 114 106 102 C100 94 92 88 82 88 Z"
+              fill="var(--hh-atrium)"
+              stroke="var(--hh-ink)"
+            />
+          </g>
+
+          {/* Ventricles. The left anterior descending artery runs in the groove between them. */}
           <path className="hh-part" data-dim={dim("other")} d={VENTRICLES_OUTLINE} fill="var(--hh-muscle)" />
           <path className="hh-part" data-dim={dim("left-ventricle")} d={LEFT_VENTRICLE} fill="var(--hh-muscle-deep)" />
           <path d={VENTRICLES_OUTLINE} fill="none" stroke="var(--hh-ink)" />
-          <path d="M134 94 C140 124 148 164 155 196" fill="none" stroke="var(--hh-ink)" strokeWidth={1} opacity={0.3} />
           <g
             className="hh-part"
             data-dim={dim("coronary-arteries")}
             fill="none"
             stroke="var(--hh-coronary)"
-            strokeWidth={1.4}
+            strokeWidth={1.25}
           >
-            <path d="M132 96 C138 126 146 164 153 193" />
-            <path d="M139 122 C149 128 159 138 167 152" />
-            <path d="M136 93 C150 91 164 95 172 103" />
-            <path d="M100 101 C88 116 83 141 89 160 C100 172 116 182 128 188" />
-            <path d="M89 150 C100 152 110 158 116 166" />
+            <path d="M134 93 C140 124 148 164 154.5 195" />
+            <path d="M140 122 C150 128 159 138 167 152" />
+            <path d="M137 93 C150 91 164 95 172 103" />
           </g>
-          {showMarkers && MOVING_MARKERS.map(renderMarker)}
-        </g>
 
-        {/* Right and left auricles (part of the atria). */}
-        <g className="hh-atria hh-part" data-dim={dim("vena-cava")}>
-          <path d="M93 99 C92 89 101 84 110 90 C108 97 103 102 97 104 Z" fill="var(--hh-atrium)" stroke="var(--hh-ink)" />
-        </g>
-        <g className="hh-atria-left hh-part" data-dim={dim("other")}>
-          <path
-            d="M168 95 C176 88 188 92 188 102 C188 110 181 114 175 112 C178 106 176 100 168 99 Z"
-            fill="var(--hh-atrium)"
-            stroke="var(--hh-ink)"
-          />
+          {/* Right and left auricles (part of the atria). */}
+          <g className="hh-atria hh-part" data-dim={dim("vena-cava")}>
+            <path d="M93 99 C92 89 101 84 110 90 C108 97 103 102 97 104 Z" fill="var(--hh-atrium)" stroke="var(--hh-ink)" />
+          </g>
+          <g className="hh-atria-left hh-part" data-dim={dim("other")}>
+            <path
+              d="M168 95 C176 88 188 92 188 102 C188 110 181 114 175 112 C178 106 176 100 168 99 Z"
+              fill="var(--hh-atrium)"
+              stroke="var(--hh-ink)"
+            />
+          </g>
         </g>
       </g>
 
@@ -242,7 +255,7 @@ export function HeartDiagram({
         strokeLinecap="round"
       />
 
-      {showMarkers && <g>{STATIC_MARKERS.map(renderMarker)}</g>}
+      {showMarkers && <g>{MARKERS.map(renderMarker)}</g>}
     </svg>
   );
 }

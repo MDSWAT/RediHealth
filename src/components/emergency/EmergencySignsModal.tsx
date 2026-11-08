@@ -85,7 +85,7 @@ export function EmergencySignsModal({
         <div
           ref={panelRef}
           tabIndex={-1}
-          className="fhs-enter relative flex max-h-[92dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-2xl bg-card text-foreground shadow-xl sm:max-h-[85dvh] sm:rounded-2xl focus:outline-none"
+          className="fhs-enter relative flex max-h-[92dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-xl sm:max-h-[85dvh] sm:rounded-xl focus:outline-none"
         >
           <div className="flex shrink-0 items-start justify-between gap-4 border-b border-border px-5 pb-4 pt-5 sm:px-7 sm:pt-6">
             <div className="min-w-0">
@@ -104,9 +104,9 @@ export function EmergencySignsModal({
               type="button"
               onClick={() => onOpenChange(false)}
               aria-label={e.closeSignsModalAria}
-              className="-mr-2 -mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="-mr-2 -mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
-              <CloseIcon className="h-5 w-5" />
+              <CloseIcon className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
 
@@ -135,7 +135,7 @@ export function EmergencySignsModal({
             <button
               type="button"
               onClick={() => setDialerGateOpen(true)}
-              className="flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <PhoneIcon className="h-4 w-4" aria-hidden="true" />
               <span>{e.call112}</span>

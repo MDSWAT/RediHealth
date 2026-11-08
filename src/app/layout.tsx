@@ -65,7 +65,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         >
           {siteMetadata[lang].skipLink}
         </a>
-        <SiteChrome nonce={nonce} captchaEnabled={process.env.RECAPTCHA_ENABLED === "true"}>{children}</SiteChrome>
+        <SiteChrome lang={lang} nonce={nonce} captchaEnabled={process.env.RECAPTCHA_ENABLED === "true"}>{children}</SiteChrome>
       </body>
     </html>
   );

@@ -6,6 +6,7 @@ import { AdminShell } from "@/components/panel/AdminShell";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { langToLocale, panelTranslations } from "@/lib/i18n/panel-translations";
 import type { ActivityLogItem } from "@/lib/types/activity-log";
+import { formatPanelDate } from "@/lib/panel-dates";
 
 type ActivityLogsDashboardProps = {
   initialLogs: ActivityLogItem[];
@@ -15,15 +16,6 @@ type ActivityLogsDashboardProps = {
   isSuperAdmin?: boolean;
   databaseAvailable: boolean;
 };
-
-function formatDate(value: string, locale: string) {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-  return new Intl.DateTimeFormat(locale, {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(date);
-}
 
 function summarizeDetails(details: Record<string, unknown> | null) {
   if (!details) return "";
@@ -101,12 +93,12 @@ export function ActivityLogsDashboard({
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="min-h-10 rounded-xl border border-border bg-white px-3 text-sm outline-none focus:border-primary"
+                className="min-h-10 rounded-lg border border-border bg-white px-3 text-sm outline-none focus:border-ring"
               />
               <button
                 type="button"
                 onClick={refreshLogs}
-                className="min-h-10 rounded-xl bg-primary px-4 text-sm font-semibold text-white"
+                className="min-h-10 rounded-lg bg-primary px-4 text-sm font-semibold text-white"
               >
                 {loading ? t.refreshing : t.refresh}
               </button>
@@ -114,15 +106,15 @@ export function ActivityLogsDashboard({
           </div>
 
           {!databaseAvailable ? (
-            <p className="rounded-2xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
               {t.noDatabase}
             </p>
           ) : filteredLogs.length === 0 ? (
-            <p className="rounded-2xl border border-border bg-card p-6 text-sm text-muted-foreground">
+            <p className="rounded-xl border border-border bg-card p-6 text-sm text-muted-foreground">
               {t.noEntries}
             </p>
           ) : (
-            <div className="overflow-x-auto rounded-2xl border border-border bg-card">
+            <div className="overflow-x-auto rounded-xl border border-border bg-card">
               <table className="min-w-full text-left text-sm">
                 <thead className="border-b border-border bg-slate-50 text-xs font-semibold text-slate-600">
                   <tr>
@@ -136,7 +128,7 @@ export function ActivityLogsDashboard({
                 <tbody>
                   {filteredLogs.map((log) => (
                     <tr key={log.id} className="border-b border-border/70 align-top">
-                      <td className="px-4 py-3 text-slate-600">{formatDate(log.created_at, locale)}</td>
+                      <td className="px-4 py-3 text-slate-600">{formatPanelDate(log.created_at, locale, "dateTime")}</td>
                       <td className="px-4 py-3">
                         <p className="font-medium text-slate-800">{log.actor_name || t.unknownActor}</p>
                         <p className="text-xs text-slate-500">{log.actor_email || "-"}</p>

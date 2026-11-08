@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 
-type Copy = {
+export type ReportIssueCopy = {
   trigger: string;
   modalTitle: string;
   modalBody: string;
@@ -30,7 +30,7 @@ type Copy = {
   genericError: string;
 };
 
-const reportIssueCopy: Record<Lang, Copy> = {
+export const reportIssueCopy: Record<Lang, ReportIssueCopy> = {
   en: {
     trigger: "Report a problem",
     modalTitle: "Report a problem",
@@ -86,7 +86,7 @@ const reportIssueCopy: Record<Lang, Copy> = {
     sending: "Po dërgohet…",
     send: "Dërgo raportin",
     success: "Faleminderit. Raporti u dërgua.",
-    tooShort: "Shkruaj pak më shumë, të paktën 10 shkronja, që ta kontrollojmë.",
+    tooShort: "Shkruaj pak më shumë, të paktën 10 karaktere, që ta kontrollojmë.",
     invalidEmail: "Kjo adresë emaili duket e gabuar. Kontrolloje ose lëre bosh.",
     invalidRequest: "Nuk arritëm ta lexojmë raportin. Kontrollo emailin dhe tekstin, pastaj provo përsëri.",
     tooMany: "Dërgove disa raporte brenda pak kohe. Provo përsëri pas disa minutash.",
@@ -119,8 +119,22 @@ const reportIssueCopy: Record<Lang, Copy> = {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const OPEN_EVENT = "redi:report-issue-open";
+
+/**
+ * Opens the report form from anywhere in the chrome (the footer link on phones and tablets,
+ * where the floating button is hidden so it never sits on page text or a bottom action bar).
+ * Returns false when the widget is not mounted, so the caller can fall back to its link.
+ */
+export function openReportIssue(): boolean {
+  if (typeof window === "undefined") return false;
+  const event = new Event(OPEN_EVENT, { cancelable: true });
+  // The mounted widget cancels the event to say it handled it.
+  return !window.dispatchEvent(event);
+}
+
 /** The server answers in English; show the visitor's own language instead, chosen by status and code. */
-function errorForResponse(status: number, code: string | undefined, t: Copy): string {
+function errorForResponse(status: number, code: string | undefined, t: ReportIssueCopy): string {
   if (status === 429) return t.tooMany;
   if (code === "captcha_invalid") return t.captchaFailed;
   if (status === 400) return t.invalidRequest;
@@ -171,6 +185,17 @@ export function ReportIssueWidget() {
     setSuccess(null);
     setOpen(true);
   }
+
+  useEffect(() => {
+    const handleOpen = (event: Event) => {
+      event.preventDefault();
+      setError(null);
+      setSuccess(null);
+      setOpen(true);
+    };
+    window.addEventListener(OPEN_EVENT, handleOpen);
+    return () => window.removeEventListener(OPEN_EVENT, handleOpen);
+  }, []);
 
   function handleBackdropClick(event: MouseEvent<HTMLDialogElement>) {
     // Clicks on the dimmed area land on the <dialog> itself; clicks inside land on its children.
@@ -230,12 +255,13 @@ export function ReportIssueWidget() {
 
   return (
     <>
+      {/* From 1024px only: on phones and tablets it covered body text and the topic action bar; the footer link opens the same form there. */}
       <button
         type="button"
         onClick={openDialog}
         aria-label={t.trigger}
         aria-haspopup="dialog"
-        className="report-issue-trigger group fixed bottom-3 right-3 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-xs transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="report-issue-trigger group fixed bottom-3 right-3 z-30 hidden h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground shadow-xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) lg:flex hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <AlertCircleIcon className="h-[18px] w-[18px]" aria-hidden="true" />
         {/* Label on hover or keyboard focus only, to the left of the icon; touch opens the form directly. */}
@@ -261,7 +287,7 @@ export function ReportIssueWidget() {
           "starting:open:translate-y-2 starting:open:opacity-0",
         ].join(" ")}
       >
-        <div className="flex max-h-[90dvh] flex-col overflow-y-auto rounded-t-2xl border-t border-border bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl sm:rounded-2xl sm:border sm:pb-5">
+        <div className="flex max-h-[90dvh] flex-col overflow-y-auto rounded-t-xl border-t border-border bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl sm:rounded-xl sm:border sm:pb-5">
           <div className="mb-4 flex items-start justify-between gap-3 border-b border-border pb-4">
             <div className="min-w-0">
               <h2 id={dialogTitleId} className="text-lg font-semibold text-foreground">
@@ -336,7 +362,7 @@ export function ReportIssueWidget() {
               <Button type="button" variant="ghost" onClick={() => setOpen(false)}>
                 {t.cancel}
               </Button>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" variant="secondary" disabled={isSubmitting}>
                 {isSubmitting ? t.sending : t.send}
               </Button>
             </div>

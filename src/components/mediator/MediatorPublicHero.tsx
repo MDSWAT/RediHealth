@@ -18,7 +18,7 @@ function useSafeLanguage() {
   }
 }
 
-const heroCopy = {
+export const heroCopy = {
   ro: {
     title: "Un mediator sanitar te ajută",
     subtitle: "Mediatorul sanitar te ajută să ajungi la medic, să faci buletinul și asigurarea și să ai grijă de copii și de bunici.",
@@ -28,8 +28,8 @@ const heroCopy = {
     card1Desc: "Merge cu tine la medicul de familie, te ajută cu programările și îți explică rețetele.",
     card2Title: "Acte și asigurare",
     card2Desc: "Te ajută cu certificatul de naștere, buletinul și asigurarea CNAS pentru toată familia.",
-    card3Title: "Medic prin video, acasă",
-    card3Desc: "Vine cu o tabletă și aparate pentru tensiune, oxigen și zahăr în sânge. Vorbești cu un medic prin video.",
+    card3Title: "Vorbești cu un medic, de acasă",
+    card3Desc: "Vine cu o tabletă și aparate pentru tensiune, oxigen și zahăr în sânge. Vorbești cu un medic la telefon.",
   },
   en: {
     title: "A health mediator can help you",
@@ -40,8 +40,8 @@ const heroCopy = {
     card1Desc: "They go with you to the family doctor, help with appointments and explain your prescriptions.",
     card2Title: "Documents and insurance",
     card2Desc: "They help with birth certificates, ID cards and health insurance for the whole family.",
-    card3Title: "A doctor by video, at home",
-    card3Desc: "They bring a tablet and devices for blood pressure, oxygen and blood sugar. You talk to a doctor by video.",
+    card3Title: "Talk to a doctor from home",
+    card3Desc: "They bring a tablet and devices for blood pressure, oxygen and blood sugar. You talk to a doctor by phone.",
   },
   sq: {
     title: "Një mediator shëndetësor të ndihmon",
@@ -52,8 +52,8 @@ const heroCopy = {
     card1Desc: "Vjen me ty te mjeku i familjes, të ndihmon me takimet dhe të shpjegon recetat.",
     card2Title: "Dokumentet dhe sigurimi",
     card2Desc: "Të ndihmon me certifikatën e lindjes, letërnjoftimin dhe sigurimin shëndetësor për gjithë familjen.",
-    card3Title: "Mjeku me video, në shtëpi",
-    card3Desc: "Vjen me një tabletë dhe aparate për tensionin, oksigjenin dhe sheqerin në gjak. Flet me një mjek me video.",
+    card3Title: "Flet me një mjek nga shtëpia",
+    card3Desc: "Vjen me një tabletë dhe aparate për tensionin, oksigjenin dhe sheqerin në gjak. Flet me një mjek në telefon.",
   },
   it: {
     title: "Un mediatore sanitario ti aiuta",
@@ -64,8 +64,8 @@ const heroCopy = {
     card1Desc: "Viene con te dal medico di famiglia, ti aiuta con gli appuntamenti e ti spiega le ricette.",
     card2Title: "Documenti e tessera sanitaria",
     card2Desc: "Ti aiuta con certificato di nascita, carta d'identità e iscrizione al servizio sanitario per tutta la famiglia.",
-    card3Title: "Un medico in video, a casa",
-    card3Desc: "Porta un tablet e gli apparecchi per pressione, ossigeno e zucchero nel sangue. Parli con un medico in video.",
+    card3Title: "Parli con un medico da casa",
+    card3Desc: "Porta un tablet e gli apparecchi per pressione, ossigeno e zucchero nel sangue. Parli con un medico al telefono.",
   },
 };
 

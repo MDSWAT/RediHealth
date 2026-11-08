@@ -1,7 +1,8 @@
 "use client";
 
 import { useContext, useMemo, useState } from "react";
-import { CheckIcon, PlusIcon } from "@/components/ui/icons";
+import { CheckIcon } from "@/components/ui/icons";
+import { ROW_CLASS, ROW_LIST_CLASS, ROW_LIST_SINGLE_CLASS, radioDotClass, tickBoxClass } from "./choice-styles";
 import { LanguageContext } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 
@@ -74,7 +75,7 @@ const FOOD_TRANSLATIONS: Record<Lang, Record<string, FoodItemLocalization>> = {
     p3: { name: "Boiled eggs" },
     p4: { name: "Curd cheese or low-fat cottage cheese" },
     p5: { name: "Tofu or boiled lentils" },
-    c1: { name: "Wholegrain polenta (mămăligă)" },
+    c1: { name: "Wholegrain polenta" },
     c2: { name: "Brown or wholegrain basmati rice" },
     c3: { name: "Sweet potato baked in its skin" },
     c4: { name: "Boiled quinoa or buckwheat" },
@@ -438,14 +439,15 @@ const PRESETS: { key: "presetTraditional" | "presetMediterranean" | "presetQuick
   { key: "presetQuickLunch", ids: ["p2", "c2", "v1", "v2"] },
 ];
 
-const NUMBER_LOCALE: Record<Lang, string> = { ro: "ro-RO", en: "en-GB", sq: "sq-AL", it: "it-IT" };
+/** One decimal with the locale's decimal mark, formatted by hand so server and browser agree. */
+function formatOneDecimal(value: number, lang: Lang): string {
+  const text = value.toFixed(1);
+  return lang === "en" ? text : text.replace(".", ",");
+}
 
 const sameSet = (a: string[], b: string[]) => a.length === b.length && a.every((id) => b.includes(id));
 
 export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMethodModuleProps) {
-  // HOOK ORDER CONTRACT FOR EMPIRICAL STRESS TESTS:
-  // Hook 0: activeSectionId
-  // Hook 1: selectedFoodIds
   const [activeSectionId, setActiveSectionId] = useState<PlateSectionId>("vegetables");
   const [selectedFoodIds, setSelectedFoodIds] = useState<string[]>(DEFAULT_SELECTION);
 
@@ -453,10 +455,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
   const ui = UI_STRINGS[activeLang] || UI_STRINGS.ro;
   const sectionConfigs = SECTION_TRANSLATIONS[activeLang] || SECTION_TRANSLATIONS.ro;
   const foodLocales = FOOD_TRANSLATIONS[activeLang] || FOOD_TRANSLATIONS.ro;
-  const oneDecimal = new Intl.NumberFormat(NUMBER_LOCALE[activeLang] ?? "ro-RO", {
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
-  });
+  const oneDecimal = { format: (value: number) => formatOneDecimal(value, activeLang) };
 
   const activeSection = sectionConfigs[activeSectionId];
 
@@ -478,7 +477,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
   return (
     <section
       aria-label={ui.moduleAriaLabel}
-      className="space-y-8 rounded-lg border border-border bg-card p-5 shadow-xs sm:p-7"
+      className="space-y-8"
     >
       <header className="space-y-2">
         <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{ui.title}</h3>
@@ -500,14 +499,25 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
               const st = SECTION_STYLE[id];
               const isActive = id === activeSectionId;
               return (
-                <g
-                  key={id}
-                  onClick={() => setActiveSectionId(id)}
-                  className="cursor-pointer"
-                  style={{ opacity: isActive ? 1 : 0.6, transition: "opacity var(--dur-base) var(--ease-out-calm)" }}
-                >
-                  <path d={st.d} fill={st.fill} stroke={st.stroke} strokeWidth={isActive ? 2.5 : 1.5} strokeLinejoin="round" />
-                  <text x={st.lx} y={st.ly - 4} textAnchor="middle" fontSize="20" fontWeight="600" fill={st.stroke}>
+                <g key={id} onClick={() => setActiveSectionId(id)} className="cursor-pointer">
+                  <path
+                    d={st.d}
+                    fill={st.fill}
+                    fillOpacity={isActive ? 1 : 0.55}
+                    stroke={st.stroke}
+                    strokeWidth={isActive ? 2 : 1.25}
+                    strokeLinejoin="round"
+                    style={{ transition: "fill-opacity var(--dur-base) var(--ease-out-calm)" }}
+                  />
+                  <text
+                    x={st.lx}
+                    y={st.ly - 4}
+                    textAnchor="middle"
+                    fontSize="20"
+                    fontWeight="600"
+                    fill="var(--color-foreground)"
+                    style={{ fontVariantNumeric: "tabular-nums" }}
+                  >
                     {st.pct}
                   </text>
                   <text x={st.lx} y={st.ly + 16} textAnchor="middle" fontSize="13" fontWeight="500" fill="var(--color-foreground)">
@@ -520,37 +530,38 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
 
           <div>
             <p className="text-xs text-muted-foreground">{ui.plateHint}</p>
-            <div role="tablist" aria-label={ui.plateAriaLabel} className="mt-2 grid gap-1.5">
+            <div role="radiogroup" aria-label={ui.plateAriaLabel} className={`mt-2 ${ROW_LIST_SINGLE_CLASS}`}>
               {SECTION_ORDER.map((id) => {
                 const isActive = id === activeSectionId;
                 return (
-                  <button
-                    key={id}
-                    type="button"
-                    role="tab"
-                    aria-selected={isActive}
-                    aria-controls="plate-section-detail"
-                    onClick={() => setActiveSectionId(id)}
-                    className={`flex min-h-[44px] items-center justify-between gap-2.5 rounded-lg border px-3.5 text-left text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                      isActive ? "border-foreground bg-surface-subtle font-semibold text-foreground" : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50"
-                    }`}
-                  >
-                    <span className="leading-snug">{sectionConfigs[id].title}</span>
-                    <span className="text-xs tabular-nums text-muted-foreground">{SECTION_STYLE[id].pct}</span>
-                  </button>
+                  <label key={id} className={`${ROW_CLASS} cursor-pointer`}>
+                    <input
+                      type="radio"
+                      name="plate-section"
+                      value={id}
+                      checked={isActive}
+                      onChange={() => setActiveSectionId(id)}
+                      className="sr-only"
+                    />
+                    <span className={radioDotClass(isActive)} aria-hidden="true" />
+                    <span className="min-w-0 flex-1 text-sm font-semibold leading-snug text-foreground">
+                      {sectionConfigs[id].title}
+                    </span>
+                    <span className="shrink-0 text-xs tabular-nums text-muted-foreground">{SECTION_STYLE[id].pct}</span>
+                  </label>
                 );
               })}
             </div>
           </div>
         </div>
 
-        <div id="plate-section-detail" role="tabpanel" className="space-y-5">
+        <div id="plate-section-detail" aria-live="polite" className="space-y-5">
           <div>
             <h4 className="text-lg font-semibold text-foreground">{activeSection.title}</h4>
             <p className="mt-0.5 text-sm font-medium text-muted-foreground">{activeSection.percentageLabel}</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 border-t border-border pt-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 border-t border-border pt-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-1 lg:gap-5">
             <div>
               <h5 className="text-sm font-semibold text-foreground">{ui.handRuleHeading}</h5>
               <p className="mt-1 text-base font-semibold text-foreground">{activeSection.handRule}</p>
@@ -565,22 +576,24 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
 
           <div className="border-t border-border pt-4">
             <h5 className="text-sm font-semibold text-foreground">{ui.presetsTitle}</h5>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {PRESETS.map((p) => (
-                <button
-                  key={p.key}
-                  type="button"
-                  aria-pressed={sameSet(selectedFoodIds, p.ids)}
-                  onClick={() => setSelectedFoodIds(p.ids)}
-                  className={`min-h-[44px] rounded-lg border px-3.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                    sameSet(selectedFoodIds, p.ids)
-                      ? "border-foreground bg-foreground text-white"
-                      : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle"
-                  }`}
-                >
-                  {ui[p.key]}
-                </button>
-              ))}
+            <div role="radiogroup" aria-label={ui.presetsTitle} className={`mt-2 ${ROW_LIST_CLASS} sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-1`}>
+              {PRESETS.map((p) => {
+                const isSelected = sameSet(selectedFoodIds, p.ids);
+                return (
+                  <label key={p.key} className={`${ROW_CLASS} cursor-pointer`}>
+                    <input
+                      type="radio"
+                      name="plate-preset"
+                      value={p.key}
+                      checked={isSelected}
+                      onChange={() => setSelectedFoodIds(p.ids)}
+                      className="sr-only"
+                    />
+                    <span className={radioDotClass(isSelected)} aria-hidden="true" />
+                    <span className="text-sm font-semibold leading-snug text-foreground">{ui[p.key]}</span>
+                  </label>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -596,7 +609,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
           <button
             type="button"
             onClick={() => setSelectedFoodIds(DEFAULT_SELECTION)}
-            className="min-h-[44px] shrink-0 self-start rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="min-h-[44px] shrink-0 self-start rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           >
             {ui.resetButton}
           </button>
@@ -610,8 +623,8 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
             <span
               className={`rounded-md border px-2.5 py-1 text-xs font-semibold ${
                 isPlateComplete
-                  ? "bg-live-sage-soft text-live-sage border-live-sage/30"
-                  : "bg-amber-care-soft text-amber-care border-amber-care-border"
+                  ? "bg-live-sage-soft text-foreground border-live-sage/30"
+                  : "bg-amber-care-soft text-amber-care-hover border-amber-care-border"
               }`}
             >
               {isPlateComplete ? ui.completeStatus : ui.incompleteStatus}
@@ -642,7 +655,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
               <h5 className="text-sm font-semibold text-foreground">
                 {sectionConfigs[cat].title}
               </h5>
-              <ul className="mt-2 space-y-1.5">
+              <ul className={`mt-2 ${ROW_LIST_SINGLE_CLASS}`}>
                 {localizedFoods
                   .filter((food) => food.category === cat)
                   .map((food) => {
@@ -653,21 +666,18 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
                           type="button"
                           aria-pressed={isSelected}
                           onClick={() => toggleFoodItem(food.id)}
-                          className={`flex min-h-[44px] w-full items-start justify-between gap-3 rounded-lg border px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                            isSelected ? "border-foreground bg-surface-subtle" : "border-border bg-card hover:border-foreground/30 hover:bg-surface-subtle/50"
-                          }`}
+                          className={`${ROW_CLASS} items-start`}
                         >
-                          <span>
+                          <span className={`mt-0.5 ${tickBoxClass(isSelected)}`} aria-hidden="true">
+                            {isSelected && <CheckIcon className="h-3 w-3" />}
+                          </span>
+                          <span className="min-w-0">
                             <span className="block text-sm font-medium leading-snug break-words text-foreground">{food.name}</span>
                             <span className="mt-0.5 block text-xs tabular-nums text-muted-foreground">
-                              {food.caloriesApprox} kcal · {oneDecimal.format(food.fiberGrams)} {ui.fiberShort}
+                              {food.caloriesApprox} kcal
+                              {food.fiberGrams > 0 && ` · ${oneDecimal.format(food.fiberGrams)} ${ui.fiberShort}`}
                             </span>
                           </span>
-                          {isSelected ? (
-                            <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-foreground" />
-                          ) : (
-                            <PlusIcon className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                          )}
                         </button>
                       </li>
                     );

@@ -203,14 +203,14 @@ export function SmsPhoneAuthModal() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-md rounded-2xl border border-border bg-card p-6 sm:p-8">
+    <div className="mx-auto w-full max-w-md rounded-xl border border-border bg-card p-6 sm:p-8">
       <PhoneIcon className="h-6 w-6 text-sapphire" />
       <h1 className="mt-4 text-2xl font-semibold tracking-tight text-foreground">{page.title}</h1>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step === 1 ? page.subtitle : copy.step2Subtitle(phone)}</p>
 
       {error && (
-        <p role="alert" className="mt-4 flex items-start gap-2 rounded-lg border border-primary/25 bg-primary-soft/60 p-3 text-sm font-medium text-primary">
-          <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0" />
+        <p id="auth-phone-error" role="alert" className="mt-4 flex items-start gap-2 rounded-lg border border-amber-care-border bg-amber-care-soft/40 p-3 text-sm font-medium text-foreground dark:bg-amber-care/10">
+          <AlertCircleIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
           <span>{error}</span>
         </p>
       )}
@@ -240,18 +240,18 @@ export function SmsPhoneAuthModal() {
               inputMode="tel"
               autoComplete="tel"
               required
-              autoFocus
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder={page.phonePlaceholder}
               aria-invalid={Boolean(error)}
+              aria-describedby={error ? "auth-phone-error" : undefined}
               className="min-h-[48px] w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
           <button
             type="submit"
             disabled={isLoading}
-            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60"
+            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
           >
             {isLoading ? copy.sending : page.sendCode}
           </button>
@@ -292,7 +292,7 @@ export function SmsPhoneAuthModal() {
             type="button"
             disabled={isLoading || otpDigits.some((d) => !d)}
             onClick={() => verifyOtp(otpDigits.join(""))}
-            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60"
+            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
           >
             {isLoading ? copy.verifying : page.verifyCode}
           </button>
@@ -313,7 +313,7 @@ export function SmsPhoneAuthModal() {
               type="button"
               onClick={() => void handleSendCode()}
               disabled={isLoading}
-              className="min-h-[44px] rounded-sm font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
+              className="min-h-[44px] rounded-sm font-semibold text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
             >
               {copy.resendSms}
             </button>

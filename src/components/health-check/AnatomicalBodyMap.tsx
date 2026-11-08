@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { SearchIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -8,6 +8,7 @@ import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { getHealthCheckTranslations } from "@/lib/i18n/health-check-translations";
 import type { CameraViewPreset, ViewportCameraApi } from "./AnatomicalViewport3D";
+import { WEBGL_ERROR, hasWebGL } from "./webgl-support";
 import {
   BackViewIcon,
   CloseIcon,
@@ -68,6 +69,8 @@ export interface AnatomicalBodyMapProps {
   selectionLabel?: string | null;
   /** The body is context only (later steps): hide the canvas from keyboard and screen readers. */
   decorative?: boolean;
+  /** Told whether the 3D body is on screen (false: data saver, no WebGL, or it failed to load). */
+  onBodyShownChange?: (shown: boolean) => void;
   lang?: Lang;
   compact?: boolean;
 }
@@ -214,6 +217,7 @@ export function AnatomicalBodyMap({
   controlsClassName,
   selectionLabel,
   decorative = false,
+  onBodyShownChange,
   lang,
   compact = false,
 }: AnatomicalBodyMapProps) {
@@ -234,8 +238,20 @@ export function AnatomicalBodyMap({
   const autoLite = useSyncExternalStore(subscribeNoop, prefersLiteBody, () => false);
   const [forceBody, setForceBody] = useState(false);
   const lite = autoLite && !forceBody;
-  /** Set when the 3D body cannot run on this device (no WebGL) or failed to load. */
-  const [unavailable, setUnavailable] = useState<string | null>(null);
+  // Known before the three.js chunk loads, so a device without WebGL never downloads it.
+  const noWebGL = useSyncExternalStore(subscribeNoop, () => !hasWebGL(), () => false);
+  /** Set when the 3D body failed to start or load. */
+  const [loadFailure, setLoadFailure] = useState<string | null>(null);
+  const unavailable = noWebGL ? (WEBGL_ERROR[activeLang] ?? WEBGL_ERROR[DEFAULT_LANG]) : loadFailure;
+  const bodyShown = !lite && !unavailable;
+  const onBodyShownRef = useRef(onBodyShownChange);
+  useEffect(() => {
+    onBodyShownRef.current = onBodyShownChange;
+  });
+  // Before paint, so the page never shows the two-column layout around a missing body.
+  useLayoutEffect(() => {
+    onBodyShownRef.current?.(bodyShown);
+  }, [bodyShown]);
   const [layerMode, setLayerMode] = useState<LayerModeId>("hybrid");
   const [searchQuery, setSearchQuery] = useState("");
   const [internalSubRegion, setInternalSubRegion] = useState<SubRegionId | null>(null);
@@ -328,7 +344,7 @@ export function AnatomicalBodyMap({
   }, [panelOpen]);
 
   const tile = (active: boolean) =>
-    `flex min-h-[4.5rem] flex-col items-center justify-center gap-1 rounded-lg border px-1.5 py-2 text-center text-sm font-medium leading-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+    `flex min-h-[4.5rem] flex-col items-center justify-center gap-1 rounded-lg border px-1.5 py-2 text-center text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
       active
         ? "border-sapphire bg-card text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
         : "border-border bg-card text-foreground hover:bg-muted"
@@ -356,7 +372,7 @@ export function AnatomicalBodyMap({
       aria-label={label}
       title={label}
       onClick={() => cameraRef.current?.[action]()}
-      className="flex h-11 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-muted active:bg-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+      className="flex h-11 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted active:bg-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
     >
       <Icon className="h-5 w-5" />
     </button>
@@ -366,20 +382,20 @@ export function AnatomicalBodyMap({
 
   return (
     <div className={`w-full ${className}`}>
-      {lite || unavailable ? (
-        // No 3D body (data saver, or a device that cannot draw it): a short note, not an empty stage.
-        <div className="flex flex-col items-start gap-3 border-y border-border bg-surface-subtle px-5 py-4 sm:rounded-lg sm:border">
-          <p className="text-base text-foreground">{unavailable ?? t.liteNote}</p>
+      {!bodyShown ? (
+        // No 3D body (data saver, or a device that cannot draw it): one plain line above the list.
+        <p className="flex flex-wrap items-baseline gap-x-3 text-sm leading-relaxed text-muted-foreground">
+          <span>{unavailable ?? t.liteNote}</span>
           {lite && !unavailable && (
             <button
               type="button"
               onClick={() => setForceBody(true)}
-              className="inline-flex min-h-11 items-center justify-center rounded-lg border border-border bg-card px-4 text-base font-medium text-foreground hover:bg-muted"
+              className="min-h-11 font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-muted-foreground sm:min-h-0"
             >
               {t.liteLoad}
             </button>
           )}
-        </div>
+        </p>
       ) : (
         <div ref={stageRef} className={`relative overflow-hidden bg-surface-subtle ${stageClassName ?? "h-[460px]"}`}>
           {selectionLabel && (
@@ -397,7 +413,7 @@ export function AnatomicalBodyMap({
               aria-expanded={panelOpen}
               aria-controls={panelId}
               onClick={() => setPanelOpen((v) => !v)}
-              className={`absolute right-3 top-3 z-30 min-h-11 items-center gap-2 rounded-lg border border-border bg-card px-3 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${controlsClassName ?? "flex"}`}
+              className={`absolute right-3 top-3 z-30 min-h-11 items-center gap-2 rounded-lg border border-border bg-card px-3 text-sm font-medium text-foreground shadow-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${controlsClassName ?? "flex"}`}
             >
               <SlidersIcon className="h-5 w-5" />
               {t.open}
@@ -410,7 +426,7 @@ export function AnatomicalBodyMap({
               role="dialog"
               aria-label={t.options}
               hidden={!panelOpen}
-              className="hc-sheet fixed inset-x-0 bottom-0 z-40 max-h-[62dvh] overflow-y-auto rounded-t-2xl border-t border-border bg-card p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_-12px_rgb(0_0_0/0.25)] sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-2 sm:top-2 sm:w-[22rem] sm:max-h-[calc(100%-1rem)] sm:rounded-lg sm:border sm:shadow-lg"
+              className="hc-sheet fixed inset-x-0 bottom-0 z-40 max-h-[62dvh] overflow-y-auto rounded-t-xl border-t border-border bg-card p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_-12px_rgb(0_0_0/0.25)] sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-2 sm:top-2 sm:w-[22rem] sm:max-h-[calc(100%-1rem)] sm:rounded-xl sm:border sm:shadow-lg"
             >
               <div className="mb-3 flex items-center justify-between gap-3">
                 <p className="text-base font-semibold text-foreground">{t.options}</p>
@@ -421,7 +437,7 @@ export function AnatomicalBodyMap({
                     setPanelOpen(false);
                     openerRef.current?.focus();
                   }}
-                  className="flex h-11 w-11 items-center justify-center rounded-lg text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
                 >
                   <CloseIcon className="h-5 w-5" />
                 </button>
@@ -497,7 +513,7 @@ export function AnatomicalBodyMap({
                               setSearchQuery("");
                               setPanelOpen(false);
                             }}
-                            className="flex min-h-11 w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire"
+                            className="flex min-h-11 w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire"
                           >
                             <span className="font-medium text-foreground">{item.label}</span>
                             <span className="text-muted-foreground">{dict.bodyParts[item.macroPart].title}</span>
@@ -518,7 +534,7 @@ export function AnatomicalBodyMap({
             layerMode={layerMode}
             isolateSelected={false}
             onSelectAnatomy={(macroPart, subRegion, side) => handleSelect3D(macroPart, subRegion, side, true)}
-            onUnavailable={setUnavailable}
+            onUnavailable={setLoadFailure}
             lang={activeLang}
             compact={compact}
             className="h-full w-full"
@@ -530,7 +546,7 @@ export function AnatomicalBodyMap({
         </div>
       )}
 
-      {showTools && !lite && !unavailable && (
+      {showTools && bodyShown && (
         <p className={`mt-3 text-sm leading-snug text-muted-foreground ${toolsClassName}`}>
           {dict.ui.viewer3D.tip}
         </p>

@@ -49,6 +49,15 @@ export interface ScreeningSelectorCopy {
   timelineTitle: string;
   timelineSubtitle: string;
   timelineSteps: EarlyDetectionStep[];
+  /** DOM labels placed on the early-detection diagram. */
+  sceneLabels: {
+    symptoms: string;
+    check: string;
+    foundEarly: string;
+    untreated: string;
+    treated: string;
+    time: string;
+  };
   investigations: ScreeningInvestigation[];
 }
 
@@ -91,6 +100,14 @@ export const SCREENING_RECOMMENDATIONS: Record<Lang, ScreeningSelectorCopy> = {
     timelineTitle: "Cum ajută controalele făcute din timp",
     timelineSubtitle:
       "Un control simplu poate găsi o problemă înainte să devină gravă.",
+    sceneLabels: {
+      symptoms: "Apar simptomele",
+      check: "Control",
+      foundEarly: "Depistare timpurie",
+      untreated: "Fără control",
+      treated: "Tratament la timp",
+      time: "Timp",
+    },
     timelineSteps: [
       {
         stepNumber: "01",
@@ -275,6 +292,14 @@ export const SCREENING_RECOMMENDATIONS: Record<Lang, ScreeningSelectorCopy> = {
     timelineTitle: "How early checkups help",
     timelineSubtitle:
       "A simple checkup can find a problem before it gets serious.",
+    sceneLabels: {
+      symptoms: "Symptoms appear",
+      check: "Check-up",
+      foundEarly: "Found early",
+      untreated: "Without a check-up",
+      treated: "Treated early",
+      time: "Time",
+    },
     timelineSteps: [
       {
         stepNumber: "01",
@@ -454,6 +479,14 @@ export const SCREENING_RECOMMENDATIONS: Record<Lang, ScreeningSelectorCopy> = {
     timelineTitle: "Si ndihmojnë kontrollet e bëra me kohë",
     timelineSubtitle:
       "Një kontroll i thjeshtë mund të gjejë një problem para se të rëndohet.",
+    sceneLabels: {
+      symptoms: "Shfaqen simptomat",
+      check: "Kontroll",
+      foundEarly: "Zbulohet herët",
+      untreated: "Pa kontroll",
+      treated: "Trajtohet në kohë",
+      time: "Koha",
+    },
     timelineSteps: [
       {
         stepNumber: "01",
@@ -633,6 +666,14 @@ export const SCREENING_RECOMMENDATIONS: Record<Lang, ScreeningSelectorCopy> = {
     timelineTitle: "Come aiutano i controlli fatti per tempo",
     timelineSubtitle:
       "Un controllo semplice può trovare un problema prima che diventi grave.",
+    sceneLabels: {
+      symptoms: "Compaiono i sintomi",
+      check: "Controllo",
+      foundEarly: "Scoperta precoce",
+      untreated: "Senza controllo",
+      treated: "Cura tempestiva",
+      time: "Tempo",
+    },
     timelineSteps: [
       {
         stepNumber: "01",
@@ -708,7 +749,7 @@ export const SCREENING_RECOMMENDATIONS: Record<Lang, ScreeningSelectorCopy> = {
         frequency: "Una volta all'anno",
         cnasBadge: "Coperto dalla CNAS tramite il medico di famiglia",
         preparation:
-          "Vieni a digiuno per gli esami. Stai seduto tranquillo 10 minuti prima della pressione.",
+          "Vieni a digiuno per gli esami. Stai seduto tranquillo 10 minuti prima di misurare la pressione.",
         earlyBenefit:
           "Agire per tempo aiuta a prevenire infarto e ictus.",
         doctorQuestion: "Quanto è alto il mio rischio per il cuore nei prossimi 10 anni?",

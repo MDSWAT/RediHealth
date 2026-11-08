@@ -20,7 +20,7 @@ export interface MythCardCarouselProps {
 }
 
 const navButton =
-  "inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors duration-150 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:opacity-40";
+  "inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground/60";
 
 export function MythCardCarousel({
   myths,
@@ -66,6 +66,7 @@ export function MythCardCarousel({
             disabled={currentIndex === 0}
             className={navButton}
             aria-label={t.quiz.prevMythAria}
+            aria-keyshortcuts="ArrowLeft"
           >
             <ArrowLeftIcon className="h-4 w-4" />
           </button>
@@ -75,6 +76,7 @@ export function MythCardCarousel({
             disabled={currentIndex === total - 1}
             className={navButton}
             aria-label={t.quiz.nextMythAria}
+            aria-keyshortcuts="ArrowRight"
           >
             <ArrowRightIcon className="h-4 w-4" />
           </button>
@@ -101,10 +103,10 @@ export function MythCardCarousel({
               onClick={() => onIndexChange(idx)}
               aria-label={`${t.quiz.mythProgressPrefix} ${idx + 1}`}
               aria-current={isCurrent ? "step" : undefined}
-              className="group/seg flex h-5 flex-1 items-center focus-visible:outline-none"
+              className="group/seg flex h-6 flex-1 items-center focus-visible:outline-none"
             >
               <span
-                className={`block h-1.5 w-full rounded-sm transition-colors duration-150 group-focus-visible/seg:ring-2 group-focus-visible/seg:ring-sapphire ${fill} ${
+                className={`block h-1.5 w-full rounded-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-focus-visible/seg:ring-2 group-focus-visible/seg:ring-sapphire ${fill} ${
                   isCurrent && result ? "ring-1 ring-foreground/40 ring-offset-1 ring-offset-background" : ""
                 }`}
               />

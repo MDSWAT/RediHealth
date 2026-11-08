@@ -13,8 +13,11 @@ export interface CessationRecoveryTimelineProps {
   className?: string;
 }
 
-const NAV_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-40";
+/** Step navigation, as on every explainer: Back is a quiet text button, Next is ink-filled. */
+const BACK_BUTTON =
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:text-muted-foreground/50 disabled:hover:bg-transparent";
+const NEXT_BUTTON =
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
 
 /** What happens after the last cigarette: five time points, one calm lung diagram. */
 export function CessationRecoveryTimeline({ lang, className = "" }: CessationRecoveryTimelineProps) {
@@ -51,76 +54,80 @@ export function CessationRecoveryTimeline({ lang, className = "" }: CessationRec
         {copy.componentSubtitle}
       </p>
 
+      {/* The five moments as one segmented control */}
       <div
-        role="img"
-        aria-label={`${current.badge}: ${current.title}`}
-        className="mt-5 flex h-48 w-full items-center justify-center overflow-hidden rounded-lg border border-border bg-background sm:h-56"
+        role="radiogroup"
+        aria-label={copy.scrubberLabel}
+        className="mt-5 grid grid-cols-5 divide-x divide-border overflow-hidden rounded-lg border border-border"
       >
-        <LazyMotion features={domAnimation} strict>
-          <BreathingLungsScene step={activeStep} playing />
-        </LazyMotion>
+        {milestones.map((milestone, index) => {
+          const selected = index === activeStep;
+          return (
+            <button
+              key={milestone.id}
+              ref={(node) => {
+                optionRefs.current[index] = node;
+              }}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              tabIndex={selected ? 0 : -1}
+              onClick={() => select(index)}
+              onKeyDown={onOptionKeyDown}
+              className={cn(
+                "min-h-11 px-1.5 py-2 text-center text-xs font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:text-sm",
+                selected
+                  ? "bg-foreground text-background"
+                  : "bg-card text-muted-foreground hover:bg-surface-subtle/60 hover:text-foreground",
+              )}
+            >
+              {milestone.badge}
+            </button>
+          );
+        })}
       </div>
 
-      <div className="mt-5">
+      <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:items-start sm:gap-8">
+        {/* The lungs sit straight on the card, square, beside the milestone text */}
         <div
-          role="radiogroup"
-          aria-label={copy.scrubberLabel}
-          className="grid grid-cols-2 gap-2 sm:grid-cols-5"
+          role="img"
+          aria-label={`${current.badge}: ${current.title}`}
+          className="mx-auto aspect-square w-full max-w-[280px] sm:max-w-none"
         >
-          {milestones.map((milestone, index) => {
-            const selected = index === activeStep;
-            return (
-              <button
-                key={milestone.id}
-                ref={(node) => {
-                  optionRefs.current[index] = node;
-                }}
-                type="button"
-                role="radio"
-                aria-checked={selected}
-                tabIndex={selected ? 0 : -1}
-                onClick={() => select(index)}
-                onKeyDown={onOptionKeyDown}
-                className={cn(
-                  "min-h-[44px] rounded-lg border px-3 py-2 text-xs font-semibold leading-snug transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
-                  selected
-                    ? "border-foreground bg-surface-subtle text-foreground"
-                    : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
-                )}
-              >
-                {milestone.badge}
-              </button>
-            );
-          })}
+          <LazyMotion features={domAnimation} strict>
+            <BreathingLungsScene step={activeStep} playing />
+          </LazyMotion>
         </div>
 
-        <div aria-live="polite" className="mt-5 space-y-4 border-t border-border pt-5">
-          <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h4 className="text-base font-bold leading-snug text-foreground">{current.title}</h4>
-            <span className="text-xs font-medium text-muted-foreground">{current.badge}</span>
+        <div aria-live="polite" className="space-y-4">
+          <div>
+            <p className="text-sm font-medium tabular-nums text-muted-foreground">{current.badge}</p>
+            <h4 className="mt-0.5 text-lg font-semibold leading-snug text-foreground text-balance">{current.title}</h4>
           </div>
-          <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div>
+          <dl className="divide-y divide-border border-t border-border">
+            <div className="py-3">
               <dt className="text-sm font-semibold text-foreground">{copy.patientFeelHeading}</dt>
               <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{current.patientFeel}</dd>
             </div>
-            <div>
+            <div className="py-3">
               <dt className="text-sm font-semibold text-foreground">{copy.clinicalMetricHeading}</dt>
               <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{current.clinicalMetric}</dd>
             </div>
           </dl>
         </div>
+      </div>
 
+      <div>
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
           <span className="text-xs font-medium tabular-nums text-muted-foreground">
             {copy.stepOfTemplate.replace("{n}", String(activeStep + 1)).replace("{total}", String(milestones.length))}
           </span>
           <div className="flex items-center gap-2">
-            <button type="button" onClick={() => select(activeStep - 1)} disabled={activeStep === 0} className={NAV_BUTTON}>
+            <button type="button" onClick={() => select(activeStep - 1)} disabled={activeStep === 0} className={BACK_BUTTON}>
               <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
               {copy.prevStepLabel}
             </button>
-            <button type="button" onClick={() => select(activeStep + 1)} disabled={activeStep === last} className={NAV_BUTTON}>
+            <button type="button" onClick={() => select(activeStep + 1)} disabled={activeStep === last} className={NEXT_BUTTON}>
               {copy.nextStepLabel}
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
             </button>

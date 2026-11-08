@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
   const page = translations[lang].healthInfoPage;
   return {
-    title: `${page.eyebrow} - RediHealth`,
+    title: `${page.heroTitle} - RediHealth`,
     description: page.heroSubtitle,
   };
 }

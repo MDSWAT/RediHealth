@@ -295,7 +295,7 @@ export function CaseTrackingMatrix() {
         {filteredCases.map((c) => (
           <div
             key={c.id}
-            className="rounded-lg border border-border bg-background p-4 hover:border-foreground/20 transition-all"
+            className="rounded-lg border border-border bg-background p-4 transition-colors duration-[var(--dur-fast)] hover:border-foreground/20"
           >
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
               <div className="flex items-start gap-3">

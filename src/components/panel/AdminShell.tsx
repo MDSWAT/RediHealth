@@ -51,7 +51,7 @@ type PageShellOptions = Pick<AdminShellProps, "pendingCount" | "mobilePatientCre
 const ROLE_LABELS: Record<"en" | "ro" | "sq" | "it", Record<string, string>> = {
   en: { "healthcare worker": "Health worker", "case worker": "Case worker", "general practitioner": "Family doctor", "super admin": "Super admin", superadmin: "Super admin" },
   ro: { doctor: "Medic", mediator: "Mediator", nurse: "Asistent medical", "case worker": "Responsabil de caz", "general practitioner": "Medic de familie", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Personal medical" },
-  sq: { doctor: "Mjek", mediator: "Ndërmjetës", nurse: "Infermier", "case worker": "Përgjegjës rasti", "general practitioner": "Mjek familje", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Punonjës shëndetësor" },
+  sq: { doctor: "Mjek", mediator: "Mediator", nurse: "Infermier", "case worker": "Përgjegjës rasti", "general practitioner": "Mjek familje", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Punonjës shëndetësor" },
   it: { doctor: "Medico", mediator: "Mediatore", nurse: "Infermiere", "case worker": "Referente del caso", "general practitioner": "Medico di base", administrator: "Amministratore", "super admin": "Super amministratore", superadmin: "Super amministratore", "healthcare worker": "Operatore sanitario" },
 };
 const PersistentShellContext = createContext<((options: PageShellOptions) => void) | null>(null);
@@ -91,7 +91,7 @@ function AdminShellFrame({
   mobilePatientCreation,
 }: AdminShellProps) {
   const pathname = usePathname();
-  const { request: fetch, demo, offline, signOut: offlineSignOut } = usePanelRuntime();
+  const { request: fetch, demo, offline, signOut: offlineSignOut, canOpen } = usePanelRuntime();
   const { lang } = useLanguage();
   const t = panelTranslations[lang].adminShell;
   const copy = panelDesignTranslations[lang];
@@ -135,7 +135,7 @@ function AdminShellFrame({
     { label: t.workers, href: "/panel/workers", icon: StethoscopeIcon },
   ].filter((item) => {
     if (item.href === "/panel/workers" && !isAdmin) return false;
-    return true;
+    return canOpen(item.href);
   });
 
   // Mobile App Bottom Navigation Bar items (primary quick tabs)
@@ -144,7 +144,7 @@ function AdminShellFrame({
     { label: t.patients, href: "/panel/patients", icon: UsersIcon },
     { label: t.calendar, href: "/panel/calendar", icon: CalendarIcon },
     { label: crm.meetings, href: "/panel/meet", icon: CameraIcon },
-  ];
+  ].filter((item) => canOpen(item.href));
 
   const userInitial = (userEmail || "U").charAt(0).toUpperCase();
 
@@ -326,7 +326,7 @@ function AdminShellFrame({
             onClick={() => setMobileAccountSheetOpen(false)}
             aria-hidden="true"
           />
-          <aside role="dialog" aria-modal="true" aria-label={copy.account} className="app-sheet-slide-up relative w-full rounded-t-3xl border-t border-border bg-card p-5 shadow-xl max-h-[85dvh] overflow-y-auto care-panel-bottom-bar">
+          <aside role="dialog" aria-modal="true" aria-label={copy.account} className="app-sheet-slide-up relative w-full rounded-t-xl border-t border-border bg-card p-5 shadow-xl max-h-[85dvh] overflow-y-auto care-panel-bottom-bar">
             {/* Grab Handle */}
             <div className="mx-auto mb-3 h-1.5 w-12 rounded-sm bg-border" />
 
@@ -378,7 +378,7 @@ function AdminShellFrame({
                             setReportError(null);
                             setReportSuccess(null);
                           }}
-                          className="flex min-h-11 w-full items-center justify-between rounded-xl px-3 text-left text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
+                          className="flex min-h-11 w-full items-center justify-between rounded-lg px-3 text-left text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
                         >
                           <span className="flex items-center gap-2.5">
                             <Icon className="h-5 w-5 text-primary" />
@@ -421,7 +421,7 @@ function AdminShellFrame({
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-red-50 text-sm font-bold text-primary transition-colors hover:bg-red-100"
+                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-border bg-white text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
                 <LogOutIcon className="h-4 w-4" />
                 <span>{t.signOut}</span>
@@ -607,7 +607,7 @@ function AdminShellFrame({
                 }}
                 aria-label={t.reportIssue}
                 title={desktopSidebarCollapsed ? t.reportIssue : undefined}
-                className={`flex min-h-11 w-full items-center gap-3 rounded-xl text-left text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3.5"}`}
+                className={`flex min-h-11 w-full items-center gap-3 rounded-lg text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"}`}
               >
                 <AlertCircleIcon className="h-5 w-5 shrink-0" />
                 {!desktopSidebarCollapsed ? <span>{t.reportIssue}</span> : null}
@@ -619,7 +619,7 @@ function AdminShellFrame({
             <CountrySwitcher compact={desktopSidebarCollapsed} />
             <div
               title={desktopSidebarCollapsed ? `${roleLabel} — ${userEmail}` : undefined}
-              className={`flex items-center rounded-xl border border-border/60 bg-white shadow-2xs ${desktopSidebarCollapsed ? "justify-center p-2" : "gap-3 p-2.5"}`}
+              className={`flex items-center rounded-lg border border-border/60 bg-white ${desktopSidebarCollapsed ? "justify-center p-2" : "gap-3 p-2.5"}`}
             >
               <span
                 aria-hidden="true"
@@ -650,7 +650,7 @@ function AdminShellFrame({
                 onClick={handleSignOut}
                 aria-label={t.signOut}
                 title={desktopSidebarCollapsed ? t.signOut : undefined}
-                className={`flex h-9 w-full items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-red-50 hover:text-primary ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
+                className={`flex h-9 w-full items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
               >
                 {!desktopSidebarCollapsed ? <span>{t.signOut}</span> : null}
                 <LogOutIcon className="h-3.5 w-3.5" />
@@ -735,7 +735,7 @@ function AdminShellFrame({
               aria-label={createPatientModalTranslations[lang].titleCreate}
               title={createPatientModalTranslations[lang].titleCreate}
               onClick={() => setCreatingPatient(true)}
-              className="fixed right-5 bottom-[calc(5rem+env(safe-area-inset-bottom))] z-40 flex h-16 w-16 items-center justify-center rounded-2xl border-4 border-white bg-red-600 text-white shadow-md transition-colors hover:bg-red-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600 lg:hidden"
+              className="fixed right-5 bottom-[calc(5rem+env(safe-area-inset-bottom))] z-40 flex h-16 w-16 items-center justify-center rounded-lg bg-primary text-white shadow-md transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring lg:hidden"
             >
               <PlusIcon aria-hidden="true" className="h-8 w-8 shrink-0" />
             </button>
@@ -761,7 +761,7 @@ function AdminShellFrame({
             role="dialog"
             aria-modal="true"
             aria-labelledby={`${reportFieldId}-title`}
-            className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-3xl border-t border-border bg-card p-5 shadow-xl sm:rounded-2xl sm:border sm:p-6"
+            className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-xl border-t border-border bg-card p-5 shadow-xl sm:rounded-xl sm:border sm:p-6"
           >
             <div className="mx-auto mb-3 h-1.5 w-12 rounded-sm bg-border sm:hidden" />
             <div className="mb-4 flex items-start justify-between gap-3 border-b border-border pb-4 sm:items-center">
@@ -789,7 +789,7 @@ function AdminShellFrame({
                   value={reportEmail}
                   onChange={(event) => setReportEmail(event.target.value)}
                   placeholder="you@example.com"
-                  className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
 
@@ -803,7 +803,7 @@ function AdminShellFrame({
                   value={reportMessage}
                   onChange={(event) => setReportMessage(event.target.value)}
                   placeholder={reportText.placeholder}
-                  className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
 
@@ -828,7 +828,7 @@ function AdminShellFrame({
                 <button
                   type="submit"
                   disabled={reportSubmitting}
-                  className="inline-flex min-h-10 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-60"
+                  className="inline-flex min-h-10 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground"
                 >
                   {reportSubmitting ? reportText.sending : reportText.send}
                 </button>

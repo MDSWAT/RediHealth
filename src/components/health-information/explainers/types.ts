@@ -31,9 +31,9 @@ export function isTopicSlug(value: string): value is TopicSlug {
  * Props every explainer scene receives.
  *
  * Scenes are pure drawings: they hold no strings (labels and captions are DOM
- * text rendered by ExplainerStage) and read colours only from CSS variables.
+ * text rendered around them) and read colours only from CSS variables.
  * When `playing` is false a scene must render a static key frame that still
- * explains the idea on its own (direction arrows instead of motion).
+ * explains the idea on its own (a static end state).
  */
 export interface ExplainerSceneProps {
   step: number;
@@ -42,17 +42,3 @@ export interface ExplainerSceneProps {
 }
 
 export type ExplainerScene = ComponentType<ExplainerSceneProps>;
-
-/** One localized step of an explainer. */
-export interface ExplainerStep {
-  id: string;
-  caption: string;
-  ariaLabel: string;
-  /** How long this step stays on screen while playing a multi-step scene. */
-  durationMs?: number;
-}
-
-export interface ExplainerContent {
-  title: string;
-  steps: ExplainerStep[];
-}

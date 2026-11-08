@@ -45,7 +45,7 @@ export function SmokingInteractiveHub({
       <div
         role="tablist"
         aria-label={copy.tabsLabel}
-        className="grid grid-cols-1 gap-2.5 sm:grid-cols-2"
+        className="grid grid-cols-2 gap-x-4 border-b border-border sm:flex sm:gap-x-0"
       >
         {TABS.map((tab) => {
           const selected = activeTab === tab;
@@ -64,10 +64,10 @@ export function SmokingInteractiveHub({
               onClick={() => setActiveTab(tab)}
               onKeyDown={onTabKeyDown}
               className={cn(
-                "flex min-h-[52px] items-center justify-between rounded-lg border px-4 py-3 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+                "-mb-px flex min-h-11 items-end gap-2 border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:mr-6",
                 selected
-                  ? "border-foreground bg-surface-subtle text-foreground"
-                  : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
+                  ? "border-foreground text-foreground"
+                  : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
               <span>{labels[tab]}</span>

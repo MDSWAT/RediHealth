@@ -32,7 +32,7 @@ export function FindHelpPageContent({
               <h2 className="text-lg font-semibold text-foreground">{page.ctaTitle}</h2>
               <p className="mt-1 text-base leading-relaxed text-muted-foreground">{page.ctaBody}</p>
             </div>
-            <Button href={withLangPrefix("/get-help", lang)} size="lg" className="shrink-0">
+            <Button href={withLangPrefix("/get-help", lang)} variant="secondary" size="lg" className="shrink-0">
               {page.ctaButton}
             </Button>
           </div>

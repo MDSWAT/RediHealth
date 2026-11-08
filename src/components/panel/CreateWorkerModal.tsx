@@ -102,9 +102,9 @@ export function CreateWorkerModal({
       errSave: "Nuk u ruajt.",
       errUnexpected: "Nuk u ruajt. Provo përsëri.",
       titleEdit: "Ndrysho punonjësin",
-      titleMediator: "Shto një ndërmjetës",
+      titleMediator: "Shto një mediator",
       titleWorker: "Shto një punonjës",
-      subtitleMediator: "Ndërmjetësi mund të hapë raste të reja ndërmjetësimi.",
+      subtitleMediator: "Mediatori mund të hapë raste të reja.",
       subtitleWorker: "Emri, kontakti dhe roli.",
       success: "U ruajt.",
       fullName: "Emri dhe mbiemri",
@@ -115,7 +115,7 @@ export function CreateWorkerModal({
       phonePh: "p.sh. 0722 123 456",
       role: "Roli",
       doctor: "Mjek",
-      mediator: "Ndërmjetës",
+      mediator: "Mediator",
       nurse: "Infermier",
       caseWorker: "Përgjegjës rasti",
       gp: "Mjek familje",
@@ -259,7 +259,7 @@ export function CreateWorkerModal({
 
   return (
     <div className="panel-scrim fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/50 p-0 sm:p-4">
-      <div className="app-sheet-slide-up relative w-full max-w-lg rounded-t-3xl sm:rounded-2xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
+      <div className="app-sheet-slide-up relative w-full max-w-lg rounded-t-xl sm:rounded-xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
         {/* Mobile bottom sheet drag handle */}
         <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
         <div className="flex items-center justify-between border-b border-border pb-4">
@@ -311,7 +311,7 @@ export function CreateWorkerModal({
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder={t.fullNamePh}
-              className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
@@ -326,7 +326,7 @@ export function CreateWorkerModal({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t.emailPh}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
@@ -339,7 +339,7 @@ export function CreateWorkerModal({
                   required
                   value={county}
                   onChange={(e) => setCounty(e.target.value)}
-                  className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <option value="">{t.selectCounty}</option>
                   {ROMANIAN_COUNTIES.map((countyName) => <option key={countyName} value={countyName}>{countyName}</option>)}
@@ -356,7 +356,7 @@ export function CreateWorkerModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder={t.phonePh}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
@@ -369,7 +369,7 @@ export function CreateWorkerModal({
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="Healthcare Worker">{t.healthcareWorker}</option>
                 <option value="Doctor">{t.doctor}</option>
@@ -391,7 +391,7 @@ export function CreateWorkerModal({
                 value={department}
                 onChange={(e) => setDepartment(e.target.value)}
                 placeholder={t.deptPh}
-                className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
@@ -403,7 +403,7 @@ export function CreateWorkerModal({
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as WorkerStatus)}
-              className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <option value="active">{t.activeStaff}</option>
               <option value="inactive">{t.inactiveStaff}</option>
@@ -414,14 +414,14 @@ export function CreateWorkerModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+              className="rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
             >
               {t.cancel}
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-xl bg-primary px-5 py-2 text-xs font-bold text-white hover:bg-primary-hover disabled:opacity-60 shadow-2xs transition-colors"
+              className="rounded-lg bg-primary px-5 py-2 text-xs font-bold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground shadow-2xs transition-colors"
             >
               {isSubmitting
                 ? t.saving

@@ -8,10 +8,7 @@ import { translations, type Lang } from "@/lib/i18n/translations";
 import { HealthInformationTopicGrid } from "./HealthInformationTopicGrid";
 import { RomanesGlossaryDrawer } from "./RomanesGlossaryDrawer";
 import { RomanianDualRegisterGlossary } from "./RomanianDualRegisterGlossary";
-import { MedicalSafetyDisclaimer } from "./MedicalSafetyDisclaimer";
-import { DoctorValidatedBadge } from "./DoctorValidatedBadge";
-import { TopicDoctorExitBanner } from "./TopicDoctorExitBanner";
-import { FindHelpPrompt } from "@/components/find-help/FindHelpPrompt";
+import { TopicNextSteps } from "./TopicNextSteps";
 import { TrueFalseQuizSection } from "@/components/landing/TrueFalseQuizSection";
 
 /** Kept for links that still pass a view; the page now has a single view. */
@@ -40,8 +37,8 @@ function useSafeLanguage() {
 }
 
 /**
- * Health information: one library. A short hero, then a single card with search,
- * categories, reading settings and every guide; no menu screen and no tabs.
+ * Health information: one library. A short hero, then search, categories, reading
+ * settings and every guide on the page background; no menu screen and no tabs.
  * "Check a symptom" opens the 3D health check at /health-check.
  */
 export function HealthInformationPageContent(props: HealthInformationPageContentProps = {}) {
@@ -69,7 +66,6 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
           <p className="mt-3 max-w-[65ch] text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
             {page.heroSubtitle}
           </p>
-          <DoctorValidatedBadge variant="inline" doctorName="Dr. Elena Radu" className="mt-3 -ml-0.5" />
         </Container>
       </section>
 
@@ -104,13 +100,9 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
         </Container>
       </section>
 
-      <Container className="py-10">
-        <TopicDoctorExitBanner />
-        <FindHelpPrompt lang={lang} className="mt-4" />
-      </Container>
-
-      <Container className="pb-10">
-        <MedicalSafetyDisclaimer lang={lang} />
+      {/* One closing surface: talk to a doctor, ask at a pharmacy, the safety note. */}
+      <Container className="py-10 sm:py-12">
+        <TopicNextSteps lang={lang} />
       </Container>
 
       <RomanianDualRegisterGlossary

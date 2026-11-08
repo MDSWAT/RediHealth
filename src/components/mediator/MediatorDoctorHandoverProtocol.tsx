@@ -220,13 +220,10 @@ export function MediatorDoctorHandoverProtocol({
   if (isCallActive) {
     // Split tablet view: Top/Left video call with online physician, Bottom/Right mediator translation aid & live notes
     return (
-      <div className="rounded-xl border border-border bg-slate-950 text-white overflow-hidden shadow-2xl">
+      <div className="rounded-xl border border-border bg-slate-950 text-white overflow-hidden shadow-lg">
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 bg-slate-900">
           <div className="flex items-center gap-2">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-live-sage opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-live-sage" />
-            </span>
+            <span className="inline-flex h-2.5 w-2.5 rounded-full bg-live-sage" aria-hidden="true" />
             <span className="text-xs font-bold text-white">
               {copy.liveStatus}
             </span>
@@ -235,7 +232,7 @@ export function MediatorDoctorHandoverProtocol({
           <button
             type="button"
             onClick={() => setIsCallActive(false)}
-            className="rounded-md border border-white/20 bg-red-600/80 px-3 py-1 text-xs font-semibold text-white hover:bg-red-700"
+            className="rounded-md border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-white/20"
           >
             {copy.endCall}
           </button>
@@ -422,7 +419,7 @@ export function MediatorDoctorHandoverProtocol({
             type="button"
             disabled={isTransmitting}
             onClick={handleStartHandover}
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:opacity-60 transition-colors"
+            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]"
           >
             <VideoIcon className="h-4 w-4" />
             {isTransmitting ? copy.submitting : copy.submit}

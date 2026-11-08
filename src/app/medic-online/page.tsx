@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { MedicOnlineHero } from "@/components/telemed/MedicOnlineHero";
-import { FindHelpPrompt } from "@/components/find-help/FindHelpPrompt";
 import { ShieldIcon, StethoscopeIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { getRequestLang } from "@/lib/i18n/server-routing";
@@ -10,10 +9,10 @@ import type { Lang } from "@/lib/i18n/translations";
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
   const descriptions: Record<Lang, string> = {
-    ro: "Vorbește gratuit cu un medic voluntar, prin video, de pe telefon. Nu trebuie să instalezi nicio aplicație.",
-    en: "Talk to a volunteer doctor for free, by video, on your phone. You do not need to install an app.",
-    sq: "Fol falas me një mjek vullnetar, me video, nga telefoni. Nuk të duhet të instalosh asnjë aplikacion.",
-    it: "Parla gratis con un medico volontario, in video, dal telefono. Non devi installare nessuna app.",
+    ro: "Vorbește gratuit cu un medic voluntar, de pe telefon. Nu trebuie să instalezi nicio aplicație.",
+    en: "Talk to a volunteer doctor for free, on your phone. You do not need to install an app.",
+    sq: "Fol falas me një mjek vullnetar, nga telefoni. Nuk të duhet të instalosh asnjë aplikacion.",
+    it: "Parla gratis con un medico volontario, dal telefono. Non devi installare nessuna app.",
   };
 
   return {
@@ -29,13 +28,13 @@ const copy = {
     step1Title: "Alegi când vorbești",
     step1Desc: "Intri acum la medicul de gardă sau îți faci programare la o oră care îți convine.",
     step2Title: "Primești un link prin SMS",
-    step2Desc: "Apeși pe link. Apelul video se deschide în browser.",
+    step2Desc: "Apeși pe link. Apelul se deschide în browser.",
     step3Title: "Primești sfaturile în scris",
     step3Desc: "După apel, medicul îți trimite ce ai de făcut. Găsești totul în cont și prin SMS.",
     heading: "Medici cu drept de practică",
     desc: "Medicii RediHealth sunt medici de familie, pediatri sau medici de medicină internă. Sunt voluntari și îți explică pe înțeles ce ai de făcut.",
     privacyTitle: "Ce spui rămâne între tine și medic",
-    privacyDesc: "Apelurile video sunt criptate.",
+    privacyDesc: "Apelurile sunt criptate.",
   },
   en: {
     stepsTitle: "How it works",
@@ -43,13 +42,13 @@ const copy = {
     step1Title: "Choose when to talk",
     step1Desc: "See the on-call doctor now, or book a time that suits you.",
     step2Title: "Get a link by text message",
-    step2Desc: "Tap the link. The video call opens in your browser.",
+    step2Desc: "Tap the link. The call opens in your browser.",
     step3Title: "Get the advice in writing",
     step3Desc: "After the call, the doctor sends you what to do next. You find it in your account and by text message.",
     heading: "Licensed doctors",
     desc: "RediHealth doctors are family doctors, paediatricians or internal medicine doctors. They are volunteers and explain plainly what to do.",
     privacyTitle: "What you say stays between you and the doctor",
-    privacyDesc: "Video calls are encrypted.",
+    privacyDesc: "Calls are encrypted.",
   },
   sq: {
     stepsTitle: "Si funksionon",
@@ -57,27 +56,27 @@ const copy = {
     step1Title: "Zgjidh kur flet",
     step1Desc: "Hyr tani te mjeku kujdestar ose cakto një orë që të përshtatet.",
     step2Title: "Merr një lidhje me SMS",
-    step2Desc: "Shtyp lidhjen. Thirrja me video hapet në shfletues.",
+    step2Desc: "Shtyp lidhjen. Thirrja hapet në shfletues.",
     step3Title: "Merr këshillat me shkrim",
     step3Desc: "Pas thirrjes, mjeku të dërgon çfarë duhet të bësh. I gjen në llogari dhe me SMS.",
     heading: "Mjekë me licencë",
     desc: "Mjekët e RediHealth janë mjekë familjeje, pediatër ose mjekë të sëmundjeve të brendshme. Janë vullnetarë dhe të shpjegojnë thjesht çfarë të bësh.",
     privacyTitle: "Çfarë thua mbetet mes teje dhe mjekut",
-    privacyDesc: "Thirrjet me video janë të enkriptuara.",
+    privacyDesc: "Thirrjet janë të enkriptuara.",
   },
   it: {
     stepsTitle: "Come funziona",
     stepsSubtitle: "Non ti servono conto in banca, tessera sanitaria o app.",
     step1Title: "Scegli quando parlare",
-    step1Desc: "Entra subito dal medico di turno o prenota un orario che ti va bene.",
+    step1Desc: "Parla subito con il medico di guardia o prenota un orario che ti va bene.",
     step2Title: "Ricevi un link via SMS",
-    step2Desc: "Tocca il link. La videochiamata si apre nel browser.",
+    step2Desc: "Tocca il link. La chiamata si apre nel browser.",
     step3Title: "Ricevi i consigli per iscritto",
     step3Desc: "Dopo la chiamata, il medico ti manda cosa fare. Lo trovi nel tuo account e via SMS.",
     heading: "Medici abilitati",
     desc: "I medici di RediHealth sono medici di famiglia, pediatri o internisti. Sono volontari e ti spiegano con parole semplici cosa fare.",
     privacyTitle: "Quello che dici resta tra te e il medico",
-    privacyDesc: "Le videochiamate sono criptate.",
+    privacyDesc: "Le chiamate sono criptate.",
   },
 };
 
@@ -87,15 +86,8 @@ export default async function MedicOnlinePage() {
 
   return (
     <main id="main-content" className="min-h-screen bg-background">
-      {/* Hero with dual triage action cards */}
+      {/* The two ways to talk to a doctor, with the pharmacy as the last row of the same surface. */}
       <MedicOnlineHero />
-
-      {/* Many questions do not need a doctor: the nearest pharmacy comes first. */}
-      <section className="border-b border-border bg-background py-6 sm:py-8">
-        <Container>
-          <FindHelpPrompt lang={lang} />
-        </Container>
-      </section>
 
       {/* How it works: an ordered list, numbers carry the sequence. */}
       <section aria-labelledby="medic-steps-heading" className="border-b border-border bg-card py-12 sm:py-16">

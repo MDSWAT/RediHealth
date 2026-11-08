@@ -133,6 +133,31 @@ function normalizeWebsite(value: string | null): string | null {
   }
 }
 
+/**
+ * Puts an Italian phone number into international form (+39). OpenStreetMap data has national
+ * numbers without the code ("0815752610") and mistyped codes ("+93 06 491813", "+44 0814003125").
+ * Only Italian numbers keep the leading 0 after the country code, so "+NN 0…" on an Italian
+ * place is a mistyped +39. Several numbers separated by ";" or "," are handled one by one.
+ * Numbers for other countries are returned as they are.
+ */
+export function normalizeInstitutePhone(phone: string | null, country: string): string | null {
+  if (!phone) return null;
+  const cleaned = phone.trim().replace(/\s+/g, " ");
+  if (!cleaned) return null;
+  if (country.toUpperCase() !== "IT") return cleaned;
+  return cleaned
+    .split(/\s*[;,]\s*/)
+    .filter(Boolean)
+    .map((part) => {
+      const number = part.replace(/^00(?=\d)/, "+");
+      if (number.startsWith("+39")) return number;
+      if (/^\+\d{1,3}[\s.-]*0/.test(number)) return number.replace(/^\+\d{1,3}[\s.-]*(?=0)/, "+39 ");
+      if (/^[03]\d/.test(number)) return `+39 ${number}`;
+      return number;
+    })
+    .join("; ");
+}
+
 export type InstituteValidationResult =
   | { ok: true; value: MedicalInstituteInput }
   | { ok: false; error: string };
@@ -176,7 +201,7 @@ export function validateInstituteInput(body: unknown): InstituteValidationResult
       category,
       address: cleanText(input.address, 500),
       city: cleanText(input.city, 160),
-      phone: cleanText(input.phone, 120),
+      phone: normalizeInstitutePhone(cleanText(input.phone, 120), country),
       website,
       hours: cleanText(input.hours, 255),
       emergency: input.emergency === true || input.emergency === 1 || input.emergency === "1",

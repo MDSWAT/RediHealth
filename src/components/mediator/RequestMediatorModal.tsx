@@ -19,7 +19,7 @@ interface RequestMediatorModalProps {
   onClose: () => void;
 }
 
-const modalCopy = {
+export const modalCopy = {
   ro: {
     closeAria: "Închide",
     successTitle: "Te sună un mediator în curând",
@@ -38,7 +38,7 @@ const modalCopy = {
       "Gravidă care nu a fost la control",
       "Copil fără vaccinuri sau analize",
       "Bătrân care nu poate ieși din casă",
-      "Consultație video acasă, cu mediatorul",
+      "Discuție cu un medic de acasă, cu mediatorul alături",
     ],
     notesLabel: "Ce mai trebuie să știe mediatorul (nu e obligatoriu)",
     notesPlaceholder: "ex.: Bunica nu are buletin și nu se poate ridica din pat.",
@@ -69,7 +69,7 @@ const modalCopy = {
       "Pregnant and not yet checked by a doctor",
       "Child without vaccines or tests",
       "Older person who cannot leave home",
-      "Video appointment at home, with the mediator",
+      "Talking to a doctor from home, with the mediator there",
     ],
     notesLabel: "Anything else the mediator should know (optional)",
     notesPlaceholder: "e.g. My grandmother has no ID card and cannot get out of bed.",
@@ -100,7 +100,7 @@ const modalCopy = {
       "Shtatzënë që s'ka bërë kontroll",
       "Fëmijë pa vaksina ose analiza",
       "I moshuar që s'del dot nga shtëpia",
-      "Vizitë me video në shtëpi, me mediatorin",
+      "Bisedë me mjekun nga shtëpia, me mediatorin pranë",
     ],
     notesLabel: "Çfarë tjetër duhet të dijë mediatori (s'është e detyrueshme)",
     notesPlaceholder: "p.sh. Gjyshja nuk ka letërnjoftim dhe nuk ngrihet nga shtrati.",
@@ -128,10 +128,10 @@ const modalCopy = {
     categories: [
       "Iscrizione dal medico di famiglia",
       "Carta d'identità o tessera sanitaria",
-      "Incinta e mai visitata",
+      "Incinta e non ancora visitata",
       "Bambino senza vaccini o esami",
       "Anziano che non può uscire di casa",
-      "Visita in video a casa, con il mediatore",
+      "Parlare con un medico da casa, con il mediatore accanto",
     ],
     notesLabel: "Altro che il mediatore deve sapere (facoltativo)",
     notesPlaceholder: "es. La nonna non ha un documento e non si alza dal letto.",
@@ -247,7 +247,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="fhs-enter relative flex max-h-[92dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl bg-card shadow-xl focus:outline-none sm:max-h-[88dvh] sm:rounded-2xl"
+        className="fhs-enter relative flex max-h-[92dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-xl bg-card shadow-xl focus:outline-none sm:max-h-[88dvh] sm:rounded-xl"
       >
         <div className="flex shrink-0 items-start justify-between gap-4 border-b border-border px-5 pb-4 pt-5 sm:px-7">
           <h2 id="request-mediator-title" className="text-lg font-semibold tracking-tight text-foreground">
@@ -402,7 +402,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-sapphire px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light disabled:opacity-60"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-sapphire px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
               >
                 {isSubmitting ? copy.submitting : copy.submit}
               </button>

@@ -62,7 +62,7 @@ export function WorkersFilterBar({
       addWorker: "Adaugă în personal",
       addMediator: "Adaugă mediator",
       addMediatorTitle: "Adaugă un cont de mediator",
-      exportCsv: "Export CSV",
+      exportCsv: "Exportă CSV",
       refreshTitle: "Actualizează lista personalului",
       refreshing: "Se actualizează...",
       refresh: "Actualizează",
@@ -74,8 +74,8 @@ export function WorkersFilterBar({
     sq: {
       search: "Kërko sipas emrit, emailit, telefonit ose rolit",
       addWorker: "Shto punonjës",
-      addMediator: "Shto ndërmjetës",
-      addMediatorTitle: "Shto një llogari ndërmjetësi",
+      addMediator: "Shto mediator",
+      addMediatorTitle: "Shto një llogari mediatori",
       exportCsv: "Eksporto CSV",
       refreshTitle: "Rifresko listën e stafit",
       refreshing: "Duke rifreskuar...",
@@ -107,7 +107,7 @@ export function WorkersFilterBar({
   }));
 
   return (
-    <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-4 sm:p-5 mb-6 shadow-xs">
+    <div className="mb-6 flex flex-col gap-4 rounded-xl border border-border bg-card p-4 sm:p-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="relative flex-1">
           <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -116,73 +116,41 @@ export function WorkersFilterBar({
             value={searchQuery}
             onChange={(e) => onChangeSearchQuery(e.target.value)}
             placeholder={t.search}
-            className="w-full rounded-xl border border-border bg-background pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full rounded-lg border border-border bg-white pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={onAddWorker}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-xs font-bold text-white hover:bg-primary-hover shadow-2xs transition-colors"
+          <select
+            className="crm-input crm-input-auto !mt-0"
+            aria-label={t.staffStatus}
+            value={statusFilter}
+            onChange={(e) => onChangeStatusFilter(e.target.value as WorkerStatus | "all")}
           >
+            {localizedStatusFilters.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
+          </select>
+
+          <button type="button" onClick={onAddWorker} className="crm-button crm-primary">
             <StethoscopeIcon className="h-4 w-4" />
             <span>{t.addWorker}</span>
           </button>
 
-          <button
-            type="button"
-            onClick={onAddMediator}
-            title={t.addMediatorTitle}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
-          >
-            <HandHelpingIcon className="h-4 w-4 text-primary" />
+          <button type="button" onClick={onAddMediator} title={t.addMediatorTitle} className="crm-button">
+            <HandHelpingIcon className="h-4 w-4" />
             <span>{t.addMediator}</span>
           </button>
 
-          <button
-            type="button"
-            onClick={onExportCSV}
-            disabled={exportDisabled}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-background px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50 transition-colors"
-          >
-            <DownloadIcon className="h-4 w-4 text-primary" />
+          <button type="button" onClick={onExportCSV} disabled={exportDisabled} aria-label={t.exportCsv} className="crm-button">
+            <DownloadIcon className="h-4 w-4" />
             <span className="hidden sm:inline">{t.exportCsv}</span>
           </button>
 
           {onRefresh ? (
-            <button
-              type="button"
-              onClick={onRefresh}
-              disabled={isRefreshing}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background text-xs font-semibold text-foreground hover:bg-muted disabled:opacity-50 transition-colors"
-              title={t.refreshTitle}
-            >
-              <RefreshIcon
-                className={`h-4 w-4 text-primary transition-transform ${
-                  isRefreshing ? "animate-spin" : ""
-                }`}
-              />
+            <button type="button" onClick={onRefresh} disabled={isRefreshing} aria-label={t.refreshTitle} title={t.refreshTitle} className="crm-button">
+              <RefreshIcon className={`h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`} />
             </button>
           ) : null}
         </div>
-      </div>
-
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
-        {localizedStatusFilters.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => onChangeStatusFilter(item.id)}
-            className={`rounded-xl px-3.5 py-2 text-xs font-semibold transition-colors whitespace-nowrap ${
-              statusFilter === item.id
-                ? "bg-primary text-white shadow-2xs"
-                : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
       </div>
     </div>
   );

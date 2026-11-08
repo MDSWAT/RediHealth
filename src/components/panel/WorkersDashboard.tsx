@@ -108,13 +108,13 @@ export function WorkersDashboard({
           </div>
 
           {!databaseAvailable ? (
-            <p className="rounded-2xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
               {t.noDatabase}
             </p>
           ) : (
             <div className="space-y-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
+                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
                   <div className="flex items-center justify-between">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
                       <StethoscopeIcon className="h-5 w-5" />
@@ -130,7 +130,7 @@ export function WorkersDashboard({
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
+                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
                   <div className="flex items-center justify-between">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
                       <StethoscopeIcon className="h-5 w-5" />
@@ -146,7 +146,7 @@ export function WorkersDashboard({
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
+                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
                   <div className="flex items-center justify-between">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-50 text-sky-700">
                       <UsersIcon className="h-5 w-5" />
@@ -162,7 +162,7 @@ export function WorkersDashboard({
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
+                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
                   <div className="flex items-center justify-between">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
                       <UserIcon className="h-5 w-5" />

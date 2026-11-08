@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import { CheckCircleIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { demoPanelTranslations } from "@/lib/i18n/demo-panel-translations";
 import { meetingWorkspaceTranslations } from "@/lib/i18n/meeting-workspace-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
+import { formatPanelDate, formatPanelNumber } from "@/lib/panel-dates";
 import type { VitalsTelemetryRecord } from "@/lib/types/telemetry";
 import { usePanelRuntime } from "./PanelRuntime";
 
@@ -17,9 +19,9 @@ interface ConsultationVitalsStreamOverlayProps {
 const POLL_MS = 10_000;
 
 /** Fictional reading shown only inside the browser-local demo, so the feature can be explored. */
-function demoReading(meetingId: string | number): VitalsTelemetryRecord {
+function demoReading(meetingId: string | number, kit: string): VitalsTelemetryRecord {
   return {
-    id: "demo", meetingId, deviceKitId: "Demo kit", recordedByWorkerName: "Alex Demo",
+    id: "demo", meetingId, deviceKitId: kit, recordedByWorkerName: "Alex Demo",
     bloodPressureSystolic: 128, bloodPressureDiastolic: 82, pulseBpm: 72, oxygenSaturationPct: 97,
     bloodGlucoseMgDl: 104, bodyTemperatureC: 36.8, recordedAt: new Date().toISOString(),
   };
@@ -34,7 +36,7 @@ export function ConsultationVitalsStreamOverlay({ meetingId, patientId, onInsert
   const t = meetingWorkspaceTranslations[lang].vitals;
   const locale = langToLocale[lang];
   const { request: fetch, demo } = usePanelRuntime();
-  const [telemetry, setTelemetry] = useState<VitalsTelemetryRecord | null>(() => (demo ? demoReading(meetingId) : null));
+  const [telemetry, setTelemetry] = useState<VitalsTelemetryRecord | null>(() => (demo ? demoReading(meetingId, demoPanelTranslations[lang].kit) : null));
   const [inserted, setInserted] = useState(false);
 
   useEffect(() => {
@@ -67,7 +69,7 @@ export function ConsultationVitalsStreamOverlay({ meetingId, patientId, onInsert
   if (!telemetry) return null;
 
   const number = (value: number | null | undefined, digits = 0) =>
-    value == null ? "—" : value.toLocaleString(locale, { minimumFractionDigits: digits, maximumFractionDigits: digits });
+    value == null ? "—" : formatPanelNumber(value, locale, digits);
   const bp = telemetry.bloodPressureSystolic != null || telemetry.bloodPressureDiastolic != null
     ? `${number(telemetry.bloodPressureSystolic)}/${number(telemetry.bloodPressureDiastolic)}` : "—";
   const readings = [
@@ -78,7 +80,7 @@ export function ConsultationVitalsStreamOverlay({ meetingId, patientId, onInsert
     { label: t.temperature, value: number(telemetry.bodyTemperatureC, 1), unit: "°C" },
   ];
   const recordedAt = telemetry.recordedAt && !Number.isNaN(Date.parse(telemetry.recordedAt))
-    ? new Date(telemetry.recordedAt).toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" }) : null;
+    ? formatPanelDate(telemetry.recordedAt, locale, "time") : null;
   const source = [telemetry.recordedByWorkerName, telemetry.deviceKitId].filter(Boolean).join(" · ");
 
   function handleInsert() {
@@ -88,7 +90,7 @@ export function ConsultationVitalsStreamOverlay({ meetingId, patientId, onInsert
   }
 
   return (
-    <section aria-labelledby={`vitals-${meetingId}`} className="rounded-2xl border border-border bg-card p-4 text-foreground">
+    <section aria-labelledby={`vitals-${meetingId}`} className="rounded-xl border border-border bg-card p-4 text-foreground">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <h2 id={`vitals-${meetingId}`} className="flex items-center gap-2 text-sm font-semibold">

@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { MeetDashboard } from "@/components/panel/MeetDashboard";
 import { loadPatients } from "@/lib/data/patients";
-import { countPendingRequests } from "@/lib/data/requests";
+import { countAttentionRequests } from "@/lib/data/requests";
 import { getCountryDatabase, isCountryConfigured, type RowDataPacket } from "@/lib/database";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
@@ -55,7 +55,7 @@ export default async function MeetPage() {
     try {
       const [patients, pendingCount] = await Promise.all([
         loadPatients({ country: workerContext.country, scopeToWorkerId: workerContext.isAdmin ? null : workerContext.workerId, limit: 200 }),
-        countPendingRequests(workerContext.country),
+        countAttentionRequests(workerContext.country),
       ]);
 
       assignedPatients = patients;

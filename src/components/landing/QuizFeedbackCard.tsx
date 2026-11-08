@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { HealthMyth } from "@/lib/i18n/health-myths";
-import { ArrowRightIcon, ShieldIcon, VolumeIcon, VolumeMuteIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, CheckIcon, CloseIcon, VolumeIcon, VolumeMuteIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { MythDoctorHandoverButton } from "./MythDoctorHandoverButton";
 import { speechEngine } from "@/lib/audio/speech-engine";
@@ -67,7 +67,7 @@ export function QuizFeedbackCard({ myth, userAnswer, onNext, isLastMyth, focusOn
   };
 
   return (
-    <div className="mt-6 border-t border-border pt-5 transition-[opacity,transform] duration-[240ms] ease-[cubic-bezier(0.25,1,0.5,1)] starting:translate-y-2 starting:opacity-0 motion-reduce:transition-none">
+    <div className="mt-6 border-t border-border pt-5 transition-[opacity,transform] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] starting:translate-y-2 starting:opacity-0 motion-reduce:transition-none">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <span
@@ -77,9 +77,7 @@ export function QuizFeedbackCard({ myth, userAnswer, onNext, isLastMyth, focusOn
               isMatch ? "bg-live-sage-soft text-live-sage" : "bg-amber-care-soft text-amber-care-hover",
             )}
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              {isMatch ? <path d="M5 12.5 9.5 17 19 7" /> : <path d="M7 7l10 10M17 7 7 17" />}
-            </svg>
+            {isMatch ? <CheckIcon className="h-5 w-5" /> : <CloseIcon className="h-5 w-5" />}
           </span>
           <div>
             <p ref={verdictRef} tabIndex={-1} className="text-base font-semibold leading-snug text-foreground outline-none">
@@ -98,7 +96,7 @@ export function QuizFeedbackCard({ myth, userAnswer, onNext, isLastMyth, focusOn
             aria-pressed={isReadingAudio}
             aria-label={isReadingAudio ? q.stopAudioAria : q.listenAudioAria}
             className={cn(
-              "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border px-3 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+              "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border px-3 text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
               isReadingAudio
                 ? "border-sapphire bg-sapphire text-white"
                 : "border-border bg-card text-sapphire hover:border-sapphire/40 hover:bg-sapphire-soft",
@@ -112,11 +110,9 @@ export function QuizFeedbackCard({ myth, userAnswer, onNext, isLastMyth, focusOn
 
       <p className="mt-4 text-base leading-relaxed text-foreground">{myth.explanation}</p>
 
-      <p className="mt-3 flex items-start gap-1.5 text-sm leading-relaxed text-muted-foreground">
-        <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" />
-        <span>
-          {q.verifiedClarification} · {q.sourcePrefix} {myth.source}
-        </span>
+      {/* The source, stated plainly: no "verified" badge or shield. */}
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        {q.sourcePrefix} {myth.source}
       </p>
 
       <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
@@ -124,7 +120,7 @@ export function QuizFeedbackCard({ myth, userAnswer, onNext, isLastMyth, focusOn
         <button
           type="button"
           onClick={onNext}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sapphire px-5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 active:scale-[0.98] motion-reduce:transition-none"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sapphire px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 motion-reduce:transition-none"
         >
           {isLastMyth ? q.restartFirstMyth : q.nextMyth}
           <ArrowRightIcon className="h-4 w-4" />

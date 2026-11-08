@@ -22,13 +22,27 @@ const RIGHT_LUNG =
 const LEFT_LUNG =
   "M172 66 C175 58 181 53 188 55 C207 61 223 88 228 118 C230 136 228 151 222 158 C209 153 193 151 178 155 C173 151 169 145 171 139 C177 133 178 123 172 115 C170 99 170 82 172 66 Z";
 
-const OUTLINE = {
-  strokeWidth: 1.75,
+/** One stroke weight for the whole drawing: outlines, airway and branches. */
+const STROKE = {
+  strokeWidth: 1.5,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
   vectorEffect: "non-scaling-stroke" as const,
 };
-const FINE = { ...OUTLINE, strokeWidth: 1 };
+
+/* One bronchial tree per lung, drawn as centrelines from the hilum: an upper, a middle
+   and a lower branch, each with one side branch. The left tree mirrors the right one
+   (x → 320 − x), and stays clear of the cardiac notch. Nothing crosses another line. */
+const RIGHT_TREE =
+  "M150 70 C146 76 142 80 138 84 " +
+  "M138 84 C134 76 130 70 126 64 M130 72 C124 74 118 78 112 84 " +
+  "M138 84 C128 90 118 98 108 106 " +
+  "M138 84 C136 100 132 118 126 138 M134 108 C126 114 118 122 112 132";
+const LEFT_TREE =
+  "M170 70 C174 76 178 80 182 84 " +
+  "M182 84 C186 76 190 70 194 64 M190 72 C196 74 202 78 208 84 " +
+  "M182 84 C192 90 202 98 212 106 " +
+  "M182 84 C184 100 188 118 194 138 M186 108 C194 114 202 122 208 132";
 
 /**
  * Lungs after the last cigarette: a calm front-view diagram.
@@ -45,13 +59,15 @@ export function BreathingLungsScene({ step, playing }: ExplainerSceneProps) {
   const progress = Math.min(Math.max(step, 0), LAST_STEP) / LAST_STEP;
   const residueOpacity = 0.6 * (1 - progress);
 
+  // Cropped to the lungs (about 140 units wide in a 152-unit square) so the drawing fills its stage.
   return (
-    <svg ref={ref} viewBox="0 0 320 180" className="h-full w-full" fill="none" aria-hidden="true">
-      {/* Trachea with cartilage rings */}
-      <path d="M160 20 V62" stroke="var(--color-sapphire)" {...OUTLINE} />
-      {[28, 36, 44, 52].map((y) => (
-        <path key={y} d={`M155 ${y} H165`} stroke="var(--color-sapphire)" opacity="0.35" {...FINE} />
-      ))}
+    <svg ref={ref} viewBox="84 12 152 152" className="h-full w-full" fill="none" aria-hidden="true">
+      {/* Trachea: a plain tube that splits at the carina into the two main bronchi */}
+      <path
+        d="M156 18 V56 C156 60 153 64 148 69 M164 18 V56 C164 60 167 64 172 69 M152 73 C155 68 158 65 160 65 C162 65 165 68 168 73"
+        stroke="var(--color-sapphire)"
+        {...STROKE}
+      />
 
       <m.g
         style={{ transformBox: "fill-box", transformOrigin: "50% 8%" }}
@@ -68,8 +84,8 @@ export function BreathingLungsScene({ step, playing }: ExplainerSceneProps) {
             : { duration: DURATION.slow, ease: EASE_OUT }
         }
       >
-        <path d={RIGHT_LUNG} fill="var(--color-sapphire-soft)" stroke="var(--color-sapphire)" {...OUTLINE} />
-        <path d={LEFT_LUNG} fill="var(--color-sapphire-soft)" stroke="var(--color-sapphire)" {...OUTLINE} />
+        <path d={RIGHT_LUNG} fill="var(--color-sapphire-soft)" />
+        <path d={LEFT_LUNG} fill="var(--color-sapphire-soft)" />
 
         {/* Residue that clears as the body recovers */}
         <m.g
@@ -81,17 +97,14 @@ export function BreathingLungsScene({ step, playing }: ExplainerSceneProps) {
           <path d={LEFT_LUNG} fill="var(--color-mist)" />
         </m.g>
 
-        {/* Fissures between the lobes */}
-        <g stroke="var(--color-sapphire)" opacity="0.4" {...FINE}>
-          <path d="M147 92 C130 100 112 116 98 140" />
-          <path d="M121 107 C112 109 103 112 95 116" />
-          <path d="M173 90 C190 100 208 118 222 142" />
-        </g>
+        {/* Outlines over the residue, so they keep the same weight as the airway */}
+        <path d={RIGHT_LUNG} stroke="var(--color-sapphire)" {...STROKE} />
+        <path d={LEFT_LUNG} stroke="var(--color-sapphire)" {...STROKE} />
 
-        {/* Bronchial tree */}
-        <g stroke="var(--color-sapphire)" opacity="0.75" {...FINE}>
-          <path d="M160 62 C154 68 148 72 142 78 M142 78 C134 86 126 96 118 110 M142 78 C140 94 136 112 130 130 M126 96 C118 98 110 102 104 108" />
-          <path d="M160 62 C166 68 172 72 178 78 M178 78 C186 86 194 96 202 110 M178 78 C180 92 184 108 190 124 M194 96 C202 98 210 102 216 108" />
+        {/* Bronchial tree, one per lung */}
+        <g stroke="var(--color-sapphire)" {...STROKE}>
+          <path d={RIGHT_TREE} />
+          <path d={LEFT_TREE} />
         </g>
       </m.g>
     </svg>

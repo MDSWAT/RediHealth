@@ -29,24 +29,24 @@ export default async function ContactPage() {
               <h2 className="text-base font-semibold text-foreground">{copy.enquiries}</h2>
               <a
                 href="mailto:support@redihealth.app"
-                className="mt-2 inline-flex items-center gap-2 text-primary hover:underline"
+                className="mt-2 inline-flex items-center gap-2 text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire"
               >
-                <MailIcon className="h-4 w-4" />
+                <MailIcon className="h-4 w-4" aria-hidden="true" />
                 support@redihealth.app
               </a>
             </div>
 
             <div>
               <h2 className="text-base font-semibold text-foreground">{copy.emergencies}</h2>
-              <p className="mt-2 flex items-center gap-2">
-                <PhoneIcon className="h-4 w-4 text-primary" />
+              <p className="mt-2 flex items-start gap-2">
+                <PhoneIcon className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                 {copy.emergencyBody}
               </p>
             </div>
 
             <p>
               {copy.helpBefore}{" "}
-              <Link href={withLangPrefix("/get-help", lang)} className="text-primary hover:underline">
+              <Link href={withLangPrefix("/get-help", lang)} className="text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire">
                 {copy.helpLink}
               </Link>{" "}
               {copy.helpAfter}

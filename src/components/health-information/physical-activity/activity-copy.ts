@@ -34,6 +34,10 @@ export interface ActivityCopy {
     prevButton: string;
     /** "{n} of {total}" */
     stepOfTemplate: string;
+    /** Caption under the weekly diagram. */
+    weekCaption: string;
+    /** Day initials, Monday first, shown under the diagram's columns. */
+    dayInitials: string[];
     stages: ActivityStage[];
   };
   planner: {
@@ -48,7 +52,6 @@ export interface ActivityCopy {
     bands: ActivityBand[];
   };
   safetyDisclaimer: string;
-  emergencyButtonLabel: string;
   credit: string;
 }
 
@@ -66,6 +69,8 @@ export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
       nextButton: "Pasul următor",
       prevButton: "Pasul anterior",
       stepOfTemplate: "Pasul {n} din {total}",
+      weekCaption: "O săptămână: fiecare coloană este o zi. Cu cât bara e mai înaltă, cu atât ai mers mai multe minute.",
+      dayInitials: ["L", "M", "M", "J", "V", "S", "D"],
       stages: [
         {
           id: "sedentary-break",
@@ -137,7 +142,6 @@ export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
     },
     safetyDisclaimer:
       "Este normal să respiri mai repede și să îți bată inima mai tare când faci efort. Dacă simți amețeală sau un disconfort neobișnuit, oprește-te, așază-te câteva minute până îți revii și discută cu medicul de familie.",
-    emergencyButtonLabel: "",
     credit: "Sursa: recomandările Organizației Mondiale a Sănătății privind activitatea fizică (2020).",
   },
   en: {
@@ -153,6 +157,8 @@ export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
       nextButton: "Next step",
       prevButton: "Previous step",
       stepOfTemplate: "Step {n} of {total}",
+      weekCaption: "One week: each column is a day. The taller the bar, the more minutes of walking.",
+      dayInitials: ["M", "T", "W", "T", "F", "S", "S"],
       stages: [
         {
           id: "sedentary-break",
@@ -221,8 +227,7 @@ export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
     },
     safetyDisclaimer:
       "Breathing faster and feeling your heart beat harder is normal when you exert yourself. If you feel dizzy or notice unusual discomfort, stop, sit down for a few minutes until it passes, and speak with your family doctor.",
-    emergencyButtonLabel: "",
-    credit: "Source: World Health Organization guidelines on physical activity and sedentary behaviour (2020).",
+    credit: "Source: World Health Organization guidelines on physical activity and sedentary behavior (2020).",
   },
   sq: {
     title: "Lëvizja e përditshme",
@@ -237,6 +242,8 @@ export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
       nextButton: "Hapi tjetër",
       prevButton: "Hapi i mëparshëm",
       stepOfTemplate: "Hapi {n} nga {total}",
+      weekCaption: "Një javë: çdo kolonë është një ditë. Sa më e lartë shtylla, aq më shumë minuta ecje.",
+      dayInitials: ["H", "M", "M", "E", "P", "Sh", "D"],
       stages: [
         {
           id: "sedentary-break",
@@ -306,7 +313,6 @@ export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
     },
     safetyDisclaimer:
       "Është normale të marrësh frymë më shpejt dhe zemra të rrahë më fort kur bën sforcim. Nëse ndien marramendje ose shqetësim të pazakontë, ndalo, ulu disa minuta derisa të kalojë dhe fol me mjekun e familjes.",
-    emergencyButtonLabel: "",
     credit: "Burimi: udhëzimet e Organizatës Botërore të Shëndetësisë për aktivitetin fizik (2020).",
   },
   it: {
@@ -322,6 +328,8 @@ export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
       nextButton: "Passo successivo",
       prevButton: "Passo precedente",
       stepOfTemplate: "Passo {n} di {total}",
+      weekCaption: "Una settimana: ogni colonna è un giorno. Più alta è la barra, più minuti di camminata.",
+      dayInitials: ["L", "M", "M", "G", "V", "S", "D"],
       stages: [
         {
           id: "sedentary-break",
@@ -392,7 +400,6 @@ export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
     },
     safetyDisclaimer:
       "Respirare più in fretta e sentire il battito più forte è normale durante lo sforzo. Se avverti capogiri o un fastidio insolito, fermati, siediti per qualche minuto finché passa e parlane con il medico di famiglia.",
-    emergencyButtonLabel: "",
     credit: "Fonte: linee guida dell'Organizzazione Mondiale della Sanità sull'attività fisica (2020).",
   },
 };

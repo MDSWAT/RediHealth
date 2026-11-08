@@ -3,7 +3,6 @@ import { RegionalHealthRibbon } from "@/components/news/RegionalHealthRibbon";
 import { HelpOptions } from "@/components/landing/HelpOptions";
 import { HealthTopics } from "@/components/landing/HealthTopics";
 import { TrueFalseQuizSection } from "@/components/landing/TrueFalseQuizSection";
-import { MedicalAssistance } from "@/components/landing/MedicalAssistance";
 import { TrustSection } from "@/components/landing/TrustSection";
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
       <HelpOptions />
       <HealthTopics />
       <TrueFalseQuizSection />
-      <MedicalAssistance />
       <TrustSection />
     </main>
   );

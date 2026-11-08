@@ -6,19 +6,22 @@ type Variant = "primary" | "secondary" | "outline" | "ghost";
 type Size = "md" | "lg";
 
 // Calm feedback: colour changes only, no lift or bounce (see src/lib/motion/tokens.ts).
+// Disabled is neutral (muted ground, muted text), never a washed-out brand colour.
 const base =
   "inline-flex items-center justify-center gap-2 rounded-lg font-semibold " +
   "transition-[background-color,border-color,color,box-shadow,opacity] duration-(--dur-fast) ease-(--ease-out-calm) " +
   "focus-visible:outline-none focus-visible:ring-2 " +
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
-  "disabled:pointer-events-none disabled:opacity-60";
+  "disabled:pointer-events-none disabled:text-muted-foreground";
 
+// Red ("primary") is reserved for 112 and emergency actions: pass it explicitly.
+// Everything else uses ink ("secondary", the default) or the quieter outline and ghost.
 const variants: Record<Variant, string> = {
-  primary: "bg-primary text-white hover:bg-primary-hover",
+  primary: "bg-primary text-white hover:bg-primary-hover disabled:bg-muted",
   secondary:
-    "bg-foreground text-white hover:bg-foreground/90",
+    "bg-foreground text-white hover:bg-foreground/90 disabled:bg-muted",
   outline:
-    "border border-border bg-card text-foreground hover:bg-muted",
+    "border border-border bg-card text-foreground hover:bg-muted disabled:bg-muted",
   ghost: "text-foreground hover:bg-muted",
 };
 
@@ -48,7 +51,7 @@ type ButtonAsLink = CommonProps &
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 export function Button({
-  variant = "primary",
+  variant = "secondary",
   size = "md",
   fullWidth,
   className,

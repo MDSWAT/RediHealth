@@ -1,11 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { AlertCircleIcon, PhoneIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { AlertCircleIcon, ChevronRightIcon, PhoneIcon } from "@/components/ui/icons";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { type MildCategoryId, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
-import { useLanguage } from "@/lib/i18n/language-context";
-import { withLangPrefix } from "@/lib/i18n/routing";
 
 interface PathwaySymptomsMildProps {
   step: 2 | 3;
@@ -24,7 +21,6 @@ export function PathwaySymptomsMild({
   onSelectCategory,
   plainLanguage,
 }: PathwaySymptomsMildProps) {
-  const { lang } = useLanguage();
   const { symptoms } = useAssistantCopy();
 
   // Emergency result: one clear action, calm wording, no alarm styling beyond what the moment needs.
@@ -71,7 +67,7 @@ export function PathwaySymptomsMild({
         <h2 className="text-lg font-semibold text-foreground">{symptoms.heading}</h2>
         <p className="mt-1 text-sm text-muted-foreground">{symptoms.lead}</p>
 
-        <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <ul className="mt-5 divide-y divide-border overflow-hidden rounded-lg border border-border">
           {CATEGORY_IDS.map((id) => {
             const category = symptoms.categories[id];
             return (
@@ -80,10 +76,13 @@ export function PathwaySymptomsMild({
                   type="button"
                   data-triage-option={id}
                   onClick={() => onSelectCategory(id)}
-                  className="flex h-full min-h-[56px] w-full flex-col items-start rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] hover:border-primary/40 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="flex min-h-[56px] w-full items-start gap-3.5 bg-card px-4 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:px-5"
                 >
-                  <span className="text-sm font-semibold text-foreground">{category.title}</span>
-                  <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{category.desc}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-base font-semibold text-foreground">{category.title}</span>
+                    <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{category.desc}</span>
+                  </span>
+                  <ChevronRightIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
                 </button>
               </li>
             );
@@ -105,14 +104,6 @@ export function PathwaySymptomsMild({
       <p className="mt-5 max-w-prose text-base leading-relaxed text-foreground">
         {plainLanguage ? symptoms.plainBody : symptoms.body}
       </p>
-
-      <Link
-        href={withLangPrefix(`/medic-online?queue=now&category=${currentId}`, lang)}
-        className="mt-5 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-center text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary/90 sm:w-auto"
-      >
-        <StethoscopeIcon className="h-4 w-4" />
-        <span>{symptoms.cta}</span>
-      </Link>
 
       <p className="mt-4 flex items-start gap-2 text-sm leading-relaxed text-muted-foreground">
         <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-red-700 dark:text-red-300" />

@@ -23,31 +23,6 @@ function useSafeLanguageContext(): { lang: Lang } {
   }
 }
 
-export function AudioDurationBadge({
-  minutes,
-  className = "",
-  lang,
-}: {
-  minutes: number;
-  className?: string;
-  lang?: Lang;
-}) {
-  const { lang: ctxLang } = useSafeLanguageContext();
-  const currentLang: Lang = lang ?? ctxLang ?? "ro";
-  const s = HEALTH_DETAIL_SHARED_STRINGS.topicMetaBadge;
-  const voiceEnabled = useVoiceEnabled();
-  if (!voiceEnabled) return null;
-
-  return (
-    <span
-      className={`inline-flex items-center gap-1.5 rounded-md border border-sapphire-border/70 bg-sapphire-soft/70 px-2 py-0.5 text-xs font-semibold text-sapphire tabular-nums ${className}`}
-    >
-      <VolumeIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
-      <span>{s.audioMinutes[currentLang].replace("{minutes}", String(minutes))}</span>
-    </span>
-  );
-}
-
 export function TopicMetaBadge({
   readMinutes = 3,
   audioMinutes = 2,
@@ -78,7 +53,7 @@ export function TopicMetaBadge({
 
   return (
     <div
-      className={`flex flex-wrap items-center gap-3 text-xs font-medium text-muted-foreground ${
+      className={`flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground ${
         bordered ? "border-b border-border/40 pb-2.5" : ""
       } ${className}`}
     >
@@ -105,9 +80,9 @@ export function TopicMetaBadge({
             ·
           </span>
 
-          <span className="inline-flex items-center gap-1.5 rounded-md border border-sapphire-border/70 bg-sapphire-soft/70 px-2 py-0.5 text-xs font-semibold text-sapphire tabular-nums">
-            <VolumeIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
-            <span>{s.audioMinutes[currentLang].replace("{minutes}", String(audioMinutes))}</span>
+          <span className="inline-flex items-center gap-1.5 tabular-nums">
+            <VolumeIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" aria-hidden="true" />
+            <span>{s.audioMinutesLong[currentLang].replace("{minutes}", String(audioMinutes))}</span>
           </span>
         </>
       )}

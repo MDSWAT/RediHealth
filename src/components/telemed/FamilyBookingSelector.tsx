@@ -15,7 +15,7 @@ function useSafeLanguage() {
 
 const familyCopy = {
   ro: {
-    title: "Pentru cine este programarea?",
+    title: "Pentru cine este apelul?",
     self: "Pentru mine",
     family: "Pentru familie",
     community: "Pentru altcineva",
@@ -41,7 +41,7 @@ const familyCopy = {
     whatsAppNotice: "Trimite confirmarea și linkul și pe WhatsApp",
   },
   en: {
-    title: "Who is the appointment for?",
+    title: "Who is the call for?",
     self: "For me",
     family: "For family",
     community: "For someone else",
@@ -67,7 +67,7 @@ const familyCopy = {
     whatsAppNotice: "Also send the confirmation and link on WhatsApp",
   },
   sq: {
-    title: "Për kë është vizita?",
+    title: "Për kë është thirrja?",
     self: "Për mua",
     family: "Për familjen",
     community: "Për dikë tjetër",
@@ -76,7 +76,7 @@ const familyCopy = {
     namePlaceholder: "p.sh. Maria Ionescu",
     phoneLabel: "Numri i celularit (lidhjen ta dërgojmë me SMS)",
     phonePlaceholder: "0721 000 000",
-    assistedDataTitle: "Për personin për të cilin cakton vizitën",
+    assistedDataTitle: "Për personin për të cilin cakton thirrjen",
     relationLabel: "Çfarë të është",
     relationPlaceholder: "Zgjidh…",
     relations: [
@@ -88,12 +88,12 @@ const familyCopy = {
     ],
     ageLabel: "Mosha, afërsisht",
     agePlaceholder: "p.sh. 5 vjeç, 72 vjeç",
-    reasonLabel: "Për çfarë do të flasësh? (s'është e detyrueshme)",
+    reasonLabel: "Për çfarë do të flasësh? (nuk është e detyrueshme)",
     reasonPlaceholder: "p.sh. temperaturë prej 2 ditësh, pyetje për ilaçet e tensionit",
     whatsAppNotice: "Dërgo konfirmimin dhe lidhjen edhe në WhatsApp",
   },
   it: {
-    title: "Per chi è la visita?",
+    title: "Per chi è la chiamata?",
     self: "Per me",
     family: "Per la famiglia",
     community: "Per un'altra persona",
@@ -157,10 +157,10 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
 
   return (
     <div className="space-y-5">
-      {/* Who the booking is for */}
+      {/* Who the booking is for: one choice, so radio rows on one surface. */}
       <fieldset>
         <legend className="mb-2 block text-sm font-semibold text-foreground">{copy.title}</legend>
-        <div className="grid grid-cols-1 gap-1.5 rounded-lg border border-border bg-muted/40 p-1.5 sm:grid-cols-3">
+        <div className="divide-y divide-border rounded-lg border border-border">
           {(
             [
               ["self", copy.self, UserIcon],
@@ -170,18 +170,21 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
           ).map(([type, label, Icon]) => {
             const selected = value.bookingType === type;
             return (
-              <button
+              <label
                 key={type}
-                type="button"
-                aria-pressed={selected}
-                onClick={() => handleTypeChange(type)}
-                className={`flex min-h-[44px] items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                  selected ? "bg-card text-foreground shadow-xs ring-1 ring-border" : "text-muted-foreground hover:text-foreground"
-                }`}
+                className="flex min-h-[48px] cursor-pointer items-center gap-3 px-3.5 py-2.5 text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] first:rounded-t-lg last:rounded-b-lg hover:bg-muted/50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-ring"
               >
-                <Icon className="h-4 w-4 shrink-0" />
-                {label}
-              </button>
+                <input
+                  type="radio"
+                  name="booking-for"
+                  value={type}
+                  checked={selected}
+                  onChange={() => handleTypeChange(type)}
+                  className="h-4 w-4 shrink-0 accent-foreground focus-visible:outline-none"
+                />
+                <Icon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
+                <span className={selected ? "font-semibold text-foreground" : "text-foreground"}>{label}</span>
+              </label>
             );
           })}
         </div>
@@ -225,12 +228,10 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
 
       {/* Conditional Proxy Fields */}
       {value.bookingType !== "self" && (
-        <div className="rounded-lg border border-border bg-muted/20 p-4 space-y-4">
-          <p className="text-sm font-semibold text-foreground">
-            {copy.assistedDataTitle}
-          </p>
+        <fieldset className="border-t border-border pt-5">
+          <legend className="float-left mb-1 w-full text-sm font-semibold text-foreground">{copy.assistedDataTitle}</legend>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="clear-both grid grid-cols-1 gap-4 pt-1 sm:grid-cols-2">
             <div>
               <label htmlFor="proxyRelation" className="mb-1.5 block text-sm font-medium text-foreground">
                 {copy.relationLabel}
@@ -264,7 +265,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
               />
             </div>
           </div>
-        </div>
+        </fieldset>
       )}
 
       {/* Reason for consultation */}

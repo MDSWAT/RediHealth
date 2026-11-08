@@ -130,7 +130,7 @@ export function RequestHelpForm({
 
   if (submitted) {
     return (
-      <div className="fhs-enter rounded-2xl border border-border bg-card p-6 sm:p-10">
+      <div className="fhs-enter rounded-xl border border-border bg-card p-6 sm:p-10">
         <CheckCircleIcon className="h-7 w-7 text-live-sage" aria-hidden="true" />
         <h2
           ref={successHeadingRef}
@@ -146,7 +146,7 @@ export function RequestHelpForm({
           {form.successNotice}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href={withLangPrefix("/", lang)}>{form.backHome}</Button>
+          <Button href={withLangPrefix("/", lang)} variant="secondary">{form.backHome}</Button>
           <Button
             variant="outline"
             onClick={() => {
@@ -170,7 +170,7 @@ export function RequestHelpForm({
       ref={formRef}
       noValidate
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-border bg-card p-5 sm:p-10"
+      className="rounded-xl border border-border bg-card p-5 sm:p-10"
     >
       {submissionError ? (
         <p
@@ -342,8 +342,8 @@ export function RequestHelpForm({
           )}
         </div>
 
-        <div className="flex items-start gap-2.5 rounded-lg bg-muted px-4 py-3">
-          <LockIcon className="mt-0.5 h-5 w-5 flex-none text-muted-foreground" aria-hidden="true" />
+        <div className="flex items-start gap-2.5 border-t border-border pt-5">
+          <LockIcon className="mt-0.5 h-4 w-4 flex-none text-muted-foreground" aria-hidden="true" />
           <p className="text-sm leading-relaxed text-muted-foreground">
             {form.privacyNote}
           </p>
@@ -359,11 +359,11 @@ export function RequestHelpForm({
               onChange={(event) => setPrivacyConsent(event.target.checked)}
               aria-invalid={consentAttempted && !privacyConsent}
               aria-describedby={consentAttempted && !privacyConsent ? "consent-error" : undefined}
-              className="mt-1 h-4 w-4 flex-none rounded border-border accent-primary"
+              className="mt-0.5 h-5 w-5 flex-none rounded border-border accent-sapphire"
             />
             <span>
               {form.privacyConsent}{" "}
-              <a href={withLangPrefix("/privacy", lang)} className="font-semibold text-primary hover:underline">
+              <a href={withLangPrefix("/privacy", lang)} className="font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire">
                 {form.privacyPolicyLabel}
               </a>.
             </span>
@@ -374,7 +374,7 @@ export function RequestHelpForm({
         </div>
 
         <div>
-          <Button type="submit" size="lg" disabled={isSubmitting}>
+          <Button type="submit" size="lg" variant="secondary" disabled={isSubmitting} className="disabled:bg-muted disabled:text-muted-foreground">
             {isSubmitting ? form.submitting : form.submit}
           </Button>
         </div>

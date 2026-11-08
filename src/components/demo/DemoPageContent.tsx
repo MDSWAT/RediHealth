@@ -11,12 +11,27 @@ import { MeetDashboard } from "@/components/panel/MeetDashboard";
 import { FollowupMeetingWorkspace } from "@/components/panel/FollowupMeetingWorkspace";
 import { AdminShell, PersistentPanelShell } from "@/components/panel/AdminShell";
 import { PanelRuntimeProvider } from "@/components/panel/PanelRuntime";
+import PanelLoading from "@/components/panel/PanelLoading";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 import { createDemoData, DEMO_STORAGE_KEY, DEMO_WORKERS, DemoPanelStore, demoInbox, parseDemoData, type DemoRole } from "@/lib/demo-panel";
 import { demoPanelTranslations } from "@/lib/i18n/demo-panel-translations";
 
 const DemoScreenContext = createContext<ReactNode>(null);
+
+/**
+ * The sample records live in English in browser storage. Show them in the reader's language:
+ * replace exact matches of known sample strings (and demo-store messages), leave anything the
+ * visitor typed untouched. Keys such as status or gender are never sample text, so values match exactly.
+ */
+function localizeDemo<T>(value: T, seed: Record<string, string>): T {
+  if (typeof value === "string") return (seed[value] ?? value) as T;
+  if (Array.isArray(value)) return value.map((item) => localizeDemo(item, seed)) as T;
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, localizeDemo(item, seed)])) as T;
+  }
+  return value;
+}
 
 export function DemoPanelScreen() {
   return useContext(DemoScreenContext);
@@ -76,10 +91,18 @@ export function DemoPageContent({ children }: { children: ReactNode }) {
     } catch (cause) { console.error("Could not change demo role", cause); setError(t.storageError); }
   }
 
-  const runtime = useMemo(() => store ? {
-    request: store.request, demo: true,
-    navigate: (href: string, replace = false) => replace ? router.replace(href) : router.push(href),
-  } : null, [store, router]);
+  const seed = t.seed;
+  const runtime = useMemo(() => {
+    if (!store) return null;
+    const request: typeof fetch = async (input, init) => {
+      const response = await store.request(input, init);
+      if (!Object.keys(seed).length || !response.headers.get("content-type")?.includes("json")) return response;
+      return Response.json(localizeDemo(await response.json(), seed), { status: response.status });
+    };
+    // The demo mediator has no calendar or meetings screen, so the menu does not offer them (read at call time: the role changes in place).
+    const canOpen = (href: string) => store.data.role === "doctor" || !["/panel/calendar", "/panel/meet"].includes(href);
+    return { request, demo: true, canOpen, navigate: (href: string, replace = false) => replace ? router.replace(href) : router.push(href) };
+  }, [store, router, seed]);
 
   const toolbar = <div className="border-b border-amber-200 bg-amber-50 px-4 py-3 text-amber-950">
     <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
@@ -92,19 +115,21 @@ export function DemoPageContent({ children }: { children: ReactNode }) {
           </select>
         </label>
         <button type="button" onClick={reset} className="min-h-10 rounded-lg border border-amber-300 bg-white px-3 text-xs font-semibold">{t.reset}</button>
-        <Link href={withLangPrefix("/", lang)} className="inline-flex min-h-10 items-center rounded-lg px-3 text-xs font-semibold underline underline-offset-2">{t.exit}</Link>
+        <Link href={withLangPrefix("/", lang)} className="inline-flex min-h-10 items-center rounded-lg px-2 text-xs font-semibold underline underline-offset-2">{t.exit}</Link>
       </div>
     </div>
     {error && <p role="alert" className="mt-2 text-sm font-semibold text-red-700">{error}</p>}
   </div>;
-  if (!loaded || !store || !runtime) return <>{toolbar}<p role="status" className="p-6">{loaded ? t.resetToContinue : t.loading}</p></>;
+  if (!loaded) return <>{toolbar}<PanelLoading /></>;
+  if (!store || !runtime) return <>{toolbar}<p role="status" className="p-6">{t.resetToContinue}</p></>;
 
-  const data = store.data;
+  const data = localizeDemo(store.data, seed);
   const role = data.role;
   const worker = DEMO_WORKERS[role === "mediator" ? 0 : 1];
   const props = { userEmail: worker.email, userRole: worker.role, isAdmin: false, databaseAvailable: true };
   const patients = data.patients.filter((p) => p.assigned_worker_ids?.includes(worker.id));
-  const pendingRequestsCount = data.requests.filter((r) => r.status === "pending").length;
+  // Same set as the inbox's first folder, so the menu badge and "Needs attention" agree.
+  const pendingRequestsCount = data.requests.filter((r) => r.status === "pending" || r.status === "in_progress").length;
   const path = stripLangFromPathname(pathname).slice("/demo".length) || "/";
   const patientMatch = /^\/patients\/(\d+)$/.exec(path);
   const meetingMatch = /^\/patients\/(\d+)\/meet\/(\d+)$/.exec(path);

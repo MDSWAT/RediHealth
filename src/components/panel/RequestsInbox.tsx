@@ -6,12 +6,14 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
 import { withLangPrefix } from "@/lib/i18n/routing";
-import { dayLabel, requestDay } from "@/lib/panel-dates";
+import { dayLabel, formatPanelDate, requestDay } from "@/lib/panel-dates";
 import { requestFolders, type InboxPage, type RequestFolder } from "@/lib/request-inbox";
 import type { MedicalHelpRequestItem, RequestPriority, RequestStatus } from "@/lib/types/medical-request";
 import { CreatePatientModal } from "./CreatePatientModal";
 import { QuickTemplatesModal } from "./QuickTemplatesModal";
 import { useUnsavedChanges } from "./useUnsavedChanges";
+import { csvTimestamp, downloadCsv } from "./panel-csv";
+import { ChevronLeftIcon } from "@/components/ui/icons";
 
 export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, isRomania }: { isAdmin?: boolean; isRomania: boolean; initialInbox: InboxPage; onPendingChange: (count: number) => void }) {
   const { lang } = useLanguage();
@@ -56,7 +58,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
         const response = await fetch(`/api/medical-help-requests?${queryString}`, { signal: controller.signal });
         if (!response.ok) throw new Error();
         const data = await response.json() as InboxPage;
-        if (fetchVersion.current === version) { setInbox(data); onPendingChange(data.counts.pending); }
+        if (fetchVersion.current === version) { setInbox(data); onPendingChange(data.counts.attention); }
       } catch { if (!controller.signal.aborted) setError(t.loadError); }
       finally { if (!controller.signal.aborted) setLoading(false); }
     }, 250);
@@ -84,10 +86,8 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
     finally { if (fetchVersion.current === version) setLoading(false); }
   }
   function exportCsv() {
-    const quote = (value: string) => `"${(/^[=+@-]/.test(value) ? "'" : "") + value.replaceAll('"', '""')}"`;
-    const csv = ["Name,Phone,Email,County,Description,Status,Received", ...inbox.requests.map((r) => [r.full_name || "", r.phone, r.email, r.county || "", r.description, r.status, r.created_at].map(quote).join(","))].join("\r\n");
-    const url = URL.createObjectURL(new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" }));
-    const link = document.createElement("a"); link.href = url; link.download = "redihealth-requests.csv"; link.click(); URL.revokeObjectURL(url);
+    const header = [t.csvName, t.csvPhone, t.csvEmail, t.csvCounty, t.csvRequest, t.status, t.csvReceived];
+    downloadCsv("redihealth-requests.csv", header, inbox.requests.map((r) => [r.full_name || "", r.phone, r.email, r.county || "", r.description, t[r.status], csvTimestamp(r.created_at)]));
   }
   function updateRequest(updated: MedicalHelpRequestItem) {
     setDirty(false); setDetached(updated);
@@ -105,7 +105,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
         {inbox.requests.map((r, index) => {
           const key = requestDay(r.created_at);
           const heading = index === 0 || key !== requestDay(inbox.requests[index - 1].created_at);
-          return <div key={r.id}>{heading && <h2 className="crm-day-heading">{dayLabel(key, locale, t.today, t.yesterday)}</h2>}<button className={`crm-request-row ${requestId === r.id ? "selected" : ""}`} onClick={() => updateUrl({ request: r.id })} aria-pressed={requestId === r.id}><div className="flex justify-between gap-3"><span className="truncate font-semibold">{r.full_name || t.unnamed}</span><time className="shrink-0 text-xs text-muted-foreground" dateTime={r.created_at}>{new Date(r.created_at).toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" })}</time></div><p className="mt-1 truncate text-sm text-muted-foreground">{r.description}</p><div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground"><span>{t[r.status]}</span>{r.priority === "urgent" && <span className="crm-urgent">{t.urgent}</span>}</div></button></div>;
+          return <div key={r.id}>{heading && <h2 className="crm-day-heading">{dayLabel(key, locale, t.today, t.yesterday)}</h2>}<button className={`crm-request-row ${requestId === r.id ? "selected" : ""}`} onClick={() => updateUrl({ request: r.id })} aria-pressed={requestId === r.id}><div className="flex justify-between gap-3"><span className="truncate font-semibold">{r.full_name || t.unnamed}</span><time className="shrink-0 text-xs text-muted-foreground" dateTime={r.created_at}>{formatPanelDate(r.created_at, locale, "time")}</time></div><p className="mt-1 truncate text-sm text-muted-foreground">{r.description}</p><div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground"><span>{t[r.status]}</span>{r.priority === "urgent" && <span className="crm-urgent">{t.urgent}</span>}</div></button></div>;
         })}
         {inbox.hasMore && <div className="p-4 text-center"><button className="crm-button" disabled={loading} onClick={loadMore}>{loading ? t.loading : t.loadMore}</button></div>}
       </section>
@@ -145,7 +145,7 @@ function RequestReader({ request, onDirtyChange, onUpdate, onBack, onCreate, onR
     } catch { setError(t.error); } finally { setSaving(false); }
   }
   return <div className="crm-reader-content">
-    <div className="flex items-center justify-between"><button className="crm-button crm-reader-back" onClick={onBack}>{t.back}</button><span className="text-xs text-muted-foreground">#{request.id} · {new Date(request.created_at).toLocaleString(langToLocale[lang], { dateStyle: "medium", timeStyle: "short" })}</span><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button disabled={saving} onClick={async () => { if (!window.confirm(t.deleteConfirm)) return; setSaving(true); try { await onDelete(); } catch { setError(t.error); setSaving(false); } }}>{t.delete}</button></div></details></div>
+    <div className="flex items-center justify-between"><button className="crm-reader-back inline-flex min-h-10 items-center gap-1 rounded-lg pr-2 text-sm font-medium text-primary" onClick={onBack}><ChevronLeftIcon aria-hidden="true" className="h-4 w-4" />{t.back}</button><span className="text-xs text-muted-foreground">#{request.id} · {formatPanelDate(request.created_at, langToLocale[lang], "dateTime")}</span><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button disabled={saving} onClick={async () => { if (!window.confirm(t.deleteConfirm)) return; setSaving(true); try { await onDelete(); } catch { setError(t.error); setSaving(false); } }}>{t.delete}</button></div></details></div>
     <h2 className="mt-6 text-2xl font-semibold">{request.full_name || t.unnamed}</h2>
     <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm"><a className="text-primary" href={`tel:${request.phone}`}>{request.phone}</a>{request.email && <a className="break-all text-primary" href={`mailto:${request.email}`}>{request.email}</a>}{request.county && <span className="text-muted-foreground">{request.county}</span>}</div>
     <p className="my-7 whitespace-pre-wrap text-base leading-relaxed">{request.description}</p>

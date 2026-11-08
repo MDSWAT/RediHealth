@@ -6,7 +6,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { AdminShell } from "./AdminShell";
 import { Container } from "@/components/ui/Container";
-import { CameraIcon, CheckCircleIcon, FileTextIcon, MailIcon } from "@/components/ui/icons";
+import { CameraIcon, CheckCircleIcon, ChevronLeftIcon, FileTextIcon, MailIcon } from "@/components/ui/icons";
 import { demoPanelTranslations } from "@/lib/i18n/demo-panel-translations";
 import { meetingWorkspaceTranslations } from "@/lib/i18n/meeting-workspace-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
@@ -366,9 +366,9 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
         <Container className="max-w-[1600px]">
           <Link
             href={withLangPrefix(`/panel/patients/${patientId}`, lang)}
-            className="inline-flex text-xs font-semibold text-primary hover:underline mb-3"
+            className="mb-3 inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
           >
-            &larr; {t.back}
+            <ChevronLeftIcon aria-hidden="true" className="h-4 w-4" />{t.back}
           </Link>
           <header className="flex flex-wrap items-center justify-between gap-4 py-2">
             <div className="min-w-0">
@@ -406,7 +406,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
                     setNotes((curr) => curr ? curr + "\n\n" + vitalsSummary : vitalsSummary);
                   }}
                 />
-                <section aria-label={t.video} className="min-w-0 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 text-white shadow-sm">
+                <section aria-label={t.video} className="min-w-0 overflow-hidden rounded-xl border border-slate-800 bg-slate-950 text-white">
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 px-4 py-3">
                   <span className="inline-flex items-center gap-2 text-sm font-semibold"><CameraIcon className="h-4 w-4 text-slate-400" />{t.heading}</span>
                   <span role="status" className="inline-flex items-center gap-2 text-xs text-slate-300">
@@ -414,8 +414,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
                     {isListening ? t.listening : isRecordingFallback ? t.recording : isTranscribingFallback ? t.transcribing : t.idle}
                   </span>
                 </div>
-                {demo ? <div className="flex h-[55dvh] min-h-80 flex-col items-center justify-center gap-5 p-6 text-center lg:h-[68dvh]">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-3xl border border-white/10 bg-white/5"><CameraIcon className="h-9 w-9 text-slate-300" /></div>
+                {demo ? <div className="flex min-h-48 items-center justify-center p-6 text-center lg:min-h-64">
                   <p className="max-w-sm text-sm leading-relaxed text-slate-300">{demoPanelTranslations[lang].video}</p>
                 </div> : <iframe
                   src={`${roomUrl}#config.prejoinPageEnabled=false`}
@@ -428,12 +427,12 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
               </section>
               </div>
 
-              <aside id={sidebarId} aria-label={t.workspace} hidden={!sidebarOpen} className="min-w-0 rounded-2xl border border-border bg-card shadow-sm">
-                <div className="border-b border-border p-4">
+              <aside id={sidebarId} aria-label={t.workspace} hidden={!sidebarOpen} className="min-w-0 self-start rounded-xl border border-border bg-card">
+                <div className="px-4 pt-4">
                   <h2 className="text-sm font-bold">{t.workspace}</h2>
                   <p className={`mt-1 text-xs ${dirty ? "text-amber-700" : "text-muted-foreground"}`}>{dirty ? t.unsaved : t.saved}</p>
                 </div>
-                <div role="tablist" aria-label={t.workspace} className="m-4 grid grid-cols-3 gap-1 rounded-xl bg-muted p-1">
+                <div role="tablist" aria-label={t.workspace} className="mb-4 mt-3 flex gap-5 overflow-x-auto border-b border-border px-4">
                   {(["notes", "transcript", "recommendations"] as const).map((tab) => <button key={tab} type="button" role="tab" id={`${sidebarId}-${tab}-tab`} aria-selected={activeTab === tab} aria-controls={`${sidebarId}-${tab}`} tabIndex={activeTab === tab ? 0 : -1}
                     onClick={() => setActiveTab(tab)} onKeyDown={(event) => {
                       if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
@@ -441,7 +440,7 @@ export function FollowupMeetingWorkspace({ meetingId, patientId, userEmail, user
                         const next = event.key === "Home" ? "notes" : event.key === "End" ? "recommendations" : tab === "notes" ? "transcript" : tab === "transcript" ? "recommendations" : "notes";
                         setActiveTab(next); document.getElementById(`${sidebarId}-${next}-tab`)?.focus();
                       }
-                    }} className={`min-h-10 min-w-0 rounded-lg px-1.5 py-1 text-xs font-semibold leading-tight hyphens-auto break-words ${activeTab === tab ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>{t[tab]}</button>)}
+                    }} className={`-mb-px min-h-11 shrink-0 whitespace-nowrap border-b-2 text-sm transition-colors ${activeTab === tab ? "border-primary font-semibold text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}>{t[tab]}</button>)}
                 </div>
                 <div role="tabpanel" id={`${sidebarId}-notes`} aria-labelledby={`${sidebarId}-notes-tab`} hidden={activeTab !== "notes"} className="space-y-3 px-4 pb-4">
                   <p id={`${sidebarId}-notes-help`} className="text-xs leading-relaxed text-muted-foreground">{t.notesHelp}</p>

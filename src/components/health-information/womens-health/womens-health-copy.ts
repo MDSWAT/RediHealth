@@ -80,7 +80,6 @@ export interface WomensHealthCopy {
     hotspots: [BreastAwarenessHotspot, CervicalScreeningHotspot];
   };
   emergencyNote: string;
-  call112Label: string;
   credit: string;
 }
 
@@ -239,7 +238,6 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
     },
     emergencyNote:
       "Durerea puternică jos în burtă, sângerarea abundentă sau febra mare cer ajutor de urgență. Sună la 112.",
-    call112Label: "Sună la 112",
     credit:
       "Surse: Organizația Mondială a Sănătății și ghidurile europene de screening pentru cancerul de col uterin și de sân.",
   },
@@ -256,7 +254,7 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
     redFlagsPrefix: "Warning signs:",
     breastAwarenessRule3Title: "How to check your breasts",
     ageGuidanceTitle: "Which checks, by age",
-    nationalProgramPrefix: "Free national programme:",
+    nationalProgramPrefix: "Free national program:",
     recommendedIntervalsTitle: "How often",
     hpvVaccinationPrefix: "HPV vaccination:",
     promptConsultationPrefix: "See a gynecologist soon if you have:",
@@ -397,7 +395,6 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
     },
     emergencyNote:
       "Strong pain low in the belly, heavy bleeding or a high fever need urgent care. Call 112.",
-    call112Label: "Call 112",
     credit:
       "Sources: World Health Organization and European screening guidelines for cervical and breast cancer.",
   },
@@ -555,7 +552,6 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
     },
     emergencyNote:
       "Dhimbja e fortë në fund të barkut, gjakderdhja e madhe ose temperatura e lartë kërkojnë ndihmë urgjente. Telefono 112.",
-    call112Label: "Telefono 112",
     credit:
       "Burimet: Organizata Botërore e Shëndetësisë dhe udhëzimet evropiane për depistimin e kancerit të qafës së mitrës dhe të gjirit.",
   },
@@ -593,7 +589,7 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
           id: "trimester-1",
           number: "01",
           name: "Primo trimestre",
-          weeks: "Settimane 1-12",
+          weeks: "Settimane 1–12",
           developmentTitle: "Si formano gli organi e il cuore inizia a battere",
           developmentDesc:
             "Nelle prime 12 settimane si formano cervello, midollo spinale e gli altri organi. Il cuore inizia a battere verso la settimana 5 o 6. Alla fine del trimestre l'embrione misura circa 6 centimetri.",
@@ -614,16 +610,16 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
           id: "trimester-2",
           number: "02",
           name: "Secondo trimestre",
-          weeks: "Settimane 13-27",
+          weeks: "Settimane 13–27",
           developmentTitle: "Il bambino cresce in fretta e inizia a muoversi",
           developmentDesc:
             "Le ossa si rafforzano, il viso prende forma e il bambino inizia a sentire i suoni. Tra la settimana 18 e la 20 senti i primi movimenti.",
           whoContact:
             "Visite 2 e 3 (settimane 20 e 26). Il medico controlla la crescita del bambino, ti misura la pressione e controlla il diabete in gravidanza.",
           clinicalChecklist: [
-            "Ecografia morfologica (settimane 20-22), che controlla gli organi del bambino.",
+            "Ecografia morfologica (settimane 20–22), che controlla gli organi del bambino.",
             "Pressione e peso a ogni visita, per scoprire presto la preeclampsia (pressione alta in gravidanza).",
-            "Curva da carico di glucosio (OGTT, settimane 24-28), per il diabete in gravidanza.",
+            "Curva da carico di glucosio (OGTT, settimane 24–28), per il diabete in gravidanza.",
             "Proteine nelle urine, a ogni controllo.",
           ],
           selfCare:
@@ -635,7 +631,7 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
           id: "trimester-3",
           number: "03",
           name: "Terzo trimestre",
-          weeks: "Settimane 28-40",
+          weeks: "Settimane 28–40",
           developmentTitle: "Il bambino si prepara alla nascita",
           developmentDesc:
             "Il bambino prende peso e grasso sotto la pelle, e i polmoni maturano. Di solito si gira a testa in giù, pronto per il parto.",
@@ -644,7 +640,7 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
           clinicalChecklist: [
             "Ecografia per la crescita del bambino e la quantità di liquido amniotico.",
             "Di nuovo l'emocromo, per l'anemia in gravidanza.",
-            "Tampone vaginale e rettale per lo streptococco di gruppo B (settimane 35-37).",
+            "Tampone vaginale e rettale per lo streptococco di gruppo B (settimane 35–37).",
             "Conta ogni giorno i movimenti del bambino dopo i pasti. Prepara la borsa per il parto.",
           ],
           selfCare:
@@ -671,7 +667,7 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
             },
             {
               stepName: "Tocca",
-              desc: "Una volta al mese, 3-5 giorni dopo il ciclo, tocca il seno con i polpastrelli di tre dita. Fai piccoli cerchi su tutto il seno e sotto l'ascella.",
+              desc: "Una volta al mese, 3–5 giorni dopo il ciclo, tocca il seno con i polpastrelli di tre dita. Fai piccoli cerchi su tutto il seno e sotto l'ascella.",
             },
             {
               stepName: "Vai dal medico",
@@ -713,7 +709,6 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
     },
     emergencyNote:
       "Forte dolore al basso ventre, emorragie abbondanti o febbre alta richiedono cure urgenti. Chiama il 112.",
-    call112Label: "Chiama il 112",
     credit:
       "Fonti: Organizzazione Mondiale della Sanità e linee guida europee per lo screening dei tumori del collo dell'utero e del seno.",
   },

@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { EmergencySignsModal } from "@/components/emergency/EmergencySignsModal";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
+import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations } from "@/lib/i18n/translations";
 
@@ -63,8 +64,9 @@ export function UniversalEmergencyBanner() {
   const path = stripLangFromPathname(pathname);
   const isWorkerPanel = path.startsWith("/panel");
 
-  const { t } = useSafeLanguage();
+  const { lang, t } = useSafeLanguage();
   const e = t.emergency;
+  const chrome = getChromeCopy(lang);
 
   const [signsOpen, setSignsOpen] = useState(false);
   const [dialerOpen, setDialerOpen] = useState(false);
@@ -84,18 +86,20 @@ export function UniversalEmergencyBanner() {
         aria-label={e.bannerAriaLabel}
         className="emergency-banner w-full border-b border-border bg-muted/60 text-foreground"
       >
-        <Container className="flex items-center gap-3 py-1.5 text-[13px] sm:text-sm">
+        {/* Phones: one line, "Emergency?" next to the call button. From 768px: the full sentence; the alarm-signs link joins from 1024px. */}
+        <Container className="flex items-center gap-2 py-1 text-sm md:gap-3 md:py-1.5">
           <PhoneIcon className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
 
-          <p className="emergency-banner-text min-w-0 flex-1 leading-snug text-muted-foreground">
-            {e.bannerText}
+          <p className="emergency-banner-text min-w-0 shrink-0 leading-snug text-foreground md:shrink md:flex-1 md:text-muted-foreground">
+            <span className="md:hidden">{chrome.emergencyQuestion}</span>
+            <span className="hidden md:inline">{e.bannerText}</span>
           </p>
 
-          <div className="emergency-banner-actions flex shrink-0 items-center gap-1 sm:gap-2">
+          <div className="emergency-banner-actions flex min-w-0 flex-1 items-center gap-1 md:flex-none md:shrink-0 md:gap-2">
             <button
               type="button"
               onClick={() => setSignsOpen(true)}
-              className="hidden min-h-9 items-center rounded-md px-2 font-medium text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors hover:decoration-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:inline-flex"
+              className="hidden min-h-9 items-center rounded-lg px-2 font-medium text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring lg:inline-flex"
             >
               {e.seeAlarmSigns}
             </button>
@@ -103,7 +107,7 @@ export function UniversalEmergencyBanner() {
             <button
               type="button"
               onClick={() => setDialerOpen(true)}
-              className="inline-flex min-h-9 items-center gap-1.5 rounded-md px-2 font-semibold text-primary transition-colors hover:bg-primary-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="-ml-1 inline-flex min-h-10 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 font-semibold text-primary md:ml-0 md:min-h-9 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-primary-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               {e.call112}
             </button>
@@ -112,7 +116,7 @@ export function UniversalEmergencyBanner() {
               type="button"
               onClick={dismiss}
               aria-label={e.dismissBannerAria}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="ml-auto inline-flex h-10 w-10 shrink-0 items-center md:h-9 md:w-9 justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               <CloseIcon className="h-4 w-4" />
             </button>

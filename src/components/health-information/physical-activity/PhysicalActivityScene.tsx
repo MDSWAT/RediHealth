@@ -4,144 +4,144 @@ import { m, useReducedMotion } from "motion/react";
 import type { ExplainerSceneProps } from "../explainers/types";
 import { DURATION, EASE_OUT } from "@/lib/motion/tokens";
 
-const STAGES = [
-  { index: 0, cx: 56, barTop: 118, barHeight: 28, iconY: 84 },
-  { index: 1, cx: 125, barTop: 98, barHeight: 48, iconY: 64 },
-  { index: 2, cx: 195, barTop: 76, barHeight: 70, iconY: 42 },
-  { index: 3, cx: 264, barTop: 54, barHeight: 92, iconY: 20 },
-] as const;
+/* A week as a small chart: seven day columns, Monday first. Each step adds a layer
+   that looks different from the others:
+   0 short breaks from sitting: a row of hour ticks across the waking day, every day;
+   1 an easy walk: a pale bar, about 15 minutes, every day;
+   2 a brisk walk: a dark bar stacked on top, about 30 minutes, on 5 days;
+   3 strength exercises: a marker above the bars, on 2 days.
+   Bar height is the minutes, read against the gridlines at 15 / 30 / 45 min.
+   The geometry is exported so the DOM day row and minute labels line up with it. */
+export const ACTIVITY_VIEWBOX = { width: 400, height: 150 } as const;
+export const ACTIVITY_DAYS = 7;
+export const ACTIVITY_COL_W = 42;
+export const ACTIVITY_COL_GAP = 10;
+/** Room on the left for the minute labels (DOM). */
+export const ACTIVITY_LEFT = 38;
 
-const CURVE_PATH = "M 56 118 C 90 118, 92 98, 125 98 C 158 98, 162 76, 195 76 C 228 76, 232 54, 264 54";
+/** Hour ticks band: one tick per waking hour or so. */
+const TICK_TOP = 4;
+const TICK_H = 9;
+const TICKS = 8;
 
-function StageGlyph({ index, active }: { index: number; active: boolean }) {
-  const stroke = active ? "var(--color-sapphire)" : "var(--color-muted-foreground)";
-  if (index === 0) {
-    // Upward posture / stand up
-    return (
-      <g stroke={stroke} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M0 5 V-5" />
-        <path d="M-4 -1 L0 -5 L4 -1" />
-        <path d="M-5 7 H5" />
-      </g>
-    );
-  }
-  if (index === 1) {
-    // Easy walking pace
-    return (
-      <g stroke={stroke} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="0" cy="-5.5" r="2" />
-        <path d="M0 -3 V2 L-3.5 6.5" />
-        <path d="M0 1 L3.5 6.5" />
-        <path d="M-3.5 -1 L3.5 0.5" />
-      </g>
-    );
-  }
-  if (index === 2) {
-    // Brisk cardio pulse
-    return (
-      <g stroke={stroke} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M-7 0 H-3.5 L-1.5 -5 L1.5 5 L3.5 0 H7" />
-      </g>
-    );
-  }
-  // Strength and balance dumbbell
+/** Bar chart: minutes up from the baseline. */
+export const ACTIVITY_BASELINE_Y = 142;
+const UNITS_PER_MIN = 2.3;
+export const ACTIVITY_GRID_MINUTES = [15, 30, 45] as const;
+export const activityMinuteY = (min: number) => ACTIVITY_BASELINE_Y - min * UNITS_PER_MIN;
+
+const EASY_MIN = 15;
+const BRISK_MIN = 30;
+const BAR_W = 22;
+const BRISK_DAYS = [0, 1, 2, 3, 4];
+const STRENGTH_DAYS = [1, 3];
+
+const colX = (day: number) => ACTIVITY_LEFT + day * (ACTIVITY_COL_W + ACTIVITY_COL_GAP);
+const barX = (day: number) => colX(day) + (ACTIVITY_COL_W - BAR_W) / 2;
+const RIGHT = colX(ACTIVITY_DAYS - 1) + ACTIVITY_COL_W;
+
+/** A small dumbbell: the strength marker, also drawn in the legend. */
+export function StrengthMarkPath({ cx, cy }: { cx: number; cy: number }) {
   return (
-    <g stroke={stroke} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M-6 0 H6" />
-      <rect x="-8" y="-4" width="2.5" height="8" rx="0.75" />
-      <rect x="5.5" y="-4" width="2.5" height="8" rx="0.75" />
+    <g stroke="var(--color-sapphire)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d={`M${cx - 6} ${cy} H${cx + 6}`} />
+      <rect x={cx - 10} y={cy - 4.5} width="3.5" height="9" rx="1" fill="var(--color-card)" />
+      <rect x={cx + 6.5} y={cy - 4.5} width="3.5" height="9" rx="1" fill="var(--color-card)" />
     </g>
   );
 }
 
 /**
- * Physical activity 4-stage progression diagram:
- * 1. Stand up every hour -> 2. Easy daily walk -> 3. Brisk cardio -> 4. Strength & balance.
+ * Physical activity as a weekly chart. Pure drawing: day names, minute labels and
+ * the legend are DOM text around it. Bars grow from the baseline (transform only);
+ * ticks and markers fade in. Static, with every reached layer drawn, under reduced motion.
  */
-export function PhysicalActivityScene({ step, playing }: ExplainerSceneProps) {
+export function PhysicalActivityScene({ step }: ExplainerSceneProps) {
   const reduceMotion = useReducedMotion();
-  const active = Math.min(Math.max(step, 0), STAGES.length - 1);
-  const transition = reduceMotion ? { duration: 0 } : { duration: DURATION.slow, ease: EASE_OUT };
+  const active = Math.min(Math.max(step, 0), 3);
+  const ease = reduceMotion ? { duration: 0 } : { duration: DURATION.slow, ease: EASE_OUT };
+  const shown = (layer: number) => layer <= active;
+  const easyTop = activityMinuteY(EASY_MIN);
+  const briskTop = activityMinuteY(EASY_MIN + BRISK_MIN);
+  // Bars grow up from the baseline.
+  const grow = { transformBox: "fill-box" as const, originX: 0.5, originY: 1 };
 
   return (
-    <svg viewBox="0 0 320 180" className="h-full w-full" fill="none" aria-hidden="true">
-      {/* Subtle horizontal grid lines */}
-      <line x1="28" y1="54" x2="292" y2="54" stroke="var(--color-border)" strokeDasharray="3 3" strokeWidth="1" />
-      <line x1="28" y1="100" x2="292" y2="100" stroke="var(--color-border)" strokeDasharray="3 3" strokeWidth="1" />
-      <line x1="28" y1="146" x2="292" y2="146" stroke="var(--color-border)" strokeWidth="1.5" />
+    <svg
+      viewBox={`0 0 ${ACTIVITY_VIEWBOX.width} ${ACTIVITY_VIEWBOX.height}`}
+      className="h-full w-full"
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* Minute gridlines and the baseline */}
+      {ACTIVITY_GRID_MINUTES.map((min) => (
+        <path
+          key={min}
+          d={`M${ACTIVITY_LEFT} ${activityMinuteY(min)} H${RIGHT}`}
+          stroke="var(--color-border)"
+          strokeWidth="1"
+          strokeDasharray="2 3"
+        />
+      ))}
+      <path d={`M${ACTIVITY_LEFT} ${ACTIVITY_BASELINE_Y} H${RIGHT}`} stroke="var(--color-mist)" strokeWidth="1" />
 
-      {/* Connecting progression curve */}
-      <m.path
-        d={CURVE_PATH}
-        stroke="var(--color-sapphire)"
-        strokeOpacity="0.35"
-        strokeWidth="2"
-        strokeLinecap="round"
-        initial={false}
-        animate={{ pathLength: playing && !reduceMotion ? [0, 1] : 1 }}
-        transition={playing && !reduceMotion ? { duration: 1.2, ease: EASE_OUT } : { duration: 0 }}
-      />
-
-      {/* Four progression bars + icon badges + step numbers */}
-      {STAGES.map((stage) => {
-        const isReached = stage.index <= active;
-        const isCurrent = stage.index === active;
-
-        return (
-          <g key={stage.index}>
-            {/* Bar column */}
-            <m.rect
-              x={stage.cx - 18}
-              y={stage.barTop}
-              width="36"
-              height={stage.barHeight}
-              rx="5"
-              initial={false}
-              animate={{
-                fill: isCurrent
-                  ? "var(--color-sapphire)"
-                  : isReached
-                    ? "var(--color-sapphire-soft)"
-                    : "var(--color-surface-subtle)",
-                stroke: isCurrent
-                  ? "var(--color-sapphire)"
-                  : isReached
-                    ? "var(--color-sapphire-border)"
-                    : "var(--color-border)",
-              }}
-              transition={transition}
-              strokeWidth="1.5"
-            />
-
-            {/* Top icon badge */}
-            <g transform={`translate(${stage.cx}, ${stage.iconY})`}>
-              <rect
-                x="-14"
-                y="-14"
-                width="28"
-                height="28"
-                rx="6"
-                fill="var(--color-card)"
-                stroke={isCurrent ? "var(--color-sapphire)" : "var(--color-border)"}
-                strokeWidth={isCurrent ? "2" : "1.25"}
-              />
-              <StageGlyph index={stage.index} active={isReached} />
+      {/* 0: hour ticks across each waking day, on a thin day line */}
+      <m.g initial={false} animate={{ opacity: shown(0) ? 1 : 0 }} transition={ease}>
+        {Array.from({ length: ACTIVITY_DAYS }, (_, day) => {
+          const x0 = colX(day) + 3;
+          const span = ACTIVITY_COL_W - 6;
+          return (
+            <g key={day} stroke="var(--color-sapphire)" strokeLinecap="round">
+              <path d={`M${x0} ${TICK_TOP + TICK_H} H${x0 + span}`} strokeWidth="1" opacity="0.4" />
+              {Array.from({ length: TICKS }, (_, i) => {
+                const x = x0 + (span * i) / (TICKS - 1);
+                return <path key={i} d={`M${x} ${TICK_TOP} V${TICK_TOP + TICK_H}`} strokeWidth="1.5" />;
+              })}
             </g>
+          );
+        })}
+      </m.g>
 
-            {/* Step number along the baseline */}
-            <text
-              x={stage.cx}
-              y="164"
-              textAnchor="middle"
-              fontSize="11"
-              fontWeight={isCurrent ? "700" : "600"}
-              fill={isCurrent ? "var(--color-foreground)" : "var(--color-muted-foreground)"}
-            >
-              {stage.index + 1}
-            </text>
-          </g>
-        );
-      })}
+      {/* 1: an easy walk, every day */}
+      {Array.from({ length: ACTIVITY_DAYS }, (_, day) => (
+        <m.rect
+          key={`easy-${day}`}
+          x={barX(day)}
+          y={easyTop}
+          width={BAR_W}
+          height={ACTIVITY_BASELINE_Y - easyTop}
+          rx="2"
+          fill="var(--color-sapphire-border)"
+          style={grow}
+          initial={false}
+          animate={{ scaleY: shown(1) ? 1 : 0, opacity: shown(1) ? 1 : 0 }}
+          transition={ease}
+        />
+      ))}
+
+      {/* 2: a brisk walk on top, 5 days */}
+      {BRISK_DAYS.map((day) => (
+        <m.rect
+          key={`brisk-${day}`}
+          x={barX(day)}
+          y={briskTop}
+          width={BAR_W}
+          height={easyTop - briskTop - 1.5}
+          rx="2"
+          fill="var(--color-sapphire)"
+          style={grow}
+          initial={false}
+          animate={{ scaleY: shown(2) ? 1 : 0, opacity: shown(2) ? 1 : 0 }}
+          transition={ease}
+        />
+      ))}
+
+      {/* 3: strength exercises, 2 days, marked above the bars */}
+      <m.g initial={false} animate={{ opacity: shown(3) ? 1 : 0 }} transition={ease}>
+        {STRENGTH_DAYS.map((day) => (
+          <StrengthMarkPath key={day} cx={colX(day) + ACTIVITY_COL_W / 2} cy={briskTop - 12} />
+        ))}
+      </m.g>
     </svg>
   );
 }

@@ -3,8 +3,9 @@
 import { useEffect, useState, type ChangeEvent } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { treatmentTranslations } from "@/lib/i18n/treatment-translations";
+import { langToLocale } from "@/lib/i18n/panel-translations";
 import { getTreatmentEntries, sortTreatments, treatmentStatus } from "@/lib/treatments";
-import { localDateKey } from "@/lib/panel-dates";
+import { formatDateKey, localDateKey } from "@/lib/panel-dates";
 import type { TreatmentEntry, TreatmentPlan } from "@/lib/types/patient";
 import { TreatmentPlanEditor } from "./TreatmentPlanEditor";
 
@@ -45,7 +46,7 @@ export function PatientTreatmentTab(props: Props) {
             setSelectedId(entry.id);
           }}>
             <span className="block break-words text-sm font-semibold">{entry.title || (entry.id === "legacy-treatment" ? t.legacy : t.newPlan)}</span>
-            <span className="mt-1 block text-xs text-muted-foreground">{entry.start_date ? `${entry.start_date} - ${entry.end_date || t.undated}` : t.undated}</span>
+            <span className="mt-1 block text-xs text-muted-foreground">{entry.start_date ? `${formatDateKey(entry.start_date, langToLocale[lang])} – ${entry.end_date ? formatDateKey(entry.end_date, langToLocale[lang]) : t.undated}` : t.undated}</span>
             <span className="mt-2 inline-block text-xs font-medium">{t[treatmentStatus(entry, localDateKey())]}</span>
           </button>
           <button type="button" className="mt-3 text-xs text-red-700" disabled={props.isSavingTreatment} onClick={() => {

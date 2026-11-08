@@ -5,6 +5,8 @@ import { PrinterIcon } from "@/components/ui/icons";
 import { TreatmentPlansView } from "./TreatmentPlansView";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { langToLocale } from "@/lib/i18n/panel-translations";
+import { followupTime, formatDateKey, formatPanelDate } from "@/lib/panel-dates";
+import { useViewerTimeZone } from "./useViewerTimeZone";
 import { printReportTranslations } from "@/lib/i18n/print-report-translations";
 import type {
   FollowupItem,
@@ -32,6 +34,7 @@ export function PatientPrintReport({
   onClose,
 }: PatientPrintReportProps) {
   const { lang } = useLanguage();
+  const viewerZone = useViewerTimeZone();
   const t = printReportTranslations[lang];
   const statusLabel = status === "active" ? t.active : status === "inactive" ? t.inactive : t.archived;
 
@@ -63,7 +66,7 @@ export function PatientPrintReport({
         </div>
       </div>
 
-      <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-white p-8 sm:p-12 text-slate-900 shadow-lg print:border-none print:shadow-none print:p-0">
+      <div className="mx-auto max-w-4xl rounded-xl border border-border bg-white p-8 sm:p-12 text-slate-900 shadow-lg print:border-none print:shadow-none print:p-0">
         <div className="flex items-start justify-between border-b-2 border-primary pb-6">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-primary">
@@ -76,7 +79,7 @@ export function PatientPrintReport({
           <div className="text-right text-xs text-slate-500">
             <p className="font-bold text-slate-800">{t.confidential}</p>
             <p className="mt-0.5">
-              {t.reportDate}: {new Date().toLocaleDateString(langToLocale[lang], { dateStyle: "full" })}
+              {t.reportDate}: {formatPanelDate(new Date(), langToLocale[lang], "full")}
             </p>
             <p>{t.recordId}: #{patient.id}</p>
           </div>
@@ -144,7 +147,7 @@ export function PatientPrintReport({
               <tbody className="divide-y divide-slate-200">
                 {followups.map((item) => (
                   <tr key={item.id}>
-                    <td className="p-2 font-medium">{item.date}{item.time ? ` ${item.time} (${item.timezone || ""})` : ""}</td>
+                    <td className="p-2 font-medium">{formatDateKey(item.date, langToLocale[lang])}{item.time ? ` ${followupTime(item, "", viewerZone)}` : ""}</td>
                     <td className="p-2 font-semibold">{item.title}</td>
                     <td className="p-2 capitalize font-bold text-slate-700">{t[item.status]}</td>
                     <td className="p-2 text-slate-600">{item.notes || "-"}</td>

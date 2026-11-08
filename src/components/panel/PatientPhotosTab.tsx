@@ -89,7 +89,7 @@ export function PatientPhotosTab({
     },
   }[lang];
   return (
-    <div className="space-y-5 rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-xs">
+    <div className="space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6 shadow-xs">
       <div>
         <h3 className="text-sm font-semibold text-foreground">
           {t.title}
@@ -151,7 +151,7 @@ export function PatientPhotosTab({
           <div className="flex items-center gap-3 bg-card p-2 rounded-lg border border-border">
             <img
               src={newPhotoData}
-              alt="Preview"
+              alt=""
               className="h-12 w-12 object-cover rounded border border-border"
             />
             <span className="text-xs text-emerald-600 font-semibold">
@@ -164,7 +164,7 @@ export function PatientPhotosTab({
           <button
             type="submit"
             disabled={!newPhotoData}
-            className="rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
+            className="rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground"
           >
             {t.attach}
           </button>
@@ -181,7 +181,7 @@ export function PatientPhotosTab({
           {photos.map((photo) => (
             <div
               key={photo.id}
-              className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-2.5 shadow-sm hover:shadow-md transition-colors"
+              className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-2.5"
             >
               <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border bg-muted">
                 <img
@@ -192,8 +192,9 @@ export function PatientPhotosTab({
                 <button
                   type="button"
                   onClick={() => onDeletePhoto(photo.id)}
-                  className="absolute right-1.5 top-1.5 rounded bg-black/60 p-1 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-600"
+                  className="absolute right-1.5 top-1.5 rounded bg-black/60 p-1.5 text-white transition-opacity hover:bg-red-600 focus-visible:opacity-100 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100"
                   title={t.remove}
+                  aria-label={`${t.remove}: ${photo.name}`}
                 >
                   <TrashIcon className="h-3.5 w-3.5" />
                 </button>

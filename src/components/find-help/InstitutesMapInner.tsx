@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import L from "leaflet";
 import { CircleMarker, MapContainer, Marker, Popup, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -21,27 +21,85 @@ type Props = {
 
 const iconCache = new Map<string, L.DivIcon>();
 
+// Places are sapphire; a place with an emergency department keeps the ruby, which this site
+// keeps for emergencies.
+const PLACE_FILL = "#1d3557";
+const EMERGENCY_FILL = "#c62f3c";
+
 function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function pinIcon(selected: boolean, emergency: boolean) {
+// The pin glyph: 28 x 36, its tip on the place.
+const PIN_W = 28;
+const PIN_H = 36;
+
+/**
+ * At rest a place is a 10px dot with a white ring and no shadow, so 80 places in one city read
+ * as a quiet scatter. The pin glyph shows only for the place being hovered, keyboard-focused or
+ * chosen. Hover and focus are pure CSS (.fhs-place in globals.css), so the element under the
+ * pointer is never rebuilt mid-click; only choosing a place swaps the icon. The dot keeps a 24px
+ * tap square around it.
+ */
+function placeIcon(selected: boolean, emergency: boolean) {
   const key = `${selected}-${emergency}`;
   const cached = iconCache.get(key);
   if (cached) return cached;
-  const fill = selected ? "#ac2c39" : emergency ? "#cc3846" : "#e0606c";
-  const size = selected ? 40 : 30;
-  const height = Math.round(size * 1.3);
+  const fill = emergency ? EMERGENCY_FILL : PLACE_FILL;
   const icon = L.divIcon({
-    className: "",
-    html: `<svg width="${size}" height="${height}" viewBox="4 1.6 16 20.8" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));"><circle cx="12" cy="10" r="4.5" fill="#ffffff"/><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="${fill}"/></svg>`,
-    iconSize: [size, height],
-    iconAnchor: [size / 2, height],
-    popupAnchor: [0, -height + 4],
+    className: selected ? "fhs-place is-selected" : "fhs-place",
+    html:
+      `<span class="fhs-place-hit"></span>` +
+      `<span class="fhs-place-dot" style="background:${fill}"></span>` +
+      `<svg class="fhs-place-pin" width="${PIN_W}" height="${PIN_H}" viewBox="4 1.6 16 20.8" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="10" r="4.5" fill="#ffffff"/><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="${fill}"/></svg>`,
+    iconSize: [PIN_W, PIN_H + 12],
+    iconAnchor: [PIN_W / 2, PIN_H],
+    popupAnchor: [0, -PIN_H + 4],
   });
   iconCache.set(key, icon);
   return icon;
 }
+
+type PlaceMarkerProps = {
+  institute: MedicalInstitute;
+  selected: boolean;
+  categoryLabel: string;
+  onSelect: (id: string) => void;
+};
+
+const PlaceMarker = memo(function PlaceMarker({ institute, selected, categoryLabel, onSelect }: PlaceMarkerProps) {
+  const { id } = institute;
+  const eventHandlers = useMemo<L.LeafletEventHandlerFnMap>(() => ({ click: () => onSelect(id) }), [id, onSelect]);
+  const location = [institute.address, institute.city].filter(Boolean).join(", ");
+
+  return (
+    <Marker
+      position={[institute.lat, institute.lng]}
+      icon={placeIcon(selected, institute.emergency)}
+      title={institute.name}
+      zIndexOffset={selected ? 1000 : 0}
+      eventHandlers={eventHandlers}
+    >
+      <Popup>
+        <span className="font-semibold">{institute.name}</span>
+        <br />
+        {categoryLabel}
+        {location ? (
+          <>
+            <br />
+            {location}
+          </>
+        ) : null}
+        {institute.phone ? (
+          <>
+            <br />
+            <a href={`tel:${institute.phone.replace(/[^\d+]/g, "")}`}>{institute.phone}</a>
+          </>
+        ) : null}
+      </Popup>
+    </Marker>
+  );
+});
 
 function MapController({
   institutes,
@@ -86,12 +144,26 @@ function SearchAreaButton({ label, onSearch }: { label: string; onSearch: (cente
   useEffect(() => {
     const container = map.getContainer();
     const markMoved = () => setMoved(true);
-    // Wheel / pinch zooms are user initiated, unlike fitBounds/flyTo.
+    // Wheel and pinch zooms are the reader's own, unlike fitBounds/flyTo. A plain tap on a
+    // place is not a move, so a touch counts only once two fingers or a 10px drag are involved.
+    let start: { x: number; y: number } | null = null;
+    const onTouchStart = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      start = touch ? { x: touch.clientX, y: touch.clientY } : null;
+      if (event.touches.length > 1) markMoved();
+    };
+    const onTouchMove = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      if (event.touches.length > 1) markMoved();
+      else if (start && touch && Math.hypot(touch.clientX - start.x, touch.clientY - start.y) > 10) markMoved();
+    };
     container.addEventListener("wheel", markMoved, { passive: true });
-    container.addEventListener("touchend", markMoved, { passive: true });
+    container.addEventListener("touchstart", onTouchStart, { passive: true });
+    container.addEventListener("touchmove", onTouchMove, { passive: true });
     return () => {
       container.removeEventListener("wheel", markMoved);
-      container.removeEventListener("touchend", markMoved);
+      container.removeEventListener("touchstart", onTouchStart);
+      container.removeEventListener("touchmove", onTouchMove);
     };
   }, [map]);
 
@@ -106,7 +178,7 @@ function SearchAreaButton({ label, onSearch }: { label: string; onSearch: (cente
           setMoved(false);
           onSearch({ lat: center.lat, lng: center.lng });
         }}
-        className="pointer-events-auto min-h-10 rounded-lg bg-card px-4 text-sm font-semibold text-primary shadow-md ring-1 ring-black/5 transition-colors duration-[var(--dur-fast)] hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="pointer-events-auto min-h-10 rounded-lg bg-card px-4 text-sm font-semibold text-sapphire shadow-md ring-1 ring-black/5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {label}
       </button>
@@ -131,18 +203,19 @@ export default function InstitutesMapInner({
       : [44.4268, 26.1025];
 
   return (
-    <div className="relative isolate z-0 h-full w-full">
+    <div className="fhs-map relative isolate z-0 h-full w-full">
       <MapContainer
         center={center}
         zoom={13}
         scrollWheelZoom={false}
+        attributionControl={false}
         zoomAnimation={!prefersReducedMotion()}
         markerZoomAnimation={!prefersReducedMotion()}
         fadeAnimation={!prefersReducedMotion()}
         className="isolate z-0 h-full w-full"
       >
+        {/* Credited under the map, in the page language (FindHelpExplorer). */}
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxZoom={19}
         />
@@ -160,31 +233,13 @@ export default function InstitutesMapInner({
           </CircleMarker>
         ) : null}
         {institutes.map((institute) => (
-          <Marker
+          <PlaceMarker
             key={institute.id}
-            position={[institute.lat, institute.lng]}
-            icon={pinIcon(institute.id === selectedId, institute.emergency)}
-            zIndexOffset={institute.id === selectedId ? 1000 : 0}
-            eventHandlers={{ click: () => onSelect(institute.id) }}
-          >
-            <Popup>
-              <span className="font-semibold">{institute.name}</span>
-              <br />
-              {categoryLabels ? categoryLabels[institute.category] : institute.category}
-              {institute.address || institute.city ? (
-                <>
-                  <br />
-                  {[institute.address, institute.city].filter(Boolean).join(", ")}
-                </>
-              ) : null}
-              {institute.phone ? (
-                <>
-                  <br />
-                  <a href={`tel:${institute.phone.replace(/[^\d+]/g, "")}`}>{institute.phone}</a>
-                </>
-              ) : null}
-            </Popup>
-          </Marker>
+            institute={institute}
+            selected={institute.id === selectedId}
+            categoryLabel={categoryLabels ? categoryLabels[institute.category] : institute.category}
+            onSelect={onSelect}
+          />
         ))}
       </MapContainer>
     </div>

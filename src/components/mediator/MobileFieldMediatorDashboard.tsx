@@ -25,7 +25,6 @@ function useSafeLanguage() {
 
 const dashboardCopy = {
   ro: {
-    eyebrow: "Lucru pe teren",
     morning: "Bună dimineața",
     afternoon: "Bună ziua",
     evening: "Bună seara",
@@ -51,7 +50,6 @@ const dashboardCopy = {
     casesLink: "Vezi cazurile",
   },
   en: {
-    eyebrow: "Field work",
     morning: "Good morning",
     afternoon: "Good afternoon",
     evening: "Good evening",
@@ -77,7 +75,6 @@ const dashboardCopy = {
     casesLink: "View cases",
   },
   sq: {
-    eyebrow: "Punë në terren",
     morning: "Mirëmëngjes",
     afternoon: "Mirëdita",
     evening: "Mirëmbrëma",
@@ -103,7 +100,6 @@ const dashboardCopy = {
     casesLink: "Shiko rastet",
   },
   it: {
-    eyebrow: "Lavoro sul campo",
     morning: "Buongiorno",
     afternoon: "Buon pomeriggio",
     evening: "Buonasera",
@@ -159,13 +155,10 @@ export function MobileFieldMediatorDashboard({
   return (
     <div className="min-h-screen bg-background dark:bg-obsidian-navy pb-24">
       {/* Sticky Mobile/Tablet Header */}
-      <header className="sticky top-0 z-30 border-b border-border bg-card/95 px-4 py-3 backdrop-blur-md shadow-xs">
+      <header className="sticky top-0 z-30 border-b border-border bg-card px-4 py-3">
         <div className="mx-auto max-w-5xl flex items-center justify-between gap-3">
-          <div>
-            <span className="text-[11px] font-semibold text-sapphire dark:text-sapphire-border">
-              {copy.eyebrow}
-            </span>
-            <h1 className="text-sm sm:text-base font-bold text-foreground truncate">
+          <div className="min-w-0">
+            <h1 className="truncate text-sm font-semibold text-foreground sm:text-base">
               {getGreeting()}, {mediatorName} · {communityName}, {county}
             </h1>
           </div>
@@ -185,7 +178,7 @@ export function MobileFieldMediatorDashboard({
 
       <main className="mx-auto max-w-5xl px-4 sm:px-6 py-6 space-y-6">
         {/* 3 Prominent Floating Action Tiles (min 100px height, 48px envelopes) */}
-        <section aria-label={copy.quickActions}className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <section aria-label={copy.quickActions} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Tile 1: Intake */}
           <button
             type="button"
@@ -193,13 +186,13 @@ export function MobileFieldMediatorDashboard({
               setSelectedVisitForTool(null);
               setActiveModal("intake");
             }}
-            className="group flex min-h-[105px] flex-col justify-between rounded-lg border-2 border-sapphire/20 bg-card p-4 text-left shadow-xs hover:border-sapphire active:scale-[0.99] transition-all"
+            className="flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           >
             <div className="flex items-center justify-between">
               <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sapphire/10 text-sapphire">
                 <UsersIcon className="h-5 w-5" />
               </span>
-              <span className="text-xs font-bold text-primary group-hover:translate-x-0.5 transition-transform">
+              <span className="text-xs font-semibold text-sapphire">
                 {copy.intakeBadge}
               </span>
             </div>
@@ -220,13 +213,13 @@ export function MobileFieldMediatorDashboard({
               setSelectedVisitForTool(null);
               setActiveModal("handover");
             }}
-            className="group flex min-h-[105px] flex-col justify-between rounded-lg border-2 border-sapphire/20 bg-card p-4 text-left shadow-xs hover:border-sapphire active:scale-[0.99] transition-all"
+            className="flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           >
             <div className="flex items-center justify-between">
               <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire">
                 <VideoIcon className="h-5 w-5" />
               </span>
-              <span className="text-xs font-bold text-sapphire group-hover:translate-x-0.5 transition-transform">
+              <span className="text-xs font-semibold text-sapphire">
                 {copy.videoBadge}
               </span>
             </div>
@@ -247,13 +240,13 @@ export function MobileFieldMediatorDashboard({
               setSelectedVisitForTool(null);
               setActiveModal("telemetry");
             }}
-            className="group flex min-h-[105px] flex-col justify-between rounded-lg border-2 border-sapphire/20 bg-card p-4 text-left shadow-xs hover:border-sapphire active:scale-[0.99] transition-all"
+            className="flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           >
             <div className="flex items-center justify-between">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-care-soft/40 text-amber-care">
-                <ShieldIcon className="h-5 w-5" />
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire">
+                <ShieldIcon className="h-5 w-5" aria-hidden="true" />
               </span>
-              <span className="text-xs font-bold text-amber-care group-hover:translate-x-0.5 transition-transform">
+              <span className="text-xs font-semibold text-muted-foreground">
                 {copy.kitBadge}
               </span>
             </div>
@@ -270,7 +263,7 @@ export function MobileFieldMediatorDashboard({
 
         {/* Modal/Tool Overlay when triggered */}
         {activeModal && (
-          <div className="rounded-xl border-2 border-sapphire bg-card p-4 sm:p-6 shadow-xl relative animate-in fade-in duration-200">
+          <div className="fhs-enter relative rounded-xl border border-border bg-card p-4 shadow-sm sm:p-6">
             <button
               type="button"
               onClick={() => setActiveModal(null)}
@@ -337,7 +330,7 @@ export function MobileFieldMediatorDashboard({
             href="/panel/mediator/cazuri"
             className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-sapphire px-4 py-2 text-xs font-semibold text-white hover:bg-sapphire-light shrink-0"
           >
-            {copy.casesLink} &rarr;
+            {copy.casesLink}
           </Link>
         </div>
       </main>

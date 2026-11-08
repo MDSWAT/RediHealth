@@ -28,10 +28,8 @@ function useSafeLanguage() {
 }
 
 /**
- * EmergencyDialerGate (Change 77):
- * Zero-automated-dialing telephony disclaimer and confirmation gate.
- * Complies with strict medical negligence laws:
- * Explains clearly that the application does not auto-dial and requires manual user confirmation.
+ * The site never dials by itself. On a phone this opens the keypad with 112 filled in, after
+ * saying that the reader still presses call; on a computer it shows the number to dial.
  */
 export function EmergencyDialerGate({
   open,
@@ -102,7 +100,7 @@ export function EmergencyDialerGate({
         <div
           ref={panelRef}
           tabIndex={-1}
-          className="fhs-enter relative w-full max-w-lg rounded-t-2xl bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl focus:outline-none sm:rounded-2xl sm:p-6"
+          className="fhs-enter relative w-full max-w-lg rounded-t-xl bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl focus:outline-none sm:rounded-xl sm:p-6"
         >
           <div className="flex items-start justify-between gap-3">
             <h2 id="dialer-gate-title" className="pt-1 text-lg font-semibold tracking-tight text-foreground">

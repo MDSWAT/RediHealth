@@ -25,7 +25,8 @@
   --color-primary-soft: #fde8ea;
   --color-primary-ring: rgba(198, 47, 60, 0.25);
 
-  --color-ring: #c62f3c;
+  /* Focus ring: sapphire, so a focused field never looks like it is in an error state (red is for 112 and errors). */
+  --color-ring: #1d3557;
   --color-ruby-300: #f3a0a7;
   --color-clinical-ruby: #c62f3c;
   --color-clinical-ruby-hover: #a8242f;
@@ -70,8 +71,9 @@
 }
 
 :root {
-  /* Height of the pinned site chrome (112 bar + header), published by those components. */
-  --chrome-h: calc(var(--emergency-bar-h, 0px) + var(--site-header-h, 0px));
+  /* Height of the pinned site chrome. Only the header pins (sticky at top 0; the 112 bar
+     scrolls away), so this is the header height it publishes, or 0 when it is not pinned. */
+  --chrome-h: var(--site-header-h, 0px);
 }
 
 html {
@@ -157,24 +159,21 @@ body {
   animation: hc-sheet-in var(--dur-base) var(--ease-out-calm) both;
 }
 
+/* The 3D body fades in once its files are ready, instead of popping in behind the loading bar. */
+.hc-reveal {
+  animation: hc-fade-in var(--dur-slow) var(--ease-out-calm) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hc-step,
   .hc-backdrop,
-  .hc-sheet {
+  .hc-sheet,
+  .hc-reveal {
     animation: none;
   }
 }
 
 
-
-.hover-lift {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px -12px rgb(0 0 0 / 0.18);
-}
 
 
 
@@ -357,7 +356,8 @@ body:has([data-sticky-actions]) .report-issue-trigger {
   .hero-sheet { animation: hero-sheet-up var(--dur-slow) var(--ease-out-calm); }
   .hero-sheet-backdrop { animation: hero-sheet-fade var(--dur-base) var(--ease-out-calm); }
   .hero-sheet .hero-panel { border-radius: 0; box-shadow: none; background: var(--color-paper, #fff); }
-  .hero-sheet .hero-panel > header { height: 3rem; }
+  /* The panel header is the sheet's only header row (label, voice, close) and stays on top while the sheet scrolls. */
+  .hero-sheet .hero-panel > header { position: sticky; top: 0; z-index: 10; height: 3.5rem; padding-top: 0.25rem; background: var(--color-paper, #fff); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-sheet, .hero-sheet-backdrop { animation: none; }
@@ -383,7 +383,7 @@ body:has([data-sticky-actions]) .report-issue-trigger {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: none; }
 }
-.assistant-step-in { animation: assistant-step-in var(--dur-slow) var(--ease-out-calm) both; }
+.assistant-step-in { animation: assistant-step-in var(--dur-slow) var(--ease-out-calm) backwards; }
 @keyframes assistant-reading {
   from { transform: translateX(-100%); }
   to { transform: translateX(250%); }
@@ -413,9 +413,29 @@ body:has([data-sticky-actions]) .report-issue-trigger {
 @media (prefers-reduced-motion: reduce) {
   .fhs-enter, .fhs-fade, .fhs-route { animation: none; }
 }
+/* Find-help map places (InstitutesMapInner.tsx). The icon box is 28 x 48 with the place at
+   (14, 36): a 10px dot at rest; the pin glyph on hover, keyboard focus or when chosen.
+   Only the 24px square round the dot (and the pin, once shown) takes the pointer. */
+.leaflet-pane .leaflet-marker-icon.fhs-place { pointer-events: none; outline: none; }
+.fhs-place-hit { position: absolute; left: 2px; top: 24px; width: 24px; height: 24px; border-radius: 9999px; pointer-events: auto; }
+.fhs-place-dot { position: absolute; left: 9px; top: 31px; width: 10px; height: 10px; border-radius: 9999px; box-shadow: 0 0 0 1.5px #ffffff; pointer-events: none; transition: opacity var(--dur-fast) var(--ease-out-calm); }
+.fhs-place-pin { position: absolute; left: 0; top: 0; display: block; opacity: 0; pointer-events: none; filter: drop-shadow(0 1px 1.5px rgba(15, 23, 42, 0.24)); transition: opacity var(--dur-fast) var(--ease-out-calm); }
+.fhs-place:hover, .fhs-place:focus-visible { z-index: 10000 !important; }
+.fhs-place:hover .fhs-place-pin, .fhs-place:focus-visible .fhs-place-pin, .fhs-place.is-selected .fhs-place-pin { opacity: 1; pointer-events: auto; }
+.fhs-place:hover .fhs-place-dot, .fhs-place:focus-visible .fhs-place-dot, .fhs-place.is-selected .fhs-place-dot { opacity: 0; }
+.fhs-place:focus-visible .fhs-place-hit { box-shadow: 0 0 0 2px var(--color-sapphire); }
+/* The map's popup and credit use the site's type and link colour, not Leaflet's defaults. */
+.fhs-map .leaflet-container { font-family: inherit; }
+.fhs-map .leaflet-popup-content { font-size: 0.875rem; line-height: 1.45; color: var(--color-foreground); }
+.fhs-map .leaflet-container a { color: var(--color-sapphire); }
+.fhs-map .leaflet-popup-content-wrapper { border-radius: 0.75rem; }
+@media (prefers-reduced-motion: reduce) {
+  .fhs-place-dot, .fhs-place-pin { transition: none; }
+}
 
-/* Heart-health diagram (HeartDiagram.tsx): one beat per --hh-beat (64 bpm), ventricles
-   shorten towards the base, atria contract just before them, a monitor gap sweeps the ECG.
+/* Heart-health diagram (HeartDiagram.tsx): one beat per --hh-beat (64 bpm), the heart
+   (atria and ventricles on one layer) shortens towards the base, the atria add a small
+   kick just before, a monitor gap sweeps the ECG.
    Transform and opacity only; no animation off-screen or under reduced motion. */
 .hh-diagram {
   --hh-ink: #5b2b36;
@@ -431,7 +451,7 @@ body:has([data-sticky-actions]) .report-issue-trigger {
 }
 .hh-diagram .hh-part { transition: opacity var(--dur-base) var(--ease-out-calm); }
 .hh-diagram .hh-part[data-dim="true"] { opacity: 0.32; }
-.hh-diagram .hh-ventricles { transform-box: fill-box; transform-origin: 41% 6%; }
+.hh-diagram .hh-heart { transform-box: fill-box; transform-origin: 121.6px 91px; }
 .hh-diagram .hh-atria { transform-box: fill-box; transform-origin: 80% 15%; }
 .hh-diagram .hh-atria-left { transform-box: fill-box; transform-origin: 0% 40%; }
 @keyframes hh-ventricle-beat {
@@ -449,7 +469,7 @@ body:has([data-sticky-actions]) .report-issue-trigger {
   from { transform: translateX(calc(var(--hh-ecg-width) * -1)); }
   to { transform: translateX(0); }
 }
-.hh-diagram[data-playing="true"] .hh-ventricles {
+.hh-diagram[data-playing="true"] .hh-heart {
   animation: hh-ventricle-beat var(--hh-beat) linear infinite;
   animation-delay: calc(var(--hh-beat) * var(--hh-phase));
 }
@@ -461,9 +481,15 @@ body:has([data-sticky-actions]) .report-issue-trigger {
 .hh-diagram[data-playing="true"] .hh-sweep {
   animation: hh-ecg-sweep calc(var(--hh-beat) * 2) linear infinite;
 }
+/* Topic-page dialogs, drawers and the audio player: the scrim fades, the panel settles 8px. */
+@keyframes hh-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hh-rise-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.hh-scrim, .hh-fade { animation: hh-fade-in var(--dur-fast) var(--ease-out-calm) both; }
+.hh-dialog { animation: hh-rise-in var(--dur-base) var(--ease-out-calm) both; }
 @media (prefers-reduced-motion: reduce) {
-  .hh-diagram .hh-ventricles, .hh-diagram .hh-atria, .hh-diagram .hh-atria-left, .hh-diagram .hh-sweep { animation: none !important; }
+  .hh-diagram .hh-heart, .hh-diagram .hh-atria, .hh-diagram .hh-atria-left, .hh-diagram .hh-sweep { animation: none !important; }
   .hh-diagram .hh-part { transition: none; }
+  .hh-scrim, .hh-fade, .hh-dialog { animation: none; }
 }
 
 /* Isolate Leaflet map panes (z-index 200–1000) inside their own stacking context so they never bleed over site chrome or the mobile menu. */

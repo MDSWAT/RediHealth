@@ -105,7 +105,6 @@ export interface AssistantCopy {
     body: string;
     plainBody: string;
     safetyNet: string;
-    cta: string;
     summary: (category: string) => string;
     emergencyHeading: string;
     emergencyBody: string;
@@ -148,22 +147,13 @@ export interface AssistantCopy {
     heading: string;
     lead: string;
     assistantHeading: string;
-    medicinesHeading: string;
-    durationHeading: string;
-    durationNote: string;
-    scheduleHeading: string;
-    warningsHeading: string;
-    speech: (summary: string, warnings: string) => string;
-    timeline: {
-      morning: string;
-      lunch: string;
-      evening: string;
-      bedtime: string;
-      print: string;
-      printAria: string;
-      count: (n: number) => string;
-      none: string;
-    };
+    transcriptHeading: string;
+    transcriptNote: string;
+    rulesHeading: string;
+    emergency: string;
+    print: string;
+    printAria: string;
+    speech: (summary: string, rules: string) => string;
   };
 }
 
@@ -182,7 +172,7 @@ const ro: AssistantCopy = {
       learn: {
         title: "Vreau să aflu ceva",
         plainTitle: "Vreau sfaturi simple despre o boală",
-        subtitle: "Răspunsuri simple, verificate de medici",
+        subtitle: "Răspunsuri simple despre vaccinuri, tensiune, febră și antibiotice",
       },
       risk: {
         title: "Vreau să-mi verific riscul",
@@ -211,7 +201,7 @@ const ro: AssistantCopy = {
     lead: "Explicații simple, cu sursa fiecărei informații.",
     mythLabel: "Mit răspândit",
     verdictFalse: "Fals",
-    doctorLabel: "Ce spune medicul",
+    doctorLabel: "Ce este adevărat",
     sourceLabel: "Sursă",
     readGuide: "Citește ghidul complet",
     browseGuides: "Vezi toate ghidurile",
@@ -314,8 +304,8 @@ const ro: AssistantCopy = {
     ],
     plainSigns: [
       "Te doare tare în piept, ca o apăsare mare",
-      "Nu poți trage aer în piept",
-      "Ți-a amorțit brusc fața, o mână sau un picior",
+      "Respiri foarte greu",
+      "Ți-a amorțit sau a slăbit brusc fața, o mână sau un picior",
       "Nu mai poți vorbi limpede",
       "Sângerezi foarte tare",
     ],
@@ -347,9 +337,8 @@ const ro: AssistantCopy = {
     selectedLabel: "Ai ales",
     body: "Un medic te poate consulta repede. Îți spune ce tratament să iei și verifică să nu fie ceva grav.",
     plainBody:
-      "Nu trebuie să suferi acasă sau să iei pastile la întâmplare. Poți vorbi cu un medic prin apel video sau la telefon.",
+      "Nu trebuie să suferi acasă sau să iei pastile la întâmplare. Poți vorbi gratuit cu un medic la telefon.",
     safetyNet: "Dacă te simți mult mai rău sau apare unul dintre semnele de alarmă, sună la 112.",
-    cta: "Vorbește cu un medic online",
     summary: (category) => `Simptome ușoare: ${category}`,
     emergencyHeading: "Ai nevoie de ajutor medical acum",
     emergencyBody:
@@ -458,25 +447,16 @@ const ro: AssistantCopy = {
     summary: (scenario) => `Orientare în sistemul medical: ${scenario}`,
   },
   result: {
-    heading: "Cum să iei tratamentul",
-    lead: "Așa eviți să greșești doza. Verifică mereu cu farmacistul sau cu medicul.",
-    assistantHeading: "Ce a citit asistentul",
-    medicinesHeading: "Medicamente găsite pe rețetă",
-    durationHeading: "Cât durează tratamentul",
-    durationNote: "Nu opri tratamentul mai devreme, chiar dacă simptomele dispar, ca boala să nu revină.",
-    scheduleHeading: "Când le iei în timpul zilei",
-    warningsHeading: "Ce trebuie să eviți",
-    speech: (summary, warnings) => `Rezumatul rețetei: ${summary} Recomandări importante: ${warnings}`,
-    timeline: {
-      morning: "Dimineața",
-      lunch: "La prânz",
-      evening: "Seara",
-      bedtime: "La culcare",
-      print: "Tipărește orarul",
-      printAria: "Tipărește orarul medicamentelor",
-      count: (n) => (n === 1 ? "1 medicament" : n < 20 ? `${n} medicamente` : `${n} de medicamente`),
-      none: "Nimic la această oră",
-    },
+    heading: "Rețeta ta, pe înțeles",
+    lead: "Asistentul poate greși la citire. Verifică mereu cu farmacistul sau cu medicul înainte să iei medicamentele.",
+    assistantHeading: "Explicația asistentului",
+    transcriptHeading: "Textul citit de pe rețetă",
+    transcriptNote: "Copiat cum apare pe rețetă. Unde scrie [unclear], textul nu s-a putut citi.",
+    rulesHeading: "De reținut",
+    emergency: "Asistentul a observat semne care pot fi urgente. Dacă te simți rău acum, sună la 112.",
+    print: "Tipărește",
+    printAria: "Tipărește explicația rețetei",
+    speech: (summary, rules) => `${summary} De reținut: ${rules}`,
   },
 };
 
@@ -495,7 +475,7 @@ const en: AssistantCopy = {
       learn: {
         title: "I want to learn about something",
         plainTitle: "I want simple advice about an illness",
-        subtitle: "Simple answers checked by doctors",
+        subtitle: "Plain answers about vaccines, blood pressure, fever and antibiotics",
       },
       risk: {
         title: "I want to check my risk",
@@ -524,7 +504,7 @@ const en: AssistantCopy = {
     lead: "Plain-language explanations, with the source of each piece of information.",
     mythLabel: "Common myth",
     verdictFalse: "False",
-    doctorLabel: "What doctors say",
+    doctorLabel: "What is true",
     sourceLabel: "Source",
     readGuide: "Read the full guide",
     browseGuides: "See all health guides",
@@ -627,8 +607,8 @@ const en: AssistantCopy = {
     ],
     plainSigns: [
       "Your chest hurts badly, like a heavy weight pressing on it",
-      "You can't get air into your chest",
-      "Your face, an arm or a leg has suddenly gone numb",
+      "You find it very hard to breathe",
+      "Your face, an arm or a leg has suddenly gone numb or weak",
       "You can't speak clearly any more",
       "You are bleeding a lot",
     ],
@@ -659,9 +639,8 @@ const en: AssistantCopy = {
     },
     selectedLabel: "You chose",
     body: "A doctor can see you quickly. They tell you what treatment to take and check it is nothing serious.",
-    plainBody: "You don't have to suffer at home or take pills at random. You can talk to a doctor by video call or phone.",
+    plainBody: "You don't have to suffer at home or take pills at random. You can talk to a doctor by phone, for free.",
     safetyNet: "If you feel much worse or any of the warning signs appear, call 112.",
-    cta: "Talk to a doctor online",
     summary: (category) => `Mild symptoms: ${category}`,
     emergencyHeading: "You need medical help now",
     emergencyBody:
@@ -770,25 +749,16 @@ const en: AssistantCopy = {
     summary: (scenario) => `Finding my way in the health system: ${scenario}`,
   },
   result: {
-    heading: "How to take your treatment",
-    lead: "This helps you avoid dosing mistakes. Always check with your pharmacist or doctor.",
-    assistantHeading: "What the assistant read",
-    medicinesHeading: "Medicines found on the prescription",
-    durationHeading: "How long the treatment lasts",
-    durationNote: "Don't stop early, even if the symptoms go away, so the illness does not come back.",
-    scheduleHeading: "When to take them during the day",
-    warningsHeading: "What to avoid",
-    speech: (summary, warnings) => `Prescription summary: ${summary} Important advice: ${warnings}`,
-    timeline: {
-      morning: "Morning",
-      lunch: "Midday",
-      evening: "Evening",
-      bedtime: "Bedtime",
-      print: "Print the schedule",
-      printAria: "Print the medication schedule",
-      count: (n) => (n === 1 ? "1 medicine" : `${n} medicines`),
-      none: "Nothing at this time",
-    },
+    heading: "Your prescription in plain words",
+    lead: "The assistant can misread a prescription. Always check with your pharmacist or doctor before you take the medicines.",
+    assistantHeading: "The assistant's explanation",
+    transcriptHeading: "Text read from the prescription",
+    transcriptNote: "Copied as written. Where it says [unclear], the text could not be read.",
+    rulesHeading: "Keep in mind",
+    emergency: "The assistant noticed signs that may be urgent. If you feel unwell now, call 112.",
+    print: "Print",
+    printAria: "Print the prescription explanation",
+    speech: (summary, rules) => `${summary} Keep in mind: ${rules}`,
   },
 };
 
@@ -807,7 +777,7 @@ const sq: AssistantCopy = {
       learn: {
         title: "Dua të mësoj diçka",
         plainTitle: "Dua këshilla të thjeshta për një sëmundje",
-        subtitle: "Përgjigje të thjeshta, të kontrolluara nga mjekët",
+        subtitle: "Përgjigje të thjeshta për vaksinat, presionin, temperaturën dhe antibiotikët",
       },
       risk: {
         title: "Dua të kontrolloj rrezikun tim",
@@ -836,7 +806,7 @@ const sq: AssistantCopy = {
     lead: "Shpjegime të thjeshta, me burimin e çdo informacioni.",
     mythLabel: "Mit i përhapur",
     verdictFalse: "E rreme",
-    doctorLabel: "Çfarë thotë mjeku",
+    doctorLabel: "Çfarë është e vërtetë",
     sourceLabel: "Burimi",
     readGuide: "Lexo udhëzuesin e plotë",
     browseGuides: "Shiko të gjithë udhëzuesit",
@@ -868,7 +838,7 @@ const sq: AssistantCopy = {
         doctor:
           "Alkooli dhe uthulla thithen nga lëkura e hollë e fëmijës dhe mund të shkaktojnë helmim të rëndë. Temperatura ulet me ilaçe kundër temperaturës në dozën sipas peshës dhe me shumë lëngje.",
         plainDoctor:
-          "Mos i vër kurrë alkool ose uthull në lëkurë fëmijës, sepse helmohet përmes lëkurës. Jepi ujë ose çaj dhe shurupin për temperaturën që rekomandon mjeku.",
+          "Mos i vër kurrë alkool ose uthull në lëkurën e fëmijës, sepse helmohet përmes lëkurës. Jepi ujë ose çaj dhe shurupin për temperaturën që rekomandon mjeku.",
         source: "Shoqata Rumune e Pediatrisë",
       },
       antibiotics: {
@@ -923,7 +893,7 @@ const sq: AssistantCopy = {
     nextSteps: [
       "Mat presionin e gjakut në farmaci ose te mjeku i familjes.",
       "Përdor më pak kripë në ushqim dhe pi të paktën 6 gota ujë në ditë.",
-      "Lër falas një takim online për ta parë rezultatin me një mjek.",
+      "Rezervo falas një takim online për ta diskutuar rezultatin me një mjek.",
     ],
     summary: (level, count) => `Kontrolli i rrezikut: ${level} (${count}/3 faktorë të konfirmuar)`,
   },
@@ -939,8 +909,8 @@ const sq: AssistantCopy = {
     ],
     plainSigns: [
       "Të dhemb fort gjoksi, si një peshë e rëndë që shtyp",
-      "Nuk mund të marrësh frymë",
-      "Të është mpirë papritur fytyra, një krah ose një këmbë",
+      "Ke shumë vështirësi të marrësh frymë",
+      "Të është mpirë ose dobësuar papritur fytyra, një krah ose një këmbë",
       "Nuk mund të flasësh më qartë",
       "Po humbet shumë gjak",
     ],
@@ -971,9 +941,8 @@ const sq: AssistantCopy = {
     },
     selectedLabel: "Zgjodhe",
     body: "Një mjek mund të të shohë shpejt. Të thotë çfarë trajtimi të marrësh dhe kontrollon që të mos jetë diçka e rëndë.",
-    plainBody: "Nuk ke pse të vuash në shtëpi ose të marrësh ilaçe kuturu. Mund të flasësh me një mjek me video ose në telefon.",
+    plainBody: "Nuk ke pse të vuash në shtëpi ose të marrësh ilaçe kuturu. Mund të flasësh falas me një mjek në telefon.",
     safetyNet: "Nëse ndihesh shumë më keq ose shfaqet ndonjë nga shenjat e rrezikut, telefono 112.",
-    cta: "Fol me një mjek online",
     summary: (category) => `Simptoma të lehta: ${category}`,
     emergencyHeading: "Të duhet ndihmë mjekësore tani",
     emergencyBody:
@@ -1019,7 +988,7 @@ const sq: AssistantCopy = {
   },
   nav: {
     heading: "Zgjidh situatën ku ndodhesh",
-    lead: "Shiko hapat dhe dokumentet që të duhen. Nëse ngec, të ndihmon një ndërmjetës.",
+    lead: "Shiko hapat dhe dokumentet që të duhen. Nëse ngec, të ndihmon një mediator shëndetësor.",
     planHeading: "Çfarë duhet të bësh",
     scenarios: {
       family_doctor: {
@@ -1078,29 +1047,20 @@ const sq: AssistantCopy = {
       },
     },
     mediatorTitle: "Ke vështirësi në sportel ose të refuzojnë?",
-    mediatorBody: "Një ndërmjetës shëndetësor mund të të shoqërojë dhe të të ndihmojë të mbrosh të drejtat e tua.",
+    mediatorBody: "Një mediator shëndetësor mund të të shoqërojë dhe të të ndihmojë të mbrosh të drejtat e tua.",
     summary: (scenario) => `Orientim në sistemin shëndetësor: ${scenario}`,
   },
   result: {
-    heading: "Si ta marrësh trajtimin",
-    lead: "Kështu shmang gabimet në doza. Kontrollo gjithmonë me farmacistin ose mjekun.",
-    assistantHeading: "Çfarë lexoi asistenti",
-    medicinesHeading: "Ilaçet e gjetura në recetë",
-    durationHeading: "Sa zgjat trajtimi",
-    durationNote: "Mos e ndërprit para kohe, edhe nëse simptomat zhduken, që sëmundja të mos rikthehet.",
-    scheduleHeading: "Kur t'i marrësh gjatë ditës",
-    warningsHeading: "Çfarë duhet të shmangësh",
-    speech: (summary, warnings) => `Përmbledhja e recetës: ${summary} Këshilla të rëndësishme: ${warnings}`,
-    timeline: {
-      morning: "Në mëngjes",
-      lunch: "Në drekë",
-      evening: "Në mbrëmje",
-      bedtime: "Para gjumit",
-      print: "Printo orarin",
-      printAria: "Printo orarin e ilaçeve",
-      count: (n) => (n === 1 ? "1 ilaç" : `${n} ilaçe`),
-      none: "Asgjë në këtë orë",
-    },
+    heading: "Receta jote me fjalë të thjeshta",
+    lead: "Asistenti mund të gabojë kur lexon. Kontrollo gjithmonë me farmacistin ose mjekun para se t'i marrësh ilaçet.",
+    assistantHeading: "Shpjegimi i asistentit",
+    transcriptHeading: "Teksti i lexuar nga receta",
+    transcriptNote: "Kopjuar siç është shkruar. Aty ku shkruhet [unclear], teksti nuk u lexua dot.",
+    rulesHeading: "Mbaj parasysh",
+    emergency: "Asistenti vuri re shenja që mund të jenë urgjente. Nëse ndihesh keq tani, telefono 112.",
+    print: "Printo",
+    printAria: "Printo shpjegimin e recetës",
+    speech: (summary, rules) => `${summary} Mbaj parasysh: ${rules}`,
   },
 };
 
@@ -1119,7 +1079,7 @@ const it: AssistantCopy = {
       learn: {
         title: "Voglio informarmi",
         plainTitle: "Voglio consigli semplici su una malattia",
-        subtitle: "Risposte semplici, verificate da medici",
+        subtitle: "Risposte semplici su vaccini, pressione, febbre e antibiotici",
       },
       risk: {
         title: "Voglio controllare il mio rischio",
@@ -1146,9 +1106,9 @@ const it: AssistantCopy = {
   learn: {
     heading: "Di cosa vuoi saperne di più?",
     lead: "Spiegazioni semplici, con la fonte di ogni informazione.",
-    mythLabel: "Falso mito diffuso",
+    mythLabel: "Mito diffuso",
     verdictFalse: "Falso",
-    doctorLabel: "Cosa dice il medico",
+    doctorLabel: "Come stanno le cose",
     sourceLabel: "Fonte",
     readGuide: "Leggi la guida completa",
     browseGuides: "Vedi tutte le guide",
@@ -1251,8 +1211,8 @@ const it: AssistantCopy = {
     ],
     plainSigns: [
       "Ti fa molto male il petto, come un peso che schiaccia",
-      "Non riesci a far entrare aria nel petto",
-      "Ti si sono intorpiditi all'improvviso il viso, un braccio o una gamba",
+      "Fai molta fatica a respirare",
+      "All'improvviso senti intorpiditi o deboli il viso, un braccio o una gamba",
       "Non riesci più a parlare chiaramente",
       "Stai perdendo molto sangue",
     ],
@@ -1283,9 +1243,8 @@ const it: AssistantCopy = {
     },
     selectedLabel: "Hai scelto",
     body: "Un medico può visitarti in fretta. Ti dice quale cura seguire e controlla che non sia niente di grave.",
-    plainBody: "Non devi soffrire a casa o prendere pastiglie a caso. Puoi parlare con un medico in videochiamata o al telefono.",
+    plainBody: "Non devi soffrire a casa o prendere pastiglie a caso. Puoi parlare gratis con un medico al telefono.",
     safetyNet: "Se ti senti molto peggio o compare uno dei segnali d'allarme, chiama il 112.",
-    cta: "Parla con un medico online",
     summary: (category) => `Sintomi lievi: ${category}`,
     emergencyHeading: "Ti serve subito un aiuto medico",
     emergencyBody:
@@ -1394,25 +1353,16 @@ const it: AssistantCopy = {
     summary: (scenario) => `Orientamento nel sistema sanitario: ${scenario}`,
   },
   result: {
-    heading: "Come prendere la terapia",
-    lead: "Così eviti errori nelle dosi. Verifica sempre con il farmacista o con il medico.",
-    assistantHeading: "Cosa ha letto l'assistente",
-    medicinesHeading: "Farmaci trovati sulla ricetta",
-    durationHeading: "Quanto dura la terapia",
-    durationNote: "Non interromperla prima del tempo, anche se i sintomi spariscono, perché la malattia non ritorni.",
-    scheduleHeading: "Quando prenderli durante la giornata",
-    warningsHeading: "Cosa evitare",
-    speech: (summary, warnings) => `Riepilogo della ricetta: ${summary} Consigli importanti: ${warnings}`,
-    timeline: {
-      morning: "Mattina",
-      lunch: "Pranzo",
-      evening: "Sera",
-      bedtime: "Prima di dormire",
-      print: "Stampa gli orari",
-      printAria: "Stampa gli orari dei farmaci",
-      count: (n) => (n === 1 ? "1 farmaco" : `${n} farmaci`),
-      none: "Niente a quest'ora",
-    },
+    heading: "La tua ricetta in parole semplici",
+    lead: "L'assistente può leggere male una ricetta. Verifica sempre con il farmacista o con il medico prima di prendere i farmaci.",
+    assistantHeading: "La spiegazione dell'assistente",
+    transcriptHeading: "Testo letto dalla ricetta",
+    transcriptNote: "Copiato così com'è scritto. Dove compare [unclear], il testo non era leggibile.",
+    rulesHeading: "Da ricordare",
+    emergency: "L'assistente ha notato segnali che potrebbero essere urgenti. Se ora ti senti male, chiama il 112.",
+    print: "Stampa",
+    printAria: "Stampa la spiegazione della ricetta",
+    speech: (summary, rules) => `${summary} Da ricordare: ${rules}`,
   },
 };
 
