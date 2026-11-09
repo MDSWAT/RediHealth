@@ -117,7 +117,22 @@ https://redihealth.org`;
       text: plainTextContent,
       html: signInHtml,
     });
-  } catch {
+  } catch (error) {
+    let providerStatus: number | undefined;
+    let transportCode: string | undefined;
+    if (error && typeof error === "object") {
+      if ("response" in error && error.response && typeof error.response === "object" && "status" in error.response) {
+        const status = error.response.status;
+        if (typeof status === "number" && Number.isInteger(status) && status >= 400 && status <= 599) {
+          providerStatus = status;
+        }
+      }
+      if ("code" in error && typeof error.code === "string" &&
+        ["ETIMEDOUT", "ECONNABORTED", "ECONNRESET", "ECONNREFUSED", "ENOTFOUND", "EAI_AGAIN", "ERR_NETWORK"].includes(error.code)) {
+        transportCode = error.code;
+      }
+    }
+    console.error("Sign-in email delivery failed.", { providerStatus, transportCode });
     return NextResponse.json(
       { error: "Could not send your sign-in code. Try again." },
       { status: 502 },

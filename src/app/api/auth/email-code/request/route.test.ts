@@ -40,6 +40,7 @@ describe("email code request route", () => {
 
   afterEach(() => {
     vi.unstubAllEnvs();
+    vi.restoreAllMocks();
   });
 
   it("returns 400 for an invalid JSON payload", async () => {
@@ -78,6 +79,55 @@ describe("email code request route", () => {
     expect(mocks.sendEmail).not.toHaveBeenCalled();
     expect(mocks.set).not.toHaveBeenCalled();
   });
+
+  it.each([401, 403, 422, 429, 500, 502])("logs provider status %i without exposing email request data", async (status) => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => {});
+    mocks.sendEmail.mockRejectedValue({
+      response: { status, data: { error: "sensitive provider response" } },
+      config: { headers: { Authorization: "secret-token" }, data: "private email and code" },
+    });
+
+    const response = await POST(request(JSON.stringify({ email: `failure-${status}@example.com` }), `198.51.100.${status}`));
+
+    expect(response.status).toBe(502);
+    expect(await response.json()).toEqual({ error: "Could not send your sign-in code. Try again." });
+    expect(log).toHaveBeenCalledExactlyOnceWith("Sign-in email delivery failed.", {
+      providerStatus: status,
+      transportCode: undefined,
+    });
+    expect(mocks.set).not.toHaveBeenCalled();
+  });
+
+  it.each(["ETIMEDOUT", "ECONNRESET", "ENOTFOUND"])("logs the known transport error %s", async (code) => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => {});
+    mocks.sendEmail.mockRejectedValue({ code });
+
+    const response = await POST(request(JSON.stringify({ email: `failure-${code}@example.com` }), `test-${code}`));
+
+    expect(response.status).toBe(502);
+    expect(log).toHaveBeenCalledExactlyOnceWith("Sign-in email delivery failed.", {
+      providerStatus: undefined,
+      transportCode: code,
+    });
+    expect(mocks.set).not.toHaveBeenCalled();
+  });
+
+  it.each([null, "private error text", { code: "private value", response: { status: "private value" } }])(
+    "does not log unrecognized errors or arbitrary fields",
+    async (error) => {
+      const log = vi.spyOn(console, "error").mockImplementation(() => {});
+      mocks.sendEmail.mockRejectedValue(error);
+
+      const response = await POST(request(JSON.stringify({ email: "opaque-failure@example.com" }), "198.51.100.60"));
+
+      expect(response.status).toBe(502);
+      expect(log).toHaveBeenCalledExactlyOnceWith("Sign-in email delivery failed.", {
+        providerStatus: undefined,
+        transportCode: undefined,
+      });
+      expect(mocks.set).not.toHaveBeenCalled();
+    },
+  );
 
   it("allows 10 requests per IP per minute and returns 429 when exceeded", async () => {
     let response = await POST(request("{", "198.51.100.40"));

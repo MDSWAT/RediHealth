@@ -259,6 +259,15 @@ or a failed login access check. Request and submit codes on the same host and
 protocol and use the latest code. These diagnostics do not log emails, codes,
 or cookie values.
 
+If requesting a sign-in code returns HTTP 502, check the Vercel runtime logs for
+`Sign-in email delivery failed.`. Its `providerStatus` records the upstream HTTP
+failure (for example 401/403 for credentials or permissions, 422 for validation,
+or 429 for throttling); `transportCode` records recognized network failures.
+The diagnostic deliberately omits raw exceptions, API payloads, recipient addresses,
+and verification codes. Missing fields mean the error did not contain a recognized
+HTTP status or transport code. Deploy the diagnostic change before reproducing.
+A successful send API response or a Sent-folder copy is not proof of inbox delivery.
+
 Note for phone transcription: live browser speech recognition often needs HTTPS on real mobile devices. Use `npm run tunnel` and open the HTTPS URL when testing transcription on phone.
 
 ## Countries and data isolation
