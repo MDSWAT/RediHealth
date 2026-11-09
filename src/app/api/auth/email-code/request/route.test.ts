@@ -79,11 +79,14 @@ describe("email code request route", () => {
     expect(mocks.set).not.toHaveBeenCalled();
   });
 
-  it("returns 429 when the per-IP request limit is exceeded", async () => {
+  it("allows 10 requests per IP per minute and returns 429 when exceeded", async () => {
     let response = await POST(request("{", "198.51.100.40"));
-    for (let i = 0; i < 8; i += 1) {
+    for (let i = 0; i < 9; i += 1) {
       response = await POST(request("{", "198.51.100.40"));
     }
+    expect(response.status).toBe(400);
+
+    response = await POST(request("{", "198.51.100.40"));
     expect(response.status).toBe(429);
   });
 });

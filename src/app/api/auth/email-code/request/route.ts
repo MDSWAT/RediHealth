@@ -20,7 +20,7 @@ function rateLimitResponse(retryAfterSeconds: number) {
 
 export async function POST(request: Request) {
   const ipRateLimit = await checkRateLimit(`email-code-request:ip:${getClientIp(request)}`, {
-    limit: 8,
+    limit: 10,
     windowMs: 60_000,
   });
   if (!ipRateLimit.allowed) {

@@ -101,7 +101,7 @@ streaming (for Nginx, disable proxy buffering) to avoid holding the fallback unt
 
 ## Prerequisites
 
-- Node.js 20+
+- Node.js 20.19+ or 22.12+ (Node.js 24 LTS recommended)
 - A MySQL database (schema is in [`database/schema.sql`](database/schema.sql) and [`database/migrations`](database/migrations))
 
 ## 1. Install dependencies
@@ -109,6 +109,12 @@ streaming (for Nginx, disable proxy buffering) to avoid holding the fallback unt
 ```bash
 npm install
 ```
+
+Tests use Vitest 4 with an ESM configuration in `vitest.config.mts`.
+The scoped `minimatch` override for TypeScript ESLint requires the patched 11.0.1+
+release until its upstream dependency range includes that fix. Install-script
+approval is limited to the versioned esbuild and unrs-resolver entries in `package.json`.
+Run `npm audit` and `npm install-scripts ls` after dependency updates.
 
 ## 2. Configure environment variables
 
