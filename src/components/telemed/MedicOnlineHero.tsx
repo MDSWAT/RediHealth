@@ -19,10 +19,34 @@ function useSafeLanguage() {
   }
 }
 
-const heroCopy: Record<Lang, { soundTest: string; soundOk: string; free: string; browser: string; sms: string; onDuty: string; offDutyTitle: string; offDuty: string; offDutyAction: string }> = {
+type HeroFeatureCopy = {
+  soundTest: string;
+  soundOk: string;
+  freeTitle: string;
+  freeDesc: string;
+  browserTitle: string;
+  browserDesc: string;
+  smsTitle: string;
+  smsDesc: string;
+  free: string;
+  browser: string;
+  sms: string;
+  onDuty: string;
+  offDutyTitle: string;
+  offDuty: string;
+  offDutyAction: string;
+};
+
+const heroCopy: Record<Lang, HeroFeatureCopy> = {
   ro: {
     soundTest: "Testează sunetul",
     soundOk: "Sunetul funcționează",
+    freeTitle: "Gratuit pentru oricine",
+    freeDesc: "Fără card de sănătate, cont sau abonament",
+    browserTitle: "Se deschide în browser",
+    browserDesc: "Funcționează pe orice telefon, fără aplicație",
+    smsTitle: "Confirmare prin SMS",
+    smsDesc: "Primești linkul de consult și recomandările prin mesaj",
     free: "Gratuit, pentru oricine",
     browser: "Se deschide în browserul telefonului. Nu ai nevoie de cont sau aplicație.",
     sms: "Primești prin SMS confirmarea și linkul",
@@ -34,6 +58,12 @@ const heroCopy: Record<Lang, { soundTest: string; soundOk: string; free: string;
   en: {
     soundTest: "Test sound",
     soundOk: "Sound works",
+    freeTitle: "Free for anyone",
+    freeDesc: "No card, account or insurance required",
+    browserTitle: "Opens in your browser",
+    browserDesc: "Works directly on any phone without an app",
+    smsTitle: "Text message confirmation",
+    smsDesc: "Receive your call link and advice by SMS",
     free: "Free, for anyone",
     browser: "Opens in your phone's browser. No account or app needed.",
     sms: "You get the confirmation and the link by text message",
@@ -45,6 +75,12 @@ const heroCopy: Record<Lang, { soundTest: string; soundOk: string; free: string;
   sq: {
     soundTest: "Provo zërin",
     soundOk: "Zëri punon",
+    freeTitle: "Falas për këdo",
+    freeDesc: "Pa pagesë, kartë shëndetësore apo llogari",
+    browserTitle: "Hapet në shfletues",
+    browserDesc: "Punon në çdo telefon pa instaluar aplikacion",
+    smsTitle: "Konfirmim me SMS",
+    smsDesc: "Lidhjen e takimit dhe këshillat i merr me mesazh",
     free: "Falas, për këdo",
     browser: "Hapet në shfletuesin e telefonit. Nuk të duhet llogari apo aplikacion.",
     sms: "Konfirmimin dhe lidhjen i merr me SMS",
@@ -55,7 +91,13 @@ const heroCopy: Record<Lang, { soundTest: string; soundOk: string; free: string;
   },
   it: {
     soundTest: "Prova l'audio",
-    soundOk: "L'audio funziona",
+    soundOk: "L'audio funciona",
+    freeTitle: "Gratuito per tutti",
+    freeDesc: "Senza costi, tessera sanitaria né abbonamento",
+    browserTitle: "Si apre nel browser",
+    browserDesc: "Funziona su qualsiasi telefono senza app",
+    smsTitle: "Conferma via SMS",
+    smsDesc: "Ricevi il link della visita e il promemoria via messaggio",
     free: "Gratis, per tutti",
     browser: "Si apre nel browser del telefono. Non ti servono account o app.",
     sms: "Ricevi conferma e link via SMS",
@@ -160,18 +202,33 @@ export function MedicOnlineHero() {
           </div>
         </div>
 
-        <ul className="mt-8 grid grid-cols-1 gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:grid-cols-3 sm:gap-4">
-          <li className="flex items-start gap-2.5">
-            <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" />
-            <span>{c.free}</span>
+        <ul className="mt-8 grid grid-cols-1 gap-3.5 border-t border-border pt-6 sm:grid-cols-3 sm:gap-4">
+          <li className="flex items-center gap-3.5 rounded-xl border border-border/70 bg-card p-3.5 shadow-2xs sm:p-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sapphire/10 text-sapphire dark:bg-sapphire-soft/10 dark:text-sapphire-border">
+              <ShieldIcon className="h-5 w-5" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold leading-tight text-foreground">{c.freeTitle}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground leading-normal text-pretty">{c.freeDesc}</p>
+            </div>
           </li>
-          <li className="flex items-start gap-2.5">
-            <GlobeIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" />
-            <span>{c.browser}</span>
+          <li className="flex items-center gap-3.5 rounded-xl border border-border/70 bg-card p-3.5 shadow-2xs sm:p-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sapphire/10 text-sapphire dark:bg-sapphire-soft/10 dark:text-sapphire-border">
+              <GlobeIcon className="h-5 w-5" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold leading-tight text-foreground">{c.browserTitle}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground leading-normal text-pretty">{c.browserDesc}</p>
+            </div>
           </li>
-          <li className="flex items-start gap-2.5">
-            <PhoneIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" />
-            <span>{c.sms}</span>
+          <li className="flex items-center gap-3.5 rounded-xl border border-border/70 bg-card p-3.5 shadow-2xs sm:p-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sapphire/10 text-sapphire dark:bg-sapphire-soft/10 dark:text-sapphire-border">
+              <PhoneIcon className="h-5 w-5" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold leading-tight text-foreground">{c.smsTitle}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground leading-normal text-pretty">{c.smsDesc}</p>
+            </div>
           </li>
         </ul>
       </Container>
