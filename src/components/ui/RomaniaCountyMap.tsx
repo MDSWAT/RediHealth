@@ -150,10 +150,14 @@ export function RomaniaCountyMap({
         </div>
       </div>
 
-      <div className={cn("mx-auto mt-4 w-full", country === "it" ? "max-w-md" : "max-w-3xl")}>
+      <div
+        className={cn("mx-auto mt-4 w-full", country === "it" ? "max-w-md" : "max-w-3xl")}
+        style={{ aspectRatio: country === "it" ? "760 / 1001" : "1000 / 709" }}
+      >
         <svg
           viewBox={map.viewBox}
-          className="block h-auto w-full select-none"
+          className="block h-full w-full select-none"
+          style={{ aspectRatio: country === "it" ? "760 / 1001" : "1000 / 709" }}
           role="img"
           aria-label={country === "it" ? m.italyMapAriaLabel : m.mapAriaLabel}
           onPointerLeave={() => setHovered(null)}

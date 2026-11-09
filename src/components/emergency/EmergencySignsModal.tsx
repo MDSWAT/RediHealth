@@ -74,7 +74,7 @@ export function EmergencySignsModal({
         aria-modal="true"
         aria-labelledby="emergency-signs-title"
         aria-describedby="emergency-signs-description"
-        className="fhs-fade fixed inset-0 z-50 flex items-end justify-center bg-slate-950/50 sm:items-center sm:p-4"
+        className="fhs-fade fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4 backdrop-blur-xs"
       >
         <div
           className="fixed inset-0 -z-10"
@@ -85,7 +85,7 @@ export function EmergencySignsModal({
         <div
           ref={panelRef}
           tabIndex={-1}
-          className="fhs-enter relative flex max-h-[92dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-xl sm:max-h-[85dvh] sm:rounded-xl focus:outline-none"
+          className="fhs-enter relative flex max-h-[92dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-2xl sm:max-h-[85dvh] sm:rounded-xl focus:outline-none"
         >
           <div className="flex shrink-0 items-start justify-between gap-4 border-b border-border px-5 pb-4 pt-5 sm:px-7 sm:pt-6">
             <div className="min-w-0">

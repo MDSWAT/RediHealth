@@ -66,7 +66,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-border bg-muted/40">
+    <footer className="relative z-10 border-t border-border bg-card text-foreground">
       <Container className="py-12 sm:py-16">
         <div className="grid gap-10 xl:grid-cols-[1.1fr_2.9fr] xl:gap-12">
           <div className="max-w-sm space-y-4">

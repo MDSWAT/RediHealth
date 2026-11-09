@@ -95,7 +95,7 @@ export function NewsHub() {
     place === ITALY_WIDE ? (t.countyMap?.allItaly ?? ITALY_WIDE) : isNationalCounty(place) ? np.allCounties : placeName(place, lang);
 
   return (
-    <main id="main-content" className="min-h-[85vh] bg-background">
+    <main id="main-content" className="flex-1 bg-background pb-12 sm:pb-16">
       <header className="border-b border-border bg-card py-10 sm:py-14">
         <Container>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">

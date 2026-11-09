@@ -15,6 +15,10 @@ import {
   UserIcon,
   UsersIcon,
   ActivityIcon,
+  BookIcon,
+  PinIcon,
+  StethoscopeIcon,
+  BellIcon,
 } from "@/components/ui/icons";
 import { LanguageSelector } from "@/components/layout/LanguageSelector";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
@@ -132,27 +136,32 @@ export function Header() {
       label: tHeader.navAfla,
       href: "/health-information",
       subtext: tHeader.navAflaSub,
+      icon: BookIcon,
     },
     {
       label: tHeader.navCere,
       href: "/health-assistant",
       subtext: tHeader.navCereSub,
+      icon: ActivityIcon,
     },
     {
       // Pharmacies first: for many people the pharmacy is the first stop, before a doctor.
       label: findHelpLinks(lang).nav,
       href: "/find-help",
       subtext: findHelpLinks(lang).navDescription,
+      icon: PinIcon,
     },
     {
       label: tHeader.navMedic,
       href: "/medic-online",
       subtext: tHeader.navMedicSub,
+      icon: StethoscopeIcon,
     },
     {
       label: tHeader.navStiri,
       href: "/stiri",
       subtext: tHeader.navStiriSub,
+      icon: BellIcon,
     },
   ];
 
@@ -325,27 +334,39 @@ export function Header() {
           </div>
         </Container>
 
+        {/* Backdrop overlay for phone menu */}
+        <div
+          className={cn(
+            "fixed inset-x-0 bottom-0 top-16 z-40 bg-slate-950/40 backdrop-blur-xs transition-opacity duration-(--dur-base) ease-(--ease-out-calm) xl:hidden",
+            mobileOpen ? "visible opacity-100" : "pointer-events-none invisible opacity-0"
+          )}
+          onClick={closeMobile}
+          aria-hidden="true"
+        />
+
         {/* Phone menu: opens under the bar, covers the rest of the screen, scrolls on its own. */}
         <div
           id="mobile-menu"
           inert={!mobileOpen}
-          style={drawerHeight ? { height: drawerHeight } : { height: "calc(100dvh - var(--chrome-h, 4rem))" }}
+          style={drawerHeight ? { maxHeight: drawerHeight } : { maxHeight: "calc(100dvh - var(--chrome-h, 4rem))" }}
           className={cn(
-            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-background shadow-xl xl:hidden",
+            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-background/98 shadow-2xl backdrop-blur-md xl:hidden",
             "transition-[opacity,translate,visibility] duration-(--dur-base) ease-(--ease-out-calm)",
             mobileOpen
               ? "visible translate-y-0 opacity-100"
               : "pointer-events-none invisible -translate-y-2 opacity-0"
           )}
         >
-          <Container className="flex flex-col gap-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-4">
-            {/* 112 first: the one thing someone in an emergency needs from this menu. */}
-            <div className="flex items-center justify-between gap-3 rounded-lg border border-border bg-card px-4 py-3">
-              <div className="flex min-w-0 items-start gap-3">
-                <PhoneIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+          <Container className="flex flex-col gap-4 py-4 pb-[calc(2rem+env(safe-area-inset-bottom))]">
+            {/* 112 priority access card */}
+            <div className="flex items-center justify-between gap-3 rounded-xl border border-primary/25 bg-primary-soft/40 p-3.5 shadow-2xs dark:bg-primary-soft/10">
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <PhoneIcon className="h-5 w-5" />
+                </span>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-foreground">{tHeader.emergencyTitle}</p>
-                  <p className="text-sm text-muted-foreground">{tHeader.emergencyCallPrompt}</p>
+                  <p className="text-sm font-semibold leading-snug text-foreground">{tHeader.emergencyTitle}</p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">{tHeader.emergencyCallPrompt}</p>
                 </div>
               </div>
               <button
@@ -354,31 +375,61 @@ export function Header() {
                   setMobileOpen(false);
                   setDialerOpen(true);
                 }}
-                className="inline-flex min-h-[44px] shrink-0 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 rounded-lg bg-primary px-3.5 text-sm font-semibold text-white shadow-xs transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
-                {tHeader.call112}
+                <PhoneIcon className="h-4 w-4" />
+                <span>{tHeader.call112}</span>
               </button>
             </div>
 
-            <nav aria-label={chrome.primaryNav}>
-              <ul className="divide-y divide-border border-y border-border">
+            {/* Primary navigation destinations */}
+            <nav aria-label={chrome.primaryNav} className="space-y-1">
+              <ul className="space-y-1.5">
                 {primaryLinks.map((link) => {
                   const isActive = isActiveHref(link.href);
+                  const Icon = link.icon;
                   return (
                     <li key={link.href}>
                       <Link
                         href={withLangPrefix(link.href, lang)}
                         aria-current={isActive ? "page" : undefined}
                         onClick={closeMobile}
-                        className="flex min-h-[60px] items-center justify-between gap-4 py-3 transition-colors duration-(--dur-fast) hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                        className={cn(
+                          "group flex min-h-[56px] items-center justify-between gap-3 rounded-xl border p-2.5 sm:p-3 transition-colors duration-(--dur-fast) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                          isActive
+                            ? "border-sapphire/35 bg-sapphire-soft/60 text-sapphire shadow-2xs dark:bg-sapphire-soft/15"
+                            : "border-border/70 bg-card text-foreground hover:border-border hover:bg-muted/60"
+                        )}
                       >
-                        <span className="min-w-0">
-                          <span className={cn("block text-base font-semibold", isActive ? "text-sapphire" : "text-foreground")}>
-                            {link.label}
+                        <div className="flex min-w-0 items-center gap-3">
+                          <span
+                            className={cn(
+                              "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-colors",
+                              isActive
+                                ? "bg-sapphire text-white shadow-2xs"
+                                : "bg-muted text-muted-foreground group-hover:bg-muted/80 group-hover:text-foreground"
+                            )}
+                          >
+                            <Icon className="h-5 w-5" />
                           </span>
-                          <span className="mt-0.5 block text-sm text-muted-foreground">{link.subtext}</span>
-                        </span>
-                        <ChevronRightIcon className="h-5 w-5 shrink-0 text-muted-foreground" />
+                          <div className="min-w-0">
+                            <span
+                              className={cn(
+                                "block text-sm sm:text-base font-semibold leading-tight",
+                                isActive ? "font-bold text-sapphire dark:text-sapphire-light" : "text-foreground"
+                              )}
+                            >
+                              {link.label}
+                            </span>
+                            <span className="mt-0.5 block text-xs text-muted-foreground line-clamp-1">{link.subtext}</span>
+                          </div>
+                        </div>
+                        <ChevronRightIcon
+                          className={cn(
+                            "h-4 w-4 shrink-0 transition-transform duration-(--dur-fast) group-hover:translate-x-0.5",
+                            isActive ? "text-sapphire" : "text-muted-foreground/70"
+                          )}
+                        />
                       </Link>
                     </li>
                   );
@@ -386,42 +437,54 @@ export function Header() {
               </ul>
             </nav>
 
+            {/* Primary CTA button: Start here */}
             <Link
               href={withLangPrefix("/health-assistant#triage", lang)}
               onClick={closeMobile}
-              className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-lg bg-foreground px-4 text-base font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-foreground px-4 text-sm font-semibold text-white shadow-xs transition-colors duration-(--dur-fast) hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-base"
             >
               <span>{tHeader.startHere}</span>
-              <ArrowRightIcon className="h-5 w-5" />
+              <ArrowRightIcon className="h-4 w-4" />
             </Link>
 
-            <ul className="divide-y divide-border border-y border-border">
-              <li>
-                <Link
-                  href={withLangPrefix(portalLink.href, lang)}
-                  onClick={closeMobile}
-                  className="flex min-h-[52px] items-center gap-3 py-3 text-base font-semibold text-foreground transition-colors duration-(--dur-fast) hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
-                >
-                  <UserIcon className="h-5 w-5 shrink-0 text-muted-foreground" />
-                  <span>{portalLink.label}</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={withLangPrefix("/mediatori", lang)}
-                  onClick={closeMobile}
-                  className="flex min-h-[52px] items-start gap-3 py-3 transition-colors duration-(--dur-fast) hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
-                >
-                  <UsersIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
-                  <span className="min-w-0">
-                    <span className="block text-base font-semibold text-foreground">{tHeader.forMediators}</span>
-                    <span className="mt-0.5 block text-sm text-muted-foreground">{tHeader.mediatorDrawerDescription}</span>
+            {/* Account & Mediators section */}
+            <div className="space-y-1 rounded-xl border border-border/80 bg-card p-1.5 shadow-2xs">
+              <Link
+                href={withLangPrefix(portalLink.href, lang)}
+                onClick={closeMobile}
+                className="group flex min-h-[48px] items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-foreground transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-muted text-muted-foreground group-hover:text-foreground">
+                    <UserIcon className="h-4 w-4" />
                   </span>
-                </Link>
-              </li>
-            </ul>
+                  <span>{portalLink.label}</span>
+                </div>
+                <ChevronRightIcon className="h-4 w-4 text-muted-foreground/70" />
+              </Link>
 
-            <LanguageSelector variant="drawer" />
+              <Link
+                href={withLangPrefix("/mediatori", lang)}
+                onClick={closeMobile}
+                className="group flex min-h-[52px] items-start justify-between gap-3 rounded-lg px-3 py-2 transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground group-hover:text-foreground">
+                    <UsersIcon className="h-4 w-4" />
+                  </span>
+                  <div className="min-w-0">
+                    <span className="block text-sm font-semibold text-foreground">{tHeader.forMediators}</span>
+                    <span className="mt-0.5 block text-xs text-muted-foreground line-clamp-1">{tHeader.mediatorDrawerDescription}</span>
+                  </div>
+                </div>
+                <ChevronRightIcon className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/70" />
+              </Link>
+            </div>
+
+            {/* Language Selector */}
+            <div className="pt-1">
+              <LanguageSelector variant="drawer" />
+            </div>
           </Container>
         </div>
       </header>

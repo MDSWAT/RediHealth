@@ -88,7 +88,7 @@ export function EmergencyDialerGate({
       role="dialog"
       aria-modal="true"
       aria-labelledby="dialer-gate-title"
-      className="fhs-fade fixed inset-0 z-[60] flex items-end justify-center bg-slate-950/60 p-0 sm:items-center sm:p-4"
+      className="fhs-fade fixed inset-0 z-[110] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4 backdrop-blur-xs"
     >
       <div
         className="fixed inset-0 -z-10"
