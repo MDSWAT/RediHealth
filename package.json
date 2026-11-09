@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "migrate": "tsx --env-file=.env.local scripts/migrate.ts",
     "import:institutes": "tsx scripts/import-medical-institutes.ts",
     "encrypt:patients": "tsx scripts/encrypt-patient-data.ts"
   },
