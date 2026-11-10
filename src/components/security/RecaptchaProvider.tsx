@@ -49,6 +49,22 @@ const copy = {
     terms: "i Termini di servizio",
     apply: "di Google.",
   },
+  hr: {
+    unavailable: "Provjera protiv robota trenutačno ne radi. Osvježi stranicu ili nam se javi.",
+    notice: "Zaštićeno sustavom reCAPTCHA. Primjenjuju se",
+    privacy: "pravila privatnosti",
+    and: "i",
+    terms: "uvjeti pružanja usluge",
+    apply: "tvrtke Google.",
+  },
+  rom: {
+    unavailable: "E dikhlipe mamuy roboturya na kerel buchi akana. Nevyar e rig vay lekhav amenge.",
+    notice: "Arakhado katar reCAPTCHA. Labaren pes e",
+    privacy: "garavipnaske pravila",
+    and: "thaj",
+    terms: "sluzhbake pravila",
+    apply: "katar Google.",
+  },
 };
 
 class CaptchaClientError extends Error {}

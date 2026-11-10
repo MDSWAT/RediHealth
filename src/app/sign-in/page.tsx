@@ -9,6 +9,8 @@ const descriptions: Record<Lang, string> = {
   en: "Sign in to RediHealth with a code sent to your email, or with Google.",
   sq: "Hyr në RediHealth me një kod që vjen në email ose me llogarinë Google.",
   it: "Accedi a RediHealth con un codice ricevuto via email o con Google.",
+  hr: "Prijavi se u RediHealth kodom poslanim na e-poštu ili putem Google računa.",
+  rom: "Khuves andre ko RediHealth kodosa bichhaldo pe emailo vay Google kontosa.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {

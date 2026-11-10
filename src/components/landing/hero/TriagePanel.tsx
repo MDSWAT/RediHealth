@@ -34,6 +34,7 @@ const NEED_ICONS: Record<HeroNeedId, ComponentType<SVGProps<SVGSVGElement>>> = {
 };
 
 type View = "question" | HeroNeedId;
+type Direction = "forward" | "back";
 const VIEWS: View[] = ["question", ...HERO_NEED_ORDER];
 const headingId = (view: View) => `triage-heading-${view}`;
 
@@ -49,7 +50,7 @@ type TriagePanelProps = {
 };
 
 /**
- * The concept's decision tree as one instrument: "What worries you?", five
+ * The concept's decision tree as one instrument: "What worries you?", six
  * needs, at most three taps to an exit, and a way to a doctor on every branch.
  *
  * Every view is rendered into the same grid cell, so the panel is always as
@@ -58,6 +59,7 @@ type TriagePanelProps = {
  */
 export function TriagePanel({ copy, alarmSigns, lang, onClose, closeLabel }: TriagePanelProps) {
   const [view, setView] = useState<View>("question");
+  const [dir, setDir] = useState<Direction>("forward");
   // Bumped on every navigation so per-visit state (the quiz) starts fresh.
   const [visit, setVisit] = useState(0);
   const { available: canSpeak, speaking, isFallback, speak, stop } = useSpeech(lang);
@@ -74,6 +76,7 @@ export function TriagePanel({ copy, alarmSigns, lang, onClose, closeLabel }: Tri
   const go = (next: View) => {
     hasInteracted.current = true;
     stop();
+    setDir(next === "question" ? "back" : "forward");
     setView(next);
     setVisit((count) => count + 1);
   };
@@ -103,7 +106,7 @@ export function TriagePanel({ copy, alarmSigns, lang, onClose, closeLabel }: Tri
       aria-labelledby={headingId(view)}
       className="hero-panel relative rounded-xl bg-paper text-ink-950 shadow-[0_24px_60px_-40px_rgba(2,6,23,0.7)] lg:ml-auto lg:max-w-[460px]"
     >
-      <header className="flex h-16 items-center justify-between gap-3 border-b border-stone-200/80 px-6 sm:px-7">
+      <header className="relative flex h-16 items-center justify-between gap-3 border-b border-stone-200/80 px-6 sm:px-7">
         <div className="flex items-center gap-2.5">
           {/* Decorative 22px SVG mark: a plain img keeps the panel free of the image optimizer. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -113,7 +116,7 @@ export function TriagePanel({ copy, alarmSigns, lang, onClose, closeLabel }: Tri
         <div className="-mr-2 flex items-center gap-1">
           {/* Fixed slot so the header never shifts when the voice list loads. Absent in no-voice languages. */}
           {voiceEnabled && (
-            <span className="flex h-10 w-10 items-center justify-center">
+            <span className="flex h-11 w-11 items-center justify-center">
               <button
                 type="button"
                 onClick={handleToggleSound}
@@ -128,7 +131,7 @@ export function TriagePanel({ copy, alarmSigns, lang, onClose, closeLabel }: Tri
                       : copy.listen
                 }
                 className={cn(
-                  "flex h-10 w-10 items-center justify-center rounded-lg transition-[background-color,color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
+                  "flex h-11 w-11 items-center justify-center rounded-lg transition-[background-color,color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
                   speaking
                     ? "bg-sapphire-soft text-sapphire ring-1 ring-sapphire/25"
                     : "text-stone-500 hover:bg-stone-200/70 hover:text-ink-950",
@@ -146,7 +149,7 @@ export function TriagePanel({ copy, alarmSigns, lang, onClose, closeLabel }: Tri
               aria-label={closeLabel}
               data-autofocus
               className={cn(
-                "flex h-11 w-11 items-center justify-center rounded-lg text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-stone-200/70 hover:text-ink-950",
+                "flex h-11 w-11 items-center justify-center rounded-lg text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-stone-200/70 hover:text-ink-950",
                 focusRing,
               )}
             >
@@ -154,6 +157,12 @@ export function TriagePanel({ copy, alarmSigns, lang, onClose, closeLabel }: Tri
             </button>
           )}
         </div>
+        {/* 2px GPU-composited progress hairline indicating step 1 vs step 2 */}
+        <span
+          aria-hidden="true"
+          style={{ transform: `scaleX(${step / 2})` }}
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-[2px] origin-left bg-sapphire/80 transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none"
+        />
       </header>
 
       <p className="sr-only" aria-live="polite">
@@ -163,11 +172,14 @@ export function TriagePanel({ copy, alarmSigns, lang, onClose, closeLabel }: Tri
       <div className="grid">
         {VIEWS.map((current) => {
           const active = current === view;
+          const viewDir: Direction =
+            current === "question" ? (view !== "question" ? "back" : dir) : "forward";
           return (
             <div
               key={current}
               inert={!active}
               data-active={active}
+              data-dir={viewDir}
               className="triage-view flex flex-col px-6 pb-6 pt-5 [grid-area:1/1] sm:px-7 sm:pb-7"
             >
               {current === "question" ? (
@@ -223,11 +235,11 @@ function QuestionView({
                 className="group relative -mx-3 flex min-h-[56px] w-[calc(100%+1.5rem)] items-center gap-3.5 rounded-lg px-3 py-2 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-stone-200/50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none"
               >
                 {/* Every row is the same neutral tile: red stays for the 112 action itself. */}
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink-950/[0.04] text-ink-950/65 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-ink-950/[0.07] group-hover:text-ink-950">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink-950/[0.04] text-ink-950/65 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-ink-950/[0.07] group-hover:text-ink-950 motion-reduce:transition-none">
                   <Icon className="h-[19px] w-[19px]" />
                 </span>
                 <span className="flex-1 text-[15.5px] font-medium leading-snug">{copy.needs[id].label}</span>
-                <ChevronRightIcon className="h-5 w-5 shrink-0 text-stone-400 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-ink-950 motion-reduce:transition-none" />
+                <ChevronRightIcon className="h-5 w-5 shrink-0 text-stone-400 transition-[color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-ink-950 motion-reduce:transition-none" />
               </button>
             </li>
           );
@@ -239,13 +251,13 @@ function QuestionView({
           <Link
             href={localHref("/mediatori", lang)}
             className={cn(
-              "group inline-flex items-center gap-2 rounded font-medium text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-ink-950",
+              "group -my-1 inline-flex min-h-11 items-center gap-2 rounded font-medium text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-ink-950 motion-reduce:transition-none",
               focusRing,
             )}
           >
-            <UsersIcon className="h-4 w-4 text-stone-500 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-ink-950" />
+            <UsersIcon className="h-4 w-4 text-stone-500 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-ink-950 motion-reduce:transition-none" />
             <span>{copy.mediators}</span>
-            <ChevronRightIcon className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
           </Link>
         </div>
       </div>
@@ -272,11 +284,11 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
         type="button"
         onClick={onBack}
         className={cn(
-          "-ml-2 inline-flex min-h-9 items-center gap-1.5 self-start rounded-lg px-2 text-[14px] font-medium text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-stone-100 hover:text-ink-950",
+          "group -ml-2 -my-1 inline-flex min-h-11 items-center gap-1.5 self-start rounded-lg px-2 text-[14px] font-medium text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-stone-100 hover:text-ink-950 motion-reduce:transition-none",
           focusRing,
         )}
       >
-        <ArrowLeftIcon className="h-4 w-4" />
+        <ArrowLeftIcon className="h-4 w-4 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:-translate-x-0.5 motion-reduce:transition-none" />
         {copy.back}
       </button>
 
@@ -311,7 +323,7 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
           <a
             href="tel:112"
             className={cn(
-              "flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-[16px] font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover",
+              "flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-[16px] font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover motion-reduce:transition-none",
               focusRing,
             )}
           >
@@ -322,12 +334,12 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
           <Link
             href={localHref(need.action.href, lang)}
             className={cn(
-              "flex min-h-12 items-center justify-center gap-2 rounded-lg bg-ink-950 px-4 text-center text-[16px] font-semibold text-paper transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800",
+              "group flex min-h-12 items-center justify-center gap-2 rounded-lg bg-ink-950 px-4 text-center text-[16px] font-semibold text-paper transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 motion-reduce:transition-none",
               focusRing,
             )}
           >
             {need.action.label}
-            <ChevronRightIcon className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
           </Link>
         )}
 
@@ -336,7 +348,7 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
           <Link
             href={localHref("/get-help?mode=doctor", lang)}
             className={cn(
-              "rounded font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire",
+              "-my-2 inline-flex min-h-11 items-center rounded font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire motion-reduce:transition-none",
               focusRing,
             )}
           >
@@ -374,7 +386,7 @@ function Quiz({ quiz }: { quiz: HeroQuiz }) {
               aria-pressed={picked}
               onClick={() => setChoice(value)}
               className={cn(
-                "min-h-11 rounded-lg border text-[15px] font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
+                "min-h-11 rounded-lg border text-[15px] font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
                 !answered && "border-stone-300 bg-white hover:border-stone-400 hover:bg-stone-50",
                 answered && isAnswer && "border-sapphire bg-sapphire text-white",
                 // A wrong pick is amber, like the myth quiz below: red stays reserved for 112.

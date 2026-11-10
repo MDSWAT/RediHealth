@@ -1,3 +1,5 @@
+export type NonRoLang = "en" | "sq" | "it" | "hr" | "rom";
+
 export interface RomanesGlossaryTerm {
   id: string;
   romanianTerm: string;
@@ -5,8 +7,12 @@ export interface RomanesGlossaryTerm {
   category: "cardiologie" | "general" | "simptome" | "anatomie" | "tratamente";
   categoryLabel: string;
   explanation: string;
-  /** Explanation for readers on the English, Albanian and Italian pages. */
-  explanationByLang?: Partial<Record<"en" | "sq" | "it", string>>;
+  /** Localized equivalent of romanianTerm for non-Romanian pages. */
+  termByLang?: Partial<Record<"en" | "sq" | "it" | "hr" | "rom", string>>;
+  /** Localized equivalent of categoryLabel for non-Romanian pages. */
+  categoryLabelByLang?: Partial<Record<"en" | "sq" | "it" | "hr" | "rom", string>>;
+  /** Explanation for readers on the English, Albanian, Italian, Croatian and Romani pages. */
+  explanationByLang?: Partial<Record<"en" | "sq" | "it" | "hr" | "rom", string>>;
   phoneticPronunciation: string;
   audioPronunciationText: string;
 }
@@ -18,12 +24,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "O rat phurdel zurales",
     category: "cardiologie",
     categoryLabel: "Inimă și circulație",
+    termByLang: {
+      en: "Blood pressure (hypertension)",
+      sq: "Tensioni i gjakut (hipertension)",
+      it: "Pressione arteriosa (ipertensione)",
+      hr: "Krvni tlak (hipertenzija)",
+      rom: "Uchi tensija e rateski (hipertenzija)",
+    },
+    categoryLabelByLang: {
+      en: "Heart and circulation",
+      sq: "Zemra dhe qarkullimi",
+      it: "Cuore e circolazione",
+      hr: "Srce i krvotok",
+      rom: "O ilo thaj o phirimos e ratesko",
+    },
     explanation:
       "Sângele apasă prea tare pe vasele de sânge. Inima trebuie să muncească mai greu.",
     explanationByLang: {
       en: "Your blood pushes too hard on your blood vessels. Your heart has to work harder.",
       sq: "Gjaku shtyp shumë fort mbi enët e gjakut. Zemra duhet të punojë më shumë.",
       it: "Il sangue spinge troppo forte sulle vene e sulle arterie. Il cuore deve lavorare di più.",
+      hr: "Krv previše pritišće stijenke krvnih žila. Tvoje srce mora raditi teže.",
+      rom: "Tiro rat tasavel but zurales pe rateske droma. Tiro ilo musaj te kerel maj phari buchi.",
     },
     phoneticPronunciation: "O rat phur-del zu-ra-les",
     audioPronunciationText: "O rat phurdel zurales. Tensiune mare a sângelui.",
@@ -34,12 +56,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "O ilo",
     category: "anatomie",
     categoryLabel: "Corpul",
+    termByLang: {
+      en: "Heart",
+      sq: "Zemra",
+      it: "Cuore",
+      hr: "Srce",
+      rom: "O ilo",
+    },
+    categoryLabelByLang: {
+      en: "Body",
+      sq: "Trupi",
+      it: "Corpo",
+      hr: "Tijelo",
+      rom: "O trupo",
+    },
     explanation:
       "Organul din piept care bate zi și noapte. Trimite sânge în tot corpul.",
     explanationByLang: {
       en: "The organ in your chest that beats day and night. It sends blood to your whole body.",
       sq: "Organi në gjoks që rreh ditë e natë. Dërgon gjak në gjithë trupin.",
       it: "L'organo nel petto che batte giorno e notte. Manda il sangue in tutto il corpo.",
+      hr: "Organ u prsima koji kuca danju i noću. Šalje krv u cijelo tvoje tijelo.",
+      rom: "O organo ando tiro kolin so marel dives thaj rat. Bičhalel o rat ando sasto trupo.",
     },
     phoneticPronunciation: "O i-lo",
     audioPronunciationText: "O ilo. Inima.",
@@ -50,12 +88,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "O rat",
     category: "anatomie",
     categoryLabel: "Corpul",
+    termByLang: {
+      en: "Blood",
+      sq: "Gjaku",
+      it: "Sangue",
+      hr: "Krv",
+      rom: "O rat",
+    },
+    categoryLabelByLang: {
+      en: "Body",
+      sq: "Trupi",
+      it: "Corpo",
+      hr: "Tijelo",
+      rom: "O trupo",
+    },
     explanation:
       "Lichidul roșu din corp. Duce hrana și aerul la toate organele.",
     explanationByLang: {
       en: "The red liquid in your body. It carries food and air to all your organs.",
       sq: "Lëngu i kuq në trup. Çon ushqimin dhe ajrin te të gjitha organet.",
       it: "Il liquido rosso del corpo. Porta cibo e aria a tutti gli organi.",
+      hr: "Crvena tekućina u tvom tijelu. Nosi hranu i zrak do svih organa.",
+      rom: "O lolo pani ando tiro trupo. Ingerel o xaben thaj i balval ko savore organura.",
     },
     phoneticPronunciation: "O rat",
     audioPronunciationText: "O rat. Sângele.",
@@ -66,12 +120,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "Gudlo rat (zahăr în sânge)",
     category: "general",
     categoryLabel: "Boli",
+    termByLang: {
+      en: "Diabetes (high blood sugar)",
+      sq: "Diabeti (sheqer i lartë në gjak)",
+      it: "Diabete (zucchero alto nel sangue)",
+      hr: "Dijabetes (povišeni šećer u krvi)",
+      rom: "Dijabeto (gudlo rat)",
+    },
+    categoryLabelByLang: {
+      en: "Illnesses",
+      sq: "Sëmundjet",
+      it: "Malattie",
+      hr: "Bolesti",
+      rom: "Nasvalipena",
+    },
     explanation:
       "Corpul nu poate folosi zahărul din mâncare, așa că zahărul rămâne în sânge. Simți sete mare și oboseală.",
     explanationByLang: {
       en: "Your body cannot use the sugar from food, so the sugar stays in your blood. You feel very thirsty and tired.",
       sq: "Trupi nuk e përdor dot sheqerin nga ushqimi, ndaj sheqeri mbetet në gjak. Ke shumë etje dhe je i lodhur.",
       it: "Il corpo non riesce a usare lo zucchero del cibo, così lo zucchero resta nel sangue. Hai molta sete e ti senti stanco.",
+      hr: "Tvoje tijelo ne može iskoristiti šećer iz hrane pa šećer ostaje u krvi. Osjećaš jaku žeđ i umor.",
+      rom: "Tiro trupo nashti te labyarel o zahari katar o xaben, kadja o zahari ačhel ando rat. Hatjares bari trush thaj khino.",
     },
     phoneticPronunciation: "Gud-lo rat",
     audioPronunciationText: "Gudlo rat. Zahăr în sânge.",
@@ -82,12 +152,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "I dukh",
     category: "simptome",
     categoryLabel: "Simptome și semne",
+    termByLang: {
+      en: "Pain",
+      sq: "Dhimbje",
+      it: "Dolore",
+      hr: "Bol",
+      rom: "I dukh",
+    },
+    categoryLabelByLang: {
+      en: "Symptoms and signs",
+      sq: "Simptomat dhe shenjat",
+      it: "Sintomi e segni",
+      hr: "Simptomi i znakovi",
+      rom: "Simptomura thaj semnja",
+    },
     explanation:
       "Semnul prin care corpul îți arată că ceva e rănit sau nu merge bine.",
     explanationByLang: {
       en: "Your body's way of telling you that something is hurt or not working well.",
       sq: "Mënyra si trupi të tregon që diçka është lënduar ose nuk shkon mirë.",
       it: "Il modo in cui il corpo ti dice che qualcosa è ferito o non va bene.",
+      hr: "Znak kojim ti tijelo pokazuje da je nešto ozlijeđeno ili ne radi dobro.",
+      rom: "O semnosa savo tiro trupo sikavel tuke kaj vareso si dukhado vaj na kerel buchi mishto.",
     },
     phoneticPronunciation: "I dukh",
     audioPronunciationText: "I dukh. Durerea.",
@@ -98,12 +184,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "O tato / Tatipen",
     category: "simptome",
     categoryLabel: "Simptome și semne",
+    termByLang: {
+      en: "Fever (temperature)",
+      sq: "Ethe (temperaturë)",
+      it: "Febbre (temperatura)",
+      hr: "Vrućica (temperatura)",
+      rom: "Tatipen (temperatura)",
+    },
+    categoryLabelByLang: {
+      en: "Symptoms and signs",
+      sq: "Simptomat dhe shenjat",
+      it: "Sintomi e segni",
+      hr: "Simptomi i znakovi",
+      rom: "Simptomura thaj semnja",
+    },
     explanation:
       "Corpul se încălzește ca să lupte cu o răceală sau cu o infecție.",
     explanationByLang: {
       en: "Your body heats up to fight a cold or an infection.",
       sq: "Trupi nxehet që të luftojë një ftohje ose një infeksion.",
       it: "Il corpo si scalda per combattere un raffreddore o un'infezione.",
+      hr: "Tvoje se tijelo zagrijava kako bi se borilo protiv prehlade ili infekcije.",
+      rom: "Tiro trupo tatjovel te marel pes jekhe shilasa vaj infekcijasa.",
     },
     phoneticPronunciation: "Ta-ti-pen",
     audioPronunciationText: "Tatipen. Temperatura sau febra.",
@@ -114,12 +216,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "I drab",
     category: "tratamente",
     categoryLabel: "Tratament",
+    termByLang: {
+      en: "Medicine (tablet)",
+      sq: "Ilaç (kokërr)",
+      it: "Farmaco (compressa)",
+      hr: "Lijek (tableta)",
+      rom: "I drab (pilula)",
+    },
+    categoryLabelByLang: {
+      en: "Treatment",
+      sq: "Trajtimi",
+      it: "Cura",
+      hr: "Liječenje",
+      rom: "Sastjarimos",
+    },
     explanation:
       "Ce îți dă medicul pe rețetă ca să tratezi boala sau să oprești durerea.",
     explanationByLang: {
       en: "What the doctor gives you on a prescription to treat an illness or stop pain.",
       sq: "Ajo që të jep mjeku me recetë për të shëruar sëmundjen ose për të ndalur dhimbjen.",
       it: "Quello che il medico ti dà con la ricetta per curare la malattia o fermare il dolore.",
+      hr: "Ono što ti liječnik propiše na recept za liječenje bolesti ili ublažavanje boli.",
+      rom: "So del tut o doktori pe recepta te sastjares o nasvalipen vaj te ačhaves i dukh.",
     },
     phoneticPronunciation: "I drab",
     audioPronunciationText: "I drab. Medicamentul sau leacul.",
@@ -130,12 +248,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "O doktori / O drabari",
     category: "general",
     categoryLabel: "Personal medical",
+    termByLang: {
+      en: "Doctor",
+      sq: "Mjek",
+      it: "Medico (dottore)",
+      hr: "Liječnik (doktor)",
+      rom: "O doktori / O drabari",
+    },
+    categoryLabelByLang: {
+      en: "Healthcare staff",
+      sq: "Personeli mjekësor",
+      it: "Personale sanitario",
+      hr: "Zdravstveno osoblje",
+      rom: "Sastipnaske bukjarne",
+    },
     explanation:
       "Omul care a învățat să afle ce boală ai. Îți spune ce tratament să urmezi.",
     explanationByLang: {
       en: "The person trained to find out what illness you have. They tell you which treatment to follow.",
       sq: "Personi që ka mësuar të gjejë se çfarë sëmundje ke. Të thotë çfarë mjekimi të ndjekësh.",
       it: "La persona che ha studiato per capire che malattia hai. Ti dice quale cura seguire.",
+      hr: "Osoba školovana da otkrije koju bolest imaš. Govori ti koje liječenje trebaš slijediti.",
+      rom: "O manush savo siklilo te dzhanel savo nasvalipen si tut. Phenel tuke savi drab te les.",
     },
     phoneticPronunciation: "O dok-to-ri",
     audioPronunciationText: "O doktori. Medicul.",
@@ -146,12 +280,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "I bolnitsa",
     category: "general",
     categoryLabel: "Unde mergi",
+    termByLang: {
+      en: "Hospital",
+      sq: "Spital",
+      it: "Ospedale",
+      hr: "Bolnica",
+      rom: "I bolnitsa",
+    },
+    categoryLabelByLang: {
+      en: "Where to go",
+      sq: "Ku të shkosh",
+      it: "Dove andare",
+      hr: "Kamo otići",
+      rom: "Kaj te dzhas",
+    },
     explanation:
       "Locul unde mergi când boala e gravă sau când ai nevoie de ajutor urgent.",
     explanationByLang: {
       en: "Where you go when an illness is serious or you need help fast.",
       sq: "Vendi ku shkon kur sëmundja është e rëndë ose kur të duhet ndihmë urgjente.",
       it: "Il posto dove vai quando la malattia è grave o ti serve aiuto urgente.",
+      hr: "Mjesto kamo ideš kada je bolest teška ili ti treba hitna pomoć.",
+      rom: "O than kaj dzhas kana o nasvalipen si pharo vaj trubul tut sigo azhutimos.",
     },
     phoneticPronunciation: "I bol-nit-sa",
     audioPronunciationText: "I bolnitsa. Spitalul.",
@@ -162,12 +312,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "Phari phurdinimos",
     category: "simptome",
     categoryLabel: "Simptome și semne",
+    termByLang: {
+      en: "Hard breathing (shortness of breath)",
+      sq: "Frymëmarrje e vështirë (mungesë ajri)",
+      it: "Respiro pesante (fiato corto)",
+      hr: "Otežano disanje (nedostatak zraka)",
+      rom: "Phari phurdinimos (bi balvaljako)",
+    },
+    categoryLabelByLang: {
+      en: "Symptoms and signs",
+      sq: "Simptomat dhe shenjat",
+      it: "Sintomi e segni",
+      hr: "Simptomi i znakovi",
+      rom: "Simptomura thaj semnja",
+    },
     explanation:
       "Simți că nu intră destul aer în piept, mai ales când faci efort sau stai întins.",
     explanationByLang: {
       en: "You feel that not enough air gets into your chest, especially when you move or lie down.",
       sq: "Ndien që nuk të hyn mjaft ajër në gjoks, sidomos kur lodhesh ose kur rri shtrirë.",
       it: "Senti che non entra abbastanza aria nel petto, soprattutto quando fai fatica o sei sdraiato.",
+      hr: "Osjećaš da ti u prsa ne ulazi dovoljno zraka, osobito pri naporu ili dok ležiš.",
+      rom: "Hatjares kaj na del dosta balval ando tiro kolin, maj but kana phires vaj kana pashljos.",
     },
     phoneticPronunciation: "Pha-ri phur-di-ni-mos",
     audioPronunciationText: "Phari phurdinimos. Respirație grea.",
@@ -178,12 +344,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "O shero phirel (capul se învârte)",
     category: "simptome",
     categoryLabel: "Simptome și semne",
+    termByLang: {
+      en: "Dizziness",
+      sq: "Marramendje",
+      it: "Capogiro",
+      hr: "Vrtoglavica",
+      rom: "O shero phirel",
+    },
+    categoryLabelByLang: {
+      en: "Symptoms and signs",
+      sq: "Simptomat dhe shenjat",
+      it: "Sintomi e segni",
+      hr: "Simptomi i znakovi",
+      rom: "Simptomura thaj semnja",
+    },
     explanation:
       "Simți că totul se învârte în jurul tău sau că îți pierzi echilibrul când te ridici.",
     explanationByLang: {
       en: "You feel everything is spinning around you, or you lose your balance when you stand up.",
       sq: "Ndien sikur gjithçka rrotullohet rreth teje, ose humbet ekuilibrin kur ngrihesh.",
       it: "Senti che tutto gira intorno a te o perdi l'equilibrio quando ti alzi.",
+      hr: "Osjećaš da se sve vrti oko tebe ili gubiš ravnotežu kada ustaneš.",
+      rom: "Hatjares sar sa boldel pes trujal tute vaj xasares o balanso kana ushtes opre.",
     },
     phoneticPronunciation: "O she-ro phi-rel",
     audioPronunciationText: "O shero phirel. Amețeală.",
@@ -194,12 +376,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "Rengro dikhiben",
     category: "tratamente",
     categoryLabel: "Analize",
+    termByLang: {
+      en: "Blood tests",
+      sq: "Analiza gjaku",
+      it: "Esami del sangue",
+      hr: "Krvne pretrage",
+      rom: "Rengro dikhiben",
+    },
+    categoryLabelByLang: {
+      en: "Tests",
+      sq: "Analizat",
+      it: "Esami",
+      hr: "Pretrage",
+      rom: "Dikhibena",
+    },
     explanation:
       "Ți se ia puțin sânge din deget sau din braț. Rezultatul îi arată medicului ce se întâmplă în corp.",
     explanationByLang: {
       en: "A little blood is taken from your finger or arm. The result shows the doctor what is happening in your body.",
       sq: "Të marrin pak gjak nga gishti ose nga krahu. Rezultati i tregon mjekut çfarë ndodh në trup.",
       it: "Ti prendono un po' di sangue dal dito o dal braccio. Il risultato mostra al medico cosa succede nel corpo.",
+      hr: "Uzme ti se malo krvi iz prsta ili ruke. Nalaz pokazuje liječniku što se događa u tvom tijelu.",
+      rom: "Len tuke zalog rat katar o naj vaj katar o vast. O rezultato sikavel e doktoreske so kerel pes ando tiro trupo.",
     },
     phoneticPronunciation: "Ren-gro di-khi-ben",
     audioPronunciationText: "Rengro dikhiben. Analiza sângelui.",
@@ -210,12 +408,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "I khabni romni",
     category: "general",
     categoryLabel: "Sănătatea mamei",
+    termByLang: {
+      en: "Pregnancy (pregnant woman)",
+      sq: "Shtatzënia (grua shtatzënë)",
+      it: "Gravidanza (donna incinta)",
+      hr: "Trudnoća (trudnica)",
+      rom: "Khabnipen (i khabni romni)",
+    },
+    categoryLabelByLang: {
+      en: "Mother's health",
+      sq: "Shëndeti i nënës",
+      it: "Salute della mamma",
+      hr: "Zdravlje majke",
+      rom: "E dajako sastipen",
+    },
     explanation:
       "Cele 9 luni în care copilul crește în burta mamei, până la naștere.",
     explanationByLang: {
       en: "The 9 months when the baby grows in the mother's belly, until birth.",
       sq: "9 muajt kur fëmija rritet në barkun e nënës, deri në lindje.",
       it: "I 9 mesi in cui il bambino cresce nella pancia della mamma, fino alla nascita.",
+      hr: "Razdoblje od 9 mjeseci u kojem dijete raste u majčinom trbuhu do poroda.",
+      rom: "E 9 chona kana o chavoro barjol ando por e dajako, dzhi ko bijandimos.",
     },
     phoneticPronunciation: "I khab-ni rom-ni",
     audioPronunciationText: "I khabni romni. Femeie însărcinată.",
@@ -226,12 +440,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "O chikat / I drab e cioranengo",
     category: "tratamente",
     categoryLabel: "Prevenție",
+    termByLang: {
+      en: "Vaccine (immunisation)",
+      sq: "Vaksina (imunizimi)",
+      it: "Vaccino (immunizzazione)",
+      hr: "Cjepivo (cijepljenje)",
+      rom: "O chikat (vakcina)",
+    },
+    categoryLabelByLang: {
+      en: "Prevention",
+      sq: "Parandalimi",
+      it: "Prevenzione",
+      hr: "Prevencija",
+      rom: "Arakhimos",
+    },
     explanation:
       "O înțepătură mică. Învață corpul, la copii și la adulți, să se apere de boli grele.",
     explanationByLang: {
       en: "A small injection. It teaches the body, in children and adults, to defend itself against serious illness.",
       sq: "Një shpim i vogël. I mëson trupit, te fëmijët dhe te të rriturit, të mbrohet nga sëmundje të rënda.",
       it: "Una piccola puntura. Insegna al corpo, nei bambini e negli adulti, a difendersi da malattie gravi.",
+      hr: "Mali ubod iglom. Uči tijelo, kod djece i odraslih, da se brani od teških bolesti.",
+      rom: "Jekh cikno pusavimos. Sikavel o trupo, ko chavore thaj ko bare manusha, te arakhel pes katar phare nasvalipena.",
     },
     phoneticPronunciation: "O chi-kat",
     audioPronunciationText: "O chikat. Vaccinul de protecție.",
@@ -242,12 +472,28 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     romanesTerm: "I barvali sigardiari (nevoie grabnică)",
     category: "simptome",
     categoryLabel: "Urgențe",
+    termByLang: {
+      en: "Medical emergency (112)",
+      sq: "Urgjencë mjekësore (112)",
+      it: "Emergenza medica (112)",
+      hr: "Hitni medicinski slučaj (112)",
+      rom: "Sastipnaski sigardiari (112)",
+    },
+    categoryLabelByLang: {
+      en: "Emergencies",
+      sq: "Urgjencat",
+      it: "Emergenze",
+      hr: "Hitna stanja",
+      rom: "Sigardiarja",
+    },
     explanation:
       "Viața cuiva e în pericol. Sună imediat la 112.",
     explanationByLang: {
       en: "Someone's life is in danger. Call 112 now.",
       sq: "Jeta e dikujt është në rrezik. Telefono menjëherë në 112.",
       it: "La vita di qualcuno è in pericolo. Chiama subito il 112.",
+      hr: "Nečiji je život u opasnosti. Odmah nazovi 112.",
+      rom: "Varekasko trajo si ando riziko. Akhar sigo 112.",
     },
     phoneticPronunciation: "Si-gar-di-a-ri",
     audioPronunciationText: "Sigardiari. Urgență medicală.",

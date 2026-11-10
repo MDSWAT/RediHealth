@@ -19,6 +19,8 @@ const TOO_MANY: Record<Lang, string> = {
   en: "Too many attempts. Please wait a little and try again.",
   sq: "Shumë përpjekje. Prit pak dhe provo përsëri.",
   it: "Troppi tentativi. Attendi un momento e riprova.",
+  hr: "Previše pokušaja. Pričekaj malo pa pokušaj ponovno.",
+  rom: "But zumavimata. Azhuker zalag thaj zumav palem.",
 };
 
 const inputClass =

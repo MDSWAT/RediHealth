@@ -9,6 +9,8 @@ const descriptions: Record<Lang, string> = {
   en: "Answer a few short questions. We point you to information, a doctor or a health mediator.",
   sq: "Përgjigju disa pyetjeve të shkurtra. Të tregojmë ku gjen informacion, një mjek ose një mediator shëndetësor.",
   it: "Rispondi a qualche breve domanda. Ti indichiamo informazioni, un medico o un mediatore sanitario.",
+  hr: "Odgovori na nekoliko kratkih pitanja. Uputit ćemo te na informacije, liječnika ili zdravstvenog medijatora.",
+  rom: "De palpale pe zalag xarne pučhimata. Sikavas tuke informaciye, doktori vay sastipnasko mediatori.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {

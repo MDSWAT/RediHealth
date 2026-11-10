@@ -4,7 +4,7 @@ import { useEffect, useSyncExternalStore } from "react";
 import { errorTranslations } from "@/lib/i18n/error-translations";
 import type { Lang } from "@/lib/i18n/translations";
 
-const LANGS: Lang[] = ["ro", "en", "sq", "it"];
+const LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom"];
 const noSubscribe = () => () => {};
 
 function langFromUrl(): Lang {

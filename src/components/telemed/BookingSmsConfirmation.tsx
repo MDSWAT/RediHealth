@@ -69,6 +69,32 @@ const confirmationCopy = {
     calSummary: (code: string) => `Chiamata con il medico RediHealth (${code})`,
     calDesc: (link: string) => `Chiamata con un medico volontario RediHealth. Entra da qui: ${link}`,
   },
+  hr: {
+    title: "Tvoj poziv je rezerviran",
+    codeLabel: "Kod rezervacije",
+    atHour: "u",
+    forPatient: "Za:",
+    smsTitle: (phone: string) => `Poslali smo SMS poruku na broj ${phone}`,
+    whatsAppSent: "Potvrdu smo ti poslali i putem aplikacije WhatsApp.",
+    openRoom: "Pridruži se pozivu",
+    addToCalendar: "Dodaj u kalendar",
+    anotherBooking: "Rezerviraj drugi termin",
+    calSummary: (code: string) => `Poziv s liječnikom RediHealth (${code})`,
+    calDesc: (link: string) => `Poziv s liječnikom volonterom na platformi RediHealth. Pridruži se ovdje: ${link}`,
+  },
+  rom: {
+    title: "Cho svato e doktoresa si thodino",
+    codeLabel: "Kodo e vramako",
+    atHour: "ko",
+    forPatient: "Vash:",
+    smsTitle: (phone: string) => `Bichhaldyam SMS pe ${phone}`,
+    whatsAppSent: "Bichhaldyam o chacharipe vi pe WhatsApp.",
+    openRoom: "Khuves and-o svato",
+    addToCalendar: "Tho and-o kalendaro",
+    anotherBooking: "Alosar aver vrama",
+    calSummary: (code: string) => `Svato e doktoresa RediHealth (${code})`,
+    calDesc: (link: string) => `Svato ekhe doktoresa volonteri katar RediHealth. Khuves kathe: ${link}`,
+  },
 };
 
 export interface BookingConfirmationData {

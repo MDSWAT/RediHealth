@@ -7,6 +7,7 @@ import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoct
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 
 interface PathwayPrescriptionProps {
   step: 2 | 3;
@@ -18,12 +19,14 @@ interface PathwayPrescriptionProps {
   plainLanguage: boolean;
 }
 
-/** Brand and generic names as they appear on Romanian prescriptions; amoxicillin is spelled per language. */
-const AMOXICILLIN: Record<string, string> = {
+/** Brand and generic names as they appear on prescriptions; amoxicillin is spelled per language. */
+const AMOXICILLIN: Record<Lang, string> = {
   ro: "Amoxicilină",
   en: "Amoxicillin",
   sq: "Amoksicilinë",
   it: "Amoxicillina",
+  hr: "Amoksicilin",
+  rom: "Amoksicilina",
 };
 const COMMON_DRUGS = [
   "Augmentin",

@@ -10,35 +10,45 @@ import { parsePrescriptionText } from "@/lib/prescription-parser";
 import { NEWS_ARTICLES, getLocalizedArticle } from "@/lib/data/news";
 import type { Lang } from "@/lib/i18n/translations";
 
-const LOCALES: Lang[] = ["ro", "en", "sq", "it"];
+const LOCALES: Lang[] = ["ro", "en", "sq", "it", "hr", "rom"];
 
 describe("Platform core capabilities and multi-locale contracts", () => {
-  it("enables voice read-aloud for ro, en, and it while strictly blocking sq", () => {
+  it("enables voice read-aloud for ro, en, it, and hr while strictly blocking sq and rom", () => {
     expect(isVoiceEnabled("ro")).toBe(true);
     expect(isVoiceEnabled("en")).toBe(true);
     expect(isVoiceEnabled("it")).toBe(true);
+    expect(isVoiceEnabled("hr")).toBe(true);
     expect(isVoiceEnabled("sq")).toBe(false);
+    expect(isVoiceEnabled("rom")).toBe(false);
     expect(isVoiceEnabled("sq-AL" as Lang)).toBe(false);
   });
 
-  it("normalizes clinical units, numeric ranges, and 112 for natural speech in ro, en, and it", () => {
+  it("normalizes clinical units, numeric ranges, and 112 for natural speech in ro, en, it, and hr", () => {
     expect(formatSpeechText("Tensiunea crește cu 10–15 mmHg. Sună la 112.", "ro-RO")).toContain(
       "10 până la 15 milimetri coloană de mercur"
     );
     expect(formatSpeechText("Sună la 112.", "ro-RO")).toContain("unu unu doi");
     expect(formatSpeechText("Walk 10–15 minutes. Call 112.", "en-US")).toContain("10 to 15");
     expect(formatSpeechText("Cammina 10–15 minuti. Chiama il 112.", "it-IT")).toContain("da 10 a 15");
+    expect(formatSpeechText("Tlak raste za 10–15 mmHg. Nazovi 112.", "hr-HR")).toContain(
+      "od 10 do 15 milimetara živinog stupca"
+    );
+    expect(formatSpeechText("Nazovi 112.", "hr-HR")).toContain("jedan jedan dva");
     expect(speechEngine.isSpeaking()).toBe(false);
   });
 
-  it("keeps health-check translations and acute red-flag flags aligned across all 4 locales", () => {
+  it("keeps health-check translations and acute red-flag flags aligned across all 6 locales", () => {
     for (const lang of LOCALES) {
       const dict = getHealthCheckTranslations(lang);
-      expect(Object.keys(dict.bodyParts)).toHaveLength(6);
+      expect(Object.keys(dict.bodyParts)).toHaveLength(7);
       const sharpLowerAbdomen = dict.symptomsByRegion.stomach.find(
         (s) => s.id === "stomach_lower_sharp"
       );
       expect(sharpLowerAbdomen?.isRedFlag).toBe(true);
+      const pelvicEmergency = dict.symptomsByRegion.pelvis.find(
+        (s) => s.id === "pelvis_pregnancy_bleeding"
+      );
+      expect(pelvicEmergency?.isRedFlag).toBe(true);
     }
   });
 

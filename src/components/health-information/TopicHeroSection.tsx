@@ -32,12 +32,43 @@ export interface TopicHeroSectionProps {
   lang?: Lang;
 }
 
+const MODE_BADGE_COPY: Record<Lang, { simple: string; complete: string }> = {
+  ro: {
+    simple: "Rezumat esențial",
+    complete: "Context clinic extins",
+  },
+  en: {
+    simple: "Essential summary",
+    complete: "Extended clinical context",
+  },
+  sq: {
+    simple: "Përmbledhje thelbësore",
+    complete: "Kontekst klinik i zgjeruar",
+  },
+  it: {
+    simple: "Sintesi essenziale",
+    complete: "Contesto clinico esteso",
+  },
+  hr: {
+    simple: "Osnovni sažetak",
+    complete: "Prošireni klinički kontekst",
+  },
+  rom: {
+    simple: "Xarno sikavimos",
+    complete: "Baro sastipnasko sikavimos",
+  },
+};
+
 function useSafeLanguageContext(): { lang: Lang } {
   try {
     return useLanguage();
   } catch {
     return { lang: "ro" };
   }
+}
+
+function pickLocale(entry: Record<"ro", string> & Partial<Record<Lang, string>>, lang: Lang): string {
+  return entry[lang] ?? entry.ro;
 }
 
 export function TopicHeroSection({
@@ -57,6 +88,10 @@ export function TopicHeroSection({
   const currentLang: Lang = lang ?? ctxLang ?? "ro";
   const voiceEnabled = isVoiceEnabled(currentLang);
   const s = HEALTH_DETAIL_SHARED_STRINGS.topicHero;
+  const modeCopy = MODE_BADGE_COPY[currentLang] ?? MODE_BADGE_COPY.ro;
+
+  const effectiveReadMinutes = readingLevel === "complete" ? readMinutes + 2 : readMinutes;
+  const effectiveAudioMinutes = readingLevel === "complete" ? audioMinutes + 1 : audioMinutes;
 
   const handleAudioAction = () => {
     if (isPlayingAudio) {
@@ -74,18 +109,18 @@ export function TopicHeroSection({
 
   return (
     <section
-      aria-label={s.ariaIntro[currentLang]}
+      aria-label={pickLocale(s.ariaIntro, currentLang)}
       className={`border-b border-border bg-card py-10 sm:py-14 print:py-4 ${className}`}
     >
       <Container>
         {/* Breadcrumb navigation */}
-        <nav aria-label={s.ariaNav[currentLang]} className="mb-6 print:hidden">
+        <nav aria-label={pickLocale(s.ariaNav, currentLang)} className="mb-6 print:hidden">
           <Link
             href={withLangPrefix("/health-information", currentLang)}
             className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-sapphire hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           >
-            <ArrowRightIcon className="h-4 w-4 rotate-180" />
-            <span>{s.backToGuides[currentLang]}</span>
+            <ArrowRightIcon className="h-4 w-4 rotate-180" aria-hidden="true" />
+            <span>{pickLocale(s.backToGuides, currentLang)}</span>
           </Link>
         </nav>
 
@@ -96,8 +131,16 @@ export function TopicHeroSection({
               <span>{topic.title}</span>
             </h1>
 
-            <div className="print:hidden">
-              <TopicMetaBadge readMinutes={readMinutes} audioMinutes={audioMinutes} bordered={false} lang={currentLang} />
+            <div className="flex flex-wrap items-center gap-2.5 print:hidden">
+              <TopicMetaBadge
+                readMinutes={effectiveReadMinutes}
+                audioMinutes={effectiveAudioMinutes}
+                bordered={false}
+                lang={currentLang}
+              />
+              <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2.5 py-1 text-xs font-semibold text-sapphire">
+                {readingLevel === "complete" ? modeCopy.complete : modeCopy.simple}
+              </span>
             </div>
 
             {/* The intro itself is the first paragraph of the guide text below. */}
@@ -138,7 +181,11 @@ export function TopicHeroSection({
                       <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
                     </svg>
                   )}
-                  <span>{isPlayingAudio ? s.stopAudio[currentLang] : s.listenGuide[currentLang]}</span>
+                  <span>
+                    {isPlayingAudio
+                      ? pickLocale(s.stopAudio, currentLang)
+                      : pickLocale(s.listenGuide, currentLang)}
+                  </span>
                 </button>
               </div>
             )}

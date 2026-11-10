@@ -30,6 +30,14 @@ function useSafeLanguageContext(): { lang: Lang } {
   }
 }
 
+function pickLocale(entry: Record<"ro", string> & Partial<Record<Lang, string>>, lang: Lang): string {
+  return entry[lang] ?? entry.ro;
+}
+
+function pickSpeechLang(lang: Lang): string {
+  return (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ?? (lang === "hr" ? "hr-HR" : "ro-RO");
+}
+
 /** Three key facts as a quiet, typographic row: a rule, a short heading, one sentence. */
 export function WhyItMattersInfographic({
   topicTitle,
@@ -41,12 +49,12 @@ export function WhyItMattersInfographic({
   const { lang: ctxLang } = useSafeLanguageContext();
   const currentLang: Lang = lang ?? ctxLang ?? "ro";
   const s = HEALTH_DETAIL_SHARED_STRINGS.whyItMatters;
-  const speechLang = SPEECH_LANG_BY_LOCALE[currentLang] ?? "ro-RO";
+  const speechLang = pickSpeechLang(currentLang);
 
   const resolvedPillars: InfographicPillar[] = pillars || [
-    { number: "01", title: s.pillar1Title[currentLang], description: keyFacts[0] || s.pillar1Desc[currentLang] },
-    { number: "02", title: s.pillar2Title[currentLang], description: keyFacts[1] || s.pillar2Desc[currentLang] },
-    { number: "03", title: s.pillar3Title[currentLang], description: keyFacts[2] || s.pillar3Desc[currentLang] },
+    { number: "01", title: pickLocale(s.pillar1Title, currentLang), description: keyFacts[0] || pickLocale(s.pillar1Desc, currentLang) },
+    { number: "02", title: pickLocale(s.pillar2Title, currentLang), description: keyFacts[1] || pickLocale(s.pillar2Desc, currentLang) },
+    { number: "03", title: pickLocale(s.pillar3Title, currentLang), description: keyFacts[2] || pickLocale(s.pillar3Desc, currentLang) },
   ];
 
   return (
@@ -57,18 +65,18 @@ export function WhyItMattersInfographic({
             id="why-it-matters-heading"
             className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
           >
-            {s.heading[currentLang]}
+            {pickLocale(s.heading, currentLang)}
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            {s.subtitleTemplate[currentLang].replace("{topic}", topicTitle.toLowerCase())}
+            {pickLocale(s.subtitleTemplate, currentLang).replace("{topic}", topicTitle.toLowerCase())}
           </p>
         </div>
 
         <InlineAudioNarratorButton
-          textToSpeak={`${s.heading[currentLang]}. ${resolvedPillars
+          textToSpeak={`${pickLocale(s.heading, currentLang)}. ${resolvedPillars
             .map((p) => `${p.title}. ${p.description}`)
             .join(" ")}`}
-          label={s.listenAllLabel[currentLang]}
+          label={pickLocale(s.listenAllLabel, currentLang)}
           lang={speechLang}
         />
       </div>

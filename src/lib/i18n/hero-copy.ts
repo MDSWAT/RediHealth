@@ -437,4 +437,180 @@ const it: HeroCopy = {
   },
 };
 
-export const heroCopy: Record<Lang, HeroCopy> = { en, ro, sq, it };
+const hr: HeroCopy = {
+  emergency: {
+    close: "Zatvori",
+    alarmSigns: [
+      "Bol ili pritisak u prsima",
+      "Teško disanje ili nedostatak zraka",
+      "Iskrivljeno lice, slabost ili nerazgovijetan govor",
+      "Nesvjestica ili zbunjenost",
+      "Jako krvarenje",
+    ],
+    callLead: "U hitnom medicinskom slučaju,",
+    callLink: "nazovi 112",
+  },
+  title: "Informacije o zdravlju jednostavnim riječima i pomoć da dođeš do prave skrbi.",
+  lead: "Za ranjive zajednice, uključujući romske zajednice. Besplatno i povjerljivo.",
+  journey: ["Reci što te brine", "Dobij jasne sljedeće korake", "Razgovaraj s liječnikom"],
+  primaryCta: "Reci nam što te brine",
+  panel: {
+    label: "Asistent",
+    listen: "Čitaj naglas",
+    stopListening: "Zaustavi čitanje",
+    fallbackVoice: "rezervni glas",
+    mediators: "Za zdravstvene medijatore",
+    question: "Što te danas brine?",
+    back: "Natrag",
+    step: (current, total) => `Korak ${current} od ${total}`,
+    doctorPrompt: "Želiš li razgovarati s liječnikom?",
+    doctorLink: "Dogovori poziv",
+    problemDoctorPrompt: "Nemaš znakove uzbune?",
+    problemDoctorLink: "Razgovaraj s liječnikom online",
+    needs: {
+      learn: {
+        label: "Želim saznati više o zdravlju",
+        title: "Kratke lekcije o zdravlju",
+        quiz: {
+          prompt: "Točno ili netočno?",
+          statement: "Kad se krvni tlak vrati u normalu, možeš prestati piti tablete.",
+          trueLabel: "Točno",
+          falseLabel: "Netočno",
+          answer: false,
+          correct: "Tako je.",
+          incorrect: "Nije baš tako.",
+          explanation: "Krvni tlak je normalan upravo zbog tableta. Nemoj ih prestati uzimati bez razgovora s liječnikom.",
+        },
+        action: { label: "Započni lekciju", href: "/health-information" },
+      },
+      risk: {
+        label: "Želim provjeriti svoje simptome",
+        title: "Pokaži gdje te boli",
+        body: "Dodirni mjesto na tijelu, odgovori na 3 pitanja i saznaj što učiniti dalje.",
+        action: { label: "Pokreni provjeru", href: "/health-check" },
+      },
+      nearby: {
+        label: "Tražim ljekarnu ili liječnika u blizini",
+        title: "Ljekarne, ambulante i bolnice blizu tebe",
+        points: [
+          { text: "Ljekarnik te može besplatno savjetovati, bez naručivanja." },
+          { text: "Pogledaj na karti obiteljske liječnike, klinike i bolnice." },
+          { text: "Odaberi državu ili koristi svoju lokaciju." },
+        ],
+        action: { label: "Otvori kartu", href: "/find-help" },
+      },
+      problem: {
+        label: "Imam zdravstveni problem",
+        title: "Prvo provjeri znakove uzbune",
+        body: "Odmah nazovi 112 ako imaš bilo koji od ovih znakova:",
+        action: { label: "Nazovi 112", href: "tel:112" },
+      },
+      prescription: {
+        label: "Želim objašnjenje svog recepta",
+        title: "Tvoj recept, objašnjen",
+        body: "Fotografiraj recept. Objašnjavamo svaki lijek: čemu služi i kada se uzima.",
+        action: { label: "Objasni mi recept", href: "/prescription-review" },
+      },
+      navigate: {
+        label: "Ne znam kamo ići",
+        title: "Kamo ići i što ponijeti",
+        points: [
+          { text: "Upiši se kod obiteljskog liječnika, čak i bez osiguranja." },
+          { text: "Ponesi osobnu iskaznicu." },
+          { text: "Hitna pomoć u bolnici besplatna je za sve." },
+        ],
+        action: { label: "Zatraži pomoć osobe", href: "/get-help?mode=mediator" },
+      },
+    },
+  },
+};
+
+const rom: HeroCopy = {
+  emergency: {
+    close: "Phandav",
+    alarmSigns: [
+      "Dukh vay tasavipe ando kolin",
+      "Phari phurdinimos",
+      "Bango muy, kovlipe vay pharo vakeripe",
+      "Peripe vay bisterdipe",
+      "Zuralo ratvalo thavdipe",
+    ],
+    callLead: "Ki sastipnaski sigardiari,",
+    callLink: "akhar ko 112",
+  },
+  title: "Sastipnaske informaciye pe lokhe alava thaj zhutimos te areses ko lacho dikhiben.",
+  lead: "Vash e kovle komunitetya, vi e romane komunitetya. Bi lovesko thaj garavdo.",
+  journey: ["Phen so daravel tut", "Le chache pasha", "Vaker ekhe doktoreya"],
+  primaryCta: "Phen amenge so daravel tut",
+  panel: {
+    label: "Asistento",
+    listen: "Gin glasosa",
+    stopListening: "Astav o ginipe",
+    fallbackVoice: "rezervno glaso",
+    mediators: "Vash e sastipnaske mediatorya",
+    question: "So daravel tut adyes?",
+    back: "Palpale",
+    step: (current, total) => `Pash ${current} katar ${total}`,
+    doctorPrompt: "Kames te vakeres ekhe doktoreya?",
+    doctorLink: "Programisar ekh akharipe",
+    problemDoctorPrompt: "Nane tut daravne semnya?",
+    problemDoctorLink: "Vaker ekhe doktoreya online",
+    needs: {
+      learn: {
+        label: "Kamav te sikljovav vash o sastipen",
+        title: "Khurdeline lekciye vash cho sastipen",
+        quiz: {
+          prompt: "Chacho vay xoxamno?",
+          statement: "Kana o rat phurdel normalno palem, shay te mukhes e draba.",
+          trueLabel: "Chacho",
+          falseLabel: "Xoxamno",
+          answer: false,
+          correct: "Chaches si.",
+          incorrect: "Na chaches.",
+          explanation: "O rat phurdel normalno numay katar e draba. Ma mukh len bi te vakeres che doktoreya.",
+        },
+        action: { label: "Shird ekh lekciya", href: "/health-information" },
+      },
+      risk: {
+        label: "Kamav te dikhav mire simptome",
+        title: "Sikav kay dukhal tut",
+        body: "Azba o than po trupo, de palpale pe 3 phuchimata thaj dikh so te keres may dur.",
+        action: { label: "Shird o dikhiben", href: "/health-check" },
+      },
+      nearby: {
+        label: "Rodav ekh farmaciya vay doktori pashal",
+        title: "Farmaciye, kabinetya thaj bolnitse pashal tute",
+        points: [
+          { text: "O farmacisto shay te del tut godi bi lovesko, bi programiripnasko." },
+          { text: "Dikh pi mapa familiyake doktorya, klinike thaj bolnitse." },
+          { text: "Alosar o them vay labar cho than." },
+        ],
+        action: { label: "Putar i mapa", href: "/find-help" },
+      },
+      problem: {
+        label: "Si man sastipnaski problema",
+        title: "Anglunes, dikh e daravne semnya",
+        body: "Akhar akana ko 112 te si tut varesavo katar kadala:",
+        action: { label: "Akhar ko 112", href: "tel:112" },
+      },
+      prescription: {
+        label: "Kamav te xatyarav miri receta",
+        title: "Chi receta, ashkardi",
+        body: "Ker ekh chitro e recetake. Ashkaras sako drab: soske si thaj kana te les la.",
+        action: { label: "Ashkar miri receta", href: "/prescription-review" },
+      },
+      navigate: {
+        label: "Na zhanav kay te zhav",
+        title: "Kay te zhas thaj so te ingares",
+        points: [
+          { text: "Lekhav tut ko familiyako doktori, vi bi siguraciyako." },
+          { text: "Ingar tusa chi buletina." },
+          { text: "I sigardiari ki bolnitsa si bi lovesko savorenge." },
+        ],
+        action: { label: "Mang zhutimos katar ekh manush", href: "/get-help?mode=mediator" },
+      },
+    },
+  },
+};
+
+export const heroCopy: Record<Lang, HeroCopy> = { en, ro, sq, it, hr, rom };

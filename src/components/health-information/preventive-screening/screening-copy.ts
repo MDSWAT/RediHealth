@@ -822,4 +822,394 @@ export const SCREENING_RECOMMENDATIONS: Record<Lang, ScreeningSelectorCopy> = {
       },
     ],
   },
+  hr: {
+    sectionTitle: "Koji preventivni pregledi odgovaraju tebi",
+    sectionSubtitle:
+      "Odaberi svoju dob i pogledaj koje preglede možeš obaviti besplatno ili preko HZZO uputnice.",
+    filterAgeLabel: "Dob",
+    filterSexLabel: "Za koga",
+    ageOptions: {
+      "18-39": "18–39 godina",
+      "40-49": "40–49 godina",
+      "50-69": "50–69 godina",
+      "70+": "70+ godina",
+    },
+    sexOptions: {
+      all: "Svi odrasli",
+      female: "Žene",
+      male: "Muškarci",
+    },
+    tabRecommendations: "Preporučeni pregledi",
+    tabTimeline: "Zašto pomažu",
+    tabChecklist: "Moj popis",
+    noResultsMessage: "Nema pregleda za odabrani filtar.",
+    frequencyLabel: "Koliko često",
+    cnasLabel: "Trošak",
+    preparationLabel: "Kako se pripremiti",
+    earlyBenefitLabel: "Zašto pomaže",
+    doctorQuestionLabel: "Što pitati liječnika",
+    checklistTitle: "Moj popis za obiteljskog liječnika",
+    checklistSubtitle:
+      "Označi preglede koje si obavio ili o kojima želiš razgovarati s liječnikom.",
+    checklistCounter: "{completed} od {total} označeno",
+    checklistEmpty:
+      "Još ništa nije označeno. Odaberi svoju dob i označi preglede koji te zanimaju.",
+    printChecklistButton: "Ispiši popis",
+    audioNarrationPrefix: "Preventivni pregledi.",
+    listenInvestigationLabel: "Poslušaj pojedinosti",
+    timelineTitle: "Kako rani pregledi čuvaju zdravlje",
+    timelineSubtitle:
+      "Jednostavan pregled može otkriti promjenu prije nego što postane ozbiljna.",
+    sceneLabels: {
+      symptoms: "Pojava simptoma",
+      check: "Pregled",
+      foundEarly: "Otkriveno rano",
+      untreated: "Bez pregleda",
+      treated: "Rano liječenje",
+      time: "Vrijeme",
+    },
+    timelineSteps: [
+      {
+        stepNumber: "01",
+        title: "Osjećaš se dobro",
+        description:
+          "Mnoge bolesti u početku ne bole. Osjećaš se dobro i ne primjećuješ nikakve smetnje.",
+      },
+      {
+        stepNumber: "02",
+        title: "Obaviš kratak pregled",
+        description:
+          "Krvna pretraga, mjerenje krvnog tlaka ili Papanicolau test (Papa-test) traju svega nekoliko minuta kod obiteljskog liječnika.",
+      },
+      {
+        stepNumber: "03",
+        title: "Otkrije se mala promjena",
+        description:
+          "Pretraga pronalazi sitne promjene godinama prije boli ili ozbiljne bolesti.",
+      },
+      {
+        stepNumber: "04",
+        title: "Liječenje je puno lakše",
+        description:
+          "Problem otkriven na vrijeme lakše se liječi i ima najveću šansu za potpuno izlječenje.",
+      },
+    ],
+    investigations: [
+      {
+        id: "checkup-annual-all",
+        glyph: "stethoscope",
+        ageBrackets: ["18-39", "40-49", "50-69", "70+"],
+        applicableSex: "all",
+        title: "Godišnji preventivni pregled kod obiteljskog liječnika",
+        frequency: "Jednom godišnje",
+        cnasBadge: "Besplatno preko HZZO sustava u primarnoj zaštiti",
+        preparation: "Posebna priprema nije potrebna. Dogovori termin u ambulanti.",
+        earlyBenefit:
+          "Obiteljski liječnik provjerava tvoj krvni tlak, tjelesnu težinu, srce i navike prije nastanka bolesti.",
+        doctorQuestion: "Na koje bolesti iz moje obitelji trebam posebno pripaziti?",
+      },
+      {
+        id: "blood-panel-18-39",
+        glyph: "blood",
+        ageBrackets: ["18-39"],
+        applicableSex: "all",
+        title: "Rutinske krvne pretrage (krvna slika, glukoza u krvi, kolesterol)",
+        frequency: "Svake 3 godine, ili češće ako postoji rizik",
+        cnasBadge: "Pokriveno preko HZZO uputnice obiteljskog liječnika",
+        preparation: "Ujutro natašte. Smiješ popiti običnu vodu.",
+        earlyBenefit:
+          "Rano otkriva slabokrvnost, povišenu glukozu u krvi (predijabetes) i povišeni kolesterol.",
+        doctorQuestion: "Jesu li moji nalazi uredni za moju dob?",
+      },
+      {
+        id: "cervical-pap-hpv",
+        glyph: "ribbon",
+        ageBrackets: ["18-39", "40-49", "50-69"],
+        applicableSex: "female",
+        title: "Bris vrata maternice: Papanicolau test (Papa-test) ili HPV test",
+        frequency: "Svake 3 godine (Papa-test) ili svakih 5 godina (HPV)",
+        cnasBadge: "Besplatno u ginekološkoj ambulanti preko HZZO sustava",
+        preparation: "48 sati prije pregleda izbjegavaj spolne odnose, vaginalete i kreme.",
+        earlyBenefit:
+          "Otkriva promijenjene stanice godinama prije nego što mogu prijeći u rak.",
+        doctorQuestion: "Koji je test bolji za mene, Papa-test ili HPV test?",
+      },
+      {
+        id: "cardio-metabolic-40",
+        glyph: "heart",
+        ageBrackets: ["40-49", "50-69"],
+        applicableSex: "all",
+        title: "Pregled srca i metabolizma (SCORE2, glukoza u krvi, kolesterol)",
+        frequency: "Jednom godišnje",
+        cnasBadge: "Pokriveno preko HZZO sustava kod obiteljskog liječnika",
+        preparation:
+          "Dođi natašte na vađenje krvi. Mirno sjedi 10 minuta prije mjerenja krvnog tlaka.",
+        earlyBenefit:
+          "Pravodobno djelovanje pomaže spriječiti srčani udar i moždani udar.",
+        doctorQuestion: "Koliki je moj rizik za bolest srca u idućih 10 godina?",
+      },
+      {
+        id: "breast-ultrasound-mammography",
+        glyph: "ribbon",
+        ageBrackets: ["40-49"],
+        applicableSex: "female",
+        title: "Klinički pregled i ultrazvuk dojki",
+        frequency: "Jednom godišnje",
+        cnasBadge: "Pokriveno preko HZZO uputnice liječnika",
+        preparation: "Najbolje u prvih 10 dana od početka mjesečnice.",
+        earlyBenefit:
+          "Otkriva male čvoriće prije nego što ih možeš napipati rukom.",
+        doctorQuestion: "Kada trebam krenuti na prvu mamografiju?",
+      },
+      {
+        id: "mammography-screening-50-69",
+        glyph: "ribbon",
+        ageBrackets: ["50-69"],
+        applicableSex: "female",
+        title: "Preventivna mamografija (obje dojke)",
+        frequency: "Svake 2 godine",
+        cnasBadge: "Besplatno kroz Nacionalni program ranog otkrivanja raka dojke",
+        preparation: "Na dan snimanja nemoj nanositi dezodorans, kremu ni puder ispod pazuha.",
+        earlyBenefit:
+          "Otkriva promjene veličine nekoliko milimetara, kada je šansa za izlječenje najveća.",
+        doctorQuestion: "Gdje se nalazi najbliži centar za preventivnu mamografiju?",
+      },
+      {
+        id: "colorectal-fit-test",
+        glyph: "sample",
+        ageBrackets: ["50-69"],
+        applicableSex: "all",
+        title: "Test na skrivenu krv u stolici (FIT test za debelo crijevo)",
+        frequency: "Svake 1–2 godine",
+        cnasBadge: "Besplatno kroz Nacionalni program ranog otkrivanja raka debelog crijeva",
+        preparation:
+          "Uzorak stolice uzimaš kod kuće pomoću jednostavnog kompleta. Nije potrebna posebna dijeta.",
+        earlyBenefit:
+          "Pronalazi male polipe ili skriveno krvarenje u stolici davno prije razvoja raka.",
+        doctorQuestion: "Kako pravilno upotrijebiti komplet za uzorak stolice?",
+      },
+      {
+        id: "prostate-risk-men-50",
+        glyph: "blood",
+        ageBrackets: ["50-69", "70+"],
+        applicableSex: "male",
+        title: "Kontrola prostate (PSA iz krvi i pregled po potrebi)",
+        frequency: "Prema preporuci obiteljskog liječnika",
+        cnasBadge: "Pokriveno preko HZZO uputnice liječnika",
+        preparation:
+          "48 sati prije vađenja krvi nemoj voziti bicikl i izbjegavaj ejakulaciju.",
+        earlyBenefit:
+          "Pomaže liječniku razlikovati dobroćudno povećanje prostate od ozbiljnije bolesti.",
+        doctorQuestion: "Trebam li napraviti nalaz PSA iz krvi?",
+      },
+      {
+        id: "senior-frailty-sensory-70",
+        glyph: "eye",
+        ageBrackets: ["70+"],
+        applicableSex: "all",
+        title: "Sistematski pregled za starije osobe (sluh, vid, hod, padovi)",
+        frequency: "Jednom godišnje",
+        cnasBadge: "Besplatno preko HZZO sustava kod obiteljskog liječnika",
+        preparation: "Ponesi naočale i popis svih lijekova koje uzimaš.",
+        earlyBenefit:
+          "Pomaže ti ostati samostalan te spriječiti padove i prijelome.",
+        doctorQuestion: "Koje lagane vježbe ravnoteže mogu raditi kod kuće?",
+      },
+    ],
+  },
+  rom: {
+    sectionTitle: "Save anglune dikhimata si vash tute",
+    sectionSubtitle:
+      "Alosar che bersha thaj dikh save dikhimata vash o sastipen shaj keres bi lovengo.",
+    filterAgeLabel: "Bersha",
+    filterSexLabel: "Vash kaste",
+    ageOptions: {
+      "18-39": "18–39 bersha",
+      "40-49": "40–49 bersha",
+      "50-69": "50–69 bersha",
+      "70+": "70+ bersha",
+    },
+    sexOptions: {
+      all: "Sa le bare manusha",
+      female: "Romnya",
+      male: "Mursha",
+    },
+    tabRecommendations: "Dikhimata so trebun",
+    tabTimeline: "Sostar azhutil",
+    tabChecklist: "Miri lista",
+    noResultsMessage: "Nay dikhimata vash kadava so alosardyan.",
+    frequencyLabel: "Koborivar",
+    cnasLabel: "Kobor mol",
+    preparationLabel: "Sar te gatisares tut",
+    earlyBenefitLabel: "Sostar azhutil",
+    doctorQuestionLabel: "So te phushes le doktores",
+    checklistTitle: "Miri lista vash o familiyako doktori",
+    checklistSubtitle:
+      "Semnisar le dikhimata so kerdyan vay so kames te keres vorba le doktoresa.",
+    checklistCounter: "{completed} katar {total} semnisarde",
+    checklistEmpty:
+      "Inke na semnisardyan kanch. Alosar che bersha thaj semnisar le dikhimata so trebun tuke.",
+    printChecklistButton: "Printisar i lista",
+    audioNarrationPrefix: "Anglune dikhimata.",
+    listenInvestigationLabel: "Ashun may but",
+    timelineTitle: "Sar azhutin le dikhimata kerde po vrama",
+    timelineSubtitle:
+      "Ekh lokho dikhiben shaj arakhel ekh nasvalimos anglal te avel pharo.",
+    sceneLabels: {
+      symptoms: "Sikadyon semnya",
+      check: "Dikhiben",
+      foundEarly: "Arakhlo anglal",
+      untreated: "Bi dikhibnasko",
+      treated: "Sastyardo po vrama",
+      time: "Vrama",
+    },
+    timelineSteps: [
+      {
+        stepNumber: "01",
+        title: "Hatyares tut mishto",
+        description:
+          "But nasvalimata na dukhan ko astarimos. Hatyares tut sasto thaj na dikhes kanch.",
+      },
+      {
+        stepNumber: "02",
+        title: "Keres ekh skurto dikhiben",
+        description:
+          "Rengro dikhiben, dikhiben kana o rat phurdel zurales vay Papanikolau len uni minuturya ko familiyako doktori.",
+      },
+      {
+        stepNumber: "03",
+        title: "Arakhel pe ekh tikno paruvimos",
+        description:
+          "O dikhiben arakhel tikne paruvimata bersha anglal te anen dukh vay pharo nasvalimos.",
+      },
+      {
+        stepNumber: "04",
+        title: "O sastyarimos si may lokho",
+        description:
+          "Ekh bajo arakhlo anglal sastyarel pe may lokhes thaj del o may lachho sastipen.",
+      },
+    ],
+    investigations: [
+      {
+        id: "checkup-annual-all",
+        glyph: "stethoscope",
+        ageBrackets: ["18-39", "40-49", "50-69", "70+"],
+        applicableSex: "all",
+        title: "Bershesko dikhiben ko familiyako doktori",
+        frequency: "Ekhvar and-o bersh",
+        cnasBadge: "100% bi lovengo ko familiyako doktori",
+        preparation: "Na trebul te gatisares kanch. Ker ekh randevo ko kabineto.",
+        earlyBenefit:
+          "O doktori dikhel o phurdimos le ratesko, o pharimos, o ilo thaj o sastipen anglal te avel o nasvalimos.",
+        doctorQuestion: "Save nasvalimata and-i miri familiya trebul te arakhav?",
+      },
+      {
+        id: "blood-panel-18-39",
+        glyph: "blood",
+        ageBrackets: ["18-39"],
+        applicableSex: "all",
+        title: "Rengro dikhiben (rat, zaharo and-o rat, kolesterolo)",
+        frequency: "Svako 3 bersha, vay may butivar te si riziko",
+        cnasBadge: "100% bi lovengo lilesa katar o familiyako doktori",
+        preparation: "Teharin, bi xabnasko. Shaj pes chisto pay.",
+        earlyBenefit:
+          "Sikavel anglal slabimos and-o rat, baro zaharo and-o rat thaj baro kolesterolo.",
+        doctorQuestion: "Si mire analize lachhe vash mire bersha?",
+      },
+      {
+        id: "cervical-pap-hpv",
+        glyph: "ribbon",
+        ageBrackets: ["18-39", "40-49", "50-69"],
+        applicableSex: "female",
+        title: "Testo Papanikolau vay HPV",
+        frequency: "Svako 3 bersha (Papanikolau) vay 5 bersha (HPV)",
+        cnasBadge: "Bi lovengo and-o natsionalno programo vash o sastipen",
+        preparation: "48 chasurya anglal, bi intimno phandaimasko thaj bi kremengo.",
+        earlyBenefit:
+          "Arakhel parude tselule but bersha anglal te keren pe kanchero.",
+        doctorQuestion: "Savo testo si may lachho vash mande, Papanikolau vay HPV?",
+      },
+      {
+        id: "cardio-metabolic-40",
+        glyph: "heart",
+        ageBrackets: ["40-49", "50-69"],
+        applicableSex: "all",
+        title: "Dikhiben vash o ilo thaj zaharo and-o rat (SCORE2, kolesterolo)",
+        frequency: "Ekhvar and-o bersh",
+        cnasBadge: "Bi lovengo katar o familiyako doktori",
+        preparation:
+          "Na xa anglal o rengro dikhiben. Besh lokhes 10 minuturya anglal te maren o phurdimos le ratesko.",
+        earlyBenefit:
+          "Azhutil po vrama te arakhes o ilo thaj te na avel dab and-i godi.",
+        doctorQuestion: "Kobor baro si miro riziko vash o ilo and-e 10 bersha so aven?",
+      },
+      {
+        id: "breast-ultrasound-mammography",
+        glyph: "ribbon",
+        ageBrackets: ["40-49"],
+        applicableSex: "female",
+        title: "Dikhiben thaj ekografiya vash le chucha",
+        frequency: "Ekhvar and-o bersh",
+        cnasBadge: "Bi lovengo lilesa katar o doktori",
+        preparation: "May mishto and-e anglune 10 divesa palal o chonutno rat.",
+        earlyBenefit:
+          "Arakhel tikne gungurya anglal te shaj hatyares len vastesa.",
+        doctorQuestion: "Kana trebul te astarav i mamografiya?",
+      },
+      {
+        id: "mammography-screening-50-69",
+        glyph: "ribbon",
+        ageBrackets: ["50-69"],
+        applicableSex: "female",
+        title: "Mamografiya vash solduj chucha",
+        frequency: "Svako 2 bersha",
+        cnasBadge: "Bi lovengo and-o natsionalno programo",
+        preparation: "Kodo dives na thov deodoranto, krema vay pudra telal i khak.",
+        earlyBenefit:
+          "Arakhel tikne paruvimata, kana o sastyarimos si o may lokho.",
+        doctorQuestion: "Kay si o may pashuno tsentro so kerel mamografiya?",
+      },
+      {
+        id: "colorectal-fit-test",
+        glyph: "sample",
+        ageBrackets: ["50-69"],
+        applicableSex: "all",
+        title: "Testo FIT vash garado rat and-o khul",
+        frequency: "Svako 1–2 bersha",
+        cnasBadge: "Bi lovengo katar o familiyako doktori",
+        preparation:
+          "Les ekh tikni proba khere lokhe kiteshsa. Na trebul diyeta.",
+        earlyBenefit:
+          "Arakhel tikne polipurya vay garado rat but anglal te kerel pe nasvalimos.",
+        doctorQuestion: "Sar te labyarav vorta o FIT kito?",
+      },
+      {
+        id: "prostate-risk-men-50",
+        glyph: "blood",
+        ageBrackets: ["50-69", "70+"],
+        applicableSex: "male",
+        title: "Dikhiben vash i prostata (PSA rengro dikhiben)",
+        frequency: "Kana phenel o familiyako doktori",
+        cnasBadge: "Bi lovengo lilesa katar o doktori",
+        preparation:
+          "48 chasurya anglal o rengro dikhiben, na phir bitsikletasa.",
+        earlyBenefit:
+          "Azhutil le doktores te dikhel po vrama savi si i prostata.",
+        doctorQuestion: "Trebul mange o PSA rengro dikhiben?",
+      },
+      {
+        id: "senior-frailty-sensory-70",
+        glyph: "eye",
+        ageBrackets: ["70+"],
+        applicableSex: "all",
+        title: "Dikhiben vash phureder manusha (ashunimos, dikhimos, phirimos)",
+        frequency: "Ekhvar and-o bersh",
+        cnasBadge: "100% bi lovengo ko familiyako doktori",
+        preparation: "An tusa le ochelarya thaj i lista sa le drabensa so les.",
+        earlyBenefit:
+          "Azhutil tut te achhes korkoro po punro thaj te na peres tele.",
+        doctorQuestion: "Save lokhe vjezhbe vash o balanso shaj kerav khere?",
+      },
+    ],
+  },
 };

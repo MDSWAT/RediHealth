@@ -8,12 +8,16 @@ const TITLES: Record<"waiting" | "room", Record<Lang, { title: string; descripti
     en: { title: "Waiting room - RediHealth", description: "You are waiting for the on-call doctor to start your call." },
     sq: { title: "Dhoma e pritjes - RediHealth", description: "Po pret mjekun kujdestar për thirrjen." },
     it: { title: "Sala d'attesa - RediHealth", description: "Stai aspettando il medico di guardia per la chiamata." },
+    hr: { title: "Čekaonica - RediHealth", description: "Čekaš dežurnog liječnika za početak poziva." },
+    rom: { title: "Azhukeripnaski soba - RediHealth", description: "Azhukeres e doktores vash o svato." },
   },
   room: {
     ro: { title: "Apel cu medicul - RediHealth", description: "Apelul tău cu un medic voluntar RediHealth, doar prin voce." },
     en: { title: "Call with the doctor - RediHealth", description: "Your voice call with a RediHealth volunteer doctor." },
     sq: { title: "Thirrje me mjekun - RediHealth", description: "Thirrja jote me zë me një mjek vullnetar të RediHealth." },
     it: { title: "Chiamata con il medico - RediHealth", description: "La tua chiamata vocale con un medico volontario RediHealth." },
+    hr: { title: "Poziv s liječnikom - RediHealth", description: "Tvoj glasovni poziv s liječnikom volonterom na platformi RediHealth." },
+    rom: { title: "Svato e doktoresa - RediHealth", description: "Cho avazesko svato ekhe doktoresa volonteri katar RediHealth." },
   },
 };
 

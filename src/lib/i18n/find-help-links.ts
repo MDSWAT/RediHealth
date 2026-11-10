@@ -72,6 +72,32 @@ export const FIND_HELP_LINKS: Record<Lang, FindHelpLinkCopy> = {
     nearestPharmacy: "Trova la farmacia più vicina",
     nearbyPlace: "Trova una farmacia o un medico vicino",
   },
+  hr: {
+    nav: "Ljekarne i klinike",
+    navDescription: "Pronađi mjesto u blizini",
+    heroOption: "Trebam ljekarnu ili liječnika u blizini",
+    heroOptionHint: "Ljekarne, ordinacije i bolnice na karti",
+    pharmacyFirst: "Prvo pitaj u ljekarni",
+    pharmacyFirstHint: "Ljekarnik te može besplatno savjetovati, bez naručivanja.",
+    familyDoctor: "Pronađi obiteljskog liječnika u blizini",
+    hospital: "Pronađi najbližu bolnicu",
+    noDoctorNeeded: "Ne trebaš liječnika?",
+    nearestPharmacy: "Pronađi najbližu ljekarnu",
+    nearbyPlace: "Pronađi ljekarnu ili liječnika u blizini",
+  },
+  rom: {
+    nav: "Farmaciye thaj klinike",
+    navDescription: "Arakh jekh than pashe tuke",
+    heroOption: "Rodav jekh farmaciya vaj doktori pashe",
+    heroOptionHint: "Farmaciye, kabinetya thaj spitale pe mapa",
+    pharmacyFirst: "Puch angla kodo andi farmaciya",
+    pharmacyFirstHint: "O farmacisto shay del tut sfato bi lovengo, bi programariyako.",
+    familyDoctor: "Arakh jekh familiyako doktori pashe",
+    hospital: "Arakh o maj pashe spitalo",
+    noDoctorNeeded: "Na trebul tuke doktori?",
+    nearestPharmacy: "Arakh i maj pashe farmaciya",
+    nearbyPlace: "Arakh jekh farmaciya vaj doktori pashe",
+  },
 };
 
 export function findHelpLinks(lang: Lang): FindHelpLinkCopy {

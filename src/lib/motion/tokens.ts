@@ -1,3 +1,5 @@
+import * as React from "react";
+
 /**
  * Shared motion tokens for RediHealth.
  *
@@ -27,7 +29,20 @@ export const DURATION = {
   slow: 0.42,
 } as const;
 
-/** Resting adult heart rate used by every heartbeat loop (bpm → seconds per beat). */
+/** Tight UI list/control cadence in seconds (48ms). */
+export const STAGGER_UI_S = 0.048;
+/** Calm editorial cadence in seconds (84ms). */
+export const STAGGER_EDITORIAL_S = 0.084;
+
+/** Overdamped spring (zeta > 1) for Motion components: crisp settle, zero bounce. */
+export const CLINICAL_SETTLE_SPRING = {
+  type: "spring",
+  stiffness: 300,
+  damping: 34,
+  mass: 0.9,
+} as const;
+
+/** Resting adult heart rate used by every heartbeat loop (bpm -> seconds per beat). */
 export const RESTING_BPM = 64;
 export const BEAT_SECONDS = 60 / RESTING_BPM;
 
@@ -37,3 +52,37 @@ export const BREATH_OUT_SECONDS = 6;
 
 /** Small entrance offset in px. Anything larger reads as "flying in". */
 export const ENTRANCE_OFFSET_PX = 8;
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribeReducedMotion(onStoreChange: () => void): () => void {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return () => {};
+  }
+  const mql = window.matchMedia(REDUCED_MOTION_QUERY);
+  mql.addEventListener("change", onStoreChange);
+  return () => mql.removeEventListener("change", onStoreChange);
+}
+
+function getReducedMotionSnapshot(): boolean {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return false;
+  }
+  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+function getReducedMotionServerSnapshot(): boolean {
+  return false;
+}
+
+/**
+ * SSR-safe reactive hook over `(prefers-reduced-motion: reduce)`.
+ * Renders `false` on the server and syncs without tearing on the client.
+ */
+export function useCalmReducedMotion(): boolean {
+  return React.useSyncExternalStore(
+    subscribeReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot,
+  );
+}

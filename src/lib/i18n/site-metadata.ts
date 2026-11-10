@@ -36,4 +36,18 @@ export const siteMetadata: Record<Lang, SiteMetadata> = {
     skipLink: "Vai al contenuto principale",
     openGraphLocale: "it_IT",
   },
+  hr: {
+    title: "RediHealth: informacije o zdravlju i pomoć pri dolasku do liječnika",
+    description:
+      "Besplatne informacije o zdravlju jednostavnim riječima. Provjeri simptome, pronađi ljekarnu ili liječnika i zatraži pomoć zdravstvenog medijatora.",
+    skipLink: "Preskoči na glavni sadržaj",
+    openGraphLocale: "hr_HR",
+  },
+  rom: {
+    title: "RediHealth: sastipnaske informaciye thaj zhutimos te areses ko doktori",
+    description:
+      "Sastipnaske informaciye bi lovesko, pe lokhe alava. Dikh che simptome, arakh ekh farmaciya vay doktori thaj mang zhutimos katar ekh sastipnasko mediatori.",
+    skipLink: "Nakhsav ko sherutno kotor",
+    openGraphLocale: "rom_RO",
+  },
 };

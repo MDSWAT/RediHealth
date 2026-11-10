@@ -51,6 +51,10 @@ export function spokenForm(lang: Lang, text: string): string {
     t = t.replace(/(\d)–(\d)/g, "$1 to $2").replace(/\b112\b/g, "one one two");
   } else if (lang === "it") {
     t = t.replace(/\b(\d)–(\d)/g, "da $1 a $2").replace(/\b112\b/g, "uno uno due");
+  } else if (lang === "hr") {
+    t = t.replace(/(\d)–(\d)/g, "od $1 do $2").replace(/\b112\b/g, "jedan jedan dva");
+  } else if (lang === "rom") {
+    t = t.replace(/(\d)–(\d)/g, "$1 dji ko $2").replace(/\b112\b/g, "jekh jekh duj");
   }
   return t;
 }

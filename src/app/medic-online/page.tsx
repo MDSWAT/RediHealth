@@ -13,6 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
     en: "Talk to a volunteer doctor for free, on your phone. You do not need to install an app.",
     sq: "Fol falas me një mjek vullnetar, nga telefoni. Nuk të duhet të instalosh asnjë aplikacion.",
     it: "Parla gratis con un medico volontario, dal telefono. Non devi installare nessuna app.",
+    hr: "Razgovaraj besplatno s liječnikom volonterom putem telefona. Ne trebaš instalirati aplikaciju.",
+    rom: "De svato bi lovesko ekhe doktoresa volonteri katar cho telefono. Na trebul te thos niyekh aplikacia.",
   };
 
   return {
@@ -21,7 +23,23 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const copy = {
+const copy: Record<
+  Lang,
+  {
+    stepsTitle: string;
+    stepsSubtitle: string;
+    step1Title: string;
+    step1Desc: string;
+    step2Title: string;
+    step2Desc: string;
+    step3Title: string;
+    step3Desc: string;
+    heading: string;
+    desc: string;
+    privacyTitle: string;
+    privacyDesc: string;
+  }
+> = {
   ro: {
     stepsTitle: "Cum funcționează",
     stepsSubtitle: "Nu ai nevoie de cont bancar, card de sănătate sau aplicație.",
@@ -77,6 +95,34 @@ const copy = {
     desc: "I medici di RediHealth sono medici di famiglia, pediatri o internisti. Sono volontari e ti spiegano con parole semplici cosa fare.",
     privacyTitle: "Quello che dici resta tra te e il medico",
     privacyDesc: "Le chiamate sono criptate.",
+  },
+  hr: {
+    stepsTitle: "Kako funkcionira",
+    stepsSubtitle: "Ne trebaš bankovni račun, zdravstvenu iskaznicu HZZO ni aplikaciju.",
+    step1Title: "Odaberi kada želiš razgovarati",
+    step1Desc: "Javi se odmah dežurnom liječniku ili rezerviraj termin koji ti odgovara.",
+    step2Title: "Primi poveznicu SMS porukom",
+    step2Desc: "Dodirni poveznicu. Poziv se otvara u tvojem pregledniku.",
+    step3Title: "Primi pisane upute",
+    step3Desc: "Nakon poziva liječnik ti šalje upute što dalje. Sve pronalaziš na svojem računu i putem SMS poruke.",
+    heading: "Licencirani liječnici",
+    desc: "Liječnici na platformi RediHealth su obiteljski liječnici, pedijatri i specijalisti interne medicine. Rade volonterski i razumljivo ti objašnjavaju daljnje korake.",
+    privacyTitle: "Ono što kažeš ostaje između tebe i liječnika",
+    privacyDesc: "Pozivi su šifrirani.",
+  },
+  rom: {
+    stepsTitle: "Sar kerel buchi",
+    stepsSubtitle: "Na trebul tuke bankako konto, sastipnaski karta vay aplikacia.",
+    step1Title: "Alosar kana kames te des svato",
+    step1Desc: "De svato akana e doktoresa kay si pe buchi vay alosar vrama kay avel tuke mishto.",
+    step2Title: "Le ekh linko katar SMS",
+    step2Desc: "Azba o linko. O svato putrel pes and-o brauzero.",
+    step3Title: "Le e sikavimata lekhavde",
+    step3Desc: "Palo svato, o doktori bichhalel tuke so te keres may dur. Arakhes sa ande cho konto thaj katar SMS.",
+    heading: "Doktorya licenciyasa",
+    desc: "E doktorya ko RediHealth si familiyake doktorya, chhavorenge doktorya vay doktorya vash andrutni medicina. Von keren buchi bi lovesko thaj phenen tuke lokhes so te keres.",
+    privacyTitle: "So phenes achel mashkar tute thaj o doktori",
+    privacyDesc: "E svaturya si garavde (enkriptisarde).",
   },
 };
 

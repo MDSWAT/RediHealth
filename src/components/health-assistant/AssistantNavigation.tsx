@@ -6,13 +6,14 @@ import { ActivityIcon, FileTextIcon, MessageDotsIcon, PinIcon } from "@/componen
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 
 export function AssistantNavigation() {
   const { lang } = useLanguage();
   const pathname = usePathname();
   const normalizedPathname = stripLangFromPathname(pathname);
 
-  const dict = {
+  const dict: Record<Lang, { navLabel: string; assistant: string; symptoms: string; prescription: string }> = {
     en: {
       navLabel: "Health assistant sections",
       assistant: "Health assistant",
@@ -37,8 +38,20 @@ export function AssistantNavigation() {
       symptoms: "Controllo sintomi",
       prescription: "Revisione ricetta",
     },
+    hr: {
+      navLabel: "Odjeljci zdravstvenog asistenta",
+      assistant: "Zdravstveni asistent",
+      symptoms: "Provjera simptoma",
+      prescription: "Provjera recepta",
+    },
+    rom: {
+      navLabel: "Riga le sastipnaske azhutitoreske",
+      assistant: "Sastipnasko azhutitori",
+      symptoms: "Dikh chire simptome",
+      prescription: "Dikh i receta",
+    },
   };
-  const t = dict[lang as keyof typeof dict] || dict[DEFAULT_LANG];
+  const t = dict[lang] || dict[DEFAULT_LANG];
 
   const items = [
     { href: "/health-assistant", label: t.assistant, Icon: MessageDotsIcon },

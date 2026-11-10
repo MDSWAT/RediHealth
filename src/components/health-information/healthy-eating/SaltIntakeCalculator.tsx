@@ -19,9 +19,9 @@ const HIGH_G = 8;
 const GAUGE_MAX_G = 12;
 
 /**
- * Grams with at most one decimal and the locale's decimal mark (comma in ro, sq, it).
+ * Grams with at most one decimal and the locale's decimal mark (comma in ro, sq, it, hr, rom; period in en).
  * Formatted by hand so server and browser always agree, even where a browser has no
- * Albanian number data.
+ * Albanian or Romani number data.
  */
 function formatGrams(value: number, lang: Lang): string {
   const text = Number.isInteger(value) ? String(value) : value.toFixed(1);

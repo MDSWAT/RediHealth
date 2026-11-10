@@ -153,6 +153,58 @@ export const BREATHING_COPY: Record<Lang, BreathingCopy> = {
     chimesActive: "Suono guida attivo",
     chimesMuted: "Suono guida disattivato",
   },
+  hr: {
+    title: "Mirno disanje",
+    intro:
+      "Sjedni udobno i opusti ramena. Prati krug. Udahni kroz nos dok krug raste i polako izdahni na usta dok se smanjuje. Dulji izdisaj pomaže tijelu da se smiri.",
+    introReduced:
+      "Sjedni udobno i opusti ramena. Prati riječ u krugu i sekunde ispod nje. Udahni kroz nos kada piše „Udahni” i polako izdahni na usta kada piše „Izdahni”. Dulji izdisaj pomaže tijelu da se smiri.",
+    patterns: {
+      relaxed: "Sporo disanje (4 s / 6 s)",
+      box: "Disanje u kvadratu (4–4–4–4)",
+    },
+    patternGroupLabel: "Odaberi ritam disanja",
+    phases: { in: "Udahni", holdFull: "Zadrži dah", out: "Izdahni", holdEmpty: "Stanka" },
+    ready: "Pritisni „Počni” kada budeš spreman.",
+    finished: "Gotovo. Sada diši normalno.",
+    start: "Počni",
+    stop: "Zaustavi",
+    cycles: "Potpuni udisaji i izdisaji: {count}",
+    safety:
+      "Ako osjetiš vrtoglavicu, stani i diši normalno. Ako si u krizi ili razmišljaš da si naudiš, odmah nazovi 112.",
+    listen: "Poslušaj upute",
+    ariaLabel: "Krug koji raste dok udišeš i smanjuje se dok izdišeš",
+    credit: "Vježba prilagođena prema vodiču NHS-a za vježbe disanja kod stresa.",
+    chimesToggle: "Zvučni znak",
+    chimesActive: "Zvučni znak uključen",
+    chimesMuted: "Zvučni znak isključen",
+  },
+  rom: {
+    title: "Mirno phurdimos",
+    intro:
+      "Besh lokhes thaj muk le phike tele. Dikh pala o cherklo. Le bavlal po nakh kana barol thaj muk la lokhes po muj kana tiknyol. Kana mukes i bavlal may lunges, o trupo achel may mirno.",
+    introReduced:
+      "Besh lokhes thaj muk le phike tele. Dikh o lav and-o cherklo thaj le sekunde telal leste. Le bavlal po nakh kana phendyol „Le bavlal” thaj muk la lokhes po muj kana phendyol „Muk i bavlal”. Kana mukes i bavlal may lunges, o trupo achel may mirno.",
+    patterns: {
+      relaxed: "Lokho phurdimos (4 s / 6 s)",
+      box: "Phurdimos and-o kvadrato (4–4–4–4)",
+    },
+    patternGroupLabel: "Alosar o ritmo le phurdimasko",
+    phases: { in: "Le bavlal", holdFull: "Inker i bavlal", out: "Muk i bavlal", holdEmpty: "Pauza" },
+    ready: "Phusav „Astar” kana san gata.",
+    finished: "Gata. Akana phurde normalno.",
+    start: "Astar",
+    stop: "Astav",
+    cycles: "Sa le phurdimata: {count}",
+    safety:
+      "Te phirela tiri shero, astav thaj phurde normalno. Te san and-i bari kriza vay gindis te keres tuke nasul, akhar sigo sigardiari 112.",
+    listen: "Ashun so te keres",
+    ariaLabel: "Cherklo savo barol kana leles bavlal thaj tiknyol kana mukes la",
+    credit: "Vezhba kerdini pala o sikavimos NHS vaš o mirno phurdimos kana si streso.",
+    chimesToggle: "Glaso savo ingarel",
+    chimesActive: "O glaso si muklo",
+    chimesMuted: "O glaso si astardo",
+  },
 };
 
 /** Which phase is active `elapsed` seconds into a session, and how long it has left. */

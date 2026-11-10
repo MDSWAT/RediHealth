@@ -189,6 +189,74 @@ const SCENARIO_TRANSLATIONS: Record<Lang, Record<ScenarioId, ScenarioLocalizatio
         "I muscoli che lavorano prendono zucchero dal sangue anche con poca insulina. Per questo il picco dopo il pasto è più basso.",
     },
   },
+  hr: {
+    fasting: {
+      title: "Ujutro, natašte",
+      badge: "Stabilno",
+      description:
+        "Glukoza u krvi stoji između 80 i 90 mg/dL. Jetra polako otpušta glukozu, a bazalni inzulin drži ravnotežu.",
+      clinicalNote:
+        "Jetra otpušta glukozu u krv kako bi hranila mozak i stanice dok se odmaraš.",
+    },
+    high_carb: {
+      title: "Obrok s puno šećera i bijelog brašna",
+      badge: "Naglo raste, naglo pada",
+      description:
+        "Slatkiši, zaslađeni sokovi i bijeli kruh vrlo brzo podižu glukozu u krvi. Zatim ona jednako brzo padne pa osjećaš umor i glad.",
+      clinicalNote:
+        "Gušterača (pankreas) mora naglo izlučiti puno inzulina kako bi vratila glukozu u krvi u normalu.",
+    },
+    balanced_meal: {
+      title: "Obrok s povrćem, bjelančevinama i vlaknima",
+      badge: "Polako raste, energija traje dulje",
+      description:
+        "Povrće, nemasno meso ili jaja i cjelovite žitarice usporavaju ulazak šećera u krv. Vrijednosti ostaju uredne.",
+      clinicalNote:
+        "Vlakna u crijevima stvaraju gel koji usporava prijelaz glukoze u krv.",
+    },
+    exercise: {
+      title: "Šetnja nakon obroka",
+      badge: "Mišići troše glukozu",
+      description:
+        "Brza šetnja od 20–30 minuta nakon jela potiče mišiće da preuzmu glukozu izravno iz krvi. Vršna vrijednost znatno je niža.",
+      clinicalNote:
+        "Aktivni mišići preuzimaju glukozu u krvi čak i uz malo inzulina. Zato je porast nakon obroka puno manji.",
+    },
+  },
+  rom: {
+    fasting: {
+      title: "Teharin, bi xabnasko",
+      badge: "Lokho",
+      description:
+        "O zaharo and-o rat beshel mashkar 80 thaj 90 mg/dL. O buko mukhel lokhes zaharo thaj i insulina inkerel o balanso.",
+      clinicalNote:
+        "O buko del zaharo and-o rat te parvarel i godi thaj le tselule kana hodinisares.",
+    },
+    high_carb: {
+      title: "Xaben but zaharesa thaj parne ardesa",
+      badge: "Vazdel pe sigo, perel sigo",
+      description:
+        "Gudlimata, gudle paimata thaj parno manro vazden o zaharo and-o rat but sigo. Palal kodova perel sigo thaj hatyares tut khino thaj bokhalo.",
+      clinicalNote:
+        "O pankreaso musaj te del sigo but insulina te anel palpale o zaharo and-o rat.",
+    },
+    balanced_meal: {
+      title: "Xaben zarzavatensa, proteinensa thaj fibrensa",
+      badge: "Vazdel pe lokhes, i zor inkerel",
+      description:
+        "Zarzavaturya, mas bi khilesko vay anre thaj intregi giva keren o zaharo te zhal may lokhes and-o rat. Le numere achhen lachhe.",
+      clinicalNote:
+        "Le fibre lokhyaren sar nakhel o zaharo andar o per and-o rat.",
+    },
+    exercise: {
+      title: "Phirimos palal o xaben",
+      badge: "Le muskulurya labyaren o zaharo",
+      description:
+        "Ekh sigo phirimos 20–30 minuturya palal o xaben kerel le muskulurya te len o zaharo vorta andar o rat. O ucho punkto hulyol but.",
+      clinicalNote:
+        "Le muskulurya so keren buchi len zaharo andar o rat vi tsera insulinasa.",
+    },
+  },
 };
 
 interface ModuleUiStrings {
@@ -396,6 +464,86 @@ const UI_STRINGS: Record<Lang, ModuleUiStrings> = {
       homeostasis: "La glicemia torna com'era prima del pasto.",
     },
   },
+  hr: {
+    moduleAriaLabel: "Glukoza u krvi",
+    title: "Kako se mijenja glukoza u krvi",
+    description: "Glukoza u krvi pokazuje koliko šećera imaš u krvotoku. Pogledaj kako je mijenjaju hrana i kretanje te što znači svaka vrijednost.",
+    chartSectionTitle: "Glukoza u krvi nakon obroka i kretanja",
+    chartSectionSubtitle: "Odaberi primjer i pogledaj što se događa tijekom 4 sata.",
+    scenarioSelectAria: "Odaberi primjer obroka ili kretanja",
+    chartAria: "Glukoza u krvi tijekom 4 sata: {scenario}",
+    peakLabel: "Vrhunac:",
+    optimalRangeLabel: "Uredno nakon obroka (ispod 140 mg/dL)",
+    attentionThresholdLabel: "Oprez (180 mg/dL)",
+    peakEstimated: "Najviša razina",
+    atTime: "nakon",
+    physioExplanation: "Zašto",
+    timeLabels: ["0h (obrok)", "1h", "2h", "3h", "4h"],
+    simulatorTitle: "Što znači tvoja vrijednost",
+    simulatorSubtitle: "Pomakni klizač između 50 i 300 mg/dL. Pogledaj što se događa u tijelu i što poduzeti.",
+    stepMinusAria: "Smanji za 10",
+    stepNormalAria: "Postavi urednu vrijednost natašte, 85 mg/dL",
+    stepNormalLabel: "Uredno (85)",
+    stepPlusAria: "Povećaj za 10",
+    selectedValueLabel: "Tvoja vrijednost:",
+    valueText: "{value} miligrama po decilitru: {label}",
+    zoneNames: ["Prenisko", "Uredno", "Predijabetes", "Dijabetes", "Jako visoko"],
+    physioReactionTitle: "Što se događa pri",
+    symptomsHeading: "Što možeš osjećati:",
+    guidanceHeading: "Što to znači:",
+    emergencyActionHeading: "Što učiniti odmah",
+    scrubberHeading: "Iz minute u minutu nakon obroka (0–240 minuta)",
+    scrubberSubtitle: "Pomakni klizač za prikaz glukoze u krvi u svakoj minuti nakon obroka.",
+    scrubberLabel: "Nakon obroka:",
+    scrubberPhaseLabel: "Što se događa:",
+    phases: {
+      ingestion: "Hrana se probavlja. Glukoza počinje ulaziti u krv.",
+      influx: "Šećer iz obroka prelazi u krvotok. Vrijednost raste.",
+      peak: "Gušterača (pankreas) izlučuje inzulin. Glukoza u krvi doseže vrhunac.",
+      uptake: "Mišići i jetra preuzimaju glukozu. Vrijednost pada.",
+      homeostasis: "Glukoza u krvi vraća se na razinu prije obroka.",
+    },
+  },
+  rom: {
+    moduleAriaLabel: "Zaharo and-o rat",
+    title: "Sar paruvel pe o zaharo and-o rat",
+    description: "O zaharo and-o rat sikavel kobor gudlimos si and-o cho rat. Dikh sar paruven les o xaben thaj o phirimos, thaj so phenel svako numero.",
+    chartSectionTitle: "O zaharo palal o xaben thaj o phirimos",
+    chartSectionSubtitle: "Alosar ekh misal thaj dikh so kerel pe and-e 4 chasurya.",
+    scenarioSelectAria: "Alosar ekh misal vash xaben vay phirimos",
+    chartAria: "Zaharo and-o rat and-e 4 chasurya: {scenario}",
+    peakLabel: "Ucho punkto:",
+    optimalRangeLabel: "Lachho palal o xaben (telal 140 mg/dL)",
+    attentionThresholdLabel: "Arakh tut (180 mg/dL)",
+    peakEstimated: "O may ucho",
+    atTime: "palal",
+    physioExplanation: "Sostar",
+    timeLabels: ["0h (xaben)", "1h", "2h", "3h", "4h"],
+    simulatorTitle: "So phenel cho numero",
+    simulatorSubtitle: "Mishtisar i bara mashkar 50 thaj 300 mg/dL. Dikh so kerel pe and-o trupo thaj so te keres.",
+    stepMinusAria: "Hulyar 10",
+    stepNormalAria: "Thov normalno numero bi xabnasko, 85 mg/dL",
+    stepNormalLabel: "Normalno (85)",
+    stepPlusAria: "Vazde 10",
+    selectedValueLabel: "Cho numero:",
+    valueText: "{value} miligramurya po detsilitro: {label}",
+    zoneNames: ["But tikno", "Normalno", "Anglal gudlo rat", "Gudlo rat", "But baro"],
+    physioReactionTitle: "So kerel pe ko",
+    symptomsHeading: "So shaj hatyares:",
+    guidanceHeading: "So znachil:",
+    emergencyActionHeading: "So te keres akana",
+    scrubberHeading: "Minuto po minuto palal o xaben (0–240 minuturya)",
+    scrubberSubtitle: "Mishtisar i bara te dikhes o zaharo and-o rat pe svako minuto palal o xaben.",
+    scrubberLabel: "Palal o xaben:",
+    scrubberPhaseLabel: "So kerel pe:",
+    phases: {
+      ingestion: "O xaben mistil pe. O zaharo astarel te zhal and-o rat.",
+      influx: "O zaharo katar o xaben nakhel and-o rat. O numero vazdel pe.",
+      peak: "O pankreaso mukhel insulina. O zaharo aresel ko ucho punkto.",
+      uptake: "Le muskulurya thaj o buko len o zaharo. O numero perel.",
+      homeostasis: "O zaharo and-o rat avel palpale sar sas anglal o xaben.",
+    },
+  },
 };
 
 interface BloodSugarInterpretation {
@@ -576,6 +724,88 @@ const TIER_TRANSLATIONS: Record<
         "Il valore è così alto che i reni non ce la fanno. Serve subito un medico, per evitare la chetoacidosi o il coma diabetico.",
       emergencyRule:
         "Controlla che la persona sia sveglia e risponda. Dalle solo acqua naturale, senza zucchero. Chiama subito il 112 se è confusa, molto assonnata o perde i sensi.",
+    },
+  },
+  hr: {
+    hypo: {
+      label: "Preniska glukoza u krvi (hipoglikemija)",
+      symptoms:
+        "Drhtanje ruku, hladan znoj, vrtoglavica, snažno lupanje srca, jaka glad, smetenost ili dvoslike.",
+      guidance:
+        "Mozak nema dovoljno glukoze za normalan rad. Odmah uzmi brzi šećer.",
+      emergencyRule:
+        "Pravilo 15/15: odmah pojedi ili popij 15 grama brzog šećera. Primjerice, 3 kocke šećera otopljene u malo vode, 120 ml voćnog soka ili 1 jušnu žlicu meda. Miruj 15 minuta pa ponovno izmjeri. Ako je i dalje ispod 70 mg/dL, ponovi postupak.",
+    },
+    normal: {
+      label: "Uredna vrijednost natašte",
+      symptoms:
+        "Ravnomjerna energija tijekom dana, dobra koncentracija, bez pospanosti i neuobičajene žeđi.",
+      guidance:
+        "Natašte je uredna glukoza u krvi 70–99 mg/dL. Dva sata nakon obroka uredno je ispod 140 mg/dL.",
+    },
+    prediabetes: {
+      label: "Predijabetes",
+      symptoms:
+        "Često ne osjećaš nikakve tegobe. Možeš biti blago umoran nakon obilnih obroka ili dobivati masno tkivo oko trbuha.",
+      guidance:
+        "Vrijednost natašte od 100 do 125 mg/dL znači da tijelo slabije reagira na inzulin. Dobra vijest je da to možeš preokrenuti uravnoteženom prehranom i svakodnevnim kretanjem.",
+    },
+    diabetes: {
+      label: "Područje dijabetesa (povišena glukoza u krvi)",
+      symptoms:
+        "Izražena žeđ i suha usta, učestalo mokrenje, stalni umor i sporo cijeljenje ogrebotina.",
+      guidance:
+        "Javi se obiteljskom liječniku i zatraži pretragu HbA1c ako imaš 126 mg/dL ili više natašte u 2 odvojena mjerenja, ili iznad 140 mg/dL nakon obroka.",
+    },
+    severe_hyper: {
+      label: "Izrazito visoka glukoza u krvi (hitno stanje)",
+      symptoms:
+        "Jako suha usta, mučnina, povraćanje, ubrzano disanje slatkastog mirisa po voću ili acetonu, pospanost i smetenost.",
+      guidance:
+        "Razina je toliko visoka da bubrezi to više ne mogu kompenzirati. Hitno je potreban liječnik kako bi se spriječila dijabetička ketoacidoza ili koma.",
+      emergencyRule:
+        "Provjeri je li osoba pri svijesti i odgovara li na pitanja. Daj joj piti običnu vodu bez šećera. Odmah nazovi 112 ako je smetena, jako pospana ili izgubi svijest.",
+    },
+  },
+  rom: {
+    hypo: {
+      label: "Zaharo but tikno (hipoglikemiya)",
+      symptoms:
+        "Izdran che vast, shudro kamimos, phirel cho shero, o ilo marel zurales, bari bokh vay na dikhes vorta.",
+      guidance:
+        "La godyake nay dosta zaharo te kerel buchi. Le sigo zaharo akana.",
+      emergencyRule:
+        "O regulo 15/15: xa vay pi akana 15 gramurya sigo zaharo. Sar misal, 3 kuburya zaharo and-o tsera pay, 120 ml fruktengi zumi vay 1 bari chikni avgin. Besh lokhes 15 minuturya, palal kodova mare palpale. Te si inke telal 70 mg/dL, ker palpale.",
+    },
+    normal: {
+      label: "Normalno bi xabnasko",
+      symptoms:
+        "Zor sa o dives, lachhi godyaki buchi, bi sovimasko thaj bi bare trushako.",
+      guidance:
+        "Bi xabnasko, normalno si 70–99 mg/dL. Palal o xaben, normalno si telal 140 mg/dL.",
+    },
+    prediabetes: {
+      label: "Anglal o gudlo rat (prediabeto)",
+      symptoms:
+        "Butivar na hatyares kanch. Shaj aves tsera khino palal bare xabena.",
+      guidance:
+        "Bi xabnasko, 100 zhi ko 125 mg/dL znachil ke o trupo ashunel may tsera la insulinake. E lachhi vorba: shaj boldes kadava palpale lachhe xabnasa thaj phirimasa svako dives.",
+    },
+    diabetes: {
+      label: "Gudlo rat (baro zaharo and-o rat)",
+      symptoms:
+        "Bari trush thaj shuko muy, zhas butivar avri, san sa o vrama khino, le tikne rane sastyon lokhes.",
+      guidance:
+        "Zha ko familiyako doktori thaj mang o rengro dikhiben HbA1c te si tut 126 mg/dL vay may but bi xabnasko pe 2 dikhimata.",
+    },
+    severe_hyper: {
+      label: "But baro zaharo and-o rat (sigardiari)",
+      symptoms:
+        "But shuko muy, chhadimos, sigo phurdimos gudle sungesa, sovel thaj na gindisares limpede.",
+      guidance:
+        "O zaharo si katka baro ke trebul sigo o doktori, te na avel pharo nasvalimos.",
+      emergencyRule:
+        "Dikh te si o manush uchtardo thaj del atveto. De les te pel chisto pay bi zaharesko. Mare sigo ko sigardiari 112 te na zhanela kay si, te sovel but vay te perel tele.",
     },
   },
 };

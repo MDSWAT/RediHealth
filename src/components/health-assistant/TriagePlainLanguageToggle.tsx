@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 
 interface TriagePlainLanguageToggleProps {
   enabled: boolean;
@@ -17,7 +18,7 @@ export function TriagePlainLanguageToggle({
   const { lang } = useLanguage();
 
   // Same order, labels and look as the topic pages' reading-level switch: plain language first.
-  const dict = {
+  const dict: Record<Lang, { simple: string; standard: string; aria: string }> = {
     en: {
       simple: "Plain language",
       standard: "Complete guide",
@@ -38,8 +39,18 @@ export function TriagePlainLanguageToggle({
       standard: "Guida completa",
       aria: "Livello di lettura",
     },
+    hr: {
+      simple: "Jednostavan jezik",
+      standard: "Potpuni vodič",
+      aria: "Razina čitanja",
+    },
+    rom: {
+      simple: "Lokhi chib",
+      standard: "Sasto sikavimos",
+      aria: "Nivelo ginavimasko",
+    },
   };
-  const labels = dict[lang as keyof typeof dict] || dict[DEFAULT_LANG];
+  const labels = dict[lang] || dict[DEFAULT_LANG];
 
   const options = [
     { key: "simple", label: labels.simple, active: enabled },

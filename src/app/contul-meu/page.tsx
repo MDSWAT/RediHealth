@@ -13,6 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
     en: "See your doctor's advice, prescriptions and appointments. Sign in with your phone number.",
     sq: "Shiko këshillat e mjekut, recetat dhe takimet e tua. Hyr me numrin e telefonit.",
     it: "Vedi i consigli del medico, le ricette e gli appuntamenti. Accedi con il numero di telefono.",
+    hr: "Pogledaj liječničke upute, recepte i svoje termine. Prijavi se brojem telefona.",
+    rom: "Dikh e doktoreske sikavimata, recepte thaj che vrame. Khuves andre che telefoneske ginesa.",
   };
 
   return {
@@ -26,6 +28,8 @@ const backCopy: Record<Lang, string> = {
   en: "Back to home page",
   sq: "Kthehu te faqja kryesore",
   it: "Torna alla pagina iniziale",
+  hr: "Natrag na početnu stranicu",
+  rom: "Palpale pe angluni rig",
 };
 
 export default async function ContulMeuPage() {

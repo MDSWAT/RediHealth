@@ -1,4 +1,51 @@
-export const panelDesignTranslations = {
+import type { Lang } from "./translations";
+
+type PanelDesignCopy = {
+  workspace: string;
+  navigation: string;
+  skip: string;
+  video: string;
+  requests: string;
+  title: string;
+  subtitle: string;
+  patientsHint: string;
+  calendarHint: string;
+  filters: string;
+  activeFilters: string;
+  reset: string;
+  sort: string;
+  openRequest: string;
+  patientTitle: string;
+  patientSubtitle: string;
+  more: string;
+  account: string;
+  quickActions: string;
+  collapseSidebar: string;
+  expandSidebar: string;
+  commandTrigger: string;
+  commandTitle: string;
+  commandPlaceholder: string;
+  commandEmpty: string;
+  commandGroupNav: string;
+  commandGroupActions: string;
+  commandToggleSidebar: string;
+  commandFooterHint: string;
+  syncedLabel: string;
+  refreshList: string;
+  refreshingList: string;
+  offlineVaultCta: string;
+  cohortAria: string;
+  cohortAll: string;
+  cohortAllHint: string;
+  cohortActive: string;
+  cohortActiveHint: string;
+  cohortDue: string;
+  cohortDueHint: string;
+  cohortArchived: string;
+  cohortArchivedHint: string;
+};
+
+export const panelDesignTranslations: Record<Lang, PanelDesignCopy> = {
   en: {
     workspace: "Staff panel",
     navigation: "Panel menu",
@@ -21,6 +68,27 @@ export const panelDesignTranslations = {
     quickActions: "Quick actions",
     collapseSidebar: "Collapse menu",
     expandSidebar: "Expand menu",
+    commandTrigger: "Quick jump",
+    commandTitle: "Quick jump and actions",
+    commandPlaceholder: "Jump to a workspace or action…",
+    commandEmpty: "No matching actions.",
+    commandGroupNav: "Navigation",
+    commandGroupActions: "Actions",
+    commandToggleSidebar: "Toggle sidebar menu",
+    commandFooterHint: "Arrows to select · Enter to open · Esc to close",
+    syncedLabel: "Synced",
+    refreshList: "Refresh",
+    refreshingList: "Refreshing…",
+    offlineVaultCta: "Offline vault",
+    cohortAria: "Filter patients by cohort",
+    cohortAll: "All patients",
+    cohortAllHint: "Every registered record",
+    cohortActive: "In care",
+    cohortActiveHint: "Active clinical follow-up",
+    cohortDue: "Follow-ups due",
+    cohortDueHint: "Due today or overdue",
+    cohortArchived: "Archived",
+    cohortArchivedHint: "Closed care episodes",
   },
   ro: {
     workspace: "Panoul personalului",
@@ -44,6 +112,27 @@ export const panelDesignTranslations = {
     quickActions: "Acțiuni rapide",
     collapseSidebar: "Strânge meniul",
     expandSidebar: "Deschide meniul",
+    commandTrigger: "Salt rapid",
+    commandTitle: "Comenzi și navigare rapidă",
+    commandPlaceholder: "Caută o secțiune sau o acțiune…",
+    commandEmpty: "Nicio comandă găsită.",
+    commandGroupNav: "Navigare",
+    commandGroupActions: "Acțiuni",
+    commandToggleSidebar: "Strânge sau extinde meniul lateral",
+    commandFooterHint: "Săgeți pentru alegere · Enter pentru deschidere · Esc pentru închidere",
+    syncedLabel: "Sincronizat",
+    refreshList: "Reîmprospătează",
+    refreshingList: "Se actualizează…",
+    offlineVaultCta: "Spațiu offline",
+    cohortAria: "Filtrează pacienții după grup",
+    cohortAll: "Toți pacienții",
+    cohortAllHint: "Toate dosarele înregistrate",
+    cohortActive: "În îngrijire",
+    cohortActiveHint: "Urmărire clinică activă",
+    cohortDue: "Controale scadente",
+    cohortDueHint: "Astăzi sau întârziate",
+    cohortArchived: "Arhivați",
+    cohortArchivedHint: "Cazuri încheiate",
   },
   sq: {
     workspace: "Paneli i stafit",
@@ -67,6 +156,27 @@ export const panelDesignTranslations = {
     quickActions: "Veprime të shpejta",
     collapseSidebar: "Mbyll menunë",
     expandSidebar: "Hap menunë",
+    commandTrigger: "Kërkim i shpejtë",
+    commandTitle: "Navigim dhe veprime të shpejta",
+    commandPlaceholder: "Kërko një faqe ose veprim…",
+    commandEmpty: "Nuk u gjet asnjë veprim.",
+    commandGroupNav: "Navigimi",
+    commandGroupActions: "Veprime",
+    commandToggleSidebar: "Mbyll ose hap menunë anësore",
+    commandFooterHint: "Shigjetat për zgjedhje · Enter për hapje · Esc për mbyllje",
+    syncedLabel: "Sinkronizuar",
+    refreshList: "Rifresko",
+    refreshingList: "Po rifreskohet…",
+    offlineVaultCta: "Hapësira offline",
+    cohortAria: "Filtro pacientët sipas grupit",
+    cohortAll: "Të gjithë pacientët",
+    cohortAllHint: "Të gjitha dosjet e regjistruara",
+    cohortActive: "Në kujdes",
+    cohortActiveHint: "Ndjekje klinike aktive",
+    cohortDue: "Kontrolle në afat",
+    cohortDueHint: "Sot ose të vonuara",
+    cohortArchived: "Të arkivuar",
+    cohortArchivedHint: "Raste të mbyllura",
   },
   it: {
     workspace: "Pannello operatori",
@@ -90,5 +200,114 @@ export const panelDesignTranslations = {
     quickActions: "Azioni rapide",
     collapseSidebar: "Chiudi il menu",
     expandSidebar: "Apri il menu",
+    commandTrigger: "Ricerca rapida",
+    commandTitle: "Navigazione e azioni rapide",
+    commandPlaceholder: "Cerca una sezione o un'azione…",
+    commandEmpty: "Nessuna azione trovata.",
+    commandGroupNav: "Navigazione",
+    commandGroupActions: "Azioni",
+    commandToggleSidebar: "Apri o chiudi il menu laterale",
+    commandFooterHint: "Frecce per scegliere · Invio per aprire · Esc per chiudere",
+    syncedLabel: "Sincronizzato",
+    refreshList: "Aggiorna",
+    refreshingList: "Aggiornamento…",
+    offlineVaultCta: "Area offline",
+    cohortAria: "Filtra i pazienti per gruppo",
+    cohortAll: "Tutti i pazienti",
+    cohortAllHint: "Tutte le schede registrate",
+    cohortActive: "In cura",
+    cohortActiveHint: "Monitoraggio clinico attivo",
+    cohortDue: "Controlli in scadenza",
+    cohortDueHint: "Oggi o in ritardo",
+    cohortArchived: "Archiviati",
+    cohortArchivedHint: "Percorsi conclusi",
+  },
+  hr: {
+    workspace: "Radni prostor osoblja",
+    navigation: "Izbornik panela",
+    skip: "Preskoči na sadržaj",
+    video: "Videokonzultacije",
+    requests: "Zahtjevi za pomoć",
+    title: "Zahtjevi za pomoć",
+    subtitle: "Pročitaj nove zahtjeve i isplaniraj sljedeći korak za svakog pacijenta.",
+    patientsHint: "Pronađi pacijenta i otvori njegov karton pacijenta.",
+    calendarHint: "Termini i kontrolni pregledi.",
+    filters: "Više filtara",
+    activeFilters: "Aktivni filtri",
+    reset: "Očisti filtre",
+    sort: "Poredaj zahtjeve",
+    openRequest: "Otvori zahtjev",
+    patientTitle: "Pacijenti",
+    patientSubtitle: "Pronađi pacijenta ili dodaj novoga.",
+    more: "Više",
+    account: "Račun",
+    quickActions: "Brze radnje",
+    collapseSidebar: "Sažmi izbornik",
+    expandSidebar: "Proširi izbornik",
+    commandTrigger: "Brzi skok",
+    commandTitle: "Brza navigacija i radnje",
+    commandPlaceholder: "Potraži odjeljak ili radnju…",
+    commandEmpty: "Nema odgovarajućih radnji.",
+    commandGroupNav: "Navigacija",
+    commandGroupActions: "Radnje",
+    commandToggleSidebar: "Prebaci bočni izbornik",
+    commandFooterHint: "Strelice za odabir · Enter za otvaranje · Esc za zatvaranje",
+    syncedLabel: "Sinkronizirano",
+    refreshList: "Osvježi",
+    refreshingList: "Osvježavanje…",
+    offlineVaultCta: "Izvanmrežni prostor",
+    cohortAria: "Filtriraj pacijente po skupini",
+    cohortAll: "Svi pacijenti",
+    cohortAllHint: "Svi upisani kartoni",
+    cohortActive: "U skrbi",
+    cohortActiveHint: "Aktivno kliničko praćenje",
+    cohortDue: "Kontrole na redu",
+    cohortDueHint: "Danas ili u zaostatku",
+    cohortArchived: "Arhivirani",
+    cohortArchivedHint: "Zatvoreni slučajevi",
+  },
+  rom: {
+    workspace: "Panelo e bukyako",
+    navigation: "Meniu e panelosko",
+    skip: "Nakhe ko teksto",
+    video: "Video-svaturya",
+    requests: "Mangimata zhutipnaske",
+    title: "Mangimata zhutipnaske",
+    subtitle: "Drabar le neve mangimata thaj planisar o avutno phirimos vash svako paciento.",
+    patientsHint: "Arakh ekh paciento thaj putar lesko sastipnasko lil.",
+    calendarHint: "Vizite thaj kontrole.",
+    filters: "May but filturya",
+    activeFilters: "Aktivne filturya",
+    reset: "Kos le filturya",
+    sort: "Thov and-o rendo le mangimata",
+    openRequest: "Putar o mangimos",
+    patientTitle: "Pacienturya",
+    patientSubtitle: "Rode ekh paciento vay tho ekh nevo.",
+    more: "May but",
+    account: "Konto",
+    quickActions: "Sige buchya",
+    collapseSidebar: "Phandav o meniu",
+    expandSidebar: "Putar o meniu",
+    commandTrigger: "Sigo rodipe",
+    commandTitle: "Sigo phirimos thaj buchya",
+    commandPlaceholder: "Rode ekh than vay buchi…",
+    commandEmpty: "Khanchi arakhlo.",
+    commandGroupNav: "Phirimos",
+    commandGroupActions: "Buchya",
+    commandToggleSidebar: "Phandav vay putar o meniu",
+    commandFooterHint: "Flechi te alosares · Enter te putres · Esc te phandaves",
+    syncedLabel: "Sinkronizime",
+    refreshList: "Nevyar",
+    refreshingList: "Nevyarel pes…",
+    offlineVaultCta: "Bi-internetesko than",
+    cohortAria: "Alosar le pacienturya",
+    cohortAll: "Sa le pacienturya",
+    cohortAllHint: "Sa le lekharde lila",
+    cohortActive: "And-o dikhiben",
+    cohortActiveHint: "Aktivno sastipnasko dikhiben",
+    cohortDue: "Kontrole akana",
+    cohortDueHint: "Adyes vay nakhle",
+    cohortArchived: "Arkhivime",
+    cohortArchivedHint: "Phandle kazurya",
   },
 };

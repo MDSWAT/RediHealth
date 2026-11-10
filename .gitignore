@@ -47,6 +47,7 @@ next-env.d.ts
 # local agent & audit artifacts
 .agents
 .agents/
+.claude/
 /docs
 PROJECT.md
 playwright-report/

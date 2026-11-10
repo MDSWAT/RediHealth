@@ -16,6 +16,8 @@ const labelByLang: Record<Lang, string> = {
   ro: "Țara",
   sq: "Shteti",
   it: "Paese",
+  hr: "Država",
+  rom: "Them",
 };
 
 /** Shows which country's data the panel is working with, and lets staff with several countries switch. */

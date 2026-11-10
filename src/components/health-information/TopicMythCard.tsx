@@ -30,13 +30,23 @@ const QUOTES: Record<Lang, [string, string]> = {
   en: ["“", "”"],
   sq: ["«", "»"],
   it: ["«", "»"],
+  hr: ["„", "”"],
+  rom: ["„", "”"],
 };
+
+function pickLocale(entry: Record<"ro", string> & Partial<Record<Lang, string>>, lang: Lang): string {
+  return entry[lang] ?? entry.ro;
+}
+
+function pickSpeechLang(lang: Lang): string {
+  return (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ?? (lang === "hr" ? "hr-HR" : "ro-RO");
+}
 
 export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps) {
   const { lang: ctxLang } = useSafeLanguageContext();
   const currentLang: Lang = lang ?? ctxLang ?? "ro";
   const s = HEALTH_DETAIL_SHARED_STRINGS.topicMyth;
-  const speechLang = SPEECH_LANG_BY_LOCALE[currentLang] ?? "ro-RO";
+  const speechLang = pickSpeechLang(currentLang);
   const quotes = QUOTES[currentLang] ?? QUOTES.ro;
 
   const [selectedAnswer, setSelectedAnswer] = useState<boolean | null>(null);
@@ -51,12 +61,12 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
     >
       <div className="flex items-start justify-between gap-4">
         <h2 id="topic-myth-title" className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-          {s.badge[currentLang]}
+          {pickLocale(s.badge, currentLang)}
         </h2>
 
         <InlineAudioNarratorButton
-          textToSpeak={s.audioPrompt[currentLang].replace("{statement}", myth.statement)}
-          label={s.audioPrompt[currentLang].replace("{statement}", myth.statement)}
+          textToSpeak={pickLocale(s.audioPrompt, currentLang).replace("{statement}", myth.statement)}
+          label={pickLocale(s.audioPrompt, currentLang).replace("{statement}", myth.statement)}
           lang={speechLang}
           variant="ghost"
           className="-mr-2 -mt-1"
@@ -88,7 +98,7 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
             >
               <path d="M5 12.5 9.5 17 19 7" />
             </svg>
-            <span>{s.trueBtn[currentLang]}</span>
+            <span>{pickLocale(s.trueBtn, currentLang)}</span>
           </button>
 
           <button
@@ -108,7 +118,7 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
             >
               <path d="M7 7l10 10M17 7 7 17" />
             </svg>
-            <span>{s.falseBtn[currentLang]}</span>
+            <span>{pickLocale(s.falseBtn, currentLang)}</span>
           </button>
         </div>
       ) : (
@@ -121,7 +131,7 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
                   : "border border-amber-care-border bg-amber-care-soft text-amber-care-hover"
               }`}
             >
-              {isMatch ? s.correctBadge[currentLang] : myth.statusTag}
+              {isMatch ? pickLocale(s.correctBadge, currentLang) : myth.statusTag}
             </span>
           </div>
 
@@ -131,7 +141,7 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
 
           {/* Source only: no reviewer name is shown until a real medical reviewer is confirmed. */}
           <p className="text-xs text-muted-foreground">
-            {s.sourcePrefix[currentLang]} {myth.source}
+            {pickLocale(s.sourcePrefix, currentLang)} {myth.source}
           </p>
 
           <div>

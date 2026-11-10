@@ -35,6 +35,16 @@ export const MEDICAL_SAFETY_DISCLAIMER_COPY: Record<
     body:
       "Qui trovi informazioni sulla salute. Non ricevi una diagnosi o una cura. Per questo, vai dal medico. Se è un'emergenza, chiama il 112.",
   },
+  hr: {
+    badge: "Ovaj vodič ne zamjenjuje liječnika",
+    body:
+      "Ovdje čitaš informacije o zdravlju. Ne dobivaš dijagnozu ni liječenje. Za to idi obiteljskom liječniku. U hitnom slučaju nazovi 112.",
+  },
+  rom: {
+    badge: "Kadava sikavimos na paravel e doktores",
+    body:
+      "Kathe drabares informatsiye vaš o sastipen. Na leles diagnoza vay ilacho. Vaš kodya, dža ko familiyako doktori. Kana si sigardiari, akhar 112.",
+  },
 };
 
 function useSafeLang(explicitLang?: Lang): Lang {

@@ -19,6 +19,8 @@ const DEFAULT_LABEL: Record<string, string> = {
   en: "Listen to this section",
   sq: "Dëgjo këtë pjesë",
   it: "Ascolta questa sezione",
+  hr: "Poslušaj ovaj dio",
+  rom: "Ashun kadava kotor",
 };
 
 export function InlineAudioNarratorButton({
@@ -31,7 +33,9 @@ export function InlineAudioNarratorButton({
   const voiceEnabled = useVoiceEnabled() && isVoiceEnabled(lang);
   const [isPlaying, setIsPlaying] = useState(false);
   const isPlayingRef = useRef(false);
-  const resolvedLabel = label ?? DEFAULT_LABEL[lang.slice(0, 2)] ?? DEFAULT_LABEL.ro;
+  const langPrefix = lang.split("-")[0].toLowerCase();
+  const resolvedLabel =
+    label ?? DEFAULT_LABEL[langPrefix] ?? DEFAULT_LABEL[lang.slice(0, 2)] ?? DEFAULT_LABEL.ro;
 
   useEffect(() => {
     return () => {

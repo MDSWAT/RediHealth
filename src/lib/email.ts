@@ -248,6 +248,111 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
       footerReason: "Hai ricevuto questa email perché è stato programmato un appuntamento RediHealth per te.",
     },
   },
+  hr: {
+    greeting: "Pozdrav",
+    teamName: "RediHealth tim",
+    footerBrand: "RediHealth · Zdravstvena podrška i portal za pacijente",
+    footerContactLead: "Pitanja ili povratne informacije?",
+    footerContactLink: "Obrati se podršci",
+    patientFallbackName: "Pacijent",
+    emergencyHeading: "Obavijest za hitne slučajeve:",
+    emergencyText: "RediHealth nije hitna medicinska služba. Ako je život u opasnosti, odmah nazovi 112.",
+    portal: {
+      subject: "Poveznica za tvoj RediHealth portal za pacijente i plan liječenja",
+      preview: "Tvoj RediHealth portal za pacijente je spreman.",
+      badge: "Portal za pacijente",
+      heading: "Tvoj medicinski portal je spreman",
+      intro: "Tvoj osobni portal za pacijente sada je aktivan. Otvori svoj karton pacijenta za pregled uputa za njegu, prijavu simptoma i kontakt s timom skrbi.",
+      textIntro: "Tvoj RediHealth karton pacijenta i pristup portalu su spremni. Možeš pregledati medicinski profil, bilješke o stanju i upute za njegu, prijaviti nove simptome, dodati fotografije i zatražiti kontrolni pregled putem osobne poveznice:",
+      cta: "Otvori portal za pacijente",
+      linkDuration: "Ova sigurna poveznica za portal vrijedi 90 dana. Nakon toga, ili ako je izgubiš, zatraži novu poveznicu na RediHealth stranici za prijavu.",
+      conditionSummary: "Sažetak stanja i simptoma",
+      portalDetailsHeading: "Na tvom portalu za pacijente",
+      portalDetails: [
+        "Pregledaj dijagnozu i upute iz plana liječenja",
+        "Prijavi nove simptome i prati razinu hitnosti",
+        "Zakaži kontrolne videokonzultacije i sudjeluj u njima",
+        "Učitaj medicinske fotografije ili važne zdravstvene dokumente",
+      ],
+      fallbackName: "Poštovani",
+      treatmentPlan: "Plan liječenja",
+      datesNotRecorded: "Datumi nisu zabilježeni",
+      diagnosis: "Dijagnoza",
+      medications: "Lijekovi i terapije",
+      careInstructions: "Upute za njegu",
+      footerReason: "Ovu poruku primaš jer je za tebe izrađen karton pacijenta na sustavu RediHealth.",
+    },
+    meeting: {
+      subject: "Pozivnica",
+      preview: (title: string) => `Pozivnica za videokonzultaciju: ${title}`,
+      badge: "Videokonzultacija",
+      heading: "Pozvan si na videokonzultaciju",
+      intro: "Tvoj zdravstveni tim zakazao je videokonzultaciju. U vrijeme termina pritisni gumb niže kako bi se izravno priključio iz preglednika.",
+      textInvitation: (title) => `Pozvan si na RediHealth videokonzultaciju: ${title}.`,
+      cta: "Priključi se videokonzultaciji",
+      appointment: "Zakazani termin",
+      joinText: "Priključi se sastanku ovdje:",
+      closing: "Ako trebaš pomoć pri spajanju, obrati se svom zdravstvenom timu.",
+      footerReason: "Ovu poruku primaš jer je za tebe zakazan termin na sustavu RediHealth.",
+    },
+  },
+  rom: {
+    greeting: "Mishto avilyan",
+    teamName: "I ekipa RediHealth",
+    footerBrand: "RediHealth · Sastipnasko zhutimos thaj portalo e pacientesko",
+    footerContactLead: "Phuchimata vay gindurya?",
+    footerContactLink: "Akhar i ekipa zhutipnaski",
+    patientFallbackName: "Paciento",
+    emergencyHeading: "Phenimos vash sigaki nevoia:",
+    emergencyText: "RediHealth nay serviso vash sigaki nevoia. Te si o trajo and-o perikolo, akhar sigo ko 112.",
+    portal: {
+      subject: "O linko vash cho RediHealth portalo e pacientesko thaj plano tratamentesko",
+      preview: "Cho RediHealth portalo e pacientesko si gata.",
+      badge: "Portalo e pacientesko",
+      heading: "Cho sastipnasko portalo si gata",
+      intro: "Cho personalo portalo e pacientesko si putardo. Khuves and-o cho sastipnasko lil te dikhes le sikavimata, te phenes simptomurya thaj te des duma e sastipnaske ekipasa.",
+      textIntro: "Cho RediHealth sastipnasko lil thaj o portalo si gata. Shaj te dikhes cho sastipnasko profilo, le noticye thaj le sikavimata, te phenes neve simptomurya, te thos tasvirya thaj te manges kontrole pe cho personalo linko:",
+      cta: "Putar o portalo e pacientesko",
+      linkDuration: "Kadava siguro linko vash o portalo zhal 90 dyesa. Pala kodya, vay te hasares les, mang ekh nevo linko katar i rig kaj khuves andre pe RediHealth.",
+      conditionSummary: "Khetanipen e sastipnasko thaj e simptomurengo",
+      portalDetailsHeading: "And-o cho portalo e pacientesko",
+      portalDetails: [
+        "Dikh i diagnoza thaj le sikavimata katar o plano tratamentesko",
+        "Phen neve simptomurya thaj dikh sode sigako si",
+        "Planisar thaj khuves and-e video-svaturya kontroleke",
+        "Tho sastipnaske tasvirya vay trubutne sastipnaske lila",
+      ],
+      fallbackName: "Amala",
+      treatmentPlan: "Plano tratamentesko",
+      datesNotRecorded: "Le dyesa nay lekharde",
+      diagnosis: "Diagnoza",
+      medications: "Draba thaj terapiye",
+      careInstructions: "Sikavimata sastipnaske",
+      footerReason: "Liyan kadava email soske sas kerdo ekh sastipnasko lil vash tute pe RediHealth.",
+    },
+    meeting: {
+      subject: "Akharimos",
+      preview: (title: string) => `Akharimos ko video-svato: ${title}`,
+      badge: "Video-svato",
+      heading: "San akhardo ko ekh video-svato",
+      intro: "Chi sastipnaski ekipa planisardyas ekh video-svato. Kana avel o chaso e vizitako, dab o butono tele te khuves andre drekto katar cho browsero.",
+      textInvitation: (title) => `San akhardo ko ekh RediHealth video-svato: ${title}.`,
+      cta: "Khuves and-o video-svato",
+      appointment: "Planisardi vizita",
+      joinText: "Khuves and-o maladimos kathe:",
+      closing: "Te trubul tut zhutimos te phandes tut, de duma che sastipnaske ekipasa.",
+      footerReason: "Liyan kadava email soske sas planisardi ekh vizita vash tute pe RediHealth.",
+    },
+  },
+};
+
+const emailSignOffByLang: Record<Lang, string> = {
+  en: "Best regards",
+  ro: "Cu stimă",
+  sq: "Me respekt",
+  it: "Cordiali saluti",
+  hr: "Srdačan pozdrav",
+  rom: "Sastipnasa",
 };
 
 type EmailMessage = {
@@ -726,7 +831,7 @@ ${sortTreatments(getTreatmentEntries(treatmentPlan)).map((entry) => [
 
 ${copy.emergencyText}
 
-${lang === "en" ? "Best regards" : lang === "ro" ? "Cu stimă" : lang === "sq" ? "Me respekt" : "Cordiali saluti"},
+${emailSignOffByLang[lang]},
 ${copy.teamName}`;
 
   const portalDetailsHtml = `
@@ -770,7 +875,7 @@ ${copy.teamName}`;
     },
     contentHtml: portalDetailsHtml,
     emergencyNotice: true,
-    closingText: lang === "en" ? "Best regards," : lang === "ro" ? "Cu stimă," : lang === "sq" ? "Me respekt," : "Cordiali saluti,",
+    closingText: `${emailSignOffByLang[lang]},`,
     footerReason: portalCopy.footerReason,
   });
 
@@ -822,7 +927,7 @@ ${meetingUrl}
 
 ${meetingCopy.closing}
 
-${lang === "en" ? "Best regards" : lang === "ro" ? "Cu stimă" : lang === "sq" ? "Me respekt" : "Cordiali saluti"},
+${emailSignOffByLang[lang]},
 ${copy.teamName}`;
   const meetingDetailsHtml = `
       <tr>

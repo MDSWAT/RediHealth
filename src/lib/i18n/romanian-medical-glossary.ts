@@ -316,7 +316,7 @@ export interface LocalizedGlossaryText {
 }
 
 export const GLOSSARY_TRANSLATIONS: Record<
-  "en" | "sq" | "it",
+  "en" | "sq" | "it" | "hr" | "rom",
   Record<string, LocalizedGlossaryText>
 > = {
   en: {
@@ -987,6 +987,452 @@ export const GLOSSARY_TRANSLATIONS: Record<
         "Pronto soccorso. È aperto giorno e notte per le emergenze gravi.",
     },
   },
+
+  hr: {
+    "glicemie-a-jeun": {
+      plainTerm: "Šećer u krvi natašte",
+      formalTerm: "Glukoza u krvi natašte",
+      layExplanation:
+        "Mjeri se ujutro, nakon najmanje 8 sati bez hrane. Pokazuje koliko šećera imaš u krvi dok tijelo miruje.",
+      clinicalSignificance:
+        "Normalno: 70–99 mg/dL. Od 100 do 125 mg/dL znači predijabetes. 126 mg/dL ili više na 2 nalaza može značiti dijabetes.",
+      speechText:
+        "Šećer u krvi natašte. Na nalazu piše glukoza u krvi natašte. Mjeri se ujutro, na prazan želudac.",
+    },
+    "glicemie-postprandial": {
+      plainTerm: "Šećer u krvi 2 sata nakon obroka",
+      formalTerm: "Postprandijalna glukoza u plazmi",
+      layExplanation:
+        "Mjeri se 2 sata nakon početka obroka. Pokazuje kako se tvoje tijelo nosi sa šećerom iz hrane.",
+      clinicalSignificance:
+        "Normalno: ispod 140 mg/dL. Od 140 do 199 mg/dL znači otežanu razgradnju šećera (oštećena tolerancija glukoze). 200 mg/dL ili više može značiti dijabetes.",
+      speechText:
+        "Šećer u krvi 2 sata nakon obroka. Liječnik to zove postprandijalna glukoza. Normalno je ispod 140 miligrama po decilitru.",
+    },
+    hipertensiune: {
+      plainTerm: "Visoki krvni tlak",
+      formalTerm: "Arterijska hipertenzija",
+      layExplanation:
+        "Krv stalno prejako pritišće stijenke tvojih krvnih žila. Srce se umara, a žile se s vremenom oštećuju.",
+      clinicalSignificance:
+        "Dijagnosticira se kada vrijednosti ostaju na 140/90 mmHg ili više kroz više mjerenja. Najveći je čimbenik rizika za srčani i moždani udar.",
+      speechText:
+        "Visoki krvni tlak. Liječnik to zove arterijska hipertenzija. Iznad 140 sa 90 tvoje srce radi preteško, čak i ako te ništa ne boli.",
+    },
+    hipotensiune: {
+      plainTerm: "Niski krvni tlak",
+      formalTerm: "Arterijska hipotenzija",
+      layExplanation:
+        "Krvni tlak niži je od uobičajenog. Može ti se zavrtjeti kada naglo ustaneš, zamutiti vid ili možeš izgubiti svijest.",
+      clinicalSignificance:
+        "Ispod 90/60 mmHg. Ako se osjećaš dobro, to može biti normalno za tebe. Ako imaš vrtoglavicu ili nesvjesticu, liječnik provjerava tekućinu i elektrolite.",
+      speechText:
+        "Niski krvni tlak. Liječnik to zove arterijska hipotenzija. Ispod 90 sa 60 možeš osjetiti vrtoglavicu ili slabost pri naglom ustajanju.",
+    },
+    "atac-de-cord": {
+      plainTerm: "Srčani udar",
+      formalTerm: "Akutni infarkt miokarda",
+      layExplanation:
+        "Krvni ugrušak potpuno začepi arteriju srca. Dio srčanog mišića ostaje bez kisika i počinje propadati.",
+      clinicalSignificance:
+        "Hitno stanje. Nazovi 112. Arterija se mora otvoriti u bolnici (angioplastika) u prvim satima.",
+      speechText:
+        "Srčani udar. Liječnik to zove akutni infarkt miokarda. Ako osjetiš jak pritisak u prsima koji se širi u ruku ili čeljust, odmah nazovi 112.",
+    },
+    "atac-cerebral": {
+      plainTerm: "Moždani udar",
+      formalTerm: "Cerebrovaskularni inzult (moždani udar)",
+      layExplanation:
+        "Krv naglo prestane stizati u dio mozga zbog ugruška ili krvarenja. Stanice u tom dijelu mozga odumiru.",
+      clinicalSignificance:
+        "Hitno stanje. Nazovi 112. Liječnici provjeravaju znakove FAST testom. Lijek koji otapa ugrušak (tromboliza) daje se u prvih 4,5 sata.",
+      speechText:
+        "Moždani udar. Ako se lice objesi na jednu stranu, ruka oslabi ili govor postane nejasan, odmah nazovi 112.",
+    },
+    dispnee: {
+      plainTerm: "Nedostatak zraka pri naporu ili ležanju",
+      formalTerm: "Srčana ili respiratorna dispneja",
+      layExplanation:
+        "Osjećaš da se gušiš ili teško dišeš. Ako se to javlja pri malom naporu ili dok ležiš ravno u krevetu, srce može biti opterećeno.",
+      clinicalSignificance:
+        "Nedostatak zraka pri naporu ili potreba za više jastuka pri spavanju (ortopneja) može značiti vodu u plućima. Hitno se javi kardiologu.",
+      speechText:
+        "Nedostatak zraka. Liječnik to zove dispneja. Ako teško dišeš pri malom naporu ili dok ležiš, hitno se javi liječniku.",
+    },
+    edeme: {
+      plainTerm: "Otečeni gležnjevi i noge",
+      formalTerm: "Periferni edemi",
+      layExplanation:
+        "Tekućina se nakuplja u gležnjevima i potkoljenicama. Događa se kada srce ili vene teško vraćaju krv prema gore.",
+      clinicalSignificance:
+        "Ako pritisak prstom ostavi udubinu, tijelo zadržava vodu i sol. To je čest znak srčanog zatajivanja.",
+      speechText:
+        "Otečene noge i gležnjevi. Liječnik ih zove periferni edemi. Nakupljena voda u gležnjevima često znači da srce treba pregled liječnika.",
+    },
+    "hemoglobina-glicata": {
+      plainTerm: "Prosječni šećer u zadnja 3 mjeseca",
+      formalTerm: "Glikirani hemoglobin (HbA1c)",
+      layExplanation:
+        "Krvna pretraga koja pokazuje prosječnu razinu šećera u krvi u zadnjih 90 dana. Pokazuje koliko je dijabetes dobro reguliran.",
+      clinicalSignificance:
+        "Za većinu odraslih s dijabetesom cilj je ispod 7%. Iznad 8% liječnik treba prilagoditi terapiju.",
+      speechText:
+        "Prosječni šećer u zadnja 3 mjeseca. Na nalazu piše glikirani hemoglobin ili HbA1c. Za većinu osoba s dijabetesom cilj je ispod 7 posto.",
+    },
+    "fibrilatie-atriala": {
+      plainTerm: "Brz i nepravilan rad srca",
+      formalTerm: "Fibrilacija atrija",
+      layExplanation:
+        "Srce kuca brzo i bez ritma. Krv ne izlazi potpuno iz gornjih srčanih šupljina pa se mogu stvoriti ugrušci.",
+      clinicalSignificance:
+        "Povećava rizik od moždanog udara 5 puta. Potrebni su lijekovi protiv zgrušavanja krvi (antikoagulansi) koje propisuje kardiolog.",
+      speechText:
+        "Brz i nepravilan rad srca. Liječnik to zove fibrilacija atrija. Javi se kardiologu kako bi spriječio krvne ugruške i moždani udar.",
+    },
+    "insuficienta-cardiaca": {
+      plainTerm: "Oslabljeno srce koje slabo pumpa",
+      formalTerm: "Kronično zatajivanje srca",
+      layExplanation:
+        "Srce polako gubi snagu da pumpa dovoljno krvi u organe. Brzo se umaraš i u tijelu se zadržava voda.",
+      clinicalSignificance:
+        "Dugotrajna bolest koja zahtijeva redovito praćenje. Važi se svaki dan, jedi manje od 5 g soli dnevno i uzimaj lijekove točno prema uputi liječnika.",
+      speechText:
+        "Oslabljeno srce. Liječnik to zove kronično zatajivanje srca. Važi se svakodnevno, jedi malo soli i uzimaj lijekove točno kako je propisano.",
+    },
+    "neuropatie-diabetica": {
+      plainTerm: "Utrnulost i trnci u stopalima",
+      formalTerm: "Periferna dijabetička neuropatija",
+      layExplanation:
+        "Visoki šećer u krvi oštećuje živce u stopalima. Slabije osjećaš bol pa rane mogu proći neprimijećeno.",
+      clinicalSignificance:
+        "Česta pojava kod osoba s dijabetesom. Svaki dan pregledaj tabane kako bi na vrijeme uočio rane.",
+      speechText:
+        "Utrnulost i trnci u stopalima. Liječnik to zove dijabetička neuropatija. Pregledaj stopala svaki dan kako bi rano uočio rane.",
+    },
+    "retinopatie-diabetica": {
+      plainTerm: "Oštećenje vida zbog dijabetesa",
+      formalTerm: "Dijabetička retinopatija",
+      layExplanation:
+        "Godine povišenog šećera oštećuju sitne krvne žile na očnoj pozadini (mrežnici).",
+      clinicalSignificance:
+        "Vodeći uzrok sljepoće koja se može spriječiti kod odraslih. Sprječavaš je pregledom očne pozadine jednom godišnje i održavanjem HbA1c ispod 7%.",
+      speechText:
+        "Oštećenje vida zbog dijabetesa. Liječnik to zove dijabetička retinopatija. Pregled očiju jednom godišnje čuva tvoj vid.",
+    },
+    "cetoacidoza-diabetica": {
+      plainTerm: "Opasno nakupljanje kiselina u krvi",
+      formalTerm: "Dijabetička ketoacidoza (DKA)",
+      layExplanation:
+        "Kada tijelu jako nedostaje inzulina, ono razgrađuje masti za energiju. Time u krvi nastaju opasne kiseline (ketoni).",
+      clinicalSignificance:
+        "Stanje opasno po život. Znakovi: zadah po voću ili acetonu, uporno povraćanje, zbunjenost i jaka dehidracija.",
+      speechText:
+        "Opasno nakupljanje kiselina u krvi. Liječnik to zove dijabetička ketoacidoza. Ako povraćaš, zbunjen si ili ubrzano dišeš, nazovi 112.",
+    },
+    electrocardiograma: {
+      plainTerm: "Snimanje električnog rada srca",
+      formalTerm: "Elektrokardiogram (EKG)",
+      layExplanation:
+        "Brza i bezbolna pretraga. Na kožu ti se stave male elektrode, a uređaj bilježi kako tvoje srce kuca.",
+      clinicalSignificance:
+        "Pokazuje nepravilan ritam srca, slabiju opskrbu srca krvlju (ishemiju) i znakove svježeg ili starog srčanog udara.",
+      speechText:
+        "Snimanje rada srca. Liječnik to zove elektrokardiogram ili EKG. Brzo je, ne boli i pokazuje srčani ritam.",
+    },
+    ecocardiografie: {
+      plainTerm: "Ultrazvuk srca",
+      formalTerm: "Transtorakalna ehokardiografija",
+      layExplanation:
+        "Pregled ultrazvukom. Na zaslonu se vide stijenke srca, kretanje zalistaka i snaga kojom srce pumpa krv.",
+      clinicalSignificance:
+        "Mjeri koliki udio krvi srce istisne svakim otkucajem (ejekcijska frakcija, LVEF). Otkriva i bolesti zalistaka te zadebljanje srčanog mišića.",
+      speechText:
+        "Ultrazvuk srca. Liječnik to zove ehokardiografija. Pokazuje kako rade zalisci i koliko snažno srce pumpa.",
+    },
+    "tensiometru-digital": {
+      plainTerm: "Automatski tlakomjer",
+      formalTerm: "Digitalni oscilometrijski tlakomjer",
+      layExplanation:
+        "Uređaj s manžetom koja se stavlja na nadlakticu. Sam se napuše i pokaže krvni tlak i puls.",
+      clinicalSignificance:
+        "Odličan za mjerenje kod kuće. Odaberi klinički provjeren model s manžetom za nadlakticu, a ne za zapešće.",
+      speechText:
+        "Automatski tlakomjer. Modeli s manžetom za nadlakticu daju najtočnije vrijednosti kod kuće.",
+    },
+    glucometru: {
+      plainTerm: "Aparat za mjerenje šećera u krvi",
+      formalTerm: "Kapilarni glukometar s biosenzorima",
+      layExplanation:
+        "Mali uređaj. Na trakicu staviš kap krvi sa strane jagodice prsta i za nekoliko sekundi vidiš razinu šećera.",
+      clinicalSignificance:
+        "Pomaže ti samostalno pratiti dijabetes. Trebaju ti odgovarajuće testne trakice i sterilne jednokratne iglice (lancete).",
+      speechText:
+        "Aparat za mjerenje šećera ili glukometar. Pokazuje šećer u krvi iz 1 kapi krvi za nekoliko sekundi.",
+    },
+    "bilet-de-trimitere": {
+      plainTerm: "Uputnica za specijalista",
+      formalTerm: "HZZO uputnica (e-uputnica)",
+      layExplanation:
+        "Uputnica koju izdaje tvoj obiteljski liječnik. Ako imaš zdravstveno osiguranje, njome su specijalistički pregledi i pretrage pokriveni preko HZZO-a.",
+      clinicalSignificance:
+        "Uputnica za pojedini pregled obično vrijedi 30 do 90 dana, ovisno o vrsti uputnice i praćenju kronične bolesti.",
+      speechText:
+        "Uputnica za specijalista. Izdaje je obiteljski liječnik, a troškove pregleda i pretraga pokriva HZZO.",
+    },
+    "prescriptie-compensata": {
+      plainTerm: "Besplatan recept ili recept uz doplatu",
+      formalTerm: "Kompenzirani recept (HZZO e-recept)",
+      layExplanation:
+        "Elektronički recept kojim obiteljski liječnik propisuje lijekove s osnovne (besplatne) ili dopunske liste lijekova HZZO-a.",
+      clinicalSignificance:
+        "Ključni lijekovi za dijabetes, inzulin i kronične srčane bolesti nalaze se na osnovnoj listi lijekova HZZO-a.",
+      speechText:
+        "Recept preko osiguranja, odnosno e-recept. Lijekovi za dijabetes i druge kronične bolesti pokriveni su zdravstvenim osiguranjem.",
+    },
+    "centru-de-permanenta": {
+      plainTerm: "Dežurna ambulanta",
+      formalTerm: "Posebno dežurstvo primarne zdravstvene zaštite",
+      layExplanation:
+        "Ambulanta otvorena kada tvoj obiteljski liječnik ne radi: vikendom, blagdanom i navečer. Tamo ideš za hitne tegobe koje nisu opasne po život.",
+      clinicalSignificance:
+        "Zbrinjava akutne tegobe koje ne ugrožavaju život kako bi bolnički hitni prijem ostao slobodan za najteže slučajeve.",
+      speechText:
+        "Dežurna ambulanta. Otvorena je vikendom i blagdanom kada obiteljski liječnik ne radi, bez prethodnog naručivanja.",
+    },
+    "unitate-primiri-urgente": {
+      plainTerm: "Hitni bolnički prijem",
+      formalTerm: "Objedinjeni hitni bolnički prijem (OHBP)",
+      layExplanation:
+        "Odjel bolnice otvoren danju i noću, 24 sata dnevno. Ovdje se zbrinjavaju teška i po život opasna stanja.",
+      clinicalSignificance:
+        "Za stanja opasna po život: teške nesreće, bol u prsima, gubitak svijesti. Ne ulazi se po redu dolaska, nego prema hitnosti (trijaža).",
+      speechText:
+        "Hitni bolnički prijem, odnosno OHBP. Otvoren je danju i noću za teška hitna stanja.",
+    },
+  },
+
+  rom: {
+    "glicemie-a-jeun": {
+      plainTerm: "Gudlo rat pe bokhalo por",
+      formalTerm: "Glukoza ando rat pe bokhalo por",
+      layExplanation:
+        "Merisarel pes sabale, pala najxanci 8 ore bi xabenasko. Sikavel kozom zahari si tut ando rat kana o trupo hodinisarel.",
+      clinicalSignificance:
+        "Normalno: 70–99 mg/dL. Mashkar 100 thaj 125 mg/dL znachil predijabeto. 126 mg/dL vaj maj but, pe 2 rengre dikhibena, shaj te avel dijabeto.",
+      speechText:
+        "Gudlo rat pe bokhalo por. Pe lila e analizenge pishil glukoza pe bokhalo por. Normalno si mashkar 70 thaj 99 miligrama pe decilitro.",
+    },
+    "glicemie-postprandial": {
+      plainTerm: "Gudlo rat 2 ore pala o xaben",
+      formalTerm: "Postprandijalno glukoza",
+      layExplanation:
+        "Merisarel pes 2 ore pala so astardjan te xas. Sikavel sar tiro trupo kerel buchi e zaharosa katar o xaben.",
+      clinicalSignificance:
+        "Normalno: tela 140 mg/dL. Mashkar 140 thaj 199 mg/dL o trupo phares labyarel o zahari. 200 mg/dL vaj maj but shaj te avel dijabeto.",
+      speechText:
+        "Gudlo rat 2 ore pala o xaben. O doktori akharel les postprandijalno glukoza. Normalno si tela 140 miligrama pe decilitro.",
+    },
+    hipertensiune: {
+      plainTerm: "O rat phurdel zurales (uchi tensija)",
+      formalTerm: "Arterijaki hipertenzija",
+      layExplanation:
+        "O rat tasavel but zurales pe zidura e rateske dromenge, sako vrjama. O ilo khinjol thaj e droma phagjon vash vrjama.",
+      clinicalSignificance:
+        "O doktori čhivel la kana e numere ačhen pe 140/90 mmHg vaj maj opre. Barjarel najbut o riziko vash infarkto thaj dab ki godi.",
+      speechText:
+        "Uchi tensija, o rat phurdel zurales. O doktori akharel la arterijaki hipertenzija. Opral 140 pe 90, tiro ilo kerel but phari buchi, vi te na dukhal tut niso.",
+    },
+    hipotensiune: {
+      plainTerm: "Cikni tensija e rateski",
+      formalTerm: "Arterijaki hipotenzija",
+      layExplanation:
+        "Tiri tensija si maj cikni katar normalno. Shaj te phirel tiro shero kana ushtes sigo opre, te dikhes kalo vaj te peres.",
+      clinicalSignificance:
+        "Tela 90/60 mmHg. Te hatjares tut mishto, shaj te avel normalno vash tute. Te phirel tiro shero vaj peres, o doktori dikhel o pani thaj e lona ando trupo.",
+      speechText:
+        "Cikni tensija. O doktori akharel la arterijaki hipotenzija. Tela 90 pe 60 shaj te phirel tiro shero kana ushtes sigo opre.",
+    },
+    "atac-de-cord": {
+      plainTerm: "Atako ko ilo",
+      formalTerm: "Akutno infarkto e miokardesko",
+      layExplanation:
+        "Jekh phandlo rat astavel sasto drom e ratesko ko ilo. Jekh kotor katar o ilo ačhel bi oksigenosko thaj astarel te dukhavdjol.",
+      clinicalSignificance:
+        "Sigardiari. Akhar 112. O ratesko drom musaj te putardjol ki bolnitsa ande anglune ore.",
+      speechText:
+        "Atako ko ilo. O doktori akharel les akutno infarkto. Te hatjares bari dukh ko kolin so dzhal ko vast vaj ki pashni, akhar sigo 112.",
+    },
+    "atac-cerebral": {
+      plainTerm: "Dab ki godi",
+      formalTerm: "Cerebrovaskularno aksidento (atako ki godi)",
+      layExplanation:
+        "O rat ačhel sigo te na resel ko jekh kotor e godjako, katar phandlo rat vaj ratjarimos. E celije ande kodo kotor meren.",
+      clinicalSignificance:
+        "Sigardiari. Akhar 112. E doktorura dikhen e semnja e FAST testosa. I drab so bilavel o phandlo rat del pes ande anglune 4,5 ore.",
+      speechText:
+        "Dab ki godi. Te bangjol o muj, slabjol o vast vaj phagjol i duma, akhar sigo 112.",
+    },
+    dispnee: {
+      plainTerm: "Phari phurdinimos kana phires vaj pashljos",
+      formalTerm: "Kardijalno vaj respiratorno dispneja",
+      layExplanation:
+        "Hatjares kaj tasjos vaj phares les balval. Te avel ko cikno phirimos vaj kana pashljos vorta ko than, tiro ilo shaj te avel khino.",
+      clinicalSignificance:
+        "Te ačhes bi balvaljako vaj trubul tut maj but sherandja te soves, shaj te avel pani ko phuka. Dzha sigo ko kardiologo.",
+      speechText:
+        "Phari phurdinimos. O doktori akharel la dispneja. Te les phares balval ko cikno phirimos vaj kana pashljos, dzha sigo ko doktori.",
+    },
+    edeme: {
+      plainTerm: "Shuvljarde punre thaj globura",
+      formalTerm: "Periferikane edemura",
+      layExplanation:
+        "Kidel pes pani ande globura thaj ande punre. Kerel pes kana o ilo vaj e vene nashti te ispidin mishto o rat opre.",
+      clinicalSignificance:
+        "Te tasaves e najesa thaj ačhel xaning, tiro trupo inkerel pani thaj lon. Akava kerel pes butivar kana o ilo si slabo.",
+      speechText:
+        "Shuvljarde punre. O doktori akharel len periferikane edemura. O pani ko globura butivar sikavel kaj o ilo trubul te dikhel les o doktori.",
+    },
+    "hemoglobina-glicata": {
+      plainTerm: "Mashkarutno gudlo rat ande palutne 3 chona",
+      formalTerm: "Glikirime hemoglobina (HbA1c)",
+      layExplanation:
+        "Rengro dikhiben savo sikavel kozom zahari sas tut ando rat, mashkarutnes, ande palutne 90 dive. Sikavel kozom mishto si inkerdo o dijabeto.",
+      clinicalSignificance:
+        "Vash e maj but bare manusha dijabetosa, o ciljo si tela 7%. Opral 8%, o doktori musaj te dikhel pale o sastjarimos.",
+      speechText:
+        "Mashkarutno zahari ande palutne 3 chona. Pe lila pishil HbA1c. Vash e maj but manusha dijabetosa, o ciljo si tela 7 procentura.",
+    },
+    "fibrilatie-atriala": {
+      plainTerm: "Ilo so marel sigo thaj bi ritmosko",
+      formalTerm: "Atrijalno fibrilacija",
+      layExplanation:
+        "Tiro ilo marel sigo thaj bi ritmosko. O rat na ikljol sasto katar e oprune kotora e ileske, kadja shaj te keren pes phandle kotora rateske.",
+      clinicalSignificance:
+        "Barjarel 5 droma o riziko vash dab ki godi. Trubul tut draba so sanjaren o rat (antikoagulansura), dende katar o kardiologo.",
+      speechText:
+        "Ilo so marel sigo thaj bi ritmosko. O doktori akharel la atrijalno fibrilacija. Dzha ko kardiologo te arakhes tut katar dab ki godi.",
+    },
+    "insuficienta-cardiaca": {
+      plainTerm: "Slabo ilo so pumpil phares",
+      formalTerm: "Kronikani insuficijencija e ileski",
+      layExplanation:
+        "Tiro ilo xasarel lokhes i zor te bičhalel dosta rat ko organura. Khinjos sigo thaj kidel pes pani ando trupo.",
+      clinicalSignificance:
+        "Nasvalipen pe lungi vrjama. Merisar tiro pharipen sako dives, xa maj xanci katar 5 g lon ko dives thaj le e draba vorta sar phendja o doktori.",
+      speechText:
+        "Slabo ilo. O doktori akharel la kronikani insuficijencija e ileski. Xa xanci lon thaj le e draba vorta sar pishil pe recepta.",
+    },
+    "neuropatie-diabetica": {
+      plainTerm: "Pamortimos thaj pusavimata ande talpe",
+      formalTerm: "Periferikani dijabetikani neuropatija",
+      layExplanation:
+        "O baro zahari ando rat dukhavel e nervura ande pindre. Hatjares maj xanci i dukh, kadja shaj te aven tut rane bi te dikhes len.",
+      clinicalSignificance:
+        "Kerel pes butivar ko manusha dijabetosa. Dikh tire talpe sako dives, te arakhes sigo sako rana.",
+      speechText:
+        "Pamortimos ande talpe. O doktori akharel la dijabetikani neuropatija. Dikh tire pindre sako dives te arakhes e rane rano.",
+    },
+    "retinopatie-diabetica": {
+      plainTerm: "Dukhavdo dikhiben katar o dijabeto",
+      formalTerm: "Dijabetikani retinopatija",
+      layExplanation:
+        "Bersha bare zaharosa ando rat dukhaven e cikne rateske droma palpale andi jakh (i retina).",
+      clinicalSignificance:
+        "Baro uzroko vash koripen ko bare manusha. Arakhes tut jekhe dikhibenasa e jakhenge sako bersh thaj HbA1c tela 7%.",
+      speechText:
+        "Dukhavdo dikhiben katar o dijabeto. O doktori akharel la dijabetikani retinopatija. Dikhiben e jakhengo sako bersh arakhel tiro dikhiben.",
+    },
+    "cetoacidoza-diabetica": {
+      plainTerm: "Pharo kiselino ando rat katar o dijabeto",
+      formalTerm: "Dijabetikani ketoacidoza (DKA)",
+      layExplanation:
+        "Kana falil but inzulino, o trupo phabarel khil te lel zor. Kadja kiden pes ando rat bilache kiseline (ketonura).",
+      clinicalSignificance:
+        "Sigardiari so čhivel o trajo ando riziko. Semnja: phurdinimos so khandel pe phabaj, čhadimos so na ačhel, bisterdi godi thaj bari trush.",
+      speechText:
+        "Pharo kiselino ando rat. O doktori akharel la dijabetikani ketoacidoza. Te čhades, san konfuzno vaj phurdines sigo, akhar 112.",
+    },
+    electrocardiograma: {
+      plainTerm: "Elektrikano dikhiben e ilesko",
+      formalTerm: "Elektrokardiogramo (EKG)",
+      layExplanation:
+        "Sigo dikhiben savo na dukhal. Čhiven pes cikne elektrode pe morti, thaj i mashina ramosarel pe lil sar marel o ilo.",
+      clinicalSignificance:
+        "Sikavel te marel o ilo bi ritmosko, te na lel dosta rat (ishemija), thaj semnja katar nevo vaj purano infarkto.",
+      speechText:
+        "Elektrikano dikhiben e ilesko. O doktori akharel les elektrokardiogramo vaj EKG. Si sigo, na dukhal thaj sikavel o ritmo e ilesko.",
+    },
+    ecocardiografie: {
+      plainTerm: "Ultrazvuko e ilesko",
+      formalTerm: "Transtorakalno ehokardiografija",
+      layExplanation:
+        "Dikhiben ultrazvukosa. Pe ekrano dikhen pes e zidura e ileske, sar phiren e valvule thaj kozom zurales pumpil o ilo.",
+      clinicalSignificance:
+        "Merisarel kozom rat ispidel o ilo ko sako marimos (LVEF). Arakhel vi nasvalipena e valvulenge thaj thuljardo ilo.",
+      speechText:
+        "Ultrazvuko e ilesko. O doktori akharel les ehokardiografija. Sikavel sar phiren e valvule thaj kozom zurales kerel buchi o ilo.",
+    },
+    "tensiometru-digital": {
+      plainTerm: "Automatikano aparato vash i tensija",
+      formalTerm: "Digitalno oscilometrikano tensiometro",
+      layExplanation:
+        "Aparato manshetasa savi čhives pe vast. Korkoro phpherel pes balvaljasa thaj sikavel tiri tensija thaj o pulso.",
+      clinicalSignificance:
+        "Lačho vash merimos khere. Alosar klinikano dikhlo modelo manshetasa pe opruno vast, na ko globi e vastesko.",
+      speechText:
+        "Automatikano aparato vash i tensija. E modelura manshetasa pe opruno vast merisaren najčačes khere.",
+    },
+    glucometru: {
+      plainTerm: "Aparato vash merimos e zaharesko",
+      formalTerm: "Kapilarno glukometro biosenzorenca",
+      layExplanation:
+        "Cikno aparato. Čhives pe lenta jekh kapka rat katar i rig e najeski thaj ande xanci sekunde dikhes o zahari.",
+      clinicalSignificance:
+        "Azhutil tut korkoro te dikhes tiro dijabeto. Trubun tut lente so pasinen ko aparato thaj sterilne suva vash jekh labyarimos (lancete).",
+      speechText:
+        "Aparato vash merimos e zaharesko, vaj glukometro. Sikavel tiro gudlo rat katar 1 kapka rat ande xanci sekunde.",
+    },
+    "bilet-de-trimitere": {
+      plainTerm: "Lil bičhalimasko ko specijalisto",
+      formalTerm: "Sastipnasko lil bičhalimasko (uputnica)",
+      layExplanation:
+        "O lil savo del tut tiro familijako doktori. Te si tut sastipnasko osiguranje, lesa o dikhiben ko specijalisto si bi lovesko vaj pokindo.",
+      clinicalSignificance:
+        "Vazhil 30 dive vash sigo nasvalipen thaj dzhi ko 90 dive vash lungi-vrjamake nasvalipena.",
+      speechText:
+        "Lil bičhalimasko ko specijalisto. Lesa o sastipnasko osiguranje pokinel o dikhiben thaj e analize ko specijalisto.",
+    },
+    "prescriptie-compensata": {
+      plainTerm: "Recepta cikne cijenasa vaj bi lovesko",
+      formalTerm: "Kompenzirime sastipnaski recepta",
+      layExplanation:
+        "Elektronikani recepta vash draba save si pokinde dopash (50%, 90%) vaj saste (100%, vash lungi-vrjamake nasvalipena sar o dijabeto).",
+      clinicalSignificance:
+        "E anglune draba vash o dijabeto, o inzulino thaj aver lungi-vrjamake nasvalipena si saste pokinde katar o sastipnasko osiguranje.",
+      speechText:
+        "Recepta cikne cijenasa vaj bi lovesko. E draba vash o dijabeto si pokinde katar o sastipnasko osiguranje.",
+    },
+    "centru-de-permanenta": {
+      plainTerm: "Dezhurno ambulanta",
+      formalTerm: "Ambulanta vash sigo azhutimos ratjate thaj vikendosa",
+      layExplanation:
+        "Ambulanta putardi kana tiro familijako doktori na kerel buchi: ratjate, ko vikendo thaj ko praznikura. Dzha kothe vash sigo problemo so na čhivel o trajo ando riziko.",
+      clinicalSignificance:
+        "Sastjarel problemura so na čhiven tiro trajo ando riziko, kaj i bolnitsaki sigardiari te ačhel slobodo vash phare sluchajura.",
+      speechText:
+        "Dezhurno ambulanta. Si putardi ratjate thaj ko vikendo, thaj shaj te dzhas bi terminosko.",
+    },
+    "unitate-primiri-urgente": {
+      plainTerm: "Bolnitsaki sigardiari",
+      formalTerm: "Bolnitsako kotor vash sigardiari (OHBP)",
+      layExplanation:
+        "O kotor e bolnitsako putardo dives thaj rat, 24 ore ko dives. Kate sastjaren pes e phare sluchajura.",
+      clinicalSignificance:
+        "Vash sluchajura so čhiven o trajo ando riziko: aksidentura, dukh ko kolin, xasarimos e godjako. Na del pes sar aviljan, anglal dzhan e maj phare sluchajura.",
+      speechText:
+        "Bolnitsaki sigardiari. Si putardi dives thaj rat vash phare sastipnaske sigardiarja.",
+    },
+  },
 };
 
 export function getLocalizedGlossaryEntry(
@@ -1106,6 +1552,46 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
       analize: "Esami e apparecchi",
       cnas: "Documenti CNAS",
       urgente: "Emergenze",
+    },
+  },
+  hr: {
+    title: "Medicinski rječnik",
+    subtitle: "Što znače riječi na receptima, nalazima i uputnicama",
+    searchPlaceholder: "Pretraži riječ",
+    closeLabel: "Zatvori rječnik",
+    plainLabel: "Svakodnevna riječ",
+    formalLabel: "Kako piše na receptu ili nalazu",
+    clinicalSignificanceLabel: "Što prati liječnik:",
+    pronounceLabel: "Poslušaj",
+    emptyState: "Nismo pronašli ovu riječ. Pokušaj drugu.",
+    categoryTablistAria: "Kategorije rječnika",
+    categories: {
+      all: "Sve (22)",
+      diabet: "Dijabetes",
+      cardiologie: "Srce i tlak",
+      analize: "Pretrage i uređaji",
+      cnas: "Dokumenti HZZO-a",
+      urgente: "Hitna stanja",
+    },
+  },
+  rom: {
+    title: "Sastipnasko alavari",
+    subtitle: "So znachinen e alava pe recepte, analize thaj lila",
+    searchPlaceholder: "Rod jekh alav",
+    closeLabel: "Phand o alavari",
+    plainLabel: "Sako-divesko alav",
+    formalLabel: "Sar pishil pe recepta vaj pe analize",
+    clinicalSignificanceLabel: "So dikhel o doktori:",
+    pronounceLabel: "Ashun",
+    emptyState: "Na arakhljam akava alav. Probin aver.",
+    categoryTablistAria: "Kategorije e alavareske",
+    categories: {
+      all: "Savore (22)",
+      diabet: "Dijabeto",
+      cardiologie: "O ilo thaj i tensija",
+      analize: "Analize thaj aparatura",
+      cnas: "Sastipnaske lila",
+      urgente: "Sigardiarja",
     },
   },
 };

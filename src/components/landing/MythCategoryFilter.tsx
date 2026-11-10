@@ -21,7 +21,7 @@ export interface MythCategoryFilterProps {
   categories: MythCategory[];
   activeCategory: string;
   onSelect: (categorySlug: string) => void;
-  /** Per-category totals and answered counts, shown as a small tally. */
+  /** Per-category totals and answered counts, shown as a rectangular tally chip. */
   progress?: Record<string, MythCategoryProgress>;
   className?: string;
 }
@@ -30,11 +30,9 @@ const FADE = "2.5rem";
 
 /**
  * One left-aligned underline band, the same pattern as the section tabs in
- * the guides. It never wraps: when the labels are wider than the column the
- * row scrolls sideways and the cut-off edge fades out, so it is clear there is
- * more; with a mouse, a chevron over the faded edge pages the row. The chosen
- * category is scrolled into view. A group of toggle buttons
- * (aria-pressed), since they filter one shared quiz rather than switch panels.
+ * the guides. It stays on a single horizontal row: when the labels exceed the
+ * column width the row scrolls sideways and the cut-off edge fades out, with
+ * desktop chevrons paging the row.
  */
 export function MythCategoryFilter({
   categories,
@@ -111,7 +109,7 @@ export function MythCategoryFilter({
 
   // Mouse-only paging; touch swipes and keyboard focus already scroll the row.
   const edgeButton =
-    "absolute top-0 bottom-px hidden w-10 items-center text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground pointer-fine:flex";
+    "absolute top-0 bottom-px hidden w-10 items-center text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground pointer-fine:flex motion-reduce:transition-none";
 
   return (
     <div className={cn("relative", className)}>
@@ -120,11 +118,12 @@ export function MythCategoryFilter({
         role="group"
         aria-label={t.quiz.filterAriaLabel}
         style={maskStyle}
-        className="flex gap-6 overflow-x-auto shadow-[inset_0_-1px_0_var(--color-border)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-5 overflow-x-auto shadow-[inset_0_-1px_0_var(--color-border)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {categories.map((cat) => {
           const isActive = activeCategory === cat.slug;
           const tally = progress?.[cat.slug];
+          const hasAnswered = Boolean(tally && tally.answered > 0);
           return (
             <button
               key={cat.slug}
@@ -132,16 +131,23 @@ export function MythCategoryFilter({
               aria-pressed={isActive}
               onClick={() => onSelect(cat.slug)}
               className={cn(
-                "flex min-h-11 shrink-0 items-end gap-1.5 whitespace-nowrap border-b-2 pb-2.5 pt-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                "flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 pb-2.5 pt-2 text-sm font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none",
                 isActive
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
               <span>{cat.label}</span>
-              {tally && tally.answered > 0 && (
-                <span className="text-xs font-medium tabular-nums text-muted-foreground">
-                  {tally.answered}/{tally.total}
+              {tally && (
+                <span
+                  className={cn(
+                    "inline-flex items-center justify-center rounded-md px-1.5 py-0.5 font-mono text-[11px] tabular-nums transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+                    hasAnswered
+                      ? "border border-sapphire-border/80 bg-sapphire-soft font-semibold text-sapphire"
+                      : "bg-muted font-medium text-muted-foreground",
+                  )}
+                >
+                  {hasAnswered ? `${tally.answered}/${tally.total}` : tally.total}
                 </span>
               )}
             </button>

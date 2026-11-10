@@ -9,6 +9,8 @@ const descriptions: Record<Lang, string> = {
   en: "Take a photo of your prescription. The assistant reads the text and explains it in plain words.",
   sq: "Bëj një foto të recetës. Asistenti e lexon tekstin dhe ta shpjegon me fjalë të thjeshta.",
   it: "Fai una foto alla ricetta. L'assistente legge il testo e te lo spiega in parole semplici.",
+  hr: "Fotografiraj recept. Asistent čita tekst i objašnjava ti ga jednostavnim riječima.",
+  rom: "Ker poza che receptake. O asistento ginavel o lekhipen thaj phenel les tuke lokhe lavenca.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {

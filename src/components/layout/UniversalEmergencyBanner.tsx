@@ -86,8 +86,8 @@ export function UniversalEmergencyBanner() {
         aria-label={e.bannerAriaLabel}
         className="emergency-banner w-full border-b border-border bg-muted/60 text-foreground"
       >
-        {/* Phones: one line, "Emergency?" next to the call button. From 768px: the full sentence; the alarm-signs link joins from 1024px. */}
-        <Container className="flex items-center gap-2 py-1 text-sm md:gap-3 md:py-1.5">
+        {/* Phones: "Emergency?" next to 112. From sm (640px): alarm-signs link joins; from md (768px): full sentence. */}
+        <Container className="flex items-center gap-2 py-0.5 text-sm md:gap-3 md:py-1">
           <PhoneIcon className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
 
           <p className="emergency-banner-text min-w-0 shrink-0 leading-snug text-foreground md:shrink md:flex-1 md:text-muted-foreground">
@@ -95,11 +95,11 @@ export function UniversalEmergencyBanner() {
             <span className="hidden md:inline">{e.bannerText}</span>
           </p>
 
-          <div className="emergency-banner-actions flex min-w-0 flex-1 items-center gap-1 md:flex-none md:shrink-0 md:gap-2">
+          <div className="emergency-banner-actions flex min-w-0 flex-1 items-center gap-1 md:flex-none md:shrink-0 md:gap-1.5">
             <button
               type="button"
               onClick={() => setSignsOpen(true)}
-              className="hidden min-h-9 items-center rounded-lg px-2 font-medium text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring lg:inline-flex"
+              className="hidden min-h-11 items-center rounded-lg px-2.5 font-medium text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:decoration-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:inline-flex"
             >
               {e.seeAlarmSigns}
             </button>
@@ -107,7 +107,7 @@ export function UniversalEmergencyBanner() {
             <button
               type="button"
               onClick={() => setDialerOpen(true)}
-              className="-ml-1 inline-flex min-h-10 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 font-semibold text-primary md:ml-0 md:min-h-9 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-primary-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              className="-ml-1 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2.5 font-semibold text-primary transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-primary-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:ml-0"
             >
               {e.call112}
             </button>
@@ -116,7 +116,7 @@ export function UniversalEmergencyBanner() {
               type="button"
               onClick={dismiss}
               aria-label={e.dismissBannerAria}
-              className="ml-auto inline-flex h-10 w-10 shrink-0 items-center md:h-9 md:w-9 justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              className="ml-auto inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               <CloseIcon className="h-4 w-4" />
             </button>

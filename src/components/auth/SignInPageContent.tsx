@@ -15,6 +15,8 @@ const TERMS_LINKS: Record<Lang, { terms: string; privacy: string }> = {
   en: { terms: "Terms", privacy: "Privacy Notice" },
   sq: { terms: "Kushtet", privacy: "Njoftimin e Privatësisë" },
   it: { terms: "Termini", privacy: "Informativa sulla privacy" },
+  hr: { terms: "uvjete korištenja", privacy: "pravila privatnosti" },
+  rom: { terms: "labaripnaske pravila", privacy: "garavipnaske pravila" },
 };
 
 const inlineLink =

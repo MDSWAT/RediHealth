@@ -1,7 +1,7 @@
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 
-export type BodyPartId = "head" | "chest" | "stomach" | "back" | "arm" | "leg";
+export type BodyPartId = "head" | "chest" | "stomach" | "pelvis" | "back" | "arm" | "leg";
 export type PartId = BodyPartId;
 
 export type SeverityId = "mild" | "moderate" | "severe";
@@ -210,27 +210,31 @@ const rawTranslations = {
     "bodyParts": {
       "head": {
         "title": "Cap și gât",
-        "subtitle": "Dureri de cap, ceafă înțepenită, amețeli sau vedere tulbure"
+        "subtitle": "Dureri de cap, maxilar, ureche, ceafă înțepenită sau amețeli"
       },
       "chest": {
         "title": "Piept și respirație",
-        "subtitle": "Apăsare în piept, respirație grea sau bătăi rapide de inimă"
+        "subtitle": "Apăsare în piept, sâni, coaste, respirație grea sau inimă rapidă"
       },
       "stomach": {
         "title": "Stomac și burtă",
-        "subtitle": "Arsuri, crampe, greață, balonare sau dureri de burtă"
+        "subtitle": "Arsuri, crampe digestive, greață, balonare sau dureri de burtă"
+      },
+      "pelvis": {
+        "title": "Pelvis și partea de jos a burții",
+        "subtitle": "Dureri menstruale, ovare, usturime la urinare, vintre sau zona intimă"
       },
       "back": {
         "title": "Spate și șale",
-        "subtitle": "Durere jos pe spate, mușchi blocați sau durere între omoplați"
+        "subtitle": "Durere jos pe spate, noadă, mușchi blocați sau durere între omoplați"
       },
       "arm": {
         "title": "Brațe și mâini",
-        "subtitle": "Amorțeli, dureri de umăr ori de cot sau încheieturi umflate"
+        "subtitle": "Amorțeli, dureri de umăr, cot, încheieturi sau degete"
       },
       "leg": {
         "title": "Picioare și tălpi",
-        "subtitle": "Dureri de genunchi, gleznă umflată sau greutate la mers"
+        "subtitle": "Dureri de șold, genunchi, gleznă, călcâi sau talpă"
       }
     },
     "symptomsByRegion": {
@@ -310,6 +314,24 @@ const rawTranslations = {
           "description": "Durere ascuțită într-un punct din piept, mai rea când tragi aer adânc, tușești sau te răsucești."
         },
         {
+          "id": "chest_breast_pain",
+          "label": "Sensibilitate, tensiune, roșeață la sân sau durere în timpul alăptării",
+          "isRedFlag": false,
+          "selfCareTip": "Poartă o bustieră comodă, fără sârmă strânsă, și pune o compresă călduță sau rece după cum îți face bine.",
+          "guidance": "Sensibilitatea la amândoi sânii ține des de ciclul menstrual. Dacă un sân devine roșu, fierbinte și faci febră, mergi azi la medic.",
+          "title": "Sensibilitate sau durere la sân",
+          "description": "Sânii sunt umflați, sensibili înainte de menstruație, sau un sân doare și e întărit în timpul alăptării."
+        },
+        {
+          "id": "chest_breast_lump",
+          "label": "Nodul nou, zonă întărită, adâncitură a pielii la sân sau umflătură la subraț",
+          "isRedFlag": false,
+          "selfCareTip": "Nu apăsa și nu masa tare locul. Notează când l-ai observat ca să îi spui medicului.",
+          "guidance": "Majoritatea nodulilor la sân sunt necanceroși, dar orice nodul nou sau schimbare a pielii ori mamelonului trebuie verificată de medic.",
+          "title": "Nodul nou la sân sau la subraț",
+          "description": "Simți o umflătură sau o zonă mai tare la sân ori subraț, o adâncitură pe piele sau o secreție neobișnuită."
+        },
+        {
           "id": "chest_warning",
           "label": "Durere puternică în piept care se întinde spre brațul stâng, gât sau maxilar, cu lipsă de aer",
           "isRedFlag": true,
@@ -355,6 +377,53 @@ const rawTranslations = {
           "guidance": "O durere foarte puternică, cu burta tare, poate cere o operație de urgență.",
           "title": "Durere foarte puternică în toată burta",
           "description": "Burta te doare tare și e tare ca lemnul, vomiți întruna sau te simți gata să leșini."
+        }
+      ],
+      "pelvis": [
+        {
+          "id": "pelvis_period_cramps",
+          "label": "Crampe menstruale sau durere surdă jos în bazin în preajma menstruației",
+          "isRedFlag": false,
+          "selfCareTip": "Pune o sticlă cu apă caldă jos pe burtă, bea lichide calde și odihnește-te pe o parte cu genunchii ușor îndoiți.",
+          "guidance": "Crampele ușoare la menstruație sunt frecvente, dar dacă durerea te oprește din activitățile zilnice, un control ginecologic poate depista endometrioza sau fibroamele.",
+          "title": "Crampe menstruale sau durere ciclică",
+          "description": "Strânsoare sau durere surdă jos în burtă și șale, înainte sau în timpul menstruației."
+        },
+        {
+          "id": "pelvis_one_sided",
+          "label": "Durere pe o singură parte jos în pelvis, în zona ovarului sau în vintre",
+          "isRedFlag": false,
+          "selfCareTip": "Evită efortul fizic intens și nu pune comprese fierbinți dacă durerea e ascuțită.",
+          "guidance": "Durerea pe o parte a pelvisului poate veni de la un chist ovarian, ovulație sau o întindere inghinală și merită evaluată de medic.",
+          "title": "Durere pe o parte în pelvis sau vintre",
+          "description": "Înțepătură sau apăsare într-o parte de jos a burții ori în pliul inghinal, uneori mai tare la mișcare."
+        },
+        {
+          "id": "pelvis_urinary_burning",
+          "label": "Usturime la urinare, urină tulbure sau nevoia de a merge foarte des la toaletă",
+          "isRedFlag": false,
+          "selfCareTip": "Bea apă des în înghițituri mici și nu amâna mersul la toaletă. Evită cafeaua și băuturile acide.",
+          "guidance": "Seamănă cu o infecție urinară. Medicul de familie îți poate recomanda sumarul de urină și tratamentul potrivit. Dacă apare febră sau durere de șale, mergi azi la medic.",
+          "title": "Usturime la urinare sau mers des la baie",
+          "description": "Te ustură când urinezi, simți apăsare deasupra osului pubian sau simți că vezica nu s-a golit."
+        },
+        {
+          "id": "pelvis_pressure_floor",
+          "label": "Greutate, apăsare sau disconfort în planșeul pelvin ori zona intimă",
+          "isRedFlag": false,
+          "selfCareTip": "Evită ridicarea greutăților și constipația. Îmbracă lenjerie lejeră din bumbac.",
+          "guidance": "Senzația de greutate pelvină sau iritație intimă apare des după naștere, la menopauză sau în infecții locale și se tratează ușor după un consult.",
+          "title": "Apăsare pelvină sau disconfort intim",
+          "description": "Senzație de greutate jos în bazin, sensibilitate la stat pe scaun sau iritație în zona intimă."
+        },
+        {
+          "id": "pelvis_pregnancy_bleeding",
+          "label": "Durere pelvină bruscă și foarte puternică, sângerare abundentă sau durere când ai putea fi însărcinată",
+          "isRedFlag": true,
+          "selfCareTip": "Întinde-te, nu lua medicamente pe cont propriu și sună imediat la 112 sau mergi la Urgențe.",
+          "guidance": "Durerea pelvină severă cu sângerare, amețeală sau o posibilă sarcină poate fi o urgență ginecologică și cere consult imediat.",
+          "title": "Durere pelvină severă, sângerare mare sau sarcină",
+          "description": "Durere bruscă jos în burtă cu sângerare vaginală puternică, amețeală, febră sau dacă știi ori bănuiești că ești însărcinată."
         }
       ],
       "back": [
@@ -605,27 +674,31 @@ const rawTranslations = {
     "bodyParts": {
       "head": {
         "title": "Head and neck",
-        "subtitle": "Headaches, stiff neck, dizziness or blurry vision"
+        "subtitle": "Headaches, jaw or ear pain, stiff neck or dizziness"
       },
       "chest": {
         "title": "Chest and breathing",
-        "subtitle": "Chest pressure, hard breathing or a racing heart"
+        "subtitle": "Chest pressure, breasts, ribs, hard breathing or a racing heart"
       },
       "stomach": {
         "title": "Stomach and abdomen",
-        "subtitle": "Heartburn, cramps, nausea, bloating or belly pain"
+        "subtitle": "Heartburn, digestive cramps, nausea, bloating or belly pain"
+      },
+      "pelvis": {
+        "title": "Pelvis and lower belly",
+        "subtitle": "Period pain, ovaries, burning when peeing, groin or intimate area"
       },
       "back": {
         "title": "Back and spine",
-        "subtitle": "Lower back pain, tense muscles or pain between the shoulder blades"
+        "subtitle": "Lower back pain, tailbone, tense muscles or pain between the shoulder blades"
       },
       "arm": {
         "title": "Arms and hands",
-        "subtitle": "Numbness, shoulder or elbow pain, or swollen joints"
+        "subtitle": "Numbness, shoulder, elbow, wrist or finger joint pain"
       },
       "leg": {
         "title": "Legs and feet",
-        "subtitle": "Knee pain, a swollen ankle or trouble walking"
+        "subtitle": "Hip, knee, ankle, heel or foot arch pain"
       }
     },
     "symptomsByRegion": {
@@ -705,6 +778,24 @@ const rawTranslations = {
           "description": "Sharp pain in one spot of the chest, worse when you breathe in deeply, cough or twist."
         },
         {
+          "id": "chest_breast_pain",
+          "label": "Breast tenderness, fullness, skin redness or pain while breastfeeding",
+          "isRedFlag": false,
+          "selfCareTip": "Wear a soft, supportive bra without tight underwire, and use a warm or cool cloth depending on what feels soothing.",
+          "guidance": "Tenderness in both breasts often follows your monthly cycle. If one breast becomes red, hot and you develop a fever, see a doctor today.",
+          "title": "Breast tenderness or soreness",
+          "description": "Your breasts feel swollen or tender before a period, or one breast feels sore and firm while breastfeeding."
+        },
+        {
+          "id": "chest_breast_lump",
+          "label": "New lump, firm spot, skin dimpling on the breast or swelling in the underarm",
+          "isRedFlag": false,
+          "selfCareTip": "Avoid pressing or rubbing the spot hard. Note when you first noticed it so you can tell your doctor.",
+          "guidance": "Most breast lumps are benign, especially in younger women, but any new lump or skin or nipple change should be checked by a doctor.",
+          "title": "New lump in the breast or underarm",
+          "description": "You feel a new lump or thicker spot in the breast or armpit, a dimple in the skin, or unusual nipple discharge."
+        },
+        {
           "id": "chest_warning",
           "label": "Heavy chest pain spreading to the left arm, neck or jaw, with shortness of breath",
           "isRedFlag": true,
@@ -750,6 +841,53 @@ const rawTranslations = {
           "guidance": "Very bad pain with a hard belly may need emergency surgery.",
           "title": "Very bad pain across the belly",
           "description": "Your whole belly hurts badly and feels hard, you keep vomiting or feel close to fainting."
+        }
+      ],
+      "pelvis": [
+        {
+          "id": "pelvis_period_cramps",
+          "label": "Period cramps or cyclical ache low in the pelvis around menstruation",
+          "isRedFlag": false,
+          "selfCareTip": "Place a warm water bottle low on your belly, sip warm drinks and rest on your side with your knees bent.",
+          "guidance": "Mild period cramps are common, but if pain keeps you from work, sleep or school, a gynaecological check can look for endometriosis or fibroids.",
+          "title": "Period cramps or monthly pelvic ache",
+          "description": "Cramping or dull ache low in the belly and lower back just before or during your period."
+        },
+        {
+          "id": "pelvis_one_sided",
+          "label": "Pain on one side of the lower pelvis, ovary area or groin",
+          "isRedFlag": false,
+          "selfCareTip": "Rest from heavy lifting or intense exercise, and avoid hot packs if the pain is sharp.",
+          "guidance": "One-sided pelvic pain can come from an ovarian cyst, ovulation or a groin strain, and is worth having checked by a doctor.",
+          "title": "One-sided pelvic or groin pain",
+          "description": "Sharp twinge or steady ache on one side of the lower belly or groin crease, sometimes worse when moving."
+        },
+        {
+          "id": "pelvis_urinary_burning",
+          "label": "Burning when passing urine, cloudy urine or needing the toilet very often",
+          "isRedFlag": false,
+          "selfCareTip": "Drink plenty of plain water throughout the day and don't hold urine in. Skip coffee and fizzy drinks.",
+          "guidance": "This often points to a urinary tract infection. A family doctor can test your urine and prescribe treatment. Seek care today if fever or back pain starts.",
+          "title": "Burning when peeing or frequent urge",
+          "description": "Stinging when you pass urine, pressure just above the pubic bone, or feeling like your bladder is still full."
+        },
+        {
+          "id": "pelvis_pressure_floor",
+          "label": "Heaviness, dragging pressure or soreness in the pelvic floor or intimate area",
+          "isRedFlag": false,
+          "selfCareTip": "Avoid lifting heavy loads and straining on the toilet. Wear breathable cotton underwear.",
+          "guidance": "Pelvic heaviness or local soreness is common after childbirth, around menopause or with mild infections, and responds well to proper care.",
+          "title": "Pelvic floor pressure or intimate soreness",
+          "description": "A heavy feeling low in the pelvis, soreness when sitting, or irritation in the intimate area."
+        },
+        {
+          "id": "pelvis_pregnancy_bleeding",
+          "label": "Sudden severe pelvic pain, heavy vaginal bleeding, or pelvic pain when you could be pregnant",
+          "isRedFlag": true,
+          "selfCareTip": "Lie down safely, do not take painkillers on your own, and call 112 or go to emergency care now.",
+          "guidance": "Severe pelvic pain with heavy bleeding, dizziness or possible pregnancy can be a gynaecological emergency and needs immediate hospital care.",
+          "title": "Severe pelvic pain, heavy bleeding or pregnancy",
+          "description": "Sudden strong pain low in the pelvis with heavy bleeding, dizziness, fever, or any sharp pelvic pain when you are or might be pregnant."
         }
       ],
       "back": [
@@ -1000,27 +1138,31 @@ const rawTranslations = {
     "bodyParts": {
       "head": {
         "title": "Koka dhe qafa",
-        "subtitle": "Dhimbje koke, qafë e ngurtë, marramendje ose shikim i turbullt"
+        "subtitle": "Dhimbje koke, nofulla, veshi, qafë e ngurtë ose marramendje"
       },
       "chest": {
         "title": "Gjoksi dhe frymëmarrja",
-        "subtitle": "Shtrëngim në gjoks, frymëmarrje e rëndë ose rrahje të shpejta të zemrës"
+        "subtitle": "Shtrëngim në gjoks, gjinjtë, brinjët, frymëmarrje e rëndë ose rrahje zemre"
       },
       "stomach": {
         "title": "Stomaku dhe barku",
-        "subtitle": "Djegie, ngërçe, të përziera, fryrje ose dhimbje barku"
+        "subtitle": "Djegie, ngërçe tretjeje, të përziera, fryrje ose dhimbje barku"
+      },
+      "pelvis": {
+        "title": "Pelvisi dhe fundi i barkut",
+        "subtitle": "Dhimbje menstruale, vezoret, djegie gjatë urinimit, ijët ose zona intime"
       },
       "back": {
         "title": "Shpina dhe mesi",
-        "subtitle": "Dhimbje në fund të shpinës, muskuj të bllokuar ose dhimbje mes shpatullave"
+        "subtitle": "Dhimbje në fund të shpinës, kërbishti, muskuj të bllokuar ose shpatullat"
       },
       "arm": {
         "title": "Krahët dhe duart",
-        "subtitle": "Mpirje, dhimbje shpatulle apo bërryli ose kyçe të fryra"
+        "subtitle": "Mpirje, dhimbje shpatulle, bërryli, kyçi ose gishtash"
       },
       "leg": {
         "title": "Këmbët dhe shputat",
-        "subtitle": "Dhimbje gjuri, kyç i këmbës i ënjtur ose vështirësi në ecje"
+        "subtitle": "Dhimbje ije, gjuri, kyçi i këmbës, thembre ose shpute"
       }
     },
     "symptomsByRegion": {
@@ -1100,6 +1242,24 @@ const rawTranslations = {
           "description": "Dhimbje e mprehtë në një pikë të gjoksit, më e fortë kur merr frymë thellë, kollitesh ose rrotullohesh."
         },
         {
+          "id": "chest_breast_pain",
+          "label": "Ndjeshmëri, ënjtje, skuqje në gji ose dhimbje gjatë gjidhënies",
+          "isRedFlag": false,
+          "selfCareTip": "Mbaj reçipeta të buta pa tel të ngushtë dhe vendos një kompresë të vakët ose të freskët sipas rehatisë.",
+          "guidance": "Ndjeshmëria në të dy gjinjtë shpesh lidhet me ciklin menstrual. Nëse njëri gji skuqet, nxehet dhe ke temperaturë, shko sot te mjeku.",
+          "title": "Ndjeshmëri ose dhimbje në gji",
+          "description": "Gjinjtë janë të fryrë ose të ndjeshëm para ciklit, ose njëri gji dhemb e forcohet gjatë gjidhënies."
+        },
+        {
+          "id": "chest_breast_lump",
+          "label": "Gjëndër e re, zonë e fortë, gropëzim i lëkurës në gji ose ënjtje nën sqetull",
+          "isRedFlag": false,
+          "selfCareTip": "Mos e shtyp dhe mos e fërko fort vendin. Shëno kur e vure re që t'ia thuash mjekut.",
+          "guidance": "Shumica e gjëndrave në gji janë të parrezikshme, por çdo gjëndër e re ose ndryshim i lëkurës a thithkës duhet kontrolluar nga mjeku.",
+          "title": "Gjëndër e re në gji ose nën sqetull",
+          "description": "Ndien një kokërr a zonë më të fortë në gji ose nën sqetull, tërheqje të lëkurës ose rrjedhje të pazakontë."
+        },
+        {
           "id": "chest_warning",
           "label": "Dhimbje e rëndë në gjoks që shkon te krahu i majtë, qafa ose nofulla, me vështirësi në frymëmarrje",
           "isRedFlag": true,
@@ -1145,6 +1305,53 @@ const rawTranslations = {
           "guidance": "Dhimbja shumë e fortë me bark të fortë mund të kërkojë operacion urgjent.",
           "title": "Dhimbje shumë e fortë në gjithë barkun",
           "description": "Gjithë barku të dhemb shumë dhe është i fortë, vjell vazhdimisht ose ndihesh sikur do të të bjerë të fikët."
+        }
+      ],
+      "pelvis": [
+        {
+          "id": "pelvis_period_cramps",
+          "label": "Ngërçe menstruale ose dhimbje e shurdhër poshtë në pelvis rreth ciklit",
+          "isRedFlag": false,
+          "selfCareTip": "Vendos një shishe me ujë të ngrohtë në fund të barkut, pi pije të ngrohta dhe pusho në krah me gjunjët e mbledhur.",
+          "guidance": "Dhimbjet e lehta gjatë ciklit janë të zakonshme, por nëse të pengojnë në jetën e përditshme, kontrolli gjinekologjik ndihmon për të përjashtuar endometriozën ose miomat.",
+          "title": "Dhimbje menstruale ose ciklike në pelvis",
+          "description": "Shtrëngim ose dhimbje e shurdhër në fund të barkut dhe të mesit para ose gjatë periodave."
+        },
+        {
+          "id": "pelvis_one_sided",
+          "label": "Dhimbje në njërën anë të pelvisit, te vezorja ose në rrëzë të kofshës",
+          "isRedFlag": false,
+          "selfCareTip": "Shmang ngritjen e peshave dhe mos vendos kompresa të nxehta nëse dhimbja është therëse.",
+          "guidance": "Dhimbja në njërën anë të fundit të barkut mund të vijë nga një kist në vezore, ovulimi ose tërheqja në ijë dhe ia vlen të shihet nga mjeku.",
+          "title": "Dhimbje në njërën anë të pelvisit ose në ijë",
+          "description": "Therje ose shtypje në njërën anë të fundit të barkut a në palën e ijës, ndonjëherë më e fortë kur lëviz."
+        },
+        {
+          "id": "pelvis_urinary_burning",
+          "label": "Djegie gjatë urinimit, urinë e turbullt ose nevojë e shpeshtë për të urinuar",
+          "isRedFlag": false,
+          "selfCareTip": "Pi ujë rregullisht gjatë ditës dhe mos e mbaj urinën. Shmang kafenë dhe pijet me gaz.",
+          "guidance": "Ngjan me një infeksion urinar. Mjeku i familjes mund të kërkojë analizë urine dhe trajtim. Shko sot te mjeku nëse ke temperaturë ose dhimbje mesi.",
+          "title": "Djegie gjatë urinimit ose urinim i shpeshtë",
+          "description": "Të djeg kur urinon, ndien shtypje mbi kockën pubike ose ndien sikur fshikëza nuk u zbraz."
+        },
+        {
+          "id": "pelvis_pressure_floor",
+          "label": "Rëndesë, shtypje ose shqetësim në dyshemenë e pelvisit a zonën intime",
+          "isRedFlag": false,
+          "selfCareTip": "Shmang peshën e rëndë dhe kapsllëkun. Vish të brendshme të lirshme pambuku.",
+          "guidance": "Ndjesia e rëndesës ose irritimit shfaqet shpesh pas lindjes, në menopauzë ose nga infeksionet lokale dhe trajtohet lehtë pas vizitës.",
+          "title": "Shtypje në pelvis ose shqetësim intim",
+          "description": "Ndjesi rëndese poshtë në pelvis, ndjeshmëri kur ulesh ose irritim në zonën intime."
+        },
+        {
+          "id": "pelvis_pregnancy_bleeding",
+          "label": "Dhimbje e papritur shumë e fortë në pelvis, gjakderdhje e madhe ose dhimbje kur mund të jesh shtatzënë",
+          "isRedFlag": true,
+          "selfCareTip": "Shtrihu në vend të sigurt, mos merr ilaçe vetë dhe telefono menjëherë 112 ose shko në Urgjencë.",
+          "guidance": "Dhimbja e fortë në pelvis me gjakderdhje, marramendje ose shtatzëni të mundshme është urgjencë gjinekologjike dhe kërkon spital menjëherë.",
+          "title": "Dhimbje e fortë në pelvis, gjakderdhje ose shtatzëni",
+          "description": "Dhimbje e fortë e papritur në fund të barkut me gjakderdhje të madhe, marramendje, temperaturë ose kur je a dyshon se je shtatzënë."
         }
       ],
       "back": [
@@ -1395,27 +1602,31 @@ const rawTranslations = {
     "bodyParts": {
       "head": {
         "title": "Testa e collo",
-        "subtitle": "Mal di testa, collo rigido, vertigini o vista offuscata"
+        "subtitle": "Mal di testa, mandibola, orecchio, collo rigido o vertigini"
       },
       "chest": {
         "title": "Petto e respirazione",
-        "subtitle": "Pressione al petto, respiro affannoso o cuore che batte forte"
+        "subtitle": "Pressione al petto, seno, costole, respiro corto o battito veloce"
       },
       "stomach": {
         "title": "Stomaco e addome",
-        "subtitle": "Bruciore, crampi, nausea, gonfiore o mal di pancia"
+        "subtitle": "Bruciore, crampi digestivi, nausea, gonfiore o mal di pancia"
+      },
+      "pelvis": {
+        "title": "Pelvi e basso ventre",
+        "subtitle": "Dolori mestruali, ovaie, bruciore a urinare, inguine o zona intima"
       },
       "back": {
         "title": "Schiena e zona lombare",
-        "subtitle": "Mal di schiena in basso, muscoli tesi o dolore tra le scapole"
+        "subtitle": "Mal di schiena in basso, coccige, muscoli tesi o dolore tra le scapole"
       },
       "arm": {
         "title": "Braccia e mani",
-        "subtitle": "Intorpidimento, dolore alla spalla o al gomito o articolazioni gonfie"
+        "subtitle": "Intorpidimento, dolore a spalla, gomito, polso o dita"
       },
       "leg": {
         "title": "Gambe e piedi",
-        "subtitle": "Dolore al ginocchio, caviglia gonfia o difficoltà a camminare"
+        "subtitle": "Dolore ad anca, ginocchio, caviglia, tallone o pianta del piede"
       }
     },
     "symptomsByRegion": {
@@ -1495,6 +1706,24 @@ const rawTranslations = {
           "description": "Dolore acuto in un punto del petto, peggiore quando respiri a fondo, tossisci o ti giri."
         },
         {
+          "id": "chest_breast_pain",
+          "label": "Tensione, gonfiore, rossore al seno o dolore durante l'allattamento",
+          "isRedFlag": false,
+          "selfCareTip": "Indossa un reggiseno morbido senza ferretto stretto e applica un impacco tiepido o fresco secondo ciò che ti dà sollievo.",
+          "guidance": "La tensione a entrambi i seni segue spesso il ciclo mestruale. Se un seno diventa rosso, caldo e compare febbre, fatti vedere oggi da un medico.",
+          "title": "Tensione o dolore al seno",
+          "description": "Il seno è gonfio o dolente prima del ciclo, oppure un seno fa male ed è indurito durante l'allattamento."
+        },
+        {
+          "id": "chest_breast_lump",
+          "label": "Nuovo nodulo, zona indurita, rientranza della pelle del seno o gonfiore sotto l'ascella",
+          "isRedFlag": false,
+          "selfCareTip": "Non schiacciare e non massaggiare forte la zona. Annota quando l'hai notato per riferirlo al medico.",
+          "guidance": "La maggior parte dei noduli al seno è benigna, ma ogni nuovo nodulo o cambiamento della pelle o del capezzolo va controllato da un medico.",
+          "title": "Nuovo nodulo al seno o sotto l'ascella",
+          "description": "Senti un nodulo o un punto più duro nel seno o nell'ascella, una fossetta sulla pelle o perdite insolite dal capezzolo."
+        },
+        {
           "id": "chest_warning",
           "label": "Forte dolore al petto che va verso braccio sinistro, collo o mandibola, con fiato corto",
           "isRedFlag": true,
@@ -1540,6 +1769,53 @@ const rawTranslations = {
           "guidance": "Un dolore fortissimo con la pancia dura può richiedere un intervento chirurgico urgente.",
           "title": "Dolore fortissimo in tutta la pancia",
           "description": "Tutta la pancia fa molto male ed è dura, vomiti di continuo o ti senti svenire."
+        }
+      ],
+      "pelvis": [
+        {
+          "id": "pelvis_period_cramps",
+          "label": "Crampi mestruali o dolore sordo nel basso ventre vicino al ciclo",
+          "isRedFlag": false,
+          "selfCareTip": "Appoggia una borsa dell'acqua calda sul basso ventre, bevi tisane calde e riposa sul fianco con le ginocchia piegate.",
+          "guidance": "I crampi lievi durante il ciclo sono comuni, ma se il dolore ti blocca nelle attività quotidiane una visita ginecologica può valutare endometriosi o fibromi.",
+          "title": "Crampi mestruali o dolore ciclico pelvico",
+          "description": "Crampi o dolore sordo nel basso ventre e nella schiena poco prima o durante le mestruazioni."
+        },
+        {
+          "id": "pelvis_one_sided",
+          "label": "Dolore su un solo lato del basso ventre, nella zona dell'ovaio o all'inguine",
+          "isRedFlag": false,
+          "selfCareTip": "Evita sforzi intensi o pesi e non mettere impacchi bollenti se il dolore è acuto.",
+          "guidance": "Un dolore su un lato della pelvi può dipendere da una cisti ovarica, dall'ovulazione o da uno stiramento inguinale e merita un controllo medico.",
+          "title": "Dolore su un lato della pelvi o all'inguine",
+          "description": "Fitta o peso su un lato del basso ventre o nella piega dell'inguine, a volte più forte quando ti muovi."
+        },
+        {
+          "id": "pelvis_urinary_burning",
+          "label": "Bruciore quando urini, urina torbida o bisogno di andare in bagno molto spesso",
+          "isRedFlag": false,
+          "selfCareTip": "Bevi acqua regolarmente durante la giornata e non trattenere la pipì. Evita caffè e bevande gassate.",
+          "guidance": "Spesso indica una cistite o infezione urinaria. Il medico può prescrivere esame delle urine e cura mirata. Fatti vedere oggi se compare febbre o mal di reni.",
+          "title": "Bruciore a urinare o bisogno frequente",
+          "description": "Bruciore mentre fai pipì, peso sopra il pube o sensazione di non aver svuotato la vescica."
+        },
+        {
+          "id": "pelvis_pressure_floor",
+          "label": "Senso di peso, pressione o fastidio al pavimento pelvico o nella zona intima",
+          "isRedFlag": false,
+          "selfCareTip": "Evita di sollevare pesi e previeni la stitichezza. Usa biancheria comoda in cotone.",
+          "guidance": "Il senso di peso pelvico o il bruciore intimo sono frequenti dopo il parto, in menopausa o per infezioni locali e si curano bene dopo una visita.",
+          "title": "Peso pelvico o fastidio intimo",
+          "description": "Sensazione di peso nel basso bacino, indolenzimento stando seduti o irritazione nella zona intima."
+        },
+        {
+          "id": "pelvis_pregnancy_bleeding",
+          "label": "Dolore pelvico improvviso e fortissimo, perdita abbondante di sangue o dolore se potresti essere incinta",
+          "isRedFlag": true,
+          "selfCareTip": "Sdraiati in sicurezza, non prendere farmaci di tua iniziativa e chiama subito il 112 o vai al pronto soccorso.",
+          "guidance": "Un dolore pelvico forte con sanguinamento abbondante, capogiri o possibile gravidanza è un'emergenza ginecologica da valutare subito in ospedale.",
+          "title": "Forte dolore pelvico, perdita abbondante o gravidanza",
+          "description": "Dolore improvviso e intenso nel basso ventre con forte perdita di sangue, vertigini, febbre o se sei o potresti essere incinta."
         }
       ],
       "back": [
@@ -1703,6 +1979,934 @@ const rawTranslations = {
         "intro": "Non rimandare. Chiama il medico o vai oggi in un ambulatorio. Se peggiora, chiama il 112."
       }
     }
+  },
+  "hr": {
+    "ui": {
+      "eyebrow": "Provjera zdravlja",
+      "heading": "Provjeri simptome",
+      "subtitle": "Pokaži na tijelu gdje te boli i odgovori na 3 pitanja. Zatim saznaj što učiniti.",
+      "resetButton": "Ispočetka",
+      "backButton": "Natrag",
+      "nextButton": "Nastavi",
+      "finishButton": "Pogledaj rezultat",
+      "stepIndicator": "Korak {current} od {total}",
+      "step1Title": "Područje",
+      "step2Title": "Simptom",
+      "step3Title": "Jačina",
+      "step4Title": "Rezultat",
+      "step1Question": "Gdje osjećaš bol ili nelagodu?",
+      "step1Prompt": "Dodirni područje na tijelu ili ga odaberi s popisa.",
+      "step2Question": "Što je najsličnije onome što osjećaš?",
+      "step2Prompt": "Odaberi simptom koji ti najviše smeta.",
+      "urgentBadge": "Znak za hitnost",
+      "step3Question": "Koliko jako i od kada?",
+      "step3Prompt": "Odaberi po jednu opciju u svakoj skupini.",
+      "severityHeading": "Koliko je jako?",
+      "durationHeading": "Od kada traje simptom?",
+      "step4Question": "Što možeš učiniti sada",
+      "step4Prompt": "Na temelju tvojih odgovora. Ovo nije dijagnoza.",
+      "summaryHeading": "Sažetak tvojih odgovora",
+      "areaLabel": "Područje",
+      "symptomLabel": "Simptom",
+      "intensityLabel": "Jačina",
+      "durationLabel": "Trajanje",
+      "recommendationHeading": "Što učiniti dalje",
+      "safeSelfCareHeading": "Što možeš učiniti kod kuće",
+      "copySummary": "Kopiraj sažetak",
+      "copied": "Kopirano",
+      "sendWhatsApp": "Pošalji na WhatsApp",
+      "showDoctor": "Pokaži liječniku",
+      "requestMediatorHelp": "Razgovaraj s medijatorom",
+      "scheduleDoctor": "Naruči se online",
+      "readEducationalTopic": "Pročitaj vodič",
+      "disclaimer": "Ovo nije dijagnoza. Ako se osjećaš lošije ili je bol jako snažna, nazovi 112.",
+      "viewer3D": {
+        "ariaLabel": "3D tijelo. Okreni ga i dodirni mjesto koje te boli.",
+        "loading": "Učitavanje 3D modela ({progress}%)",
+        "subModelInfo": "3D tijelo",
+        "front": "Sprijeda",
+        "back": "Straga",
+        "perspective": "Kut",
+        "rotate360": "360°",
+        "zoomIn": "Približi",
+        "zoomOut": "Udalji",
+        "resetView": "Vrati prikaz",
+        "tip": "Povuci lijevo ili desno da okreneš tijelo. Dodirni gdje te boli.",
+        "searchPlaceholder": "Pretraži organ ili mišić (npr. srce, biceps)",
+        "selected3DStructure": "Odabrao si:",
+        "activeAreaPrefix": "Područje:",
+        "leftSide": "Lijevo",
+        "rightSide": "Desno",
+        "selectRegionPrefix": "Odaberi",
+        "rotateTooltip": "Okreni tijelo za 180°",
+        "layerHybrid": "Mišići i organi",
+        "layerMuscular": "Mišići i tetive",
+        "layerOrgans": "Unutarnji organi",
+        "layerSurface": "Koža",
+        "legendSkeletalMuscles": "Mišići",
+        "legendTendonsJoints": "Tetive i zglobovi",
+        "legendInternalOrgans": "Unutarnji organi",
+        "legendSelectedStructure": "Odabrana struktura"
+      },
+      "emergency": {
+        "badge": "Hitni medicinski slučaj 112",
+        "title": "Ovo može biti hitno stanje: odmah nazovi 112",
+        "description": "Nemoj čekati. Ako ne možeš nazvati, brzo idi na hitni bolnički prijem. Nemoj sam voziti.",
+        "whyEmergencyPrefix": "Odabrao si:",
+        "call112Now": "Nazovi 112 odmah",
+        "continueReview": "Razumijem"
+      },
+      "structure3DLabel": "3D struktura",
+      "sensationLabel": "Osjet",
+      "triggersLabel": "Što pogoršava",
+      "specialtyLabel": "Liječnik specijalist",
+      "warningNoticeRedFlag": "Zabilježeni su znakovi za hitnost.",
+      "warningNoticeSafe": "Nisu zabilježeni znakovi za hitnost."
+    },
+    "bodyParts": {
+      "head": {
+        "title": "Glava i vrat",
+        "subtitle": "Glavobolja, čeljust, uho, ukočen vrat ili vrtoglavica"
+      },
+      "chest": {
+        "title": "Prsa i disanje",
+        "subtitle": "Pritisak u prsima, dojke, rebra, otežano disanje ili ubrzan rad srca"
+      },
+      "stomach": {
+        "title": "Želudac i trbuh",
+        "subtitle": "Žgaravica, probavni grčevi, mučnina, nadutost ili bol u trbuhu"
+      },
+      "pelvis": {
+        "title": "Zdjelica i donji dio trbuha",
+        "subtitle": "Menstrualni bolovi, jajnici, pečenje pri mokrenju, prepone ili intimno područje"
+      },
+      "back": {
+        "title": "Leđa i kralježnica",
+        "subtitle": "Bol u križima, trtica, ukočeni mišići ili bol između lopatica"
+      },
+      "arm": {
+        "title": "Ruke i šake",
+        "subtitle": "Utrnulost, bol u ramenu, laktu, zapešću ili zglobovima prstiju"
+      },
+      "leg": {
+        "title": "Noge i stopala",
+        "subtitle": "Bol u kuku, koljenu, gležnju, peti ili svodu stopala"
+      }
+    },
+    "symptomsByRegion": {
+      "head": [
+        {
+          "id": "head_migraine",
+          "label": "Pulsirajuća bol na jednoj strani glave, uz mučninu ili smetnju svjetla",
+          "isRedFlag": false,
+          "selfCareTip": "Odmori se u tihoj i zamračenoj sobi. Popij malo vode i stavi hladan oblog na čelo.",
+          "guidance": "Ovo nalikuje migreni. Ako se često vraća, pitaj obiteljskog liječnika o terapiji koja je sprječava.",
+          "title": "Migrena ili pulsirajuća bol",
+          "description": "Kucajuća bol, obično na jednoj strani glave. Mogu ti smetati svjetlo i buka ili možeš osjećati mučninu."
+        },
+        {
+          "id": "head_tension",
+          "label": "Pritisak poput čvrste trake oko glave nakon stresa ili umora",
+          "isRedFlag": false,
+          "selfCareTip": "Odmori oči od zaslona i nježno izmasiraj vrat. Izađi nakratko na svjež zrak.",
+          "guidance": "Često nastaje zbog stresa, premalo sna ili dugog sjedenja.",
+          "title": "Glavobolja od stresa",
+          "description": "Pritisak poput stisnute trake preko čela ili sljepoočnica. Često nakon stresa, dugog gledanja u zaslon ili napetog vrata."
+        },
+        {
+          "id": "head_dehydration",
+          "label": "Tupa, stalna bol nakon vrućeg dana ili premalo popijene vode",
+          "isRedFlag": false,
+          "selfCareTip": "Polako popij 1 do 2 velike čaše vode ili mlakog čaja. Izbjegavaj kavu i zaslađene napitke.",
+          "guidance": "Često prođe kada popiješ vode i skloniš se u hlad.",
+          "title": "Glavobolja od vrućine ili žeđi",
+          "description": "Tupa bol u cijeloj glavi koja je jača kada pomičeš glavu. Javlja se nakon sunca, vrućine ili premalo vode."
+        },
+        {
+          "id": "head_fever",
+          "label": "Glavobolja uz vrućicu, zimicu ili začepljen nos",
+          "isRedFlag": false,
+          "selfCareTip": "Miruj u krevetu, izmjeri temperaturu i pij puno tekućine.",
+          "guidance": "Može biti prehlada ili viroza. Ako temperatura prijeđe 38,5 °C ili traje dulje od 3 dana, javi se liječniku.",
+          "title": "Glavobolja s vrućicom",
+          "description": "Boli te glava i imaš povišenu temperaturu, zimicu, bolove u tijelu ili začepljen nos."
+        },
+        {
+          "id": "head_sudden_severe",
+          "label": "Nagla i izrazito jaka glavobolja, ili glavobolja uz zbunjenost ili slabost",
+          "isRedFlag": true,
+          "selfCareTip": "Sjedni na sigurno mjesto i odmah nazovi 112.",
+          "guidance": "Izrazito jaka glavobolja koja nastane naglo hitno je stanje. Odmah ti treba liječnik.",
+          "title": "Nagla, jako snažna glavobolja",
+          "description": "Najjača glavobolja u životu koja dostiže punu snagu u nekoliko sekundi. Može ići uz ukočen vrat, zamućen vid ili zbunjenost."
+        }
+      ],
+      "chest": [
+        {
+          "id": "chest_reflux",
+          "label": "Pečenje u prsima ili kiseo okus nakon jela ili pri saginjanju",
+          "isRedFlag": false,
+          "selfCareTip": "Nemoj leći odmah nakon jela. Privremeno izbjegavaj ljutu ili kiselu hranu i kavu.",
+          "guidance": "Žgaravica obično dolazi od želučane kiseline. Ako ne prolazi, obiteljski liječnik može ti propisati terapiju.",
+          "title": "Žgaravica",
+          "description": "Pečenje koje se diže iz želuca prema grlu. Jače je kada se sagneš ili nakon obilnog obroka."
+        },
+        {
+          "id": "chest_exertion",
+          "label": "Stezanje ili pritisak u prsima pri naporu ili penjanju uz stepenice",
+          "isRedFlag": false,
+          "selfCareTip": "Prekini napor, sjedni i mirno diši.",
+          "guidance": "Pritisak u prsima pri naporu mora pregledati liječnik, čak i ako brzo prođe kada staneš.",
+          "title": "Pritisak u prsima pri naporu",
+          "description": "Stezanje u sredini prsa koje se javlja kada brzo hodaš, penješ se uz stepenice ili radiš teži posao."
+        },
+        {
+          "id": "chest_stitch",
+          "label": "Oštra bol na jednoj strani prsa, jača pri dubokom udahu ili kašlju",
+          "isRedFlag": false,
+          "selfCareTip": "Diši mirno i polako nekoliko minuta. Stavi topli oblog na bolno mjesto.",
+          "guidance": "Obično je riječ o istegnutom mišiću koji prolazi sam. Ako teško dišeš, nazovi 112.",
+          "title": "Probadanje pri disanju",
+          "description": "Oštra bol u jednoj točki prsa, jača kada duboko udahneš, zakašlješ se ili se okreneš."
+        },
+        {
+          "id": "chest_breast_pain",
+          "label": "Osjetljivost, napetost, crvenilo dojke ili bol tijekom dojenja",
+          "isRedFlag": false,
+          "selfCareTip": "Nosi mekan, udoban grudnjak bez čvrste žice i stavi topli ili hladni oblog prema onome što ti godi.",
+          "guidance": "Osjetljivost u obje dojke često prati menstrualni ciklus. Ako jedna dojka postane crvena, vruća i dobiješ vrućicu, javi se liječniku danas.",
+          "title": "Osjetljivost ili bol u dojci",
+          "description": "Dojke su napete ili osjetljive prije mjesečnice, ili je jedna dojka bolna i tvrda tijekom dojenja."
+        },
+        {
+          "id": "chest_breast_lump",
+          "label": "Nova kvržica, otvrdnuće, uvlačenje kože na dojci ili oteklina pod pazuhom",
+          "isRedFlag": false,
+          "selfCareTip": "Nemoj jako pritiskati ni masirati to mjesto. Zapiši kada si primijetila promjenu kako bi rekla liječniku.",
+          "guidance": "Većina kvržica u dojci je dobroćudna, ali svaku novu kvržicu ili promjenu kože ili bradavice treba pregledati liječnik.",
+          "title": "Nova kvržica u dojci ili pod pazuhom",
+          "description": "Osjećaš novu kvržicu ili tvrđe mjesto u dojci ili pazuhu, udubljenje na koži ili neobičan iscjedak."
+        },
+        {
+          "id": "chest_warning",
+          "label": "Jaka bol u prsima koja se širi u lijevu ruku, vrat ili čeljust, uz nedostatak zraka",
+          "isRedFlag": true,
+          "selfCareTip": "Odmah nazovi 112. Sjedni i otkopčaj usku odjeću.",
+          "guidance": "Ovakva bol u prsima može biti srčani udar. Svaka je minuta važna.",
+          "title": "Jaka bol u prsima koja se širi",
+          "description": "Težak pritisak u prsima koji ide prema lijevoj ruci, vratu, čeljusti ili leđima. Može ići uz hladan znoj ili gušenje."
+        }
+      ],
+      "stomach": [
+        {
+          "id": "stomach_upper_reflux",
+          "label": "Pečenje ili težina u gornjem dijelu želuca",
+          "isRedFlag": false,
+          "selfCareTip": "Jedi jednostavnu, kuhanu hranu. Pij vodu sobne temperature i izbjegavaj obilne obroke.",
+          "guidance": "Nadražen želudac česta je tegoba. Ako ti smeta svaki dan, naruči se liječniku.",
+          "title": "Pečenje u gornjem dijelu želuca",
+          "description": "Pečenje ili kiselina ispod rebara. Brzo osjetiš sitost ili kiseo okus nakon jela."
+        },
+        {
+          "id": "stomach_cramping_mild",
+          "label": "Grčevi u trbuhu uz nadutost ili češću ili rjeđu stolicu",
+          "isRedFlag": false,
+          "selfCareTip": "Popij čaj od mente ili kamilice, stavi nešto toplo na trbuh i odmori se.",
+          "guidance": "Kratkotrajni grčevi obično dolaze od probave ili hrane koju si pojeo.",
+          "title": "Grčevi i nadutost",
+          "description": "Trbuh te povremeno grči, napuhnut je, imaš vjetrove ili češće ili rjeđe ideš na toalet."
+        },
+        {
+          "id": "stomach_lower_sharp",
+          "label": "Oštra bol u jednoj točki, dolje desno u trbuhu",
+          "isRedFlag": true,
+          "selfCareTip": "Dok te ne pregleda liječnik, ne uzimaj jake lijekove protiv bolova i ne stavljaj vruće obloge na trbuh.",
+          "guidance": "Bol koja ostaje dolje desno u trbuhu mora brzo pregledati liječnik. Može biti upala slijepog crijeva.",
+          "title": "Bol dolje desno u trbuhu",
+          "description": "Bol u donjem desnom dijelu trbuha koja se pojačava i jača je pri kašlju, hodanju ili pritisku."
+        },
+        {
+          "id": "stomach_severe_widespread",
+          "label": "Vrlo jaka, stalna bol u trbuhu uz učestalo povraćanje, tvrd trbuh ili vrućicu",
+          "isRedFlag": true,
+          "selfCareTip": "Nemoj jesti ni puno piti. Odmah idi na hitni prijem ili nazovi 112.",
+          "guidance": "Vrlo jaka bol uz tvrd trbuh može zahtijevati hitnu operaciju.",
+          "title": "Vrlo jaka bol u cijelom trbuhu",
+          "description": "Cijeli te trbuh jako boli i tvrd je na dodir, stalno povraćaš ili osjećaš da ćeš se onesvijestiti."
+        }
+      ],
+      "pelvis": [
+        {
+          "id": "pelvis_period_cramps",
+          "label": "Menstrualni grčevi ili tupa bol nisko u zdjelici u vrijeme mjesečnice",
+          "isRedFlag": false,
+          "selfCareTip": "Stavi termofor na donji dio trbuha, pij tople napitke i odmori se na boku s lagano savijenim koljenima.",
+          "guidance": "Blagi menstrualni grčevi su česti, no ako te bol ometa u svakodnevnom životu, ginekološki pregled može provjeriti endometriozu ili miome.",
+          "title": "Menstrualni grčevi ili mjesečna bol u zdjelici",
+          "description": "Grčevi ili tupa bol nisko u trbuhu i križima neposredno prije ili tijekom mjesečnice."
+        },
+        {
+          "id": "pelvis_one_sided",
+          "label": "Bol na jednoj strani donjeg dijela zdjelice, u području jajnika ili u preponi",
+          "isRedFlag": false,
+          "selfCareTip": "Izbjegavaj podizanje teških tereta i ne stavljaj vruće obloge ako je bol oštra.",
+          "guidance": "Jednostrana bol u zdjelici može potjecati od ciste na jajniku, ovulacije ili istegnuća prepone te zaslužuje liječnički pregled.",
+          "title": "Bol na jednoj strani zdjelice ili u preponi",
+          "description": "Probadanje ili pritisak na jednoj strani donjeg trbuha ili u preponi, ponekad jače pri kretanju."
+        },
+        {
+          "id": "pelvis_urinary_burning",
+          "label": "Pečenje pri mokrenju, zamućena mokraća ili vrlo čest nagon za mokrenjem",
+          "isRedFlag": false,
+          "selfCareTip": "Pij običnu vodu ravnomjerno tijekom dana i ne zadržavaj mokraću. Izbjegavaj kavu i gazirana pića.",
+          "guidance": "Često upućuje na upalu mokraćnog mjehura. Liječnik može napraviti analizu urina i propisati lijek. Javi se danas ako dobiješ vrućicu ili bol u križima.",
+          "title": "Pečenje pri mokrenju ili čest odlazak na toalet",
+          "description": "Peče te dok mokriš, osjećaš pritisak iznad stidne kosti ili imaš osjećaj da mjehur nije prazan."
+        },
+        {
+          "id": "pelvis_pressure_floor",
+          "label": "Osjećaj težine, pritiska ili nelagode u dnu zdjelice ili intimnom području",
+          "isRedFlag": false,
+          "selfCareTip": "Izbjegavaj nošenje tereta i naprezanje na toaletu. Nosi prozračno pamučno rublje.",
+          "guidance": "Osjećaj pritiska u zdjelici ili nadraženost česti su nakon poroda, u menopauzi ili kod blagih upala i dobro se liječe nakon pregleda.",
+          "title": "Pritisak u dnu zdjelice ili intimna nelagoda",
+          "description": "Osjećaj težine nisko u zdjelici, osjetljivost pri sjedenju ili nadraženost u intimnom području."
+        },
+        {
+          "id": "pelvis_pregnancy_bleeding",
+          "label": "Nagla i vrlo jaka bol u zdjelici, obilno krvarenje ili bol kada bi mogla biti trudna",
+          "isRedFlag": true,
+          "selfCareTip": "Legni na sigurno mjesto, ne uzimaj lijekove na svoju ruku i odmah nazovi 112 ili idi na hitni prijem.",
+          "guidance": "Jaka bol u zdjelici uz krvarenje, vrtoglavicu ili moguću trudnoću hitno je ginekološko stanje koje zahtijeva bolnički pregled odmah.",
+          "title": "Jaka bol u zdjelici, obilno krvarenje ili trudnoća",
+          "description": "Nagla snažna bol nisko u trbuhu uz jako krvarenje, vrtoglavicu, vrućicu ili ako znaš ili sumnjaš da si trudna."
+        }
+      ],
+      "back": [
+        {
+          "id": "back_strain_lift",
+          "label": "Oštra bol u križima nastala naglo nakon podizanja tereta",
+          "isRedFlag": false,
+          "selfCareTip": "Nemoj se saginjati ni dizati teret. Odmori se, ali prošeći nakratko. Stavi topli oblog.",
+          "guidance": "Ovo je vrlo često. Lagano kretanje pomaže više od ležanja u krevetu.",
+          "title": "Bol u leđima nakon podizanja tereta",
+          "description": "Mišići donjeg dijela leđa ukočili su se odmah nakon dizanja teškog predmeta ili naglog okreta."
+        },
+        {
+          "id": "back_chronic",
+          "label": "Tupa bol u donjem dijelu leđa koja traje nekoliko tjedana",
+          "isRedFlag": false,
+          "selfCareTip": "Radi lagane vježbe istezanja za leđa. Prilagodi visinu stolca i nemoj dugo sjediti mirno.",
+          "guidance": "Dugotrajna bol u leđima popušta uz vježbe fizioterapeuta i jačanje trbušnih mišića.",
+          "title": "Bol u leđima koja ne prolazi",
+          "description": "Tupa bol u križima tjednima, jača nakon dugog sjedenja ili stajanja."
+        },
+        {
+          "id": "back_stiffness",
+          "label": "Ukočena leđa ujutro ili nakon dugog sjedenja",
+          "isRedFlag": false,
+          "selfCareTip": "Ujutro lagano zakruži ramenima i polako se razgibaj nekoliko puta prije početka dana.",
+          "guidance": "Često nastaje zbog napetih mišića ili dugog boravka u istom položaju.",
+          "title": "Ukočena leđa ujutro",
+          "description": "Leđa su ti ukočena kada se probudiš i teško se saginješ. Popušta nakon što se malo razgibaš."
+        },
+        {
+          "id": "back_severe_difficulty",
+          "label": "Jaka bol u leđima uz utrnulost obiju nogu, slabost ili gubitak kontrole mokrenja",
+          "isRedFlag": true,
+          "selfCareTip": "Legni i odmah nazovi 112.",
+          "guidance": "Živci u kralježnici mogu biti ozbiljno pritisnuti. Hitno ti treba bolnica.",
+          "title": "Bol u leđima s utrnulim nogama",
+          "description": "Snažna bol u leđima uz utrnulost ili slabost obiju nogu, ili nove smetnje s mokrenjem ili stolicom."
+        }
+      ],
+      "arm": [
+        {
+          "id": "arm_sprain",
+          "label": "Bol u ramenu, laktu ili zapešću nakon pada, iskretanja ili udarca",
+          "isRedFlag": false,
+          "selfCareTip": "Stavi led umotan u ručnik na bolno mjesto. Odmori ruku i drži je poduprtu.",
+          "guidance": "Lakši udarci i istegnuća obično prolaze za nekoliko dana uz mirovanje zgloba.",
+          "title": "Bol u zapešću ili zglobu nakon pada",
+          "description": "Zapešće, lakat ili rame boli te i otečeno je nakon udarca ili pada na dlanove."
+        },
+        {
+          "id": "arm_numbness",
+          "label": "Blaga utrnulost ili trnci u prstima nakon dugog tipkanja ili držanja telefona",
+          "isRedFlag": false,
+          "selfCareTip": "Pravi česte stanke od 5 minuta. Protresi šake i lagano razgibaj zapešća.",
+          "guidance": "Može biti pritisnut živac u zapešću. Reci liječniku ako ne prođe.",
+          "title": "Trnci u prstima",
+          "description": "Utrnulost ili trnci u palcu, kažiprstu i srednjem prstu, osobito noću ili pri tipkanju."
+        },
+        {
+          "id": "arm_ache",
+          "label": "Bolni i umorni mišići ruke nakon teškog fizičkog rada ili sporta",
+          "isRedFlag": false,
+          "selfCareTip": "Otuširaj se toplom vodom, nježno izmasiraj mišiće i odmori ruku jedan dan.",
+          "guidance": "To je uobičajeno nakon većeg napora. Prolazi samo za 2 do 3 dana.",
+          "title": "Upala mišića u ruci",
+          "description": "Mišići ruke bole te nakon neuobičajenog napora, vježbanja ili nošenja tereta."
+        },
+        {
+          "id": "arm_sudden_swelling",
+          "label": "Nagla slabost jedne ruke, ne možeš je podići ili naglo i jako otiče",
+          "isRedFlag": true,
+          "selfCareTip": "Nemoj forsirati ruku. Odmah nazovi 112.",
+          "guidance": "Nagla slabost ruke može biti znak moždanog udara ili teške ozljede.",
+          "title": "Nagla slabost jedne ruke",
+          "description": "Odjednom ne možeš podići ili držati ruku. Može ići uz obješenu stranu lica ili nejasan govor."
+        }
+      ],
+      "leg": [
+        {
+          "id": "leg_sprain",
+          "label": "Otečen ili bolan gležanj nakon krivog koraka",
+          "isRedFlag": false,
+          "selfCareTip": "Podigni nogu na jastuk i drži hladan oblog 15 minuta. Ne oslanjaj se punom težinom na nju.",
+          "guidance": "Miruj nekoliko dana. Ako oteklina raste ili ne možeš stati na nogu, otiđi na rendgen.",
+          "title": "Uganut gležanj",
+          "description": "Gležanj te boli i otečen je nakon što si krivo stao. Teško staješ na nogu."
+        },
+        {
+          "id": "leg_cramp",
+          "label": "Bolan grč u listu noću ili nakon napora",
+          "isRedFlag": false,
+          "selfCareTip": "Ispruži nogu i lagano povuci prste prema sebi. Izmasiraj list i popij čašu vode.",
+          "guidance": "Grčevi se često javljaju nakon umora, jakog znojenja ili premalo vode.",
+          "title": "Grč u listu",
+          "description": "Mišić lista naglo se i bolno stisne, često noću ili kada piješ premalo vode."
+        },
+        {
+          "id": "leg_knee_ache",
+          "label": "Bol u koljenu pri silasku niz stepenice ili nakon dugog hodanja",
+          "isRedFlag": false,
+          "selfCareTip": "Izbjegavaj čučanje i nošenje tereta. Nosi udobnu obuću s mekim potplatom.",
+          "guidance": "Koljeno se troši s vremenom. Vježbe za jačanje mišića natkoljenice pomažu zglobu.",
+          "title": "Bol u koljenu na stepenicama",
+          "description": "Koljeno te boli pri silasku niz stepenice, čučanju ili nakon dugog sjedenja sa savijenim koljenima."
+        },
+        {
+          "id": "leg_sudden_swelling",
+          "label": "Samo jedna noga naglo otečena, topla, crvena i jako bolna, ili ne možeš stati na nju",
+          "isRedFlag": true,
+          "selfCareTip": "Miruj i nemoj masirati list. Brzo se javi liječniku ili idi na hitni prijem.",
+          "guidance": "Naglo oticanje jedne potkoljenice može biti krvni ugrušak (tromboza). Treba hitno liječenje.",
+          "title": "Naglo oticanje samo jedne noge",
+          "description": "Samo jedan list naglo je otekao te je topao, crven i bolan."
+        }
+      ]
+    },
+    "severity": {
+      "mild": {
+        "title": "Blago",
+        "description": "Osjećaš simptom, ali obavljaš uobičajene poslove."
+      },
+      "moderate": {
+        "title": "Umjereno",
+        "description": "Ometa te u poslu, kretanju ili spavanju."
+      },
+      "severe": {
+        "title": "Jako",
+        "description": "Gotovo ništa ne možeš raditi."
+      }
+    },
+    "duration": {
+      "today": {
+        "label": "Danas ili jučer",
+        "hint": "Manje od 24 sata"
+      },
+      "days": {
+        "label": "2–7 dana",
+        "hint": "Od 2 do 7 dana"
+      },
+      "weeks": {
+        "label": "1–2 tjedna",
+        "hint": "Od 1 do 2 tjedna"
+      },
+      "chronic": {
+        "label": "Više od 2 tjedna",
+        "hint": "Ne prolazi ili se stalno vraća"
+      }
+    },
+    "urgency": {
+      "low": {
+        "title": "Vjerojatno si možeš pomoći kod kuće",
+        "intro": "Odmori se, pij vode i prati kako se osjećaš nekoliko dana. Ako se pogorša ili se pojave novi znakovi, nazovi obiteljskog liječnika ili 112."
+      },
+      "medium": {
+        "title": "Javi se obiteljskom liječniku u idućih nekoliko dana",
+        "intro": "Ovo vrijedi pokazati liječniku. Ako se u međuvremenu pogorša, nazovi 112."
+      },
+      "high": {
+        "title": "Posjeti liječnika danas",
+        "intro": "Nemoj odgađati. Nazovi svog liječnika ili idi danas u ambulantu. Ako se pogorša, nazovi 112."
+      }
+    }
+  },
+  "rom": {
+    "ui": {
+      "eyebrow": "Dikhiben e sastipnasko",
+      "heading": "Dikh tire simptomura",
+      "subtitle": "Sikav pe trupo kaj dukhal tut thaj de atveto pe 3 phuchimata. Porme dikh so te keres.",
+      "resetButton": "Katar o anglunipen",
+      "backButton": "Palpale",
+      "nextButton": "Dzha maj dur",
+      "finishButton": "Dikh o rezultato",
+      "stepIndicator": "Drom {current} katar {total}",
+      "step1Title": "Thano",
+      "step2Title": "Simptomo",
+      "step3Title": "Zoralipen",
+      "step4Title": "Rezultato",
+      "step1Question": "Kaj hatjares dukh vaj pharipen?",
+      "step1Prompt": "Azba o than pe trupo vaj alosar katar i lista.",
+      "step2Question": "So miazol maj but pe kodo so hatjares?",
+      "step2Prompt": "Alosar o simptomo savo dukhal tut maj but.",
+      "urgentBadge": "Semno vash sigardiari",
+      "step3Question": "Kozom zurales thaj katar kana?",
+      "step3Prompt": "Alosar po jekh opcija ande sako grupa.",
+      "severityHeading": "Kozom zurales si?",
+      "durationHeading": "Katar kana si tut o simptomo?",
+      "step4Question": "So shaj te keres akana",
+      "step4Prompt": "Pala tire atvetura. Akava naj dijagnoza.",
+      "summaryHeading": "Rezume tire atvetengo",
+      "areaLabel": "Thano",
+      "symptomLabel": "Simptomo",
+      "intensityLabel": "Zoralipen",
+      "durationLabel": "Vrjama",
+      "recommendationHeading": "So te keres maj dur",
+      "safeSelfCareHeading": "So shaj te keres khere",
+      "copySummary": "Kopirisar o rezume",
+      "copied": "Kopirime",
+      "sendWhatsApp": "Bičhal pe WhatsApp",
+      "showDoctor": "Sikav e doktoreske",
+      "requestMediatorHelp": "De duma sastipnaske mediatoresa",
+      "scheduleDoctor": "Ker termin ko doktori online",
+      "readEducationalTopic": "Drabar o sikavimos",
+      "disclaimer": "Akava naj dijagnoza. Te hatjares tut maj nasul vaj i dukh si but bari, akhar 112.",
+      "viewer3D": {
+        "ariaLabel": "3D trupo. Bolde les thaj azba kaj dukhal tut.",
+        "loading": "Phpherel pes o 3D modelo ({progress}%)",
+        "subModelInfo": "3D trupo",
+        "front": "Anglal",
+        "back": "Palal",
+        "perspective": "Kuto",
+        "rotate360": "360°",
+        "zoomIn": "Pashar",
+        "zoomOut": "Durjar",
+        "resetView": "Irin o dikhiben",
+        "tip": "Crde stingo vaj chacho te boldes o trupo. Azba kaj dukhal tut.",
+        "searchPlaceholder": "Rod organo vaj muskulo (sar ilo, biceps)",
+        "selected3DStructure": "Alosardjan:",
+        "activeAreaPrefix": "Thano:",
+        "leftSide": "Stingo",
+        "rightSide": "Chacho",
+        "selectRegionPrefix": "Alosar",
+        "rotateTooltip": "Bolde o trupo vash 180°",
+        "layerHybrid": "Muskulura thaj organura",
+        "layerMuscular": "Muskulura thaj žile",
+        "layerOrgans": "Andrune organura",
+        "layerSurface": "Morti",
+        "legendSkeletalMuscles": "Muskulura",
+        "legendTendonsJoints": "Žile thaj globura",
+        "legendInternalOrgans": "Andrune organura",
+        "legendSelectedStructure": "Alosardi struktura"
+      },
+      "emergency": {
+        "badge": "Sastipnaski sigardiari 112",
+        "title": "Shaj te avel sigardiari: akhar akana 112",
+        "description": "Ma azhuker. Te nashti te akhares, dzha sigo ki bolnitsaki sigardiari. Ma trad korkoro o vurdono.",
+        "whyEmergencyPrefix": "Alosardjan:",
+        "call112Now": "Akhar 112 akana",
+        "continueReview": "Haljiljom"
+      },
+      "structure3DLabel": "3D struktura",
+      "sensationLabel": "Hatjarimos",
+      "triggersLabel": "So kerel maj nasul",
+      "specialtyLabel": "Doktori specijalisto",
+      "warningNoticeRedFlag": "Sikadile semnja vash sigardiari.",
+      "warningNoticeSafe": "Na sikadile semnja vash sigardiari."
+    },
+    "bodyParts": {
+      "head": {
+        "title": "Shero thaj kor",
+        "subtitle": "Dukh ko shero, pashni, kan, phangli kor vaj o shero phirel"
+      },
+      "chest": {
+        "title": "Kolin thaj phurdinimos",
+        "subtitle": "Tasavimos ko kolin, chucha, pashavra, phari phurdinimos vaj sigo ilo"
+      },
+      "stomach": {
+        "title": "Stomako thaj por",
+        "subtitle": "Phabarimos, grčura, čhadimos, phugjarimos vaj dukh ando por"
+      },
+      "pelvis": {
+        "title": "Teluno por thaj pelviso",
+        "subtitle": "Chonutni dukh, ovariura, phabarimos ko mutrimos vaj intimno than"
+      },
+      "back": {
+        "title": "Dumo thaj kichma",
+        "subtitle": "Dukh telal ko dumo, teluno kokalo, phangle muskulura vaj mashkar e phike"
+      },
+      "arm": {
+        "title": "Vasta thaj naja",
+        "subtitle": "Pamortimos, dukh ko phiko, kohni, vast vaj klichura le najenge"
+      },
+      "leg": {
+        "title": "Punre thaj talpe",
+        "subtitle": "Dukh ko kuko, chang, globi, khur vaj talpa"
+      }
+    },
+    "symptomsByRegion": {
+      "head": [
+        {
+          "id": "head_migraine",
+          "label": "Dukh savi marel pe jekh rig e shereski, buko čhadimaske vaj dukh katar o dud",
+          "isRedFlag": false,
+          "selfCareTip": "Hodinisar ande mirni thaj kali soba. Pi pani thaj čhiv shudro dikhlo pe chikat.",
+          "guidance": "Miazol pe migrena. Te irinel pes butivar, phuch tire familijake doktores vash drab savi arakhel la.",
+          "title": "Migrena vaj dukh savi marel",
+          "description": "Dukh savi marel, obicno pe jekh rig e shereski. Shaj te dukhal tut o dud thaj i galama vaj te avel tuke te čhades."
+        },
+        {
+          "id": "head_tension",
+          "label": "Tasavimos sar phangli lenta trujal o shero, pala streso vaj khino",
+          "isRedFlag": false,
+          "selfCareTip": "Mukh o ekrano xanci vrjama thaj lokhes masirisar i kor. Inklji zalog pe lačhi balval.",
+          "guidance": "Avel butivar katar o streso, xanci sovibe vaj lungo beshimos.",
+          "title": "Dukh ko shero katar o streso",
+          "description": "Tasavimos sar phangli lenta upral o chikat. Avel butivar pala streso, lungo dikhiben ko ekrano vaj phangli kor."
+        },
+        {
+          "id": "head_dehydration",
+          "label": "Surdo, sajekh dukh pala tato dives vaj pala so piljan xanci pani",
+          "isRedFlag": false,
+          "selfCareTip": "Pi lokhes 1 dzhi 2 bare taxtaja pani vaj tato čajo. Ma pi kafava thaj gudle sokura.",
+          "guidance": "Butivar nakhel kana pjes pani thaj beshes ando uchin.",
+          "title": "Dukh ko shero katar tatipen vaj trush",
+          "description": "Dukh ando sasto shero, maj bari kana phiraves o shero. Avel pala kham, tatipen vaj xanci pani."
+        },
+        {
+          "id": "head_fever",
+          "label": "Dukh ko shero tatipnasa, izdravimasa vaj phanglo nakh",
+          "isRedFlag": false,
+          "selfCareTip": "Pashljo ko than, merisar o tatipen thaj pi but pani thaj čajo.",
+          "guidance": "Shaj te avel shil vaj viroza. Te nakhel o tatipen opral 38,5 °C vaj ačhel maj but katar 3 dive, dzha ko doktori.",
+          "title": "Dukh ko shero tatipnasa",
+          "description": "Dukhal tiro shero thaj si tut tatipen, izdravimos, dukh ando trupo vaj phanglo nakh."
+        },
+        {
+          "id": "head_sudden_severe",
+          "label": "Sigi thaj but zurali dukh ko shero, vaj konfuzijasa thaj slabipnasa",
+          "isRedFlag": true,
+          "selfCareTip": "Besh pe sigurno than thaj akhar sigo 112.",
+          "guidance": "But zurali dukh ko shero savi avel sigo si sigardiari. Trubul tuke doktori akana.",
+          "title": "Sigi, but zurali dukh ko shero",
+          "description": "I maj bari dukh ko shero ando tiro trajo, savi avel ande xanci sekunde. Shaj te avel phangle kora, kale dikhibenasa vaj konfuzijasa."
+        }
+      ],
+      "chest": [
+        {
+          "id": "chest_reflux",
+          "label": "Phabarimos ko kolin vaj shuklo vkus pala o xaben vaj kana bangjos",
+          "isRedFlag": false,
+          "selfCareTip": "Ma pashljo sigo pala o xaben. Ma xa tikno xaben thaj ma pi kafava xanci vrjama.",
+          "guidance": "O phabarimos obicno avel katar i kiselina ando stomako. Te na nakhel, o familijako doktori shaj te del tut drab.",
+          "title": "Phabarimos ko kolin",
+          "description": "Phabarimos savo vazdel pes katar o stomako ko krlo. Maj baro si kana bangjos vaj pala pharo xaben."
+        },
+        {
+          "id": "chest_exertion",
+          "label": "Tasavimos ko kolin kana keres phari buchi vaj inkljes pe skale",
+          "isRedFlag": false,
+          "selfCareTip": "Ačhav i buchi, besh tele thaj phurdine lokhes.",
+          "guidance": "Tasavimos ko kolin ko phirimos musaj te dikhel o doktori, vi te nakhel sigo kana ačhes.",
+          "title": "Tasavimos ko kolin ko phirimos",
+          "description": "Tasavimos ko mashkar e kolinesko kana phires sigo, inkljes pe skale vaj keres phari buchi."
+        },
+        {
+          "id": "chest_stitch",
+          "label": "Pusavimos pe jekh rig e kolineski, maj baro kana les xor balval vaj xasaves",
+          "isRedFlag": false,
+          "selfCareTip": "Phurdine lokhes xanci minute. Čhiv vareso tato pe than savo dukhal.",
+          "guidance": "Obicno si crdindo muskulo thaj nakhel korkoro. Te avel phari phurdinimos, akhar 112.",
+          "title": "Pusavimos kana phurdines",
+          "description": "Sigo pusavimos ko jekh than ando kolin, maj baro kana crdes xor balval, xasaves vaj boldes tut."
+        },
+        {
+          "id": "chest_breast_pain",
+          "label": "Dukh, shuvljarimos, lolipen ki chuchi vaj dukh kana des chuchi e chavoreske",
+          "isRedFlag": false,
+          "selfCareTip": "Phirav kovle gada bi zurale sastrnako thaj čhiv kovlo tato vaj shudro dikhlo sar avel tuke maj mishto.",
+          "guidance": "Dukh ande solduj chucha butivar avel anglal o chonutno ciklo. Te avel jekh chuchi loli, tati thaj si tut tatipen, dzha adives ko doktori.",
+          "title": "Kovlipen vaj dukh ki chuchi",
+          "description": "Le chucha si shuvljarde anglal o chonutno ciklo, vaj jekh chuchi dukhal thaj si zurali kana des chuchi."
+        },
+        {
+          "id": "chest_breast_lump",
+          "label": "Nevi guka, zuralo than ki chuchi vaj shuvljarimos telal i phiko",
+          "isRedFlag": false,
+          "selfCareTip": "Ma tasav thaj ma masirisar zurales o than. Ser de kana dikhljan les te phenes e doktoreske.",
+          "guidance": "Maj but guke andi chuchi naj nasul, numa svako nevi guka vaj paruvimos pe morti musaj te dikhel o doktori.",
+          "title": "Nevi guka ki chuchi vaj telal i phiko",
+          "description": "Hatjares nevi guka vaj maj zuralo than andi chuchi vaj telal o vast, vaj paruvimos pe morti."
+        },
+        {
+          "id": "chest_warning",
+          "label": "Zurali dukh ko kolin savi dzhal ko stingo vast, kor vaj pashni, phari phurdinimasa",
+          "isRedFlag": true,
+          "selfCareTip": "Akhar sigo 112. Besh tele thaj putar e tang gada.",
+          "guidance": "Akaja dukh ko kolin shaj te avel infarkto ko ilo. Sako minuta si vazhno.",
+          "title": "Zurali dukh ko kolin savi buhljol",
+          "description": "Pharo tasavimos ko kolin savo dzhal ko stingo vast, kor, pashni vaj dumo. Shaj te avel shudre kamlimasa vaj bi balvaljako."
+        }
+      ],
+      "stomach": [
+        {
+          "id": "stomach_upper_reflux",
+          "label": "Phabarimos vaj pharipen opral ando stomako",
+          "isRedFlag": false,
+          "selfCareTip": "Xa lokho, kirado xaben. Pi pani savo naj shudro thaj ma xa bare xabena.",
+          "guidance": "Xoljardo stomako si obicno buchi. Te dukhal tut sako dives, ker termin ko doktori.",
+          "title": "Phabarimos opral ando stomako",
+          "description": "Phabarimos vaj kiselina tela e pashavra. Čaljos sigo vaj avel tuke shuklo ando muj pala o xaben."
+        },
+        {
+          "id": "stomach_cramping_mild",
+          "label": "Grčura ando sasto por, phugjarimasa vaj maj butivar phirimos ko toaleto",
+          "isRedFlag": false,
+          "selfCareTip": "Pi čajo katar menta vaj kamilica, čhiv vareso tato pe por thaj hodinisar.",
+          "guidance": "Cikne grčura obicno aven katar o xaben so xaljan.",
+          "title": "Grčura thaj phugjarimos",
+          "description": "O por kidel pes varekana, si shuvljardo, vaj dzhas maj butivar vaj maj xancivar ko toaleto."
+        },
+        {
+          "id": "stomach_lower_sharp",
+          "label": "Zurali dukh ko jekh than, telal pe chachi rig e poreski",
+          "isRedFlag": true,
+          "selfCareTip": "Dzhi kaj na dikhel tut o doktori, ma le zurale draba mamuj dukh thaj ma čhiv niso tato pe por.",
+          "guidance": "Dukh savi ačhel telal pe chachi rig e poreski trubul sigo te dikhel o doktori. Shaj te avel apendicita.",
+          "title": "Dukh telal pe chachi rig e poreski",
+          "description": "Dukh telal pe chachi rig e poreski savi barjol thaj dukhal maj but kana xasaves, phires vaj tasaves."
+        },
+        {
+          "id": "stomach_severe_widespread",
+          "label": "But zurali dukh ando sasto por, butivar čhadimasa, zuralo por vaj tatipen",
+          "isRedFlag": true,
+          "selfCareTip": "Ma xa thaj ma pi but. Dzha sigo ki bolnitsaki sigardiari vaj akhar 112.",
+          "guidance": "But zurali dukh zurale poresa shaj te mangel sigo operacija.",
+          "title": "But zurali dukh ando sasto por",
+          "description": "Sasto por dukhal zurales thaj si zuralo sar kasht, čhades sajekh vaj hatjares kaj peres."
+        }
+      ],
+      "pelvis": [
+        {
+          "id": "pelvis_period_cramps",
+          "label": "Chonutne grčura vaj surdi dukh telal ando por pasha o chonutno ciklo",
+          "isRedFlag": false,
+          "selfCareTip": "Čhiv tati shisha panjesa telal pe por, pi tate čajura thaj hodinisar pe rig bangjarde changensa.",
+          "guidance": "Lokhe chonutne dukha si butivar, numa te ačhaven tut katar i buchi vaj o sovibe, o ginekologo shaj te dikhel sostar aven.",
+          "title": "Chonutne grčura vaj dukh ando pelviso",
+          "description": "Tasavimos vaj surdi dukh telal ando por thaj ko dumo anglal vaj ando chonutno ciklo."
+        },
+        {
+          "id": "pelvis_one_sided",
+          "label": "Dukh pe jekh rig telal ando pelviso, pasha o ovario vaj ko kuko",
+          "isRedFlag": false,
+          "selfCareTip": "Ma vazde pharo thaj ma čhiv tate dikhle te si i dukh sigi thaj pusavdi.",
+          "guidance": "Dukh pe jekh rig telal ando por shaj te avel katar cista ko ovario vaj crdindo muskulo thaj valjani te dikhel la o doktori.",
+          "title": "Dukh pe jekh rig telal ando pelviso",
+          "description": "Pusavimos vaj tasavimos pe jekh rig telal ando por vaj pasha o punro, maj baro kana phires."
+        },
+        {
+          "id": "pelvis_urinary_burning",
+          "label": "Phabarimos kana keres muter, muter bi uzho vaj butivar phirimos ko toaleto",
+          "isRedFlag": false,
+          "selfCareTip": "Pi uzho pani sako xanci vrjama thaj ma inker o muter. Ma pi kafava thaj gazirime pimatja.",
+          "guidance": "Miazol pe infekcija e mutreski. O familijako doktori shaj te kerel analiza thaj te del drab. Dzha adives ko doktori te avel tatipen vaj dukh ko dumo.",
+          "title": "Phabarimos ko mutrimos vaj sigo phirimos ko toaleto",
+          "description": "Phabarel tut kana keres muter, hatjares tasavimos telal pe por vaj sar te na chuchardilo o mutresko gono."
+        },
+        {
+          "id": "pelvis_pressure_floor",
+          "label": "Pharipen, tasavimos vaj dukh telal ando pelviso vaj ko intimno than",
+          "isRedFlag": false,
+          "selfCareTip": "Ma vazde phare bukja thaj phirav lokhe pambukoske gada.",
+          "guidance": "Pharipen telal ando pelviso vaj xoljarimos avel butivar pala bijandimos vaj infekcija thaj sastjol lokhes pala vizita ko doktori.",
+          "title": "Pharipen ando pelviso vaj intimno dukh",
+          "description": "Hatjarimos pharipnasko telal ando trupo, dukh kana beshes vaj xoljarimos ko intimno than."
+        },
+        {
+          "id": "pelvis_pregnancy_bleeding",
+          "label": "Sigi thaj but zurali dukh telal ando pelviso, baro ratjarimos vaj dukh kana shaj te aves khamni",
+          "isRedFlag": true,
+          "selfCareTip": "Pashljo pe sigurno than, ma le draba korkori thaj akhar sigo 112 vaj dzha ki sigardiari.",
+          "guidance": "Zurali dukh ando pelviso bare ratjarimasa, phirimasa e sheresko vaj kana shaj te aves khamni si sigardiari thaj mangel bolnitsa akana.",
+          "title": "Zurali dukh ando pelviso, baro ratjarimos vaj khamnipen",
+          "description": "Sigi zurali dukh telal ando por bare ratjarimasa, tatipnasa, vaj svako zurali dukh kana dzanes vaj gindis kaj san khamni."
+        }
+      ],
+      "back": [
+        {
+          "id": "back_strain_lift",
+          "label": "Zurali dukh telal ko dumo savi astardja sigo pala vazdimos phare bukjako",
+          "isRedFlag": false,
+          "selfCareTip": "Ma bangjo thaj ma vazde pharo. Hodinisar, numa ker vi cikne phirimata. Čhiv tato dikhlo.",
+          "guidance": "Akava kerel pes butivar. Lokho phirimos azhutil maj but katar pashljimos ko than.",
+          "title": "Dukh ko dumo pala vazdimos",
+          "description": "E muskulura telal ko dumo phanglile sigo pala so vazdjan vareso pharo vaj boldjan tut sigo."
+        },
+        {
+          "id": "back_chronic",
+          "label": "Surdo dukh telal ko dumo xanci kurke",
+          "isRedFlag": false,
+          "selfCareTip": "Ker lokhe vjezhbe vash o dumo. Lačhar o skamin thaj ma besh but vrjama bi phirimasko.",
+          "guidance": "Purani dukh ko dumo lačhjol vjezhbenca katar fizioterapeuto thaj maj zurale muskulenca e poreske.",
+          "title": "Dukh ko dumo savi na nakhel",
+          "description": "Surdo dukh telal ko dumo kurkencar, maj bari pala lungo beshimos vaj terdimos."
+        },
+        {
+          "id": "back_stiffness",
+          "label": "Phanglo dumo sabale vaj pala lungo beshimos pe skamin",
+          "isRedFlag": false,
+          "selfCareTip": "Sabale lokhes bolde e phike thaj bangjo lokhes xanci droma anglal te astares o dives.",
+          "guidance": "Avel butivar kana e muskulura si phangle vaj beshljan but ande jekh pozicija.",
+          "title": "Phanglo dumo sabale",
+          "description": "Tiro dumo si phanglo kana ushtes thaj phares bangjos. Lačhjol pala so phires zalog."
+        },
+        {
+          "id": "back_severe_difficulty",
+          "label": "Zurali dukh ko dumo pamortimasa ande solduj punre, slabipen vaj xasarimos kontrolako vash muter",
+          "isRedFlag": true,
+          "selfCareTip": "Pashljo tele thaj akhar sigo 112.",
+          "guidance": "E nervura ando dumo shaj te aven phares tasavde. Trubul tuke bolnitsa sigo.",
+          "title": "Dukh ko dumo pamortime punrenca",
+          "description": "Zurali dukh ko dumo pamortimasa vaj slabipnasa ande solduj punre, vaj neve problemura ko toaleto."
+        }
+      ],
+      "arm": [
+        {
+          "id": "arm_sprain",
+          "label": "Dukh ko phiko, kohni vaj globi e vastesko pala perimos vaj sigo phiravimos",
+          "isRedFlag": false,
+          "selfCareTip": "Čhiv paho phanglo ando dikhlo pe than savo dukhal. Hodinisar o vast.",
+          "guidance": "Lokhe daba thaj crdimata obicno nakhen ande xanci dive te hodinisares o globi.",
+          "title": "Dukh ko globi pala perimos",
+          "description": "O globi, o kohni vaj o phiko dukhal thaj si shuvljardo pala dab vaj perimos pe palme."
+        },
+        {
+          "id": "arm_numbness",
+          "label": "Lokho pamortimos vaj pusavimata ande naja pala lungo labyarimos e telefonosko",
+          "isRedFlag": false,
+          "selfCareTip": "Ker butivar pauze po 5 minute. Izdrisar e vasta thaj lokhes bolde e globura.",
+          "guidance": "Shaj te avel tasavdo nervo ko globi e vastesko. Phen e doktoreske te na nakhel.",
+          "title": "Pusavimata ande naja",
+          "description": "Pamortimos vaj pusavimata ande palma thaj naja, maj but ratjate vaj kana pishis."
+        },
+        {
+          "id": "arm_ache",
+          "label": "E muskulura e vasteske dukhan thaj si khine pala phari fizikani buchi",
+          "isRedFlag": false,
+          "selfCareTip": "Ker tato dusho, lokhes masirisar e muskulura thaj hodinisar jekh dives.",
+          "guidance": "Normalno si pala neobicno phari buchi. Nakhel korkoro ande 2 dzhi 3 dive.",
+          "title": "Dukh ande muskulura e vasteske",
+          "description": "E muskulura tire vasteske dukhan pala phari buchi, sporto vaj ingerimos phare bukjengo."
+        },
+        {
+          "id": "arm_sudden_swelling",
+          "label": "Sigo slabipen ko jekh vast, nashti te vazdes les vaj shuvljol sigo thaj but",
+          "isRedFlag": true,
+          "selfCareTip": "Ma zorisar o vast. Akhar sigo 112.",
+          "guidance": "Sigo slabipen ko vast shaj te avel dab ki godi vaj pharo phagimos.",
+          "title": "Sigo slabipen ko jekh vast",
+          "description": "Sigo nashti te vazdes vaj te inkeres jekh vast. Shaj te avel bangjarde mujesa vaj phangle dumasa."
+        }
+      ],
+      "leg": [
+        {
+          "id": "leg_sprain",
+          "label": "Shuvljardo vaj dukhado globi e punresko pala bango drom",
+          "isRedFlag": false,
+          "selfCareTip": "Vazde o punro pe sherand thaj čhiv shudro dikhlo 15 minute. Ma čhiv sasto pharipen pe leste.",
+          "guidance": "Hodinisar o globi xanci dive. Te barjol o shuvljarimos vaj nashti te terdsos pe leste, dzha pe rendgeno.",
+          "title": "Bangjardo globi e punresko",
+          "description": "O globi dukhal thaj si shuvljardo pala so phirdjan banges. Phares terdsos pe leste."
+        },
+        {
+          "id": "leg_cramp",
+          "label": "Dukhado grčo andi pulpa e punreski ratjate vaj pala phirimos",
+          "isRedFlag": false,
+          "selfCareTip": "Inzar o punro thaj lokhes crde e naja karing tute. Masirisar i pulpa thaj pi pani.",
+          "guidance": "E grčura butivar aven pala khino, baro kamlimos vaj kana pjes xanci pani.",
+          "title": "Grčo andi pulpa",
+          "description": "O muskulo e pulpako kidel pes sigo thaj dukhasa, butivar ratjate vaj kana piljan xanci pani."
+        },
+        {
+          "id": "leg_knee_ache",
+          "label": "Dukh ko chang kana huljes pe skale vaj pala lungo phirimos",
+          "isRedFlag": false,
+          "selfCareTip": "Ma besh pe changa thaj ma inger pharo. Phirav lokhe papuče kovle talpasa.",
+          "guidance": "O chang khinjol vash vrjama. Vjezhbe save zuraren e muskulura e punreske azhutin.",
+          "title": "Dukh ko chang pe skale",
+          "description": "Tiro chang dukhal kana huljes pe skale vaj pala lungo beshimos bangjarde changenca."
+        },
+        {
+          "id": "leg_sudden_swelling",
+          "label": "Samo jekh punro shuvljardo sigo, tato, lolo thaj but dukhado, vaj nashti te terdsos pe leste",
+          "isRedFlag": true,
+          "selfCareTip": "Besh mirno thaj ma masirisar i pulpa. Dzha sigo ko doktori vaj ki bolnitsaki sigardiari.",
+          "guidance": "Sigo shuvljarimos ko jekh punro shaj te avel phandlo rat (tromboza). Musaj sigo te sastjarel pes.",
+          "title": "Sigo shuvljarimos samo ko jekh punro",
+          "description": "Samo jekh pulpa shuvljili sigo thaj si tati, loli thaj dukhadi."
+        }
+      ]
+    },
+    "severity": {
+      "mild": {
+        "title": "Lokho",
+        "description": "Hatjares les, numa keres tire sako-diveske bukja."
+      },
+      "moderate": {
+        "title": "Mashkarutno",
+        "description": "Čhinavel tut ki buchi, ko phirimos vaj ko sovibe."
+      },
+      "severe": {
+        "title": "Zuralo",
+        "description": "Pashe niso nashti te keres."
+      }
+    },
+    "duration": {
+      "today": {
+        "label": "Adives vaj idž",
+        "hint": "Tela 24 ore"
+      },
+      "days": {
+        "label": "2–7 dive",
+        "hint": "2 dzhi 7 dive"
+      },
+      "weeks": {
+        "label": "1–2 kurke",
+        "hint": "1 dzhi 2 kurke"
+      },
+      "chronic": {
+        "label": "Maj but katar 2 kurke",
+        "hint": "Na nakhel vaj sajekh irinel pes"
+      }
+    },
+    "urgency": {
+      "low": {
+        "title": "Shaj te arakhes tut khere",
+        "intro": "Hodinisar, pi pani thaj dikh sar hatjares tut xanci dive. Te avel maj nasul vaj aven neve semnja, akhar tire doktores vaj 112."
+      },
+      "medium": {
+        "title": "Dzha ko familijako doktori ande akala dive",
+        "intro": "Lačhe si te sikaves akava jekhe doktoreske. Te avel maj nasul dzhi tegani, akhar 112."
+      },
+      "high": {
+        "title": "Dzha ko doktori adives",
+        "intro": "Ma mukh pe aver dives. Akhar tire doktores vaj dzha adives ki ambulanta. Te avel maj nasul, akhar 112."
+      }
+    }
   }
 };
 
@@ -1711,6 +2915,8 @@ export const healthCheckTranslations: Record<Lang, HealthCheckWizardLocaleData> 
   en: { ...rawTranslations.en, symptoms: rawTranslations.en.symptomsByRegion },
   sq: { ...rawTranslations.sq, symptoms: rawTranslations.sq.symptomsByRegion },
   it: { ...rawTranslations.it, symptoms: rawTranslations.it.symptomsByRegion },
+  hr: { ...rawTranslations.hr, symptoms: rawTranslations.hr.symptomsByRegion },
+  rom: { ...rawTranslations.rom, symptoms: rawTranslations.rom.symptomsByRegion },
 };
 
 export interface HealthCheckSummaryExportPrefixes {
@@ -1745,11 +2951,11 @@ export function getSummaryExportPrefixes(lang?: Lang): HealthCheckSummaryExportP
   const d = getHealthCheckTranslations(lang);
   const targetLang = lang && lang in healthCheckTranslations ? lang : DEFAULT_LANG;
   return {
-    structure3D: d.ui.structure3DLabel ?? (targetLang === "ro" ? "Structură 3D" : targetLang === "en" ? "3D structure" : targetLang === "sq" ? "Struktura 3D" : "Struttura 3D"),
-    sensation: d.ui.sensationLabel ?? (targetLang === "ro" ? "Senzație" : targetLang === "en" ? "Sensation" : targetLang === "sq" ? "Ndjesi" : "Sensazione"),
-    triggers: d.ui.triggersLabel ?? (targetLang === "ro" ? "Ce agravează" : targetLang === "en" ? "What makes it worse" : targetLang === "sq" ? "Çfarë e përkeqëson" : "Cosa lo peggiora"),
-    specialty: d.ui.specialtyLabel ?? (targetLang === "ro" ? "Medic specialist" : targetLang === "en" ? "Specialist to see" : targetLang === "sq" ? "Mjeku specialist" : "Specialista da vedere"),
-    warningNoticeRedFlag: d.ui.warningNoticeRedFlag ?? (targetLang === "ro" ? "Au apărut semne de urgență." : targetLang === "en" ? "Emergency warning signs reported." : targetLang === "sq" ? "U raportuan shenja urgjence." : "Segnalati segni di emergenza."),
-    warningNoticeSafe: d.ui.warningNoticeSafe ?? (targetLang === "ro" ? "Nu au apărut semne de urgență." : targetLang === "en" ? "No emergency warning signs reported." : targetLang === "sq" ? "Nuk u raportuan shenja urgjence." : "Nessun segno di emergenza segnalato."),
+    structure3D: d.ui.structure3DLabel ?? (targetLang === "ro" ? "Structură 3D" : targetLang === "en" ? "3D structure" : targetLang === "sq" ? "Struktura 3D" : targetLang === "hr" ? "3D struktura" : targetLang === "rom" ? "3D struktura" : "Struttura 3D"),
+    sensation: d.ui.sensationLabel ?? (targetLang === "ro" ? "Senzație" : targetLang === "en" ? "Sensation" : targetLang === "sq" ? "Ndjesi" : targetLang === "hr" ? "Osjet" : targetLang === "rom" ? "Hatjarimos" : "Sensazione"),
+    triggers: d.ui.triggersLabel ?? (targetLang === "ro" ? "Ce agravează" : targetLang === "en" ? "What makes it worse" : targetLang === "sq" ? "Çfarë e përkeqëson" : targetLang === "hr" ? "Što pogoršava" : targetLang === "rom" ? "So kerel maj nasul" : "Cosa lo peggiora"),
+    specialty: d.ui.specialtyLabel ?? (targetLang === "ro" ? "Medic specialist" : targetLang === "en" ? "Specialist to see" : targetLang === "sq" ? "Mjeku specialist" : targetLang === "hr" ? "Liječnik specijalist" : targetLang === "rom" ? "Doktori specijalisto" : "Specialista da vedere"),
+    warningNoticeRedFlag: d.ui.warningNoticeRedFlag ?? (targetLang === "ro" ? "Au apărut semne de urgență." : targetLang === "en" ? "Emergency warning signs reported." : targetLang === "sq" ? "U raportuan shenja urgjence." : targetLang === "hr" ? "Zabilježeni su znakovi za hitnost." : targetLang === "rom" ? "Sikadile semnja vash sigardiari." : "Segnalati segni di emergenza."),
+    warningNoticeSafe: d.ui.warningNoticeSafe ?? (targetLang === "ro" ? "Nu au apărut semne de urgență." : targetLang === "en" ? "No emergency warning signs reported." : targetLang === "sq" ? "Nuk u raportuan shenja urgjence." : targetLang === "hr" ? "Nisu zabilježeni znakovi za hitnost." : targetLang === "rom" ? "Na sikadile semnja vash sigardiari." : "Nessun segno di emergenza segnalato."),
   };
 }

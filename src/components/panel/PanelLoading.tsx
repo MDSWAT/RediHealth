@@ -17,7 +17,14 @@ export default function PanelLoading() {
   const { lang } = useLanguage();
   const pathname = stripLangFromPathname(usePathname()).replace(/^\/demo(?=\/|$)/, "/panel");
   const t = panelTranslations[lang].adminShell;
-  const loading = { en: "Loading…", ro: "Se încarcă…", sq: "Duke ngarkuar…", it: "Caricamento…" }[lang];
+  const loading = {
+    en: "Loading…",
+    ro: "Se încarcă…",
+    sq: "Duke ngarkuar…",
+    it: "Caricamento…",
+    hr: "Učitavanje…",
+    rom: "Pharavel…",
+  }[lang];
   const profile = /^\/panel\/patients\/[^/]+/.test(pathname);
   const calendar = pathname === "/panel/calendar";
   const title = pathname.startsWith("/panel/patients") ? t.patients

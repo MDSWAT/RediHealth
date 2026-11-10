@@ -12,6 +12,7 @@ import { WEBGL_ERROR, hasWebGL } from "./webgl-support";
 import {
   BackViewIcon,
   CloseIcon,
+  FemaleBodyIcon,
   FrontViewIcon,
   MusclesIcon,
   OrgansIcon,
@@ -44,8 +45,10 @@ function prefersLiteBody(): boolean {
 const subscribeNoop = () => () => {};
 import type { BodyPartId } from "@/lib/i18n/health-check-translations";
 import {
+  FEMALE_ONLY_SUB_REGIONS,
   SUB_REGION_INFO,
   getLocalizedSubRegion,
+  type BodyAnatomyProfile,
   type LayerModeId,
   type SubRegionId,
 } from "./anatomy-3d-data";
@@ -58,6 +61,8 @@ export interface AnatomicalBodyMapProps {
   selectedSubRegion?: SubRegionId | null;
   selectedSide?: Side;
   onSelectDetailedAnatomy?: (partId: BodyPartId, subRegion: SubRegionId, side: Side) => void;
+  bodyProfile?: BodyAnatomyProfile;
+  onBodyProfileChange?: (profile: BodyAnatomyProfile) => void;
   className?: string;
   /** Height utilities for the 3D stage. */
   stageClassName?: string;
@@ -71,6 +76,11 @@ export interface AnatomicalBodyMapProps {
   decorative?: boolean;
   /** Told whether the 3D body is on screen (false: data saver, no WebGL, or it failed to load). */
   onBodyShownChange?: (shown: boolean) => void;
+  /** Driven visceral X-ray mode on desktop when a visceral symptom is active. */
+  forcedLayerMode?: LayerModeId | null;
+  /** Driven sub-region focus on desktop when a visceral symptom maps to an internal organ. */
+  focusSubRegion?: SubRegionId | null;
+  focusSide?: Side;
   lang?: Lang;
   compact?: boolean;
 }
@@ -79,6 +89,9 @@ const COPY: Record<
   Lang,
   {
     views: string;
+    bodyType: string;
+    bodyGeneral: string;
+    bodyFemale: string;
     open: string;
     camera: string;
     zoomIn: string;
@@ -101,6 +114,9 @@ const COPY: Record<
 > = {
   ro: {
     views: "Unghi",
+    bodyType: "Anatomie afișată",
+    bodyGeneral: "Generală",
+    bodyFemale: "Feminină",
     open: "Opțiuni",
     camera: "Cameră",
     zoomIn: "Apropie",
@@ -113,15 +129,18 @@ const COPY: Record<
     liteLoad: "Arată corpul 3D",
     options: "Opțiuni model",
     layer: "Ce se vede",
-    layers: { hybrid: "Tot corpul", muscular: "Mușchi", organs: "Organe", surface: "Doar pielea" },
+    layers: { hybrid: "Tot corpul", muscular: "Mușchi", organs: "Organe", surface: "Piele" },
     search: "Caută o parte a corpului",
-    searchPlaceholder: "de exemplu inimă, genunchi",
+    searchPlaceholder: "de exemplu sân, ovar, inimă, genunchi",
     noResults: "Nu am găsit nimic. Încearcă alt cuvânt.",
     left: "stânga",
     right: "dreapta",
   },
   en: {
     views: "View",
+    bodyType: "Body model",
+    bodyGeneral: "General",
+    bodyFemale: "Female",
     open: "Options",
     camera: "Camera",
     zoomIn: "Zoom in",
@@ -134,15 +153,18 @@ const COPY: Record<
     liteLoad: "Show the 3D body",
     options: "Model options",
     layer: "What to show",
-    layers: { hybrid: "Whole body", muscular: "Muscles", organs: "Organs", surface: "Skin only" },
+    layers: { hybrid: "Whole body", muscular: "Muscles", organs: "Organs", surface: "Skin" },
     search: "Find a body part",
-    searchPlaceholder: "for example heart, knee",
+    searchPlaceholder: "for example breast, ovary, heart, knee",
     noResults: "Nothing found. Try another word.",
     left: "left",
     right: "right",
   },
   sq: {
     views: "Pamja",
+    bodyType: "Modeli i trupit",
+    bodyGeneral: "I përgjithshëm",
+    bodyFemale: "Femëror",
     open: "Opsionet",
     camera: "Kamera",
     zoomIn: "Afro",
@@ -155,15 +177,18 @@ const COPY: Record<
     liteLoad: "Shfaq trupin 3D",
     options: "Opsionet e modelit",
     layer: "Çfarë shfaqet",
-    layers: { hybrid: "I gjithë trupi", muscular: "Muskujt", organs: "Organet", surface: "Vetëm lëkura" },
+    layers: { hybrid: "I gjithë trupi", muscular: "Muskujt", organs: "Organet", surface: "Lëkura" },
     search: "Kërko një pjesë të trupit",
-    searchPlaceholder: "për shembull zemra, gjuri",
+    searchPlaceholder: "për shembull gji, vezore, zemra, gjuri",
     noResults: "Nuk u gjet asgjë. Provo një fjalë tjetër.",
     left: "majtas",
     right: "djathtas",
   },
   it: {
     views: "Vista",
+    bodyType: "Modello del corpo",
+    bodyGeneral: "Generale",
+    bodyFemale: "Femminile",
     open: "Opzioni",
     camera: "Vista",
     zoomIn: "Avvicina",
@@ -176,12 +201,60 @@ const COPY: Record<
     liteLoad: "Mostra il corpo 3D",
     options: "Opzioni del modello",
     layer: "Cosa mostrare",
-    layers: { hybrid: "Tutto il corpo", muscular: "Muscoli", organs: "Organi", surface: "Solo la pelle" },
+    layers: { hybrid: "Tutto il corpo", muscular: "Muscoli", organs: "Organi", surface: "Pelle" },
     search: "Cerca una parte del corpo",
-    searchPlaceholder: "per esempio cuore, ginocchio",
+    searchPlaceholder: "per esempio seno, ovaio, cuore, ginocchio",
     noResults: "Nessun risultato. Prova un'altra parola.",
     left: "sinistra",
     right: "destra",
+  },
+  hr: {
+    views: "Pogled",
+    bodyType: "Model tijela",
+    bodyGeneral: "Opći",
+    bodyFemale: "Ženski",
+    open: "Opcije",
+    camera: "Kamera",
+    zoomIn: "Približi",
+    zoomOut: "Udalji",
+    turnLeft: "Okreni ulijevo",
+    turnRight: "Okreni udesno",
+    resetView: "Početni prikaz",
+    close: "Zatvori opcije",
+    liteNote: "3D prikaz tijela je isključen radi uštede podatkovnog prometa. Odaberi područje s popisa.",
+    liteLoad: "Prikaži 3D tijelo",
+    options: "Opcije modela",
+    layer: "Što prikazati",
+    layers: { hybrid: "Cijelo tijelo", muscular: "Mišići", organs: "Organi", surface: "Koža" },
+    search: "Potraži dio tijela",
+    searchPlaceholder: "na primjer dojka, jajnik, srce, koljeno",
+    noResults: "Nema rezultata. Pokušaj s drugom riječju.",
+    left: "lijevo",
+    right: "desno",
+  },
+  rom: {
+    views: "Dikhimos",
+    bodyType: "Modelo e truposko",
+    bodyGeneral: "Generalno",
+    bodyFemale: "Dzhuvlikano",
+    open: "Opcie",
+    camera: "Kamera",
+    zoomIn: "An maj pasha",
+    zoomOut: "Ingar maj dur",
+    turnLeft: "Ambold pe stingo",
+    turnRight: "Ambold pe chacho",
+    resetView: "Angluno dikhimos",
+    close: "Phandav le opcie",
+    liteNote: "O 3D trupo si mudardo te arakhes interneteske date. Alosar o than katar i lista.",
+    liteLoad: "Sikav o 3D trupo",
+    options: "Opcie e modeloske",
+    layer: "So dikljol",
+    layers: { hybrid: "Sasto trupo", muscular: "Muskulura", organs: "Organura", surface: "Morti" },
+    search: "Rode jekh kotor e truposko",
+    searchPlaceholder: "misal chuchi, ilo, chang",
+    noResults: "Na arakhlam khanchi. Zumav aver vorba.",
+    left: "stingo",
+    right: "chacho",
   },
 };
 
@@ -210,6 +283,8 @@ export function AnatomicalBodyMap({
   selectedSubRegion = null,
   selectedSide = "Center",
   onSelectDetailedAnatomy,
+  bodyProfile,
+  onBodyProfileChange,
   className = "",
   stageClassName,
   showTools = true,
@@ -218,6 +293,9 @@ export function AnatomicalBodyMap({
   selectionLabel,
   decorative = false,
   onBodyShownChange,
+  forcedLayerMode = null,
+  focusSubRegion = null,
+  focusSide,
   lang,
   compact = false,
 }: AnatomicalBodyMapProps) {
@@ -231,6 +309,15 @@ export function AnatomicalBodyMap({
   const openerRef = useRef<HTMLButtonElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [panelOpen, setPanelOpen] = useState(false);
+  const [internalProfile, setInternalProfile] = useState<BodyAnatomyProfile>("general");
+  const activeBodyProfile: BodyAnatomyProfile =
+    focusSubRegion && FEMALE_ONLY_SUB_REGIONS.has(focusSubRegion)
+      ? "female"
+      : (bodyProfile ?? internalProfile);
+  const setBodyProfile = (next: BodyAnatomyProfile) => {
+    setInternalProfile(next);
+    onBodyProfileChange?.(next);
+  };
 
   const [userAngle, setUserAngle] = useState<CameraViewPreset | null>(null);
   const [viewRequest, setViewRequest] = useState(0);
@@ -253,6 +340,16 @@ export function AnatomicalBodyMap({
     onBodyShownRef.current?.(bodyShown);
   }, [bodyShown]);
   const [layerMode, setLayerMode] = useState<LayerModeId>("hybrid");
+  const [userOverrodeLayer, setUserOverrodeLayer] = useState(false);
+  const [prevForcedKey, setPrevForcedKey] = useState<string | null>(null);
+  const forcedKey = forcedLayerMode || focusSubRegion ? `${forcedLayerMode ?? ""}:${focusSubRegion ?? ""}` : null;
+  if (prevForcedKey !== forcedKey) {
+    setPrevForcedKey(forcedKey);
+    setUserOverrodeLayer(false);
+    if (forcedKey) setUserAngle(null);
+  }
+  const effectiveLayerMode: LayerModeId =
+    !userOverrodeLayer && forcedLayerMode ? forcedLayerMode : layerMode;
   const [searchQuery, setSearchQuery] = useState("");
   const [internalSubRegion, setInternalSubRegion] = useState<SubRegionId | null>(null);
   const [internalSide, setInternalSide] = useState<Side>("Center");
@@ -264,6 +361,7 @@ export function AnatomicalBodyMap({
     if (!selectedPart) {
       setUserAngle(null);
       setFreeView(false);
+      setUserOverrodeLayer(false);
       setInternalSubRegion(null);
       setInternalSide("Center");
     }
@@ -274,8 +372,9 @@ export function AnatomicalBodyMap({
   const activeSubRegion = controlled ? selectedSubRegion : internalSubRegion;
   const activeSide = controlled ? selectedSide : internalSide;
 
+  const targetViewSubRegion = focusSubRegion ?? activeSubRegion;
   const derivedView: CameraViewPreset =
-    activeSubRegion && SUB_REGION_INFO[activeSubRegion]?.defaultView === "back"
+    targetViewSubRegion && SUB_REGION_INFO[targetViewSubRegion]?.defaultView === "back"
       ? "back"
       : selectedPart === "back"
         ? "back"
@@ -302,6 +401,9 @@ export function AnatomicalBodyMap({
 
   /** `subRegion` is null when a tap only picks the area (first tap on a phone). */
   function handleSelect3D(macroPart: BodyPartId, subRegion: SubRegionId | null, side: Side, fromTap = false) {
+    if (subRegion && FEMALE_ONLY_SUB_REGIONS.has(subRegion) && activeBodyProfile !== "female") {
+      setBodyProfile("female");
+    }
     setInternalSubRegion(subRegion);
     setInternalSide(side);
     const info = subRegion ? SUB_REGION_INFO[subRegion] : null;
@@ -317,11 +419,20 @@ export function AnatomicalBodyMap({
     if (subRegion) onSelectDetailedAnatomy?.(macroPart, subRegion, side);
   }
 
-  // The exact structure only when it belongs to the chosen area; otherwise the whole area is shown.
-  const effectiveSubRegion =
-    activeSubRegion && selectedPart && SUB_REGION_INFO[activeSubRegion]?.macroPart === selectedPart
+  // The exact structure only when it belongs to the chosen area, or when driven by visceral X-ray focus.
+  const effectiveSubRegion: SubRegionId | null =
+    focusSubRegion ??
+    (activeSubRegion && selectedPart && SUB_REGION_INFO[activeSubRegion]?.macroPart === selectedPart
       ? activeSubRegion
-      : null;
+      : null);
+  const effectiveSide: Side = focusSubRegion ? (focusSide ?? "Center") : effectiveSubRegion ? activeSide : "Center";
+
+  const hudRaw = effectiveSubRegion ? SUB_REGION_INFO[effectiveSubRegion] : null;
+  const hudLocalized = effectiveSubRegion ? getLocalizedSubRegion(effectiveSubRegion, activeLang) : null;
+  const hudSideLabel =
+    hudRaw?.bilateral && effectiveSide !== "Center"
+      ? `, ${effectiveSide === "Left" ? t.left : t.right}`
+      : "";
 
   // Panel: Escape closes, focus moves in on open and back to the button on close.
   useEffect(() => {
@@ -390,7 +501,7 @@ export function AnatomicalBodyMap({
             <button
               type="button"
               onClick={() => setForceBody(true)}
-              className="min-h-11 font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-muted-foreground sm:min-h-0"
+              className="inline-flex min-h-11 items-center rounded-sm px-1 font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:min-h-9"
             >
               {t.liteLoad}
             </button>
@@ -398,14 +509,32 @@ export function AnatomicalBodyMap({
         </p>
       ) : (
         <div ref={stageRef} className={`relative overflow-hidden bg-surface-subtle ${stageClassName ?? "h-[460px]"}`}>
-          {selectionLabel && (
-            <p
+          {hudRaw && hudLocalized ? (
+            <div
               aria-hidden="true"
-              className="pointer-events-none absolute left-3 top-3 z-30 max-w-[calc(100%-9rem)] rounded-lg bg-foreground px-3 py-2 text-sm font-medium leading-snug text-white shadow-sm"
+              className="pointer-events-none absolute left-3 top-3 z-30 max-w-[calc(100%-9rem)] rounded-lg border border-border bg-card/90 px-3.5 py-2.5 shadow-sm backdrop-blur-md"
+            >
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="text-sm font-semibold leading-snug text-foreground">
+                  {hudLocalized.label}
+                  {hudSideLabel}
+                </p>
+                <span className="rounded-md bg-sapphire-soft px-2 py-0.5 text-xs font-medium text-sapphire">
+                  {hudLocalized.tissueLabel}
+                </span>
+              </div>
+              <p className="mt-0.5 text-xs italic leading-snug text-muted-foreground">
+                {hudRaw.latinName} · {hudRaw.fmaId}
+              </p>
+            </div>
+          ) : selectionLabel ? (
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-3 top-3 z-30 max-w-[calc(100%-9rem)] rounded-lg border border-border bg-card/90 px-3.5 py-2 text-sm font-semibold leading-snug text-foreground shadow-sm backdrop-blur-md"
             >
               {selectionLabel}
-            </p>
-          )}
+            </div>
+          ) : null}
           {showTools && (
             <button
               ref={openerRef}
@@ -413,19 +542,23 @@ export function AnatomicalBodyMap({
               aria-expanded={panelOpen}
               aria-controls={panelId}
               onClick={() => setPanelOpen((v) => !v)}
-              className={`absolute right-3 top-3 z-30 min-h-11 items-center gap-2 rounded-lg border border-border bg-card px-3 text-sm font-medium text-foreground shadow-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${controlsClassName ?? "flex"}`}
+              className={`absolute right-3 top-3 z-30 min-h-11 items-center gap-2 rounded-xl border border-border/90 bg-card/95 px-3 text-sm font-medium text-foreground shadow-sm backdrop-blur-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${controlsClassName ?? "flex"}`}
             >
-              <SlidersIcon className="h-5 w-5" />
-              {t.open}
+              <SlidersIcon className="h-4 w-4 text-muted-foreground" />
+              <span>{t.open}</span>
+              {activeBodyProfile === "female" && (
+                <span className="rounded-md bg-sapphire-soft px-1.5 py-0.5 text-xs font-semibold text-sapphire">
+                  {t.bodyFemale}
+                </span>
+              )}
             </button>
           )}
-          {showTools && (
+          {showTools && panelOpen && (
             <div
               ref={panelRef}
               id={panelId}
               role="dialog"
               aria-label={t.options}
-              hidden={!panelOpen}
               className="hc-sheet fixed inset-x-0 bottom-0 z-40 max-h-[62dvh] overflow-y-auto rounded-t-xl border-t border-border bg-card p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_-12px_rgb(0_0_0/0.25)] sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-2 sm:top-2 sm:w-[22rem] sm:max-h-[calc(100%-1rem)] sm:rounded-xl sm:border sm:shadow-lg"
             >
               <div className="mb-3 flex items-center justify-between gap-3">
@@ -443,7 +576,31 @@ export function AnatomicalBodyMap({
                 </button>
               </div>
 
-              <div role="group" aria-label={t.views}>
+              <div role="group" aria-label={t.bodyType}>
+                <p className={sectionTitle}>{t.bodyType}</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    aria-pressed={activeBodyProfile === "general"}
+                    onClick={() => setBodyProfile("general")}
+                    className={tile(activeBodyProfile === "general")}
+                  >
+                    <WholeBodyIcon className="h-9 w-9 shrink-0" />
+                    {t.bodyGeneral}
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed={activeBodyProfile === "female"}
+                    onClick={() => setBodyProfile("female")}
+                    className={tile(activeBodyProfile === "female")}
+                  >
+                    <FemaleBodyIcon className="h-9 w-9 shrink-0" />
+                    {t.bodyFemale}
+                  </button>
+                </div>
+              </div>
+
+              <div role="group" aria-label={t.views} className="mt-4">
                 <p className={sectionTitle}>{t.views}</p>
                 <div className="grid grid-cols-2 gap-2">
                   {viewButton("front", dict.ui.viewer3D.front, FrontViewIcon)}
@@ -460,9 +617,12 @@ export function AnatomicalBodyMap({
                       <button
                         key={id}
                         type="button"
-                        aria-pressed={layerMode === id}
-                        onClick={() => setLayerMode(id)}
-                        className={tile(layerMode === id)}
+                        aria-pressed={effectiveLayerMode === id}
+                        onClick={() => {
+                          setUserOverrodeLayer(true);
+                          setLayerMode(id);
+                        }}
+                        className={tile(effectiveLayerMode === id)}
                       >
                         <Icon className="h-9 w-9 shrink-0" />
                         {t.layers[id]}
@@ -526,13 +686,73 @@ export function AnatomicalBodyMap({
               </div>
             </div>
           )}
+
+          {showTools && (
+            <div
+              role="toolbar"
+              aria-label={t.options}
+              className="hidden lg:flex absolute inset-x-3 bottom-3 z-30 mx-auto w-fit max-w-[calc(100%-1.5rem)] flex-wrap items-center justify-center gap-1 rounded-xl border border-border/90 bg-card/95 p-1 shadow-sm backdrop-blur-md"
+            >
+              {(["front", "back"] as const).map((preset) => {
+                const active = !freeView && viewAngle === preset;
+                const label = preset === "front" ? dict.ui.viewer3D.front : dict.ui.viewer3D.back;
+                const Icon = preset === "front" ? FrontViewIcon : BackViewIcon;
+                return (
+                  <button
+                    key={preset}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => {
+                      setUserAngle(preset);
+                      setFreeView(false);
+                      setViewRequest((n) => n + 1);
+                    }}
+                    className={`inline-flex min-h-8 items-center gap-1.5 rounded-md px-2 text-xs font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                      active
+                        ? "bg-sapphire-soft text-sapphire"
+                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4 shrink-0" />
+                    <span>{label}</span>
+                  </button>
+                );
+              })}
+              <span aria-hidden="true" className="mx-0.5 h-4 w-px shrink-0 bg-border" />
+              {LAYER_ORDER.map((id) => {
+                const active = effectiveLayerMode === id;
+                const Icon = LAYER_ICON[id];
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => {
+                      setUserOverrodeLayer(true);
+                      setLayerMode(id);
+                    }}
+                    className={`inline-flex min-h-8 items-center gap-1.5 rounded-md px-2 text-xs font-medium whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                      active
+                        ? "bg-sapphire-soft font-semibold text-sapphire"
+                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4 shrink-0" />
+                    <span>{t.layers[id]}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
           <AnatomicalViewport3D
             selectedPart={selectedPart}
             selectedSubRegion={effectiveSubRegion}
-            selectedSide={effectiveSubRegion ? activeSide : "Center"}
+            selectedSide={effectiveSide}
             viewAngle={viewAngle}
-            layerMode={layerMode}
+            layerMode={effectiveLayerMode}
             isolateSelected={false}
+            bodyProfile={activeBodyProfile}
             onSelectAnatomy={(macroPart, subRegion, side) => handleSelect3D(macroPart, subRegion, side, true)}
             onUnavailable={setLoadFailure}
             lang={activeLang}
@@ -542,7 +762,15 @@ export function AnatomicalBodyMap({
             viewRequest={viewRequest}
             onFreeRotate={() => setFreeView(true)}
             cameraRef={cameraRef}
-          />
+          >
+            {(effectiveSubRegion || selectedPart) && (
+              <span
+                aria-hidden="true"
+                style={{ left: "var(--anchor-x, 50%)", top: "var(--anchor-y, 40%)" }}
+                className="pointer-events-none absolute z-20 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sapphire ring-2 ring-white shadow-xs"
+              />
+            )}
+          </AnatomicalViewport3D>
         </div>
       )}
 

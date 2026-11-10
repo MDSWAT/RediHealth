@@ -11,11 +11,9 @@ export type HelpOptionsMediatorBandProps = {
 };
 
 /**
- * A quiet line for community health mediators under the help options:
- * one sentence and one link, no box of its own, so it never competes with
- * the patient paths above it.
- * Sapphire icon and link, like every other link on the page: amber is kept
- * for warning states.
+ * Anchored band for community health mediators directly beneath the patient
+ * bento grid: matching p-6 sm:p-7 horizontal alignment, sapphire icon plate
+ * and interactive link.
  */
 export function HelpOptionsMediatorBand({ className }: HelpOptionsMediatorBandProps) {
   const { lang, t } = useLanguage();
@@ -24,12 +22,17 @@ export function HelpOptionsMediatorBand({ className }: HelpOptionsMediatorBandPr
   return (
     <div
       className={cn(
-        "flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6",
+        "flex flex-col gap-3 rounded-xl border border-border bg-surface-subtle/55 px-6 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-7",
         className,
       )}
     >
-      <p className="flex items-start gap-3 text-[15px] leading-relaxed text-muted-foreground">
-        <UsersIcon className="mt-0.5 h-5 w-5 shrink-0 text-sapphire" />
+      <p className="flex items-start gap-3.5 text-[15px] leading-relaxed text-muted-foreground sm:items-center">
+        <span
+          aria-hidden="true"
+          className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-sapphire-border/70 bg-sapphire-soft text-sapphire sm:mt-0"
+        >
+          <UsersIcon className="h-4 w-4" />
+        </span>
         <span>
           <span className="font-semibold text-foreground">{mb.question}</span> {mb.description}
         </span>
@@ -37,10 +40,10 @@ export function HelpOptionsMediatorBand({ className }: HelpOptionsMediatorBandPr
 
       <Link
         href={withLangPrefix("/mediatori", lang)}
-        className="inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg text-sm font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:self-auto"
+        className="group inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg px-2.5 -ml-2.5 text-[14.5px] font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/60 hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:ml-0 sm:self-auto"
       >
-        {mb.cta}
-        <ArrowRightIcon className="h-4 w-4" />
+        <span>{mb.cta}</span>
+        <ArrowRightIcon className="h-4 w-4 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
       </Link>
     </div>
   );

@@ -22,13 +22,15 @@ const VOICE_LOCALES: Record<Lang, string[]> = {
   en: ["en-gb", "en-ie", "en-us", "en"],
   it: ["it-it", "it-ch", "it"],
   sq: ["sq-al", "sq-xk", "sq"],
+  hr: ["hr-HR", "hr"],
+  rom: [],
 };
 
 /** Engine naming conventions for natural, high quality voices (Chrome, Edge, Safari, Siri). */
 const QUALITY_HINTS = /(premium|enhanced|neural|natural|online|google|siri|wavenet|studio)/i;
-/** Apple's, Microsoft's, and Google's natural voices for Romanian, English, and Italian. */
+/** Apple's, Microsoft's, and Google's natural voices for Romanian, English, Croatian, and Italian. */
 const KNOWN_GOOD =
-  /\b(daniel|samantha|sonia|ryan|libby|ava|andrew|emma|brian|jenny|aria|guy|karen|moira|tessa|rishi|serena|kate|oliver|elsa|isabella|diego|giuseppe|fabiola|alice|federica|luca|paola|ioana|alina|emil|andrei|carmen|elena)\b/i;
+  /\b(daniel|samantha|sonia|ryan|libby|ava|andrew|emma|brian|jenny|aria|guy|karen|moira|tessa|rishi|serena|kate|oliver|elsa|isabella|diego|giuseppe|fabiola|alice|federica|luca|paola|ioana|alina|emil|andrei|carmen|elena|gabrijela|srecko|lana)\b/i;
 /** macOS novelty voices (sound effects, singing). Never acceptable for health information. */
 const NOVELTY =
   /^(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|kathy|ralph)\b/i;
@@ -60,7 +62,9 @@ export function pickVoice(
   lang: Lang,
   allowFallback = false
 ): SpeechSynthesisVoice | null {
-  const preferred = VOICE_LOCALES[lang] || [lang];
+  const rawPreferred = VOICE_LOCALES[lang] ?? [lang];
+  if (rawPreferred.length === 0) return null;
+  const preferred = rawPreferred.map(normalise);
   const language = preferred[preferred.length - 1];
 
   let best: { voice: SpeechSynthesisVoice; score: number } | null = null;

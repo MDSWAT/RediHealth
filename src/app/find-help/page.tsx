@@ -4,13 +4,16 @@ import { FindHelpPageContent } from "@/components/find-help/FindHelpPageContent"
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { countryForLang, countryFromHeaders, isInstituteCategory, isSupportedCountry } from "@/lib/medical-institutes";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
+import { findHelpTranslations } from "@/lib/i18n/find-help-translations";
 import { translations } from "@/lib/i18n/translations";
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
+  const description =
+    translations[lang]?.findHelpPage?.heroParagraph ?? findHelpTranslations[lang].page.heroParagraph;
   return {
     title: localizedPageTitle(lang, "find-help", "Pharmacies and clinics - RediHealth"),
-    description: translations[lang].findHelpPage.heroParagraph,
+    description,
   };
 }
 

@@ -28,6 +28,16 @@ const copy: Record<Lang, { title: string; body: string; action: string }> = {
     body: "Per proteggere i tuoi dati, i link del portale smettono di funzionare dopo 90 giorni. Scrivi la tua email e ti mandiamo subito un link nuovo.",
     action: "Chiedi un nuovo link",
   },
+  hr: {
+    title: "Ova poveznica je istekla",
+    body: "Radi zaštite tvojih podataka poveznice za portal prestaju vrijediti nakon 90 dana. Upiši svoju adresu e-pošte i odmah ćemo ti poslati novu poveznicu.",
+    action: "Zatraži novu poveznicu",
+  },
+  rom: {
+    title: "Kadava linko nakhlo",
+    body: "Te arakhas che date, e linkurya vash o portalo aven bi-zorale palo 90 divesa. Lekhav chi email adresa thaj sigo ka bichhalas tuke nevo linko.",
+    action: "Mang nevo linko",
+  },
 };
 
 export function PortalLinkExpired() {

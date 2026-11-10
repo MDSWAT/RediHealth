@@ -15,9 +15,11 @@ const publicPaths = [
   "/health-assistant",
   "/health-check",
   "/health-information",
+  "/news",
   "/prescription-review",
   "/privacy",
   "/report-issue",
+  "/stiri",
   "/terms",
   ...healthTopicSlugs.map((slug) => `/health-information/${slug}`),
 ];

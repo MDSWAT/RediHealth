@@ -4,14 +4,16 @@ import { memo, useEffect, useMemo, useState } from "react";
 import L from "leaflet";
 import { CircleMarker, MapContainer, Marker, Popup, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import type { InstituteCategory, MedicalInstitute } from "@/lib/medical-institutes";
+import { primaryPhoneHref, type InstituteCategory, type MedicalInstitute } from "@/lib/medical-institutes";
 
 type LatLng = { lat: number; lng: number };
 
 type Props = {
   institutes: MedicalInstitute[];
   selectedId: string | null;
+  hoveredId?: string | null;
   onSelect: (id: string) => void;
+  onHoverChange?: (id: string | null) => void;
   userLocation?: LatLng | null;
   categoryLabels?: Record<InstituteCategory, string>;
   searchThisAreaLabel?: string;
@@ -20,11 +22,14 @@ type Props = {
 };
 
 const iconCache = new Map<string, L.DivIcon>();
+const clusterIconCache = new Map<string, L.DivIcon>();
 
-// Places are sapphire; a place with an emergency department keeps the ruby, which this site
-// keeps for emergencies.
+// Places are sapphire (#1d3557); emergency facilities carry clinical ruby (#c62f3c).
 const PLACE_FILL = "#1d3557";
 const EMERGENCY_FILL = "#c62f3c";
+
+const CLUSTER_MAX_ZOOM = 14;
+const CLUSTER_GRID_PX = 52;
 
 function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -34,20 +39,16 @@ function prefersReducedMotion() {
 const PIN_W = 28;
 const PIN_H = 36;
 
-/**
- * At rest a place is a 10px dot with a white ring and no shadow, so 80 places in one city read
- * as a quiet scatter. The pin glyph shows only for the place being hovered, keyboard-focused or
- * chosen. Hover and focus are pure CSS (.fhs-place in globals.css), so the element under the
- * pointer is never rebuilt mid-click; only choosing a place swaps the icon. The dot keeps a 24px
- * tap square around it.
- */
-function placeIcon(selected: boolean, emergency: boolean) {
-  const key = `${selected}-${emergency}`;
+function placeIcon(selected: boolean, hovered: boolean, emergency: boolean) {
+  const key = `${selected}-${hovered}-${emergency}`;
   const cached = iconCache.get(key);
   if (cached) return cached;
   const fill = emergency ? EMERGENCY_FILL : PLACE_FILL;
+  const classes = ["fhs-place", selected ? "is-selected" : "", hovered ? "is-hovered" : ""]
+    .filter(Boolean)
+    .join(" ");
   const icon = L.divIcon({
-    className: selected ? "fhs-place is-selected" : "fhs-place",
+    className: classes,
     html:
       `<span class="fhs-place-hit"></span>` +
       `<span class="fhs-place-dot" style="background:${fill}"></span>` +
@@ -60,24 +61,61 @@ function placeIcon(selected: boolean, emergency: boolean) {
   return icon;
 }
 
+function clusterTileIcon(count: number, hasEmergency: boolean, hasHovered: boolean) {
+  const key = `${count}-${hasEmergency}-${hasHovered}`;
+  const cached = clusterIconCache.get(key);
+  if (cached) return cached;
+  const ringShadow = hasHovered
+    ? "0 0 0 3px rgba(29,53,87,0.28),0 4px 12px rgba(11,19,43,0.28)"
+    : "0 2px 8px rgba(11,19,43,0.22)";
+  const emergencyDot = hasEmergency
+    ? `<span aria-hidden="true" style="position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:9999px;background:${EMERGENCY_FILL};box-shadow:0 0 0 2px #ffffff;"></span>`
+    : "";
+  const icon = L.divIcon({
+    className: "fhs-cluster-icon bg-transparent border-0",
+    html: `<div class="rounded-lg bg-sapphire text-white" style="position:relative;width:44px;height:44px;border-radius:8px;background:${PLACE_FILL};color:#ffffff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;border:2px solid #ffffff;box-shadow:${ringShadow};">${count}${emergencyDot}</div>`,
+    iconSize: [44, 44],
+    iconAnchor: [22, 22],
+  });
+  clusterIconCache.set(key, icon);
+  return icon;
+}
+
 type PlaceMarkerProps = {
   institute: MedicalInstitute;
   selected: boolean;
+  hovered: boolean;
   categoryLabel: string;
   onSelect: (id: string) => void;
+  onHoverChange?: (id: string | null) => void;
 };
 
-const PlaceMarker = memo(function PlaceMarker({ institute, selected, categoryLabel, onSelect }: PlaceMarkerProps) {
+const PlaceMarker = memo(function PlaceMarker({
+  institute,
+  selected,
+  hovered,
+  categoryLabel,
+  onSelect,
+  onHoverChange,
+}: PlaceMarkerProps) {
   const { id } = institute;
-  const eventHandlers = useMemo<L.LeafletEventHandlerFnMap>(() => ({ click: () => onSelect(id) }), [id, onSelect]);
+  const eventHandlers = useMemo<L.LeafletEventHandlerFnMap>(
+    () => ({
+      click: () => onSelect(id),
+      mouseover: () => onHoverChange?.(id),
+      mouseout: () => onHoverChange?.(null),
+    }),
+    [id, onSelect, onHoverChange],
+  );
   const location = [institute.address, institute.city].filter(Boolean).join(", ");
+  const phoneHref = primaryPhoneHref(institute.phone);
 
   return (
     <Marker
       position={[institute.lat, institute.lng]}
-      icon={placeIcon(selected, institute.emergency)}
+      icon={placeIcon(selected, hovered, institute.emergency)}
       title={institute.name}
-      zIndexOffset={selected ? 1000 : 0}
+      zIndexOffset={selected ? 1000 : hovered ? 600 : 0}
       eventHandlers={eventHandlers}
     >
       <Popup>
@@ -90,16 +128,163 @@ const PlaceMarker = memo(function PlaceMarker({ institute, selected, categoryLab
             {location}
           </>
         ) : null}
-        {institute.phone ? (
+        {institute.phone && phoneHref ? (
           <>
             <br />
-            <a href={`tel:${institute.phone.replace(/[^\d+]/g, "")}`}>{institute.phone}</a>
+            <a
+              href={phoneHref}
+              className="mt-1 inline-flex min-h-11 items-center rounded-sm font-semibold underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              {institute.phone}
+            </a>
           </>
         ) : null}
       </Popup>
     </Marker>
   );
 });
+
+type ClusterGroup = {
+  key: string;
+  lat: number;
+  lng: number;
+  items: MedicalInstitute[];
+  hasEmergency: boolean;
+};
+
+const ClusterMarker = memo(function ClusterMarker({
+  cluster,
+  hasHovered,
+}: {
+  cluster: ClusterGroup;
+  hasHovered: boolean;
+}) {
+  const map = useMap();
+  const eventHandlers = useMemo<L.LeafletEventHandlerFnMap>(
+    () => ({
+      click: () => {
+        const bounds = L.latLngBounds(
+          cluster.items.map((item) => [item.lat, item.lng] as [number, number]),
+        );
+        if (prefersReducedMotion()) {
+          map.fitBounds(bounds, { padding: [44, 44], maxZoom: 16, animate: false });
+        } else {
+          map.flyToBounds(bounds, { padding: [44, 44], maxZoom: 16, duration: 0.55 });
+        }
+      },
+    }),
+    [cluster.items, map],
+  );
+
+  return (
+    <Marker
+      position={[cluster.lat, cluster.lng]}
+      icon={clusterTileIcon(cluster.items.length, cluster.hasEmergency, hasHovered)}
+      zIndexOffset={hasHovered ? 550 : 200}
+      eventHandlers={eventHandlers}
+    />
+  );
+});
+
+function ClusteredInstitutesLayer({
+  institutes,
+  selectedId,
+  hoveredId,
+  categoryLabels,
+  onSelect,
+  onHoverChange,
+}: {
+  institutes: MedicalInstitute[];
+  selectedId: string | null;
+  hoveredId?: string | null;
+  categoryLabels?: Record<InstituteCategory, string>;
+  onSelect: (id: string) => void;
+  onHoverChange?: (id: string | null) => void;
+}) {
+  const map = useMap();
+  const [zoom, setZoom] = useState(() => map.getZoom());
+
+  useMapEvents({
+    zoomend: () => setZoom(map.getZoom()),
+  });
+
+  const { singles, clusters } = useMemo(() => {
+    if (zoom >= CLUSTER_MAX_ZOOM || institutes.length <= 1) {
+      return { singles: institutes, clusters: [] as ClusterGroup[] };
+    }
+
+    const buckets = new Map<
+      string,
+      { sumLat: number; sumLng: number; items: MedicalInstitute[]; hasEmergency: boolean }
+    >();
+    const standalone: MedicalInstitute[] = [];
+
+    // Single O(N) screen-space pixel-grid pass (52px cells)
+    for (let i = 0; i < institutes.length; i += 1) {
+      const inst = institutes[i];
+      if (inst.id === selectedId) {
+        standalone.push(inst);
+        continue;
+      }
+      const pt = map.project([inst.lat, inst.lng], zoom);
+      const gx = Math.floor(pt.x / CLUSTER_GRID_PX);
+      const gy = Math.floor(pt.y / CLUSTER_GRID_PX);
+      const cellKey = `${gx}:${gy}`;
+      const existing = buckets.get(cellKey);
+      if (existing) {
+        existing.sumLat += inst.lat;
+        existing.sumLng += inst.lng;
+        existing.items.push(inst);
+        if (inst.emergency) existing.hasEmergency = true;
+      } else {
+        buckets.set(cellKey, {
+          sumLat: inst.lat,
+          sumLng: inst.lng,
+          items: [inst],
+          hasEmergency: inst.emergency,
+        });
+      }
+    }
+
+    const grouped: ClusterGroup[] = [];
+    buckets.forEach((bucket, cellKey) => {
+      if (bucket.items.length === 1) {
+        standalone.push(bucket.items[0]);
+      } else {
+        const len = bucket.items.length;
+        grouped.push({
+          key: `cluster-${zoom}-${cellKey}`,
+          lat: bucket.sumLat / len,
+          lng: bucket.sumLng / len,
+          items: bucket.items,
+          hasEmergency: bucket.hasEmergency,
+        });
+      }
+    });
+
+    return { singles: standalone, clusters: grouped };
+  }, [institutes, zoom, selectedId, map]);
+
+  return (
+    <>
+      {clusters.map((cluster) => {
+        const hasHovered = Boolean(hoveredId && cluster.items.some((item) => item.id === hoveredId));
+        return <ClusterMarker key={cluster.key} cluster={cluster} hasHovered={hasHovered} />;
+      })}
+      {singles.map((institute) => (
+        <PlaceMarker
+          key={institute.id}
+          institute={institute}
+          selected={institute.id === selectedId}
+          hovered={institute.id === hoveredId}
+          categoryLabel={categoryLabels ? categoryLabels[institute.category] : institute.category}
+          onSelect={onSelect}
+          onHoverChange={onHoverChange}
+        />
+      ))}
+    </>
+  );
+}
 
 function MapController({
   institutes,
@@ -111,6 +296,23 @@ function MapController({
   userLocation?: LatLng | null;
 }) {
   const map = useMap();
+
+  useEffect(() => {
+    const container = map.getContainer();
+    let rafId: number | null = null;
+    const ro = new ResizeObserver(() => {
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+      rafId = window.requestAnimationFrame(() => {
+        rafId = null;
+        map.invalidateSize({ pan: false });
+      });
+    });
+    ro.observe(container);
+    return () => {
+      ro.disconnect();
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
+  }, [map]);
 
   useEffect(() => {
     const points: [number, number][] = institutes.map((institute) => [institute.lat, institute.lng]);
@@ -144,8 +346,6 @@ function SearchAreaButton({ label, onSearch }: { label: string; onSearch: (cente
   useEffect(() => {
     const container = map.getContainer();
     const markMoved = () => setMoved(true);
-    // Wheel and pinch zooms are the reader's own, unlike fitBounds/flyTo. A plain tap on a
-    // place is not a move, so a touch counts only once two fingers or a 10px drag are involved.
     let start: { x: number; y: number } | null = null;
     const onTouchStart = (event: TouchEvent) => {
       const touch = event.touches[0];
@@ -178,7 +378,7 @@ function SearchAreaButton({ label, onSearch }: { label: string; onSearch: (cente
           setMoved(false);
           onSearch({ lat: center.lat, lng: center.lng });
         }}
-        className="pointer-events-auto min-h-10 rounded-lg bg-card px-4 text-sm font-semibold text-sapphire shadow-md ring-1 ring-black/5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="pointer-events-auto min-h-11 rounded-lg bg-card px-4 text-sm font-semibold text-sapphire shadow-md ring-1 ring-black/5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {label}
       </button>
@@ -189,7 +389,9 @@ function SearchAreaButton({ label, onSearch }: { label: string; onSearch: (cente
 export default function InstitutesMapInner({
   institutes,
   selectedId,
+  hoveredId = null,
   onSelect,
+  onHoverChange,
   userLocation,
   categoryLabels,
   searchThisAreaLabel,
@@ -227,20 +429,19 @@ export default function InstitutesMapInner({
           <CircleMarker
             center={[userLocation.lat, userLocation.lng]}
             radius={8}
-            pathOptions={{ color: "#ffffff", weight: 3, fillColor: "#2563eb", fillOpacity: 1 }}
+            pathOptions={{ color: "#ffffff", weight: 3, fillColor: PLACE_FILL, fillOpacity: 1 }}
           >
             {youAreHereLabel ? <Tooltip>{youAreHereLabel}</Tooltip> : null}
           </CircleMarker>
         ) : null}
-        {institutes.map((institute) => (
-          <PlaceMarker
-            key={institute.id}
-            institute={institute}
-            selected={institute.id === selectedId}
-            categoryLabel={categoryLabels ? categoryLabels[institute.category] : institute.category}
-            onSelect={onSelect}
-          />
-        ))}
+        <ClusteredInstitutesLayer
+          institutes={institutes}
+          selectedId={selectedId}
+          hoveredId={hoveredId}
+          categoryLabels={categoryLabels}
+          onSelect={onSelect}
+          onHoverChange={onHoverChange}
+        />
       </MapContainer>
     </div>
   );

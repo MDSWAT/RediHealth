@@ -22,9 +22,13 @@ function getPreferredLang(request: NextRequest) {
 
   const acceptLanguage = request.headers.get("accept-language") || "";
   for (const part of acceptLanguage.split(",")) {
-    const code = part.trim().slice(0, 2).toLowerCase();
-    if (isSupportedLang(code)) {
-      return code;
+    const tag = part.trim().split(";")[0]?.trim().toLowerCase() || "";
+    const primary = tag.split("-")[0] || "";
+    if (isSupportedLang(primary)) {
+      return primary;
+    }
+    if (primary === "rmy" && isSupportedLang("rom")) {
+      return "rom";
     }
   }
 

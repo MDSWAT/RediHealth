@@ -46,6 +46,10 @@ function useSafeLanguageContext(): { lang: Lang } {
   }
 }
 
+function pickLocale(entry: Record<"ro", string> & Partial<Record<Lang, string>>, lang: Lang): string {
+  return entry[lang] ?? entry.ro;
+}
+
 export function RelatedTopicsCarousel({
   topics,
   className = "",
@@ -66,7 +70,7 @@ export function RelatedTopicsCarousel({
         id="related-topics-heading"
         className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
       >
-        {s.heading[currentLang]}
+        {pickLocale(s.heading, currentLang)}
       </h2>
 
       {/* One surface with hairline rows (one column on phones, three on wide screens). */}

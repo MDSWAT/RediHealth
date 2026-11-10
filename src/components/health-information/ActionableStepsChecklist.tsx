@@ -31,6 +31,14 @@ function useSafeLanguageContext(): { lang: Lang } {
   }
 }
 
+function pickLocale(entry: Record<"ro", string> & Partial<Record<Lang, string>>, lang: Lang): string {
+  return entry[lang] ?? entry.ro;
+}
+
+function pickSpeechLang(lang: Lang): string {
+  return (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ?? (lang === "hr" ? "hr-HR" : "ro-RO");
+}
+
 export function ActionableStepsChecklist({
   slug,
   topicTitle,
@@ -41,7 +49,7 @@ export function ActionableStepsChecklist({
   const { lang: ctxLang } = useSafeLanguageContext();
   const currentLang: Lang = lang ?? ctxLang ?? "ro";
   const s = HEALTH_DETAIL_SHARED_STRINGS.actionableSteps;
-  const speechLang = SPEECH_LANG_BY_LOCALE[currentLang] ?? "ro-RO";
+  const speechLang = pickSpeechLang(currentLang);
 
   const storageKey = `redihealth_habits_${slug}`;
   // Starts empty on the server and on first paint; saved ticks load after hydration.
@@ -90,17 +98,17 @@ export function ActionableStepsChecklist({
             id="steps-heading"
             className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
           >
-            {s.heading[currentLang]}
+            {pickLocale(s.heading, currentLang)}
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            {s.subtitleTemplate[currentLang].replace("{topic}", topicTitle.toLowerCase())}
+            {pickLocale(s.subtitleTemplate, currentLang).replace("{topic}", topicTitle.toLowerCase())}
           </p>
         </div>
 
         {totalCount > 0 && (
           <div className="print:hidden">
             <span className="text-sm font-medium tabular-nums text-muted-foreground">
-              {s.completedBadge[currentLang]
+              {pickLocale(s.completedBadge, currentLang)
                 .replace("{completed}", String(completedCount))
                 .replace("{total}", String(totalCount))}
             </span>
@@ -159,7 +167,7 @@ export function ActionableStepsChecklist({
 
               <InlineAudioNarratorButton
                 textToSpeak={`${step.title}. ${step.description}`}
-                label={s.listenStepLabel[currentLang].replace("{title}", step.title)}
+                label={pickLocale(s.listenStepLabel, currentLang).replace("{title}", step.title)}
                 lang={speechLang}
                 variant="ghost"
                 className="-my-2 -mr-2 shrink-0"

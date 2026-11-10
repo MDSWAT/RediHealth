@@ -67,6 +67,30 @@ export const heroCopy = {
     card3Title: "Parli con un medico da casa",
     card3Desc: "Porta un tablet e gli apparecchi per pressione, ossigeno e zucchero nel sangue. Parli con un medico al telefono.",
   },
+  hr: {
+    title: "Zdravstveni medijator ti može pomoći",
+    subtitle: "Zdravstveni medijator pomaže ti otići liječniku, riješiti osobne dokumente i zdravstveno osiguranje te brinuti o djeci i starijima.",
+    ctaRequest: "Zatraži medijatora",
+    ctaSignIn: "Prijava za medijatore",
+    card1Title: "Upis i posjeti liječniku",
+    card1Desc: "Ide s tobom obiteljskom liječniku, pomaže oko naručivanja i objašnjava ti recepte i upute.",
+    card2Title: "Dokumenti i zdravstveno osiguranje",
+    card2Desc: "Pomaže oko rodnog lista, osobne iskaznice i zdravstvenog osiguranja HZZO za cijelu obitelj.",
+    card3Title: "Razgovor s liječnikom od kuće",
+    card3Desc: "Dolazi s tabletom i uređajima za mjerenje krvnog tlaka, zasićenosti kisikom (SpO2) i glukoze u krvi. S liječnikom razgovaraš telefonom.",
+  },
+  rom: {
+    title: "Ekh sastipnasko mediatori zhutil tut",
+    subtitle: "O sastipnasko mediatori zhutil tut te zhas ko doktori, te keres che lila thaj e sastipnaski siguranciya, thaj te arakhes e chhavoren thaj e phuren.",
+    ctaRequest: "Mang ekhe mediatores",
+    ctaSignIn: "Khuves andre sar mediatori",
+    card1Title: "Lekhavipe thaj vizite ko doktori",
+    card1Desc: "Zhal tusa ko familiyako doktori, zhutil tut e vramenca thaj phenel tuke lokhes e recepte thaj sikavimata.",
+    card2Title: "Lila thaj sastipnaski siguranciya",
+    card2Desc: "Zhutil tut e bijandipnaske lilesa, buletinesa thaj sastipnaske siguranciyasa vash sasti familiya.",
+    card3Title: "Des svato ekhe doktoresa katar khere",
+    card3Desc: "Avel tabletesa thaj aparatenca vash phurdimos e ratesko (tensiyona), oksigeno and-o rat (SpO2) thaj zaharo and-o rat. Des svato e doktoresa ko telefono.",
+  },
 };
 
 export function MediatorPublicHero() {

@@ -46,6 +46,10 @@ function useSafeLang(langProp?: Lang): Lang {
   return langProp ?? hookLang;
 }
 
+function pickLocale(entry: Record<"ro", string> & Partial<Record<Lang, string>>, lang: Lang): string {
+  return entry[lang] ?? entry.ro;
+}
+
 export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulatorProps) {
   const lang = useSafeLang(langProp);
 
@@ -80,8 +84,8 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
   const sliders = [
     {
       id: "bp-systolic-slider",
-      label: ui.systolicLabel[lang],
-      hint: ui.systolicSubtext[lang],
+      label: pickLocale(ui.systolicLabel, lang),
+      hint: pickLocale(ui.systolicSubtext, lang),
       value: systolic,
       min: 80,
       max: 220,
@@ -91,8 +95,8 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
     },
     {
       id: "bp-diastolic-slider",
-      label: ui.diastolicLabel[lang],
-      hint: ui.diastolicSubtext[lang],
+      label: pickLocale(ui.diastolicLabel, lang),
+      hint: pickLocale(ui.diastolicSubtext, lang),
       value: diastolic,
       min: 40,
       max: 140,
@@ -106,14 +110,14 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
       {/* 1. What the two numbers mean */}
       <section aria-labelledby="bp-simulator-title" className={SECTION_CLASS}>
         <h3 id="bp-simulator-title" className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-          {ui.title[lang]}
+          {pickLocale(ui.title, lang)}
         </h3>
         <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-base">
-          {ui.subtitle[lang]}
+          {pickLocale(ui.subtitle, lang)}
         </p>
 
         <div className="mt-5">
-          <p className="text-xs font-medium text-muted-foreground">{ui.quickExamples[lang]}</p>
+          <p className="text-xs font-medium text-muted-foreground">{pickLocale(ui.quickExamples, lang)}</p>
           {/* Phones: one row that scrolls sideways (no orphan chip). From sm up: equal cells. */}
           <div className="-mx-5 mt-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0">
           <div className="flex w-max gap-1.5 sm:w-auto">
@@ -138,7 +142,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                       : "border-border bg-card text-foreground hover:border-foreground/40 hover:bg-muted/40"
                   }`}
                 >
-                  {BP_PRESET_STRINGS[preset.key][lang]}
+                  {pickLocale(BP_PRESET_STRINGS[preset.key], lang)}
                 </button>
               );
             })}
@@ -170,7 +174,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                   step={1}
                   value={s.value}
                   onChange={(e) => s.onChange(Number(e.target.value))}
-                  aria-valuetext={`${s.value} mmHg, ${evaluation.label[lang]}`}
+                  aria-valuetext={`${s.value} mmHg, ${pickLocale(evaluation.label, lang)}`}
                   className="w-full cursor-pointer accent-sapphire"
                 />
                 {/*
@@ -232,7 +236,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
               </svg>
             )}
           </span>
-          <span className="leading-relaxed">{ui.redFlagCheckbox[lang]}</span>
+          <span className="leading-relaxed">{pickLocale(ui.redFlagCheckbox, lang)}</span>
         </label>
 
         <div role="status" aria-live="polite" className="mt-6 border-t border-border pt-5">
@@ -244,32 +248,32 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
               <span className="text-sm text-muted-foreground">mmHg</span>
             </div>
             <span className={`inline-flex items-center rounded-md border px-3 py-1 text-xs font-semibold sm:text-sm ${tone.badge}`}>
-              {evaluation.label[lang]}
+              {pickLocale(evaluation.label, lang)}
             </span>
           </div>
 
           <div className="mt-4 grid grid-cols-1 gap-6 border-t border-border/70 pt-4 sm:grid-cols-2">
             <div>
               <p className="text-sm font-semibold text-foreground">
-                {ui.physiologicLabel[lang].replace(/:$/, "")}
+                {pickLocale(ui.physiologicLabel, lang).replace(/:$/, "")}
               </p>
               <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                {evaluation.physiologicEffect[lang]}
+                {pickLocale(evaluation.physiologicEffect, lang)}
               </p>
             </div>
             <div>
               <p className="text-sm font-semibold text-foreground">
-                {ui.actionProtocolLabel[lang].replace(/:$/, "")}
+                {pickLocale(ui.actionProtocolLabel, lang).replace(/:$/, "")}
               </p>
               <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                {evaluation.actionProtocol[lang]}
+                {pickLocale(evaluation.actionProtocol, lang)}
               </p>
             </div>
           </div>
 
           {evaluation.isEmergency112 && (
             <div className="mt-4 flex flex-col gap-3 border-t border-border/70 pt-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm font-semibold leading-relaxed text-foreground">{ui.emergencyNotice[lang]}</p>
+              <p className="text-sm font-semibold leading-relaxed text-foreground">{pickLocale(ui.emergencyNotice, lang)}</p>
               <button
                 type="button"
                 onClick={() => setDialerOpen(true)}
@@ -277,7 +281,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                 className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <PhoneIcon className="h-4 w-4" />
-                {ui.call112Btn[lang]}
+                {pickLocale(ui.call112Btn, lang)}
               </button>
             </div>
           )}
@@ -285,15 +289,15 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
 
         <HeartAnatomyPanel lang={lang} className="mt-8 border-t border-border pt-7" />
 
-        <p className="mt-6 text-xs leading-relaxed text-muted-foreground">{ui.guidelineBadge[lang]}</p>
+        <p className="mt-6 text-xs leading-relaxed text-muted-foreground">{pickLocale(ui.guidelineBadge, lang)}</p>
       </section>
 
       {/* 2. Measuring at home, step by step */}
       <section aria-labelledby="bp-steps-title" className={SECTION_CLASS}>
         <h3 id="bp-steps-title" className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-          {esh.headerTitle[lang]}
+          {pickLocale(esh.headerTitle, lang)}
         </h3>
-        <p className="mt-1 text-sm text-muted-foreground">{esh.headerEyebrow[lang]}</p>
+        <p className="mt-1 text-sm text-muted-foreground">{pickLocale(esh.headerEyebrow, lang)}</p>
 
         {/* Step picker: one surface of numbered cells split by hairlines. */}
         <ol className="mt-5 grid grid-cols-1 divide-y divide-border overflow-hidden rounded-lg border border-border md:grid-cols-4 md:divide-x md:divide-y-0">
@@ -318,8 +322,8 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                     {st.number}
                   </span>
                   <span className="text-sm font-semibold leading-snug text-foreground break-words">
-                    <span className="sr-only">{esh.stepPrefix[lang]} {st.number}: </span>
-                    {st.title[lang]}
+                    <span className="sr-only">{pickLocale(esh.stepPrefix, lang)} {st.number}: </span>
+                    {pickLocale(st.title, lang)}
                   </span>
                 </button>
               </li>
@@ -329,26 +333,26 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
 
         <div className="mt-6 border-t border-border pt-5" aria-live="polite">
           <p className="max-w-prose text-base leading-relaxed text-foreground">
-            <span className="font-semibold">{esh.actionLabel[lang]}</span> {currentStep.action[lang]}
+            <span className="font-semibold">{pickLocale(esh.actionLabel, lang)}</span> {pickLocale(currentStep.action, lang)}
           </p>
 
           <div className="mt-5 grid grid-cols-1 gap-6 border-t border-border/70 pt-5 sm:grid-cols-2">
             <div>
               <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
                 <CheckCircleIcon className="h-4 w-4 shrink-0 text-live-sage" />
-                {esh.goodToKnowLabel[lang]}
+                {pickLocale(esh.goodToKnowLabel, lang)}
               </p>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                {currentStep.doctorTip[lang]}
+                {pickLocale(currentStep.doctorTip, lang)}
               </p>
             </div>
             <div>
               <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
                 <AlertCircleIcon className="h-4 w-4 shrink-0 text-amber-care" />
-                {esh.mistakeLabel[lang]}
+                {pickLocale(esh.mistakeLabel, lang)}
               </p>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                {currentStep.mistakeToAvoid[lang]}
+                {pickLocale(currentStep.mistakeToAvoid, lang)}
               </p>
             </div>
           </div>
@@ -361,7 +365,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
               disabled={activeStepIndex === 0}
               className="-ml-3 inline-flex min-h-[44px] items-center rounded-lg px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:text-muted-foreground disabled:hover:bg-transparent"
             >
-              {esh.prevStep[lang]}
+              {pickLocale(esh.prevStep, lang)}
             </button>
             <button
               type="button"
@@ -369,7 +373,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
               disabled={activeStepIndex === steps.length - 1}
               className="inline-flex min-h-[44px] items-center rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
             >
-              {esh.nextStep[lang]}
+              {pickLocale(esh.nextStep, lang)}
             </button>
           </div>
         </div>

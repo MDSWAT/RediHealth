@@ -30,9 +30,9 @@ export interface SpeechEngineState {
 
 /** Engine naming conventions for natural, high-quality voices (Chrome, Edge, Safari, Apple Siri). */
 const QUALITY_HINTS = /(natural|premium|enhanced|neural|online|google|siri|wavenet|studio)/i;
-/** Known natural Romanian, English, and Italian voice names across Apple, Microsoft, and Google engines. */
+/** Known natural Romanian, English, Croatian, and Italian voice names across Apple, Microsoft, and Google engines. */
 const KNOWN_GOOD =
-  /\b(ioana|alina|emil|andrei|carmen|elena|sonia|ryan|libby|daniel|samantha|ava|andrew|emma|brian|jenny|aria|guy|karen|moira|tessa|rishi|serena|kate|oliver|elsa|isabella|diego|giuseppe|fabiola|alice|federica|luca|paola)\b/i;
+  /\b(ioana|alina|emil|andrei|carmen|elena|sonia|ryan|libby|daniel|samantha|ava|andrew|emma|brian|jenny|aria|guy|karen|moira|tessa|rishi|serena|kate|oliver|elsa|isabella|diego|giuseppe|fabiola|alice|federica|luca|paola|gabrijela|srecko|lana)\b/i;
 /** Novelty voices never acceptable for medical/health information. */
 const NOVELTY =
   /^(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|kathy|ralph)\b/i;
@@ -43,12 +43,13 @@ const ROBOTIC = /^(eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley)\b/i;
 const PREFERRED_REGIONAL_TAGS: Record<string, string[]> = {
   ro: ["ro-ro", "ro-md", "ro"],
   en: ["en-gb", "en-us", "en-ie", "en-au", "en"],
+  hr: ["hr-hr", "hr"],
   it: ["it-it", "it-ch", "it"],
 };
 
 /**
  * Normalizes clinical numbers, ranges, and units into natural spoken words for
- * Romanian, English, and Italian so speech engines read them like a human clinician.
+ * Romanian, English, Croatian, and Italian so speech engines read them like a human clinician.
  */
 export function formatSpeechText(text: string, lang = "ro-RO"): string {
   if (!text) return "";
@@ -73,6 +74,13 @@ export function formatSpeechText(text: string, lang = "ro-RO"): string {
       .replace(/\bmmHg\b/g, "millimeters of mercury")
       .replace(/\bmg\/dL\b/gi, "milligrams per deciliter")
       .replace(/\bkm\/h\b/gi, "kilometers per hour");
+  } else if (prefix === "hr") {
+    out = out
+      .replace(/(\d+)\s*[–—-]\s*(\d+)/g, "od $1 do $2")
+      .replace(/\b112\b/g, "jedan jedan dva")
+      .replace(/\bmmHg\b/g, "milimetara živinog stupca")
+      .replace(/\bmg\/dL\b/gi, "miligrama po decilitru")
+      .replace(/\bkm\/h\b/gi, "kilometara na sat");
   } else if (prefix === "it") {
     out = out
       .replace(/(\d+)\s*[–—-]\s*(\d+)/g, "da $1 a $2")

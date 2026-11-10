@@ -32,4 +32,16 @@ export const errorTranslations: Record<Lang, ErrorCopy> = {
     retry: "Riprova",
     home: "Vai alla pagina iniziale",
   },
+  hr: {
+    title: "Nešto je pošlo po zlu",
+    body: "Stranica se nije učitala. Pokušaj ponovno. Ako i dalje ne radi, vrati se za nekoliko minuta.",
+    retry: "Pokušaj ponovno",
+    home: "Idi na početnu stranicu",
+  },
+  rom: {
+    title: "Vareso na gelo mishto",
+    body: "I rig na putardili. Zumav palem. Te inke na kerel buchi, av palpale palo nekobor minute.",
+    retry: "Zumav palem",
+    home: "Zha ki angluni rig",
+  },
 };

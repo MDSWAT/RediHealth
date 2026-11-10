@@ -1,12 +1,25 @@
 import type { Lang } from "@/lib/i18n/translations";
 
 /**
- * Every string the encrypted offline workspace (/offline, staff only) shows, in ro, en, sq and it.
+ * Every string the encrypted offline workspace (/offline, staff only) shows, in ro, en, sq, it, hr and rom.
  * Staff screens: neutral and short. Error texts thrown by src/lib/offline-vault.ts and
  * src/lib/offline-store.ts are not here; they come from those libraries.
  */
 export type OfflineCopy = {
   title: string;
+  encryptionBadge: string;
+  storageMeterLabel: string;
+  storageQuotaSummary: (usedMb: string, quotaMb: string) => string;
+  idlePauseIn: (clock: string) => string;
+  stayUnlocked: string;
+  vaultDetailsToggle: string;
+  diffFieldHeader: string;
+  entityLabels: {
+    patient: string;
+    request: string;
+  };
+  attachmentSummary: (count: number) => string;
+  fieldLabels: Record<string, string>;
   online: string;
   offline: string;
   intro: string;
@@ -77,6 +90,41 @@ function roCount(count: number) {
 export const offlineCopy: Record<Lang, OfflineCopy> = {
   ro: {
     title: "Spațiu offline criptat",
+    encryptionBadge: "AES-GCM 256-bit",
+    storageMeterLabel: "Stocare locală criptată",
+    storageQuotaSummary: (usedMb, quotaMb) => `${usedMb} MB folosiți din ${quotaMb} MB disponibili`,
+    idlePauseIn: (clock) => `Pauză automată în ${clock}`,
+    stayUnlocked: "Rămâi deblocat",
+    vaultDetailsToggle: "Detalii securitate",
+    diffFieldHeader: "Câmp clinic",
+    entityLabels: {
+      patient: "Pacient",
+      request: "Solicitare",
+    },
+    attachmentSummary: (count) =>
+      count === 1 ? "1 document sau imagine atașată" : `${roCount(count)} documente sau imagini atașate`,
+    fieldLabels: {
+      full_name: "Nume și prenume",
+      phone: "Telefon",
+      email: "Email",
+      date_of_birth: "Data nașterii",
+      gender: "Gen",
+      address: "Adresă",
+      county: "Județ",
+      status: "Status îngrijire",
+      priority: "Prioritate",
+      condition_notes: "Simptome și observații",
+      medical_history: "Istoric medical și alergii",
+      treatment_plan: "Plan de tratament",
+      followups: "Controale programate",
+      photos: "Imagini și documente",
+      intake: "Fișă inițială",
+      profile_photo: "Fotografie de profil",
+      description: "Descriere solicitare",
+      internal_notes: "Note interne",
+      assigned_worker_id: "Personal alocat",
+      patient_id: "Dosar pacient",
+    },
     online: "Online",
     offline: "Offline",
     intro:
@@ -107,8 +155,8 @@ export const offlineCopy: Record<Lang, OfflineCopy> = {
     reviewTitle: "Verifică diferențele",
     reviewBody:
       "Compară câmpurile modificate cu datele online. Pentru conținutul documentelor și imaginilor, deschide pacientul în panoul online. Datele nu sunt suprascrise fără alegerea ta explicită.",
-    deviceValue: "Dispozitiv",
-    onlineValue: "Online",
+    deviceValue: "Modificare pe dispozitiv",
+    onlineValue: "Dosar online actual",
     notInSnapshot: "(nu este disponibil în datele autorizate actuale)",
     empty: "(gol)",
     useOnline: "Folosește datele online și renunță la modificare",
@@ -147,6 +195,41 @@ export const offlineCopy: Record<Lang, OfflineCopy> = {
   },
   en: {
     title: "Encrypted offline workspace",
+    encryptionBadge: "AES-GCM 256-bit",
+    storageMeterLabel: "Encrypted device storage",
+    storageQuotaSummary: (usedMb, quotaMb) => `${usedMb} MB used of ${quotaMb} MB available`,
+    idlePauseIn: (clock) => `Idle pause in ${clock}`,
+    stayUnlocked: "Stay unlocked",
+    vaultDetailsToggle: "Vault details",
+    diffFieldHeader: "Clinical field",
+    entityLabels: {
+      patient: "Patient",
+      request: "Request",
+    },
+    attachmentSummary: (count) =>
+      count === 1 ? "1 attached file or image" : `${count} attached files or images`,
+    fieldLabels: {
+      full_name: "Full name",
+      phone: "Phone",
+      email: "Email",
+      date_of_birth: "Date of birth",
+      gender: "Gender",
+      address: "Address",
+      county: "County or region",
+      status: "Care status",
+      priority: "Priority",
+      condition_notes: "Symptoms and condition notes",
+      medical_history: "Medical history and allergies",
+      treatment_plan: "Treatment plan",
+      followups: "Scheduled follow-ups",
+      photos: "Images and documents",
+      intake: "Initial intake",
+      profile_photo: "Profile photo",
+      description: "Request description",
+      internal_notes: "Internal notes",
+      assigned_worker_id: "Assigned staff member",
+      patient_id: "Linked patient record",
+    },
     online: "Online",
     offline: "Offline",
     intro:
@@ -175,8 +258,8 @@ export const offlineCopy: Record<Lang, OfflineCopy> = {
     reviewTitle: "Review conflict",
     reviewBody:
       "Compare your changed fields with the current online record. Open the patient online to inspect attachment and image content. No overwrite occurs until you explicitly choose.",
-    deviceValue: "Device",
-    onlineValue: "Online",
+    deviceValue: "Device edit",
+    onlineValue: "Current online record",
     notInSnapshot: "(not in current authorized snapshot)",
     empty: "(empty)",
     useOnline: "Use online and discard this pending edit",
@@ -212,6 +295,41 @@ export const offlineCopy: Record<Lang, OfflineCopy> = {
   },
   sq: {
     title: "Hapësirë offline e enkriptuar",
+    encryptionBadge: "AES-GCM 256-bit",
+    storageMeterLabel: "Ruajtja e enkriptuar e pajisjes",
+    storageQuotaSummary: (usedMb, quotaMb) => `${usedMb} MB të përdorura nga ${quotaMb} MB në dispozicion`,
+    idlePauseIn: (clock) => `Pushim automatik për ${clock}`,
+    stayUnlocked: "Qëndro hapur",
+    vaultDetailsToggle: "Hollësitë e sigurisë",
+    diffFieldHeader: "Fusha klinike",
+    entityLabels: {
+      patient: "Pacient",
+      request: "Kërkesë",
+    },
+    attachmentSummary: (count) =>
+      count === 1 ? "1 dokument ose foto e bashkëngjitur" : `${count} dokumente ose foto të bashkëngjitura`,
+    fieldLabels: {
+      full_name: "Emri dhe mbiemri",
+      phone: "Telefoni",
+      email: "Email",
+      date_of_birth: "Datëlindja",
+      gender: "Gjinia",
+      address: "Adresa",
+      county: "Qarku ose rajoni",
+      status: "Statusi i kujdesit",
+      priority: "Prioriteti",
+      condition_notes: "Simptomat dhe shënimet",
+      medical_history: "Historiku mjekësor dhe alergjitë",
+      treatment_plan: "Plani i trajtimit",
+      followups: "Kontrollet e planifikuara",
+      photos: "Imazhe dhe dokumente",
+      intake: "Formulari fillestar",
+      profile_photo: "Foto e profilit",
+      description: "Përshkrimi i kërkesës",
+      internal_notes: "Shënime të brendshme",
+      assigned_worker_id: "Stafi ose mediator i caktuar",
+      patient_id: "Dosja e pacientit",
+    },
     online: "Në linjë",
     offline: "Jashtë linje",
     intro:
@@ -242,8 +360,8 @@ export const offlineCopy: Record<Lang, OfflineCopy> = {
     reviewTitle: "Shiko ndryshimet",
     reviewBody:
       "Krahaso fushat që ndryshove me të dhënat aktuale në linjë. Për përmbajtjen e dokumenteve dhe të fotove, hap pacientin në panelin në linjë. Asgjë nuk mbishkruhet pa zgjedhjen tënde.",
-    deviceValue: "Pajisja",
-    onlineValue: "Në linjë",
+    deviceValue: "Ndryshimi në pajisje",
+    onlineValue: "Dosja aktuale në linjë",
     notInSnapshot: "(nuk gjendet në të dhënat e autorizuara aktuale)",
     empty: "(bosh)",
     useOnline: "Përdor të dhënat në linjë dhe hiq këtë ndryshim",
@@ -282,6 +400,41 @@ export const offlineCopy: Record<Lang, OfflineCopy> = {
   },
   it: {
     title: "Area offline cifrata",
+    encryptionBadge: "AES-GCM 256-bit",
+    storageMeterLabel: "Archivio cifrato del dispositivo",
+    storageQuotaSummary: (usedMb, quotaMb) => `${usedMb} MB usati su ${quotaMb} MB disponibili`,
+    idlePauseIn: (clock) => `Pausa automatica tra ${clock}`,
+    stayUnlocked: "Resta sbloccato",
+    vaultDetailsToggle: "Dettagli sicurezza",
+    diffFieldHeader: "Campo clinico",
+    entityLabels: {
+      patient: "Paziente",
+      request: "Richiesta",
+    },
+    attachmentSummary: (count) =>
+      count === 1 ? "1 documento o immagine allegata" : `${count} documenti o immagini allegate`,
+    fieldLabels: {
+      full_name: "Nome e cognome",
+      phone: "Telefono",
+      email: "Email",
+      date_of_birth: "Data di nascita",
+      gender: "Genere",
+      address: "Indirizzo",
+      county: "Provincia o regione",
+      status: "Stato delle cure",
+      priority: "Priorità",
+      condition_notes: "Sintomi e note cliniche",
+      medical_history: "Storia clinica e allergie",
+      treatment_plan: "Piano di trattamento",
+      followups: "Controlli programmati",
+      photos: "Immagini e documenti",
+      intake: "Scheda iniziale",
+      profile_photo: "Foto profilo",
+      description: "Descrizione richiesta",
+      internal_notes: "Note interne",
+      assigned_worker_id: "Operatore assegnato",
+      patient_id: "Scheda paziente collegata",
+    },
     online: "Online",
     offline: "Offline",
     intro:
@@ -312,8 +465,8 @@ export const offlineCopy: Record<Lang, OfflineCopy> = {
     reviewTitle: "Controlla le differenze",
     reviewBody:
       "Confronta i campi che hai modificato con i dati online attuali. Per il contenuto di documenti e immagini, apri il paziente nel pannello online. Nulla viene sovrascritto senza una tua scelta esplicita.",
-    deviceValue: "Dispositivo",
-    onlineValue: "Online",
+    deviceValue: "Modifica sul dispositivo",
+    onlineValue: "Scheda online attuale",
     notInSnapshot: "(non presente nei dati autorizzati attuali)",
     empty: "(vuoto)",
     useOnline: "Usa i dati online e annulla questa modifica",
@@ -350,7 +503,228 @@ export const offlineCopy: Record<Lang, OfflineCopy> = {
       needsConnection: "Chiamate, email e link esterni richiedono internet.",
     },
   },
+  hr: {
+    title: "Šifrirani izvanmrežni radni prostor",
+    encryptionBadge: "AES-GCM 256-bit",
+    storageMeterLabel: "Šifrirana pohrana uređaja",
+    storageQuotaSummary: (usedMb, quotaMb) => `Iskorišteno ${usedMb} MB od dostupnih ${quotaMb} MB`,
+    idlePauseIn: (clock) => `Automatska pauza za ${clock}`,
+    stayUnlocked: "Ostani otključan",
+    vaultDetailsToggle: "Sigurnosni detalji",
+    diffFieldHeader: "Kliničko polje",
+    entityLabels: {
+      patient: "Pacijent",
+      request: "Zahtjev",
+    },
+    attachmentSummary: (count) =>
+      count === 1 ? "1 priloženi dokument ili slika" : `${count} priloženih dokumenata ili slika`,
+    fieldLabels: {
+      full_name: "Ime i prezime",
+      phone: "Telefon",
+      email: "Email",
+      date_of_birth: "Datum rođenja",
+      gender: "Spol",
+      address: "Adresa",
+      county: "Županija ili regija",
+      status: "Status skrbi",
+      priority: "Prioritet",
+      condition_notes: "Simptomi i bilješke",
+      medical_history: "Povijest bolesti i alergije",
+      treatment_plan: "Plan liječenja",
+      followups: "Zakazane kontrole",
+      photos: "Slike i dokumenti",
+      intake: "Početni upitnik",
+      profile_photo: "Profilna fotografija",
+      description: "Opis zahtjeva",
+      internal_notes: "Interne bilješke",
+      assigned_worker_id: "Dodijeljeno osoblje",
+      patient_id: "Povezani karton pacijenta",
+    },
+    online: "Na mreži",
+    offline: "Izvan mreže",
+    intro:
+      "Karton pacijenta i prilozi ostaju šifrirani, no ključ je spremljen u ovom pregledniku radi automatskog otvaranja bez zaporke. Svatko tko rabi ovaj profil preglednika može pristupiti podatcima. Koristite isključivo privatni uređaj zaštićen zaključavanjem zaslona.",
+    limits: (count) =>
+      `Dok ste na mreži, pripremite do ${count} nedavno dodijeljenih pacijenata i ${count} nedavnih zahtjeva. Pristup istječe nakon 30 dana, a pauzira se nakon 10 minuta neaktivnosti. Ponovno otvaranje ne traži zaporku. Ovo nije izvanmrežna prijava.`,
+    checkingStorage: "Provjera šifrirane pohrane uređaja…",
+    legacyPassphrase: "Postojeća izvanmrežna zaporka (jednokratno, za prijenos)",
+    trustedDevice:
+      "Ovo je privatni uređaj. Razumijem da svatko tko rabi ovaj profil preglednika može otvoriti izvanmrežne kartone bez zaporke.",
+    wait: "Pričekajte…",
+    migrate: "Prijeđi na automatski pristup",
+    reopen: "Ponovno otvori izvanmrežni radni prostor",
+    enable: "Uključi izvanmrežni rad na ovom uređaju",
+    discardAndRemove: "Odbaci izmjene na čekanju i ukloni podatke uređaja",
+    backToPanel: "Natrag na mrežnu ploču",
+    openPanel: "Otvori mrežnu ploču",
+    pendingChanges: (count) =>
+      count === 1 ? "1 izmjena na čekanju" : `${count} izmjena na čekanju`,
+    expires: "Istječe",
+    syncing: "Sinkronizacija…",
+    syncNow: "Sinkroniziraj sada",
+    pause: "Pauziraj",
+    signOut: "Odjava",
+    editsNote:
+      "Izmjene se spremaju lokalno u šifriranom obliku i sinkroniziraju pri ponovnom spajanju dok je radni prostor otključan. E-pošta, pozivnice i pozivi zahtijevaju mrežnu ploču.",
+    autoAccessNote:
+      "Automatski pristup: ključ je spremljen u ovom pregledniku. Pauziranje ne zaključava pristup, a ponovno otvaranje ne traži zaporku.",
+    compareResolve: "Usporedi i riješi",
+    reviewTitle: "Pregled nepodudaranja",
+    reviewBody:
+      "Usporedite izmijenjena polja s trenutačnim mrežnim kartonom. Za pregled sadržaja priloga i slika otvorite pacijenta u mrežnoj ploči. Ništa se ne prepisuje bez vašeg izričitog odabira.",
+    deviceValue: "Izmjena na uređaju",
+    onlineValue: "Trenutačni mrežni karton",
+    notInSnapshot: "(nije u trenutačnom ovlaštenom snimku)",
+    empty: "(prazno)",
+    useOnline: "Preuzmi mrežne podatke i odbaci ovu izmjenu",
+    retryCreate: "Pokušaj ponovno dodati ovog pacijenta",
+    keepMine: "Zadrži moja izmijenjena polja (pokušaj ponovno nad ovom inačicom)",
+    cancel: "Odustani",
+    onlineOnlyPage: "Ova stranica zahtijeva internetsku vezu ili pacijent nije spremljen na ovom uređaju.",
+    errors: {
+      needsHttps: "Izvanmrežni pristup zahtijeva HTTPS i preglednik s podrškom za service worker.",
+      prepareTimeout: "Priprema izvanmrežne aplikacije trajala je predugo. Ostanite na mreži i pokušajte ponovno.",
+      authFailed: "Mrežna autorizacija nije uspjela.",
+      confirmTrusted: "Potvrdite da je ovo privatan i pouzdan uređaj.",
+      noLocks: "Ovaj preglednik ne može sigurno zaključati izvanmrežnu pohranu između kartica. Koristite noviju inačicu preglednika Chrome, Edge, Firefox ili Safari.",
+      otherTab: "Izvanmrežni podatci već su otvoreni u drugoj kartici. Najprije pauzirajte tu karticu.",
+      storageRemoved: "Šifrirana pohrana uređaja je uklonjena.",
+      evictionWarning: "Šifrirana pohrana je dostupna, no ovaj je preglednik može obrisati. Redovito sinkronizirajte i nemojte brisati podatke stranice.",
+      renewMismatch: "Za obnovu ovog isteklog uređaja prijavite se izvornim računom osoblja i državom.",
+      workspaceClosed: "Izvanmrežni radni prostor je zatvoren.",
+      openFailed: "Nije moguće otvoriti šifriranu pohranu uređaja.",
+      needsReview: "Neke izmjene zahtijevaju pregled niže. Mrežni kartoni nisu prepisani.",
+      synced: "Sve su izmjene sinkronizirane. E-poruke i pozivnice nisu poslane automatski.",
+      syncFailed: "Sinkronizacija nije uspjela. Izmjene ostaju šifrirane na ovom uređaju.",
+      discardConfirm:
+        "Trajno odbaciti sve nesinkronizirane izmjene i izbrisati šifrirane zdravstvene podatke s ovog uređaja? Ova se radnja ne može poništiti.",
+      signOutBlocked:
+        "Odjava je blokirana: sinkronizirajte izmjene na čekanju ili ih izričito odbacite i uklonite podatke s ovog uređaja.",
+      deviceDataRemoved: "Šifrirani podatci s uređaja su uklonjeni. Spojite se na internet kako biste dovršili odjavu iz mrežne prijave.",
+      removeFailed: "Nije moguće ukloniti šifrirane podatke.",
+      sameAccount: "Prijavite se izvornim računom osoblja i državom.",
+      retryConfirm:
+        "Ponoviti slanje izmijenjenih polja preko pregledane mrežne inačice? Ako se podatci ponovno promijene, sinkronizacija će stati radi novog pregleda.",
+      alreadyProcessed: "Ova izmjena na čekanju već je obrađena.",
+      conflictFailed: "Rješavanje nepodudaranja nije uspjelo.",
+      needsConnection: "Pozivi, e-pošta i vanjske poveznice zahtijevaju internetsku vezu.",
+    },
+  },
+  rom: {
+    title: "Garavdo bi-internetesko than",
+    encryptionBadge: "AES-GCM 256-bit",
+    storageMeterLabel: "Garavdo arakhipe pe aparati",
+    storageQuotaSummary: (usedMb, quotaMb) => `${usedMb} MB labarde katar ${quotaMb} MB`,
+    idlePauseIn: (clock) => `Pauza ande ${clock}`,
+    stayUnlocked: "Achh putardo",
+    vaultDetailsToggle: "Garavipnaske detalyurya",
+    diffFieldHeader: "Klinikano than",
+    entityLabels: {
+      patient: "Paciento",
+      request: "Mangimos",
+    },
+    attachmentSummary: (count) =>
+      count === 1 ? "1 phandlo lil vay poza" : `${count} phandle lila vay poze`,
+    fieldLabels: {
+      full_name: "Anav thaj familijako anav",
+      phone: "Telefono",
+      email: "Email",
+      date_of_birth: "Dyes e biyanipnasko",
+      gender: "Dzheno",
+      address: "Adresa",
+      county: "Than",
+      status: "Statuso sastipnasko",
+      priority: "Prioriteto",
+      condition_notes: "Simptomurya thaj noticye",
+      medical_history: "Istoriya e nasvalipnaski thaj alergiye",
+      treatment_plan: "Plano tratamentesko",
+      followups: "Planisarde kontrole",
+      photos: "Tasvirya thaj lila",
+      intake: "Angluno lil",
+      profile_photo: "Poza e profiloski",
+      description: "Lekhavipe e mangimasko",
+      internal_notes: "Andrutne noticye",
+      assigned_worker_id: "Alosardo bukyarno",
+      patient_id: "Lil e pacientesko",
+    },
+    online: "Pe rig (online)",
+    offline: "Bi-internetesko",
+    intro:
+      "O sastipnasko lil thaj e dokumenturya achhen garavde, numay e klidi si arakhadi ande kadava brauzero te putrel pes korkori, bi parolako. Sakon kay labarel kadava brauzeresko profilo shay te dikhel e date. Labar numay cho privatno aparati arakhado katar ekranesko phandipe.",
+    limits: (count) =>
+      `Getosar online zhi ko ${count} neve alosarde pacienturya thaj ${count} neve mangimata. O shayipe nakhel palo 30 divesa, thaj achel palo 10 minute bi buchako. Nevo putripe na mangel parola. Kadava nay bi-internetesko khuvipe andre.`,
+    checkingStorage: "Dikhlyol pes o garavdo arakhipe pe aparati…",
+    legacyPassphrase: "Purani bi-interneteski parola (ekh drom, vash nakhavipe)",
+    trustedDevice:
+      "Kadava si privatno aparati. Achharav kay sakon kay labarel kadava brauzeresko profilo shay te putrel e bi-interneteske lila bi parolako.",
+    wait: "Azhuker…",
+    migrate: "Nakh ko korkoro putripe",
+    reopen: "Putar palem o garavdo bi-internetesko than",
+    enable: "Muk bi-internetesko butikeripe pe kadava aparati",
+    discardAndRemove: "Muk tele e paruvimata thaj kos e date katar o aparati",
+    backToPanel: "Palpale ko online panelo",
+    openPanel: "Putar o online panelo",
+    pendingChanges: (count) =>
+      count === 1 ? "1 paruvipe azhukerel" : `${count} paruvimata azhukeren`,
+    expires: "Nakhel",
+    syncing: "Sinkronizisarel pes…",
+    syncNow: "Sinkronizisar akana",
+    pause: "Pauza",
+    signOut: "Inkljes avri",
+    editsNote:
+      "E paruvimata arakhadyon garavde pe aparati thaj bichhalyon kana avel o interneto, zhi kay o than si putardo. Emailurya, akharimata thaj telefonurya mangen o online panelo.",
+    autoAccessNote:
+      "Korkoro putripe: e klidi si arakhadi and-o brauzero. E pauza na phandel o shayipe, thaj o nevo putripe na mangel parola.",
+    compareResolve: "Ververisar thaj lačhar",
+    reviewTitle: "Dikh e ververimata",
+    reviewBody:
+      "Dikh che paruvde thana khetane e online datenca. Vash dokumenturya thaj poze, putar e pacientes ko online panelo. Khanch na lekhavel pes opral bi che alosaripnasko.",
+    deviceValue: "Paruvipe pe aparati",
+    onlineValue: "Online lil akana",
+    notInSnapshot: "(nane and-e akana mukhle date)",
+    empty: "(chuchho)",
+    useOnline: "Labar e online date thaj muk kadava paruvipe",
+    retryCreate: "Zumav palem te thos kadale pacientes",
+    keepMine: "Arakh mure paruvde thana (zumav palem pe kadi verzia)",
+    cancel: "Mekh",
+    onlineOnlyPage: "Kadi rig mangel interneto vay o paciento nane arakhado pe kadava aparati.",
+    errors: {
+      needsHttps: "Bi-internetesko butikeripe mangel HTTPS thaj brauzero kay zhutil service worker.",
+      prepareTimeout: "O getosaripe vash bi-interneteski aplikacia nakhlo but vrama. Achh online thaj zumav palem.",
+      authFailed: "Online muklipe na kerdili.",
+      confirmTrusted: "Phen chaches kay kadava si privatno thaj pakhivalo aparati.",
+      noLocks: "Kadava brauzero nashti te phandel garavdes e bi-interneteske date mashkar e riga. Labar nevi verzia katar Chrome, Edge, Firefox vay Safari.",
+      otherTab: "E bi-interneteske date si vorta putarde ande aver rig. Tho pauza kothe anglal.",
+      storageRemoved: "O garavdo arakhipe katar o aparati sas koslo.",
+      evictionWarning: "O garavdo arakhipe si kathe, numay kadava brauzero shay te kosel les. Sinkronizisar butivar thaj ma kos e date e rigake.",
+      renewMismatch: "Te nevyaras kadava nakhlo aparati, khuves andre e anglune bukyarne kontosa thaj themesa.",
+      workspaceClosed: "O garavdo bi-internetesko than phandilo.",
+      openFailed: "Nashti te putrel pes o garavdo arakhipe pe aparati.",
+      needsReview: "Nesave paruvimata mangen dikhlipe tele. E online lila na sas paruvde.",
+      synced: "Sa e paruvimata sinkronizisardile. Na bichhaldile korkori emailurya vay akharimata.",
+      syncFailed: "E sinkronizacia na kerdili. E paruvimata achhen garavde pe kadava aparati.",
+      discardConfirm:
+        "Kames chaches te mukhes sa e bi-sinkronizisarde paruvimata thaj te koses e garavde sastipnaske date katar kadava aparati? Kadava nashti te irinel pes.",
+      signOutBlocked:
+        "Nashti te inkljes avri akana: sinkronizisar e paruvimata kay azhukeren, vay muk len chaches thaj kos e date katar kadava aparati.",
+      deviceDataRemoved: "E garavde date katar o aparati sas kosle. Phand tu ko interneto te gatisares o inkljipe avri.",
+      removeFailed: "Nashti te kosen pes e garavde date.",
+      sameAccount: "Khuves andre e anglune bukyarne kontosa thaj themesa.",
+      retryConfirm:
+        "Zumaves palem che paruvde thana opral e dikhli online verzia? Te paruvdyona e date palem, e sinkronizacia ka achel vash nevo dikhlipe.",
+      alreadyProcessed: "Kadava paruvipe sas vorta kerdo.",
+      conflictFailed: "O lačharipe e ververimatengo na kerdili.",
+      needsConnection: "Telefonurya, emailurya thaj avrutne linkurya mangen interneto.",
+    },
+  },
 };
 
 /** BCP 47 locale for the expiry date in each language. */
-export const offlineDateLocale: Record<Lang, string> = { ro: "ro-RO", en: "en-GB", sq: "sq-AL", it: "it-IT" };
+export const offlineDateLocale: Record<Lang, string> = {
+  ro: "ro-RO",
+  en: "en-GB",
+  sq: "sq-AL",
+  it: "it-IT",
+  hr: "hr-HR",
+  rom: "ro-RO",
+};

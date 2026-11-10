@@ -43,6 +43,18 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     homeLink: "RediHealth, pagina iniziale",
     emergencyQuestion: "Emergenza?",
   },
+  hr: {
+    primaryNav: "Glavna navigacija",
+    footerNav: "Navigacija u podnožju stranice",
+    homeLink: "RediHealth, početna stranica",
+    emergencyQuestion: "Hitno?",
+  },
+  rom: {
+    primaryNav: "Sherutno drom",
+    footerNav: "Telutno drom e rigako",
+    homeLink: "RediHealth, angluni rig",
+    emergencyQuestion: "Sigardiari?",
+  },
 };
 
 export function getChromeCopy(lang: Lang | string | null | undefined): ChromeCopy {

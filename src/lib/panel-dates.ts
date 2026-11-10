@@ -27,13 +27,24 @@ const INTL_OPTIONS: Record<PanelDateStyle, Intl.DateTimeFormatOptions> = {
   numeric: {},
 };
 
-// Albanian names follow CLDR (lower case, as Albanian writes them in running text).
+// Albanian, Croatian and Romani names follow CLDR / standard forms in lower case for deterministic SSR and browser output.
 const SQ_MONTHS = ["janar", "shkurt", "mars", "prill", "maj", "qershor", "korrik", "gusht", "shtator", "tetor", "nëntor", "dhjetor"];
 const SQ_MONTHS_SHORT = ["jan", "shk", "mar", "pri", "maj", "qer", "korr", "gush", "sht", "tet", "nën", "dhj"];
 const SQ_WEEKDAYS = ["e diel", "e hënë", "e martë", "e mërkurë", "e enjte", "e premte", "e shtunë"];
 const SQ_WEEKDAYS_SHORT = ["die", "hën", "mar", "mër", "enj", "pre", "sht"];
 
-/** True when this runtime ships Intl data for the locale (headless Chromium has none for sq). */
+const HR_MONTHS_GEN = ["siječnja", "veljače", "ožujka", "travnja", "svibnja", "lipnja", "srpnja", "kolovoza", "rujna", "listopada", "studenoga", "prosinca"];
+const HR_MONTHS_NOM = ["siječanj", "veljača", "ožujak", "travanj", "svibanj", "lipanj", "srpanj", "kolovoz", "rujan", "listopad", "studeni", "prosinac"];
+const HR_MONTHS_SHORT = ["sij", "velj", "ožu", "tra", "svi", "lip", "srp", "kol", "ruj", "lis", "stu", "pro"];
+const HR_WEEKDAYS = ["nedjelja", "ponedjeljak", "utorak", "srijeda", "četvrtak", "petak", "subota"];
+const HR_WEEKDAYS_SHORT = ["ned", "pon", "uto", "sri", "čet", "pet", "sub"];
+
+const ROM_MONTHS = ["yanuaro", "februaro", "marto", "aprilo", "mayo", "yuniyo", "yuliyo", "avgusto", "septembro", "oktobro", "novembro", "dekembro"];
+const ROM_MONTHS_SHORT = ["yan", "feb", "mar", "apr", "may", "yun", "yul", "avg", "sep", "okt", "nov", "dek"];
+const ROM_WEEKDAYS = ["kurko", "luni", "marsi", "tetrad", "zboya", "parashtuy", "savato"];
+const ROM_WEEKDAYS_SHORT = ["kur", "lun", "mar", "tet", "zbo", "par", "sav"];
+
+/** True when this runtime ships Intl data for the locale (headless Chromium has none for sq or rom). */
 export function hasIntlLocale(locale: string): boolean {
   try {
     return Intl.DateTimeFormat.supportedLocalesOf([locale]).length > 0;
@@ -43,14 +54,20 @@ export function hasIntlLocale(locale: string): boolean {
 }
 
 /**
- * Albanian uses built-in month and weekday names and a 24-hour clock.
- * Chromium builds without Albanian ICU data (Intl.DateTimeFormat.supportedLocalesOf("sq-AL") is
- * empty) would otherwise print English. The tables are used for sq even where Intl has the data:
- * Node does, with a 12-hour "p.d./m.d." clock, so server and browser would render different text
- * and React would report a hydration mismatch.
+ * Albanian, Croatian and Romani use built-in month and weekday names and a 24-hour clock.
+ * Chromium builds without Albanian or Romani ICU data would otherwise print English or diverge
+ * between Node and browser renders.
  */
 function usesAlbanianTables(locale: string): boolean {
   return locale.toLowerCase().startsWith("sq");
+}
+
+function usesCroatianTables(locale: string): boolean {
+  return locale.toLowerCase().startsWith("hr");
+}
+
+function usesRomaniTables(locale: string): boolean {
+  return locale.toLowerCase().startsWith("rom");
 }
 
 function pad(value: number): string {
@@ -75,17 +92,57 @@ function formatAlbanian(date: Date, style: PanelDateStyle): string {
   }
 }
 
+function formatCroatian(date: Date, style: PanelDateStyle): string {
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const weekday = date.getDay();
+  const time = `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  switch (style) {
+    case "date": return `${day}. ${HR_MONTHS_SHORT[month]} ${year}.`;
+    case "dateWeekday": return `${HR_WEEKDAYS_SHORT[weekday]}, ${day}. ${HR_MONTHS_SHORT[month]} ${year}.`;
+    case "weekdayDay": return `${HR_WEEKDAYS_SHORT[weekday]}, ${day}.`;
+    case "monthYear": return `${HR_MONTHS_NOM[month]} ${year}.`;
+    case "time": return time;
+    case "dateTime": return `${day}. ${HR_MONTHS_SHORT[month]} ${year}., ${time}`;
+    case "full": return `${HR_WEEKDAYS[weekday]}, ${day}. ${HR_MONTHS_GEN[month]} ${year}.`;
+    case "numeric": return `${day}.${month + 1}.${year}.`;
+  }
+}
+
+function formatRomani(date: Date, style: PanelDateStyle): string {
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const weekday = date.getDay();
+  const time = `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  switch (style) {
+    case "date": return `${day} ${ROM_MONTHS_SHORT[month]} ${year}`;
+    case "dateWeekday": return `${ROM_WEEKDAYS_SHORT[weekday]}, ${day} ${ROM_MONTHS_SHORT[month]} ${year}`;
+    case "weekdayDay": return `${ROM_WEEKDAYS_SHORT[weekday]}, ${day}`;
+    case "monthYear": return `${ROM_MONTHS[month]} ${year}`;
+    case "time": return time;
+    case "dateTime": return `${day} ${ROM_MONTHS_SHORT[month]} ${year}, ${time}`;
+    case "full": return `${ROM_WEEKDAYS[weekday]}, ${day} ${ROM_MONTHS[month]} ${year}`;
+    case "numeric": return `${day}.${month + 1}.${year}`;
+  }
+}
+
 /** Formats a date or timestamp for the staff panel. Invalid input comes back unchanged (or "—"). */
 export function formatPanelDate(value: Date | string | number, locale: string, style: PanelDateStyle = "date"): string {
   const date = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(date.getTime())) return typeof value === "string" && value ? value : "—";
   if (usesAlbanianTables(locale)) return formatAlbanian(date, style);
+  if (usesCroatianTables(locale)) return formatCroatian(date, style);
+  if (usesRomaniTables(locale)) return formatRomani(date, style);
   return new Intl.DateTimeFormat(locale, INTL_OPTIONS[style]).format(date);
 }
 
 /** Formats a reading such as 36.6 or 5.4 with the locale's decimal mark. */
 export function formatPanelNumber(value: number, locale: string, digits = 0): string {
-  if (usesAlbanianTables(locale)) return value.toFixed(digits).replace(".", ",");
+  if (usesAlbanianTables(locale) || usesCroatianTables(locale) || usesRomaniTables(locale)) {
+    return value.toFixed(digits).replace(".", ",");
+  }
   return value.toLocaleString(locale, { minimumFractionDigits: digits, maximumFractionDigits: digits });
 }
 

@@ -15,13 +15,14 @@ import { useDialogFocus } from "@/components/health-check/useDialogFocus";
  * Landing hero:
  * - Extends beneath the transparent-on-load sticky header (-mt-16 pt-16 lg:-mt-20 lg:pt-20).
  * - Two columns on a shared grid: headline and steps align to the panel's question and footer.
- * - Full-bleed photo (object-cover) under ink gradient scrims so the copy keeps its contrast.
- * - Entrance: the copy and the panel fade in once (globals.css `.hero-enter`), nothing staggers.
+ * - Full-bleed photo (object-cover) with subtle rAF-driven scroll depth under ink scrims.
+ * - Entrance: the copy column settles once (globals.css `.hero-enter`), nothing staggers.
  */
 export function Hero() {
   const { lang } = useLanguage();
   const copy = heroCopy[lang];
   const [who, promise] = copy.lead.split(/(?<=\.)\s+/);
+  const sectionRef = useRef<HTMLElement>(null);
 
   // Phones and tablets: the panel opens as a bottom sheet from the primary button.
   // Desktop: it stays beside the headline. The sheet is one history entry, so Back closes it.
@@ -34,6 +35,51 @@ export function Hero() {
   }, []);
 
   useDialogFocus(sheetRef, sheetOpen, closeSheet);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof window === "undefined") return;
+    const reducedMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMedia.matches) {
+      el.style.removeProperty("--hero-scroll");
+      return;
+    }
+
+    let rafId = 0;
+    const updateScrollVar = () => {
+      rafId = 0;
+      if (reducedMedia.matches) {
+        el.style.removeProperty("--hero-scroll");
+        return;
+      }
+      const height = Math.max(1, el.offsetHeight);
+      const progress = Math.min(1, Math.max(0, window.scrollY / height));
+      el.style.setProperty("--hero-scroll", progress.toFixed(4));
+    };
+
+    const onScroll = () => {
+      if (rafId === 0) {
+        rafId = window.requestAnimationFrame(updateScrollVar);
+      }
+    };
+
+    const onMotionChange = () => {
+      if (reducedMedia.matches) {
+        el.style.removeProperty("--hero-scroll");
+      } else {
+        updateScrollVar();
+      }
+    };
+
+    updateScrollVar();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    reducedMedia.addEventListener("change", onMotionChange);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      reducedMedia.removeEventListener("change", onMotionChange);
+      if (rafId !== 0) window.cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   useEffect(() => {
     if (!sheetOpen) return;
@@ -57,10 +103,11 @@ export function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       aria-labelledby="hero-title"
       className="hero relative isolate -mt-16 flex min-h-[calc(100svh-65px)] flex-col overflow-hidden bg-ink-950 pt-16 text-paper lg:-mt-20 lg:pt-20 xl:min-h-[calc(100svh-81px)]"
     >
-      {/* Full-bleed consultation photo, filling the hero behind an ink gradient so the copy keeps its contrast. */}
+      {/* Full-bleed consultation photo with subtle GPU scroll depth behind ink scrims. */}
       <Image
         src="/images/hero-consultation.jpg"
         alt=""
@@ -69,7 +116,10 @@ export function Hero() {
         sizes="100vw"
         loading="eager"
         fetchPriority="high"
-        className="pointer-events-none -z-30 object-cover object-[65%_center] select-none"
+        style={{
+          transform: "translate3d(0, calc(var(--hero-scroll, 0) * 16px), 0) scale(1.025)",
+        }}
+        className="pointer-events-none -z-30 object-cover object-[65%_center] select-none will-change-transform motion-reduce:!transform-none"
       />
       {/* Horizontal scrim: near-solid ink under the headline, easing off toward the panel side. */}
       <div
@@ -80,6 +130,11 @@ export function Hero() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(10,18,38,0.85)_0%,rgba(10,18,38,0)_22%,rgba(10,18,38,0)_70%,rgba(10,18,38,0.95)_100%)]"
+      />
+      {/* Subtle bottom inset horizon hairline separating the hero ground from the regional ribbon. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-px bg-linear-to-r from-white/5 via-white/20 to-white/5"
       />
 
       <Container className="grid flex-1 content-center gap-y-10 py-10 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch lg:content-center lg:gap-x-14 lg:py-12 xl:gap-x-20">
@@ -106,7 +161,7 @@ export function Hero() {
                 {copy.emergency.callLead}{" "}
                 <a
                   href="tel:112"
-                  className="hero-focus rounded-sm py-2 font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-paper"
+                  className="hero-focus -my-2 inline-flex min-h-11 items-center rounded-sm font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:decoration-paper"
                 >
                   {copy.emergency.callLink}
                 </a>
@@ -117,7 +172,7 @@ export function Hero() {
             <a
               href="#triage"
               onClick={goToTriage}
-              className="hero-focus mt-7 inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-paper px-6 text-[15.5px] font-semibold text-ink-950 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-stone-200 sm:w-auto lg:hidden"
+              className="hero-focus mt-7 inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-paper px-6 text-[15.5px] font-semibold text-ink-950 shadow-(--hairline-refraction) transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-stone-200 sm:w-auto lg:hidden"
             >
               {copy.primaryCta}
             </a>

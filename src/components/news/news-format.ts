@@ -1,9 +1,16 @@
+import { stripLangFromPathname } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
+import { ROMANIA_COUNTIES_MAP } from "@/lib/geo/romania-counties";
+import { MOLDOVA_REGIONS_MAP } from "@/lib/geo/moldova-regions";
+import { CROATIA_COUNTIES_MAP } from "@/lib/geo/croatia-counties";
+import { ITALY_REGIONS_MAP } from "@/lib/geo/italy-regions";
+
+export type GeoCountryCode = "ro" | "md" | "it" | "hr";
 
 /**
  * Deterministic date formatting for news items.
- * Intl month names differ between the server's ICU data and some browsers (Albanian is often
- * missing), which made server and client disagree and broke hydration. A fixed table cannot drift.
+ * Intl month names differ between the server's ICU data and some browsers (Albanian and Romani
+ * are often missing), which made server and client disagree and broke hydration. A fixed table cannot drift.
  */
 const MONTHS: Record<Lang, { long: string[]; short: string[] }> = {
   ro: {
@@ -22,45 +29,183 @@ const MONTHS: Record<Lang, { long: string[]; short: string[] }> = {
     long: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"],
     short: ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"],
   },
+  hr: {
+    long: ["siječnja", "veljače", "ožujka", "travnja", "svibnja", "lipnja", "srpnja", "kolovoza", "rujna", "listopada", "studenoga", "prosinca"],
+    short: ["sij.", "velj.", "ožu.", "tra.", "svi.", "lip.", "srp.", "kol.", "ruj.", "lis.", "stu.", "pro."],
+  },
+  rom: {
+    long: ["yanvari", "februari", "marto", "aprilo", "mayo", "yuniyo", "yuliyo", "avgusto", "septembro", "oktombro", "noyembro", "dekembro"],
+    short: ["yan.", "feb.", "mar.", "apr.", "may", "yun.", "yul.", "avg.", "sep.", "okt.", "noy.", "dek."],
+  },
 };
 
 const RO_MONTH_INDEX: Record<string, number> = Object.fromEntries(MONTHS.ro.long.map((m, i) => [m, i]));
+const HR_MONTH_INDEX: Record<string, number> = Object.fromEntries(MONTHS.hr.long.map((m, i) => [m, i]));
 
-/** Reads "2026-11-04" or the Romanian "4 noiembrie 2026"; null for anything else. */
+/** Reads "2026-11-04", Romanian "4 noiembrie 2026", or Croatian "4. studenoga 2026."; null for anything else. */
 function parseNewsDate(value: string): { y: number; m: number; d: number } | null {
   const iso = value.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (iso) return { y: Number(iso[1]), m: Number(iso[2]) - 1, d: Number(iso[3]) };
-  const ro = value.match(/^(\d{1,2})\s+([a-zăâîșț]+)\s+(\d{4})$/i);
+  const ro = value.match(/^(\d{1,2})\.?\s+([a-zăâîșțčćđšž]+)\s+(\d{4})\.?$/i);
   if (ro) {
-    const m = RO_MONTH_INDEX[ro[2].toLowerCase()];
+    const key = ro[2].toLowerCase();
+    const m = RO_MONTH_INDEX[key] ?? HR_MONTH_INDEX[key];
     if (m !== undefined) return { y: Number(ro[3]), m, d: Number(ro[1]) };
   }
   return null;
 }
 
-/** "4 noiembrie 2026", "4 November 2026", "4 nëntor 2026", "4 novembre 2026". Unknown formats pass through. */
+/** "4 noiembrie 2026", "4 November 2026", "4. studenoga 2026.", etc. Unknown formats pass through. */
 export function formatNewsDate(value: string, lang: Lang, { short = false, year = true } = {}): string {
   if (!value) return "";
   const parsed = parseNewsDate(value);
   if (!parsed) return value;
   const names = MONTHS[lang] ?? MONTHS.ro;
   const month = (short ? names.short : names.long)[parsed.m];
+  if (lang === "hr") {
+    return year ? `${parsed.d}. ${month} ${parsed.y}.` : `${parsed.d}. ${month}`;
+  }
   return year ? `${parsed.d} ${month} ${parsed.y}` : `${parsed.d} ${month}`;
 }
 
-/** Bucharest is a municipality, not a county, and has its own name in each language. */
-const BUCHAREST: Record<Lang, string> = { ro: "București", en: "Bucharest", sq: "Bukureshti", it: "Bucarest" };
+/** Places whose name has established forms across the supported languages. */
+const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
+  "București": {
+    ro: "București",
+    en: "Bucharest",
+    sq: "Bukureshti",
+    it: "Bucarest",
+    hr: "Bukurešt",
+    rom: "Bukureshti",
+  },
+  "Chișinău": {
+    ro: "Chișinău",
+    en: "Chișinău",
+    sq: "Kishineu",
+    it: "Chișinău",
+    hr: "Kišinjev",
+    rom: "Kishinau",
+  },
+  "Găgăuzia": {
+    ro: "Găgăuzia",
+    en: "Gagauzia",
+    sq: "Gagauzia",
+    it: "Gagauzia",
+    hr: "Gagauzija",
+    rom: "Gagauziya",
+  },
+  "Stânga Nistrului": {
+    ro: "Stânga Nistrului",
+    en: "Left Bank of the Dniester",
+    sq: "Bregu i Majtë i Dniestrit",
+    it: "Riva sinistra del Nistro",
+    hr: "Lijeva obala Dnjestra",
+    rom: "Stinga Nistruski",
+  },
+  "Grad Zagreb": {
+    ro: "Orașul Zagreb",
+    en: "City of Zagreb",
+    sq: "Qyteti i Zagrebit",
+    it: "Città di Zagabria",
+    hr: "Grad Zagreb",
+    rom: "Foro Zagreb",
+  },
+};
+
+const RO_SET = new Set(ROMANIA_COUNTIES_MAP.areas.map((a) => a.name));
+const MD_SET = new Set(MOLDOVA_REGIONS_MAP.areas.map((a) => a.name));
+const HR_SET = new Set(CROATIA_COUNTIES_MAP.areas.map((a) => a.name));
+const IT_SET = new Set(ITALY_REGIONS_MAP.areas.map((a) => a.name));
+
+const MOLDOVA_MUNICIPALITIES = new Set(["Chișinău", "Bălți", "Bender"]);
+
+function inferAreaCountry(area: string, countryHint?: GeoCountryCode): GeoCountryCode {
+  if (countryHint) return countryHint;
+  if (IT_SET.has(area)) return "it";
+  if (HR_SET.has(area)) return "hr";
+  if (MD_SET.has(area) && !RO_SET.has(area)) return "md";
+  return "ro";
+}
 
 /** A place name as readers of `lang` write it ("Bucharest" in English); other names pass through. */
 export function placeName(place: string, lang: Lang): string {
-  return place === "București" ? (BUCHAREST[lang] ?? place) : place;
+  const table = PLACE_EXONYMS[place];
+  return table ? (table[lang] ?? place) : place;
 }
 
 /**
- * A Romanian county in the reader's word order: "Județul Iași", "Iași County", "Qarku Iași",
- * "Provincia di Iași". Bucharest is named on its own, never "Județul București".
+ * Formats an administrative area in the reader's word order:
+ * - Romania: "Județul Iași" / "Iași County", while "București" stands on its own.
+ * - Moldova: "Raionul Soroca" / "Municipiul Chișinău" / "UTA Găgăuzia" / "Stânga Nistrului".
+ * - Croatia: "Međimurska županija" (Croatian county names are adjectives), while "Grad Zagreb" stands on its own.
+ * - Italy: regional name as-is ("Lazio", "Lombardia").
  */
-export function countyLabel(county: string, lang: Lang): string {
+export function countyLabel(county: string, lang: Lang, countryHint?: GeoCountryCode): string {
+  const country = inferAreaCountry(county, countryHint);
+
+  if (country === "it") {
+    return placeName(county, lang);
+  }
+
+  if (country === "hr") {
+    if (county === "Grad Zagreb") return placeName(county, lang);
+    switch (lang) {
+      case "hr":
+        return `${county} županija`;
+      case "en":
+        return `${county} County`;
+      case "ro":
+        return `Comitatul ${county}`;
+      case "sq":
+        return `Qarku ${county}`;
+      case "it":
+        return `Regione ${county}`;
+      case "rom":
+        return `Zhupaniya ${county}`;
+    }
+  }
+
+  if (country === "md") {
+    if (county === "Găgăuzia") {
+      return lang === "ro" ? "UTA Găgăuzia" : placeName(county, lang);
+    }
+    if (county === "Stânga Nistrului") {
+      return placeName(county, lang);
+    }
+    if (MOLDOVA_MUNICIPALITIES.has(county)) {
+      const p = placeName(county, lang);
+      switch (lang) {
+        case "en":
+          return `${p} Municipality`;
+        case "sq":
+          return `Bashkia ${p}`;
+        case "it":
+          return `Municipio di ${p}`;
+        case "hr":
+          return `Grad ${p}`;
+        case "rom":
+          return `Foro ${p}`;
+        default:
+          return `Municipiul ${p}`;
+      }
+    }
+    switch (lang) {
+      case "en":
+        return `${county} District`;
+      case "sq":
+        return `Rajoni ${county}`;
+      case "it":
+        return `Distretto di ${county}`;
+      case "hr":
+        return `Rajon ${county}`;
+      case "rom":
+        return `Rayono ${county}`;
+      default:
+        return `Raionul ${county}`;
+    }
+  }
+
+  // Romania ("ro")
   if (county === "București") return placeName(county, lang);
   switch (lang) {
     case "en":
@@ -69,14 +214,19 @@ export function countyLabel(county: string, lang: Lang): string {
       return `Qarku ${county}`;
     case "it":
       return `Provincia di ${county}`;
+    case "hr":
+      return `Okrug ${county}`;
+    case "rom":
+      return `Judeto ${county}`;
     default:
       return `Județul ${county}`;
   }
 }
 
-/** Lower case without diacritics, so "iasi" finds "Iași" and "bucuresti" finds "București". */
+/** Lower case without diacritics, so "iasi" finds "Iași", "cakovec"/"medimurska" finds "Međimurska", etc. */
 export function foldForSearch(value: string): string {
   return value
+    .replace(/[đĐ]/g, "d")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLocaleLowerCase("ro")
@@ -85,7 +235,22 @@ export function foldForSearch(value: string): string {
 
 /** A typed search term quoted the way each language quotes. */
 export function quoteTerm(term: string, lang: Lang): string {
-  if (lang === "ro") return `„${term}”`;
+  if (lang === "ro" || lang === "hr" || lang === "rom") return `„${term}”`;
   if (lang === "it") return `«${term}»`;
   return `“${term}”`;
 }
+
+/** Preserves `/news` when the reader opened the hub or article via `/news`, defaulting to `/stiri`. */
+export function resolveNewsBasePath(pathname: string | null | undefined): "/news" | "/stiri" {
+  const clean = stripLangFromPathname(pathname || "");
+  return clean === "/news" || clean.startsWith("/news/") ? "/news" : "/stiri";
+}
+
+export const newsPageDescriptions: Record<Lang, string> = {
+  ro: "Alerte de sănătate, caravane medicale și campanii de vaccinare din județul sau raionul tău.",
+  en: "Health alerts, mobile clinics and vaccination campaigns near you.",
+  sq: "Njoftime shëndetësore, karvane mjekësore dhe fushata vaksinimi pranë teje.",
+  it: "Avvisi sanitari, ambulatori mobili e campagne di vaccinazione vicino a te.",
+  hr: "Zdravstvena upozorenja, mobilne ambulante i akcije cijepljenja u tvojoj županiji.",
+  rom: "Sastipnaske alerte, mobilne klinike thaj vakcinaciyake kampaniye pasha tute.",
+};

@@ -191,6 +191,90 @@ export const TOPIC_CAPTION_SCRIPTS: Record<Lang, Record<string, string[]>> = {
       "Parla con il medico di qualsiasi sanguinamento insolito.",
     ],
   },
+  hr: {
+    "heart-health": [
+      "Visoki krvni tlak u početku uopće ne boli.",
+      "Provjeri tlak jednom mjesečno kod obiteljskog liječnika ili u ljekarni.",
+      "Bol u prsima koja ne prolazi hitno je stanje. Nazovi 112.",
+    ],
+    diabetes: [
+      "Povišeni šećer u krvi može štetiti godinama prije nego što ga osjetiš.",
+      "Jaka žeđ, često mokrenje i umor mogu biti prvi znakovi.",
+      "Ako imaš čimbenike rizika, zatraži od obiteljskog liječnika analizu šećera u krvi.",
+    ],
+    "healthy-eating": [
+      "Napuni polovicu tanjura povrćem i voćem.",
+      "Odaberi vodu umjesto slatkih sokova.",
+      "Obroci kuhani kod kuće pomažu ti paziti na sol i šećer.",
+    ],
+    "physical-activity": [
+      "30 minuta brzog hodanja dnevno koristi srcu i umu.",
+      "Kreni polako i hodaj malo brže iz dana u dan.",
+      "Stani ako osjetiš bol u prsima ili nedostatak zraka.",
+    ],
+    "mental-wellbeing": [
+      "San, kretanje i bliski ljudi pomažu ti da se osjećaš dobro.",
+      "Razgovaraj s osobom od povjerenja kada tuga ne prolazi.",
+      "Ako pomišljaš da si naudiš, odmah nazovi 112.",
+    ],
+    smoking: [
+      "Tijelo se počinje oporavljati ubrzo nakon posljednje cigarete.",
+      "Obiteljski liječnik može ti pomoći planom za prestanak pušenja.",
+      "Ako ponovno zapališ, nemoj odustati. Pokušaj ponovno.",
+    ],
+    "preventive-screening": [
+      "Mnoge se bolesti mogu otkriti rano, prije nego što se pojave simptomi.",
+      "Pitaj obiteljskog liječnika koje su pretrage prave za tvoju dob.",
+      "Zapiši datume pregleda kako ih ne bi zaboravio.",
+    ],
+    "womens-health": [
+      "Redoviti ginekološki pregledi pomažu rano otkriti probleme.",
+      "Papa-test može rano otkriti promjene na vratu maternice.",
+      "Razgovaraj s liječnikom o svakom neobičnom krvarenju.",
+    ],
+  },
+  rom: {
+    "heart-health": [
+      "Kana o rat phurdel zurales, anglal na dukhal niso.",
+      "Dikh tiri tensija jekhvar ko chon ko familijako doktori vaj ki farmacija.",
+      "I dukh ko kolin so na nakhel si sigardiari. Akhar 112.",
+    ],
+    diabetes: [
+      "O gudlo rat shaj te kerel nasulipena bershencar bi te hatjares les.",
+      "Bari trush, butivar phirimos ko toaleto thaj khino shaj te oven e anglune semnja.",
+      "Te si tut riziko, mang katar o familijako doktori rengro dikhiben vash o gudlo rat.",
+    ],
+    "healthy-eating": [
+      "Phpher dopash katar o charo zelenimasa thaj fruttenca.",
+      "Alosar o pani namesto gudle pimatja.",
+      "O xaben kirado khere azhutil tut te arakhes o lon thaj o zahari.",
+    ],
+    "physical-activity": [
+      "30 minute sigo phirimos ko dives kerel mishto e ileske thaj e godjake.",
+      "Astar lokhes thaj phir zalog maj sigo dives pala dives.",
+      "Astav te hatjares dukh ko kolin vaj phari phurdinimos.",
+    ],
+    "mental-wellbeing": [
+      "O sovibe, o phirimos thaj e kamlje manusha azhutin tut te aves mishto.",
+      "De duma jekhe manushesa kaste pakjas kana o brigipe na nakhel.",
+      "Te gindisares te keres tuke nasul, akhar sigo 112.",
+    ],
+    smoking: [
+      "Tiro trupo astarel te sastjovel sigo pala i palutni cigara.",
+      "O familijako doktori shaj te azhutil tut jekhe planosa te mukhes o thuvjarimos.",
+      "Te thuvjardjan pale, ma mukh tut. Probin pale.",
+    ],
+    "preventive-screening": [
+      "But nasvalipena shaj te arakhen pes rano, anglal te aven e semnja.",
+      "Phuch tire familijake doktores save dikhibena si lačhe vash tiri vrjama.",
+      "Ramosar e dive e dikhibenaske te na bisteres len.",
+    ],
+    "womens-health": [
+      "Dzha redovno ko ginekologo, kaj e problemura te arakhen pes rano.",
+      "O Pap-testi shaj te arakhel rano paruvimata ki matka.",
+      "De duma e doktoresa vash sako neobicno ratjarimos.",
+    ],
+  },
 };
 
 /** Romanian scripts, kept as a named export for existing callers and tests. */

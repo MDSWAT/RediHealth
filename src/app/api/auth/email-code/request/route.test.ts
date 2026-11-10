@@ -91,7 +91,8 @@ describe("email code request route", () => {
 
     expect(response.status).toBe(502);
     expect(await response.json()).toEqual({ error: "Could not send your sign-in code. Try again." });
-    expect(log).toHaveBeenCalledExactlyOnceWith("Sign-in email delivery failed.", {
+    expect(log).toHaveBeenCalledTimes(1);
+    expect(log).toHaveBeenCalledWith("Sign-in email delivery failed.", {
       providerStatus: status,
       transportCode: undefined,
     });
@@ -105,7 +106,8 @@ describe("email code request route", () => {
     const response = await POST(request(JSON.stringify({ email: `failure-${code}@example.com` }), `test-${code}`));
 
     expect(response.status).toBe(502);
-    expect(log).toHaveBeenCalledExactlyOnceWith("Sign-in email delivery failed.", {
+    expect(log).toHaveBeenCalledTimes(1);
+    expect(log).toHaveBeenCalledWith("Sign-in email delivery failed.", {
       providerStatus: undefined,
       transportCode: code,
     });
@@ -121,7 +123,8 @@ describe("email code request route", () => {
       const response = await POST(request(JSON.stringify({ email: "opaque-failure@example.com" }), "198.51.100.60"));
 
       expect(response.status).toBe(502);
-      expect(log).toHaveBeenCalledExactlyOnceWith("Sign-in email delivery failed.", {
+      expect(log).toHaveBeenCalledTimes(1);
+      expect(log).toHaveBeenCalledWith("Sign-in email delivery failed.", {
         providerStatus: undefined,
         transportCode: undefined,
       });

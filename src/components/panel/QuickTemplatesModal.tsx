@@ -85,6 +85,38 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
       t2: "Proponi una chiamata o una visita",
       t3: "Dove andare per le cure",
     },
+    hr: {
+      title: "Predlošci emailova",
+      subtitle: "Spremne poruke za",
+      email: "Email",
+      call: "Nazovi",
+      sendErr: "Slanje emaila nije uspjelo.",
+      sendEmail: "Pošalji email",
+      sending: "Slanje...",
+      sent: "Poslano",
+      copied: "Kopirano",
+      copyBody: "Kopiraj tekst",
+      close: "Zatvori",
+      t1: "Primili smo tvoj zahtjev",
+      t2: "Ponudi poziv ili posjet",
+      t3: "Kamo otići na pregled",
+    },
+    rom: {
+      title: "Shablonurya emailoske",
+      subtitle: "Gata mesazhurya vash",
+      email: "Email",
+      call: "Akhar",
+      sendErr: "Nashti bichhaldo o email.",
+      sendEmail: "Bichhal email",
+      sending: "Bichhalel...",
+      sent: "Bichhaldo",
+      copied: "Kopisardo",
+      copyBody: "Kopisar o teksto",
+      close: "Phandav",
+      t1: "Liyam cho mangimos",
+      t2: "Phen ekh telefono vay vizita",
+      t3: "Kaj te zhal vash sastipnasko zhutimos",
+    },
   }[lang];
 
   const templates = [
@@ -101,6 +133,12 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
         }
         if (lang === "it") {
           return `${greet("Ciao", name)}\n\nAbbiamo ricevuto il tuo messaggio: «${excerpt(req.description)}». Un operatore lo sta leggendo e ti chiamerà presto al numero ${req.phone}.\n\nUn saluto,\nIl team RediHealth`;
+        }
+        if (lang === "hr") {
+          return `${greet("Pozdrav", name)}\n\nPrimili smo tvoju poruku: „${excerpt(req.description)}”. Član našeg tima sada je čita i uskoro će te nazvati na broj ${req.phone}.\n\nSrdačan pozdrav,\nRediHealth tim`;
+        }
+        if (lang === "rom") {
+          return `${greet("Mishto avilyan", name)}\n\nLiyam cho mesazho: „${excerpt(req.description)}”. Ekh manush katar amari ekipa drabarel les akana thaj sigo ka akharel tut pe ${req.phone}.\n\nSastipnasa,\nI ekipa RediHealth`;
         }
         return `${greet("Hello", name)}\n\nWe got your message: "${excerpt(req.description)}". Someone from our team is reading it now and will call you soon at ${req.phone}.\n\nBest wishes,\nThe RediHealth team`;
       },
@@ -119,6 +157,12 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
         if (lang === "it") {
           return `${greet("Ciao", name)}\n\nGrazie per averci scritto. Possiamo chiamarti per parlare un momento o dirti dov'è il medico più vicino. Scrivici quando puoi parlare.\n\nIl tuo telefono: ${req.phone}\n\nUn saluto,\nIl team RediHealth`;
         }
+        if (lang === "hr") {
+          return `${greet("Pozdrav", name)}\n\nHvala što si nam se javio. Možemo te nazvati na kratak razgovor ili ti reći gdje je najbliži obiteljski liječnik. Javi nam kada možeš razgovarati.\n\nTvoj telefon: ${req.phone}\n\nSrdačan pozdrav,\nRediHealth tim`;
+        }
+        if (lang === "rom") {
+          return `${greet("Mishto avilyan", name)}\n\nNais tuke ke lekhardyan amenge. Shaj te akharas tut vash ekh kharno vakerimos vay te phenas tuke kaj si o may pashutno doktori. Lekhar amenge kana shaj te des duma.\n\nCho telefono: ${req.phone}\n\nSastipnasa,\nI ekipa RediHealth`;
+        }
         return `${greet("Hello", name)}\n\nThank you for writing to us. We can call you for a short talk, or tell you where the nearest doctor is. Let us know when you can talk.\n\nYour phone: ${req.phone}\n\nBest wishes,\nThe RediHealth team`;
       },
     },
@@ -135,6 +179,12 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
         }
         if (lang === "it") {
           return `${greet("Ciao", name)}\n\nPer quello che ci hai scritto, la cosa migliore è andare dal tuo medico di base o da una clinica della tua zona. Trovi cliniche e farmacie vicino a te sulla nostra mappa: https://redihealth.org/find-help.\n\nUn saluto,\nIl team RediHealth`;
+        }
+        if (lang === "hr") {
+          return `${greet("Pozdrav", name)}\n\nZa ono o čemu si nam pisao najbolje je javiti se svom obiteljskom liječniku ili ambulanti u blizini. Klinike i ljekarne blizu tebe možeš pronaći na našoj karti: https://redihealth.org/find-help.\n\nSrdačan pozdrav,\nRediHealth tim`;
+        }
+        if (lang === "rom") {
+          return `${greet("Mishto avilyan", name)}\n\nVash kodya so lekhardyan amenge, may mishto si te zhas ko cho familijako doktori vay ki klinika and-i chi zona. Arakhes klinike thaj farmaciye pasha tute pe amari mapa: https://redihealth.org/find-help.\n\nSastipnasa,\nI ekipa RediHealth`;
         }
         return `${greet("Hello", name)}\n\nFor what you wrote to us, it is best to see your family doctor or a local clinic. You can find clinics and pharmacies near you on our map: https://redihealth.org/find-help.\n\nBest wishes,\nThe RediHealth team`;
       },

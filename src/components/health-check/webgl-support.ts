@@ -25,4 +25,6 @@ export const WEBGL_ERROR: Record<Lang, string> = {
   en: "The 3D body cannot open on this device. Choose the area from the list.",
   sq: "Trupi 3D nuk hapet në këtë pajisje. Zgjidh zonën nga lista.",
   it: "Il corpo 3D non si apre su questo dispositivo. Scegli la zona dall'elenco.",
+  hr: "3D prikaz tijela ne može se otvoriti na ovom uređaju. Odaberi područje s popisa.",
+  rom: "O 3D trupo nashti phuterel pe pe kadava aparati. Alosar o than katar i lista.",
 };

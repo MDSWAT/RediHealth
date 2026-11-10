@@ -145,6 +145,44 @@ const UI_STRINGS: Record<Lang, TutorialsUiStrings> = {
     tapHotspotPrompt: "Scegli una zona della pianta",
     hotspotSelectedLabel: "Zona scelta:",
   },
+  hr: {
+    moduleAriaLabel: "Praktične upute za šećernu bolest",
+    title: "Mjerenje glukoze u krvi i njega stopala",
+    description:
+      "Ako ove korake kod kuće radiš pravilno, sprječavaš brojne komplikacije. Odaberi vodič i slijedi korake.",
+    tabSelectPrompt: "Odaberi vodič",
+    stageLabel: "Korak",
+    ofFour: "od 4",
+    actionHeading: "Što učiniti:",
+    doctorTipHeading: "Koristan savjet",
+    mistakeHeading: "Česta pogreška",
+    redFlagsHeading: "Kada nazvati obiteljskog liječnika",
+    stepDoneToggle: "Dovršeno",
+    stepMarkDone: "Razumijem",
+    hotspotsHeading: "Gdje gledati pri pregledu tabana",
+    hotspotsSubtitle: "Dodirni jednu od 5 točaka i pogledaj na što trebaš paziti.",
+    tapHotspotPrompt: "Odaberi područje tabana",
+    hotspotSelectedLabel: "Odabrano područje:",
+  },
+  rom: {
+    moduleAriaLabel: "Kherutne siklyarimata vash o gudlo rat",
+    title: "Sar te mares o zaharo and-o rat thaj sar te arakhes che punre",
+    description:
+      "Kana keres kadava vorta khere, arakhes tut katar but nasvalimata. Alosar ekh siklyarimos thaj zha palal le pasurya.",
+    tabSelectPrompt: "Alosar o siklyarimos",
+    stageLabel: "Paso",
+    ofFour: "katar 4",
+    actionHeading: "So te keres:",
+    doctorTipHeading: "Lachho svato",
+    mistakeHeading: "Dosh so kerel pe butivar",
+    redFlagsHeading: "Kana te mares ko familiyako doktori",
+    stepDoneToggle: "Kerdo",
+    stepMarkDone: "Hatyarav",
+    hotspotsHeading: "Kay te dikhes kana dikhes che talpe",
+    hotspotsSubtitle: "Azba ekh katar le 5 thana te dikhes sostar te arakhes tut.",
+    tapHotspotPrompt: "Alosar ekh than pe talpa",
+    hotspotSelectedLabel: "Alosardo than:",
+  },
 };
 
 const TUTORIALS_DATA: Record<Lang, Record<TutorialTab, TutorialProgram>> = {
@@ -596,6 +634,230 @@ const TUTORIALS_DATA: Record<Lang, Record<TutorialTab, TutorialProgram>> = {
       ],
     },
   },
+  hr: {
+    glucometer: {
+      id: "glucometer",
+      tabLabel: "Mjerenje glukoze u krvi glukometrom",
+      title: "Kako pravilno izmjeriti glukozu u krvi",
+      badge: "Kod kuće, svojim uređajem",
+      summary:
+        "Kada mjeriš pravilno, tvoj obiteljski liječnik dobiva točne podatke. Uz to i sam vidiš kako hrana i kretanje utječu na glukozu u krvi.",
+      steps: [
+        {
+          number: 1,
+          title: "Operi i osuši ruke",
+          action:
+            "Operi ruke toplom vodom i običnim sapunom. Dobro ih obriši čistim ručnikom. Topla voda potiče protok krvi u jagodicama prstiju.",
+          doctorTip:
+            "Nemoj koristiti medicinski alkohol ni mirisne vlažne maramice. Alkohol isušuje kožu, a mirisi ili glicerin mogu iskriviti nalaz.",
+          mistakeToAvoid:
+            "Nemoj bosti mokar prst. Voda razrjeđuje kap krvi pa glukometar pokaže nižu vrijednost od stvarne.",
+        },
+        {
+          number: 2,
+          title: "Pripremi glukometar i lancetu",
+          action:
+            "Umetni novu test-trakicu u uređaj dok ne čuješ klik ili na zaslonu vidiš znak kapljice. Stavi novu iglicu (lancetu) u lancetar i podesi dubinu na 2 ili 3.",
+          doctorTip:
+            "Kutijicu s trakicama drži čvrsto zatvorenu na suhome mjestu, podalje od sunca i topline.",
+          mistakeToAvoid:
+            "Nemoj koristiti istu lancetu više puta. Tupa iglica jače boli i oštećuje kožu.",
+        },
+        {
+          number: 3,
+          title: "Ubodi bočnu stranu jagodice",
+          action:
+            "Ubodi bočnu stranu jagodice prsta, a ne samu sredinu. Nježno masiraj prst od korijena prema vrhu dok se ne stvori okrugla kapljica. Prisloni vrh trakice uz kapljicu.",
+          doctorTip:
+            "Na bočnim stranama prsta ima manje živčanih završetaka nego u sredini pa ubod manje boli.",
+          mistakeToAvoid:
+            "Nemoj snažno cijediti vrh prsta. Tako izlazi i tkivna tekućina koja razrjeđuje krv i kvari rezultat.",
+        },
+        {
+          number: 4,
+          title: "Očitaj, zapiši i sigurno odloži iglicu",
+          action:
+            "Pričekaj 5 sekundi da se prikaže broj. Zapiši vrijednost u dnevnik ili aplikaciju uz sat i napomenu je li mjerenje bilo prije ili poslije obroka. Vrati kapicu na lancetu i odloži je u čvrstu plastičnu posudu.",
+          doctorTip:
+            "Jedna brojka sama za sebe ne govori sve. Zapiši i što si jeo kako bi to mogao proći s obiteljskim liječnikom.",
+          mistakeToAvoid:
+            "Nemoj bacati nezaštićene iglice u obično kućno smeće jer se netko može nabosti.",
+        },
+      ],
+      clinicalRedFlags: [
+        "Glukoza u krvi je ispod 70 mg/dL uz vrtoglavicu ili smetenost. Odmah primijeni pravilo 15/15.",
+        "Vrijednosti su često iznad 250 mg/dL, a ne znaš koja ih je hrana potaknula.",
+        "Glukometar često javlja pogrešku. Provjeri rok trajanja trakica ili bateriju.",
+      ],
+    },
+    footcare: {
+      id: "footcare",
+      tabLabel: "Svakodnevna njega stopala",
+      title: "Kako zaštititi stopala od ranica",
+      badge: "Svake večeri",
+      summary:
+        "Šećerna bolest može smanjiti osjet u stopalima pa slabije osjećaš bol ili toplinu. Mali žulj ili posjekotina lako prođu neopaženo ako stopala ne pregledaš svaki dan.",
+      steps: [
+        {
+          number: 1,
+          title: "Pregledaj tabane svake večeri",
+          action:
+            "Svake večeri pri dobrom svjetlu pažljivo pogledaj tabane, pete i prostore između prstiju. Ako ne možeš podignuti stopalo, položi ogledalo na pod ili zamoli ukućane za pomoć.",
+          doctorTip:
+            "Potraži crvenilo, žuljeve, pukotine ili mjesta koja su toplija na dodir.",
+          mistakeToAvoid:
+            "Nemoj zanemariti crvenu mrlju ili natisak misleći da će proći sam od sebe. Uz dijabetes rane sporije cijele.",
+        },
+        {
+          number: 2,
+          title: "Operi i dobro osuši stopala",
+          action:
+            "Operi stopala svaki dan mlakom vodom i blagim sapunom. Nemoj ih namakati dulje od 5 minuta kako se koža ne bi isušila. Nježno ih utapkaj mekim ručnikom, osobito između prstiju.",
+          doctorTip:
+            "Temperaturu vode provjeri laktom ili termometrom, a ne stopalom. Stopalo možda neće osjetiti da je voda prevruća.",
+          mistakeToAvoid:
+            "Nemoj ostavljati vlagu između prstiju jer se ondje lako razviju gljivice.",
+        },
+        {
+          number: 3,
+          title: "Namaži pete, ali ne između prstiju",
+          action:
+            "Nanesi kremu s urejom ili običnu masnu kremu na pete, tabane i gornji dio stopala. Koža tako ostaje mekana i ne puca.",
+          doctorTip:
+            "Bakterije ulaze kroz ispucanu kožu. Redovito mazanje čuva kožnu barijeru cijelom.",
+          mistakeToAvoid:
+            "Nemoj nanositi kremu između prstiju. Ondje koža previše omekša i lako pukne.",
+        },
+        {
+          number: 4,
+          title: "Dobre čarape i provjerena obuća",
+          action:
+            "Nosi bijele ili svijetle pamučne čarape bez debelih šavova i bez čvrste gumice oko gležnja. Prije obuvanja rukom provjeri unutrašnjost cipele da nema kamenčića, nabora ili oštrih rubova.",
+          doctorTip:
+            "Na bijelim čarapama odmah uočiš i najmanju trag krvi ili iscjetka.",
+          mistakeToAvoid:
+            "Nikada nemoj hodati bos, čak ni po kući ili plaži. Trn ili krhotina mogu napraviti duboku ranu.",
+        },
+      ],
+      clinicalRedFlags: [
+        "Ranica, posjekotina ili žulj ne počinju cijeliti nakon 48 sati.",
+        "Crveno, natečeno ili vruće mjesto uz nokat ili na peti.",
+        "Utrnulost, trnci ili gubitak osjeta dodira u stopalu.",
+      ],
+    },
+  },
+  rom: {
+    glucometer: {
+      id: "glucometer",
+      tabLabel: "Marimos vash o zaharo glukometrosa",
+      title: "Sar te mares vorta o zaharo and-o rat",
+      badge: "Khere, che aparatesa",
+      summary:
+        "Kana mares vorta, cho familiyako doktori dikhel chache numere. Vi tu dikhes sar o xaben thaj o phirimos paruven o zaharo and-o rat.",
+      steps: [
+        {
+          number: 1,
+          title: "Xalav thaj shushtar che vast",
+          action:
+            "Xalav che vast tate payesa thaj sapunosa. Shushtar len mishto chiste peshkiresa. O tato pay anel o rat and-e naya.",
+          doctorTip:
+            "Na labyar spirt vay sungale shervetsurya. O spirt shukyarel i morti thaj shaj rimol o rezultato.",
+          mistakeToAvoid:
+            "Na pusav ekh kinglo nay. O pay sanyarel o rat thaj o aparato sikavel may tikno numero.",
+        },
+        {
+          number: 2,
+          title: "Gatisar o aparato thaj i suv",
+          action:
+            "Thov ekh nevi bandeleta and-o aparato zhi kay dikhes o semno vash o rat. Thov ekh nevi tikni suv thaj alosar 2 vay 3.",
+          doctorTip:
+            "Inker i kutiya le bandeletensa mishto phandadi, pe shuko than dur katar o kham.",
+          mistakeToAvoid:
+            "Na labyar eyni suv may butivar. E purani suv kerel may bari dukh.",
+        },
+        {
+          number: 3,
+          title: "Pusav pi rig katar o nay",
+          action:
+            "Pusav pi rig katar o nay, na and-o mashkar. Azba lokhes o nay zhi kay inklyol ekh tikni kapka rat. Azba i kapka la bandeletasa.",
+          doctorTip:
+            "Pe riga si may tsera nervurya sar and-o mashkar, kadaleske i dukh si may tikni.",
+          mistakeToAvoid:
+            "Na chupin o nay zurales. Inklyol vi pay andar i morti so rimol o rezultato.",
+        },
+        {
+          number: 4,
+          title: "Ginav, ramosar thaj chhude i suv",
+          action:
+            "Azhuker 5 sekunde te sikadyol o numero. Ramosar les and-o lil chasosa, anglal vay palal o xaben. Thov o kapako pe suv thaj chhude la and-ekh zurali plastikaki shisha.",
+          doctorTip:
+            "Ramosar vi so xalyan, te shaj keres vorba che familiyake doktoresa.",
+          mistakeToAvoid:
+            "Na chhude bi kapakeske suva and-o gunoyo, te na pusavel pe varekon.",
+        },
+      ],
+      clinicalRedFlags: [
+        "Si tut telal 70 mg/dL thaj phirel cho shero. Labyar sigo o regulo 15/15.",
+        "Si tut butivar opr-al 250 mg/dL thaj na zhanes katar savo xaben.",
+        "O aparato sikavel dosh. Dikh o datumo pe bandelete vay i bateriya.",
+      ],
+    },
+    footcare: {
+      id: "footcare",
+      tabLabel: "Arakhimos vash le punre svako dives",
+      title: "Sar te arakhes che punre katar le rane",
+      badge: "Svako rjat",
+      summary:
+        "O gudlo rat shaj kerel che punre te na hatyaren mishto i dukh vay o tatipen. Ekh tikni rana shaj barol te na dikhes che punre svako dives.",
+      steps: [
+        {
+          number: 1,
+          title: "Dikh che talpe svako rjat",
+          action:
+            "Svako rjat, po lachho dud, dikh mishto che talpe, khura thaj mashkar le naya. Te na shaj vazdes o punro, thov ekh oglinda tele vay mang varekas andar i familiya.",
+          doctorTip:
+            "Rode lolimos, phuknyori, phadimata vay thana so si tate kana azbas len.",
+          mistakeToAvoid:
+            "Na mukh ekh lolo than gindindoy ke nakhel korkoro. Kana si tut gudlo rat, le rane sastyon may phares.",
+        },
+        {
+          number: 2,
+          title: "Xalav thaj shushtar mishto le punre",
+          action:
+            "Xalav che punre svako dives kovle tate payesa thaj kovle sapunosa. Na inker len and-o pay may but sar 5 minuturya. Shushtar len kovle peshkiresa, may but mashkar le naya.",
+          doctorTip:
+            "Probisar o pay che konesa, na le punresa. O punro shaj na hatyarel ke o pay si but tato.",
+          mistakeToAvoid:
+            "Na mukh kinglimos mashkar le naya, ke kothe barol nasvalimos pe morti.",
+        },
+        {
+          number: 3,
+          title: "Thov krema pe khura, na mashkar le naya",
+          action:
+            "Thov krema pe khura, pe talpe thaj opral po punro. Kadya i morti achhel kovli thaj na phadyol.",
+          doctorTip:
+            "Andar i phadi morti zhan mikroburya. E krema arakhel i morti intregi.",
+          mistakeToAvoid:
+            "Na thov krema mashkar le naya. Kothe i morti kerdol but kovli thaj phadyol.",
+        },
+        {
+          number: 4,
+          title: "Lachhe choraepa thaj dikhle papucha",
+          action:
+            "Phirav parne pambukoske choraepa bi thule suvimatengo. Anglal te thoves le papucha, chhuve o vast andre te dikhes te nay barrora vay kuya.",
+          doctorTip:
+            "Pe parne choraepa dikhes sigo ekh tikni kapka rat.",
+          mistakeToAvoid:
+            "Na phir nango punrengo nikay, ni khere. Ekh tikno kash vay shisha shaj kerel bari rana.",
+        },
+      ],
+      clinicalRedFlags: [
+        "Ekh rana vay phuknyori na astarel te sastyol palal 48 chasurya.",
+        "Lolo, shuvlo vay tato than pashe ugiya vay pe khur.",
+        "Na hatyares mishto kana azbas cho punro.",
+      ],
+    },
+  },
 };
 
 const FOOT_HOTSPOTS: Record<Lang, FootHotspot[]> = {
@@ -745,6 +1007,80 @@ const FOOT_HOTSPOTS: Record<Lang, FootHotspot[]> = {
       shortName: "Bordo esterno",
       inspectionNote:
         "Le scarpe strette sfregano qui e fanno vesciche e calli. Scegli scarpe larghe davanti.",
+    },
+  ],
+  hr: [
+    {
+      id: "heel",
+      name: "Peta i stražnji rub stopala",
+      shortName: "Peta",
+      inspectionNote:
+        "Potraži duboke pukotine i zadebljanu suhu kožu. Kroz pukotine ulaze bakterije.",
+    },
+    {
+      id: "hallux",
+      name: "Palac i ležište nokta",
+      shortName: "Palac",
+      inspectionNote:
+        "Nokte reži ravno, bez zaobljivanja kutova. Tako sprječavaš urastanje nokta i upalu.",
+    },
+    {
+      id: "web_spaces",
+      name: "Prostori između prstiju",
+      shortName: "Između prstiju",
+      inspectionNote:
+        "Vlaga na ovome mjestu potiče gljivičnu infekciju. Uvijek dobro posuši kožu.",
+    },
+    {
+      id: "plantar_arch",
+      name: "Prednji jastučić tabana",
+      shortName: "Taban",
+      inspectionNote:
+        "Ovdje je pritisak pri hodu najveći. Ako je osjet oslabljen, ispod bezbolnog natiska može se skrivati rana.",
+    },
+    {
+      id: "lateral_margin",
+      name: "Vanjski rub stopala i mali prst",
+      shortName: "Vanjski rub",
+      inspectionNote:
+        "Uska obuća ovdje stvara trenje, žuljeve i natiske. Biraj obuću sa širokim prednjim dijelom.",
+    },
+  ],
+  rom: [
+    {
+      id: "heel",
+      name: "I khur thaj i paluni rig",
+      shortName: "I khur",
+      inspectionNote:
+        "Rode hor phadimata thaj thuli shuki morti. Andar le phadimata zhan mikroburya.",
+    },
+    {
+      id: "hallux",
+      name: "O baro nay thaj i ugiya",
+      shortName: "O baro nay",
+      inspectionNote:
+        "Chhin le ugiye vorta, na pe koltsurya. Kadya i ugiya na zhal and-o mas thaj na kerel infektso.",
+    },
+    {
+      id: "web_spaces",
+      name: "O than mashkar le naya",
+      shortName: "Mashkar le naya",
+      inspectionNote:
+        "O kinglimos kathe anel nasvalimos pe morti. Inker o than mishto shuko.",
+    },
+    {
+      id: "plantar_arch",
+      name: "Angluno kotor la talpako",
+      shortName: "I talpa",
+      inspectionNote:
+        "Kathe phares may zurales kana phires. Telal i thuli morti shaj garadyol ekh rana bi dukhako.",
+    },
+    {
+      id: "lateral_margin",
+      name: "Avrutni rig thaj o tikno nay",
+      shortName: "Avrutni rig",
+      inspectionNote:
+        "Tang papucha xalaven kathe thaj keren phuknyori. Alosar papucha so si buhle anglal.",
     },
   ],
 };

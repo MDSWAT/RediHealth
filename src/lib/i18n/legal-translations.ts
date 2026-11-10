@@ -269,11 +269,125 @@ const italian: LegalCopy = {
   },
 };
 
+const croatian: LegalCopy = {
+  about: {
+    title: "O RediHealthu",
+    description: "RediHealth ti pomaže razumjeti svoje zdravlje, pronaći liječničku pomoć i doći do zdravstvenih radnika koji ti mogu pomoći.",
+    paragraphs: [
+      "Napravili smo RediHealth kako bi znao što učiniti kad te brine zdravlje. Možeš provjeriti simptome, pročitati o nekoj bolesti ili zatražiti pomoć liječnika ili zdravstvenog medijatora.",
+      "Stranica objašnjava zdravlje jednostavnim riječima. Povezuje pacijente sa zdravstvenim radnicima, prati plan skrbi i kontrole te ti nudi jednostavan način da zatražiš pomoć.",
+      "RediHealth ne zamjenjuje liječnika. Ne postavlja dijagnoze i ne liječi bolesti. U hitnom slučaju odmah nazovi hitnu medicinsku službu 112.",
+    ],
+  },
+  contact: {
+    title: "Kontaktiraj nas",
+    description: "Imaš pitanje o RediHealthu ili svom računu? Piši nam i odgovorit ćemo ti.",
+    enquiries: "Opća pitanja",
+    emergencies: "Hitni medicinski slučajevi",
+    emergencyBody: "U hitnom medicinskom slučaju odmah nazovi 112. Nemoj čekati odgovor e-poštom.",
+    helpBefore: "Ako želiš zatražiti liječničku pomoć, otvori stranicu",
+    helpLink: "Potraži pomoć",
+    helpAfter: "kako bi tvoj zahtjev stigao izravno našem timu.",
+  },
+  terms: {
+    title: "Uvjeti korištenja",
+    description: "Ako koristiš RediHealth, prihvaćaš ove uvjete.",
+    sections: [
+      { title: "Ne zamjenjuje liječnika", body: "RediHealth pruža opće informacije o zdravlju i pomaže ti doći do skrbi. Ne postavlja dijagnoze i ne zamjenjuje savjet liječnika. U hitnom slučaju odmah nazovi 112." },
+      { title: "Tvoj račun", body: "Moraš unijeti točne podatke. Čuvaj podatke kojima se prijavljuješ na račun." },
+      { title: "Pravilno korištenje", body: "Nemoj zloupotrebljavati stranicu. Na primjer, nemoj slati lažne medicinske podatke, nemoj pokušavati ući u tuđe račune i nemoj ometati rad usluge." },
+      { title: "Promjene", body: "Možemo promijeniti ove uvjete. Ako nastaviš koristiti RediHealth nakon promjene, prihvaćaš nove uvjete." },
+    ],
+  },
+  privacy: {
+    title: "Pravila privatnosti",
+    description: "Koje podatke RediHealth prikuplja, kako ih koristimo i kako ih štitimo.",
+    collectTitle: "Što prikupljamo",
+    collectBody: "Kad zatražiš pomoć, izradiš profil pacijenta ili se prijaviš, prikupljamo tvoje ime, kontaktne podatke i zdravstvene podatke koje nam odlučiš podijeliti. Zdravstveni radnici ih trebaju kako bi ti pomogli.",
+    useTitle: "Kako ih koristimo",
+    useBody: "Koristimo tvoje podatke za organizaciju tvoje skrbi, kontaktiranje u vezi s tvojim zahtjevima i poboljšanje naših usluga. Ne prodajemo tvoje osobne ni zdravstvene podatke.",
+    accessTitle: "Tko ih vidi",
+    accessBody: "Tvoje zdravstvene podatke vide samo zdravstveni radnici, zdravstveni medijatori i administratori koji organiziraju tvoju skrb. Vidiš ih i ti na portalu za pacijente.",
+    choicesTitle: "Tvoja prava",
+    choicesBody: "Možeš zatražiti uvid, ispravak ili brisanje svojih podataka. Piši nam na",
+    botTitle: "Zaštita od automatizirane zloupotrebe",
+    botBody: "Kad je zaštita uključena, koristimo Google reCAPTCHA kako bismo spriječili automatiziranu zloupotrebu javnih obrazaca. Google provjerava tehničke podatke o tvom pregledniku i načinu korištenja stranice prema vlastitim pravilima privatnosti i uvjetima pružanja usluge. Googleu šaljemo samo CAPTCHA oznaku, a ne tvoje zdravstvene podatke ni ono što si napisao u obrascu.",
+  },
+  accessibility: {
+    title: "Pristupačnost",
+    description: "Želimo da svatko može koristiti RediHealth.",
+    paragraphs: [
+      "RediHealth treba raditi s čitačima zaslona i samo pomoću tipkovnice. Boje imaju dovoljan kontrast i uvijek vidiš gdje se nalaziš na stranici.",
+      "Stalno radimo na tome. Ako je neku stranicu teško koristiti s čitačem zaslona ili drugim pomagalom, javi nam i popravit ćemo je.",
+    ],
+    contactLead: "Piši nam na",
+    contact: "kako bi prijavio poteškoću s pristupačnošću ili zatražio informacije u drugom obliku.",
+  },
+};
+
+const romani: LegalCopy = {
+  about: {
+    title: "Vash RediHealth",
+    description: "RediHealth zhutil tut te xatyares cho sastipen, te arakhes sastipnasko zhutimos thaj te areses ko manusha kay shay te zhutin tut.",
+    paragraphs: [
+      "Kerdam RediHealth te zhanes so te keres kana si tut grija vash o sastipen. Shay te dikhes che simptome, te gines vash ekh nasvalipe vay te manges zhutimos katar ekh doktori vay sastipnasko mediatori.",
+      "I rig ashkarel o sastipen pe lokhe alava. Phandel e paciyenturen e sastipnaske bucharyenca, inkrel o plano vash o dikhiben thaj e kontrolya thaj sikavel tuke sar te manges zhutimos.",
+      "RediHealth na achhel po than e doktoresko. Na chivel diagnoze thaj na sastyarel nasvalimata. Ki sigardiari, akhar akana ko 112.",
+    ],
+  },
+  contact: {
+    title: "Kontakto",
+    description: "Si tut phuchipe vash RediHealth vay vash cho konto? Lekhav amenge thaj ka das tut palpale.",
+    enquiries: "Savore phuchimata",
+    emergencies: "Sastipnaski sigardiari",
+    emergencyBody: "Ki sastipnaski sigardiari, akhar akana ko 112. Ma azhuker palpale pe emailo.",
+    helpBefore: "Te manges sastipnasko zhutimos, labar i rig",
+    helpLink: "Rod zhutimos",
+    helpAfter: "te aresel cho mangipe rigate ko amaro timo.",
+  },
+  terms: {
+    title: "Labaripnaske pravila",
+    description: "Te labares RediHealth, kames kadala pravila.",
+    sections: [
+      { title: "Na achhel po than e doktoresko", body: "RediHealth del tut informaciye vash o sastipen thaj zhutil tut te areses ko dikhiben. Na chivel diagnoze thaj na paravel e doktoreski godi. Ki sigardiari, akhar akana ko 112." },
+      { title: "Cho konto", body: "Trubul te des chache informaciye. Arakh mishto e podatke kolenca des andre ko konto." },
+      { title: "Chacho labaripe", body: "Ma labar i rig bilačhes. Misalake, ma bichhal xoxamne sastipnaske informaciye, ma zumav te des andre ko avrengo konto thaj ma phag i buchi e rigaki." },
+      { title: "Paruvimata", body: "Shay te paruvas kadala pravila. Te labares RediHealth vi palo paruvipe, kames e neve pravila." },
+    ],
+  },
+  privacy: {
+    title: "Garavipnaske pravila",
+    description: "Save podatke chidel RediHealth, sar labaras len thaj sar arakhas len.",
+    collectTitle: "So chidas",
+    collectBody: "Kana manges zhutimos, keres paciyentesko profilo vay des andre ko konto, chidas cho anav, che kontaktoske podatke thaj e sastipnaske informaciye kay alosares te des amen. E sastipnaske bucharya trubun len te zhutin tut.",
+    useTitle: "Sar labaras len",
+    useBody: "Labaras che informaciye te lasharas cho dikhiben, te vakeras tusa vash che mangimata thaj te keras may lache amare buchya. Na bikinas che manushikane vay sastipnaske podatke.",
+    accessTitle: "Kon dikhel len",
+    accessBody: "Che sastipnaske informaciye dikhen numay e sastipnaske bucharya, e sastipnaske mediatorya thaj e administratorya kay keren buchi vash cho dikhiben. Dikhes len vi tu ko paciyentesko portalo.",
+    choicesTitle: "Che xakaya",
+    choicesBody: "Shay te manges te dikhes, te lashares vay te chosas che podatke. Lekhav amenge pe",
+    botTitle: "Arakhipe katar e roboturya",
+    botBody: "Kana o arakhipe si putardo, labaras Google reCAPTCHA te astavas avtomatikano bilačho labaripe pe putarde formularya. Google dikhel tehnikane podatke vash o browsero thaj sar labares i rig, palo piro garavipnasko zakono. Ame bichhalas ko Google numay ekh CAPTCHA kodo, na che sastipnaske informaciye thaj na so lekhavdyan ando formularo.",
+  },
+  accessibility: {
+    title: "Shayipe te labares",
+    description: "Kamas sako manush te shay labarel RediHealth.",
+    paragraphs: [
+      "RediHealth trubul te kerel buchi ekraneske ginatorenca thaj numay tastaturasa. E rangurya si len dosta kontrasto thaj sako drom dikhes kay san pi rig.",
+      "Sako drom keras buchi pe kava. Te si ekh rig phari te labares ekraneske ginatoresa vay avere zhutimaske alatesa, phen amenge thaj ka lasharas la.",
+    ],
+    contactLead: "Lekhav amenge pe",
+    contact: "te phenes varesavi problema vay te les e informaciye ando aver formato.",
+  },
+};
+
 const legalCopyByLang: Record<Lang, LegalCopy> = {
   en: english,
   ro: romanian,
   sq: albanian,
   it: italian,
+  hr: croatian,
+  rom: romani,
 };
 
 export function getLegalCopy(lang: Lang): LegalCopy {

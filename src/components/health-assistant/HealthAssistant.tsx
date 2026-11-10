@@ -2,13 +2,14 @@
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { AlertCircleIcon } from "@/components/ui/icons";
+import { AlertCircleIcon, PhoneIcon } from "@/components/ui/icons";
 import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { TriageStateMachine } from "@/components/health-assistant/TriageStateMachine";
 import { Container } from "@/components/ui/Container";
 import { parseTriageUrlParams } from "@/lib/triage-url-params";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 
 function TriageStateMachineWithParams() {
   const searchParams = useSearchParams();
@@ -23,13 +24,24 @@ function TriageStateMachineWithParams() {
   );
 }
 
-const dict = {
+const dict: Record<
+  Lang,
+  {
+    title: string;
+    subtitle: string;
+    emergencyNotice: string;
+    emergencyDisclaimer: string;
+    call112: string;
+    loading: string;
+  }
+> = {
   en: {
     title: "Health assistant",
     subtitle: "Answer a few short questions. We point you to information, a doctor or a health mediator.",
     emergencyNotice:
       "For severe chest pain, trouble breathing, sudden stroke symptoms, heavy bleeding or immediate danger, call",
     emergencyDisclaimer: "The app does not call for you.",
+    call112: "Call 112",
     loading: "Loading the health assistant…",
   },
   ro: {
@@ -38,6 +50,7 @@ const dict = {
     emergencyNotice:
       "Pentru durere puternică în piept, respirație grea, semne de AVC, sângerare abundentă sau pericol imediat, sună la",
     emergencyDisclaimer: "Aplicația nu sună în locul tău.",
+    call112: "Sună la 112",
     loading: "Se încarcă asistentul medical…",
   },
   sq: {
@@ -46,6 +59,7 @@ const dict = {
     emergencyNotice:
       "Për dhimbje të fortë në gjoks, vështirësi në frymëmarrje, shenja të goditjes në tru, gjakderdhje të madhe ose rrezik të menjëhershëm, telefono",
     emergencyDisclaimer: "Aplikacioni nuk telefonon për ty.",
+    call112: "Telefono 112",
     loading: "Po ngarkohet asistenti mjekësor…",
   },
   it: {
@@ -54,13 +68,32 @@ const dict = {
     emergencyNotice:
       "Per dolore forte al petto, difficoltà a respirare, segni di ictus, sanguinamento abbondante o pericolo immediato, chiama il",
     emergencyDisclaimer: "L'app non chiama al posto tuo.",
+    call112: "Chiama il 112",
     loading: "Caricamento dell'assistente medico…",
+  },
+  hr: {
+    title: "Zdravstveni asistent",
+    subtitle: "Odgovori na nekoliko kratkih pitanja. Usmjerit ćemo te na informacije, liječnika ili zdravstvenog medijatora.",
+    emergencyNotice:
+      "Kod jake boli u prsima, otežanog disanja, naglih znakova moždanog udara, jakog krvarenja ili neposredne opasnosti nazovi",
+    emergencyDisclaimer: "Aplikacija ne poziva umjesto tebe.",
+    call112: "Nazovi 112",
+    loading: "Učitavanje zdravstvenog asistenta…",
+  },
+  rom: {
+    title: "Sastipnasko azhutitori",
+    subtitle: "De anglalipe pe nesave skurte phuchimata. Ingaras tut ki informacia, ko doktori vaj ko sastipnasko mediatori.",
+    emergencyNotice:
+      "Vash bari dukh and-o kolin, phari phurdinimos, znakoja katar dab and-i godji, baro rat vaj sigo dar, akhar",
+    emergencyDisclaimer: "I aplikacia na akharel vash tute.",
+    call112: "Akhar 112",
+    loading: "Pharel pe o sastipnasko azhutitori…",
   },
 };
 
 export function HealthAssistant() {
   const { lang } = useLanguage();
-  const t = dict[lang as keyof typeof dict] || dict[DEFAULT_LANG];
+  const t = dict[lang] || dict[DEFAULT_LANG];
 
   return (
     // Same shell as /health-check: tabs span the site container (no jump when switching tabs),
@@ -91,12 +124,21 @@ export function HealthAssistant() {
           </Suspense>
         </div>
 
-        <p className="mt-6 flex max-w-2xl items-start gap-2.5 rounded-xl border border-border bg-card p-4 text-sm leading-relaxed text-foreground">
-          <AlertCircleIcon className="mt-0.5 h-4 w-4 flex-none text-red-700 dark:text-red-300" />
-          <span>
-            {t.emergencyNotice} <strong className="font-semibold">112</strong>. {t.emergencyDisclaimer}
-          </span>
-        </p>
+        <div className="mt-6 flex max-w-2xl flex-col gap-3 rounded-xl border border-primary/30 bg-primary-soft/55 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+            <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+            <span>
+              {t.emergencyNotice} <strong className="font-semibold">112</strong>. {t.emergencyDisclaimer}
+            </span>
+          </p>
+          <a
+            href="tel:112"
+            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+            <span>{t.call112}</span>
+          </a>
+        </div>
       </Container>
     </main>
   );

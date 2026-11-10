@@ -11,6 +11,8 @@ const META: Record<Lang, { title: string; description: string }> = {
   en: { title: "Book a call with a doctor - RediHealth", description: "Choose a day and time for a free call with a volunteer doctor." },
   sq: { title: "Cakto një thirrje me mjekun - RediHealth", description: "Zgjidh ditën dhe orën për një thirrje falas me një mjek vullnetar." },
   it: { title: "Prenota una chiamata con il medico - RediHealth", description: "Scegli il giorno e l'ora per una chiamata gratuita con un medico volontario." },
+  hr: { title: "Rezerviraj poziv s liječnikom - RediHealth", description: "Odaberi dan i vrijeme za besplatan poziv s liječnikom volonterom." },
+  rom: { title: "Alosar vrama vash svato e doktoresa - RediHealth", description: "Alosar dives thaj chaso vash svato bi lovesko ekhe doktoresa volonteri." },
 };
 
 export async function generateMetadata(): Promise<Metadata> {

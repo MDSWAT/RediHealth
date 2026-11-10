@@ -6,6 +6,7 @@ import { speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 
 interface LegalRightsCardProps {
   className?: string;
@@ -16,7 +17,18 @@ export function LegalRightsCard({ className = "" }: LegalRightsCardProps) {
   const voiceEnabled = isVoiceEnabled(lang);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const content = {
+  const content: Record<
+    Lang,
+    {
+      heading: string;
+      lawRef: string;
+      body: string;
+      keyRights: string[];
+      listenLabel: string;
+      stopLabel: string;
+      speechLang: string;
+    }
+  > = {
     en: {
       heading: "The law guarantees you free emergency medical care",
       lawRef: "Romanian Health Law no. 95/2006, Article 236",
@@ -69,8 +81,34 @@ export function LegalRightsCard({ className = "" }: LegalRightsCardProps) {
       stopLabel: "Ferma",
       speechLang: "it-IT",
     },
+    hr: {
+      heading: "Zakon ti jamči besplatnu hitnu medicinsku pomoć",
+      lawRef: "Zakon o zdravstvenoj zaštiti i prava u sustavu HZZO-a, hitna služba 112",
+      body: "Prema propisima o zdravstvenoj zaštiti i pravilima HZZO-a, bolnice i hitna medicinska služba na broju 112 moraju pružiti hitnu skrb svakoj osobi, čak i bez osobne iskaznice, iskaznice HZZO-a ili novca.",
+      keyRights: [
+        "Nijedan hitni bolnički prijem ne smije te odbiti kada si teško bolestan ili imaš jake bolove.",
+        "Za hitnu pomoć na 112 ne trebaš novac ni zdravstvenu iskaznicu.",
+        "Zdravstveno osoblje ne smije zvati policiju zato što nemaš dokumente, a možeš zatražiti i zdravstvenog medijatora.",
+      ],
+      listenLabel: "Poslušaj svoja prava",
+      stopLabel: "Zaustavi",
+      speechLang: "hr-HR",
+    },
+    rom: {
+      heading: "O zakono garantinel tuke bi lovengo sigardiari sastipnasko azhutimos",
+      lawRef: "Chachipen pe sigardiari azhutimos 112 thaj sastipnasko mediatori",
+      body: "Svako manush si les chachipen te lel sigardiari sastipnasko azhutimos ko 112 thaj and-i bolnitsa, vi te na-i les lila, sastipnaski karta vaj love. Shaj manges vi bi lovengo azhutimos katar jekh sastipnasko mediatori.",
+      keyRights: [
+        "Nijekh sigardiari ki bolnitsa nashti phenel tuke na kana san phares nasvalo vaj si tut bari dukh.",
+        "Na trebul tut love vaj sastipnaski karta te les sigardiari azhutimos ko 112.",
+        "Le sastipnaske bucarne nashti akharen i policia soske na-i tut lila, thaj jekh sastipnasko mediatori shaj djal tusa.",
+      ],
+      listenLabel: "Ashun chire chachimata",
+      stopLabel: "Astav",
+      speechLang: "ro-RO",
+    },
   };
-  const t = content[lang as keyof typeof content] || content[DEFAULT_LANG];
+  const t = content[lang] || content[DEFAULT_LANG];
 
   useEffect(() => {
     return () => {

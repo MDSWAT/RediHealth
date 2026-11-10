@@ -327,12 +327,12 @@ Dates can be added without overwriting other plans.
 ## Find help map (medical institutes)
 
 The public `/find-help` page reads medical institutes for Romania, Albania,
-Italy and Moldova from the `medical_institutes` table of the control database (migration `007`). It asks the browser
+Italy, Moldova and Croatia from the `medical_institutes` table of the control database (migration `007`). It asks the browser
 for the visitor's location and shows the nearest institutes. Without location
 permission it falls back to the visitor's country, taken from the CDN country
 header (`cf-ipcountry`, `x-vercel-ip-country`, …). If there is no such header,
 it uses the site language. On a first visit the same country header also picks
-the site language (RO and MD → ro, AL → sq, IT → it).
+the site language (RO and MD → ro, AL → sq, IT → it, HR → hr).
 
 Super Admins manage the list of the country they are working in at **Panel → Medical institutes**
 (`/panel/institutes`). From there they can add, edit, hide or delete entries,
@@ -342,7 +342,7 @@ bulk import from the CLI (it uses the free public Overpass API and needs no API
 key):
 
 ```bash
-npm run import:institutes -- RO AL IT MD
+npm run import:institutes -- RO AL IT MD HR
 ```
 
 Map data © OpenStreetMap contributors (ODbL).

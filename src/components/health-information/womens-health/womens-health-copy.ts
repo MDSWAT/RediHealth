@@ -712,4 +712,318 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
     credit:
       "Fonti: Organizzazione Mondiale della Sanità e linee guida europee per lo screening dei tumori del collo dell'utero e del seno.",
   },
+  hr: {
+    title: "Trudnoća i preventivni pregledi za žene",
+    subtitle:
+      "Što se događa u svakom tromjesečju trudnoće i koje preglede dojki i vrata maternice trebaš obaviti.",
+    listenLabel: "Poslušaj tekst",
+    audioSummary:
+      "Trudnoća po tromjesečjima uz 8 pregleda koje preporučuje Svjetska zdravstvena organizacija, te preventivni pregledi dojki i vrata maternice.",
+    fetalDevelopmentTitle: "Kako dijete raste",
+    clinicalChecklistTitle: "Pretrage i pregledi",
+    selfCarePrefix: "Što možeš učiniti:",
+    redFlagsPrefix: "Znakovi upozorenja:",
+    breastAwarenessRule3Title: "Kako pregledati dojke",
+    ageGuidanceTitle: "Koji pregledi prema dobi",
+    nationalProgramPrefix: "Besplatni nacionalni program:",
+    recommendedIntervalsTitle: "Koliko često",
+    hpvVaccinationPrefix: "HPV cjepivo:",
+    promptConsultationPrefix: "Javi se ubrzo ginekologu ako primijetiš:",
+    trackAriaLabel: "Trudnoća i preventivni pregledi",
+    trimesterGroupLabel: "Odaberi tromjesečje",
+    checkGroupLabel: "Odaberi pregled",
+    whoContactTitle: "Pregledi kod liječnika prema preporuci SZO",
+    tabs: {
+      pregnancy: "Trudnoća po tromjesečjima",
+      screening: "Preventivni pregledi",
+    },
+    pregnancyTrack: {
+      title: "Trudnoća iz tromjesečja u tromjesečje",
+      intro:
+        "Redoviti pregledi u trudnoći čuvaju tebe i dijete. Svjetska zdravstvena organizacija preporučuje 8 posjeta liječniku.",
+      steps: [
+        {
+          id: "trimester-1",
+          number: "01",
+          name: "Prvo tromjesečje",
+          weeks: "Od 1. do 12. tjedna",
+          developmentTitle: "Razvijaju se organi i srce počinje kucati",
+          developmentDesc:
+            "U prvih 12 tjedana razvijaju se mozak, kralježnična moždina i ostali organi. Srce počinje kucati oko 5. ili 6. tjedna. Na kraju tromjesečja plod je dug oko 6 centimetara.",
+          whoContact:
+            "1. pregled (prije 12. tjedna). Liječnik potvrđuje trudnoću, određuje tjedne trudnoće i planira praćenje.",
+          clinicalChecklist: [
+            "Ultrazvuk kojim se provjerava uredan tijek, smještaj i trajanje trudnoće.",
+            "Krvne pretrage, krvna grupa i Rh faktor (radi sprječavanja Rh nepodudarnosti).",
+            "Testiranja na hepatitis B, sifilis, HIV i imunost na rubeolu.",
+            "Pregled mokraće i urinokultura radi otkrivanja tihih upala mokraćnih putova.",
+          ],
+          selfCare:
+            "Uzimaj svaki dan 400 mikrograma folne kiseline. Ona sprječava oštećenja mozga i kralježnice ploda. Pij dovoljno vode, ne puši, ne pij alkohol i lagano šeći.",
+          redFlags:
+            "Jaka bol nisko u trbuhu ili na jednoj strani (može upućivati na izvanmaterničnu trudnoću). Obilno krvarenje iz rodnice. Učestalo povraćanje zbog kojeg ne možeš zadržati ni vodu.",
+        },
+        {
+          id: "trimester-2",
+          number: "02",
+          name: "Drugo tromjesečje",
+          weeks: "Od 13. do 27. tjedna",
+          developmentTitle: "Dijete brzo raste i počinje se micati",
+          developmentDesc:
+            "Kosti jačaju, lice dobiva oblik i dijete počinje čuti zvukove. Između 18. i 20. tjedna obično osjetiš prve pokrete.",
+          whoContact:
+            "2. i 3. pregled (20. i 26. tjedan). Liječnik prati rast djeteta, mjeri tvoj krvni tlak i provjerava glukozu u krvi u trudnoći.",
+          clinicalChecklist: [
+            "Morfometrijski ultrazvuk (od 20. do 22. tjedna) kojim se detaljno pregledavaju organi djeteta.",
+            "Mjerenje krvnog tlaka i težine na svakom pregledu radi ranog otkrivanja preeklampsije.",
+            "Test opterećenja glukozom (OGTT, od 24. do 28. tjedna) za trudnički dijabetes.",
+            "Kontrola bjelančevina u mokraći na svakom pregledu.",
+          ],
+          selfCare:
+            "Jedi hranu bogatu željezom i kalcijem. Spavaj na lijevom boku kako bi posteljica dobivala više krvi. Vježbaj mirno disanje.",
+          redFlags:
+            "Naglo oticanje lica, šaka ili gležnjeva uz jaku glavobolju ili zamućen vid (znakovi preeklampsije). Istjecanje tekućine iz rodnice. Redoviti i bolni trudovi.",
+        },
+        {
+          id: "trimester-3",
+          number: "03",
+          name: "Treće tromjesečje",
+          weeks: "Od 28. do 40. tjedna",
+          developmentTitle: "Dijete se priprema za porod",
+          developmentDesc:
+            "Dijete dobiva na težini, a pluća sazrijevaju. Najčešće se okreće glavom prema dolje, spremno za porod.",
+          whoContact:
+            "Od 4. do 8. pregleda (30., 34., 36., 38. i 40. tjedan). Liječnik provjerava položaj djeteta i tvoje stanje te razgovarate o porodu.",
+          clinicalChecklist: [
+            "Ultrazvuk za procjenu rasta djeteta i količine plodove vode.",
+            "Ponovna krvna slika radi provjere slabokrvnosti u trudnoći.",
+            "Bris na beta-hemolitički streptokok skupine B (od 35. do 37. tjedna).",
+            "Svakodnevno praćenje pokreta djeteta nakon obroka i priprema torbe za rodilište.",
+          ],
+          selfCare:
+            "Dovoljno se odmaraj. Razgovaraj s primaljom ili liječnikom o porodu. Pohađaj trudnički tečaj i informiraj se o dojenju.",
+          redFlags:
+            "Dijete se miče znatno slabije ili se prestane micati. Svježe crveno krvarenje iz rodnice. Puknuće vodenjaka (bistra ili zelenkasta tekućina). Bolni trudovi u razmacima kraćima od 5 minuta.",
+        },
+      ],
+    },
+    screeningTrack: {
+      title: "Pregledi dojki i vrata maternice",
+      intro:
+        "Promjena otkrivena na vrijeme lakše se liječi. Upoznaj svoje tijelo i saznaj kada obaviti preglede.",
+      hotspots: [
+        {
+          id: "breast-awareness",
+          title: "Samopregled i kontrola dojki",
+          summary:
+            "Kada poznaješ uobičajen izgled i opip svojih dojki, brže ćeš uočiti svaku promjenu.",
+          rule3Steps: [
+            {
+              stepName: "Pogledaj",
+              desc: "Pogledaj dojke u ogledalu sa spuštenim, a zatim podignutim rukama. Provjeri ima li promjene oblika, uvlačenja kože ili bradavice ili promjene boje.",
+            },
+            {
+              stepName: "Opipaj",
+              desc: "Jednom mjesečno, 3 do 5 dana nakon mjesečnice, opipaj dojke jagodicama triju prstiju. Kružnim pokretima prijeđi cijelu dojku i pazuh.",
+            },
+            {
+              stepName: "Javi se liječniku",
+              desc: "Ako napipaš tvrdi čvorić ili zadebljanje, ili primijetiš iscjedak iz bradavice, javi se obiteljskom liječniku ili ginekologu.",
+            },
+          ],
+          ageGuidance: [
+            {
+              ageRange: "Mlađe od 40 godina",
+              guidance:
+                "Klinički pregled dojki jednom godišnje kod ginekologa ili obiteljskog liječnika. Ultrazvuk kod gustog tkiva dojki ili prema uputi liječnika.",
+            },
+            {
+              ageRange: "Od 50 do 69 godina",
+              guidance:
+                "Preventivna mamografija obiju dojki svake 2 godine prema europskim smjernicama i HZZO programu.",
+            },
+          ],
+        },
+        {
+          id: "cervical-screening",
+          title: "Papanicolau test (Papa-test) i HPV",
+          summary:
+            "Više od 90% slučajeva raka vrata maternice može se spriječiti uz cjepivo protiv HPV virusa i redovite kontrole.",
+          examExplanation:
+            "Papanicolau test (Papa-test) traje svega nekoliko minuta i obično ne boli. Liječnik nježno uzima uzorak stanica s vrata maternice.",
+          nationalProgramNote:
+            "Žene u dobi od 25 do 64 godine pregled mogu obaviti besplatno u ginekološkoj ambulanti primarne zdravstvene zaštite preko HZZO sustava.",
+          recommendedIntervals: [
+            "Od 25 do 29 godina: Papanicolau test (Papa-test) svake 3 godine ako nemaš tegoba.",
+            "Od 30 do 64 godine: test na visokorizični HPV svakih 5 godina ili Papa-test svake 3 godine.",
+          ],
+          vaccinationNote:
+            "Cjepivo protiv HPV virusa u Hrvatskoj je besplatno za djevojčice i dječake u školskoj i mladoj dobi. Raspitaj se kod školskog ili obiteljskog liječnika ili zdravstvenog medijatora.",
+          warningSigns:
+            "krvarenje nakon spolnog odnosa, krvarenje između mjesečnica ili bilo kakvo krvarenje u menopauzi.",
+        },
+      ],
+    },
+    emergencyNote:
+      "Jaka bol u donjem dijelu trbuha, obilno krvarenje ili visoka vrućica zahtijevaju hitnu pomoć. Nazovi 112.",
+    credit:
+      "Izvori: Svjetska zdravstvena organizacija i europske smjernice za probir raka vrata maternice i raka dojke.",
+  },
+  rom: {
+    title: "Khabnimos thaj anglune dikhimata vash le romnya",
+    subtitle:
+      "So kerel pe and-o svako trito kotor kana i romni si khabni, thaj save dikhimata trebun vash le chucha thaj o kol.",
+    listenLabel: "Ashun kadava teksto",
+    audioSummary:
+      "O khabnimos po trimeztrurya, le 8 vizitensa so phenel WHO, thaj le anglune dikhimata vash le romnya.",
+    fetalDevelopmentTitle: "Sar barol o tsinorro",
+    clinicalChecklistTitle: "Rengro dikhiben thaj kontrole",
+    selfCarePrefix: "So shaj keres tu:",
+    redFlagsPrefix: "Semnya vash alarmo:",
+    breastAwarenessRule3Title: "Sar te dikhes che chucha",
+    ageGuidanceTitle: "Save dikhimata pe che bersha",
+    nationalProgramPrefix: "Natsionalno programo bi lovengo:",
+    recommendedIntervalsTitle: "Koborivar",
+    hpvVaccinationPrefix: "O chikat HPV:",
+    promptConsultationPrefix: "Zha sigo ko ginekologo te si tut:",
+    trackAriaLabel: "Khabnimos thaj dikhimata",
+    trimesterGroupLabel: "Alosar o trimeztro",
+    checkGroupLabel: "Alosar o dikhiben",
+    whoContactTitle: "Vizite ko doktori sar phenel WHO",
+    tabs: {
+      pregnancy: "Khabnimos po trimeztrurya",
+      screening: "Anglune dikhimata",
+    },
+    pregnancyTrack: {
+      title: "I khabni romni, trimeztro po trimeztro",
+      intro:
+        "Le dikhimata kana san khabni arakhen tut thaj che tsinorres. WHO phenel 8 vizite ko doktori.",
+      steps: [
+        {
+          id: "trimester-1",
+          number: "01",
+          name: "Trimeztro 1",
+          weeks: "Kurke 1 zhi ko 12",
+          developmentTitle: "Kerdon le organurya thaj o ilo astarel te marel",
+          developmentDesc:
+            "And-e anglune 12 kurke kerdon i godi thaj le organurya. O ilo astarel te marel pashe ko kurko 5 vay 6. Ko agor, o tsinorro si pashe 6 tsentimetra.",
+          whoContact:
+            "Vizita 1 (anglal o kurko 12). O doktori dikhel o khabnimos, ginavel le kurke thaj kerel o plano vash o sastipen.",
+          clinicalChecklist: [
+            "Ekografiya te dikhel pe sar zhal o khabnimos thaj kobor kurke si.",
+            "Rengro dikhiben, rateski grupa thaj Rh faktoro.",
+            "Testurya vash hepatito B, sifiliso, HIV thaj rubeola.",
+            "Dikhiben vash i muter, te na avel garado infektso.",
+          ],
+          selfCare:
+            "Le svako dives 400 mikrogramurya folikno kiselina (i drab vash o tsinorro). Pi dosta pay, na pi duvano ni alkoholo, thaj phir lokhes.",
+          redFlags:
+            "Zurali dukh telal and-o per vay pe ekh rig. Baro ratyamos. But chhadimos so na mukhel tut te inkeres ni o pay.",
+        },
+        {
+          id: "trimester-2",
+          number: "02",
+          name: "Trimeztro 2",
+          weeks: "Kurke 13 zhi ko 27",
+          developmentTitle: "O tsinorro barol sigo thaj astarel te mishtil",
+          developmentDesc:
+            "Le kokala zurardon, o muy lel forma thaj o tsinorro astarel te ashunel. Mashkar le kurke 18 thaj 20 i khabni romni hatyarel sar mishtil o tsinorro.",
+          whoContact:
+            "Vizite 2 thaj 3 (kurke 20 thaj 26). O doktori dikhel sar barol o tsinorro, dikhel te na phurdel o rat zurales thaj dikhel o zaharo and-o rat.",
+          clinicalChecklist: [
+            "Morfologikani ekografiya (kurke 20 zhi ko 22) so dikhel le tsinorreske organurya.",
+            "Dikhiben vash o phurdimos le ratesko thaj pharimos pe svako vizita.",
+            "OGTT testo (kurke 24 zhi ko 28) vash gudlo rat and-o khabnimos.",
+            "Proteine and-i muter pe svako kontrola.",
+          ],
+          selfCare:
+            "Xa xaben sastrimasa thaj kaltsiyumesa. Sovel pe stingo rig te nakhel may mishto o rat ko tsinorro. Ker lokho phurdimos.",
+          redFlags:
+            "Cho muy, vast vay punre shuvlyon sigo thaj si tut bari shereski dukh vay dikhes kalo (semnya ke o rat phurdel zurales). Nakhavel pay. Aven tuke dukhale kontraktsiye.",
+        },
+        {
+          id: "trimester-3",
+          number: "03",
+          name: "Trimeztro 3",
+          weeks: "Kurke 28 zhi ko 40",
+          developmentTitle: "O tsinorro gatisarel pe te biandyol",
+          developmentDesc:
+            "O tsinorro lel pharimos thaj leske parne buke zurardon. Butivar boldel pe sheresa tele, gata vash i bolnitsa.",
+          whoContact:
+            "Vizite 4 zhi ko 8 (kurke 30, 34, 36, 38 thaj 40). O doktori dikhel kay beshel o tsinorro thaj keren vorba vash o biandimos.",
+          clinicalChecklist: [
+            "Ekografiya vash o barimos le tsinorresko thaj o pay.",
+            "Nevo rengro dikhiben vash slabimos and-o rat.",
+            "Testo vash streptokoko grupa B (kurke 35 zhi ko 37).",
+            "Ginav svako dives sar mishtil o tsinorro palal o xaben. Gatisar cho gono vash i bolnitsa.",
+          ],
+          selfCare:
+            "Hodinisar mishto. Ker vorba le doktoresa vay sastipnaske mediatorenza vash i bolnitsa thaj sar te des chuchi le tsinorres.",
+          redFlags:
+            "O tsinorro mishtil but may tsera vay auka. Lolo ratyamos. Phadyol o pay. Dukhale kontraktsiye may pashal sar 5 minuturya.",
+        },
+      ],
+    },
+    screeningTrack: {
+      title: "Dikhimata vash le chucha thaj o kol",
+      intro:
+        "Ekh nasvalimos arakhlo anglal sastyol may lokhes. Prinzhar cho trupo thaj dikh kana te zhas ko doktori.",
+      hotspots: [
+        {
+          id: "breast-awareness",
+          title: "Sar te dikhes che chucha",
+          summary:
+            "Kana zhanes sar dikhyon che chucha svako dives, dikhes may sigo svako paruvimos.",
+          rule3Steps: [
+            {
+              stepName: "Dikh",
+              desc: "Dikh che chucha and-i oglinda, vastensa tele thaj opral. Dikh te si paruvimos and-i forma vay and-i morti.",
+            },
+            {
+              stepName: "Azba",
+              desc: "Ekhvar po chon, 3 zhi ko 5 divesa palal o chonutno rat, azba lokhes trin nayensa sa i chuchi thaj telal i khak.",
+            },
+            {
+              stepName: "Zha ko doktori",
+              desc: "Te hatyares ekh zuralo gungo vay inklyol vareso, zha sigo ko familiyako doktori vay ko ginekologo.",
+            },
+          ],
+          ageGuidance: [
+            {
+              ageRange: "Telal 40 bersha",
+              guidance:
+                "Dikhiben ekhvar and-o bersh ko ginekologo vay ko familiyako doktori. Ekografiya te phenel o doktori.",
+            },
+            {
+              ageRange: "50 zhi ko 69 bersha",
+              guidance:
+                "Mamografiya pe solduj chucha svako 2 bersha.",
+            },
+          ],
+        },
+        {
+          id: "cervical-screening",
+          title: "Testo Papanikolau thaj HPV",
+          summary:
+            "Opr-al 90% katar kadava kanchero shaj avel oprimo. Azhutil o chikat HPV thaj le dikhimata po vrama.",
+          examExplanation:
+            "O testo Papanikolau lel pashe 3 minuturya thaj na kerel dukh. O doktori lel uni tselule.",
+          nationalProgramNote:
+            "Le romnya mashkar 25 thaj 64 bersha shaj keren o testo bi lovengo lilesa katar o familiyako doktori.",
+          recommendedIntervals: [
+            "Mashkar 25 thaj 29 bersha: testo Papanikolau svako 3 bersha.",
+            "Mashkar 30 thaj 64 bersha: testo HPV svako 5 bersha.",
+          ],
+          vaccinationNote:
+            "O chikat HPV si bi lovengo vash le chhave thaj terne mashkar 11 thaj 18 bersha. Phush che familiyake doktores vay le sastipnaske mediatores.",
+          warningSigns:
+            "ratyamos palal intimno phandaimos, mashkar o chonutno rat vay palal menopauza.",
+        },
+      ],
+    },
+    emergencyNote:
+      "Zurali dukh telal and-o per, baro ratyamos vay baro tatipen mangen sigo azhutimos. Mare ko sigardiari 112.",
+    credit:
+      "Katar: World Health Organization thaj evropake lila vash o sastipen le romnyango.",
+  },
 };

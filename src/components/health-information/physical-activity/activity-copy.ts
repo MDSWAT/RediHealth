@@ -402,6 +402,180 @@ export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
       "Respirare più in fretta e sentire il battito più forte è normale durante lo sforzo. Se avverti capogiri o un fastidio insolito, fermati, siediti per qualche minuto finché passa e parlane con il medico di famiglia.",
     credit: "Fonte: linee guida dell'Organizzazione Mondiale della Sanità sull'attività fisica (2020).",
   },
+  hr: {
+    title: "Svakodnevno kretanje",
+    subtitle: "Ne treba ti teretana. Pogledaj kako krenuti i koliko ti je kretanja potrebno.",
+    tabsLabel: "Tjelesna aktivnost",
+    tabStepper: "Kako se kretati",
+    tabRing: "Koliko je dovoljno",
+    stepper: {
+      groupLabel: "Odaberi korak",
+      whyLabel: "Zašto pomaže",
+      practicalTipLabel: "Isprobaj ovo",
+      nextButton: "Sljedeći korak",
+      prevButton: "Prethodni korak",
+      stepOfTemplate: "Korak {n} od {total}",
+      weekCaption: "Jedan tjedan: svaki stupac je jedan dan. Što je stupac viši, to je više minuta hodanja.",
+      dayInitials: ["P", "U", "S", "Č", "P", "S", "N"],
+      stages: [
+        {
+          id: "sedentary-break",
+          timeBadge: "Par minuta, svaki sat",
+          title: "Ustani s vremena na vrijeme",
+          physiology:
+            "Dugo sjedenje šteti srcu i povisuje glukozu u krvi, čak i ako se krećeš u drugo doba dana.",
+          action:
+            "Ustani barem jednom u satu. Protegni se, uzmi čašu vode ili razgovaraj na mobitel stojeći.",
+        },
+        {
+          id: "daily-steps",
+          timeBadge: "10–15 minuta",
+          title: "Lagana šetnja svaki dan",
+          physiology: "Hodanje pokreće mišiće nogu koji pomažu vratiti krv prema srcu.",
+          action: "Siđi jednu stanicu ranije ili otiđi pješice u trgovinu.",
+        },
+        {
+          id: "brisk-cardio",
+          timeBadge: "20–30 minuta",
+          title: "Brzo hodanje",
+          physiology:
+            "Pri brzom hodu dišeš brže, ali još uvijek možeš razgovarati. To jača srce i snižava krvni tlak.",
+          action: "Hodaj dovoljno brzo da možeš govoriti, ali ne i pjevati. Pokušaj 30 minuta, 5 dana u tjednu.",
+        },
+        {
+          id: "strength-balance",
+          timeBadge: "2 dana u tjednu",
+          title: "Snaga i ravnoteža",
+          physiology:
+            "Snažni mišići čuvaju zglobove i kosti. Smanjuju rizik od padova, osobito nakon 65. godine.",
+          action: "Ustani sa stolca 10 puta. Napravi sklekove uza zid. Nosi vrećice ravnomjerno u obje ruke.",
+        },
+      ],
+    },
+    planner: {
+      minutesLabel: "Minuta aktivnosti na dan",
+      daysLabel: "Dana u tjednu",
+      weeklyTotalTemplate: "{minutes} minuta na tjedan",
+      rangeLabel: "Preporuka SZO: 150–300 minuta",
+      targetNote:
+        "SZO odraslima preporučuje 150–300 minuta umjerene aktivnosti na tjedan, primjerice brzog hodanja.",
+      strengthNote: "Dodaj vježbe snage najmanje 2 dana u tjednu.",
+      bands: [
+        {
+          id: "none",
+          title: "Kreni s malim koracima",
+          description: "Nekoliko minuta hodanja na dan bolje je nego ništa. Napravi koliko možeš.",
+        },
+        {
+          id: "building",
+          title: "Dodaj još malo",
+          description:
+            "Dodaj po 5 minuta na dan dok ne dođeš do 150 minuta na tjedan.",
+        },
+        {
+          id: "target",
+          title: "Dostigao si preporuku SZO",
+          description:
+            "150–300 minuta umjerenog kretanja na tjedan čuva srce, san i raspoloženje.",
+        },
+        {
+          id: "above",
+          title: "Iznad preporuke",
+          description: "Više kretanja donosi još veću korist. Slušaj svoje tijelo i ostavi pokoji lakši dan.",
+        },
+      ],
+    },
+    safetyDisclaimer:
+      "Brže disanje i jače lupanje srca normalni su pri naporu. Ako osjetiš vrtoglavicu ili neobičnu nelagodu, stani, sjedni nekoliko minuta dok ne prođe i javi se svojem obiteljskom liječniku.",
+    credit: "Izvor: smjernice Svjetske zdravstvene organizacije o tjelesnoj aktivnosti (2020.).",
+  },
+  rom: {
+    title: "Phirimos svako dives",
+    subtitle: "Na trebul tuke sala. Dikh sar shaj astares thaj kobor phirimos trebul vash o sastipen.",
+    tabsLabel: "Trupesko phirimos",
+    tabStepper: "Sar te phires",
+    tabRing: "Kobor si dosta",
+    stepper: {
+      groupLabel: "Alosar ekh paso",
+      whyLabel: "Sostar azhutil",
+      practicalTipLabel: "Probisar kadava",
+      nextButton: "Aver paso",
+      prevButton: "Paluno paso",
+      stepOfTemplate: "Paso {n} katar {total}",
+      weekCaption: "Ekh kurko: svako kolona si ekh dives. Kobor may uchi si i bara, katka may but minuturya phirdyan.",
+      dayInitials: ["L", "M", "T", "Zh", "P", "S", "K"],
+      stages: [
+        {
+          id: "sedentary-break",
+          timeBadge: "Uni minuturya, svako chaso",
+          title: "Ushti opral varekana",
+          physiology:
+            "Te beshes but po skamin na kerel mishto vash o ilo thaj vash o zaharo and-o rat, vi kana phires and-aver vrama.",
+          action:
+            "Ushti inke ekh drom po chaso. Inzhar o trupo, pi ekh taxtay pay vay ker vorba po telefono punrende.",
+        },
+        {
+          id: "daily-steps",
+          timeBadge: "10–15 minuturya",
+          title: "Lokho phirimos svako dives",
+          physiology: "O phirimos chhuvel and-i buchi le punrenge muskulurya, so azhutin o rat te nakhel palpale karing o ilo.",
+          action: "Hulistol ekh statsiya may anglal vay zha punrende ko dukan.",
+        },
+        {
+          id: "brisk-cardio",
+          timeBadge: "20–30 minuturya",
+          title: "Sigo phirimos",
+          physiology:
+            "Kana phires sigo, les phurdimos may sigo, numa inke shaj keres vorba. Kadava zurarel o ilo thaj shaj hulyarel kana o rat phurdel zurales.",
+          action: "Phir katka sigo te shaj keres vorba, numa te na shaj gilaves. Probisar 30 minuturya, 5 divesa and-o kurko.",
+        },
+        {
+          id: "strength-balance",
+          timeBadge: "2 divesa and-o kurko",
+          title: "Zor thaj balanso",
+          physiology:
+            "Zurale muskulurya arakhen le kokala. Hulyaren o riziko te peres tele, may but palal 65 bersh.",
+          action: "Ushti katar o skamin 10 droma. Ker shtytimata vastensa po zido. Inker le gonoa and-e duj vast.",
+        },
+      ],
+    },
+    planner: {
+      minutesLabel: "Minuturya phirimos po dives",
+      daysLabel: "Divesa and-o kurko",
+      weeklyTotalTemplate: "{minutes} minuturya and-o kurko",
+      rangeLabel: "WHO svato: 150–300 minuturya",
+      targetNote:
+        "WHO phenel le bare manushenge te keren 150–300 minuturya mashkaruno phirimos and-o kurko, sar sigo phirimos.",
+      strengthNote: "Thov vi buchi vash i zor inke 2 divesa and-o kurko.",
+      bands: [
+        {
+          id: "none",
+          title: "Astar tsera po tsera",
+          description: "Uni minuturya phirimos po dives si may mishto sar kanch. Ker kobor shaj.",
+        },
+        {
+          id: "building",
+          title: "May thov tsera",
+          description:
+            "Thov po 5 minuturya po dives, zhi kay areses ko 150 minuturya and-o kurko.",
+        },
+        {
+          id: "target",
+          title: "Areslyan o WHO svato",
+          description:
+            "150–300 minuturya mashkaruno phirimos and-o kurko azhutin o ilo, o sovel thaj o sastipen.",
+        },
+        {
+          id: "above",
+          title: "Opral o svato",
+          description: "May but phirimos azhutil inke may but. Ashun cho trupo thaj mukh vi may lokhe divesa.",
+        },
+      ],
+    },
+    safetyDisclaimer:
+      "Normalno si te phurdes may sigo thaj o ilo te marel may zurales kana keres zor. Te avel tuke phirimos and-o shero vay dukh, auka, besh tele uni minuturya thaj ker vorba che familiyake doktoresa.",
+    credit: "Katar: World Health Organization guidelines vash o trupesko phirimos (2020).",
+  },
 };
 
 /** Which message fits a weekly total (WHO: 150–300 minutes of moderate activity a week). */

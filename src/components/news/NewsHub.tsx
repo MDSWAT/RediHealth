@@ -2,15 +2,27 @@
 
 import React, { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
-import { ALL_ITALY, RomaniaCountyMap, isItalianRegion } from "@/components/ui/RomaniaCountyMap";
+import {
+  ALL_CROATIA,
+  ALL_ITALY,
+  ALL_MOLDOVA,
+  EXTRA_MAP_COPY,
+  RomaniaCountyMap,
+  countryAllValue,
+  mapCountriesForLang,
+  type MapCountry,
+} from "@/components/ui/RomaniaCountyMap";
 import { useUserCounty } from "@/lib/geo-ip";
 import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
 import { PlaceNewsModal } from "@/components/news/PlaceNewsModal";
-import { countyLabel, formatNewsDate, placeName } from "@/components/news/news-format";
+import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
 import { ArrowRightIcon, PinIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
 import {
+  CROATIA_WIDE,
   ITALY_WIDE,
+  MOLDOVA_WIDE,
   NEWS_ARTICLES,
   articleCountry,
   getLocalizedArticle,
@@ -22,42 +34,100 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 
-const COPY: Record<Lang, { hideMap: string; showMap: string; latest: string }> = {
-  ro: { hideMap: "Ascunde harta", showMap: "Arată harta", latest: "Cele mai recente" },
-  en: { hideMap: "Hide map", showMap: "Show map", latest: "Latest" },
-  sq: { hideMap: "Fshih hartën", showMap: "Shfaq hartën", latest: "Më të rejat" },
-  it: { hideMap: "Nascondi la mappa", showMap: "Mostra la mappa", latest: "Le più recenti" },
+const COPY: Record<Lang, { hideMap: string; showMap: string; latest: string; changeArea: Record<Exclude<MapCountry, "ro">, string> }> = {
+  ro: {
+    hideMap: "Ascunde harta",
+    showMap: "Arată harta",
+    latest: "Cele mai recente",
+    changeArea: { md: "Schimbă raionul", hr: "Schimbă comitatul", it: "Schimbă regiunea" },
+  },
+  en: {
+    hideMap: "Hide map",
+    showMap: "Show map",
+    latest: "Latest",
+    changeArea: { md: "Change district", hr: "Change county", it: "Change region" },
+  },
+  sq: {
+    hideMap: "Fshih hartën",
+    showMap: "Shfaq hartën",
+    latest: "Më të rejat",
+    changeArea: { md: "Ndrysho rajonin", hr: "Ndrysho qarkun", it: "Ndrysho rajonin" },
+  },
+  it: {
+    hideMap: "Nascondi la mappa",
+    showMap: "Mostra la mappa",
+    latest: "Le più recenti",
+    changeArea: { md: "Cambia distretto", hr: "Cambia regione", it: "Cambia regione" },
+  },
+  hr: {
+    hideMap: "Sakrij kartu",
+    showMap: "Prikaži kartu",
+    latest: "Najnovije obavijesti",
+    changeArea: { md: "Promijeni rajon", hr: "Promijeni županiju", it: "Promijeni regiju" },
+  },
+  rom: {
+    hideMap: "Garav i harta",
+    showMap: "Sikav i harta",
+    latest: "E may neve",
+    changeArea: { md: "Paruv o rayono", hr: "Paruv i zhupaniya", it: "Paruv i regiyona" },
+  },
 };
 
 const utilityButton =
   "inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 /**
- * NewsHub: the regional news page. A plain header, the county/region map, a short "latest" list,
- * and a hand-off to the online doctor or a mediator. Each place's full news opens in PlaceNewsModal.
+ * NewsHub: the regional news page. Conditional maps follow the active language:
+ * - Italian (`it`) -> Italy map only
+ * - Croatian (`hr`) -> Croatia map only
+ * - Other locales (`ro`, `en`, `sq`, `rom`) -> Romania + Republic of Moldova map switcher
  */
 export function NewsHub() {
   const { lang, t } = useLanguage();
+  const pathname = usePathname();
+  const basePath = resolveNewsBasePath(pathname);
   const np = t.newsPage;
   const c = COPY[lang] ?? COPY.ro;
+  const extra = EXTRA_MAP_COPY[lang] ?? EXTRA_MAP_COPY.ro;
   const { county, setCounty } = useUserCounty();
-  // An Italian region (or all of Italy) is shown on this page only; the saved county stays a Romanian one.
-  const [italyRegion, setItalyRegion] = useState<string | null>(null);
-  // The place whose news is open in the modal; null keeps it closed.
-  const [newsPlace, setNewsPlace] = useState<string | null>(null);
+
+  const mapCountries = useMemo(() => mapCountriesForLang(lang), [lang]);
+  const [selectedMapCountry, setSelectedMapCountry] = useState<MapCountry>(() => mapCountries[0]);
+  const activeCountry: MapCountry = mapCountries.includes(selectedMapCountry) ? selectedMapCountry : mapCountries[0];
+  if (selectedMapCountry !== activeCountry) {
+    setSelectedMapCountry(activeCountry);
+  }
+
+  // Per-country selections outside Romania stay page-local so the saved Romanian county cookie is preserved.
+  const [roNationalSelected, setRoNationalSelected] = useState(false);
+  const [nonRoSelections, setNonRoSelections] = useState<Partial<Record<Exclude<MapCountry, "ro">, string>>>({});
+
+  // Modal state carries both the chosen place and its country so shared names ("Călărași") never collide.
+  const [modalState, setModalState] = useState<{ place: string; country: NewsCountry } | null>(null);
   const [countyModalOpen, setCountyModalOpen] = useState(false);
   const [showMap, setShowMap] = useState(true);
 
-  const selectArea = (name: string) => {
-    if (isItalianRegion(name) || name === ALL_ITALY) {
-      setItalyRegion(name);
+  const selectedAreaForMap =
+    activeCountry === "ro"
+      ? (roNationalSelected ? "Toate județele" : county)
+      : (nonRoSelections[activeCountry] ?? countryAllValue(activeCountry));
+
+  const selectArea = (name: string, targetCountry: MapCountry = activeCountry) => {
+    setSelectedMapCountry(targetCountry);
+    if (targetCountry === "ro") {
+      if (isNationalCounty(name)) {
+        setRoNationalSelected(true);
+      } else {
+        setRoNationalSelected(false);
+        setCounty(name);
+      }
     } else {
-      setItalyRegion(null);
-      setCounty(name);
+      setNonRoSelections((prev) => ({ ...prev, [targetCountry]: name }));
     }
-    setNewsPlace(name);
+    setModalState({ place: name, country: targetCountry });
   };
-  const closeNews = useCallback(() => setNewsPlace(null), []);
+
+  const closeNews = useCallback(() => setModalState(null), []);
 
   const categoryLabels: Record<string, string> = {
     "Alerte locale": np.categories.epidemics,
@@ -68,31 +138,53 @@ export function NewsHub() {
 
   const localizedArticles = useMemo(() => NEWS_ARTICLES.map((article) => getLocalizedArticle(article, lang)), [lang]);
 
-  // The country last chosen on the map: the list below and "see all" follow it.
-  const country: NewsCountry = italyRegion ? "it" : "ro";
-
   const latest = useMemo(
     () =>
       localizedArticles
-        .filter((a) => articleCountry(a) === country)
+        .filter((a) => articleCountry(a) === activeCountry)
         .sort((a, b) => b.date.localeCompare(a.date))
         .slice(0, 3),
-    [localizedArticles, country],
+    [localizedArticles, activeCountry],
   );
 
-  // Places with their own news are tinted on the map and offered as quick picks.
-  const hubs = useMemo(() => [...new Set(NEWS_ARTICLES.filter((a) => !isCountryWide(a)).map((a) => a.county))], []);
+  // Places with local news in the active country are tinted on the map and offered as quick picks.
+  const hubs = useMemo(
+    () => [
+      ...new Set(
+        NEWS_ARTICLES
+          .filter((a) => articleCountry(a) === activeCountry && !isCountryWide(a))
+          .map((a) => a.county),
+      ),
+    ],
+    [activeCountry],
+  );
 
-  const countyDisplay = italyRegion
-    ? italyRegion === ALL_ITALY
-      ? (t.countyMap?.allItaly ?? italyRegion)
-      : italyRegion
-    : isNationalCounty(county)
-      ? np.allCounties
-      : countyLabel(county, lang);
+  const countyDisplay =
+    activeCountry === "it"
+      ? selectedAreaForMap === ALL_ITALY
+        ? (t.countyMap?.allItaly ?? ALL_ITALY)
+        : placeName(selectedAreaForMap, lang)
+      : activeCountry === "md"
+        ? selectedAreaForMap === ALL_MOLDOVA
+          ? extra.allMoldova
+          : countyLabel(selectedAreaForMap, lang, "md")
+        : activeCountry === "hr"
+          ? selectedAreaForMap === ALL_CROATIA
+            ? extra.allCroatia
+            : countyLabel(selectedAreaForMap, lang, "hr")
+          : isNationalCounty(selectedAreaForMap)
+            ? np.allCounties
+            : countyLabel(selectedAreaForMap, lang, "ro");
 
-  const placeLabel = (place: string) =>
-    place === ITALY_WIDE ? (t.countyMap?.allItaly ?? ITALY_WIDE) : isNationalCounty(place) ? np.allCounties : placeName(place, lang);
+  const changeActionLabel = activeCountry === "ro" ? np.changeCounty : c.changeArea[activeCountry];
+
+  const placeLabel = (place: string, itemCountry: NewsCountry) => {
+    if (place === ITALY_WIDE && itemCountry === "it") return t.countyMap?.allItaly ?? ITALY_WIDE;
+    if (place === MOLDOVA_WIDE && itemCountry === "md") return extra.allMoldova;
+    if (place === CROATIA_WIDE && itemCountry === "hr") return extra.allCroatia;
+    if (isNationalCounty(place)) return np.allCounties;
+    return placeName(place, lang);
+  };
 
   return (
     <main id="main-content" className="flex-1 bg-background pb-12 sm:pb-16">
@@ -117,7 +209,7 @@ export function NewsHub() {
                 <PinIcon className="h-4 w-4 text-muted-foreground" />
                 <span>{countyDisplay}</span>
                 <span aria-hidden="true" className="text-muted-foreground">·</span>
-                <span className="font-normal text-muted-foreground">{np.changeCounty}</span>
+                <span className="font-normal text-muted-foreground">{changeActionLabel}</span>
               </button>
             </div>
           </div>
@@ -129,10 +221,12 @@ export function NewsHub() {
           {showMap && (
             <div id="news-county-map" className="mb-10">
               <RomaniaCountyMap
-                selectedCounty={italyRegion ?? county}
+                selectedCounty={selectedAreaForMap}
                 onSelectCounty={selectArea}
                 activeHubs={hubs}
-                countries={["ro", "it"]}
+                countries={mapCountries}
+                activeCountry={activeCountry}
+                onCountryChange={setSelectedMapCountry}
               />
             </div>
           )}
@@ -144,7 +238,7 @@ export function NewsHub() {
               </h2>
               <button
                 type="button"
-                onClick={() => setNewsPlace(country === "it" ? ALL_ITALY : "Toate județele")}
+                onClick={() => setModalState({ place: countryAllValue(activeCountry), country: activeCountry })}
                 className="group inline-flex min-h-[44px] items-center gap-1 rounded-sm text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {np.resetFilter}
@@ -155,14 +249,14 @@ export function NewsHub() {
               {latest.map((article) => (
                 <li key={article.id}>
                   <Link
-                    href={withLangPrefix(`/stiri/${article.slug}`, lang)}
+                    href={withLangPrefix(`${basePath}/${article.slug}`, lang)}
                     className="group flex flex-col gap-1 py-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
                   >
                     <span lang={article.language} className="text-[15px] font-medium leading-snug text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire dark:group-hover:text-sapphire-border">
                       {article.title}
                     </span>
                     <span className="shrink-0 text-xs text-muted-foreground tabular-nums">
-                      {categoryLabels[article.category] ?? article.category} · {placeLabel(article.county)} ·{" "}
+                      {categoryLabels[article.category] ?? article.category} · {placeLabel(article.county, articleCountry(article))} ·{" "}
                       <time dateTime={article.date}>{formatNewsDate(article.date, lang, { short: true, year: false })}</time>
                     </span>
                   </Link>
@@ -201,13 +295,19 @@ export function NewsHub() {
         </Container>
       </div>
 
-      <PlaceNewsModal place={newsPlace} articles={localizedArticles} onClose={closeNews} />
+      <PlaceNewsModal
+        place={modalState?.place ?? null}
+        countryHint={modalState?.country}
+        articles={localizedArticles}
+        onClose={closeNews}
+      />
 
       <CountyOverrideModal
         open={countyModalOpen}
         onOpenChange={setCountyModalOpen}
-        currentCounty={county}
+        currentCounty={selectedAreaForMap}
         onSelectCounty={selectArea}
+        country={activeCountry}
       />
     </main>
   );

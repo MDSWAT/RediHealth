@@ -68,6 +68,24 @@ const HUB_TRANSLATIONS: Record<Lang, HubTranslations> = {
       tutorials: { label: "Guide pratiche" },
     },
   },
+  hr: {
+    ariaLabel: "Vodiči o šećernoj bolesti",
+    tabs: {
+      glucose: { label: "Glukoza u krvi" },
+      insulin: { label: "Kako djeluje inzulin" },
+      plate: { label: "Pravilan tanjur" },
+      tutorials: { label: "Praktične upute" },
+    },
+  },
+  rom: {
+    ariaLabel: "Siklyarimata vash o gudlo rat",
+    tabs: {
+      glucose: { label: "Zaharo and-o rat" },
+      insulin: { label: "Sar kerel buchi i insulina" },
+      plate: { label: "O vorta charo" },
+      tutorials: { label: "Kherutne siklyarimata" },
+    },
+  },
 };
 
 function useSafeLanguage(propLang?: Lang): Lang {

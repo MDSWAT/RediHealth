@@ -1245,6 +1245,610 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
     ],
   },
+  hr: {
+    labels: {
+      allTopics:
+        "Svi zdravstveni vodiči",
+      whyItMatters:
+        "Zašto je važno",
+      practicalSteps:
+        "Što možeš učiniti",
+      seekAdviceTitle:
+        "Kada otići liječniku",
+      seekAdviceBody:
+        "Javi se liječniku ako primijetiš neki od ovih znakova. U hitnom slučaju odmah nazovi 112.",
+      relatedTopics:
+        "Drugi vodiči",
+      readMore:
+        "Pročitaj više",
+      disclaimer:
+        "Ove informacije nisu dijagnoza. Za svoje zdravlje razgovaraj s liječnikom.",
+    },
+    topics: [
+      {
+        slug: "heart-health",
+        title: "Zdravlje srca",
+        description:
+          "Jednostavne navike za zdravo srce i dobar krvni tlak.",
+        intro:
+          "Tvoje srce svake minute pumpa krv kroz cijelo tijelo. Briga o srcu smanjuje rizik od srčanih bolesti i moždanog udara.",
+        keyFacts: [
+          "Visoki krvni tlak i povišeni kolesterol tiho opterećuju arterije i umaraju srce godinama bez ikakvih znakova.",
+          "Snažno srce i normalan tlak daju ti bolju izdržljivost, lakše disanje i manji rizik od moždanog udara.",
+          "Manje soli u hrani, svakodnevno brzo hodanje i redovito mjerenje tlaka štite tvoje srce.",
+        ],
+        recommendations: [
+          {
+            title: "Kreći se većinu dana",
+            description:
+              "Hodaj brzim korakom ili radi aktivnost koju voliš. I kratke šetnje vrijede.",
+          },
+          {
+            title: "Jedi zdravo za srce",
+            description:
+              "Jedi više povrća, voća i cjelovitih žitarica. Smanji sol i gotovu industrijsku hranu.",
+          },
+          {
+            title: "Provjeravaj svoje vrijednosti",
+            description:
+              "Redovito provjeravaj krvni tlak i kolesterol. Tegobe se lakše liječe kada se otkriju rano.",
+          },
+        ],
+        warningSigns: [
+          "Bol, pritisak ili stezanje u prsima, osobito ako se širi u ruku, vrat ili čeljust.",
+          "Nagli nedostatak zraka ili brz i nepravilan rad srca.",
+          "Umor koji ne prolazi ili otečene noge.",
+        ],
+      },
+      {
+        slug: "diabetes",
+        title: "Dijabetes",
+        description:
+          "Što povećava rizik i kako držati šećer u krvi pod kontrolom.",
+        intro:
+          "Dijabetes utječe na to kako tvoje tijelo koristi šećer u krvi. Uz pravu podršku tip 2 možeš spriječiti, odgoditi ili dobro držati pod kontrolom.",
+        keyFacts: [
+          "Kod dijabetesa tipa 2 šećer ostaje u krvi umjesto da ulazi u stanice te može godinama tiho oštećivati krvne žile.",
+          "Stabilan šećer u krvi daje ti ravnomjernu energiju kroz dan i čuva oči, bubrege, živce i srce.",
+          "Male svakodnevne navike, poput polovice tanjura povrća i šetnje nakon obroka, smanjuju rizik.",
+        ],
+        recommendations: [
+          {
+            title: "Uravnoteži tanjur",
+            description:
+              "Napuni polovicu tanjura povrćem. Biraj cjeloviti kruh, rižu i tjesteninu.",
+          },
+          {
+            title: "Budi aktivan",
+            description:
+              "Redovito kretanje pomaže tvom tijelu bolje iskoristiti šećer iz krvi.",
+          },
+          {
+            title: "Obavi krvnu pretragu",
+            description:
+              "Ako u obitelji imaš dijabetes ili druge čimbenike rizika, zatraži od liječnika analizu krvi.",
+          },
+        ],
+        warningSigns: [
+          "Jaka žeđ ili mokrenje češće nego inače.",
+          "Gubitak težine bez namjere ili stalni umor.",
+          "Zamućen vid ili rane koje sporo cijele.",
+        ],
+      },
+      {
+        slug: "healthy-eating",
+        title: "Zdrava prehrana",
+        description:
+          "Povoljna i jednostavna hrana koja čuva tvoje zdravlje svaki dan.",
+        intro:
+          "Zdrava prehrana ne mora biti komplicirana ni skupa. Nekoliko jednostavnih pravila iz dana u dan daje tvom tijelu sve što mu treba.",
+        keyFacts: [
+          "Vlakna iz povrća i cjelovitih žitarica drže šećer u krvi i krvni tlak stabilnima.",
+          "Jednostavna hrana kuhana kod kuće daje ti ravnomjernu energiju i sprječava umor nakon jela.",
+          "Sezonsko povrće, grah i leća povoljni su, a pijenje vode umjesto slatkih sokova pomaže odmah.",
+        ],
+        recommendations: [
+          {
+            title: "Više povrća i voća",
+            description:
+              "Dodaj povrće ili voće u većinu obroka. Svježe i smrznuto jednako su dobri.",
+          },
+          {
+            title: "Kuhaj kod kuće",
+            description:
+              "Biraj cjelovite žitarice i obroke kuhane kod kuće umjesto gotove hrane kad god možeš.",
+          },
+          {
+            title: "Pij vodu",
+            description:
+              "Neka ti voda bude glavno piće. Smanji zaslađene napitke i voćne sokove.",
+          },
+        ],
+        warningSigns: [
+          "Naglo mršavljenje ili debljanje bez jasnog razloga.",
+          "Probavne tegobe koje ne prolaze ili gubitak teka.",
+          "Slabost, vrtoglavica ili jak umor iako redovito jedeš.",
+        ],
+      },
+      {
+        slug: "physical-activity",
+        title: "Tjelesna aktivnost",
+        description:
+          "Jednostavni načini za više kretanja, bez obzira na tvoju kondiciju.",
+        intro:
+          "Redovito kretanje jedna je od najboljih stvari za tvoje tijelo i um. Ne treba ti teretana. Svakodnevno hodanje se računa.",
+        keyFacts: [
+          "Kretanje potiče krvotok, jača srce i mišiće te pomaže stanicama iskoristiti šećer u krvi za energiju.",
+          "Redovita aktivnost daje ti više energije, dublji san noću te bolju ravnotežu i pokretljivost.",
+          "Ne treba ti teretana: ustani sa stolca svaki sat i hodaj 15–30 minuta većinu dana.",
+        ],
+        recommendations: [
+          {
+            title: "Kreni polako",
+            description:
+              "Započni kratkim šetnjama ili aktivnošću koja ti prija. Svaki tjedan dodaj malo više.",
+          },
+          {
+            title: "Kreći se redovito",
+            description:
+              "Malo kretanja većinu dana pomaže više nego naporan trening tu i tamo.",
+          },
+          {
+            title: "Jačaj mišiće",
+            description:
+              "Radi poslove koji uključuju mišiće, poput nošenja vrećica, rada u vrtu ili čučnjeva.",
+          },
+        ],
+        warningSigns: [
+          "Bol u prsima, vrtoglavica ili neobičan nedostatak zraka pri naporu.",
+          "Bol ili oticanje zglobova koje se pogoršava pri kretanju.",
+          "Osjećaj nesvjestice ili nepravilan rad srca tijekom aktivnosti.",
+        ],
+      },
+      {
+        slug: "mental-wellbeing",
+        title: "Mentalno zdravlje",
+        description:
+          "Brini se o svom umu i znaj kada potražiti pomoć.",
+        intro:
+          "Mentalno zdravlje dio je tvog cjelokupnog zdravlja. Normalno je imati i teža razdoblja te potražiti pomoć kada ti zatreba.",
+        keyFacts: [
+          "Dugotrajan stres drži tijelo u napetosti, ubrzava puls, grči mišiće i remeti san.",
+          "Briga o mentalnom zdravlju donosi mirniji san, bolju koncentraciju i lakše nošenje sa svakodnevnim brigama.",
+          "Sporo i duboko disanje, redovito vrijeme spavanja i iskren razgovor s bliskom osobom brzo smiruju tijelo.",
+        ],
+        recommendations: [
+          {
+            title: "Ostani povezan",
+            description:
+              "Provodi vrijeme s ljudima kojima vjeruješ. Bliskost s drugima čuva tvoj um.",
+          },
+          {
+            title: "Pazi na osnove",
+            description:
+              "San, kretanje i boravak na svježem zraku pomažu ti da se osjećaš bolje.",
+          },
+          {
+            title: "Zatraži pomoć",
+            description:
+              "Ako ti postane preteško, razgovaraj s osobom od povjerenja ili s liječnikom.",
+          },
+        ],
+        warningSigns: [
+          "Tuga, tjeskoba ili osjećaj beznađa koji traju tjednima.",
+          "Teško se nosiš sa svakodnevnim obvezama, poslom ili odnosima s bližnjima.",
+          "Misli o samoozljeđivanju. Ako se to dogodi, odmah potraži pomoć.",
+        ],
+      },
+      {
+        slug: "smoking",
+        title: "Prestanak pušenja",
+        description:
+          "Zašto se isplati prestati pušiti i što ti olakšava taj korak.",
+        intro:
+          "Prestanak pušenja jedna je od najboljih odluka za tvoje zdravlje. Tijelo se počinje brzo oporavljati. Većina ljudi pokuša više puta prije nego što potpuno prestane.",
+        keyFacts: [
+          "Već nekoliko sati nakon zadnje cigarete raste razina kisika u krvi, žile se opuštaju i pluća se počinju čistiti.",
+          "Kako se pluća i krvotok oporavljaju, lakše dišeš na stepenicama, manje kašlješ i vraćaju ti se okus i miris.",
+          "Odabir datuma prestanka, čekanje da prođu 3 minute želje za cigaretom i podrška liječnika udvostručuju šanse za uspjeh.",
+        ],
+        recommendations: [
+          {
+            title: "Odaberi dan prestanka",
+            description:
+              "Odredi datum i reci bliskim ljudima. Unaprijed isplaniraj što ćeš učiniti kada te uhvati želja.",
+          },
+          {
+            title: "Potraži podršku",
+            description:
+              "Savjetovališta za nepušenje i odobrena pomagala povećavaju šansu da ostaneš nepušač.",
+          },
+          {
+            title: "Nemoj odustati",
+            description:
+              "Ako ponovno zapališ, nemoj odustati. Nauči iz toga i pokušaj ponovno.",
+          },
+        ],
+        warningSigns: [
+          "Kašalj koji ne prolazi ili promjena dugotrajnog kašlja.",
+          "Iskašljavanje krvi ili bol u prsima koja ne prolazi.",
+          "Sve češći nedostatak zraka pri uobičajenim dnevnim poslovima.",
+        ],
+      },
+      {
+        slug: "preventive-screening",
+        title: "Preventivni pregledi",
+        description:
+          "Pretrage koje otkrivaju zdravstvene probleme rano, prije pojave simptoma.",
+        intro:
+          "Preventivni pregledi traže prve znakove bolesti dok se još osjećaš sasvim dobro. Rano otkrivene bolesti lakše se liječe.",
+        keyFacts: [
+          "Mnoge bolesti, poput visokog tlaka, dijabetesa ili ranih stadija raka, počinju tiho u tijelu mnogo prije boli.",
+          "Čak i kada se svaki dan osjećaš dobro, redoviti pregled donosi mir i otkriva promjene dok je liječenje jednostavno.",
+          "Pitaj svog obiteljskog liječnika koje besplatne HZZO preventivne preglede i nacionalne programe probira možeš obaviti ove godine.",
+        ],
+        recommendations: [
+          {
+            title: "Pitaj što ti treba",
+            description:
+              "Pitaj obiteljskog liječnika koji su pregledi preporučeni za tvoju dob i zdravlje.",
+          },
+          {
+            title: "Odazovi se na preglede",
+            description:
+              "Odazovi se pozivima na nacionalne preventivne programe i redovite kontrole.",
+          },
+          {
+            title: "Podijeli obiteljsku povijest",
+            description:
+              "Reci liječniku od kojih su bolesti bolovali tvoji roditelji, braća, sestre ili bake i djedovi.",
+          },
+        ],
+        warningSigns: [
+          "Nova kvržica, neobično krvarenje ili madež koji mijenja oblik ili boju.",
+          "Svaki novi simptom koji ne prolazi i nema jasan uzrok.",
+          "Nalaz probira koji traži dodatne pretrage. Nemoj čekati.",
+        ],
+      },
+      {
+        slug: "womens-health",
+        title: "Zdravlje žena",
+        description:
+          "Tvoje zdravlje u svakoj dobi, od menstruacije do menopauze.",
+        intro:
+          "Zdravstvene potrebe žena mijenjaju se kroz život, od menstruacije i trudnoće do menopauze i kasnijih godina. Kada poznaješ svoje tijelo, lakše primijetiš promjene.",
+        keyFacts: [
+          "Žensko tijelo prolazi kroz prirodne hormonske promjene od menstruacije i trudnoće do menopauze, što utječe na kosti, srce i raspoloženje.",
+          "Kada znaš što je za tebe uobičajeno, na vrijeme uočavaš promjene na dojkama, neobično krvarenje ili trajnu bol u zdjelici.",
+          "Redoviti Papa-test, mjesečni samopregled dojki i redovite kontrole u trudnoći otkrivaju tegobe rano, kada se najlakše liječe.",
+        ],
+        recommendations: [
+          {
+            title: "Upoznaj svoje tijelo",
+            description:
+              "Prati svoj uobičajeni ciklus i tijelo kako bi lakše uočila promjene.",
+          },
+          {
+            title: "Idi na redovite preglede",
+            description:
+              "Obavljaj ginekološke preglede i probire preporučene za tvoju dob.",
+          },
+          {
+            title: "Potraži pomoć na vrijeme",
+            description:
+              "Razgovaraj s liječnikom o svakom simptomu koji te zabrinjava.",
+          },
+        ],
+        warningSigns: [
+          "Neobično krvarenje između menstruacija ili nakon menopauze.",
+          "Jaka ili dugotrajna bol u donjem dijelu trbuha ili zdjelici.",
+          "Nova promjena na dojci, poput kvržice, uvlačenja ili promjene na koži.",
+        ],
+      },
+    ],
+  },
+  rom: {
+    labels: {
+      allTopics:
+        "Savore sastipnaske sikavimata",
+      whyItMatters:
+        "Sostar si vazhno",
+      practicalSteps:
+        "So shaj te keres",
+      seekAdviceTitle:
+        "Kana te dzhas ko doktori",
+      seekAdviceBody:
+        "Dzha ko doktori te dikhes varesavo katar akala semnja. Kana si sigardiari, akhar sigo 112.",
+      relatedTopics:
+        "Aver sikavimata",
+      readMore:
+        "Drabar maj but",
+      disclaimer:
+        "Akala informacije naj dijagnoza. Vash tiro sastipen, de duma e doktoresa.",
+    },
+    topics: [
+      {
+        slug: "heart-health",
+        title: "Sastipen e ilesko",
+        description:
+          "Sako-diveske tabijetura save arakhen tiro ilo thaj tiri tensija.",
+        intro:
+          "Tiro ilo bičhalel o rat ando sasto trupo sako minuta. Kana arakhes les, tiknjarel pes o riziko vash nasvalipena e ileske thaj dab ki godi.",
+        keyFacts: [
+          "Kana o rat phurdel zurales thaj o kolesterolo si ucho, von lokhes khinjaren e arterije thaj o ilo bershencar bi semnjengo.",
+          "Zuralo ilo thaj normalno tensija den tut maj bari zor, maj lokho phurdinimos thaj maj cikno riziko vash dab ki godi.",
+          "Maj xanci lon ando xaben, sigo phirimos sako dives thaj redovno merimos e tensijako arakhen tiro ilo.",
+        ],
+        recommendations: [
+          {
+            title: "Phir maj but dive",
+            description:
+              "Phir sigo vaj ker buchi savi plachal tut. Vi e cikne phirimata ginaven pes.",
+          },
+          {
+            title: "Xa mishto vash tiro ilo",
+            description:
+              "Xa maj but zelenimata, frute thaj integralno manro. Čhiv maj xanci lon thaj xa maj xanci gata xaben.",
+          },
+          {
+            title: "Dikh tire numere",
+            description:
+              "Merisar redovno i tensija thaj o kolesterolo. E problemura sastjaren pes maj lokhes kana arakhen pes rano.",
+          },
+        ],
+        warningSigns: [
+          "Dukh vaj tasavimos ko kolin, maj but te dzhal ko vast, ki kor vaj ki pashni.",
+          "Sigo phari phurdinimos, vaj ilo so marel sigo thaj bi ritmosko.",
+          "Khino savo na nakhel vaj shuvljarde punre.",
+        ],
+      },
+      {
+        slug: "diabetes",
+        title: "Dijabeto",
+        description:
+          "So barjarel o riziko thaj sar te inkeres o gudlo rat ando balanso.",
+        intro:
+          "O dijabeto paruvel sar tiro trupo labyarel o zahari ando rat. Lačhe azhutimasa shaj te arakhes tut lestar vaj te trais mishto lesa.",
+        keyFacts: [
+          "Ko dijabeto tip 2, o zahari ačhel ando rat namesto te del ande celije, thaj shaj bershencar lokhes te dukhavel e rateske droma.",
+          "Kana inkeres o gudlo rat ando balanso, si tut zor sasto dives thaj arakhes tire jakha, bobrege, nervura thaj o ilo.",
+          "Cikne sako-diveske tabijetura, sar dopash charo zelenimasa thaj phirimos pala o xaben, tiknjaren o riziko.",
+        ],
+        recommendations: [
+          {
+            title: "Balansirisar o charo",
+            description:
+              "Phpher dopash charo zelenimasa. Alosar integralno manro, rizo thaj makarone.",
+          },
+          {
+            title: "Ačhov aktivno",
+            description:
+              "Redovno phirimos azhutil tiro trupo maj mishto te labyarel o zahari katar o rat.",
+          },
+          {
+            title: "Ker rengro dikhiben",
+            description:
+              "Te si dijabeto andi familija vaj aver riziko, mang katar o doktori jekh rengro dikhiben.",
+          },
+        ],
+        warningSigns: [
+          "Bari trush vaj butivar phirimos ko toaleto.",
+          "Xasares kile bi te manges vaj san sajekh khino.",
+          "Kalo dikhiben vaj rane save sastjon lokhes.",
+        ],
+      },
+      {
+        slug: "healthy-eating",
+        title: "Sasto xaben",
+        description:
+          "Ieftino thaj lokho xaben savo inkerel tut sasto sako dives.",
+        intro:
+          "Te xas sasto na musaj te avel pharo vaj kuč. Xanci lokhe pravila sako dives den tire truposke so trubul leske.",
+        keyFacts: [
+          "E vlakne katar e zelenimata thaj integralno giv inkeren o gudlo rat thaj i tensija ando balanso.",
+          "Lokho xaben kirado khere del tut zor sasto dives thaj arakhel tut katar khino pala o xaben.",
+          "Zelenimata e sezonake, o fusuj thaj i leča si ieftine, thaj o pani namesto gudle pimatja azhutil sigo.",
+        ],
+        recommendations: [
+          {
+            title: "Maj but zelenimata thaj frute",
+            description:
+              "Čhiv zelenimata vaj frute ko maj but xabena. Neve vaj shudrarde si solduj lačhe.",
+          },
+          {
+            title: "Kirav khere",
+            description:
+              "Alosar integralno manro thaj xaben kirado khere kana shaj.",
+          },
+          {
+            title: "Pi pani",
+            description:
+              "Mukh o pani te avel tiro angluno pimos. Pi so maj xanci gudle sokura.",
+          },
+        ],
+        warningSigns: [
+          "Xasares vaj čhives but kile ande cikni vrjama.",
+          "Problemura e poresa save na nakhen vaj xasarimos e bokhako.",
+          "Slabipen, o shero phirel vaj baro khino vi kana xas.",
+        ],
+      },
+      {
+        slug: "physical-activity",
+        title: "Fizikani aktivnost",
+        description:
+          "Lokhe droma te phires maj but, savi godi te avel tiri zor.",
+        intro:
+          "Te phires maj but si jekh katar e maj lačhe bukja vash tiro trupo thaj godi. Na trubul tut sala. Sako phirimos ginavel pes.",
+        keyFacts: [
+          "O phirimos mukhel o rat te phirel, zurarel o ilo thaj e muskulura, thaj azhutil e celijen te labyaren o zahari.",
+          "Redovno phirimos del tut maj but zor, maj lačho sovibe ratjate thaj maj lačho balanso.",
+          "Na trubul tut sala: ushti katar o skamin sako ora thaj phir 15–30 minute ko maj but dive.",
+        ],
+        recommendations: [
+          {
+            title: "Astar ciknes",
+            description:
+              "Astar cikne phirimasa. Ker zalog maj but sako kurko.",
+          },
+          {
+            title: "Phir redovno",
+            description:
+              "Zalog phirimos sako dives azhutil maj but katar baro khinimos varekana.",
+          },
+          {
+            title: "Zurar e muskulura",
+            description:
+              "Inger gono, ker buchi andi barcha vaj ker lokhe vjezhbe.",
+          },
+        ],
+        warningSigns: [
+          "Dukh ko kolin, o shero phirel vaj phari phurdinimos kana phires.",
+          "Dukh vaj shuvljarimos ko globura savo barjol kana phires.",
+          "Hatjares kaj peres vaj o ilo marel bi ritmosko kana keres vjezhbe.",
+        ],
+      },
+      {
+        slug: "mental-wellbeing",
+        title: "Sastipen e godjako",
+        description:
+          "Arakh tiri godi thaj dzhan kana te manges azhutimos.",
+        intro:
+          "O sastipen e godjako si kotor katar tiro sastipen. Sako manush nakhavel vi lačhe vi phare dive. Normalno si te manges azhutimos.",
+        keyFacts: [
+          "Lungo streso inkerel o trupo phanglo, sigjarel o pulso, tasavel e muskulura thaj phagel o sovibe.",
+          "Kana arakhes tiri godi, soves maj mirno, dikhes maj mishto tiri buchi thaj ačhes pasha tire manusha.",
+          "Lokho thaj xor phurdinimos, redovno vrjama vash sovibe thaj putardi duma jekhe manushesa kaste pakjas lokhjaren o trupo.",
+        ],
+        recommendations: [
+          {
+            title: "Ačhov pasha e manusha",
+            description:
+              "Nakhar vrjama manushenca kaste pakjas. Te aves pasha avera arakhel tiri godi.",
+          },
+          {
+            title: "Arakh e anglune bukja",
+            description:
+              "O sovibe, o phirimos thaj i vrjama avri azhutin tut te hatjares tut maj mishto.",
+          },
+          {
+            title: "Mang azhutimos",
+            description:
+              "Te avel tuke but phares, de duma jekhe manushesa kaste pakjas vaj jekhe doktoresa.",
+          },
+        ],
+        warningSigns: [
+          "Brigipe, dar vaj bi-nadako hatjarimos savo ačhel kurkencar.",
+          "Phares ikljos ko kraj sako-diveske bukjenca, khere vaj avere manushenca.",
+          "Gindura te keres tuke nasul. Te avel akava, mang azhutimos sigo.",
+        ],
+      },
+      {
+        slug: "smoking",
+        title: "Mukhimos e thuvjarimasko",
+        description:
+          "Sostar vazhil te mukhes e cigare thaj so kerel les maj lokho.",
+        intro:
+          "Te mukhes o thuvjarimos si jekh katar e maj lačhe bukja vash tiro sastipen. Tiro trupo astarel sigo te sastjovel.",
+        keyFacts: [
+          "Ande anglune ore pala i palutni cigara, o oksigeno ando rat vazdel pes, e rateske droma lokhjon thaj e phuka astaren te uzhon.",
+          "Sar sastjol o trupo, phurdines maj lokhes pe skale, xasaves maj xanci thaj irinel pes o vkus thaj o khandimos.",
+          "Te alosares dives kana ačhaves, te azhukeres te nakhen e 3 minute mangimaske thaj te manges azhutimos katar o doktori, dujvar barjarel tire shanse.",
+        ],
+        recommendations: [
+          {
+            title: "Alosar jekh dives",
+            description:
+              "Alosar o dives kana mukhes e cigare thaj phen e manushenge kaste pakjas.",
+          },
+          {
+            title: "Mang azhutimos",
+            description:
+              "Programura thaj draba vash mukhimos e thuvjarimasko azhutin te ačhes bi cigarengo.",
+          },
+          {
+            title: "Ma mukh tut",
+            description:
+              "Te thuvjardjan pale, ma mukh tut. Sikljo katar kodo thaj probin pale.",
+          },
+        ],
+        warningSigns: [
+          "Xasavimos savo na nakhel vaj paruvimos ko purano xasavimos.",
+          "Xasavimos ratesa vaj dukh ko kolin savi na nakhel.",
+          "Sako dives maj but ačhes bi balvaljako ko lokhe bukja.",
+        ],
+      },
+      {
+        slug: "preventive-screening",
+        title: "Preventivno dikhiben",
+        description:
+          "Dikhibena save arakhen sastipnaske problemura rano, anglal te hatjares nasvalipen.",
+        intro:
+          "O preventivno dikhiben rodel e anglune semnja e nasvalipnaske anglal te dukhal tut vareso. Problemura arakhle rano sastjaren pes maj lokhes.",
+        keyFacts: [
+          "But nasvalipena, sar uchi tensija, dijabeto vaj varesave kancerura, astaren mirno ando trupo but anglal te dukhan.",
+          "Vi kana hatjares tut zuralo sako dives, jekh redovno dikhiben del tut mir thaj arakhel e paruvimata kana sastjaren pes lokhes.",
+          "Phuch tire familijake doktores save bi-loveske dikhibena thaj rengre dikhibena shaj te keres akava bersh.",
+        ],
+        recommendations: [
+          {
+            title: "Phuch so trubul tuke",
+            description:
+              "Phuch tire doktores save dikhibena si lačhe vash tiri vrjama thaj sastipen.",
+          },
+          {
+            title: "Dzha ko dikhibena",
+            description:
+              "Dzha kana akharen tut ko preventivno dikhiben thaj ko redovne kontrole.",
+          },
+          {
+            title: "Phen vash e nasvalipena andi familija",
+            description:
+              "Phen e doktoreske save nasvalipena sas tire daja, dades, phralen vaj papon.",
+          },
+        ],
+        warningSigns: [
+          "Nevi guka, neobicno ratjarimos vaj mladezho savo paruvel forma vaj boja.",
+          "Sako nevo semno savo na nakhel thaj na dzhanes katar avel.",
+          "Rezultato katar o dikhiben savo mangel te aves pale. Ma azhuker.",
+        ],
+      },
+      {
+        slug: "womens-health",
+        title: "Sastipen e dzhuvljako",
+        description:
+          "Tiro sastipen ki sako vrjama, katar o ciklo dzhi ki menopauza.",
+        intro:
+          "E trubujimata vash sastipen e dzhuvljako paruven pes ando trajo, katar o ciklo thaj i khabni romni dzhi ki menopauza. Kana dzhanes so si normalno vash tute, dikhes sigo kana vareso paruvel pes.",
+        keyFacts: [
+          "O trupo e dzhuvljako nakhel katar prirodne paruvimata e hormonenge, katar o ciklo thaj khabnipen dzhi ki menopauza.",
+          "Kana pinzhares tiro trupo, dikhes rano sako paruvimos ki chuchi, neobicno ratjarimos vaj dukh savi na nakhel.",
+          "Redovno Pap-testi, sako-chonesko dikhiben e chuchjengo thaj kontrole kana i romni si khabni arakhen e problemura rano.",
+        ],
+        recommendations: [
+          {
+            title: "Pinzhar tiro trupo",
+            description:
+              "Dikh tiro obicno ciklo thaj trupo, kaj te dikhes sigo e paruvimata.",
+          },
+          {
+            title: "Dzha ko kontrole",
+            description:
+              "Dzha ko dikhibena save si phende vash tiri vrjama.",
+          },
+          {
+            title: "Mang azhutimos rano",
+            description:
+              "De duma e doktoresa vash sako semno savo daravel tut.",
+          },
+        ],
+        warningSigns: [
+          "Neobicno ratjarimos mashkar e ciklura vaj pala i menopauza.",
+          "Zurali vaj lungi dukh telal ando por.",
+          "Nevo paruvimos ki chuchi, sar guka vaj paruvimos pe morti.",
+        ],
+      },
+    ],
+  },
 };
 
 export function getHealthInformationDictionary(lang: Lang) {
@@ -1441,6 +2045,90 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
       title: "Salute della donna",
       description:
         "Gravidanza, visite ginecologiche e cosa è normale a ogni età.",
+    },
+  },
+  hr: {
+    "heart-health": {
+      title: "Zdravlje srca",
+      description:
+        "Jednostavne navike za zdrav krvni tlak i snažno srce.",
+    },
+    diabetes: {
+      title: "Prevencija dijabetesa",
+      description:
+        "Rani znakovi i kako držati šećer u krvi stabilnim.",
+    },
+    "healthy-eating": {
+      title: "Zdrava prehrana",
+      description:
+        "Povoljni i zasitni obroci s manje soli i šećera.",
+    },
+    "physical-activity": {
+      title: "Tjelesna aktivnost",
+      description:
+        "Kako se kretati više svaki dan, u svakoj dobi, bez teretane.",
+    },
+    "mental-wellbeing": {
+      title: "Mentalno zdravlje",
+      description:
+        "Prepoznaj stres i brige koje ne prolaze te pronađi besplatnu pomoć.",
+    },
+    smoking: {
+      title: "Prestanak pušenja",
+      description:
+        "Kako prestati pušiti i tko ti u tome može pomoći.",
+    },
+    "preventive-screening": {
+      title: "Preventivni pregledi",
+      description:
+        "Besplatni pregledi koji otkrivaju bolesti rano, prije nego što zaboli.",
+    },
+    "womens-health": {
+      title: "Zdravlje žena",
+      description:
+        "Trudnoća, ginekološki pregledi i što je uobičajeno u svakoj dobi.",
+    },
+  },
+  rom: {
+    "heart-health": {
+      title: "Sastipen e ilesko",
+      description:
+        "Lokhe tabijetura vash normalno tensija thaj zuralo ilo.",
+    },
+    diabetes: {
+      title: "Arakhimos katar o dijabeto",
+      description:
+        "Anglune semnja thaj sar te inkeres o gudlo rat ando balanso.",
+    },
+    "healthy-eating": {
+      title: "Sasto xaben",
+      description:
+        "Ieftino thaj čaljardo xaben maj xanci lonesa thaj zaharosa.",
+    },
+    "physical-activity": {
+      title: "Fizikani aktivnost",
+      description:
+        "Sar te phires maj but sako dives, ki sako vrjama, bi salako.",
+    },
+    "mental-wellbeing": {
+      title: "Sastipen e godjako",
+      description:
+        "Pinzhar o streso thaj e brige save na nakhen thaj arakh bi-lovesko azhutimos.",
+    },
+    smoking: {
+      title: "Mukhimos e thuvjarimasko",
+      description:
+        "Sar te mukhes e cigare thaj kon shaj te azhutil tut.",
+    },
+    "preventive-screening": {
+      title: "Preventivno dikhiben",
+      description:
+        "Bi-loveske dikhibena save arakhen nasvalipena rano, anglal te dukhal.",
+    },
+    "womens-health": {
+      title: "Sastipen e dzhuvljako",
+      description:
+        "Khabnipen, dikhiben ko ginekologo thaj so si normalno ki sako vrjama.",
     },
   },
 };

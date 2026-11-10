@@ -23,12 +23,15 @@ const COUNTRY_TO_LANG: Record<string, Lang> = {
   IT: "it",
   SM: "it",
   VA: "it",
+  HR: "hr",
 };
 
 const LANG_TO_COUNTRY: Record<Lang, CountryCode> = {
   ro: "RO",
   sq: "AL",
   it: "IT",
+  hr: "HR",
+  rom: "RO",
   en: "RO",
 };
 
@@ -122,40 +125,74 @@ function toNumber(value: unknown): number | null {
   return null;
 }
 
-function normalizeWebsite(value: string | null): string | null {
+export function normalizeInstituteWebsite(value: string | null): string | null {
   if (!value) return null;
-  const withProtocol = /^https?:\/\//i.test(value) ? value : `https://${value}`;
+  const compact = value.trim().replace(/^(https?:\/\/)\s+/i, "$1");
+  if (!compact || /\s/.test(compact)) return null;
+  const withProtocol = /^https?:\/\//i.test(compact) ? compact : `https://${compact}`;
+  // Reject bare email addresses (e.g. "office@clinic.ro" or "http://office@clinic.ro").
+  const hostPart = withProtocol.replace(/^https?:\/\//i, "").split("/")[0] ?? "";
+  if (!hostPart || hostPart.includes("@") || !/\.[a-z]{2,}$/i.test(hostPart.split(":")[0] ?? "")) {
+    return null;
+  }
   try {
     const url = new URL(withProtocol);
+    if (url.username || url.password) return null;
     return url.protocol === "http:" || url.protocol === "https:" ? url.toString() : null;
   } catch {
     return null;
   }
 }
 
+const DIAL_CODE_FIXES: Partial<Record<string, [RegExp, string][]>> = {
+  RO: [
+    [/^\+4\s+(?=0?[237]\d)/, "+40 "],
+    [/^\+0(?=[237]\d)/, "+40 "],
+  ],
+  MD: [[/^\+37\s+3/, "+373 "]],
+  HR: [[/^\+38\s+5/, "+385 "]],
+  AL: [[/^\+35\s+5/, "+355 "]],
+};
+
 /**
- * Puts an Italian phone number into international form (+39). OpenStreetMap data has national
- * numbers without the code ("0815752610") and mistyped codes ("+93 06 491813", "+44 0814003125").
- * Only Italian numbers keep the leading 0 after the country code, so "+NN 0…" on an Italian
- * place is a mistyped +39. Several numbers separated by ";" or "," are handled one by one.
- * Numbers for other countries are returned as they are.
+ * Normalizes OpenStreetMap and admin phone numbers.
+ * - Converts leading `00` international prefixes (`00385…`, `0040…`, `0039…`) to `+`.
+ * - Fixes common OSM country-code spacing typos (e.g. `+4 021…` -> `+40 021…`, `+38 5…` -> `+385 …`).
+ * - Puts Italian phone numbers into international form (+39), including mistyped codes in front
+ *   of an Italian leading `0` ("+93 06 491813" -> "+39 06 491813").
  */
 export function normalizeInstitutePhone(phone: string | null, country: string): string | null {
   if (!phone) return null;
   const cleaned = phone.trim().replace(/\s+/g, " ");
   if (!cleaned) return null;
-  if (country.toUpperCase() !== "IT") return cleaned;
+  const upper = country.toUpperCase();
+
   return cleaned
     .split(/\s*[;,]\s*/)
+    .map((part) => part.trim())
     .filter(Boolean)
     .map((part) => {
-      const number = part.replace(/^00(?=\d)/, "+");
+      let number = part.replace(/^00(?=[1-9]\d)/, "+");
+      for (const [pattern, replacement] of DIAL_CODE_FIXES[upper] ?? []) {
+        number = number.replace(pattern, replacement);
+      }
+      if (upper !== "IT") return number;
       if (number.startsWith("+39")) return number;
       if (/^\+\d{1,3}[\s.-]*0/.test(number)) return number.replace(/^\+\d{1,3}[\s.-]*(?=0)/, "+39 ");
       if (/^[03]\d/.test(number)) return `+39 ${number}`;
       return number;
     })
     .join("; ");
+}
+
+/** Builds a safe `tel:` href using only the first phone number when multiple numbers are listed. */
+export function primaryPhoneHref(phone: string | null | undefined): string | null {
+  if (!phone) return null;
+  const first = phone.split(/[;,]/)[0]?.trim();
+  if (!first) return null;
+  const cleaned = first.replace(/(?!^\+)[^\d]/g, "");
+  const digitsOnly = cleaned.replace(/\D/g, "");
+  return digitsOnly.length >= 3 ? `tel:${cleaned}` : null;
 }
 
 export type InstituteValidationResult =
@@ -188,7 +225,7 @@ export function validateInstituteInput(body: unknown): InstituteValidationResult
   }
 
   const websiteRaw = cleanText(input.website, 500);
-  const website = normalizeWebsite(websiteRaw);
+  const website = normalizeInstituteWebsite(websiteRaw);
   if (websiteRaw && !website) {
     return { ok: false, error: "Website must be a valid http(s) URL." };
   }

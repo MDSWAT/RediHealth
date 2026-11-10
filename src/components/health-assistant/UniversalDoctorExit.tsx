@@ -4,6 +4,7 @@ import Link from "next/link";
 import { StethoscopeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 
 interface UniversalDoctorExitProps {
   pathway?: string;
@@ -22,7 +23,7 @@ export function UniversalDoctorExit({
 }: UniversalDoctorExitProps) {
   const { lang } = useLanguage();
 
-  const dict = {
+  const dict: Record<Lang, { heading: string; body: string; bookOnline: string; checkOnCall: string }> = {
     en: {
       heading: "Would you like to talk to a doctor?",
       body: "If something is unclear, you can talk to a volunteer doctor for free, by phone.",
@@ -47,8 +48,20 @@ export function UniversalDoctorExit({
       bookOnline: "Prenota",
       checkOnCall: "Vedi gli orari di guardia",
     },
+    hr: {
+      heading: "Želiš li razgovarati s liječnikom?",
+      body: "Ako ti nešto nije jasno, možeš besplatno telefonom razgovarati s liječnikom volonterom.",
+      bookOnline: "Dogovori poziv",
+      checkOnCall: "Pogledaj vrijeme dežurstva",
+    },
+    rom: {
+      heading: "Manges te vorbis jekhe doktorestar?",
+      body: "Te na haljares vareso, shaj vorbis bi lovengo jekhe doktoresa pe telefono.",
+      bookOnline: "Ker programacia",
+      checkOnCall: "Dikh le chasura pe straza",
+    },
   };
-  const t = dict[lang as keyof typeof dict] || dict[DEFAULT_LANG];
+  const t = dict[lang] || dict[DEFAULT_LANG];
 
   const queryParams = new URLSearchParams({
     source: "triage",

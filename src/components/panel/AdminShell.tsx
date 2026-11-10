@@ -1,8 +1,7 @@
-
 "use client";
 
 import { PanelLink as Link, usePanelPathname as usePathname, usePanelRuntime } from "./PanelRuntime";
-import { createContext, useContext, useEffect, useId, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import { signOut } from "next-auth/react";
 import {
   AlertCircleIcon,
@@ -18,6 +17,7 @@ import {
   LogOutIcon,
   PinIcon,
   PlusIcon,
+  SearchIcon,
   StethoscopeIcon,
   UserIcon,
   UsersIcon,
@@ -25,6 +25,7 @@ import {
 import { Logo } from "@/components/ui/Logo";
 import { CountrySwitcher } from "@/components/panel/CountrySwitcher";
 import { useLanguage } from "@/lib/i18n/language-context";
+import type { Lang } from "@/lib/i18n/translations";
 import { panelTranslations } from "@/lib/i18n/panel-translations";
 import { panelDesignTranslations } from "@/lib/i18n/panel-design-translations";
 import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
@@ -48,25 +49,102 @@ type AdminShellProps = {
 type PageShellOptions = Pick<AdminShellProps, "pendingCount" | "mobilePatientCreation">;
 
 /** Staff roles are stored in English; show them in the reader's language (same wording as the worker form). */
-const ROLE_LABELS: Record<"en" | "ro" | "sq" | "it", Record<string, string>> = {
+const ROLE_LABELS: Record<Lang, Record<string, string>> = {
   en: { "healthcare worker": "Health worker", "case worker": "Case worker", "general practitioner": "Family doctor", "super admin": "Super admin", superadmin: "Super admin" },
   ro: { doctor: "Medic", mediator: "Mediator", nurse: "Asistent medical", "case worker": "Responsabil de caz", "general practitioner": "Medic de familie", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Personal medical" },
   sq: { doctor: "Mjek", mediator: "Mediator", nurse: "Infermier", "case worker": "Përgjegjës rasti", "general practitioner": "Mjek familje", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Punonjës shëndetësor" },
   it: { doctor: "Medico", mediator: "Mediatore", nurse: "Infermiere", "case worker": "Referente del caso", "general practitioner": "Medico di base", administrator: "Amministratore", "super admin": "Super amministratore", superadmin: "Super amministratore", "healthcare worker": "Operatore sanitario" },
+  hr: { doctor: "Liječnik", mediator: "Zdravstveni medijator", nurse: "Medicinska sestra", "case worker": "Voditelj slučaja", "general practitioner": "Obiteljski liječnik", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Zdravstveni radnik" },
+  rom: { doctor: "Doktori", mediator: "Sastipnasko mediatori", nurse: "Sastipnaski phen", "case worker": "Manush e kazosko", "general practitioner": "Familijako doktori", administrator: "Administratoro", "super admin": "Super administratoro", superadmin: "Super administratoro", "healthcare worker": "Sastipnasko bukyarno" },
 };
+
 const PersistentShellContext = createContext<((options: PageShellOptions) => void) | null>(null);
+
+function isEditableElement(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) return false;
+  const tag = target.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return true;
+  if (target.isContentEditable) return true;
+  return Boolean(target.closest('[contenteditable="true"]'));
+}
+
+function useDialogFocusTrap(
+  isOpen: boolean,
+  containerRef: React.RefObject<HTMLElement | null>,
+  onClose: () => void,
+  initialFocusRef?: React.RefObject<HTMLElement | null>,
+) {
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const opener = document.activeElement as HTMLElement | null;
+    const focusTimer = window.setTimeout(() => {
+      if (initialFocusRef?.current) {
+        initialFocusRef.current.focus();
+        return;
+      }
+      const first = containerRef.current?.querySelector<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      first?.focus();
+    }, 0);
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onCloseRef.current();
+        return;
+      }
+      if (event.key === "Tab" && containerRef.current) {
+        const focusable = Array.from(
+          containerRef.current.querySelectorAll<HTMLElement>(
+            'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.clearTimeout(focusTimer);
+      window.removeEventListener("keydown", handleKeyDown);
+      opener?.focus?.();
+    };
+  }, [isOpen, containerRef, initialFocusRef]);
+}
 
 export function PersistentPanelShell(props: AdminShellProps) {
   const [pageOptions, setPageOptions] = useState<PageShellOptions>({
     pendingCount: props.pendingCount,
     mobilePatientCreation: props.mobilePatientCreation,
   });
-  return <PersistentShellContext.Provider value={setPageOptions}>
-    <AdminShellFrame {...props} {...pageOptions} />
-  </PersistentShellContext.Provider>;
+  return (
+    <PersistentShellContext.Provider value={setPageOptions}>
+      <AdminShellFrame {...props} {...pageOptions} />
+    </PersistentShellContext.Provider>
+  );
 }
 
-function PageShellContent({ children, pendingCount = 0, mobilePatientCreation, update }: AdminShellProps & {
+function PageShellContent({
+  children,
+  pendingCount = 0,
+  mobilePatientCreation,
+  update,
+}: AdminShellProps & {
   update: (options: PageShellOptions) => void;
 }) {
   const creationAvailable = mobilePatientCreation !== undefined;
@@ -81,6 +159,15 @@ export function AdminShell(props: AdminShellProps) {
   const update = useContext(PersistentShellContext);
   return update ? <PageShellContent {...props} update={update} /> : <AdminShellFrame {...props} />;
 }
+
+type CommandEntry = {
+  id: string;
+  group: "nav" | "action";
+  label: string;
+  shortcut?: string;
+  icon: typeof FileTextIcon;
+  execute: () => void;
+};
 
 function AdminShellFrame({
   children,
@@ -103,6 +190,7 @@ function AdminShellFrame({
   const isSuperAdmin = role === "super admin" || role === "superadmin";
   const isMediatorOnly = role === "mediator" && !isAdmin;
   const roleLabel = ROLE_LABELS[lang][role] || userRole;
+
   const [mobileAccountSheetOpen, setMobileAccountSheetOpen] = useState(false);
   const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
   const [reportIssueOpen, setReportIssueOpen] = useState(false);
@@ -112,31 +200,50 @@ function AdminShellFrame({
   const [reportSuccess, setReportSuccess] = useState<string | null>(null);
   const [reportSubmitting, setReportSubmitting] = useState(false);
   const [creatingPatient, setCreatingPatient] = useState(false);
-  const reportFieldId = useId();
 
-  // Escape closes the account sheet and the report dialog, like any other panel dialog.
-  useEffect(() => {
-    if (!mobileAccountSheetOpen && !reportIssueOpen) return;
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key !== "Escape") return;
-      setMobileAccountSheetOpen(false);
-      if (!reportSubmitting) setReportIssueOpen(false);
-    }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [mobileAccountSheetOpen, reportIssueOpen, reportSubmitting]);
+  const [commandOpen, setCommandOpen] = useState(false);
+  const [commandQuery, setCommandQuery] = useState("");
+  const [commandIndex, setCommandIndex] = useState(0);
+
+  const reportFieldId = useId();
+  const commandDialogId = useId();
+  const mobileSheetRef = useRef<HTMLElement | null>(null);
+  const reportDialogRef = useRef<HTMLDivElement | null>(null);
+  const commandDialogRef = useRef<HTMLDivElement | null>(null);
+  const commandInputRef = useRef<HTMLInputElement | null>(null);
+
+  const closeMobileAccountSheet = useCallback(() => {
+    setMobileAccountSheetOpen(false);
+  }, [setMobileAccountSheetOpen]);
+
+  const closeReportDialog = useCallback(() => {
+    if (!reportSubmitting) setReportIssueOpen(false);
+  }, [reportSubmitting, setReportIssueOpen]);
+
+  const closeCommandPalette = useCallback(() => {
+    setCommandOpen(false);
+    setCommandQuery("");
+  }, [setCommandOpen, setCommandQuery]);
+
+  useDialogFocusTrap(mobileAccountSheetOpen, mobileSheetRef, closeMobileAccountSheet);
+  useDialogFocusTrap(reportIssueOpen, reportDialogRef, closeReportDialog);
+  useDialogFocusTrap(commandOpen, commandDialogRef, closeCommandPalette, commandInputRef);
 
   // All desktop items
-  const desktopItems = [
-    { label: crm.requests, href: "/panel", icon: FileTextIcon },
-    { label: t.patients, href: "/panel/patients", icon: UsersIcon },
-    { label: t.calendar, href: "/panel/calendar", icon: CalendarIcon },
-    { label: crm.meetings, href: "/panel/meet", icon: CameraIcon },
-    { label: t.workers, href: "/panel/workers", icon: StethoscopeIcon },
-  ].filter((item) => {
-    if (item.href === "/panel/workers" && !isAdmin) return false;
-    return canOpen(item.href);
-  });
+  const desktopItems = useMemo(
+    () =>
+      [
+        { label: crm.requests, href: "/panel", icon: FileTextIcon, chord: "G R" },
+        { label: t.patients, href: "/panel/patients", icon: UsersIcon, chord: "G P" },
+        { label: t.calendar, href: "/panel/calendar", icon: CalendarIcon, chord: "G C" },
+        { label: crm.meetings, href: "/panel/meet", icon: CameraIcon, chord: undefined },
+        { label: t.workers, href: "/panel/workers", icon: StethoscopeIcon, chord: undefined },
+      ].filter((item) => {
+        if (item.href === "/panel/workers" && !isAdmin) return false;
+        return canOpen(item.href);
+      }),
+    [crm.requests, crm.meetings, t.patients, t.calendar, t.workers, isAdmin, canOpen],
+  );
 
   // Mobile App Bottom Navigation Bar items (primary quick tabs)
   const mobilePrimaryTabs = [
@@ -218,9 +325,279 @@ function AdminShellFrame({
       offline: "Lavora offline su questo dispositivo",
       offlineCheckError: "Impossibile controllare le modifiche offline. Apri la modalità offline prima di uscire.",
     },
+    hr: {
+      title: "Prijavi problem",
+      subtitle: "Reci nam što nije radilo. Provjerit ćemo.",
+      email: "Tvoj email (neobavezno)",
+      message: "Što se dogodilo",
+      send: "Pošalji prijavu",
+      sending: "Slanje...",
+      cancel: "Odustani",
+      success: "Hvala. Tvoja prijava je poslana.",
+      genericError: "Slanje prijave nije uspjelo. Pokušaj ponovno.",
+      detailError: "Napiši barem 10 znakova kako bismo razumjeli problem.",
+      placeholder: "Što si učinio, što si očekivao i što se dogodilo?",
+      offline: "Šifrirani izvanmrežni radni prostor",
+      offlineCheckError: "Provjera izvanmrežnih promjena nije uspjela. Otvori izvanmrežni način prije odjave.",
+    },
+    rom: {
+      title: "Phen ekh pharimos",
+      subtitle: "Phen amenge so na gelo mishto. Ame ka dikhas.",
+      email: "Cho email (te kames)",
+      message: "So kerdilyas",
+      send: "Bichhal o raporto",
+      sending: "Bichhalel...",
+      cancel: "Mekh",
+      success: "Nais tuke. Cho raporto sas bichhaldo.",
+      genericError: "Nashti bichhaldo o raporto. Zumav pale.",
+      detailError: "Lekhar may hari 10 harfurya te halovas o pharimos.",
+      placeholder: "So kerdyan, so uzhardyan thaj so kerdilyas?",
+      offline: "Garavdo bi-internetesko than",
+      offlineCheckError: "Nashti dikhle le bi-interneteske paruvimata. Putar o garavdo bi-internetesko than angla te inkljes avri.",
+    },
   } as const;
 
   const reportText = reportCopyByLang[lang];
+
+  const triggerPanelNavigation = useCallback(
+    (panelHref: string) => {
+      if (!canOpen(panelHref)) return;
+      const candidates = [
+        withLangPrefix(panelHref, lang),
+        withLangPrefix(panelHref.replace(/^\/panel(?=\/|$)/, "/demo"), lang),
+        withLangPrefix(panelHref.replace(/^\/panel(?=\/|$)/, "/offline"), lang),
+      ];
+      const anchors = Array.from(
+        document.querySelectorAll<HTMLAnchorElement>('[data-panel-sidebar-nav="true"] a[href]'),
+      );
+      const match = anchors.find((a) => {
+        const attr = a.getAttribute("href") ?? "";
+        return candidates.includes(attr);
+      });
+      if (match) {
+        match.click();
+        return;
+      }
+      window.location.assign(withLangPrefix(panelHref, lang));
+    },
+    [canOpen, lang],
+  );
+
+  const handleSignOut = useCallback(async () => {
+    if (offline && offlineSignOut) {
+      offlineSignOut();
+      return;
+    }
+    if (demo) {
+      window.location.assign(withLangPrefix("/", lang));
+      return;
+    }
+    try {
+      if (await hasOfflineVault()) {
+        window.location.assign(withLangPrefix("/offline?signout=1", lang));
+        return;
+      }
+    } catch (error) {
+      console.error("Could not check offline sign-out protection", error);
+      window.alert(reportText.offlineCheckError);
+      return;
+    }
+    const target = withLangPrefix("/sign-in", lang);
+    void signOut({ redirect: false })
+      .catch(() => undefined)
+      .finally(() => {
+        // Hard same-origin navigation so sign-out does not depend on AUTH_URL.
+        window.location.assign(target);
+      });
+  }, [offline, offlineSignOut, demo, lang, reportText.offlineCheckError]);
+
+  // Global Cmd+K / Ctrl+K + keyboard navigation chords (G+R, G+P, G+C, [)
+  useEffect(() => {
+    let gArmedUntil = 0;
+
+    function onGlobalKeyDown(event: KeyboardEvent) {
+      const keyLower = event.key.toLowerCase();
+
+      if ((event.metaKey || event.ctrlKey) && keyLower === "k") {
+        event.preventDefault();
+        setMobileAccountSheetOpen(false);
+        setCommandOpen((prev) => {
+          const next = !prev;
+          if (next) {
+            setCommandQuery("");
+            setCommandIndex(0);
+          }
+          return next;
+        });
+        return;
+      }
+
+      if (
+        commandOpen ||
+        mobileAccountSheetOpen ||
+        reportIssueOpen ||
+        creatingPatient ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey ||
+        isEditableElement(event.target)
+      ) {
+        return;
+      }
+
+      if (event.key === "[") {
+        event.preventDefault();
+        setDesktopSidebarCollapsed((prev) => !prev);
+        gArmedUntil = 0;
+        return;
+      }
+
+      const now = Date.now();
+      if (now <= gArmedUntil) {
+        gArmedUntil = 0;
+        if (keyLower === "r" && canOpen("/panel")) {
+          event.preventDefault();
+          triggerPanelNavigation("/panel");
+          return;
+        }
+        if (keyLower === "p" && canOpen("/panel/patients")) {
+          event.preventDefault();
+          triggerPanelNavigation("/panel/patients");
+          return;
+        }
+        if (keyLower === "c" && canOpen("/panel/calendar")) {
+          event.preventDefault();
+          triggerPanelNavigation("/panel/calendar");
+          return;
+        }
+      }
+
+      if (keyLower === "g" && !event.shiftKey) {
+        gArmedUntil = now + 900;
+      }
+    }
+
+    window.addEventListener("keydown", onGlobalKeyDown);
+    return () => window.removeEventListener("keydown", onGlobalKeyDown);
+  }, [
+    commandOpen,
+    mobileAccountSheetOpen,
+    reportIssueOpen,
+    creatingPatient,
+    canOpen,
+    triggerPanelNavigation,
+  ]);
+
+  const commandEntries: CommandEntry[] = [];
+
+  for (const item of desktopItems) {
+    commandEntries.push({
+      id: `nav-${item.href}`,
+      group: "nav",
+      label: item.label,
+      shortcut: item.chord,
+      icon: item.icon,
+      execute: () => triggerPanelNavigation(item.href),
+    });
+  }
+
+  if (isSuperAdmin) {
+    commandEntries.push(
+      {
+        id: "nav-logs",
+        group: "nav",
+        label: t.logs,
+        icon: ClockIcon,
+        execute: () => triggerPanelNavigation("/panel/logs"),
+      },
+      {
+        id: "nav-institutes",
+        group: "nav",
+        label: institutesCopy.navLabel,
+        icon: PinIcon,
+        execute: () => triggerPanelNavigation("/panel/institutes"),
+      },
+      {
+        id: "nav-settings",
+        group: "nav",
+        label: settingsCopy.navLabel,
+        icon: BellIcon,
+        execute: () => triggerPanelNavigation("/panel/settings"),
+      },
+    );
+  }
+
+  if (!demo && !offline && ["doctor", "mediator"].includes(role)) {
+    commandEntries.push({
+      id: "nav-offline",
+      group: "nav",
+      label: reportText.offline,
+      icon: StethoscopeIcon,
+      execute: () => window.location.assign(withLangPrefix("/offline", lang)),
+    });
+  }
+
+  if (isMediatorOnly && mobilePatientCreation) {
+    commandEntries.push({
+      id: "act-create-patient",
+      group: "action",
+      label: createPatientModalTranslations[lang].titleCreate,
+      icon: PlusIcon,
+      execute: () => setCreatingPatient(true),
+    });
+  }
+
+  commandEntries.push(
+    {
+      id: "act-toggle-sidebar",
+      group: "action",
+      label: copy.commandToggleSidebar,
+      shortcut: "[",
+      icon: desktopSidebarCollapsed ? ChevronRightIcon : ChevronLeftIcon,
+      execute: () => setDesktopSidebarCollapsed((prev) => !prev),
+    },
+    {
+      id: "act-report-issue",
+      group: "action",
+      label: t.reportIssue,
+      icon: AlertCircleIcon,
+      execute: () => {
+        setReportError(null);
+        setReportSuccess(null);
+        setReportIssueOpen(true);
+      },
+    },
+    {
+      id: "act-return-site",
+      group: "action",
+      label: t.returnToWebsite,
+      icon: ArrowRightIcon,
+      execute: () => window.location.assign(withLangPrefix("/", lang)),
+    },
+    {
+      id: "act-sign-out",
+      group: "action",
+      label: t.signOut,
+      icon: LogOutIcon,
+      execute: () => {
+        void handleSignOut();
+      },
+    },
+  );
+
+  const normalizedCommandQuery = commandQuery.trim().toLowerCase();
+  const filteredCommands = normalizedCommandQuery
+    ? commandEntries.filter(
+        (entry) =>
+          entry.label.toLowerCase().includes(normalizedCommandQuery) ||
+          Boolean(entry.shortcut && entry.shortcut.toLowerCase().includes(normalizedCommandQuery)),
+      )
+    : commandEntries;
+
+  const activeCommandIdx =
+    filteredCommands.length === 0
+      ? -1
+      : Math.min(commandIndex, filteredCommands.length - 1);
 
   async function handleSubmitIssue(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -263,30 +640,11 @@ function AdminShellFrame({
     }
   }
 
-  const handleSignOut = async () => {
-    if (offline && offlineSignOut) { offlineSignOut(); return; }
-    if (demo) { window.location.assign(withLangPrefix("/", lang)); return; }
-    try {
-      if (await hasOfflineVault()) { window.location.assign(withLangPrefix("/offline?signout=1", lang)); return; }
-    } catch (error) {
-      console.error("Could not check offline sign-out protection", error);
-      window.alert(reportText.offlineCheckError);
-      return;
-    }
-    const target = withLangPrefix("/sign-in", lang);
-    void signOut({ redirect: false })
-      .catch(() => undefined)
-      .finally(() => {
-        // Hard same-origin navigation so sign-out does not depend on AUTH_URL.
-        window.location.assign(target);
-      });
-  };
-
   return (
     <div className="care-panel min-h-screen bg-slate-50/50">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-xl focus:bg-white focus:px-4 focus:py-2 focus:shadow-md focus:text-primary focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-md focus:text-primary focus:font-semibold"
       >
         {copy.skip}
       </a>
@@ -298,6 +656,19 @@ function AdminShellFrame({
         </div>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => {
+              setCommandQuery("");
+              setCommandIndex(0);
+              setCommandOpen(true);
+            }}
+            aria-label={copy.commandTrigger}
+            className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-slate-50 text-muted-foreground hover:bg-muted hover:text-foreground"
+          >
+            <SearchIcon className="h-4 w-4" />
+          </button>
+
           {pendingCount > 0 ? (
             <span
               className="inline-flex h-5 min-w-5 items-center justify-center rounded-md bg-primary px-1.5 text-xs font-bold text-white shadow-2xs tabular-nums"
@@ -311,7 +682,7 @@ function AdminShellFrame({
             type="button"
             onClick={() => setMobileAccountSheetOpen(true)}
             aria-label={copy.account}
-            className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-soft text-xs font-bold text-primary"
+            className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-soft text-xs font-bold text-primary"
           >
             {userInitial}
           </button>
@@ -326,7 +697,13 @@ function AdminShellFrame({
             onClick={() => setMobileAccountSheetOpen(false)}
             aria-hidden="true"
           />
-          <aside role="dialog" aria-modal="true" aria-label={copy.account} className="app-sheet-slide-up relative w-full rounded-t-xl border-t border-border bg-card p-5 shadow-xl max-h-[85dvh] overflow-y-auto care-panel-bottom-bar">
+          <aside
+            ref={mobileSheetRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={copy.account}
+            className="app-sheet-slide-up relative w-full rounded-t-xl border-t border-border bg-card p-5 shadow-xl max-h-[85dvh] overflow-y-auto care-panel-bottom-bar"
+          >
             {/* Grab Handle */}
             <div className="mx-auto mb-3 h-1.5 w-12 rounded-sm bg-border" />
 
@@ -349,7 +726,7 @@ function AdminShellFrame({
               <button
                 type="button"
                 onClick={() => setMobileAccountSheetOpen(false)}
-                className="rounded-lg p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
                 aria-label={t.closeMenu}
               >
                 <CloseIcon className="h-5 w-5" />
@@ -367,39 +744,37 @@ function AdminShellFrame({
                   {sheetQuickLinks.map((link) => {
                     const Icon = link.icon;
                     const isReportIssueLink = link.href === "#report-issue";
-                    return (
-                      isReportIssueLink ? (
-                        <button
-                          key={link.href}
-                          type="button"
-                          onClick={() => {
-                            setMobileAccountSheetOpen(false);
-                            setReportIssueOpen(true);
-                            setReportError(null);
-                            setReportSuccess(null);
-                          }}
-                          className="flex min-h-11 w-full items-center justify-between rounded-lg px-3 text-left text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
-                        >
-                          <span className="flex items-center gap-2.5">
-                            <Icon className="h-5 w-5 text-primary" />
-                            <span>{link.label}</span>
-                          </span>
-                          <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
-                        </button>
-                      ) : (
-                        <Link
-                          key={link.href}
-                          href={withLangPrefix(link.href, lang)}
-                          onClick={() => setMobileAccountSheetOpen(false)}
-                          className="flex min-h-11 items-center justify-between rounded-xl px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
-                        >
-                          <span className="flex items-center gap-2.5">
-                            <Icon className="h-5 w-5 text-primary" />
-                            <span>{link.label}</span>
-                          </span>
-                          <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
-                        </Link>
-                      )
+                    return isReportIssueLink ? (
+                      <button
+                        key={link.href}
+                        type="button"
+                        onClick={() => {
+                          setMobileAccountSheetOpen(false);
+                          setReportIssueOpen(true);
+                          setReportError(null);
+                          setReportSuccess(null);
+                        }}
+                        className="flex min-h-11 w-full items-center justify-between rounded-lg px-3 text-left text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <Icon className="h-5 w-5 text-primary" />
+                          <span>{link.label}</span>
+                        </span>
+                        <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
+                      </button>
+                    ) : (
+                      <Link
+                        key={link.href}
+                        href={withLangPrefix(link.href, lang)}
+                        onClick={() => setMobileAccountSheetOpen(false)}
+                        className="flex min-h-11 items-center justify-between rounded-xl px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <Icon className="h-5 w-5 text-primary" />
+                          <span>{link.label}</span>
+                        </span>
+                        <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
+                      </Link>
                     );
                   })}
                 </>
@@ -441,7 +816,7 @@ function AdminShellFrame({
                 onClick={() => setDesktopSidebarCollapsed(false)}
                 aria-label={copy.expandSidebar}
                 title={copy.expandSidebar}
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
                 <ChevronRightIcon className="h-5 w-5" />
               </button>
@@ -453,8 +828,8 @@ function AdminShellFrame({
                   type="button"
                   onClick={() => setDesktopSidebarCollapsed(true)}
                   aria-label={copy.collapseSidebar}
-                  title={copy.collapseSidebar}
-                  className="absolute right-3 top-5 flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  title={`${copy.collapseSidebar} ([)`}
+                  className="absolute right-2 top-4 flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
                   <ChevronLeftIcon className="h-5 w-5" />
                 </button>
@@ -462,7 +837,40 @@ function AdminShellFrame({
             )}
           </div>
 
-          <nav aria-label={copy.navigation} className={`panel-sidebar-nav flex-1 overflow-y-auto py-4 ${desktopSidebarCollapsed ? "panel-sidebar-nav-collapsed px-2" : "px-3"}`}>
+          {/* Cmd+K Command Palette Trigger */}
+          <div className={`border-b border-border/70 py-2.5 ${desktopSidebarCollapsed ? "px-2" : "px-3"}`}>
+            <button
+              type="button"
+              onClick={() => {
+                setCommandQuery("");
+                setCommandIndex(0);
+                setCommandOpen(true);
+              }}
+              aria-label={copy.commandTrigger}
+              title={`${copy.commandTrigger} (⌘K)`}
+              className={`flex min-h-11 w-full items-center rounded-lg border border-border bg-slate-50/80 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${
+                desktopSidebarCollapsed ? "justify-center px-2" : "justify-between gap-2 px-2.5"
+              }`}
+            >
+              <span className="flex min-w-0 items-center gap-2">
+                <SearchIcon className="h-4 w-4 shrink-0" />
+                {!desktopSidebarCollapsed ? (
+                  <span className="truncate">{copy.commandTrigger}</span>
+                ) : null}
+              </span>
+              {!desktopSidebarCollapsed ? (
+                <kbd className="shrink-0 rounded-md border border-border bg-white px-1.5 py-0.5 font-mono text-[10px] font-semibold text-muted-foreground">
+                  ⌘K
+                </kbd>
+              ) : null}
+            </button>
+          </div>
+
+          <nav
+            data-panel-sidebar-nav="true"
+            aria-label={copy.navigation}
+            className={`panel-sidebar-nav flex-1 overflow-y-auto py-4 ${desktopSidebarCollapsed ? "panel-sidebar-nav-collapsed px-2" : "px-3"}`}
+          >
             <ul className="space-y-1">
               {desktopItems.filter((item) => item.href !== "/panel/workers").map((item) => {
                 const active =
@@ -477,11 +885,11 @@ function AdminShellFrame({
                       aria-current={active ? "page" : undefined}
                       title={desktopSidebarCollapsed ? item.label : undefined}
                       aria-label={`${item.label}${item.href === "/panel" && pendingCount > 0 ? `, ${t.pendingRequests(pendingCount)}` : ""}`}
-                      className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
+                      className={`panel-nav-link flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
                         desktopSidebarCollapsed ? "relative justify-center px-2" : "px-3"
                       } ${
                         active
-                          ? "bg-primary-soft text-primary"
+                          ? "bg-primary-soft font-semibold text-primary"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground"
                       }`}
                     >
@@ -524,11 +932,11 @@ function AdminShellFrame({
                       aria-current={active ? "page" : undefined}
                       title={desktopSidebarCollapsed ? item.label : undefined}
                       aria-label={`${item.label}${item.href === "/panel" && pendingCount > 0 ? `, ${t.pendingRequests(pendingCount)}` : ""}`}
-                      className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
+                      className={`panel-nav-link flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
                         desktopSidebarCollapsed ? "relative justify-center px-2" : "px-3"
                       } ${
                         active
-                          ? "bg-primary-soft text-primary"
+                          ? "bg-primary-soft font-semibold text-primary"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground"
                       }`}
                     >
@@ -557,9 +965,9 @@ function AdminShellFrame({
                   aria-current={currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/") ? "page" : undefined}
                   title={desktopSidebarCollapsed ? t.logs : undefined}
                   aria-label={t.logs}
-                  className={`flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
+                  className={`panel-nav-link flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
                     currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/")
-                      ? "bg-primary-soft text-primary"
+                      ? "bg-primary-soft font-semibold text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
@@ -571,9 +979,9 @@ function AdminShellFrame({
                   aria-current={currentPath === "/panel/institutes" ? "page" : undefined}
                   title={desktopSidebarCollapsed ? institutesCopy.navLabel : undefined}
                   aria-label={institutesCopy.navLabel}
-                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
+                  className={`panel-nav-link mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
                     currentPath === "/panel/institutes"
-                      ? "bg-primary-soft text-primary"
+                      ? "bg-primary-soft font-semibold text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
@@ -585,9 +993,9 @@ function AdminShellFrame({
                   aria-current={currentPath === "/panel/settings" ? "page" : undefined}
                   title={desktopSidebarCollapsed ? settingsCopy.navLabel : undefined}
                   aria-label={settingsCopy.navLabel}
-                  className={`mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
+                  className={`panel-nav-link mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
                     currentPath === "/panel/settings"
-                      ? "bg-primary-soft text-primary"
+                      ? "bg-primary-soft font-semibold text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
@@ -627,12 +1035,14 @@ function AdminShellFrame({
               >
                 {userInitial}
               </span>
-              {!desktopSidebarCollapsed ? <div className="min-w-0 flex-1">
-                <p className="truncate text-xs font-bold text-foreground">{roleLabel}</p>
-                <p className="truncate text-[11px] text-muted-foreground" title={userEmail}>
-                  {userEmail}
-                </p>
-              </div> : null}
+              {!desktopSidebarCollapsed ? (
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-xs font-bold text-foreground">{roleLabel}</p>
+                  <p className="truncate text-[11px] text-muted-foreground" title={userEmail}>
+                    {userEmail}
+                  </p>
+                </div>
+              ) : null}
             </div>
 
             <div className="space-y-1">
@@ -640,7 +1050,7 @@ function AdminShellFrame({
                 href={withLangPrefix("/", lang)}
                 aria-label={t.returnToWebsite}
                 title={desktopSidebarCollapsed ? t.returnToWebsite : undefined}
-                className={`flex h-9 items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
+                className={`flex min-h-11 items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
               >
                 {!desktopSidebarCollapsed ? <span>{t.returnToWebsite}</span> : null}
                 <ArrowRightIcon className="h-3.5 w-3.5" />
@@ -650,7 +1060,7 @@ function AdminShellFrame({
                 onClick={handleSignOut}
                 aria-label={t.signOut}
                 title={desktopSidebarCollapsed ? t.signOut : undefined}
-                className={`flex h-9 w-full items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
+                className={`flex min-h-11 w-full items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
               >
                 {!desktopSidebarCollapsed ? <span>{t.signOut}</span> : null}
                 <LogOutIcon className="h-3.5 w-3.5" />
@@ -661,7 +1071,16 @@ function AdminShellFrame({
 
         {/* Main Content Area - with bottom padding for mobile app bar */}
         <div className="min-w-0 flex-1 pb-20 lg:pb-0">
-          {!demo && !offline && ["doctor", "mediator"].includes(role) && <div className="border-b border-border bg-card px-4 py-2 text-right text-sm"><a className="font-medium text-primary" href={withLangPrefix("/offline", lang)}>{reportText.offline}</a></div>}
+          {!demo && !offline && ["doctor", "mediator"].includes(role) && (
+            <div className="border-b border-border bg-card px-4 py-1.5 text-right text-sm">
+              <a
+                className="inline-flex min-h-11 items-center rounded-md px-2 font-medium text-primary"
+                href={withLangPrefix("/offline", lang)}
+              >
+                {reportText.offline}
+              </a>
+            </div>
+          )}
           {children}
         </div>
       </div>
@@ -683,7 +1102,7 @@ function AdminShellFrame({
                 <Link
                   href={withLangPrefix(item.href, lang)}
                   aria-current={active ? "page" : undefined}
-                  className={`flex flex-col items-center justify-center py-1 text-center transition-colors ${
+                  className={`flex min-h-11 flex-col items-center justify-center py-1 text-center transition-colors ${
                     active ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -712,7 +1131,7 @@ function AdminShellFrame({
               type="button"
               onClick={() => setMobileAccountSheetOpen(true)}
               aria-label={copy.more}
-              className={`flex flex-col items-center justify-center py-1 text-center w-full transition-colors ${
+              className={`flex min-h-11 w-full flex-col items-center justify-center py-1 text-center transition-colors ${
                 mobileAccountSheetOpen
                   ? "text-primary font-bold"
                   : "text-muted-foreground hover:text-foreground"
@@ -729,7 +1148,7 @@ function AdminShellFrame({
 
       {isMediatorOnly && mobilePatientCreation ? (
         <>
-          {!mobileAccountSheetOpen && !reportIssueOpen && !creatingPatient ? (
+          {!mobileAccountSheetOpen && !reportIssueOpen && !creatingPatient && !commandOpen ? (
             <button
               type="button"
               aria-label={createPatientModalTranslations[lang].titleCreate}
@@ -750,6 +1169,142 @@ function AdminShellFrame({
         </>
       ) : null}
 
+      {/* Zero-dependency Cmd+K Clinical Command Palette */}
+      {commandOpen ? (
+        <div className="panel-scrim fixed inset-0 z-50 flex items-start justify-center bg-slate-950/50 p-4 pt-16 sm:pt-24">
+          <div
+            className="fixed inset-0"
+            onClick={() => {
+              setCommandOpen(false);
+              setCommandQuery("");
+            }}
+            aria-hidden="true"
+          />
+          <div
+            ref={commandDialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`${commandDialogId}-title`}
+            className="app-sheet-slide-up relative w-full max-w-lg overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
+          >
+            <h2 id={`${commandDialogId}-title`} className="sr-only">
+              {copy.commandTitle}
+            </h2>
+
+            <div className="flex items-center gap-2.5 border-b border-border px-4 py-2.5">
+              <SearchIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
+              <input
+                ref={commandInputRef}
+                type="search"
+                value={commandQuery}
+                onChange={(e) => {
+                  setCommandQuery(e.target.value);
+                  setCommandIndex(0);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    if (filteredCommands.length > 0) {
+                      setCommandIndex((prev) => (prev + 1) % filteredCommands.length);
+                    }
+                  } else if (e.key === "ArrowUp") {
+                    e.preventDefault();
+                    if (filteredCommands.length > 0) {
+                      setCommandIndex((prev) =>
+                        prev <= 0 ? filteredCommands.length - 1 : prev - 1,
+                      );
+                    }
+                  } else if (e.key === "Enter" && activeCommandIdx >= 0) {
+                    e.preventDefault();
+                    const chosen = filteredCommands[activeCommandIdx];
+                    setCommandOpen(false);
+                    setCommandQuery("");
+                    chosen?.execute();
+                  }
+                }}
+                placeholder={copy.commandPlaceholder}
+                aria-label={copy.commandPlaceholder}
+                className="min-h-11 flex-1 rounded-md border-0 bg-transparent px-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  setCommandOpen(false);
+                  setCommandQuery("");
+                }}
+                aria-label={t.closeMenu}
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
+              >
+                <CloseIcon className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="max-h-80 overflow-y-auto p-2">
+              {filteredCommands.length === 0 ? (
+                <p className="px-3 py-8 text-center text-sm text-muted-foreground">
+                  {copy.commandEmpty}
+                </p>
+              ) : (
+                (["nav", "action"] as const).map((groupKey) => {
+                  const groupItems = filteredCommands.filter(
+                    (item) => item.group === groupKey,
+                  );
+                  if (groupItems.length === 0) return null;
+                  return (
+                    <div key={groupKey} className="mb-2 last:mb-0">
+                      <p className="px-2.5 py-1 text-xs font-semibold text-muted-foreground">
+                        {groupKey === "nav"
+                          ? copy.commandGroupNav
+                          : copy.commandGroupActions}
+                      </p>
+                      <ul role="listbox" aria-label={copy.commandTitle}>
+                        {groupItems.map((entry) => {
+                          const flatIndex = filteredCommands.indexOf(entry);
+                          const isHighlighted = flatIndex === activeCommandIdx;
+                          const Icon = entry.icon;
+                          return (
+                            <li key={entry.id} role="option" aria-selected={isHighlighted}>
+                              <button
+                                type="button"
+                                onMouseEnter={() => setCommandIndex(flatIndex)}
+                                onClick={() => {
+                                  setCommandOpen(false);
+                                  setCommandQuery("");
+                                  entry.execute();
+                                }}
+                                className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors ${
+                                  isHighlighted
+                                    ? "bg-primary-soft font-semibold text-primary"
+                                    : "text-foreground hover:bg-muted"
+                                }`}
+                              >
+                                <span className="flex min-w-0 items-center gap-2.5">
+                                  <Icon className="h-4 w-4 shrink-0" />
+                                  <span className="truncate">{entry.label}</span>
+                                </span>
+                                {entry.shortcut ? (
+                                  <kbd className="shrink-0 rounded-md border border-border bg-white px-1.5 py-0.5 font-mono text-[11px] font-semibold text-muted-foreground">
+                                    {entry.shortcut}
+                                  </kbd>
+                                ) : null}
+                              </button>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+
+            <div className="border-t border-border bg-muted/40 px-4 py-2 text-[11px] text-muted-foreground">
+              {copy.commandFooterHint}
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       {reportIssueOpen ? (
         <div className="panel-scrim fixed inset-0 z-50 flex items-end justify-center bg-slate-950/50 p-0 sm:items-center sm:p-4">
           <div
@@ -758,6 +1313,7 @@ function AdminShellFrame({
             aria-hidden="true"
           />
           <div
+            ref={reportDialogRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby={`${reportFieldId}-title`}
@@ -766,14 +1322,16 @@ function AdminShellFrame({
             <div className="mx-auto mb-3 h-1.5 w-12 rounded-sm bg-border sm:hidden" />
             <div className="mb-4 flex items-start justify-between gap-3 border-b border-border pb-4 sm:items-center">
               <div className="min-w-0">
-                <h2 id={`${reportFieldId}-title`} className="text-base font-bold text-foreground sm:text-lg">{reportText.title}</h2>
+                <h2 id={`${reportFieldId}-title`} className="text-base font-bold text-foreground sm:text-lg">
+                  {reportText.title}
+                </h2>
                 <p className="text-sm text-muted-foreground">{reportText.subtitle}</p>
               </div>
               <button
                 type="button"
                 onClick={() => setReportIssueOpen(false)}
                 aria-label={reportText.cancel}
-                className="rounded-lg p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
               >
                 <CloseIcon className="h-5 w-5" />
               </button>
@@ -781,7 +1339,9 @@ function AdminShellFrame({
 
             <form onSubmit={handleSubmitIssue} className="space-y-4">
               <div>
-                <label htmlFor={`${reportFieldId}-email`} className="mb-1 block text-xs font-semibold text-foreground">{reportText.email}</label>
+                <label htmlFor={`${reportFieldId}-email`} className="mb-1 block text-xs font-semibold text-foreground">
+                  {reportText.email}
+                </label>
                 <input
                   id={`${reportFieldId}-email`}
                   type="email"
@@ -789,12 +1349,14 @@ function AdminShellFrame({
                   value={reportEmail}
                   onChange={(event) => setReportEmail(event.target.value)}
                   placeholder="you@example.com"
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="min-h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
                 />
               </div>
 
               <div>
-                <label htmlFor={`${reportFieldId}-message`} className="mb-1 block text-xs font-semibold text-foreground">{reportText.message}</label>
+                <label htmlFor={`${reportFieldId}-message`} className="mb-1 block text-xs font-semibold text-foreground">
+                  {reportText.message}
+                </label>
                 <textarea
                   id={`${reportFieldId}-message`}
                   required
@@ -803,12 +1365,14 @@ function AdminShellFrame({
                   value={reportMessage}
                   onChange={(event) => setReportMessage(event.target.value)}
                   placeholder={reportText.placeholder}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
                 />
               </div>
 
               {reportError ? (
-                <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{reportError}</p>
+                <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                  {reportError}
+                </p>
               ) : null}
 
               {reportSuccess ? (
@@ -821,14 +1385,14 @@ function AdminShellFrame({
                 <button
                   type="button"
                   onClick={() => setReportIssueOpen(false)}
-                  className="inline-flex min-h-10 items-center rounded-lg px-4 text-sm font-semibold text-foreground hover:bg-muted"
+                  className="inline-flex min-h-11 items-center rounded-lg px-4 text-sm font-semibold text-foreground hover:bg-muted"
                 >
                   {reportText.cancel}
                 </button>
                 <button
                   type="submit"
                   disabled={reportSubmitting}
-                  className="inline-flex min-h-10 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground"
+                  className="inline-flex min-h-11 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground"
                 >
                   {reportSubmitting ? reportText.sending : reportText.send}
                 </button>

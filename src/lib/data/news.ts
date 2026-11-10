@@ -1,13 +1,27 @@
+import { NEWS_TRANSLATIONS_HR } from "./news-translations-hr";
+import { NEWS_TRANSLATIONS_ROM } from "./news-translations-rom";
+import {
+  NEWS_TRANSLATIONS_EXTRA_EN,
+  NEWS_TRANSLATIONS_EXTRA_IT,
+  NEWS_TRANSLATIONS_EXTRA_SQ,
+} from "./news-translations-extra";
+
 export type NewsCategory =
   | "Alerte locale"
   | "Caravane medicale"
   | "Campanii de vaccinare"
   | "Sfaturi de sezon";
 
-export type NewsCountry = "ro" | "it";
+export type NewsCountry = "ro" | "md" | "it" | "hr";
 
 /** The county value of an item about the whole of Italy (same value the county map uses for "all of Italy"). */
 export const ITALY_WIDE = "Italia";
+
+/** The county value of an item about the whole of Republic of Moldova. */
+export const MOLDOVA_WIDE = "Moldova";
+
+/** The county value of an item about the whole of Croatia. */
+export const CROATIA_WIDE = "Hrvatska";
 
 export type NewsArticle = {
   id: string;
@@ -15,11 +29,11 @@ export type NewsArticle = {
   title: string;
   category: NewsCategory;
   categoryLabel?: string;
-  county: string; // Specific Romanian county or localized "All counties" / "Toate județele"; for Italy a region or ITALY_WIDE
+  county: string; // Specific county/region or country-wide sentinel ("Toate județele", ITALY_WIDE, MOLDOVA_WIDE, CROATIA_WIDE)
   /** Which country the item is about; Romanian when omitted. Never shown in the other country's views. */
   country?: NewsCountry;
   /** The language the text is written in, when it is fixed (an Italy-only item is in Italian in every locale). */
-  language?: "ro" | "en" | "sq" | "it";
+  language?: "ro" | "en" | "sq" | "it" | "hr" | "rom";
   date: string;
   readTimeMinutes: number;
   summary: string;
@@ -325,6 +339,246 @@ export const NEWS_ARTICLES: NewsArticle[] = [
       freeServices: ["Visita generale", "Pressione e glicemia", "Controllo vaccinazioni dei bambini"],
     },
   },
+  // Republic of Moldova items: shown in the Moldova views of the map and localized across all supported languages.
+  {
+    id: "md-caravana-soroca",
+    slug: "caravana-medicala-soroca-consultatii-gratuite",
+    title: "Caravana medicală ajunge la Soroca cu consultații și analize gratuite",
+    category: "Caravane medicale",
+    county: "Soroca",
+    country: "md",
+    date: "2026-11-08",
+    readTimeMinutes: 3,
+    summary: "Medici de familie și mediatori comunitari oferă control de tensiune, glicemie și EKG gratuit în Soroca, fără poliță CNAM.",
+    content: [
+      "Echipa mobilă de medici și mediatori comunitari vine la Soroca pentru controale preventive gratuite pentru adulți și copii.",
+      "Nu ai nevoie de poliță de asigurare CNAM și nici de trimitere. Adu buletinul de identitate sau certificatul de naștere al copilului, dacă îl ai la îndemână.",
+      "Mediatorul comunitar îți explică rezultatul pe loc și te ajută să te înscrii la medicul de familie din raion.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Natalia Rusu",
+      specialty: "Medic de familie, Centrul de Sănătate Soroca",
+      verifiedDate: "8 noiembrie 2026",
+    },
+    tags: ["Caravană", "Analize gratuite", "Comunitate", "Acces medical"],
+    audioNarrationDuration: "2 min 05 sec",
+    caravanDetails: {
+      village: "Municipiul Soroca, cartierul Dealul Sorocii",
+      landmark: "Piața de lângă centrul comunitar",
+      hours: "09:00 – 16:00",
+      freeServices: [
+        "Tensiunea arterială",
+        "Zahărul în sânge (glicemie)",
+        "EKG",
+        "Control preventiv pentru copii",
+      ],
+    },
+  },
+  {
+    id: "md-alerta-apa-cahul",
+    slug: "apa-sigura-fantani-raionul-cahul",
+    title: "Satele din raionul Cahul: fierbe apa din fântânile de suprafață",
+    category: "Alerte locale",
+    county: "Cahul",
+    country: "md",
+    date: "2026-11-05",
+    readTimeMinutes: 3,
+    epidemicSeverity: "moderate",
+    summary: "După ploile de toamnă, sănătatea publică recomandă fierberea apei din fântâni pentru a preveni hepatita A și infecțiile digestive.",
+    content: [
+      "În mai multe localități rurale din raionul Cahul, apa din fântânile puțin adânci poate fi tulbure după ploi.",
+      "Bea și gătește doar cu apă îmbuteliată sau cu apă fiartă cel puțin 10 minute și lăsată la răcit într-un vas curat.",
+      "Dacă un copil are dureri de burtă, vărsături sau pielea îngălbenită, sună medicul de familie sau mediatorul comunitar din sat.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Vasile Moraru",
+      specialty: "Medic igienist, Centrul de Sănătate Publică Cahul",
+      verifiedDate: "5 noiembrie 2026",
+    },
+    tags: ["Igienă", "Apă potabilă", "Hepatită A", "Prevenție"],
+    audioNarrationDuration: "2 min 00 sec",
+    preventiveSteps: [
+      "Fierbe apa din fântână cel puțin 10 minute înainte de băut și gătit",
+      "Spală fructele și legumele doar cu apă potabilă verificată",
+      "Spală-te pe mâini cu apă și săpun înainte de masă și după toaletă",
+    ],
+  },
+  {
+    id: "md-vaccinare-gripala-national",
+    slug: "vaccinare-antigripala-hpv-moldova-2026",
+    title: "Vaccinarea antigripală și HPV gratuită în toate raioanele din Moldova",
+    category: "Campanii de vaccinare",
+    county: MOLDOVA_WIDE,
+    country: "md",
+    date: "2026-11-03",
+    readTimeMinutes: 3,
+    summary: "Cabinetele medicilor de familie din Republica Moldova oferă gratuit vaccinul antigripal pentru grupurile cu risc și vaccinul HPV pentru tineri.",
+    content: [
+      "Persoanele cu diabet, tensiune arterială crescută, boli de inimă sau de plămâni, femeile însărcinate și vârstnicii primesc gratuit vaccinul antigripal la medicul de familie.",
+      "Tot la medicul de familie, fetele și băieții pot face gratuit vaccinul HPV conform calendarului național de imunizare.",
+      "Dacă nu știi la ce centru de sănătate ești arondat, mediatorul comunitar te ajută să verifici înregistrarea și să faci programare.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Mariana Cebotari",
+      specialty: "Medic epidemiolog, Agenția Națională pentru Sănătate Publică",
+      verifiedDate: "3 noiembrie 2026",
+    },
+    tags: ["Gripă", "Vaccinare HPV", "Boli cronice", "Prevenție"],
+    audioNarrationDuration: "2 min 20 sec",
+    preventiveSteps: [
+      "Întreabă medicul de familie de vaccinul antigripal sau HPV",
+      "Ia cu tine carnetul de vaccinări al copilului la control",
+      "Aerisește camerele zilnic și spală-te des pe mâini",
+    ],
+  },
+  {
+    id: "md-sfat-sezon-chisinau",
+    slug: "medicamente-compensate-sezon-rece-chisinau",
+    title: "Chișinău: cum iei medicamentele compensate prin e-Rețeta în sezonul rece",
+    category: "Sfaturi de sezon",
+    county: "Chișinău",
+    country: "md",
+    date: "2026-11-09",
+    readTimeMinutes: 2,
+    summary: "Pacienții cu tensiune mare, diabet sau astm își pot ridica medicamentele compensate direct din farmacie cu buletinul.",
+    content: [
+      "În zilele reci și umede din Chișinău, tensiunea arterială și simptomele de astm se pot agrava dacă întrerupi tratamentul zilnic.",
+      "Prin sistemul e-Rețeta CNAM, medicul de familie prescrie tratamentul electronic, iar tu ridici medicamentele compensate la farmacie doar cu buletinul de identitate.",
+      "Nu opri pastilele de tensiune sau inhalatorul fără sfatul medicului, chiar dacă te simți bine câteva zile.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Sergiu Lungu",
+      specialty: "Medic internist, Asociația Medicală Teritorială Chișinău",
+      verifiedDate: "9 noiembrie 2026",
+    },
+    tags: ["Boli cronice", "Tratament corect", "Astm", "Sfaturi practice"],
+    audioNarrationDuration: "1 min 55 sec",
+    preventiveSteps: [
+      "Cere medicului de familie reînnoirea rețetei electronice înainte să termini cutia",
+      "Ia tratamentul de tensiune sau diabet la aceeași oră în fiecare zi",
+      "Poartă un fular peste gură și nas în diminețile cu ger sau ceață densă",
+    ],
+  },
+  // Croatia items: shown in the Croatia views of the map and localized across all supported languages (native Croatian in `hr`).
+  {
+    id: "hr-mobilna-ambulanta-zagreb",
+    slug: "mobilna-ambulanta-zagreb-besplatni-pregledi",
+    title: "Clinica mobilă în Zagreb: control gratuit de tensiune și glicemie",
+    category: "Caravane medicale",
+    county: "Grad Zagreb",
+    country: "hr",
+    date: "2026-11-09",
+    readTimeMinutes: 3,
+    summary: "Medici și mediatori romi fac controale gratuite de tensiune, zahăr în sânge și EKG în estul Zagrebului, fără card HZZO.",
+    content: [
+      "Echipa medicală mobilă și mediatorii sanitari vin în cartierele Peščenica și Sesvete din Zagreb pentru controale preventive gratuite.",
+      "Poți veni chiar dacă nu ai asigurare HZZO sau medic de familie ales. Adu un act de identitate dacă îl ai și documentele medicale mai vechi.",
+      "Mediatorul îți explică valorile tensiunii și glicemiei pe înțelesul tău și te îndrumă către cel mai apropiat centru de sănătate (dom zdravlja).",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Ivana Horvat",
+      specialty: "Medic specialist medicină de familie, Dom zdravlja Zagreb",
+      verifiedDate: "9 noiembrie 2026",
+    },
+    tags: ["Caravană", "Analize gratuite", "Comunitate", "Acces medical"],
+    audioNarrationDuration: "2 min 10 sec",
+    caravanDetails: {
+      village: "Grad Zagreb, Peščenica și Sesvete",
+      landmark: "Curtea centrului comunitar local",
+      hours: "09:00 – 15:30",
+      freeServices: [
+        "Măsurarea tensiunii arteriale",
+        "Glicemie din deget",
+        "EKG",
+        "Consiliere cu mediator sanitar",
+      ],
+    },
+  },
+  {
+    id: "hr-preventivni-pregledi-medimurje",
+    slug: "zdravstvena-upozorenja-cijepljenje-medimurska",
+    title: "Comitatul Međimurska: protecția copiilor împotriva tusei convulsive și rujeolei",
+    category: "Alerte locale",
+    county: "Međimurska",
+    country: "hr",
+    date: "2026-11-06",
+    readTimeMinutes: 3,
+    epidemicSeverity: "moderate",
+    summary: "Institutul de sănătate publică din Međimurska invită părinții din Čakovec și satele vecine să verifice vaccinarea copiilor.",
+    content: [
+      "Odată cu răcirea vremii, cabinetele pediatrice din comitatul Međimurska văd mai multe infecții respiratorii și tuse prelungită la școlari și sugari.",
+      "Vaccinurile din calendarul regulat pentru copii sunt gratuite la pediatru și la medicul școlar.",
+      "Dacă un sugar tușește în reprize sau respiră greu, sună imediat pediatrul sau numărul de urgență 112.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Marko Kovačević",
+      specialty: "Medic epidemiolog, Zavod za javno zdravstvo Međimurske županije",
+      verifiedDate: "6 noiembrie 2026",
+    },
+    tags: ["Pediatrie", "Sănătate publică", "Prevenție", "Ghid părinți"],
+    audioNarrationDuration: "2 min 15 sec",
+    preventiveSteps: [
+      "Verifică carnetul de vaccinări al copilului împreună cu pediatrul sau mediatorul",
+      "Ține copilul cu febră și tuse acasă și anunță telefonic cabinetul înainte de vizită",
+      "Sună la 112 dacă un bebeluș are pauze de respirație sau buze vineții",
+    ],
+  },
+  {
+    id: "hr-cijepljenje-gripa-hrvatska",
+    slug: "besplatno-cijepljenje-protiv-gripe-hpv-hrvatska-2026",
+    title: "Vaccinare gratuită împotriva gripei și HPV în toată Croația",
+    category: "Campanii de vaccinare",
+    county: CROATIA_WIDE,
+    country: "hr",
+    date: "2026-11-04",
+    readTimeMinutes: 3,
+    summary: "HZJZ și cabinetele medicilor de familie oferă gratuit vaccinul antigripal pentru bolnavii cronici și vârstnici, precum și vaccinul HPV pentru tineri.",
+    content: [
+      "Vaccinul antigripal este gratuit în toată Croația pentru persoanele peste 65 de ani, gravide și pacienți cu boli cronice de inimă, plămâni sau diabet.",
+      "Te poți vaccina la medicul tău de familie sau la institutele județene de sănătate publică (zavod za javno zdravstvo).",
+      "Tinerii pot face gratuit și vaccinul împotriva HPV prin medicina școlară și cabinetele de prevenție.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Ana Babić",
+      specialty: "Medic specialist sănătate publică, HZJZ",
+      verifiedDate: "4 noiembrie 2026",
+    },
+    tags: ["Gripă", "Vaccinare HPV", "Boli cronice", "Seniori"],
+    audioNarrationDuration: "2 min 20 sec",
+    preventiveSteps: [
+      "Programează-te din timp la medicul de familie sau la institutul de sănătate publică",
+      "Spală-te pe mâini cu apă și săpun după transportul public",
+      "Aerisește locuința de mai multe ori pe zi",
+    ],
+  },
+  {
+    id: "hr-zimski-savjeti-split",
+    slug: "zastita-disnih-putova-bura-vlaga-split",
+    title: "Split și Dalmația: cum îți protejezi inima și plămânii pe vânt rece și umezeală",
+    category: "Sfaturi de sezon",
+    county: "Splitsko-dalmatinska",
+    country: "hr",
+    date: "2026-11-07",
+    readTimeMinutes: 2,
+    summary: "Schimbările bruște de temperatură, vântul rece (bura) și umezeala pot crește tensiunea arterială și pot declanșa crize de astm.",
+    content: [
+      "În comitatul Splitsko-dalmatinska, trecerea rapidă de la zile umede la vânt rece solicită inima și căile respiratorii.",
+      "Dacă ai hipertensiune sau astm, măsoară-ți tensiunea dimineața și poartă mereu la tine inhalatorul prescris prin e-recept.",
+      "Încălzește și aerisește camerele regulat pentru a preveni mucegaiul, care agravează tusea la copii și vârstnici.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Luka Radić",
+      specialty: "Medic specialist pneumologie, KBC Split",
+      verifiedDate: "7 noiembrie 2026",
+    },
+    tags: ["Pneumologie", "Astm", "Boli cronice", "Sfaturi practice"],
+    audioNarrationDuration: "1 min 50 sec",
+    preventiveSteps: [
+      "Respiră pe nas sau printr-un fular subțire când bate vântul rece",
+      "Nu sări peste pastilele zilnice de tensiune arterială",
+      "Aerisește scurt dimineața și la prânz ca să reduci umezeala din casă",
+    ],
+  },
 ];
 
 export const NEWS_CATEGORIES: NewsCategory[] = [
@@ -359,6 +613,18 @@ export const NEWS_CATEGORY_LABELS: Record<string, Record<NewsCategory, string>> 
     "Campanii de vaccinare": "Vaccinazioni",
     "Sfaturi de sezon": "Consigli di stagione",
   },
+  hr: {
+    "Alerte locale": "Lokalna upozorenja",
+    "Caravane medicale": "Mobilne ambulante",
+    "Campanii de vaccinare": "Cijepljenje",
+    "Sfaturi de sezon": "Sezonski savjeti",
+  },
+  rom: {
+    "Alerte locale": "Lokalne alerte",
+    "Caravane medicale": "Mobilne klinike",
+    "Campanii de vaccinare": "Vakcinaciya",
+    "Sfaturi de sezon": "Sezonoske svatura",
+  },
 };
 
 export const LOCALIZED_COUNTY_ALL: Record<string, string> = {
@@ -366,6 +632,8 @@ export const LOCALIZED_COUNTY_ALL: Record<string, string> = {
   en: "All counties",
   sq: "Të gjitha qarqet",
   it: "Tutte le province",
+  hr: "Sve županije",
+  rom: "Savore judetya",
 };
 
 /** The country an item is about (Romanian when not set). */
@@ -373,9 +641,13 @@ export function articleCountry(article: Pick<NewsArticle, "country">): NewsCount
   return article.country ?? "ro";
 }
 
-/** True for an item about a whole country: every Romanian county, or the whole of Italy. */
+/** True for an item about a whole country: Romania, Moldova, Italy, or Croatia. */
 export function isCountryWide(article: Pick<NewsArticle, "county" | "country">): boolean {
-  return articleCountry(article) === "it" ? article.county === ITALY_WIDE : isNationalCounty(article.county);
+  const c = articleCountry(article);
+  if (c === "it") return article.county === ITALY_WIDE;
+  if (c === "md") return article.county === MOLDOVA_WIDE;
+  if (c === "hr") return article.county === CROATIA_WIDE;
+  return isNationalCounty(article.county);
 }
 
 export function isNationalCounty(county: string): boolean {
@@ -383,7 +655,9 @@ export function isNationalCounty(county: string): boolean {
     county === "Toate județele" ||
     county === "All counties" ||
     county === "Të gjitha qarqet" ||
-    county === "Tutte le province"
+    county === "Tutte le province" ||
+    county === "Sve županije" ||
+    county === "Savore judetya"
   );
 }
 
@@ -542,6 +816,7 @@ export const LOCALIZED_NEWS_DATA: Record<string, Record<string, LocalizedArticle
       doctorVerifiedDate: "7 November 2026",
       tags: ["Pulmonology", "Urban pollution", "Asthma", "Practical tips"],
     },
+    ...NEWS_TRANSLATIONS_EXTRA_EN,
   },
   sq: {
     "alert-rujeola-iasi": {
@@ -684,6 +959,7 @@ export const LOCALIZED_NEWS_DATA: Record<string, Record<string, LocalizedArticle
       doctorVerifiedDate: "7 nëntor 2026",
       tags: ["Pneumologji", "Ndotje urbane", "Astmë", "Këshilla praktike"],
     },
+    ...NEWS_TRANSLATIONS_EXTRA_SQ,
   },
   it: {
     "alert-rujeola-iasi": {
@@ -826,7 +1102,10 @@ export const LOCALIZED_NEWS_DATA: Record<string, Record<string, LocalizedArticle
       doctorVerifiedDate: "7 novembre 2026",
       tags: ["Pneumologia", "Inquinamento urbano", "Asma", "Consigli pratici"],
     },
+    ...NEWS_TRANSLATIONS_EXTRA_IT,
   },
+  hr: NEWS_TRANSLATIONS_HR,
+  rom: NEWS_TRANSLATIONS_ROM,
 };
 
 export function getLocalizedArticle(article: NewsArticle, lang: string = "ro"): NewsArticle {

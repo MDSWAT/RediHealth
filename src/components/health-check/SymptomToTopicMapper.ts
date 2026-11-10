@@ -1,7 +1,7 @@
 /**
  * SymptomToTopicMapper (Change 41)
  * Connects the Symptom Checker directly to the Health Literacy educational repository ("Află").
- * Supports localized topic recommendations across ro, en, sq, it with sentence casing and zero ampersands.
+ * Supports localized topic recommendations across ro, en, sq, it, hr, rom with sentence casing and zero ampersands.
  */
 
 import type { Lang } from "@/lib/i18n/translations";
@@ -47,6 +47,16 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "Cum îți aperi încheieturile și cum ajuți circulația în mâini și picioare.",
     },
+    "womens-health": {
+      title: "Sănătatea femeii și controalele ginecologice",
+      recommendation:
+        "Cum înțelegi durerile menstruale sau pelvine, infecțiile urinare și când să mergi la ginecolog.",
+    },
+    "preventive-screening": {
+      title: "Controale preventive și verificarea sânilor",
+      recommendation:
+        "Ce controale gratuite și ecografii te ajută să depistezi din timp schimbările din corp.",
+    },
   },
   en: {
     "heart-health": {
@@ -78,6 +88,16 @@ const TOPIC_TRANSLATIONS: Record<
       title: "Daily movement and joint health",
       recommendation:
         "How to protect your joints and help blood flow in your hands and feet.",
+    },
+    "womens-health": {
+      title: "Women's health and pelvic care",
+      recommendation:
+        "What period pain, pelvic aches, urinary burning, and breast changes can mean and when to see a doctor.",
+    },
+    "preventive-screening": {
+      title: "Preventive check-ups and breast screening",
+      recommendation:
+        "Which routine screenings and breast checks catch changes early and safely.",
     },
   },
   sq: {
@@ -111,6 +131,16 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "Si t'i mbrosh kyçet dhe si ta ndihmosh qarkullimin e gjakut në duar dhe këmbë.",
     },
+    "womens-health": {
+      title: "Shëndeti i gruas dhe kujdesi pelvik",
+      recommendation:
+        "Çfarë mund të tregojnë dhimbjet e ciklit, dhimbjet pelvike ose djegia gjatë urinimit dhe kur duhet të shkosh te mjeku.",
+    },
+    "preventive-screening": {
+      title: "Kontrollet parandaluese dhe kontrolli i gjirit",
+      recommendation:
+        "Cilat kontrolle të rregullta dhe ekografi ndihmojnë për t'i kapur ndryshimet herët.",
+    },
   },
   it: {
     "heart-health": {
@@ -143,6 +173,100 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "Come proteggere le articolazioni e aiutare la circolazione in mani e piedi.",
     },
+    "womens-health": {
+      title: "Salute della donna e benessere pelvico",
+      recommendation:
+        "Cosa possono indicare dolori mestruali, dolori pelvici o bruciore urinario e quando consultare il medico.",
+    },
+    "preventive-screening": {
+      title: "Controlli preventivi ed esame del seno",
+      recommendation:
+        "Quali visite ed ecografie aiutano a individuare presto e in sicurezza eventuali cambiamenti.",
+    },
+  },
+  hr: {
+    "heart-health": {
+      title: "Zdravlje srca i krvni tlak",
+      recommendation:
+        "Kako prepoznati znakove uzbune za srce i držati krvni tlak pod kontrolom.",
+    },
+    "healthy-eating": {
+      title: "Zdrava prehrana i probava",
+      recommendation:
+        "Koje namirnice umiruju želudac i kako spriječiti žgaravicu.",
+    },
+    "antibiotics-awareness": {
+      title: "Prehlada, gripa i pravilna primjena antibiotika",
+      recommendation:
+        "Zašto antibiotici ne liječe viruse i kako sigurno sniziti vrućicu.",
+    },
+    "mental-wellbeing": {
+      title: "Upravljanje stresom i tenzijske glavobolje",
+      recommendation:
+        "Kako stres i manjak sna izazivaju glavobolje i kako ih spriječiti.",
+    },
+    "healthy-habits-back": {
+      title: "Pravilno držanje, kralježnica i kretanje",
+      recommendation:
+        "Jednostavne petominutne vježbe za bolove u leđima i križima.",
+    },
+    "healthy-habits-joints": {
+      title: "Svakodnevno kretanje i zdravlje zglobova",
+      recommendation:
+        "Kako zaštititi zglobove i potaknuti cirkulaciju u šakama i stopalima.",
+    },
+    "womens-health": {
+      title: "Zdravlje žena i njega zdjelice",
+      recommendation:
+        "Što mogu značiti menstrualni grčevi, bol u zdjelici ili peckanje pri mokrenju i kada se javiti liječniku.",
+    },
+    "preventive-screening": {
+      title: "Preventivni pregledi i pregled dojki",
+      recommendation:
+        "Koji redoviti pregledi i ultrazvuk pomažu rano i sigurno otkriti promjene.",
+    },
+  },
+  rom: {
+    "heart-health": {
+      title: "Sastipen e ilesko thaj tensia e rateski",
+      recommendation:
+        "Sar te prindzares le znakoja vash dar ko ilo thaj te inkres i tensia telal kontrola.",
+    },
+    "healthy-eating": {
+      title: "Sasto xabem thaj lokho ogi",
+      recommendation:
+        "Savo xabem kovljarel o ogi thaj sar te astarghos o phabarimos.",
+    },
+    "antibiotics-awareness": {
+      title: "Shil, gripa thaj sar te les antibiotikura mishto",
+      recommendation:
+        "Soske le antibiotikura na sastjaren virusura thaj sar te huljaves o tatipen sigurime.",
+    },
+    "mental-wellbeing": {
+      title: "Streso thaj dukh and-o shero",
+      recommendation:
+        "Sar o streso thaj o tikno soven anen dukh and-o shero thaj sar te arakhes tut.",
+    },
+    "healthy-habits-back": {
+      title: "Lacho beshimos, o dumo thaj o phirimos",
+      recommendation:
+        "Lokhe 5-minutonge mishkimata vash dukh and-o dumo.",
+    },
+    "healthy-habits-joints": {
+      title: "Divesko phirimos thaj sastipen le klichengo",
+      recommendation:
+        "Sar te arakhes chire klichura thaj te azhutines o rat te phirel and-e vast thaj punre.",
+    },
+    "womens-health": {
+      title: "Sastipen le dzhuvljango thaj griza vash o pelviso",
+      recommendation:
+        "So shaj znachinen le chonutne dukha, dukh telal and-o por vaj phabarimos thaj kana te dzhas ko doktori.",
+    },
+    "preventive-screening": {
+      title: "Anglune kontrole thaj kontrola e chuchangi",
+      recommendation:
+        "Save kontrole azhutinen te dikhes sigo thaj sigurime varesave paruvimata and-o trupo.",
+    },
   },
 };
 
@@ -152,6 +276,24 @@ export function getTopicForSymptom(
   lang: Lang = "ro"
 ): TopicMapping {
   const loc = TOPIC_TRANSLATIONS[lang] ?? TOPIC_TRANSLATIONS.ro;
+
+  if (symptomId === "chest_breast_lump") {
+    const data = loc["preventive-screening"];
+    return {
+      slug: "preventive-screening",
+      title: data.title,
+      recommendation: data.recommendation,
+    };
+  }
+
+  if (partId === "pelvis" || symptomId === "chest_breast_pain") {
+    const data = loc["womens-health"];
+    return {
+      slug: "womens-health",
+      title: data.title,
+      recommendation: data.recommendation,
+    };
+  }
 
   if (partId === "chest") {
     const data = loc["heart-health"];
@@ -175,7 +317,7 @@ export function getTopicForSymptom(
     if (symptomId?.includes("fever") || symptomId?.includes("cold")) {
       const data = loc["antibiotics-awareness"];
       return {
-        slug: "antibiotics-awareness",
+        slug: "preventive-screening",
         title: data.title,
         recommendation: data.recommendation,
       };
@@ -191,7 +333,7 @@ export function getTopicForSymptom(
   if (partId === "back") {
     const data = loc["healthy-habits-back"];
     return {
-      slug: "healthy-habits",
+      slug: "physical-activity",
       title: data.title,
       recommendation: data.recommendation,
     };
@@ -200,7 +342,7 @@ export function getTopicForSymptom(
   // arm or leg
   const data = loc["healthy-habits-joints"];
   return {
-    slug: "healthy-habits",
+    slug: "physical-activity",
     title: data.title,
     recommendation: data.recommendation,
   };

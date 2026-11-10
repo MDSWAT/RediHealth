@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { speechEngine, formatSpeechText } from "@/lib/audio/speech-engine";
-import { useVoiceEnabled } from "@/lib/audio/voice-availability";
+import { isVoiceEnabled, useVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { type Lang } from "@/lib/i18n/translations";
 import {
@@ -50,7 +50,10 @@ const TERM_MATCHERS: { regex: RegExp; termId: string }[] = [
  * linked on Romanian text; other locales show plain text (no false matches such as
  * English "doctor" or Albanian "spital").
  */
-function tokenizeSentence(sentence: string, linkTerms: boolean): { text: string; term?: RomanesGlossaryTerm }[] {
+function tokenizeSentence(
+  sentence: string,
+  linkTerms: boolean,
+): { text: string; term?: RomanesGlossaryTerm }[] {
   if (!linkTerms) return [{ text: sentence }];
   interface MatchPos {
     start: number;
@@ -111,6 +114,25 @@ function useSafeLanguageContext(): { lang: Lang } {
   }
 }
 
+type LocalizedRomanesTerm = RomanesGlossaryTerm & {
+  explanationByLang?: Partial<Record<Lang, string>>;
+  termByLang?: Partial<Record<Lang, string>>;
+};
+
+function pickLocale(
+  entry: Record<"ro", string> & Partial<Record<Lang, string>>,
+  lang: Lang,
+): string {
+  return entry[lang] ?? entry.ro;
+}
+
+function pickSpeechLang(lang: Lang): string {
+  return (
+    (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ??
+    (lang === "hr" ? "hr-HR" : "ro-RO")
+  );
+}
+
 export function SynchronizedSentenceReader({
   paragraphs,
   activeSentenceIndex = null,
@@ -120,54 +142,125 @@ export function SynchronizedSentenceReader({
 }: SynchronizedSentenceReaderProps) {
   const { lang: ctxLang } = useSafeLanguageContext();
   const currentLang: Lang = lang ?? ctxLang ?? "ro";
-  const speechLang = SPEECH_LANG_BY_LOCALE[currentLang] ?? "ro-RO";
+  const speechLang = pickSpeechLang(currentLang);
   const str = HEALTH_DETAIL_SHARED_STRINGS.synchronizedReader;
 
-  const voiceEnabled = useVoiceEnabled();
-  // Sentences are clickable only when a handler exists or they can be read aloud.
+  const ctxVoice = useVoiceEnabled();
+  const voiceEnabled =
+    lang !== undefined ? isVoiceEnabled(lang) : ctxVoice && isVoiceEnabled(currentLang);
+  // Sentences are interactive only when a handler exists or they can be read aloud.
   const sentencesClickable = Boolean(onSentenceClick) || voiceEnabled;
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [activePopoverTerm, setActivePopoverTerm] = useState<RomanesGlossaryTerm | null>(null);
+  const [activePopoverTerm, setActivePopoverTerm] =
+    useState<RomanesGlossaryTerm | null>(null);
+  const [anchorStyle, setAnchorStyle] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
   const [isPlayingTermAudio, setIsPlayingTermAudio] = useState(false);
+
+  const anchorElRef = useRef<HTMLElement | null>(null);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
   const popoverCloseRef = useRef<HTMLButtonElement | null>(null);
 
-  // Popover: focus moves into it, Escape closes it, focus returns to the word.
+  const updateAnchorPosition = useCallback(() => {
+    const el = anchorElRef.current;
+    if (!el || typeof window === "undefined") return;
+    const rect = el.getBoundingClientRect();
+    const cardWidth = Math.min(384, window.innerWidth - 32);
+    const cardHeight = 260;
+    const clampedLeft = Math.max(
+      16,
+      Math.min(window.innerWidth - cardWidth - 16, rect.left),
+    );
+    const fitsBelow = rect.bottom + 10 + cardHeight < window.innerHeight - 16;
+    const top = fitsBelow
+      ? rect.bottom + 8
+      : Math.max(16, rect.top - cardHeight - 8);
+    setAnchorStyle({ top, left: clampedLeft });
+  }, []);
+
+  // Popover: focus trap + Escape closes + rAF anchored position on desktop + focus returns to word
   useEffect(() => {
     if (!activePopoverTerm) return;
-    const opener = document.activeElement as HTMLElement | null;
+    const opener = anchorElRef.current;
     popoverCloseRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActivePopoverTerm(null);
+
+    let rafId: number | null = requestAnimationFrame(updateAnchorPosition);
+    const scheduleReposition = () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateAnchorPosition);
     };
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setActivePopoverTerm(null);
+        return;
+      }
+      if (e.key === "Tab" && popoverRef.current) {
+        const focusable = Array.from(
+          popoverRef.current.querySelectorAll<HTMLElement>(
+            'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])',
+          ),
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
     window.addEventListener("keydown", onKey);
+    window.addEventListener("scroll", scheduleReposition, { passive: true });
+    window.addEventListener("resize", scheduleReposition);
+
     return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("scroll", scheduleReposition);
+      window.removeEventListener("resize", scheduleReposition);
       opener?.focus?.();
     };
-  }, [activePopoverTerm]);
+  }, [activePopoverTerm, updateAnchorPosition]);
 
   // Split all paragraphs into sentences while preserving paragraph grouping
   let globalSentenceCounter = 0;
   const parsedParagraphs = paragraphs.map((para) => {
-    // Regex splits sentences ending with . ! ? followed by space or end
     const sentences = para.match(/[^.!?]+[.!?]+(\s|$)|[^.!?]+$/g) || [para];
     return sentences.map((sent) => {
       const idx = globalSentenceCounter++;
-      return { text: sent, index: idx, segments: tokenizeSentence(sent, currentLang === "ro") };
+      return {
+        text: sent,
+        index: idx,
+        segments: tokenizeSentence(sent, currentLang === "ro"),
+      };
     });
   });
 
   // Autoscroll active sentence into view
   useEffect(() => {
-    if (activeSentenceIndex === null || activeSentenceIndex === undefined) return;
+    if (activeSentenceIndex === null || activeSentenceIndex === undefined)
+      return;
     if (!containerRef.current) return;
 
     const activeEl = containerRef.current.querySelector(
-      `[data-sentence-id="${activeSentenceIndex}"]`
+      `[data-sentence-id="${activeSentenceIndex}"]`,
     );
     if (activeEl) {
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      activeEl.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      activeEl.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "center",
+      });
     }
   }, [activeSentenceIndex]);
 
@@ -175,19 +268,29 @@ export function SynchronizedSentenceReader({
     if (onSentenceClick) {
       onSentenceClick(sentence, index);
     } else if (voiceEnabled) {
-      speechEngine.speak(formatSpeechText(sentence, speechLang), { lang: speechLang });
+      speechEngine.speak(formatSpeechText(sentence, speechLang), {
+        lang: speechLang,
+      });
     }
+  };
+
+  const openTermCard = (term: RomanesGlossaryTerm, target: HTMLElement) => {
+    anchorElRef.current = target;
+    setActivePopoverTerm(term);
   };
 
   const handleSpeakPopoverTerm = () => {
     if (!activePopoverTerm || !voiceEnabled) return;
     setIsPlayingTermAudio(true);
-    speechEngine.speak(formatSpeechText(activePopoverTerm.audioPronunciationText, speechLang), {
-      lang: speechLang,
-      rate: 0.9,
-      onEnd: () => setIsPlayingTermAudio(false),
-      onError: () => setIsPlayingTermAudio(false),
-    });
+    speechEngine.speak(
+      formatSpeechText(activePopoverTerm.audioPronunciationText, speechLang),
+      {
+        lang: speechLang,
+        rate: 0.9,
+        onEnd: () => setIsPlayingTermAudio(false),
+        onError: () => setIsPlayingTermAudio(false),
+      },
+    );
   };
 
   return (
@@ -204,17 +307,39 @@ export function SynchronizedSentenceReader({
                 <span
                   key={index}
                   data-sentence-id={index}
-                  onClick={sentencesClickable ? () => handleSentenceClick(text, index) : undefined}
-                  className={`rounded-md transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                  role={sentencesClickable ? "button" : undefined}
+                  tabIndex={sentencesClickable ? 0 : undefined}
+                  aria-current={isActive ? "true" : undefined}
+                  onClick={
+                    sentencesClickable
+                      ? () => handleSentenceClick(text, index)
+                      : undefined
+                  }
+                  onKeyDown={
+                    sentencesClickable
+                      ? (e) => {
+                          if (e.target !== e.currentTarget) return;
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            handleSentenceClick(text, index);
+                          }
+                        }
+                      : undefined
+                  }
+                  className={`box-decoration-clone rounded-xs transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none ${
                     sentencesClickable ? "cursor-pointer" : ""
                   } ${
                     isActive
-                      ? "bg-sapphire-soft text-foreground"
+                      ? "bg-sapphire-soft text-foreground shadow-[inset_0_-2px_0_0_var(--color-sapphire)]"
                       : sentencesClickable
-                        ? "hover:bg-muted/50"
+                        ? "hover:bg-muted/60"
                         : ""
                   }`}
-                  title={sentencesClickable ? str.sentenceClickTitle[currentLang] : undefined}
+                  title={
+                    sentencesClickable
+                      ? pickLocale(str.sentenceClickTitle, currentLang)
+                      : undefined
+                  }
                 >
                   {segments.map((seg, sIdx) => {
                     if (!seg.term) {
@@ -226,19 +351,23 @@ export function SynchronizedSentenceReader({
                         key={sIdx}
                         role="button"
                         tabIndex={0}
+                        aria-haspopup="dialog"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setActivePopoverTerm(seg.term!);
+                          openTermCard(seg.term!, e.currentTarget);
                         }}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.stopPropagation();
                             e.preventDefault();
-                            setActivePopoverTerm(seg.term!);
+                            openTermCard(seg.term!, e.currentTarget);
                           }
                         }}
-                        className="relative inline-block cursor-pointer rounded-xs border-b border-dashed border-sapphire px-0.5 font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft"
-                        title={str.termTitleTemplate[currentLang].replace("{term}", seg.term.romanesTerm)}
+                        className="box-decoration-clone cursor-pointer rounded-xs border-b border-dashed border-sapphire font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                        title={pickLocale(
+                          str.termTitleTemplate,
+                          currentLang,
+                        ).replace("{term}", seg.term.romanesTerm)}
                       >
                         {seg.text}
                       </span>
@@ -251,31 +380,45 @@ export function SynchronizedSentenceReader({
         ))}
       </div>
 
-      {/* Floating Bilingual Romanes Translation Popover */}
+      {/* Contextual Romani term card: bottom sheet on mobile, anchored non-scrim card on desktop */}
       {activePopoverTerm && (
         <>
           <div
-            className="hh-scrim fixed inset-0 z-40 bg-black/40"
+            className="fixed inset-0 z-40 bg-black/40 sm:bg-transparent"
             onClick={() => setActivePopoverTerm(null)}
             aria-hidden="true"
           />
 
           <div
+            ref={popoverRef}
             role="dialog"
             aria-modal="true"
-            aria-label={str.popoverAria[currentLang]}
-            className="hh-fade fixed inset-x-4 bottom-20 z-50 mx-auto max-w-md rounded-lg border border-border bg-card p-5 shadow-xl sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2"
+            aria-label={pickLocale(str.popoverAria, currentLang)}
+            style={
+              anchorStyle
+                ? ({
+                    "--term-top": `${anchorStyle.top}px`,
+                    "--term-left": `${anchorStyle.left}px`,
+                  } as React.CSSProperties)
+                : undefined
+            }
+            className="hh-dialog fixed inset-x-4 bottom-20 z-50 mx-auto max-w-sm rounded-xl border border-border bg-card p-5 shadow-xl sm:inset-x-auto sm:bottom-auto sm:mx-0 sm:w-96 sm:top-[var(--term-top,30%)] sm:left-[var(--term-left,30%)]"
           >
-            {/* Popover Header */}
-            <div className="flex items-start justify-between gap-3 border-b border-border/50 pb-3">
+            {/* Header */}
+            <div className="flex items-start justify-between gap-3 border-b border-border/60 pb-3">
               <div>
-                <h2 className="text-xl font-semibold text-foreground">
+                <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2 py-0.5 text-xs font-semibold text-sapphire">
+                  {pickLocale(str.popoverBadge, currentLang)}
+                </span>
+                <h2 className="mt-1.5 text-lg font-semibold text-foreground">
                   {activePopoverTerm.romanesTerm}
                 </h2>
                 <p className="mt-0.5 text-sm text-muted-foreground">
-                  {str.popoverBadge[currentLang]} · {str.romanianLabel[currentLang]}{" "}
+                  {pickLocale(str.romanianLabel, currentLang)}{" "}
                   <strong className="text-foreground">
-                    {activePopoverTerm.romanianTerm}
+                    {(activePopoverTerm as LocalizedRomanesTerm).termByLang?.[
+                      currentLang
+                    ] ?? activePopoverTerm.romanianTerm}
                   </strong>
                 </p>
               </div>
@@ -284,20 +427,28 @@ export function SynchronizedSentenceReader({
                 ref={popoverCloseRef}
                 type="button"
                 onClick={() => setActivePopoverTerm(null)}
-                className="-mr-2 -mt-2 flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-                aria-label={str.closeAria[currentLang]}
+                className="-mr-2 -mt-1 flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                aria-label={pickLocale(str.closeAria, currentLang)}
               >
-                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  aria-hidden="true"
+                >
                   <path d="M6 6l12 12M18 6L6 18" />
                 </svg>
               </button>
             </div>
 
-            {/* Phonetic guide & audio pronunciation trigger */}
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border/40 bg-surface-subtle p-3">
+            {/* Phonetic guide and audio pronunciation trigger */}
+            <div className="mt-3.5 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border/60 bg-surface-subtle p-3">
               <div>
                 <span className="block text-xs font-medium text-muted-foreground">
-                  {str.phoneticGuide[currentLang]}
+                  {pickLocale(str.phoneticGuide, currentLang)}
                 </span>
                 <span className="text-sm font-semibold text-sapphire">
                   [{activePopoverTerm.phoneticPronunciation}]
@@ -308,7 +459,10 @@ export function SynchronizedSentenceReader({
                 <button
                   type="button"
                   onClick={handleSpeakPopoverTerm}
-                  aria-label={str.listenPronunciationAria[currentLang]}
+                  aria-label={pickLocale(
+                    str.listenPronunciationAria,
+                    currentLang,
+                  )}
                   className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-sapphire px-3.5 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
                 >
                   {isPlayingTermAudio ? (
@@ -337,23 +491,27 @@ export function SynchronizedSentenceReader({
                       <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
                     </svg>
                   )}
-                  <span>{str.listenPronunciationButton[currentLang]}</span>
+                  <span>
+                    {pickLocale(str.listenPronunciationButton, currentLang)}
+                  </span>
                 </button>
               )}
             </div>
 
-            {/* Meaning & plain explanation */}
-            <p className="mt-3.5 text-sm leading-relaxed text-muted-foreground">
-              {activePopoverTerm.explanation}
+            {/* Meaning and plain explanation */}
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {(activePopoverTerm as LocalizedRomanesTerm).explanationByLang?.[
+                currentLang
+              ] ?? activePopoverTerm.explanation}
             </p>
 
-            <div className="mt-4 flex justify-end border-t border-border/40 pt-3">
+            <div className="mt-4 flex justify-end border-t border-border/50 pt-3">
               <button
                 type="button"
                 onClick={() => setActivePopoverTerm(null)}
                 className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
               >
-                {str.dismissButton[currentLang]}
+                {pickLocale(str.dismissButton, currentLang)}
               </button>
             </div>
           </div>

@@ -6,6 +6,7 @@ import { speechEngine, formatSpeechText } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 
 interface PrescriptionAudioPlayerProps {
   speechText: string;
@@ -39,8 +40,18 @@ export function PrescriptionAudioPlayer({ speechText, className = "" }: Prescrip
       stop: "Ferma",
       speechLang: "it-IT",
     },
-  };
-  const t = dict[lang as keyof typeof dict] || dict[DEFAULT_LANG];
+    hr: {
+      listen: "Poslušaj objašnjenje",
+      stop: "Zaustavi",
+      speechLang: "hr-HR",
+    },
+    rom: {
+      listen: "Ashun o shpjegimos",
+      stop: "Astav",
+      speechLang: "ro-RO",
+    },
+  } satisfies Record<Lang, { listen: string; stop: string; speechLang: string }>;
+  const t = dict[lang] || dict[DEFAULT_LANG];
 
   useEffect(() => {
     return () => {

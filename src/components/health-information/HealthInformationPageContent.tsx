@@ -20,11 +20,51 @@ export interface HealthInformationPageContentProps {
   initialCategory?: string;
 }
 
-const dictionaryTabLabels: Record<Lang, { dictionary: string; romanes: string }> = {
-  ro: { dictionary: "Dicționar", romanes: "În romani" },
-  en: { dictionary: "Dictionary", romanes: "In Romani" },
-  sq: { dictionary: "Fjalori", romanes: "Në gjuhën rome" },
-  it: { dictionary: "Dizionario", romanes: "In romanì" },
+const dictionaryTabLabels: Record<
+  Lang,
+  {
+    dictionary: string;
+    romanes: string;
+    simpleModeNote: string;
+    completeModeNote: string;
+  }
+> = {
+  ro: {
+    dictionary: "Dicționar",
+    romanes: "În romani",
+    simpleModeNote: "Afișare în limbaj simplu — rezumate directe pentru lectură rapidă.",
+    completeModeNote: "Afișare ghid complet — ideile clinice cheie apar direct pe fiecare card.",
+  },
+  en: {
+    dictionary: "Dictionary",
+    romanes: "In Romani",
+    simpleModeNote: "Showing plain language — short summaries for quick reading.",
+    completeModeNote: "Showing complete guide — key clinical facts appear on every card.",
+  },
+  sq: {
+    dictionary: "Fjalori",
+    romanes: "Në gjuhën rome",
+    simpleModeNote: "Shfaqje me gjuhë të thjeshtë — përmbledhje të shkurtra për lexim të shpejtë.",
+    completeModeNote: "Shfaqje e plotë — faktet klinike kryesore shfaqen në çdo kartë.",
+  },
+  it: {
+    dictionary: "Dizionario",
+    romanes: "In romanì",
+    simpleModeNote: "Modalità linguaggio semplice — riassunti brevi per una lettura rapida.",
+    completeModeNote: "Modalità guida completa — i punti clinici chiave compaiono su ogni scheda.",
+  },
+  hr: {
+    dictionary: "Rječnik",
+    romanes: "Na romskom",
+    simpleModeNote: "Prikaz na jednostavnom jeziku: kratki sažeci za brzo čitanje.",
+    completeModeNote: "Prikaz potpunog vodiča: ključne kliničke činjenice prikazane su na svakoj kartici.",
+  },
+  rom: {
+    dictionary: "Lavustik",
+    romanes: "Pe romani chib",
+    simpleModeNote: "Lokhi chib: xarne sikavimata vash sigo drabarimos.",
+    completeModeNote: "Sa o sikavimos: le bare sastipnaske faktura dichon pe svako karta.",
+  },
 };
 
 function useSafeLanguage() {
@@ -58,13 +98,18 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
 
   return (
     <main id="main-content" className="flex-1 bg-background">
-      <section className="bg-background">
-        <Container className="pt-8 sm:pt-10">
+      <section className="border-b border-border/70 bg-background">
+        <Container className="pt-8 pb-6 sm:pt-10 sm:pb-8">
           <h1 className="text-3xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-4xl">
             {page.heroTitle}
           </h1>
           <p className="mt-3 max-w-[65ch] text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
             {page.heroSubtitle}
+          </p>
+          <p role="status" className="mt-3 text-sm font-medium text-sapphire">
+            {readingLevel === "complete"
+              ? tabLabels.completeModeNote
+              : tabLabels.simpleModeNote}
           </p>
         </Container>
       </section>
@@ -85,15 +130,21 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
       <section className="border-b border-border py-12 sm:py-16">
         <Container>
           <SectionHeading as="h2" title={page.usingInfoTitle} subtitle={page.usingInfoSubtitle} />
-          {/* Three short steps as a plain numbered list: no cards, no icons, no entrance cascade. */}
-          <ol className="mt-8 grid gap-x-8 gap-y-6 md:grid-cols-3">
+          <ol className="mt-8 grid gap-6 md:grid-cols-3">
             {page.usingInfoSteps.map(({ title, description }, index) => (
-              <li key={title} className="flex gap-3 border-t border-border pt-4">
-                <span className="w-5 shrink-0 text-lg font-semibold tabular-nums text-muted-foreground">{index + 1}</span>
-                <div>
-                  <h3 className="text-lg font-semibold leading-snug text-foreground">{title}</h3>
-                  <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">{description}</p>
-                </div>
+              <li
+                key={title}
+                className="flex flex-col rounded-xl border border-border bg-card p-6 sm:p-7"
+              >
+                <span className="inline-flex w-fit items-center rounded-md bg-sapphire-soft px-2.5 py-1 text-xs font-bold tabular-nums text-sapphire">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 text-xl font-semibold leading-snug text-foreground sm:text-[22px]">
+                  {title}
+                </h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                  {description}
+                </p>
               </li>
             ))}
           </ol>

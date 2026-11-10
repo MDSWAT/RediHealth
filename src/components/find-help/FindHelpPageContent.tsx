@@ -1,8 +1,11 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRightIcon, HandHelpingIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FindHelpExplorer } from "@/components/find-help/FindHelpExplorer";
+import { findHelpTranslations } from "@/lib/i18n/find-help-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { CountryCode, InstituteCategory } from "@/lib/medical-institutes";
@@ -15,7 +18,8 @@ export function FindHelpPageContent({
   initialCategory?: InstituteCategory | null;
 }) {
   const { lang, t } = useLanguage();
-  const page = t.findHelpPage;
+  const basePage = findHelpTranslations[lang].page;
+  const page = t?.findHelpPage ? { ...basePage, ...t.findHelpPage } : basePage;
 
   return (
     <main id="main-content" className="flex-1">
@@ -27,14 +31,46 @@ export function FindHelpPageContent({
 
       <section className="border-t border-border bg-muted/40 py-10 sm:py-12">
         <Container>
-          <div className="flex flex-col items-start gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-            <div className="max-w-2xl">
-              <h2 className="text-lg font-semibold text-foreground">{page.ctaTitle}</h2>
-              <p className="mt-1 text-base leading-relaxed text-muted-foreground">{page.ctaBody}</p>
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+            {/* Community Health Mediator Guidance Card (amber-care) */}
+            <div className="flex flex-col justify-between gap-5 rounded-xl border border-amber-care-border bg-amber-care-soft/55 p-6 dark:border-amber-care/40 dark:bg-amber-care/10 sm:p-7">
+              <div>
+                <span className="inline-flex items-center gap-1.5 rounded-md border border-amber-care-border bg-amber-care-soft px-2.5 py-1 text-xs font-semibold text-foreground dark:border-amber-care/40 dark:bg-amber-care/20">
+                  <HandHelpingIcon className="h-3.5 w-3.5 shrink-0 text-amber-care dark:text-amber-care-border" aria-hidden="true" />
+                  <span>{basePage.mediatorTag}</span>
+                </span>
+                <h2 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
+                  {basePage.mediatorTitle}
+                </h2>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+                  {basePage.mediatorBody}
+                </p>
+              </div>
+              <div>
+                <Link
+                  href={withLangPrefix("/mediatori", lang)}
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-amber-care/35 bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-amber-care-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 dark:hover:bg-amber-care/20"
+                >
+                  <span>{basePage.mediatorButton}</span>
+                  <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
-            <Button href={withLangPrefix("/get-help", lang)} variant="secondary" size="lg" className="shrink-0">
-              {page.ctaButton}
-            </Button>
+
+            {/* General Care Navigation CTA */}
+            <div className="flex flex-col justify-between gap-5 rounded-xl border border-border bg-card p-6 sm:p-7">
+              <div>
+                <h2 className="text-xl font-semibold tracking-tight text-foreground">{page.ctaTitle}</h2>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+                  {page.ctaBody}
+                </p>
+              </div>
+              <div>
+                <Button href={withLangPrefix("/get-help", lang)} variant="secondary" size="lg" className="min-h-11 rounded-lg">
+                  {page.ctaButton}
+                </Button>
+              </div>
+            </div>
           </div>
         </Container>
       </section>

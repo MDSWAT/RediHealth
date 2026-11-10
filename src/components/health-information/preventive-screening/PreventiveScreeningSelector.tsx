@@ -51,6 +51,22 @@ const UI: Record<Lang, { inPlan: string; details: string; remove: string; step: 
     step: "Passo {n} di {total}",
     tabsLabel: "Controlli preventivi",
   },
+  hr: {
+    quote: ["„", "”"],
+    inPlan: "Na mojem popisu",
+    details: "Zašto je važno i što pitati liječnika",
+    remove: "Ukloni s popisa",
+    step: "Korak {n} od {total}",
+    tabsLabel: "Preventivni pregledi",
+  },
+  rom: {
+    quote: ["„", "”"],
+    inPlan: "And-i miri lista",
+    details: "Sostar si importanto thaj so te phushes le doktores",
+    remove: "Inkal katar i lista",
+    step: "Paso {n} katar {total}",
+    tabsLabel: "Anglune dikhimata",
+  },
 };
 
 /* The plan is remembered on this device. Read through an external store so the first

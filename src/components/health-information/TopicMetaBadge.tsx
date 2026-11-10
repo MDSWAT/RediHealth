@@ -23,6 +23,10 @@ function useSafeLanguageContext(): { lang: Lang } {
   }
 }
 
+function pickLocale(entry: Record<"ro", string> & Partial<Record<Lang, string>>, lang: Lang): string {
+  return entry[lang] ?? entry.ro;
+}
+
 export function TopicMetaBadge({
   readMinutes = 3,
   audioMinutes = 2,
@@ -40,11 +44,11 @@ export function TopicMetaBadge({
     // Cards: one quiet line of text, no icons or colour.
     return (
       <p className={`text-sm text-muted-foreground tabular-nums ${className}`}>
-        {s.readMinutesShort[currentLang].replace("{minutes}", String(readMinutes))}
+        {pickLocale(s.readMinutesShort, currentLang).replace("{minutes}", String(readMinutes))}
         {voiceEnabled && (
           <>
             <span aria-hidden="true"> · </span>
-            {s.audioMinutes[currentLang].replace("{minutes}", String(audioMinutes))}
+            {pickLocale(s.audioMinutes, currentLang).replace("{minutes}", String(audioMinutes))}
           </>
         )}
       </p>
@@ -71,7 +75,7 @@ export function TopicMetaBadge({
           <circle cx="12" cy="12" r="10" />
           <polyline points="12 6 12 12 16 14" />
         </svg>
-        <span>{s.readMinutesLong[currentLang].replace("{minutes}", String(readMinutes))}</span>
+        <span>{pickLocale(s.readMinutesLong, currentLang).replace("{minutes}", String(readMinutes))}</span>
       </span>
 
       {voiceEnabled && (
@@ -82,7 +86,7 @@ export function TopicMetaBadge({
 
           <span className="inline-flex items-center gap-1.5 tabular-nums">
             <VolumeIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" aria-hidden="true" />
-            <span>{s.audioMinutesLong[currentLang].replace("{minutes}", String(audioMinutes))}</span>
+            <span>{pickLocale(s.audioMinutesLong, currentLang).replace("{minutes}", String(audioMinutes))}</span>
           </span>
         </>
       )}

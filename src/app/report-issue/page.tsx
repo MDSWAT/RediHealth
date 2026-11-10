@@ -9,6 +9,8 @@ const descriptions: Record<Lang, string> = {
   en: "Tell us what went wrong on the site. The RediHealth team will look at it.",
   sq: "Na trego çfarë nuk funksionoi në faqe. Ekipi i RediHealth do ta shohë.",
   it: "Dicci cosa non ha funzionato sul sito. Il team di RediHealth lo controlla.",
+  hr: "Javi nam što nije radilo na stranici. Tim RediHealth to će provjeriti.",
+  rom: "Phen amenge so na kerdili mishto pe rig. O timo RediHealth ka dikhel les.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -1,6 +1,6 @@
 /**
  * Patient-facing copy for the health assistant triage flow and the prescription result,
- * in all four site languages. `Record<Lang, AssistantCopy>` makes a missing key in any
+ * in all six site languages. `Record<Lang, AssistantCopy>` makes a missing key in any
  * language a type error, so no locale can silently fall back to Romanian.
  */
 import type { PathwayId } from "@/lib/triage-state";
@@ -49,13 +49,17 @@ export interface AssistantCopy {
   machine: {
     back: string;
     intro: string;
-    stepOf: (step: number) => string;
+    stepOf: (step: number, total?: number) => string;
     progressLabel: string;
+    selectedTrailLabel: string;
   };
   tree: {
     heading: string;
     plainHeading: string;
     lead: string;
+    bodyMapPrompt: string;
+    bodyMapLink: string;
+    mediatorTag: string;
     options: Record<PathwayId, Option>;
   };
   learn: {
@@ -93,17 +97,26 @@ export interface AssistantCopy {
     plainHeading: string;
     signs: string[];
     plainSigns: string[];
+    callNow: string;
     yes: string;
+    yesSeeTips: string;
     no: string;
+    noNoneOfThese: string;
     note: string;
   };
   symptoms: {
     heading: string;
     lead: string;
+    bodyMapHint: string;
+    bodyMapCta: string;
     categories: Record<MildCategoryId, { title: string; desc: string }>;
     selectedLabel: string;
     body: string;
     plainBody: string;
+    homeCareHeading: string;
+    homeCareByCategory: Record<MildCategoryId, [string, string, string]>;
+    whenToCallHeading: string;
+    whenToCallTips: [string, string, string];
     safetyNet: string;
     summary: (category: string) => string;
     emergencyHeading: string;
@@ -160,14 +173,18 @@ export interface AssistantCopy {
 const ro: AssistantCopy = {
   machine: {
     back: "Înapoi",
-    intro: "Ghid în 3 pași",
-    stepOf: (step) => `Pasul ${step} din 3`,
+    intro: "Ghid pas cu pas",
+    stepOf: (step, total = 3) => `Pasul ${step} din ${total}`,
     progressLabel: "Progresul prin ghid",
+    selectedTrailLabel: "Răspunsurile alese până acum",
   },
   tree: {
     heading: "Ce te îngrijorează astăzi?",
     plainHeading: "Cu ce te putem ajuta astăzi?",
     lead: "Alege ce ți se potrivește.",
+    bodyMapPrompt: "Vrei să arăți exact locul dureros pe corpul 3D?",
+    bodyMapLink: "Deschide harta corpului 3D",
+    mediatorTag: "Sprijin cu mediator sanitar",
     options: {
       learn: {
         title: "Vreau să aflu ceva",
@@ -309,13 +326,18 @@ const ro: AssistantCopy = {
       "Nu mai poți vorbi limpede",
       "Sângerezi foarte tare",
     ],
+    callNow: "Sună acum la 112",
     yes: "Da, am cel puțin un semn",
+    yesSeeTips: "Da, vezi ce să spui la 112",
     no: "Nu, simptomele mele sunt mai ușoare",
+    noNoneOfThese: "Nu, niciunul dintre acestea",
     note: "Dacă ești în pericol, sună tu la 112. Aplicația nu sună în locul tău.",
   },
   symptoms: {
     heading: "Ce te deranjează cel mai mult?",
     lead: "Alege categoria, apoi poți vorbi cu un medic online.",
+    bodyMapHint: "Ai durere într-o zonă anume? Poți alege locul exact pe modelul 3D.",
+    bodyMapCta: "Verifică pe corpul 3D",
     categories: {
       fever: {
         title: "Febră sau răceală",
@@ -338,6 +360,35 @@ const ro: AssistantCopy = {
     body: "Un medic te poate consulta repede. Îți spune ce tratament să iei și verifică să nu fie ceva grav.",
     plainBody:
       "Nu trebuie să suferi acasă sau să iei pastile la întâmplare. Poți vorbi gratuit cu un medic la telefon.",
+    homeCareHeading: "Îngrijire sigură acasă",
+    homeCareByCategory: {
+      fever: [
+        "Odihnește-te, aerisește camera și bea des apă sau ceai călduț.",
+        "Măsoară temperatura cu termometrul și notează valorile.",
+        "Nu lua antibiotice fără prescripția medicului.",
+      ],
+      headache: [
+        "Ia o pauză de la ecrane într-o cameră liniștită și bea 1–2 pahare cu apă.",
+        "Pune o compresă rece pe frunte sau masează ușor ceafa.",
+        "Evită cafeaua în exces și lipsa de somn.",
+      ],
+      stomach: [
+        "Bea apă cu înghițituri mici sau ceai neîndulcit de mușețel ori mentă.",
+        "Alege mese mici și ușoare (orez fiert, supă clară, pâine prăjită).",
+        "Evită prăjelile, alcoolul și antiinflamatoarele luate pe stomacul gol.",
+      ],
+      cough: [
+        "Hidratează gâtul cu apă caldă sau ceai și aerisește camera.",
+        "Dormi cu capul puțin mai ridicat pe pernă dacă tușești noaptea.",
+        "Evită fumul de țigară și aerul foarte uscat.",
+      ],
+    },
+    whenToCallHeading: "Când suni medicul sau la 112",
+    whenToCallTips: [
+      "Febra depășește 38,5 °C mai mult de 3 zile sau apare la un copil mic.",
+      "Durerea devine brusc foarte puternică, burta se întărește sau nu poți reține lichidele.",
+      "Apare lipsă de aer, durere în piept, confuzie sau slăbiciune bruscă — sună imediat la 112.",
+    ],
     safetyNet: "Dacă te simți mult mai rău sau apare unul dintre semnele de alarmă, sună la 112.",
     summary: (category) => `Simptome ușoare: ${category}`,
     emergencyHeading: "Ai nevoie de ajutor medical acum",
@@ -463,14 +514,18 @@ const ro: AssistantCopy = {
 const en: AssistantCopy = {
   machine: {
     back: "Back",
-    intro: "3-step guide",
-    stepOf: (step) => `Step ${step} of 3`,
+    intro: "Step-by-step guide",
+    stepOf: (step, total = 3) => `Step ${step} of ${total}`,
     progressLabel: "Guide progress",
+    selectedTrailLabel: "Selected answers so far",
   },
   tree: {
     heading: "What's worrying you today?",
     plainHeading: "How can we help you today?",
     lead: "Choose what fits you best.",
+    bodyMapPrompt: "Want to point to the exact area on the 3D body?",
+    bodyMapLink: "Open 3D body map",
+    mediatorTag: "Community mediator support",
     options: {
       learn: {
         title: "I want to learn about something",
@@ -612,13 +667,18 @@ const en: AssistantCopy = {
       "You can't speak clearly any more",
       "You are bleeding a lot",
     ],
+    callNow: "Call 112 now",
     yes: "Yes, I have at least one",
+    yesSeeTips: "Yes, see what to tell 112",
     no: "No, my symptoms are milder",
+    noNoneOfThese: "No, none of these",
     note: "If you are in danger, call 112 yourself. The app does not call for you.",
   },
   symptoms: {
     heading: "What is bothering you most?",
     lead: "Choose a category, then you can talk to a doctor online.",
+    bodyMapHint: "Have pain in a specific spot? Point to the exact area on the 3D body.",
+    bodyMapCta: "Check on 3D body",
     categories: {
       fever: {
         title: "Fever or a cold",
@@ -640,6 +700,35 @@ const en: AssistantCopy = {
     selectedLabel: "You chose",
     body: "A doctor can see you quickly. They tell you what treatment to take and check it is nothing serious.",
     plainBody: "You don't have to suffer at home or take pills at random. You can talk to a doctor by phone, for free.",
+    homeCareHeading: "Safe home care",
+    homeCareByCategory: {
+      fever: [
+        "Rest in a ventilated room and sip water or warm herbal tea often.",
+        "Check your temperature with a thermometer and note any changes.",
+        "Do not start leftover antibiotics without a doctor's prescription.",
+      ],
+      headache: [
+        "Step away from screens in a quiet room and drink 1–2 glasses of water.",
+        "Place a cool damp cloth on your forehead or gently relax your shoulders.",
+        "Avoid skipping meals, excess caffeine and late nights.",
+      ],
+      stomach: [
+        "Take small sips of water or plain chamomile or peppermint tea.",
+        "Stick to small, light meals such as plain rice, clear broth or toast.",
+        "Avoid fried food, alcohol and painkillers on an empty stomach.",
+      ],
+      cough: [
+        "Soothe your throat with warm fluids and keep the room air fresh.",
+        "Prop your head up slightly on an extra pillow if coughing at night.",
+        "Avoid cigarette smoke and dry indoor air.",
+      ],
+    },
+    whenToCallHeading: "When to call a doctor or 112",
+    whenToCallTips: [
+      "Fever stays above 38.5 °C for more than 3 days, or affects a young child.",
+      "Pain suddenly becomes severe, your abdomen feels rigid, or you cannot keep fluids down.",
+      "Shortness of breath, chest pressure, confusion or sudden weakness appears — call 112 right away.",
+    ],
     safetyNet: "If you feel much worse or any of the warning signs appear, call 112.",
     summary: (category) => `Mild symptoms: ${category}`,
     emergencyHeading: "You need medical help now",
@@ -765,14 +854,18 @@ const en: AssistantCopy = {
 const sq: AssistantCopy = {
   machine: {
     back: "Kthehu",
-    intro: "Udhëzues me 3 hapa",
-    stepOf: (step) => `Hapi ${step} nga 3`,
+    intro: "Udhëzues hap pas hapi",
+    stepOf: (step, total = 3) => `Hapi ${step} nga ${total}`,
     progressLabel: "Përparimi në udhëzues",
+    selectedTrailLabel: "Përgjigjet e zgjedhura deri tani",
   },
   tree: {
     heading: "Çfarë të shqetëson sot?",
     plainHeading: "Si mund të të ndihmojmë sot?",
     lead: "Zgjidh atë që të përshtatet.",
+    bodyMapPrompt: "Do të tregosh vendin e saktë të dhimbjes në trupin 3D?",
+    bodyMapLink: "Hap hartën e trupit 3D",
+    mediatorTag: "Mbështetje me mediator shëndetësor",
     options: {
       learn: {
         title: "Dua të mësoj diçka",
@@ -914,13 +1007,18 @@ const sq: AssistantCopy = {
       "Nuk mund të flasësh më qartë",
       "Po humbet shumë gjak",
     ],
+    callNow: "Telefono tani 112",
     yes: "Po, kam të paktën një shenjë",
+    yesSeeTips: "Po, shiko çfarë t'i thuash 112",
     no: "Jo, simptomat e mia janë më të lehta",
+    noNoneOfThese: "Jo, asnjërën nga këto",
     note: "Nëse je në rrezik, telefono vetë 112. Aplikacioni nuk telefonon për ty.",
   },
   symptoms: {
     heading: "Çfarë të shqetëson më shumë?",
     lead: "Zgjidh kategorinë, pastaj mund të flasësh me një mjek online.",
+    bodyMapHint: "Ke dhimbje në një vend të caktuar? Zgjidh pikën e saktë në trupin 3D.",
+    bodyMapCta: "Kontrollo në trupin 3D",
     categories: {
       fever: {
         title: "Temperaturë ose ftohje",
@@ -942,6 +1040,35 @@ const sq: AssistantCopy = {
     selectedLabel: "Zgjodhe",
     body: "Një mjek mund të të shohë shpejt. Të thotë çfarë trajtimi të marrësh dhe kontrollon që të mos jetë diçka e rëndë.",
     plainBody: "Nuk ke pse të vuash në shtëpi ose të marrësh ilaçe kuturu. Mund të flasësh falas me një mjek në telefon.",
+    homeCareHeading: "Kujdes i sigurt në shtëpi",
+    homeCareByCategory: {
+      fever: [
+        "Pusho në një dhomë të ajrosur dhe pi shpesh ujë ose çaj të ngrohtë.",
+        "Mat temperaturën me termometër dhe shëno vlerat.",
+        "Mos merr antibiotikë pa recetën e mjekut.",
+      ],
+      headache: [
+        "Bëj pushim nga ekranet në një dhomë të qetë dhe pi 1–2 gota ujë.",
+        "Vendos një leckë të freskët në ballë ose çliro butësisht shpatullat.",
+        "Shmang kafenë e tepërt dhe pagjumësinë.",
+      ],
+      stomach: [
+        "Pi ujë me gllënjka të vogla ose çaj kamomili a menteje pa sheqer.",
+        "Ha vakte të vogla dhe të lehta si oriz i zier, supë e lehtë ose bukë e thekur.",
+        "Shmang ushqimet e skuqura, alkoolin dhe qetësuesit me stomak bosh.",
+      ],
+      cough: [
+        "Lagështo fytin me ujë të ngrohtë ose çaj dhe ajros dhomën.",
+        "Fli me kokën pak më të ngritur në jastëk nëse kollitesh natën.",
+        "Shmang tymin e duhanit dhe ajrin shumë të thatë.",
+      ],
+    },
+    whenToCallHeading: "Kur të telefonosh mjekun ose 112",
+    whenToCallTips: [
+      "Temperatura kalon 38,5 °C për më shumë se 3 ditë ose shfaqet te një fëmijë i vogël.",
+      "Dhimbja bëhet papritur shumë e fortë, barku forcohet ose nuk mban dot lëngjet.",
+      "Shfaqet vështirësi në frymëmarrje, shtypje në gjoks, hutim ose dobësi e menjëhershme — telefono 112.",
+    ],
     safetyNet: "Nëse ndihesh shumë më keq ose shfaqet ndonjë nga shenjat e rrezikut, telefono 112.",
     summary: (category) => `Simptoma të lehta: ${category}`,
     emergencyHeading: "Të duhet ndihmë mjekësore tani",
@@ -1067,14 +1194,18 @@ const sq: AssistantCopy = {
 const it: AssistantCopy = {
   machine: {
     back: "Indietro",
-    intro: "Guida in 3 passi",
-    stepOf: (step) => `Passo ${step} di 3`,
+    intro: "Guida passo dopo passo",
+    stepOf: (step, total = 3) => `Passo ${step} di ${total}`,
     progressLabel: "Avanzamento della guida",
+    selectedTrailLabel: "Risposte scelte finora",
   },
   tree: {
     heading: "Cosa ti preoccupa oggi?",
     plainHeading: "Come possiamo aiutarti oggi?",
     lead: "Scegli quella più vicina alla tua situazione.",
+    bodyMapPrompt: "Vuoi indicare il punto esatto sul corpo 3D?",
+    bodyMapLink: "Apri la mappa del corpo 3D",
+    mediatorTag: "Supporto con mediatore sanitario",
     options: {
       learn: {
         title: "Voglio informarmi",
@@ -1216,13 +1347,18 @@ const it: AssistantCopy = {
       "Non riesci più a parlare chiaramente",
       "Stai perdendo molto sangue",
     ],
+    callNow: "Chiama subito il 112",
     yes: "Sì, ho almeno un segnale",
+    yesSeeTips: "Sì, vedi cosa dire al 112",
     no: "No, i miei sintomi sono più lievi",
+    noNoneOfThese: "No, nessuno di questi",
     note: "Se sei in pericolo, chiama tu il 112. L'app non chiama al posto tuo.",
   },
   symptoms: {
     heading: "Cosa ti dà più fastidio?",
     lead: "Scegli la categoria, poi potrai parlare con un medico online.",
+    bodyMapHint: "Hai dolore in un punto preciso? Puoi indicarlo sul modello 3D.",
+    bodyMapCta: "Controlla sul corpo 3D",
     categories: {
       fever: {
         title: "Febbre o raffreddore",
@@ -1244,6 +1380,35 @@ const it: AssistantCopy = {
     selectedLabel: "Hai scelto",
     body: "Un medico può visitarti in fretta. Ti dice quale cura seguire e controlla che non sia niente di grave.",
     plainBody: "Non devi soffrire a casa o prendere pastiglie a caso. Puoi parlare gratis con un medico al telefono.",
+    homeCareHeading: "Cura sicura a casa",
+    homeCareByCategory: {
+      fever: [
+        "Riposa in una stanza arieggiata e bevi spesso acqua o tisane tiepide.",
+        "Misura la temperatura con il termometro e annota i valori.",
+        "Non iniziare antibiotici senza la prescrizione del medico.",
+      ],
+      headache: [
+        "Fai una pausa dagli schermi in una stanza tranquilla e bevi 1–2 bicchieri d'acqua.",
+        "Applica un panno fresco sulla fronte o rilassa delicatamente il collo.",
+        "Evita l'eccesso di caffè e la mancanza di sonno.",
+      ],
+      stomach: [
+        "Bevi acqua a piccoli sorsi oppure camomilla o menta non zuccherate.",
+        "Scegli pasti piccoli e leggeri come riso in bianco, brodo chiaro o pane tostato.",
+        "Evita fritti, alcol e antinfiammatori a stomaco vuoto.",
+      ],
+      cough: [
+        "Idrata la gola con bevande tiepide e arieggia spesso la stanza.",
+        "Dormi con la testa leggermente sollevata sul cuscino se tossisci di notte.",
+        "Evita il fumo di sigaretta e l'aria troppo secca.",
+      ],
+    },
+    whenToCallHeading: "Quando chiamare il medico o il 112",
+    whenToCallTips: [
+      "La febbre supera 38,5 °C per più di 3 giorni o riguarda un bambino piccolo.",
+      "Il dolore diventa improvvisamente molto forte, l'addome è rigido o non trattieni i liquidi.",
+      "Compare mancanza di respiro, peso al petto, confusione o debolezza improvvisa — chiama subito il 112.",
+    ],
     safetyNet: "Se ti senti molto peggio o compare uno dei segnali d'allarme, chiama il 112.",
     summary: (category) => `Sintomi lievi: ${category}`,
     emergencyHeading: "Ti serve subito un aiuto medico",
@@ -1366,7 +1531,687 @@ const it: AssistantCopy = {
   },
 };
 
-export const ASSISTANT_COPY: Record<Lang, AssistantCopy> = { ro, en, sq, it };
+const hr: AssistantCopy = {
+  machine: {
+    back: "Natrag",
+    intro: "Vodič korak po korak",
+    stepOf: (step, total = 3) => `Korak ${step} od ${total}`,
+    progressLabel: "Napredak kroz vodič",
+    selectedTrailLabel: "Dosad odabrani odgovori",
+  },
+  tree: {
+    heading: "Što te danas brine?",
+    plainHeading: "Kako ti danas možemo pomoći?",
+    lead: "Odaberi ono što ti najviše odgovara.",
+    bodyMapPrompt: "Želiš li pokazati točno mjesto boli na 3D tijelu?",
+    bodyMapLink: "Otvori 3D kartu tijela",
+    mediatorTag: "Podrška zdravstvenog medijatora",
+    options: {
+      learn: {
+        title: "Želim saznati više",
+        plainTitle: "Želim jednostavne savjete o bolesti",
+        subtitle: "Jednostavni odgovori o cjepivima, krvnom tlaku, vrućici i antibioticima",
+      },
+      risk: {
+        title: "Želim provjeriti svoj rizik",
+        plainTitle: "Želim vidjeti imam li rizik za dijabetes ili bolesti srca",
+        subtitle: "3 kratka pitanja i što možeš učiniti dalje",
+      },
+      symptoms: {
+        title: "Imam zdravstveni problem",
+        plainTitle: "Trenutno se ne osjećam dobro",
+        subtitle: "Prvo provjeravamo znakove uzbune, a zatim te usmjeravamo liječniku",
+      },
+      prescription: {
+        title: "Imam liječnički recept",
+        plainTitle: "Imam recept i ne razumijem kako uzimati tablete",
+        subtitle: "Fotografiraj recept ili potraži lijek",
+      },
+      navigation: {
+        title: "Ne znam kamo otići",
+        plainTitle: "Ne znam kojem liječniku otići ili nemam osobnu iskaznicu",
+        subtitle: "Kamo otići i koji ti dokumenti trebaju, čak i bez osiguranja",
+      },
+    },
+  },
+  learn: {
+    heading: "O čemu želiš saznati više?",
+    lead: "Jednostavna objašnjenja uz naveden izvor svake informacije.",
+    mythLabel: "Rašireni mit",
+    verdictFalse: "Netočno",
+    doctorLabel: "Što je točno",
+    sourceLabel: "Izvor",
+    readGuide: "Pročitaj cijeli vodič",
+    browseGuides: "Pogledaj sve zdravstvene vodiče",
+    topics: {
+      vaccines: {
+        title: "Cjepiva i imunitet",
+        subtitle: "Koliko su cjepiva sigurna i zašto nas štite od teških bolesti",
+        myth: "Cjepivo protiv gripe izaziva gripu ili oslabljuje tijelo.",
+        doctor:
+          "Injekcijsko cjepivo protiv gripe sadrži inaktivirani virus ili samo njegove dijelove koji ne mogu izazvati gripu. Ono uči imunološki sustav prepoznati pravi virus.",
+        plainDoctor:
+          "Cjepivo je poput vježbe za tvoje tijelo. Ne uzrokuje bolest, nego uči tijelo kako se obraniti ako sretne virus.",
+        source: "Svjetska zdravstvena organizacija i Hrvatski zavod za javno zdravstvo",
+      },
+      heart: {
+        title: "Krvni tlak i srce",
+        subtitle: "„Tihi” povišeni krvni tlak i prevencija srčanog udara",
+        myth: "Ako me ne boli glava, moj je krvni tlak sigurno uredan.",
+        doctor:
+          "Povišeni krvni tlak često ne daje nikakve simptome dok ne ošteti srce ili krvne žile. Zato ga treba redovito mjeriti.",
+        plainDoctor:
+          "Visoki krvni tlak je poput prenapuhanog crijeva za vodu jer ništa ne boli dok ne popusti. Zato tlak treba redovito mjeriti tlakomjerom čak i kad se osjećaš sasvim dobro.",
+        source: "Europsko kardiološko društvo i Hrvatsko kardiološko društvo",
+      },
+      child_fever: {
+        title: "Vrućica kod djeteta",
+        subtitle: "Kako sigurno sniziti vrućicu i kada otići liječniku",
+        myth: "Visoku vrućicu kod djeteta treba odmah skidati trljanjem alkoholom ili octom.",
+        doctor:
+          "Alkohol i ocat upijaju se kroz tanku dječju kožu i mogu izazvati teško trovanje. Vrućica se snižava lijekovima prilagođenima tjelesnoj masi djeteta i obilnim unosom tekućine.",
+        plainDoctor:
+          "Nikada ne stavljaj alkohol ili ocat na djetetovu kožu jer mogu otrovati dijete kroz kožu. Daj djetetu vode ili čaja i sirup za vrućicu koji je preporučio liječnik.",
+        source: "Hrvatsko pedijatrijsko društvo i Svjetska zdravstvena organizacija",
+      },
+      antibiotics: {
+        title: "Prehlada, gripa i antibiotici",
+        subtitle: "Zašto antibiotici ne liječe virusne infekcije i što znači otpornost",
+        myth: "Svaka jača prehlada brže prođe ako od prvog dana uzmeš antibiotik.",
+        doctor:
+          "Prehladu i gripu uzrokuju virusi, a antibiotici djeluju samo na bakterije. Uzeti bez potrebe, narušavaju crijevnu floru i potiču otpornost bakterija na antibiotike.",
+        plainDoctor:
+          "Antibiotik uništava samo bakterije, a ne viruse koji uzrokuju prehladu. Ako ga uzmeš zbog prehlade, iziritirat ćeš želudac i crijeva, a nećeš brže ozdraviti.",
+        source: "Europski centar za prevenciju i kontrolu bolesti",
+      },
+    },
+    summary: (topic) => `Tema interesa: ${topic}`,
+  },
+  risk: {
+    heading: "Brza provjera rizika",
+    lead: "Odgovori s Da ili Ne na 3 kratka pitanja. Rezultat nije medicinska dijagnoza.",
+    quickTitle: "Ništa s popisa se ne odnosi na tebe?",
+    quickBody: "Imaš manje od 45 godina, nitko u obitelji nema dijabetes ni povišeni krvni tlak i rijetko imaš ove simptome.",
+    quickButton: "Pogledaj rezultat: nizak rizik",
+    questions: {
+      q1: {
+        title: "Dob i obitelj",
+        text: "Imaš li više od 45 godina ili netko u tvojoj užoj obitelji (roditelji, braća, sestre) ima dijabetes ili povišeni krvni tlak?",
+        plainText: "Imaš li više od 45 godina ili su tvoji roditelji imali dijabetes ili visoki krvni tlak?",
+      },
+      q2: {
+        title: "Kako se osjećaš svaki dan",
+        text: "Osjećaš li često umor bez razloga, jaku žeđ ili česte glavobolje?",
+        plainText: "Osjećaš li se jako umorno, piješ li puno vode bez jasnog razloga ili te često boli glava?",
+      },
+      q3: {
+        title: "Životne navike",
+        text: "Pušiš li svakodnevno ili često jedeš slanu hranu, pržena jela i kupovne slatkiše?",
+        plainText: "Pušiš li svaki dan ili često jedeš prženu hranu, slane suhomesnate proizvode i slatkiše?",
+      },
+    },
+    yes: "Da",
+    no: "Ne",
+    submit: "Pogledaj rezultat",
+    resultHeading: "Rezultat provjere",
+    levelLabel: "Procijenjena razina rizika",
+    levels: { low: "Nizak rizik", moderate: "Umjeren rizik", high: "Povišen rizik" },
+    messages: {
+      low: "Trenutno imaš nizak rizik za bolesti srca i dijabetes. Pij dovoljno vode, hodaj svaki dan i obavi preventivni pregled jednom godišnje.",
+      moderate:
+        "Imaš nekoliko čimbenika rizika na koje vrijedi pripaziti. Zamoli obiteljskog liječnika da ti izmjeri krvni tlak i šećer u krvi. Tako se tegobe otkriju na vrijeme.",
+      high: "Imaš više udruženih čimbenika rizika. Razgovaraj s liječnikom o osnovnim laboratorijskim pretragama.",
+    },
+    nextHeading: "Što možeš učiniti sada",
+    nextSteps: [
+      "Izmjeri krvni tlak u ljekarni ili kod obiteljskog liječnika.",
+      "Koristi manje soli u hrani i pij najmanje 6 čaša vode dnevno.",
+      "Dogovori besplatan online razgovor kako bi s liječnikom prošao ili prošla kroz rezultat.",
+    ],
+    summary: (level, count) => `Procjena rizika: ${level} (${count}/3 potvrđena čimbenika)`,
+  },
+  gate: {
+    heading: "Imaš li upravo sada neki od ovih znakova uzbune?",
+    plainHeading: "Imaš li upravo sada neki vrlo ozbiljan znak?",
+    signs: [
+      "Jaka bol ili osjećaj pritiska u prsnom košu",
+      "Jako otežano disanje ili zaduha",
+      "Nagla utrnulost ili slabost jedne strane lica ili tijela",
+      "Nagli poremećaj govora",
+      "Jako krvarenje",
+    ],
+    plainSigns: [
+      "Jako te boli u prsima, kao da ti težak teret pritišće prsni koš",
+      "Vrlo teško dišeš i nedostaje ti zraka",
+      "Odjednom ti je utrnulo ili oslabilo lice, ruka ili noga",
+      "Više ne možeš razgovijetno govoriti",
+      "Jako krvariš",
+    ],
+    callNow: "Nazovi 112 odmah",
+    yes: "Da, imam barem jedan znak",
+    yesSeeTips: "Da, pogledaj što reći broju 112",
+    no: "Ne, moji su simptomi blaži",
+    noNoneOfThese: "Ne, ništa od navedenog",
+    note: "Ako si u opasnosti, sam ili sama nazovi 112. Aplikacija ne poziva umjesto tebe.",
+  },
+  symptoms: {
+    heading: "Što ti najviše smeta?",
+    lead: "Odaberi kategoriju, a zatim možeš razgovarati s liječnikom online.",
+    bodyMapHint: "Imaš bol na određenom mjestu? Označi točno područje na 3D modelu.",
+    bodyMapCta: "Provjeri na 3D tijelu",
+    categories: {
+      fever: {
+        title: "Vrućica ili prehlada",
+        desc: "Povišena temperatura, zimica, bolovi u mišićima i iscrpljenost",
+      },
+      headache: {
+        title: "Glavobolja ili bol u vratu",
+        desc: "Pritisak u sljepoočnicama, ukočen vrat i umorne oči",
+      },
+      stomach: {
+        title: "Bol u trbuhu ili mučnina",
+        desc: "Nelagoda u trbuhu, blagi grčevi, žgaravica ili mučnina bez ponavljanog povraćanja",
+      },
+      cough: {
+        title: "Kašalj ili grlobolja",
+        desc: "Nadraženo grlo, promuklost, začepljen nos i nedavno nastali kašalj",
+      },
+    },
+    selectedLabel: "Odabrao ili odabrala si",
+    body: "Liječnik te može brzo savjetovati. Objasnit će ti što uzeti i provjeriti postoji li razlog za brigu.",
+    plainBody: "Ne moraš trpjeti kod kuće niti uzimati tablete nasumice. Možeš besplatno razgovarati s liječnikom telefonom.",
+    homeCareHeading: "Sigurna njega kod kuće",
+    homeCareByCategory: {
+      fever: [
+        "Odmaraj u prozračenoj prostoriji i često pij vodu ili mlaki čaj.",
+        "Izmjeri temperaturu toplomjerom i zabilježi vrijednosti.",
+        "Nemoj uzimati antibiotike bez liječničkog recepta.",
+      ],
+      headache: [
+        "Odmori oči od ekrana u mirnoj sobi i popij 1–2 čaše vode.",
+        "Stavi hladan oblog na čelo ili lagano opusti vrat i ramena.",
+        "Izbjegavaj previše kave i manjak sna.",
+      ],
+      stomach: [
+        "Pij vodu u malim gutljajima ili nezaslađeni čaj od kamilice ili mente.",
+        "Jedi male i lagane obroke poput kuhane riže, bistre juhe ili dvopeka.",
+        "Izbjegavaj prženu hranu, alkohol i lijekove protiv bolova na prazan želudac.",
+      ],
+      cough: [
+        "Vlaži grlo toplim napitcima i redovito prozračuj prostoriju.",
+        "Spavaj s blago povišenim uzglavljem ako te kašalj budi noću.",
+        "Izbjegavaj duhanski dim i jako suh zrak.",
+      ],
+    },
+    whenToCallHeading: "Kada nazvati liječnika ili 112",
+    whenToCallTips: [
+      "Vrućica prelazi 38,5 °C dulje od 3 dana ili se javlja kod malog djeteta.",
+      "Bol naglo postane jako izražena, trbuh je tvrd ili ne možeš zadržati tekućinu.",
+      "Pojavi se otežano disanje, pritisak u prsima, zbunjenost ili nagla slabost: odmah nazovi 112.",
+    ],
+    safetyNet: "Ako se osjećaš znatno lošije ili se pojavi bilo koji znak uzbune, nazovi 112.",
+    summary: (category) => `Blagi simptomi: ${category}`,
+    emergencyHeading: "Potrebna ti je hitna medicinska pomoć",
+    emergencyBody:
+      "To mogu biti znakovi teškog hitnog stanja poput srčanog udara, moždanog udara ili jakog krvarenja. Nemoj čekati i nemoj tražiti savjete na internetu.",
+    callNow: "Nazovi 112 odmah",
+    callTipsTitle: "Kada razgovaraš s operaterom na broju 112",
+    callTips: [
+      "Reci točnu adresu na kojoj se nalaziš.",
+      "Opiši koje simptome osoba ima i je li pri svijesti.",
+      "Ostani na liniji i slijedi upute operatera.",
+    ],
+    emergencyExitTitle: "Trebaš li podršku dok ne stigne hitna pomoć?",
+    emergencyExitBody:
+      "Prvo nazovi 112. Ako situacija dopušta, liječnik online može te telefonom voditi dok pomoć ne stigne.",
+  },
+  rx: {
+    heading: "Kako želiš provjeriti recept ili terapiju?",
+    lead: "Fotografiraj recept ili izravno potraži lijek.",
+    photoTitle: "Učitaj fotografiju recepta",
+    photoDesc: "Kamerom telefona ili iz galerije",
+    searchTitle: "Upiši naziv lijeka",
+    searchDesc: "Saznaj osnovna pravila za sigurno uzimanje",
+    searchLabel: "Naziv lijeka",
+    placeholder: "Na primjer: Augmentin, Metformin",
+    suggestions: "Prijedlozi lijekova",
+    submit: "Provjeri lijek",
+    resultHeading: (medicine) => `Sigurnosna pravila za ${medicine}`,
+    fallbackMedicine: "tvoju terapiju",
+    rulesHeading: "3 pravila za sigurno uzimanje lijekova",
+    rules: [
+      "Uzimaj lijek svakog dana u isto vrijeme. Tako njegova razina u krvi ostaje ujednačena.",
+      "Izbjegavaj alkohol i provjeri uzima li se lijek prije ili poslije jela.",
+      "Nemoj prekidati terapiju ranije, osobito kod antibiotika, kako se bolest ne bi vratila.",
+    ],
+    plainRules: [
+      "Uzimaj tablete svaki dan u isto vrijeme uz punu čašu vode.",
+      "Nemoj piti alkohol dok uzimaš lijekove i nemoj ih piti na prazan želudac osim ako tako piše na kutiji.",
+      "Nemoj prestati uzimati lijek čim ti bude bolje. Popij terapiju sve dane kako je liječnik odredio.",
+    ],
+    exitTitle: "Nisi siguran ili sigurna oko doze ili kombinacije lijekova?",
+    exitBody: "Liječnik online može provjeriti tvoj recept i objasniti ti kako sigurno uzimati svaki lijek.",
+    summary: (medicine) => `Pitanja o receptu ili lijeku: ${medicine}`,
+  },
+  nav: {
+    heading: "Odaberi situaciju u kojoj se nalaziš",
+    lead: "Saznaj korake i potrebne dokumente. Ako zapneš, može ti pomoći zdravstveni medijator.",
+    planHeading: "Što trebaš učiniti",
+    scenarios: {
+      family_doctor: {
+        title: "Upis kod obiteljskog liječnika",
+        desc: "Kako pronaći liječnika blizu doma i koji ti dokumenti trebaju, čak i ako nisi zaposlen ili zaposlena",
+        steps: [
+          {
+            title: "Kamo otići",
+            body: "U najbližu ordinaciju obiteljske medicine u svom mjestu. Možeš odabrati bilo kojeg liječnika koji prima nove pacijente.",
+          },
+          {
+            title: "Koje dokumente ponijeti",
+            body: "Osobnu iskaznicu (ili privremenu potvrdu), rodne listove djece ako upisuješ i njih te dokaz o osiguranju HZZO-a ili CNAS-a ako ga imaš.",
+          },
+          {
+            title: "Ako nemaš zdravstveno osiguranje",
+            body: "Djeca mlađa od 18 godina i trudnice ostvaruju pravo na zdravstvenu zaštitu prema zakonu. Odrasle neosigurane osobe imaju pravo na hitnu skrb i osnovni paket pregleda.",
+          },
+        ],
+      },
+      no_insurance_id: {
+        title: "Bez osiguranja HZZO-a ili bez osobne iskaznice",
+        desc: "Koja prava imaš u hitnim stanjima i što dobivaš besplatno bez osiguranja",
+        steps: [
+          {
+            title: "U hitnoj službi (112 i hitni bolnički prijem)",
+            body: "Ako imaš ozbiljan zdravstveni problem, otiđi izravno na hitni bolnički prijem ili nazovi 112. Hitna medicinska pomoć zakonom je besplatna za svakoga.",
+          },
+          {
+            title: "Osnovna zaštita",
+            body: "I bez redovitog zdravstvenog osiguranja imaš pravo na skrb u hitnim stanjima, u trudnoći i kod teških zaraznih bolesti poput TBC-a ili hepatitisa.",
+          },
+          {
+            title: "Bez osobnih dokumenata",
+            body: "Bolnica te ne smije odbiti u hitnom stanju zato što nemaš osobnu iskaznicu. Osoblje će upisati podatke koje navedeš.",
+          },
+        ],
+      },
+      hospital_documents: {
+        title: "Dokumenti za pretrage ili bolničko liječenje",
+        desc: "Uputnica, zdravstvena iskaznica, potvrda o osiguranju i prijem u bolnicu",
+        steps: [
+          {
+            title: "Uputnica",
+            body: "Izdaje je obiteljski liječnik za laboratorijske pretrage, specijalistički pregled ili bolničko liječenje.",
+          },
+          {
+            title: "Pri prijemu u bolnicu",
+            body: "Ponesi osobni dokument, uputnicu te ranije nalaze i popis lijekova koje uzimaš.",
+          },
+          {
+            title: "Zdravstvena iskaznica",
+            body: "Ako nisi dobio ili dobila zdravstvenu iskaznicu ili si je izgubio ili izgubila, u područnom uredu HZZO-a ili nadležne osiguravateljske kuće možeš zatražiti zamjensku potvrdu.",
+          },
+        ],
+      },
+    },
+    mediatorTitle: "Imaš poteškoća na šalteru ili su te odbili?",
+    mediatorBody: "Zdravstveni medijator može ići s tobom i pomoći ti zaštititi tvoja prava.",
+    summary: (scenario) => `Snalaženje u zdravstvenom sustavu: ${scenario}`,
+  },
+  result: {
+    heading: "Tvoj recept jednostavnim riječima",
+    lead: "Asistent može pogriješiti pri čitanju recepta. Uvijek provjeri s ljekarnikom ili liječnikom prije uzimanja lijekova.",
+    assistantHeading: "Objašnjenje asistenta",
+    transcriptHeading: "Tekst pročitan s recepta",
+    transcriptNote: "Prepisano kako piše na receptu. Tamo gdje piše [unclear], tekst nije bio čitljiv.",
+    rulesHeading: "Važno zapamtiti",
+    emergency: "Asistent je primijetio znakove koji mogu biti hitni. Ako se sada osjećaš loše, nazovi 112.",
+    print: "Ispiši",
+    printAria: "Ispiši objašnjenje recepta",
+    speech: (summary, rules) => `${summary} Važno zapamtiti: ${rules}`,
+  },
+};
+
+const rom: AssistantCopy = {
+  machine: {
+    back: "Palpale",
+    intro: "Sikavimos pasho pala pasho",
+    stepOf: (step, total = 3) => `Pasho ${step} katar ${total}`,
+    progressLabel: "Drom prekal o sikavimos",
+    selectedTrailLabel: "Alosarde anglalipnata dji akana",
+  },
+  tree: {
+    heading: "So daravel tut adjes?",
+    plainHeading: "Sar shaj azhutinas tut adjes?",
+    lead: "Alosar so maladjol tuke maj mishto.",
+    bodyMapPrompt: "Manges te sikaves o chacho than pe 3D trupo?",
+    bodyMapLink: "Phuter o 3D trupo",
+    mediatorTag: "Azhutimos sastipnaske mediatoresa",
+    options: {
+      learn: {
+        title: "Mangav te sikljovav vareso",
+        plainTitle: "Mangav lokhe svatura vash jekh nasvalipen",
+        subtitle: "Lokhe anglalipnata vash vakcine, tensia e rateski, tatipen thaj antibiotikura",
+      },
+      risk: {
+        title: "Mangav te dikhav muro riziko",
+        plainTitle: "Mangav te dikhav te si man riziko vash diabeto vaj nasvalipen e ilesko",
+        subtitle: "3 skurte phuchimata thaj so shaj keres maj dur",
+      },
+      symptoms: {
+        title: "Si man jekh sastipnaski problema",
+        plainTitle: "Na hatjarav man mishto akana",
+        subtitle: "Anglunivar dikhas le znakoja vash dar, pala kodoja ingaras tut ko doktori",
+      },
+      prescription: {
+        title: "Si man jekh receta",
+        plainTitle: "Si man jekh receta thaj na haljarav sar te lav i drab",
+        subtitle: "Ker poza e recetake vaj rode o anav e drabako",
+      },
+      navigation: {
+        title: "Na dzanav kaj te djav",
+        plainTitle: "Na dzanav kaste doktori te djav vaj na-i man buletino",
+        subtitle: "Kaj te djas thaj save lila trebun tuke, vi bi asigurimasko",
+      },
+    },
+  },
+  learn: {
+    heading: "Vash soste manges te sikljoves?",
+    lead: "Lokhe shpjegimata, katar avel svako informacia.",
+    mythLabel: "Phiravdi xoxamni vorba",
+    verdictFalse: "Na-i chacho",
+    doctorLabel: "So si chacho",
+    sourceLabel: "Katar avel",
+    readGuide: "Ginav o sasto sikavimos",
+    browseGuides: "Dikh sa le sastipnaske sikavimata",
+    topics: {
+      vaccines: {
+        title: "Vakcine thaj arakhimos e truposko",
+        subtitle: "Sode si sigurime le vakcine thaj soske arakhen amen katar phare nasvalimata",
+        myth: "I vakcina vash gripa anel gripa vaj kerel o trupo kovlo.",
+        doctor:
+          "I vakcina vash gripa na-i la dzuvdo viruso so shaj kerel gripa. Voj sikavel o trupo te prindzarel o chacho viruso thaj te arakhel pe.",
+        plainDoctor:
+          "I vakcina si sar jekh sikavimos vash chiro trupo. Na kerel tut nasvalo, numa sikavel e trupos sar te marl pe le nasvalimasa.",
+        source: "Lumjaki organizacia vash o sastipen (WHO)",
+      },
+      heart: {
+        title: "Tensia e rateski thaj o ilo",
+        subtitle: "Bari tensia e rateski bi znakongo thaj sar te arakhes o ilo",
+        myth: "Te na dukhal man o shero, muri tensia e rateski si lachi.",
+        doctor:
+          "Bari tensia e rateski butivar na sikavel nijekh znako dji kaj na dukhavel o ilo vaj le rateske droma. Vash kodoja trebul mazerime butivar.",
+        plainDoctor:
+          "Bari tensia si sar jekh ceava pherdi zurales pajesa: khanchi na dukhal dji kaj na phadjol. Vash kodoja mazerisar la ko doktori vaj ki farmacia, vi kana hatjares tut mishto.",
+        source: "Europako kardiologijako khetanipen",
+      },
+      child_fever: {
+        title: "Tatipen ko chavoro",
+        subtitle: "Sar te huljaves o tatipen mishto thaj kana te djas ko doktori",
+        myth: "Baro tatipen ko chavoro trebul huljavdo sigo alkoholesa vaj shutesa pe morti.",
+        doctor:
+          "O alkoholo thaj o shuto djan andre prekal i sani morti e chavoreski thaj shaj keren pharo otrovimos. O tatipen huljavel pe drabasa dindi pala o pharipen e chavoresko thaj bute pajesa.",
+        plainDoctor:
+          "Shoha ma thov spirto vaj shuto pe morti e chavoreski, soske otrovinel les prekal i morti. De les paj vaj chajo thaj i drab vash tatipen so phendjas o doktori.",
+        source: "Lumjaki organizacia vash o sastipen (WHO)",
+      },
+      antibiotics: {
+        title: "Shil, gripa thaj antibiotikura",
+        subtitle: "Soske le antibiotikura na sastjaren virusura thaj so znachinel rezistenca",
+        myth: "Svako zurale shil nakhel maj sigo te les antibiotiko katar o angluno dives.",
+        doctor:
+          "O shil thaj i gripa aven katar virusura, a le antibiotikura mudaren numa le bakterije. Te les len bi trubujimasko, ruminen o por thaj keren rezistenca.",
+        plainDoctor:
+          "O antibiotiko mudarel numa bakterije, na le virusura so anen o shil. Te les les vash o shil, dukhaves chiro ogi thaj na sastjos maj sigo.",
+        source: "Lumjaki organizacia vash o sastipen (WHO)",
+      },
+    },
+    summary: (topic) => `Tema alosardi: ${topic}`,
+  },
+  risk: {
+    heading: "Sigo dikhimos e rizikosko",
+    lead: "De anglalipe Va vaj Na pe 3 skurte phuchimata. O rezultato na-i doktorikani diagnoza.",
+    quickTitle: "Khanchi katar i lista na maladjol tuke?",
+    quickBody: "Si tut telal 45 bersha, khonik and-i familija na-i les diabeto vaj bari tensia, thaj na-i tut butivar kadala simptome.",
+    quickButton: "Dikh o rezultato: tikno riziko",
+    questions: {
+      q1: {
+        title: "Bersha thaj familija",
+        text: "Si tut opral 45 bersha, vaj si varekaste and-i pashutni familija (dada, phrala, phenja) diabeto vaj bari tensia e rateski?",
+        plainText: "Si tut opral 45 bersha, vaj sas chire daden diabeto vaj bari tensia?",
+      },
+      q2: {
+        title: "Sar hatjares tut svako dives",
+        text: "Hatjares tut butivar khino bi soske, si tut bari trush vaj dukhal tut o shero butivar?",
+        plainText: "San but khino, pjes but paj vaj dukhal tut o shero butivar?",
+      },
+      q3: {
+        title: "Trajosko stilo",
+        text: "Pjes cigare svako dives, vaj xas butivar londo xabem, keralo xabem thaj guglimata?",
+        plainText: "Pjes thuv svako dives, vaj xas butivar londo thaj guglo xabem?",
+      },
+    },
+    yes: "Va",
+    no: "Na",
+    submit: "Dikh o rezultato",
+    resultHeading: "Chiro rezultato",
+    levelLabel: "Nivelo e rizikosko",
+    levels: { low: "Tikno riziko", moderate: "Mashkarutno riziko", high: "Baro riziko" },
+    messages: {
+      low: "Akana chiro riziko vash nasvalipen e ilesko thaj diabeto si tikno. Pij paj, phir svako dives thaj ker kontrola jekhvar and-o bersh.",
+      moderate:
+        "Si tut nesave faktorura so trebun dikhle. Mang katar o familijako doktori te mazerinel tuke i tensia thaj o zahari and-o rat.",
+      high: "Si tut maj but faktorura khetane. Vorbin jekhe doktoresa vash anglune analize e rateske.",
+    },
+    nextHeading: "So shaj keres akana",
+    nextSteps: [
+      "Mazerisar chiri tensia e rateski ki farmacia vaj ko familijako doktori.",
+      "Thov maj xantsi lon and-o xabem thaj pij barem 6 taxtaja paj ko dives.",
+      "Ker bi lovengi online programacia te vorbis vash o rezultato jekhe doktoresa.",
+    ],
+    summary: (level, count) => `Dikhimos e rizikosko: ${level} (${count}/3 faktorura)`,
+  },
+  gate: {
+    heading: "Si tut akana varesavo katar kadala znakoja vash dar?",
+    plainHeading: "Si tut akana varesavo but pharo znako?",
+    signs: [
+      "Bari dukh and-o kolin vaj pharipen pe kolin",
+      "But phari phurdinimos",
+      "Sigo pamortimos vaj kovlipen pe jekh rig e mujeski vaj e truposki",
+      "Sigo pharipen te vorbis",
+      "Baro rat so thabdel",
+    ],
+    plainSigns: [
+      "Dukhal tut zurales and-o kolin, sar baro pharipen",
+      "Phurdes but phares",
+      "Chiro muj, jekh vast vaj jekh punro kerdilo kovlo sigo",
+      "Nashti maj vorbis uzo",
+      "Thabdel tuke but rat",
+    ],
+    callNow: "Akhar 112 akana",
+    yes: "Va, si man barem jekh znako",
+    yesSeeTips: "Va, dikh so te phenes ko 112",
+    no: "Na, mure simptome si maj lokhe",
+    noNoneOfThese: "Na, nijekh katar kadala",
+    note: "Te san and-i dar, akhar tu ko 112. I aplikacia na akharel vash tute.",
+  },
+  symptoms: {
+    heading: "So dukhavel tut maj but?",
+    lead: "Alosar i kategorija, pala kodoja shaj vorbis jekhe doktoresa online.",
+    bodyMapHint: "Si tut dukh pe jekh than? Alosar o chacho than pe 3D trupo.",
+    bodyMapCta: "Dikh pe 3D trupo",
+    categories: {
+      fever: {
+        title: "Tatipen vaj shil",
+        desc: "Baro tatipen, izdraimos, dukh and-e muskulura, khinipen",
+      },
+      headache: {
+        title: "Dukh and-o shero vaj and-o korr",
+        desc: "Pharipen ko shero, zuralo korr, khine jakha",
+      },
+      stomach: {
+        title: "Dukh and-o por vaj chadikimos",
+        desc: "Dukh and-o ogi, lokhe krampura, phabarimos bi bute chadikimasko",
+      },
+      cough: {
+        title: "Khas vaj dukh and-o korr",
+        desc: "Phabardo korr, phandado nakh, nevo khas",
+      },
+    },
+    selectedLabel: "Alosardjan",
+    body: "Jekh doktori shaj dikhel tut sigo. Phenel tuke savi drab te les thaj dikhel te na avel vareso pharo.",
+    plainBody: "Na trebul te trais dukhasa khere vaj te les xapura bi dzanimasko. Shaj vorbis bi lovengo jekhe doktoresa pe telefono.",
+    homeCareHeading: "Sigurime arakhimos khere",
+    homeCareByCategory: {
+      fever: [
+        "Xodinisar ande jekh puterdi soba thaj pij butivar paj vaj tato chajo.",
+        "Mazerisar o tatipen termometrosa thaj dikh sar parudjol.",
+        "Ma le antibiotikura bi recetako katar o doktori.",
+      ],
+      headache: [
+        "Astav o telefono ande jekh chiti soba thaj pij 1–2 taxtaja paj.",
+        "Thov shudro dikhlo pe chikat thaj xodinisar o korr.",
+        "Ma pij but kafeava thaj sovel dosta.",
+      ],
+      stomach: [
+        "Pij paj xantsi po xantsi vaj chajo bi zaharesko.",
+        "Xa tikno thaj lokho xabem sar kirado rizo vaj uzi zumi.",
+        "Ma xa keralo xabem, ma pij alkoholo thaj ma le xapura pe chucho ogi.",
+      ],
+      cough: [
+        "Pij tato paj vaj chajo thaj phuter i fereastra te avel nevo bavlal.",
+        "Sov le sheresa xantsi maj opre pe perina te khases ratjate.",
+        "Durjar tut katar o thuv e cigarengo.",
+      ],
+    },
+    whenToCallHeading: "Kana te akhares e doktores vaj ko 112",
+    whenToCallTips: [
+      "O tatipen nakhel opral 38,5 °C maj but de 3 divesa vaj si ko tikno chavoro.",
+      "I dukh barjol sigo, o por kerdjol zuralo vaj nashti aches o paj.",
+      "Avel phari phurdinimos, pharipen and-o kolin vaj sigo kovlipen: akhar sigo ko 112.",
+    ],
+    safetyNet: "Te hatjares tut but maj nasul vaj avel jekh znako vash dar, akhar ko 112.",
+    summary: (category) => `Lokhe simptome: ${category}`,
+    emergencyHeading: "Trebul tuke sigardiari doktorikano azhutimos akana",
+    emergencyBody:
+      "Shaj aven znakoja katar jekh bari sigardiari situacia sar dab e ilesko, dab and-i godji vaj baro rat. Ma azhuker thaj ma rode svatura online.",
+    callNow: "Akhar 112 akana",
+    callTipsTitle: "Kana vorbis ko 112",
+    callTips: [
+      "Phen i chachi adresa kaj san.",
+      "Phen save simptome si le manushes thaj te si dzuvdo godjasa.",
+      "Ach pe telefono thaj ker sar phenen tuke.",
+    ],
+    emergencyExitTitle: "Trebul tuke azhutimos dji kaj avel i salvarea?",
+    emergencyExitBody:
+      "Anglunivar akhar ko 112. Te shaj, jekh doktori online shaj ingarel tut pe telefono dji kaj avel o azhutimos.",
+  },
+  rx: {
+    heading: "Sar manges te dikhes i receta vaj i drab?",
+    lead: "Ker poza e recetake vaj rode o anav e drabako.",
+    photoTitle: "Thov poza katar i receta",
+    photoDesc: "Le telefoneske kamerasa vaj katar i galerija",
+    searchTitle: "Ramov o anav e drabako",
+    searchDesc: "Sikljov le anglune regule te les la sigurime",
+    searchLabel: "Anav e drabako",
+    placeholder: "Misal: Augmentin, Metformin",
+    suggestions: "Drabura",
+    submit: "Dikh i drab",
+    resultHeading: (medicine) => `Regule vash arakhimos vash ${medicine}`,
+    fallbackMedicine: "chiri drab",
+    rulesHeading: "3 regule te les i drab sigurime",
+    rules: [
+      "Le i drab ko sasto chaso svako dives. Kadja achel pe jekh nivelo and-o rat.",
+      "Ma pij alkoholo thaj dikh te lel pe i drab angla vaj pala o xabem.",
+      "Ma astav i drab maj anglal, maj but le antibiotikura, kaste na avel palpale o nasvalipen.",
+    ],
+    plainRules: [
+      "Le le xapura ko sasto chaso svako dives, jekhe pherde taxtajesa paj.",
+      "Ma pij alkoholo kana les drab thaj ma le len pe chucho ogi te na ramol kadja pe kutija.",
+      "Ma astav i drab kana hatjares tut maj mishto. Ker sa le divesa sar ramodjas o doktori.",
+    ],
+    exitTitle: "Na dzanes sode drab te les vaj save drabura djan khetane?",
+    exitBody: "Jekh doktori online shaj dikhel chiri receta thaj shpjeginel tuke sar te les svako drab bi rizikosko.",
+    summary: (medicine) => `Phuchimata vash receta vaj drab: ${medicine}`,
+  },
+  nav: {
+    heading: "Alosar i situacia kaj san",
+    lead: "Dikh le pashura thaj le lila so trebun tuke. Te astarghos, azhutinel tut jekh sastipnasko mediatori.",
+    planHeading: "So trebul te keres",
+    scenarios: {
+      family_doctor: {
+        title: "Ramovimos ko familijako doktori",
+        desc: "Sar arakhes jekh doktori pasha o kher thaj save lila trebun tuke, vi te na keres buchi",
+        steps: [
+          {
+            title: "Kaj te djas",
+            body: "Ki maj pashutni ordinacia e familijake doktoreski ande chiro gav vaj foro. Shaj alosares svako doktori so si les puterde thana.",
+          },
+          {
+            title: "Save lila te ingares",
+            body: "O buletino, le bijandimaske lila e chavorenge te ramos vi len, thaj o lil vash asigurimos te si tut.",
+          },
+          {
+            title: "Te na san asigurime",
+            body: "Le chavore telal 18 bersha thaj le khamne dzuvlja si asigurime bi lovengo pala o zakono. Vi bi asigurimasko si tut chachipen pe bazutni kontrola thaj sigardiari azhutimos.",
+          },
+        ],
+      },
+      no_insurance_id: {
+        title: "Bi asigurimasko vaj bi buletinesko",
+        desc: "Save chachimata si tut ko sigardiari 112 thaj so les bi lovengo bi asigurimasko",
+        steps: [
+          {
+            title: "Ko sigardiari (112 thaj UPU)",
+            body: "Te si tut bari sastipnaski problema, dja sigo ki sigardiari rig ki bolnitsa vaj akhar 112. O sigardiari azhutimos si bi lovengo pala o zakono vash sako manush.",
+          },
+          {
+            title: "Bazutno paketo",
+            body: "Vi bi asigurimasko CNAS vaj HZZO si tut chachipen pe bi lovengo azhutimos vash phare nasvalimata (TBC, hepatita), khamnipen thaj sigardiari situacie.",
+          },
+          {
+            title: "Bi buletinesko vaj lilengo",
+            body: "I bolnitsa nashti phenel tuke na ko sigardiari soske na-i tut buletino. Le bucarne ka ramon le date so phenes tu.",
+          },
+        ],
+      },
+      hospital_documents: {
+        title: "Lila vash analize vaj bolnitsa",
+        desc: "Bichalimos katar o doktori, sastipnaski karta thaj drom ki bolnitsa",
+        steps: [
+          {
+            title: "O lil bichalimasko",
+            body: "Les les katar o familijako doktori vash analize vaj specialistikani kontrola.",
+          },
+          {
+            title: "Kana djas ki bolnitsa",
+            body: "Ingar tusa o buletino, o lil katar o familijako doktori thaj le purane analize vaj recete.",
+          },
+          {
+            title: "I sastipnaski karta",
+            body: "Te xasardjan vaj na ljan i sastipnaski karta, shaj manges jekh lil so zameninel la katar o ofiso vash sastipnasko asigurimos.",
+          },
+        ],
+      },
+    },
+    mediatorTitle: "Si tut pharipen ko ghisevo vaj phende tuke na?",
+    mediatorBody: "Jekh sastipnasko mediatori shaj djal tusa thaj azhutinel tut te arakhes chire chachimata.",
+    summary: (scenario) => `Drom and-o sastipnasko sistemo: ${scenario}`,
+  },
+  result: {
+    heading: "Chiri receta pe lokhe vorbe",
+    lead: "O azhutitori shaj dosharel ko ginavimos. Dikh svako data le farmacistosa vaj le doktoresa angla te les i drab.",
+    assistantHeading: "O shpjegimos e azhutitoresko",
+    transcriptHeading: "O teksto ginado katar i receta",
+    transcriptNote: "Kopijime sar ramol pe receta. Kaj ramol [unclear], o teksto nashti ginadilo.",
+    rulesHeading: "Te na bistres",
+    emergency: "O azhutitori dikhljas znakoja so shaj aven sigardiari. Te hatjares tut nasul akana, akhar ko 112.",
+    print: "Printisar",
+    printAria: "Printisar o shpjegimos e recetako",
+    speech: (summary, rules) => `${summary} Te na bistres: ${rules}`,
+  },
+};
+
+export const ASSISTANT_COPY: Record<Lang, AssistantCopy> = { ro, en, sq, it, hr, rom };
 
 export function getAssistantCopy(lang: string): AssistantCopy {
   return ASSISTANT_COPY[lang as Lang] ?? ASSISTANT_COPY[DEFAULT_LANG];

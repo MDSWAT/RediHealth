@@ -1,16 +1,23 @@
 import { describe, expect, it } from "vitest";
 import {
+  SUPPORTED_COUNTRIES,
   countryForLang,
   countryFromHeaders,
   langForCountry,
   normalizeInstitutePhone,
+  normalizeInstituteWebsite,
+  primaryPhoneHref,
   validateInstituteInput,
 } from "@/lib/medical-institutes";
-import { mapOsmElement } from "@/lib/osm-import";
+import { deduplicateOsmRows, mapOsmElement } from "@/lib/osm-import";
+import { findHelpTranslations } from "@/lib/i18n/find-help-translations";
+import { FIND_HELP_LINKS } from "@/lib/i18n/find-help-links";
+import { languages } from "@/lib/i18n/translations";
 
 describe("country / language detection", () => {
   it("reads the visitor country from CDN headers", () => {
     expect(countryFromHeaders(new Headers({ "cf-ipcountry": "it" }))).toBe("IT");
+    expect(countryFromHeaders(new Headers({ "cf-ipcountry": "hr" }))).toBe("HR");
     expect(countryFromHeaders(new Headers({ "x-vercel-ip-country": "AL" }))).toBe("AL");
     expect(countryFromHeaders(new Headers({ "cf-ipcountry": "XX" }))).toBeNull();
     expect(countryFromHeaders(new Headers())).toBeNull();
@@ -21,9 +28,22 @@ describe("country / language detection", () => {
     expect(langForCountry("MD")).toBe("ro");
     expect(langForCountry("XK")).toBe("sq");
     expect(langForCountry("IT")).toBe("it");
+    expect(langForCountry("HR")).toBe("hr");
     expect(langForCountry("DE")).toBeNull();
     expect(countryForLang("sq")).toBe("AL");
+    expect(countryForLang("hr")).toBe("HR");
+    expect(countryForLang("rom")).toBe("RO");
     expect(countryForLang("en")).toBe("RO");
+  });
+
+  it("provides find-help translations and country labels for every language and supported country", () => {
+    for (const { code: lang } of languages) {
+      expect(findHelpTranslations[lang]).toBeDefined();
+      expect(FIND_HELP_LINKS[lang]).toBeDefined();
+      for (const country of SUPPORTED_COUNTRIES) {
+        expect(findHelpTranslations[lang].countries[country]).toBeTruthy();
+      }
+    }
   });
 });
 
@@ -104,6 +124,89 @@ describe("mapOsmElement", () => {
     expect(
       mapOsmElement({ type: "node", id: 3, lat: 1, lon: 1, tags: { name: "A", disused: "yes" } }, "RO", "pharmacy"),
     ).toBeNull();
+    expect(
+      mapOsmElement({ type: "node", id: 4, lat: 45.8, lon: 15.9, tags: { name: "118", amenity: "hospital" } }, "IT", "hospital"),
+    ).toBeNull();
+    expect(
+      mapOsmElement(
+        { type: "node", id: 5, lat: 45.8, lon: 15.9, tags: { name: "Poljoprivredna ljekarna", amenity: "pharmacy" } },
+        "HR",
+        "pharmacy",
+      ),
+    ).toBeNull();
+    expect(
+      mapOsmElement(
+        { type: "node", id: 6, lat: 44.4, lon: 26.1, tags: { name: "Cabinet Medical Veterinar", amenity: "hospital" } },
+        "RO",
+        "hospital",
+      ),
+    ).toBeNull();
+  });
+
+  it("maps Croatian contact tags, emergency institutes and deduplicates co-located node + way pairs", () => {
+    const way = mapOsmElement(
+      {
+        type: "way",
+        id: 100,
+        center: { lat: 45.8261, lon: 16.0042 },
+        tags: {
+          amenity: "hospital",
+          "name:hr": "Klinički bolnički centar Zagreb",
+          "contact:street": "Kišpatićeva ulica",
+          "contact:housenumber": "12",
+          "contact:city": "Zagreb",
+          website: "https:// www.kbc-zagreb.hr",
+        },
+      },
+      "HR",
+      "hospital",
+    )!;
+    const node = mapOsmElement(
+      {
+        type: "node",
+        id: 101,
+        lat: 45.8262,
+        lon: 16.0043,
+        tags: {
+          amenity: "hospital",
+          name: "Klinički bolnički centar Zagreb",
+          phone: "00385 1 2388 888",
+          emergency: "yes",
+        },
+      },
+      "HR",
+      "hospital",
+    )!;
+    const merged = deduplicateOsmRows([node, way]);
+    expect(merged).toHaveLength(1);
+    expect(merged[0]).toMatchObject({
+      osm_ref: "way/100",
+      country_code: "HR",
+      name: "Klinički bolnički centar Zagreb",
+      address: "Kišpatićeva ulica 12",
+      city: "Zagreb",
+      phone: "+385 1 2388 888",
+      website: "https://www.kbc-zagreb.hr",
+      emergency: true,
+    });
+  });
+});
+
+describe("website and phone helpers", () => {
+  it("rejects email addresses masquerading as websites while preserving @ in URL paths", () => {
+    expect(normalizeInstituteWebsite("http://joyvetbucuresti@gmail.com")).toBeNull();
+    expect(normalizeInstituteWebsite("office@natisan.ro")).toBeNull();
+    expect(normalizeInstituteWebsite("https:// ruganihospital.it")).toBe("https://ruganihospital.it/");
+    expect(normalizeInstituteWebsite("https://www.dongnocchi.it/@strutture/centro")).toBe(
+      "https://www.dongnocchi.it/@strutture/centro",
+    );
+  });
+
+  it("normalizes common dial-code typos and creates single-number tel: links", () => {
+    expect(normalizeInstitutePhone("+4 021 3173245", "RO")).toBe("+40 021 3173245");
+    expect(normalizeInstitutePhone("00385 1 4812 345", "HR")).toBe("+385 1 4812 345");
+    expect(primaryPhoneHref("+39 06 1234567; +39 06 7654321")).toBe("tel:+39061234567");
+    expect(primaryPhoneHref("01/4812-345")).toBe("tel:014812345");
   });
 });
 

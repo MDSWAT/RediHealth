@@ -1,5 +1,5 @@
 /**
- * Free-text routing for the triage input on English, Albanian and Italian pages.
+ * Free-text routing for the triage input on English, Croatian, Romani, Albanian and Italian pages.
  *
  * The shared classifier in `@/lib/triage-state` only knows Romanian keywords and falls back
  * to the "learn" pathway, so "chest pain" typed on /en/health-assistant used to land on
@@ -50,10 +50,42 @@ const IT: Rules = {
   risk: [/rischi/, /\bfum/, /pression/, /diabet/, /zucchero/, /\bpeso\b/, /colesterol/, /cuore/],
 };
 
+const HR: Rules = {
+  symptoms: [
+    /\bbol(i|e|ovi|ova|u)?\b/, /glavobolj/, /vrucic/, /temperatur/, /groznic/, /kasalj|kaslj/, /povrac/, /mucnin/,
+    /krvar/, /disanj|disem|zaduha|gusenj|zraka/, /prsi/, /vrtoglavic/, /proljev/, /mozdani/, /nesvjestic|svijesti/,
+    /hitn/, /ambulanc|hitna/, /\b112\b/, /grl/, /osip/, /oteklin|otecen|otice/, /ozljed/, /napadaj/, /trbuh|zeludac/,
+  ],
+  prescription: [/recept/, /lijek/, /tablete?/, /pilul/, /kapsul/, /\bdoz(a|e|iranje)\b/, /antibiotik/, /terapij/, /sirup/],
+  navigation: [
+    /osiguranj/, /\bhzzo\b/, /iskaznic/, /osobn/, /bolnic/, /obiteljsk.* lijecnik|doktor.* opce/, /uputnic/,
+    /dokument/, /medijator/, /\bprav(a|o)\b/, /upis/, /gdje (da |mogu )?idem|kamo otici/,
+  ],
+  risk: [/rizik/, /pusenj|pusim|cigaret/, /krvni tlak|\btlak\b/, /dijabet/, /secer/, /tezin|debljin/, /kolesterol/, /\bsrce\b/],
+};
+
+const ROM: Rules = {
+  symptoms: [
+    /\bdukh/, /dukhal/, /tatipen/, /phabarel/, /khas/, /chad/, /\brat\b/, /phurd/, /kolin/, /shero phirel/,
+    /perav tele/, /bi godjako/, /sigardiari/, /\b112\b/, /nasval/, /korr/, /\bpor\b|\bogi\b/, /\bdumo\b/, /shuvljol/,
+  ],
+  prescription: [/recet/, /\bdrab/, /\bxap/, /pilul/, /tablet/, /\bdoz/, /antibiotik/],
+  navigation: [
+    /asigurim/, /buletin/, /\blil(a)?\b/, /bolnits/, /doktor/, /familijako/, /mediator/, /chachipen|chachimata/,
+    /sastipnasko/, /kaj te djav|kaj shaj djav/,
+  ],
+  risk: [/rizik/, /thuv|cigara/, /tensia|rat.* zor/, /diabet/, /zahari|guglipen/, /pharipen/, /\bilo\b/],
+};
+
 const ORDER: Exclude<PathwayId, "learn">[] = ["symptoms", "prescription", "navigation", "risk"];
 
 function normalize(query: string): string {
-  return query.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
+  return query
+    .toLowerCase()
+    .replace(/đ/g, "d")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
 }
 
 /**
@@ -64,7 +96,8 @@ export function classifyLocalIntent(query: string, lang: string): PathwayId | nu
   if (lang === "ro") return null;
   const q = normalize(query);
   if (!q) return null;
-  const sets = [lang === "sq" ? SQ : lang === "it" ? IT : null, EN].filter(Boolean) as Rules[];
+  const byLang: Partial<Record<string, Rules>> = { sq: SQ, it: IT, hr: HR, rom: ROM };
+  const sets = (lang === "rom" ? [ROM, HR, EN] : [byLang[lang], EN]).filter(Boolean) as Rules[];
   for (const pathway of ORDER) {
     for (const rules of sets) {
       if (rules[pathway]?.some((re) => re.test(q))) return pathway;

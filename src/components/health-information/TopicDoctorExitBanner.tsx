@@ -43,6 +43,16 @@ export const DOCTOR_BANNER_COPY: Record<Lang, DoctorBannerCopy> = {
     description: "Parla con un medico volontario in una chiamata vocale. È gratis e riservato.",
     buttonText: "Parla con un medico",
   },
+  hr: {
+    title: "Imaš pitanja o svom zdravlju?",
+    description: "Razgovaraj s liječnikom volonterom u glasovnom pozivu. Besplatno je i povjerljivo.",
+    buttonText: "Razgovaraj s liječnikom",
+  },
+  rom: {
+    title: "Si tut phuchimata vaš tiro sastipen?",
+    description: "De duma jekhe doktoresa volonteri pe glaso. Si bi lovengo thaj garavdo.",
+    buttonText: "De duma doktoresa",
+  },
 };
 
 export interface TopicDoctorExitBannerProps {

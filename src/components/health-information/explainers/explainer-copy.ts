@@ -6,4 +6,6 @@ export const SPEECH_LANG: Record<Lang, string> = {
   en: "en-GB",
   sq: "sq-AL",
   it: "it-IT",
+  hr: "hr-HR",
+  rom: "ro-RO",
 };

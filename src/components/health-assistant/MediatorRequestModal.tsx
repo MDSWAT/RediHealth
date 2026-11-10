@@ -6,6 +6,7 @@ import { CheckCircleIcon, HandHelpingIcon, XIcon } from "@/components/ui/icons";
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 
 interface MediatorRequestModalProps {
@@ -131,12 +132,70 @@ const dict = {
       "Un mediatore sanitario della tua zona ti chiamerà il prima possibile, di solito entro 24 ore.",
     close: "Chiudi",
   },
-};
+  hr: {
+    trigger: "Zatraži zdravstvenog medijatora",
+    title: "Zatraži zdravstvenog medijatora iz zajednice",
+    subtitle:
+      "Zdravstveni medijator je osoba iz tvoje zajednice koja ti besplatno pomaže s liječnicima, dokumentima i odlascima u bolnicu.",
+    nameLabel: "Tvoje ime ili inicijali",
+    namePlaceholder: "Na primjer: Marija I.",
+    phoneLabel: "Broj telefona",
+    phonePlaceholder: "Na primjer: 07xx xxx xxx",
+    countyLabel: "Županija ili okrug (județ)",
+    countyPlaceholder: "Odaberi područje",
+    locationLabel: "Mjesto ili naselje (nije obavezno)",
+    locationPlaceholder: "Na primjer: Florești",
+    consent: "Pročitao ili pročitala sam i prihvaćam",
+    privacyLink: "Pravila privatnosti",
+    required: "obavezno",
+    submitButton: "Pošalji zahtjev",
+    submitting: "Šalje se…",
+    cancel: "Odustani",
+    phoneError: "Unesi broj telefona na koji te možemo nazvati (najmanje 10 znamenki).",
+    countyError: "Odaberi područje u kojem se nalaziš.",
+    consentError: "Potvrdi da prihvaćaš Pravila privatnosti.",
+    sendError: "Nismo uspjeli poslati zahtjev. Pokušaj ponovno za nekoliko minuta.",
+    rateLimitError: "S ovog je uređaja poslano previše zahtjeva. Pokušaj ponovno malo kasnije.",
+    successTitle: "Tvoj zahtjev je poslan",
+    successMessage:
+      "Zdravstveni medijator iz tvog područja nazvat će te što prije, obično u roku od 24 sata.",
+    close: "Zatvori",
+  },
+  rom: {
+    trigger: "Mang jekhe sastipnaske mediatores",
+    title: "Mang jekhe sastipnaske mediatores katar i komuniteta",
+    subtitle:
+      "O sastipnasko mediatori si jekh manush katar i komuniteta so azhutinel tut bi lovengo le doktorensa, le lilensa thaj ki bolnitsa.",
+    nameLabel: "Chiro anav vaj anglune litere",
+    namePlaceholder: "Misal: Maria I.",
+    phoneLabel: "Telefonesko numero",
+    phonePlaceholder: "Misal: 07xx xxx xxx",
+    countyLabel: "Judetso",
+    countyPlaceholder: "Alosar o judetso",
+    locationLabel: "Foro vaj gav (te manges)",
+    locationPlaceholder: "Misal: Florești",
+    consent: "Ginadem thaj kabulisarav",
+    privacyLink: "Politika vash garavimos",
+    required: "musaj",
+    submitButton: "Bichav o mangimos",
+    submitting: "Bichavel pe…",
+    cancel: "Mekh",
+    phoneError: "Ramov jekh telefonesko numero kaj shaj akharas tut (barem 10 cifre).",
+    countyError: "Alosar o judetso kaj san.",
+    consentError: "Phen kaj kabulisares i Politika vash garavimos.",
+    sendError: "Nashti bichaldas o mangimos. Zumav pale pala nesave minutia.",
+    rateLimitError: "But mangimata sas bichalde katar kadava aparati. Zumav pale maj palal.",
+    successTitle: "Chiro mangimos sas bichaldo",
+    successMessage:
+      "Jekh sastipnasko mediatori katar chiro than ka akharel tut sigo, maj butivar ande 24 chasura.",
+    close: "Phandav",
+  },
+} satisfies Record<Lang, Record<string, string>>;
 
 export function MediatorRequestModal({ defaultScenario, className = "" }: MediatorRequestModalProps) {
   const { lang } = useLanguage();
   const executeCaptcha = useRecaptcha();
-  const t = dict[lang as keyof typeof dict] || dict[DEFAULT_LANG];
+  const t = dict[lang] || dict[DEFAULT_LANG];
   const ids = useId();
 
   const [isOpen, setIsOpen] = useState(false);

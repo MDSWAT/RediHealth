@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
+import type { Lang } from "@/lib/i18n/translations";
 
 type Copy = {
   title: string;
@@ -21,7 +22,7 @@ type Copy = {
   detailError: string;
 };
 
-export const copyByLang: Record<"en" | "ro" | "sq" | "it", Copy> = {
+export const copyByLang: Record<Lang, Copy> = {
   en: {
     title: "Report a problem",
     subtitle: "Tell us what went wrong. Our team will look at it.",
@@ -73,6 +74,32 @@ export const copyByLang: Record<"en" | "ro" | "sq" | "it", Copy> = {
     success: "Grazie. La segnalazione è stata inviata.",
     genericError: "La segnalazione non è stata inviata. Riprova.",
     detailError: "Scrivi almeno 10 caratteri, così capiamo il problema.",
+  },
+  hr: {
+    title: "Prijavi poteškoću",
+    subtitle: "Napiši nam što nije radilo. Naš tim će to provjeriti.",
+    emailLabel: "Tvoja adresa e-pošte (nije obvezno)",
+    emailPlaceholder: "ti@primjer.hr",
+    issueLabel: "Što se dogodilo?",
+    issuePlaceholder: "Što si htio učiniti i što se umjesto toga dogodilo?",
+    send: "Pošalji prijavu",
+    sending: "Slanje…",
+    success: "Hvala. Tvoja prijava je poslana.",
+    genericError: "Prijava nije poslana. Pokušaj ponovno.",
+    detailError: "Upiši najmanje 10 znakova kako bismo razumjeli poteškoću.",
+  },
+  rom: {
+    title: "Phen ekh pharipen",
+    subtitle: "Phen amenge so na kerdili mishto. Amaro timo ka dikhel les.",
+    emailLabel: "Cho emailo (nay musay)",
+    emailPlaceholder: "tu@misal.com",
+    issueLabel: "So kerdili?",
+    issuePlaceholder: "So kamlyan te keres thaj so kerdili chaches?",
+    send: "Bichhal o phenipe",
+    sending: "Bichhalel pes…",
+    success: "Nais tuke. Cho phenipe bichhaldilo.",
+    genericError: "O phenipe na bichhaldilo. Zumav palem.",
+    detailError: "Lekhav nay-zalag 10 semnya te achharas o pharipen.",
   },
 };
 

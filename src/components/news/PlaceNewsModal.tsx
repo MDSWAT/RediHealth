@@ -2,13 +2,24 @@
 
 import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AlertCircleIcon, ArrowRightIcon, CheckIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
-import { ALL_ITALY, isItalianRegion } from "@/components/ui/RomaniaCountyMap";
-import { countyLabel, formatNewsDate, placeName } from "@/components/news/news-format";
+import {
+  ALL_CROATIA,
+  ALL_ITALY,
+  ALL_MOLDOVA,
+  EXTRA_MAP_COPY,
+  isCroatianCounty,
+  isItalianRegion,
+  isMoldovanOnlyRegion,
+} from "@/components/ui/RomaniaCountyMap";
+import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
 import { useSheetDialog } from "@/components/news/use-sheet-dialog";
 import { cn } from "@/lib/cn";
 import {
+  CROATIA_WIDE,
   ITALY_WIDE,
+  MOLDOVA_WIDE,
   articleCountry,
   isCountryWide,
   isNationalCounty,
@@ -113,6 +124,40 @@ const COPY: Record<Lang, {
     where: "Dove",
     when: "Orario",
   },
+  hr: {
+    close: "Zatvori",
+    tabsLabel: "Vrste vijesti",
+    local: "Lokalno",
+    national: "Cijela zemlja",
+    count: (n) => (n % 10 === 1 && n % 100 !== 11 ? `${n} obavijest` : `${n} obavijesti`),
+    noLocal: (p) => `Trenutačno nema posebnih lokalnih vijesti za područje ${p}. U nastavku su obavijesti za cijelu zemlju.`,
+    highAlert: "Zdravstveno upozorenje",
+    seasonalAlert: "Sezonsko upozorenje",
+    measures: "Kako se zaštititi:",
+    readGuide: "Pročitaj više",
+    freeServices: "Besplatne usluge:",
+    readTime: "min čitanja",
+    read: "Pročitaj",
+    where: "Gdje",
+    when: "Radno vrijeme",
+  },
+  rom: {
+    close: "Phandav",
+    tabsLabel: "Tipurya nevimatenge",
+    local: "Lokalno",
+    national: "And-o sasto them",
+    count: (n) => (n === 1 ? "1 nevimos" : `${n} nevimata`),
+    noLocal: (p) => `Inke na si amen lokalne nevimata vash ${p}. Tele si e nevimata vash o sasto them.`,
+    highAlert: "Sastipnaski alerta",
+    seasonalAlert: "Sezonosko phenimos",
+    measures: "Sar te arakhes tut:",
+    readGuide: "Ginav may but",
+    freeServices: "Bi lovengo serviciye:",
+    readTime: "min ginavimos",
+    read: "Ginav",
+    where: "Kaj",
+    when: "Chasurya",
+  },
 };
 
 type TabKey = "all" | NewsCategory;
@@ -122,29 +167,36 @@ const isAlert = (a: NewsArticle) => a.category === "Alerte locale" && Boolean(a.
 const alertsFirst = (list: NewsArticle[]) => [...list.filter(isAlert), ...list.filter((a) => !isAlert(a))];
 
 export type PlaceNewsModalProps = {
-  /** The chosen place: a Romanian county, "Toate județele", an Italian region or ALL_ITALY. Null keeps it closed. */
+  /** The chosen place: a county, raion, županija, region, or country-wide sentinel. Null keeps it closed. */
   place: string | null;
+  /** Optional explicit country context (disambiguates shared names such as "Călărași"). */
+  countryHint?: NewsCountry;
   /** Articles already localized for the active language. */
   articles: NewsArticle[];
   onClose: () => void;
 };
 
 /** The country a chosen place belongs to. */
-export function placeCountry(place: string): NewsCountry {
-  return place === ALL_ITALY || isItalianRegion(place) ? "it" : "ro";
+export function placeCountry(place: string, countryHint?: NewsCountry): NewsCountry {
+  if (countryHint) return countryHint;
+  if (place === ALL_ITALY || isItalianRegion(place)) return "it";
+  if (place === ALL_CROATIA || isCroatianCounty(place)) return "hr";
+  if (place === ALL_MOLDOVA || isMoldovanOnlyRegion(place)) return "md";
+  return "ro";
 }
 
-/** True when the place is a whole country (all Romanian counties, or all of Italy). */
+/** True when the place is a whole country (all of Romania, Moldova, Croatia, or Italy). */
 export function isWholeCountry(place: string): boolean {
-  return place === ALL_ITALY || isNationalCounty(place);
+  return place === ALL_ITALY || place === ALL_MOLDOVA || place === ALL_CROATIA || isNationalCounty(place);
 }
 
 /**
  * What a place's news is: its own items first, then that country's nationwide items, each once.
- * Items from the other country never appear.
+ * Items from other countries never appear.
  */
-export function newsForPlace(place: string, articles: NewsArticle[]) {
-  const pool = articles.filter((a) => articleCountry(a) === placeCountry(place));
+export function newsForPlace(place: string, articles: NewsArticle[], countryHint?: NewsCountry) {
+  const targetCountry = placeCountry(place, countryHint);
+  const pool = articles.filter((a) => articleCountry(a) === targetCountry);
   if (isWholeCountry(place)) return { local: alertsFirst(pool), national: [] as NewsArticle[] };
   return {
     local: alertsFirst(pool.filter((a) => a.county === place)),
@@ -153,20 +205,21 @@ export function newsForPlace(place: string, articles: NewsArticle[]) {
 }
 
 /**
- * PlaceNewsModal: the news for one county, region or the whole country.
+ * PlaceNewsModal: the news for one county, raion, županija, region, or the whole country.
  * Category tabs with counts (empty ones hidden), alerts first, then articles.
- * Bottom sheet on phones; the header and tabs stay put while the list scrolls.
  */
-export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps) {
+export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceNewsModalProps) {
   const { lang, t } = useSafeLanguage();
+  const pathname = usePathname();
+  const basePath = resolveNewsBasePath(pathname);
   const np = t.newsPage;
   const c = COPY[lang] ?? COPY.ro;
+  const extra = EXTRA_MAP_COPY[lang] ?? EXTRA_MAP_COPY.ro;
   const open = place !== null;
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const [tab, setTab] = useState<TabKey>("all");
-  // Each newly chosen place starts on "all"; adjusting state during render avoids a flash of the old tab.
   const [tabPlace, setTabPlace] = useState(place);
   if (tabPlace !== place) {
     setTabPlace(place);
@@ -180,7 +233,10 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
     "Sfaturi de sezon": np.categories.seasonalAdvice,
   };
 
-  const groups = useMemo(() => (place ? newsForPlace(place, articles) : { local: [], national: [] }), [place, articles]);
+  const groups = useMemo(
+    () => (place ? newsForPlace(place, articles, countryHint) : { local: [], national: [] }),
+    [place, articles, countryHint],
+  );
   const all = useMemo(() => [...groups.local, ...groups.national], [groups]);
   const tabs = useMemo(() => {
     const order: NewsCategory[] = ["Alerte locale", "Caravane medicale", "Campanii de vaccinare", "Sfaturi de sezon"];
@@ -190,28 +246,37 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
         .map((cat) => ({ key: cat as TabKey, label: categoryLabels[cat], count: all.filter((a) => a.category === cat).length }))
         .filter((x) => x.count > 0),
     ];
-    // categoryLabels is derived from np.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [all, np]);
 
   useSheetDialog(open, panelRef, onClose);
 
-  // A new tab starts at the top of its list.
   useEffect(() => {
     listRef.current?.scrollTo({ top: 0 });
   }, [tab]);
 
   if (!place) return null;
 
-  const isItaly = place === ALL_ITALY || isItalianRegion(place);
+  const targetCountry = placeCountry(place, countryHint);
   const title = isNationalCounty(place)
     ? np.allCounties
     : place === ALL_ITALY
       ? (t.countyMap?.allItaly ?? place)
-      : isItaly
-        ? place
-        : countyLabel(place, lang);
-  const noteName = place === ALL_ITALY ? (t.countyMap?.italy ?? place) : placeName(place, lang);
+      : place === ALL_MOLDOVA
+        ? extra.allMoldova
+        : place === ALL_CROATIA
+          ? extra.allCroatia
+          : countyLabel(place, lang, targetCountry);
+
+  const noteName =
+    place === ALL_ITALY
+      ? (t.countyMap?.italy ?? place)
+      : place === ALL_MOLDOVA
+        ? extra.moldova
+        : place === ALL_CROATIA
+          ? extra.croatia
+          : placeName(place, lang);
+
   const inTab = (list: NewsArticle[]) => (tab === "all" ? list : list.filter((a) => a.category === tab));
   const local = inTab(groups.local);
   const national = inTab(groups.national);
@@ -229,7 +294,17 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
 
   const placeIsNational = isWholeCountry(place);
   const allItalyLabel = t.countyMap?.allItaly ?? ITALY_WIDE;
-  const itemProps = { labels: categoryLabels, c, lang, np, allItalyLabel, showCategory: tab === "all" };
+  const itemProps = {
+    labels: categoryLabels,
+    c,
+    lang,
+    np,
+    basePath,
+    allItalyLabel,
+    allMoldovaLabel: extra.allMoldova,
+    allCroatiaLabel: extra.allCroatia,
+    showCategory: tab === "all",
+  };
 
   return (
     <div
@@ -245,7 +320,6 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
         tabIndex={-1}
         className="news-sheet relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] sm:max-h-[85dvh] sm:rounded-xl focus:outline-none"
       >
-        {/* Pinned header and tabs */}
         <div className="shrink-0 border-b border-border px-5 pt-5 sm:px-7 sm:pt-6">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
@@ -301,7 +375,6 @@ export function PlaceNewsModal({ place, articles, onClose }: PlaceNewsModalProps
           )}
         </div>
 
-        {/* Scrolling list */}
         <div
           ref={listRef}
           id={panelId}
@@ -338,11 +411,12 @@ type ItemProps = {
   c: (typeof COPY)[Lang];
   lang: Lang;
   np: (typeof translations)["ro"]["newsPage"];
-  /** The category is shown on the "all" tab only; a category tab already names it. */
+  basePath: "/news" | "/stiri";
   showCategory: boolean;
-  /** The county is shown only where the group heading doesn't already say it. */
   showRegion: boolean;
   allItalyLabel: string;
+  allMoldovaLabel: string;
+  allCroatiaLabel: string;
 };
 
 function NewsList({ heading, items, ...rest }: ItemProps & { heading?: string; items: NewsArticle[] }) {
@@ -363,9 +437,31 @@ function NewsList({ heading, items, ...rest }: ItemProps & { heading?: string; i
   );
 }
 
-function Meta({ article: a, labels, c, lang, np, showCategory, showRegion, allItalyLabel, lead }: ItemProps & { article: NewsArticle; lead?: React.ReactNode }) {
+function Meta({
+  article: a,
+  labels,
+  c,
+  lang,
+  np,
+  showCategory,
+  showRegion,
+  allItalyLabel,
+  allMoldovaLabel,
+  allCroatiaLabel,
+  lead,
+}: ItemProps & { article: NewsArticle; lead?: React.ReactNode }) {
   const date = formatNewsDate(a.date, lang, { short: true, year: false });
-  const region = a.county === ITALY_WIDE && articleCountry(a) === "it" ? allItalyLabel : isNationalCounty(a.county) ? np.allCounties : placeName(a.county, lang);
+  const ac = articleCountry(a);
+  const region =
+    a.county === ITALY_WIDE && ac === "it"
+      ? allItalyLabel
+      : a.county === MOLDOVA_WIDE && ac === "md"
+        ? allMoldovaLabel
+        : a.county === CROATIA_WIDE && ac === "hr"
+          ? allCroatiaLabel
+          : isNationalCounty(a.county)
+            ? np.allCounties
+            : placeName(a.county, lang);
   return (
     <p className="flex flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground tabular-nums">
       {lead ?? (showCategory && <span className="font-semibold text-foreground/80">{labels[a.category] ?? a.category}</span>)}
@@ -385,16 +481,15 @@ function Meta({ article: a, labels, c, lang, np, showCategory, showRegion, allIt
   );
 }
 
-/** A regular article: the whole row opens it. */
 function ArticleItem(props: ItemProps & { article: NewsArticle }) {
-  const { article: a, c, lang } = props;
+  const { article: a, c, lang, basePath } = props;
   const caravan = a.category === "Caravane medicale" ? a.caravanDetails : undefined;
   return (
     <article className="group relative -mx-3 rounded-xl px-3 py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 has-[a:focus-visible]:bg-muted/50">
       <Meta {...props} />
       <h4 lang={a.language} className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-pretty">
         <Link
-          href={withLangPrefix(`/stiri/${a.slug}`, lang)}
+          href={withLangPrefix(`${basePath}/${a.slug}`, lang)}
           className="outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-2 focus-visible:after:ring-ring"
         >
           {a.title}
@@ -435,11 +530,10 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
   );
 }
 
-/** A local health alert: a softly tinted block with its measures and next steps. */
 function AlertItem(props: ItemProps & { article: NewsArticle }) {
-  const { article: a, c, lang, np } = props;
+  const { article: a, c, lang, np, basePath } = props;
   const high = a.epidemicSeverity === "high";
-  const href = withLangPrefix(`/stiri/${a.slug}`, lang);
+  const href = withLangPrefix(`${basePath}/${a.slug}`, lang);
   const tone = high
     ? { surface: "bg-amber-care-soft/70 dark:bg-amber-care/10", label: "text-amber-care dark:text-amber-care-border", icon: "text-amber-care dark:text-amber-care-border", rule: "border-amber-care/20" }
     : { surface: "bg-muted/60", label: "text-foreground", icon: "text-sapphire dark:text-sapphire-border", rule: "border-border" };

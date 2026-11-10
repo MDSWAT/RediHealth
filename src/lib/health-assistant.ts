@@ -10,13 +10,15 @@ export type AssistantResponse = {
 };
 
 export const urgentPattern =
-  /chest pain|difficulty breathing|shortness of breath|unconscious|fainting|seizure|stroke|face droop|severe bleeding|suicid|overdose/i;
+  /chest pain|difficulty breathing|shortness of breath|unconscious|fainting|seizure|stroke|face droop|severe bleeding|suicid|overdose|bol u prsima|pritisak u prsima|teško dišem|tesko disem|nedostatak zraka|zaduha|gušenje|gusenje|moždani udar|mozdani udar|bez svijesti|nesvjestica|jako krvarenje|napadaj|predoziranj|dukh and-o kolin|dukh ando kolin|dukh ko kolin|nashti phurdav|phari phurdinimos|perav tele|bi godjako|baro rat|rat thabdel/i;
 
 const responseLanguageLabel: Record<Lang, string> = {
   en: "English",
   ro: "Romanian",
   sq: "Albanian",
   it: "Italian",
+  hr: "Croatian",
+  rom: "Common Romani (Romanes, Latin script)",
 };
 
 const emergencyResponseByLang: Record<Lang, { possibleCause: string; message: string }> = {
@@ -36,6 +38,14 @@ const emergencyResponseByLang: Record<Lang, { possibleCause: string; message: st
     possibleCause: "Questi sintomi possono essere causati da condizioni gravi che richiedono una valutazione urgente.",
     message: "I tuoi sintomi potrebbero richiedere una valutazione urgente. Chiama subito il 112 o vai al pronto soccorso piu vicino. Non aspettare una risposta online.",
   },
+  hr: {
+    possibleCause: "Ovi simptomi mogu biti uzrokovani ozbiljnim stanjima koja zahtijevaju hitnu medicinsku procjenu.",
+    message: "Tvoji simptomi mogu zahtijevati hitnu medicinsku procjenu. Odmah nazovi 112 ili otiđi na najbliži hitni bolnički prijem. Nemoj čekati odgovor putem interneta.",
+  },
+  rom: {
+    possibleCause: "Kadala simptome shaj aven katar phare nasvalimata so mangen sigardiari kontrola.",
+    message: "Chire simptome shaj mangen sigardiari kontrola. Akhar 112 akana vaj dja ko maj pashutno sigardiari ki bolnitsa. Ma azhuker online anglalipnaske.",
+  },
 };
 
 const defaultPossibleCauseByLang: Record<Lang, string> = {
@@ -43,6 +53,8 @@ const defaultPossibleCauseByLang: Record<Lang, string> = {
   ro: "Nu exista inca suficiente informatii pentru a sugera o cauza posibila.",
   sq: "Nuk ka ende informacion te mjaftueshem per te sugjeruar nje shkak te mundshem.",
   it: "Non ci sono ancora informazioni sufficienti per suggerire una possibile causa.",
+  hr: "Još nema dovoljno podataka za procjenu mogućeg uzroka.",
+  rom: "Inke na-i dosta informacia te phenas soske shaj avel kadava.",
 };
 
 const defaultMessageByLang: Record<Lang, string> = {
@@ -50,6 +62,8 @@ const defaultMessageByLang: Record<Lang, string> = {
   ro: "Te rugam sa impartasesti aceste informatii cu un profesionist medical.",
   sq: "Te lutem ndaj kete informacion me nje profesionist shendetesor.",
   it: "Condividi queste informazioni con un professionista sanitario.",
+  hr: "Podijeli ove informacije sa zdravstvenim radnikom.",
+  rom: "Mangav tut, sikav kadaja informacia jekhe doktoreske vaj sastipnaske bucarneske.",
 };
 
 export function buildEmergencyResponse(lang: Lang): AssistantResponse {

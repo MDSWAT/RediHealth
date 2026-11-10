@@ -66,6 +66,26 @@ const portalMessages: Record<
     tooMany: "Troppi tentativi. Aspetta un po' e riprova.",
     expired: "Il link alla tua pagina è scaduto. Chiedine uno nuovo dalla pagina di accesso.",
   },
+  hr: {
+    symptoms: "Simptomi nisu spremljeni. Pokušaj ponovno.",
+    followup: "Kontrolni pregled nije spremljen. Pokušaj ponovno.",
+    photo: "Fotografija nije učitana. Pokušaj ponovno.",
+    complete: "Nismo uspjeli označiti pregled obavljenim. Pokušaj ponovno.",
+    tooBig: "Datoteka je prevelika. Odaberi manju od 5 MB.",
+    photoName: "Fotografija pacijenta",
+    tooMany: "Previše pokušaja. Pričekaj malo pa pokušaj ponovno.",
+    expired: "Poveznica na tvoju stranicu je istekla. Zatraži novu na stranici za prijavu.",
+  },
+  rom: {
+    symptoms: "Che simptome na arakhadyile. Zumav palem.",
+    followup: "E kontrola na arakhadyili. Zumav palem.",
+    photo: "E poza na vazdinyili. Zumav palem.",
+    complete: "Nashti te semnisaras e vizita sar kerdini. Zumav palem.",
+    tooBig: "O dokumento si but baro. Alosar ekh tela 5 MB.",
+    photoName: "Poza katar o paciento",
+    tooMany: "But zumavimata. Azhuker zalag thaj zumav palem.",
+    expired: "O linko vash chi rig nakhlo. Mang nevo pe rig vash khuvipe andre.",
+  },
 };
 
 const MAX_PHOTO_BYTES = 5 * 1024 * 1024;

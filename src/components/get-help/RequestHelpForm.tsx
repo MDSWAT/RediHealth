@@ -45,7 +45,14 @@ function validate(values: Fields, t: Translations["getHelpPage"]["form"]): Error
   return errors;
 }
 
-const countryLabel = { en: "Country", ro: "Țara", sq: "Shteti", it: "Paese" } as const;
+const countryLabel = {
+  en: "Country",
+  ro: "Țara",
+  sq: "Shteti",
+  it: "Paese",
+  hr: "Država",
+  rom: "Them",
+} as const;
 
 export function RequestHelpForm({
   countries,

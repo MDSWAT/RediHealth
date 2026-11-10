@@ -14,8 +14,7 @@ export function buildContentSecurityPolicy({ nonce, isDevelopment, meetingOrigin
   const directives = [
     "default-src 'self'",
     // React needs eval in development only (it rebuilds server stack traces in the browser).
-    // 'wasm-unsafe-eval' lets the self-hosted dotLottie player compile its WASM; it does not allow JS eval.
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'wasm-unsafe-eval'${isDevelopment ? " 'unsafe-eval'" : ""}`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${isDevelopment ? " 'unsafe-eval'" : ""}`,
     // Leaflet and several components position elements through inline style attributes.
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https:",
