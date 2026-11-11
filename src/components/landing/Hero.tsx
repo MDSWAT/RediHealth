@@ -15,14 +15,14 @@ import { useDialogFocus } from "@/components/health-check/useDialogFocus";
  * Landing hero:
  * - Extends beneath the transparent-on-load sticky header (-mt-16 pt-16 lg:-mt-20 lg:pt-20).
  * - Two columns on a shared grid: headline and steps align to the panel's question and footer.
- * - Full-bleed photo (object-cover) with subtle rAF-driven scroll depth under ink scrims.
+ * - Phones and tablets: the photo is an in-flow band under the header zone that fades into the
+ *   ink ground, so every line of text sits on solid ink. Desktop: the same photo is full-bleed behind ink scrims. It never moves.
  * - Entrance: the copy column settles once (globals.css `.hero-enter`), nothing staggers.
  */
 export function Hero() {
   const { lang } = useLanguage();
   const copy = heroCopy[lang];
   const [who, promise] = copy.lead.split(/(?<=\.)\s+/);
-  const sectionRef = useRef<HTMLElement>(null);
 
   // Phones and tablets: the panel opens as a bottom sheet from the primary button.
   // Desktop: it stays beside the headline. The sheet is one history entry, so Back closes it.
@@ -35,51 +35,6 @@ export function Hero() {
   }, []);
 
   useDialogFocus(sheetRef, sheetOpen, closeSheet);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el || typeof window === "undefined") return;
-    const reducedMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reducedMedia.matches) {
-      el.style.removeProperty("--hero-scroll");
-      return;
-    }
-
-    let rafId = 0;
-    const updateScrollVar = () => {
-      rafId = 0;
-      if (reducedMedia.matches) {
-        el.style.removeProperty("--hero-scroll");
-        return;
-      }
-      const height = Math.max(1, el.offsetHeight);
-      const progress = Math.min(1, Math.max(0, window.scrollY / height));
-      el.style.setProperty("--hero-scroll", progress.toFixed(4));
-    };
-
-    const onScroll = () => {
-      if (rafId === 0) {
-        rafId = window.requestAnimationFrame(updateScrollVar);
-      }
-    };
-
-    const onMotionChange = () => {
-      if (reducedMedia.matches) {
-        el.style.removeProperty("--hero-scroll");
-      } else {
-        updateScrollVar();
-      }
-    };
-
-    updateScrollVar();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    reducedMedia.addEventListener("change", onMotionChange);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      reducedMedia.removeEventListener("change", onMotionChange);
-      if (rafId !== 0) window.cancelAnimationFrame(rafId);
-    };
-  }, []);
 
   useEffect(() => {
     if (!sheetOpen) return;
@@ -103,33 +58,37 @@ export function Hero() {
 
   return (
     <section
-      ref={sectionRef}
       aria-labelledby="hero-title"
       className="hero relative isolate -mt-16 flex min-h-[calc(100svh-65px)] flex-col overflow-hidden bg-ink-950 pt-16 text-paper lg:-mt-20 lg:pt-20 xl:min-h-[calc(100svh-81px)]"
     >
-      {/* Full-bleed consultation photo with subtle GPU scroll depth behind ink scrims. */}
-      <Image
-        src="/images/hero-consultation.jpg"
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="100vw"
-        loading="eager"
-        fetchPriority="high"
-        style={{
-          transform: "translate3d(0, calc(var(--hero-scroll, 0) * 16px), 0) scale(1.025)",
-        }}
-        className="pointer-events-none -z-30 object-cover object-[65%_center] select-none will-change-transform motion-reduce:!transform-none"
-      />
+      {/* One photo, two placements: a band in the flow below lg, full-bleed behind the scrims from lg. */}
+      <div className="relative h-[clamp(180px,30svh,300px)] shrink-0 lg:absolute lg:inset-0 lg:-z-30 lg:h-auto">
+        <Image
+          src="/images/hero-consultation.jpg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          loading="eager"
+          fetchPriority="high"
+          className="pointer-events-none object-cover object-[60%_35%] select-none lg:object-[65%_center]"
+        />
+        {/* Phones: a light ink tint joins the photo to the header zone, then from 40% of its height
+            the photo eases into the ink ground the headline sits on. Many stops, so no band shows. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--color-ink-950)_28%,transparent)_0%,transparent_22%,transparent_40%,color-mix(in_srgb,var(--color-ink-950)_8%,transparent)_50%,color-mix(in_srgb,var(--color-ink-950)_24%,transparent)_60%,color-mix(in_srgb,var(--color-ink-950)_46%,transparent)_70%,color-mix(in_srgb,var(--color-ink-950)_70%,transparent)_80%,color-mix(in_srgb,var(--color-ink-950)_90%,transparent)_90%,var(--color-ink-950)_100%)] lg:hidden"
+        />
+      </div>
       {/* Horizontal scrim: near-solid ink under the headline, easing off toward the panel side. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-20 bg-ink-950/85 lg:bg-transparent lg:bg-[linear-gradient(90deg,rgba(10,18,38,0.96)_0%,rgba(10,18,38,0.9)_38%,rgba(10,18,38,0.62)_68%,rgba(10,18,38,0.5)_100%)]"
+        className="pointer-events-none absolute inset-0 -z-20 hidden bg-[linear-gradient(90deg,color-mix(in_srgb,var(--color-ink-950)_96%,transparent)_0%,color-mix(in_srgb,var(--color-ink-950)_90%,transparent)_38%,color-mix(in_srgb,var(--color-ink-950)_62%,transparent)_68%,color-mix(in_srgb,var(--color-ink-950)_50%,transparent)_100%)] lg:block"
       />
       {/* Vertical scrim: blends the photo into the header above and the ribbon below. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(10,18,38,0.85)_0%,rgba(10,18,38,0)_22%,rgba(10,18,38,0)_70%,rgba(10,18,38,0.95)_100%)]"
+        className="pointer-events-none absolute inset-0 -z-20 hidden bg-[linear-gradient(180deg,color-mix(in_srgb,var(--color-ink-950)_85%,transparent)_0%,transparent_22%,transparent_70%,color-mix(in_srgb,var(--color-ink-950)_95%,transparent)_100%)] lg:block"
       />
       {/* Subtle bottom inset horizon hairline separating the hero ground from the regional ribbon. */}
       <div
@@ -137,7 +96,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-px bg-linear-to-r from-white/5 via-white/20 to-white/5"
       />
 
-      <Container className="grid flex-1 content-center gap-y-10 py-10 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch lg:content-center lg:gap-x-14 lg:py-12 xl:gap-x-20">
+      <Container className="grid flex-1 content-center gap-y-10 pb-10 pt-5 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch lg:content-center lg:gap-x-14 lg:py-12 xl:gap-x-20">
         {/* Desktop: the headline lines up with the panel question, the steps with the panel footer. */}
         <div className="hero-enter flex flex-col lg:justify-between lg:pb-7 lg:pt-[80px]">
           <div>
@@ -145,17 +104,17 @@ export function Hero() {
               {copy.title}
             </h1>
             {/* Who it is for, then the promise. Desktop sets the promise on its own line. */}
-            <p className="mt-5 text-pretty text-[17px] leading-relaxed text-mist sm:text-[19px]">
+            <p className="mt-4 max-w-[34ch] text-pretty text-lead text-mist sm:mt-5 sm:max-w-[52ch]">
               <span className="lg:block">{who}</span>
               {promise ? (
                 <>
                   {" "}
-                  <span className="font-medium text-paper/90 lg:mt-1.5 lg:block">{promise}</span>
+                  <span className="font-semibold text-paper lg:mt-1.5 lg:block">{promise}</span>
                 </>
               ) : null}
             </p>
             {/* The page's one 112 line: calm, under the promise, tappable on phones. */}
-            <p className="mt-4 flex items-center gap-2 text-[15px] leading-snug text-mist sm:text-[16px]">
+            <p className="mt-3 flex items-center gap-2 text-body text-mist sm:mt-4">
               <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-paper/70" />
               <span>
                 {copy.emergency.callLead}{" "}
@@ -172,13 +131,13 @@ export function Hero() {
             <a
               href="#triage"
               onClick={goToTriage}
-              className="hero-focus mt-7 inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-paper px-6 text-[15.5px] font-semibold text-ink-950 shadow-(--hairline-refraction) transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-stone-200 sm:w-auto lg:hidden"
+              className="hero-focus press-solid mt-6 inline-flex min-h-14 w-full items-center justify-center rounded-(--radius-control) bg-paper px-6 text-base font-semibold text-ink-950 shadow-(--hairline-refraction) transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-paper/90 sm:mt-7 sm:w-auto lg:hidden"
             >
               {copy.primaryCta}
             </a>
           </div>
 
-          <CarePath steps={copy.journey} className="mt-10 lg:mt-12" />
+          <CarePath steps={copy.journey} className="hidden lg:grid lg:mt-12" />
         </div>
 
         {/* Desktop: the panel in the page. Phones: it opens as a sheet, rendered on <body> so it
@@ -195,10 +154,10 @@ export function Hero() {
                 role="dialog"
                 aria-modal="true"
                 aria-label={copy.panel.label}
-                className="hero-sheet fixed inset-x-0 bottom-0 z-[81] max-h-[90dvh] overflow-y-auto overscroll-contain rounded-t-xl bg-paper pb-[env(safe-area-inset-bottom)] text-ink-950"
+                className="hero-sheet fixed inset-x-0 bottom-0 z-[81] max-h-[90dvh] overflow-y-auto overscroll-contain rounded-t-(--radius-surface) bg-paper pb-[env(safe-area-inset-bottom)] text-ink-950"
               >
                 {/* One header row: the panel's own, with the close button beside the voice control. */}
-                <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-20 h-1 w-10 -translate-x-1/2 rounded-full bg-stone-300" />
+                <span aria-hidden="true" className="absolute left-1/2 top-1.5 z-20 h-1 w-10 -translate-x-1/2 rounded-full bg-ink-950/20" />
                 <TriagePanel
                   copy={copy.panel}
                   alarmSigns={copy.emergency.alarmSigns}

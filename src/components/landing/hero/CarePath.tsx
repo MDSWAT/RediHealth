@@ -8,31 +8,32 @@ const STEP_ICONS: readonly ComponentType<SVGProps<SVGSVGElement>>[] = [MessageDo
 
 /**
  * How it works, in three steps. Informational, not interactive: the triage
- * panel next to it is the single place to act. Static: a hairline with a 24px
- * top-edge tick and tabular numeral above each step, no staggered motion.
+ * panel next to it is the single place to act. Phones: three plain lines of
+ * icon and text, with no rules that could pass for links. From sm: three
+ * columns, each under a hairline with a 24px tick and its step figure.
+ * Static, no staggered motion.
  */
 export function CarePath({ steps, className }: { steps: [string, string, string]; className?: string }) {
   return (
-    <ol className={cn("care-path grid grid-cols-1 gap-x-6 sm:grid-cols-3", className)}>
+    <ol className={cn("care-path hidden gap-3 lg:grid lg:grid-cols-3 lg:gap-x-6", className)}>
       {steps.map((step, index) => {
         const Icon = STEP_ICONS[index] ?? MessageDotsIcon;
-        const stepCode = String(index + 1).padStart(2, "0");
         return (
           <li
             key={step}
-            className="relative flex items-center gap-3.5 border-t border-white/15 py-3.5 sm:flex-col sm:items-start sm:gap-2.5 sm:pt-4 sm:pb-0"
+            className="relative flex flex-col items-start gap-2.5 border-t border-white/15 pt-4"
           >
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute -top-px left-0 h-px w-6 bg-paper/65"
+              className="pointer-events-none absolute -top-px left-0 block h-px w-6 bg-paper/65"
             />
             <div aria-hidden="true" className="flex shrink-0 items-center gap-2">
-              <span className="font-mono text-xs font-medium tabular-nums text-paper/55">
-                {stepCode}
+              <span className="text-base font-semibold tabular-nums text-paper/70">
+                {index + 1}
               </span>
               <Icon className="h-5 w-5 shrink-0 text-paper/80" />
             </div>
-            <span className="text-[14.5px] font-medium leading-snug text-paper/85">
+            <span className="min-w-0 text-body text-paper/85">
               <span className="sr-only">{index + 1}. </span>
               {step}
             </span>
