@@ -3,7 +3,9 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { PhoneIcon, CheckCircleIcon, AlertCircleIcon, UsersIcon } from "@/components/ui/icons";
+import { IconTile } from "@/components/ui/IconTile";
+import { CheckCircleIcon, AlertCircleIcon, LockIcon } from "@/components/ui/icons";
+import { NAV_LINK_ICONS } from "@/components/layout/nav-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -129,8 +131,18 @@ const authModalCopy: Record<
 
 const EMPTY_CODE = ["", "", "", ""];
 
+const FOCUS_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:focus-visible:ring-paper";
+
+// The edge is border-control, 3:1 against the card, so an empty field can be found.
+const FIELD = `rounded-(--radius-control) border border-border-control bg-card text-foreground dark:border-white/40 dark:bg-ink-900 dark:text-paper ${FOCUS_RING}`;
+
+const SUBMIT_BUTTON = `press-solid inline-flex min-h-14 w-full items-center justify-center rounded-(--radius-control) bg-sapphire px-4 text-base font-semibold text-white transition-[background-color,filter] duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-light focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground motion-reduce:transition-none dark:bg-paper dark:text-ink-950 dark:hover:bg-paper/90 dark:focus-visible:ring-offset-ink-800 dark:disabled:bg-white/10 dark:disabled:text-mist ${FOCUS_RING}`;
+
+const FIELD_LABEL = "text-base font-semibold text-foreground dark:text-paper";
+
 /**
- * Account sign-in by phone: number, then a 4-digit SMS code (typed, pasted or filled by the phone).
+ * Account sign-in by phone, as one card: number, then a 4-digit SMS code (typed, pasted or filled
+ * by the phone), with the way to a health mediator in an amber block under the action.
  * Server messages are Romanian only, so errors shown here come from this file's own copy.
  */
 export function SmsPhoneAuthModal() {
@@ -233,35 +245,35 @@ export function SmsPhoneAuthModal() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-md rounded-xl border border-border bg-card p-6 sm:p-8">
-      <PhoneIcon className="h-6 w-6 text-sapphire" />
-      <h1 className="mt-4 text-2xl font-semibold tracking-tight text-foreground">{page.title}</h1>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step === 1 ? page.subtitle : copy.step2Subtitle(phone)}</p>
+    <div className="mx-auto w-full max-w-md rounded-(--radius-surface) border border-border bg-card p-6 sm:p-8 dark:border-white/10 dark:bg-ink-800">
+      <IconTile size={48} tone="sapphire-solid" icon={LockIcon} />
+      <h1 className="mt-4 text-page text-foreground dark:text-paper">{page.title}</h1>
+      <p className="mt-2 text-body text-muted-foreground dark:text-mist">{step === 1 ? page.subtitle : copy.step2Subtitle(phone)}</p>
 
       {error && (
-        <p id="auth-phone-error" role="alert" className="mt-4 flex items-start gap-2 rounded-lg border border-amber-care-border bg-amber-care-soft/40 p-3 text-sm font-medium text-foreground dark:bg-amber-care/10">
-          <AlertCircleIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
+        <p id="auth-phone-error" role="alert" className="mt-4 flex items-start gap-2 rounded-(--radius-control) border border-primary/30 bg-primary-soft p-3 text-body text-foreground dark:border-ruby-300/40 dark:bg-primary-soft/10 dark:text-paper">
+          <AlertCircleIcon aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-primary dark:text-ruby-300" />
           <span>{error}</span>
         </p>
       )}
 
       {sent && step === 2 && !error && (
-        <p role="status" className="mt-4 flex items-start gap-2 text-sm text-muted-foreground">
-          <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" />
+        <p role="status" className="mt-4 flex items-start gap-2 text-body text-muted-foreground dark:text-mist">
+          <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-sapphire dark:text-sapphire-border" />
           <span>{copy.smsSent}</span>
         </p>
       )}
 
       {demoCode && step === 2 && (
-        <p className="mt-2 rounded-lg bg-muted px-3 py-2 text-sm text-muted-foreground">
-          {copy.demoNotice} <strong className="font-mono text-foreground">{demoCode}</strong>
+        <p className="mt-2 rounded-(--radius-control) bg-muted px-3 py-2 text-body text-muted-foreground dark:bg-white/10 dark:text-mist">
+          {copy.demoNotice} <strong className="tabular-nums text-foreground dark:text-paper">{demoCode}</strong>
         </p>
       )}
 
       {step === 1 && (
         <form onSubmit={handleSendCode} className="mt-6 space-y-4" noValidate>
           <div>
-            <label htmlFor="authPhone" className="mb-1.5 block text-sm font-semibold text-foreground">
+            <label htmlFor="authPhone" className={`mb-1.5 block ${FIELD_LABEL}`}>
               {page.phoneLabel}
             </label>
             <input
@@ -275,14 +287,10 @@ export function SmsPhoneAuthModal() {
               placeholder={page.phonePlaceholder}
               aria-invalid={Boolean(error)}
               aria-describedby={error ? "auth-phone-error" : undefined}
-              className="min-h-[48px] w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className={`min-h-14 w-full px-4 text-lg placeholder:text-muted-foreground dark:placeholder:text-mist ${FIELD}`}
             />
           </div>
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
-          >
+          <button type="submit" disabled={isLoading} className={SUBMIT_BUTTON}>
             {isLoading ? copy.sending : page.sendCode}
           </button>
         </form>
@@ -291,7 +299,7 @@ export function SmsPhoneAuthModal() {
       {step === 2 && (
         <div className="mt-6 space-y-6">
           <fieldset>
-            <legend className="mb-2 text-sm font-semibold text-foreground">{page.codeLabel}</legend>
+            <legend className={`mb-2 ${FIELD_LABEL}`}>{page.codeLabel}</legend>
             <div className="flex gap-3">
               {otpDigits.map((digit, idx) => (
                 <input
@@ -312,7 +320,7 @@ export function SmsPhoneAuthModal() {
                     fillDigits(idx, e.clipboardData.getData("text"));
                   }}
                   onKeyDown={(e) => handleKeyDown(idx, e)}
-                  className="h-14 w-12 rounded-lg border border-border bg-background text-center font-mono text-2xl font-semibold text-foreground tabular-nums focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className={`h-14 w-12 text-center text-2xl font-semibold tabular-nums focus-visible:border-sapphire ${FIELD}`}
                 />
               ))}
             </div>
@@ -322,12 +330,12 @@ export function SmsPhoneAuthModal() {
             type="button"
             disabled={isLoading || otpDigits.some((d) => !d)}
             onClick={() => verifyOtp(otpDigits.join(""))}
-            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
+            className={SUBMIT_BUTTON}
           >
             {isLoading ? copy.verifying : page.verifyCode}
           </button>
 
-          <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
+          <div className="-mx-2 flex flex-wrap items-center justify-between gap-2 text-base">
             <button
               type="button"
               onClick={() => {
@@ -335,7 +343,7 @@ export function SmsPhoneAuthModal() {
                 setOtpDigits(EMPTY_CODE);
                 setError("");
               }}
-              className="min-h-[44px] rounded-sm text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className={`press-row min-h-11 rounded-(--radius-control) px-2 text-muted-foreground underline underline-offset-4 hover:text-foreground dark:text-mist dark:hover:text-paper ${FOCUS_RING}`}
             >
               {copy.changeNumber}
             </button>
@@ -343,7 +351,7 @@ export function SmsPhoneAuthModal() {
               type="button"
               onClick={() => void handleSendCode()}
               disabled={isLoading}
-              className="min-h-[44px] rounded-sm font-semibold text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
+              className={`press-row min-h-11 rounded-(--radius-control) px-2 font-semibold text-sapphire underline-offset-4 hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline dark:text-sapphire-border dark:disabled:text-mist ${FOCUS_RING}`}
             >
               {copy.resendSms}
             </button>
@@ -351,15 +359,17 @@ export function SmsPhoneAuthModal() {
         </div>
       )}
 
-      <div className="mt-8 border-t border-border pt-6">
-        <p className="text-sm text-muted-foreground">{copy.fallbackQuestion}</p>
-        <Link
-          href={withLangPrefix("/mediatori#solicita", lang)}
-          className="mt-1 inline-flex min-h-[44px] items-center gap-1.5 rounded-sm text-sm font-semibold text-sapphire hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
-        >
-          <UsersIcon className="h-4 w-4" />
-          {copy.fallbackLinkText}
-        </Link>
+      <div className="mt-4 flex items-start gap-3 rounded-(--radius-control) border border-amber-care-border bg-amber-care-soft p-4 dark:border-amber-care/40 dark:bg-amber-care/10">
+        <IconTile size={40} tone="amber" icon={NAV_LINK_ICONS["/mediatori"]} />
+        <div className="min-w-0">
+          <p className="text-body text-foreground dark:text-paper">{copy.fallbackQuestion}</p>
+          <Link
+            href={withLangPrefix("/mediatori#solicita", lang)}
+            className={`press-row -mx-2 mt-1 inline-flex min-h-11 items-center rounded-(--radius-control) px-2 text-base font-semibold text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border ${FOCUS_RING}`}
+          >
+            {copy.fallbackLinkText}
+          </Link>
+        </div>
       </div>
     </div>
   );

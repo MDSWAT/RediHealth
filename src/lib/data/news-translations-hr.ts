@@ -218,7 +218,7 @@ export const NEWS_TRANSLATIONS_HR: Record<string, LocalizedArticleFields> = {
     content: [
       "Mobilni medicinski tim i zdravstveni medijatori dolaze u zagrebačke četvrti Peščenica i Sesvete radi besplatnih preventivnih pregleda odraslih i djece.",
       "Možeš doći čak i ako nemaš HZZO zdravstveno osiguranje ili izabranog obiteljskog liječnika. Ponesi osobnu iskaznicu ako je imaš te ranije medicinske nalaze.",
-      "Zdravstveni medijator objašnjava ti izmjerene vrijednosti krvnog tlaka i glukoze u krvi jednostavnim riječima te te upućuje u najbliži dom zdravlja.",
+      "Zdravstveni medijator jasno ti objašnjava izmjerene vrijednosti krvnog tlaka i glukoze u krvi te te upućuje u najbliži dom zdravlja.",
     ],
     caravanLandmark: "Dvorište mjesnog društvenog doma",
     caravanVillage: "Grad Zagreb, Peščenica i Sesvete",

@@ -42,11 +42,18 @@
   --color-paper: #fbfaf6;
   --color-mist: #a9b3c6;
 
+  /* Warm neutral ground for alternating sections. The line is a decorative hairline only:
+     it is too faint for a control edge, so outlined controls on sand sit on a card. */
+  --color-sand: #f5eee3;
+  --color-sand-line: #e7d9c3;
+
   /* Deep Sapphire (Telemedicine and Clinical Authority) */
   --color-sapphire: #1d3557;
   --color-sapphire-light: #2a4d7c;
   --color-sapphire-soft: #eff6ff;
   --color-sapphire-border: #bfdbfe;
+  /* Secondary text on a solid sapphire fill (9.6:1). */
+  --color-on-sapphire-muted: #dbe4f0;
 
   /* Amber Gold (Community Health Mediators - WCAG AA compliant 5.02:1) */
   --color-amber-care: #b45309;
@@ -57,10 +64,43 @@
   /* Micro-status Sage (Restricted strictly to micro indicators) */
   --color-live-sage: #059669;
   --color-live-sage-soft: #ecfdf5;
+
+  /* Two radii: controls (buttons, inputs, icon tiles) and surfaces (cards, panels). */
+  --radius-control: 0.75rem;
+  --radius-surface: 1rem;
+
+  /* Type scale. The three heading sizes are fluid because a token cannot carry a breakpoint step.
+     Each size brings its own line height, tracking and weight; text-meta is for counters and captions only. */
+  --text-display: clamp(2rem, 1.2rem + 2.3vw, 3.25rem);
+  --text-display--line-height: 1.06;
+  --text-display--letter-spacing: -0.035em;
+  --text-display--font-weight: 700;
+  --text-page: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+  --text-page--line-height: 1.12;
+  --text-page--letter-spacing: -0.03em;
+  --text-page--font-weight: 700;
+  --text-section: clamp(1.75rem, 1.45rem + 1.3vw, 2.25rem);
+  --text-section--line-height: 1.15;
+  --text-section--letter-spacing: -0.025em;
+  --text-section--font-weight: 700;
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.3;
+  --text-title--letter-spacing: -0.015em;
+  --text-title--font-weight: 600;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.55;
+  --text-lead--font-weight: 400;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-body--font-weight: 400;
+  --text-meta: 0.875rem;
+  --text-meta--line-height: 1.4;
+  --text-meta--font-weight: 500;
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -101,6 +141,21 @@
 
 html {
   scroll-padding-top: calc(var(--chrome-h) + 0.75rem);
+  /* Old Android paints a grey rectangle over rounded targets; the press utilities below answer taps instead. */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
+ * Shown until Atkinson Hyperlegible Next loads. Its letters are as wide as Arial's on average
+ * (measured: 100.07%), so only the line box differs; matching ascent and descent keeps text from
+ * jumping when the web font swaps in.
+ */
+@font-face {
+  font-family: "Body Fallback";
+  src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Arimo");
+  ascent-override: 98.33%;
+  descent-override: 31.58%;
+  line-gap-override: 0%;
 }
 
 body {
@@ -109,9 +164,48 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* Page and section titles take the heading face; card titles (h3 and below) stay in the body face. */
+h1,
+h2 {
+  font-family: var(--font-display), var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
 /* Text selection in the site palette (sapphire tint) instead of the browser's default blue. */
 ::selection {
   background: rgb(29 53 87 / 0.16);
+}
+
+/*
+ * Press feedback for touch, where hover never fires: a colour step that lands at once and eases
+ * back over the element's own transition. Colour only, so it stays under reduced motion.
+ * A disabled control does not answer a press.
+ */
+@utility press-row {
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--color-sapphire-soft);
+    transition-duration: 0ms;
+  }
+
+  &:where(.dark, .dark *):active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--color-ink-800);
+    background-color: color-mix(in oklab, var(--color-sapphire-border) 22%, var(--color-ink-800));
+  }
+}
+
+/* For solid sapphire, ink and paper fills. Ruby buttons keep their own active colour. */
+@utility press-solid {
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    filter: brightness(0.9);
+    transition-duration: 0ms;
+  }
+}
+
+/* For transparent rows and links on ink or sapphire grounds. */
+@utility press-on-dark {
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: rgb(255 255 255 / 0.1);
+    transition-duration: 0ms;
+  }
 }
 
 .no-scrollbar {
@@ -180,15 +274,14 @@ body {
   }
 }
 
-
 /*
- * Health check. One calm entrance when the question changes (8px from the side you are moving
- * towards), and dialogs that fade in. Shared tokens only; fully static under reduced motion.
+ * Health check. One calm entrance when the question changes (a sideways push on phones, a short
+ * rise on desktop), and dialogs that fade in. Fully static under reduced motion.
  */
 @keyframes hc-step-in {
   from {
     opacity: 0;
-    transform: translateX(var(--hc-step-from, 8px));
+    transform: translate(var(--hc-step-x, 0), var(--hc-step-y, 0));
   }
 
   to {
@@ -219,12 +312,29 @@ body {
   }
 }
 
+/* Phones: the next question pushes in from the side, like a settings menu (back comes from the left). */
 .hc-step {
-  animation: hc-step-in var(--dur-base) var(--ease-out-calm) both;
+  --hc-step-x: 28%;
+  animation: hc-step-in 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
 }
 
 .hc-step[data-dir="back"] {
-  --hc-step-from: -8px;
+  --hc-step-x: -28%;
+}
+
+/* Desktop: the next question rises in gently, like a form; back drops in from above. */
+@media (min-width: 1024px) {
+  .hc-step {
+    --hc-step-x: 0;
+    --hc-step-y: 12px;
+    animation-duration: var(--dur-slow);
+    animation-timing-function: var(--ease-out-calm);
+  }
+
+  .hc-step[data-dir="back"] {
+    --hc-step-x: 0;
+    --hc-step-y: -12px;
+  }
 }
 
 .hc-backdrop {
@@ -240,43 +350,11 @@ body {
   animation: hc-fade-in var(--dur-slow) var(--ease-out-calm) both;
 }
 
-/* Step 4 clinical diagnostic guidance sheet: tactile archival paper elevation, subtle masthead
-   calibration grid, and staggered 55ms band choreography. */
-.hc-diag-sheet {
-  box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
-    0 1px 2px oklch(0.2 0.03 255 / 0.06),
-    0 18px 38px -18px oklch(0.2 0.04 255 / 0.14);
-}
-
-.hc-diag-masthead {
-  background-color: #f2f5f9;
-  background-image: radial-gradient(rgba(29, 53, 87, 0.075) 1px, transparent 1px);
-  background-size: 14px 14px;
-}
-
-.hc-diag-band {
-  animation: hc-sheet-in var(--dur-slow) var(--ease-out-calm) both;
-}
-
-.hc-diag-band-1 {
-  animation-delay: 40ms;
-}
-
-.hc-diag-band-2 {
-  animation-delay: 95ms;
-}
-
-.hc-diag-band-3 {
-  animation-delay: 150ms;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hc-step,
   .hc-backdrop,
   .hc-sheet,
-  .hc-reveal,
-  .hc-diag-band {
+  .hc-reveal {
     animation: none;
   }
 }
@@ -314,14 +392,14 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(2rem, 1.2rem + 2.3vw, 3.25rem);
-  line-height: 1.06;
-  letter-spacing: -0.035em;
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--text-display--letter-spacing);
   overflow-wrap: break-word;
   min-width: 0;
 }
 
-/* Focus ring that reads on the dark ground (the global ruby ring does not). */
+/* Focus ring for any ink or sapphire ground, where the sapphire ring is invisible. */
 .hero-focus:focus-visible {
   outline: 2px solid var(--color-paper);
   outline-offset: 3px;
@@ -448,24 +526,40 @@ body {
 }
 /* ---------- End landing hero ---------- */
 
-/* Tools with a pinned bottom action bar lift the floating report button above it. */
-body:has([data-sticky-actions]) .report-issue-trigger {
-  bottom: calc(5.25rem + env(safe-area-inset-bottom));
+/*
+ * Reveal (src/components/ui/Reveal.tsx): one entrance for content below the fold, opacity plus a
+ * 12px rise, once. The server HTML never carries data-reveal, so without JavaScript nothing is
+ * hidden; the component only arms a block that is still below the viewport after hydration.
+ */
+[data-reveal="armed"] {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
 }
-@media (max-width: 1023px) {
-  /* On phones the tool's own bar carries every action; the floating report button would cover it. */
-  body:has([data-sticky-actions]) .report-issue-trigger {
-    display: none;
+
+[data-reveal="revealed"] {
+  transition:
+    opacity var(--dur-slow) var(--ease-out-calm) var(--reveal-delay, 0ms),
+    transform var(--dur-slow) var(--ease-out-calm) var(--reveal-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  [data-reveal="armed"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal="revealed"] {
+    transition: none;
   }
 }
-
-
 
 /* Home hero on phones and tablets: the "Ce te îngrijorează?" panel as a bottom sheet. */
 @keyframes hero-sheet-up { from { transform: translateY(100%); } to { transform: none; } }
 @keyframes hero-sheet-fade { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 1023.98px) {
-  body:has(.hero-sheet) .report-issue-trigger { display: none; }
+  body:has(.hero-sheet) .report-issue-trigger,
+  body:has(.hero-sheet) .feedback-trigger,
+  body:has(.hero-sheet) .feedback-invite-card { display: none; }
   .hero-sheet { animation: hero-sheet-up var(--dur-slow) var(--ease-out-calm); }
   .hero-sheet-backdrop { animation: hero-sheet-fade var(--dur-base) var(--ease-out-calm); }
   .hero-sheet .hero-panel { border-radius: 0; box-shadow: none; background: var(--color-paper, #fff); }
@@ -509,7 +603,9 @@ body:has([data-sticky-actions]) .report-issue-trigger {
 
 /* Phones: pages with a bottom action bar (guides) lift the report icon above it instead of covering it. */
 @media (max-width: 1023px) {
-  body:has([data-bottom-bar]) .report-issue-trigger {
+  body:has([data-bottom-bar]) .report-issue-trigger,
+  body:has([data-bottom-bar]) .feedback-trigger,
+  body:has([data-bottom-bar]) .feedback-invite-card {
     bottom: calc(3.5rem + 0.75rem + env(safe-area-inset-bottom));
   }
 }
@@ -761,6 +857,8 @@ body:has([data-sticky-actions]) .report-issue-trigger {
   header.site-header,
   footer,
   .report-issue-trigger,
+  .feedback-trigger,
+  .feedback-invite-card,
   [data-bottom-bar],
   [data-sticky-actions] {
     display: none !important;
@@ -790,5 +888,79 @@ body:has([data-sticky-actions]) .report-issue-trigger {
     border: none !important;
     padding: 0 !important;
     box-shadow: none !important;
+  }
+}
+
+
+/*
+ * Height of the sticky site header (its 112 line, 2rem, plus the bar, 4rem or 5rem from xl), for
+ * the first paint. The header publishes its measured height over this once it runs, including
+ * after the 112 line is closed. Only where the header exists: chromeless pages keep 0.
+ */
+:root:has(.site-header) {
+  --site-header-h: 6rem;
+}
+
+@media (min-width: 1280px) {
+  :root:has(.site-header) {
+    --site-header-h: 7rem;
+  }
+}
+
+/*
+ * Short desktop screens (a 1366x768 or 1440x900 laptop, under 820px of window height): the hero
+ * tightens so the hero, its triage panel and the news ticker below all fit the first screen.
+ * Rows stay 44px tall, the touch minimum.
+ */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .hero .hero-grid {
+    padding-block: 1.25rem;
+  }
+
+  .hero-panel > header {
+    height: 3.25rem;
+  }
+
+  .hero-panel li > button {
+    min-height: 44px;
+    padding-block: 0.25rem;
+  }
+
+  .hero-panel li > button > span:first-child {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* Very short desktop screens (1366x768 and similar, under 700px of window height). */
+@media (min-width: 1024px) and (max-height: 700px) {
+  .hero .hero-grid {
+    padding-block: 0.25rem;
+  }
+
+  .hero-panel > header {
+    height: 3rem;
+  }
+
+  .hero-panel li > button {
+    min-height: 40px;
+    padding-block: 0.125rem;
+  }
+
+  .hero-panel h2 {
+    font-size: 19px;
+  }
+
+  .hero-panel ul {
+    margin-top: 0.375rem;
+  }
+
+  .hero-panel > .grid > * {
+    padding-top: 0.75rem;
+    padding-bottom: 1rem;
+  }
+
+  .hero-enter > ol {
+    margin-top: 1.5rem;
   }
 }

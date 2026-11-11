@@ -71,7 +71,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     warningSignsAudioPrefix: "Când ai nevoie de ajutor",
     dualGlossaryTitle: "Dicționar medical",
     dualGlossaryDescription:
-      "22 de cuvinte de pe rețete și bilete de trimitere, spuse simplu.",
+      "22 de termeni de pe rețete și bilete de trimitere, explicați pe scurt.",
     dualGlossaryCta: "Deschide dicționarul",
     romanesGlossaryTitle: "Cuvinte medicale în romani",
     romanesGlossaryDescription:
@@ -96,7 +96,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     warningSignsAudioPrefix: "When to get help",
     dualGlossaryTitle: "Medical dictionary",
     dualGlossaryDescription:
-      "22 words from prescriptions and referrals, in plain words.",
+      "22 terms from prescriptions and referrals, explained clearly.",
     dualGlossaryCta: "Open the dictionary",
     romanesGlossaryTitle: "Medical words in Romani",
     romanesGlossaryDescription:
@@ -121,7 +121,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     warningSignsAudioPrefix: "Kur të duhet ndihmë",
     dualGlossaryTitle: "Fjalor mjekësor",
     dualGlossaryDescription:
-      "22 fjalë nga recetat dhe fletët e referimit, të thëna thjesht.",
+      "22 terma nga recetat dhe fletët e referimit, të shpjeguar qartë.",
     dualGlossaryCta: "Hap fjalorin",
     romanesGlossaryTitle: "Fjalë mjekësore në gjuhën rome",
     romanesGlossaryDescription:
@@ -146,7 +146,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     warningSignsAudioPrefix: "Quando chiedere aiuto",
     dualGlossaryTitle: "Dizionario medico",
     dualGlossaryDescription:
-      "22 parole di ricette e impegnative, dette in modo semplice.",
+      "22 termini di ricette e impegnative, spiegati con chiarezza.",
     dualGlossaryCta: "Apri il dizionario",
     romanesGlossaryTitle: "Parole mediche in romanì",
     romanesGlossaryDescription:
@@ -171,7 +171,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     warningSignsAudioPrefix: "Kada potražiti pomoć",
     dualGlossaryTitle: "Medicinski rječnik",
     dualGlossaryDescription:
-      "22 riječi s recepata i uputnica, objašnjene jednostavno.",
+      "22 pojma s recepata i uputnica, jasno objašnjena.",
     dualGlossaryCta: "Otvori rječnik",
     romanesGlossaryTitle: "Medicinske riječi na romskom",
     romanesGlossaryDescription:
@@ -196,7 +196,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     warningSignsAudioPrefix: "Kana trebul zhutimos",
     dualGlossaryTitle: "Doktorengo lavustik",
     dualGlossaryDescription:
-      "22 lava katar le retsete thaj le lila, phende pe lokhi chib.",
+      "22 lava katar le retsete thaj le lila, ashkarde mishto.",
     dualGlossaryCta: "Phuter o lavustik",
     romanesGlossaryTitle: "Doktorenge lava pe romani chib",
     romanesGlossaryDescription:

@@ -11,7 +11,7 @@ export const siteMetadata: Record<Lang, SiteMetadata> = {
   en: {
     title: "RediHealth: health information and help finding care",
     description:
-      "Free health information in plain words. Check your symptoms, find a pharmacy or doctor, and get help from a health mediator.",
+      "Free, clear health information. Check your symptoms, find a pharmacy or doctor, and get help from a health mediator.",
     skipLink: "Skip to main content",
     openGraphLocale: "en_US",
   },
@@ -25,28 +25,28 @@ export const siteMetadata: Record<Lang, SiteMetadata> = {
   sq: {
     title: "RediHealth: informacion për shëndetin dhe ndihmë për të gjetur mjekun",
     description:
-      "Informacion falas për shëndetin, me fjalë të thjeshta. Kontrollo simptomat, gjej një farmaci ose mjek dhe kërko ndihmë nga një ndërmjetës shëndetësor.",
+      "Informacion falas dhe i qartë për shëndetin. Kontrollo simptomat, gjej një farmaci ose mjek dhe kërko ndihmë nga një mediator shëndetësor.",
     skipLink: "Kalo te përmbajtja kryesore",
     openGraphLocale: "sq_AL",
   },
   it: {
     title: "RediHealth: informazioni sulla salute e aiuto per trovare le cure",
     description:
-      "Informazioni gratuite sulla salute, in parole semplici. Controlla i sintomi, trova una farmacia o un medico e chiedi aiuto a un mediatore sanitario.",
+      "Informazioni gratuite e chiare sulla salute. Controlla i sintomi, trova una farmacia o un medico e chiedi aiuto a un mediatore sanitario.",
     skipLink: "Vai al contenuto principale",
     openGraphLocale: "it_IT",
   },
   hr: {
     title: "RediHealth: informacije o zdravlju i pomoć pri dolasku do liječnika",
     description:
-      "Besplatne informacije o zdravlju jednostavnim riječima. Provjeri simptome, pronađi ljekarnu ili liječnika i zatraži pomoć zdravstvenog medijatora.",
+      "Besplatne i jasne informacije o zdravlju. Provjeri simptome, pronađi ljekarnu ili liječnika i zatraži pomoć zdravstvenog medijatora.",
     skipLink: "Preskoči na glavni sadržaj",
     openGraphLocale: "hr_HR",
   },
   rom: {
     title: "RediHealth: sastipnaske informaciye thaj zhutimos te areses ko doktori",
     description:
-      "Sastipnaske informaciye bi lovesko, pe lokhe alava. Dikh che simptome, arakh ekh farmaciya vay doktori thaj mang zhutimos katar ekh sastipnasko mediatori.",
+      "Chache sastipnaske informaciye bi lovesko. Dikh che simptome, arakh ekh farmaciya vay doktori thaj mang zhutimos katar ekh sastipnasko mediatori.",
     skipLink: "Nakhsav ko sherutno kotor",
     openGraphLocale: "rom_RO",
   },

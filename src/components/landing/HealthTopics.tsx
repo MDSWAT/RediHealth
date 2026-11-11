@@ -1,78 +1,119 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ArrowRightIcon } from "@/components/ui/icons";
+import { HealthTopicsSpotlight } from "@/components/landing/HealthTopicsSpotlight";
+import { HealthTopicsWheel } from "@/components/landing/HealthTopicsWheel";
+import { WHEEL_ICONS } from "@/components/landing/HealthTopicsWheelIcons";
+import { WHEEL_ORDER } from "@/components/landing/health-topics-wheel-config";
+import { cn } from "@/lib/cn";
 import { getHealthTopicsList } from "@/lib/i18n/health-information-topics";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
 import { translations } from "@/lib/i18n/translations";
 
+/** The link to every guide. It renders below the grid on phones and beside the heading from sm. */
+function ViewAllLink({ href, label, className }: { href: string; label: string; className?: string }) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "press-solid group min-h-12 items-center justify-center gap-2 rounded-(--radius-control) bg-sapphire px-5 py-2 text-center text-base font-semibold text-white transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sand motion-reduce:transition-none dark:bg-paper dark:text-ink-950 dark:hover:bg-paper/90 dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-900",
+        className,
+      )}
+    >
+      <span className="min-w-0">{label}</span>
+      <ArrowRightIcon className="h-5 w-5 shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
+    </Link>
+  );
+}
+
 /**
- * Eight health topics as a sealed Swiss ruled-index matrix (1px hairlines,
- * 01-08 tabular indices, sapphire icon plates, and GPU-composited hover arrows).
- * Titles, descriptions and icons come from `getHealthTopicsList(lang)` in a
- * Server Component so the guide dictionary never ships to the browser here.
+ * Eight health topics on the sand ground. Phones: two columns of photo tiles,
+ * a rounded photo with the title beneath it straight on the sand, no card.
+ * From sm: three columns of bordered cards with the blurb. From lg the grid
+ * gives way to the topic wheel beside one card that follows it
+ * (`HealthTopicsSpotlight`). The heading and each tile settle in as they
+ * scroll into view.
+ * Titles, blurbs and photos come from `getHealthTopicsList(lang)` in a Server
+ * Component, so the guide dictionary never ships to the browser here.
  */
 export async function HealthTopics() {
   const lang = await getRequestLang();
   const { title, subtitle, viewAll } = translations[lang].landing.healthTopics;
   const topics = getHealthTopicsList(lang);
+  const viewAllHref = withLangPrefix("/health-information", lang);
+
+  const spotlightTopics = WHEEL_ORDER.flatMap((slug) => {
+    const topic = topics.find((item) => item.slug === slug);
+    if (!topic) return [];
+    const Icon = WHEEL_ICONS[slug] ?? topic.icon;
+    return [
+      {
+        slug,
+        title: topic.title,
+        description: topic.description,
+        image: topic.image,
+        href: withLangPrefix(`/health-information/${slug}`, lang),
+        icon: <Icon />,
+      },
+    ];
+  });
 
   return (
-    <section className="border-y border-border bg-surface-subtle/50 py-16 sm:py-24">
-      <Container>
-        <SectionHeading
-          as="h2"
-          title={title}
-          subtitle={subtitle}
-          action={
-            <Link
-              href={withLangPrefix("/health-information", lang)}
-              className="group inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-sapphire shadow-(--shadow-card-rest) transition-[background-color,border-color,color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/35 hover:bg-sapphire-soft/50 hover:shadow-(--shadow-card-hover) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
-            >
-              <span>{viewAll}</span>
-              <ArrowRightIcon className="h-4 w-4 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
-            </Link>
+    <Section tone="sand" className="lg:py-[clamp(1.5rem,5svh,4rem)]!">
+      <Container size="wide">
+        <HealthTopicsSpotlight
+          topics={spotlightTopics}
+          wheel={
+            <div>
+              <HealthTopicsWheel label={title} className="lg:max-w-[min(42.5rem,calc(100svh-var(--site-header-h)-4rem))]!" />
+            </div>
           }
-        />
-
-        <ol className="mt-10 grid gap-px overflow-hidden rounded-xl border border-border bg-border shadow-(--shadow-card-rest) sm:grid-cols-2 lg:grid-cols-4">
-          {topics.map(({ slug, title: topicTitle, description, icon: Icon }, index) => {
-            const href = `/health-information/${slug}`;
-            const indexCode = String(index + 1).padStart(2, "0");
-            return (
-              <li key={slug} className="bg-card">
-                <Link
-                  href={withLangPrefix(href, lang)}
-                  className="surface-spotlight group flex h-full flex-col p-6 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-surface-subtle/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none sm:p-7"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sapphire-border/70 bg-sapphire-soft text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:bg-sapphire group-hover:text-white motion-reduce:transition-none">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="font-mono text-xs font-medium tabular-nums text-muted-foreground/80"
-                    >
-                      {indexCode}
-                    </span>
-                  </div>
-
-                  <span className="mt-5 flex items-start justify-between gap-2">
-                    <span className="text-lg font-semibold leading-snug tracking-[-0.015em] text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none">
-                      {topicTitle}
-                    </span>
-                    <ArrowRightIcon className="mt-1 h-4 w-4 shrink-0 -translate-x-1 text-sapphire opacity-0 transition-[opacity,transform] duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 motion-reduce:transition-none" />
-                  </span>
-
-                  <span className="mt-2 block text-pretty text-[14.5px] leading-relaxed text-muted-foreground">
-                    {description}
-                  </span>
-                </Link>
+          heading={
+            // Short desktop screens (under 760px tall) drop the subtitle, so the section fits.
+            <div className="lg:[@media(max-height:760px)]:[&_p]:hidden">
+              <SectionHeading
+                as="h2"
+                title={title}
+                subtitle={subtitle}
+                action={<ViewAllLink href={viewAllHref} label={viewAll} className="hidden sm:inline-flex lg:hidden" />}
+              />
+            </div>
+          }
+        >
+          {/* Phones: the heading's empty action slot already adds a 16px gap, so the grid adds the other 16px. */}
+          <ul className="mt-4 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 lg:hidden">
+            {topics.map(({ slug, title: topicTitle, description, image }) => (
+              <li key={slug}>
+                <div className="h-full">
+                  <Link
+                    href={withLangPrefix(`/health-information/${slug}`, lang)}
+                    className="press-row group flex h-full flex-col rounded-(--radius-surface) transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:overflow-hidden sm:border sm:border-sand-line sm:bg-card sm:hover:border-sapphire/35 dark:focus-visible:ring-paper dark:sm:border-white/10 dark:sm:bg-ink-800 dark:sm:hover:border-white/25"
+                  >
+                    <div className="relative aspect-4/3 overflow-hidden rounded-(--radius-surface) bg-surface-subtle sm:rounded-none">
+                      <Image src={image} alt="" fill sizes="(min-width: 640px) 33vw, 50vw" className="object-cover" />
+                    </div>
+                    <div className="min-w-0 px-1 pb-1 pt-2 sm:p-4">
+                      <h3 className="text-balance wrap-break-word text-base font-semibold leading-snug text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper dark:group-hover:text-sapphire-border">
+                        {topicTitle}
+                      </h3>
+                      <p className="mt-1 hidden text-pretty text-body text-muted-foreground sm:block dark:text-mist">
+                        {description}
+                      </p>
+                    </div>
+                  </Link>
+                </div>
               </li>
-            );
-          })}
-        </ol>
+            ))}
+          </ul>
+
+          <div className="mt-6 sm:hidden lg:mt-[clamp(1rem,2.5svh,1.5rem)] lg:block">
+            <ViewAllLink href={viewAllHref} label={viewAll} className="flex w-full lg:inline-flex lg:w-auto" />
+          </div>
+        </HealthTopicsSpotlight>
       </Container>
-    </section>
+    </Section>
   );
 }

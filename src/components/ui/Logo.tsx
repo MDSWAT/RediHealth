@@ -13,12 +13,14 @@ type LogoProps = {
   href?: string;
   /** Localized accessible name, starting with the brand (e.g. "RediHealth, home page"). Defaults to the brand name. */
   label?: string;
+  onClick?: () => void;
 };
 
-export function Logo({ className, muted = false, tone = "default", href = "/", label }: LogoProps) {
+export function Logo({ className, muted = false, tone = "default", href = "/", label, onClick }: LogoProps) {
   return (
     <Link
       href={href}
+      onClick={onClick}
       className={cn(
         "inline-flex items-center gap-2.5 rounded-md font-semibold",
         className,
@@ -29,7 +31,7 @@ export function Logo({ className, muted = false, tone = "default", href = "/", l
       <span
         className={cn(
           "text-lg tracking-tight transition-colors duration-(--dur-base) ease-(--ease-out-calm)",
-          tone === "light" ? "text-paper" : muted ? "text-muted-foreground" : "text-foreground",
+          tone === "light" ? "text-paper" : muted ? "text-muted-foreground" : "text-foreground dark:text-paper",
         )}
       >
         {BRAND_NAME}

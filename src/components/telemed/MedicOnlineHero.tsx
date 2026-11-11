@@ -235,32 +235,32 @@ export function MedicOnlineHero() {
           </div>
         </div>
 
-        <ul className="mt-8 grid grid-cols-1 gap-3.5 border-t border-border pt-6 sm:grid-cols-3 sm:gap-4">
-          <li className="flex items-center gap-3.5 rounded-xl border border-border/70 bg-card p-3.5 shadow-2xs sm:p-4">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sapphire/10 text-sapphire dark:bg-sapphire-soft/10 dark:text-sapphire-border">
+        <ul className="mt-8 grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3 sm:gap-5">
+          <li className="group relative flex items-start gap-4 rounded-2xl border border-stone-200/90 bg-gradient-to-b from-card via-card to-card/95 p-4 sm:p-5 shadow-xs transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:-translate-y-0.5 hover:border-sapphire/40 hover:shadow-md dark:border-stone-800">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sapphire-soft/80 text-sapphire ring-1 ring-sapphire/15 transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:scale-105 group-hover:bg-sapphire group-hover:text-white dark:bg-sapphire/15 dark:text-sapphire-light dark:ring-sapphire/25">
               <ShieldIcon className="h-5 w-5" />
             </span>
-            <div className="min-w-0">
-              <p className="text-sm font-semibold leading-tight text-foreground">{c.freeTitle}</p>
-              <p className="mt-0.5 text-xs text-muted-foreground leading-normal text-pretty">{c.freeDesc}</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold tracking-[-0.01em] text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light sm:text-base">{c.freeTitle}</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground text-pretty sm:text-sm">{c.freeDesc}</p>
             </div>
           </li>
-          <li className="flex items-center gap-3.5 rounded-xl border border-border/70 bg-card p-3.5 shadow-2xs sm:p-4">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sapphire/10 text-sapphire dark:bg-sapphire-soft/10 dark:text-sapphire-border">
+          <li className="group relative flex items-start gap-4 rounded-2xl border border-stone-200/90 bg-gradient-to-b from-card via-card to-card/95 p-4 sm:p-5 shadow-xs transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:-translate-y-0.5 hover:border-sapphire/40 hover:shadow-md dark:border-stone-800">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sapphire-soft/80 text-sapphire ring-1 ring-sapphire/15 transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:scale-105 group-hover:bg-sapphire group-hover:text-white dark:bg-sapphire/15 dark:text-sapphire-light dark:ring-sapphire/25">
               <GlobeIcon className="h-5 w-5" />
             </span>
-            <div className="min-w-0">
-              <p className="text-sm font-semibold leading-tight text-foreground">{c.browserTitle}</p>
-              <p className="mt-0.5 text-xs text-muted-foreground leading-normal text-pretty">{c.browserDesc}</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold tracking-[-0.01em] text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light sm:text-base">{c.browserTitle}</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground text-pretty sm:text-sm">{c.browserDesc}</p>
             </div>
           </li>
-          <li className="flex items-center gap-3.5 rounded-xl border border-border/70 bg-card p-3.5 shadow-2xs sm:p-4">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sapphire/10 text-sapphire dark:bg-sapphire-soft/10 dark:text-sapphire-border">
+          <li className="group relative flex items-start gap-4 rounded-2xl border border-stone-200/90 bg-gradient-to-b from-card via-card to-card/95 p-4 sm:p-5 shadow-xs transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:-translate-y-0.5 hover:border-sapphire/40 hover:shadow-md dark:border-stone-800">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sapphire-soft/80 text-sapphire ring-1 ring-sapphire/15 transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:scale-105 group-hover:bg-sapphire group-hover:text-white dark:bg-sapphire/15 dark:text-sapphire-light dark:ring-sapphire/25">
               <PhoneIcon className="h-5 w-5" />
             </span>
-            <div className="min-w-0">
-              <p className="text-sm font-semibold leading-tight text-foreground">{c.smsTitle}</p>
-              <p className="mt-0.5 text-xs text-muted-foreground leading-normal text-pretty">{c.smsDesc}</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold tracking-[-0.01em] text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light sm:text-base">{c.smsTitle}</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground text-pretty sm:text-sm">{c.smsDesc}</p>
             </div>
           </li>
         </ul>

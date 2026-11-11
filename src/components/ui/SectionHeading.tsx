@@ -16,6 +16,11 @@ type SectionHeadingProps = {
   titleClassName?: string;
 };
 
+/**
+ * Section title (700, fluid `text-section`) with an optional lead (`text-lead`, 52ch measure) and an
+ * optional action beside it from `sm`. Inside a Section it follows the ground: paper and mist on
+ * the ink tone, and on every tone once `.dark` turns the grounds dark.
+ */
 export function SectionHeading({
   title,
   subtitle,
@@ -35,14 +40,19 @@ export function SectionHeading({
     >
       <Heading
         className={cn(
-          "text-balance text-3xl font-semibold tracking-[-0.025em] text-foreground sm:text-4xl",
+          "text-balance text-section text-foreground in-data-[tone=ink]:text-paper dark:in-data-tone:text-paper",
           titleClassName,
         )}
       >
         {title}
       </Heading>
       {subtitle ? (
-        <p className="mt-3.5 text-pretty text-lg leading-relaxed text-muted-foreground">
+        <p
+          className={cn(
+            "mt-3.5 max-w-[52ch] text-pretty text-lead text-muted-foreground in-data-[tone=ink]:text-mist dark:in-data-tone:text-mist",
+            align === "center" && "mx-auto",
+          )}
+        >
           {subtitle}
         </p>
       ) : null}

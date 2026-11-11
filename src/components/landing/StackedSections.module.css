@@ -1,0 +1,210 @@
+/* The ground seen around a sheet that has eased back: the page's own white, so the rounded
+   corners and the sides of a covered sheet read as page, not as a dark frame. */
+.stack {
+  background: var(--color-background);
+}
+
+:global(.dark) .stack {
+  background: var(--color-ink-950);
+}
+
+/* Holds where `--stack-top` says (set once per resize by StackedSections.tsx). Each sheet is its
+   own stacking context, so its dimming veil can never paint over the sticky site header. */
+.layer {
+  position: sticky;
+  top: var(--stack-top, 0px);
+  isolation: isolate;
+}
+
+/*
+ * Every sheet but the last fills the visible height at least, so the next one never shows before its
+ * turn, and is followed by a stretch of scroll where nothing happens (`--stack-hold`): the
+ * sheet has arrived, it stays whole and bright, and a small extra scroll does not start
+ * covering it.
+ */
+.layer:not(:last-child) {
+  --stack-hold: 20svh;
+  display: flex;
+  flex-direction: column;
+  /* The visible height: the screen less the sticky site header and its 112 line. */
+  min-height: calc(100svh - var(--site-header-h, 4rem));
+  margin-bottom: var(--stack-hold);
+}
+
+@media (min-width: 1024px) {
+  .layer:not(:last-child) {
+    --stack-hold: 25svh;
+  }
+}
+
+/* The section takes the spare height, with its content in the middle of it. */
+.layer:not(:last-child) > :first-child {
+  flex: 1 0 auto;
+}
+
+.layer:not(:last-child) > :only-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* From lg the section's content sits in the middle of its sheet; on phones it starts at the top,
+   so a short section leaves its spare room below rather than as a gap above its heading. */
+@media (min-width: 1024px) {
+  .layer:not(:last-child) > :only-child {
+    justify-content: center;
+  }
+}
+
+/* Every sheet after the first arrives with rounded shoulders and a soft shadow on what it covers. */
+.layer + .layer {
+  overflow: clip;
+  border-radius: 1.75rem 1.75rem 0 0;
+  box-shadow: 0 -1rem 2.5rem -1rem rgb(8 12 24 / 0.4);
+}
+
+@media (min-width: 1024px) {
+  .layer + .layer {
+    border-radius: 2.5rem 2.5rem 0 0;
+  }
+}
+
+/* A sheet that is wholly covered rests: nothing in it keeps animating out of sight. */
+.layer[data-buried] :global(*),
+.layer[data-buried] :global(*)::before,
+.layer[data-buried] :global(*)::after {
+  animation-play-state: paused !important;
+}
+
+/*
+ * The sheet underneath eases back as the next one rises over it. Each sheet's progress up the
+ * screen is a named view timeline, and the sheet before it plays against that timeline, so the
+ * browser drives it in step with the scroll, off the main thread. Only transform and opacity move.
+ */
+@supports (animation-timeline: view()) {
+  .stack {
+    timeline-scope: --stack-sheet-2, --stack-sheet-3, --stack-sheet-4, --stack-sheet-5, --stack-sheet-6, --stack-sheet-7, --stack-sheet-8;
+  }
+
+  .layer {
+    /* Shrinks toward the middle of the part that is on screen (the layer holds by its bottom edge). */
+    transform-origin: 50% calc(100% - 50svh);
+    animation: stack-recede linear both;
+    animation-range: entry 0% entry 100%;
+  }
+
+  /* Dims the sheet underneath. */
+  .layer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 60; /* above everything in its own sheet; the sheet contains it */
+    background: var(--color-ink-950);
+    opacity: 0;
+    pointer-events: none;
+    animation: stack-dim linear both;
+    animation-range: entry 0% entry 100%;
+  }
+
+  .layer:nth-child(2) {
+    view-timeline-name: --stack-sheet-2;
+  }
+
+  .layer:nth-child(1),
+  .layer:nth-child(1)::after {
+    animation-timeline: --stack-sheet-2;
+  }
+
+  .layer:nth-child(3) {
+    view-timeline-name: --stack-sheet-3;
+  }
+
+  .layer:nth-child(2),
+  .layer:nth-child(2)::after {
+    animation-timeline: --stack-sheet-3;
+  }
+
+  .layer:nth-child(4) {
+    view-timeline-name: --stack-sheet-4;
+  }
+
+  .layer:nth-child(3),
+  .layer:nth-child(3)::after {
+    animation-timeline: --stack-sheet-4;
+  }
+
+  .layer:nth-child(5) {
+    view-timeline-name: --stack-sheet-5;
+  }
+
+  .layer:nth-child(4),
+  .layer:nth-child(4)::after {
+    animation-timeline: --stack-sheet-5;
+  }
+
+  .layer:nth-child(6) {
+    view-timeline-name: --stack-sheet-6;
+  }
+
+  .layer:nth-child(5),
+  .layer:nth-child(5)::after {
+    animation-timeline: --stack-sheet-6;
+  }
+
+  .layer:nth-child(7) {
+    view-timeline-name: --stack-sheet-7;
+  }
+
+  .layer:nth-child(6),
+  .layer:nth-child(6)::after {
+    animation-timeline: --stack-sheet-7;
+  }
+
+  .layer:nth-child(8) {
+    view-timeline-name: --stack-sheet-8;
+  }
+
+  .layer:nth-child(7),
+  .layer:nth-child(7)::after {
+    animation-timeline: --stack-sheet-8;
+  }
+
+}
+
+@keyframes stack-recede {
+  to {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes stack-dim {
+  to {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .layer {
+    position: static;
+    animation: none;
+  }
+
+  .layer:not(:last-child) {
+    display: block;
+    min-height: 0;
+    margin-bottom: 0;
+  }
+
+  .layer:not(:last-child) > :only-child {
+    display: block;
+  }
+
+  .layer::after {
+    display: none;
+  }
+
+  .layer + .layer {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

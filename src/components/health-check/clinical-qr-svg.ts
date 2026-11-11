@@ -376,7 +376,7 @@ export function encodeQrMatrix(text: string): boolean[][] {
  */
 export function renderClinicalQrSvgData(
   text: string,
-  quietZone = 2,
+  quietZone = 4,
 ): { size: number; path: string } {
   const matrix = encodeQrMatrix(text);
   const n = matrix.length;

@@ -1,14 +1,21 @@
 "use client";
 
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
+import { IconTile, type IconTileTone } from "@/components/ui/IconTile";
+import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ArrowRightIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, GlobeIcon, HandHelpingIcon, CheckCircleIcon, HeartIcon, LockIcon, MessageDotsIcon } from "@/components/ui/icons";
+import { NAV_LINK_ICONS, type NavIcon } from "@/components/layout/nav-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 
+/** The promises, in order: free for everyone, data stays private, clear guidance. */
+const PROMISE_ICONS = [HeartIcon, LockIcon, MessageDotsIcon];
+
+type SourceId = "oms" | "mediatori" | "redi";
+
 type SourceOrPartner = {
-  id: string;
+  id: SourceId;
   name: string;
   role: string;
   /** Public page for the source, opened in a new tab. */
@@ -186,99 +193,92 @@ const COPY: Record<Lang, TrustCopy> = {
   },
 };
 
+// Amber marks the health mediators, here as everywhere else; the other partners are sapphire.
+const SOURCE_TILES: Record<SourceId, { icon: NavIcon; tone: IconTileTone }> = {
+  oms: { icon: GlobeIcon, tone: "sapphire-soft" },
+  mediatori: { icon: NAV_LINK_ICONS["/mediatori"], tone: "sapphire-soft" },
+  redi: { icon: HandHelpingIcon, tone: "sapphire-soft" },
+};
+
 /**
- * Who we work with (asymmetric 4/8 partner ledger) and what we promise
- * (numbered 01-03 heavy-ruled manifesto), set on a warm subtle ground with
- * zero unlicensed emblems or seals.
+ * Who we work with (a 4/8 split: heading beside a ledger of partners, each with the same blue icon
+ * tile) and what we promise (three commitments, each with an icon, under a heavy top rule), on the paper ground
+ * with no emblems or seals. On phones the ledger is plain divided rows on the ground; from sm
+ * it is one card. The heading blocks and each row settle in as they are scrolled to.
  */
 export function TrustSection() {
   const { lang, t } = useLanguage();
   const copy = COPY[lang] ?? COPY.ro;
 
   return (
-    <section className="bg-surface-subtle/55 py-16 sm:py-24">
+    <Section tone="paper">
       <Container>
-        <Reveal>
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-12">
-            <div className="lg:col-span-4">
-              <SectionHeading
-                as="h2"
-                align="left"
-                title={copy.title}
-                subtitle={copy.subtitle}
-              />
-            </div>
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-12">
+          <div className="lg:col-span-4">
+            <SectionHeading
+              as="h2"
+              align="left"
+              title={copy.title}
+              subtitle={copy.subtitle}
+            />
+          </div>
 
-            <div className="lg:col-span-8">
-              <ul className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-card shadow-(--shadow-card-rest)">
-                {copy.sources.map((item, idx) => (
-                  <li
-                    key={item.id}
-                    className="flex flex-col gap-3 p-6 sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:p-7"
-                  >
+          <div className="lg:col-span-8">
+            <ul className="divide-y divide-border border-y border-border sm:overflow-hidden sm:rounded-(--radius-surface) sm:border sm:bg-card sm:shadow-(--shadow-card-rest) dark:divide-white/10 dark:border-white/10 dark:sm:bg-ink-800">
+              {copy.sources.map((item) => (
+                <li key={item.id} className="py-5 sm:p-6">
+                  {/* Every row the same: blue tile, name, one line. A partner's website, where there is
+                      one, is a plain link under that line rather than a button only one row has. */}
+                  <div className="flex min-w-0 items-start gap-4">
+                    <IconTile size={40} {...SOURCE_TILES[item.id]} />
                     <div className="min-w-0">
-                      <div className="flex items-center gap-2.5">
-                        <span
-                          aria-hidden="true"
-                          className="font-mono text-xs font-medium tabular-nums text-muted-foreground/80"
-                        >
-                          {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <h3 className="text-balance text-lg font-semibold leading-snug tracking-[-0.01em] text-foreground">
-                          {item.name}
-                        </h3>
-                      </div>
-                      <p className="mt-2 max-w-[58ch] text-pretty text-[15px] leading-relaxed text-muted-foreground">
+                      <h3 className="text-balance text-title">{item.name}</h3>
+                      <p className="mt-1.5 max-w-[56ch] text-pretty text-body text-muted-foreground dark:text-mist">
                         {item.role}
                       </p>
+                      {item.href && (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="-my-2 inline-flex min-h-11 items-center gap-1 rounded-sm text-body font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:focus-visible:ring-paper"
+                        >
+                          {item.hrefLabel}
+                          <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 -rotate-45" />
+                          <span className="sr-only"> ({copy.newTab})</span>
+                        </a>
+                      )}
                     </div>
-
-                    {item.href && (
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg border border-border bg-surface-subtle/60 px-3 text-sm font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/35 hover:bg-sapphire-soft/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
-                      >
-                        <span>{item.hrefLabel}</span>
-                        <ArrowRightIcon className="h-3.5 w-3.5 -rotate-45 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none" />
-                        <span className="sr-only"> ({copy.newTab})</span>
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-14 sm:mt-16">
-            <h3 className="text-xl font-semibold tracking-[-0.02em] text-foreground sm:text-2xl">
-              {copy.commitmentsTitle}
-            </h3>
-            <ol className="mt-6 grid gap-8 sm:grid-cols-3">
-              {t.landing.trustSection.commitments.map(({ title, description }, index) => (
-                <li
-                  key={title}
-                  className="border-t-2 border-foreground/80 pt-5"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="font-mono text-xs font-semibold tabular-nums text-sapphire"
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-2.5 text-lg font-semibold leading-snug tracking-[-0.015em] text-foreground">
-                    {title}
-                  </p>
-                  <p className="mt-2 text-pretty text-[15px] leading-relaxed text-muted-foreground">
-                    {description}
-                  </p>
+                  </div>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
-        </Reveal>
+        </div>
+
+        <div className="mt-14 sm:mt-16">
+          <div>
+            <h3 className="text-title font-bold">{copy.commitmentsTitle}</h3>
+          </div>
+          {/* Three promises, not steps: an icon each, no numbers. */}
+          <ul className="mt-6 grid gap-8 sm:grid-cols-3 lg:gap-10">
+            {t.landing.trustSection.commitments.map(({ title, description }, index) => {
+              const Icon = PROMISE_ICONS[index] ?? CheckCircleIcon;
+              return (
+              <li key={title}>
+                <div className="border-t-2 border-foreground/80 pt-5 dark:border-paper/80">
+                  <Icon aria-hidden="true" className="h-6 w-6 text-sapphire dark:text-sapphire-border" />
+                  <p className="mt-3 text-lead font-semibold">{title}</p>
+                  <p className="mt-2 text-pretty text-body text-muted-foreground dark:text-mist">
+                    {description}
+                  </p>
+                </div>
+              </li>
+              );
+            })}
+          </ul>
+        </div>
       </Container>
-    </section>
+    </Section>
   );
 }

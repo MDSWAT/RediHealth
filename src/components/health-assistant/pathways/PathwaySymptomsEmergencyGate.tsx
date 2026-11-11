@@ -2,6 +2,13 @@
 
 import { AlertCircleIcon, PhoneIcon } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
+import {
+  dangerOutlineButton,
+  dangerPanel,
+  emergencyButton,
+  secondaryButton,
+  stepHeading,
+} from "@/components/health-assistant/step-ui";
 
 interface PathwaySymptomsEmergencyGateProps {
   onSelectEmergency: () => void;
@@ -19,12 +26,12 @@ export function PathwaySymptomsEmergencyGate({
 
   return (
     <div>
-      <div className="rounded-lg border border-primary/30 bg-primary-soft/55 p-5 sm:p-6">
-        <h2 className="flex items-start gap-2.5 text-lg font-semibold text-foreground">
-          <AlertCircleIcon className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+      <div className={dangerPanel}>
+        <h2 className={`flex items-start gap-3 ${stepHeading}`}>
+          <AlertCircleIcon className="mt-1 h-5 w-5 shrink-0 text-primary sm:mt-1.5" aria-hidden="true" />
           <span>{plainLanguage ? gate.plainHeading : gate.heading}</span>
         </h2>
-        <ul className="mt-3 space-y-1.5 pl-[1.875rem] text-base leading-relaxed text-foreground">
+        <ul className="mt-4 space-y-2 pl-8 text-base leading-relaxed text-foreground">
           {signs.map((sign) => (
             <li key={sign} className="list-disc marker:text-primary">
               {sign}
@@ -32,21 +39,21 @@ export function PathwaySymptomsEmergencyGate({
           ))}
         </ul>
 
-        <div className="mt-6 space-y-2.5">
+        <div className="mt-6 space-y-3">
           <a
             href="tel:112"
-            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-center text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className={`w-full ${emergencyButton}`}
           >
             <PhoneIcon className="h-5 w-5" aria-hidden="true" />
             <span>{gate.callNow}</span>
           </a>
 
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <button
               type="button"
               data-gate-emergency
               onClick={onSelectEmergency}
-              className="min-h-12 rounded-lg border border-primary/35 bg-card px-4 py-2.5 text-center text-sm font-semibold text-primary transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-soft/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              className={dangerOutlineButton}
             >
               {gate.yesSeeTips}
             </button>
@@ -54,7 +61,7 @@ export function PathwaySymptomsEmergencyGate({
               type="button"
               data-gate-mild
               onClick={onSelectMild}
-              className="min-h-12 rounded-lg border border-border bg-card px-4 py-2.5 text-center text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+              className={secondaryButton}
             >
               {gate.noNoneOfThese}
             </button>
@@ -62,7 +69,7 @@ export function PathwaySymptomsEmergencyGate({
         </div>
       </div>
 
-      <p className="mt-3 text-center text-sm text-muted-foreground">{gate.note}</p>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{gate.note}</p>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRightIcon, HandHelpingIcon } from "@/components/ui/icons";
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FindHelpExplorer } from "@/components/find-help/FindHelpExplorer";
@@ -35,11 +35,7 @@ export function FindHelpPageContent({
             {/* Community Health Mediator Guidance Card (amber-care) */}
             <div className="flex flex-col justify-between gap-5 rounded-xl border border-amber-care-border bg-amber-care-soft/55 p-6 dark:border-amber-care/40 dark:bg-amber-care/10 sm:p-7">
               <div>
-                <span className="inline-flex items-center gap-1.5 rounded-md border border-amber-care-border bg-amber-care-soft px-2.5 py-1 text-xs font-semibold text-foreground dark:border-amber-care/40 dark:bg-amber-care/20">
-                  <HandHelpingIcon className="h-3.5 w-3.5 shrink-0 text-amber-care dark:text-amber-care-border" aria-hidden="true" />
-                  <span>{basePage.mediatorTag}</span>
-                </span>
-                <h2 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
+                <h2 className="text-xl font-semibold tracking-tight text-foreground">
                   {basePage.mediatorTitle}
                 </h2>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">

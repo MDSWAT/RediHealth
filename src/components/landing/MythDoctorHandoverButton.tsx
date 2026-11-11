@@ -16,7 +16,7 @@ export interface MythDoctorHandoverButtonProps {
 export function MythDoctorHandoverButton({
   mythId,
   mythStatement,
-  className = "",
+  className,
 }: MythDoctorHandoverButtonProps) {
   const { lang, t } = useLanguage();
 
@@ -31,11 +31,11 @@ export function MythDoctorHandoverButton({
     <Link
       href={targetHref}
       className={cn(
-        "inline-flex min-h-[44px] items-center gap-2 self-start rounded-lg px-2.5 -ml-2.5 text-sm font-semibold text-sapphire underline decoration-sapphire/35 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/60 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:self-auto",
+        "press-row -ml-2.5 inline-flex min-h-11 items-center gap-2 rounded-(--radius-control) px-2.5 text-[15px] font-medium text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/60 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
         className,
       )}
     >
-      <StethoscopeIcon className="h-4 w-4 shrink-0 text-sapphire" />
+      <StethoscopeIcon className="h-4 w-4 shrink-0" />
       <span>{t.quiz.askDoctorHandover}</span>
     </Link>
   );

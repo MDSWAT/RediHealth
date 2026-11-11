@@ -1,0 +1,259 @@
+.wheel {
+  --wheel-outer-dur: 90s;
+  --wheel-inner-dur: 60s;
+  --wheel-hub-dur: 24s;
+  --wheel-pink: color-mix(in srgb, var(--color-primary) 56%, #fff);
+  position: relative;
+  width: 100%;
+  max-width: 42.5rem;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  container-type: inline-size;
+  color: var(--color-primary);
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.outer {
+  animation: wheel-spin var(--wheel-outer-dur) linear infinite;
+}
+
+.inner {
+  animation: wheel-spin var(--wheel-inner-dur) linear infinite reverse;
+  pointer-events: none;
+}
+
+.hub {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14.8%;
+  height: 14.8%;
+  translate: -50% -50%;
+  animation: wheel-spin var(--wheel-hub-dur) linear infinite;
+  pointer-events: none;
+}
+
+.hubDisc {
+  fill: color-mix(in srgb, var(--color-primary) 60%, #fff);
+}
+
+.star {
+  fill: none;
+  stroke-width: 17.5;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 8;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Sits on the outer ring, so it travels with it. */
+.node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 11.8%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  outline: none;
+}
+
+/*
+ * Counter-rotates at the ring's speed so the icon and label stay upright. It holds two copies
+ * of the button: the resting one, and the lit one on top. Only the lit copy's opacity is
+ * animated, so every browser shows the same thing.
+ */
+.face {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 1cqw 0.3cqw rgb(255 255 255 / 0.9);
+  animation: wheel-spin var(--wheel-outer-dur) linear infinite reverse;
+}
+
+.rest,
+.lit {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--wheel-face-bg);
+  color: var(--wheel-face-fg);
+}
+
+.rest {
+  --wheel-face-bg: #fff;
+  --wheel-face-fg: var(--wheel-pink);
+  --wheel-face-ring: var(--wheel-pink);
+}
+
+/* Runs on the ring's clock, so the button lights up at a fixed screen angle. */
+.lit {
+  --wheel-face-bg: var(--color-primary);
+  --wheel-face-fg: #fff;
+  --wheel-face-ring: rgb(255 255 255 / 0.8);
+  opacity: 0;
+  animation: wheel-highlight var(--wheel-outer-dur) linear infinite;
+  animation-delay: calc(var(--wheel-outer-dur) * var(--hl-phase, 0) * -1);
+}
+
+/* Outer rim arc, strongest on the lower right. */
+.rest::before,
+.rest::after,
+.lit::before,
+.lit::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.rest::before,
+.lit::before {
+  inset: 0;
+  background: conic-gradient(
+    from 330deg,
+    transparent 0deg,
+    var(--wheel-face-ring) 130deg,
+    var(--wheel-face-ring) 180deg,
+    transparent 280deg
+  );
+  mask: radial-gradient(closest-side, transparent calc(91% - 1px), #000 91%, #000 calc(100% - 1px), transparent 100%);
+}
+
+/* Inner ring, fading out at the upper right. */
+.rest::after,
+.lit::after {
+  inset: 14%;
+  background: conic-gradient(
+    from 50deg,
+    transparent 0deg,
+    var(--wheel-face-ring) 110deg,
+    var(--wheel-face-ring) 290deg,
+    transparent 360deg
+  );
+  mask: radial-gradient(closest-side, transparent calc(86% - 1px), #000 86%, #000 calc(100% - 1px), transparent 100%);
+}
+
+.icon {
+  position: relative;
+  width: 47%;
+  height: 47%;
+}
+
+.label {
+  position: absolute;
+  z-index: 1;
+  top: calc(100% + 1.6cqw);
+  left: 50%;
+  translate: -50% 0;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+}
+
+.node:hover .face,
+.node:focus-visible .face {
+  scale: 1.08;
+  transition: scale 180ms ease-out;
+}
+
+/* `!important` outranks the running highlight animation, which keeps its place on the clock. */
+.node:hover .lit,
+.node:focus-visible .lit,
+.node[data-picked] .lit {
+  opacity: 1 !important;
+  transition: opacity 180ms ease-out;
+}
+
+.node:hover .label,
+.node:focus-visible .label {
+  opacity: 1;
+}
+
+.node:focus-visible .face {
+  box-shadow:
+    0 0 0 0.5cqw #fff,
+    0 0 0 1cqw var(--color-ring);
+}
+
+.node:hover,
+.node:focus-visible {
+  z-index: 1;
+}
+
+/* Hold the ring still while a button is targeted, so it is easy to click. A parent can hold
+   it too with `data-wheel-held` (the landing spotlight does while its card is targeted). */
+.wheel:has(.node:hover, .node:focus-visible) .outer,
+.wheel:has(.node:hover, .node:focus-visible) .face,
+.wheel:has(.node:hover, .node:focus-visible) .lit,
+:global([data-wheel-held]) .outer,
+:global([data-wheel-held]) .face,
+:global([data-wheel-held]) .lit {
+  animation-play-state: paused;
+}
+
+/* Only the targeted button is lit. `data-picked` marks one chosen from outside the wheel. */
+.wheel:has(.node:hover, .node:focus-visible) .node:not(:hover, :focus-visible) .lit,
+.wheel:has(.node[data-picked]):not(:has(.node:hover, .node:focus-visible)) .node:not([data-picked]) .lit {
+  opacity: 0 !important;
+}
+
+@keyframes wheel-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* Lit for one eighth of a turn, centred on the start of the cycle. */
+@keyframes wheel-highlight {
+  0%,
+  5.25% {
+    opacity: 1;
+  }
+  7.25%,
+  92.75% {
+    opacity: 0;
+  }
+  94.75%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .outer,
+  .inner,
+  .hub,
+  .face,
+  .lit {
+    animation: none;
+  }
+
+  .node:hover .face,
+  .node:focus-visible .face,
+  .node:hover .lit,
+  .node:focus-visible .lit {
+    transition: none;
+  }
+}

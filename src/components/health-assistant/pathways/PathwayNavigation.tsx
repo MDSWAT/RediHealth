@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { LegalRightsCard } from "@/components/health-assistant/LegalRightsCard";
 import { MediatorRequestModal } from "@/components/health-assistant/MediatorRequestModal";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
@@ -8,6 +9,15 @@ import {
   type NavigationScenarioId,
   useAssistantCopy,
 } from "@/components/health-assistant/assistant-copy";
+import {
+  optionArrow,
+  optionDesc,
+  optionRow,
+  optionTitle,
+  stepHeading,
+  stepLead,
+  subHeading,
+} from "@/components/health-assistant/step-ui";
 
 interface PathwayNavigationProps {
   step: 2 | 3;
@@ -24,10 +34,10 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
   if (step === 2) {
     return (
       <div>
-        <h2 className="text-lg font-semibold text-foreground">{nav.heading}</h2>
-        <p className="mt-1 text-sm text-muted-foreground">{nav.lead}</p>
+        <h2 className={stepHeading}>{nav.heading}</h2>
+        <p className={stepLead}>{nav.lead}</p>
 
-        <ul className="mt-5 divide-y divide-border overflow-hidden rounded-lg border border-border">
+        <ul className="mt-6 grid grid-cols-1 gap-3">
           {SCENARIO_IDS.map((id) => {
             const scenario = nav.scenarios[id];
             return (
@@ -36,10 +46,13 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
                   type="button"
                   data-triage-option={id}
                   onClick={() => onSelectScenario(id)}
-                  className="flex min-h-[56px] w-full flex-col items-start bg-card px-4 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:px-5"
+                  className={optionRow}
                 >
-                  <span className="text-base font-semibold text-foreground">{scenario.title}</span>
-                  <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{scenario.desc}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className={optionTitle}>{scenario.title}</span>
+                    <span className={optionDesc}>{scenario.desc}</span>
+                  </span>
+                  <ArrowRightIcon aria-hidden="true" className={optionArrow} />
                 </button>
               </li>
             );
@@ -54,19 +67,19 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
 
   return (
     <div>
-      <h2 className="text-lg font-semibold text-foreground">{scenario.title}</h2>
+      <h2 className={stepHeading}>{scenario.title}</h2>
 
-      <h3 className="mt-5 text-sm font-semibold text-foreground">{nav.planHeading}</h3>
+      <h3 className={`mt-6 ${subHeading}`}>{nav.planHeading}</h3>
       <ol className="mt-3 space-y-4">
         {scenario.steps.map((item, idx) => (
           <li key={item.title} className="flex gap-3">
             <span
               aria-hidden="true"
-              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-border text-sm font-semibold tabular-nums text-foreground"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sapphire-soft text-sm font-semibold tabular-nums text-sapphire"
             >
               {idx + 1}
             </span>
-            <div className="min-w-0 pt-0.5">
+            <div className="min-w-0 pt-1">
               <p className="text-base font-semibold text-foreground">{item.title}</p>
               <p className="mt-1 max-w-prose text-sm leading-relaxed text-muted-foreground">{item.body}</p>
             </div>
@@ -77,7 +90,7 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
       <LegalRightsCard className="mt-8" />
 
       <section className="mt-8 border-t border-border pt-6">
-        <h3 className="text-base font-semibold text-foreground">{nav.mediatorTitle}</h3>
+        <h3 className={subHeading}>{nav.mediatorTitle}</h3>
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{nav.mediatorBody}</p>
         {/* Mediators read requests in Romanian, so the scenario is sent in Romanian on every page. */}
         <MediatorRequestModal className="mt-4" defaultScenario={getAssistantCopy("ro").nav.scenarios[currentId].title} />

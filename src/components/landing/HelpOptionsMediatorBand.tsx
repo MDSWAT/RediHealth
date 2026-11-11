@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRightIcon, UsersIcon } from "@/components/ui/icons";
-import { cn } from "@/lib/cn";
+import { IconTile } from "@/components/ui/IconTile";
+import { NAV_LINK_ICONS } from "@/components/layout/nav-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 
@@ -10,41 +10,41 @@ export type HelpOptionsMediatorBandProps = {
   className?: string;
 };
 
+const MEDIATOR_HREF = "/mediatori";
+
 /**
- * Anchored band for community health mediators directly beneath the patient
- * bento grid: matching p-6 sm:p-7 horizontal alignment, sapphire icon plate
- * and interactive link.
+ * Band for community health mediators beneath the patient options: amber
+ * ground and amber icon plate, because amber marks a mediator. The link stays
+ * sapphire like every other link. Phones: the band runs edge to edge with no
+ * side borders or radius, and the link fills the row. From sm it is a rounded
+ * card with the link at the end of the row.
  */
 export function HelpOptionsMediatorBand({ className }: HelpOptionsMediatorBandProps) {
   const { lang, t } = useLanguage();
   const mb = t.mediatorBand;
 
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-3 rounded-xl border border-border bg-surface-subtle/55 px-6 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-7",
-        className,
-      )}
-    >
-      <p className="flex items-start gap-3.5 text-[15px] leading-relaxed text-muted-foreground sm:items-center">
-        <span
-          aria-hidden="true"
-          className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-sapphire-border/70 bg-sapphire-soft text-sapphire sm:mt-0"
-        >
-          <UsersIcon className="h-4 w-4" />
-        </span>
-        <span>
-          <span className="font-semibold text-foreground">{mb.question}</span> {mb.description}
-        </span>
-      </p>
+    <div className={className}>
+      <div className="flex flex-col gap-4 rounded-(--radius-surface) border border-border bg-card p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6 dark:border-white/10 dark:bg-ink-800">
+        <div className="flex min-w-0 items-start gap-3.5 sm:items-center sm:gap-4">
+          <IconTile icon={NAV_LINK_ICONS[MEDIATOR_HREF]} tone="amber" size={40} />
+          <div className="min-w-0 flex-1">
+            <h3 className="text-title text-foreground dark:text-paper">
+              {mb.question}
+            </h3>
+            <p className="mt-0.5 text-pretty text-body text-muted-foreground dark:text-mist">
+              {mb.description}
+            </p>
+          </div>
+        </div>
 
-      <Link
-        href={withLangPrefix("/mediatori", lang)}
-        className="group inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg px-2.5 -ml-2.5 text-[14.5px] font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/60 hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:ml-0 sm:self-auto"
-      >
-        <span>{mb.cta}</span>
-        <ArrowRightIcon className="h-4 w-4 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
-      </Link>
+        <Link
+          href={withLangPrefix(MEDIATOR_HREF, lang)}
+          className="press-row group inline-flex min-h-11 shrink-0 self-start items-center justify-center gap-2 rounded-(--radius-control) border border-border-control bg-card px-4 py-2 text-base font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:self-center dark:border-white/40 dark:bg-ink-800 dark:text-sapphire-border dark:hover:border-white/60 dark:hover:bg-white/10 dark:focus-visible:ring-paper"
+        >
+          {mb.cta}
+        </Link>
+      </div>
     </div>
   );
 }

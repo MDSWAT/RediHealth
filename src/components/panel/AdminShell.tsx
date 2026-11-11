@@ -15,6 +15,7 @@ import {
   ClockIcon,
   FileTextIcon,
   LogOutIcon,
+  MessageDotsIcon,
   PinIcon,
   PlusIcon,
   SearchIcon,
@@ -30,6 +31,7 @@ import { panelTranslations } from "@/lib/i18n/panel-translations";
 import { panelDesignTranslations } from "@/lib/i18n/panel-design-translations";
 import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
+import { feedbackAdminCopy } from "@/lib/i18n/feedback-translations";
 import { institutesAdminTranslations } from "@/lib/i18n/institutes-admin-translations";
 import { settingsTranslations } from "@/lib/i18n/settings-translations";
 import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
@@ -183,6 +185,7 @@ function AdminShellFrame({
   const t = panelTranslations[lang].adminShell;
   const copy = panelDesignTranslations[lang];
   const crm = crmTranslations[lang];
+  const feedbackCopy = feedbackAdminCopy[lang] ?? feedbackAdminCopy.ro;
   const institutesCopy = institutesAdminTranslations[lang];
   const settingsCopy = settingsTranslations[lang];
   const currentPath = stripLangFromPathname(pathname);
@@ -238,11 +241,12 @@ function AdminShellFrame({
         { label: t.calendar, href: "/panel/calendar", icon: CalendarIcon, chord: "G C" },
         { label: crm.meetings, href: "/panel/meet", icon: CameraIcon, chord: undefined },
         { label: t.workers, href: "/panel/workers", icon: StethoscopeIcon, chord: undefined },
+        { label: feedbackCopy.navLabel, href: "/panel/feedback", icon: MessageDotsIcon, chord: undefined },
       ].filter((item) => {
-        if (item.href === "/panel/workers" && !isAdmin) return false;
+        if ((item.href === "/panel/workers" || item.href === "/panel/feedback") && !isAdmin) return false;
         return canOpen(item.href);
       }),
-    [crm.requests, crm.meetings, t.patients, t.calendar, t.workers, isAdmin, canOpen],
+    [crm.requests, crm.meetings, t.patients, t.calendar, t.workers, feedbackCopy.navLabel, isAdmin, canOpen],
   );
 
   // Mobile App Bottom Navigation Bar items (primary quick tabs)
@@ -259,6 +263,7 @@ function AdminShellFrame({
   const sheetQuickLinks = [
     { label: t.reportIssue, href: "#report-issue", icon: AlertCircleIcon },
     ...(isAdmin ? [{ label: t.workers, href: "/panel/workers", icon: StethoscopeIcon }] : []),
+    ...(isAdmin ? [{ label: feedbackCopy.navLabel, href: "/panel/feedback", icon: MessageDotsIcon }] : []),
     ...(isSuperAdmin ? [{ label: t.logs, href: "/panel/logs", icon: ClockIcon }] : []),
     ...(isSuperAdmin ? [{ label: institutesCopy.navLabel, href: "/panel/institutes", icon: PinIcon }] : []),
     ...(isSuperAdmin ? [{ label: settingsCopy.navLabel, href: "/panel/settings", icon: BellIcon }] : []),
@@ -872,7 +877,7 @@ function AdminShellFrame({
             className={`panel-sidebar-nav flex-1 overflow-y-auto py-4 ${desktopSidebarCollapsed ? "panel-sidebar-nav-collapsed px-2" : "px-3"}`}
           >
             <ul className="space-y-1">
-              {desktopItems.filter((item) => item.href !== "/panel/workers").map((item) => {
+              {desktopItems.filter((item) => item.href !== "/panel/workers" && item.href !== "/panel/feedback").map((item) => {
                 const active =
                   item.href === "/panel"
                     ? currentPath === "/panel"
@@ -910,7 +915,7 @@ function AdminShellFrame({
                 );
               })}
             </ul>
-            {desktopItems.some((item) => item.href === "/panel/workers") ? (
+            {desktopItems.some((item) => item.href === "/panel/workers" || item.href === "/panel/feedback") ? (
               <p
                 aria-hidden={desktopSidebarCollapsed || undefined}
                 className={`mt-7 mb-2 px-3 text-xs text-muted-foreground ${desktopSidebarCollapsed ? "invisible" : ""}`}
@@ -919,7 +924,7 @@ function AdminShellFrame({
               </p>
             ) : null}
             <ul className="space-y-1">
-              {desktopItems.filter((item) => item.href === "/panel/workers").map((item) => {
+              {desktopItems.filter((item) => item.href === "/panel/workers" || item.href === "/panel/feedback").map((item) => {
                 const active =
                   item.href === "/panel"
                     ? currentPath === "/panel"

@@ -2,8 +2,9 @@
 
 import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
+import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 import {
@@ -23,46 +24,32 @@ const extraCopy: Record<
   Lang,
   {
     score: (correct: number, answered: number) => string;
-    doneTitle: (correct: number, total: number) => string;
-    doneBody: string;
     restart: string;
   }
 > = {
   ro: {
-    score: (c, a) => `${c} din ${a} corecte`,
-    doneTitle: (c, t) => `Ai răspuns corect la ${c} din ${t}`,
-    doneBody: "Răspunsurile tale sunt salvate pe acest dispozitiv.",
+    score: (c, a) => `${c}/${a} corecte`,
     restart: "Începe din nou",
   },
   en: {
-    score: (c, a) => `${c} of ${a} correct`,
-    doneTitle: (c, t) => `You got ${c} of ${t} right`,
-    doneBody: "Your answers are saved on this device.",
+    score: (c, a) => `${c}/${a} correct`,
     restart: "Start over",
   },
   sq: {
-    score: (c, a) => `${c} nga ${a} të sakta`,
-    doneTitle: (c, t) => `Iu përgjigje saktë ${c} nga ${t}`,
-    doneBody: "Përgjigjet e tua ruhen në këtë pajisje.",
-    restart: "Fillo nga e para",
+    score: (c, a) => `${c}/${a} të sakta`,
+    restart: "Rinis",
   },
   it: {
-    score: (c, a) => `${c} su ${a} corrette`,
-    doneTitle: (c, t) => `Hai risposto bene a ${c} su ${t}`,
-    doneBody: "Le tue risposte sono salvate su questo dispositivo.",
+    score: (c, a) => `${c}/${a} corrette`,
     restart: "Ricomincia",
   },
   hr: {
-    score: (c, a) => `${c} od ${a} točnih`,
-    doneTitle: (c, t) => `Točno si odgovorio ili odgovorila na ${c} od ${t}`,
-    doneBody: "Tvoji su odgovori spremljeni na ovom uređaju.",
+    score: (c, a) => `${c}/${a} točnih`,
     restart: "Kreni ispočetka",
   },
   rom: {
-    score: (c, a) => `${c} katar ${a} chache`,
-    doneTitle: (c, t) => `Djan chacho anglalipe pe ${c} katar ${t}`,
-    doneBody: "Chire anglalipnata si arakhle pe kadava aparati.",
-    restart: "Nachav katar o shirdipen",
+    score: (c, a) => `${c}/${a} chache`,
+    restart: "Shird pale",
   },
 };
 
@@ -79,7 +66,8 @@ const ANSWER_KEYS: Record<Lang, { true: string[]; false: string[] }> = {
   hr: { true: ["t", "i", "1"], false: ["n", "l", "2"] }, // točno / netočno (istina / laž)
   rom: { true: ["c", "1"], false: ["n", "x", "2"] }, // chacho / na-i chacho (xoxamno)
 };
-const keyShortcuts = (keys: string[]) => keys.map((key) => key.toUpperCase()).join(" ");
+const keyShortcuts = (keys: string[]) =>
+  keys.map((key) => key.toUpperCase()).join(" ");
 
 /** Quotation marks around the myth, in each language's own typographic style. */
 const QUOTES: Record<Lang, [string, string]> = {
@@ -99,6 +87,42 @@ const SPEECH_LANG: Record<Lang, string> = {
   hr: "hr-HR",
   rom: "ro-RO",
 };
+
+const ANSWER_VALUES = [true, false] as const;
+
+// Horizontal control row on every screen size so answers read as tactile choices, never tall mobile bricks.
+const ANSWER_SHELL =
+  "flex min-h-12 min-w-0 flex-row items-center gap-2.5 rounded-(--radius-control) px-3.5 py-2.5 text-left text-[15px] sm:px-4 sm:text-base";
+
+function AnswerMark({
+  value,
+  tone,
+}: {
+  value: boolean;
+  tone: "idle" | "selected-right" | "selected-wrong" | "hint-right" | "muted";
+}) {
+  const Icon = value ? CheckIcon : CloseIcon;
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "flex h-5 w-5 shrink-0 items-center justify-center rounded-full transition-colors duration-(--dur-fast) ease-(--ease-out-calm)",
+        tone === "selected-right" && "bg-white/20 text-white",
+        tone === "selected-wrong" &&
+          "bg-paper/20 text-paper dark:bg-ink-950/15 dark:text-ink-950",
+        tone === "hint-right" && "bg-sapphire text-white",
+        tone === "idle" &&
+          (value
+            ? "border border-sapphire/35 bg-sapphire-soft text-sapphire dark:border-sapphire-border/40 dark:bg-white/10 dark:text-sapphire-border"
+            : "border border-border-control bg-muted text-foreground dark:border-white/30 dark:bg-white/10 dark:text-paper"),
+        tone === "muted" &&
+          "border border-border text-muted-foreground/70 dark:border-white/15 dark:text-mist/70",
+      )}
+    >
+      <Icon className="h-3.5 w-3.5" />
+    </span>
+  );
+}
 
 type Answers = Record<string, boolean>;
 const EMPTY_ANSWERS: Answers = {};
@@ -154,8 +178,13 @@ export interface TrueFalseQuizSectionProps {
   initialCategory?: string;
 }
 
+/**
+ * Editorial myth quiz on a sapphire-soft ground: full-width category strip so labels never
+ * choke in a narrow column, followed by a framed statement card with crisp horizontal controls
+ * and a single clean verdict below.
+ */
 export function TrueFalseQuizSection({
-  className = "",
+  className,
   initialCategory = "toate",
 }: TrueFalseQuizSectionProps) {
   const { lang, t } = useLanguage();
@@ -168,13 +197,14 @@ export function TrueFalseQuizSection({
   const [selectedCategory, setSelectedCategory] =
     useState<string>(initialCategory);
   const [currentIndex, setIndexState] = useState<number>(0);
-  // The myth answered just now: its verdict takes focus, since the answer buttons unmount.
-  // Cleared on any navigation, so revisiting an answered myth never moves focus.
   const [justAnsweredId, setJustAnsweredId] = useState<string | null>(null);
-  const setCurrentIndex = useCallback((next: number | ((current: number) => number)) => {
-    setJustAnsweredId(null);
-    setIndexState(next);
-  }, []);
+  const setCurrentIndex = useCallback(
+    (next: number | ((current: number) => number)) => {
+      setJustAnsweredId(null);
+      setIndexState(next);
+    },
+    [],
+  );
   const userAnswers = useSyncExternalStore(
     answerStore.subscribe,
     answerStore.get,
@@ -217,8 +247,6 @@ export function TrueFalseQuizSection({
   const correctInView = filteredMyths.filter(
     (m) => results[m.id] === "correct",
   ).length;
-  const allAnsweredInView =
-    filteredMyths.length > 0 && answeredInView === filteredMyths.length;
 
   const currentMyth: HealthMyth | undefined =
     filteredMyths[currentIndex] || filteredMyths[0];
@@ -278,133 +306,167 @@ export function TrueFalseQuizSection({
 
   const currentAnswer = userAnswers[currentMyth.id];
   const hasAnswered = currentAnswer !== undefined;
+  const isMatch = currentAnswer === currentMyth.isTrue;
   const quotes = QUOTES[lang as Lang] ?? QUOTES.ro;
 
   return (
-    <section
+    <Section
       id="mituri-sanatate"
       aria-labelledby="quiz-section-heading"
-      className={`border-b border-border bg-background py-16 sm:py-24 ${className}`}
+      tone="sapphire-soft"
+      className={className}
     >
       <Container>
-        <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <SectionHeading
-              as="h2"
-              title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
-              subtitle={q.sectionSubtitle}
-              align="center"
-            />
-          </div>
-
-          {/* The filter band shares the quiz card's column, so both start on one edge. */}
-          <div className="mx-auto mt-8 max-w-2xl">
-            <MythCategoryFilter
-              categories={categories}
-              activeCategory={selectedCategory}
-              onSelect={handleCategorySelect}
-              progress={categoryProgress}
-            />
-          </div>
-
-          <div className="mx-auto mt-6 max-w-2xl" onKeyDown={handleKeyDown}>
-            {allAnsweredInView && (
-              <div
-                role="status"
-                className="mb-5 flex flex-col gap-3 rounded-xl border border-sapphire-border/80 bg-sapphire-soft/55 p-4 sm:flex-row sm:items-center sm:justify-between sm:px-5"
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            as="h2"
+            title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
+            subtitle={q.sectionSubtitle}
+          />
+          {answeredInView > 0 && (
+            <div
+              role="status"
+              className="flex shrink-0 items-center gap-3 text-meta tabular-nums text-muted-foreground dark:text-mist"
+            >
+              <span className="font-medium text-foreground dark:text-paper">
+                {extra.score(correctInView, filteredMyths.length)}
+              </span>
+              <span
+                aria-hidden="true"
+                className="text-sapphire-border dark:text-white/20"
               >
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-foreground">
-                    {extra.doneTitle(correctInView, filteredMyths.length)}
-                  </p>
-                  <p className="mt-0.5 text-sm text-muted-foreground">{extra.doneBody}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleRestart}
-                  className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-1.5 self-start rounded-lg border border-border bg-card px-4 text-sm font-semibold text-foreground shadow-(--shadow-card-rest) transition-[background-color,border-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/40 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none sm:self-auto"
-                >
-                  <RefreshIcon className="h-4 w-4 text-sapphire" />
-                  <span>{extra.restart}</span>
-                </button>
-              </div>
-            )}
+                ·
+              </span>
+              <button
+                type="button"
+                onClick={handleRestart}
+                className="press-row -mx-2 inline-flex min-h-11 items-center gap-1.5 rounded-(--radius-control) px-2 font-medium text-sapphire underline decoration-sapphire/35 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:text-paper"
+              >
+                <RefreshIcon className="h-3.5 w-3.5 shrink-0" />
+                <span>{extra.restart}</span>
+              </button>
+            </div>
+          )}
+        </div>
 
+        {/* From lg: the categories as a list on the left, the myth quiz on the right.
+            Below lg: the categories as one row above the quiz. */}
+        <div className="mt-6 lg:mt-8 lg:grid lg:grid-cols-12 lg:items-start lg:gap-12">
+          <MythCategoryFilter
+            className="lg:col-span-4"
+            categories={categories}
+            activeCategory={selectedCategory}
+            onSelect={handleCategorySelect}
+            progress={categoryProgress}
+          />
+
+          <div
+            className="mt-7 max-w-3xl lg:col-span-8 lg:mt-0"
+            onKeyDown={handleKeyDown}
+          >
             <MythCardCarousel
               myths={filteredMyths}
               currentIndex={currentIndex}
               onIndexChange={(idx) => setCurrentIndex(idx)}
               results={results}
-              aside={
-                answeredInView > 0 ? (
-                  <span className="rounded-md bg-sapphire-soft px-2 py-0.5 text-xs font-semibold tabular-nums text-sapphire">
-                    {extra.score(correctInView, answeredInView)}
-                  </span>
-                ) : null
-              }
             >
-              {/* Warm-paper clinical specimen framing */}
-              <div className="relative overflow-hidden rounded-xl border border-border bg-paper p-6 shadow-(--shadow-card-rest) sm:p-8 dark:bg-card">
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-linear-to-r from-sapphire/55 via-sapphire/25 to-transparent"
-                />
-
-                {/* Statement with outdented sapphire hang-quote */}
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="relative pl-5 text-pretty text-xl font-semibold leading-snug tracking-[-0.015em] text-foreground sm:pl-6 sm:text-2xl">
+              <div className="rounded-(--radius-surface) border border-sapphire-border/80 bg-card p-5 shadow-(--shadow-card-rest) sm:p-8 dark:border-white/10 dark:bg-ink-800">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="max-w-[28ch] text-pretty text-xl/[1.3] font-bold tracking-[-0.02em] sm:text-2xl/[1.25] lg:text-[1.75rem]/[1.2]">
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute left-0 -top-0.5 select-none font-serif text-2xl font-bold leading-none text-sapphire sm:text-3xl"
+                      className="select-none text-sapphire dark:text-sapphire-border"
                     >
                       {quotes[0]}
                     </span>
                     {currentMyth.statement}
-                    <span aria-hidden="true" className="ml-0.5 select-none font-serif text-sapphire/75">
+                    <span
+                      aria-hidden="true"
+                      className="select-none text-sapphire dark:text-sapphire-border"
+                    >
                       {quotes[1]}
                     </span>
                   </h3>
                   <InlineAudioNarratorButton
+                    variant="ghost"
                     textToSpeak={`${currentMyth.statement} ${currentMyth.explanation}`}
                     label={q.audioNarratorLabel}
                     lang={SPEECH_LANG[lang as Lang] ?? SPEECH_LANG.ro}
-                    className="shrink-0"
+                    className="-mr-2 -mt-1 shrink-0"
                   />
                 </div>
 
-                {!hasAnswered ? (
-                  <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    {[true, false].map((value) => {
-                      const primaryKey = (
-                        value ? answerKeys.true[0] : answerKeys.false[0]
-                      ).toUpperCase();
+                {/* Once answered the row shows the chosen option alongside the true answer, with no muddy fills. */}
+                <div
+                  className="mt-5 grid grid-cols-2 gap-2.5 sm:gap-3"
+                  aria-hidden={hasAnswered || undefined}
+                >
+                  {ANSWER_VALUES.map((value) => {
+                    const label = (
+                      <span className="min-w-0 wrap-break-word">
+                        {value ? q.trueButton : q.falseButton}
+                      </span>
+                    );
+                    if (hasAnswered) {
+                      const chosen = currentAnswer === value;
+                      const isRightOption = value === currentMyth.isTrue;
+                      const tone = chosen
+                        ? isMatch
+                          ? "selected-right"
+                          : "selected-wrong"
+                        : isRightOption
+                          ? "hint-right"
+                          : "muted";
                       return (
-                        <button
+                        <p
                           key={String(value)}
-                          type="button"
-                          onClick={() => handleAnswer(value)}
-                          aria-keyshortcuts={keyShortcuts(value ? answerKeys.true : answerKeys.false)}
-                          className="group inline-flex min-h-[52px] items-center justify-between gap-3 rounded-lg border border-border bg-card px-4 py-3 text-base font-semibold text-foreground shadow-(--shadow-card-rest) transition-[background-color,border-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/50 hover:bg-muted/40 hover:shadow-(--shadow-card-hover) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none"
+                          className={cn(
+                            ANSWER_SHELL,
+                            chosen &&
+                              isMatch &&
+                              "border border-sapphire bg-sapphire font-semibold text-white",
+                            chosen &&
+                              !isMatch &&
+                              "border border-ink-950 bg-ink-950 font-semibold text-paper dark:border-paper dark:bg-paper dark:text-ink-950",
+                            !chosen &&
+                              isRightOption &&
+                              "border border-sapphire/45 bg-sapphire-soft/75 font-semibold text-sapphire dark:border-sapphire-border/45 dark:bg-white/10 dark:text-sapphire-border",
+                            !chosen &&
+                              !isRightOption &&
+                              "border border-border bg-card text-muted-foreground dark:border-white/10 dark:bg-ink-900 dark:text-mist",
+                          )}
                         >
-                          <span className="inline-flex items-center gap-2.5">
-                            {value ? (
-                              <CheckIcon className="h-5 w-5 shrink-0 text-sapphire" />
-                            ) : (
-                              <CloseIcon className="h-5 w-5 shrink-0 text-stone-500" />
-                            )}
-                            <span>{value ? q.trueButton : q.falseButton}</span>
-                          </span>
-                          <kbd
-                            aria-hidden="true"
-                            className="hidden rounded-md border border-border bg-muted/75 px-1.5 py-0.5 font-mono text-xs font-medium text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:border-sapphire/35 group-hover:text-sapphire motion-reduce:transition-none sm:inline-block"
-                          >
-                            {primaryKey}
-                          </kbd>
-                        </button>
+                          <AnswerMark value={value} tone={tone} />
+                          {label}
+                        </p>
                       );
-                    })}
-                  </div>
-                ) : (
+                    }
+                    const keys = value ? answerKeys.true : answerKeys.false;
+                    return (
+                      <button
+                        key={String(value)}
+                        type="button"
+                        onClick={() => handleAnswer(value)}
+                        aria-keyshortcuts={keyShortcuts(keys)}
+                        className={cn(
+                          ANSWER_SHELL,
+                          "press-row border border-border-control bg-card font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:border-white/30 dark:bg-ink-900 dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper",
+                        )}
+                      >
+                        <AnswerMark value={value} tone="idle" />
+                        {label}
+                        <kbd
+                          aria-hidden="true"
+                          className="ml-auto hidden rounded-md border border-border bg-muted px-1.5 py-0.5 text-meta font-normal text-muted-foreground sm:inline-block dark:border-white/10 dark:bg-white/10 dark:text-mist"
+                        >
+                          {keys[0].toUpperCase()}
+                        </kbd>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {hasAnswered && (
                   <QuizFeedbackCard
                     key={currentMyth.id}
                     myth={currentMyth}
@@ -417,8 +479,8 @@ export function TrueFalseQuizSection({
               </div>
             </MythCardCarousel>
           </div>
-        </Reveal>
+        </div>
       </Container>
-    </section>
+    </Section>
   );
 }

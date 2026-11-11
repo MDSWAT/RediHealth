@@ -67,38 +67,38 @@ const BRIDGE_EXTRAS_BY_LANG: Record<
 > = {
   ro: {
     inThisGuide: "În acest ghid",
-    bridgeArrowLabel: "În limbaj simplu",
+    bridgeArrowLabel: "Ce înseamnă",
     countOne: "1 termen afișat",
     countMany: (n) =>
       n >= 20 ? `${n} de termeni afișați` : `${n} termeni afișați`,
   },
   en: {
     inThisGuide: "In this guide",
-    bridgeArrowLabel: "In plain words",
+    bridgeArrowLabel: "What it means",
     countOne: "1 term shown",
     countMany: (n) => `${n} terms shown`,
   },
   sq: {
     inThisGuide: "Në këtë udhëzues",
-    bridgeArrowLabel: "Me fjalë të thjeshta",
+    bridgeArrowLabel: "Çfarë do të thotë",
     countOne: "1 term i shfaqur",
     countMany: (n) => `${n} terma të shfaqur`,
   },
   it: {
     inThisGuide: "In questa guida",
-    bridgeArrowLabel: "In parole semplici",
+    bridgeArrowLabel: "Cosa significa",
     countOne: "1 termine mostrato",
     countMany: (n) => `${n} termini mostrati`,
   },
   hr: {
     inThisGuide: "U ovom vodiču",
-    bridgeArrowLabel: "Jednostavnim riječima",
+    bridgeArrowLabel: "Što znači",
     countOne: "1 prikazani pojam",
     countMany: (n) => `${n} prikazanih pojmova`,
   },
   rom: {
     inThisGuide: "Ande kadava sikavimos",
-    bridgeArrowLabel: "Pe lokhi chib",
+    bridgeArrowLabel: "So znachil",
     countOne: "1 lav sikavdo",
     countMany: (n) => `${n} lava sikavde`,
   },

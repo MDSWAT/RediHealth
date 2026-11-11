@@ -20,37 +20,37 @@ export function TriagePlainLanguageToggle({
   const simpleBtnRef = useRef<HTMLButtonElement | null>(null);
   const standardBtnRef = useRef<HTMLButtonElement | null>(null);
 
-  // Same order, labels and look as the topic pages' reading-level switch: plain language first.
+  // Same order, labels and look as the topic pages' format switch: concise overview first.
   const dict: Record<Lang, { simple: string; standard: string; aria: string }> = {
     en: {
-      simple: "Plain language",
+      simple: "In brief",
       standard: "Complete guide",
-      aria: "Reading level",
+      aria: "Guide format",
     },
     ro: {
-      simple: "Limbaj simplu",
+      simple: "Pe scurt",
       standard: "Ghid complet",
-      aria: "Nivel de lectură",
+      aria: "Formatul ghidului",
     },
     sq: {
-      simple: "Gjuhë e thjeshtë",
+      simple: "Shkurt",
       standard: "Udhëzues i plotë",
-      aria: "Niveli i leximit",
+      aria: "Formati i udhëzuesit",
     },
     it: {
-      simple: "Linguaggio semplice",
+      simple: "In breve",
       standard: "Guida completa",
-      aria: "Livello di lettura",
+      aria: "Formato della guida",
     },
     hr: {
-      simple: "Jednostavan jezik",
+      simple: "Ukratko",
       standard: "Potpuni vodič",
-      aria: "Razina čitanja",
+      aria: "Format vodiča",
     },
     rom: {
-      simple: "Lokhi chib",
+      simple: "Xarnes",
       standard: "Sasto sikavimos",
-      aria: "Nivelo ginavimasko",
+      aria: "Sar sikavel pes",
     },
   };
   const labels = dict[lang] || dict[DEFAULT_LANG];
@@ -89,7 +89,7 @@ export function TriagePlainLanguageToggle({
           if (!enabled) onToggle();
         }}
         aria-pressed={enabled}
-        className={`relative z-10 inline-flex min-h-[44px] items-center justify-center rounded-lg px-3 py-2 text-center text-[13px] leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none sm:whitespace-nowrap sm:px-3.5 sm:text-sm ${
+        className={`relative z-10 inline-flex min-h-11 items-center justify-center rounded-lg px-3 py-2 text-center text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none sm:whitespace-nowrap sm:px-3.5 sm:text-sm ${
           enabled
             ? "font-semibold text-white"
             : "font-medium text-muted-foreground hover:text-foreground"
@@ -105,7 +105,7 @@ export function TriagePlainLanguageToggle({
           if (enabled) onToggle();
         }}
         aria-pressed={!enabled}
-        className={`relative z-10 inline-flex min-h-[44px] items-center justify-center rounded-lg px-3 py-2 text-center text-[13px] leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none sm:whitespace-nowrap sm:px-3.5 sm:text-sm ${
+        className={`relative z-10 inline-flex min-h-11 items-center justify-center rounded-lg px-3 py-2 text-center text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none sm:whitespace-nowrap sm:px-3.5 sm:text-sm ${
           !enabled
             ? "font-semibold text-white"
             : "font-medium text-muted-foreground hover:text-foreground"

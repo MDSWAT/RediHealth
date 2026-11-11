@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { MedicOnlineHero } from "@/components/telemed/MedicOnlineHero";
-import { ShieldIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { ClockIcon, FileTextIcon, MessageDotsIcon, ShieldIcon, StethoscopeIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
@@ -26,6 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const copy: Record<
   Lang,
   {
+    stepsBadge: string;
     stepsTitle: string;
     stepsSubtitle: string;
     step1Title: string;
@@ -41,6 +42,7 @@ const copy: Record<
   }
 > = {
   ro: {
+    stepsBadge: "Trei pași simpli",
     stepsTitle: "Cum funcționează",
     stepsSubtitle: "Nu ai nevoie de cont bancar, card de sănătate sau aplicație.",
     step1Title: "Alegi când vorbești",
@@ -55,6 +57,7 @@ const copy: Record<
     privacyDesc: "Apelurile sunt criptate.",
   },
   en: {
+    stepsBadge: "Three simple steps",
     stepsTitle: "How it works",
     stepsSubtitle: "You do not need a bank account, a health card or an app.",
     step1Title: "Choose when to talk",
@@ -64,11 +67,12 @@ const copy: Record<
     step3Title: "Get the advice in writing",
     step3Desc: "After the call, the doctor sends you what to do next. You find it in your account and by text message.",
     heading: "Licensed doctors",
-    desc: "RediHealth doctors are family doctors, paediatricians or internal medicine doctors. They are volunteers and explain plainly what to do.",
+    desc: "RediHealth doctors are family doctors, paediatricians or internal medicine doctors. They are volunteers and explain clearly what to do.",
     privacyTitle: "What you say stays between you and the doctor",
     privacyDesc: "Calls are encrypted.",
   },
   sq: {
+    stepsBadge: "Tre hapa të thjeshtë",
     stepsTitle: "Si funksionon",
     stepsSubtitle: "Nuk të duhet llogari bankare, kartë shëndetësore apo aplikacion.",
     step1Title: "Zgjidh kur flet",
@@ -78,11 +82,12 @@ const copy: Record<
     step3Title: "Merr këshillat me shkrim",
     step3Desc: "Pas thirrjes, mjeku të dërgon çfarë duhet të bësh. I gjen në llogari dhe me SMS.",
     heading: "Mjekë me licencë",
-    desc: "Mjekët e RediHealth janë mjekë familjeje, pediatër ose mjekë të sëmundjeve të brendshme. Janë vullnetarë dhe të shpjegojnë thjesht çfarë të bësh.",
+    desc: "Mjekët e RediHealth janë mjekë familjeje, pediatër ose mjekë të sëmundjeve të brendshme. Janë vullnetarë dhe të shpjegojnë qartë çfarë të bësh.",
     privacyTitle: "Çfarë thua mbetet mes teje dhe mjekut",
     privacyDesc: "Thirrjet janë të enkriptuara.",
   },
   it: {
+    stepsBadge: "Tre semplici passi",
     stepsTitle: "Come funziona",
     stepsSubtitle: "Non ti servono conto in banca, tessera sanitaria o app.",
     step1Title: "Scegli quando parlare",
@@ -92,11 +97,12 @@ const copy: Record<
     step3Title: "Ricevi i consigli per iscritto",
     step3Desc: "Dopo la chiamata, il medico ti manda cosa fare. Lo trovi nel tuo account e via SMS.",
     heading: "Medici abilitati",
-    desc: "I medici di RediHealth sono medici di famiglia, pediatri o internisti. Sono volontari e ti spiegano con parole semplici cosa fare.",
+    desc: "I medici di RediHealth sono medici di famiglia, pediatri o internisti. Sono volontari e ti spiegano con chiarezza cosa fare.",
     privacyTitle: "Quello che dici resta tra te e il medico",
     privacyDesc: "Le chiamate sono criptate.",
   },
   hr: {
+    stepsBadge: "Tri jednostavna koraka",
     stepsTitle: "Kako funkcionira",
     stepsSubtitle: "Ne trebaš bankovni račun, zdravstvenu iskaznicu HZZO ni aplikaciju.",
     step1Title: "Odaberi kada želiš razgovarati",
@@ -111,6 +117,7 @@ const copy: Record<
     privacyDesc: "Pozivi su šifrirani.",
   },
   rom: {
+    stepsBadge: "Trin lokhe pash",
     stepsTitle: "Sar kerel buchi",
     stepsSubtitle: "Na trebul tuke bankako konto, sastipnaski karta vay aplikacia.",
     step1Title: "Alosar kana kames te des svato",
@@ -120,7 +127,7 @@ const copy: Record<
     step3Title: "Le e sikavimata lekhavde",
     step3Desc: "Palo svato, o doktori bichhalel tuke so te keres may dur. Arakhes sa ande cho konto thaj katar SMS.",
     heading: "Doktorya licenciyasa",
-    desc: "E doktorya ko RediHealth si familiyake doktorya, chhavorenge doktorya vay doktorya vash andrutni medicina. Von keren buchi bi lovesko thaj phenen tuke lokhes so te keres.",
+    desc: "E doktorya ko RediHealth si familiyake doktorya, chhavorenge doktorya vay doktorya vash andrutni medicina. Von keren buchi bi lovesko thaj phenen tuke chaches so te keres.",
     privacyTitle: "So phenes achel mashkar tute thaj o doktori",
     privacyDesc: "E svaturya si garavde (enkriptisarde).",
   },
@@ -135,26 +142,46 @@ export default async function MedicOnlinePage() {
       {/* The two ways to talk to a doctor, with the pharmacy as the last row of the same surface. */}
       <MedicOnlineHero />
 
-      {/* How it works: an ordered list, numbers carry the sequence. */}
-      <section aria-labelledby="medic-steps-heading" className="border-b border-border bg-card py-12 sm:py-16">
+      {/* How it works: editorial 3-step sequence with tactile step cards */}
+      <section aria-labelledby="medic-steps-heading" className="border-b border-border bg-card py-14 sm:py-20">
         <Container>
           <div className="max-w-2xl">
-            <h2 id="medic-steps-heading" className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+            <h2 id="medic-steps-heading" className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               {c.stepsTitle}
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">{c.stepsSubtitle}</p>
+            <p className="mt-2 text-base leading-relaxed text-muted-foreground">{c.stepsSubtitle}</p>
           </div>
 
-          <ol className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6">
+          <ol className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
             {[
-              [c.step1Title, c.step1Desc],
-              [c.step2Title, c.step2Desc],
-              [c.step3Title, c.step3Desc],
-            ].map(([title, desc], i) => (
-              <li key={title} className="border-t border-border pt-4">
-                <span className="text-sm font-semibold text-sapphire tabular-nums">{i + 1}</span>
-                <h3 className="mt-1 text-base font-semibold text-foreground">{title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+              { num: "01", title: c.step1Title, desc: c.step1Desc, icon: ClockIcon },
+              { num: "02", title: c.step2Title, desc: c.step2Desc, icon: MessageDotsIcon },
+              { num: "03", title: c.step3Title, desc: c.step3Desc, icon: FileTextIcon },
+            ].map(({ num, title, desc, icon: StepIcon }) => (
+              <li
+                key={title}
+                className="group relative flex flex-col justify-between rounded-2xl border border-stone-200/90 bg-gradient-to-b from-background via-background to-card p-6 shadow-xs transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:-translate-y-1 hover:border-sapphire/50 hover:shadow-lg hover:shadow-sapphire/5 dark:border-stone-800 dark:hover:border-sapphire/50 dark:hover:shadow-sapphire/10"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sapphire-soft/90 text-sm font-bold tabular-nums text-sapphire ring-1 ring-sapphire/20 shadow-2xs transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:scale-105 dark:bg-sapphire/20 dark:text-sapphire-light">
+                      {num}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="flex h-9 w-9 items-center justify-center rounded-xl bg-muted/60 text-muted-foreground transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-sapphire-soft group-hover:text-sapphire dark:group-hover:bg-sapphire/20 dark:group-hover:text-sapphire-light"
+                    >
+                      <StepIcon className="h-4.5 w-4.5" />
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 text-lg font-semibold tracking-[-0.015em] text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {desc}
+                  </p>
+                </div>
               </li>
             ))}
           </ol>

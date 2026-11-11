@@ -1,0 +1,107 @@
+/* The window the headlines pass through. Its edges fade so text slides in and out, not cut off. */
+.ticker {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.ticker[data-moving] {
+  mask-image: linear-gradient(90deg, transparent 0, #000 1.5rem, #000 calc(100% - 1.5rem), transparent 100%);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+}
+
+.copy {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Two copies side by side: moving the track by one copy's width loops without a seam. */
+.ticker[data-moving] .track {
+  animation: ticker-run var(--ticker-duration, 60s) linear infinite;
+}
+
+/* Rests while it is pointed at or holds keyboard focus, and when the pause button is on. */
+.ticker[data-moving]:hover .track,
+.ticker[data-moving]:focus-within .track,
+.ticker[data-paused] .track {
+  animation-play-state: paused;
+}
+
+/* The topic wheel between headlines, at icon size. */
+.miniWheel {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+.miniOuter,
+.miniInner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 5;
+  stroke-linejoin: round;
+}
+
+.miniOuter {
+  animation: ticker-turn 24s linear infinite;
+}
+
+.miniInner {
+  animation: ticker-turn 16s linear infinite reverse;
+}
+
+/* The wheels rest with the ticker. */
+.ticker[data-moving]:hover .miniWheel *,
+.ticker[data-moving]:focus-within .miniWheel *,
+.ticker[data-paused] .miniWheel * {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-turn {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes ticker-run {
+  to {
+    translate: -50% 0;
+  }
+}
+
+/* Reduced motion: nothing moves, the first headline shows, and there is nothing to pause. */
+@media (prefers-reduced-motion: reduce) {
+  .ticker[data-moving] {
+    mask-image: none;
+  }
+
+  .ticker[data-moving] .track {
+    animation: none;
+  }
+
+  .miniOuter,
+  .miniInner {
+    animation: none;
+  }
+
+  .repeat,
+  .pause {
+    display: none;
+  }
+}

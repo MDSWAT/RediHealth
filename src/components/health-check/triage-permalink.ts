@@ -33,14 +33,7 @@ export interface TriagePermalinkState {
   bodyProfile?: BodyAnatomyProfile;
 }
 
-/**
- * Builds a compact, deterministic URL that reproduces the exact Step 4 triage result when scanned via QR.
- */
-export function buildTriageReproductionUrl(
-  origin: string,
-  lang: Lang,
-  state: TriagePermalinkState
-): string {
+function buildTriageQueryParams(state: TriagePermalinkState, dateIso?: string): URLSearchParams {
   const params = new URLSearchParams();
   params.set("qr", "1");
   params.set("p", state.part);
@@ -58,10 +51,106 @@ export function buildTriageReproductionUrl(
   if (state.duration) params.set("du", state.duration);
   if (state.forWhom === "child") params.set("fw", "child");
   if (state.bodyProfile === "female") params.set("bp", "female");
+  if (dateIso && /^\d{4}-\d{2}-\d{2}$/.test(dateIso)) {
+    params.set("dt", dateIso);
+  }
+  return params;
+}
 
+/**
+ * Builds a compact, deterministic URL that reproduces the exact Step 4 triage result when scanned via QR.
+ */
+export function buildTriageReproductionUrl(
+  origin: string,
+  lang: Lang,
+  state: TriagePermalinkState
+): string {
+  const params = buildTriageQueryParams(state);
   const basePath = withLangPrefix("/health-check", lang);
   const cleanOrigin = origin.replace(/\/+$/, "");
   return `${cleanOrigin}${basePath}?${params.toString()}`;
+}
+
+/**
+ * Builds a compact URL to the distraction-free clinical note card opened when scanning a QR code
+ * on iPhone (Safari) or Samsung / Android (Chrome), avoiding iOS Camera plain-text web-search behavior.
+ */
+export function buildTriageNoteUrl(
+  origin: string,
+  lang: Lang,
+  state: TriagePermalinkState,
+  dateIso?: string
+): string {
+  const params = buildTriageQueryParams(state, dateIso);
+  const basePath = withLangPrefix("/health-check/note", lang);
+  const cleanOrigin = origin.replace(/\/+$/, "");
+  return `${cleanOrigin}${basePath}?${params.toString()}`;
+}
+
+export interface FallbackTriageNotePayload {
+  bodyArea: string;
+  anatomicalStructure?: string;
+  symptoms: string[];
+  painLevel?: string;
+  duration?: string;
+  redFlagNoticed?: boolean;
+  recommendationDetail?: string;
+  dateIso?: string;
+}
+
+/**
+ * Builds a compact `/health-check/note` URL when `TriageSummaryCard` is rendered standalone without
+ * structured symptom IDs, ensuring QR codes never fall back to raw plain text on iOS Camera.
+ */
+export function buildFallbackTriageNoteUrl(
+  origin: string,
+  lang: Lang,
+  payload: FallbackTriageNotePayload
+): string {
+  const params = new URLSearchParams();
+  params.set("qr", "1");
+  if (payload.bodyArea) params.set("ba", payload.bodyArea.slice(0, 80));
+  if (payload.anatomicalStructure) params.set("as", payload.anatomicalStructure.slice(0, 80));
+  if (payload.symptoms.length > 0) params.set("syt", payload.symptoms.join(", ").slice(0, 140));
+  if (payload.painLevel) params.set("pl", payload.painLevel.slice(0, 50));
+  if (payload.duration) params.set("dut", payload.duration.slice(0, 50));
+  if (payload.redFlagNoticed) params.set("rf", "1");
+  if (payload.recommendationDetail) params.set("rc", payload.recommendationDetail.slice(0, 140));
+  if (payload.dateIso && /^\d{4}-\d{2}-\d{2}$/.test(payload.dateIso)) {
+    params.set("dt", payload.dateIso);
+  }
+  const basePath = withLangPrefix("/health-check/note", lang);
+  const cleanOrigin = origin.replace(/\/+$/, "");
+  return `${cleanOrigin}${basePath}?${params.toString()}`;
+}
+
+export function parseFallbackTriageNoteSearch(search: string): FallbackTriageNotePayload | null {
+  if (!search) return null;
+  const params = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search);
+  const bodyArea = params.get("ba")?.trim() ?? "";
+  const symptomsText = params.get("syt")?.trim() ?? "";
+  if (!bodyArea && !symptomsText) return null;
+  const dt = params.get("dt")?.trim();
+  return {
+    bodyArea,
+    anatomicalStructure: params.get("as")?.trim() || undefined,
+    symptoms: symptomsText ? symptomsText.split(/\s*,\s*/).filter(Boolean) : [],
+    painLevel: params.get("pl")?.trim() || undefined,
+    duration: params.get("dut")?.trim() || undefined,
+    redFlagNoticed: params.get("rf") === "1",
+    recommendationDetail: params.get("rc")?.trim() || undefined,
+    dateIso: dt && /^\d{4}-\d{2}-\d{2}$/.test(dt) ? dt : undefined,
+  };
+}
+
+export function parseTriageNoteDate(search: string): Date | null {
+  if (!search) return null;
+  const params = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search);
+  const dt = params.get("dt")?.trim();
+  if (!dt || !/^\d{4}-\d{2}-\d{2}$/.test(dt)) return null;
+  const [y, m, d] = dt.split("-").map(Number);
+  const parsed = new Date(y, m - 1, d);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
 export interface ParsedTriageReproduction {

@@ -2,9 +2,23 @@
 
 import { useId, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import Link from "next/link";
-import { AlertCircleIcon, ArrowRightIcon, ChevronRightIcon, PhoneIcon } from "@/components/ui/icons";
+import { AlertCircleIcon, ArrowRightIcon, PhoneIcon } from "@/components/ui/icons";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { type MildCategoryId, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
+import {
+  dangerPanel,
+  emergencyButton,
+  optionArrow,
+  optionDesc,
+  optionRow,
+  optionRowSelected,
+  optionTitle,
+  stepHeading,
+  stepLead,
+  subHeading,
+  textLink,
+  textLinkLabel,
+} from "@/components/health-assistant/step-ui";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 
@@ -51,9 +65,9 @@ export function PathwaySymptomsMild({
   if (step === 3 && hasEmergencySigns) {
     return (
       <div>
-        <div className="rounded-lg border border-primary/30 bg-primary-soft/55 p-5 sm:p-6">
-          <h2 className="flex items-start gap-2.5 text-xl font-semibold text-foreground">
-            <AlertCircleIcon className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+        <div className={dangerPanel}>
+          <h2 className={`flex items-start gap-3 ${stepHeading}`}>
+            <AlertCircleIcon className="mt-1 h-5 w-5 shrink-0 text-primary sm:mt-1.5" aria-hidden="true" />
             <span>{symptoms.emergencyHeading}</span>
           </h2>
           <p className="mt-2 max-w-prose text-base leading-relaxed text-foreground">
@@ -62,14 +76,14 @@ export function PathwaySymptomsMild({
 
           <a
             href="tel:112"
-            className="mt-5 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:w-auto"
+            className={`mt-5 w-full sm:w-auto ${emergencyButton}`}
           >
             <PhoneIcon className="h-5 w-5" aria-hidden="true" />
             <span>{symptoms.callNow}</span>
           </a>
 
-          <h3 className="mt-6 text-sm font-semibold text-foreground">{symptoms.callTipsTitle}</h3>
-          <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm leading-relaxed text-foreground marker:text-primary">
+          <h3 className={`mt-6 ${subHeading}`}>{symptoms.callTipsTitle}</h3>
+          <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-base leading-relaxed text-foreground marker:text-primary">
             {symptoms.callTips.map((tip) => (
               <li key={tip}>{tip}</li>
             ))}
@@ -88,16 +102,16 @@ export function PathwaySymptomsMild({
   if (step === 2) {
     return (
       <div>
-        <h2 id={headingId} className="text-lg font-semibold text-foreground">
+        <h2 id={headingId} className={stepHeading}>
           {symptoms.heading}
         </h2>
-        <p className="mt-1 text-sm text-muted-foreground">{symptoms.lead}</p>
+        <p className={stepLead}>{symptoms.lead}</p>
 
         <div
           role="radiogroup"
           aria-labelledby={headingId}
           onKeyDown={handleRadioGroupKeyDown}
-          className="mt-5 divide-y divide-border overflow-hidden rounded-lg border border-border"
+          className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2"
         >
           {CATEGORY_IDS.map((id, idx) => {
             const category = symptoms.categories[id];
@@ -112,38 +126,33 @@ export function PathwaySymptomsMild({
                 tabIndex={focusable ? 0 : -1}
                 data-triage-option={id}
                 onClick={() => onSelectCategory(id)}
-                className={`flex min-h-[56px] w-full items-start gap-3.5 px-4 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:px-5 ${
-                  checked ? "bg-sapphire-soft/60" : "bg-card hover:bg-muted/50"
-                }`}
+                className={checked ? optionRowSelected : optionRow}
               >
                 <span
                   aria-hidden="true"
-                  className={`mt-1 flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border-[1.5px] ${
-                    checked ? "border-sapphire" : "border-foreground/55"
+                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-[var(--dur-fast)] ${
+                    checked ? "border-sapphire" : "border-border-control group-hover:border-sapphire/70"
                   }`}
                 >
-                  {checked && <span className="h-2 w-2 rounded-full bg-sapphire" />}
+                  {checked && <span className="h-2.5 w-2.5 rounded-full bg-sapphire" />}
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-base font-semibold text-foreground">{category.title}</span>
-                  <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{category.desc}</span>
+                  <span className={optionTitle}>{category.title}</span>
+                  <span className={optionDesc}>{category.desc}</span>
                 </span>
-                <ChevronRightIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                <ArrowRightIcon className={optionArrow} aria-hidden="true" />
               </button>
             );
           })}
         </div>
 
-        <div className="mt-4 flex flex-col gap-2.5 rounded-lg border border-sapphire/25 bg-sapphire-soft/50 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm leading-snug text-foreground">{symptoms.bodyMapHint}</p>
-          <Link
-            href={withLangPrefix("/health-check", lang)}
-            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 rounded-lg border border-sapphire/30 bg-card px-3.5 py-2 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
-          >
-            <span>{symptoms.bodyMapCta}</span>
+        <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-foreground">
+          <span>{symptoms.bodyMapHint}</span>
+          <Link href={withLangPrefix("/health-check", lang)} className={textLink}>
+            <span className={textLinkLabel}>{symptoms.bodyMapCta}</span>
             <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
           </Link>
-        </div>
+        </p>
       </div>
     );
   }
@@ -155,17 +164,17 @@ export function PathwaySymptomsMild({
   return (
     <div>
       <p className="text-sm text-muted-foreground">{symptoms.selectedLabel}</p>
-      <h2 className="mt-0.5 text-lg font-semibold text-foreground">{current.title}</h2>
-      <p className="mt-0.5 text-sm text-muted-foreground">{current.desc}</p>
+      <h2 className={`mt-1 ${stepHeading}`}>{current.title}</h2>
+      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{current.desc}</p>
 
-      <p className="mt-4 max-w-prose text-base leading-relaxed text-foreground">
+      <p className="mt-5 max-w-prose text-base leading-relaxed text-foreground">
         {plainLanguage ? symptoms.plainBody : symptoms.body}
       </p>
 
-      <div className="mt-5 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-        <div className="rounded-lg border border-border bg-background p-4">
-          <h3 className="text-sm font-semibold text-foreground">{symptoms.homeCareHeading}</h3>
-          <ul className="mt-2.5 space-y-2 pl-4 text-sm leading-relaxed text-foreground">
+      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="rounded-2xl border border-border p-5 sm:p-6">
+          <h3 className={subHeading}>{symptoms.homeCareHeading}</h3>
+          <ul className="mt-3 space-y-2 pl-4 text-sm leading-relaxed text-foreground">
             {homeCareTips.map((tip) => (
               <li key={tip} className="list-disc marker:text-sapphire">
                 {tip}
@@ -174,19 +183,19 @@ export function PathwaySymptomsMild({
           </ul>
         </div>
 
-        <div className="rounded-lg border border-primary/30 bg-primary-soft/55 p-4">
-          <h3 className="flex items-start gap-2 text-sm font-semibold text-foreground">
-            <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+        <div className={dangerPanel}>
+          <h3 className={`flex items-start gap-2 ${subHeading}`}>
+            <AlertCircleIcon className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
             <span>{symptoms.whenToCallHeading}</span>
           </h3>
-          <ul className="mt-2.5 space-y-2 pl-4 text-sm leading-relaxed text-foreground">
+          <ul className="mt-3 space-y-2 pl-4 text-sm leading-relaxed text-foreground">
             {symptoms.whenToCallTips.map((tip) => (
               <li key={tip} className="list-disc marker:text-primary">
                 {tip}
               </li>
             ))}
           </ul>
-          <p className="mt-3 border-t border-primary/20 pt-2.5 text-xs font-medium leading-relaxed text-foreground">
+          <p className="mt-4 border-t border-primary/20 pt-3 text-sm font-medium leading-relaxed text-foreground">
             {symptoms.safetyNet}
           </p>
         </div>

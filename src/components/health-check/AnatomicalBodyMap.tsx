@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import dynamic from "next/dynamic";
-import { SearchIcon } from "@/components/ui/icons";
+import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -22,8 +22,6 @@ import {
   SkinIcon,
   SlidersIcon,
   StopListenIcon,
-  TurnLeftIcon,
-  TurnRightIcon,
   WholeBodyIcon,
   ZoomInIcon,
   ZoomOutIcon,
@@ -88,6 +86,8 @@ export interface AnatomicalBodyMapProps {
   focusSide?: Side;
   lang?: Lang;
   compact?: boolean;
+  /** Suppress the extra mobile literacy block below the stage when an Assistant step card docks directly beneath it. */
+  hideMobileLiteracyCard?: boolean;
 }
 
 const COPY: Record<
@@ -103,6 +103,8 @@ const COPY: Record<
     zoomOut: string;
     turnLeft: string;
     turnRight: string;
+    moveUp: string;
+    moveDown: string;
     resetView: string;
     close: string;
     liteNote: string;
@@ -119,6 +121,7 @@ const COPY: Record<
     stopListen: string;
     whyHurt: string;
     hideWhy: string;
+    dismissInfo: string;
     whatItDoes: string;
     referredTo: string;
   }
@@ -134,6 +137,8 @@ const COPY: Record<
     zoomOut: "Depărtează",
     turnLeft: "Rotește la stânga",
     turnRight: "Rotește la dreapta",
+    moveUp: "Mută în sus",
+    moveDown: "Mută în jos",
     resetView: "Vedere inițială",
     close: "Închide opțiunile",
     liteNote: "Corpul 3D e oprit ca să economisești date. Alege zona din listă.",
@@ -150,6 +155,7 @@ const COPY: Record<
     stopListen: "Oprește",
     whyHurt: "De ce poate durea?",
     hideWhy: "Ascunde explicația",
+    dismissInfo: "Închide explicația",
     whatItDoes: "Ce face în corp",
     referredTo: "Durerea se poate simți și în",
   },
@@ -164,6 +170,8 @@ const COPY: Record<
     zoomOut: "Zoom out",
     turnLeft: "Turn left",
     turnRight: "Turn right",
+    moveUp: "Move up",
+    moveDown: "Move down",
     resetView: "Starting view",
     close: "Close options",
     liteNote: "The 3D body is off to save data. Choose the area from the list.",
@@ -180,6 +188,7 @@ const COPY: Record<
     stopListen: "Stop",
     whyHurt: "Why it may hurt",
     hideWhy: "Hide details",
+    dismissInfo: "Close this explanation",
     whatItDoes: "What it does",
     referredTo: "Pain can also travel to",
   },
@@ -194,6 +203,8 @@ const COPY: Record<
     zoomOut: "Largo",
     turnLeft: "Rrotullo majtas",
     turnRight: "Rrotullo djathtas",
+    moveUp: "Lëviz lart",
+    moveDown: "Lëviz poshtë",
     resetView: "Pamja fillestare",
     close: "Mbyll opsionet",
     liteNote: "Trupi 3D është i fikur për të kursyer të dhëna. Zgjidh zonën nga lista.",
@@ -210,6 +221,7 @@ const COPY: Record<
     stopListen: "Ndalo",
     whyHurt: "Pse mund të dhembë?",
     hideWhy: "Fshih shpjegimin",
+    dismissInfo: "Mbyll shpjegimin",
     whatItDoes: "Çfarë bën në trup",
     referredTo: "Dhimbja mund të ndihet edhe në",
   },
@@ -224,6 +236,8 @@ const COPY: Record<
     zoomOut: "Allontana",
     turnLeft: "Gira a sinistra",
     turnRight: "Gira a destra",
+    moveUp: "Sposta in alto",
+    moveDown: "Sposta in basso",
     resetView: "Vista iniziale",
     close: "Chiudi opzioni",
     liteNote: "Il corpo 3D è spento per risparmiare dati. Scegli la zona dall'elenco.",
@@ -240,6 +254,7 @@ const COPY: Record<
     stopListen: "Ferma",
     whyHurt: "Perché può far male?",
     hideWhy: "Nascondi dettagli",
+    dismissInfo: "Chiudi la spiegazione",
     whatItDoes: "Cosa fa nel corpo",
     referredTo: "Il dolore può irradiarsi anche a",
   },
@@ -254,6 +269,8 @@ const COPY: Record<
     zoomOut: "Udalji",
     turnLeft: "Okreni ulijevo",
     turnRight: "Okreni udesno",
+    moveUp: "Pomakni gore",
+    moveDown: "Pomakni dolje",
     resetView: "Početni prikaz",
     close: "Zatvori opcije",
     liteNote: "3D prikaz tijela je isključen radi uštede podatkovnog prometa. Odaberi područje s popisa.",
@@ -270,6 +287,7 @@ const COPY: Record<
     stopListen: "Zaustavi",
     whyHurt: "Zašto može boljeti?",
     hideWhy: "Sakrij objašnjenje",
+    dismissInfo: "Zatvori objašnjenje",
     whatItDoes: "Uloga u tijelu",
     referredTo: "Bol se može osjetiti i u",
   },
@@ -284,6 +302,8 @@ const COPY: Record<
     zoomOut: "Ingar maj dur",
     turnLeft: "Ambold pe stingo",
     turnRight: "Ambold pe chacho",
+    moveUp: "Ingar opre",
+    moveDown: "Ingar tele",
     resetView: "Angluno dikhimos",
     close: "Phandav le opcie",
     liteNote: "O 3D trupo si mudardo te arakhes interneteske date. Alosar o than katar i lista.",
@@ -300,6 +320,7 @@ const COPY: Record<
     stopListen: "Achhav",
     whyHurt: "Sostar shaj te dukhal?",
     hideWhy: "Garav",
+    dismissInfo: "Phandav",
     whatItDoes: "So kerel and-o trupo",
     referredTo: "I dukh shaj te djal vi ko",
   },
@@ -339,6 +360,99 @@ function useSafeLanguage(propLang?: Lang): Lang {
   return propLang || contextLang;
 }
 
+type PadMove = "up" | "down" | "left" | "right";
+
+/**
+ * Fixed direction pad inside the 3D stage: up/down glide along the body, left/right turn it, the
+ * middle goes back to the starting view. Holding a button keeps gliding at a calm pace.
+ */
+function DirectionPad({
+  labels,
+  onMove,
+  onReset,
+  onAnnounce,
+  className = "",
+}: {
+  labels: Record<PadMove | "reset", string>;
+  onMove: (move: PadMove) => void;
+  onReset: () => void;
+  onAnnounce?: (label: string) => void;
+  className?: string;
+}) {
+  const repeatRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const stop = () => {
+    if (repeatRef.current) clearInterval(repeatRef.current);
+    repeatRef.current = null;
+  };
+  useEffect(() => stop, []);
+
+  const tip =
+    "pointer-events-none absolute right-full top-1/2 mr-2 hidden -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-sm transition-[opacity,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/pad:translate-x-0 group-hover/pad:opacity-100 group-focus-visible/pad:translate-x-0 group-focus-visible/pad:opacity-100 sm:block";
+  const btn =
+    "group/pad relative inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground active:bg-sapphire-soft active:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire touch-none select-none";
+
+  const moveButton = (move: PadMove, Icon: typeof ChevronLeftIcon, iconClass: string, area: string) => (
+    <button
+      type="button"
+      aria-label={labels[move]}
+      style={{ gridArea: area }}
+      className={btn}
+      onPointerDown={(e) => {
+        if (e.button !== 0) return;
+        try {
+          e.currentTarget.setPointerCapture(e.pointerId);
+        } catch {
+          // Pointer already gone: holding still works until pointerup/leave.
+        }
+        onMove(move);
+        onAnnounce?.(labels[move]);
+        stop();
+        repeatRef.current = setInterval(() => onMove(move), 520);
+      }}
+      onPointerUp={stop}
+      onPointerCancel={stop}
+      onLostPointerCapture={stop}
+      // Keyboard (Enter/Space) arrives as a click with no pointer.
+      onClick={(e) => {
+        if (e.detail === 0) onMove(move);
+      }}
+    >
+      <Icon className={`h-4 w-4 ${iconClass}`} aria-hidden="true" />
+      <span aria-hidden="true" className={tip}>
+        {labels[move]}
+      </span>
+    </button>
+  );
+
+  return (
+    <div
+      role="group"
+      aria-label={`${labels.up}, ${labels.down}, ${labels.left}, ${labels.right}`}
+      className={`grid grid-cols-3 grid-rows-3 rounded-2xl border border-border/90 bg-card/92 p-0.5 shadow-xs backdrop-blur-md [grid-template-areas:'._up_.'_'left_mid_right'_'._down_.'] ${className}`}
+    >
+      {moveButton("up", ChevronDownIcon, "rotate-180", "up")}
+      {moveButton("left", ChevronLeftIcon, "", "left")}
+      <button
+        type="button"
+        aria-label={labels.reset}
+        style={{ gridArea: "mid" }}
+        className={btn}
+        onClick={() => {
+          onReset();
+          onAnnounce?.(labels.reset);
+        }}
+      >
+        <ResetViewIcon className="h-3.5 w-3.5" aria-hidden="true" />
+        <span aria-hidden="true" className={tip}>
+          {labels.reset}
+        </span>
+      </button>
+      {moveButton("right", ChevronRightIcon, "", "right")}
+      {moveButton("down", ChevronDownIcon, "", "down")}
+    </div>
+  );
+}
+
 export function AnatomicalBodyMap({
   selectedPart,
   onSelectPart,
@@ -360,6 +474,7 @@ export function AnatomicalBodyMap({
   focusSide,
   lang,
   compact = false,
+  hideMobileLiteracyCard = false,
 }: AnatomicalBodyMapProps) {
   const activeLang = useSafeLanguage(lang);
   const dict = getHealthCheckTranslations(activeLang);
@@ -414,6 +529,8 @@ export function AnatomicalBodyMap({
   const [internalSubRegion, setInternalSubRegion] = useState<SubRegionId | null>(null);
   const [internalSide, setInternalSide] = useState<Side>("Center");
   const [literacyOpen, setLiteracyOpen] = useState(false);
+  /** The spot whose explanation the reader closed. Picking another spot brings the card back. */
+  const [dismissedSpot, setDismissedSpot] = useState<SubRegionId | null>(null);
   const [mobileHint, setMobileHint] = useState<{ text: string; visible: boolean } | null>(null);
   const hintFadeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hintClearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -439,7 +556,7 @@ export function AnatomicalBodyMap({
     }, 2100);
   }
 
-  // A reset (no area) puts the body back to its starting view.
+  // A reset (no area) puts the body back to its starting view; a prop-driven spot change releases any pinned tap angle.
   const [prevPart, setPrevPart] = useState(selectedPart);
   if (prevPart !== selectedPart) {
     setPrevPart(selectedPart);
@@ -451,6 +568,13 @@ export function AnatomicalBodyMap({
       setInternalSide("Center");
       setLiteracyOpen(false);
     }
+  }
+  const [prevPropSubRegion, setPrevPropSubRegion] = useState(selectedSubRegion);
+  if (prevPropSubRegion !== selectedSubRegion) {
+    setPrevPropSubRegion(selectedSubRegion);
+    setUserAngle(null);
+    setFreeView(false);
+    setLiteracyOpen(false);
   }
 
   // With a parent that records the exact point, its value is the truth; otherwise keep our own.
@@ -596,25 +720,29 @@ export function AnatomicalBodyMap({
 
   const sectionTitle = "mb-2 text-sm font-semibold text-foreground";
 
-  const renderLiteracyCard = (variant: "floating" | "stacked") => {
-    if (!hudRaw || !hudLocalized) return null;
+  /**
+   * Body Literacy Card. From lg it is a bar above the stage ("bar"), so it never covers the
+   * body; below lg it sits under the stage ("stacked"). It starts as a name tag: "Why it may
+   * hurt" opens the explanation, and the close button puts the card away for this spot.
+   */
+  const renderLiteracyCard = (variant: "bar" | "stacked") => {
+    if (!hudRaw || !hudLocalized || dismissedSpot === effectiveSubRegion) return null;
     const speechParts = [
       `${hudLocalized.label}${hudSideLabel}`,
       hudLocalized.summary,
       hudLocalized.functionDescription,
       hudLocalized.clinicalNotes,
     ];
+    const bar = variant === "bar";
     return (
       <div
         className={
-          variant === "floating"
-            ? `hidden sm:block pointer-events-auto absolute left-3 top-3 z-30 rounded-xl border border-border/90 bg-card/95 p-3 shadow-sm backdrop-blur-md ${
-                literacyOpen ? "w-[min(20.5rem,calc(100%-5.5rem))]" : "w-fit max-w-[min(20.5rem,calc(100%-5.5rem))]"
-              }`
-            : "sm:hidden mt-2.5 rounded-xl border border-border bg-card p-3.5 shadow-xs"
+          bar
+            ? "hidden border-b border-border bg-card px-4 py-3 lg:block"
+            : "lg:hidden mt-2.5 rounded-xl border border-border bg-card p-3.5 shadow-xs"
         }
       >
-        <div className="flex items-start justify-between gap-2">
+        <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <p className="text-sm font-semibold leading-snug text-foreground">
               {hudLocalized.label}
@@ -624,46 +752,56 @@ export function AnatomicalBodyMap({
               {hudLocalized.tissueLabel}
             </p>
           </div>
-          {voice.available && (
+          <div className="flex shrink-0 items-center gap-1.5">
             <button
               type="button"
-              onClick={() => (voice.speaking ? voice.stop() : voice.speak(speechParts))}
-              aria-label={`${voice.speaking ? t.stopListen : t.listen}: ${hudLocalized.label}`}
-              aria-pressed={voice.speaking}
-              className={`inline-flex h-8 shrink-0 items-center gap-1 rounded-lg border px-2 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                voice.speaking
-                  ? "border-sapphire bg-sapphire-soft text-sapphire"
-                  : "border-border bg-card text-foreground hover:bg-muted"
-              }`}
+              aria-expanded={literacyOpen}
+              onClick={() => setLiteracyOpen((v) => !v)}
+              className="inline-flex h-8 items-center gap-1 rounded-lg px-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
             >
-              {voice.speaking ? (
-                <StopListenIcon className="h-3.5 w-3.5 shrink-0" />
-              ) : (
-                <ListenIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
-              )}
-              <span>{voice.speaking ? t.stopListen : t.listen}</span>
+              <span>{literacyOpen ? t.hideWhy : t.whyHurt}</span>
+              <ChevronDownIcon
+                className={`h-3.5 w-3.5 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${literacyOpen ? "rotate-180" : ""}`}
+              />
             </button>
-          )}
+            {voice.available && (
+              <button
+                type="button"
+                onClick={() => (voice.speaking ? voice.stop() : voice.speak(speechParts))}
+                aria-label={`${voice.speaking ? t.stopListen : t.listen}: ${hudLocalized.label}`}
+                aria-pressed={voice.speaking}
+                className={`inline-flex h-8 shrink-0 items-center gap-1 rounded-lg border px-2 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                  voice.speaking
+                    ? "border-sapphire bg-sapphire-soft text-sapphire"
+                    : "border-border bg-card text-foreground hover:bg-muted"
+                }`}
+              >
+                {voice.speaking ? (
+                  <StopListenIcon className="h-3.5 w-3.5 shrink-0" />
+                ) : (
+                  <ListenIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
+                )}
+                <span>{voice.speaking ? t.stopListen : t.listen}</span>
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => {
+                voice.stop();
+                setLiteracyOpen(false);
+                setDismissedSpot(effectiveSubRegion);
+              }}
+              aria-label={`${t.dismissInfo}: ${hudLocalized.label}`}
+              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            >
+              <CloseIcon className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
-        {/* On the stage the card starts as a name tag so it does not cover the body. */}
-        {(variant === "stacked" || literacyOpen) && (
-          <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-            {hudLocalized.summary}
-          </p>
-        )}
-
-        <button
-          type="button"
-          aria-expanded={literacyOpen}
-          onClick={() => setLiteracyOpen((v) => !v)}
-          className="mt-1.5 inline-flex min-h-7 items-center gap-1 rounded-md text-xs font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-        >
-          <span>{literacyOpen ? t.hideWhy : t.whyHurt}</span>
-        </button>
-
         {literacyOpen && (
-          <div className="mt-2 space-y-2 border-t border-border/80 pt-2 text-xs leading-relaxed text-foreground">
+          <div className="mt-2 max-w-prose space-y-2 border-t border-border/80 pt-2 text-xs leading-relaxed text-foreground">
+            <p className="text-muted-foreground">{hudLocalized.summary}</p>
             <p>
               <span className="font-semibold text-foreground">{t.whatItDoes}: </span>
               <span className="text-muted-foreground">{hudLocalized.functionDescription}</span>
@@ -700,23 +838,23 @@ export function AnatomicalBodyMap({
       ) : (
         <>
           <div className="relative isolate">
-            <div ref={stageRef} className={`relative isolate overflow-hidden bg-surface-subtle ${stageClassName ?? "h-[460px]"}`}>
+            {renderLiteracyCard("bar")}
+            <div ref={stageRef} data-hc-stage className={`relative isolate overflow-hidden bg-surface-subtle ${stageClassName ?? "h-[460px]"}`}>
             {hudRaw && hudLocalized ? (
               <>
-                {/* Mobile compact label pill inside stage; full Body Literacy Card renders directly below */}
+                {/* Compact label pill inside the stage below lg; from lg the card is a bar above the stage. */}
                 <div
                   aria-hidden="true"
-                  className="sm:hidden pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-9.5rem)] rounded-lg border border-border/90 bg-card/92 px-2.5 py-1.5 text-xs font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md"
+                  className="lg:hidden pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-6.5rem)] rounded-xl border border-border/90 bg-card/92 px-2.5 py-1.5 text-xs font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md"
                 >
                   {hudLocalized.label}
                   {hudSideLabel}
                 </div>
-                {renderLiteracyCard("floating")}
               </>
             ) : selectionLabel ? (
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute left-3 top-3 z-30 max-w-[calc(100%-11rem)] rounded-lg border border-border bg-card/90 px-3 py-1.5 text-sm font-semibold leading-snug text-foreground shadow-sm backdrop-blur-md"
+                className="pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-6.5rem)] rounded-xl border border-border bg-card/92 px-2.5 py-1.5 text-xs font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md lg:left-3 lg:top-3 lg:max-w-[calc(100%-11rem)] lg:px-3 lg:text-sm"
               >
                 {selectionLabel}
               </div>
@@ -733,12 +871,8 @@ export function AnatomicalBodyMap({
                   aria-controls={panelId}
                   aria-label={t.open}
                   title={t.open}
-                  onClick={() => {
-                    const nextOpen = !panelOpen;
-                    setPanelOpen(nextOpen);
-                    if (nextOpen) announceMobileHint(t.open);
-                  }}
-                  className="inline-flex min-h-10 items-center gap-1.5 rounded-xl border border-border/90 bg-card/95 px-2.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                  onClick={() => setPanelOpen((open) => !open)}
+                  className="inline-flex min-h-10 items-center gap-1.5 rounded-xl border border-border/90 bg-card/95 px-2.5 text-xs font-medium text-foreground shadow-xs backdrop-blur-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
                 >
                   <SearchIcon className="h-3.5 w-3.5 text-muted-foreground" />
                   <SlidersIcon className="h-3.5 w-3.5 text-muted-foreground" />
@@ -750,152 +884,13 @@ export function AnatomicalBodyMap({
               <div
                 role="status"
                 aria-live="polite"
-                className={`sm:hidden pointer-events-none absolute bottom-2.5 left-3 z-30 max-w-[calc(100%-1.5rem)] transition-all duration-200 ease-out motion-reduce:transition-none ${
-                  mobileHint.visible ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+                className={`lg:hidden pointer-events-none absolute left-1/2 top-13 z-30 max-w-[calc(100%-2rem)] -translate-x-1/2 transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none ${
+                  mobileHint.visible ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
                 }`}
               >
-                <span className="inline-block max-w-full truncate rounded-md border border-border/90 bg-card/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-xs backdrop-blur-md">
+                <span className="inline-block max-w-full truncate rounded-lg border border-border/90 bg-card/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-xs backdrop-blur-md">
                   {mobileHint.text}
                 </span>
-              </div>
-            )}
-
-            {showTools && panelOpen && (
-              <div
-                ref={panelRef}
-                id={panelId}
-                role="dialog"
-                aria-label={t.options}
-                className="hc-sheet absolute right-2.5 top-14 z-40 w-[min(20.5rem,calc(100%-1.25rem))] max-h-[calc(100%-4.25rem)] overflow-y-auto rounded-xl border border-border bg-card p-3.5 shadow-lg"
-              >
-                <div className="mb-2.5 flex items-center justify-between gap-2">
-                  <p className="text-sm font-semibold text-foreground">{t.options}</p>
-                  <button
-                    type="button"
-                    aria-label={t.close}
-                    onClick={() => {
-                      setPanelOpen(false);
-                      openerRef.current?.focus();
-                    }}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-                  >
-                    <CloseIcon className="h-4 w-4" />
-                  </button>
-                </div>
-
-                <div className="relative">
-                  <label htmlFor={searchId} className={`block ${sectionTitle}`}>
-                    {t.search}
-                  </label>
-                  <div className="relative">
-                    <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <input
-                      id={searchId}
-                      type="search"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder={t.searchPlaceholder}
-                      autoComplete="off"
-                      className="min-h-10 w-full rounded-lg border border-border bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-sapphire focus:outline-none"
-                    />
-                  </div>
-                  {searchQuery.trim().length >= 2 && (
-                    <ul className="mt-2 divide-y divide-border overflow-hidden rounded-lg border border-border">
-                      {searchResults.length === 0 ? (
-                        <li className="px-3 py-2 text-xs text-muted-foreground">{t.noResults}</li>
-                      ) : (
-                        searchResults.map((item) => (
-                          <li key={`${item.subRegion}-${item.side}`}>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                handleSelect3D(item.macroPart, item.subRegion, item.side);
-                                setSearchQuery("");
-                                setPanelOpen(false);
-                              }}
-                              className="flex min-h-10 w-full items-center justify-between gap-2 px-3 py-2 text-left text-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire"
-                            >
-                              <span className="font-medium text-foreground">{item.label}</span>
-                              <span className="text-muted-foreground">{dict.bodyParts[item.macroPart].title}</span>
-                            </button>
-                          </li>
-                        ))
-                      )}
-                    </ul>
-                  )}
-                </div>
-
-                <div role="group" aria-label={t.bodyType} className="mt-3">
-                  <p className={sectionTitle}>{t.bodyType}</p>
-                  <div className="grid grid-cols-2 gap-2">
-                    {(
-                      [
-                        { id: "general", label: t.bodyGeneral, Icon: WholeBodyIcon },
-                        { id: "female", label: t.bodyFemale, Icon: FemaleBodyIcon },
-                      ] as const
-                    ).map(({ id, label, Icon }) => {
-                      const active = activeBodyProfile === id;
-                      return (
-                        <button
-                          key={id}
-                          type="button"
-                          aria-pressed={active}
-                          onClick={() => {
-                            setBodyProfile(id);
-                            closePanel();
-                          }}
-                          className={`flex min-h-11 items-center gap-2 rounded-lg border px-2.5 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                            active
-                              ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-                              : "border-border bg-card text-foreground hover:bg-muted"
-                          }`}
-                        >
-                          <Icon className="h-5 w-5 shrink-0" />
-                          <span>{label}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div role="group" aria-label={t.layer} className="mt-3">
-                  <p className={sectionTitle}>{t.layer}</p>
-                  <div className="grid grid-cols-2 gap-2">
-                    {LAYER_ORDER.map((id) => {
-                      const active = effectiveLayerMode === id;
-                      const Icon = LAYER_ICON[id];
-                      return (
-                        <button
-                          key={id}
-                          type="button"
-                          aria-pressed={active}
-                          onClick={() => {
-                            setUserOverrodeLayer(true);
-                            setLayerMode(id);
-                            closePanel();
-                          }}
-                          className={`flex min-h-11 items-center gap-2 rounded-lg border px-2.5 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                            active
-                              ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-                              : "border-border bg-card text-foreground hover:bg-muted"
-                          }`}
-                        >
-                          <Icon className="h-5 w-5 shrink-0" />
-                          <span>{t.layers[id]}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div role="group" aria-label={t.camera} className="mt-3">
-                  <p className={sectionTitle}>{t.camera}</p>
-                  <div className="grid grid-cols-3 gap-2">
-                    {cameraButton(t.zoomOut, ZoomOutIcon, "zoomOut")}
-                    {cameraButton(t.zoomIn, ZoomInIcon, "zoomIn")}
-                    {cameraButton(t.resetView, ResetViewIcon, "resetCamera")}
-                  </div>
-                </div>
               </div>
             )}
 
@@ -927,26 +922,181 @@ export function AnatomicalBodyMap({
             </AnatomicalViewport3D>
             </div>
 
+            {showTools && panelOpen && (
+              <div
+                onClick={(e) => {
+                  if (e.target === e.currentTarget) closePanel();
+                }}
+                className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-3 sm:items-center lg:pointer-events-none lg:static lg:inset-auto lg:z-auto lg:block lg:bg-transparent lg:p-0"
+              >
+                <div
+                  ref={panelRef}
+                  id={panelId}
+                  role="dialog"
+                  aria-label={t.options}
+                  className="hc-sheet pointer-events-auto w-full max-w-sm max-h-[min(32rem,82dvh)] overflow-y-auto rounded-2xl border border-border bg-card p-4 shadow-xl lg:absolute lg:right-3 lg:top-14 lg:z-40 lg:w-80 lg:max-h-[min(28rem,calc(100%-4rem))]"
+                >
+                  <div className="mb-2.5 flex items-center justify-between gap-2">
+                    <p className="text-sm font-semibold text-foreground">{t.options}</p>
+                    <button
+                      type="button"
+                      aria-label={t.close}
+                      onClick={closePanel}
+                      className="flex h-9 w-9 items-center justify-center rounded-xl text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                    >
+                      <CloseIcon className="h-4 w-4" />
+                    </button>
+                  </div>
+
+                  <div className="relative">
+                    <label htmlFor={searchId} className={`block ${sectionTitle}`}>
+                      {t.search}
+                    </label>
+                    <div className="relative">
+                      <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <input
+                        id={searchId}
+                        type="search"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder={t.searchPlaceholder}
+                        autoComplete="off"
+                        className="min-h-10 w-full rounded-xl border border-border bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-sapphire focus:outline-none"
+                      />
+                    </div>
+                    {searchQuery.trim().length >= 2 && (
+                      <ul className="mt-2 divide-y divide-border overflow-hidden rounded-xl border border-border">
+                        {searchResults.length === 0 ? (
+                          <li className="px-3 py-2 text-xs text-muted-foreground">{t.noResults}</li>
+                        ) : (
+                          searchResults.map((item) => (
+                            <li key={`${item.subRegion}-${item.side}`}>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  handleSelect3D(item.macroPart, item.subRegion, item.side);
+                                  setSearchQuery("");
+                                  setPanelOpen(false);
+                                }}
+                                className="flex min-h-10 w-full items-center justify-between gap-2 px-3 py-2 text-left text-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire"
+                              >
+                                <span className="font-medium text-foreground">{item.label}</span>
+                                <span className="text-muted-foreground">{dict.bodyParts[item.macroPart].title}</span>
+                              </button>
+                            </li>
+                          ))
+                        )}
+                      </ul>
+                    )}
+                  </div>
+
+                  <div role="group" aria-label={t.bodyType} className="mt-3">
+                    <p className={sectionTitle}>{t.bodyType}</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {(
+                        [
+                          { id: "general", label: t.bodyGeneral, Icon: WholeBodyIcon },
+                          { id: "female", label: t.bodyFemale, Icon: FemaleBodyIcon },
+                        ] as const
+                      ).map(({ id, label, Icon }) => {
+                        const active = activeBodyProfile === id;
+                        return (
+                          <button
+                            key={id}
+                            type="button"
+                            aria-pressed={active}
+                            onClick={() => {
+                              setBodyProfile(id);
+                              closePanel();
+                            }}
+                            className={`flex min-h-11 items-center gap-2 rounded-xl border px-2.5 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                              active
+                                ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
+                                : "border-border bg-card text-foreground hover:bg-muted"
+                            }`}
+                          >
+                            <Icon className="h-5 w-5 shrink-0" />
+                            <span>{label}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div role="group" aria-label={t.layer} className="mt-3">
+                    <p className={sectionTitle}>{t.layer}</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {LAYER_ORDER.map((id) => {
+                        const active = effectiveLayerMode === id;
+                        const Icon = LAYER_ICON[id];
+                        return (
+                          <button
+                            key={id}
+                            type="button"
+                            aria-pressed={active}
+                            onClick={() => {
+                              setUserOverrodeLayer(true);
+                              setLayerMode(id);
+                              closePanel();
+                            }}
+                            className={`flex min-h-11 items-center gap-2 rounded-xl border px-2.5 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                              active
+                                ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
+                                : "border-border bg-card text-foreground hover:bg-muted"
+                            }`}
+                          >
+                            <Icon className="h-5 w-5 shrink-0" />
+                            <span>{t.layers[id]}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div role="group" aria-label={t.camera} className="mt-3">
+                    <p className={sectionTitle}>{t.camera}</p>
+                    <div className="grid grid-cols-3 gap-2">
+                      {cameraButton(t.zoomOut, ZoomOutIcon, "zoomOut")}
+                      {cameraButton(t.zoomIn, ZoomInIcon, "zoomIn")}
+                      {cameraButton(t.resetView, ResetViewIcon, "resetCamera")}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {showTools && (
+              <DirectionPad
+                className="absolute right-2.5 top-1/2 z-30 -translate-y-1/2 lg:right-3"
+                labels={{ up: t.moveUp, down: t.moveDown, left: t.turnLeft, right: t.turnRight, reset: t.resetView }}
+                onMove={(move) => {
+                  const cam = cameraRef.current;
+                  if (!cam) return;
+                  if (move === "up") cam.panUp();
+                  else if (move === "down") cam.panDown();
+                  else {
+                    setFreeView(true);
+                    if (move === "left") cam.rotateLeft();
+                    else cam.rotateRight();
+                  }
+                }}
+                onReset={() => {
+                  setUserAngle(null);
+                  setFreeView(false);
+                  cameraRef.current?.resetCamera();
+                }}
+                onAnnounce={announceMobileHint}
+              />
+            )}
+
             {showTools && (
               <div
                 role="toolbar"
                 aria-label={`${t.views}, ${t.layer}`}
-                className="mt-2 rounded-xl border border-border/90 bg-card/95 p-1 shadow-xs backdrop-blur-md sm:absolute sm:inset-x-2.5 sm:bottom-2.5 sm:z-30 sm:mx-auto sm:mt-0 sm:w-fit sm:max-w-[calc(100%-1.25rem)] sm:shadow-sm"
+                className="absolute inset-x-2 bottom-5 z-30 mx-auto w-fit max-w-[calc(100%-1rem)] rounded-xl border border-border/90 bg-card/95 p-1 shadow-xs backdrop-blur-md lg:bottom-3 lg:shadow-sm"
               >
-                {/* Phone (< sm): icon-only buttons with transient safe-zone label on press; Desktop (sm+): icon + text. */}
-                <div className="flex flex-nowrap items-center justify-center gap-0.5 sm:flex-wrap sm:gap-1">
-                  <button
-                    type="button"
-                    aria-label={t.turnLeft}
-                    title={t.turnLeft}
-                    onClick={() => {
-                      cameraRef.current?.rotateLeft();
-                      announceMobileHint(t.turnLeft);
-                    }}
-                    className="lg:hidden inline-flex h-9 max-w-9 flex-1 sm:h-8 sm:w-8 sm:max-w-none sm:flex-initial shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-                  >
-                    <TurnLeftIcon className="h-4 w-4 shrink-0" />
-                  </button>
+                {/* Icon-only everywhere: a small label shows on hover or keyboard focus (and briefly on phones after a press). */}
+                <div className="flex flex-nowrap items-center justify-center gap-0.5 sm:gap-1">
                   {(["front", "back"] as const).map((preset) => {
                     const active = !freeView && viewAngle === preset;
                     const label = preset === "front" ? dict.ui.viewer3D.front : dict.ui.viewer3D.back;
@@ -956,7 +1106,6 @@ export function AnatomicalBodyMap({
                         key={preset}
                         type="button"
                         aria-label={label}
-                        title={label}
                         aria-pressed={active}
                         onClick={() => {
                           setUserAngle(preset);
@@ -964,29 +1113,22 @@ export function AnatomicalBodyMap({
                           setViewRequest((n) => n + 1);
                           announceMobileHint(label);
                         }}
-                        className={`inline-flex h-9 max-w-9 flex-1 justify-center items-center gap-1 rounded-md px-0 text-xs font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:h-auto sm:min-h-8 sm:max-w-none sm:flex-initial sm:px-2 ${
+                        className={`group/tool relative inline-flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 justify-center items-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
                           active
                             ? "bg-sapphire-soft text-sapphire"
                             : "text-muted-foreground hover:bg-muted hover:text-foreground"
                         }`}
                       >
                         <Icon className="h-4 w-4 shrink-0" />
-                        <span className="hidden sm:inline">{label}</span>
+                        <span
+                          aria-hidden="true"
+                          className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-sm transition-[opacity,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/tool:translate-y-0 group-hover/tool:opacity-100 group-focus-visible/tool:translate-y-0 group-focus-visible/tool:opacity-100 sm:block"
+                        >
+                          {label}
+                        </span>
                       </button>
                     );
                   })}
-                  <button
-                    type="button"
-                    aria-label={t.turnRight}
-                    title={t.turnRight}
-                    onClick={() => {
-                      cameraRef.current?.rotateRight();
-                      announceMobileHint(t.turnRight);
-                    }}
-                    className="lg:hidden inline-flex h-9 max-w-9 flex-1 sm:h-8 sm:w-8 sm:max-w-none sm:flex-initial shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-                  >
-                    <TurnRightIcon className="h-4 w-4 shrink-0" />
-                  </button>
 
                   <span aria-hidden="true" className="mx-0.5 h-4 w-px shrink-0 bg-border" />
 
@@ -999,21 +1141,25 @@ export function AnatomicalBodyMap({
                         key={id}
                         type="button"
                         aria-label={label}
-                        title={label}
                         aria-pressed={active}
                         onClick={() => {
                           setUserOverrodeLayer(true);
                           setLayerMode(id);
                           announceMobileHint(label);
                         }}
-                        className={`inline-flex h-9 max-w-9 flex-1 justify-center items-center gap-1 rounded-md px-0 text-xs font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:h-auto sm:min-h-8 sm:max-w-none sm:flex-initial sm:px-2 ${
+                        className={`group/tool relative inline-flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 justify-center items-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
                           active
                             ? "bg-sapphire-soft text-sapphire"
                             : "text-muted-foreground hover:bg-muted hover:text-foreground"
                         }`}
                       >
                         <Icon className="h-4 w-4 shrink-0" />
-                        <span className="hidden sm:inline">{label}</span>
+                        <span
+                          aria-hidden="true"
+                          className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-sm transition-[opacity,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/tool:translate-y-0 group-hover/tool:opacity-100 group-focus-visible/tool:translate-y-0 group-focus-visible/tool:opacity-100 sm:block"
+                        >
+                          {label}
+                        </span>
                       </button>
                     );
                   })}
@@ -1021,7 +1167,7 @@ export function AnatomicalBodyMap({
               </div>
             )}
           </div>
-          {renderLiteracyCard("stacked")}
+          {!hideMobileLiteracyCard && renderLiteracyCard("stacked")}
         </>
       )}
 

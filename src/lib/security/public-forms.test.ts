@@ -20,6 +20,9 @@ vi.mock("@/lib/rate-limit", () => ({
 }));
 vi.mock("@/lib/database", () => ({
   getCountryDatabase: () => ({ query: mocks.query }),
+  getControlDatabase: () => ({ query: mocks.query }),
+  hasControlDatabase: () => true,
+  defaultCountry: () => "RO",
   configuredCountries: () => ["RO"],
 }));
 vi.mock("@/lib/email", () => ({
@@ -36,12 +39,14 @@ vi.mock("@/lib/activity-log", () => ({ logActivity: vi.fn() }));
 
 import { POST as helpRequest } from "@/app/api/medical-help-requests/route";
 import { POST as issueReport } from "@/app/api/report-issue/route";
+import { POST as platformFeedback } from "@/app/api/feedback/route";
 import { POST as assistant } from "@/app/api/health-assistant/route";
 import { PATCH as portal } from "@/app/api/patient-portal/[token]/route";
 
 const handlers = [
   { action: "help_request", handler: (request: Request) => helpRequest(request) },
   { action: "issue_report", handler: (request: Request) => issueReport(request) },
+  { action: "platform_feedback", handler: (request: Request) => platformFeedback(request) },
   { action: "health_assistant", handler: (request: Request) => assistant(request) },
   { action: "patient_portal", handler: (request: Request) => portal(request, { params: Promise.resolve({ token: "a".repeat(32) }) }) },
 ];

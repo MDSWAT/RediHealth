@@ -6,6 +6,7 @@ export type CaptchaAction =
   | "verify_code"
   | "portal_link"
   | "issue_report"
+  | "platform_feedback"
   | "health_assistant"
   | "patient_portal";
 

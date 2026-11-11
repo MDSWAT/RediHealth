@@ -6,14 +6,13 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { heroCopy } from "@/lib/i18n/hero-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { PhoneIcon } from "@/components/ui/icons";
-import { CarePath } from "./hero/CarePath";
+import { WheelBackdrop } from "./WheelBackdrop";
 import { TriagePanel } from "./hero/TriagePanel";
 import { useDialogFocus } from "@/components/health-check/useDialogFocus";
 
 /**
  * Landing hero:
- * - Extends beneath the transparent-on-load sticky header (-mt-16 pt-16 lg:-mt-20 lg:pt-20).
+ * - Extends beneath the transparent-on-load sticky header (and its 112 line) by --site-header-h.
  * - Two columns on a shared grid: headline and steps align to the panel's question and footer.
  * - Phones and tablets: the photo is an in-flow band under the header zone that fades into the
  *   ink ground, so every line of text sits on solid ink. Desktop: the same photo is full-bleed behind ink scrims. It never moves.
@@ -59,10 +58,10 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="hero relative isolate -mt-16 flex min-h-[calc(100svh-65px)] flex-col overflow-hidden bg-ink-950 pt-16 text-paper lg:-mt-20 lg:pt-20 xl:min-h-[calc(100svh-81px)]"
+      className="hero relative isolate -mt-(--site-header-h) flex min-h-[calc(100svh-var(--site-header-h))] flex-col overflow-hidden bg-ink-950 pt-(--site-header-h) text-paper"
     >
       {/* One photo, two placements: a band in the flow below lg, full-bleed behind the scrims from lg. */}
-      <div className="relative h-[clamp(180px,30svh,300px)] shrink-0 lg:absolute lg:inset-0 lg:-z-30 lg:h-auto">
+      <div className="relative h-[clamp(140px,22svh,220px)] -z-30 shrink-0 lg:absolute lg:inset-0 lg:h-auto">
         <Image
           src="/images/hero-consultation.jpg"
           alt=""
@@ -88,17 +87,20 @@ export function Hero() {
       {/* Vertical scrim: blends the photo into the header above and the ribbon below. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-20 hidden bg-[linear-gradient(180deg,color-mix(in_srgb,var(--color-ink-950)_85%,transparent)_0%,transparent_22%,transparent_70%,color-mix(in_srgb,var(--color-ink-950)_95%,transparent)_100%)] lg:block"
+        className="pointer-events-none absolute inset-0 -z-20 hidden bg-[linear-gradient(180deg,color-mix(in_srgb,var(--color-ink-950)_85%,transparent)_0%,transparent_22%,transparent_70%,var(--color-ink-950)_100%)] lg:block"
       />
+      {/* The topic wheel, faint and slow: framing the ink ground on phones and the panel on desktop. */}
+      <WheelBackdrop placement="hero" />
       {/* Subtle bottom inset horizon hairline separating the hero ground from the regional ribbon. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-px bg-linear-to-r from-white/5 via-white/20 to-white/5"
       />
 
-      <Container className="grid flex-1 content-center gap-y-10 pb-10 pt-5 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch lg:content-center lg:gap-x-14 lg:py-12 xl:gap-x-20">
-        {/* Desktop: the headline lines up with the panel question, the steps with the panel footer. */}
-        <div className="hero-enter flex flex-col lg:justify-between lg:pb-7 lg:pt-[80px]">
+      <Container className="hero-grid grid flex-1 content-center gap-y-10 pb-10 pt-5 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch lg:content-center lg:gap-x-14 lg:py-12 xl:gap-x-20">
+        {/* Desktop: the headline block sits in the vertical middle of the panel beside it (a touch above
+            centre, which reads as centred), whatever the typeface or the language's line count. */}
+        <div className="hero-enter flex flex-col lg:justify-center lg:pb-6">
           <div>
             <h1 id="hero-title" className="hero-title max-w-[22ch] text-balance font-bold text-paper">
               {copy.title}
@@ -113,20 +115,6 @@ export function Hero() {
                 </>
               ) : null}
             </p>
-            {/* The page's one 112 line: calm, under the promise, tappable on phones. */}
-            <p className="mt-3 flex items-center gap-2 text-body text-mist sm:mt-4">
-              <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-paper/70" />
-              <span>
-                {copy.emergency.callLead}{" "}
-                <a
-                  href="tel:112"
-                  className="hero-focus -my-2 inline-flex min-h-11 items-center rounded-sm font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:decoration-paper"
-                >
-                  {copy.emergency.callLink}
-                </a>
-                .
-              </span>
-            </p>
 
             <a
               href="#triage"
@@ -137,7 +125,6 @@ export function Hero() {
             </a>
           </div>
 
-          <CarePath steps={copy.journey} className="hidden lg:grid lg:mt-12" />
         </div>
 
         {/* Desktop: the panel in the page. Phones: it opens as a sheet, rendered on <body> so it

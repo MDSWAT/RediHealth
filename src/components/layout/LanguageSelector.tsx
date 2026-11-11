@@ -1,7 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type FocusEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent,
+} from "react";
 import { usePathname } from "next/navigation";
 import { ArrowRightIcon, CheckIcon, ChevronDownIcon, GlobeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -61,8 +69,10 @@ const orderedLanguages = [...languages].sort(
 /**
  * Language choice. Each option is a real link to the same page in that language
  * (hreflang, and the name is spoken in its own language); a click keeps the query and hash.
- * Desktop/tablet: a compact fixed-width ISO trigger with roving keyboard focus.
- * Phone menu: a 2-column grid with sapphire active indicators.
+ * Both variants are one trigger that opens the same list; the current language is bold and ticked.
+ * Desktop/tablet: a compact ISO trigger with the list in a popover.
+ * Phone menu: one full-width 44px row showing the current language name; the list opens in the
+ * flow below it, so the closed menu spends a single row on language.
  */
 export function LanguageSelector({
   className,
@@ -77,8 +87,8 @@ export function LanguageSelector({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const optionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const focusRafRef = useRef<number>(0);
+  const pointerOutsideRef = useRef(false);
   const panelId = useId();
-  const labelId = useId();
 
   const activeIndex = Math.max(
     0,
@@ -97,22 +107,46 @@ export function LanguageSelector({
   }, []);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      pointerOutsideRef.current = false;
+      return;
+    }
     function handlePointerDown(event: PointerEvent) {
-      if (rootRef.current && !rootRef.current.contains(event.target as Node)) setOpen(false);
+      const outside = Boolean(rootRef.current && !rootRef.current.contains(event.target as Node));
+      pointerOutsideRef.current = outside;
+      if (outside && variant !== "drawer") {
+        setOpen(false);
+      }
+    }
+    function handleClick(event: Event) {
+      pointerOutsideRef.current = false;
+      if (variant === "drawer" && rootRef.current && !rootRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    function handlePointerEnd() {
+      window.requestAnimationFrame(() => {
+        pointerOutsideRef.current = false;
+      });
     }
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
+      // Capture phase and stopped here: the first Escape closes only this list, not the menu around it.
+      event.stopPropagation();
       setOpen(false);
       buttonRef.current?.focus();
     }
     document.addEventListener("pointerdown", handlePointerDown);
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("click", handleClick);
+    document.addEventListener("pointercancel", handlePointerEnd);
+    document.addEventListener("keydown", handleKeyDown, true);
     return () => {
       document.removeEventListener("pointerdown", handlePointerDown);
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("click", handleClick);
+      document.removeEventListener("pointercancel", handlePointerEnd);
+      document.removeEventListener("keydown", handleKeyDown, true);
     };
-  }, [open]);
+  }, [open, variant]);
 
   function focusOption(index: number) {
     const count = orderedLanguages.length;
@@ -165,63 +199,103 @@ export function LanguageSelector({
     setLang(code);
   }
 
-  if (variant === "drawer") {
-    return (
-      <div role="group" aria-labelledby={labelId} className={cn("space-y-2.5", className)}>
-        <p id={labelId} className="text-sm font-semibold text-foreground">
-          {copy.label}
-        </p>
-        <ul className="grid grid-cols-2 gap-2">
-          {orderedLanguages.map((item) => {
-            const isSelected = item.code === lang;
-            return (
-              <li key={item.code}>
-                <a
-                  href={withLangPrefix(pathname, item.code)}
-                  hrefLang={item.code}
-                  lang={item.code}
-                  aria-current={isSelected ? "true" : undefined}
-                  onClick={(event) => handleSelect(event, item.code)}
-                  className={cn(
-                    "flex min-h-[48px] items-center justify-between gap-2 rounded-lg border px-3 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                    isSelected
-                      ? "border-sapphire/40 bg-sapphire-soft font-semibold text-sapphire"
-                      : "border-border bg-card font-medium text-foreground/85 hover:bg-muted",
-                  )}
-                >
-                  <span className="flex min-w-0 items-center gap-2">
-                    <span
-                      className={cn(
-                        "inline-flex shrink-0 items-center justify-center rounded-md px-1.5 py-0.5 font-mono text-[11px] font-semibold tracking-wider",
-                        isSelected
-                          ? "bg-sapphire text-white"
-                          : "bg-muted text-muted-foreground",
-                      )}
-                    >
-                      {ISO_BADGE[item.code]}
-                    </span>
-                    <span className="truncate">{item.label}</span>
-                  </span>
-                  {isSelected ? <CheckIcon className="h-4 w-4 shrink-0 text-sapphire" /> : null}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+  function handleBlur(event: FocusEvent<HTMLDivElement>) {
+    // When clicking a link below the in-flow drawer tray, let the click finish before collapsing so nothing shifts under the pointer.
+    if (variant === "drawer" && pointerOutsideRef.current) return;
+    // Tabbing away closes the list. No next target (a tap in Safari, which does not focus links) is not leaving.
+    const next = event.relatedTarget;
+    if (next instanceof Node && !event.currentTarget.contains(next)) setOpen(false);
+  }
+
+  const chevronMotion =
+    "shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none";
+
+  const panelBody = (
+    <>
+      <ul aria-label={copy.label} onKeyDown={handleListKeyDown} className="space-y-0.5">
+        {orderedLanguages.map((item, idx) => {
+          const isSelected = item.code === lang;
+          return (
+            <li key={item.code}>
+              <a
+                ref={(el) => {
+                  optionRefs.current[idx] = el;
+                }}
+                href={withLangPrefix(pathname, item.code)}
+                hrefLang={item.code}
+                lang={item.code}
+                aria-current={isSelected ? "true" : undefined}
+                onClick={(event) => handleSelect(event, item.code)}
+                className={cn(
+                  "flex min-h-11 w-full items-center justify-between gap-2 rounded-(--radius-control) px-3 py-2 text-body leading-snug press-row focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+                  isSelected
+                    ? "bg-sapphire-soft font-semibold text-sapphire dark:bg-white/10 dark:text-paper"
+                    : "text-foreground hover:bg-muted dark:text-paper dark:hover:bg-white/5",
+                )}
+              >
+                <span className="min-w-0 break-words">{item.label}</span>
+                {isSelected ? <CheckIcon className="h-5 w-5 shrink-0" /> : null}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <div className="mt-1.5 border-t border-border pt-1.5 dark:border-white/10">
         <Link
           href={glossaryHref}
-          onClick={() => onNavigate?.()}
-          className="group flex min-h-11 items-center justify-between gap-3 rounded-lg border border-border/80 bg-surface-subtle/60 px-3.5 py-2.5 text-sm leading-snug text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-sapphire/35 hover:bg-sapphire-soft/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          onClick={() => {
+            setOpen(false);
+            onNavigate?.();
+          }}
+          className="flex min-h-11 items-center justify-between gap-3 rounded-(--radius-control) px-3 py-2 text-body leading-snug text-muted-foreground press-row hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
         >
           <span>{copy.romaniNote}</span>
-          <ArrowRightIcon className="h-4 w-4 shrink-0 text-sapphire transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:translate-x-0.5" />
+          <ArrowRightIcon className="h-5 w-5 shrink-0 text-sapphire dark:text-paper" />
         </Link>
+      </div>
+    </>
+  );
+
+  if (variant === "drawer") {
+    return (
+      <div ref={rootRef} onBlur={handleBlur} className={cn("w-full text-left", className)}>
+        <button
+          ref={buttonRef}
+          type="button"
+          onClick={() => setOpen((prev) => !prev)}
+          onKeyDown={handleTriggerKeyDown}
+          aria-expanded={open}
+          aria-controls={open ? panelId : undefined}
+          className={cn(
+            "flex min-h-11 w-full items-center gap-2.5 rounded-(--radius-control) border bg-card px-3.5 py-2 text-left text-body font-semibold text-foreground press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900 dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper",
+            open ? "border-sapphire dark:border-paper" : "border-border-control dark:border-white/40",
+          )}
+        >
+          <GlobeIcon className="h-5 w-5 shrink-0 text-muted-foreground dark:text-mist" />
+          <span className="sr-only">{copy.label}: </span>
+          <span lang={activeLang.code} className="min-w-0 flex-1 break-words">
+            {activeLang.label}
+          </span>
+          <ChevronDownIcon
+            className={cn("h-5 w-5 text-muted-foreground dark:text-mist", chevronMotion, open && "rotate-180")}
+          />
+        </button>
+
+        {open ? (
+          <div
+            id={panelId}
+            className="fhs-enter mt-2 rounded-(--radius-surface) border border-border bg-card p-1.5 dark:border-white/10 dark:bg-ink-800"
+          >
+            {panelBody}
+          </div>
+        ) : null}
       </div>
     );
   }
 
   return (
-    <div ref={rootRef} className={cn("relative inline-block text-left", className)}>
+    <div ref={rootRef} onBlur={handleBlur} className={cn("relative inline-block text-left", className)}>
       <button
         ref={buttonRef}
         type="button"
@@ -230,23 +304,22 @@ export function LanguageSelector({
         aria-expanded={open}
         aria-controls={panelId}
         className={cn(
-          "inline-flex min-h-11 min-w-[5rem] items-center justify-between gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+          "inline-flex min-h-11 min-w-20 items-center justify-between gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
           tone === "light"
             ? "text-paper/85 hover:bg-white/10 hover:text-paper focus-visible:ring-paper/70"
-            : "text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring",
+            : "text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
         )}
       >
-        <GlobeIcon className={cn("h-4 w-4 shrink-0", tone === "light" ? "text-paper/75" : "text-muted-foreground")} />
+        <GlobeIcon className={cn("h-4 w-4 shrink-0", tone === "light" ? "text-paper/75" : "text-muted-foreground dark:text-mist")} />
         <span className="sr-only">
           {copy.label}: {activeLang.label},{" "}
         </span>
-        <span className="font-mono text-xs font-semibold tracking-wider tabular-nums">
-          {ISO_BADGE[activeLang.code]}
-        </span>
+        <span className="text-meta font-semibold tracking-wide">{ISO_BADGE[activeLang.code]}</span>
         <ChevronDownIcon
           className={cn(
-            "h-4 w-4 shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-            tone === "light" ? "text-paper/65" : "text-muted-foreground",
+            "h-4 w-4",
+            chevronMotion,
+            tone === "light" ? "text-paper/65" : "text-muted-foreground dark:text-mist",
             open && "rotate-180",
           )}
         />
@@ -256,65 +329,12 @@ export function LanguageSelector({
         id={panelId}
         inert={!open}
         className={cn(
-          "absolute right-0 top-full z-50 mt-2 w-72 rounded-xl border border-border bg-card p-1.5 text-foreground shadow-(--shadow-card-hover)",
+          "absolute right-0 top-full z-50 mt-2 w-72 rounded-(--radius-surface) border border-border bg-card p-1.5 shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-800",
           "transition-[opacity,translate,visibility] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
           open ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
         )}
       >
-        <ul aria-label={copy.label} onKeyDown={handleListKeyDown} className="space-y-0.5">
-          {orderedLanguages.map((item, idx) => {
-            const isSelected = item.code === lang;
-            return (
-              <li key={item.code}>
-                <a
-                  ref={(el) => {
-                    optionRefs.current[idx] = el;
-                  }}
-                  href={withLangPrefix(pathname, item.code)}
-                  hrefLang={item.code}
-                  lang={item.code}
-                  aria-current={isSelected ? "true" : undefined}
-                  onClick={(event) => handleSelect(event, item.code)}
-                  className={cn(
-                    "flex min-h-11 w-full items-center justify-between gap-2 rounded-lg px-2.5 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
-                    isSelected
-                      ? "bg-sapphire-soft font-semibold text-sapphire"
-                      : "font-medium text-foreground/85 hover:bg-muted",
-                  )}
-                >
-                  <span className="flex min-w-0 items-center gap-2.5">
-                    <span
-                      className={cn(
-                        "inline-flex min-w-[2.5rem] shrink-0 items-center justify-center rounded-md px-1.5 py-0.5 font-mono text-[11px] font-semibold tracking-wider",
-                        isSelected
-                          ? "bg-sapphire text-white"
-                          : "bg-muted text-muted-foreground",
-                      )}
-                    >
-                      {ISO_BADGE[item.code]}
-                    </span>
-                    <span className="truncate">{item.label}</span>
-                  </span>
-                  {isSelected ? <CheckIcon className="h-4 w-4 shrink-0 text-sapphire" /> : null}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-
-        <div className="mt-1.5 border-t border-border pt-1.5">
-          <Link
-            href={glossaryHref}
-            onClick={() => {
-              setOpen(false);
-              onNavigate?.();
-            }}
-            className="group flex min-h-11 items-center justify-between gap-2.5 rounded-lg px-2.5 py-2 text-xs leading-relaxed text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
-          >
-            <span>{copy.romaniNote}</span>
-            <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 text-sapphire transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:translate-x-0.5" />
-          </Link>
-        </div>
+        {panelBody}
       </div>
     </div>
   );

@@ -1,12 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { getHealthCheckTranslations } from "@/lib/i18n/health-check-translations";
+import {
+  getHealthCheckTranslations,
+  type BodyPartId,
+} from "@/lib/i18n/health-check-translations";
+import { getHealthTopicBySlug } from "@/lib/i18n/health-information-topics";
 import type { Lang } from "@/lib/i18n/translations";
+import { SUB_REGION_INFO } from "./anatomy-3d-data";
 import { getTopicForSymptom } from "./SymptomToTopicMapper";
+import { encodeQrMatrix, renderClinicalQrSvgData } from "./clinical-qr-svg";
 import { COPY } from "./health-check-copy";
 import { PAIN_DIAGRAM_COPY, buildPainAreaDiagramSvg } from "./pain-area-diagram";
 import { predictSymptomsForSelection } from "./symptom-prediction";
+import { TRIAGE_NOTE_COPY } from "./TriageNoteView";
+import { SUMMARY_COPY } from "./TriageSummaryCard";
 import {
+  buildFallbackTriageNoteUrl,
+  buildTriageNoteUrl,
   buildTriageReproductionUrl,
+  parseFallbackTriageNoteSearch,
+  parseTriageNoteDate,
   parseTriageReproductionSearch,
 } from "./triage-permalink";
 
@@ -128,6 +140,143 @@ describe("Health Check triage improvements", () => {
       }
       for (const value of Object.values(PAIN_DIAGRAM_COPY[lang])) {
         expect(value).not.toContain("&");
+      }
+      for (const value of Object.values(SUMMARY_COPY[lang])) {
+        expect(value).not.toContain("&");
+      }
+      for (const value of Object.values(TRIAGE_NOTE_COPY[lang])) {
+        expect(value).not.toContain("&");
+      }
+    }
+  });
+
+  it("builds a dedicated clinical note QR URL for iPhone and Android cameras instead of plain text", () => {
+    const noteUrl = buildTriageNoteUrl(
+      "https://redihealth.org",
+      "en",
+      {
+        part: "head",
+        subRegion: "neck",
+        side: "Right",
+        symptomId: "head_neck_stiff",
+        severity: "moderate",
+        duration: "days",
+        forWhom: "self",
+      },
+      "2026-11-11",
+    );
+
+    const parsed = new URL(noteUrl);
+    expect(parsed.protocol).toBe("https:");
+    expect(parsed.pathname).toBe("/en/health-check/note");
+
+    const restored = parseTriageReproductionSearch(parsed.search, "en");
+    expect(restored?.part).toBe("head");
+    expect(restored?.subRegion).toBe("neck");
+    expect(restored?.side).toBe("Right");
+    expect(restored?.symptomId).toBe("head_neck_stiff");
+
+    const parsedDate = parseTriageNoteDate(parsed.search);
+    expect(parsedDate?.getFullYear()).toBe(2026);
+    expect(parsedDate?.getMonth()).toBe(10);
+    expect(parsedDate?.getDate()).toBe(11);
+  });
+
+  it("encodes standalone fallback summaries as https note URLs and renders a 4-module ISO quiet zone", () => {
+    const fallbackUrl = buildFallbackTriageNoteUrl("https://redihealth.org", "ro", {
+      bodyArea: "Cap și gât",
+      anatomicalStructure: "Ceafă, dreapta",
+      symptoms: ["Durere de ceafă"],
+      painLevel: "Moderată",
+      duration: "De câteva zile",
+      redFlagNoticed: false,
+      recommendationDetail: "Recomandare: mergi la medicul de familie",
+      dateIso: "2026-11-11",
+    });
+
+    const parsed = new URL(fallbackUrl);
+    expect(parsed.pathname).toBe("/ro/health-check/note");
+
+    const restoredFallback = parseFallbackTriageNoteSearch(parsed.search);
+    expect(restoredFallback).toEqual({
+      bodyArea: "Cap și gât",
+      anatomicalStructure: "Ceafă, dreapta",
+      symptoms: ["Durere de ceafă"],
+      painLevel: "Moderată",
+      duration: "De câteva zile",
+      redFlagNoticed: false,
+      recommendationDetail: "Recomandare: mergi la medicul de familie",
+      dateIso: "2026-11-11",
+    });
+
+    const matrix = encodeQrMatrix(fallbackUrl);
+    const svg = renderClinicalQrSvgData(fallbackUrl);
+    expect(svg.size).toBe(matrix.length + 8);
+  });
+
+  it("strips mismatched sub-region query parameters when macro part does not own the sub-region", () => {
+    const restored = parseTriageReproductionSearch(
+      "?qr=1&p=leg&sr=neck&sy=leg_sprain",
+      "ro",
+    );
+    expect(restored).not.toBeNull();
+    expect(restored?.part).toBe("leg");
+    expect(restored?.subRegion).toBeNull();
+    expect(restored?.symptomId).toBe("leg_sprain");
+  });
+
+  it("maps dehydration and migraine symptoms to clinically coherent localized guides without ampersands", () => {
+    const bodyParts: BodyPartId[] = [
+      "head",
+      "chest",
+      "stomach",
+      "pelvis",
+      "back",
+      "arm",
+      "leg",
+    ];
+
+    for (const lang of LANGUAGES) {
+      const dehydrationTopic = getTopicForSymptom("head", "head_dehydration", lang);
+      expect(dehydrationTopic.slug).toBe("healthy-eating");
+      expect(getHealthTopicBySlug(lang, dehydrationTopic.slug)).toBeDefined();
+
+      const migraineTopic = getTopicForSymptom("head", "head_migraine", lang);
+      const suddenSevereTopic = getTopicForSymptom("head", "head_sudden_severe", lang);
+      const tensionTopic = getTopicForSymptom("head", "head_tension", lang);
+
+      expect(migraineTopic.slug).toBe("mental-wellbeing");
+      expect(suddenSevereTopic.slug).toBe("mental-wellbeing");
+      expect(migraineTopic.title).not.toBe(tensionTopic.title);
+      expect(migraineTopic.recommendation).not.toBe(tensionTopic.recommendation);
+      expect(getHealthTopicBySlug(lang, migraineTopic.slug)).toBeDefined();
+
+      const dict = getHealthCheckTranslations(lang);
+      for (const part of bodyParts) {
+        const fallbackTopic = getTopicForSymptom(part, undefined, lang);
+        expect(getHealthTopicBySlug(lang, fallbackTopic.slug)).toBeDefined();
+        expect(fallbackTopic.title).not.toContain("&");
+        expect(fallbackTopic.recommendation).not.toContain("&");
+
+        for (const symptom of dict.symptoms[part]) {
+          const mapped = getTopicForSymptom(part, symptom.id, lang);
+          expect(getHealthTopicBySlug(lang, mapped.slug)).toBeDefined();
+          expect(mapped.title).not.toContain("&");
+          expect(mapped.recommendation).not.toContain("&");
+        }
+      }
+    }
+  });
+
+  it("enforces strict Romanian sentence casing across all 3D anatomy recommendedSpecialty values", () => {
+    for (const entry of Object.values(SUB_REGION_INFO)) {
+      const rest = entry.recommendedSpecialty.slice(1);
+      const midSentenceTitleCase = rest.match(/[A-ZĂÂÎȘȚ][a-zăâîșț]+/g);
+      expect(midSentenceTitleCase).toBeNull();
+
+      const roLoc = entry.localized?.ro?.recommendedSpecialty;
+      if (roLoc) {
+        expect(roLoc.slice(1).match(/[A-ZĂÂÎȘȚ][a-zăâîșț]+/g)).toBeNull();
       }
     }
   });

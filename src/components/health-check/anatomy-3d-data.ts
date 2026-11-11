@@ -828,7 +828,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Costocondrită (inflamația cartilajelor costale)",
       "Nevralgie intercostală",
     ],
-    recommendedSpecialty: "Medicină de familie sau Recuperare medicală",
+    recommendedSpecialty: "Medicină de familie sau recuperare medicală",
     searchKeywords: ["pectoral","pecs","piept","chest","gjoksi","pettorale","torace"],
     localized: {
       ro: {
@@ -924,7 +924,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Angină pectorală de efort",
       "Sindrom coronarian acut (urgență 112)",
     ],
-    recommendedSpecialty: "Cardiologie sau Urgențe 112",
+    recommendedSpecialty: "Cardiologie sau urgențe 112",
     searchKeywords: ["inimă","cord","heart","cardiac","zemra","cuore","miocard","chest","krahrori"],
     localized: {
       ro: {
@@ -1020,7 +1020,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Pneumonie sau pleurezie",
       "Dispnee de efort",
     ],
-    recommendedSpecialty: "Pneumologie sau Medicină de familie",
+    recommendedSpecialty: "Pneumologie sau medicină de familie",
     searchKeywords: ["plămâni","lungs","pulmonary","mushkëritë","polmoni","bronhii","bronchi","respiratory"],
     localized: {
       ro: {
@@ -1116,7 +1116,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Dispepsie funcțională",
       "Ulcer gastro-duodenal",
     ],
-    recommendedSpecialty: "Gastroenterologie sau Medicină de familie",
+    recommendedSpecialty: "Gastroenterologie sau medicină de familie",
     searchKeywords: ["stomac","stomach","gastric","stomaku","stomaco","burtă","belly","abdomen"],
     localized: {
       ro: {
@@ -1211,7 +1211,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Litiază biliară (pietre la fiere)",
       "Steatoză hepatică",
     ],
-    recommendedSpecialty: "Gastroenterologie sau Medicină internă",
+    recommendedSpecialty: "Gastroenterologie sau medicină internă",
     searchKeywords: ["ficat","liver","hepatic","mëlçia","fegato","colecist","gallbladder"],
     localized: {
       ro: {
@@ -1307,7 +1307,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Enterocolită acută",
       "Constipație funcțională",
     ],
-    recommendedSpecialty: "Gastroenterologie sau Medicină de familie",
+    recommendedSpecialty: "Gastroenterologie sau medicină de familie",
     searchKeywords: ["colon","intestine","bowel","zorra","apendice","appendix","apendiksi","appendice"],
     localized: {
       ro: {
@@ -1402,7 +1402,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Hernie ombilicală sau epigastrică",
       "Crampe abdominale parietale",
     ],
-    recommendedSpecialty: "Medicină de familie sau Chirurgie generală",
+    recommendedSpecialty: "Medicină de familie sau chirurgie generală",
     searchKeywords: ["abdominals","abs","abdomen","pătrățele","barku","addominali"],
     localized: {
       ro: {
@@ -1497,7 +1497,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Durere abdominală laterală (în flanc)",
       "Colică reno-ureterală iradiată",
     ],
-    recommendedSpecialty: "Medicină de familie sau Medicină internă",
+    recommendedSpecialty: "Medicină de familie sau medicină internă",
     searchKeywords: ["oblici","obliques","flancuri","flanks","ijët","obliqui","fianchi","waist"],
     localized: {
       ro: {
@@ -1592,7 +1592,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Contractură musculară de stres sau curent",
       "Cefalee tensională cu punct de plecare cervical",
     ],
-    recommendedSpecialty: "Recuperare medicală și Kinetoterapie",
+    recommendedSpecialty: "Recuperare medicală și kinetoterapie",
     searchKeywords: ["trapez","trapezius","traps","trapezi","trapezio","umeri","shoulders"],
     localized: {
       ro: {
@@ -1687,7 +1687,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Contractură a mușchilor romboizi",
       "Puncte trigger miofasciale dorsale",
     ],
-    recommendedSpecialty: "Recuperare medicală și Fizioterapie",
+    recommendedSpecialty: "Recuperare medicală și fizioterapie",
     searchKeywords: ["spate superior","upper back","omoplați","shoulder blades","kurrizi i sipërm","dorso superiore","scapole"],
     localized: {
       ro: {
@@ -1782,7 +1782,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Spondiloză dorsală",
       "Nevralgie intercostală cu origine vertebrală",
     ],
-    recommendedSpecialty: "Recuperare medicală sau Reumatologie",
+    recommendedSpecialty: "Recuperare medicală sau reumatologie",
     searchKeywords: ["coloană dorsală","coloană toracală","thoracic spine","shtylla torakale","colonna toracica","colonna dorsale","T1-T12"],
     localized: {
       ro: {
@@ -1877,7 +1877,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Suprasolicitare musculară paravertebrală",
       "Sindrom postural lombar",
     ],
-    recommendedSpecialty: "Recuperare medicală sau Medicină de familie",
+    recommendedSpecialty: "Recuperare medicală sau medicină de familie",
     searchKeywords: ["spate inferior","șale","lower back","lumbago","shpina e poshtme","mesi","parte bassa della schiena","zona lombare"],
     localized: {
       ro: {
@@ -1972,7 +1972,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Lombosciatică (radiculopatie L4–S1)",
       "Spondilartroză lombară",
     ],
-    recommendedSpecialty: "Neurologie, Neurochirurgie sau Recuperare medicală",
+    recommendedSpecialty: "Neurologie, neurochirurgie sau recuperare medicală",
     searchKeywords: ["coloană lombară","lumbar spine","shtylla lumbare","colonna lombare","vertebre șale","discuri","L1-L5"],
     localized: {
       ro: {
@@ -2066,7 +2066,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Colică renală (microlitiază sau calculi renali)",
       "Infecție de tract urinar / pielonefrită",
     ],
-    recommendedSpecialty: "Urologie, Nefrologie sau Medicină de familie",
+    recommendedSpecialty: "Urologie, nefrologie sau medicină de familie",
     searchKeywords: ["rinichi","kidneys","renal","veshkat","reni","lojă renală"],
     localized: {
       ro: {
@@ -2161,7 +2161,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Disfuncție de articulație sacro-iliacă",
       "Tendinopatie fesieră (bursită trohanteriană)",
     ],
-    recommendedSpecialty: "Recuperare medicală sau Ortopedie",
+    recommendedSpecialty: "Recuperare medicală sau ortopedie",
     searchKeywords: ["fesieri","gluteal","glutes","buttocks","vithet","glutei","natiche"],
     localized: {
       ro: {
@@ -2256,7 +2256,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Bursită subacromială",
       "Capsulită adezivă (umăr înghețat)",
     ],
-    recommendedSpecialty: "Ortopedie sau Recuperare medicală",
+    recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["deltoid","umăr","shoulder","shpatulla","spalla"],
     localized: {
       ro: {
@@ -2351,7 +2351,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Sindrom de impingement subacromial",
       "Tendinită calcificantă a umărului",
     ],
-    recommendedSpecialty: "Ortopedie și Kinetoterapie",
+    recommendedSpecialty: "Ortopedie și kinetoterapie",
     searchKeywords: ["coafa rotatorilor","rotator cuff","mansheta rrotulluese","cuffia dei rotatori","supraspinos","supraspinatus"],
     localized: {
       ro: {
@@ -2445,7 +2445,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Tendinită bicipitală",
       "Întindere musculară brahială",
     ],
-    recommendedSpecialty: "Recuperare medicală sau Ortopedie",
+    recommendedSpecialty: "Recuperare medicală sau ortopedie",
     searchKeywords: ["biceps","braț","arm","bicep","bicipite","krahu","braccio"],
     localized: {
       ro: {
@@ -2539,7 +2539,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Tendinopatie tricipitală",
       "Bursită olecraniană",
     ],
-    recommendedSpecialty: "Ortopedie sau Recuperare medicală",
+    recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["triceps","tricep","tricepsi","tricipite"],
     localized: {
       ro: {
@@ -2634,7 +2634,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Epicondilită medială",
       "Artroză sau redoare de cot",
     ],
-    recommendedSpecialty: "Ortopedie sau Recuperare medicală",
+    recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["cot","elbow","tendon cot","elbow tendon","bërryli","gomito","epicondilită","epicondylitis"],
     localized: {
       ro: {
@@ -2917,7 +2917,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Tendinită De Quervain",
       "Artroză sau artrită a articulațiilor mâinii",
     ],
-    recommendedSpecialty: "Neurologie, Reumatologie sau Ortopedie",
+    recommendedSpecialty: "Neurologie, reumatologie sau ortopedie",
     searchKeywords: ["încheietură","wrist","tunel carpian","carpal tunnel","kyçi i dorës","polso"],
     localized: {
       ro: {
@@ -3012,7 +3012,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Coxartroză (artroza șoldului)",
       "Contractură a flexorilor șoldului",
     ],
-    recommendedSpecialty: "Ortopedie sau Recuperare medicală",
+    recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["flexori șold","hip flexors","psoas","iliopsoas","kofshë","anca","groin"],
     localized: {
       ro: {
@@ -3106,7 +3106,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Oboseală sau întindere de cvadriceps",
       "Sindrom femuro-patelar",
     ],
-    recommendedSpecialty: "Recuperare medicală sau Ortopedie",
+    recommendedSpecialty: "Recuperare medicală sau ortopedie",
     searchKeywords: ["cvadriceps","quadriceps","quads","coapsă","thigh","kuadricepsi","quadricipite"],
     localized: {
       ro: {
@@ -3295,7 +3295,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Gonartroză (uzura cartilajului genunchiului)",
       "Suprasolicitare meniscală sau ligamentară",
     ],
-    recommendedSpecialty: "Ortopedie sau Reumatologie",
+    recommendedSpecialty: "Ortopedie sau reumatologie",
     searchKeywords: ["genunchi","rotulă","tendon rotulian","knee","patella","patellar tendon","gjuri","ginocchio","menisc","meniscus"],
     localized: {
       ro: {
@@ -3391,7 +3391,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Periostită tibială",
       "Tromboză venoasă profundă (urgență medicală)",
     ],
-    recommendedSpecialty: "Chirurgie vasculară, Medicină internă sau Ortopedie",
+    recommendedSpecialty: "Chirurgie vasculară, medicină internă sau ortopedie",
     searchKeywords: ["gambe","pulpe","calves","calf","gastrocnemian","gastrocnemius","pulpat","polpacci"],
     localized: {
       ro: {
@@ -3486,7 +3486,7 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
       "Fasciită plantară (dureri în călcâi)",
       "Entorsă sau edem de gleznă",
     ],
-    recommendedSpecialty: "Ortopedie sau Recuperare medicală",
+    recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["tendon ahilian","achilles","achilles tendon","călcâi","heel","tendina e akilit","tendine d'achille","tallone"],
     localized: {
       ro: {

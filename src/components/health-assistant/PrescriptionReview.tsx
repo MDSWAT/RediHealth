@@ -39,6 +39,8 @@ interface PrescriptionReviewCopy {
   removePhoto: string;
   photoReady: string;
   retakeLight: string;
+  guidanceHeading: string;
+  dragOrBrowse: string;
   tipFlat: string;
   tipLight: string;
   tipFull: string;
@@ -224,7 +226,7 @@ export function PrescriptionReview() {
     en: {
       title: "Prescription review",
       subtitle:
-        "Photograph your prescription and we explain it in plain words. Always check with your pharmacist or doctor.",
+        "Photograph your prescription and we explain it clearly. Always check with your pharmacist or doctor.",
       listenPage: "Listen",
       stopListening: "Stop",
       largeTextLabel: "Larger text",
@@ -235,10 +237,12 @@ export function PrescriptionReview() {
       removePhoto: "Remove photo",
       photoReady: "Photo is ready",
       retakeLight: "Take another photo in good light",
+      guidanceHeading: "Tips for a clear photo",
+      dragOrBrowse: "or drag your photo here (JPEG, PNG or WebP)",
       tipFlat: "Lay it flat",
       tipLight: "Use daylight",
       tipFull: "Show the whole page",
-      skeletonHeading: "Preparing plain-language explanation…",
+      skeletonHeading: "Preparing clear explanation…",
       qualityWarning:
         "The photo looks a little dark or blurry. Try again in daylight so the text is easy to read.",
       stepTwoBadge: "Step 2 of 2",
@@ -278,6 +282,8 @@ export function PrescriptionReview() {
       removePhoto: "Șterge poza",
       photoReady: "Poza este pregătită",
       retakeLight: "Fă altă poză la lumină",
+      guidanceHeading: "Recomandări pentru o poză ușor de citit",
+      dragOrBrowse: "sau trage poza aici (JPEG, PNG sau WebP)",
       tipFlat: "Pune foaia pe masă",
       tipLight: "Folosește lumina zilei",
       tipFull: "Prinde toată pagina",
@@ -310,7 +316,7 @@ export function PrescriptionReview() {
     sq: {
       title: "Verifikimi i recetës",
       subtitle:
-        "Fotografo recetën dhe ta shpjegojmë me fjalë të thjeshta. Kontrolloje gjithmonë me farmacistin ose mjekun.",
+        "Fotografo recetën dhe ta shpjegojmë qartë. Kontrolloje gjithmonë me farmacistin ose mjekun.",
       listenPage: "Dëgjo",
       stopListening: "Ndalo",
       largeTextLabel: "Shkrim më i madh",
@@ -321,10 +327,12 @@ export function PrescriptionReview() {
       removePhoto: "Hiq foton",
       photoReady: "Fotoja është gati",
       retakeLight: "Bëj një foto tjetër në dritë",
+      guidanceHeading: "Këshilla për një foto të qartë",
+      dragOrBrowse: "ose tërhiq foton këtu (JPEG, PNG ose WebP)",
       tipFlat: "Shtrije mbi tavolinë",
       tipLight: "Përdor dritën e ditës",
       tipFull: "Përfshi gjithë faqen",
-      skeletonHeading: "Po përgatitet shpjegimi me fjalë të thjeshta…",
+      skeletonHeading: "Po përgatitet shpjegimi i qartë…",
       qualityWarning:
         "Fotoja duket pak e errët ose e paqartë. Provo përsëri në dritë natyrale, që teksti të lexohet mirë.",
       stepTwoBadge: "Hapi 2 nga 2",
@@ -353,7 +361,7 @@ export function PrescriptionReview() {
     it: {
       title: "Revisione della ricetta",
       subtitle:
-        "Fotografa la ricetta e te la spieghiamo in parole semplici. Verifica sempre con il farmacista o il medico.",
+        "Fotografa la ricetta e te la spieghiamo con chiarezza. Verifica sempre con il farmacista o il medico.",
       listenPage: "Ascolta",
       stopListening: "Ferma",
       largeTextLabel: "Testo più grande",
@@ -364,10 +372,12 @@ export function PrescriptionReview() {
       removePhoto: "Rimuovi foto",
       photoReady: "La foto è pronta",
       retakeLight: "Scatta un'altra foto alla luce",
+      guidanceHeading: "Consigli per una foto chiara",
+      dragOrBrowse: "oppure trascina la foto qui (JPEG, PNG o WebP)",
       tipFlat: "Stendila sul tavolo",
       tipLight: "Usa la luce del giorno",
       tipFull: "Inquadra tutta la pagina",
-      skeletonHeading: "Preparazione della spiegazione in parole semplici…",
+      skeletonHeading: "Preparazione della spiegazione chiara…",
       qualityWarning:
         "La foto sembra un po' scura o sfocata. Riprova con la luce naturale, così il testo si legge correttamente.",
       stepTwoBadge: "Passo 2 di 2",
@@ -396,7 +406,7 @@ export function PrescriptionReview() {
     hr: {
       title: "Provjera recepta",
       subtitle:
-        "Fotografiraj recept i objasnit ćemo ti ga jednostavnim riječima. Uvijek provjeri s ljekarnikom ili liječnikom.",
+        "Fotografiraj recept i objasnit ćemo ti ga jasno. Uvijek provjeri s ljekarnikom ili liječnikom.",
       listenPage: "Poslušaj",
       stopListening: "Zaustavi",
       largeTextLabel: "Veća slova",
@@ -407,10 +417,12 @@ export function PrescriptionReview() {
       removePhoto: "Ukloni fotografiju",
       photoReady: "Fotografija je spremna",
       retakeLight: "Snimi drugu fotografiju na svjetlu",
+      guidanceHeading: "Savjeti za jasnu fotografiju",
+      dragOrBrowse: "ili povuci fotografiju ovdje (JPEG, PNG ili WebP)",
       tipFlat: "Položi ga ravno",
       tipLight: "Koristi dnevno svjetlo",
       tipFull: "Snimi cijelu stranicu",
-      skeletonHeading: "Pripremamo objašnjenje jednostavnim riječima…",
+      skeletonHeading: "Pripremamo jasno objašnjenje…",
       qualityWarning:
         "Fotografija izgleda pomalo tamno ili mutno. Pokušaj ponovno na dnevnom svjetlu kako bi tekst bio čitljiv.",
       stepTwoBadge: "Korak 2 od 2",
@@ -439,7 +451,7 @@ export function PrescriptionReview() {
     rom: {
       title: "Dikh i receta",
       subtitle:
-        "Ker poza chire recetake thaj shpjeginas la tuke pe lokhe vorbe. Dikh la svako data le farmacistosa vaj le doktoresa.",
+        "Ker poza chire recetake thaj shpjeginas la tuke chaches. Dikh la svako data le farmacistosa vaj le doktoresa.",
       listenPage: "Ashun",
       stopListening: "Astav",
       largeTextLabel: "Maj baro ramovimos",
@@ -450,10 +462,12 @@ export function PrescriptionReview() {
       removePhoto: "Khos i poza",
       photoReady: "I poza si gata",
       retakeLight: "Ker aver poza ko vudud",
+      guidanceHeading: "Sfaturya te avel i poza lachi",
+      dragOrBrowse: "vaj thov i poza kathe (JPEG, PNG vaj WebP)",
       tipFlat: "Thov o lil pe skafidi",
       tipLight: "Hasnisar divesko vudud",
       tipFull: "Le sasti rig",
-      skeletonHeading: "Pregatisaras o shpjegimos pe lokhe vorbe…",
+      skeletonHeading: "Pregatisaras o chacho shpjegimos…",
       qualityWarning:
         "I poza dikljol xantsi kali vaj na uzi. Zumav pale ko divesko vudud kaste ginavel pe o teksto mishto.",
       stepTwoBadge: "Pasho 2 katar 2",
@@ -678,6 +692,9 @@ export function PrescriptionReview() {
     }
   }
 
+  const currentStep = preview ? 2 : 1;
+  const currentStepLabel = preview ? t.stepTwoBadge : t.stepOneBadge;
+
   return (
     <main
       id="main-content"
@@ -686,63 +703,78 @@ export function PrescriptionReview() {
       <Container>
         <AssistantNavigation />
 
-        <header className="max-w-2xl print:hidden">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <h1
-                className={`font-semibold tracking-tight text-foreground text-balance ${
-                  largeText ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl"
-                }`}
-              >
-                {t.title}
-              </h1>
-              <p
-                className={`mt-2 max-w-prose leading-relaxed text-muted-foreground ${
-                  largeText ? "text-lg" : "text-base"
-                }`}
-              >
-                {t.subtitle}
-              </p>
-            </div>
-
-            <div className="flex shrink-0 flex-wrap items-center gap-2">
-              {voice.available ? (
-                <button
-                  type="button"
-                  onClick={handleHeaderListen}
-                  aria-pressed={voice.speaking}
-                  className={`inline-flex min-h-11 items-center gap-2 rounded-lg border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                    voice.speaking
-                      ? "border-sapphire bg-sapphire-soft text-obsidian-navy dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-foreground"
-                      : "border-border bg-card text-foreground hover:bg-muted"
-                  }`}
-                >
-                  <SpeakerHeaderSvg />
-                  <span>{voice.speaking ? t.stopListening : t.listenPage}</span>
-                </button>
-              ) : null}
-
-              <button
-                type="button"
-                onClick={toggleLargeText}
-                aria-pressed={largeText}
-                className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                  largeText
-                    ? "border-sapphire bg-sapphire-soft text-obsidian-navy dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-foreground"
-                    : "border-border bg-card text-foreground hover:bg-muted"
-                }`}
-              >
-                <span aria-hidden="true" className="font-bold text-sapphire dark:text-sapphire-border">
-                  A+
-                </span>
-                <span>{t.largeTextLabel}</span>
-              </button>
-            </div>
-          </div>
+        <header className="max-w-3xl print:hidden">
+          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-4xl">
+            {t.title}
+          </h1>
+          <p className="mt-2.5 max-w-[62ch] text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {t.subtitle}
+          </p>
         </header>
 
-        <section className="mt-6 max-w-2xl rounded-xl border border-border bg-card shadow-xs print:hidden sm:mt-8">
-          <form onSubmit={handleSubmit} className="space-y-6 p-5 sm:p-7" aria-busy={isSubmitting}>
+        <section className="mt-6 max-w-3xl rounded-2xl border border-border bg-card shadow-xs print:hidden sm:mt-8">
+          <form onSubmit={handleSubmit} className="space-y-6 p-5 sm:p-8" aria-busy={isSubmitting}>
+            <div>
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
+                <p className="text-sm font-medium text-muted-foreground tabular-nums">
+                  {currentStepLabel}
+                </p>
+
+                <div className="flex shrink-0 flex-wrap items-center gap-2">
+                  {voice.available ? (
+                    <button
+                      type="button"
+                      onClick={handleHeaderListen}
+                      aria-pressed={voice.speaking}
+                      className={`inline-flex min-h-11 items-center gap-2 rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                        voice.speaking
+                          ? "border-sapphire bg-sapphire-soft text-sapphire dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-sapphire-border"
+                          : "border-border bg-card text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      <SpeakerHeaderSvg />
+                      <span>{voice.speaking ? t.stopListening : t.listenPage}</span>
+                    </button>
+                  ) : null}
+
+                  <button
+                    type="button"
+                    onClick={toggleLargeText}
+                    aria-pressed={largeText}
+                    className={`inline-flex min-h-11 items-center gap-1.5 rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                      largeText
+                        ? "border-sapphire bg-sapphire-soft text-sapphire dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-sapphire-border"
+                        : "border-border bg-card text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    <span aria-hidden="true" className="font-bold text-sapphire dark:text-sapphire-border">
+                      A+
+                    </span>
+                    <span>{t.largeTextLabel}</span>
+                  </button>
+                </div>
+              </div>
+
+              <div
+                className="mt-3 flex h-1 w-full gap-1.5"
+                role="progressbar"
+                aria-label={t.title}
+                aria-valuenow={currentStep}
+                aria-valuemin={1}
+                aria-valuemax={2}
+                aria-valuetext={currentStepLabel}
+              >
+                {[1, 2].map((segment) => (
+                  <div
+                    key={segment}
+                    className={`h-1 flex-1 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
+                      currentStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
             {/* Separate inputs: one opens the camera directly on phones, the other the gallery. */}
             <input
               ref={cameraInput}
@@ -765,31 +797,15 @@ export function PrescriptionReview() {
             />
 
             {/* Step 1: Visual capture dropzone */}
-            <div
-              onDragOver={(event) => {
-                event.preventDefault();
-                setIsDragging(true);
-              }}
-              onDragLeave={() => setIsDragging(false)}
-              onDrop={(event) => {
-                event.preventDefault();
-                setIsDragging(false);
-                handleFileSelected(event.dataTransfer.files?.[0] ?? null);
-              }}
-              className={`rounded-xl border border-dashed p-5 text-center transition-colors duration-[var(--dur-fast)] sm:p-7 ${
-                isDragging
-                  ? "border-sapphire bg-sapphire-soft dark:bg-sapphire/10"
-                  : preview
-                    ? "border-border bg-surface-subtle/40 dark:bg-muted/15"
-                    : "border-border bg-background/50"
-              }`}
-            >
-              {preview ? (
-                <figure className="flex flex-col items-center">
+            {preview ? (
+              <div className="rounded-2xl border border-border bg-surface-subtle/30 p-5 text-center sm:p-7">
+                <p className="text-sm font-semibold text-foreground">{t.photoReady}</p>
+
+                <figure className="mt-4 flex flex-col items-center">
                   <img
                     src={preview}
                     alt={t.previewAlt}
-                    className="max-h-72 w-auto rounded-lg border border-border bg-card object-contain shadow-2xs"
+                    className="max-h-80 w-auto rounded-xl border border-border bg-card object-contain shadow-xs"
                   />
                   {file?.name ? (
                     <figcaption className="mt-2 max-w-full truncate text-xs text-muted-foreground">
@@ -797,82 +813,136 @@ export function PrescriptionReview() {
                     </figcaption>
                   ) : null}
                 </figure>
-              ) : (
-                <div>
-                  <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2 py-0.5 text-xs font-semibold text-obsidian-navy dark:bg-sapphire/20 dark:text-foreground">
-                    {t.stepOneBadge}
-                  </span>
-                  <h2
-                    className={`mt-2.5 font-semibold text-foreground text-balance ${
-                      largeText ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"
-                    }`}
+
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => cameraInput.current?.click()}
+                    className="press-row inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire dark:bg-ink-900"
                   >
-                    {t.dropTitle}
-                  </h2>
+                    <CameraIcon className="h-4 w-4 shrink-0" />
+                    <span>{t.retakeLight}</span>
+                  </button>
 
-                  <ul className="mt-4 flex flex-wrap justify-center gap-2">
-                    {(
-                      [
-                        [TipFlatIcon, t.tipFlat],
-                        [TipLightIcon, t.tipLight],
-                        [TipFullIcon, t.tipFull],
-                      ] as const
-                    ).map(([Icon, label], index) => (
-                      <li
-                        key={label}
-                        style={{ animationDelay: `${index * 60}ms` }}
-                        className={`assistant-step-in inline-flex items-center gap-2 rounded-full border border-border bg-card py-1.5 pl-2.5 pr-3.5 font-medium text-foreground shadow-2xs ${
-                          largeText ? "text-base" : "text-sm"
-                        }`}
-                      >
-                        <span className="text-sapphire dark:text-sapphire-border">
-                          <Icon />
-                        </span>
-                        {label}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                  <button
+                    type="button"
+                    onClick={() => galleryInput.current?.click()}
+                    className="press-row inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire dark:bg-ink-900"
+                  >
+                    <ImageIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
+                    <span>{t.galleryUpload}</span>
+                  </button>
 
-              <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-                <button
-                  type="button"
-                  onClick={() => cameraInput.current?.click()}
-                  className={`inline-flex w-full items-center justify-center gap-2.5 rounded-xl font-semibold transition-[background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:w-auto ${
-                    preview
-                      ? "min-h-11 border border-border bg-card px-4 py-2.5 text-sm text-foreground hover:bg-muted"
-                      : "min-h-13 bg-sapphire px-6 py-3 text-base text-white shadow-xs hover:bg-sapphire-light active:scale-[0.98] motion-reduce:active:scale-100"
-                  }`}
-                >
-                  <CameraIcon className={preview ? "h-4 w-4" : "h-5 w-5"} />
-                  <span>{t.cameraCapture}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => galleryInput.current?.click()}
-                  className={`inline-flex w-full items-center justify-center gap-2.5 rounded-xl border border-border bg-card font-semibold text-foreground transition-[background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:w-auto ${
-                    preview ? "min-h-11 px-4 py-2.5 text-sm" : "min-h-13 px-6 py-3 text-base active:scale-[0.98] motion-reduce:active:scale-100"
-                  }`}
-                >
-                  <ImageIcon className={preview ? "h-4 w-4" : "h-5 w-5"} />
-                  <span>{t.galleryUpload}</span>
-                </button>
-
-                {preview ? (
                   <button
                     type="button"
                     onClick={handleRemovePhoto}
                     disabled={isSubmitting}
-                    className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+                    className="press-row inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-rose-200 bg-rose-50/60 px-4 py-2 text-sm font-semibold text-rose-700 transition-colors hover:bg-rose-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 disabled:cursor-not-allowed disabled:opacity-60 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:bg-rose-950/60"
                   >
-                    <TrashIcon className="h-4 w-4 text-muted-foreground" />
+                    <TrashIcon className="h-4 w-4 shrink-0" />
                     <span>{t.removePhoto}</span>
                   </button>
-                ) : null}
+                </div>
               </div>
-            </div>
+            ) : (
+              <div
+                onDragOver={(event) => {
+                  event.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={(event) => {
+                  event.preventDefault();
+                  setIsDragging(false);
+                  handleFileSelected(event.dataTransfer.files?.[0] ?? null);
+                }}
+                className={`rounded-2xl border-2 border-dashed p-6 text-center transition-colors duration-[var(--dur-fast)] sm:p-8 ${
+                  isDragging
+                    ? "border-sapphire bg-sapphire-soft/50 dark:border-sapphire-light dark:bg-sapphire/15"
+                    : "border-border-control bg-surface-subtle/30 dark:bg-muted/10"
+                }`}
+              >
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sapphire-soft text-sapphire shadow-xs dark:bg-sapphire/20 dark:text-sapphire-light">
+                  <CameraIcon className="h-7 w-7" />
+                </div>
+
+                <h2
+                  className={`mt-3.5 font-semibold text-foreground text-balance ${
+                    largeText ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"
+                  }`}
+                >
+                  {t.dropTitle}
+                </h2>
+
+                <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
+                  {t.dragOrBrowse}
+                </p>
+
+                {/* Primary interactive action buttons: clearly identifiable as buttons */}
+                <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <button
+                    type="button"
+                    onClick={() => cameraInput.current?.click()}
+                    className="press-row inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-xl bg-sapphire px-6 py-3.5 text-base font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire active:scale-[0.98] motion-reduce:active:scale-100 sm:w-auto"
+                  >
+                    <CameraIcon className="h-5 w-5 shrink-0" />
+                    <span>{t.cameraCapture}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => galleryInput.current?.click()}
+                    className="press-row inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-xl border border-border-control bg-card px-6 py-3.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire active:scale-[0.98] motion-reduce:active:scale-100 dark:bg-ink-900 sm:w-auto"
+                  >
+                    <ImageIcon className="h-5 w-5 shrink-0 text-muted-foreground" />
+                    <span>{t.galleryUpload}</span>
+                  </button>
+                </div>
+
+                {/* Informational Guidance Box: clearly labeled and non-interactive */}
+                <div className="mt-6 rounded-xl border border-sapphire-border/40 bg-card/85 p-4 text-left shadow-2xs dark:border-white/10 dark:bg-ink-900/60 sm:p-4.5">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sapphire-soft text-sapphire dark:bg-sapphire/20 dark:text-sapphire-light">
+                      <svg viewBox="0 0 16 16" fill="currentColor" className="h-3 w-3" aria-hidden="true">
+                        <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 3.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm1.25 7.25h-2.5a.75.75 0 0 1 0-1.5h.5V7.75h-.5a.75.75 0 0 1 0-1.5h1.75a.75.75 0 0 1 .75.75v3.25h.5a.75.75 0 0 1 0 1.5Z" />
+                      </svg>
+                    </span>
+                    <p className="text-xs font-semibold text-foreground sm:text-sm">
+                      {t.guidanceHeading}
+                    </p>
+                  </div>
+
+                  <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                    <div className="flex items-start gap-2.5">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-subtle text-sapphire dark:bg-white/10 dark:text-sapphire-light">
+                        <TipFlatIcon />
+                      </span>
+                      <span className="text-xs leading-snug text-muted-foreground sm:text-sm">
+                        {t.tipFlat}
+                      </span>
+                    </div>
+
+                    <div className="flex items-start gap-2.5">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-subtle text-sapphire dark:bg-white/10 dark:text-sapphire-light">
+                        <TipLightIcon />
+                      </span>
+                      <span className="text-xs leading-snug text-muted-foreground sm:text-sm">
+                        {t.tipLight}
+                      </span>
+                    </div>
+
+                    <div className="flex items-start gap-2.5">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-subtle text-sapphire dark:bg-white/10 dark:text-sapphire-light">
+                        <TipFullIcon />
+                      </span>
+                      <span className="text-xs leading-snug text-muted-foreground sm:text-sm">
+                        {t.tipFull}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {error && !preview ? (
               <div
@@ -912,23 +982,17 @@ export function PrescriptionReview() {
                 ) : qualityState === "good" ? (
                   <div
                     role="status"
-                    className="inline-flex items-center gap-2 rounded-full border border-emerald-600/30 bg-emerald-500/10 px-3.5 py-1.5 text-sm font-semibold text-foreground dark:border-emerald-400/35 dark:bg-emerald-500/15"
+                    className="inline-flex items-center gap-2 rounded-full border border-live-sage/35 bg-live-sage/12 px-3.5 py-1.5 text-sm font-semibold text-foreground"
                   >
-                    <CheckCircleIcon className="h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-300" />
+                    <CheckCircleIcon className="h-4 w-4 shrink-0 text-live-sage" />
                     <span>{t.photoReady}</span>
                   </div>
                 ) : null}
 
                 {/* 1-tap visual reason chips + optional note */}
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2 py-0.5 text-xs font-semibold text-obsidian-navy dark:bg-sapphire/20 dark:text-foreground">
-                      {t.stepTwoBadge}
-                    </span>
-                  </div>
-
                   <h3
-                    className={`mt-2 font-semibold text-foreground ${
+                    className={`font-semibold text-foreground ${
                       largeText ? "text-lg sm:text-xl" : "text-base sm:text-lg"
                     }`}
                   >
@@ -954,14 +1018,14 @@ export function PrescriptionReview() {
                             largeText ? "text-base" : "text-sm"
                           } ${
                             active
-                              ? "border-sapphire bg-sapphire-soft font-semibold text-obsidian-navy dark:border-sapphire/65 dark:bg-sapphire/20 dark:text-foreground"
+                              ? "border-sapphire bg-sapphire-soft font-semibold text-foreground dark:border-sapphire/65 dark:bg-sapphire/20 dark:text-foreground"
                               : "border-border bg-background text-foreground hover:bg-muted"
                           }`}
                         >
                           <span
                             className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${
                               active
-                                ? "bg-sapphire text-white dark:bg-sapphire-border dark:text-obsidian-navy"
+                                ? "bg-sapphire text-white"
                                 : "bg-surface-subtle text-sapphire dark:bg-muted dark:text-sapphire-border"
                             }`}
                           >
@@ -1040,7 +1104,7 @@ export function PrescriptionReview() {
         {isSubmitting && !result ? (
           <section
             aria-label={t.skeletonHeading}
-            className="mt-6 max-w-2xl rounded-xl border border-border bg-card p-5 shadow-xs print:hidden sm:p-7"
+            className="mt-6 max-w-3xl rounded-2xl border border-border bg-card p-5 shadow-xs print:hidden sm:p-8"
           >
             <p className="text-sm font-semibold text-foreground">{t.skeletonHeading}</p>
             <div className="mt-4 space-y-3" aria-hidden="true">
@@ -1061,7 +1125,7 @@ export function PrescriptionReview() {
         {result && (
           <section
             ref={resultSectionRef}
-            className="assistant-step-in mt-6 max-w-2xl rounded-xl border border-border bg-card p-5 shadow-xs sm:p-7"
+            className="assistant-step-in mt-6 max-w-3xl rounded-2xl border border-border bg-card p-5 shadow-xs sm:p-8"
           >
             <PrescriptionStructuredResult
               aiMessage={result.message}

@@ -3,6 +3,14 @@
 import { CheckCircleIcon } from "@/components/ui/icons";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { type RiskLevel, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
+import {
+  primaryButton,
+  secondaryButton,
+  softPanel,
+  stepHeading,
+  stepLead,
+  subHeading,
+} from "@/components/health-assistant/step-ui";
 
 interface PathwayRiskProps {
   step: 2 | 3;
@@ -35,38 +43,34 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
   if (step === 2) {
     return (
       <div>
-        <h2 className="text-lg font-semibold text-foreground">{risk.heading}</h2>
-        <p className="mt-1 text-sm text-muted-foreground">{risk.lead}</p>
+        <h2 className={stepHeading}>{risk.heading}</h2>
+        <p className={stepLead}>{risk.lead}</p>
 
         {/* Shown only before any answer, so "low risk" never contradicts a Yes already given. */}
         {!anyAnswered ? (
-          <div className="mt-5 flex flex-col gap-3 rounded-lg bg-muted/50 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className={`mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ${softPanel}`}>
             <div>
-              <h3 className="text-sm font-semibold text-foreground">{risk.quickTitle}</h3>
-              <p className="mt-0.5 text-sm text-muted-foreground">{risk.quickBody}</p>
+              <h3 className={subHeading}>{risk.quickTitle}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{risk.quickBody}</p>
             </div>
-            <button
-              type="button"
-              onClick={onQuickResolve}
-              className="min-h-[44px] shrink-0 rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted"
-            >
+            <button type="button" onClick={onQuickResolve} className={`shrink-0 ${secondaryButton}`}>
               {risk.quickButton}
             </button>
           </div>
         ) : null}
 
-        <ol className="mt-5 divide-y divide-border border-y border-border">
+        <ol className="mt-6 divide-y divide-border border-y border-border">
           {QUESTION_IDS.map((id, idx) => {
             const q = risk.questions[id];
             const current = answers[id];
             const labelId = `risk-${id}-label`;
             return (
-              <li key={id} className="py-4">
+              <li key={id} className="py-5">
                 <p id={labelId} className="text-base leading-relaxed text-foreground">
                   <span className="mr-1.5 font-semibold tabular-nums text-muted-foreground">{idx + 1}.</span>
                   <span className="font-semibold">{q.title}.</span> {plainLanguage ? q.plainText : q.text}
                 </p>
-                <div role="group" aria-labelledby={labelId} className="mt-3 grid grid-cols-2 gap-3 sm:max-w-xs">
+                <div role="group" aria-labelledby={labelId} className="mt-3 grid grid-cols-2 gap-3 sm:max-w-sm">
                   {([true, false] as const).map((value) => {
                     const selected = current === value;
                     return (
@@ -76,10 +80,10 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
                         data-risk-yes={value ? "" : undefined}
                         aria-pressed={selected}
                         onClick={() => onAnswer(id, value)}
-                        className={`min-h-[44px] rounded-lg border text-sm font-semibold transition-colors duration-[var(--dur-fast)] ${
+                        className={`min-h-12 rounded-xl border text-base font-semibold transition-[background-color,border-color,color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
                           selected
-                            ? "border-foreground bg-foreground text-background"
-                            : "border-border bg-card text-foreground hover:bg-muted"
+                            ? "border-sapphire bg-sapphire text-white"
+                            : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30"
                         }`}
                       >
                         {value ? risk.yes : risk.no}
@@ -97,7 +101,7 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
             type="button"
             data-risk-submit
             onClick={onQuickResolve}
-            className="mt-5 min-h-[48px] w-full rounded-lg bg-sapphire px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light"
+            className={`mt-6 w-full sm:w-auto ${primaryButton}`}
           >
             {risk.submit}
           </button>
@@ -111,9 +115,9 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
 
   return (
     <div>
-      <h2 className="text-lg font-semibold text-foreground">{risk.resultHeading}</h2>
+      <h2 className={stepHeading}>{risk.resultHeading}</h2>
 
-      <div className="mt-4">
+      <div className="mt-5">
         <p className="flex items-baseline justify-between gap-3 text-sm text-muted-foreground">
           <span>{risk.levelLabel}</span>
           <span className={`text-base font-semibold ${tone.text}`}>{risk.levels[level]}</span>
@@ -127,11 +131,11 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
 
       <p className="mt-5 max-w-prose text-base leading-relaxed text-foreground">{risk.messages[level]}</p>
 
-      <h3 className="mt-6 text-sm font-semibold text-foreground">{risk.nextHeading}</h3>
-      <ul className="mt-2 space-y-2">
+      <h3 className={`mt-6 ${subHeading}`}>{risk.nextHeading}</h3>
+      <ul className="mt-3 space-y-2.5">
         {risk.nextSteps.map((item) => (
-          <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-foreground">
-            <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />
+          <li key={item} className="flex items-start gap-2.5 text-base leading-relaxed text-foreground">
+            <CheckCircleIcon className="mt-1 h-4.5 w-4.5 shrink-0 text-sapphire dark:text-sapphire-border" />
             <span>{item}</span>
           </li>
         ))}

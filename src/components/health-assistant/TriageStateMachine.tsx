@@ -418,13 +418,13 @@ export function TriageStateMachine({
         </div>
 
         {trailItems.length > 0 && (
-          <nav aria-label={copy.machine.selectedTrailLabel} className="mt-3 flex flex-wrap gap-1.5">
+          <nav aria-label={copy.machine.selectedTrailLabel} className="mt-4 flex flex-wrap gap-2">
             {trailItems.map((item) => (
               <button
                 key={item.key}
                 type="button"
                 onClick={() => handleTrailSelect(item.action, item.stepsBack)}
-                className="inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-xl border border-sapphire/25 bg-sapphire-soft/70 px-3 py-1.5 text-left text-xs font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-full border border-sapphire/25 bg-sapphire-soft/70 px-3.5 py-1.5 text-left text-sm font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
               >
                 <span className="truncate">{item.label}</span>
                 <span aria-hidden="true" className="shrink-0 text-sapphire/70">↺</span>

@@ -1,12 +1,9 @@
 "use client";
 
 import React, { useState, useSyncExternalStore } from "react";
-import { usePathname } from "next/navigation";
 import { CloseIcon, PhoneIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
-import { EmergencySignsModal } from "@/components/emergency/EmergencySignsModal";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
-import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations } from "@/lib/i18n/translations";
@@ -55,20 +52,16 @@ function dismiss() {
 }
 
 /**
- * A quiet 112 reminder at the top of public pages. It scrolls away with the page
- * and can be closed; the choice is remembered on this device. The 112 number stays
- * reachable from the footer and from every tool's own emergency step.
+ * The 112 reminder: one slim line at the top of the sticky site header, so it stays in view on
+ * every public page. A short question on phones, the full sentence from md, then "Call 112" and a
+ * close button; closing is remembered on this device. `tone="dark"` is for the landing page,
+ * where the header sits over the dark hero.
  */
-export function UniversalEmergencyBanner() {
-  const pathname = usePathname();
-  const path = stripLangFromPathname(pathname);
-  const isWorkerPanel = path.startsWith("/panel");
-
+export function UniversalEmergencyBanner({ tone = "light" }: { tone?: "light" | "dark" }) {
   const { lang, t } = useSafeLanguage();
   const e = t.emergency;
   const chrome = getChromeCopy(lang);
 
-  const [signsOpen, setSignsOpen] = useState(false);
   const [dialerOpen, setDialerOpen] = useState(false);
   const dismissed = useSyncExternalStore(
     subscribe,
@@ -76,55 +69,52 @@ export function UniversalEmergencyBanner() {
     () => false,
   );
 
-  if (isWorkerPanel || dismissed) {
+  if (dismissed) {
     return null;
   }
+
+  const dark = tone === "dark";
 
   return (
     <>
       <aside
         aria-label={e.bannerAriaLabel}
-        className="emergency-banner w-full border-b border-border bg-muted/60 text-foreground"
+        className={`emergency-banner border-b transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none ${
+          dark ? "border-white/10 text-paper/75" : "border-border text-muted-foreground"
+        }`}
       >
-        {/* Phones: "Emergency?" next to 112. From sm (640px): alarm-signs link joins; from md (768px): full sentence. */}
-        <Container className="flex items-center gap-2 py-0.5 text-sm md:gap-3 md:py-1">
-          <PhoneIcon className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
-
-          <p className="emergency-banner-text min-w-0 shrink-0 leading-snug text-foreground md:shrink md:flex-1 md:text-muted-foreground">
+        <Container className="flex h-8 items-center gap-2 text-[13px] leading-none">
+          <PhoneIcon className={`h-3 w-3 shrink-0 ${dark ? "text-paper/70" : "text-primary"}`} aria-hidden="true" />
+          <p className="min-w-0 truncate">
             <span className="md:hidden">{chrome.emergencyQuestion}</span>
             <span className="hidden md:inline">{e.bannerText}</span>
           </p>
-
-          <div className="emergency-banner-actions flex min-w-0 flex-1 items-center gap-1 md:flex-none md:shrink-0 md:gap-1.5">
-            <button
-              type="button"
-              onClick={() => setSignsOpen(true)}
-              className="hidden min-h-11 items-center rounded-lg px-2.5 font-medium text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:decoration-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:inline-flex"
-            >
-              {e.seeAlarmSigns}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setDialerOpen(true)}
-              className="-ml-1 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2.5 font-semibold text-primary transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-primary-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:ml-0"
-            >
-              {e.call112}
-            </button>
-
-            <button
-              type="button"
-              onClick={dismiss}
-              aria-label={e.dismissBannerAria}
-              className="ml-auto inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-            >
-              <CloseIcon className="h-4 w-4" />
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setDialerOpen(true)}
+            className={`inline-flex h-7 shrink-0 items-center rounded-md px-1.5 font-semibold underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
+              dark
+                ? "text-paper decoration-paper/40 hover:decoration-paper focus-visible:outline-paper"
+                : "text-primary decoration-primary/35 hover:decoration-primary focus-visible:outline-ring"
+            }`}
+          >
+            {e.call112}
+          </button>
+          <button
+            type="button"
+            onClick={dismiss}
+            aria-label={e.dismissBannerAria}
+            className={`-mr-1.5 ml-auto inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
+              dark
+                ? "text-paper/60 hover:bg-white/10 hover:text-paper focus-visible:outline-paper"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-ring"
+            }`}
+          >
+            <CloseIcon className="h-3.5 w-3.5" />
+          </button>
         </Container>
       </aside>
 
-      <EmergencySignsModal open={signsOpen} onOpenChange={setSignsOpen} />
       <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} />
     </>
   );

@@ -572,8 +572,8 @@ const en: AssistantCopy = {
     options: {
       learn: {
         title: "I want to learn about something",
-        plainTitle: "I want simple advice about an illness",
-        subtitle: "Plain answers about vaccines, blood pressure, fever and antibiotics",
+        plainTitle: "I want clear advice about an illness",
+        subtitle: "Clear answers about vaccines, blood pressure, fever and antibiotics",
       },
       risk: {
         title: "I want to check my risk",
@@ -599,7 +599,7 @@ const en: AssistantCopy = {
   },
   learn: {
     heading: "What would you like to learn about?",
-    lead: "Plain-language explanations, with the source of each piece of information.",
+    lead: "Clear, trustworthy explanations, with the source of each piece of information.",
     mythLabel: "Common myth",
     verdictFalse: "False",
     doctorLabel: "What is true",
@@ -881,7 +881,7 @@ const en: AssistantCopy = {
     summary: (scenario) => `Finding my way in the health system: ${scenario}`,
   },
   result: {
-    heading: "Your prescription in plain words",
+    heading: "Your prescription explained clearly",
     lead: "The assistant can misread a prescription. Always check with your pharmacist or doctor before you take the medicines.",
     pharmacistBannerTitle: "Show this to your pharmacist before taking the medicines",
     pharmacistBannerBody:
@@ -1243,7 +1243,7 @@ const sq: AssistantCopy = {
     summary: (scenario) => `Orientim në sistemin shëndetësor: ${scenario}`,
   },
   result: {
-    heading: "Receta jote me fjalë të thjeshta",
+    heading: "Receta jote e shpjeguar qartë",
     lead: "Asistenti mund të gabojë kur lexon. Kontrollo gjithmonë me farmacistin ose mjekun para se t'i marrësh ilaçet.",
     pharmacistBannerTitle: "Tregoja farmacistit para se t'i marrësh ilaçet",
     pharmacistBannerBody:
@@ -1605,7 +1605,7 @@ const it: AssistantCopy = {
     summary: (scenario) => `Orientamento nel sistema sanitario: ${scenario}`,
   },
   result: {
-    heading: "La tua ricetta in parole semplici",
+    heading: "La tua ricetta spiegata con chiarezza",
     lead: "L'assistente può leggere male una ricetta. Verifica sempre con il farmacista o con il medico prima di prendere i farmaci.",
     pharmacistBannerTitle: "Mostralo al farmacista prima di prendere i farmaci",
     pharmacistBannerBody:
@@ -1967,7 +1967,7 @@ const hr: AssistantCopy = {
     summary: (scenario) => `Snalaženje u zdravstvenom sustavu: ${scenario}`,
   },
   result: {
-    heading: "Tvoj recept jednostavnim riječima",
+    heading: "Tvoj recept jasno objašnjen",
     lead: "Asistent može pogriješiti pri čitanju recepta. Uvijek provjeri s ljekarnikom ili liječnikom prije uzimanja lijekova.",
     pharmacistBannerTitle: "Pokaži ljekarniku prije uzimanja lijekova",
     pharmacistBannerBody:
@@ -2329,7 +2329,7 @@ const rom: AssistantCopy = {
     summary: (scenario) => `Drom and-o sastipnasko sistemo: ${scenario}`,
   },
   result: {
-    heading: "Chiri receta pe lokhe vorbe",
+    heading: "Chiri receta ashkardi chaches",
     lead: "O azhutitori shaj dosharel ko ginavimos. Dikh svako data le farmacistosa vaj le doktoresa angla te les i drab.",
     pharmacistBannerTitle: "Sikav le farmacistoske angla te les i drab",
     pharmacistBannerBody:

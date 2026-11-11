@@ -28,6 +28,9 @@ export interface ViewportCameraApi {
   zoomOut: () => void;
   rotateLeft: () => void;
   rotateRight: () => void;
+  /** Glide the view up or down the body (direction pad). */
+  panUp: () => void;
+  panDown: () => void;
   resetCamera: () => void;
 }
 
@@ -117,6 +120,9 @@ function cubicBezier([x1, y1, x2, y2]: readonly [number, number, number, number]
 const easeOrbit = cubicBezier(EASE_IN_OUT);
 /** Small nudges (rotate buttons): decelerate into place. */
 const easeNudge = cubicBezier(EASE_OUT);
+/** Base and longest duration of a camera move. */
+const CALM_MOVE_MS = 760;
+const CALM_MOVE_MAX_MS = 1300;
 
 // Color palette inspired by kelpikz/body-pain-explorer and ashemag/human-atlas
 const MUSCLE_COLOR = new THREE.Color(0x9f241f);
@@ -1048,6 +1054,8 @@ export function AnatomicalViewport3D({
     rotateLeft: () => void;
     rotateRight: () => void;
     rotateBy: (deltaRad: number) => void;
+    panUp: () => void;
+    panDown: () => void;
     resetCamera: () => void;
     focusSubRegion: (subRegion: SubRegionId, side?: "Left" | "Right" | "Center") => void;
     focusArea: (macroPart: BodyPartId) => void;
@@ -1648,9 +1656,11 @@ export function AnatomicalViewport3D({
         return;
       }
 
+      // Calm, unhurried moves: long enough to follow, scaled by how far the camera travels, and capped
+      // so a full turn never feels like a spin.
       const ms = reduceMotionQuery.matches
         ? 0
-        : (duration ?? DURATION.slow * 1000 * (1 + 0.6 * turn + 0.3 * Math.max(zoom, pan)));
+        : (duration ?? Math.min(CALM_MOVE_MS * (1 + 0.5 * turn + 0.35 * Math.max(zoom, pan)), CALM_MOVE_MAX_MS));
       const start = performance.now();
       inFlight = { toPos: destination.clone(), toTarget, endsAt: start + ms };
       isAnimating = true;
@@ -1720,6 +1730,17 @@ export function AnatomicalViewport3D({
       animateCamera(offset.add(target), target, { ease: easeNudge, duration });
     }
 
+    /** Slides camera and target together along the body, a step that shrinks as the view zooms in. */
+    function panVertical(direction: 1 | -1) {
+      const { position, target } = cameraGoal();
+      const step = THREE.MathUtils.clamp(position.distanceTo(target) * 0.11, 0.55, 2);
+      const nextY = THREE.MathUtils.clamp(target.y + direction * step, -3.3, 3.3);
+      const dy = nextY - target.y;
+      if (Math.abs(dy) < 0.01) return;
+      const shift = new THREE.Vector3(0, dy, 0);
+      animateCamera(position.add(shift), target.add(shift), { ease: easeNudge, duration: CALM_MOVE_MS });
+    }
+
     function zoomBy(factor: number) {
       const { position, target } = cameraGoal();
       const offset = position.sub(target);
@@ -1783,21 +1804,24 @@ export function AnatomicalViewport3D({
           : selectableMeshes.filter(
               (m) => m.userData.subRegion === subRegion && isProfileActiveMesh(m.userData)
             );
-      frameMeshes(matching, SUB_REGION_INFO[subRegion]?.defaultView === "back", side, { height: 2.4, width: 2.0 }, opts);
+      // Generous context around the structure: the body stays recognisable instead of zooming into a blob.
+      frameMeshes(matching, SUB_REGION_INFO[subRegion]?.defaultView === "back", side, { height: 3.4, width: 2.8 }, opts);
     }
 
     /** A whole area (chosen from the list, or a first tap on a phone). */
     function focusArea(macroPart: BodyPartId, opts?: MoveOptions) {
       const all = selectableMeshes.filter((m) => m.userData.macroPart === macroPart);
       const visible = all.filter((m) => m.visible);
-      frameMeshes(visible.length ? visible : all, macroPart === "back", "Center", { height: 1.5, width: 1.3 }, opts);
+      frameMeshes(visible.length ? visible : all, macroPart === "back", "Center", { height: 1.9, width: 1.6 }, opts);
     }
 
     controlsApiRef.current = {
       zoomIn: () => zoomBy(0.82),
       zoomOut: () => zoomBy(1.22),
-      rotateLeft: () => rotateByAngle(-Math.PI / 4),
-      rotateRight: () => rotateByAngle(Math.PI / 4),
+      rotateLeft: () => rotateByAngle(-Math.PI / 6, CALM_MOVE_MS),
+      rotateRight: () => rotateByAngle(Math.PI / 6, CALM_MOVE_MS),
+      panUp: () => panVertical(1),
+      panDown: () => panVertical(-1),
       rotateBy: (deltaRad: number) => rotateByAngle(deltaRad, DURATION.base * 1000),
       resetCamera: () => animateToPreset("front"),
       focusSubRegion,
@@ -2617,6 +2641,8 @@ export function AnatomicalViewport3D({
         stateRef.current.onFreeRotate?.();
         controlsApiRef.current?.rotateRight();
       },
+      panUp: () => controlsApiRef.current?.panUp(),
+      panDown: () => controlsApiRef.current?.panDown(),
       resetCamera: () => controlsApiRef.current?.resetCamera(),
     };
     return () => {
@@ -2625,13 +2651,14 @@ export function AnatomicalViewport3D({
   }, [cameraRef]);
 
   // Frame what is chosen: the exact structure, else the whole area, else the starting view.
+  // Only a new choice moves the camera; changing the layer or body type keeps the view still.
   useEffect(() => {
     if (!modelReady) return;
     controlsApiRef.current?.syncVisuals();
     if (selectedSubRegion) controlsApiRef.current?.focusSubRegion(selectedSubRegion, selectedSide);
     else if (selectedPart) controlsApiRef.current?.focusArea(selectedPart);
     else controlsApiRef.current?.animateToPreset(stateRef.current.viewAngle);
-  }, [selectedPart, selectedSubRegion, selectedSide, layerMode, bodyProfile, modelReady]);
+  }, [selectedPart, selectedSubRegion, selectedSide, modelReady]);
 
   function handleKeyDown(e: KeyboardEvent<HTMLCanvasElement>) {
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") onFreeRotate?.();

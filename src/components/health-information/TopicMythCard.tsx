@@ -84,10 +84,10 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
           <button
             type="button"
             onClick={() => setSelectedAnswer(true)}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-foreground/30 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-live-sage/35 bg-live-sage-soft/30 px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-live-sage hover:bg-live-sage-soft/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-live-sage"
           >
             <svg
-              className="h-5 w-5 text-sapphire"
+              className="h-5 w-5 text-live-sage"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -104,10 +104,10 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
           <button
             type="button"
             onClick={() => setSelectedAnswer(false)}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-foreground/30 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-primary/30 bg-primary-soft/30 px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-primary hover:bg-primary-soft/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <svg
-              className="h-5 w-5 text-stone-500"
+              className="h-5 w-5 text-primary"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -128,7 +128,7 @@ export function TopicMythCard({ myth, className = "", lang }: TopicMythCardProps
               className={`rounded-md px-3 py-1 text-xs font-semibold ${
                 isMatch
                   ? "border border-live-sage-border bg-live-sage-soft text-foreground"
-                  : "border border-amber-care-border bg-amber-care-soft text-amber-care-hover"
+                  : "border border-primary-border bg-primary-soft text-primary-hover"
               }`}
             >
               {isMatch ? pickLocale(s.correctBadge, currentLang) : myth.statusTag}

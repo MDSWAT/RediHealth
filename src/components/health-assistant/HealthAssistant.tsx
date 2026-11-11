@@ -10,6 +10,7 @@ import { parseTriageUrlParams } from "@/lib/triage-url-params";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
+import { emergencyButton } from "@/components/health-assistant/step-ui";
 
 function TriageStateMachineWithParams() {
   const searchParams = useSearchParams();
@@ -138,7 +139,7 @@ export function HealthAssistant() {
             </p>
             <a
               href="tel:112"
-              className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-[15px] font-semibold text-white shadow-2xs transition-[background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:w-auto lg:w-full"
+              className={`mt-4 w-full sm:w-auto lg:w-full ${emergencyButton}`}
             >
               <PhoneIcon className="h-4 w-4" aria-hidden="true" />
               <span>{t.call112}</span>

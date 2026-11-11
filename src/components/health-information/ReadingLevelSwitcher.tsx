@@ -33,33 +33,33 @@ const copyByLang: Record<
   }
 > = {
   ro: {
-    ariaLabel: "Nivel de lectură",
-    simple: "Limbaj simplu",
+    ariaLabel: "Formatul ghidului",
+    simple: "Pe scurt",
     complete: "Ghid complet",
   },
   en: {
-    ariaLabel: "Reading level",
-    simple: "Plain language",
+    ariaLabel: "Guide format",
+    simple: "In brief",
     complete: "Complete guide",
   },
   sq: {
-    ariaLabel: "Niveli i leximit",
-    simple: "Gjuhë e thjeshtë",
+    ariaLabel: "Formati i udhëzuesit",
+    simple: "Shkurt",
     complete: "Udhëzues i plotë",
   },
   it: {
-    ariaLabel: "Livello di lettura",
-    simple: "Linguaggio semplice",
+    ariaLabel: "Formato della guida",
+    simple: "In breve",
     complete: "Guida completa",
   },
   hr: {
-    ariaLabel: "Razina čitanja",
-    simple: "Jednostavan jezik",
+    ariaLabel: "Format vodiča",
+    simple: "Ukratko",
     complete: "Potpuni vodič",
   },
   rom: {
-    ariaLabel: "Sar te drabares",
-    simple: "Lokhi chib",
+    ariaLabel: "Sar sikavel pes",
+    simple: "Xarnes",
     complete: "Sa o sikavimos",
   },
 };

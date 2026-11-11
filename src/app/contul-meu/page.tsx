@@ -36,13 +36,13 @@ export default async function ContulMeuPage() {
   const lang = await getRequestLang();
 
   return (
-    <main id="main-content" className="flex min-h-screen flex-col justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+    <main id="main-content" className="flex-1 bg-background px-5 pt-6 pb-16 sm:px-6 lg:pt-16 dark:bg-ink-950">
       <div className="mx-auto mb-4 w-full max-w-md">
         <Link
           href={withLangPrefix("/", lang)}
-          className="inline-flex min-h-[44px] items-center gap-1.5 rounded-sm text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="press-row -ml-2 inline-flex min-h-11 items-center gap-1.5 rounded-(--radius-control) px-2 text-base font-semibold text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-mist dark:hover:text-paper dark:focus-visible:ring-paper"
         >
-          <ArrowLeftIcon className="h-4 w-4" />
+          <ArrowLeftIcon className="h-5 w-5" />
           {backCopy[lang] ?? backCopy.ro}
         </Link>
       </div>

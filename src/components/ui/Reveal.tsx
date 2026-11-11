@@ -1,67 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { ENTRANCE_OFFSET_PX, useCalmReducedMotion } from "@/lib/motion/tokens";
+import { useCalmReducedMotion } from "@/lib/motion/tokens";
 
 type RevealProps = {
   children: ReactNode;
   className?: string;
-  /** Optional calm delay in seconds (clamped to <= 0.24s; skipped during rapid scrolling). */
+  /** Optional delay in seconds for items of a grid or list (clamped to 0.24s). */
   delay?: number;
 };
+
+const MAX_DELAY_S = 0.24;
 
 type RevealCallback = () => void;
 
 let sharedObserver: IntersectionObserver | null = null;
 const observedCallbacks = new WeakMap<Element, RevealCallback>();
-
-let velocityListenerCount = 0;
-let velocityRafId = 0;
-let lastScrollY = 0;
-let lastScrollTs = 0;
-let currentScrollVelocityPxPerMs = 0;
-
-function sampleVelocityFrame() {
-  velocityRafId = 0;
-  if (typeof window === "undefined") return;
-  const now = performance.now();
-  const y = window.scrollY;
-  const dt = now - lastScrollTs;
-  if (dt > 0 && lastScrollTs > 0) {
-    const instant = Math.abs(y - lastScrollY) / dt;
-    currentScrollVelocityPxPerMs = currentScrollVelocityPxPerMs * 0.4 + instant * 0.6;
-  }
-  lastScrollY = y;
-  lastScrollTs = now;
-}
-
-function onPassiveScroll() {
-  if (velocityRafId === 0 && typeof window !== "undefined") {
-    velocityRafId = window.requestAnimationFrame(sampleVelocityFrame);
-  }
-}
-
-function retainScrollVelocitySampler(): () => void {
-  if (typeof window === "undefined") return () => {};
-  if (velocityListenerCount === 0) {
-    lastScrollY = window.scrollY;
-    lastScrollTs = performance.now();
-    currentScrollVelocityPxPerMs = 0;
-    window.addEventListener("scroll", onPassiveScroll, { passive: true });
-  }
-  velocityListenerCount += 1;
-  return () => {
-    velocityListenerCount = Math.max(0, velocityListenerCount - 1);
-    if (velocityListenerCount === 0) {
-      window.removeEventListener("scroll", onPassiveScroll);
-      if (velocityRafId !== 0) {
-        window.cancelAnimationFrame(velocityRafId);
-        velocityRafId = 0;
-      }
-      currentScrollVelocityPxPerMs = 0;
-    }
-  };
-}
 
 function getSharedObserver(): IntersectionObserver | null {
   if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") {
@@ -71,6 +25,7 @@ function getSharedObserver(): IntersectionObserver | null {
     sharedObserver = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
+          // On screen, or already scrolled past (an anchor jump): either way it must be visible now.
           if (entry.isIntersecting || entry.boundingClientRect.top <= 0) {
             const cb = observedCallbacks.get(entry.target);
             if (cb) {
@@ -87,21 +42,20 @@ function getSharedObserver(): IntersectionObserver | null {
   return sharedObserver;
 }
 
-type Phase = "initial" | "armed" | "revealed";
+type Phase = "visible" | "armed" | "revealed";
 
 /**
- * Progressive, SSR-safe below-fold reveal:
- * - Renders at `opacity: 1` during SSR and initial above-fold paint so content is never
- *   hidden if scripts lag or fail.
- * - Only sections genuinely below the fold arm an `8px` GPU settle and reveal once via a
- *   singleton `IntersectionObserver`, adapting duration to passive `rAF` scroll velocity.
- * - Completely static when `useCalmReducedMotion()` is active.
+ * One calm entrance for content below the fold: opacity plus a 12px rise over `--dur-slow`,
+ * once. The styles live in globals.css under `[data-reveal]`.
+ * - The server HTML carries no `data-reveal`, so without JavaScript nothing is ever hidden.
+ * - After hydration only a block that is still below the viewport is hidden ("armed"); what is
+ *   already on screen stays as painted. Without IntersectionObserver nothing is armed.
+ * - Static under reduced motion and in print.
  */
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
   const reducedMotion = useCalmReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const [phase, setPhase] = useState<Phase>("initial");
-  const [settleDurationVar, setSettleDurationVar] = useState<string>("var(--dur-slow)");
+  const [phase, setPhase] = useState<Phase>("visible");
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -109,37 +63,26 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
     const observer = getSharedObserver();
     if (!el || !observer) return;
 
-    const rect = el.getBoundingClientRect();
-    // Above or inside the initial viewport: keep visible immediately without re-animating.
-    if (rect.top < window.innerHeight * 0.95) {
-      return;
-    }
-
-    const releaseVelocity = retainScrollVelocitySampler();
     let frameId = window.requestAnimationFrame(() => {
-      setPhase("armed");
-      observedCallbacks.set(el, () => {
-        const v = currentScrollVelocityPxPerMs;
-        const dur =
-          v > 2.2 ? "var(--dur-fast)" : v > 1.0 ? "var(--dur-base)" : "var(--dur-slow)";
-        setSettleDurationVar(dur);
-        setPhase("revealed");
-      });
+      frameId = 0;
+      if (el.getBoundingClientRect().top >= window.innerHeight) {
+        setPhase("armed");
+      }
+      // Observed even when not armed here: a block left armed by an earlier run is then released.
+      observedCallbacks.set(el, () => setPhase((current) => (current === "armed" ? "revealed" : current)));
       observer.observe(el);
     });
 
     return () => {
       if (frameId !== 0) {
         window.cancelAnimationFrame(frameId);
-        frameId = 0;
       }
       observedCallbacks.delete(el);
       observer.unobserve(el);
-      releaseVelocity();
     };
   }, [reducedMotion]);
 
-  if (reducedMotion || phase === "initial") {
+  if (reducedMotion || phase === "visible") {
     return (
       <div ref={ref} className={className}>
         {children}
@@ -147,29 +90,11 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
     );
   }
 
-  const clampedDelayMs =
-    phase === "revealed" && settleDurationVar === "var(--dur-slow)" && delay > 0
-      ? Math.round(Math.min(delay, 0.24) * 1000)
-      : 0;
-
-  const style: CSSProperties =
-    phase === "armed"
-      ? {
-          opacity: 0,
-          transform: `translate3d(0, ${ENTRANCE_OFFSET_PX}px, 0)`,
-          willChange: "opacity, transform",
-        }
-      : {
-          opacity: 1,
-          transform: "translate3d(0, 0, 0)",
-          transitionProperty: "opacity, transform",
-          transitionDuration: settleDurationVar,
-          transitionTimingFunction: "var(--ease-out-calm)",
-          transitionDelay: clampedDelayMs > 0 ? `${clampedDelayMs}ms` : undefined,
-        };
+  const delayMs = Math.round(Math.min(Math.max(delay, 0), MAX_DELAY_S) * 1000);
+  const style = delayMs > 0 ? ({ "--reveal-delay": `${delayMs}ms` } as CSSProperties) : undefined;
 
   return (
-    <div ref={ref} className={className} style={style}>
+    <div ref={ref} className={className} data-reveal={phase} style={style}>
       {children}
     </div>
   );

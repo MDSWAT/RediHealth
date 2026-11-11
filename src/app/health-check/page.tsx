@@ -15,14 +15,13 @@ export async function generateMetadata(): Promise<Metadata> {
   )();
 }
 
+/** The page has no footer (SiteChrome), so it ends just under the step's Continue button. */
 export default function HealthCheckPage() {
   return (
-    <main id="main-content" className="flex-1">
-      <section className="pt-0.5 sm:pt-2 pb-3 sm:pb-4">
-        <Container>
-          <HealthCheckExplorer />
-        </Container>
-      </section>
+    <main id="main-content" className="flex-1 pt-0.5 pb-[max(1rem,env(safe-area-inset-bottom))] sm:pt-2 sm:pb-6">
+      <Container>
+        <HealthCheckExplorer />
+      </Container>
     </main>
   );
 }

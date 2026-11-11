@@ -145,7 +145,7 @@ export function LegalRightsCard({ className = "" }: LegalRightsCardProps) {
             type="button"
             onClick={handleToggleAudio}
             aria-pressed={isPlaying}
-            className="inline-flex min-h-[44px] shrink-0 items-center gap-2 self-start rounded-lg border border-border bg-card px-3.5 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted"
+            className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-[background-color,border-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
           >
             {isPlaying ? <VolumeMuteIcon className="h-4 w-4" /> : <VolumeIcon className="h-4 w-4" />}
             <span>{isPlaying ? t.stopLabel : t.listenLabel}</span>
@@ -157,8 +157,8 @@ export function LegalRightsCard({ className = "" }: LegalRightsCardProps) {
 
       <ul className="mt-4 space-y-2">
         {t.keyRights.map((right) => (
-          <li key={right} className="flex items-start gap-2 text-sm leading-relaxed text-foreground">
-            <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />
+          <li key={right} className="flex items-start gap-2.5 text-base leading-relaxed text-foreground">
+            <CheckCircleIcon className="mt-1 h-4.5 w-4.5 shrink-0 text-sapphire dark:text-sapphire-border" />
             <span>{right}</span>
           </li>
         ))}

@@ -150,7 +150,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.placeholder}
-            className="min-h-[54px] w-full rounded-xl border border-border-control bg-card py-3 pl-11 pr-4 text-base text-foreground placeholder:text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:pr-32"
+            className="min-h-14 w-full rounded-xl border border-border-control bg-card py-3 pl-11 pr-4 text-base text-foreground placeholder:text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:pr-32"
           />
         </div>
         <button

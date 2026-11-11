@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Atkinson_Hyperlegible_Next, Bricolage_Grotesque, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { getRequestLang } from "@/lib/i18n/server-routing";
@@ -10,9 +10,23 @@ import { headers } from "next/headers";
 // latin-ext carries ă, ș, ț, č, ć, đ, š, ž across Romanian, Croatian, Albanian, and Romani.
 // Using display: "swap" with preload: false avoids unused-preload console warnings on English/Italian
 // routes and under Vercel deployment-skew query strings while keeping zero-CLS metric-matched fallbacks.
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Body: Atkinson Hyperlegible Next, drawn for low-vision readers (letters that are easy to tell apart).
+// Next has no fallback metrics for this family, so the metric-matched fallback ("Body Fallback",
+// Arial with this face's ascent and descent) is declared by hand in globals.css.
+const bodyFont = Atkinson_Hyperlegible_Next({
+  variable: "--font-body",
   subsets: ["latin", "latin-ext"],
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  fallback: ["Body Fallback", "Arial", "Helvetica", "sans-serif"],
+});
+
+// Headings (h1, h2): Bricolage Grotesque, with its optical-size axis so large titles tighten up.
+const headingFont = Bricolage_Grotesque({
+  variable: "--font-heading",
+  subsets: ["latin", "latin-ext"],
+  axes: ["opsz"],
   display: "swap",
   preload: false,
 });
@@ -58,16 +72,24 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const lang = await getRequestLang();
   const nonce = (await headers()).get("x-nonce") || undefined;
+  // Links that leave this device (QR codes, copied notes) use the configured public address,
+  // never a loopback one. See components/health-check/public-origin.ts.
+  const configuredOrigin = process.env.APP_URL?.trim().replace(/\/+$/, "");
+  const publicOrigin =
+    configuredOrigin && !/\/\/(localhost|127\.0\.0\.1|\[::1\])(:|\/|$)/.test(configuredOrigin)
+      ? configuredOrigin
+      : undefined;
 
   return (
     <html
       lang={lang}
+      data-public-origin={publicOrigin}
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${bodyFont.variable} ${headingFont.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body
         suppressHydrationWarning
-        className={`${geistSans.className} min-h-full flex flex-col font-sans`}
+        className={`${bodyFont.className} min-h-full flex flex-col font-sans`}
       >
         <a
           href="#main-content"

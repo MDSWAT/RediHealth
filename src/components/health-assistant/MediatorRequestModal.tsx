@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
+import { primaryButton, secondaryButton, textInput } from "@/components/health-assistant/step-ui";
 
 interface MediatorRequestModalProps {
   /** Scenario title sent to the mediator inbox (mediators read it in Romanian). */
@@ -297,8 +298,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
     }
   }
 
-  const inputClass =
-    "min-h-[44px] w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire";
+  const inputClass = textInput;
 
   return (
     <div className={className}>
@@ -307,7 +307,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
         type="button"
         data-mediator-trigger
         onClick={() => setIsOpen(true)}
-        className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-amber-care bg-card px-4 py-2.5 text-center text-sm font-semibold text-amber-care transition-colors duration-[var(--dur-fast)] hover:bg-amber-care-soft/40 sm:w-auto"
+        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-amber-care bg-card px-5 py-2.5 text-center text-base font-semibold text-amber-care transition-[background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-amber-care-soft/40 motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-care focus-visible:ring-offset-2 sm:w-auto"
       >
         <HandHelpingIcon className="h-4 w-4 shrink-0" />
         <span>{t.trigger}</span>
@@ -322,12 +322,12 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
               role="dialog"
               aria-modal="true"
               aria-labelledby={`${ids}-title`}
-              className="assistant-step-in relative max-h-[100dvh] w-full max-w-lg overflow-y-auto rounded-t-xl border border-border bg-card p-6 shadow-xl sm:rounded-xl sm:p-7"
+              className="assistant-step-in relative max-h-[100dvh] w-full max-w-lg overflow-y-auto rounded-t-2xl border border-border bg-card p-6 shadow-xl sm:rounded-2xl sm:p-7"
             >
               <button
                 type="button"
                 onClick={handleClose}
-                className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground"
+                className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-xl text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground"
                 aria-label={t.close}
               >
                 <XIcon className="h-5 w-5" />
@@ -445,7 +445,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                     <button
                       type="button"
                       onClick={handleClose}
-                      className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted"
+                      className={secondaryButton}
                     >
                       {t.cancel}
                     </button>
@@ -453,7 +453,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                       type="submit"
                       disabled={isSubmitting}
                       aria-busy={isSubmitting}
-                      className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-sapphire px-5 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
+                      className={primaryButton}
                     >
                       {isSubmitting ? t.submitting : t.submitButton}
                     </button>
@@ -470,7 +470,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                     ref={closeRef}
                     type="button"
                     onClick={handleClose}
-                    className="mt-6 inline-flex min-h-[44px] items-center justify-center rounded-lg bg-sapphire px-6 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light"
+                    className={`mt-6 ${primaryButton}`}
                   >
                     {t.close}
                   </button>

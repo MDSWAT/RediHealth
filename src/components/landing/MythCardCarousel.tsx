@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import type { HealthMyth } from "@/lib/i18n/health-myths";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/ui/icons";
+import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 
 export type MythResult = "correct" | "wrong";
@@ -20,8 +21,18 @@ export interface MythCardCarouselProps {
 }
 
 const navButton =
-  "inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-border bg-card text-foreground shadow-(--shadow-card-rest) transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground/60 disabled:shadow-none motion-reduce:transition-none";
+  "press-row inline-flex min-h-10 min-w-10 items-center justify-center rounded-(--radius-control) border border-sapphire-border/80 bg-card/85 text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:border-transparent disabled:bg-transparent disabled:text-muted-foreground/45 motion-reduce:transition-none dark:border-white/20 dark:bg-ink-800 dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper dark:disabled:border-transparent dark:disabled:bg-transparent dark:disabled:text-mist/40";
 
+const RESULT_FILL: Record<MythResult, string> = {
+  correct: "inset-0 bg-sapphire dark:bg-sapphire-border",
+  wrong: "inset-0 bg-ink-950/65 dark:bg-paper/65",
+};
+
+/**
+ * Editorial frame around one myth card: a single compact navigation strip with a tabular
+ * counter, thin interactive scrub segments, and crisp previous/next buttons, above the card
+ * which settles in with `.myth-card-swap`.
+ */
 export function MythCardCarousel({
   myths,
   currentIndex,
@@ -29,7 +40,7 @@ export function MythCardCarousel({
   children,
   results = {},
   aside,
-  className = "",
+  className,
 }: MythCardCarouselProps) {
   const { t } = useLanguage();
   const touchStartX = useRef<number | null>(null);
@@ -64,16 +75,56 @@ export function MythCardCarousel({
   const activeMythKey = myths[currentIndex]?.id ?? String(currentIndex);
 
   return (
-    <div className={`space-y-3 ${className}`} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex flex-wrap items-center gap-2.5">
-          <span className="text-sm font-medium tabular-nums text-muted-foreground" aria-live="polite">
-            {t.quiz.mythProgressPrefix} {currentIndex + 1} {t.quiz.mythProgressOf} {total}
+    <div className={cn("space-y-3", className)} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <div className="flex items-center gap-4">
+        <div className="flex shrink-0 items-center gap-2.5">
+          <span className="text-meta tabular-nums text-muted-foreground dark:text-mist" aria-live="polite">
+            <span className="sr-only">{t.quiz.mythProgressPrefix} </span>
+            <span className="font-semibold text-foreground dark:text-paper">{currentIndex + 1}</span>
+            <span aria-hidden="true" className="mx-1 text-muted-foreground/60">
+              /
+            </span>
+            <span className="sr-only"> {t.quiz.mythProgressOf} </span>
+            <span>{total}</span>
           </span>
           {aside}
         </div>
 
-        <div className="flex items-center gap-1.5">
+        {/* Scrub segments: full 44px vertical touch envelope around each hairline bar. */}
+        <div className="-my-2 flex min-w-0 flex-1 gap-1.5">
+          {myths.map((m, idx) => {
+            const result = results[m.id];
+            const isCurrent = idx === currentIndex;
+            return (
+              <button
+                key={m.id}
+                type="button"
+                onClick={() => onIndexChange(idx)}
+                aria-label={`${t.quiz.mythProgressPrefix} ${idx + 1}`}
+                aria-current={isCurrent ? "step" : undefined}
+                className="group/seg flex min-h-11 flex-1 items-center py-2 focus-visible:outline-none"
+              >
+                <span
+                  className={cn(
+                    "relative block w-full overflow-hidden rounded-full transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-focus-visible/seg:ring-2 group-focus-visible/seg:ring-ring dark:group-focus-visible/seg:ring-paper",
+                    isCurrent
+                      ? "h-1.5 bg-foreground dark:bg-paper"
+                      : "h-1 bg-sapphire-border/90 group-hover/seg:bg-foreground/45 dark:bg-white/25 dark:group-hover/seg:bg-white/50",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "absolute origin-left transition-transform duration-(--dur-slow) ease-(--ease-out-calm) motion-reduce:transition-none",
+                      result ? RESULT_FILL[result] : "scale-x-0",
+                    )}
+                  />
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex shrink-0 items-center gap-1.5">
           <button
             type="button"
             onClick={() => currentIndex > 0 && onIndexChange(currentIndex - 1)}
@@ -97,40 +148,18 @@ export function MythCardCarousel({
         </div>
       </div>
 
-      {/* Scrub segments: full 44px vertical touch envelope around each 6px visual bar. */}
-      <div className="-my-2 flex gap-1.5">
-        {myths.map((m, idx) => {
-          const result = results[m.id];
-          const isCurrent = idx === currentIndex;
-          const fill =
-            result === "correct"
-              ? "bg-sapphire"
-              : result === "wrong"
-                ? "bg-amber-care"
-                : isCurrent
-                  ? "bg-foreground/75"
-                  : "bg-border group-hover/seg:bg-foreground/35";
-          return (
-            <button
-              key={m.id}
-              type="button"
-              onClick={() => onIndexChange(idx)}
-              aria-label={`${t.quiz.mythProgressPrefix} ${idx + 1}`}
-              aria-current={isCurrent ? "step" : undefined}
-              className="group/seg flex min-h-[44px] flex-1 items-center py-2 focus-visible:outline-none"
-            >
-              <span
-                className={`block h-1.5 w-full rounded-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-focus-visible/seg:ring-2 group-focus-visible/seg:ring-sapphire ${fill} ${
-                  isCurrent && result ? "ring-1 ring-foreground/45 ring-offset-1 ring-offset-background" : ""
-                }`}
-              />
-            </button>
-          );
-        })}
-      </div>
+      {/* The card, with a subtle second sheet peeking below when more myths follow. */}
+      <div className="relative isolate pb-2">
+        {currentIndex < total - 1 && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-0.5 inset-x-4 -z-10 h-5 rounded-(--radius-surface) border border-sapphire-border/60 bg-card/70 shadow-2xs dark:border-white/10 dark:bg-ink-800/70"
+          />
+        )}
 
-      <div key={activeMythKey} data-dir={navState.dir} className="myth-card-swap">
-        {children}
+        <div key={activeMythKey} data-dir={navState.dir} className="myth-card-swap relative z-0">
+          {children}
+        </div>
       </div>
     </div>
   );

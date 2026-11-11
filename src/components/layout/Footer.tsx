@@ -1,5 +1,6 @@
 "use client";
 
+import { WheelBackdrop } from "@/components/landing/WheelBackdrop";
 import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
@@ -8,14 +9,18 @@ import { PhoneIcon } from "@/components/ui/icons";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { EmergencySignsModal } from "@/components/emergency/EmergencySignsModal";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
+import { openSiteFeedback } from "@/components/layout/FeedbackWidget";
 import { openReportIssue } from "@/components/layout/ReportIssueWidget";
+import { feedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations } from "@/lib/i18n/translations";
 
 /**
- * Footer: a short statement of what RediHealth is, four link columns, a calm 112 reminder
- * (with the alarm-signs guide) and the legal line. Sentence case, no ampersands in prose.
+ * Footer: the ink ground that closes every page, mirroring the ink hero. A short statement of
+ * what RediHealth is, four link columns with 44px rows, a calm 112 reminder (with the
+ * alarm-signs guide) and the legal line. Sentence case, no ampersands in prose.
+ * The two dialogs render beside the footer, not inside it, so they keep their own text colour.
  */
 export function Footer() {
   const { lang, t: rawT } = useLanguage();
@@ -66,86 +71,95 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative z-10 border-t border-border bg-card text-foreground">
-      <Container className="py-12 sm:py-16">
-        <div className="grid gap-10 xl:grid-cols-[1.1fr_2.9fr] xl:gap-12">
-          <div className="max-w-sm space-y-4">
-            <Logo href={withLangPrefix("/", lang)} label={chrome.homeLink} />
-            <p className="text-sm leading-relaxed text-muted-foreground">{tFooter.brandDescription}</p>
-          </div>
-
-          <nav aria-label={chrome.footerNav} className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
-            {columns.map((column) => (
-              <div key={column.heading}>
-                <h2 className="text-sm font-semibold leading-snug text-foreground">{column.heading}</h2>
-                <ul className="mt-3 space-y-0.5">
-                  {column.links.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={withLangPrefix(link.href, lang)}
-                        className="block rounded-sm py-1.5 text-sm leading-snug text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
-        </div>
-
-        {/* 112 reminder: calm and always present, even after the top bar is closed. */}
-        <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-xl border border-border bg-card p-5 sm:p-6 md:flex-row md:items-center">
-          <div className="flex items-start gap-3">
-            <PhoneIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <div>
-              <p className="text-base font-semibold text-foreground">{tFooter.emergency112Title}</p>
-              <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">{tFooter.emergency112Text}</p>
+    <>
+      <footer className="relative z-10 bg-ink-950 text-paper">
+        {/* The topic wheel, small and faint, behind the brand block. */}
+        <WheelBackdrop placement="footer" />
+        <Container className="py-12 sm:py-16">
+          <div className="grid gap-10 xl:grid-cols-[1.1fr_2.9fr] xl:gap-12">
+            <div className="max-w-sm space-y-4">
+              <Logo className="hero-focus" tone="light" href={withLangPrefix("/", lang)} label={chrome.homeLink} />
+              <p className="text-body text-mist">{tFooter.brandDescription}</p>
             </div>
+
+            <nav aria-label={chrome.footerNav} className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
+              {columns.map((column) => (
+                <div key={column.heading} className="min-w-0">
+                  <h2 className="text-body font-semibold leading-snug text-paper">{column.heading}</h2>
+                  <ul className="mt-2">
+                    {column.links.map((link) => (
+                      <li key={link.href}>
+                        <Link
+                          href={withLangPrefix(link.href, lang)}
+                          className="hero-focus -mx-2 flex min-h-11 items-center rounded-(--radius-control) px-2 py-2.5 text-body leading-snug break-words text-mist press-on-dark hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </nav>
           </div>
 
-          <div className="flex w-full shrink-0 flex-col gap-2 sm:flex-row sm:items-center sm:gap-3 md:w-auto">
-            <button
-              type="button"
-              onClick={() => setEmergencySignsOpen(true)}
-              className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted sm:flex-1 md:flex-initial"
-            >
-              {tFooter.seeAlarmSigns}
-            </button>
-            {/* Same gate as the header and the 112 bar: keypad on a phone, the number and guidance on a computer. */}
+          {/* 112 reminder: one plain line, present even after the header's 112 line is closed. */}
+          <p className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-1 text-body text-mist">
+            <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-ruby-300" />
+            <span className="font-semibold text-paper">{tFooter.emergency112Title}</span>
+            {/* Same gate as the header's 112 line: keypad on a phone, the number and guidance on a computer. */}
             <button
               type="button"
               onClick={() => setDialerOpen(true)}
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-primary-hover sm:flex-1 md:flex-initial"
+              className="hero-focus -my-2 inline-flex min-h-11 items-center rounded-sm font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-paper motion-reduce:transition-none"
             >
-              <PhoneIcon className="h-4 w-4" />
-              <span>{tFooter.call112Button}</span>
+              {tFooter.call112Button}
             </button>
-          </div>
-        </div>
-
-        <div className="mt-8 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground lg:flex-row lg:items-start lg:justify-between lg:gap-8">
-          <p className="max-w-2xl leading-relaxed">{tFooter.nonEmergencyWarning}</p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 lg:shrink-0">
-            {/* Opens the report form in place (it records this page); the floating button is desktop-only. */}
-            <Link
-              href={withLangPrefix("/report-issue", lang)}
-              onClick={(event) => {
-                if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
-                if (openReportIssue()) event.preventDefault();
-              }}
-              className="underline decoration-muted-foreground/40 underline-offset-4 transition-colors duration-(--dur-fast) hover:text-foreground hover:decoration-foreground"
+            <button
+              type="button"
+              onClick={() => setEmergencySignsOpen(true)}
+              className="hero-focus -my-2 inline-flex min-h-11 items-center rounded-sm text-mist underline decoration-mist/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-paper hover:decoration-paper motion-reduce:transition-none"
             >
-              {tFooter.reportIssueFallback}
-            </Link>
-            <p>{tFooter.copyrightLine}</p>
+              {tFooter.seeAlarmSigns}
+            </button>
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-meta text-mist lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+            <p className="text-pretty leading-relaxed">
+              <span className="font-medium text-paper/85">{tFooter.copyrightLine}</span>
+              <span aria-hidden="true" className="mx-2.5 text-white/25">
+                ·
+              </span>
+              <span>{tFooter.nonEmergencyWarning}</span>
+            </p>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:shrink-0">
+              <button
+                type="button"
+                onClick={() => {
+                  openSiteFeedback();
+                }}
+                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-10 items-center rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+              >
+                {(feedbackWidgetCopy[lang] ?? feedbackWidgetCopy.ro).footerLink}
+              </button>
+              {/* Opens the report form in place (it records this page); the floating button is desktop-only. */}
+              <Link
+                href={withLangPrefix("/report-issue", lang)}
+                onClick={(event) => {
+                  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+                  if (openReportIssue()) event.preventDefault();
+                }}
+                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-10 items-center rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+              >
+                {tFooter.reportIssueFallback}
+              </Link>
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </footer>
 
       <EmergencySignsModal open={emergencySignsOpen} onOpenChange={setEmergencySignsOpen} />
       <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} />
-    </footer>
+    </>
   );
 }

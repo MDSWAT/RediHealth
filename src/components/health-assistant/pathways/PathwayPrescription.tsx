@@ -2,9 +2,21 @@
 
 import { useId, useState } from "react";
 import Link from "next/link";
-import { CameraIcon, CheckCircleIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, CameraIcon, CheckCircleIcon } from "@/components/ui/icons";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
+import {
+  optionArrow,
+  optionDesc,
+  optionIcon,
+  optionRow,
+  optionTitle,
+  primaryButton,
+  stepHeading,
+  stepLead,
+  subHeading,
+  textInput,
+} from "@/components/health-assistant/step-ui";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -68,27 +80,29 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
   if (step === 2) {
     return (
       <div>
-        <h2 className="text-lg font-semibold text-foreground">{rx.heading}</h2>
-        <p className="mt-1 text-sm text-muted-foreground">{rx.lead}</p>
+        <h2 className={stepHeading}>{rx.heading}</h2>
+        <p className={stepLead}>{rx.lead}</p>
 
-        {/* One surface, two ways in: no overflow clipping, so the medicine suggestions can extend below. */}
-        <div className="mt-5 grid grid-cols-1 divide-y divide-border rounded-lg border border-border bg-card sm:grid-cols-2 sm:divide-x sm:divide-y-0">
-          <Link
-            href={withLangPrefix("/prescription-review", lang)}
-            className="flex min-h-[56px] flex-col items-start rounded-t-lg p-5 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:rounded-l-lg sm:rounded-tr-none"
-          >
-            <CameraIcon className="h-6 w-6 text-sapphire dark:text-sapphire-border" />
-            <span className="mt-3 text-sm font-semibold text-foreground">{rx.photoTitle}</span>
-            <span className="mt-1 text-sm text-muted-foreground">{rx.photoDesc}</span>
-          </Link>
+        {/* Two ways in: a photo of the prescription, or the medicine's name. */}
+        <Link href={withLangPrefix("/prescription-review", lang)} className={`mt-6 ${optionRow}`}>
+          <span aria-hidden="true" className={optionIcon}>
+            <CameraIcon className="h-5 w-5" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className={optionTitle}>{rx.photoTitle}</span>
+            <span className={optionDesc}>{rx.photoDesc}</span>
+          </span>
+          <ArrowRightIcon aria-hidden="true" className={optionArrow} />
+        </Link>
 
-          <form onSubmit={handleTextSubmit} className="p-5">
-            <label htmlFor={inputId} className="block text-sm font-semibold text-foreground">
-              {rx.searchTitle}
-            </label>
-            <p className="mt-1 text-sm text-muted-foreground">{rx.searchDesc}</p>
+        <form onSubmit={handleTextSubmit} className="mt-6 border-t border-border pt-6">
+          <label htmlFor={inputId} className={`block ${subHeading}`}>
+            {rx.searchTitle}
+          </label>
+          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{rx.searchDesc}</p>
 
-            <div className="relative mt-3">
+          <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-start">
+            <div className="relative min-w-0 flex-1">
               <input
                 id={inputId}
                 type="text"
@@ -105,7 +119,7 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
                 onFocus={() => setShowAutocomplete(true)}
                 onBlur={() => setShowAutocomplete(false)}
                 placeholder={rx.placeholder}
-                className="min-h-[44px] w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className={textInput}
               />
 
               {listOpen && (
@@ -113,7 +127,7 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
                   id={listId}
                   role="listbox"
                   aria-label={rx.suggestions}
-                  className="absolute left-0 right-0 z-10 mt-1 max-h-40 overflow-y-auto rounded-lg border border-border bg-card py-1 shadow-md"
+                  className="absolute left-0 right-0 z-10 mt-1.5 max-h-48 overflow-y-auto rounded-xl border border-border bg-card p-1 shadow-lg"
                 >
                   {filteredDrugs.map((drug) => (
                     <li key={drug} role="option" aria-selected={false}>
@@ -122,7 +136,7 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
                         // Keep focus in the input so blur does not close the list before the click lands.
                         onMouseDown={(e) => e.preventDefault()}
                         onClick={() => handleSelectDrug(drug)}
-                        className="w-full px-3 py-2 text-left text-sm font-medium text-foreground hover:bg-muted"
+                        className="flex min-h-11 w-full items-center rounded-lg px-3 text-left text-base text-foreground hover:bg-sapphire-soft/50"
                       >
                         {drug}
                       </button>
@@ -132,15 +146,11 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
               )}
             </div>
 
-            <button
-              type="submit"
-              disabled={!medicineSearch.trim()}
-              className="mt-3 min-h-[44px] w-full rounded-lg bg-sapphire px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
-            >
+            <button type="submit" disabled={!medicineSearch.trim()} className={`shrink-0 ${primaryButton}`}>
               {rx.submit}
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     );
   }
@@ -150,13 +160,13 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
 
   return (
     <div>
-      <h2 className="text-lg font-semibold text-foreground">{rx.resultHeading(selectedMed)}</h2>
+      <h2 className={stepHeading}>{rx.resultHeading(selectedMed)}</h2>
 
-      <h3 className="mt-5 text-sm font-semibold text-foreground">{rx.rulesHeading}</h3>
-      <ul className="mt-2 space-y-2.5">
+      <h3 className={`mt-6 ${subHeading}`}>{rx.rulesHeading}</h3>
+      <ul className="mt-3 space-y-2.5">
         {rules.map((rule) => (
           <li key={rule} className="flex items-start gap-2.5 text-base leading-relaxed text-foreground">
-            <CheckCircleIcon className="mt-1 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />
+            <CheckCircleIcon className="mt-1 h-4.5 w-4.5 shrink-0 text-sapphire dark:text-sapphire-border" />
             <span>{rule}</span>
           </li>
         ))}

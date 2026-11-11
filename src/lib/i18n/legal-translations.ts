@@ -51,7 +51,7 @@ const english: LegalCopy = {
     description: "RediHealth helps you understand your health, find medical help and reach health workers who can help you.",
     paragraphs: [
       "We made RediHealth so you know what to do when you have a health worry. You can check your symptoms, read about an illness, or ask a doctor or a health mediator for help.",
-      "The site explains health in plain words. It also connects patients with health workers, keeps track of care plans and check-ups, and gives you a simple way to ask for help.",
+      "The site explains medical topics clearly and directly. It also connects patients with health workers, keeps track of care plans and check-ups, and gives you a direct way to ask for help.",
       "RediHealth does not replace a doctor. It does not diagnose or treat illness. In an emergency, call your local emergency number now.",
     ],
   },
@@ -107,7 +107,7 @@ const romanian: LegalCopy = {
     description: "RediHealth te ajută să-ți înțelegi sănătatea, să găsești ajutor medical și să ajungi la oamenii care te pot ajuta.",
     paragraphs: [
       "Am făcut RediHealth ca să știi ce să faci când ai o problemă de sănătate. Poți să-ți verifici simptomele, să citești despre o boală sau să ceri ajutor unui medic sau unui mediator sanitar.",
-      "Site-ul explică sănătatea în cuvinte simple. Te pune în legătură cu personalul medical, ține evidența planului de îngrijire și a controalelor și îți arată cum să ceri ajutor.",
+      "Site-ul explică subiectele medicale clar și direct. Te pune în legătură cu personalul medical, ține evidența planului de îngrijire și a controalelor și îți arată cum să ceri ajutor.",
       "RediHealth nu ține locul medicului. Nu pune diagnostice și nu tratează boli. Dacă ai o urgență, sună acum la numărul de urgență din țara ta.",
     ],
   },
@@ -163,7 +163,7 @@ const albanian: LegalCopy = {
     description: "RediHealth të ndihmon të kuptosh shëndetin tënd, të gjesh ndihmë mjekësore dhe të arrish te njerëzit që mund të të ndihmojnë.",
     paragraphs: [
       "E bëmë RediHealth që të dish çfarë të bësh kur ke një shqetësim për shëndetin. Mund të kontrollosh simptomat, të lexosh për një sëmundje ose t'i kërkosh ndihmë një mjeku ose një mediatori shëndetësor.",
-      "Faqja e shpjegon shëndetin me fjalë të thjeshta. Të lidh me punonjësit shëndetësorë, mban shënim planin e kujdesit dhe kontrollet dhe të tregon si të kërkosh ndihmë.",
+      "Faqja i shpjegon temat mjekësore qartë dhe drejtpërdrejt. Të lidh me punonjësit shëndetësorë, mban shënim planin e kujdesit dhe kontrollet dhe të tregon si të kërkosh ndihmë.",
       "RediHealth nuk e zëvendëson mjekun. Nuk vë diagnoza dhe nuk trajton sëmundje. Nëse ke një urgjencë, telefono tani numrin e urgjencës në vendin tënd.",
     ],
   },
@@ -219,7 +219,7 @@ const italian: LegalCopy = {
     description: "RediHealth ti aiuta a capire la tua salute, a trovare aiuto medico e a raggiungere chi può aiutarti.",
     paragraphs: [
       "Abbiamo creato RediHealth perché tu sappia cosa fare quando hai un problema di salute. Puoi controllare i sintomi, leggere di una malattia o chiedere aiuto a un medico o a un mediatore sanitario.",
-      "Il sito spiega la salute con parole semplici. Ti mette in contatto con gli operatori sanitari, tiene traccia del piano di cura e dei controlli e ti mostra come chiedere aiuto.",
+      "Il sito spiega i temi medici con chiarezza e senza giri di parole. Ti mette in contatto con gli operatori sanitari, tiene traccia del piano di cura e dei controlli e ti mostra come chiedere aiuto.",
       "RediHealth non sostituisce il medico. Non fa diagnosi e non cura malattie. Se hai un'emergenza, chiama subito il numero di emergenza del tuo paese.",
     ],
   },
@@ -275,7 +275,7 @@ const croatian: LegalCopy = {
     description: "RediHealth ti pomaže razumjeti svoje zdravlje, pronaći liječničku pomoć i doći do zdravstvenih radnika koji ti mogu pomoći.",
     paragraphs: [
       "Napravili smo RediHealth kako bi znao što učiniti kad te brine zdravlje. Možeš provjeriti simptome, pročitati o nekoj bolesti ili zatražiti pomoć liječnika ili zdravstvenog medijatora.",
-      "Stranica objašnjava zdravlje jednostavnim riječima. Povezuje pacijente sa zdravstvenim radnicima, prati plan skrbi i kontrole te ti nudi jednostavan način da zatražiš pomoć.",
+      "Stranica objašnjava zdravstvene teme jasno i izravno. Povezuje pacijente sa zdravstvenim radnicima, prati plan skrbi i kontrole te ti nudi izravan način da zatražiš pomoć.",
       "RediHealth ne zamjenjuje liječnika. Ne postavlja dijagnoze i ne liječi bolesti. U hitnom slučaju odmah nazovi hitnu medicinsku službu 112.",
     ],
   },
@@ -331,7 +331,7 @@ const romani: LegalCopy = {
     description: "RediHealth zhutil tut te xatyares cho sastipen, te arakhes sastipnasko zhutimos thaj te areses ko manusha kay shay te zhutin tut.",
     paragraphs: [
       "Kerdam RediHealth te zhanes so te keres kana si tut grija vash o sastipen. Shay te dikhes che simptome, te gines vash ekh nasvalipe vay te manges zhutimos katar ekh doktori vay sastipnasko mediatori.",
-      "I rig ashkarel o sastipen pe lokhe alava. Phandel e paciyenturen e sastipnaske bucharyenca, inkrel o plano vash o dikhiben thaj e kontrolya thaj sikavel tuke sar te manges zhutimos.",
+      "I rig ashkarel o sastipen chaches thaj vorta. Phandel e paciyenturen e sastipnaske bucharyenca, inkrel o plano vash o dikhiben thaj e kontrolya thaj sikavel tuke sar te manges zhutimos.",
       "RediHealth na achhel po than e doktoresko. Na chivel diagnoze thaj na sastyarel nasvalimata. Ki sigardiari, akhar akana ko 112.",
     ],
   },

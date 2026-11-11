@@ -178,14 +178,19 @@ describe("hero render", () => {
   });
 
   it("fills the first screen below the sticky header", () => {
-    expect(renderHero("en")).toMatch(/min-h-\[calc\(100svh-65px\)\][^"]*xl:min-h-\[calc\(100svh-81px\)\]/);
+    // The header's height (bar plus its 112 line) comes from --site-header-h, not a fixed number.
+    expect(renderHero("en")).toMatch(/min-h-\[calc\(100svh-var\(--site-header-h\)\)\]/);
   });
 
-  it.each(LANGS)("shows the three-step journey as an ordered list in %s", (lang) => {
-    const html = renderHero(lang);
-    const list = html.match(/<ol\b[^>]*>([\s\S]*?)<\/ol>/)?.[1] ?? "";
-    expect(list.match(/<li\b/g)).toHaveLength(3);
-    for (const step of heroCopy[lang].journey) expect(list).toContain(step.replace(/'/g, "&#x27;"));
+  it.each(LANGS)("leaves the three steps to the help card in %s", (lang) => {
+    // The steps moved into "Find out what to do", so the hero stays short enough for a laptop screen.
+    expect(renderHero(lang)).not.toMatch(/<ol\b/);
+    expect(heroCopy[lang].journey).toHaveLength(3);
+  });
+
+  it("renders the three steps inside the help options' lead card", () => {
+    const help = readFileSync(path.resolve(__dirname, "HelpOptions.tsx"), "utf8");
+    expect(help).toMatch(/<CarePath steps=\{\(heroCopy\[lang\] \?\? heroCopy\.ro\)\.journey\}/);
   });
 
   it("sets the headline as one plain sentence: no per-word spans, no aria-label override", () => {
@@ -196,14 +201,13 @@ describe("hero render", () => {
     expect(html).not.toContain("hero-word");
   });
 
-  it.each(LANGS)("shows one calm 112 line under the promise in %s", (lang) => {
-    // The site-wide 112 bar is hidden on the home page, so the hero carries the page's one 112 line.
+  it.each(LANGS)("leaves the 112 line to the sticky header in %s", (lang) => {
+    // The site-wide 112 line rides on top of the sticky header on every page, the home page
+    // included, so the hero does not repeat it.
+    // The triage panel keeps its own 112 action; the headline column has none.
     const html = renderHero(lang);
-    const { callLead, callLink } = heroCopy[lang].emergency;
-    expect(callLink).toContain("112");
-    const line = html.match(/<p\b[^>]*>(?:(?!<\/p>)[\s\S])*href="tel:112"(?:(?!<\/p>)[\s\S])*<\/p>/)?.[0] ?? "";
-    expect(line).toContain(callLead);
-    expect(line).toContain(callLink);
+    const column = html.slice(html.indexOf("hero-enter"), html.indexOf('id="triage"'));
+    expect(column).not.toContain('href="tel:112"');
   });
 
   it("makes no unconfirmed 'checked by doctors' claim", () => {
@@ -234,6 +238,27 @@ describe("landing interaction rules", () => {
       expect(source, file).not.toMatch(/active:scale/);
       expect(source, file).not.toMatch(/\bduration-(\d+|\[\d+ms\])/);
     }
+  });
+
+  it("keeps the hero photograph still: no scroll listener, no parallax transform", () => {
+    const hero = sources.find(([file]) => file === "Hero.tsx")![1];
+    expect(hero).not.toMatch(/hero-scroll|will-change|translate3d|addEventListener\("scroll"/);
+  });
+
+  it("shows the hero photo as an in-flow band on phones and full-bleed from lg, loaded eagerly", () => {
+    const hero = sources.find(([file]) => file === "Hero.tsx")![1];
+    expect(hero).toMatch(/relative h-\[clamp\(140px,22svh,220px\)\][^"]*lg:absolute lg:inset-0/);
+    expect(hero).toMatch(/loading="eager"\s+fetchPriority="high"/);
+    expect(hero).not.toMatch(/\bpriority\b|\bquality=/);
+    // Phones read every line on solid ink: both full-bleed scrims exist from lg only.
+    expect(hero.match(/-z-20 hidden bg-\[linear-gradient[^"]*lg:block/g)).toHaveLength(2);
+  });
+
+  it("numbers the hero steps for screen readers and shows figures without a leading zero", () => {
+    const carePath = sources.find(([file]) => file === "hero/CarePath.tsx")![1];
+    expect(carePath).toMatch(/<ol\b/);
+    expect(carePath).toMatch(/<span className="sr-only">\{index \+ 1\}\. <\/span>/);
+    expect(carePath).not.toMatch(/padStart/);
   });
 
   it("shows a phone, not a camera, for the voice-only online doctor", () => {
@@ -267,10 +292,37 @@ describe("landing accent roles and one source of copy", () => {
     expect(band).toMatch(/text-sapphire/);
   });
 
-  it("shows the myth categories as one scrolling row, never wrapped", () => {
+  it("keeps the mediator band neutral, with amber only on its plate", () => {
+    // The news ticker above is already pale yellow, so the band does not repeat a yellow ground.
+    const band = read("HelpOptionsMediatorBand.tsx");
+    expect(band).not.toMatch(/bg-amber-care-soft/);
+    expect(band).toMatch(/<IconTile[^>]*tone="amber"/);
+  });
+
+  it("leads the help options with the assistant without reordering the copy", () => {
+    const options = read("HelpOptions.tsx");
+    expect(options).toMatch(/const ORDER = \[1, 0, 2, 3\] as const/);
+    expect(options).toMatch(/NAV_LINK_ICONS\[/); // one glyph per destination, shared with the header
+    expect(options).not.toMatch(/onPointerMove|surface-spotlight|useCalmReducedMotion/);
+    expect(options).not.toMatch(/aria-label/); // a link's name is its visible text
+    expect(options).not.toMatch(/rounded-full|animate-ping|live-sage/); // no status or badge pills
+  });
+
+  it("sets hero, help options and topics in the type scale and palette tokens", () => {
+    for (const file of ["Hero.tsx", "hero/CarePath.tsx", "HelpOptions.tsx", "HelpOptionsMediatorBand.tsx", "HealthTopics.tsx"]) {
+      const source = read(file);
+      expect(source, file).not.toMatch(/font-(mono|serif)/);
+      expect(source, file).not.toMatch(/text-\[\d/); // no arbitrary font sizes
+      expect(source, file).not.toMatch(/\b(stone|slate|gray|zinc|neutral|red|blue|amber|green)-\d{2,3}\b/);
+      expect(source, file).not.toMatch(/#[0-9a-fA-F]{3,8}\b/);
+      expect(source, file).not.toMatch(/min-h-\[\d+px\]/);
+      expect(source, file).not.toMatch(/line-clamp|\btruncate\b/);
+    }
+  });
+
+  it("scrolls the myth categories in one row on phones and lists them down the left from lg", () => {
     const filter = read("MythCategoryFilter.tsx");
-    expect(filter).not.toMatch(/flex-wrap/);
-    expect(filter).toMatch(/overflow-x-auto/);
+    expect(filter).toMatch(/overflow-x-auto[^"]*lg:flex-col/);
     expect(filter).toMatch(/maskImage/);
   });
 
@@ -278,6 +330,18 @@ describe("landing accent roles and one source of copy", () => {
     const topics = read("HealthTopics.tsx");
     expect(topics).toMatch(/getHealthTopicsList\(lang\)/);
     expect(topics).not.toMatch(/healthTopics\.topics|\btopics\b\s*}\s*=\s*t\./);
+  });
+
+  it("renders the topics as lazy photo tiles in a Server Component", () => {
+    const topics = read("HealthTopics.tsx");
+    expect(topics).not.toMatch(/"use client"|from "motion/);
+    expect(topics).toMatch(/from "next\/image"/);
+    expect(topics).toMatch(/alt=""/); // the visible title follows the photo
+    expect(topics).toMatch(/sizes="\(min-width: 640px\) 33vw, 50vw"/);
+    expect(topics).not.toMatch(/\bpriority\b|\bquality=|loading="eager"/);
+    // From lg the grid gives way to the wheel beside one card that follows it.
+    expect(topics).toMatch(/grid-cols-2[^"]*sm:grid-cols-3[^"]*lg:hidden/);
+    expect(topics).toMatch(/<HealthTopicsSpotlight[\s\S]*<HealthTopicsWheel/);
   });
 
   it("calls health mediators 'mediator' in Albanian, never 'ndërmjetës'", () => {

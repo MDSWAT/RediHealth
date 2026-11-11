@@ -1,5 +1,6 @@
 "use client";
 
+import { readPublicOrigin, SERVER_PUBLIC_ORIGIN } from "@/components/health-check/public-origin";
 import {
   useEffect,
   useId,
@@ -7,14 +8,14 @@ import {
   useState,
   useSyncExternalStore,
   type ComponentType,
+  type CSSProperties,
   type KeyboardEvent as ReactKeyboardEvent,
   type MouseEvent as ReactMouseEvent,
-  type PointerEvent as ReactPointerEvent,
   type ReactNode,
-  type RefObject,
   type SVGProps,
 } from "react";
 import Link from "next/link";
+import { flushSync } from "react-dom";
 import {
   AlertCircleIcon,
   ArrowLeftIcon,
@@ -26,6 +27,16 @@ import {
   PinIcon,
   StethoscopeIcon,
 } from "@/components/ui/icons";
+import {
+  dangerPanel,
+  emergencyButton,
+  primaryButton,
+  secondaryButton,
+  softPanel,
+  stepHeading,
+  stepLead,
+  subHeading,
+} from "@/components/health-assistant/step-ui";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
 import type { InstituteCategory } from "@/lib/medical-institutes";
 import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
@@ -39,13 +50,17 @@ import {
   LegsFeetRegionIcon,
   PelvisRegionIcon,
 } from "@/components/health-check/ModelIcons";
-import type { BodyPartId } from "@/lib/i18n/health-check-translations";
 import { getTopicForSymptom } from "@/components/health-check/SymptomToTopicMapper";
 import { predictSymptomsForSelection } from "@/components/health-check/symptom-prediction";
 import {
+  buildTriageNoteUrl,
   buildTriageReproductionUrl,
   parseTriageReproductionSearch,
 } from "@/components/health-check/triage-permalink";
+import {
+  getCareLevel as computeTriageCareLevel,
+  isAcuteSurgicalOrEmergency as checkAcuteSurgicalOrEmergency,
+} from "@/components/health-check/triage-clinical-rules";
 import { TriageSummaryCard, type SummaryRow } from "@/components/health-check/TriageSummaryCard";
 import { useDialogFocus } from "@/components/health-check/useDialogFocus";
 import { useLargeText, useReadAloud } from "@/components/health-check/readingTools";
@@ -64,74 +79,161 @@ import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import {
   getHealthCheckTranslations,
+  type BodyPartId,
   type DurationId,
   type SeverityId,
   type SymptomChoice,
   type UrgencyLevel,
 } from "@/lib/i18n/health-check-translations";
 
-type Step = 1 | 2 | 3 | 4;
+type StepId = "area" | "spot" | "symptom" | "severity" | "duration" | "extras" | "result";
 type Side = "Left" | "Right" | "Center";
 type ForWhom = "self" | "child";
+
+const STEP_RANK: Record<StepId, number> = {
+  area: 0,
+  spot: 1,
+  symptom: 2,
+  severity: 3,
+  duration: 4,
+  extras: 5,
+  result: 6,
+};
+
+/**
+ * Desktop asks four things (where, what, how strong + since when, result), one screen each, like a
+ * form. Phones keep one small question per screen and drill down like a settings menu.
+ */
+const DESKTOP_GROUP: Record<StepId, number> = {
+  area: 0,
+  spot: 0,
+  symptom: 1,
+  severity: 2,
+  duration: 2,
+  extras: 2,
+  result: 3,
+};
+const DESKTOP_QUERY = "(min-width: 1024px)";
+function subscribeDesktop(onChange: () => void) {
+  const mq = window.matchMedia(DESKTOP_QUERY);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+function useIsDesktop(): boolean {
+  return useSyncExternalStore(
+    subscribeDesktop,
+    () => window.matchMedia(DESKTOP_QUERY).matches,
+    () => false,
+  );
+}
+
+/**
+ * The first comma-separated phrases that fit one phone line ("Headaches, jaw or ear pain"), so a
+ * list row stays short without cutting a word in half. Falls back to the first phrase.
+ */
+function shortPhrases(text: string, maxChars = 30): string {
+  const parts = text.split(/,\s+/);
+  let out = parts[0];
+  for (const part of parts.slice(1)) {
+    if (out.length + 2 + part.length > maxChars) break;
+    out = `${out}, ${part}`;
+  }
+  return out;
+}
+
+/** First sentence only, for the desktop subtitle. */
+function firstSentence(text: string): string {
+  const match = text.match(/^.*?[.!?。](?=\s|$)/);
+  return match ? match[0] : text;
+}
+
+/** Key letter badge (desktop): replaces the radio circle, like a form's A/B/C keys. */
+function KeyBadge({ letter, checked, urgent = false }: { letter: string; checked: boolean; urgent?: boolean }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`hidden h-6 w-6 shrink-0 items-center justify-center rounded-md border text-xs font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] lg:inline-flex ${
+        checked
+          ? urgent
+            ? "border-primary bg-primary text-white"
+            : "border-sapphire bg-sapphire text-white"
+          : urgent
+            ? "border-primary/40 bg-card text-primary"
+            : "border-border-control/60 bg-card text-muted-foreground"
+      }`}
+    >
+      {letter}
+    </span>
+  );
+}
+
+/** iOS-style check on the right of a chosen row (phones). */
+function RowCheck({ urgent = false }: { urgent?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      aria-hidden="true"
+      className={`h-4.5 w-4.5 shrink-0 self-center lg:hidden ${urgent ? "text-primary" : "text-sapphire"}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m3.5 8.5 2.8 2.8 6.2-6.6" />
+    </svg>
+  );
+}
+
+/** Letters shown on desktop options; pressing one picks that option. */
+const HOTKEYS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+/**
+ * Option list: on phones an inset grouped list (white group, hairline separators, no per-row
+ * borders); on desktop separate compact rows.
+ */
+const optionGroup =
+  "max-lg:overflow-hidden max-lg:rounded-xl max-lg:bg-card max-lg:shadow-[0_0_0_1px_var(--color-border)] lg:gap-2";
+/** Hairline separator between rows, hidden above the first row (phones only). */
+const groupedRow =
+  "relative max-lg:before:pointer-events-none max-lg:before:absolute max-lg:before:left-4 max-lg:before:right-0 max-lg:before:top-0 max-lg:before:z-[1] max-lg:before:h-px max-lg:before:bg-border max-lg:first:before:hidden";
+/** The same, with the separator starting after the row's icon, as in iOS lists. */
+const groupedRowInset =
+  "relative max-lg:before:pointer-events-none max-lg:before:absolute max-lg:before:left-[3.75rem] max-lg:before:right-0 max-lg:before:top-0 max-lg:before:z-[1] max-lg:before:h-px max-lg:before:bg-border max-lg:first:before:hidden";
 
 const SEVERITY_KEYS: readonly SeverityId[] = ["mild", "moderate", "severe"] as const;
 const DURATION_KEYS: readonly DurationId[] = ["today", "days", "weeks", "chronic"] as const;
 const BODY_PARTS: readonly BodyPartId[] = ["head", "chest", "stomach", "pelvis", "back", "arm", "leg"] as const;
-/** Pause after a tap before moving on, so the person sees what they chose. */
+/** Calm pause after a pointer tap so the person sees their choice before advancing. */
 const AUTO_ADVANCE_MS = 320;
-/** Calm pause before revealing the next inline beat in Step 3. */
-const BEAT_REVEAL_MS = 220;
 
 function prefersReducedMotion(): boolean {
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function scrollBeatIntoView(el: HTMLElement | null) {
-  if (!el || typeof el.scrollIntoView !== "function") return;
-  const reduce = prefersReducedMotion();
-  requestAnimationFrame(() => {
-    el.scrollIntoView({
-      behavior: reduce ? "auto" : "smooth",
-      block: "center",
-    });
+/** How much of the top of the screen is covered by pinned site chrome once scrolled. */
+function pinnedChromeBottom(): number {
+  const rootVar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--chrome-h"));
+  if (Number.isFinite(rootVar) && rootVar > 0) return rootVar;
+  let covered = 0;
+  document.querySelectorAll<HTMLElement>("body > *, body > * > *, aside, header").forEach((el) => {
+    const style = getComputedStyle(el);
+    if (style.position !== "sticky" && style.position !== "fixed") return;
+    const cssTop = parseFloat(style.top);
+    if (!Number.isFinite(cssTop) || cssTop > 80) return;
+    const r = el.getBoundingClientRect();
+    if (r.height > 0 && r.height < window.innerHeight / 2) {
+      const pinnedEdge = style.position === "sticky" ? Math.max(0, cssTop) + r.height : r.bottom;
+      covered = Math.max(covered, pinnedEdge);
+    }
   });
+  return covered;
 }
-
-// Acute surgical (appendicitis, peritonitis, ectopic pregnancy) and ischemic emergency presentations (DEF-18)
-const ACUTE_RED_FLAG_SYMPTOM_IDS = new Set<string>([
-  "stomach_lower_sharp", // Acute appendicitis / peritoneal signs in right lower quadrant
-  "stomach_severe_widespread", // Acute abdomen / peritonitis
-  "pelvis_pregnancy_bleeding", // Ectopic pregnancy / acute gynecologic hemorrhage or infection
-  "chest_warning", // Acute coronary syndrome / myocardial infarction
-  "head_sudden_severe", // Thunderclap headache / intracranial emergency
-  "head_neck_red_flag", // Meningeal stiffness with fever or confusion
-  "back_severe_difficulty", // Cauda equina syndrome / severe neurovascular deficit
-  "arm_sudden_swelling", // Sudden arm weakness: stroke until proven otherwise
-  "leg_sudden_swelling", // Deep vein thrombosis / pulmonary embolism risk
-]);
 
 export function isAcuteSurgicalOrEmergency(symptom: SymptomChoice | null): boolean {
-  if (!symptom) return false;
-  return Boolean(symptom.isRedFlag || ACUTE_RED_FLAG_SYMPTOM_IDS.has(symptom.id));
+  return checkAcuteSurgicalOrEmergency(symptom);
 }
-
-/** Symptoms that need a doctor whatever the reported intensity (never "home care"). */
-const MIN_CARE_BY_SYMPTOM: Record<string, UrgencyLevel> = {
-  chest_exertion: "high", // possible angina: same-day assessment
-  chest_stitch: "medium",
-  chest_breast_lump: "medium", // new breast/underarm lump or skin change always warrants medical exam
-  pelvis_one_sided: "medium", // unilateral pelvic pain warrants clinical/ultrasound evaluation
-  pelvis_urinary_burning: "medium", // suspected UTI needs urinalysis / targeted care
-  pelvis_pressure_floor: "medium", // pelvic floor prolapse / persistent dyspareunia warrants gynecological exam
-  head_fever: "medium",
-  head_jaw_ear: "medium", // possible otitis, dental infection, or TMJ pathology
-  arm_numbness: "medium",
-  back_chronic: "medium",
-  back_flank_kidney: "high", // suspected pyelonephritis or renal colic: same-day medical evaluation
-};
-const CARE_RANK: Record<UrgencyLevel, number> = { low: 0, medium: 1, high: 2 };
-const higher = (a: UrgencyLevel, b: UrgencyLevel) => (CARE_RANK[b] > CARE_RANK[a] ? b : a);
 
 /**
  * Care level from the answers. Red-flag symptoms are handled separately as emergencies.
@@ -143,15 +245,7 @@ export function getCareLevel(
   symptomIds: string | string[] = [],
   forWhom: ForWhom = "self",
 ): UrgencyLevel {
-  let level: UrgencyLevel = "low";
-  if (severity === "severe") level = "high";
-  else if (severity === "moderate" || duration === "weeks" || duration === "chronic") level = "medium";
-  for (const id of Array.isArray(symptomIds) ? symptomIds : [symptomIds]) {
-    const floor = MIN_CARE_BY_SYMPTOM[id];
-    if (floor) level = higher(level, floor);
-  }
-  if (forWhom === "child") level = higher(level, "medium");
-  return level;
+  return computeTriageCareLevel(severity, duration, symptomIds, forWhom);
 }
 
 /** Arrow keys move through a radio group and select, like native radios. */
@@ -163,23 +257,18 @@ function handleRadioKeys(e: ReactKeyboardEvent<HTMLElement>) {
   if (i < 0) return;
   e.preventDefault();
   const next =
-    e.key === "Home" ? 0 : e.key === "End" ? radios.length - 1
-    : e.key === "ArrowDown" || e.key === "ArrowRight" ? (i + 1) % radios.length
-    : (i - 1 + radios.length) % radios.length;
+    e.key === "Home"
+      ? 0
+      : e.key === "End"
+        ? radios.length - 1
+        : e.key === "ArrowDown" || e.key === "ArrowRight"
+          ? (i + 1) % radios.length
+          : (i - 1 + radios.length) % radios.length;
   radios[next].focus();
   radios[next].click();
 }
 
 const ROMANIAN_POINT_LABEL = "Punct ales pe corp";
-
-const STAGE_CONTEXT_COPY: Record<Lang, { showOn3DBody: string; hide3DBody: string }> = {
-  ro: { showOn3DBody: "Arată pe corpul 3D", hide3DBody: "Ascunde corpul 3D" },
-  en: { showOn3DBody: "Show on 3D body", hide3DBody: "Hide 3D body" },
-  sq: { showOn3DBody: "Shfaq në trupin 3D", hide3DBody: "Fshih trupin 3D" },
-  it: { showOn3DBody: "Mostra sul corpo 3D", hide3DBody: "Nascondi corpo 3D" },
-  hr: { showOn3DBody: "Prikaži na 3D tijelu", hide3DBody: "Sakrij 3D tijelo" },
-  rom: { showOn3DBody: "Sikav pe 3D trupo", hide3DBody: "Garav o 3D trupo" },
-};
 
 const FEMALE_SYMPTOM_IDS = new Set<string>([
   "chest_breast_pain",
@@ -262,7 +351,10 @@ const BODY_PART_ICONS: Record<BodyPartId, ComponentType<SVGProps<SVGSVGElement>>
   leg: LegsFeetRegionIcon,
 };
 
-/** Anatomical region card for Step 1: icon badge, plain-language summary, and clear directional affordance. */
+/**
+ * Body area choice. Phones: a settings-style row (icon, title, subtitle, chevron) inside a grouped
+ * list. Desktop: a compact tile with its key letter, two to a row.
+ */
 function AreaOptionCard({
   partId,
   checked,
@@ -270,6 +362,7 @@ function AreaOptionCard({
   onSelect,
   title,
   description,
+  hotkey,
 }: {
   partId: BodyPartId;
   checked: boolean;
@@ -277,6 +370,7 @@ function AreaOptionCard({
   onSelect: (byPointer: boolean) => void;
   title: string;
   description: string;
+  hotkey?: string;
 }) {
   const Icon = BODY_PART_ICONS[partId];
   return (
@@ -284,77 +378,41 @@ function AreaOptionCard({
       type="button"
       role="radio"
       aria-checked={checked}
+      aria-keyshortcuts={hotkey}
+      data-hotkey={hotkey}
       tabIndex={checked || focusable ? 0 : -1}
       onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
-      className={`group flex min-h-14 w-full items-center gap-3 rounded-xl border px-3.5 py-2.5 text-left transition-[border-color,box-shadow,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
+      title={description}
+      className={`${groupedRowInset} group flex w-full items-center gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire max-lg:min-h-[3.75rem] max-lg:px-4 max-lg:py-2.5 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-2.5 lg:py-2 lg:focus-visible:ring-offset-2 ${
         checked
-          ? "border-sapphire bg-sapphire-soft/45 shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-          : "border-border bg-card hover:border-sapphire/35 hover:bg-surface-card active:bg-muted"
+          ? "max-lg:bg-sapphire-soft/40 lg:border-sapphire lg:bg-sapphire-soft/45"
+          : "lg:border-border lg:bg-card lg:hover:border-sapphire/50 lg:hover:bg-sapphire-soft/25"
       }`}
     >
+      {hotkey && <KeyBadge letter={hotkey} checked={checked} />}
       <span
         aria-hidden="true"
-        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
-          checked
-            ? "border-sapphire bg-sapphire text-white"
-            : "border-border/80 bg-surface-subtle text-sapphire group-hover:border-sapphire/25 group-hover:bg-sapphire-soft"
+        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+          checked ? "bg-sapphire text-white" : "bg-sapphire-soft text-sapphire"
         }`}
       >
-        <Icon className="h-5 w-5" />
+        <Icon className="h-4.5 w-4.5" />
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block text-[15px] font-semibold leading-snug text-foreground">{title}</span>
-        <span className="mt-0.5 line-clamp-2 block text-[13px] leading-snug text-muted-foreground">{description}</span>
+        <span className="block text-base font-semibold leading-snug text-foreground lg:text-[0.9375rem] lg:leading-tight">
+          {title}
+        </span>
+        <span className="mt-0.5 line-clamp-1 text-sm leading-snug text-muted-foreground lg:hidden">
+          {shortPhrases(description)}
+        </span>
+        <span className="sr-only max-lg:hidden">{description}</span>
       </span>
       {checked ? (
-        <span
-          aria-hidden="true"
-          className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-sapphire text-white"
-        >
-          <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m3.5 8.5 2.8 2.8 6.2-6.6" />
-          </svg>
-        </span>
+        <RowCheck />
       ) : (
-        <ChevronRightIcon
-          aria-hidden="true"
-          className="h-4 w-4 shrink-0 text-muted-foreground/65 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-sapphire motion-reduce:transform-none"
-        />
+        <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground/60 lg:hidden" />
       )}
     </button>
-  );
-}
-
-/** Smooth slide+fade wrapper for progressive Typeform beats; honors prefers-reduced-motion. */
-function ProgressiveBeat({
-  beatRef,
-  animateEntrance,
-  children,
-  className = "",
-}: {
-  beatRef?: RefObject<HTMLDivElement | null>;
-  animateEntrance: boolean;
-  children: ReactNode;
-  className?: string;
-}) {
-  const [entered, setEntered] = useState(false);
-  useEffect(() => {
-    if (!animateEntrance) return;
-    const id = requestAnimationFrame(() => setEntered(true));
-    return () => cancelAnimationFrame(id);
-  }, [animateEntrance]);
-
-  const isShown = !animateEntrance || entered;
-
-  return (
-    <div
-      ref={beatRef}
-      className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none motion-reduce:transform-none ${
-        isShown ? "translate-y-0 opacity-100" : "translate-y-2.5 opacity-0"
-      } ${className}`}
-    >
-      {children}
-    </div>
   );
 }
 
@@ -472,14 +530,14 @@ function SymptomPictogram({
   return (
     <span
       aria-hidden="true"
-      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
         urgent
           ? checked
-            ? "border-primary bg-primary text-white"
-            : "border-primary/30 bg-primary-soft text-primary"
+            ? "bg-primary text-white"
+            : "bg-primary-soft text-primary"
           : checked
-            ? "border-sapphire bg-sapphire text-white"
-            : "border-sapphire/20 bg-sapphire-soft/75 text-sapphire"
+            ? "bg-sapphire text-white"
+            : "bg-sapphire-soft text-sapphire"
       }`}
     >
       {icon}
@@ -487,7 +545,7 @@ function SymptomPictogram({
   );
 }
 
-/** Comfort-scale visual for Step 3A: expressive face + 1/2/3 intensity bars. */
+/** Comfort-scale visual for intensity step: expressive face + 1/2/3 intensity bars. */
 function SeverityComfortVisual({
   severityKey,
   checked,
@@ -501,14 +559,14 @@ function SeverityComfortVisual({
   return (
     <span aria-hidden="true" className="inline-flex shrink-0 items-center gap-2">
       <span
-        className={`flex h-9 w-9 items-center justify-center rounded-lg border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+        className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
           urgent
             ? checked
-              ? "border-primary bg-primary text-white"
-              : "border-primary/30 bg-primary-soft text-primary"
+              ? "bg-primary text-white"
+              : "bg-primary-soft text-primary"
             : checked
-              ? "border-sapphire bg-sapphire text-white"
-              : "border-sapphire/20 bg-sapphire-soft/75 text-sapphire"
+              ? "bg-sapphire text-white"
+              : "bg-sapphire-soft text-sapphire"
         }`}
       >
         <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
@@ -556,7 +614,7 @@ function SeverityComfortVisual({
   );
 }
 
-/** Time-horizon visual for Step 3B: sunrise today, 3-day dots, calendar grid, or long-term clock. */
+/** Time-horizon visual for duration step. */
 function DurationHorizonVisual({
   durationKey,
   checked,
@@ -567,10 +625,8 @@ function DurationHorizonVisual({
   return (
     <span
       aria-hidden="true"
-      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
-        checked
-          ? "border-sapphire bg-sapphire text-white"
-          : "border-sapphire/20 bg-sapphire-soft/75 text-sapphire"
+      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+        checked ? "bg-sapphire text-white" : "bg-sapphire-soft text-sapphire"
       }`}
     >
       {durationKey === "today" && (
@@ -610,113 +666,153 @@ function DurationHorizonVisual({
   );
 }
 
-/** One answer in a single-choice question: full-width, plain text, a real radio. */
+/**
+ * Single-choice row. Phones: a grouped-list row with a check on the right when chosen.
+ * Desktop: a compact bordered row led by its key letter.
+ */
 function OptionRow({
   checked,
   onSelect,
   title,
   description,
-  note,
   badge,
-  leading,
   iconBadge,
   tone = "default",
-  compact = false,
   focusable = false,
   onSpeak,
   speakingThis = false,
   speakLabel,
+  hotkey,
+  inset = false,
 }: {
   checked: boolean;
-  /** `byPointer` is true for a real tap or click (not keyboard), which may move on automatically. */
   onSelect: (byPointer: boolean) => void;
   title: string;
   description?: string;
-  note?: ReactNode;
-  /** Short tag shown on the title line (e.g. the urgency marker), so it costs no extra row. */
   badge?: ReactNode;
-  leading?: ReactNode;
-  /** Optional pictogram / comfort badge rendered beside the radio indicator. */
   iconBadge?: ReactNode;
   tone?: "default" | "urgent";
-  compact?: boolean;
-  /** Roving tab stop: only one radio per group is in the Tab order. */
   focusable?: boolean;
-  /** Optional per-card read-aloud handler rendered as a sibling button (never nested!). */
   onSpeak?: () => void;
   speakingThis?: boolean;
   speakLabel?: string;
+  hotkey?: string;
+  /** Separator starts after the icon (rows with an icon). */
+  inset?: boolean;
 }) {
-  const radioButton = (
-    <button
-      type="button"
-      role="radio"
-      aria-checked={checked}
-      tabIndex={checked || focusable ? 0 : -1}
-      onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
-      className={`flex w-full items-start gap-3 rounded-xl border text-left transition-[border-color,box-shadow,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
-        compact ? "min-h-11 px-3.5 py-2.5" : "min-h-12 px-3.5 py-3"
-      } ${onSpeak ? "pr-13 sm:pr-14" : ""} ${
-        checked
-          ? tone === "urgent"
-            ? "border-primary bg-primary-soft/45 shadow-[inset_0_0_0_1px_var(--color-primary)]"
-            : "border-sapphire bg-sapphire-soft/40 shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-          : tone === "urgent"
-            ? "border-primary/25 bg-primary-soft/20 hover:border-primary/45 hover:bg-primary-soft/35 active:bg-primary-soft/50"
-            : "border-border bg-card hover:border-sapphire/35 hover:bg-surface-card active:bg-muted"
-      }`}
-    >
-      <span
-        aria-hidden="true"
-        className={`mt-[3px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border-[1.5px] ${
-          checked
-            ? tone === "urgent"
-              ? "border-primary"
-              : "border-sapphire"
-            : tone === "urgent"
-              ? "border-primary/65"
-              : "border-foreground/45"
-        }`}
-      >
-        {checked && (
-          <span className={`h-2 w-2 rounded-full ${tone === "urgent" ? "bg-primary" : "bg-sapphire"}`} />
-        )}
-      </span>
-      {iconBadge}
-      <span className="min-w-0 flex-1">
-        <span className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
-          <span className="inline-flex items-center gap-2 text-[15px] font-semibold leading-snug text-foreground">
-            {leading}
-            <span>{title}</span>
-          </span>
-          {badge}
-        </span>
-        {description && (
-          <span className="mt-0.5 block text-[13px] leading-relaxed text-muted-foreground">{description}</span>
-        )}
-        {note}
-      </span>
-    </button>
-  );
-
-  if (!onSpeak) return radioButton;
-
+  const urgent = tone === "urgent";
   return (
-    <div className="relative">
-      {radioButton}
+    <div className={inset ? groupedRowInset : groupedRow}>
       <button
         type="button"
-        onClick={onSpeak}
-        aria-pressed={speakingThis}
-        aria-label={speakLabel}
-        className={`absolute right-2.5 top-2.5 z-10 inline-flex h-9 w-9 items-center justify-center rounded-lg border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-          speakingThis
-            ? "border-sapphire bg-sapphire-soft text-sapphire"
-            : "border-border/85 bg-card/95 text-muted-foreground hover:border-sapphire/40 hover:bg-sapphire-soft/50 hover:text-sapphire"
+        role="radio"
+        aria-checked={checked}
+        aria-keyshortcuts={hotkey}
+        data-hotkey={hotkey}
+        tabIndex={checked || focusable ? 0 : -1}
+        onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
+        className={`flex w-full items-start gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire max-lg:min-h-[3.25rem] max-lg:px-4 max-lg:py-3 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-3 lg:py-2.5 lg:focus-visible:ring-offset-2 ${
+          onSpeak ? "pr-12" : ""
+        } ${
+          checked
+            ? urgent
+              ? "max-lg:bg-primary-soft/45 lg:border-primary lg:bg-primary-soft/45"
+              : "max-lg:bg-sapphire-soft/40 lg:border-sapphire lg:bg-sapphire-soft/40"
+            : urgent
+              ? "max-lg:bg-primary-soft/20 lg:border-primary/25 lg:bg-primary-soft/20 lg:hover:border-primary/45 lg:hover:bg-primary-soft/35"
+              : "lg:border-border lg:bg-card lg:hover:border-sapphire/50 lg:hover:bg-sapphire-soft/25"
         }`}
       >
-        <SpeakerIcon off={speakingThis} />
+        {hotkey ? (
+          <span className="mt-0.5 hidden lg:inline-flex">
+            <KeyBadge letter={hotkey} checked={checked} urgent={urgent} />
+          </span>
+        ) : (
+          <span
+            aria-hidden="true"
+            className={`mt-1 hidden h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border-[1.5px] lg:flex ${
+              checked
+                ? urgent
+                  ? "border-primary"
+                  : "border-sapphire"
+                : urgent
+                  ? "border-primary/65"
+                  : "border-foreground/45"
+            }`}
+          >
+            {checked && <span className={`h-2 w-2 rounded-full ${urgent ? "bg-primary" : "bg-sapphire"}`} />}
+          </span>
+        )}
+        {iconBadge}
+        <span className="min-w-0 flex-1 self-center">
+          <span className="flex flex-wrap items-center gap-x-2.5 gap-y-0.5">
+            <span className="text-base font-semibold leading-snug text-foreground lg:text-[0.9375rem]">{title}</span>
+            {badge}
+          </span>
+          {description && (
+            <span
+              title={checked ? undefined : description}
+              className={`mt-0.5 text-sm leading-snug text-muted-foreground ${
+                checked ? "block" : "line-clamp-2 lg:line-clamp-1"
+              }`}
+            >
+              {description}
+            </span>
+          )}
+        </span>
+        {checked && <RowCheck urgent={urgent} />}
       </button>
+      {onSpeak && (
+        <button
+          type="button"
+          onClick={onSpeak}
+          aria-pressed={speakingThis}
+          aria-label={speakLabel}
+          className={`absolute right-2 top-1/2 z-10 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:h-8 lg:w-8 ${
+            speakingThis
+              ? "bg-sapphire-soft text-sapphire"
+              : "text-muted-foreground hover:bg-sapphire-soft/60 hover:text-sapphire"
+          }`}
+        >
+          <SpeakerIcon off={speakingThis} />
+        </button>
+      )}
+    </div>
+  );
+}
+
+/** Continue button; on desktop it sits left with an "Enter" hint, as in a form. */
+function ContinueRow({
+  label,
+  onClick,
+  emergency = false,
+  disabled = false,
+}: {
+  label: string;
+  onClick: () => void;
+  emergency?: boolean;
+  disabled?: boolean;
+}) {
+  return (
+    // Phones: pinned to the bottom of the screen (above the home indicator) while the list scrolls.
+    <div className="flex items-center gap-3 pt-1 max-lg:sticky max-lg:bottom-0 max-lg:z-20 max-lg:-mx-4 max-lg:border-t max-lg:border-border/70 max-lg:bg-muted/90 max-lg:px-4 max-lg:pb-[max(0.75rem,env(safe-area-inset-bottom))] max-lg:pt-3 max-lg:backdrop-blur-md sm:max-lg:-mx-6 sm:max-lg:px-6">
+      <button
+        type="button"
+        data-continue
+        disabled={disabled}
+        onClick={onClick}
+        className={`${emergency ? emergencyButton : primaryButton} w-full lg:min-h-11 lg:w-auto lg:min-w-40`}
+      >
+        <span>{label}</span>
+        <ArrowRightIcon className="h-4.5 w-4.5" aria-hidden="true" />
+      </button>
+      {!disabled && (
+        <span aria-hidden="true" className="hidden items-center gap-1 text-xs text-muted-foreground lg:inline-flex">
+          <kbd className="rounded-md border border-border bg-muted px-1.5 py-0.5 font-sans text-[0.6875rem] font-semibold text-foreground">
+            Enter ↵
+          </kbd>
+        </span>
+      )}
     </div>
   );
 }
@@ -726,13 +822,10 @@ function ResetControl({
   label,
   c,
   onConfirm,
-  prominent = false,
 }: {
   label: string;
   c: Copy;
   onConfirm: () => void;
-  /** Result page: full-size text link instead of the small header link. */
-  prominent?: boolean;
 }) {
   const [asking, setAsking] = useState(false);
   const yesRef = useRef<HTMLButtonElement>(null);
@@ -745,16 +838,14 @@ function ResetControl({
       <button
         type="button"
         onClick={() => setAsking(true)}
-        className={`min-h-11 font-medium underline underline-offset-4 hover:text-foreground ${
-          prominent ? "text-base text-foreground" : "text-sm text-muted-foreground"
-        }`}
+        className="inline-flex min-h-11 items-center rounded-xl px-2 text-sm font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
       >
         {label}
       </button>
     );
   }
   return (
-    <span role="group" aria-label={c.confirmReset} className={`inline-flex flex-wrap items-center gap-x-3 gap-y-1 ${prominent ? "text-base" : "text-sm"}`}>
+    <span role="group" aria-label={c.confirmReset} className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
       <span className="font-medium text-foreground">{c.confirmReset}</span>
       <button
         ref={yesRef}
@@ -763,14 +854,14 @@ function ResetControl({
           setAsking(false);
           onConfirm();
         }}
-        className="min-h-11 font-semibold text-foreground underline underline-offset-4"
+        className="inline-flex min-h-11 items-center rounded-xl px-2 font-semibold text-sapphire underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
       >
         {c.confirmYes}
       </button>
       <button
         type="button"
         onClick={() => setAsking(false)}
-        className="min-h-11 font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground"
+        className="inline-flex min-h-11 items-center rounded-xl px-2 font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
       >
         {c.confirmNo}
       </button>
@@ -793,20 +884,18 @@ export function HealthCheckExplorer() {
   const c = COPY[activeLang] ?? COPY[DEFAULT_LANG];
   const baseId = useId();
 
-  const [step, setStep] = useState<Step>(1);
+  const [stepId, setStepId] = useState<StepId>("area");
   const [forWhom, setForWhom] = useState<ForWhom>("self");
   const [bodyProfile, setBodyProfile] = useState<BodyAnatomyProfile>("general");
   const [selectedPart, setSelectedPart] = useState<BodyPartId | null>(null);
   const [detail, setDetail] = useState<{ subRegion: SubRegionId; side: Side } | null>(null);
+  /** The side came from a tap on the left or right of the body, so it is not asked again. */
+  const [sideFromBody, setSideFromBody] = useState(false);
   const [selectedSymptom, setSelectedSymptom] = useState<SymptomChoice | null>(null);
   const [extraSymptoms, setExtraSymptoms] = useState<SymptomChoice[]>([]);
   const [otherChosen, setOtherChosen] = useState(false);
   const [severity, setSeverity] = useState<SeverityId | null>(null);
   const [duration, setDuration] = useState<DurationId | null>(null);
-  const [beat3BReady, setBeat3BReady] = useState(false);
-  const [beat3BAnimate, setBeat3BAnimate] = useState(false);
-  const [beat3CReady, setBeat3CReady] = useState(false);
-  const [beat3CAnimate, setBeat3CAnimate] = useState(false);
   const [autoVoiceGuide, setAutoVoiceGuide] = useState(false);
   const [speakingCardId, setSpeakingCardId] = useState<string | null>(null);
   const [showEmergencyOverlay, setShowEmergencyOverlay] = useState(false);
@@ -815,48 +904,40 @@ export function HealthCheckExplorer() {
   const [restoredFromQr, setRestoredFromQr] = useState(false);
   const originUrl = useSyncExternalStore(
     () => () => {},
-    () => window.location.origin,
-    () => "",
+    readPublicOrigin,
+    () => SERVER_PUBLIC_ORIGIN,
   );
   const [showAllAreaSymptoms, setShowAllAreaSymptoms] = useState(false);
-  // Without the 3D body (data saver, no WebGL) the tool is one column: the note, then the list.
   const [bodyShown, setBodyShown] = useState(true);
   const [largeText, toggleLargeText] = useLargeText();
   const voice = useReadAloud(activeLang);
 
-  // Direction of the last step change: the new question slides in 8px from that side. Null on first load.
-  const [shownStep, setShownStep] = useState<Step>(1);
+  const [shownStepId, setShownStepId] = useState<StepId>("area");
   const [stepDir, setStepDir] = useState<"forward" | "back" | null>(null);
-  const [mobileStageOpen, setMobileStageOpen] = useState(false);
-  // "Who is this for" and the body model are one quiet line until the person asks to change them.
   const [setupOpen, setSetupOpen] = useState(false);
-  if (shownStep !== step) {
-    setShownStep(step);
-    setStepDir(step > shownStep ? "forward" : "back");
-    if (step === 1) setMobileStageOpen(false);
-    if (step === 3) {
-      setBeat3BReady(severity !== null);
-      setBeat3BAnimate(false);
-      setBeat3CReady(severity !== null && duration !== null);
-      setBeat3CAnimate(false);
-    }
+  if (shownStepId !== stepId) {
+    setStepDir(STEP_RANK[stepId] >= STEP_RANK[shownStepId] ? "forward" : "back");
+    setShownStepId(stepId);
   }
 
   const headerRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLElement>(null);
+  const trailRef = useRef<HTMLOListElement>(null);
+  /** Phones: the sheet can be pulled down so the 3D body gets more room. */
+  const [stageExpanded, setStageExpanded] = useState(false);
+  const stageExpandedRef = useRef(false);
+  const sheetDragRef = useRef<{ y: number; dy: number } | null>(null);
+  useEffect(() => {
+    stageExpandedRef.current = stageExpanded;
+  }, [stageExpanded]);
   const stepHeadingRef = useRef<HTMLHeadingElement>(null);
   const emergencyRef = useRef<HTMLDivElement>(null);
-  const summaryFoldRef = useRef<HTMLDetailsElement>(null);
-  const beat2BRef = useRef<HTMLDivElement>(null);
-  const beat3BRef = useRef<HTMLDivElement>(null);
-  const beat3CRef = useRef<HTMLDivElement>(null);
-  const pendingBeatRevealRef = useRef<"3B" | "3C" | null>(null);
   const isFirstRender = useRef(true);
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const beat3BTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const beat3CTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const autoSpeakTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sheetCopyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const sheetSpotRaf = useRef<number | null>(null);
   const autoVoiceGuideRef = useRef(autoVoiceGuide);
   const voiceAvailableRef = useRef(voice.available);
   const spokenPartsRef = useRef<() => string[]>(() => []);
@@ -868,55 +949,114 @@ export function HealthCheckExplorer() {
 
   useEffect(() => {
     return () => {
-      if (sheetCopyTimer.current) clearTimeout(sheetCopyTimer.current);
-      if (beat3BTimer.current) clearTimeout(beat3BTimer.current);
-      if (beat3CTimer.current) clearTimeout(beat3CTimer.current);
+      if (advanceTimer.current) clearTimeout(advanceTimer.current);
       if (autoSpeakTimer.current) clearTimeout(autoSpeakTimer.current);
-      if (sheetSpotRaf.current !== null) cancelAnimationFrame(sheetSpotRaf.current);
+      if (sheetCopyTimer.current) clearTimeout(sheetCopyTimer.current);
     };
   }, []);
-
-  function handleSheetPointerMove(e: ReactPointerEvent<HTMLDivElement>) {
-    const el = e.currentTarget;
-    const clientX = e.clientX;
-    const clientY = e.clientY;
-    if (sheetSpotRaf.current !== null) return;
-    sheetSpotRaf.current = requestAnimationFrame(() => {
-      sheetSpotRaf.current = null;
-      const rect = el.getBoundingClientRect();
-      el.style.setProperty("--spot-x", `${Math.round(clientX - rect.left)}px`);
-      el.style.setProperty("--spot-y", `${Math.round(clientY - rect.top)}px`);
-    });
-  }
-  const stepRef = useRef<Step>(1);
-  useEffect(() => {
-    stepRef.current = step;
-  }, [step]);
-  const answersRef = useRef({ part: false, symptom: false, emergency: false, severity: false, duration: false });
 
   const allSymptoms = [selectedSymptom, ...extraSymptoms].filter(Boolean) as SymptomChoice[];
   const isEmergency = allSymptoms.some((s) => isAcuteSurgicalOrEmergency(s));
   const urgentSymptom = allSymptoms.find((s) => isAcuteSurgicalOrEmergency(s)) ?? null;
 
+  const quickSpots = selectedPart
+    ? QUICK_SPOTS_BY_MACRO[selectedPart].filter(
+        (sub) => !(forWhom === "child" && bodyProfile !== "female" && FEMALE_ONLY_SUB_REGIONS.has(sub)),
+      )
+    : [];
+  const hasSpotStep = !selectedPart || quickSpots.length > 0;
+
+  const predictedPartition = predictSymptomsForSelection(
+    selectedPart,
+    detail?.subRegion ?? null,
+    selectedPart ? dict.symptoms[selectedPart] || [] : [],
+    isAcuteSurgicalOrEmergency,
+  );
+  const symptomsList = showAllAreaSymptoms
+    ? [...predictedPartition.primary, ...predictedPartition.secondary]
+    : predictedPartition.primary;
+  const extraCandidates = predictedPartition.primary.filter((s) => s.id !== selectedSymptom?.id);
+  const hasExtrasStep = !selectedPart || extraCandidates.length > 0;
+
+  const isDesktop = useIsDesktop();
+  /** On desktop, strength, duration and "also feeling" are one screen, shown under the "severity" step. */
+  const viewStep: StepId =
+    isDesktop && (stepId === "duration" || stepId === "extras") ? "severity" : stepId;
+
+  const activeSteps: StepId[] =
+    isEmergency && selectedSymptom
+      ? ["area", ...(hasSpotStep ? (["spot"] as const) : []), "symptom", "result"]
+      : isDesktop
+        ? ["area", ...(hasSpotStep ? (["spot"] as const) : []), "symptom", "severity", "result"]
+        : [
+            "area",
+            ...(hasSpotStep ? (["spot"] as const) : []),
+            "symptom",
+            "severity",
+            "duration",
+            ...(hasExtrasStep ? (["extras"] as const) : []),
+            "result",
+          ];
+
+  const stepRef = useRef<StepId>("area");
   useEffect(() => {
+    stepRef.current = stepId;
+  }, [stepId]);
+
+  const activeStepsRef = useRef<StepId[]>(activeSteps);
+  const answersRef = useRef({
+    part: false,
+    hasSpotStep: true,
+    symptom: false,
+    emergency: false,
+    severity: false,
+    duration: false,
+    hasExtrasStep: true,
+    desktop: false,
+  });
+  useEffect(() => {
+    activeStepsRef.current = activeSteps;
     answersRef.current = {
       part: Boolean(selectedPart),
+      hasSpotStep,
       symptom: Boolean(selectedSymptom),
       emergency: isEmergency,
       severity: Boolean(severity),
       duration: Boolean(duration),
+      hasExtrasStep,
+      desktop: isDesktop,
     };
   });
 
+  function clampAllowedStep(wanted: StepId): StepId {
+    const a = answersRef.current;
+    if (!a.part) return "area";
+    if (wanted === "area") return "area";
+    if (wanted === "spot" && a.hasSpotStep) return "spot";
+    if (!a.symptom) return wanted === "spot" && a.hasSpotStep ? "spot" : "symptom";
+    if (a.emergency) {
+      return wanted === "result" ? "result" : "symptom";
+    }
+    if (wanted === "symptom") return "symptom";
+    if (a.desktop) {
+      if (!a.severity || !a.duration) return "severity";
+      return wanted === "result" ? "result" : "severity";
+    }
+    if (!a.severity) return "severity";
+    if (wanted === "severity") return "severity";
+    if (!a.duration) return "duration";
+    if (wanted === "duration") return "duration";
+    if (wanted === "extras" && a.hasExtrasStep) return "extras";
+    return "result";
+  }
+
   /*
-   * History model. Every step and every open dialog is one browser-history entry, tagged with
-   * its position (hcIdx) in our own stack. The phone's Back button walks the stack: it closes an
-   * open dialog first, then goes to the previous question. In-app navigation backwards jumps by
-   * the exact number of entries we pushed, so it never leaves the tool.
+   * Browser history sync: every step transition and open dialog pushes one history entry so
+   * hardware/browser Back walks cleanly through questions without leaving the page.
    */
-  const stackRef = useRef<Step[]>([1]);
+  const stackRef = useRef<StepId[]>(["area"]);
   const posRef = useRef(0);
-  const pendingTargetRef = useRef<Step | null>(null);
+  const pendingTargetRef = useRef<StepId | null>(null);
   const modalOpenRef = useRef(false);
   useEffect(() => {
     modalOpenRef.current = showEmergencyOverlay || doctorOpen;
@@ -933,18 +1073,49 @@ export function HealthCheckExplorer() {
         .filter((s): s is SymptomChoice => Boolean(s));
       if (primarySym) {
         const isEm = [primarySym, ...extraSyms].some((s) => isAcuteSurgicalOrEmergency(s));
-        const targetStep: Step = isEm || (parsed.severity && parsed.duration) ? 4 : 3;
-        stackRef.current = targetStep === 4 ? [1, 2, 3, 4] : [1, 2, 3];
-        posRef.current = stackRef.current.length - 1;
+        const spots = QUICK_SPOTS_BY_MACRO[parsed.part].filter(
+          (sub) => !(parsed.forWhom === "child" && parsed.bodyProfile !== "female" && FEMALE_ONLY_SUB_REGIONS.has(sub)),
+        );
+        const partition = predictSymptomsForSelection(
+          parsed.part,
+          parsed.subRegion,
+          regionSyms,
+          isAcuteSurgicalOrEmergency,
+        );
+        const hasEx = partition.primary.filter((s) => s.id !== primarySym.id).length > 0;
+        let restoredStack: StepId[];
+        if (isEm) {
+          restoredStack = ["area", ...(spots.length > 0 ? (["spot"] as const) : []), "symptom", "result"];
+        } else if (parsed.severity && parsed.duration) {
+          restoredStack = [
+            "area",
+            ...(spots.length > 0 ? (["spot"] as const) : []),
+            "symptom",
+            "severity",
+            "duration",
+            ...(hasEx ? (["extras"] as const) : []),
+            "result",
+          ];
+        } else if (parsed.severity) {
+          restoredStack = ["area", ...(spots.length > 0 ? (["spot"] as const) : []), "symptom", "severity", "duration"];
+        } else {
+          restoredStack = ["area", ...(spots.length > 0 ? (["spot"] as const) : []), "symptom", "severity"];
+        }
+        const targetStepId = restoredStack[restoredStack.length - 1];
+        stackRef.current = restoredStack;
+        posRef.current = restoredStack.length - 1;
         answersRef.current = {
           part: true,
+          hasSpotStep: spots.length > 0,
           symptom: true,
           emergency: isEm,
           severity: Boolean(parsed.severity),
           duration: Boolean(parsed.duration),
+          hasExtrasStep: hasEx,
+          desktop: window.matchMedia(DESKTOP_QUERY).matches,
         };
         window.history.replaceState(
-          { ...(window.history.state ?? {}), hcStep: targetStep, hcIdx: posRef.current, hcModal: false },
+          { ...(window.history.state ?? {}), hcStepId: targetStepId, hcIdx: posRef.current, hcModal: false },
           "",
         );
         queueMicrotask(() => {
@@ -957,36 +1128,35 @@ export function HealthCheckExplorer() {
           setExtraSymptoms(extraSyms);
           setSeverity(parsed.severity);
           setDuration(parsed.duration);
-          if (parsed.severity) setBeat3BReady(true);
-          if (parsed.severity && parsed.duration) setBeat3CReady(true);
           if (parsed.fromQr) setRestoredFromQr(true);
-          setShownStep(targetStep);
-          setStep(targetStep);
+          setShownStepId(targetStepId);
+          setStepId(targetStepId);
         });
       } else {
-        window.history.replaceState({ ...(window.history.state ?? {}), hcStep: 1, hcIdx: 0 }, "");
+        window.history.replaceState({ ...(window.history.state ?? {}), hcStepId: "area", hcIdx: 0 }, "");
       }
     } else {
-      window.history.replaceState({ ...(window.history.state ?? {}), hcStep: 1, hcIdx: 0 }, "");
+      window.history.replaceState({ ...(window.history.state ?? {}), hcStepId: "area", hcIdx: 0 }, "");
     }
+
     const onPop = (e: PopStateEvent) => {
-      const state = (e.state ?? {}) as { hcStep?: Step; hcIdx?: number };
+      const state = (e.state ?? {}) as { hcStepId?: StepId; hcIdx?: number };
       const idx = typeof state.hcIdx === "number" ? state.hcIdx : 0;
       posRef.current = idx;
-      const wanted = pendingTargetRef.current ?? state.hcStep ?? 1;
+      const wanted = pendingTargetRef.current ?? state.hcStepId ?? "area";
       pendingTargetRef.current = null;
-      // Never land on a step the current answers cannot fill.
-      const a = answersRef.current;
-      const allowed: Step = !a.part ? 1 : !a.symptom ? 2 : a.emergency || (a.severity && a.duration) ? 4 : 3;
-      const next = Math.min(wanted, allowed) as Step;
+      const next = clampAllowedStep(wanted);
       stackRef.current = stackRef.current.slice(0, idx + 1);
       stackRef.current[idx] = next;
-      if (next !== state.hcStep) {
-        window.history.replaceState({ ...(window.history.state ?? {}), hcStep: next, hcIdx: idx, hcModal: false }, "");
+      if (next !== state.hcStepId) {
+        window.history.replaceState(
+          { ...(window.history.state ?? {}), hcStepId: next, hcIdx: idx, hcModal: false },
+          "",
+        );
       }
       setShowEmergencyOverlay(false);
       setDoctorOpen(false);
-      setStep(next);
+      setStepId(next);
     };
     window.addEventListener("popstate", onPop);
     return () => {
@@ -996,28 +1166,31 @@ export function HealthCheckExplorer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- runs once on mount
   }, []);
 
-  function pushEntry(stepValue: Step, modal = false) {
+  function pushEntry(nextStep: StepId, modal = false) {
     posRef.current += 1;
     stackRef.current = stackRef.current.slice(0, posRef.current);
-    stackRef.current[posRef.current] = stepValue;
+    stackRef.current[posRef.current] = nextStep;
     window.history.pushState(
-      { ...(window.history.state ?? {}), hcStep: stepValue, hcIdx: posRef.current, hcModal: modal },
+      { ...(window.history.state ?? {}), hcStepId: nextStep, hcIdx: posRef.current, hcModal: modal },
       "",
     );
   }
 
-  function goToStep(next: Step) {
-    if (advanceTimer.current) clearTimeout(advanceTimer.current);
-    if (next === step) return;
-    if (next > step) {
+  function goToStep(next: StepId) {
+    if (advanceTimer.current) {
+      clearTimeout(advanceTimer.current);
+      advanceTimer.current = null;
+    }
+    const current = stepRef.current;
+    if (next === current) return;
+    if (STEP_RANK[next] > STEP_RANK[current]) {
       pushEntry(next);
-      setStep(next);
+      setStepId(next);
       return;
     }
-    // Go back to the newest entry at or below the target, then settle on the target itself.
     const stack = stackRef.current;
     let i = posRef.current - 1;
-    while (i > 0 && stack[i] > next) i -= 1;
+    while (i > 0 && STEP_RANK[stack[i]] > STEP_RANK[next]) i -= 1;
     i = Math.max(i, 0);
     const distance = posRef.current - i;
     if (distance > 0 && window.history.state?.hcIdx === posRef.current) {
@@ -1025,14 +1198,27 @@ export function HealthCheckExplorer() {
       window.history.go(-distance);
     } else {
       stackRef.current[posRef.current] = next;
-      window.history.replaceState({ ...(window.history.state ?? {}), hcStep: next, hcIdx: posRef.current }, "");
-      setStep(next);
+      window.history.replaceState({ ...(window.history.state ?? {}), hcStepId: next, hcIdx: posRef.current }, "");
+      setStepId(next);
     }
   }
 
-  function openModal(which: "emergency" | "doctor") {
+  function advanceSoon(from: StepId, to: StepId, delayMs = AUTO_ADVANCE_MS) {
     if (advanceTimer.current) clearTimeout(advanceTimer.current);
-    if (!modalOpenRef.current) pushEntry(step, true);
+    advanceTimer.current = setTimeout(() => {
+      advanceTimer.current = null;
+      if (stepRef.current !== from || modalOpenRef.current) return;
+      pushEntry(to);
+      setStepId(to);
+    }, delayMs);
+  }
+
+  function openModal(which: "emergency" | "doctor") {
+    if (advanceTimer.current) {
+      clearTimeout(advanceTimer.current);
+      advanceTimer.current = null;
+    }
+    if (!modalOpenRef.current) pushEntry(stepRef.current, true);
     if (which === "emergency") setShowEmergencyOverlay(true);
     else setDoctorOpen(true);
   }
@@ -1045,60 +1231,117 @@ export function HealthCheckExplorer() {
     }
   }
 
+  function handleContinueFromEmergencyModal() {
+    setShowEmergencyOverlay(false);
+    setDoctorOpen(false);
+    if (window.history.state?.hcModal) {
+      // Replace the modal entry directly with the result step so Back returns cleanly to symptom.
+      stackRef.current[posRef.current] = "result";
+      window.history.replaceState(
+        { ...(window.history.state ?? {}), hcStepId: "result", hcIdx: posRef.current, hcModal: false },
+        "",
+      );
+      setStepId("result");
+    } else {
+      goToStep("result");
+    }
+  }
+
   useDialogFocus(emergencyRef, showEmergencyOverlay, closeModal);
 
-  /*
-   * Two measurements for sizing the 3D stage on desktop (see stageHeight):
-   *   --hc-stage-top  how far down the page the stage starts when the page is at its very top
-   *   --hc-head-h     the height of this page's own heading (title + step bar)
-   * The largest values seen are kept: later steps have a shorter heading, and the body must stay
-   * one size from step to step.
+  /**
+   * Phones: snap the sheet to "body small" or "body large". The layout changes once (so the camera
+   * re-frames once) and the sheet glides from wherever the finger left it to its new place.
    */
-  useEffect(() => {
-    const header = headerRef.current;
-    const host = header?.parentElement;
-    if (!header || !host || typeof ResizeObserver === "undefined") return;
-    let lowest = 0;
-    let tallest = 0;
-    const apply = () => {
-      tallest = Math.max(tallest, header.offsetHeight);
-      lowest = Math.max(lowest, header.getBoundingClientRect().top + window.scrollY + header.offsetHeight);
-      host.style.setProperty("--hc-head-h", `${Math.round(tallest)}px`);
-      host.style.setProperty("--hc-stage-top", `${Math.round(lowest)}px`);
-    };
-    const onWindowResize = () => {
-      lowest = 0;
-      tallest = 0;
-      apply();
-    };
-    const observer = new ResizeObserver(apply);
-    observer.observe(header);
-    window.addEventListener("resize", onWindowResize);
-    apply();
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", onWindowResize);
-    };
-  }, []);
-
-  // An emergency result shows the doctor summary unfolded; otherwise the fold is the person's choice.
-  useEffect(() => {
-    if (step === 4 && summaryFoldRef.current && answersRef.current.emergency) summaryFoldRef.current.open = true;
-  }, [step]);
-
-  /** A tap on a single-choice answer moves on by itself; keyboard users keep control. */
-  function advanceSoon(from: Step) {
-    if (advanceTimer.current) clearTimeout(advanceTimer.current);
-    advanceTimer.current = setTimeout(() => {
-      advanceTimer.current = null;
-      if (stepRef.current !== from || modalOpenRef.current) return;
-      pushEntry((from + 1) as Step);
-      setStep((from + 1) as Step);
-    }, AUTO_ADVANCE_MS);
+  function snapSheet(expand: boolean) {
+    const card = cardRef.current;
+    const before = card?.getBoundingClientRect().top ?? 0;
+    if (card) {
+      card.style.transition = "none";
+      card.style.transform = "";
+    }
+    if (expand !== stageExpandedRef.current) {
+      stageExpandedRef.current = expand;
+      flushSync(() => setStageExpanded(expand));
+    }
+    if (!card) return;
+    const offset = before - card.getBoundingClientRect().top;
+    if (Math.abs(offset) < 1 || prefersReducedMotion()) {
+      card.style.transition = "";
+      return;
+    }
+    card.style.transform = `translateY(${offset}px)`;
+    void card.offsetHeight;
+    card.style.transition = "transform 380ms cubic-bezier(0.32, 0.72, 0, 1)";
+    card.style.transform = "";
+    card.addEventListener(
+      "transitionend",
+      () => {
+        card.style.transition = "";
+      },
+      { once: true },
+    );
   }
-  useEffect(() => () => {
-    if (advanceTimer.current) clearTimeout(advanceTimer.current);
-  }, []);
+
+  /** After a tap on the body, tuck the sheet back up once the camera has settled on the spot. */
+  function collapseSheetSoon() {
+    if (!stageExpandedRef.current) return;
+    setTimeout(() => {
+      if (stageExpandedRef.current) snapSheet(false);
+    }, 450);
+  }
+
+  // The answer line shows the latest answer; a fade marks that earlier ones are scrolled out of view.
+  useEffect(() => {
+    const el = trailRef.current;
+    if (!el) return;
+    el.scrollLeft = el.scrollWidth;
+    el.dataset.overflow = String(el.scrollLeft > 1);
+  }, [stepId, isDesktop]);
+
+  // Desktop, like a form: a letter (or number) key picks that option and moves on; Enter continues;
+  // Backspace goes back a step.
+  useEffect(() => {
+    if (!isDesktop) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey || e.repeat || modalOpenRef.current) return;
+      const target = e.target as HTMLElement | null;
+      if (target?.closest("input, textarea, select, canvas, [contenteditable='true']")) return;
+      const card = cardRef.current;
+      if (!card) return;
+      if (e.key === "Enter") {
+        // Enter on an option that is already chosen moves on (as in a form); on anything else it
+        // keeps its own meaning (pick that option, follow that link).
+        const onChosenOption = target?.closest("[role='radio'][aria-checked='true']");
+        if (!onChosenOption && target && target !== document.body && target.closest("button, a, [role='radio'], label")) {
+          return;
+        }
+        const next = card.querySelector<HTMLButtonElement>("[data-continue]:not([disabled])");
+        if (next) {
+          e.preventDefault();
+          next.click();
+        }
+        return;
+      }
+      if (e.key === "Backspace") {
+        const back = card.querySelector<HTMLButtonElement>("[data-back]");
+        if (back) {
+          e.preventDefault();
+          back.click();
+        }
+        return;
+      }
+      if (e.key.length !== 1) return;
+      const option = card.querySelector<HTMLElement>(`[data-hotkey="${e.key.toUpperCase()}"]`);
+      if (!option) return;
+      e.preventDefault();
+      option.focus({ preventScroll: true });
+      // detail: 1 so the choice counts like a tap and the step moves on.
+      option.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, detail: 1 }));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isDesktop]);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -1108,99 +1351,114 @@ export function HealthCheckExplorer() {
     if (autoSpeakTimer.current) clearTimeout(autoSpeakTimer.current);
     voice.stop();
     setSpeakingCardId(null);
-    // Bring the new question into view and move focus to it without a scroll jump (DEF-24).
-    const header = headerRef.current;
-    if (header) {
-      // Site chrome pinned to the top (emergency bar, header) covers part of the screen.
-      let covered = 0;
-      document.querySelectorAll<HTMLElement>("body > *, body > * > *, aside, header").forEach((el) => {
-        const pos = getComputedStyle(el).position;
-        if (pos !== "sticky" && pos !== "fixed") return;
-        const r = el.getBoundingClientRect();
-        if (r.height > 0 && r.top <= 1 && r.bottom < window.innerHeight / 2) covered = Math.max(covered, r.bottom);
-      });
-      const top = header.getBoundingClientRect().top;
-      if (top < covered || top > window.innerHeight * 0.5) {
+
+    // Desktop keeps the title and both columns in view; phones bring the sheet up under the pinned body.
+    const keepHeader = stepId === "area" || (isDesktop && stepId !== "result");
+    const anchor = keepHeader ? headerRef.current : cardRef.current;
+    if (anchor) {
+      const covered = pinnedChromeBottom();
+      const top = anchor.getBoundingClientRect().top;
+      const stageHeight =
+        stepId !== "result" && bodyShown ? (stageRef.current?.getBoundingClientRect().height ?? 0) : 0;
+      const targetOffset = keepHeader ? 12 : stageHeight > 0 ? stageHeight - 16 : 8;
+      const misplaced = keepHeader
+        ? top < covered || top > window.innerHeight * 0.45
+        : Math.abs(top - covered - targetOffset) > 20;
+      if (misplaced) {
         const reduce = prefersReducedMotion();
-        window.scrollTo({ top: window.scrollY + top - covered - 8, behavior: reduce ? "auto" : "smooth" });
+        window.scrollTo({
+          top: Math.max(0, window.scrollY + top - covered - targetOffset),
+          behavior: reduce ? "auto" : "smooth",
+        });
       }
     }
     stepHeadingRef.current?.focus({ preventScroll: true });
 
-    // Sticky audio guide: auto-read new question + options when advancing into Steps 2, 3, or 4.
-    if (autoVoiceGuideRef.current && voiceAvailableRef.current && (step === 2 || step === 3 || step === 4)) {
+    if (autoVoiceGuideRef.current && voiceAvailableRef.current && stepId !== "area") {
       autoSpeakTimer.current = setTimeout(() => {
         autoSpeakTimer.current = null;
         if (!autoVoiceGuideRef.current || !voiceAvailableRef.current || modalOpenRef.current) return;
         voice.speak(spokenPartsRef.current());
-      }, 100);
+      }, 120);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs on step change only
-  }, [step]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs strictly on step change
+  }, [stepId]);
 
-  function handleBodyProfileChange(next: BodyAnatomyProfile) {
-    setBodyProfile(next);
-    if (next === "general" && detail && FEMALE_ONLY_SUB_REGIONS.has(detail.subRegion)) {
+  function clearQrIfNeeded() {
+    if (restoredFromQr) setRestoredFromQr(false);
+  }
+
+  function handleForWhomChange(next: ForWhom) {
+    clearQrIfNeeded();
+    setForWhom(next);
+    if (next === "child" && bodyProfile !== "female" && detail && FEMALE_ONLY_SUB_REGIONS.has(detail.subRegion)) {
       setDetail(null);
     }
   }
 
+  function handleBodyProfileChange(next: BodyAnatomyProfile) {
+    clearQrIfNeeded();
+    setBodyProfile(next);
+    if (next === "general") {
+      if (detail && FEMALE_ONLY_SUB_REGIONS.has(detail.subRegion)) {
+        setDetail(null);
+      }
+      if (selectedSymptom && FEMALE_SYMPTOM_IDS.has(selectedSymptom.id)) {
+        setSelectedSymptom(null);
+      }
+      setExtraSymptoms((prev) => prev.filter((s) => !FEMALE_SYMPTOM_IDS.has(s.id)));
+    }
+  }
+
   function handleSelectPart(partId: BodyPartId) {
+    clearQrIfNeeded();
     if (partId !== selectedPart) {
-      // A new complaint starts clean: no answers carried over from the previous area.
-      if (beat3BTimer.current) clearTimeout(beat3BTimer.current);
-      if (beat3CTimer.current) clearTimeout(beat3CTimer.current);
-      pendingBeatRevealRef.current = null;
+      setDetail(null);
       setSelectedSymptom(null);
       setExtraSymptoms([]);
       setOtherChosen(false);
       setSeverity(null);
       setDuration(null);
-      setBeat3BReady(false);
-      setBeat3BAnimate(false);
-      setBeat3CReady(false);
-      setBeat3CAnimate(false);
       setShowAllAreaSymptoms(false);
-      setRestoredFromQr(false);
     }
     setSelectedPart(partId);
   }
 
+  function nextStepAfterArea(partId: BodyPartId): StepId {
+    const spots = QUICK_SPOTS_BY_MACRO[partId].filter(
+      (sub) => !(forWhom === "child" && bodyProfile !== "female" && FEMALE_ONLY_SUB_REGIONS.has(sub)),
+    );
+    return spots.length > 0 ? "spot" : "symptom";
+  }
+
   function handleSelectFromBody(partId: BodyPartId) {
-    // On later steps the body is context; a tap there means "change the area".
-    if (step > 1) goToStep(1);
-    // A tap that names only the area clears an older exact point; a precise tap sets a new one right after.
+    collapseSheetSoon();
     setDetail(null);
     handleSelectPart(partId);
+    if (stepRef.current === "area") {
+      advanceSoon("area", nextStepAfterArea(partId));
+    }
   }
 
   function handleSelectFromList(partId: BodyPartId, byPointer: boolean) {
     setDetail(null);
     handleSelectPart(partId);
-    if (byPointer) advanceSoon(1);
-  }
-
-  function handleSelectSymptom(symptom: SymptomChoice, byPointer: boolean) {
-    setOtherChosen(false);
-    setSelectedSymptom(symptom);
-    setExtraSymptoms((prev) => prev.filter((s) => s.id !== symptom.id));
-    if (FEMALE_SYMPTOM_IDS.has(symptom.id)) {
-      setBodyProfile("female");
+    if (byPointer) {
+      advanceSoon("area", nextStepAfterArea(partId));
     }
-    if (isAcuteSurgicalOrEmergency(symptom)) openModal("emergency");
-    else if (byPointer) advanceSoon(2);
   }
 
-  function toggleExtra(symptom: SymptomChoice) {
-    const adding = !extraSymptoms.some((s) => s.id === symptom.id);
-    setExtraSymptoms((prev) => (adding ? [...prev, symptom] : prev.filter((s) => s.id !== symptom.id)));
-    if (adding && FEMALE_SYMPTOM_IDS.has(symptom.id)) {
-      setBodyProfile("female");
+  function applySubRegionDetail(
+    partId: BodyPartId | null,
+    subRegion: SubRegionId | null,
+    side: Side,
+    cancelAdvance = true,
+  ) {
+    if (cancelAdvance && advanceTimer.current) {
+      clearTimeout(advanceTimer.current);
+      advanceTimer.current = null;
     }
-    if (adding && isAcuteSurgicalOrEmergency(symptom)) openModal("emergency");
-  }
-
-  function applySubRegionDetail(partId: BodyPartId | null, subRegion: SubRegionId | null, side: Side) {
+    clearQrIfNeeded();
     setShowAllAreaSymptoms(false);
     if (!subRegion) {
       setDetail(null);
@@ -1216,46 +1474,106 @@ export function HealthCheckExplorer() {
       const validPrimaryIds = new Set(partition.primary.map((s) => s.id));
       if (selectedSymptom && !validPrimaryIds.has(selectedSymptom.id)) {
         setSelectedSymptom(null);
-        setExtraSymptoms((prev) => prev.filter((s) => validPrimaryIds.has(s.id)));
       }
+      setExtraSymptoms((prev) => prev.filter((s) => validPrimaryIds.has(s.id)));
     }
   }
 
-  function handleSelectQuickSpot(subRegion: SubRegionId | null) {
-    // The chips and the left/right choice stay where they are: no scroll on a spot change.
+  function handleSelectQuickSpot(subRegion: SubRegionId | null, byPointer: boolean) {
     if (!subRegion) {
       applySubRegionDetail(selectedPart, null, "Center");
+      if (byPointer) advanceSoon("spot", "symptom");
       return;
     }
+    const bilateral = Boolean(SUB_REGION_INFO[subRegion]?.bilateral);
+    if (detail?.subRegion !== subRegion) setSideFromBody(false);
     const nextSide: Side = detail?.subRegion === subRegion ? detail.side : "Center";
     applySubRegionDetail(selectedPart, subRegion, nextSide);
+    if (byPointer && !bilateral) {
+      advanceSoon("spot", "symptom", 360);
+    }
   }
 
   function handleSelectSpotSide(subRegion: SubRegionId, side: Side) {
+    clearQrIfNeeded();
+    setSideFromBody(false);
     setDetail({ subRegion, side });
   }
 
+  function handleSelectSymptom(symptom: SymptomChoice, byPointer: boolean) {
+    clearQrIfNeeded();
+    setOtherChosen(false);
+    setSelectedSymptom(symptom);
+    setExtraSymptoms((prev) => prev.filter((s) => s.id !== symptom.id));
+    if (FEMALE_SYMPTOM_IDS.has(symptom.id)) {
+      setBodyProfile("female");
+    }
+    if (isAcuteSurgicalOrEmergency(symptom)) {
+      openModal("emergency");
+    } else if (byPointer) {
+      advanceSoon("symptom", "severity");
+    }
+  }
+
+  function handleSelectSeverity(key: SeverityId, byPointer: boolean) {
+    clearQrIfNeeded();
+    setSeverity(key);
+    if (isDesktop) {
+      // One screen asks both: move on only once both are answered and nothing optional is left.
+      if (byPointer && duration && extraCandidates.length === 0) advanceSoon(stepRef.current, "result", 420);
+      return;
+    }
+    if (byPointer) {
+      advanceSoon("severity", "duration");
+    }
+  }
+
+  function handleSelectDuration(key: DurationId, byPointer: boolean) {
+    clearQrIfNeeded();
+    setDuration(key);
+    if (isDesktop) {
+      if (byPointer && severity && extraCandidates.length === 0) advanceSoon(stepRef.current, "result", 420);
+      return;
+    }
+    if (byPointer) {
+      advanceSoon("duration", extraCandidates.length > 0 ? "extras" : "result");
+    }
+  }
+
+  function toggleExtra(symptom: SymptomChoice) {
+    clearQrIfNeeded();
+    const adding = !extraSymptoms.some((s) => s.id === symptom.id);
+    setExtraSymptoms((prev) => (adding ? [...prev, symptom] : prev.filter((s) => s.id !== symptom.id)));
+    if (adding && FEMALE_SYMPTOM_IDS.has(symptom.id)) {
+      setBodyProfile("female");
+    }
+    if (adding && isAcuteSurgicalOrEmergency(symptom)) {
+      openModal("emergency");
+    }
+  }
+
   function handleReset() {
-    if (step === 1 && !restoredFromQr) return;
-    // "Start over" never walks the browser history, so it can never leave the page. Later Back
-    // presses land on old entries, which the popstate guard clamps to step 1.
-    if (advanceTimer.current) clearTimeout(advanceTimer.current);
-    if (beat3BTimer.current) clearTimeout(beat3BTimer.current);
-    if (beat3CTimer.current) clearTimeout(beat3CTimer.current);
-    if (autoSpeakTimer.current) clearTimeout(autoSpeakTimer.current);
-    pendingBeatRevealRef.current = null;
+    if (stepId === "area" && !selectedPart && !restoredFromQr) return;
+    if (advanceTimer.current) {
+      clearTimeout(advanceTimer.current);
+      advanceTimer.current = null;
+    }
+    if (autoSpeakTimer.current) {
+      clearTimeout(autoSpeakTimer.current);
+      autoSpeakTimer.current = null;
+    }
     voice.stop();
     setSpeakingCardId(null);
     setAutoVoiceGuide(false);
     setRestoredFromQr(false);
     setShowAllAreaSymptoms(false);
-    stackRef.current[posRef.current] = 1;
+    stackRef.current[posRef.current] = "area";
     window.history.replaceState(
-      { ...(window.history.state ?? {}), hcStep: 1, hcIdx: posRef.current, hcModal: false },
+      { ...(window.history.state ?? {}), hcStepId: "area", hcIdx: posRef.current, hcModal: false },
       "",
       window.location.pathname,
     );
-    setStep(1);
+    setStepId("area");
     setForWhom("self");
     setBodyProfile("general");
     setSelectedPart(null);
@@ -1265,112 +1583,34 @@ export function HealthCheckExplorer() {
     setOtherChosen(false);
     setSeverity(null);
     setDuration(null);
-    setBeat3BReady(false);
-    setBeat3BAnimate(false);
-    setBeat3CReady(false);
-    setBeat3CAnimate(false);
     setShowEmergencyOverlay(false);
-    setMobileStageOpen(false);
+    setDoctorOpen(false);
     setSetupOpen(false);
   }
 
-  const goBack = () => goToStep((step > 1 ? step - 1 : 1) as Step);
+  const currentIdx = Math.max(0, activeSteps.indexOf(viewStep));
+  const emergencyPath = isEmergency && Boolean(selectedSymptom);
+  const displayStep = isDesktop
+    ? emergencyPath && viewStep === "result"
+      ? 3
+      : DESKTOP_GROUP[viewStep] + 1
+    : currentIdx + 1;
+  const totalSteps = isDesktop ? (emergencyPath ? 3 : 4) : activeSteps.length;
+  const stepIndicatorText = dict.ui.stepIndicator
+    .replace("{current}", String(displayStep))
+    .replace("{total}", String(totalSteps));
 
-  // Predict symptoms tailored to the exact 3D sub-region (e.g., neck -> cervical/throat, never migraine).
-  const predictedPartition = predictSymptomsForSelection(
-    selectedPart,
-    detail?.subRegion ?? null,
-    selectedPart ? dict.symptoms[selectedPart] || [] : [],
-    isAcuteSurgicalOrEmergency,
-  );
-  const symptomsList = showAllAreaSymptoms
-    ? [...predictedPartition.primary, ...predictedPartition.secondary]
-    : predictedPartition.primary;
-  const extraCandidates = predictedPartition.primary.filter((s) => s.id !== selectedSymptom?.id);
+  const goBack = () => {
+    if (currentIdx > 0) {
+      goToStep(activeSteps[currentIdx - 1]);
+    }
+  };
+
   const topicMapping = selectedPart
     ? getTopicForSymptom(selectedPart, selectedSymptom?.id, activeLang, detail?.subRegion)
     : null;
   const careLevel =
     severity && duration ? getCareLevel(severity, duration, allSymptoms.map((s) => s.id), forWhom) : null;
-
-  const showBeat3B = severity !== null && beat3BReady;
-  const showBeat3C = severity !== null && duration !== null && beat3CReady && extraCandidates.length > 0;
-  const step3TotalBeats = extraCandidates.length > 0 ? 3 : 2;
-  const step3CurrentBeat = !severity ? 1 : !duration ? 2 : step3TotalBeats;
-  const step3ProgressText = c.questionProgress
-    .replace("{current}", String(step3CurrentBeat))
-    .replace("{total}", String(step3TotalBeats));
-
-  function handleSelectSeverity(key: SeverityId, byPointer: boolean) {
-    setSeverity(key);
-    if (!beat3BReady) {
-      if (beat3BTimer.current) clearTimeout(beat3BTimer.current);
-      beat3BTimer.current = setTimeout(() => {
-        beat3BTimer.current = null;
-        pendingBeatRevealRef.current = "3B";
-        setBeat3BAnimate(!prefersReducedMotion());
-        setBeat3BReady(true);
-      }, BEAT_REVEAL_MS);
-    } else if (byPointer && !duration) {
-      if (beat3BTimer.current) clearTimeout(beat3BTimer.current);
-      beat3BTimer.current = setTimeout(() => {
-        beat3BTimer.current = null;
-        scrollBeatIntoView(beat3BRef.current);
-      }, BEAT_REVEAL_MS);
-    }
-  }
-
-  function handleSelectDuration(key: DurationId, byPointer: boolean) {
-    setDuration(key);
-    if (extraCandidates.length === 0) return;
-    if (!beat3CReady) {
-      if (beat3CTimer.current) clearTimeout(beat3CTimer.current);
-      beat3CTimer.current = setTimeout(() => {
-        beat3CTimer.current = null;
-        pendingBeatRevealRef.current = "3C";
-        setBeat3CAnimate(!prefersReducedMotion());
-        setBeat3CReady(true);
-      }, BEAT_REVEAL_MS);
-    } else if (byPointer) {
-      if (beat3CTimer.current) clearTimeout(beat3CTimer.current);
-      beat3CTimer.current = setTimeout(() => {
-        beat3CTimer.current = null;
-        scrollBeatIntoView(beat3CRef.current);
-      }, BEAT_REVEAL_MS);
-    }
-  }
-
-  // Smoothly scroll newly unlocked Step 3 beats into viewport center and auto-read if sticky audio is active.
-  useEffect(() => {
-    const target = pendingBeatRevealRef.current;
-    if (!target) return;
-    if (target === "3B" && beat3BReady) {
-      pendingBeatRevealRef.current = null;
-      scrollBeatIntoView(beat3BRef.current);
-      if (autoVoiceGuideRef.current && voiceAvailableRef.current && !modalOpenRef.current) {
-        setSpeakingCardId(null);
-        voice.speak([dict.ui.durationHeading, ...DURATION_KEYS.map((k) => dict.duration[k].label)]);
-      }
-    } else if (target === "3C" && beat3CReady) {
-      pendingBeatRevealRef.current = null;
-      scrollBeatIntoView(beat3CRef.current);
-      if (autoVoiceGuideRef.current && voiceAvailableRef.current && !modalOpenRef.current) {
-        setSpeakingCardId(null);
-        voice.speak([
-          c.alsoFeel,
-          c.alsoFeelHint,
-          c.noExtraFinish,
-          ...extraCandidates.map((s) => s.title),
-        ]);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- triggers strictly on newly unlocked beat commit
-  }, [beat3BReady, beat3CReady]);
-
-  const stepTitles = [dict.ui.step1Title, dict.ui.step2Title, dict.ui.step3Title, dict.ui.step4Title];
-  const questions = [dict.ui.step1Question, dict.ui.step2Question, dict.ui.step3Question, dict.ui.step4Question];
-  const prompts = [dict.ui.step1Prompt, dict.ui.step2Prompt, dict.ui.step3Prompt, dict.ui.step4Prompt];
-  const stepIndicatorText = dict.ui.stepIndicator.replace("{current}", String(step)).replace("{total}", "4");
 
   const detailLabel =
     detail && selectedPart
@@ -1380,189 +1620,134 @@ export function HealthCheckExplorer() {
       : null;
   const areaLabel = selectedPart ? dict.bodyParts[selectedPart].title : null;
 
-  const canContinue =
-    (step === 1 && Boolean(selectedPart)) ||
-    (step === 2 && Boolean(selectedSymptom)) ||
-    (step === 3 && Boolean(severity && duration));
-  const blockedHint = step === 1 ? c.pickArea : step === 2 ? c.pickSymptom : c.pickBoth;
-
-  // Answers given on the steps before this one, shown in the action bar as one-click ways back.
-  const answerTrail: { step: Step; label: string }[] = [];
-  if (step > 1 && areaLabel) answerTrail.push({ step: 1, label: detailLabel ?? areaLabel });
-  if (step > 2 && selectedSymptom) answerTrail.push({ step: 2, label: selectedSymptom.title });
-  if (step > 3 && severity && duration) {
-    answerTrail.push({ step: 3, label: `${dict.severity[severity].title} · ${dict.duration[duration].label}` });
-  }
-
-  const maxReachableStep: Step = !selectedPart
-    ? 1
-    : !selectedSymptom
-      ? 2
-      : isEmergency || (severity && duration)
-        ? 4
-        : 3;
   const visceralFocus =
-    step >= 2 ? getVisceralFocusForSymptoms(allSymptoms, bodyProfile, detail?.side ?? "Center") : null;
-  const stageCopy = STAGE_CONTEXT_COPY[activeLang] ?? STAGE_CONTEXT_COPY[DEFAULT_LANG];
-  const quickSpots = selectedPart
-    ? QUICK_SPOTS_BY_MACRO[selectedPart].filter(
-        (sub) => !(forWhom === "child" && bodyProfile !== "female" && FEMALE_ONLY_SUB_REGIONS.has(sub)),
-      )
-    : [];
+    STEP_RANK[stepId] >= STEP_RANK.symptom
+      ? getVisceralFocusForSymptoms(allSymptoms, bodyProfile, detail?.side ?? "Center")
+      : null;
   const activeSpotBilateral = Boolean(detail && SUB_REGION_INFO[detail.subRegion]?.bilateral);
 
-  const SelectedAreaIcon = selectedPart ? BODY_PART_ICONS[selectedPart] : null;
+  const currentQuestion =
+    viewStep === "area"
+      ? dict.ui.step1Question
+      : viewStep === "spot"
+        ? c.exactSpotHeading
+        : viewStep === "symptom"
+          ? dict.ui.step2Question
+          : viewStep === "severity"
+            ? isDesktop
+              ? dict.ui.step3Question
+              : dict.ui.severityHeading
+            : viewStep === "duration"
+              ? dict.ui.durationHeading
+              : viewStep === "extras"
+                ? c.alsoFeel
+                : dict.ui.step4Question;
 
-  const renderExactSpotControls = () =>
-    selectedPart && quickSpots.length > 0 ? (
-      <div>
-        <p className="text-xs font-medium text-muted-foreground">{c.exactSpot}</p>
-        <div role="group" aria-label={c.exactSpot} className="mt-2 flex flex-wrap gap-1.5">
-          <button
-            type="button"
-            aria-pressed={detail === null}
-            onClick={() => handleSelectQuickSpot(null)}
-            className={`inline-flex min-h-10 items-center rounded-lg border px-3 py-1 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-8 ${
-              detail === null
-                ? "border-sapphire bg-sapphire font-semibold text-white shadow-xs"
-                : "border-border bg-card text-foreground hover:border-sapphire/35 hover:bg-muted/60"
-            }`}
-          >
-            {c.exactSpotAny}
-          </button>
-          {quickSpots.map((sub) => {
-            const active = detail?.subRegion === sub;
-            const label = getLocalizedSubRegion(sub, activeLang).label;
-            return (
-              <button
-                key={sub}
-                type="button"
-                aria-pressed={active}
-                onClick={() => handleSelectQuickSpot(sub)}
-                className={`inline-flex min-h-10 items-center rounded-lg border px-3 py-1 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-8 ${
-                  active
-                    ? "border-sapphire bg-sapphire font-semibold text-white shadow-xs"
-                    : "border-border bg-card text-foreground hover:border-sapphire/35 hover:bg-muted/60"
-                }`}
-              >
-                {label}
-              </button>
-            );
-          })}
-        </div>
-        {detail && activeSpotBilateral && (
-          <div role="group" aria-label={c.sideLabel} className="mt-2.5 flex flex-wrap items-center gap-2">
-            <span className="text-xs font-medium text-muted-foreground">{c.sideLabel}:</span>
-            <div className="inline-flex rounded-lg border border-border/80 bg-muted/75 p-0.5">
-              {(
-                [
-                  { id: "Center", label: c.bothSides },
-                  { id: "Left", label: c.left.charAt(0).toUpperCase() + c.left.slice(1) },
-                  { id: "Right", label: c.right.charAt(0).toUpperCase() + c.right.slice(1) },
-                ] as const
-              ).map((opt) => {
-                const active = detail.side === opt.id;
-                return (
-                  <button
-                    key={opt.id}
-                    type="button"
-                    aria-pressed={active}
-                    onClick={() => handleSelectSpotSide(detail.subRegion, opt.id)}
-                    className={`inline-flex min-h-9 items-center rounded-md px-2.5 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-7 ${
-                      active
-                        ? "bg-card font-semibold text-sapphire shadow-xs ring-1 ring-border/80"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {opt.label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-    ) : null;
+  const currentPrompt =
+    viewStep === "area"
+      ? bodyShown
+        ? dict.ui.step1Prompt
+        : c.chooseArea
+      : viewStep === "spot"
+        ? c.exactSpotLead
+        : viewStep === "symptom"
+          ? detail && predictedPartition.secondary.length > 0 && !showAllAreaSymptoms
+            ? c.showingSpotSymptoms.replace(
+                "{spot}",
+                (() => {
+                  const raw = getLocalizedSubRegion(detail.subRegion, activeLang).label;
+                  const isAcronym =
+                    raw.length > 1 && raw[1] === raw[1].toUpperCase() && raw[1] !== raw[1].toLowerCase();
+                  return isAcronym ? raw : raw.charAt(0).toLowerCase() + raw.slice(1);
+                })(),
+              )
+            : dict.ui.step2Prompt
+          : viewStep === "severity"
+            ? isDesktop
+              ? dict.ui.step3Prompt
+              : c.severityLead
+            : viewStep === "duration"
+              ? c.durationLead
+              : viewStep === "extras"
+                ? c.alsoFeelHint
+                : dict.ui.step4Prompt;
 
-  const renderAreaContextCard = (showQuickSpots: boolean) => {
-    if (!areaLabel) return null;
-    const hasSpots = showQuickSpots && selectedPart && quickSpots.length > 0;
-    return (
-      <div
-        className={`rounded-xl border border-border/90 bg-surface-subtle/65 p-3.5 ${
-          hasSpots ? "" : bodyShown ? "hidden" : "lg:hidden"
-        }`}
-      >
-        {/* The chosen area sits in the action bar on desktop and in the top card on a phone with the
-            3D body, so this row is only for the one-column layout without the body. */}
-        <div
-          className={`items-center justify-between gap-3 ${
-            bodyShown ? "hidden" : "flex lg:hidden"
-          } ${hasSpots ? "mb-3 border-b border-border/70 pb-3" : ""}`}
-        >
-          <div className="flex min-w-0 items-center gap-2.5">
-            {SelectedAreaIcon && (
-              <span
-                aria-hidden="true"
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-card text-sapphire"
-              >
-                <SelectedAreaIcon className="h-4 w-4" />
-              </span>
-            )}
-            <div className="min-w-0">
-              <p className="text-xs text-muted-foreground">
-                {c.area}
-                {forWhom === "child" ? ` · ${c.childRow}` : ""}
-              </p>
-              <p className="truncate text-sm font-semibold text-foreground">{detailLabel ?? areaLabel}</p>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={() => goToStep(1)}
-            className="inline-flex min-h-9 shrink-0 items-center rounded-lg border border-border bg-card px-3 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-          >
-            {c.change}
-          </button>
-        </div>
-        {hasSpots && renderExactSpotControls()}
-      </div>
-    );
-  };
-
-  /*
-   * Desktop stage height, one value for every step:
-   *  - tall window: the room left under the stage at the very top of the page, so the whole body
-   *    and its toolbar are on screen from the first paint;
-   *  - shorter window: that would be too small, so up to 30rem of the room there is once a step
-   *    has opened (site header + this page's heading above it), which is where steps 2-4 sit;
-   *  - never under 22rem or over 48rem.
-   */
-  const stageHeight =
-    step === 1
-      ? "h-[clamp(15.5rem,36dvh,20rem)] sm:h-[min(46dvh,440px)] sm:min-h-[300px] lg:h-[clamp(22rem,max(calc(100dvh-var(--hc-stage-top,25rem)-1rem),min(calc(100dvh-var(--chrome-h,0px)-var(--hc-head-h,11rem)-2rem),30rem)),48rem)]"
-      : "h-56 sm:h-64 lg:h-[clamp(22rem,max(calc(100dvh-var(--hc-stage-top,25rem)-1rem),min(calc(100dvh-var(--chrome-h,0px)-var(--hc-head-h,11rem)-2rem),30rem)),48rem)]";
-
-  const sectionLabel = "text-sm font-semibold text-foreground";
-  const secondaryBtn =
-    "inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-card px-5 text-base font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted";
-
-  /* What "Listen" reads on each step: the question, then what is currently visible on screen. */
-  // One entry per recorded clip (see spoken-segments.ts), read in order.
-  function spokenParts(): string[] {
-    const parts = [questions[step - 1], prompts[step - 1]];
-    if (step === 1) parts.push(...BODY_PARTS.map((id) => dict.bodyParts[id].title));
-    if (step === 2) parts.push(...symptomsList.map((s) => s.title), c.otherTitle);
-    if (step === 3) {
-      parts.push(dict.ui.severityHeading, ...SEVERITY_KEYS.map((k) => dict.severity[k].title));
-      if (showBeat3B) {
-        parts.push(dict.ui.durationHeading, ...DURATION_KEYS.map((k) => dict.duration[k].label));
-      }
-      if (showBeat3C) {
-        parts.push(c.alsoFeel, c.alsoFeelHint, c.noExtraFinish, ...extraCandidates.map((s) => s.title));
-      }
+  // Assistant trail chips: every prior decision is a 1-tap return chip with ↺.
+  const trailItems: { key: string; label: string; target: StepId }[] = [];
+  if (STEP_RANK[stepId] > STEP_RANK.area && areaLabel) {
+    trailItems.push({
+      key: "area",
+      label: forWhom === "child" ? `${areaLabel} (${c.childRow.toLowerCase()})` : areaLabel,
+      target: "area",
+    });
+  }
+  if (STEP_RANK[stepId] > STEP_RANK.spot && hasSpotStep && selectedPart) {
+    trailItems.push({
+      key: "spot",
+      label: detailLabel ?? c.exactSpotAny,
+      target: "spot",
+    });
+  }
+  if (STEP_RANK[stepId] > STEP_RANK.symptom && selectedSymptom) {
+    trailItems.push({
+      key: "symptom",
+      label: selectedSymptom.title,
+      target: "symptom",
+    });
+  }
+  if (isDesktop) {
+    // Desktop asks strength and duration together, so they come back as one chip.
+    if (viewStep === "result" && severity && duration && !isEmergency) {
+      trailItems.push({
+        key: "severity",
+        label: `${dict.severity[severity].title} · ${dict.duration[duration].label}${
+          extraSymptoms.length > 0 ? ` · +${extraSymptoms.length}` : ""
+        }`,
+        target: "severity",
+      });
     }
-    if (step === 4) {
+  } else {
+    if (STEP_RANK[stepId] > STEP_RANK.severity && severity && !isEmergency) {
+      trailItems.push({
+        key: "severity",
+        label: dict.severity[severity].title,
+        target: "severity",
+      });
+    }
+    if (STEP_RANK[stepId] > STEP_RANK.duration && duration && !isEmergency) {
+      trailItems.push({
+        key: "duration",
+        label: dict.duration[duration].label,
+        target: "duration",
+      });
+    }
+  }
+  if (!isDesktop && stepId === "result" && extraSymptoms.length > 0 && hasExtrasStep && !isEmergency) {
+    trailItems.push({
+      key: "extras",
+      label: `+${extraSymptoms.length}`,
+      target: "extras",
+    });
+  }
+
+  function spokenParts(): string[] {
+    const parts: string[] = [currentQuestion, currentPrompt];
+    if (stepId === "area") {
+      parts.push(...BODY_PARTS.map((id) => dict.bodyParts[id].title));
+    } else if (stepId === "spot") {
+      parts.push(c.exactSpotAny, ...quickSpots.map((sub) => getLocalizedSubRegion(sub, activeLang).label));
+    } else if (stepId === "symptom") {
+      parts.push(...symptomsList.map((s) => s.title), c.otherTitle);
+    } else if (viewStep === "severity" && isDesktop) {
+      parts.push(dict.ui.severityHeading, ...SEVERITY_KEYS.map((k) => dict.severity[k].title));
+      parts.push(dict.ui.durationHeading, ...DURATION_KEYS.map((k) => dict.duration[k].label));
+    } else if (stepId === "severity") {
+      parts.push(...SEVERITY_KEYS.map((k) => dict.severity[k].title));
+    } else if (stepId === "duration") {
+      parts.push(...DURATION_KEYS.map((k) => dict.duration[k].label));
+    } else if (stepId === "extras") {
+      parts.push(...extraCandidates.map((s) => s.title));
+    } else if (stepId === "result") {
       if (isEmergency) parts.push(dict.ui.emergency.title, dict.ui.emergency.description);
       else if (careLevel) parts.push(dict.urgency[careLevel].title, dict.urgency[careLevel].intro);
       if (forWhom === "child") parts.push(c.childNote);
@@ -1587,16 +1772,6 @@ export function HealthCheckExplorer() {
       setAutoVoiceGuide(true);
       voice.speak(spokenParts());
     }
-  }
-
-  function handleTurnOffAutoVoice() {
-    if (autoSpeakTimer.current) {
-      clearTimeout(autoSpeakTimer.current);
-      autoSpeakTimer.current = null;
-    }
-    voice.stop();
-    setSpeakingCardId(null);
-    setAutoVoiceGuide(false);
   }
 
   function handleSpeakCard(cardId: string, textParts: (string | undefined)[]) {
@@ -1637,10 +1812,14 @@ export function HealthCheckExplorer() {
       ...(forWhom === "child" ? [{ label: "Pentru", value: COPY.ro.childRow }] : []),
       { label: ro.ui.areaLabel, value: selectedPart ? ro.bodyParts[selectedPart].title : "" },
       ...(detail
-        ? [{
-            label: ROMANIAN_POINT_LABEL,
-            value: `${getLocalizedSubRegion(detail.subRegion, "ro").label}${detail.side === "Left" ? ", stânga" : detail.side === "Right" ? ", dreapta" : ""}`,
-          }]
+        ? [
+            {
+              label: ROMANIAN_POINT_LABEL,
+              value: `${getLocalizedSubRegion(detail.subRegion, "ro").label}${
+                detail.side === "Left" ? ", stânga" : detail.side === "Right" ? ", dreapta" : ""
+              }`,
+            },
+          ]
         : []),
       {
         label: ro.ui.symptomLabel,
@@ -1684,26 +1863,31 @@ export function HealthCheckExplorer() {
           bodyProfile,
         }
       : null;
+  const todayIso = new Date().toISOString().slice(0, 10);
   const reproduceUrl =
     originUrl && permalinkState ? buildTriageReproductionUrl(originUrl, activeLang, permalinkState) : undefined;
   const romanianReproduceUrl =
     originUrl && permalinkState ? buildTriageReproductionUrl(originUrl, "ro", permalinkState) : undefined;
+  const noteUrl =
+    originUrl && permalinkState ? buildTriageNoteUrl(originUrl, activeLang, permalinkState, todayIso) : undefined;
+  const romanianNoteUrl =
+    originUrl && permalinkState ? buildTriageNoteUrl(originUrl, "ro", permalinkState, todayIso) : undefined;
 
-  const stageVisibleInLayout = bodyShown && step < 4;
+  const stageVisibleInLayout = bodyShown && stepId !== "result";
 
   const places = findHelpLinks(activeLang);
-  // Standalone nearby-facility row (used when there are no paired telemedicine links above it).
+
   const placeLink = (category: InstituteCategory, label: string) => (
     <Link
       href={withLangPrefix(findHelpHref(category), activeLang)}
-      className="group mt-3 flex min-h-11 items-center justify-between gap-3 rounded-lg border border-slate-200/95 bg-[#f8f9fb] px-3.5 py-2.5 text-sm font-semibold text-obsidian-navy transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/40 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:text-[15px]"
+      className="group mt-3 flex min-h-12 items-center justify-between gap-3 rounded-xl border border-border-control bg-card px-4 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
     >
       <span className="inline-flex min-w-0 items-center gap-2.5">
-        <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+        <PinIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
         <span className="min-w-0">{label}</span>
       </span>
       <ArrowRightIcon
-        className="h-4 w-4 shrink-0 text-slate-400 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-sapphire motion-reduce:transition-none"
+        className="h-4.5 w-4.5 shrink-0 text-sapphire transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:group-hover:translate-x-0.5"
         aria-hidden="true"
       />
     </Link>
@@ -1713,55 +1897,42 @@ export function HealthCheckExplorer() {
     <div className="space-y-2.5">
       <Link
         href={withLangPrefix("/medic-online?source=triage", activeLang)}
-        className="group flex min-h-12 w-full items-center justify-between gap-3 rounded-lg bg-obsidian-navy px-4 text-[15px] font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+        className={`${primaryButton} w-full justify-between px-5`}
       >
         <span>{c.doctorBook}</span>
-        <ArrowRightIcon
-          className="h-4 w-4 shrink-0 text-white/80 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-white motion-reduce:transition-none"
-          aria-hidden="true"
-        />
+        <ArrowRightIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
       </Link>
 
-      <div className="divide-y divide-slate-200/90 overflow-hidden rounded-lg border border-slate-200/95 bg-[#f8f9fb]">
+      <Link
+        href={withLangPrefix("/medic-online?queue=now&source=triage", activeLang)}
+        className={`${secondaryButton} w-full justify-between px-4`}
+      >
+        <span className="inline-flex min-w-0 items-center gap-2.5">
+          <StethoscopeIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
+          <span className="min-w-0">{c.doctorNow}</span>
+        </span>
+        <ArrowRightIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
+      </Link>
+
+      {placeCategory && placeLabel && (
         <Link
-          href={withLangPrefix("/medic-online?queue=now&source=triage", activeLang)}
-          className="group flex min-h-11 items-center justify-between gap-3 px-3.5 py-2.5 text-sm font-semibold text-obsidian-navy transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:text-[15px]"
+          href={withLangPrefix(findHelpHref(placeCategory), activeLang)}
+          className={`${secondaryButton} w-full justify-between px-4`}
         >
           <span className="inline-flex min-w-0 items-center gap-2.5">
-            <StethoscopeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-            <span className="min-w-0">{c.doctorNow}</span>
+            <PinIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
+            <span className="min-w-0">{placeLabel}</span>
           </span>
-          <ArrowRightIcon
-            className="h-4 w-4 shrink-0 text-slate-400 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-sapphire motion-reduce:transition-none"
-            aria-hidden="true"
-          />
+          <ArrowRightIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
         </Link>
-
-        {placeCategory && placeLabel && (
-          <Link
-            href={withLangPrefix(findHelpHref(placeCategory), activeLang)}
-            className="group flex min-h-11 items-center justify-between gap-3 px-3.5 py-2.5 text-sm font-semibold text-obsidian-navy transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:text-[15px]"
-          >
-            <span className="inline-flex min-w-0 items-center gap-2.5">
-              <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-              <span className="min-w-0">{placeLabel}</span>
-            </span>
-            <ArrowRightIcon
-              className="h-4 w-4 shrink-0 text-slate-400 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-sapphire motion-reduce:transition-none"
-              aria-hidden="true"
-            />
-          </Link>
-        )}
-      </div>
+      )}
     </div>
   );
 
-  const doctorLinks = renderRoutingStack();
-
   async function handleCopyDiagnosticSheet() {
     const lines: string[] = [
-      `${questions[3]} — RediHealth`,
-      prompts[3],
+      `${dict.ui.step4Question} — RediHealth`,
+      dict.ui.step4Prompt,
       "",
     ];
     if (isEmergency) {
@@ -1825,134 +1996,42 @@ export function HealthCheckExplorer() {
       <AssistantNavigation />
 
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
-        {`${stepIndicatorText}: ${stepTitles[step - 1]}`}
+        {`${stepIndicatorText}: ${currentQuestion}`}
       </div>
 
-      <header ref={headerRef} className={`scroll-mt-4 pb-4 sm:pb-6 ${step === 4 || bodyShown ? "" : "max-w-2xl"}`}>
-        <div className="flex items-baseline justify-between gap-x-4 gap-y-1 sm:flex-wrap sm:gap-x-6">
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl">
-            {dict.ui.heading}
-          </h1>
-          <div className="flex shrink-0 flex-wrap items-baseline justify-end gap-x-5">
-            <button
-              type="button"
-              onClick={toggleLargeText}
-              aria-pressed={largeText}
-              className={`min-h-11 text-sm font-medium underline-offset-4 hover:text-foreground ${
-                largeText ? "text-foreground underline" : "text-muted-foreground"
-              }`}
-            >
-              <span aria-hidden="true" className="font-semibold sm:mr-1">A+</span>
-              <span className="sr-only sm:not-sr-only">{c.largeText}</span>
-            </button>
-          </div>
-        </div>
-        {step === 1 && (
-          <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">{dict.ui.subtitle}</p>
-        )}
-
-        <div className="mt-4">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-            <p className="text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">{stepIndicatorText}</span>
-              <span aria-hidden="true"> · </span>
-              {stepTitles[step - 1]}
-            </p>
-            {step > 1 && step < 4 && <ResetControl label={dict.ui.resetButton} c={c} onConfirm={handleReset} />}
-          </div>
-          <ol aria-label={stepIndicatorText} className="mt-1.5 grid grid-cols-4 gap-2">
-            {stepTitles.map((title, i) => {
-              const targetStep = (i + 1) as Step;
-              const isCurrent = targetStep === step;
-              const isCompleted = targetStep < step;
-              const isReachable = targetStep <= maxReachableStep;
-              return (
-                <li key={title} aria-current={isCurrent ? "step" : undefined}>
-                  <button
-                    type="button"
-                    disabled={!isReachable}
-                    onClick={() => {
-                      if (isReachable && !isCurrent) goToStep(targetStep);
-                    }}
-                    aria-label={`${dict.ui.stepIndicator.replace("{current}", String(targetStep)).replace("{total}", "4")}: ${title}`}
-                    className={`group flex min-h-11 w-full flex-col justify-center gap-1.5 rounded-md px-0.5 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
-                      isReachable && !isCurrent ? "cursor-pointer" : "cursor-default"
-                    }`}
-                  >
-                    <span
-                      aria-hidden="true"
-                      className={`h-1.5 w-full rounded-md transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
-                        isCurrent || isCompleted
-                          ? "bg-sapphire group-hover:bg-sapphire/85"
-                          : isReachable
-                            ? "bg-sapphire/30 group-hover:bg-sapphire/50"
-                            : "bg-border"
-                      }`}
-                    />
-                    <span
-                      className={`truncate text-xs font-medium leading-tight ${
-                        isCurrent
-                          ? "text-sapphire"
-                          : isCompleted
-                            ? "text-foreground group-hover:text-sapphire"
-                            : "text-muted-foreground"
-                      }`}
-                    >
-                      <span className="tabular-nums">{targetStep}.</span> {title}
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-      </header>
-
       <div
+        ref={gridRef}
         className={
           stageVisibleInLayout
-            ? "grid grid-cols-1 gap-x-10 gap-y-5 lg:grid-cols-12"
-            : step === 4
-              ? "grid w-full grid-cols-1 gap-y-5"
-              : "grid max-w-2xl grid-cols-1 gap-y-5"
+            ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(27rem,33rem)] lg:grid-rows-[auto_1fr] lg:gap-x-8 xl:gap-x-12"
+            : ""
         }
       >
-        {step > 1 && step < 4 && bodyShown && (
-          <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-lg border border-border bg-card px-3.5 py-2 lg:hidden">
-            <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5 text-sm">
-              <span className="text-muted-foreground">{c.area}:</span>
-              <span className="font-semibold text-foreground">{detailLabel ?? areaLabel ?? "—"}</span>
-              {forWhom === "child" && <span className="text-muted-foreground">· {c.childRow}</span>}
-              <button
-                type="button"
-                onClick={() => goToStep(1)}
-                className="inline-flex min-h-11 items-center px-1 font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-              >
-                {c.change}
-              </button>
-            </div>
-            <button
-              type="button"
-              onClick={() => setMobileStageOpen((open) => !open)}
-              aria-expanded={mobileStageOpen}
-              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-md border border-sapphire/25 bg-sapphire-soft px-3 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
-            >
-              {mobileStageOpen ? stageCopy.hide3DBody : stageCopy.showOn3DBody}
-            </button>
-          </div>
-        )}
+        <header
+          ref={headerRef}
+          className={`max-w-3xl ${stageVisibleInLayout ? "lg:col-start-1 lg:row-start-1" : ""}`}
+        >
+          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-4xl">
+            {dict.ui.heading}
+          </h1>
+          <p className="mt-2 max-w-[62ch] text-base leading-relaxed text-muted-foreground sm:text-lg lg:mt-1.5 lg:text-base">
+            <span className="lg:hidden">{dict.ui.subtitle}</span>
+            <span className="hidden lg:inline">{firstSentence(dict.ui.subtitle)}</span>
+          </p>
+        </header>
 
-        {/* The body stays mounted across steps: one WebGL context, hidden on Step 4 so results render full width. */}
+        {/* 3D stage: pinned under the site header on phones; left column under the title on desktop. Hidden on the result. */}
         <section
+          ref={stageRef}
           aria-label={dict.ui.viewer3D.subModelInfo}
           className={
-            step === 4
+            stepId === "result"
               ? "hidden"
               : bodyShown
-                ? `lg:col-span-7 lg:row-span-2 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:self-start ${
-                    step > 1 && !mobileStageOpen ? "hidden lg:block" : ""
-                  }`
-                : step === 1 ? "" : "hidden"
+                ? "mt-5 sm:mt-6 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] max-lg:z-0 lg:col-start-1 lg:row-start-2 lg:mt-4"
+                : stepId === "area"
+                  ? "mt-5 mb-4"
+                  : "hidden"
           }
         >
           <AnatomicalBodyMap
@@ -1961,187 +2040,384 @@ export function HealthCheckExplorer() {
             selectedSubRegion={detail?.subRegion ?? null}
             selectedSide={detail?.side ?? "Center"}
             onSelectDetailedAnatomy={(part, subRegion, side) => {
-              applySubRegionDetail(part, subRegion, side);
+              collapseSheetSoon();
+              setSideFromBody(Boolean(subRegion) && side !== "Center");
+              applySubRegionDetail(part, subRegion, side, stepRef.current !== "area");
             }}
             bodyProfile={bodyProfile}
             onBodyProfileChange={handleBodyProfileChange}
-            forcedLayerMode={visceralFocus ? visceralFocus.layer : null}
+            // Only open the body to the organs when the structure is inside; never swap layers just
+            // because a symptom was picked (that flashing was the main source of visual overload).
+            forcedLayerMode={visceralFocus?.layer === "organs" ? "organs" : null}
             focusSubRegion={visceralFocus?.subRegion ?? null}
             focusSide={visceralFocus?.side}
             lang={activeLang}
-            stageClassName={`-mx-5 w-[calc(100%+2.5rem)] sm:mx-0 sm:w-full sm:rounded-xl sm:border sm:border-border ${stageHeight}`}
-            /* The "tap the body" tip only where a tap chooses something; later the body is context. */
-            toolsClassName={step === 1 ? "" : "hidden"}
-            controlsClassName={step === 1 ? "flex" : mobileStageOpen ? "flex lg:flex" : "hidden lg:flex"}
-            decorative={step > 1}
-            selectionLabel={step === 1 ? (detailLabel ?? areaLabel) : null}
+            hideMobileLiteracyCard
+            stageClassName={`-mx-4 w-[calc(100%+2rem)] sm:mx-0 sm:w-full sm:rounded-2xl sm:border sm:border-border ${
+              stageExpanded
+                ? "h-[min(62svh,32rem)] sm:h-[min(62svh,34rem)]"
+                : "h-[clamp(14rem,34svh,18rem)] sm:h-[clamp(16rem,36svh,20rem)]"
+            } lg:mx-auto lg:h-[clamp(21rem,calc(100svh-var(--chrome-h,0px)-17rem),37rem)] lg:max-w-[40rem]`}
+            toolsClassName={stepId === "area" ? "hidden lg:block" : "hidden"}
+            controlsClassName="flex"
+            decorative={stepId !== "area" && stepId !== "spot"}
+            selectionLabel={detailLabel ?? areaLabel}
             onBodyShownChange={setBodyShown}
           />
         </section>
 
-        <section aria-labelledby={`${baseId}-q`} className={`min-w-0 ${stageVisibleInLayout ? "lg:col-span-5" : ""}`}>
-          <div key={step} className={stepDir ? "hc-step" : undefined} data-dir={stepDir ?? undefined}>
-          {step < 4 && (
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div className="min-w-0 flex-1">
-                <h2
-                  id={`${baseId}-q`}
-                  ref={stepHeadingRef}
-                  tabIndex={-1}
-                  className="text-xl font-semibold leading-tight tracking-tight text-foreground text-balance outline-none sm:text-[22px]"
-                >
-                  {questions[step - 1]}
-                </h2>
-                <p className="mt-1 text-sm text-muted-foreground">{prompts[step - 1]}</p>
-              </div>
-              {voice.available && (
-                <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5">
-                  {autoVoiceGuide && (
-                    <button
-                      type="button"
-                      onClick={handleTurnOffAutoVoice}
-                      aria-pressed={autoVoiceGuide}
-                      className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-sapphire/30 bg-sapphire-soft/80 px-2.5 text-xs font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-9"
+        {/* Question card: a sheet over the body on phones; pinned beside it, level with the title, on desktop. */}
+        <section
+          ref={cardRef}
+          data-triage-card
+          aria-labelledby={`${baseId}-q`}
+          className={`min-w-0 rounded-2xl border border-border bg-card ${
+            stageVisibleInLayout
+              ? "max-lg:relative max-lg:z-10 max-lg:-mt-4 max-lg:overflow-x-clip max-lg:rounded-t-[1.5rem] max-lg:border-0 max-lg:bg-muted max-lg:px-4 max-lg:pb-6 max-lg:pt-2 max-lg:shadow-[0_-10px_30px_-18px_rgb(15_23_42/0.35)] max-sm:-mx-4 max-sm:rounded-b-none sm:max-lg:px-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-8.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
+              : "mt-6 w-full p-5 sm:mt-8 sm:p-8"
+          }`}
+        >
+          {stageVisibleInLayout && (
+            // Sheet handle (phones): drag down for a bigger body, up (or tap) to bring the questions back.
+            <button
+              type="button"
+              aria-expanded={stageExpanded}
+              aria-label={stageExpanded ? c.showLessBody : c.showMoreBody}
+              className="mx-auto -mt-1 mb-1 flex h-7 w-24 touch-none items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:hidden"
+              onPointerDown={(e) => {
+                sheetDragRef.current = { y: e.clientY, dy: 0 };
+                try {
+                  e.currentTarget.setPointerCapture(e.pointerId);
+                } catch {
+                  // Pointer already gone (or synthetic): the drag still works without capture.
+                }
+                if (cardRef.current) cardRef.current.style.transition = "none";
+              }}
+              onPointerMove={(e) => {
+                const drag = sheetDragRef.current;
+                const card = cardRef.current;
+                if (!drag || !card) return;
+                const raw = e.clientY - drag.y;
+                // Follows the finger in the allowed direction, resists gently in the other.
+                drag.dy = stageExpanded
+                  ? raw > 0
+                    ? raw * 0.25
+                    : Math.max(raw, -320)
+                  : raw < 0
+                    ? raw * 0.25
+                    : Math.min(raw, 320);
+                card.style.transform = `translateY(${drag.dy}px)`;
+              }}
+              onPointerUp={() => {
+                const drag = sheetDragRef.current;
+                sheetDragRef.current = null;
+                if (!drag) return;
+                if (Math.abs(drag.dy) < 6) snapSheet(!stageExpanded);
+                else if (drag.dy > 36) snapSheet(true);
+                else if (drag.dy < -36) snapSheet(false);
+                else snapSheet(stageExpanded);
+              }}
+              onPointerCancel={() => {
+                sheetDragRef.current = null;
+                snapSheet(stageExpanded);
+              }}
+              onClick={(e) => {
+                // Keyboard and screen readers: Enter/Space toggles.
+                if (e.detail === 0) snapSheet(!stageExpanded);
+              }}
+            >
+              <span aria-hidden="true" className="h-1 w-9 rounded-full bg-foreground/20" />
+            </button>
+          )}
+          {/* Top bar: Back + Step X of Y + reading tools + progress + answer chips */}
+          <div className={stageVisibleInLayout ? "mb-4 lg:mb-0 lg:shrink-0 lg:px-6 lg:pb-4 lg:pt-4" : "mb-7"}>
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex min-h-11 min-w-0 items-center gap-2">
+                {displayStep > 1 ? (
+                  <button
+                    type="button"
+                    onClick={goBack}
+                    data-back
+                    aria-keyshortcuts="Backspace"
+                    className="-ml-2 inline-flex min-h-11 shrink-0 items-center gap-0.5 rounded-xl px-1.5 text-base font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-9 lg:gap-1.5 lg:px-2 lg:text-sm lg:font-semibold"
+                  >
+                    <ChevronRightIcon className="h-5 w-5 rotate-180 lg:hidden" aria-hidden="true" />
+                    <ArrowLeftIcon className="hidden h-4 w-4 lg:block" aria-hidden="true" />
+                    <span>{dict.ui.backButton}</span>
+                    {/* Desktop: the key that goes back. */}
+                    <kbd
+                      aria-hidden="true"
+                      className="hidden rounded-md border border-border bg-muted px-1.5 py-0.5 font-sans text-[0.6875rem] font-semibold leading-none text-foreground lg:inline"
                     >
-                      <SpeakerIcon off={false} />
-                      <span>{c.autoVoiceActive}</span>
-                      <span aria-hidden="true" className="text-sapphire/75">×</span>
-                    </button>
-                  )}
+                      ⌫
+                    </kbd>
+                  </button>
+                ) : null}
+                <p className="truncate text-sm font-medium text-muted-foreground tabular-nums">
+                  {stepIndicatorText}
+                </p>
+              </div>
+
+              <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+                {stepId === "result" && (
+                  <button
+                    type="button"
+                    onClick={handleCopyDiagnosticSheet}
+                    aria-label={sheetCopied ? c.copiedSheet : c.copySheet}
+                    title={sheetCopied ? c.copiedSheet : c.copySheet}
+                    className={`inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-xl border px-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:px-3 lg:min-h-9 lg:min-w-9 ${
+                      sheetCopied
+                        ? "border-sapphire bg-sapphire text-white"
+                        : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30"
+                    }`}
+                  >
+                    {sheetCopied ? (
+                      <CheckCircleIcon className="h-4 w-4 shrink-0" />
+                    ) : (
+                      <CopyIcon className="h-4 w-4 shrink-0" />
+                    )}
+                    <span aria-live="polite" className="sr-only sm:not-sr-only">
+                      {sheetCopied ? c.copiedSheet : c.copySheet}
+                    </span>
+                  </button>
+                )}
+
+                {voice.available && (
                   <button
                     type="button"
                     onClick={handleToggleStepVoice}
                     aria-pressed={voice.speaking}
-                    className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-9 ${
+                    aria-label={voice.speaking ? c.stopListening : c.listen}
+                    title={voice.speaking ? c.stopListening : c.listen}
+                    className={`inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-xl border px-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:px-3 lg:min-h-9 lg:min-w-9 ${
                       voice.speaking
-                        ? "border-sapphire/35 bg-sapphire-soft text-sapphire"
-                        : "border-border bg-card text-foreground hover:bg-muted"
+                        ? "border-sapphire bg-sapphire-soft text-sapphire max-lg:border-transparent"
+                        : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30 max-lg:border-transparent max-lg:bg-transparent max-lg:text-sapphire"
                     }`}
                   >
                     <SpeakerIcon off={voice.speaking} />
-                    <span>{voice.speaking ? c.stopListening : c.listen}</span>
+                    <span className="sr-only sm:not-sr-only">
+                      {voice.speaking ? c.stopListening : c.listen}
+                    </span>
                   </button>
-                </div>
-              )}
-            </div>
-          )}
-
-          {step === 1 && (
-            <div className="mt-4 space-y-3.5">
-              <div className="rounded-xl border border-border/85 bg-surface-subtle/70 px-3.5">
-                <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 py-1.5">
-                  <p className="min-w-0 text-[13px] text-muted-foreground">
-                    <span className="font-semibold text-foreground">
-                      {forWhom === "child" ? c.forChild : c.forSelf}
-                    </span>
-                    <span aria-hidden="true"> · </span>
-                    {c.bodyTypeLabel}:{" "}
-                    <span className="font-semibold text-foreground">
-                      {bodyProfile === "female" ? c.bodyFemale : c.bodyGeneral}
-                    </span>
-                  </p>
-                  <button
-                    type="button"
-                    aria-expanded={setupOpen}
-                    aria-controls={`${baseId}-setup`}
-                    onClick={() => setSetupOpen((open) => !open)}
-                    className="inline-flex min-h-11 shrink-0 items-center rounded-md px-1.5 text-[13px] font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-9"
-                  >
-                    {c.change}
-                  </button>
-                </div>
-                {setupOpen && (
-                <div id={`${baseId}-setup`} className="divide-y divide-border/65 border-t border-border/65">
-                <div className="flex flex-wrap items-center justify-between gap-2.5 py-2">
-                  <span id={`${baseId}-who`} className="text-[13px] font-medium text-muted-foreground">
-                    {c.forWhom}
-                  </span>
-                  <div
-                    role="radiogroup"
-                    aria-labelledby={`${baseId}-who`}
-                    onKeyDown={handleRadioKeys}
-                    className="inline-grid grid-cols-2 gap-1 rounded-lg border border-border/80 bg-muted/80 p-0.5"
-                  >
-                    {(
-                      [
-                        { id: "self", label: c.forSelf },
-                        { id: "child", label: c.forChild },
-                      ] as const
-                    ).map((opt) => {
-                      const active = forWhom === opt.id;
-                      return (
-                        <button
-                          key={opt.id}
-                          type="button"
-                          role="radio"
-                          aria-checked={active}
-                          tabIndex={active ? 0 : -1}
-                          onClick={() => setForWhom(opt.id)}
-                          className={`inline-flex min-h-9 items-center justify-center rounded-md px-3 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-8 ${
-                            active
-                              ? "bg-card font-semibold text-sapphire shadow-xs ring-1 ring-border/80"
-                              : "text-muted-foreground hover:text-foreground"
-                          }`}
-                        >
-                          {opt.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                  <div className="flex flex-wrap items-center justify-between gap-2.5 py-2">
-                    <span id={`${baseId}-anat`} className="text-[13px] font-medium text-muted-foreground">
-                      {c.bodyTypeLabel}
-                    </span>
-                    <div
-                      role="radiogroup"
-                      aria-labelledby={`${baseId}-anat`}
-                      onKeyDown={handleRadioKeys}
-                      className="inline-grid grid-cols-2 gap-1 rounded-lg border border-border/80 bg-muted/80 p-0.5"
-                    >
-                      {(
-                        [
-                          { id: "general", label: c.bodyGeneral },
-                          { id: "female", label: c.bodyFemale },
-                        ] as const
-                      ).map((opt) => {
-                        const active = bodyProfile === opt.id;
-                        return (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            role="radio"
-                            aria-checked={active}
-                            tabIndex={active ? 0 : -1}
-                            onClick={() => handleBodyProfileChange(opt.id)}
-                            className={`inline-flex min-h-9 items-center justify-center rounded-md px-3 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-8 ${
-                              active
-                                ? "bg-card font-semibold text-sapphire shadow-xs ring-1 ring-border/80"
-                                : "text-muted-foreground hover:text-foreground"
-                            }`}
-                          >
-                            {opt.label}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
                 )}
-              </div>
 
-              <div>
-                {bodyShown && <p className={`${sectionLabel} mb-2 lg:hidden`}>{c.orList}</p>}
+                <button
+                  type="button"
+                  onClick={toggleLargeText}
+                  aria-pressed={largeText}
+                  aria-label={c.largeText}
+                  title={c.largeText}
+                  className={`inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-xl border px-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:px-3 lg:min-h-9 lg:min-w-9 ${
+                    largeText
+                      ? "border-sapphire bg-sapphire-soft text-sapphire max-lg:border-transparent"
+                      : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30 max-lg:border-transparent max-lg:bg-transparent max-lg:text-sapphire"
+                  }`}
+                >
+                  <span aria-hidden="true">A+</span>
+                  <span className="sr-only">{c.largeText}</span>
+                </button>
+              </div>
+            </div>
+
+            <div
+              className="mt-3 flex h-1 w-full gap-1.5"
+              role="progressbar"
+              aria-label={c.progressLabel}
+              aria-valuenow={displayStep}
+              aria-valuemin={1}
+              aria-valuemax={totalSteps}
+              aria-valuetext={stepIndicatorText}
+            >
+              {Array.from({ length: totalSteps }, (_, idx) => idx + 1).map((segment) => (
+                <div
+                  key={segment}
+                  className={`h-1 flex-1 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
+                    displayStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {trailItems.length > 0 && (
+              // One quiet line of earlier answers, each a link back to that question. Full labels; when
+              // they do not fit, the line scrolls sideways (snapped to the latest) and fades at the edge.
+              <nav aria-label={c.selectedTrailLabel} className="mt-2.5">
+                <ol
+                  ref={trailRef}
+                  onScroll={(e) => {
+                    e.currentTarget.dataset.overflow = String(e.currentTarget.scrollLeft > 1);
+                  }}
+                  className="-mx-1 flex items-center overflow-x-auto whitespace-nowrap px-1 text-sm [scrollbar-width:none] data-[overflow=true]:[mask-image:linear-gradient(to_right,transparent,#000_1.5rem,#000)] lg:text-[0.8125rem] [&::-webkit-scrollbar]:hidden"
+                >
+                  {trailItems.map((item, index) => (
+                    <li key={item.key} className="flex shrink-0 items-center">
+                      {index > 0 && (
+                        <span aria-hidden="true" className="mx-1.5 text-muted-foreground/50">
+                          ›
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => goToStep(item.target)}
+                        className="-my-1.5 min-h-9 rounded-md py-1.5 font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-7"
+                      >
+                        {item.label}
+                      </button>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
+          </div>
+
+          {/* Step body: phones push in sideways like a settings menu; desktop rises in like a form. */}
+          <div
+            className={
+              stageVisibleInLayout
+                ? "lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:overscroll-contain lg:px-6 lg:pb-6 lg:pt-1"
+                : undefined
+            }
+          >
+          <div key={viewStep} className={stepDir ? "hc-step" : undefined} data-dir={stepDir ?? undefined}>
+            <h2
+              id={`${baseId}-q`}
+              ref={stepHeadingRef}
+              tabIndex={-1}
+              className={`${stepHeading} outline-none`}
+            >
+              {currentQuestion}
+            </h2>
+            <p className={stepLead}>{currentPrompt}</p>
+
+            {/* STEP 1 — Body Area */}
+            {viewStep === "area" && (
+              <div className="mt-4 space-y-3">
+                {/* Phones: a quiet list heading (who it is for, which body) that opens into a small group. */}
+                <div
+                  className={`rounded-xl px-4 lg:bg-muted/55 lg:px-3.5 lg:py-1 ${
+                    setupOpen ? "bg-card py-1 max-lg:shadow-[0_0_0_1px_var(--color-border)]" : "max-lg:-mb-1.5"
+                  }`}
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                    <p className="min-w-0 text-sm text-muted-foreground">
+                      <span className="font-semibold text-foreground">
+                        {forWhom === "child" ? c.forChild : c.forSelf}
+                      </span>
+                      {", "}
+                      {c.bodyTypeLabel.toLowerCase()}:{" "}
+                      <span className="font-semibold text-foreground">
+                        {bodyProfile === "female" ? c.bodyFemale.toLowerCase() : c.bodyGeneral.toLowerCase()}
+                      </span>
+                    </p>
+                    <button
+                      type="button"
+                      aria-expanded={setupOpen}
+                      aria-controls={`${baseId}-setup`}
+                      onClick={() => setSetupOpen((open) => !open)}
+                      className="-mr-2 inline-flex min-h-11 shrink-0 items-center rounded-xl px-2 text-sm font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire max-lg:no-underline"
+                    >
+                      {c.change}
+                    </button>
+                  </div>
+
+                  {setupOpen && (
+                    <div id={`${baseId}-setup`} className="mt-2 divide-y divide-border/70 border-t border-border/70">
+                      <div className="flex flex-wrap items-center justify-between gap-2.5 py-2.5">
+                        <span id={`${baseId}-who`} className="text-sm font-medium text-muted-foreground">
+                          {c.forWhom}
+                        </span>
+                        <div
+                          role="radiogroup"
+                          aria-labelledby={`${baseId}-who`}
+                          onKeyDown={handleRadioKeys}
+                          className="inline-grid grid-cols-2 gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
+                        >
+                          {(
+                            [
+                              { id: "self", label: c.forSelf },
+                              { id: "child", label: c.forChild },
+                            ] as const
+                          ).map((opt) => {
+                            const active = forWhom === opt.id;
+                            return (
+                              <button
+                                key={opt.id}
+                                type="button"
+                                role="radio"
+                                aria-checked={active}
+                                tabIndex={active ? 0 : -1}
+                                onClick={() => handleForWhomChange(opt.id)}
+                                className={`inline-flex min-h-9 items-center justify-center rounded-lg px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                                  active
+                                    ? "bg-sapphire text-white"
+                                    : "text-muted-foreground hover:text-foreground"
+                                }`}
+                              >
+                                {opt.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap items-center justify-between gap-2.5 py-2.5">
+                        <span id={`${baseId}-anat`} className="text-sm font-medium text-muted-foreground">
+                          {c.bodyTypeLabel}
+                        </span>
+                        <div
+                          role="radiogroup"
+                          aria-labelledby={`${baseId}-anat`}
+                          onKeyDown={handleRadioKeys}
+                          className="inline-grid grid-cols-2 gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
+                        >
+                          {(
+                            [
+                              { id: "general", label: c.bodyGeneral },
+                              { id: "female", label: c.bodyFemale },
+                            ] as const
+                          ).map((opt) => {
+                            const active = bodyProfile === opt.id;
+                            return (
+                              <button
+                                key={opt.id}
+                                type="button"
+                                role="radio"
+                                aria-checked={active}
+                                tabIndex={active ? 0 : -1}
+                                onClick={() => handleBodyProfileChange(opt.id)}
+                                className={`inline-flex min-h-9 items-center justify-center rounded-lg px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                                  active
+                                    ? "bg-sapphire text-white"
+                                    : "text-muted-foreground hover:text-foreground"
+                                }`}
+                              >
+                                {opt.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {bodyShown && (
+                  <p className="hidden px-0.5 text-sm font-medium text-muted-foreground lg:block">{c.orList}</p>
+                )}
+
                 <div
                   role="radiogroup"
                   aria-labelledby={`${baseId}-q`}
                   onKeyDown={handleRadioKeys}
-                  className={`grid grid-cols-1 gap-2 ${bodyShown ? "sm:grid-cols-2 lg:grid-cols-1" : ""}`}
+                  // Desktop: letters run down the left column first (A head … D pelvis), then the right.
+                  className={`grid grid-cols-1 ${optionGroup} lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(var(--rows),auto)]`}
+                  style={{ "--rows": Math.ceil(BODY_PARTS.length / 2) } as CSSProperties}
                 >
-                  {BODY_PARTS.map((id) => (
+                  {BODY_PARTS.map((id, index) => (
                     <AreaOptionCard
                       key={id}
+                      hotkey={isDesktop ? HOTKEYS[index] : undefined}
                       partId={id}
                       checked={selectedPart === id}
                       focusable={!selectedPart && id === BODY_PARTS[0]}
@@ -2151,34 +2427,133 @@ export function HealthCheckExplorer() {
                     />
                   ))}
                 </div>
-              </div>
-            </div>
-          )}
 
-          {step === 2 && (
-            <div className="mt-4 space-y-4">
-              {renderAreaContextCard(true)}
-              <div ref={beat2BRef} className="space-y-2">
-                {detail && predictedPartition.secondary.length > 0 && !showAllAreaSymptoms ? (
-                  <p className={sectionLabel}>
-                    {c.showingSpotSymptoms.replace(
-                      "{spot}",
-                      getLocalizedSubRegion(detail.subRegion, activeLang).label,
-                    )}
-                  </p>
-                ) : (
-                  quickSpots.length > 0 && (
-                    <p className={sectionLabel}>{c.whatItFeelsLike}</p>
-                  )
+                {selectedPart && (
+                  <ContinueRow label={dict.ui.nextButton} onClick={() => goToStep(nextStepAfterArea(selectedPart))} />
                 )}
-                <div role="radiogroup" aria-labelledby={`${baseId}-q`} onKeyDown={handleRadioKeys} className="space-y-2">
+              </div>
+            )}
+
+            {/* Exact spot (optional, synced live with the 3D body) */}
+            {viewStep === "spot" && selectedPart && (
+              <div className="mt-4 space-y-3">
+                <div
+                  role="radiogroup"
+                  aria-labelledby={`${baseId}-q`}
+                  onKeyDown={handleRadioKeys}
+                  className={`grid grid-cols-1 ${optionGroup} lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(var(--rows),auto)]`}
+                  style={{ "--rows": Math.ceil((quickSpots.length + 1) / 2) } as CSSProperties}
+                >
+                  <OptionRow
+                    checked={detail === null}
+                    focusable={detail === null}
+                    hotkey={isDesktop ? HOTKEYS[0] : undefined}
+                    onSelect={(byPointer) => handleSelectQuickSpot(null, byPointer)}
+                    title={c.exactSpotAny}
+                    description={isDesktop ? undefined : c.exactSpotAnyHint}
+                  />
+                  {quickSpots.map((sub, index) => {
+                    const localized = getLocalizedSubRegion(sub, activeLang);
+                    const active = detail?.subRegion === sub;
+                    return (
+                      <OptionRow
+                        key={sub}
+                        checked={active}
+                        hotkey={isDesktop ? HOTKEYS[index + 1] : undefined}
+                        onSelect={(byPointer) => handleSelectQuickSpot(sub, byPointer)}
+                        title={localized.label}
+                        description={isDesktop ? undefined : localized.summary}
+                      />
+                    );
+                  })}
+                </div>
+
+                {/* A tap on the left or right of the body already answered this: say so in one line. */}
+                {detail && activeSpotBilateral && sideFromBody && detail.side !== "Center" && (
+                  <p className="flex min-h-11 items-center justify-between gap-3 rounded-xl bg-card px-3.5 text-sm text-foreground max-lg:shadow-[0_0_0_1px_var(--color-border)] lg:bg-muted/55">
+                    <span>
+                      {c.sideLabel}: <span className="font-semibold">{detail.side === "Left" ? c.left : c.right}</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setSideFromBody(false)}
+                      className="inline-flex min-h-11 items-center rounded-md px-1.5 font-semibold text-sapphire underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                    >
+                      {c.change}
+                    </button>
+                  </p>
+                )}
+
+                {detail && activeSpotBilateral && !(sideFromBody && detail.side !== "Center") && (
+                  <div
+                    role="group"
+                    aria-label={c.sideLabel}
+                    className="rounded-xl bg-card p-3.5 max-lg:shadow-[0_0_0_1px_var(--color-border)] lg:bg-muted/55"
+                  >
+                    <p className="text-sm font-semibold text-foreground">{c.sideLabel}</p>
+                    <div className="mt-2 grid grid-cols-3 gap-1 rounded-xl bg-muted p-1 lg:bg-background/80 lg:ring-1 lg:ring-border">
+                      {(
+                        [
+                          { id: "Center", label: c.bothSides },
+                          { id: "Left", label: c.left.charAt(0).toUpperCase() + c.left.slice(1) },
+                          { id: "Right", label: c.right.charAt(0).toUpperCase() + c.right.slice(1) },
+                        ] as const
+                      ).map((opt, index) => {
+                        const active = detail.side === opt.id;
+                        const hotkey = String(index + 1);
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            aria-pressed={active}
+                            aria-keyshortcuts={hotkey}
+                            data-hotkey={hotkey}
+                            onClick={() => handleSelectSpotSide(detail.subRegion, opt.id)}
+                            className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                              active
+                                ? "bg-card text-sapphire shadow-sm ring-1 ring-border lg:bg-sapphire lg:text-white lg:ring-0"
+                                : "text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            {/* Desktop: the number key that picks this side. */}
+                            <kbd
+                              aria-hidden="true"
+                              className={`hidden rounded-md border px-1.5 py-0.5 font-sans text-[0.6875rem] font-semibold leading-none lg:inline ${
+                                active ? "border-white/40 text-white" : "border-border bg-muted text-foreground"
+                              }`}
+                            >
+                              {hotkey}
+                            </kbd>
+                            {opt.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                <ContinueRow label={dict.ui.nextButton} onClick={() => goToStep("symptom")} />
+              </div>
+            )}
+
+            {/* Main symptom */}
+            {viewStep === "symptom" && (
+              <div className="mt-4 space-y-3">
+                <div
+                  role="radiogroup"
+                  aria-labelledby={`${baseId}-q`}
+                  onKeyDown={handleRadioKeys}
+                  className={`grid grid-cols-1 ${optionGroup}`}
+                >
                   {symptomsList.map((symptom, index) => {
                     const urgent = isAcuteSurgicalOrEmergency(symptom);
                     const isChecked = !otherChosen && selectedSymptom?.id === symptom.id;
                     return (
                       <OptionRow
                         key={symptom.id}
+                        inset
                         checked={isChecked}
+                        hotkey={isDesktop ? HOTKEYS[index] : undefined}
                         focusable={!selectedSymptom && !otherChosen && index === 0}
                         onSelect={(byPointer) => handleSelectSymptom(symptom, byPointer)}
                         title={symptom.title}
@@ -2203,10 +2578,17 @@ export function HealthCheckExplorer() {
                       />
                     );
                   })}
+
                   <OptionRow
+                    inset
                     checked={otherChosen}
+                    hotkey={isDesktop ? HOTKEYS[symptomsList.length] : undefined}
                     onSelect={() => {
-                      if (advanceTimer.current) clearTimeout(advanceTimer.current);
+                      if (advanceTimer.current) {
+                        clearTimeout(advanceTimer.current);
+                        advanceTimer.current = null;
+                      }
+                      clearQrIfNeeded();
                       setOtherChosen(true);
                       setSelectedSymptom(null);
                       setExtraSymptoms([]);
@@ -2228,98 +2610,191 @@ export function HealthCheckExplorer() {
                   <button
                     type="button"
                     onClick={() => setShowAllAreaSymptoms(true)}
-                    className="mt-1 inline-flex min-h-10 w-full items-center justify-between gap-2 rounded-lg border border-border/85 bg-surface-subtle/60 px-3.5 py-2 text-left text-xs font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/35 hover:bg-sapphire-soft/45 hover:text-obsidian-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:text-[13px]"
+                    className="inline-flex min-h-11 w-full items-center justify-between gap-2 rounded-xl bg-card px-4 py-2.5 text-left text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire max-lg:shadow-[0_0_0_1px_var(--color-border)] max-lg:active:bg-muted lg:min-h-10 lg:border lg:border-border-control lg:hover:border-sapphire/60 lg:hover:bg-sapphire-soft/30"
                   >
                     <span>
                       {c.showAllAreaSymptoms} ({predictedPartition.secondary.length})
                     </span>
-                    <svg
-                      viewBox="0 0 20 20"
-                      className="h-4 w-4 shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="m5 7.5 5 5 5-5" />
-                    </svg>
+                    <ChevronRightIcon className="h-4 w-4 shrink-0 rotate-90" aria-hidden="true" />
                   </button>
                 )}
-              </div>
 
-              {otherChosen && (
-                <div className="mt-4 border-t border-border pt-4">
-                  <p className="text-base text-foreground">{c.otherBody}</p>
-                  <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                    <Link href={withLangPrefix("/health-assistant", activeLang)} className={secondaryBtn}>
-                      {c.otherAssistant}
-                    </Link>
-                    <Link href={withLangPrefix("/medic-online?source=triage", activeLang)} className={secondaryBtn}>
-                      {c.otherDoctor}
-                    </Link>
+                {otherChosen ? (
+                  <div className={`${softPanel} max-lg:bg-card max-lg:shadow-[0_0_0_1px_var(--color-border)]`}>
+                    <p className="text-base font-medium text-foreground">{c.otherBody}</p>
+                    <div className="mt-3.5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                      <Link href={withLangPrefix("/health-assistant", activeLang)} className={primaryButton}>
+                        <span>{c.otherAssistant}</span>
+                        <ArrowRightIcon className="h-4.5 w-4.5" aria-hidden="true" />
+                      </Link>
+                      <Link href={withLangPrefix("/medic-online?source=triage", activeLang)} className={secondaryButton}>
+                        <span>{c.otherDoctor}</span>
+                      </Link>
+                    </div>
+                  </div>
+                ) : selectedSymptom ? (
+                  <ContinueRow
+                    label={isEmergency ? dict.ui.finishButton : dict.ui.nextButton}
+                    onClick={() => goToStep(isEmergency ? "result" : "severity")}
+                    emergency={isEmergency}
+                  />
+                ) : null}
+              </div>
+            )}
+
+            {/* Desktop: strength, duration and "also feeling" on one screen */}
+            {viewStep === "severity" && isDesktop && (
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p id={`${baseId}-sev`} className="text-sm font-semibold text-foreground">
+                    {dict.ui.severityHeading}
+                  </p>
+                  <div
+                    role="radiogroup"
+                    aria-labelledby={`${baseId}-sev`}
+                    onKeyDown={handleRadioKeys}
+                    className="mt-2 grid grid-cols-3 gap-2"
+                  >
+                    {SEVERITY_KEYS.map((key, index) => {
+                      const checked = severity === key;
+                      const urgent = key === "severe";
+                      return (
+                        <button
+                          key={key}
+                          type="button"
+                          role="radio"
+                          aria-checked={checked}
+                          aria-keyshortcuts={String(index + 1)}
+                          data-hotkey={String(index + 1)}
+                          tabIndex={checked || (!severity && index === 0) ? 0 : -1}
+                          title={dict.severity[key].description}
+                          onClick={(e) => handleSelectSeverity(key, e.detail > 0)}
+                          className={`flex min-h-[4.75rem] flex-col items-start gap-1.5 rounded-xl border px-3 py-2.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
+                            checked
+                              ? urgent
+                                ? "border-primary bg-primary-soft/45"
+                                : "border-sapphire bg-sapphire-soft/45"
+                              : "border-border bg-card hover:border-sapphire/50 hover:bg-sapphire-soft/25"
+                          }`}
+                        >
+                          <span className="flex w-full items-center justify-between gap-2">
+                            <SeverityComfortVisual severityKey={key} checked={checked} />
+                            <KeyBadge letter={String(index + 1)} checked={checked} urgent={urgent} />
+                          </span>
+                          <span className="text-sm font-semibold leading-snug text-foreground">
+                            {dict.severity[key].title}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {severity && (
+                    <p className="mt-2 text-sm leading-snug text-muted-foreground">
+                      {dict.severity[severity].description}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <p id={`${baseId}-dur`} className="text-sm font-semibold text-foreground">
+                    {dict.ui.durationHeading}
+                  </p>
+                  <div
+                    role="radiogroup"
+                    aria-labelledby={`${baseId}-dur`}
+                    onKeyDown={handleRadioKeys}
+                    className="mt-2 grid grid-cols-2 gap-2"
+                  >
+                    {DURATION_KEYS.map((key, index) => {
+                      const checked = duration === key;
+                      return (
+                        <button
+                          key={key}
+                          type="button"
+                          role="radio"
+                          aria-checked={checked}
+                          aria-keyshortcuts={HOTKEYS[index]}
+                          data-hotkey={HOTKEYS[index]}
+                          tabIndex={checked || (!duration && index === 0) ? 0 : -1}
+                          title={dict.duration[key].hint}
+                          onClick={(e) => handleSelectDuration(key, e.detail > 0)}
+                          className={`flex min-h-11 items-center gap-2.5 rounded-xl border px-2.5 py-1.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
+                            checked
+                              ? "border-sapphire bg-sapphire-soft/45"
+                              : "border-border bg-card hover:border-sapphire/50 hover:bg-sapphire-soft/25"
+                          }`}
+                        >
+                          <KeyBadge letter={HOTKEYS[index]} checked={checked} />
+                          <DurationHorizonVisual durationKey={key} checked={checked} />
+                          <span className="min-w-0 text-sm font-semibold leading-snug text-foreground">
+                            {dict.duration[key].label}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
-              )}
-            </div>
-          )}
 
-          {step === 3 && (
-            <div className="mt-4 space-y-5">
-              {renderAreaContextCard(false)}
+                {extraCandidates.length > 0 && (
+                  <div>
+                    <p id={`${baseId}-also`} className="text-sm font-semibold text-foreground">
+                      {c.alsoFeel}{" "}
+                      <span className="font-normal text-muted-foreground">· {c.alsoFeelHint}</span>
+                    </p>
+                    <div role="group" aria-labelledby={`${baseId}-also`} className="mt-2 flex flex-wrap gap-1.5">
+                      {extraCandidates.map((symptom) => {
+                        const checked = extraSymptoms.some((s) => s.id === symptom.id);
+                        const urgent = isAcuteSurgicalOrEmergency(symptom);
+                        return (
+                          <button
+                            key={symptom.id}
+                            type="button"
+                            aria-pressed={checked}
+                            title={symptom.description}
+                            onClick={() => toggleExtra(symptom)}
+                            className={`inline-flex min-h-9 max-w-full items-center gap-1.5 rounded-full border px-3 py-1 text-left text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
+                              checked
+                                ? urgent
+                                  ? "border-primary bg-primary text-white"
+                                  : "border-sapphire bg-sapphire text-white"
+                                : urgent
+                                  ? "border-primary/40 bg-primary-soft/30 text-primary hover:border-primary/60"
+                                  : "border-border bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/25"
+                            }`}
+                          >
+                            <span aria-hidden="true" className="text-xs">{checked ? "✓" : "+"}</span>
+                            <span className="truncate">{symptom.title}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
 
-              {/* Micro-progress indicator for Step 3 progressive Typeform rail */}
-              <div className="flex items-center justify-between gap-3 rounded-lg border border-border/75 bg-surface-subtle/60 px-3 py-2">
-                <span className="text-xs font-medium text-muted-foreground" aria-live="polite">
-                  {step3ProgressText}
-                </span>
-                <span aria-hidden="true" className="inline-flex items-center gap-1.5">
-                  {Array.from({ length: step3TotalBeats }, (_, idx) => {
-                    const beatNum = idx + 1;
-                    const activeOrDone = beatNum <= step3CurrentBeat;
-                    return (
-                      <span
-                        key={beatNum}
-                        className={`h-1 rounded-xs transition-all duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
-                          beatNum === step3CurrentBeat
-                            ? "w-6 bg-sapphire"
-                            : activeOrDone
-                              ? "w-3.5 bg-sapphire/65"
-                              : "w-3 bg-border"
-                        }`}
-                      />
-                    );
-                  })}
-                </span>
+                <ContinueRow
+                  label={
+                    extraSymptoms.length > 0 ? `${dict.ui.finishButton} (${extraSymptoms.length})` : dict.ui.finishButton
+                  }
+                  onClick={() => goToStep("result")}
+                  emergency={isEmergency}
+                  disabled={!severity || !duration}
+                />
               </div>
+            )}
 
-              {/* Beat 3A — Severity */}
-              <fieldset>
-                <legend id={`${baseId}-sev`} className="mb-2 block w-full">
-                  <span className="flex flex-wrap items-center justify-between gap-2">
-                    <span className={sectionLabel}>{dict.ui.severityHeading}</span>
-                    {severity && (
-                      <span
-                        aria-hidden="true"
-                        className={`inline-flex items-center gap-1 text-xs font-semibold ${
-                          severity === "severe"
-                            ? "text-primary"
-                            : "text-sapphire"
-                        }`}
-                      >
-                        <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="m3.5 8.5 2.8 2.8 6.2-6.6" />
-                        </svg>
-                        <span>{dict.severity[severity].title}</span>
-                      </span>
-                    )}
-                  </span>
-                </legend>
-                <div role="radiogroup" aria-labelledby={`${baseId}-sev`} onKeyDown={handleRadioKeys} className="space-y-2">
+            {/* Phones: strength */}
+            {viewStep === "severity" && !isDesktop && (
+              <div className="mt-4 space-y-3">
+                <div
+                  role="radiogroup"
+                  aria-labelledby={`${baseId}-q`}
+                  onKeyDown={handleRadioKeys}
+                  className={`grid grid-cols-1 ${optionGroup}`}
+                >
                   {SEVERITY_KEYS.map((key) => (
                     <OptionRow
                       key={key}
+                      inset
                       checked={severity === key}
                       focusable={!severity && key === SEVERITY_KEYS[0]}
                       onSelect={(byPointer) => handleSelectSeverity(key, byPointer)}
@@ -2327,359 +2802,243 @@ export function HealthCheckExplorer() {
                       description={dict.severity[key].description}
                       tone={key === "severe" ? "urgent" : "default"}
                       iconBadge={<SeverityComfortVisual severityKey={key} checked={severity === key} />}
-                      compact
                     />
                   ))}
                 </div>
-              </fieldset>
 
-              {/* Beat 3B — Duration (progressively revealed once severity is chosen) */}
-              {showBeat3B && (
-                <ProgressiveBeat beatRef={beat3BRef} animateEntrance={beat3BAnimate}>
-                  <fieldset>
-                    <legend id={`${baseId}-dur`} className="mb-2 block w-full">
-                      <span className="flex flex-wrap items-center justify-between gap-2">
-                        <span className={sectionLabel}>{dict.ui.durationHeading}</span>
-                        {duration && (
-                          <span
-                            aria-hidden="true"
-                            className="inline-flex items-center gap-1 text-xs font-semibold text-sapphire"
-                          >
-                            <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="m3.5 8.5 2.8 2.8 6.2-6.6" />
-                            </svg>
-                            <span>{dict.duration[duration].label}</span>
-                          </span>
-                        )}
-                      </span>
-                    </legend>
-                    <div
-                      role="radiogroup"
-                      aria-labelledby={`${baseId}-dur`}
-                      onKeyDown={handleRadioKeys}
-                      className={`grid grid-cols-1 gap-2 ${stageVisibleInLayout ? "sm:grid-cols-2 lg:grid-cols-1" : "sm:grid-cols-2"}`}
-                    >
-                      {DURATION_KEYS.map((key) => (
-                        <OptionRow
-                          key={key}
-                          checked={duration === key}
-                          focusable={!duration && key === DURATION_KEYS[0]}
-                          onSelect={(byPointer) => handleSelectDuration(key, byPointer)}
-                          title={dict.duration[key].label}
-                          description={dict.duration[key].hint}
-                          iconBadge={<DurationHorizonVisual durationKey={key} checked={duration === key} />}
-                          compact
-                        />
-                      ))}
-                    </div>
-                  </fieldset>
-                </ProgressiveBeat>
-              )}
+                {severity && <ContinueRow label={dict.ui.nextButton} onClick={() => goToStep("duration")} />}
+              </div>
+            )}
 
-              {/* Beat 3C — Companion symptoms + prominent 1-tap fast-finish (revealed once both severity and duration are chosen) */}
-              {showBeat3C && (
-                <ProgressiveBeat beatRef={beat3CRef} animateEntrance={beat3CAnimate}>
-                  <fieldset>
-                    <legend className={sectionLabel}>{c.alsoFeel}</legend>
-                    <p className="mb-2.5 text-sm text-muted-foreground">{c.alsoFeelHint}</p>
-
-                    <button
-                      type="button"
-                      onClick={() => goToStep(4)}
-                      className="group mb-3 flex min-h-12 w-full items-center justify-between gap-3 rounded-xl border border-sapphire/35 bg-sapphire-soft/65 px-3.5 py-2.5 text-left text-[15px] font-semibold text-obsidian-navy transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
-                    >
-                      <span className="inline-flex min-w-0 items-center gap-2.5">
-                        <span
-                          aria-hidden="true"
-                          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-sapphire text-white"
-                        >
-                          <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="m3.5 8.5 2.8 2.8 6.2-6.6" />
-                          </svg>
-                        </span>
-                        <span className="min-w-0 leading-snug">
-                          {extraSymptoms.length === 0
-                            ? c.noExtraFinish
-                            : `${dict.ui.finishButton} (${extraSymptoms.length})`}
-                        </span>
-                      </span>
-                      <ArrowRightIcon
-                        aria-hidden="true"
-                        className="h-4 w-4 shrink-0 text-sapphire transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transform-none"
-                      />
-                    </button>
-
-                    <div className="space-y-2">
-                      {extraCandidates.map((symptom) => {
-                        const checked = extraSymptoms.some((s) => s.id === symptom.id);
-                        const urgent = isAcuteSurgicalOrEmergency(symptom);
-                        return (
-                          <label
-                            key={symptom.id}
-                            className={`flex min-h-12 cursor-pointer items-start gap-3 rounded-xl border px-3.5 py-3 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
-                              checked
-                                ? urgent
-                                  ? "border-primary bg-primary-soft/40 shadow-[inset_0_0_0_1px_var(--color-primary)]"
-                                  : "border-sapphire bg-sapphire-soft/40 shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-                                : urgent
-                                  ? "border-primary/25 bg-primary-soft/20 hover:border-primary/45"
-                                  : "border-border bg-card hover:border-sapphire/35 hover:bg-surface-card"
-                            }`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={checked}
-                              onChange={() => toggleExtra(symptom)}
-                              className="mt-1 h-5 w-5 shrink-0 accent-[var(--color-sapphire)]"
-                            />
-                            <SymptomPictogram symptomId={symptom.id} urgent={urgent} checked={checked} />
-                            <span className="min-w-0 flex-1">
-                              <span className="block text-[15px] font-semibold leading-snug text-foreground">{symptom.title}</span>
-                              {urgent && (
-                                <span className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-primary">
-                                  <AlertCircleIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                                  <span>{dict.ui.urgentBadge}</span>
-                                </span>
-                              )}
-                            </span>
-                          </label>
-                        );
-                      })}
-                    </div>
-                  </fieldset>
-                </ProgressiveBeat>
-              )}
-            </div>
-          )}
-
-          {step === 4 && (isEmergency || (severity && duration)) && (
-            <div
-              onPointerMove={handleSheetPointerMove}
-              className="hc-diag-sheet surface-spotlight overflow-hidden rounded-xl border border-slate-300/90 bg-white select-text"
-            >
-              <div
-                aria-hidden="true"
-                className={`h-[3px] w-full ${
-                  isEmergency
-                    ? "bg-primary"
-                    : careLevel === "high"
-                      ? "bg-amber-care"
-                      : "bg-obsidian-navy"
-                }`}
-              />
-
-              {/* Masthead: archival clinical grid, document tag, and 1-tap copy/listen toolbar */}
-              <div className="hc-diag-masthead border-b border-slate-200/90 px-5 py-4 sm:px-6">
-                <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200/80">
-                  <span className="text-xs font-semibold tracking-tight text-obsidian-navy">
-                    {c.sheetBadge}
-                  </span>
-
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <button
-                      type="button"
-                      onClick={handleCopyDiagnosticSheet}
-                      className={`inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-md border px-3 text-xs font-semibold shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-9 ${
-                        sheetCopied
-                          ? "border-obsidian-navy bg-obsidian-navy text-white"
-                          : "border-slate-300/90 bg-white text-obsidian-navy hover:border-sapphire/45 hover:bg-sapphire-soft/50"
-                      }`}
-                    >
-                      {sheetCopied ? (
-                        <CheckCircleIcon className="h-3.5 w-3.5 shrink-0" />
-                      ) : (
-                        <CopyIcon className="h-3.5 w-3.5 shrink-0" />
-                      )}
-                      <span aria-live="polite">{sheetCopied ? c.copiedSheet : c.copySheet}</span>
-                    </button>
-
-                    {voice.available && autoVoiceGuide && (
-                      <button
-                        type="button"
-                        onClick={handleTurnOffAutoVoice}
-                        aria-pressed={autoVoiceGuide}
-                        className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-md border border-sapphire/30 bg-sapphire-soft/85 px-2.5 text-xs font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-9"
-                      >
-                        <SpeakerIcon off={false} />
-                        <span>{c.autoVoiceActive}</span>
-                        <span aria-hidden="true" className="text-sapphire/75">×</span>
-                      </button>
-                    )}
-
-                    {voice.available && (
-                      <button
-                        type="button"
-                        onClick={handleToggleStepVoice}
-                        aria-pressed={voice.speaking}
-                        className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md border px-3 text-xs font-semibold shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-9 ${
-                          voice.speaking
-                            ? "border-sapphire bg-sapphire-soft text-sapphire"
-                            : "border-slate-300/90 bg-white text-obsidian-navy hover:border-sapphire/45 hover:bg-sapphire-soft/50"
-                        }`}
-                      >
-                        <SpeakerIcon off={voice.speaking} />
-                        <span>{voice.speaking ? c.stopListening : c.listen}</span>
-                      </button>
-                    )}
-                  </div>
+            {/* Phones: since when */}
+            {viewStep === "duration" && (
+              <div className="mt-4 space-y-3">
+                <div
+                  role="radiogroup"
+                  aria-labelledby={`${baseId}-q`}
+                  onKeyDown={handleRadioKeys}
+                  className={`grid grid-cols-1 ${optionGroup}`}
+                >
+                  {DURATION_KEYS.map((key) => (
+                    <OptionRow
+                      key={key}
+                      inset
+                      checked={duration === key}
+                      focusable={!duration && key === DURATION_KEYS[0]}
+                      onSelect={(byPointer) => handleSelectDuration(key, byPointer)}
+                      title={dict.duration[key].label}
+                      description={dict.duration[key].hint}
+                      iconBadge={<DurationHorizonVisual durationKey={key} checked={duration === key} />}
+                    />
+                  ))}
                 </div>
 
-                <h2
-                  id={`${baseId}-q`}
-                  ref={stepHeadingRef}
-                  tabIndex={-1}
-                  className="mt-3.5 text-[21px] font-semibold leading-tight tracking-tight text-obsidian-navy text-balance outline-none sm:text-2xl"
-                >
-                  {questions[3]}
-                </h2>
-                <p className="mt-1 text-[13.5px] text-slate-600">{prompts[3]}</p>
-
-                {restoredFromQr && recommendationDetail && (
-                  <div
-                    role="status"
-                    className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-sapphire/30 bg-sapphire-soft/70 px-3.5 py-2.5"
-                  >
-                    <span className="text-xs font-semibold text-sapphire">{c.qrRestoredBadge}</span>
-                    <span className="text-xs font-semibold text-obsidian-navy sm:text-[13px]">
-                      {recommendationDetail}
-                    </span>
-                  </div>
+                {duration && (
+                  <ContinueRow
+                    label={extraCandidates.length > 0 ? dict.ui.nextButton : dict.ui.finishButton}
+                    onClick={() => goToStep(extraCandidates.length > 0 ? "extras" : "result")}
+                  />
                 )}
               </div>
+            )}
 
-              {/* Full-width two-pane clinical sheet on desktop (3D model hidden on Step 4) */}
-              <div className="divide-y divide-slate-200/90 lg:grid lg:grid-cols-12 lg:divide-x lg:divide-y-0">
-                <div className="divide-y divide-slate-200/90 lg:col-span-7">
-                  {/* Band 01 — Primary clinical assessment and routing */}
-                  {isEmergency ? (
-                    <div className="hc-diag-band bg-white px-5 py-5 sm:px-6">
-                      <div role="alert" className="rounded-lg bg-primary p-4 text-white sm:p-5">
-                        <h3 className="text-lg font-semibold leading-snug">{dict.ui.emergency.title}</h3>
-                        <p className="mt-1.5 text-base leading-relaxed text-white/95">{dict.ui.emergency.description}</p>
-                      </div>
-                      <button type="button" onClick={() => openModal("doctor")} className={`${secondaryBtn} mt-3 w-full`}>
-                        {dict.ui.showDoctor}
-                      </button>
-                      {placeLink("hospital", places.hospital)}
-                    </div>
-                  ) : (
-                    careLevel && (
-                      <div className="hc-diag-band bg-white px-5 py-5 sm:px-6">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-xs font-semibold text-slate-400 tabular-nums">01</span>
-                          <span
-                            className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-semibold ${
-                              careLevel === "high"
-                                ? "border border-amber-care/30 bg-amber-care-soft/75 text-amber-care"
-                                : "border border-sapphire-border/80 bg-sapphire-soft text-sapphire"
-                            }`}
-                          >
-                            {c.nextStepLabel}
+            {/* Phones: anything else (optional) */}
+            {viewStep === "extras" && (
+              <div className="mt-4 space-y-3">
+                <div className={`grid grid-cols-1 ${optionGroup}`}>
+                  {extraCandidates.map((symptom) => {
+                    const checked = extraSymptoms.some((s) => s.id === symptom.id);
+                    const urgent = isAcuteSurgicalOrEmergency(symptom);
+                    return (
+                      <label
+                        key={symptom.id}
+                        className={`${groupedRowInset} flex min-h-[3.25rem] cursor-pointer items-center gap-3 px-4 py-2.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] active:bg-muted has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-sapphire ${
+                          checked ? (urgent ? "bg-primary-soft/40" : "bg-sapphire-soft/40") : urgent ? "bg-primary-soft/15" : ""
+                        }`}
+                      >
+                        <SymptomPictogram symptomId={symptom.id} urgent={urgent} checked={checked} />
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-base font-semibold leading-snug text-foreground">
+                            {symptom.title}
                           </span>
-                        </div>
-
-                        <h3 className="mt-2.5 text-[19px] font-semibold leading-[1.28] tracking-tight text-obsidian-navy text-balance sm:text-[21px]">
-                          {dict.urgency[careLevel].title}
-                        </h3>
-                        <p className="mt-2 text-[15.5px] leading-[1.65] text-slate-700">
-                          {dict.urgency[careLevel].intro}
-                        </p>
-                        {forWhom === "child" && (
-                          <p className="mt-3 rounded-md border border-amber-care/35 bg-amber-care/10 px-3 py-2 text-sm font-medium leading-relaxed text-obsidian-navy">
-                            {c.childNote}
-                          </p>
-                        )}
-
-                        <div className="mt-4">
-                          {careLevel === "low" && selectedSymptom?.selfCareTip ? (
-                            <>
-                              <h4 className="text-sm font-semibold text-obsidian-navy">{c.selfCare}</h4>
-                              <p className="mt-1 text-[15px] leading-[1.6] text-slate-700">
-                                {selectedSymptom.selfCareTip}
-                              </p>
-                              <h4 className="mt-4 text-sm font-semibold text-obsidian-navy">{places.pharmacyFirst}</h4>
-                              <p className="mt-1 text-[15px] leading-[1.6] text-slate-700">
-                                {places.pharmacyFirstHint}
-                              </p>
-                              {placeLink("pharmacy", places.nearestPharmacy)}
-                            </>
-                          ) : careLevel === "low" ? (
-                            renderRoutingStack("pharmacy", places.pharmacyFirst)
-                          ) : careLevel === "high" ? (
-                            renderRoutingStack("hospital", places.hospital)
-                          ) : (
-                            renderRoutingStack("gp", places.familyDoctor)
+                          {urgent && (
+                            <span className="mt-0.5 inline-flex items-center gap-1 text-xs font-semibold text-primary">
+                              <AlertCircleIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                              <span>{dict.ui.urgentBadge}</span>
+                            </span>
                           )}
-                        </div>
-                      </div>
-                    )
-                  )}
-
-                  {/* Band 02 — Warm diagnostic ivory clinical context ("What it may mean") */}
-                  {selectedSymptom && !isEmergency && careLevel !== "high" && (
-                    <div className="hc-diag-band hc-diag-band-1 bg-[#f9f8f3] px-5 py-5 sm:px-6">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs font-semibold text-slate-400 tabular-nums">02</span>
-                        <h3 className="text-sm font-semibold text-obsidian-navy">{c.meaning}</h3>
-                      </div>
-                      <p className="mt-2 text-[15.5px] leading-[1.65] text-slate-700">
-                        {selectedSymptom.guidance || selectedSymptom.description}
-                      </p>
-                      {topicMapping && (
-                        <Link
-                          href={withLangPrefix(`/health-information/${topicMapping.slug}`, activeLang)}
-                          className="group mt-3.5 flex min-h-11 items-center justify-between gap-3 rounded-lg border border-slate-200/95 bg-white px-3.5 py-2.5 text-sm font-semibold text-sapphire shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/45 hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:text-[15px]"
-                        >
-                          <span className="min-w-0">
-                            {c.readAbout}: {topicMapping.title}
-                          </span>
-                          <ArrowRightIcon
-                            className="h-4 w-4 shrink-0 text-sapphire transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none"
-                            aria-hidden="true"
-                          />
-                        </Link>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Home care can still end in a doctor's call if the person wants one. */}
-                  {!isEmergency && careLevel === "low" && (
-                    <div className="hc-diag-band hc-diag-band-3 bg-[#f9f8f3] px-5 py-5 sm:px-6">
-                      <h3 className="text-base font-semibold text-obsidian-navy">{c.doctorTitle}</h3>
-                      <p className="mb-3 mt-1 text-[15px] text-slate-600">{c.doctorBody}</p>
-                      {doctorLinks}
-                    </div>
-                  )}
+                        </span>
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleExtra(symptom)}
+                          className="h-5 w-5 shrink-0 accent-[var(--color-sapphire)] focus-visible:outline-none"
+                        />
+                      </label>
+                    );
+                  })}
                 </div>
 
-                {/* Right pane on desktop — Structured clinical ledger ("Summary for the doctor"), pain diagram, and QR handoff */}
-                <div className="bg-[#fafbfd] lg:col-span-5">
-                  <details
-                    ref={summaryFoldRef}
-                    open
-                    className="hc-diag-band hc-diag-band-2 group px-5 py-5 sm:px-6"
-                  >
-                    <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between rounded-md text-base font-semibold text-obsidian-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire [&::-webkit-details-marker]:hidden">
-                      <span className="inline-flex items-center gap-2">
-                        <span className="font-mono text-xs font-semibold text-slate-400 tabular-nums">03</span>
-                        <span>{c.summaryFold}</span>
-                      </span>
-                      <svg
-                        viewBox="0 0 20 20"
-                        className="h-4 w-4 text-slate-500 transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] group-open:rotate-180 motion-reduce:transition-none"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.75"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="m5 7.5 5 5 5-5" />
-                      </svg>
-                    </summary>
+                <ContinueRow
+                  label={
+                    extraSymptoms.length > 0 ? `${dict.ui.finishButton} (${extraSymptoms.length})` : dict.ui.finishButton
+                  }
+                  onClick={() => goToStep("result")}
+                  emergency={isEmergency}
+                />
+              </div>
+            )}
+
+            {/* FINAL STEP — Full-Width Results & Clinical Handoff (3D hidden) */}
+            {viewStep === "result" && (isEmergency || (severity && duration)) && (
+              <div className="mt-6 space-y-6 select-text">
+                {restoredFromQr && recommendationDetail && (
+                  <div role="status" className={softPanel}>
+                    <p className="text-sm font-semibold text-sapphire">{c.qrRestoredBadge}</p>
+                    <p className="mt-1 text-base font-semibold text-foreground">{recommendationDetail}</p>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
+                  {/* Left column: Primary care guidance, what it may mean, and care routing */}
+                  <div className="space-y-6 lg:col-span-7">
+                    {isEmergency ? (
+                      <div className={dangerPanel} role="alert">
+                        <h3 className="text-xl font-semibold leading-snug text-foreground">
+                          {dict.ui.emergency.title}
+                        </h3>
+                        <p className="mt-2 text-base leading-relaxed text-foreground/90">
+                          {dict.ui.emergency.description}
+                        </p>
+                        {urgentSymptom && (
+                          <p className="mt-3 text-sm font-medium text-foreground">
+                            <span className="font-semibold text-primary">
+                              {dict.ui.emergency.whyEmergencyPrefix}
+                            </span>{" "}
+                            {urgentSymptom.title}
+                          </p>
+                        )}
+                        <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+                          <a href="tel:112" className={emergencyButton}>
+                            <PhoneIcon className="h-5 w-5" aria-hidden="true" />
+                            <span>{dict.ui.emergency.call112Now}</span>
+                          </a>
+                          <button
+                            type="button"
+                            onClick={() => openModal("doctor")}
+                            className={secondaryButton}
+                          >
+                            {dict.ui.showDoctor}
+                          </button>
+                        </div>
+                        {placeLink("hospital", places.hospital)}
+                      </div>
+                    ) : (
+                      careLevel && (
+                        <div className="space-y-5">
+                          <div
+                            className={
+                              careLevel === "high"
+                                ? "rounded-2xl bg-amber-care-soft/55 p-5 sm:p-6 dark:bg-amber-care/15"
+                                : softPanel
+                            }
+                          >
+                            <p
+                              className={`text-sm font-semibold ${
+                                careLevel === "high" ? "text-amber-care" : "text-sapphire"
+                              }`}
+                            >
+                              {c.nextStepLabel}
+                            </p>
+                            <h3 className="mt-1.5 text-xl font-semibold leading-snug tracking-[-0.015em] text-foreground text-balance sm:text-2xl">
+                              {dict.urgency[careLevel].title}
+                            </h3>
+                            <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+                              {dict.urgency[careLevel].intro}
+                            </p>
+                            {forWhom === "child" && (
+                              <p className="mt-3 rounded-xl bg-amber-care-soft/80 px-3.5 py-2.5 text-sm font-medium leading-relaxed text-foreground dark:bg-amber-care/20">
+                                {c.childNote}
+                              </p>
+                            )}
+                          </div>
+
+                          <div>
+                            {careLevel === "low" && selectedSymptom?.selfCareTip ? (
+                              <div className="space-y-4">
+                                <div>
+                                  <h4 className={subHeading}>{c.selfCare}</h4>
+                                  <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">
+                                    {selectedSymptom.selfCareTip}
+                                  </p>
+                                </div>
+                                <div>
+                                  <h4 className={subHeading}>{places.pharmacyFirst}</h4>
+                                  <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">
+                                    {places.pharmacyFirstHint}
+                                  </p>
+                                  {placeLink("pharmacy", places.nearestPharmacy)}
+                                </div>
+                              </div>
+                            ) : careLevel === "low" ? (
+                              renderRoutingStack("pharmacy", places.pharmacyFirst)
+                            ) : careLevel === "high" ? (
+                              renderRoutingStack("hospital", places.hospital)
+                            ) : (
+                              renderRoutingStack("gp", places.familyDoctor)
+                            )}
+                          </div>
+                        </div>
+                      )
+                    )}
+
+                    {selectedSymptom && !isEmergency && careLevel !== "high" && (
+                      <div className="border-t border-border pt-6">
+                        <h3 className={subHeading}>{c.meaning}</h3>
+                        <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+                          {selectedSymptom.guidance || selectedSymptom.description}
+                        </p>
+                        {topicMapping && (
+                          <Link
+                            href={withLangPrefix(`/health-information/${topicMapping.slug}`, activeLang)}
+                            className="group mt-4 flex min-h-12 items-center justify-between gap-3 rounded-xl border border-border-control bg-card px-4 py-2.5 text-base font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+                          >
+                            <span className="min-w-0">
+                              {c.readAbout}: {topicMapping.title}
+                            </span>
+                            <ArrowRightIcon
+                              className="h-4.5 w-4.5 shrink-0 text-sapphire transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:group-hover:translate-x-0.5"
+                              aria-hidden="true"
+                            />
+                          </Link>
+                        )}
+                      </div>
+                    )}
+
+                    {!isEmergency && careLevel === "low" && (
+                      <div className="border-t border-border pt-6">
+                        <h3 className={subHeading}>{c.doctorTitle}</h3>
+                        <p className="mb-3.5 mt-1.5 text-base leading-relaxed text-muted-foreground">
+                          {c.doctorBody}
+                        </p>
+                        {renderRoutingStack()}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Right column: Doctor Summary, Anatomical Pain Diagram, PDF & QR Handoff */}
+                  {/* Desktop: the summary stays in view beside the advice and scrolls on its own when it is taller than the screen. */}
+                  <div className="border-t border-border pt-6 lg:sticky lg:top-[calc(var(--chrome-h)+1rem)] lg:col-span-5 lg:max-h-[calc(100dvh-var(--chrome-h)-2rem)] lg:overflow-y-auto lg:overscroll-contain lg:border-l lg:border-t-0 lg:pl-8 lg:pr-2 lg:pt-0 print:static print:max-h-none print:overflow-visible">
+                    <h3 className={subHeading}>{c.summaryFold}</h3>
                     <TriageSummaryCard
                       bare
-                      bodyArea={`${areaLabel ?? ""}${forWhom === "child" ? ` · ${c.childRow}` : ""}`}
+                      bodyArea={
+                        areaLabel
+                          ? forWhom === "child"
+                            ? `${areaLabel} (${c.childRow.toLowerCase()})`
+                            : areaLabel
+                          : ""
+                      }
                       anatomicalStructure={detailLabel ?? undefined}
                       painLocation={
                         selectedPart
@@ -2698,6 +3057,8 @@ export function HealthCheckExplorer() {
                       romanianRecommendationDetail={romanianRecommendationDetail}
                       reproduceUrl={reproduceUrl}
                       romanianReproduceUrl={romanianReproduceUrl}
+                      noteUrl={noteUrl}
+                      romanianNoteUrl={romanianNoteUrl}
                       doctorNotes={doctorNotes(dict, c.recommendationGiven, c.childRow)}
                       doctorSymptom={allSymptoms.map((s) => s.label || s.title).join("; ") || undefined}
                       romanian={activeLang === "ro" ? undefined : romanianSummary()}
@@ -2705,119 +3066,23 @@ export function HealthCheckExplorer() {
                       onDoctorOpenChange={(open) => (open ? openModal("doctor") : closeModal())}
                       lang={activeLang}
                     />
-                  </details>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5">
+                  <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                    {dict.ui.disclaimer}
+                  </p>
+                  <ResetControl label={dict.ui.resetButton} c={c} onConfirm={handleReset} />
                 </div>
               </div>
-
-              {/* Perforated clinical footnote */}
-              <div className="hc-diag-band hc-diag-band-3 flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-slate-300 bg-[#f2f5f9] px-5 py-3.5 sm:px-6">
-                <p className="text-xs leading-relaxed text-slate-600 sm:text-[13px]">{dict.ui.disclaimer}</p>
-                <ResetControl label={dict.ui.resetButton} c={c} onConfirm={handleReset} prominent />
-              </div>
-            </div>
-          )}
+            )}
+          </div>
           </div>
         </section>
-
-        {/*
-          Action bar: pinned to the bottom of the screen at every size, so Continue is always in
-          reach however long the list above it is. At the end of the list it rests in its own place.
-        */}
-        <div data-sticky-actions className={`sticky bottom-0 z-20 -mx-5 border-t border-border bg-background px-5 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 sm:mx-0 sm:px-0 lg:pb-3 ${stageVisibleInLayout ? "lg:col-span-5 lg:col-start-8" : ""}`}>
-          {/* The answers so far, each one a way back to its question (the step bar is off screen by now). */}
-          {step > 1 && answerTrail.length > 0 && (
-            <ul className="mb-2 hidden flex-wrap items-center gap-1 lg:flex">
-              {answerTrail.map((item) => (
-                <li key={item.step} className="min-w-0">
-                  <button
-                    type="button"
-                    onClick={() => goToStep(item.step)}
-                    aria-label={`${stepTitles[item.step - 1]}: ${item.label}. ${c.change}`}
-                    title={`${stepTitles[item.step - 1]}: ${item.label}`}
-                    className="inline-flex min-h-7 max-w-[13rem] items-center rounded-md border border-border bg-card px-2.5 text-xs font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/40 hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-                  >
-                    <span className="truncate">{item.label}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-          {/* Desktop: the hint on the left, the buttons on the right, so the bar stays one line tall. */}
-          <div className="lg:flex lg:items-center lg:gap-3">
-          <div className="min-w-0 lg:flex-1">
-          {step < 4 && (
-            <p className="mb-2 text-sm leading-snug text-muted-foreground lg:mb-0 lg:line-clamp-2" aria-live="polite">
-              {isEmergency && step > 1 ? (
-                <>
-                  <span className="font-medium text-primary">{dict.ui.urgentBadge}.</span>{" "}
-                  <button
-                    type="button"
-                    onClick={() => goToStep(4)}
-                    className="inline-flex min-h-11 items-center rounded-sm px-1 font-medium text-foreground underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    {dict.ui.finishButton}
-                  </button>
-                </>
-              ) : canContinue ? (
-                <>
-                  {c.chosen}:{" "}
-                  <span className="font-medium text-foreground">
-                    {step === 1
-                      ? (detailLabel ?? areaLabel)
-                      : step === 2
-                        ? selectedSymptom?.title
-                        : `${severity ? dict.severity[severity].title : ""} · ${duration ? dict.duration[duration].label : ""}`}
-                  </span>
-                </>
-              ) : (
-                blockedHint
-              )}
-            </p>
-          )}
-          </div>
-          <div className="flex items-center gap-2 lg:shrink-0">
-            {step > 1 && (
-              <button
-                type="button"
-                onClick={goBack}
-                className="inline-flex min-h-12 shrink-0 items-center justify-center gap-1.5 rounded-lg px-3 text-base font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted"
-              >
-                <ArrowLeftIcon className="h-4 w-4" />
-                {dict.ui.backButton}
-              </button>
-            )}
-            {isEmergency && step > 1 ? (
-              <a
-                href="tel:112"
-                className="inline-flex min-h-12 flex-1 lg:min-w-[9.5rem] lg:flex-none items-center justify-center gap-2 rounded-lg bg-primary px-5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover"
-              >
-                <PhoneIcon className="h-5 w-5" />
-                {dict.ui.emergency.call112Now}
-              </a>
-            ) : step < 4 ? (
-              <button
-                type="button"
-                disabled={!canContinue}
-                onClick={() => goToStep((step + 1) as Step)}
-                className="inline-flex min-h-12 flex-1 lg:min-w-[9.5rem] lg:flex-none items-center justify-center gap-1.5 rounded-lg bg-foreground px-5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 disabled:cursor-not-allowed disabled:bg-border disabled:text-muted-foreground"
-              >
-                {step === 3 ? dict.ui.finishButton : dict.ui.nextButton}
-                <ArrowRightIcon className="h-4 w-4" />
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={() => openModal("doctor")}
-                className="inline-flex min-h-12 flex-1 lg:min-w-[9.5rem] lg:flex-none items-center justify-center rounded-lg bg-foreground px-5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800"
-              >
-                {dict.ui.showDoctor}
-              </button>
-            )}
-          </div>
-          </div>
-        </div>
       </div>
 
+      {/* Emergency 112 Alert Dialog */}
       {showEmergencyOverlay && urgentSymptom && (
         <div className="hc-backdrop fixed inset-0 z-50 flex items-end justify-center bg-black/60 sm:items-center sm:p-4">
           <div
@@ -2826,7 +3091,7 @@ export function HealthCheckExplorer() {
             aria-modal="true"
             aria-labelledby={`${baseId}-em-title`}
             aria-describedby={`${baseId}-em-desc`}
-            className="hc-sheet w-full max-w-lg rounded-t-xl bg-card p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-xl sm:rounded-xl sm:p-7"
+            className="hc-sheet w-full max-w-lg rounded-t-2xl border border-border bg-card p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-xl sm:rounded-2xl sm:p-7"
           >
             <h3 id={`${baseId}-em-title`} className="text-xl font-semibold leading-snug text-foreground">
               {dict.ui.emergency.title}
@@ -2835,18 +3100,23 @@ export function HealthCheckExplorer() {
               {dict.ui.emergency.description}
             </p>
             <p className="mt-3 text-base text-foreground">
-              <span className="font-medium">{dict.ui.emergency.whyEmergencyPrefix}</span> {urgentSymptom.title}
+              <span className="font-semibold text-primary">{dict.ui.emergency.whyEmergencyPrefix}</span>{" "}
+              {urgentSymptom.title}
             </p>
-            <div className="mt-6 grid gap-2 sm:grid-cols-[1fr_auto]">
+            <div className="mt-6 grid gap-2.5 sm:grid-cols-[1fr_auto]">
               <a
                 data-autofocus
                 href="tel:112"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover"
+                className={emergencyButton}
               >
                 <PhoneIcon className="h-5 w-5" />
-                {dict.ui.emergency.call112Now}
+                <span>{dict.ui.emergency.call112Now}</span>
               </a>
-              <button type="button" onClick={closeModal} className={secondaryBtn}>
+              <button
+                type="button"
+                onClick={handleContinueFromEmergencyModal}
+                className={secondaryButton}
+              >
                 {dict.ui.emergency.continueReview}
               </button>
             </div>

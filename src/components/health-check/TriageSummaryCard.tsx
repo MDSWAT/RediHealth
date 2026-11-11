@@ -1,14 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { readPublicOrigin, SERVER_PUBLIC_ORIGIN } from "@/components/health-check/public-origin";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { CheckCircleIcon, CopyIcon } from "@/components/ui/icons";
+import { detectPhonePlatform } from "./phone-platform";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 import { getHealthCheckTranslations, type BodyPartId } from "@/lib/i18n/health-check-translations";
 import { getLocalizedSubRegion, type SubRegionId } from "./anatomy-3d-data";
 import { renderClinicalQrSvgData } from "./clinical-qr-svg";
+import { COPY as HC_COPY } from "./health-check-copy";
 import { PAIN_DIAGRAM_COPY, buildPainAreaDiagramSvg, type PainDiagramSide } from "./pain-area-diagram";
+import { buildFallbackTriageNoteUrl } from "./triage-permalink";
 import { useDialogFocus } from "./useDialogFocus";
 import { printSummary } from "./printSummary";
 
@@ -45,6 +49,10 @@ export interface TriageSummaryCardProps {
   reproduceUrl?: string;
   /** Romanian route equivalent of `reproduceUrl` when the doctor switches to Romanian. */
   romanianReproduceUrl?: string;
+  /** Dedicated distraction-free clinical note URL encoded into the QR code for instant iPhone and Android scanning. */
+  noteUrl?: string;
+  /** Romanian route equivalent of `noteUrl` when the doctor switches to Romanian. */
+  romanianNoteUrl?: string;
   /** Extra lines for the doctor screen: care level, guidance, emergency reason. */
   doctorNotes?: string[];
   /** Clinical wording of the symptom for the doctor screen (the page shows the patient's words). */
@@ -54,10 +62,12 @@ export interface TriageSummaryCardProps {
   /** Controlled doctor screen (the page's action bar opens it). */
   doctorOpen?: boolean;
   onDoctorOpenChange?: (open: boolean) => void;
-  /** Inside a fold that already draws the divider and heading spacing. */
+  /** Inside a fold or parent card that already draws the outer border and card surface. */
   bare?: boolean;
   className?: string;
   lang?: Lang;
+  /** Optional note timestamp (used when restoring a saved/scanned clinical note). */
+  date?: Date;
 }
 
 function useSafeLanguage(propLang?: Lang): Lang {
@@ -91,7 +101,7 @@ const CROATIAN_MONTHS = [
 ];
 
 /** Long date in the page language; some browsers ship without Albanian or Croatian date data, and Romani falls back cleanly to ro-RO. */
-function formatDate(date: Date, lang: Lang): string {
+export function formatTriageSummaryDate(date: Date, lang: Lang): string {
   const locale = LOCALE_DATE_MAP[lang] || "ro-RO";
   try {
     const supported = Intl.DateTimeFormat.supportedLocalesOf([locale]);
@@ -108,32 +118,34 @@ function formatDate(date: Date, lang: Lang): string {
   }
 }
 
-const COPY: Record<
-  Lang,
-  {
-    title: string;
-    structure: string;
-    sensation: string;
-    triggers: string;
-    specialty: string;
-    redFlag: string;
-    noRedFlag: string;
-    copy: string;
-    copied: string;
-    copyFailed: string;
-    whatsapp: string;
-    screenFor: string;
-    patientSummary: string;
-    close: string;
-    inRomanian: string;
-    inOwnLanguage: string;
-    myLanguageTab: string;
-    romanianTab: string;
-    qrTitle: string;
-    qrHint: string;
-    savePdf: string;
-  }
-> = {
+const formatDate = formatTriageSummaryDate;
+
+export interface SummaryCardCopy {
+  title: string;
+  structure: string;
+  sensation: string;
+  triggers: string;
+  specialty: string;
+  redFlag: string;
+  noRedFlag: string;
+  copy: string;
+  copied: string;
+  copyFailed: string;
+  savedNote: string;
+  whatsapp: string;
+  screenFor: string;
+  patientSummary: string;
+  close: string;
+  inRomanian: string;
+  inOwnLanguage: string;
+  myLanguageTab: string;
+  romanianTab: string;
+  qrTitle: string;
+  qrHint: string;
+  savePdf: string;
+}
+
+export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
   ro: {
     title: "Rezumatul simptomelor, RediHealth",
     structure: "Punct ales pe corp",
@@ -142,9 +154,10 @@ const COPY: Record<
     specialty: "Medic specialist sugerat",
     redFlag: "Atenție: a fost ales un semn de urgență.",
     noRedFlag: "Nu a fost ales niciun semn de urgență.",
-    copy: "Copiază",
+    copy: "Copiază în notițe",
     copied: "Copiat",
     copyFailed: "Nu s-a putut copia. Arată ecranul medicului.",
+    savedNote: "Notă pregătită",
     whatsapp: "WhatsApp",
     screenFor: "Pentru medic",
     patientSummary: "Simptomele pacientului",
@@ -153,8 +166,8 @@ const COPY: Record<
     inOwnLanguage: "Arată în limba mea",
     myLanguageTab: "În limba mea",
     romanianTab: "În română",
-    qrTitle: "Cod QR pentru redeschiderea rezultatului",
-    qrHint: "Scanează codul QR cu camera telefonului pentru a reproduce acest rezultat și a-l arăta medicului.",
+    qrTitle: "Cod QR offline pentru notițe și medic",
+    qrHint: "Pe Android (Samsung), camera oferă direct „Adăugare în notițe”. Pe iPhone, atinge pictograma Live Text din colțul camerei ca să trimiți în Notițe, fără internet.",
     savePdf: "Salvează PDF",
   },
   en: {
@@ -165,9 +178,10 @@ const COPY: Record<
     specialty: "Suggested specialty",
     redFlag: "Warning: an emergency sign was chosen.",
     noRedFlag: "No emergency sign was chosen.",
-    copy: "Copy",
+    copy: "Copy to notes",
     copied: "Copied",
     copyFailed: "Could not copy. Show the screen to the doctor instead.",
+    savedNote: "Note ready",
     whatsapp: "WhatsApp",
     screenFor: "For the doctor",
     patientSummary: "Patient's symptoms",
@@ -176,8 +190,8 @@ const COPY: Record<
     inOwnLanguage: "Show in English",
     myLanguageTab: "In my language",
     romanianTab: "În română",
-    qrTitle: "QR code to reopen this result",
-    qrHint: "Scan this QR code with a phone camera to reproduce this exact result for your doctor.",
+    qrTitle: "Offline QR code for notes and doctor",
+    qrHint: "On Android (Samsung), the camera offers “Add to note” directly. On iPhone, tap the Live Text icon in the camera corner to send to Notes, completely offline.",
     savePdf: "Save as PDF",
   },
   sq: {
@@ -188,9 +202,10 @@ const COPY: Record<
     specialty: "Specialiteti i sugjeruar",
     redFlag: "Kujdes: u zgjodh një shenjë urgjence.",
     noRedFlag: "Nuk u zgjodh asnjë shenjë urgjence.",
-    copy: "Kopjo",
+    copy: "Kopjo te shënimet",
     copied: "U kopjua",
     copyFailed: "Nuk u kopjua. Tregoja mjekut ekranin.",
+    savedNote: "Shënimi gati",
     whatsapp: "WhatsApp",
     screenFor: "Për mjekun",
     patientSummary: "Simptomat e pacientit",
@@ -199,8 +214,8 @@ const COPY: Record<
     inOwnLanguage: "Shfaq në shqip",
     myLanguageTab: "Në gjuhën time",
     romanianTab: "În română",
-    qrTitle: "Kod QR për të rihapur rezultatin",
-    qrHint: "Skano këtë kod QR me kamerën e telefonit për të riprodhuar këtë rezultat për mjekun.",
+    qrTitle: "Kod QR offline për shënime dhe mjekun",
+    qrHint: "Skano këtë kod QR me kamerën e iPhone ose Android për ta shtuar përmbledhjen direkt në shënime, krejtësisht pa internet.",
     savePdf: "Ruaje si PDF",
   },
   it: {
@@ -211,9 +226,10 @@ const COPY: Record<
     specialty: "Specialità suggerita",
     redFlag: "Attenzione: è stato scelto un segno di emergenza.",
     noRedFlag: "Non è stato scelto nessun segno di emergenza.",
-    copy: "Copia",
+    copy: "Copia nelle note",
     copied: "Copiato",
     copyFailed: "Copia non riuscita. Mostra lo schermo al medico.",
+    savedNote: "Nota pronta",
     whatsapp: "WhatsApp",
     screenFor: "Per il medico",
     patientSummary: "Sintomi del paziente",
@@ -222,8 +238,8 @@ const COPY: Record<
     inOwnLanguage: "Mostra in italiano",
     myLanguageTab: "Nella mia lingua",
     romanianTab: "În română",
-    qrTitle: "Codice QR per riaprire il risultato",
-    qrHint: "Scansiona questo codice QR con la fotocamera del telefono per riprodurre il risultato per il medico.",
+    qrTitle: "Codice QR offline per note e medico",
+    qrHint: "Scansiona questo codice QR con la fotocamera di iPhone o Android per aggiungere il riepilogo direttamente nelle note, completamente senza internet.",
     savePdf: "Salva come PDF",
   },
   hr: {
@@ -234,9 +250,10 @@ const COPY: Record<
     specialty: "Predložena specijalnost",
     redFlag: "Upozorenje: odabran je znak hitnog stanja.",
     noRedFlag: "Nije odabran nijedan znak hitnog stanja.",
-    copy: "Kopiraj",
+    copy: "Kopiraj u bilješke",
     copied: "Kopirano",
     copyFailed: "Kopiranje nije uspjelo. Pokaži zaslon liječniku.",
+    savedNote: "Bilješka spremna",
     whatsapp: "WhatsApp",
     screenFor: "Za liječnika",
     patientSummary: "Simptomi pacijenta",
@@ -245,8 +262,8 @@ const COPY: Record<
     inOwnLanguage: "Prikaži na hrvatskom",
     myLanguageTab: "Na mom jeziku",
     romanianTab: "În română",
-    qrTitle: "QR kod za ponovno otvaranje rezultata",
-    qrHint: "Skeniraj ovaj QR kod kamerom telefona kako bi ponovno otvorio ovaj rezultat za liječnika.",
+    qrTitle: "Offline QR kod za bilješke i liječnika",
+    qrHint: "Skeniraj ovaj QR kod kamerom na iPhoneu ili Androidu za dodavanje sažetka izravno u bilješke, potpuno bez interneta.",
     savePdf: "Spremi kao PDF",
   },
   rom: {
@@ -257,9 +274,10 @@ const COPY: Record<
     specialty: "Doktori specialistikano",
     redFlag: "Sama: sas alosardo jekh sigardiari znako.",
     noRedFlag: "Na sas alosardo nijekh sigardiari znako.",
-    copy: "Kopijisar",
+    copy: "Kopijisar and-e lila",
     copied: "Kopijime",
     copyFailed: "Nashti kopijisardilo. Sikav o ekrano le doktoreske.",
+    savedNote: "O lil si gata",
     whatsapp: "WhatsApp",
     screenFor: "Vash o doktori",
     patientSummary: "Simptome e pacientoske",
@@ -268,11 +286,13 @@ const COPY: Record<
     inOwnLanguage: "Sikav pe romani chib",
     myLanguageTab: "Pe miri chib",
     romanianTab: "În română",
-    qrTitle: "QR kodo te putares palpale o rezultato",
-    qrHint: "Skanisar kadava QR kodo le telefonoske kamerasa te sikaves kadava rezultato le doktoreske.",
+    qrTitle: "Offline QR kodo vash o notitse thaj o doktori",
+    qrHint: "Skanisar kadava QR kodo le telefonoska kamerasa (iPhone vaj Android) te thos o xarno lil direktno ande notitse, bi internetosko.",
     savePdf: "Arakh sar PDF",
   },
 };
+
+const COPY = SUMMARY_COPY;
 
 export function TriageSummaryCard({
   bodyArea,
@@ -291,6 +311,8 @@ export function TriageSummaryCard({
   romanianRecommendationDetail,
   reproduceUrl,
   romanianReproduceUrl,
+  noteUrl,
+  romanianNoteUrl,
   doctorNotes = [],
   doctorSymptom,
   romanian,
@@ -299,12 +321,18 @@ export function TriageSummaryCard({
   bare = false,
   className = "",
   lang,
+  date,
 }: TriageSummaryCardProps) {
   const activeLang = useSafeLanguage(lang);
   const dict = getHealthCheckTranslations(activeLang);
   const t = COPY[activeLang] ?? COPY.ro;
+  const originUrl = useSyncExternalStore(
+    () => () => {},
+    readPublicOrigin,
+    () => SERVER_PUBLIC_ORIGIN,
+  );
 
-  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "saved" | "failed">("idle");
   const [internalOpen, setInternalOpen] = useState(false);
   const [showRomanian, setShowRomanian] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -325,7 +353,16 @@ export function TriageSummaryCard({
   };
   useDialogFocus(dialogRef, open, () => setOpen(false));
 
-  const currentDate = formatDate(new Date(), activeLang);
+  const effectiveDate = useMemo(() => date ?? new Date(), [date]);
+  const currentDate = formatDate(effectiveDate, activeLang);
+  const romanianDate = formatDate(effectiveDate, "ro");
+  const todayIso = useMemo(() => {
+    const y = effectiveDate.getFullYear();
+    const m = String(effectiveDate.getMonth() + 1).padStart(2, "0");
+    const d = String(effectiveDate.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  }, [effectiveDate]);
+
   const warningNotice = redFlagNoticed ? t.redFlag : t.noRedFlag;
 
   const rows: SummaryRow[] = [
@@ -353,8 +390,10 @@ export function TriageSummaryCard({
     ...extraRecLine,
     ...doctorNotes,
     warningNotice,
-    ...(reproduceUrl ? [reproduceUrl] : []),
+    ...(noteUrl || reproduceUrl ? [noteUrl ?? reproduceUrl ?? ""] : []),
   ].join("\n");
+
+  const copyDone = copyState === "copied" || copyState === "saved";
 
   /** Clipboard API first; old WebViews and locked-down browsers fall back to a hidden textarea. */
   function legacyCopy(text: string): boolean {
@@ -375,34 +414,74 @@ export function TriageSummaryCard({
     return ok;
   }
 
-  async function handleCopy() {
-    let ok = false;
+  async function copyText(text: string): Promise<boolean> {
     try {
-      await navigator.clipboard.writeText(formattedSummary);
-      ok = true;
+      await navigator.clipboard.writeText(text);
+      return true;
     } catch {
-      ok = legacyCopy(formattedSummary);
+      return legacyCopy(text);
     }
-    setCopyState(ok ? "copied" : "failed");
-    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
-    copyTimerRef.current = setTimeout(() => setCopyState("idle"), 3000);
   }
+
+  const useRomanianInDialog = Boolean(showRomanian && romanian);
+  const ownScreenRows = doctorSymptom
+    ? rows.map((r) => (r.label === dict.ui.symptomLabel ? { ...r, value: doctorSymptom } : r))
+    : rows;
+  const screenRows = useRomanianInDialog && romanian ? romanian.rows : ownScreenRows;
+  const screenNotes = useRomanianInDialog && romanian ? romanian.notes : doctorNotes;
+  const activeDialogLang: Lang = useRomanianInDialog ? "ro" : activeLang;
+  const activeDialogCopy = useRomanianInDialog ? COPY.ro : t;
+  const activeDialogDate = useRomanianInDialog ? romanianDate : currentDate;
+  const activeRecommendationDetail = useRomanianInDialog
+    ? (romanianRecommendationDetail ?? recommendationDetail)
+    : recommendationDetail;
+  const activeReproduceUrl = useRomanianInDialog ? (romanianReproduceUrl ?? reproduceUrl) : reproduceUrl;
+  const activeNoteUrl = useRomanianInDialog ? (romanianNoteUrl ?? noteUrl) : noteUrl;
 
   function handleWhatsApp() {
     window.open(`https://wa.me/?text=${encodeURIComponent(formattedSummary)}`, "_blank", "noopener,noreferrer");
   }
 
-  const ownScreenRows = doctorSymptom
-    ? rows.map((r) => (r.label === dict.ui.symptomLabel ? { ...r, value: doctorSymptom } : r))
-    : rows;
-  const screenRows = showRomanian && romanian ? romanian.rows : ownScreenRows;
-  const screenNotes = showRomanian && romanian ? romanian.notes : doctorNotes;
-  const activeDialogLang: Lang = showRomanian ? "ro" : activeLang;
-  const activeDialogCopy = showRomanian ? COPY.ro : t;
-  const activeRecommendationDetail = showRomanian
-    ? (romanianRecommendationDetail ?? recommendationDetail)
-    : recommendationDetail;
-  const activeReproduceUrl = showRomanian ? (romanianReproduceUrl ?? reproduceUrl) : reproduceUrl;
+  /**
+   * "Copy to notes": the note goes on the clipboard, and on an iPhone or Android phone the
+   * system share sheet opens as well, where Notes, Keep or Samsung Notes saves it in one tap.
+   * A computer only copies. Both calls start inside the tap, before anything is awaited:
+   * Safari refuses a share that begins after the tap has ended.
+   */
+  async function handleCopyToNotes(forDialog = false) {
+    const copy = forDialog ? activeDialogCopy : t;
+    const dateLabel = forDialog ? activeDialogDate : currentDate;
+    const targetRows = forDialog ? screenRows : ownScreenRows;
+    const targetNotes =
+      forDialog && useRomanianInDialog ? screenNotes : [...extraRecLine, ...doctorNotes];
+    const statusLine = redFlagNoticed ? copy.redFlag : copy.noRedFlag;
+    const shareLink = forDialog ? (activeNoteUrl ?? activeReproduceUrl) : (noteUrl ?? reproduceUrl);
+    const noteBody = [
+      `${copy.title} (${dateLabel})`,
+      "",
+      ...targetRows.map((r) => `${r.label}: ${r.value}`),
+      ...(targetNotes.length > 0 ? ["", ...targetNotes] : []),
+      "",
+      statusLine,
+      ...(shareLink ? ["", shareLink] : []),
+    ].join("\n");
+
+    const copying = copyText(noteBody);
+    let shared = false;
+    if (detectPhonePlatform() && typeof navigator.share === "function") {
+      try {
+        // No separate `url` field: with one, Apple Notes saves a link bookmark instead of the text.
+        await navigator.share({ title: copy.patientSummary, text: noteBody });
+        shared = true;
+      } catch {
+        // Share sheet closed or refused: the note is still on the clipboard.
+      }
+    }
+    const copied = await copying;
+    setCopyState(shared ? "saved" : copied ? "copied" : "failed");
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+    copyTimerRef.current = setTimeout(() => setCopyState("idle"), 3000);
+  }
 
   const inlinePainDiagramSvg = useMemo(
     () =>
@@ -415,7 +494,7 @@ export function TriageSummaryCard({
             lang: activeLang,
           })
         : null,
-    [activeLang, painLocation, redFlagNoticed]
+    [activeLang, painLocation, redFlagNoticed],
   );
 
   const dialogPainDiagramSvg = useMemo(
@@ -429,41 +508,78 @@ export function TriageSummaryCard({
             lang: activeDialogLang,
           })
         : null,
-    [activeDialogLang, painLocation, redFlagNoticed]
+    [activeDialogLang, painLocation, redFlagNoticed],
   );
 
+  const dialogSecondaryLocation = useMemo(() => {
+    if (painLocation?.subRegion) {
+      const hc = HC_COPY[activeDialogLang] ?? HC_COPY.ro;
+      const base = getLocalizedSubRegion(painLocation.subRegion, activeDialogLang).label;
+      if (painLocation.side === "Left") return `${base}, ${hc.left}`;
+      if (painLocation.side === "Right") return `${base}, ${hc.right}`;
+      return base;
+    }
+    return useRomanianInDialog ? undefined : anatomicalStructure;
+  }, [activeDialogLang, anatomicalStructure, painLocation, useRomanianInDialog]);
+
   const inlineQrPayload = useMemo(() => {
-    if (reproduceUrl) return reproduceUrl;
-    const header = `${t.title} (${currentDate})`;
-    const bodyLines = ownScreenRows.map((r) => `${r.label}: ${r.value}`);
-    return [header, ...bodyLines, ...extraRecLine, ...doctorNotes, warningNotice].join("\n");
-  }, [currentDate, doctorNotes, extraRecLine, ownScreenRows, reproduceUrl, t.title, warningNotice]);
+    const copy = t;
+    const targetRows = ownScreenRows;
+    const targetNotes = [...extraRecLine, ...doctorNotes];
+    const statusLine = redFlagNoticed ? copy.redFlag : copy.noRedFlag;
+    return [
+      `${copy.title} (${currentDate})`,
+      ...targetRows.map((r) => `${r.label}: ${r.value}`),
+      ...targetNotes,
+      statusLine,
+    ].join("\n");
+  }, [currentDate, doctorNotes, extraRecLine, ownScreenRows, redFlagNoticed, t]);
 
   const dialogQrPayload = useMemo(() => {
-    if (activeReproduceUrl) return activeReproduceUrl;
-    const header = `${activeDialogCopy.title} (${showRomanian ? formatDate(new Date(), "ro") : currentDate})`;
-    const bodyLines = screenRows.map((r) => `${r.label}: ${r.value}`);
-    const statusLine = redFlagNoticed ? activeDialogCopy.redFlag : activeDialogCopy.noRedFlag;
-    return [header, ...bodyLines, ...screenNotes, statusLine].join("\n");
-  }, [activeDialogCopy, activeReproduceUrl, currentDate, redFlagNoticed, screenNotes, screenRows, showRomanian]);
+    const copy = activeDialogCopy;
+    const targetRows = screenRows;
+    const targetNotes = useRomanianInDialog ? screenNotes : [...extraRecLine, ...doctorNotes];
+    const statusLine = redFlagNoticed ? copy.redFlag : copy.noRedFlag;
+    return [
+      `${copy.title} (${activeDialogDate})`,
+      ...targetRows.map((r) => `${r.label}: ${r.value}`),
+      ...targetNotes,
+      statusLine,
+    ].join("\n");
+  }, [
+    activeDialogCopy,
+    activeDialogDate,
+    doctorNotes,
+    extraRecLine,
+    redFlagNoticed,
+    screenNotes,
+    screenRows,
+    useRomanianInDialog,
+  ]);
 
-  const inlineQrSvg = useMemo(() => renderClinicalQrSvgData(inlineQrPayload, 2), [inlineQrPayload]);
-  const qrSvg = useMemo(() => renderClinicalQrSvgData(dialogQrPayload, 2), [dialogQrPayload]);
+  const inlineQrSvg = useMemo(() => renderClinicalQrSvgData(inlineQrPayload, 4), [inlineQrPayload]);
+  const qrSvg = useMemo(() => renderClinicalQrSvgData(dialogQrPayload, 4), [dialogQrPayload]);
 
   /** "Save as PDF": print the clinical summary with its anatomical pain diagram and vector QR handoff. */
   function handlePrint() {
     const printLang: Lang = showRomanian ? "ro" : activeLang;
-    const copy = showRomanian ? COPY.ro : t;
-    const date = showRomanian ? formatDate(new Date(), "ro") : currentDate;
+    const copy = printLang === "ro" ? COPY.ro : t;
+    const dateLabel = printLang === "ro" ? romanianDate : currentDate;
     const printDict = getHealthCheckTranslations(printLang);
     const painCopy = PAIN_DIAGRAM_COPY[printLang] ?? PAIN_DIAGRAM_COPY.ro;
+    const hcCopy = HC_COPY[printLang] ?? HC_COPY.ro;
     const printPrimaryLoc = painLocation ? printDict.bodyParts[painLocation.part].title : bodyArea;
-    const printSecondaryLoc =
-      painLocation?.subRegion
-        ? getLocalizedSubRegion(painLocation.subRegion, printLang).label
-        : showRomanian
-          ? undefined
-          : anatomicalStructure;
+    const printSecondaryLoc = painLocation?.subRegion
+      ? `${getLocalizedSubRegion(painLocation.subRegion, printLang).label}${
+          painLocation.side === "Left"
+            ? `, ${hcCopy.left}`
+            : painLocation.side === "Right"
+              ? `, ${hcCopy.right}`
+              : ""
+        }`
+      : showRomanian
+        ? undefined
+        : anatomicalStructure;
     const printDiagramSvg = painLocation
       ? buildPainAreaDiagramSvg({
           part: painLocation.part,
@@ -473,13 +589,18 @@ export function TriageSummaryCard({
           lang: printLang,
         })
       : undefined;
+    const printRows = showRomanian && romanian ? romanian.rows : ownScreenRows;
+    const printNotes = showRomanian && romanian ? romanian.notes : [...extraRecLine, ...doctorNotes];
+    const printQr = showRomanian ? qrSvg : inlineQrSvg;
+    const printRecDetail =
+      printLang === "ro" ? (romanianRecommendationDetail ?? recommendationDetail) : recommendationDetail;
 
     printSummary({
       lang: printLang,
-      meta: `${copy.screenFor} · ${date}`,
+      meta: `${copy.screenFor} — ${dateLabel}`,
       title: copy.patientSummary,
-      rows: screenRows,
-      notes: screenNotes,
+      rows: printRows,
+      notes: printNotes,
       status: redFlagNoticed ? copy.redFlag : copy.noRedFlag,
       urgent: redFlagNoticed,
       painDiagram:
@@ -492,57 +613,71 @@ export function TriageSummaryCard({
             }
           : undefined,
       qr: {
-        size: qrSvg.size,
-        path: qrSvg.path,
+        size: printQr.size,
+        path: printQr.path,
         title: copy.qrTitle,
-        detail: activeRecommendationDetail,
+        detail: printRecDetail,
         hint: copy.qrHint,
       },
       footer: printDict.ui.disclaimer,
-      fileName: `${copy.patientSummary} - ${new Date().toISOString().slice(0, 10)}`,
+      fileName: `${copy.patientSummary} - ${todayIso}`,
     });
   }
 
-  const secondaryBtn =
-    "inline-flex min-h-11 flex-1 min-w-[7.5rem] items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-slate-300/90 bg-white px-3.5 text-sm font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/45 hover:bg-[#f6f8fb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire";
+  const surfaceClass = bare
+    ? "rounded-2xl bg-surface-subtle/60"
+    : "rounded-2xl border border-border bg-card";
+
+  const focusRing =
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2";
+
+  const primaryActionBtn = `inline-flex min-h-11 flex-1 min-w-[9rem] items-center justify-center whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light ${focusRing}`;
+
+  const secondaryBtn = `inline-flex min-h-11 flex-1 min-w-[7.5rem] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 ${focusRing}`;
+
+  const activeFeedbackBtn = `inline-flex min-h-11 flex-1 min-w-[7.5rem] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-sapphire bg-sapphire-soft px-3.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${focusRing}`;
+
+  const modalSecondaryBtn = `inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 ${focusRing}`;
+
+  const modalActiveFeedbackBtn = `inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-sapphire bg-sapphire-soft px-3.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${focusRing}`;
 
   return (
     <section className={`select-text ${bare ? "pt-2.5" : "border-t border-border pt-6"} ${className}`}>
       {bare ? (
-        <p className="font-mono text-xs font-medium text-slate-500 tabular-nums">{currentDate}</p>
+        <p className="text-xs font-medium text-muted-foreground tabular-nums">{currentDate}</p>
       ) : (
         <div className="flex items-baseline justify-between gap-4">
           <h3 className="text-base font-semibold text-foreground">{dict.ui.summaryHeading}</h3>
-          <span className="font-mono text-xs text-slate-500 tabular-nums">{currentDate}</span>
+          <span className="text-xs font-medium text-muted-foreground tabular-nums">{currentDate}</span>
         </div>
       )}
 
       {inlinePainDiagramSvg && painLocation && (
-        <div className="mt-2.5 flex items-center gap-3.5 rounded-lg border border-slate-200/95 bg-white p-3">
+        <div className={`mt-3 flex items-center gap-3.5 ${surfaceClass} p-4`}>
           <div
             className="w-28 shrink-0 [&_svg]:h-auto [&_svg]:w-full"
             dangerouslySetInnerHTML={{ __html: inlinePainDiagramSvg }}
           />
           <div className="min-w-0">
-            <p className="text-xs font-semibold text-slate-500">
+            <p className="text-xs font-medium text-muted-foreground">
               {(PAIN_DIAGRAM_COPY[activeLang] ?? PAIN_DIAGRAM_COPY.ro).heading}
             </p>
-            <p className="mt-0.5 text-[15px] font-semibold leading-snug text-obsidian-navy">{bodyArea}</p>
+            <p className="mt-0.5 text-[15px] font-semibold leading-snug text-foreground">{bodyArea}</p>
             {anatomicalStructure && (
-              <p className="mt-0.5 text-[13px] font-medium text-slate-600">{anatomicalStructure}</p>
+              <p className="mt-0.5 text-[13px] font-medium text-muted-foreground">{anatomicalStructure}</p>
             )}
           </div>
         </div>
       )}
 
-      <dl className="mt-2.5 select-text divide-y divide-slate-200/85 overflow-hidden rounded-lg border border-slate-200/95 bg-white">
+      <dl className={`mt-3 select-text divide-y divide-border overflow-hidden ${surfaceClass} tabular-nums`}>
         {rows.map((row) => (
           <div
             key={row.label}
-            className="grid grid-cols-[minmax(7rem,38%)_1fr] items-baseline gap-3 px-3.5 py-2.5 odd:bg-white even:bg-[#f7f8fa]"
+            className="grid grid-cols-[minmax(7rem,38%)_1fr] items-baseline gap-3 px-4 py-3 even:bg-surface-subtle/45"
           >
-            <dt className="text-[13px] font-medium text-slate-500">{row.label}</dt>
-            <dd className="text-[15px] font-semibold leading-snug text-obsidian-navy">{row.value}</dd>
+            <dt className="text-[13px] font-medium text-muted-foreground">{row.label}</dt>
+            <dd className="text-[15px] font-semibold leading-snug text-foreground">{row.value}</dd>
           </div>
         ))}
       </dl>
@@ -563,52 +698,44 @@ export function TriageSummaryCard({
       )}
 
       {inlineQrSvg.size > 0 && (
-        <div className="mt-3.5 flex items-center gap-3.5 rounded-lg border border-slate-200/95 bg-white p-3">
-          <div className="shrink-0 rounded-md border border-slate-200 bg-white p-1.5">
+        <div className={`mt-3.5 flex items-center gap-3.5 ${surfaceClass} p-4`}>
+          <div className="shrink-0 rounded-xl border border-border bg-white p-2">
             <svg
               viewBox={`0 0 ${inlineQrSvg.size} ${inlineQrSvg.size}`}
               shapeRendering="crispEdges"
               role="img"
               aria-label={t.qrTitle}
-              className="h-20 w-20 text-obsidian-navy"
+              className="h-20 w-20"
             >
               <rect width={inlineQrSvg.size} height={inlineQrSvg.size} fill="#ffffff" />
               <path d={inlineQrSvg.path} fill="#0b132b" />
             </svg>
           </div>
           <div className="min-w-0">
-            <p className="text-xs font-semibold text-obsidian-navy">{t.qrTitle}</p>
+            <p className="text-xs font-semibold text-foreground sm:text-sm">{t.qrTitle}</p>
             {recommendationDetail && (
-              <p className="mt-1 border-l-2 border-sapphire bg-[#f4f7fb] px-2 py-1 text-xs font-semibold leading-snug text-obsidian-navy">
+              <p className="mt-1.5 rounded-xl bg-sapphire-soft/65 px-2.5 py-1.5 text-xs font-semibold leading-snug text-foreground dark:bg-sapphire/15">
                 {recommendationDetail}
               </p>
             )}
-            <p className="mt-1 text-xs leading-relaxed text-slate-500">{t.qrHint}</p>
+            <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{t.qrHint}</p>
           </div>
         </div>
       )}
 
-      <div className="mt-3.5 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-2 print:hidden">
         {!isControlled && (
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="inline-flex min-h-11 flex-1 min-w-[9rem] items-center justify-center whitespace-nowrap rounded-lg bg-obsidian-navy px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-          >
+          <button type="button" onClick={() => setOpen(true)} className={primaryActionBtn}>
             {dict.ui.showDoctor}
           </button>
         )}
         <button
           type="button"
-          onClick={handleCopy}
-          className={
-            copyState === "copied"
-              ? "inline-flex min-h-11 flex-1 min-w-[7.5rem] items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-obsidian-navy bg-obsidian-navy px-3.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-              : secondaryBtn
-          }
+          onClick={() => void handleCopyToNotes(false)}
+          className={copyDone ? activeFeedbackBtn : secondaryBtn}
         >
-          {copyState === "copied" ? <CheckCircleIcon className="h-4 w-4 shrink-0" /> : <CopyIcon className="h-4 w-4 shrink-0" />}
-          <span>{copyState === "copied" ? t.copied : t.copy}</span>
+          {copyDone ? <CheckCircleIcon className="h-4 w-4 shrink-0" /> : <CopyIcon className="h-4 w-4 shrink-0" />}
+          <span>{copyState === "saved" ? t.savedNote : copyState === "copied" ? t.copied : t.copy}</span>
         </button>
         <button type="button" onClick={handlePrint} className={secondaryBtn}>
           {t.savePdf}
@@ -623,66 +750,72 @@ export function TriageSummaryCard({
         </p>
       )}
 
-      {open && typeof document !== "undefined" && createPortal(
-        <div className="hc-backdrop fixed inset-0 z-50 flex items-stretch justify-center bg-black/60 print:static print:bg-white print:p-0 sm:items-center sm:p-4">
-          <div
-            ref={dialogRef}
-            role="dialog"
-            aria-modal="true"
-            aria-label={t.patientSummary}
-            className="hc-sheet relative flex w-full max-w-xl flex-col overflow-hidden bg-card print:max-h-none print:overflow-visible print:shadow-none sm:max-h-[90vh] sm:rounded-xl sm:shadow-xl"
-          >
-            <div aria-hidden="true" className={`h-[3px] w-full shrink-0 ${redFlagNoticed ? "bg-primary" : "bg-sapphire"}`} />
+      {open &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div className="hc-backdrop fixed inset-0 z-50 flex items-stretch justify-center bg-ink-950/60 print:static print:bg-transparent print:p-0 sm:items-center sm:p-4">
+            <div
+              ref={dialogRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label={activeDialogCopy.patientSummary}
+              className="hc-sheet relative flex w-full max-w-xl flex-col overflow-hidden border border-border bg-card print:max-h-none print:overflow-visible print:shadow-none sm:max-h-[90vh] sm:rounded-2xl sm:shadow-xl"
+            >
+              <div
+                aria-hidden="true"
+                className={`h-[3px] w-full shrink-0 ${redFlagNoticed ? "bg-primary" : "bg-sapphire"}`}
+              />
 
-            {activeLang !== "ro" && romanian && (
-              <div className="shrink-0 border-b border-border bg-card px-5 py-3 print:hidden sm:px-6">
-                <div
-                  role="group"
-                  aria-label={t.screenFor}
-                  className="grid grid-cols-2 gap-1 rounded-lg bg-muted p-1"
-                >
-                  <button
-                    type="button"
-                    aria-pressed={!showRomanian}
-                    onClick={() => setShowRomanian(false)}
-                    className={`min-h-11 rounded-md px-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                      !showRomanian
-                        ? "bg-card text-sapphire shadow-xs"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
+              {activeLang !== "ro" && romanian && (
+                <div className="shrink-0 border-b border-border bg-card px-5 py-3 print:hidden sm:px-6">
+                  <div
+                    role="group"
+                    aria-label={t.screenFor}
+                    className="grid grid-cols-2 gap-1 rounded-xl bg-muted p-1"
                   >
-                    {t.myLanguageTab}
-                  </button>
-                  <button
-                    type="button"
-                    aria-pressed={showRomanian}
-                    onClick={() => setShowRomanian(true)}
-                    className={`min-h-11 rounded-md px-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                      showRomanian
-                        ? "bg-card text-sapphire shadow-xs"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {t.romanianTab}
-                  </button>
+                    <button
+                      type="button"
+                      aria-pressed={!showRomanian}
+                      onClick={() => setShowRomanian(false)}
+                      className={`min-h-11 rounded-lg px-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                        !showRomanian
+                          ? "bg-card text-sapphire shadow-2xs"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {t.myLanguageTab}
+                    </button>
+                    <button
+                      type="button"
+                      aria-pressed={showRomanian}
+                      onClick={() => setShowRomanian(true)}
+                      className={`min-h-11 rounded-lg px-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                        showRomanian
+                          ? "bg-card text-sapphire shadow-2xs"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {t.romanianTab}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            <div className="flex-1 overflow-y-auto p-5 print:overflow-visible print:p-0 sm:p-6">
-              <div lang={showRomanian ? "ro" : activeLang} className="select-text rounded-xl border border-sapphire-border/75 bg-[#f4f7fb] p-4 sm:p-5">
-                <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-sapphire-border/60 pb-3">
+              <div
+                lang={activeDialogLang}
+                className="flex-1 select-text overflow-y-auto p-5 print:overflow-visible print:p-0 sm:p-6"
+              >
+                <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-3.5">
                   <h3 className="text-xl font-semibold text-foreground sm:text-2xl">
-                    {showRomanian ? COPY.ro.patientSummary : t.patientSummary}
+                    {activeDialogCopy.patientSummary}
                   </h3>
                   <p className="text-xs font-medium text-muted-foreground tabular-nums sm:text-sm">
-                    {showRomanian ? COPY.ro.screenFor : t.screenFor} ·{" "}
-                    {showRomanian ? formatDate(new Date(), "ro") : currentDate}
+                    {activeDialogCopy.screenFor} — {activeDialogDate}
                   </p>
                 </div>
 
                 {dialogPainDiagramSvg && painLocation && (
-                  <div className="mt-4 flex items-center gap-4 rounded-lg border border-sapphire-border/65 bg-white p-3.5">
+                  <div className="mt-4 flex items-center gap-4 rounded-2xl bg-surface-subtle/65 p-4">
                     <div
                       className="w-32 shrink-0 [&_svg]:h-auto [&_svg]:w-full"
                       dangerouslySetInnerHTML={{ __html: dialogPainDiagramSvg }}
@@ -694,43 +827,29 @@ export function TriageSummaryCard({
                       <p className="mt-1 text-base font-semibold leading-snug text-foreground sm:text-lg">
                         {getHealthCheckTranslations(activeDialogLang).bodyParts[painLocation.part].title}
                       </p>
-                      {painLocation.subRegion && (
+                      {dialogSecondaryLocation && (
                         <p className="mt-0.5 text-sm font-medium text-muted-foreground">
-                          {getLocalizedSubRegion(painLocation.subRegion, activeDialogLang).label}
+                          {dialogSecondaryLocation}
                         </p>
                       )}
                     </div>
                   </div>
                 )}
 
-                <dl className="mt-4 grid grid-cols-1 gap-2.5 tabular-nums sm:grid-cols-2">
-                  {(() => {
-                    let col = 0;
-                    return screenRows.map((row, idx) => {
-                      const ownWide = row.value.length > 36;
-                      const nextWide = (screenRows[idx + 1]?.value.length ?? 0) > 36;
-                      const isLast = idx === screenRows.length - 1;
-                      const spanFull = ownWide || (col === 0 && (nextWide || isLast));
-                      col = spanFull ? 0 : col === 0 ? 1 : 0;
-                      return (
-                        <div
-                          key={row.label}
-                          className={`rounded-lg border border-sapphire-border/65 bg-white p-3.5 ${
-                            spanFull ? "sm:col-span-2" : ""
-                          }`}
-                        >
-                          <dt className="text-xs font-medium text-muted-foreground">{row.label}</dt>
-                          <dd className="mt-1 text-base font-semibold leading-snug text-foreground sm:text-lg">
-                            {row.value}
-                          </dd>
-                        </div>
-                      );
-                    });
-                  })()}
+                <dl className="mt-4 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface-subtle/35 tabular-nums">
+                  {screenRows.map((row) => (
+                    <div
+                      key={row.label}
+                      className="grid grid-cols-[minmax(7rem,38%)_1fr] items-baseline gap-3 px-4 py-3 even:bg-surface-subtle/45"
+                    >
+                      <dt className="text-xs font-medium text-muted-foreground sm:text-sm">{row.label}</dt>
+                      <dd className="text-base font-semibold leading-snug text-foreground">{row.value}</dd>
+                    </div>
+                  ))}
                 </dl>
 
                 {screenNotes.length > 0 && (
-                  <div className="mt-3.5 space-y-2 rounded-lg border border-sapphire-border/65 bg-white p-3.5">
+                  <div className="mt-3.5 space-y-2 rounded-2xl bg-surface-subtle/55 p-4">
                     {screenNotes.map((note, i) => (
                       <p key={i} className="text-sm leading-relaxed text-foreground sm:text-base">
                         {note}
@@ -740,70 +859,75 @@ export function TriageSummaryCard({
                 )}
 
                 <p
-                  className={`mt-3.5 rounded-lg border px-3.5 py-2.5 text-sm font-semibold sm:text-base ${
+                  className={`mt-3.5 rounded-xl border px-4 py-2.5 text-sm font-semibold sm:text-base ${
                     redFlagNoticed
                       ? "border-primary/30 bg-primary-soft text-primary"
-                      : "border-sapphire-border/65 bg-white text-muted-foreground"
+                      : "border-border bg-surface-subtle/45 text-muted-foreground"
                   }`}
                 >
-                  {showRomanian ? (redFlagNoticed ? COPY.ro.redFlag : COPY.ro.noRedFlag) : warningNotice}
+                  {redFlagNoticed ? activeDialogCopy.redFlag : activeDialogCopy.noRedFlag}
                 </p>
 
-                <div className="mt-3.5 flex flex-col items-center gap-3.5 rounded-lg border border-sapphire-border/65 bg-white p-4 sm:flex-row sm:items-center">
-                  <div className="shrink-0 rounded-md border border-border bg-white p-2">
-                    <svg
-                      viewBox={`0 0 ${qrSvg.size} ${qrSvg.size}`}
-                      shapeRendering="crispEdges"
-                      role="img"
-                      aria-label={activeDialogCopy.qrTitle}
-                      className="h-28 w-28 text-obsidian-navy"
-                    >
-                      <rect width={qrSvg.size} height={qrSvg.size} fill="#ffffff" />
-                      <path d={qrSvg.path} fill="#0b132b" />
-                    </svg>
-                  </div>
-                  <div className="min-w-0 text-center sm:text-left">
-                    <p className="text-sm font-semibold text-foreground">{activeDialogCopy.qrTitle}</p>
-                    {activeRecommendationDetail && (
-                      <p className="mt-1.5 border-l-2 border-sapphire bg-[#f4f7fb] px-2.5 py-1 text-xs font-semibold leading-snug text-obsidian-navy sm:text-sm">
-                        {activeRecommendationDetail}
+                {qrSvg.size > 0 && (
+                  <div className="mt-3.5 flex flex-col items-center gap-3.5 rounded-2xl bg-surface-subtle/55 p-4 sm:flex-row sm:items-center">
+                    <div className="shrink-0 rounded-xl border border-border bg-white p-2">
+                      <svg
+                        viewBox={`0 0 ${qrSvg.size} ${qrSvg.size}`}
+                        shapeRendering="crispEdges"
+                        role="img"
+                        aria-label={activeDialogCopy.qrTitle}
+                        className="h-28 w-28"
+                      >
+                        <rect width={qrSvg.size} height={qrSvg.size} fill="#ffffff" />
+                        <path d={qrSvg.path} fill="#0b132b" />
+                      </svg>
+                    </div>
+                    <div className="min-w-0 text-center sm:text-left">
+                      <p className="text-sm font-semibold text-foreground">{activeDialogCopy.qrTitle}</p>
+                      {activeRecommendationDetail && (
+                        <p className="mt-1.5 rounded-xl bg-sapphire-soft/65 px-2.5 py-1.5 text-xs font-semibold leading-snug text-foreground dark:bg-sapphire/15">
+                          {activeRecommendationDetail}
+                        </p>
+                      )}
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                        {activeDialogCopy.qrHint}
                       </p>
-                    )}
-                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{activeDialogCopy.qrHint}</p>
+                    </div>
                   </div>
-                </div>
+                )}
+              </div>
+
+              <div className="grid shrink-0 grid-cols-2 gap-2 border-t border-border bg-card px-5 py-3.5 pb-[max(0.875rem,env(safe-area-inset-bottom))] print:hidden sm:grid-cols-3 sm:px-6">
+                <button
+                  type="button"
+                  onClick={() => void handleCopyToNotes(true)}
+                  className={copyDone ? modalActiveFeedbackBtn : modalSecondaryBtn}
+                >
+                  {copyDone ? <CheckCircleIcon className="h-4 w-4 shrink-0" /> : <CopyIcon className="h-4 w-4 shrink-0" />}
+                  <span>
+                    {copyState === "saved"
+                      ? activeDialogCopy.savedNote
+                      : copyState === "copied"
+                        ? activeDialogCopy.copied
+                        : activeDialogCopy.copy}
+                  </span>
+                </button>
+                <button type="button" onClick={handlePrint} className={modalSecondaryBtn}>
+                  {activeDialogCopy.savePdf}
+                </button>
+                <button
+                  type="button"
+                  data-autofocus
+                  onClick={() => setOpen(false)}
+                  className={modalSecondaryBtn}
+                >
+                  {activeDialogCopy.close}
+                </button>
               </div>
             </div>
-
-            <div className="grid shrink-0 gap-2 border-t border-border bg-card px-5 py-3.5 pb-[max(0.875rem,env(safe-area-inset-bottom))] print:hidden sm:grid-cols-3 sm:px-6">
-              <button
-                type="button"
-                onClick={handleCopy}
-                className={
-                  copyState === "copied"
-                    ? "inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-sapphire bg-sapphire-soft px-3.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-                    : secondaryBtn
-                }
-              >
-                {copyState === "copied" ? <CheckCircleIcon className="h-4 w-4 shrink-0" /> : <CopyIcon className="h-4 w-4 shrink-0" />}
-                <span>{copyState === "copied" ? t.copied : t.copy}</span>
-              </button>
-              <button type="button" onClick={handlePrint} className={secondaryBtn}>
-                {t.savePdf}
-              </button>
-              <button
-                type="button"
-                data-autofocus
-                onClick={() => setOpen(false)}
-                className={secondaryBtn}
-              >
-                {t.close}
-              </button>
-            </div>
-          </div>
-        </div>,
-        document.body,
-      )}
+          </div>,
+          document.body,
+        )}
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { StethoscopeIcon } from "@/components/ui/icons";
+import { primaryButton, secondaryButton } from "@/components/health-assistant/step-ui";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -74,19 +75,19 @@ export function UniversalDoctorExit({
 
   return (
     <section className={`mt-8 border-t border-border pt-6 ${className}`}>
-      <h3 className="text-lg font-semibold text-foreground">{title || t.heading}</h3>
-      <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-muted-foreground">{description || t.body}</p>
+      <h3 className="text-lg font-semibold leading-snug text-foreground">{title || t.heading}</h3>
+      <p className="mt-1.5 max-w-prose text-base leading-relaxed text-muted-foreground">{description || t.body}</p>
       <div className="mt-4 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
         <Link
           href={consultUrl}
-          className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-sapphire px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire/90"
+          className={primaryButton}
         >
-          <StethoscopeIcon className="h-4 w-4 shrink-0" />
+          <StethoscopeIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
           {t.bookOnline}
         </Link>
         <Link
           href={onCallUrl}
-          className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-border bg-card px-4 py-2.5 text-center text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted"
+          className={secondaryButton}
         >
           {t.checkOnCall}
         </Link>

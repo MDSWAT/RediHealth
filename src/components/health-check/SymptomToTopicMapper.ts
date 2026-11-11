@@ -27,6 +27,16 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "Ce alimente liniștesc stomacul și cum previi arsurile.",
     },
+    "hydration-nutrition": {
+      title: "Hidratare corectă și prevenirea amețelilor",
+      recommendation:
+        "Câtă apă și ce săruri minerale ajută când lipsa lichidelor sau căldura dau dureri de cap și amețeală.",
+    },
+    "migraine-headaches": {
+      title: "Cum recunoști migrena și când ceri tratament",
+      recommendation:
+        "Ce declanșează durerea pulsatilă și sensibilitatea la lumină și cum te poate ajuta medicul cu un tratament preventiv.",
+    },
     "antibiotics-awareness": {
       title: "Răceală, gripă și utilizarea corectă a antibioticelor",
       recommendation:
@@ -68,6 +78,16 @@ const TOPIC_TRANSLATIONS: Record<
       title: "Healthy eating and digestion",
       recommendation:
         "Which foods calm your stomach and how to prevent heartburn.",
+    },
+    "hydration-nutrition": {
+      title: "Proper hydration and preventing dizziness",
+      recommendation:
+        "How water, fluids, and electrolytes prevent headaches and lightheadedness from dehydration or heat.",
+    },
+    "migraine-headaches": {
+      title: "Recognizing migraines and preventive care",
+      recommendation:
+        "Common migraine triggers, light sensitivity, and when to talk to a doctor about preventive treatment.",
     },
     "antibiotics-awareness": {
       title: "Cold, flu, and proper antibiotic use",
@@ -111,6 +131,16 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "Cilat ushqime e qetësojnë stomakun dhe si ta parandalosh djegien.",
     },
+    "hydration-nutrition": {
+      title: "Hidratimi i duhur dhe parandalimi i marramendjes",
+      recommendation:
+        "Si uji, lëngjet dhe kripërat minerale ndihmojnë kundër dhimbjes së kokës dhe marramendjes nga mungesa e lëngjeve.",
+    },
+    "migraine-headaches": {
+      title: "Si të dallosh migrenën dhe kur të kërkosh trajtim",
+      recommendation:
+        "Çfarë e nxit dhimbjen pulsuese dhe ndjeshmërinë ndaj dritës dhe kur të flasësh me mjekun për trajtim parandalues.",
+    },
     "antibiotics-awareness": {
       title: "Ftohja, gripi dhe përdorimi i saktë i antibiotikëve",
       recommendation:
@@ -152,6 +182,16 @@ const TOPIC_TRANSLATIONS: Record<
       title: "Alimentazione sana e digestione",
       recommendation:
         "Quali cibi calmano lo stomaco e come prevenire il bruciore.",
+    },
+    "hydration-nutrition": {
+      title: "Idratazione corretta e prevenzione dei capogiri",
+      recommendation:
+        "Come acqua, liquidi e sali minerali prevengono mal di testa e vertigini dovuti a disidratazione o caldo.",
+    },
+    "migraine-headaches": {
+      title: "Riconoscere l'emicrania e le cure preventive",
+      recommendation:
+        "Fattori scatenanti dell'emicrania, sensibilità alla luce e quando parlare con il medico di una terapia preventiva.",
     },
     "antibiotics-awareness": {
       title: "Raffreddore, influenza e uso corretto degli antibiotici",
@@ -195,6 +235,16 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "Koje namirnice umiruju želudac i kako spriječiti žgaravicu.",
     },
+    "hydration-nutrition": {
+      title: "Pravilna hidracija i sprječavanje vrtoglavice",
+      recommendation:
+        "Kako voda, tekućina i elektroliti sprječavaju glavobolju i omaglicu zbog dehidracije ili vrućine.",
+    },
+    "migraine-headaches": {
+      title: "Prepoznavanje migrene i preventivno liječenje",
+      recommendation:
+        "Najčešći okidači migrene, osjetljivost na svjetlo i kada razgovarati s liječnikom o preventivnoj terapiji.",
+    },
     "antibiotics-awareness": {
       title: "Prehlada, gripa i pravilna primjena antibiotika",
       recommendation:
@@ -236,6 +286,16 @@ const TOPIC_TRANSLATIONS: Record<
       title: "Sasto xabem thaj lokho ogi",
       recommendation:
         "Savo xabem kovljarel o ogi thaj sar te astarghos o phabarimos.",
+    },
+    "hydration-nutrition": {
+      title: "Pimos lacho e pajesko thaj arakhimos katar o phirimos e sheresko",
+      recommendation:
+        "Sar o paj, le zumja thaj le mineralura azhutinen kana o trush vaj o tatipen anen dukh and-o shero.",
+    },
+    "migraine-headaches": {
+      title: "Sar te prindzares i migrena thaj kana te manges ilacho",
+      recommendation:
+        "So vazdel i dukh savi marel and-o shero thaj o dar katar o vudud, thaj sar azhutil o doktori.",
     },
     "antibiotics-awareness": {
       title: "Shil, gripa thaj sar te les antibiotikura mishto",
@@ -324,6 +384,22 @@ export function getTopicForSymptom(
       const data = loc["antibiotics-awareness"];
       return {
         slug: "preventive-screening",
+        title: data.title,
+        recommendation: data.recommendation,
+      };
+    }
+    if (symptomId === "head_dehydration") {
+      const data = loc["hydration-nutrition"];
+      return {
+        slug: "healthy-eating",
+        title: data.title,
+        recommendation: data.recommendation,
+      };
+    }
+    if (symptomId === "head_migraine" || symptomId === "head_sudden_severe") {
+      const data = loc["migraine-headaches"];
+      return {
+        slug: "mental-wellbeing",
         title: data.title,
         recommendation: data.recommendation,
       };

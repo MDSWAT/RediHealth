@@ -4,12 +4,17 @@ import { useEffect, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { UniversalEmergencyBanner } from "@/components/layout/UniversalEmergencyBanner";
+import { FeedbackWidget } from "@/components/layout/FeedbackWidget";
 import { ReportIssueWidget } from "@/components/layout/ReportIssueWidget";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { RecaptchaProvider, RecaptchaNotice } from "@/components/security/RecaptchaProvider";
+import { initClientNoiseFilter } from "@/lib/client-noise-filter";
 import type { Lang } from "@/lib/i18n/translations";
+
+if (typeof window !== "undefined") {
+  initClientNoiseFilter();
+}
 
 type SiteChromeProps = {
   children: ReactNode;
@@ -44,17 +49,20 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang }: SiteChrome
   const pathname = usePathname();
   const path = stripLangFromPathname(pathname);
   const isWorkerPanel = path.startsWith("/panel") || path === "/demo" || path.startsWith("/demo/") || path === "/offline" || path.startsWith("/offline/");
+  const isChromelessSurface = isWorkerPanel || path === "/health-check/note";
+  // Symptom check and prescription review are interactive tasks: they end at their action button, with no footer after them.
+  const hideFooter = isChromelessSurface || path === "/health-check" || path === "/prescription-review";
   useSkipLinkTarget(pathname);
 
   return (
     <LanguageProvider requestLang={lang}>
-      <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isWorkerPanel}>
-        {path === "/" || isWorkerPanel ? null : <UniversalEmergencyBanner />}
-        {isWorkerPanel ? null : <Header />}
+      <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
+        {isChromelessSurface ? null : <Header />}
         {children}
-        {isWorkerPanel ? null : <ReportIssueWidget />}
-        {isWorkerPanel ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
-        {isWorkerPanel ? null : <Footer />}
+        {isChromelessSurface ? null : <FeedbackWidget />}
+        {isChromelessSurface ? null : <ReportIssueWidget />}
+        {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
+        {hideFooter ? null : <Footer />}
       </RecaptchaProvider>
     </LanguageProvider>
   );

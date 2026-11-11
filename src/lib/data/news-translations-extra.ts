@@ -78,7 +78,7 @@ export const NEWS_TRANSLATIONS_EXTRA_EN: Record<string, LocalizedArticleFields> 
     content: [
       "The mobile medical team and health mediators visit Peščenica and Sesvete in Zagreb for free preventive check-ups.",
       "You can attend even without HZZO insurance or a registered family doctor. Bring an ID document if you have one and any previous medical notes.",
-      "The mediator explains your blood pressure and blood sugar readings in plain language and guides you to the nearest local health centre.",
+      "The mediator explains your blood pressure and blood sugar readings clearly and guides you to the nearest local health centre.",
     ],
     caravanLandmark: "Courtyard of the local community centre",
     caravanVillage: "City of Zagreb, Peščenica and Sesvete",
@@ -294,7 +294,7 @@ export const NEWS_TRANSLATIONS_EXTRA_SQ: Record<string, LocalizedArticleFields> 
     content: [
       "Ekipi mjekësor lëvizës dhe mediatorët shëndetësorë vijnë në lagjet Peščenica dhe Sesvete të Zagrebit për vizita parandaluese falas.",
       "Mund të vish edhe pa sigurim HZZO apo pa mjek familjeje të zgjedhur. Merr një dokument identiteti nëse e ke dhe letrat e vjetra mjekësore.",
-      "Mediatori t'i shpjegon vlerat e tensionit dhe sheqerit me fjalë të thjeshta dhe të orienton te qendra shëndetësore më e afërt.",
+      "Mediatori t'i shpjegon qartë vlerat e tensionit dhe sheqerit dhe të orienton te qendra shëndetësore më e afërt.",
     ],
     caravanLandmark: "Oborri i qendrës komunitare vendore",
     caravanVillage: "Qyteti i Zagrebit, Peščenica dhe Sesvete",

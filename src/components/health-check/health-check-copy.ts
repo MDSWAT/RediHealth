@@ -12,6 +12,9 @@ export type Copy = {
   orList: string;
   area: string;
   change: string;
+  /** Phone sheet handle: reveal more / less of the 3D body. */
+  showMoreBody: string;
+  showLessBody: string;
   left: string;
   right: string;
   doctorTitle: string;
@@ -57,6 +60,17 @@ export type Copy = {
   showingSpotSymptoms: string;
   showAllAreaSymptoms: string;
   qrRestoredBadge: string;
+  openMenu: string;
+  chooseArea: string;
+  chooseSymptom: string;
+  close: string;
+  exactSpotHeading: string;
+  exactSpotLead: string;
+  exactSpotAnyHint: string;
+  progressLabel: string;
+  selectedTrailLabel: string;
+  severityLead: string;
+  durationLead: string;
 };
 
 export const COPY: Record<Lang, Copy> = {
@@ -71,6 +85,8 @@ export const COPY: Record<Lang, Copy> = {
     orList: "Sau alege din listă",
     area: "Zona",
     change: "Schimbă",
+    showMoreBody: "Arată mai mult din corp",
+    showLessBody: "Arată mai puțin din corp",
     left: "stânga",
     right: "dreapta",
     doctorTitle: "Vorbește cu un medic",
@@ -105,7 +121,7 @@ export const COPY: Record<Lang, Copy> = {
     exactSpotAny: "Toată zona",
     whatItFeelsLike: "Cum se simte?",
     sideLabel: "Partea",
-    bothSides: "Ambele sau centru",
+    bothSides: "Ambele părți",
     questionProgress: "Întrebarea {current} din {total}",
     noExtraFinish: "Nu am alte simptome, vezi rezultatul",
     autoVoiceActive: "Ghid audio activ",
@@ -117,6 +133,17 @@ export const COPY: Record<Lang, Copy> = {
     showingSpotSymptoms: "Opțiuni pentru {spot}",
     showAllAreaSymptoms: "Arată toate opțiunile din această zonă",
     qrRestoredBadge: "Rezultat reprodus prin scanare QR",
+    openMenu: "Deschide",
+    chooseArea: "Alege o zonă a corpului",
+    chooseSymptom: "Alege un simptom din listă",
+    close: "Închide",
+    exactSpotHeading: "Unde mai exact în această zonă?",
+    exactSpotLead: "Atinge direct pe corpul 3D sau alege locul mai jos.",
+    exactSpotAnyHint: "Nu e într-un singur punct sau cuprinde toată zona",
+    progressLabel: "Progresul verificării",
+    selectedTrailLabel: "Răspunsuri alese până acum",
+    severityLead: "Alege varianta care descrie cel mai bine cât te încurcă acum.",
+    durationLead: "Alege de cât timp a început sau se repetă.",
   },
   en: {
     chosen: "Selected",
@@ -129,6 +156,8 @@ export const COPY: Record<Lang, Copy> = {
     orList: "Or choose from the list",
     area: "Area",
     change: "Change",
+    showMoreBody: "Show more of the body",
+    showLessBody: "Show less of the body",
     left: "left",
     right: "right",
     doctorTitle: "Talk to a doctor",
@@ -162,7 +191,7 @@ export const COPY: Record<Lang, Copy> = {
     exactSpotAny: "Whole area",
     whatItFeelsLike: "What does it feel like?",
     sideLabel: "Side",
-    bothSides: "Both or middle",
+    bothSides: "Both sides",
     questionProgress: "Question {current} of {total}",
     noExtraFinish: "No other symptoms, see result",
     autoVoiceActive: "Audio guide on",
@@ -174,6 +203,17 @@ export const COPY: Record<Lang, Copy> = {
     showingSpotSymptoms: "Options for {spot}",
     showAllAreaSymptoms: "Show all options for this area",
     qrRestoredBadge: "Result reproduced from QR scan",
+    openMenu: "Open",
+    chooseArea: "Choose a body area",
+    chooseSymptom: "Choose a symptom from list",
+    close: "Close",
+    exactSpotHeading: "Where more specifically in this area?",
+    exactSpotLead: "Tap directly on the 3D body or choose a spot below.",
+    exactSpotAnyHint: "Not in one single point, or across the whole area",
+    progressLabel: "Symptom check progress",
+    selectedTrailLabel: "Answers chosen so far",
+    severityLead: "Choose the option that best fits how much it affects your day.",
+    durationLead: "Choose how long ago it started or has been coming back.",
   },
   sq: {
     chosen: "Zgjodhe",
@@ -186,6 +226,8 @@ export const COPY: Record<Lang, Copy> = {
     orList: "Ose zgjidh nga lista",
     area: "Zona",
     change: "Ndrysho",
+    showMoreBody: "Shfaq më shumë nga trupi",
+    showLessBody: "Shfaq më pak nga trupi",
     left: "majtas",
     right: "djathtas",
     doctorTitle: "Fol me një mjek",
@@ -220,7 +262,7 @@ export const COPY: Record<Lang, Copy> = {
     exactSpotAny: "E gjithë zona",
     whatItFeelsLike: "Si ndihet?",
     sideLabel: "Ana",
-    bothSides: "Të dyja ose në mes",
+    bothSides: "Të dyja anët",
     questionProgress: "Pyetja {current} nga {total}",
     noExtraFinish: "Nuk kam simptoma të tjera, shiko rezultatin",
     autoVoiceActive: "Udhëzuesi me zë aktiv",
@@ -232,6 +274,17 @@ export const COPY: Record<Lang, Copy> = {
     showingSpotSymptoms: "Mundësitë për {spot}",
     showAllAreaSymptoms: "Shfaq të gjitha mundësitë për këtë zonë",
     qrRestoredBadge: "Rezultati u hap nga skanimi QR",
+    openMenu: "Hap",
+    chooseArea: "Zgjidh një zonë të trupit",
+    chooseSymptom: "Zgjidh një simptomë nga lista",
+    close: "Mbyll",
+    exactSpotHeading: "Ku më saktë në këtë zonë?",
+    exactSpotLead: "Prek direkt në trupin 3D ose zgjidh vendin më poshtë.",
+    exactSpotAnyHint: "Nuk është në një pikë të vetme ose përfshin gjithë zonën",
+    progressLabel: "Ecuria e kontrollit",
+    selectedTrailLabel: "Përgjigjet e zgjedhura deri tani",
+    severityLead: "Zgjidh variantin që tregon më mirë sa të pengon tani.",
+    durationLead: "Zgjidh prej sa kohësh ka filluar ose përsëritet.",
   },
   it: {
     chosen: "Hai scelto",
@@ -244,6 +297,8 @@ export const COPY: Record<Lang, Copy> = {
     orList: "Oppure scegli dall'elenco",
     area: "Zona",
     change: "Cambia",
+    showMoreBody: "Mostra più del corpo",
+    showLessBody: "Mostra meno del corpo",
     left: "sinistra",
     right: "destra",
     doctorTitle: "Parla con un medico",
@@ -278,7 +333,7 @@ export const COPY: Record<Lang, Copy> = {
     exactSpotAny: "Tutta la zona",
     whatItFeelsLike: "Come si sente?",
     sideLabel: "Lato",
-    bothSides: "Entrambi o centro",
+    bothSides: "Entrambi i lati",
     questionProgress: "Domanda {current} di {total}",
     noExtraFinish: "Nessun altro sintomo, vedi il risultato",
     autoVoiceActive: "Guida vocale attiva",
@@ -290,6 +345,17 @@ export const COPY: Record<Lang, Copy> = {
     showingSpotSymptoms: "Opzioni per {spot}",
     showAllAreaSymptoms: "Mostra tutte le opzioni per questa zona",
     qrRestoredBadge: "Risultato riprodotto da scansione QR",
+    openMenu: "Apri",
+    chooseArea: "Scegli una parte del corpo",
+    chooseSymptom: "Scegli un sintomo dall'elenco",
+    close: "Chiudi",
+    exactSpotHeading: "Dove più di preciso in questa zona?",
+    exactSpotLead: "Tocca direttamente sul corpo 3D oppure scegli il punto qui sotto.",
+    exactSpotAnyHint: "Non è in un solo punto oppure riguarda tutta la zona",
+    progressLabel: "Avanzamento del controllo",
+    selectedTrailLabel: "Risposte scelte finora",
+    severityLead: "Scegli l'opzione che descrive meglio quanto ti limita adesso.",
+    durationLead: "Scegli da quanto tempo è iniziato o si ripete.",
   },
   hr: {
     chosen: "Odabrano",
@@ -302,6 +368,8 @@ export const COPY: Record<Lang, Copy> = {
     orList: "Ili odaberi s popisa",
     area: "Područje",
     change: "Promijeni",
+    showMoreBody: "Prikaži više tijela",
+    showLessBody: "Prikaži manje tijela",
     left: "lijevo",
     right: "desno",
     doctorTitle: "Razgovaraj s liječnikom",
@@ -336,7 +404,7 @@ export const COPY: Record<Lang, Copy> = {
     exactSpotAny: "Cijelo područje",
     whatItFeelsLike: "Kakav je osjećaj?",
     sideLabel: "Strana",
-    bothSides: "Obje ili sredina",
+    bothSides: "Obje strane",
     questionProgress: "Pitanje {current} od {total}",
     noExtraFinish: "Nemam drugih simptoma, pogledaj rezultat",
     autoVoiceActive: "Glasovni vodič uključen",
@@ -348,6 +416,17 @@ export const COPY: Record<Lang, Copy> = {
     showingSpotSymptoms: "Opcije za {spot}",
     showAllAreaSymptoms: "Prikaži sve opcije za ovo područje",
     qrRestoredBadge: "Rezultat učitan skeniranjem QR koda",
+    openMenu: "Otvori",
+    chooseArea: "Odaberi dio tijela",
+    chooseSymptom: "Odaberi simptom s popisa",
+    close: "Zatvori",
+    exactSpotHeading: "Gdje točnije u ovom području?",
+    exactSpotLead: "Dodirni izravno 3D tijelo ili odaberi mjesto ispod.",
+    exactSpotAnyHint: "Nije u jednoj točki ili zahvaća cijelo područje",
+    progressLabel: "Napredak provjere",
+    selectedTrailLabel: "Dosad odabrani odgovori",
+    severityLead: "Odaberi opciju koja najbolje opisuje koliko ti sada smeta.",
+    durationLead: "Odaberi koliko dugo traje ili se ponavlja.",
   },
   rom: {
     chosen: "Alosardjan",
@@ -360,6 +439,8 @@ export const COPY: Record<Lang, Copy> = {
     orList: "Vaj alosar katar i lista",
     area: "Than",
     change: "Paruv",
+    showMoreBody: "Sikav maj but anda o trupo",
+    showLessBody: "Sikav maj tsera anda o trupo",
     left: "stingo",
     right: "chacho",
     doctorTitle: "Vorbin jekhe doktorestar",
@@ -394,7 +475,7 @@ export const COPY: Record<Lang, Copy> = {
     exactSpotAny: "Sasto than",
     whatItFeelsLike: "Sar hatjarel pes?",
     sideLabel: "Riga",
-    bothSides: "Li duj vaj mashkar",
+    bothSides: "Li duj riga",
     questionProgress: "Phuchimos {current} katar {total}",
     noExtraFinish: "Naj man aver simptome, dikh o rezultato",
     autoVoiceActive: "Glasosko gido puterdo",
@@ -406,5 +487,16 @@ export const COPY: Record<Lang, Copy> = {
     showingSpotSymptoms: "Opcije vash {spot}",
     showAllAreaSymptoms: "Sikav sa le opcije vash akava than",
     qrRestoredBadge: "Rezultato puterdo katar o QR kodo",
+    openMenu: "Putr",
+    chooseArea: "Aloshar ekhe truposko kotor",
+    chooseSymptom: "Aloshar ekhe simtomo katar o listo",
+    close: "Phandav",
+    exactSpotHeading: "Kaj maj chaches and-akava than?",
+    exactSpotLead: "Azba direktno pe 3D trupo vaj alosar o than maj telal.",
+    exactSpotAnyHint: "Naj numa and-jekh punkto vaj si and-o sasto than",
+    progressLabel: "Progreso e dikhimasko",
+    selectedTrailLabel: "Anglalipnata alosarde dji akana",
+    severityLead: "Alosar so sikavel maj mishto sode pharo si tuke akana.",
+    durationLead: "Alosar de sode vrama shirdilo vaj avel palpale.",
   },
 };

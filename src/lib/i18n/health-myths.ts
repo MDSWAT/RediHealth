@@ -40,10 +40,10 @@ export const HEALTH_MYTHS_RO: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nu este adevărat",
     explanation:
-      "Mulți cred asta pentru că uneori se simt rău la scurt timp după vaccin. Vaccinul conține bucăți de virus inactive, care nu pot provoca boala. El doar învață corpul să lupte cu virusul adevărat.",
+      "Vaccinul conține doar fragmente inactive de virus: nu poate provoca gripa, ci antrenează corpul să se apere.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Medicină de familie",
-    source: "Organizația Mondială a Sănătății și Ministerul Sănătății",
+    source: "OMS, Ministerul Sănătății",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -54,10 +54,10 @@ export const HEALTH_MYTHS_RO: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nu este adevărat",
     explanation:
-      "Prea mult zahăr te poate îngrășa. Dar diabetul de tip 2 are mai multe cauze: moștenirea din familie, lipsa de mișcare și felul în care corpul folosește insulina. Nu apare doar din dulciuri.",
+      "Diabetul de tip 2 ține de ereditate, sedentarism și rezistența la insulină, nu doar de dulciuri.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Diabet și boli de nutriție",
-    source: "Societatea Română de Diabet, Nutriție și Boli Metabolice",
+    source: "Societatea Română de Diabet",
     relatedTopicSlug: "diabetes",
   },
   {
@@ -68,7 +68,7 @@ export const HEALTH_MYTHS_RO: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nu este adevărat",
     explanation:
-      "De cele mai multe ori, tensiunea mare nu dă niciun semn. De aceea i se spune și ucigașul tăcut. Singurul mod sigur să afli este să o măsori regulat cu tensiometrul.",
+      "Tensiunea mare nu dă aproape niciodată simptome. Singurul mod sigur să o descoperi este măsurarea regulată.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Cardiologie",
     source: "Societatea Europeană de Cardiologie",
@@ -82,10 +82,10 @@ export const HEALTH_MYTHS_RO: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nu este adevărat",
     explanation:
-      "Răceala și gripa sunt date de virusuri. Antibioticele lucrează doar împotriva bacteriilor. Dacă le iei fără să ți le dea medicul, îți strici flora intestinală. Și, în timp, antibioticele nu mai funcționează așa de bine.",
+      "Răceala și gripa sunt cauzate de virusuri, iar antibioticele acționează doar asupra bacteriilor.",
     doctorName: "Dr. Maria Popa",
     doctorSpecialty: "Boli infecțioase",
-    source: "Institutul Național de Boli Infecțioase «Prof. Dr. Matei Balș»",
+    source: "Institutul «Matei Balș»",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -96,10 +96,10 @@ export const HEALTH_MYTHS_RO: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nu este adevărat",
     explanation:
-      "Mamografia și ecografia sânului pot găsi schimbări foarte mici, cu mult înainte să le simți cu mâna. Când problema e găsită devreme, tratamentul e mai simplu și merge mai bine.",
+      "Ecografia și mamografia depistează modificări milimetrice cu mult înainte să poată fi simțite la palpare.",
     doctorName: "Dr. Camelia Dobre",
     doctorSpecialty: "Obstetrică-ginecologie",
-    source: "Ministerul Sănătății și ghidurile europene de screening",
+    source: "Ghidurile europene de screening",
     relatedTopicSlug: "womens-health",
   },
   {
@@ -110,10 +110,10 @@ export const HEALTH_MYTHS_RO: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nu este adevărat",
     explanation:
-      "Nicotina și ce tragi în piept strâng vasele de sânge și grăbesc pulsul, oricum ai fuma. Cel mai bun lucru pentru inimă și vase este să te lași de fumat.",
+      "Nicotina îngustează vasele de sânge și crește pulsul indiferent de forma în care fumezi.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Cardiologie",
-    source: "Organizația Mondială a Sănătății",
+    source: "OMS",
     relatedTopicSlug: "smoking",
   },
   {
@@ -124,10 +124,10 @@ export const HEALTH_MYTHS_RO: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nu este adevărat",
     explanation:
-      "Orice sare de bucătărie are cam 98% clorură de sodiu. Toate cresc tensiunea la fel. Sarea roz nu îți apără inima mai bine decât sarea obișnuită. Contează cât mănânci în total: sub 5 grame pe zi.",
+      "Orice tip de sare conține circa 98% clorură de sodiu și crește tensiunea la fel; limita sigură rămâne sub 5 g pe zi.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Diabet și boli de nutriție",
-    source: "Organizația Mondială a Sănătății și Societatea Română de Nutriție",
+    source: "OMS, Societatea Română de Nutriție",
     relatedTopicSlug: "healthy-eating",
   },
   {
@@ -138,10 +138,10 @@ export const HEALTH_MYTHS_RO: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nu este adevărat",
     explanation:
-      "Mersul pe jos în pas vioi, lucrul în grădină sau urcatul scărilor îți protejează inima. Fiecare minut de mișcare pe zi ajută la scăderea tensiunii și a zahărului din sânge. Nu ai nevoie de aparate scumpe.",
+      "Mersul vioi pe jos, urcatul scărilor și munca în gospodărie scad tensiunea și glicemia fără antrenamente intense.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Cardiologie",
-    source: "Organizația Mondială a Sănătății și ghidurile europene de prevenție",
+    source: "OMS",
     relatedTopicSlug: "physical-activity",
   },
   {
@@ -152,10 +152,10 @@ export const HEALTH_MYTHS_RO: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nu este adevărat",
     explanation:
-      "Anxietatea și depresia sunt boli reale. Le influențează creierul, hormonii și grijile din viață. Nu sunt o slăbiciune de caracter. Ajutorul unui specialist și exercițiile de respirație ghidată ajută mult.",
+      "Anxietatea și depresia sunt afecțiuni medicale tratabile, nu o slăbiciune de caracter.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Medicină de familie",
-    source: "Organizația Mondială a Sănătății",
+    source: "OMS",
     relatedTopicSlug: "mental-wellbeing",
   },
 ];
@@ -169,10 +169,10 @@ export const HEALTH_MYTHS_EN: HealthMyth[] = [
     isTrue: false,
     statusTag: "Not true",
     explanation:
-      "Many people think this because they feel a bit unwell soon after the vaccine. The vaccine contains inactive parts of the virus, which cannot cause the illness. It only teaches your body to fight the real virus.",
+      "The vaccine uses inactive viral fragments: it cannot cause flu, only train your immune system to fight it.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Family medicine",
-    source: "World Health Organization",
+    source: "WHO",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -183,7 +183,7 @@ export const HEALTH_MYTHS_EN: HealthMyth[] = [
     isTrue: false,
     statusTag: "Not true",
     explanation:
-      "Too much sugar can make you put on weight. But type 2 diabetes has several causes: your genes, not moving enough and how your body uses insulin. Sweets alone do not cause it.",
+      "Type 2 diabetes stems from genetics, inactivity and insulin resistance, not sweets alone.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endocrinology and nutrition",
     source: "International Diabetes Federation",
@@ -197,7 +197,7 @@ export const HEALTH_MYTHS_EN: HealthMyth[] = [
     isTrue: false,
     statusTag: "Not true",
     explanation:
-      "Most of the time, high blood pressure causes no signs at all. That is why it is called the silent killer. The only sure way to find it is to measure it regularly.",
+      "High blood pressure rarely causes symptoms; regular cuff checks are the only reliable way to catch it.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Cardiology",
     source: "European Society of Cardiology",
@@ -211,10 +211,10 @@ export const HEALTH_MYTHS_EN: HealthMyth[] = [
     isTrue: false,
     statusTag: "Not true",
     explanation:
-      "Colds and flu are caused by viruses. Antibiotics only work against bacteria. If you take them without a prescription, they harm the good bacteria in your gut. Over time, antibiotics also stop working as well.",
+      "Colds and flu come from viruses, while antibiotics only treat bacterial infections.",
     doctorName: "Dr. Maria Popa",
     doctorSpecialty: "Infectious diseases",
-    source: "World Health Organization",
+    source: "WHO",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -225,7 +225,7 @@ export const HEALTH_MYTHS_EN: HealthMyth[] = [
     isTrue: false,
     statusTag: "Not true",
     explanation:
-      "A mammogram or breast ultrasound can find very small changes long before you can feel them. When a problem is found early, treatment is simpler and works better.",
+      "Ultrasound and mammograms detect tiny changes long before a lump can be felt by hand.",
     doctorName: "Dr. Camelia Dobre",
     doctorSpecialty: "Obstetrics and gynecology",
     source: "European screening guidelines",
@@ -239,10 +239,10 @@ export const HEALTH_MYTHS_EN: HealthMyth[] = [
     isTrue: false,
     statusTag: "Not true",
     explanation:
-      "Nicotine and what you breathe in narrow your blood vessels and speed up your pulse, however you smoke. Quitting is the best thing you can do for your heart.",
+      "Nicotine narrows blood vessels and raises heart rate regardless of how tobacco is smoked or heated.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Cardiology",
-    source: "World Health Organization",
+    source: "WHO",
     relatedTopicSlug: "smoking",
   },
   {
@@ -253,10 +253,10 @@ export const HEALTH_MYTHS_EN: HealthMyth[] = [
     isTrue: false,
     statusTag: "Not true",
     explanation:
-      "All kitchen salt is about 98% sodium chloride. Every kind raises blood pressure in the same way. Pink salt does not protect your heart any better than ordinary salt. What matters is the total: less than 5 grams a day.",
+      "Every table salt is roughly 98% sodium chloride and raises blood pressure the same; keep total intake under 5 g a day.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endocrinology and nutrition",
-    source: "World Health Organization",
+    source: "WHO",
     relatedTopicSlug: "healthy-eating",
   },
   {
@@ -267,10 +267,10 @@ export const HEALTH_MYTHS_EN: HealthMyth[] = [
     isTrue: false,
     statusTag: "Not true",
     explanation:
-      "Walking fast, gardening or taking the stairs all protect your heart. Every minute you move each day helps lower your blood pressure and blood sugar. You don't need expensive equipment.",
+      "Brisk walking, stairs and garden work lower blood pressure and blood sugar without a gym.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Cardiology",
-    source: "World Health Organization and European prevention guidelines",
+    source: "WHO",
     relatedTopicSlug: "physical-activity",
   },
   {
@@ -281,10 +281,10 @@ export const HEALTH_MYTHS_EN: HealthMyth[] = [
     isTrue: false,
     statusTag: "Not true",
     explanation:
-      "Anxiety and depression are real illnesses. They are shaped by the brain, hormones and stress in your life. They are not a weakness of character. Help from a specialist and guided breathing exercises help a lot.",
+      "Anxiety and depression are real, treatable health conditions, never a flaw in character.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Family medicine",
-    source: "World Health Organization",
+    source: "WHO",
     relatedTopicSlug: "mental-wellbeing",
   },
 ];
@@ -322,10 +322,10 @@ export const HEALTH_MYTHS_SQ: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nuk është e vërtetë",
     explanation:
-      "Shumë njerëz e mendojnë këtë sepse ndihen pak keq menjëherë pas vaksinës. Vaksina ka copa virusi joaktive, që nuk mund të të sëmurin. Ajo vetëm e mëson trupin të luftojë virusin e vërtetë.",
+      "Vaksina përmban vetëm pjesë joaktive të virusit: nuk shkakton grip, por e mëson trupin të mbrohet.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Mjekësi familjare",
-    source: "Organizata Botërore e Shëndetësisë",
+    source: "OBSH",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -336,7 +336,7 @@ export const HEALTH_MYTHS_SQ: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nuk është e vërtetë",
     explanation:
-      "Sheqeri i tepërt mund të të shtojë peshën. Por diabeti i tipit 2 ka disa shkaqe: gjenet, pak lëvizje dhe mënyra si trupi e përdor insulinën. Nuk vjen vetëm nga ëmbëlsirat.",
+      "Diabeti i tipit 2 lidhet me trashëgiminë, mungesën e lëvizjes dhe rezistencën ndaj insulinës, jo vetëm me ëmbëlsirat.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endokrinologji dhe diabet",
     source: "Federata Ndërkombëtare e Diabetit",
@@ -350,7 +350,7 @@ export const HEALTH_MYTHS_SQ: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nuk është e vërtetë",
     explanation:
-      "Shumicën e herëve, presioni i lartë nuk jep asnjë shenjë. Prandaj e quajnë vrasësi i heshtur. E vetmja mënyrë e sigurt për ta zbuluar është ta masësh rregullisht me aparatin e tensionit.",
+      "Presioni i lartë rrallë jep shenja; e vetmja mënyrë e sigurt për ta zbuluar është matja e rregullt.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Kardiologji",
     source: "Shoqata Evropiane e Kardiologjisë",
@@ -364,10 +364,10 @@ export const HEALTH_MYTHS_SQ: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nuk është e vërtetë",
     explanation:
-      "Ftohjen dhe gripin i shkaktojnë viruset. Antibiotikët veprojnë vetëm kundër baktereve. Po t'i marrësh pa recetë, dëmton bakteret e mira të zorrëve. Me kohë, antibiotikët nuk veprojnë më aq mirë.",
+      "Ftohjen dhe gripin i shkaktojnë viruset, ndërsa antibiotikët veprojnë vetëm kundër baktereve.",
     doctorName: "Dr. Maria Popa",
     doctorSpecialty: "Sëmundje infektive",
-    source: "Organizata Botërore e Shëndetësisë",
+    source: "OBSH",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -378,7 +378,7 @@ export const HEALTH_MYTHS_SQ: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nuk është e vërtetë",
     explanation:
-      "Mamografia dhe ekografia e gjirit gjejnë ndryshime shumë të vogla, shumë kohë para se t'i ndjesh me dorë. Kur problemi gjendet herët, trajtimi është më i lehtë dhe jep rezultat më të mirë.",
+      "Ekografia dhe mamografia zbulojnë ndryshime shumë të vogla kohë para se të ndihen me dorë.",
     doctorName: "Dr. Camelia Dobre",
     doctorSpecialty: "Obstetrikë-gjinekologji",
     source: "Udhëzimet evropiane për depistimin",
@@ -392,10 +392,10 @@ export const HEALTH_MYTHS_SQ: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nuk është e vërtetë",
     explanation:
-      "Nikotina dhe ajo që thith i ngushtojnë enët e gjakut dhe ta shpejtojnë pulsin, si do që të pish duhan. Gjëja më e mirë që mund të bësh për zemrën është ta lësh duhanin.",
+      "Nikotina ngushton enët e gjakut dhe shpejton pulsin pavarësisht mënyrës si pihet duhani.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Kardiologji",
-    source: "Organizata Botërore e Shëndetësisë",
+    source: "OBSH",
     relatedTopicSlug: "smoking",
   },
   {
@@ -406,10 +406,10 @@ export const HEALTH_MYTHS_SQ: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nuk është e vërtetë",
     explanation:
-      "Çdo kripë kuzhine ka rreth 98% klorur natriumi. Të gjitha e ngrenë presionin njësoj. Kripa rozë nuk e mbron zemrën më shumë se kripa e zakonshme. Ka rëndësi sasia gjithsej: më pak se 5 gramë në ditë.",
+      "Çdo kripë përmban rreth 98% klorur natriumi dhe e rrit presionin njësoj; mbaje nën 5 g në ditë.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endokrinologji dhe diabet",
-    source: "Organizata Botërore e Shëndetësisë",
+    source: "OBSH",
     relatedTopicSlug: "healthy-eating",
   },
   {
@@ -420,10 +420,10 @@ export const HEALTH_MYTHS_SQ: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nuk është e vërtetë",
     explanation:
-      "Ecja me hap të shpejtë, puna në kopsht ose ngjitja e shkallëve e mbrojnë zemrën. Çdo minutë lëvizje në ditë të ndihmon të ulësh presionin dhe sheqerin në gjak. Nuk të duhen pajisje të shtrenjta.",
+      "Ecja e shpejtë, ngjitja e shkallëve dhe puna në kopsht ulin presionin dhe sheqerin në gjak pa palestër.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Kardiologji",
-    source: "Organizata Botërore e Shëndetësisë",
+    source: "OBSH",
     relatedTopicSlug: "physical-activity",
   },
   {
@@ -434,10 +434,10 @@ export const HEALTH_MYTHS_SQ: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nuk është e vërtetë",
     explanation:
-      "Ankthi dhe depresioni janë sëmundje të vërteta. Ndikohen nga truri, hormonet dhe stresi i jetës. Nuk janë dobësi karakteri. Ndihma e një specialisti dhe ushtrimet e drejtuara të frymëmarrjes ndihmojnë shumë.",
+      "Ankthi dhe depresioni janë gjendje mjekësore që trajtohen, jo dobësi karakteri.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Mjekësi familjare",
-    source: "Organizata Botërore e Shëndetësisë",
+    source: "OBSH",
     relatedTopicSlug: "mental-wellbeing",
   },
 ];
@@ -463,10 +463,10 @@ export const HEALTH_MYTHS_IT: HealthMyth[] = [
     isTrue: false,
     statusTag: "Non è vero",
     explanation:
-      "Molti lo pensano perché subito dopo il vaccino si sentono un po' male. Il vaccino contiene pezzi di virus inattivi, che non possono farti ammalare. Insegna solo al corpo a combattere il virus vero.",
+      "Il vaccino contiene solo frammenti inattivi del virus: non può causare l'influenza, ma allena le difese del corpo.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Medicina generale",
-    source: "Organizzazione Mondiale della Sanità",
+    source: "OMS",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -477,7 +477,7 @@ export const HEALTH_MYTHS_IT: HealthMyth[] = [
     isTrue: false,
     statusTag: "Non è vero",
     explanation:
-      "Troppo zucchero può farti ingrassare. Ma il diabete di tipo 2 ha più cause: i geni, il poco movimento e il modo in cui il corpo usa l'insulina. Non dipende solo dai dolci.",
+      "Il diabete di tipo 2 dipende da genetica, sedentarietà e insulino-resistenza, non solo dai dolci.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endocrinologia e nutrizione",
     source: "Federazione Internazionale del Diabete",
@@ -491,7 +491,7 @@ export const HEALTH_MYTHS_IT: HealthMyth[] = [
     isTrue: false,
     statusTag: "Non è vero",
     explanation:
-      "Il più delle volte la pressione alta non dà nessun segno. Per questo la chiamano killer silenzioso. L'unico modo sicuro per scoprirla è misurarla con regolarità.",
+      "La pressione alta quasi mai dà sintomi; l'unico modo sicuro per scoprirla è misurarla con regolarità.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Cardiologia",
     source: "Società Europea di Cardiologia",
@@ -505,10 +505,10 @@ export const HEALTH_MYTHS_IT: HealthMyth[] = [
     isTrue: false,
     statusTag: "Non è vero",
     explanation:
-      "Raffreddore e influenza sono causati da virus. Gli antibiotici funzionano solo contro i batteri. Se li prendi senza ricetta, danneggi i batteri buoni dell'intestino. Col tempo, gli antibiotici funzionano anche meno bene.",
+      "Raffreddore e influenza sono causati da virus, mentre gli antibiotici agiscono solo contro i batteri.",
     doctorName: "Dr. Maria Popa",
     doctorSpecialty: "Malattie infettive",
-    source: "Organizzazione Mondiale della Sanità",
+    source: "OMS",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -519,7 +519,7 @@ export const HEALTH_MYTHS_IT: HealthMyth[] = [
     isTrue: false,
     statusTag: "Non è vero",
     explanation:
-      "La mammografia e l'ecografia al seno trovano cambiamenti molto piccoli, molto prima che tu possa sentirli con le dita. Se il problema si scopre presto, la cura è più semplice e funziona meglio.",
+      "Ecografia e mammografia individuano alterazioni millimetriche molto prima che siano percepibili al tatto.",
     doctorName: "Dr. Camelia Dobre",
     doctorSpecialty: "Ostetricia e ginecologia",
     source: "Linee guida europee per lo screening",
@@ -533,10 +533,10 @@ export const HEALTH_MYTHS_IT: HealthMyth[] = [
     isTrue: false,
     statusTag: "Non è vero",
     explanation:
-      "La nicotina e quello che respiri stringono i vasi sanguigni e accelerano il battito, in qualunque modo fumi. Smettere di fumare è la cosa migliore che puoi fare per il cuore.",
+      "La nicotina restringe i vasi sanguigni e accelera il battito cardiaco in qualsiasi forma si fumi.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Cardiologia",
-    source: "Organizzazione Mondiale della Sanità",
+    source: "OMS",
     relatedTopicSlug: "smoking",
   },
   {
@@ -547,10 +547,10 @@ export const HEALTH_MYTHS_IT: HealthMyth[] = [
     isTrue: false,
     statusTag: "Non è vero",
     explanation:
-      "Ogni sale da cucina contiene circa il 98% di cloruro di sodio. Tutti alzano la pressione allo stesso modo. Il sale rosa non protegge il cuore più del sale normale. Conta la quantità totale: meno di 5 grammi al giorno.",
+      "Ogni sale da cucina contiene circa il 98% di cloruro di sodio e alza la pressione allo stesso modo; resta sotto i 5 g al giorno.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endocrinologia e nutrizione",
-    source: "Organizzazione Mondiale della Sanità",
+    source: "OMS",
     relatedTopicSlug: "healthy-eating",
   },
   {
@@ -561,10 +561,10 @@ export const HEALTH_MYTHS_IT: HealthMyth[] = [
     isTrue: false,
     statusTag: "Non è vero",
     explanation:
-      "Camminare a passo svelto, lavorare in giardino o fare le scale proteggono il cuore. Ogni minuto di movimento al giorno aiuta ad abbassare la pressione e lo zucchero nel sangue. Non servono attrezzi costosi.",
+      "Camminare a passo svelto, salire le scale e curare l'orto riducono pressione e glicemia senza palestra.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Cardiologia",
-    source: "Organizzazione Mondiale della Sanità",
+    source: "OMS",
     relatedTopicSlug: "physical-activity",
   },
   {
@@ -575,10 +575,10 @@ export const HEALTH_MYTHS_IT: HealthMyth[] = [
     isTrue: false,
     statusTag: "Non è vero",
     explanation:
-      "Ansia e depressione sono malattie vere. Dipendono dal cervello, dagli ormoni e dallo stress della vita. Non sono una debolezza di carattere. L'aiuto di uno specialista e gli esercizi di respirazione guidata aiutano molto.",
+      "Ansia e depressione sono condizioni mediche curabili, mai una debolezza di carattere.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Medicina generale",
-    source: "Organizzazione Mondiale della Sanità",
+    source: "OMS",
     relatedTopicSlug: "mental-wellbeing",
   },
 ];
@@ -604,10 +604,10 @@ export const HEALTH_MYTHS_HR: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nije točno",
     explanation:
-      "Mnogi to misle jer se ponekad osjećaju malo lošije ubrzo nakon cijepljenja. Cjepivo sadrži neaktivne dijelove virusa koji ne mogu izazvati bolest. Ono samo uči tvoje tijelo kako se obraniti od pravog virusa.",
+      "Cjepivo sadrži neaktivni virus koji ne može izazvati bolest; samo uči tijelo kako se obraniti.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Obiteljska medicina",
-    source: "Svjetska zdravstvena organizacija i Hrvatski zavod za javno zdravstvo",
+    source: "SZO i HZJZ",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -618,7 +618,7 @@ export const HEALTH_MYTHS_HR: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nije točno",
     explanation:
-      "Previše šećera može dovesti do debljanja. No dijabetes tipa 2 ima više uzroka: nasljeđe u obitelji, premalo kretanja i način na koji tijelo koristi inzulin. Ne nastaje samo od slatkiša.",
+      "Dijabetes tipa 2 ovisi o nasljeđu, kretanju i načinu na koji tijelo koristi inzulin, ne samo o slatkišima.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endokrinologija i dijabetologija",
     source: "Međunarodna dijabetička federacija",
@@ -632,7 +632,7 @@ export const HEALTH_MYTHS_HR: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nije točno",
     explanation:
-      "Visoki krvni tlak najčešće ne daje nikakve znakove. Zato ga zovu tihi ubojica. Jedini siguran način da ga otkriješ jest redovito mjerenje tlakomjerom.",
+      "Visoki krvni tlak najčešće ne daje nikakve znakove; jedini siguran način provjere jest redovito mjerenje.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Kardiologija",
     source: "Europsko kardiološko društvo",
@@ -646,10 +646,10 @@ export const HEALTH_MYTHS_HR: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nije točno",
     explanation:
-      "Prehladu i gripu uzrokuju virusi. Antibiotici djeluju samo protiv bakterija. Ako ih uzimaš bez recepta, oštećuješ dobre bakterije u crijevima, a s vremenom antibiotici postaju manje učinkoviti.",
+      "Prehladu i gripu uzrokuju virusi, a antibiotici djeluju isključivo protiv bakterija.",
     doctorName: "Dr. Maria Popa",
     doctorSpecialty: "Infektologija",
-    source: "Svjetska zdravstvena organizacija",
+    source: "SZO",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -660,10 +660,10 @@ export const HEALTH_MYTHS_HR: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nije točno",
     explanation:
-      "Mamografija i ultrazvuk dojke mogu otkriti vrlo sitne promjene mnogo prije nego što ih možeš napipati prstima. Kada se promjena otkrije rano, liječenje je jednostavnije i uspješnije.",
+      "Mamografija i ultrazvuk otkrivaju sitne promjene mnogo prije nego što se mogu napipati.",
     doctorName: "Dr. Camelia Dobre",
     doctorSpecialty: "Ginekologija i porodništvo",
-    source: "Europske smjernice za preventivne preglede",
+    source: "Europske smjernice za probir",
     relatedTopicSlug: "womens-health",
   },
   {
@@ -674,10 +674,10 @@ export const HEALTH_MYTHS_HR: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nije točno",
     explanation:
-      "Nikotin i dim koji udišeš sužavaju krvne žile i ubrzavaju puls, bez obzira na vrstu duhana. Prestanak pušenja najbolja je odluka koju možeš donijeti za svoje srce.",
+      "Nikotin sužava krvne žile i ubrzavaju puls bez obzira na vrstu duhana.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Kardiologija",
-    source: "Svjetska zdravstvena organizacija",
+    source: "SZO",
     relatedTopicSlug: "smoking",
   },
   {
@@ -688,10 +688,10 @@ export const HEALTH_MYTHS_HR: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nije točno",
     explanation:
-      "Svaka kuhinjska sol sadrži oko 98% natrijeva klorida. Svaka vrsta jednako povisuje krvni tlak. Ružičasta sol ne štiti srce bolje od obične soli. Važna je ukupna količina: manje od 5 grama dnevno.",
+      "Svaka kuhinjska sol sadrži oko 98% natrija i jednako povisuje tlak; ograniči je na manje od 5 g dnevno.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endokrinologija i dijabetologija",
-    source: "Svjetska zdravstvena organizacija",
+    source: "SZO",
     relatedTopicSlug: "healthy-eating",
   },
   {
@@ -702,10 +702,10 @@ export const HEALTH_MYTHS_HR: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nije točno",
     explanation:
-      "Brzo hodanje, rad u vrtu ili penjanje uz stepenice štite tvoje srce. Svaka minuta kretanja u danu pomaže sniziti krvni tlak i šećer u krvi. Ne trebaju ti skupe sprave.",
+      "Brzo hodanje, rad u vrtu ili penjanje uz stepenice štite srce te snižavaju tlak i šećer.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Kardiologija",
-    source: "Svjetska zdravstvena organizacija i europske smjernice za prevenciju",
+    source: "SZO",
     relatedTopicSlug: "physical-activity",
   },
   {
@@ -716,10 +716,10 @@ export const HEALTH_MYTHS_HR: HealthMyth[] = [
     isTrue: false,
     statusTag: "Nije točno",
     explanation:
-      "Anksioznost i depresija stvarne su bolesti. Na njih utječu mozak, hormoni i životni stres. One nisu slabost karaktera. Razgovor sa stručnjakom i vježbe vođenog disanja mnogo pomažu.",
+      "Anksioznost i depresija izlječiva su zdravstvena stanja, nikada slabost karaktera.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Obiteljska medicina",
-    source: "Svjetska zdravstvena organizacija",
+    source: "SZO",
     relatedTopicSlug: "mental-wellbeing",
   },
 ];
@@ -745,10 +745,10 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
     isTrue: false,
     statusTag: "Naj čače",
     explanation:
-      "But manusha gindisaren akava soske varekana hatjaren pes zalog khine pala i vakcina. I vakcina inkerel mule kotora e viruseske save nashti te keren nasvalipen. Oj samo sikavel tiro trupo te marel pes e čačune virusesa.",
+      "I vakcina inkerel mulo viruso savo nashti kerel nasvalipen; samo sikavel tiro trupo te arakhel pes.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Familijaki medicina",
-    source: "Lumaki sastipnaski organizacija",
+    source: "WHO",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -759,7 +759,7 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
     isTrue: false,
     statusTag: "Naj čače",
     explanation:
-      "But zahari shaj te thuljarel tut. Numa o dijabeto tip 2 si les maj but uzrokura: so avel katar i familija, xanci phirimos thaj sar o trupo labyarel o inzulino. Na avel samo katar o gudlipen.",
+      "O dijabeto tip 2 avel katar i familija, xanci phirimos thaj sar o trupo labyarel o inzulino, na samo katar o gudlipen.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endokrinologija thaj xaben",
     source: "Mashkarthemutni dijabeteski federacija",
@@ -773,7 +773,7 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
     isTrue: false,
     statusTag: "Naj čače",
     explanation:
-      "Maj butivar, i uchi tensija na del nijekh semno. Vash kodo akharen la mirno mudari. O jekh sigurno drom te dzhanes si te merisares la redovno.",
+      "Maj butivar i uchi tensija na del nijekh semno; o jekh sigurno drom te dzhanes si te merisares la redovno.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Kardiologija",
     source: "Evropako kardiologikano amalipen",
@@ -787,10 +787,10 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
     isTrue: false,
     statusTag: "Naj čače",
     explanation:
-      "O shil thaj i gripa aven katar e virusura. E antibiotikura keren buchi samo mamuj e bakterije. Te les len bi receptako, dukhaves e lačhe bakterije ando por. Thaj vash vrjama, e antibiotikura na keren maj but kadja lačhi buchi.",
+      "O shil thaj i gripa aven katar e virusura, a e antibiotikura keren buchi samo mamuj e bakterije.",
     doctorName: "Dr. Maria Popa",
     doctorSpecialty: "Infektivne nasvalipena",
-    source: "Lumaki sastipnaski organizacija",
+    source: "WHO",
     relatedTopicSlug: "preventive-screening",
   },
   {
@@ -801,10 +801,10 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
     isTrue: false,
     statusTag: "Naj čače",
     explanation:
-      "I mamografija thaj o ultrazvuko e chuchjako arakhen but cikne paruvimata, but vrjama anglal te hatjares len e vastesa. Kana o problemo arakhel pes rano, o sastjarimos si maj lokho thaj dzhal maj mishto.",
+      "I mamografija thaj o ultrazvuko arakhen cikne paruvimata but vrjama anglal te hatjares len e vastesa.",
     doctorName: "Dr. Camelia Dobre",
     doctorSpecialty: "Ginekologija",
-    source: "Evropake sikavimata vash preventivno dikhiben",
+    source: "Evropake sikavimata vash dikhiben",
     relatedTopicSlug: "womens-health",
   },
   {
@@ -815,10 +815,10 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
     isTrue: false,
     statusTag: "Naj čače",
     explanation:
-      "O nikotino thaj o thuv so crdes ande phuka tangjaren e rateske droma thaj sigjaren o pulso, sar godi te thuvjares. Te mukhes o thuvjarimos si i maj lačhi buchi vash tiro ilo.",
+      "O nikotino tangjarel e rateske droma thaj sigjarel o pulso, sar godi te thuvjares.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Kardiologija",
-    source: "Lumaki sastipnaski organizacija",
+    source: "WHO",
     relatedTopicSlug: "smoking",
   },
   {
@@ -829,10 +829,10 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
     isTrue: false,
     statusTag: "Naj čače",
     explanation:
-      "Sako lon andi kuhinja si les pashe 98% natrijum klorido. Savore vazden i tensija jekhfjal. O rozavo lon na arakhel tiro ilo maj mishto katar o obicno lon. Vazhno si kozom xas sasto: tela 5 grama ko dives.",
+      "Sako lon si les pashe 98% natrijum thaj vazdel i tensija jekhfjal; inker les tela 5 g ko dives.",
     doctorName: "Dr. Mihai Stoica",
     doctorSpecialty: "Endokrinologija thaj xaben",
-    source: "Lumaki sastipnaski organizacija",
+    source: "WHO",
     relatedTopicSlug: "healthy-eating",
   },
   {
@@ -843,10 +843,10 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
     isTrue: false,
     statusTag: "Naj čače",
     explanation:
-      "Sigo phirimos, buchi andi barcha vaj inkljimos pe skale arakhen tiro ilo. Sako minuta phirimos ko dives azhutil te tiknjarel i tensija thaj o gudlo rat. Na trubul tut kuč aparatura.",
+      "Sigo phirimos, buchi andi barcha vaj inkljimos pe skale arakhen o ilo thaj tiknjaren i tensija thaj o zahari.",
     doctorName: "Dr. Adrian Ionescu",
     doctorSpecialty: "Kardiologija",
-    source: "Lumaki sastipnaski organizacija",
+    source: "WHO",
     relatedTopicSlug: "physical-activity",
   },
   {
@@ -857,10 +857,10 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
     isTrue: false,
     statusTag: "Naj čače",
     explanation:
-      "I anksioznost thaj i depresija si čačune nasvalipena. Pe lende kerel buchi i godi, e hormonura thaj e brige ando trajo. Naj slabipen e karakteresko. Azhutimos katar specijalisto thaj lokho phurdinimos azhutin but.",
+      "I anksioznost thaj i depresija si nasvalipena save sastjon, nikana slabipen e karakteresko.",
     doctorName: "Dr. Elena Radu",
     doctorSpecialty: "Familijaki medicina",
-    source: "Lumaki sastipnaski organizacija",
+    source: "WHO",
     relatedTopicSlug: "mental-wellbeing",
   },
 ];
@@ -1308,7 +1308,7 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       sq: "Terma mjekësorë të shpjeguar qartë, në gjuhën rome dhe në shqip",
       it: "Termini medici spiegati chiaramente, in romanì e in italiano",
       hr: "Medicinski pojmovi jasno objašnjeni, na romskom i hrvatskom",
-      rom: "Sastipnaske alava ashkarde lokhes, pe romani čhib",
+      rom: "Sastipnaske alava ashkarde chaches, pe romani čhib",
     },
     closeAria: {
       ro: "Închide lista de cuvinte",

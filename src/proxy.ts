@@ -6,7 +6,7 @@ import { buildContentSecurityPolicy, createNonce, meetingOriginFromEnv } from "@
 import { resolveCountyFromHeaders, USER_COUNTY_HEADER, REDIHEALTH_COUNTY_HEADER } from "@/lib/geo-ip-server";
 
 const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
-const PRIVATE_PREFIXES = ["/panel", "/offline", "/sign-in", "/patient-portal"];
+const PRIVATE_PREFIXES = ["/panel", "/offline", "/sign-in", "/patient-portal", "/health-check/note"];
 
 function getPreferredLang(request: NextRequest) {
   const cookieLang = request.cookies.get(LOCALE_COOKIE)?.value;
@@ -79,8 +79,8 @@ export function proxy(request: NextRequest) {
   if (PRIVATE_PREFIXES.some((prefix) => barePath === prefix || barePath.startsWith(`${prefix}/`))) {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
-  if (barePath.startsWith("/patient-portal/")) {
-    // The access token is part of the URL, so never send it along as a referrer.
+  if (barePath.startsWith("/patient-portal/") || barePath === "/health-check/note") {
+    // Sensitive tokens and triage note query parameters belong to the URL alone; never leak them via Referer.
     response.headers.set("Referrer-Policy", "no-referrer");
   }
 

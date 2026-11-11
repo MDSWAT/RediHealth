@@ -30,9 +30,9 @@ const FADE = "2.5rem";
 
 /**
  * One left-aligned underline band, the same pattern as the section tabs in
- * the guides. It stays on a single horizontal row: when the labels exceed the
- * column width the row scrolls sideways and the cut-off edge fades out, with
- * desktop chevrons paging the row.
+ * the guides. It is one row that scrolls sideways, its cut-off edge fading
+ * out so every category is reachable cleanly. Its colours are set for the
+ * sapphire-soft quiz ground, the only place it is used.
  */
 export function MythCategoryFilter({
   categories,
@@ -109,7 +109,7 @@ export function MythCategoryFilter({
 
   // Mouse-only paging; touch swipes and keyboard focus already scroll the row.
   const edgeButton =
-    "absolute top-0 bottom-px hidden w-10 items-center text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground pointer-fine:flex motion-reduce:transition-none";
+    "absolute top-0 bottom-px hidden w-10 items-center from-sapphire-soft from-50% to-transparent text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground pointer-fine:flex motion-reduce:transition-none dark:from-ink-900 dark:text-mist dark:hover:text-paper";
 
   return (
     <div className={cn("relative", className)}>
@@ -118,7 +118,7 @@ export function MythCategoryFilter({
         role="group"
         aria-label={t.quiz.filterAriaLabel}
         style={maskStyle}
-        className="flex gap-5 overflow-x-auto shadow-[inset_0_-1px_0_var(--color-border)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-x-6 overflow-x-auto border-b border-sapphire-border/80 [scrollbar-width:none] lg:flex-col lg:items-start lg:overflow-visible lg:border-b-0 lg:border-l dark:border-ink-800 [&::-webkit-scrollbar]:hidden"
       >
         {categories.map((cat) => {
           const isActive = activeCategory === cat.slug;
@@ -131,23 +131,16 @@ export function MythCategoryFilter({
               aria-pressed={isActive}
               onClick={() => onSelect(cat.slug)}
               className={cn(
-                "flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 pb-2.5 pt-2 text-sm font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none",
+                "-mb-px flex min-h-11 shrink-0 items-baseline gap-1.5 whitespace-nowrap border-b-2 pb-2.5 pt-2 text-[15px] lg:mb-0 lg:-ml-px lg:min-h-10 lg:items-center lg:border-b-0 lg:border-l-2 lg:py-1.5 lg:pl-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none dark:focus-visible:ring-paper",
                 isActive
-                  ? "border-foreground text-foreground"
-                  : "border-transparent text-muted-foreground hover:text-foreground",
+                  ? "border-foreground font-semibold text-foreground dark:border-paper dark:text-paper"
+                  : "border-transparent font-medium text-muted-foreground hover:text-foreground active:text-foreground dark:text-mist dark:hover:text-paper dark:active:text-paper",
               )}
             >
               <span>{cat.label}</span>
-              {tally && (
-                <span
-                  className={cn(
-                    "inline-flex items-center justify-center rounded-md px-1.5 py-0.5 font-mono text-[11px] tabular-nums transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-                    hasAnswered
-                      ? "border border-sapphire-border/80 bg-sapphire-soft font-semibold text-sapphire"
-                      : "bg-muted font-medium text-muted-foreground",
-                  )}
-                >
-                  {hasAnswered ? `${tally.answered}/${tally.total}` : tally.total}
+              {hasAnswered && tally && (
+                <span className="text-meta font-normal tabular-nums text-sapphire dark:text-sapphire-border">
+                  {tally.answered}/{tally.total}
                 </span>
               )}
             </button>
@@ -160,7 +153,7 @@ export function MythCategoryFilter({
           tabIndex={-1}
           aria-hidden="true"
           onClick={() => page(-1)}
-          className={cn(edgeButton, "left-0 justify-start bg-linear-to-r from-background from-50% to-transparent")}
+          className={cn(edgeButton, "left-0 justify-start bg-linear-to-r")}
         >
           <ChevronLeftIcon className="h-4 w-4" />
         </button>
@@ -171,7 +164,7 @@ export function MythCategoryFilter({
           tabIndex={-1}
           aria-hidden="true"
           onClick={() => page(1)}
-          className={cn(edgeButton, "right-0 justify-end bg-linear-to-l from-background from-50% to-transparent")}
+          className={cn(edgeButton, "right-0 justify-end bg-linear-to-l")}
         >
           <ChevronRightIcon className="h-4 w-4" />
         </button>
