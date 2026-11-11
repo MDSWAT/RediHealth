@@ -14,6 +14,8 @@
   --color-muted-foreground: #475569;
 
   --color-border: #e2e8f0;
+  /* Edges of controls (chips, switches, inputs): 3:1 against white, as WCAG 1.4.11 asks. */
+  --color-border-control: #8a94a6;
   --color-border-subtle: #edf2f7;
   --color-card: #ffffff;
 
@@ -55,7 +57,9 @@
   /* Micro-status Sage (Restricted strictly to micro indicators) */
   --color-live-sage: #059669;
   --color-live-sage-soft: #ecfdf5;
+}
 
+@theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -527,19 +531,27 @@ body:has([data-sticky-actions]) .report-issue-trigger {
    A 44px touch envelope surrounds the dot (and the pin, once shown) for WCAG tap ergonomics. */
 .leaflet-pane .leaflet-marker-icon.fhs-place { pointer-events: none; outline: none; }
 .fhs-place-hit { position: absolute; left: -8px; top: 14px; width: 44px; height: 44px; border-radius: 9999px; pointer-events: auto; }
-.fhs-place-dot { position: absolute; left: 9px; top: 31px; width: 10px; height: 10px; border-radius: 9999px; box-shadow: 0 0 0 1.5px #ffffff; pointer-events: none; transition: opacity var(--dur-fast) var(--ease-out-calm); }
+.fhs-place-dot { position: absolute; left: 8px; top: 30px; width: 12px; height: 12px; border-radius: 9999px; box-shadow: 0 0 0 2px #ffffff, 0 1px 2px rgba(11, 19, 43, 0.3); pointer-events: none; transition: opacity var(--dur-fast) var(--ease-out-calm); }
 .fhs-place-pin { position: absolute; left: 0; top: 0; display: block; opacity: 0; pointer-events: none; filter: drop-shadow(0 1px 1.5px rgba(15, 23, 42, 0.24)); transition: opacity var(--dur-fast) var(--ease-out-calm); }
 .fhs-place:hover, .fhs-place:focus-visible, .fhs-place.is-hovered { z-index: 10000 !important; }
 .fhs-place:hover .fhs-place-pin, .fhs-place:focus-visible .fhs-place-pin, .fhs-place.is-selected .fhs-place-pin, .fhs-place.is-hovered .fhs-place-pin { opacity: 1; pointer-events: auto; }
 .fhs-place:hover .fhs-place-dot, .fhs-place:focus-visible .fhs-place-dot, .fhs-place.is-selected .fhs-place-dot, .fhs-place.is-hovered .fhs-place-dot { opacity: 0; }
-.fhs-place:focus-visible .fhs-place-hit { box-shadow: 0 0 0 2px var(--color-sapphire); }
+.fhs-place:focus-visible .fhs-place-hit { box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--color-sapphire); }
+/* Clusters: a round count badge, sized by count, that grows a ring when its place is hovered in the list. */
+.leaflet-pane .leaflet-marker-icon.fhs-cluster { background: transparent; border: 0; outline: none; }
+.fhs-cluster-badge { position: relative; display: flex; align-items: center; justify-content: center; border-radius: 9999px; color: #ffffff; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 3px #ffffff, 0 2px 8px rgba(11, 19, 43, 0.25); transition: transform var(--dur-fast) var(--ease-out-calm), box-shadow var(--dur-fast) var(--ease-out-calm); }
+.fhs-cluster-er { position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; border-radius: 9999px; box-shadow: 0 0 0 2px #ffffff; }
+.fhs-cluster:hover .fhs-cluster-badge, .fhs-cluster.is-hovered .fhs-cluster-badge { transform: scale(1.08); box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px rgba(29, 53, 87, 0.25), 0 4px 12px rgba(11, 19, 43, 0.28); }
+.fhs-cluster:focus-visible .fhs-cluster-badge { box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px var(--color-sapphire); }
+/* Zoom buttons meet the 44px touch target. */
+.fhs-map .leaflet-touch .leaflet-bar a, .fhs-map .leaflet-bar a { width: 44px; height: 44px; line-height: 44px; font-size: 20px; }
 /* The map's popup and credit use the site's type and link colour, not Leaflet's defaults. */
 .fhs-map .leaflet-container { font-family: inherit; }
 .fhs-map .leaflet-popup-content { font-size: 0.875rem; line-height: 1.45; color: var(--color-foreground); }
 .fhs-map .leaflet-container a { color: var(--color-sapphire); }
 .fhs-map .leaflet-popup-content-wrapper { border-radius: 0.75rem; }
 @media (prefers-reduced-motion: reduce) {
-  .fhs-place-dot, .fhs-place-pin { transition: none; }
+  .fhs-place-dot, .fhs-place-pin, .fhs-cluster-badge { transition: none; }
 }
 
 /* Heart-health diagram (HeartDiagram.tsx): one beat per --hh-beat (64 bpm), the heart
@@ -605,6 +617,131 @@ body:has([data-sticky-actions]) .report-issue-trigger {
 .leaflet-container {
   isolation: isolate;
   z-index: 0 !important;
+}
+
+/* ---------- Medical dictionary & Romanes lexicon drawers (.rh-glossary-panel / .rh-dict-*) ---------- */
+@keyframes rh-glossary-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes rh-glossary-drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes rh-dict-body-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rh-dict-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rh-dict-wave {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.rh-glossary-panel {
+  --dict-formal-size: 0.96875rem;
+  --dict-plain-size: 1.125rem;
+  --dict-body-size: 0.9375rem;
+  --dict-note-size: 0.84375rem;
+  animation: rh-glossary-sheet-up var(--dur-slow) var(--ease-out-calm) both;
+}
+
+.rh-glossary-panel[data-large-text="true"] {
+  --dict-formal-size: 1.09375rem;
+  --dict-plain-size: 1.28125rem;
+  --dict-body-size: 1.0625rem;
+  --dict-note-size: 0.96875rem;
+}
+
+@media (min-width: 640px) {
+  .rh-glossary-panel {
+    animation: rh-glossary-drawer-in var(--dur-base) var(--ease-out-calm) both;
+  }
+}
+
+/* Suppress outer scrim fade and drawer slide when switching tabs inside an already-open drawer. */
+.hh-scrim[data-tab-handoff="true"],
+.rh-glossary-panel[data-tab-handoff="true"] {
+  animation: none !important;
+}
+
+.rh-dict-masthead {
+  background-color: #f5f7fa;
+  background-image: radial-gradient(rgba(29, 53, 87, 0.07) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.dark .rh-dict-masthead {
+  background-color: var(--color-ink-900);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+}
+
+.rh-dict-tab-body {
+  animation: rh-dict-body-in var(--dur-fast) var(--ease-out-calm) both;
+}
+
+.rh-dict-card {
+  animation: rh-dict-card-in var(--dur-base) var(--ease-out-calm) both;
+  animation-delay: min(calc(var(--stagger, 0) * 10ms), 40ms);
+}
+
+.rh-dict-wave-bar {
+  transform-origin: center;
+  animation: rh-dict-wave 760ms var(--ease-in-out-calm) infinite;
+}
+
+.rh-dict-wave-bar:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.rh-dict-wave-bar:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+.rh-dict-wave-bar:nth-child(4) {
+  animation-delay: 100ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rh-glossary-panel,
+  .rh-dict-tab-body,
+  .rh-dict-card,
+  .rh-dict-wave-bar {
+    animation: none !important;
+    transform: none;
+  }
 }
 
 /* ---------- Print stylesheet (PDF & paper handouts) ---------- */

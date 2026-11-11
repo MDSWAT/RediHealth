@@ -18,6 +18,8 @@ type Props = {
   categoryLabels?: Record<InstituteCategory, string>;
   searchThisAreaLabel?: string;
   youAreHereLabel?: string;
+  /** Accessible name for a cluster, e.g. "3 places". */
+  clusterLabel?: (count: number) => string;
   onSearchArea?: (center: LatLng) => void;
 };
 
@@ -29,10 +31,37 @@ const PLACE_FILL = "#1d3557";
 const EMERGENCY_FILL = "#c62f3c";
 
 const CLUSTER_MAX_ZOOM = 14;
-const CLUSTER_GRID_PX = 52;
+/** Places closer than this on screen join one cluster; larger than the biggest badge, so badges never overlap. */
+const CLUSTER_RADIUS_PX = 56;
+const LOCAL_USER_RANGE_KM = 80;
 
 function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function isMapAlive(map: L.Map): boolean {
+  const internal = map as unknown as { _loaded?: boolean; _mapPane?: HTMLElement };
+  return Boolean(internal._loaded && internal._mapPane && map.getContainer()?.isConnected);
+}
+
+function haversineKm(a: LatLng, b: LatLng): number {
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const sinLat = Math.sin(dLat / 2);
+  const sinLng = Math.sin(dLng / 2);
+  const h = sinLat * sinLat + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * sinLng * sinLng;
+  return 6371 * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+}
+
+function isUserWithinLocalRange(userLocation: LatLng | null | undefined, institutes: MedicalInstitute[]): boolean {
+  if (!userLocation || institutes.length === 0) return false;
+  for (let i = 0; i < institutes.length; i += 1) {
+    if (haversineKm(userLocation, institutes[i]) <= LOCAL_USER_RANGE_KM) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // The pin glyph: 28 x 36, its tip on the place.
@@ -61,21 +90,22 @@ function placeIcon(selected: boolean, hovered: boolean, emergency: boolean) {
   return icon;
 }
 
+function clusterSize(count: number) {
+  return count < 10 ? 36 : count < 50 ? 42 : 48;
+}
+
 function clusterTileIcon(count: number, hasEmergency: boolean, hasHovered: boolean) {
   const key = `${count}-${hasEmergency}-${hasHovered}`;
   const cached = clusterIconCache.get(key);
   if (cached) return cached;
-  const ringShadow = hasHovered
-    ? "0 0 0 3px rgba(29,53,87,0.28),0 4px 12px rgba(11,19,43,0.28)"
-    : "0 2px 8px rgba(11,19,43,0.22)";
-  const emergencyDot = hasEmergency
-    ? `<span aria-hidden="true" style="position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:9999px;background:${EMERGENCY_FILL};box-shadow:0 0 0 2px #ffffff;"></span>`
-    : "";
+  const size = clusterSize(count);
   const icon = L.divIcon({
-    className: "fhs-cluster-icon bg-transparent border-0",
-    html: `<div class="rounded-lg bg-sapphire text-white" style="position:relative;width:44px;height:44px;border-radius:8px;background:${PLACE_FILL};color:#ffffff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;border:2px solid #ffffff;box-shadow:${ringShadow};">${count}${emergencyDot}</div>`,
-    iconSize: [44, 44],
-    iconAnchor: [22, 22],
+    className: `fhs-cluster${hasHovered ? " is-hovered" : ""}`,
+    html:
+      `<span class="fhs-cluster-badge" style="width:${size}px;height:${size}px;background:${PLACE_FILL}">${count}</span>` +
+      (hasEmergency ? `<span class="fhs-cluster-er" style="background:${EMERGENCY_FILL}"></span>` : ""),
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
   });
   clusterIconCache.set(key, icon);
   return icon;
@@ -155,9 +185,11 @@ type ClusterGroup = {
 const ClusterMarker = memo(function ClusterMarker({
   cluster,
   hasHovered,
+  label,
 }: {
   cluster: ClusterGroup;
   hasHovered: boolean;
+  label?: string;
 }) {
   const map = useMap();
   const eventHandlers = useMemo<L.LeafletEventHandlerFnMap>(
@@ -180,6 +212,7 @@ const ClusterMarker = memo(function ClusterMarker({
     <Marker
       position={[cluster.lat, cluster.lng]}
       icon={clusterTileIcon(cluster.items.length, cluster.hasEmergency, hasHovered)}
+      title={label ?? String(cluster.items.length)}
       zIndexOffset={hasHovered ? 550 : 200}
       eventHandlers={eventHandlers}
     />
@@ -191,6 +224,7 @@ function ClusteredInstitutesLayer({
   selectedId,
   hoveredId,
   categoryLabels,
+  clusterLabel,
   onSelect,
   onHoverChange,
 }: {
@@ -198,6 +232,7 @@ function ClusteredInstitutesLayer({
   selectedId: string | null;
   hoveredId?: string | null;
   categoryLabels?: Record<InstituteCategory, string>;
+  clusterLabel?: (count: number) => string;
   onSelect: (id: string) => void;
   onHoverChange?: (id: string | null) => void;
 }) {
@@ -213,13 +248,19 @@ function ClusteredInstitutesLayer({
       return { singles: institutes, clusters: [] as ClusterGroup[] };
     }
 
-    const buckets = new Map<
-      string,
-      { sumLat: number; sumLng: number; items: MedicalInstitute[]; hasEmergency: boolean }
-    >();
+    type Bucket = {
+      seedX: number;
+      seedY: number;
+      sumLat: number;
+      sumLng: number;
+      items: MedicalInstitute[];
+      hasEmergency: boolean;
+    };
+    const buckets: Bucket[] = [];
     const standalone: MedicalInstitute[] = [];
+    const radiusSq = CLUSTER_RADIUS_PX * CLUSTER_RADIUS_PX;
 
-    // Single O(N) screen-space pixel-grid pass (52px cells)
+    // Greedy pass: each place joins the first group whose seed is within the radius on screen.
     for (let i = 0; i < institutes.length; i += 1) {
       const inst = institutes[i];
       if (inst.id === selectedId) {
@@ -227,17 +268,24 @@ function ClusteredInstitutesLayer({
         continue;
       }
       const pt = map.project([inst.lat, inst.lng], zoom);
-      const gx = Math.floor(pt.x / CLUSTER_GRID_PX);
-      const gy = Math.floor(pt.y / CLUSTER_GRID_PX);
-      const cellKey = `${gx}:${gy}`;
-      const existing = buckets.get(cellKey);
-      if (existing) {
-        existing.sumLat += inst.lat;
-        existing.sumLng += inst.lng;
-        existing.items.push(inst);
-        if (inst.emergency) existing.hasEmergency = true;
+      let target: Bucket | undefined;
+      for (let j = 0; j < buckets.length; j += 1) {
+        const dx = buckets[j].seedX - pt.x;
+        const dy = buckets[j].seedY - pt.y;
+        if (dx * dx + dy * dy <= radiusSq) {
+          target = buckets[j];
+          break;
+        }
+      }
+      if (target) {
+        target.sumLat += inst.lat;
+        target.sumLng += inst.lng;
+        target.items.push(inst);
+        if (inst.emergency) target.hasEmergency = true;
       } else {
-        buckets.set(cellKey, {
+        buckets.push({
+          seedX: pt.x,
+          seedY: pt.y,
           sumLat: inst.lat,
           sumLng: inst.lng,
           items: [inst],
@@ -247,13 +295,13 @@ function ClusteredInstitutesLayer({
     }
 
     const grouped: ClusterGroup[] = [];
-    buckets.forEach((bucket, cellKey) => {
+    buckets.forEach((bucket) => {
       if (bucket.items.length === 1) {
         standalone.push(bucket.items[0]);
       } else {
         const len = bucket.items.length;
         grouped.push({
-          key: `cluster-${zoom}-${cellKey}`,
+          key: `cluster-${zoom}-${bucket.items[0].id}`,
           lat: bucket.sumLat / len,
           lng: bucket.sumLng / len,
           items: bucket.items,
@@ -269,7 +317,14 @@ function ClusteredInstitutesLayer({
     <>
       {clusters.map((cluster) => {
         const hasHovered = Boolean(hoveredId && cluster.items.some((item) => item.id === hoveredId));
-        return <ClusterMarker key={cluster.key} cluster={cluster} hasHovered={hasHovered} />;
+        return (
+          <ClusterMarker
+            key={cluster.key}
+            cluster={cluster}
+            hasHovered={hasHovered}
+            label={clusterLabel?.(cluster.items.length)}
+          />
+        );
       })}
       {singles.map((institute) => (
         <PlaceMarker
@@ -299,35 +354,44 @@ function MapController({
 
   useEffect(() => {
     const container = map.getContainer();
+    let unmounted = false;
     let rafId: number | null = null;
     const ro = new ResizeObserver(() => {
       if (rafId !== null) window.cancelAnimationFrame(rafId);
       rafId = window.requestAnimationFrame(() => {
         rafId = null;
+        if (unmounted || !isMapAlive(map)) return;
         map.invalidateSize({ pan: false });
       });
     });
     ro.observe(container);
     return () => {
+      unmounted = true;
       ro.disconnect();
       if (rafId !== null) window.cancelAnimationFrame(rafId);
     };
   }, [map]);
 
   useEffect(() => {
+    if (!isMapAlive(map)) return;
     const points: [number, number][] = institutes.map((institute) => [institute.lat, institute.lng]);
     if (points.length === 0) return;
-    // Frame the closest results (and the user) rather than every far-away match.
+    // Frame the closest results, and include userLocation only when within local range (<= 80 km)
+    // so distant / out-of-country GPS never stretches fitBounds across half a continent.
     const framed = points.slice(0, 25);
-    if (userLocation) framed.push([userLocation.lat, userLocation.lng]);
+    if (userLocation && isUserWithinLocalRange(userLocation, institutes)) {
+      framed.push([userLocation.lat, userLocation.lng]);
+    }
     map.fitBounds(L.latLngBounds(framed), { padding: [48, 48], maxZoom: 15, animate: !prefersReducedMotion() });
   }, [institutes, userLocation, map]);
 
   useEffect(() => {
-    if (!selectedId) return;
+    if (!selectedId || !isMapAlive(map)) return;
     const institute = institutes.find((item) => item.id === selectedId);
     if (!institute) return;
     const target: [number, number] = [institute.lat, institute.lng];
+    // On phones the map may have been hidden (list view) until this same tap; measure it first.
+    map.invalidateSize({ pan: false });
     const zoom = Math.max(map.getZoom(), 15);
     // A short, decelerating glide to the chosen place; a plain jump under reduced motion.
     if (prefersReducedMotion()) map.setView(target, zoom, { animate: false });
@@ -396,13 +460,16 @@ export default function InstitutesMapInner({
   categoryLabels,
   searchThisAreaLabel,
   youAreHereLabel,
+  clusterLabel,
   onSearchArea,
 }: Props) {
-  const center: [number, number] = userLocation
-    ? [userLocation.lat, userLocation.lng]
-    : institutes.length
-      ? [institutes[0].lat, institutes[0].lng]
-      : [44.4268, 26.1025];
+  const userIsLocal = useMemo(() => isUserWithinLocalRange(userLocation, institutes), [userLocation, institutes]);
+  const center: [number, number] =
+    userLocation && (userIsLocal || institutes.length === 0)
+      ? [userLocation.lat, userLocation.lng]
+      : institutes.length
+        ? [institutes[0].lat, institutes[0].lng]
+        : [44.4268, 26.1025];
 
   return (
     <div className="fhs-map relative isolate z-0 h-full w-full">
@@ -428,8 +495,16 @@ export default function InstitutesMapInner({
         {userLocation ? (
           <CircleMarker
             center={[userLocation.lat, userLocation.lng]}
+            radius={18}
+            interactive={false}
+            pathOptions={{ stroke: false, fillColor: PLACE_FILL, fillOpacity: 0.14 }}
+          />
+        ) : null}
+        {userLocation ? (
+          <CircleMarker
+            center={[userLocation.lat, userLocation.lng]}
             radius={8}
-            pathOptions={{ color: "#ffffff", weight: 3, fillColor: PLACE_FILL, fillOpacity: 1 }}
+            pathOptions={{ color: PLACE_FILL, weight: 4, fillColor: "#ffffff", fillOpacity: 1 }}
           >
             {youAreHereLabel ? <Tooltip>{youAreHereLabel}</Tooltip> : null}
           </CircleMarker>
@@ -439,6 +514,7 @@ export default function InstitutesMapInner({
           selectedId={selectedId}
           hoveredId={hoveredId}
           categoryLabels={categoryLabels}
+          clusterLabel={clusterLabel}
           onSelect={onSelect}
           onHoverChange={onHoverChange}
         />

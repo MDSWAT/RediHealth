@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { CheckCircleIcon, CheckIcon, PhoneIcon } from "@/components/ui/icons";
+import { CheckCircleIcon, CheckIcon, PhoneIcon, StethoscopeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -257,7 +257,7 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
       className="fixed inset-0 z-[60] flex h-[100dvh] w-full flex-col overflow-hidden bg-slate-950 text-white"
     >
       <header className="flex shrink-0 items-center gap-3 border-b border-white/10 bg-slate-950 px-4 py-2 pt-[max(0.5rem,env(safe-area-inset-top))]">
-        <span aria-hidden="true" className="inline-block h-2 w-2 shrink-0 rounded-full bg-live-sage" />
+        <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-live-sage" />
         <div className="min-w-0 flex-1">
           <h1 className="truncate text-sm font-semibold text-white">{doctorName ?? copy.callTitle}</h1>
           <p className="truncate text-xs text-slate-400">{copy.statusLine(patientName, roomId)}</p>

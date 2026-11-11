@@ -2177,7 +2177,10 @@ export function getHealthTopicsList(lang: Lang = "ro"): TopicItem[] {
       ...base,
       title: summaries[base.slug]?.title ?? base.slug,
       description: summaries[base.slug]?.description ?? "",
-      image: `/images/health-topics/${base.slug}.jpg`,
+      image:
+        base.slug === "heart-health"
+          ? "/images/health-topics/heart-health-care.jpg"
+          : `/images/health-topics/${base.slug}.jpg`,
       keyFact: fullTopic?.keyFacts?.[factIdx] ?? fullTopic?.keyFacts?.[0] ?? "",
       recommendationTitle: firstRec?.title ?? "",
       recommendationBody: firstRec?.description ?? "",

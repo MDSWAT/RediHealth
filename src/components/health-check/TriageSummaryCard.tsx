@@ -5,8 +5,10 @@ import { createPortal } from "react-dom";
 import { CheckCircleIcon, CopyIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
-import { getHealthCheckTranslations } from "@/lib/i18n/health-check-translations";
+import { getHealthCheckTranslations, type BodyPartId } from "@/lib/i18n/health-check-translations";
+import { getLocalizedSubRegion, type SubRegionId } from "./anatomy-3d-data";
 import { renderClinicalQrSvgData } from "./clinical-qr-svg";
+import { PAIN_DIAGRAM_COPY, buildPainAreaDiagramSvg, type PainDiagramSide } from "./pain-area-diagram";
 import { useDialogFocus } from "./useDialogFocus";
 import { printSummary } from "./printSummary";
 
@@ -15,9 +17,17 @@ export interface SummaryRow {
   value: string;
 }
 
+export interface PainLocationSummary {
+  part: BodyPartId;
+  subRegion?: SubRegionId | null;
+  side?: PainDiagramSide;
+}
+
 export interface TriageSummaryCardProps {
   bodyArea: string;
   anatomicalStructure?: string;
+  /** Structured anatomical locus used to render the Front/Back pain diagram in the card, modal, and PDF. */
+  painLocation?: PainLocationSummary;
   symptoms: string[];
   selfCareTips?: string[];
   redFlagNoticed?: boolean;
@@ -27,6 +37,14 @@ export interface TriageSummaryCardProps {
   triggers?: string;
   recommendedSpecialty?: string;
   clinicalMechanism?: string;
+  /** Highlighted line shown next to the QR code, e.g. "Recommendation given: Go to your family doctor...". */
+  recommendationDetail?: string;
+  /** Romanian equivalent of `recommendationDetail` for the Romanian doctor tab. */
+  romanianRecommendationDetail?: string;
+  /** Shareable URL encoded into the QR code so scanning reproduces the Step 4 result. */
+  reproduceUrl?: string;
+  /** Romanian route equivalent of `reproduceUrl` when the doctor switches to Romanian. */
+  romanianReproduceUrl?: string;
   /** Extra lines for the doctor screen: care level, guidance, emergency reason. */
   doctorNotes?: string[];
   /** Clinical wording of the symptom for the doctor screen (the page shows the patient's words). */
@@ -135,8 +153,8 @@ const COPY: Record<
     inOwnLanguage: "Arată în limba mea",
     myLanguageTab: "În limba mea",
     romanianTab: "În română",
-    qrTitle: "Cod QR offline pentru medic",
-    qrHint: "Medicul sau asistentul de la triaj poate scana codul QR cu camera telefonului ca să preia rezumatul fără internet.",
+    qrTitle: "Cod QR pentru redeschiderea rezultatului",
+    qrHint: "Scanează codul QR cu camera telefonului pentru a reproduce acest rezultat și a-l arăta medicului.",
     savePdf: "Salvează PDF",
   },
   en: {
@@ -158,8 +176,8 @@ const COPY: Record<
     inOwnLanguage: "Show in English",
     myLanguageTab: "In my language",
     romanianTab: "În română",
-    qrTitle: "Offline QR handoff for the doctor",
-    qrHint: "A doctor or triage nurse can scan this QR code offline to read your clinical summary.",
+    qrTitle: "QR code to reopen this result",
+    qrHint: "Scan this QR code with a phone camera to reproduce this exact result for your doctor.",
     savePdf: "Save as PDF",
   },
   sq: {
@@ -181,8 +199,8 @@ const COPY: Record<
     inOwnLanguage: "Shfaq në shqip",
     myLanguageTab: "Në gjuhën time",
     romanianTab: "În română",
-    qrTitle: "Kod QR offline për mjekun",
-    qrHint: "Mjeku ose infermieri i triazhit mund ta skanojë këtë kod QR pa internet për të lexuar përmbledhjen.",
+    qrTitle: "Kod QR për të rihapur rezultatin",
+    qrHint: "Skano këtë kod QR me kamerën e telefonit për të riprodhuar këtë rezultat për mjekun.",
     savePdf: "Ruaje si PDF",
   },
   it: {
@@ -204,8 +222,8 @@ const COPY: Record<
     inOwnLanguage: "Mostra in italiano",
     myLanguageTab: "Nella mia lingua",
     romanianTab: "În română",
-    qrTitle: "Codice QR offline per il medico",
-    qrHint: "Il medico o l'infermiere del triage può scansionare questo codice QR senza connessione per leggere il riepilogo.",
+    qrTitle: "Codice QR per riaprire il risultato",
+    qrHint: "Scansiona questo codice QR con la fotocamera del telefono per riprodurre il risultato per il medico.",
     savePdf: "Salva come PDF",
   },
   hr: {
@@ -227,8 +245,8 @@ const COPY: Record<
     inOwnLanguage: "Prikaži na hrvatskom",
     myLanguageTab: "Na mom jeziku",
     romanianTab: "În română",
-    qrTitle: "Offline QR kod za liječnika",
-    qrHint: "Liječnik ili medicinska sestra na trijaži mogu skenirati ovaj QR kod bez interneta kako bi pročitali sažetak.",
+    qrTitle: "QR kod za ponovno otvaranje rezultata",
+    qrHint: "Skeniraj ovaj QR kod kamerom telefona kako bi ponovno otvorio ovaj rezultat za liječnika.",
     savePdf: "Spremi kao PDF",
   },
   rom: {
@@ -250,8 +268,8 @@ const COPY: Record<
     inOwnLanguage: "Sikav pe romani chib",
     myLanguageTab: "Pe miri chib",
     romanianTab: "În română",
-    qrTitle: "Offline QR kodo vash o doktori",
-    qrHint: "O doktori shaj skaninel kadava QR kodo bi internetesko te ginavel o skurto lil.",
+    qrTitle: "QR kodo te putares palpale o rezultato",
+    qrHint: "Skanisar kadava QR kodo le telefonoske kamerasa te sikaves kadava rezultato le doktoreske.",
     savePdf: "Arakh sar PDF",
   },
 };
@@ -259,6 +277,7 @@ const COPY: Record<
 export function TriageSummaryCard({
   bodyArea,
   anatomicalStructure,
+  painLocation,
   symptoms,
   selfCareTips = [],
   redFlagNoticed = false,
@@ -268,6 +287,10 @@ export function TriageSummaryCard({
   triggers,
   recommendedSpecialty,
   clinicalMechanism,
+  recommendationDetail,
+  romanianRecommendationDetail,
+  reproduceUrl,
+  romanianReproduceUrl,
   doctorNotes = [],
   doctorSymptom,
   romanian,
@@ -316,11 +339,21 @@ export function TriageSummaryCard({
     ...(recommendedSpecialty ? [{ label: t.specialty, value: recommendedSpecialty }] : []),
   ];
 
+  const extraRecLine = useMemo(
+    () =>
+      recommendationDetail && !doctorNotes.includes(recommendationDetail)
+        ? [recommendationDetail]
+        : [],
+    [doctorNotes, recommendationDetail],
+  );
+
   const formattedSummary = [
     `${t.title} (${currentDate}):`,
     ...rows.map((r) => `${r.label}: ${r.value}`),
+    ...extraRecLine,
     ...doctorNotes,
     warningNotice,
+    ...(reproduceUrl ? [reproduceUrl] : []),
   ].join("\n");
 
   /** Clipboard API first; old WebViews and locked-down browsers fall back to a hidden textarea. */
@@ -364,21 +397,83 @@ export function TriageSummaryCard({
     : rows;
   const screenRows = showRomanian && romanian ? romanian.rows : ownScreenRows;
   const screenNotes = showRomanian && romanian ? romanian.notes : doctorNotes;
+  const activeDialogLang: Lang = showRomanian ? "ro" : activeLang;
   const activeDialogCopy = showRomanian ? COPY.ro : t;
-  const qrPayload = useMemo(() => {
+  const activeRecommendationDetail = showRomanian
+    ? (romanianRecommendationDetail ?? recommendationDetail)
+    : recommendationDetail;
+  const activeReproduceUrl = showRomanian ? (romanianReproduceUrl ?? reproduceUrl) : reproduceUrl;
+
+  const inlinePainDiagramSvg = useMemo(
+    () =>
+      painLocation
+        ? buildPainAreaDiagramSvg({
+            part: painLocation.part,
+            subRegion: painLocation.subRegion,
+            side: painLocation.side,
+            urgent: redFlagNoticed,
+            lang: activeLang,
+          })
+        : null,
+    [activeLang, painLocation, redFlagNoticed]
+  );
+
+  const dialogPainDiagramSvg = useMemo(
+    () =>
+      painLocation
+        ? buildPainAreaDiagramSvg({
+            part: painLocation.part,
+            subRegion: painLocation.subRegion,
+            side: painLocation.side,
+            urgent: redFlagNoticed,
+            lang: activeDialogLang,
+          })
+        : null,
+    [activeDialogLang, painLocation, redFlagNoticed]
+  );
+
+  const inlineQrPayload = useMemo(() => {
+    if (reproduceUrl) return reproduceUrl;
+    const header = `${t.title} (${currentDate})`;
+    const bodyLines = ownScreenRows.map((r) => `${r.label}: ${r.value}`);
+    return [header, ...bodyLines, ...extraRecLine, ...doctorNotes, warningNotice].join("\n");
+  }, [currentDate, doctorNotes, extraRecLine, ownScreenRows, reproduceUrl, t.title, warningNotice]);
+
+  const dialogQrPayload = useMemo(() => {
+    if (activeReproduceUrl) return activeReproduceUrl;
     const header = `${activeDialogCopy.title} (${showRomanian ? formatDate(new Date(), "ro") : currentDate})`;
     const bodyLines = screenRows.map((r) => `${r.label}: ${r.value}`);
     const statusLine = redFlagNoticed ? activeDialogCopy.redFlag : activeDialogCopy.noRedFlag;
     return [header, ...bodyLines, ...screenNotes, statusLine].join("\n");
-  }, [activeDialogCopy, currentDate, redFlagNoticed, screenNotes, screenRows, showRomanian]);
-  const qrSvg = useMemo(() => renderClinicalQrSvgData(qrPayload, 2), [qrPayload]);
+  }, [activeDialogCopy, activeReproduceUrl, currentDate, redFlagNoticed, screenNotes, screenRows, showRomanian]);
 
-  /** "Save as PDF": print the clinical summary with its offline vector QR handoff in the active language. */
+  const inlineQrSvg = useMemo(() => renderClinicalQrSvgData(inlineQrPayload, 2), [inlineQrPayload]);
+  const qrSvg = useMemo(() => renderClinicalQrSvgData(dialogQrPayload, 2), [dialogQrPayload]);
+
+  /** "Save as PDF": print the clinical summary with its anatomical pain diagram and vector QR handoff. */
   function handlePrint() {
-    const printLang = showRomanian ? "ro" : activeLang;
+    const printLang: Lang = showRomanian ? "ro" : activeLang;
     const copy = showRomanian ? COPY.ro : t;
     const date = showRomanian ? formatDate(new Date(), "ro") : currentDate;
     const printDict = getHealthCheckTranslations(printLang);
+    const painCopy = PAIN_DIAGRAM_COPY[printLang] ?? PAIN_DIAGRAM_COPY.ro;
+    const printPrimaryLoc = painLocation ? printDict.bodyParts[painLocation.part].title : bodyArea;
+    const printSecondaryLoc =
+      painLocation?.subRegion
+        ? getLocalizedSubRegion(painLocation.subRegion, printLang).label
+        : showRomanian
+          ? undefined
+          : anatomicalStructure;
+    const printDiagramSvg = painLocation
+      ? buildPainAreaDiagramSvg({
+          part: painLocation.part,
+          subRegion: painLocation.subRegion,
+          side: painLocation.side,
+          urgent: redFlagNoticed,
+          lang: printLang,
+        })
+      : undefined;
+
     printSummary({
       lang: printLang,
       meta: `${copy.screenFor} · ${date}`,
@@ -387,10 +482,20 @@ export function TriageSummaryCard({
       notes: screenNotes,
       status: redFlagNoticed ? copy.redFlag : copy.noRedFlag,
       urgent: redFlagNoticed,
+      painDiagram:
+        painLocation && printDiagramSvg
+          ? {
+              svg: printDiagramSvg,
+              heading: painCopy.heading,
+              primaryLocation: printPrimaryLoc,
+              secondaryLocation: printSecondaryLoc,
+            }
+          : undefined,
       qr: {
         size: qrSvg.size,
         path: qrSvg.path,
         title: copy.qrTitle,
+        detail: activeRecommendationDetail,
         hint: copy.qrHint,
       },
       footer: printDict.ui.disclaimer,
@@ -409,6 +514,24 @@ export function TriageSummaryCard({
         <div className="flex items-baseline justify-between gap-4">
           <h3 className="text-base font-semibold text-foreground">{dict.ui.summaryHeading}</h3>
           <span className="font-mono text-xs text-slate-500 tabular-nums">{currentDate}</span>
+        </div>
+      )}
+
+      {inlinePainDiagramSvg && painLocation && (
+        <div className="mt-2.5 flex items-center gap-3.5 rounded-lg border border-slate-200/95 bg-white p-3">
+          <div
+            className="w-28 shrink-0 [&_svg]:h-auto [&_svg]:w-full"
+            dangerouslySetInnerHTML={{ __html: inlinePainDiagramSvg }}
+          />
+          <div className="min-w-0">
+            <p className="text-xs font-semibold text-slate-500">
+              {(PAIN_DIAGRAM_COPY[activeLang] ?? PAIN_DIAGRAM_COPY.ro).heading}
+            </p>
+            <p className="mt-0.5 text-[15px] font-semibold leading-snug text-obsidian-navy">{bodyArea}</p>
+            {anatomicalStructure && (
+              <p className="mt-0.5 text-[13px] font-medium text-slate-600">{anatomicalStructure}</p>
+            )}
+          </div>
         </div>
       )}
 
@@ -436,6 +559,32 @@ export function TriageSummaryCard({
               <li key={idx}>{tip}</li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {inlineQrSvg.size > 0 && (
+        <div className="mt-3.5 flex items-center gap-3.5 rounded-lg border border-slate-200/95 bg-white p-3">
+          <div className="shrink-0 rounded-md border border-slate-200 bg-white p-1.5">
+            <svg
+              viewBox={`0 0 ${inlineQrSvg.size} ${inlineQrSvg.size}`}
+              shapeRendering="crispEdges"
+              role="img"
+              aria-label={t.qrTitle}
+              className="h-20 w-20 text-obsidian-navy"
+            >
+              <rect width={inlineQrSvg.size} height={inlineQrSvg.size} fill="#ffffff" />
+              <path d={inlineQrSvg.path} fill="#0b132b" />
+            </svg>
+          </div>
+          <div className="min-w-0">
+            <p className="text-xs font-semibold text-obsidian-navy">{t.qrTitle}</p>
+            {recommendationDetail && (
+              <p className="mt-1 border-l-2 border-sapphire bg-[#f4f7fb] px-2 py-1 text-xs font-semibold leading-snug text-obsidian-navy">
+                {recommendationDetail}
+              </p>
+            )}
+            <p className="mt-1 text-xs leading-relaxed text-slate-500">{t.qrHint}</p>
+          </div>
         </div>
       )}
 
@@ -532,6 +681,28 @@ export function TriageSummaryCard({
                   </p>
                 </div>
 
+                {dialogPainDiagramSvg && painLocation && (
+                  <div className="mt-4 flex items-center gap-4 rounded-lg border border-sapphire-border/65 bg-white p-3.5">
+                    <div
+                      className="w-32 shrink-0 [&_svg]:h-auto [&_svg]:w-full"
+                      dangerouslySetInnerHTML={{ __html: dialogPainDiagramSvg }}
+                    />
+                    <div className="min-w-0">
+                      <p className="text-xs font-medium text-muted-foreground">
+                        {(PAIN_DIAGRAM_COPY[activeDialogLang] ?? PAIN_DIAGRAM_COPY.ro).heading}
+                      </p>
+                      <p className="mt-1 text-base font-semibold leading-snug text-foreground sm:text-lg">
+                        {getHealthCheckTranslations(activeDialogLang).bodyParts[painLocation.part].title}
+                      </p>
+                      {painLocation.subRegion && (
+                        <p className="mt-0.5 text-sm font-medium text-muted-foreground">
+                          {getLocalizedSubRegion(painLocation.subRegion, activeDialogLang).label}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
+
                 <dl className="mt-4 grid grid-cols-1 gap-2.5 tabular-nums sm:grid-cols-2">
                   {(() => {
                     let col = 0;
@@ -593,7 +764,12 @@ export function TriageSummaryCard({
                   </div>
                   <div className="min-w-0 text-center sm:text-left">
                     <p className="text-sm font-semibold text-foreground">{activeDialogCopy.qrTitle}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{activeDialogCopy.qrHint}</p>
+                    {activeRecommendationDetail && (
+                      <p className="mt-1.5 border-l-2 border-sapphire bg-[#f4f7fb] px-2.5 py-1 text-xs font-semibold leading-snug text-obsidian-navy sm:text-sm">
+                        {activeRecommendationDetail}
+                      </p>
+                    )}
+                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{activeDialogCopy.qrHint}</p>
                   </div>
                 </div>
               </div>

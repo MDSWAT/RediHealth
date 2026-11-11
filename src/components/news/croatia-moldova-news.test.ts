@@ -1,10 +1,13 @@
 import { describe, expect, it } from "vitest";
+import { ALBANIA_COUNTIES_MAP } from "@/lib/geo/albania-counties";
 import { CROATIA_COUNTIES_MAP } from "@/lib/geo/croatia-counties";
 import { MOLDOVA_REGIONS_MAP } from "@/lib/geo/moldova-regions";
 import {
+  ALL_ALBANIA,
   ALL_CROATIA,
   ALL_ITALY,
   ALL_MOLDOVA,
+  isAlbanianCounty,
   isCroatianCounty,
   isMoldovanRegion,
   mapCountriesForLang,
@@ -48,20 +51,48 @@ describe("Croatia and Moldova regional maps and conditional /news hub", () => {
     }
   });
 
-  it("displays conditional maps by language: Italy only for it, Croatia only for hr, Romania + Moldova for ro/en/sq/rom", () => {
+  it("includes all 12 official Albanian qarqe with valid SVG paths", () => {
+    expect(ALBANIA_COUNTIES_MAP.areas).toHaveLength(12);
+    const names = ALBANIA_COUNTIES_MAP.areas.map((a) => a.name);
+    expect(names).toEqual([
+      "Berat",
+      "Dibër",
+      "Durrës",
+      "Elbasan",
+      "Fier",
+      "Gjirokastër",
+      "Korçë",
+      "Kukës",
+      "Lezhë",
+      "Shkodër",
+      "Tiranë",
+      "Vlorë",
+    ]);
+    for (const area of ALBANIA_COUNTIES_MAP.areas) {
+      expect(area.d.startsWith("M")).toBe(true);
+      expect(isAlbanianCounty(area.name)).toBe(true);
+    }
+  });
+
+  it("displays conditional maps by language: Italy for it, Croatia for hr, Albania for sq, Romania + Moldova for ro/en/rom", () => {
     expect(mapCountriesForLang("it")).toEqual(["it"]);
     expect(mapCountriesForLang("hr")).toEqual(["hr"]);
+    expect(mapCountriesForLang("sq")).toEqual(["al"]);
     expect(mapCountriesForLang("ro")).toEqual(["ro", "md"]);
     expect(mapCountriesForLang("en")).toEqual(["ro", "md"]);
-    expect(mapCountriesForLang("sq")).toEqual(["ro", "md"]);
     expect(mapCountriesForLang("rom")).toEqual(["ro", "md"]);
   });
 
-  it("isolates local and nationwide news per country with zero cross-country leakage (including shared name Călărași)", () => {
+  it("isolates local and nationwide news per country with zero cross-country leakage (including shared name Călărași and Albania)", () => {
     const hrZagreb = newsForPlace("Grad Zagreb", NEWS_ARTICLES);
     expect(hrZagreb.local.length).toBeGreaterThan(0);
     expect(hrZagreb.national.length).toBeGreaterThan(0);
     expect([...hrZagreb.local, ...hrZagreb.national].every((a) => articleCountry(a) === "hr")).toBe(true);
+
+    const alTirane = newsForPlace("Tiranë", NEWS_ARTICLES);
+    expect(alTirane.local.length).toBeGreaterThan(0);
+    expect(alTirane.national.length).toBeGreaterThan(0);
+    expect([...alTirane.local, ...alTirane.national].every((a) => articleCountry(a) === "al")).toBe(true);
 
     const mdSoroca = newsForPlace("Soroca", NEWS_ARTICLES);
     expect(mdSoroca.local.length).toBeGreaterThan(0);
@@ -77,6 +108,7 @@ describe("Croatia and Moldova regional maps and conditional /news hub", () => {
     expect(placeCountry(ALL_CROATIA)).toBe("hr");
     expect(placeCountry(ALL_MOLDOVA)).toBe("md");
     expect(placeCountry(ALL_ITALY)).toBe("it");
+    expect(placeCountry(ALL_ALBANIA)).toBe("al");
   });
 
   it("formats regional labels, dates, and /news vs /stiri base paths across hr and rom", () => {

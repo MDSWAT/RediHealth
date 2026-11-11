@@ -38,16 +38,25 @@ export type Copy = {
   stopListening: string;
   largeText: string;
   bodyModelLabel: string;
+  bodyTypeLabel: string;
   bodyGeneral: string;
   bodyFemale: string;
   exactSpot: string;
   exactSpotAny: string;
+  whatItFeelsLike: string;
   sideLabel: string;
   bothSides: string;
+  questionProgress: string;
+  noExtraFinish: string;
+  autoVoiceActive: string;
   sheetBadge: string;
   nextStepLabel: string;
   copySheet: string;
   copiedSheet: string;
+  recommendationGiven: string;
+  showingSpotSymptoms: string;
+  showAllAreaSymptoms: string;
+  qrRestoredBadge: string;
 };
 
 export const COPY: Record<Lang, Copy> = {
@@ -89,16 +98,25 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Oprește",
     largeText: "Text mai mare",
     bodyModelLabel: "Modelul corpului",
+    bodyTypeLabel: "Anatomie",
     bodyGeneral: "General",
     bodyFemale: "Feminin",
     exactSpot: "Locul mai exact (opțional)",
     exactSpotAny: "Toată zona",
+    whatItFeelsLike: "Cum se simte?",
     sideLabel: "Partea",
     bothSides: "Ambele sau centru",
+    questionProgress: "Întrebarea {current} din {total}",
+    noExtraFinish: "Nu am alte simptome, vezi rezultatul",
+    autoVoiceActive: "Ghid audio activ",
     sheetBadge: "Fișă orientativă",
     nextStepLabel: "Pasul recomandat",
     copySheet: "Copiază fișa",
     copiedSheet: "Fișă copiată",
+    recommendationGiven: "Recomandare oferită",
+    showingSpotSymptoms: "Opțiuni pentru {spot}",
+    showAllAreaSymptoms: "Arată toate opțiunile din această zonă",
+    qrRestoredBadge: "Rezultat reprodus prin scanare QR",
   },
   en: {
     chosen: "Selected",
@@ -137,16 +155,25 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Stop",
     largeText: "Larger text",
     bodyModelLabel: "Body model",
+    bodyTypeLabel: "Anatomy",
     bodyGeneral: "General",
     bodyFemale: "Female",
     exactSpot: "Exact spot (optional)",
     exactSpotAny: "Whole area",
+    whatItFeelsLike: "What does it feel like?",
     sideLabel: "Side",
     bothSides: "Both or middle",
+    questionProgress: "Question {current} of {total}",
+    noExtraFinish: "No other symptoms, see result",
+    autoVoiceActive: "Audio guide on",
     sheetBadge: "Guidance sheet",
     nextStepLabel: "Recommended next step",
     copySheet: "Copy sheet",
     copiedSheet: "Copied",
+    recommendationGiven: "Recommendation given",
+    showingSpotSymptoms: "Options for {spot}",
+    showAllAreaSymptoms: "Show all options for this area",
+    qrRestoredBadge: "Result reproduced from QR scan",
   },
   sq: {
     chosen: "Zgjodhe",
@@ -186,16 +213,25 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Ndalo",
     largeText: "Tekst më i madh",
     bodyModelLabel: "Modeli i trupit",
+    bodyTypeLabel: "Anatomia",
     bodyGeneral: "I përgjithshëm",
     bodyFemale: "Femëror",
     exactSpot: "Vendi më i saktë (opsionale)",
     exactSpotAny: "E gjithë zona",
+    whatItFeelsLike: "Si ndihet?",
     sideLabel: "Ana",
     bothSides: "Të dyja ose në mes",
+    questionProgress: "Pyetja {current} nga {total}",
+    noExtraFinish: "Nuk kam simptoma të tjera, shiko rezultatin",
+    autoVoiceActive: "Udhëzuesi me zë aktiv",
     sheetBadge: "Fletë orientuese",
     nextStepLabel: "Hapi i rekomanduar",
     copySheet: "Kopjo fletën",
     copiedSheet: "U kopjua",
+    recommendationGiven: "Rekomandimi i dhënë",
+    showingSpotSymptoms: "Mundësitë për {spot}",
+    showAllAreaSymptoms: "Shfaq të gjitha mundësitë për këtë zonë",
+    qrRestoredBadge: "Rezultati u hap nga skanimi QR",
   },
   it: {
     chosen: "Hai scelto",
@@ -235,16 +271,25 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Ferma",
     largeText: "Testo più grande",
     bodyModelLabel: "Modello del corpo",
+    bodyTypeLabel: "Anatomia",
     bodyGeneral: "Generale",
     bodyFemale: "Femminile",
     exactSpot: "Punto più preciso (facoltativo)",
     exactSpotAny: "Tutta la zona",
+    whatItFeelsLike: "Come si sente?",
     sideLabel: "Lato",
     bothSides: "Entrambi o centro",
+    questionProgress: "Domanda {current} di {total}",
+    noExtraFinish: "Nessun altro sintomo, vedi il risultato",
+    autoVoiceActive: "Guida vocale attiva",
     sheetBadge: "Scheda orientativa",
     nextStepLabel: "Passo consigliato",
     copySheet: "Copia scheda",
     copiedSheet: "Copiato",
+    recommendationGiven: "Raccomandazione fornita",
+    showingSpotSymptoms: "Opzioni per {spot}",
+    showAllAreaSymptoms: "Mostra tutte le opzioni per questa zona",
+    qrRestoredBadge: "Risultato riprodotto da scansione QR",
   },
   hr: {
     chosen: "Odabrano",
@@ -284,16 +329,25 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Zaustavi",
     largeText: "Veći tekst",
     bodyModelLabel: "Model tijela",
+    bodyTypeLabel: "Anatomija",
     bodyGeneral: "Opći",
     bodyFemale: "Ženski",
     exactSpot: "Točnije mjesto (nije obavezno)",
     exactSpotAny: "Cijelo područje",
+    whatItFeelsLike: "Kakav je osjećaj?",
     sideLabel: "Strana",
     bothSides: "Obje ili sredina",
+    questionProgress: "Pitanje {current} od {total}",
+    noExtraFinish: "Nemam drugih simptoma, pogledaj rezultat",
+    autoVoiceActive: "Glasovni vodič uključen",
     sheetBadge: "Orijentacijski list",
     nextStepLabel: "Preporučeni korak",
     copySheet: "Kopiraj list",
     copiedSheet: "Kopirano",
+    recommendationGiven: "Dana preporuka",
+    showingSpotSymptoms: "Opcije za {spot}",
+    showAllAreaSymptoms: "Prikaži sve opcije za ovo područje",
+    qrRestoredBadge: "Rezultat učitan skeniranjem QR koda",
   },
   rom: {
     chosen: "Alosardjan",
@@ -333,15 +387,24 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Astav",
     largeText: "Maj baro teksto",
     bodyModelLabel: "Modelo e truposko",
+    bodyTypeLabel: "Anatomija",
     bodyGeneral: "Generalno",
     bodyFemale: "Dzhuvlikano",
     exactSpot: "Maj chacho than (te manges)",
     exactSpotAny: "Sasto than",
+    whatItFeelsLike: "Sar hatjarel pes?",
     sideLabel: "Riga",
     bothSides: "Li duj vaj mashkar",
+    questionProgress: "Phuchimos {current} katar {total}",
+    noExtraFinish: "Naj man aver simptome, dikh o rezultato",
+    autoVoiceActive: "Glasosko gido puterdo",
     sheetBadge: "Orientacijako lil",
     nextStepLabel: "Rekomandime paso",
     copySheet: "Kopijisar o lil",
     copiedSheet: "Kopijime",
+    recommendationGiven: "Dini rekomandacia",
+    showingSpotSymptoms: "Opcije vash {spot}",
+    showAllAreaSymptoms: "Sikav sa le opcije vash akava than",
+    qrRestoredBadge: "Rezultato puterdo katar o QR kodo",
   },
 };

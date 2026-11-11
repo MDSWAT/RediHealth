@@ -143,6 +143,77 @@ export const NEWS_TRANSLATIONS_EXTRA_EN: Record<string, LocalizedArticleFields> 
     doctorVerifiedDate: "7 November 2026",
     tags: ["Pulmonology", "Asthma", "Chronic illness", "Practical tips"],
   },
+  "al-karvana-tirane": {
+    title: "Mobile clinic in Tirana: free blood pressure and blood glucose checks",
+    summary: "Family doctors and community health mediators offer free blood pressure, blood glucose concentration and ECG checks in Tirana, without an FSDKSH health card.",
+    content: [
+      "The mobile medical team and Roma and Egyptian health mediators visit Bregu i Lumit and Kombinat in Tirana for free preventive check-ups.",
+      "You can attend even without FSDKSH insurance or a registered family doctor. Bring an ID card or your child's birth certificate if you have one.",
+      "The mediator explains your blood pressure and blood glucose concentration results on the spot and helps you register at your local health centre.",
+    ],
+    caravanLandmark: "Square beside the local health post",
+    caravanVillage: "Tirana municipality, Bregu i Lumit and Kombinat",
+    freeServices: [
+      "Blood pressure check",
+      "Blood glucose concentration test",
+      "ECG",
+      "Guidance with a health mediator",
+    ],
+    doctorSpecialty: "Family medicine specialist, Tirana Health Centre No. 6",
+    doctorVerifiedDate: "9 November 2026",
+    tags: ["Mobile clinic", "Free tests", "Community", "Healthcare access"],
+  },
+  "al-uje-i-pijshem-shkoder": {
+    title: "Lowland villages in Shkodër County: boil water from shallow wells",
+    summary: "After heavy autumn rain along the Buna and Drin rivers, public health advises boiling shallow well water to prevent stomach infections and hepatitis A.",
+    content: [
+      "In lowland villages around Shkodër, water from private shallow wells can become cloudy after heavy rain.",
+      "Use bottled water or boil well water for at least 10 minutes and let it cool in a clean covered pot before drinking or cooking.",
+      "If a child develops stomach cramps, vomiting or yellowing of the eyes, contact your family doctor or local health centre promptly.",
+    ],
+    preventiveSteps: [
+      "Boil shallow well water for at least 10 minutes before drinking",
+      "Wash fruit and vegetables only with safe drinking water",
+      "Wash hands with soap and water before meals and after using the toilet",
+    ],
+    doctorSpecialty: "Epidemiologist, Shkodër Local Health Care Unit",
+    doctorVerifiedDate: "6 November 2026",
+    tags: ["Hygiene", "Safe water", "Hepatitis A", "Prevention"],
+  },
+  "al-vaksinim-grip-shqiperi": {
+    title: "Free flu vaccination and annual health check-up across Albania",
+    summary: "Health centres across Albania provide free seasonal flu vaccines for at-risk groups and free preventive check-ups for adults.",
+    content: [
+      "The Institute of Public Health and primary health centres across all 12 counties offer the free seasonal flu vaccine for older adults, pregnant women and people with heart, lung, kidney or diabetes conditions.",
+      "Adults aged 35 to 70 can also book the free national preventive check-up at their local health centre.",
+      "If you need help checking your registration on e-Albania or finding your family doctor, ask a community health mediator.",
+    ],
+    preventiveSteps: [
+      "Ask your family doctor at the health centre for the seasonal flu vaccine",
+      "Bring your child's immunisation booklet when visiting the paediatric clinic",
+      "Air rooms daily and wash hands regularly with soap and water",
+    ],
+    doctorSpecialty: "Public health specialist, Institute of Public Health (ISHP)",
+    doctorVerifiedDate: "5 November 2026",
+    tags: ["Influenza", "Prevention", "Chronic illness", "Public health"],
+  },
+  "al-receta-elektronike-elbasan": {
+    title: "Elbasan: renewing reimbursed winter prescriptions without treatment gaps",
+    summary: "Patients with high blood pressure, diabetes or asthma can renew their reimbursed electronic prescription at the family doctor before medicines run out.",
+    content: [
+      "Cold mornings and wood-stove smoke in Elbasan valley can raise blood pressure and trigger wheezing or coughing.",
+      "Your family doctor issues reimbursed prescriptions electronically so you can collect your regular tablets or inhalers at contracted pharmacies with your ID card.",
+      "Never stop blood pressure or diabetes tablets on your own, even on days when you have no symptoms.",
+    ],
+    preventiveSteps: [
+      "Renew your reimbursed prescription 5 days before your current box finishes",
+      "Keep your prescribed rescue inhaler with you on cold or smoky mornings",
+      "Ventilate rooms briefly at midday and avoid burning treated wood or waste indoors",
+    ],
+    doctorSpecialty: "Internal medicine specialist, Elbasan Regional Hospital",
+    doctorVerifiedDate: "8 November 2026",
+    tags: ["Chronic illness", "Asthma", "Right treatment", "Practical tips"],
+  },
 };
 
 export const NEWS_TRANSLATIONS_EXTRA_SQ: Record<string, LocalizedArticleFields> = {
@@ -288,6 +359,77 @@ export const NEWS_TRANSLATIONS_EXTRA_SQ: Record<string, LocalizedArticleFields> 
     doctorVerifiedDate: "7 nëntor 2026",
     tags: ["Pneumologji", "Astmë", "Sëmundje kronike", "Këshilla praktike"],
   },
+  "al-karvana-tirane": {
+    title: "Klinika lëvizëse në Tiranë: matje falas e tensionit dhe glukozës në gjak",
+    summary: "Mjekët e familjes dhe mediatorët shëndetësorë ofrojnë matje falas të tensionit, përqendrimit të glukozës në gjak dhe EKG në Tiranë, pa kartë FSDKSH.",
+    content: [
+      "Ekipi mjekësor lëvizës bashkë me mediatorët shëndetësorë romë dhe egjiptianë vizitojnë lagjet Bregu i Lumit dhe Kombinat në Tiranë për kontrolle parandaluese falas.",
+      "Mund të vish edhe pa sigurim shëndetësor FSDKSH apo pa mjek familjeje të zgjedhur. Merr me vete letërnjoftimin ose certifikatën e lindjes së fëmijës nëse e ke.",
+      "Mediatori t'i shpjegon aty për aty vlerat e tensionit dhe përqendrimit të glukozës në gjak dhe të ndihmon të regjistrohesh në qendrën shëndetësore të lagjes.",
+    ],
+    caravanLandmark: "Sheshi pranë ambulancës së lagjes",
+    caravanVillage: "Bashkia Tiranë, Bregu i Lumit dhe Kombinat",
+    freeServices: [
+      "Matje e tensionit të gjakut",
+      "Matje e përqendrimit të glukozës në gjak",
+      "EKG",
+      "Orientim me mediatorin shëndetësor",
+    ],
+    doctorSpecialty: "Mjeke familjeje, Qendra Shëndetësore nr. 6 Tiranë",
+    doctorVerifiedDate: "9 nëntor 2026",
+    tags: ["Karvan mjekësor", "Analiza falas", "Komunitet", "Akses mjekësor"],
+  },
+  "al-uje-i-pijshem-shkoder": {
+    title: "Fshatrat e Ultësirës në qarkun Shkodër: zieje ujin e puseve të cekëta",
+    summary: "Pas reshjeve të dendura të vjeshtës përgjatë Bunës dhe Drinit, shëndeti publik këshillon zierjen e ujit të puseve për të parandaluar infeksionet e stomakut dhe hepatitin A.",
+    content: [
+      "Në fshatrat fushorë përreth Shkodrës, uji nga puset private të cekëta mund të turbullohet pas reshjeve të shumta.",
+      "Për pirje dhe gatim përdor ujë të ambalazhuar ose ujë pusi të zier të paktën 10 minuta dhe të ftohur në enë të pastër me kapak.",
+      "Nëse një fëmijë ka dhimbje barku, të vjella ose zverdhje të syve, drejtohu menjëherë te mjeku i familjes ose qendra shëndetësore.",
+    ],
+    preventiveSteps: [
+      "Zieje ujin e pusit të cekët të paktën 10 minuta para pirjes",
+      "Laji frutat dhe perimet vetëm me ujë të pijshëm të sigurt",
+      "Laji duart me ujë dhe sapun para ngrënies dhe pas tualetit",
+    ],
+    doctorSpecialty: "Mjek epidemiolog, Njësia Vendore e Kujdesit Shëndetësor Shkodër",
+    doctorVerifiedDate: "6 nëntor 2026",
+    tags: ["Higjienë", "Ujë i pijshëm", "Hepatiti A", "Parandalim"],
+  },
+  "al-vaksinim-grip-shqiperi": {
+    title: "Vaksinim falas kundër gripit dhe kontroll bazë shëndetësor në gjithë Shqipërinë",
+    summary: "Qendrat shëndetësore në të 12 qarqet ofrojnë falas vaksinën e gripit stinor për grupet me rrezik dhe kontrollin vjetor parandalues.",
+    content: [
+      "Instituti i Shëndetit Publik dhe qendrat shëndetësore në të gjitha qarqet ofrojnë falas vaksinën e gripit stinor për të moshuarit, gratë shtatzëna dhe personat me sëmundje kronike të zemrës, mushkërive, veshkave ose diabet.",
+      "Qytetarët e moshës 35 deri në 70 vjeç mund të kryejnë gjithashtu falas kontrollin mjekësor bazë te qendra e tyre shëndetësore.",
+      "Nëse ke nevojë për ndihmë me regjistrimin në e-Albania ose gjetjen e mjekut të familjes, pyet mediatorin shëndetësor të komunitetit.",
+    ],
+    preventiveSteps: [
+      "Kërko vaksinën e gripit stinor te mjeku i familjes në qendrën shëndetësore",
+      "Merr me vete librezën e vaksinimit të fëmijës kur shkon te pediatri",
+      "Ajrosi dhomat çdo ditë dhe laji duart rregullisht me ujë dhe sapun",
+    ],
+    doctorSpecialty: "Specialiste e shëndetit publik, Instituti i Shëndetit Publik (ISHP)",
+    doctorVerifiedDate: "5 nëntor 2026",
+    tags: ["Grip", "Parandalim", "Sëmundje kronike", "Shëndet publik"],
+  },
+  "al-receta-elektronike-elbasan": {
+    title: "Elbasan: rinovimi në kohë i recetës me rimbursim pa ndërprerë mjekimin",
+    summary: "Pacientët me tension të lartë, diabet ose astmë mund ta rinovojnë recetën elektronike me rimbursim te mjeku i familjes para se të mbarojnë barnat.",
+    content: [
+      "Mëngjeset e ftohta dhe tymi i sobave në luginën e Elbasanit mund të rrisin tensionin e gjakut dhe të shkaktojnë bllokim të frymës ose kollë.",
+      "Mjeku i familjes lëshon recetën elektronike me rimbursim që t'i marrësh barnat e përmuajshme ose inhalatorin në farmacitë me kontratë vetëm me letërnjoftim.",
+      "Mos i ndërprit vetë kokrrat e tensionit apo të diabetit, edhe në ditët kur nuk ndjen shqetësime.",
+    ],
+    preventiveSteps: [
+      "Rinovo recetën me rimbursim 5 ditë para se të mbarojë kutia aktuale",
+      "Mbaje me vete inhalatorin e përshkruar nga mjeku në mëngjeset e ftohta ose me tym",
+      "Ajrose shkurt shtëpinë në mesditë dhe mos digj dru të lyer apo mbetje plastike",
+    ],
+    doctorSpecialty: "Mjek internist, Spitali Rajonal Elbasan",
+    doctorVerifiedDate: "8 nëntor 2026",
+    tags: ["Sëmundje kronike", "Astmë", "Trajtim i duhur", "Këshilla praktike"],
+  },
 };
 
 export const NEWS_TRANSLATIONS_EXTRA_IT: Record<string, LocalizedArticleFields> = {
@@ -432,5 +574,76 @@ export const NEWS_TRANSLATIONS_EXTRA_IT: Record<string, LocalizedArticleFields> 
     doctorSpecialty: "Medico pneumologo, Ospedale Universitario KBC Split",
     doctorVerifiedDate: "7 novembre 2026",
     tags: ["Pneumologia", "Asma", "Malattie croniche", "Consigli pratici"],
+  },
+  "al-karvana-tirane": {
+    title: "Ambulatorio mobile a Tirana: controllo gratuito di pressione e glucosio nel sangue",
+    summary: "Medici di famiglia e mediatori sanitari offrono misurazione gratuita della pressione, concentrazione di glucosio nel sangue ed ECG a Tirana, senza tessera FSDKSH.",
+    content: [
+      "L'équipe medica mobile e i mediatori sanitari rom ed egiziani visitano i quartieri Bregu i Lumit e Kombinat a Tirana per controlli preventivi gratuiti.",
+      "Puoi venire anche senza assicurazione FSDKSH o senza medico di famiglia scelto. Porta un documento d'identità o il certificato di nascita del bambino, se lo hai.",
+      "Il mediatore ti spiega subito i valori della pressione e della concentrazione di glucosio nel sangue e ti aiuta a iscriverti al centro di salute del quartiere.",
+    ],
+    caravanLandmark: "Piazzetta accanto al consultorio di quartiere",
+    caravanVillage: "Municipio di Tirana, Bregu i Lumit e Kombinat",
+    freeServices: [
+      "Misurazione della pressione arteriosa",
+      "Concentrazione di glucosio nel sangue",
+      "ECG",
+      "Orientamento con mediatore sanitario",
+    ],
+    doctorSpecialty: "Medico di famiglia, Centro di Salute n. 6 Tirana",
+    doctorVerifiedDate: "9 novembre 2026",
+    tags: ["Ambulatorio mobile", "Esami gratuiti", "Comunità", "Accesso alle cure"],
+  },
+  "al-uje-i-pijshem-shkoder": {
+    title: "Paesi di pianura nella prefettura di Scutari: fai bollire l'acqua dei pozzi poco profondi",
+    summary: "Dopo le forti piogge autunnali lungo i fiumi Buna e Drin, la sanità pubblica raccomanda di bollire l'acqua dei pozzi per prevenire infezioni intestinali ed epatite A.",
+    content: [
+      "Nei paesi di pianura intorno a Scutari, l'acqua dei pozzi privati poco profondi può intorbidirsi dopo forti piogge.",
+      "Per bere e cucinare usa acqua in bottiglia oppure fai bollire l'acqua del pozzo per almeno 10 minuti e lasciala raffreddare in un recipiente pulito coperto.",
+      "Se un bambino ha crampi addominali, vomito o ingiallimento degli occhi, rivolgiti subito al medico di famiglia o al centro di salute.",
+    ],
+    preventiveSteps: [
+      "Fai bollire l'acqua dei pozzi poco profondi per almeno 10 minuti prima di berla",
+      "Lava frutta e verdura solo con acqua potabile sicura",
+      "Lavati le mani con acqua e sapone prima dei pasti e dopo il bagno",
+    ],
+    doctorSpecialty: "Medico epidemiologo, Unità Locale di Assistenza Sanitaria Scutari",
+    doctorVerifiedDate: "6 novembre 2026",
+    tags: ["Igiene", "Acqua potabile", "Epatite A", "Prevenzione"],
+  },
+  "al-vaksinim-grip-shqiperi": {
+    title: "Vaccinazione antinfluenzale gratuita e controllo annuale in tutta l'Albania",
+    summary: "I centri di salute delle 12 prefetture offrono gratis il vaccino antinfluenzale stagionale per le categorie a rischio e il controllo preventivo annuale.",
+    content: [
+      "L'Istituto di Sanità Pubblica e i centri di salute di tutta l'Albania offrono gratuitamente il vaccino antinfluenzale per anziani, donne in gravidanza e persone con malattie croniche cardiache, polmonari, renali o diabete.",
+      "Gli adulti tra 35 e 70 anni possono effettuare gratuitamente anche il controllo medico preventivo di base nel proprio centro di salute.",
+      "Se hai bisogno di aiuto per verificare l'iscrizione su e-Albania o trovare il medico di famiglia, rivolgiti al mediatore sanitario della comunità.",
+    ],
+    preventiveSteps: [
+      "Richiedi il vaccino antinfluenzale al medico di famiglia nel centro di salute",
+      "Porta il libretto vaccinale del bambino alle visite pediatriche",
+      "Arieggia le stanze ogni giorno e lavati spesso le mani con acqua e sapone",
+    ],
+    doctorSpecialty: "Specialista in sanità pubblica, Istituto di Sanità Pubblica (ISHP)",
+    doctorVerifiedDate: "5 novembre 2026",
+    tags: ["Influenza", "Prevenzione", "Malattie croniche", "Sanità pubblica"],
+  },
+  "al-receta-elektronike-elbasan": {
+    title: "Elbasan: rinnovare per tempo la ricetta rimborsata senza interrompere la cura",
+    summary: "I pazienti con pressione alta, diabete o asma possono rinnovare la ricetta elettronica rimborsata dal medico di famiglia prima di finire i farmaci.",
+    content: [
+      "Le mattine fredde e il fumo delle stufe nella conca di Elbasan possono alzare la pressione arteriosa e provocare tosse o fiato corto.",
+      "Il medico di famiglia emette la ricetta elettronica rimborsata così puoi ritirare le compresse mensili o l'inalatore nelle farmacie convenzionate con la carta d'identità.",
+      "Non sospendere da solo le compresse per la pressione o il diabete, nemmeno nei giorni in cui ti senti bene.",
+    ],
+    preventiveSteps: [
+      "Rinnova la ricetta rimborsata 5 giorni prima che finisca la scatola in uso",
+      "Porta sempre con te l'inalatore prescritto nelle mattine fredde o con fumo",
+      "Arieggia brevemente a mezzogiorno ed evita di bruciare legno verniciato o plastica",
+    ],
+    doctorSpecialty: "Medico internista, Ospedale Regionale di Elbasan",
+    doctorVerifiedDate: "8 novembre 2026",
+    tags: ["Malattie croniche", "Asma", "Cura corretta", "Consigli pratici"],
   },
 };

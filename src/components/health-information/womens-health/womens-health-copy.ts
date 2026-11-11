@@ -884,7 +884,7 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
     ageGuidanceTitle: "Save dikhimata pe che bersha",
     nationalProgramPrefix: "Natsionalno programo bi lovengo:",
     recommendedIntervalsTitle: "Koborivar",
-    hpvVaccinationPrefix: "O chikat HPV:",
+    hpvVaccinationPrefix: "I vakcina HPV:",
     promptConsultationPrefix: "Zha sigo ko ginekologo te si tut:",
     trackAriaLabel: "Khabnimos thaj dikhimata",
     trimesterGroupLabel: "Alosar o trimeztro",
@@ -1005,7 +1005,7 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
           id: "cervical-screening",
           title: "Testo Papanikolau thaj HPV",
           summary:
-            "Opr-al 90% katar kadava kanchero shaj avel oprimo. Azhutil o chikat HPV thaj le dikhimata po vrama.",
+            "Opr-al 90% katar kadava kanchero shaj avel oprimo. Azhutil i vakcina HPV thaj le dikhimata po vrama.",
           examExplanation:
             "O testo Papanikolau lel pashe 3 minuturya thaj na kerel dukh. O doktori lel uni tselule.",
           nationalProgramNote:
@@ -1015,7 +1015,7 @@ export const WOMENS_HEALTH_COPY: Record<Lang, WomensHealthCopy> = {
             "Mashkar 30 thaj 64 bersha: testo HPV svako 5 bersha.",
           ],
           vaccinationNote:
-            "O chikat HPV si bi lovengo vash le chhave thaj terne mashkar 11 thaj 18 bersha. Phush che familiyake doktores vay le sastipnaske mediatores.",
+            "I vakcina HPV si bi lovengo vash le chhave thaj terne mashkar 11 thaj 18 bersha. Phush che familiyake doktores vay le sastipnaske mediatores.",
           warningSigns:
             "ratyamos palal intimno phandaimos, mashkar o chonutno rat vay palal menopauza.",
         },

@@ -7,7 +7,9 @@ import { useEffect, useRef, useState } from "react";
 import { AlertCircleIcon, CameraIcon, CheckCircleIcon, ImageIcon, TrashIcon } from "@/components/ui/icons";
 import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { PrescriptionStructuredResult } from "@/components/health-assistant/PrescriptionStructuredResult";
+import { useLargeText, useReadAloud } from "@/components/health-check/readingTools";
 import { Container } from "@/components/ui/Container";
+import type { PrescribedMedicineItem } from "@/lib/health-assistant";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -15,35 +17,244 @@ import type { Lang } from "@/lib/i18n/translations";
 type ReviewResponse = {
   message: string;
   prescriptionText?: string;
+  medicines?: PrescribedMedicineItem[];
   urgency?: "emergency" | "routine";
   careLevel?: "emergency" | "urgent" | "soon" | "routine";
 };
 
+type ReasonChipKey = "feverPain" | "coughCold" | "heartBp" | "stomach" | "child" | "notSure";
+
+const REASON_ORDER: ReasonChipKey[] = ["feverPain", "coughCold", "heartBp", "stomach", "child", "notSure"];
+
+interface PrescriptionReviewCopy {
+  title: string;
+  subtitle: string;
+  listenPage: string;
+  stopListening: string;
+  largeTextLabel: string;
+  stepOneBadge: string;
+  dropTitle: string;
+  cameraCapture: string;
+  galleryUpload: string;
+  removePhoto: string;
+  photoReady: string;
+  retakeLight: string;
+  tipFlat: string;
+  tipLight: string;
+  tipFull: string;
+  skeletonHeading: string;
+  qualityWarning: string;
+  stepTwoBadge: string;
+  whyLabel: string;
+  whyHint: string;
+  reasons: Record<ReasonChipKey, string>;
+  noteLabel: string;
+  whyPh: string;
+  reviewButton: string;
+  reviewing: string;
+  reviewingHint: string;
+  uploadReqErr: string;
+  fileErr: string;
+  readErr: string;
+  reviewErr: string;
+  rateLimitErr: string;
+  previewAlt: string;
+}
+
 class ReadError extends Error {}
+
+/* Tip icons share one grid (24px), one stroke weight and one color so the row reads as a set. */
+const tipIconProps = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  "aria-hidden": true,
+  className: "h-5 w-5 shrink-0",
+};
+
+function TipFlatIcon() {
+  return (
+    <svg {...tipIconProps}>
+      <path d="M6 8h12l2.5 9h-17L6 8Z" />
+      <path d="M8.5 11.5h5M8 14h8" />
+      <path d="M2 20h20" />
+    </svg>
+  );
+}
+
+function TipLightIcon() {
+  return (
+    <svg {...tipIconProps}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" />
+    </svg>
+  );
+}
+
+function TipFullIcon() {
+  return (
+    <svg {...tipIconProps}>
+      <path d="M3 7.5V5a2 2 0 0 1 2-2h2.5M16.5 3H19a2 2 0 0 1 2 2v2.5M21 16.5V19a2 2 0 0 1-2 2h-2.5M7.5 21H5a2 2 0 0 1-2-2v-2.5" />
+      <path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4" />
+    </svg>
+  );
+}
+
+function ReasonChipIcon({ reason }: { reason: ReasonChipKey }) {
+  switch (reason) {
+    case "feverPain":
+      return (
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+          <path
+            d="M11.5 11.2V4.75a1.5 1.5 0 0 0-3 0v6.45a3.25 3.25 0 1 0 3 0Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="10" cy="13.75" r="1.2" fill="currentColor" />
+        </svg>
+      );
+    case "coughCold":
+      return (
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+          <path
+            d="M10 3.5v6.2M10 7.5c-2.6 0-5 2-5 5.3 0 1.8 1.2 3.2 2.8 3.2 1.2 0 2.2-.8 2.2-2.1M10 7.5c2.6 0 5 2 5 5.3 0 1.8-1.2 3.2-2.8 3.2-1.2 0-2.2-.8-2.2-2.1"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "heartBp":
+      return (
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+          <path
+            d="M10 16.4s-6-3.7-6-8.1a3.4 3.4 0 0 1 6-2.1 3.4 3.4 0 0 1 6 2.1c0 4.4-6 8.1-6 8.1Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "stomach":
+      return (
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+          <path
+            d="M8.5 3.5v2.7c0 1.3-2.5 2.1-2.5 4.9 0 2.9 2.1 5.1 5 5.1 2.7 0 4.5-1.8 4.5-4.3 0-2.2-1.6-3.7-3.8-3.7-.9 0-1.7.3-2.2.8"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "child":
+      return (
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+          <circle cx="10" cy="6.25" r="2.75" stroke="currentColor" strokeWidth="1.6" />
+          <path
+            d="M5.25 16.25a4.75 4.75 0 0 1 9.5 0"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    case "notSure":
+      return (
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+          <circle cx="10" cy="10" r="6.75" stroke="currentColor" strokeWidth="1.6" />
+          <path
+            d="M8.4 8a1.75 1.75 0 0 1 3.35.65c0 1.2-1.75 1.55-1.75 2.75"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          />
+          <circle cx="10" cy="13.9" r="0.85" fill="currentColor" />
+        </svg>
+      );
+  }
+}
+
+function SpeakerHeaderSvg() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+      <path
+        d="M4 7.75h2.8L10.75 4.5v11L6.8 12.25H4a1 1 0 0 1-1-1v-2.5a1 1 0 0 1 1-1Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 7.5a3.4 3.4 0 0 1 0 5M15.6 5.5a6.2 6.2 0 0 1 0 9"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function ArrowRightSvg() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+      <path
+        d="M4.25 10h11.5m0 0-4.25-4.25M15.75 10l-4.25 4.25"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export function PrescriptionReview() {
   const executeCaptcha = useRecaptcha();
   const { lang } = useLanguage();
+  const [largeText, toggleLargeText] = useLargeText();
+  const voice = useReadAloud(lang);
 
-  const dict = {
+  const dict: Record<Lang, PrescriptionReviewCopy> = {
     en: {
       title: "Prescription review",
-      subtitle: "Take a photo of your prescription. The assistant reads the text and explains it in plain words. Always check it with your pharmacist or doctor.",
-      dropTitle: "Take a photo of your prescription",
+      subtitle:
+        "Photograph your prescription and we explain it in plain words. Always check with your pharmacist or doctor.",
+      listenPage: "Listen",
+      stopListening: "Stop",
+      largeTextLabel: "Larger text",
+      stepOneBadge: "Step 1 of 2",
+      dropTitle: "Add your prescription",
       cameraCapture: "Take a photo",
-      galleryUpload: "Choose from gallery",
+      galleryUpload: "Choose a photo",
       removePhoto: "Remove photo",
-      tipFlat: "Lay the paper flat on a table",
-      tipLight: "Use natural daylight without flash glare",
-      tipFull: "Include the whole page and medicine names",
+      photoReady: "Photo is ready",
+      retakeLight: "Take another photo in good light",
+      tipFlat: "Lay it flat",
+      tipLight: "Use daylight",
+      tipFull: "Show the whole page",
       skeletonHeading: "Preparing plain-language explanation…",
-      hint: "A clear, well-lit photo of the whole prescription (JPEG, PNG or WebP, up to 8 MB)",
       qualityWarning:
         "The photo looks a little dark or blurry. Try again in daylight so the text is easy to read.",
+      stepTwoBadge: "Step 2 of 2",
       whyLabel: "Why was this prescribed? (optional)",
-      whyHint: "This helps the assistant understand the prescription. You don't need to know the diagnosis.",
+      whyHint: "Tap what fits, or go straight to reading the prescription. No typing needed.",
+      reasons: {
+        feverPain: "Fever or pain",
+        coughCold: "Cough or cold",
+        heartBp: "Heart or blood pressure",
+        stomach: "Stomach or digestion",
+        child: "For a child",
+        notSure: "Not sure",
+      },
+      noteLabel: "Or write briefly in your own words (optional)",
       whyPh: "For example: I got it after a doctor's visit for a sore throat and fever…",
-      reviewButton: "Read the prescription",
+      reviewButton: "Read and explain prescription",
       reviewing: "Reading your prescription…",
       reviewingHint: "This can take up to a minute. Keep this page open.",
       uploadReqErr: "Take or upload a photo of your prescription to continue.",
@@ -55,22 +266,38 @@ export function PrescriptionReview() {
     },
     ro: {
       title: "Verificarea rețetei",
-      subtitle: "Fă o poză rețetei. Asistentul citește textul și ți-l explică pe înțeles. Verifică mereu cu farmacistul sau cu medicul.",
-      dropTitle: "Fă o poză rețetei",
+      subtitle:
+        "Fă o poză rețetei și ți-o explicăm pe înțeles. Verifică mereu cu farmacistul sau medicul.",
+      listenPage: "Ascultă",
+      stopListening: "Oprește",
+      largeTextLabel: "Scris mai mare",
+      stepOneBadge: "Pasul 1 din 2",
+      dropTitle: "Adaugă rețeta",
       cameraCapture: "Fă o poză",
-      galleryUpload: "Alege din galerie",
+      galleryUpload: "Alege o poză",
       removePhoto: "Șterge poza",
-      tipFlat: "Așază foaia întinsă pe o masă",
-      tipLight: "Folosește lumină naturală fără bliț",
-      tipFull: "Prinde toată pagina și numele medicamentelor",
+      photoReady: "Poza este pregătită",
+      retakeLight: "Fă altă poză la lumină",
+      tipFlat: "Pune foaia pe masă",
+      tipLight: "Folosește lumina zilei",
+      tipFull: "Prinde toată pagina",
       skeletonHeading: "Pregătim explicația pe înțeles…",
-      hint: "O fotografie clară, bine luminată, a întregii rețete (JPEG, PNG sau WebP, maximum 8 MB)",
       qualityWarning:
         "Poza pare întunecată sau neclară. Încearcă din nou la lumina zilei, ca textul să se vadă bine.",
+      stepTwoBadge: "Pasul 2 din 2",
       whyLabel: "De ce ai primit rețeta? (opțional)",
-      whyHint: "Ajută asistentul să înțeleagă rețeta. Nu trebuie să știi diagnosticul.",
+      whyHint: "Atinge un motiv dacă îl știi sau apasă direct pe butonul de mai jos. Nu trebuie să scrii.",
+      reasons: {
+        feverPain: "Durere sau febră",
+        coughCold: "Tuse sau răceală",
+        heartBp: "Inimă sau tensiune",
+        stomach: "Stomac sau digestie",
+        child: "Pentru un copil",
+        notSure: "Nu știu exact",
+      },
+      noteLabel: "Sau scrie pe scurt cu cuvintele tale (opțional)",
       whyPh: "De exemplu: am primit rețeta după o vizită la medic pentru durere în gât și febră…",
-      reviewButton: "Citește rețeta",
+      reviewButton: "Citește și explică rețeta",
       reviewing: "Se citește rețeta…",
       reviewingHint: "Poate dura până la un minut. Lasă pagina deschisă.",
       uploadReqErr: "Fă sau încarcă o poză a rețetei ca să continui.",
@@ -82,22 +309,38 @@ export function PrescriptionReview() {
     },
     sq: {
       title: "Verifikimi i recetës",
-      subtitle: "Bëj një foto të recetës. Asistenti e lexon tekstin dhe ta shpjegon me fjalë të thjeshta. Kontrolloje gjithmonë me farmacistin ose mjekun.",
-      dropTitle: "Fotografo recetën",
+      subtitle:
+        "Fotografo recetën dhe ta shpjegojmë me fjalë të thjeshta. Kontrolloje gjithmonë me farmacistin ose mjekun.",
+      listenPage: "Dëgjo",
+      stopListening: "Ndalo",
+      largeTextLabel: "Shkrim më i madh",
+      stepOneBadge: "Hapi 1 nga 2",
+      dropTitle: "Shto recetën",
       cameraCapture: "Bëj një foto",
-      galleryUpload: "Zgjidh nga galeria",
+      galleryUpload: "Zgjidh një foto",
       removePhoto: "Hiq foton",
-      tipFlat: "Vendose letrën të shtrirë mbi tavolinë",
-      tipLight: "Përdor dritë natyrale pa shkëlqim blici",
-      tipFull: "Përfshi të gjithë faqen dhe emrat e ilaçeve",
+      photoReady: "Fotoja është gati",
+      retakeLight: "Bëj një foto tjetër në dritë",
+      tipFlat: "Shtrije mbi tavolinë",
+      tipLight: "Përdor dritën e ditës",
+      tipFull: "Përfshi gjithë faqen",
       skeletonHeading: "Po përgatitet shpjegimi me fjalë të thjeshta…",
-      hint: "Një foto e qartë dhe e ndriçuar mirë e gjithë recetës (JPEG, PNG ose WebP, deri në 8 MB)",
       qualityWarning:
         "Fotoja duket pak e errët ose e paqartë. Provo përsëri në dritë natyrale, që teksti të lexohet mirë.",
+      stepTwoBadge: "Hapi 2 nga 2",
       whyLabel: "Pse të është dhënë kjo recetë? (sipas dëshirës)",
-      whyHint: "E ndihmon asistentin ta kuptojë recetën. Nuk të duhet ta dish diagnozën.",
+      whyHint: "Prek arsyen nëse e di, ose vazhdo direkt te leximi i recetës. Nuk ka nevojë të shkruash.",
+      reasons: {
+        feverPain: "Dhimbje ose temperaturë",
+        coughCold: "Kollë ose ftohje",
+        heartBp: "Zemër ose presion",
+        stomach: "Stomak ose tretje",
+        child: "Për një fëmijë",
+        notSure: "Nuk jam i sigurt",
+      },
+      noteLabel: "Ose shkruaj shkurt me fjalët e tua (sipas dëshirës)",
       whyPh: "Për shembull: e mora pas një vizite te mjeku për dhimbje fyti dhe temperaturë…",
-      reviewButton: "Lexo recetën",
+      reviewButton: "Lexo dhe shpjego recetën",
       reviewing: "Po lexohet receta…",
       reviewingHint: "Mund të zgjasë deri në një minutë. Mbaje faqen të hapur.",
       uploadReqErr: "Bëj ose ngarko një foto të recetës për të vazhduar.",
@@ -109,22 +352,38 @@ export function PrescriptionReview() {
     },
     it: {
       title: "Revisione della ricetta",
-      subtitle: "Fai una foto alla ricetta. L'assistente legge il testo e te lo spiega in parole semplici. Verificalo sempre con il farmacista o con il medico.",
-      dropTitle: "Fotografa la ricetta",
+      subtitle:
+        "Fotografa la ricetta e te la spieghiamo in parole semplici. Verifica sempre con il farmacista o il medico.",
+      listenPage: "Ascolta",
+      stopListening: "Ferma",
+      largeTextLabel: "Testo più grande",
+      stepOneBadge: "Passo 1 di 2",
+      dropTitle: "Aggiungi la ricetta",
       cameraCapture: "Scatta una foto",
-      galleryUpload: "Scegli dalla galleria",
+      galleryUpload: "Scegli una foto",
       removePhoto: "Rimuovi foto",
-      tipFlat: "Appoggia il foglio ben steso su un tavolo",
-      tipLight: "Usa luce naturale senza riflessi del flash",
-      tipFull: "Inquadra tutta la pagina e i nomi dei farmaci",
+      photoReady: "La foto è pronta",
+      retakeLight: "Scatta un'altra foto alla luce",
+      tipFlat: "Stendila sul tavolo",
+      tipLight: "Usa la luce del giorno",
+      tipFull: "Inquadra tutta la pagina",
       skeletonHeading: "Preparazione della spiegazione in parole semplici…",
-      hint: "Una foto nitida e ben illuminata di tutta la ricetta (JPEG, PNG o WebP, fino a 8 MB)",
       qualityWarning:
         "La foto sembra un po' scura o sfocata. Riprova con la luce naturale, così il testo si legge correttamente.",
+      stepTwoBadge: "Passo 2 di 2",
       whyLabel: "Perché ti è stata prescritta? (facoltativo)",
-      whyHint: "Aiuta l'assistente a capire la ricetta. Non serve conoscere la diagnosi.",
+      whyHint: "Tocca un motivo se lo conosci, oppure vai direttamente alla lettura. Non serve scrivere.",
+      reasons: {
+        feverPain: "Febbre o dolore",
+        coughCold: "Tosse o raffreddore",
+        heartBp: "Cuore o pressione",
+        stomach: "Stomaco o digestione",
+        child: "Per un bambino",
+        notSure: "Non lo so di preciso",
+      },
+      noteLabel: "Oppure scrivi in breve con parole tue (facoltativo)",
       whyPh: "Ad esempio: l'ho ricevuta dopo una visita per mal di gola e febbre…",
-      reviewButton: "Leggi la ricetta",
+      reviewButton: "Leggi e spiega la ricetta",
       reviewing: "Lettura della ricetta in corso…",
       reviewingHint: "Può richiedere fino a un minuto. Tieni aperta questa pagina.",
       uploadReqErr: "Scatta o carica una foto della ricetta per continuare.",
@@ -136,22 +395,38 @@ export function PrescriptionReview() {
     },
     hr: {
       title: "Provjera recepta",
-      subtitle: "Fotografiraj svoj recept. Asistent čita tekst i objašnjava ti ga jednostavnim riječima. Uvijek provjeri s ljekarnikom ili liječnikom.",
-      dropTitle: "Fotografiraj recept",
+      subtitle:
+        "Fotografiraj recept i objasnit ćemo ti ga jednostavnim riječima. Uvijek provjeri s ljekarnikom ili liječnikom.",
+      listenPage: "Poslušaj",
+      stopListening: "Zaustavi",
+      largeTextLabel: "Veća slova",
+      stepOneBadge: "Korak 1 od 2",
+      dropTitle: "Dodaj recept",
       cameraCapture: "Snimi fotografiju",
-      galleryUpload: "Odaberi iz galerije",
+      galleryUpload: "Odaberi fotografiju",
       removePhoto: "Ukloni fotografiju",
-      tipFlat: "Položi papir ravno na stol",
-      tipLight: "Koristi dnevno svjetlo bez odbljeska bljeskalice",
-      tipFull: "Obuhvati cijelu stranicu i nazive lijekova",
+      photoReady: "Fotografija je spremna",
+      retakeLight: "Snimi drugu fotografiju na svjetlu",
+      tipFlat: "Položi ga ravno",
+      tipLight: "Koristi dnevno svjetlo",
+      tipFull: "Snimi cijelu stranicu",
       skeletonHeading: "Pripremamo objašnjenje jednostavnim riječima…",
-      hint: "Jasna i dobro osvijetljena fotografija cijelog recepta (JPEG, PNG ili WebP, do 8 MB)",
       qualityWarning:
         "Fotografija izgleda pomalo tamno ili mutno. Pokušaj ponovno na dnevnom svjetlu kako bi tekst bio čitljiv.",
+      stepTwoBadge: "Korak 2 od 2",
       whyLabel: "Zašto si dobio ili dobila ovaj recept? (nije obavezno)",
-      whyHint: "To pomaže asistentu razumjeti recept. Ne moraš znati dijagnozu.",
+      whyHint: "Dodirni razlog ako ga znaš ili odmah kreni na čitanje recepta. Ne moraš pisati.",
+      reasons: {
+        feverPain: "Bol ili vrućica",
+        coughCold: "Kašalj ili prehlada",
+        heartBp: "Srce ili tlak",
+        stomach: "Želudac ili probava",
+        child: "Za dijete",
+        notSure: "Nisam siguran",
+      },
+      noteLabel: "Ili kratko napiši svojim riječima (nije obavezno)",
       whyPh: "Na primjer: dobio sam ga nakon pregleda kod liječnika zbog grlobolje i vrućice…",
-      reviewButton: "Pročitaj recept",
+      reviewButton: "Pročitaj i objasni recept",
       reviewing: "Čitanje recepta u tijeku…",
       reviewingHint: "Ovo može potrajati do jedne minute. Ostavi ovu stranicu otvorenom.",
       uploadReqErr: "Snimi ili učitaj fotografiju recepta za nastavak.",
@@ -163,22 +438,38 @@ export function PrescriptionReview() {
     },
     rom: {
       title: "Dikh i receta",
-      subtitle: "Ker jekh poza chire recetake. O azhutitori ginavel o teksto thaj shpjeginel les tuke pe lokhe vorbe. Dikh les svako data le farmacistosa vaj le doktoresa.",
-      dropTitle: "Ker poza e recetake",
+      subtitle:
+        "Ker poza chire recetake thaj shpjeginas la tuke pe lokhe vorbe. Dikh la svako data le farmacistosa vaj le doktoresa.",
+      listenPage: "Ashun",
+      stopListening: "Astav",
+      largeTextLabel: "Maj baro ramovimos",
+      stepOneBadge: "Pasho 1 katar 2",
+      dropTitle: "Thov i receta",
       cameraCapture: "Ker poza",
-      galleryUpload: "Alosar katar i galerija",
+      galleryUpload: "Alosar jekh poza",
       removePhoto: "Khos i poza",
-      tipFlat: "Thov o lil lungjardo pe jekh skafidi",
-      tipLight: "Hasnisar divesko vudud bi blicosko",
-      tipFull: "Le sasti rig thaj le anava le drabenge",
+      photoReady: "I poza si gata",
+      retakeLight: "Ker aver poza ko vudud",
+      tipFlat: "Thov o lil pe skafidi",
+      tipLight: "Hasnisar divesko vudud",
+      tipFull: "Le sasti rig",
       skeletonHeading: "Pregatisaras o shpjegimos pe lokhe vorbe…",
-      hint: "Jekh uzi thaj vududali poza katar sasti receta (JPEG, PNG vaj WebP, dji ko 8 MB)",
       qualityWarning:
         "I poza dikljol xantsi kali vaj na uzi. Zumav pale ko divesko vudud kaste ginavel pe o teksto mishto.",
+      stepTwoBadge: "Pasho 2 katar 2",
       whyLabel: "Soske ljan kadaja receta? (te manges)",
-      whyHint: "Kadava azhutinel o azhutitori te haljarel i receta. Na trebul te dzanes i diagnoza.",
+      whyHint: "Azba jekh motivo te dzanes les, vaj dja sigo ko ginavimos e recetako. Na trebul te ramos.",
+      reasons: {
+        feverPain: "Dukh vaj tatipen",
+        coughCold: "Khas vaj shil",
+        heartBp: "Ilo vaj tensia",
+        stomach: "Ogi vaj xabem",
+        child: "Vash jekh chavoro",
+        notSure: "Na dzanav chaches",
+      },
+      noteLabel: "Vaj ramov skurto chire vorbenca (te manges)",
       whyPh: "Misal: ljem la pala jekh drom ko doktori vash dukh and-o korr thaj tatipen…",
-      reviewButton: "Ginav i receta",
+      reviewButton: "Ginav thaj shpjegin i receta",
       reviewing: "Ginavel pe i receta…",
       reviewingHint: "Shaj djal dji ko jekh minuto. Mekh kadaja rig puterdi.",
       uploadReqErr: "Ker vaj thov jekh poza e recetaki te djas maj dur.",
@@ -188,29 +479,43 @@ export function PrescriptionReview() {
       rateLimitErr: "But mangimata and-o skurto vrama. Azhuker xantsi thaj zumav pale.",
       previewAlt: "Poza katar i alosardi receta",
     },
-  } satisfies Record<Lang, Record<string, string>>;
+  };
   const t = dict[lang] || dict[DEFAULT_LANG];
 
   const cameraInput = useRef<HTMLInputElement>(null);
   const galleryInput = useRef<HTMLInputElement>(null);
+  const stepTwoRef = useRef<HTMLDivElement>(null);
+  const resultSectionRef = useRef<HTMLElement>(null);
 
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [selectedReasons, setSelectedReasons] = useState<ReasonChipKey[]>([]);
   const [context, setContext] = useState("");
   const [result, setResult] = useState<ReviewResponse | null>(null);
-  const [qualityWarning, setQualityWarning] = useState(false);
+  const [qualityState, setQualityState] = useState<"idle" | "checking" | "good" | "warn">("idle");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
+  function getScrollBehavior(): ScrollBehavior {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return "auto";
+    }
+    return "smooth";
+  }
+
   // Client-side lighting and blur pre-check (Change 44)
   function checkImageQuality(imageUrl: string) {
+    setQualityState("checking");
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = () => {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
-      if (!ctx) return;
+      if (!ctx) {
+        setQualityState("good");
+        return;
+      }
 
       canvas.width = 160;
       canvas.height = 160;
@@ -231,12 +536,13 @@ export function PrescriptionReview() {
         const stdDev = Math.sqrt(Math.max(0, sumSquares / pixels - mean * mean));
 
         // Warn when the photo is too dark, or so uniform that no writing stands out.
-        // A white prescription with dark text has low pixel-to-pixel change but a clear spread,
-        // so it must not trigger the warning (the old neighbour-difference check did).
-        setQualityWarning(mean < 60 || stdDev < 10);
+        setQualityState(mean < 60 || stdDev < 10 ? "warn" : "good");
       } catch {
-        setQualityWarning(false);
+        setQualityState("good");
       }
+    };
+    img.onerror = () => {
+      setQualityState("good");
     };
     img.src = imageUrl;
   }
@@ -247,11 +553,48 @@ export function PrescriptionReview() {
     };
   }, [preview]);
 
+  useEffect(() => {
+    if (!preview) return;
+    const timer = window.setTimeout(() => {
+      stepTwoRef.current?.scrollIntoView({ behavior: getScrollBehavior(), block: "nearest" });
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, [preview]);
+
+  useEffect(() => {
+    if (!result) return;
+    const timer = window.setTimeout(() => {
+      resultSectionRef.current?.scrollIntoView({ behavior: getScrollBehavior(), block: "start" });
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, [result]);
+
+  function handleHeaderListen() {
+    if (voice.speaking) {
+      voice.stop();
+      return;
+    }
+    voice.speak([t.title, t.subtitle, t.tipFlat, t.tipLight, t.tipFull]);
+  }
+
+  function toggleReasonChip(reason: ReasonChipKey) {
+    setSelectedReasons((prev) => {
+      if (reason === "notSure") {
+        return prev.includes("notSure") ? [] : ["notSure"];
+      }
+      const withoutNotSure = prev.filter((item) => item !== "notSure");
+      if (withoutNotSure.includes(reason)) {
+        return withoutNotSure.filter((item) => item !== reason);
+      }
+      return [...withoutNotSure, reason];
+    });
+  }
+
   function handleRemovePhoto() {
     if (preview) URL.revokeObjectURL(preview);
     setFile(null);
     setPreview(null);
-    setQualityWarning(false);
+    setQualityState("idle");
     setError("");
     setResult(null);
     if (cameraInput.current) cameraInput.current.value = "";
@@ -260,13 +603,14 @@ export function PrescriptionReview() {
 
   function handleFileSelected(selected: File | null) {
     setError("");
-    setQualityWarning(false);
+    setResult(null);
     if (!selected) return;
 
     if (!selected.type.startsWith("image/") || selected.size > 8 * 1024 * 1024) {
       if (preview) URL.revokeObjectURL(preview);
       setFile(null);
       setPreview(null);
+      setQualityState("idle");
       setError(t.fileErr);
       return;
     }
@@ -289,6 +633,13 @@ export function PrescriptionReview() {
     setResult(null);
     setIsSubmitting(true);
 
+    const selectedChipLabels = REASON_ORDER.filter((key) => selectedReasons.includes(key)).map(
+      (key) => t.reasons[key]
+    );
+    const combinedPrescriptionContext = [selectedChipLabels.join(", "), context.trim()]
+      .filter(Boolean)
+      .join(". ");
+
     try {
       const prescription = await new Promise<{ mimeType: string; data: string }>((resolve, reject) => {
         const reader = new FileReader();
@@ -306,7 +657,12 @@ export function PrescriptionReview() {
       const response = await fetch("/api/health-assistant", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prescriptionContext: context, prescription, lang, captchaToken }),
+        body: JSON.stringify({
+          prescriptionContext: combinedPrescriptionContext,
+          prescription,
+          lang,
+          captchaToken,
+        }),
       });
 
       // Server errors are written in English; the person always sees a message in their language.
@@ -323,17 +679,66 @@ export function PrescriptionReview() {
   }
 
   return (
-    // Same shell as /health-check and /health-assistant: tabs span the site container,
-    // the page content sits in one max-w-2xl column under them.
-    <main id="main-content" className="flex-1 pt-0.5 pb-10 sm:pt-2 sm:pb-14">
+    <main
+      id="main-content"
+      className={`flex-1 pt-0.5 pb-10 sm:pt-2 sm:pb-14 ${largeText ? "hc-large-text" : ""}`}
+    >
       <Container>
         <AssistantNavigation />
 
         <header className="max-w-2xl print:hidden">
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl">
-            {t.title}
-          </h1>
-          <p className="mt-2 max-w-prose text-base leading-relaxed text-muted-foreground">{t.subtitle}</p>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h1
+                className={`font-semibold tracking-tight text-foreground text-balance ${
+                  largeText ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl"
+                }`}
+              >
+                {t.title}
+              </h1>
+              <p
+                className={`mt-2 max-w-prose leading-relaxed text-muted-foreground ${
+                  largeText ? "text-lg" : "text-base"
+                }`}
+              >
+                {t.subtitle}
+              </p>
+            </div>
+
+            <div className="flex shrink-0 flex-wrap items-center gap-2">
+              {voice.available ? (
+                <button
+                  type="button"
+                  onClick={handleHeaderListen}
+                  aria-pressed={voice.speaking}
+                  className={`inline-flex min-h-11 items-center gap-2 rounded-lg border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                    voice.speaking
+                      ? "border-sapphire bg-sapphire-soft text-obsidian-navy dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-foreground"
+                      : "border-border bg-card text-foreground hover:bg-muted"
+                  }`}
+                >
+                  <SpeakerHeaderSvg />
+                  <span>{voice.speaking ? t.stopListening : t.listenPage}</span>
+                </button>
+              ) : null}
+
+              <button
+                type="button"
+                onClick={toggleLargeText}
+                aria-pressed={largeText}
+                className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                  largeText
+                    ? "border-sapphire bg-sapphire-soft text-obsidian-navy dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-foreground"
+                    : "border-border bg-card text-foreground hover:bg-muted"
+                }`}
+              >
+                <span aria-hidden="true" className="font-bold text-sapphire dark:text-sapphire-border">
+                  A+
+                </span>
+                <span>{t.largeTextLabel}</span>
+              </button>
+            </div>
+          </div>
         </header>
 
         <section className="mt-6 max-w-2xl rounded-xl border border-border bg-card shadow-xs print:hidden sm:mt-8">
@@ -359,7 +764,7 @@ export function PrescriptionReview() {
               className="sr-only"
             />
 
-            {/* Desktop: a photo can also be dropped onto this area. */}
+            {/* Step 1: Visual capture dropzone */}
             <div
               onDragOver={(event) => {
                 event.preventDefault();
@@ -371,8 +776,12 @@ export function PrescriptionReview() {
                 setIsDragging(false);
                 handleFileSelected(event.dataTransfer.files?.[0] ?? null);
               }}
-              className={`rounded-lg border border-dashed p-5 text-center transition-colors duration-[var(--dur-fast)] sm:p-8 ${
-                isDragging ? "border-sapphire bg-sapphire-soft dark:bg-sapphire/10" : "border-border"
+              className={`rounded-xl border border-dashed p-5 text-center transition-colors duration-[var(--dur-fast)] sm:p-7 ${
+                isDragging
+                  ? "border-sapphire bg-sapphire-soft dark:bg-sapphire/10"
+                  : preview
+                    ? "border-border bg-surface-subtle/40 dark:bg-muted/15"
+                    : "border-border bg-background/50"
               }`}
             >
               {preview ? (
@@ -380,28 +789,48 @@ export function PrescriptionReview() {
                   <img
                     src={preview}
                     alt={t.previewAlt}
-                    className="max-h-64 w-auto rounded-lg border border-border object-contain"
+                    className="max-h-72 w-auto rounded-lg border border-border bg-card object-contain shadow-2xs"
                   />
-                  <figcaption className="mt-2 max-w-full truncate text-sm text-muted-foreground">{file?.name}</figcaption>
+                  {file?.name ? (
+                    <figcaption className="mt-2 max-w-full truncate text-xs text-muted-foreground">
+                      {file.name}
+                    </figcaption>
+                  ) : null}
                 </figure>
               ) : (
                 <div>
-                  <ImageIcon className="mx-auto h-7 w-7 text-muted-foreground" />
-                  <h2 className="mt-3 text-base font-semibold text-foreground">{t.dropTitle}</h2>
-                  <p className="mx-auto mt-1 max-w-sm text-sm text-muted-foreground">{t.hint}</p>
-                  <ul className="mx-auto mt-4 grid max-w-md gap-2 text-left text-xs text-muted-foreground sm:grid-cols-3">
-                    <li className="flex items-start gap-1.5 rounded-md border border-border bg-background/80 p-2.5">
-                      <CheckCircleIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sapphire" />
-                      <span>{t.tipFlat}</span>
-                    </li>
-                    <li className="flex items-start gap-1.5 rounded-md border border-border bg-background/80 p-2.5">
-                      <CheckCircleIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sapphire" />
-                      <span>{t.tipLight}</span>
-                    </li>
-                    <li className="flex items-start gap-1.5 rounded-md border border-border bg-background/80 p-2.5">
-                      <CheckCircleIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sapphire" />
-                      <span>{t.tipFull}</span>
-                    </li>
+                  <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2 py-0.5 text-xs font-semibold text-obsidian-navy dark:bg-sapphire/20 dark:text-foreground">
+                    {t.stepOneBadge}
+                  </span>
+                  <h2
+                    className={`mt-2.5 font-semibold text-foreground text-balance ${
+                      largeText ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"
+                    }`}
+                  >
+                    {t.dropTitle}
+                  </h2>
+
+                  <ul className="mt-4 flex flex-wrap justify-center gap-2">
+                    {(
+                      [
+                        [TipFlatIcon, t.tipFlat],
+                        [TipLightIcon, t.tipLight],
+                        [TipFullIcon, t.tipFull],
+                      ] as const
+                    ).map(([Icon, label], index) => (
+                      <li
+                        key={label}
+                        style={{ animationDelay: `${index * 60}ms` }}
+                        className={`assistant-step-in inline-flex items-center gap-2 rounded-full border border-border bg-card py-1.5 pl-2.5 pr-3.5 font-medium text-foreground shadow-2xs ${
+                          largeText ? "text-base" : "text-sm"
+                        }`}
+                      >
+                        <span className="text-sapphire dark:text-sapphire-border">
+                          <Icon />
+                        </span>
+                        {label}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               )}
@@ -410,23 +839,24 @@ export function PrescriptionReview() {
                 <button
                   type="button"
                   onClick={() => cameraInput.current?.click()}
-                  // Filled until a photo is chosen; then "Read the prescription" becomes the one filled action.
-                  className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:w-auto ${
+                  className={`inline-flex w-full items-center justify-center gap-2.5 rounded-xl font-semibold transition-[background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:w-auto ${
                     preview
-                      ? "border border-border bg-card text-foreground hover:bg-muted"
-                      : "bg-sapphire text-white hover:bg-sapphire-light"
+                      ? "min-h-11 border border-border bg-card px-4 py-2.5 text-sm text-foreground hover:bg-muted"
+                      : "min-h-13 bg-sapphire px-6 py-3 text-base text-white shadow-xs hover:bg-sapphire-light active:scale-[0.98] motion-reduce:active:scale-100"
                   }`}
                 >
-                  <CameraIcon className="h-4 w-4" />
+                  <CameraIcon className={preview ? "h-4 w-4" : "h-5 w-5"} />
                   <span>{t.cameraCapture}</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => galleryInput.current?.click()}
-                  className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:w-auto"
+                  className={`inline-flex w-full items-center justify-center gap-2.5 rounded-xl border border-border bg-card font-semibold text-foreground transition-[background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:w-auto ${
+                    preview ? "min-h-11 px-4 py-2.5 text-sm" : "min-h-13 px-6 py-3 text-base active:scale-[0.98] motion-reduce:active:scale-100"
+                  }`}
                 >
-                  <ImageIcon className="h-4 w-4" />
+                  <ImageIcon className={preview ? "h-4 w-4" : "h-5 w-5"} />
                   <span>{t.galleryUpload}</span>
                 </button>
 
@@ -435,42 +865,16 @@ export function PrescriptionReview() {
                     type="button"
                     onClick={handleRemovePhoto}
                     disabled={isSubmitting}
-                    className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+                    className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
                   >
                     <TrashIcon className="h-4 w-4 text-muted-foreground" />
                     <span>{t.removePhoto}</span>
                   </button>
                 ) : null}
               </div>
-
-              {qualityWarning && (
-                <p className="mt-4 flex items-start gap-2.5 rounded-lg border border-amber-care-border bg-amber-care-soft/60 p-3.5 text-left text-sm leading-relaxed text-foreground dark:border-amber-care/40 dark:bg-amber-care/15">
-                  <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
-                  <span>{t.qualityWarning}</span>
-                </p>
-              )}
             </div>
 
-            <div>
-              <label className="text-sm font-semibold text-foreground" htmlFor="prescription-context">
-                {t.whyLabel}
-              </label>
-              <p id="prescription-context-hint" className="mt-1 text-sm text-muted-foreground">
-                {t.whyHint}
-              </p>
-              <textarea
-                id="prescription-context"
-                aria-describedby="prescription-context-hint"
-                rows={3}
-                maxLength={4000}
-                value={context}
-                onChange={(event) => setContext(event.target.value)}
-                placeholder={t.whyPh}
-                className="mt-2 w-full resize-none rounded-lg border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-              />
-            </div>
-
-            {error && (
+            {error && !preview ? (
               <div
                 role="alert"
                 className="flex items-start gap-2.5 rounded-lg border border-amber-care-border bg-amber-care-soft/60 p-3.5 text-sm font-medium leading-relaxed text-foreground dark:border-amber-care/40 dark:bg-amber-care/15"
@@ -478,29 +882,158 @@ export function PrescriptionReview() {
                 <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
                 <span>{error}</span>
               </div>
-            )}
+            ) : null}
 
-            <div className="sticky bottom-0 z-10 -mx-5 border-t border-border bg-card/95 px-5 py-3.5 backdrop-blur-xs sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
-              <button
-                type="submit"
-                disabled={isSubmitting || !file}
-                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-sapphire px-7 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:w-auto"
+            {/* Step 2: Revealed smoothly ONLY after a photo is selected */}
+            {preview ? (
+              <div
+                ref={stepTwoRef}
+                className="assistant-step-in space-y-6 border-t border-border pt-6"
               >
-                {isSubmitting ? t.reviewing : t.reviewButton}
-              </button>
-
-              {/* Honest progress: a calm indeterminate line, no fake percentages or scanning effects. */}
-              <div role="status" aria-live="polite" className={isSubmitting ? "mt-3" : ""}>
-                {isSubmitting ? (
-                  <>
-                    <div className="h-1.5 w-full overflow-hidden rounded-md bg-muted sm:max-w-xs" aria-hidden="true">
-                      <div className="assistant-reading-bar h-full w-2/5 rounded-md bg-sapphire dark:bg-sapphire-border" />
-                    </div>
-                    <p className="mt-2 text-sm text-muted-foreground">{t.reviewingHint}</p>
-                  </>
+                {/* Photo quality status banner */}
+                {qualityState === "warn" ? (
+                  <div
+                    role="status"
+                    className="flex flex-col gap-3 rounded-xl border border-amber-care-border bg-amber-care-soft/60 p-4 text-left dark:border-amber-care/40 dark:bg-amber-care/15 sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <p className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+                      <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
+                      <span>{t.qualityWarning}</span>
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => cameraInput.current?.click()}
+                      className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg border border-amber-care-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire dark:border-amber-care/50"
+                    >
+                      <CameraIcon className="h-4 w-4 text-amber-care dark:text-amber-care-border" />
+                      <span>{t.retakeLight}</span>
+                    </button>
+                  </div>
+                ) : qualityState === "good" ? (
+                  <div
+                    role="status"
+                    className="inline-flex items-center gap-2 rounded-full border border-emerald-600/30 bg-emerald-500/10 px-3.5 py-1.5 text-sm font-semibold text-foreground dark:border-emerald-400/35 dark:bg-emerald-500/15"
+                  >
+                    <CheckCircleIcon className="h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-300" />
+                    <span>{t.photoReady}</span>
+                  </div>
                 ) : null}
+
+                {/* 1-tap visual reason chips + optional note */}
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2 py-0.5 text-xs font-semibold text-obsidian-navy dark:bg-sapphire/20 dark:text-foreground">
+                      {t.stepTwoBadge}
+                    </span>
+                  </div>
+
+                  <h3
+                    className={`mt-2 font-semibold text-foreground ${
+                      largeText ? "text-lg sm:text-xl" : "text-base sm:text-lg"
+                    }`}
+                  >
+                    {t.whyLabel}
+                  </h3>
+                  <p
+                    id="prescription-context-hint"
+                    className={`mt-1 text-muted-foreground ${largeText ? "text-base" : "text-sm"}`}
+                  >
+                    {t.whyHint}
+                  </p>
+
+                  <div className="mt-3.5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                    {REASON_ORDER.map((reasonKey) => {
+                      const active = selectedReasons.includes(reasonKey);
+                      return (
+                        <button
+                          key={reasonKey}
+                          type="button"
+                          onClick={() => toggleReasonChip(reasonKey)}
+                          aria-pressed={active}
+                          className={`flex min-h-11 items-center gap-2.5 rounded-xl border px-3.5 py-2.5 text-left font-medium transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                            largeText ? "text-base" : "text-sm"
+                          } ${
+                            active
+                              ? "border-sapphire bg-sapphire-soft font-semibold text-obsidian-navy dark:border-sapphire/65 dark:bg-sapphire/20 dark:text-foreground"
+                              : "border-border bg-background text-foreground hover:bg-muted"
+                          }`}
+                        >
+                          <span
+                            className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${
+                              active
+                                ? "bg-sapphire text-white dark:bg-sapphire-border dark:text-obsidian-navy"
+                                : "bg-surface-subtle text-sapphire dark:bg-muted dark:text-sapphire-border"
+                            }`}
+                          >
+                            <ReasonChipIcon reason={reasonKey} />
+                          </span>
+                          <span className="flex-1 leading-snug">{t.reasons[reasonKey]}</span>
+                          {active ? (
+                            <CheckCircleIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />
+                          ) : null}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-4">
+                    <label
+                      className={`block font-medium text-muted-foreground ${
+                        largeText ? "text-sm" : "text-xs sm:text-sm"
+                      }`}
+                      htmlFor="prescription-context"
+                    >
+                      {t.noteLabel}
+                    </label>
+                    <textarea
+                      id="prescription-context"
+                      aria-describedby="prescription-context-hint"
+                      rows={2}
+                      maxLength={4000}
+                      value={context}
+                      onChange={(event) => setContext(event.target.value)}
+                      placeholder={t.whyPh}
+                      className={`mt-1.5 w-full resize-none rounded-lg border border-border bg-background p-3 text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                        largeText ? "text-base" : "text-sm"
+                      }`}
+                    />
+                  </div>
+                </div>
+
+                {error ? (
+                  <div
+                    role="alert"
+                    className="flex items-start gap-2.5 rounded-lg border border-amber-care-border bg-amber-care-soft/60 p-3.5 text-sm font-medium leading-relaxed text-foreground dark:border-amber-care/40 dark:bg-amber-care/15"
+                  >
+                    <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
+                    <span>{error}</span>
+                  </div>
+                ) : null}
+
+                <div className="sticky bottom-0 z-10 -mx-5 border-t border-border bg-card/95 px-5 py-3.5 backdrop-blur-xs sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !file}
+                    className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-xl bg-sapphire px-7 py-3 text-base font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:w-auto"
+                  >
+                    <span>{isSubmitting ? t.reviewing : t.reviewButton}</span>
+                    {!isSubmitting ? <ArrowRightSvg /> : null}
+                  </button>
+
+                  {/* Honest progress: a calm indeterminate line, no fake percentages or scanning effects. */}
+                  <div role="status" aria-live="polite" className={isSubmitting ? "mt-3" : ""}>
+                    {isSubmitting ? (
+                      <>
+                        <div className="h-1.5 w-full overflow-hidden rounded-md bg-muted sm:max-w-xs" aria-hidden="true">
+                          <div className="assistant-reading-bar h-full w-2/5 rounded-md bg-sapphire dark:bg-sapphire-border" />
+                        </div>
+                        <p className="mt-2 text-sm text-muted-foreground">{t.reviewingHint}</p>
+                      </>
+                    ) : null}
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : null}
           </form>
         </section>
 
@@ -526,10 +1059,14 @@ export function PrescriptionReview() {
         ) : null}
 
         {result && (
-          <section className="assistant-step-in mt-6 max-w-2xl rounded-xl border border-border bg-card p-5 shadow-xs sm:p-7">
+          <section
+            ref={resultSectionRef}
+            className="assistant-step-in mt-6 max-w-2xl rounded-xl border border-border bg-card p-5 shadow-xs sm:p-7"
+          >
             <PrescriptionStructuredResult
               aiMessage={result.message}
               prescriptionText={result.prescriptionText}
+              medicines={result.medicines}
               emergency={result.urgency === "emergency" || result.careLevel === "emergency"}
             />
           </section>

@@ -1,5 +1,19 @@
 import type { Lang } from "@/lib/i18n/translations";
 
+export type PrescribedMedicineItem = {
+  name: string;
+  strength?: string;
+  purpose?: string;
+  morning?: string;
+  midday?: string;
+  evening?: string;
+  bedtime?: string;
+  foodTiming?: "before_meal" | "with_meal" | "after_meal" | "any";
+  duration?: string;
+  warnings?: string[];
+  unclear?: boolean;
+};
+
 export type AssistantResponse = {
   urgency: "emergency" | "routine";
   careLevel: "emergency" | "urgent" | "soon" | "routine";
@@ -7,6 +21,7 @@ export type AssistantResponse = {
   message: string;
   questions: string[];
   prescriptionText?: string;
+  medicines?: PrescribedMedicineItem[];
 };
 
 export const urgentPattern =
@@ -78,7 +93,7 @@ export function buildEmergencyResponse(lang: Lang): AssistantResponse {
 }
 
 export function buildSystemInstruction(lang: Lang) {
-  return `You are RediHealth's patient-intake assistant. Give a useful preliminary assessment, but never state a diagnosis as fact, prescribe, recommend medication changes, or state that a medicine is safe. For every response, identify one most plausible possible cause using wording such as "This could be consistent with...". If the information is too limited, say what information is needed rather than inventing a cause. Set careLevel to "emergency", "urgent", "soon", or "routine". Emergency means call 112 or visit emergency care immediately; urgent means same-day clinical assessment; soon means contact a clinician within 24-48 hours; routine means monitor and arrange non-urgent care if symptoms continue. Identify possible emergency red flags and tell the patient to call 112 or visit emergency care immediately. Use calm, plain language. If an image is supplied, transcribe only legible prescription text. Mark uncertain words with [unclear]. Never infer missing medicine names, strengths, or directions. IMPORTANT: Write all patient-facing text fields (possibleCause, message, and questions) in ${responseLanguageLabel[lang]}. Return only valid JSON with urgency ("emergency" or "routine"), careLevel, possibleCause, message, questions (array), and prescriptionText (string, optional).`;
+  return `You are RediHealth's patient-intake assistant. Give a useful preliminary assessment, but never state a diagnosis as fact, prescribe, recommend medication changes, or state that a medicine is safe. For every response, identify one most plausible possible cause using wording such as "This could be consistent with...". If the information is too limited, say what information is needed rather than inventing a cause. Set careLevel to "emergency", "urgent", "soon", or "routine". Emergency means call 112 or visit emergency care immediately; urgent means same-day clinical assessment; soon means contact a clinician within 24-48 hours; routine means monitor and arrange non-urgent care if symptoms continue. Identify possible emergency red flags and tell the patient to call 112 or visit emergency care immediately. Use calm, plain language. If an image is supplied, transcribe only legible prescription text. Mark uncertain words with [unclear]. Never infer missing medicine names, strengths, or directions. When a prescription image is supplied, in addition to prescriptionText and plain-language message, populate medicines as an array of objects for each prescribed item with: name (string), optional strength (string, only if legible), optional purpose (short plain-language purpose in ${responseLanguageLabel[lang]}), optional morning, midday, evening, bedtime (short dose phrases in ${responseLanguageLabel[lang]} ONLY if explicitly written and legible on the prescription; omit morning, midday, evening, or bedtime whenever not clearly legible on the prescription and never invent or guess missing doses or times), optional foodTiming ("before_meal", "with_meal", "after_meal", or "any", only if written on the prescription), optional duration (only if written on the prescription), optional warnings (array of 1-2 short plain-language safety notes in ${responseLanguageLabel[lang]}), and optional unclear (true if any part of that medicine's name, strength, or dose was [unclear]). Always remind the patient to check with their pharmacist or doctor. IMPORTANT: Write all patient-facing text fields (possibleCause, message, questions, and medicines descriptions) in ${responseLanguageLabel[lang]}. Return only valid JSON with urgency ("emergency" or "routine"), careLevel, possibleCause, message, questions (array), prescriptionText (string, optional), and medicines (array, optional).`;
 }
 
 export function buildUserText({
@@ -110,9 +125,68 @@ export function normalizeJsonPayload(raw: string): string {
   return trimmed;
 }
 
+function clampOptionalString(value: unknown, maxLength: number): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim().slice(0, maxLength).trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+function isValidFoodTiming(value: unknown): value is NonNullable<PrescribedMedicineItem["foodTiming"]> {
+  return value === "before_meal" || value === "with_meal" || value === "after_meal" || value === "any";
+}
+
+function sanitizePrescribedMedicines(rawMedicines: unknown): PrescribedMedicineItem[] | undefined {
+  if (!Array.isArray(rawMedicines)) return undefined;
+
+  const parsed: PrescribedMedicineItem[] = [];
+  for (const item of rawMedicines) {
+    if (parsed.length >= 12) break;
+    if (typeof item !== "object" || item === null) continue;
+
+    const record = item as Record<string, unknown>;
+    const name = clampOptionalString(record.name, 160);
+    if (!name) continue;
+
+    const strength = clampOptionalString(record.strength, 80);
+    const purpose = clampOptionalString(record.purpose, 240);
+    const morning = clampOptionalString(record.morning, 120);
+    const midday = clampOptionalString(record.midday, 120);
+    const evening = clampOptionalString(record.evening, 120);
+    const bedtime = clampOptionalString(record.bedtime, 120);
+    const foodTiming = isValidFoodTiming(record.foodTiming) ? record.foodTiming : undefined;
+    const duration = clampOptionalString(record.duration, 120);
+    const warnings = Array.isArray(record.warnings)
+      ? record.warnings
+          .map((warning) => clampOptionalString(warning, 200))
+          .filter((warning): warning is string => Boolean(warning))
+          .slice(0, 4)
+      : undefined;
+    const unclear = typeof record.unclear === "boolean" ? record.unclear : undefined;
+
+    parsed.push({
+      name,
+      ...(strength ? { strength } : {}),
+      ...(purpose ? { purpose } : {}),
+      ...(morning ? { morning } : {}),
+      ...(midday ? { midday } : {}),
+      ...(evening ? { evening } : {}),
+      ...(bedtime ? { bedtime } : {}),
+      ...(foodTiming ? { foodTiming } : {}),
+      ...(duration ? { duration } : {}),
+      ...(warnings && warnings.length > 0 ? { warnings } : {}),
+      ...(unclear !== undefined ? { unclear } : {}),
+    });
+  }
+
+  return parsed.length > 0 ? parsed : undefined;
+}
+
 /** Parses the model output into a safe response, throwing when it is not JSON at all. */
 export function parseAssistantReply(raw: string, lang: Lang): AssistantResponse {
-  const generated = JSON.parse(normalizeJsonPayload(raw)) as Partial<AssistantResponse>;
+  const generated = JSON.parse(normalizeJsonPayload(raw)) as Partial<AssistantResponse> & {
+    medicines?: unknown;
+  };
+  const medicines = sanitizePrescribedMedicines(generated.medicines);
 
   return {
     urgency: generated.urgency === "emergency" ? "emergency" : "routine",
@@ -126,5 +200,6 @@ export function parseAssistantReply(raw: string, lang: Lang): AssistantResponse 
       ? generated.questions.filter((question): question is string => typeof question === "string").slice(0, 3)
       : [],
     prescriptionText: typeof generated.prescriptionText === "string" ? generated.prescriptionText : undefined,
+    ...(medicines ? { medicines } : {}),
   };
 }

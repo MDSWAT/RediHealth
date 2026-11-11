@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import {
   ActivityIcon,
+  AlertCircleIcon,
   AppleIcon,
   BrainIcon,
   DropletIcon,
@@ -32,8 +33,11 @@ import { TopicExplainer } from "./explainers/TopicExplainer";
 import { GlobalHealthAudioPlayer } from "./GlobalHealthAudioPlayer";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { SynchronizedSentenceReader } from "./SynchronizedSentenceReader";
+import { DICTIONARY_TAB_LABELS } from "./DictionaryTabs";
 import { RomanesGlossaryDrawer } from "./RomanesGlossaryDrawer";
 import { RomanianDualRegisterGlossary } from "./RomanianDualRegisterGlossary";
+import { ROMANIAN_MEDICAL_GLOSSARY } from "@/lib/i18n/romanian-medical-glossary";
+import { ROMANES_GLOSSARY_TERMS } from "@/lib/i18n/romanes-glossary";
 import type { Lang } from "@/lib/i18n/translations";
 
 interface TopicPageUiStrings {
@@ -244,8 +248,9 @@ export function TopicDetailPageContent({
   const [activeSentenceIndex, setActiveSentenceIndex] = useState<number | null>(
     null,
   );
-  const [isGlossaryOpen, setIsGlossaryOpen] = useState(false);
-  const [isDualGlossaryOpen, setIsDualGlossaryOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState<"dictionary" | "romanes" | null>(
+    null,
+  );
 
   const [activeSectionId, setActiveSectionId] =
     useState<string>("section-overview");
@@ -253,6 +258,22 @@ export function TopicDetailPageContent({
   const articleColumnRef = useRef<HTMLDivElement | null>(null);
 
   const ui = TOPIC_PAGE_UI_STRINGS[lang] ?? TOPIC_PAGE_UI_STRINGS.ro;
+  const dualGlossaryDescription = ui.dualGlossaryDescription.replace(
+    /\b22\b/g,
+    String(ROMANIAN_MEDICAL_GLOSSARY.length),
+  );
+  const tabCopy = DICTIONARY_TAB_LABELS[lang] ?? DICTIONARY_TAB_LABELS.ro;
+  const drawerTabs = useMemo(
+    () => ({
+      dictionaryLabel: tabCopy.dictionary,
+      romanesLabel: tabCopy.romanes,
+      tablistAriaLabel: tabCopy.tablistAria,
+      dictionaryCount: ROMANIAN_MEDICAL_GLOSSARY.length,
+      romanesCount: ROMANES_GLOSSARY_TERMS.length,
+      onSelect: (tab: "dictionary" | "romanes") => setOpenDrawer(tab),
+    }),
+    [tabCopy],
+  );
   const timing = HEALTH_TOPICS_BASE.find((t) => t.slug === topic.slug);
   const readMinutes = timing?.readMinutes ?? 3;
   const audioMinutes = timing?.audioMinutes ?? 2;
@@ -432,8 +453,8 @@ export function TopicDetailPageContent({
                   }`}
                 >
                   {item.urgent && (
-                    <span
-                      className="h-2 w-2 shrink-0 rounded-full bg-primary"
+                    <AlertCircleIcon
+                      className="h-3.5 w-3.5 shrink-0 text-primary"
                       aria-hidden="true"
                     />
                   )}
@@ -475,9 +496,9 @@ export function TopicDetailPageContent({
               >
                 <div className="overflow-hidden">
                   <div className="rounded-r-lg border-l-2 border-sapphire bg-surface-subtle/70 p-4 sm:p-5">
-                    <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2 py-0.5 text-xs font-semibold text-sapphire">
+                    <p className="text-xs font-semibold text-sapphire">
                       {ui.clinicalContextBadge}
-                    </span>
+                    </p>
 
                     {firstRecommendation && (
                       <p className="mt-2.5 text-sm leading-relaxed text-foreground">
@@ -594,8 +615,8 @@ export function TopicDetailPageContent({
                       >
                         <span className="truncate">{item.label}</span>
                         {item.urgent && (
-                          <span
-                            className="h-2 w-2 shrink-0 rounded-full bg-primary"
+                          <AlertCircleIcon
+                            className="h-3.5 w-3.5 shrink-0 text-primary"
                             aria-hidden="true"
                           />
                         )}
@@ -613,11 +634,11 @@ export function TopicDetailPageContent({
                   {ui.dualGlossaryTitle}
                 </h2>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                  {ui.dualGlossaryDescription}
+                  {dualGlossaryDescription}
                 </p>
                 <button
                   type="button"
-                  onClick={() => setIsDualGlossaryOpen(true)}
+                  onClick={() => setOpenDrawer("dictionary")}
                   className="mt-3.5 inline-flex min-h-[44px] w-full items-center justify-center rounded-lg bg-sapphire px-3 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
                 >
                   {ui.dualGlossaryCta}
@@ -633,7 +654,7 @@ export function TopicDetailPageContent({
                 </p>
                 <button
                   type="button"
-                  onClick={() => setIsGlossaryOpen(true)}
+                  onClick={() => setOpenDrawer("romanes")}
                   className="mt-3.5 inline-flex min-h-[44px] w-full items-center justify-center rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
                 >
                   {ui.romanesGlossaryCta}
@@ -715,10 +736,11 @@ export function TopicDetailPageContent({
         </aside>
       )}
 
-      {/* Dual-register 22-term Romanian medical dictionary drawer */}
+      {/* Dual-register Romanian medical dictionary drawer */}
       <RomanianDualRegisterGlossary
-        isOpen={isDualGlossaryOpen}
-        onClose={() => setIsDualGlossaryOpen(false)}
+        isOpen={openDrawer === "dictionary"}
+        onClose={() => setOpenDrawer(null)}
+        tabs={drawerTabs}
         priorityTopicSlug={topic.slug}
         lang={lang}
         initialCategory={
@@ -732,8 +754,9 @@ export function TopicDetailPageContent({
 
       {/* Romanes glossary drawer */}
       <RomanesGlossaryDrawer
-        isOpen={isGlossaryOpen}
-        onClose={() => setIsGlossaryOpen(false)}
+        isOpen={openDrawer === "romanes"}
+        onClose={() => setOpenDrawer(null)}
+        tabs={drawerTabs}
         lang={lang}
       />
     </div>

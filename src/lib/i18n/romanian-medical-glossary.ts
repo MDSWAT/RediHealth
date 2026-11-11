@@ -4,6 +4,7 @@ export type MedicalGlossaryCategory =
   | "diabet"
   | "cardiologie"
   | "analize"
+  | "preventie"
   | "cnas"
   | "urgente";
 
@@ -16,33 +17,34 @@ export interface DualRegisterGlossaryEntry {
   clinicalSignificanceRo: string;
   speechTextRo: string;
   relatedTopicSlug?: string;
+  relatedTopicSlugs?: string[];
 }
 
 export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
   {
     id: "glicemie-a-jeun",
-    plainTermRo: "Zahăr în sânge pe nemâncate",
+    plainTermRo: "Concentrația de glucoză din sânge pe nemâncate",
     formalTermRo: "Glicemie à jeun / Glicemie bazală",
     category: "diabet",
     layExplanationRo:
-      "Se măsoară dimineața, după cel puțin 8 ore fără mâncare. Arată cât zahăr ai în sânge când corpul se odihnește.",
+      "Se măsoară dimineața, după cel puțin 8 ore fără mâncare. Arată concentrația de glucoză (zahăr) din sânge atunci când corpul este în repaus.",
     clinicalSignificanceRo:
       "Normal: 70–99 mg/dL. Între 100 și 125 mg/dL înseamnă prediabet. 126 mg/dL sau mai mult, la 2 analize, poate însemna diabet.",
     speechTextRo:
-      "Zahăr în sânge pe nemâncate. Pe analize scrie glicemie à jeun. Se măsoară dimineața, pe stomacul gol.",
+      "Concentrația de glucoză din sânge pe nemâncate. Pe analize scrie glicemie à jeun. Se măsoară dimineața, pe stomacul gol, în miligrame pe decilitru.",
     relatedTopicSlug: "diabetes",
   },
   {
     id: "glicemie-postprandial",
-    plainTermRo: "Zahăr în sânge la 2 ore după masă",
+    plainTermRo: "Concentrația de glucoză din sânge la 2 ore după masă",
     formalTermRo: "Glicemie postprandială",
     category: "diabet",
     layExplanationRo:
-      "Se măsoară la 2 ore după ce ai început să mănânci. Arată cum se descurcă corpul cu zahărul din mâncare.",
+      "Se măsoară la 2 ore după ce ai început să mănânci. Arată cum reglează organismul concentrația de glucoză (zahăr) provenită din alimente.",
     clinicalSignificanceRo:
-      "Normal: sub 140 mg/dL. Între 140 și 199 mg/dL, corpul folosește greu zahărul (toleranță alterată la glucoză). 200 mg/dL sau mai mult poate însemna diabet.",
+      "Normal: sub 140 mg/dL. Între 140 și 199 mg/dL indică toleranță alterată la glucoză. 200 mg/dL sau mai mult poate însemna diabet.",
     speechTextRo:
-      "Zahăr în sânge la 2 ore după masă. Pe analize scrie glicemie postprandială. Normal este sub 140 miligrame pe decilitru.",
+      "Concentrația de glucoză din sânge la 2 ore după masă. Pe analize scrie glicemie postprandială. Valoarea normală este sub 140 miligrame pe decilitru.",
     relatedTopicSlug: "diabetes",
   },
   {
@@ -51,11 +53,11 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
     formalTermRo: "Hipertensiune arterială (HTA)",
     category: "cardiologie",
     layExplanationRo:
-      "Sângele apasă prea tare pe pereții vaselor de sânge, tot timpul. Inima obosește, iar vasele se strică în timp.",
+      "Sângele exercită continuu o presiune prea mare asupra pereților arterelor. Inima depune un efort suplimentar, iar pereții arterelor sunt afectați în timp.",
     clinicalSignificanceRo:
-      "Medicul o pune la valori de 140/90 mmHg sau mai mari, măsurate de mai multe ori. Crește cel mai mult riscul de infarct și de accident vascular cerebral.",
+      "Medicul o diagnostichează la valori de 140/90 mmHg sau mai mari, măsurate repetat. Crește cel mai mult riscul de infarct și de accident vascular cerebral.",
     speechTextRo:
-      "Tensiune mare. Medicul îi spune hipertensiune arterială. Peste 140 cu 90, inima muncește prea greu, chiar dacă nu te doare nimic.",
+      "Tensiune mare. Medicul îi spune hipertensiune arterială. Peste 140 cu 90, sângele apasă prea tare pe pereții arterelor și inima muncește prea greu, chiar dacă nu te doare nimic.",
     relatedTopicSlug: "heart-health",
   },
   {
@@ -77,11 +79,11 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
     formalTermRo: "Infarct miocardic acut (IMA)",
     category: "urgente",
     layExplanationRo:
-      "Un cheag astupă complet o arteră a inimii. O parte din mușchiul inimii rămâne fără oxigen și începe să se strice.",
+      "Un cheag blochează complet o arteră a inimii. O parte din mușchiul inimii suferă leziuni din lipsă de oxigen.",
     clinicalSignificanceRo:
-      "Urgență. Sună la 112. Artera trebuie desfundată la spital (angioplastie) în primele ore.",
+      "Urgență. Sună la 112. Artera trebuie deschisă la spital (angioplastie) în primele ore.",
     speechTextRo:
-      "Atac de cord. Medicul îi spune infarct miocardic acut. Dacă simți o gheară în piept care merge spre braț sau spre maxilar, sună imediat la 112.",
+      "Atac de cord. Medicul îi spune infarct miocardic acut. Dacă simți o apăsare puternică în piept care merge spre braț sau spre maxilar, sună imediat la 112.",
     relatedTopicSlug: "heart-health",
   },
   {
@@ -103,11 +105,11 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
     formalTermRo: "Dispnee cardiacă / respiratorie",
     category: "cardiologie",
     layExplanationRo:
-      "Simți că te sufoci sau respiri greu. Dacă apare la efort mic sau când stai întins în pat, poate fi semn că inima e obosită.",
+      "Simți că nu ai suficient aer sau respiri greu. Dacă apare la efort mic sau când stai întins în pat, poate fi semn că inima este suprasolicitată.",
     clinicalSignificanceRo:
-      "Dacă rămâi fără aer la efort sau ai nevoie de mai multe perne ca să dormi (ortopnee), poate fi apă pe plămâni (congestie pulmonară). Mergi urgent la cardiolog.",
+      "Dacă rămâi fără aer la efort sau ai nevoie de mai multe perne ca să dormi (ortopnee), poate exista o acumulare de lichid în plămâni (congestie pulmonară). Mergi urgent la cardiolog.",
     speechTextRo:
-      "Lipsă de aer. Medicul îi spune dispnee. Dacă respiri greu la efort mic sau când stai întins în pat, mergi urgent la medic.",
+      "Lipsă de aer. Medicul îi spune dispnee. Dacă respiri greu la efort mic sau când stai întins în pat, poate fi acumulare de lichid în plămâni și trebuie să mergi urgent la medic.",
     relatedTopicSlug: "heart-health",
   },
   {
@@ -116,24 +118,24 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
     formalTermRo: "Edeme periferice / retromaleolare",
     category: "cardiologie",
     layExplanationRo:
-      "Se strânge apă în glezne și în gambe. Se întâmplă când inima sau venele nu mai împing bine sângele înapoi în sus.",
+      "Apare retenție de lichid în țesuturile de la nivelul gleznelor și gambelor. Se întâmplă când inima sau venele nu mai împing eficient sângele înapoi în sus.",
     clinicalSignificanceRo:
-      "Dacă apeși cu degetul și rămâne o adâncitură (semnul godeului), corpul ține apă și sare. Se întâmplă des în insuficiența cardiacă.",
+      "Dacă apeși cu degetul și rămâne o adâncitură (semnul godeului), organismul prezintă retenție de lichid și sare. Este un semn frecvent în insuficiența cardiacă.",
     speechTextRo:
-      "Picioare umflate. Medicul le spune edeme periferice. Apa strânsă la glezne arată adesea că inima are nevoie de ajutorul medicului.",
+      "Glezne și picioare umflate. Medicul le spune edeme periferice. Retenția de lichid în țesuturile gleznelor arată adesea că inima are nevoie de consult medical.",
     relatedTopicSlug: "heart-health",
   },
   {
     id: "hemoglobina-glicata",
-    plainTermRo: "Zahărul mediu din ultimele 3 luni",
+    plainTermRo: "Media concentrației de glucoză din ultimele 3 luni",
     formalTermRo: "Hemoglobină glicată (HbA1c)",
     category: "diabet",
     layExplanationRo:
-      "O analiză de sânge care arată cât zahăr ai avut în sânge, în medie, în ultimele 90 de zile. Arată cât de bine e ținut sub control diabetul.",
+      "O analiză de sânge care arată media concentrației de glucoză (zahăr) din sânge în ultimele 90 de zile. Indică cât de bine este echilibrat diabetul.",
     clinicalSignificanceRo:
-      "La cei mai mulți adulți cu diabet, ținta este sub 7%. Peste 8%, medicul trebuie să revadă tratamentul.",
+      "La cei mai mulți adulți cu diabet, ținta este sub 7%. Peste 8%, medicul trebuie să ajusteze tratamentul.",
     speechTextRo:
-      "Zahărul mediu din ultimele 3 luni. Pe analize scrie hemoglobină glicată sau HbA1c. Pentru cei mai mulți oameni cu diabet, ținta este sub 7 la sută.",
+      "Media concentrației de glucoză din ultimele 3 luni. Pe analize scrie hemoglobină glicată sau HbA1c. Pentru cei mai mulți adulți cu diabet, ținta este sub 7 la sută.",
     relatedTopicSlug: "diabetes",
   },
   {
@@ -142,11 +144,11 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
     formalTermRo: "Fibrilație atrială (FiA)",
     category: "cardiologie",
     layExplanationRo:
-      "Inima bate repede și fără ritm. Sângele nu iese tot din camerele de sus ale inimii, așa că se pot face cheaguri.",
+      "Inima bate repede și fără ritm regulat. Sângele nu se golește complet din camerele superioare ale inimii, ceea ce poate duce la formarea cheagurilor.",
     clinicalSignificanceRo:
-      "Riscul de accident vascular cerebral crește de 5 ori. Ai nevoie de pastile care subțiază sângele (anticoagulante), date de cardiolog.",
+      "Riscul de accident vascular cerebral crește de 5 ori. Sunt necesare medicamente anticoagulante care împiedică formarea cheagurilor de sânge, prescrise de cardiolog.",
     speechTextRo:
-      "Inimă care bate neregulat și repede. Medicul îi spune fibrilație atrială. Mergi la cardiolog ca să previi cheagurile de sânge.",
+      "Inimă care bate neregulat și repede. Medicul îi spune fibrilație atrială. Cardiologul prescrie medicamente anticoagulante care împiedică formarea cheagurilor de sânge.",
     relatedTopicSlug: "heart-health",
   },
   {
@@ -155,11 +157,11 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
     formalTermRo: "Insuficiență cardiacă cronică",
     category: "cardiologie",
     layExplanationRo:
-      "Inima pierde încet puterea de a pompa cât sânge le trebuie organelor. Obosești repede și se strânge apă în corp.",
+      "Inima își pierde treptat puterea de a pompa suficient sânge către organe. Obosești repede și apare retenție de lichid în țesuturi și plămâni.",
     clinicalSignificanceRo:
-      "Boală de lungă durată, care se agravează în timp. Te cântărești în fiecare zi, mănânci sub 5 g de sare pe zi și iei medicamentele exact cum ți-a spus medicul.",
+      "Afecțiune cronică ce necesită monitorizare constantă. Te cântărești zilnic, consumi sub 5 g de sare pe zi și iei medicamentele exact cum le-a prescris medicul.",
     speechTextRo:
-      "Inimă slăbită. Medicul îi spune insuficiență cardiacă cronică. Te cântărești zilnic, mănânci puțină sare și iei medicamentele exact cum scrie pe rețetă.",
+      "Inimă slăbită. Medicul îi spune insuficiență cardiacă cronică. Cântărește-te zilnic pentru a observa din timp retenția de lichid, consumă puțină sare și ia tratamentul conform rețetei.",
     relatedTopicSlug: "heart-health",
   },
   {
@@ -168,11 +170,11 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
     formalTermRo: "Neuropatie diabetică periferică",
     category: "diabet",
     layExplanationRo:
-      "Zahărul mare strică nervii din picioare. Nu mai simți bine durerea, așa că poți avea răni fără să le observi.",
+      "Concentrația crescută de glucoză (zahăr) din sânge afectează treptat nervii din picioare. Sensibilitatea la durere scade, astfel încât pot apărea răni fără să le simți.",
     clinicalSignificanceRo:
-      "Se întâmplă des la oamenii cu diabet. Uită-te la tălpi în fiecare zi, ca să vezi rănile din timp.",
+      "Complicație frecventă în diabet. Verifică-ți tălpile în fiecare zi pentru a observa orice rană din timp.",
     speechTextRo:
-      "Amorțeli și furnicături în tălpi. Medicul îi spune neuropatie diabetică. Uită-te zilnic la picioare, ca să prinzi rănile din timp.",
+      "Amorțeli și furnicături în tălpi. Medicul îi spune neuropatie diabetică. Nivelul crescut al glicemiei afectează treptat nervii, de aceea verifică-ți picioarele zilnic.",
     relatedTopicSlug: "diabetes",
   },
   {
@@ -181,11 +183,11 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
     formalTermRo: "Retinopatie diabetică",
     category: "diabet",
     layExplanationRo:
-      "Zahărul mare, ani la rând, strică vasele mici de sânge din spatele ochiului (retina).",
+      "Concentrația crescută de glucoză din sânge, menținută ani la rând, deteriorează vasele mici de sânge din spatele ochiului (retina).",
     clinicalSignificanceRo:
-      "Este principala cauză de orbire la adulți. O previi cu un control la ochi în fiecare an (fund de ochi) și cu HbA1c sub 7%.",
+      "Este o cauză majoră de pierdere prevenibilă a vederii la adulți. O previi printr-un examen anual al fundului de ochi și menținerea HbA1c sub 7%.",
     speechTextRo:
-      "Vedere afectată de diabet. Medicul îi spune retinopatie diabetică. Un control la ochi în fiecare an, cu fund de ochi, îți protejează vederea.",
+      "Vedere afectată de diabet. Medicul îi spune retinopatie diabetică. Un examen anual al fundului de ochi și controlul glicemiei îți protejează vederea.",
     relatedTopicSlug: "diabetes",
   },
   {
@@ -194,11 +196,11 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
     formalTermRo: "Cetoacidoză diabetică (CAD)",
     category: "diabet",
     layExplanationRo:
-      "Când lipsește mult insulina, corpul arde grăsime ca să aibă energie. Așa apar în sânge acizi otrăvitori (corpi cetonici).",
+      "Când lipsește sever insulina, organismul descompune grăsimile pentru energie și se acumulează acizi periculoși numiți corpi cetonici în sânge.",
     clinicalSignificanceRo:
-      "Urgență care pune viața în pericol. Semne: respirația miroase a mere putrede, vărsături, confuzie și deshidratare.",
+      "Urgență care pune viața în pericol. Semne: respirație cu miros fructat, de acetonă, vărsături persistente, confuzie și deshidratare severă.",
     speechTextRo:
-      "Complicație gravă a diabetului, cu sânge acid. Medicul îi spune cetoacidoză diabetică. Dacă ai vărsături, ești confuz sau respiri repede, sună la 112.",
+      "Complicație gravă a diabetului, cu acumulare de corpi cetonici în sânge. Medicul îi spune cetoacidoză diabetică. Dacă apar respirație cu miros de acetonă, vărsături sau confuzie, sună imediat la 112.",
     relatedTopicSlug: "diabetes",
   },
   {
@@ -242,16 +244,30 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
   },
   {
     id: "glucometru",
-    plainTermRo: "Aparat de măsurat zahărul",
+    plainTermRo: "Aparat de măsurat glicemia (concentrația de glucoză)",
     formalTermRo: "Glucometru cu biosenzori",
     category: "analize",
     layExplanationRo:
-      "Un aparat mic. Pui pe bandă o picătură de sânge din marginea degetului și vezi zahărul în câteva secunde.",
+      "Un aparat medical portabil. Pui pe bandeletă o picătură mică de sânge din marginea degetului, iar aparatul afișează în câteva secunde concentrația de glucoză (zahăr) din sânge, măsurată în mg/dL sau mmol/L.",
     clinicalSignificanceRo:
-      "Te ajută să-ți urmărești singur diabetul. Ai nevoie de benzi potrivite pentru aparat și de ace sterile, folosite o singură dată (lansete).",
+      "Te ajută să îți monitorizezi acasă nivelul glicemiei. Ai nevoie de bandelete compatibile cu aparatul și de ace sterile de unică folosință (lansete).",
     speechTextRo:
-      "Aparat de măsurat zahărul. Se mai numește glucometru. Îți arată zahărul din sânge dintr-o picătură luată din deget, în câteva secunde.",
+      "Aparat de măsurat glicemia, numit glucometru. Dintr-o picătură mică de sânge din deget, afișează în câteva secunde concentrația de glucoză din sânge, în miligrame pe decilitru sau milimoli pe litru.",
     relatedTopicSlug: "diabetes",
+  },
+  {
+    id: "vaccin-imunizare",
+    plainTermRo: "Vaccin (protecție imunitară)",
+    formalTermRo: "Vaccinare / Imunizare activă",
+    category: "preventie",
+    layExplanationRo:
+      "Preparat medical preventiv, administrat prin injecție sau picături orale, care antrenează sistemul imunitar să producă anticorpi și să recunoască din timp microbii, prevenind boli infecțioase grave la copii și adulți.",
+    clinicalSignificanceRo:
+      "Vaccinările din calendarul național și cele recomandate adulților scad masiv riscul de spitalizare și complicații severe.",
+    speechTextRo:
+      "Vaccin, adică protecție imunitară prin imunizare activă. Este un preparat medical preventiv care antrenează sistemul imunitar să producă anticorpi împotriva bolilor infecțioase grave la copii și adulți.",
+    relatedTopicSlug: "preventive-screening",
+    relatedTopicSlugs: ["preventive-care", "infectious-diseases"],
   },
   {
     id: "bilet-de-trimitere",
@@ -321,34 +337,34 @@ export const GLOSSARY_TRANSLATIONS: Record<
 > = {
   en: {
     "glicemie-a-jeun": {
-      plainTerm: "Fasting blood sugar",
+      plainTerm: "Fasting blood glucose concentration",
       formalTerm: "Fasting plasma glucose (FPG)",
       layExplanation:
-        "Measured in the morning, after at least 8 hours without food. It shows how much sugar is in your blood while your body rests.",
+        "Measured in the morning, after at least 8 hours without food. It shows your blood glucose (sugar) concentration while your body is at rest.",
       clinicalSignificance:
         "Normal: 70–99 mg/dL. 100 to 125 mg/dL means prediabetes. 126 mg/dL or more on 2 tests can mean diabetes.",
       speechText:
-        "Fasting blood sugar. On test results it is called fasting plasma glucose. Normal is between 70 and 99 milligrams per deciliter.",
+        "Fasting blood glucose concentration. On test results it is called fasting plasma glucose. Normal is between 70 and 99 milligrams per deciliter.",
     },
     "glicemie-postprandial": {
-      plainTerm: "Blood sugar 2 hours after a meal",
+      plainTerm: "Blood glucose concentration 2 hours after a meal",
       formalTerm: "Postprandial plasma glucose",
       layExplanation:
-        "Measured 2 hours after you start eating. It shows how well your body handles the sugar from food.",
+        "Measured 2 hours after you start eating. It shows how effectively your body regulates the blood glucose (sugar) concentration coming from food.",
       clinicalSignificance:
-        "Normal: under 140 mg/dL. 140 to 199 mg/dL means your body struggles with sugar (impaired glucose tolerance). 200 mg/dL or more can mean diabetes.",
+        "Normal: under 140 mg/dL. 140 to 199 mg/dL indicates impaired glucose tolerance. 200 mg/dL or more can mean diabetes.",
       speechText:
-        "Blood sugar 2 hours after a meal. Doctors call it postprandial glucose. Normal is under 140 milligrams per deciliter.",
+        "Blood glucose concentration 2 hours after a meal. Doctors call it postprandial plasma glucose. Normal is under 140 milligrams per deciliter.",
     },
     hipertensiune: {
       plainTerm: "High blood pressure",
       formalTerm: "Arterial hypertension",
       layExplanation:
-        "Your blood pushes too hard against the walls of your blood vessels, all the time. Your heart gets tired and the vessels get damaged.",
+        "Your blood pushes too hard against your artery walls all the time. Your heart works harder, and the artery walls suffer damage over time.",
       clinicalSignificance:
-        "Diagnosed when readings stay at 140/90 mmHg or higher. It is the biggest risk factor for heart attack and stroke.",
+        "Diagnosed when repeated readings stay at 140/90 mmHg or higher. It is the leading risk factor for heart attack and stroke.",
       speechText:
-        "High blood pressure. Doctors call it arterial hypertension. Above 140 over 90, your heart works too hard, even if nothing hurts.",
+        "High blood pressure. Doctors call it arterial hypertension. Above 140 over 90, blood presses too hard on your artery walls and your heart works too hard, even if nothing hurts.",
     },
     hipotensiune: {
       plainTerm: "Low blood pressure",
@@ -364,11 +380,11 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Heart attack",
       formalTerm: "Acute myocardial infarction (AMI)",
       layExplanation:
-        "A clot fully blocks an artery of the heart. Part of the heart muscle gets no oxygen and starts to get damaged.",
+        "A blood clot completely blocks an artery of the heart. Part of the heart muscle suffers injury from lack of oxygen.",
       clinicalSignificance:
         "Emergency. Call 112. The artery must be opened in hospital (angioplasty) within the first hours.",
       speechText:
-        "Heart attack. Doctors call it acute myocardial infarction. If you feel crushing pain in your chest that spreads to your arm or jaw, call 112 now.",
+        "Heart attack. Doctors call it acute myocardial infarction. If you feel crushing pressure in your chest that spreads to your arm or jaw, call 112 immediately.",
     },
     "atac-cerebral": {
       plainTerm: "Stroke",
@@ -381,84 +397,84 @@ export const GLOSSARY_TRANSLATIONS: Record<
         "Stroke. Doctors call it a cerebrovascular accident. If the face droops, an arm goes weak or speech is slurred, call 112 now.",
     },
     dispnee: {
-      plainTerm: "Short of breath when active or lying down",
+      plainTerm: "Shortness of breath when active or lying down",
       formalTerm: "Cardiac or respiratory dyspnea",
       layExplanation:
-        "You feel like you are choking or cannot breathe well. If it happens with light effort or lying flat in bed, your heart may be struggling.",
+        "You feel short of air or struggle to breathe. If it happens with light effort or while lying flat in bed, your heart may be under strain.",
       clinicalSignificance:
-        "Getting out of breath with effort, or needing several pillows to sleep (orthopnea), can mean fluid in the lungs (pulmonary congestion). See a cardiologist urgently.",
+        "Getting out of breath with effort, or needing several pillows to sleep (orthopnea), can indicate fluid buildup in the lungs (pulmonary congestion). See a cardiologist urgently.",
       speechText:
-        "Shortness of breath. Doctors call it dyspnea. If you struggle to breathe with light effort or when lying flat, see a doctor urgently.",
+        "Shortness of breath. Doctors call it dyspnea. If you struggle to breathe with light effort or when lying flat, it can signal fluid buildup in the lungs, so see a doctor urgently.",
     },
     edeme: {
       plainTerm: "Swollen ankles and legs",
       formalTerm: "Peripheral edema / Pitting edema",
       layExplanation:
-        "Fluid collects in your ankles and lower legs. It happens when your heart or veins struggle to push blood back up.",
+        "Fluid retention develops in the tissues of your ankles and lower legs. It happens when your heart or veins struggle to pump blood back upward.",
       clinicalSignificance:
-        "If pressing with a finger leaves a dent (pitting), your body is holding on to water and salt. This is common in heart failure.",
+        "If pressing gently with a finger leaves an indentation (pitting), your body has fluid and salt retention in the tissues. This is common in heart failure.",
       speechText:
-        "Swollen ankles and legs. Doctors call it peripheral edema. Water building up at the ankles often means your heart needs a doctor's care.",
+        "Swollen ankles and legs. Doctors call it peripheral edema. Fluid retention in the tissues around the ankles often means your heart needs medical evaluation.",
     },
     "hemoglobina-glicata": {
-      plainTerm: "Average blood sugar over 3 months",
+      plainTerm: "Average blood glucose concentration over 3 months",
       formalTerm: "Glycated hemoglobin (HbA1c)",
       layExplanation:
-        "A blood test that shows your average blood sugar over the last 90 days. It shows how well your diabetes is controlled.",
+        "A blood test that shows your average blood glucose (sugar) concentration over the past 90 days. It reflects how well your diabetes is managed.",
       clinicalSignificance:
-        "For most adults with diabetes, the target is under 7%. Above 8%, your doctor needs to review your treatment.",
+        "For most adults with diabetes, the target is under 7%. Above 8%, your doctor needs to adjust your treatment.",
       speechText:
-        "Average blood sugar over 3 months. On test results it is called HbA1c. For most people with diabetes, the target is under 7 percent.",
+        "Average blood glucose concentration over 3 months. On test results it is called HbA1c. For most adults with diabetes, the target is under 7 percent.",
     },
     "fibrilatie-atriala": {
       plainTerm: "Fast, irregular heartbeat",
       formalTerm: "Atrial fibrillation (AFib)",
       layExplanation:
-        "Your heart beats fast and out of rhythm. Blood does not fully leave the upper chambers of the heart, so clots can form.",
+        "Your heart beats fast and out of rhythm. Blood does not empty completely from the upper chambers of the heart, so blood clots can form.",
       clinicalSignificance:
-        "It makes a stroke 5 times more likely. You need blood-thinning tablets (anticoagulants) from a cardiologist.",
+        "It increases stroke risk 5-fold. You need anticoagulant medicines that prevent blood clots from forming, prescribed by a cardiologist.",
       speechText:
-        "Fast, irregular heartbeat. Doctors call it atrial fibrillation. See a cardiologist to prevent blood clots and stroke.",
+        "Fast, irregular heartbeat. Doctors call it atrial fibrillation. A cardiologist prescribes anticoagulant medicines that prevent blood clots and stroke.",
     },
     "insuficienta-cardiaca": {
-      plainTerm: "Weak heart that pumps poorly",
+      plainTerm: "Weakened heart that pumps less effectively",
       formalTerm: "Chronic heart failure (CHF)",
       layExplanation:
-        "Your heart slowly loses the strength to pump enough blood to your organs. You tire quickly and fluid builds up in your body.",
+        "Your heart gradually loses strength to pump enough blood to your organs. You tire easily and develop fluid retention in the lungs and body tissues.",
       clinicalSignificance:
-        "A long-term condition that gets worse over time. Weigh yourself every day, eat less than 5 g of salt a day and take your medicines exactly as prescribed.",
+        "A chronic condition requiring close monitoring. Weigh yourself every day, eat less than 5 g of salt per day and take your medicines exactly as prescribed.",
       speechText:
-        "Weak heart. Doctors call it chronic heart failure. Weigh yourself every day, eat little salt and take your medicines exactly as prescribed.",
+        "Weakened heart. Doctors call it chronic heart failure. Weigh yourself daily to detect fluid retention early, limit salt and take your medicines as prescribed.",
     },
     "neuropatie-diabetica": {
       plainTerm: "Numbness and tingling in the feet",
       formalTerm: "Peripheral diabetic neuropathy",
       layExplanation:
-        "High blood sugar damages the nerves in your feet. You feel pain less, so wounds can go unnoticed.",
+        "Persistently high blood glucose (sugar) concentration gradually damages the nerves in your feet. Pain sensation decreases, so sores or wounds can go unnoticed.",
       clinicalSignificance:
-        "Common in people with diabetes. Look at the soles of your feet every day to spot wounds early.",
+        "Common in people with diabetes. Check the soles of your feet every day to detect any wounds early.",
       speechText:
-        "Numbness and tingling in the feet. Doctors call it diabetic neuropathy. Check your feet every day to catch wounds early.",
+        "Numbness and tingling in the feet. Doctors call it diabetic neuropathy. Check your feet every day so small wounds are caught early.",
     },
     "retinopatie-diabetica": {
-      plainTerm: "Eye damage from diabetes",
+      plainTerm: "Vision damage from diabetes",
       formalTerm: "Diabetic retinopathy",
       layExplanation:
-        "Years of high blood sugar damage the small blood vessels at the back of your eye (the retina).",
+        "Years of elevated blood glucose concentration gradually damage the tiny blood vessels in the light-sensitive tissue at the back of the eye (the retina).",
       clinicalSignificance:
-        "A leading cause of preventable blindness in adults. Prevent it with an eye exam every year, with drops to widen your pupils, and an HbA1c under 7%.",
+        "A leading cause of preventable blindness in adults. Prevent it with an annual dilated eye exam and keeping HbA1c under 7%.",
       speechText:
-        "Eye damage from diabetes. Doctors call it diabetic retinopathy. An eye exam every year protects your sight.",
+        "Vision damage from diabetes. Doctors call it diabetic retinopathy. An annual eye exam and steady blood glucose control protect your sight.",
     },
     "cetoacidoza-diabetica": {
-      plainTerm: "Dangerous acid build-up in the blood",
+      plainTerm: "Dangerous ketone acid buildup in the blood",
       formalTerm: "Diabetic ketoacidosis (DKA)",
       layExplanation:
-        "When your body is badly short of insulin, it burns fat for energy. This makes poisonous acids (ketones) build up in your blood.",
+        "When the body severely lacks insulin, it breaks down fat for energy and dangerous acids called ketones build up in your blood.",
       clinicalSignificance:
-        "Life-threatening emergency. Signs: breath that smells fruity, vomiting that does not stop, confusion and dehydration.",
+        "Life-threatening emergency. Signs: fruity, acetone-like breath odor, persistent vomiting, confusion and severe dehydration.",
       speechText:
-        "Dangerous acid build-up in the blood. Doctors call it diabetic ketoacidosis. If you are vomiting, confused or breathing fast, call 112.",
+        "Dangerous acid buildup in the blood, called diabetic ketoacidosis. If you notice fruity acetone-like breath, vomiting, confusion or rapid breathing, call 112 immediately.",
     },
     electrocardiograma: {
       plainTerm: "Heart rhythm test",
@@ -491,14 +507,24 @@ export const GLOSSARY_TRANSLATIONS: Record<
         "Automatic blood pressure monitor. Models with an upper-arm cuff give the most accurate readings at home.",
     },
     glucometru: {
-      plainTerm: "Blood sugar meter",
+      plainTerm: "Blood glucose concentration meter",
       formalTerm: "Capillary biosensor glucometer",
       layExplanation:
-        "A small device. Put a drop of blood from the side of your fingertip on a strip, and it shows your blood sugar in a few seconds.",
+        "A portable medical device. From a tiny drop of fingertip capillary blood placed on a test strip, it measures and displays your blood glucose (sugar) concentration in mg/dL or mmol/L within seconds.",
       clinicalSignificance:
-        "Helps you keep track of your diabetes yourself. You need test strips that fit your meter and sterile single-use needles (lancets).",
+        "Helps you monitor your blood glucose levels at home. You need compatible test strips for your meter and sterile single-use lancets.",
       speechText:
-        "Blood sugar meter, or glucometer. It shows your blood sugar from 1 drop of blood in a few seconds.",
+        "Blood glucose concentration meter, or glucometer. From a tiny drop of fingertip blood on a test strip, it displays your blood glucose concentration in milligrams per deciliter or millimoles per liter within seconds.",
+    },
+    "vaccin-imunizare": {
+      plainTerm: "Vaccine (immune protection)",
+      formalTerm: "Vaccination / Active immunization",
+      layExplanation:
+        "A preventive medical preparation, given by injection or oral drops, that safely trains the immune system to make antibodies and recognize germs early, preventing serious infectious diseases in children and adults.",
+      clinicalSignificance:
+        "Routine childhood immunizations and recommended adult vaccines dramatically lower the risk of hospitalization and severe complications.",
+      speechText:
+        "Vaccine, or active immunization. It is a preventive medical preparation that safely trains your immune system to make antibodies against serious infectious diseases.",
     },
     "bilet-de-trimitere": {
       plainTerm: "Referral to a specialist",
@@ -544,34 +570,34 @@ export const GLOSSARY_TRANSLATIONS: Record<
 
   sq: {
     "glicemie-a-jeun": {
-      plainTerm: "Sheqeri në gjak esëll",
+      plainTerm: "Përqendrimi i glukozës në gjak esëll",
       formalTerm: "Glicemia esëll / Glicemia bazale",
       layExplanation:
-        "Matet në mëngjes, pasi nuk ke ngrënë për të paktën 8 orë. Tregon sa sheqer ke në gjak kur trupi pushon.",
+        "Matet në mëngjes, pasi nuk ke ngrënë për të paktën 8 orë. Tregon përqendrimin e glukozës (sheqerit) në gjak kur trupi është në qetësi.",
       clinicalSignificance:
         "Normale: 70–99 mg/dL. Nga 100 deri në 125 mg/dL do të thotë paradiabet. 126 mg/dL ose më shumë, në 2 analiza, mund të jetë diabet.",
       speechText:
-        "Sheqeri në gjak esëll. Në analiza shkruhet glicemia esëll. Matet në mëngjes, me stomak bosh.",
+        "Përqendrimi i glukozës në gjak esëll. Në analiza shkruhet glicemia esëll. Matet në mëngjes, me stomak bosh, në miligramë për decilitër.",
     },
     "glicemie-postprandial": {
-      plainTerm: "Sheqeri në gjak 2 orë pas ngrënies",
+      plainTerm: "Përqendrimi i glukozës në gjak 2 orë pas ngrënies",
       formalTerm: "Glicemia postprandiale",
       layExplanation:
-        "Matet 2 orë pasi ke filluar të hash. Tregon si e përballon trupi sheqerin nga ushqimi.",
+        "Matet 2 orë pasi ke filluar të hash. Tregon si e rregullon trupi përqendrimin e glukozës (sheqerit) në gjak pas ushqimit.",
       clinicalSignificance:
-        "Normale: nën 140 mg/dL. Nga 140 deri në 199 mg/dL trupi e përpunon me vështirësi sheqerin (tolerancë e dëmtuar ndaj glukozës). 200 mg/dL ose më shumë mund të jetë diabet.",
+        "Normale: nën 140 mg/dL. Nga 140 deri në 199 mg/dL tregon tolerancë të dëmtuar ndaj glukozës. 200 mg/dL ose më shumë mund të jetë diabet.",
       speechText:
-        "Sheqeri në gjak 2 orë pas ngrënies. Mjeku e quan glicemi postprandiale. Duhet të jetë nën 140 miligramë për decilitër.",
+        "Përqendrimi i glukozës në gjak 2 orë pas ngrënies. Mjeku e quan glicemi postprandiale. Duhet të jetë nën 140 miligramë për decilitër.",
     },
     hipertensiune: {
       plainTerm: "Tensioni i lartë i gjakut",
       formalTerm: "Hipertensioni arterial",
       layExplanation:
-        "Gjaku shtyp shumë fort mbi muret e enëve të gjakut, gjatë gjithë kohës. Zemra lodhet dhe enët dëmtohen me kohë.",
+        "Gjaku ushtron vazhdimisht presion tepër të lartë mbi muret e arterieve. Zemra sforcohet dhe muret e arterieve pësojnë dëmtime me kalimin e kohës.",
       clinicalSignificance:
-        "Diagnostikohet kur vlerat mbeten 140/90 mmHg ose më lart. Është rreziku më i madh për infarkt dhe goditje në tru.",
+        "Diagnostikohet kur vlerat e matura disa herë mbeten 140/90 mmHg ose më lart. Është faktori kryesor i rrezikut për infarkt dhe goditje në tru.",
       speechText:
-        "Tensioni i lartë i gjakut. Mjeku e quan hipertension arterial. Mbi 140 me 90, zemra punon tepër, edhe kur nuk të dhemb asgjë.",
+        "Tensioni i lartë i gjakut. Mjeku e quan hipertension arterial. Mbi 140 me 90, gjaku shtyp fort muret e arterieve dhe zemra mbingarkohet, edhe kur nuk ke dhimbje.",
     },
     hipotensiune: {
       plainTerm: "Tensioni i ulët i gjakut",
@@ -587,7 +613,7 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Sulm në zemër",
       formalTerm: "Infarkt akut i miokardit",
       layExplanation:
-        "Një mpiksje gjaku bllokon plotësisht një arterie të zemrës. Një pjesë e muskulit të zemrës mbetet pa oksigjen dhe fillon të dëmtohet.",
+        "Një mpiksje gjaku bllokon plotësisht një arterie të zemrës. Një pjesë e muskulit të zemrës pëson dëmtime nga mungesa e oksigjenit.",
       clinicalSignificance:
         "Urgjencë. Telefono 112. Arteria duhet hapur në spital (angioplastikë) brenda orëve të para.",
       speechText:
@@ -607,81 +633,81 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Mungesë ajri kur lodhesh ose kur je shtrirë",
       formalTerm: "Dispne kardiake ose respiratore",
       layExplanation:
-        "Ndien sikur po mbytesh ose merr frymë me vështirësi. Nëse ndodh me pak lodhje ose kur je shtrirë në shtrat, zemra mund të jetë e lodhur.",
+        "Ndien mungesë ajri ose merr frymë me vështirësi. Nëse ndodh me pak sforcim ose kur je shtrirë në shtrat, zemra mund të jetë e mbingarkuar.",
       clinicalSignificance:
-        "Nëse të mungon ajri kur lodhesh ose të duhen disa jastëkë për të fjetur (ortopne), mund të ketë ujë në mushkëri (kongjestion pulmonar). Shko urgjent te kardiologu.",
+        "Nëse të mungon ajri gjatë sforcimit ose të duhen disa jastëkë për të fjetur (ortopne), mund të ketë mbledhje lëngu në mushkëri (kongjestion pulmonar). Shko urgjent te kardiologu.",
       speechText:
-        "Mungesë ajri. Mjeku e quan dispne. Nëse merr frymë me vështirësi me pak lodhje ose kur je shtrirë, shko urgjent te mjeku.",
+        "Mungesë ajri. Mjeku e quan dispne. Nëse merr frymë me vështirësi me pak lodhje ose kur je shtrirë, mund të ketë mbledhje lëngu në mushkëri dhe duhet të shkosh urgjent te mjeku.",
     },
     edeme: {
       plainTerm: "Këmbë dhe kyçe të ënjtura",
       formalTerm: "Edema periferike",
       layExplanation:
-        "Mblidhet lëng te kyçet dhe pulpat e këmbëve. Ndodh kur zemra ose venat nuk e shtyjnë mirë gjakun lart.",
+        "Krijohet mbajtje lëngu në indet e kyçeve dhe pulpave të këmbëve. Ndodh kur zemra ose venat nuk e kthejnë mirë gjakun lart.",
       clinicalSignificance:
-        "Nëse shtyp me gisht dhe mbetet një gropëz, trupi po mban ujë dhe kripë. Kjo ndodh shpesh kur zemra është e dobët (insuficiencë kardiake).",
+        "Nëse shtyp lehtë me gisht dhe mbetet një gropëz, trupi ka mbajtje lëngu dhe kripe në inde. Kjo ndodh shpesh në insuficiencën kardiake.",
       speechText:
-        "Këmbë të ënjtura. Mjeku e quan edemë periferike. Uji i mbledhur te kyçet shpesh tregon që zemra duhet kontrolluar nga mjeku.",
+        "Këmbë dhe kyçe të ënjtura. Mjeku e quan edemë periferike. Mbajtja e lëngut në indet e kyçeve shpesh tregon që zemra duhet kontrolluar nga mjeku.",
     },
     "hemoglobina-glicata": {
-      plainTerm: "Sheqeri mesatar i 3 muajve të fundit",
+      plainTerm: "Përqendrimi mesatar i glukozës në 3 muajt e fundit",
       formalTerm: "Hemoglobina e glikuar (HbA1c)",
       layExplanation:
-        "Analizë gjaku që tregon sa sheqer ke pasur mesatarisht në 90 ditët e fundit. Tregon sa mirë kontrollohet diabeti.",
+        "Analizë gjaku që tregon përqendrimin mesatar të glukozës (sheqerit) në gjak gjatë 90 ditëve të fundit. Tregon sa mirë mbahet nën kontroll diabeti.",
       clinicalSignificance:
-        "Për shumicën e të rriturve me diabet, objektivi është nën 7%. Mbi 8%, mjeku duhet ta rishikojë mjekimin.",
+        "Për shumicën e të rriturve me diabet, objektivi është nën 7%. Mbi 8%, mjeku duhet ta përshtatë mjekimin.",
       speechText:
-        "Sheqeri mesatar i 3 muajve të fundit. Në analiza shkruhet HbA1c. Për shumicën e njerëzve me diabet, objektivi është nën 7 përqind.",
+        "Përqendrimi mesatar i glukozës në 3 muajt e fundit. Në analiza shkruhet HbA1c. Për shumicën e të rriturve me diabet, objektivi është nën 7 përqind.",
     },
     "fibrilatie-atriala": {
       plainTerm: "Zemër që rreh shpejt dhe pa ritëm",
       formalTerm: "Fibrilacioni atrial",
       layExplanation:
-        "Zemra rreh shpejt dhe pa ritëm. Gjaku nuk del i gjithi nga dhomat e sipërme të zemrës, prandaj mund të formohen mpiksje.",
+        "Zemra rreh shpejt dhe në mënyrë të çrregullt. Gjaku nuk zbrazet plotësisht nga dhomat e sipërme të zemrës, prandaj mund të formohen mpiksje gjaku.",
       clinicalSignificance:
-        "Rrit 5 herë rrezikun e goditjes në tru. Të duhen ilaçe që hollojnë gjakun (antikoagulantë), të dhëna nga kardiologu.",
+        "Rrit 5 herë rrezikun e goditjes në tru. Nevojiten barna antikoagulante që pengojnë formimin e mpiksjeve të gjakut, të përshkruara nga kardiologu.",
       speechText:
-        "Zemër që rreh shpejt dhe pa ritëm. Mjeku e quan fibrilacion atrial. Shko te kardiologu për të parandaluar mpiksjet e gjakut.",
+        "Zemër që rreh shpejt dhe pa ritëm. Mjeku e quan fibrilacion atrial. Kardiologu jep barna antikoagulante që pengojnë formimin e mpiksjeve të gjakut.",
     },
     "insuficienta-cardiaca": {
-      plainTerm: "Zemër e dobët që pompon keq",
+      plainTerm: "Zemër e dobësuar që pompon me vështirësi",
       formalTerm: "Insuficienca kardiake kronike",
       layExplanation:
-        "Zemra humb ngadalë forcën për të pompuar aq gjak sa u duhet organeve. Lodhesh shpejt dhe mblidhet ujë në trup.",
+        "Zemra humb gradualisht forcën për të pompuar mjaftueshëm gjak drejt organeve. Lodhesh shpejt dhe krijohet mbajtje lëngu në inde dhe mushkëri.",
       clinicalSignificance:
-        "Sëmundje afatgjatë që përkeqësohet me kohë. Peshohu çdo ditë, ha më pak se 5 gramë kripë në ditë dhe merr ilaçet saktësisht si t'i ka shkruar mjeku.",
+        "Gjendje kronike që kërkon ndjekje të rregullt. Peshohu çdo ditë, konsumo më pak se 5 gramë kripë në ditë dhe merr barnat saktësisht sipas recetës së mjekut.",
       speechText:
-        "Zemër e dobët. Mjeku e quan insuficiencë kardiake kronike. Peshohu çdo ditë, ha pak kripë dhe merr ilaçet saktësisht si në recetë.",
+        "Zemër e dobësuar. Mjeku e quan insuficiencë kardiake kronike. Peshohu çdo ditë për të vënë re mbajtjen e lëngut në trup, pakëso kripën dhe merr mjekimin sipas recetës.",
     },
     "neuropatie-diabetica": {
       plainTerm: "Mpirje dhe shpime te shputat e këmbëve",
       formalTerm: "Neuropatia diabetike periferike",
       layExplanation:
-        "Sheqeri i lartë dëmton nervat e këmbëve. Nuk e ndien mirë dhimbjen, prandaj mund të kesh plagë pa i vënë re.",
+        "Përqendrimi i lartë i glukozës (sheqerit) në gjak prek dhe dëmton gradualisht nervat e këmbëve. Ndjeshmëria ndaj dhimbjes ulet, prandaj mund të shfaqen plagë pa i vënë re.",
       clinicalSignificance:
-        "Ndodh shpesh te njerëzit me diabet. Shiko shputat çdo ditë, që t'i gjesh plagët herët.",
+        "Ndërlikim i shpeshtë te personat me diabet. Kontrollo shputat e këmbëve çdo ditë për të zbuluar herët çdo plagë.",
       speechText:
-        "Mpirje dhe shpime te shputat. Mjeku e quan neuropati diabetike. Kontrollo këmbët çdo ditë, që t'i gjesh plagët herët.",
+        "Mpirje dhe shpime te shputat. Mjeku e quan neuropati diabetike. Kontrollo këmbët çdo ditë që plagët e vogla të kapen në kohë.",
     },
     "retinopatie-diabetica": {
       plainTerm: "Dëmtim i shikimit nga diabeti",
       formalTerm: "Retinopatia diabetike",
       layExplanation:
-        "Sheqeri i lartë për vite me radhë dëmton enët e vogla të gjakut në pjesën e pasme të syrit (retina).",
+        "Përqendrimi i lartë i glukozës në gjak për vite me radhë dëmton gradualisht enët e vogla të gjakut në pjesën e pasme të syrit (retinën).",
       clinicalSignificance:
-        "Shkaku kryesor i humbjes së shikimit te të rriturit. E parandalon me një kontroll syri çdo vit, me bebëza të zgjeruara, dhe me HbA1c nën 7%.",
+        "Shkak kryesor i humbjes së parandalueshme të shikimit te të rriturit. Parandalohet me kontroll të fundit të syrit çdo vit dhe me HbA1c nën 7%.",
       speechText:
-        "Dëmtim i shikimit nga diabeti. Mjeku e quan retinopati diabetike. Një kontroll syri çdo vit të mbron shikimin.",
+        "Dëmtim i shikimit nga diabeti. Mjeku e quan retinopati diabetike. Kontrolli vjetor i syrit dhe mbajtja e glicemisë nën kontroll të mbrojnë shikimin.",
     },
     "cetoacidoza-diabetica": {
-      plainTerm: "Acid i rrezikshëm në gjak nga diabeti",
+      plainTerm: "Mbledhje e rrezikshme e acideve ketonike në gjak",
       formalTerm: "Ketoacidoza diabetike (KAD)",
       layExplanation:
-        "Kur mungon shumë insulina, trupi djeg yndyrë për energji. Kështu në gjak mblidhen acide helmuese (trupa ketonikë).",
+        "Kur mungon rëndë insulina, organizmi shpërbën yndyrnat për energji dhe në gjak grumbullohen acide të rrezikshme të quajtura trupa ketonikë.",
       clinicalSignificance:
-        "Urgjencë që rrezikon jetën. Shenjat: fryma me erë molle të thartë, të vjella, hutim dhe dehidrim.",
+        "Urgjencë që rrezikon jetën. Shenjat: frymë me erë frutash ose acetoni, të vjella të vazhdueshme, hutim dhe dehidrim i rëndë.",
       speechText:
-        "Acid i rrezikshëm në gjak nga diabeti. Mjeku e quan ketoacidozë diabetike. Nëse vjell, je i hutuar ose merr frymë shpejt, telefono 112.",
+        "Mbledhje e rrezikshme e acideve në gjak nga diabeti, e quajtur ketoacidozë diabetike. Nëse ke frymë me erë acetoni, të vjella, hutim ose frymëmarrje të shpejtë, telefono menjëherë 112.",
     },
     electrocardiograma: {
       plainTerm: "Regjistrimi elektrik i zemrës",
@@ -714,14 +740,24 @@ export const GLOSSARY_TRANSLATIONS: Record<
         "Aparat automatik i tensionit. Modelet me manshetë në krah masin më saktë në shtëpi.",
     },
     glucometru: {
-      plainTerm: "Aparat për matjen e sheqerit",
+      plainTerm: "Aparat për matjen e përqendrimit të glukozës në gjak",
       formalTerm: "Glukometër me biosensorë",
       layExplanation:
-        "Një aparat i vogël. Vendos në shirit një pikë gjaku nga ana e gishtit dhe pas pak sekondash sheh sheqerin.",
+        "Aparat mjekësor portativ. Vendos në shirit një pikë të vogël gjaku kapilar nga ana e gishtit dhe aparati shfaq brenda pak sekondash përqendrimin e glukozës (sheqerit) në gjak, të matur në mg/dL ose mmol/L.",
       clinicalSignificance:
-        "Të ndihmon ta ndjekësh vetë diabetin. Të duhen shirita që i përshtaten aparatit dhe gjilpëra sterile njëpërdorimëshe (lancetë).",
+        "Të ndihmon të monitorosh vetë nivelin e glicemisë në shtëpi. Duhen shirita të përshtatshëm për aparatin dhe lanseta sterile njëpërdorimëshe.",
       speechText:
-        "Aparat për matjen e sheqerit, ose glukometër. Të tregon sheqerin nga një pikë gjaku nga gishti, pas pak sekondash.",
+        "Aparat për matjen e përqendrimit të glukozës në gjak, ose glukometër. Nga një pikë e vogël gjaku nga gishti, shfaq brenda pak sekondash përqendrimin e glukozës në miligramë për decilitër ose milimolë për litër.",
+    },
+    "vaccin-imunizare": {
+      plainTerm: "Vaksinë (mbrojtje imunitare)",
+      formalTerm: "Vaksinim / Imunizim aktiv",
+      layExplanation:
+        "Preparat mjekësor parandalues, që jepet me injeksion ose pika nga goja dhe stërvit në mënyrë të sigurt sistemin imunitar të prodhojë antitrupa e t'i njohë herët mikrobet, duke parandaluar sëmundje të rënda infektive te fëmijët dhe të rriturit.",
+      clinicalSignificance:
+        "Vaksinat e kalendarit kombëtar dhe ato të rekomanduara për të rriturit ulin ndjeshëm rrezikun e shtrimit në spital dhe ndërlikimeve të rënda.",
+      speechText:
+        "Vaksinë, ose imunizim aktiv. Është preparat mjekësor parandalues që stërvit sistemin imunitar të prodhojë antitrupa kundër sëmundjeve të rënda infektive.",
     },
     "bilet-de-trimitere": {
       plainTerm: "Fletë referimi te specialisti",
@@ -767,34 +803,34 @@ export const GLOSSARY_TRANSLATIONS: Record<
 
   it: {
     "glicemie-a-jeun": {
-      plainTerm: "Zucchero nel sangue a digiuno",
+      plainTerm: "Concentrazione di glucosio nel sangue a digiuno",
       formalTerm: "Glicemia a digiuno / Glicemia basale",
       layExplanation:
-        "Si misura al mattino, dopo almeno 8 ore senza mangiare. Mostra quanto zucchero hai nel sangue quando il corpo è a riposo.",
+        "Si misura al mattino, dopo almeno 8 ore senza mangiare. Indica la concentrazione di glucosio (zucchero) nel sangue quando il corpo è a riposo.",
       clinicalSignificance:
-        "Normale: 70–99 mg/dL. Da 100 a 125 mg/dL è prediabete. 126 mg/dL o più, in 2 esami, può indicare diabete.",
+        "Normale: 70–99 mg/dL. Da 100 a 125 mg/dL indica prediabete. 126 mg/dL o più, in 2 esami, può indicare diabete.",
       speechText:
-        "Zucchero nel sangue a digiuno. Sul referto si chiama glicemia a digiuno. Il valore normale è tra 70 e 99 milligrammi per decilitro.",
+        "Concentrazione di glucosio nel sangue a digiuno. Sul referto si chiama glicemia a digiuno. Il valore normale è tra 70 e 99 milligrammi per decilitro.",
     },
     "glicemie-postprandial": {
-      plainTerm: "Zucchero nel sangue 2 ore dopo il pasto",
+      plainTerm: "Concentrazione di glucosio nel sangue 2 ore dopo il pasto",
       formalTerm: "Glicemia postprandiale",
       layExplanation:
-        "Si misura 2 ore dopo che hai iniziato a mangiare. Mostra come il corpo gestisce lo zucchero del cibo.",
+        "Si misura 2 ore dopo l'inizio del pasto. Mostra come l'organismo regola la concentrazione di glucosio (zucchero) nel sangue derivante dal cibo.",
       clinicalSignificance:
-        "Normale: sotto 140 mg/dL. Da 140 a 199 mg/dL il corpo gestisce male lo zucchero (ridotta tolleranza al glucosio). 200 mg/dL o più può indicare diabete.",
+        "Normale: sotto 140 mg/dL. Da 140 a 199 mg/dL indica ridotta tolleranza al glucosio. 200 mg/dL o più può indicare diabete.",
       speechText:
-        "Zucchero nel sangue 2 ore dopo il pasto. Il medico la chiama glicemia postprandiale. Deve restare sotto 140 milligrammi per decilitro.",
+        "Concentrazione di glucosio nel sangue 2 ore dopo il pasto. Il medico la chiama glicemia postprandiale. Deve restare sotto 140 milligrammi per decilitro.",
     },
     hipertensiune: {
       plainTerm: "Pressione alta",
       formalTerm: "Ipertensione arteriosa",
       layExplanation:
-        "Il sangue spinge troppo forte sulle pareti dei vasi sanguigni, sempre. Il cuore si stanca e i vasi si rovinano col tempo.",
+        "Il sangue esercita costantemente una pressione eccessiva sulle pareti delle arterie. Il cuore si affatica e le pareti delle arterie subiscono danni nel tempo.",
       clinicalSignificance:
-        "Si diagnostica quando i valori restano a 140/90 mmHg o più. È il fattore di rischio principale per infarto e ictus.",
+        "Si diagnostica quando valori ripetuti restano a 140/90 mmHg o più. È il principale fattore di rischio per infarto e ictus.",
       speechText:
-        "Pressione alta. Il medico la chiama ipertensione arteriosa. Sopra 140 su 90 il cuore lavora troppo, anche se non senti dolore.",
+        "Pressione alta. Il medico la chiama ipertensione arteriosa. Sopra 140 su 90 il sangue preme troppo sulle pareti delle arterie e il cuore lavora troppo, anche senza dolore.",
     },
     hipotensiune: {
       plainTerm: "Pressione bassa",
@@ -810,11 +846,11 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Attacco di cuore",
       formalTerm: "Infarto miocardico acuto (IMA)",
       layExplanation:
-        "Un coagulo chiude del tutto un'arteria del cuore. Una parte del muscolo del cuore resta senza ossigeno e inizia a danneggiarsi.",
+        "Un coagulo ostruisce completamente un'arteria del cuore. Una parte del muscolo cardiaco subisce lesioni per mancanza di ossigeno.",
       clinicalSignificance:
         "Emergenza. Chiama il 112. L'arteria va riaperta in ospedale (angioplastica) nelle prime ore.",
       speechText:
-        "Attacco di cuore. Il medico lo chiama infarto miocardico acuto. Se senti una morsa al petto che arriva al braccio o alla mandibola, chiama subito il 112.",
+        "Attacco di cuore. Il medico lo chiama infarto miocardico acuto. Se senti una forte oppressione al petto che arriva al braccio o alla mandibola, chiama subito il 112.",
     },
     "atac-cerebral": {
       plainTerm: "Ictus cerebrale",
@@ -830,81 +866,81 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Fiato corto sotto sforzo o da sdraiato",
       formalTerm: "Dispnea cardiaca o respiratoria",
       layExplanation:
-        "Ti senti soffocare o respiri a fatica. Se succede con piccoli sforzi o quando sei sdraiato a letto, il cuore può essere affaticato.",
+        "Senti mancanza d'aria o respiri con fatica. Se compare con piccoli sforzi o quando sei sdraiato a letto, il cuore può essere affaticato.",
       clinicalSignificance:
-        "Se ti manca il fiato sotto sforzo o ti servono più cuscini per dormire (ortopnea), può esserci acqua nei polmoni (congestione polmonare). Serve una visita urgente dal cardiologo.",
+        "Se ti manca il fiato sotto sforzo o ti servono più cuscini per dormire (ortopnea), può esserci un accumulo di liquidi nei polmoni (congestione polmonare). Serve una visita urgente dal cardiologo.",
       speechText:
-        "Fiato corto. Il medico la chiama dispnea. Se respiri a fatica con piccoli sforzi o da sdraiato, fatti vedere subito da un medico.",
+        "Fiato corto. Il medico la chiama dispnea. Se respiri a fatica con piccoli sforzi o da sdraiato, può indicare accumulo di liquidi nei polmoni: fatti visitare subito.",
     },
     edeme: {
       plainTerm: "Caviglie e gambe gonfie",
       formalTerm: "Edema periferico / Edema declive",
       layExplanation:
-        "Si accumula liquido nelle caviglie e nei polpacci. Succede quando il cuore o le vene fanno fatica a spingere il sangue verso l'alto.",
+        "Si verifica ritenzione di liquidi nei tessuti di caviglie e polpacci. Succede quando il cuore o le vene faticano a riportare il sangue verso l'alto.",
       clinicalSignificance:
-        "Se premi con un dito e resta un'impronta (segno della fovea), il corpo trattiene acqua e sale. Succede spesso nello scompenso cardiaco.",
+        "Se premi con un dito e resta un'impronta (segno della fovea), c'è ritenzione di liquidi e sali nei tessuti. È un segno frequente nello scompenso cardiaco.",
       speechText:
-        "Caviglie gonfie. Il medico li chiama edemi periferici. Il liquido che si accumula alle gambe spesso indica che il cuore va controllato.",
+        "Caviglie e gambe gonfie. Il medico li chiama edemi periferici. La ritenzione di liquidi nei tessuti delle caviglie indica spesso che il cuore va controllato.",
     },
     "hemoglobina-glicata": {
-      plainTerm: "Media dello zucchero negli ultimi 3 mesi",
+      plainTerm: "Media della concentrazione di glucosio negli ultimi 3 mesi",
       formalTerm: "Emoglobina glicata (HbA1c)",
       layExplanation:
-        "Un esame del sangue che mostra quanto zucchero hai avuto in media negli ultimi 90 giorni. Mostra quanto è controllato il diabete.",
+        "Un esame del sangue che indica la concentrazione media di glucosio (zucchero) nel sangue negli ultimi 90 giorni. Mostra quanto bene è compensato il diabete.",
       clinicalSignificance:
-        "Per la maggior parte degli adulti con diabete, l'obiettivo è sotto il 7%. Sopra l'8%, il medico deve rivedere la terapia.",
+        "Per la maggior parte degli adulti con diabete, l'obiettivo è sotto il 7%. Sopra l'8%, il medico deve adeguare la terapia.",
       speechText:
-        "Media dello zucchero negli ultimi 3 mesi. Sul referto si chiama emoglobina glicata, o HbA1c. Per la maggior parte delle persone con diabete, l'obiettivo è sotto il 7 per cento.",
+        "Media della concentrazione di glucosio negli ultimi 3 mesi. Sul referto si chiama emoglobina glicata, o HbA1c. Per la maggior parte degli adulti con diabete, l'obiettivo è sotto il 7 per cento.",
     },
     "fibrilatie-atriala": {
       plainTerm: "Battito veloce e irregolare",
       formalTerm: "Fibrillazione atriale (FA)",
       layExplanation:
-        "Il cuore batte veloce e senza ritmo. Il sangue non esce del tutto dalle camere superiori del cuore, così si possono formare coaguli.",
+        "Il cuore batte veloce e senza ritmo regolare. Il sangue non si svuota del tutto dalle camere superiori del cuore, favorendo la formazione di coaguli.",
       clinicalSignificance:
-        "Aumenta di 5 volte il rischio di ictus. Servono farmaci che rendono il sangue più fluido (anticoagulanti), prescritti dal cardiologo.",
+        "Aumenta di 5 volte il rischio di ictus. Servono farmaci anticoagulanti che impediscono la formazione di coaguli di sangue, prescritti dal cardiologo.",
       speechText:
-        "Battito veloce e irregolare. Il medico la chiama fibrillazione atriale. Vai dal cardiologo per prevenire coaguli e ictus.",
+        "Battito veloce e irregolare. Il medico la chiama fibrillazione atriale. Il cardiologo prescrive farmaci anticoagulanti che impediscono la formazione di coaguli di sangue.",
     },
     "insuficienta-cardiaca": {
-      plainTerm: "Cuore debole che pompa poco",
+      plainTerm: "Cuore indebolito che pompa con difficoltà",
       formalTerm: "Scompenso cardiaco cronico / Insufficienza cardiaca",
       layExplanation:
-        "Il cuore perde piano piano la forza di pompare il sangue che serve agli organi. Ti stanchi presto e si accumula acqua nel corpo.",
+        "Il cuore perde gradualmente la forza di pompare sangue sufficiente agli organi. Compare stanchezza precoce e ritenzione di liquidi nei tessuti e nei polmoni.",
       clinicalSignificance:
-        "Malattia di lunga durata che peggiora col tempo. Pesati ogni giorno, mangia meno di 5 g di sale al giorno e prendi i farmaci esattamente come ti ha detto il medico.",
+        "Condizione cronica che richiede controlli regolari. Pesati ogni giorno, consuma meno di 5 g di sale al giorno e assumi i farmaci esattamente come prescritto dal medico.",
       speechText:
-        "Cuore debole. Il medico lo chiama scompenso cardiaco. Pesati ogni giorno, mangia poco sale e prendi i farmaci esattamente come prescritto.",
+        "Cuore indebolito. Il medico lo chiama scompenso cardiaco cronico. Pesati ogni giorno per riconoscere presto la ritenzione di liquidi, riduci il sale e segui la terapia prescritta.",
     },
     "neuropatie-diabetica": {
       plainTerm: "Formicolio e perdita di sensibilità ai piedi",
       formalTerm: "Neuropatia diabetica periferica",
       layExplanation:
-        "Lo zucchero alto rovina i nervi dei piedi. Senti meno il dolore, così puoi avere ferite senza accorgertene.",
+        "La concentrazione elevata di glucosio (zucchero) nel sangue danneggia gradualmente i nervi dei piedi. La sensibilità al dolore si riduce, quindi possono comparire piccole ferite senza accorgersene.",
       clinicalSignificance:
-        "Succede spesso a chi ha il diabete. Guardati la pianta dei piedi ogni giorno, per trovare presto le ferite.",
+        "Complicanza frequente nel diabete. Controlla la pianta dei piedi ogni giorno per individuare subito eventuali lesioni.",
       speechText:
-        "Formicolio ai piedi. Il medico la chiama neuropatia diabetica. Controlla i piedi ogni giorno, per trovare presto le ferite.",
+        "Formicolio e perdita di sensibilità ai piedi. Il medico la chiama neuropatia diabetica. Controlla i piedi ogni giorno per individuare presto eventuali ferite.",
     },
     "retinopatie-diabetica": {
       plainTerm: "Danno alla vista causato dal diabete",
       formalTerm: "Retinopatia diabetica",
       layExplanation:
-        "Anni di zucchero alto rovinano i piccoli vasi sanguigni in fondo all'occhio (la retina).",
+        "Anni di elevata concentrazione di glucosio nel sangue danneggiano gradualmente i piccoli vasi sanguigni sul fondo dell'occhio (la retina).",
       clinicalSignificance:
-        "Principale causa di cecità prevenibile negli adulti. La previeni con un controllo del fondo dell'occhio ogni anno e con HbA1c sotto il 7%.",
+        "Principale causa di cecità prevenibile negli adulti. Si previene con un esame annuale del fondo oculare e mantenendo l'HbA1c sotto il 7%.",
       speechText:
-        "Danno alla vista causato dal diabete. Il medico la chiama retinopatia diabetica. Un controllo del fondo dell'occhio ogni anno protegge la vista.",
+        "Danno alla vista causato dal diabete. Il medico la chiama retinopatia diabetica. Un esame del fondo oculare ogni anno e il controllo della glicemia proteggono la vista.",
     },
     "cetoacidoza-diabetica": {
-      plainTerm: "Acidi pericolosi nel sangue per il diabete",
+      plainTerm: "Accumulo pericoloso di acidi chetonici nel sangue",
       formalTerm: "Chetoacidosi diabetica (CAD)",
       layExplanation:
-        "Quando manca molta insulina, il corpo brucia grassi per avere energia. Così nel sangue si accumulano acidi tossici (corpi chetonici).",
+        "Quando manca gravemente l'insulina, l'organismo utilizza i grassi per produrre energia e si accumulano acidi pericolosi chiamati corpi chetonici nel sangue.",
       clinicalSignificance:
-        "Emergenza che mette in pericolo la vita. Segni: alito che sa di frutta, vomito che non passa, confusione e forte disidratazione.",
+        "Emergenza che mette in pericolo la vita. Segni: alito con odore fruttato, simile all'acetone, vomito persistente, confusione e grave disidratazione.",
       speechText:
-        "Acidi pericolosi nel sangue per il diabete. Il medico la chiama chetoacidosi diabetica. Se vomiti, sei confuso o respiri veloce, chiama subito il 112.",
+        "Accumulo pericoloso di acidi chetonici nel sangue, chiamato chetoacidosi diabetica. Se compaiono alito con odore di acetone, vomito, confusione o respiro rapido, chiama subito il 112.",
     },
     electrocardiograma: {
       plainTerm: "Tracciato elettrico del cuore",
@@ -937,14 +973,24 @@ export const GLOSSARY_TRANSLATIONS: Record<
         "Misuratore automatico di pressione. I modelli con bracciale sul braccio sono i più precisi per misurare a casa.",
     },
     glucometru: {
-      plainTerm: "Misuratore della glicemia",
+      plainTerm: "Misuratore della concentrazione di glucosio nel sangue",
       formalTerm: "Glucometro a biosensori capillari",
       layExplanation:
-        "Un piccolo apparecchio. Metti sulla striscia una goccia di sangue presa dal lato del dito e in pochi secondi vedi lo zucchero.",
+        "Un dispositivo medico portatile. Metti sulla striscia reattiva una piccola goccia di sangue capillare dal lato del polpastrello e in pochi secondi mostra la concentrazione di glucosio (zucchero) nel sangue (glicemia, in mg/dL o mmol/L).",
       clinicalSignificance:
-        "Ti aiuta a controllare da solo il diabete. Servono strisce adatte al tuo apparecchio e aghi sterili usa e getta (lancette pungidito).",
+        "Ti aiuta a monitorare autonomamente la glicemia a casa. Servono strisce reattive compatibili con il dispositivo e lancette pungidito sterili monouso.",
       speechText:
-        "Misuratore della glicemia, o glucometro. Ti mostra lo zucchero da una goccia di sangue del dito, in pochi secondi.",
+        "Misuratore della concentrazione di glucosio nel sangue, o glucometro. Da una piccola goccia di sangue del dito mostra in pochi secondi la concentrazione di glucosio in milligrammi per decilitro o millimoli per litro.",
+    },
+    "vaccin-imunizare": {
+      plainTerm: "Vaccino (protezione immunitaria)",
+      formalTerm: "Vaccinazione / Immunizzazione attiva",
+      layExplanation:
+        "Preparato medico preventivo, somministrato per iniezione o gocce orali, che allena in sicurezza il sistema immunitario a produrre anticorpi e riconoscere per tempo i microbi, prevenendo gravi malattie infettive in bambini e adulti.",
+      clinicalSignificance:
+        "Le vaccinazioni del calendario nazionale e quelle raccomandate negli adulti riducono drasticamente il rischio di ricovero ospedaliero e complicanze gravi.",
+      speechText:
+        "Vaccino, ossia immunizzazione attiva. È un preparato medico preventivo che allena il sistema immunitario a produrre anticorpi contro gravi malattie infettive.",
     },
     "bilet-de-trimitere": {
       plainTerm: "Impegnativa per visita specialistica",
@@ -990,34 +1036,34 @@ export const GLOSSARY_TRANSLATIONS: Record<
 
   hr: {
     "glicemie-a-jeun": {
-      plainTerm: "Šećer u krvi natašte",
+      plainTerm: "Koncentracija glukoze u krvi natašte",
       formalTerm: "Glukoza u krvi natašte",
       layExplanation:
-        "Mjeri se ujutro, nakon najmanje 8 sati bez hrane. Pokazuje koliko šećera imaš u krvi dok tijelo miruje.",
+        "Mjeri se ujutro, nakon najmanje 8 sati bez hrane. Pokazuje koncentraciju glukoze (šećera) u krvi dok tijelo miruje.",
       clinicalSignificance:
         "Normalno: 70–99 mg/dL. Od 100 do 125 mg/dL znači predijabetes. 126 mg/dL ili više na 2 nalaza može značiti dijabetes.",
       speechText:
-        "Šećer u krvi natašte. Na nalazu piše glukoza u krvi natašte. Mjeri se ujutro, na prazan želudac.",
+        "Koncentracija glukoze u krvi natašte. Na nalazu piše glukoza u krvi natašte. Mjeri se ujutro, na prazan želudac.",
     },
     "glicemie-postprandial": {
-      plainTerm: "Šećer u krvi 2 sata nakon obroka",
+      plainTerm: "Koncentracija glukoze u krvi 2 sata nakon obroka",
       formalTerm: "Postprandijalna glukoza u plazmi",
       layExplanation:
-        "Mjeri se 2 sata nakon početka obroka. Pokazuje kako se tvoje tijelo nosi sa šećerom iz hrane.",
+        "Mjeri se 2 sata nakon početka obroka. Pokazuje kako tvoj organizam regulira koncentraciju glukoze (šećera) u krvi nakon hrane.",
       clinicalSignificance:
-        "Normalno: ispod 140 mg/dL. Od 140 do 199 mg/dL znači otežanu razgradnju šećera (oštećena tolerancija glukoze). 200 mg/dL ili više može značiti dijabetes.",
+        "Normalno: ispod 140 mg/dL. Od 140 do 199 mg/dL označava oštećenu toleranciju glukoze. 200 mg/dL ili više može značiti dijabetes.",
       speechText:
-        "Šećer u krvi 2 sata nakon obroka. Liječnik to zove postprandijalna glukoza. Normalno je ispod 140 miligrama po decilitru.",
+        "Koncentracija glukoze u krvi 2 sata nakon obroka. Liječnik to zove postprandijalna glukoza. Normalno je ispod 140 miligrama po decilitru.",
     },
     hipertensiune: {
       plainTerm: "Visoki krvni tlak",
       formalTerm: "Arterijska hipertenzija",
       layExplanation:
-        "Krv stalno prejako pritišće stijenke tvojih krvnih žila. Srce se umara, a žile se s vremenom oštećuju.",
+        "Krv stalno prejako pritišće stijenke arterija. Srce radi pod većim opterećenjem, a stijenke arterija postupno trpe oštećenja s vremenom.",
       clinicalSignificance:
         "Dijagnosticira se kada vrijednosti ostaju na 140/90 mmHg ili više kroz više mjerenja. Najveći je čimbenik rizika za srčani i moždani udar.",
       speechText:
-        "Visoki krvni tlak. Liječnik to zove arterijska hipertenzija. Iznad 140 sa 90 tvoje srce radi preteško, čak i ako te ništa ne boli.",
+        "Visoki krvni tlak. Liječnik to zove arterijska hipertenzija. Iznad 140 sa 90 krv prejako pritišće stijenke arterija i srce radi preteško, čak i ako te ništa ne boli.",
     },
     hipotensiune: {
       plainTerm: "Niski krvni tlak",
@@ -1033,7 +1079,7 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Srčani udar",
       formalTerm: "Akutni infarkt miokarda",
       layExplanation:
-        "Krvni ugrušak potpuno začepi arteriju srca. Dio srčanog mišića ostaje bez kisika i počinje propadati.",
+        "Krvni ugrušak potpuno začepi arteriju srca. Dio srčanog mišića trpi oštećenje zbog nedostatka kisika.",
       clinicalSignificance:
         "Hitno stanje. Nazovi 112. Arterija se mora otvoriti u bolnici (angioplastika) u prvim satima.",
       speechText:
@@ -1053,59 +1099,59 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Nedostatak zraka pri naporu ili ležanju",
       formalTerm: "Srčana ili respiratorna dispneja",
       layExplanation:
-        "Osjećaš da se gušiš ili teško dišeš. Ako se to javlja pri malom naporu ili dok ležiš ravno u krevetu, srce može biti opterećeno.",
+        "Osjećaš nedostatak zraka ili otežano dišeš. Ako se to javlja pri malom naporu ili dok ležiš ravno u krevetu, srce može biti preopterećeno.",
       clinicalSignificance:
-        "Nedostatak zraka pri naporu ili potreba za više jastuka pri spavanju (ortopneja) može značiti vodu u plućima. Hitno se javi kardiologu.",
+        "Nedostatak zraka pri naporu ili potreba za više jastuka pri spavanju (ortopneja) može značiti nakupljanje tekućine u plućima (plućna kongestija). Hitno se javi kardiologu.",
       speechText:
-        "Nedostatak zraka. Liječnik to zove dispneja. Ako teško dišeš pri malom naporu ili dok ležiš, hitno se javi liječniku.",
+        "Nedostatak zraka. Liječnik to zove dispneja. Ako teško dišeš pri malom naporu ili dok ležiš, to može značiti nakupljanje tekućine u plućima, pa se hitno javi liječniku.",
     },
     edeme: {
       plainTerm: "Otečeni gležnjevi i noge",
       formalTerm: "Periferni edemi",
       layExplanation:
-        "Tekućina se nakuplja u gležnjevima i potkoljenicama. Događa se kada srce ili vene teško vraćaju krv prema gore.",
+        "Dolazi do zadržavanja tekućine u tkivima gležnjeva i potkoljenica. Događa se kada srce ili vene otežano vraćaju krv prema gore.",
       clinicalSignificance:
-        "Ako pritisak prstom ostavi udubinu, tijelo zadržava vodu i sol. To je čest znak srčanog zatajivanja.",
+        "Ako pritisak prstom ostavi udubinu, u tkivima postoji zadržavanje tekućine i soli. To je čest znak srčanog zatajivanja.",
       speechText:
-        "Otečene noge i gležnjevi. Liječnik ih zove periferni edemi. Nakupljena voda u gležnjevima često znači da srce treba pregled liječnika.",
+        "Otečene noge i gležnjevi. Liječnik ih zove periferni edemi. Zadržavanje tekućine u tkivima gležnjeva često znači da srce treba pregled liječnika.",
     },
     "hemoglobina-glicata": {
-      plainTerm: "Prosječni šećer u zadnja 3 mjeseca",
+      plainTerm: "Prosječna koncentracija glukoze u zadnja 3 mjeseca",
       formalTerm: "Glikirani hemoglobin (HbA1c)",
       layExplanation:
-        "Krvna pretraga koja pokazuje prosječnu razinu šećera u krvi u zadnjih 90 dana. Pokazuje koliko je dijabetes dobro reguliran.",
+        "Krvna pretraga koja pokazuje prosječnu koncentraciju glukoze (šećera) u krvi u zadnjih 90 dana. Pokazuje koliko je dijabetes dobro reguliran.",
       clinicalSignificance:
         "Za većinu odraslih s dijabetesom cilj je ispod 7%. Iznad 8% liječnik treba prilagoditi terapiju.",
       speechText:
-        "Prosječni šećer u zadnja 3 mjeseca. Na nalazu piše glikirani hemoglobin ili HbA1c. Za većinu osoba s dijabetesom cilj je ispod 7 posto.",
+        "Prosječna koncentracija glukoze u zadnja 3 mjeseca. Na nalazu piše glikirani hemoglobin ili HbA1c. Za većinu odraslih s dijabetesom cilj je ispod 7 posto.",
     },
     "fibrilatie-atriala": {
       plainTerm: "Brz i nepravilan rad srca",
       formalTerm: "Fibrilacija atrija",
       layExplanation:
-        "Srce kuca brzo i bez ritma. Krv ne izlazi potpuno iz gornjih srčanih šupljina pa se mogu stvoriti ugrušci.",
+        "Srce kuca brzo i bez pravilnog ritma. Krv se ne prazni potpuno iz gornjih srčanih šupljina pa se mogu stvoriti krvni ugrušci.",
       clinicalSignificance:
-        "Povećava rizik od moždanog udara 5 puta. Potrebni su lijekovi protiv zgrušavanja krvi (antikoagulansi) koje propisuje kardiolog.",
+        "Povećava rizik od moždanog udara 5 puta. Potrebni su antikoagulantni lijekovi koji sprječavaju stvaranje krvnih ugrušaka, a propisuje ih kardiolog.",
       speechText:
-        "Brz i nepravilan rad srca. Liječnik to zove fibrilacija atrija. Javi se kardiologu kako bi spriječio krvne ugruške i moždani udar.",
+        "Brz i nepravilan rad srca. Liječnik to zove fibrilacija atrija. Kardiolog propisuje antikoagulantne lijekove koji sprječavaju stvaranje krvnih ugrušaka.",
     },
     "insuficienta-cardiaca": {
-      plainTerm: "Oslabljeno srce koje slabo pumpa",
+      plainTerm: "Oslabljeno srce koje slabije pumpa",
       formalTerm: "Kronično zatajivanje srca",
       layExplanation:
-        "Srce polako gubi snagu da pumpa dovoljno krvi u organe. Brzo se umaraš i u tijelu se zadržava voda.",
+        "Srce postupno gubi snagu da pumpa dovoljno krvi u organe. Brzo se umaraš i javlja se zadržavanje tekućine u tkivima i plućima.",
       clinicalSignificance:
-        "Dugotrajna bolest koja zahtijeva redovito praćenje. Važi se svaki dan, jedi manje od 5 g soli dnevno i uzimaj lijekove točno prema uputi liječnika.",
+        "Kronično stanje koje zahtijeva redovito praćenje. Važi se svaki dan, unosi manje od 5 g soli dnevno i uzimaj lijekove točno prema uputi liječnika.",
       speechText:
-        "Oslabljeno srce. Liječnik to zove kronično zatajivanje srca. Važi se svakodnevno, jedi malo soli i uzimaj lijekove točno kako je propisano.",
+        "Oslabljeno srce. Liječnik to zove kronično zatajivanje srca. Važi se svakodnevno radi ranog prepoznavanja zadržavanja tekućine, smanji sol i redovito uzimaj propisane lijekove.",
     },
     "neuropatie-diabetica": {
       plainTerm: "Utrnulost i trnci u stopalima",
       formalTerm: "Periferna dijabetička neuropatija",
       layExplanation:
-        "Visoki šećer u krvi oštećuje živce u stopalima. Slabije osjećaš bol pa rane mogu proći neprimijećeno.",
+        "Povišena koncentracija glukoze (šećera) u krvi postupno oštećuje živce u stopalima. Osjet boli slabi pa male rane mogu proći neprimijećeno.",
       clinicalSignificance:
-        "Česta pojava kod osoba s dijabetesom. Svaki dan pregledaj tabane kako bi na vrijeme uočio rane.",
+        "Česta komplikacija kod osoba s dijabetesom. Svaki dan pregledaj tabane kako bi na vrijeme uočio svaku ranicu.",
       speechText:
         "Utrnulost i trnci u stopalima. Liječnik to zove dijabetička neuropatija. Pregledaj stopala svaki dan kako bi rano uočio rane.",
     },
@@ -1113,21 +1159,21 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Oštećenje vida zbog dijabetesa",
       formalTerm: "Dijabetička retinopatija",
       layExplanation:
-        "Godine povišenog šećera oštećuju sitne krvne žile na očnoj pozadini (mrežnici).",
+        "Godine povišene koncentracije glukoze u krvi postupno oštećuju sitne krvne žile na očnoj pozadini (mrežnici).",
       clinicalSignificance:
-        "Vodeći uzrok sljepoće koja se može spriječiti kod odraslih. Sprječavaš je pregledom očne pozadine jednom godišnje i održavanjem HbA1c ispod 7%.",
+        "Vodeći uzrok sljepoće koja se može spriječiti kod odraslih. Sprječava se pregledom očne pozadine jednom godišnje i održavanjem HbA1c ispod 7%.",
       speechText:
-        "Oštećenje vida zbog dijabetesa. Liječnik to zove dijabetička retinopatija. Pregled očiju jednom godišnje čuva tvoj vid.",
+        "Oštećenje vida zbog dijabetesa. Liječnik to zove dijabetička retinopatija. Pregled očne pozadine jednom godišnje i regulacija glukoze čuvaju tvoj vid.",
     },
     "cetoacidoza-diabetica": {
-      plainTerm: "Opasno nakupljanje kiselina u krvi",
+      plainTerm: "Opasno nakupljanje ketonskih kiselina u krvi",
       formalTerm: "Dijabetička ketoacidoza (DKA)",
       layExplanation:
-        "Kada tijelu jako nedostaje inzulina, ono razgrađuje masti za energiju. Time u krvi nastaju opasne kiseline (ketoni).",
+        "Kada tijelu izrazito nedostaje inzulina, ono razgrađuje masti za energiju pa se nakupljaju opasne kiseline zvane ketoni u krvi.",
       clinicalSignificance:
-        "Stanje opasno po život. Znakovi: zadah po voću ili acetonu, uporno povraćanje, zbunjenost i jaka dehidracija.",
+        "Hitno stanje opasno po život. Znakovi: zadah voćnog mirisa nalik acetonu, uporno povraćanje, zbunjenost i teška dehidracija.",
       speechText:
-        "Opasno nakupljanje kiselina u krvi. Liječnik to zove dijabetička ketoacidoza. Ako povraćaš, zbunjen si ili ubrzano dišeš, nazovi 112.",
+        "Opasno nakupljanje ketonskih kiselina u krvi, odnosno dijabetička ketoacidoza. Ako se jave zadah nalik acetonu, povraćanje, zbunjenost ili ubrzano disanje, odmah nazovi 112.",
     },
     electrocardiograma: {
       plainTerm: "Snimanje električnog rada srca",
@@ -1160,14 +1206,24 @@ export const GLOSSARY_TRANSLATIONS: Record<
         "Automatski tlakomjer. Modeli s manžetom za nadlakticu daju najtočnije vrijednosti kod kuće.",
     },
     glucometru: {
-      plainTerm: "Aparat za mjerenje šećera u krvi",
+      plainTerm: "Uređaj za mjerenje koncentracije glukoze u krvi",
       formalTerm: "Kapilarni glukometar s biosenzorima",
       layExplanation:
-        "Mali uređaj. Na trakicu staviš kap krvi sa strane jagodice prsta i za nekoliko sekundi vidiš razinu šećera.",
+        "Prijenosni medicinski uređaj. Na testnu trakicu staviš malu kap kapilarne krvi sa strane jagodice prsta i uređaj za nekoliko sekundi prikazuje koncentraciju glukoze (šećera) u krvi (u mmol/L ili mg/dL).",
       clinicalSignificance:
-        "Pomaže ti samostalno pratiti dijabetes. Trebaju ti odgovarajuće testne trakice i sterilne jednokratne iglice (lancete).",
+        "Pomaže ti samostalno pratiti razinu glukoze kod kuće. Trebaju ti odgovarajuće testne trakice za tvoj uređaj i sterilne jednokratne lancete.",
       speechText:
-        "Aparat za mjerenje šećera ili glukometar. Pokazuje šećer u krvi iz 1 kapi krvi za nekoliko sekundi.",
+        "Uređaj za mjerenje koncentracije glukoze u krvi, ili glukometar. Iz male kapi krvi iz prsta za nekoliko sekundi prikazuje koncentraciju glukoze u milimolima po litri ili miligramima po decilitru.",
+    },
+    "vaccin-imunizare": {
+      plainTerm: "Cjepivo (imunološka zaštita)",
+      formalTerm: "Cijepljenje / Aktivna imunizacija",
+      layExplanation:
+        "Preventivni medicinski pripravak koji se daje injekcijom ili kapima na usta te sigurno uči imunološki sustav stvarati protutijela i na vrijeme prepoznati uzročnike, sprječavajući teške zarazne bolesti kod djece i odraslih.",
+      clinicalSignificance:
+        "Cijepljenja iz nacionalnog kalendara i preporučena cjepiva za odrasle snažno smanjuju rizik od bolničkog liječenja i teških komplikacija.",
+      speechText:
+        "Cjepivo, odnosno aktivna imunizacija. To je preventivni medicinski pripravak koji uči imunološki sustav stvarati protutijela protiv teških zaraznih bolesti.",
     },
     "bilet-de-trimitere": {
       plainTerm: "Uputnica za specijalista",
@@ -1213,34 +1269,34 @@ export const GLOSSARY_TRANSLATIONS: Record<
 
   rom: {
     "glicemie-a-jeun": {
-      plainTerm: "Gudlo rat pe bokhalo por",
+      plainTerm: "Nivelo e glukozako ando rat pe bokhalo por",
       formalTerm: "Glukoza ando rat pe bokhalo por",
       layExplanation:
-        "Merisarel pes sabale, pala najxanci 8 ore bi xabenasko. Sikavel kozom zahari si tut ando rat kana o trupo hodinisarel.",
+        "Merisarel pes sabale, pala najxanci 8 ore bi xabenasko. Sikavel i koncentracija (o nivelo) e glukozako (zaharesko) ando rat kana o trupo hodinisarel.",
       clinicalSignificance:
         "Normalno: 70–99 mg/dL. Mashkar 100 thaj 125 mg/dL znachil predijabeto. 126 mg/dL vaj maj but, pe 2 rengre dikhibena, shaj te avel dijabeto.",
       speechText:
-        "Gudlo rat pe bokhalo por. Pe lila e analizenge pishil glukoza pe bokhalo por. Normalno si mashkar 70 thaj 99 miligrama pe decilitro.",
+        "Nivelo e glukozako ando rat pe bokhalo por. Pe lila e analizenge pishil glukoza pe bokhalo por. Normalno si mashkar 70 thaj 99 miligrama pe decilitro.",
     },
     "glicemie-postprandial": {
-      plainTerm: "Gudlo rat 2 ore pala o xaben",
+      plainTerm: "Nivelo e glukozako ando rat 2 ore pala o xaben",
       formalTerm: "Postprandijalno glukoza",
       layExplanation:
-        "Merisarel pes 2 ore pala so astardjan te xas. Sikavel sar tiro trupo kerel buchi e zaharosa katar o xaben.",
+        "Merisarel pes 2 ore pala so astardjan te xas. Sikavel sar tiro trupo inkerel i koncentracija (o nivelo) e glukozako (zaharesko) ando rat katar o xaben.",
       clinicalSignificance:
-        "Normalno: tela 140 mg/dL. Mashkar 140 thaj 199 mg/dL o trupo phares labyarel o zahari. 200 mg/dL vaj maj but shaj te avel dijabeto.",
+        "Normalno: tela 140 mg/dL. Mashkar 140 thaj 199 mg/dL sikavel phari tolerancija ki glukoza. 200 mg/dL vaj maj but shaj te avel dijabeto.",
       speechText:
-        "Gudlo rat 2 ore pala o xaben. O doktori akharel les postprandijalno glukoza. Normalno si tela 140 miligrama pe decilitro.",
+        "Nivelo e glukozako ando rat 2 ore pala o xaben. O doktori akharel les postprandijalno glukoza. Normalno si tela 140 miligrama pe decilitro.",
     },
     hipertensiune: {
       plainTerm: "O rat phurdel zurales (uchi tensija)",
       formalTerm: "Arterijaki hipertenzija",
       layExplanation:
-        "O rat tasavel but zurales pe zidura e rateske dromenge, sako vrjama. O ilo khinjol thaj e droma phagjon vash vrjama.",
+        "O rat tasavel but zurales pe zidouria e arterijenge, sako vrjama. O ilo khinjol thaj e zidouria e arterijenge lokhes dukhavdjon vash vrjama.",
       clinicalSignificance:
         "O doktori čhivel la kana e numere ačhen pe 140/90 mmHg vaj maj opre. Barjarel najbut o riziko vash infarkto thaj dab ki godi.",
       speechText:
-        "Uchi tensija, o rat phurdel zurales. O doktori akharel la arterijaki hipertenzija. Opral 140 pe 90, tiro ilo kerel but phari buchi, vi te na dukhal tut niso.",
+        "Uchi tensija, o rat tasavel zurales pe zidouria e arterijenge. O doktori akharel la arterijaki hipertenzija. Opral 140 pe 90, tiro ilo kerel but phari buchi, vi te na dukhal tut niso.",
     },
     hipotensiune: {
       plainTerm: "Cikni tensija e rateski",
@@ -1248,7 +1304,7 @@ export const GLOSSARY_TRANSLATIONS: Record<
       layExplanation:
         "Tiri tensija si maj cikni katar normalno. Shaj te phirel tiro shero kana ushtes sigo opre, te dikhes kalo vaj te peres.",
       clinicalSignificance:
-        "Tela 90/60 mmHg. Te hatjares tut mishto, shaj te avel normalno vash tute. Te phirel tiro shero vaj peres, o doktori dikhel o pani thaj e lona ando trupo.",
+        "Tela 90/60 mmHg. Te hatjares tut mishto, shaj te avel normalno vash tute. Te phirel tiro shero vaj peres, o doktori dikhel e likidura thaj e lona ando trupo.",
       speechText:
         "Cikni tensija. O doktori akharel la arterijaki hipotenzija. Tela 90 pe 60 shaj te phirel tiro shero kana ushtes sigo opre.",
     },
@@ -1256,9 +1312,9 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Atako ko ilo",
       formalTerm: "Akutno infarkto e miokardesko",
       layExplanation:
-        "Jekh phandlo rat astavel sasto drom e ratesko ko ilo. Jekh kotor katar o ilo ačhel bi oksigenosko thaj astarel te dukhavdjol.",
+        "Jekh phandlo rat astavel sasto jekh arterija e ileski. Jekh kotor katar o ilesko muskulo lel dukhavimos (lezija) soske falil oksigeno.",
       clinicalSignificance:
-        "Sigardiari. Akhar 112. O ratesko drom musaj te putardjol ki bolnitsa ande anglune ore.",
+        "Sigardiari. Akhar 112. I arterija musaj te putardjol ki bolnitsa ande anglune ore.",
       speechText:
         "Atako ko ilo. O doktori akharel les akutno infarkto. Te hatjares bari dukh ko kolin so dzhal ko vast vaj ki pashni, akhar sigo 112.",
     },
@@ -1276,31 +1332,31 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Phari phurdinimos kana phires vaj pashljos",
       formalTerm: "Kardijalno vaj respiratorno dispneja",
       layExplanation:
-        "Hatjares kaj tasjos vaj phares les balval. Te avel ko cikno phirimos vaj kana pashljos vorta ko than, tiro ilo shaj te avel khino.",
+        "Hatjares kaj falil tut balval vaj phares phurdines. Te avel ko cikno phirimos vaj kana pashljos vorta ko than, tiro ilo shaj te avel pharjardo.",
       clinicalSignificance:
-        "Te ačhes bi balvaljako vaj trubul tut maj but sherandja te soves, shaj te avel pani ko phuka. Dzha sigo ko kardiologo.",
+        "Te ačhes bi balvaljako vaj trubul tut maj but sherandja te soves, shaj te avel kidimos likidosko (pajnjesko) ko phuka. Dzha sigo ko kardiologo.",
       speechText:
-        "Phari phurdinimos. O doktori akharel la dispneja. Te les phares balval ko cikno phirimos vaj kana pashljos, dzha sigo ko doktori.",
+        "Phari phurdinimos. O doktori akharel la dispneja. Te les phares balval ko cikno phirimos vaj kana pashljos, shaj te avel kidimos likidosko ko phuka, dzha sigo ko doktori.",
     },
     edeme: {
       plainTerm: "Shuvljarde punre thaj globura",
       formalTerm: "Periferikane edemura",
       layExplanation:
-        "Kidel pes pani ande globura thaj ande punre. Kerel pes kana o ilo vaj e vene nashti te ispidin mishto o rat opre.",
+        "Kerel pes kidimos likidosko (pajnjesko) ando mas e globurengo thaj e punrengo. Kerel pes kana o ilo vaj e vene nashti te ispidin mishto o rat opre.",
       clinicalSignificance:
-        "Te tasaves e najesa thaj ačhel xaning, tiro trupo inkerel pani thaj lon. Akava kerel pes butivar kana o ilo si slabo.",
+        "Te tasaves e najesa thaj ačhel xaning, tiro trupo inkerel likido thaj lon ando mas. Akava kerel pes butivar kana o ilo si slabo.",
       speechText:
-        "Shuvljarde punre. O doktori akharel len periferikane edemura. O pani ko globura butivar sikavel kaj o ilo trubul te dikhel les o doktori.",
+        "Shuvljarde punre. O doktori akharel len periferikane edemura. O kidimos likidosko ko globura butivar sikavel kaj o ilo trubul te dikhel les o doktori.",
     },
     "hemoglobina-glicata": {
-      plainTerm: "Mashkarutno gudlo rat ande palutne 3 chona",
+      plainTerm: "Mashkarutni koncentracija e glukozaki ande palutne 3 chona",
       formalTerm: "Glikirime hemoglobina (HbA1c)",
       layExplanation:
-        "Rengro dikhiben savo sikavel kozom zahari sas tut ando rat, mashkarutnes, ande palutne 90 dive. Sikavel kozom mishto si inkerdo o dijabeto.",
+        "Rengro dikhiben savo sikavel i mashkarutni koncentracija (nivelo) e glukozako (zaharesko) ando rat ande palutne 90 dive. Sikavel kozom mishto si inkerdo o dijabeto.",
       clinicalSignificance:
         "Vash e maj but bare manusha dijabetosa, o ciljo si tela 7%. Opral 8%, o doktori musaj te dikhel pale o sastjarimos.",
       speechText:
-        "Mashkarutno zahari ande palutne 3 chona. Pe lila pishil HbA1c. Vash e maj but manusha dijabetosa, o ciljo si tela 7 procentura.",
+        "Mashkarutni koncentracija e glukozaki ande palutne 3 chona. Pe lila pishil HbA1c. Vash e maj but bare manusha dijabetosa, o ciljo si tela 7 procentura.",
     },
     "fibrilatie-atriala": {
       plainTerm: "Ilo so marel sigo thaj bi ritmosko",
@@ -1308,25 +1364,25 @@ export const GLOSSARY_TRANSLATIONS: Record<
       layExplanation:
         "Tiro ilo marel sigo thaj bi ritmosko. O rat na ikljol sasto katar e oprune kotora e ileske, kadja shaj te keren pes phandle kotora rateske.",
       clinicalSignificance:
-        "Barjarel 5 droma o riziko vash dab ki godi. Trubul tut draba so sanjaren o rat (antikoagulansura), dende katar o kardiologo.",
+        "Barjarel 5 droma o riziko vash dab ki godi. Trubul tut antikoagulantne draba save ačhaven te na keren pes phandle kotora rateske, dende katar o kardiologo.",
       speechText:
-        "Ilo so marel sigo thaj bi ritmosko. O doktori akharel la atrijalno fibrilacija. Dzha ko kardiologo te arakhes tut katar dab ki godi.",
+        "Ilo so marel sigo thaj bi ritmosko. O doktori akharel la atrijalno fibrilacija. O kardiologo del antikoagulantne draba save ačhaven e phandle kotora rateske thaj dab ki godi.",
     },
     "insuficienta-cardiaca": {
       plainTerm: "Slabo ilo so pumpil phares",
       formalTerm: "Kronikani insuficijencija e ileski",
       layExplanation:
-        "Tiro ilo xasarel lokhes i zor te bičhalel dosta rat ko organura. Khinjos sigo thaj kidel pes pani ando trupo.",
+        "Tiro ilo xasarel lokhes i zor te bičhalel dosta rat ko organura. Khinjos sigo thaj kerel pes kidimos likidosko (pajnjesko) ando trupo thaj ko phuka.",
       clinicalSignificance:
         "Nasvalipen pe lungi vrjama. Merisar tiro pharipen sako dives, xa maj xanci katar 5 g lon ko dives thaj le e draba vorta sar phendja o doktori.",
       speechText:
-        "Slabo ilo. O doktori akharel la kronikani insuficijencija e ileski. Xa xanci lon thaj le e draba vorta sar pishil pe recepta.",
+        "Slabo ilo. O doktori akharel la kronikani insuficijencija e ileski. Merisar tiro pharipen sako dives te dikhes o kidimos likidosko, xa xanci lon thaj le e draba sar pishil pe recepta.",
     },
     "neuropatie-diabetica": {
       plainTerm: "Pamortimos thaj pusavimata ande talpe",
       formalTerm: "Periferikani dijabetikani neuropatija",
       layExplanation:
-        "O baro zahari ando rat dukhavel e nervura ande pindre. Hatjares maj xanci i dukh, kadja shaj te aven tut rane bi te dikhes len.",
+        "I uchi koncentracija (nivelo) e glukozako (zaharesko) ando rat lokhes dukhavel e nervura ande pindre. Hatjares maj xanci i dukh, kadja shaj te aven tut rane bi te dikhes len.",
       clinicalSignificance:
         "Kerel pes butivar ko manusha dijabetosa. Dikh tire talpe sako dives, te arakhes sigo sako rana.",
       speechText:
@@ -1336,21 +1392,21 @@ export const GLOSSARY_TRANSLATIONS: Record<
       plainTerm: "Dukhavdo dikhiben katar o dijabeto",
       formalTerm: "Dijabetikani retinopatija",
       layExplanation:
-        "Bersha bare zaharosa ando rat dukhaven e cikne rateske droma palpale andi jakh (i retina).",
+        "Bersha uche nivelosa e glukozako ando rat lokhes dukhaven e cikne rateske droma palpale andi jakh (i retina).",
       clinicalSignificance:
         "Baro uzroko vash koripen ko bare manusha. Arakhes tut jekhe dikhibenasa e jakhenge sako bersh thaj HbA1c tela 7%.",
       speechText:
-        "Dukhavdo dikhiben katar o dijabeto. O doktori akharel la dijabetikani retinopatija. Dikhiben e jakhengo sako bersh arakhel tiro dikhiben.",
+        "Dukhavdo dikhiben katar o dijabeto. O doktori akharel la dijabetikani retinopatija. Dikhiben e jakhengo sako bersh thaj mishto inkerdi glukoza arakhen tiro dikhiben.",
     },
     "cetoacidoza-diabetica": {
-      plainTerm: "Pharo kiselino ando rat katar o dijabeto",
+      plainTerm: "Rizikane ketonikane kiseline ando rat katar o dijabeto",
       formalTerm: "Dijabetikani ketoacidoza (DKA)",
       layExplanation:
-        "Kana falil but inzulino, o trupo phabarel khil te lel zor. Kadja kiden pes ando rat bilache kiseline (ketonura).",
+        "Kana falil but inzulino, o trupo phabarel khil te lel zor thaj kiden pes ando rat rizikane kiseline akharde ketonura.",
       clinicalSignificance:
-        "Sigardiari so čhivel o trajo ando riziko. Semnja: phurdinimos so khandel pe phabaj, čhadimos so na ačhel, bisterdi godi thaj bari trush.",
+        "Sigardiari so čhivel o trajo ando riziko. Semnja: phurdinimos frutaqo, sar acetono, čhadimos so na ačhel, konfuzija thaj bari dehidracija.",
       speechText:
-        "Pharo kiselino ando rat. O doktori akharel la dijabetikani ketoacidoza. Te čhades, san konfuzno vaj phurdines sigo, akhar 112.",
+        "Rizikane kiseline (ketonura) ando rat, akhardi dijabetikani ketoacidoza. Te si tut phurdinimos sar acetono, čhades, san konfuzno vaj phurdines sigo, akhar sigo 112.",
     },
     electrocardiograma: {
       plainTerm: "Elektrikano dikhiben e ilesko",
@@ -1383,14 +1439,24 @@ export const GLOSSARY_TRANSLATIONS: Record<
         "Automatikano aparato vash i tensija. E modelura manshetasa pe opruno vast merisaren najčačes khere.",
     },
     glucometru: {
-      plainTerm: "Aparato vash merimos e zaharesko",
+      plainTerm: "Aparato te ginavel o nivelo e glukozako ando rat",
       formalTerm: "Kapilarno glukometro biosenzorenca",
       layExplanation:
-        "Cikno aparato. Čhives pe lenta jekh kapka rat katar i rig e najeski thaj ande xanci sekunde dikhes o zahari.",
+        "Portativno sastipnasko aparato. Čhives pe lenta jekh cikni kapka rat katar i rig e najeski thaj o aparato ande xanci sekunde sikavel i koncentracija (o nivelo) e glukozako (zaharesko) ando rat, merime ande mg/dL vaj mmol/L.",
       clinicalSignificance:
-        "Azhutil tut korkoro te dikhes tiro dijabeto. Trubun tut lente so pasinen ko aparato thaj sterilne suva vash jekh labyarimos (lancete).",
+        "Azhutil tut korkoro khere te dikhes o nivelo e glukozako. Trubun tut lente so pasinen ko aparato thaj sterilne suva vash jekh labyarimos (lancete).",
       speechText:
-        "Aparato vash merimos e zaharesko, vaj glukometro. Sikavel tiro gudlo rat katar 1 kapka rat ande xanci sekunde.",
+        "Aparato te ginavel o nivelo e glukozako ando rat, vaj glukometro. Katar jekh cikni kapka rat katar o naj sikavel ande xanci sekunde i koncentracija e glukozaki ande miligrama pe decilitro vaj milimolura pe litro.",
+    },
+    "vaccin-imunizare": {
+      plainTerm: "I vakcina (arakhipnasko drab)",
+      formalTerm: "Vakcinacija / Aktivno imunizacija",
+      layExplanation:
+        "Arakhipnasko sastipnasko drab, dendo injekcijasa vaj kapkenca ando muj, savo sigurno sikavel o imunitetno sistemo te kerel antitrupura thaj rano te prindzhanel e mikroburen, arakhindoj e čhaven thaj e bare manushen katar phare infektivne nasvalipena.",
+      clinicalSignificance:
+        "E vakcine katar o nacijonalno kalendaro thaj kodola rekomandirime vash bare manusha tele peraven but o riziko te pashljos ki bolnitsa thaj phare komplikacije.",
+      speechText:
+        "I vakcina, arakhipnasko drab vash aktivno imunizacija. Sikavel o imunitetno sistemo te kerel antitrupura thaj te arakhel e čhaven thaj e bare manushen katar phare infektivne nasvalipena.",
     },
     "bilet-de-trimitere": {
       plainTerm: "Lil bičhalimasko ko specijalisto",
@@ -1486,10 +1552,11 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Nu am găsit acest cuvânt. Încearcă altul.",
     categoryTablistAria: "Categorii din dicționar",
     categories: {
-      all: "Toate (22)",
+      all: "Toate (23)",
       diabet: "Diabet",
       cardiologie: "Inimă și tensiune",
       analize: "Analize și aparate",
+      preventie: "Prevenție și vaccinuri",
       cnas: "Acte CNAS",
       urgente: "Urgențe",
     },
@@ -1506,10 +1573,11 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "We could not find this word. Try another one.",
     categoryTablistAria: "Dictionary categories",
     categories: {
-      all: "All (22)",
+      all: "All (23)",
       diabet: "Diabetes",
       cardiologie: "Heart and blood pressure",
       analize: "Tests and devices",
+      preventie: "Prevention and vaccines",
       cnas: "CNAS papers",
       urgente: "Emergencies",
     },
@@ -1526,10 +1594,11 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Nuk e gjetëm këtë fjalë. Provo një tjetër.",
     categoryTablistAria: "Kategoritë e fjalorit",
     categories: {
-      all: "Të gjitha (22)",
+      all: "Të gjitha (23)",
       diabet: "Diabeti",
       cardiologie: "Zemra dhe tensioni",
       analize: "Analiza dhe aparate",
+      preventie: "Parandalimi dhe vaksinat",
       cnas: "Dokumentet CNAS",
       urgente: "Urgjencat",
     },
@@ -1546,10 +1615,11 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Non abbiamo trovato questa parola. Provane un'altra.",
     categoryTablistAria: "Categorie del dizionario",
     categories: {
-      all: "Tutti (22)",
+      all: "Tutti (23)",
       diabet: "Diabete",
       cardiologie: "Cuore e pressione",
       analize: "Esami e apparecchi",
+      preventie: "Prevenzione e vaccini",
       cnas: "Documenti CNAS",
       urgente: "Emergenze",
     },
@@ -1566,10 +1636,11 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Nismo pronašli ovu riječ. Pokušaj drugu.",
     categoryTablistAria: "Kategorije rječnika",
     categories: {
-      all: "Sve (22)",
+      all: "Sve (23)",
       diabet: "Dijabetes",
       cardiologie: "Srce i tlak",
       analize: "Pretrage i uređaji",
+      preventie: "Prevencija i cjepiva",
       cnas: "Dokumenti HZZO-a",
       urgente: "Hitna stanja",
     },
@@ -1586,10 +1657,11 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Na arakhljam akava alav. Probin aver.",
     categoryTablistAria: "Kategorije e alavareske",
     categories: {
-      all: "Savore (22)",
+      all: "Savore (23)",
       diabet: "Dijabeto",
       cardiologie: "O ilo thaj i tensija",
       analize: "Analize thaj aparatura",
+      preventie: "Arakhimos thaj vakcine",
       cnas: "Sastipnaske lila",
       urgente: "Sigardiarja",
     },

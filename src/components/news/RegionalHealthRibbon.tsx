@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import {
+  ALL_ALBANIA,
   ALL_CROATIA,
   ALL_ITALY,
   EXTRA_MAP_COPY,
@@ -46,16 +47,18 @@ export function RegionalHealthRibbon() {
   const extra = EXTRA_MAP_COPY[lang] ?? EXTRA_MAP_COPY.ro;
   const { county, setCounty } = useUserCounty();
   const [modalOpen, setModalOpen] = useState(false);
-  const [localAreaByCountry, setLocalAreaByCountry] = useState<Partial<Record<"hr" | "it", string>>>({});
+  const [localAreaByCountry, setLocalAreaByCountry] = useState<Partial<Record<"hr" | "it" | "al", string>>>({});
   const [roNationalSelected, setRoNationalSelected] = useState(false);
 
-  const ribbonCountry: MapCountry = lang === "hr" ? "hr" : lang === "it" ? "it" : "ro";
+  const ribbonCountry: MapCountry = lang === "hr" ? "hr" : lang === "it" ? "it" : lang === "sq" ? "al" : "ro";
   const activeArea =
     ribbonCountry === "hr"
       ? (localAreaByCountry.hr ?? ALL_CROATIA)
       : ribbonCountry === "it"
         ? (localAreaByCountry.it ?? ALL_ITALY)
-        : (roNationalSelected ? "Toate județele" : county);
+        : ribbonCountry === "al"
+          ? (localAreaByCountry.al ?? ALL_ALBANIA)
+          : (roNationalSelected ? "Toate județele" : county);
 
   const pool = NEWS_ARTICLES.filter((a) => articleCountry(a) === ribbonCountry);
   const local = pool.filter((a) => a.county === activeArea && !isCountryWide(a));
@@ -73,14 +76,18 @@ export function RegionalHealthRibbon() {
         ? activeArea === ALL_ITALY
           ? (t.countyMap?.allItaly ?? ALL_ITALY)
           : placeName(activeArea, lang)
-        : isNationalCounty(activeArea)
-          ? nr.allCountiesNational
-          : countyLabel(activeArea, lang, "ro");
+        : ribbonCountry === "al"
+          ? activeArea === ALL_ALBANIA
+            ? extra.allAlbania
+            : countyLabel(activeArea, lang, "al")
+          : isNationalCounty(activeArea)
+            ? nr.allCountiesNational
+            : countyLabel(activeArea, lang, "ro");
 
   const newsBasePath = lang === "ro" ? "/stiri" : "/news";
 
   function handleSelectArea(selected: string) {
-    if (ribbonCountry === "hr" || ribbonCountry === "it") {
+    if (ribbonCountry === "hr" || ribbonCountry === "it" || ribbonCountry === "al") {
       setLocalAreaByCountry((prev) => ({ ...prev, [ribbonCountry]: selected }));
     } else if (isNationalCounty(selected)) {
       setRoNationalSelected(true);
@@ -94,16 +101,14 @@ export function RegionalHealthRibbon() {
     <>
       <section aria-label={nr.ariaLabel} className="w-full border-b border-ink-800 bg-ink-900 py-1.5 text-paper md:py-1">
         <Container className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-0.5 text-sm md:flex md:items-center md:justify-between md:gap-4">
-          {/* Tier 1 left on mobile / start on md+: 8px live-sage beacon + county trigger */}
-          <div className="order-1 flex min-w-0 items-center gap-2.5 md:shrink-0">
-            <span aria-hidden="true" className="inline-block h-2 w-2 shrink-0 rounded-full bg-live-sage" />
-
+          {/* Tier 1 left on mobile / start on md+: pin icon + county trigger */}
+          <div className="order-1 flex min-w-0 items-center gap-2 md:shrink-0">
             <button
               type="button"
               onClick={() => setModalOpen(true)}
               className="inline-flex min-h-11 min-w-0 items-center gap-1.5 rounded-lg px-1.5 -ml-1.5 font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-white/[0.07] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70"
             >
-              <PinIcon className="h-3.5 w-3.5 shrink-0 text-paper/75" />
+              <PinIcon className="h-3.5 w-3.5 shrink-0 text-paper/80" />
               <span className="truncate">{areaDisplay}</span>
               <span className="shrink-0 text-xs font-normal text-paper/65 underline decoration-paper/35 underline-offset-2">
                 {nr.changeLabel}

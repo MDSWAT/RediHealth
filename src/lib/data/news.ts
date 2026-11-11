@@ -12,7 +12,7 @@ export type NewsCategory =
   | "Campanii de vaccinare"
   | "Sfaturi de sezon";
 
-export type NewsCountry = "ro" | "md" | "it" | "hr";
+export type NewsCountry = "ro" | "md" | "it" | "hr" | "al";
 
 /** The county value of an item about the whole of Italy (same value the county map uses for "all of Italy"). */
 export const ITALY_WIDE = "Italia";
@@ -22,6 +22,9 @@ export const MOLDOVA_WIDE = "Moldova";
 
 /** The county value of an item about the whole of Croatia. */
 export const CROATIA_WIDE = "Hrvatska";
+
+/** The county value of an item about the whole of Albania. */
+export const ALBANIA_WIDE = "Shqipëria";
 
 export type NewsArticle = {
   id: string;
@@ -579,6 +582,126 @@ export const NEWS_ARTICLES: NewsArticle[] = [
       "Aerisește scurt dimineața și la prânz ca să reduci umezeala din casă",
     ],
   },
+  // --- Albania (12 qarqe + nationwide Shqipëria) ---
+  {
+    id: "al-karvana-tirane",
+    slug: "klinika-levizese-tirane-kontrolle-falas",
+    title: "Clinică mobilă în Tirana: control gratuit pentru tensiune și glucoza din sânge",
+    category: "Caravane medicale",
+    county: "Tiranë",
+    country: "al",
+    date: "2026-11-09",
+    readTimeMinutes: 2,
+    summary: "Medicii de familie și mediatorii sanitari oferă măsurarea gratuită a tensiunii arteriale, a concentrației de glucoză din sânge și EKG în Tirana, fără card FSDKSH.",
+    content: [
+      "Echipa medicală mobilă și mediatorii sanitari romi și egipteni ajung în cartierele Bregu i Lumit și Kombinat din Tirana pentru controale preventive gratuite.",
+      "Poți veni chiar dacă nu ai asigurare FSDKSH sau medic de familie ales. Adu actul de identitate sau certificatul de naștere al copilului, dacă îl ai.",
+      "Mediatorul îți explică pe loc valorile tensiunii și concentrației de glucoză din sânge și te ajută să te înscrii la centrul de sănătate din cartier.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Arta Dervishi",
+      specialty: "Medic specialist medicină de familie, Centrul de Sănătate nr. 6 Tirana",
+      verifiedDate: "9 noiembrie 2026",
+    },
+    tags: ["Caravană mobilă", "Analize gratuite", "Comunitate", "Acces medical"],
+    audioNarrationDuration: "1 min 45 sec",
+    caravanDetails: {
+      village: "Municipiul Tirana, Bregu i Lumit și Kombinat",
+      landmark: "Piațeta de lângă dispensarul de cartier",
+      hours: "09:00 - 15:30 (vineri și sâmbătă)",
+      freeServices: [
+        "Măsurare tensiune arterială",
+        "Concentrația de glucoză din sânge",
+        "EKG",
+        "Orientare cu mediator sanitar",
+      ],
+    },
+  },
+  {
+    id: "al-uje-i-pijshem-shkoder",
+    slug: "fshatrat-shkoder-ujet-e-puseve",
+    title: "Satele de câmpie din regiunea Shkodër: fierbe apa din fântânile de mică adâncime",
+    category: "Alerte locale",
+    county: "Shkodër",
+    country: "al",
+    date: "2026-11-06",
+    readTimeMinutes: 2,
+    summary: "După ploile abundente de toamnă de pe râurile Buna și Drin, sănătatea publică recomandă fierberea apei din fântâni pentru a preveni infecțiile digestive și hepatita A.",
+    content: [
+      "În satele joase din jurul orașului Shkodër, apa din fântânile private de mică adâncime se poate tulbura după ploi puternice.",
+      "Folosește apă îmbuteliată sau fierbe apa din fântână cel puțin 10 minute și las-o la răcit într-un vas curat acoperit înainte de băut și gătit.",
+      "Dacă un copil are crampe abdominale, vărsături sau îngălbenirea ochilor, mergi fără întârziere la medicul de familie sau la centrul de sănătate.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Sokol Kola",
+      specialty: "Medic epidemiolog, Unitatea Locală de Îngrijiri de Sănătate Shkodër",
+      verifiedDate: "6 noiembrie 2026",
+    },
+    tags: ["Igienă", "Apă potabilă", "Hepatită A", "Prevenție"],
+    audioNarrationDuration: "1 min 40 sec",
+    epidemicSeverity: "moderate",
+    preventiveSteps: [
+      "Fierbe apa din fântânile de mică adâncime cel puțin 10 minute înainte de băut",
+      "Spală fructele și legumele doar cu apă potabilă sigură",
+      "Spală-te pe mâini cu apă și săpun înainte de masă și după toaletă",
+    ],
+  },
+  {
+    id: "al-vaksinim-grip-shqiperi",
+    slug: "vaksinim-grip-kontroll-baze-shqiperi",
+    title: "Vaccinare antigripală gratuită și control medical anual în toată Albania",
+    category: "Campanii de vaccinare",
+    county: ALBANIA_WIDE,
+    country: "al",
+    date: "2026-11-05",
+    readTimeMinutes: 2,
+    summary: "Centrele de sănătate din cele 12 regiuni ale Albaniei oferă gratuit vaccinul antigripal sezonier pentru grupele la risc și controlul preventiv anual.",
+    content: [
+      "Institutul de Sănătate Publică și centrele de sănătate primară din toată Albania oferă gratuit vaccinul antigripal pentru vârstnici, gravide și persoane cu boli cronice cardiace, pulmonare, renale sau diabet.",
+      "Adulții între 35 și 70 de ani pot face gratuit și controlul medical preventiv de bază la centrul lor de sănătate.",
+      "Dacă ai nevoie de ajutor ca să îți verifici înscrierea pe e-Albania sau să îți găsești medicul de familie, cere sprijinul mediatorului sanitar din comunitate.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Lindita Basha",
+      specialty: "Medic specialist sănătate publică, Institutul de Sănătate Publică (ISHP)",
+      verifiedDate: "5 noiembrie 2026",
+    },
+    tags: ["Gripă", "Prevenție", "Boli cronice", "Sănătate publică"],
+    audioNarrationDuration: "1 min 55 sec",
+    preventiveSteps: [
+      "Cere vaccinul antigripal sezonier la medicul de familie din centrul de sănătate",
+      "Adu carnetul de vaccinare al copilului când mergi la pediatru",
+      "Aerisește camerele zilnic și spală-te regulat pe mâini cu apă și săpun",
+    ],
+  },
+  {
+    id: "al-receta-elektronike-elbasan",
+    slug: "rinovim-receta-rimbursim-elbasan",
+    title: "Elbasan: reînnoirea la timp a rețetei compensate fără întreruperea tratamentului",
+    category: "Sfaturi de sezon",
+    county: "Elbasan",
+    country: "al",
+    date: "2026-11-08",
+    readTimeMinutes: 2,
+    summary: "Pacienții cu hipertensiune, diabet sau astm își pot reînnoi rețeta electronică compensată la medicul de familie înainte să se termine medicamentele.",
+    content: [
+      "Diminețile reci și fumul de la sobe în valea Elbasanului pot crește tensiunea arterială și pot declanșa tuse sau respirație șuierătoare.",
+      "Medicul de familie eliberează rețeta electronică cu rambursare, iar medicamentele lunare sau inhalatorul se ridică din farmaciile partenere cu actul de identitate.",
+      "Nu întrerupe singur pastilele pentru tensiune sau diabet, nici în zilele în care te simți bine.",
+    ],
+    verifiedDoctor: {
+      name: "Dr. Ilir Hoxha",
+      specialty: "Medic specialist medicină internă, Spitalul Regional Elbasan",
+      verifiedDate: "8 noiembrie 2026",
+    },
+    tags: ["Boli cronice", "Astm", "Tratament corect", "Sfaturi practice"],
+    audioNarrationDuration: "1 min 50 sec",
+    preventiveSteps: [
+      "Reînnoiește rețeta compensată cu 5 zile înainte să se termine cutia actuală",
+      "Poartă cu tine inhalatorul prescris în diminețile reci sau cu fum",
+      "Aerisește scurt locuința la prânz și nu arde lemn vopsit sau deșeuri din plastic",
+    ],
+  },
 ];
 
 export const NEWS_CATEGORIES: NewsCategory[] = [
@@ -641,12 +764,13 @@ export function articleCountry(article: Pick<NewsArticle, "country">): NewsCount
   return article.country ?? "ro";
 }
 
-/** True for an item about a whole country: Romania, Moldova, Italy, or Croatia. */
+/** True for an item about a whole country: Romania, Moldova, Italy, Croatia, or Albania. */
 export function isCountryWide(article: Pick<NewsArticle, "county" | "country">): boolean {
   const c = articleCountry(article);
   if (c === "it") return article.county === ITALY_WIDE;
   if (c === "md") return article.county === MOLDOVA_WIDE;
   if (c === "hr") return article.county === CROATIA_WIDE;
+  if (c === "al") return article.county === ALBANIA_WIDE;
   return isNationalCounty(article.county);
 }
 

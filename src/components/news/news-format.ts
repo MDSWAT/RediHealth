@@ -4,8 +4,9 @@ import { ROMANIA_COUNTIES_MAP } from "@/lib/geo/romania-counties";
 import { MOLDOVA_REGIONS_MAP } from "@/lib/geo/moldova-regions";
 import { CROATIA_COUNTIES_MAP } from "@/lib/geo/croatia-counties";
 import { ITALY_REGIONS_MAP } from "@/lib/geo/italy-regions";
+import { ALBANIA_COUNTIES_MAP } from "@/lib/geo/albania-counties";
 
-export type GeoCountryCode = "ro" | "md" | "it" | "hr";
+export type GeoCountryCode = "ro" | "md" | "it" | "hr" | "al";
 
 /**
  * Deterministic date formatting for news items.
@@ -110,17 +111,67 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     hr: "Grad Zagreb",
     rom: "Foro Zagreb",
   },
+  "Tiranë": {
+    ro: "Tirana",
+    en: "Tirana",
+    sq: "Tiranë",
+    it: "Tirana",
+    hr: "Tirana",
+    rom: "Tirana",
+  },
+  "Shkodër": {
+    ro: "Shkodër",
+    en: "Shkodër",
+    sq: "Shkodër",
+    it: "Scutari",
+    hr: "Shkodër",
+    rom: "Shkodra",
+  },
+  "Durrës": {
+    ro: "Durrës",
+    en: "Durrës",
+    sq: "Durrës",
+    it: "Durazzo",
+    hr: "Durrës",
+    rom: "Durres",
+  },
+  "Vlorë": {
+    ro: "Vlorë",
+    en: "Vlorë",
+    sq: "Vlorë",
+    it: "Valona",
+    hr: "Vlorë",
+    rom: "Vlora",
+  },
+  "Korçë": {
+    ro: "Korçë",
+    en: "Korçë",
+    sq: "Korçë",
+    it: "Coriza",
+    hr: "Korçë",
+    rom: "Korcha",
+  },
+  "Gjirokastër": {
+    ro: "Gjirokastër",
+    en: "Gjirokastër",
+    sq: "Gjirokastër",
+    it: "Argirocastro",
+    hr: "Gjirokastër",
+    rom: "Gjirokastra",
+  },
 };
 
 const RO_SET = new Set(ROMANIA_COUNTIES_MAP.areas.map((a) => a.name));
 const MD_SET = new Set(MOLDOVA_REGIONS_MAP.areas.map((a) => a.name));
 const HR_SET = new Set(CROATIA_COUNTIES_MAP.areas.map((a) => a.name));
 const IT_SET = new Set(ITALY_REGIONS_MAP.areas.map((a) => a.name));
+const AL_SET = new Set(ALBANIA_COUNTIES_MAP.areas.map((a) => a.name));
 
 const MOLDOVA_MUNICIPALITIES = new Set(["Chișinău", "Bălți", "Bender"]);
 
 function inferAreaCountry(area: string, countryHint?: GeoCountryCode): GeoCountryCode {
   if (countryHint) return countryHint;
+  if (AL_SET.has(area)) return "al";
   if (IT_SET.has(area)) return "it";
   if (HR_SET.has(area)) return "hr";
   if (MD_SET.has(area) && !RO_SET.has(area)) return "md";
@@ -145,6 +196,24 @@ export function countyLabel(county: string, lang: Lang, countryHint?: GeoCountry
 
   if (country === "it") {
     return placeName(county, lang);
+  }
+
+  if (country === "al") {
+    const p = placeName(county, lang);
+    switch (lang) {
+      case "sq":
+        return `Qarku ${county}`;
+      case "en":
+        return `${p} County`;
+      case "ro":
+        return `Regiunea ${p}`;
+      case "it":
+        return `Prefettura di ${p}`;
+      case "hr":
+        return `Okrug ${p}`;
+      case "rom":
+        return `Qarko ${p}`;
+    }
   }
 
   if (country === "hr") {

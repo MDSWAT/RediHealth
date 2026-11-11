@@ -11,6 +11,7 @@ import { getHealthCheckTranslations, type BodyPartId } from "@/lib/i18n/health-c
 import { DURATION, EASE_IN_OUT, EASE_OUT } from "@/lib/motion/tokens";
 import { WEBGL_ERROR, hasWebGL } from "./webgl-support";
 import {
+  REFERRED_PAIN_BY_SUB_REGION,
   SUB_REGION_INFO,
   getLocalizedSubRegion,
   type BodyAnatomyProfile,
@@ -121,13 +122,26 @@ const easeNudge = cubicBezier(EASE_OUT);
 const MUSCLE_COLOR = new THREE.Color(0x9f241f);
 const MUSCLE_LIGHT = new THREE.Color(0xc74434);
 const TENDON_COLOR = new THREE.Color(0xe4cda0);
+const BONE_COLOR = new THREE.Color(0xe7dec9);
+const JOINT_CARTILAGE_COLOR = new THREE.Color(0xd2dde8);
 const SURFACE_ACCENT_COLOR = new THREE.Color(0xc8b39e);
 const SELECTED_COLOR = new THREE.Color(0x2f6fd6);
+/** Secondary warm ochre highlight for clinically linked referred-pain zones (never emergency red). */
+const REFERRED_COLOR = new THREE.Color(0xd89a4a);
 /** Hover previews the selection in a pale tint of the same blue (a warm hover read as inflamed tissue). */
 const HOVER_COLOR = new THREE.Color(0xa9c4ec);
 /** Once an area is chosen, everything outside it fades towards this warm grey. */
 const DIM_COLOR = new THREE.Color(0xd3cdc6);
 const DIM_AMOUNT = 0.62;
+
+/**
+ * Structures that sit wholly under an opaque part of the head: on their own they never show, so
+ * choosing one lights the surface that covers it.
+ */
+const SHOWN_ON_SURFACE: Partial<Record<SubRegionId, readonly SubRegionId[]>> = {
+  skull: ["head_face", "cranium_occipital"],
+  brain: ["head_face", "cranium_occipital"],
+};
 
 const ORGAN_COLORS: Record<string, THREE.Color> = {
   heart: new THREE.Color(0xc0392b),
@@ -542,6 +556,296 @@ function buildBladderGeometry(): THREE.BufferGeometry {
   bladder.computeVertexNormals();
   bladder.computeBoundingSphere();
   return bladder;
+}
+
+interface SkeletalPartSpec {
+  nodeName: string;
+  subRegion: SubRegionId;
+  geometry: THREE.BufferGeometry;
+  isJoint?: boolean;
+  showInHybrid?: boolean;
+}
+
+function buildTubeBone(points: [number, number, number][], radius: number, tubularSegments = 10): THREE.BufferGeometry {
+  const curve = new THREE.CatmullRomCurve3(points.map(([x, y, z]) => new THREE.Vector3(x, y, z)));
+  return new THREE.TubeGeometry(curve, tubularSegments, radius, 8, false);
+}
+
+/**
+ * Lightweight (~2,300 vertices, 0 network bytes) BodyParts3D-calibrated skeletal and joint layer:
+ * cranial vault, C1–C7 cervical spine, T1–T12 thoracic spine, rib cage + sternum + clavicles,
+ * L1–L5 lumbar spine, sacrum + pelvic ring, long bones, and bilateral synovial joint capsules.
+ */
+function buildSkeletalAtlasParts(): SkeletalPartSpec[] {
+  const specs: SkeletalPartSpec[] = [];
+
+  // 1. Cranium & facial skull
+  const skullDome = new THREE.SphereGeometry(1, 18, 14);
+  skullDome.scale(0.068, 0.088, 0.082);
+  skullDome.translate(0, 1.605, -0.012);
+  const maxilla = new THREE.BoxGeometry(0.082, 0.055, 0.062);
+  maxilla.translate(0, 1.525, 0.032);
+  specs.push({
+    nodeName: "skull_bone",
+    subRegion: "skull",
+    geometry: mergeProceduralGeometries([skullDome, maxilla]),
+  });
+
+  // 2. Cervical spine C1–C7
+  const cVerts: THREE.BufferGeometry[] = [];
+  for (let i = 0; i < 7; i += 1) {
+    const t = i / 6;
+    const y = THREE.MathUtils.lerp(1.488, 1.392, t);
+    const z = -0.026 - Math.sin(t * Math.PI) * 0.006 - t * 0.014;
+    const body = new THREE.CylinderGeometry(0.015 + t * 0.003, 0.016 + t * 0.003, 0.0105, 10);
+    body.translate(0, y, z);
+    const spinous = new THREE.BoxGeometry(0.006, 0.007, 0.018);
+    spinous.translate(0, y - 0.001, z - 0.015);
+    cVerts.push(body, spinous);
+  }
+  specs.push({
+    nodeName: "cervical_spine_bone",
+    subRegion: "cervical_spine",
+    geometry: mergeProceduralGeometries(cVerts),
+    showInHybrid: true,
+  });
+
+  // 3. Thoracic spine T1–T12
+  const tVerts: THREE.BufferGeometry[] = [];
+  for (let i = 0; i < 12; i += 1) {
+    const t = i / 11;
+    const y = THREE.MathUtils.lerp(1.372, 1.125, t);
+    const z = -0.042 - Math.sin(t * Math.PI) * 0.022;
+    const r = THREE.MathUtils.lerp(0.018, 0.023, t);
+    const body = new THREE.CylinderGeometry(r, r * 1.03, 0.0155, 10);
+    body.translate(0, y, z);
+    const spinous = new THREE.BoxGeometry(0.007, 0.009, 0.022);
+    spinous.translate(0, y - 0.003, z - 0.018);
+    tVerts.push(body, spinous);
+  }
+  specs.push({
+    nodeName: "thoracic_spine_bone",
+    subRegion: "thoracic_spine",
+    geometry: mergeProceduralGeometries(tVerts),
+    showInHybrid: true,
+  });
+
+  // 4. Rib cage, sternum & clavicles
+  const ribParts: THREE.BufferGeometry[] = [];
+  const sternum = new THREE.BoxGeometry(0.026, 0.155, 0.012);
+  sternum.translate(0, 1.295, 0.082);
+  ribParts.push(sternum);
+  for (const s of [-1, 1]) {
+    ribParts.push(
+      buildTubeBone(
+        [
+          [s * 0.016, 1.385, 0.076],
+          [s * 0.085, 1.402, 0.052],
+          [s * 0.158, 1.396, 0.006],
+        ],
+        0.0065,
+        8
+      )
+    );
+    for (let r = 0; r < 8; r += 1) {
+      const rt = r / 7;
+      const yBack = THREE.MathUtils.lerp(1.368, 1.165, rt);
+      const yFront = yBack - 0.022 - rt * 0.018;
+      const width = 0.095 + Math.sin(rt * Math.PI * 0.85) * 0.036;
+      const frontX = rt < 0.72 ? s * 0.016 : s * (0.025 + (rt - 0.72) * 0.16);
+      const frontZ = rt < 0.72 ? 0.081 : 0.068 - (rt - 0.72) * 0.08;
+      ribParts.push(
+        buildTubeBone(
+          [
+            [s * 0.018, yBack, -0.046 - Math.sin(rt * Math.PI) * 0.018],
+            [s * (width * 0.78), yBack - 0.006, -0.028],
+            [s * width, (yBack + yFront) * 0.5, 0.022],
+            [frontX, yFront, frontZ],
+          ],
+          0.0048,
+          10
+        )
+      );
+    }
+  }
+  specs.push({
+    nodeName: "rib_cage_bone",
+    subRegion: "rib_cage",
+    geometry: mergeProceduralGeometries(ribParts),
+  });
+
+  // 5. Lumbar spine L1–L5
+  const lVerts: THREE.BufferGeometry[] = [];
+  for (let i = 0; i < 5; i += 1) {
+    const t = i / 4;
+    const y = THREE.MathUtils.lerp(1.095, 0.958, t);
+    const z = -0.046 + Math.sin(t * Math.PI) * 0.01;
+    const body = new THREE.CylinderGeometry(0.025, 0.026, 0.021, 12);
+    body.translate(0, y, z);
+    const spinous = new THREE.BoxGeometry(0.009, 0.013, 0.024);
+    spinous.translate(0, y, z - 0.022);
+    lVerts.push(body, spinous);
+  }
+  specs.push({
+    nodeName: "lumbar_spine_bone",
+    subRegion: "lumbar_spine",
+    geometry: mergeProceduralGeometries(lVerts),
+    showInHybrid: true,
+  });
+
+  // 6. Sacrum, coccyx & pelvic ring
+  const sacrum = new THREE.ConeGeometry(0.042, 0.095, 10);
+  sacrum.rotateX(Math.PI);
+  sacrum.scale(1, 1, 0.45);
+  sacrum.translate(0, 0.892, -0.052);
+  specs.push({
+    nodeName: "sacrum_coccyx_bone",
+    subRegion: "sacroiliac_coccyx",
+    geometry: sacrum,
+    showInHybrid: true,
+  });
+
+  const pelvisParts: THREE.BufferGeometry[] = [];
+  for (const s of [-1, 1]) {
+    pelvisParts.push(
+      buildTubeBone(
+        [
+          [s * 0.032, 0.925, -0.045],
+          [s * 0.112, 0.952, -0.008],
+          [s * 0.118, 0.895, 0.032],
+          [s * 0.088, 0.855, 0.022],
+          [s * 0.018, 0.842, 0.048],
+        ],
+        0.012,
+        12
+      )
+    );
+    const hipSocket = new THREE.SphereGeometry(0.022, 12, 10);
+    hipSocket.translate(s * 0.094, 0.865, 0.006);
+    pelvisParts.push(hipSocket);
+  }
+  specs.push({
+    nodeName: "pelvic_hip_joint",
+    subRegion: "hip_groin",
+    geometry: mergeProceduralGeometries(pelvisParts),
+    isJoint: true,
+  });
+
+  // 7. Bilateral upper & lower limb bones and synovial joint capsules
+  const shoulderJoints: THREE.BufferGeometry[] = [];
+  const humerusBones: THREE.BufferGeometry[] = [];
+  const elbowJoints: THREE.BufferGeometry[] = [];
+  const forearmBones: THREE.BufferGeometry[] = [];
+  const wristJoints: THREE.BufferGeometry[] = [];
+  const femurBones: THREE.BufferGeometry[] = [];
+  const kneeJoints: THREE.BufferGeometry[] = [];
+  const shinBones: THREE.BufferGeometry[] = [];
+  const ankleJoints: THREE.BufferGeometry[] = [];
+
+  for (const s of [-1, 1]) {
+    const sh = new THREE.SphereGeometry(0.024, 14, 10);
+    sh.translate(s * 0.168, 1.382, -0.004);
+    shoulderJoints.push(sh);
+
+    humerusBones.push(
+      buildTubeBone(
+        [
+          [s * 0.172, 1.365, -0.004],
+          [s * 0.194, 1.245, -0.006],
+          [s * 0.214, 1.132, -0.004],
+        ],
+        0.012,
+        8
+      )
+    );
+
+    const elb = new THREE.SphereGeometry(0.019, 12, 10);
+    elb.scale(1.15, 0.9, 0.95);
+    elb.translate(s * 0.217, 1.116, -0.003);
+    elbowJoints.push(elb);
+
+    forearmBones.push(
+      buildTubeBone(
+        [
+          [s * 0.212, 1.098, 0.004],
+          [s * 0.252, 0.902, 0.026],
+        ],
+        0.0075,
+        8
+      ),
+      buildTubeBone(
+        [
+          [s * 0.224, 1.098, -0.008],
+          [s * 0.268, 0.902, 0.018],
+        ],
+        0.007,
+        8
+      )
+    );
+
+    const wr = new THREE.SphereGeometry(0.016, 12, 10);
+    wr.scale(1.25, 0.75, 0.8);
+    wr.translate(s * 0.264, 0.884, 0.024);
+    wristJoints.push(wr);
+
+    femurBones.push(
+      buildTubeBone(
+        [
+          [s * 0.096, 0.858, 0.006],
+          [s * 0.106, 0.835, 0.008],
+          [s * 0.094, 0.665, 0.012],
+          [s * 0.086, 0.498, 0.01],
+        ],
+        0.016,
+        10
+      )
+    );
+
+    const knee = new THREE.SphereGeometry(0.025, 14, 10);
+    knee.scale(1.1, 0.9, 1.05);
+    knee.translate(s * 0.085, 0.474, 0.012);
+    const patella = new THREE.SphereGeometry(0.014, 10, 8);
+    patella.scale(1, 1.1, 0.6);
+    patella.translate(s * 0.085, 0.48, 0.038);
+    kneeJoints.push(knee, patella);
+
+    shinBones.push(
+      buildTubeBone(
+        [
+          [s * 0.083, 0.45, 0.01],
+          [s * 0.08, 0.118, -0.004],
+        ],
+        0.013,
+        8
+      ),
+      buildTubeBone(
+        [
+          [s * 0.098, 0.442, -0.004],
+          [s * 0.094, 0.115, -0.012],
+        ],
+        0.0065,
+        8
+      )
+    );
+
+    const ank = new THREE.SphereGeometry(0.019, 12, 10);
+    ank.translate(s * 0.084, 0.098, -0.006);
+    ankleJoints.push(ank);
+  }
+
+  specs.push(
+    { nodeName: "shoulder_joint", subRegion: "rotator_cuff", geometry: mergeProceduralGeometries(shoulderJoints), isJoint: true },
+    { nodeName: "humerus_bone", subRegion: "biceps", geometry: mergeProceduralGeometries(humerusBones) },
+    { nodeName: "elbow_joint", subRegion: "elbow_tendon", geometry: mergeProceduralGeometries(elbowJoints), isJoint: true },
+    { nodeName: "forearm_bones", subRegion: "forearm_extensor", geometry: mergeProceduralGeometries(forearmBones) },
+    { nodeName: "wrist_joint", subRegion: "wrist_tendon", geometry: mergeProceduralGeometries(wristJoints), isJoint: true },
+    { nodeName: "femur_bone", subRegion: "quadriceps", geometry: mergeProceduralGeometries(femurBones) },
+    { nodeName: "knee_joint", subRegion: "patellar_tendon", geometry: mergeProceduralGeometries(kneeJoints), isJoint: true },
+    { nodeName: "tibia_fibula_bone", subRegion: "calves", geometry: mergeProceduralGeometries(shinBones) },
+    { nodeName: "ankle_joint", subRegion: "achilles", geometry: mergeProceduralGeometries(ankleJoints), isJoint: true }
+  );
+
+  return specs;
 }
 
 const VIEWPORT_LABELS: Record<
@@ -966,27 +1270,65 @@ export function AnatomicalViewport3D({
     });
 
     const skinShellMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0xd6c7b8,
-      roughness: 0.42,
-      metalness: 0.03,
-      transmission: 0.12,
+      color: 0xdfd3c6,
+      roughness: 0.48,
+      metalness: 0.02,
+      transmission: 0.08,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.86,
       depthWrite: false,
       side: THREE.FrontSide,
     });
+
+    const boneMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0xffffff,
+      vertexColors: true,
+      roughness: 0.36,
+      metalness: 0.03,
+      clearcoat: 0.16,
+      clearcoatRoughness: 0.44,
+      side: THREE.DoubleSide,
+    });
+
+    /*
+     * Two broad sheets hide the muscles people actually name. The oblique mesh carries the flat
+     * sheath in front of the straight belly muscles, and the lat mesh spreads over the lumbar
+     * muscles. Left as they are tagged, choosing "abdominal muscles" or "lower back" lit nothing
+     * and a tap there named the wrong structure. Those vertices count as what they cover.
+     */
+    let rectusBox: THREE.Box3 | null = null;
+    let lumbarWindow: { maxY: number; maxX: number } | null = null;
+    function coveredSubRegion(nodeName: string | undefined, x: number, y: number, z: number): SubRegionId | null {
+      if (
+        nodeName === "obliques" &&
+        rectusBox !== null &&
+        Math.abs(x) <= rectusBox.max.x &&
+        y >= rectusBox.min.y &&
+        y <= rectusBox.max.y &&
+        z >= rectusBox.min.z
+      ) {
+        return "abdominals";
+      }
+      if (nodeName === "lats" && lumbarWindow !== null && y <= lumbarWindow.maxY && Math.abs(x) <= lumbarWindow.maxX) {
+        return "lower_back";
+      }
+      return null;
+    }
 
     // Paint vertex colors based on selection and hover state
     function paintMesh(mesh: THREE.Mesh) {
       const position = mesh.geometry.attributes.position;
       if (!position) return;
       const data = mesh.userData as {
+        nodeName?: string;
         subRegion: SubRegionId;
         macroPart: BodyPartId;
         tissue: TissueKind;
         bilateral: boolean;
         baseColor: THREE.Color;
         hoverSide: "Left" | "Right" | "Center" | null;
+        /** The structure under the pointer, when one mesh stands for more than one. */
+        hoverSub?: SubRegionId;
         isSurfaceZone?: boolean;
         ownsMaterial?: boolean;
       };
@@ -1002,47 +1344,69 @@ export function AnatomicalViewport3D({
       const activeSide = stateRef.current.selectedSide;
       const mode = stateRef.current.layerMode;
 
-      const isExactSubSelected = activeSub !== null && data.subRegion === activeSub;
+      const isExactSubSelected =
+        activeSub !== null &&
+        (data.subRegion === activeSub || Boolean(SHOWN_ON_SURFACE[activeSub]?.includes(data.subRegion)));
       const isSubMatch = activeSub
         ? isExactSubSelected
         : activePart !== null && data.macroPart === activePart;
+      const referredList = activeSub ? REFERRED_PAIN_BY_SUB_REGION[activeSub] : undefined;
+      const isReferredMatch = Boolean(
+        !isSubMatch && referredList && referredList.includes(data.subRegion)
+      );
 
       if (data.isSurfaceZone && data.ownsMaterial) {
         const mat = mesh.material as THREE.MeshPhysicalMaterial;
         if (isExactSubSelected) {
           mat.opacity = 0.86;
+        } else if (isReferredMatch) {
+          mat.opacity = 0.54;
         } else if (data.hoverSide !== null) {
           mat.opacity = 0.72;
         } else if (data.subRegion === "breast") {
-          mat.opacity = mode === "surface" ? 0.56 : 0.34;
+          mat.opacity = mode === "surface" ? 0.62 : 0.34;
         } else if (activePart !== null && data.macroPart === activePart && activePart === "pelvis") {
           mat.opacity = mode === "surface" ? 0.42 : 0.24;
         } else {
-          mat.opacity = mode === "surface" ? 0.16 : 0.03;
+          mat.opacity = mode === "surface" ? 0.18 : 0.03;
         }
       }
 
+      // In calm "surface" skin mode, soften raw deep crimson muscle underneath into a quiet neutral
+      // silhouette. Chosen vertices are painted blue below, so this is only ever the unchosen rest
+      // (the other side, or the part of a broad muscle outside the chosen spot).
+      const surfaceSoftenedBase =
+        mode === "surface" && data.tissue === "Muscle"
+          ? data.baseColor.clone().lerp(SURFACE_ACCENT_COLOR, 0.78)
+          : data.baseColor;
+
       // The chosen area keeps its colours and the rest of the body fades, so the area reads at a
-      // glance without mixing hues; the exact spot stays full blue.
-      const outsideArea = activePart !== null && data.macroPart !== activePart;
-      const dimmedColor = outsideArea ? data.baseColor.clone().lerp(DIM_COLOR, DIM_AMOUNT) : null;
+      // glance without mixing hues; the exact spot stays full blue, and referred-pain zones glow warm ochre.
+      const outsideArea = activePart !== null && data.macroPart !== activePart && !isReferredMatch;
+      const dimmedColor = outsideArea ? surfaceSoftenedBase.clone().lerp(DIM_COLOR, DIM_AMOUNT) : null;
+      const referredColor = isReferredMatch
+        ? surfaceSoftenedBase.clone().lerp(REFERRED_COLOR, 0.58)
+        : null;
 
       for (let i = 0; i < position.count; i += 1) {
         const vSide = data.bilateral ? sideForVertex(position.getX(i)) : "Center";
-        const isVertexSelected =
-          isSubMatch &&
-          (!activeSub ||
-            !data.bilateral ||
-            activeSide === "Center" ||
-            activeSide === vSide);
+        const covered = coveredSubRegion(data.nodeName, position.getX(i), position.getY(i), position.getZ(i));
+        const isVertexSelected = covered && activeSub !== null
+          ? activeSub === covered
+          : isSubMatch &&
+            (!activeSub ||
+              !data.bilateral ||
+              activeSide === "Center" ||
+              activeSide === vSide);
         const isVertexHovered =
-          data.hoverSide === vSide || data.hoverSide === "Center";
+          (data.hoverSide === vSide || data.hoverSide === "Center") &&
+          (data.hoverSub === undefined || data.hoverSub === (covered ?? data.subRegion));
 
         const c = isVertexSelected
           ? SELECTED_COLOR
           : isVertexHovered
             ? HOVER_COLOR
-            : dimmedColor ?? data.baseColor;
+            : referredColor ?? dimmedColor ?? surfaceSoftenedBase;
         colors.setXYZ(i, c.r, c.g, c.b);
       }
       colors.needsUpdate = true;
@@ -1092,7 +1456,12 @@ export function AnatomicalViewport3D({
           skinShellMesh.visible = false;
         } else if (mode === "surface") {
           skinShellMesh.visible = true;
-          skinShellMaterial.opacity = 0.72;
+          // Calm warm silhouette at rest; gentle localized X-ray window when a zone is selected
+          // Thin enough over a choice that blue under the skin reads as strongly as blue on it.
+          skinShellMaterial.opacity = activeSub || activePart ? 0.34 : 0.86;
+        } else if (mode === "skeletal") {
+          skinShellMesh.visible = true;
+          skinShellMaterial.opacity = 0.17;
         } else if (mode === "organs") {
           skinShellMesh.visible = true;
           skinShellMaterial.opacity = 0.24;
@@ -1111,6 +1480,8 @@ export function AnatomicalViewport3D({
           subRegion: SubRegionId;
           macroPart: BodyPartId;
           isOrgan?: boolean;
+          isBone?: boolean;
+          showBoneInHybrid?: boolean;
           isSurfaceCap?: boolean;
           isMuscleGlb?: boolean;
           femaleOnly?: boolean;
@@ -1132,8 +1503,10 @@ export function AnatomicalViewport3D({
           return;
         }
 
-        if (mode === "organs") {
-          if (d.hideInOrgans || d.coversViscera) {
+        if (mode === "skeletal") {
+          mesh.visible = Boolean(d.isBone || d.isSurfaceCap);
+        } else if (mode === "organs") {
+          if (d.isBone || d.hideInOrgans || d.coversViscera) {
             mesh.visible = false;
           } else if (d.isOrgan || d.isSurfaceCap) {
             mesh.visible = true;
@@ -1147,10 +1520,10 @@ export function AnatomicalViewport3D({
             mesh.visible = !coversViscera;
           }
         } else if (mode === "muscular") {
-          mesh.visible = !d.isOrgan;
+          mesh.visible = !d.isOrgan && !d.isBone;
         } else {
-          // Hybrid or surface: external structures and organs remain selectable
-          mesh.visible = true;
+          // Surface or hybrid: external structures, organs, and spinal landmarks remain selectable
+          mesh.visible = d.isBone ? Boolean(d.showBoneInHybrid || activeSub === d.subRegion) : true;
         }
       });
     }
@@ -1185,10 +1558,40 @@ export function AnatomicalViewport3D({
         return;
       }
       const center = box.getCenter(new THREE.Vector3());
-      if (activeSub && activeSide === "Left") {
-        center.x = THREE.MathUtils.lerp(center.x, box.max.x, 0.55);
-      } else if (activeSub && activeSide === "Right") {
-        center.x = THREE.MathUtils.lerp(center.x, box.min.x, 0.55);
+      // Two-sided selections (both arms, both legs, both hips) have their middle on a part of the
+      // body that is not selected. The marker would point at the wrong place, so it is left out.
+      if (!activeSub || activeSide === "Center") {
+        const reach = (box.max.x - box.min.x) * 0.08;
+        const probe = new THREE.Vector3();
+        const coversMiddle = fallback.some((m) => {
+          const pos = m.geometry.getAttribute("position") as THREE.BufferAttribute | undefined;
+          if (!pos) return false;
+          m.updateWorldMatrix(true, false);
+          for (let i = 0; i < pos.count; i += 3) {
+            probe.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld);
+            if (Math.abs(probe.x - center.x) <= reach) return true;
+          }
+          return false;
+        });
+        if (!coversMiddle) {
+          activeAnchorWorld = null;
+          return;
+        }
+      }
+      if (activeSub && activeSide !== "Center") {
+        // One side chosen: the marker sits on the middle of that side's own shape.
+        const sideBox = new THREE.Box3();
+        const probe = new THREE.Vector3();
+        fallback.forEach((m) => {
+          const pos = m.geometry.getAttribute("position") as THREE.BufferAttribute | undefined;
+          if (!pos) return;
+          m.updateWorldMatrix(true, false);
+          for (let i = 0; i < pos.count; i += 3) {
+            if (sideForVertex(pos.getX(i)) !== activeSide) continue;
+            sideBox.expandByPoint(probe.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld));
+          }
+        });
+        if (!sideBox.isEmpty()) sideBox.getCenter(center);
       }
       activeAnchorWorld = center;
     }
@@ -1452,6 +1855,35 @@ export function AnatomicalViewport3D({
           });
         });
 
+        const rectusMeshes = selectableMeshes.filter((m) => m.userData.subRegion === "abdominals");
+        if (rectusMeshes.length) {
+          const box = new THREE.Box3();
+          rectusMeshes.forEach((m) => {
+            m.geometry.computeBoundingBox();
+            if (m.geometry.boundingBox) box.union(m.geometry.boundingBox);
+          });
+          rectusBox = box;
+        }
+        const geometryBox = (nodeName: string) => {
+          const box = new THREE.Box3();
+          selectableMeshes
+            .filter((m) => m.userData.nodeName === nodeName)
+            .forEach((m) => {
+              m.geometry.computeBoundingBox();
+              if (m.geometry.boundingBox) box.union(m.geometry.boundingBox);
+            });
+          return box.isEmpty() ? null : box;
+        };
+        const latsBox = geometryBox("lats");
+        const erectorsBox = geometryBox("erectors");
+        if (latsBox && erectorsBox) {
+          // The lumbar part: the lower half of the lat sheet, as wide as the muscles beside the spine.
+          lumbarWindow = {
+            maxY: latsBox.min.y + (latsBox.max.y - latsBox.min.y) * 0.52,
+            maxX: erectorsBox.max.x * 1.3,
+          };
+        }
+
         model.scale.setScalar(MODEL_SCALE);
         model.position.set(0, -CENTER_Y * MODEL_SCALE, 0);
         anatomyRoot.add(model);
@@ -1461,13 +1893,15 @@ export function AnatomicalViewport3D({
         atlasGroup.scale.setScalar(MODEL_SCALE);
         atlasGroup.position.set(0, -CENTER_Y * MODEL_SCALE, 0);
 
-        const registerAtlasMesh = (
+          const registerAtlasMesh = (
           geom: THREE.BufferGeometry | null,
           nodeName: string,
           subRegion: SubRegionId,
           opts: {
             tissue?: TissueKind;
             isOrgan?: boolean;
+            isBone?: boolean;
+            showBoneInHybrid?: boolean;
             isSurfaceCap?: boolean;
             isSurfaceZone?: boolean;
             femaleOnly?: boolean;
@@ -1487,11 +1921,13 @@ export function AnatomicalViewport3D({
             opts.baseColor ||
             ORGAN_COLORS[nodeName] ||
             ORGAN_COLORS[subRegion] ||
-            (tissue === "Tendon" ? TENDON_COLOR : SURFACE_ACCENT_COLOR);
+            (opts.isBone ? BONE_COLOR : tissue === "Tendon" ? TENDON_COLOR : SURFACE_ACCENT_COLOR);
 
           let mat: THREE.Material = surfaceCapMaterial;
           let ownsMaterial = false;
-          if (opts.isOrgan) {
+          if (opts.isBone) {
+            mat = boneMaterial;
+          } else if (opts.isOrgan) {
             mat = organMaterial;
           } else if (opts.isSurfaceZone) {
             const zoneMat = surfaceCapMaterial.clone();
@@ -1514,6 +1950,8 @@ export function AnatomicalViewport3D({
             baseColor,
             hoverSide: null,
             isOrgan: Boolean(opts.isOrgan),
+            isBone: Boolean(opts.isBone),
+            showBoneInHybrid: Boolean(opts.showBoneInHybrid),
             isSurfaceCap: Boolean(opts.isSurfaceCap),
             isSurfaceZone: Boolean(opts.isSurfaceZone),
             ownsMaterial,
@@ -1725,9 +2163,15 @@ export function AnatomicalViewport3D({
               { isSurfaceCap: true }
             );
             registerAtlasMesh(
-              extractSubGeometry(geom, (_cx, cy) => cy < 1.555),
+              extractSubGeometry(geom, (_cx, cy) => cy >= 1.492 && cy < 1.555),
               "jaw_ear_lower",
               "jaw_ear",
+              { isSurfaceCap: true }
+            );
+            registerAtlasMesh(
+              extractSubGeometry(geom, (_cx, cy) => cy < 1.492),
+              "neck_submental_cap",
+              "neck",
               { isSurfaceCap: true }
             );
             geom.dispose();
@@ -1791,6 +2235,16 @@ export function AnatomicalViewport3D({
           "bladder",
           { tissue: "Organ", isOrgan: true }
         );
+
+        // 4. BodyParts3D-calibrated skeletal & synovial joint layer (~2,300 vertices, 0 extra bytes)
+        buildSkeletalAtlasParts().forEach((boneSpec) => {
+          registerAtlasMesh(boneSpec.geometry, boneSpec.nodeName, boneSpec.subRegion, {
+            tissue: "Bone",
+            isBone: true,
+            showBoneInHybrid: boneSpec.showInHybrid,
+            baseColor: boneSpec.isJoint ? JOINT_CARTILAGE_COLOR : BONE_COLOR,
+          });
+        });
 
         anatomyRoot.add(atlasGroup);
         syncAllVisuals();
@@ -1883,13 +2337,27 @@ export function AnatomicalViewport3D({
       return hits.find((h) => h.distance <= nearLimit) ?? null;
     }
 
+    /**
+     * On the skin view an inner organ can only be reached through a gap between muscles. The
+     * person pointed at the body surface there, so such a hit names the area, not the organ.
+     */
+    function seenThroughGap(mesh: THREE.Mesh): boolean {
+      return stateRef.current.layerMode === "surface" && Boolean(mesh.userData.isOrgan);
+    }
+
     function resolveHitSelection(hit: THREE.Intersection) {
       const mesh = hit.object as THREE.Mesh;
       const d = mesh.userData as {
+        nodeName?: string;
         subRegion: SubRegionId;
         macroPart: BodyPartId;
         bilateral: boolean;
       };
+      const meshPoint = mesh.worldToLocal(hit.point.clone());
+      const covered = coveredSubRegion(d.nodeName, meshPoint.x, meshPoint.y, meshPoint.z);
+      if (covered) {
+        return { mesh, subRegion: covered, macroPart: d.macroPart, side: "Center" as const };
+      }
       let side: "Left" | "Right" | "Center" = "Center";
       if (d.bilateral) {
         const localPoint = anatomyRoot.worldToLocal(hit.point.clone());
@@ -1956,6 +2424,19 @@ export function AnatomicalViewport3D({
       touchDrag = null;
     };
 
+    const DIRECT_TOUCH_SUB_REGIONS = new Set<SubRegionId>([
+      "neck",
+      "cervical_spine",
+      "jaw_ear",
+      "cranium_occipital",
+      "head_face",
+      "breast",
+      "lower_back",
+      "upper_back",
+      "hands_fingers",
+      "feet_soles",
+    ]);
+
     const onPointerUp = (e: PointerEvent) => {
       // A finished drag must not leave a stale drag behind for the next touch.
       touchDrag = null;
@@ -1970,11 +2451,14 @@ export function AnatomicalViewport3D({
       if (!hit) return;
       const sel = resolveHitSelection(hit);
       tapSide = { sign: camera.position.z - controls.target.z >= 0 ? 1 : -1, at: performance.now() };
-      // On a phone the first tap picks the whole area; fine structures only once zoomed in.
+      // On a phone the first tap picks the whole area unless the tapped region is a clearly distinct
+      // surface zone (such as the neck vs the head/face), so neck pain is never misread as head pain.
       const zoomedIn = camera.position.distanceTo(controls.target) < 13;
       const macroPart = intendedArea(sel.macroPart, hit.point);
       const remapped = macroPart !== sel.macroPart;
-      const coarse = (e.pointerType === "touch" && !zoomedIn) || remapped;
+      const directSurfaceRegion = !remapped && !seenThroughGap(sel.mesh) && DIRECT_TOUCH_SUB_REGIONS.has(sel.subRegion);
+      const coarse =
+        (e.pointerType === "touch" && !zoomedIn && !directSurfaceRegion) || remapped || seenThroughGap(sel.mesh);
       if (e.isTrusted) navigator.vibrate?.(12);
       // A coarse tap names the area only; it never claims an exact structure the person did not pick.
       if (coarse) {
@@ -2018,16 +2502,21 @@ export function AnatomicalViewport3D({
       }
 
       const sel = resolveHitSelection(hit);
+      const gap = seenThroughGap(sel.mesh);
       if (
         hoveredState &&
-        (hoveredState.mesh !== sel.mesh || hoveredState.side !== sel.side)
+        (gap || hoveredState.mesh !== sel.mesh || hoveredState.side !== sel.side)
       ) {
         hoveredState.mesh.userData.hoverSide = null;
         paintMesh(hoveredState.mesh);
+        hoveredState = null;
       }
-      hoveredState = { mesh: sel.mesh, side: sel.side };
-      sel.mesh.userData.hoverSide = sel.side;
-      paintMesh(sel.mesh);
+      if (!gap) {
+        hoveredState = { mesh: sel.mesh, side: sel.side };
+        sel.mesh.userData.hoverSide = sel.side;
+        sel.mesh.userData.hoverSub = sel.subRegion;
+        paintMesh(sel.mesh);
+      }
       requestRender();
 
       const activeLang = stateRef.current.lang || DEFAULT_LANG;
@@ -2041,9 +2530,9 @@ export function AnatomicalViewport3D({
         visible: true,
         x: Math.min(Math.max(clientX - rect.left + 14, 12), rect.width - 230),
         y: Math.min(Math.max(clientY - rect.top + 14, 12), rect.height - 68),
-        name: `${info.label}${sideText}`,
+        name: gap ? areaTitle : `${info.label}${sideText}`,
         // The area this structure belongs to: what a tap here will choose.
-        areaLabel: areaTitle,
+        areaLabel: gap ? "" : areaTitle,
       });
     }
 
@@ -2098,6 +2587,7 @@ export function AnatomicalViewport3D({
       muscleMaterial.dispose();
       tendonMaterial.dispose();
       organMaterial.dispose();
+      boneMaterial.dispose();
       surfaceCapMaterial.dispose();
       skinShellMaterial.dispose();
       renderer.renderLists?.dispose();

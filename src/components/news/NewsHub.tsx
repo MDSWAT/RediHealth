@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import {
+  ALL_ALBANIA,
   ALL_CROATIA,
   ALL_ITALY,
   ALL_MOLDOVA,
@@ -20,6 +21,7 @@ import { PlaceNewsModal } from "@/components/news/PlaceNewsModal";
 import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
 import { ArrowRightIcon, PinIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
 import {
+  ALBANIA_WIDE,
   CROATIA_WIDE,
   ITALY_WIDE,
   MOLDOVA_WIDE,
@@ -39,37 +41,37 @@ const COPY: Record<Lang, { hideMap: string; showMap: string; latest: string; cha
     hideMap: "Ascunde harta",
     showMap: "Arată harta",
     latest: "Cele mai recente",
-    changeArea: { md: "Schimbă raionul", hr: "Schimbă comitatul", it: "Schimbă regiunea" },
+    changeArea: { md: "Schimbă raionul", hr: "Schimbă comitatul", it: "Schimbă regiunea", al: "Schimbă regiunea" },
   },
   en: {
     hideMap: "Hide map",
     showMap: "Show map",
     latest: "Latest",
-    changeArea: { md: "Change district", hr: "Change county", it: "Change region" },
+    changeArea: { md: "Change district", hr: "Change county", it: "Change region", al: "Change county" },
   },
   sq: {
     hideMap: "Fshih hartën",
     showMap: "Shfaq hartën",
     latest: "Më të rejat",
-    changeArea: { md: "Ndrysho rajonin", hr: "Ndrysho qarkun", it: "Ndrysho rajonin" },
+    changeArea: { md: "Ndrysho rajonin", hr: "Ndrysho qarkun", it: "Ndrysho rajonin", al: "Ndrysho qarkun" },
   },
   it: {
     hideMap: "Nascondi la mappa",
     showMap: "Mostra la mappa",
     latest: "Le più recenti",
-    changeArea: { md: "Cambia distretto", hr: "Cambia regione", it: "Cambia regione" },
+    changeArea: { md: "Cambia distretto", hr: "Cambia regione", it: "Cambia regione", al: "Cambia prefettura" },
   },
   hr: {
     hideMap: "Sakrij kartu",
     showMap: "Prikaži kartu",
     latest: "Najnovije obavijesti",
-    changeArea: { md: "Promijeni rajon", hr: "Promijeni županiju", it: "Promijeni regiju" },
+    changeArea: { md: "Promijeni rajon", hr: "Promijeni županiju", it: "Promijeni regiju", al: "Promijeni okrug" },
   },
   rom: {
     hideMap: "Garav i harta",
     showMap: "Sikav i harta",
     latest: "E may neve",
-    changeArea: { md: "Paruv o rayono", hr: "Paruv i zhupaniya", it: "Paruv i regiyona" },
+    changeArea: { md: "Paruv o rayono", hr: "Paruv i zhupaniya", it: "Paruv i regiyona", al: "Paruv o qarko" },
   },
 };
 
@@ -172,9 +174,13 @@ export function NewsHub() {
           ? selectedAreaForMap === ALL_CROATIA
             ? extra.allCroatia
             : countyLabel(selectedAreaForMap, lang, "hr")
-          : isNationalCounty(selectedAreaForMap)
-            ? np.allCounties
-            : countyLabel(selectedAreaForMap, lang, "ro");
+          : activeCountry === "al"
+            ? selectedAreaForMap === ALL_ALBANIA
+              ? extra.allAlbania
+              : countyLabel(selectedAreaForMap, lang, "al")
+            : isNationalCounty(selectedAreaForMap)
+              ? np.allCounties
+              : countyLabel(selectedAreaForMap, lang, "ro");
 
   const changeActionLabel = activeCountry === "ro" ? np.changeCounty : c.changeArea[activeCountry];
 
@@ -182,6 +188,7 @@ export function NewsHub() {
     if (place === ITALY_WIDE && itemCountry === "it") return t.countyMap?.allItaly ?? ITALY_WIDE;
     if (place === MOLDOVA_WIDE && itemCountry === "md") return extra.allMoldova;
     if (place === CROATIA_WIDE && itemCountry === "hr") return extra.allCroatia;
+    if (place === ALBANIA_WIDE && itemCountry === "al") return extra.allAlbania;
     if (isNationalCounty(place)) return np.allCounties;
     return placeName(place, lang);
   };

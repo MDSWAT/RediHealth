@@ -273,11 +273,12 @@ const TOPIC_TRANSLATIONS: Record<
 export function getTopicForSymptom(
   partId: string,
   symptomId?: string,
-  lang: Lang = "ro"
+  lang: Lang = "ro",
+  subRegion?: string | null
 ): TopicMapping {
   const loc = TOPIC_TRANSLATIONS[lang] ?? TOPIC_TRANSLATIONS.ro;
 
-  if (symptomId === "chest_breast_lump") {
+  if (symptomId === "chest_breast_lump" || symptomId === "back_flank_kidney") {
     const data = loc["preventive-screening"];
     return {
       slug: "preventive-screening",
@@ -314,10 +315,28 @@ export function getTopicForSymptom(
   }
 
   if (partId === "head") {
-    if (symptomId?.includes("fever") || symptomId?.includes("cold")) {
+    if (
+      symptomId?.includes("fever") ||
+      symptomId?.includes("cold") ||
+      symptomId === "head_throat_swallow" ||
+      symptomId === "head_jaw_ear"
+    ) {
       const data = loc["antibiotics-awareness"];
       return {
         slug: "preventive-screening",
+        title: data.title,
+        recommendation: data.recommendation,
+      };
+    }
+    if (
+      symptomId === "head_neck_stiff" ||
+      symptomId === "head_neck_red_flag" ||
+      subRegion === "neck" ||
+      subRegion === "cervical_spine"
+    ) {
+      const data = loc["healthy-habits-back"];
+      return {
+        slug: "physical-activity",
         title: data.title,
         recommendation: data.recommendation,
       };

@@ -283,6 +283,42 @@ const rawTranslations = {
           "guidance": "O durere de cap foarte puternică, apărută brusc, este o urgență. Ai nevoie de un medic imediat.",
           "title": "Durere de cap bruscă și foarte puternică",
           "description": "Cea mai puternică durere de cap din viața ta, apărută în câteva secunde. Poate veni cu ceafă țeapănă, vedere încețoșată sau confuzie."
+        },
+        {
+          "id": "head_neck_stiff",
+          "label": "Durere de gât, ceafă înțepenită sau durere când întorci capul",
+          "isRedFlag": false,
+          "selfCareTip": "Pune ceva cald pe ceafă, coboară umerii și întoarce capul încet, fără să forțezi. Evită pernele foarte înalte.",
+          "guidance": "De obicei vine de la mușchii gâtului încordați sau o poziție incomodă în somn ori la ecran. Dacă coboară amorțeală pe braț, mergi la medic.",
+          "title": "Durere de gât sau ceafă înțepenită",
+          "description": "Gâtul sau ceafa te doare și se mișcă greu când întorci capul sau privești în jos, uneori cu tensiune spre umăr."
+        },
+        {
+          "id": "head_throat_swallow",
+          "label": "Durere în gât la înghițit, răgușeală sau ganglioni umflați pe gât",
+          "isRedFlag": false,
+          "selfCareTip": "Bea ceai călduț sau apă în înghițituri mici și evită fumul ori băuturile foarte reci sau fierbinți.",
+          "guidance": "Cele mai multe dureri în gât sunt virale. Dacă ai febră mare, pete albe în gât sau înghiți tot mai greu, mergi la medic.",
+          "title": "Durere în gât sau la înghițit",
+          "description": "Te ustură sau te doare gâtul când înghiți, ai vocea răgușită sau simți mici umflături sensibile sub maxilar."
+        },
+        {
+          "id": "head_jaw_ear",
+          "label": "Durere de ureche, maxilar sau apăsare în jurul obrajilor și sinusurilor",
+          "isRedFlag": false,
+          "selfCareTip": "Mănâncă alimente moi, nu băga bețișoare în ureche și pune o compresă călduță pe exteriorul obrazului.",
+          "guidance": "Durerea de ureche, articulația maxilarului sau sinusurile inflamate merită verificate de medicul de familie sau stomatolog.",
+          "title": "Durere de ureche, maxilar sau sinusuri",
+          "description": "Simți durere sau înfundare într-o ureche, durere la mestecat în articulația maxilarului sau presiune pe frunte și obraji."
+        },
+        {
+          "id": "head_neck_red_flag",
+          "label": "Ceafă țeapănă cu febră mare, deranj puternic la lumină, pete pe piele sau confuzie",
+          "isRedFlag": true,
+          "selfCareTip": "Stai culcat într-un loc liniștit și sună imediat la 112.",
+          "guidance": "Ceafa foarte țeapănă împreună cu febră mare sau confuzie poate fi o infecție gravă și cere spital imediat.",
+          "title": "Ceafă țeapănă cu febră mare sau confuzie",
+          "description": "Nu poți apropia bărbia de piept din cauza durerii, ai febră mare, somnolență, vărsături sau te deranjează puternic lumina."
         }
       ],
       "chest": [
@@ -462,9 +498,36 @@ const rawTranslations = {
           "guidance": "Nervii din spate pot fi apăsați grav. Ai nevoie de spital, de urgență.",
           "title": "Durere de spate cu amorțeli în picioare",
           "description": "Durere puternică de spate cu amorțeli sau slăbiciune în ambele picioare, ori probleme noi cu urina sau scaunul."
+        },
+        {
+          "id": "back_upper_blades",
+          "label": "Durere sau arsură sus pe spate, între omoplați sau spre umeri",
+          "isRedFlag": false,
+          "selfCareTip": "Ridică-te des de pe scaun, trage ușor omoplații înapoi și pune o compresă caldă sus pe spate.",
+          "guidance": "Apare des de la stat aplecat deasupra telefonului, mesei de lucru sau de la cărat sacoșe grele pe un umăr.",
+          "title": "Durere sus pe spate sau între omoplați",
+          "description": "Tensiune sau junghi în partea de sus a spatelui și între omoplați, mai ales după stat pe scaun sau efort cu brațele."
+        },
+        {
+          "id": "back_flank_kidney",
+          "label": "Durere într-o parte a mijlocului sub coaste, cu febră, greață sau usturime la urinare",
+          "isRedFlag": false,
+          "selfCareTip": "Bea apă în înghițituri mici și nu lua antiinflamatoare puternice înainte să te vadă medicul.",
+          "guidance": "Durerea într-o parte a mijlocului, mai ales cu febră sau modificări la urinare, poate ține de rinichi și trebuie văzută azi de un medic.",
+          "title": "Durere într-o parte a mijlocului sau zona rinichilor",
+          "description": "Durere adâncă pe o parte a spatelui sub coaste, care nu se schimbă când te miști și poate veni cu febră sau usturime la urinat."
         }
       ],
       "arm": [
+        {
+          "id": "arm_shoulder_elbow",
+          "label": "Durere de umăr când ridici brațul sau durere la cot când strângi ori ridici ceva",
+          "isRedFlag": false,
+          "selfCareTip": "Evită mișcările repetate deasupra capului și nu dormi pe umărul dureros câteva nopți.",
+          "guidance": "De obicei e un tendon iritat la umăr sau cot. Dacă nu poți ridica brațul sau ține mai mult de o săptămână, mergi la medic.",
+          "title": "Durere de umăr sau cot la mișcare",
+          "description": "Umărul te doare când ridici mâna ori te îmbraci, sau cotul doare când apuci ori răsucești obiecte."
+        },
         {
           "id": "arm_sprain",
           "label": "Durere la umăr, cot sau încheietură după o căzătură sau o mișcare bruscă",
@@ -538,6 +601,24 @@ const rawTranslations = {
           "guidance": "O gambă umflată brusc poate fi un cheag de sânge (tromboză). Trebuie tratată de urgență.",
           "title": "Gambă umflată brusc, doar pe un picior",
           "description": "O singură gambă s-a umflat brusc, e caldă, roșie și dureroasă."
+        },
+        {
+          "id": "leg_heel_foot",
+          "label": "Durere în călcâi, tendonul lui Ahile sau talpă când pui piciorul jos",
+          "isRedFlag": false,
+          "selfCareTip": "Poartă încălțăminte comodă cu talpă moale și evită mersul desculț pe podea tare.",
+          "guidance": "Apare des după mult stat în picioare sau încălțăminte subțire. Dacă ai diabet și apare o rană pe talpă, mergi repede la medic.",
+          "title": "Durere în călcâi sau în talpă",
+          "description": "Simți înțepătură sub călcâi ori în arcada tălpii la primii pași dimineața, sau tensiune deasupra călcâiului."
+        },
+        {
+          "id": "leg_hip_thigh",
+          "label": "Durere în șold sau coapsă la mers, pe scări ori când te ridici de pe scaun",
+          "isRedFlag": false,
+          "selfCareTip": "Evită pașii mari sau căratul greutăților și pune o pernă între genunchi când dormi pe o parte.",
+          "guidance": "Durerea de șold sau coapsă poate veni dintr-un mușchi întins ori din articulație. Dacă șchiopătezi sau ține peste o săptămână, mergi la medic.",
+          "title": "Durere de șold sau coapsă la mers",
+          "description": "Te doare șoldul pe lateral, zona inghinală sau mușchii coapsei când mergi, urci scări sau stai culcat pe acea parte."
         }
       ]
     },
@@ -747,6 +828,42 @@ const rawTranslations = {
           "guidance": "A very bad headache that starts suddenly is an emergency. You need a doctor now.",
           "title": "Sudden, very bad headache",
           "description": "The worst headache of your life, reaching full strength within seconds. It may come with a stiff neck, blurred vision or confusion."
+        },
+        {
+          "id": "head_neck_stiff",
+          "label": "Neck pain, stiff neck or soreness when turning your head",
+          "isRedFlag": false,
+          "selfCareTip": "Place a warm cloth on the back of your neck, relax your shoulders and turn your head slowly without forcing it. Avoid very high pillows.",
+          "guidance": "This usually comes from tense neck muscles, an awkward sleeping position or long screen hours. See a doctor if numbness or tingling spreads down your arm.",
+          "title": "Neck pain or stiff neck",
+          "description": "Your neck or the back of your neck aches and feels stiff when turning your head or looking down, sometimes spreading towards the shoulder."
+        },
+        {
+          "id": "head_throat_swallow",
+          "label": "Sore throat when swallowing, hoarse voice or tender glands on the neck",
+          "isRedFlag": false,
+          "selfCareTip": "Sip warm tea or plain water often, rest your voice and avoid smoke or very hot or icy drinks.",
+          "guidance": "Most sore throats come from a virus. See a doctor if you get a high fever, white patches on the tonsils or trouble swallowing saliva.",
+          "title": "Sore throat or pain when swallowing",
+          "description": "Your throat stings or hurts when you swallow, your voice feels rough, or small tender lumps appear under the jaw."
+        },
+        {
+          "id": "head_jaw_ear",
+          "label": "Earache, jaw joint pain when chewing or pressure around the cheeks and nose",
+          "isRedFlag": false,
+          "selfCareTip": "Eat soft foods, never put cotton buds inside the ear, and place a warm cloth against the outside of the cheek.",
+          "guidance": "Ear pain, jaw joint strain or blocked sinuses are worth having checked by a family doctor or dentist.",
+          "title": "Ear, jaw or sinus pain",
+          "description": "One ear feels blocked or throbbing, your jaw hurts when chewing or opening wide, or you feel heavy pressure over the cheeks and forehead."
+        },
+        {
+          "id": "head_neck_red_flag",
+          "label": "Stiff neck with high fever, strong sensitivity to light, skin spots or confusion",
+          "isRedFlag": true,
+          "selfCareTip": "Lie down somewhere quiet and call 112 right away.",
+          "guidance": "A very stiff neck with high fever or confusion can be a serious infection and needs hospital care immediately.",
+          "title": "Stiff neck with high fever or confusion",
+          "description": "You cannot bend your chin towards your chest because of neck stiffness, together with high fever, vomiting, drowsiness or bright light hurting your eyes."
         }
       ],
       "chest": [
@@ -926,9 +1043,36 @@ const rawTranslations = {
           "guidance": "The nerves in your back may be badly pressed. You need a hospital now.",
           "title": "Back pain with numb legs",
           "description": "Strong back pain with numbness or weakness in both legs, or new problems controlling urine or stool."
+        },
+        {
+          "id": "back_upper_blades",
+          "label": "Pain, tightness or burning in the upper back or between the shoulder blades",
+          "isRedFlag": false,
+          "selfCareTip": "Stand up often, gently roll your shoulders back and put a warm compress across the upper back.",
+          "guidance": "Upper back ache often comes from leaning over a phone or work table, or carrying heavy bags on one shoulder.",
+          "title": "Upper back pain or between the shoulder blades",
+          "description": "Tightness or aching high on your back and between the shoulder blades, especially after sitting or working with your arms."
+        },
+        {
+          "id": "back_flank_kidney",
+          "label": "One-sided mid-back or flank pain under the ribs, with fever, nausea or burning urine",
+          "isRedFlag": false,
+          "selfCareTip": "Sip plain water steadily and avoid strong anti-inflammatory painkillers until a doctor checks you.",
+          "guidance": "Deep pain on one side of the back under the ribs, especially with fever or urinary changes, can come from a kidney issue and should be seen today.",
+          "title": "One-sided flank or kidney area pain",
+          "description": "Deep ache on one side of the mid-back under the ribs that doesn't change much with posture, sometimes with fever or stinging urine."
         }
       ],
       "arm": [
+        {
+          "id": "arm_shoulder_elbow",
+          "label": "Shoulder pain when lifting the arm or elbow pain when gripping or carrying",
+          "isRedFlag": false,
+          "selfCareTip": "Rest from repeated overhead reaching and avoid sleeping directly on the sore shoulder for a few nights.",
+          "guidance": "This is often an irritated tendon in the shoulder or elbow. See a doctor if you cannot lift the arm or pain lasts over a week.",
+          "title": "Shoulder or elbow pain when moving",
+          "description": "Your shoulder catches or aches when raising your arm or dressing, or your elbow hurts when gripping or twisting objects."
+        },
         {
           "id": "arm_sprain",
           "label": "Shoulder, elbow or wrist pain after a fall, a twist or a knock",
@@ -1002,6 +1146,24 @@ const rawTranslations = {
           "guidance": "Sudden swelling in one leg can be a blood clot. It needs treatment fast.",
           "title": "Sudden swelling in one leg",
           "description": "Only one calf swelled up suddenly and is warm, red and painful."
+        },
+        {
+          "id": "leg_heel_foot",
+          "label": "Heel, Achilles tendon or foot arch pain when stepping onto your foot",
+          "isRedFlag": false,
+          "selfCareTip": "Wear supportive shoes with cushioned soles and avoid walking barefoot on hard floors.",
+          "guidance": "Foot sole and heel pain often follow long hours standing or thin footwear. See a doctor promptly if you have diabetes and notice any foot sore.",
+          "title": "Heel or foot sole pain",
+          "description": "Sharp soreness under the heel or along the arch on your first morning steps, or tightness just above the heel."
+        },
+        {
+          "id": "leg_hip_thigh",
+          "label": "Hip or thigh pain when walking, climbing stairs or rising from a chair",
+          "isRedFlag": false,
+          "selfCareTip": "Avoid long strides or heavy loads and place a pillow between your knees when sleeping on your side.",
+          "guidance": "Hip or thigh pain can come from a strained muscle or the hip joint. See a doctor if you limp or pain lasts longer than a week.",
+          "title": "Hip or thigh pain when walking",
+          "description": "Aching on the side of the hip, groin crease or thigh muscles when walking, climbing stairs or lying on that side."
         }
       ]
     },
@@ -1211,6 +1373,42 @@ const rawTranslations = {
           "guidance": "Një dhimbje koke shumë e fortë që vjen papritur është urgjencë. Të duhet mjek menjëherë.",
           "title": "Dhimbje koke e papritur dhe shumë e fortë",
           "description": "Dhimbja më e fortë e kokës në jetën tënde, e ardhur brenda pak sekondave. Mund të ketë qafë të ngurtë, shikim të turbullt ose hutim."
+        },
+        {
+          "id": "head_neck_stiff",
+          "label": "Dhimbje qafe, qafë e ngurtë ose dhimbje kur kthen kokën",
+          "isRedFlag": false,
+          "selfCareTip": "Vendos një peshqir të ngrohtë pas qafës, ul supet dhe ktheje kokën ngadalë pa e sforcuar. Shmang jastëkët shumë të lartë.",
+          "guidance": "Zakonisht vjen nga muskujt e tendosur të qafës, pozicioni i keq në gjumë ose orët para ekranit. Shko te mjeku nëse mpirja zbret në krah.",
+          "title": "Dhimbje qafe ose qafë e ngurtë",
+          "description": "Qafa ose zverku të dhemb dhe lëviz me vështirësi kur kthen kokën a shikon poshtë, ndonjëherë me tendosje drejt shpatullës."
+        },
+        {
+          "id": "head_throat_swallow",
+          "label": "Dhimbje fyti kur gëlltitesh, zë i ngjirur ose gjëndra të ënjtura në qafë",
+          "isRedFlag": false,
+          "selfCareTip": "Pi çaj të vakët ose ujë me gllënjka të vogla, pusho zërin dhe shmang tymin a pijet shumë të ftohta.",
+          "guidance": "Shumica e dhimbjeve të fytit janë virale. Shko te mjeku nëse ke temperaturë të lartë, njolla të bardha në fyt ose gëlltitesh me vështirësi.",
+          "title": "Dhimbje fyti ose gjatë gëlltitjes",
+          "description": "Fyti të djeg ose të dhemb kur gëlltitesh, ke zë të ngjirur ose ndien kokrra të ndjeshme nën nofull."
+        },
+        {
+          "id": "head_jaw_ear",
+          "label": "Dhimbje veshi, nofulle gjatë përtypjes ose shtypje rreth faqeve dhe sinuseve",
+          "isRedFlag": false,
+          "selfCareTip": "Ha ushqime të buta, mos fut shkopinj pambuku në vesh dhe vendos një kompresë të vakët jashtë mbi faqe.",
+          "guidance": "Dhimbja e veshit, nyja e nofullës ose sinuset e bllokuara duhen kontrolluar nga mjeku i familjes ose dentisti.",
+          "title": "Dhimbje veshi, nofulle ose sinusesh",
+          "description": "Njëri vesh të dhemb ose e ndien të bllokuar, të dhemb nofulla kur përtypesh ose ndien rëndesë në ballë dhe faqe."
+        },
+        {
+          "id": "head_neck_red_flag",
+          "label": "Qafë shumë e ngurtë me temperaturë të lartë, bezdi të fortë nga drita, njolla në lëkurë ose hutim",
+          "isRedFlag": true,
+          "selfCareTip": "Shtrihu në një vend të qetë dhe telefono menjëherë 112.",
+          "guidance": "Qafa shumë e ngurtë me temperaturë të lartë ose hutim mund të jetë infeksion i rëndë dhe kërkon spital menjëherë.",
+          "title": "Qafë e ngurtë me temperaturë të lartë ose hutim",
+          "description": "Nuk e ul dot mjekrën drejt gjoksit nga dhimbja, ke temperaturë të lartë, përgjumje, të vjella ose të vret shumë drita."
         }
       ],
       "chest": [
@@ -1390,9 +1588,36 @@ const rawTranslations = {
           "guidance": "Nervat e shpinës mund të jenë shtypur rëndë. Duhet të shkosh urgjent në spital.",
           "title": "Dhimbje shpine me mpirje në këmbë",
           "description": "Dhimbje e fortë shpine me mpirje ose dobësi në të dyja këmbët, ose probleme të reja me urinën ose jashtëqitjen."
+        },
+        {
+          "id": "back_upper_blades",
+          "label": "Dhimbje ose djegie në pjesën e sipërme të shpinës ose mes shpatullave",
+          "isRedFlag": false,
+          "selfCareTip": "Ngrihu shpesh nga karrigia, tërhiq lehtë shpatullat mbrapa dhe vendos një kompresë të ngrohtë sipër në shpinë.",
+          "guidance": "Shfaqet shpesh nga qëndrimi i përkulur mbi telefon ose tavolinë, apo nga mbajtja e çantave të rënda në një sup.",
+          "title": "Dhimbje sipër në shpinë ose mes shpatullave",
+          "description": "Tendosje ose dhimbje në pjesën e sipërme të shpinës dhe mes shpatullave, sidomos pas qëndrimit ulur ose punës me krahë."
+        },
+        {
+          "id": "back_flank_kidney",
+          "label": "Dhimbje në njërën anë të mesit nën brinjë, me temperaturë, të përziera ose djegie gjatë urinimit",
+          "isRedFlag": false,
+          "selfCareTip": "Pi ujë me gllënjka të vogla dhe mos merr qetësues të fortë para se të të shohë mjeku.",
+          "guidance": "Dhimbja në njërën anë të mesit nën brinjë, sidomos me temperaturë ose djegie kur urinon, mund të vijë nga veshkat dhe duhet parë sot nga mjeku.",
+          "title": "Dhimbje në njërën anë të mesit ose te veshkat",
+          "description": "Dhimbje e thellë në njërën anë të shpinës nën brinjë që nuk ndryshon me lëvizjen dhe mund të ketë temperaturë ose djegie në urinë."
         }
       ],
       "arm": [
+        {
+          "id": "arm_shoulder_elbow",
+          "label": "Dhimbje shpatulle kur ngre krahun ose dhimbje bërryli kur shtrëngon a mban diçka",
+          "isRedFlag": false,
+          "selfCareTip": "Pusho nga lëvizjet e përsëritura lart dhe mos fli mbi shpatullën që të dhemb për disa net.",
+          "guidance": "Shpesh është tendinë e irrituar në shpatull ose bërryl. Shko te mjeku nëse nuk e ngre dot krahun ose zgjat mbi një javë.",
+          "title": "Dhimbje shpatulle ose bërryli gjatë lëvizjes",
+          "description": "Shpatulla të dhemb kur ngre dorën a vishesh, ose bërryli të dhemb kur kap apo rrotullon sende."
+        },
         {
           "id": "arm_sprain",
           "label": "Dhimbje në shpatull, bërryl ose kyç pas një rënieje, përdredhjeje apo goditjeje",
@@ -1466,6 +1691,24 @@ const rawTranslations = {
           "guidance": "Ënjtja e papritur e njërës këmbë mund të jetë mpiksje gjaku (trombozë). Duhet trajtuar shpejt.",
           "title": "Pulpë e ënjtur papritur, vetëm në një këmbë",
           "description": "Vetëm njëra pulpë u ënjt papritur dhe është e ngrohtë, e kuqe dhe me dhimbje."
+        },
+        {
+          "id": "leg_heel_foot",
+          "label": "Dhimbje në thembër, tendinën e Akilit ose shputë kur shkel në tokë",
+          "isRedFlag": false,
+          "selfCareTip": "Vish këpucë të rehatshme me taban të butë dhe mos ec zbathur në dysheme të fortë.",
+          "guidance": "Shfaqet shpesh pas qëndrimit gjatë në këmbë ose këpucëve të holla. Nëse ke diabet dhe sheh plagë në shputë, shko shpejt te mjeku.",
+          "title": "Dhimbje në thembër ose në shputë",
+          "description": "Ndien therje nën thembër ose në harkun e shputës në hapat e parë në mëngjes, ose tendosje mbi thembër."
+        },
+        {
+          "id": "leg_hip_thigh",
+          "label": "Dhimbje në ijë ose kofshë gjatë ecjes, në shkallë ose kur ngrihesh nga karrigia",
+          "isRedFlag": false,
+          "selfCareTip": "Shmang hapat e mëdhenj ose peshat dhe vendos një jastëk mes gjunjëve kur fle në krah.",
+          "guidance": "Dhimbja e ijës ose kofshës mund të vijë nga një muskul i tërhequr ose nga nyja. Shko te mjeku nëse çalon ose zgjat mbi një javë.",
+          "title": "Dhimbje ije ose kofshe gjatë ecjes",
+          "description": "Të dhemb ija anash, rrëza e kofshës ose muskujt e kofshës kur ecën, ngjit shkallë ose shtrihesh në atë krah."
         }
       ]
     },
@@ -1675,6 +1918,42 @@ const rawTranslations = {
           "guidance": "Un mal di testa fortissimo che arriva all'improvviso è un'emergenza. Ti serve subito un medico.",
           "title": "Mal di testa improvviso e fortissimo",
           "description": "Il peggior mal di testa della tua vita, arrivato in pochi secondi. Può esserci collo rigido, vista offuscata o confusione."
+        },
+        {
+          "id": "head_neck_stiff",
+          "label": "Dolore al collo, cervicale bloccata o dolore quando giri la testa",
+          "isRedFlag": false,
+          "selfCareTip": "Appoggia un panno tiepido dietro il collo, abbassa le spalle e gira la testa lentamente senza forzare. Evita cuscini troppo alti.",
+          "guidance": "Di solito dipende da muscoli del collo contratti, postura scomoda nel sonno o tante ore davanti allo schermo. Vai dal medico se il formicolio scende lungo il braccio.",
+          "title": "Dolore al collo o cervicale rigida",
+          "description": "Il collo o la nuca fanno male e sono rigidi quando giri la testa o guardi in basso, a volte con tensione verso la spalla."
+        },
+        {
+          "id": "head_throat_swallow",
+          "label": "Mal di gola quando deglutisci, voce rauca o linfonodi gonfi sul collo",
+          "isRedFlag": false,
+          "selfCareTip": "Bevi tisane tiepide o acqua a piccoli sorsi, riposa la voce ed evita fumo o bevande ghiacciate.",
+          "guidance": "La maggior parte dei mal di gola è virale. Vai dal medico se hai febbre alta, placche bianche in gola o fai molta fatica a deglutire.",
+          "title": "Mal di gola o dolore a deglutire",
+          "description": "La gola brucia o fa male quando mandi giù, hai la voce bassa o senti piccoli linfonodi dolenti sotto la mandibola."
+        },
+        {
+          "id": "head_jaw_ear",
+          "label": "Mal d'orecchio, dolore alla mandibola masticando o pressione su guance e seni nasali",
+          "isRedFlag": false,
+          "selfCareTip": "Mangia cibi morbidi, non inserire bastoncini nell'orecchio e appoggia un panno tiepido sulla guancia.",
+          "guidance": "Il dolore all'orecchio, all'articolazione della mandibola o la sinusite meritano un controllo dal medico di famiglia o dal dentista.",
+          "title": "Dolore a orecchio, mandibola o seni nasali",
+          "description": "Senti un orecchio chiuso o pulsante, dolore alla mandibola quando mastichi o peso su fronte e zigomi."
+        },
+        {
+          "id": "head_neck_red_flag",
+          "label": "Collo rigidissimo con febbre alta, forte fastidio alla luce, macchie sulla pelle o confusione",
+          "isRedFlag": true,
+          "selfCareTip": "Sdraiati in un luogo tranquillo e chiama subito il 112.",
+          "guidance": "Un collo molto rigido insieme a febbre alta o confusione può indicare un'infezione grave e richiede subito l'ospedale.",
+          "title": "Collo rigido con febbre alta o confusione",
+          "description": "Non riesci a piegare il mento verso il petto per il dolore, con febbre alta, sonnolenza, vomito o forte fastidio alla luce."
         }
       ],
       "chest": [
@@ -1854,9 +2133,36 @@ const rawTranslations = {
           "guidance": "I nervi della schiena possono essere schiacciati in modo grave. Devi andare subito in ospedale.",
           "title": "Mal di schiena con gambe intorpidite",
           "description": "Forte dolore alla schiena con formicolio o debolezza in entrambe le gambe, o nuovi problemi a trattenere urina o feci."
+        },
+        {
+          "id": "back_upper_blades",
+          "label": "Dolore, tensione o bruciore nella parte alta della schiena o tra le scapole",
+          "isRedFlag": false,
+          "selfCareTip": "Alzati spesso dalla sedia, porta dolcemente indietro le spalle e metti un impacco caldo in alto sulla schiena.",
+          "guidance": "Compare spesso stando chinati su telefono o scrivania, o portando borse pesanti su una sola spalla.",
+          "title": "Dolore in alto sulla schiena o tra le scapole",
+          "description": "Tensione o indolenzimento nella parte alta della schiena e tra le scapole, specie dopo ore seduti o lavoro con le braccia."
+        },
+        {
+          "id": "back_flank_kidney",
+          "label": "Dolore su un lato della schiena sotto le costole, con febbre, nausea o bruciore a urinare",
+          "isRedFlag": false,
+          "selfCareTip": "Bevi acqua a piccoli sorsi ed evita antidolorifici forti prima della visita medica.",
+          "guidance": "Un dolore su un fianco della schiena sotto le costole, soprattutto con febbre o disturbi urinari, può riguardare i reni e va visto oggi da un medico.",
+          "title": "Dolore al fianco o nella zona dei reni",
+          "description": "Dolore profondo su un lato della schiena sotto le costole che cambia poco con i movimenti, a volte con febbre o bruciore a urinare."
         }
       ],
       "arm": [
+        {
+          "id": "arm_shoulder_elbow",
+          "label": "Dolore alla spalla alzando il braccio o dolore al gomito stringendo o sollevando oggetti",
+          "isRedFlag": false,
+          "selfCareTip": "Evita movimenti ripetuti sopra la testa e non dormire sulla spalla dolente per qualche notte.",
+          "guidance": "Spesso è un tendine infiammato di spalla o gomito. Fatti vedere se non riesci ad alzare il braccio o il dolore dura oltre una settimana.",
+          "title": "Dolore a spalla o gomito nei movimenti",
+          "description": "La spalla fa male quando alzi il braccio o ti vesti, oppure il gomito duole quando afferri o ruoti gli oggetti."
+        },
         {
           "id": "arm_sprain",
           "label": "Dolore a spalla, gomito o polso dopo una caduta, un movimento brusco o un urto",
@@ -1930,6 +2236,24 @@ const rawTranslations = {
           "guidance": "Il gonfiore improvviso di una sola gamba può essere un coagulo di sangue (trombosi). Va curato in fretta.",
           "title": "Gamba gonfia all'improvviso, solo una",
           "description": "Un solo polpaccio si è gonfiato all'improvviso ed è caldo, rosso e dolente."
+        },
+        {
+          "id": "leg_heel_foot",
+          "label": "Dolore al tallone, al tendine d'Achille o alla pianta del piede quando appoggi il passo",
+          "isRedFlag": false,
+          "selfCareTip": "Usa scarpe comode con suola morbida ed evita di camminare scalzo su pavimenti duri.",
+          "guidance": "Compare spesso dopo molte ore in piedi o con scarpe basse. Se hai il diabete e noti una lesione sul piede, fatti vedere subito.",
+          "title": "Dolore al tallone o alla pianta del piede",
+          "description": "Fitta sotto il tallone o lungo l'arco del piede ai primi passi del mattino, o tensione sopra il tallone."
+        },
+        {
+          "id": "leg_hip_thigh",
+          "label": "Dolore all'anca o alla coscia camminando, salendo le scale o alzandoti dalla sedia",
+          "isRedFlag": false,
+          "selfCareTip": "Evita passi lunghi o carichi pesanti e tieni un cuscino tra le ginocchia dormendo sul fianco.",
+          "guidance": "Il dolore all'anca o alla coscia può dipendere da un muscolo stirato o dall'articolazione. Vai dal medico se zoppichi o dura più di una settimana.",
+          "title": "Dolore all'anca o alla coscia camminando",
+          "description": "Dolore sul lato dell'anca, all'inguine o nei muscoli della coscia quando cammini, sali le scale o dormi su quel lato."
         }
       ]
     },
@@ -2139,6 +2463,42 @@ const rawTranslations = {
           "guidance": "Izrazito jaka glavobolja koja nastane naglo hitno je stanje. Odmah ti treba liječnik.",
           "title": "Nagla, jako snažna glavobolja",
           "description": "Najjača glavobolja u životu koja dostiže punu snagu u nekoliko sekundi. Može ići uz ukočen vrat, zamućen vid ili zbunjenost."
+        },
+        {
+          "id": "head_neck_stiff",
+          "label": "Bol u vratu, ukočen vrat ili bol pri okretanju glave",
+          "isRedFlag": false,
+          "selfCareTip": "Stavi topli oblog na stražnju stranu vrata, opusti ramena i polako okreći glavu bez forsiranja. Izbjegavaj vrlo visoke jastuke.",
+          "guidance": "Obično dolazi od napetih vratnih mišića, nezgodnog položaja u snu ili dugog rada za zaslonom. Javi se liječniku ako se trnci spuštaju u ruku.",
+          "title": "Bol u vratu ili ukočen vrat",
+          "description": "Vrat ili zatiljak boli te i teško se pokreće pri okretanju glave ili pogledu prema dolje, ponekad uz napetost prema ramenu."
+        },
+        {
+          "id": "head_throat_swallow",
+          "label": "Grlobolja pri gutanju, promuklost ili otečeni čvorovi na vratu",
+          "isRedFlag": false,
+          "selfCareTip": "Pij topli čaj ili vodu u malim gutljajima, štedi glas i izbjegavaj dim ili jako hladna pića.",
+          "guidance": "Većina upala grla je virusna. Javi se liječniku ako dobiješ visoku vrućicu, bijele naslage u grlu ili sve teže gutaš.",
+          "title": "Grlobolja ili bol pri gutanju",
+          "description": "Grlo te peče ili boli dok gutaš, glas ti je promukao ili osjećaš male osjetljive čvorove ispod čeljusti."
+        },
+        {
+          "id": "head_jaw_ear",
+          "label": "Bol u uhu, bol u čeljusti pri žvakanju ili pritisak oko obraza i sinusa",
+          "isRedFlag": false,
+          "selfCareTip": "Jedi mekanu hranu, ne stavljaj štapiće u uho i prisloni topli oblog s vanjske strane obraza.",
+          "guidance": "Bol u uhu, čeljusnom zglobu ili začepljene sinuse dobro je provjeriti kod obiteljskog liječnika ili stomatologa.",
+          "title": "Bol u uhu, čeljusti ili sinusima",
+          "description": "Jedno uho osjećaš začepljeno ili pulsira, čeljust te boli pri žvakanju ili osjećaš pritisak u čelu i obrazima."
+        },
+        {
+          "id": "head_neck_red_flag",
+          "label": "Jako ukočen vrat uz visoku vrućicu, smetnju jakog svjetla, osip ili zbunjenost",
+          "isRedFlag": true,
+          "selfCareTip": "Legni na mirno mjesto i odmah nazovi 112.",
+          "guidance": "Izrazito ukočen vrat uz visoku vrućicu ili zbunjenost može biti teška infekcija i zahtijeva bolnicu odmah.",
+          "title": "Ukočen vrat uz visoku vrućicu ili zbunjenost",
+          "description": "Ne možeš spustiti bradu prema prsima zbog boli u vratu, uz visoku vrućicu, pospanost, povraćanje ili jaku smetnju svjetla."
         }
       ],
       "chest": [
@@ -2318,9 +2678,36 @@ const rawTranslations = {
           "guidance": "Živci u kralježnici mogu biti ozbiljno pritisnuti. Hitno ti treba bolnica.",
           "title": "Bol u leđima s utrnulim nogama",
           "description": "Snažna bol u leđima uz utrnulost ili slabost obiju nogu, ili nove smetnje s mokrenjem ili stolicom."
+        },
+        {
+          "id": "back_upper_blades",
+          "label": "Bol, napetost ili pečenje u gornjem dijelu leđa ili između lopatica",
+          "isRedFlag": false,
+          "selfCareTip": "Ustani često sa stolca, lagano povuci ramena unatrag i stavi topli oblog na gornji dio leđa.",
+          "guidance": "Često nastaje zbog naginjanja nad telefonom ili stolom, ili nošenja teške torbe na jednom ramenu.",
+          "title": "Bol u gornjem dijelu leđa ili između lopatica",
+          "description": "Napetost ili probadanje visoko u leđima i između lopatica, osobito nakon dugog sjedenja ili rada rukama."
+        },
+        {
+          "id": "back_flank_kidney",
+          "label": "Bol na jednoj strani leđa ispod rebara, uz vrućicu, mučninu ili pečenje pri mokrenju",
+          "isRedFlag": false,
+          "selfCareTip": "Pij vodu u malim gutljajima i ne uzimaj jake lijekove protiv bolova dok te ne pregleda liječnik.",
+          "guidance": "Duboka bol na jednoj strani leđa ispod rebara, osobito uz vrućicu ili smetnje mokrenja, može dolaziti od bubrega i treba pregled danas.",
+          "title": "Bol u boku leđa ili području bubrega",
+          "description": "Duboka bol na jednoj strani srednjih leđa ispod rebara koja se ne mijenja s položajem, ponekad uz vrućicu ili pečenje pri mokrenju."
         }
       ],
       "arm": [
+        {
+          "id": "arm_shoulder_elbow",
+          "label": "Bol u ramenu pri podizanju ruke ili bol u laktu pri hvatanju i nošenju predmeta",
+          "isRedFlag": false,
+          "selfCareTip": "Izbjegavaj ponavljano podizanje ruke iznad glave i nemoj spavati na bolnom ramenu nekoliko noći.",
+          "guidance": "Često je riječ o nadraženoj tetivi ramena ili lakta. Javi se liječniku ako ne možeš podići ruku ili bol traje dulje od tjedan dana.",
+          "title": "Bol u ramenu ili laktu pri pokretu",
+          "description": "Rame te boli dok podižeš ruku ili se oblačiš, ili te lakat boli dok stišćeš ili okrećeš predmete."
+        },
         {
           "id": "arm_sprain",
           "label": "Bol u ramenu, laktu ili zapešću nakon pada, iskretanja ili udarca",
@@ -2394,6 +2781,24 @@ const rawTranslations = {
           "guidance": "Naglo oticanje jedne potkoljenice može biti krvni ugrušak (tromboza). Treba hitno liječenje.",
           "title": "Naglo oticanje samo jedne noge",
           "description": "Samo jedan list naglo je otekao te je topao, crven i bolan."
+        },
+        {
+          "id": "leg_heel_foot",
+          "label": "Bol u peti, Ahilovoj tetivi ili tabanu kada staneš na stopalo",
+          "isRedFlag": false,
+          "selfCareTip": "Nosi udobnu obuću s mekim potplatom i izbjegavaj hodanje bos po tvrdom podu.",
+          "guidance": "Često se javlja nakon dugog stajanja ili tanke obuće. Ako imaš šećernu bolest i primijetiš ranicu na stopalu, brzo se javi liječniku.",
+          "title": "Bol u peti ili tabanu",
+          "description": "Oštra bol ispod pete ili duž svoda stopala pri prvim jutarnjim koracima, ili zatezanje iznad pete."
+        },
+        {
+          "id": "leg_hip_thigh",
+          "label": "Bol u kuku ili bedru pri hodanju, penjanju uz stepenice ili ustajanju sa stolca",
+          "isRedFlag": false,
+          "selfCareTip": "Izbjegavaj duge korake ili nošenje tereta i stavi jastuk između koljena dok spavaš na boku.",
+          "guidance": "Bol u kuku ili natkoljenici može potjecati od istegnutog mišića ili zgloba. Javi se liječniku ako šepaš ili bol traje dulje od tjedan dana.",
+          "title": "Bol u kuku ili bedru pri hodanju",
+          "description": "Boli te vanjska strana kuka, prepona ili mišići natkoljenice dok hodaš, ideš uz stepenice ili ležiš na toj strani."
         }
       ]
     },
@@ -2603,6 +3008,42 @@ const rawTranslations = {
           "guidance": "But zurali dukh ko shero savi avel sigo si sigardiari. Trubul tuke doktori akana.",
           "title": "Sigi, but zurali dukh ko shero",
           "description": "I maj bari dukh ko shero ando tiro trajo, savi avel ande xanci sekunde. Shaj te avel phangle kora, kale dikhibenasa vaj konfuzijasa."
+        },
+        {
+          "id": "head_neck_stiff",
+          "label": "Dukh ki kor, phangli kor vaj dukh kana boldes o shero",
+          "isRedFlag": false,
+          "selfCareTip": "Čhiv tato dikhlo palal ki kor, mukh tele e phike thaj bolde o shero lokhes bi zorako. Ma sove pe but uče sheranda.",
+          "guidance": "Avel butivar katar phangle muskulura ki kor, bango sovibe vaj lungo dikhiben ko ekrano. Te huljel pamortimos ko vast, dzha ko doktori.",
+          "title": "Dukh ki kor vaj phangli kor",
+          "description": "I kor dukhal thaj phares phirel kana boldes o shero vaj dikhes tele, varekana tasavimasa karing o phiko."
+        },
+        {
+          "id": "head_throat_swallow",
+          "label": "Dukh ando krlo kana nakaves, phanglo glaso vaj shuvljarde guke pe kor",
+          "isRedFlag": false,
+          "selfCareTip": "Pi tato čajo vaj pani po zalog, hodinisar o glaso thaj ačhav o thuv vaj but shudre pimatja.",
+          "guidance": "Maj but dukha ando krlo aven katar viroza. Te si tut baro tatipen, parne thana ando krlo vaj phares nakaves, dzha ko doktori.",
+          "title": "Dukh ando krlo vaj kana nakaves",
+          "description": "Phabarel vaj dukhal tut o krlo kana nakaves, tiro glaso si phanglo vaj hatjares cikne guke tela i pashni."
+        },
+        {
+          "id": "head_jaw_ear",
+          "label": "Dukh ando kan, dukh ki pashni kana xas vaj tasavimos pasha e čhamja thaj o nakh",
+          "isRedFlag": false,
+          "selfCareTip": "Xa kovlo xaben, ma čhiv kashuka ando kan thaj čhiv kovlo tato dikhlo avral pe čham.",
+          "guidance": "Dukh ando kan, ki pashni vaj ko sinusura valjani te dikhel o familijako doktori vaj o dantisto.",
+          "title": "Dukh ando kan, pashni vaj sinusura",
+          "description": "Jekh kan dukhal vaj si phanglo, dukhal i pashni kana xas vaj hatjares pharipen pe chikat thaj čhamja."
+        },
+        {
+          "id": "head_neck_red_flag",
+          "label": "Zurales phangli kor bare tatipnasa, dukh katar o dud, thana pe morti vaj konfuzija",
+          "isRedFlag": true,
+          "selfCareTip": "Pashljo pe mirno than thaj akhar sigo 112.",
+          "guidance": "Zurales phangli kor bare tatipnasa vaj konfuzijasa shaj te avel phari infekcija thaj mangel bolnitsa akana.",
+          "title": "Phangli kor bare tatipnasa vaj konfuzijasa",
+          "description": "Nashti te bangjares o shero karing o kolin katar i dukh, bare tatipnasa, čhadimasa vaj dukh katar o dud."
         }
       ],
       "chest": [
@@ -2782,9 +3223,36 @@ const rawTranslations = {
           "guidance": "E nervura ando dumo shaj te aven phares tasavde. Trubul tuke bolnitsa sigo.",
           "title": "Dukh ko dumo pamortime punrenca",
           "description": "Zurali dukh ko dumo pamortimasa vaj slabipnasa ande solduj punre, vaj neve problemura ko toaleto."
+        },
+        {
+          "id": "back_upper_blades",
+          "label": "Dukh vaj phabarimos opral ko dumo vaj mashkar e phike",
+          "isRedFlag": false,
+          "selfCareTip": "Ushti butivar katar o skamin, crde lokhes e phike palpale thaj čhiv tato dikhlo opral pe dumo.",
+          "guidance": "Avel butivar kana beshes bangjardo upral o telefono vaj skamin, vaj kana ingeres pharo gono pe jekh phiko.",
+          "title": "Dukh opral ko dumo vaj mashkar e phike",
+          "description": "Tasavimos vaj dukh opral ko dumo thaj mashkar e phike, maj but pala beshimos vaj buchi le vastenca."
+        },
+        {
+          "id": "back_flank_kidney",
+          "label": "Dukh pe jekh rig e dumeski tela e pashavra, tatipnasa, čhadimasa vaj phabarimos ko muter",
+          "isRedFlag": false,
+          "selfCareTip": "Pi pani po zalog thaj ma le zurale draba mamuj dukh anglal te dikhel tut o doktori.",
+          "guidance": "Dukh pe jekh rig e dumeski tela e pashavra, maj but tatipnasa vaj phabarimasa ko muter, shaj te avel katar e bobrege thaj trubul dikhli adives.",
+          "title": "Dukh pe jekh rig e dumeski vaj pasha e bobrege",
+          "description": "Xor dukh pe jekh rig e dumeski tela e pashavra savi na parudjol kana phires, varekana tatipnasa vaj phabarimasa ko mutrimos."
         }
       ],
       "arm": [
+        {
+          "id": "arm_shoulder_elbow",
+          "label": "Dukh ko phiko kana vazdes o vast vaj dukh ko kohni kana astaras vareso",
+          "isRedFlag": false,
+          "selfCareTip": "Ma vazde o vast opral o shero butivar thaj ma sove pe dukhado phiko xanci ratja.",
+          "guidance": "Butivar si xoljardi žila ko phiko vaj kohni. Te nashti te vazdes o vast vaj ačhel maj but katar jekh kurko, dzha ko doktori.",
+          "title": "Dukh ko phiko vaj kohni ko phiravimos",
+          "description": "O phiko dukhal kana vazdes o vast vaj urjaves tut, vaj o kohni dukhal kana astaras thaj boldes bukja."
+        },
         {
           "id": "arm_sprain",
           "label": "Dukh ko phiko, kohni vaj globi e vastesko pala perimos vaj sigo phiravimos",
@@ -2858,6 +3326,24 @@ const rawTranslations = {
           "guidance": "Sigo shuvljarimos ko jekh punro shaj te avel phandlo rat (tromboza). Musaj sigo te sastjarel pes.",
           "title": "Sigo shuvljarimos samo ko jekh punro",
           "description": "Samo jekh pulpa shuvljili sigo thaj si tati, loli thaj dukhadi."
+        },
+        {
+          "id": "leg_heel_foot",
+          "label": "Dukh ando khur, žila upral o khur vaj ki talpa kana čhives o punro tele",
+          "isRedFlag": false,
+          "selfCareTip": "Phirav lokhe papuče kovle talpasa thaj ma phir nangepunrengo pe zurali phuv.",
+          "guidance": "Avel butivar pala lungo terdimos pe punre vaj saneske papuče. Te si tut diabeto thaj dikhes rana pe talpa, dzha sigo ko doktori.",
+          "title": "Dukh ando khur vaj ki talpa",
+          "description": "Hatjares pusavimos tela o khur vaj ki talpa ko anglune phirimata sabale, vaj tasavimos upral o khur."
+        },
+        {
+          "id": "leg_hip_thigh",
+          "label": "Dukh ando kuko vaj opral ko punro kana phires, inkljes pe skale vaj ushtes katar o skamin",
+          "isRedFlag": false,
+          "selfCareTip": "Ma ker bare phirimata vaj ma inger pharo thaj čhiv sherand mashkar e changa kana soves pe rig.",
+          "guidance": "Dukh ko kuko vaj opral ko punro shaj te avel katar crdindo muskulo vaj klicho. Dzha ko doktori te phires banges vaj ačhel opral jekh kurko.",
+          "title": "Dukh ko kuko vaj opral ko punro ko phirimos",
+          "description": "Dukhal o kuko pe rig, pasha o por vaj e muskulura opral ko punro kana phires, inkljes pe skale vaj pashljos pe kodija rig."
         }
       ]
     },

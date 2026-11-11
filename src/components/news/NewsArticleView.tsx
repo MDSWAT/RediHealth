@@ -8,6 +8,7 @@ import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, ClockIcon, PinIcon, Stethosco
 import { EXTRA_MAP_COPY } from "@/components/ui/RomaniaCountyMap";
 import { formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
 import {
+  ALBANIA_WIDE,
   CROATIA_WIDE,
   ITALY_WIDE,
   MOLDOVA_WIDE,
@@ -238,6 +239,7 @@ export function NewsArticleView({ id }: { id: string }) {
     if (place === ITALY_WIDE && itemCountry === "it") return t.countyMap?.allItaly ?? ITALY_WIDE;
     if (place === MOLDOVA_WIDE && itemCountry === "md") return extra.allMoldova;
     if (place === CROATIA_WIDE && itemCountry === "hr") return extra.allCroatia;
+    if (place === ALBANIA_WIDE && itemCountry === "al") return extra.allAlbania;
     if (isNationalCounty(place)) return np.allCounties;
     return placeName(place, lang);
   };

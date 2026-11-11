@@ -4,11 +4,12 @@ import { buildContentSecurityPolicy, createNonce } from "@/lib/security/csp";
 const base = { nonce: "abc123", meetingOrigin: "https://meet.jit.si" };
 
 describe("buildContentSecurityPolicy", () => {
-  it("only allows nonce-tagged scripts in production", () => {
+  it("only allows nonce-tagged scripts and WebAssembly decoding in production", () => {
     const policy = buildContentSecurityPolicy({ ...base, isDevelopment: false });
-    expect(policy).toContain("script-src 'self' 'nonce-abc123' 'strict-dynamic'");
-    expect(policy).not.toContain("unsafe-eval");
+    expect(policy).toContain("script-src 'self' 'nonce-abc123' 'strict-dynamic' 'wasm-unsafe-eval'");
+    expect(policy).not.toContain("'unsafe-eval'");
     expect(policy).not.toMatch(/script-src[^;]*unsafe-inline/);
+    expect(policy).toContain("worker-src 'self' blob:");
     expect(policy).toContain("upgrade-insecure-requests");
   });
 

@@ -3760,15 +3760,15 @@ export const translations: Record<Lang, Translations> = {
       phone: {
         status: "online",
         messages: [
-          "O chikat vash o gripo anel o gripo",
+          "I vakcina vash o gripo anel o gripo",
           "Xoxamno.",
-          "O chikat vash o gripo nashti te del tut gripo.",
+          "I vakcina vash o gripo nashti te del tut gripo.",
           "Ma pakya xoxamne vorbenge.",
           "Phuch ekhe doktore vay ekh chacho than.",
         ],
         factcheckLine1: "Xoxavno mesazho",
         factcheckLine2:
-          "Ando chikat vash o gripo nane zhuvindo viruso kay shay te del tut gripo.",
+          "Andi vakcina vash o gripo nane zhuvindo viruso kay shay te del tut gripo.",
         source: "Katar avel: WHO, sastipnasko ministeriumo",
         button: "Phuch ekhe mediatore",
       },
@@ -4017,7 +4017,7 @@ export const translations: Record<Lang, Translations> = {
       topicsGateway: {
         badge: "8 dikhle sikavimata",
         title: "Gin ekh sikavipe",
-        description: "Vash o ilo, gudlo rat, xabe, phiripe, rengro dikhiben, o chikat thaj i khabni romni.",
+        description: "Vash o ilo, gudlo rat, xabe, phiripe, rengro dikhiben, i vakcina thaj i khabni romni.",
         cta: "Dikh e sikavimata",
       },
       quickTopicsTitle: "Butivar rodino",
@@ -4186,7 +4186,7 @@ export const translations: Record<Lang, Translations> = {
     },
     newsPage: {
       heroTitle: "Sastipnaske nevimata thaj thanune avizurya",
-      heroSubtitle: "Sastipnaske avizurya, mobilne klinike thaj kampaniye vash o chikat ando cho than.",
+      heroSubtitle: "Sastipnaske avizurya, mobilne klinike thaj kampaniye vash i vakcina ando cho than.",
       countyLabel: "Rig:",
       allCounties: "Savore riga",
       categories: {
@@ -4196,7 +4196,7 @@ export const translations: Record<Lang, Translations> = {
         practicalAdvice: "Lache godya",
         patientRights: "Paciyenteske xakaya",
         childHealth: "Chavorengo sastipen",
-        vaccinationCampaigns: "Kampaniye vash o chikat",
+        vaccinationCampaigns: "Kampaniye vash i vakcina",
         seasonalAdvice: "Vramake godya",
       },
       emptyTitle: "Nane nevimata vash i alosardi rig",

@@ -5,11 +5,13 @@ import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import { MOLDOVA_REGIONS_MAP } from "@/lib/geo/moldova-regions";
 import { CROATIA_COUNTIES_MAP } from "@/lib/geo/croatia-counties";
 import { ITALY_REGIONS_MAP } from "@/lib/geo/italy-regions";
-import { CloseIcon, SearchIcon } from "@/components/ui/icons";
+import { ALBANIA_COUNTIES_MAP } from "@/lib/geo/albania-counties";
+import { CheckIcon, CloseIcon, SearchIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { foldForSearch, placeName, quoteTerm } from "@/components/news/news-format";
 import { useSheetDialog } from "@/components/news/use-sheet-dialog";
 import {
+  ALL_ALBANIA,
   ALL_CROATIA,
   ALL_ITALY,
   ALL_MOLDOVA,
@@ -44,36 +46,42 @@ const MODAL_COUNTRY_COPY: Record<Lang, Record<Exclude<MapCountry, "ro">, { title
     md: { title: "Alege un raion din Moldova", subtitle: "Vezi alertele și caravanele din raionul ales.", search: "Caută raionul sau municipiul..." },
     hr: { title: "Alege un comitat din Croația", subtitle: "Vezi alertele și clinicile mobile din zona aleasă.", search: "Caută comitatul..." },
     it: { title: "Alege o regiune din Italia", subtitle: "Vezi avizele și clinicile mobile din regiunea aleasă.", search: "Caută regiunea..." },
+    al: { title: "Alege o regiune din Albania", subtitle: "Vezi alertele și caravanele din regiunea aleasă.", search: "Caută regiunea..." },
   },
   en: {
     md: { title: "Choose a district in Moldova", subtitle: "See health alerts and mobile clinics for your district.", search: "Search district or municipality..." },
     hr: { title: "Choose a county in Croatia", subtitle: "See health alerts and mobile clinics for your county.", search: "Search county..." },
     it: { title: "Choose a region in Italy", subtitle: "See health alerts and mobile clinics for your region.", search: "Search region..." },
+    al: { title: "Choose a county in Albania", subtitle: "See health alerts and mobile clinics for your county.", search: "Search county..." },
   },
   sq: {
     md: { title: "Zgjidh një rajon në Moldavi", subtitle: "Shiko njoftimet dhe karvanet për rajonin e zgjedhur.", search: "Kërko rajonin..." },
     hr: { title: "Zgjidh një qark në Kroaci", subtitle: "Shiko njoftimet dhe klinikat lëvizëse për qarkun e zgjedhur.", search: "Kërko qarkun..." },
     it: { title: "Zgjidh një rajon në Itali", subtitle: "Shiko njoftimet dhe klinikat lëvizëse për rajonin e zgjedhur.", search: "Kërko rajonin..." },
+    al: { title: "Zgjidh një qark në Shqipëri", subtitle: "Shiko njoftimet shëndetësore dhe karvanet mjekësore pranë teje.", search: "Kërko qarkun..." },
   },
   it: {
     md: { title: "Scegli un distretto della Moldavia", subtitle: "Vedi gli avvisi e gli ambulatori mobili del distretto.", search: "Cerca distretto..." },
     hr: { title: "Scegli una regione della Croazia", subtitle: "Vedi gli avvisi e gli ambulatori mobili della regione.", search: "Cerca regione..." },
     it: { title: "Scegli la tua regione", subtitle: "Vedi gli avvisi sanitari e gli ambulatori mobili vicino a te.", search: "Cerca regione..." },
+    al: { title: "Scegli una prefettura dell'Albania", subtitle: "Vedi gli avvisi e gli ambulatori mobili della prefettura.", search: "Cerca prefettura..." },
   },
   hr: {
     md: { title: "Odaberi rajon u Moldaviji", subtitle: "Pogledaj lokalne obavijesti i mobilne ambulante.", search: "Pretraži rajon..." },
     hr: { title: "Odaberi svoju županiju", subtitle: "Pogledaj lokalne zdravstvene obavijesti i mobilne ambulante u svom kraju.", search: "Pretraži županiju..." },
     it: { title: "Odaberi regiju u Italiji", subtitle: "Pogledaj lokalne obavijesti i mobilne ambulante.", search: "Pretraži regiju..." },
+    al: { title: "Odaberi okrug u Albaniji", subtitle: "Pogledaj lokalne zdravstvene obavijesti i mobilne ambulante.", search: "Pretraži okrug..." },
   },
   rom: {
     md: { title: "Alosar yekh rayono and-i Moldova", subtitle: "Dikh e lokalne nevimata thaj mobilne klinike.", search: "Rod o rayono..." },
     hr: { title: "Alosar ti zhupaniya", subtitle: "Dikh e lokalne nevimata thaj mobilne klinike.", search: "Rod i zhupaniya..." },
     it: { title: "Alosar yekh regiyona and-i Italiya", subtitle: "Dikh e lokalne nevimata thaj mobilne klinike.", search: "Rod i regiyona..." },
+    al: { title: "Alosar yekh qarko and-i Shchiperiya", subtitle: "Dikh e lokalne nevimata thaj mobilne klinike.", search: "Rod o qarko..." },
   },
 };
 
 /**
- * CountyOverrideModal: searchable area selector for Romania, Moldova, Croatia, or Italy.
+ * CountyOverrideModal: searchable area selector for Romania, Moldova, Albania, Croatia, or Italy.
  * Bottom sheet on phones, centred dialog from sm up.
  */
 export function CountyOverrideModal({
@@ -96,6 +104,7 @@ export function CountyOverrideModal({
     if (country === "md") return [...MOLDOVA_REGIONS_MAP.areas.map((a) => a.name)].sort((a, b) => a.localeCompare(b, "ro"));
     if (country === "hr") return [...CROATIA_COUNTIES_MAP.areas.map((a) => a.name)].sort((a, b) => a.localeCompare(b, "hr"));
     if (country === "it") return [...ITALY_REGIONS_MAP.areas.map((a) => a.name)].sort((a, b) => a.localeCompare(b, "it"));
+    if (country === "al") return [...ALBANIA_COUNTIES_MAP.areas.map((a) => a.name)].sort((a, b) => a.localeCompare(b, "sq"));
     return ROMANIAN_COUNTIES as readonly string[];
   }, [country]);
 
@@ -107,7 +116,15 @@ export function CountyOverrideModal({
   }, [searchTerm, lang, areaPool]);
 
   const nationalValue =
-    country === "md" ? ALL_MOLDOVA : country === "hr" ? ALL_CROATIA : country === "it" ? ALL_ITALY : NATIONAL_RO;
+    country === "md"
+      ? ALL_MOLDOVA
+      : country === "hr"
+        ? ALL_CROATIA
+        : country === "it"
+          ? ALL_ITALY
+          : country === "al"
+            ? ALL_ALBANIA
+            : NATIONAL_RO;
   const nationalLabel =
     country === "md"
       ? extra.allMoldova
@@ -115,7 +132,9 @@ export function CountyOverrideModal({
         ? extra.allCroatia
         : country === "it"
           ? (t.countyMap?.allItaly ?? ALL_ITALY)
-          : nr.allCountiesNational;
+          : country === "al"
+            ? extra.allAlbania
+            : nr.allCountiesNational;
 
   const customCopy = country === "ro" ? null : (MODAL_COUNTRY_COPY[lang] ?? MODAL_COUNTRY_COPY.ro)[country];
   const modalTitle = customCopy ? customCopy.title : nr.modalTitle;
@@ -139,20 +158,15 @@ export function CountyOverrideModal({
           onClick={() => handleSelect(area)}
           aria-pressed={selected}
           className={cn(
-            "flex min-h-[48px] w-full items-center gap-3 px-5 py-2.5 text-left text-sm text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
-            selected && "font-semibold",
+            "flex min-h-[48px] w-full items-center justify-between gap-3 px-5 py-2.5 text-left text-sm text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+            selected && "bg-sapphire-soft/50 font-semibold",
           )}
         >
-          <span
-            aria-hidden="true"
-            className={cn(
-              "flex h-4 w-4 shrink-0 items-center justify-center rounded-full border",
-              selected ? "border-foreground" : "border-muted-foreground/50",
-            )}
-          >
-            {selected && <span className="h-2 w-2 rounded-full bg-foreground" />}
-          </span>
           <span>{label}</span>
+          <CheckIcon
+            aria-hidden="true"
+            className={cn("h-4 w-4 shrink-0 transition-opacity", selected ? "text-sapphire opacity-100" : "opacity-0")}
+          />
         </button>
       </li>
     );

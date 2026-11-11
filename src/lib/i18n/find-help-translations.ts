@@ -12,6 +12,9 @@ export type FindHelpCopy = {
   categories: Record<InstituteCategory, string>;
   allCategories: string;
   countryLabel: string;
+  locationLabel: string;
+  myLocation: string;
+  mapArea: string;
   categoryLabel: string;
   searchPlaceholder: string;
   /** Short placeholder that fits a 375px phone; the label keeps the full searchPlaceholder. */
@@ -21,7 +24,11 @@ export type FindHelpCopy = {
   locating: string;
   locationActive: string;
   locationDenied: string;
+  placesInArea: string;
+  changeCountry: string;
+  distantLocationNotice: (country: string) => string;
   showingCountry: (country: string) => string;
+  nearCity: (city: string) => string;
   searchThisArea: string;
   loading: string;
   loadError: string;
@@ -29,18 +36,24 @@ export type FindHelpCopy = {
   noResults: string;
   clearFilters: string;
   kmAway: (km: string) => string;
+  metersWalkAway: (meters: number, minutes: number) => string;
   open24h: string;
   openNowLive: string;
+  closedNowLive: string;
   openNowFilter: string;
   emergencyWalkInFilter: string;
   emergencyRightsCallout: string;
+  listen: string;
+  stopListening: string;
+  largeText: string;
+  spokenIntro: string;
   cityQuickJumpLabel: string;
   viewModeLabel: string;
-  viewSplit: string;
   viewMap: string;
   viewList: string;
   closePreview: string;
   emergency: string;
+  callAction: string;
   directions: string;
   website: string;
   youAreHere: string;
@@ -48,6 +61,7 @@ export type FindHelpCopy = {
   mapLegendLabel: string;
   legendPlace: string;
   legendEmergency: string;
+  legendCluster: string;
   resultsCount: (count: number) => string;
   showMore: (remaining: number) => string;
   /** OpenStreetMap opening_hours day codes (Mo…Su, PH) and "off", in this language. */
@@ -131,6 +145,9 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     },
     allCategories: "All",
     countryLabel: "Country",
+    locationLabel: "Where",
+    myLocation: "My location",
+    mapArea: "Map area",
     categoryLabel: "Type",
     searchPlaceholder: "Search by name, city or address",
     searchHint: "Name, city or address",
@@ -139,7 +156,12 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     locating: "Finding your location…",
     locationActive: "Places closest to you",
     locationDenied: "Location is off. You see places in the country you chose.",
+    placesInArea: "Places in this area",
+    changeCountry: "Change country",
+    distantLocationNotice: (country) =>
+      `There are no health services near you. Showing places in ${country}.`,
     showingCountry: (country) => `Places in ${country}`,
+    nearCity: (city) => `Near ${city}`,
     searchThisArea: "Search this area",
     loading: "Loading places…",
     loadError: "The places did not load. Try again.",
@@ -147,25 +169,33 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     noResults: "No places found. Try another word or type.",
     clearFilters: "Clear search",
     kmAway: (km) => `${km} km away`,
+    metersWalkAway: (meters, minutes) => `${meters} m away (~${minutes} min walk)`,
     open24h: "Open 24 hours",
     openNowLive: "Open now",
-    openNowFilter: "Open now / 24 hours",
-    emergencyWalkInFilter: "Emergency reception (no health card needed)",
+    closedNowLive: "Closed now",
+    openNowFilter: "Open now",
+    emergencyWalkInFilter: "Emergency department",
     emergencyRightsCallout:
       "By law, hospital emergency departments assess urgent cases free of charge, even without health insurance or an identity card.",
-    cityQuickJumpLabel: "Jump to a city",
-    viewModeLabel: "Mobile view mode",
-    viewSplit: "Split",
+    listen: "Listen",
+    stopListening: "Stop",
+    largeText: "Larger text",
+    spokenIntro:
+      "Pick a symbol below for pharmacy, hospital, family doctor, clinic or dentist. You can also filter for emergency reception without a health card.",
+    cityQuickJumpLabel: "Pick a city",
+    viewModeLabel: "Show as",
     viewMap: "Map",
     viewList: "List",
     closePreview: "Close",
     emergency: "Emergency",
+    callAction: "Call",
     directions: "Directions",
     website: "Website",
     youAreHere: "You are here",
     mapLegendLabel: "Map key",
     legendPlace: "Health facility",
-    legendEmergency: "Has an emergency department",
+    legendEmergency: "Emergency department",
+    legendCluster: "Several places: tap to zoom in",
     showMore: (remaining) => (remaining === 1 ? "Show 1 more place" : `Show ${remaining} more places`),
     resultsCount: (count) => (count === 1 ? "1 place" : `${count} places`),
     hoursTokens: { Mo: "Mon", Tu: "Tue", We: "Wed", Th: "Thu", Fr: "Fri", Sa: "Sat", Su: "Sun", PH: "Public holidays", off: "closed" },
@@ -197,6 +227,9 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     },
     allCategories: "Toate",
     countryLabel: "Țară",
+    locationLabel: "Unde",
+    myLocation: "Locația mea",
+    mapArea: "Zona de pe hartă",
     categoryLabel: "Tip",
     searchPlaceholder: "Caută după nume, oraș sau adresă",
     searchHint: "Nume, oraș sau adresă",
@@ -205,7 +238,12 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     locating: "Căutăm unde ești…",
     locationActive: "Locurile cele mai apropiate de tine",
     locationDenied: "Locația e oprită. Vezi locuri din țara aleasă.",
+    placesInArea: "Locurile din zonă",
+    changeCountry: "Schimbă țara",
+    distantLocationNotice: (country) =>
+      `Nu sunt servicii medicale lângă tine. Îți arătăm locuri din ${country}.`,
     showingCountry: (country) => `Locuri din ${country}`,
+    nearCity: (city) => `Lângă ${city}`,
     searchThisArea: "Caută în această zonă",
     loading: "Se încarcă locurile…",
     loadError: "Locurile nu s-au încărcat. Încearcă din nou.",
@@ -213,25 +251,33 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     noResults: "Nu am găsit niciun loc. Încearcă alt cuvânt sau alt tip.",
     clearFilters: "Șterge căutarea",
     kmAway: (km) => `la ${km} km`,
+    metersWalkAway: (meters, minutes) => `la ${meters} m (~${minutes} min pe jos)`,
     open24h: "Deschis non-stop",
     openNowLive: "Deschis acum",
-    openNowFilter: "Deschis acum / non-stop",
-    emergencyWalkInFilter: "Primiri urgențe (fără card de sănătate)",
+    closedNowLive: "Închis acum",
+    openNowFilter: "Deschis acum",
+    emergencyWalkInFilter: "Primiri urgențe",
     emergencyRightsCallout:
       "Prin lege, unitățile de primiri urgențe evaluează gratuit cazurile urgente, chiar dacă nu ai asigurare CNAS sau act de identitate la tine.",
-    cityQuickJumpLabel: "Sari la un oraș",
-    viewModeLabel: "Mod de afișare",
-    viewSplit: "Împărțit",
+    listen: "Ascultă",
+    stopListening: "Oprește",
+    largeText: "Text mai mare",
+    spokenIntro:
+      "Alege mai jos simbolul pentru farmacie, spital, medic de familie, clinică sau stomatologie. Poți filtra și unitățile de primiri urgențe fără card de sănătate.",
+    cityQuickJumpLabel: "Alege un oraș",
+    viewModeLabel: "Arată ca",
     viewMap: "Hartă",
     viewList: "Listă",
     closePreview: "Închide",
     emergency: "Urgențe",
+    callAction: "Sună",
     directions: "Traseu",
     website: "Site web",
     youAreHere: "Ești aici",
     mapLegendLabel: "Legenda hărții",
     legendPlace: "Unitate medicală",
-    legendEmergency: "Are primiri urgențe",
+    legendEmergency: "Primiri urgențe",
+    legendCluster: "Mai multe locuri: apasă ca să mărești",
     showMore: (remaining) =>
       remaining === 1
         ? "Arată încă un loc"
@@ -270,6 +316,9 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     },
     allCategories: "Të gjitha",
     countryLabel: "Shteti",
+    locationLabel: "Ku",
+    myLocation: "Vendndodhja ime",
+    mapArea: "Zona në hartë",
     categoryLabel: "Lloji",
     searchPlaceholder: "Kërko sipas emrit, qytetit ose adresës",
     searchHint: "Emri, qyteti ose adresa",
@@ -278,7 +327,12 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     locating: "Po kërkojmë ku je…",
     locationActive: "Vendet më afër teje",
     locationDenied: "Vendndodhja është e fikur. Sheh vende në shtetin që zgjodhe.",
+    placesInArea: "Vendet në këtë zonë",
+    changeCountry: "Ndrysho shtetin",
+    distantLocationNotice: (country) =>
+      `Nuk ka shërbime shëndetësore pranë teje. Po të tregojmë vende në ${country}.`,
     showingCountry: (country) => `Vende në ${country}`,
+    nearCity: (city) => `Pranë ${city}`,
     searchThisArea: "Kërko në këtë zonë",
     loading: "Po ngarkohen vendet…",
     loadError: "Vendet nuk u ngarkuan. Provo përsëri.",
@@ -286,25 +340,33 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     noResults: "Nuk u gjet asnjë vend. Provo një fjalë ose lloj tjetër.",
     clearFilters: "Pastro kërkimin",
     kmAway: (km) => `${km} km larg`,
+    metersWalkAway: (meters, minutes) => `${meters} m larg (~${minutes} min në këmbë)`,
     open24h: "Hapur 24 orë",
     openNowLive: "Hapur tani",
-    openNowFilter: "Hapur tani / 24 orë",
-    emergencyWalkInFilter: "Urgjencë spitalore (pa kartë shëndeti)",
+    closedNowLive: "Mbyllur tani",
+    openNowFilter: "Hapur tani",
+    emergencyWalkInFilter: "Urgjenca",
     emergencyRightsCallout:
       "Me ligj, shërbimet e urgjencës spitalore trajtojnë rastet urgjente falas, edhe pa sigurim shëndetësor ose pa dokument identiteti.",
-    cityQuickJumpLabel: "Kalo te një qytet",
-    viewModeLabel: "Mënyra e shfaqjes",
-    viewSplit: "Ndarë",
+    listen: "Dëgjo",
+    stopListening: "Ndalo",
+    largeText: "Tekst më i madh",
+    spokenIntro:
+      "Zgjidh më poshtë simbolin për farmaci, spital, mjek familjeje, klinikë ose dentist. Mund të filtrosh edhe urgjencën spitalore pa kartë shëndeti.",
+    cityQuickJumpLabel: "Zgjidh një qytet",
+    viewModeLabel: "Shfaq si",
     viewMap: "Hartë",
     viewList: "Listë",
     closePreview: "Mbyll",
     emergency: "Urgjencë",
+    callAction: "Telefono",
     directions: "Udhëzime",
     website: "Faqja web",
     youAreHere: "Ti je këtu",
     mapLegendLabel: "Legjenda e hartës",
     legendPlace: "Institucion shëndetësor",
-    legendEmergency: "Ka shërbim urgjence",
+    legendEmergency: "Urgjenca",
+    legendCluster: "Disa vende: prek për ta zmadhuar",
     showMore: (remaining) => (remaining === 1 ? "Shfaq edhe 1 vend" : `Shfaq edhe ${remaining} vende`),
     resultsCount: (count) => (count === 1 ? "1 vend" : `${count} vende`),
     hoursTokens: { Mo: "Hën", Tu: "Mar", We: "Mër", Th: "Enj", Fr: "Pre", Sa: "Sht", Su: "Die", PH: "Festat zyrtare", off: "mbyllur" },
@@ -336,6 +398,9 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     },
     allCategories: "Tutti",
     countryLabel: "Paese",
+    locationLabel: "Dove",
+    myLocation: "La mia posizione",
+    mapArea: "Zona della mappa",
     categoryLabel: "Tipo",
     searchPlaceholder: "Cerca per nome, città o indirizzo",
     searchHint: "Nome, città o indirizzo",
@@ -344,7 +409,12 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     locating: "Cerchiamo dove sei…",
     locationActive: "I posti più vicini a te",
     locationDenied: "La posizione è spenta. Vedi i posti nel paese che hai scelto.",
+    placesInArea: "Posti nella zona",
+    changeCountry: "Cambia paese",
+    distantLocationNotice: (country) =>
+      `Non ci sono servizi sanitari vicino a te. Ti mostriamo i posti in ${country}.`,
     showingCountry: (country) => `Posti in ${country}`,
+    nearCity: (city) => `Vicino a ${city}`,
     searchThisArea: "Cerca in quest'area",
     loading: "Caricamento dei posti…",
     loadError: "I posti non si sono caricati. Riprova.",
@@ -352,25 +422,33 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     noResults: "Nessun posto trovato. Prova un'altra parola o un altro tipo.",
     clearFilters: "Cancella la ricerca",
     kmAway: (km) => `a ${km} km`,
+    metersWalkAway: (meters, minutes) => `a ${meters} m (~${minutes} min a piedi)`,
     open24h: "Aperto 24 ore su 24",
     openNowLive: "Aperto ora",
-    openNowFilter: "Aperto ora / 24 ore",
-    emergencyWalkInFilter: "Pronto soccorso (senza tessera sanitaria)",
+    closedNowLive: "Chiuso ora",
+    openNowFilter: "Aperto ora",
+    emergencyWalkInFilter: "Pronto soccorso",
     emergencyRightsCallout:
       "Per legge, il pronto soccorso ospedaliero assiste gratuitamente i casi urgenti, anche senza tessera sanitaria o documento d'identità.",
-    cityQuickJumpLabel: "Vai a una città",
-    viewModeLabel: "Modalità di visualizzazione",
-    viewSplit: "Divisa",
+    listen: "Ascolta",
+    stopListening: "Ferma",
+    largeText: "Testo più grande",
+    spokenIntro:
+      "Scegli qui sotto il simbolo per farmacia, ospedale, medico di base, clinica o dentista. Puoi anche filtrare il pronto soccorso senza tessera sanitaria.",
+    cityQuickJumpLabel: "Scegli una città",
+    viewModeLabel: "Mostra come",
     viewMap: "Mappa",
     viewList: "Elenco",
     closePreview: "Chiudi",
     emergency: "Pronto soccorso",
+    callAction: "Chiama",
     directions: "Indicazioni",
     website: "Sito web",
     youAreHere: "Sei qui",
     mapLegendLabel: "Legenda della mappa",
     legendPlace: "Struttura sanitaria",
-    legendEmergency: "Con pronto soccorso",
+    legendEmergency: "Pronto soccorso",
+    legendCluster: "Più posti: tocca per ingrandire",
     showMore: (remaining) => (remaining === 1 ? "Mostra un altro posto" : `Mostra altri ${remaining} posti`),
     resultsCount: (count) => (count === 1 ? "1 posto" : `${count} posti`),
     hoursTokens: { Mo: "Lun", Tu: "Mar", We: "Mer", Th: "Gio", Fr: "Ven", Sa: "Sab", Su: "Dom", PH: "Festivi", off: "chiuso" },
@@ -402,6 +480,9 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     },
     allCategories: "Sve",
     countryLabel: "Država",
+    locationLabel: "Gdje",
+    myLocation: "Moja lokacija",
+    mapArea: "Područje karte",
     categoryLabel: "Vrsta",
     searchPlaceholder: "Pretraži po nazivu, gradu ili adresi",
     searchHint: "Naziv, grad ili adresa",
@@ -410,7 +491,12 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     locating: "Tražimo tvoju lokaciju…",
     locationActive: "Mjesta najbliža tebi",
     locationDenied: "Lokacija je isključena. Prikazuju se mjesta u odabranoj državi.",
+    placesInArea: "Mjesta u ovom području",
+    changeCountry: "Promijeni državu",
+    distantLocationNotice: (country) =>
+      `U tvojoj blizini nema zdravstvenih usluga. Prikazujemo mjesta u državi: ${country}.`,
     showingCountry: (country) => `Mjesta u državi: ${country}`,
+    nearCity: (city) => `U blizini: ${city}`,
     searchThisArea: "Pretraži ovo područje",
     loading: "Učitavanje mjesta…",
     loadError: "Mjesta se nisu učitala. Pokušaj ponovno.",
@@ -418,25 +504,33 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     noResults: "Nije pronađeno nijedno mjesto. Pokušaj s drugom riječi ili vrstom.",
     clearFilters: "Obriši pretragu",
     kmAway: (km) => `${km} km udaljeno`,
+    metersWalkAway: (meters, minutes) => `${meters} m udaljeno (~${minutes} min pješice)`,
     open24h: "Otvoreno 0–24",
     openNowLive: "Otvoreno sada",
-    openNowFilter: "Otvoreno sada / 0–24",
-    emergencyWalkInFilter: "Hitni prijem (bez zdravstvene iskaznice)",
+    closedNowLive: "Zatvoreno sada",
+    openNowFilter: "Otvoreno sada",
+    emergencyWalkInFilter: "Hitni prijem",
     emergencyRightsCallout:
       "Prema zakonu, hitni bolnički prijemi besplatno zbrinjavaju hitna stanja, čak i bez zdravstvenog osiguranja ili osobne iskaznice.",
-    cityQuickJumpLabel: "Brzi odabir grada",
-    viewModeLabel: "Način prikaza",
-    viewSplit: "Podijeljeno",
+    listen: "Poslušaj",
+    stopListening: "Zaustavi",
+    largeText: "Veći tekst",
+    spokenIntro:
+      "Odaberi simbol ispod za ljekarnu, bolnicu, obiteljskog liječnika, kliniku ili stomatologa. Možeš filtrirati i hitni prijem bez zdravstvene iskaznice.",
+    cityQuickJumpLabel: "Odaberi grad",
+    viewModeLabel: "Prikaži kao",
     viewMap: "Karta",
     viewList: "Popis",
     closePreview: "Zatvori",
     emergency: "Hitni prijem",
+    callAction: "Nazovi",
     directions: "Upute",
     website: "Web stranica",
     youAreHere: "Ovdje si",
     mapLegendLabel: "Legenda karte",
     legendPlace: "Zdravstvena ustanova",
-    legendEmergency: "Ima hitni prijem",
+    legendEmergency: "Hitni prijem",
+    legendCluster: "Više mjesta: dodirni za povećanje",
     showMore: (remaining) => `Prikaži još ${croatianPlural(remaining, "mjesto", "mjesta", "mjesta")}`,
     resultsCount: (count) => croatianPlural(count, "mjesto", "mjesta", "mjesta"),
     hoursTokens: { Mo: "Pon", Tu: "Uto", We: "Sri", Th: "Čet", Fr: "Pet", Sa: "Sub", Su: "Ned", PH: "Praznici", off: "zatvoreno" },
@@ -468,6 +562,9 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     },
     allCategories: "Sa",
     countryLabel: "Them",
+    locationLabel: "Kaj",
+    myLocation: "Kaj sem me",
+    mapArea: "Zona pi mapa",
     categoryLabel: "Felo",
     searchPlaceholder: "Rod pala anav, foro vaj adresa",
     searchHint: "Anav, foro vaj adresa",
@@ -476,7 +573,12 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     locating: "Rodas kai san…",
     locationActive: "E thana maj pashe tuke",
     locationDenied: "O than si bandardo. Dikhes thana ando alosardo them.",
+    placesInArea: "Thana ande kadi zona",
+    changeCountry: "Paruv o them",
+    distantLocationNotice: (country) =>
+      `Nane sastipaske thana pashe tute. Sikavas tuke thana ando ${country}.`,
     showingCountry: (country) => `Thana ando ${country}`,
+    nearCity: (city) => `Pashe ${city}`,
     searchThisArea: "Rod ande kado than",
     loading: "Pharen pes e thana…",
     loadError: "E thana na pherdile. Ker maj jekh data.",
@@ -484,25 +586,33 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     noResults: "Na arakhlam khanchi. Rod aver lafi vaj aver felo.",
     clearFilters: "Kos o rodimos",
     kmAway: (km) => `pe ${km} km`,
+    metersWalkAway: (meters, minutes) => `pe ${meters} m (~${minutes} min pe punre)`,
     open24h: "Putardo 24 chasa",
     openNowLive: "Putardo akana",
-    openNowFilter: "Putardo akana / 24 chasa",
-    emergencyWalkInFilter: "Urgenciya (bi sastipaske kartako)",
+    closedNowLive: "Phanglo akana",
+    openNowFilter: "Putardo akana",
+    emergencyWalkInFilter: "Urgenciya",
     emergencyRightsCallout:
       "Pala o zakono, e urgenciyake thana ande spitale dikhen bi lovengo sakone manushes ande urgenciya, vi bi asigurimasko vaj bi buletinesko.",
-    cityQuickJumpLabel: "Dzha ko jekh foro",
-    viewModeLabel: "Sar dikhljol",
-    viewSplit: "Duj riga",
+    listen: "Ashun",
+    stopListening: "Achhav",
+    largeText: "Maj baro teksto",
+    spokenIntro:
+      "Alosar tele o znako vash farmaciya, spitalo, familiyako doktori, klinika vaj dentisto. Shay te rodes vi urgenciya bi sastipaske kartako.",
+    cityQuickJumpLabel: "Alosar jekh foro",
+    viewModeLabel: "Sikav sar",
     viewMap: "Mapa",
     viewList: "Lista",
     closePreview: "Phandav",
     emergency: "Urgenciya",
+    callAction: "Akhar",
     directions: "Drom",
     website: "Web rig",
     youAreHere: "Kathe san",
     mapLegendLabel: "Znaki la mapake",
     legendPlace: "Sastipasko than",
-    legendEmergency: "Si les urgenciya",
+    legendEmergency: "Urgenciya",
+    legendCluster: "But thana: azba te bares la mapa",
     showMore: (remaining) => (remaining === 1 ? "Sikav maj 1 than" : `Sikav maj ${remaining} thana`),
     resultsCount: (count) => (count === 1 ? "1 than" : `${count} thana`),
     hoursTokens: { Mo: "Luy", Tu: "Mar", We: "Tet", Th: "Zho", Fr: "Par", Sa: "Sav", Su: "Kur", PH: "Bare divesa", off: "phanglo" },
@@ -609,4 +719,43 @@ export function formatOpeningHours(hours: string | null, copy: FindHelpCopy) {
     .replace(new RegExp(`\\b(${DAY}|PH|off)\\b`, "g"), (token) => tokens[token as keyof typeof tokens])
     .replace(/\s*;\s*/g, "; ")
     .replace(/,(?=\S)/g, ", ");
+}
+
+/**
+ * True when an OSM `opening_hours` string carries concrete hours or 24/7 / closed rules
+ * so we can distinguish "Closed now" from freeform notes like "by appointment".
+ */
+export function hasRecognizedHoursSchedule(hours: string | null | undefined): boolean {
+  if (!hours) return false;
+  return /\d{1,2}:\d{2}|24\s*\/\s*7|non[\s-]?stop|\boff\b|\bclosed\b/i.test(hours);
+}
+
+/**
+ * Human-friendly distance formatter for facility cards:
+ * - `< 1 km`: rounded meters + calm walking estimate (`~75 m/min`), e.g. `la 450 m (~6 min pe jos)`.
+ * - `1 .. 80 km`: localized 1-decimal km, e.g. `la 2,4 km`.
+ * - `> 80 km`: omitted unless the user explicitly searched near a city (`allowOver80Km`).
+ */
+export function formatHumanDistance(
+  distanceKm: number | null | undefined,
+  copy: FindHelpCopy,
+  numberLocale: string,
+  options?: { allowOver80Km?: boolean },
+): string | null {
+  if (distanceKm == null || !Number.isFinite(distanceKm) || distanceKm < 0) return null;
+  if (distanceKm > 80 && !options?.allowOver80Km) return null;
+
+  if (distanceKm < 1) {
+    const roundedMeters = Math.max(10, Math.round((distanceKm * 1000) / 10) * 10);
+    if (roundedMeters < 1000) {
+      const walkMinutes = Math.max(1, Math.round(roundedMeters / 75));
+      return copy.metersWalkAway(roundedMeters, walkMinutes);
+    }
+  }
+
+  const formattedKm = distanceKm.toLocaleString(numberLocale, {
+    minimumFractionDigits: distanceKm < 10 ? 1 : 0,
+    maximumFractionDigits: 1,
+  });
+  return copy.kmAway(formattedKm);
 }

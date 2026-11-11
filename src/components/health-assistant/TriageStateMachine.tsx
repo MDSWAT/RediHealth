@@ -372,22 +372,22 @@ export function TriageStateMachine({
       ref={cardRef}
       data-triage-card
       aria-label={copy.machine.intro}
-      className={`max-w-2xl rounded-xl border border-border bg-card p-5 shadow-xs sm:p-8 ${className}`}
+      className={`scroll-mt-[calc(var(--chrome-h,0px)+1rem)] rounded-2xl border border-border bg-card p-5 sm:p-8 ${className}`}
     >
-      <div className="mb-6 border-b border-border pb-4">
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
-          <div className="flex min-h-11 items-center gap-3">
+      <div className="mb-7">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
+          <div className="flex min-h-11 items-center gap-2.5">
             {displayStep > 1 ? (
               <button
                 type="button"
                 onClick={stepBack}
-                className="-ml-2 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+                className="-ml-2 inline-flex min-h-11 items-center gap-1.5 rounded-xl px-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
               >
                 <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
                 <span>{copy.machine.back}</span>
               </button>
             ) : null}
-            <p className="text-sm text-muted-foreground tabular-nums">
+            <p className="text-sm font-medium text-muted-foreground tabular-nums">
               {stepLabel}
             </p>
           </div>
@@ -399,7 +399,7 @@ export function TriageStateMachine({
         </div>
 
         <div
-          className="mt-3 flex h-1.5 w-full gap-1.5"
+          className="mt-3 flex h-1 w-full gap-1.5"
           role="progressbar"
           aria-label={copy.machine.progressLabel}
           aria-valuenow={displayStep}
@@ -410,8 +410,8 @@ export function TriageStateMachine({
           {Array.from({ length: totalSteps }, (_, idx) => idx + 1).map((segment) => (
             <div
               key={segment}
-              className={`h-1.5 flex-1 rounded-md transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
-                displayStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-muted"
+              className={`h-1 flex-1 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
+                displayStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
               }`}
             />
           ))}
@@ -424,7 +424,7 @@ export function TriageStateMachine({
                 key={item.key}
                 type="button"
                 onClick={() => handleTrailSelect(item.action, item.stepsBack)}
-                className="inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-lg border border-sapphire/25 bg-sapphire-soft/60 px-3 py-1.5 text-left text-xs font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-xl border border-sapphire/25 bg-sapphire-soft/70 px-3 py-1.5 text-left text-xs font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
               >
                 <span className="truncate">{item.label}</span>
                 <span aria-hidden="true" className="shrink-0 text-sapphire/70">↺</span>

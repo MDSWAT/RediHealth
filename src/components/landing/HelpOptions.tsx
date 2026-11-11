@@ -242,7 +242,6 @@ export function HelpOptions() {
           <ul className="mt-10 grid gap-px overflow-hidden rounded-xl border border-border bg-border shadow-(--shadow-card-rest) sm:grid-cols-2 lg:grid-cols-12">
             {copy.options.map(({ title, description, cta }, index) => {
               const { href, spanClass, Icon } = OPTION_LINKS[index];
-              const isLiveDoctor = href === "/medic-online";
               const indexCode = String(index + 1).padStart(2, "0");
 
               return (
@@ -256,19 +255,11 @@ export function HelpOptions() {
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sapphire-border/70 bg-sapphire-soft text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:bg-sapphire group-hover:text-white motion-reduce:transition-none">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <span className="flex items-center gap-2">
-                        {isLiveDoctor && (
-                          <span
-                            aria-hidden="true"
-                            className="inline-block h-2 w-2 shrink-0 rounded-full bg-live-sage"
-                          />
-                        )}
-                        <span
-                          aria-hidden="true"
-                          className="font-mono text-xs font-medium tabular-nums text-muted-foreground/80"
-                        >
-                          {indexCode}
-                        </span>
+                      <span
+                        aria-hidden="true"
+                        className="font-mono text-xs font-medium tabular-nums text-muted-foreground/80"
+                      >
+                        {indexCode}
                       </span>
                     </div>
 

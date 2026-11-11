@@ -76,9 +76,10 @@ const nextConfig: NextConfig = {
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           // Meetings embed Jitsi and record audio for transcription; the Find help map reads the visitor's location.
+          // unload=(self) prevents Chromium's unload-deprecation policy from throwing console violations in polyfills.js.
           {
             key: "Permissions-Policy",
-            value: `camera=(self "${jitsiOrigin}"), microphone=(self "${jitsiOrigin}"), display-capture=(self "${jitsiOrigin}"), geolocation=(self)`,
+            value: `camera=(self "${jitsiOrigin}"), microphone=(self "${jitsiOrigin}"), display-capture=(self "${jitsiOrigin}"), geolocation=(self), unload=(self)`,
           },
           ...(isProduction
             ? [{ key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" }]

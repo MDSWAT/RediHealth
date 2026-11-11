@@ -159,6 +159,27 @@ export interface AssistantCopy {
   result: {
     heading: string;
     lead: string;
+    pharmacistBannerTitle: string;
+    pharmacistBannerBody: string;
+    medicinesHeading: string;
+    medicinesLead: string;
+    scheduleSlots: {
+      morning: string;
+      midday: string;
+      evening: string;
+      bedtime: string;
+    };
+    noDoseAria: string;
+    foodTiming: {
+      before_meal: string;
+      with_meal: string;
+      after_meal: string;
+    };
+    durationLabel: (duration: string) => string;
+    unclearBadge: string;
+    listenMedicine: string;
+    stopMedicine: string;
+    listenMedicineAria: (medicineName: string) => string;
     assistantHeading: string;
     transcriptHeading: string;
     transcriptNote: string;
@@ -500,6 +521,28 @@ const ro: AssistantCopy = {
   result: {
     heading: "Rețeta ta, pe înțeles",
     lead: "Asistentul poate greși la citire. Verifică mereu cu farmacistul sau cu medicul înainte să iei medicamentele.",
+    pharmacistBannerTitle: "Arată farmacistului înainte să iei medicamentele",
+    pharmacistBannerBody:
+      "Unele cuvinte sau doze nu s-au putut citi clar în poză. Arată telefonul sau foaia tipărită farmacistului ca să îți confirme exact cum se ia tratamentul.",
+    medicinesHeading: "Medicamentele citite de pe rețetă",
+    medicinesLead: "Orele de mai jos apar doar dacă s-au putut citi clar pe rețetă.",
+    scheduleSlots: {
+      morning: "Dimineața",
+      midday: "Prânz",
+      evening: "Seara",
+      bedtime: "Culcare",
+    },
+    noDoseAria: "Nicio doză trecută la această oră",
+    foodTiming: {
+      before_meal: "Înainte de masă",
+      with_meal: "În timpul mesei",
+      after_meal: "După masă",
+    },
+    durationLabel: (duration) => `Durată: ${duration}`,
+    unclearBadge: "Scris neclar — verifică doza cu farmacistul",
+    listenMedicine: "Ascultă",
+    stopMedicine: "Oprește",
+    listenMedicineAria: (medicineName) => `Ascultă instrucțiunile pentru ${medicineName}`,
     assistantHeading: "Explicația asistentului",
     transcriptHeading: "Textul citit de pe rețetă",
     transcriptNote: "Copiat cum apare pe rețetă. Unde scrie [unclear], textul nu s-a putut citi.",
@@ -840,6 +883,28 @@ const en: AssistantCopy = {
   result: {
     heading: "Your prescription in plain words",
     lead: "The assistant can misread a prescription. Always check with your pharmacist or doctor before you take the medicines.",
+    pharmacistBannerTitle: "Show this to your pharmacist before taking the medicines",
+    pharmacistBannerBody:
+      "Some words or doses were not clear in the photo. Show your phone or printed sheet to the pharmacist so they can confirm the exact instructions.",
+    medicinesHeading: "Medicines read from your prescription",
+    medicinesLead: "Times of day appear below only when clearly written on the prescription.",
+    scheduleSlots: {
+      morning: "Morning",
+      midday: "Midday",
+      evening: "Evening",
+      bedtime: "Bedtime",
+    },
+    noDoseAria: "No dose listed for this time",
+    foodTiming: {
+      before_meal: "Before food",
+      with_meal: "With food",
+      after_meal: "After food",
+    },
+    durationLabel: (duration) => `Duration: ${duration}`,
+    unclearBadge: "Unclear writing — check the dose with your pharmacist",
+    listenMedicine: "Listen",
+    stopMedicine: "Stop",
+    listenMedicineAria: (medicineName) => `Listen to instructions for ${medicineName}`,
     assistantHeading: "The assistant's explanation",
     transcriptHeading: "Text read from the prescription",
     transcriptNote: "Copied as written. Where it says [unclear], the text could not be read.",
@@ -1180,6 +1245,28 @@ const sq: AssistantCopy = {
   result: {
     heading: "Receta jote me fjalë të thjeshta",
     lead: "Asistenti mund të gabojë kur lexon. Kontrollo gjithmonë me farmacistin ose mjekun para se t'i marrësh ilaçet.",
+    pharmacistBannerTitle: "Tregoja farmacistit para se t'i marrësh ilaçet",
+    pharmacistBannerBody:
+      "Disa fjalë ose doza nuk u lexuan qartë në foto. Tregoji telefonin ose fletën e printuar farmacistit që të konfirmojë saktë si merren.",
+    medicinesHeading: "Ilaçet e lexuara nga receta",
+    medicinesLead: "Oraret më poshtë shfaqen vetëm kur shkruhen qartë në recetë.",
+    scheduleSlots: {
+      morning: "Mëngjes",
+      midday: "Drekë",
+      evening: "Mbrëmje",
+      bedtime: "Para gjumit",
+    },
+    noDoseAria: "Nuk ka dozë të shënuar për këtë orar",
+    foodTiming: {
+      before_meal: "Para buke",
+      with_meal: "Gjatë bukës",
+      after_meal: "Pas buke",
+    },
+    durationLabel: (duration) => `Kohëzgjatja: ${duration}`,
+    unclearBadge: "Shkrim i paqartë — kontrollo dozën me farmacistin",
+    listenMedicine: "Dëgjo",
+    stopMedicine: "Ndalo",
+    listenMedicineAria: (medicineName) => `Dëgjo udhëzimet për ${medicineName}`,
     assistantHeading: "Shpjegimi i asistentit",
     transcriptHeading: "Teksti i lexuar nga receta",
     transcriptNote: "Kopjuar siç është shkruar. Aty ku shkruhet [unclear], teksti nuk u lexua dot.",
@@ -1520,6 +1607,28 @@ const it: AssistantCopy = {
   result: {
     heading: "La tua ricetta in parole semplici",
     lead: "L'assistente può leggere male una ricetta. Verifica sempre con il farmacista o con il medico prima di prendere i farmaci.",
+    pharmacistBannerTitle: "Mostralo al farmacista prima di prendere i farmaci",
+    pharmacistBannerBody:
+      "Alcune parole o dosi non si leggevano bene nella foto. Mostra il telefono o il foglio stampato al farmacista per confermare le dosi esatte.",
+    medicinesHeading: "Farmaci letti dalla ricetta",
+    medicinesLead: "Gli orari qui sotto compaiono solo se scritti chiaramente sulla ricetta.",
+    scheduleSlots: {
+      morning: "Mattina",
+      midday: "Pranzo",
+      evening: "Sera",
+      bedtime: "Prima di dormire",
+    },
+    noDoseAria: "Nessuna dose indicata per questo orario",
+    foodTiming: {
+      before_meal: "Prima dei pasti",
+      with_meal: "Durante i pasti",
+      after_meal: "Dopo i pasti",
+    },
+    durationLabel: (duration) => `Durata: ${duration}`,
+    unclearBadge: "Scrittura poco chiara — verifica la dose con il farmacista",
+    listenMedicine: "Ascolta",
+    stopMedicine: "Ferma",
+    listenMedicineAria: (medicineName) => `Ascolta le indicazioni per ${medicineName}`,
     assistantHeading: "La spiegazione dell'assistente",
     transcriptHeading: "Testo letto dalla ricetta",
     transcriptNote: "Copiato così com'è scritto. Dove compare [unclear], il testo non era leggibile.",
@@ -1860,6 +1969,28 @@ const hr: AssistantCopy = {
   result: {
     heading: "Tvoj recept jednostavnim riječima",
     lead: "Asistent može pogriješiti pri čitanju recepta. Uvijek provjeri s ljekarnikom ili liječnikom prije uzimanja lijekova.",
+    pharmacistBannerTitle: "Pokaži ljekarniku prije uzimanja lijekova",
+    pharmacistBannerBody:
+      "Neke riječi ili doze nisu bile sasvim čitljive na fotografiji. Pokaži telefon ili ispisani list ljekarniku kako bi potvrdio točan način uzimanja.",
+    medicinesHeading: "Lijekovi pročitani s recepta",
+    medicinesLead: "Raspored u nastavku prikazuje se samo ako je jasno napisan na receptu.",
+    scheduleSlots: {
+      morning: "Jutro",
+      midday: "Podne",
+      evening: "Večer",
+      bedtime: "Prije spavanja",
+    },
+    noDoseAria: "Nema navedene doze u ovo vrijeme",
+    foodTiming: {
+      before_meal: "Prije jela",
+      with_meal: "Uz jelo",
+      after_meal: "Poslije jela",
+    },
+    durationLabel: (duration) => `Trajanje: ${duration}`,
+    unclearBadge: "Nečitak rukopis — provjeri dozu s ljekarnikom",
+    listenMedicine: "Poslušaj",
+    stopMedicine: "Zaustavi",
+    listenMedicineAria: (medicineName) => `Poslušaj upute za ${medicineName}`,
     assistantHeading: "Objašnjenje asistenta",
     transcriptHeading: "Tekst pročitan s recepta",
     transcriptNote: "Prepisano kako piše na receptu. Tamo gdje piše [unclear], tekst nije bio čitljiv.",
@@ -2200,6 +2331,28 @@ const rom: AssistantCopy = {
   result: {
     heading: "Chiri receta pe lokhe vorbe",
     lead: "O azhutitori shaj dosharel ko ginavimos. Dikh svako data le farmacistosa vaj le doktoresa angla te les i drab.",
+    pharmacistBannerTitle: "Sikav le farmacistoske angla te les i drab",
+    pharmacistBannerBody:
+      "Nesave vorbe vaj doze na dikhljile uzo and-i poza. Sikav o telefono vaj o printime lil le farmacistoske te phenel tuke chaches sar te les len.",
+    medicinesHeading: "Drabura ginade katar i receta",
+    medicinesLead: "Le chasura telal dikhljon numa kana si ramome uzo pe receta.",
+    scheduleSlots: {
+      morning: "Teharin",
+      midday: "Mashkar divese",
+      evening: "Biaveli",
+      bedtime: "Angla sovimos",
+    },
+    noDoseAria: "Na-i ramomi doza ko kadava chaso",
+    foodTiming: {
+      before_meal: "Angla xabem",
+      with_meal: "Le xabemasa",
+      after_meal: "Pala xabem",
+    },
+    durationLabel: (duration) => `Vrama: ${duration}`,
+    unclearBadge: "Na uzo ramovimos — dikh i doza le farmacistosa",
+    listenMedicine: "Ashun",
+    stopMedicine: "Astav",
+    listenMedicineAria: (medicineName) => `Ashun sar te les ${medicineName}`,
     assistantHeading: "O shpjegimos e azhutitoresko",
     transcriptHeading: "O teksto ginado katar i receta",
     transcriptNote: "Kopijime sar ramol pe receta. Kaj ramol [unclear], o teksto nashti ginadilo.",

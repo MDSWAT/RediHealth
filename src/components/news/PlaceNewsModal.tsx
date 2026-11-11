@@ -5,10 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AlertCircleIcon, ArrowRightIcon, CheckIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
 import {
+  ALL_ALBANIA,
   ALL_CROATIA,
   ALL_ITALY,
   ALL_MOLDOVA,
   EXTRA_MAP_COPY,
+  isAlbanianCounty,
   isCroatianCounty,
   isItalianRegion,
   isMoldovanOnlyRegion,
@@ -17,6 +19,7 @@ import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/c
 import { useSheetDialog } from "@/components/news/use-sheet-dialog";
 import { cn } from "@/lib/cn";
 import {
+  ALBANIA_WIDE,
   CROATIA_WIDE,
   ITALY_WIDE,
   MOLDOVA_WIDE,
@@ -181,13 +184,20 @@ export function placeCountry(place: string, countryHint?: NewsCountry): NewsCoun
   if (countryHint) return countryHint;
   if (place === ALL_ITALY || isItalianRegion(place)) return "it";
   if (place === ALL_CROATIA || isCroatianCounty(place)) return "hr";
+  if (place === ALL_ALBANIA || isAlbanianCounty(place)) return "al";
   if (place === ALL_MOLDOVA || isMoldovanOnlyRegion(place)) return "md";
   return "ro";
 }
 
-/** True when the place is a whole country (all of Romania, Moldova, Croatia, or Italy). */
+/** True when the place is a whole country (all of Romania, Moldova, Albania, Croatia, or Italy). */
 export function isWholeCountry(place: string): boolean {
-  return place === ALL_ITALY || place === ALL_MOLDOVA || place === ALL_CROATIA || isNationalCounty(place);
+  return (
+    place === ALL_ITALY ||
+    place === ALL_MOLDOVA ||
+    place === ALL_CROATIA ||
+    place === ALL_ALBANIA ||
+    isNationalCounty(place)
+  );
 }
 
 /**
@@ -266,7 +276,9 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
         ? extra.allMoldova
         : place === ALL_CROATIA
           ? extra.allCroatia
-          : countyLabel(place, lang, targetCountry);
+          : place === ALL_ALBANIA
+            ? extra.allAlbania
+            : countyLabel(place, lang, targetCountry);
 
   const noteName =
     place === ALL_ITALY
@@ -275,7 +287,9 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
         ? extra.moldova
         : place === ALL_CROATIA
           ? extra.croatia
-          : placeName(place, lang);
+          : place === ALL_ALBANIA
+            ? extra.albania
+            : placeName(place, lang);
 
   const inTab = (list: NewsArticle[]) => (tab === "all" ? list : list.filter((a) => a.category === tab));
   const local = inTab(groups.local);
@@ -303,6 +317,7 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
     allItalyLabel,
     allMoldovaLabel: extra.allMoldova,
     allCroatiaLabel: extra.allCroatia,
+    allAlbaniaLabel: extra.allAlbania,
     showCategory: tab === "all",
   };
 
@@ -361,13 +376,13 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
                     {x.label}
                     <span
                       className={cn(
-                        "min-w-5 rounded-full px-1.5 text-center text-xs leading-5 tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
-                        selected ? "bg-foreground text-background" : "bg-muted text-muted-foreground",
+                        "text-xs tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
+                        selected ? "font-semibold text-foreground/75" : "text-muted-foreground/80",
                       )}
                     >
                       {x.count}
                     </span>
-                    {selected && <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-foreground" />}
+                    {selected && <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 bg-foreground" />}
                   </button>
                 );
               })}
@@ -417,6 +432,7 @@ type ItemProps = {
   allItalyLabel: string;
   allMoldovaLabel: string;
   allCroatiaLabel: string;
+  allAlbaniaLabel: string;
 };
 
 function NewsList({ heading, items, ...rest }: ItemProps & { heading?: string; items: NewsArticle[] }) {
@@ -448,6 +464,7 @@ function Meta({
   allItalyLabel,
   allMoldovaLabel,
   allCroatiaLabel,
+  allAlbaniaLabel,
   lead,
 }: ItemProps & { article: NewsArticle; lead?: React.ReactNode }) {
   const date = formatNewsDate(a.date, lang, { short: true, year: false });
@@ -459,9 +476,11 @@ function Meta({
         ? allMoldovaLabel
         : a.county === CROATIA_WIDE && ac === "hr"
           ? allCroatiaLabel
-          : isNationalCounty(a.county)
-            ? np.allCounties
-            : placeName(a.county, lang);
+          : a.county === ALBANIA_WIDE && ac === "al"
+            ? allAlbaniaLabel
+            : isNationalCounty(a.county)
+              ? np.allCounties
+              : placeName(a.county, lang);
   return (
     <p className="flex flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground tabular-nums">
       {lead ?? (showCategory && <span className="font-semibold text-foreground/80">{labels[a.category] ?? a.category}</span>)}

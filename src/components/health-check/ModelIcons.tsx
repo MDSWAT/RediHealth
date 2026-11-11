@@ -124,6 +124,54 @@ export function SkinIcon(props: IconProps) {
   );
 }
 
+// Anatomical bone and joint articulation (48px grid, matching Health Icons stroke weight)
+export function BonesIcon(props: IconProps) {
+  return (
+    <svg {...health(props)}>
+      <path
+        d="M17.2 12.2C14.1 10.7 13.2 6.8 15.8 4.8C18.1 3 21.4 4.2 22.4 7L24 9.2L25.6 7C26.6 4.2 29.9 3 32.2 4.8C34.8 6.8 33.9 10.7 30.8 12.2L27.5 14V20.5H20.5V14L17.2 12.2Z"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.5 24H31.5"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M20.5 27.5H27.5V34L30.8 35.8C33.9 37.3 34.8 41.2 32.2 43.2C29.9 45 26.6 43.8 25.6 41L24 38.8L22.4 41C21.4 43.8 18.1 45 15.8 43.2C13.2 41.2 14.1 37.3 17.2 35.8L20.5 34V27.5Z"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+// Boxicons: bx-volume-full (24px grid)
+export function ListenIcon(props: IconProps) {
+  return (
+    <svg {...boxicon(props)}>
+      <path d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.387 1.386 3.999 4.047 3.999 7S18.387 17.614 16 19v2z" />
+      <path d="M16 7v10c1.225-1.1 2-3.229 2-5s-.775-3.9-2-5zM4 17h2.697L14 21.868V2.132L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2z" />
+    </svg>
+  );
+}
+
+// Boxicons: bx-stop-circle (24px grid)
+export function StopListenIcon(props: IconProps) {
+  return (
+    <svg {...boxicon(props)}>
+      <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+      <path d="M9 9h6v6H9z" />
+    </svg>
+  );
+}
+
 // Boxicons: bx-slider-alt
 export function SlidersIcon(props: IconProps) {
   return (

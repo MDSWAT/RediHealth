@@ -134,13 +134,13 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`mt-6 ${className}`}>
-      <label htmlFor="triage-natural-query" className="mb-2 block text-sm font-medium text-foreground">
+    <form onSubmit={handleSubmit} className={`mt-8 border-t border-border pt-7 ${className}`}>
+      <label htmlFor="triage-natural-query" className="mb-2.5 block text-sm font-semibold text-foreground">
         {t.label}
       </label>
-      <div className="flex flex-col gap-2 sm:relative sm:block">
+      <div className="flex flex-col gap-2.5 sm:relative sm:block">
         <div className="relative flex items-center">
-          <span className="pointer-events-none absolute left-3.5 text-muted-foreground" aria-hidden="true">
+          <span className="pointer-events-none absolute left-4 text-muted-foreground" aria-hidden="true">
             <SearchIcon className="h-5 w-5" />
           </span>
           <input
@@ -150,13 +150,13 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.placeholder}
-            className="min-h-[52px] w-full rounded-lg border border-border bg-background py-3 pl-11 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:pr-28"
+            className="min-h-[54px] w-full rounded-xl border border-border-control bg-card py-3 pl-11 pr-4 text-base text-foreground placeholder:text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:pr-32"
           />
         </div>
         <button
           type="submit"
           disabled={!trimmed}
-          className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-lg bg-sapphire px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:absolute sm:right-1.5 sm:top-1/2 sm:-translate-y-1/2 sm:text-xs"
+          className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl bg-sapphire px-4 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none sm:absolute sm:right-1.5 sm:top-1/2 sm:-translate-y-1/2 sm:text-xs"
         >
           <span>{t.buttonLabel}</span>
           <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -165,7 +165,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
 
       <div aria-live="polite" aria-atomic="true">
         {previewPathway && previewTitle && (
-          <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2.5 rounded-lg border border-sapphire/25 bg-sapphire-soft/50 px-3.5 py-2.5">
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2.5 rounded-xl border border-sapphire/25 bg-sapphire-soft/60 px-4 py-3">
             <p className="min-w-0 text-xs leading-snug text-foreground sm:text-sm">
               <span className="text-muted-foreground">{t.routePrefix}</span>{" "}
               <span className="font-semibold text-sapphire">{previewTitle}</span>
@@ -173,7 +173,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
             <button
               type="button"
               onClick={() => onSubmitQuery(trimmed)}
-              className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-lg bg-sapphire px-3.5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+              className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl bg-sapphire px-3.5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
             >
               <span>{t.openRoute}</span>
               <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -182,7 +182,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
         )}
       </div>
 
-      <div role="group" aria-label={t.startersLabel} className="mt-2.5 flex flex-wrap gap-2">
+      <div role="group" aria-label={t.startersLabel} className="mt-3 flex flex-wrap gap-2">
         {t.starters.map((prompt) => (
           <button
             key={prompt}
@@ -191,7 +191,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
               setQuery(prompt);
               inputRef.current?.focus();
             }}
-            className="inline-flex min-h-11 items-center rounded-lg border border-border bg-background px-3 py-2 text-left text-xs font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/40 hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 items-center rounded-full border border-border-control bg-card px-4 py-2 text-left text-sm font-medium text-foreground transition-[color,background-color,border-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/50 motion-safe:active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
           >
             {prompt}
           </button>

@@ -1,14 +1,24 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { DictionaryTabs, type DictionaryTabsProps } from "./DictionaryTabs";
 import {
-  DictionaryDrawerFrame,
-  DictionaryFilters,
-  DictionarySearch,
-  DictionarySpeakButton,
-  HighlightGlossaryText,
-} from "./DictionaryParts";
+  useEffect,
+  useMemo,
+  useState,
+  type ComponentType,
+  type CSSProperties,
+  type SVGProps,
+} from "react";
+import {
+  AlertCircleIcon,
+  BookIcon,
+  ClipboardCheckIcon,
+  DropletIcon,
+  FileTextIcon,
+  HeartIcon,
+  ShieldIcon,
+  StethoscopeIcon,
+} from "@/components/ui/icons";
+import { cn } from "@/lib/cn";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -21,6 +31,19 @@ import {
   type DualRegisterGlossaryEntry,
   type MedicalGlossaryCategory,
 } from "@/lib/i18n/romanian-medical-glossary";
+import {
+  DICTIONARY_UTILITY_COPY,
+  DictionaryDrawerFrame,
+  DictionaryFilters,
+  DictionarySearch,
+  DictionarySpeakButton,
+  HighlightGlossaryText,
+} from "./DictionaryParts";
+import {
+  DICTIONARY_TAB_LABELS,
+  DictionaryTabs,
+  type DictionaryTabsProps,
+} from "./DictionaryTabs";
 
 export interface RomanianDualRegisterGlossaryProps {
   isOpen: boolean;
@@ -45,8 +68,9 @@ const BRIDGE_EXTRAS_BY_LANG: Record<
   ro: {
     inThisGuide: "În acest ghid",
     bridgeArrowLabel: "În limbaj simplu",
-    countOne: "1 termen găsit",
-    countMany: (n) => (n >= 20 ? `${n} de termeni afișați` : `${n} termeni afișați`),
+    countOne: "1 termen afișat",
+    countMany: (n) =>
+      n >= 20 ? `${n} de termeni afișați` : `${n} termeni afișați`,
   },
   en: {
     inThisGuide: "In this guide",
@@ -80,6 +104,22 @@ const BRIDGE_EXTRAS_BY_LANG: Record<
   },
 };
 
+type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+
+const CATEGORY_ICON_MAP: Record<string, IconComponent> = {
+  all: BookIcon,
+  diabet: DropletIcon,
+  cardiologie: HeartIcon,
+  analize: ClipboardCheckIcon,
+  cnas: FileTextIcon,
+  urgente: AlertCircleIcon,
+  preventie: ShieldIcon,
+};
+
+function stripHardcodedCount(label: string): string {
+  return label.replace(/\s*\(\d+\)\s*$/, "").trim();
+}
+
 function useSafeLang(): Lang {
   try {
     return useLanguage().lang;
@@ -96,14 +136,17 @@ function normalizeForSearch(value: string): string {
     .trim();
 }
 
-const CATEGORY_ORDER: Array<"all" | MedicalGlossaryCategory> = [
-  "all",
-  "diabet",
-  "cardiologie",
-  "analize",
-  "cnas",
-  "urgente",
-];
+function matchesPriorityTopic(
+  entry: DualRegisterGlossaryEntry,
+  topicSlug?: string,
+): boolean {
+  if (!topicSlug) return false;
+  if (entry.relatedTopicSlug === topicSlug) return true;
+  const multi = (
+    entry as DualRegisterGlossaryEntry & { relatedTopicSlugs?: string[] }
+  ).relatedTopicSlugs;
+  return Boolean(multi?.includes(topicSlug));
+}
 
 export function RomanianDualRegisterGlossary({
   isOpen,
@@ -120,6 +163,8 @@ export function RomanianDualRegisterGlossary({
   const copy =
     DUAL_REGISTER_GLOSSARY_UI_COPY[lang] ?? DUAL_REGISTER_GLOSSARY_UI_COPY.ro;
   const extras = BRIDGE_EXTRAS_BY_LANG[lang] ?? BRIDGE_EXTRAS_BY_LANG.ro;
+  const util = DICTIONARY_UTILITY_COPY[lang] ?? DICTIONARY_UTILITY_COPY.ro;
+  const tabFallback = DICTIONARY_TAB_LABELS[lang] ?? DICTIONARY_TAB_LABELS.ro;
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<
@@ -127,46 +172,114 @@ export function RomanianDualRegisterGlossary({
   >(initialCategory);
   const [speakingId, setSpeakingId] = useState<string | null>(null);
 
-  const filteredEntries = useMemo(() => {
-    const q = normalizeForSearch(searchQuery);
-    const matching = ROMANIAN_MEDICAL_GLOSSARY.filter((entry) => {
-      const matchesCategory =
-        selectedCategory === "all" || entry.category === selectedCategory;
-      if (!matchesCategory) return false;
-      if (!q) return true;
+  useEffect(() => {
+    if (!isOpen) {
+      speechEngine.stop();
+    }
+    return () => {
+      speechEngine.stop();
+    };
+  }, [isOpen]);
 
+  const specimenNumberById = useMemo(
+    () => new Map(ROMANIAN_MEDICAL_GLOSSARY.map((entry, idx) => [entry.id, idx + 1])),
+    [],
+  );
+
+  const categoryKeys = useMemo(() => {
+    const rawKeys = Object.keys(copy.categories) as Array<
+      "all" | MedicalGlossaryCategory
+    >;
+    if (rawKeys[0] === "all") return rawKeys;
+    return [
+      "all" as const,
+      ...rawKeys.filter((k): k is MedicalGlossaryCategory => k !== "all"),
+    ];
+  }, [copy.categories]);
+
+  // Entries matching the search query across all categories so pill counts update live
+  const searchMatchedEntries = useMemo(() => {
+    const q = normalizeForSearch(searchQuery);
+    if (!q) return ROMANIAN_MEDICAL_GLOSSARY;
+
+    return ROMANIAN_MEDICAL_GLOSSARY.filter((entry) => {
       const loc = getLocalizedGlossaryEntry(entry, lang);
       const haystack = normalizeForSearch(
         `${loc.plainTerm} ${loc.formalTerm} ${loc.layExplanation} ${loc.clinicalSignificance} ${entry.plainTermRo} ${entry.formalTermRo}`,
       );
       return haystack.includes(q);
     });
+  }, [searchQuery, lang]);
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {
+      all: searchMatchedEntries.length,
+    };
+    for (const entry of searchMatchedEntries) {
+      counts[entry.category] = (counts[entry.category] ?? 0) + 1;
+    }
+    return counts;
+  }, [searchMatchedEntries]);
+
+  const filteredEntries = useMemo(() => {
+    const matching =
+      selectedCategory === "all"
+        ? searchMatchedEntries
+        : searchMatchedEntries.filter(
+            (entry) => entry.category === selectedCategory,
+          );
 
     if (!priorityTopicSlug) return matching;
 
     return [...matching].sort((a, b) => {
-      const aMatch = a.relatedTopicSlug === priorityTopicSlug ? 0 : 1;
-      const bMatch = b.relatedTopicSlug === priorityTopicSlug ? 0 : 1;
+      const aMatch = matchesPriorityTopic(a, priorityTopicSlug) ? 0 : 1;
+      const bMatch = matchesPriorityTopic(b, priorityTopicSlug) ? 0 : 1;
       return aMatch - bMatch;
     });
-  }, [searchQuery, selectedCategory, priorityTopicSlug, lang]);
+  }, [searchMatchedEntries, selectedCategory, priorityTopicSlug]);
+
+  const activeSpeakingId = isOpen ? speakingId : null;
+
+  const handleClose = () => {
+    speechEngine.stop();
+    setSpeakingId(null);
+    onClose();
+  };
 
   const handlePronounce = (entry: DualRegisterGlossaryEntry) => {
     if (!voiceEnabled) return;
+
+    if (activeSpeakingId === entry.id) {
+      speechEngine.stop();
+      setSpeakingId(null);
+      return;
+    }
+
+    speechEngine.stop();
     const loc = getLocalizedGlossaryEntry(entry, lang);
     const speechLang =
       (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ??
       (lang === "hr" ? "hr-HR" : "ro-RO");
+
     setSpeakingId(entry.id);
     speechEngine.speak(loc.speechText, {
       lang: speechLang,
-      onEnd: () => setSpeakingId(null),
-      onError: () => setSpeakingId(null),
+      onEnd: () =>
+        setSpeakingId((prev) => (prev === entry.id ? null : prev)),
+      onError: () =>
+        setSpeakingId((prev) => (prev === entry.id ? null : prev)),
     });
+  };
+
+  const handleResetFilters = () => {
+    setSelectedCategory("all");
+    setSearchQuery("");
   };
 
   if (!isOpen) return null;
 
+  const isFiltered =
+    selectedCategory !== "all" || searchQuery.trim().length > 0;
   const countText =
     filteredEntries.length === 1
       ? extras.countOne
@@ -178,72 +291,155 @@ export function RomanianDualRegisterGlossary({
       title={copy.title}
       subtitle={copy.subtitle}
       closeLabel={copy.closeLabel}
-      onClose={onClose}
+      onClose={handleClose}
+      lang={lang}
       className={className}
+      headerControls={
+        <div className="space-y-3">
+          {tabs && (
+            <DictionaryTabs
+              active="dictionary"
+              tablistAriaLabel={tabs.tablistAriaLabel ?? tabFallback.tablistAria}
+              {...tabs}
+              onSelect={(nextTab) => {
+                speechEngine.stop();
+                setSpeakingId(null);
+                tabs.onSelect(nextTab);
+              }}
+            />
+          )}
+          <DictionarySearch
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder={copy.searchPlaceholder}
+            clearLabel={util.clearSearch}
+          />
+        </div>
+      }
     >
-      <div className="px-4 sm:px-6">
-        {tabs && <DictionaryTabs active="dictionary" {...tabs} />}
-        <DictionarySearch
-          value={searchQuery}
-          onChange={setSearchQuery}
-          placeholder={copy.searchPlaceholder}
-        />
+      <div
+        className="rh-dict-tab-body min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pt-3.5 pb-6 sm:px-6 sm:pt-4"
+        aria-live="polite"
+      >
         <DictionaryFilters
           label={copy.categoryTablistAria}
-          options={CATEGORY_ORDER.map((cat) => ({
-            value: cat,
-            label: copy.categories[cat],
-          }))}
+          options={categoryKeys.map((cat) => {
+            const Icon = CATEGORY_ICON_MAP[cat] ?? ShieldIcon;
+            return {
+              value: cat,
+              label: stripHardcodedCount(copy.categories[cat] ?? cat),
+              count: categoryCounts[cat] ?? 0,
+              tone: cat === "urgente" ? "emergency" : "default",
+              icon: <Icon className="h-3.5 w-3.5" />,
+            };
+          })}
           selected={selectedCategory}
           onSelect={setSelectedCategory}
         />
-        <p
-          role="status"
-          className="mt-2 pb-2 text-xs font-medium tabular-nums text-muted-foreground"
-        >
-          {countText}
-        </p>
-      </div>
 
-      {/* Formal-prescription-to-plain-language bridge cards */}
-      <div
-        className="flex-1 overflow-y-auto border-t border-border px-4 py-4 sm:px-6"
-        aria-live="polite"
-      >
-        {filteredEntries.length === 0 ? (
-          <p className="py-12 text-center text-base text-muted-foreground">
-            {copy.emptyState}
+        {/* Unclipped status and reset strip */}
+        <div className="mt-3 mb-3.5 flex flex-wrap items-center justify-between gap-2 border-b border-border/80 pb-2.5">
+          <p
+            role="status"
+            className="text-xs font-semibold tabular-nums text-muted-foreground"
+          >
+            {countText}
           </p>
+          {isFiltered && (
+            <button
+              type="button"
+              onClick={handleResetFilters}
+              className="inline-flex min-h-[32px] items-center rounded-full bg-sapphire-soft px-3 py-1 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            >
+              {util.resetFilters}
+            </button>
+          )}
+        </div>
+
+        {/* 3-band editorial dual-register specimen cards */}
+        {filteredEntries.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-border bg-surface-subtle/50 px-5 py-10 text-center">
+            <p className="text-base text-muted-foreground">{copy.emptyState}</p>
+            {isFiltered && (
+              <button
+                type="button"
+                onClick={handleResetFilters}
+                className="mt-4 inline-flex min-h-[42px] items-center justify-center rounded-full bg-sapphire px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+              >
+                {util.resetFilters}
+              </button>
+            )}
+          </div>
         ) : (
           <ul className="space-y-3.5">
-            {filteredEntries.map((entry) => {
+            {filteredEntries.map((entry, index) => {
               const loc = getLocalizedGlossaryEntry(entry, lang);
               const isEmergencyTerm = entry.category === "urgente";
-              const isTopicMatch = Boolean(
-                priorityTopicSlug && entry.relatedTopicSlug === priorityTopicSlug,
+              const isTopicMatch = matchesPriorityTopic(
+                entry,
+                priorityTopicSlug,
               );
+              const isThisSpeaking = activeSpeakingId === entry.id;
+              const CatIcon = CATEGORY_ICON_MAP[entry.category] ?? ShieldIcon;
+              const cleanCatLabel = stripHardcodedCount(
+                copy.categories[entry.category] ?? entry.category,
+              );
+              const specimenNum = specimenNumberById.get(entry.id) ?? index + 1;
+              const WatchpointIcon = isEmergencyTerm
+                ? AlertCircleIcon
+                : StethoscopeIcon;
 
               return (
                 <li
                   key={entry.id}
-                  className="rounded-xl border border-border bg-background/60 p-4 sm:p-5"
+                  style={{ "--stagger": Math.min(index, 4) } as CSSProperties}
+                  className={cn(
+                    "rh-dict-card overflow-hidden rounded-2xl border bg-card shadow-[var(--shadow-card-rest)] transition-shadow duration-[var(--dur-base)] hover:shadow-[var(--shadow-card-hover)]",
+                    isEmergencyTerm ? "border-primary/35" : "border-border",
+                  )}
                 >
-                  {/* Step 1: What is written on the prescription / referral */}
-                  <div className="rounded-lg border border-border/80 bg-surface-subtle/90 p-3">
+                  {/* Band 1: Official prescription / lab ticket stub */}
+                  <div
+                    className={cn(
+                      "border-b border-dashed px-4 py-3 sm:px-5 sm:py-3.5",
+                      isEmergencyTerm
+                        ? "border-primary/25 bg-primary-soft/35"
+                        : "border-border bg-surface-subtle/85",
+                    )}
+                  >
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="text-xs font-medium text-muted-foreground">
-                        {copy.formalLabel}
-                      </span>
-                      {isTopicMatch && (
-                        <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2 py-0.5 text-xs font-semibold text-sapphire">
-                          {extras.inThisGuide}
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span
+                          className={cn(
+                            "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold",
+                            isEmergencyTerm
+                              ? "bg-primary text-white"
+                              : "bg-card text-sapphire ring-1 ring-inset ring-border",
+                          )}
+                        >
+                          <CatIcon className="h-3.5 w-3.5 shrink-0" />
+                          <span>{cleanCatLabel}</span>
                         </span>
-                      )}
+                        {isTopicMatch && (
+                          <span className="inline-flex items-center rounded-full bg-sapphire-soft px-2.5 py-0.5 text-[11.5px] font-semibold text-sapphire ring-1 ring-inset ring-sapphire-border">
+                            {extras.inThisGuide}
+                          </span>
+                        )}
+                      </div>
+                      <span className="font-mono text-xs font-medium tabular-nums text-muted-foreground">
+                        #{String(specimenNum).padStart(2, "0")}
+                      </span>
                     </div>
+
+                    <span className="mt-2 block text-xs font-medium text-muted-foreground">
+                      {copy.formalLabel}
+                    </span>
                     <p
-                      className={`mt-1 text-base font-semibold leading-snug ${
-                        isEmergencyTerm ? "text-primary" : "text-foreground"
-                      }`}
+                      style={{ fontSize: "var(--dict-formal-size)" }}
+                      className={cn(
+                        "mt-0.5 font-semibold leading-snug break-words",
+                        isEmergencyTerm ? "text-primary" : "text-foreground",
+                      )}
                     >
                       <HighlightGlossaryText
                         text={loc.formalTerm}
@@ -252,60 +448,103 @@ export function RomanianDualRegisterGlossary({
                     </p>
                   </div>
 
-                  {/* Bridge connector */}
-                  <div
-                    className="my-2.5 flex items-center gap-2 px-1 text-xs font-semibold text-sapphire"
-                    aria-hidden="true"
-                  >
-                    <svg
-                      className="h-3.5 w-3.5 shrink-0"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                  {/* Band 2 & Band 3: Plain-language bridge, speak control, explanation, and clinical watchpoint */}
+                  <div className="px-4 pt-3 pb-4 sm:px-5 sm:pt-3.5 sm:pb-5">
+                    {/* Band 2: Visual translation bridge + plain-language heading + tactile speak pill */}
+                    <div
+                      className={cn(
+                        "flex items-center gap-2 text-xs font-semibold",
+                        isEmergencyTerm ? "text-primary" : "text-sapphire",
+                      )}
+                      aria-hidden="true"
                     >
-                      <path d="M12 5v14" />
-                      <path d="m18 13-6 6-6-6" />
-                    </svg>
-                    <span>{extras.bridgeArrowLabel}</span>
-                  </div>
+                      <svg
+                        className="h-3.5 w-3.5 shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M12 5v14" />
+                        <path d="m18 13-6 6-6-6" />
+                      </svg>
+                      <span>{extras.bridgeArrowLabel}</span>
+                      <span className="h-px flex-1 bg-border/80" />
+                    </div>
 
-                  {/* Step 2: Plain-language meaning & explanation */}
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-lg font-semibold leading-snug text-foreground text-balance">
-                      <span className="sr-only">{copy.plainLabel}: </span>
+                    <div className="mt-2.5 flex flex-wrap items-start justify-between gap-3">
+                      <h3
+                        style={{ fontSize: "var(--dict-plain-size)" }}
+                        className="min-w-0 flex-1 font-semibold leading-snug text-foreground text-balance"
+                      >
+                        <span className="sr-only">{copy.plainLabel}: </span>
+                        <HighlightGlossaryText
+                          text={loc.plainTerm}
+                          query={searchQuery}
+                        />
+                      </h3>
+                      {voiceEnabled && (
+                        <DictionarySpeakButton
+                          speaking={isThisSpeaking}
+                          onClick={() => handlePronounce(entry)}
+                          tone={isEmergencyTerm ? "emergency" : "default"}
+                          listenText={copy.pronounceLabel}
+                          stopText={util.stopAudio}
+                          label={
+                            isThisSpeaking
+                              ? `${util.stopAudio}: ${loc.plainTerm}`
+                              : `${copy.pronounceLabel}: ${loc.plainTerm}`
+                          }
+                        />
+                      )}
+                    </div>
+
+                    {/* Band 3: Clear lay explanation + structured clinical watchpoint callout */}
+                    <p
+                      style={{ fontSize: "var(--dict-body-size)" }}
+                      className="mt-2.5 leading-relaxed text-foreground/90"
+                    >
                       <HighlightGlossaryText
-                        text={loc.plainTerm}
+                        text={loc.layExplanation}
                         query={searchQuery}
                       />
-                    </h3>
-                    {voiceEnabled && (
-                      <DictionarySpeakButton
-                        speaking={speakingId === entry.id}
-                        onClick={() => handlePronounce(entry)}
-                        label={`${copy.pronounceLabel}: ${loc.plainTerm}`}
+                    </p>
+
+                    <div
+                      className={cn(
+                        "mt-3.5 flex items-start gap-2.5 rounded-r-xl border-l-[3px] px-3.5 py-2.5",
+                        isEmergencyTerm
+                          ? "border-primary bg-primary-soft/45"
+                          : "border-sapphire bg-sapphire-soft/55",
+                      )}
+                    >
+                      <WatchpointIcon
+                        className={cn(
+                          "mt-0.5 h-4 w-4 shrink-0",
+                          isEmergencyTerm ? "text-primary" : "text-sapphire",
+                        )}
                       />
-                    )}
+                      <p
+                        style={{ fontSize: "var(--dict-note-size)" }}
+                        className="min-w-0 flex-1 leading-relaxed text-foreground/90"
+                      >
+                        <strong
+                          className={cn(
+                            "font-semibold",
+                            isEmergencyTerm ? "text-primary" : "text-foreground",
+                          )}
+                        >
+                          {copy.clinicalSignificanceLabel}{" "}
+                        </strong>
+                        <HighlightGlossaryText
+                          text={loc.clinicalSignificance}
+                          query={searchQuery}
+                        />
+                      </p>
+                    </div>
                   </div>
-
-                  <p className="mt-2 text-[15px] leading-relaxed text-foreground/90">
-                    <HighlightGlossaryText
-                      text={loc.layExplanation}
-                      query={searchQuery}
-                    />
-                  </p>
-
-                  <p className="mt-3 border-l-2 border-sapphire pl-3 text-sm leading-relaxed text-muted-foreground">
-                    <span className="font-semibold text-foreground">
-                      {copy.clinicalSignificanceLabel}{" "}
-                    </span>
-                    <HighlightGlossaryText
-                      text={loc.clinicalSignificance}
-                      query={searchQuery}
-                    />
-                  </p>
                 </li>
               );
             })}

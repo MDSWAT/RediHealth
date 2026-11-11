@@ -96,48 +96,54 @@ export function HealthAssistant() {
   const t = dict[lang] || dict[DEFAULT_LANG];
 
   return (
-    // Same shell as /health-check: tabs span the site container (no jump when switching tabs),
-    // and the page content sits in one max-w-2xl column under them.
+    // Same shell as /health-check: tabs span the site container (no jump when switching tabs).
+    // Under the title: the questions on the left and, from lg, the 112 box in a column beside them.
     <main id="main-content" className="flex-1 pt-0.5 pb-10 sm:pt-2 sm:pb-14">
       <Container>
         <AssistantNavigation />
 
-        <header className="max-w-2xl">
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl">
+        <header className="max-w-3xl">
+          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-4xl">
             {t.title}
           </h1>
-          <p className="mt-2 max-w-prose text-base leading-relaxed text-muted-foreground">
+          <p className="mt-2.5 max-w-[62ch] text-base leading-relaxed text-muted-foreground sm:text-lg">
             {t.subtitle}
           </p>
         </header>
 
-        {/* Links across the site point at /health-assistant#triage. */}
-        <div id="triage" className="mt-6 sm:mt-8">
-          <Suspense
-            fallback={
-              <div className="max-w-2xl rounded-xl border border-border bg-card p-8 text-center text-sm text-muted-foreground">
-                {t.loading}
-              </div>
-            }
-          >
-            <TriageStateMachineWithParams />
-          </Suspense>
-        </div>
+        <div className="mt-6 grid gap-6 sm:mt-8 lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-start lg:gap-10">
+          {/* Links across the site point at /health-assistant#triage. */}
+          <div id="triage" className="min-w-0">
+            <Suspense
+              fallback={
+                <div className="rounded-2xl border border-border bg-card p-8 text-center text-sm text-muted-foreground">
+                  {t.loading}
+                </div>
+              }
+            >
+              <TriageStateMachineWithParams />
+            </Suspense>
+          </div>
 
-        <div className="mt-6 flex max-w-2xl flex-col gap-3 rounded-xl border border-primary/30 bg-primary-soft/55 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
-            <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-            <span>
-              {t.emergencyNotice} <strong className="font-semibold">112</strong>. {t.emergencyDisclaimer}
-            </span>
-          </p>
-          <a
-            href="tel:112"
-            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          {/* Danger signs stay in view on desktop while the person answers; on phones they follow the questions. */}
+          <aside
+            aria-label={t.call112}
+            className="rounded-2xl border border-primary/25 bg-primary-soft/55 p-5 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1.5rem)]"
           >
-            <PhoneIcon className="h-4 w-4" aria-hidden="true" />
-            <span>{t.call112}</span>
-          </a>
+            <p className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+              <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+              <span>
+                {t.emergencyNotice} <strong className="font-semibold">112</strong>. {t.emergencyDisclaimer}
+              </span>
+            </p>
+            <a
+              href="tel:112"
+              className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-[15px] font-semibold text-white shadow-2xs transition-[background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:w-auto lg:w-full"
+            >
+              <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+              <span>{t.call112}</span>
+            </a>
+          </aside>
         </div>
       </Container>
     </main>

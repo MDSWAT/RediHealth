@@ -175,8 +175,7 @@ export function MedicOnlineHero() {
           <div className="grid grid-cols-1 divide-y divide-border md:grid-cols-2 md:divide-x md:divide-y-0">
             <div className="flex flex-col p-6">
               {isOnDuty && (
-                <p role="status" className="mb-3 flex items-center gap-2 text-sm text-muted-foreground tabular-nums">
-                  <span aria-hidden="true" className="inline-block h-2 w-2 shrink-0 rounded-full bg-live-sage" />
+                <p role="status" className="mb-3 border-l-2 border-live-sage pl-2.5 text-sm font-medium text-foreground tabular-nums">
                   {c.onDuty}
                 </p>
               )}
