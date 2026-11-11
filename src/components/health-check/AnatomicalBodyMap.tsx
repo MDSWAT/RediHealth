@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -45,6 +46,14 @@ function prefersLiteBody(): boolean {
   return typeof nav.deviceMemory === "number" && nav.deviceMemory <= 1;
 }
 const subscribeNoop = () => () => {};
+function subscribeDesktopLayout(onChange: () => void) {
+  const mql = window.matchMedia("(min-width: 1024px)");
+  mql.addEventListener("change", onChange);
+  return () => mql.removeEventListener("change", onChange);
+}
+function readDesktopLayout() {
+  return window.matchMedia("(min-width: 1024px)").matches;
+}
 import type { BodyPartId } from "@/lib/i18n/health-check-translations";
 import {
   FEMALE_ONLY_SUB_REGIONS,
@@ -486,6 +495,7 @@ export function AnatomicalBodyMap({
   const openerRef = useRef<HTMLButtonElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [panelOpen, setPanelOpen] = useState(false);
+  const isDesktopLayout = useSyncExternalStore(subscribeDesktopLayout, readDesktopLayout, () => true);
   const [internalProfile, setInternalProfile] = useState<BodyAnatomyProfile>("general");
   const activeBodyProfile: BodyAnatomyProfile =
     focusSubRegion && FEMALE_ONLY_SUB_REGIONS.has(focusSubRegion)
@@ -706,7 +716,7 @@ export function AnatomicalBodyMap({
       aria-label={label}
       title={label}
       onClick={() => cameraRef.current?.[action]()}
-      className="flex h-11 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted active:bg-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+      className="flex min-h-10 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted active:bg-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
     >
       <Icon className="h-5 w-5" />
     </button>
@@ -718,7 +728,7 @@ export function AnatomicalBodyMap({
     openerRef.current?.focus({ preventScroll: true });
   };
 
-  const sectionTitle = "mb-2 text-sm font-semibold text-foreground";
+  const sectionTitle = "mb-1.5 text-sm font-semibold text-foreground";
 
   /**
    * Body Literacy Card. From lg it is a bar above the stage ("bar"), so it never covers the
@@ -922,148 +932,154 @@ export function AnatomicalBodyMap({
             </AnatomicalViewport3D>
             </div>
 
-            {showTools && panelOpen && (
-              <div
-                onClick={(e) => {
-                  if (e.target === e.currentTarget) closePanel();
-                }}
-                className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-3 sm:items-center lg:pointer-events-none lg:static lg:inset-auto lg:z-auto lg:block lg:bg-transparent lg:p-0"
-              >
+            {showTools && panelOpen && (() => {
+              const dialogOverlay = (
                 <div
-                  ref={panelRef}
-                  id={panelId}
-                  role="dialog"
-                  aria-label={t.options}
-                  className="hc-sheet pointer-events-auto w-full max-w-sm max-h-[min(32rem,82dvh)] overflow-y-auto rounded-2xl border border-border bg-card p-4 shadow-xl lg:absolute lg:right-3 lg:top-14 lg:z-40 lg:w-80 lg:max-h-[min(28rem,calc(100%-4rem))]"
+                  onClick={(e) => {
+                    if (e.target === e.currentTarget) closePanel();
+                  }}
+                  className="fixed inset-0 z-[60] flex items-end justify-center bg-black/50 p-3 sm:items-center lg:pointer-events-none lg:static lg:inset-auto lg:z-auto lg:block lg:bg-transparent lg:p-0"
                 >
-                  <div className="mb-2.5 flex items-center justify-between gap-2">
-                    <p className="text-sm font-semibold text-foreground">{t.options}</p>
-                    <button
-                      type="button"
-                      aria-label={t.close}
-                      onClick={closePanel}
-                      className="flex h-9 w-9 items-center justify-center rounded-xl text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-                    >
-                      <CloseIcon className="h-4 w-4" />
-                    </button>
-                  </div>
+                  <div
+                    ref={panelRef}
+                    id={panelId}
+                    role="dialog"
+                    aria-label={t.options}
+                    className="hc-sheet pointer-events-auto w-full max-w-md max-h-[min(42rem,88dvh)] overflow-y-auto rounded-2xl border border-border bg-card p-3.5 shadow-xl sm:max-w-lg sm:p-4 lg:absolute lg:right-3 lg:top-13 lg:z-40 lg:w-[min(27.5rem,calc(100%-1.5rem))] lg:max-h-[calc(100%-3.75rem)] lg:p-3.5"
+                  >
+                    <div className="mb-2 flex items-center justify-between gap-2">
+                      <p className="text-sm font-semibold text-foreground">{t.options}</p>
+                      <button
+                        type="button"
+                        aria-label={t.close}
+                        onClick={closePanel}
+                        className="flex h-8 w-8 items-center justify-center rounded-xl text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                      >
+                        <CloseIcon className="h-4 w-4" />
+                      </button>
+                    </div>
 
-                  <div className="relative">
-                    <label htmlFor={searchId} className={`block ${sectionTitle}`}>
-                      {t.search}
-                    </label>
                     <div className="relative">
-                      <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                      <input
-                        id={searchId}
-                        type="search"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder={t.searchPlaceholder}
-                        autoComplete="off"
-                        className="min-h-10 w-full rounded-xl border border-border bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-sapphire focus:outline-none"
-                      />
+                      <label htmlFor={searchId} className={`block ${sectionTitle}`}>
+                        {t.search}
+                      </label>
+                      <div className="relative">
+                        <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <input
+                          id={searchId}
+                          type="search"
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          placeholder={t.searchPlaceholder}
+                          autoComplete="off"
+                          className="min-h-10 w-full rounded-xl border border-border bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-sapphire focus:outline-none"
+                        />
+                      </div>
+                      {searchQuery.trim().length >= 2 && (
+                        <ul className="mt-2 max-h-44 divide-y divide-border overflow-y-auto rounded-xl border border-border bg-card">
+                          {searchResults.length === 0 ? (
+                            <li className="px-3 py-2 text-xs text-muted-foreground">{t.noResults}</li>
+                          ) : (
+                            searchResults.map((item) => (
+                              <li key={`${item.subRegion}-${item.side}`}>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleSelect3D(item.macroPart, item.subRegion, item.side);
+                                    setSearchQuery("");
+                                    setPanelOpen(false);
+                                  }}
+                                  className="flex min-h-10 w-full items-center justify-between gap-2 px-3 py-2 text-left text-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire"
+                                >
+                                  <span className="font-medium text-foreground">{item.label}</span>
+                                  <span className="text-muted-foreground">{dict.bodyParts[item.macroPart].title}</span>
+                                </button>
+                              </li>
+                            ))
+                          )}
+                        </ul>
+                      )}
                     </div>
-                    {searchQuery.trim().length >= 2 && (
-                      <ul className="mt-2 divide-y divide-border overflow-hidden rounded-xl border border-border">
-                        {searchResults.length === 0 ? (
-                          <li className="px-3 py-2 text-xs text-muted-foreground">{t.noResults}</li>
-                        ) : (
-                          searchResults.map((item) => (
-                            <li key={`${item.subRegion}-${item.side}`}>
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  handleSelect3D(item.macroPart, item.subRegion, item.side);
-                                  setSearchQuery("");
-                                  setPanelOpen(false);
-                                }}
-                                className="flex min-h-10 w-full items-center justify-between gap-2 px-3 py-2 text-left text-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire"
-                              >
-                                <span className="font-medium text-foreground">{item.label}</span>
-                                <span className="text-muted-foreground">{dict.bodyParts[item.macroPart].title}</span>
-                              </button>
-                            </li>
-                          ))
-                        )}
-                      </ul>
-                    )}
-                  </div>
 
-                  <div role="group" aria-label={t.bodyType} className="mt-3">
-                    <p className={sectionTitle}>{t.bodyType}</p>
-                    <div className="grid grid-cols-2 gap-2">
-                      {(
-                        [
-                          { id: "general", label: t.bodyGeneral, Icon: WholeBodyIcon },
-                          { id: "female", label: t.bodyFemale, Icon: FemaleBodyIcon },
-                        ] as const
-                      ).map(({ id, label, Icon }) => {
-                        const active = activeBodyProfile === id;
-                        return (
-                          <button
-                            key={id}
-                            type="button"
-                            aria-pressed={active}
-                            onClick={() => {
-                              setBodyProfile(id);
-                              closePanel();
-                            }}
-                            className={`flex min-h-11 items-center gap-2 rounded-xl border px-2.5 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                              active
-                                ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-                                : "border-border bg-card text-foreground hover:bg-muted"
-                            }`}
-                          >
-                            <Icon className="h-5 w-5 shrink-0" />
-                            <span>{label}</span>
-                          </button>
-                        );
-                      })}
+                    <div role="group" aria-label={t.bodyType} className="mt-2.5">
+                      <p className={sectionTitle}>{t.bodyType}</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {(
+                          [
+                            { id: "general", label: t.bodyGeneral, Icon: WholeBodyIcon },
+                            { id: "female", label: t.bodyFemale, Icon: FemaleBodyIcon },
+                          ] as const
+                        ).map(({ id, label, Icon }) => {
+                          const active = activeBodyProfile === id;
+                          return (
+                            <button
+                              key={id}
+                              type="button"
+                              aria-pressed={active}
+                              onClick={() => {
+                                setBodyProfile(id);
+                                closePanel();
+                              }}
+                              className={`flex min-h-10 items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                                active
+                                  ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
+                                  : "border-border bg-card text-foreground hover:bg-muted"
+                              }`}
+                            >
+                              <Icon className="h-5 w-5 shrink-0" />
+                              <span>{label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
 
-                  <div role="group" aria-label={t.layer} className="mt-3">
-                    <p className={sectionTitle}>{t.layer}</p>
-                    <div className="grid grid-cols-2 gap-2">
-                      {LAYER_ORDER.map((id) => {
-                        const active = effectiveLayerMode === id;
-                        const Icon = LAYER_ICON[id];
-                        return (
-                          <button
-                            key={id}
-                            type="button"
-                            aria-pressed={active}
-                            onClick={() => {
-                              setUserOverrodeLayer(true);
-                              setLayerMode(id);
-                              closePanel();
-                            }}
-                            className={`flex min-h-11 items-center gap-2 rounded-xl border px-2.5 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                              active
-                                ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-                                : "border-border bg-card text-foreground hover:bg-muted"
-                            }`}
-                          >
-                            <Icon className="h-5 w-5 shrink-0" />
-                            <span>{t.layers[id]}</span>
-                          </button>
-                        );
-                      })}
+                    <div role="group" aria-label={t.layer} className="mt-2.5">
+                      <p className={sectionTitle}>{t.layer}</p>
+                      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                        {LAYER_ORDER.map((id) => {
+                          const active = effectiveLayerMode === id;
+                          const Icon = LAYER_ICON[id];
+                          const spanClass = id === "hybrid" ? "col-span-2 sm:col-span-2" : "";
+                          return (
+                            <button
+                              key={id}
+                              type="button"
+                              aria-pressed={active}
+                              onClick={() => {
+                                setUserOverrodeLayer(true);
+                                setLayerMode(id);
+                                closePanel();
+                              }}
+                              className={`${spanClass} flex min-h-10 items-center gap-2 rounded-xl border px-2.5 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                                active
+                                  ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
+                                  : "border-border bg-card text-foreground hover:bg-muted"
+                              }`}
+                            >
+                              <Icon className="h-4.5 w-4.5 shrink-0" />
+                              <span>{t.layers[id]}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
 
-                  <div role="group" aria-label={t.camera} className="mt-3">
-                    <p className={sectionTitle}>{t.camera}</p>
-                    <div className="grid grid-cols-3 gap-2">
-                      {cameraButton(t.zoomOut, ZoomOutIcon, "zoomOut")}
-                      {cameraButton(t.zoomIn, ZoomInIcon, "zoomIn")}
-                      {cameraButton(t.resetView, ResetViewIcon, "resetCamera")}
+                    <div role="group" aria-label={t.camera} className="mt-2.5">
+                      <p className={sectionTitle}>{t.camera}</p>
+                      <div className="grid grid-cols-3 gap-2">
+                        {cameraButton(t.zoomOut, ZoomOutIcon, "zoomOut")}
+                        {cameraButton(t.zoomIn, ZoomInIcon, "zoomIn")}
+                        {cameraButton(t.resetView, ResetViewIcon, "resetCamera")}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              );
+              return !isDesktopLayout && typeof document !== "undefined"
+                ? createPortal(dialogOverlay, document.body)
+                : dialogOverlay;
+            })()}
 
             {showTools && (
               <DirectionPad

@@ -1,7 +1,7 @@
 import type { ElementType, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-export type ContainerSize = "default" | "wide" | "narrow";
+export type ContainerSize = "default" | "wide" | "narrow" | "workspace";
 
 type ContainerProps = {
   children: ReactNode;
@@ -14,6 +14,7 @@ const MAX_WIDTHS: Record<ContainerSize, string> = {
   narrow: "max-w-4xl",
   default: "max-w-6xl",
   wide: "max-w-7xl",
+  workspace: "max-w-[92rem] xl:px-10",
 };
 
 export function Container({

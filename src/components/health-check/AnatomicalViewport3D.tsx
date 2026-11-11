@@ -1073,15 +1073,16 @@ export function AnatomicalViewport3D({
     let isAnimating = false;
     let pointerMoveRafId: number | null = null;
     let pendingPointer: { clientX: number; clientY: number } | null = null;
-    let idealDistance = compact ? 16.5 : 17.2;
+    let idealDistance = compact ? 16.8 : 17.8;
 
     // Shared BodyParts3D transform constants (meters: Y in [0, 1.72] -> scaled to [-3.85, +3.85])
     const MODEL_SCALE = 7.7 / 1.72;
     const CENTER_Y = 0.86;
+    const REST_TARGET_Y = -0.25;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
-    camera.position.set(0, 0.05, idealDistance);
+    camera.position.set(0, REST_TARGET_Y, idealDistance);
 
     // Ask the browser first: without WebGL, three.js would log several console errors before failing.
     if (!hasWebGL()) {
@@ -1126,7 +1127,7 @@ export function AnatomicalViewport3D({
     controls.minDistance = 6.2;
     controls.maxDistance = 22;
     // Same target as the view presets, so the first framing does not drift on load.
-    controls.target.set(0, 0.05, 0);
+    controls.target.set(0, REST_TARGET_Y, 0);
     controls.rotateSpeed = 0.68;
     controls.zoomSpeed = 0.85;
     // The body turns like a turntable and stays upright: a little tilt, never tumbling over.
@@ -1704,15 +1705,15 @@ export function AnatomicalViewport3D({
 
     function animateToPreset(preset: CameraViewPreset, opts?: MoveOptions) {
       const d = idealDistance;
-      const target = new THREE.Vector3(0, 0.05, 0);
+      const target = new THREE.Vector3(0, REST_TARGET_Y, 0);
       const position =
         preset === "back"
-          ? new THREE.Vector3(0, 0.05, -d)
+          ? new THREE.Vector3(0, REST_TARGET_Y, -d)
           : preset === "side"
-            ? new THREE.Vector3(d, 0.05, 0)
+            ? new THREE.Vector3(d, REST_TARGET_Y, 0)
             : preset === "three-quarter"
-              ? new THREE.Vector3(d * 0.58, 0.35, d * 0.82)
-              : new THREE.Vector3(0, 0.05, d);
+              ? new THREE.Vector3(d * 0.58, REST_TARGET_Y + 0.3, d * 0.82)
+              : new THREE.Vector3(0, REST_TARGET_Y, d);
       animateCamera(position, target, opts);
     }
 
@@ -2296,9 +2297,9 @@ export function AnatomicalViewport3D({
       // Ensure full mannequin (7.7m height, ~2.6m width) fits into frustum with safe margin on all screens
       const halfFovRad = THREE.MathUtils.degToRad(camera.fov / 2);
       const tanHalfFov = Math.tan(halfFovRad);
-      const reqDistY = (7.7 * 1.15) / (2 * tanHalfFov);
+      const reqDistY = (7.7 * 1.18) / (2 * tanHalfFov);
       const reqDistX = (2.6 * 1.25) / (2 * tanHalfFov * camera.aspect);
-      idealDistance = Math.max(reqDistY, reqDistX, compact ? 16.5 : 17.2);
+      idealDistance = Math.max(reqDistY, reqDistX, compact ? 16.8 : 17.8);
 
       camera.updateProjectionMatrix();
 

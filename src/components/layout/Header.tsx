@@ -234,6 +234,7 @@ export function Header() {
 
   const isMediatorsActive = isActiveHref("/mediatori");
   const isPortalActive = isActiveHref(portalLink.href);
+  const containerSize = currentPath === "/health-check" ? "workspace" : "default";
 
   return (
     <>
@@ -248,8 +249,8 @@ export function Header() {
         )}
       >
         {/* The 112 line rides on top of the bar, so it stays in view while the page scrolls. */}
-        <UniversalEmergencyBanner tone={isTransparent ? "dark" : "light"} />
-        <Container>
+        <UniversalEmergencyBanner tone={isTransparent ? "dark" : "light"} size={containerSize} />
+        <Container size={containerSize}>
           <div
             className={cn(
               "flex items-center justify-between gap-3 transition-[height] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none xl:gap-4",

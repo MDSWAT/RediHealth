@@ -2003,7 +2003,7 @@ export function HealthCheckExplorer() {
         ref={gridRef}
         className={
           stageVisibleInLayout
-            ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(27rem,33rem)] lg:grid-rows-[auto_1fr] lg:gap-x-8 xl:gap-x-12"
+            ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1.12fr)_minmax(30rem,39rem)] xl:grid-cols-[minmax(0,1.18fr)_minmax(34rem,42rem)] lg:grid-rows-[auto_1fr] lg:gap-x-7 xl:gap-x-10"
             : ""
         }
       >
@@ -2014,7 +2014,7 @@ export function HealthCheckExplorer() {
           <h1 className="text-3xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-4xl">
             {dict.ui.heading}
           </h1>
-          <p className="mt-2 max-w-[62ch] text-base leading-relaxed text-muted-foreground sm:text-lg lg:mt-1.5 lg:text-base">
+          <p className="mt-2 max-w-[62ch] text-base leading-relaxed text-muted-foreground sm:text-lg lg:mt-1 lg:text-base">
             <span className="lg:hidden">{dict.ui.subtitle}</span>
             <span className="hidden lg:inline">{firstSentence(dict.ui.subtitle)}</span>
           </p>
@@ -2028,7 +2028,7 @@ export function HealthCheckExplorer() {
             stepId === "result"
               ? "hidden"
               : bodyShown
-                ? "mt-5 sm:mt-6 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] max-lg:z-0 lg:col-start-1 lg:row-start-2 lg:mt-4"
+                ? "mt-4 sm:mt-5 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] max-lg:z-0 lg:col-start-1 lg:row-start-2 lg:mt-3.5"
                 : stepId === "area"
                   ? "mt-5 mb-4"
                   : "hidden"
@@ -2055,9 +2055,9 @@ export function HealthCheckExplorer() {
             hideMobileLiteracyCard
             stageClassName={`-mx-4 w-[calc(100%+2rem)] sm:mx-0 sm:w-full sm:rounded-2xl sm:border sm:border-border ${
               stageExpanded
-                ? "h-[min(62svh,32rem)] sm:h-[min(62svh,34rem)]"
-                : "h-[clamp(14rem,34svh,18rem)] sm:h-[clamp(16rem,36svh,20rem)]"
-            } lg:mx-auto lg:h-[clamp(21rem,calc(100svh-var(--chrome-h,0px)-17rem),37rem)] lg:max-w-[40rem]`}
+                ? "h-[min(66svh,35rem)] sm:h-[min(68svh,38rem)]"
+                : "h-[clamp(16rem,38svh,21rem)] sm:h-[clamp(18.5rem,42svh,24rem)]"
+            } lg:w-full lg:max-w-none lg:h-[clamp(30rem,calc(100svh-var(--chrome-h,0px)-13rem),46rem)]`}
             toolsClassName={stepId === "area" ? "hidden lg:block" : "hidden"}
             controlsClassName="flex"
             decorative={stepId !== "area" && stepId !== "spot"}
@@ -2073,7 +2073,7 @@ export function HealthCheckExplorer() {
           aria-labelledby={`${baseId}-q`}
           className={`min-w-0 rounded-2xl border border-border bg-card ${
             stageVisibleInLayout
-              ? "max-lg:relative max-lg:z-10 max-lg:-mt-4 max-lg:overflow-x-clip max-lg:rounded-t-[1.5rem] max-lg:border-0 max-lg:bg-muted max-lg:px-4 max-lg:pb-6 max-lg:pt-2 max-lg:shadow-[0_-10px_30px_-18px_rgb(15_23_42/0.35)] max-sm:-mx-4 max-sm:rounded-b-none sm:max-lg:px-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-8.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
+              ? "max-lg:relative max-lg:z-10 max-lg:-mt-4 max-lg:overflow-x-clip max-lg:rounded-t-[1.5rem] max-lg:border-0 max-lg:bg-muted max-lg:px-4 max-lg:pb-6 max-lg:pt-2 max-lg:shadow-[0_-10px_30px_-18px_rgb(15_23_42/0.35)] max-sm:-mx-4 max-sm:rounded-b-none sm:max-lg:px-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-2.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
               : "mt-6 w-full p-5 sm:mt-8 sm:p-8"
           }`}
         >

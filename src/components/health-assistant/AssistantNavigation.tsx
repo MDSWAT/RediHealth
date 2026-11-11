@@ -62,7 +62,7 @@ export function AssistantNavigation() {
   ];
 
   return (
-    <nav aria-label={t.navLabel} className="mb-2 grid grid-cols-4 border-b border-border sm:mb-6 sm:flex sm:gap-1 sm:overflow-x-auto scrollbar-none">
+    <nav aria-label={t.navLabel} className="mb-2 grid grid-cols-4 border-b border-border sm:mb-4 lg:mb-5 sm:flex sm:gap-1 sm:overflow-x-auto scrollbar-none">
       {items.map(({ href, label, Icon }) => {
         const isActive = normalizedPathname === href;
         return (
