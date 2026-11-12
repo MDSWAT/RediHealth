@@ -1,0 +1,51 @@
+{
+  "title": "Ritmo cardiaco rapido improvviso: tachicardia sopraventricolare parossistica",
+  "intro": "La tachicardia sopraventricolare parossistica, o TPSV, causa episodi rapidi originati sopra le camere inferiori del cuore. Spesso iniziano e terminano bruscamente e possono spaventare. Un polso rapido ha anche altre cause, tra cui febbre, tiroide o un’altra aritmia. Servono sintomi e registrazione appropriata del ritmo prima di presumere la diagnosi.",
+  "sections": [
+    {
+      "heading": "Riconoscere quando servono soccorsi",
+      "paragraphs": [
+        "Chiamate il 112 per battito rapido con dolore toracico, importante affanno, svenimento o sensazione di svenire. Un episodio più lungo degli attacchi abituali già diagnosticati richiede consiglio d’emergenza; non aspettate soltanto perché prima si fermava. Non guidate se state male. Un primo episodio persistente o ricorrente inspiegato va valutato. L’accelerazione normale nell’esercizio e quella improvvisa a riposo non sono necessariamente uguali; il numero dell’orologio da solo non stabilisce il ritmo."
+      ]
+    },
+    {
+      "heading": "Aiutare a registrare il ritmo effettivo",
+      "paragraphs": [
+        "Annotate esordio improvviso o graduale, durata, attività, possibili fattori e sintomi. Portate farmaci e informazioni su caffeina, alcol, nicotina, integratori o altre sostanze senza imbarazzo. L’ECG durante i sintomi è particolarmente utile. Un breve ECG normale tra episodi non esclude l’aritmia intermittente; può servire monitoraggio prolungato. Altri esami dipendono dai risultati e valutano tiroide, sangue, elettroliti o struttura cardiaca. Lo studio elettrofisiologico può identificare il circuito, soprattutto pensando all’ablazione."
+      ]
+    },
+    {
+      "heading": "Concordare un piano sicuro durante l’episodio",
+      "paragraphs": [
+        "Sedetevi o sdraiatevi in sicurezza e seguite il piano per il ritmo confermato. Il medico può insegnare una manovra vagale, come uno sforzo appropriato, se adatta. Imparate metodo esatto e quando interrompere per cercare aiuto. Non massaggiate il collo, premete gli occhi o provate tecniche online al posto della valutazione. Non prendete farmaci cardiaci extra o altrui senza inclusione esplicita nel vostro piano. Sintomi gravi prevalgono sull’autogestione e richiedono urgenza."
+      ]
+    },
+    {
+      "heading": "Confrontare le cure a lungo termine",
+      "paragraphs": [
+        "Episodi brevi e rari possono richiedere osservazione e piano, quelli fastidiosi o lunghi farmaci o ablazione. In ospedale farmaci monitorati ripristinano il ritmo e può servire cardioversione. L’ablazione tratta il percorso elettrico anomalo con cateteri, spesso da un vaso inguinale. Chiedete successo per il vostro ritmo, recidive e rischi come sanguinamento, lesioni vascolari o danni alla conduzione normale. La scelta dipende da meccanismo, altre malattie, priorità e specialista."
+      ]
+    },
+    {
+      "heading": "Rivedere fattori, attività e controlli",
+      "paragraphs": [
+        "Alcuni notano episodi dopo troppa caffeina o alcol, altri senza fattore chiaro. Ridurlo può aiutare senza garantire prevenzione. Discutete esercizio, lavoro e guida dopo svenimenti o nuova diagnosi: contano regole locali e rischio. Gravidanza, asma e altri farmaci influenzano le opzioni; segnalateli. Concordate il contatto se gli episodi cambiano, aumentano o compaiono effetti indesiderati. L’ansia accompagna talvolta le palpitazioni ma non deve liquidare un nuovo disturbo senza valutazione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: test normale tra attacchi",
+      "text": "Marta ha episodi improvvisi ma ECG normale in ambulatorio. Annota tempi e sintomi e chiede un monitor più lungo. Non interpreta la breve registrazione come prova che nulla sia avvenuto."
+    },
+    {
+      "title": "Esempio ipotetico: discutere una soluzione duratura",
+      "text": "Arben ha TPSV confermata che interrompe il lavoro. Chiede farmaci e ablazione, benefici, rischi e controlli. Riceve un piano chiaro invece di massaggiarsi il collo o prendere compresse di un familiare."
+    }
+  ],
+  "questions": [
+    "È stato documentato il ritmo e quali altre cause vanno considerate?",
+    "Cosa fare esattamente durante un episodio e quando chiedere soccorsi?",
+    "Come confrontare osservazione, farmaci e ablazione per il mio ritmo e la mia vita?"
+  ]
+}

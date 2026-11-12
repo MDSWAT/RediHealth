@@ -1,0 +1,51 @@
+{
+  "title": "Cum susțin dovezile informația medicală de încredere",
+  "intro": "Un articol medical util vă ajută să înțelegeți o decizie, nu să cumpărați un produs sau să acceptați un singur tratament. Cercetarea oferă baza, dar contează și selectarea, explicarea și actualizarea ei. Acest ghid arată ce puteți urmări într-o informație bazată pe dovezi. Prezența surselor nu înseamnă că orice articol a primit verificare clinică independentă.",
+  "sections": [
+    {
+      "heading": "Porniți de la deciziile cititorilor",
+      "paragraphs": [
+        "Un articol clar identifică boala sau întrebarea, explică alternativele și precizează când este necesar un profesionist. Cititorii pot dori să știe evoluția fără tratament, efectul asupra vieții zilnice sau limitele unui test. Descrierea exclusivă a succesului tehnic al unei proceduri poate rata aceste preocupări. Verificați dacă articolul răspunde întrebării reale și precizează cui se adresează. Un ghid general nu stabilește cauza simptomelor și nu alege tratamentul individual."
+      ]
+    },
+    {
+      "heading": "Priviți dincolo de un studiu favorabil",
+      "paragraphs": [
+        "Informația fiabilă ia în calcul ansamblul cercetării relevante, nu doar rezultate pozitive spectaculoase. Analizele sistematice ajută la găsirea și compararea studiilor, dar metodele și limitele lor contează. Chiar cele mai bune dovezi pot rămâne incerte sau pot să nu includă oameni ca dumneavoastră. Întrebați dacă beneficiile, reacțiile nedorite și alternativele sunt prezentate împreună. Numărul citărilor, sigla unei universități sau un citat de expert nu demonstrează singure o selecție corectă."
+      ]
+    },
+    {
+      "heading": "Separați efectele măsurate de experiența trăită",
+      "paragraphs": [
+        "Studiile tratamentelor estimează ameliorarea simptomelor, reacțiile adverse sau supraviețuirea. Interviurile și cercetarea calitativă descriu experiența bolii, barierele de acces și rezultatele importante pentru oameni. Abordările răspund la întrebări diferite și se pot completa. O poveste personală ajută la înțelegerea unei preocupări, dar nu arată cât de des funcționează tratamentul. Nici rezultatul mediu nu arată exact cum se va simți un individ. Informația clară marchează exemplele și nu prezintă povești inventate ca mărturii reale."
+      ]
+    },
+    {
+      "heading": "Verificați incertitudinile și actualizarea",
+      "paragraphs": [
+        "Căutați autorul sau organizația responsabilă, datele surselor, conflictele de interese și o politică reală de verificare ori actualizare. O dată recentă a paginii nu garantează studii recente, iar cercetarea veche nu este automat greșită. Dovezile noi pot schimba concluzii, mai ales după dovezi inițiale slabe. Traducerile trebuie să păstreze precizările, semnele de alarmă și diferența dintre posibilitate și certitudine. Marcajul de proiect sau verificare în așteptare trebuie respectat, nu interpretat ca aprobare clinică."
+      ]
+    },
+    {
+      "heading": "Folosiți articolul pentru pregătire, nu înlocuirea îngrijirii",
+      "paragraphs": [
+        "Notați ce ați înțeles, ce rămâne neclar și compromisurile importante. Aduceți întrebările și sursele profesionistului potrivit. Verificați separat accesul și costurile locale. Nu modificați o rețetă și nu amânați ajutorul urgent căutând articolul perfect. Dacă o formulare pare ambiguă sau nesigură, raportați pasajul și preocuparea fără date personale inutile. Informația bună sprijină discuția și alegerea informată, recunoscând limitele a ceea ce poate spune."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: poveste și efect terapeutic",
+      "text": "Sara găsește o poveste emoționantă despre recuperare. Apreciază experiența, dar cere cercetări comparative despre beneficii și riscuri înainte de decizie. Povestea o ajută să găsească întrebări, nu să își prezică recuperarea."
+    },
+    {
+      "title": "Exemplu ipotetic: verificarea unei avertizări traduse",
+      "text": "Marko observă că traducerea sună mai sigur decât originalul. Notează titlul, limba și pasajul și raportează diferența. Până la clarificare întreabă un clinician, fără să presupună verificarea independentă a traducerii."
+    }
+  ],
+  "questions": [
+    "Informația prezintă corect alternativele relevante, beneficiile, riscurile și incertitudinea?",
+    "Cine răspunde de conținut, când s-au verificat sursele și ce verificare a avut efectiv loc?",
+    "Ce părți ajută consultația și care necesită clarificare individuală sau locală?"
+  ]
+}

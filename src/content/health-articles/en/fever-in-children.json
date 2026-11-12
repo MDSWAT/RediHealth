@@ -1,0 +1,51 @@
+{
+  "title": "Fever in children: comfort, monitoring and when to get help",
+  "intro": "A temperature of 38°C or more is generally considered a fever in children. Fever is a response to illness, often an infection, rather than a diagnosis itself. Age, breathing, alertness, drinking and the overall pattern matter as well as the number. Most children can be cared for at home, but young babies and children with warning signs need prompt assessment.",
+  "sections": [
+    {
+      "heading": "Measure reliably and observe the child",
+      "paragraphs": [
+        "Use an age-appropriate digital thermometer according to its instructions; an armpit measurement is a practical option for young children. Record the result, time and measurement site. Touch alone does not accurately measure temperature. A recent bath or heavy wrapping can temporarily affect readings, but do not delay care for a visibly unwell child while repeating measurements. Watch breathing, responsiveness, feeding, urine and skin color. Compare with the child’s usual behavior rather than treating a temperature chart as the only guide."
+      ]
+    },
+    {
+      "heading": "Know the age thresholds and emergency signs",
+      "paragraphs": [
+        "A baby younger than 3 months with a temperature of 38°C or more, or suspected fever, needs urgent medical assessment. At age 3 to 6 months, a temperature of 39°C or more also needs urgent advice. Seek help sooner for concerning behavior regardless of the reading. Call 112 for difficulty waking, severe breathing trouble, blue or grey color, a first seizure, stiff neck or a rash that does not fade under pressure. Do not wait for a rash to appear or rely on a normal-looking temperature to dismiss serious illness."
+      ]
+    },
+    {
+      "heading": "Support drinking and comfort without forced cooling",
+      "paragraphs": [
+        "Offer fluids often and continue breastfeeding. Watch for fewer wet nappies or less urine, dry mouth, absent tears or sunken eyes; poor drinking and dehydration require advice. Offer food if wanted without forcing it. Keep the child comfortably dressed, avoiding excessive blankets or stripping them to cool down. Cold baths, alcohol rubs and sponging are not appropriate ways to treat a fever. Check regularly, including at night, and allow rest or quiet activity. Keep the child away from nursery or school while feverish."
+      ]
+    },
+    {
+      "heading": "Use medicines for distress, not just the number",
+      "paragraphs": [
+        "Paracetamol or ibuprofen may help an uncomfortable child if suitable for their age, weight and health. Follow the product instructions or an individual prescription, measure with the supplied device and record what was given. Very young infants need medical advice before treatment. Do not give aspirin to children under 16 unless prescribed. Do not alternate paracetamol and ibuprofen unless a professional tells you to, and avoid duplicate ingredients in combination products. Ibuprofen may be unsuitable with dehydration, chickenpox or some asthma histories. Fever medicines do not reliably prevent febrile seizures."
+      ]
+    },
+    {
+      "heading": "Review persistent fever or any deterioration",
+      "paragraphs": [
+        "Seek medical advice if fever lasts 5 days or more, or earlier if symptoms worsen, the child is not their usual self, feeding is poor or you are worried. Children with immune suppression or important chronic illness may need a lower threshold for assessment. Tell the clinician about travel, vaccinations, medicines, other symptoms and any previous review. Improvement after a fever medicine does not rule out serious infection. Ask for a clear follow-up plan and what should trigger urgent help; do not wait for a planned appointment when new warning signs develop."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a young baby with a fever",
+      "text": "Lina measures a fever in her very young baby and calls for urgent assessment, even though the baby is not crying much. She reports the exact temperature and feeding rather than waiting to see whether a fever medicine works."
+    },
+    {
+      "title": "Hypothetical example: keeping a simple care record",
+      "text": "Arben’s older child has fever and cold symptoms but drinks and responds normally. He records temperature, medicines and urine, offers fluids and checks overnight. When the child becomes unusually hard to wake, he seeks emergency help rather than continuing home observation."
+    }
+  ],
+  "questions": [
+    "Does my child’s age, behavior or medical history make this fever more urgent?",
+    "How should I monitor fluids and comfort, and which medicine is suitable if needed?",
+    "What changes mean we should seek immediate help, and when should persistent fever be reviewed?"
+  ]
+}

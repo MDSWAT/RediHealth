@@ -1,0 +1,57 @@
+{
+  "title": "Aneurizma trbušne aorte",
+  "intro": "Aneurizma trbušne aorte nastaje kada se dio aorte, velike krvne žile koja vodi krv iz srca kroz trbuh, proširi iznad uobičajenog promjera. Promjene stijenke razlikuju se među ljudima, ali odluke o praćenju i liječenju temelje se na stvarnim nalazima. Većina ljudi nema simptome dok aneurizma ne postane velika ili ne pukne, što je hitno stanje. Razumijevanje bolesti pomaže u dogovoru s timom o praćenju i prikladnom liječenju.",
+  "sections": [
+    {
+      "heading": "Prepoznavanje znakova i simptoma",
+      "paragraphs": [
+        "Mnoge aneurizme trbušne aorte ne uzrokuju primjetne tegobe, osobito dok su male. Često se otkriju slučajno na snimanjima zbog drugog razloga ili u programu probira.",
+        "Kada se tegobe pojave, možete osjetiti pulsiranje blizu pupka ili duboku trajnu bol u trbuhu ili donjem dijelu leđa. Puknuće može izazvati naglu jaku bol, omaglicu, ubrzan puls i gubitak svijesti. To zahtijeva trenutačnu hitnu pomoć."
+      ]
+    },
+    {
+      "heading": "Kako se procjenjuje stanje",
+      "paragraphs": [
+        "Procjena obično počinje ultrazvukom trbuha, kojim se vide oblik i veličina aorte. Ako se nađe aneurizma, tim može preporučiti CT ili magnetsku rezonanciju radi detaljnijeg prikaza i preciznog mjerenja.",
+        "Liječnik razmatra pušenje, obiteljsku povijest aneurizmi, dob, krvni tlak i kolesterol. Ponovljena snimanja pokazuju raste li aneurizma i koliko brzo. Učestalost pregleda određuje se prema veličini i brzini rasta te osobnom stanju."
+      ]
+    },
+    {
+      "heading": "Mogućnosti praćenja i liječenja",
+      "paragraphs": [
+        "Za manju aneurizmu bez simptoma može se preporučiti redovito snimanje umjesto neposrednog zahvata. Tako tim prati rast, a izbjegavaju se rizici postupka koji možda još nije potreban.",
+        "Skrb uključuje regulaciju krvnog tlaka, prestanak pušenja, kontrolu kolesterola i brigu za zdravlje srca i krvnih žila. Te mjere djeluju na važne krvožilne rizike; ne zamjenjuju snimanja niti jamče da aneurizma neće rasti.",
+        "Ako veličina, simptomi ili brz rast povećavaju zabrinutost zbog puknuća, razgovara se o popravku. Otvorena operacija zamjenjuje zahvaćeni dio sintetskim presatkom. Endovaskularni zahvat postavlja stent-graft unutar aorte kroz manje rezove. Metode se razlikuju po oporavku, rizicima i prikladnosti prema građi aneurizme i općem zdravlju."
+      ]
+    },
+    {
+      "heading": "Svakodnevni život s aneurizmom",
+      "paragraphs": [
+        "Ako ste pod nadzorom bez neposrednog zahvata, ograničenja aktivnosti ovise o veličini aneurizme i osobnim rizicima. Pitajte tim koje su aktivnosti sigurne za vas, umjesto da pretpostavljate opća pravila.",
+        "Važno je dolaziti na dogovorena snimanja jer rast nije moguće pouzdano osjetiti ni predvidjeti bez pregleda. Čekanje između kontrola može izazvati tjeskobu. Razgovor s liječnikom pomaže razumjeti vlastiti rizik i znakove za hitnu pomoć."
+      ]
+    },
+    {
+      "heading": "Kada tražiti hitnu pomoć",
+      "paragraphs": [
+        "Odmah zatražite hitnu pomoć kod iznenadne jake boli u trbuhu ili leđima, osobito uz omaglicu, nesvjesticu, ubrzan puls, hladan znoj ili mučninu. To može upućivati na puknuće koje zahtijeva hitno liječenje.",
+        "Čak i ako se poznata aneurizma prati, nova ili sve jača bol u trbuhu, promjena osjećaja pulsiranja ili drugi zabrinjavajući simptom zahtijevaju brz kontakt s liječnikom. Sigurnije je procijeniti tegobe nego čekati da same nestanu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: priprema za kontrolno snimanje",
+      "text": "Zamislite da vam je rečeno da se mala aneurizma prati ultrazvukom svakih šest mjeseci. Prije pregleda zapišete nove tegobe i pitanja o aktivnostima. Pitate što nova mjera znači i kakav bi rast promijenio plan. Taj raspored je primjer, a ne preporuka za svaku osobu."
+    },
+    {
+      "title": "Zamišljeni primjer: razgovor o vremenu zahvata",
+      "text": "Snimanja tijekom više kontrola pokazuju stalan rast. S timom razgovarate je li došlo vrijeme za popravak iako se osjećate dobro. Tražite usporedbu koristi i rizika nastavka praćenja s operacijom te objašnjenje utjecaja drugih bolesti."
+    }
+  ],
+  "questions": [
+    "Kolika je moja aneurizma i kako veličina utječe na praćenje ili liječenje?",
+    "Koje aktivnosti trebam izbjegavati i koji simptomi zahtijevaju hitnu pomoć?",
+    "Ako zatreba popravak, kako se razlikuju zahvati i koji najviše odgovara mojem stanju?"
+  ]
+}

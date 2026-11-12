@@ -1,0 +1,51 @@
+{
+  "title": "Agjërimi para analizave, procedurave dhe barnave",
+  "intro": "Agjërimi mjekësor nënkupton shmangien e ushqimeve ose pijeve të caktuara për kohë të përcaktuar para testi, trajtimi ose bari. Nuk është zgjedhje diete. Kërkesat ndryshojnë: jo çdo analizë, skanim ose anestezi lokale kërkon agjërim. Udhëzimet e shërbimit që kryen procedurën kanë përparësi ndaj këshillave të përgjithshme ose përvojës së tjetrit.",
+  "sections": [
+    {
+      "heading": "Pyesni arsyen dhe orët e sakta",
+      "paragraphs": [
+        "Ushqimi ndikon në disa matje gjaku ose pamjen gjatë ekzaminimit. Me disa anestezi ose sedacion, përmbajtja e stomakut mund të futet në mushkëri kur ulen reflekset mbrojtëse. Pyesni a duhet agjërim, kur ndalohet çdo ushqim e pije dhe nëse ora lidhet me mbërritjen ose procedurën. Kërkoni udhëzim të shkruar në gjuhë të kuptueshme. Mos e zgjatni për siguri shtesë: kufizimi i panevojshëm sjell shqetësim, dehidratim ose probleme barnash."
+      ]
+    },
+    {
+      "heading": "Sqaroni ushqimin dhe lëngjet e lejuara",
+      "paragraphs": [
+        "Ushqimi i ngurtë, qumështi, formula, qumështi i gjirit dhe lëngjet e kthjellëta nuk janë njësoj dhe mund të kenë afate të ndryshme. Pija e çelët nuk është automatikisht e lejuar; qumështi në kafe dhe tuli në lëng kanë rëndësi. Pyesni për ujin, çamçakëzin, ëmbëlsirat, duhanin dhe pijet e posaçme. Rregullat e fëmijëve mund të ndryshojnë. Përgatitja e zorrës është proces tjetër. Ndiqni planin e repartit dhe jo interval universal online."
+      ]
+    },
+    {
+      "heading": "Merrni plan për çdo bar",
+      "paragraphs": [
+        "Tregoni të gjitha barnat me e pa recetë, injeksionet, suplementet dhe bimët. Pyesni cilat merren, vonohen ose përshtaten, nëse lejohet pak ujë dhe kur rifillohen. Barnat e diabetit, holluesit e gjakut dhe ato të zbrazjes së stomakut kërkojnë bisedë të veçantë. Mos ndërprisni barnat thelbësore ose zgjidhni dozë tjetër vetë. Bari në stomak bosh ka udhëzimet e veta; nuk do të thotë automatikisht anashkalim vakti ose kopjim i agjërimit kirurgjikal."
+      ]
+    },
+    {
+      "heading": "Planifikoni kur kufizimi mund t’ju rrezikojë",
+      "paragraphs": [
+        "Tregoni diabetin, shtatzëninë, brishtësinë, veshkat, vështirësinë e gëlltitjes ose probleme të mëparshme. Bëni plan individual për matjen e glukozës dhe trajtimin kur duhet. Mos shpërfillni sheqerin e ulët për të ruajtur takimin: ndiqni planin e urgjencës, merrni ndihmë dhe njoftoni ekipin. Pyesni mbështetjen për fëmijë ose persona që nuk kuptojnë kufizimin. Merrni barnat, pajisjet dhe ushqim për pas, por prisni lejen e personelit."
+      ]
+    },
+    {
+      "heading": "Tregoni nëse plani nuk u ndoq",
+      "paragraphs": [
+        "Nëse hani, pini ose merrni diçka jashtë udhëzimeve, kontaktoni shërbimin dhe tregoni çfarë, sa dhe kur. Mos e fshihni, mos anuloni vetë ose shkaktoni të vjella; stafi vendos vazhdimin ose riplanifikimin. Në vonesë kërkoni rregulla të reja në vend të agjërimit pa fund ose pirjes pa pyetur. Pas procedurës rifilloni ushqimin, lëngjet dhe barnat sipas planit të daljes. Disa teste kërkojnë kufizime të tjera. Mësoni kontaktin nëse ndiheni keq ose nuk mbani lëngje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: analiza pa udhëzime",
+      "text": "Alina ka rekomandim analizash pa këshillë agjërimi. Telefonon për të pyetur cilat e kërkojnë dhe a lejohen uji e barnat. Nuk anashkalon mëngjesin vetëm sepse e bëri shoqja."
+    },
+    {
+      "title": "Shembull hipotetik: qumësht para procedurës",
+      "text": "Dritani shton qumësht në pije gjatë kufizimit. Tregon çfarë piu dhe kur. Ekipi vendos sigurinë; ai nuk e fsheh për të shmangur vonesën."
+    }
+  ],
+  "questions": [
+    "A duhet të agjëroj dhe cilat janë udhëzimet e sakta të ushqimit e pijes?",
+    "Cili është plani për çdo bar dhe diabetin apo sëmundje të tjera?",
+    "Kë kontaktoj nëse e shkel planin, procedura vonohet ose sëmurem?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Febbre nei bambini: conforto, osservazione e quando chiedere aiuto",
+  "intro": "Una temperatura di 38°C o più è generalmente considerata febbre nei bambini. È una risposta a una malattia, spesso infettiva, non una diagnosi. Età, respiro, vigilanza, bevande e andamento contano insieme al numero. Molti bambini possono essere assistiti a casa, ma lattanti piccoli e segnali d’allarme richiedono valutazione rapida.",
+  "sections": [
+    {
+      "heading": "Misurare bene e osservare il bambino",
+      "paragraphs": [
+        "Usate un termometro digitale adatto all’età secondo le istruzioni; l’ascella è un’opzione pratica nei piccoli. Annotate risultato, ora e sede. Il tatto non misura con precisione. Bagno recente o troppe coperte modificano temporaneamente la misura, ma non ritardate le cure di un bambino visibilmente malato ripetendo misurazioni. Osservate respiro, risposta, alimentazione, urina e colore. Confrontate con il comportamento abituale, non soltanto con un grafico."
+      ]
+    },
+    {
+      "heading": "Conoscere soglie d’età ed emergenze",
+      "paragraphs": [
+        "Un lattante sotto 3 mesi con 38°C o più, o sospetta febbre, necessita valutazione urgente. Da 3 a 6 mesi, 39°C o più richiedono consiglio urgente. Cercate aiuto prima per comportamento preoccupante indipendentemente dal numero. Chiamate il 112 per difficoltà a svegliarlo, grave difficoltà respiratoria, colore blu o grigio, prima convulsione, rigidità del collo o eruzione che non sbiadisce premendo. Non aspettate l’eruzione e non escludete malattia grave per una temperatura apparentemente normale."
+      ]
+    },
+    {
+      "heading": "Favorire i liquidi senza raffreddare forzatamente",
+      "paragraphs": [
+        "Offrite spesso liquidi e continuate l’allattamento. Osservate meno pannolini bagnati o urina, bocca secca, assenza di lacrime o occhi infossati; scarsa assunzione e disidratazione richiedono consiglio. Offrite cibo se desiderato senza forzare. Vestite comodamente evitando troppe coperte o di spogliare per raffreddare. Bagni freddi, frizioni alcoliche e spugnature non sono appropriati. Controllate anche di notte e permettete riposo o attività tranquilla. Niente asilo o scuola finché c’è febbre."
+      ]
+    },
+    {
+      "heading": "Usare farmaci per il disagio, non solo il numero",
+      "paragraphs": [
+        "Paracetamolo o ibuprofene possono aiutare se adatti a età, peso e salute. Seguite foglietto o prescrizione, misurate con il dispositivo fornito e annotate la dose data. I lattanti molto piccoli richiedono consiglio prima. Non date aspirina sotto 16 anni salvo prescrizione. Non alternate paracetamolo e ibuprofene senza indicazione e non duplicate ingredienti con prodotti combinati. Ibuprofene può essere inadatto con disidratazione, varicella o alcune storie d’asma. Gli antipiretici non prevengono affidabilmente convulsioni febbrili."
+      ]
+    },
+    {
+      "heading": "Rivedere febbre persistente o peggioramento",
+      "paragraphs": [
+        "Chiedete consiglio se dura 5 giorni o più, oppure prima se peggiora, il bambino non è come al solito, si alimenta poco o siete preoccupati. Immunodepressione o malattie croniche importanti possono richiedere valutazione più precoce. Riferite viaggi, vaccini, farmaci, sintomi e visite precedenti. Migliorare dopo un antipiretico non esclude infezione grave. Chiedete un piano chiaro e segnali urgenti; non aspettate l’appuntamento con nuovi campanelli d’allarme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: lattante piccolo con febbre",
+      "text": "Lina misura febbre nel suo lattante molto piccolo e chiede una valutazione urgente anche se piange poco. Riferisce temperatura e alimentazione senza attendere l’effetto di un farmaco."
+    },
+    {
+      "title": "Esempio ipotetico: una registrazione semplice",
+      "text": "Il figlio più grande di Arben ha febbre e raffreddore ma beve e risponde normalmente. Annota temperatura, medicine e urina, offre liquidi e controlla di notte. Quando diventa insolitamente difficile svegliarlo, cerca soccorsi anziché continuare a osservare."
+    }
+  ],
+  "questions": [
+    "Età, comportamento o storia clinica rendono la febbre più urgente?",
+    "Come seguire liquidi e comfort e quale farmaco è adatto se necessario?",
+    "Quali cambiamenti richiedono aiuto immediato e quando rivedere febbre persistente?"
+  ]
+}

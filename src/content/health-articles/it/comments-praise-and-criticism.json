@@ -1,0 +1,51 @@
+{
+  "title": "Commentare le informazioni sanitarie: correzioni e accessibilità",
+  "intro": "Le informazioni migliorano quando i lettori segnalano parole confuse, spiegazioni mancanti e ostacoli all’accesso. Questa è una guida di alfabetizzazione sanitaria sui commenti utili, non un articolo su una malattia. Il canale di feedback di un sito è diverso da visita medica ed emergenza. Scegliete il destinatario corretto e proteggete i dati personali.",
+  "sections": [
+    {
+      "heading": "Indicare cosa volete far comprendere",
+      "paragraphs": [
+        "Nominate articolo, lingua e passaggio o funzione. Spiegate se avete notato un possibile errore, traduzione poco chiara, contesto mancante, difficoltà d’uso o qualcosa di particolarmente utile. Un’osservazione concreta serve più di una lamentela generica. Se commentate l’originale di un altro editore, precisatelo: segnalare a un sito non avvisa necessariamente l’altro. Non presumete risposta immediata o correzione specifica."
+      ]
+    },
+    {
+      "heading": "Descrivere il problema in modo verificabile",
+      "paragraphs": [
+        "Citate solo il breve testo necessario o indicate dove compare. Spiegate cosa avete capito e perché sembra ambiguo o incoerente. Per un’altra fonte indicate titolo e data, così l’editore può confrontare le prove. Distinguete un errore osservato da un disaccordo personale o domanda sulla vostra cura. Un diario dei sintomi aiuta il medico ma solitamente non serve per segnalare un collegamento guasto o un titolo tradotto male."
+      ]
+    },
+    {
+      "heading": "Segnalare concretamente gli ostacoli all’accesso",
+      "paragraphs": [
+        "Per una pagina difficile indicate dispositivo, browser, lingua e azione problematica. Specificate se avviene ingrandendo, usando tastiera, ascolto del testo o tecnologia assistiva. Descrivete risultato atteso ed effettivo. Le schermate aiutano, ma controllate nomi, messaggi e dati sanitari prima di condividerle. Non occorre diagnosticare la causa tecnica o proporre una soluzione per fare una segnalazione utile."
+      ]
+    },
+    {
+      "heading": "Condividere solo ciò che serve",
+      "paragraphs": [
+        "Evitate numeri identificativi, password, cartelle complete, indirizzi e dettagli che identificano altre persone. Usate il contatto dichiarato dal sito e leggete le informazioni sulla privacy prima di inviare materiale sensibile. Una valutazione anonima e una richiesta di risposta personale sono scelte diverse. Non presumete raccolta, conservazione o risposta identiche in ogni servizio. Per diagnosi e farmaci rivolgetevi al professionista appropriato, senza aspettarvi consigli clinici individuali dall’editore."
+      ]
+    },
+    {
+      "heading": "Separare il feedback dalle cure urgenti",
+      "paragraphs": [
+        "Se un passaggio sembra insicuro, spiegate il problema e chiedete chiarimenti, ma non aspettate una risposta editoriale quando serve valutazione medica. Sintomi nuovi o gravi richiedono i servizi appropriati. Anche gli apprezzamenti possono essere specifici: dite quale esempio, definizione o disposizione aiutava. Conservate una copia per eventuale seguito. Una correzione va confrontata con prove affidabili; il feedback avvia una verifica, non dimostra da solo verità o errore di una tesi medica."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: traduzione ambigua",
+      "text": "Lina nota che un’avvertenza tradotta sembra omettere una precisazione. Indica titolo, lingua e breve passaggio spiegando la differenza. Esclude la propria storia medica, non necessaria per verificare la formulazione."
+    },
+    {
+      "title": "Esempio ipotetico: ostacolo con la tastiera",
+      "text": "Petar non raggiunge un comando con la tastiera. Segnala pagina, browser e sequenza di tasti e descrive l’azione attesa. Si può così riprodurre il problema senza schermate private."
+    }
+  ],
+  "questions": [
+    "Ho indicato articolo, lingua e problema con chiarezza sufficiente?",
+    "Condivido solo dati necessari tramite il destinatario appropriato?",
+    "La domanda richiede medico o urgenza anziché una risposta editoriale?"
+  ]
+}

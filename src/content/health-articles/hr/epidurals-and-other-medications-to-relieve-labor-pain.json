@@ -1,0 +1,51 @@
+{
+  "title": "Ublažavanje porođajne boli: epiduralna analgezija i drugi lijekovi",
+  "intro": "Porođajna bol razlikuje se među osobama i mijenja tijekom poroda. Tražiti lijek protiv boli valjan je izbor, a promjena ranijeg plana nije neuspjeh. Ako možete, prije poroda razgovarajte s rodilišnim timom. Dostupnost, vaše zdravlje, stanje djeteta i faza poroda utječu na to što se može sigurno ponuditi.",
+  "sections": [
+    {
+      "heading": "S timom dogovorite prilagodljiv plan",
+      "paragraphs": [
+        "Pitajte koje metode bolnica nudi, je li dostupan anesteziolog i što ako željena metoda kasni ili nije prikladna. Navedite redovite lijekove, lijekove za razrjeđivanje krvi, alergije, poremećaje zgrušavanja, operacije kralježnice i prethodne probleme s anestezijom. Zatražite tumača ako je potreban. Disanje, kretanje, udoban položaj, topla voda i podrška osobe od povjerenja mogu pratiti lijekove. Pristanak ostaje vaša odluka: prije postupka tražite razumljivo objašnjenje."
+      ]
+    },
+    {
+      "heading": "Razumijte kako se daje epiduralna analgezija",
+      "paragraphs": [
+        "Nakon čišćenja i lokalnog umrtvljenja kože anesteziolog postavlja tanku cjevčicu u epiduralni prostor donjeg dijela leđa. Igla se uklanja, a lijek dolazi kroz cjevčicu; igla se namjerno ne uvodi u leđnu moždinu. Ostajete budni. Djelovanje zahtijeva vrijeme i može biti nepotpuno ili nejednoliko, stoga recite ako bol traje. Tim može prilagoditi dozu ili zamijeniti cjevčicu. Nemojte ustajati ili hodati prije nego što osoblje provjeri snagu nogu i sigurnost."
+      ]
+    },
+    {
+      "heading": "Usporedite korist s nadzorom i nuspojavama",
+      "paragraphs": [
+        "Epiduralna analgezija često bolje ublažava bol od opioida u injekciji. Osoblje prati krvni tlak, dijete i učinak lijekova. Mogu nastati teške noge, svrbež, poteškoće mokrenja ili temperatura; ponekad treba mokraćni kateter. Slučajno probijanje ovojnice oko moždinske tekućine može izazvati značajnu glavobolju. Teška infekcija, krvarenje uz živce i trajno oštećenje živaca rijetki su, ali ih treba raspraviti. Metoda može utjecati na tiskanje i potrebu za pomoći pri porodu; ne znači automatski carski rez."
+      ]
+    },
+    {
+      "heading": "Pitajte o drugim mogućnostima i ograničenjima",
+      "paragraphs": [
+        "Dušikov oksidul s kisikom, gdje je dostupan, može smanjiti nelagodu i udiše se kroz nastavak za usta; omaglica ili mučnina mogu ograničiti primjenu. Opioidi u injekciji ili kroz venu mogu pomoći, ali izazvati pospanost, mučninu i poteškoće disanja rodilje ili djeteta, ovisno i o vremenu davanja. Remifentanil kojim upravlja rodilja zahtijeva neposredan nadzor i praćenje disanja; samo rodilja smije pritiskati tipku. To su bolnički postupci, a ne lijekovi za posuđivanje ili samostalno doziranje. Pitajte što je dostupno i kako se liječe neželjeni učinci."
+      ]
+    },
+    {
+      "heading": "Prepoznajte probleme koje treba prijaviti nakon poroda",
+      "paragraphs": [
+        "Prije otpusta pitajte kada se treba vratiti osjet, kako sigurno početi hodati i treba li mjesto cjevčice njegu. Prijavite jaku ili trajnu glavobolju, osobito goru uspravno i bolju ležeći, umjesto da je pripišete umoru. Nova ili sve veća slabost, gubitak kontrole mokrenja ili stolice, jaka bol u leđima s vrućicom, otežano disanje ili izrazita pospanost zahtijevaju hitnu procjenu. Kod teških simptoma tražite hitnu pomoć. Recite kada ste primili epiduralnu analgeziju ili drugi lijek: savjeti ovise o stvarno provedenom postupku."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: promjena želje tijekom poroda",
+      "text": "Elena je željela koristiti disanje i toplu vodu. Tijekom dugog poroda pita o epiduralnoj analgeziji. Tim objašnjava čekanje i osobne rizike, a ona odlučuje nakon razgovora bez osjećaja obveze prema prvom planu."
+    },
+    {
+      "title": "Zamišljeni primjer: nejednoliko ublažavanje boli",
+      "text": "Aida osjeća utrnulost jedne strane, ali snažnu bol trudova na drugoj. Kaže primalji umjesto da pokuša ustati ili pretpostavi da se ništa ne može promijeniti. Anesteziolog provjerava cjevčicu i razgovara o prilagodbi."
+    }
+  ],
+  "questions": [
+    "Koje su mogućnosti dostupne ovdje i prikladne uz moje lijekove i zdravstvenu povijest?",
+    "Kako ćete provjeriti djelovanje analgezije i pratiti mene i dijete?",
+    "Koji simptomi nakon poroda zahtijevaju hitnu procjenu i kome se trebam javiti?"
+  ]
+}

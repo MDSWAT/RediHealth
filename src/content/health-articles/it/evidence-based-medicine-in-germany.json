@@ -1,0 +1,51 @@
+{
+  "title": "Medicina basata sulle prove in Germania: ricerca, raccomandazioni e cure",
+  "intro": "La medicina basata sulle prove unisce ricerca affidabile, competenza clinica, circostanze e preferenze della persona. In Germania orienta raccomandazioni e decisioni del sistema sanitario. Capire i ruoli di ricercatori, medici e organismi decisionali aiuta a leggere informazioni tedesche senza presumere che ogni raccomandazione o regola di rimborso valga altrove.",
+  "sections": [
+    {
+      "heading": "Distinguere ricerca e consiglio personale",
+      "paragraphs": [
+        "La ricerca stima ciò che avviene nei gruppi; la visita applica i risultati alla persona. Chiedete se fossero rappresentate persone con età, malattie e farmaci simili ai vostri e se si misurassero sintomi o funzionamento quotidiano. Il medico considera anche aspetti pratici e priorità personali. Cure basate sulle prove non significano terapie identiche per tutti né un computer al posto del giudizio clinico. Significano spiegare ragioni e incertezze invece di affidarsi soltanto ad abitudine o autorità."
+      ]
+    },
+    {
+      "heading": "Comprendere le linee guida",
+      "paragraphs": [
+        "Le linee guida organizzano prove e raccomandazioni per situazioni definite. Controllate chi le produce, l’aggiornamento e persone e contesti a cui si riferiscono. Non tutte le raccomandazioni hanno prove ugualmente forti; alcune dipendono in parte dal consenso degli esperti. Chiedete applicabilità e alternative. Differenze possono riflettere domande, date o sistemi sanitari diversi, non necessariamente disonestà. Una linea guida sostiene il confronto ma non trasforma una raccomandazione generale in diagnosi o autorizzazione a modificare farmaci autonomamente."
+      ]
+    },
+    {
+      "heading": "Separare valutazione delle prove e rimborso",
+      "paragraphs": [
+        "IQWiG valuta ricerche su benefici e danni e pubblica rapporti scientifici e informazioni per il pubblico. Non è il medico curante e un rapporto non è una prescrizione personale. Il Comitato federale congiunto tedesco, G-BA, emana direttive sui servizi coperti dall’assicurazione sanitaria obbligatoria. Decisioni e valutazione scientifica hanno ruoli diversi. Disponibilità di un farmaco, rimborso e beneficio aggiuntivo rispetto al confronto sono domande distinte. Leggete popolazione, confronto e decisione precisi anziché considerare il nome istituzionale un’approvazione universale."
+      ]
+    },
+    {
+      "heading": "Verificare ciò che è specifico della Germania",
+      "paragraphs": [
+        "Invii specialistici, copertura assicurativa, programmi strutturati per malattie croniche e inviti allo screening possono descrivere il sistema tedesco, non fatti medici universali. Non trasferiteli automaticamente a Romania, Moldova, Albania, Italia o Croazia. Chiedete a medico o assicurazione locali requisiti, costi, servizi disponibili e necessità di invio. Anche nello stesso paese i dettagli dipendono da procedura e situazione. Una sintesi delle prove resta utile per capire benefici e danni mentre i professionisti locali chiariscono l’accesso."
+      ]
+    },
+    {
+      "heading": "Preparare domande per decidere insieme",
+      "paragraphs": [
+        "Portate articolo o raccomandazione, lista dei farmaci e priorità. Chiedete opzioni ragionevoli, beneficio probabile, danni e impegno della cura e conseguenze dell’attesa quando è sicura. Richiedete rischi assoluti comprensibili e un interprete se necessario. Concordate quando rivedere il piano e cosa potrebbe cambiarlo. Non dovete accettare un trattamento soltanto perché compare in una linea guida; allo stesso modo una storia individuale non basta a respingere una raccomandazione ben sostenuta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un programma di screening",
+      "text": "Ana legge un articolo tedesco sugli inviti allo screening. Lo usa per preparare domande su benefici e danni, poi verifica i requisiti locali senza aspettarsi lo stesso invito in Moldova."
+    },
+    {
+      "title": "Esempio ipotetico: il beneficio aggiuntivo",
+      "text": "Ilir sente parlare della valutazione di un nuovo farmaco. Chiede confronto, gruppo di pazienti ed esiti. Il medico spiega la pertinenza alla sua situazione separatamente dal rimborso assicurativo."
+    }
+  ],
+  "questions": [
+    "Quali prove e linee guida sostengono questa opzione e quanto valgono per me?",
+    "È una raccomandazione clinica, una valutazione delle prove o una regola tedesca di rimborso?",
+    "Quali accessi locali, alternative e controlli dobbiamo chiarire prima di decidere?"
+  ]
+}

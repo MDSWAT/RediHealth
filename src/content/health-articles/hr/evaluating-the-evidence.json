@@ -1,0 +1,51 @@
+{
+  "title": "Procjena medicinskih dokaza: pitanja iza zdravstvene tvrdnje",
+  "intro": "Objavljeno istraživanje nije automatski pouzdan odgovor o liječenju. Odabir sudionika, usporedba terapija i mjerenje ishoda mogu promijeniti značenje rezultata. Kritička procjena pita koliko tvrdnji možemo vjerovati i odnosi li se na vašu odluku. Ne morate postati istraživač da biste postavili korisna pitanja.",
+  "sections": [
+    {
+      "heading": "Počnite pitanjem i usporedbom",
+      "paragraphs": [
+        "Utvrdite tko je proučavan, koje liječenje ili test, s čime su uspoređeni i koji su ishodi važni. Istraživanje zdravih dobrovoljaca možda ne odgovara za krhku stariju osobu. Usporedba s nikakvim liječenjem ne pokazuje nužno prednost pred uobičajenom skrbi. Pitajte jesu li mjereni simptomi, funkcioniranje ili preživljenje, a ne samo laboratorijska vrijednost. Jasna pitanja sprečavaju da dojmljivi izrazi odvrate pozornost od stvarno proučenog."
+      ]
+    },
+    {
+      "heading": "Tražite moguće izvore pristranosti",
+      "paragraphs": [
+        "Nasumična raspodjela pomaže usporedivosti skupina, ali pojedinosti su važne. Pitajte je li raspodjelu bilo moguće predvidjeti, jesu li sudionici ili procjenjivači znali terapiju i je li mnogo ljudi odustalo. Nezaslijepljeno istraživanje može biti korisno, ali na subjektivne ishode više utječu očekivanja. Provjerite jesu li ishodi unaprijed planirani i jesu li nepovoljni rezultati objavljeni. Velik uzorak ne popravlja svaki nedostatak, a stručna recenzija ne jamči odsutnost pogrešaka ili selektivnog izvještavanja."
+      ]
+    },
+    {
+      "heading": "Razlikujte veličinu učinka i sigurnost procjene",
+      "paragraphs": [
+        "Pitajte koliko ljudi ima korist ili štetu, tijekom kojeg razdoblja i u odnosu na koji početni rizik. Relativne promjene mogu zvučati veće od apsolutne razlike. Interval pouzdanosti opisuje nesigurnost procjene; statistička značajnost ne znači automatski važnost u svakodnevici. Ni izostanak jasne razlike ne dokazuje uvijek jednakost terapija. Mala istraživanja, malo događaja ili kratko praćenje mogu ostaviti važne koristi i štete nesigurnima i uz odlučan naslov."
+      ]
+    },
+    {
+      "heading": "Pažljivo procjenjujte i pregledne radove",
+      "paragraphs": [
+        "Sustavni pregled treba objasniti pitanje, pretraživanje, kriterije uključivanja i procjenu ograničenja. Provjerite je li tražio dovoljno široko, razmotrio neobjavljene ili nedostajuće rezultate i objasnio spajanje istraživanja. Meta-analiza može dati prividno precizan broj iz vrlo različitih studija ili onih sa zajedničkom pristranošću. Suglasnost kvalitetnih relevantnih istraživanja povećava povjerenje; brojanje pozitivnih nije dovoljno. Pročitajte datum, sukobe interesa i financiranje, prosuđujući metode umjesto prihvaćanja ili odbijanja samo prema izvoru novca."
+      ]
+    },
+    {
+      "heading": "Koristite dokaze u osobnom razgovoru",
+      "paragraphs": [
+        "Donesite tvrdnju ili izvor liječniku i objasnite odluku. Razgovarajte o bolestima, lijekovima, željama, teretu liječenja i alternativama, uključujući praćenje kada je primjereno. Pitajte što je nesigurno i koja bi nova informacija promijenila plan. Osobna priča može pokazati važna iskustva, ali ne određuje pouzdano prosječan učinak. Nemojte naglo mijenjati propisanu skrb zbog vijesti. Dobra procjena podupire zajedničku odluku i realna očekivanja, a ne uklanja svaku nesigurnost."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: veliko relativno smanjenje",
+      "text": "Mara čita da terapija prepolovljuje rizik. Pita za početni rizik, apsolutnu razliku, trajanje praćenja i nuspojave. Uviđa da sam naslov ne pokazuje je li korist vrijedna za nju."
+    },
+    {
+      "title": "Zamišljeni primjer: pregled s nejasnim metodama",
+      "text": "Dritan nalazi pregled koji preporučuje dodatak prehrani, ali ne objašnjava izbor istraživanja. Traži transparentan sustavni pregled i razgovara s ljekarnikom umjesto da brojne reference smatra jamstvom."
+    }
+  ],
+  "questions": [
+    "Jesu li proučavani ljudi poput mene uz relevantnu usporedbu i ishode važne meni?",
+    "Kolike su vjerojatne koristi i štete te koliko nesigurne procjene?",
+    "Mogu li nedostajući rezultati, ograničenja ili razlike među istraživanjima promijeniti zaključak?"
+  ]
+}

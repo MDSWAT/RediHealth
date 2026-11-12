@@ -25,13 +25,13 @@ describe("individual article reading", () => {
     expect(html).toContain(`lang="${code}"`);
     expect(html).not.toContain(healthContentLanguageNotice(code));
   });
-  it.each(["hr", "rom"] as const)("identifies English library content on the %s route", async code => {
+  it.each(["hr", "rom"] as const)("serves the completed dust-mite translation on the %s route", async code => {
     state.lang = code;
     const article = await getHealthArticle(code, "dust-mite-allergies");
     const html = renderToStaticMarkup(await Page({ params: Promise.resolve({ article: "dust-mite-allergies" }) }));
-    expect(article!.contentLanguage).toBe("en");
-    expect(html).toContain('lang="en"');
-    expect(html).toContain(healthContentLanguageNotice(code));
+    expect(article!.contentLanguage).toBe(code);
+    expect(html).toContain(`lang="${code}"`);
+    expect(html).not.toContain(healthContentLanguageNotice(code));
   });
   it.each(languages)("renders all $code content locally, with outgoing sources only in the bottom footer", async ({ code }) => {
     state.lang = code;

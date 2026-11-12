@@ -1,0 +1,51 @@
+{
+  "title": "How evidence supports trustworthy health information",
+  "intro": "A useful health article should help you understand a decision, rather than persuade you to buy a product or accept a single treatment. Research provides a foundation, but choosing, explaining and updating that research also matters. This guide explains what readers can look for in evidence-based information. It does not mean that every article carrying source links has received independent clinical review.",
+  "sections": [
+    {
+      "heading": "Begin with the decisions readers face",
+      "paragraphs": [
+        "A clear article identifies the condition or question, explains common alternatives and says when professional assessment is needed. Readers may want to know what could happen without treatment, how symptoms affect daily life or what a test can and cannot establish. Information that describes only a procedure’s technical success can miss these concerns. Consider whether the article addresses your actual question and whether it states its intended population. A general guide cannot determine the cause of your symptoms or choose your individual treatment."
+      ]
+    },
+    {
+      "heading": "Look beyond a single favorable study",
+      "paragraphs": [
+        "Reliable information should consider the relevant body of research rather than select only striking positive results. Systematic reviews can help locate and compare studies, but their methods and limitations matter. The best available evidence may still be uncertain or may not directly include people like you. Ask whether benefits, unwanted effects and alternatives are covered together. The number of citations, a university logo or an expert quotation does not by itself establish that the evidence was selected fairly."
+      ]
+    },
+    {
+      "heading": "Separate measured effects from lived experience",
+      "paragraphs": [
+        "Studies of treatments can estimate outcomes such as symptom improvement, adverse effects or survival. Interviews and other qualitative research can describe how people experience illness, barriers to care and what outcomes matter to them. These approaches answer different questions and can complement each other. A personal account is useful for understanding a concern but cannot establish how often a treatment works. Equally, an average result cannot show exactly how an individual will feel. Clear information labels examples and avoids presenting invented stories as patient testimony."
+      ]
+    },
+    {
+      "heading": "Check how uncertainty and updates are explained",
+      "paragraphs": [
+        "Look for an author or responsible organization, source dates, conflicts of interest and a meaningful review or update policy. A recent webpage date does not guarantee that every underlying study is recent, while older research is not automatically wrong. New evidence may change a conclusion, especially when earlier evidence was weak. Translations should preserve qualifications, warning signs and the difference between possibilities and certainties. A visible draft or review-pending label should be taken seriously rather than treated as proof of clinical approval."
+      ]
+    },
+    {
+      "heading": "Use the article to prepare, not to replace care",
+      "paragraphs": [
+        "Write down what you understand, what remains unclear and which trade-offs matter most. Bring questions and sources to the appropriate professional. Check local arrangements for access and cost separately from general research findings. Do not change a prescription or delay urgent help while searching for a perfect article. If wording is ambiguous or appears unsafe, report the exact passage and explain the concern without sharing unnecessary personal details. Good health information supports a conversation and informed choice, while acknowledging the limits of what it can tell you."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a story and a treatment effect",
+      "text": "Sara finds a moving recovery story about a treatment. She values the person’s experience but asks for comparative research on benefits and harms before deciding. The story helps her identify questions rather than predict her own recovery."
+    },
+    {
+      "title": "Hypothetical example: checking a translated warning",
+      "text": "Marko notices that a translation sounds more certain than the original. He records the article title, language and passage and reports the difference. Until it is clarified, he asks a clinician about the advice rather than assuming the translation has been independently verified."
+    }
+  ],
+  "questions": [
+    "Does this information explain relevant alternatives, benefits, harms and uncertainty fairly?",
+    "Who is responsible for the content, when were the sources checked and what review has actually occurred?",
+    "Which parts can inform my consultation, and which require individual or local clarification?"
+  ]
+}

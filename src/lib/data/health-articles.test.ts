@@ -65,12 +65,23 @@ describe("individual health articles", () => {
     expect(healthArticlePath("dust-mite-allergies")).toBe("/health-information/articles/dust-mite-allergies");
   });
 
-  it("records direct authorship without claiming provider-assisted checks", () => {
-    for (const id of Object.keys(directAuthorship)) {
-      const status = (editorialStatus as Record<string, { authoringMethod: string; automatedSourceCheck: boolean; automatedTranslationCheck: boolean }>)[id];
-      expect(status.authoringMethod).toBe("direct-assistant");
-      expect(status.automatedSourceCheck).toBe(false);
-      expect(status.automatedTranslationCheck).toBe(false);
+  it("records directly authored translations without relabeling retained originals", () => {
+    for (const [id, record] of Object.entries(directAuthorship)) {
+      const status = (editorialStatus as Record<string, { authoringMethod: string; automatedSourceCheck: boolean; automatedTranslationCheck: boolean; contentHashes: Record<string, string> }>)[id];
+      const authoredHashes = record.contentHashes as Record<string, string>;
+      for (const [lang, hash] of Object.entries(authoredHashes)) {
+        expect(status.contentHashes[lang], `${id}/${lang}`).toBe(hash);
+      }
+      const whollyDirect = Object.entries(status.contentHashes).every(([lang, hash]) => authoredHashes[lang] === hash);
+      expect(status.authoringMethod === "direct-assistant", id).toBe(whollyDirect);
+      if (whollyDirect) {
+        expect(status.automatedSourceCheck).toBe(false);
+        expect(status.automatedTranslationCheck).toBe(false);
+      } else {
+        expect(status.authoringMethod).toBe("provider-assisted");
+        expect(status.automatedSourceCheck).toBe(true);
+        expect(status.automatedTranslationCheck).toBe(true);
+      }
     }
   });
 

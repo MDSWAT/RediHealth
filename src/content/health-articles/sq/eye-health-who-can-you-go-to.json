@@ -1,0 +1,51 @@
+{
+  "title": "Shëndeti i syve: profesionisti i duhur dhe njohja e urgjencës",
+  "intro": "Kujdesi për sytë përfshin profesione me kualifikime e kompetenca që ndryshojnë sipas vendit. Takimi për syze, kontrolli i sëmundjes dhe vlerësimi urgjent nuk zëvendësojnë njëri-tjetrin. Në rezervim përshkruani problemin, jo vetëm kërkoni test shikimi. Pyesni kush ju ekzaminon dhe a mund t’i vlerësojë simptomat tuaja.",
+  "sections": [
+    {
+      "heading": "Mos prisni vizitë rutinë për simptoma urgjente",
+      "paragraphs": [
+        "Humbja ose ndryshimi i madh i papritur i shikimit, dhimbja e fortë, syri i kuq i dhimbshëm me shikim të ulur, shikimi i dyfishtë i ri ose perde në fushën pamore kërkojnë urgjencë. Shkëndija ose shumë pika të reja lëvizëse kërkojnë këshillë të shpejtë sepse mund të ketë problem retine. Kimikatet ose dëmtimi depërtues janë urgjencë; filloni shpëlarjen kimike me ujë të pastër ndërsa kërkoni ndihmë. Mos hiqni objekt të ngulur. Ndryshimet e papritura me dobësi ose vështirësi të foluri mund të jenë goditje në tru dhe kërkojnë urgjencë."
+      ]
+    },
+    {
+      "heading": "Kuptoni testimin dhe shërbimet optike",
+      "paragraphs": [
+        "Optometristët zakonisht vlerësojnë shikimin, fokusimin dhe pjesë të shëndetit të syrit, por diagnostikimi e përshkrimi varen nga ligji e trajnimi lokal. Profesionistët optikë përshtatin ose japin syze e lente dhe këshillojnë përdorimin; titujt nuk janë njësoj kudo. Dyqani mund të ketë staf me role të ndryshme, ndaj pyesni kush kontrollon. Matja e thjeshtë ose testi online nuk përjashton glaukomën, sëmundjen e retinës ose çdo shkak dhimbjeje koke. Raportoni dhimbjen ose ndryshimin e fundit para takimit rutinë."
+      ]
+    },
+    {
+      "heading": "Dijeni kur duhet okulisti",
+      "paragraphs": [
+        "Oftalmologu është mjek i specializuar për sytë dhe sistemin pamor. Heton e trajton sëmundje, përshkruan barna dhe mund të operojë. Referimi ndryshon; problemet urgjente ndjekin rrugën lokale urgjente dhe jo pritjen e zakonshme. Diabeti, sëmundja e njohur, miopia e lartë ose glaukoma familjare ndikojnë planin e monitorimit. Pyesni nëse duhet kontroll specifik: blerja e syzeve nuk zëvendëson ndjekjen e nevojshme të sëmundjes."
+      ]
+    },
+    {
+      "heading": "Pyesni për ortoptikë dhe mbështetje për shikim të dobët",
+      "paragraphs": [
+        "Ortoptistët kontrollojnë drejtimin, lëvizjen dhe bashkëpunimin e syve, shpesh te fëmijët me strabizëm ose zhvillim të dobët pamor dhe të rriturit me shikim të dyfishtë. Punojnë me ekipin; mos mbuloni syrin e fëmijës pa plan individual. Shërbimet për shikim të dobët ndihmojnë përdorimin e shikimit të mbetur me zmadhim, ndriçim, strategji leximi dhe përshtatje praktike. Rehabilitimi dhe aksesueshmëria vlejnë edhe kur gjendja nuk kthehet pas. Pyesni kush ofron shërbimin dhe si ndiqet përparimi."
+      ]
+    },
+    {
+      "heading": "Përgatitni takimin dhe hapin tjetër",
+      "paragraphs": [
+        "Merrni syzet, të dhënat e lenteve, listën e barnave dhe raportet e mëparshme. Tregoni fillimin, nëse preket një apo të dy sytë dhe ndikimin në lexim, lëvizje ose punë. Pyesni nëse pikat zgjeruese mund të turbullojnë përkohësisht ose të pengojnë drejtimin dhe planifikoni transportin. Sqaroni kostot, mbulimin, referimin dhe çfarë pason gjetjen jonormale; rregullat gjermane ose britanike nuk vlejnë automatikisht tjetërkund. Kërkoni shpjegim të gjetjeve, kontrollin pasues dhe ndryshimet për kthim më herët."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: urgjencë në vend të syzeve",
+      "text": "Lidia vëren shkëndija të reja dhe hije të errët anash. Kërkon kontroll urgjent, jo syze më të forta online ose pritje për testin rutinë."
+    },
+    {
+      "title": "Shembull hipotetik: sy i devijuar te fëmija",
+      "text": "Besniku sheh se syri i fëmijës ndonjëherë kthehet nga brenda. Kërkon kontroll të syrit dhe drejtimit. Nuk blen vetë mbulesë dhe nuk mendon se patjetër do të kalojë me rritjen."
+    }
+  ],
+  "questions": [
+    "Cili profesionist mund të vlerësojë simptomat këtu dhe sa urgjent është kontrolli?",
+    "A më duhet kontroll mjekësor ose monitorim sëmundjeje përveç syzeve?",
+    "Çfarë u gjet, çfarë ndjekjeje duhet dhe cilat ndryshime kërkojnë urgjencë?"
+  ]
+}

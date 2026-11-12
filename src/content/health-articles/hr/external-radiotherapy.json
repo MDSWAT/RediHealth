@@ -1,0 +1,51 @@
+{
+  "title": "Vanjska radioterapija: planiranje i svakodnevni učinci",
+  "intro": "Vanjska radioterapija uređajem izvan tijela usmjerava zračenje na planirano područje. Cilj može biti izlječenje raka, smanjenje povrata ili ublažavanje simptoma. Raspored i učinci ovise o tumoru, mjestu i drugim terapijama. Vanjsko zračenje ne čini vas radioaktivnima; pravila za radioaktivne implantate ili lijekove razlikuju se.",
+  "sections": [
+    {
+      "heading": "Razjasnite cilj i osobni plan",
+      "paragraphs": [
+        "Pitajte što se želi postići, kako procijeniti uspjeh i koje su alternative razumne. Radioterapija može biti samostalna ili uz operaciju i lijekove. Tehnika s najnovijim nazivom nije automatski najbolja. Razgovarajte o koristima, okolnim organima, prethodnom zračenju, ugrađenim uređajima i drugim bolestima. Recite ako je trudnoća moguća prije planiranja ili liječenja. Rano pitajte o očuvanju plodnosti kada je relevantno i organizirajte prijevoz, posao, tumača ili skrb za bližnje."
+      ]
+    },
+    {
+      "heading": "Razumijte pregled za planiranje",
+      "paragraphs": [
+        "Snimke pomažu odrediti cilj i zaštititi okolno tkivo. Možda trebaju točan položaj, kožne oznake, oblikovana potpora ili maska. Pitajte o pripremi, hrani, piću i punjenju mjehura jer to ovisi o području. Recite ako bol, klaustrofobija ili teško mirovanje smetaju. Nemojte uklanjati oznake ni sami prilagođavati opremu. Plan omogućuje ponavljanje položaja; snimke za planiranje nisu nužno provjera odgovora tumora."
+      ]
+    },
+    {
+      "heading": "Znajte kako izgleda seansa",
+      "paragraphs": [
+        "Osoblje vas pažljivo postavlja i može snimiti područje prije doze. Uređaj se može pomicati i čuti, ali samo zračenje obično ne osjećate. Osoblje izlazi radi zaštite, nastavljajući vas gledati i komunicirati. Pitajte kako signalizirati nelagodu: postupak se može zaustaviti. Slijedite upute disanja kada postoje. Dolazite na termine i javite odjelu bolest ili problem prijevoza umjesto samostalnog mijenjanja rasporeda."
+      ]
+    },
+    {
+      "heading": "Razgovarajte o učincima područja i podršci",
+      "paragraphs": [
+        "Mogući su umor i promjene kože na tretiranom području. Ostalo ovisi o cilju: usta i grlo mogu utjecati na gutanje, trbuh ili zdjelica na crijeva i mjehur, a dlake ispadaju u ozračenom području, ne automatski svugdje. Pitajte za proizvode za kožu, pranje, odjeću, prehranu i aktivnost. Nemojte nanositi neodobrene pripravke na bolnu kožu ili počinjati dodatke bez provjere interakcija. Rano prijavite simptome jer je pomoć često moguća. Raspravite i kasne rizike."
+      ]
+    },
+    {
+      "heading": "Dogovorite kontrolu i hitno javljanje",
+      "paragraphs": [
+        "Tražite kontakt tijekom i nakon liječenja, uključujući izvan radnog vremena. Nemogućnost pijenja, trajno povraćanje, jaka proljevasta stolica, vrućica ili brzo rastuća bol zahtijevaju brz savjet, osobito uz drugo onkološko liječenje. Teška zaduha, kolaps ili nov ozbiljan neurološki problem traže hitnu procjenu. Slijedite posebne upute za infekciju i krvarenje. Učinci mogu trajati nakon zadnje seanse i sami ne pokazuju djelovanje terapije. Dolazite na kontrole i razgovarajte o oporavku, snimkama, plodnosti i seksualnom zdravlju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: strah od maske",
+      "text": "Daria se boji maske za zračenje glave i vrata. Kaže to na planiranju, pita o komunikaciji i razgovara o tjeskobi prije prve seanse umjesto šutnje."
+    },
+    {
+      "title": "Zamišljeni primjer: praktična podrška",
+      "text": "Arjan treba više posjeta i skrbi za člana obitelji. Pita o rasporedu, prijevozu i kontaktu za kašnjenje. Sazna koje simptome treba prijaviti odmah, bez čekanja sljedećeg termina."
+    }
+  ],
+  "questions": [
+    "Koji je cilj mog liječenja i koje su koristi i kasni rizici realni?",
+    "Kako se pripremiti za planiranje i seanse uz lijekove i ugrađene uređaje?",
+    "Koje nuspojave očekujem za svoje područje i kome se hitno javljam?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Evaluating medical evidence: questions behind a health claim",
+  "intro": "A published study is not automatically a dependable answer to a treatment question. The way participants were selected, treatments compared and outcomes measured can change what a result means. Critical appraisal asks how much trust a claim deserves and whether it applies to your decision. You do not need to become a researcher to ask useful questions.",
+  "sections": [
+    {
+      "heading": "Start with the question and the comparison",
+      "paragraphs": [
+        "Identify who was studied, what treatment or test was used, what it was compared with and which outcomes mattered. A study in healthy volunteers may not answer a question about a frail older person. A comparison against no treatment may not show whether a new product is better than usual care. Ask whether the study measured symptoms, functioning or survival, rather than only a laboratory value. Clear questions prevent impressive terminology from distracting from what the study actually investigated."
+      ]
+    },
+    {
+      "heading": "Look for ways the result could be biased",
+      "paragraphs": [
+        "Random allocation helps make treatment groups comparable, but the details matter. Ask whether allocation could be predicted, whether participants or assessors knew the treatment, and whether many people dropped out. Unblinded studies can still be useful, but subjective outcomes may be more vulnerable to expectation. Check whether outcomes were planned in advance and whether unfavorable results were reported. A large sample cannot repair every design flaw, and peer review is not a guarantee that errors or selective reporting are absent."
+      ]
+    },
+    {
+      "heading": "Distinguish effect size from confidence in the estimate",
+      "paragraphs": [
+        "Ask how many people benefit or are harmed, over what time, and compared with what baseline risk. Relative changes alone may sound larger than the absolute difference. A confidence interval describes uncertainty around an estimate; a statistically significant result is not automatically important to daily life. Conversely, failure to show a clear difference does not always establish that treatments are equivalent. Small studies, few events or short follow-up can leave important benefits or harms uncertain, even when a headline sounds decisive."
+      ]
+    },
+    {
+      "heading": "Assess reviews as carefully as individual studies",
+      "paragraphs": [
+        "A systematic review should explain its question, search, inclusion criteria and assessment of study limitations. Check whether it searched widely enough, considered unpublished or missing results, and explained why studies were combined. A meta-analysis can produce a precise-looking number from studies that differ substantially or share biases. Agreement across well-conducted, relevant studies can increase confidence; merely counting positive studies cannot. Read the review’s date, conflicts of interest and funding disclosures, while judging its methods rather than rejecting or accepting it on funding alone."
+      ]
+    },
+    {
+      "heading": "Use the evidence in an individual conversation",
+      "paragraphs": [
+        "Bring the claim or source to a clinician and explain the decision you face. Discuss your existing conditions, medicines, preferences, treatment burden and available alternatives, including observation where appropriate. Ask what remains uncertain and what new information could change the plan. A personal story can highlight important experiences but cannot reliably establish average treatment effects. Do not abruptly change prescribed care because of a news item. Good appraisal supports a shared decision and realistic expectations; it does not remove every uncertainty."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a large relative reduction",
+      "text": "Mara sees a headline saying a treatment cuts a risk in half. She asks for the starting risk, the absolute difference, follow-up time and side effects. She learns that the headline alone cannot show whether the benefit is worthwhile for her."
+    },
+    {
+      "title": "Hypothetical example: a review with unclear methods",
+      "text": "Dritan finds a review recommending a supplement but cannot identify how studies were selected. He asks for a transparent systematic review and discusses the claim with a pharmacist instead of assuming that many references guarantee reliable evidence."
+    }
+  ],
+  "questions": [
+    "Were people like me studied against a relevant alternative and using outcomes that matter to me?",
+    "How large are the likely benefits and harms, and how uncertain are the estimates?",
+    "Could missing results, study limitations or differences between studies change the conclusion?"
+  ]
+}

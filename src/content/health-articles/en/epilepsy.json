@@ -1,0 +1,51 @@
+{
+  "title": "Epilepsy: recognizing seizures, treatment and everyday safety",
+  "intro": "Epilepsy involves a lasting tendency to have epileptic seizures caused by abnormal electrical activity in the brain. Seizures do not always cause shaking: some briefly interrupt awareness or produce unusual sensations. A single seizure can have another cause and does not automatically establish epilepsy. Many people achieve good seizure control with appropriate treatment and support.",
+  "sections": [
+    {
+      "heading": "Describe events accurately to support diagnosis",
+      "paragraphs": [
+        "Record what happened before, during and after an event, its duration, illness, sleep loss, medicines and recovery. A witness can describe behavior you do not remember; a video may help only if recording does not delay first aid. A specialist may arrange an EEG, brain imaging, blood tests or a heart tracing to investigate alternatives such as fainting. A normal routine EEG does not exclude epilepsy. Diagnosis depends on the whole picture, sometimes including a high recurrence risk after an initial seizure."
+      ]
+    },
+    {
+      "heading": "Give first aid without causing harm",
+      "paragraphs": [
+        "Stay nearby, time the event, remove hazards and cushion the head if the person is on the ground. Do not restrain movements or put fingers, food, drink or objects in the mouth. After jerking stops, place an unconscious person who is breathing normally on their side and monitor breathing. If breathing is not normal, follow emergency-dispatcher resuscitation instructions. Call 112 for a first seizure, a seizure lasting 5 minutes or more, repeated seizures without recovery, serious injury or breathing problems. Use prescribed rescue medicine only according to a plan and if trained."
+      ]
+    },
+    {
+      "heading": "Use treatment consistently and review unwanted effects",
+      "paragraphs": [
+        "The medicine choice depends on seizure type, other conditions, interactions and individual priorities. Agree what to do about a missed dose and seek advice about troublesome sleepiness, mood changes or a rash. Do not abruptly stop or adjust antiseizure medication yourself, even after a long period without seizures. Pregnancy planning, contraception and potential risks to a developing baby need specialist discussion; stopping treatment suddenly can also be dangerous. Persistent seizures despite treatment justify specialist review of diagnosis and options, which may include surgery, stimulation or a medically supervised diet."
+      ]
+    },
+    {
+      "heading": "Adapt everyday activities without assuming everything is forbidden",
+      "paragraphs": [
+        "Use a seizure diary to identify personal patterns, keep sleep regular and discuss alcohol and other potential triggers. Flashing lights affect only some people. Prefer safer bathing arrangements, discuss water supervision, and assess cooking, heights, tools and work tasks individually. Do not drive after a suspected seizure until the relevant medical and licensing requirements have been clarified; rules differ by country. Medical identification and an agreed plan help family, school and colleagues respond. Support for anxiety or depression is part of care, not a sign of weakness."
+      ]
+    },
+    {
+      "heading": "Make an individual risk and follow-up plan",
+      "paragraphs": [
+        "Ask about injury prevention, prolonged seizures and sudden unexpected death in epilepsy, including how seizure control and regular medication can reduce risk. Avoid assuming that a device or general precaution guarantees protection. Agree who to contact after a breakthrough seizure, a new seizure pattern or pregnancy, and when emergency help is needed. Bring the diary and medicine list to review appointments. A person may need rest and reassurance after a typical seizure, but unusually prolonged confusion, weakness or incomplete recovery needs urgent assessment rather than being dismissed as normal."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: episodes that do not involve shaking",
+      "text": "Luka repeatedly stops responding briefly at school. His teacher records the duration and what happens afterward, and his family arranges assessment. They do not assume he is ignoring instructions or diagnose epilepsy from the description alone."
+    },
+    {
+      "title": "Hypothetical example: a shared first-aid plan",
+      "text": "Nora has diagnosed epilepsy and a written plan. Her colleagues learn to remove hazards, time a seizure and recognize when to call for help. Only a trained person gives her prescribed rescue medicine as directed; nobody holds her down or places anything in her mouth."
+    }
+  ],
+  "questions": [
+    "What type of events do I have, and what tests or further observation are needed?",
+    "Which treatment fits my situation, including pregnancy considerations, interactions and side effects?",
+    "What should my family do during a seizure, and what safety or driving restrictions apply to me?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Medicina bazată pe dovezi în Germania: cercetare, recomandări și îngrijire",
+  "intro": "Medicina bazată pe dovezi combină cercetarea fiabilă, experiența clinică și situația și preferințele persoanei. În Germania influențează recomandările și deciziile sistemului medical. Înțelegerea rolurilor cercetătorilor, medicilor și organismelor de decizie vă ajută să citiți informația germană fără să presupuneți că orice recomandare sau regulă de finanțare se aplică în altă țară.",
+  "sections": [
+    {
+      "heading": "Separați rezultatul cercetării de recomandarea personală",
+      "paragraphs": [
+        "Cercetarea estimează ce se întâmplă în grupuri, iar consultația aplică datele individului. Întrebați dacă au fost reprezentate persoane de vârsta dumneavoastră, cu boli și medicamente similare și dacă s-au măsurat simptomele ori funcționarea zilnică. Medicul ia în calcul posibilitățile practice și prioritățile personale. Îngrijirea bazată pe dovezi nu înseamnă tratament identic pentru toți sau înlocuirea medicului cu un calculator. Înseamnă explicarea motivelor și incertitudinilor, nu bazarea doar pe obișnuință ori autoritate."
+      ]
+    },
+    {
+      "heading": "Înțelegeți rolul ghidurilor clinice",
+      "paragraphs": [
+        "Ghidurile organizează dovezi și recomandări pentru situații definite. Verificați autorul, data actualizării și persoanele și locurile vizate. Nu toate recomandările au dovezi la fel de puternice; unele se bazează parțial pe consensul experților. Întrebați cum vi se aplică recomandarea și ce alternative există. Diferențele pot reflecta întrebări, date sau sisteme diferite, nu neapărat lipsă de onestitate. Ghidul sprijină discuția, dar nu transformă o recomandare generală în diagnostic sau permisiune de a modifica singur medicamentele."
+      ]
+    },
+    {
+      "heading": "Deosebiți evaluarea dovezilor de decontare",
+      "paragraphs": [
+        "IQWiG evaluează cercetările despre beneficii și efecte nocive și publică rapoarte și informații pentru public. Nu este medicul curant, iar raportul său nu este rețetă individuală. Comitetul Federal Comun german, G-BA, emite directive despre serviciile acoperite de asigurarea legală de sănătate. Decizia și evaluarea dovezilor au roluri diferite. Disponibilitatea unui medicament, decontarea și beneficiul suplimentar față de un comparator sunt întrebări distincte. Citiți populația, comparația și decizia exactă, fără să considerați numele instituției o aprobare universală."
+      ]
+    },
+    {
+      "heading": "Verificați ce este specific Germaniei",
+      "paragraphs": [
+        "Trimiterile, decontarea, programele structurate pentru boli cronice și invitațiile la screening pot descrie sistemul german, nu reguli medicale generale. Nu le transferați automat în România, Moldova, Albania, Italia sau Croația. Întrebați medicul local sau asigurătorul despre eligibilitate, costuri, servicii și trimiterea necesară. Chiar în aceeași țară, detaliile depind de procedură și situație. Sinteza dovezilor poate ajuta la înțelegerea beneficiilor și riscurilor, în timp ce profesioniștii locali clarifică accesul."
+      ]
+    },
+    {
+      "heading": "Pregătiți întrebări pentru decizia comună",
+      "paragraphs": [
+        "Aduceți articolul sau recomandarea, lista medicamentelor și prioritățile dumneavoastră. Întrebați ce opțiuni sunt rezonabile, cât beneficiu este probabil, ce efecte nocive sau efort implică și ce se întâmplă dacă așteptați, când așteptarea este sigură. Cereți riscuri absolute explicate și interpret dacă este necesar. Stabiliți când se revizuiește planul și ce l-ar schimba. Nu trebuie să acceptați un tratament doar fiindcă apare într-un ghid; nici o poveste individuală nu este suficientă pentru a respinge o recomandare bine susținută."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: un program de screening",
+      "text": "Ana citește un articol german despre invitații la screening. Îl folosește pentru întrebări despre beneficii și efecte nocive, apoi verifică eligibilitatea locală, fără să presupună aceeași invitație în Moldova."
+    },
+    {
+      "title": "Exemplu ipotetic: întrebarea despre beneficiul suplimentar",
+      "text": "Ilir aude că a fost evaluat un medicament nou. Întreabă cu ce a fost comparat, pentru ce grup și cu ce rezultate. Medicul explică relevanța pentru boala lui separat de plata prin asigurare."
+    }
+  ],
+  "questions": [
+    "Ce dovezi și ghid susțin opțiunea și cât de bine mi se aplică?",
+    "Este o recomandare medicală, o evaluare a dovezilor sau o regulă germană de decontare?",
+    "Ce acces local, alternative și urmărire trebuie clarificate înainte de decizie?"
+  ]
+}

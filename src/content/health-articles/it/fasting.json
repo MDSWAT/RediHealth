@@ -1,0 +1,51 @@
+{
+  "title": "Digiuno prima di esami, procedure e farmaci: istruzioni corrette",
+  "intro": "Il digiuno medico consiste nell’evitare alimenti o bevande specifici per un tempo definito prima di esame, cura o farmaco. Non è una dieta personale. I requisiti variano: non tutti i prelievi, esami o interventi in anestesia locale richiedono digiuno. Le istruzioni del servizio che esegue la procedura prevalgono sui consigli generali o sull’esperienza altrui.",
+  "sections": [
+    {
+      "heading": "Chiedere motivo e orari esatti",
+      "paragraphs": [
+        "Il cibo può modificare alcuni valori ematici o impedire una visualizzazione adeguata. Con certe anestesie o sedazioni il contenuto gastrico può entrare nei polmoni quando si riducono i riflessi protettivi. Chiedete se serva davvero il digiuno, quando interrompere ogni alimento e bevanda e se l’orario riguardi arrivo o procedura. Richiedete istruzioni scritte comprensibili. Non prolungatelo per maggiore prudenza: restrizioni inutili provocano disagio, disidratazione o problemi terapeutici."
+      ]
+    },
+    {
+      "heading": "Chiarire cibo e liquidi consentiti",
+      "paragraphs": [
+        "Solidi, latte, formula, latte materno e liquidi chiari non sono equivalenti e possono avere scadenze diverse. Una bevanda chiara di colore non è automaticamente ammessa; latte nel caffè e succo con polpa contano. Chiedete acqua, gomme, caramelle, fumo e preparati specifici. Le istruzioni pediatriche possono differire. La preparazione intestinale è separata con regole proprie. Seguite il piano del reparto invece di un intervallo universale online."
+      ]
+    },
+    {
+      "heading": "Ottenere un piano per ogni farmaco",
+      "paragraphs": [
+        "Comunicate tutti i farmaci, anche senza ricetta, iniezioni, integratori e prodotti vegetali. Chiedete quali assumere, ritardare o modificare, se sia ammessa poca acqua e quando riprendere. Terapie diabetiche, anticoagulanti e farmaci sullo svuotamento gastrico richiedono attenzione particolare. Non sospendete cure essenziali né cambiate dosi da soli. Il farmaco a stomaco vuoto segue istruzioni proprie: non significa automaticamente saltare un pasto o copiare il digiuno chirurgico."
+      ]
+    },
+    {
+      "heading": "Pianificare se il digiuno comporta rischi",
+      "paragraphs": [
+        "Segnalate diabete, gravidanza, fragilità, problemi renali, deglutizione o precedenti difficoltà. Concordate controlli e trattamento della glicemia quando necessario. Non ignorate ipoglicemia per salvare l’appuntamento: seguite il piano d’emergenza e cercate aiuto, poi informate il team. Chiedete supporto per bambini o persone che non comprendono le restrizioni. Portate farmaci, strumenti e merenda adatta per dopo, ma aspettate conferma prima di mangiare."
+      ]
+    },
+    {
+      "heading": "Riferire sinceramente se il piano non è stato seguito",
+      "paragraphs": [
+        "Se mangiate, bevete o assumete qualcosa fuori piano, contattate il servizio indicando cosa, quanto e quando. Non nascondete, annullate automaticamente o inducete vomito: il personale decide se procedere o rinviare. In caso di ritardo chiedete nuove indicazioni anziché digiunare indefinitamente o bere senza controllare. Dopo riprendete cibo, liquidi e medicine secondo la dimissione. Alcuni esami richiedono ulteriori restrizioni. Chiedete il contatto se state male o non trattenete liquidi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: prelievo senza indicazioni",
+      "text": "Alina deve fare esami ma non riceve indicazioni. Chiama per capire quali richiedano digiuno e se acqua e medicine siano ammesse. Non salta colazione soltanto perché lo ha fatto un’amica."
+    },
+    {
+      "title": "Esempio ipotetico: latte prima della procedura",
+      "text": "Dritan aggiunge latte a una bevanda nel periodo ristretto. Riferisce cosa e quando. Il team decide la sicurezza; non nasconde l’episodio per evitare ritardi."
+    }
+  ],
+  "questions": [
+    "Devo digiunare e quali sono le istruzioni esatte per questo appuntamento?",
+    "Qual è il piano per ogni farmaco e per diabete o altre condizioni?",
+    "Chi contatto se interrompo il digiuno, la procedura ritarda o sto male?"
+  ]
+}

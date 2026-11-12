@@ -1,0 +1,51 @@
+{
+  "title": "Radioterapia e jashtme: planifikimi dhe menaxhimi i efekteve",
+  "intro": "Radioterapia e jashtme përdor aparat jashtë trupit për të drejtuar rrezatim në një zonë të planifikuar. Mund të synojë shërimin e kancerit, uljen e rikthimit ose lehtësimin e simptomave. Orari dhe efektet varen nga kanceri, vendi dhe trajtimet e tjera. Rrezatimi i jashtëm nuk ju bën radioaktiv; masat për implantet ose barnat radioaktive ndryshojnë.",
+  "sections": [
+    {
+      "heading": "Sqaroni qëllimin dhe planin personal",
+      "paragraphs": [
+        "Pyesni çfarë synohet, si vlerësohet suksesi dhe cilat alternativa janë të arsyeshme. Radioterapia mund të përdoret vetëm ose me kirurgji e barna. Teknika që tingëllon më e re nuk është automatikisht më e mira për çdo kancer. Diskutoni përfitimet, organet pranë, rrezatimin e mëparshëm, pajisjet e implantuara dhe sëmundjet. Tregoni mundësinë e shtatzënisë para planifikimit ose trajtimit. Pyesni herët për ruajtjen e fertilitetit kur lidhet me ju dhe organizoni transportin, punën, përkthimin ose kujdesin për të tjerët."
+      ]
+    },
+    {
+      "heading": "Kuptoni takimin e planifikimit",
+      "paragraphs": [
+        "Imazhet ndihmojnë përcaktimin e objektivit dhe mbrojtjen e indeve përreth. Mund të duhet pozicion i saktë, shenja në lëkurë, mbështetëse e formuar ose maskë. Pyesni për ushqimin, pirjen ose mbushjen e fshikëzës; kërkesat varen nga zona. Tregoni nëse dhimbja, klaustrofobia ose vështirësia për të qëndruar pa lëvizur pengojnë. Mos fshini shenjat dhe mos rregulloni vetë pajisjet. Plani ndihmon përsëritjen e pozicionit; imazhet e planifikimit nuk janë domosdoshmërisht matje e përgjigjes së kancerit."
+      ]
+    },
+    {
+      "heading": "Dijeni çfarë ndodh në seancë",
+      "paragraphs": [
+        "Personeli ju pozicionon dhe mund të marrë imazhe para dozës. Aparati lëviz dhe bën zhurmë, por zakonisht nuk ndieni vetë rrezatimin. Personeli del për mbrojtje gjatë dhënies, ndërsa ju vëzhgon dhe komunikon. Pyesni si të sinjalizoni shqetësimin; trajtimi mund të ndërpritet përkohësisht. Ndiqni udhëzimet e frymëmarrjes kur përdoren. Mbani takimet dhe kontaktoni repartin nëse sëmundja ose transporti mund t’ju pengojë, në vend që ta ndryshoni vetë orarin."
+      ]
+    },
+    {
+      "heading": "Diskutoni efektet sipas zonës dhe kujdesin mbështetës",
+      "paragraphs": [
+        "Mund të shfaqen lodhje dhe ndryshime të lëkurës në zonë. Efektet e tjera varen nga objektivi: trajtimi i gojës e fytit mund të ndikojë gëlltitjen, barku ose legeni zorrën a fshikëzën, ndërsa qimet bien në zonën e trajtuar dhe jo automatikisht kudo. Pyesni për produktet, larjen, veshjen, ushqimin dhe aktivitetin. Mos vendosni mjete të pamiratuara në lëkurë të dhimbshme ose filloni suplemente pa diskutuar ndërveprimet. Raportoni herët simptomat; shpesh ka ndihmë. Diskutoni edhe rreziqet e vonshme."
+      ]
+    },
+    {
+      "heading": "Planifikoni ndjekjen dhe ndihmën urgjente",
+      "paragraphs": [
+        "Kërkoni kontakt për simptomat gjatë dhe pas trajtimit, edhe jashtë orarit. Pamundësi për të pirë, të vjella të vazhdueshme, diarre e rëndë, temperaturë ose dhimbje që shtohet shpejt kërkojnë këshillë të shpejtë, sidomos me trajtime të tjera kanceri. Vështirësi e madhe frymëmarrjeje, humbje ndjenjash ose problem i ri neurologjik i rëndë kërkojnë urgjencë. Ndiqni udhëzimet për infeksion dhe gjakderdhje. Efektet mund të vazhdojnë pas seancës së fundit; kjo nuk tregon vetë suksesin. Ndiqni kontrollet dhe diskutoni rikuperimin, imazherinë, fertilitetin dhe shëndetin seksual."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: ankth për maskën",
+      "text": "Daria shqetësohet për maskën gjatë trajtimit të kokës dhe qafës. E tregon gjatë planifikimit, pyet si komunikohet dhe diskuton ankthin para seancës, në vend që të vuajë në heshtje."
+    },
+    {
+      "title": "Shembull hipotetik: organizimi praktik",
+      "text": "Arjani ka disa vizita dhe kujdeset për një të afërm. Pyet për orarin, transportin dhe kontaktin për vonesa. Mëson cilat simptoma raportohen menjëherë dhe jo në seancën tjetër."
+    }
+  ],
+  "questions": [
+    "Cili është qëllimi dhe cilat përfitime e rreziqe afatgjata janë reale?",
+    "Si përgatitem për planifikimin dhe seancat, përfshirë barnat dhe pajisjet e implantuara?",
+    "Cilat efekte priten në zonën time dhe kë kontaktoj urgjentisht?"
+  ]
+}

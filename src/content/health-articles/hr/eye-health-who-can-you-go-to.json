@@ -1,0 +1,51 @@
+{
+  "title": "Zdravlje očiju: izbor stručnjaka i prepoznavanje hitnosti",
+  "intro": "Skrb o očima uključuje različite struke čije se kvalifikacije i ovlasti razlikuju među državama. Termin za naočale, pregled bolesti i hitna procjena nisu zamjenjivi. Pri naručivanju opišite problem umjesto traženja samo provjere vida. Pitajte tko vas pregledava i može li služba procijeniti konkretne simptome.",
+  "sections": [
+    {
+      "heading": "Ne čekajte rutinski pregled kod hitnih simptoma",
+      "paragraphs": [
+        "Nagli gubitak ili velika promjena vida, jaka bol, bolno crveno oko uz slabiji vid, nove dvoslike ili zavjesa u vidnom polju traže hitnu procjenu. Novi bljeskovi ili mnogo novih plutajućih točkica također traže brz savjet zbog moguće bolesti mrežnice. Kemikalije i prodorna ozljeda hitna su stanja; kod kemikalije počnite ispirati čistom vodom dok tražite pomoć. Nemojte vaditi zabodeni predmet. Nagli vidni simptomi uz slabost ili teškoće govora mogu biti moždani udar i zahtijevaju hitnu službu."
+      ]
+    },
+    {
+      "heading": "Razumijte provjeru vida i optičke usluge",
+      "paragraphs": [
+        "Optometristi obično procjenjuju vid, fokusiranje i neke dijelove zdravlja oka, ali dijagnosticiranje i propisivanje ovise o lokalnim pravilima i školovanju. Optičari koji izdaju pomagala prilagođavaju naočale i leće te objašnjavaju njegu; nazivi nisu isti svugdje. U trgovini može raditi različito osoblje, pa pitajte tko pregledava. Osnovno mjerenje vida ili internetski test ne isključuje glaukom, bolest mrežnice ili svaki uzrok glavobolje. Prijavite bol ili nedavnu promjenu prije redovitog termina."
+      ]
+    },
+    {
+      "heading": "Znajte kada treba oftalmolog",
+      "paragraphs": [
+        "Oftalmolog je liječnik specijaliziran za oči i vidni sustav. Ispituje i liječi bolesti, propisuje medicinsko liječenje i može operirati. Pravila uputnica variraju; hitne tegobe slijede lokalni hitni put umjesto čekanja redovite uputnice. Dijabetes, poznata bolest, visoka kratkovidnost ili obiteljski glaukom mogu promijeniti plan praćenja. Pitajte treba li poseban pregled bolesti; kupnja novih naočala ne zamjenjuje indiciranu kontrolu."
+      ]
+    },
+    {
+      "heading": "Pitajte za ortoptiku i podršku slabovidnima",
+      "paragraphs": [
+        "Ortoptisti procjenjuju položaj, kretnje i zajednički rad očiju, često u djece sa strabizmom ili slabijim razvojem vida i odraslih s dvoslikama. Rade s timom; nemojte započinjati prekrivanje djetetova oka bez osobnog plana. Službe slabovidnosti pomažu koristiti preostali vid povećanjem, svjetlom, strategijama čitanja i prilagodbama. Rehabilitacija i pristupačnost važne su i kad bolest nije popravljiva. Pitajte koji lokalni stručnjak pruža uslugu i kako se prati napredak."
+      ]
+    },
+    {
+      "heading": "Pripremite pregled i sljedeći korak",
+      "paragraphs": [
+        "Donesite naočale, podatke o lećama, lijekove i ranije nalaze. Opišite početak, zahvaća li jedno ili oba oka te utjecaj na čitanje, kretanje ili rad. Pitajte mogu li kapi za širenje zjenice privremeno zamagliti vid ili vožnju učiniti nesigurnom i organizirajte prijevoz. Razjasnite cijenu, pokriće, uputnice i postupak nakon abnormalnog nalaza; njemačka ili britanska pravila ne vrijede automatski drugdje. Tražite razumljivo objašnjenje nalaza, kontrolu i promjene za raniji povratak."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: hitnost prije novih naočala",
+      "text": "Lidia primijeti nove bljeskove i tamnu sjenu sa strane vida. Traži hitan očni pregled umjesto naručivanja jačih naočala na internetu ili čekanja rutinskog termina."
+    },
+    {
+      "title": "Zamišljeni primjer: dijete s okom prema unutra",
+      "text": "Besnik primijeti povremeno skretanje djetetova oka prema unutra. Traži pregled vida i položaja. Ne kupuje sam povez i ne pretpostavlja da će sigurno proći rastom."
+    }
+  ],
+  "questions": [
+    "Koji stručnjak ovdje može procijeniti moje simptome i koliko je pregled hitan?",
+    "Trebam li medicinski pregled ili praćenje bolesti uz provjeru naočala?",
+    "Što je pregled pokazao, koje kontrole trebam i koje promjene traže hitnu pomoć?"
+  ]
+}

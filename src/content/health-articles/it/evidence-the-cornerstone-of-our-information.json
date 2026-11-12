@@ -1,0 +1,51 @@
+{
+  "title": "Come le prove sostengono informazioni sanitarie affidabili",
+  "intro": "Un articolo utile aiuta a capire una decisione anziché convincere a comprare un prodotto o accettare una sola cura. La ricerca è una base, ma contano anche selezione, spiegazione e aggiornamento. Questa guida descrive cosa cercare nell’informazione basata sulle prove. I collegamenti alle fonti non significano che ogni articolo abbia ricevuto una revisione clinica indipendente.",
+  "sections": [
+    {
+      "heading": "Partire dalle decisioni dei lettori",
+      "paragraphs": [
+        "Un articolo chiaro identifica condizione o domanda, spiega alternative e indica quando serve una valutazione professionale. Il lettore può voler sapere cosa accade senza cure, l’impatto quotidiano o i limiti di un test. Descrivere soltanto il successo tecnico di una procedura può trascurare queste esigenze. Verificate se risponde alla domanda reale e a quale popolazione si rivolge. Una guida generale non determina la causa dei vostri sintomi né sceglie la terapia individuale."
+      ]
+    },
+    {
+      "heading": "Guardare oltre un singolo studio favorevole",
+      "paragraphs": [
+        "L’informazione affidabile considera l’insieme della ricerca pertinente, senza selezionare solo risultati positivi spettacolari. Le revisioni sistematiche aiutano a trovare e confrontare studi, ma contano metodi e limiti. Anche le prove migliori possono essere incerte o non comprendere persone come voi. Chiedete se benefici, effetti indesiderati e alternative siano trattati insieme. Numero delle citazioni, logo universitario o frase di un esperto non dimostrano da soli una selezione equa."
+      ]
+    },
+    {
+      "heading": "Distinguere effetti misurati ed esperienza vissuta",
+      "paragraphs": [
+        "Gli studi sui trattamenti stimano miglioramento dei sintomi, effetti avversi o sopravvivenza. Interviste e ricerca qualitativa descrivono esperienza della malattia, ostacoli alle cure e ciò che conta per le persone. Rispondono a domande diverse e possono completarsi. Una testimonianza aiuta a capire un problema ma non stabilisce quanto spesso funzioni una cura. Neppure la media predice esattamente l’esperienza individuale. L’informazione chiara indica gli esempi e non presenta storie inventate come testimonianze reali."
+      ]
+    },
+    {
+      "heading": "Verificare incertezza e aggiornamenti",
+      "paragraphs": [
+        "Cercate autore o organizzazione responsabile, date delle fonti, conflitti e una politica significativa di revisione e aggiornamento. Una data recente della pagina non garantisce studi recenti; la ricerca vecchia non è automaticamente sbagliata. Nuove prove possono cambiare conclusioni, soprattutto se le precedenti erano deboli. Le traduzioni devono conservare precisazioni, segnali d’allarme e distinzione tra possibilità e certezze. Un’etichetta di bozza o revisione in attesa va presa sul serio, non scambiata per approvazione clinica."
+      ]
+    },
+    {
+      "heading": "Preparare il colloquio senza sostituire le cure",
+      "paragraphs": [
+        "Annotate ciò che capite, dubbi e compromessi importanti. Portate domande e fonti al professionista adeguato. Verificate separatamente accesso e costi locali. Non cambiate prescrizioni né ritardate aiuto urgente cercando l’articolo perfetto. Se un passaggio è ambiguo o sembra insicuro, segnalate testo e problema senza dettagli personali inutili. L’informazione valida sostiene conversazione e scelta consapevole riconoscendo i propri limiti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: storia ed effetto terapeutico",
+      "text": "Sara trova una storia toccante di guarigione. Apprezza l’esperienza ma cerca studi comparativi su benefici e danni prima di decidere. La storia suggerisce domande senza prevedere il suo recupero."
+    },
+    {
+      "title": "Esempio ipotetico: avvertenza tradotta",
+      "text": "Marko nota che una traduzione sembra più categorica dell’originale. Registra titolo, lingua e passaggio e segnala la differenza. Nel frattempo chiede al medico, senza presumere una verifica indipendente della traduzione."
+    }
+  ],
+  "questions": [
+    "L’informazione spiega correttamente alternative, benefici, danni e incertezza?",
+    "Chi risponde del contenuto, quando sono state controllate le fonti e quale revisione è realmente avvenuta?",
+    "Quali parti aiutano la visita e quali richiedono chiarimenti personali o locali?"
+  ]
+}

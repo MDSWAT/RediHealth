@@ -1,0 +1,51 @@
+{
+  "title": "Si mbështesin provat informacionin shëndetësor të besueshëm",
+  "intro": "Një artikull i dobishëm ju ndihmon të kuptoni një vendim, jo t’ju bindë të blini produkt ose të pranoni vetëm një trajtim. Kërkimi është bazë, por rëndësi kanë përzgjedhja, shpjegimi dhe përditësimi. Ky udhëzues tregon çfarë mund të kërkojë lexuesi te informacioni i bazuar në prova. Lidhjet e burimeve nuk nënkuptojnë se çdo artikull ka kaluar kontroll klinik të pavarur.",
+  "sections": [
+    {
+      "heading": "Filloni nga vendimet e lexuesve",
+      "paragraphs": [
+        "Artikulli i qartë përcakton gjendjen ose pyetjen, shpjegon alternativat dhe kur nevojitet vlerësim profesional. Lexuesit mund të duan të dinë çfarë ndodh pa trajtim, ndikimin në jetën e përditshme ose kufijtë e testit. Vetëm suksesi teknik i procedurës mund t’i anashkalojë këto shqetësime. Shihni nëse artikulli përgjigjet pyetjes suaj dhe përcakton kujt i drejtohet. Udhëzimi i përgjithshëm nuk zbulon shkakun e simptomave dhe nuk zgjedh trajtimin personal."
+      ]
+    },
+    {
+      "heading": "Shihni përtej një studimi të favorshëm",
+      "paragraphs": [
+        "Informacioni i besueshëm shqyrton tërësinë e kërkimit përkatës, jo vetëm rezultate pozitive mbresëlënëse. Rishikimet sistematike ndihmojnë gjetjen dhe krahasimin, por metodat dhe kufijtë kanë rëndësi. Edhe provat më të mira mund të jenë të pasigurta ose të mos përfshijnë njerëz si ju. Pyesni nëse përfitimet, efektet e padëshiruara dhe alternativat paraqiten së bashku. Shumë citime, logo universiteti ose thënie eksperti nuk provojnë vetë përzgjedhje të paanshme."
+      ]
+    },
+    {
+      "heading": "Ndani efektet e matura nga përvoja personale",
+      "paragraphs": [
+        "Studimet e trajtimeve matin përmirësim simptomash, efekte anësore ose mbijetesë. Intervistat dhe kërkimi cilësor përshkruajnë jetesën me sëmundjen, pengesat dhe rezultatet që u interesojnë njerëzve. U përgjigjen pyetjeve të ndryshme dhe plotësojnë njëra-tjetrën. Historia personale ndihmon të kuptoni shqetësimin, por nuk tregon sa shpesh funksionon trajtimi. Mesatarja nuk tregon saktë si do të ndihet një individ. Informacioni i qartë etiketon shembujt dhe nuk i paraqet historitë e shpikura si dëshmi reale."
+      ]
+    },
+    {
+      "heading": "Kontrolloni pasigurinë dhe përditësimet",
+      "paragraphs": [
+        "Kërkoni autorin ose organizatën përgjegjëse, datat e burimeve, konfliktet dhe politikë kuptimplotë kontrolli e përditësimi. Një datë e re faqeje nuk garanton studime të reja dhe kërkimi i vjetër nuk është automatikisht i gabuar. Provat e reja mund të ndryshojnë përfundimet, sidomos kur të mëparshmet ishin të dobëta. Përkthimet duhet të ruajnë kushtet, shenjat e alarmit dhe dallimin mundësi-siguri. Etiketa draft ose kontroll në pritje duhet marrë seriozisht, jo si miratim klinik."
+      ]
+    },
+    {
+      "heading": "Përdoreni artikullin për përgatitje, jo në vend të kujdesit",
+      "paragraphs": [
+        "Shënoni çfarë kuptoni, paqartësitë dhe kompromiset që ju interesojnë. Merrini pyetjet dhe burimet te profesionisti i duhur. Kontrolloni veçmas aksesin dhe kostot lokale. Mos ndryshoni recetën ose vononi urgjencën duke kërkuar artikullin e përsosur. Nëse formulimi është i paqartë ose i pasigurt, raportoni pjesën dhe shqetësimin pa të dhëna personale të panevojshme. Informacioni i mirë mbështet bisedën dhe zgjedhjen, duke pranuar kufijtë e vet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: historia dhe efekti i trajtimit",
+      "text": "Sara gjen një histori prekëse shërimi. E vlerëson përvojën, por kërkon kërkime krahasuese për përfitime e dëme para vendimit. Historia e ndihmon të gjejë pyetje dhe jo të parashikojë rikuperimin e saj."
+    },
+    {
+      "title": "Shembull hipotetik: paralajmërim i përkthyer",
+      "text": "Marko vëren se përkthimi tingëllon më i sigurt se origjinali. Shënon titullin, gjuhën dhe pjesën dhe raporton dallimin. Deri në sqarim pyet mjekun, pa menduar se përkthimi është kontrolluar në mënyrë të pavarur."
+    }
+  ],
+  "questions": [
+    "A paraqet informacioni me drejtësi alternativat, përfitimet, dëmet dhe pasiguritë?",
+    "Kush përgjigjet për përmbajtjen, kur u kontrolluan burimet dhe çfarë rishikimi u krye realisht?",
+    "Cilat pjesë ndihmojnë vizitën dhe cilat kërkojnë sqarim individual ose lokal?"
+  ]
+}

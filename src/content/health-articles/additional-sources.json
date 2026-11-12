@@ -1598,5 +1598,121 @@
       "label": "NHS: Rectal bleeding",
       "url": "https://www.nhs.uk/symptoms/bleeding-from-the-bottom-rectal-bleeding/"
     }
+  ],
+  "enlarged-tonsils-and-adenoids": [
+    {
+      "label": "NHS — Adenoidectomy",
+      "url": "https://www.nhs.uk/tests-and-treatments/adenoidectomy/"
+    }
+  ],
+  "epidurals-and-other-medications-to-relieve-labor-pain": [
+    {
+      "label": "NHS — Pain relief in labour",
+      "url": "https://www.nhs.uk/pregnancy/labour-and-birth/pain-relief-in-labour/"
+    }
+  ],
+  "epilepsy": [
+    {
+      "label": "NHS — Epilepsy",
+      "url": "https://www.nhs.uk/conditions/epilepsy/"
+    }
+  ],
+  "erysipelas-and-cellulitis": [
+    {
+      "label": "NHS — Cellulitis",
+      "url": "https://www.nhs.uk/conditions/cellulitis/"
+    }
+  ],
+  "allergies": [
+    {
+      "label": "NHS — Allergies",
+      "url": "https://www.nhs.uk/conditions/allergies/"
+    }
+  ],
+  "evidence-based-medicine-in-germany": [
+    {
+      "label": "IQWiG — Responsibilities and objectives",
+      "url": "https://www.iqwig.de/en/about-us/responsibilities-and-objectives-of-iqwig/"
+    },
+    {
+      "label": "Federal Joint Committee — Role and responsibilities",
+      "url": "https://www.g-ba.de/english/"
+    }
+  ],
+  "evaluating-the-evidence": [
+    {
+      "label": "Cochrane — About our evidence",
+      "url": "https://www.cochrane.org/about-us"
+    }
+  ],
+  "external-radiotherapy": [
+    {
+      "label": "National Cancer Institute — External Beam Radiation Therapy for Cancer",
+      "url": "https://www.cancer.gov/about-cancer/treatment/types/radiation-therapy/external-beam"
+    },
+    {
+      "label": "NHS — Radiotherapy",
+      "url": "https://www.nhs.uk/tests-and-treatments/radiotherapy/"
+    }
+  ],
+  "evidence-the-cornerstone-of-our-information": [
+    {
+      "label": "Cochrane — About our evidence",
+      "url": "https://www.cochrane.org/about-us"
+    }
+  ],
+  "eye-health-who-can-you-go-to": [
+    {
+      "label": "NHS — Visiting an optician",
+      "url": "https://www.nhs.uk/nhs-services/opticians/visiting-an-optician/"
+    }
+  ],
+  "falls-in-older-people": [
+    {
+      "label": "NHS — Falls",
+      "url": "https://www.nhs.uk/conditions/falls/"
+    }
+  ],
+  "farsightedness-hyperopia": [
+    {
+      "label": "National Eye Institute — Farsightedness (Hyperopia)",
+      "url": "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/farsightedness-hyperopia"
+    },
+    {
+      "label": "NHS — Long-sightedness",
+      "url": "https://www.nhs.uk/conditions/long-sightedness/"
+    }
+  ],
+  "fast-heart-rate-in-paroxysmal-supraventricular-tachycardia": [
+    {
+      "label": "NHS — Supraventricular tachycardia (SVT)",
+      "url": "https://www.nhs.uk/conditions/supraventricular-tachycardia-svt/"
+    }
+  ],
+  "fasting": [
+    {
+      "label": "NHS — General anaesthetic",
+      "url": "https://www.nhs.uk/tests-and-treatments/general-anaesthesia/"
+    },
+    {
+      "label": "NHS — Blood tests",
+      "url": "https://www.nhs.uk/tests-and-treatments/blood-tests/"
+    }
+  ],
+  "fever-in-children": [
+    {
+      "label": "NHS — High temperature (fever) in children",
+      "url": "https://www.nhs.uk/symptoms/fever-in-children/"
+    }
+  ],
+  "fibromyalgia": [
+    {
+      "label": "NHS — Fibromyalgia",
+      "url": "https://www.nhs.uk/conditions/fibromyalgia/"
+    },
+    {
+      "label": "NHS — Fibromyalgia treatment",
+      "url": "https://www.nhs.uk/conditions/fibromyalgia/treatment/"
+    }
   ]
 }

@@ -1,0 +1,51 @@
+{
+  "title": "Kako dokazi podupiru pouzdane zdravstvene informacije",
+  "intro": "Koristan zdravstveni članak pomaže razumjeti odluku, a ne nagovoriti vas na kupnju proizvoda ili samo jednu terapiju. Istraživanje je temelj, ali važni su odabir, objašnjenje i ažuriranje. Ovaj vodič pokazuje što čitatelj može tražiti u informacijama utemeljenima na dokazima. Poveznice na izvore ne znače da je svaki članak prošao neovisnu kliničku provjeru.",
+  "sections": [
+    {
+      "heading": "Počnite odlukama s kojima se čitatelji suočavaju",
+      "paragraphs": [
+        "Jasan članak određuje stanje ili pitanje, objašnjava alternative i kada treba stručna procjena. Čitatelja može zanimati što slijedi bez liječenja, utjecaj na svakodnevicu ili ograničenja testa. Opis samo tehničkog uspjeha zahvata može zanemariti te potrebe. Provjerite odgovara li članak stvarnom pitanju i navodi li kome je namijenjen. Opći vodič ne utvrđuje uzrok vaših simptoma niti bira osobnu terapiju."
+      ]
+    },
+    {
+      "heading": "Gledajte šire od jednog povoljnog istraživanja",
+      "paragraphs": [
+        "Pouzdane informacije razmatraju cjelinu relevantnih istraživanja umjesto izbora samo upečatljivih pozitivnih rezultata. Sustavni pregledi pomažu pronaći i usporediti studije, ali njihove metode i ograničenja su važni. I najbolji dokazi mogu biti nesigurni ili ne uključivati ljude poput vas. Pitajte obrađuju li se zajedno koristi, neželjeni učinci i alternative. Broj citata, sveučilišni znak ili izjava stručnjaka sami ne dokazuju pošten odabir."
+      ]
+    },
+    {
+      "heading": "Odvojite mjerene učinke od osobnih iskustava",
+      "paragraphs": [
+        "Istraživanja terapija procjenjuju ublažavanje simptoma, nuspojave ili preživljenje. Razgovori i kvalitativna istraživanja opisuju iskustvo bolesti, prepreke skrbi i ishode važne ljudima. Ti pristupi odgovaraju različitim pitanjima i mogu se dopunjavati. Osobna priča pomaže razumjeti brigu, ali ne određuje pouzdano koliko često terapija djeluje. Ni prosjek ne predviđa točno kako će se pojedinac osjećati. Jasne informacije označuju primjere i ne prikazuju izmišljene priče kao svjedočanstva pacijenata."
+      ]
+    },
+    {
+      "heading": "Provjerite nesigurnosti i ažuriranja",
+      "paragraphs": [
+        "Tražite autora ili odgovornu organizaciju, datume izvora, sukobe interesa i stvarnu politiku provjere i ažuriranja. Nov datum stranice ne jamči da su sve studije nove, dok starije istraživanje nije automatski pogrešno. Novi dokazi mogu promijeniti zaključak, osobito kad su raniji bili slabi. Prijevodi trebaju očuvati ograničenja, znakove upozorenja i razliku mogućnosti i sigurnosti. Oznaku nacrta ili provjere na čekanju treba shvatiti ozbiljno, a ne kao kliničko odobrenje."
+      ]
+    },
+    {
+      "heading": "Pripremite razgovor umjesto zamjene skrbi",
+      "paragraphs": [
+        "Zapišite što razumijete, što je nejasno i važna odvagivanja. Donesite pitanja i izvore odgovarajućem stručnjaku. Lokalni pristup i cijene provjerite odvojeno. Nemojte mijenjati recept ili odgađati hitnu pomoć tražeći savršen članak. Dvosmislen ili nesiguran tekst prijavite s točnim odlomkom i objašnjenjem bez nepotrebnih osobnih podataka. Dobre informacije podupiru razgovor i informirani izbor priznajući vlastite granice."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: priča i učinak terapije",
+      "text": "Sara nalazi dirljivu priču o oporavku. Cijeni iskustvo, ali prije odluke traži usporedna istraživanja koristi i šteta. Priča joj pomaže pronaći pitanja, a ne predvidjeti vlastiti oporavak."
+    },
+    {
+      "title": "Zamišljeni primjer: prevedeno upozorenje",
+      "text": "Marko primijeti da prijevod zvuči sigurnije od izvornika. Zabilježi naslov, jezik i odlomak i prijavi razliku. Do pojašnjenja pita liječnika umjesto pretpostavke da je prijevod neovisno provjeren."
+    }
+  ],
+  "questions": [
+    "Objašnjava li tekst pošteno alternative, koristi, štete i nesigurnost?",
+    "Tko je odgovoran, kada su izvori provjereni i koja je provjera doista provedena?",
+    "Koji dijelovi pomažu razgovoru, a koji trebaju individualno ili lokalno pojašnjenje?"
+  ]
+}

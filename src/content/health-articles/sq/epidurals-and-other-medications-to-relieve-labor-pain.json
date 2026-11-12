@@ -1,0 +1,51 @@
+{
+  "title": "Lehtësimi i dhimbjes gjatë lindjes: epidurali dhe barna të tjera",
+  "intro": "Dhimbja gjatë lindjes ndryshon nga një person te tjetri dhe gjatë ecurisë së lindjes. Të kërkosh barna është zgjedhje e vlefshme; ndryshimi i planit nuk është dështim. Nëse mundeni, diskutoni paraprakisht me ekipin e maternitetit. Disponueshmëria, shëndeti juaj, gjendja e foshnjës dhe faza e lindjes përcaktojnë çfarë mund të ofrohet në mënyrë të sigurt.",
+  "sections": [
+    {
+      "heading": "Bëni një plan fleksibël me ekipin",
+      "paragraphs": [
+        "Pyesni cilat metoda ofron spitali, nëse ka anestezist dhe çfarë ndodh nëse metoda e zgjedhur vonohet ose nuk përshtatet. Tregoni për barnat e zakonshme, holluesit e gjakut, alergjitë, çrregullimet e gjakderdhjes, operacionet e shtyllës kurrizore dhe problemet e mëparshme me anestezinë. Kërkoni përkthyes nëse nevojitet. Frymëmarrja e kontrolluar, lëvizja, pozicioni i rehatshëm, uji i ngrohtë dhe mbështetja e një personi të besuar mund të shoqërojnë qetësimin mjekësor. Pëlqimi mbetet vendimi juaj; kërkoni shpjegim para trajtimit."
+      ]
+    },
+    {
+      "heading": "Kuptoni si jepet epidurali",
+      "paragraphs": [
+        "Pas pastrimit dhe mpirjes së lëkurës, anestezisti vendos një tub të hollë në hapësirën epidurale në fund të shpinës. Gjilpëra hiqet dhe bari vazhdon përmes tubit; palca kurrizore nuk shpohet qëllimisht. Ju qëndroni zgjuar. Efekti kërkon kohë dhe mund të jetë i paplotë ose i pabarabartë, ndaj tregojini ekipit nëse dhimbja vazhdon. Mund të rregullohet doza ose të zëvendësohet tubi. Mos u ngrini dhe mos ecni pa kontrolluar personeli forcën e këmbëve dhe sigurinë."
+      ]
+    },
+    {
+      "heading": "Krahasoni përfitimet me monitorimin dhe efektet anësore",
+      "paragraphs": [
+        "Epidurali shpesh lehtëson më shumë dhimbjen sesa opioidet me injeksion. Personeli monitoron tensionin, foshnjën dhe efektin e barnave. Mund të keni këmbë të rënda, kruarje, vështirësi për të urinuar ose temperaturë; ndonjëherë nevojitet kateter urinar. Shpimi aksidental i membranës rreth lëngut spinal mund të shkaktojë dhimbje të fortë koke. Infeksioni i rëndë, gjakderdhja pranë nervave dhe dëmtimi nervor afatgjatë janë të rralla, por duhen diskutuar. Mund të ndikojë shtyrjen dhe nevojën për ndihmë gjatë lindjes; nuk nënkupton automatikisht lindje cezariane."
+      ]
+    },
+    {
+      "heading": "Pyesni për alternativat dhe kufizimet",
+      "paragraphs": [
+        "Oksidi i azotit me oksigjen, ku ofrohet, mund të pakësojë shqetësimin dhe thithet përmes një pjese për gojën; marramendja ose të përzierat mund ta kufizojnë. Opioidet me injeksion ose në venë mund të ndihmojnë, por shkaktojnë përgjumje, të përziera dhe probleme frymëmarrjeje te nëna ose foshnja, edhe sipas kohës së dhënies. Remifentanili i kontrolluar nga pacientja kërkon vëzhgim të afërt dhe monitorim frymëmarrjeje; vetëm personi që lind shtyp butonin. Janë trajtime spitalore, jo barna për t’i marrë hua ose dozuar vetë. Pyesni çfarë ofrohet dhe si trajtohen efektet e padëshiruara."
+      ]
+    },
+    {
+      "heading": "Dalloni problemet që duhen raportuar pas lindjes",
+      "paragraphs": [
+        "Para daljes pyesni kur duhet të rikthehet ndjeshmëria, si të ecni fillimisht dhe nëse vendi i tubit kërkon kujdes. Raportoni dhimbje koke të fortë ose të vazhdueshme, sidomos më të keqe në këmbë dhe më të lehtë shtrirë; mos e quani thjesht lodhje. Dobësi e re ose në rritje, humbje kontrolli të urinës apo jashtëqitjes, dhimbje e fortë shpine me temperaturë, vështirësi në frymëmarrje ose përgjumje e theksuar kërkojnë vlerësim urgjent. Për simptoma të rënda kërkoni urgjencë. Tregoni kur është dhënë epidurali ose qetësuesi; këshillat varen nga procedura konkrete."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: ndryshimi i preferencës",
+      "text": "Elena shpresonte të përdorte frymëmarrjen dhe ujin e ngrohtë. Gjatë një lindjeje të gjatë pyet për epidural. Ekipi shpjegon pritjen dhe rreziqet e saj, dhe ajo vendos pas diskutimit pa u ndier e detyruar nga plani fillestar."
+    },
+    {
+      "title": "Shembull hipotetik: lehtësim i pabarabartë",
+      "text": "Aida ndien mpirje në njërën anë, por kontraksionet dhembin shumë në tjetrën. I tregon mamisë, në vend që të përpiqet të ngrihet ose të mendojë se asgjë nuk ndryshon. Anestezisti kontrollon tubin dhe diskuton rregullimin."
+    }
+  ],
+  "questions": [
+    "Cilat mundësi ofrohen këtu dhe cilat përshtaten me barnat dhe historinë time mjekësore?",
+    "Si do të kontrolloni efektin e qetësimit dhe të monitoroni mua dhe foshnjën?",
+    "Cilat simptoma pas lindjes kërkojnë vlerësim urgjent dhe kë duhet të kontaktoj?"
+  ]
+}

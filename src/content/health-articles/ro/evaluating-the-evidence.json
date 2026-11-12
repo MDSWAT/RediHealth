@@ -1,0 +1,51 @@
+{
+  "title": "Evaluarea dovezilor medicale: întrebările din spatele unei afirmații",
+  "intro": "Un studiu publicat nu oferă automat un răspuns sigur despre tratament. Selectarea participanților, compararea tratamentelor și măsurarea rezultatelor pot schimba semnificația concluziilor. Evaluarea critică întreabă câtă încredere merită o afirmație și dacă se aplică deciziei dumneavoastră. Nu trebuie să deveniți cercetător pentru a pune întrebări utile.",
+  "sections": [
+    {
+      "heading": "Începeți cu întrebarea și comparația",
+      "paragraphs": [
+        "Identificați cine a fost studiat, ce tratament sau test s-a folosit, cu ce s-a comparat și ce rezultate au contat. Un studiu la voluntari sănătoși poate să nu răspundă unei întrebări despre un vârstnic fragil. Compararea cu lipsa tratamentului nu arată neapărat că produsul nou este mai bun decât îngrijirea obișnuită. Întrebați dacă s-au măsurat simptomele, funcționarea sau supraviețuirea, nu numai o valoare de laborator. Întrebările clare împiedică termenii impresionanți să distragă de la ce s-a cercetat efectiv."
+      ]
+    },
+    {
+      "heading": "Căutați posibile surse de eroare sistematică",
+      "paragraphs": [
+        "Repartizarea aleatorie ajută comparabilitatea grupurilor, dar detaliile contează. Întrebați dacă repartizarea putea fi anticipată, dacă participanții sau evaluatorii cunoșteau tratamentul și dacă mulți au abandonat. Studiile fără orbire pot fi utile, dar rezultatele subiective pot fi mai influențate de așteptări. Verificați dacă rezultatele urmărite au fost planificate și dacă s-au raportat cele nefavorabile. Un eșantion mare nu repară toate defectele, iar evaluarea de către alți cercetători nu garantează lipsa erorilor sau raportării selective."
+      ]
+    },
+    {
+      "heading": "Separați mărimea efectului de certitudinea estimării",
+      "paragraphs": [
+        "Întrebați câți oameni au beneficii sau efecte nocive, în ce perioadă și față de ce risc inițial. Schimbările relative pot părea mai mari decât diferența absolută. Intervalul de încredere descrie incertitudinea estimării; semnificația statistică nu înseamnă automat importanță în viața zilnică. Nici lipsa unei diferențe clare nu dovedește mereu echivalența tratamentelor. Studiile mici, puținele evenimente sau urmărirea scurtă pot lăsa beneficii ori riscuri importante neclare, chiar când titlul sună categoric."
+      ]
+    },
+    {
+      "heading": "Evaluați sintezele la fel de atent ca studiile",
+      "paragraphs": [
+        "O analiză sistematică trebuie să explice întrebarea, căutarea, criteriile de includere și evaluarea limitelor studiilor. Verificați dacă a căutat suficient de larg, a luat în calcul rezultate nepublicate sau lipsă și a explicat combinarea studiilor. O meta-analiză poate produce un număr aparent precis din studii foarte diferite ori cu aceleași erori. Convergența studiilor relevante și bine făcute crește încrederea; simpla numărare a celor pozitive nu. Verificați data, conflictele de interese și finanțarea, judecând metodele, fără să acceptați sau respingeți doar pe baza finanțării."
+      ]
+    },
+    {
+      "heading": "Folosiți dovezile într-o discuție personală",
+      "paragraphs": [
+        "Aduceți afirmația sau sursa medicului și explicați decizia de luat. Discutați bolile, medicamentele, preferințele, povara tratamentului și alternativele, inclusiv urmărirea unde este potrivită. Întrebați ce rămâne incert și ce informație ar schimba planul. O poveste personală poate evidenția experiențe importante, dar nu stabilește sigur efectul mediu al tratamentului. Nu schimbați brusc îngrijirea prescrisă din cauza unei știri. Evaluarea bună sprijină decizia comună și așteptările realiste, fără să înlăture orice incertitudine."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: reducere relativă mare",
+      "text": "Mara citește că un tratament înjumătățește un risc. Întreabă despre riscul inițial, diferența absolută, durata urmăririi și reacțiile adverse. Înțelege că titlul singur nu arată dacă beneficiul merită pentru ea."
+    },
+    {
+      "title": "Exemplu ipotetic: sinteză cu metode neclare",
+      "text": "Dritan găsește o sinteză care recomandă un supliment, fără să explice selectarea studiilor. Cere o analiză sistematică transparentă și discută cu farmacistul, în loc să considere numeroasele referințe o garanție a dovezilor."
+    }
+  ],
+  "questions": [
+    "Au fost studiați oameni ca mine, cu o alternativă relevantă și rezultate importante pentru mine?",
+    "Cât de mari sunt beneficiile și riscurile probabile și cât de incerte sunt estimările?",
+    "Rezultatele lipsă, limitele sau diferențele dintre studii pot schimba concluzia?"
+  ]
+}

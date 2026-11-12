@@ -1,0 +1,51 @@
+{
+  "title": "Sudden fast heart rhythms: understanding paroxysmal supraventricular tachycardia",
+  "intro": "Paroxysmal supraventricular tachycardia, or PSVT, causes episodes of a fast rhythm arising above the heart’s lower chambers. Episodes often start and stop abruptly and can feel frightening. A fast pulse can also have other causes, including fever, thyroid problems or a different arrhythmia. Symptoms and an appropriate rhythm recording are needed before assuming the diagnosis.",
+  "sections": [
+    {
+      "heading": "Recognize when palpitations need emergency help",
+      "paragraphs": [
+        "Call 112 for a fast heartbeat with chest pain, significant breathlessness, fainting or feeling close to fainting. An episode lasting longer than your usual diagnosed attacks also needs emergency advice; do not keep waiting simply because earlier attacks stopped. Do not drive yourself when unwell. A first sustained or recurrent unexplained racing heartbeat should be assessed. Normal exercise-related acceleration and a sudden resting episode are not necessarily the same problem, and a smartwatch number alone cannot establish which rhythm is present."
+      ]
+    },
+    {
+      "heading": "Help the clinician capture the actual rhythm",
+      "paragraphs": [
+        "Record sudden or gradual onset, duration, activity, possible triggers and accompanying symptoms. Bring medicines and information about caffeine, alcohol, nicotine, supplements or other substances without embarrassment. An ECG during symptoms is particularly useful. A short normal ECG between episodes does not exclude an intermittent rhythm problem; an ambulatory monitor or event recorder may be arranged. Further tests depend on the findings and can assess thyroid function, blood count, electrolytes or heart structure. Specialist electrophysiology testing is sometimes used to identify the circuit, particularly when ablation is being considered."
+      ]
+    },
+    {
+      "heading": "Agree a safe plan for an episode",
+      "paragraphs": [
+        "Sit or lie somewhere safe and follow the plan given for your confirmed rhythm. A clinician may teach a vagal maneuver, such as an appropriate straining technique, if suitable for you. Learn the exact method and when to abandon it for help. Do not massage your neck, press your eyes or try an internet technique instead of assessment. Do not take extra heart medicines or someone else’s tablets unless your own prescriber has explicitly included that in your plan. Any serious symptoms override a self-management plan and require urgent help."
+      ]
+    },
+    {
+      "heading": "Compare longer-term treatment choices",
+      "paragraphs": [
+        "Infrequent brief episodes may need observation and an agreed action plan, while troublesome or prolonged episodes may lead to medicines or catheter ablation. In hospital, monitored medicines can restore rhythm, and cardioversion may be used when needed. Ablation treats the abnormal electrical pathway using catheters, often through a blood vessel in the groin. Ask about the expected success for your specific rhythm, recurrence and risks such as bleeding, vascular injury or disturbance of normal conduction. The best option depends on the mechanism, other conditions, your priorities and specialist advice."
+      ]
+    },
+    {
+      "heading": "Review triggers, daily activities and follow-up",
+      "paragraphs": [
+        "Some people notice episodes after excess caffeine or alcohol, but others find no clear trigger. Reducing a personal trigger may help without guaranteeing prevention. Discuss exercise, work and driving after fainting or a new diagnosis; local rules and your risk matter. Pregnancy, asthma and other medicines can affect treatment choices, so mention them. Agree who to contact if episodes change, become more frequent or treatment causes side effects. Anxiety can accompany palpitations, but should not be used to dismiss a new rhythm problem without proper assessment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a normal test between attacks",
+      "text": "Marta has sudden racing episodes but a normal clinic ECG. She records timing and symptoms and asks whether a longer monitor is appropriate. She does not interpret the normal short recording as proof that nothing happened."
+    },
+    {
+      "title": "Hypothetical example: discussing a durable option",
+      "text": "Arben has confirmed PSVT that repeatedly interrupts work. He asks about medicine and ablation, including benefits, risks and follow-up. He also receives a clear episode plan rather than trying neck massage or borrowing a relative’s tablets."
+    }
+  ],
+  "questions": [
+    "Has my actual rhythm been documented, and which other causes should be considered?",
+    "What exactly should I do during an episode, and when must I seek emergency help?",
+    "How do observation, medicines and ablation compare for my rhythm and daily life?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Epilessia: riconoscere le crisi, curarsi e vivere in sicurezza",
+  "intro": "L’epilessia comporta una predisposizione duratura a crisi dovute ad attività elettrica anomala nel cervello. Le crisi non causano sempre scosse: alcune interrompono brevemente la consapevolezza o producono sensazioni insolite. Un singolo episodio può avere un’altra causa e non stabilisce automaticamente l’epilessia. Molte persone ottengono un buon controllo con cure e sostegno adeguati.",
+  "sections": [
+    {
+      "heading": "Descrivere gli episodi per aiutare la diagnosi",
+      "paragraphs": [
+        "Annotate cosa accade prima, durante e dopo l’episodio, durata, malattie, mancanza di sonno, farmaci e recupero. Un testimone può descrivere comportamenti che non ricordate; un video aiuta solo se non ritarda i soccorsi. Lo specialista può richiedere EEG, immagini del cervello, analisi o elettrocardiogramma per cercare alternative come lo svenimento. Un EEG di routine normale non esclude l’epilessia. La diagnosi considera l’intero quadro, talvolta anche un elevato rischio di recidiva dopo una prima crisi."
+      ]
+    },
+    {
+      "heading": "Prestare soccorso senza provocare danni",
+      "paragraphs": [
+        "Restate vicini, misurate la durata, allontanate i pericoli e proteggete la testa se la persona è a terra. Non bloccate i movimenti né mettete dita, cibo, bevande o oggetti in bocca. Quando finiscono le scosse, mettete sul fianco una persona incosciente che respira normalmente e controllate il respiro. Se non respira normalmente, seguite le istruzioni di rianimazione dell’operatore. Chiamate il 112 per una prima crisi, una durata di 5 minuti o più, crisi ripetute senza ripresa, traumi importanti o problemi respiratori. Usate il farmaco d’emergenza prescritto solo secondo il piano e se addestrati."
+      ]
+    },
+    {
+      "heading": "Seguire la terapia e rivedere gli effetti indesiderati",
+      "paragraphs": [
+        "Il farmaco dipende dal tipo di crisi, altre malattie, interazioni e priorità individuali. Concordate cosa fare se dimenticate una dose e chiedete consiglio per sonnolenza fastidiosa, cambiamenti dell’umore o eruzioni cutanee. Non interrompete bruscamente né modificate da soli gli antiepilettici, anche dopo molto tempo senza crisi. Programmare una gravidanza, scegliere la contraccezione e valutare rischi per il bambino richiedono uno specialista; anche sospendere improvvisamente può essere pericoloso. Crisi persistenti nonostante la cura richiedono rivalutazione di diagnosi e opzioni, eventualmente chirurgia, stimolazione o una dieta controllata medicalmente."
+      ]
+    },
+    {
+      "heading": "Adattare le attività senza considerare tutto vietato",
+      "paragraphs": [
+        "Un diario aiuta a individuare schemi personali; mantenete sonno regolare e discutete alcol e altri possibili fattori scatenanti. Le luci intermittenti riguardano solo alcune persone. Scegliete modalità più sicure per lavarvi, discutete sorveglianza in acqua e valutate individualmente cucina, altezze, attrezzi e lavoro. Non guidate dopo una sospetta crisi finché non siano chiariti requisiti medici e della patente; le regole cambiano secondo il paese. Identificazione medica e piano condiviso aiutano familiari, scuola e colleghi. Il sostegno per ansia o depressione fa parte della cura."
+      ]
+    },
+    {
+      "heading": "Concordare rischi e controlli individuali",
+      "paragraphs": [
+        "Chiedete informazioni su prevenzione degli incidenti, crisi prolungate e morte improvvisa inattesa nell’epilessia, compreso come controllo delle crisi e farmaci regolari riducano il rischio. Non presumete che un dispositivo o una precauzione generica garantiscano protezione. Concordate chi contattare dopo una nuova crisi durante la terapia, un cambiamento degli episodi o una gravidanza e quando richiedere emergenza. Portate diario e lista dei farmaci alle visite. Dopo una crisi abituale possono servire riposo e rassicurazione, ma confusione insolitamente lunga, debolezza o recupero incompleto richiedono valutazione urgente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: episodi senza scosse",
+      "text": "A scuola Luka smette ripetutamente di rispondere per poco tempo. L’insegnante annota durata e comportamento successivo; la famiglia organizza una visita. Non presumono che ignori le istruzioni né diagnosticano l’epilessia dalla sola descrizione."
+    },
+    {
+      "title": "Esempio ipotetico: un piano condiviso di soccorso",
+      "text": "Nora ha epilessia diagnosticata e un piano scritto. I colleghi imparano ad allontanare pericoli, misurare la durata e riconoscere quando chiamare aiuto. Soltanto una persona addestrata dà il farmaco d’emergenza prescritto; nessuno la immobilizza o mette oggetti in bocca."
+    }
+  ],
+  "questions": [
+    "Che tipo di episodi ho e quali esami o ulteriori osservazioni servono?",
+    "Quale terapia è adatta, considerando gravidanza, interazioni ed effetti indesiderati?",
+    "Cosa devono fare i familiari durante una crisi e quali limiti di sicurezza o guida si applicano?"
+  ]
+}

@@ -1694,5 +1694,294 @@
       "hr": "57560f1c5404dba5a75ca7ef63bc6be5c779e19e9889e932d68e3c3db09e273c",
       "rom": "a6d1a86f1f6200c4bb31405f0afe4f33e5099c110418961f19b73588db02e88f"
     }
+  },
+  "enlarged-tonsils-and-adenoids": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "d53b0ee1505b931d5b274084907a63d0eac297772d4af2c0af4b8886d2ecf05a",
+      "ro": "ed810d7577ef49a7d51e9fd0487bda6d29c61fb1e7bcc5f19dd87b579b49b0e7",
+      "sq": "a5fb4cc64d86f033b74344b9983d2fb4ad0269bf0556256482cff7141ee325f8",
+      "it": "785e656c026f210adac7d9fa114ecbfcaed3c3c7e58670a974d9a5481ba08dac",
+      "ru": "06b2554f8e3971d307229672773f0b1a0bfbe408e5b1c40d6b98314f991ee518",
+      "hr": "db2b41aaec8177f0687daa4469b513298243d6186fba22d61bc36b65e1144886",
+      "rom": "4ff0b79e4dd9d149a7c27696d4f8e36fd642ee4c837ccba2a4dec85dcd2a3a34"
+    }
+  },
+  "epidurals-and-other-medications-to-relieve-labor-pain": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "afdd90fad30e913aed87336bd999ecf3cf00844229d3513b9dc9f53e719a4976",
+      "ro": "ee04a3e1f45fcd2d33c16de56c0e8792cdd1542b3fd58aeecdb2ca05eaded6dc",
+      "sq": "58dfb73c2037e350537adf08b89f7543cc30d23d46b42c62f63c448fc954723d",
+      "it": "ed7b116470f0072be95d71c5058cccb59d0ef2b652a4340bafcd9ed3c6f546d3",
+      "ru": "40d887942eb8dbe87eccf57e98d5273555b14b94adc567b1e3547dc787dc5e04",
+      "hr": "505dd57070a0255dcc597c4742b0f86b0344c25ad8e59042c0b8bcd375857d33",
+      "rom": "0db08900d6045d7fe7d1725883abbd7ce89ce23d04e036fd3431aabb9ab50922"
+    }
+  },
+  "epilepsy": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "5f358ec2b56728aa7c9f7fddcc817232f21703c97460c824a0eaddd2f3c11869",
+      "ro": "a9810744377e78421dec21cc8802c8c230c229d5f2f26e4afd8de6ddcc6180be",
+      "sq": "e1a7b4e66a16d7249d811c0c19d44bdc67d63f803574441d945ba1bc51b2809f",
+      "it": "9fb37418bc6235f09eafa49c0d225a849084d070d647d02275e166c1e8d4ca95",
+      "ru": "43a1c77970b28cfe7a1eaffecb064811dc65a72309e0f5178bf00d7af8670053",
+      "hr": "f09b8a4b400f635086add75f33b6e5bce2d5ea4ab5956dc2b97703c232dabe8c",
+      "rom": "14a0e5f39b2232543f2487ba47d34917ffd208709384635ad3f620fd09a16d26"
+    }
+  },
+  "erysipelas-and-cellulitis": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "dbd88bbd24da0fe941f6428136a4b83a3c5f8c07f23f2ea0f0cdd7d0e64a3f96",
+      "ro": "9d42cbabd757549b71da2df186055d2b4a57ef96cedce3004742ea648353eb5a",
+      "sq": "1fbab4235e8111e35eae623847f633f167ad684894ae14cc7557749eaba0d5ed",
+      "it": "367c7a9549cf6f72ca94436cca97f9f0e61b0ee08c78af4be24801cab6819161",
+      "ru": "d9e184a71221ef7ecce3fef8b26d1e0a2e25186cdbdadf468ac2580b7bfcb741",
+      "hr": "210dc495ca3c65ceb19000e8c5eeb244c0ebef50c08c5c26f5599c8bbf2bd453",
+      "rom": "19566ca24d182ff4e15554026084a6694f3e7cfbadbcf0aa3f335f2ebe107abb"
+    }
+  },
+  "abdominal-aortic-aneurysm": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "hr": "6b57dba733132a690d212c445dd7bfc4da8da2f7c40fddda290fbc53be1d8224",
+      "rom": "d90d84198863273c303df99cc80ddb669b0fc0a59970fd0ebe698c6a099962fa"
+    }
+  },
+  "allergies": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "hr": "57ed4103185a0f95c2fd8fc332df2206599fcdf471aa9709cd6cec8d13fa7999",
+      "rom": "d1150913a0b60c595b86fbc05201354026d4d157a960a21d207df1792f4e6400"
+    }
+  },
+  "dust-mite-allergies": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "hr": "19143c36437a5e4f205ba0af3bdb8e744f67bc6a3975499587618a66fa2a7f2d",
+      "rom": "61a6e2e21c0a857aaaef60cbddd2dbcfb8b09112a69dac59b5cc18c4a2c81242"
+    }
+  },
+  "evaluating-the-evidence": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "21d831c4d66effc2cfe690a62d3e82d59e39bcf174a98b7e08fdb09f8d16856a",
+      "ro": "8477b670cc66e3a4263a7f42436c3009c28ddb045f33ac38a2bcabed7a76098b",
+      "sq": "defd99b4d56dd9338ff743115b2a5bac6787685ce8b82474369d20e11ef338a3",
+      "it": "21a3447d0a7bbc1457d516fc39c5f468b10e6638a335eba8d5745c4f9db47f07",
+      "ru": "36220811a4b6d9c74728aaabb3cae7ad37e739e4b628be09e65144e77e6d8715",
+      "hr": "c84dec7f339257a0deab31d9f50255a85c8f42c6351d2dc5d9d9e35c453ba9a6",
+      "rom": "593a0ba48bfbde2b806b1016167c6a603a4ebb17eb12bf4a94ad55ffcf32a147"
+    }
+  },
+  "evidence-based-medicine-in-germany": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "7066cc5923b1f49a1eb6e1bff01af872d5415c24f7fe302b51870e107b3f7b1c",
+      "ro": "2c27bb785f8528e9830993ce5a7d720ce99ed45a772ef3435a264f09419f41c1",
+      "sq": "be7cbe262b9195bd2618622e3b219eaaffd6be7e40db0c9e949f0698a4e0b5e6",
+      "it": "fa0f543a100bd2bb7de0cbff9d6a219aec9518520f1040ac8926cbcd71ba2fa5",
+      "ru": "7c8c07fd938f47cb90ad242c130d91ccdc196e2974f1c3db00eebc21346af941",
+      "hr": "f8d80117c9da51d44b08c1bdbb9c7612fd832e308b4a99b28351e251c785b36f",
+      "rom": "716655e718fc05bf52574e025eab1e7824739a7a5ff572ee81e719d6213480a0"
+    }
+  },
+  "evidence-the-cornerstone-of-our-information": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "bdcf18c8189683a21135a08ac1f6da031589434a3189fcdc9d79f829745b6a4b",
+      "ro": "f1ac22c87a826be1bbee4e37604364d1d8a6f18d0dcb0dd774300b70b61f4210",
+      "sq": "c1b0934b5615f198ced30796417a03a6b24b4832b991a9f990cdb0a2a59ac7ff",
+      "it": "27516e5dba2c801ae121f011ad69f311ad44aba5f46b6be9975f737b16afe70e",
+      "ru": "953dc2621c309cced844f39c9e83946a5cb38e847a6f8bab053f043b0399b49d",
+      "hr": "7e8b75f30eb8a01a5750f04f90e4daa5a7c5e26da9e5039398c78adfd35f9dd9",
+      "rom": "4174240b7d493dbf18e9c1a0b357fc8ac8a01c8802a6a8e5858333b5aaa17007"
+    }
+  },
+  "comments-praise-and-criticism": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "af30a689d42322baf3899e7c71fa0a34169870ceecdfc18c4d46f878b9bb7bd3",
+      "ro": "fa0327397bb4b0144621a82aa790e8a653f01d331f0946d6c01ce3c6b1d0c8f7",
+      "sq": "6245608fa3e37a8b7717fd61467db337566132b2f8c1462c9145ca43b143bb8a",
+      "it": "ca75bf5f80879948e24dd01b01e859a590394f5d8bcc3b303830793ea60842e1",
+      "ru": "b9a96ee77f4ce387ba8c63e86b0003adcb22ed6e463c11941fdb407aefa35936",
+      "hr": "453fb46e27f7cae52f1ccf6fb378261561c48650e516becb02d06b3e4a123dd6",
+      "rom": "7488bd49fb0c2c1839ff31e9d81f79ab13cc6c9a287f26ead5b6c894aaec005e"
+    }
+  },
+  "external-radiotherapy": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "0dbf138471a5a658ffb6fc90b7e704c4ef9fc690ccef250eeb7c2579c5b5ac0c",
+      "ro": "516f121151c93bbab826c9bcaa58f58bec3935ee3e77c4c53946d114d31fa1a5",
+      "sq": "1eac358d57791d77cb84affbd653d2e74ad31f6bc10f7a7e398e2a105be68d3f",
+      "it": "5e3b6855683a0d7e610eafad70ad5909a51767a577cb72aec649819e38699ebc",
+      "ru": "558ce1f464c591128a81d0f2c53a9d0a169b6ec41b527c7e69453a0433cfe882",
+      "hr": "fa501de0624c6dbc363bf15d3a70d101e83f8a156160b05eb86726ab138d03c3",
+      "rom": "0a8b330fd52a520c0eaa785e9ca15894d965447c7ecc8e3ff0eb3f3a88de459b"
+    }
+  },
+  "eye-health-who-can-you-go-to": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "ee2a061b149cd88c1289e5c25f87775b1a047540da7e7e0ab4d457bf61df4e46",
+      "ro": "f7eb2128c90819a52784d172df7e2e52bae42cd836e457bdf0ec9f5d017cf0f5",
+      "sq": "29ac824da352c688ff8400180247b9b58667d6a46c80d4e02e59aa088811d779",
+      "it": "6c69b545059f17b690444e198ffba8a7e3620704e571d256671f29316bca491b",
+      "ru": "9903faaa2f8d9e91ca87d6b558f20868b5f57f4924bcf263ab495bb4804ad85e",
+      "hr": "4b14260f4eb885105109695afe771e66ec635d37ec528ef70b7c43f494e6c600",
+      "rom": "f1b1f3591f33d1d3932d6432594a221bc20a7c79ecd3c3e8b1a811322e110d6a"
+    }
+  },
+  "falls-in-older-people": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "ceaf448c2515b6f61a530b9b86f33c98208198efe789e0b63d6e8699a799fafb",
+      "ro": "4b15bbf2e72891a49a5e95bc1c491b485c14142739db5d592811e705aa9ad657",
+      "sq": "0f878694e0f4298a594f79863d4730fe7e7fae79deec871f5a0b6416f6fe166b",
+      "it": "2eb2010c04c16985abfbf48adb1203f145890bf9bc372ade3eb4d5da750c868a",
+      "ru": "c3bdc12d054cca2de4f00f6fe5584a28720d66f97a697ec9d65417719176a276",
+      "hr": "b9c37c4b492556ad5b58dee9846ada16d44613449c1a3626d581da9ad3688925",
+      "rom": "df4896f070898f20d1c5851bc723cd5506f3b5c63eac250cfafce3a272a609b6"
+    }
+  },
+  "farsightedness-hyperopia": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "cb6a0aa1393639fe541c591a40c33ec7e68ab0bfbb47ef13c333691417051e2c",
+      "ro": "59635be4d5d64a73a2888c3b44c9f45b1625c751f287d43010421fbe614034e3",
+      "sq": "273bf116e1157e0bcd7bcde96b4db27cea6ee0af0074d2556cf692098b3131be",
+      "it": "bf574a7d0fc6d305479a7fb588168f1e71055469cd75bdabe65b90c0dcd97227",
+      "ru": "4ea14029a4871c65f1c8848ffe11a095bf6701cfe66e964e8c425031da01254a",
+      "hr": "6d7546745fd6265093808ba968b334b9ec978e56bdf9304eda60d9ca15e1ab25",
+      "rom": "6bbc5830a5a3f5cf7aa3913f5976390d2a4bba8fcd7f93744e045ac1fe50a092"
+    }
+  },
+  "fast-heart-rate-in-paroxysmal-supraventricular-tachycardia": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "5b069896237748bbf1b0ff76c6e93cf3baf03bb54eceb3ca43e0972cd73ec1ea",
+      "ro": "59ad7824519a485dce0c6a56c4ed14395d35a016ccd099a52fde33f2ebf36215",
+      "sq": "51f76f2cb307b5dcf8725cc6e47833746593cba24b7b2f8d630dc7a59774020f",
+      "it": "c1ee891b02e1886ab049f8c634988982f49b7a4711d2ba8aa3562df1804345a5",
+      "ru": "00e8817eed8b3ee320cc4d3c27fc72b108c94b4ea6d5be2aff8dbc4d0fa17cad",
+      "hr": "635e85e61f1d0f85d20a67b2875cc1c00ae57df4d669bd22dfc8d63a1ab87784",
+      "rom": "e8e79497168711f848b3c3a00b876b66bfcf33c1399c22ee29266bdbc600c05c"
+    }
+  },
+  "fasting": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "2f0791d6acea1d4753986958ec125bd62551545d30342ded134deed6b6dd11d2",
+      "ro": "41c3d223946e5a41318412f33a6f7c53cd46518f0fd7c4ef0b7bfbe46664f5b0",
+      "sq": "ae0657b078776b5aafe97978e3ef710e99380e18e7ad891120047201840f077c",
+      "it": "4a43b78c18308376bf75d322feaa5c258c16dba5f399678303d16ba1bbbe3514",
+      "ru": "346f07cb046fae6e8731175544cf454a4863d5ff4a00e6987aa4a86a9a1e9ec7",
+      "hr": "484174be0049f3f3bd1056edac26a4658270e3c6f12d4c321d219f6e677a614c",
+      "rom": "30cc1ce1534e9efdfa2171f937d8651d0e342636df3f76a4326cf69b521d764b"
+    }
+  },
+  "fever-in-children": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "f16665a08c01eb2df1964ecb3e751a8b4796800284436c4cf2ea91b288285d50",
+      "ro": "7fd764a6da72337b0af4e134ab49da044b6bf6afe9c6bfc2221554e5b76ac66f",
+      "sq": "cebd4e336f3885bd42e1e7c7962f7dc6d92f69b8ce233c6403a1e61bd0a720f6",
+      "it": "c4698ce2ffbcc4c440c59ba8952857d0ff0c1d3b59398f3a9665275f0889dd45",
+      "ru": "c9a4820ec5c475c4ffc388cb696a19e22d3126f538ccd1148c044ffaf4715062",
+      "hr": "05bc19230929405bd8542741321af975e23a595fdc0b51e13b683e19971b208a",
+      "rom": "86d7e98723d5ed4d06d4beb6f675397200e7954a5090b4ed9dcaf09eb06c95af"
+    }
+  },
+  "fibromyalgia": {
+    "sourceCheckedOn": "2026-11-12",
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "b41458042ae02bf1966ca431341f28337b12bca38135ee865ce9bb3cb73fe63a",
+      "ro": "e4df46d451ed5761d154c4316b9a60281f45ccb9e3232173cd5a707998f9ad2a",
+      "sq": "55acb86e44ee83042cb9ea9c5bda597938d07a3fdaa3abe636916880ccccb1d9",
+      "it": "a6da8286526dd1f00816dc7b9b42ff55ccdb76c9c8329167d3c5fa6d5929f251",
+      "ru": "4da67292183f5e7001284cbbcbdfa62e0ebbef7f89ef5d15628844d4ce170c32",
+      "hr": "af4e568ff60b334dfb3e47998158dc753c173d151d6267448aba9c8f4d054ccc",
+      "rom": "2510eee0844417dc7f23d77292b14560edeedec8d91c463599d08b7a3f47b68b"
+    }
   }
 }

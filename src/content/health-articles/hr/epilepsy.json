@@ -1,0 +1,51 @@
+{
+  "title": "Epilepsija: prepoznavanje napadaja, liječenje i svakodnevna sigurnost",
+  "intro": "Epilepsija uključuje trajnu sklonost epileptičkim napadajima zbog abnormalne električne aktivnosti mozga. Napadaji ne uzrokuju uvijek trzaje: neki kratko prekinu svijest o okolini ili izazovu neobične osjete. Jedan napadaj može imati drugi uzrok i ne potvrđuje automatski epilepsiju. Mnogi ljudi postižu dobru kontrolu odgovarajućim liječenjem i podrškom.",
+  "sections": [
+    {
+      "heading": "Točno opišite događaje radi dijagnoze",
+      "paragraphs": [
+        "Zapišite što se dogodilo prije, tijekom i nakon epizode, trajanje, bolesti, manjak sna, lijekove i oporavak. Svjedok može opisati ponašanje kojeg se ne sjećate; snimka pomaže samo ako ne odgađa prvu pomoć. Specijalist može zatražiti EEG, snimanje mozga, krvne pretrage ili EKG radi drugih uzroka poput nesvjestice. Uredan rutinski EEG ne isključuje epilepsiju. Dijagnoza ovisi o cijeloj slici, ponekad i o velikom riziku ponavljanja nakon prvog napadaja."
+      ]
+    },
+    {
+      "heading": "Pružite prvu pomoć bez ozljeđivanja",
+      "paragraphs": [
+        "Ostanite blizu, mjerite trajanje, uklonite opasnosti i zaštitite glavu ako je osoba na tlu. Ne sputavajte pokrete niti stavljajte prste, hranu, piće ili predmete u usta. Nakon prestanka trzaja osobu bez svijesti koja normalno diše okrenite na bok i pratite disanje. Ako ne diše normalno, slijedite upute dispečera za oživljavanje. Nazovite 112 kod prvog napadaja, trajanja 5 minuta ili dulje, ponavljanja bez oporavka, ozbiljne ozljede ili poteškoća disanja. Propisani hitni lijek dajte samo prema planu i ako ste obučeni."
+      ]
+    },
+    {
+      "heading": "Redovito uzimajte terapiju i pratite nuspojave",
+      "paragraphs": [
+        "Izbor lijeka ovisi o vrsti napadaja, drugim bolestima, interakcijama i osobnim prioritetima. Dogovorite što učiniti kad propustite dozu te tražite savjet zbog neugodne pospanosti, promjene raspoloženja ili osipa. Nemojte naglo prekidati niti sami mijenjati antiepileptike, čak ni nakon dugog razdoblja bez napadaja. Planiranje trudnoće, kontracepcija i rizici za dijete zahtijevaju razgovor sa specijalistom; nagli prekid također može biti opasan. Trajni napadaji unatoč terapiji zahtijevaju provjeru dijagnoze i mogućnosti, među kojima mogu biti operacija, stimulacija ili medicinski nadzirana prehrana."
+      ]
+    },
+    {
+      "heading": "Prilagodite aktivnosti bez pretpostavke da je sve zabranjeno",
+      "paragraphs": [
+        "Dnevnik može pokazati osobne obrasce; održavajte redovit san i razgovarajte o alkoholu i drugim okidačima. Bljeskajuće svjetlo utječe samo na neke osobe. Odaberite sigurnije tuširanje ili kupanje, razgovarajte o nadzoru u vodi i pojedinačno procijenite kuhanje, visine, alate i radne zadatke. Nemojte voziti nakon sumnje na napadaj dok ne razjasnite medicinske i zakonske uvjete; pravila ovise o državi. Medicinska identifikacija i dogovoren plan pomažu obitelji, školi i kolegama. Podrška zbog tjeskobe ili depresije dio je skrbi."
+      ]
+    },
+    {
+      "heading": "Dogovorite osobni plan rizika i kontrola",
+      "paragraphs": [
+        "Pitajte o sprečavanju ozljeda, produljenim napadajima i iznenadnoj neočekivanoj smrti u epilepsiji, uključujući smanjenje rizika dobrom kontrolom i redovitim lijekovima. Nemojte pretpostaviti da uređaj ili opća mjera jamče zaštitu. Dogovorite kome se javiti nakon napadaja tijekom liječenja, novog obrasca ili trudnoće te kada tražiti hitnu pomoć. Donesite dnevnik i popis lijekova na kontrole. Nakon uobičajenog napadaja mogu trebati odmor i umirenje, ali neuobičajeno duga smetenost, slabost ili nepotpun oporavak zahtijevaju hitnu procjenu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: epizode bez trzaja",
+      "text": "Luka u školi opetovano nakratko prestane odgovarati. Učitelj bilježi trajanje i ponašanje poslije, a obitelj organizira procjenu. Ne pretpostavljaju da namjerno ignorira upute i ne postavljaju dijagnozu samo iz opisa."
+    },
+    {
+      "title": "Zamišljeni primjer: zajednički plan prve pomoći",
+      "text": "Nora ima potvrđenu epilepsiju i pisani plan. Kolege uče ukloniti opasnosti, mjeriti napadaj i prepoznati kada zvati pomoć. Samo obučena osoba daje propisani hitni lijek prema uputama; nitko je ne sputava niti stavlja predmete u usta."
+    }
+  ],
+  "questions": [
+    "Koju vrstu epizoda imam i koje pretrage ili dodatno promatranje trebam?",
+    "Koje mi liječenje odgovara s obzirom na trudnoću, interakcije i nuspojave?",
+    "Što obitelj treba učiniti tijekom napadaja i koja pravila sigurnosti ili vožnje vrijede za mene?"
+  ]
+}

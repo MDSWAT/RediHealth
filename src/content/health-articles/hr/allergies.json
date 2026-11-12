@@ -1,0 +1,56 @@
+{
+  "title": "Razumjeti alergije: kada imunološki sustav pretjerano reagira",
+  "intro": "Alergija nastaje kada imunološki sustav tvar koja je obično bezopasna prepozna kao prijetnju i pokrene obrambenu reakciju. Česti okidači uključuju pelud, određenu hranu, ubode kukaca, životinjske alergene i lijekove. Reakcije se kreću od blagih smetnji do teških hitnih stanja. Poznavanje okidača i prikladnog postupanja pomaže u svakodnevici i prepoznavanju potrebe za žurnom pomoći.",
+  "sections": [
+    {
+      "heading": "Što se događa tijekom reakcije",
+      "paragraphs": [
+        "Mnoge neposredne alergijske reakcije uključuju protutijela imunoglobulina E, odnosno IgE. Ona potiču stanice na oslobađanje tvari poput histamina, koje uzrokuju simptome. Reakcija može zahvatiti kožu, dišne putove, probavu ili cijelo tijelo.",
+        "Simptomi ovise o alergenu i osjetljivosti. Blaže reakcije mogu uključivati kihanje, svrbež očiju, koprivnjaču ili curenje nosa. Ozbiljnije mogu izazvati teško disanje, oticanje lica ili grla, grčeve, povraćanje ili nagli pad tlaka. Ista osoba može različito reagirati u različitim prilikama, a težina se može mijenjati tijekom života."
+      ]
+    },
+    {
+      "heading": "Prepoznavanje vlastitih okidača",
+      "paragraphs": [
+        "Praćenje obrazaca pomaže suziti moguće uzroke. Zabilježite kada se reakcija pojavila, što ste jeli ili dodirivali, gdje ste bili i koje je godišnje doba. To usmjerava pretrage i pomaže izbjeći novu izloženost.",
+        "Liječnik koristi razgovor, pregled i prema potrebi testiranje. Kožni ubodni test stavlja male količine sumnjivih alergena na kožu radi procjene reakcije. Krvni testovi mjere specifična IgE protutijela. Pozitivan rezultat ne znači automatski stvarne simptome, a negativan ne isključuje svaku alergiju. Nalaze treba povezati s onim što vam se doista događa."
+      ]
+    },
+    {
+      "heading": "Smanjenje izloženosti i ublažavanje tegoba",
+      "paragraphs": [
+        "Izbjegavanje potvrđenih alergena korisno je kada je izvedivo. To može uključivati provjeru sastojaka hrane, zaštitne navlake za posteljinu ili promjene kontakta sa životinjom nakon razgovora o stvarnom uzroku tegoba. Potpuno izbjegavanje nije uvijek moguće, pa može trebati liječenje simptoma.",
+        "Antihistaminici smanjuju svrbež, kihanje i koprivnjaču. Kortikosteroidni sprejevi za nos smanjuju upalu nosne sluznice. Liječnik može predložiti druge lijekove ili imunoterapiju, postupno izlaganje kontroliranim količinama alergena radi smanjenja osjetljivosti. Učinak se razlikuje među ljudima, a liječenje obično traje od tri do pet godina."
+      ]
+    },
+    {
+      "heading": "Priprema za tešku reakciju",
+      "paragraphs": [
+        "Anafilaksija je nagla i životno ugrožavajuća reakcija. Mogući su teško disanje ili gutanje, oteklina jezika ili grla, ubrzan puls, omaglica, gubitak svijesti ili raširena koprivnjača. Može nastati i bez osipa. Potrebni su odmah adrenalin kada je dostupan i hitna medicinska pomoć.",
+        "Ako imate rizik teške reakcije, liječnik može propisati autoinjektor adrenalina. Nosite ga sa sobom, uvježbajte primjenu i provjeravajte rok valjanosti. Poučite bliske osobe kako prepoznati anafilaksiju i dati lijek. U hitnom slučaju slijedite dogovoreni plan i zatražite hitnu pomoć i nakon primjene; odgađanje adrenalina može biti opasno."
+      ]
+    },
+    {
+      "heading": "Život s neizvjesnostima",
+      "paragraphs": [
+        "Alergija se može razviti u bilo kojoj dobi, i na tvar koju ste ranije podnosili. Neke dječje alergije, osobito na mlijeko ili jaja, mogu prestati, dok druge traju. Nije moguće unaprijed pouzdano znati tko će prerasti alergiju ili razviti novu.",
+        "Križna reaktivnost može iznenaditi: neke osobe alergične na pelud breze reagiraju na sirovu jabuku ili lješnjak zbog sličnih bjelančevina. Pozitivan test ili ranija blaga reakcija sami ne određuju budući rizik. Odluke temeljite na osobnom nalazu i razgovoru s timom, a ne na općim pravilima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: obrok u restoranu",
+      "text": "Osoba s alergijom na školjke unaprijed pita restoran o sastojcima i radu kuhinje. Pri dolasku objašnjava alergiju, provjerava jela te traži čist pribor i površine radi smanjenja unakrsnog kontakta. Nosi propisani adrenalin i jede s osobom koja zna pomoći u hitnom slučaju."
+    },
+    {
+      "title": "Zamišljeni primjer: proljetna pelud",
+      "text": "Osoba koju svakog proljeća svrbe oči i curi joj nos prati peludne prognoze i svoje simptome. Razmatra zatvaranje prozora tijekom visoke izloženosti te tuširanje i promjenu odjeće nakon boravka vani. S liječnikom dogovara ima li smisla početi lijek prije očekivanih tegoba; pojedina mjera nije jamstvo olakšanja."
+    }
+  ],
+  "questions": [
+    "Koje pretrage odgovaraju mojim simptomima i koja su njihova ograničenja?",
+    "Imam li rizik teške reakcije i trebam li autoinjektor adrenalina te obuku za primjenu?",
+    "Koje su mogućnosti liječenja i kako se koristi i nuspojave uspoređuju za mene?"
+  ]
+}

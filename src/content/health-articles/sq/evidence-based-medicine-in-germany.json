@@ -1,0 +1,51 @@
+{
+  "title": "Mjekësia e bazuar në prova në Gjermani: kërkimi, rekomandimet dhe kujdesi",
+  "intro": "Mjekësia e bazuar në prova bashkon kërkimin e besueshëm, përvojën klinike dhe rrethanat e preferencat e personit. Në Gjermani ndikon në rekomandimet dhe vendimet e sistemit shëndetësor. Njohja e roleve të studiuesve, mjekëve dhe organeve vendimmarrëse ndihmon të lexoni informacionin gjerman pa menduar se çdo rekomandim ose rregull pagese vlen në vend tjetër.",
+  "sections": [
+    {
+      "heading": "Ndani gjetjen shkencore nga rekomandimi personal",
+      "paragraphs": [
+        "Kërkimi vlerëson çfarë ndodh në grupe, ndërsa vizita i zbaton gjetjet te individi. Pyesni nëse përfshiheshin persona të moshës suaj, me sëmundje e barna të ngjashme dhe nëse u matën simptoma ose funksionimi i përditshëm. Mjeku shqyrton edhe mundësitë praktike dhe prioritetet tuaja. Kujdesi i bazuar në prova nuk do të thotë trajtim identik për të gjithë ose zëvendësim i gjykimit mjekësor nga kompjuteri. Do të thotë shpjegim arsyesh dhe pasigurish, jo vetëm zakon ose autoritet."
+      ]
+    },
+    {
+      "heading": "Kuptoni qëllimin e udhëzimeve klinike",
+      "paragraphs": [
+        "Udhëzimet organizojnë prova dhe rekomandime për situata të caktuara. Kontrolloni autorin, përditësimin dhe kujt e ku i drejtohen. Jo çdo rekomandim mbështetet njësoj fort; disa bazohen pjesërisht në pajtim ekspertësh. Pyesni si lidhet me ju dhe cilat alternativa ka. Dallimet mund të pasqyrojnë pyetje, data ose sisteme të ndryshme dhe jo pandershmëri. Udhëzimi ndihmon bisedën, por nuk e kthen rekomandimin e përgjithshëm në diagnozë ose leje për të ndryshuar vetë barnat."
+      ]
+    },
+    {
+      "heading": "Dalloni vlerësimin e provave nga mbulimi financiar",
+      "paragraphs": [
+        "IQWiG vlerëson kërkimet për përfitime e dëme dhe boton raporte shkencore e informacion publik. Nuk është mjeku juaj dhe raporti nuk është recetë individuale. Komiteti i Përbashkët Federal gjerman, G-BA, jep direktiva për shërbimet e mbuluara nga sigurimi ligjor shëndetësor. Vendimet e tij dhe vlerësimi shkencor kanë role të ndryshme. Disponueshmëria e barit, rimbursimi dhe përfitimi shtesë kundrejt një alternative janë pyetje të veçanta. Lexoni popullatën, krahasimin dhe vendimin konkret në vend që emrin institucional ta merrni si miratim universal."
+      ]
+    },
+    {
+      "heading": "Kontrolloni çfarë është specifike për Gjermaninë",
+      "paragraphs": [
+        "Përshkrimet e referimeve, mbulimit, programeve të sëmundjeve kronike dhe ftesave për depistim mund të jenë rregulla gjermane, jo fakte universale mjekësore. Mos i transferoni automatikisht në Rumani, Moldavi, Shqipëri, Itali ose Kroaci. Pyesni mjekun ose siguruesin lokal për kriteret, kostot, shërbimet dhe referimin. Edhe brenda një vendi hollësitë varen nga procedura dhe rrethanat. Përmbledhja e provave mund të ndihmojë të kuptoni përfitimet dhe dëmet, ndërsa profesionistët vendas sqarojnë hyrjen në kujdes."
+      ]
+    },
+    {
+      "heading": "Përgatitni pyetje për vendim të përbashkët",
+      "paragraphs": [
+        "Merrni artikullin ose rekomandimin, listën e barnave dhe prioritetet tuaja. Pyesni cilat mundësi janë të arsyeshme, sa përfitim pritet, cilat dëme ose barrë trajtimi dhe çfarë ndodh nëse prisni kur është e sigurt. Kërkoni shpjegim të rrezikut absolut dhe përkthyes kur duhet. Pyesni kur rishikohet plani dhe çfarë e ndryshon. Nuk duhet të pranoni një trajtim vetëm se shfaqet në udhëzim; po ashtu, një histori personale nuk mjafton për të hedhur poshtë një rekomandim të mbështetur mirë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: leximi për depistim",
+      "text": "Ana lexon një artikull gjerman për ftesat për depistim. E përdor për të pyetur për përfitimet dhe dëmet, pastaj kontrollon kriteret lokale pa menduar se do të marrë të njëjtën ftesë në Moldavi."
+    },
+    {
+      "title": "Shembull hipotetik: përfitimi shtesë",
+      "text": "Iliri dëgjon se është vlerësuar një bar i ri. Pyet me çfarë u krahasua, për cilët pacientë dhe me çfarë rezultatesh. Mjeku shpjegon lidhjen me gjendjen e tij veçmas nga pagesa e sigurimit."
+    }
+  ],
+  "questions": [
+    "Cilat prova dhe udhëzime mbështesin këtë mundësi dhe sa vlejnë për mua?",
+    "A është rekomandim mjekësor, vlerësim provash apo rregull gjerman mbulimi?",
+    "Çfarë duhet të sqarojmë për aksesin lokal, alternativat dhe kontrollet para vendimit?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "External radiotherapy: planning treatment and managing everyday effects",
+  "intro": "External radiotherapy uses a machine outside the body to deliver radiation to a planned treatment area. It may aim to cure cancer, reduce the chance of recurrence or relieve symptoms. The schedule and likely effects depend on the cancer, location and other treatments. External beam treatment does not make you radioactive; precautions for radioactive implants or medicines are different.",
+  "sections": [
+    {
+      "heading": "Clarify the goal and your individual treatment plan",
+      "paragraphs": [
+        "Ask what the treatment is intended to achieve, how success will be assessed and what alternatives are reasonable. Radiotherapy may be used alone or with surgery or medicines. The newest-sounding technique is not automatically best for every cancer. Discuss expected benefits, nearby organs, previous radiation treatment, implanted medical devices and other conditions. Tell the team if pregnancy is possible before planning or treatment. Ask early about fertility preservation when relevant, and arrange help with transport, work, interpreting or caregiving."
+      ]
+    },
+    {
+      "heading": "Understand the planning appointment",
+      "paragraphs": [
+        "Imaging helps the team map the target and protect surrounding tissue. You may need a particular position, skin marks, a molded support or a fitted mask. Ask how to prepare, including any instructions about eating, drinking or bladder filling; requirements vary by treatment site. Tell staff if pain, claustrophobia or difficulty lying still could interfere. Do not scrub away treatment marks or adjust equipment yourself. The team uses the plan to reproduce your position; planning images are not necessarily a test of how the cancer is responding."
+      ]
+    },
+    {
+      "heading": "Know what happens during a session",
+      "paragraphs": [
+        "Staff position you carefully and may take images before delivering the dose. The machine can move and make noises, but you do not normally feel the radiation itself. Staff leave the room during delivery for radiation protection, while continuing to watch and communicate with you. Tell them beforehand how to signal discomfort; treatment can be paused if needed. Follow breathing instructions when used. Keep appointments and contact the department if illness or transport problems might cause a missed session rather than deciding alone to alter the schedule."
+      ]
+    },
+    {
+      "heading": "Discuss site-specific effects and supportive care",
+      "paragraphs": [
+        "Tiredness and changes to skin in the treated area are possible. Other effects depend on the target: mouth and throat treatment may affect swallowing, abdominal or pelvic treatment may affect bowel or bladder function, and hair loss occurs in the treated area rather than automatically everywhere. Ask about skin products, washing, clothing, nutrition and appropriate activity. Do not put unapproved remedies on sore skin or start supplements without discussing interactions. Report symptoms early; help is often available. Some effects can appear later, so discuss long-term risks as well as the immediate course."
+      ]
+    },
+    {
+      "heading": "Plan review and know when to seek urgent help",
+      "paragraphs": [
+        "Ask for a contact for symptoms during treatment and after the course, including outside normal hours. Inability to drink, persistent vomiting, severe diarrhea, fever or rapidly worsening pain needs prompt advice, especially if other cancer treatment is also being given. Severe breathlessness, collapse or a new serious neurological problem requires emergency assessment. Follow the team’s specific infection and bleeding instructions. Side effects may continue after the last session; that does not alone show whether treatment worked. Keep follow-up appointments and discuss recovery, scans, fertility and sexual health concerns without embarrassment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: feeling anxious about a mask",
+      "text": "Daria worries about wearing a fitted mask during head and neck treatment. She tells the team at planning, asks how communication works and discusses ways to manage anxiety before the first session instead of struggling silently."
+    },
+    {
+      "title": "Hypothetical example: arranging practical support",
+      "text": "Arjan needs several visits and cares for a relative. He asks about the schedule, transport and who to contact if delayed. He also asks which symptoms should be reported immediately rather than waiting for the next treatment day."
+    }
+  ],
+  "questions": [
+    "What is the aim of my course, and what benefit and long-term risks are realistic?",
+    "How should I prepare for planning and each session, including medicines and implanted devices?",
+    "Which side effects are expected for my treatment area, and whom do I contact urgently?"
+  ]
+}

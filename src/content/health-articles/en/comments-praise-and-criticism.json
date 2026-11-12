@@ -1,0 +1,51 @@
+{
+  "title": "Giving feedback on health information: questions, corrections and accessibility",
+  "intro": "Clear health information improves when readers can point out confusing wording, missing explanations and barriers to access. This is a health-literacy guide about giving useful feedback, not a medical-condition article. A website feedback channel is different from a consultation or emergency service. Choose the right recipient and protect personal information when describing a problem.",
+  "sections": [
+    {
+      "heading": "Identify what you want the publisher to understand",
+      "paragraphs": [
+        "Name the article, its language and the passage or feature involved. Explain whether you noticed a possible factual error, an unclear translation, missing context, difficulty using the page or something that worked especially well. A specific observation is more useful than a broad complaint. If you are commenting on another publisher’s original page, make that distinction clear; sending feedback to one website does not necessarily notify the other. Do not assume there will be an immediate response or a particular correction."
+      ]
+    },
+    {
+      "heading": "Describe the problem so it can be checked",
+      "paragraphs": [
+        "Quote only the short passage needed to identify the issue, or describe where it appears. Say what you understood and why the wording seems confusing or inconsistent. If referring to another source, provide its title and date so the editor can compare the evidence. Separate an observed error from a personal disagreement or a question about your own treatment. A symptom diary may help a clinician, but it is usually unnecessary for reporting a broken link or mistranslated heading."
+      ]
+    },
+    {
+      "heading": "Report access barriers in practical terms",
+      "paragraphs": [
+        "For a page that is difficult to use, describe the device, browser, language and action that caused difficulty. Mention whether the problem appears when zooming, using a keyboard, listening to text or reading with assistive technology. Explain what you expected and what happened instead. Screenshots can help, but check them for names, messages or medical details before sharing. You do not need to diagnose the technical cause or provide a solution to make a useful accessibility report."
+      ]
+    },
+    {
+      "heading": "Share only information needed for the report",
+      "paragraphs": [
+        "Avoid including identity numbers, passwords, complete medical records, addresses or identifiable details about other people. Use the site’s stated contact or feedback process and read its privacy information before submitting sensitive material. An anonymous rating and a request for a personal reply are different choices. Do not assume every service collects, stores or replies in the same way. If a question is about your diagnosis or medicine, discuss it with the relevant professional rather than expecting an editor to provide personal medical advice."
+      ]
+    },
+    {
+      "heading": "Keep feedback separate from urgent care",
+      "paragraphs": [
+        "If a passage appears unsafe, explain the concern clearly and ask for clarification, but do not wait for an editorial response when you need medical assessment. New or severe symptoms should be handled through appropriate care services. Helpful praise can also be specific: explain which example, definition or layout made information easier to understand. Keep a copy of your report if you want to follow up. A correction should be checked against reliable evidence; feedback is a starting point for investigation, not proof that a medical claim is right or wrong."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: an ambiguous translation",
+      "text": "Lina notices that a translated warning seems to omit a qualification. She gives the article title, language and short passage, then describes the difference. She leaves out her personal medical history because it is not needed to investigate the wording."
+    },
+    {
+      "title": "Hypothetical example: a keyboard barrier",
+      "text": "Petar cannot reach a page control with his keyboard. He reports the page, browser and sequence of keys, and explains which action he expected. The report helps someone reproduce the problem without including private screenshots."
+    }
+  ],
+  "questions": [
+    "Have I identified the article, language and exact issue clearly enough for someone to check it?",
+    "Am I sharing only necessary information through the appropriate recipient’s contact process?",
+    "Does my question need a clinician or urgent care rather than an editorial reply?"
+  ]
+}

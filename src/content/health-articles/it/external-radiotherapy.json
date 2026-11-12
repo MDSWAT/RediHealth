@@ -1,0 +1,51 @@
+{
+  "title": "Radioterapia esterna: pianificazione e gestione degli effetti",
+  "intro": "La radioterapia esterna utilizza una macchina fuori dal corpo per dirigere radiazioni su una zona pianificata. Può mirare a guarire il tumore, ridurre le recidive o alleviare sintomi. Calendario ed effetti dipendono da tumore, sede e altre cure. Il trattamento esterno non rende radioattivi; le precauzioni per impianti o farmaci radioattivi sono diverse.",
+  "sections": [
+    {
+      "heading": "Chiarire obiettivo e piano personale",
+      "paragraphs": [
+        "Chiedete cosa si vuole ottenere, come verrà valutato il risultato e quali alternative siano ragionevoli. La radioterapia può accompagnare chirurgia o farmaci oppure essere usata da sola. La tecnica dal nome più nuovo non è automaticamente migliore. Discutete benefici, organi vicini, precedenti irradiazioni, dispositivi impiantati e altre malattie. Segnalate una possibile gravidanza prima di pianificazione o cura. Parlate presto di preservazione della fertilità quando pertinente e organizzate trasporti, lavoro, interprete o assistenza familiare."
+      ]
+    },
+    {
+      "heading": "Comprendere la pianificazione",
+      "paragraphs": [
+        "Le immagini aiutano a delimitare il bersaglio e proteggere tessuti vicini. Possono servire posizione precisa, segni cutanei, supporto modellato o maschera. Chiedete preparazione, alimentazione, bevande o riempimento vescicale: dipende dalla zona. Segnalate dolore, claustrofobia o difficoltà a restare immobili. Non eliminate i segni né regolate autonomamente l’attrezzatura. Il piano riproduce la posizione; le immagini iniziali non misurano necessariamente la risposta del tumore."
+      ]
+    },
+    {
+      "heading": "Sapere come si svolge una seduta",
+      "paragraphs": [
+        "Il personale vi posiziona e può acquisire immagini prima della dose. La macchina si muove e fa rumore, ma normalmente non si percepisce la radiazione. Il personale esce per protezione durante l’erogazione, continuando a osservare e comunicare. Chiedete come segnalare disagio: si può interrompere temporaneamente. Seguite le istruzioni respiratorie quando previste. Rispettate gli appuntamenti e avvisate il reparto se malattia o trasporto impediscono di arrivare, senza cambiare il calendario da soli."
+      ]
+    },
+    {
+      "heading": "Discutere effetti locali e sostegno",
+      "paragraphs": [
+        "Sono possibili stanchezza e alterazioni cutanee nella zona trattata. Gli altri effetti dipendono dalla sede: bocca e gola possono coinvolgere deglutizione, addome o pelvi intestino e vescica; i capelli o peli cadono nella zona irradiata, non automaticamente ovunque. Chiedete prodotti, lavaggio, vestiti, nutrizione e attività adatta. Non applicate rimedi non approvati sulla pelle dolente né iniziate integratori senza verificare interazioni. Segnalate presto i sintomi: spesso si può intervenire. Discutete anche rischi tardivi, oltre al periodo immediato."
+      ]
+    },
+    {
+      "heading": "Pianificare controlli e assistenza urgente",
+      "paragraphs": [
+        "Chiedete un contatto durante e dopo il ciclo, anche fuori orario. Incapacità di bere, vomito persistente, diarrea grave, febbre o dolore in rapido aumento richiedono consiglio tempestivo, soprattutto con altre cure oncologiche. Grave affanno, collasso o nuovo problema neurologico importante richiedono emergenza. Seguite le istruzioni specifiche per infezioni e sanguinamento. Gli effetti possono continuare dopo l’ultima seduta: questo non indica da solo se la cura abbia funzionato. Mantenete i controlli e discutete recupero, immagini, fertilità e salute sessuale."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: timore della maschera",
+      "text": "Daria teme la maschera per il trattamento di testa e collo. Lo dice alla pianificazione, chiede come comunicare e discute l’ansia prima della seduta anziché sopportare in silenzio."
+    },
+    {
+      "title": "Esempio ipotetico: aiuto pratico",
+      "text": "Arjan deve fare diverse visite e assiste un familiare. Chiede calendario, trasporto e contatto per ritardi. Impara anche quali sintomi segnalare subito senza aspettare la seduta successiva."
+    }
+  ],
+  "questions": [
+    "Qual è l’obiettivo e quali benefici e rischi tardivi sono realistici?",
+    "Come preparo pianificazione e sedute, considerando farmaci e dispositivi impiantati?",
+    "Quali effetti sono attesi nella mia zona e chi contatto urgentemente?"
+  ]
+}

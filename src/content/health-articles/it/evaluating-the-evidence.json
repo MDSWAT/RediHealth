@@ -1,0 +1,51 @@
+{
+  "title": "Valutare le prove mediche: domande dietro un’affermazione",
+  "intro": "Uno studio pubblicato non è automaticamente una risposta affidabile su una cura. Selezione dei partecipanti, confronto dei trattamenti e misurazione degli esiti possono cambiare il significato del risultato. La valutazione critica chiede quanta fiducia meriti un’affermazione e se riguardi la vostra decisione. Non occorre diventare ricercatori per fare domande utili.",
+  "sections": [
+    {
+      "heading": "Partire dalla domanda e dal confronto",
+      "paragraphs": [
+        "Identificate chi è stato studiato, quale trattamento o test, con cosa è stato confrontato e quali esiti contavano. Uno studio su volontari sani potrebbe non rispondere per una persona anziana fragile. Il confronto con nessun trattamento non dimostra necessariamente superiorità rispetto alle cure abituali. Chiedete se siano stati misurati sintomi, funzionamento o sopravvivenza, anziché soltanto valori di laboratorio. Domande chiare evitano che il linguaggio impressionante distragga da ciò che è stato davvero esaminato."
+      ]
+    },
+    {
+      "heading": "Cercare possibili distorsioni",
+      "paragraphs": [
+        "L’assegnazione casuale aiuta a rendere comparabili i gruppi, ma contano i dettagli. Chiedete se fosse prevedibile, se partecipanti o valutatori conoscessero la cura e se molti abbiano abbandonato. Studi non in cieco possono essere utili, ma gli esiti soggettivi risentono maggiormente delle aspettative. Verificate se gli esiti fossero stabiliti prima e se quelli sfavorevoli siano riportati. Un campione grande non corregge ogni difetto e la revisione scientifica non garantisce assenza di errori o pubblicazione selettiva."
+      ]
+    },
+    {
+      "heading": "Separare grandezza dell’effetto e certezza",
+      "paragraphs": [
+        "Chiedete quante persone beneficiano o subiscono danni, in quanto tempo e rispetto a quale rischio iniziale. I cambiamenti relativi possono sembrare maggiori della differenza assoluta. Un intervallo di confidenza descrive l’incertezza della stima; la significatività statistica non equivale necessariamente a importanza quotidiana. Viceversa, non trovare una differenza chiara non dimostra sempre equivalenza. Studi piccoli, pochi eventi o controlli brevi possono lasciare incerti benefici e danni importanti anche con un titolo categorico."
+      ]
+    },
+    {
+      "heading": "Esaminare attentamente anche le revisioni",
+      "paragraphs": [
+        "Una revisione sistematica dovrebbe spiegare domanda, ricerca, criteri di inclusione e valutazione dei limiti. Controllate se abbia cercato abbastanza ampiamente, considerato risultati mancanti o non pubblicati e motivato l’unione degli studi. Una meta-analisi può dare un numero apparentemente preciso da studi molto diversi o con distorsioni comuni. Concordanza tra studi pertinenti e ben condotti aumenta la fiducia; contare quelli positivi non basta. Leggete data, conflitti e finanziamenti, giudicando i metodi senza accettare o rifiutare tutto sulla sola provenienza dei fondi."
+      ]
+    },
+    {
+      "heading": "Usare le prove nel colloquio personale",
+      "paragraphs": [
+        "Portate affermazione o fonte al medico spiegando la decisione da prendere. Discutete malattie, farmaci, preferenze, impegno della terapia e alternative, compresa l’osservazione quando appropriata. Chiedete cosa resti incerto e quali informazioni cambierebbero il piano. Una storia personale può illuminare esperienze importanti ma non stabilisce affidabilmente effetti medi. Non modificate bruscamente cure prescritte dopo una notizia. Una buona valutazione sostiene decisioni condivise e aspettative realistiche senza eliminare ogni incertezza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: una grande riduzione relativa",
+      "text": "Mara legge che una cura dimezza un rischio. Chiede rischio iniziale, differenza assoluta, durata dei controlli ed effetti indesiderati. Capisce che il solo titolo non mostra se il beneficio valga la pena per lei."
+    },
+    {
+      "title": "Esempio ipotetico: revisione con metodi poco chiari",
+      "text": "Dritan trova una revisione favorevole a un integratore, senza capire come siano stati selezionati gli studi. Cerca una revisione sistematica trasparente e parla con il farmacista invece di considerare molte citazioni una garanzia."
+    }
+  ],
+  "questions": [
+    "Sono state studiate persone come me con un confronto pertinente ed esiti importanti per me?",
+    "Quanto sono grandi benefici e danni probabili e quanto incerte le stime?",
+    "Risultati mancanti, limiti o differenze tra studi potrebbero cambiare la conclusione?"
+  ]
+}

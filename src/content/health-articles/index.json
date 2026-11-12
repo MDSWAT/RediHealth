@@ -9,7 +9,9 @@
       "ro": "Anevrism aortic abdominal",
       "sq": "Anevrizma e Aortës Abdominale",
       "it": "Aneurisma dell'Aorta Addominale",
-      "ru": "Аневризма брюшной аорты"
+      "ru": "Аневризма брюшной аорты",
+      "hr": "Aneurizma trbušne aorte",
+      "rom": "Aneurizma e trbušno aortaki"
     },
     "sourceUrl": "https://www.informedhealth.org/abdominal-aortic-aneurysm.html",
     "availableLanguages": [
@@ -17,7 +19,9 @@
       "ro",
       "sq",
       "it",
-      "ru"
+      "ru",
+      "hr",
+      "rom"
     ]
   },
   {
@@ -293,7 +297,9 @@
       "ro": "Înțelegerea alergiilor: când sistemul imunitar reacționează excesiv",
       "sq": "Të Kuptuarit e Alergjive: Kur Sistemi Juaj Imunitar Reagon Tepër",
       "it": "Comprendere le Allergie: Quando il Sistema Immunitario Reagisce in Modo Eccessivo",
-      "ru": "Понимание аллергии: когда ваша иммунная система чрезмерно реагирует"
+      "ru": "Понимание аллергии: когда ваша иммунная система чрезмерно реагирует",
+      "hr": "Razumjeti alergije: kada imunološki sustav pretjerano reagira",
+      "rom": "Te džanes vash alergije: kana e truposko arakhimasko sistemo kerel but reakcija"
     },
     "sourceUrl": "https://www.informedhealth.org/allergies.html",
     "availableLanguages": [
@@ -301,7 +307,9 @@
       "ro",
       "sq",
       "it",
-      "ru"
+      "ru",
+      "hr",
+      "rom"
     ]
   },
   {
@@ -1921,6 +1929,31 @@
     ]
   },
   {
+    "id": "comments-praise-and-criticism",
+    "areaIds": [
+      "our-methods-and-processes"
+    ],
+    "titles": {
+      "en": "Giving feedback on health information: questions, corrections and accessibility",
+      "ro": "Feedback despre informația medicală: întrebări, corecturi și accesibilitate",
+      "sq": "Komente për informacionin shëndetësor: korrigjime dhe aksesueshmëri",
+      "it": "Commentare le informazioni sanitarie: correzioni e accessibilità",
+      "ru": "Обратная связь о медицинской информации: исправления и доступность",
+      "hr": "Povratne informacije o zdravlju: ispravci i pristupačnost",
+      "rom": "Atveto vash sastipnaski informacija: ispravke thaj pristup"
+    },
+    "sourceUrl": "https://www.informedhealth.org/comments-praise-and-criticism.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
     "id": "common-colds",
     "areaIds": [
       "airway-diseases",
@@ -2649,7 +2682,9 @@
       "ro": "Alergia la acarieni: simptome și gestionare zilnică",
       "sq": "Alergjia ndaj akareve të pluhurit: simptomat dhe menaxhimi i përditshëm",
       "it": "Allergia agli acari della polvere: sintomi e gestione quotidiana",
-      "ru": "Аллергия на пылевых клещей: симптомы и повседневное управление"
+      "ru": "Аллергия на пылевых клещей: симптомы и повседневное управление",
+      "hr": "Alergija na grinje: simptomi i svakodnevno upravljanje",
+      "rom": "Alergija pe praheske grinje: znakoja thaj diveski grizha"
     },
     "sourceUrl": "https://www.informedhealth.org/dust-mite-allergies.html",
     "availableLanguages": [
@@ -2657,7 +2692,9 @@
       "ro",
       "sq",
       "it",
-      "ru"
+      "ru",
+      "hr",
+      "rom"
     ]
   },
   {
@@ -2780,6 +2817,386 @@
       "rom": "Bare hemoroidura: simptomengo ciknjaripe thaj ratesko kontrolo"
     },
     "sourceUrl": "https://www.informedhealth.org/enlarged-hemorrhoids.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "enlarged-tonsils-and-adenoids",
+    "areaIds": [
+      "airway-diseases",
+      "eyes-nose-ears",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Enlarged tonsils and adenoids: breathing, sleep and treatment choices",
+      "ro": "Amigdale și vegetații adenoide mărite: respirație, somn și tratament",
+      "sq": "Bajamet dhe adenoidet e zmadhuara: frymëmarrja, gjumi dhe trajtimi",
+      "it": "Tonsille e adenoidi ingrossate: respirazione, sonno e scelte terapeutiche",
+      "ru": "Увеличенные миндалины и аденоиды: дыхание, сон и выбор лечения",
+      "hr": "Povećani krajnici i adenoidi: disanje, san i odabir liječenja",
+      "rom": "Bare tonsile thaj adenoide: phurdinimos, soven thaj sastjarimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/enlarged-tonsils-and-adenoids.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "epidurals-and-other-medications-to-relieve-labor-pain",
+    "areaIds": [
+      "pregnancy-and-birth"
+    ],
+    "titles": {
+      "en": "Pain relief during labour: epidurals and other medicines",
+      "ro": "Calmarea durerii la naștere: epidurala și alte medicamente",
+      "sq": "Lehtësimi i dhimbjes gjatë lindjes: epidurali dhe barna të tjera",
+      "it": "Sollievo dal dolore nel travaglio: epidurale e altri farmaci",
+      "ru": "Обезболивание родов: эпидуральная анестезия и другие лекарства",
+      "hr": "Ublažavanje porođajne boli: epiduralna analgezija i drugi lijekovi",
+      "rom": "Lokhjarimos e dukhaske ko bijandimos: epidurala thaj aver drabura"
+    },
+    "sourceUrl": "https://www.informedhealth.org/epidurals-and-other-medications-to-relieve-labor-pain.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "epilepsy",
+    "areaIds": [
+      "mental-health-brain-and-nerves"
+    ],
+    "titles": {
+      "en": "Epilepsy: recognizing seizures, treatment and everyday safety",
+      "ro": "Epilepsia: recunoașterea crizelor, tratament și siguranță zilnică",
+      "sq": "Epilepsia: njohja e krizave, trajtimi dhe siguria e përditshme",
+      "it": "Epilessia: riconoscere le crisi, curarsi e vivere in sicurezza",
+      "ru": "Эпилепсия: распознавание приступов, лечение и безопасность",
+      "hr": "Epilepsija: prepoznavanje napadaja, liječenje i svakodnevna sigurnost",
+      "rom": "Epilepsija: pinzharimos e krizengo, drabura thaj diveski sigurnost"
+    },
+    "sourceUrl": "https://www.informedhealth.org/epilepsy.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "erysipelas-and-cellulitis",
+    "areaIds": [
+      "skin-and-hair",
+      "infections-and-immune-system"
+    ],
+    "titles": {
+      "en": "Erysipelas and cellulitis: recognizing a skin infection and getting help",
+      "ro": "Erizipelul și celulita infecțioasă: recunoaștere și ajutor medical",
+      "sq": "Erizipela dhe celuliti infektiv: njohja dhe kërkimi i ndihmës",
+      "it": "Erisipela e cellulite infettiva: riconoscere l’infezione e chiedere aiuto",
+      "ru": "Рожистое воспаление и целлюлит: распознавание инфекции кожи",
+      "hr": "Erizipel i celulitis: prepoznavanje kožne infekcije i traženje pomoći",
+      "rom": "Erizipelo thaj celulitis: pinzharimos e morčhake infekcijako thaj azhutimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/erysipelas-and-cellulitis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "evaluating-the-evidence",
+    "areaIds": [
+      "our-methods-and-processes"
+    ],
+    "titles": {
+      "en": "Evaluating medical evidence: questions behind a health claim",
+      "ro": "Evaluarea dovezilor medicale: întrebările din spatele unei afirmații",
+      "sq": "Vlerësimi i provave mjekësore: pyetjet pas një pretendimi",
+      "it": "Valutare le prove mediche: domande dietro un’affermazione",
+      "ru": "Оценка медицинских доказательств: вопросы к утверждению о здоровье",
+      "hr": "Procjena medicinskih dokaza: pitanja iza zdravstvene tvrdnje",
+      "rom": "Te dikhes e medicinske dokazura: pushhimata palal jekh sastipnaski tvrdnja"
+    },
+    "sourceUrl": "https://www.informedhealth.org/evaluating-the-evidence.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "evidence-based-medicine-in-germany",
+    "areaIds": [
+      "what-is-evidence-based-medicine"
+    ],
+    "titles": {
+      "en": "Evidence-based medicine in Germany: research, recommendations and care",
+      "ro": "Medicina bazată pe dovezi în Germania: cercetare, recomandări și îngrijire",
+      "sq": "Mjekësia e bazuar në prova në Gjermani: kërkimi, rekomandimet dhe kujdesi",
+      "it": "Medicina basata sulle prove in Germania: ricerca, raccomandazioni e cure",
+      "ru": "Доказательная медицина в Германии: исследования, рекомендации и помощь",
+      "hr": "Medicina utemeljena na dokazima u Njemačkoj: istraživanje i skrb",
+      "rom": "Dokazurengi medicina ande Germanija: istraživanje, preporuke thaj grizha"
+    },
+    "sourceUrl": "https://www.informedhealth.org/evidence-based-medicine-in-germany.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "evidence-the-cornerstone-of-our-information",
+    "areaIds": [
+      "our-methods-and-processes"
+    ],
+    "titles": {
+      "en": "How evidence supports trustworthy health information",
+      "ro": "Cum susțin dovezile informația medicală de încredere",
+      "sq": "Si mbështesin provat informacionin shëndetësor të besueshëm",
+      "it": "Come le prove sostengono informazioni sanitarie affidabili",
+      "ru": "Как доказательства поддерживают надёжную информацию о здоровье",
+      "hr": "Kako dokazi podupiru pouzdane zdravstvene informacije",
+      "rom": "Sar e dokazura azhutinen lačhe sastipnaske informacijake"
+    },
+    "sourceUrl": "https://www.informedhealth.org/evidence-the-cornerstone-of-our-information.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "external-radiotherapy",
+    "areaIds": [
+      "non-drug-treatments"
+    ],
+    "titles": {
+      "en": "External radiotherapy: planning treatment and managing everyday effects",
+      "ro": "Radioterapia externă: planificare și gestionarea efectelor zilnice",
+      "sq": "Radioterapia e jashtme: planifikimi dhe menaxhimi i efekteve",
+      "it": "Radioterapia esterna: pianificazione e gestione degli effetti",
+      "ru": "Наружная лучевая терапия: планирование и повседневные эффекты",
+      "hr": "Vanjska radioterapija: planiranje i svakodnevni učinci",
+      "rom": "Avraluni radioterapija: plano thaj diveske efektura"
+    },
+    "sourceUrl": "https://www.informedhealth.org/external-radiotherapy.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "eye-health-who-can-you-go-to",
+    "areaIds": [
+      "health-care-in-germany"
+    ],
+    "titles": {
+      "en": "Eye health: choosing the right professional and recognizing urgency",
+      "ro": "Sănătatea ochilor: alegerea profesionistului și recunoașterea urgenței",
+      "sq": "Shëndeti i syve: profesionisti i duhur dhe njohja e urgjencës",
+      "it": "Salute degli occhi: scegliere lo specialista e riconoscere le urgenze",
+      "ru": "Здоровье глаз: выбор специалиста и распознавание срочности",
+      "hr": "Zdravlje očiju: izbor stručnjaka i prepoznavanje hitnosti",
+      "rom": "Jakhenko sastipen: savo stručnjako thaj kana si sigardo"
+    },
+    "sourceUrl": "https://www.informedhealth.org/eye-health-who-can-you-go-to.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "falls-in-older-people",
+    "areaIds": [
+      "nursing-care"
+    ],
+    "titles": {
+      "en": "Falls in older people: getting help and rebuilding confidence",
+      "ro": "Căderile la vârstnici: ajutor, prevenție și recâștigarea încrederii",
+      "sq": "Rrëzimet te të moshuarit: ndihma dhe rikthimi i besimit",
+      "it": "Cadute nelle persone anziane: aiuto e recupero della fiducia",
+      "ru": "Падения у пожилых: помощь и возвращение уверенности",
+      "hr": "Padovi u starijoj dobi: pomoć i vraćanje sigurnosti",
+      "rom": "Perimata ko phure manusha: azhutimos thaj pale-patjamos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/falls-in-older-people.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "farsightedness-hyperopia",
+    "areaIds": [
+      "eyes-nose-ears"
+    ],
+    "titles": {
+      "en": "Farsightedness: understanding hyperopia and choosing correction",
+      "ro": "Hipermetropia: înțelegerea problemei și alegerea corecției",
+      "sq": "Hipermetropia: kuptimi i fokusimit dhe zgjedhja e korrigjimit",
+      "it": "Ipermetropia: capire il difetto e scegliere la correzione",
+      "ru": "Дальнозоркость: понимание гиперметропии и выбор коррекции",
+      "hr": "Dalekovidnost: razumjeti hipermetropiju i odabrati korekciju",
+      "rom": "Dalekovidnost: te haćares hipermetropija thaj korekcija"
+    },
+    "sourceUrl": "https://www.informedhealth.org/farsightedness-hyperopia.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "fast-heart-rate-in-paroxysmal-supraventricular-tachycardia",
+    "areaIds": [
+      "heart-and-circulation"
+    ],
+    "titles": {
+      "en": "Sudden fast heart rhythms: understanding paroxysmal supraventricular tachycardia",
+      "ro": "Ritm cardiac rapid brusc: tahicardia supraventriculară paroxistică",
+      "sq": "Ritmi i shpejtë i papritur: takikardia supraventrikulare paroksizmale",
+      "it": "Ritmo cardiaco rapido improvviso: tachicardia sopraventricolare parossistica",
+      "ru": "Внезапное сердцебиение: пароксизмальная наджелудочковая тахикардия",
+      "hr": "Nagli ubrzani ritam: paroksizmalna supraventrikularna tahikardija",
+      "rom": "Sigo ilesko ritmo: paroksizmalno supraventrikularno tahikardija"
+    },
+    "sourceUrl": "https://www.informedhealth.org/fast-heart-rate-in-paroxysmal-supraventricular-tachycardia.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "fasting",
+    "areaIds": [
+      "diagnosis-and-tests"
+    ],
+    "titles": {
+      "en": "Fasting before tests, procedures and medicines: getting the instructions right",
+      "ro": "Repausul alimentar înainte de teste, proceduri și medicamente",
+      "sq": "Agjërimi para analizave, procedurave dhe barnave",
+      "it": "Digiuno prima di esami, procedure e farmaci: istruzioni corrette",
+      "ru": "Голодание перед анализами, процедурами и лекарствами",
+      "hr": "Gladovanje prije pretraga, zahvata i lijekova",
+      "rom": "Bi-xaben angla testura, procedure thaj drabura"
+    },
+    "sourceUrl": "https://www.informedhealth.org/fasting.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "fever-in-children",
+    "areaIds": [
+      "infections-and-immune-system",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Fever in children: comfort, monitoring and when to get help",
+      "ro": "Febra la copii: confort, supraveghere și ajutor medical",
+      "sq": "Temperatura te fëmijët: rehatia, ndjekja dhe ndihma",
+      "it": "Febbre nei bambini: conforto, osservazione e quando chiedere aiuto",
+      "ru": "Температура у детей: комфорт, наблюдение и помощь",
+      "hr": "Vrućica u djece: udobnost, praćenje i kada tražiti pomoć",
+      "rom": "Temperatura ko chavore: komforto, dikhiben thaj azhutimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/fever-in-children.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "fibromyalgia",
+    "areaIds": [
+      "mental-health-brain-and-nerves",
+      "muscle-and-joint-disorders"
+    ],
+    "titles": {
+      "en": "Fibromyalgia: understanding pain and building a workable care plan",
+      "ro": "Fibromialgia: înțelegerea durerii și un plan practic de îngrijire",
+      "sq": "Fibromialgjia: kuptimi i dhimbjes dhe një plan i zbatueshëm",
+      "it": "Fibromialgia: capire il dolore e costruire un piano praticabile",
+      "ru": "Фибромиалгия: понимание боли и выполнимый план помощи",
+      "hr": "Fibromialgija: razumjeti bol i napraviti izvediv plan",
+      "rom": "Fibromialgija: haćarimos e dukhaske thaj šajutno grizhako plano"
+    },
+    "sourceUrl": "https://www.informedhealth.org/fibromyalgia.html",
     "availableLanguages": [
       "en",
       "ro",

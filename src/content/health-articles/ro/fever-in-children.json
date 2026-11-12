@@ -1,0 +1,51 @@
+{
+  "title": "Febra la copii: confort, supraveghere și ajutor medical",
+  "intro": "O temperatură de 38°C sau mai mare este considerată în general febră la copii. Febra răspunde unei boli, adesea infecție, și nu este singură diagnostic. Vârsta, respirația, vigilența, consumul de lichide și evoluția contează pe lângă cifră. Mulți copii pot fi îngrijiți acasă, dar sugarii mici și semnele de alarmă cer evaluare promptă.",
+  "sections": [
+    {
+      "heading": "Măsurați corect și observați copilul",
+      "paragraphs": [
+        "Folosiți termometru digital potrivit vârstei conform instrucțiunilor; măsurarea axilară este o opțiune practică pentru copiii mici. Notați rezultatul, ora și locul măsurării. Atingerea nu măsoară precis temperatura. Baia recentă sau învelirea excesivă pot modifica temporar rezultatul, dar nu amânați evaluarea copilului vizibil bolnav repetând măsurători. Urmăriți respirația, răspunsul, alimentația, urina și culoarea pielii. Comparați cu comportamentul obișnuit, fără să considerați graficul singurul ghid."
+      ]
+    },
+    {
+      "heading": "Cunoașteți pragurile de vârstă și urgențele",
+      "paragraphs": [
+        "Sugarul sub 3 luni cu temperatură de 38°C sau mai mare ori suspiciune de febră necesită evaluare medicală urgentă. La vârsta de 3 până la 6 luni, temperatura de 39°C sau mai mare cere sfat urgent. Cereți mai devreme ajutor pentru comportament îngrijorător indiferent de rezultat. Sunați la 112 pentru trezire dificilă, respirație sever afectată, culoare albăstruie sau cenușie, prima convulsie, gât rigid ori erupție care nu pălește la apăsare. Nu așteptați erupția și nu excludeți boala gravă datorită unei temperaturi aparent normale."
+      ]
+    },
+    {
+      "heading": "Sprijiniți hidratarea fără răcire forțată",
+      "paragraphs": [
+        "Oferiți lichide des și continuați alăptarea. Urmăriți scutece mai puțin ude ori urinare redusă, gură uscată, lipsa lacrimilor sau ochi adânciți; consumul slab și deshidratarea cer sfat. Oferiți hrană dacă dorește, fără forțare. Îmbrăcați confortabil, fără pături excesive sau dezbrăcare pentru răcire. Băile reci, frecția cu alcool și ștergerea pentru răcire nu sunt tratamente potrivite. Verificați regulat, inclusiv noaptea, și permiteți odihnă ori activitate liniștită. Nu trimiteți copilul cu febră la colectivitate."
+      ]
+    },
+    {
+      "heading": "Folosiți medicamente pentru disconfort, nu doar cifră",
+      "paragraphs": [
+        "Paracetamolul sau ibuprofenul pot ajuta dacă sunt potrivite vârstei, greutății și sănătății. Respectați prospectul ori prescripția, măsurați cu dispozitivul inclus și notați administrarea. Sugarii foarte mici necesită sfat medical înaintea tratamentului. Nu dați aspirină sub 16 ani decât prescrisă. Nu alternați paracetamol și ibuprofen fără indicația profesionistului și evitați ingredientele duplicate în combinații. Ibuprofenul poate fi nepotrivit în deshidratare, varicelă sau anumite antecedente de astm. Antitermicele nu previn sigur convulsiile febrile."
+      ]
+    },
+    {
+      "heading": "Reevaluați persistența sau orice agravare",
+      "paragraphs": [
+        "Cereți sfat dacă febra durează 5 zile sau mai mult, ori mai devreme dacă se agravează, copilul nu este ca de obicei, mănâncă prost sau sunteți îngrijorat. Imunosupresia ori bolile cronice importante pot necesita evaluare mai timpurie. Spuneți despre călătorii, vaccinuri, medicamente, simptome și controlul anterior. Ameliorarea după antitermic nu exclude infecția gravă. Cereți plan clar și semne pentru ajutor urgent; nu așteptați programarea când apar semne noi de alarmă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: sugar mic cu febră",
+      "text": "Lina măsoară febra sugarului foarte mic și cere evaluare urgentă chiar dacă nu plânge mult. Spune temperatura exactă și alimentația, fără să aștepte efectul unui antitermic."
+    },
+    {
+      "title": "Exemplu ipotetic: evidență simplă acasă",
+      "text": "Copilul mai mare al lui Arben are febră și răceală, dar bea și răspunde normal. El notează temperatura, medicamentele și urina, oferă lichide și verifică noaptea. Când copilul se trezește neobișnuit de greu, cere urgență în loc să continue observația acasă."
+    }
+  ],
+  "questions": [
+    "Vârsta, comportamentul sau istoricul copilului fac febra mai urgentă?",
+    "Cum urmăresc hidratarea și confortul și ce medicament se potrivește dacă trebuie?",
+    "Ce schimbări cer ajutor imediat și când reevaluăm febra persistentă?"
+  ]
+}

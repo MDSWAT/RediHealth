@@ -1,0 +1,51 @@
+{
+  "title": "Medicina utemeljena na dokazima u Njemačkoj: istraživanje i skrb",
+  "intro": "Medicina utemeljena na dokazima povezuje pouzdana istraživanja, kliničko iskustvo te okolnosti i želje osobe. U Njemačkoj utječe na preporuke i odluke zdravstvenog sustava. Razumijevanje uloga istraživača, liječnika i tijela koja odlučuju pomaže čitanju njemačkih informacija bez pretpostavke da svaka preporuka ili pravilo plaćanja vrijedi u drugoj zemlji.",
+  "sections": [
+    {
+      "heading": "Razlikujte istraživanje od osobne preporuke",
+      "paragraphs": [
+        "Istraživanje procjenjuje događaje u skupinama, a pregled primjenjuje nalaze na pojedinca. Pitajte jesu li sudjelovali ljudi vaše dobi, bolesti i lijekova te jesu li mjereni simptomi ili svakodnevno funkcioniranje. Liječnik uzima u obzir izvedivost i vaše prioritete. Skrb utemeljena na dokazima ne znači isto liječenje za sve niti računalo umjesto kliničke prosudbe. Znači objasniti razloge izbora i nesigurnosti umjesto oslanjanja samo na naviku ili autoritet."
+      ]
+    },
+    {
+      "heading": "Razumijte svrhu kliničkih smjernica",
+      "paragraphs": [
+        "Smjernice organiziraju dokaze i preporuke za određene situacije. Provjerite tko ih izrađuje, datum ažuriranja te osobe i okolnosti kojima su namijenjene. Nemaju sve preporuke jednako snažne dokaze; neke se djelomično temelje na suglasju stručnjaka. Pitajte kako se preporuka odnosi na vas i koje su alternative. Razlike mogu odražavati druga pitanja, datume ili sustave, a ne nepoštenje. Smjernica podupire razgovor, ali ne pretvara opću preporuku u dijagnozu ili dopuštenje za samostalno mijenjanje lijekova."
+      ]
+    },
+    {
+      "heading": "Odvojite procjenu dokaza od odluke o pokriću",
+      "paragraphs": [
+        "IQWiG procjenjuje istraživanja koristi i šteta te objavljuje znanstvena izvješća i javne zdravstvene informacije. Nije vaš liječnik, a izvješće nije osobni recept. Njemački Savezni zajednički odbor, G-BA, donosi direktive o uslugama koje pokriva zakonsko zdravstveno osiguranje. Odluke i procjena dokaza imaju različite uloge. Dostupnost lijeka, plaćanje i dodatna korist prema usporednoj terapiji zasebna su pitanja. Čitajte konkretnu populaciju, usporedbu i odluku umjesto da ime ustanove smatrate univerzalnim odobrenjem."
+      ]
+    },
+    {
+      "heading": "Provjerite što je specifično za Njemačku",
+      "paragraphs": [
+        "Uputnice, osiguranje, strukturirani programi za kronične bolesti i pozivi na probir mogu opisivati njemački sustav, a ne opće medicinske činjenice. Nemojte ih automatski prenijeti na Rumunjsku, Moldovu, Albaniju, Italiju ili Hrvatsku. Pitajte lokalnog liječnika ili osiguravatelja o uvjetima, cijeni, uslugama i uputnici. I unutar jedne zemlje detalji ovise o postupku i okolnostima. Sažetak dokaza pomaže razumjeti koristi i štete dok lokalni stručnjaci pojašnjavaju pristup skrbi."
+      ]
+    },
+    {
+      "heading": "Pripremite pitanja za zajedničku odluku",
+      "paragraphs": [
+        "Donesite članak ili preporuku, popis lijekova i prioritete. Pitajte koje su opcije razumne, kolika korist, kakve štete i teret liječenja te što ako pričekate kada je čekanje sigurno. Tražite razumljivo prikazane apsolutne rizike i tumača prema potrebi. Pitajte kada ponovno procijeniti plan i što ga mijenja. Ne morate prihvatiti terapiju samo jer je u smjernici; jednako tako pojedinačna priča nije dovoljna za odbacivanje dobro potkrijepljene preporuke."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: program probira",
+      "text": "Ana čita njemački članak o pozivima na probir. Priprema pitanja o koristima i štetama, a zatim provjerava lokalne uvjete umjesto da očekuje isti poziv u Moldovi."
+    },
+    {
+      "title": "Zamišljeni primjer: dodatna korist",
+      "text": "Ilir čuje za procjenu novog lijeka. Pita s čime je uspoređen, za koju skupinu i prema kojim ishodima. Liječnik objašnjava važnost za njegovu bolest odvojeno od plaćanja osiguranja."
+    }
+  ],
+  "questions": [
+    "Koji dokazi i smjernice podupiru opciju i koliko se odnose na mene?",
+    "Je li ovo medicinska preporuka, procjena dokaza ili njemačko pravilo pokrića?",
+    "Koji lokalni pristup, alternative i praćenje trebaju pojašnjenje prije odluke?"
+  ]
+}

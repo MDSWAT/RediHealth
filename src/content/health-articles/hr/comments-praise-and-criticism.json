@@ -1,0 +1,51 @@
+{
+  "title": "Povratne informacije o zdravlju: ispravci i pristupačnost",
+  "intro": "Zdravstvene informacije postaju jasnije kad čitatelji prijave nejasan tekst, nedostajuća objašnjenja i prepreke pristupu. Ovo je vodič zdravstvene pismenosti o korisnim povratnim informacijama, a ne članak o bolesti. Kanal za komentare nije isto što i pregled ili hitna služba. Odaberite pravog primatelja i zaštitite osobne podatke.",
+  "sections": [
+    {
+      "heading": "Navedite što želite da urednik razumije",
+      "paragraphs": [
+        "Navedite članak, jezik i odlomak ili funkciju. Objasnite moguću pogrešku, nejasan prijevod, nedostatak konteksta, teškoću uporabe ili nešto osobito korisno. Konkretno opažanje korisnije je od opće pritužbe. Ako komentirate izvornik drugog izdavača, pojasnite: slanje jednom mjestu ne obavještava nužno drugo. Nemojte pretpostavljati trenutačan odgovor ili određen ispravak."
+      ]
+    },
+    {
+      "heading": "Opišite problem tako da se može provjeriti",
+      "paragraphs": [
+        "Citirajte samo potreban kratak odlomak ili navedite mjesto. Recite što ste razumjeli i zašto je tekst nejasan ili nedosljedan. Za drugi izvor navedite naslov i datum radi usporedbe dokaza. Razlikujte opaženu pogrešku od osobnog neslaganja ili pitanja o vlastitoj terapiji. Dnevnik simptoma pomaže liječniku, ali obično nije potreban za neispravnu poveznicu ili pogrešno preveden naslov."
+      ]
+    },
+    {
+      "heading": "Praktično prijavite prepreke pristupa",
+      "paragraphs": [
+        "Za stranicu koju je teško koristiti navedite uređaj, preglednik, jezik i problematičnu radnju. Recite javlja li se uz povećavanje, tipkovnicu, slušanje teksta ili pomoćnu tehnologiju. Objasnite očekivano i stvarno ponašanje. Snimke zaslona pomažu, ali provjerite imena, poruke i zdravstvene podatke prije dijeljenja. Ne trebate otkriti tehnički uzrok ili ponuditi rješenje za korisnu prijavu."
+      ]
+    },
+    {
+      "heading": "Dijelite samo potrebne podatke",
+      "paragraphs": [
+        "Izbjegavajte identifikacijske brojeve, lozinke, cijele kartone, adrese ili podatke koji otkrivaju druge osobe. Koristite navedeni kontakt i pročitajte privatnost prije slanja osjetljivog materijala. Anonimna ocjena i zahtjev za osobnim odgovorom različiti su izbori. Nemojte pretpostavljati da svaka služba jednako prikuplja, čuva ili odgovara. Za dijagnozu ili lijek pitajte odgovarajućeg stručnjaka umjesto očekivanja osobnog medicinskog savjeta od urednika."
+      ]
+    },
+    {
+      "heading": "Odvojite komentar od hitne skrbi",
+      "paragraphs": [
+        "Ako tekst izgleda nesigurno, jasno opišite brigu i tražite pojašnjenje, ali ne čekajte urednički odgovor kad trebate pregled. Novi ili teški simptomi traže odgovarajuću skrb. Pohvala također može biti konkretna: objasnite koji primjer, definicija ili raspored pomažu. Sačuvajte kopiju za daljnje javljanje. Ispravak treba provjeriti prema pouzdanim dokazima; povratna informacija započinje provjeru, a sama ne dokazuje istinitost ili pogrešnost tvrdnje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: dvosmislen prijevod",
+      "text": "Lina primijeti da upozorenje u prijevodu možda izostavlja ogradu. Navede naslov, jezik i kratak odlomak te objasni razliku. Ne šalje osobnu povijest bolesti jer nije potrebna za provjeru riječi."
+    },
+    {
+      "title": "Zamišljeni primjer: prepreka tipkovnici",
+      "text": "Petar ne može tipkovnicom dosegnuti kontrolu. Prijavi stranicu, preglednik i slijed tipki uz očekivanu radnju. Problem se može ponoviti bez privatnih snimki zaslona."
+    }
+  ],
+  "questions": [
+    "Jesam li članak, jezik i problem dovoljno jasno naveo za provjeru?",
+    "Dijelim li samo potrebne informacije putem odgovarajućeg primatelja?",
+    "Treba li moje pitanje liječnika ili hitnu skrb umjesto uredničkog odgovora?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Nagli ubrzani ritam: paroksizmalna supraventrikularna tahikardija",
+  "intro": "Paroksizmalna supraventrikularna tahikardija, PSVT, uzrokuje napadaje brzog ritma iznad donjih srčanih komora. Često naglo počinju i završavaju i mogu biti zastrašujući. Brz puls ima i druge uzroke, poput vrućice, štitnjače ili druge aritmije. Prije dijagnoze potrebni su simptomi i prikladna snimka ritma.",
+  "sections": [
+    {
+      "heading": "Prepoznajte kada lupanje zahtijeva hitnu pomoć",
+      "paragraphs": [
+        "Nazovite 112 kod brzog srca uz bol u prsima, znatnu zaduhu, nesvjesticu ili osjećaj da ćete se onesvijestiti. Napadaj dulji od vaših uobičajenih potvrđenih napada također traži hitan savjet; ne čekajte samo zato što su raniji prestali. Nemojte voziti ako vam je loše. Prvi trajni ili ponovljeni neobjašnjeni napadaj treba procjenu. Normalno ubrzanje pri vježbanju i nagli napadaj u mirovanju nisu nužno isti problem; broj pametnog sata ne određuje ritam."
+      ]
+    },
+    {
+      "heading": "Pomozite zabilježiti pravi ritam",
+      "paragraphs": [
+        "Bilježite nagli ili postupni početak, trajanje, aktivnost, moguće okidače i simptome. Donesite lijekove i informacije o kofeinu, alkoholu, nikotinu, dodacima ili drugim tvarima bez srama. EKG tijekom simptoma osobito je koristan. Kratak uredan EKG između napadaja ne isključuje povremenu aritmiju; može trebati dulji monitor. Druge pretrage ovise o nalazu: štitnjača, krv, elektroliti ili građa srca. Elektrofiziološka pretraga katkad određuje krug, osobito prije ablacije."
+      ]
+    },
+    {
+      "heading": "Dogovorite siguran plan za napadaj",
+      "paragraphs": [
+        "Sjednite ili legnite na sigurno i slijedite plan potvrđenog ritma. Liječnik može podučiti vagalni manevar, poput prikladnog napinjanja, ako vam odgovara. Naučite točan postupak i kada prestati radi pomoći. Nemojte masirati vrat, pritiskati oči ili zamijeniti pregled internetskom tehnikom. Ne uzimajte dodatne srčane lijekove ili tuđe tablete ako ih vaš liječnik nije izričito uključio u plan. Ozbiljni simptomi imaju prednost pred samopomoći i zahtijevaju hitnost."
+      ]
+    },
+    {
+      "heading": "Usporedite dugoročno liječenje",
+      "paragraphs": [
+        "Rijetki kratki napadaji mogu tražiti praćenje i plan, dok tegobni ili produljeni vode lijekovima ili ablaciji. U bolnici nadzirani lijekovi vraćaju ritam, a prema potrebi kardioverzija. Ablacija tretira abnormalni električni put kateterima, često iz prepone kroz krvnu žilu. Pitajte uspjeh za svoj ritam, ponavljanje i rizike krvarenja, oštećenja žila ili normalnog provođenja. Izbor ovisi o mehanizmu, drugim bolestima, prioritetima i specijalistu."
+      ]
+    },
+    {
+      "heading": "Pratite okidače, aktivnosti i kontrole",
+      "paragraphs": [
+        "Neki primijete napadaje nakon previše kofeina ili alkohola, drugi bez jasnog okidača. Smanjenje osobnog okidača može pomoći bez jamstva. Raspravite vježbanje, posao i vožnju nakon nesvjestice ili nove dijagnoze; važni su lokalni propisi i rizik. Trudnoća, astma i drugi lijekovi utječu na izbor pa ih navedite. Dogovorite kontakt ako se napadaji promijene, učestaju ili nastanu nuspojave. Tjeskoba može pratiti lupanje, ali ne smije odbaciti nov poremećaj bez procjene."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: uredan test između napadaja",
+      "text": "Marta ima nagle napadaje, ali uredan EKG u ordinaciji. Bilježi vrijeme i simptome i pita o duljem monitoru. Kratku snimku ne smatra dokazom da se ništa nije dogodilo."
+    },
+    {
+      "title": "Zamišljeni primjer: trajnija mogućnost",
+      "text": "Arben ima potvrđen PSVT koji prekida posao. Pita o lijekovima i ablaciji, koristima, rizicima i kontroli. Dobiva jasan plan umjesto masaže vrata ili posuđivanja obiteljskih tableta."
+    }
+  ],
+  "questions": [
+    "Je li moj ritam dokumentiran i koje druge uzroke treba razmotriti?",
+    "Što točno učiniti tijekom napadaja i kada tražiti hitnu pomoć?",
+    "Kako se praćenje, lijekovi i ablacija uspoređuju za moj ritam i život?"
+  ]
+}

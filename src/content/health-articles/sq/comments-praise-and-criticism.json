@@ -1,0 +1,51 @@
+{
+  "title": "Komente për informacionin shëndetësor: korrigjime dhe aksesueshmëri",
+  "intro": "Informacioni bëhet më i qartë kur lexuesit tregojnë formulime të paqarta, shpjegime që mungojnë dhe pengesa përdorimi. Ky është udhëzues shkrim-leximi shëndetësor për komente të dobishme, jo artikull sëmundjeje. Kanali i komenteve ndryshon nga vizita mjekësore ose urgjenca. Zgjidhni marrësin e duhur dhe mbroni të dhënat personale.",
+  "sections": [
+    {
+      "heading": "Përcaktoni çfarë doni të kuptojë botuesi",
+      "paragraphs": [
+        "Jepni artikullin, gjuhën dhe pjesën ose funksionin. Shpjegoni nëse vutë re gabim të mundshëm, përkthim të paqartë, mungesë konteksti, vështirësi përdorimi ose diçka të dobishme. Vërejtja konkrete ndihmon më shumë se ankesa e përgjithshme. Nëse komentoni origjinalin e një botuesi tjetër, sqarojeni: dërgimi te një faqe nuk njofton domosdoshmërisht tjetrën. Mos supozoni përgjigje të menjëhershme ose korrigjim të caktuar."
+      ]
+    },
+    {
+      "heading": "Përshkruani problemin që të kontrollohet",
+      "paragraphs": [
+        "Citoni vetëm pjesën e shkurtër të nevojshme ose vendndodhjen. Tregoni çfarë kuptuat dhe pse duket e paqartë ose jokonsistente. Për burim tjetër jepni titullin dhe datën që redaktori të krahasojë provat. Ndani gabimin e vërejtur nga mosmarrëveshja personale ose pyetja për trajtimin tuaj. Ditari i simptomave ndihmon mjekun, por zakonisht nuk duhet për raportimin e një lidhjeje të prishur ose titulli të përkthyer gabim."
+      ]
+    },
+    {
+      "heading": "Raportoni praktikisht pengesat e aksesit",
+      "paragraphs": [
+        "Për faqe të vështirë jepni pajisjen, shfletuesin, gjuhën dhe veprimin problematik. Tregoni nëse ndodh gjatë zmadhimit, tastierës, dëgjimit të tekstit ose teknologjisë ndihmëse. Shpjegoni pritshmërinë dhe çfarë ndodhi. Pamjet e ekranit ndihmojnë, por kontrolloni emrat, mesazhet dhe të dhënat mjekësore para ndarjes. Nuk duhet të zbuloni shkakun teknik ose të jepni zgjidhje për të raportuar me dobi."
+      ]
+    },
+    {
+      "heading": "Ndani vetëm të dhënat e nevojshme",
+      "paragraphs": [
+        "Shmangni numrat e identitetit, fjalëkalimet, dosjet e plota, adresat ose hollësi identifikuese të të tjerëve. Përdorni procesin e deklaruar dhe lexoni privatësinë para dërgimit të materialit të ndjeshëm. Vlerësimi anonim dhe kërkesa për përgjigje personale janë zgjedhje të ndryshme. Mos mendoni se çdo shërbim mbledh, ruan ose përgjigjet njësoj. Për diagnozë ose barna diskutoni me profesionistin, jo prisni këshillë individuale nga redaktori."
+      ]
+    },
+    {
+      "heading": "Ndani komentet nga kujdesi urgjent",
+      "paragraphs": [
+        "Nëse pjesa duket e pasigurt, shpjegoni shqetësimin dhe kërkoni sqarim, por mos prisni përgjigje redaktoriale kur duhet vlerësim mjekësor. Simptomat e reja ose të rënda duan shërbimin përkatës. Edhe lavdërimi mund të jetë konkret: tregoni shembullin, përkufizimin ose paraqitjen që ndihmoi. Ruani kopjen nëse doni ndjekje. Korrigjimi kontrollohet ndaj provave të besueshme; komenti nis shqyrtimin, nuk provon të vërtetën ose gabimin e pretendimit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: përkthim i paqartë",
+      "text": "Lina vëren se një paralajmërim i përkthyer duket se lë jashtë një kusht. Jep titullin, gjuhën dhe pjesën e shkurtër dhe përshkruan dallimin. Nuk dërgon historinë personale mjekësore, sepse nuk nevojitet për formulimin."
+    },
+    {
+      "title": "Shembull hipotetik: pengesë tastiere",
+      "text": "Petari nuk arrin një kontroll me tastierë. Raporton faqen, shfletuesin dhe rendin e tasteve, duke shpjeguar veprimin e pritur. Problemi mund të riprodhohet pa pamje private ekrani."
+    }
+  ],
+  "questions": [
+    "A e identifikova artikullin, gjuhën dhe problemin mjaft qartë për kontroll?",
+    "A po ndaj vetëm të dhënat e nevojshme te marrësi i duhur?",
+    "A kërkon pyetja mjek ose urgjencë dhe jo përgjigje redaktoriale?"
+  ]
+}

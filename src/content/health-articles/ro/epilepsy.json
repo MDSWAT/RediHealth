@@ -1,0 +1,51 @@
+{
+  "title": "Epilepsia: recunoașterea crizelor, tratament și siguranță zilnică",
+  "intro": "Epilepsia presupune o predispoziție persistentă la crize produse de activitate electrică anormală în creier. Crizele nu provoacă întotdeauna tremurături: unele întrerup scurt conștiența sau produc senzații neobișnuite. O singură criză poate avea altă cauză și nu stabilește automat epilepsia. Mulți oameni obțin un control bun cu tratament și sprijin potrivite.",
+  "sections": [
+    {
+      "heading": "Descrieți precis episoadele pentru diagnostic",
+      "paragraphs": [
+        "Notați ce s-a întâmplat înainte, în timpul și după episod, durata, bolile, lipsa somnului, medicamentele și recuperarea. Un martor poate descrie comportamente pe care nu vi le amintiți; filmarea ajută numai dacă nu întârzie primul ajutor. Specialistul poate recomanda EEG, imagistică cerebrală, analize sau electrocardiogramă pentru a căuta alternative precum leșinul. Un EEG obișnuit normal nu exclude epilepsia. Diagnosticul se bazează pe ansamblul datelor, uneori inclusiv pe riscul mare de repetare după o primă criză."
+      ]
+    },
+    {
+      "heading": "Oferiți primul ajutor fără să provocați răni",
+      "paragraphs": [
+        "Rămâneți aproape, cronometrați episodul, îndepărtați pericolele și protejați capul dacă persoana este la pământ. Nu imobilizați mișcările și nu introduceți degete, hrană, lichide sau obiecte în gură. După oprirea convulsiilor, puneți pe o parte persoana inconștientă care respiră normal și urmăriți respirația. Dacă respirația nu este normală, urmați instrucțiunile dispecerului pentru resuscitare. Sunați la 112 pentru prima criză, o criză de 5 minute sau mai mult, crize repetate fără revenire, răni grave ori probleme respiratorii. Dați medicamentul de urgență prescris numai conform planului și dacă sunteți instruit."
+      ]
+    },
+    {
+      "heading": "Urmați tratamentul și verificați reacțiile nedorite",
+      "paragraphs": [
+        "Alegerea medicamentului depinde de tipul crizelor, alte boli, interacțiuni și prioritățile personale. Stabiliți ce faceți dacă uitați o doză și cereți sfat pentru somnolență supărătoare, modificări de dispoziție sau erupție. Nu opriți brusc și nu ajustați singur tratamentul antiepileptic, nici după o perioadă lungă fără crize. Planificarea sarcinii, contracepția și riscurile pentru copil necesită discuție cu specialistul; oprirea bruscă poate fi și ea periculoasă. Crizele persistente sub tratament justifică reevaluarea diagnosticului și opțiunilor, uneori operație, stimulare sau dietă supravegheată medical."
+      ]
+    },
+    {
+      "heading": "Adaptați activitățile fără să considerați totul interzis",
+      "paragraphs": [
+        "Un jurnal al crizelor poate arăta tipare personale; păstrați un somn regulat și discutați alcoolul ori alți factori declanșatori. Luminile intermitente afectează doar unele persoane. Alegeți condiții mai sigure pentru spălare, discutați supravegherea în apă și evaluați individual gătitul, înălțimile, uneltele și munca. Nu conduceți după o posibilă criză până la clarificarea cerințelor medicale și de permis; regulile diferă între țări. Identificarea medicală și un plan ajută familia, școala și colegii. Sprijinul pentru anxietate sau depresie face parte din îngrijire."
+      ]
+    },
+    {
+      "heading": "Faceți un plan individual de risc și urmărire",
+      "paragraphs": [
+        "Întrebați despre prevenirea rănilor, crizele prelungite și moartea subită neașteptată în epilepsie, inclusiv despre rolul controlului crizelor și al tratamentului regulat în reducerea riscului. Nu presupuneți că un dispozitiv sau o precauție garantează protecția. Stabiliți pe cine contactați după reapariția unei crize, un tip nou de episod sau apariția sarcinii și când cereți urgență. Aduceți jurnalul și lista medicamentelor la control. După o criză obișnuită poate fi nevoie de odihnă și liniștire, dar confuzia neobișnuit de lungă, slăbiciunea sau revenirea incompletă necesită evaluare urgentă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: episoade fără convulsii",
+      "text": "Luka încetează repetat să răspundă pentru scurt timp la școală. Profesorul notează durata și ce urmează, iar familia cere evaluare. Nu presupun că ignoră instrucțiunile și nu stabilesc epilepsia doar din descriere."
+    },
+    {
+      "title": "Exemplu ipotetic: un plan comun de prim ajutor",
+      "text": "Nora are epilepsie diagnosticată și plan scris. Colegii învață să îndepărteze pericolele, să cronometreze criza și să recunoască necesitatea ajutorului. Numai o persoană instruită administrează medicamentul de urgență prescris; nimeni nu o imobilizează și nu îi pune obiecte în gură."
+    }
+  ],
+  "questions": [
+    "Ce tip de episoade am și ce teste sau observații suplimentare sunt necesare?",
+    "Ce tratament mi se potrivește, inclusiv privind sarcina, interacțiunile și reacțiile adverse?",
+    "Ce trebuie să facă familia în timpul unei crize și ce restricții de siguranță sau conducere mi se aplică?"
+  ]
+}

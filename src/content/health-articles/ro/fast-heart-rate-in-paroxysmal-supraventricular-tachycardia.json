@@ -1,0 +1,51 @@
+{
+  "title": "Ritm cardiac rapid brusc: tahicardia supraventriculară paroxistică",
+  "intro": "Tahicardia supraventriculară paroxistică, sau TPSV, provoacă episoade de ritm rapid cu origine deasupra camerelor inferioare ale inimii. Începutul și oprirea sunt adesea bruște și pot speria. Pulsul rapid are și alte cauze, precum febra, tiroida sau altă aritmie. Diagnosticul nu se presupune fără evaluarea simptomelor și înregistrarea potrivită a ritmului.",
+  "sections": [
+    {
+      "heading": "Recunoașteți când palpitațiile cer urgență",
+      "paragraphs": [
+        "Sunați la 112 pentru puls rapid cu durere toracică, lipsă importantă de aer, leșin sau senzație de leșin. Un episod mai lung decât atacurile obișnuite deja diagnosticate cere sfat de urgență; nu continuați așteptarea doar fiindcă înainte s-a oprit. Nu conduceți dacă vă simțiți rău. Primul episod persistent ori repetat fără explicație trebuie evaluat. Creșterea normală la efort și accelerarea bruscă în repaus nu sunt neapărat aceeași problemă, iar cifra unui ceas nu stabilește ritmul."
+      ]
+    },
+    {
+      "heading": "Ajutați medicul să înregistreze ritmul real",
+      "paragraphs": [
+        "Notați debutul brusc sau treptat, durata, activitatea, posibilii factori și simptomele asociate. Aduceți medicamentele și informații despre cafeină, alcool, nicotină, suplimente ori alte substanțe fără rușine. ECG în timpul simptomelor este foarte util. Un ECG scurt normal între episoade nu exclude aritmia intermitentă; se poate recomanda monitorizare prelungită. Alte teste depind de constatări și pot verifica tiroida, hemoleucograma, electroliții ori structura inimii. Studiul electrofiziologic identifică uneori circuitul, mai ales dacă se discută ablația."
+      ]
+    },
+    {
+      "heading": "Stabiliți un plan sigur pentru episod",
+      "paragraphs": [
+        "Stați jos sau culcat într-un loc sigur și urmați planul pentru ritmul confirmat. Medicul poate învăța o manevră vagală, precum o tehnică adecvată de încordare, dacă vi se potrivește. Învățați metoda exactă și momentul renunțării pentru ajutor. Nu masați gâtul, nu apăsați ochii și nu încercați metode online în locul evaluării. Nu luați medicamente cardiace suplimentare sau comprimatele altcuiva dacă prescriptorul nu le-a inclus explicit în plan. Simptomele grave au prioritate și cer ajutor urgent."
+      ]
+    },
+    {
+      "heading": "Comparați tratamentele de durată",
+      "paragraphs": [
+        "Episoadele scurte rare pot necesita supraveghere și plan; cele supărătoare ori prelungite pot duce la medicamente sau ablație prin cateter. În spital, medicamente monitorizate pot restabili ritmul, iar uneori se folosește cardioversia. Ablația tratează calea electrică anormală cu catetere, adesea printr-un vas inghinal. Întrebați despre succesul pentru ritmul exact, recidivă și riscuri precum sângerare, leziune vasculară ori afectarea conducerii normale. Alegerea depinde de mecanism, alte boli, priorități și specialist."
+      ]
+    },
+    {
+      "heading": "Revizuiți factorii, activitățile și controlul",
+      "paragraphs": [
+        "Unii observă episoade după cafeină sau alcool excesiv, alții nu găsesc declanșator. Reducerea factorului personal poate ajuta fără garanție. Discutați sportul, munca și condusul după leșin sau diagnostic nou: regulile locale și riscul contează. Sarcina, astmul și alte medicamente pot schimba alegerea, deci menționați-le. Stabiliți contactul dacă episoadele se modifică, se înmulțesc sau apar reacții adverse. Anxietatea poate însoți palpitațiile, dar nu justifică ignorarea unei aritmii noi fără evaluare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: test normal între atacuri",
+      "text": "Marta are accelerări bruște, dar ECG normal în cabinet. Notează timpul și simptomele și întreabă despre monitor mai lung. Nu consideră înregistrarea scurtă dovada că nu s-a întâmplat nimic."
+    },
+    {
+      "title": "Exemplu ipotetic: o opțiune de durată",
+      "text": "Arben are TPSV confirmată care îi întrerupe munca. Întreabă despre medicamente și ablație, beneficii, riscuri și control. Primește plan clar, în loc să maseze gâtul sau să împrumute comprimate."
+    }
+  ],
+  "questions": [
+    "A fost înregistrat ritmul real și ce alte cauze trebuie considerate?",
+    "Ce fac exact în episod și când cer urgență?",
+    "Cum se compară supravegherea, medicamentele și ablația pentru ritmul și viața mea?"
+  ]
+}

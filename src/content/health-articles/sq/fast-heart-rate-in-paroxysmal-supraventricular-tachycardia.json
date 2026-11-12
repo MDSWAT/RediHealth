@@ -1,0 +1,51 @@
+{
+  "title": "Ritmi i shpejtë i papritur: takikardia supraventrikulare paroksizmale",
+  "intro": "Takikardia supraventrikulare paroksizmale, ose PSVT, jep episode ritmi të shpejtë që lind mbi dhomat e poshtme të zemrës. Shpesh fillon e ndalon papritur dhe frikëson. Pulsi i shpejtë ka edhe shkaqe të tjera si temperaturë, tiroide ose aritmi tjetër. Simptomat dhe regjistrimi i përshtatshëm duhen para supozimit të diagnozës.",
+  "sections": [
+    {
+      "heading": "Njihni kur rrahjet duan urgjencë",
+      "paragraphs": [
+        "Telefononi 112 për puls të shpejtë me dhimbje gjoksi, mungesë të madhe ajri, të fikët ose ndjesi të fikëti. Episodi më i gjatë se sulmet e zakonshme të diagnostikuara kërkon këshillë urgjente; mos prisni vetëm sepse më parë u ndal. Mos drejtoni nëse ndiheni keq. Episodi i parë i zgjatur ose i përsëritur pa shpjegim kërkon kontroll. Rritja normale gjatë ushtrimit dhe ritmi i papritur në pushim nuk janë domosdoshmërisht njësoj; numri i orës nuk përcakton diagnozën."
+      ]
+    },
+    {
+      "heading": "Ndihmoni regjistrimin e ritmit real",
+      "paragraphs": [
+        "Shënoni fillim të papritur ose gradual, kohëzgjatje, aktivitet, nxitës dhe simptoma. Merrni barnat dhe tregoni kafeinën, alkoolin, nikotinën, suplementet ose substanca pa turp. EKG gjatë simptomave është e dobishme. EKG e shkurtër normale mes episodeve nuk përjashton problemin; mund të duhet monitor më i gjatë. Testet e tjera varen nga gjetjet dhe kontrollojnë tiroide, gjak, elektrolite ose strukturën e zemrës. Studimi elektrofiziologjik ndonjëherë identifikon qarkun, sidomos përpara ablacionit."
+      ]
+    },
+    {
+      "heading": "Bëni plan të sigurt për episodin",
+      "paragraphs": [
+        "Uluni ose shtrihuni sigurt dhe ndiqni planin e ritmit të konfirmuar. Mjeku mund t’ju mësojë manovër vagale, si sforcim të përshtatshëm, nëse është e sigurt. Mësoni metodën dhe kur ta lini për ndihmë. Mos masazhoni qafën, mos shtypni sytë ose provoni internetin në vend të kontrollit. Mos merrni barna zemre shtesë ose tabletat e tjetrit, përveçse kur mjeku i ka përfshirë shprehimisht në plan. Simptomat serioze mbizotërojnë planin vetjak dhe kërkojnë urgjencë."
+      ]
+    },
+    {
+      "heading": "Krahasoni zgjedhjet afatgjata",
+      "paragraphs": [
+        "Episodet e rralla të shkurtra mund të kërkojnë vëzhgim e plan, ndërsa shqetësueset ose të zgjaturat barna ose ablacion me kateter. Në spital barnat nën monitorim kthejnë ritmin dhe sipas nevojës përdoret kardioversion. Ablacioni trajton rrugën elektrike jonormale me kateterë, shpesh përmes ene në ijë. Pyesni suksesin për ritmin konkret, rikthimin dhe rreziqe si gjakderdhje, dëmtim ene ose përçim normal. Zgjedhja varet nga mekanizmi, sëmundjet, prioritetet dhe specialisti."
+      ]
+    },
+    {
+      "heading": "Rishikoni nxitësit dhe jetën e përditshme",
+      "paragraphs": [
+        "Disa vënë re episode pas kafeinës ose alkoolit të tepërt, të tjerë pa nxitës të qartë. Pakësimi mund të ndihmojë, jo të garantojë. Diskutoni ushtrimin, punën dhe drejtimin pas të fikëtit ose diagnozës së re; vlejnë rregullat lokale dhe rreziku. Shtatzënia, astma dhe barnat e tjera ndikojnë zgjedhjen, ndaj tregojini. Sqaroni kontaktin kur episodet ndryshojnë, shtohen ose terapia jep efekte. Ankthi mund të shoqërojë rrahjet, por nuk duhet të përjashtojë kontrollin e një problemi të ri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: test normal mes episodeve",
+      "text": "Marta ka episode të papritura, por EKG normale në klinikë. Shënon kohën dhe simptomat dhe pyet për monitorim më të gjatë. Nuk e merr regjistrimin e shkurtër si provë se nuk ndodhi asgjë."
+    },
+    {
+      "title": "Shembull hipotetik: zgjedhje afatgjatë",
+      "text": "Arbeni ka PSVT të konfirmuar që i ndërpret punën. Pyet për barna e ablacion, përfitime, rreziqe dhe ndjekje. Merr plan të qartë, në vend të masazhit të qafës ose tabletave të huazuara."
+    }
+  ],
+  "questions": [
+    "A u regjistrua ritmi im dhe cilat shkaqe të tjera duhen shqyrtuar?",
+    "Çfarë bëj saktësisht gjatë episodit dhe kur kërkoj urgjencë?",
+    "Si krahasohen vëzhgimi, barnat dhe ablacioni për ritmin dhe jetën time?"
+  ]
+}

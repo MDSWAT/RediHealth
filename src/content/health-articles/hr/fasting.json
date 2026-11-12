@@ -1,0 +1,51 @@
+{
+  "title": "Gladovanje prije pretraga, zahvata i lijekova",
+  "intro": "Medicinsko gladovanje znači izbjegavati određenu hranu ili piće u zadano vrijeme prije pretrage, liječenja ili lijeka. Nije isto što i odabrati dijetu. Zahtjevi variraju: ne traži svaka krvna pretraga, snimanje ili lokalna anestezija gladovanje. Upute službe koja izvodi postupak imaju prednost pred općim savjetima ili tuđim iskustvom.",
+  "sections": [
+    {
+      "heading": "Pitajte razlog i točno vrijeme",
+      "paragraphs": [
+        "Hrana može promijeniti neke krvne nalaze ili smanjiti preglednost. Kod određene anestezije ili sedacije sadržaj želuca može ući u pluća kad su oslabljeni zaštitni refleksi. Pitajte treba li gladovati, kada prestati s pojedinom hranom i pićem i odnosi li se vrijeme na dolazak ili zahvat. Tražite razumljive pisane upute. Nemojte produžiti post radi dodatne sigurnosti jer nepotrebno ograničenje stvara nelagodu, dehidraciju i probleme s lijekovima."
+      ]
+    },
+    {
+      "heading": "Razjasnite hranu i dopuštene tekućine",
+      "paragraphs": [
+        "Kruta hrana, mlijeko, formula, majčino mlijeko i bistre tekućine nisu zamjenjivi i mogu imati različite rokove. Svijetla boja ne znači automatski dopušten napitak; mlijeko u kavi i pulpa u soku važni su. Pitajte za vodu, žvakaću gumu, bombone, pušenje i posebne pripremne napitke. Dječje upute mogu biti drukčije. Priprema crijeva zaseban je proces. Slijedite točan plan odjela umjesto univerzalnog internetskog intervala."
+      ]
+    },
+    {
+      "heading": "Dogovorite plan za svaki lijek",
+      "paragraphs": [
+        "Navedite propisane i nepropisane lijekove, injekcije, dodatke i biljne pripravke. Pitajte što uzeti, odgoditi ili prilagoditi, smije li malo vode i kada ponovno početi. Lijekovi za dijabetes, razrjeđivanje krvi i pražnjenje želuca traže poseban razgovor. Nemojte prekidati važne lijekove ili sami birati dozu. Uzimanje natašte slijedi uputu tog lijeka, a ne znači automatski preskočiti cijeli obrok ili kopirati kirurško gladovanje."
+      ]
+    },
+    {
+      "heading": "Planirajte ako ograničenje nosi rizik",
+      "paragraphs": [
+        "Recite za dijabetes, trudnoću, krhkost, bubrege, gutanje ili prijašnje teškoće. Dogovorite osobni plan mjerenja i liječenja glukoze prema potrebi. Ne ignorirajte nizak šećer radi termina: slijedite hitni plan i tražite pomoć, zatim javite timu. Pitajte za djecu ili osobe koje ne razumiju ograničenja. Donesite lijekove, opremu i prikladan zalogaj za poslije, ali pričekajte dopuštenje osoblja prije jela."
+      ]
+    },
+    {
+      "heading": "Iskreno recite ako plan nije poštovan",
+      "paragraphs": [
+        "Ako jedete, pijete ili uzmete nešto izvan upute, nazovite i recite što, koliko i kada. Nemojte skrivati, sami otkazati ili izazivati povraćanje: osoblje odlučuje nastavak ili odgodu. Kod kašnjenja tražite nove upute umjesto beskonačnog gladovanja ili pijenja bez provjere. Poslije nastavite hranu, tekućinu i lijekove prema otpustu. Neki postupci traže dodatna ograničenja. Pitajte kontakt ako vam je loše ili ne možete zadržati tekućinu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: krvne pretrage bez upute",
+      "text": "Alina dobije pretrage bez uputa o hrani. Nazove i pita koje traže gladovanje te smije li vodu i lijekove. Ne preskače doručak samo jer je prijateljica tako postupila."
+    },
+    {
+      "title": "Zamišljeni primjer: mlijeko prije zahvata",
+      "text": "Dritan doda mlijeko napitku tijekom ograničenja. Kaže odjelu što i kada je popio. Tim odlučuje o sigurnosti; ne skriva kako bi izbjegao kašnjenje."
+    }
+  ],
+  "questions": [
+    "Trebam li gladovati i koje su točne upute za hranu i piće?",
+    "Koji je plan svakog lijeka te dijabetesa ili drugih bolesti?",
+    "Kome se javiti ako prekršim plan, zahvat kasni ili mi je loše?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Temperatura te fëmijët: rehatia, ndjekja dhe ndihma",
+  "intro": "Temperatura 38°C ose më shumë përgjithësisht quhet ethe te fëmijët. Është përgjigje ndaj sëmundjes, shpesh infeksion, jo diagnozë më vete. Mosha, frymëmarrja, vigjilenca, pirja dhe ecuria vlejnë bashkë me numrin. Shumë fëmijë kujdesen në shtëpi, por foshnjat e vogla dhe shenjat e alarmit kërkojnë vlerësim të shpejtë.",
+  "sections": [
+    {
+      "heading": "Matni mirë dhe vëzhgoni fëmijën",
+      "paragraphs": [
+        "Përdorni termometër digjital sipas moshës dhe udhëzimit; matja në sqetull është mundësi praktike për të vegjlit. Shënoni rezultatin, kohën dhe vendin. Prekja nuk mat saktë. Banja ose mbështjellja e tepërt ndikojnë përkohësisht, por mos vononi kujdesin e fëmijës dukshëm të sëmurë duke rimatur. Vëzhgoni frymëmarrjen, përgjigjen, ushqyerjen, urinën dhe ngjyrën. Krahasoni me sjelljen normale dhe jo vetëm tabelën e temperaturës."
+      ]
+    },
+    {
+      "heading": "Njihni pragjet sipas moshës dhe urgjencat",
+      "paragraphs": [
+        "Foshnja nën 3 muaj me 38°C ose më shumë, ose ethe të dyshuara, kërkon vlerësim urgjent. Në moshën 3 deri 6 muaj, temperatura 39°C ose më shumë kërkon këshillë urgjente. Sjellja shqetësuese kërkon ndihmë edhe më herët pavarësisht matjes. Telefononi 112 për zgjim të vështirë, frymëmarrje shumë të vështirë, ngjyrë blu ose gri, krizën e parë, qafë të ngrirë ose skuqje që nuk zbardhet me shtypje. Mos prisni skuqjen ose përjashtoni sëmundje të rëndë nga temperaturë në dukje normale."
+      ]
+    },
+    {
+      "heading": "Ndihmoni pirjen pa ftohje të detyruar",
+      "paragraphs": [
+        "Ofroni shpesh lëngje dhe vazhdoni gjirin. Ndiqni pelena më pak të lagura ose urinë më të pakët, gojë të thatë, mungesë lotësh ose sy të futur; pirja e dobët dhe dehidratimi kërkojnë këshillë. Jepni ushqim nëse dëshiron pa detyrim. Visheni rehat, jo shumë batanije ose zhveshje për ftohje. Banjat e ftohta, alkooli në lëkurë dhe fshirja për ftohje nuk janë trajtime të duhura. Kontrollojeni edhe natën dhe lejoni pushim ose lojë të qetë. Mbajeni larg kopshtit e shkollës me ethe."
+      ]
+    },
+    {
+      "heading": "Përdorni barna për shqetësimin dhe jo vetëm numrin",
+      "paragraphs": [
+        "Paracetamoli ose ibuprofeni ndihmojnë nëse përshtaten me moshën, peshën dhe shëndetin. Ndiqni fletëudhëzimin ose recetën, matni me mjetin e dhënë dhe shënoni marrjen. Foshnjat shumë të vogla kërkojnë këshillë para trajtimit. Mos jepni aspirinë nën 16 vjeç pa recetë. Mos alternoni paracetamol e ibuprofen pa profesionist dhe shmangni dyfishimin në produkte të përziera. Ibuprofeni mund të mos përshtatet me dehidratim, linë e dhenve ose disa histori astme. Barnat e etheve nuk parandalojnë me siguri krizat febrile."
+      ]
+    },
+    {
+      "heading": "Rivlerësoni vazhdimin ose përkeqësimin",
+      "paragraphs": [
+        "Kërkoni këshillë kur ethet zgjasin 5 ditë ose më shumë, ose më herët me përkeqësim, sjellje jo normale, ushqyerje të dobët ose shqetësim tuajin. Imuniteti i ulët dhe sëmundjet kronike të rëndësishme mund të kërkojnë kontroll më herët. Tregoni udhëtimet, vaksinat, barnat, simptomat dhe kontrollin e mëparshëm. Ulja pas barit nuk përjashton infeksion të rëndë. Kërkoni plan dhe shenja për urgjencë; mos prisni takimin nëse shfaqen shenja të reja alarmi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: foshnjë e vogël me ethe",
+      "text": "Lina mat ethe te foshnja shumë e vogël dhe kërkon urgjentisht kontroll edhe pa shumë të qara. Tregon temperaturën dhe ushqyerjen, pa pritur efektin e barit."
+    },
+    {
+      "title": "Shembull hipotetik: shënime të thjeshta",
+      "text": "Fëmija më i madh i Arbenit ka ethe e rrufë por pi dhe përgjigjet normalisht. Ai shënon matjet, barnat dhe urinën, ofron lëngje dhe kontrollon natën. Kur bëhet jashtëzakonisht i vështirë për t’u zgjuar, kërkon urgjencë dhe jo vëzhgim të mëtejshëm në shtëpi."
+    }
+  ],
+  "questions": [
+    "A e bëjnë mosha, sjellja ose historia këtë temperaturë më urgjente?",
+    "Si ndjek pirjen e rehatinë dhe cili bar përshtatet nëse duhet?",
+    "Cilat ndryshime duan ndihmë menjëherë dhe kur kontrollohet temperatura e vazhdueshme?"
+  ]
+}

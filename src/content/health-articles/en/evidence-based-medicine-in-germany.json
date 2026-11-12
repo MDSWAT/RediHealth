@@ -1,0 +1,51 @@
+{
+  "title": "Evidence-based medicine in Germany: research, recommendations and care",
+  "intro": "Evidence-based medicine brings together reliable research, clinical expertise and the person’s circumstances and preferences. In Germany, it informs clinical recommendations and decisions within the health system. Understanding the roles of researchers, doctors and decision-making bodies helps you read German health information without assuming that every recommendation or funding rule applies in another country.",
+  "sections": [
+    {
+      "heading": "Separate a research result from a personal recommendation",
+      "paragraphs": [
+        "Research estimates what happens in groups, while a consultation applies those findings to an individual. Ask whether people with your age, conditions and medicines were represented, and whether outcomes such as symptoms or everyday functioning were measured. A clinician also considers practicalities and your priorities. Evidence-based care does not mean that everyone receives identical treatment or that a computer replaces clinical judgement. It means explaining the reasons for a choice and its uncertainties rather than relying only on habit or authority."
+      ]
+    },
+    {
+      "heading": "Understand the purpose of clinical guidelines",
+      "paragraphs": [
+        "Guidelines organize evidence and recommendations for defined clinical situations. Check who produced a guideline, when it was updated, and which people and settings it addresses. Not every recommendation has equally strong evidence; some rely partly on expert consensus. Ask how a recommendation fits your situation and what alternatives exist. Different recommendations can reflect different questions, dates or health systems rather than dishonesty. A guideline supports the conversation but does not turn a general recommendation into a diagnosis or permission to alter medicines yourself."
+      ]
+    },
+    {
+      "heading": "Distinguish evidence assessment from coverage decisions",
+      "paragraphs": [
+        "IQWiG evaluates research on benefits and harms and publishes scientific reports and public health information. It is not your treating clinician and its report is not an individual prescription. Germany’s Federal Joint Committee, the G-BA, issues directives defining services covered by statutory health insurance. Its decisions and the underlying evidence assessment have different roles. A medicine being available, being reimbursed and offering an additional benefit over a comparator are separate questions. Read the exact population, comparison and decision rather than treating an institutional name as a universal endorsement."
+      ]
+    },
+    {
+      "heading": "Check which statements are specific to Germany",
+      "paragraphs": [
+        "Descriptions of referrals, insurance coverage, structured chronic-care programmes and screening invitations may be German system information rather than general medical facts. Do not transfer those arrangements automatically to Romania, Moldova, Albania, Italy or Croatia. Ask your local clinician or insurer about eligibility, costs, available services and any required referral. Even within one country, details can depend on the procedure and personal circumstances. An evidence summary can still help you understand benefits and harms while local professionals clarify how to access care."
+      ]
+    },
+    {
+      "heading": "Prepare questions that support a shared decision",
+      "paragraphs": [
+        "Bring the article or recommendation, your medicine list and what matters most to you. Ask which options are reasonable, what benefit is likely, what harms or treatment burden accompany it, and what happens if you wait when waiting is safe. Request understandable absolute risks and an interpreter where needed. Ask when the plan should be reviewed and what could change it. You do not have to accept a treatment solely because it appears in a guideline; equally, an individual story is not enough to dismiss a well-supported recommendation."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: reading about a screening programme",
+      "text": "Ana reads a German article describing a screening invitation. She uses it to prepare questions about benefits and possible harms, then checks local eligibility instead of assuming she will receive the same invitation in Moldova."
+    },
+    {
+      "title": "Hypothetical example: asking about additional benefit",
+      "text": "Ilir hears that a new medicine has been assessed. He asks what it was compared with, for which patient group and on which outcomes. His clinician explains the relevance to his condition separately from the question of insurance payment."
+    }
+  ],
+  "questions": [
+    "Which evidence and guideline support this option, and how well do they apply to me?",
+    "Is this a medical recommendation, an evidence assessment or a German coverage rule?",
+    "What local access arrangements, alternatives and follow-up should we clarify before deciding?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Feedback despre informația medicală: întrebări, corecturi și accesibilitate",
+  "intro": "Informația clară se îmbunătățește când cititorii semnalează formulări confuze, explicații lipsă și bariere de acces. Acesta este un ghid de alfabetizare în sănătate despre feedback util, nu un articol despre o boală. Canalul de feedback al unui site diferă de consultație și urgență. Alegeți destinatarul potrivit și protejați datele personale.",
+  "sections": [
+    {
+      "heading": "Precizați ce doriți să înțeleagă editorul",
+      "paragraphs": [
+        "Indicați articolul, limba și pasajul sau funcția implicată. Explicați dacă ați observat o posibilă eroare, traducere neclară, context lipsă, dificultate de utilizare sau ceva foarte util. Observația precisă ajută mai mult decât o nemulțumire generală. Dacă vă referiți la pagina originală a altui editor, precizați asta: feedbackul către un site nu îl anunță neapărat pe celălalt. Nu presupuneți un răspuns imediat sau o anumită corectură."
+      ]
+    },
+    {
+      "heading": "Descrieți problema astfel încât să poată fi verificată",
+      "paragraphs": [
+        "Citați doar fragmentul scurt necesar sau descrieți locul. Spuneți ce ați înțeles și de ce textul pare confuz ori contradictoriu. Dacă invocați altă sursă, includeți titlul și data pentru compararea dovezilor. Separați eroarea observată de dezacordul personal sau întrebarea despre propriul tratament. Jurnalul simptomelor ajută medicul, dar de obicei nu este necesar pentru un link defect ori un titlu tradus greșit."
+      ]
+    },
+    {
+      "heading": "Raportați practic barierele de acces",
+      "paragraphs": [
+        "Pentru o pagină greu de folosit, descrieți dispozitivul, browserul, limba și acțiunea problematică. Spuneți dacă apare la mărire, tastatură, ascultarea textului sau tehnologii asistive. Explicați ce așteptați și ce s-a întâmplat. Capturile pot ajuta, dar verificați numele, mesajele și datele medicale înainte de trimitere. Nu trebuie să diagnosticați cauza tehnică ori să oferiți soluția pentru a face un raport util."
+      ]
+    },
+    {
+      "heading": "Trimiteți numai datele necesare",
+      "paragraphs": [
+        "Evitați identificatori personali, parole, dosare medicale complete, adrese sau detalii identificabile despre alții. Folosiți procesul declarat de contact sau feedback și citiți informația de confidențialitate înainte de date sensibile. Evaluarea anonimă și cererea unui răspuns personal sunt alegeri diferite. Nu presupuneți că toate serviciile colectează, stochează sau răspund identic. Pentru diagnostic ori medicamente, discutați cu profesionistul potrivit, nu așteptați sfat medical individual de la editor."
+      ]
+    },
+    {
+      "heading": "Separați feedbackul de îngrijirea urgentă",
+      "paragraphs": [
+        "Dacă textul pare nesigur, explicați preocuparea și cereți clarificare, dar nu așteptați răspuns editorial când aveți nevoie de evaluare medicală. Simptomele noi ori severe trebuie adresate serviciilor potrivite. Și aprecierea poate fi concretă: explicați exemplul, definiția sau aspectul care a ajutat. Păstrați raportul dacă doriți să reveniți. Corectura trebuie verificată în dovezi fiabile; feedbackul începe investigația, nu dovedește că afirmația medicală este corectă sau greșită."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: traducere ambiguă",
+      "text": "Lina observă că o avertizare tradusă pare să omită o precizare. Trimite titlul, limba și fragmentul scurt, apoi descrie diferența. Nu include istoricul medical personal, inutil pentru verificarea formulării."
+    },
+    {
+      "title": "Exemplu ipotetic: barieră la tastatură",
+      "text": "Petar nu poate ajunge cu tastatura la un control. Raportează pagina, browserul, succesiunea tastelor și acțiunea așteptată. Astfel problema poate fi reprodusă fără capturi cu date private."
+    }
+  ],
+  "questions": [
+    "Am identificat articolul, limba și problema suficient de clar pentru verificare?",
+    "Trimit doar datele necesare prin procesul destinatarului potrivit?",
+    "Întrebarea mea cere medic sau urgență, nu răspuns editorial?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Radioterapia externă: planificare și gestionarea efectelor zilnice",
+  "intro": "Radioterapia externă folosește un aparat din afara corpului pentru a trimite radiații spre o regiune planificată. Scopul poate fi vindecarea cancerului, reducerea recidivei sau calmarea simptomelor. Programul și efectele depind de cancer, localizare și alte tratamente. Iradierea externă nu vă face radioactiv; precauțiile pentru implanturi ori medicamente radioactive sunt diferite.",
+  "sections": [
+    {
+      "heading": "Clarificați scopul și planul personal",
+      "paragraphs": [
+        "Întrebați ce se urmărește, cum se evaluează succesul și ce alternative sunt rezonabile. Radioterapia se poate folosi singură sau cu operație și medicamente. Tehnica ce sună cel mai nou nu este automat cea mai bună pentru orice cancer. Discutați beneficiile, organele apropiate, iradierea anterioară, dispozitivele implantate și celelalte boli. Anunțați posibilitatea sarcinii înainte de planificare sau tratament. Întrebați devreme despre păstrarea fertilității când este relevantă și organizați transportul, munca, interpretul ori îngrijirea altora."
+      ]
+    },
+    {
+      "heading": "Înțelegeți consultația de planificare",
+      "paragraphs": [
+        "Imaginile ajută echipa să delimiteze ținta și să protejeze țesuturile apropiate. Poate fi nevoie de poziție precisă, semne pe piele, suport modelat sau mască potrivită. Întrebați despre pregătire, inclusiv mâncare, lichide sau umplerea vezicii; cerințele depind de regiune. Spuneți dacă durerea, claustrofobia sau dificultatea de a sta nemișcat pot împiedica procedura. Nu ștergeți semnele și nu reglați singur echipamentul. Planul permite reproducerea poziției; imaginile de planificare nu evaluează neapărat răspunsul cancerului."
+      ]
+    },
+    {
+      "heading": "Aflați cum decurge ședința",
+      "paragraphs": [
+        "Personalul vă poziționează atent și poate face imagini înainte de doză. Aparatul se poate mișca și face zgomot, dar radiația în sine nu se simte de obicei. Personalul iese în timpul iradierii pentru protecție, continuând să vă urmărească și să comunice. Întrebați cum semnalați disconfortul; tratamentul poate fi oprit temporar. Respectați instrucțiunile de respirație dacă sunt folosite. Păstrați programările și sunați secția dacă boala sau transportul pot împiedica venirea, fără să modificați singur programul."
+      ]
+    },
+    {
+      "heading": "Discutați efectele specifice zonei și sprijinul",
+      "paragraphs": [
+        "Pot apărea oboseală și schimbări ale pielii din regiunea tratată. Alte efecte depind de țintă: tratamentul gurii și gâtului poate afecta înghițirea, cel abdominal ori pelvin intestinul sau vezica, iar părul cade în zona iradiată, nu automat peste tot. Întrebați despre produse pentru piele, spălare, haine, alimentație și mișcare potrivită. Nu aplicați remedii neaprobate pe pielea dureroasă și nu începeți suplimente fără discutarea interacțiunilor. Raportați devreme simptomele; există adesea ajutor. Discutați și riscurile tardive, nu doar perioada imediată."
+      ]
+    },
+    {
+      "heading": "Planificați controlul și ajutorul urgent",
+      "paragraphs": [
+        "Cereți un contact pentru simptome în timpul și după tratament, inclusiv în afara programului. Imposibilitatea de a bea, vărsăturile persistente, diareea severă, febra ori durerea rapid agravată cer sfat prompt, mai ales cu alte tratamente oncologice. Respirația foarte dificilă, leșinul sau o problemă neurologică nouă gravă necesită urgență. Urmați instrucțiunile specifice pentru infecții și sângerare. Reacțiile pot continua după ultima ședință; asta singură nu arată dacă tratamentul a funcționat. Respectați controalele și discutați recuperarea, imaginile, fertilitatea și sănătatea sexuală."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: neliniște legată de mască",
+      "text": "Daria se teme de masca pentru iradierea capului și gâtului. Spune echipei la planificare, întreabă cum comunică și discută gestionarea anxietății înainte de ședință, fără să sufere în tăcere."
+    },
+    {
+      "title": "Exemplu ipotetic: sprijin practic",
+      "text": "Arjan are mai multe vizite și îngrijește o rudă. Întreabă despre program, transport și contactul pentru întârzieri. Află și ce simptome trebuie anunțate imediat, fără așteptarea următoarei ședințe."
+    }
+  ],
+  "questions": [
+    "Care este scopul tratamentului și ce beneficii și riscuri tardive sunt realiste?",
+    "Cum mă pregătesc pentru planificare și ședințe, inclusiv privind medicamentele și dispozitivele implantate?",
+    "Ce reacții sunt de așteptat în regiunea mea și pe cine contactez urgent?"
+  ]
+}

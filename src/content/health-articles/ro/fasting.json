@@ -1,0 +1,51 @@
+{
+  "title": "Repausul alimentar înainte de teste, proceduri și medicamente",
+  "intro": "Repausul alimentar medical înseamnă evitarea anumitor alimente sau lichide o perioadă definită înaintea unui test, tratament ori medicament. Nu este o dietă aleasă personal. Cerințele diferă: nu orice analiză, investigație sau procedură cu anestezie locală necesită nemâncat. Instrucțiunile serviciului care efectuează procedura au prioritate față de sfaturi generale ori experiența altcuiva.",
+  "sections": [
+    {
+      "heading": "Întrebați motivul și orele exacte",
+      "paragraphs": [
+        "Mâncarea poate modifica unele analize sau împiedica vizualizarea la examinare. La anumite anestezii ori sedări, conținutul gastric poate ajunge în plămâni când reflexele de protecție scad. Întrebați dacă repausul este necesar, când opriți fiecare tip de aliment și lichid și dacă ora privește sosirea sau procedura. Cereți instrucțiuni scrise într-o limbă înțeleasă. Nu prelungiți restricția pentru siguranță suplimentară: poate provoca disconfort, deshidratare sau probleme cu medicamentele."
+      ]
+    },
+    {
+      "heading": "Clarificați alimentele și lichidele permise",
+      "paragraphs": [
+        "Hrana solidă, laptele, formula, laptele matern și lichidele clare nu sunt echivalente și pot avea ore diferite. Un lichid deschis la culoare nu este automat permis; laptele în cafea și sucul cu pulpă contează. Întrebați despre apă, gumă, bomboane, fumat și băuturi speciale de pregătire. Regulile copiilor pot diferi de adulți. Pregătirea intestinului este separată, cu propriile reguli. Urmați planul secției, nu un interval universal de pe internet."
+      ]
+    },
+    {
+      "heading": "Cereți plan separat pentru fiecare medicament",
+      "paragraphs": [
+        "Spuneți toate tratamentele, inclusiv fără rețetă, injecții, suplimente și plante. Întrebați ce luați, amânați sau ajustați, dacă este permisă puțină apă și când reluați. Diabetul, anticoagulantele și medicamentele care influențează golirea stomacului cer discuție specială. Nu opriți tratamentele esențiale și nu alegeți singur altă doză. Medicamentul pe stomacul gol are propriile instrucțiuni; nu înseamnă automat săriți o masă întreagă sau copiați pregătirea pentru operație."
+      ]
+    },
+    {
+      "heading": "Planificați dacă restricția vă poate pune în pericol",
+      "paragraphs": [
+        "Anunțați diabetul, sarcina, fragilitatea, bolile renale, dificultățile de înghițire și problemele anterioare. Stabiliți individual monitorizarea glicemiei și intervenția dacă este cazul. Nu ignorați hipoglicemia pentru a păstra programarea: urmați planul de urgență, cereți ajutor și informați echipa. Întrebați despre sprijin pentru copii ori persoane care nu înțeleg restricțiile. Aduceți medicamentele, aparatele și gustare potrivită pentru după, dar așteptați confirmarea personalului că puteți mânca."
+      ]
+    },
+    {
+      "heading": "Spuneți sincer dacă planul nu a fost urmat",
+      "paragraphs": [
+        "Dacă ați mâncat, băut sau luat ceva în afara instrucțiunilor, sunați și spuneți ce, cât și când. Nu ascundeți, nu anulați automat și nu provocați vărsături; personalul decide continuarea sau reprogramarea sigură. Dacă se întârzie, cereți reguli actualizate, fără repaus nelimitat sau băut fără verificare. După procedură reluați hrana, lichidele și tratamentele conform externării. Unele teste și tratamente cer alte restricții. Aflați contactul dacă vă simțiți rău sau nu păstrați lichidele."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: analize fără indicații clare",
+      "text": "Alina primește recomandare de analize fără instrucțiuni despre mâncare. Sună și întreabă care cer repaus și dacă apa și medicamentele sunt permise. Nu sare micul dejun doar fiindcă așa a făcut o prietenă."
+    },
+    {
+      "title": "Exemplu ipotetic: lapte înaintea procedurii",
+      "text": "Dritan adaugă lapte într-o băutură în perioada restricționată. Spune secției ce și când a băut. Echipa decide siguranța; el nu ascunde pentru a evita întârzierea."
+    }
+  ],
+  "questions": [
+    "Trebuie să nu mănânc și care sunt instrucțiunile exacte pentru această programare?",
+    "Care este planul fiecărui medicament și al diabetului ori altor boli în repaus?",
+    "Pe cine contactez dacă încalc restricția, se întârzie sau mă simt rău?"
+  ]
+}

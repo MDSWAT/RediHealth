@@ -1,0 +1,51 @@
+{
+  "title": "Vrućica u djece: udobnost, praćenje i kada tražiti pomoć",
+  "intro": "Temperatura 38°C ili viša općenito se smatra vrućicom u djece. Vrućica je odgovor na bolest, često infekciju, a ne dijagnoza. Dob, disanje, budnost, pijenje i tijek važni su uz broj. Mnogu djecu može se njegovati kod kuće, ali mala dojenčad i znakovi upozorenja trebaju brzu procjenu.",
+  "sections": [
+    {
+      "heading": "Pouzdano mjerite i promatrajte dijete",
+      "paragraphs": [
+        "Koristite digitalni termometar prema dobi i uputama; pazušno mjerenje praktično je za malu djecu. Zapišite rezultat, vrijeme i mjesto. Dodir nije točno mjerenje. Kupanje ili puno pokrivača mogu privremeno utjecati, ali ne odgađajte pomoć vidljivo bolesnom djetetu ponavljanjem. Pratite disanje, reagiranje, hranjenje, mokrenje i boju. Usporedite s uobičajenim ponašanjem umjesto oslanjanja samo na tablicu."
+      ]
+    },
+    {
+      "heading": "Znajte dobne pragove i hitne znakove",
+      "paragraphs": [
+        "Dojenče mlađe od 3 mjeseca s 38°C ili više, ili sumnjom na vrućicu, treba hitnu liječničku procjenu. Od 3 do 6 mjeseci, temperatura 39°C ili viša također traži hitan savjet. Zabrinjavajuće ponašanje zahtijeva raniju pomoć bez obzira na broj. Nazovite 112 zbog teškog buđenja, teškog disanja, plave ili sive boje, prvog napadaja, ukočenog vrata ili osipa koji ne blijedi pritiskom. Nemojte čekati osip niti odbaciti tešku bolest zbog naizgled normalne temperature."
+      ]
+    },
+    {
+      "heading": "Podržite pijenje bez prisilnog hlađenja",
+      "paragraphs": [
+        "Često nudite tekućinu i nastavite dojiti. Pratite manje mokrih pelena ili urina, suha usta, manjak suza ili upale oči; slabo pijenje i dehidracija traže savjet. Hranu ponudite ako želi bez prisile. Odjenite udobno, bez pretjeranog pokrivanja ili razodijevanja radi hlađenja. Hladne kupke, alkoholno trljanje i spužvanje nisu odgovarajući postupci. Provjeravajte i noću te omogućite odmor ili mirnu aktivnost. Ne šaljite dijete u vrtić ili školu dok ima vrućicu."
+      ]
+    },
+    {
+      "heading": "Lijekove dajte za nelagodu, ne samo broj",
+      "paragraphs": [
+        "Paracetamol ili ibuprofen mogu pomoći ako odgovaraju dobi, težini i zdravlju. Slijedite upute ili recept, mjerite priloženim uređajem i zabilježite davanje. Vrlo mala dojenčad trebaju savjet prije terapije. Nemojte dati aspirin mlađima od 16 godina osim po receptu. Ne izmjenjujte paracetamol i ibuprofen bez stručnjaka i izbjegavajte dvostruke sastojke kombiniranih proizvoda. Ibuprofen može biti neprikladan uz dehidraciju, vodene kozice ili neke oblike astme. Antipiretici ne sprečavaju pouzdano febrilne konvulzije."
+      ]
+    },
+    {
+      "heading": "Provjerite trajanje i svako pogoršanje",
+      "paragraphs": [
+        "Tražite savjet ako vrućica traje 5 dana ili dulje ili ranije uz pogoršanje, neuobičajeno ponašanje, slabo hranjenje ili zabrinutost. Oslabljen imunitet ili važne kronične bolesti mogu tražiti raniju procjenu. Navedite putovanja, cjepiva, lijekove, simptome i prethodni pregled. Poboljšanje nakon lijeka ne isključuje ozbiljnu infekciju. Tražite jasan plan i znakove za hitnost; ne čekajte termin kod novih upozorenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: malo dojenče s vrućicom",
+      "text": "Lina izmjeri vrućicu vrlo malom dojenčetu i traži hitnu procjenu iako ne plače mnogo. Navodi točnu temperaturu i hranjenje bez čekanja učinka lijeka."
+    },
+    {
+      "title": "Zamišljeni primjer: jednostavan zapis njege",
+      "text": "Arbenovo starije dijete ima vrućicu i prehladu, ali pije i normalno reagira. Bilježi temperaturu, lijekove i mokrenje, nudi tekućinu i provjerava noću. Kad ga neuobičajeno teško budi, traži hitnu pomoć umjesto daljnjeg praćenja kod kuće."
+    }
+  ],
+  "questions": [
+    "Čine li dob, ponašanje ili povijest bolesti ovu vrućicu hitnijom?",
+    "Kako pratiti tekućinu i udobnost te koji je lijek prikladan ako treba?",
+    "Koje promjene traže trenutačnu pomoć i kada pregledati trajnu vrućicu?"
+  ]
+}

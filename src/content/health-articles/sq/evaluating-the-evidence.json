@@ -1,0 +1,51 @@
+{
+  "title": "Vlerësimi i provave mjekësore: pyetjet pas një pretendimi",
+  "intro": "Një studim i botuar nuk është automatikisht përgjigje e besueshme për një trajtim. Përzgjedhja e pjesëmarrësve, krahasimi i trajtimeve dhe matja e rezultateve ndryshojnë kuptimin e gjetjeve. Vlerësimi kritik pyet sa besim meriton pretendimi dhe a zbatohet në vendimin tuaj. Nuk duhet të bëheni studiues për të pyetur me dobi.",
+  "sections": [
+    {
+      "heading": "Filloni nga pyetja dhe krahasimi",
+      "paragraphs": [
+        "Shihni kush u studiua, çfarë trajtimi ose testi u përdor, me çfarë u krahasua dhe cilat rezultate kishin rëndësi. Studimi te vullnetarë të shëndetshëm mund të mos përgjigjet për një të moshuar të brishtë. Krahasimi me mungesën e trajtimit nuk tregon medoemos epërsi ndaj kujdesit të zakonshëm. Pyesni nëse u matën simptomat, funksionimi ose mbijetesa, jo vetëm një vlerë laboratorike. Pyetjet e qarta shmangin shpërqendrimin nga termat mbresëlënës."
+      ]
+    },
+    {
+      "heading": "Kërkoni mundësitë e njëanshmërisë",
+      "paragraphs": [
+        "Ndarja rastësore i bën grupet më të krahasueshme, por hollësitë kanë rëndësi. Pyesni nëse ndarja mund të parashikohej, nëse pjesëmarrësit apo vlerësuesit e dinin trajtimin dhe nëse shumë njerëz u larguan. Studimet pa verbim mund të jenë të dobishme, por rezultatet subjektive ndikohen më lehtë nga pritshmëritë. Kontrolloni nëse rezultatet u planifikuan paraprakisht dhe nëse u raportuan ato të pafavorshme. Një mostër e madhe nuk korrigjon çdo mangësi dhe rishikimi shkencor nuk garanton mungesë gabimesh ose raportimi përzgjedhës."
+      ]
+    },
+    {
+      "heading": "Dalloni madhësinë e efektit nga siguria e vlerësimit",
+      "paragraphs": [
+        "Pyesni sa njerëz përfitojnë ose dëmtohen, gjatë çfarë kohe dhe kundrejt cilit rrezik fillestar. Ndryshimi relativ mund të tingëllojë më i madh se ndryshimi absolut. Intervali i besimit tregon pasigurinë e vlerësimit; rëndësia statistikore nuk do të thotë automatikisht rëndësi në jetën e përditshme. Mungesa e një dallimi të qartë nuk provon gjithmonë barasvlerë trajtimesh. Studime të vogla, pak ngjarje ose ndjekje e shkurtër mund të lënë të paqarta përfitime e dëme të rëndësishme, pavarësisht titullit të prerë."
+      ]
+    },
+    {
+      "heading": "Vlerësoni përmbledhjet po aq me kujdes",
+      "paragraphs": [
+        "Një rishikim sistematik duhet të shpjegojë pyetjen, kërkimin, kriteret e përfshirjes dhe kufizimet e studimeve. Shihni nëse kërkoi mjaft gjerë, shqyrtoi rezultate të pabotuara ose të munguara dhe arsyetoi bashkimin. Meta-analiza mund të japë një numër në dukje të saktë nga studime të ndryshme ose me të njëjtat gabime. Përputhja e studimeve të mira dhe të përshtatshme rrit besimin; numërimi i studimeve pozitive jo. Lexoni datën, konfliktet dhe financimin, duke gjykuar metodat në vend që ta pranoni ose refuzoni vetëm nga financimi."
+      ]
+    },
+    {
+      "heading": "Përdorni provat në një bisedë personale",
+      "paragraphs": [
+        "Merreni pretendimin ose burimin te mjeku dhe shpjegoni vendimin që përballoni. Diskutoni sëmundjet, barnat, preferencat, barrën e trajtimit dhe alternativat, përfshirë vëzhgimin kur përshtatet. Pyesni çfarë mbetet e pasigurt dhe çfarë informacioni do të ndryshonte planin. Një histori personale tregon përvoja të rëndësishme, por nuk përcakton me siguri efektin mesatar. Mos ndryshoni papritur kujdesin e përshkruar nga një lajm. Vlerësimi i mirë mbështet vendimin e përbashkët dhe pritshmëritë reale, pa hequr çdo pasiguri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: ulje e madhe relative",
+      "text": "Mara lexon se një trajtim përgjysmon një rrezik. Pyet për rrezikun fillestar, ndryshimin absolut, kohën e ndjekjes dhe efektet anësore. Kupton se titulli nuk tregon nëse përfitimi ia vlen për të."
+    },
+    {
+      "title": "Shembull hipotetik: metoda të paqarta",
+      "text": "Dritani gjen një përmbledhje që rekomandon suplement, por nuk shpjegon si u zgjodhën studimet. Kërkon një rishikim sistematik transparent dhe bisedon me farmacistin, në vend që t’i marrë shumë referenca si garanci."
+    }
+  ],
+  "questions": [
+    "A u studiuan njerëz si unë kundrejt një alternative të përshtatshme dhe rezultateve që më interesojnë?",
+    "Sa të mëdha janë përfitimet dhe dëmet e mundshme dhe sa të pasigurta janë vlerësimet?",
+    "A mund të ndryshojnë përfundimin rezultatet e munguara, kufizimet ose dallimet mes studimeve?"
+  ]
+}

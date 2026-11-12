@@ -1,0 +1,51 @@
+{
+  "title": "Erizipelul și celulita infecțioasă: recunoaștere și ajutor medical",
+  "intro": "Erizipelul și celulita infecțioasă sunt infecții bacteriene ale pielii și țesuturilor de dedesubt. Pot începe printr-o crăpătură ori rană prea mică pentru a fi observată și afectează frecvent piciorul, dar și alte regiuni. Celulita infecțioasă diferă de celulita cosmetică. Evaluarea timpurie contează deoarece infecția netratată se poate extinde și provoca boală gravă.",
+  "sections": [
+    {
+      "heading": "Recunoașteți schimbările, nu doar roșeața",
+      "paragraphs": [
+        "Cereți sfat medical în aceeași zi pentru o zonă nouă dureroasă, fierbinte și umflată, mai ales dacă se extinde sau vă simțiți rău. Pe pielea închisă roșeața poate fi greu vizibilă; contează căldura, sensibilitatea, umflarea și diferența față de pielea din jur. Erizipelul are adesea o margine mai clară, dar aspectul nu distinge sigur toate infecțiile. Menționați febra, bășicile, rănile, înțepăturile, operațiile recente, diabetul, circulația slabă, imunosupresia sau episoadele anterioare. Alte boli, inclusiv un cheag, pot semăna și necesită alt tratament."
+      ]
+    },
+    {
+      "heading": "Știți ce simptome cer urgență",
+      "paragraphs": [
+        "Sunați la 112 pentru confuzie, leșin, respirație mult îngreunată sau deteriorare severă. Umflarea rapidă, durerea mult mai mare decât ar sugera aspectul pielii, zonele violacee sau negre ori starea foarte proastă cu febră pot indica o infecție periculoasă și cer evaluare de urgență. Nu așteptați toate semnele. Infecția din jurul ochiului este deosebit de urgentă dacă apar durere oculară, vedere schimbată sau mișcarea dificilă a ochiului. Nu conduceți dacă amețiți sau sunteți grav bolnav. Explicați viteza schimbărilor și aduceți lista medicamentelor."
+      ]
+    },
+    {
+      "heading": "Luați antibioticul prescris și stabiliți controlul",
+      "paragraphs": [
+        "Medicul stabilește de obicei diagnosticul din simptome și examinare. Uneori sunt necesare analize sau probe din rană. O infecție mai ușoară poate fi tratată cu comprimate; boala severă poate necesita spital și antibiotice intravenoase. Alegerea depinde de alergii, bacteriile probabile, localizare și celelalte boli. Luați medicamentul exact conform prescripției: nu îl împărțiți, nu folosiți resturi și nu îl opriți mai devreme fără sfat. Un abces poate necesita drenaj medical, nu stoarcere ori înțepare acasă. Întrebați cum și când se verifică evoluția."
+      ]
+    },
+    {
+      "heading": "Sprijiniți recuperarea și observați lipsa de răspuns",
+      "paragraphs": [
+        "Odihniți-vă și țineți membrul afectat ridicat dacă este confortabil, mișcând ușor articulațiile apropiate conform sfatului. Întrebați despre calmante și îngrijirea rănii. O fotografie datată sau conturul marcat de medic pot ajuta urmărirea, fără să întârzie ajutorul. Unele schimbări ale pielii dispar lent; înrăutățirea stării generale ori creșterea rapidă a durerii cer control urgent oricând. Contactați echipa dacă nu apare ameliorare inițială în 2 până la 3 zile de la începerea antibioticului sau mai devreme dacă vi s-a spus. Urticaria nouă, umflarea gâtului sau respirația dificilă după medicament necesită urgență."
+      ]
+    },
+    {
+      "heading": "Reduceți riscul unui nou episod",
+      "paragraphs": [
+        "Păstrați pielea curată, hidratați pielea uscată intactă și protejați mâinile și picioarele de răni. Tratați crăpăturile dintre degete, micoza și eczema cu sfat potrivit. Dacă aveți diabet, sensibilitate redusă sau probleme circulatorii, cereți un plan de îngrijire a picioarelor și verificați devreme rănile. Umflarea persistentă poate necesita management de durată; discutați când este potrivită compresia, fără să o aplicați singur pe un membru infectat dureros. Episoadele repetate pot justifica specialist sau antibiotice preventive, dar nu pentru toată lumea. Curățați și acoperiți rănile care curg și spălați mâinile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: o crăpătură mică și o problemă în creștere",
+      "text": "Milan observă glezna fierbinte și umflată după apariția unei crăpături între degete. Fiindcă se simte rău, cere evaluare în aceeași zi, nu doar o cremă. Medicul evaluează infecția și leziunea pielii."
+    },
+    {
+      "title": "Exemplu ipotetic: urmărirea tratamentului antibiotic",
+      "text": "După începerea comprimatelor prescrise, Lira urmărește zona și planul de control. Când durerea crește brusc și apare amețeala, cere ajutor urgent, fără să aștepte consultația obișnuită sau să ia comprimate suplimentare."
+    }
+  ],
+  "questions": [
+    "Este probabilă o infecție bacteriană sau trebuie luat în calcul un cheag ori altă cauză?",
+    "Ce tratament și termen de control sunt potrivite și ce schimbări cer ajutor imediat?",
+    "Umflarea, crăpăturile pielii, diabetul sau alți factori mă expun unui nou episod?"
+  ]
+}

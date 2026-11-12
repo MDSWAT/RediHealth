@@ -1,0 +1,51 @@
+{
+  "title": "Sănătatea ochilor: alegerea profesionistului și recunoașterea urgenței",
+  "intro": "Îngrijirea ochilor implică profesii diferite, cu pregătire și competențe care variază între țări. Consultația pentru ochelari, examinarea unei boli oculare și evaluarea urgentă nu sunt interschimbabile. La programare descrieți problema, nu cereți doar un test de vedere. Întrebați cine vă examinează și dacă serviciul poate evalua simptomele respective.",
+  "sections": [
+    {
+      "heading": "Nu așteptați consultația obișnuită pentru simptome urgente",
+      "paragraphs": [
+        "Pierderea bruscă ori schimbarea importantă a vederii, durerea oculară severă, ochiul roșu dureros cu vedere redusă, vederea dublă nouă sau o perdea în câmpul vizual cer evaluare urgentă. Fulgerele luminoase ori multe puncte plutitoare noi cer sfat prompt deoarece poate exista o problemă de retină. Expunerea chimică și leziunea penetrantă sunt urgențe; începeți clătirea cu apă curată la expunere chimică în timp ce cereți ajutor. Nu scoateți obiectul înfipt. Simptomele vizuale bruște cu slăbiciune sau vorbire dificilă pot indica accident vascular și necesită urgență."
+      ]
+    },
+    {
+      "heading": "Înțelegeți testarea vederii și serviciile optice",
+      "paragraphs": [
+        "Optometriștii evaluează frecvent vederea, focalizarea și aspecte ale sănătății ochilor, dar diagnosticul și prescrierea depind de regulile locale și pregătire. Profesioniștii din optică adaptează sau furnizează ochelari și lentile și explică folosirea; titlurile diferă între țări. Magazinul poate avea angajați cu roluri diferite, deci întrebați cine face examinarea. Măsurarea simplă a vederii sau un test online nu exclud glaucomul, bolile retinei sau toate cauzele durerii de cap. Menționați durerea ori schimbarea recentă înaintea unei programări obișnuite."
+      ]
+    },
+    {
+      "heading": "Aflați când trebuie oftalmolog",
+      "paragraphs": [
+        "Oftalmologul este medic specializat în ochi și sistemul vizual. Investighează și tratează boli oculare, prescrie tratamente și poate opera. Regulile trimiterii diferă; problemele urgente urmează traseul local de urgență, fără așteptarea trimiterii obișnuite. Diabetul, bolile oculare cunoscute, miopia mare și glaucomul în familie pot modifica monitorizarea. Întrebați dacă este necesară examinarea specifică bolii: cumpărarea altor ochelari nu înlocuiește controlul indicat pentru o afecțiune."
+      ]
+    },
+    {
+      "heading": "Întrebați despre ortoptică și sprijin pentru vedere slabă",
+      "paragraphs": [
+        "Ortoptistul evaluează alinierea, mișcarea și colaborarea ochilor, adesea la copiii cu strabism ori dezvoltare vizuală redusă și adulții cu vedere dublă. Lucrează cu echipa oculară; nu începeți acoperirea ochiului copilului fără plan individual. Serviciile pentru vedere slabă ajută folosirea vederii rămase prin mărire, iluminare, tehnici de citit și adaptări. Reabilitarea și accesibilitatea contează chiar dacă boala nu este reversibilă. Întrebați cine oferă local aceste servicii și cum se urmărește progresul."
+      ]
+    },
+    {
+      "heading": "Pregătiți consultația și pasul următor",
+      "paragraphs": [
+        "Aduceți ochelarii, datele lentilelor de contact, medicamentele și rapoartele anterioare. Precizați debutul, ochiul sau ochii afectați și efectul asupra cititului, deplasării ori muncii. Întrebați dacă picăturile pentru dilatarea pupilei pot încețoșa temporar vederea ori afecta condusul și organizați transportul. Clarificați costul, decontarea, trimiterea și pasul după un rezultat anormal; regulile germane sau britanice nu se aplică automat în altă parte. Cereți explicații clare, termenul controlului și schimbările care impun revenirea mai devreme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: urgență în loc de ochelari noi",
+      "text": "Lidia observă fulgere noi și o umbră întunecată lateral. Cere examinare urgentă, fără să comande ochelari mai puternici online sau să aștepte testul obișnuit."
+    },
+    {
+      "title": "Exemplu ipotetic: copil cu un ochi deviat",
+      "text": "Besnik observă că ochiul copilului se abate uneori spre interior. Cere evaluarea vederii și alinierii. Nu cumpără singur plasture și nu presupune că problema dispare sigur odată cu creșterea."
+    }
+  ],
+  "questions": [
+    "Cine este calificat să îmi evalueze simptomele aici și cât de urgent este?",
+    "Am nevoie de examinare medicală ori monitorizare pe lângă verificarea ochelarilor?",
+    "Ce s-a găsit, ce control trebuie și ce schimbări cer ajutor urgent?"
+  ]
+}

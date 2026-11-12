@@ -1,0 +1,51 @@
+{
+  "title": "Salute degli occhi: scegliere lo specialista e riconoscere le urgenze",
+  "intro": "Le professioni della vista hanno qualifiche e competenze diverse secondo il paese. Visita per occhiali, esame per una malattia e valutazione urgente non sono intercambiabili. Alla prenotazione descrivete il problema invece di chiedere soltanto un controllo della vista. Informatevi su chi vi esamina e sulla capacità di valutare quei sintomi.",
+  "sections": [
+    {
+      "heading": "Non aspettare una visita ordinaria per sintomi urgenti",
+      "paragraphs": [
+        "Perdita o importante cambiamento improvviso della vista, forte dolore, occhio rosso dolorante con vista ridotta, nuova visione doppia o tenda nel campo visivo richiedono urgenza. Nuovi lampi o molte nuove macchie mobili richiedono consiglio rapido perché può esserci un problema retinico. Esposizione chimica e ferita penetrante sono emergenze: iniziate a sciacquare la sostanza chimica con acqua pulita mentre cercate aiuto. Non rimuovete oggetti conficcati. Disturbi improvvisi con debolezza o difficoltà di parola possono indicare ictus e richiedono soccorsi."
+      ]
+    },
+    {
+      "heading": "Comprendere misurazioni e servizi ottici",
+      "paragraphs": [
+        "Gli optometristi generalmente valutano vista, messa a fuoco e alcuni aspetti oculari, ma diagnosi e prescrizioni dipendono da norme e formazione locali. Gli ottici addetti alla fornitura adattano occhiali e lenti e ne spiegano l’uso; i titoli non sono identici ovunque. Un negozio può impiegare figure diverse: chiedete chi esegue l’esame. Una semplice misurazione o test online non esclude glaucoma, malattie retiniche o ogni causa di cefalea. Segnalate dolore o cambiamenti recenti prima della visita ordinaria."
+      ]
+    },
+    {
+      "heading": "Sapere quando serve l’oculista",
+      "paragraphs": [
+        "L’oftalmologo è un medico specializzato negli occhi e nel sistema visivo. Studia e tratta malattie, prescrive cure e può operare. Le modalità d’invio variano: le urgenze seguono il percorso locale rapido senza aspettare quello ordinario. Diabete, malattia nota, miopia elevata o familiarità per glaucoma possono modificare i controlli. Chiedete se serva un esame specifico: comprare nuovi occhiali non sostituisce il monitoraggio indicato per una malattia."
+      ]
+    },
+    {
+      "heading": "Chiedere ortottica e sostegno per ipovisione",
+      "paragraphs": [
+        "Gli ortottisti valutano allineamento, movimenti e collaborazione degli occhi, spesso nei bambini con strabismo o scarso sviluppo visivo e negli adulti con diplopia. Collaborano con il team; non iniziate un bendaggio del bambino senza piano personale. I servizi per ipovisione aiutano a usare la vista residua con ingrandimenti, luce, strategie di lettura e adattamenti. Riabilitazione e accessibilità contano anche senza reversibilità della malattia. Chiedete chi offre il servizio locale e come si valuta il progresso."
+      ]
+    },
+    {
+      "heading": "Preparare visita e passo successivo",
+      "paragraphs": [
+        "Portate occhiali, dati delle lenti, lista dei farmaci e referti precedenti. Descrivete esordio, uno o entrambi gli occhi e conseguenze su lettura, mobilità o lavoro. Chiedete se le gocce dilatanti possano offuscare temporaneamente o rendere insicura la guida e organizzate il viaggio. Chiarite costi, copertura, invii e passaggi dopo un’anomalia; regole tedesche o britanniche non valgono automaticamente altrove. Chiedete spiegazioni chiare dei risultati, controlli e segnali per tornare prima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: urgenza prima degli occhiali",
+      "text": "Lidia vede nuovi lampi e un’ombra scura laterale. Cerca assistenza oculistica urgente invece di ordinare occhiali più forti online o attendere il controllo ordinario."
+    },
+    {
+      "title": "Esempio ipotetico: occhio deviato nel bambino",
+      "text": "Besnik nota che un occhio del figlio talvolta devia verso l’interno. Chiede valutazione visiva e dell’allineamento. Non compra da solo una benda né presume che passerà certamente crescendo."
+    }
+  ],
+  "questions": [
+    "Quale professionista può valutare i sintomi qui e quanto è urgente?",
+    "Serve un esame medico o monitoraggio oltre al controllo degli occhiali?",
+    "Cosa è emerso, quali controlli servono e quali cambiamenti richiedono aiuto urgente?"
+  ]
+}
