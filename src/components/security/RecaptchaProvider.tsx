@@ -17,6 +17,15 @@ declare global {
 }
 
 const copy = {
+  ru: {
+    unavailable: "Проверка бота не работает. Перезагрузите страницу или напишите нам.",
+    notice: "Защищено reCAPTCHA. Google",
+    privacy: "Политика конфиденциальности",
+    and: "и",
+    terms: "Условия использования",
+    apply: "применить.",
+  },
+
   en: {
     unavailable: "The bot check is not working. Reload the page or write to us.",
     notice: "Protected by reCAPTCHA. Google's",

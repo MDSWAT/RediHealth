@@ -1,0 +1,51 @@
+{
+  "title": "Biologici e biosimilari: capire il farmaco e un possibile cambio",
+  "intro": "I farmaci biologici sono prodotti con sistemi viventi. Comprendono trattamenti diversi, per esempio per malattie infiammatorie, tumori e diabete. Un biosimilare è sviluppato per essere molto simile a un biologico di riferimento autorizzato, senza differenze clinicamente significative di efficacia o sicurezza nell'uso approvato. Non è una versione inferiore. Istruzioni e regole di prescrizione o sostituzione in farmacia vanno comunque verificate per prodotto e paese.",
+  "sections": [
+    {
+      "heading": "Distinguere un biosimilare da un generico convenzionale",
+      "paragraphs": [
+        "I biologici sono spesso molecole grandi e complesse e richiedono processi biologici controllati. Piccole variazioni naturali esistono anche tra lotti del riferimento. Il biosimilare è quindi valutato mediante confronti estesi, non semplicemente come copia chimica identica. Le autorità esaminano qualità, attività biologica e prove cliniche adatte al prodotto. Il termine indica un confronto approvato con un riferimento specifico: non significa che tutti i biologici siano sostituibili fra loro o che qualsiasi prodotto online rispetti questi standard."
+      ]
+    },
+    {
+      "heading": "Chiedere per quali condizioni è approvato",
+      "paragraphs": [
+        "Un biosimilare può essere autorizzato per più condizioni mediante valutazione scientificamente giustificata del riferimento e delle prove comparative. Non serve necessariamente un grande studio separato per ogni condizione. Resta necessario verificare uso esatto, età, via e formulazione. Chiedete perché il farmaco sia adatto alla diagnosi e alla fase terapeutica. Beneficio, monitoraggio e rischi principali dipendono dal medicinale e dalla malattia specifici, non soltanto dall'etichetta biologico."
+      ]
+    },
+    {
+      "heading": "Comprendere cambio e sostituzione locale",
+      "paragraphs": [
+        "Chiedete se il principio attivo rimane lo stesso, la nuova marca e il motivo del cambio. I biosimilari approvati sono attesi funzionare altrettanto bene del riferimento, ma prescrizione e sostituzione variano fra paesi. Il parere europeo sull'intercambiabilità non autorizza da solo ogni farmacia alla sostituzione automatica: valgono le norme nazionali. Possono cambiare confezione, dispositivo o necessità di addestramento. Discutete preoccupazioni e controlli invece di interrompere la cura durante la risoluzione di un cambiamento amministrativo."
+      ]
+    },
+    {
+      "heading": "Verificare gestione, dispositivi e sicurezza personale",
+      "paragraphs": [
+        "Confermate nome, istruzioni di dose, conservazione e azioni dopo dose dimenticata o errore di conservazione. Non presumete identici refrigerazione o trasporto per tutti. Chiedete una dimostrazione se cambia il dispositivo e seguite le istruzioni fornite. Alcuni biologici influenzano le difese immunitarie e richiedono controlli infettivi, pianificazione vaccinale o altri test; altri hanno rischi diversi. Comunicate infezioni, altri farmaci, progetti di gravidanza e viaggi. Non cambiate vaccini o terapie soltanto per quanto citato in questo articolo generale."
+      ]
+    },
+    {
+      "heading": "Segnalare problemi con una registrazione precisa",
+      "paragraphs": [
+        "Conservate marca e, se disponibili, dati del lotto; riferite quando sono iniziati i sintomi rispetto alla terapia o al cambio. I nuovi sintomi meritano valutazione, ma la successione temporale non prova la causa né una minore efficacia del biosimilare. Concordate come controllare malattia e reazioni avverse. Grave difficoltà respiratoria, gonfiore di bocca o gola o collasso dopo il trattamento richiedono emergenza. Per altri sintomi seri contattate subito il servizio seguendo le istruzioni specifiche: non aspettate il controllo ordinario quando state acutamente male."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: penna iniettiva diversa",
+      "text": "Una persona riceve un biosimilare approvato con una penna diversa. Chiede all'infermiere una dimostrazione e conferma conservazione e prescrizione prima dell'iniezione. Conserva i dati della marca e chiede quando rivalutare la malattia."
+    },
+    {
+      "title": "Esempio ipotetico: sintomi dopo il cambio",
+      "text": "Dopo il cambio di marca qualcuno nota più dolore articolare. Contatta il team con date, prodotto e dosi saltate. Il team valuta attività della malattia e altre cause, senza presumere né fallimento del biosimilare né irrilevanza dei sintomi."
+    }
+  ],
+  "questions": [
+    "Con quale riferimento viene confrontato ed è questo prodotto approvato per la mia situazione?",
+    "Il cambio modifica dispositivo, conservazione, prescrizione o controlli e quali regole locali valgono?",
+    "Quali sintomi segnalare, quali dati registrare e chi contattare urgentemente?"
+  ]
+}

@@ -48,6 +48,58 @@ type PrintReportCopy = {
 };
 
 export const printReportTranslations: Record<Lang, PrintReportCopy> = {
+  ru: {
+
+
+
+
+"compactHandout": "Краткая памятка пациенту",
+"handoutSubtitle": "Сводка помощи и запланированные осмотры",
+"handoutBadge": "Памятка пациенту",
+"qrSealLabel": "QR-код продолжения помощи",
+"qrSealHint": "Сканирование сотрудником открывает запись",
+
+    title: "Отчет пациента",
+    backToProfile: "Вернуться к пациенту",
+    printSave: "Распечатайте или сохраните PDF",
+    clinicName: "RediHealth",
+    subtitle: "Сведения о пациенте, уход и история болезни",
+    confidential: "Конфиденциальная медицинская запись",
+    reportDate: "Дата отчета",
+    recordId: "Номер записи",
+    s1: "1. Данные пациента",
+    fullName: "Полное имя:",
+    phone: "Phone:",
+    email: "Email:",
+    dob: "Дата рождения:",
+    gender: "Пол:",
+    careStatus: "Статус ухода:",
+    address: "Адрес:",
+    notSpecified: "Не дано",
+    active: "Под присмотром",
+    inactive: "Неактивный",
+    archived: "В архиве",
+    s2: "2. Планы лечения",
+    s3: "3. Наблюдение за пациентом",
+    noFollowups: "Никаких последующих действий не зарегистрировано.",
+    scheduledDate: "Дата",
+    goal: "Причина",
+    status: "Status",
+    notes: "Клинические заметки",
+    scheduled: "Планируется",
+    completed: "Готово",
+    cancelled: "Отменено",
+    s4: "4. Симптомы и история болезни",
+    symptoms: "Первый запрос и симптомы:",
+    history: "Анамнез и аллергия:",
+    noneRecorded: "Ничего не записано.",
+    s5: "5. Изображения и документы",
+    signature: "Подпись сотрудника:",
+    authorizedWorker: "Уполномоченный сотрудник",
+    generatedBy: "Сделано с RediHealth",
+    strictlyConfidential: "Конфиденциальный документ",
+  },
+
   en: {
     title: "Patient report",
     backToProfile: "Back to patient",

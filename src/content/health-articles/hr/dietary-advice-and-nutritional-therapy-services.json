@@ -1,0 +1,51 @@
+{
+  "title": "Prehrambeno savjetovanje i nutritivna terapija: korisna osobna podrška",
+  "intro": "Prehrambeni savjeti pomažu svakodnevnim navikama, a nutritivna terapija odgovara na potrebe nastale zbog bolesti. Korisno je krenuti od zdravlja, okolnosti i ciljeva, a ne univerzalnog jelovnika. Podrška treba biti razumljiva, po mogućnosti financijski dostupna te prilagođena namirnicama i rutini koje su vam važne.",
+  "sections": [
+    {
+      "heading": "Odaberite pomoć za stvarni problem",
+      "paragraphs": [
+        "Opći savjeti mogu obuhvatiti planiranje obroka, raznolikost i životne faze. Medicinska nutritivna skrb može pomoći kod dijabetesa, bolesti bubrega, celijakije, alergija, probavnih tegoba, raka ili slabog unosa. Potrebe su različite, katkad suprotne. Smanjivanje kalorija nije za svakoga: nenamjerno mršavljenje može tražiti više hrane. Djeca, trudnoća, teškoće gutanja i poremećaji hranjenja zahtijevaju odgovarajuću stručnost. Hrana podržava liječenje, ali program ne treba obećavati izlječenje svake bolesti ili zamjenu propisanih lijekova bez kliničke procjene."
+      ]
+    },
+    {
+      "heading": "Provjerite pružatelja i uvjete",
+      "paragraphs": [
+        "Pitajte za priznatu izobrazbu, profesionalnu registraciju gdje je primjenjiva, iskustvo s bolešću i komunikaciju s liječnicima. Nazivi i propisi razlikuju se među državama; uvjerljiva stranica ne dokazuje stručnost. Provjerite tko vodi susrete, postoji li tumač ili pristupačan format i može li doći odabrana osoba. Prije plaćanja potvrdite uputnicu, ukupni trošak, praćenje i pokriće izravno sa službom ili osiguranjem. Izvorni članak opisuje njemački sustav, koji ne vrijedi automatski drugdje. Pitajte o prodaji proizvoda i financijskim interesima, osobito ako kupnja dodataka postaje uvjet skrbi."
+      ]
+    },
+    {
+      "heading": "Pripremite realnu sliku svakodnevice",
+      "paragraphs": [
+        "Ponesite dijagnoze, važne nalaze, lijekove, dodatke, alergije i promjene težine ako ih znate. Kratak dnevnik hrane i tegoba može pomoći, ali savršeno praćenje nije potrebno i može pogoršati poremećaj hranjenja. Objasnite smjene, budžet, kuhanje i čuvanje hrane, kulturu ili vjeru, sklonosti, zube i tko kupuje ili priprema jela. Navedite mučninu, proljev, teškoće žvakanja ili gutanja i nedostatak hrane. Cilj je razumjeti prepreke, a ne suditi o volji. Ne uklanjajte gluten prije testiranja na celijakiju bez savjeta jer nalazi mogu biti netočni. Ne vraćajte sami poznati opasni alergen."
+      ]
+    },
+    {
+      "heading": "Dogovorite plan koji se može mijenjati",
+      "paragraphs": [
+        "Odaberite ostvariv cilj povezan s liječenjem: obroke uz smjene, povoljnu zamjenu, obogaćivanje hrane pri slabom unosu ili sigurnu zamjenu potvrđenog alergena. Razjasnite nužne i neobvezne promjene te očuvanje proteina, energije i mikronutrijenata pri izostavljanju hrane. Promjena unosa može tražiti prilagodbu lijekova za dijabetes od propisivača. Bubrežne dijete i ograničenja tekućine trebaju osobni savjet, ne opći internetski popis. Dogovorite što pratiti, povratak i postupanje ako se simptomi ili unos pogoršaju. Neizvediv plan treba prilagoditi."
+      ]
+    },
+    {
+      "heading": "Kada rutinski savjet nije dovoljan",
+      "paragraphs": [
+        "Nenamjerno mršavljenje, dugotrajan slab apetit, ponavljano povraćanje, dehidracija, krv u stolici ili sve teže gutanje traže liječničku procjenu, ne samo jelovnik. Pothranjenost se može javiti pri bilo kojoj težini. Nakon dugotrajnog vrlo malog unosa povratak prehrani može tražiti nadzor zbog opasnih promjena tjelesnih soli; ne pokušavajte sami naglo nadoknaditi. Gušenje, teško disanje, kolaps ili teška alergija traže hitnu službu. Nutritivni pripravci ili sonda katkad su dio liječenja uz praćenje i jasan cilj. Tražite usklađenu liječničku i dijetetičku pomoć kad više bolesti ili lijekova otežava hranjenje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: plan prilagođen budžetu",
+      "text": "Arben radi promjenjive smjene i ne može kupiti popis skupih namirnica. S dijetetičarom bira nekoliko poznatih povoljnih obroka usklađenih s terapijom dijabetesa i stankama. Dogovaraju provjeru bez proglašavanja početnih teškoća neuspjehom."
+    },
+    {
+      "title": "Hipotetski primjer: drukčiji cilj prehrane",
+      "text": "Elena je smršavjela tijekom bolesti i teško jede. Umjesto programa mršavljenja traži pregled i dijetetičku podršku za dovoljan unos. Plan uzima u obzir simptome, praktičnu pomoć i moguću potrebu za kliničkim nutritivnim pripravcima."
+    }
+  ],
+  "questions": [
+    "Kakva mi stručnost treba i kako provjeriti kvalifikacije?",
+    "Kako će plan odgovarati bolestima, lijekovima, budžetu i uobičajenoj hrani?",
+    "Što pratimo, kada provjeravamo i koji simptomi traže liječnika?"
+  ]
+}

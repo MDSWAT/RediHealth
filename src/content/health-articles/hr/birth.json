@@ -1,0 +1,51 @@
+{
+  "title": "Porod: priprema za trudove, izbori i promjene plana",
+  "intro": "Porod obuhvaća tjelesne promjene, odluke i podršku osobi koja rađa i bebi. Ne slijedi isti raspored za sve. Planiranje olakšava razgovor uz mogućnost promjene zdravlja ili želja. Pregled objašnjava teme za rodilišni tim; ne zamjenjuje osobni plan ili hitne upute.",
+  "sections": [
+    {
+      "heading": "Pripremite želje i praktičan put do skrbi",
+      "paragraphs": [
+        "Razgovarajte o mjestu, osobi podrške, komunikaciji i prioritetima. Prikladno mjesto ovisi o trudnoći, uslugama i prijevozu u drugu ustanovu, a ne samo želji. Pitajte kontakt u svako doba i prijevoz. Navedite ranije porode, traumu, bolesti i zabrinutost zbog pregleda ili dodira. Pisani plan bilježi želje, a ne jamči točan slijed. Možete pitati i mijenjati želje tijekom poroda."
+      ]
+    },
+    {
+      "heading": "Javite se timu za početak i znakove upozorenja",
+      "paragraphs": [
+        "Trudovi mogu postajati jači i pravilniji, dok rani porod može stati i ponovno početi. Slijedite osobni savjet za dolazak umjesto univerzalnog pravila. Javite se kod pucanja vodenjaka, i prije trudova, uz vrijeme, boju i miris. Smanjeni pokreti, krvarenje, zelena ili smeđa voda, vrućica, jaka trajna bol ili mogući prijevremeni porod zahtijevaju hitan savjet. Obilno krvarenje, kolaps, napadaji ili teško disanje traže hitnu pomoć. Ne čekajte potvrdu mjerača trudova."
+      ]
+    },
+    {
+      "heading": "Razumijte faze, preglede i praćenje",
+      "paragraphs": [
+        "Porod obično uključuje otvaranje vrata maternice, rođenje bebe i izlazak posteljice. Tim procjenjuje napredak i stanje oboje opažanjem i primjerenim praćenjem fetalnog srca. Pitajte svrhu, mogućnosti i razumne alternative pregleda ili monitora. Pristanak, privatnost i objašnjenje ostaju važni. Spor napredak ili neobičan zapis tumače se u cijeloj slici; jedan broj ne opisuje svaki porod i ne određuje sve odluke."
+      ]
+    },
+    {
+      "heading": "Razgovarajte o udobnosti, boli i intervencijama",
+      "paragraphs": [
+        "Kretanje, položaji, disanje, podržavajući dodir ili voda mogu pomoći kada su prikladni. Lijekovi i epiduralna druge su mogućnosti s koristima, granicama i nuspojavama. Dostupnost ovisi o mjestu i zdravlju; traženje analgezije nije neuspjeh. Indukcija, jačanje trudova lijekovima, asistirani vaginalni porod ili carski rez mogu se predložiti iz konkretnih razloga. Pitajte zašto, hitnost, rizike, koristi i alternative. U hitnosti objašnjenja mogu biti kraća, ali tim treba informirati i omogućiti razgovor poslije."
+      ]
+    },
+    {
+      "heading": "Uključite prve sate i emocionalnu podršku",
+      "paragraphs": [
+        "Nakon poroda provjeravaju se beba, krvarenje, posteljica i ozljede roditelja. Pitajte kontakt koža na kožu i hranjenje kada su sigurni te lijekove ili postupke za oboje. Ako dodatna skrb razdvaja roditelja i bebu, pitajte kako ostati informirani i u kontaktu. Prije odlaska potvrdite kontrole i znakove upozorenja. Težak ili neočekivan porod donosi miješane osjećaje i uz medicinsku stabilnost. Tražite razjašnjenje i pomoć kod trajne uznemirenosti bez obveze samo zahvalnosti i šutnje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: promjena izbora analgezije",
+      "text": "Osoba je planirala disanje i kretanje, a poslije želi epiduralnu. Govori primalji, pita o prikladnosti i mogućnostima te mijenja želje. Raniji plan nije obećanje odbijanja analgezije."
+    },
+    {
+      "title": "Hipotetski primjer: vodenjak prije trudova",
+      "text": "Vodenjak puca prije ustaljenih trudova. Osoba zove službu, navodi tekućinu i pokrete i slijedi osobni plan. Ne čeka jake trudove ako tim savjetuje raniji pregled."
+    }
+  ],
+  "questions": [
+    "Koje mjesto i podrška odgovaraju trudnoći i kako hitno kontaktirati skrb?",
+    "Koje praćenje, analgezija ili intervencije mogu biti predloženi i kako se objašnjavaju odluke?",
+    "Koje provjere i podrška trebaju oboje nakon poroda, uključujući razgovor o neočekivanom?"
+  ]
+}

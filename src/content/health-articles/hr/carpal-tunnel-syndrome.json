@@ -1,0 +1,51 @@
+{
+  "title": "Sindrom karpalnog kanala: simptomi, procjena i izbor liječenja",
+  "intro": "Sindrom karpalnog kanala nastaje pritiskom na medijani živac u uskom prostoru zapešća. Uzrokuje trnce, utrnulost, bol i teškoće pri uporabi šake. Simptomi mogu dolaziti i prolaziti, osobito noću, ali trajni pritisak može oštetiti živac. Procjena razlikuje druge uzroke i pomaže odabrati udlagu, injekciju ili operaciju.",
+  "sections": [
+    {
+      "heading": "Simptomi i promjene koje treba prijaviti",
+      "paragraphs": [
+        "Često su zahvaćeni palac, kažiprst, srednjak i strana prstenjaka prema palcu. Bol može ići u podlakticu. Neki se bude i protresaju šaku za olakšanje. Slab hvat, ispadanje predmeta, stalna utrnulost ili propadanje mišića uz bazu palca traže pravodobnu procjenu umjesto beskonačnih analgetika. Simptomi pretežno u malom prstu, bol u vratu ili druge neurološke promjene mogu upućivati na drugi ili dodatni problem."
+      ]
+    },
+    {
+      "heading": "Što liječnik provjerava",
+      "paragraphs": [
+        "Liječnik pita o rasporedu i trajanju simptoma, snu, radu, hobijima i bolestima te pregledava osjet, snagu i zapešće. Mogu pridonijeti dijabetes, trudnoća, upalne bolesti zglobova, anatomija i ranije ozljede. Ponavljani snažan hvat, vibracije i dugotrajno savijanje mogu pogoršati simptome, ali jedna aktivnost ne objašnjava svaki slučaj. Ispitivanje provodljivosti živca ili snimanje korisno je kod nejasne dijagnoze ili potrebe za dodatnim podacima. Ne treba svatko svaku pretragu."
+      ]
+    },
+    {
+      "heading": "Udlaga i praktične prilagodbe",
+      "paragraphs": [
+        "U prikladnim blagim slučajevima noćna udlaga drži zapešće neutralno i smanjuje pritisak. Pitajte pristaje li dobro; bolno stezanje nije cilj. Prilagodite zadatke koji izazivaju simptome, razgovarajte o alatima i stankama i ne spavajte s jako savijenim zapešćem. Vježbe se mogu savjetovati, ali korist je neizvjesna i ne smiju pogoršavati stanje. Dogovorite kontrolu ako utrnulost ili slabost napreduju umjesto nepromijenjenog nastavka."
+      ]
+    },
+    {
+      "heading": "Injekcija i operacija imaju različite uloge",
+      "paragraphs": [
+        "Kortikosteroidna injekcija može olakšati, često privremeno, uz mogući povrat simptoma. Raspravite rizike, uključujući one uz dijabetes. Analgetici pomažu boli, ali ne uklanjaju pritisak. Operacija oslobađa ligament koji čini krov kanala radi prostora za živac. Može se preporučiti za trajne simptome ili značajno oštećenje. Razmotrite koristi, probleme rane, bolnost ožiljka i druge komplikacije; potpuni oporavak dugotrajnog oštećenja živca nije zajamčen."
+      ]
+    },
+    {
+      "heading": "Praćenje i oporavak",
+      "paragraphs": [
+        "Pitajte kakvo poboljšanje očekivati, kada ponoviti procjenu i što traži raniji dolazak. Simptomi u trudnoći ponekad se poslije smire, ali teški ili trajni i dalje zaslužuju skrb. Povratak vožnji, dizanju i radu ovisi o cijeljenju, funkciji šake i zadatku, a ne univerzalnom datumu. Slijedite upute za ranu i aktivnosti. Brzo pogoršanje slabosti, nova ozbiljna ozljeda ili hladna šaka promijenjene boje zahtijevaju hitnu procjenu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Noćni simptomi — zamišljeni primjer",
+      "text": "Osoba se budi s trncima u palcu i susjednim prstima. Nakon procjene pokušava s dobro prilagođenom noćnom udlagom i mijenja izazivajući zadatak. Dogovara kontrolu i dolazi ranije pri stalnoj utrnulosti ili slabijoj snazi."
+    },
+    {
+      "title": "Trajna slabost — zamišljeni primjer",
+      "text": "Druga osoba i dalje ispušta predmete nakon početnog liječenja. Vraća se na procjenu umjesto dodavanja analgetika. Specijalist raspravlja funkciju živca, potrebne pretrage i odnos koristi i rizika operacije."
+    }
+  ],
+  "questions": [
+    "Odgovaraju li simptomi pritisku na medijani živac ili postoji drugi uzrok?",
+    "Što mogu postići udlaga i injekcija i kada je operacija bolja mogućnost?",
+    "Kada se vratiti i kako prilagoditi rad, vožnju i dizanje tijekom oporavka?"
+  ]
+}

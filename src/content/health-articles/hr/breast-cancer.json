@@ -1,0 +1,51 @@
+{
+  "title": "Rak dojke: dijagnoza, izbor liječenja i podrška",
+  "intro": "Rak dojke nastaje rastom abnormalnih stanica koje mogu prodrijeti u okolinu ili se proširiti. Pogađa različite dobi i rodove. Postoji više tipova pa liječenje nije isto za sve. Nova promjena treba procjenu, a dijagnoza jasno objašnjenje nalaza, ciljeva i pomoći. Pregled priprema razgovor, ne odabire osobnu terapiju.",
+  "sections": [
+    {
+      "heading": "Pregledajte nove promjene bez dijagnoze prema izgledu",
+      "paragraphs": [
+        "Nova kvržica dojke ili pazuha, oblik, udubljenje kože, uvučena bradavica ili neobičan iscjedak trebaju obradu. Mnoge promjene nisu rak, ali bezbolnost ili nedavni uredan probir ne uklanjaju trajni simptom. Klinika može spojiti pregled, mamografiju ili ultrazvuk i uzorak tkiva. Pitajte testove, nalaze i odgovornu osobu. Probir bez simptoma razlikuje se od novog simptoma: ne čekajte novi poziv."
+      ]
+    },
+    {
+      "heading": "Razumijte patologiju i proširenost",
+      "paragraphs": [
+        "Biopsija razlikuje ograničene od invazivnih stanica i daje tip i gradus. Gradus opisuje stanice, stadij opseg: nisu zamjenjivi. Estrogenski i progesteronski receptori te HER2 usmjeravaju terapiju. Dodatne snimke odabiru se prema nalazu, ne sve svakome. Pitajte limfne čvorove, udaljeno širenje i nedostajuće rezultate. Genetsko savjetovanje ili testiranje ovise o osobi i obitelji."
+      ]
+    },
+    {
+      "heading": "Usporedite slijed lokalnog i sistemskog liječenja",
+      "paragraphs": [
+        "Lokalno se može očuvati dojka ili učiniti mastektomija, uz zračenje prema slučaju. Razgovarajte o rekonstrukciji ili izboru bez nje te svrsi i posljedicama čvorova. Sistemski se koriste kemoterapija, hormonska blokada, ciljana terapija ili imunoterapija kada obilježja odgovaraju. Ne treba svatko sve, a lijekovi mogu prije ili poslije operacije. Pitajte razlog, smanjenje rizika ili simptoma, štete i alternative. Metastatska bolest obično ima ciljeve kontrole, olakšanja i duljeg života, a ne obećanog izlječenja."
+      ]
+    },
+    {
+      "heading": "Rano planirajte nuspojave, plodnost i pomoć",
+      "paragraphs": [
+        "Pitajte energiju, posao, infekcije, osjet, seksualnost i sliku tijela. Plodnost ili kontracepciju treba spomenuti prije, a trudnoća traži stručnjake. Navedite lijekove i dodatke bez samostalnih reklamiranih pripravaka. Fizioterapija, rana, prehrana te emocionalna ili financijska podrška dio su skrbi. Pitajte oteklinu ruke ili prsa i službu limfedema nakon relevantnog liječenja. Dobijte kontakt i pisane upute za reakcije i izvan radnog vremena."
+      ]
+    },
+    {
+      "heading": "Jasno dogovorite kontrole i hitne simptome",
+      "paragraphs": [
+        "Praćenje provjerava oporavak, učinke i mogući povrat prema situaciji. Prijavite nove trajne simptome bez čekanja, ali svaki nije povrat. Vrućica, zimica ili naglo loše stanje uz terapiju koja slabi imunitet traže neposredan onkološki savjet prema planu. Teško disanje, bol u prsima, zbunjenost ili kolaps hitnu pomoć. Palijativna skrb pomaže simptomima i kvaliteti uz terapiju, ne samo posljednje dane. Tražite razumljive informacije i podršku kod preplavljenosti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: različiti planovi",
+      "text": "Dvije prijateljice dobivaju različite lijekove. Jedna pita receptore, stadij i ciljeve bez pretpostavke lošije skrbi. Donosi pisana pitanja i potvrđuje preostale nalaze."
+    },
+    {
+      "title": "Hipotetski primjer: plodnost prije terapije",
+      "text": "Pacijentica koja bi željela djecu govori prije početka. Dogovara pravodobnog stručnjaka, realne mogućnosti i kontracepciju tijekom plana, ne nakon učinka na plodnost."
+    }
+  ],
+  "questions": [
+    "Što pokazuju biopsija, receptori i stadij te što nije jasno?",
+    "Zašto ovaj slijed i koje koristi, rizici i alternative vrijede za mene?",
+    "Koju podršku, kontrole i hitni kontakt trebam tijekom i nakon liječenja?"
+  ]
+}

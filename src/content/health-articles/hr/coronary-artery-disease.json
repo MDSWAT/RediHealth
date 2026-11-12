@@ -1,0 +1,51 @@
+{
+  "title": "Koronarna bolest: simptomi, liječenje i svakodnevica",
+  "intro": "Srčani mišić treba vlastitu opskrbu krvlju bogatom kisikom. Koronarna bolest nastaje kada bolest žila koje ga hrane ograniči tu opskrbu, često nakupljanjem masnih plakova u stijenkama arterija. Liječenje ublažava simptome i smanjuje buduće infarkte. Novi ili promijenjeni simptomi u prsima trebaju procjenu i bez ranije dijagnoze srčane bolesti.",
+  "sections": [
+    {
+      "heading": "Prepoznajte anginu i moguću hitnost",
+      "paragraphs": [
+        "Angina može biti pritisak, stezanje ili pečenje u prsima, ponekad prema ruci, čeljusti, vratu, leđima ili gornjem trbuhu. Mogu je pratiti nedostatak zraka, mučnina, znojenje ili neobična slabost; jaka bol nije uvijek prisutna. Zovite hitnu službu zbog nove trajne nelagode u prsima, simptoma sa zaduhošću ili znojenjem te jake boli u mirovanju ili boli koja ne popušta. Nemojte voziti sami. Kod dijagnosticirane angine prekinite aktivnost i slijedite propisani plan napadaja, ali uzimanje lijeka ne smije odgoditi hitnu pomoć kod sumnje na infarkt. Češći, dulji ili lakše izazvani napadaji trebaju žuran pregled i kad prestanu."
+      ]
+    },
+    {
+      "heading": "Razumijte uzrok bez okrivljavanja",
+      "paragraphs": [
+        "Plakovi mogu postupno suziti arteriju. Ako plak pukne i nastane ugrušak, protok se može naglo zaustaviti i oštetiti srce. Pušenje, visoki tlak, kolesterol, dijabetes, bubrežna bolest, dob i obiteljska povijest pridonose riziku. Zdrav život pomaže, ali ne uklanja sve nasljedne ili medicinske čimbenike. Ne dolazi svaka angina iz velike začepljene arterije: bolest malih žila ili grč mogu trebati drugačiju procjenu. Stari uredan nalaz ne objašnjava automatski nove simptome."
+      ]
+    },
+    {
+      "heading": "Pretrage ovise o akutnim ili stabilnim simptomima",
+      "paragraphs": [
+        "Kod mogućeg infarkta hitan EKG i krvne pretrage dio su bolničke procjene; mogu se ponavljati. Jedan uredan EKG nije dovoljan da se odbace trajni zabrinjavajući simptomi. Kod stabilnih tegoba liječnik procjenjuje povijest, pregled i rizik, zatim može koristiti CT koronarografiju, funkcijsko snimanje ili druge testove. Invazivna koronarografija pokazuje anatomiju i pomaže planiranju liječenja kada je primjerena. Pitajte što test razjašnjava, o rizicima i sljedećem koraku. Kolesterol ili rezultat rizika sami ne određuju je li današnja bol infarkt."
+      ]
+    },
+    {
+      "heading": "Lijekovi i zahvati imaju različite svrhe",
+      "paragraphs": [
+        "Plan može uključivati lijek za kolesterol, propisane antitrombocitne lijekove protiv ugrušaka i lijekove za tlak ili anginu. Koristi, rizik krvarenja, druge bolesti i interakcije određuju izbor. Nemojte sami započeti dnevni aspirin niti prestati uzimati srčane lijekove. Ako je propisan nitrat poput GTN-a, naučite upute za napadaj i interakcije: ne smije se kombinirati s lijekovima za erekciju poput sildenafila ili tadalafila. Stent ili premosnica mogu biti preporučeni prema simptomima, anatomiji i hitnosti. Ne uklanjaju potrebu za trajnim liječenjem rizika. Nakon stenta razjasnite antitrombocitni plan prije prekida ili planiranog zahvata."
+      ]
+    },
+    {
+      "heading": "Izgradite realnu dugoročnu rutinu",
+      "paragraphs": [
+        "Pitajte za srčanu rehabilitaciju i siguran plan aktivnosti. Krenite podnošljivim koracima bez forsiranja kroz simptome u prsima. Podrška prestanku pušenja, uravnotežena prehrana, san i individualna kontrola tlaka, kolesterola i dijabetesa dio su skrbi. Rano razgovarajte o nuspojavama ili trošku kako bi se terapija prilagodila umjesto napustila. Popis lijekova i propisani lijek za napadaj držite dostupnima, a obitelj neka zna hitni plan. S liječnikom razmotrite vožnju, zahtjevan posao i nove vježbe. Tjeskoba nakon dijagnoze česta je: psihološka i praktična podrška pomažu uz kardiološku skrb."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: promjena obrasca važna je",
+      "text": "Arben obično ima kratku dijagnosticiranu anginu uz strm uspon. Jedne večeri pritisak u prsima počinje dok sjedi uz znojenje. Traži hitnu pomoć bez pretpostavke da poznata dijagnoza čini taj napadaj sigurnim."
+    },
+    {
+      "title": "Zamišljeni primjer: otvaranje arterije nije cijeli plan",
+      "text": "Nakon stenta žena se osjeća dobro i pita trebaju li joj tablete. Na kontroli tim objašnjava različite svrhe antitrombocitnog lijeka i terapije kolesterola, provjerava nuspojave i zapisuje dogovoreni plan umjesto da sama prekida lijekove."
+    }
+  ],
+  "questions": [
+    "Koji simptomi traže hitnu službu bez čekanja?",
+    "Čemu služi svaki lijek i koje interakcije ili krvarenja trebam znati?",
+    "Bi li rehabilitacija ili zahvat pomogli mom stanju i koja se korist očekuje?"
+  ]
+}

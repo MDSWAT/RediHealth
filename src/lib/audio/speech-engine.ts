@@ -41,6 +41,8 @@ const ROBOTIC = /^(eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley)\b/i;
 
 /** Preferred regional locale tags when a 2-letter code is passed. */
 const PREFERRED_REGIONAL_TAGS: Record<string, string[]> = {
+  ru: ["ru-ru", "ru"],
+
   ro: ["ro-ro", "ro-md", "ro"],
   en: ["en-gb", "en-us", "en-ie", "en-au", "en"],
   hr: ["hr-hr", "hr"],

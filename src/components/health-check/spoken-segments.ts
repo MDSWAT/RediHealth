@@ -55,6 +55,8 @@ export function spokenForm(lang: Lang, text: string): string {
     t = t.replace(/(\d)–(\d)/g, "od $1 do $2").replace(/\b112\b/g, "jedan jedan dva");
   } else if (lang === "rom") {
     t = t.replace(/(\d)–(\d)/g, "$1 dji ko $2").replace(/\b112\b/g, "jekh jekh duj");
+  } else if (lang === "ru") {
+    t = t.replace(/(\d)–(\d)/g, "от $1 до $2").replace(/\b112\b/g, "один один два");
   }
   return t;
 }

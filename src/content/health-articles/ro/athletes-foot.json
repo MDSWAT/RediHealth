@@ -1,0 +1,51 @@
+{
+  "title": "Micoza piciorului: tratarea infecției fungice și reducerea recidivelor",
+  "intro": "Micoza piciorului, numită și piciorul atletului, este o infecție fungică a pielii picioarelor și nu afectează doar sportivii. Poate provoca mâncărime, descuamare și crăpături, frecvent între degete, dar și pe tălpi sau margini. Alte afecțiuni cutanate pot semăna cu ea. Îngrijirea eficientă combină diagnosticul potrivit și tratamentul antifungic cu atenția la umezeală și la posibilitățile de răspândire a ciupercii.",
+  "sections": [
+    {
+      "heading": "Recunoaște simptomele fără să presupui că orice erupție este fungică",
+      "paragraphs": [
+        "Pielea se poate descuama, poate arăta albicioasă și umedă între degete ori uscată și scuamoasă în alte zone. Sunt posibile vezicule mici sau durere locală. Schimbarea culorii poate fi mai puțin evidentă pe pielea închisă. Eczema, alergia de contact și alte probleme pot semăna cu micoza. Dacă aspectul este neobișnuit, simptomele revin ori tratamentul nu ajută, cere evaluare în loc să schimbi repetat produsele. Medicul poate examina pielea sau recolta o probă dacă diagnosticul este neclar."
+      ]
+    },
+    {
+      "heading": "Alege tratamentul potrivit persoanei și zonei",
+      "paragraphs": [
+        "Există creme, spray-uri și alte preparate antifungice, dar indicațiile și modul de folosire diferă. Farmacistul sau medicul poate recomanda o variantă, mai ales pentru copii, sarcină, alte boli ori medicamente. Respectă durata recomandată, nu opri doar pentru că mâncărimea scade și nu aplica mai mult pentru rezultate rapide. Nu folosi tratamentul altei persoane. Modificările unghiilor pot necesita evaluare separată, deoarece tratarea pielii din jur nu tratează automat o infecție fungică a unghiei."
+      ]
+    },
+    {
+      "heading": "Evită tratamentele care pot ascunde problema",
+      "paragraphs": [
+        "O cremă cu corticoid folosită singură poate masca ori agrava unele infecții fungice, chiar dacă roșeața sau mâncărimea se ameliorează temporar. Nu împrumuta un corticoid și nu folosi produse combinate fără sfat potrivit. Substanțele agresive, înălbitorul și răzuirea puternică pot răni pielea și nu sunt scurtături sigure. Spune profesionistului ce ai încercat și dacă zona a devenit mai dureroasă sau iritată. Astfel poate deosebi infecția persistentă de iritație ori de un diagnostic greșit."
+      ]
+    },
+    {
+      "heading": "Adaptează controlul umezelii și igiena",
+      "paragraphs": [
+        "Usucă atent picioarele după spălare, inclusiv între degete, și schimbă șosetele umede. Lasă încălțămintea să se usuce și alege variante potrivite activității fără să menții picioarele mereu umede. Nu împărți încălțămintea ori prosoapele și folosește încălțăminte potrivită în vestiare comune. Măsurile limitează expunerea și recidivele, dar nu înlocuiesc tratamentul necesar. Discută problemele repetate dacă bocancii de lucru, transpirația ori accesul limitat la spălare fac sfaturile obișnuite greu de urmat."
+      ]
+    },
+    {
+      "heading": "Află când să ceri ajutor medical mai devreme",
+      "paragraphs": [
+        "Cere sfat dacă simptomele se extind, persistă după durata recomandată, implică unghiile sau revin repetat. Diabetul, circulația slabă, sensibilitatea redusă ori imunitatea scăzută impun atenție specială problemelor picioarelor. Piciorul cald, tot mai dureros ori umflat, inflamația care se extinde, o rană sau febra necesită evaluare promptă, nu tratare ca o micoză obișnuită. Protejează pielea lezată și nu tăia sau scormoni zona. Întreabă ce control este necesar dacă diagnosticul rămâne neclar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: reevaluarea eșecului repetat al tratamentului",
+      "text": "O persoană are mâncărime și descuamare în ciuda mai multor produse din farmacie. Duce denumirile produselor și descrie folosirea lor la consultație. Întreabă dacă diagnosticul trebuie confirmat, în loc să presupună că un produs mai puternic ori un corticoid va rezolva problema."
+    },
+    {
+      "title": "Exemplu ipotetic: recunoașterea unui risc diferit",
+      "text": "O persoană cu diabet observă o crăpătură dureroasă, căldură locală și umflare nouă a piciorului. Cere evaluare medicală promptă, fără să aștepte efectul cremei antifungice. Spune despre diabet și schimbarea recentă a simptomelor."
+    }
+  ],
+  "questions": [
+    "Pare infecție fungică sau ar ajuta o probă de piele ori evaluarea altei cauze?",
+    "Ce tratament și durată sunt potrivite pielii, bolilor și medicamentelor mele?",
+    "Ce schimbări sugerează infecție ori altă complicație și cum pot reduce realist recidivele?"
+  ]
+}

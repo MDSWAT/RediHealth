@@ -6,6 +6,7 @@ import { getRequestLang } from "@/lib/i18n/server-routing";
 import { siteMetadata } from "@/lib/i18n/site-metadata";
 import { getSiteUrl } from "@/lib/site-url";
 import { headers } from "next/headers";
+import { isRecaptchaEnabled } from "@/lib/security/recaptcha-config";
 
 // latin-ext carries ă, ș, ț, č, ć, đ, š, ž across Romanian, Croatian, Albanian, and Romani.
 // Using display: "swap" with preload: false avoids unused-preload console warnings on English/Italian
@@ -97,7 +98,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         >
           {siteMetadata[lang].skipLink}
         </a>
-        <SiteChrome lang={lang} nonce={nonce} captchaEnabled={process.env.RECAPTCHA_ENABLED === "true"}>{children}</SiteChrome>
+        <SiteChrome lang={lang} nonce={nonce} captchaEnabled={isRecaptchaEnabled()}>{children}</SiteChrome>
       </body>
     </html>
   );

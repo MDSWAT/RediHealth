@@ -1,0 +1,51 @@
+{
+  "title": "Atopic eczema: daily skin care and a clear flare plan",
+  "intro": "Atopic eczema is an inflammatory condition that makes skin itchy, dry and easily irritated. It often starts in childhood but can persist or begin in adults. Flares can interrupt sleep, work and family life. Eczema itself is not contagious, and it is not a sign of poor hygiene. Treatment combines everyday skin protection with medicines chosen for the affected area and severity.",
+  "sections": [
+    {
+      "heading": "Recognise the pattern and check the diagnosis",
+      "paragraphs": [
+        "The skin may crack, thicken, scale or weep, with patches that change over time. Inflammation may appear red on light skin, or purple, grey, darker or lighter on brown and black skin; look at texture and symptoms as well as colour. Babies often have facial patches, while folds, hands and other sites may be affected later. Genetics, the skin barrier and immune activity interact. Heat, sweat, harsh soaps and particular products can worsen symptoms, but a flare does not prove a food allergy. Other rashes can look similar. Seek assessment for a new or uncertain rash, especially one that does not respond to the expected treatment."
+      ]
+    },
+    {
+      "heading": "Protect the skin even between flares",
+      "paragraphs": [
+        "Use a suitable fragrance-free emollient regularly, including when the skin looks better, and choose a soap substitute or gentle washing plan with your clinician. Short comfortable washes, gentle drying and applying moisturiser afterward may be easier than hot, prolonged bathing. A cream or ointment should be acceptable enough to use consistently; ask about an alternative if it stings persistently or seems to worsen the rash. Use clean hands and avoid contaminating shared tubs. Keep nails short and use comfortable clothing to reduce scratching damage, without blaming someone for itching. Emollient residue on clothes, dressings and bedding increases fire risk: avoid smoking and naked flames; washing reduces build-up but does not eliminate the risk. Floors or baths can become slippery."
+      ]
+    },
+    {
+      "heading": "Treat inflammation with instructions for each body area",
+      "paragraphs": [
+        "Topical corticosteroids can control flares when the strength, amount, site and duration are appropriate. Face, eyelids, folds and infant skin need particular care. Ask for a demonstration and a written plan showing which preparation goes where, how often, when to stop or step down and how to continue moisturising. Fear can lead to undertreatment, while unsupervised prolonged use of an inappropriate potent product can cause harm. Do not share prescriptions or apply a strong body cream to the eyelids. Other prescribed topical treatments may be suitable for particular sites or repeated flares. Wet wraps and occlusive dressings need instruction, especially when used with a steroid, because they change exposure."
+      ]
+    },
+    {
+      "heading": "Know when a flare may be infection",
+      "paragraphs": [
+        "Rapid worsening, increasing pain, warmth, swelling, pus, marked crusting or feeling unwell needs prompt assessment. Painful clusters of similar blisters or small punched-out sores, particularly with fever or rapid spread, can indicate eczema herpeticum, a herpes infection needing same-day urgent treatment. Eye involvement requires urgent specialist assessment. Do not assume that every wet patch needs an antibiotic or try leftover antibiotic creams; the clinician distinguishes inflammation from bacterial or viral infection. Severe illness, confusion, collapse or major breathing difficulty requires emergency care. Tell the team about immune-suppressing treatment and recent contacts with cold sores. A new serious change should not wait for a routine dermatology visit."
+      ]
+    },
+    {
+      "heading": "Review difficult eczema and its everyday impact",
+      "paragraphs": [
+        "If the plan is not working, check the diagnosis, application technique, access to enough treatment, possible contact allergy and infection before repeatedly escalating on your own. Severe or persistent eczema may need specialist options such as phototherapy or systemic medicines with individual monitoring. Do not use sunbeds or obtain immune treatments without supervision. Discuss sleep loss, anxiety, school or work difficulties and support for carers. Broad food exclusions and unvalidated allergy tests can create unnecessary restrictions, especially for a growing child; suspected food reactions need a focused assessment. Agree a follow-up date and a plan for future flares. Good control is a reasonable goal even when the condition cannot be permanently cured."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: knowing which cream goes where",
+      "text": "Lina's parent is unsure whether the same steroid can be used on her face and legs. A clinician labels a separate site-specific plan and demonstrates the amount. They continue daily emollient and arrange review rather than avoiding all anti-inflammatory treatment or using a strong cream everywhere."
+    },
+    {
+      "title": "Hypothetical example: a different-looking flare",
+      "text": "Arben usually has itchy dry patches, but develops painful similar blisters, fever and rapidly spreading sores. He seeks same-day urgent assessment for possible eczema herpeticum instead of waiting to see whether extra moisturiser will settle it."
+    }
+  ],
+  "questions": [
+    "Is this atopic eczema, and what might be worsening my skin?",
+    "Which product, amount and duration should I use on each area during and between flares?",
+    "What suggests infection, and when should I seek urgent help or specialist review?"
+  ]
+}

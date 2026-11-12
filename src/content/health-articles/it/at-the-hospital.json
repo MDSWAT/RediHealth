@@ -1,0 +1,51 @@
+{
+  "title": "In ospedale: capire le cure e preparare il ritorno a casa",
+  "intro": "Una visita in ospedale può essere ambulatoriale, una procedura in giornata o un ricovero notturno. Sapere perché si va e chi è responsabile del passo successivo può ridurre l'incertezza. Questa guida offre consigli pratici per prepararsi e comunicare. Regole di ricovero, assicurazione e pagamento variano tra paesi; l'articolo originale collegato spiega l'organizzazione tedesca, non diritti universali.",
+  "sections": [
+    {
+      "heading": "Chiarire il ricovero prima di una visita programmata",
+      "paragraphs": [
+        "Verificate reparto, data, orario di arrivo e recapiti e chiedete se è previsto il pernottamento. Confermate con ospedale e assicuratore eventuali requisiti di invio, copertura o pagamento. Informatevi su trasporto, interpretariato, accessibilità e sostegno per un accompagnatore. Seguite le istruzioni individuali su cibo, bevande e medicinali: non inventate un periodo di digiuno e non sospendete autonomamente un anticoagulante. Contattate l'équipe se le indicazioni sono contrastanti, la salute cambia o compare un'infezione prima del ricovero."
+      ]
+    },
+    {
+      "heading": "Portare informazioni utili a evitare errori",
+      "paragraphs": [
+        "Portate elenco aggiornato dei medicinali, allergie, referti pertinenti e documenti richiesti. Includete prodotti da banco e integratori e descrivete cosa assumete realmente. Segnalate impianti, precedenti reazioni all'anestesia, esigenze comunicative e aiuto necessario per camminare o curarvi. Occhiali e apparecchi acustici facilitano le conversazioni: chiedete come conservarli al sicuro. Confermate l'identità durante i controlli e segnalate se un farmaco, una procedura o un'etichetta sembrano diversi da quanto previsto."
+      ]
+    },
+    {
+      "heading": "Chiedere chi coordina le decisioni",
+      "paragraphs": [
+        "Potreste incontrare diversi professionisti, ciascuno con un ruolo. Chiedete chi dirige il trattamento e come contattare qualcuno per una domanda. Prima di una procedura discutete scopo, benefici probabili, rischi importanti, alternative e recupero. Richiedete un interprete o spiegazioni più chiare se necessario e dite se non comprendete la discussione sul consenso. Per una scelta importante non urgente chiedete se è possibile avere tempo o un altro parere. Comunicate chi volete coinvolgere e quali informazioni possono essere condivise."
+      ]
+    },
+    {
+      "heading": "Segnalare cambiamenti senza attendere il giro visite",
+      "paragraphs": [
+        "Usate il sistema di chiamata se state molto peggio, compare nuovo affanno o dolore toracico, avete forti capogiri o notate altri cambiamenti preoccupanti. Chiedete aiuto prima di alzarvi se siete deboli, instabili o collegati ad apparecchiature. Parlate presto di dolore e nausea e seguite le indicazioni su movimento, ferite e prevenzione dei coaguli. L'igiene delle mani conta per personale, visitatori e pazienti. Se temete che una preoccupazione importante non sia stata ascoltata, chiedete una rivalutazione all'infermiere responsabile o al medico curante."
+      ]
+    },
+    {
+      "heading": "Rendere le istruzioni di dimissione applicabili a casa",
+      "paragraphs": [
+        "Prima di uscire ottenete un riepilogo comprensibile di diagnosi, trattamento ed esami ancora in attesa. Rivedete l'elenco dei medicinali: quali sono nuovi, modificati, sospesi o continuati, perché e chi li controllerà. Confermate cura delle ferite, limiti di attività, controlli, segnali d'allarme e un recapito per problemi. Spiegate se vivete soli, non riuscite a fare le scale o non avete aiuto per procurarvi i farmaci. Chiedete quali sostegni, ausili o riabilitazione si possano organizzare. Un familiare può aiutare con il vostro permesso, ma non va dato per scontato che possa offrire tutta l'assistenza necessaria."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: istruzioni poco chiare sui farmaci",
+      "text": "Prima di una procedura, un paziente riceve un vecchio foglio che sembra contraddire il piano farmacologico recente. Contatta l'équipe per chiarire invece di indovinare quali compresse sospendere."
+    },
+    {
+      "title": "Esempio ipotetico: ostacoli pratici alla dimissione",
+      "text": "Un paziente è pronto a uscire dopo il trattamento, ma non riesce a salire in sicurezza le scale di casa e non capisce le nuove prescrizioni. Lo comunica al reparto prima della partenza, chiede una revisione dei medicinali e discute trasporto e assistenza."
+    }
+  ],
+  "questions": [
+    "Chi coordina le mie cure e quali sono benefici, rischi e alternative del trattamento programmato?",
+    "Quali medicinali devo prendere prima del ricovero e dopo la dimissione e chi confermerà le modifiche?",
+    "Di quale aiuto avrò bisogno a casa, chi segue gli esami in attesa e chi contatto se peggioro?"
+  ]
+}

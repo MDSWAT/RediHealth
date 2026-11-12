@@ -16,6 +16,26 @@ function useSafeLanguage() {
 }
 
 const roomCopy = {
+  ru: {
+    patient: "Пациент",
+    endedTitle: "Звонок завершен",
+    endedDesc: "Спасибо. Письменная консультация врача появится в вашем аккаунте.",
+    seeAdvice: "Посмотреть совет",
+    backHome: "Назад",
+    permTitle: "Разрешите вашему браузеру использовать микрофон",
+    permDesc: "Вы разговариваете с врачом только голосом, как по телефону. Ваш браузер попросит использовать микрофон.",
+    permFree: "Звонок бесплатный",
+    permNoRecording: "Звонок не записывается без вашего согласия",
+    permHeadphones: "Если у вас есть наушники, наденьте их, чтобы лучше слышать",
+    permAllow: "Разрешите и присоединяйтесь",
+    permCancel: "Отмена",
+    statusLine: (patient: string, room: string) => `Шифрованный звонок · Пациент: ${patient} · Комната: ${room}`,
+    callTitle: "Позвонить врачу",
+    voiceOnly: "Только голос, использует мало данных",
+    emergency: "Чрезвычайная ситуация? Позвоните 112",
+    endCall: "Завершить вызов",
+  },
+
   ro: {
     patient: "Pacient",
     endedTitle: "Apelul s-a încheiat",

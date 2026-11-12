@@ -1,0 +1,51 @@
+{
+  "title": "Estimarea calciului: etichete și folosirea prudentă a rezultatului",
+  "intro": "Estimarea calciului alimentar ajută adultul să înțeleagă dieta și să discute schimbări. Rezultatul este aproximativ: porțiile, mărcile și zilele diferă. Nu diagnostichează deficitul, nu măsoară densitatea osoasă și nu prescrie automat supliment. Copiii, sarcina, alăptarea și bolile necesită sfat adaptat, nu copierea necontrolată a unei estimări pentru adult.",
+  "sections": [
+    {
+      "heading": "Notați alimentul și porția consumată",
+      "paragraphs": [
+        "Includeți zile reprezentative, nu doar ziua perfectă. Notați băuturi, lactate, alternative fortificate, alte surse și suplimentele existente. Pe etichetă verificați dacă valoarea este per porție, greutate ori volum și comparați cu ce consumați. Nu numărați același aliment de două ori într-o masă. Dacă apare procent din valoare de referință, aflați referința înainte să îl considerați necesarul propriu."
+      ]
+    },
+    {
+      "heading": "Alegeți referința potrivită înaintea evaluării",
+      "paragraphs": [
+        "Calciul susține oase, dinți și alte funcții. Aporturile recomandate sunt populaționale și diferă după vârstă, etapă și autoritatea națională. Întrebați ce se aplică, mai ales la tratament de osteoporoză, boală renală ori dietă restrânsă. Limita superioară tolerabilă este graniță de siguranță, nu obiectiv. O zi sub referință nu stabilește deficitul, iar excesul repetat nu întărește sigur oasele."
+      ]
+    },
+    {
+      "heading": "Luați în calcul sursele și absorbția",
+      "paragraphs": [
+        "Lactatele, băuturile vegetale cu calciu, unele tofu, anumite legume verzi și peștii cu oase comestibile contribuie. Verificați produsul: nu orice băutură ori tofu este fortificat. Calciul din spanac se absoarbe mai slab din cauza altor compuși. Vitamina D ajută absorbția, fără a justifica doze mari nesupravegheate. Dacă evitați lactatele ori restrângeți dieta, dieteticianul găsește alternative potrivite preferințelor, costului și celorlalte nevoi."
+      ]
+    },
+    {
+      "heading": "Verificați suplimentele și medicamentele",
+      "paragraphs": [
+        "Suplimentul ajută uneori, dar adăugați calciul său la total și verificați calciul elemental pe etichetă. Nu confundați greutatea compusului cu cea a calciului furnizat. Excesul poate da efecte adverse și crește riscul de calculi la unii. Calciul interferează cu hormonul tiroidian și unele antibiotice; întrebați farmacistul produsele și orele exacte. Nu copiați separarea altei persoane și nu opriți singuri tratamentul."
+      ]
+    },
+    {
+      "heading": "Folosiți estimarea pentru discuție, nu verdict osos",
+      "paragraphs": [
+        "Jurnalele au incertitudine, iar corpul controlează strâns calciul sanguin; analiza obișnuită nu arată simplu aportul alimentar. Oasele depind și de activitate, fumat, hormoni, boli și medicamente. La risc de fractură, simptome ori boală cunoscută întrebați evaluarea separată, nu doar totalul calculatorului. Stabiliți schimbări practice și control. La calculi renali ori analize anormale cereți sfat individual, nu eliminați automat sursele ori adăugați doze mari."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Etichetă inventată: verificarea porției",
+      "text": "O etichetă fictivă indică 200 mg de calciu per porție. Consumul a 2 porții aduce 400 mg. Valorile inventate explică aritmetica, nu necesarul zilnic sau recomandarea produsului."
+    },
+    {
+      "title": "Exemplu ipotetic: băutură fortificată",
+      "text": "Un adult înlocuiește laptele cu băutură vegetală și notează porțiile. Verifică adaosul de calciu al mărcii și discută dieta și suplimentul existent, fără a presupune aceiași nutrienți în toate alternativele."
+    }
+  ],
+  "questions": [
+    "Ce referință se aplică vârstei, sănătății și etapei mele?",
+    "Jurnalul sugerează schimbare practică și se potrivește un supliment?",
+    "Calciul interferează cu medicamentele și oasele ori rinichii necesită evaluare separată?"
+  ]
+}

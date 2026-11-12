@@ -1,0 +1,51 @@
+{
+  "title": "SPOK: frymëmarrja e përditshme dhe plani për përkeqësime",
+  "intro": "Sëmundja pulmonare obstruktive kronike, SPOK, kufizon vazhdimisht rrjedhën e ajrit nga dëmtimi i rrugëve dhe mushkërive. Mund të përfshijë bronkit kronik, emfizemë ose të dyja. Mungesa e frymës, kolla dhe gëlbaza kufizojnë aktivitetin, por trajtimi e rehabilitimi ndihmojnë dhe ulin përkeqësimet. Nuk është thjesht plakje e pashmangshme; shqetësimet e vazhdueshme duhen vlerësuar edhe pa histori duhani.",
+  "sections": [
+    {
+      "heading": "Konfirmimi dhe shkaqet e tjera",
+      "paragraphs": [
+        "Mjeku pyet për simptoma, duhan, pluhur e tymra pune, ndotje në shtëpi dhe sëmundje të mëparshme. Spirometria, zakonisht pas bari që hap rrugët, ndihmon të konfirmojë pengesën e vazhdueshme. Teste të tjera kërkojnë zemër, infeksion ose anemi. Imazhi i kraharorit vetëm nuk zëvendëson funksionin pulmonar. Përshkruani ndikimin në ecje, gjumë e vetëkujdes dhe sa përkeqësime keni pasur."
+      ]
+    },
+    {
+      "heading": "Ulni ekspozimet dhe rindërtoni aktivitetin",
+      "paragraphs": [
+        "Lënia e duhanit është thelbësore; këshillimi dhe barnat e përshtatshme ndihmojnë. Diskutoni pluhurin, tymrat dhe nxitës të tjerë. Rehabilitimi pulmonar bashkon ushtrim të mbikëqyrur, edukim dhe vetëmenaxhim sipas aftësisë, jo detyrim përmes shenjave të rrezikshme. Aktiviteti gradual, ndarja e detyrave dhe ushqyerja ruajnë forcën. Shmangia e çdo lëvizjeje shton dobësinë. Flisni për ankth dhe humor të ulët që e vështirësojnë përballimin."
+      ]
+    },
+    {
+      "heading": "Inhalatori dhe teknika",
+      "paragraphs": [
+        "Bronkodilatatorët hapin rrugët. Barnat afatshkurtra dhe afatgjata kanë role të ndryshme; disa persona përfitojnë edhe kortikosteroid të thithur. Kombinimi varet nga simptomat, episodet dhe të dhëna të tjera, jo ngjyra. Kërkoni që profesionisti t'ju shohë me pajisjen tuaj, të vlerësojë dhomë ndihmëse dhe të shpjegojë mirëmbajtjen kundrejt lehtësimit. Raportoni efekte dhe vështirësi përdorimi. Mbani listë barnash dhe ndiqni udhëzimet e steroidit, përfshirë kujdesin e gojës."
+      ]
+    },
+    {
+      "heading": "Plan i shkruar për përkeqësimin",
+      "paragraphs": [
+        "Përkeqësimi do të thotë frymëmarrje, kollë ose gëlbazë më e rëndë dhe mund të kërkojë barna shtesë. Pyesni kur të kontaktoni ekipin, si përdoret lehtësuesi dhe nëse duhet paketë shpëtimi e përshkruar posaçërisht. Mos nisni antibiotikë të huaj ose steroid pa plan. Kërkoni këshillë urgjente për më shumë mungesë fryme, kollitje gjaku ose këmbë të re të fryrë e të dhimbshme. Frymëmarrja shumë e vështirë, pamundësia për të folur normalisht, shtypja në kraharor, buzët blu a gri ose konfuzioni kërkojnë emergjencë. Diagnoza e njohur nuk shpjegon çdo urgjencë."
+      ]
+    },
+    {
+      "heading": "Oksigjeni, parandalimi dhe mbështetja",
+      "paragraphs": [
+        "Oksigjeni në shtëpi jepet për persona të zgjedhur pas vlerësimit të oksigjenit të ulët, jo për çdo gulçim. Përdorni cilësimin e përshkruar; mos pini duhan, mos avulloni dhe mos lejoni flakë pranë pajisjes. Diskutoni vaksinat vendore, kontrollet dhe ndihmën pas spitalit. Sëmundja e avancuar mund të kërkojë trajtim specialistik dhe planifikim. Lehtësimi i simptomave, mbështetja psikologjike dhe ndihma praktike shoqërojnë trajtimin aktiv në çdo fazë. Kërkoni plan për prioritetet dhe banimin tuaj."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pajisje e vështirë — shembull hipotetik",
+      "text": "Dikush thotë se inhalatori nuk ndihmon. Mjeku vëren teknikën ose mungesën e forcës së dorës. Praktikojnë dhe shqyrtojnë pajisje tjetër, pa quajtur barin të dështuar."
+    },
+    {
+      "title": "Ndryshim frymëmarrjeje — shembull hipotetik",
+      "text": "Një person me SPOK ka më shumë gulçim dhe pulpë të re të dhimbshme e të ënjtur. Kërkon vlerësim urgjent pa e trajtuar çdo ndryshim si episod të zakonshëm. Gulçimi i rëndë ose shtypja në kraharor kërkojnë emergjencë."
+    }
+  ],
+  "questions": [
+    "A e kanë konfirmuar spirometria dhe të dhënat SPOK, dhe a ka kontribute të tjera?",
+    "Mund të kontrolloni teknikën time dhe të më drejtoni për rehabilitim?",
+    "Cili është plani i shkruar dhe cilat shenja kërkojnë urgjencë ose emergjencë?"
+  ]
+}

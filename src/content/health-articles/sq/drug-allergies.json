@@ -1,0 +1,51 @@
+{
+  "title": "Alergjitë ndaj barnave: njohja e reaksioneve dhe shënimi i saktë",
+  "intro": "Alergjia ndaj ilaçit është reaksion imunitar. Ndryshon nga shumë efekte të pritshme, por të dyja mund të duan ndihmë mjekësore. Fillon shpejt ose më vonë. Qasja e sigurt bashkon reagimin ndaj shenjave të rënda, përshkrimin e saktë dhe planin për barna të ardhshme, pa hamendësuar sigurinë.",
+  "sections": [
+    {
+      "heading": "Jo çdo efekt i padëshiruar është alergji",
+      "paragraphs": [
+        "Urtikaria me kruarje, ënjtja dhe disa skuqje sugjerojnë alergji, ndërsa të përzierat ose diarreja vetëm mund të jenë efekt i zakonshëm ose tjetër sëmundje. Skuqja gjatë antibiotikut mund të vijë nga infeksioni. Shenjat nuk vendosin vetë diagnozën. Reaksionet e shpejta prekin frymëmarrjen dhe qarkullimin, të vonshmet lëkurën ose organet. Tolerimi më parë nuk përjashton reaksion më vonë. Tregoni çfarë ndodhi, jo vetëm fjalën alergji. Alergjia e një të afërmi nuk do të thotë automatikisht e njëjta te ju."
+      ]
+    },
+    {
+      "heading": "Shenjat e rënda kërkojnë emergjencë",
+      "paragraphs": [
+        "Ënjtja e papritur e gjuhës ose fytit, fishkëllima, frymëmarrja ose gëlltitja e vështirë, të fikëtit, kolapsi ose përkeqësimi i shpejtë pas ilaçit mund të jenë anafilaksi, edhe pa skuqje. Përdorni menjëherë autoinjektorin e adrenalinës të përshkruar sipas udhëzimeve dhe thërrisni emergjencën. Mos ngrihuni ose ecni; shtrihuni, ngrini ngadalë pjesën sipër nëse frymëmarrja pengohet, majtas në shtatzëni. Pa përmirësim pas pesë minutash përdorni të dytin sipas planit. Antihistaminiku nuk zëvendëson adrenalinën për frymëmarrje ose qarkullim. Skuqja e dhimbshme në përhapje me ethe, flluska, zhveshje ose plagë në gojë, sy ose organe gjenitale mund të jetë reaksion i rëndë i vonshëm: spital menjëherë."
+      ]
+    },
+    {
+      "heading": "Kontaktoni përshkruesin dhe shënoni hollësitë",
+      "paragraphs": [
+        "Për reaksion të ri të dyshuar kërkoni këshillë shpejt para dozës tjetër; mos merrni dozë prove. Mjeku vendos çfarë ndalet, trajtimin urgjent dhe zëvendësimin e sigurt të terapisë thelbësore. Shënoni emrin gjenerik dhe tregtar, fuqinë, rrugën, fillimin, dozat para shenjave, kohën dhe trajtimin e marrë. Përfshini barnat e tjera, shtesat dhe sëmundjen. Fotografitë dhe paketimi ndihmojnë, pa vonuar urgjencën për t'i mbledhur. Kërkoni regjistrim të ndarë të alergjisë së dyshuar nga efektet e zakonshme dhe sqarim të sigurisë së diagnozës."
+      ]
+    },
+    {
+      "heading": "Specialisti sqaron zgjedhjet e ardhshme",
+      "paragraphs": [
+        "Testi zgjidhet sipas ilaçit dhe historisë; nuk ka test të vetëm të besueshëm për çdo alergji. Lëkura, gjaku ose prova e mbikëqyrur mund të vlejnë në raste të zgjedhura. Prova do vlerësim rreziku dhe vend ku trajtohen reaksionet, jo shtëpi. Reaksionet e rënda të vonshme nuk janë të përshtatshme për provë rutinë me shkaktarin. Shumë etiketa të vjetra peniciline dalin të pasakta pas vlerësimit, por mos i hiqni vetë ose huazoni antibiotik për provë. Reaksionet e kryqëzuara varen nga ilaçet, jo emra të ngjashëm. Desensibilizimi është procedurë më vete e monitoruar për trajtime thelbësore të zgjedhura, jo shërim i përhershëm."
+      ]
+    },
+    {
+      "heading": "Bëjeni rezultatin të dobishëm kudo",
+      "paragraphs": [
+        "Pas vlerësimit kërkoni shkrim për shkaktarin e konfirmuar ose të dyshuar, ilaçet e lidhura për shmangie dhe alternativat e sigurta. Kur përjashtohet alergjia, përditësoni regjistrin te mjeku, farmacia dhe shërbimet. Mbajeni informacionin para recetave, injeksioneve, kirurgjisë dhe blerjeve pa recetë. Pyesni për shenjë alarmi mjekësor dhe plan urgjent. Jo çdo alergji kërkon adrenalinë të përshkruar; vendimi është individual. Raportoni efektet e dyshuara përmes sistemit lokal me ndihmë nëse duhet. Regjistri i qartë shmang riekspozimin dhe ndalimin e panevojshëm të trajtimit të dobishëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: etiketë e pasigurt fëmijërie",
+      "text": "Mira ka etiketë peniciline, por familja kujton vetëm skuqje gjatë infeksionit në fëmijëri. Kërkon vlerësim para nevojës për antibiotik. Nuk provon tableta të mbetura në shtëpi; regjistri ndryshon pas përfundimit mjekësor."
+    },
+    {
+      "title": "Shembull hipotetik: alarm i vonshëm",
+      "text": "Disa ditë pas ilaçit të ri Dani ka ethe, lëkurë të dhimbshme dhe plagë goje. Kërkon vlerësim spitalor menjëherë me listën, jo vetëm antihistaminik dhe pritje."
+    }
+  ],
+  "questions": [
+    "Duket alergji, reaksion tjetër serioz apo efekt i parashikueshëm?",
+    "Çfarë shmang tani dhe a duhet specialist ose plan emergjent?",
+    "Çfarë shënohet saktë, përfshirë alternativa të sigurta?"
+  ]
+}

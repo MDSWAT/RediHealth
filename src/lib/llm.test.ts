@@ -21,7 +21,7 @@ describe("generateText", () => {
     fetchMock.mockReset();
     vi.stubGlobal("fetch", fetchMock);
     vi.stubEnv("LLMSRELAY_API_KEY", "relay-key");
-    vi.stubEnv("ANTHROPIC_API_KEY", "");
+    vi.stubEnv("ANTHROPIC_API_KEY", "anthropic-key");
     vi.stubEnv("LLMSRELAY_MODEL", "");
     vi.stubEnv("ANTHROPIC_MODEL", "");
     vi.stubEnv("ANTHROPIC_BASE_URL", "");
@@ -42,47 +42,50 @@ describe("generateText", () => {
       image: { mimeType: "image/png", data: "AAAA" },
     });
 
-    expect(result).toEqual({ text: "{\"ok\":true}", model: "claude-haiku-4.5" });
+    expect(result).toEqual({ text: "{\"ok\":true}", model: "claude-haiku-4-5-20251001" });
     const [url, init] = fetchMock.mock.calls[0];
-    expect(url).toBe("https://api.llmsrelay.com/v1/messages");
-    expect(init.headers).toMatchObject({ Authorization: "Bearer relay-key", "anthropic-version": "2023-06-01" });
+    expect(url).toBe("https://api.anthropic.com/v1/messages");
+    expect(init.headers).toMatchObject({ "x-api-key": "anthropic-key", "anthropic-version": "2023-06-01" });
+    expect(init.headers).not.toHaveProperty("Authorization");
     expect(init.signal).toBeInstanceOf(AbortSignal);
     const payload = JSON.parse(init.body);
     expect(payload.system).toBe("system prompt");
     expect(payload.messages[0].content[1]).toMatchObject({ type: "image", source: { media_type: "image/png" } });
   });
 
-  it("authenticates with x-api-key on a custom Anthropic endpoint", async () => {
-    vi.stubEnv("ANTHROPIC_BASE_URL", "https://anthropic.example.com/");
-    vi.stubEnv("ANTHROPIC_API_KEY", "anthropic-key");
+  it("ignores stale relay routing and uses the selected direct Claude model", async () => {
+    vi.stubEnv("ANTHROPIC_BASE_URL", "https://api.llmsrelay.com/");
+    vi.stubEnv("LLMSRELAY_MODEL", "gpt-4o-mini");
+    vi.stubEnv("ANTHROPIC_MODEL", "claude-sonnet-4-6");
     fetchMock.mockResolvedValue(jsonResponse({ content: [{ type: "text", text: "hi" }] }));
 
-    await generateText({ system: "s", text: "t" });
+    const result = await generateText({ system: "s", text: "t" });
 
     const [url, init] = fetchMock.mock.calls[0];
-    expect(url).toBe("https://anthropic.example.com/v1/messages");
+    expect(url).toBe("https://api.anthropic.com/v1/messages");
+    expect(result.model).toBe("claude-sonnet-4-6");
+    expect(JSON.parse(init.body).model).toBe("claude-sonnet-4-6");
     expect(init.headers).toMatchObject({ "x-api-key": "anthropic-key" });
     expect(init.headers).not.toHaveProperty("Authorization");
   });
 
-  it("falls back to chat completions when a relay model has no responses endpoint", async () => {
-    vi.stubEnv("LLMSRELAY_MODEL", "gpt-4o-mini");
-    fetchMock
-      .mockResolvedValueOnce(jsonResponse({ error: { message: "not found" } }, 404))
-      .mockResolvedValueOnce(jsonResponse({ choices: [{ message: { content: "answer" } }] }));
-
-    const result = await generateText({ system: "s", text: "t" });
-
-    expect(result.text).toBe("answer");
-    expect(fetchMock.mock.calls[0][0]).toBe("https://api.llmsrelay.com/v1/responses");
-    expect(fetchMock.mock.calls[1][0]).toBe("https://api.llmsrelay.com/v1/chat/completions");
+  it("rejects a non-Claude model without sending the key anywhere", async () => {
+    vi.stubEnv("ANTHROPIC_MODEL", "gpt-4o-mini");
+    expect(await failure(generateText({ system: "s", text: "t" }))).toMatchObject({ kind: "not-configured" });
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it("reports missing credentials without calling the provider", async () => {
-    vi.stubEnv("LLMSRELAY_API_KEY", "");
+    vi.stubEnv("ANTHROPIC_API_KEY", "");
     const error = await failure(generateText({ system: "s", text: "t" }));
     expect(error).toMatchObject({ kind: "not-configured" });
     expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("does not retry a failed Claude request through a relay", async () => {
+    fetchMock.mockResolvedValue(jsonResponse({}, 404));
+    expect(await failure(generateText({ system: "s", text: "t" }))).toMatchObject({ kind: "unavailable", status: 404 });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   it("maps provider status codes to failure kinds", async () => {

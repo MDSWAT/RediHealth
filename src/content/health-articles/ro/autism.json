@@ -1,0 +1,51 @@
+{
+  "title": "Autismul: înțelegerea nevoilor și găsirea sprijinului util",
+  "intro": "Autismul este o diferență de dezvoltare prezentă pe tot parcursul vieții, care poate afecta comunicarea, interacțiunea socială, experiențele senzoriale și interesele ori activitățile. Abilitățile și nevoile de sprijin variază mult. Unii au nevoie de ajutor zilnic amplu; alții trăiesc independent, cu dificultăți importante ascunse. Sprijinul bun pornește de la experiența și obiectivele persoanei, fără a presupune aceeași abordare pentru orice diagnostic identic.",
+  "sections": [
+    {
+      "heading": "Recunoașteți tiparul fără stereotipuri",
+      "paragraphs": [
+        "Diferențele pot include interpretarea literală a conversațiilor, dificultatea schimbărilor, interese intense sau copleșire la sunete, lumină ori atingere. Limbajul și abilitățile intelectuale variază și nu sunt echivalente. Cineva care vorbește fluent poate avea dificultăți zilnice. Semnele încep în dezvoltare, dar pot fi recunoscute mult mai târziu, mai ales când strategiile de adaptare le ascund. O trăsătură, timiditatea sau scorul online nu stabilesc autismul. Autismul nu este cauzat de educația parentală sau vaccinare."
+      ]
+    },
+    {
+      "heading": "Cereți evaluare și descrieți funcționarea zilnică",
+      "paragraphs": [
+        "Evaluarea explorează dezvoltarea, comunicarea, comportamentul și nevoile actuale, cu informații de la persoană și, după caz, apropiați. Explicați punctele forte, dificultățile și efortul de adaptare la școală, muncă ori acasă. Cereți comunicare accesibilă și adaptări senzoriale la consultații. Sunt considerate și alte explicații sau afecțiuni coexistente precum ADHD, anxietate ori dificultăți de învățare. Nu există o analiză de sânge unică pentru diagnosticul autismului. Sprijinul pentru o nevoie identificată poate începe în timp ce evaluarea se organizează."
+      ]
+    },
+    {
+      "heading": "Faceți comunicarea și mediul accesibile",
+      "paragraphs": [
+        "Întrebați ce ajută: limbaj clar, informații scrise, timp de procesare, imagini sau altă metodă de comunicare pot fi utile. Explicați schimbările din timp și oferiți spațiu liniștit ori pauze din mediile copleșitoare. Nu cereți contact vizual ca dovadă a ascultării. Includeți persoana în decizii prin comunicarea pe care o înțelege. Predictibilitatea și adaptările pot reduce suferința, dar rutinele trebuie să susțină participarea și alegerea, nu să devină cerințe rigide impuse de alții."
+      ]
+    },
+    {
+      "heading": "Abordați separat suferința și sănătatea",
+      "paragraphs": [
+        "O schimbare bruscă a comportamentului poate reflecta durere, boală, somn insuficient, suprasolicitare sau un mediu nesigur; nu atribuiți totul autismului. Și persoanele care comunică fără vorbire necesită evaluare și modalități de exprimare a disconfortului. Cereți ajutor pentru anxietate importantă, depresie, convulsii, probleme de alimentație ori pierderea funcționării. Sprijinul și terapia trebuie să aibă obiective clare, relevante, cu evaluarea beneficiilor și suferinței. Medicamentele pot trata simptome sau afecțiuni asociate, dar nu vindecă autismul. Evitați vindecările nedovedite și tratamentele restrictive potențial periculoase."
+      ]
+    },
+    {
+      "heading": "Planificați sprijinul în etapele vieții",
+      "paragraphs": [
+        "Schimbarea școlii, angajarea, relațiile ori mutarea pot modifica nevoile. Discutați adaptări educaționale, abilități zilnice, comunicare la muncă și acces medical conform priorităților persoanei. Familiile și îngrijitorii pot avea nevoie de sprijin practic și pauze de îngrijire, fără a elimina vocea persoanei autiste. Întrebați cum se transferă serviciile între copilărie și viața adultă și cine coordonează îngrijirea. Evaluați ce îmbunătățește starea de bine și participarea, nu doar ce face persoana să pară mai puțin autistă altora."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: o consultație copleșitoare",
+      "text": "Un adult autist nu reușește să vorbească într-o sală zgomotoasă. Pentru vizita următoare, clinica oferă așteptare într-un loc liniștit și întrebări scrise. Pacientul își explică mai ușor preocupările fără obligația contactului vizual."
+    },
+    {
+      "title": "Exemplu ipotetic: schimbare bruscă de comportament",
+      "text": "Un copil care comunică prin imagini încetează brusc să mănânce și devine foarte tulburat. Familia cere evaluare medicală și îl ajută să indice durerea, fără a considera schimbarea neascultare sau doar autism."
+    }
+  ],
+  "questions": [
+    "Ce evaluare și verificări ale afecțiunilor coexistente sunt potrivite nevoilor persoanei?",
+    "Ce adaptări de comunicare și senzoriale încercăm acum?",
+    "Ce obiective susțin starea de bine și participarea și cum verificăm utilitatea sprijinului?"
+  ]
+}

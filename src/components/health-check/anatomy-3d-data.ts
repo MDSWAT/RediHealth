@@ -259,6 +259,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Neurologie sau medicină de familie",
     searchKeywords: ["creier","encefal","brain","encephalon","truri","cervello","cap","head","koka","testa"],
     localized: {
+  ru: {
+        label: "Мозг",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Центр управления нервными системами, расположенный в черепной коробке. Мозговые рецепторы являются рецепторами твердой мозговой оболочки, мозговых сосудов и черепно-мозговых нервов, образующихся при мигрени и головной боли. (крейер, энцефал, мозг, энцефал)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["крейер","энцефальный","мозг","мозговой мозг","Трури","сервелло","кепка","голова","кока","теста"],
+      },
+
       ro: {
         label: "Creierul",
         tissueLabel: "Sistem nervos",
@@ -354,6 +366,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "ORL sau medicină de familie",
     searchKeywords: ["craniu","skull","cranium","sinusuri","sinuses","kafka","kraniumi","cranio"],
     localized: {
+  ru: {
+        label: "Череп и пазухи",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Ansamblul oaselor frontale, теменная, височная и уход за верхней челюстью, adăpostesc crierul и полые пазухи на ногах. (краниу, череп, череп, синусури)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["краниу","череп","череп","синусури","пазухи","Кафка","краниуми","кранио"],
+      },
+
       ro: {
         label: "Craniul și sinusurile",
         tissueLabel: "Os și sinusuri",
@@ -450,6 +474,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Medicină de familie, ORL sau stomatologie",
     searchKeywords: ["față","face","fytyra","viso","faccia","tâmple","temples","tëmthat","tempie","maxilar","jaw","nofulla","mandibola"],
     localized: {
+  ru: {
+        label: "Лицо, виски и челюсть",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Уход за передней областью головы включает в себя фрунтеа, тамплеле, орбите глаза, масивуле лица и суставах височно-нижнечелюстной области. (фацэ, лицо, фитира, висо)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["фаца","лицо","Фитира","вид","лицевая часть","храм","храмы","темтат","темпи","челюстной","челюсть","нофулла","мандибола"],
+      },
+
       ro: {
         label: "Fața, fruntea și tâmplele",
         tissueLabel: "Zonă a feței",
@@ -545,6 +581,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Neurologie sau medicină de familie",
     searchKeywords: ["occipital","ceafă","back of head","skull base","zverku","nuca","arnold"],
     localized: {
+  ru: {
+        label: "Затылок и основание черепа",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Частично разбрызгав капсулу, глубокая мускулатура и голова вставляются в затылочную область и в область затылочных нервов. (затылочная часть, голова, затылок, основание черепа)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["затылочный","чафа","затылок","основание черепа","зверку","ядро","Арнольд"],
+      },
+
       ro: {
         label: "Spatele capului și ceafa de sus",
         tissueLabel: "Spatele capului",
@@ -641,6 +689,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Medicină de familie sau ORL",
     searchKeywords: ["gât","neck","qafa","collo","cervical","torticolis"],
     localized: {
+  ru: {
+        label: "Мышцы шеи",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Передняя и латеральная области и суставы заботятся о купринде мышц грудино-ключично-сосцевидной мышцы, фарингеле, гортани, щитовидной железе и лимфатических узлах. (гат, шея, кафа, колло)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["гат","шея","кафа","колло","шейный","кривошея"],
+      },
+
       ro: {
         label: "Gâtul și mușchii laterali",
         tissueLabel: "Mușchi și gât",
@@ -736,6 +796,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală sau neurologie",
     searchKeywords: ["coloană cervicală","cervical spine","shtylla cervikale","colonna cervicale","vertebre gât","neck vertebrae","C1-C7"],
     localized: {
+  ru: {
+        label: "Шейный отдел позвоночника (позвонки C1–C7)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Формат верхнего сегмента позвоночного столба на уровне 7 позвонков и межпозвонкового сегмента обеспечивает поддержку больших позвонков (приблизительно 5 кг). (coloanăcervikale, шейный отдел позвоночника, shtylla cervikale,colonnacervikale)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["шейка матки","шейный отдел позвоночника","штилла цервикале","цервикальная колона","позвонок гат","шейные позвонки","С1-С7"],
+      },
+
       ro: {
         label: "Coloana gâtului (vertebrele C1–C7)",
         tissueLabel: "Os și discuri",
@@ -831,6 +903,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Medicină de familie sau recuperare medicală",
     searchKeywords: ["pectoral","pecs","piept","chest","gjoksi","pettorale","torace"],
     localized: {
+  ru: {
+        label: "Грудные мышцы (грудные)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "В ситуации, когда вы находитесь в передней части тела, будьте осторожны, держа грудь, ключицы и руки. (грудь, грудные мышцы, пиепт, грудь)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["грудной","грудные мышцы","пипт","грудь","джокси","петтораль","гонки"],
+      },
+
       ro: {
         label: "Mușchii pieptului (pectorali)",
         tissueLabel: "Țesut anatomic",
@@ -927,6 +1011,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Cardiologie sau urgențe 112",
     searchKeywords: ["inimă","cord","heart","cardiac","zemra","cuore","miocard","chest","krahrori"],
     localized: {
+  ru: {
+        label: "Сердце",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Органы центрального мышечного кровообращения, расположенные в средостении, в лопатках грудины и в местах, где это происходит. (inimă, пуповина, сердце, сердечный)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["инима","шнур","сердце","сердечный","земля","куоре","миокард","грудь","крахрори"],
+      },
+
       ro: {
         label: "Inima",
         tissueLabel: "Țesut anatomic",
@@ -1023,6 +1119,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Pneumologie sau medicină de familie",
     searchKeywords: ["plămâni","lungs","pulmonary","mushkëritë","polmoni","bronhii","bronchi","respiratory"],
     localized: {
+  ru: {
+        label: "Легкие и дыхательные пути",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Губка органов дыхания в торакальной коже, повреждение плевры и соединение трахеи с бронхиальной древесиной. (плэмани, легкие, легочная, мушкеритэ)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["Пламани","легкие","легочный","мушкаритэ","Полмони","бронхии","бронхи","респираторный"],
+      },
+
       ro: {
         label: "Plămânii și bronhiile",
         tissueLabel: "Țesut anatomic",
@@ -1119,6 +1227,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Gastroenterologie sau medicină de familie",
     searchKeywords: ["stomac","stomach","gastric","stomaku","stomaco","burtă","belly","abdomen"],
     localized: {
+  ru: {
+        label: "Желудок",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Резервуар мышечной пищеварительной системы находится в верхней части живота (capul pieptului / epigastru), непосредственно под диафрагмой. (желудок, желудок, желудок, стомаку)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["желудок","желудок","желудочный","стомаку","желудок","бурта","живот","живот"],
+      },
+
       ro: {
         label: "Stomacul",
         tissueLabel: "Țesut anatomic",
@@ -1214,6 +1334,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Gastroenterologie sau medicină internă",
     searchKeywords: ["ficat","liver","hepatic","mëlçia","fegato","colecist","gallbladder"],
     localized: {
+  ru: {
+        label: "Печень (под правыми ребрами)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Больший стажёр по работе с органами, расположенный под береговой линией в частичном повреждении (гипокондрул), импреунэ ку везика желчевыводящих путей (огнеобразование). (фикат, печень, печень, мельсия)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["фикат","печень","печеночный","Мельсия","фегато","собиратель","желчный пузырь"],
+      },
+
       ro: {
         label: "Ficatul (sub coastele din dreapta)",
         tissueLabel: "Țesut anatomic",
@@ -1310,6 +1442,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Gastroenterologie sau medicină de familie",
     searchKeywords: ["colon","intestine","bowel","zorra","apendice","appendix","apendiksi","appendice"],
     localized: {
+  ru: {
+        label: "Толстая кишка",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Уход за толстой кишкой, связанный с полостью брюшной полости, ответственностью за всасывание апей, очисткой кишечника и транзитом пищеварения. (толстая кишка, кишечник, зорра)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["толстая кишка","кишечник","кишечник","Зорра","приложение","приложение","аппендикси","приложение"],
+      },
+
       ro: {
         label: "Intestinul gros",
         tissueLabel: "Țesut anatomic",
@@ -1405,6 +1549,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Medicină de familie sau chirurgie generală",
     searchKeywords: ["abdominals","abs","abdomen","pătrățele","barku","addominali"],
     localized: {
+  ru: {
+        label: "Брюшные мышцы",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Вертикальная мышечная полоса и уход за передней частью живота поддерживают внутренние органы и стабилизируют мышцы и базилику. (брюшной пресс, пресс, живот, патрацеле)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["брюшной пресс","пресс","живот","Патрэцеле","барку","аддоминали"],
+      },
+
       ro: {
         label: "Mușchii burții",
         tissueLabel: "Țesut anatomic",
@@ -1500,6 +1656,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Medicină de familie sau medicină internă",
     searchKeywords: ["oblici","obliques","flancuri","flanks","ijët","obliqui","fianchi","waist"],
     localized: {
+  ru: {
+        label: "Боковые мышцы живота (косые)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Строительные мышечные латеральные талии и нижние костные ткани позволяют уход за ними позволяют вращать и наклонять латеральную область и тренчиулуи. (oblici, косые мышцы, фланкури, фланги)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["oblici","косые","фланкури","фланги","иджет","косой","Фианки","талия"],
+      },
+
       ro: {
         label: "Mușchii laterali ai burții (oblici)",
         tissueLabel: "Țesut anatomic",
@@ -1595,6 +1763,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală și kinetoterapie",
     searchKeywords: ["trapez","trapezius","traps","trapezi","trapezio","umeri","shoulders"],
     localized: {
+  ru: {
+        label: "Трапеция (шея и плечи)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Мушчиул большой в форме алмазного ухода за базой черепа, работая с семьей и людьми, а также с помощью шпателя. (трапеция, трапеция, трапеция, трапеция)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["трапеция","трапеция","ловушки","трапеция","трапеция","умери","плечи"],
+      },
+
       ro: {
         label: "Mușchiul trapez (ceafă și umeri)",
         tissueLabel: "Țesut anatomic",
@@ -1690,6 +1870,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală și fizioterapie",
     searchKeywords: ["spate superior","upper back","omoplați","shoulder blades","kurrizi i sipërm","dorso superiore","scapole"],
     localized: {
+  ru: {
+        label: "Верхняя часть спины (между лопатками)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Межлопаточная мускулатура (между омопластиками) и большая дорсальная часть тела стабилизируются, а также стабилизируется поясница лопатки и задняя часть грудной клетки. (верхняя лопатка, верхняя часть спины, омопласти, лопатки)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["превосходный","верхняя часть спины","омоплати","лопатки","Курризи и Сиперм","верхняя часть спины","лопатка"],
+      },
+
       ro: {
         label: "Spatele de sus (între omoplați)",
         tissueLabel: "Țesut anatomic",
@@ -1785,6 +1977,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală sau reumatologie",
     searchKeywords: ["coloană dorsală","coloană toracală","thoracic spine","shtylla torakale","colonna toracica","colonna dorsale","T1-T12"],
     localized: {
+  ru: {
+        label: "Грудной отдел позвоночника (позвонки Т1–Т12)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Формат сегмента межпозвонкового позвонка составляет 12 сочлененных позвонков с короткой грудной клеткой. (coloană dorsală, coloană toracală, грудной отдел позвоночника, штилла торакале)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["Колоана спина","Колоана Торакала","грудной отдел позвоночника","Штилла Торакале","Колонна Торачика","колонна спинная","Т1-Т12"],
+      },
+
       ro: {
         label: "Coloana toracală (vertebrele T1–T12)",
         tissueLabel: "Țesut anatomic",
@@ -1880,6 +2084,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală sau medicină de familie",
     searchKeywords: ["spate inferior","șale","lower back","lumbago","shpina e poshtme","mesi","parte bassa della schiena","zona lombare"],
     localized: {
+  ru: {
+        label: "Нижняя часть спины",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Мышечная косточка на шее, расположенная в верхней части локтевой кости, требует ухода. (нижняя лопатка, шале, поясница, люмбаго)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["поток ниже","Шале","нижняя часть спины","прострел","шпина и почта","Меси","Парте Басса делла Скиена","зона ломбаре"],
+      },
+
       ro: {
         label: "Șalele (jos pe spate)",
         tissueLabel: "Țesut anatomic",
@@ -1975,6 +2191,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Neurologie, neurochirurgie sau recuperare medicală",
     searchKeywords: ["coloană lombară","lumbar spine","shtylla lumbare","colonna lombare","vertebre șale","discuri","L1-L5"],
     localized: {
+  ru: {
+        label: "Поясничный отдел позвоночника (позвонки L1–L5)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "5-й поясничный позвонок и уход за межпозвонковыми суставами поддерживают превосходные части тела. (coloană lombară, поясничный отдел позвоночника, поясничная мышца, поясничная колонна)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["Колоана Ломбара","поясничный отдел позвоночника","штилла поясничная","Колонна ломбаре","позвонок Шале","дискури","Л1-Л5"],
+      },
+
       ro: {
         label: "Coloana lombară (vertebrele L1–L5)",
         tissueLabel: "Țesut anatomic",
@@ -2069,6 +2297,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Urologie, nefrologie sau medicină de familie",
     searchKeywords: ["rinichi","kidneys","renal","veshkat","reni","lojă renală"],
     localized: {
+  ru: {
+        label: "Почки",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Два органа в форме боба находятся глубоко в области живота, на последнем побережье, в верхней или верхней части шеи. (риничи, почки, почки, вешкат)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["риничи","почки","почечный","вешкат","Рени","ложа почечная"],
+      },
+
       ro: {
         label: "Rinichii",
         tissueLabel: "Țesut anatomic",
@@ -2164,6 +2404,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală sau ortopedie",
     searchKeywords: ["fesieri","gluteal","glutes","buttocks","vithet","glutei","natiche"],
     localized: {
+  ru: {
+        label: "Ягодичные мышцы (ягодицы)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Большую мышечную группу тела, стабилизирующую базу, крестцово-подвздошное сочленение и суставы в мерцательном суставе. (фесиери, ягодицы, ягодицы, ягодицы)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["фезиери","ягодичный","ягодицы","ягодицы","витет","ягодичные мышцы","натиш"],
+      },
+
       ro: {
         label: "Mușchii fesieri",
         tissueLabel: "Țesut anatomic",
@@ -2259,6 +2511,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["deltoid","umăr","shoulder","shpatulla","spalla"],
     localized: {
+  ru: {
+        label: "Плечевая мышца (дельтовидная)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Уход за ротовыми мышцами позволяет сохранить суставы в передней, боковой и задней части. (дельтовидная мышца, умэр, плечо, лопатка)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["дельтовидная мышца","умэр","плечо","шпатулла","Спалла"],
+      },
+
       ro: {
         label: "Mușchiul umărului (deltoid)",
         tissueLabel: "Țesut anatomic",
@@ -2354,6 +2618,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ortopedie și kinetoterapie",
     searchKeywords: ["coafa rotatorilor","rotator cuff","mansheta rrotulluese","cuffia dei rotatori","supraspinos","supraspinatus"],
     localized: {
+  ru: {
+        label: "Сухожилия плеча (вращательная манжета плеча)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Группа пациентов с глубокими сухожилиями и центром ухода за плечевой головкой в области суставов. (coafa rotatorilor, вращающая манжета, mansheta rrotulluese, cuffia dei rotatori)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["Коафа ротаторилор","вращающая манжета","маншета рротуллуезе","cuffia dei rotatori","супраспинос","надостная мышца"],
+      },
+
       ro: {
         label: "Tendoanele umărului (coafa rotatorilor)",
         tissueLabel: "Țesut anatomic",
@@ -2448,6 +2724,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală sau ortopedie",
     searchKeywords: ["biceps","braț","arm","bicep","bicipite","krahu","braccio"],
     localized: {
+  ru: {
+        label: "Бицепс (передняя часть плеча)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "В большинстве случаев передняя часть находится в браске, между ними и складками котелков. (бицепс, плечо, рука, бицепс)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["бицепс","братец","рука","бицепс","биципит","краху","браччо"],
+      },
+
       ro: {
         label: "Bicepsul (fața brațului)",
         tissueLabel: "Țesut anatomic",
@@ -2542,6 +2830,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["triceps","tricep","tricepsi","tricipite"],
     localized: {
+  ru: {
+        label: "Трицепс (задняя часть плеча)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Мы можем быть в трех местах, где вы находитесь позади брата, ответственного за промышленную деятельность. (трицепс, трицепс, трицепс, триципит)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["трицепс","трицепс","трицепс","триципит"],
+      },
+
       ro: {
         label: "Tricepsul (spatele brațului)",
         tissueLabel: "Țesut anatomic",
@@ -2637,6 +2937,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["cot","elbow","tendon cot","elbow tendon","bërryli","gomito","epicondilită","epicondylitis"],
     localized: {
+  ru: {
+        label: "Локтевые сухожилия",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Уход за сухожилиями обеспечивается за счет выраженного латерального и медиального сустава. (кроватка, локоть, сухожильная кроватка, локтевое сухожилие)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["детская кроватка","локоть","сухожильная кроватка","локтевое сухожилие","Беррили","гомито","эпикондилита","эпикондилит"],
+      },
+
       ro: {
         label: "Tendoanele cotului",
         tissueLabel: "Țesut anatomic",
@@ -2731,6 +3043,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală",
     searchKeywords: ["flexori antebraț","forearm flexors","parakrah","avambraccio","inner forearm"],
     localized: {
+  ru: {
+        label: "Мышцы предплечья, сторона ладони",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Мышечная группа передней фасции (ладони) и уход за ними перед тренировкой в домашних условиях и странные почки. (сгибатели предплечья, сгибатели предплечья, паракра, авамбраччо)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["сгибатели передних конечностей","сгибатели предплечья","паракра","авамбраччо","внутренняя часть предплечья"],
+      },
+
       ro: {
         label: "Mușchii antebrațului, partea palmei",
         tissueLabel: "Țesut anatomic",
@@ -2825,6 +3149,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală",
     searchKeywords: ["extensori antebraț","forearm extensors","outer forearm"],
     localized: {
+  ru: {
+        label: "Мышцы предплечья, тыльная сторона кисти",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Мушчии де частично снаружи и сзади, а также перед уходом за больными и дезинфицирующими средствами. (разгибатели предплечья, разгибатели предплечья, наружная часть предплечья)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["разгибатель антебрата","разгибатели предплечья","внешнее предплечье"],
+      },
+
       ro: {
         label: "Mușchii antebrațului, partea dosului palmei",
         tissueLabel: "Țesut anatomic",
@@ -2920,6 +3256,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Neurologie, reumatologie sau ortopedie",
     searchKeywords: ["încheietură","wrist","tunel carpian","carpal tunnel","kyçi i dorës","polso"],
     localized: {
+  ru: {
+        label: "Сухожилия запястья и запястный канал",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Complexul artcular al încheieturii mâinii (карп), Tunelul Carpian, Palma и Articulatiile Fine Ale degetelor. (incheietură, запястье, карпийский туннель, запястный туннель)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["Инчейетура","запястье","Туннель Карпийский","запястный туннель","кычи и дорес","польсо"],
+      },
+
       ro: {
         label: "Tendoanele încheieturii și tunelul carpian",
         tissueLabel: "Țesut anatomic",
@@ -3015,6 +3363,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["flexori șold","hip flexors","psoas","iliopsoas","kofshë","anca","groin"],
     localized: {
+  ru: {
+        label: "Передние мышцы бедра (сгибатели бедра)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Передняя мышечная группа (подвздошно-поясничная мышца) и внутренняя связка (приводящие мышцы) обеспечивают стабилизацию тазобедренного сустава. (сгибатели бедра, сгибатели бедра, поясничная мышца, подвздошно-поясничная мышца)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["флексори","сгибатели бедра","поясничная мышца","подвздошно-поясничная мышца","кофше","Анка","пах"],
+      },
+
       ro: {
         label: "Mușchii din fața șoldului (flexori)",
         tissueLabel: "Țesut anatomic",
@@ -3109,6 +3469,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală sau ortopedie",
     searchKeywords: ["cvadriceps","quadriceps","quads","coapsă","thigh","kuadricepsi","quadricipite"],
     localized: {
+  ru: {
+        label: "Передняя мышца бедра (квадрицепс)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Cei patru muchi puternici de pe faa anterioară a coapsei (опускание бедренной кости, обширное латеральное, медиальное и промежуточное). (квадрицепсы, квадрицепсы, квадрицепсы, коапса)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["квадрицепсы","квадрицепсы","четверные","коапса","бедро","куадрипсипси","квадриципит"],
+      },
+
       ro: {
         label: "Mușchiul din fața coapsei (cvadriceps)",
         tissueLabel: "Țesut anatomic",
@@ -3203,6 +3575,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală",
     searchKeywords: ["ischiogambieri","hamstrings","hamstring","biceps femural","ischiocrurali"],
     localized: {
+  ru: {
+        label: "Задние мышцы бедра (подколенные сухожилия)",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Мышечная группа лопаток, коапсей, заботится о базовых упражнениях на лопатках, в наборе лопаток. (ишиогамбери, подколенные сухожилия, подколенное сухожилие, двуглавая мышца бедра)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["ишиогамбери","подколенные сухожилия","подколенное сухожилие","двуглавая мышца бедра","седалищно-круральный"],
+      },
+
       ro: {
         label: "Mușchii din spatele coapsei",
         tissueLabel: "Țesut anatomic",
@@ -3298,6 +3682,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ortopedie sau reumatologie",
     searchKeywords: ["genunchi","rotulă","tendon rotulian","knee","patella","patellar tendon","gjuri","ginocchio","menisc","meniscus"],
     localized: {
+  ru: {
+        label: "Сухожилие колена и коленной чашечки",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Сложный сустав, колено, ротула, мениск и сухожилия ротулы передаются в сторону коапсеи катре тибие. (генунчи, ротула, ротулиан сухожилия, колено)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["генунчи","ротула","сухожилие ротулианское","колено","коленная чашечка","сухожилие надколенника","Гьюри","гиноккио","мениск","мениск"],
+      },
+
       ro: {
         label: "Genunchiul și tendonul rotulian",
         tissueLabel: "Țesut anatomic",
@@ -3394,6 +3790,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Chirurgie vasculară, medicină internă sau ortopedie",
     searchKeywords: ["gambe","pulpe","calves","calf","gastrocnemian","gastrocnemius","pulpat","polpacci"],
     localized: {
+  ru: {
+        label: "Икроножные мышцы",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Musculatura gambei backioare и anterioare, супранумитa и «a doua inimă periferică» datorită rolluisău в pomparea sangelui venos ynapoi spre inimă. (гамбе, пульпе, икры, теленок)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["гамбе","пульпа","телята","теленок","икроножный","икроножная мышца","кафедра","Полпаччи"],
+      },
+
       ro: {
         label: "Mușchii gambei (pulpa)",
         tissueLabel: "Țesut anatomic",
@@ -3489,6 +3897,18 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ortopedie sau recuperare medicală",
     searchKeywords: ["tendon ahilian","achilles","achilles tendon","călcâi","heel","tendina e akilit","tendine d'achille","tallone"],
     localized: {
+  ru: {
+        label: "Ахиллово сухожилие",
+        tissueLabel: "Анатомическая ткань",
+        systemLabel: "Анатомическая система",
+        summary: "Большую часть тела и резистентное сухожилие тела человека, поврежденное суставное сочленение, костную ткань и подошвенную фасцию и ногу. (ахилианское сухожилие, ахиллово сухожилие, ахиллово сухожилие, калькай)",
+        functionDescription: "Анатомо-физиологическая функция.",
+        clinicalNotes: "Общая оценка здоровья.",
+        commonConditions: ["Локализованная болезненность", "Функциональный дискомфорт"],
+        recommendedSpecialty: "Семейная медицина",
+        searchKeywords: ["сухожилие ахилиан","Ахиллес","ахиллово сухожилие","Кальчай","каблук","сухожилие и акилит","ахилловое сухожилие","таллоне"],
+      },
+
       ro: {
         label: "Tendonul lui Ahile",
         tissueLabel: "Țesut anatomic",
@@ -3584,6 +4004,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Stomatologie, ORL sau medicină de familie",
     searchKeywords: ["maxilar","mandibulă","ureche","dinți","măsea","jaw","ear","teeth","tooth","tmj","nofulla","veshi","dhëmbët","mandibola","orecchio","denti","čeljust","uho","zubi","pashni","kan","danda"],
     localized: {
+ru: {"label":"Челюсть, ухо и зубы","tissueLabel":"Сустав и область уха","systemLabel":"Черепно-лицевая система","summary":"Нижняя часть лица: челюстной сустав, зубные дуги и ухо.","functionDescription":"Обеспечивает жевание, речь и слух.","clinicalNotes":"Ночное сжатие челюстей, отит или зубная боль часто вызывают одностороннюю боль. При внезапной боли в челюсти с давлением в груди сразу звоните 112.","commonConditions":["Напряжение челюстного сустава","Боль в ухе","Отраженная зубная боль"],"recommendedSpecialty":"Стоматология, ЛОР или семейная медицина","searchKeywords":["челюсть","внчс","ухо","зубы","зубная боль","подбородок"]},
+
       ro: {
         label: "Maxilarul, urechea și dinții",
         tissueLabel: "Articulație și ureche",
@@ -3680,6 +4102,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ginecologie, senologie sau medicină de familie",
     searchKeywords: ["sân","sâni","mamar","piept","mamelon","alăptare","mastită","nodul","breast","breasts","mammary","nipple","lump","mastitis","gji","gjinjtë","seno","mammella","dojka","dojke","grudi","chuchi","chucha"],
     localized: {
+ru: {"label":"Молочная железа","tissueLabel":"Ткань молочной железы","systemLabel":"Женское здоровье","summary":"Железистая и поддерживающая ткань спереди грудной клетки, реагирующая на гормональный цикл, беременность и кормление.","functionDescription":"Реагирует на половые гормоны, вырабатывает молоко при лактации; лимфа оттекает к подмышке.","clinicalNotes":"Циклическая болезненность обеих желез распространена. Новый узел, втяжение кожи, изменение соска или горячий красный участок с температурой требуют осмотра.","commonConditions":["Циклическая болезненность груди","Закупорка протока или мастит","Доброкачественная киста или узел"],"recommendedSpecialty":"Гинекология, маммология или семейная медицина","searchKeywords":["грудь","молочная железа","сосок","кормление","мастит","узел"]},
+
       ro: {
         label: "Sânul și țesutul mamar",
         tissueLabel: "Țesut mamar",
@@ -3775,6 +4199,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Medicină de familie sau ginecologie",
     searchKeywords: ["subraț","axilă","ganglioni","subsuoară","armpit","underarm","axilla","lymph","sqetull","ascella","pazuh","telal i phiko"],
     localized: {
+ru: {"label":"Подмышка и лимфоузлы","tissueLabel":"Подмышечная область","systemLabel":"Лимфатическая система","summary":"Углубление под плечевым суставом с лимфоузлами, отводящими лимфу от груди и руки.","functionDescription":"Фильтрует лимфу и содержит нервы и сосуды руки.","clinicalNotes":"Болезненная припухлость после бритья или вируса часто проходит, но плотный узел дольше 2 недель требует врача.","commonConditions":["Увеличенные лимфоузлы","Раздражение волосяного фолликула","Отраженная боль от груди или плеча"],"recommendedSpecialty":"Семейная медицина или гинекология","searchKeywords":["подмышка","лимфоузел","припухлость","узел"]},
+
       ro: {
         label: "Subrațul și ganglionii axilari",
         tissueLabel: "Zonă axilară",
@@ -3870,6 +4296,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Medicină de familie",
     searchKeywords: ["coaste","stern","capul pieptului","intercostal","ribs","rib","ribcage","sternum","breastbone","brinjët","costole","sterno","rebra","prsna kost","pashavra"],
     localized: {
+ru: {"label":"Ребра и грудина","tissueLabel":"Кость и хрящ","systemLabel":"Грудная клетка","summary":"Ребра, реберные хрящи и грудина защищают сердце и легкие.","functionDescription":"Движется при дыхании вместе с межреберными мышцами.","clinicalNotes":"Боль при нажатии на ребра или грудину часто связана с хрящами или кашлем. При одышке или распространяющемся давлении в груди звоните 112.","commonConditions":["Костохондрит","Растяжение межреберных мышц","Боль после кашля"],"recommendedSpecialty":"Семейная медицина","searchKeywords":["ребра","ребро","грудина","костохондрит","бок груди"]},
+
       ro: {
         label: "Coastele și osul pieptului",
         tissueLabel: "Coaste și cartilaj",
@@ -3966,6 +4394,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ginecologie sau medicină de familie",
     searchKeywords: ["uter","ovar","ovare","menstruație","ciclu","crampe","endometrioză","sarcină","ginecologie","uterus","womb","ovary","ovaries","period","menstrual","endometriosis","pelvic","mitra","vezore","vezoret","utero","ovaio","ovaie","ciclo","maternica","jajnik","jajnici","mjesečnica","ovario","chonutno"],
     localized: {
+ru: {"label":"Матка и яичники","tissueLabel":"Репродуктивные органы","systemLabel":"Женское здоровье","summary":"Органы нижней части таза: матка по центру и яичники по сторонам.","functionDescription":"Участвуют в менструальном цикле, овуляции, выработке гормонов и беременности.","clinicalNotes":"Внезапная сильная тазовая боль с обильной кровью, головокружением или возможной беременностью требует немедленной больничной помощи или звонка 112.","commonConditions":["Менструальные спазмы","Киста яичника или боль при овуляции","Эндометриоз или миома"],"recommendedSpecialty":"Гинекология","searchKeywords":["матка","яичник","яичники","месячные","менструация","спазмы","эндометриоз","миома","беременность"]},
+
       ro: {
         label: "Uterul și ovarele",
         tissueLabel: "Organe ginecologice",
@@ -4061,6 +4491,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Medicină de familie, urologie sau ginecologie",
     searchKeywords: ["vezică","vezica","urină","urinare","cistită","usturime","bladder","urinary","uti","cystitis","pee","fshikëza","urinim","vescica","cistite","mjehur","mokrenje","muter"],
     localized: {
+ru: {"label":"Мочевой пузырь и мочевые пути","tissueLabel":"Орган мочевыделения","systemLabel":"Мочевыделительная система","summary":"Полый мышечный орган внизу по центру таза позади лобковой кости.","functionDescription":"Накапливает мочу из почек и обеспечивает ее выведение.","clinicalNotes":"Жжение и частые позывы часто указывают на цистит, особенно у женщин. При температуре или боли в спине обратитесь к врачу в тот же день.","commonConditions":["Инфекция мочевых путей (цистит)","Гиперактивный мочевой пузырь","Давление над лобком"],"recommendedSpecialty":"Семейная медицина или урология","searchKeywords":["мочевой пузырь","мочевые пути","цистит","мочеиспускание","моча","над лобком"]},
+
       ro: {
         label: "Vezica și căile urinare",
         tissueLabel: "Organ urinar",
@@ -4156,6 +4588,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ginecologie, urologie sau medicină de familie",
     searchKeywords: ["planșeu pelvin","perineu","zona intimă","vaginal","vulvar","prolaps","pelvic floor","perineum","intimate","vaginal","dyshemeja pelvike","pavimento pelvico","perineo","dno zdjelice","intimno"],
     localized: {
+ru: {"label":"Тазовое дно и интимная область","tissueLabel":"Мышцы тазового дна","systemLabel":"Поддержка таза","summary":"Поддерживающие мышцы и ткани у основания таза.","functionDescription":"Поддерживает мочевой пузырь, матку и кишечник, обеспечивает удержание.","clinicalNotes":"Тянущая тяжесть, болезненность после родов или раздражение распространены; помогают медицинская помощь и физиотерапия тазового дна.","commonConditions":["Напряжение или слабость тазового дна","Местное раздражение или кандидоз","Боль после родов"],"recommendedSpecialty":"Гинекология, физиотерапия тазового дна или семейная медицина","searchKeywords":["тазовое дно","промежность","интимная область","вульва","влагалище","пролапс","после родов"]},
+
       ro: {
         label: "Planșeul pelvin și zona intimă",
         tissueLabel: "Planșeu muscular",
@@ -4251,6 +4685,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ortopedie, chirurgie generală sau medicină de familie",
     searchKeywords: ["șold","vintre","inghinal","hernie","hip","groin","inguinal","ijë","ijët","rrëza e kofshës","anca","inguine","kuk","prepone","kuko"],
     localized: {
+ru: {"label":"Тазобедренный сустав и пах","tissueLabel":"Сустав и паховая складка","systemLabel":"Тазовый пояс","summary":"Соединение таза с бедром, включая глубокий сустав и переднюю паховую складку.","functionDescription":"Несет вес при ходьбе, подъеме по лестнице и наклонах.","clinicalNotes":"Боль в паху при ходьбе часто связана с суставом, растяжением или грыжей. Твердая резко болезненная шишка в паху требует срочной помощи.","commonConditions":["Боль в суставе или бурсит","Растяжение паховых мышц","Паховая грыжа"],"recommendedSpecialty":"Ортопедия или семейная медицина","searchKeywords":["тазобедренный сустав","бедро","пах","паховая грыжа","тазовый пояс"]},
+
       ro: {
         label: "Articulația șoldului și zona inghinală",
         tissueLabel: "Articulație și vintre",
@@ -4346,6 +4782,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Recuperare medicală, ortopedie sau medicină de familie",
     searchKeywords: ["noadă","coccis","sacru","sacroiliac","bazin spate","tailbone","coccyx","sacrum","sacroiliac","si joint","kërbishti","coccige","sacro","trtica","križa"],
     localized: {
+ru: {"label":"Копчик и нижние суставы таза","tissueLabel":"Нижняя часть позвоночника и таз","systemLabel":"Скелетная система","summary":"Крестец, копчик и крестцово-подвздошные суставы соединяют позвоночник с задней частью таза.","functionDescription":"Стабилизирует таз при сидении, вставании и ходьбе, особенно во время беременности.","clinicalNotes":"Боль в копчике при сидении или в нижней части спины распространена. При онемении обеих ног или потере контроля мочевого пузыря звоните 112.","commonConditions":["Боль крестцово-подвздошного сустава","Боль копчика при сидении","Перегрузка тазового пояса"],"recommendedSpecialty":"Физиотерапия, ортопедия или семейная медицина","searchKeywords":["копчик","крестец","крестцово-подвздошный сустав","нижний таз"]},
+
       ro: {
         label: "Noada și articulațiile sacroiliace",
         tissueLabel: "Baza coloanei",
@@ -4441,6 +4879,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Reumatologie, ortopedie sau medicină de familie",
     searchKeywords: ["mână","palmă","deget","degete","artrită","hand","palm","finger","fingers","knuckles","arthritis","dora","gisht","gishtat","mano","palmo","dita","šaka","dlan","prsti","vast","naja"],
     localized: {
+ru: {"label":"Кисти, ладони и суставы пальцев","tissueLabel":"Мелкие суставы и сухожилия","systemLabel":"Костно-суставная система","summary":"Кости ладони, сухожилия сгибателей и мелкие суставы пальцев обеспечивают захват и точные движения.","functionDescription":"Позволяет захватывать, печатать и точно двигать пальцами.","clinicalNotes":"Утренняя скованность и отек суставов пальцев дольше 30 минут чаще встречаются у женщин; полезна ранняя оценка ревматологом.","commonConditions":["Артроз суставов пальцев","Воспалительный артрит кистей","Щелкающий палец или покалывание"],"recommendedSpecialty":"Ревматология или семейная медицина","searchKeywords":["кисть","кисти","ладонь","палец","пальцы","большой палец","суставы","артрит"]},
+
       ro: {
         label: "Palma și articulațiile degetelor",
         tissueLabel: "Articulații și tendoane",
@@ -4536,6 +4976,8 @@ export const SUB_REGION_INFO: Record<SubRegionId, SubRegionInfo> = {
     recommendedSpecialty: "Ortopedie, podiatrie sau medicină de familie",
     searchKeywords: ["gleznă","talpă","degete picior","monturi","entorsă","ankle","foot","sole","arch","toes","bunion","plantar","kyçi i këmbës","shputa","gishtat e këmbës","caviglia","piede","pianta","alluce","gležanj","stopalo","taban","prsti noge","globi","talpa"],
     localized: {
+ru: {"label":"Голеностоп, свод стопы и пальцы","tissueLabel":"Сустав и подошвенный свод","systemLabel":"Стопа и голеностоп","summary":"Голеностопный сустав, свод подошвы, передняя часть стопы и пальцы.","functionDescription":"Смягчает удар и распределяет вес при каждом шаге.","clinicalNotes":"Быстро обратитесь к врачу, если после подворачивания не можете опереться на ногу или при диабете заметили красноту либо ранку на стопе.","commonConditions":["Растяжение голеностопа","Боль свода стопы","Боль передней части стопы или косточки"],"recommendedSpecialty":"Ортопедия, подиатрия или семейная медицина","searchKeywords":["голеностоп","стопа","стопы","подошва","свод","пальцы ног","косточка"]},
+
       ro: {
         label: "Glezna, talpa și degetele piciorului",
         tissueLabel: "Gleznă și talpă",

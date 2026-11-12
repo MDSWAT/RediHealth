@@ -1,0 +1,51 @@
+{
+  "title": "Clamidia: esami, cura e prevenzione della reinfezione",
+  "intro": "La clamidia è un'infezione batterica sessualmente trasmessa, spesso senza sintomi. Si può portare e trasmettere senza saperlo: stare bene non la esclude. Esami e antibiotici adatti curano l'infezione e riducono complicanze. Servono anche cura dei partner recenti, indicazioni sulla ripresa dei rapporti e test successivi. Un positivo è una questione di salute senza colpe, non una datazione affidabile del contagio.",
+  "sections": [
+    {
+      "heading": "Sintomi e possibili complicanze",
+      "paragraphs": [
+        "Possibili sintomi sono bruciore urinario, perdite vaginali o dal pene insolite, sangue dopo i rapporti o tra mestruazioni, dolore al basso ventre o testicoli dolenti e gonfi. L'infezione rettale dà dolore, secrezioni o sangue, ma può essere silente. Non curata può contribuire a malattia infiammatoria pelvica, problemi di fertilità, gravidanza ectopica o infiammazione dell'epididimo. Esistono altre cause e può servire visita. In gravidanza l'infezione può passare al neonato durante il parto."
+      ]
+    },
+    {
+      "heading": "Esame e sedi adatte",
+      "paragraphs": [
+        "Il servizio può consigliare test senza sintomi, soprattutto dopo diagnosi del partner o esposizione. Si usano spesso urine o tampone vaginale; secondo contatto e sintomi possono servire retto o gola. Alcuni tamponi sono autocollezionabili seguendo il kit. Dire quando è avvenuto il contatto: troppo presto l'infezione può sfuggire e servire ripetizione. Chiedere esami per altre infezioni e come ricevere risultati riservati."
+      ]
+    },
+    {
+      "heading": "Completare l'antibiotico prescritto",
+      "paragraphs": [
+        "Farmaco e durata dipendono da sede, gravidanza, allergie, altre medicine e indicazioni locali. Seguire la prescrizione anche migliorando; contattare per dosi saltate, vomito che impedisce la cura o effetti indesiderati. Non condividere compresse o usare antibiotici avanzati. Segnalare possibile gravidanza o allattamento. La cura elimina l'infezione ma non necessariamente danni già avvenuti. Sintomi persistenti richiedono rivalutazione di complicanze o altre infezioni."
+      ]
+    },
+    {
+      "heading": "Partner e pausa temporanea dai rapporti",
+      "paragraphs": [
+        "Partner attuali e recenti pertinenti necessitano consiglio, test e spesso cura anche se stanno bene. La clinica aiuta la notifica riservata; chiedere un metodo sicuro se il contatto mette a rischio. Evitare sesso vaginale, anale e orale finché è trascorso il periodo indicato, sono soddisfatte le cure proprie e dei partner e risolti i sintomi rilevanti. L'indicazione precisa dipende dal regime. Preservativi e barriere riducono il rischio futuro, ma non sostituiscono questa pausa."
+      ]
+    },
+    {
+      "heading": "Controlli e sintomi che non aspettano",
+      "paragraphs": [
+        "Ci si può reinfettare perché non resta immunità duratura. Ripetere il test più tardi, spesso verso tre mesi, cerca reinfezione; verificare la guarigione è un'altra domanda, importante soprattutto in gravidanza o casi selezionati. Seguire i tempi perché troppo presto il test può ingannare. Dolore pelvico con febbre, forte malessere o dolore testicolare richiedono valutazione urgente. Dolore testicolare improvviso intenso necessita emergenza. Forte dolore addominale, svenimento o sangue con possibile gravidanza possono indicare gravidanza ectopica e richiedono emergenza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Nessun sintomo dopo il risultato del partner — esempio ipotetico",
+      "text": "Una persona sta bene ma il partner ha clamidia. Chiede consiglio e test, descrive tipo e tempi dei contatti e segue la cura consigliata. Non usa l'assenza di sintomi per escludere la necessità del test."
+    },
+    {
+      "title": "Dopo le compresse — esempio ipotetico",
+      "text": "Una persona termina la cura ma il partner non l'ha ancora ricevuta. Chiede quando riprendere i rapporti, organizza notifica assistita e test successivo, senza ritenere finito ogni rischio con l'ultima compressa."
+    }
+  ],
+  "questions": [
+    "Quali sedi e tempi di esame corrispondono ai miei contatti e cos'altro controllare?",
+    "Quali sono cura esatta e istruzioni per riprendere i rapporti con i partner?",
+    "Servono controllo di guarigione, nuovo test o valutazione urgente dei sintomi?"
+  ]
+}

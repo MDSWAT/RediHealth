@@ -1,0 +1,51 @@
+{
+  "title": "NIPT pentru sindroamele Down, Edwards și Patau: screening și pașii următori",
+  "intro": "Testarea prenatală neinvazivă, NIPT, este un test de sânge în sarcină care estimează probabilitatea unor afecțiuni cromozomiale. Panourile obișnuite verifică sindroamele Down, Edwards și Patau. Este screening, nu diagnostic, și nu stabilește că bebelușul nu are probleme de sănătate. Alegerea testării și conduita după rezultat trebuie să se bazeze pe explicații clare și respectarea preferințelor.",
+  "sections": [
+    {
+      "heading": "Decideți ce informație doriți înaintea recoltării",
+      "paragraphs": [
+        "Întrebați ce afecțiuni cuprinde testul exact, când se face și cum pot influența rezultatele alegerile. Puteți discuta testarea fără să știți deja ce ați decide după un rezultat neașteptat. Cereți interpret, consiliere genetică ori informații echilibrate despre viața cu acele afecțiuni. Accesul, finanțarea publică și eligibilitatea variază între țări, iar pachetele private pot avea dovezi diferite. Mai multe elemente nu înseamnă automat informație mai bună ori utilă. Screeningul este opțional; discutați și refuzul."
+      ]
+    },
+    {
+      "heading": "Înțelegeți ce măsoară proba de sânge",
+      "paragraphs": [
+        "Proba conține fragmente de ADN de la persoana însărcinată și placentă. Laboratorul le folosește pentru estimarea probabilităților cromozomiale; nu examinează direct fiecare celulă a copilului. Diferențele între placentă și copil și alți factori biologici pot induce rezultate înșelătoare. Spuneți despre gemeni, sarcină începută cu mai mulți feți și istoricul relevant, deoarece interpretarea ori potrivirea se schimbă. Întrebați cum gestionează laboratorul aceste situații, fără să presupuneți funcționare identică în fiecare sarcină."
+      ]
+    },
+    {
+      "heading": "Interpretați probabilitatea mică, mare și lipsa rezultatului",
+      "paragraphs": [
+        "Probabilitatea mică reduce șansa afecțiunilor căutate, dar nu o elimină și nu exclude alte probleme genetice ori structurale. Probabilitatea mare cere discutarea diagnosticului; nu este dovada bolii. Șansa ca un rezultat pozitiv să fie corect depinde de afecțiune și probabilitatea inițială, nu doar de o reclamă despre acuratețe. Uneori laboratorul nu poate raporta rezultat. Nu echivalează cu negativ liniștitor: echipa trebuie să explice cauzele și opțiunile de testare, recoltare repetată ori alte evaluări."
+      ]
+    },
+    {
+      "heading": "Discutați diagnosticul înaintea deciziilor majore",
+      "paragraphs": [
+        "După probabilitate mare, consilierea genetică și ecografia potrivită clarifică pașii următori. Biopsia de vilozități coriale sau amniocenteza oferă informații diagnostice, dar sunt invazive, cu termene, riscuri și limite proprii. Întrebați ce stabilesc, durata rezultatelor și nevoia confirmării suplimentare. Nu luați o decizie ireversibilă despre sarcină numai din NIPT. Deciziile după consiliere trebuie să respecte dorințele și situația proprie, cu sprijin și fără presiunea rezultatului ori altcuiva."
+      ]
+    },
+    {
+      "heading": "Continuați îngrijirea sarcinii și păstrați clare limitele",
+      "paragraphs": [
+        "NIPT nu înlocuiește ecografiile recomandate sau îngrijirea obișnuită. O ecografie ulterioară anormală necesită uneori investigații chiar după probabilitate mică în sânge. Stabiliți cine explică raportul, când sunați dacă nu vine și ce sprijin există în așteptare. Cele trei sindroame au implicații diferite și experiențe variate; eticheta nu prezice toate aspectele vieții unui copil. Cereți informații de specialitate specifice și timp de înțelegere. Testul nu evaluează nici simptome urgente precum durere severă ori sângerare semnificativă; cereți separat sfat obstetrical."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: probabilitate mare",
+      "text": "O persoană însărcinată primește probabilitate mare și se simte copleșită. Organizează consiliere, întreabă semnificația personală și discută diagnosticul înaintea deciziilor majore. Nu consideră categoria laboratorului diagnostic confirmat."
+    },
+    {
+      "title": "Exemplu ipotetic: laborator fără rezultat",
+      "text": "Proba nu produce rezultat raportabil. Pacienta întreabă motivul, potrivirea unei noi probe și alte teste ori ecografii recomandate. Nu presupune că lipsa rezultatului înseamnă absența afecțiunilor."
+    }
+  ],
+  "questions": [
+    "Ce afecțiuni verifică testul exact și ce limite are pentru sarcina mea?",
+    "Ce înseamnă fiecare rezultat pentru mine, inclusiv unul imposibil de raportat?",
+    "Ce diagnostic, ecografii și consiliere există înaintea deciziilor următoare?"
+  ]
+}

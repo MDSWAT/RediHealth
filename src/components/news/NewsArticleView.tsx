@@ -26,6 +26,16 @@ import type { Lang } from "@/lib/i18n/translations";
 
 // Tags stored in Romanian; items with their own translation already carry localized tags.
 const TAG_LABELS: Partial<Record<Lang, Record<string, string>>> = {
+  ru: {
+    "Vaccinare ROR": "Вакцинация MMR", Pediatrie: "Педиатрия", "Sănătate publică": "Общественное здравоохранение", Prevenție: "Профилактика",
+    Caravană: "Мобильная клиника", "Analize gratuite": "Бесплатные тесты", Comunitate: "Сообщество", "Acces medical": "Доступ к уходу",
+    Gripă: "Грипп", "Vaccinare compensată": "Субсидируемая вакцинация", "Boli cronice": "Хроническое заболевание", Seniori: "Пожилые люди",
+    "Ghid părinți": "Для родителей", "Tratament corect": "Правильное лечение", "Fără antibiotice": "Никаких антибиотиков", Igienă: "Гигиена",
+    "Apă potabilă": "Питьевая вода", "Hepatită A": "Гепатит А", Stomatologie: "Стоматология", "Prevenție gratuită": "Бесплатная профилактика",
+    "Vaccinare HPV": "Вакцинация против ВПЧ", Adolescenți: "Подростки", "Prevenție cancer": "Профилактика рака", Pneumologie: "Здоровье легких",
+    "Poluare urbană": "Загрязнение воздуха", Astm: "Астма", "Sfaturi practice": "Практические советы",
+  },
+
   en: {
     "Vaccinare ROR": "MMR vaccination", Pediatrie: "Paediatrics", "Sănătate publică": "Public health", Prevenție: "Prevention",
     Caravană: "Mobile clinic", "Analize gratuite": "Free tests", Comunitate: "Community", "Acces medical": "Access to care",
@@ -84,6 +94,13 @@ const COPY: Record<Lang, {
   when: string;
   freeServices: string;
 }> = {
+ru: {
+"caravanHeading": "Где и когда принимает выездная клиника",
+"where": "Где",
+"when": "Часы приема",
+"freeServices": "Бесплатные услуги:",
+ readTime: "минута чтения", read: "Читать", related: "Подробнее по этой теме", prevention: "Что вы можете сделать", topics: "Темы" },
+
   ro: {
     readTime: "min lectură",
     read: "Citește",
@@ -153,6 +170,8 @@ const COPY: Record<Lang, {
 };
 
 const SPEECH_LANG: Record<Lang, string> = {
+ru: "ru-RU",
+
   ro: "ro-RO",
   en: "en-GB",
   sq: "sq-AL",

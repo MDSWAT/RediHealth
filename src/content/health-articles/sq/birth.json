@@ -1,0 +1,51 @@
+{
+  "title": "Lindja: përgatitja, zgjedhjet dhe ndryshimi i planit",
+  "intro": "Lindja përfshin ndryshime fizike, vendime dhe mbështetje për personin që lind dhe foshnjën. Nuk ndjek të njëjtin orar për të gjithë. Planifikimi ndihmon komunikimin duke lejuar ndryshime kur shëndeti ose preferencat ndryshojnë. Përmbledhja shpjegon temat për ekipin obstetrik; nuk zëvendëson planin individual ose udhëzimet urgjente.",
+  "sections": [
+    {
+      "heading": "Përgatitni preferencat dhe rrugën praktike drejt kujdesit",
+      "paragraphs": [
+        "Diskutoni vendin, mbështetësin, komunikimin dhe prioritetet. Vendi i përshtatshëm varet nga shtatzënia, shërbimet dhe transferimi, jo vetëm dëshira. Pyetni kontaktin në çdo orë dhe transportin. Përmendni përvoja lindjeje, traumë, sëmundje dhe shqetësime për ekzaminim ose prekje. Plani regjistron preferenca, nuk premton rrjedhë të saktë. Mund të bëni pyetje dhe të ndryshoni dëshirat gjatë procesit."
+      ]
+    },
+    {
+      "heading": "Kontaktoni ekipin për fillimin dhe shenjat e alarmit",
+      "paragraphs": [
+        "Kontraksionet mund të forcohen e rregullohen gradualisht, ndërsa fillimi ndalet e rifillon. Ndiqni udhëzimin personal për paraqitje, jo rregull universal kontraksionesh. Telefononi kur plasin ujërat, edhe para kontraksioneve, me kohën, ngjyrën dhe erën. Lëvizjet e pakësuara, gjakderdhja, lëngu jeshil ose kafe, temperatura, dhimbja e fortë e vazhdueshme ose lindja e mundshme para kohe kërkojnë këshillë urgjente. Gjakderdhja e madhe, kolapsi, krizat ose frymëmarrja shumë e vështirë duan emergjencë. Mos prisni kronometrin të konfirmojë problem."
+      ]
+    },
+    {
+      "heading": "Kuptoni fazat, ekzaminimet dhe monitorimin",
+      "paragraphs": [
+        "Procesi zakonisht përfshin hapjen e qafës së mitrës, lindjen e foshnjës dhe daljen e placentës. Ekipi vlerëson përparimin e mirëqenien përmes vëzhgimit dhe monitorimit të zemrës fetale sipas rrethanave. Pyetni qëllimin, çfarë tregon dhe alternativat e arsyeshme. Pëlqimi, privatësia dhe shpjegimi mbeten të rëndësishëm. Përparimi i ngadaltë ose monitori i pazakontë interpretohen me pamjen e plotë; një numër nuk përshkruan çdo lindje ose vendos gjithçka."
+      ]
+    },
+    {
+      "heading": "Diskutoni rehatinë, qetësimin dhe ndërhyrjet",
+      "paragraphs": [
+        "Lëvizja, pozicioni, frymëmarrja, prekja mbështetëse ose uji mund të ndihmojnë kur përshtaten. Barnat dhe epidurali janë mundësi me përfitime, kufij e efekte anësore. Qasja varet nga vendi dhe gjendja; kërkimi i lehtësimit nuk është dështim. Induksioni, forcimi me barna, lindja vaginale e asistuar ose cezariania mund të propozohen për arsye konkrete. Pyetni pse, urgjencën, rreziqet, përfitimet e alternativat. Në emergjencë shpjegimi mund të shkurtohet, por duhet informim dhe mundësi bisede më pas."
+      ]
+    },
+    {
+      "heading": "Përfshini orët e para dhe mbështetjen emocionale",
+      "paragraphs": [
+        "Ekipi kontrollon foshnjën, gjakderdhjen, placentën dhe dëmtimet e prindit. Pyetni kontaktin lëkurë më lëkurë dhe ushqyerjen kur janë të sigurta, si dhe barnat ose procedurat për të dy. Në ndarje për kujdes shtesë, pyetni si ruhet informacioni dhe kontakti. Para kthimit konfirmoni ndjekjen e alarmet. Lindja e vështirë ose e papritur sjell emocione të përziera edhe kur të gjithë janë të qëndrueshëm. Kërkoni shpjegim dhe ndihmë për shqetësim të vazhdueshëm, pa ndier detyrim vetëm mirënjohjeje e heshtjeje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: ndryshimi i qetësimit",
+      "text": "Dikush planifikoi frymëmarrje dhe lëvizje por më vonë do epidural. I thotë mamisë, pyet përshtatshmërinë e mundësitë dhe përditëson planin. Dokumenti i hershëm nuk është premtim për refuzim të ndihmës."
+    },
+    {
+      "title": "Shembull hipotetik: ujërat para kontraksioneve",
+      "text": "Ujërat plasin para kontraksioneve të vendosura. Personi telefonon maternitetin, përshkruan lëngun e lëvizjet dhe ndjek planin personal. Nuk pret kontraksione të forta nëse kërkohet vlerësim më herët."
+    }
+  ],
+  "questions": [
+    "Cili vend e mbështetje i përshtaten shtatzënisë dhe si marr kujdes urgjent?",
+    "Çfarë monitorimi, qetësimi ose ndërhyrjeje mund të propozohet dhe si shpjegohen vendimet?",
+    "Çfarë kontrollesh e ndihme duan prindi e foshnja pas lindjes, përfshirë bisedën për të papriturat?"
+  ]
+}

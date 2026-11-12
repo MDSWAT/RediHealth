@@ -26,6 +26,17 @@ const portalMessages: Record<
   Lang,
   { symptoms: string; followup: string; photo: string; complete: string; tooBig: string; photoName: string; tooMany: string; expired: string }
 > = {
+  ru: {
+    symptoms: "Ваши симптомы не были сохранены. Попробуйте еще раз.",
+    followup: "Проверка не сохранилась. Попробуйте еще раз.",
+    photo: "Фото не загрузилось. Попробуйте еще раз.",
+    complete: "Мы не смогли отметить визит как завершенный. Попробуйте еще раз.",
+    tooBig: "Файл слишком большой. Выберите один размером менее 5 МБ.",
+    photoName: "Фото пациента",
+    tooMany: "Слишком много попыток. Подождите немного и попробуйте еще раз.",
+    expired: "Срок действия ссылки на вашу страницу истек. Попросите новый на странице входа.",
+  },
+
   ro: {
     symptoms: "Simptomele nu s-au salvat. Încearcă din nou.",
     followup: "Controlul nu s-a salvat. Încearcă din nou.",

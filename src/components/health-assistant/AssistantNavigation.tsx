@@ -14,6 +14,13 @@ export function AssistantNavigation() {
   const normalizedPathname = stripLangFromPathname(pathname);
 
   const dict: Record<Lang, { navLabel: string; assistant: string; symptoms: string; prescription: string }> = {
+ru: {
+      navLabel: "Разделы медицинских работников",
+      assistant: "Помощник по здоровью",
+      symptoms: "Проверка симптомов",
+      prescription: "Обзор рецепта",
+    },
+
     en: {
       navLabel: "Health assistant sections",
       assistant: "Health assistant",

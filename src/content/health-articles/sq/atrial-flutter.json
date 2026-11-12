@@ -1,0 +1,51 @@
+{
+  "title": "Flutteri atrial: kuptoni ritmin dhe planifikoni trajtimin",
+  "intro": "Flutteri atrial është problem i ritmit ku një sinjal elektrik qarkullon vazhdimisht në dhomat e sipërme të zemrës, duke i bërë të rrahin shpejt. Pulsi mund të jetë i shpejtë dhe i rregullt ose ndonjëherë i parregullt. Flutteri ndryshon nga fibrilacioni atrial, por mund të bashkëjetojnë. Vlerësimi duhet të shqyrtojë simptomat, funksionin e zemrës dhe rrezikun e goditjes në tru, jo vetëm numrin në monitorin e pulsit.",
+  "sections": [
+    {
+      "heading": "Njihni simptomat dhe shenjat emergjente",
+      "paragraphs": [
+        "Flutteri mund të shkaktojë zemër të shpejtë, lodhje, mungesë fryme, tolerancë më të ulët ndaj ushtrimit ose marramendje. Disa kanë pak simptoma. Një puls i ri i shpejtë që vazhdon kërkon këshillë të shpejtë edhe nëse duket i rregullt. Kërkoni ndihmë emergjente për dhimbje gjoksi, mungesë të rëndë fryme, të fikët ose dobësi të papritur, varje të fytyrës apo vështirësi të foluri. Mos drejtoni vetë makinën. Diagnoza e vjetër e flutterit nuk e bën të padëmshme dhimbjen e re të gjoksit dhe shenjat e goditjes mbeten emergjencë edhe kur zhduken."
+      ]
+    },
+    {
+      "heading": "Përdorni EKG për identifikimin e ritmit",
+      "paragraphs": [
+        "Aktiviteti elektrik në EKG ndihmon të dallohet flutteri nga fibrilacioni atrial dhe ritme të tjera të shpejta. Atriumet mund të rrahin më shpejt se dhomat e poshtme sepse jo çdo sinjal kalon, ndaj pulsi në kyç nuk tregon të gjithë modelin. Episodet e herëpashershme mund të kërkojnë monitorim më të gjatë. Tregoni për operacione ose ablacione të mëparshme, barnat dhe kohën e simptomave. Testet shqyrtojnë strukturën e zemrës, tiroiden ose gjendje kontribuuese. Lloji dhe vendi i qarkut elektrik ndikojnë zgjedhjen e trajtimit."
+      ]
+    },
+    {
+      "heading": "Diskutoni frekuencën dhe rikthimin e ritmit",
+      "paragraphs": [
+        "Barnat mund të ngadalësojnë dhomat e poshtme ose të kontrollojnë ritmin jonormal. Kardioversioni përdor trajtim elektrik të kontrolluar me kujdes për rikthimin e ritmit në raste të përshtatshme; kur qarkullimi është i paqëndrueshëm mund të duhet trajtim urgjent. Ekipi shqyrton kohëzgjatjen e flutterit dhe rrezikun e mpiksjes ekzistuese para kardioversionit të planifikuar. Pyetni çfarë përgatitjeje e antikoagulimi duhen dhe çfarë ndodh nëse rikthehet. Mos merrni barna shtesë për zemrën dhe mos provoni vetë ta rivendosni ritmin pa plan mjekësor të rënë dakord."
+      ]
+    },
+    {
+      "heading": "Pyetni nëse ablacioni përshtatet me llojin tuaj",
+      "paragraphs": [
+        "Ablacioni kalon kateterë përmes enëve të gjakut për të ndërprerë qarkun elektrik. Për flutterin tipik, trajtimi i një zone të caktuar në atriumin e djathtë mund të jetë efektiv. Qarqe të tjera, përfshirë ato pas procedurave, mund të kërkojnë qasje tjetër. Diskutoni suksesin e pritshëm për ju, rreziqet, anestezinë, shërimin dhe mundësinë e procedure tjetër. Trajtimi i flutterit nuk garanton se fibrilacioni atrial nuk do të shfaqet kurrë. Ndjekja mbetet e rëndësishme edhe kur rrahjet e shpejta ndalojnë."
+      ]
+    },
+    {
+      "heading": "Qartësoni parandalimin e goditjes dhe ndjekjen",
+      "paragraphs": [
+        "Flutteri mund të shoqërohet me mpiksje dhe goditje në tru. Vendimet për antikoagulim marrin parasysh rrezikun individual të goditjes e gjakderdhjes, fibrilacionin e mundshëm dhe planin e trajtimit. Mos ndaloni mbrojtjen e përshkruar sepse procedura dukej e suksesshme ose pulsi normal. Pyetni kur rishikohet receta dhe çfarë monitorimi planifikohet. Trajtoni me ekipin tensionin, sëmundjet e zemrës, gjumin, duhanin dhe alkoolin sipas rastit. Shënoni simptomat e rikthyera dhe kërkoni rivlerësim kur frymëmarrja, ënjtja ose toleranca ndaj aktivitetit përkeqësohen, pa supozuar se rikthimi është gjithmonë i padëmshëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: puls i rregullt por i shpejtë",
+      "text": "Një person vëren puls vazhdimisht të shpejtë me intervale të barabarta. Kërkon vlerësim të shpejtë, pa supozuar se rregullsia do të thotë ritëm normal. EKG identifikon flutterin dhe ekipi diskuton veçmas simptomat dhe mpiksjet."
+    },
+    {
+      "title": "Shembull hipotetik: ritëm tjetër pas ablacionit",
+      "text": "Pas trajtimit të flutterit tipik, pacienti vëren më vonë palpitacione të parregullta. I tregon mjekut pa supozuar se është kthyer patjetër qarku i vjetër. Monitorimi kontrollon për fibrilacion atrial ose shkak tjetër dhe orienton planin e ri."
+    }
+  ],
+  "questions": [
+    "Çfarë lloj flutteri kam dhe a ka edhe fibrilacion atrial?",
+    "Si krahasohen barnat, kardioversioni dhe ablacioni për simptomat dhe zemrën time?",
+    "Çfarë antikoagulimi e monitorimi më duhet para dhe pas trajtimit dhe kur kërkoj ndihmë urgjente?"
+  ]
+}

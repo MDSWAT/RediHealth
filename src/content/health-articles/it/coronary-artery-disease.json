@@ -1,0 +1,51 @@
+{
+  "title": "Malattia coronarica: sintomi, cure e vita quotidiana",
+  "intro": "Il muscolo cardiaco necessita di un proprio apporto di sangue ricco di ossigeno. La malattia coronarica si sviluppa quando i vasi che lo nutrono limitano tale apporto, spesso per placche di grasso nelle pareti delle arterie. Le cure mirano ad alleviare i sintomi e ridurre futuri infarti. Sintomi toracici nuovi o cambiati richiedono valutazione anche senza precedenti diagnosi cardiache.",
+  "sections": [
+    {
+      "heading": "Riconoscere l'angina e una possibile emergenza",
+      "paragraphs": [
+        "L'angina può essere pressione, costrizione o bruciore al petto, talvolta verso braccio, mandibola, collo, schiena o addome superiore. Possono esserci affanno, nausea, sudore o debolezza insolita; un forte dolore toracico non è sempre presente. Chiamare i soccorsi per nuovo fastidio persistente al petto, disturbi con affanno o sudorazione, oppure dolore a riposo forte o che non si risolve. Non guidare. Con angina già diagnosticata, fermarsi e seguire il piano prescritto, senza lasciare che il farmaco ritardi i soccorsi per sospetto infarto. Episodi più frequenti, lunghi o facili da scatenare richiedono controllo urgente anche se cessano."
+      ]
+    },
+    {
+      "heading": "Capire la causa senza attribuire colpe",
+      "paragraphs": [
+        "Le placche possono restringere lentamente un'arteria. Se una placca si rompe e si forma un coagulo, il flusso può bloccarsi improvvisamente e danneggiare il cuore. Fumo, pressione alta, colesterolo, diabete, malattia renale, età e familiarità contribuiscono al rischio. Uno stile di vita sano aiuta, ma non cancella ogni fattore ereditario o medico. Non tutta l'angina deriva da una grande arteria ostruita: malattia dei piccoli vasi o spasmi possono richiedere altre valutazioni. Un vecchio test rassicurante non spiega automaticamente sintomi nuovi."
+      ]
+    },
+    {
+      "heading": "Gli esami dipendono da sintomi acuti o stabili",
+      "paragraphs": [
+        "Nel sospetto infarto, ECG urgente ed esami ematici fanno parte della valutazione ospedaliera; possono servire ripetizioni. Un unico ECG normale non basta a escludere sintomi preoccupanti persistenti. Per disturbi stabili si valutano storia, visita e rischio, poi si possono usare angio-TC coronarica, immagini funzionali o altri test. La coronarografia invasiva mostra l'anatomia e aiuta a pianificare le cure quando appropriata. Chiedere quale domanda chiarisce il test, rischi e passi successivi. Il colesterolo o un punteggio di rischio da soli non stabiliscono se il dolore di oggi sia un infarto."
+      ]
+    },
+    {
+      "heading": "Farmaci e procedure hanno scopi diversi",
+      "paragraphs": [
+        "Il piano può comprendere farmaci per colesterolo, antiaggreganti prescritti per ridurre i coaguli e medicinali per pressione o angina. Benefici, rischio emorragico, altre malattie e interazioni guidano la scelta. Non iniziare aspirina quotidiana né sospendere farmaci cardiaci autonomamente. Se è prescritto un nitrato come GTN, imparare il piano per l'attacco e discutere le interazioni: non va associato a farmaci per la disfunzione erettile come sildenafil o tadalafil. Stent o bypass possono essere consigliati secondo sintomi, anatomia e urgenza. Non eliminano le cure continuative dei fattori di rischio. Dopo uno stent, chiarire gli antiaggreganti prima di interruzioni o procedure programmate."
+      ]
+    },
+    {
+      "heading": "Costruire una routine realistica duratura",
+      "paragraphs": [
+        "Chiedere della riabilitazione cardiologica e di un'attività sicura. Iniziare con passi gestibili senza forzare attraverso sintomi toracici. Sostegno per smettere di fumare, alimentazione equilibrata, sonno e controllo individuale di pressione, colesterolo e diabete fanno parte delle cure. Discutere presto effetti indesiderati o costi per adattare la terapia invece di abbandonarla. Tenere accessibili elenco dei farmaci ed eventuale medicinale d'emergenza prescritto; i familiari conoscano il piano. Discutere guida, lavoro impegnativo e nuove attività con il medico. L'ansia dopo la diagnosi è comune: aiuto psicologico e pratico affianca quello cardiologico."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: conta il cambiamento",
+      "text": "Arben ha di solito brevi episodi di angina diagnosticata su una salita ripida. Una sera la pressione al petto inizia da seduto con sudorazione. Chiede soccorso immediato senza presumere che la diagnosi nota renda sicuro l'episodio."
+    },
+    {
+      "title": "Esempio ipotetico: aprire l'arteria non conclude le cure",
+      "text": "Dopo uno stent una donna sta bene e si chiede se servano ancora le compresse. Al controllo il team spiega i diversi scopi di antiaggregante e terapia del colesterolo, verifica gli effetti indesiderati e scrive il piano concordato anziché lasciarla sospendere da sola."
+    }
+  ],
+  "questions": [
+    "Quali sintomi richiedono di chiamare i soccorsi senza aspettare?",
+    "A cosa serve ogni farmaco e quali interazioni o sanguinamenti devo conoscere?",
+    "Riabilitazione o una procedura mi aiuterebbero e quale beneficio è previsto?"
+  ]
+}

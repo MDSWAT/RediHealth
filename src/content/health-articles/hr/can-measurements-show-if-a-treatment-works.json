@@ -1,0 +1,51 @@
+{
+  "title": "Znače li bolji nalazi da liječenje pomaže?",
+  "intro": "Analize, snimke i mjerenja pomažu dijagnozi, praćenju i otkrivanju štete. Bolji broj ne odgovara automatski na svaku korist. Važno je što se mjeri, veza s bitnim ishodima i ostali učinci. Razumijevanje pomaže pitati bez odbacivanja testova ili samostalnog mijenjanja terapije.",
+  "sections": [
+    {
+      "heading": "Prepoznajte pitanje iza mjerenja",
+      "paragraphs": [
+        "Služi li dijagnozi, dozi, sigurnosti ili koristi? To su različite svrhe. Koristan marker za jednu ne dokazuje prevenciju komplikacija. Bol, dnevni zadaci, hospitalizacija i preživljenje važni su izravno. Dobro oblikovan upitnik simptoma mjeri bitan ishod i kada ga prijavljuje pacijent, a ne aparat."
+      ]
+    },
+    {
+      "heading": "Razumijte zamjenski ishod bez odbacivanja",
+      "paragraphs": [
+        "Zamjenski ishod stoji za drugi, primjerice fiziološka vrijednost prije dugoročne komplikacije. Neki imaju čvrste dokaze u kontekstu, drugi samo očekuju korist i trebaju potvrdu. Veza markera i rizika nije dovoljna: bolji marker može pratiti šteta koja poništava korist. Pitajte dokaze za taj marker, liječenje i bolest umjesto jednakog povjerenja ili nepovjerenja svim brojevima."
+      ]
+    },
+    {
+      "heading": "Tražite pravednu usporedbu",
+      "paragraphs": [
+        "Promjena nakon početka može biti lijek, varijacija, oporavak, druga skrb ili mjerenje. Studije s usporednim skupinama razdvajaju mogućnosti. Pitajte što je dobila druga skupina i jesu li mjere dosljedne. Prosjeci ne pokazuju isti osobni učinak. Tražite stvarnu razliku, razdoblje i štete, ne samo upečatljiv postotak ili sliku."
+      ]
+    },
+    {
+      "heading": "Provjerite veličinu, neizvjesnost i svakodnevicu",
+      "paragraphs": [
+        "Statistička promjena može biti premala za život, a nejasna razlika ostavlja neizvjesnost. Razmotrite broj ljudi, trajanje, nedostajuće rezultate i odustajanja. Ne prenosi se automatski između populacija ili terapija. Pitajte prelazi li varijaciju i je li prag zamjetan. Smjer skale važan je: viši nije uvijek bolji."
+      ]
+    },
+    {
+      "heading": "Spojite broj sa simptomima, štetama i ciljevima",
+      "paragraphs": [
+        "Razgovarajte o osjećaju, funkciji, nuspojavama i ciljevima uz nalaz. Dobar marker ne odbacuje nove simptome. Neizvjesnost ne znači da ustaljena terapija ne pomaže ili treba prestati. Pitajte izravne i izvedene dokaze i kontrole. Slijedite plan i javite promjene ili nejasnoće. Odluka koristi cijelu korist i štetu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: bolji broj, teža svakodnevica",
+      "text": "Nalaz se poboljša, ali nastane jaka omaglica. Osoba navodi oboje i pita koristi, nuspojave i alternative. Broj ne briše teškoću i ne mijenja recept samo prema članku."
+    },
+    {
+      "title": "Hipotetski primjer: snimka tumora",
+      "text": "Obitelj čita o smanjenim tumorima. Pita i simptome, kvalitetu, preživljenje i nuspojave. Razlikuje snimku od jamstva iste koristi rođaku."
+    }
+  ],
+  "questions": [
+    "Čemu služi mjera i je li izravan ili zamjenski ishod?",
+    "Koji usporedni dokazi povezuju promjenu s važnom osobnom koristi?",
+    "Kako simptomi, nuspojave, neizvjesnost i ciljevi mijenjaju odluku?"
+  ]
+}

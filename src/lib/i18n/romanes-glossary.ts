@@ -1,4 +1,4 @@
-export type NonRoLang = "en" | "sq" | "it" | "hr" | "rom";
+export type NonRoLang = "en" | "sq" | "it" | "hr" | "rom" | "ru";
 
 export interface RomanesGlossaryTerm {
   id: string;
@@ -41,6 +41,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Forța cu care sângele apasă pe pereții arterelor. Când rămâne ridicată (hipertensiune), suprasolicită inima și vasele de sânge chiar și fără simptome vizibile.",
     explanationByLang: {
+  ru: "Кровь слишком сильно давит на кровеносные сосуды. Ваше сердце должно работать усерднее.",
       en: "The force with which blood presses against the walls of your arteries. When it stays elevated (hypertension), it strains your heart and blood vessels even without noticeable symptoms.",
       sq: "Forca me të cilën gjaku shtyp mbi muret e arterieve. Kur mbetet e lartë (hipertension), e mbingarkon zemrën dhe enët e gjakut edhe pa dhënë shenja të dukshme.",
       it: "La forza con cui il sangue preme sulle pareti delle arterie. Quando resta alta (ipertensione), affatica il cuore e i vasi sanguigni anche senza sintomi evidenti.",
@@ -73,6 +74,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Organul muscular din piept care pompează neîncetat sângele încărcat cu oxigen și substanțe hrănitoare către toate organele și țesuturile corpului.",
     explanationByLang: {
+  ru: "Орган в твоей груди, который бьется день и ночь. Он посылает кровь по всему телу.",
       en: "The muscular organ in your chest that continuously pumps blood rich in oxygen and nutrients to all organs and tissues of the body.",
       sq: "Organi muskulor në gjoks që pompon pa ndërprerje gjakun me oksigjen dhe lëndë ushqyese drejt të gjitha organeve dhe indeve të trupit.",
       it: "L'organo muscolare nel petto che pompa senza sosta il sangue ricco di ossigeno e sostanze nutritive verso tutti gli organi e i tessuti del corpo.",
@@ -105,6 +107,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Lichidul vital care circulă prin vasele de sânge, transportă oxigenul și substanțele hrănitoare la toate organele și ajută la apărarea corpului împotriva infecțiilor.",
     explanationByLang: {
+  ru: "Красная жидкость в вашем теле. Он доставляет пищу и воздух ко всем вашим органам.",
       en: "The vital fluid circulating through your blood vessels, carrying oxygen and nutrients to all organs and helping defend the body against infections.",
       sq: "Lëngu jetësor që qarkullon nëpër enët e gjakut, çon oksigjenin dhe lëndët ushqyese te të gjitha organet dhe ndihmon në mbrojtjen e trupit kundër infeksioneve.",
       it: "Il liquido vitale che circola nei vasi sanguigni, trasporta l'ossigeno e le sostanze nutritive a tutti gli organi e aiuta a difendere il corpo dalle infezioni.",
@@ -137,6 +140,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Afecțiune cronică în care concentrația de glucoză (zahăr) în sânge rămâne crescută deoarece insulina lipsește sau nu acționează eficient, provocând sete puternică, urinare frecventă și oboseală.",
     explanationByLang: {
+  ru: "Ваше тело не может использовать сахар из пищи, поэтому сахар остается в крови. Вы чувствуете сильную жажду и усталость.",
       en: "A chronic condition in which the concentration of glucose (sugar) in the blood stays elevated because insulin is lacking or not working effectively, causing strong thirst, frequent urination, and fatigue.",
       sq: "Sëmundje kronike në të cilën përqendrimi i glukozës (sheqerit) në gjak mbetet i lartë sepse insulina mungon ose nuk vepron siç duhet, duke shkaktuar etje të fortë, urinim të shpeshtë dhe lodhje.",
       it: "Condizione cronica in cui la concentrazione di glucosio (zucchero) nel sangue rimane elevata perché l'insulina manca o non agisce in modo efficace, causando sete intensa, minzione frequente e stanchezza.",
@@ -169,6 +173,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Semnalul de avertizare transmis de sistemul nervos care arată că o parte a corpului este rănită, inflamată sau afectată de o boală.",
     explanationByLang: {
+  ru: "Способ вашего тела сообщить вам, что что-то повреждено или что-то не работает.",
       en: "The warning signal sent by your nervous system showing that part of the body is injured, inflamed, or affected by an illness.",
       sq: "Sinjali paralajmërues i dërguar nga sistemi nervor që tregon se një pjesë e trupit është e lënduar, e inflamuar ose e prekur nga një sëmundje.",
       it: "Il segnale di avvertimento inviato dal sistema nervoso che indica una lesione, un'infiammazione o una malattia in una parte del corpo.",
@@ -201,6 +206,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Creșterea temperaturii corpului la 38 °C sau mai mult, ca răspuns natural de apărare al sistemului imunitar împotriva unei infecții virale sau bacteriene.",
     explanationByLang: {
+  ru: "Ваше тело нагревается, чтобы бороться с простудой или инфекцией.",
       en: "A rise in body temperature to 38 °C or higher as a natural defense response of your immune system against a viral or bacterial infection.",
       sq: "Rritja e temperaturës së trupit në 38 °C ose më lart, si përgjigje natyrore mbrojtëse e sistemit imunitar kundër një infeksioni viral ose bakterial.",
       it: "Aumento della temperatura corporea a 38 °C o più, come risposta naturale di difesa del sistema immunitario contro un'infezione virale o batterica.",
@@ -233,6 +239,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Preparat medical sub formă de comprimate, sirop, picături sau injecții, luat în doza exactă prescrisă de medic pentru a trata o boală sau a calma simptomele.",
     explanationByLang: {
+  ru: "Что врач дает вам по рецепту для лечения болезни или прекращения боли.",
       en: "A medical preparation in the form of tablets, syrup, drops, or injections, taken in the exact dose prescribed by a doctor to treat an illness or relieve symptoms.",
       sq: "Përgatitje mjekësore në formë tabletash, shurupi, pikash ose injeksionesh, që merret në dozën e saktë të përshkruar nga mjeku për të trajtuar sëmundjen ose për të qetësuar simptomat.",
       it: "Preparato medico sotto forma di compresse, sciroppo, gocce o iniezioni, assunto nella dose esatta prescritta dal medico per curare una malattia o alleviare i sintomi.",
@@ -265,6 +272,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Specialist cu pregătire medicală care te consultă cu respect, stabilește diagnosticul corect, îți recomandă măsuri de prevenție și îți prescrie tratamentul potrivit.",
     explanationByLang: {
+  ru: "Человек, обученный узнавать, какое у вас заболевание. Они расскажут вам, какое лечение следует соблюдать.",
       en: "A medically trained specialist who examines you respectfully, establishes an accurate diagnosis, recommends preventive care, and prescribes the right treatment.",
       sq: "Specialist me përgatitje mjekësore që të kontrollon me respekt, vendos diagnozën e saktë, rekomandon masa parandaluese dhe përshkruan trajtimin e duhur.",
       it: "Specialista con formazione medica che ti visita con rispetto, stabilisce la diagnosi corretta, consiglia misure di prevenzione e prescrive la cura adatta.",
@@ -297,6 +305,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Unitate medicală unde primești îngrijire de specialitate, investigații amănunțite, intervenții chirurgicale, asistență la naștere sau ajutor medical de urgență.",
     explanationByLang: {
+  ru: "Куда вы идете, если заболели серьезно или вам нужна срочная помощь.",
       en: "A medical facility where you receive specialist care, thorough diagnostic tests, surgery, maternity care, or emergency medical treatment.",
       sq: "Institucion mjekësor ku merr kujdes të specializuar, ekzaminime të hollësishme, ndërhyrje kirurgjikale, kujdes gjatë lindjes ose ndihmë mjekësore urgjente.",
       it: "Struttura sanitaria dove ricevi cure specialistiche, esami approfonditi, interventi chirurgici, assistenza al parto o cure mediche di emergenza.",
@@ -329,6 +338,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Senzația că nu îți ajunge aerul sau că respiri cu efort (dispnee). Dacă apare brusc în repaus sau este însoțită de durere în piept, sună imediat la 112.",
     explanationByLang: {
+  ru: "Вы чувствуете, что в грудь попадает недостаточно воздуха, особенно когда вы двигаетесь или лежите.",
       en: "The feeling that you cannot get enough air or have to work hard to breathe (dyspnea). If it starts suddenly at rest or comes with chest pain, call 112 immediately.",
       sq: "Ndjesia që nuk të mjafton ajri ose merr frymë me mundim (dispne). Nëse shfaqet papritur në qetësi ose shoqërohet me dhimbje gjoksi, telefono menjëherë në 112.",
       it: "Sensazione di fame d'aria o fatica a respirare (dispnea). Se compare all'improvviso a riposo o insieme a dolore al petto, chiama subito il 112.",
@@ -361,6 +371,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Senzație de învârtire (vertij) sau pierdere a echilibrului, cauzată adesea de deshidratare, tensiune scăzută sau glicemie scăzută. Așază-te imediat ca să previi căderea.",
     explanationByLang: {
+  ru: "Вы чувствуете, что все вращается вокруг вас, или теряете равновесие, когда встаете.",
       en: "A spinning sensation (vertigo) or loss of balance, often caused by dehydration, low blood pressure, or low blood glucose. Sit down immediately to prevent a fall.",
       sq: "Ndjesi rrotullimi (vertigo) ose humbje e ekuilibrit, shpesh nga dehidratimi, tensioni i ulët ose glukoza e ulët në gjak. Ulu menjëherë që të mos rrëzohesh.",
       it: "Sensazione che tutto giri (vertigine) o perdita di equilibrio, spesso dovuta a disidratazione, pressione bassa o glicemia bassa. Siediti subito per evitare cadute.",
@@ -393,6 +404,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Recoltarea unei mici probe de sânge din venă sau din deget pentru a măsura concentrația de glucoză, colesterolul, hemoglobina și funcționarea organelor.",
     explanationByLang: {
+  ru: "Из пальца или руки берут немного крови. Результат показывает врачу, что происходит в вашем организме.",
       en: "Taking a small blood sample from a vein or fingertip to measure blood glucose concentration, cholesterol, hemoglobin, and how well your organs are working.",
       sq: "Marrja e një mostre të vogël gjaku nga vena ose maja e gishtit për të matur përqendrimin e glukozës në gjak, kolesterolin, hemoglobinën dhe funksionimin e organeve.",
       it: "Prelievo di un piccolo campione di sangue da una vena o dal polpastrello per misurare la concentrazione di glucosio, il colesterolo, l'emoglobina e la funzione degli organi.",
@@ -425,6 +437,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Perioada de aproximativ 9 luni în care fătul se dezvoltă în uterul mamei. Controalele prenatale regulate protejează sănătatea mamei și a copilului.",
     explanationByLang: {
+  ru: "9 месяцев, когда ребенок растет в животе матери, до рождения.",
       en: "The period of about 9 months during which the baby develops in the mother's uterus. Regular prenatal check-ups protect both mother and baby.",
       sq: "Periudha prej rreth 9 muajsh gjatë së cilës foshnja zhvillohet në mitrën e nënës. Kontrollet e rregullta prenatale mbrojnë shëndetin e nënës dhe të fëmijës.",
       it: "Il periodo di circa 9 mesi in cui il feto si sviluppa nell'utero della madre. I controlli prenatali regolari proteggono la salute della mamma e del bambino.",
@@ -457,6 +470,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Preparat medical preventiv, administrat prin injecție sau picături pe gură, care antrenează în siguranță sistemul imunitar (anticorpii) să recunoască și să prevină boli infecțioase grave la copii și adulți.",
     explanationByLang: {
+  ru: "Небольшая инъекция. Он учит организм детей и взрослых защищаться от серьезных заболеваний.",
       en: "A preventive medical preparation, given as an injection or oral drops, that safely trains your immune system (antibodies) to recognize and prevent serious infectious diseases in children and adults.",
       sq: "Përgatitje mjekësore parandaluese, që jepet me injeksion ose me pika nga goja, e cila stërvit në mënyrë të sigurt sistemin imunitar (antitrupat) të njohë dhe të parandalojë sëmundje infektive të rënda te fëmijët dhe të rriturit.",
       it: "Preparato medico preventivo, somministrato tramite iniezione o gocce per bocca, che allena in modo sicuro il sistema immunitario (gli anticorpi) a riconoscere e prevenire gravi malattie infettive nei bambini e negli adulti.",
@@ -489,6 +503,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
     explanation:
       "Stare gravă care pune viața în pericol imediat, precum durere puternică în piept, lipsă bruscă de aer, paralizie sau sângerare abundentă. Sună gratuit și imediat la 112.",
     explanationByLang: {
+  ru: "Чья-то жизнь в опасности. Позвоните 112 сейчас.",
       en: "A sudden life-threatening condition such as severe chest pain, acute shortness of breath, facial droop, or heavy bleeding. Call 112 immediately and free of charge.",
       sq: "Gjendje e rëndë që rrezikon jetën menjëherë, si dhimbje e fortë në gjoks, mungesë e papritur ajri, paralizë ose gjakderdhje e madhe. Telefono menjëherë dhe falas në 112.",
       it: "Condizione grave che mette subito in pericolo la vita, come forte dolore al petto, improvvisa mancanza d'aria, paralisi o forte emorragia. Chiama subito e gratuitamente il 112.",

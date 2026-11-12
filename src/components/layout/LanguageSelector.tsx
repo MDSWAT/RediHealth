@@ -25,6 +25,11 @@ export type LanguageSelectorProps = {
 };
 
 export const languageSelectorCopy: Record<Lang, { label: string; romaniNote: string }> = {
+  ru: {
+    label: "Язык сайта",
+    romaniNote: "Объяснения медицинских терминов также доступны на языке романи в словаре раздела «Узнать».",
+  },
+
   ro: {
     label: "Limba site-ului",
     romaniNote: "Termenii medicali sunt explicați și în limba romani, în glosarul din secțiunea Află.",
@@ -52,6 +57,12 @@ export const languageSelectorCopy: Record<Lang, { label: string; romaniNote: str
 };
 
 const ISO_BADGE: Record<Lang, string> = {
+
+
+
+
+"ru": "RU",
+
   ro: "RO",
   en: "EN",
   sq: "SQ",
@@ -61,7 +72,7 @@ const ISO_BADGE: Record<Lang, string> = {
 };
 
 // Romanian first (the site's default language), then the others in a fixed order on every page.
-const LANGUAGE_ORDER: Lang[] = ["ro", "en", "hr", "rom", "sq", "it"];
+const LANGUAGE_ORDER: Lang[] = ["ro", "en", "hr", "rom", "sq", "it", "ru"];
 const orderedLanguages = [...languages].sort(
   (a, b) => LANGUAGE_ORDER.indexOf(a.code) - LANGUAGE_ORDER.indexOf(b.code),
 );

@@ -1,0 +1,51 @@
+{
+  "title": "AV block: what an electrical conduction problem means",
+  "intro": "Atrioventricular block, or AV block, means electrical signals from the upper heart chambers reach the lower chambers too slowly or not reliably. It is different from a blocked coronary artery, although heart disease can cause both. Some forms only need observation; others can dangerously slow the heartbeat and need urgent treatment. The ECG pattern, cause and clinical condition matter more than a single home pulse reading.",
+  "sections": [
+    {
+      "heading": "Recognise concerning symptoms without self-diagnosing",
+      "paragraphs": [
+        "AV block may cause unusual tiredness, breathlessness, dizziness, near-fainting or fainting; mild forms may cause no symptoms. Seek emergency help for collapse, fainting with ongoing illness, chest pain or severe breathlessness. If someone is unresponsive and not breathing normally, call emergency services and follow resuscitation instructions. Do not drive yourself when faint or acutely unwell. A slow pulse can have other explanations, including normal fitness-related changes, so symptoms or a device reading alone cannot identify the type of block."
+      ]
+    },
+    {
+      "heading": "Ask which degree and pattern the ECG shows",
+      "paragraphs": [
+        "First-degree block delays conduction but usually still passes every signal. Second-degree block intermittently fails to conduct signals and includes patterns with different risks. In complete, or third-degree, block, the upper and lower chambers no longer communicate normally. A clinician distinguishes these patterns on an ECG, sometimes with longer monitoring. Ask for the exact finding rather than assuming all second-degree block is harmless. Episodes may come and go, so record when symptoms occurred and whether they matched monitoring findings."
+      ]
+    },
+    {
+      "heading": "Look for reversible causes and relevant medicines",
+      "paragraphs": [
+        "The team reviews medicines, previous heart procedures and conditions that can affect conduction. Some heart-rate medicines, electrolyte disturbances, infection or heart damage may contribute. Tests are selected according to the circumstances and can include blood tests and assessment of heart structure. Bring an accurate medicine list, including non-prescription products. Do not stop a prescribed medicine yourself; explain concerns promptly so a clinician can decide what to change and how to monitor it. Treating an underlying cause may alter the longer-term plan."
+      ]
+    },
+    {
+      "heading": "Understand why a pacemaker may be recommended",
+      "paragraphs": [
+        "Observation may be suitable for lower-risk findings, while significant block can require temporary or permanent pacing. Some high-risk patterns need a permanent pacemaker even without obvious symptoms when no reversible cause explains them. A pacemaker supplies electrical impulses to support an adequate heartbeat; it does not clear narrowed arteries. Ask why pacing is recommended, how urgent it is, benefits, procedure risks and alternatives in your situation. Feeling well for a moment is not a reason to postpone urgent treatment advised for a dangerous pattern."
+      ]
+    },
+    {
+      "heading": "Agree follow-up and safety instructions",
+      "paragraphs": [
+        "If observation is chosen, clarify review dates and which changes require earlier help. After pacemaker implantation, follow the team's wound, activity and device-check instructions, and carry the supplied device information. Tell healthcare teams about the pacemaker before procedures or scans so compatibility and precautions can be checked. Ask about work, travel and driving rules for your country and condition. New fainting, breathlessness or concerning wound symptoms need assessment; do not assume a device means every future symptom is automatically harmless."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a low pulse alert",
+      "text": "A person feels dizzy and notices a low pulse on a watch. They seek assessment rather than stopping their heart medicine themselves. The clinician checks the ECG, medicines and whether symptoms coincide with a conduction problem."
+    },
+    {
+      "title": "Hypothetical example: few symptoms but a high-risk pattern",
+      "text": "A patient feels relatively well but is told that monitoring shows a dangerous form of AV block. They ask why pacing is advised and follow the urgent plan, rather than treating the absence of severe symptoms as proof that waiting is safe."
+    }
+  ],
+  "questions": [
+    "What exact type of AV block do I have and does it explain my symptoms?",
+    "Could a medicine or treatable condition contribute, and how will it be assessed safely?",
+    "Do I need pacing, how urgent is the decision and what follow-up or activity restrictions apply?"
+  ]
+}

@@ -33,6 +33,20 @@ type TreatmentCopy = {
 };
 
 export const treatmentTranslations: Record<Lang, TreatmentCopy> = {
+ru: {
+    title: "Планы лечения", subtitle: "Один план на каждый курс лечения. Даты могут пересекаться.",
+    add: "Добавить план лечения", name: "Название плана", start: "Дата начала", end: "Дата окончания",
+    legacy: "Более ранний план лечения", newPlan: "Новый план лечения", empty: "Планов лечения пока нет.",
+    discardPhoto: "Удалить выбранную фотографию? Он еще не прикреплен.",
+    delete: "Удалить план", deleteConfirm: "Удалить этот план? Он удаляется при сохранении.",
+    save: "Сохранить планы", saving: "Сохранение...", saved: "Планы сохранены.",
+    invalid: "Каждому новому плану необходимо имя, дата начала и дата окончания. Дата окончания не может быть раньше даты начала.",
+    active: "Активный", upcoming: "Предстоящие", ended: "Закончено", undated: "Нет дат",
+    diagnosis: "Диагностика", goals: "Цели ухода", medications: "Лекарства и методы лечения",
+    instructions: "Инструкция по уходу", photos: "Вложения", imageError: "Выберите изображение размером до 5 МБ.",
+    uploadError: "Не удалось прочитать изображение. Попробуйте еще раз.", pendingPhoto: "Прикрепите или удалите выбранную фотографию перед сохранением.", clear: "Удалить фото",
+  },
+
   en: {
     title: "Treatment plans", subtitle: "One plan for each course of treatment. Dates can overlap.",
     add: "Add treatment plan", name: "Plan name", start: "Start date", end: "End date",

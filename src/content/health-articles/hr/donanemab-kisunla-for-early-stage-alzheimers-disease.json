@@ -1,0 +1,51 @@
+{
+  "title": "Donanemab (Kisunla) za rani Alzheimer: korist i rizik",
+  "intro": "Donanemab je protutijelo koje pomaže ukloniti amiloidne naslage iz mozga. Nekima s ranom simptomatskom Alzheimerovom bolešću može usporiti propadanje, ali ne izliječi bolest niti vraća izgubljene sposobnosti. Treba specijalistički odabir, infuzije i ponovljena snimanja. Prikladnost, financiranje i sigurnost provjeravaju se u zemlji liječenja.",
+  "sections": [
+    {
+      "heading": "Tko se može razmatrati u Europskoj uniji",
+      "paragraphs": [
+        "Indikacija EU obuhvaća odrasle s blagim kognitivnim oštećenjem ili blagom demencijom zbog Alzheimera i potvrđenom amiloidnom patologijom. Ograničena je na jednu ili nijednu kopiju varijante ApoE4; dvije kopije su izvan indikacije zbog sigurnosti. Genetsko testiranje treba objašnjenje i pristanak, uključujući značenje i granice za rodbinu. Pozitivan amiloid sam nije dovoljan: zajedno se procjenjuju simptomi, dijagnoza, stadij, snimke, povijest i lijekovi. To nije opći izbor za svaku smetnju pamćenja ili uznapredovalu demenciju."
+      ]
+    },
+    {
+      "heading": "Korist ne znači poboljšanje",
+      "paragraphs": [
+        "Studije su pokazale sporije prosječno pogoršanje pamćenja, mišljenja i svakodnevne funkcije nego placebo tijekom praćenja. Obje su skupine uglavnom propadale. Uklanjanje amiloida na snimci nije isto što i primjetno poboljšanje života, a prosjek ne predviđa pojedinca. Pitajte za praktičnu veličinu razlike, razdoblje istraživanja i dugoročnu nesigurnost. Odobrenje lijeka i procjena dodatne koristi ili pokrića odgovaraju na druga pitanja. Razgovarajte o podršci za demenciju i drugim prikladnim terapijama bez obzira na odluku."
+      ]
+    },
+    {
+      "heading": "Oteklina i krvarenje mozga ključni su rizici",
+      "paragraphs": [
+        "Slikovne promjene povezane s amiloidom, ARIA, uključuju oteklinu i promjene krvarenja. Mogu biti bez simptoma, ali neke su teške ili smrtonosne. MR treba prije i u određenim terminima, dodatno pri simptomima; dobar osjećaj ne zamjenjuje praćenje. U EU se ne započinje uz trajnu antikoagulantnu terapiju; određena prijašnja krvarenja ili nalazi, loše kontroliran tlak i nemogućnost MR mogu isključiti. Ovo nije potpun popis. Ne prekidajte nužni antikoagulans radi prihvatljivosti: specijalisti trebaju procijeniti sve."
+      ]
+    },
+    {
+      "heading": "Hitni simptomi i kartica liječenja",
+      "paragraphs": [
+        "Brzo se javite timu zbog nove glavobolje, smetenosti, omaglice, gubitka ravnoteže, mučnine ili promjene vida tijekom terapije. Nagla slabost, otežan govor, napadaj, poremećaj svijesti ili nagla jaka glavobolja traže hitnu službu; ne vozite. Mogu biti moždani udar, ARIA ili drugo, što se ne može sigurno razlikovati kod kuće. Recite hitnim liječnicima za donanemab i pokažite karticu: to utječe na procjenu i terapije povezane s krvarenjem. Infuzijske reakcije uključuju crvenilo, tresavicu, stezanje prsa, teško disanje ili tlak: odmah obavijestite osoblje, a teška reakcija izvan klinike traži hitnu pomoć."
+      ]
+    },
+    {
+      "heading": "Izvediv plan i provjere",
+      "paragraphs": [
+        "Infuzije se daju pod nadzorom, obično svaka četiri tjedna prema informacijama EU. Specijalist određuje dozu, snimke i prekid; europski maksimum je osamnaest mjeseci, ranije prema uklanjanju amiloida, napredovanju ili sigurnosti. Ne preuzimajte shemu druge zemlje. Razmotrite put, pratnju, pristup MR, cijenu, želje i sudjelovanje osobe uz podršku. Pitajte tko provjerava snimke prije infuzije i kako se hitno javiti. Nuspojave mogu zahtijevati stanku ili trajni prekid. Odbijanje također treba jasan plan daljnje skrbi i podrške."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: više od testa pamćenja",
+      "text": "Nadia ima blage smetnje pamćenja i pita za Kisunlu. Specijalist prvo utvrđuje dijagnozu i stadij, zatim amiloid, genetsko savjetovanje, MR i lijekove. Obitelj ne smatra dijagnozu jamstvom prikladnosti ili financiranja."
+    },
+    {
+      "title": "Hipotetski primjer: novi simptomi tijekom terapije",
+      "text": "Nakon početka Ilir naglo teško govori. Partnerica zove hitnu službu i pokazuje karticu. Ne čekaju sljedeću infuziju niti kod kuće odlučuju je li moždani udar ili ARIA."
+    }
+  ],
+  "questions": [
+    "Odgovaram li aktualnoj lokalnoj indikaciji i koji testovi ili lijekovi utječu?",
+    "Kolika je vjerojatna korist za mene u odnosu na rizike i opterećenje?",
+    "Kakav je plan snimki, hitnog kontakta i prekida te podrške ako odbijem ili prestanem?"
+  ]
+}

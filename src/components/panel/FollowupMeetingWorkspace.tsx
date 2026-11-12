@@ -48,6 +48,12 @@ type CockpitCopy = {
 };
 
 const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
+
+
+
+
+"ru": {"presetsAria":"Режим рабочего пространства","presetStandard":"Обычный","presetWideNotes":"Широкие заметки","presetFocusVideo":"Основное видео","sessionTimerAria":"Время консультации","micLevelAria":"Уровень микрофона","stampNotesBtn":"Добавить время","stampTranscriptBtn":"Отметить время","sendToNotesBtn":"Вставить в заметки со временем","sentToNotesStatus":"Фрагмент расшифровки со временем добавлен в медицинские заметки.","draftRecoveredNotice":"Восстановлен несохраненный медицинский черновик из этого сеанса браузера.","discardDraftBtn":"Удалить черновик","saveShortcutHint":"Ctrl+S / ⌘S"},
+
   en: {
     presetsAria: "Workspace layout preset",
     presetStandard: "Standard",

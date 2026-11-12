@@ -1,0 +1,51 @@
+{
+  "title": "Klamidija: testiranje, liječenje i sprečavanje ponovne infekcije",
+  "intro": "Klamidija je bakterijska spolno prenosiva infekcija, često bez simptoma. Osoba je može nositi i prenositi nesvjesno, pa dobro stanje ne isključuje infekciju. Testiranje i odgovarajući antibiotici liječe je i smanjuju komplikacije. Skrb uključuje nedavne partnere, vrijeme povratka spolnim odnosima i kasnije testove. Pozitivan nalaz zdravstveno je pitanje bez okrivljavanja, a ne pouzdan datum infekcije.",
+  "sections": [
+    {
+      "heading": "Simptomi i komplikacije",
+      "paragraphs": [
+        "Mogući su pečenje pri mokrenju, neobičan vaginalni ili penilni iscjedak, krv nakon odnosa ili između menstruacija, bol u donjem trbuhu te bolni otečeni testisi. Rektalna infekcija može dati bol, iscjedak ili krv, ali i biti tiha. Neliječena može pridonijeti upalnoj bolesti zdjelice, neplodnosti, izvanmaterničnoj trudnoći ili upali pasjemenika. Postoje drugi uzroci pa može trebati pregled. U trudnoći se infekcija može prenijeti novorođenčetu pri porodu."
+      ]
+    },
+    {
+      "heading": "Pravi test i mjesta uzorkovanja",
+      "paragraphs": [
+        "Služba može preporučiti test i bez simptoma, posebno nakon dijagnoze partnera ili izlaganja. Često se koriste mokraća ili vaginalni bris; prema kontaktu i simptomima rektalni ili ždrijelni. Neki se uzimaju samostalno prema uputi. Recite kada je kontakt bio: prerani test može propustiti infekciju i tražiti ponavljanje. Pitajte o drugim infekcijama i povjerljivom javljanju nalaza."
+      ]
+    },
+    {
+      "heading": "Dovršite propisani antibiotik",
+      "paragraphs": [
+        "Lijek i trajanje ovise o mjestu, trudnoći, alergijama, drugim lijekovima i lokalnim smjernicama. Slijedite recept i kad ste bolje; javite propuštene doze, povraćanje koje ometa liječenje i nuspojave. Ne dijelite tablete ni ostatke antibiotika. Recite za moguću trudnoću ili dojenje. Antibiotici uklanjaju infekciju, ali ne nužno već nastalo oštećenje. Trajni simptomi traže procjenu komplikacija ili druge infekcije."
+      ]
+    },
+    {
+      "heading": "Partneri i privremena stanka odnosa",
+      "paragraphs": [
+        "Sadašnji i relevantni nedavni partneri trebaju savjet, testove i često terapiju i bez tegoba. Klinika pomaže povjerljivu obavijest; tražite siguran pristup ako vas kontakt ugrožava. Izbjegavajte vaginalni, analni i oralni seks dok prođe preporučeni rok, vi i partneri ispunite liječenje i nestanu važni simptomi. Točna uputa ovisi o režimu. Kondomi i barijere smanjuju budući rizik, ali ne zamjenjuju ovu stanku."
+      ]
+    },
+    {
+      "heading": "Kontrole i simptomi koji ne čekaju",
+      "paragraphs": [
+        "Ponovna infekcija moguća je jer liječenje ne daje trajni imunitet. Kasnije testiranje, često oko tri mjeseca, traži reinfekciju; potvrda izlječenja drugo je pitanje, važno posebno u trudnoći ili odabranim slučajevima. Slijedite vrijeme jer prerani test može zavarati. Zdjelična bol s temperaturom, ozbiljno loše stanje ili bol testisa traže hitnu procjenu. Iznenadna jaka bol testisa hitan je slučaj. Jaka trbušna bol, nesvjestica ili krv uz moguću trudnoću mogu značiti izvanmaterničnu trudnoću i traže hitnu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Bez simptoma nakon nalaza partnera — zamišljeni primjer",
+      "text": "Osoba je dobro, ali partner ima klamidiju. Traži savjet i testiranje, opisuje vrstu i vrijeme kontakta i slijedi terapiju. Izostanak simptoma ne uzima kao dokaz da test nije potreban."
+    },
+    {
+      "title": "Nakon terapije — zamišljeni primjer",
+      "text": "Osoba završi tablete, ali partner još nije primio skrb. Pita kada smije nastaviti odnose, organizira podržanu obavijest i ponovni test, bez pretpostavke da zadnja tableta završava svaki rizik."
+    }
+  ],
+  "questions": [
+    "Koja mjesta i vrijeme testiranja odgovaraju kontaktima i koje druge infekcije provjeriti?",
+    "Koje su moje točno liječenje i upute za povratak odnosima s partnerima?",
+    "Trebam li potvrdu izlječenja, kasnije testiranje ili hitnu procjenu simptoma?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ekzema dhe heqja e ushqimeve: kur ndihmon vlerësimi i fokusuar",
+  "intro": "Është e kuptueshme të kërkoni ushqimin që shpjegon acarimet. Disa kanë ekzemë dhe alergji ushqimore, por ekzema nuk kërkon heqje të ushqimeve normale. Dieta që përjashton shumë mund të dëmtojë pa përmirësuar lëkurën. Pyetja është nëse një ushqim sjell reaksion të përsëritshëm dhe si vlerësohet sigurt.",
+  "sections": [
+    {
+      "heading": "Acarimi pas vaktit nuk provon shkakun",
+      "paragraphs": [
+        "Ekzema ndryshon natyrshëm; nxehtësia, infeksioni, acaruesit ose trajtimi përkojnë me ushqimin. Alergjia bëhet më e mundshme kur ushqimi përsërit reaksion të qartë, sidomos urtikarie, ënjtje, të vjella ose frymëmarrje shpejt pas tij. Edhe modeli i vonshëm do kontroll. Alergjia mund të bashkëjetojë pa drejtuar ekzemën. Mos hiqni ushqim të ngrënë rregullisht pa shenja vetëm nga lista e alergjenëve. Shihni së pari diagnozën dhe përdorimin e duhur të planit të lëkurës."
+      ]
+    },
+    {
+      "heading": "Testoni për një pyetje klinike",
+      "paragraphs": [
+        "Tregoni ushqimin, sasinë, kohën, shenjat, përsëritjen dhe trajtimin. Ditar i shkurtër ndihmon pa barrë të madhe. Testi i lëkurës ose antitrupat specifikë mbështesin vlerësimin, por pozitiviteti mund të jetë sensibilizim pa alergji reale. Panelet e gjera ngatërrojnë me rezultate pozitive në ekzemë. Analiza e flokut, panelet ushqimore IgG dhe testet e pavërtetuara nuk justifikojnë dietë. Mjeku mund të zgjedhë provë ushqimore të mbikëqyrur. Asnjë provë në shtëpi pas reaksioni të menjëhershëm të dyshuar ose të rëndë."
+      ]
+    },
+    {
+      "heading": "Rreziqe ushqyese dhe alergjike",
+      "paragraphs": [
+        "Heqja e qumështit, vezëve, grurit ose disa grupeve ul energjinë, proteinat dhe mikroushqyesit, sidomos te fëmija. Pijet bimore normale nuk zëvendësojnë formulën e foshnjës. Kufizimi sjell kosto, ankth, vështirësi shoqërore e ushqyerjeje. Shmangia e gjatë e ushqimit të toleruar mund të rrisë alergjinë e menjëhershme. Heqja e disa ushqimeve bashkë e vështirëson interpretimin. Mos kufizoni dietën e gjidhënësit pa indikacion dhe këshillë. Rritja e dobët, humbja e peshës ose dieta tashmë e ngushtë duan ndihmë herët."
+      ]
+    },
+    {
+      "heading": "Përjashtimi diagnostik do plan",
+      "paragraphs": [
+        "Kur historia e mbështet, alergologu dhe dietologu vendosin nëse vlen provë e shkurtër e synuar. Përcaktoni çfarë hiqet, zëvendësimet, matjen e shenjave dhe rishikimin. Mbani të njëjtin kujdes të përshkruar që përmirësimi të mos i atribuohet gabim dietës. Planifikoni rikthimin: vendi dhe mënyra varen nga rreziku dhe mund të duan mbikëqyrje. Pa përfitim bindës mos vazhdoni pafund ose shtoni përjashtime pa kontroll. Alergjia e vërtetuar do shmangie dhe plan urgjent, ndërsa ekzema trajtim më vete."
+      ]
+    },
+    {
+      "heading": "Kur shenjat pas ushqimit janë urgjente",
+      "paragraphs": [
+        "Ënjtja e papritur e gjuhës ose fytit, vështirësia e frymëmarrjes, kolapsi ose përkeqësimi i shpejtë mund të jenë anafilaksi. Përdorni adrenalinën e përshkruar sipas planit dhe thërrisni emergjencën; mos prisni kremin ose antihistaminikun. Mos qëndroni ose ecni gjatë dyshimit të rëndë. Të vjellat e vazhdueshme, marrja e ulët, dehidratimi ose rritja e dobët duan këshillë shpejt edhe pa alergji të menjëhershme. Ekzema e rëndë e pakontrolluar do specialist, jo ndryshimin e përsëritur të ushqimit familjar. Synoni ushqyerje të sigurt dhe kontroll me kufizime sa më të pakta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: test pa reaksion",
+      "text": "Paneli tregon sensibilizim të Linës për ushqim që ha pa shenja. Prindi kërkon interpretim para heqjes. Ekipi sheh historinë dhe lëkurën, jo çdo pozitiv si alergji."
+    },
+    {
+      "title": "Shembull hipotetik: reaksion i qartë",
+      "text": "Arbeni ka urtikarie dhe buzë të fryra shpejt pas ushqimit. Kërkon këshillë dhe nuk e rikthen vetë. Gulçimi ose kolapsi duan emergjencë, jo dietë më të gjatë ekzemash."
+    }
+  ],
+  "questions": [
+    "Historia tregon reaksion apo përkim me acarimin?",
+    "Cilat teste ose vlerësim i mbikëqyrur ndryshojnë kujdesin?",
+    "Në heqje, çfarë zëvendëson ushqyesit dhe kur e si rishikojmë ose rikthejmë sigurt?"
+  ]
+}

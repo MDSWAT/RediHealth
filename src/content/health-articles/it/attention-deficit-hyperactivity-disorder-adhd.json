@@ -1,0 +1,51 @@
+{
+  "title": "ADHD: valutazione e sostegno pratico nella vita quotidiana",
+  "intro": "Il disturbo da deficit di attenzione e iperattività, o ADHD, influenza attenzione, controllo degli impulsi e regolazione dell'attività. Inizia nell'infanzia, anche se può essere riconosciuto solo in età adulta. Essere energici, distratti in una settimana stressante o ottenere un punteggio alto online non basta. La valutazione considera difficoltà persistenti, sviluppo e conseguenze in diversi ambiti, insieme a punti di forza e altre spiegazioni.",
+  "sections": [
+    {
+      "heading": "Descrivere le situazioni senza colpevolizzare",
+      "paragraphs": [
+        "L'ADHD può comportare perdere il filo dei compiti, dimenticare oggetti, faticare ad aspettare, interrompere o sentirsi irrequieti. Alcuni hanno soprattutto difficoltà attentive senza iperattività evidente. Osservate quando compaiono e l'impatto su apprendimento, relazioni, lavoro e sicurezza. Ambienti impegnativi possono evidenziarle. Pigrizia e cattiva educazione non sono spiegazioni adeguate. Tuttavia, un singolo comportamento non conferma l'ADHD: contano età, aspettative e ambiente."
+      ]
+    },
+    {
+      "heading": "Richiedere una valutazione completa",
+      "paragraphs": [
+        "Il professionista può raccogliere storia dello sviluppo e informazioni da casa, scuola o lavoro, usando questionari insieme ai colloqui. Non esiste un singolo esame ematico o radiologico che confermi l'ADHD. Problemi del sonno, ansia, difficoltà di apprendimento e altre condizioni possono somigliargli o accompagnarlo. Agli adulti possono servire vecchie pagelle o osservazioni di familiari, se disponibili, ma l'assenza di documenti va discussa senza presumere impossibile la valutazione. Spiegate sinceramente anche le strategie che nascondono lo sforzo necessario."
+      ]
+    },
+    {
+      "heading": "Adattare compiti e ambiente nell'attesa",
+      "paragraphs": [
+        "Il sostegno non deve aspettare un'etichetta diagnostica. Dividete un compito in passi chiari, riducete distrazioni evitabili e usate promemoria visibili o un posto fisso per gli oggetti essenziali. Concordate routine realistiche con la persona senza imporre molti cambiamenti insieme. A scuola o al lavoro discutete istruzioni scritte, pause programmate o un luogo più tranquillo. Verificate cosa aiuta davvero: un adattamento utile a uno può frustrare un altro. Riconoscete i progressi ed evitate punizioni per difficoltà che necessitano sostegno."
+      ]
+    },
+    {
+      "heading": "Confrontare sostegno, strategie e medicinali",
+      "paragraphs": [
+        "Il piano dipende da età, impatto, preferenze e condizioni associate. Sostegno ai genitori, approcci comportamentali, educazione e strategie psicologiche possono aiutare il funzionamento quotidiano. Anche i medicinali possono essere adatti dopo valutazione specialistica e discussione di benefici e rischi. Prima e durante la prescrizione si rivede la salute fisica e mentale, compresi storia cardiaca, sonno e appetito. I controlli possono includere polso, pressione e crescita nei bambini. Non condividete farmaci, non modificate dosi da soli e non comprate prodotti non verificati che promettono guarigione."
+      ]
+    },
+    {
+      "heading": "Misurare il successo con funzionamento e benessere",
+      "paragraphs": [
+        "Concordate obiettivi concreti, come prepararsi al mattino con meno conflitti o gestire meglio le scadenze. Rivedete benefici, effetti avversi e richieste ancora irrealistiche. Segnalate al prescrittore cambiamenti importanti di umore, appetito o sonno; dolore toracico o svenimento richiedono valutazione urgente. Le difficoltà cambiano con passaggi scolastici, lavoro e responsabilità familiari: rivalutate il sostegno. L'ADHD può coesistere con autismo, depressione o altre condizioni che meritano cure proprie, senza attribuire ogni problema all'ADHD."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: mattine difficili",
+      "text": "Un bambino salta ripetutamente passaggi mentre si prepara. Famiglia e insegnante identificano il problema; si prova una breve lista illustrata con vestiti preparati prima. Si valuta se riduce lo stress mentre si organizza la valutazione, senza definire il bambino disobbediente."
+    },
+    {
+      "title": "Esempio ipotetico: difficoltà nell'adulto",
+      "text": "Un adulto rispetta le scadenze solo lavorando fino a tardi ed è esausto. Alla valutazione descrive compiti mancati e sforzo nascosto. Priorità scritte e confronti programmati al lavoro sono discussi insieme alle cure, senza basarsi solo su un questionario."
+    }
+  ],
+  "questions": [
+    "Cosa sostiene la diagnosi e quali altre spiegazioni o condizioni associate vanno valutate?",
+    "Quali cambiamenti provare a casa, scuola o lavoro e come giudicarne l'utilità?",
+    "Se consideriamo medicinali, quali benefici, effetti avversi e controlli prevedere?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Dermatiti alergjik i kontaktit: gjetja e shkaktarit dhe mbrojtja e lëkurës",
+  "intro": "Dermatiti alergjik i kontaktit është inflamacion me kruarje i lëkurës nga një reagim imunitar ndaj diçkaje që e prek atë. Shpesh shfaqet me vonesë, prandaj produkti i fundit i përdorur nuk është domosdoshmërisht shkaku. Identifikimi i substancës përkatëse ka po aq rëndësi sa trajtimi i skuqjes. Gjendja nuk është ngjitëse dhe një skuqje e ngjashme mund të vijë nga irritimi ose një problem tjetër i lëkurës.",
+  "sections": [
+    {
+      "heading": "Dallo alergjinë nga irritimi",
+      "paragraphs": [
+        "Nikeli, përbërësit aromatizues, konservuesit dhe substancat në disa materiale pune mund të shkaktojnë alergji te personat e sensibilizuar. Dermatiti irritues vjen nga dëmtimi i drejtpërdrejtë, për shembull puna e përsëritur me duar të lagura ose detergjentët, dhe nuk kërkon alergji. Të dy mekanizmat mund të jenë të pranishëm bashkë. Mund të ketë kruarje, çarje, ënjtje dhe flluska të vogla; inflamacioni mund të duket i kuq, vjollcë, kafe ose gri sipas ngjyrës së lëkurës. Vetëm pamja nuk e identifikon me siguri shkaktarin."
+      ]
+    },
+    {
+      "heading": "Përgatit një histori të dobishme ekspozimi",
+      "paragraphs": [
+        "Shëno zonat e prekura dhe çfarë i prek në shtëpi, punë dhe gjatë hobive. Mbaj emrat e produkteve dhe listat e përbërësve, përfshirë dorezat, kozmetikën, ngjitësit dhe barnat për lëkurën. Një fotografi e përkeqësimit mund të ndihmojë nëse lëkura përmirësohet para takimit. Etiketa si natyral ose hipoalergjik nuk garantojnë përshtatshmëri. Mos e riapliko qëllimisht një substancë të dyshuar mbi lëkurë të dëmtuar për ta provuar vetë idenë."
+      ]
+    },
+    {
+      "heading": "Kupto testimin epikutan nga specialisti",
+      "paragraphs": [
+        "Mjeku ekzaminon lëkurën dhe shqyrton shkaqe të tjera. Dermatologu mund të përdorë testim epikutan për alergjinë e vonuar të kontaktit. Sasi të vogla substancash të përzgjedhura vendosen në kushte të kontrolluara dhe lëkura kontrollohet në leximet e planifikuara. Kjo ndryshon nga testi me shpim për alergjitë e menjëhershme. Edhe një rezultat pozitiv kërkon interpretim: substanca duhet të lidhet me ekspozimet reale, jo vetëm të japë një reagim në test."
+      ]
+    },
+    {
+      "heading": "Bashko kujdesin e lëkurës me ndryshime realiste të ekspozimit",
+      "paragraphs": [
+        "Trajtimi mund të përfshijë hidratues të përshtatshëm dhe krem antiinflamator të përshkruar. Produkti, fuqia dhe zona e trupit kanë rëndësi, veçanërisht rreth syve ose te fëmijët. Pyet si ta përdorësh dhe kur ta rivlerësoni; mos merr hua kremin me kortikosteroid të dikujt tjetër. Në punë, diskuto produkte më të sigurta ose pajisje mbrojtëse të përshtatshme me shërbimin përkatës të shëndetit ose sigurisë. Disa përbërës të dorezave mund të shkaktojnë vetë alergji, prandaj ndryshimi pa udhëzim mund të mos e zgjidhë problemin."
+      ]
+    },
+    {
+      "heading": "Dije kur plani kërkon rishikim",
+      "paragraphs": [
+        "Cakto rivlerësim për sëmundje të vazhdueshme ose të përsëritur, gjumë të prishur, çarje të dhimbshme ose vështirësi në detyrat e përditshme. Dhimbja në rritje, nxehtësia lokale, qelbi, ënjtja që përhapet ose temperatura mund të tregojnë infeksion dhe kërkojnë vlerësim të shpejtë. Vështirësia në frymëmarrje ose ënjtja e gjuhës a fytit kërkojnë ndihmë urgjente dhe nuk janë përkeqësim i zakonshëm i vonuar i lëkurës. Nëse shmangia duket pa efekt, rishikoni diagnozën dhe ekspozimet në vend që të shtoni vazhdimisht kremra të rinj."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: të shohësh përtej një sapuni të ri",
+      "text": "Dikush zhvillon ekzemë në duar pas ndërrimit të sapunit, por përdor edhe doreza të reja pune. I sjell mjekut të dy listat e përbërësve dhe shpjegon punën me duar të lagura. Pyet nëse përfshihen irritimi, alergjia ose të dyja, në vend që të supozojë se shkaku është vetëm sapuni."
+    },
+    {
+      "title": "Shembull hipotetik: përdorimi i rezultatit të testit",
+      "text": "Testi epikutan identifikon alergji ndaj një konservuesi. Personi kërkon emrat e tij në etiketa dhe kontrollon produktet e zakonshme me ndihmë profesionale. Diskuton zëvendësime praktike, në vend që të hedhë çdo produkt shtëpie ose të presë që vetëm kremi ta parandalojë ekspozimin."
+    }
+  ],
+  "questions": [
+    "A duket si dermatit alergjik kontakti, irritim apo një gjendje tjetër?",
+    "A do të ndihmonte testimi epikutan dhe si do të lidhej rezultati me produktet ose punën time?",
+    "Cilat ndryshime kujdesi dhe ekspozimi janë realiste dhe cilat shenja kërkojnë rivlerësim të shpejtë?"
+  ]
+}

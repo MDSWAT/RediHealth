@@ -1,0 +1,51 @@
+{
+  "title": "Në spital: kuptoni kujdesin dhe përgatitni kthimin në shtëpi",
+  "intro": "Vizita në spital mund të jetë ambulatore, procedurë ditore ose qëndrim gjatë natës. Të dini pse po shkoni dhe kush është përgjegjës për hapin tjetër mund të pakësojë pasigurinë. Ky udhëzues jep këshilla praktike për përgatitjen dhe komunikimin. Rregullat e pranimit, sigurimit dhe pagesës ndryshojnë sipas vendit; artikulli origjinal i lidhur shpjegon organizimin në Gjermani, jo të drejta universale.",
+  "sections": [
+    {
+      "heading": "Sqaroni pranimin para vizitës së planifikuar",
+      "paragraphs": [
+        "Kontrolloni repartin, datën, orën e mbërritjes dhe kontaktet dhe pyetni nëse do të qëndroni natën. Konfirmoni me spitalin dhe siguruesin kërkesat për referim, mbulim ose pagesë, sipas rastit. Pyetni për transportin, përkthimin, aksesin dhe mbështetjen për kujdestarin. Ndiqni udhëzimet individuale për ushqimin, lëngjet dhe barnat; mos caktoni vetë periudhë agjërimi ose mos ndërprisni vetë holluesin e gjakut. Kontaktoni ekipin nëse udhëzimet kundërshtohen, shëndeti ndryshon ose zhvilloni infeksion para pranimit."
+      ]
+    },
+    {
+      "heading": "Merrni informacion që parandalon gabimet e shmangshme",
+      "paragraphs": [
+        "Merrni listën aktuale të barnave, alergjitë, raportet përkatëse dhe dokumentet e kërkuara. Përfshini barnat pa recetë e suplementet dhe tregoni çfarë merrni realisht. Informoni për implantet, reagimet e mëparshme ndaj anestezisë, nevojat e komunikimit dhe ndihmën për ecje apo kujdes personal. Syzet dhe aparatet e dëgjimit lehtësojnë bisedat; pyetni si t'i ruani sigurt. Konfirmoni identitetin kur personeli e kontrollon dhe flisni nëse një bar, procedurë ose etiketë duket ndryshe nga ajo që prisnit."
+      ]
+    },
+    {
+      "heading": "Pyetni kush i koordinon vendimet",
+      "paragraphs": [
+        "Mund t'ju vizitojnë profesionistë të ndryshëm me role të veçanta. Pyetni kush e drejton trajtimin dhe si të kontaktoni dikë për pyetje. Para një procedure diskutoni qëllimin, përfitimet e mundshme, rreziqet e rëndësishme, alternativat dhe rikuperimin. Kërkoni përkthyes ose shpjegim më të qartë nëse duhet dhe thoni nëse nuk kuptoni bisedën për pëlqimin. Për një vendim të madh jo urgjent, pyetni nëse ka kohë ose mundësi për mendim tjetër. Tregojini ekipit kë doni të përfshini dhe çfarë informacioni mund të ndahet."
+      ]
+    },
+    {
+      "heading": "Raportoni ndryshimet pa pritur vizitën tjetër",
+      "paragraphs": [
+        "Përdorni sistemin e thirrjes nëse ndiheni shumë më keq, keni vështirësi të re në frymëmarrje ose dhimbje gjoksi, marramendje të madhe apo ndryshim tjetër shqetësues. Kërkoni ndihmë para se të ngriheni nëse jeni të dobët, të paqëndrueshëm ose të lidhur me pajisje. Diskutoni herët dhimbjen dhe të përzierat dhe ndiqni këshillat për lëvizjen, plagën dhe parandalimin e mpiksjeve. Higjiena e duarve ka rëndësi për personelin, vizitorët dhe pacientët. Nëse shqetësoheni se një problem i rëndësishëm nuk është dëgjuar, kërkoni rivlerësim nga infermieri përgjegjës ose mjeku trajtues."
+      ]
+    },
+    {
+      "heading": "Bëjini udhëzimet e daljes të zbatueshme në shtëpi",
+      "paragraphs": [
+        "Para largimit merrni përmbledhje të kuptueshme të diagnozës, trajtimit dhe analizave në pritje. Shqyrtoni listën e barnave: çfarë është e re, e ndryshuar, e ndërprerë ose vazhdon, pse dhe kush do ta rishikojë. Konfirmoni kujdesin e plagës, kufizimet e aktivitetit, kontrollet, shenjat alarmuese dhe kontaktin për probleme. Shpjegoni nëse jetoni vetëm, nuk ngjitni dot shkallët ose nuk keni ndihmë për barnat. Pyetni çfarë mbështetjeje, pajisjesh ose rehabilitimi mund të organizohet. I afërmi mund të ndihmojë me lejen tuaj, por nuk duhet supozuar se mund të japë gjithë kujdesin e nevojshëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: udhëzime të paqarta për barnat",
+      "text": "Para një procedure të planifikuar, pacienti merr një fletë të vjetër që duket se kundërshton planin e fundit të barnave. Kontakton ekipin për sqarim në vend që të hamendësojë cilat tableta duhet të ndërpresë."
+    },
+    {
+      "title": "Shembull hipotetik: pengesa praktike në dalje",
+      "text": "Një pacient mund të largohet pas trajtimit, por nuk ngjit dot sigurt shkallët në shtëpi dhe nuk kupton recetat e reja. Njofton ekipin para largimit, kërkon rishikim të listës së barnave dhe diskuton transportin e mbështetjen."
+    }
+  ],
+  "questions": [
+    "Kush e koordinon kujdesin tim dhe cilat janë përfitimet, rreziqet dhe alternativat e trajtimit?",
+    "Cilat barna duhet të marr para pranimit dhe pas daljes dhe kush konfirmon ndryshimet?",
+    "Çfarë ndihme më duhet në shtëpi, kush ndjek rezultatet në pritje dhe kë kontaktoj nëse përkeqësohem?"
+  ]
+}

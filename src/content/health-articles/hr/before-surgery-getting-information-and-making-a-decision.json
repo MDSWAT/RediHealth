@@ -1,0 +1,51 @@
+{
+  "title": "Prije operacije: razumijte odluku i napravite izvediv plan",
+  "intro": "Ponuda operacije ne znači da su sva važna pitanja riješena. Planirani zahvat treba imati jasnu svrhu, razgovor o koristima i šteti te pripremu prema zdravlju i okolnostima. Hitne odluke ostavljaju manje vremena, ali možete tražiti objašnjenja. Vodič olakšava razgovor; pristanak, drugo mišljenje i plaćanje ovise o zemlji i službi.",
+  "sections": [
+    {
+      "heading": "Počnite problemom koji operacija treba riješiti",
+      "paragraphs": [
+        "Tražite jednostavno objašnjenje dijagnoze, zahvata i cilja. Želi li se ublažiti bol, poboljšati funkciju, spriječiti komplikaciju ili liječiti opasnu bolest? Razgovarajte o najvažnijem osobnom ishodu i realnoj vjerojatnosti. Pitajte što može biti bez operacije, hitnost odluke i mijenja li čekanje mogućnosti. Sam nalaz na snimci ne objašnjava svaki simptom niti dokazuje da svi trebaju istu operaciju."
+      ]
+    },
+    {
+      "heading": "Usporedite alternative i osobno važne rizike",
+      "paragraphs": [
+        "Alternative ovise o bolesti: lijekovi, rehabilitacija, manje invazivan zahvat ili praćenje. Pitajte očekivanu korist, neizvjesnost, ozbiljne komplikacije i mogućnost daljnjeg liječenja. Tražite razumljive učestalosti i vremenski okvir umjesto nejasnog malog rizika. Druge bolesti, krhkost, pušenje i ranije operacije mogu promijeniti ravnotežu. Ishod prijatelja nije osobno predviđanje. Za veliku nehitnu odluku pitajte o vremenu za razmišljanje ili drugom mišljenju i kako ih organizirati."
+      ]
+    },
+    {
+      "heading": "Učinite razgovor o pristanku pristupačnim",
+      "paragraphs": [
+        "Navedite jezične potrebe, sluh, vid ili teškoće učenja. Tražite prikladnog tumača umjesto oslanjanja na dijete za složenu medicinsku odluku. Pouzdana osoba može pomoći pamtiti pitanja uz vaš pristanak. Potpis ne zamjenjuje razumijevanje zahvata, alternativa i posljedica. Objasnite nejasno ili neprihvatljivo, uključujući krvne pripravke ili uključivanje obitelji kada je važno. Pitajte kontakt za promjenu odluke ili nova pitanja; lokalna pravila i hitne iznimke trebaju individualno objašnjenje."
+      ]
+    },
+    {
+      "heading": "Dobijte osobne upute o lijekovima i anesteziji",
+      "paragraphs": [
+        "Donesite cjelovit popis lijekova i alergija, uključujući dodatke, bezreceptne proizvode i stvarno uzimanje. Navedite ranije probleme s anestezijom, implantate, apneju i moguću trudnoću. Pitajte vrstu anestezije i zbrinjavanje boli i mučnine. Potvrdite pisane upute o jelu, piću i svakom lijeku za prilagodbu, uključujući antikoagulanse i lijekove dijabetesa. Ne određujte vlastito gladovanje i ne prekidajte terapiju prema općem vodiču. Kod proturječnih uputa, infekcije ili promjene zdravlja javite se timu prije zahvata."
+      ]
+    },
+    {
+      "heading": "Planirajte oporavak i provjerite izvedivost",
+      "paragraphs": [
+        "Pitajte očekivani boravak, rane, kretanje, posao, vožnju i kontrole, uključujući odgovornu osobu za preostale nalaze. Dogovorite prijevoz i pomoć kod kuće, stepenice, skrb o drugima i nabavu lijekova. Procjene nisu jamstva; pitajte hitne znakove i službu izvan radnog vremena. Recite ako podrška nije dostupna. Nakon otpusta teško disanje, bol u prsima, kolaps ili brzo pogoršanje zahtijevaju hitnu pomoć umjesto čekanja redovne kirurške kontrole."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: provjera očekivane koristi",
+      "text": "Osoba s prijedlogom operacije bolnog zgloba pita koje će se aktivnosti vjerojatno poboljšati i kakva je rehabilitacija. Uspoređuje alternative i osobne prioritete umjesto odluke samo prema snimci."
+    },
+    {
+      "title": "Hipotetski primjer: proturječne upute",
+      "text": "Pacijent dobiva standardni letak i zaseban plan lijekova koji izgledaju različito. Prije zahvata traži potvrđen pisani plan, objašnjava da živi sam i organizira podršku za povratak kući."
+    }
+  ],
+  "questions": [
+    "Koja je korist realna za mene, koje su alternative i što se događa ako čekam?",
+    "Koji rizici i priprema ovise o zdravlju, lijekovima i anesteziji?",
+    "Koju pomoć u oporavku, kontrole i hitne kontakte treba organizirati?"
+  ]
+}

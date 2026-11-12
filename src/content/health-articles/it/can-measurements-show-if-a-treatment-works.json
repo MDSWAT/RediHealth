@@ -1,0 +1,51 @@
+{
+  "title": "Esami migliori significano che la cura aiuta?",
+  "intro": "Analisi, immagini e misure aiutano diagnosi, controllo e rilevamento dei danni. Un numero migliore però non risolve ogni domanda di beneficio. Conta cosa si misura, quanto predice esiti importanti e gli altri effetti. Comprenderlo aiuta a chiedere senza scartare test o cambiare cure da soli.",
+  "sections": [
+    {
+      "heading": "Identificare la domanda dietro la misura",
+      "paragraphs": [
+        "Chiedete se serve a diagnosi, dose, sicurezza o beneficio. Sono scopi distinti. Un marcatore utile per uno non prova prevenzione delle complicazioni. Dolore, attività, ricovero e sopravvivenza contano direttamente. Un buon questionario dei sintomi misura un esito importante anche se riferito dal paziente, non da una macchina."
+      ]
+    },
+    {
+      "heading": "Capire il surrogato senza chiamarlo inutile",
+      "paragraphs": [
+        "Un endpoint surrogato sostituisce un altro esito, per esempio valore fisiologico prima di una complicazione tardiva. Alcuni hanno solide prove nel contesto, altri prevedono soltanto e richiedono conferma. Associazione con rischio non basta: migliorare un marcatore può accompagnarsi ad altri effetti che annullano il beneficio. Chiedete prove per quel marcatore, trattamento e condizione senza ritenere tutti i numeri ugualmente affidabili o no."
+      ]
+    },
+    {
+      "heading": "Cercare un confronto corretto",
+      "paragraphs": [
+        "Il cambiamento può dipendere da farmaco, variabilità, recupero, altre cure o misura. Studi con gruppi adatti separano possibilità. Chiedete confronto e coerenza delle misure. Le medie non mostrano effetto identico individuale. Cercate differenza reale, periodo e danni, non solo percentuale o immagine impressionante."
+      ]
+    },
+    {
+      "heading": "Verificare grandezza, incertezza e importanza quotidiana",
+      "paragraphs": [
+        "Un cambiamento statistico può essere troppo piccolo da sentire; nessuna differenza chiara può lasciare incertezza. Valutate persone, durata, risultati mancanti e ritiri. Non si trasferisce automaticamente fra popolazioni o cure. Chiedete se supera variazione usuale e la soglia è percepibile. Conta anche il verso: più alto non è sempre meglio."
+      ]
+    },
+    {
+      "heading": "Usare misura, sintomi, danni e obiettivi insieme",
+      "paragraphs": [
+        "Discutete funzionamento, sensazioni, effetti e obiettivi con il risultato. Un marcatore rassicurante non cancella nuovi sintomi. Incertezza non significa inutilità di una cura consolidata o necessità di sospenderla. Chiedete prove dirette, inferenze e controlli. Seguite piano e contattate il team se poco chiaro o cambiato. La decisione usa l'intero bilancio."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: numero migliore, vita difficile",
+      "text": "Un esame migliora ma compaiono vertigini fastidiose. La persona segnala entrambi e chiede benefici, effetti e alternative. Il numero non cancella il problema e non modifica la ricetta solo da questo articolo."
+    },
+    {
+      "title": "Esempio ipotetico: immagini tumorali",
+      "text": "Una famiglia legge di tumori ridotti. Chiede anche sintomi, qualità di vita, sopravvivenza ed effetti. Distingue l'immagine dalla garanzia dello stesso beneficio al familiare."
+    }
+  ],
+  "questions": [
+    "A cosa serve la misura ed è un esito diretto o surrogato?",
+    "Quali prove comparative la collegano a beneficio importante per me?",
+    "Come cambiano la scelta sintomi, effetti, incertezza e obiettivi?"
+  ]
+}

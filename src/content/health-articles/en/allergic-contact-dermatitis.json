@@ -1,0 +1,51 @@
+{
+  "title": "Allergic contact dermatitis: finding the trigger and protecting skin",
+  "intro": "Allergic contact dermatitis is an itchy skin inflammation caused by an immune reaction to something touching the skin. It often develops after a delay, so the last product you used is not necessarily the cause. Identifying the relevant substance matters as much as treating the rash. The condition is not contagious, and a similar-looking rash may instead be caused by irritation or another skin problem.",
+  "sections": [
+    {
+      "heading": "Distinguish allergy from irritation",
+      "paragraphs": [
+        "Nickel, fragrance ingredients, preservatives and substances in some workplace materials can trigger allergy in sensitised people. Irritant dermatitis results from direct damage, for example repeated wet work or detergents, and does not require an allergy. Both mechanisms can occur together. Itching, cracks, swelling and small blisters are possible; inflammation may look red, purple, brown or grey depending on skin colour. Appearance alone cannot reliably identify the trigger."
+      ]
+    },
+    {
+      "heading": "Prepare a useful exposure history",
+      "paragraphs": [
+        "Note which areas are affected and what contacts them at home, work and during hobbies. Keep product names and ingredient lists, including gloves, cosmetics, adhesives and topical medicines. A photograph of a flare can help when the skin improves before an appointment. Labels such as natural or hypoallergenic do not guarantee suitability. Do not deliberately reapply a suspected substance to damaged skin to test the idea yourself."
+      ]
+    },
+    {
+      "heading": "Understand specialist patch testing",
+      "paragraphs": [
+        "A clinician examines the skin and considers other causes. A dermatologist may use patch testing to investigate delayed contact allergy. Small amounts of selected substances are applied under controlled conditions and the skin is reviewed at scheduled readings. This differs from a skin-prick test for immediate allergies. A positive patch test still needs interpretation: the substance must be relevant to your actual exposures, not merely produce a test reaction."
+      ]
+    },
+    {
+      "heading": "Combine skin care with realistic exposure changes",
+      "paragraphs": [
+        "Treatment may include an appropriate moisturiser and a prescribed anti-inflammatory cream. The product, strength and body area matter, particularly around the eyes or in children. Ask how to use it and when to review it; do not borrow another person's steroid cream. At work, discuss safer products or suitable protective equipment with the relevant health or safety service. Some glove ingredients can themselves cause allergy, so changing gloves blindly may not solve the problem."
+      ]
+    },
+    {
+      "heading": "Know when the plan needs review",
+      "paragraphs": [
+        "Arrange review for persistent or recurring disease, disrupted sleep, painful cracks or difficulty doing daily tasks. Increasing pain, warmth, pus, spreading swelling or fever can suggest infection and need prompt assessment. Breathing difficulty or swelling of the tongue or throat requires emergency help and is not a routine delayed skin flare. If avoidance seems ineffective, revisit the diagnosis and exposure list rather than repeatedly adding new creams."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: looking beyond a new soap",
+      "text": "Someone develops hand eczema after changing soap, but also wears new work gloves. They bring both ingredient lists and explain their wet-work routine to a clinician. They ask whether irritation, allergy or both could be involved instead of assuming the soap is the only cause."
+    },
+    {
+      "title": "Hypothetical example: using a test result",
+      "text": "A patch test identifies an allergy to a preservative. The person asks for its ingredient names and checks their usual products with professional help. They discuss workable replacements rather than discarding every household item or expecting a cream alone to prevent exposure."
+    }
+  ],
+  "questions": [
+    "Does this look like allergic contact dermatitis, irritation or another condition?",
+    "Would patch testing help, and how would the result relate to my products or work?",
+    "Which skin-care and exposure changes are realistic, and what signs need prompt reassessment?"
+  ]
+}

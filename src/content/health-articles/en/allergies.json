@@ -1,0 +1,56 @@
+{
+  "title": "Understanding Allergies: When Your Immune System Overreacts",
+  "intro": "An allergy happens when your immune system treats a harmless substance as a threat and launches a defense response. Common triggers include pollen, certain foods, insect stings, pet dander, and medications. Allergic reactions range from mild annoyances to serious emergencies. Understanding what triggers your symptoms and how to respond helps you manage daily life and know when to seek immediate care.",
+  "sections": [
+    {
+      "heading": "What Happens During an Allergic Reaction",
+      "paragraphs": [
+        "Many immediate allergic reactions involve antibodies called immunoglobulin E (IgE). These antibodies trigger cells to release chemicals like histamine, which cause the symptoms you feel. This response can affect your skin, airways, digestive system, or entire body.",
+        "Symptoms vary widely depending on the allergen and your sensitivity. Mild reactions might include sneezing, itchy eyes, hives, or a runny nose. More significant reactions can cause difficulty breathing, swelling of the face or throat, stomach cramps, vomiting, or a sudden drop in blood pressure. The same person may have different reactions at different times, and severity can change over a lifetime."
+      ]
+    },
+    {
+      "heading": "Identifying Your Triggers",
+      "paragraphs": [
+        "Recognizing patterns helps narrow down what causes your symptoms. Keep track of when reactions occur, what you ate or touched beforehand, where you were, and what season it is. This information guides testing and helps you avoid future exposures.",
+        "Healthcare providers assess allergies through your history, physical examination, and sometimes testing. Skin prick tests expose small areas of skin to suspected allergens and look for reactions. Blood tests measure IgE antibodies to specific substances. These tests have limitations—a positive result does not always mean you will have symptoms in real life, and negative results do not completely rule out an allergy. Diagnosis combines test results with your actual experiences."
+      ]
+    },
+    {
+      "heading": "Managing Exposure and Symptoms",
+      "paragraphs": [
+        "Avoiding known allergens is the most effective strategy when possible. This might mean checking food labels carefully, using allergen-proof bedding covers, or finding new homes for pets. Complete avoidance is not always realistic, so symptom management becomes important.",
+        "Antihistamines reduce itching, sneezing, and hives by blocking histamine. Nasal corticosteroid sprays decrease inflammation in nasal passages. For more severe allergies, your healthcare provider may prescribe other medications or recommend immunotherapy—a treatment that gradually exposes you to small amounts of allergen to reduce your sensitivity over time. The effectiveness of immunotherapy varies, and it typically takes three to five years to complete."
+      ]
+    },
+    {
+      "heading": "Preparing for Severe Reactions",
+      "paragraphs": [
+        "Anaphylaxis is a rapid, life-threatening allergic reaction that affects multiple body systems. Signs include difficulty breathing or swallowing, swelling of the tongue or throat, rapid pulse, dizziness, loss of consciousness, or widespread hives. This is a medical emergency requiring immediate treatment with epinephrine and emergency care.",
+        "If you are at risk for severe reactions, your healthcare provider will prescribe an epinephrine auto-injector. Carry it everywhere, know how to use it, and replace it before it expires. Teach family members, roommates, and close friends how to recognize anaphylaxis and administer the injection. Using epinephrine when needed is safe—delaying treatment is dangerous."
+      ]
+    },
+    {
+      "heading": "Living with Uncertainties",
+      "paragraphs": [
+        "Allergies can develop at any age, even to substances you previously tolerated. Some childhood allergies resolve over time, particularly milk and egg allergies, while others persist into adulthood. It is not always possible to predict who will outgrow an allergy or who will develop new ones.",
+        "Cross-reactivity can surprise people—for example, some individuals with birch pollen allergy react to raw apples or hazelnuts because the proteins are similar. Not everyone with a positive test or mild reaction in the past will have problems in the future. Work with your healthcare team to make decisions based on your individual situation rather than general rules."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planning a Restaurant Meal",
+      "text": "Imagine someone with a shellfish allergy wants to try a new restaurant. Before going, they could call ahead to ask about ingredient sourcing and kitchen practices. At the restaurant, they might explain their allergy to the server, ask which dishes are safe, and request that the kitchen use clean utensils and surfaces. They would carry their epinephrine auto-injector and dine with someone who knows how to help in an emergency."
+    },
+    {
+      "title": "Managing Spring Pollen Season",
+      "text": "Consider someone whose eyes itch and nose runs every spring. They might check daily pollen forecasts and consider strategies like staying indoors on high-count days, especially during morning hours when pollen release peaks. Some people choose to shower and change clothes after being outside or keep windows closed and use air conditioning with clean filters. Their healthcare provider can help determine whether starting antihistamines before symptoms begin would be appropriate based on their individual allergy patterns."
+    }
+  ],
+  "questions": [
+    "Based on my symptoms and history, what testing would help identify my specific allergens, and what are the limitations of those tests?",
+    "Am I at risk for severe reactions, and if so, should I carry an epinephrine auto-injector and learn how to use it?",
+    "What are my options for managing symptoms, and how do the benefits and potential side effects of different approaches compare for my situation?"
+  ]
+}

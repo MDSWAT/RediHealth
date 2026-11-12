@@ -14,6 +14,38 @@ function useSafeLanguage() {
 }
 
 const handoverCopy = {
+  ru: {
+    liveStatus: "Дежурный врач на связи",
+    endCall: "Завершить вызов",
+    iframeTitle: "Видеозвонок с врачом",
+    sidePanelLabel: "Поддержка во время звонка",
+    patientLine: (name: string, age: string) => `Пациент: ${name} (${age})`,
+    translation: "Перевод:",
+    translationLanguage: "Романи (Романес)",
+    bp: "BP",
+    pulse: "Пульс",
+    glucose: "Уровень сахара в крови",
+    temp: "Температура",
+    liveNotesLabel: "Заметки о вызовах",
+    tabletTip: "Держите таблетку лицом к пациенту, чтобы врач мог его хорошо видеть.",
+    title: "Передача дежурному врачу",
+    subtitle: "Врач видит это еще до начала видеозвонка.",
+    nameLabel: "Имя пациента",
+    ageLabel: "Возраст",
+    vitalsLabel: "Значения, измеренные во время визита",
+    reasonLabel: "Причина звонка",
+    languageBarrier: "Требуется перевод",
+    languageHelp: "Посредник переводится на цыганский (Romanes).",
+    notesLabel: "Другие примечания",
+    submitting: "Отправка данных…",
+    submit: "Начать видеозвонок",
+    sendError: "Данные не были отправлены. Попробуйте еще раз.",
+    connectError: "Не удалось подключить врача. Попробуйте еще раз.",
+    demoAge: "68 лет",
+    demoReason: "Головокружение по утрам, боль в задней части шеи при усилии.",
+    demoNotes: "Кооператив. Вчера утром приняла последнюю таблетку эналаприла.",
+  },
+
   ro: {
     liveStatus: "Medicul de gardă e conectat",
     endCall: "Închide apelul",

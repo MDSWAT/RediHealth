@@ -27,6 +27,15 @@ const extraCopy: Record<
     restart: string;
   }
 > = {
+  ru: {
+
+
+    score: (c, a) => `${c} из ${a} правильный`,
+
+
+    restart: "Начать сначала",
+  },
+
   ro: {
     score: (c, a) => `${c}/${a} corecte`,
     restart: "Începe din nou",
@@ -59,6 +68,8 @@ const extraCopy: Record<
  * through aria-keyshortcuts on the answer buttons and shown as quiet keycaps.
  */
 const ANSWER_KEYS: Record<Lang, { true: string[]; false: string[] }> = {
+  ru: { true: ["т", "1"], false: ["ж", "2"] },
+
   ro: { true: ["a", "1"], false: ["f", "2"] }, // adevărat / fals
   en: { true: ["t", "1"], false: ["f", "2"] }, // true / false
   sq: { true: ["v", "1"], false: ["r", "2"] }, // e vërtetë / e rreme
@@ -71,6 +82,8 @@ const keyShortcuts = (keys: string[]) =>
 
 /** Quotation marks around the myth, in each language's own typographic style. */
 const QUOTES: Record<Lang, [string, string]> = {
+  ru: ["“", "”"],
+
   ro: ["„", "”"],
   en: ["“", "”"],
   sq: ["«", "»"],
@@ -80,6 +93,8 @@ const QUOTES: Record<Lang, [string, string]> = {
 };
 
 const SPEECH_LANG: Record<Lang, string> = {
+ru: "ru-RU",
+
   ro: "ro-RO",
   en: "en-US",
   sq: "sq-AL",

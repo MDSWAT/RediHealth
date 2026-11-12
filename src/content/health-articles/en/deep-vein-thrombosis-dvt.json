@@ -1,0 +1,51 @@
+{
+  "title": "Deep-vein thrombosis: recognising and treating a clot",
+  "intro": "Deep-vein thrombosis is a blood clot in a deep vein, usually in a leg but sometimes in an arm or the pelvis. It needs prompt assessment because a clot can grow or part can travel to the lungs, causing a pulmonary embolism. Symptoms alone cannot confirm or exclude it. New unexplained swelling or pain in one limb should not simply be treated as a muscle strain without considering the cause.",
+  "sections": [
+    {
+      "heading": "Know which symptoms need immediate help",
+      "paragraphs": [
+        "Possible signs include swelling, tenderness, warmth and a change in skin colour, commonly affecting one leg. Some clots cause little or no obvious symptoms. Seek urgent same-day medical advice if a clot is suspected. Call emergency services for sudden breathlessness, chest or upper-back pain, fainting, collapse or coughing blood with breathing difficulty. A pulmonary embolism can occur without noticeable leg symptoms. Do not drive yourself during a suspected emergency. A previously reassuring assessment does not remove the need to act on new breathing or chest symptoms."
+      ]
+    },
+    {
+      "heading": "Risk depends on more than a long flight",
+      "paragraphs": [
+        "Recent surgery, hospitalisation, injury, restricted movement or a leg in a cast can increase risk, including after discharge. Cancer, a previous clot, some clotting disorders, pregnancy and the period after birth also matter. Oestrogen-containing medicines and long journeys can contribute. Tell the clinician about all these factors and family history, but remember a clot can happen without an obvious trigger. A red swollen leg may instead be an infection or another problem; neither the absence of a risk factor nor a home leg movement test is a reliable way to rule out thrombosis."
+      ]
+    },
+    {
+      "heading": "Tests are interpreted as a sequence",
+      "paragraphs": [
+        "A clinician combines examination and clinical probability with tests such as a D-dimer blood test and ultrasound of the veins. A raised D-dimer is not a diagnosis: many conditions raise it. Whether a negative result is sufficient depends on the clinical assessment and test pathway. Some people need a repeat ultrasound after an initially negative scan. If testing is delayed, a clinician may prescribe temporary anticoagulation after checking safety. Ask exactly what happens while waiting, who contacts you with results and when to return. Do not start, continue or stop such treatment based on a test result you interpret yourself."
+      ]
+    },
+    {
+      "heading": "Anticoagulants prevent growth and further clots",
+      "paragraphs": [
+        "Most treatment uses prescribed anticoagulant tablets or injections. They reduce clotting while the body gradually deals with the existing clot; they do not instantly dissolve it. Choice and duration depend on clot location, provoking factors, recurrence and bleeding risk, kidney function, pregnancy and other treatment. Certain severe cases need specialist procedures, but clot removal or clot-dissolving medicines are not routine for everyone. Take the exact prescribed course and ask about missed doses. Check before adding painkillers, aspirin, supplements or new medicines. Uncontrolled bleeding, vomiting blood, black stools or a significant head injury while anticoagulated require immediate medical attention."
+      ]
+    },
+    {
+      "heading": "Recovery and future prevention need an individual plan",
+      "paragraphs": [
+        "Once assessed and treated, follow advice about walking, leg elevation and return to work or travel. Do not assume prolonged bed rest is necessary or that travel is immediately safe. Compression may help selected people with symptoms when appropriately fitted; it is not a substitute for anticoagulation. Persistent swelling, heaviness or skin changes can reflect post-thrombotic problems and deserve review. New swelling or pain also needs reassessment for recurrence. Before later surgery, pregnancy, a cast or long travel, tell the team about the previous clot. Movement breaks and a prescribed prevention plan can help; do not borrow injections or use aspirin as a self-chosen replacement."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: symptoms after leaving hospital",
+      "text": "After an operation, Dario develops a newly swollen painful calf at home. He seeks same-day advice and mentions the recent surgery rather than assuming walking less explains it. If sudden breathlessness or chest pain develops, he knows to call emergency services."
+    },
+    {
+      "title": "Hypothetical example: understanding a repeat scan",
+      "text": "Ana's initial scan does not show a clot, but the clinician explains that her overall findings require another scan. She keeps the appointment and follows the explicit medicine plan instead of deciding that one negative test makes all follow-up unnecessary."
+    }
+  ],
+  "questions": [
+    "What is the testing plan, and do I need another scan or treatment while waiting?",
+    "How long should I take this medicine, and what bleeding or interaction precautions apply?",
+    "When can I resume work or travel, and what prevention will I need in future?"
+  ]
+}

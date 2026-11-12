@@ -1,0 +1,51 @@
+{
+  "title": "CPAP pentru apneea de somn: rezolvarea problemelor zilnice",
+  "intro": "CPAP folosește aer sub presiune printr-o mască pentru a menține deschise căile respiratorii superioare în somn. Tratează apneea obstructivă cât este utilizat; nu este doar aparat împotriva sforăitului. Pierderile de aer, uscăciunea ori anxietatea pot îngreuna tratamentul, dar ajustarea echipamentului și acomodarea treptată ajută adesea. Contactați devreme serviciul de somnologie, fără să modificați singur presiunea prescrisă.",
+  "sections": [
+    {
+      "heading": "Prima verificare: potrivire, conexiuni și confort",
+      "paragraphs": [
+        "Potriviți masca conform instrucțiunilor, cu aparatul pornit și în poziția obișnuită de somn. Curelele trebuie să mențină etanșarea fără să apese dureros. Strângerea excesivă deformează pernița și poate agrava scurgerile. Verificați conexiunile tubului și uzura perniței ori curelelor. Aerul spre ochi poate indica pierdere, dar fluxul prin orificiile de expir proiectate este normal și esențial: nu blocați niciodată aceste orificii ori valve. Cereți altă mărime sau alt tip de mască dacă reglajele repetate nu ajută. Leziunea pielii ori iritația oculară persistentă necesită control, nu curele tot mai strânse."
+      ]
+    },
+    {
+      "heading": "Uscăciune, nas înfundat și apă în tub",
+      "paragraphs": [
+        "Gura uscată poate proveni din pierderea aerului pe gură, mai ales cu mască nazală; nasul înfundat contribuie. Discutați alegerea măștii, soluția salină nazală sau tratamentul inflamației nazale. Umidificarea încălzită poate ajuta, conform instrucțiunilor aparatului și echipei. Apa acumulată în tub este condens; tubul încălzit compatibil ori ajustarea potrivită a umidității sau condițiilor camerei pot ajuta. Folosiți tipul și nivelul de apă recomandate, goliți și curățați recipientul conform instrucțiunilor și nu adăugați uleiuri esențiale ori medicamente. Nu improvizați lipirea gurii cu bandă."
+      ]
+    },
+    {
+      "heading": "Senzație de captivitate, presiune incomodă sau aer înghițit",
+      "paragraphs": [
+        "Exersați puțin cât sunteți treaz, într-un cadru calm, de exemplu citind, și acomodați-vă treptat. Întrebați cum funcționează rampa ori funcțiile de confort permise; acestea diferă de schimbarea prescripției. Dacă expirația este dificilă, presiunea pare prea mare ori balonarea persistă, cereți verificarea setărilor și datelor de tratament. Altă mască ori un mod PAP selectat se potrivesc unora, dar nu toți au nevoie de alt aparat. Nu adăugați sedative sau alcool pentru a suporta masca. Panica ori insomnia persistentă pot necesita sprijin suplimentar pe lângă ajustarea echipamentului."
+      ]
+    },
+    {
+      "heading": "Curățare și întreținere practică",
+      "paragraphs": [
+        "Urmați programul producătorului pentru spălarea componentelor lavabile, uscarea completă și înlocuirea filtrelor sau pieselor uzate. Folosiți doar produse recomandate; nu scufundați aparatul electric. Păstrați intrarea aerului liberă și aparatul pe suprafață stabilă potrivită. Zgomotul neașteptat poate indica o conexiune slăbită, filtru problematic ori defect și trebuie verificat, nu ascuns prin acoperirea aparatului. Dispozitivele cu ozon ori ultraviolete nu înlocuiesc curățarea prescrisă și pot deteriora echipamentul ori expune la substanțe nocive. Întrebați furnizorul despre model, întreținere, alimentare în călătorie și conduita la defect ori pană de curent."
+      ]
+    },
+    {
+      "heading": "Verificați dacă tratamentul ajută",
+      "paragraphs": [
+        "Urmăriți folosirea tratamentului prescris în somn, inclusiv la somnul de zi, conform planului. Dacă scoateți frecvent masca dormind, spuneți echipei; notați când apare disconfortul și aduceți masca ori datele aparatului la control. Somnolența persistentă poate proveni din pierderi, utilizare insuficientă, probleme respiratorii rămase ori altă tulburare de somn sau boală. Nu conduceți și nu utilizați utilaje periculoase când sunteți somnolent; verificați regulile locale cu medicul. Starea mai bună ori scăderea în greutate nu dovedesc singure că tratamentul nu mai trebuie: este necesară reevaluare. Respirația sever îngreunată, durerea toracică ori colapsul necesită urgență, nu depanarea CPAP."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: pierderea de aer nu se rezolvă prin forță",
+      "text": "Mara strânge masca seară de seară fiindcă aerul ajunge la ochi. Pielea devine dureroasă, dar pierderea continuă. Asistenta verifică potrivirea în poziție culcată, schimbă pernița uzată și arată fluxul normal prin orificiul de siguranță."
+    },
+    {
+      "title": "Exemplu ipotetic: informații utile la consult",
+      "text": "Ivan folosește aparatul, dar se trezește cu gura uscată și îl scoate înainte de dimineață. Notează problemele și contactează somnologia. Echipa verifică împreună pierderile, nasul și umidificarea, fără să-i spună doar să insiste ori să reducă singur presiunea prescrisă."
+    }
+  ],
+  "questions": [
+    "Ce flux este pierdere nedorită și ce flux este evacuarea normală de siguranță?",
+    "Ce reglaje de confort pot modifica și care necesită echipa?",
+    "Pe cine contactez la defect sau dacă rămân somnolent în ciuda folosirii?"
+  ]
+}

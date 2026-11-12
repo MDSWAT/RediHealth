@@ -17,6 +17,20 @@ function useSafeLanguage() {
 }
 
 const confirmationCopy = {
+  ru: {
+    title: "Ваш звонок забронирован",
+    codeLabel: "Код бронирования",
+    atHour: "в",
+    forPatient: "Для:",
+    smsTitle: (phone: string) => `Мы отправили текстовое сообщение на ${phone}`,
+    whatsAppSent: "Мы также отправили подтверждение в WhatsApp.",
+    openRoom: "Присоединяйтесь к звонку",
+    addToCalendar: "Добавить в календарь",
+    anotherBooking: "Забронировать еще",
+    calSummary: (code: string) => `RediHealth звонок врачу (${code})`,
+    calDesc: (link: string) => `Позвоните врачу-волонтеру RediHealth. Присоединяйтесь здесь: ${link}`,
+  },
+
   ro: {
     title: "Apelul cu medicul este programat",
     codeLabel: "Codul programării",

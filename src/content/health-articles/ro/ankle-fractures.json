@@ -1,0 +1,51 @@
+{
+  "title": "Fracturile gleznei: alegerea tratamentului și recuperarea în siguranță",
+  "intro": "Fractura gleznei înseamnă ruperea unui os din jurul articulației. Unele fracturi sunt stabile, iar altele afectează alinierea sau stabilitatea și necesită tratament mai complex. Durerea și umflarea nu deosebesc sigur fractura de entorsă. Cere evaluare dacă este posibilă o fractură și urmează planul pentru leziunea ta, fără să presupui că orteza, indicațiile de mers ori timpul de recuperare al altei persoane ți se potrivesc.",
+  "sections": [
+    {
+      "heading": "Recunoaște leziunea care necesită îngrijire urgentă",
+      "paragraphs": [
+        "Durerea severă, umflarea importantă sau dificultatea de a sprijini piciorul după traumatism necesită evaluare promptă. Unghiul anormal, rana deschisă ori osul vizibil, degetele amorțite sau piciorul rece, palid ori albăstrui impun evaluare la urgență. Nu încerca să împingi osul înapoi sau să îndrepți glezna. Protejeaz-o de alte leziuni și cere ajutor pentru transport, fără să conduci. Medicul trebuie să verifice circulația, sensibilitatea și pielea, nu doar oasele."
+      ]
+    },
+    {
+      "heading": "Înțelege de ce diferă tratamentul fracturilor",
+      "paragraphs": [
+        "Radiografiile ajută la identificarea tipului fracturii și alinierii; uneori este necesară imagistică suplimentară. O leziune stabilă poate fi tratată cu orteză ori ghips potrivit și controale. Alte leziuni necesită restabilirea alinierii de către medic sau operație pentru fixarea oaselor. Decizia ține cont de stabilitate, piele, umflare, alte boli și situația persoanei. Întreabă de ce opțiunea propusă este potrivită și ce probleme urmărește să prevină."
+      ]
+    },
+    {
+      "heading": "Clarifică indicațiile de sprijin și susținere",
+      "paragraphs": [
+        "Înainte de plecare, întreabă exact câtă greutate poți pune pe partea lezată, cum să folosești dispozitivele de mers și când se schimbă planul. Primirea unei orteze nu înseamnă automat că mersul fără restricții este sigur. Cere ajutor pentru exersarea dispozitivelor și planificarea scărilor, spălatului și transportului. Păstrează instrucțiunile scrise și contactul pentru control. Dacă nu te poți descurca sigur acasă, spune înainte de externare, nu improviza o soluție nesigură."
+      ]
+    },
+    {
+      "heading": "Îngrijește ghipsul sau orteza și urmărește schimbările",
+      "paragraphs": [
+        "Urmează instrucțiunile pentru păstrarea dispozitivului curat și, unde se cere, uscat. Nu introduce obiecte ca să te scarpini sub ghips și nu îl scoate singur. Durerea în creștere, amorțeala, frecarea importantă, secrețiile, mirosul neplăcut sau schimbarea culorii degetelor necesită contact prompt; degetele reci ori cu culoare modificată impun evaluare urgentă. Întreabă dacă ai nevoie de prevenirea cheagurilor în perioada de mobilitate redusă. Durerea ori umflarea nouă a gambei necesită sfat urgent; durerea în piept ori lipsa de aer inexplicabilă impun ajutor de urgență."
+      ]
+    },
+    {
+      "heading": "Revino la activitate cu un plan de recuperare",
+      "paragraphs": [
+        "Vindecarea osului și reabilitarea nu sunt identice: rigiditatea, umflarea și slăbiciunea pot continua după consolidare. Mergi la controale și întreabă când pot progresa mișcarea, încărcarea și fizioterapia. Alimentația echilibrată și sprijinul pentru renunțarea la fumat pot face parte din discuția despre recuperare. Revino la muncă solicitantă ori sport după funcție și sfatul profesional, nu doar pentru că durerea s-a redus. Cere reevaluare pentru instabilitate, agravare sau dificultatea de a reveni la mers normal."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: instrucțiuni de externare aplicabile",
+      "text": "O persoană cu fractură de gleznă locuiește la etaj și primește indicația să limiteze sprijinul pe partea lezată. Cere explicații despre dispozitivele de mers, folosirea scărilor și controale înainte de a pleca acasă. Nu presupune că orteza unei rude înseamnă că are aceleași indicații."
+    },
+    {
+      "title": "Exemplu ipotetic: recunoașterea unei probleme cu ghipsul",
+      "text": "O persoană cu ghips simte că acesta strânge tot mai tare și are degetele amorțite. Contactează îngrijirea urgentă în loc să aștepte următorul control ori să taie singură ghipsul acasă. Descrie durerea, culoarea degetelor și momentul apariției schimbării."
+    }
+  ],
+  "questions": [
+    "Este fractura stabilă și de ce este recomandat acest tratament?",
+    "Câtă greutate pot pune pe picior și de ce sprijin ori prevenție a cheagurilor am nevoie?",
+    "Ce schimbări necesită contact urgent și ce obiective ghidează recuperarea și revenirea la activitate?"
+  ]
+}

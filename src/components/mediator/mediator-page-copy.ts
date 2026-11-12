@@ -2,6 +2,8 @@ import type { Lang } from "@/lib/i18n/translations";
 
 /** Meta description of /mediatori in each language. */
 export const mediatorPageDescriptions: Record<Lang, string> = {
+  ru: "Медицинские медиаторы RediHealth помогут вам записаться к врачу, разобраться с документами и поговорить с врачом по телефону из дома.",
+
   ro: "Mediatorii sanitari RediHealth te ajută să te înscrii la medic, să faci actele și să vorbești cu un medic la telefon, de acasă.",
   en: "RediHealth health mediators help you register with a doctor, sort out documents and talk to a doctor by phone from home.",
   sq: "Mediatorët shëndetësorë të RediHealth të ndihmojnë të regjistrohesh te mjeku, të rregullosh dokumentet dhe të flasësh me mjekun në telefon nga shtëpia.",
@@ -14,6 +16,17 @@ type MediatorPageCopy = { whoIsTitle: string; whoIsDesc: string; bullets: string
 
 /** "Who the health mediator is", below the hero on /mediatori. */
 export const mediatorPageCopy: Record<Lang, MediatorPageCopy> = {
+  ru: {
+    whoIsTitle: "Кто является посредником в сфере здравоохранения",
+    whoIsDesc: "Медиатор по вопросам здоровья – это человек из вашего сообщества, прошедший обучение и сертифицированный для выполнения этой работы. Они помогут вам справиться с вашим семейным врачом, больницами, социальными службами и мэрией. Они говорят на вашем языке и сохраняют конфиденциальность того, что вы им говорите.",
+    bullets: [
+      "Сохраняет ваши медицинские и личные данные в тайне",
+      "Никогда не просит у вас денег или услуг",
+      "Помогает детям, взрослым и пожилым людям",
+      "Работает с общественными медсестрами и врачами",
+    ],
+  },
+
   ro: {
     whoIsTitle: "Cine este mediatorul sanitar",
     whoIsDesc: "Mediatorul sanitar este un om din comunitatea ta, pregătit și atestat pentru această muncă. Te ajută cu medicul de familie, spitalul, asistența socială și primăria. Îți vorbește limba și nu spune nimănui ce afli de la tine.",

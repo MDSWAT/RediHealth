@@ -1,0 +1,51 @@
+{
+  "title": "Conjunctivita: îngrijirea ochiului roșu și iritat",
+  "intro": "Conjunctivita este inflamația membranei subțiri care acoperă albul ochiului și interiorul pleoapelor. Infecția, alergia și iritanții pot produce o roșeață asemănătoare. Multe cazuri trec fără tratament complex, dar ochiul roșu cu durere, sensibilitate la lumină sau modificarea vederii necesită evaluare urgentă, fără a presupune că este o conjunctivită obișnuită.",
+  "sections": [
+    {
+      "heading": "Simptomele sugerează cauza, dar nu o dovedesc",
+      "paragraphs": [
+        "Ochii pot avea senzație de nisip, mâncărime, arsură, lăcrimare sau secreții care lipesc genele. Infecția virală poate începe la un ochi și trece la celălalt; alergia afectează frecvent ambii ochi și poate însoți strănutul ori nasul care curge. Secreția groasă poate apărea în infecția bacteriană, dar aspectul singur nu diferențiază sigur toate cauzele. Uscăciunea oculară, inflamația pleoapelor, trauma și bolile corneei pot înroși ochiul. Examinarea, istoricul și uneori o probă din secreție ajută la alegerea tratamentului."
+      ]
+    },
+    {
+      "heading": "Când roșeața este urgentă",
+      "paragraphs": [
+        "Cereți evaluare oftalmologică urgentă pentru durere, sensibilitate marcată la lumină, roșeață intensă sau vedere încețoșată care persistă după curățarea blândă a secreției. Pierderea bruscă a vederii, durerea de cap severă cu greață, traumatismul ori expunerea chimică necesită îngrijire de urgență. Nou-născutul cu ochi roșii sau lipicioși trebuie evaluat prompt, deoarece unele infecții afectează vederea. Dacă purtați lentile de contact și aveți ochiul roșu, scoateți lentilele și cereți sfat urgent: infecția corneei poate semăna inițial cu o conjunctivită. Imunitatea scăzută sau agravarea simptomelor justifică evaluare mai devreme. Nu așteptați o perioadă de autoîngrijire în aceste situații."
+      ]
+    },
+    {
+      "heading": "Confort și folosirea mai sigură a picăturilor",
+      "paragraphs": [
+        "Spălați mâinile înainte și după îngrijirea ochilor. Curățați blând crustele de pe gene cu apă curată și un tampon nou, separat pentru fiecare ochi. Compresa rece curată și lacrimile artificiale potrivite pot ameliora disconfortul; întrebați farmacistul despre vârstă și instrucțiuni. Nu frecați ochii și nu atingeți cu vârful flaconului ochiul, degetele sau genele. Nu împărțiți picăturile și nu folosiți rețete vechi. Nu purtați lentile cât ochii sunt afectați; urmați sfatul despre reluare, înlocuire sau dezinfectarea lentilelor și cutiilor. Nu introduceți remedii casnice în ochi."
+      ]
+    },
+    {
+      "heading": "Tratamentul depinde de diagnostic",
+      "paragraphs": [
+        "Antibioticele nu tratează conjunctivita virală sau alergia. Unele infecții bacteriene ușoare trec fără ele, iar medicul poate recomanda picături sau unguent antibiotic în anumite cazuri. Unele infecții necesită tratament specific, inclusiv anumite infecții herpetice și cu transmitere sexuală; picăturile rămase nu îl înlocuiesc. Alergia se poate ameliora prin reducerea expunerii și antihistaminice potrivite. Cereți sfat înainte de picături medicamentoase în sarcină ori la copilul mic. Picăturile cu corticosteroid se folosesc doar sub supraveghere medicală adecvată, deoarece tratamentul nepotrivit poate agrava unele infecții sau provoca alte probleme oculare."
+      ]
+    },
+    {
+      "heading": "Reduceți transmiterea și urmăriți evoluția",
+      "paragraphs": [
+        "Formele virale și bacteriene se pot transmite prin mâini și obiecte contaminate; alergia nu este contagioasă. Nu împărțiți prosoape, perne, cosmetice și echipament pentru lentile. Spălați lenjeria și lavetele pentru față și evitați înotul cât persistă simptomele infecțioase. Urmați regulile locale pentru școală ori muncă, ținând cont de febră, starea generală și posibilitatea evitării contactului apropiat. Nu luați antibiotice doar pentru o regulă de prezență presupusă. Cereți control dacă simptomele se agravează, nu se ameliorează în câteva zile ori persistă după circa o săptămână. Simptomele virale pot dura mai mult, dar roșeața persistentă merită reevaluată, nu autotratată repetat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: avertisment pentru lentile de contact",
+      "text": "Luka se trezește cu ochiul roșu și presupune că are infecția colegului. Pentru că poartă lentile și ochiul este dureros, le scoate și cere evaluare urgentă în loc să împrumute picăturile colegului."
+    },
+    {
+      "title": "Exemplu ipotetic: alt plan pentru alergie",
+      "text": "În fiecare sezon de polen, Sara are ochi cu mâncărime și lăcrimare, plus strănut. Medicul verifică tiparul repetat și discută tratamentul alergiei. Ea nu se așteaptă să ajute antibioticele și știe că durerea nouă ori scăderea vederii necesită o nouă evaluare."
+    }
+  ],
+  "questions": [
+    "Care este cauza probabilă și am nevoie de examinarea ochilor astăzi?",
+    "Ce picături sunt potrivite și cum le folosesc și păstrez?",
+    "Când pot relua lentilele și ce trebuie înlocuit sau curățat?"
+  ]
+}

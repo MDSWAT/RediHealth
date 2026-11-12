@@ -23,6 +23,12 @@ export interface DoctorBannerCopy {
 
 /** The online doctor is a voice call (no video, no written questions). */
 export const DOCTOR_BANNER_COPY: Record<Lang, DoctorBannerCopy> = {
+  ru: {
+    title: "Вопросы о вашем здоровье?",
+    description: "Поговорите с врачом-добровольцем с помощью голосового вызова. Это бесплатно и конфиденциально.",
+    buttonText: "Поговорите с врачом",
+  },
+
   ro: {
     title: "Ai întrebări despre sănătatea ta?",
     description: "Vorbește cu un medic voluntar într-un apel de voce. Este gratuit și confidențial.",

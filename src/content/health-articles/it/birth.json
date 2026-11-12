@@ -1,0 +1,51 @@
+{
+  "title": "Parto: prepararsi al travaglio, scegliere e cambiare piano",
+  "intro": "Il parto comprende cambiamenti fisici, decisioni e sostegno per chi partorisce e per il bambino. Il travaglio non segue tempi identici per tutti. Pianificare facilita il dialogo lasciando spazio a cambiamenti di salute o preferenze. La panoramica spiega cosa discutere con il team; non sostituisce un piano individuale o istruzioni urgenti.",
+  "sections": [
+    {
+      "heading": "Preparare preferenze e accesso pratico alle cure",
+      "paragraphs": [
+        "Discutete luogo, persona di sostegno, comunicazione e priorità. Il contesto adatto dipende da gravidanza, servizi e trasferimenti, non solo preferenza. Chiedete come ottenere consigli a ogni ora e organizzate il viaggio. Riferite parti precedenti, traumi, malattie e dubbi su visite o contatto fisico. Il piano scritto raccoglie desideri, non promette una sequenza esatta. Potete fare domande e cambiare preferenze durante il travaglio."
+      ]
+    },
+    {
+      "heading": "Contattare il team per inizio e segnali d'allarme",
+      "paragraphs": [
+        "Le contrazioni possono diventare gradualmente forti e regolari, mentre l'inizio può fermarsi e ripartire. Seguite le indicazioni personali su quando presentarvi, non una regola universale. Chiamate alla rottura delle acque anche senza contrazioni, riferendo ora, colore e odore. Movimenti ridotti, sanguinamento, liquido verde o marrone, febbre, forte dolore persistente o possibile travaglio prematuro richiedono consiglio urgente. Emorragia, collasso, convulsioni o grave difficoltà respiratoria richiedono emergenza. Non aspettate conferme dal cronometro."
+      ]
+    },
+    {
+      "heading": "Comprendere fasi, visite e monitoraggio",
+      "paragraphs": [
+        "Il processo solitamente comprende apertura della cervice, nascita e uscita della placenta. Il team valuta progressi e benessere con osservazioni e monitoraggio cardiaco fetale adatto. Chiedete scopo, possibilità e alternative ragionevoli di ogni esame. Consenso, riservatezza e spiegazione restano importanti. Progressi lenti o tracciato insolito richiedono interpretazione nel quadro completo: un numero non descrive ogni travaglio né determina tutte le scelte."
+      ]
+    },
+    {
+      "heading": "Discutere conforto, analgesia e interventi",
+      "paragraphs": [
+        "Movimento, posizioni, respiro, contatto di sostegno o acqua aiutano se adatti. Farmaci ed epidurale sono opzioni con benefici, limiti ed effetti avversi. La disponibilità dipende dal luogo e dalla salute; chiedere analgesia non è fallire. Induzione, farmaci per le contrazioni, parto vaginale assistito o cesareo possono avere motivi specifici. Chiedete perché, urgenza, rischi, benefici e alternative. In emergenza le spiegazioni possono essere brevi, ma il team dovrebbe informare e permettere di riparlarne dopo."
+      ]
+    },
+    {
+      "heading": "Includere prime ore e sostegno emotivo",
+      "paragraphs": [
+        "Dopo il parto si controllano bambino, sanguinamento, placenta e lesioni. Chiedete contatto pelle a pelle e aiuto nell'alimentazione quando sicuri, oltre a farmaci o procedure per entrambi. Se cure aggiuntive separano genitore e bambino, chiedete come mantenere notizie e contatto. Prima del rientro confermate controlli e allarmi. Un parto difficile o inatteso può lasciare emozioni miste anche con stabilità medica. Chiedete di rivedere gli eventi e sostegno per disagio persistente, senza dover essere soltanto grati e silenziosi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: cambiare scelta analgesica",
+      "text": "Una persona aveva scelto respiro e movimento ma poi desidera discutere l'epidurale. Lo comunica all'ostetrica, chiede idoneità e opzioni e aggiorna le preferenze. Il piano precedente non è una promessa di rifiutare analgesia."
+    },
+    {
+      "title": "Esempio ipotetico: acque prima delle contrazioni",
+      "text": "Le acque si rompono prima del travaglio stabilito. La persona chiama il servizio, riferisce liquido e movimenti e segue il piano individuale. Non attende contrazioni forti se viene raccomandata una visita prima."
+    }
+  ],
+  "questions": [
+    "Quale luogo e sostegno si adattano alla gravidanza e come contattare cure urgenti?",
+    "Quali monitoraggi, analgesie o interventi possono essere proposti e come si spiegheranno le decisioni?",
+    "Quali controlli e sostegno servono dopo il parto, incluso rivedere eventi inattesi?"
+  ]
+}

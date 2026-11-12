@@ -1,0 +1,51 @@
+{
+  "title": "NIPT per sindromi di Down, Edwards e Patau: screening e passi successivi",
+  "intro": "Il test prenatale non invasivo, NIPT, è un esame del sangue in gravidanza che stima la probabilità di alcune condizioni cromosomiche. I pannelli comuni cercano le sindromi di Down, Edwards e Patau. È screening, non diagnosi, e non stabilisce che il bambino non abbia problemi di salute. La scelta del test e delle azioni successive richiede informazioni chiare e rispetto delle preferenze.",
+  "sections": [
+    {
+      "heading": "Decidere quali informazioni desiderare prima del prelievo",
+      "paragraphs": [
+        "Chiedete condizioni incluse, momento adatto e possibili conseguenze del risultato sulle scelte. Potete discuterne senza sapere già cosa decidereste con un esito inatteso. Chiedete interprete, consulenza genetica o informazioni equilibrate sulla vita con queste condizioni. Accesso, finanziamento e criteri cambiano per paese; i pacchetti privati possono avere prove diverse. Più voci non significano automaticamente informazioni migliori o più utili. Lo screening è facoltativo: discutete anche la scelta di rifiutare."
+      ]
+    },
+    {
+      "heading": "Comprendere cosa misura il campione",
+      "paragraphs": [
+        "Il campione contiene frammenti di DNA della persona incinta e della placenta. Il laboratorio stima probabilità cromosomiche, senza esaminare direttamente ogni cellula del bambino. Differenze tra placenta e bambino e altri fattori biologici possono creare risultati fuorvianti. Segnalate gemelli, gravidanza iniziata con più feti e storia pertinente, perché idoneità e interpretazione possono cambiare. Chiedete come il laboratorio gestisca queste circostanze senza presumere un funzionamento identico per tutte le gravidanze."
+      ]
+    },
+    {
+      "heading": "Interpretare probabilità bassa, alta e risultato assente",
+      "paragraphs": [
+        "Un esito a bassa probabilità riduce ma non elimina la possibilità delle condizioni cercate e non esclude altri problemi genetici o strutturali. Alta probabilità richiede discutere accertamenti diagnostici, non prova la condizione. La probabilità che un positivo sia corretto dipende da condizione e rischio iniziale, non solo da un dato pubblicitario di accuratezza. A volte il laboratorio non può riportare un risultato. Non equivale a un negativo rassicurante: il team deve spiegare ragioni, altri test, nuovo campione o valutazioni."
+      ]
+    },
+    {
+      "heading": "Discutere la diagnosi prima di decisioni importanti",
+      "paragraphs": [
+        "Dopo un esito ad alta probabilità, consulenza genetica ed ecografia adeguata chiariscono i passi. Villocentesi o amniocentesi danno informazioni diagnostiche, ma sono invasive con tempi, rischi e limiti propri. Chiedete cosa stabiliscono, tempi del referto e possibili conferme aggiuntive. Non prendete decisioni irreversibili sulla gravidanza dal solo NIPT. Le scelte dopo consulenza devono rispettare desideri e circostanze, con sostegno anziché pressione di un risultato o un'altra persona."
+      ]
+    },
+    {
+      "heading": "Continuare l'assistenza e mantenere chiari i limiti",
+      "paragraphs": [
+        "NIPT non sostituisce ecografie raccomandate o assistenza ordinaria. Un'ecografia successiva anomala può richiedere indagini anche dopo bassa probabilità nel sangue. Concordate chi spiega il referto, quando chiamare se manca e sostegno durante l'attesa. Le sindromi hanno implicazioni ed esperienze diverse: un'etichetta non predice ogni aspetto della vita individuale. Chiedete informazioni specialistiche specifiche e tempo. Il test non valuta sintomi urgenti come dolore grave o sanguinamento importante: chiedete consiglio ostetrico separatamente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: alta probabilità",
+      "text": "Una persona incinta riceve alta probabilità e si sente sopraffatta. Organizza consulenza, chiede il significato personale e discute diagnosi prima di decisioni importanti. Non interpreta la categoria di screening come diagnosi confermata."
+    },
+    {
+      "title": "Esempio ipotetico: nessun risultato",
+      "text": "Un campione non produce risultato riportabile. La paziente chiede motivo, opportunità di ripetere e altri test o ecografie. Non presume che l'assenza di risultato significhi assenza delle condizioni."
+    }
+  ],
+  "questions": [
+    "Quali condizioni valuta questo test e quali limiti ha nella mia gravidanza?",
+    "Cosa significa ogni possibile esito, compresa l'impossibilità di riportarlo?",
+    "Quali test diagnostici, ecografie e consulenze sono disponibili prima di ulteriori scelte?"
+  ]
+}

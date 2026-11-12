@@ -1,0 +1,51 @@
+{
+  "title": "Atrial fibrillation: symptoms, stroke prevention and treatment choices",
+  "intro": "Atrial fibrillation, or AF, is an abnormal electrical rhythm in the heart's upper chambers that often produces an irregular pulse. It may come and go or remain present, and some people notice no symptoms. Care has several aims: confirm the rhythm, control symptoms, address contributing conditions and reduce the risk of stroke. Feeling a regular heartbeat again does not by itself settle the question of stroke protection.",
+  "sections": [
+    {
+      "heading": "Know when palpitations need urgent help",
+      "paragraphs": [
+        "AF can cause racing or fluttering sensations, tiredness, breathlessness and reduced exercise tolerance. A new or recurrent irregular pulse deserves medical assessment. Seek emergency help for palpitations with chest pain, severe breathlessness, fainting or a very unwell feeling. Sudden facial droop, arm weakness or speech difficulty can mean stroke, even if they improve quickly. Do not drive yourself for emergency care. An apparently mild episode cannot be used to judge stroke risk, and absence of palpitations does not rule out AF."
+      ]
+    },
+    {
+      "heading": "Confirm the rhythm and look for contributing problems",
+      "paragraphs": [
+        "An ECG records the heart's electrical activity. If episodes are intermittent, longer monitoring may be needed because a short recording can miss them. A watch alert or an irregular pulse is a reason to seek advice, not a final diagnosis. Describe episode timing, symptoms, medicines and alcohol use. Blood tests and an echocardiogram may help assess thyroid function, heart structure and other relevant issues. High blood pressure, sleep apnoea and other conditions can influence the overall care plan."
+      ]
+    },
+    {
+      "heading": "Make stroke prevention a separate conversation",
+      "paragraphs": [
+        "AF can allow blood clots to form, and a clot reaching the brain can cause stroke. A clinician assesses risk using factors such as age, previous stroke and other health conditions, alongside bleeding risk and medicine suitability. Anticoagulants may reduce risk but require safe use and review. Aspirin is not an interchangeable substitute for an anticoagulant prescribed for AF. Do not start, stop or change clot-prevention medicine based on how your pulse feels or on a home risk calculation."
+      ]
+    },
+    {
+      "heading": "Compare rate control and rhythm control",
+      "paragraphs": [
+        "Rate control slows the heartbeat while AF may continue. Rhythm control aims to restore or maintain a more normal rhythm through selected medicines, cardioversion or catheter ablation. The choice depends on symptoms, duration, heart health and preferences; some people need more than one approach over time. Cardioversion requires a carefully planned assessment of clot risk and anticoagulation. Ask about expected benefits, recurrence, monitoring and complications. A procedure that improves symptoms does not automatically remove the need for stroke-prevention treatment."
+      ]
+    },
+    {
+      "heading": "Agree a practical long-term plan",
+      "paragraphs": [
+        "Review medicines, side effects and symptoms at follow-up, including new tiredness, dizziness or exercise limitations. Ask what to do during another episode and when to seek urgent help. Work with the team on blood pressure, sleep problems, smoking, alcohol and suitable physical activity. Gradually returning to an agreed level of exercise can support health; pushing through chest pain or severe breathlessness is unsafe. Keep a symptom record if useful, but avoid constant checking that increases anxiety. Treatment and risk assessments may need updating as health changes."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: an alert without symptoms",
+      "text": "A watch repeatedly flags an irregular rhythm in someone who feels well. They arrange an assessment and bring the recordings. The clinician confirms the rhythm with appropriate testing and discusses stroke risk rather than dismissing the finding because there are no palpitations."
+    },
+    {
+      "title": "Hypothetical example: feeling better after cardioversion",
+      "text": "After cardioversion, a patient feels their pulse is regular and wonders about stopping an anticoagulant. They follow the existing prescription and ask the cardiology team to review the plan instead of assuming symptom improvement means the clot risk has disappeared."
+    }
+  ],
+  "questions": [
+    "Has AF been confirmed, and do I need longer monitoring or assessment of contributing conditions?",
+    "What is my stroke risk, and how do the benefits and bleeding risks of anticoagulation apply to me?",
+    "Why do you recommend this rate or rhythm approach, and what is my plan for another episode?"
+  ]
+}

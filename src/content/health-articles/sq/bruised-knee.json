@@ -1,0 +1,51 @@
+{
+  "title": "Gjuri i mavijosur: kujdesi fillestar dhe vlerësimi",
+  "intro": "Goditja ose rënia mund të mavijosë indet rreth gjurit, me ndjeshmëri, ënjtje e ngjyrë të ndryshuar. Mund të jetë e lehtë, por i njëjti incident dëmton edhe kockën, kërcin ose ligamentet. Mavijosja e dukshme nuk tregon gjithë dëmtimin. Ky udhëzues lidhet me kontuzion të dyshuar; simptoma të forta ose humbje funksioni duan kontroll para kujdesit vetëm në shtëpi.",
+  "sections": [
+    {
+      "heading": "Kontrolloni shenjat më serioze",
+      "paragraphs": [
+        "Kërkoni shpejt vlerësim kur nuk mbani peshë ose lëvizni gjurin, ënjtja është e madhe ose rritet shpejt, gjuri bllokohet, lëshon ose ndryshon formë. Plaga e thellë kërkon kontroll. Shputa e ftohtë, e zbehtë ose e mpirë, deformimi i madh ose dhimbja e fortë në rritje duan emergjencë. Temperaturë me gju të nxehtë të dhimbshëm kërkon urgjencë për infeksion. Mos testoni me kërcime ose përkulje me forcë dhe mos u qetësoni nga një shenjë e vogël pas goditjes së madhe."
+      ]
+    },
+    {
+      "heading": "Përshkruani dëmtimin dhe ndryshimet",
+      "paragraphs": [
+        "Tregoni rënien drejtpërdrejt, objektin ose edhe përdredhjen. Shpjegoni fillimin e ënjtjes, kërcitjen dhe ecjen apo drejtimin. Përmendni probleme të vjetra, protezë, çrregullime gjakderdhjeje dhe hollues gjaku. Ekzaminimi vendos radiografi ose vlerësim tjetër; jo çdo mavijosje do skanim. Dhimbja e përqendruar kockore ose rikuperimi i pazakontë duhen rivlerësuar, jo shpjeguar vetëm nga etiketa fillestare."
+      ]
+    },
+    {
+      "heading": "Mbrojeni dhe përdorni të ftohtin sigurt",
+      "paragraphs": [
+        "Kur kujdesi shtëpiak përshtatet, pakësoni aktivitetet që shtojnë dhimbjen dhe gjunjëzimin mbi zonë. Kompresa e ftohtë me pëlhurë ndihmon; mbroni lëkurën dhe hiqeni para dhimbjes nga i ftohti ose mpirjes. Ngritja e këmbës në pushim mund të ndihmojë. Për mbështetëse ose kompresim pyetni vendosjen dhe hiqeni në mpirje, dhimbje në rritje ose ngjyrë të ndryshuar. Mos masazhoni fort ënjtjen e re dhe mos e zbrazni vetë."
+      ]
+    },
+    {
+      "heading": "Balanconi qetësimin dhe kthimin gradual",
+      "paragraphs": [
+        "Pyetni farmacistin ose mjekun për qetësues sipas shëndetit e trajtimeve, sidomos me antikoagulantë, veshka ose shtatzëni. Më shumë bar nuk bën të sigurt sportin në dhimbje. Pas përjashtimit të dëmtimit të rëndë, lëvizja e butë dhe shtimi gradual shmangin ngurtësinë. Ndiqni këshillën e ortezës ose kufizimit. Puna e rëndë ose sporti varen nga funksioni, dhimbja, ënjtja dhe detyra, jo vetëm ngjyra e zbehur."
+      ]
+    },
+    {
+      "heading": "Rishikoni rikuperimin dhe alarmet e reja",
+      "paragraphs": [
+        "Ngjyra mund të ndryshojë gjatë shërimit, por drejtimi duhet të jetë më pak dhimbje e më shumë funksion. Kërkoni kontroll në përkeqësim, mosmirësim ose ecje ende të vështirë. Raportoni nxehtësi e skuqje të përhapur, temperaturë ose sekrecion. Ënjtja ose dhimbja e re e pulpës nuk i atribuohet automatikisht mavijosjes dhe mund të kërkojë urgjencë. Dhimbja e gjoksit ose frymëmarrja e vështirë me simptomat e këmbës duan emergjencë. Mavijosjet e pashpjeguara të përsëritura duan këshillë, sidomos pas barit të ri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: shenjë e vogël, funksion i dobët",
+      "text": "Pas rënies duket pak mavijosje por personi nuk mban dot peshë. Kërkon kontroll, jo gjykim nga ngjyra. Shpjegon goditjen dhe barnat antikoagulante pa provuar vrapim vazhdimisht."
+    },
+    {
+      "title": "Shembull hipotetik: kthim në aktivitet",
+      "text": "Personi me kontuzion të thjeshtë të kontrolluar ecën rehat por gjunjëzimi dhemb. Përshtat punën dhe rrit gradualisht lëvizjen. Kërkon kontroll kur ënjtja rritet, jo më shumë qetësues për të njëjtin presion."
+    }
+  ],
+  "questions": [
+    "Është kontuzion i thjeshtë apo shenja dëmtimi kocke ose artikulacioni?",
+    "Cili qetësim, mbështetje dhe lëvizje më përshtaten?",
+    "Çfarë rikuperimi pritet dhe cilat ndryshime kërkojnë kontroll më herët?"
+  ]
+}

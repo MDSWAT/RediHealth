@@ -1,0 +1,51 @@
+{
+  "title": "U bolnici: razumijte skrb i pripremite povratak kući",
+  "intro": "Bolnički dolazak može biti ambulantni pregled, dnevni zahvat ili noćenje. Poznavanje razloga dolaska i odgovorne osobe za sljedeći korak može smanjiti neizvjesnost. Vodič nudi praktične savjete za pripremu i razgovor. Pravila prijema, osiguranja i plaćanja razlikuju se među zemljama; povezani izvorni članak objašnjava njemačka rješenja, a ne univerzalna prava.",
+  "sections": [
+    {
+      "heading": "Razjasnite prijem prije planiranog dolaska",
+      "paragraphs": [
+        "Provjerite odjel, datum, vrijeme dolaska i kontakte te pitajte očekuje li se noćenje. Prema potrebi potvrdite uputnice, pokriće ili plaćanje s bolnicom i osiguravateljem. Pitajte o prijevozu, tumaču, pristupačnosti i podršci za skrbnika. Slijedite individualne upute o hrani, piću i lijekovima; ne izmišljajte trajanje gladovanja i ne prekidajte samostalno antikoagulans. Kontaktirajte tim ako se upute sukobljavaju, zdravlje promijeni ili nastane infekcija prije prijema."
+      ]
+    },
+    {
+      "heading": "Donesite podatke koji sprječavaju izbježive pogreške",
+      "paragraphs": [
+        "Donesite aktualan popis lijekova, alergije, relevantne nalaze i tražene dokumente. Uključite bezreceptne lijekove i dodatke te opišite što stvarno uzimate. Navedite implantate, ranije reakcije na anesteziju, komunikacijske potrebe i pomoć pri hodanju ili osobnoj njezi. Naočale i slušna pomagala olakšavaju razgovor; pitajte kako ih sigurno spremiti. Potvrdite identitet pri provjeri i upozorite ako lijek, postupak ili oznaka izgledaju drukčije od očekivanog."
+      ]
+    },
+    {
+      "heading": "Pitajte tko koordinira odluke",
+      "paragraphs": [
+        "Može vas posjetiti više stručnjaka s različitim ulogama. Pitajte tko vodi liječenje i kako doći do odgovora na pitanje. Prije zahvata razgovarajte o svrsi, koristima, važnim rizicima, alternativama i oporavku. Zatražite tumača ili jasnije objašnjenje te recite ako ne razumijete razgovor o pristanku. Za veliku nehitnu odluku pitajte je li moguće dodatno vrijeme ili drugo mišljenje. Navedite koga želite uključiti i koji se podaci smiju podijeliti."
+      ]
+    },
+    {
+      "heading": "Prijavite promjene bez čekanja sljedeće vizite",
+      "paragraphs": [
+        "Koristite pozivni sustav ako vam je znatno lošije, nastanu nova zaduha ili bol u prsima, jaka omaglica ili druga zabrinjavajuća promjena. Tražite pomoć prije ustajanja ako ste slabi, nestabilni ili spojeni na opremu. Rano razgovarajte o boli i mučnini te slijedite savjete o kretanju, njezi rane i prevenciji ugrušaka. Higijena ruku važna je za osoblje, posjetitelje i pacijente. Ako mislite da važna zabrinutost nije saslušana, tražite procjenu odgovorne medicinske sestre ili liječnika."
+      ]
+    },
+    {
+      "heading": "Učinite otpusne upute uporabljivima kod kuće",
+      "paragraphs": [
+        "Prije odlaska pribavite razumljiv sažetak dijagnoze, liječenja i testova čiji se nalazi čekaju. Prođite popis lijekova: što je novo, promijenjeno, prekinuto ili nastavljeno, zašto i tko provjerava. Potvrdite njegu rane, ograničenja aktivnosti, kontrole, upozoravajuće znakove i kontakt. Objasnite živite li sami, ne možete stepenicama ili nemate pomoć za nabavu lijekova. Pitajte o podršci, opremi ili rehabilitaciji. Rođak može pomoći uz dopuštenje, ali ne treba pretpostaviti da može pružiti svu potrebnu skrb."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: nejasne upute o lijekovima",
+      "text": "Prije zahvata pacijent dobiva stari letak koji se čini suprotan novom planu lijekova. Kontaktira bolnički tim radi pojašnjenja umjesto pogađanja koje tablete prekinuti."
+    },
+    {
+      "title": "Hipotetski primjer: otpust s praktičnim preprekama",
+      "text": "Pacijent je spreman za odlazak, ali ne može sigurno uz stepenice kod kuće i ne razumije nove recepte. Prije odlaska govori timu, traži provjeren popis lijekova i dogovara prijevoz i podršku."
+    }
+  ],
+  "questions": [
+    "Tko koordinira moju skrb i koje su koristi, rizici i alternative planiranom liječenju?",
+    "Koje lijekove uzeti prije prijema i nakon otpusta i tko potvrđuje promjene?",
+    "Koja pomoć treba kod kuće, tko prati preostale nalaze i kome se javiti kod pogoršanja?"
+  ]
+}

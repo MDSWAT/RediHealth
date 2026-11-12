@@ -1,0 +1,51 @@
+{
+  "title": "Appendicitis: urgent assessment and treatment decisions",
+  "intro": "Appendicitis is inflammation of the appendix, a small structure attached to the bowel. It can worsen and cause serious complications, so suspected appendicitis needs urgent medical assessment. Abdominal pain alone cannot confirm the cause, and not everyone has the familiar pattern of pain moving to the lower right side. This article explains the assessment and decisions, not a way to diagnose or treat it at home.",
+  "sections": [
+    {
+      "heading": "Recognise concerning pain without waiting for a classic pattern",
+      "paragraphs": [
+        "Pain may begin around the middle of the abdomen and later become more noticeable on the lower right. Nausea, vomiting, reduced appetite or fever can accompany it. Children, older adults and pregnant people may have less typical symptoms. Worsening or persistent pain needs prompt assessment even without fever. Severe pain, fainting, confusion, breathing difficulty or rapid deterioration requires emergency help. Do not repeatedly press the abdomen or use an online movement test to rule it out."
+      ]
+    },
+    {
+      "heading": "Give the team the information that changes assessment",
+      "paragraphs": [
+        "Describe when pain began, how it changed, vomiting, bowel or urinary symptoms, medicines and previous operations. Tell the clinician about pregnancy or its possibility. Other causes, including urinary conditions, bowel problems and ectopic pregnancy, may need consideration. Do not assume a previous episode of indigestion explains a new illness. Bring a medicine list if available, but do not delay urgent care to collect records."
+      ]
+    },
+    {
+      "heading": "Understand tests and observation",
+      "paragraphs": [
+        "The team may examine your abdomen and use blood tests, urine testing and imaging such as ultrasound or a CT scan. The choice depends on the situation, including pregnancy. No single symptom or test resolves every uncertain case, so repeat examination or observation may be necessary. Ask what the current findings suggest and what the plan is if uncertainty remains. If sent home after assessment, make sure you understand when and where to return."
+      ]
+    },
+    {
+      "heading": "Discuss treatment in the hospital context",
+      "paragraphs": [
+        "Removal of the appendix is a common treatment and may use keyhole or open surgery. Antibiotics and other approaches may be considered in selected situations, depending on the findings and complications. Antibiotic treatment is not a home substitute for assessment; symptoms may persist or return and surgery may still be required. Ask why the recommended approach suits your case, its risks, alternatives and what would change the decision. Follow the treating team's instructions about food, drink and medicines."
+      ]
+    },
+    {
+      "heading": "Know the recovery plan and signs of trouble",
+      "paragraphs": [
+        "Recovery depends on the procedure, whether the appendix ruptured and other health factors. Get clear instructions about wound care, medicines, activity, follow-up and contact details. Increasing abdominal pain, fever, repeated vomiting, inability to keep fluids down or concerning wound changes need medical advice. Severe illness or collapse requires emergency help. A brief improvement does not always prove that an untreated abdominal problem has resolved, particularly if pain returns or spreads."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: taking atypical symptoms seriously",
+      "text": "A child has worsening abdominal pain and is not eating, but cannot point to the lower right side. Their carer seeks prompt assessment and explains the change in behaviour and symptoms. They do not wait for the pain to fit a diagram before asking for help."
+    },
+    {
+      "title": "Hypothetical example: clarifying a treatment choice",
+      "text": "A patient is offered a hospital treatment plan and asks why surgery or antibiotics are being recommended in their case. They ask about possible recurrence and the signs that would require reassessment, rather than borrowing antibiotics and attempting the same approach at home."
+    }
+  ],
+  "questions": [
+    "What findings support appendicitis, and which other causes are being considered?",
+    "Why is this treatment recommended for my situation, and what are its risks and alternatives?",
+    "What should recovery look like, and which changes mean returning urgently?"
+  ]
+}

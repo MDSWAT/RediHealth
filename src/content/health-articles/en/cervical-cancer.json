@@ -1,0 +1,51 @@
+{
+  "title": "Cervical cancer: symptoms, diagnosis, treatment and prevention",
+  "intro": "Cervical cancer begins in the cervix, the lower part of the uterus that opens into the vagina. Most cases are linked to persistent infection with certain high-risk human papillomaviruses, or HPV. Precancerous cell changes are different from invasive cancer and can often be treated before cancer develops. If cancer is diagnosed, a specialist team plans treatment around its extent, your health and your priorities, including fertility when relevant.",
+  "sections": [
+    {
+      "heading": "HPV infection is common and does not equal cancer",
+      "paragraphs": [
+        "Most HPV infections do not lead to cancer. Persistent high-risk infection can cause changes that progress over time; smoking and a weakened immune system can increase risk. HPV can remain detectable or become detectable long after acquisition, so a positive result does not establish when it was acquired or prove a partner's infidelity. Avoid blame and focus on appropriate follow-up. Vaccination reduces risk from important HPV types, while cervical screening finds risk or cell changes according to the local programme."
+      ]
+    },
+    {
+      "heading": "Symptoms should be assessed, not saved for screening",
+      "paragraphs": [
+        "Possible symptoms include bleeding after sex, between periods or after menopause, a change in vaginal discharge, pelvic pain or pain during sex. These symptoms often have other causes, but need medical assessment. Early disease may cause no symptoms. Do not wait for a screening invitation or assume a previous normal screen rules out a current problem. Very heavy bleeding, faintness or severe acute pain needs urgent or emergency care depending on severity. Tell the clinician if pregnancy is possible."
+      ]
+    },
+    {
+      "heading": "From an abnormal result to a confirmed diagnosis",
+      "paragraphs": [
+        "An HPV-positive or abnormal screening result is not a cancer diagnosis. Colposcopy lets a trained clinician inspect the cervix more closely, and a biopsy can determine the nature of tissue changes. If cancer is confirmed, examination and appropriate imaging help assess its extent. Ask whether the result describes precancer or invasive cancer, the cancer type and stage, and whether tests remain pending. You can ask for explanations, an interpreter, a support person and a pause during an examination if needed."
+      ]
+    },
+    {
+      "heading": "Treatment depends on the cancer and the person",
+      "paragraphs": [
+        "Selected early cancers may be treated surgically, sometimes with a fertility-preserving approach. Other operations remove the uterus, and some remove surrounding tissue or lymph nodes. Radiotherapy, including brachytherapy, and chemotherapy may be combined; immunotherapy or other medicines are options in certain settings. Availability and suitability depend on stage, tumour characteristics, previous treatment and local practice. Discuss the treatment aim, alternatives, side effects and likely effect on fertility before starting, rather than assuming every person needs the same operation."
+      ]
+    },
+    {
+      "heading": "Support, follow-up and prevention remain important",
+      "paragraphs": [
+        "Treatment can affect energy, bowel or bladder function, sexual comfort, menopause and emotional wellbeing. Ask early about symptom support, fertility advice, rehabilitation and help with practical costs. Keep follow-up appointments and report new bleeding, pain or other persistent changes. For people without cancer, HPV vaccination and screening under national guidance reduce risk; vaccination does not replace screening or investigation of symptoms and does not treat an established cancer. Screening eligibility and intervals differ between countries and may change after treatment, so request an individual plan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A positive screening result — hypothetical example",
+      "text": "A person receives an HPV-positive letter and fears it means cancer or a recent infection. The clinician explains what the result can and cannot show and whether repeat testing or colposcopy is needed. They agree how results and follow-up will be communicated."
+    },
+    {
+      "title": "Bleeding despite a past normal screen — hypothetical example",
+      "text": "Someone has bleeding after sex even though previous screening was normal. They arrange a medical appointment rather than waiting for the next invitation. Examination and any further tests investigate the symptom on its own merits."
+    }
+  ],
+  "questions": [
+    "Does this result mean HPV infection, precancerous changes or confirmed invasive cancer?",
+    "What is the treatment aim, and how could each option affect fertility and daily life?",
+    "What follow-up, symptom support and prevention plan applies to me locally?"
+  ]
+}

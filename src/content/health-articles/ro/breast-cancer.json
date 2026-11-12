@@ -1,0 +1,51 @@
+{
+  "title": "Cancerul de sân: diagnostic, alegeri și sprijin în îngrijire",
+  "intro": "Cancerul de sân apare când celulele anormale cresc și pot invada țesuturile ori se răspândesc. Afectează persoane de vârste și genuri diferite. Există mai multe tipuri, deci tratamentul nu este identic. O modificare nouă cere evaluare, iar diagnosticul trebuie explicat împreună cu scopurile și sprijinul. Prezentarea pregătește conversația, nu alege o schemă individuală.",
+  "sections": [
+    {
+      "heading": "Evaluați schimbările noi fără diagnostic după aspect",
+      "paragraphs": [
+        "Nodulul nou în sân sau axilă, schimbarea formei, adâncirea pielii, retracția mamelonului ori secreția neobișnuită pot necesita investigații. Multe schimbări nu sunt cancer, dar lipsa durerii sau screeningul recent normal nu elimină evaluarea simptomului persistent. Clinica poate combina examenul, mamografia ori ecografia și proba de țesut. Întrebați testele, rezultatele și persoana care explică. Screeningul fără simptome diferă de investigarea simptomului nou; nu așteptați următoarea invitație."
+      ]
+    },
+    {
+      "heading": "Înțelegeți anatomia patologică și extinderea",
+      "paragraphs": [
+        "Biopsia arată celule limitate la zona inițială sau invazive și tipul și gradul tumorii. Gradul descrie celulele, stadiul extinderea; nu sunt interschimbabile. Receptorii de estrogen și progesteron și HER2 indică tratamentele probabil utile. Imaginile suplimentare se aleg după constatări, nu orice scanare tuturor. Întrebați ganglionii, răspândirea la distanță și rezultatele încă așteptate. Consilierea ori testarea genetică se pot potrivi situației personale și familiale."
+      ]
+    },
+    {
+      "heading": "Comparați ordinea tratamentelor locale și sistemice",
+      "paragraphs": [
+        "Tratamentul local poate fi conservarea sânului sau mastectomia, cu radioterapie după caz. Discutați reconstrucția ori lipsa ei și scopul și urmările operației ganglionare. Tratamentul sistemic poate include chimioterapie, blocare hormonală, țintire ori imunoterapie potrivite caracteristicilor. Nu tuturor le trebuie toate și medicamentele pot preceda ori urma operația. Întrebați motivul ordinii, reducerea riscului sau simptomelor, riscurile și alternativele. Boala metastatică are de obicei scop de control, ameliorare și prelungirea vieții, nu promisiune de vindecare."
+      ]
+    },
+    {
+      "heading": "Planificați devreme efectele adverse și sprijinul",
+      "paragraphs": [
+        "Întrebați energia, munca, infecțiile, sensibilitatea, sexualitatea și imaginea corporală. Fertilitatea și contracepția trebuie discutate înainte când contează; sarcina cere specialiști. Discutați suplimentele și medicamentele cu oncologul, nu adăugați remedii promovate. Fizioterapia, rana, nutriția și sprijinul emoțional ori financiar fac parte din îngrijire. Întrebați umflarea brațului ori toracelui și serviciul de limfedem după tratamente relevante. Cereți contact numit și instrucțiuni scrise pentru reacții, inclusiv în afara programului."
+      ]
+    },
+    {
+      "heading": "Clarificați controalele și simptomele urgente",
+      "paragraphs": [
+        "Urmărirea evaluează recuperarea, efectele și posibila recidivă prin calendar personal. Raportați simptome persistente noi fără a aștepta, dar nu fiecare înseamnă recidivă. Febra, frisoanele ori starea brusc proastă în tratament care scade imunitatea cer sfat oncologic imediat după planul propriu. Lipsa severă de aer, durerea toracică, confuzia ori colapsul cer urgență. Paliația ajută simptomele și calitatea vieții împreună cu tratamentul; nu doar ultimele zile. Cereți explicații și sprijin la alegeri ori emoții copleșitoare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: planuri diferite",
+      "text": "Două prietene primesc medicamente diferite. Una întreabă receptorii, stadiul și scopul fără a considera diferența îngrijire inferioară. Aduce întrebări scrise și confirmă testele încă așteptate."
+    },
+    {
+      "title": "Exemplu ipotetic: fertilitate înaintea tratamentului",
+      "text": "O pacientă care ar putea dori copii spune echipei înainte de tratament. Discută sfatul specializat la timp, opțiunile realiste și contracepția în timpul organizării, nu după afectarea fertilității."
+    }
+  ],
+  "questions": [
+    "Ce arată biopsia, receptorii și stadiul și ce rămâne incert?",
+    "De ce această ordine și ce beneficii, riscuri și alternative am?",
+    "Ce sprijin, controale și contact urgent îmi trebuie în timpul și după tratament?"
+  ]
+}

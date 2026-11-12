@@ -1,0 +1,51 @@
+{
+  "title": "Îngrijire structurată pentru diabetul de tip 1: DMP în Germania",
+  "intro": "Programul de management al bolii, DMP, organizează îngrijirea continuă pentru o afecțiune cronică. În Germania, programul diabetului reunește controale planificate, educație și coordonare într-un plan individual. Nu vindecă diabetul și nu înlocuiește insulina zilnică. Articolul descrie un serviciu german; în alte țări întrebați despre traseul local de îngrijire.",
+  "sections": [
+    {
+      "heading": "Înțelegeți participarea înaintea înscrierii",
+      "paragraphs": [
+        "Participarea este voluntară. Întrebați asigurătorul public german și cabinetul participant dacă programul este disponibil și cum vă înscrieți. Nu toate cabinetele îl oferă. Participarea este gratuită pentru asigurați, dar verificați separat serviciile și dispozitivele, fără presupunerea că orice produs este inclus. Citiți documentele de participare și informare despre date: cine primește înregistrările, de ce și cine răspunde întrebărilor. Clarificați consultațiile, educația, retragerea și continuarea îngrijirii obișnuite. DMP este cadru de coordonare, nu promisiune de acces imediat la orice specialist sau tehnologie."
+      ]
+    },
+    {
+      "heading": "Personalizați obiectivele",
+      "paragraphs": [
+        "Planul sprijină viața zilnică, reducând hipoglicemia severă, hiperglicemia periculoasă și complicațiile. Discutați tiparele glicemiei, munca ori școala, mișcarea, mesele, somnul, sarcina planificată și bolile asociate. Țintele și insulina se stabilesc individual, echilibrând beneficiul și riscul de hipoglicemie. Aduceți lista medicamentelor și suplimentelor, problemele de cost, consumabile, vedere, dexteritate ori înțelegere. Întrebați cine coordonează planul și trimiterile. Senzorul, pompa și tehnologiile cer evaluare, instruire și plan de rezervă; înscrierea nu înseamnă automat că orice dispozitiv este potrivit ori furnizat."
+      ]
+    },
+    {
+      "heading": "Folosiți educația pentru situații reale",
+      "paragraphs": [
+        "Educația structurată dezvoltă monitorizarea, folosirea insulinei, alimentația, activitatea și adaptarea zilnică. Exersați recunoașterea și tratarea hipoglicemiei, verificarea cetonelor când trebuie și planul individual pentru boală. Insulina rămâne necesară când sunteți bolnav și nu mâncați: nu o opriți pur și simplu; urmați planul și cereți adaptarea dozelor. Utilizatorii pompei necesită instrucțiuni la întreruperea administrării și insulină de rezervă. Includeți cu acord familia ori persoana de încredere și cereți sprijin lingvistic. Educația se reia când se schimbă situația sau tratamentul, nu este examen la care eșuați."
+      ]
+    },
+    {
+      "heading": "Planificați verificările, fără a aștepta simptome",
+      "paragraphs": [
+        "Controalele evaluează glicemia, episoadele severe, medicamentele, locurile de injectare ori perfuzare și starea generală. Verificările ochilor, rinichilor și picioarelor descoperă complicații înainte să fie evidente. Momentul depinde de vârstă, durata diabetului, constatări și cerințe actuale; cereți program scris personal, nu tabel vechi general. Contează tensiunea, lipidele, fumatul și riscul cardiovascular. Copiii cer îngrijire adaptată, familie implicată și trecere planificată la adulți. Suferința psihică, frica de hipoglicemie, depresia și tulburările alimentației merită sprijin. Sarcina se discută cu specialistul înainte de concepție când este posibil."
+      ]
+    },
+    {
+      "heading": "Ce nu așteaptă controlul DMP",
+      "paragraphs": [
+        "Hipoglicemia severă cu inconștiență ori înghițire nesigură cere urgență și planul de salvare pentru care ați fost instruit; nu dați hrană sau lichide pe gură. Vărsăturile, durerea abdominală, respirația profundă ori rapidă, somnolența neobișnuită și cetonele mari pot indica cetoacidoză: evaluare urgentă, serviciu de urgență la semne severe. Nu amânați fiindcă există programare. Rana nouă și piciorul cald umflat cer evaluare rapidă, iar pierderea bruscă a vederii urgență. Păstrați accesibile contactele inclusiv în afara programului, planul insulinei și materialele. Revedeți urgența cu echipa pentru înțelegere și îmbunătățire fără vinovățire."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: coordonarea consultațiilor",
+      "text": "Mira se înscrie la cabinet participant din Germania. Aduce glicemiile și cere datele următoarelor verificări ale ochilor, rinichilor și picioarelor și responsabilul rezultatelor anormale. Verifică înscrierea cu asigurătorul, fără presupunerea aceluiași program în altă țară."
+    },
+    {
+      "title": "Exemplu ipotetic: rutină schimbată",
+      "text": "Arben începe ture de noapte și are hipoglicemii repetate. Contactează echipa pentru evaluare la timp și reeducare, fără a aștepta controlul DMP planificat. Echipa adaptează planul; exemplul nu indică doze de insulină."
+    }
+  ],
+  "questions": [
+    "Mă pot înscrie prin asigurător și cabinet și ce înseamnă documentele și datele?",
+    "Cine coordonează îngrijirea, educația, materialele și calendarul personal?",
+    "Care este planul scris pentru hipoglicemie, boală, cetone și ajutor urgent?"
+  ]
+}

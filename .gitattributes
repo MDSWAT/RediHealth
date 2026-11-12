@@ -1,0 +1,2 @@
+# Provenance hashes cover the authored bytes; keep these stable on Windows too.
+src/content/health-articles/**/*.json text eol=lf

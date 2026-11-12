@@ -25,6 +25,13 @@ export function UniversalDoctorExit({
   const { lang } = useLanguage();
 
   const dict: Record<Lang, { heading: string; body: string; bookOnline: string; checkOnCall: string }> = {
+ru: {
+      heading: "Хотите поговорить с врачом?",
+      body: "Если что-то неясно, вы можете бесплатно поговорить с врачом-волонтером по телефону.",
+      bookOnline: "Забронировать звонок",
+      checkOnCall: "Посмотреть часы дежурства",
+    },
+
     en: {
       heading: "Would you like to talk to a doctor?",
       body: "If something is unclear, you can talk to a volunteer doctor for free, by phone.",

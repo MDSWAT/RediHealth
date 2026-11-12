@@ -1,0 +1,51 @@
+{
+  "title": "Integratori alimentari: utilità e uso sicuro",
+  "intro": "Gli integratori comprendono vitamine, minerali, erbe e altri ingredienti concentrati in compresse, gocce, polveri o bevande. Alcuni hanno un ruolo preciso, come correggere una carenza o soddisfare esigenze di una fase della vita. Di più non significa automaticamente meglio e naturale non significa innocuo. La decisione riguarda ingrediente, scopo e dose specifici.",
+  "sections": [
+    {
+      "heading": "Partire da un motivo chiaro",
+      "paragraphs": [
+        "Una dieta varia fornisce molti nutrienti; gli integratori non sostituiscono varietà e cure mediche. Il medico può raccomandarli per carenza documentata, malassorbimento, dieta ristretta o prevenzione riconosciuta. L'acido folico intorno al concepimento è un esempio; le indicazioni sulla vitamina D dipendono da linee guida locali e situazione. Chiedete beneficio atteso, utilità degli esami e rivalutazione. Stanchezza, perdita di capelli e scarsa concentrazione hanno molte cause; una miscela vitaminica può ritardare la diagnosi. Non interrompete un integratore prescritto solo perché molte persone non ne hanno bisogno."
+      ]
+    },
+    {
+      "heading": "Leggere gli ingredienti ed evitare duplicazioni",
+      "paragraphs": [
+        "Controllate quantità per compressa o porzione e numero di porzioni previsto. Confezioni simili possono avere concentrazioni diverse. Considerate insieme multivitaminici, singoli nutrienti, prodotti energetici e bevande fortificate per il totale. Un'alta percentuale dell'apporto di riferimento non prova un beneficio maggiore e non è un obiettivo terapeutico individuale. Milligrammi e microgrammi indicano quantità diverse; chiedete al farmacista anziché fare conversioni incerte. Ferro in eccesso e alcune vitamine sono tossici; teneteli fuori dalla portata dei bambini, specialmente le caramelle gommose. Esigenze e prodotti pediatrici differiscono dagli adulti."
+      ]
+    },
+    {
+      "heading": "Verificare farmaci, malattie e procedure",
+      "paragraphs": [
+        "Segnalate ogni integratore, anche vegetale, mostrando la foto dell'etichetta. Gli ingredienti possono modificare anticoagulanti e altri farmaci; l'iperico interagisce con molte terapie, compresi alcuni contraccettivi. I minerali possono ridurre l'assorbimento di certi medicinali, quindi gli intervalli richiedono istruzioni specifiche. Malattie renali o epatiche aumentano il rischio. Prima dell'intervento chiedete cosa sospendere e quando, senza presumere assenza di effetti su sangue o anestesia. La biotina di alcuni prodotti per capelli e unghie altera determinati esami: avvisate medico e laboratorio e seguite le indicazioni."
+      ]
+    },
+    {
+      "heading": "Valutare separatamente promessa e qualità",
+      "paragraphs": [
+        "Testimonianze, esperimenti in laboratorio o liste attraenti non dimostrano effetti importanti del prodotto finale sulla salute. Chiedete se gli studi riguardano stessa preparazione, dose e persone simili a voi. Promesse di rapido dimagrimento, muscoli straordinari o guarigione di malattie gravi meritano cautela particolare. Le regole variano: essere in vendita non significa aver superato la stessa valutazione di beneficio di un farmaco. Una certificazione può informare su produzione o contenuto, ma non prova beneficio clinico o sicurezza personale. Preferite etichette chiare e fornitori rintracciabili; evitate miscele ignote e consigli vincolati ad acquisti costosi ripetuti."
+      ]
+    },
+    {
+      "heading": "Seguire un piano e reagire ai problemi",
+      "paragraphs": [
+        "Registrate scopo, dose, durata e monitoraggio insieme ai farmaci. Gravidanza, allattamento e infanzia richiedono indicazioni adatte; in gravidanza evitate vitamina A come retinolo e olio di fegato di merluzzo salvo trattamento specifico specialistico. Non sostituite la cura prescritta né presumete sicura l'associazione di prodotti. Sintomi nuovi richiedono consiglio: portate la confezione e segnalate sospette reazioni nel sistema locale. Allergia grave, collasso, forte difficoltà respiratoria o sospetto avvelenamento richiedono aiuto urgente di emergenza o centro antiveleni. Non provocate vomito dopo sospetto sovradosaggio. La revisione può preferire modifiche alimentari, un prodotto più semplice o nessun integratore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: ingredienti duplicati",
+      "text": "Nina compra un multivitaminico mentre assume già un nutriente consigliato dal medico. Il farmacista controlla etichette e totale prima dell'associazione. Mantengono chiaro lo scopo ed evitano duplicazioni inutili senza presumere un beneficio doppio."
+    },
+    {
+      "title": "Esempio ipotetico: evitare sorprese negli esami",
+      "text": "Prima del prelievo Ilir mostra il prodotto per capelli con biotina. Il team verifica l'interferenza e dà istruzioni specifiche. Non lo nasconde perché è venduto senza ricetta."
+    }
+  ],
+  "questions": [
+    "Quale problema specifico affronta l'ingrediente e con quali prove?",
+    "La dose totale è sicura con prodotti, malattie e farmaci che uso?",
+    "Per quanto tempo assumerlo, cosa monitorare e quando rivalutarlo?"
+  ]
+}

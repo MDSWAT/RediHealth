@@ -1,0 +1,51 @@
+{
+  "title": "Pancreatita acută: evaluarea urgentă și recuperarea",
+  "intro": "Pancreatita acută este inflamația bruscă a pancreasului, organ care ajută digestia și produce hormoni, inclusiv insulină. Poate deveni gravă și necesită evaluare urgentă în spital. Simptomele singure nu pot confirma diagnosticul: și alte urgențe pot provoca dureri abdominale severe. Articolul explică ce să discuți cu echipa din spital, nu cum să tratezi acasă un posibil episod.",
+  "sections": [
+    {
+      "heading": "Recunoaște simptomele care necesită ajutor urgent",
+      "paragraphs": [
+        "Durerea severă în partea de sus a abdomenului necesită evaluare urgentă, mai ales dacă începe brusc, persistă sau se extinde spre spate. Poate fi însoțită de vărsături, febră, puls rapid sau dificultăți de respirație. Durerea severă asociată cu lipsă de aer, leșin sau agravare rapidă impune ajutor de urgență. Nu conduce dacă te simți foarte rău. Spune serviciului medical ce simptome ai și când au început, în loc să aștepți până ești sigur că pancreasul este cauza."
+      ]
+    },
+    {
+      "heading": "Înțelege cum se investighează diagnosticul și cauza",
+      "paragraphs": [
+        "Analizele de sânge, inclusiv enzimele pancreatice precum lipaza, ajută la evaluarea diagnosticului. Ecografia sau alte investigații imagistice pot căuta calculi biliari ori complicații; nu fiecare persoană are nevoie imediat de toate investigațiile. Calculii biliari și alcoolul sunt cauze frecvente, dar pot contribui medicamente, grăsimi crescute în sânge și alte afecțiuni. Uneori cauza nu este găsită inițial. Oferă informații exacte despre medicamente și alcool, fără să întrerupi singur tratamentele prescrise."
+      ]
+    },
+    {
+      "heading": "Află care sunt obiectivele îngrijirii în spital",
+      "paragraphs": [
+        "Echipa monitorizează circulația, respirația, funcția renală și alte semne de gravitate. Tratamentul poate include lichide intravenoase, calmarea durerii și sprijin pentru greață și nutriție. Unele persoane au nevoie de terapie intensivă. Antibioticele se folosesc când o infecție le justifică, nu automat pentru orice pancreas inflamat. Blocarea unui canal biliar sau altă problemă specifică poate necesita o procedură. Întreabă ce urmărește fiecare intervenție și ce schimbări ar modifica planul."
+      ]
+    },
+    {
+      "heading": "Urmează un plan individual pentru alimentație și recuperare",
+      "paragraphs": [
+        "Nu îți impune nemâncatul sau o dietă restrictivă drept tratament acasă. Echipa decide când și cum poți mânca în funcție de starea și toleranța ta. Dacă alimentația nu este posibilă, poate fi necesar sprijin nutrițional specializat. Recuperarea variază, iar faptul că te simți mai bine nu elimină orice risc de complicații. Înainte de externare, clarifică ce să mănânci, cum să folosești medicamentele prescrise și pe cine să contactezi dacă apar simptome noi."
+      ]
+    },
+    {
+      "heading": "Abordează cauza și recunoaște agravările",
+      "paragraphs": [
+        "Monitorizarea ulterioară poate include discuția despre operația vezicii biliare dacă pietrele au provocat episodul, revizuirea medicamentelor sau controlul grăsimilor din sânge. Întreabă despre evitarea alcoolului și despre sprijin dacă dependența face oprirea dificilă; sevrajul poate necesita supraveghere medicală. Durerea nouă ori agravată, febra, vărsăturile repetate, imposibilitatea de a păstra lichidele sau icterul după externare necesită sfat medical prompt. Starea gravă, colapsul ori problemele de respirație impun ajutor de urgență. Nu presupune că orice agravare este o parte normală a vindecării."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: descrierea unei probleme urgente",
+      "text": "O persoană are durere puternică în partea de sus a abdomenului, care se extinde spre spate, și varsă repetat. Cere ajutor urgent, descrie simptomele și ia lista medicamentelor dacă este disponibilă. Nu amână îngrijirea ca să caute o dietă care ar putea calma pancreasul."
+    },
+    {
+      "title": "Exemplu ipotetic: pregătirea pentru externare",
+      "text": "Un pacient al cărui episod a implicat calculi biliari întreabă dacă mai este necesar un tratament pentru reducerea recidivei, ce controale sunt programate și ce simptome impun revenirea urgentă. Cere instrucțiuni scrise, în loc să presupună că externarea înseamnă că nu mai are nevoie de îngrijire."
+    }
+  ],
+  "questions": [
+    "Ce dovezi susțin diagnosticul și cauza suspectată în cazul meu?",
+    "Care este planul pentru calmarea durerii, nutriție și monitorizarea complicațiilor?",
+    "Ce îngrijire ulterioară abordează cauza și ce simptome impun reevaluare urgentă?"
+  ]
+}

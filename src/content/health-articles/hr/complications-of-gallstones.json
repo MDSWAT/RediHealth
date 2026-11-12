@@ -1,0 +1,51 @@
+{
+  "title": "Komplikacije žučnih kamenaca: začepljenje i upala",
+  "intro": "Žučni kamenci mogu godinama biti bez simptoma, ali kamenac koji sprječava otjecanje može izazvati više od bolnog napadaja. Upala žučnog mjehura, infekcija žučnih vodova ili upala gušterače mogu zahtijevati hitno bolničko liječenje. Ranija dijagnoza kamenaca ne znači da je svaku novu bol u trbuhu sigurno liječiti kod kuće.",
+  "sections": [
+    {
+      "heading": "Mjesto začepljenja mijenja problem",
+      "paragraphs": [
+        "Žučni mjehur pohranjuje žuč koju stvara jetra. Kamenac koji zatvori njegov izlaz može izazvati kolecistitis, upalu mjehura. Kamenac u glavnom žučnom vodu može spriječiti otjecanje i izazvati žuticu; infekcija vodova naziva se kolangitis. Kamenac blizu zajedničkog područja otjecanja može izazvati pankreatitis, upalu gušterače. Rijetko kamenac abnormalnom vezom dospije u crijevo i začepi ga. To su različite komplikacije, a ne faze kroz koje svatko s kamencima neizbježno prolazi."
+      ]
+    },
+    {
+      "heading": "Simptomi koji ne smiju čekati",
+      "paragraphs": [
+        "Tražite hitnu procjenu zbog iznenadne jake boli u trbuhu, boli koja se širi u leđa uz povraćanje, temperature ili jake tresavice uz bol u trbuhu, ili žutih očiju odnosno kože. Zbunjenost, nesvjestica, ubrzano disanje ili izrazita slabost mogu upućivati na tešku sustavnu bolest poput sepse. Nemojte voziti ako ste teško bolesni. Trajna ili ponavljana bol u gornjem dijelu trbuha traži brz liječnički savjet i bez temperature. Tamna mokraća ili svijetla stolica mogu pratiti začepljenje. Ne morate imati sve navedene simptome prije traženja pomoći; sličnu bol mogu uzrokovati druge ozbiljne bolesti."
+      ]
+    },
+    {
+      "heading": "Kako se u bolnici provjerava uzrok",
+      "paragraphs": [
+        "Procjena uključuje simptome, pregled i krvne nalaze za upalu te učinke na jetru ili gušteraču. Ultrazvuk je često prvi pregled, ali ne pokazuje svaki kamenac u vodovima. Ovisno o nalazima mogu se koristiti posebna magnetska rezonancija vodova, MRCP, endoskopski ultrazvuk ili druge snimke. ERCP je endoskopski zahvat koji prvenstveno liječi začepljenje, a nije rutinski prvi test za svakoga. Recite timu za trudnoću, alergije, lijekove protiv zgrušavanja i prijašnje operacije. Kamenac na snimci sam po sebi ne dokazuje da objašnjava sve tegobe."
+      ]
+    },
+    {
+      "heading": "Liječenje rješava bolest i prepreku",
+      "paragraphs": [
+        "Bolničko liječenje može uključivati tekućinu u venu, analgetike i antibiotike kada se sumnja na infekciju. Slijedite upute tima o jelu i piću; nemojte započeti dugotrajno gladovanje kod kuće. Zaraženi začepljeni vodovi mogu trebati hitnu drenažu, često ERCP-om koji uklanja kamenac ili postavlja privremeni stent. Razgovarajte o rizicima pankreatitisa, krvarenja i perforacije te potrebi kasnijeg vađenja stenta. Kod akutnog kolecistitisa često se preporučuje rano uklanjanje mjehura ako stanje dopušta. Ako je operacija u početku previše rizična, odabrani bolesnici mogu trebati drenažu mjehura. Vrijeme ovisi o komplikaciji i općem stanju."
+      ]
+    },
+    {
+      "heading": "Oporavak i sprječavanje novog napadaja",
+      "paragraphs": [
+        "Uklanjanje kamenca iz voda ne uklanja kamence preostale u mjehuru, pa se može preporučiti daljnje liječenje. Jetra i nakon uklanjanja mjehura proizvodi žuč, a većina ljudi normalno živi bez njega. Pitajte o oporavku, promjenama stolice i kontrolama. Izbjegavanje hrane koja vam izaziva simptome može pomoći dok čekate liječenje, ali prehrana ne uklanja pouzdano začepljenje i ne liječi zaraženi mjehur. Izbjegavajte nedokazana «čišćenja» i brzo mršavljenje. Većina kamenaca bez simptoma u mjehuru ne zahtijeva rutinsku operaciju; kamenac u vodu ili komplikacija drugačija je situacija. Dogovorite plan za novu bol, temperaturu ili žuticu nakon otpusta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: promijenjeni napadaj",
+      "text": "Elena je prije imala kratke bolne epizode. Ovaj put bol traje, osjeća temperaturu i oči izgledaju žuto. Traži hitnu procjenu umjesto ponavljanja analgetika kod kuće i očekivanja jednakog tijeka kao prije."
+    },
+    {
+      "title": "Zamišljeni primjer: različite svrhe zahvata",
+      "text": "Bolnički tim oslobodi muškarčev žučni vod ERCP-om. On pita zašto se još govori o operaciji mjehura. Liječnik objašnjava da vod sada odvodi žuč, ali kamenci u mjehuru mogu izazvati novu epizodu. Dogovaraju individualno liječenje i kontrolu."
+    }
+  ],
+  "questions": [
+    "Koja je struktura kod mene začepljena ili upaljena?",
+    "Trebam li drenažu voda, operaciju mjehura ili oboje i kada?",
+    "Ako se postavi stent, tko organizira njegovu kontrolu ili uklanjanje?"
+  ]
+}

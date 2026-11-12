@@ -1,0 +1,51 @@
+{
+  "title": "Autizmi: kuptimi i nevojave dhe mbështetja e dobishme",
+  "intro": "Autizmi është ndryshim zhvillimor gjatë gjithë jetës që mund të ndikojë komunikimin, ndërveprimin shoqëror, përjetimin shqisor dhe interesat ose aktivitetin. Aftësitë dhe nevojat ndryshojnë shumë. Disa kanë nevojë për ndihmë të gjerë ditore; të tjerë jetojnë të pavarur, me vështirësi të rëndësishme të fshehta. Mbështetja e mirë nis nga përvoja dhe synimet e personit, jo nga supozimi se e njëjta diagnozë kërkon të njëjtën qasje.",
+  "sections": [
+    {
+      "heading": "Njihni modelin pa stereotipe",
+      "paragraphs": [
+        "Dallimet mund të përfshijnë kuptim fjalë për fjalë të bisedës, vështirësi me ndryshimet, interesa të forta ose mbingarkesë nga zhurma, drita apo prekja. Gjuha dhe aftësia intelektuale ndryshojnë dhe nuk janë e njëjta gjë. Dikush që flet rrjedhshëm mund të ketë vështirësi të përditshme. Shenjat fillojnë gjatë zhvillimit, por dallohen më vonë kur strategjitë e përballimit i fshehin. Një tipar, ndrojtja ose rezultati online nuk përcaktojnë autizëm. Autizmi nuk shkaktohet nga prindërimi i dobët ose vaksinimi."
+      ]
+    },
+    {
+      "heading": "Kërkoni vlerësim dhe përshkruani funksionimin",
+      "paragraphs": [
+        "Vlerësimi shqyrton zhvillimin, komunikimin, sjelljen dhe nevojat aktuale, me informacion nga personi dhe, kur përshtatet, të afërmit. Shpjegoni pikat e forta, vështirësitë dhe përpjekjen në shkollë, punë ose shtëpi. Kërkoni komunikim të aksesueshëm dhe përshtatje shqisore në takime. Shqyrtohen shpjegime të tjera dhe gjendje shoqëruese si ADHD, ankthi ose vështirësitë e të nxënit. Nuk ka një analizë të vetme gjaku për diagnozën. Mbështetja për nevojën e identifikuar mund të fillojë ndërsa organizohet vlerësimi."
+      ]
+    },
+    {
+      "heading": "Bëjeni komunikimin dhe mjedisin më të aksesueshëm",
+      "paragraphs": [
+        "Pyetni çfarë ndihmon: gjuhë e qartë, shkrim, kohë shtesë për përpunim, figura ose metodë alternative komunikimi. Shpjegoni ndryshimet paraprakisht dhe ofroni vend të qetë ose pushime nga mjediset mbingarkuese. Mos kërkoni kontakt me sy si provë dëgjimi. Përfshini personin në vendime përmes komunikimit që kupton. Parashikueshmëria dhe përshtatjet ulin shqetësimin, por rutinat duhet të ndihmojnë pjesëmarrjen dhe zgjedhjen, jo të bëhen kërkesa të ngurta nga të tjerët."
+      ]
+    },
+    {
+      "heading": "Trajtoni veçmas shqetësimin dhe shëndetin",
+      "paragraphs": [
+        "Ndryshimi i papritur i sjelljes mund të tregojë dhimbje, sëmundje, gjumë të keq, mbingarkesë ose situatë të pasigurt; mos ia atribuoni gjithçka autizmit. Edhe njerëzit që komunikojnë pa të folur duan vlerësim dhe mënyra për të shprehur parehatinë. Kërkoni ndihmë për ankth të madh, depresion, kriza epileptike, ushqyerje ose humbje funksionimi. Mbështetja dhe terapia duhet të kenë synime të qarta domethënëse dhe kontroll të dobisë e shqetësimit. Barnat mund të trajtojnë gjendje shoqëruese, por nuk shërojnë autizmin. Shmangni kura të paprovuara dhe trajtime kufizuese të rrezikshme."
+      ]
+    },
+    {
+      "heading": "Planifikoni mbështetjen gjatë jetës",
+      "paragraphs": [
+        "Kalimi në shkollë tjetër, puna, marrëdhëniet ose zhvendosja ndryshojnë nevojat. Diskutoni përshtatje arsimore, aftësi ditore, komunikim në punë dhe kujdes shëndetësor sipas prioriteteve të personit. Familjet dhe kujdestarët mund të kenë nevojë për ndihmë praktike dhe pushim nga kujdesi, pa humbur zërin e personit autik. Pyetni si kalojnë shërbimet nga fëmijëria në moshë të rritur dhe kush i koordinon. Shqyrtoni çfarë përmirëson mirëqenien dhe pjesëmarrjen, jo vetëm çfarë e bën personin të duket më pak autik për të tjerët."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: takim mbingarkues",
+      "text": "Një i rritur autik nuk arrin të flasë në pritjen e zhurmshme. Për vizitën tjetër klinika ofron vend më të qetë dhe pyetje me shkrim. Pacienti shpjegon më lehtë shqetësimet pa kërkesën për kontakt me sy."
+    },
+    {
+      "title": "Shembull hipotetik: ndryshim i papritur",
+      "text": "Një fëmijë që komunikon me figura ndalon papritur ushqimin dhe shqetësohet. Familja kërkon kontroll shëndetësor dhe e ndihmon të tregojë dhimbjen, pa e quajtur mosbindje ose thjesht autizëm."
+    }
+  ],
+  "questions": [
+    "Çfarë vlerësimi dhe kontrollesh të gjendjeve shoqëruese i përshtaten nevojave?",
+    "Cilat përshtatje komunikimi dhe shqisore mund të provojmë tani?",
+    "Cilat synime ndihmojnë mirëqenien e pjesëmarrjen dhe si do ta rishikojmë mbështetjen?"
+  ]
+}

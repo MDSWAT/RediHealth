@@ -46,6 +46,56 @@ type PanelDesignCopy = {
 };
 
 export const panelDesignTranslations: Record<Lang, PanelDesignCopy> = {
+ru: {
+
+
+
+
+"commandTrigger": "Быстрый переход",
+"commandTitle": "Быстрый переход и действия",
+"commandPlaceholder": "Перейти к разделу или действию…",
+"commandEmpty": "Подходящих действий нет.",
+"commandGroupNav": "Навигация",
+"commandGroupActions": "Действия",
+"commandToggleSidebar": "Переключить боковое меню",
+"commandFooterHint": "Стрелки — выбор · Enter — открыть · Esc — закрыть",
+"syncedLabel": "Синхронизировано",
+"refreshList": "Обновить",
+"refreshingList": "Обновление…",
+"offlineVaultCta": "Автономное хранилище",
+"cohortAria": "Фильтр групп пациентов",
+"cohortAll": "Все пациенты",
+"cohortAllHint": "Все зарегистрированные записи",
+"cohortActive": "Получают помощь",
+"cohortActiveHint": "Активное медицинское наблюдение",
+"cohortDue": "Пора на осмотр",
+"cohortDueHint": "Сегодня или просрочено",
+"cohortArchived": "Архив",
+"cohortArchivedHint": "Завершенные эпизоды помощи",
+
+    workspace: "Панель персонала",
+    navigation: "Меню панели",
+    skip: "Перейти к содержимому",
+    video: "Видео посещения",
+    requests: "Запросы на помощь",
+    title: "Запросы на помощь",
+    subtitle: "Читайте новые запросы и планируйте следующий шаг для каждого пациента.",
+    patientsHint: "Найдите пациента и откройте его запись.",
+    calendarHint: "Назначения и последующие мероприятия.",
+    filters: "Больше фильтров",
+    activeFilters: "Фильтры включены",
+    reset: "Очистить фильтры",
+    sort: "Сортировка запросов",
+    openRequest: "Открыть запрос",
+    patientTitle: "Пациенты",
+    patientSubtitle: "Найдите пациента или добавьте нового.",
+    more: "Подробнее",
+    account: "Аккаунт",
+    quickActions: "Быстрые действия",
+    collapseSidebar: "Свернуть меню",
+    expandSidebar: "Развернуть меню",
+  },
+
   en: {
     workspace: "Staff panel",
     navigation: "Panel menu",

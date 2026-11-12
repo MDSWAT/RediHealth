@@ -1,0 +1,51 @@
+{
+  "title": "Medicamente evaluate de IQWiG: înțelegerea evaluării beneficiului",
+  "intro": "Un medicament nou poate fi autorizat fără a fi mai bun decât tratamentul existent. IQWiG, Institutul german pentru Calitate și Eficiență în Îngrijirea Sănătății, examinează beneficiile și riscurile, inclusiv comparațiile cerute de Comitetul Federal Comun, G-BA. Înțelegerea comparației ajută discuția tratamentului.",
+  "sections": [
+    {
+      "heading": "Autorizare și beneficiu suplimentar",
+      "paragraphs": [
+        "Autorizarea privește folosirea într-o indicație definită pe baza calității, eficacității și siguranței. Beneficiul suplimentar compară cu tratamentul existent potrivit unor pacienți. Studiul față de placebo poate susține autorizarea fără a răspunde comparației cu îngrijirea standard. Procesul german informează decizii de sistem și negocieri de rambursare; nu este prescripție individuală. Alte țări decid separat. Această pagină explică evaluările, fără a reproduce catalogul complet, actualizat continuu, al tuturor medicamentelor evaluate."
+      ]
+    },
+    {
+      "heading": "Potriviți raportul cu situația exactă",
+      "paragraphs": [
+        "Căutați substanța activă și marca și verificați indicația, vârsta, stadiul, tratamentele anterioare și data. Același medicament poate avea concluzii diferite după grup ori utilizare. Combinația nu echivalează automat cu medicamentul singur. Verificați comparatorul și dacă studiul oferă comparație potrivită. Raportul pentru adulți netratați anterior nu se aplică automat copilului ori persoanei cu terapii eșuate. Cereți medicului evaluarea potrivită și diferențele importante, fără a vă baza pe titlul căutării."
+      ]
+    },
+    {
+      "heading": "Urmăriți rezultate importante pentru oameni",
+      "paragraphs": [
+        "Contează supraviețuirea, simptomele, funcția zilnică, calitatea vieții și reacțiile adverse. Analiza ori imaginea mai bună nu arată obligatoriu viață mai lungă sau stare mai bună. Întrebați câți au beneficiat ori au avut efecte negative, în ce perioadă și diferența absolută. Studii mici, urmărire scurtă, date lipsă ori comparator nepotrivit cresc incertitudinea. Lipsa dovezii utilizabile pentru avantaj nu dovedește automat identitatea tratamentelor sau absența efectului. Beneficiile se cântăresc cu riscurile."
+      ]
+    },
+    {
+      "heading": "Verificați etapa documentului",
+      "paragraphs": [
+        "Producătorul depune dovezi în evaluarea timpurie germană. IQWiG le poate analiza pentru G-BA, iar comentariile și informațiile noi pot preceda decizia. Distingeți afirmația firmei, raportul ori addendumul IQWiG și hotărârea finală G-BA; concluziile pot diferi sau evolua. Evaluările clinice comune europene pot contribui, fără a elimina înțelegerea deciziei naționale și grupului. Folosiți documente oficiale datate și căutați versiunea ulterioară. Rezumatul pentru pacienți ajută înțelegerea, fără a schimba domeniul și limitele raportului."
+      ]
+    },
+    {
+      "heading": "Folosiți dovezile în alegerea personală",
+      "paragraphs": [
+        "Întrebați cum se potrivesc bolilor, medicamentelor, răspunsului anterior, priorităților și posibilității administrării. Comoditatea, calea, monitorizarea, efectele, costurile și accesul pot conta chiar la beneficiu suplimentar incert. Stabiliți ce ameliorare justifică continuarea, monitorizarea siguranței și reevaluarea. Nu opriți medicamentul eficient prescris din cauza titlului și nu începeți unul doar fiindcă este nou. La schimbare cereți instrucțiuni și contact pentru probleme. Evaluarea sprijină decizia comună, fără garanția răspunsului individual."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: același medicament, alte grupuri",
+      "text": "Ana citește despre beneficiu suplimentar, dar raportul privește pacienți fără o anumită terapie anterioară. Ea a primit-o deja, deci întreabă despre dovezile grupului său înainte de a presupune aplicabilitatea."
+    },
+    {
+      "title": "Exemplu ipotetic: incertitudinea nu cere oprire",
+      "text": "Ilir vede că beneficiul suplimentar nu a fost stabilit. Întreabă dacă lipsesc comparațiile și cum contează răspunsul său actual. Păstrează prescripția în timpul discuției planului sigur, fără oprire singur."
+    }
+  ],
+  "questions": [
+    "Evaluarea corespunde diagnosticului, stadiului și istoricului meu?",
+    "Ce beneficii, riscuri și incertitudini există și față de ce tratament?",
+    "Cum schimbă rezultatele opțiunile, monitorizarea și reevaluarea?"
+  ]
+}

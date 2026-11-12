@@ -24,6 +24,32 @@ function useSafeLanguage() {
 }
 
 const dashboardCopy = {
+  ru: {
+    morning: "Доброе утро",
+    afternoon: "Добрый день",
+    evening: "Добрый вечер",
+    synced: "Все синхронизировано",
+    syncedShort: "Онлайн",
+    savedOffline: (n: number) => (n === 1 ? "1 change saved offline" : `${n} изменения сохранены офлайн`),
+    savedOfflineShort: (n: number) => `${n} оффлайн`,
+    quickActions: "Быстрые действия",
+    intakeBadge: "Открыть",
+    intakeTitle: "Новый визит на дом",
+    intakeText: "Данные пациента и фотография документа, удостоверяющего личность.",
+    videoBadge: "Видеозвонок",
+    videoTitle: "Видеоконсультация с врачом",
+    videoText: "Отправьте данные и поговорите с дежурным врачом.",
+    kitBadge: "Полевой комплект",
+    kitTitle: "Замеры с комплектом",
+    kitText: "Артериальное давление, SpO2, уровень сахара в крови и температура по Bluetooth или вручную.",
+    close: "Закрыть",
+    closeAria: "Закройте открытый инструмент",
+    demoAge: "68 лет",
+    casesTitle: "Отслеженные дела",
+    casesText: "Ваши пациенты по группам: матери, хронические заболевания, без удостоверения личности.",
+    casesLink: "Посмотреть дела",
+  },
+
   ro: {
     morning: "Bună dimineața",
     afternoon: "Bună ziua",

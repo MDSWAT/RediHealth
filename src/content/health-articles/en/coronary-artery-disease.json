@@ -1,0 +1,51 @@
+{
+  "title": "Coronary artery disease: symptoms, treatment and daily life",
+  "intro": "The heart muscle needs its own supply of oxygen-rich blood. Coronary artery disease develops when disease in the vessels supplying it restricts that supply, commonly because fatty plaques build up in the artery walls. Treatment aims both to improve symptoms and to reduce future heart attacks. New or changing chest symptoms need assessment even if heart disease has not previously been diagnosed.",
+  "sections": [
+    {
+      "heading": "Recognise angina and a possible emergency",
+      "paragraphs": [
+        "Angina may feel like pressure, tightness or burning in the chest, sometimes spreading to an arm, jaw, neck, back or upper abdomen. Breathlessness, nausea, sweating or unusual weakness may accompany it; dramatic chest pain is not always present. Call emergency services for new persistent chest discomfort, chest symptoms with breathlessness or sweating, or pain at rest that is severe or not settling. Do not drive yourself. If you have diagnosed angina, stop and follow your prescribed attack plan, but do not let using medication delay emergency help for a suspected heart attack. More frequent, longer or easier-to-trigger episodes need urgent review even if they stop."
+      ]
+    },
+    {
+      "heading": "Understand the cause without assigning blame",
+      "paragraphs": [
+        "Plaques can narrow an artery gradually. If a plaque ruptures and a clot forms, blood flow may become suddenly blocked and damage the heart muscle. Smoking, raised blood pressure, high cholesterol, diabetes, kidney disease, age and family history can contribute to risk. A healthy lifestyle helps but cannot erase every inherited or medical factor. Not all angina comes from a large blocked artery: small-vessel disease or vessel spasm may require a different assessment. A reassuring older test does not explain away new symptoms."
+      ]
+    },
+    {
+      "heading": "Tests depend on whether symptoms are acute or stable",
+      "paragraphs": [
+        "For a possible heart attack, urgent ECG and blood tests are part of a hospital assessment; repeat testing may be needed. A single normal ECG is not enough to dismiss ongoing concerning symptoms. For stable symptoms, clinicians assess history, examination and risk, then may use coronary CT angiography, functional imaging or other tests. An invasive angiogram can show artery anatomy and help plan treatment when appropriate. Ask what question a test answers, its risks and what happens next. A cholesterol result or a risk score alone does not establish whether today's pain is a heart attack."
+      ]
+    },
+    {
+      "heading": "Medicines and procedures have different purposes",
+      "paragraphs": [
+        "A treatment plan may include cholesterol-lowering medication, prescribed antiplatelet treatment to reduce clot risk, and medicines for blood pressure or angina. Benefits, bleeding risk, other conditions and interactions affect the choice. Do not start daily aspirin or stop prescribed heart medicines on your own. If prescribed a nitrate such as GTN, learn its attack instructions and discuss interactions: it must not be combined with erectile-dysfunction medicines such as sildenafil or tadalafil. Stents or bypass surgery may be recommended according to symptoms, anatomy and urgency. They do not remove the need for ongoing risk-factor treatment. After a stent, clarify the antiplatelet plan before any interruption or planned procedure."
+      ]
+    },
+    {
+      "heading": "Build a realistic long-term routine",
+      "paragraphs": [
+        "Ask about cardiac rehabilitation and a safe activity plan. Start with manageable steps rather than pushing through chest symptoms. Support to stop smoking, a balanced eating pattern, sleep and individual control of blood pressure, cholesterol and diabetes can all be part of care. Discuss side effects or costs early so that treatment can be adjusted instead of abandoned. Keep a medicine list and any prescribed rescue medicine accessible, and make sure family members know the emergency plan. Review driving, demanding work and new exercise with the clinician. Anxiety after a diagnosis is common; psychological and practical support can help alongside cardiac care."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a different pattern matters",
+      "text": "Arben usually gets brief diagnosed angina on a steep hill. One evening chest pressure starts while he is sitting and comes with sweating. He seeks emergency help instead of assuming the familiar diagnosis makes this episode safe."
+    },
+    {
+      "title": "Hypothetical example: opening an artery is not the whole plan",
+      "text": "After receiving a stent, a woman feels well and wonders whether she still needs her tablets. At follow-up the team explains the distinct purposes of antiplatelet and cholesterol treatment, checks side effects and writes down the agreed plan rather than leaving her to stop medicines herself."
+    }
+  ],
+  "questions": [
+    "Which symptoms mean I should call emergency services instead of waiting?",
+    "What is each medicine for, and which interactions or bleeding signs should I know?",
+    "Would rehabilitation or a procedure help my situation, and what benefit is expected?"
+  ]
+}

@@ -50,6 +50,14 @@ const LIBRARY_COPY: Record<
     firstStepLabel: string;
   }
 > = {
+ru: {
+"firstStepLabel": "Первый практический шаг",
+
+
+"keyFactLabel": "Главный медицинский факт",
+
+ howToRead: "Как читать", dictionary: "Словарь", checkSymptom: "Проверьте симптом", showAll: "Показать все руководства", title: "Путеводители по здоровью" },
+
   ro: {
     howToRead: "Cum citești",
     dictionary: "Dicționar medical",

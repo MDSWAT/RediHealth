@@ -1,0 +1,51 @@
+{
+  "title": "Allergie ai farmaci: riconoscere reazioni e registrarle bene",
+  "intro": "L'allergia a un farmaco è una reazione immunitaria. È diversa da molti effetti indesiderati prevedibili, ma entrambi possono richiedere attenzione. Può iniziare subito o più tardi. La sicurezza combina azione rapida per sintomi gravi, descrizione precisa e piano dei farmaci futuri, senza indovinare quali siano sicuri.",
+  "sections": [
+    {
+      "heading": "Non ogni effetto indesiderato è allergia",
+      "paragraphs": [
+        "Orticaria pruriginosa, gonfiore e alcune eruzioni suggeriscono allergia; nausea o diarrea isolate possono essere effetti comuni o altra malattia. L'eruzione durante antibiotici può derivare dall'infezione. Gli indizi non stabiliscono da soli la diagnosi. Le reazioni immediate possono coinvolgere respiro e circolazione, quelle ritardate pelle o organi. Aver tollerato il farmaco non esclude una reazione successiva. Descrivete l'accaduto anziché soltanto dire allergia. L'allergia di un familiare non implica automaticamente la stessa in voi."
+      ]
+    },
+    {
+      "heading": "I sintomi gravi richiedono emergenza",
+      "paragraphs": [
+        "Gonfiore improvviso di lingua o gola, sibili, difficoltà respiratoria o a deglutire, svenimento, collasso o rapido peggioramento dopo un farmaco possono essere anafilassi anche senza eruzione. Usate subito l'autoiniettore di adrenalina prescritto secondo le istruzioni e chiamate i soccorsi. Non alzatevi né camminate; sdraiatevi, sollevando lentamente il busto se il respiro è difficile, sul fianco sinistro in gravidanza. Senza miglioramento dopo cinque minuti usate il secondo dispositivo prescritto secondo il piano. Gli antistaminici non sostituiscono adrenalina per respiro o circolazione. Eruzione dolorosa estesa con febbre, bolle, desquamazione o lesioni di bocca, occhi o genitali può essere grave reazione tardiva: ospedale immediato."
+      ]
+    },
+    {
+      "heading": "Contattare il prescrittore e annotare i dettagli",
+      "paragraphs": [
+        "Per una nuova reazione sospetta chiedete consiglio tempestivo prima di un'altra dose; non fate prove autonome. Il medico decide sospensione, urgenza e sostituzione sicura delle cure essenziali. Annotate nome generico e commerciale, concentrazione, via, inizio, dosi prima dei sintomi, intervallo e trattamento ricevuto. Includete altri farmaci, integratori e malattia curata. Foto e confezioni aiutano, senza ritardare il soccorso per raccoglierle. Chiedete di distinguere allergia sospetta ed effetti comuni nella documentazione, spiegando il grado di certezza."
+      ]
+    },
+    {
+      "heading": "L'indagine specialistica chiarisce il futuro",
+      "paragraphs": [
+        "I test dipendono da farmaco e storia; non esiste un esame unico affidabile per tutte le allergie. Test cutanei, sangue o provocazione sorvegliata possono essere adatti a casi selezionati. La provocazione richiede valutazione del rischio e luogo attrezzato, mai casa. Reazioni tardive gravi non sono adatte alla provocazione ordinaria col responsabile. Molte vecchie etichette di penicillina risultano inesatte, ma non cancellatele da soli né prendete antibiotici in prestito per provare. Le reazioni crociate dipendono dai singoli farmaci, non solo dai nomi. La desensibilizzazione è una procedura monitorata distinta per cure essenziali selezionate, non guarigione permanente."
+      ]
+    },
+    {
+      "heading": "Rendere utile il risultato a ogni visita",
+      "paragraphs": [
+        "Chiedete un documento con responsabile confermato o sospetto, farmaci correlati da evitare e alternative considerate sicure. Se esclusa l'allergia aggiornate medico, farmacia e servizi pertinenti. Portate le informazioni prima di ricette, iniezioni, interventi e acquisti senza ricetta. Chiedete allerta medica e piano urgente se necessari. Non ogni allergia richiede adrenalina prescritta: è decisione individuale. Segnalate sospette reazioni nel sistema locale con aiuto professionale. Una registrazione chiara evita sia riesposizione accidentale sia esclusione inutile di cure efficaci."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: etichetta incerta dall'infanzia",
+      "text": "Mira risulta allergica alla penicillina, ma i familiari ricordano solo un'eruzione con un'infezione infantile. Chiede valutazione strutturata prima di aver bisogno dell'antibiotico. Non prova avanzi a casa; il registro cambia dopo la conclusione clinica."
+    },
+    {
+      "title": "Esempio ipotetico: allarme tardivo",
+      "text": "Pochi giorni dopo un nuovo farmaco Dan presenta febbre, pelle dolorosa e lesioni in bocca. Cerca subito ospedale con l'elenco dei farmaci, non solo un antistaminico e attesa."
+    }
+  ],
+  "questions": [
+    "Sembra allergia, altra reazione grave o effetto prevedibile?",
+    "Cosa evitare adesso e servono specialista o piano d'emergenza?",
+    "Quali informazioni esatte registrare, comprese alternative sicure?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Malattia diverticolare e diverticolite: sintomi, cure e scelte quotidiane",
+  "intro": "I diverticoli sono piccole tasche nella parete del colon. Molti li hanno senza sintomi: diverticolosi. La malattia diverticolare indica disturbi o complicanze associati; la diverticolite è l'infiammazione delle tasche. Non richiedono tutti lo stesso trattamento e una diagnosi precedente non deve spiegare automaticamente ogni nuovo sintomo addominale.",
+  "sections": [
+    {
+      "heading": "Distinguere un disturbo noto da una nuova malattia acuta",
+      "paragraphs": [
+        "Fastidio intermittente al basso addome, gonfiore, stitichezza o diarrea possono accompagnare la malattia diverticolare. Il dolore è spesso a sinistra, ma la sede non dimostra la causa. La diverticolite acuta provoca più spesso dolore persistente e dolorabilità, talvolta febbre, nausea o cambiamento delle feci. Altre condizioni intestinali, urinarie o pelviche sono simili. Riferite inizio, peggioramento, febbre, sangue, vomito, feci e gas, farmaci ed episodi precedenti. Immunodepressione e malattie importanti aumentano il rischio e possono cambiare la presentazione. Non diagnosticate recidiva solo perché una vecchia immagine mostrava tasche."
+      ]
+    },
+    {
+      "heading": "Quando serve valutazione urgente",
+      "paragraphs": [
+        "Dolore crescente o persistente, febbre o brividi, sangue nelle feci e impossibilità a trattenere liquidi richiedono consiglio tempestivo. Dolore forte con addome gonfio, vomito o impossibilità a evacuare o emettere gas può indicare occlusione o complicanza e richiede emergenza. Emorragia rettale abbondante, svenimento, confusione, forte affanno o infezione grave richiedono soccorso. Il sanguinamento diverticolare può avvenire senza infiammazione dolorosa, ma non rende sicura un'emorragia. Segnalate anticoagulanti o immunità ridotta. Non aspettate tutti i segnali insieme e non trattate dolore grave soltanto con lassativi."
+      ]
+    },
+    {
+      "heading": "Diagnosi e cure dipendono dalla gravità",
+      "paragraphs": [
+        "Il medico visita e può richiedere sangue, feci o TC per confermare, valutare complicanze ed escludere altre cause. Una colonscopia può essere discussa dopo la guarigione secondo reperti, esami precedenti e allarmi persistenti; non va organizzata autonomamente durante l'attacco doloroso. Una persona complessivamente in buone condizioni con diverticolite non complicata può essere gestita senza antibiotici dopo valutazione e con controllo chiaro. Malessere generale, immunodepressione o comorbilità importanti rendono più probabili antibiotici o ricovero. Ascesso, perforazione, occlusione o fistola possono richiedere drenaggio, chirurgia o altra cura specialistica."
+      ]
+    },
+    {
+      "heading": "Organizzare cibo, analgesia e recupero",
+      "paragraphs": [
+        "Durante l'episodio chiedete cosa mangiare e bere e quando aumentare l'apporto. Può essere consigliata una breve modifica, ma digiuno prolungato o dieta liquida duratura non sono soluzioni generali. Rivalutazione se dolore aumenta, liquidi non restano o manca il miglioramento concordato. Discutete analgesia adatta: paracetamolo può essere un'opzione, mentre antinfiammatori come ibuprofene e oppioidi possono creare problemi e non vanno iniziati con leggerezza. Non interrompete farmaci essenziali senza consiglio. Fuori dall'episodio aumentate gradualmente fibre se scarse, con liquidi adatti rispettando eventuali limiti personali. Non occorre evitare in generale noci, semi o bucce soltanto per i diverticoli."
+      ]
+    },
+    {
+      "heading": "Rivedere sintomi persistenti e decisioni chirurgiche",
+      "paragraphs": [
+        "Dieta equilibrata, attività possibile e stop al fumo aiutano la salute senza garantire assenza di recidive. Il medico può trattare stitichezza o cercare altre cause del dolore anziché ripetere antibiotici. Nuovo dimagrimento, sangue persistente o cambiamento duraturo dell'alvo richiedono indagini, non attribuzione automatica ai diverticoli. La chirurgia elettiva dipende da complicanze, peso degli episodi, salute, preferenze e beneficio atteso, non soltanto dal conteggio degli attacchi. Chiedete sintomi residui, complicanze operatorie, recupero e possibile stomia. Tenete un piano per le riacutizzazioni e un contatto fuori orario."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: tasche scoperte per caso",
+      "text": "Un esame precedente di Ana trova diverticoli senza sintomi. Chiede dieta e fibre adatte anziché antibiotici o eliminazione di tutti i semi. Se compaiono dolore persistente o sangue cerca valutazione senza presumere innocuità."
+    },
+    {
+      "title": "Esempio ipotetico: un cambiamento acuto",
+      "text": "Milan aveva fastidio intermittente, ora dolore continuo crescente, febbre e vomito ripetuto. Cerca valutazione urgente senza lassativi e attesa della visita abituale. Dolore forte con gonfiore o impossibilità a emettere gas richiederebbe emergenza."
+    }
+  ],
+  "questions": [
+    "È infiammazione non complicata, una complicanza o un'altra condizione?",
+    "Qual è il piano di cura, alimenti e liquidi e quando aspettare miglioramento o controllo?",
+    "Dopo la guarigione servono indagini intestinali o confronto personalizzato sulla chirurgia?"
+  ]
+}

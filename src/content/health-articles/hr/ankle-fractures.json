@@ -1,0 +1,51 @@
+{
+  "title": "Prijelomi gležnja: izbor liječenja i siguran oporavak",
+  "intro": "Prijelom gležnja znači slomljenu kost oko gležanjskog zgloba. Neki su prijelomi stabilni, a drugi narušavaju položaj ili stabilnost i zahtijevaju složenije liječenje. Bol i oteklina ne razlikuju pouzdano prijelom od uganuća. Ako je moguć prijelom, zatražite pregled i slijedite plan za svoju ozljedu, bez pretpostavke da vrijede tuđa ortoza, upute za hodanje ili trajanje oporavka.",
+  "sections": [
+    {
+      "heading": "Prepoznati ozljedu koja zahtijeva hitnu skrb",
+      "paragraphs": [
+        "Jaka bol, velika oteklina ili teško oslanjanje nakon ozljede traže brzu procjenu. Neobičan kut, otvorena rana ili vidljiva kost, utrnuli prsti ili hladno, blijedo ili plavo stopalo zahtijevaju hitnu procjenu. Ne gurajte kost natrag i ne ispravljajte gležanj sami. Zaštitite ga od nove ozljede i potražite pomoć za prijevoz umjesto vožnje. Liječnik mora pregledati cirkulaciju, osjet i kožu, kao i kosti."
+      ]
+    },
+    {
+      "heading": "Razumjeti razlike u liječenju prijeloma",
+      "paragraphs": [
+        "Rendgen pokazuje oblik prijeloma i položaj, a ponekad treba dodatno snimanje. Stabilna ozljeda može se liječiti odgovarajućom ortozom ili gipsom i kontrolama. Druge zahtijevaju liječničko vraćanje položaja ili operaciju koja drži kosti. Odluka uvažava stabilnost, kožu i oteklinu, druge bolesti i okolnosti osobe. Pitajte zašto je predloženo rješenje primjereno i koje probleme sprječava."
+      ]
+    },
+    {
+      "heading": "Razjasniti oslanjanje i uporabu potpore",
+      "paragraphs": [
+        "Prije odlaska pitajte koliko težine točno smijete prenijeti na ozlijeđenu stranu, kako koristiti pomagala i kada se plan mijenja. Ortoza ne znači automatski da je neograničeno hodanje sigurno. Tražite vježbu uporabe pomagala i plan za stepenice, pranje i prijevoz. Sačuvajte pisane upute i kontakt za kontrolu. Ako kod kuće ne možete sigurno funkcionirati, recite prije otpusta umjesto improvizacije nesigurnog rješenja."
+      ]
+    },
+    {
+      "heading": "Njegovati gips ili ortozu i pratiti promjene",
+      "paragraphs": [
+        "Slijedite upute za čistoću i, kada je potrebno, suhoću potpore. Ne umećite predmete radi češanja pod gipsom i ne skidajte ga sami. Sve jača bol, utrnulost, jako trljanje, iscjedak, neugodan miris ili promjena boje prstiju traže brz kontakt; hladni prsti ili promjena boje zahtijevaju hitnu procjenu. Pitajte trebate li mjere protiv ugrušaka zbog manje pokretljivosti. Nova bol ili oteklina lista traže hitan savjet; bol u prsima ili neobjašnjiva zadušenost hitnu pomoć."
+      ]
+    },
+    {
+      "heading": "Vraćati aktivnosti prema planu oporavka",
+      "paragraphs": [
+        "Cijeljenje kosti i rehabilitacija nisu isto: ukočenost, oteklina i slabost mogu trajati nakon srastanja. Dolazite na kontrole i pitajte kada pojačati kretanje, opterećenje i fizioterapiju. Uravnotežena prehrana i pomoć pri prestanku pušenja mogu biti dio oporavka. Zahtjevnom poslu i sportu vraćajte se prema funkciji i stručnim uputama, ne samo zbog manje boli. Potrebna je kontrola trajne nestabilnosti, pogoršanja ili teškoća vraćanja normalnom hodu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: upotrebljive upute za otpust",
+      "text": "Osoba s prijelomom živi na katu i mora ograničiti oslanjanje. Prije odlaska traži objašnjenje pomagala, stepenica i kontrola. Ne pretpostavlja da rođakova ortoza znači da za njih vrijede iste upute."
+    },
+    {
+      "title": "Izmišljeni primjer: problem s gipsom",
+      "text": "Osobi s gipsom raste osjećaj zatezanja i trnu prsti. Kontaktira hitnu službu umjesto čekanja sljedeće kontrole ili kućnog rezanja gipsa. Navodi bol, boju prstiju i početak promjene."
+    }
+  ],
+  "questions": [
+    "Je li prijelom stabilan i zašto preporučujete ovo liječenje?",
+    "Koliko se smijem oslanjati i kakvu potporu ili prevenciju ugrušaka trebam?",
+    "Koje promjene zahtijevaju hitan kontakt i koji ciljevi vode rehabilitaciju i povratak aktivnosti?"
+  ]
+}

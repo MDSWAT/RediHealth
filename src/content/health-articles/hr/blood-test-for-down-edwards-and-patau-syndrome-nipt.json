@@ -1,0 +1,51 @@
+{
+  "title": "NIPT za Downov, Edwardsov i Patauov sindrom: probir i sljedeći koraci",
+  "intro": "Neinvazivno prenatalno testiranje, NIPT, krvni je test u trudnoći koji procjenjuje vjerojatnost određenih kromosomskih stanja. Uobičajeni paneli probiru Downov, Edwardsov i Patauov sindrom. To je probir, a ne dijagnoza, i ne utvrđuje da beba nema zdravstvenih problema. Izbor testiranja i postupak nakon nalaza trebaju jasne informacije i poštovanje želja.",
+  "sections": [
+    {
+      "heading": "Odlučite što želite znati prije vađenja krvi",
+      "paragraphs": [
+        "Pitajte koja stanja točan test obuhvaća, kada se radi i kako nalaz mijenja izbor. Možete razgovarati bez unaprijed poznate odluke nakon neočekivanog rezultata. Tražite tumača, genetsko savjetovanje ili uravnotežene informacije o životu s tim stanjima. Dostupnost, javno financiranje i kriteriji razlikuju se po zemljama; privatni paketi mogu imati drukčije dokaze. Više stavki ne znači automatski bolje ili korisnije informacije. Probir je izbor; razgovarajte i o odbijanju."
+      ]
+    },
+    {
+      "heading": "Razumijte što uzorak mjeri",
+      "paragraphs": [
+        "Uzorak sadrži fragmente DNK trudne osobe i posteljice. Laboratorij procjenjuje kromosomske vjerojatnosti, a ne pregledava izravno svaku bebinu stanicu. Razlike posteljice i bebe te drugi biološki čimbenici mogu zavesti rezultat. Navedite blizance, trudnoću započetu s više plodova i važnu anamnezu jer se prikladnost i tumačenje mijenjaju. Pitajte kako laboratorij to rješava umjesto pretpostavke istog djelovanja u svakoj trudnoći."
+      ]
+    },
+    {
+      "heading": "Tumačite manju, veću vjerojatnost i izostanak nalaza",
+      "paragraphs": [
+        "Manja vjerojatnost smanjuje, ali ne uklanja mogućnost probiranih stanja i ne isključuje druge genetske ili strukturne probleme. Veća vjerojatnost traži razgovor o dijagnostici, a nije dokaz bolesti. Vjerojatnost točnog pozitivnog nalaza ovisi o stanju i početnoj vjerojatnosti, ne samo reklamnoj točnosti. Ponekad laboratorij ne daje nalaz. To nije umirujući negativan rezultat: tim treba objasniti razloge i daljnje testiranje, ponavljanje ili procjenu."
+      ]
+    },
+    {
+      "heading": "Razgovarajte o dijagnostici prije velikih odluka",
+      "paragraphs": [
+        "Nakon veće vjerojatnosti genetsko savjetovanje i prikladan ultrazvuk razjašnjavaju korake. Biopsija korionskih resica ili amniocenteza daju dijagnostičke podatke, ali su invazivne sa svojim vremenom, rizicima i granicama. Pitajte što utvrđuju, trajanje i potrebu dodatne potvrde. Ne donosite nepovratnu odluku o trudnoći samo prema NIPT-u. Izbor nakon savjetovanja treba poštovati želje i okolnosti uz podršku, a ne pritisak nalaza ili drugih."
+      ]
+    },
+    {
+      "heading": "Nastavite skrb i jasno razlikujte ograničenja",
+      "paragraphs": [
+        "NIPT ne zamjenjuje preporučene ultrazvuke ili redovnu skrb. Kasniji abnormalan ultrazvuk može zahtijevati obradu i nakon manje vjerojatnosti iz krvi. Dogovorite tko objašnjava nalaz, kada nazvati ako ga nema i podršku u čekanju. Sindromi imaju različite posljedice i iskustva; oznaka ne predviđa cijeli djetetov život. Tražite specifične stručne informacije i vrijeme. Test ne procjenjuje ni hitne simptome poput jake boli ili znatnog krvarenja; za njih zasebno tražite trudničku pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: veća vjerojatnost",
+      "text": "Trudna osoba dobiva veću vjerojatnost i osjeća preplavljenost. Dogovara savjetovanje, pita osobno značenje i razmatra dijagnostiku prije velikih odluka. Ne tumači kategoriju probira kao potvrđenu dijagnozu."
+    },
+    {
+      "title": "Hipotetski primjer: bez laboratorijskog nalaza",
+      "text": "Uzorak ne daje nalaz koji se može izdati. Pacijentica pita razlog, prikladnost novog uzorka i preporučene druge testove ili ultrazvuk. Ne pretpostavlja da odsutnost nalaza znači odsutnost stanja."
+    }
+  ],
+  "questions": [
+    "Koja stanja procjenjuje ovaj test i koje su granice u mojoj trudnoći?",
+    "Što mi znači svaki rezultat, uključujući nemogućnost izdavanja?",
+    "Koji dijagnostički testovi, ultrazvuci i savjetovanje postoje prije daljnjih odluka?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Resuscitarea unui adult: recunoașterea stopului cardiac și solicitarea ajutorului",
+  "intro": "Dacă o persoană nu răspunde acum, sunați imediat la urgență: 112 în Uniunea Europeană și Moldova sau numărul local în alte țări. Puneți telefonul pe difuzor și urmați dispecerul. Dacă persoana nu răspunde și nu respiră normal, începeți resuscitarea cardiopulmonară, RCP. Articolul descrie suportul vital de bază la adult; copiii, înecul și alte situații speciale necesită îndrumare suplimentară.",
+  "sections": [
+    {
+      "heading": "Verificați siguranța, reacția și respirația",
+      "paragraphs": [
+        "Asigurați-vă că vă puteți apropia în siguranță, vorbiți tare și scuturați ușor umerii pentru a verifica reacția. Strigați după ajutor și sunați imediat dacă persoana nu răspunde; evaluați respirația în timp ce se conectează apelul. Gâfâiturile ocazionale, respirațiile lente cu efort sau gâfâitul anormal nu sunt respirație normală. Descrieți dispecerului ce vedeți, fără să pierdeți timp căutând cauza sau pulsul. Dispecerul vă poate ajuta dacă nu sunteți sigur de respirație."
+      ]
+    },
+    {
+      "heading": "Începeți compresiile toracice",
+      "paragraphs": [
+        "La adultul care nu răspunde și nu respiră normal, începeți prompt compresiile. Puneți podul unei palme în centrul pieptului, pe jumătatea inferioară a sternului, cealaltă palmă deasupra și împletiți degetele. Țineți brațele drepte și umerii deasupra pieptului. Comprimați cu 100–120 pe minut, la o adâncime de cel puțin 5 cm și cel mult 6 cm. Lăsați pieptul să revină complet după fiecare compresie, fără să rămâneți sprijinit pe el. Reduceți întreruperile și urmați dispecerul dacă poziționarea este dificilă."
+      ]
+    },
+    {
+      "heading": "Respirațiile de salvare depind de instruire",
+      "paragraphs": [
+        "Dacă sunteți instruit și puteți oferi respirații, alternați 30 de compresii cu 2 respirații, folosind tehnica învățată și suficient aer pentru începutul ridicării pieptului. Evitați ventilația excesivă și pauzele lungi. Dacă nu sunteți instruit, nu puteți sau nu doriți respirații, continuați compresiile fără întrerupere și urmați dispecerul. Nu întârziați pentru echipamente. Respirațiile sunt deosebit de importante în unele situații, precum înecul și la copii; spuneți dispecerului, deoarece instrucțiunile pentru adulți nu acoperă orice urgență."
+      ]
+    },
+    {
+      "heading": "Folosiți defibrilatorul automat extern",
+      "paragraphs": [
+        "Cereți altei persoane să aducă un defibrilator automat extern, AED, dacă este disponibil, în timp ce RCP continuă. Porniți-l, descoperiți pieptul, aplicați electrozii conform desenului și urmați indicațiile vocale sau vizuale. Nimeni nu trebuie să atingă persoana în timpul analizei și al șocului. Reluați prompt compresiile când se indică, inclusiv dacă nu se recomandă șoc. Aparatul stabilește necesitatea șocului; nu este necesară instruire prealabilă pentru urmarea indicațiilor. Nu abandonați compresiile doar pentru căutarea unui aparat îndepărtat când altcineva îl poate aduce."
+      ]
+    },
+    {
+      "heading": "Continuați și căutați sprijin ulterior",
+      "paragraphs": [
+        "Continuați până când preiau profesioniștii, persoana prezintă clar semne de viață și respiră normal, nu mai puteți fizic sau locul devine nesigur. Gâfâiturile izolate nu justifică oprirea. Dacă revine respirația normală, urmați dispecerul, supravegheați atent și fiți pregătit să reluați RCP dacă respirația devine anormală. Resuscitarea și defibrilarea timpurie cresc șansele, dar nu garantează recuperarea. Salvatorii pot avea nevoie ulterior de sprijin emoțional. Cursurile practice și recapitulările ajută în urgențe viitoare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gâfâit după prăbușire — exemplu ipotetic",
+      "text": "Un adult se prăbușește, nu răspunde și gâfâie ocazional. Un martor sună pe difuzor, descrie respirația și începe compresiile cu ajutorul dispecerului, fără să considere gâfâitul respirație normală."
+    },
+    {
+      "title": "Împărțirea sarcinilor — exemplu ipotetic",
+      "text": "La un teren sportiv, o persoană sună și începe RCP, iar alta aduce AED din apropiere. Urmează aparatul, nu ating persoana la analiză și șoc și reiau compresiile conform indicațiilor."
+    }
+  ],
+  "questions": [
+    "Unde pot exersa RCP la adult și copil cu un instructor local acreditat?",
+    "Unde se află cel mai apropiat AED accesibil la serviciu sau în comunitate?",
+    "Ce cursuri de reîmprospătare și sprijin există după o tentativă de resuscitare?"
+  ]
+}

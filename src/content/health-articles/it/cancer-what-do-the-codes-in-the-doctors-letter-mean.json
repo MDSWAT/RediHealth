@@ -1,0 +1,51 @@
+{
+  "title": "Capire i codici oncologici nella lettera medica",
+  "intro": "Una lettera oncologica può contenere sigle sull'origine del tumore, la sua estensione, l'aspetto delle cellule e gli esami o trattamenti già effettuati. Servono alla comunicazione tra professionisti, ma non costituiscono da sole una raccomandazione terapeutica o una previsione personale di sopravvivenza. Chiedere di spiegare tutto il referto, comprese incertezze e classificazione utilizzata.",
+  "sections": [
+    {
+      "heading": "TNM descrive l'estensione di molti tumori",
+      "paragraphs": [
+        "Nel sistema TNM, T descrive dimensioni o estensione locale del tumore primitivo, N il coinvolgimento dei linfonodi regionali e M la diffusione a distanza. Numeri e talvolta altre lettere precisano le categorie. Le definizioni dipendono dalla sede del tumore e dall'edizione della classificazione. Non si ricava lo stadio usando una tabella per un altro tumore. Alcuni tumori, compresi molti tumori del sangue e cerebrali, usano sistemi diversi."
+      ]
+    },
+    {
+      "heading": "Contano la base e il momento della valutazione",
+      "paragraphs": [
+        "La c minuscola generalmente indica una valutazione clinica basata su visita, immagini e altri dati diagnostici. La p indica una classificazione informata dall'esame patologico del tessuto asportato chirurgicamente. Il prefisso y segnala una valutazione durante o dopo il trattamento iniziale, mentre r riguarda il tumore recidivato. Questi prefissi aiutano a capire differenze fra referti. Una modifica dopo nuovi dati non significa automaticamente rapido peggioramento. Chiedere quali informazioni erano disponibili in ogni valutazione."
+      ]
+    },
+    {
+      "heading": "Grado e stadio sono diversi",
+      "paragraphs": [
+        "Il grado descrive caratteristiche delle cellule e del tessuto tumorale al microscopio. In molti sistemi, cellule meno simili a quelle normali sono associate a comportamento più aggressivo, ma le regole variano secondo il tumore. Lo stadio descrive l'estensione della malattia. Nessuno dei due sostituisce informazioni sul tipo tumorale, biomarcatori, salute generale e risposta alle cure. Lo stesso grado non ha necessariamente lo stesso significato in ogni tumore."
+      ]
+    },
+    {
+      "heading": "Malattia residua e incertezza",
+      "paragraphs": [
+        "La classificazione R descrive il tumore rimasto dopo il trattamento: R0 indica nessun residuo identificato, R1 residuo microscopico e R2 residuo visibile. Chiedere a quali sedi e valutazioni si riferisce. Margini chirurgici liberi sono un'informazione utile, ma non garantiscono che il tumore non ritorni. Una X in alcune categorie indica che la valutazione non è stata possibile, non un risultato automaticamente favorevole o sfavorevole. Esami in attesa possono lasciare il referto incompleto."
+      ]
+    },
+    {
+      "heading": "Preparare la prossima conversazione",
+      "paragraphs": [
+        "Chiedere una copia e segnare termini sconosciuti, data e risultati ancora attesi. Collegare con l'équipe i risultati all'obiettivo della cura, alle opzioni, ai benefici e ai danni probabili. Alcuni sistemi combinano estensione anatomica e altre caratteristiche tumorali per definire lo stadio. Le statistiche di popolazione non predicono esattamente il singolo percorso. Per cure in un altro Paese o lingua portare il referto originale e chiedere un interprete qualificato, senza tradurre da soli sigle isolate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un grado e uno stadio — esempio ipotetico",
+      "text": "Una persona pensa che grado e stadio siano punteggi duplicati. Il medico spiega quale descrive l'aspetto microscopico e quale l'estensione della malattia, poi il loro significato per le opzioni disponibili."
+    },
+    {
+      "title": "Due referti — esempio ipotetico",
+      "text": "Un referto radiologico e il successivo esame del tessuto hanno prefissi e categorie differenti. La persona chiede se dipende da nuove informazioni, dal trattamento ricevuto o da un cambiamento reale della malattia."
+    }
+  ],
+  "questions": [
+    "Quale classificazione specifica e quale edizione usa questo referto?",
+    "Quali risultati sono confermati, quali incerti e quali esami sono ancora attesi?",
+    "Come incidono questi risultati su obiettivo terapeutico, opzioni e controlli per me?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Do better test results mean a treatment is helping?",
+  "intro": "Blood tests, scans and other measurements can help diagnose illness, monitor treatment and detect harm. But a better number does not automatically answer every question about benefit. It matters what was measured, how reliably it relates to outcomes people care about, and what else the treatment does. Understanding that distinction helps you ask useful questions without dismissing tests or changing prescribed care on your own.",
+  "sections": [
+    {
+      "heading": "Identify the question behind the measurement",
+      "paragraphs": [
+        "Ask whether the result is being used to diagnose a condition, adjust a dose, check safety or estimate a treatment benefit. These are different purposes. A laboratory marker can be useful for one purpose without proving that a medicine prevents complications. Pain, ability to do daily tasks, hospital admission and survival are examples of outcomes that directly matter to people. A well-designed symptom questionnaire can measure a meaningful outcome even though it is reported by a patient rather than produced by a machine."
+      ]
+    },
+    {
+      "heading": "Understand a surrogate without assuming it is useless",
+      "paragraphs": [
+        "A surrogate endpoint stands in for another outcome in a study. For example, a trial may measure a physiological value sooner than it could observe a long-term complication. Some surrogates have strong evidence in a defined setting; others are only expected to predict benefit and need further confirmation. A link between a marker and disease risk is not enough by itself: a treatment might improve the marker but have other effects that offset benefit. Ask what evidence supports this particular marker for this treatment and condition, rather than treating every number as equally reliable or unreliable."
+      ]
+    },
+    {
+      "heading": "Look for a fair comparison rather than a before-and-after story",
+      "paragraphs": [
+        "A change after starting treatment can reflect the medicine, natural variation, recovery, other care or changes in measurement. Trials comparing appropriate groups help separate these possibilities. Find out what the comparison group received and whether outcomes were measured consistently. Group averages do not show that every individual experienced the same effect. Ask for the actual difference between groups and the relevant time period, along with harms, rather than relying only on a headline percentage or a striking image."
+      ]
+    },
+    {
+      "heading": "Check size, uncertainty and everyday importance",
+      "paragraphs": [
+        "A statistically detectable change may be too small to noticeably improve daily life, while a study that finds no clear difference may still leave substantial uncertainty. Consider how many people were studied, for how long and whether missing results or withdrawals could alter the picture. A result from one population or treatment cannot automatically be transferred to another. Ask whether a reported change exceeds ordinary measurement variation and whether a threshold represents something people can actually notice. The direction of a scale also matters: a higher number is not always better."
+      ]
+    },
+    {
+      "heading": "Use the result alongside symptoms, harms and your goals",
+      "paragraphs": [
+        "At a review, discuss how you feel and function, side effects and what you hope treatment will achieve, as well as the measured result. A reassuring marker should not be used to dismiss important new symptoms. Conversely, uncertainty about a surrogate does not mean an established treatment has no benefit or should be stopped. Ask which evidence is direct, which is inferred and what follow-up will resolve uncertainty. Follow the agreed medicine and monitoring plan, and contact the treating team if the plan is unclear or symptoms change. Good decisions use the whole benefit-and-harm picture."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a number improves but daily life is harder",
+      "text": "A person's laboratory result improves after treatment, but they develop troublesome dizziness. They report both changes at the review and ask about benefits, side effects and alternatives. The improved result does not erase the difficulty they experience, and they do not change the prescription solely from this article."
+    },
+    {
+      "title": "Hypothetical example: interpreting a cancer scan",
+      "text": "A family reads that a treatment made tumours smaller in a study. They ask whether it also improved symptoms, quality of life or survival, and what the side effects were. They distinguish a scan finding from a guarantee of the same benefit for their relative."
+    }
+  ],
+  "questions": [
+    "What is this measurement being used for, and is it a direct outcome or a surrogate?",
+    "What comparative evidence links the change to a benefit that matters in my situation?",
+    "How do symptoms, side effects, uncertainty and my goals change the overall treatment decision?"
+  ]
+}

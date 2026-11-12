@@ -1,0 +1,51 @@
+{
+  "title": "Aneurisma cerebrale: controlli, scelte terapeutiche e allarmi",
+  "intro": "Un aneurisma cerebrale è una dilatazione arteriosa nel cervello o vicino. Molti sono scoperti casualmente e non si rompono, ma una rottura può causare emorragia letale. La scoperta richiede valutazione personale, non operazione automatica o promessa di nessun rischio. Cefalea improvvisa grave o nuovi segni neurologici richiedono urgenza invece dell'attesa del controllo.",
+  "sections": [
+    {
+      "heading": "Riconoscere l'emergenza prima di continuare",
+      "paragraphs": [
+        "Una cefalea improvvisa estremamente dolorosa, soprattutto al massimo rapidamente, richiede emergenza anche senza diagnosi nota. Collasso, convulsioni, nuova debolezza, cedimento del viso, difficoltà nel parlare o perdita visiva improvvisa richiedono soccorso. Rigidità del collo, vomito o coscienza alterata possono accompagnare il sangue. Non guidate e non aspettate l'analgesico. Molte cefalee hanno altre cause, ma un confronto online non esclude emorragia o ictus in sicurezza."
+      ]
+    },
+    {
+      "heading": "Chiarire le immagini",
+      "paragraphs": [
+        "Chiedete posizione, dimensione, forma, eventuale sanguinamento o cambiamento. Angiografia mediante TC o risonanza e, in casi scelti, catetere aiutano l'anatomia. Motivo e rischi del test vanno spiegati. Un piccolo reperto casuale può non spiegare una cefalea cronica: restano altre cause. Riferite familiarità, emorragie precedenti, pressione, fumo e altre malattie che influenzano la scelta."
+      ]
+    },
+    {
+      "heading": "Confrontare osservazione e prevenzione",
+      "paragraphs": [
+        "Per un aneurisma non rotto si pesa la rottura futura contro i rischi della procedura. Sede, dimensione, crescita, sintomi, età, salute e priorità contano. Monitorare può significare immagini programmate e gestione del rischio invece di intervento subito. Chiedete stima personale su periodo chiaro e incertezza. Niente soglie di altri pazienti o calcolatori online come regola. La decisione si può rivedere se cambiano immagini o salute."
+      ]
+    },
+    {
+      "heading": "Comprendere clipping e approcci endovascolari",
+      "paragraphs": [
+        "Il clipping mette una clip chirurgica sul collo per impedire l'ingresso di sangue. La via endovascolare raggiunge l'arteria attraverso i vasi e usa spirali o altri dispositivi selezionati. Idoneità dipende da aneurisma ed esperienza. Entrambi hanno rischi di ictus, sanguinamento e ulteriori cure. Chiedete recupero, immagini di controllo e farmaci del dispositivo. La rottura richiede di solito specialisti urgenti: chiudere aiuta a prevenire nuovo sangue ma non annulla automaticamente danni già presenti."
+      ]
+    },
+    {
+      "heading": "Organizzare vita quotidiana e controlli",
+      "paragraphs": [
+        "Lavorate su pressione e cessazione del fumo e discutete attività, lavoro, guida e viaggi personali. Non iniziate o sospendete farmaci pressori o della coagulazione da soli. Chiedete se i parenti necessitino di consiglio sullo screening: non per tutti automaticamente, dipende da famiglia e clinica. Mantenete scansioni perché non si valuta la crescita da come ci si sente. Ansia e difficoltà di stanchezza, memoria o umore dopo emorragia meritano sostegno. Ottenete piano per nuovi sintomi e contatto non urgente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: reperto casuale",
+      "text": "Una scansione per altro mostra un piccolo aneurisma non rotto. Il paziente chiede sede, cambiamenti, rischio personale e procedurale. Concorda controlli quando adatti, senza presumere chirurgia immediata per tutti."
+    },
+    {
+      "title": "Esempio ipotetico: nuova cefalea improvvisa",
+      "text": "Una persona in attesa di controllo sviluppa cefalea brusca eccezionalmente grave. Cerca emergenza e riferisce l'aneurisma senza aspettare la scansione o pensare che la diagnosi nota renda sicuro il sintomo."
+    }
+  ],
+  "questions": [
+    "Cosa mostrano le immagini e cosa influenza il mio rischio?",
+    "Perché monitoraggio o procedura e quali benefici, rischi e incertezze?",
+    "Quali controlli, precauzioni quotidiane e piano urgente servono?"
+  ]
+}

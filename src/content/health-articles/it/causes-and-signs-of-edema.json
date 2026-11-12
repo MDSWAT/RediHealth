@@ -1,0 +1,51 @@
+{
+  "title": "Edema: perché si accumula liquido e quando chiedere aiuto",
+  "intro": "L'edema è il gonfiore dovuto a liquido nei tessuti. Scarpe o anelli possono stringere, un arto risultare pesante o la pelle tesa. Talvolta segue una lunga permanenza seduti o in piedi, ma un gonfiore nuovo o persistente può indicare malattia. Sede, rapidità d'insorgenza e sintomi associati orientano l'urgenza; l'aspetto da solo non identifica la causa.",
+  "sections": [
+    {
+      "heading": "Gli aspetti danno indizi, non diagnosi",
+      "paragraphs": [
+        "Il gonfiore può interessare un arto, entrambe le gambe, il viso o aree diffuse. Talvolta premendo resta una fossetta, detta fovea; altre volte no. Nessun segno stabilisce da solo la causa. Annotare esordio improvviso, variazioni giornaliere, traumi, dolore, calore, rossore, affanno o urina ridotta. Il liquido può raccogliersi anche nei polmoni o nell'addome, quindi non ogni ritenzione importante si vede alle caviglie."
+      ]
+    },
+    {
+      "heading": "Cause circolatorie e malattie degli organi",
+      "paragraphs": [
+        "Vene che non riportano bene il sangue possono gonfiare le gambe. Coaguli, infezione o infiammazione causano gonfiore locale. Drenaggio linfatico compromesso può dare linfedema, anche dopo alcune cure oncologiche. Malattie di cuore, reni o fegato e basse proteine nel sangue possono trattenere liquidi; anche i medicinali contribuiscono. Caldo, immobilità o gravidanza possono causare gonfiore lieve, ma non vanno presunti come spiegazione di un cambiamento preoccupante. Possono coesistere più cause."
+      ]
+    },
+    {
+      "heading": "Riconoscere i segnali urgenti",
+      "paragraphs": [
+        "Chiedere valutazione urgente per una gamba gonfia senza spiegazione, gonfiore improvviso o grave, zona calda rossa dolorosa, febbre o rapido peggioramento. Affanno, dolore toracico, sangue con la tosse, svenimento o confusione richiedono soccorso di emergenza. Gonfiore improvviso di labbra, lingua o gola con difficoltà respiratoria o di deglutizione è un'emergenza. In gravidanza, aumento improvviso del gonfiore di viso, mani o piedi, forte cefalea, disturbi visivi o dolore sotto le costole richiedono subito assistenza ostetrica per possibile preeclampsia. Non guidare se si sta molto male."
+      ]
+    },
+    {
+      "heading": "Valutazione e cura mirano alla causa",
+      "paragraphs": [
+        "Il medico rivede farmaci e storia clinica, esamina il gonfiore e gli organi pertinenti. Secondo i risultati possono servire sangue, urine, ecografia o altre indagini. Si può rivedere un farmaco, curare una malattia o pianificare il trattamento venoso o linfatico. I diuretici servono per alcune cause, non ogni arto gonfio, e richiedono prescrizione e monitoraggio individuali. Non prenderli in prestito né sospendere cure da soli. La compressione richiede scelta professionale di idoneità e misura."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana con un piano concordato",
+      "paragraphs": [
+        "Escluse le cause urgenti, movimento delicato, evitare posizioni prolungate, scarpe comode e gambe sollevate possono aiutare alcuni edemi periferici. Lavare, asciugare e curare la pelle segnalando ferite o infezione. Seguire indicazioni personali su sale, liquidi e peso; una restrizione severa dei liquidi non è un rimedio generale. Concordare segnali per contattare il medico e controlli. Un cambiamento improvviso del gonfiore abituale richiede rivalutazione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Polpaccio gonfio dopo viaggio — esempio ipotetico",
+      "text": "Dopo un lungo viaggio compaiono dolore e gonfiore in un solo polpaccio. La persona chiede valutazione urgente per un possibile coagulo senza attribuire tutto allo stare seduti. Dolore toracico o affanno richiederebbero emergenza."
+    },
+    {
+      "title": "Gonfiore durante una cura — esempio ipotetico",
+      "text": "Dopo un cambio di farmaco le scarpe stringono progressivamente. La persona avvisa il prescrittore e porta l'elenco completo, senza sospendere o prendere diuretici altrui. Il medico valuta effetti e altre cause prima di modificare il piano."
+    }
+  ],
+  "questions": [
+    "Qual è la causa probabile e sono state considerate quelle urgenti?",
+    "Compressione, cambio di medicinali o altre cure sono adatti a me?",
+    "Cosa controllare e quali cambiamenti richiedono aiuto urgente o visita anticipata?"
+  ]
+}

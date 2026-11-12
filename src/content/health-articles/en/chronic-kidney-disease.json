@@ -1,0 +1,51 @@
+{
+  "title": "Chronic kidney disease: understanding tests and protecting kidney health",
+  "intro": "Chronic kidney disease, or CKD, means a lasting abnormality of kidney structure or function, generally present for more than three months. Early disease often has no symptoms and does not automatically lead to dialysis. Blood and urine tests help identify the problem, estimate its risk and follow changes. Treatment aims to slow progression, reduce heart and blood-vessel risk and manage complications while supporting everyday life.",
+  "sections": [
+    {
+      "heading": "Understand the blood and urine results together",
+      "paragraphs": [
+        "A blood test helps estimate filtration, reported as eGFR. This is an estimate of kidney filtering function, not a simple percentage of kidney tissue remaining. A urine albumin-to-creatinine ratio, or ACR, looks for protein leakage that can indicate kidney damage. Trends, repeated results and other findings matter more than interpreting a single value alone. An abrupt change may reflect acute kidney injury and needs a different response. Ask what is confirmed, whether tests should be repeated and what the risk category means for you."
+      ]
+    },
+    {
+      "heading": "Find the cause and look beyond symptoms",
+      "paragraphs": [
+        "Diabetes and high blood pressure are common contributors. Other causes include inflammatory or inherited kidney disease, recurrent infections, obstruction to urine flow and certain medicines. Assessment may include history, blood pressure, urine and blood tests, ultrasound or selected specialist investigations. Later symptoms can include tiredness, swelling, nausea, itching or breathlessness, but these have other explanations too. Kidney disease can also affect blood count, bone health and salt balance. Feeling well does not mean monitoring can stop."
+      ]
+    },
+    {
+      "heading": "Medicines and daily habits can protect the kidneys",
+      "paragraphs": [
+        "Agree individual blood-pressure and diabetes goals, take prescribed kidney-protective treatment and discuss cardiovascular prevention. Some medicines need dose adjustment as filtration changes, with blood tests to monitor effects and potassium. Bring all prescriptions, over-the-counter products and supplements to reviews. Painkillers such as ibuprofen or naproxen can be risky, especially during dehydration; ask before using them. Do not stop prescribed medicines yourself. Request a written plan for vomiting, diarrhoea or another dehydrating illness, including whom to contact and how medicines should be managed."
+      ]
+    },
+    {
+      "heading": "Diet and fluid advice must fit the test results",
+      "paragraphs": [
+        "A kidney dietitian can help with salt, overall nutrition and suitable protein intake without unnecessary exclusions. Potassium, phosphate and fluid restrictions are not identical for everyone and can change with blood results, stage and treatment. Some salt substitutes contain potassium, so check before using them. Do not force large amounts of water to 'flush' the kidneys, severely restrict drinks without advice or rely on detox products. Physical activity within your ability and support to stop smoking can improve wider health. Ask for practical changes that fit your budget and usual meals."
+      ]
+    },
+    {
+      "heading": "Plan follow-up and future options without assuming the worst",
+      "paragraphs": [
+        "Review frequency and specialist referral depend on risk, speed of change, cause and complications. Many people remain stable for a long time. If disease becomes advanced, discuss dialysis, transplantation where suitable and comprehensive conservative care early enough to understand the options. These choices involve symptoms, prognosis and personal goals, not a laboratory number alone. Seek urgent advice for markedly reduced urine, persistent vomiting or rapidly increasing swelling. Severe breathlessness, chest pain, collapse or new confusion needs emergency help rather than waiting for the next kidney appointment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "An unexpected laboratory result — hypothetical example",
+      "text": "A person feels well but has an abnormal kidney test. They ask for the previous results, a urine albumin check and a plan to confirm whether the change is persistent. They do not interpret the reported filtration value as an exact percentage of kidneys left."
+    },
+    {
+      "title": "Choosing a pain medicine — hypothetical example",
+      "text": "Someone with CKD wants an over-the-counter anti-inflammatory during an illness with vomiting. They ask the pharmacist or kidney team about a safer plan and hydration advice instead of assuming a non-prescription medicine cannot affect the kidneys."
+    }
+  ],
+  "questions": [
+    "What do my filtration trend and urine albumin result say about cause and risk?",
+    "Which medicines, diet changes and illness instructions are appropriate for me?",
+    "When should I be reviewed or referred, and what symptoms need urgent help?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Boala celiacă: diagnostic, dietă fără gluten și îngrijire zilnică",
+  "intro": "Boala celiacă este o afecțiune autoimună în care glutenul declanșează lezarea intestinului subțire. Este diferită de alergia la grâu și de simptomele atribuite glutenului fără boală celiacă. Afectează adulți și copii, cu manifestări digestive, extradigestive sau puține simptome evidente. Diagnosticul corect contează: tratamentul este dieta strictă fără gluten toată viața, nu doar mai puțină pâine când apar probleme.",
+  "sections": [
+    {
+      "heading": "Simptomele nu se limitează la diaree",
+      "paragraphs": [
+        "Pot apărea balonare, disconfort abdominal, diaree sau constipație, oboseală, anemie feriprivă și slăbire neintenționată. Copiii pot crește insuficient. Uneori apare erupție cu vezicule și mâncărime, numită dermatită herpetiformă. Alte persoane sunt identificate datorită istoricului familial sau bolilor asociate. Aceste manifestări au și alte cauze; nici simptomele, nici ameliorarea după schimbarea alimentației nu confirmă diagnosticul. Menționați rudele diagnosticate și testele anterioare."
+      ]
+    },
+    {
+      "heading": "Discutați testarea înainte de eliminarea glutenului",
+      "paragraphs": [
+        "Analizele caută anticorpi relevanți, iar diagnosticul implică adesea biopsii intestinale prin endoscopie digestivă superioară. Specialistul stabilește traseul potrivit, inclusiv criteriile speciale folosite la unii copii. Eliminarea glutenului poate produce rezultate fals liniștitoare. Dacă îl consumați, nu începeți dieta înainte de stabilirea planului. Dacă l-ați eliminat deja, spuneți medicului; nu faceți singuri provocare alimentară, mai ales dacă este posibilă alergia imediată. Testarea genetică poate clarifica unele situații, dar nu confirmă singură boala."
+      ]
+    },
+    {
+      "heading": "Diagnosticul confirmat schimbă dieta pe viață",
+      "paragraphs": [
+        "Glutenul se află în grâu, orz și secară, inclusiv alac și ingrediente precum malțul de orz. Pâinea și pastele sunt surse evidente, dar și sosurile, supele ori produsele procesate pot conține gluten. Învățați citirea ingredientelor și etichetelor cu dieteticianul. Pentru ovăz, alegeți produse etichetate fără gluten și discutați toleranța: contaminarea este frecventă, iar o minoritate nu tolerează nici ovăzul necontaminat. Suplimentele enzimatice nu fac automat sigure alimentele obișnuite cu gluten."
+      ]
+    },
+    {
+      "heading": "Evitați contaminarea și păstrați echilibrul",
+      "paragraphs": [
+        "Firimiturile, suprafețele, apa de gătit și ustensilele comune pot transfera gluten. Stabiliți reguli practice în bucătărie, întrebați restaurantele despre preparare și organizați mesele pentru școală ori muncă. Orezul simplu, cartofii, legumele, leguminoasele și sursele proteice neprocesate potrivite permit mese variate; verificați adaosurile și prepararea. Dieteticianul poate ajuta cu costurile, fibrele, calciul, fierul și alte nevoi. Produsele ambalate fără gluten nu sunt automat echilibrate. Suplimentele răspund unor nevoi evaluate, nu înlocuiesc sprijinul alimentar."
+      ]
+    },
+    {
+      "heading": "Monitorizarea continuă după ameliorare",
+      "paragraphs": [
+        "Simptomele se pot ameliora înaintea vindecării complete a intestinului. Continuați dieta și când vă simțiți bine; mergeți la controale pentru simptome, nutriție, creșterea copilului și analize relevante. Simptomele persistente cer verificarea expunerii accidentale și a altor cauze, fără învinovățire ori restricții tot mai mari. Discutați sănătatea oaselor și testarea rudelor apropiate. Durerea abdominală severă, vărsăturile cu sânge, scaunele negre sau deshidratarea importantă cer îngrijire urgentă, nu atribuirea automată glutenului."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înaintea testării — exemplu ipotetic",
+      "text": "O persoană cu balonare și deficit de fier inexplicabil vrea să oprească imediat glutenul. Discută întâi cu medicul pentru interpretarea corectă a testelor. Ameliorarea sub dietă restrictivă nu ar confirma singură diagnosticul."
+    },
+    {
+      "title": "Bucătărie comună — exemplu ipotetic",
+      "text": "După diagnostic, familia stabilește o zonă curată și evitarea firimiturilor din produsele tartinabile și prăjitor. Dieteticianul ajută la mese accesibile și echilibrate, fără înlocuirea tuturor alimentelor cu produse speciale ambalate."
+    }
+  ],
+  "questions": [
+    "Ce teste sunt potrivite și cum gestionez glutenul înaintea lor?",
+    "Cum identific glutenul și evit contaminarea acasă, la școală sau serviciu?",
+    "Ce verificări nutriționale, controale și testări în familie planificăm?"
+  ]
+}

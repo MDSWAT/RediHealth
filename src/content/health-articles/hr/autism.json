@@ -1,0 +1,51 @@
+{
+  "title": "Autizam: razumjeti potrebe i pronaći korisnu podršku",
+  "intro": "Autizam je cjeloživotna razvojna različitost koja može utjecati na komunikaciju, društvenu interakciju, osjetilno iskustvo te interese i aktivnosti. Sposobnosti i potrebe za podrškom vrlo su različite. Nekima treba opsežna svakodnevna pomoć, dok drugi žive samostalno uz znatne skrivene teškoće. Dobra podrška počinje iskustvom i ciljevima osobe, ne pretpostavkom da ista dijagnoza svima zahtijeva isti pristup.",
+  "sections": [
+    {
+      "heading": "Prepoznati obrazac bez stereotipa",
+      "paragraphs": [
+        "Razlike mogu uključiti doslovno razumijevanje razgovora, teškoće s promjenama, snažne usmjerene interese ili preplavljenost zvukom, svjetlom i dodirom. Jezične i intelektualne sposobnosti variraju i nisu isto. Osoba koja govori tečno i dalje može teško nositi svakodnevne zahtjeve. Znakovi počinju tijekom razvoja, ali se prepoznaju kasnije, posebno ako ih strategije prilagodbe skrivaju. Jedna osobina, sramežljivost ili internetski rezultat ne potvrđuju autizam. Ne uzrokuju ga loše roditeljstvo ni cijepljenje."
+      ]
+    },
+    {
+      "heading": "Tražiti procjenu i opisati svakodnevno funkcioniranje",
+      "paragraphs": [
+        "Procjena istražuje razvoj, komunikaciju, ponašanje i sadašnje potrebe uz podatke osobe i, prema potrebi, onih koji je poznaju. Opišite snage, teškoće i napor u školi, na poslu ili kod kuće. Tražite pristupačnu komunikaciju i osjetilne prilagodbe na pregledima. Razmatraju se i druga objašnjenja te pridružena stanja, poput ADHD-a, anksioznosti i teškoća učenja. Ne postoji jedan krvni test za dijagnozu. Podrška utvrđenoj potrebi može početi dok se organizira procjena."
+      ]
+    },
+    {
+      "heading": "Učiniti komunikaciju i okolinu pristupačnijima",
+      "paragraphs": [
+        "Pitajte što pomaže: jasan jezik, pisane informacije, više vremena za obradu, slike ili druga komunikacijska metoda. Najavite promjene kada je moguće i ponudite tiši prostor ili predah od preplavljujuće okoline. Ne zahtijevajte gledanje u oči kao dokaz slušanja. Uključite osobu u odluke razumljivom komunikacijom. Predvidljivost i prilagodbe smanjuju patnju, ali rutine trebaju podržati sudjelovanje i izbor, ne postati kruti zahtjevi drugih."
+      ]
+    },
+    {
+      "heading": "Odvojeno procijeniti patnju i zdravstvene potrebe",
+      "paragraphs": [
+        "Nagla promjena ponašanja može odražavati bol, bolest, loš san, preopterećenje ili nesigurnost; ne pripisujte sve autizmu. Osobe koje komuniciraju bez govora također trebaju procjenu i načine izražavanja nelagode. Tražite pomoć zbog značajne anksioznosti, depresije, napadaja, hranjenja ili gubitka funkcioniranja. Podrška i terapija trebaju jasne važne ciljeve i provjeru koristi i patnje. Lijekovi mogu liječiti određene povezane simptome ili stanja, ali ne izliječiti autizam. Izbjegavajte nedokazane kure i štetne restriktivne postupke."
+      ]
+    },
+    {
+      "heading": "Planirati podršku kroz životne promjene",
+      "paragraphs": [
+        "Školski prijelazi, zaposlenje, odnosi ili selidba mijenjaju potrebe. Razgovarajte o obrazovnim prilagodbama, životnim vještinama, komunikaciji na poslu i pristupu zdravstvu prema prioritetima osobe. Obitelji i njegovatelji mogu trebati praktičnu podršku i predah, bez potiskivanja glasa autistične osobe. Pitajte o prijelazu dječjih u odrasle službe i koordinatoru skrbi. Procjenjujte što poboljšava dobrobit i sudjelovanje, ne samo što drugima izgleda manje autistično."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: preplavljujući pregled",
+      "text": "Autističnoj odrasloj osobi teško je govoriti u bučnoj čekaonici. Za sljedeći pregled klinika nudi mirniji prostor i pisana pitanja. Pacijent lakše objašnjava brige bez zahtjeva za gledanjem u oči."
+    },
+    {
+      "title": "Izmišljeni primjer: nagla promjena ponašanja",
+      "text": "Dijete koje komunicira slikama naglo prestane jesti i uznemireno je. Obitelj traži zdravstvenu procjenu i pomaže pokazati bol, umjesto tumačenja neposlušnošću ili samo autizmom."
+    }
+  ],
+  "questions": [
+    "Koja procjena i provjera pridruženih stanja odgovaraju potrebama osobe?",
+    "Koje komunikacijske i osjetilne prilagodbe možemo pokušati sada?",
+    "Koji ciljevi podupiru dobrobit i sudjelovanje i kako provjeriti pomaže li podrška?"
+  ]
+}

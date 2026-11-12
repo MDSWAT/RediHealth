@@ -1,0 +1,51 @@
+{
+  "title": "Le prime settimane del neonato: controlli, screening e quando chiedere aiuto",
+  "intro": "I controlli neonatali comprendono visita fisica, sostegno all'alimentazione e screening di condizioni che possono non essere evidenti alla nascita. Sono anche un'occasione per discutere preoccupazioni e organizzare i controlli successivi. Calendario e servizi cambiano tra paesi: confermate il piano locale prima delle dimissioni. Un esame precedente normale non esclude che il bambino possa ammalarsi tra le visite.",
+  "sections": [
+    {
+      "heading": "Sapere quali appuntamenti sono fissati e chi se ne occupa",
+      "paragraphs": [
+        "Chiedete un piano scritto con il medico o servizio responsabile, il luogo e cosa fare se si perde un appuntamento. In Germania il programma precoce comprende un controllo subito dopo la nascita, uno tra il terzo e il decimo giorno e un altro nella quarta-quinta settimana. Sono tempi tedeschi, non un calendario universale. Dopo dimissioni precoci o parto a domicilio, organizzate esplicitamente la prossima valutazione senza presumere che l'ospedale l'abbia prenotata. Portate i documenti del bambino e la lettera di dimissione."
+      ]
+    },
+    {
+      "heading": "Comprendere la visita e i suoi limiti",
+      "paragraphs": [
+        "Il medico considera gravidanza e parto, esamina il bambino e valuta elementi come toni cardiaci, anche, occhi e, quando pertinente, testicoli. Peso e benessere generale vengono valutati insieme alle osservazioni familiari. Alcuni riscontri richiedono un nuovo esame o una visita specialistica anche se il bambino sembra tranquillo. Chiedete cosa è stato controllato, cosa resta incerto e quando avverranno gli invii. Un risultato di screening suggerisce ulteriori valutazioni: non è sempre una diagnosi e lo screening non individua ogni malattia."
+      ]
+    },
+    {
+      "heading": "Discutere alimentazione, peso e osservazioni quotidiane",
+      "paragraphs": [
+        "Descrivete frequenza delle poppate, risveglio per mangiare, deglutizione, vomito e cambiamenti nei pannolini bagnati o sporchi. L'ostetrica o il medico può osservare una poppata e valutare l'andamento del peso invece di un singolo valore. Un calo iniziale può verificarsi, ma entità, recupero e condizioni del bambino determinano se serve aiuto. Chiedete consigli individuali su allattamento al seno o formula ed eventuali supplementi raccomandati. Non diluite la formula oltre le istruzioni e non attribuite una persistente alimentazione scarsa soltanto a un temperamento sonnolento."
+      ]
+    },
+    {
+      "heading": "Seguire risultati degli screening e controlli successivi",
+      "paragraphs": [
+        "Screening uditivo, test su goccia di sangue e altri controlli vengono offerti secondo programmi locali e modalità di consenso. Chiedete quali sono stati eseguiti, quali mancano, come arrivano i risultati e chi chiamare se non ricevete notizie. Un risultato uditivo incerto può richiedere ripetizione; da solo non stabilisce sordità. Comunicate familiarità e dubbi su udito o vista anche dopo risultati rassicuranti. Rispettate gli appuntamenti per esiti anomali o incompleti e chiedete spiegazioni o interpretariato se i documenti sono difficili da capire."
+      ]
+    },
+    {
+      "heading": "Non aspettare la visita ordinaria se il bambino sta male",
+      "paragraphs": [
+        "Difficoltà respiratoria, colore blu o grigio, estrema difficoltà a svegliarlo, convulsioni o rapido peggioramento richiedono soccorso d'emergenza. Febbre o temperatura insolitamente bassa nel neonato, alimentazione molto ridotta, meno pannolini bagnati o ittero crescente richiedono valutazione clinica urgente. Il vomito verde è un segnale d'allarme urgente. Un neonato può avere un'infezione grave senza febbre. Al telefono indicate età e cambiamenti: seguite le indicazioni urgenti senza aspettare la prossima visita o provare prima rimedi casalinghi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: controllo dopo dimissioni precoci",
+      "text": "Una famiglia torna a casa prima del prossimo esame. Prima di uscire chiede chi lo eseguirà, conferma la data e prende i documenti. Verifica anche come verranno comunicati i risultati del sangue e dell'udito, senza pensare che il silenzio significhi che tutti gli esiti sono normali."
+    },
+    {
+      "title": "Esempio ipotetico: intervenire tra gli appuntamenti",
+      "text": "Un neonato diventa più difficile da svegliare e mangia molto meno. Chi lo accudisce cerca aiuto medico urgente e descrive età, alimentazione e pannolini bagnati. Non aspetta la visita ordinaria del giorno dopo soltanto perché il precedente esame era rassicurante."
+    }
+  ],
+  "questions": [
+    "Quali esami e screening sono conclusi e quali appuntamenti o risultati mancano?",
+    "Come procedono alimentazione e peso e quale sostegno individuale serve al nostro bambino?",
+    "Quali cambiamenti richiedono aiuto urgente e quale servizio locale contattare tra le visite?"
+  ]
+}

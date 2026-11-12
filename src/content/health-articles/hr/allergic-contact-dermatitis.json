@@ -1,0 +1,51 @@
+{
+  "title": "Alergijski kontaktni dermatitis: pronaći okidač i zaštititi kožu",
+  "intro": "Alergijski kontaktni dermatitis svrbljiva je upala kože zbog imunološke reakcije na tvar koja dodiruje kožu. Često nastaje odgođeno, pa posljednji korišteni proizvod nije nužno uzrok. Prepoznavanje relevantne tvari važno je kao i liječenje osipa. Stanje nije zarazno, a sličan osip može nastati od iritacije ili drugog problema.",
+  "sections": [
+    {
+      "heading": "Razlikovati alergiju i iritaciju",
+      "paragraphs": [
+        "Nikal, mirisi, konzervansi i tvari u nekim radnim materijalima izazivaju alergiju kod senzibiliziranih osoba. Iritativni dermatitis nastaje izravnim oštećenjem, primjerice čestim mokrim radom ili deterdžentima, i ne zahtijeva alergiju. Oba mehanizma mogu biti zajedno. Mogući su svrbež, pukotine, oteklina i mali mjehurići; upala izgleda crveno, ljubičasto, smeđe ili sivo prema boji kože. Izgled sam ne otkriva pouzdano okidač."
+      ]
+    },
+    {
+      "heading": "Pripremiti korisnu povijest izloženosti",
+      "paragraphs": [
+        "Zabilježite zahvaćene dijelove i što ih dodiruje kod kuće, na poslu i u hobijima. Sačuvajte nazive i sastojke proizvoda, uključujući rukavice, kozmetiku, ljepila i lokalne lijekove. Fotografija pogoršanja pomaže ako se koža smiri prije pregleda. Prirodno i hipoalergeno ne jamče primjerenost. Ne nanosite namjerno sumnjivu tvar na oštećenu kožu radi vlastitog pokusa."
+      ]
+    },
+    {
+      "heading": "Razumjeti specijalističko epikutano testiranje",
+      "paragraphs": [
+        "Liječnik pregledava kožu i razmatra druge uzroke. Dermatolog može epikutanim testiranjem istražiti odgođenu kontaktnu alergiju. Male količine odabranih tvari nanose se u kontroliranim uvjetima, a reakcije se očitavaju prema rasporedu. To se razlikuje od ubodnog kožnog testa za neposrednu alergiju. Pozitivan nalaz i dalje treba protumačiti: tvar mora biti relevantna stvarnom kontaktu, ne samo izazvati testnu reakciju."
+      ]
+    },
+    {
+      "heading": "Povezati njegu i izvedive promjene kontakta",
+      "paragraphs": [
+        "Liječenje može uključiti primjeren hidratantni pripravak i propisanu protuupalnu kremu. Važni su proizvod, jakost i mjesto, posebno uz oči ili kod djece. Pitajte kako koristiti i kada provjeriti učinak; ne posuđujte tuđu steroidnu kremu. Na poslu sa službom zdravlja ili sigurnosti razgovarajte o sigurnijim proizvodima i zaštitnoj opremi. Neki sastojci rukavica sami izazivaju alergiju pa nasumična zamjena ne mora riješiti problem."
+      ]
+    },
+    {
+      "heading": "Znati kada promijeniti plan",
+      "paragraphs": [
+        "Dogovorite kontrolu zbog trajne ili ponavljane bolesti, poremećena sna, bolnih pukotina i otežanih svakodnevnih zadataka. Sve jača bol, toplina, gnoj, širenje otekline ili vrućica mogu ukazivati na infekciju i traže brzu procjenu. Otežano disanje ili oticanje jezika i grla zahtijevaju hitnu pomoć, nisu uobičajena odgođena kožna reakcija. Ako izbjegavanje ne djeluje, provjerite dijagnozu i kontakte umjesto stalnog dodavanja krema."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: više od novog sapuna",
+      "text": "Osoba dobije ekcem ruku nakon promjene sapuna, ali nosi i nove radne rukavice. Donosi oba popisa sastojaka i opisuje mokri rad. Pita o iritaciji, alergiji ili kombinaciji, bez pretpostavke da je sapun jedini uzrok."
+    },
+    {
+      "title": "Izmišljeni primjer: primjena nalaza",
+      "text": "Epikutani test otkrije alergiju na konzervans. Osoba traži nazive sastojka i uz stručnu pomoć provjerava proizvode. Razgovara o izvedivim zamjenama, umjesto bacanja svih kućnih predmeta ili očekivanja da sama krema spriječi kontakt."
+    }
+  ],
+  "questions": [
+    "Izgleda li ovo kao alergijski dermatitis, iritacija ili drugo stanje?",
+    "Bi li epikutani test pomogao i kako je nalaz povezan s mojim proizvodima ili poslom?",
+    "Koje promjene njege i kontakta su izvedive i koji znakovi traže brzu ponovnu procjenu?"
+  ]
+}

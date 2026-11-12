@@ -1,0 +1,257 @@
+{
+  "allergies": {
+    "intro": "An allergy happens when the immune system reacts to something that is usually harmless. Triggers can include pollen, animals, food or medicines. The symptoms depend on the trigger and where the reaction occurs.",
+    "details": "Not every rash, blocked nose or reaction to food is an allergy. A clinician considers the pattern of symptoms and may recommend targeted tests. Management can involve avoiding a confirmed trigger and discussing suitable treatment. A severe reaction affecting breathing or causing collapse needs emergency help.",
+    "questions": ["What pattern suggests an allergy rather than another cause?", "Would testing change how I manage my symptoms?"]
+  },
+  "airway-diseases": {
+    "intro": "The airways carry air to and from the lungs. Infections, asthma and other conditions can narrow or irritate them, causing cough, wheezing or breathlessness. Similar symptoms can have different causes.",
+    "details": "The timing of symptoms, smoking or workplace exposure, and previous illnesses help guide assessment. Breathing tests may be useful for some conditions. Treatment depends on the diagnosis, rather than the symptom alone. New severe difficulty breathing requires urgent medical help.",
+    "questions": ["What could explain my breathing symptoms?", "Would a breathing test help clarify the cause?"]
+  },
+  "eyes-nose-ears": {
+    "intro": "The eyes, nose and ears support sight, smell, hearing and balance. Problems may involve irritation, infection, allergy or changes in how these organs work. Their effects can range from mild discomfort to difficulty with everyday activities.",
+    "details": "Assessment depends on which sense is affected, how quickly the change started and whether pain or other symptoms are present. Some problems settle, while others need specialist care. A sudden loss of vision or hearing should be assessed promptly rather than waiting for a routine appointment.",
+    "questions": ["Does this change need urgent assessment?", "What examination can help identify the problem?"]
+  },
+  "diabetes": {
+    "intro": "Diabetes means that blood glucose stays too high because insulin is missing or does not work effectively. Type 1 and type 2 diabetes have different causes and treatment needs. Other forms can develop during pregnancy or with certain illnesses.",
+    "details": "Diagnosis uses blood tests, not symptoms alone. Care aims to manage glucose and protect long-term health while fitting daily life. Food, activity, medicines and monitoring may all play a role, depending on the type of diabetes. Treatment decisions should be made with the healthcare team.",
+    "questions": ["Which type of diabetes do I have?", "What monitoring and support fit my treatment plan?"]
+  },
+  "gland-and-hormone-disorders": {
+    "intro": "Hormones are chemical signals made by glands. They help regulate growth, energy use, reproduction and many other body functions. Problems can develop when a gland produces too much or too little of a hormone.",
+    "details": "Hormonal conditions can cause varied symptoms that also occur in other illnesses. Test results need to be interpreted alongside symptoms, medicines and the person's circumstances. A single abnormal result does not always explain how someone feels. Follow-up testing or specialist advice may be appropriate.",
+    "questions": ["What does this hormone test mean in my situation?", "Do I need another test or specialist assessment?"]
+  },
+  "womens-health": {
+    "intro": "Women's health includes menstrual and reproductive health, breast health, menopause and many conditions affecting everyday wellbeing. Needs change through life, and the same symptom may have different explanations at different ages.",
+    "details": "Useful care starts with a discussion of symptoms, their impact and personal priorities. Screening is different from investigating a new symptom: a recent screening result does not explain every new change. Decisions about tests or treatments should include expected benefits, possible harms and available alternatives.",
+    "questions": ["Does this symptom need investigation rather than routine screening?", "Which options fit my symptoms and priorities?"]
+  },
+  "urinary-disorders-and-kidney-problems": {
+    "intro": "The kidneys filter blood and make urine, which passes through the urinary tract. Infections, stones, leakage and changes in kidney function are different problems that can affect this system.",
+    "details": "Pain, urinary changes or swelling may prompt urine tests, blood tests or imaging, depending on the situation. Symptoms alone do not show how well the kidneys are working. Visible blood in urine, fever with urinary symptoms or difficulty passing urine should be discussed promptly with a healthcare professional.",
+    "questions": ["Which tests would help explain the urinary changes?", "Could my medicines affect kidney function?"]
+  },
+  "skin-and-hair": {
+    "intro": "Skin protects the body, while hair grows from follicles within it. Inflammation, infection, inherited conditions and other factors can affect either. A similar-looking rash or patch of hair loss can have several explanations.",
+    "details": "The location, appearance and timing of a change help guide assessment. Products used on the skin, medicines and other symptoms may matter. Treatment should match the cause. A changing skin lesion or a persistent unexplained problem deserves assessment rather than repeated trial-and-error treatment.",
+    "questions": ["What features help distinguish the possible causes?", "Which changes should prompt another appointment?"]
+  },
+  "heart-and-circulation": {
+    "intro": "The heart pumps blood through arteries, capillaries and veins. This delivers oxygen and nutrients and carries waste away. Problems can affect blood pressure, heart rhythm, blood vessels or the heart's pumping ability.",
+    "details": "Some cardiovascular risks cause few early symptoms, so appropriate checks can be important. Assessment and prevention depend on the person's overall health and history. Chest pressure, collapse or sudden severe breathlessness can be emergencies; do not rely on an online explanation to decide that these symptoms are harmless.",
+    "questions": ["What cardiovascular risks are relevant to me?", "Which checks or follow-up appointments are useful?"]
+  },
+  "infections-and-immune-system": {
+    "intro": "The immune system recognises and responds to threats such as bacteria and viruses. Infections develop when a microorganism enters the body and causes illness. Different organisms can produce similar symptoms but need different approaches.",
+    "details": "The likely cause, severity and a person's vulnerability guide decisions about testing and treatment. Antibiotics act against bacteria, not viruses, and are not suitable for every infection. Vaccination and appropriate hygiene can help prevent some infections. Worsening illness or unusual symptoms may need reassessment.",
+    "questions": ["Is a test likely to change the treatment decision?", "What signs mean I should seek help again?"]
+  },
+  "childrens-health": {
+    "intro": "Children's health includes development, common illnesses, prevention and support for families. A child's age and usual behaviour are important when assessing symptoms. Advice intended for adults may not be suitable for a child.",
+    "details": "A clinician considers feeding, drinking, activity, growth and other symptoms together. Parents and carers can help by describing what has changed and when. Medicine choice and dosing require child-specific advice. A child who has serious breathing difficulty, is hard to wake or seems severely unwell needs urgent help.",
+    "questions": ["What should I watch for at my child's age?", "When should I arrange another assessment?"]
+  },
+  "cancer": {
+    "intro": "Cancer is a group of diseases in which abnormal cells grow in an uncontrolled way. Different cancers behave differently. The organ involved, the cell type and how far the disease has spread help guide care.",
+    "details": "Diagnosis may involve imaging, laboratory tests and examination of a tissue sample. Treatment can have different aims, including cure, disease control or relief of symptoms. Decisions should consider likely benefits, side effects and personal goals. An individual outlook cannot be determined from a general description or a single statistic.",
+    "questions": ["What is the aim of each treatment option?", "How might treatment affect my everyday life?"]
+  },
+  "mens-health": {
+    "intro": "Men's health includes prostate and testicular conditions, sexual health, fertility and wider physical and mental wellbeing. Symptoms can affect comfort, relationships and daily life, even when they are difficult to talk about.",
+    "details": "Urinary or sexual changes are not a diagnosis on their own. A confidential discussion can help identify possible causes and appropriate examinations. Screening choices should include both benefits and disadvantages. A new lump or persistent unexplained change should be checked rather than assumed to be a normal part of ageing.",
+    "questions": ["What could be causing this change?", "What are the advantages and disadvantages of testing?"]
+  },
+  "muscle-and-joint-disorders": {
+    "intro": "Muscles, tendons, joints and related tissues support movement. Injury, overuse, inflammation and other conditions can cause pain or stiffness. The amount of pain does not always match what appears on a scan.",
+    "details": "Assessment looks at function, symptoms and the circumstances in which they started. Not everyone needs imaging. Management may involve activity adjustments, rehabilitation or other treatments chosen for the diagnosis. Discuss symptoms that worsen or limit normal activities instead of assuming that all pain has the same cause.",
+    "questions": ["What activities can I continue safely?", "Would imaging or rehabilitation change my care?"]
+  },
+  "mental-health-brain-and-nerves": {
+    "intro": "The brain and nervous system influence movement, sensation, thought, mood and behaviour. Mental health conditions and neurological conditions can both affect daily life, but they require individual assessment rather than assumptions about a person's character.",
+    "details": "Care may include talking therapies, medicines, rehabilitation or practical support, depending on the problem. Tell a clinician about changes in functioning and other health conditions. Sudden new weakness, difficulty speaking or loss of consciousness needs emergency assessment, even if other symptoms have been present for longer.",
+    "questions": ["Which symptoms help distinguish the possible causes?", "What support could improve my daily functioning?"]
+  },
+  "pregnancy-and-birth": {
+    "intro": "Pregnancy brings changes to the body and new choices about care, tests and birth. Regular contact with a maternity team helps monitor the wellbeing of the pregnant person and baby and provides an opportunity to discuss concerns.",
+    "details": "Some tests are offered routinely, while others depend on personal circumstances. Understanding what a test can and cannot show supports informed decisions. Medicines and supplements should be discussed with a qualified professional during pregnancy. Ask the maternity team which symptoms require urgent contact and how to reach them.",
+    "questions": ["What information would this pregnancy test provide?", "Who should I contact if I am worried between appointments?"]
+  },
+  "sexual-health-and-contraception": {
+    "intro": "Sexual health includes wellbeing, consent, protection from infection and choices about pregnancy prevention. Contraceptive methods differ in how they work, how they are used and which people can use them safely.",
+    "details": "A suitable method depends on medical history, preferences and practical needs. Pregnancy prevention and protection from sexually transmitted infections are different goals; not every method provides both. Confidential advice can also help with symptoms, testing and concerns about sexual function. Services and eligibility vary by country.",
+    "questions": ["Which options fit my health history and preferences?", "Do I also need protection or testing for infections?"]
+  },
+  "metabolic-disorders": {
+    "intro": "Metabolism is the collection of processes that turn food into usable energy and building materials. Metabolic disorders affect one or more of these processes. They include conditions involving glucose, fats and other substances in the body.",
+    "details": "Some disorders are inherited, while others develop through a combination of influences. Blood tests may help identify a problem, but their meaning depends on the clinical context. Care can involve food choices, medicines or other measures tailored to the diagnosis. General dietary restrictions are not suitable for every metabolic condition.",
+    "questions": ["What does the abnormal result mean for my health?", "Which changes are appropriate for this specific condition?"]
+  },
+  "addiction": {
+    "intro": "Addiction can involve alcohol, nicotine, other substances or certain behaviours. It can affect control, health, relationships and everyday responsibilities. Seeking help is a healthcare decision, not evidence of a moral failure.",
+    "details": "Support may combine counselling, practical help and medicines when appropriate. The safest approach depends on what is used and the person's health. Stopping some substances suddenly can be dangerous, particularly after dependence has developed. Discuss a plan with a healthcare professional rather than using a general online guide as a withdrawal schedule.",
+    "questions": ["What support is available locally?", "Do I need medical supervision when reducing or stopping?"]
+  },
+  "digestive-system-disorders": {
+    "intro": "The digestive system processes food, absorbs nutrients and removes waste. Problems can affect the oesophagus, stomach, intestines or related organs. Pain, reflux, nausea and changes in bowel habits can have many causes.",
+    "details": "Assessment depends on how symptoms developed, their duration and any accompanying changes. Tests are chosen to answer a specific question rather than used routinely for every symptom. Persistent symptoms or unexplained weight loss need medical discussion. Severe abdominal pain or signs of significant bleeding require prompt assessment.",
+    "questions": ["Which features help identify the cause of my symptoms?", "What would the proposed test change about my care?"]
+  },
+  "teeth-and-gums": {
+    "intro": "Teeth and gums support eating, speech and oral health. Tooth decay and gum disease can develop gradually and may not cause pain at first. Dental problems can also affect confidence and everyday comfort.",
+    "details": "Regular oral care and suitable dental checks help identify problems. The best treatment depends on the tooth or gum condition and the person's needs. Dental pain does not reliably show how serious a problem is. Swelling with difficulty swallowing or breathing requires urgent help rather than waiting for a routine dental visit.",
+    "questions": ["What is causing the problem with this tooth or gum?", "What are the benefits and disadvantages of the treatment options?"]
+  },
+  "early-benefit-assessment-of-medications": {
+    "intro": "Germany evaluates certain new medicines to examine whether they offer added benefit compared with an established treatment. This assessment concerns evidence from groups of patients and is part of the German system for evaluating medicines.",
+    "details": "An assessment may consider outcomes important to patients, such as symptoms, survival, quality of life and adverse effects. The result depends on the comparison and the evidence available. It is not a personal prescribing recommendation, and German assessment or payment arrangements do not automatically apply in other countries.",
+    "questions": ["Which patient group and comparison does this assessment concern?", "How relevant are the findings to my treatment choices?"]
+  },
+  "health-care-in-germany": {
+    "intro": "Health systems differ in how appointments, insurance, referrals and payment are organised. This topic concerns Germany. Understanding which service provides which kind of care can make it easier to find the right point of contact.",
+    "details": "The rules described in German information may not apply in Romania, Moldova, Albania or Italy. Before arranging a service, check local access requirements and possible costs with the provider or insurer. When reading about a health system, distinguish general medical information from country-specific administrative rules.",
+    "questions": ["Does this information apply in the country where I receive care?", "Which provider or insurer can confirm access and costs?"]
+  },
+  "individual-health-care-services-igel": {
+    "intro": "In Germany, some tests and treatments offered outside standard statutory insurance coverage are called individual health services, or IGeL. Patients may have to pay for these services themselves. Being available for purchase does not by itself show that a service improves health.",
+    "details": "Before deciding, ask what benefit is supported by research, what harms or further tests could follow and whether a covered alternative exists. A price and a clear explanation should be available. IGeL is a German category; payment rules and available services differ elsewhere.",
+    "questions": ["What benefit is proven, and what uncertainty remains?", "What are the costs, risks and covered alternatives?"]
+  },
+  "nursing-care": {
+    "intro": "Nursing care supports people with health needs and everyday activities. It may be provided at home, in the community or in a care facility. Needs can change after illness, injury or a loss of independence.",
+    "details": "Planning care includes understanding what the person can do, where help is needed and what matters to them. Family carers may need support too. Available services, assessments and financial arrangements vary by country. A care plan should be reviewed when health or practical circumstances change.",
+    "questions": ["What help would support my independence and safety?", "Which local services can assess my care needs?"]
+  },
+  "screening": {
+    "intro": "Screening looks for a condition or increased risk in people without related symptoms. It differs from tests used to investigate a new complaint. A screening offer should be considered in terms of both potential benefits and possible harms.",
+    "details": "Screening can sometimes find disease earlier, but it can also produce false alarms, miss disease or identify changes that would never cause problems. Further tests or treatment may follow. Suitable programmes depend on age, personal risk and local guidance. New symptoms need assessment even after a reassuring screening result.",
+    "questions": ["How much benefit is expected for people like me?", "What could follow a positive or uncertain result?"]
+  },
+  "second-opinions-before-surgery": {
+    "intro": "A second opinion is an assessment by another clinician about a proposed operation. It can help clarify the diagnosis, the reasons for surgery and the available alternatives. It is particularly useful when a decision involves important trade-offs.",
+    "details": "Bring relevant reports, imaging and a list of questions. Ask how the expected benefits compare with possible harms and what could happen without surgery. Eligibility or payment for a formal second opinion varies by country. Do not delay emergency treatment while seeking routine additional advice.",
+    "questions": ["What are the alternatives to this operation?", "How do the expected outcomes compare with waiting or non-surgical care?"]
+  },
+  "blood-and-immune-system": {
+    "intro": "Blood carries oxygen, nutrients and other substances around the body. Its cells and proteins also help defend against infection and stop bleeding. The immune system includes specialised cells and organs that work together to recognise threats.",
+    "details": "Blood tests measure different parts of this system. A result outside the reference range does not always mean a serious illness, and a normal result does not answer every clinical question. Interpretation depends on symptoms, medical history and the reason for the test.",
+    "questions": ["Which part of the blood or immune system does this test measure?", "Does the result need follow-up in my situation?"]
+  },
+  "brain-and-nerves": {
+    "intro": "The nervous system connects the brain, spinal cord and nerves throughout the body. It processes information, controls movement and helps regulate many automatic functions. Different parts have different roles, so the pattern of symptoms matters.",
+    "details": "A neurological examination may assess strength, sensation, coordination and other functions. Further tests are selected according to the clinical question. Sudden changes such as new weakness, speech difficulty or loss of consciousness require urgent assessment rather than an attempt to identify the cause online.",
+    "questions": ["What does the pattern of symptoms suggest?", "Which examination or test could clarify the problem?"]
+  },
+  "sex-organs": {
+    "intro": "The reproductive organs are involved in reproduction, hormone production and sexual function. Their structure and function change through life. Understanding normal anatomy can make it easier to describe symptoms and discuss health concerns.",
+    "details": "Pain, bleeding, discharge or a new lump can have different explanations. A healthcare professional can discuss appropriate examination or testing confidentially. What is usual for one person may differ from another, but a persistent or unexpected change should not be dismissed without assessment.",
+    "questions": ["Is this change expected in my circumstances?", "What would an examination or test help establish?"]
+  },
+  "limbs": {
+    "intro": "The arms and legs combine bones, joints, muscles, nerves and blood vessels to support movement and sensation. Problems in any of these structures can affect strength, balance or the ability to carry out everyday tasks.",
+    "details": "Symptoms such as pain, swelling, weakness or numbness need to be considered together. Assessment may include movement, circulation and nerve function. Rehabilitation can help with some problems, but the appropriate approach depends on the cause. Sudden major changes in movement or sensation need prompt medical attention.",
+    "questions": ["Which structures may be involved in my symptoms?", "What could help restore function safely?"]
+  },
+  "skin-hair-and-nails": {
+    "intro": "Skin forms a protective barrier, helps regulate temperature and allows sensation. Hair and nails are related structures that grow from specialised cells. Changes can reflect a local problem or, sometimes, another health condition.",
+    "details": "Colour, texture, location and the speed of a change can help guide assessment. Exposure to chemicals, everyday care products and medicines may be relevant. Avoid assuming that a cosmetic change identifies a specific disease. A persistent, painful or unexplained change can be discussed with a clinician.",
+    "questions": ["Could an exposure or medicine explain this change?", "What features would need further assessment?"]
+  },
+  "endocrine-hormone-system": {
+    "intro": "The endocrine system consists of glands and tissues that release hormones. These signals travel through the bloodstream and help coordinate processes such as metabolism, growth and reproduction. Feedback mechanisms normally keep hormone activity within an appropriate range.",
+    "details": "Hormone levels can vary with time, age, pregnancy and illness. This is one reason test results need clinical interpretation rather than comparison with a single number in isolation. Treatment of a hormonal disorder depends on which signal or gland is affected.",
+    "questions": ["Could timing or another condition influence my hormone result?", "What does this gland normally control?"]
+  },
+  "bones-muscles-and-joints": {
+    "intro": "Bones support and protect the body. Joints connect bones, while muscles and tendons produce movement. Cartilage, ligaments and other tissues help joints move and remain stable. Together these structures form the musculoskeletal system.",
+    "details": "Strength, coordination and joint movement all contribute to function. Injury and disease can affect different parts of the system, sometimes with overlapping symptoms. An examination looks beyond a single painful spot to understand how movement is affected. Treatment and rehabilitation should match the actual problem.",
+    "questions": ["How does this problem affect my movement and function?", "Which goals should guide rehabilitation?"]
+  },
+  "lungs-and-airways": {
+    "intro": "Air travels through the airways into the lungs. In tiny air sacs, oxygen passes into the blood and carbon dioxide leaves it. Breathing also depends on muscles, the chest wall and signals from the nervous system.",
+    "details": "Breathlessness can result from problems in the lungs or elsewhere in the body. A clinician considers the circumstances and other symptoms before choosing tests. Breathing tests and oxygen measurements answer different questions and cannot replace a full assessment when someone is severely unwell.",
+    "questions": ["Could something other than the lungs explain my breathlessness?", "What will the proposed breathing test show?"]
+  },
+  "stomach-bowel-and-digestion": {
+    "intro": "Digestion breaks food down so the body can absorb and use nutrients. The stomach mixes food, the intestines absorb nutrients and water, and other organs supply substances needed for digestion. Remaining waste leaves the body as stool.",
+    "details": "Normal digestion varies between people. A lasting change in bowel habits or ongoing discomfort is more useful to describe than a single comparison with someone else's routine. Medicines, diet and illness can all influence digestion. Investigation depends on the overall pattern and accompanying symptoms.",
+    "questions": ["Which changes from my usual pattern are important?", "Could medicines or another illness be contributing?"]
+  },
+  "mouth-and-teeth": {
+    "intro": "The mouth starts digestion through chewing and saliva and is important for speech and swallowing. Teeth, gums, the tongue and other tissues work together. Their health affects comfort and the ability to eat a varied diet.",
+    "details": "Problems can involve teeth, supporting tissues or the lining of the mouth. A dental examination can help distinguish these causes. A persistent sore, unexplained lump or ongoing swallowing problem deserves assessment. Daily oral care is useful, but it does not replace evaluation of a lasting change.",
+    "questions": ["Is the problem coming from a tooth or another mouth tissue?", "What should I do if the change does not heal?"]
+  },
+  "kidneys-bladder-and-urinary-tract": {
+    "intro": "The kidneys filter blood, balance fluids and salts, and produce urine. Urine travels through the ureters to the bladder, where it is stored before leaving through the urethra. These structures have distinct roles.",
+    "details": "Urine appearance alone does not reliably measure kidney health. Blood and urine tests may assess different functions or signs of disease. Changes in urination can arise from the kidneys, bladder or elsewhere. A clinician interprets the findings alongside symptoms, medicines and previous results.",
+    "questions": ["Which part of the urinary system is being assessed?", "What do the blood and urine tests measure?"]
+  },
+  "sensory-organs": {
+    "intro": "Sensory organs collect information about the world and the body. The eyes and ears support vision, hearing and balance, while receptors also help with smell, taste and touch. The brain interprets these signals.",
+    "details": "Changes in a sense can affect safety, communication and independence. Their cause may involve the sensory organ, the nerves or other conditions. Describe whether a change is sudden, gradual or intermittent. Sudden loss of vision or hearing should receive prompt medical assessment.",
+    "questions": ["Where might the change in this sense be occurring?", "Could an aid or rehabilitation improve everyday function?"]
+  },
+  "metabolism": {
+    "intro": "Metabolism includes the body's chemical processes for obtaining energy, building tissues and handling waste. Enzymes and hormones help control these processes. Metabolism involves many organs rather than a single part of the body.",
+    "details": "The body adjusts its use of nutrients according to activity, food intake and other influences. The word metabolism does not explain a symptom or weight change on its own. When a specific metabolic problem is suspected, the useful tests and treatment depend on the clinical question.",
+    "questions": ["Which metabolic process is relevant to my concern?", "What information would help identify a specific problem?"]
+  },
+  "growth-and-aging": {
+    "intro": "Growth and ageing involve changes in body structure and function over time. People develop and age at different rates. Health, environment and everyday circumstances can influence what these changes mean for an individual's daily life.",
+    "details": "A person's usual abilities and the speed of a change matter when considering whether assessment is needed. New problems should not automatically be attributed to age. Care can focus on development, independence, comfort and activities that are important to the person.",
+    "questions": ["Is this pattern expected at this stage of life?", "What could help maintain function or support development?"]
+  },
+  "drugs-and-vaccines": {
+    "intro": "Medicines may prevent disease, relieve symptoms or treat a condition. Vaccines prepare the immune system to respond to particular infections. Both are assessed for benefits and possible harms, but their suitability depends on the person and purpose.",
+    "details": "Understanding the intended benefit, common adverse effects and correct use supports safer decisions. Tell the healthcare team about other medicines and supplements. Do not change a prescribed treatment on the basis of a general summary. Questions about vaccination or medicines can be discussed with a qualified professional.",
+    "questions": ["What benefit should I expect from this treatment?", "What interactions or adverse effects should I discuss?"]
+  },
+  "diagnosis-and-tests": {
+    "intro": "Diagnostic tests help answer questions about a person's health. They can include examinations, blood or urine tests, imaging and tissue samples. A test is most useful when its result could clarify a problem or influence care.",
+    "details": "No test is perfect. Some results are falsely reassuring or suggest disease when it is absent. Interpretation depends on symptoms, the likelihood of the condition and other findings. Before testing, it is useful to understand possible discomfort, risks and what different results would mean.",
+    "questions": ["What specific question is this test meant to answer?", "How would each possible result change the next step?"]
+  },
+  "non-drug-treatments": {
+    "intro": "Healthcare includes treatments that do not involve taking a medicine. Examples include rehabilitation, talking therapies and changes to activities or the environment. Their usefulness depends on the condition, the treatment and the person's goals.",
+    "details": "A non-drug treatment can still have burdens, costs or adverse effects. Ask what evidence supports it, what participation involves and how progress will be assessed. Different approaches may be combined where appropriate. An appealing explanation or a claim that something is natural does not establish that it works.",
+    "questions": ["What evidence supports this option for my condition?", "How will we judge whether it is helping?"]
+  },
+  "surgery": {
+    "intro": "Surgery is used to diagnose, repair, remove or replace tissue, or to relieve symptoms. Operations differ greatly in their purpose, risks and recovery. Whether surgery is suitable depends on the condition and the person's circumstances.",
+    "details": "An informed decision includes discussing expected benefits, possible complications, anaesthesia and alternatives. Recovery may involve temporary changes to work, activity or care needs. Ask what could happen without the operation and how urgent the decision is. General information cannot predict an individual's surgical outcome.",
+    "questions": ["Why is surgery being proposed, and what are the alternatives?", "What support and recovery time might I need?"]
+  },
+  "physical-therapy-and-daily-living-aids": {
+    "intro": "Physical therapy and practical aids can help people move, manage symptoms and carry out daily activities. Needs may follow injury, illness or a long-term condition. The goal is meaningful function rather than completing the same programme for everyone.",
+    "details": "Assessment can identify suitable exercises, adaptations or equipment. An aid needs to fit the person and the setting in which it will be used. Instruction, practice and follow-up may be important. Discuss goals such as walking, dressing or returning to work so that support addresses real needs.",
+    "questions": ["Which everyday activity should we prioritise?", "How should I use and review this aid or exercise plan?"]
+  },
+  "prevention": {
+    "intro": "Prevention aims to reduce the chance of illness or its consequences. It can involve vaccination, reducing harmful exposures, everyday habits or appropriate screening. The value of a preventive measure depends on the risk it addresses.",
+    "details": "Not every preventive offer provides the same benefit, and some can cause harm or unnecessary follow-up. Personal risk and practical circumstances matter. Consider what is supported by evidence and what is realistic to maintain. Prevention reduces some risks but cannot guarantee that a person will never become ill.",
+    "questions": ["Which preventable risks matter most for me?", "What benefit and possible harm does this measure involve?"]
+  },
+  "what-is-evidence-based-medicine": {
+    "intro": "Evidence-based medicine combines research findings with clinical expertise and the needs and preferences of the patient. It asks whether a test or treatment improves outcomes that matter to people, rather than relying only on a plausible explanation.",
+    "details": "Research can show both benefits and harms, but uncertainty often remains. Evidence from a group does not dictate every individual decision. Useful discussions make the size of expected effects, the limits of the evidence and the available alternatives understandable.",
+    "questions": ["What research supports this recommendation?", "How do the findings apply to my circumstances and preferences?"]
+  },
+  "studies-co": {
+    "intro": "Medical studies investigate questions about health, tests and treatments. Their design affects which conclusions can be drawn. A comparison between groups can help distinguish the effect of a treatment from changes that would have happened anyway.",
+    "details": "A large headline effect may look different when absolute numbers, follow-up time and harms are considered. Results also depend on who was studied and how reliably outcomes were measured. One study rarely answers every question; systematic reviews bring together research using a planned approach.",
+    "questions": ["How large is the benefit in absolute terms?", "What limitations or missing outcomes affect the conclusion?"]
+  },
+  "making-an-informed-decision": {
+    "intro": "An informed healthcare decision brings together understandable information and what matters to the person making it. Often there is more than one reasonable option. Benefits, harms, practical demands and uncertainty can affect how someone weighs those options.",
+    "details": "Ask for explanations in plain language and for time to consider non-urgent choices. Discuss what might happen with each option, including no treatment or waiting when appropriate. A decision aid may support the conversation, but it does not replace individual advice or consent.",
+    "questions": ["What are my options, including waiting where appropriate?", "Which outcomes and trade-offs matter most to me?"]
+  },
+  "our-methods-and-processes": {
+    "intro": "Reliable health information explains how its authors find research, assess it and decide what to publish. The linked IQWiG topic describes its approach to developing evidence-based information. Knowing the methods helps readers judge how claims are supported.",
+    "details": "Useful checks include who produced the information, which evidence was considered, when it was updated and whether uncertainty is explained. The source link below leads to IQWiG's own material. This RediHealth overview is independently written and is not an IQWiG publication or endorsement.",
+    "questions": ["Can I identify the publisher and supporting evidence?", "Does the information explain uncertainty and its update process?"]
+  }
+}

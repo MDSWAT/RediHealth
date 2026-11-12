@@ -1,0 +1,51 @@
+{
+  "title": "Razumijevanje onkoloških oznaka u liječničkom nalazu",
+  "intro": "Onkološki nalaz može sadržavati kratice za ishodište raka, proširenost bolesti, izgled stanica te provedene pretrage ili liječenje. Oznake pomažu stručnjacima u komunikaciji, ali same nisu preporuka liječenja ni osobno predviđanje preživljenja. Zamolite tim da objasni cijeli nalaz, uključujući neizvjesnosti i korištenu klasifikaciju.",
+  "sections": [
+    {
+      "heading": "TNM opisuje proširenost mnogih karcinoma",
+      "paragraphs": [
+        "U sustavu TNM, T opisuje veličinu ili lokalnu proširenost primarnog tumora, N zahvaćenost regionalnih limfnih čvorova, a M udaljeno širenje. Brojevi i ponekad dodatna slova preciziraju kategorije. Definicije ovise o sijelu raka i izdanju klasifikacije. Stadij se ne određuje tablicom za drugi rak. Neke bolesti, uključujući mnoge zloćudne bolesti krvi i tumore mozga, koriste druge sustave."
+      ]
+    },
+    {
+      "heading": "Važni su temelj i vrijeme procjene",
+      "paragraphs": [
+        "Malo slovo c obično označava kliničku procjenu prema pregledu, snimkama i drugim dijagnostičkim podacima. Slovo p označava klasifikaciju na temelju patološkog pregleda kirurški odstranjenog tkiva. Prefiks y označava procjenu tijekom ili nakon početnog liječenja, a r klasifikaciju povratka raka. Prefiksi pomažu objasniti razlike među nalazima. Promjena nakon novih podataka ne znači automatski brzo pogoršanje. Pitajte koji su nalazi bili dostupni pri svakoj procjeni."
+      ]
+    },
+    {
+      "heading": "Gradus se razlikuje od stadija",
+      "paragraphs": [
+        "Gradus opisuje obilježja tumorskih stanica i tkiva pod mikroskopom. U mnogim sustavima stanice manje slične normalnima povezane su s agresivnijim ponašanjem, ali pravila se razlikuju među tumorima. Stadij opisuje proširenost bolesti. Nijedan ne zamjenjuje podatke o vrsti raka, biomarkerima, općem zdravlju ili odgovoru na liječenje. Isti gradus ne mora imati isto značenje u svakom tumoru."
+      ]
+    },
+    {
+      "heading": "Ostatna bolest i neizvjesnost",
+      "paragraphs": [
+        "Klasifikacija R opisuje tumor preostao nakon liječenja: R0 znači da ostatni tumor nije utvrđen, R1 mikroskopski ostatak, a R2 vidljiv ostatni tumor. Pitajte na koja se mjesta i procjenu tvrdnja odnosi. Slobodni kirurški rubovi korisna su informacija, ali ne jamče da se rak neće vratiti. X u nekim kategorijama znači da procjena nije bila moguća, a ne automatski povoljan ili nepovoljan rezultat. Pretrage u tijeku mogu ostaviti nalaz nepotpunim."
+      ]
+    },
+    {
+      "heading": "Priprema za sljedeći razgovor",
+      "paragraphs": [
+        "Zatražite kopiju i označite nepoznate pojmove, datum i rezultate koji se još čekaju. Povežite nalaze s ciljem liječenja, mogućnostima te vjerojatnim koristima i štetama. Neki sustavi pri određivanju stadija kombiniraju anatomsku proširenost s drugim obilježjima tumora. Statistika skupina ne predviđa točno pojedinačan ishod. Za skrb u drugoj zemlji ili jeziku ponesite izvorni nalaz i zatražite kvalificiranog tumača umjesto samostalnog prevođenja izdvojenih kratica."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gradus i stadij — zamišljeni primjer",
+      "text": "Osoba misli da su gradus i stadij dva ista rezultata. Liječnik objašnjava koji opisuje mikroskopski izgled, a koji proširenost bolesti te njihov utjecaj na dostupne mogućnosti liječenja."
+    },
+    {
+      "title": "Dva nalaza — zamišljeni primjer",
+      "text": "Slikovni nalaz i kasniji patološki nalaz koriste različite prefikse i kategorije. Osoba pita odražava li to nove podatke iz tkiva, provedeno liječenje ili stvarnu promjenu bolesti."
+    }
+  ],
+  "questions": [
+    "Koju klasifikaciju za ovu vrstu raka i koje izdanje koristi nalaz?",
+    "Što je potvrđeno, što neizvjesno i koje se pretrage još čekaju?",
+    "Kako nalazi utječu na cilj liječenja, mogućnosti i moje praćenje?"
+  ]
+}

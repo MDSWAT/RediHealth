@@ -1,0 +1,51 @@
+{
+  "title": "Lijekovi koje procjenjuje IQWiG: kako čitati procjenu koristi",
+  "intro": "Novi lijek može biti odobren bez prednosti nad postojećim liječenjem. IQWiG, njemački institut za kvalitetu i učinkovitost zdravstva, razmatra koristi i štete, uključujući usporedbe koje traži Savezni zajednički odbor G-BA. Razumijevanje usporedbe pomaže razgovoru o liječenju.",
+  "sections": [
+    {
+      "heading": "Odobrenje i dodatna korist nisu isto",
+      "paragraphs": [
+        "Odobrenje se odnosi na određenu indikaciju temeljem kvalitete, učinkovitosti i sigurnosti. Dodatna korist uspoređuje s prikladnim postojećim liječenjem određenih bolesnika. Studija prema placebu može poduprijeti odobrenje bez odgovora prema standardu. Njemački proces informira sustav i pregovore o pokriću, ne daje osobni recept. Druge države odlučuju zasebno. Ova stranica objašnjava procjene bez potpunog, stalno ažuriranog kataloga svakog procijenjenog lijeka."
+      ]
+    },
+    {
+      "heading": "Uskladite izvješće s točnom situacijom",
+      "paragraphs": [
+        "Tražite djelatnu tvar i marku, indikaciju, dob, stadij, prethodnu terapiju i datum. Isti lijek ima različite zaključke po skupinama i primjenama. Kombinacija nije automatski jednaka lijeku samom. Provjerite usporednu terapiju i prikladnost studije. Izvješće za prethodno neliječene odrasle ne vrijedi automatski za dijete ili neuspjelu terapiju. Zatražite od liječnika odgovarajuće izvješće i razlike umjesto samo naslova pretrage."
+      ]
+    },
+    {
+      "heading": "Tražite ishode važne ljudima",
+      "paragraphs": [
+        "Važni su preživljenje, simptomi, dnevna funkcija, kvaliteta života i nuspojave. Bolji laboratorij ili snimka ne znače uvijek bolji osjećaj ili dulji život. Pitajte koliko je imalo korist ili štetu, u kojem razdoblju i kolika je apsolutna razlika. Male studije, kratko praćenje, nedostajući podaci i neprikladna usporedba stvaraju nesigurnost. Nedostatak uporabljivih dokaza prednosti nije automatski dokaz jednakosti ili odsutnosti učinka. Koristi i štete treba odvagnuti zajedno."
+      ]
+    },
+    {
+      "heading": "Provjerite fazu postupka",
+      "paragraphs": [
+        "Proizvođač podnosi dokaze njemačkom ranom postupku. IQWiG ih može procijeniti za G-BA, a komentari i dodatni podaci prethoditi odluci. Razlikujte tvrdnju tvrtke, izvješće ili dodatak IQWiG i konačnu odluku G-BA; zaključci se razlikuju ili ažuriraju. Europske zajedničke kliničke procjene mogu doprinijeti bez ukidanja potrebe za razumijevanjem nacionalne odluke i skupine. Koristite službene datirane dokumente i kasnije verzije. Sažetak olakšava čitanje bez zamjene opsega i granica."
+      ]
+    },
+    {
+      "heading": "Uključite dokaze u osobnu odluku",
+      "paragraphs": [
+        "Pitajte kako odgovaraju bolestima, lijekovima, ranijem odgovoru, prioritetima i mogućnostima liječenja. Praktičnost, primjena, praćenje, nuspojave, cijena i dostupnost važni su i uz nejasnu dodatnu korist. Dogovorite poboljšanje za nastavak, sigurnost i kontrolu. Ne prekidajte učinkovit propisani lijek zbog naslova niti počinjite samo zbog novosti. Pri promjeni tražite upute i kontakt. Procjena podupire zajedničku odluku bez jamstva osobnog odgovora."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: isti lijek, druge skupine",
+      "text": "Ana čita o dodatnoj koristi, ali izvješće je za one bez određene prethodne terapije. Ona ju je već imala i pita za zaključke svoje skupine prije pretpostavke primjenjivosti."
+    },
+    {
+      "title": "Hipotetski primjer: nesigurnost ne traži prekid",
+      "text": "Ilir vidi da dodatna korist nije utvrđena. Pita jesu li nedostajale usporedbe i kako vrijedi njegov odgovor. Nastavlja recept dok dogovara siguran plan, bez samostalnog prekida."
+    }
+  ],
+  "questions": [
+    "Odgovara li procjena dijagnozi, stadiju i povijesti mojeg liječenja?",
+    "Koje su koristi, štete i nesigurnosti u usporedbi s kojom terapijom?",
+    "Kako rezultati mijenjaju izbor, praćenje i provjeru plana?"
+  ]
+}

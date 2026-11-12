@@ -1,0 +1,57 @@
+{
+  "title": "Abdominal Aortic Aneurysm",
+  "intro": "An abdominal aortic aneurysm occurs when a section of the aorta—the large blood vessel carrying blood from your heart through your abdomen—expands beyond its normal diameter. The vessel wall expands through processes that vary between individuals and do not change how the condition is managed. Most people experience no symptoms until the aneurysm becomes large or ruptures, which is a medical emergency. Understanding this condition helps you work with your healthcare team to monitor it and decide on the best approach for your situation.",
+  "sections": [
+    {
+      "heading": "Recognizing Signs and Symptoms",
+      "paragraphs": [
+        "Most abdominal aortic aneurysms cause no noticeable symptoms, particularly when small. Many are discovered incidentally during imaging tests performed for unrelated reasons or through screening programs.",
+        "When symptoms do appear, you might notice a pulsing sensation near your navel or deep steady pain in your abdomen or lower back. If an aneurysm ruptures, it causes sudden severe pain in the abdomen or back, dizziness, rapid heart rate, and loss of consciousness. A rupture requires immediate emergency care."
+      ]
+    },
+    {
+      "heading": "How Healthcare Providers Assess This Condition",
+      "paragraphs": [
+        "Assessment typically begins with an ultrasound of your abdomen, which can reveal the size and shape of the aorta. If an aneurysm is found, your healthcare provider may recommend CT or MRI scans to obtain more detailed images and measure the aneurysm precisely.",
+        "Your provider will also review factors that influence your risk, including smoking history, family history of aneurysms, age, blood pressure, and cholesterol levels. Regular monitoring through repeat imaging helps track whether the aneurysm is growing and how quickly. The frequency of monitoring depends on the aneurysm size and growth rate, as determined by your provider."
+      ]
+    },
+    {
+      "heading": "Options for Managing the Aneurysm",
+      "paragraphs": [
+        "For smaller aneurysms that are not causing symptoms, careful monitoring with periodic imaging may be recommended rather than immediate intervention. This approach allows your team to watch for growth while avoiding the risks of procedures you may not yet need.",
+        "Management focuses on slowing growth and reducing rupture risk. This includes controlling blood pressure, stopping smoking if applicable, managing cholesterol, and maintaining overall cardiovascular health. These measures address factors that can affect blood vessel integrity.",
+        "When an aneurysm reaches a size where rupture risk becomes concerning, or if it grows rapidly, your provider may discuss repair options. These include open surgical repair, where the affected section is replaced with a synthetic graft, or endovascular repair, where a stent graft is placed inside the aorta through smaller incisions. Each approach has different recovery times, risks, and suitability depending on the aneurysm's characteristics and your overall health."
+      ]
+    },
+    {
+      "heading": "Living With an Abdominal Aortic Aneurysm",
+      "paragraphs": [
+        "If you are being monitored without immediate repair, activity restrictions depend on your aneurysm size and individual risk factors. Your healthcare team can guide you on which activities are safe for your specific situation.",
+        "Keeping scheduled imaging appointments is essential, as growth cannot be felt or predicted without imaging. Some people find the waiting period between scans creates anxiety about rupture, which is understandable. Discussing these concerns with your provider helps you understand your individual risk level and what symptoms should prompt immediate attention."
+      ]
+    },
+    {
+      "heading": "When to Seek Immediate Medical Help",
+      "paragraphs": [
+        "Seek emergency care immediately if you experience sudden severe abdominal or back pain, especially if accompanied by dizziness, fainting, rapid heartbeat, clammy skin, or nausea. These may indicate rupture, which requires emergency intervention.",
+        "Even if you have a known aneurysm being monitored, new or worsening abdominal pain, changes in the pulsing sensation, or any symptom that concerns you warrants prompt contact with your healthcare provider. It is better to have symptoms evaluated than to wait and hope they resolve on their own."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for Monitoring Appointments",
+      "text": "Imagine you have been told you have a small aneurysm that will be monitored every six months. Before each ultrasound appointment, you might write down any new symptoms you have noticed and questions about daily activities you are uncertain about. During the visit, you could ask your provider to explain what the current measurements mean and what rate of growth would change the monitoring plan."
+    },
+    {
+      "title": "Discussing Treatment Timing",
+      "text": "Suppose imaging shows your aneurysm has grown steadily over several monitoring visits. You might meet with your healthcare team to discuss whether the size now warrants considering repair, even though you feel well. You could ask them to explain the benefits and risks of continuing to monitor versus proceeding with repair, and how your other health conditions factor into that decision."
+    }
+  ],
+  "questions": [
+    "What is the current size of my aneurysm, and how does that influence the plan for monitoring or treatment?",
+    "Are there specific activities or situations I should avoid, and what symptoms should prompt me to seek urgent care?",
+    "If repair becomes necessary, what are the differences between the surgical options available to me, and which might be most appropriate for my situation?"
+  ]
+}

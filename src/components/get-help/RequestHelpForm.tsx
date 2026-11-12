@@ -9,7 +9,7 @@ import type { Translations } from "@/lib/i18n/translations";
 import { isValidEmail } from "@/lib/text";
 import { COUNTRY_LABELS, type CountryCode } from "@/lib/countries";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
-import { withLangPrefix } from "@/lib/i18n/routing";
+import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 
 type Fields = {
@@ -46,6 +46,8 @@ function validate(values: Fields, t: Translations["getHelpPage"]["form"]): Error
 }
 
 const countryLabel = {
+ru: "Страна",
+
   en: "Country",
   ro: "Țara",
   sq: "Shteti",
@@ -118,7 +120,7 @@ export function RequestHelpForm({
       const captchaToken = await executeCaptcha("help_request");
       const response = await fetch("/api/medical-help-requests", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", [REQUEST_LANG_HEADER]: lang },
         body: JSON.stringify({ ...values, country, county, privacyConsent, captchaToken }),
       });
       if (response.ok) {

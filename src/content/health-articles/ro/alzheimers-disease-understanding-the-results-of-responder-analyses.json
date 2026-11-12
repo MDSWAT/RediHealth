@@ -1,0 +1,51 @@
+{
+  "title": "Cercetarea Alzheimer: interpretarea critică a răspunsului la tratament",
+  "intro": "O analiză a respondenților numără câți participanți îndeplinesc un rezultat definit, în loc să prezinte numai un scor mediu. Poate ușura discutarea cercetării, dar termenul respondent nu înseamnă neapărat vindecare sau ameliorare. În cercetarea Alzheimer, rezultatul poate fi evitarea unei agravări de o anumită amploare pe durata urmăririi. Aflați exact ce s-a numărat înainte de a interpreta un titlu.",
+  "sections": [
+    {
+      "heading": "Începeți cu definiția, direcția și momentul evaluării",
+      "paragraphs": [
+        "Întrebați ce măsură s-a folosit, cum s-a definit răspunsul și când s-a evaluat. Studiul poate număra ameliorarea, stabilitatea sau menținerea sub un prag de agravare; sunt rezultate diferite. Pe măsuri precum CDR-SB, scorurile mai mari indică afectare mai mare, deci direcția contează. Pragul necesită o justificare bazată pe schimbări relevante, nu doar un număr convenabil. O definiție aleasă în avans este în general mai ușor de interpretat decât una selectată după observarea comparației favorabile. Unele analize numără persoanele a căror stare se agravează; atunci mai puțini respondenți pot favoriza tratamentul."
+      ]
+    },
+    {
+      "heading": "Citiți comparația în termeni absoluți",
+      "paragraphs": [
+        "Rata răspunsului doar în grupul tratat nu arată efectul tratamentului. Și persoanele din grupul de comparație pot îndeplini definiția datorită variației, îngrijirii de fond sau evoluției bolii. Comparați grupuri evaluate pe aceeași durată și cu aceeași regulă. Cereți numere sau rate raportate la același număr de persoane și diferența absolută, alături de orice cifră relativă. Un procent relativ impresionant poate descrie o diferență absolută modestă și nu garantează probabilitatea individuală de beneficiu."
+      ]
+    },
+    {
+      "heading": "Separați mediile grupurilor de schimbările individuale",
+      "paragraphs": [
+        "Diferența medie descrie grupuri, în timp ce pragul de răspuns clasifică observații individuale. Cineva imediat sub prag și cineva imediat deasupra pot avea experiențe foarte asemănătoare, dar categorii opuse. Analiza ascunde și amploarea schimbării fiecăruia. Cereți imaginea de ansamblu și rezultatele importante pentru viața zilnică, nu numai eticheta de respondent. Declinul mediu mai lent nu înseamnă că toți s-au ameliorat, că boala s-a oprit sau că aceeași întârziere se aplică fiecărui participant."
+      ]
+    },
+    {
+      "heading": "Verificați incertitudinea și rezultatele lipsă",
+      "paragraphs": [
+        "Luați în considerare numărul participanților, durata urmăririi și incertitudinea estimării. Rezultatele unui grup mic sau selectat pot să nu se aplice larg. Întrebați dacă retragerile și evaluările lipsă au fost tratate consecvent, inclusiv pentru cei care au oprit tratamentul din cauza reacțiilor adverse. Excluderea lor poate schimba impresia de beneficiu. Mai multe analize exploratorii pot produce întâmplător un rezultat încurajator. Intervalele de încredere și concordanța cu rezultatele principale arată cât de solidă este constatarea."
+      ]
+    },
+    {
+      "heading": "Raportați rezultatul la decizia reală de tratament",
+      "paragraphs": [
+        "Sursa originală folosește cercetarea tratamentului Alzheimer ca ilustrare; explicația statistică nu recomandă un anumit medicament. Discutați dacă populația studiată seamănă cu persoana care ia în calcul tratamentul și cântăriți beneficiul posibil față de riscuri, monitorizare, vizite și efortul îngrijitorului. Aprobarea locală și eligibilitatea trebuie verificate pentru tratamentul specific. Întrebați ce rămâne necunoscut pe termen lung. O decizie bună poate recunoaște incertitudinea beneficiului, prioritizând în continuare simptomele, sprijinul zilnic și obiectivele persoanei."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Numere fictive: comparația contează",
+      "text": "Imaginați două grupuri de câte o sută de persoane. Patruzeci din grupul tratat și treizeci din grupul de comparație îndeplinesc aceeași regulă de răspuns. Diferența absolută este de zece persoane la o sută, nu patruzeci de persoane ajutate în plus. Cifrele inventate explică aritmetica și nu sunt rezultate ale vreunui medicament."
+    },
+    {
+      "title": "Exemplu ipotetic: ce înseamnă răspunsul?",
+      "text": "O familie citește că un participant a fost respondent, apoi află că regula însemna lipsa agravării dincolo de un prag. Întreabă cum funcționa persoana zilnic, fără a interpreta eticheta drept memorie restabilită sau vindecare."
+    }
+  ],
+  "questions": [
+    "Ce anume a contat drept răspuns, regula a fost stabilită în avans și de ce este schimbarea relevantă?",
+    "Care sunt diferența absolută între grupuri, incertitudinea și metoda pentru rezultate lipsă?",
+    "Cum se raportează beneficiul posibil, riscurile și efortul tratamentului la situația și obiectivele noastre?"
+  ]
+}

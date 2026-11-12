@@ -56,6 +56,92 @@ export interface ActivityCopy {
 }
 
 export const ACTIVITY_COPY: Record<Lang, ActivityCopy> = {
+  ru: {
+    title: "Переезд каждый день",
+    subtitle: "Вам не нужен тренажерный зал. Посмотрите, с чего начать и сколько активности вам нужно.",
+    tabsLabel: "Физическая активность",
+    tabStepper: "Способы перемещения",
+    tabRing: "Сколько достаточно",
+    stepper: {
+      groupLabel: "Выберите шаг",
+      whyLabel: "Почему это помогает",
+      practicalTipLabel: "Попробуйте это",
+      nextButton: "Следующий шаг",
+      prevButton: "Предыдущий шаг",
+      stepOfTemplate: "Шаг {n} из {total}",
+      weekCaption: "Одна неделя: каждый столбец — это день. Чем выше планка, тем больше минут ходьбы.",
+      dayInitials: ["M", "T", "W", "T", "F", "S", "S"],
+      stages: [
+        {
+          id: "sedentary-break",
+          timeBadge: "Несколько минут, каждый час",
+          title: "Вставайте время от времени",
+          physiology:
+            "Долгое сидение вредно для сердца и уровня сахара в крови, даже если вы двигаетесь в другое время.",
+          action: "Stand up at least once an hour. Stretch, get a glass of water or take phone calls standing.",
+        },
+        {
+          id: "daily-steps",
+          timeBadge: "10–15 минут",
+          title: "Легкая ходьба каждый день",
+          physiology: "Ходьба тренирует мышцы ног, которые помогают направлять кровь обратно к сердцу.",
+          action: "Get off one stop early or walk to the shops.",
+        },
+        {
+          id: "brisk-cardio",
+          timeBadge: "20–30 минут",
+          title: "Быстрая ходьба",
+          physiology:
+            "Когда вы идете быстро, вы дышите быстрее, но все еще можете говорить. Это делает ваше сердце сильнее и может снизить кровяное давление.",
+          action: "Walk fast enough that you can talk but not sing. Try 30 minutes, 5 days a week.",
+        },
+        {
+          id: "strength-balance",
+          timeBadge: "2 дня в неделю",
+          title: "Сила и баланс",
+          physiology:
+            "Сильные мышцы защищают ваши суставы и кости. Они снижают риск падений, особенно после 65 лет.",
+          action: "Stand up from a chair 10 times. Do push-ups against a wall. Carry your shopping in both hands.",
+        },
+      ],
+    },
+    planner: {
+      minutesLabel: "Минуты активности в день",
+      daysLabel: "Дни в неделю",
+      weeklyTotalTemplate: "{minutes} минут в неделю",
+      rangeLabel: "Рекомендация ВОЗ: 150–300 минут.",
+      targetNote:
+        "ВОЗ советует взрослым заниматься умеренной активностью 150–300 минут в неделю, например быстрой ходьбой.",
+      strengthNote: "Добавляйте занятия по укреплению мышц хотя бы 2 дня в неделю.",
+      bands: [
+        {
+          id: "none",
+          title: "Начните с малого",
+          description: "Несколько минут ходьбы в день лучше, чем ничего. Делайте то, что можете.",
+        },
+        {
+          id: "building",
+          title: "Добавьте еще немного",
+          description: "Добавляйте по 5 минут в день, пока не достигнете 150 минут в неделю.",
+        },
+        {
+          id: "target",
+          title: "Вы выполнили рекомендацию ВОЗ",
+          description:
+            "150–300 минут умеренной физической активности в неделю полезны для сердца, сна и настроения.",
+        },
+        {
+          id: "above",
+          title: "Выше рекомендации",
+          description: "Больше активности помогает еще больше. Слушайте свое тело и проведите несколько более легких дней.",
+        },
+      ],
+    },
+    safetyDisclaimer:
+      "Учащенное дыхание и ощущение, что ваше сердце бьется сильнее, — это нормально, когда вы напрягаетесь. Если вы почувствуете головокружение или заметите необычный дискомфорт, остановитесь, присядьте на несколько минут, пока оно не пройдет, и поговорите со своим семейным врачом.",
+    credit: "Источник: Рекомендации Всемирной организации здравоохранения по физической активности и малоподвижному поведению (2020 г.).",
+  },
+
   ro: {
     title: "Mișcarea de zi cu zi",
     subtitle: "Nu ai nevoie de sală. Vezi cum începi și câtă mișcare îți trebuie.",

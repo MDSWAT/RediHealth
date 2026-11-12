@@ -1,0 +1,51 @@
+{
+  "title": "Strukturirana skrb za dijabetes tipa 1: njemački DMP",
+  "intro": "Program upravljanja bolešću, DMP, organizira trajnu skrb za kroničnu bolest. U Njemačkoj povezuje planirane kontrole, edukaciju i koordinaciju u osobni plan. Ne liječi dijabetes trajno niti zamjenjuje svakodnevni inzulin. Članak opisuje njemačku uslugu; drugdje pitajte o lokalnom putu dijabetološke skrbi.",
+  "sections": [
+    {
+      "heading": "Razumijte sudjelovanje prije prijave",
+      "paragraphs": [
+        "Sudjelovanje je dobrovoljno. Pitajte njemačkog zakonskog osiguravatelja i uključenu ordinaciju o dostupnosti i upisu. Ne nude ga sve ordinacije. Sudjelovanje je besplatno za osigurane, ali pojedine usluge ili uređaje provjerite zasebno, bez pretpostavke da svaki proizvod ulazi u pokriće. Pročitajte dokumente sudjelovanja i podataka: tko prima zapise, zašto i tko odgovara na pitanja. Razjasnite dolaske, edukaciju, izlazak i nastavak uobičajene skrbi. DMP koordinira, ne jamči trenutačan pristup svakom specijalistu ili tehnologiji."
+      ]
+    },
+    {
+      "heading": "Postavite osobne ciljeve",
+      "paragraphs": [
+        "Plan podržava svakodnevicu uz smanjenje teških hipoglikemija, opasno visoke glukoze i komplikacija. Razgovarajte o uzorcima glukoze, poslu ili školi, aktivnosti, hrani, snu, trudnoći i drugim bolestima. Ciljevi i inzulin dogovaraju se osobno, uravnotežujući korist i rizik hipoglikemije. Ponesite lijekove i dodatke te navedite teškoće s troškovima, zalihama, vidom, spretnošću ili razumijevanjem. Pitajte tko koordinira i upućuje. Senzor, pumpa i tehnologija traže procjenu, obuku i pričuvni plan; upis ne znači da je svaki uređaj prikladan ili automatski osiguran."
+      ]
+    },
+    {
+      "heading": "Edukaciju primijenite na stvarne situacije",
+      "paragraphs": [
+        "Edukacija gradi vještine praćenja glukoze, inzulina, hrane, aktivnosti i promjena. Vježbajte prepoznavanje i liječenje niske glukoze, provjeru ketona i osobni plan tijekom bolesti. Inzulin treba i kada ste bolesni i ne jedete: nemojte ga jednostavno prestati uzimati; slijedite plan i zatražite prilagodbe. Korisnici pumpe trebaju upute za prekid isporuke i pričuvni inzulin. Uz pristanak uključite obitelj ili pouzdanu osobu i zatražite jezičnu pomoć. Edukacija se ponavlja kad se život ili liječenje promijene, nije ispit na kojem padate."
+      ]
+    },
+    {
+      "heading": "Planirajte kontrole prije pojave simptoma",
+      "paragraphs": [
+        "Kontrole procjenjuju glukozu, teške epizode, lijekove, mjesta injekcija ili infuzije i dobrobit. Pregledi očiju, bubrega i stopala otkrivaju komplikacije rano. Raspored ovisi o dobi, trajanju, nalazima i aktualnim zahtjevima; tražite osobni pisani raspored umjesto stare tablice. Tlak, masnoće, pušenje i srčanožilni rizik također su važni. Djeca trebaju skrb prema dobi, obitelj i planiran prijelaz odraslima. Psihičko opterećenje, strah od hipoglikemije, depresija ili poremećaji hranjenja zaslužuju podršku. Plan trudnoće treba potaknuti specijalistički razgovor prije začeća kad je moguće."
+      ]
+    },
+    {
+      "heading": "Što ne može čekati sljedeću kontrolu",
+      "paragraphs": [
+        "Teška hipoglikemija uz nesvijest ili nesigurno gutanje traži hitnu službu i uvježbani plan spašavanja; ne dajte hranu ni piće na usta. Povraćanje, trbušna bol, duboko ili ubrzano disanje, neobična pospanost ili visoki ketoni mogu značiti ketoacidozu: hitna procjena, hitna služba kod teških simptoma. Zakazan pregled nije razlog čekanja. Nova rana ili toplo otečeno stopalo traže brzu procjenu, a nagli gubitak vida hitnu službu. Držite dostupne kontakte izvan radnog vremena, inzulinski plan i potrepštine. Poslije hitnog događaja raspravite uzroke i poboljšajte plan bez okrivljavanja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: usklađivanje pregleda",
+      "text": "Mira se upisuje u uključenu njemačku ordinaciju. Donosi glukozne zapise i traži datume pregleda očiju, bubrega i stopala te tko prati abnormalne rezultate. Provjerava upis s osiguranjem, bez pretpostavke istog programa drugdje."
+    },
+    {
+      "title": "Hipotetski primjer: promjena rutine",
+      "text": "Arben počinje noćne smjene i ima ponavljane hipoglikemije. Pravodobno se javlja timu za procjenu i obnovu znanja umjesto čekanja DMP kontrole. Tim prilagođava plan; primjer ne navodi doze inzulina."
+    }
+  ],
+  "questions": [
+    "Mogu li me osiguranje i ordinacija upisati te što znače dokumenti i podaci?",
+    "Tko koordinira skrb, edukaciju, zalihe i osobni raspored?",
+    "Koji je moj pisani plan za hipoglikemiju, bolest, ketone i hitnu pomoć?"
+  ]
+}

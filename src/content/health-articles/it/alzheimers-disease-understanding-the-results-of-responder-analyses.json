@@ -1,0 +1,51 @@
+{
+  "title": "Ricerca sull'Alzheimer: leggere criticamente le analisi dei responder",
+  "intro": "Un'analisi dei responder conta quanti partecipanti soddisfano un esito definito, anziché riportare solo un punteggio medio. Può facilitare la discussione, ma responder non significa necessariamente guarigione o miglioramento. Nella ricerca sull'Alzheimer l'esito può essere evitare un determinato peggioramento durante il follow-up. Scoprite sempre cosa è stato contato prima di interpretare un titolo.",
+  "sections": [
+    {
+      "heading": "Partire da definizione, direzione e momento",
+      "paragraphs": [
+        "Chiedete quale misura sia stata usata, come sia stata definita la risposta e quando valutata. Uno studio può contare miglioramento, stabilità o permanenza sotto una soglia di peggioramento: sono esiti diversi. In misure come CDR-SB, punteggi più alti indicano maggiore compromissione, quindi la direzione conta. La soglia richiede una motivazione basata su cambiamenti significativi, non solo un numero comodo. Una definizione scelta in anticipo è generalmente più interpretabile di una selezionata dopo aver visto il confronto più favorevole. Alcune analisi contano le persone che peggiorano: in quel caso meno responder possono favorire il trattamento."
+      ]
+    },
+    {
+      "heading": "Leggere il confronto in termini assoluti",
+      "paragraphs": [
+        "La percentuale di risposta nel solo gruppo trattato non dimostra l'effetto della terapia. Anche nel gruppo di confronto si può soddisfare il criterio per variabilità, cure di base o decorso della malattia. Confrontate gruppi valutati nello stesso periodo con la stessa regola. Chiedete conteggi o tassi riferiti allo stesso numero di persone e differenza assoluta, oltre alle cifre relative. Una percentuale relativa impressionante può descrivere una differenza assoluta modesta e non garantisce la probabilità individuale di beneficio."
+      ]
+    },
+    {
+      "heading": "Separare medie di gruppo e cambiamenti individuali",
+      "paragraphs": [
+        "Una differenza media descrive gruppi, mentre una soglia di risposta classifica osservazioni individuali. Chi è appena sotto e chi appena sopra può vivere esperienze molto simili ma appartenere a categorie opposte. L'analisi nasconde anche quanto sia cambiato ciascuno. Chiedete il quadro complessivo e gli esiti importanti nella vita quotidiana, non solo l'etichetta responder. Un declino medio più lento non significa che tutti siano migliorati, che la malattia si sia fermata o che il ritardo sia uguale per ogni partecipante."
+      ]
+    },
+    {
+      "heading": "Controllare incertezza e risultati mancanti",
+      "paragraphs": [
+        "Considerate numero dei partecipanti, durata del follow-up e incertezza della stima. Risultati di un gruppo piccolo o selezionato possono non essere generalizzabili. Chiedete se ritiri e valutazioni mancanti siano stati gestiti coerentemente, comprese le persone che hanno sospeso per effetti avversi. Escluderle può cambiare l'impressione di beneficio. Molte analisi esplorative possono produrre per caso un risultato incoraggiante. Intervalli di confidenza e coerenza con gli esiti principali aiutano a capire quanto la conclusione sia solida."
+      ]
+    },
+    {
+      "heading": "Riportare il risultato alla decisione concreta",
+      "paragraphs": [
+        "La fonte originale usa la ricerca sui trattamenti dell'Alzheimer come esempio; una spiegazione statistica non raccomanda un medicinale specifico. Discutete se la popolazione studiata somigli alla persona interessata e bilanciate possibile beneficio con rischi, monitoraggio, visite e impegno del caregiver. Autorizzazione locale e idoneità vanno verificate per il trattamento preciso. Chiedete cosa resti ignoto nel lungo periodo. Una buona decisione può riconoscere l'incertezza del beneficio continuando a dare priorità a sintomi, sostegno quotidiano e obiettivi personali."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Numeri inventati: conta il confronto",
+      "text": "Immaginate due gruppi di cento persone. Quaranta trattati e trenta partecipanti di confronto soddisfano la stessa regola di risposta. La differenza assoluta è dieci persone su cento, non quaranta persone aiutate in più. Questi numeri inventati spiegano l'aritmetica e non sono risultati di alcun medicinale."
+    },
+    {
+      "title": "Esempio ipotetico: cosa significa risposta?",
+      "text": "Una famiglia legge che un partecipante è un responder, poi scopre che significava non peggiorare oltre una soglia. Chiede come funzionasse nella vita quotidiana invece di interpretare l'etichetta come memoria recuperata o guarigione."
+    }
+  ],
+  "questions": [
+    "Cosa contava esattamente come risposta, la regola era prestabilita e perché il cambiamento è significativo?",
+    "Quali sono differenza assoluta tra gruppi, incertezza e gestione dei risultati mancanti?",
+    "Come si rapportano possibile beneficio, rischi e impegno terapeutico alla nostra situazione e ai nostri obiettivi?"
+  ]
+}

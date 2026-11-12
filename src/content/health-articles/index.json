@@ -1,0 +1,2793 @@
+[
+  {
+    "id": "abdominal-aortic-aneurysm",
+    "areaIds": [
+      "heart-and-circulation"
+    ],
+    "titles": {
+      "en": "Abdominal Aortic Aneurysm",
+      "ro": "Anevrism aortic abdominal",
+      "sq": "Anevrizma e Aortës Abdominale",
+      "it": "Aneurisma dell'Aorta Addominale",
+      "ru": "Аневризма брюшной аорты"
+    },
+    "sourceUrl": "https://www.informedhealth.org/abdominal-aortic-aneurysm.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru"
+    ]
+  },
+  {
+    "id": "abortion-in-germany",
+    "areaIds": [
+      "womens-health",
+      "pregnancy-and-birth"
+    ],
+    "titles": {
+      "en": "Abortion in Germany: arranging advice, care and follow-up",
+      "ro": "Avortul în Germania: consiliere, îngrijire și urmărire",
+      "sq": "Aborti në Gjermani: këshillimi, kujdesi dhe ndjekja",
+      "it": "Aborto in Germania: consulenza, assistenza e controlli",
+      "ru": "Аборт в Германии: консультации, помощь и наблюдение",
+      "hr": "Pobačaj u Njemačkoj: savjetovanje, skrb i praćenje",
+      "rom": "Abortos ande Germania: sfato, sastipnaski grizha thaj kontrola"
+    },
+    "sourceUrl": "https://www.informedhealth.org/abortion-in-germany.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "acne",
+    "areaIds": [
+      "gland-and-hormone-disorders",
+      "skin-and-hair"
+    ],
+    "titles": {
+      "en": "Acne: caring for your skin and choosing treatment",
+      "ro": "Acneea: îngrijirea pielii și alegerea tratamentului",
+      "sq": "Aknet: kujdesi për lëkurën dhe zgjedhja e trajtimit",
+      "it": "Acne: prendersi cura della pelle e scegliere il trattamento",
+      "ru": "Акне: уход за кожей и выбор лечения",
+      "hr": "Akne: njega kože i izbor liječenja",
+      "rom": "Akne: grizha vash i morkhi thaj o alosarimos e sastjarimasko"
+    },
+    "sourceUrl": "https://www.informedhealth.org/acne.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "acute-bronchitis",
+    "areaIds": [
+      "airway-diseases",
+      "infections-and-immune-system"
+    ],
+    "titles": {
+      "en": "Acute bronchitis: understanding a lingering cough",
+      "ro": "Bronșita acută: cum înțelegi o tuse care persistă",
+      "sq": "Bronkiti akut: të kuptosh një kollë që vazhdon",
+      "it": "Bronchite acuta: comprendere una tosse che persiste",
+      "ru": "Острый бронхит: почему кашель может затянуться",
+      "hr": "Akutni bronhitis: razumjeti dugotrajan kašalj",
+      "rom": "Akutno bronhitis: te haljoves o khasimos savo achol"
+    },
+    "sourceUrl": "https://www.informedhealth.org/acute-bronchitis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "acute-cystitis",
+    "areaIds": [
+      "womens-health",
+      "urinary-disorders-and-kidney-problems",
+      "infections-and-immune-system",
+      "pregnancy-and-birth",
+      "sexual-health-and-contraception"
+    ],
+    "titles": {
+      "en": "Acute cystitis: bladder symptoms and when to seek help",
+      "ro": "Cistita acută: simptome urinare și când să ceri ajutor",
+      "sq": "Cistiti akut: simptomat e fshikëzës dhe kur të kërkosh ndihmë",
+      "it": "Cistite acuta: sintomi della vescica e quando chiedere aiuto",
+      "ru": "Острый цистит: симптомы со стороны мочевого пузыря и обращение за помощью",
+      "hr": "Akutni cistitis: simptomi mjehura i kada tražiti pomoć",
+      "rom": "Akutno cistitis: urinoske vezikake simptomura thaj kana te manges zhutimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/acute-cystitis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "acute-pancreatitis",
+    "areaIds": [
+      "infections-and-immune-system",
+      "digestive-system-disorders"
+    ],
+    "titles": {
+      "en": "Acute pancreatitis: urgent assessment and recovery",
+      "ro": "Pancreatita acută: evaluarea urgentă și recuperarea",
+      "sq": "Pankreatiti akut: vlerësimi urgjent dhe rikuperimi",
+      "it": "Pancreatite acuta: valutazione urgente e recupero",
+      "ru": "Острый панкреатит: срочная оценка и восстановление",
+      "hr": "Akutni pankreatitis: hitna procjena i oporavak",
+      "rom": "Akutno pankreatitis: sigo evaluacia thaj sastjolimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/acute-pancreatitis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "after-the-baby-is-born",
+    "areaIds": [
+      "childrens-health",
+      "pregnancy-and-birth"
+    ],
+    "titles": {
+      "en": "After birth: recovery, support and warning signs",
+      "ro": "După naștere: recuperare, sprijin și semne de alarmă",
+      "sq": "Pas lindjes: rikuperimi, mbështetja dhe shenjat alarmuese",
+      "it": "Dopo il parto: recupero, sostegno e segnali d'allarme",
+      "ru": "После родов: восстановление, поддержка и тревожные признаки",
+      "hr": "Nakon poroda: oporavak, podrška i znakovi upozorenja",
+      "rom": "Pala bijandimos: sastarimos, azhutimos thaj daravne semne"
+    },
+    "sourceUrl": "https://www.informedhealth.org/after-the-baby-is-born.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "age-related-farsightedness-presbyopia",
+    "areaIds": [
+      "eyes-nose-ears"
+    ],
+    "titles": {
+      "en": "Presbyopia: age-related difficulty focusing up close",
+      "ro": "Prezbiopia: dificultatea de a focaliza de aproape odată cu vârsta",
+      "sq": "Presbiopia: vështirësia për të fokusuar afër me kalimin e moshës",
+      "it": "Presbiopia: difficoltà a mettere a fuoco da vicino con l'età",
+      "ru": "Пресбиопия: возрастное затруднение фокусировки вблизи",
+      "hr": "Prezbiopija: dobno slabljenje izoštravanja na blizinu",
+      "rom": "Presbiopiya: vyrshtaki problema te dikhes pasha tute"
+    },
+    "sourceUrl": "https://www.informedhealth.org/age-related-farsightedness-presbyopia.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "age-related-macular-degeneration-amd",
+    "areaIds": [
+      "eyes-nose-ears",
+      "nursing-care"
+    ],
+    "titles": {
+      "en": "Age-related macular degeneration: changes in central vision",
+      "ro": "Degenerescența maculară legată de vârstă: modificarea vederii centrale",
+      "sq": "Degjenerimi makular i lidhur me moshën: ndryshimet e shikimit qendror",
+      "it": "Degenerazione maculare legata all'età: cambiamenti della visione centrale",
+      "ru": "Возрастная макулярная дегенерация: изменения центрального зрения",
+      "hr": "Dobna makularna degeneracija: promjene središnjeg vida",
+      "rom": "Makularno degeneraciya pal i bershengi vrjama: o centralno dikhipen paruvil pes"
+    },
+    "sourceUrl": "https://www.informedhealth.org/age-related-macular-degeneration-amd.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "alcohol",
+    "areaIds": [
+      "mental-health-brain-and-nerves",
+      "addiction",
+      "digestive-system-disorders"
+    ],
+    "titles": {
+      "en": "Alcohol use: recognising harm and getting support safely",
+      "ro": "Consumul de alcool: recunoașterea problemelor și sprijinul în siguranță",
+      "sq": "Përdorimi i alkoolit: dallimi i dëmit dhe kërkimi i sigurt i mbështetjes",
+      "it": "Uso di alcol: riconoscere i danni e chiedere aiuto in sicurezza",
+      "ru": "Употребление алкоголя: распознать вред и безопасно получить помощь",
+      "hr": "Alkohol: prepoznavanje štete i sigurno traženje podrške",
+      "rom": "Alkolos: te prindzhares o nasul efekto thaj te rodes sigur azhutimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/alcohol.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "allergic-contact-dermatitis",
+    "areaIds": [
+      "allergies"
+    ],
+    "titles": {
+      "en": "Allergic contact dermatitis: finding the trigger and protecting skin",
+      "ro": "Dermatita alergică de contact: identificarea cauzei și protejarea pielii",
+      "sq": "Dermatiti alergjik i kontaktit: gjetja e shkaktarit dhe mbrojtja e lëkurës",
+      "it": "Dermatite allergica da contatto: trovare la causa e proteggere la pelle",
+      "ru": "Аллергический контактный дерматит: найти причину и защитить кожу",
+      "hr": "Alergijski kontaktni dermatitis: pronaći okidač i zaštititi kožu",
+      "rom": "Alergikano kontaktosko dermatitis: te arakhes i cauza thaj te protezhisares i morkhi"
+    },
+    "sourceUrl": "https://www.informedhealth.org/allergic-contact-dermatitis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "allergies",
+    "areaIds": [
+      "allergies",
+      "infections-and-immune-system"
+    ],
+    "titles": {
+      "en": "Understanding Allergies: When Your Immune System Overreacts",
+      "ro": "Înțelegerea alergiilor: când sistemul imunitar reacționează excesiv",
+      "sq": "Të Kuptuarit e Alergjive: Kur Sistemi Juaj Imunitar Reagon Tepër",
+      "it": "Comprendere le Allergie: Quando il Sistema Immunitario Reagisce in Modo Eccessivo",
+      "ru": "Понимание аллергии: когда ваша иммунная система чрезмерно реагирует"
+    },
+    "sourceUrl": "https://www.informedhealth.org/allergies.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru"
+    ]
+  },
+  {
+    "id": "allergies-to-animals",
+    "areaIds": [
+      "allergies"
+    ],
+    "titles": {
+      "en": "Animal allergies: recognising exposure and making a practical plan",
+      "ro": "Alergia la animale: recunoașterea expunerii și un plan practic",
+      "sq": "Alergjitë ndaj kafshëve: ekspozimi dhe një plan praktik",
+      "it": "Allergie agli animali: riconoscere l'esposizione e creare un piano pratico",
+      "ru": "Аллергия на животных: распознать контакт и составить практичный план",
+      "hr": "Alergije na životinje: prepoznati izloženost i napraviti plan",
+      "rom": "Zhivuturenge alergiye: te pinzhares o kontakto thaj te keres praktikano plano"
+    },
+    "sourceUrl": "https://www.informedhealth.org/allergies-to-animals.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "alzheimers-disease",
+    "areaIds": [
+      "eyes-nose-ears",
+      "mental-health-brain-and-nerves",
+      "nursing-care"
+    ],
+    "titles": {
+      "en": "Alzheimer’s disease: assessment, daily support and planning ahead",
+      "ro": "Boala Alzheimer: evaluare, sprijin zilnic și planificarea îngrijirii",
+      "sq": "Sëmundja e Alzheimerit: vlerësimi, mbështetja e përditshme dhe planifikimi",
+      "it": "Malattia di Alzheimer: valutazione, sostegno quotidiano e pianificazione",
+      "ru": "Болезнь Альцгеймера: обследование, повседневная поддержка и планирование",
+      "hr": "Alzheimerova bolest: procjena, svakodnevna podrška i planiranje",
+      "rom": "Alzheimereski nasvalipe: evaluaciya, svakodivesesko azhutimos thaj anglal plano"
+    },
+    "sourceUrl": "https://www.informedhealth.org/alzheimers-disease.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "alzheimers-disease-understanding-the-results-of-responder-analyses",
+    "areaIds": [
+      "studies-co"
+    ],
+    "titles": {
+      "en": "Alzheimer's research: reading responder results critically",
+      "ro": "Cercetarea Alzheimer: interpretarea critică a răspunsului la tratament",
+      "sq": "Kërkimi për Alzheimerin: leximi kritik i rezultateve të përgjigjes",
+      "it": "Ricerca sull'Alzheimer: leggere criticamente le analisi dei responder",
+      "ru": "Исследования Альцгеймера: как критически читать анализ ответа",
+      "hr": "Istraživanja Alzheimerove bolesti: kritičko čitanje rezultata odgovora",
+      "rom": "Alzheimeresko rodimos: te drabaren kritikane e responderurenge rezultatura"
+    },
+    "sourceUrl": "https://www.informedhealth.org/alzheimers-disease-understanding-the-results-of-responder-analyses.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "alzheimers-disease-what-is-the-cdr-scale",
+    "areaIds": [
+      "studies-co"
+    ],
+    "titles": {
+      "en": "The CDR scale: understanding a dementia assessment",
+      "ro": "Scala CDR: înțelegerea unei evaluări a demenței",
+      "sq": "Shkalla CDR: kuptimi i vlerësimit të demencës",
+      "it": "La scala CDR: capire una valutazione della demenza",
+      "ru": "Шкала CDR: как понимать оценку деменции",
+      "hr": "Ljestvica CDR: razumijevanje procjene demencije",
+      "rom": "I CDR-skala: te hatyaren jekh demencaki evaluaciya"
+    },
+    "sourceUrl": "https://www.informedhealth.org/alzheimers-disease-what-is-the-cdr-scale.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "ankle-fractures",
+    "areaIds": [
+      "muscle-and-joint-disorders"
+    ],
+    "titles": {
+      "en": "Ankle fractures: treatment choices and recovering safely",
+      "ro": "Fracturile gleznei: alegerea tratamentului și recuperarea în siguranță",
+      "sq": "Frakturat e kyçit të këmbës: trajtimi dhe rikuperimi i sigurt",
+      "it": "Fratture della caviglia: scelta del trattamento e recupero sicuro",
+      "ru": "Переломы голеностопа: выбор лечения и безопасное восстановление",
+      "hr": "Prijelomi gležnja: izbor liječenja i siguran oporavak",
+      "rom": "Gleznake phage kokala: sastjarimaske alosarimata thaj siguripnasko sastjolimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/ankle-fractures.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "ankle-sprains",
+    "areaIds": [
+      "muscle-and-joint-disorders"
+    ],
+    "titles": {
+      "en": "Ankle sprains: assessment, movement and a safe return to activity",
+      "ro": "Entorsa gleznei: evaluare, mișcare și revenirea sigură la activitate",
+      "sq": "Ndrydhja e kyçit të këmbës: vlerësimi, lëvizja dhe kthimi i sigurt në aktivitet",
+      "it": "Distorsione della caviglia: valutazione, movimento e ritorno sicuro all'attività",
+      "ru": "Растяжение голеностопа: обследование, движение и безопасное возвращение к нагрузке",
+      "hr": "Uganuće gležnja: procjena, kretanje i siguran povratak aktivnosti",
+      "rom": "Gleznako uganuimos: evaluacia, mishkimos thaj siguripnasa palpale ko aktivite"
+    },
+    "sourceUrl": "https://www.informedhealth.org/ankle-sprains.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "anticoagulants-how-can-you-prevent-bleeding",
+    "areaIds": [
+      "drugs-and-vaccines",
+      "prevention"
+    ],
+    "titles": {
+      "en": "Anticoagulants: reduce bleeding risk without losing protection",
+      "ro": "Anticoagulantele: reduceți riscul de sângerare păstrând protecția",
+      "sq": "Antikoagulantët: ulni rrezikun e gjakderdhjes duke ruajtur mbrojtjen",
+      "it": "Anticoagulanti: ridurre il sanguinamento mantenendo la protezione",
+      "ru": "Антикоагулянты: снижайте риск кровотечения, сохраняя защиту",
+      "hr": "Antikoagulansi: smanjite rizik krvarenja uz očuvanje zaštite",
+      "rom": "Antikoagulantura: ciknjaren ratesko ikljovimasko risko bi te hasaren protekciya"
+    },
+    "sourceUrl": "https://www.informedhealth.org/anticoagulants-how-can-you-prevent-bleeding.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "appendicitis",
+    "areaIds": [
+      "infections-and-immune-system",
+      "digestive-system-disorders"
+    ],
+    "titles": {
+      "en": "Appendicitis: urgent assessment and treatment decisions",
+      "ro": "Apendicita: evaluarea urgentă și alegerea tratamentului",
+      "sq": "Apendiciti: vlerësimi urgjent dhe vendimet e trajtimit",
+      "it": "Appendicite: valutazione urgente e scelte terapeutiche",
+      "ru": "Аппендицит: срочное обследование и выбор лечения",
+      "hr": "Upala slijepog crijeva: hitna procjena i odluke o liječenju",
+      "rom": "Apendicita: urgentno evaluaciya thaj tretamentoskere deciziye"
+    },
+    "sourceUrl": "https://www.informedhealth.org/appendicitis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "asthma",
+    "areaIds": [
+      "airway-diseases"
+    ],
+    "titles": {
+      "en": "Asthma: a personal plan for everyday symptoms and attacks",
+      "ro": "Astmul: un plan personal pentru simptomele zilnice și crize",
+      "sq": "Astma: një plan personal për simptomat e përditshme dhe krizat",
+      "it": "Asma: un piano personale per sintomi quotidiani e attacchi",
+      "ru": "Астма: личный план на каждый день и при приступах",
+      "hr": "Astma: osobni plan za svakodnevne simptome i napadaje",
+      "rom": "Astma: personalno plano le svakodiveseskere simptomurenge thaj atakurenge"
+    },
+    "sourceUrl": "https://www.informedhealth.org/asthma.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "at-the-doctors",
+    "areaIds": [
+      "health-care-in-germany"
+    ],
+    "titles": {
+      "en": "At the doctor's: prepare, ask and leave with a clear plan",
+      "ro": "La medic: pregătire, întrebări și un plan clar",
+      "sq": "Te mjeku: përgatitja, pyetjet dhe një plan i qartë",
+      "it": "Dal medico: prepararsi, fare domande e chiarire il piano",
+      "ru": "На приеме у врача: подготовка, вопросы и понятный план",
+      "hr": "Kod liječnika: pripremite se, pitajte i otiđite s jasnim planom",
+      "rom": "Ko doktoro: preparinen tumen, phuchen thaj dzhan avri klare planosa"
+    },
+    "sourceUrl": "https://www.informedhealth.org/at-the-doctors.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "at-the-hospital",
+    "areaIds": [
+      "health-care-in-germany"
+    ],
+    "titles": {
+      "en": "At the hospital: understand your care and prepare to go home",
+      "ro": "La spital: înțelegeți îngrijirea și pregătiți întoarcerea acasă",
+      "sq": "Në spital: kuptoni kujdesin dhe përgatitni kthimin në shtëpi",
+      "it": "In ospedale: capire le cure e preparare il ritorno a casa",
+      "ru": "В больнице: понимайте лечение и готовьтесь к возвращению домой",
+      "hr": "U bolnici: razumijte skrb i pripremite povratak kući",
+      "rom": "Ando spitalo: hatyaren tumari grizha thaj preparinen o drom khere"
+    },
+    "sourceUrl": "https://www.informedhealth.org/at-the-hospital.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "athletes-foot",
+    "areaIds": [
+      "skin-and-hair",
+      "infections-and-immune-system"
+    ],
+    "titles": {
+      "en": "Athlete’s foot: treating a fungal infection and reducing recurrence",
+      "ro": "Micoza piciorului: tratarea infecției fungice și reducerea recidivelor",
+      "sq": "Myku i këmbës: trajtimi i infeksionit dhe pakësimi i rikthimit",
+      "it": "Piede d’atleta: trattare l'infezione fungina e ridurre le recidive",
+      "ru": "Грибковая инфекция стоп: лечение и уменьшение повторных эпизодов",
+      "hr": "Atletsko stopalo: liječenje gljivica i smanjenje ponavljanja",
+      "rom": "Punreski fungikani infekcia: sastjarimos thaj xanci palem-avimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/athletes-foot.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "atrial-fibrillation",
+    "areaIds": [
+      "heart-and-circulation"
+    ],
+    "titles": {
+      "en": "Atrial fibrillation: symptoms, stroke prevention and treatment choices",
+      "ro": "Fibrilația atrială: simptome, prevenirea AVC și alegeri terapeutice",
+      "sq": "Fibrilacioni atrial: simptomat, parandalimi i goditjes në tru dhe trajtimi",
+      "it": "Fibrillazione atriale: sintomi, prevenzione dell'ictus e scelte terapeutiche",
+      "ru": "Фибрилляция предсердий: симптомы, профилактика инсульта и выбор лечения",
+      "hr": "Fibrilacija atrija: simptomi, prevencija moždanog udara i liječenje",
+      "rom": "Atriyalno fibrilaciya: simptomura, insultoski prevenciya thaj tretamentosko alosarimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/atrial-fibrillation.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "atrial-flutter",
+    "areaIds": [
+      "heart-and-circulation"
+    ],
+    "titles": {
+      "en": "Atrial flutter: understand the rhythm and plan treatment",
+      "ro": "Flutterul atrial: înțelegeți ritmul și planificați tratamentul",
+      "sq": "Flutteri atrial: kuptoni ritmin dhe planifikoni trajtimin",
+      "it": "Flutter atriale: capire il ritmo e pianificare il trattamento",
+      "ru": "Трепетание предсердий: понимание ритма и план лечения",
+      "hr": "Undulacija atrija: razumijevanje ritma i plan liječenja",
+      "rom": "Atriyalno flutter: te hatyaren o ritmo thaj te planinen o tretamento"
+    },
+    "sourceUrl": "https://www.informedhealth.org/atrial-flutter.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "attention-deficit-hyperactivity-disorder-adhd",
+    "areaIds": [
+      "childrens-health",
+      "mental-health-brain-and-nerves"
+    ],
+    "titles": {
+      "en": "ADHD: assessment and practical support across daily life",
+      "ro": "ADHD: evaluare și sprijin practic în viața zilnică",
+      "sq": "ADHD: vlerësimi dhe mbështetja praktike në jetën e përditshme",
+      "it": "ADHD: valutazione e sostegno pratico nella vita quotidiana",
+      "ru": "СДВГ: обследование и практическая поддержка в повседневной жизни",
+      "hr": "ADHD: procjena i praktična podrška u svakodnevici",
+      "rom": "ADHD: evaluacia thaj praktikano suporto and-o divesesko trajo"
+    },
+    "sourceUrl": "https://www.informedhealth.org/attention-deficit-hyperactivity-disorder-adhd.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "autism",
+    "areaIds": [
+      "mental-health-brain-and-nerves"
+    ],
+    "titles": {
+      "en": "Autism: understanding needs and finding useful support",
+      "ro": "Autismul: înțelegerea nevoilor și găsirea sprijinului util",
+      "sq": "Autizmi: kuptimi i nevojave dhe mbështetja e dobishme",
+      "it": "Autismo: capire i bisogni e trovare sostegni utili",
+      "ru": "Аутизм: понимание потребностей и полезная поддержка",
+      "hr": "Autizam: razumjeti potrebe i pronaći korisnu podršku",
+      "rom": "Autizmo: te haljoves e nevoje thaj te arakhes azhutimo suporto"
+    },
+    "sourceUrl": "https://www.informedhealth.org/autism.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "av-block-heart-block",
+    "areaIds": [
+      "heart-and-circulation"
+    ],
+    "titles": {
+      "en": "AV block: what an electrical conduction problem means",
+      "ro": "Blocul AV: ce înseamnă o problemă de conducere electrică",
+      "sq": "Blloku AV: kuptimi i një problemi të përçimit elektrik",
+      "it": "Blocco AV: capire un problema della conduzione elettrica",
+      "ru": "АВ-блокада: что означает нарушение электрической проводимости",
+      "hr": "AV blok: što znači problem električne provodljivosti",
+      "rom": "AV bloko: so phenel elektrikane signalurengo phirimas ki problema"
+    },
+    "sourceUrl": "https://www.informedhealth.org/av-block-heart-block.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "babys-first-weeks-newborn-check-ups",
+    "areaIds": [
+      "childrens-health",
+      "pregnancy-and-birth"
+    ],
+    "titles": {
+      "en": "A baby's first weeks: check-ups, screening and when to seek help",
+      "ro": "Primele săptămâni ale bebelușului: controale, screening și ajutor medical",
+      "sq": "Javët e para të foshnjës: kontrollet, depistimi dhe ndihma urgjente",
+      "it": "Le prime settimane del neonato: controlli, screening e quando chiedere aiuto",
+      "ru": "Первые недели малыша: осмотры, скрининг и срочная помощь",
+      "hr": "Prvi tjedni bebe: pregledi, probir i kada tražiti pomoć",
+      "rom": "E bebeshko anglutne kurke: kontrole, screening thaj kana te roden azhutimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/babys-first-weeks-newborn-check-ups.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "bacterial-vaginosis",
+    "areaIds": [
+      "womens-health",
+      "infections-and-immune-system",
+      "pregnancy-and-birth",
+      "sexual-health-and-contraception"
+    ],
+    "titles": {
+      "en": "Bacterial vaginosis: understanding discharge and getting the right assessment",
+      "ro": "Vaginoza bacteriană: înțelegerea secrețiilor și evaluarea potrivită",
+      "sq": "Vaginoza bakteriale: kuptimi i sekrecioneve dhe vlerësimi i duhur",
+      "it": "Vaginosi batterica: comprendere le perdite e ottenere la valutazione giusta",
+      "ru": "Бактериальный вагиноз: выделения и правильное обследование",
+      "hr": "Bakterijska vaginoza: iscjedak i odgovarajuća procjena",
+      "rom": "Bakterialno vaginoza: vaginalno sekreciya thaj korektno evaluaciya"
+    },
+    "sourceUrl": "https://www.informedhealth.org/bacterial-vaginosis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "bakers-cysts",
+    "areaIds": [
+      "muscle-and-joint-disorders"
+    ],
+    "titles": {
+      "en": "Baker's cysts: swelling behind the knee and practical treatment choices",
+      "ro": "Chisturile Baker: umflătura din spatele genunchiului și tratamentul",
+      "sq": "Kistet e Bakerit: ënjtja prapa gjurit dhe zgjedhjet e trajtimit",
+      "it": "Cisti di Baker: gonfiore dietro il ginocchio e scelte di trattamento",
+      "ru": "Киста Бейкера: припухлость под коленом и выбор лечения",
+      "hr": "Bakerova cista: oteklina iza koljena i izbor liječenja",
+      "rom": "E Bakereskere kistura: umflatura palal o chang thaj tretamentosko alosarimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/bakers-cysts.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "balanitis-inflammation-of-the-head-of-the-penis",
+    "areaIds": [
+      "mens-health",
+      "sexual-health-and-contraception"
+    ],
+    "titles": {
+      "en": "Balanitis: soreness of the penis head and getting the cause checked",
+      "ro": "Balanita: durerea glandului și verificarea cauzei",
+      "sq": "Balaniti: dhimbja e kokës së penisit dhe kontrolli i shkakut",
+      "it": "Balanite: dolore al glande e verifica della causa",
+      "ru": "Баланит: болезненность головки полового члена и поиск причины",
+      "hr": "Balanitis: bolnost glavića penisa i provjera uzroka",
+      "rom": "Balanita: dukhalo penisosko shero thaj o motivoski kontrola"
+    },
+    "sourceUrl": "https://www.informedhealth.org/balanitis-inflammation-of-the-head-of-the-penis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "bedbugs",
+    "areaIds": [
+      "allergies",
+      "skin-and-hair",
+      "infections-and-immune-system"
+    ],
+    "titles": {
+      "en": "Bedbugs: care for bites and stop the infestation",
+      "ro": "Ploșnițele de pat: îngrijirea mușcăturilor și eliminarea infestării",
+      "sq": "Çimkat e shtratit: kujdesi për pickimet dhe eliminimi i insekteve",
+      "it": "Cimici dei letti: curare le punture ed eliminare l'infestazione",
+      "ru": "Постельные клопы: помощь при укусах и устранение насекомых",
+      "hr": "Stjenice: njega ugriza i uklanjanje zaraze",
+      "rom": "E patoske ploshnice: grizha le dandaske thaj te ikalen e insektura"
+    },
+    "sourceUrl": "https://www.informedhealth.org/bedbugs.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "bedwetting",
+    "areaIds": [
+      "urinary-disorders-and-kidney-problems",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Bedwetting in children: supportive routines and treatment options",
+      "ro": "Udatul patului la copii: rutine de sprijin și tratament",
+      "sq": "Urinimi në shtrat te fëmijët: rutina mbështetëse dhe trajtimi",
+      "it": "Enuresi notturna nei bambini: routine di sostegno e cure",
+      "ru": "Ночное недержание у детей: поддержка, привычки и лечение",
+      "hr": "Noćno mokrenje u djece: podržavajuće navike i liječenje",
+      "rom": "Ratyasko urinimos ando pato ke chavore: azhutimaskere praktikura thaj tretamento"
+    },
+    "sourceUrl": "https://www.informedhealth.org/bedwetting.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "before-surgery-getting-information-and-making-a-decision",
+    "areaIds": [
+      "second-opinions-before-surgery"
+    ],
+    "titles": {
+      "en": "Before surgery: understand the decision and make a workable plan",
+      "ro": "Înaintea operației: înțelegeți decizia și faceți un plan realizabil",
+      "sq": "Para operacionit: kuptoni vendimin dhe bëni plan të realizueshëm",
+      "it": "Prima dell'intervento: capire la scelta e organizzare un piano praticabile",
+      "ru": "Перед операцией: понять решение и составить выполнимый план",
+      "hr": "Prije operacije: razumijte odluku i napravite izvediv plan",
+      "rom": "Anglal operaciya: hatyaren i deciziya thaj keren jekh shaj plano"
+    },
+    "sourceUrl": "https://www.informedhealth.org/before-surgery-getting-information-and-making-a-decision.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "benign-enlarged-prostate",
+    "areaIds": [
+      "urinary-disorders-and-kidney-problems",
+      "mens-health",
+      "sexual-health-and-contraception"
+    ],
+    "titles": {
+      "en": "Benign prostate enlargement: urinary symptoms and treatment choices",
+      "ro": "Mărirea benignă a prostatei: simptome urinare și alegerea tratamentului",
+      "sq": "Zmadhimi beninj i prostatës: simptomat urinare dhe zgjedhjet e trajtimit",
+      "it": "Ingrossamento benigno della prostata: sintomi urinari e scelte terapeutiche",
+      "ru": "Доброкачественное увеличение простаты: мочевые симптомы и выбор лечения",
+      "hr": "Dobroćudno povećanje prostate: mokraćne smetnje i izbor liječenja",
+      "rom": "Benigno prostatako bararimos: urinarne simptomura thaj tretamentosko alosarimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/benign-enlarged-prostate.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "benign-paroxysmal-positional-vertigo",
+    "areaIds": [
+      "eyes-nose-ears"
+    ],
+    "titles": {
+      "en": "Positional vertigo: assessment, treatment and staying safe",
+      "ro": "Vertijul pozițional: evaluare, tratament și siguranță",
+      "sq": "Vertigoja pozicionale: vlerësimi, trajtimi dhe siguria",
+      "it": "Vertigine posizionale: valutazione, trattamento e sicurezza",
+      "ru": "Позиционное головокружение: обследование, лечение и безопасность",
+      "hr": "Pozicijska vrtoglavica: procjena, liječenje i sigurnost",
+      "rom": "Pozicionalno vertigo: evaluaciya, tretamento thaj siguranca"
+    },
+    "sourceUrl": "https://www.informedhealth.org/benign-paroxysmal-positional-vertigo.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "biologics-and-biosimilars",
+    "areaIds": [
+      "drugs-and-vaccines"
+    ],
+    "titles": {
+      "en": "Biologics and biosimilars: understanding your medicine and a possible switch",
+      "ro": "Biologice și biosimilare: medicamentul și o posibilă schimbare",
+      "sq": "Biologjikët dhe biosimilarët: kuptoni barin dhe ndryshimin e mundshëm",
+      "it": "Biologici e biosimilari: capire il farmaco e un possibile cambio",
+      "ru": "Биологические препараты и биоаналоги: лекарство и возможная замена",
+      "hr": "Biološki lijekovi i bioslični lijekovi: razumijevanje terapije i zamjene",
+      "rom": "Biologikane medikamentura thaj biosimilarura: tumari terapiya thaj shaj paruvimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/biologics-and-biosimilars.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "birth",
+    "areaIds": [
+      "pregnancy-and-birth"
+    ],
+    "titles": {
+      "en": "Birth: preparing for labour, choices and changes of plan",
+      "ro": "Nașterea: pregătirea pentru travaliu, alegeri și schimbări de plan",
+      "sq": "Lindja: përgatitja, zgjedhjet dhe ndryshimi i planit",
+      "it": "Parto: prepararsi al travaglio, scegliere e cambiare piano",
+      "ru": "Роды: подготовка, выбор и изменение плана",
+      "hr": "Porod: priprema za trudove, izbori i promjene plana",
+      "rom": "Bijandimos: preparimos le travalyoske, alosarimata thaj planoske paruvimata"
+    },
+    "sourceUrl": "https://www.informedhealth.org/birth.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "bladder-training",
+    "areaIds": [
+      "kidneys-bladder-and-urinary-tract",
+      "physical-therapy-and-daily-living-aids"
+    ],
+    "titles": {
+      "en": "Bladder training: a supported plan for urgency and frequent urination",
+      "ro": "Antrenamentul vezicii: plan asistat pentru urgență și urinări dese",
+      "sq": "Stërvitja e fshikëzës: plan i mbështetur për urgjencë dhe urinim të shpeshtë",
+      "it": "Rieducazione vescicale: un piano assistito per urgenza e frequenza",
+      "ru": "Тренировка мочевого пузыря: план при срочных позывах и частом мочеиспускании",
+      "hr": "Trening mjehura: podržan plan za hitnost i često mokrenje",
+      "rom": "Vezikako treningo: azhutime plano le urgentne mangenge thaj butivar urinimaske"
+    },
+    "sourceUrl": "https://www.informedhealth.org/bladder-training.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "blood-test-for-down-edwards-and-patau-syndrome-nipt",
+    "areaIds": [
+      "pregnancy-and-birth"
+    ],
+    "titles": {
+      "en": "NIPT for Down, Edwards and Patau syndromes: screening and next steps",
+      "ro": "NIPT pentru sindroamele Down, Edwards și Patau: screening și pașii următori",
+      "sq": "NIPT për sindromat Down, Edwards dhe Patau: depistimi dhe hapat e tjerë",
+      "it": "NIPT per sindromi di Down, Edwards e Patau: screening e passi successivi",
+      "ru": "НИПТ для синдромов Дауна, Эдвардса и Патау: скрининг и дальнейшие шаги",
+      "hr": "NIPT za Downov, Edwardsov i Patauov sindrom: probir i sljedeći koraci",
+      "rom": "NIPT le Down, Edwards thaj Patau sindromurenge: screening thaj avune etape"
+    },
+    "sourceUrl": "https://www.informedhealth.org/blood-test-for-down-edwards-and-patau-syndrome-nipt.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "boils-and-carbuncles",
+    "areaIds": [
+      "skin-and-hair"
+    ],
+    "titles": {
+      "en": "Boils and carbuncles: safe skin care and when drainage is needed",
+      "ro": "Furuncule și carbuncule: îngrijirea sigură și drenajul",
+      "sq": "Çibanët dhe karbunkulat: kujdesi i sigurt dhe drenimi",
+      "it": "Foruncoli e favi: cura sicura della pelle e drenaggio",
+      "ru": "Фурункулы и карбункулы: безопасный уход и дренирование",
+      "hr": "Čirevi i karbunkuli: sigurna njega kože i drenaža",
+      "rom": "Furunkulura thaj karbunkulura: sigur morkhaki grizha thaj drenazho"
+    },
+    "sourceUrl": "https://www.informedhealth.org/boils-and-carbuncles.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "brachytherapy",
+    "areaIds": [
+      "non-drug-treatments"
+    ],
+    "titles": {
+      "en": "Brachytherapy: understand internal radiation and your treatment plan",
+      "ro": "Brahiterapia: radiația internă și planul de tratament",
+      "sq": "Brakiterapia: rrezatimi i brendshëm dhe plani i kujdesit",
+      "it": "Brachiterapia: radiazioni interne e piano terapeutico",
+      "ru": "Брахитерапия: внутреннее облучение и план лечения",
+      "hr": "Brahiterapija: unutarnje zračenje i plan liječenja",
+      "rom": "Brahiterapiya: andruno radiaciya thaj tumaro tretamentosko plano"
+    },
+    "sourceUrl": "https://www.informedhealth.org/brachytherapy.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "brain-aneurysm",
+    "areaIds": [
+      "heart-and-circulation",
+      "mental-health-brain-and-nerves"
+    ],
+    "titles": {
+      "en": "Brain aneurysm: monitoring, treatment choices and emergency warning signs",
+      "ro": "Anevrismul cerebral: monitorizare, tratament și semne de urgență",
+      "sq": "Aneurizma cerebrale: ndjekja, trajtimi dhe shenjat emergjente",
+      "it": "Aneurisma cerebrale: controlli, scelte terapeutiche e allarmi",
+      "ru": "Аневризма мозга: наблюдение, лечение и экстренные признаки",
+      "hr": "Moždana aneurizma: praćenje, liječenje i hitni znakovi",
+      "rom": "Godyako anevrismo: monitorizimos, tretamentosko alosarimos thaj emergenciyake semne"
+    },
+    "sourceUrl": "https://www.informedhealth.org/brain-aneurysm.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "breast-cancer",
+    "areaIds": [
+      "womens-health",
+      "cancer",
+      "screening"
+    ],
+    "titles": {
+      "en": "Breast cancer: diagnosis, treatment choices and support throughout care",
+      "ro": "Cancerul de sân: diagnostic, alegeri și sprijin în îngrijire",
+      "sq": "Kanceri i gjirit: diagnoza, zgjedhjet dhe mbështetja",
+      "it": "Tumore al seno: diagnosi, scelte e sostegno nelle cure",
+      "ru": "Рак молочной железы: диагноз, выбор лечения и поддержка",
+      "hr": "Rak dojke: dijagnoza, izbor liječenja i podrška",
+      "rom": "Chuchako kancero: diagnoza, tretamentosko alosarimos thaj azhutimos ande grizha"
+    },
+    "sourceUrl": "https://www.informedhealth.org/breast-cancer.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "breast-cancer-treating-lymphedema",
+    "areaIds": [
+      "womens-health",
+      "cancer",
+      "screening"
+    ],
+    "titles": {
+      "en": "Lymphoedema after breast cancer: swelling, treatment and daily care",
+      "ro": "Limfedemul după cancerul de sân: umflare, tratament și îngrijire",
+      "sq": "Limfedema pas kancerit të gjirit: ënjtja, trajtimi dhe kujdesi",
+      "it": "Linfedema dopo tumore al seno: gonfiore, cura e quotidianità",
+      "ru": "Лимфедема после рака груди: отек, лечение и уход",
+      "hr": "Limfedem nakon raka dojke: oteklina, liječenje i njega",
+      "rom": "Limfedemo pala chuchako kancero: umflatura, tretamento thaj svakodiveseski grizha"
+    },
+    "sourceUrl": "https://www.informedhealth.org/breast-cancer-treating-lymphedema.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "bruised-knee",
+    "areaIds": [
+      "childrens-health",
+      "muscle-and-joint-disorders"
+    ],
+    "titles": {
+      "en": "Bruised knee: safe early care and deciding when to get checked",
+      "ro": "Contuzia genunchiului: îngrijire inițială și când trebuie evaluată",
+      "sq": "Gjuri i mavijosur: kujdesi fillestar dhe vlerësimi",
+      "it": "Contusione al ginocchio: prime cure e quando farsi visitare",
+      "ru": "Ушиб колена: ранний уход и основания для осмотра",
+      "hr": "Nagnječeno koljeno: rana njega i kada na pregled",
+      "rom": "Changeski kontuziya: sigur anglutni grizha thaj kana te keren kontrola"
+    },
+    "sourceUrl": "https://www.informedhealth.org/bruised-knee.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "bunions",
+    "areaIds": [
+      "muscle-and-joint-disorders"
+    ],
+    "titles": {
+      "en": "Bunions: reducing pressure, choosing treatment and planning recovery",
+      "ro": "Monturile: reducerea presiunii, tratamentul și recuperarea",
+      "sq": "Bunionet: ulja e presionit, trajtimi dhe rikuperimi",
+      "it": "Alluce valgo: ridurre la pressione, scegliere e recuperare",
+      "ru": "Косточка у большого пальца: давление, лечение и восстановление",
+      "hr": "Čukljevi: smanjenje pritiska, izbor liječenja i oporavak",
+      "rom": "Bunionura: ciknjarimos le presiyosko, tretamentosko alosarimos thaj sastarimos"
+    },
+    "sourceUrl": "https://www.informedhealth.org/bunions.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "bursitis",
+    "areaIds": [
+      "muscle-and-joint-disorders"
+    ],
+    "titles": {
+      "en": "Bursitis: reducing irritation and recognising possible infection",
+      "ro": "Bursita: reducerea iritației și recunoașterea infecției",
+      "sq": "Bursiti: ulja e irritimit dhe njohja e infeksionit",
+      "it": "Borsite: ridurre l'irritazione e riconoscere l'infezione",
+      "ru": "Бурсит: уменьшение раздражения и признаки инфекции",
+      "hr": "Burzitis: smanjenje nadraženosti i prepoznavanje infekcije",
+      "rom": "Bursita: te ciknjaren iritaciya thaj te prindzharen posibilno infekciya"
+    },
+    "sourceUrl": "https://www.informedhealth.org/bursitis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "calcium-calculator",
+    "areaIds": [
+      "bones-muscles-and-joints"
+    ],
+    "titles": {
+      "en": "Calcium intake estimates: read food labels and use the result sensibly",
+      "ro": "Estimarea calciului: etichete și folosirea prudentă a rezultatului",
+      "sq": "Vlerësimi i kalciumit: etiketat dhe përdorimi i arsyeshëm",
+      "it": "Stimare il calcio: leggere le etichette e usare il risultato",
+      "ru": "Оценка кальция: этикетки и разумное использование результата",
+      "hr": "Procjena kalcija: etikete i razumna uporaba rezultata",
+      "rom": "Kalciyosko xamasko estimimos: drabaren e etikete thaj len o rezultato sensiblone"
+    },
+    "sourceUrl": "https://www.informedhealth.org/calcium-calculator.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "can-measurements-show-if-a-treatment-works",
+    "areaIds": [
+      "studies-co"
+    ],
+    "titles": {
+      "en": "Do better test results mean a treatment is helping?",
+      "ro": "Rezultatele mai bune ale testelor înseamnă că tratamentul ajută?",
+      "sq": "Rezultate më të mira analizash do të thonë trajtim i dobishëm?",
+      "it": "Esami migliori significano che la cura aiuta?",
+      "ru": "Улучшение анализов означает пользу лечения?",
+      "hr": "Znače li bolji nalazi da liječenje pomaže?",
+      "rom": "Maj lashe testurenge rezultatura phenen ke o tretamento azhutil?"
+    },
+    "sourceUrl": "https://www.informedhealth.org/can-measurements-show-if-a-treatment-works.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "can-mothers-reduce-their-childs-risk-of-getting-eczema-by-avoiding-certain-foods-during-pregnancy-and-while-breastfeeding",
+    "areaIds": [
+      "skin-and-hair",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Avoiding foods in pregnancy or breastfeeding: does it prevent a baby's eczema?",
+      "ro": "Evitarea alimentelor în sarcină sau alăptare previne eczema copilului?",
+      "sq": "Shmangia e ushqimeve në shtatzëni ose gjidhënie parandalon ekzemën?",
+      "it": "Evitare cibi in gravidanza o allattamento previene l'eczema?",
+      "ru": "Исключение пищи при беременности или кормлении предотвращает экзему?",
+      "hr": "Sprječava li izbjegavanje hrane u trudnoći ili dojenju ekcem?",
+      "rom": "Te na xan nesave xabena ande khamnipe vaj kana den thud ashavel le bebeshki ekzema?"
+    },
+    "sourceUrl": "https://www.informedhealth.org/can-mothers-reduce-their-childs-risk-of-getting-eczema-by-avoiding-certain-foods-during-pregnancy-and-while-breastfeeding.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "can-noise-damage-your-hearing",
+    "areaIds": [
+      "eyes-nose-ears"
+    ],
+    "titles": {
+      "en": "Can noise damage your hearing?",
+      "ro": "Poate zgomotul să afecteze auzul?",
+      "sq": "A mund ta dëmtojë zhurma dëgjimin?",
+      "it": "Il rumore può danneggiare l'udito?",
+      "ru": "Может ли шум повредить слух?",
+      "hr": "Može li buka oštetiti sluh?",
+      "rom": "Šaj o baro šum oštećinel o šunipe?"
+    },
+    "sourceUrl": "https://www.informedhealth.org/can-noise-damage-your-hearing.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cancer-what-do-the-codes-in-the-doctors-letter-mean",
+    "areaIds": [
+      "health-care-in-germany"
+    ],
+    "titles": {
+      "en": "Understanding cancer codes in a medical letter",
+      "ro": "Cum înțelegeți codurile oncologice dintr-o scrisoare medicală",
+      "sq": "Kuptimi i kodeve të kancerit në raportin mjekësor",
+      "it": "Capire i codici oncologici nella lettera medica",
+      "ru": "Как понимать онкологические коды в медицинском заключении",
+      "hr": "Razumijevanje onkoloških oznaka u liječničkom nalazu",
+      "rom": "Te haljaren e kanceroske kodura ande medicinsko lil"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cancer-what-do-the-codes-in-the-doctors-letter-mean.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "canker-sores-mouth-ulcers",
+    "areaIds": [
+      "teeth-and-gums",
+      "digestive-system-disorders"
+    ],
+    "titles": {
+      "en": "Canker sores: caring for mouth ulcers and knowing when to seek help",
+      "ro": "Aftele bucale: îngrijire și semne care necesită consult",
+      "sq": "Aftet e gojës: kujdesi dhe koha për të kërkuar ndihmë",
+      "it": "Afte della bocca: cura e segnali da controllare",
+      "ru": "Афты во рту: уход и поводы обратиться за помощью",
+      "hr": "Afte u ustima: njega i znakovi za pregled",
+      "rom": "Afte ande muj: nega thaj kana te roden pomoć"
+    },
+    "sourceUrl": "https://www.informedhealth.org/canker-sores-mouth-ulcers.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cardiopulmonary-resuscitation-cpr-what-you-need-to-know",
+    "areaIds": [
+      "non-drug-treatments"
+    ],
+    "titles": {
+      "en": "CPR for an adult: recognising cardiac arrest and getting help",
+      "ro": "Resuscitarea unui adult: recunoașterea stopului cardiac și solicitarea ajutorului",
+      "sq": "Reanimimi i të rriturit: njohja e arrestit kardiak dhe kërkimi i ndihmës",
+      "it": "Rianimazione di un adulto: riconoscere l'arresto cardiaco e chiedere aiuto",
+      "ru": "СЛР взрослому: распознавание остановки сердца и вызов помощи",
+      "hr": "Oživljavanje odrasle osobe: prepoznavanje srčanog zastoja i poziv pomoći",
+      "rom": "CPR vaš baro manuš: te prinžaren srčano zastoj thaj te roden pomoć"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cardiopulmonary-resuscitation-cpr-what-you-need-to-know.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "carpal-tunnel-syndrome",
+    "areaIds": [
+      "muscle-and-joint-disorders"
+    ],
+    "titles": {
+      "en": "Carpal tunnel syndrome: symptoms, assessment and treatment choices",
+      "ro": "Sindromul de tunel carpian: simptome, evaluare și opțiuni de tratament",
+      "sq": "Sindroma e tunelit karpal: simptomat, vlerësimi dhe trajtimi",
+      "it": "Sindrome del tunnel carpale: sintomi, valutazione e opzioni di cura",
+      "ru": "Синдром запястного канала: симптомы, обследование и выбор лечения",
+      "hr": "Sindrom karpalnog kanala: simptomi, procjena i izbor liječenja",
+      "rom": "Karpalno tunelosko sindromo: simptomura, procena thaj lečimasko izbor"
+    },
+    "sourceUrl": "https://www.informedhealth.org/carpal-tunnel-syndrome.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cataract-surgery",
+    "areaIds": [
+      "eyes-nose-ears",
+      "nursing-care"
+    ],
+    "titles": {
+      "en": "Cataract surgery: preparation, lens choices and recovery",
+      "ro": "Operația de cataractă: pregătire, lentile și recuperare",
+      "sq": "Operacioni i kataraktit: përgatitja, thjerrëzat dhe rikuperimi",
+      "it": "Chirurgia della cataratta: preparazione, lenti e recupero",
+      "ru": "Операция при катаракте: подготовка, выбор линзы и восстановление",
+      "hr": "Operacija katarakte: priprema, izbor leće i oporavak",
+      "rom": "Kataraktaki operaciya: priprema, lećako izbor thaj oporavko"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cataract-surgery.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cataracts",
+    "areaIds": [
+      "eyes-nose-ears",
+      "nursing-care"
+    ],
+    "titles": {
+      "en": "Cataracts in adults: blurred vision and deciding about treatment",
+      "ro": "Cataracta la adulți: vedere încețoșată și alegerea tratamentului",
+      "sq": "Katarakti te të rriturit: shikimi i turbullt dhe vendimi për trajtim",
+      "it": "Cataratta nell'adulto: vista annebbiata e scelta del trattamento",
+      "ru": "Катаракта у взрослых: затуманенное зрение и выбор лечения",
+      "hr": "Katarakta u odraslih: zamućen vid i odluka o liječenju",
+      "rom": "Katarakta ande bare manuša: zamutime dićhipe thaj lečimaski odluka"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cataracts.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "causes-and-signs-of-edema",
+    "areaIds": [
+      "blood-and-immune-system"
+    ],
+    "titles": {
+      "en": "Edema: why fluid causes swelling and when to get help",
+      "ro": "Edemul: de ce se acumulează lichid și când cereți ajutor",
+      "sq": "Edema: pse mblidhet lëng dhe kur të kërkoni ndihmë",
+      "it": "Edema: perché si accumula liquido e quando chiedere aiuto",
+      "ru": "Отёк: почему накапливается жидкость и когда нужна помощь",
+      "hr": "Edem: zašto se nakuplja tekućina i kada tražiti pomoć",
+      "rom": "Edemo: sostar kidel pes likvido thaj kana te roden pomoć"
+    },
+    "sourceUrl": "https://www.informedhealth.org/causes-and-signs-of-edema.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "celiac-disease",
+    "areaIds": [
+      "infections-and-immune-system",
+      "digestive-system-disorders"
+    ],
+    "titles": {
+      "en": "Celiac disease: testing, a gluten-free diet and everyday care",
+      "ro": "Boala celiacă: diagnostic, dietă fără gluten și îngrijire zilnică",
+      "sq": "Sëmundja celiake: testimi, dieta pa gluten dhe kujdesi i përditshëm",
+      "it": "Celiachia: diagnosi, dieta senza glutine e cura quotidiana",
+      "ru": "Целиакия: диагностика, безглютеновая диета и повседневный уход",
+      "hr": "Celijakija: dijagnoza, bezglutenska prehrana i svakodnevna skrb",
+      "rom": "Celiyakija: testura, bi-glutenoski dieta thaj svakodnevno nega"
+    },
+    "sourceUrl": "https://www.informedhealth.org/celiac-disease.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cervical-cancer",
+    "areaIds": [
+      "womens-health",
+      "cancer",
+      "screening"
+    ],
+    "titles": {
+      "en": "Cervical cancer: symptoms, diagnosis, treatment and prevention",
+      "ro": "Cancerul de col uterin: simptome, diagnostic, tratament și prevenție",
+      "sq": "Kanceri i qafës së mitrës: simptomat, diagnoza, trajtimi dhe parandalimi",
+      "it": "Tumore del collo dell'utero: sintomi, diagnosi, cure e prevenzione",
+      "ru": "Рак шейки матки: симптомы, диагностика, лечение и профилактика",
+      "hr": "Rak vrata maternice: simptomi, dijagnoza, liječenje i prevencija",
+      "rom": "Cerviksosko kancero: simptomura, dijagnoza, lečipe thaj prevenciya"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cervical-cancer.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cervical-cancer-how-are-precancerous-cells-treated",
+    "areaIds": [
+      "womens-health",
+      "cancer",
+      "screening"
+    ],
+    "titles": {
+      "en": "Precancerous cervical cells: monitoring, treatment and follow-up",
+      "ro": "Celule precanceroase ale colului: supraveghere, tratament și controale",
+      "sq": "Qelizat parakanceroze të qafës së mitrës: monitorimi dhe trajtimi",
+      "it": "Cellule cervicali precancerose: sorveglianza, trattamento e controlli",
+      "ru": "Предраковые клетки шейки матки: наблюдение, лечение и контроль",
+      "hr": "Predrakave stanice vrata maternice: praćenje, liječenje i kontrole",
+      "rom": "Predrakave cerviksoske čeliye: praćenje, lečipe thaj kontrole"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cervical-cancer-how-are-precancerous-cells-treated.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "chickenpox",
+    "areaIds": [
+      "infections-and-immune-system",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Chickenpox: caring for symptoms and protecting people at higher risk",
+      "ro": "Varicela: îngrijirea simptomelor și protejarea persoanelor cu risc",
+      "sq": "Lija e dhenve: kujdesi dhe mbrojtja e personave me rrezik",
+      "it": "Varicella: alleviare i sintomi e proteggere chi è a rischio",
+      "ru": "Ветряная оспа: облегчение симптомов и защита людей с высоким риском",
+      "hr": "Vodene kozice: njega simptoma i zaštita rizičnih osoba",
+      "rom": "Varicela: simptomurengi nega thaj zaštita vaš rizične manuša"
+    },
+    "sourceUrl": "https://www.informedhealth.org/chickenpox.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "children-and-sun-practical-information-for-parents",
+    "areaIds": [
+      "prevention"
+    ],
+    "titles": {
+      "en": "Children in the sun: a practical protection plan for families",
+      "ro": "Copiii la soare: un plan practic de protecție pentru familie",
+      "sq": "Fëmijët në diell: plan praktik mbrojtjeje për familjen",
+      "it": "Bambini al sole: un piano pratico per la famiglia",
+      "ru": "Дети на солнце: практический план защиты для семьи",
+      "hr": "Djeca na suncu: praktičan obiteljski plan zaštite",
+      "rom": "Čhavore ande kham: praktično familijako zaštitako plano"
+    },
+    "sourceUrl": "https://www.informedhealth.org/children-and-sun-practical-information-for-parents.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "chlamydia",
+    "areaIds": [
+      "womens-health",
+      "infections-and-immune-system",
+      "mens-health",
+      "pregnancy-and-birth",
+      "sexual-health-and-contraception"
+    ],
+    "titles": {
+      "en": "Chlamydia: testing, treatment and preventing reinfection",
+      "ro": "Chlamydia: testare, tratament și prevenirea reinfectării",
+      "sq": "Klamidia: testimi, trajtimi dhe parandalimi i riinfektimit",
+      "it": "Clamidia: esami, cura e prevenzione della reinfezione",
+      "ru": "Хламидиоз: тестирование, лечение и профилактика повторного заражения",
+      "hr": "Klamidija: testiranje, liječenje i sprečavanje ponovne infekcije",
+      "rom": "Klamidiya: testura, lečipe thaj reinfekciyako sprečavanje"
+    },
+    "sourceUrl": "https://www.informedhealth.org/chlamydia.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "chronic-kidney-disease",
+    "areaIds": [
+      "urinary-disorders-and-kidney-problems"
+    ],
+    "titles": {
+      "en": "Chronic kidney disease: understanding tests and protecting kidney health",
+      "ro": "Boala cronică de rinichi: analizele și protejarea funcției renale",
+      "sq": "Sëmundja kronike e veshkave: analizat dhe mbrojtja e funksionit",
+      "it": "Malattia renale cronica: capire gli esami e proteggere i reni",
+      "ru": "Хроническая болезнь почек: анализы и защита почечной функции",
+      "hr": "Kronična bubrežna bolest: razumijevanje nalaza i zaštita bubrega",
+      "rom": "Hronično bubregurengi bolest: testura thaj bubregurengo sastipe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/chronic-kidney-disease.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "chronic-obstructive-pulmonary-disease-copd",
+    "areaIds": [
+      "airway-diseases"
+    ],
+    "titles": {
+      "en": "COPD: improving daily breathing and planning for flare-ups",
+      "ro": "BPOC: respirația zilnică și planul pentru exacerbări",
+      "sq": "SPOK: frymëmarrja e përditshme dhe plani për përkeqësime",
+      "it": "BPCO: respirare meglio e prepararsi alle riacutizzazioni",
+      "ru": "ХОБЛ: облегчение дыхания и план при обострениях",
+      "hr": "KOPB: lakše svakodnevno disanje i plan pogoršanja",
+      "rom": "COPD: majlokho svakodnevno disanje thaj planura vaš pogoršanje"
+    },
+    "sourceUrl": "https://www.informedhealth.org/chronic-obstructive-pulmonary-disease-copd.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "chronic-wounds",
+    "areaIds": [
+      "skin-and-hair",
+      "nursing-care"
+    ],
+    "titles": {
+      "en": "Chronic wounds: why healing stalls and how care is planned",
+      "ro": "Rănile cronice: de ce întârzie vindecarea și cum se planifică îngrijirea",
+      "sq": "Plagët kronike: pse ngec shërimi dhe si planifikohet kujdesi",
+      "it": "Ferite croniche: perché la guarigione si arresta e come curarle",
+      "ru": "Хронические раны: причины задержки заживления и план ухода",
+      "hr": "Kronične rane: zašto cijeljenje zastaje i kako planirati skrb",
+      "rom": "Hronične rane: sostar sastipe ačhel thaj sar planirinel pes nega"
+    },
+    "sourceUrl": "https://www.informedhealth.org/chronic-wounds.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "climate-and-health",
+    "areaIds": [
+      "prevention"
+    ],
+    "titles": {
+      "en": "Climate and health: preparing for heat, smoke and extreme weather",
+      "ro": "Clima și sănătatea: pregătire pentru căldură, fum și vreme extremă",
+      "sq": "Klima dhe shëndeti: përgatitje për vapë, tym dhe mot ekstrem",
+      "it": "Clima e salute: prepararsi a caldo, fumo e meteo estremo",
+      "ru": "Климат и здоровье: подготовка к жаре, дыму и экстремальной погоде",
+      "hr": "Klima i zdravlje: priprema za vrućinu, dim i ekstremno vrijeme",
+      "rom": "Klima thaj sastipe: priprema vaš toplina, dim thaj ekstremno vreme"
+    },
+    "sourceUrl": "https://www.informedhealth.org/climate-and-health.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cluster-headache",
+    "areaIds": [
+      "mental-health-brain-and-nerves"
+    ],
+    "titles": {
+      "en": "Cluster headache: recognising attacks and arranging effective treatment",
+      "ro": "Cefaleea cluster: recunoașterea crizelor și tratament eficient",
+      "sq": "Dhimbja cluster e kokës: njohja e sulmeve dhe trajtimi",
+      "it": "Cefalea a grappolo: riconoscere gli attacchi e curarli",
+      "ru": "Кластерная головная боль: распознавание и эффективное лечение",
+      "hr": "Cluster glavobolja: prepoznavanje napada i učinkovito liječenje",
+      "rom": "Klaster šereski dukh: napadurengo prinžaripe thaj lečipe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cluster-headache.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cognitive-behavioral-therapy-cbt",
+    "areaIds": [
+      "non-drug-treatments"
+    ],
+    "titles": {
+      "en": "Cognitive behavioural therapy: what working with a therapist involves",
+      "ro": "Terapia cognitiv-comportamentală: ce presupune lucrul cu terapeutul",
+      "sq": "Terapia njohëse-sjellore: çfarë përfshin puna me terapistin",
+      "it": "Terapia cognitivo-comportamentale: lavorare con il terapeuta",
+      "ru": "Когнитивно-поведенческая терапия: работа с терапевтом",
+      "hr": "Kognitivno-bihevioralna terapija: rad s terapeutom",
+      "rom": "Kognitivno-bihevioralno terapiya: so anel buti e terapeutosa"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cognitive-behavioral-therapy-cbt.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cold-sores",
+    "areaIds": [
+      "skin-and-hair",
+      "infections-and-immune-system"
+    ],
+    "titles": {
+      "en": "Cold sores: early care, reducing transmission and warning signs",
+      "ro": "Herpesul labial: îngrijire precoce, transmitere și semne de alarmă",
+      "sq": "Herpesi i buzëve: kujdesi i hershëm, transmetimi dhe alarmet",
+      "it": "Herpes labiale: cure precoci, contagio e segnali d'allarme",
+      "ru": "Герпес на губах: ранний уход, передача и тревожные признаки",
+      "hr": "Herpes na usnama: rana njega, prijenos i upozorenja",
+      "rom": "Usnengo herpeso: rano nega, prenos thaj upozorenja"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cold-sores.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "colorectal-cancer",
+    "areaIds": [
+      "cancer",
+      "digestive-system-disorders",
+      "screening"
+    ],
+    "titles": {
+      "en": "Colorectal cancer: symptoms, investigations and treatment choices",
+      "ro": "Cancerul colorectal: simptome, investigații și alegerea tratamentului",
+      "sq": "Kanceri kolorektal: simptomat, hetimet dhe zgjedhja e trajtimit",
+      "it": "Tumore colorettale: sintomi, accertamenti e opzioni di cura",
+      "ru": "Колоректальный рак: симптомы, обследование и выбор лечения",
+      "hr": "Kolorektalni rak: simptomi, pretrage i izbor liječenja",
+      "rom": "Kolorektalno kancero: simptomura, pretrage thaj lečimasko izbor"
+    },
+    "sourceUrl": "https://www.informedhealth.org/colorectal-cancer.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "common-colds",
+    "areaIds": [
+      "airway-diseases",
+      "infections-and-immune-system"
+    ],
+    "titles": {
+      "en": "Common colds: recovery, relief and warning signs",
+      "ro": "Răceala: recuperare, ameliorare și semne de alarmă",
+      "sq": "Ftohja: shërimi, lehtësimi dhe shenjat alarmuese",
+      "it": "Raffreddore: guarigione, sollievo e segnali d'allarme",
+      "ru": "Простуда: выздоровление, облегчение и тревожные признаки",
+      "hr": "Prehlada: oporavak, olakšanje i znakovi upozorenja",
+      "rom": "O običajno šilalo nasvalipe: sastipe thaj alarmoske semne"
+    },
+    "sourceUrl": "https://www.informedhealth.org/common-colds.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "complications-of-gallstones",
+    "areaIds": [
+      "digestive-system-disorders"
+    ],
+    "titles": {
+      "en": "Gallstone complications: recognising blockage and inflammation",
+      "ro": "Complicațiile calculilor biliari: blocaj și inflamație",
+      "sq": "Komplikimet e gurëve të tëmthit: bllokimi dhe inflamacioni",
+      "it": "Complicanze dei calcoli biliari: ostruzione e infiammazione",
+      "ru": "Осложнения желчных камней: закупорка и воспаление",
+      "hr": "Komplikacije žučnih kamenaca: začepljenje i upala",
+      "rom": "E biliarne barenge komplikacije: blokajo thaj inflamacija"
+    },
+    "sourceUrl": "https://www.informedhealth.org/complications-of-gallstones.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "concussion",
+    "areaIds": [
+      "mental-health-brain-and-nerves"
+    ],
+    "titles": {
+      "en": "Concussion: assessment and a gradual return to daily life",
+      "ro": "Comoția cerebrală: evaluare și revenire treptată la activități",
+      "sq": "Tronditja e trurit: vlerësimi dhe kthimi gradual në aktivitet",
+      "it": "Commozione cerebrale: valutazione e ritorno graduale alle attività",
+      "ru": "Сотрясение мозга: оценка и постепенное возвращение к делам",
+      "hr": "Potres mozga: procjena i postupan povratak aktivnostima",
+      "rom": "Cerebralno komocija: dikhipe thaj lokho palunipe kaj aktivitetura"
+    },
+    "sourceUrl": "https://www.informedhealth.org/concussion.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "conjunctivitis-pink-eye",
+    "areaIds": [
+      "allergies",
+      "eyes-nose-ears"
+    ],
+    "titles": {
+      "en": "Conjunctivitis: caring for a red, irritated eye",
+      "ro": "Conjunctivita: îngrijirea ochiului roșu și iritat",
+      "sq": "Konjuktiviti: kujdesi për syrin e skuqur dhe të acaruar",
+      "it": "Congiuntivite: cura dell'occhio rosso e irritato",
+      "ru": "Конъюнктивит: уход за покрасневшим раздраженным глазом",
+      "hr": "Konjunktivitis: njega crvenog i nadraženog oka",
+      "rom": "Konjunktivitis: griža vaš o lolo, iritisardo jakh"
+    },
+    "sourceUrl": "https://www.informedhealth.org/conjunctivitis-pink-eye.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "corns",
+    "areaIds": [
+      "skin-and-hair"
+    ],
+    "titles": {
+      "en": "Corns and calluses: reducing pressure safely",
+      "ro": "Bătături și calozități: reducerea presiunii în siguranță",
+      "sq": "Kallot: ulja e presionit në mënyrë të sigurt",
+      "it": "Calli e duroni: ridurre la pressione in sicurezza",
+      "ru": "Стержневые мозоли и натоптыши: безопасно уменьшить давление",
+      "hr": "Kurje oči i žuljevita zadebljanja: sigurno smanjenje pritiska",
+      "rom": "E klavusura thaj kalozitetura: sigurno presijako ciknjaripe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/corns.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "coronary-artery-disease",
+    "areaIds": [
+      "heart-and-circulation"
+    ],
+    "titles": {
+      "en": "Coronary artery disease: symptoms, treatment and daily life",
+      "ro": "Boala coronariană: simptome, tratament și viața de zi cu zi",
+      "sq": "Sëmundja koronare: shenjat, trajtimi dhe jeta e përditshme",
+      "it": "Malattia coronarica: sintomi, cure e vita quotidiana",
+      "ru": "Ишемическая болезнь сердца: симптомы, лечение и повседневная жизнь",
+      "hr": "Koronarna bolest: simptomi, liječenje i svakodnevica",
+      "rom": "Koronarno nasvalipe: simptome, tratamento thaj divesesko dživipe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/coronary-artery-disease.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cough",
+    "areaIds": [
+      "airway-diseases"
+    ],
+    "titles": {
+      "en": "Cough: understanding the pattern and choosing the next step",
+      "ro": "Tusea: înțelegerea tiparului și alegerea pasului următor",
+      "sq": "Kolla: kuptimi i modelit dhe hapi i ardhshëm",
+      "it": "Tosse: capire l'andamento e scegliere il passo successivo",
+      "ru": "Кашель: понять характер и выбрать следующий шаг",
+      "hr": "Kašalj: razumjeti obrazac i odabrati sljedeći korak",
+      "rom": "E khas: haťaripe le modelosko thaj paluno pašo"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cough.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "covid-19-coronavirus-disease",
+    "areaIds": [
+      "airway-diseases",
+      "infections-and-immune-system"
+    ],
+    "titles": {
+      "en": "COVID-19: testing, early treatment and recovery",
+      "ro": "COVID-19: testare, tratament precoce și recuperare",
+      "sq": "COVID-19: testimi, trajtimi i hershëm dhe rikuperimi",
+      "it": "COVID-19: test, trattamento precoce e recupero",
+      "ru": "COVID-19: тестирование, раннее лечение и восстановление",
+      "hr": "COVID-19: testiranje, rano liječenje i oporavak",
+      "rom": "COVID-19: testura, angluno tratamento thaj sastipe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/covid-19-coronavirus-disease.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "cpap-therapy-for-sleep-apnea-dealing-with-common-problems",
+    "areaIds": [
+      "airway-diseases"
+    ],
+    "titles": {
+      "en": "CPAP for sleep apnoea: solving everyday treatment problems",
+      "ro": "CPAP pentru apneea de somn: rezolvarea problemelor zilnice",
+      "sq": "CPAP për apnenë e gjumit: zgjidhja e problemeve të përditshme",
+      "it": "CPAP per l'apnea del sonno: risolvere i problemi quotidiani",
+      "ru": "CPAP при апноэ сна: решение повседневных проблем",
+      "hr": "CPAP za apneju u snu: rješavanje svakodnevnih teškoća",
+      "rom": "CPAP vaš sovimaske apneja: diveseske problemengi solucije"
+    },
+    "sourceUrl": "https://www.informedhealth.org/cpap-therapy-for-sleep-apnea-dealing-with-common-problems.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "croup",
+    "areaIds": [
+      "airway-diseases",
+      "infections-and-immune-system",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Croup: a barking cough and when breathing needs help",
+      "ro": "Crupul: tuse lătrătoare și când respirația necesită ajutor",
+      "sq": "Krupi: kollë lehëse dhe kur frymëmarrja kërkon ndihmë",
+      "it": "Croup: tosse abbaiante e quando il respiro richiede aiuto",
+      "ru": "Круп: лающий кашель и когда дыханию нужна помощь",
+      "hr": "Krup: lavežasti kašalj i kada disanje treba pomoć",
+      "rom": "O krupo: khas sar bašipe thaj kana o respiripe mangel ažutipe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/croup.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "crowns-bridges-implants-what-types-of-replacement-teeth-are-there",
+    "areaIds": [
+      "teeth-and-gums",
+      "mouth-and-teeth",
+      "non-drug-treatments"
+    ],
+    "titles": {
+      "en": "Crowns, bridges, implants and dentures: comparing dental options",
+      "ro": "Coroane, punți, implanturi și proteze: compararea opțiunilor",
+      "sq": "Kurora, ura, implante dhe proteza: krahasimi i mundësive",
+      "it": "Corone, ponti, impianti e protesi: confrontare le possibilità",
+      "ru": "Коронки, мосты, имплантаты и протезы: сравнение вариантов",
+      "hr": "Krunice, mostovi, implantati i proteze: usporedba mogućnosti",
+      "rom": "Korone, punte, implantura thaj proteze: komparacija le dentarne opcijengi"
+    },
+    "sourceUrl": "https://www.informedhealth.org/crowns-bridges-implants-what-types-of-replacement-teeth-are-there.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "decision-aids",
+    "areaIds": [
+      "making-an-informed-decision"
+    ],
+    "titles": {
+      "en": "Decision aids: preparing for a choice about health care",
+      "ro": "Instrumentele de sprijin decizional: pregătirea unei alegeri medicale",
+      "sq": "Mjetet vendimmarrëse: përgatitja për një zgjedhje shëndetësore",
+      "it": "Ausili decisionali: prepararsi a una scelta sanitaria",
+      "ru": "Поддержка решений: как подготовиться к выбору лечения",
+      "hr": "Pomagala za odluku: priprema zdravstvenog izbora",
+      "rom": "Decizijake ažutimaske instrumentura: preparacija vaš sastimaske alosaripe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/decision-aids.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "deep-vein-thrombosis-dvt",
+    "areaIds": [
+      "heart-and-circulation"
+    ],
+    "titles": {
+      "en": "Deep-vein thrombosis: recognising and treating a clot",
+      "ro": "Tromboza venoasă profundă: recunoașterea și tratarea cheagului",
+      "sq": "Tromboza e venave të thella: njohja dhe trajtimi i mpiksjes",
+      "it": "Trombosi venosa profonda: riconoscere e trattare un coagulo",
+      "ru": "Тромбоз глубоких вен: распознать и лечить тромб",
+      "hr": "Duboka venska tromboza: prepoznavanje i liječenje ugruška",
+      "rom": "Profundno venoski tromboza: džanipe thaj tratamento le trombosko"
+    },
+    "sourceUrl": "https://www.informedhealth.org/deep-vein-thrombosis-dvt.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "dehydration",
+    "areaIds": [
+      "urinary-disorders-and-kidney-problems",
+      "heart-and-circulation",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Dehydration: replacing fluid and knowing when to get help",
+      "ro": "Deshidratarea: refacerea lichidelor și când cereți ajutor",
+      "sq": "Dehidratimi: zëvendësimi i lëngjeve dhe kur kërkohet ndihmë",
+      "it": "Disidratazione: reintegrare liquidi e sapere quando chiedere aiuto",
+      "ru": "Обезвоживание: восполнить жидкость и вовремя получить помощь",
+      "hr": "Dehidracija: nadoknada tekućine i kada tražiti pomoć",
+      "rom": "Dehidratacija: lichidonge zamena thaj kana te mangen ažutipe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/dehydration.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "depression",
+    "areaIds": [
+      "mental-health-brain-and-nerves"
+    ],
+    "titles": {
+      "en": "Depression: recognising symptoms and finding a workable treatment plan",
+      "ro": "Depresia: recunoașterea simptomelor și un plan de tratament realizabil",
+      "sq": "Depresioni: njohja e shenjave dhe plan i zbatueshëm trajtimi",
+      "it": "Depressione: riconoscere i sintomi e trovare cure sostenibili",
+      "ru": "Депрессия: распознать симптомы и найти посильный план лечения",
+      "hr": "Depresija: prepoznati simptome i naći izvediv plan liječenja",
+      "rom": "Depresija: džanipe le simptomongo thaj potrivit tratamentosko plano"
+    },
+    "sourceUrl": "https://www.informedhealth.org/depression.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "depression-after-childbirth-what-can-help",
+    "areaIds": [
+      "childrens-health",
+      "pregnancy-and-birth"
+    ],
+    "titles": {
+      "en": "Depression after childbirth: support and treatment that can help",
+      "ro": "Depresia după naștere: sprijin și tratament care pot ajuta",
+      "sq": "Depresioni pas lindjes: mbështetja dhe trajtimi që ndihmojnë",
+      "it": "Depressione dopo il parto: sostegno e trattamenti utili",
+      "ru": "Депрессия после родов: поддержка и лечение",
+      "hr": "Depresija nakon poroda: podrška i liječenje koje pomaže",
+      "rom": "Depresija palal bijandipe: ažutipe thaj tratamento"
+    },
+    "sourceUrl": "https://www.informedhealth.org/depression-after-childbirth-what-can-help.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "deviated-septum-in-the-nose-nasal-septal-deviation",
+    "areaIds": [
+      "eyes-nose-ears"
+    ],
+    "titles": {
+      "en": "Deviated nasal septum: understanding a blocked nose",
+      "ro": "Deviația de sept nazal: înțelegerea nasului înfundat",
+      "sq": "Septumi i shtrembër: të kuptuarit e hundës së bllokuar",
+      "it": "Setto nasale deviato: capire il naso chiuso",
+      "ru": "Искривление носовой перегородки: почему заложен нос",
+      "hr": "Devijacija nosne pregrade: razumjeti začepljen nos",
+      "rom": "Deviacija le nasoske septumoski: phandlo nakh"
+    },
+    "sourceUrl": "https://www.informedhealth.org/deviated-septum-in-the-nose-nasal-septal-deviation.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "diabetic-foot-how-can-you-prevent-wounds",
+    "areaIds": [
+      "gland-and-hormone-disorders",
+      "diabetes",
+      "metabolic-disorders"
+    ],
+    "titles": {
+      "en": "Diabetes and feet: preventing wounds and acting early",
+      "ro": "Diabetul și picioarele: prevenirea rănilor și intervenția timpurie",
+      "sq": "Diabeti dhe këmbët: parandalimi i plagëve dhe veprimi i hershëm",
+      "it": "Diabete e piedi: prevenire le ferite e intervenire presto",
+      "ru": "Диабет и стопы: профилактика ран и ранняя помощь",
+      "hr": "Dijabetes i stopala: sprječavanje rana i rano djelovanje",
+      "rom": "Diabeto thaj punre: ranenge prevencija thaj angluno ažutipe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/diabetic-foot-how-can-you-prevent-wounds.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "diarrhea",
+    "areaIds": [
+      "digestive-system-disorders"
+    ],
+    "titles": {
+      "en": "Diarrhoea: replacing fluids, recognising danger and recovering",
+      "ro": "Diareea: rehidratare, recunoașterea pericolului și recuperare",
+      "sq": "Diarreja: lëngjet, shenjat e rrezikut dhe rikuperimi",
+      "it": "Diarrea: reintegrare liquidi, riconoscere i pericoli e riprendersi",
+      "ru": "Диарея: восполнение жидкости, опасные признаки и восстановление",
+      "hr": "Proljev: nadoknada tekućine, znakovi opasnosti i oporavak",
+      "rom": "Diarreja: pajosko pale-dinipe, perikloske semnura thaj sastjaripe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/diarrhea.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "dietary-advice-and-nutritional-therapy-services",
+    "areaIds": [
+      "stomach-bowel-and-digestion",
+      "metabolism",
+      "non-drug-treatments",
+      "prevention"
+    ],
+    "titles": {
+      "en": "Dietary advice and nutrition therapy: getting useful, individual support",
+      "ro": "Consiliere alimentară și terapie nutrițională: sprijin individual util",
+      "sq": "Këshillimi ushqimor dhe terapia ushqyese: mbështetje individuale e dobishme",
+      "it": "Consigli alimentari e terapia nutrizionale: un sostegno individuale utile",
+      "ru": "Советы по питанию и диетотерапия: полезная индивидуальная помощь",
+      "hr": "Prehrambeno savjetovanje i nutritivna terapija: korisna osobna podrška",
+      "rom": "Xabnaske sfatura thaj nutricijaki terapija: individualno ažutipe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/dietary-advice-and-nutritional-therapy-services.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "dietary-supplements-what-do-you-need-to-know",
+    "areaIds": [
+      "childrens-health",
+      "addiction",
+      "health-care-in-germany",
+      "nursing-care",
+      "drugs-and-vaccines"
+    ],
+    "titles": {
+      "en": "Dietary supplements: deciding what is useful and using it safely",
+      "ro": "Suplimentele alimentare: utilitate și folosire în siguranță",
+      "sq": "Shtesat ushqimore: dobia dhe përdorimi i sigurt",
+      "it": "Integratori alimentari: utilità e uso sicuro",
+      "ru": "Пищевые добавки: польза и безопасное применение",
+      "hr": "Dodaci prehrani: korist i sigurna primjena",
+      "rom": "Xabnaske suplementura: beneficija thaj sigurno uzo"
+    },
+    "sourceUrl": "https://www.informedhealth.org/dietary-supplements-what-do-you-need-to-know.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "disease-management-program-for-type-1-diabetes-in-germany",
+    "areaIds": [
+      "health-care-in-germany"
+    ],
+    "titles": {
+      "en": "Structured care for type 1 diabetes: the German DMP",
+      "ro": "Îngrijire structurată pentru diabetul de tip 1: DMP în Germania",
+      "sq": "Kujdesi i strukturuar për diabetin tip 1: DMP gjermane",
+      "it": "Cure strutturate per il diabete tipo 1: il DMP tedesco",
+      "ru": "Структурированная помощь при диабете типа 1: немецкий DMP",
+      "hr": "Strukturirana skrb za dijabetes tipa 1: njemački DMP",
+      "rom": "Strukturime griža vaš diabeto tipo 1: germanikano DMP"
+    },
+    "sourceUrl": "https://www.informedhealth.org/disease-management-program-for-type-1-diabetes-in-germany.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "dislocated-kneecap",
+    "areaIds": [
+      "muscle-and-joint-disorders"
+    ],
+    "titles": {
+      "en": "Dislocated kneecap: urgent care and a safe return to activity",
+      "ro": "Luxația rotulei: îngrijire urgentă și revenire sigură la activitate",
+      "sq": "Luksacioni i kapakut të gjurit: urgjenca dhe kthimi i sigurt",
+      "it": "Lussazione della rotula: cure urgenti e ritorno sicuro all'attività",
+      "ru": "Вывих надколенника: срочная помощь и безопасное возвращение к нагрузке",
+      "hr": "Iščašenje patele: hitna skrb i siguran povratak aktivnosti",
+      "rom": "Patelaki luksacija: urgențako griža thaj sigurno pale-aktiviteta"
+    },
+    "sourceUrl": "https://www.informedhealth.org/dislocated-kneecap.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "diverticular-disease-and-diverticulitis",
+    "areaIds": [
+      "digestive-system-disorders"
+    ],
+    "titles": {
+      "en": "Diverticular disease and diverticulitis: symptoms, treatment and daily choices",
+      "ro": "Boala diverticulară și diverticulita: simptome, tratament și alegeri zilnice",
+      "sq": "Sëmundja divertikulare dhe divertikuliti: shenjat, trajtimi dhe përditshmëria",
+      "it": "Malattia diverticolare e diverticolite: sintomi, cure e scelte quotidiane",
+      "ru": "Дивертикулярная болезнь и дивертикулит: симптомы, лечение и повседневность",
+      "hr": "Divertikularna bolest i divertikulitis: simptomi, liječenje i svakodnevica",
+      "rom": "Divertikularno nasvalipe thaj divertikulitis: simptome, tratamento thaj diveseske alosarimata"
+    },
+    "sourceUrl": "https://www.informedhealth.org/diverticular-disease-and-diverticulitis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "donanemab-kisunla-for-early-stage-alzheimers-disease",
+    "areaIds": [
+      "early-benefit-assessment-of-medications"
+    ],
+    "titles": {
+      "en": "Donanemab (Kisunla) for early Alzheimer's disease: weighing benefit and risk",
+      "ro": "Donanemab (Kisunla) în Alzheimer precoce: beneficii și riscuri",
+      "sq": "Donanemab (Kisunla) për Alzheimer të hershëm: përfitimi dhe rreziku",
+      "it": "Donanemab (Kisunla) nell'Alzheimer iniziale: benefici e rischi",
+      "ru": "Донанемаб (Kisunla) при ранней болезни Альцгеймера: польза и риск",
+      "hr": "Donanemab (Kisunla) za rani Alzheimer: korist i rizik",
+      "rom": "Donanemab (Kisunla) vaš angluno Alzheimer: benefito thaj riziko"
+    },
+    "sourceUrl": "https://www.informedhealth.org/donanemab-kisunla-for-early-stage-alzheimers-disease.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "down-edwards-and-patau-syndrome",
+    "areaIds": [
+      "growth-and-aging"
+    ],
+    "titles": {
+      "en": "Down, Edwards and Patau syndromes: understanding a result and planning support",
+      "ro": "Sindroamele Down, Edwards și Patau: înțelegerea rezultatului și sprijinul",
+      "sq": "Sindromat Down, Edwards dhe Patau: rezultati dhe mbështetja",
+      "it": "Sindromi di Down, Edwards e Patau: capire il risultato e organizzare sostegno",
+      "ru": "Синдромы Дауна, Эдвардса и Патау: результат обследования и поддержка",
+      "hr": "Downov, Edwardsov i Patauov sindrom: razumjeti nalaz i planirati podršku",
+      "rom": "Down, Edwards thaj Patau sindromura: rezultatosko xatjaripe thaj ažutipe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/down-edwards-and-patau-syndrome.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "drug-allergies",
+    "areaIds": [
+      "allergies"
+    ],
+    "titles": {
+      "en": "Drug allergies: recognising reactions and keeping an accurate record",
+      "ro": "Alergiile medicamentoase: recunoașterea reacțiilor și evidența corectă",
+      "sq": "Alergjitë ndaj barnave: njohja e reaksioneve dhe shënimi i saktë",
+      "it": "Allergie ai farmaci: riconoscere reazioni e registrarle bene",
+      "ru": "Аллергия на лекарства: распознавание реакций и точные записи",
+      "hr": "Alergije na lijekove: prepoznavanje i točan zapis",
+      "rom": "Drabenge alergije: reakcijako prinžaripe thaj čačo registraripe"
+    },
+    "sourceUrl": "https://www.informedhealth.org/drug-allergies.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "drugs-assessed-by-iqwig",
+    "areaIds": [
+      "early-benefit-assessment-of-medications"
+    ],
+    "titles": {
+      "en": "Medicines assessed by IQWiG: how to read a benefit assessment",
+      "ro": "Medicamente evaluate de IQWiG: înțelegerea evaluării beneficiului",
+      "sq": "Barnat e vlerësuara nga IQWiG: si lexohet përfitimi",
+      "it": "Farmaci valutati da IQWiG: leggere una valutazione del beneficio",
+      "ru": "Лекарства, оценённые IQWiG: как читать оценку пользы",
+      "hr": "Lijekovi koje procjenjuje IQWiG: kako čitati procjenu koristi",
+      "rom": "Draba evalujime katar IQWiG: sar te ginen benefitoski evaluacija"
+    },
+    "sourceUrl": "https://www.informedhealth.org/drugs-assessed-by-iqwig.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "dust-mite-allergies",
+    "areaIds": [
+      "allergies"
+    ],
+    "titles": {
+      "en": "Dust mite allergy: symptoms and everyday management",
+      "ro": "Alergia la acarieni: simptome și gestionare zilnică",
+      "sq": "Alergjia ndaj akareve të pluhurit: simptomat dhe menaxhimi i përditshëm",
+      "it": "Allergia agli acari della polvere: sintomi e gestione quotidiana",
+      "ru": "Аллергия на пылевых клещей: симптомы и повседневное управление"
+    },
+    "sourceUrl": "https://www.informedhealth.org/dust-mite-allergies.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru"
+    ]
+  },
+  {
+    "id": "eczema",
+    "areaIds": [
+      "skin-and-hair",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Atopic eczema: daily skin care and a clear flare plan",
+      "ro": "Eczema atopică: îngrijire zilnică și plan pentru pusee",
+      "sq": "Ekzema atopike: kujdesi ditor dhe plani i acarimit",
+      "it": "Eczema atopico: cura quotidiana e piano per le riacutizzazioni",
+      "ru": "Атопическая экзема: ежедневный уход и план обострений",
+      "hr": "Atopijski ekcem: dnevna njega i jasan plan pogoršanja",
+      "rom": "Atopikono ekzema: diveseski griža thaj uźo plano vaš puseura"
+    },
+    "sourceUrl": "https://www.informedhealth.org/eczema.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "eczema-can-eliminating-particular-foods-help",
+    "areaIds": [
+      "skin-and-hair",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Eczema and food exclusions: when a focused assessment helps",
+      "ro": "Eczema și excluderea alimentelor: când ajută evaluarea țintită",
+      "sq": "Ekzema dhe heqja e ushqimeve: kur ndihmon vlerësimi i fokusuar",
+      "it": "Eczema ed esclusioni alimentari: quando serve una valutazione mirata",
+      "ru": "Экзема и исключение продуктов: когда нужна направленная оценка",
+      "hr": "Ekcem i izostavljanje hrane: kada pomaže ciljana procjena",
+      "rom": "Ekzema thaj xabnaske ekskluzije: kana ažutil fokusime ekzamino"
+    },
+    "sourceUrl": "https://www.informedhealth.org/eczema-can-eliminating-particular-foods-help.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "eczema-in-children-can-prebiotics-or-probiotics-help-prevent-it",
+    "areaIds": [
+      "skin-and-hair",
+      "childrens-health"
+    ],
+    "titles": {
+      "en": "Can prebiotics or probiotics prevent eczema in children?",
+      "ro": "Pot prebioticele sau probioticele preveni eczema copiilor?",
+      "sq": "A e parandalojnë prebiotikët ose probiotikët ekzemën te fëmijët?",
+      "it": "Prebiotici o probiotici possono prevenire l'eczema nei bambini?",
+      "ru": "Могут ли пребиотики или пробиотики предотвратить детскую экзему?",
+      "hr": "Mogu li prebiotici ili probiotici spriječiti ekcem u djece?",
+      "rom": "Prebiotikura vaj probiotikura šaj arakhen čhaven katar ekzema?"
+    },
+    "sourceUrl": "https://www.informedhealth.org/eczema-in-children-can-prebiotics-or-probiotics-help-prevent-it.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "endometriosis",
+    "areaIds": [
+      "gland-and-hormone-disorders",
+      "womens-health",
+      "sexual-health-and-contraception"
+    ],
+    "titles": {
+      "en": "Endometriosis: getting pain assessed and choosing care that fits your goals",
+      "ro": "Endometrioza: evaluarea durerii și îngrijire potrivită obiectivelor",
+      "sq": "Endometrioza: vlerësimi i dhimbjes dhe kujdesi sipas synimeve",
+      "it": "Endometriosi: valutare il dolore e scegliere cure adatte agli obiettivi",
+      "ru": "Эндометриоз: обследование боли и помощь с учётом ваших целей",
+      "hr": "Endometrioza: procjena boli i skrb prema vašim ciljevima",
+      "rom": "Endometrioza: dukhako ekzamino thaj griža palal tumare ciljura"
+    },
+    "sourceUrl": "https://www.informedhealth.org/endometriosis.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  },
+  {
+    "id": "enlarged-hemorrhoids",
+    "areaIds": [
+      "digestive-system-disorders"
+    ],
+    "titles": {
+      "en": "Enlarged haemorrhoids: easing symptoms and checking bleeding",
+      "ro": "Hemoroizii măriți: ameliorarea simptomelor și evaluarea sângerării",
+      "sq": "Hemorroidet e zmadhuara: lehtësimi dhe kontrolli i gjakut",
+      "it": "Emorroidi ingrossate: alleviare i sintomi e valutare il sangue",
+      "ru": "Увеличенные геморроидальные узлы: облегчение и проверка кровотечения",
+      "hr": "Povećani hemoroidi: ublažavanje i provjera krvarenja",
+      "rom": "Bare hemoroidura: simptomengo ciknjaripe thaj ratesko kontrolo"
+    },
+    "sourceUrl": "https://www.informedhealth.org/enlarged-hemorrhoids.html",
+    "availableLanguages": [
+      "en",
+      "ro",
+      "sq",
+      "it",
+      "ru",
+      "hr",
+      "rom"
+    ]
+  }
+]

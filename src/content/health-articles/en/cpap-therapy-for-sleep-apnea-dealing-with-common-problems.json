@@ -1,0 +1,51 @@
+{
+  "title": "CPAP for sleep apnoea: solving everyday treatment problems",
+  "intro": "CPAP uses air pressure through a mask to keep the upper airway open during sleep. It treats obstructive sleep apnoea while it is being used; it is not simply a machine to stop snoring. Leaks, dryness or anxiety can make treatment difficult, but help with equipment and gradual practice often makes a difference. Contact the sleep service early rather than struggling silently or changing prescribed pressure yourself.",
+  "sections": [
+    {
+      "heading": "A useful first check: fit, connections and comfort",
+      "paragraphs": [
+        "Fit the mask as instructed with the machine running and in your usual sleeping position. Straps should hold a seal without painfully digging into skin. Overtightening can distort the cushion and worsen leakage. Check tubing connections and whether the cushion or headgear is worn. Air blowing towards the eyes may indicate a leak, but a gentle flow from designed exhalation holes is normal and essential: never block these holes or valves. Ask the clinic to check a different size or mask type if repeated adjustment fails. Broken skin or persistent eye irritation deserves review, not progressively tighter straps."
+      ]
+    },
+    {
+      "heading": "Dryness, a blocked nose and water in the tube",
+      "paragraphs": [
+        "A dry mouth may result from mouth leakage, particularly with a nasal mask; a blocked nose can add to the problem. Discuss mask choice, nasal saline or treatment of nasal inflammation with the team. Heated humidification can help some people, but follow the device instructions and clinic advice. Water collecting in the tubing, sometimes called rainout, is condensation; approved heated tubing or an appropriate change in humidity or room conditions may help. Use the recommended water type and level, empty and clean the chamber as instructed, and do not add essential oils or medicines. Do not improvise a way to tape the mouth shut."
+      ]
+    },
+    {
+      "heading": "Feeling trapped, uncomfortable pressure or swallowed air",
+      "paragraphs": [
+        "Practise briefly while awake in a calm setting, such as reading, and increase familiarity gradually. Ask how the machine's approved ramp or comfort features work; these differ from changing the treatment prescription. If breathing out feels difficult, pressure seems excessive or bloating persists, ask the clinician to review the settings and treatment data. A different mask or selected PAP mode may suit some people, but not everyone needs a different machine. Do not add sedatives or alcohol to tolerate the mask. Persistent panic or insomnia may benefit from additional support alongside equipment adjustment."
+      ]
+    },
+    {
+      "heading": "Cleaning and practical maintenance",
+      "paragraphs": [
+        "Follow the manufacturer's schedule for washing washable parts, drying them fully and replacing filters or worn components. Use only recommended cleaning products; do not immerse the electrical machine. Keep the air inlet unobstructed on a suitable stable surface. Unexpected noise may reflect a loose connection, a filter problem or a fault and should be checked rather than silenced by covering the machine. Ozone or ultraviolet gadgets are not a substitute for the prescribed cleaning process and may damage equipment or expose you to harmful substances. Ask the supplier about model-specific advice, maintenance, travel power arrangements and what to do during a fault or power cut."
+      ]
+    },
+    {
+      "heading": "Review whether the treatment is helping",
+      "paragraphs": [
+        "Aim to use prescribed treatment for sleep, including naps, according to your plan. If you frequently remove the mask during sleep, tell the clinic; record when discomfort happens and bring the mask or device data to review. Ongoing sleepiness can reflect leaks, limited use, residual breathing problems or another sleep or medical condition. Do not drive or operate dangerous machinery when sleepy, and check local driving requirements with your clinician. Feeling better or losing weight does not by itself show treatment is no longer needed: reassessment is required. Severe breathlessness, chest pain or collapse needs emergency care rather than CPAP troubleshooting."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a leak is not fixed by force",
+      "text": "Mara tightens her mask each night because air reaches her eyes. Her skin becomes sore but the leak continues. The sleep nurse checks the fit while she lies down, replaces a worn cushion and shows which airflow comes from the safety vent."
+    },
+    {
+      "title": "Hypothetical example: bringing useful information",
+      "text": "Ivan uses the machine but wakes with a dry mouth and removes it before morning. He records these problems and contacts the sleep service. They review leakage, nasal symptoms and humidification together instead of telling him merely to try harder or lower the prescribed pressure."
+    }
+  ],
+  "questions": [
+    "Which airflow is an unintended leak and which is the normal safety vent?",
+    "Which comfort settings can I adjust, and which require the clinic?",
+    "Who should I contact if the machine fails or I remain sleepy despite using it?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Înaintea operației: înțelegeți decizia și faceți un plan realizabil",
+  "intro": "Propunerea unei operații nu înseamnă că toate întrebările importante au primit răspuns. Procedura planificată trebuie să aibă scop clar, discuție despre beneficii și riscuri și pregătire adaptată sănătății și situației dumneavoastră. Urgențele permit mai puțin timp, dar puteți cere explicații. Ghidul structurează conversația; consimțământul, a doua opinie și plata depind de țară și serviciu.",
+  "sections": [
+    {
+      "heading": "Începeți cu problema pe care operația trebuie să o rezolve",
+      "paragraphs": [
+        "Cereți chirurgului să explice simplu diagnosticul, procedura și scopul. Se urmăresc reducerea durerii, funcția, prevenirea unei complicații sau tratarea unei boli periculoase? Discutați ce contează cel mai mult și cât de realist este rezultatul. Întrebați ce se poate întâmpla fără operație, cât de urgentă este alegerea și dacă așteptarea schimbă opțiunile. O constatare imagistică singură nu explică fiecare simptom și nu dovedește că tuturor le trebuie aceeași operație."
+      ]
+    },
+    {
+      "heading": "Comparați alternativele și riscurile importante personal",
+      "paragraphs": [
+        "Alternativele depind de boală și pot fi medicamente, recuperare, procedură mai puțin invazivă ori observație. Întrebați beneficiul probabil, incertitudinea, complicațiile grave și șansa unui tratament ulterior. Cereți frecvențe ușor de înțeles și un interval, nu doar termeni precum risc mic. Alte boli, fragilitatea, fumatul și operațiile anterioare schimbă balanța. Rezultatul unui prieten nu vă prezice evoluția. Pentru o alegere majoră neurgentă întrebați dacă ajută a doua opinie sau timpul de gândire și cum le organizați."
+      ]
+    },
+    {
+      "heading": "Faceți accesibilă discuția despre consimțământ",
+      "paragraphs": [
+        "Spuneți echipei nevoile de limbă, auz, vedere ori învățare. Cereți interpret potrivit fără a pune copilul să traducă o decizie complexă. O persoană de încredere ajută la întrebări cu acordul dumneavoastră. Semnătura nu înlocuiește înțelegerea procedurii, alternativelor și consecințelor. Explicați neclaritățile ori ce nu acceptați, inclusiv preferințe despre produse de sânge sau implicarea familiei când este relevant. Întrebați pe cine contactați dacă vă răzgândiți ori apar întrebări; regulile locale și excepțiile de urgență cer explicație individuală."
+      ]
+    },
+    {
+      "heading": "Primiți instrucțiuni individuale pentru medicamente și anestezie",
+      "paragraphs": [
+        "Aduceți lista completă de medicamente și alergii, inclusiv suplimente, produse fără rețetă și ce luați efectiv. Numiți problemele anterioare la anestezie, implanturile, apneea de somn și posibila sarcină. Întrebați ce anestezie se propune și cum vor fi controlate durerea și greața. Confirmați instrucțiuni scrise despre hrană, lichide și fiecare medicament de ajustat, inclusiv anticoagulante și tratamentul diabetului. Nu alegeți singuri durata postului ori oprirea tratamentului din ghiduri generale. Dacă instrucțiunile se contrazic sau apare infecție ori altă modificare, contactați echipa înaintea procedurii."
+      ]
+    },
+    {
+      "heading": "Planificați recuperarea pentru a verifica fezabilitatea",
+      "paragraphs": [
+        "Întrebați spitalizarea probabilă, rănile, mișcarea, munca, condusul și urmărirea, inclusiv cine gestionează rezultatele încă așteptate. Organizați transportul și discutați ajutorul acasă, scările, responsabilitățile de îngrijire și procurarea medicamentelor. Estimările nu sunt garanții; întrebați simptomele urgente și serviciul în afara programului. Spuneți dacă sprijinul necesar nu există. După externare, respirația foarte dificilă, durerea toracică, colapsul sau agravarea rapidă cer urgență, fără a aștepta controlul chirurgical obișnuit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: beneficiul urmărit",
+      "text": "O persoană cu operație propusă pentru articulație dureroasă întreabă ce activități se vor îmbunătăți probabil și ce presupune recuperarea. Compară alternativele și prioritățile proprii în loc să decidă doar după imagine."
+    },
+    {
+      "title": "Exemplu ipotetic: instrucțiuni contradictorii",
+      "text": "Pacientul primește pliant standard și plan de medicamente care par diferite. Înaintea operației cere echipei un plan scris confirmat, explică faptul că locuiește singur și organizează ajutorul necesar acasă."
+    }
+  ],
+  "questions": [
+    "Ce beneficiu este realist pentru mine, ce alternative am și ce se întâmplă dacă aștept?",
+    "Ce riscuri și pregătire depind de sănătatea, medicamentele și anestezia mea?",
+    "Ce sprijin pentru recuperare, controale și contacte urgente trebuie organizate?"
+  ]
+}

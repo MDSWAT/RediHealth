@@ -1,0 +1,51 @@
+{
+  "title": "Brahiterapia: radiația internă și planul de tratament",
+  "intro": "Brahiterapia plasează o sursă sigilată de radiații în zona tratată sau lângă ea. Radiația este locală și limitează expunerea unor țesuturi vecine, dar țesutul sănătos poate fi totuși afectat. Se folosește pentru anumite cancere, singură sau cu alte tratamente. Procedura, precauțiile și efectele adverse depind de localizare și metodă; instrucțiunile altui pacient nu se potrivesc automat.",
+  "sections": [
+    {
+      "heading": "Clarificați motivul recomandării",
+      "paragraphs": [
+        "Întrebați radioterapeutul scopul și legătura cu operația, radioterapia externă sau medicamentele dacă sunt planificate. Potrivirea depinde de locul și extinderea tumorii, tratamentul anterior și sănătate. Discutați beneficiul realist, alternativele și incertitudinea. Tratamentul local nu tratează automat cancerul din alte zone. Întrebați ce simptome și rezultate pe termen lung contează personal, fără a evalua doar după nume ori numărul programărilor."
+      ]
+    },
+    {
+      "heading": "Distingeți tratamentul temporar de implanturile permanente",
+      "paragraphs": [
+        "În tratamentul temporar sursa stă o perioadă planificată prin aplicator ori cateter, apoi este scoasă. Unele metode au ședințe scurte cu debit mare; altele un program mai lung ori pulsat. Tratamentul permanent lasă surse mici sigilate a căror radiație scade treptat. Spitalizarea, vizitele și siguranța diferă. Întrebați exact sursa și sistemul, ce rămâne și cum se confirmă finalizarea. Implantul permanent nu înseamnă radiație puternică nelimitată."
+      ]
+    },
+    {
+      "heading": "Pregătiți plasarea, imaginile și disconfortul",
+      "paragraphs": [
+        "Imagistica planifică și verifică poziția. Introducerea acelor, cateterelor ori aplicatorului poate cere anestezie sau sedare după loc și tehnică. Întrebați controlul durerii și greței, limitarea mișcării și comunicarea în tratament. Numiți medicamente, alergii, proceduri anterioare și sarcina. Urmați instrucțiunile individuale despre mâncare, băuturi și medicamente, inclusiv anticoagulantele. Organizați transport și sprijin după sedare dacă sunt cerute; nu inventați pregătirea din descrieri generale."
+      ]
+    },
+    {
+      "heading": "Respectați precauțiile specifice metodei",
+      "paragraphs": [
+        "Echipa poate limita vizitele ori contactul apropiat cât sursa este activă. După scoaterea tuturor surselor temporare, acea brahiterapie nu vă mai face radioactiv. Implanturile permanente pot necesita precauții temporare lângă copii ori gravide și instrucțiuni pentru sursă deplasată, călătorie ori proceduri. Cereți ghid scris, contact și eventual card de tratament. Regulile depind de izotop și metodă; nu impuneți perioade universale de separare și nu manipulați singuri o sursă suspectă desprinsă."
+      ]
+    },
+    {
+      "heading": "Planificați recuperarea și urmărirea",
+      "paragraphs": [
+        "Efectele depind de zonă și includ durere locală, oboseală, simptome urinare ori intestinale, funcție sexuală sau alte țesuturi vecine. Întrebați ce se așteaptă, ce apare tardiv și sprijinul, inclusiv fertilitatea înainte de tratament când contează. Primiți instrucțiuni pentru răni și cateterul rămas. Febra, durerea severă în agravare, hemoragia ori imposibilitatea urinării cer evaluare promptă; colapsul, lipsa severă de aer ori starea critică cer urgență. Păstrați controalele și dacă vă simțiți bine pentru răspuns și efecte tardive."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: verificarea contactului",
+      "text": "O persoană cu brahiterapie temporară se teme să îmbrățișeze nepotul. Întreabă dacă toate sursele au fost scoase și urmează instrucțiunile proprii, nu precauțiile altcuiva cu implant permanent."
+    },
+    {
+      "title": "Exemplu ipotetic: procedură de zi",
+      "text": "Pacientul află că aplicatorul se introduce cu sedare. Confirmă medicamentele și alimentația, organizează însoțitor și întreabă cum raportează durerea ori urinarea dificilă. Ședința scurtă nu înseamnă lipsa pregătirii pentru întreaga vizită."
+    }
+  ],
+  "questions": [
+    "Ce beneficiu se așteaptă pentru cancerul meu și cum se compară alternativele?",
+    "Sursa este temporară sau permanentă și ce pregătire și precauții de contact trebuie?",
+    "Ce efecte adverse și simptome urgente raportez și cum se verifică răspunsul?"
+  ]
+}

@@ -9,6 +9,8 @@ import type { Lang } from "@/lib/i18n/translations";
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
   const descriptions: Record<Lang, string> = {
+  ru: "Поговорите с врачом-волонтером бесплатно по телефону. Вам не нужно устанавливать приложение.",
+
     ro: "Vorbește gratuit cu un medic voluntar, de pe telefon. Nu trebuie să instalezi nicio aplicație.",
     en: "Talk to a volunteer doctor for free, on your phone. You do not need to install an app.",
     sq: "Fol falas me një mjek vullnetar, nga telefoni. Nuk të duhet të instalosh asnjë aplikacion.",
@@ -41,6 +43,23 @@ const copy: Record<
     privacyDesc: string;
   }
 > = {
+ru: {
+"stepsBadge": "Три простых шага",
+
+    stepsTitle: "Как это работает",
+    stepsSubtitle: "Вам не нужен банковский счет, медицинская карта или приложение.",
+    step1Title: "Выбирайте, когда говорить",
+    step1Desc: "Посетите дежурного врача прямо сейчас или забронируйте удобное для вас время.",
+    step2Title: "Получить ссылку по СМС",
+    step2Desc: "Нажмите на ссылку. Вызов откроется в вашем браузере.",
+    step3Title: "Получите консультацию в письменном виде",
+    step3Desc: "После звонка врач отправляет вам указания, что делать дальше. Вы найдете его в своей учетной записи и в текстовом сообщении.",
+    heading: "Лицензированные врачи",
+    desc: "Врачи RediHealth — это семейные врачи, педиатры или врачи внутренних болезней. Они волонтеры и доходчиво объясняют, что делать.",
+    privacyTitle: "То, что вы говорите, остается между вами и врачом.",
+    privacyDesc: "Звонки шифруются.",
+  },
+
   ro: {
     stepsBadge: "Trei pași simpli",
     stepsTitle: "Cum funcționează",

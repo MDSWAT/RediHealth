@@ -1,0 +1,51 @@
+{
+  "title": "Flutter atriale: capire il ritmo e pianificare il trattamento",
+  "intro": "Il flutter atriale è un disturbo in cui un segnale elettrico circola ripetutamente nelle camere superiori del cuore, facendole battere rapidamente. Il polso percepito può essere rapido e regolare o talvolta irregolare. Il flutter differisce dalla fibrillazione atriale, ma possono coesistere. La valutazione deve considerare sintomi, funzione cardiaca e rischio di ictus, non soltanto il numero indicato da un misuratore del polso.",
+  "sections": [
+    {
+      "heading": "Riconoscere sintomi e segnali di emergenza",
+      "paragraphs": [
+        "Il flutter può causare battito accelerato, stanchezza, affanno, ridotta tolleranza allo sforzo o capogiri. Alcuni hanno pochi sintomi. Un nuovo polso rapido persistente richiede consiglio medico tempestivo anche se regolare. Chiedete soccorso per dolore toracico, grave affanno, svenimento o improvvisa debolezza, asimmetria del viso o difficoltà nel parlare. Non guidate per andare al pronto soccorso. Una precedente diagnosi di flutter non rende innocuo un nuovo dolore toracico e i sintomi di ictus restano un'emergenza anche se scompaiono."
+      ]
+    },
+    {
+      "heading": "Usare l'ECG per identificare il ritmo",
+      "paragraphs": [
+        "L'attività elettrica all'ECG aiuta a distinguere flutter, fibrillazione atriale e altri ritmi rapidi. Gli atri possono battere più velocemente delle camere inferiori perché non tutti i segnali passano: il polso non rivela quindi l'intero schema. Gli episodi intermittenti possono richiedere monitoraggio prolungato. Segnalate precedenti interventi o ablazioni, medicinali e tempi dei sintomi. Gli esami possono valutare struttura cardiaca, tiroide o altre condizioni contribuenti. Tipo e posizione del circuito elettrico influenzano le scelte terapeutiche."
+      ]
+    },
+    {
+      "heading": "Discutere frequenza e ripristino del ritmo",
+      "paragraphs": [
+        "I medicinali possono rallentare le camere inferiori o controllare il ritmo anomalo. La cardioversione usa un trattamento elettrico attentamente controllato per ripristinare il ritmo nei casi appropriati; se la circolazione è instabile può servire trattamento urgente. L'équipe considera durata del flutter e rischio di coaguli già presenti prima di una cardioversione programmata. Chiedete preparazione, anticoagulazione e piano in caso di recidiva. Non prendete dosi aggiuntive di farmaci cardiaci né tentate di ripristinare il ritmo da soli senza un piano medico concordato."
+      ]
+    },
+    {
+      "heading": "Chiedere se l'ablazione è adatta al proprio flutter",
+      "paragraphs": [
+        "L'ablazione introduce cateteri nei vasi per interrompere il circuito elettrico. Nel flutter tipico, trattare una determinata zona dell'atrio destro può essere efficace. Altri circuiti, compresi quelli legati a precedenti procedure, possono richiedere un approccio diverso. Discutete successo atteso nel vostro caso, rischi, anestesia, recupero e possibilità di un'altra procedura. Trattare il flutter non garantisce che non compaia mai fibrillazione atriale. Il follow-up resta importante anche quando il battito accelerato si è fermato."
+      ]
+    },
+    {
+      "heading": "Chiarire prevenzione dell'ictus e controlli",
+      "paragraphs": [
+        "Il flutter può associarsi a coaguli e ictus. Le decisioni sull'anticoagulazione considerano rischi individuali di ictus e sanguinamento, eventuale fibrillazione atriale e piano terapeutico. Non sospendete la protezione prescritta perché una procedura sembra riuscita o il polso appare normale. Chiedete quando verrà rivalutata la prescrizione e quale monitoraggio è previsto. Affrontate con l'équipe pressione, cardiopatie, sonno, fumo e alcol pertinenti. Annotate i sintomi ricorrenti e richiedete una rivalutazione se peggiorano affanno, gonfiore o tolleranza allo sforzo, senza presumere che la recidiva sia sempre innocua."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: polso regolare ma rapido",
+      "text": "Una persona nota un polso persistentemente rapido con battiti equidistanti. Richiede una valutazione tempestiva senza presumere che regolare significhi normale. L'ECG identifica flutter e l'équipe discute separatamente sintomi e rischio di coaguli."
+    },
+    {
+      "title": "Esempio ipotetico: nuovo ritmo dopo ablazione",
+      "text": "Dopo il trattamento del flutter tipico, un paziente nota più avanti palpitazioni irregolari. Le riferisce al medico senza presumere che sia necessariamente tornato il vecchio circuito. Il monitoraggio cerca fibrillazione atriale o altre cause e orienta il nuovo piano."
+    }
+  ],
+  "questions": [
+    "Quale tipo di flutter ho ed è presente anche fibrillazione atriale?",
+    "Come si confrontano farmaci, cardioversione e ablazione per i miei sintomi e la mia salute cardiaca?",
+    "Quali anticoagulazione e controlli servono prima e dopo il trattamento e quando cercare aiuto urgente?"
+  ]
+}

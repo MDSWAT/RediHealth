@@ -15,13 +15,14 @@ vi.mock("@/lib/rate-limit", () => ({
   checkRateLimit: mocks.rateLimit, getClientIp: () => "127.0.0.1",
 }));
 vi.mock("@/lib/worker-auth", () => ({ getUserWorkerContext: vi.fn() }));
+vi.mock("@/lib/i18n/server-routing", () => ({ getRequestLang: async (request: Request) => request.headers.get("x-redihealth-lang") || "en" }));
 
 import { POST } from "./route";
 
-function request(overrides: Record<string, unknown> = {}) {
+function request(overrides: Record<string, unknown> = {}, lang = "en") {
   return new Request("http://localhost/api/medical-help-requests", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "x-redihealth-lang": lang },
     body: JSON.stringify({
       name: "Synthetic request", phone: "0001122334", description: "Synthetic request for assistance",
       country: "RO", county: "Cluj", privacyConsent: true, captchaToken: "synthetic-token",
@@ -64,6 +65,12 @@ describe("public help request optional email", () => {
     expect(await response.json()).toEqual({ success: true, email_sent: true });
     expect(mocks.query.mock.calls[0][1][2]).toBe("example@example.test");
     expect(mocks.sendEmail).toHaveBeenCalledWith(expect.objectContaining({ email: "example@example.test" }));
+  });
+
+  it("passes the selected language to the confirmation email", async () => {
+    const response = await POST(request({ email: "example@example.test" }, "ru"));
+    expect(response.status).toBe(201);
+    expect(mocks.sendEmail).toHaveBeenCalledWith(expect.objectContaining({ lang: "ru" }));
   });
 
   it("rejects malformed nonempty email before writing", async () => {

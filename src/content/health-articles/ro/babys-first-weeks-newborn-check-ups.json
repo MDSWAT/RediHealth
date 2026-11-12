@@ -1,0 +1,51 @@
+{
+  "title": "Primele săptămâni ale bebelușului: controale, screening și ajutor medical",
+  "intro": "Controalele nou-născutului combină examinarea fizică, sprijinul pentru alimentație și screeningul unor afecțiuni care pot să nu fie vizibile la naștere. Consultația permite și discutarea îngrijorărilor și organizarea urmăririi. Calendarul și serviciile diferă între țări; confirmați planul local înainte de externare. Un examen anterior normal nu înseamnă că bebelușul nu se poate îmbolnăvi între vizite.",
+  "sections": [
+    {
+      "heading": "Aflați ce consultații sunt programate și cine răspunde",
+      "paragraphs": [
+        "Cereți un plan scris cu medicul sau serviciul, locul consultației și ce faceți dacă ratați vizita. În Germania, programul de examinare timpurie include un control imediat după naștere, altul între a treia și a zecea zi și încă unul în a patra până la a cincea săptămână. Acestea sunt termene germane, nu un calendar universal. După externare precoce sau naștere acasă, organizați explicit următorul examen, fără să presupuneți că spitalul l-a programat. Aduceți documentele copilului și biletul de externare."
+      ]
+    },
+    {
+      "heading": "Înțelegeți examinarea și limitele ei",
+      "paragraphs": [
+        "Medicul analizează sarcina și nașterea, examinează copilul și verifică aspecte precum zgomotele inimii, șoldurile, ochii și, când este cazul, testiculele. Greutatea și starea generală sunt evaluate împreună cu observațiile familiei. Unele constatări necesită reexaminare sau trimitere la specialist chiar dacă bebelușul pare liniștit. Întrebați ce s-a verificat, ce rămâne neclar și când trebuie făcute trimiterile. Un rezultat de screening indică nevoia unei evaluări suplimentare; nu este întotdeauna diagnostic, iar screeningul nu detectează toate bolile."
+      ]
+    },
+    {
+      "heading": "Discutați alimentația, greutatea și observațiile zilnice",
+      "paragraphs": [
+        "Descrieți cât de des oferiți hrană, dacă bebelușul se trezește să mănânce, înghițirea, vărsăturile și modificările scutecelor ude sau cu scaun. Moașa sau medicul poate observa o masă și analiza evoluția greutății, fără a judeca o singură măsurare. Poate exista o scădere inițială în greutate, dar amploarea, recuperarea și starea copilului stabilesc dacă trebuie ajutor. Cereți sfaturi individuale despre alăptare sau formulă și suplimentele recomandate. Nu diluați formula peste instrucțiuni și nu considerați alimentația persistent insuficientă doar un temperament somnoros."
+      ]
+    },
+    {
+      "heading": "Urmăriți rezultatele screeningului și planul ulterior",
+      "paragraphs": [
+        "Screeningul auditiv, testele din picătură de sânge și alte verificări sunt oferite conform programelor locale și regulilor de consimțământ. Întrebați ce teste s-au făcut, ce mai trebuie, cum vin rezultatele și pe cine sunați dacă nu primiți nimic. Un rezultat auditiv neclar poate necesita repetare; nu stabilește singur surditatea. Spuneți echipei istoricul familial și îngrijorările despre auz sau vedere chiar după rezultate liniștitoare. Respectați programările pentru rezultate anormale ori incomplete și cereți explicații sau interpretare dacă documentele sunt greu de înțeles."
+      ]
+    },
+    {
+      "heading": "Nu așteptați controlul obișnuit când copilul este bolnav",
+      "paragraphs": [
+        "Respirația dificilă, culoarea albastră sau cenușie, trezirea foarte grea, convulsiile ori agravarea rapidă necesită ajutor de urgență. Febra sau temperatura neobișnuit de mică la nou-născut, alimentația mult redusă, scutecele ude mai rare ori icterul în creștere cer evaluare clinică urgentă. Vărsăturile verzi sunt un semnal urgent de alarmă. Nou-născutul poate avea infecție gravă fără febră. La telefon precizați vârsta și ce s-a schimbat; urmați recomandarea urgentă fără a aștepta controlul programat ori a încerca întâi remedii acasă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: control după externarea precoce",
+      "text": "Familia pleacă acasă înaintea următorului examen. Înainte de plecare întreabă cine îl va efectua, confirmă data și ia documentele de externare. Verifică și cum vor fi comunicate rezultatele auditive și din sânge, fără să presupună că lipsa unui mesaj înseamnă că toate sunt normale."
+    },
+    {
+      "title": "Exemplu ipotetic: intervenție între consultații",
+      "text": "Un nou-născut se trezește mai greu și mănâncă mult mai puțin. Îngrijitorul cere ajutor medical urgent și descrie vârsta, alimentația și scutecele ude. Nu așteaptă vizita obișnuită de mâine doar fiindcă examenul anterior a fost liniștitor."
+    }
+  ],
+  "questions": [
+    "Ce examinări și teste de screening sunt terminate și ce programări ori rezultate mai așteptăm?",
+    "Cum evoluează alimentația și greutatea și ce sprijin individual îi trebuie copilului?",
+    "Ce modificări cer ajutor urgent și ce serviciu local contactăm între vizite?"
+  ]
+}

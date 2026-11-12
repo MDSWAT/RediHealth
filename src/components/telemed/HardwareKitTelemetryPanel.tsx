@@ -17,6 +17,19 @@ function useSafeLanguage() {
 // validateVitals() returns Romanian text. These maps translate it for display only;
 // thresholds stay in src/lib/types/telemetry.ts.
 const VITALS_MESSAGE_TRANSLATIONS: Record<Exclude<Lang, "ro">, Record<string, string>> = {
+  ru: {
+    "Tensiune sistolică sever scăzută (<90 mmHg). Risc de șoc.": "Систолическое давление очень низкое (<90 мм рт. ст.). Риск шока.",
+    "Tensiune sistolică sever crescută (>180 mmHg).": "Систолическое давление очень высокое (>180 мм рт. ст.).",
+    "Tensiune diastolică sever crescută (>110 mmHg).": "Диастолическое давление очень высокое (>110 мм рт. ст.).",
+    "Saturație oxigen scăzută sub 92%. Risc respirator.": "Насыщение кислородом ниже 92%. Риск дыхания.",
+    "Puls în afara limitelor normale de repaus.": "Пульс выходит за пределы нормального диапазона покоя.",
+    "Hipoglicemie severă (<50 mg/dL). Risc de pierdere a conștienței.": "Тяжелый низкий уровень сахара в крови (<50 мг/дл). Риск потерять сознание.",
+    "Glicemie în afara intervalului țintă.": "Уровень сахара в крови выходит за пределы целевого диапазона.",
+    "Hipotermie marcată (<35.0°C). Risc de afectare metabolică.": "Выраженная гипотермия (<35,0°С). Риск для метаболизма.",
+    "Febră moderată sau ridicată.": "Умеренная или высокая температура.",
+    "Valoare în afara limitelor normale. Trimite către medicul online.": "Значение вне нормальных пределов. Отправьте к онлайн-врачу.",
+  },
+
   en: {
     "Tensiune sistolică sever scăzută (<90 mmHg). Risc de șoc.": "Systolic pressure very low (<90 mmHg). Risk of shock.",
     "Tensiune sistolică sever crescută (>180 mmHg).": "Systolic pressure very high (>180 mmHg).",
@@ -85,6 +98,44 @@ function localizeVitalsMessage(message: string, lang: Lang): string {
 }
 
 const kitCopy = {
+  ru: {
+    kitBadge: "Полевой комплект №04",
+    title: "Измерения пациента",
+    subtitle: "Для тонометра, пульсоксиметра, глюкометра и термометра.",
+    connectSensor: "Подключить датчик",
+    searchingSensor: "Ищу датчик…",
+    btUnsupported: "Этот браузер не поддерживает Bluetooth. Введите значения кнопками + и –.",
+    btConnected: "Датчик подключен. Введите значения, отображаемые на устройстве.",
+    btFailed: "Соединение не удалось. Введите значения вручную.",
+    saveError: "Данные не сохранились. Попробуйте еще раз.",
+    saveSuccess: "Данные отправлены онлайн-врачу.",
+    outOfRange: "Значения за пределами нормальных пределов",
+    bloodPressure: "1. Артериальное давление (мм рт. ст.)",
+    systolic: "Систолическое (вверху)",
+    diastolic: "Диастолический (внизу)",
+    spo2Pulse: "2. Кислород в крови (SpO2) и пульс",
+    spo2: "SpO2 (%)",
+    pulse: "Пульс (уд/мин)",
+    glucose: "3. Blood sugar (mg/dL)",
+    glucoseContext: "Когда измеряли сахар в крови",
+    glucoseRandom: "В любое время",
+    glucoseFasting: "Пост",
+    glucosePostprandial: "После еды",
+    temperature: "4. Температура тела (°C)",
+    decrease: (name: string) => `Нижний ${name}`,
+    increase: (name: string) => `Поднять ${name}`,
+    nameSystolic: "систолическое давление",
+    nameDiastolic: "диастолическое давление",
+    nameSpo2: "SpO2",
+    namePulse: "пульс",
+    nameGlucose: "уровень сахара в крови",
+    nameTemperature: "температура",
+    notesLabel: "Примечания (необязательно)",
+    notesPlaceholder: "например сегодня утром не хотел измерять уровень сахара в крови",
+    submit: "Отправить врачу",
+    submitting: "Отправка данных…",
+  },
+
   ro: {
     kitBadge: "Kit de teren #04",
     title: "Măsurători la pacient",

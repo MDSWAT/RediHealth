@@ -1,0 +1,51 @@
+{
+  "title": "Celule precanceroase ale colului: supraveghere, tratament și controale",
+  "intro": "Celulele anormale ale colului sunt numite adesea displazie sau neoplazie intraepitelială cervicală, CIN. Nu sunt același lucru cu cancerul invaziv. Unele regresează, altele au risc mai mare de progresie fără tratament. Scopul este prevenirea cancerului și evitarea intervențiilor inutile. Colposcopia și, când este indicată, biopsia ajută alegerea supravegherii ori îndepărtării zonei.",
+  "sections": [
+    {
+      "heading": "Înțelegeți rezultatul exact",
+      "paragraphs": [
+        "CIN1 descrie modificări de grad scăzut, CIN2 intermediar și CIN3 înalt. Sunt grade precanceroase, nu stadii de cancer. Anomaliile glandulare au alte denumiri și pot necesita altă abordare. HPV pozitiv singur nu stabilește gradul tisular. Întrebați dacă rezultatul provine din screening, evaluare vizuală ori biopsie, dacă invazia a fost exclusă și dacă mai sunt rezultate așteptate. Nu alegeți tratamentul după o abreviere izolată."
+      ]
+    },
+    {
+      "heading": "Supravegherea este un plan activ",
+      "paragraphs": [
+        "Modificările ușoare se monitorizează frecvent deoarece pot dispărea. Unele modificări intermediare selectate pot fi urmărite după criterii specializate, cu revenire sigură la teste. Cele înalte sau persistente necesită mai probabil tratament. Contează rezultatele complete, vizibilitatea întregii zone, vârsta, sarcina, planurile reproductive și accesul la controale. Dacă sunteți gravidă, spuneți echipei: evaluarea rămâne importantă chiar dacă tratamentul se amână. Suspiciunea invaziei necesită alt traseu diagnostic prompt."
+      ]
+    },
+    {
+      "heading": "Îndepărtarea ori distrugerea celulelor",
+      "paragraphs": [
+        "O excizie frecventă folosește ansă electrică încălzită, LLETZ sau LEEP, pentru zona afectată, de obicei cu anestezie locală. Altă metodă îndepărtează un fragment conic. Excizia permite examinarea țesutului și marginilor în laborator. Metodele distructive, precum tratamentul termic ori înghețarea, sunt potrivite numai în situații selectate după evaluare și nu oferă aceeași probă tisulară. Întrebați ce se propune, de ce și ce se întâmplă dacă rezultatul laboratorului schimbă planul."
+      ]
+    },
+    {
+      "heading": "Beneficii și riscuri, inclusiv pentru sarcină",
+      "paragraphs": [
+        "Tratamentul reduce riscul progresiei spre cancer, dar poate provoca sângerare, infecție și îngustarea colului. Excizia poate crește riscul unei nașteri premature viitoare, mai ales după îndepărtări mai profunde ori repetate. Majoritatea persoanelor tratate nu au această complicație. Discutați volumul țesutului și dorința de sarcină înainte; nu evitați îngrijirea necesară fără plan specializat. Menționați procedurile cervicale unei viitoare echipe obstetricale."
+      ]
+    },
+    {
+      "heading": "Vindecarea și testele fac parte din tratament",
+      "paragraphs": [
+        "Urmați instrucțiunile scrise despre sângerare, secreții, calmante, contact vaginal, tampoane interne, înot și efort. Cereți contact pentru în afara programului. Sângerarea abundentă, cheagurile mari, febra, secrețiile urât mirositoare, durerea în creștere ori starea proastă cer evaluare promptă; sângerarea severă cu leșin este urgență. Mergeți la testele ulterioare chiar dacă vă simțiți bine: tratamentul nu garantează eliminarea HPV și nu previne orice recurență. Întrebați când vin rezultatele și solicitați-le dacă lipsesc. Nu presupuneți reluarea imediată a intervalului obișnuit de screening."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rezultat de grad scăzut — exemplu ipotetic",
+      "text": "O persoană primește recomandarea de supraveghere. Cere data controlului și planul dacă se mută, fără să înțeleagă că nu mai trebuie făcut nimic. Clinica ajută la continuitatea monitorizării."
+    },
+    {
+      "title": "Tratament și sarcină viitoare — exemplu ipotetic",
+      "text": "O persoană cu modificare de grad înalt dorește o sarcină. Discută excizia, profunzimea, alternativele potrivite și riscurile cu specialistul. Planul integrează prevenția cancerului și prioritățile reproductive."
+    }
+  ],
+  "questions": [
+    "Ce anomalie este confirmată și de ce se recomandă supraveghere ori tratament?",
+    "Ce beneficii și riscuri are procedura pentru mine și o sarcină viitoare?",
+    "Ce instrucțiuni de vindecare, semne de alarmă și teste ulterioare trebuie să urmez?"
+  ]
+}

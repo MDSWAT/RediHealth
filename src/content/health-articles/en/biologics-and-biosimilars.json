@@ -1,0 +1,51 @@
+{
+  "title": "Biologics and biosimilars: understanding your medicine and a possible switch",
+  "intro": "Biological medicines are made using living systems. They include many different treatments, such as some medicines for inflammatory diseases, cancer and diabetes. A biosimilar is developed to be highly similar to an authorised reference biologic, with no clinically meaningful differences in effectiveness or safety for its approved use. It is not an inferior version. Practical instructions and the rules for prescribing or pharmacy substitution still need checking for your particular product and country.",
+  "sections": [
+    {
+      "heading": "Separate a biosimilar from a conventional generic",
+      "paragraphs": [
+        "Biologics are often large, complex molecules, and their manufacture involves controlled biological processes. Natural small variations occur even between batches of a reference medicine. A biosimilar is therefore evaluated through extensive comparisons rather than simply being described as an identical chemical copy. Regulators assess quality, biological activity and clinical evidence appropriate to the product. The word biosimilar refers to an approved comparison with a particular reference medicine; it does not mean that all biologic medicines can replace one another or that any product sold online has met these standards."
+      ]
+    },
+    {
+      "heading": "Ask what the medicine is approved to treat",
+      "paragraphs": [
+        "A biosimilar may be authorised for several conditions using a scientifically justified assessment of the reference medicine and comparative evidence. Not every condition requires an entirely separate large trial for that biosimilar. This does not remove the need to check the exact approved use, age group, route and formulation. Ask the prescriber why this medicine is suitable for your diagnosis and treatment stage. The expected benefit, monitoring and main risks come from the particular medicine and illness, rather than the label biologic alone."
+      ]
+    },
+    {
+      "heading": "Understand a proposed switch and local substitution rules",
+      "paragraphs": [
+        "Ask whether the active medicine is staying the same, which brand you will receive and why a switch is proposed. Approved biosimilars are expected to work as well as their reference products, but prescribing and pharmacy substitution rules differ between countries. European regulatory advice on interchangeability is not itself a universal instruction allowing every pharmacy to substitute automatically; national rules matter. A switch may alter packaging, injection device or practical training needs. Discuss concerns openly and agree follow-up rather than stopping treatment while trying to resolve an administrative change."
+      ]
+    },
+    {
+      "heading": "Check handling, devices and the individual safety plan",
+      "paragraphs": [
+        "Confirm the exact name, dose instructions, storage conditions and what to do after a missed dose or storage error. Do not assume every biologic needs the same refrigeration or can be transported in the same way. Ask for a demonstration if an injection device changes and use the supplied instructions. Some biologics affect immune defences and require infection checks, vaccination planning or other tests; others have different risks. Tell the team about infections, other medicines, pregnancy plans and travel. Never make vaccine or treatment changes solely because this general article mentions them."
+      ]
+    },
+    {
+      "heading": "Report problems with a clear medicine record",
+      "paragraphs": [
+        "Keep the brand name and, when available, batch details, and tell the clinician when symptoms began relative to treatment or a switch. New symptoms deserve assessment, but timing alone does not prove the medicine caused them or that a biosimilar is less effective. Agree how the original condition and side effects will be reviewed. Severe breathing difficulty, swelling of the mouth or throat or collapse after treatment requires emergency help. Contact the treating service promptly for other serious symptoms using the specific safety instructions for your medicine; do not wait for a routine review when acutely unwell."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a different injection pen",
+      "text": "A person receives an approved biosimilar with a different pen design. They ask the nurse to demonstrate its use and confirm storage and the prescription before injecting. They keep the new brand details and ask when their usual disease review is due."
+    },
+    {
+      "title": "Hypothetical example: symptoms after a switch",
+      "text": "After changing brands, someone notices more joint discomfort. They contact the team with dates, product details and missed-dose information. The team checks disease activity and other possible reasons rather than assuming the symptom either proves biosimilar failure or can be ignored."
+    }
+  ],
+  "questions": [
+    "Which reference medicine is this biosimilar compared with, and is this exact product approved for my situation?",
+    "Will a switch change the device, storage, prescription or monitoring, and what local substitution rules apply?",
+    "Which symptoms should I report, what details should I record and whom do I contact urgently?"
+  ]
+}

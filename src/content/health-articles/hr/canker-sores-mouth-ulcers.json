@@ -1,0 +1,51 @@
+{
+  "title": "Afte u ustima: njega i znakovi za pregled",
+  "intro": "Afta je bolna plitka ranica na sluznici usta. I mala može otežavati jelo, četkanje zuba i govor. Uobičajene afte nisu zarazne i često zacjeljuju bez posebnog liječenja. Ipak, nije svaka ranica u ustima afta: trajnu ili neobičnu promjenu treba pregledati umjesto stalnog samoliječenja.",
+  "sections": [
+    {
+      "heading": "Prepoznavanje uobičajenog obrasca",
+      "paragraphs": [
+        "Afte mogu imati blijedu sredinu i crven rub te se pojaviti na unutarnjoj strani usana, obrazima ili jeziku. Neki imaju povremene, a drugi ponovljene epizode. Velike ili brojne ranice mogu više smetati i dulje zacjeljivati. Herpes je drugo stanje i može se pojaviti i unutar usta, pa samo mjesto ne potvrđuje dijagnozu. Neobičan izgled ili tijek treba procijeniti liječnik ili stomatolog."
+      ]
+    },
+    {
+      "heading": "Zašto procjena može koristiti",
+      "paragraphs": [
+        "Uzrok ponovljenih afti često je nejasan. Mogu pridonijeti obiteljska sklonost, manje ozljede i stres. Oštar zub, neprikladna proteza ili ugriz obraza mogu stvoriti traumatsku ranicu. Lijekovi, prehrambeni manjkovi te neke probavne ili upalne bolesti uzrokuju druge oblike ulceracija. Navedite nove lijekove, crijevne tegobe, promjene kože, zglobne simptome ili ranice drugdje. Ponekad su potrebne krvne pretrage; ponavljanje ne znači automatski manjak vitamina."
+      ]
+    },
+    {
+      "heading": "Nježnije jedenje i čišćenje",
+      "paragraphs": [
+        "Pokušajte s mekanom hranom i hladnijim napitcima te privremeno izbjegavajte ono što peče: jako začinjeno, kiselo, grubo ili vrlo vruće. Čistite nježno mekom četkicom bez napuštanja higijene. Stomatolog može prilagoditi protezu ili oštar zub; nemojte sami brusiti zub. Uočite iritanse bez izbacivanja cijelih skupina hranjivih namirnica. Kratak zapis epizoda, mogućih okidača i cijeljenja pomaže na pregledu."
+      ]
+    },
+    {
+      "heading": "Liječenje ublažava epizodu",
+      "paragraphs": [
+        "Ljekarnik ili stomatolog može preporučiti prikladan pripravak protiv boli, vodicu za usta ili lokalni kortikosteroid. Izbor ovisi o dobi, drugim bolestima, trudnoći i stvarnoj dijagnozi. Slijedite upute i provjerite prikladnost za djecu; ne koristite tuđi recept. Teški ponavljajući oblici mogu zahtijevati specijalista. Liječenje može smanjiti bol ili trajanje, ali ne sprječava pouzdano svaki povratak. Visoke doze vitamina bez utvrđene potrebe ne zamjenjuju procjenu."
+      ]
+    },
+    {
+      "heading": "Kada zatražiti pomoć",
+      "paragraphs": [
+        "Pregledajte ranicu koja traje dulje od tri tjedna, razlikuje se od uobičajenih, krvari ili postaje crvenija i bolnija. Ranije tražite savjet za velike ili brojne ranice, česte ometajuće epizode ili simptome drugdje u tijelu. Trajna ranica rijetko ima ozbiljan uzrok, uključujući rak usne šupljine; pregled je mjera opreza, a ne dijagnoza. Brzo zatražite pomoć ako bol sprječava dovoljno pijenja ili ste općenito loše, osobito uz oslabljen imunitet. Otežano disanje ili teško gutanje zahtijevaju hitnu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Proteza koja žulja — zamišljeni primjer",
+      "text": "Ranica se vraća gdje proteza žulja. Osoba dogovara stomatološki pregled umjesto neograničenog korištenja anestetskog gela. Stomatolog provjerava promjenu i protezu te objašnjava kada se vratiti ako ne zacijeli."
+    },
+    {
+      "title": "Ponavljanje uz druge simptome — zamišljeni primjer",
+      "text": "Osoba s ponovljenim aftama i trajnim crijevnim simptomima donosi popis lijekova i zapis epizoda. Pretrage ili dodaci biraju se prema procjeni umjesto pretpostavke da svaku aftu uzrokuje manjak vitamina."
+    }
+  ],
+  "questions": [
+    "Izgleda li ovo kao afta, ozljeda ili drugo stanje?",
+    "Koje liječenje odgovara mojoj dobi, zdravlju i drugim lijekovima?",
+    "Koje vrijeme zacjeljivanja ili obrazac ponavljanja traži novi pregled?"
+  ]
+}

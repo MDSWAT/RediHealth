@@ -1,0 +1,51 @@
+{
+  "title": "Understanding cancer codes in a medical letter",
+  "intro": "A cancer letter can contain several kinds of shorthand: where the cancer began, how far it extends, what its cells look like and what tests or treatment have already happened. These codes help professionals communicate. They are not a complete treatment recommendation or a personal prediction of survival. Ask the treating team to explain the entire report, including what remains uncertain and which classification system was used.",
+  "sections": [
+    {
+      "heading": "TNM describes the extent of many cancers",
+      "paragraphs": [
+        "In the TNM system, T describes the primary tumour's size or local extent, N describes involvement of regional lymph nodes, and M describes distant spread. Numbers and sometimes additional letters make these categories more specific. The precise definitions depend on the cancer's location and the classification edition. A category cannot be converted into a stage by using a chart for a different cancer. Some cancers, including many blood cancers and brain tumours, use other systems."
+      ]
+    },
+    {
+      "heading": "The basis and timing of the assessment matter",
+      "paragraphs": [
+        "A lowercase c generally indicates clinical assessment, using examinations, imaging and other diagnostic information. A lowercase p indicates classification informed by pathological examination of surgically removed tissue. The prefix y identifies assessment during or after initial treatment, while r identifies classification of recurrent cancer. These prefixes help explain why reports from different points in care may look different. A change after additional information does not automatically mean the cancer rapidly worsened. Ask which findings were available at each assessment."
+      ]
+    },
+    {
+      "heading": "Grade is different from stage",
+      "paragraphs": [
+        "Grade describes features of the tumour cells and tissue under a microscope. In many grading systems, cells that look less like normal tissue are associated with more aggressive behaviour, but grading rules differ between cancers. Stage describes the extent of disease rather than simply how abnormal the cells look. Neither replaces information about the cancer type, relevant biomarkers, general health or response to treatment. Do not interpret the same grade as having the same meaning in every tumour."
+      ]
+    },
+    {
+      "heading": "Residual disease and uncertainty need explanation",
+      "paragraphs": [
+        "R classification describes whether tumour remains after treatment: R0 means no residual tumour identified, R1 microscopic residual tumour and R2 visible residual tumour. Ask what sites and assessment the statement covers. A clear surgical margin is useful information but does not by itself guarantee that cancer will never return. An X in certain categories indicates that an assessment could not be made, not that the result is automatically favourable or unfavourable. Pending tests can also leave a report incomplete."
+      ]
+    },
+    {
+      "heading": "Use the report to prepare for the next conversation",
+      "paragraphs": [
+        "Request a copy and highlight unfamiliar terms, the report date and any pending results. Ask the team to connect the findings with the treatment's aim, options, likely benefits and harms. Different systems may combine anatomical extent with other tumour characteristics when defining stage groups. Population statistics cannot tell exactly what will happen to an individual. If receiving care in another country or language, take the original report and request a qualified interpreter rather than translating isolated abbreviations yourself."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A grade and a stage — hypothetical example",
+      "text": "A person sees both a grade and a stage in the letter and assumes they are duplicate scores. The clinician explains which describes the microscopic appearance and which describes disease extent, then discusses what each changes about the available options."
+    },
+    {
+      "title": "Two different reports — hypothetical example",
+      "text": "A scan-based report and a later surgical pathology report use different prefixes and categories. Instead of assuming a sudden worsening, the person asks whether the difference reflects new tissue information, treatment already received or a genuine change in disease."
+    }
+  ],
+  "questions": [
+    "Which cancer-specific classification and edition does this report use?",
+    "Which findings are confirmed, which are uncertain, and are tests still pending?",
+    "How do these findings affect the treatment aim, options and follow-up for me?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Cellule cervicali precancerose: sorveglianza, trattamento e controlli",
+  "intro": "Le cellule anomale della cervice sono spesso chiamate displasia o neoplasia intraepiteliale cervicale, CIN. Non equivalgono al tumore invasivo. Alcune regrediscono, altre hanno maggiore probabilità di progredire senza cura. L'obiettivo è prevenire il tumore evitando trattamenti inutili. Colposcopia e, quando appropriata, biopsia orientano sorveglianza o rimozione dell'area.",
+  "sections": [
+    {
+      "heading": "Capire il risultato preciso",
+      "paragraphs": [
+        "CIN1 indica alterazioni di basso grado, CIN2 intermedie e CIN3 di alto grado. Sono gradi precancerosi, non stadi tumorali. Le anomalie ghiandolari hanno nomi e approcci diversi. Un HPV positivo da solo non determina il grado tissutale. Chiedere se il risultato proviene da screening, osservazione o biopsia, se è esclusa l'invasione e se si attendono altri esiti. Non scegliere cure da una sigla isolata."
+      ]
+    },
+    {
+      "heading": "Sorvegliare è un piano attivo",
+      "paragraphs": [
+        "Le alterazioni lievi si controllano spesso perché possono scomparire. Alcune intermedie selezionate possono essere monitorate con criteri specialistici e ritorno affidabile ai test. Quelle alte o persistenti richiedono più spesso trattamento. Contano risultati completi, visibilità dell'area, età, gravidanza, progetti riproduttivi e possibilità di controllo. Segnalare una gravidanza: la valutazione resta importante anche rinviando le cure. Il sospetto d'invasione richiede un percorso diagnostico diverso e tempestivo."
+      ]
+    },
+    {
+      "heading": "Rimozione o distruzione delle cellule",
+      "paragraphs": [
+        "Un'escissione frequente usa un'ansa elettrica riscaldata, LLETZ o LEEP, solitamente con anestesia locale. Un'altra rimuove un cono di tessuto. L'escissione consente di esaminare tessuto e margini in laboratorio. Metodi distruttivi, come calore o congelamento, sono adatti soltanto in casi selezionati dopo valutazione e non forniscono lo stesso campione. Chiedere procedura, ragioni e cosa accade se l'esito modifica il piano."
+      ]
+    },
+    {
+      "heading": "Bilanciare benefici e rischi riproduttivi",
+      "paragraphs": [
+        "Il trattamento riduce la probabilità di progressione, ma comporta rischi di sangue, infezione e restringimento cervicale. L'escissione può aumentare il rischio di parto prematuro futuro, soprattutto se profonda o ripetuta. La maggior parte delle persone trattate non ha questa complicanza. Discutere quantità di tessuto e desiderio di gravidanza prima, senza evitare cure necessarie in assenza di un piano specialistico. Segnalare le precedenti procedure al futuro team ostetrico."
+      ]
+    },
+    {
+      "heading": "Guarigione e test fanno parte della cura",
+      "paragraphs": [
+        "Seguire istruzioni scritte su sangue, perdite, antidolorifici, rapporti vaginali, assorbenti interni, nuoto e attività. Chiedere un contatto fuori orario. Sangue abbondante, grossi coaguli, febbre, perdite maleodoranti, dolore crescente o malessere richiedono valutazione tempestiva; emorragia grave con svenimento necessita emergenza. Fare i controlli anche stando bene: non sono garantite eliminazione dell'HPV o assenza di recidive. Chiedere quando arrivano gli esiti e sollecitarli se mancanti. Non presumere ritorno immediato al normale intervallo di screening."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un basso grado — esempio ipotetico",
+      "text": "Una persona riceve consiglio di sorveglianza. Chiede data del controllo e come proseguirlo se trasloca, senza interpretarlo come 'non serve fare nulla'. La clinica assicura continuità."
+    },
+    {
+      "title": "Cure e gravidanza futura — esempio ipotetico",
+      "text": "Una persona con alto grado desidera una gravidanza. Discute escissione, profondità, alternative appropriate e rischi con lo specialista. Il piano affronta prevenzione tumorale e priorità riproduttive insieme."
+    }
+  ],
+  "questions": [
+    "Quale anomalia è confermata e perché si propone controllo o trattamento?",
+    "Quali benefici e rischi ha la procedura per me e una gravidanza futura?",
+    "Quali istruzioni di guarigione, segnali d'allarme e controlli devo seguire?"
+  ]
+}

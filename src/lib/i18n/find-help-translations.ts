@@ -132,7 +132,96 @@ function croatianPlural(count: number, one: string, few: string, many: string): 
   return `${count} ${many}`;
 }
 
+function russianPlaceCount(count: number): string {
+  const form = new Intl.PluralRules("ru").select(count);
+  const noun = form === "one" ? "место" : form === "few" ? "места" : "мест";
+  return `${count} ${noun}`;
+}
+
 export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
+  ru: {
+    callAction: "Позвонить",
+"metersWalkAway": (meters, minutes) => `В ${meters} м (около ${minutes} мин пешком)`,
+"closedNowLive": "Сейчас закрыто",
+"listen": "Слушать",
+"stopListening": "Стоп",
+"largeText": "Крупнее",
+"spokenIntro": "Выберите аптеку, больницу, семейного врача, клинику или стоматолога. Можно включить фильтр отделений неотложной помощи.",
+"showMore": (remaining) => `Показать ещё ${russianPlaceCount(remaining)}`,
+
+"locationLabel": "Где",
+"myLocation": "Моё местоположение",
+"mapArea": "Область карты",
+"placesInArea": "Места в этой области",
+"changeCountry": "Изменить страну",
+"distantLocationNotice": (country) => `Вы находитесь далеко от выбранной страны: ${country}.`,
+"showingCountry": (country) => `Показаны места: ${country}`,
+"nearCity": (city) => `Рядом с городом ${city}`,
+"mapLegendLabel": "Обозначения карты",
+"legendPlace": "Медицинское учреждение",
+"legendEmergency": "Отделение неотложной помощи",
+"legendCluster": "Несколько мест: нажмите, чтобы приблизить",
+
+
+
+
+
+"openNowLive": "Сейчас открыто",
+"openNowFilter": "Сейчас открыто / круглосуточно",
+"emergencyWalkInFilter": "Неотложный прием без медицинской карты",
+"emergencyRightsCallout": "В экстренной ситуации обратитесь в отделение неотложной помощи, даже без страховки или удостоверения личности. Уточните местные условия помощи.",
+"cityQuickJumpLabel": "Перейти к городу",
+"viewModeLabel": "Режим мобильного просмотра",
+
+"viewMap": "Карта",
+"viewList": "Список",
+"closePreview": "Закрыть",
+"page": {"heroParagraph":"Медицинские службы рядом с вами на карте. Выберите место, чтобы увидеть адрес и телефон.","listTitle":"Аптеки, клиники и больницы","listSubtitle":"Выберите место, чтобы увидеть его на карте.","loadingMap":"Загрузка карты…","mapAttribution":"Данные карты © участники OpenStreetMap.","ctaTitle":"Не знаете, куда обратиться?","ctaBody":"Мы поможем выбрать врача или службу. В экстренной ситуации сразу звоните 112.","ctaButton":"Попросить помощь","mediatorTag":"Медицинский посредник сообщества","mediatorTitle":"Нужна помощь с регистрацией или разговором в приемной?","mediatorBody":"Посредник объяснит, какие документы нужны, поможет зарегистрироваться у семейного врача и поддержит при отказе.","mediatorButton":"Найти медицинского посредника"},
+
+    countries: {
+
+
+"HR": "Хорватия",
+ RO: "Румыния", AL: "Албания", IT: "Италия", MD: "Молдова" },
+    categories: {
+      hospital: "Больница",
+      clinic: "Клиника",
+      gp: "Семейный врач",
+      dentist: "Стоматолог",
+      pharmacy: "Аптека",
+      other: "Другое",
+    },
+    allCategories: "Все",
+    countryLabel: "Страна",
+    categoryLabel: "Тип",
+    searchPlaceholder: "Поиск по названию, городу или адресу",
+    searchHint: "Название, город или адрес",
+    searchButton: "Поиск",
+    useMyLocation: "Использовать мое местоположение",
+    locating: "Поиск вашего местоположения…",
+    locationActive: "Ближайшие к вам места",
+    locationDenied: "Местоположение отключено. Вы видите места в выбранной вами стране.",
+
+    searchThisArea: "Искать в этой области",
+    loading: "Загрузка мест…",
+    loadError: "Не удалось загрузить медицинские учреждения. Попробуйте ещё раз.",
+    retry: "Попробуйте еще раз",
+    noResults: "Ничего не найдено. Измените поисковый запрос или тип учреждения.",
+    clearFilters: "Очистить поиск",
+    kmAway: (km) => `${km} км`,
+    open24h: "Открыто 24 часа",
+    emergency: "Неотложная помощь",
+    directions: "Построить маршрут",
+    website: "Веб-сайт",
+    youAreHere: "Вы здесь",
+
+
+
+
+    resultsCount: (count) => russianPlaceCount(count),
+    hoursTokens: { Mo: "Пн", Tu: "Вт", We: "Ср", Th: "Чт", Fr: "Пт", Sa: "Сб", Su: "Вс", PH: "Праздничные дни", off: "закрыто" },
+  },
+
   en: {
     countries: { RO: "Romania", AL: "Albania", IT: "Italy", MD: "Moldova", HR: "Croatia" },
     categories: {

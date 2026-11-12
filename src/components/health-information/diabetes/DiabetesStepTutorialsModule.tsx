@@ -69,6 +69,26 @@ interface TutorialsUiStrings {
 }
 
 const UI_STRINGS: Record<Lang, TutorialsUiStrings> = {
+  ru: {
+    moduleAriaLabel: "Практические руководства по диабету",
+    title: "Проверка уровня сахара в крови и уход за ногами",
+    description:
+      "Выполнение этих действий дома предотвращает многие проблемы. Выберите гида и следуйте инструкциям.",
+    tabSelectPrompt: "Выберите гида",
+    stageLabel: "Шаг",
+    ofFour: "из 4",
+    actionHeading: "Что делать:",
+    doctorTipHeading: "Полезный совет",
+    mistakeHeading: "Распространенная ошибка",
+    redFlagsHeading: "Когда звонить семейному врачу",
+    stepDoneToggle: "Готово",
+    stepMarkDone: "понял",
+    hotspotsHeading: "Куда смотреть, когда проверяешь ноги",
+    hotspotsSubtitle: "Коснитесь одной из 5 точек, чтобы увидеть, что искать.",
+    tapHotspotPrompt: "Выберите область подошвы",
+    hotspotSelectedLabel: "Выбранная территория:",
+  },
+
   ro: {
     moduleAriaLabel: "Ghiduri practice pentru diabet",
     title: "Cum îți măsori zahărul și cum îți îngrijești picioarele",
@@ -186,6 +206,119 @@ const UI_STRINGS: Record<Lang, TutorialsUiStrings> = {
 };
 
 const TUTORIALS_DATA: Record<Lang, Record<TutorialTab, TutorialProgram>> = {
+  ru: {
+    glucometer: {
+      id: "glucometer",
+      tabLabel: "Проверка уровня сахара в крови глюкометром",
+      title: "Как правильно проверить уровень сахара в крови",
+      badge: "Дома, со своим счетчиком",
+      summary:
+        "Если вы сделаете тест правильно, ваш врач получит хорошие результаты. Вы также увидите, как еда и движение меняют уровень сахара в крови.",
+      steps: [
+        {
+          number: 1,
+          title: "Вымойте и высушите руки",
+          action:
+            "Wash your hands with warm water and plain soap. Dry them well with a clean towel. Warm water brings blood into your fingers.",
+          doctorTip:
+            "Не используйте медицинский спирт или ароматизированные влажные салфетки. Спирт сушит кожу, а духи или глицерин могут испортить результат.",
+          mistakeToAvoid:
+            "Не прокалывайте мокрый палец. Вода разжижает кровь и счетчик показывает меньшую цифру, чем реальная.",
+        },
+        {
+          number: 2,
+          title: "Подготовьте глюкометр и иглу.",
+          action:
+            "Put a new strip into the meter until you hear a click or see the drop sign on the screen. Put a new needle (lancet) in the pricker and set it to depth 2 or 3.",
+          doctorTip:
+            "Храните коробку со стрипами плотно закрытой, в сухом месте, вдали от солнечных лучей и тепла.",
+          mistakeToAvoid:
+            "Не используйте одну и ту же иглу более одного раза. Тупая игла причиняет больше боли и повреждает кожу.",
+        },
+        {
+          number: 3,
+          title: "Уколите боковую часть пальца",
+          action:
+            "Prick the side of your fingertip, not the middle. Gently rub the finger from base to tip until a round drop forms. Touch the drop with the end of the strip.",
+          doctorTip:
+            "По бокам меньше нервов, чем посередине, поэтому болит меньше.",
+          mistakeToAvoid:
+            "Не сжимайте палец сильно. Тканевая жидкость тоже выходит наружу, разжижает кровь и портит результат.",
+        },
+        {
+          number: 4,
+          title: "Прочитай, запиши, иголку выбрось.",
+          action:
+            "Wait 5 seconds for the number. Write it in a notebook or app, with the time and whether it was before or after a meal. Put the cap on the needle and throw it into a hard plastic bottle or box.",
+          doctorTip:
+            "Одна только цифра не расскажет всей истории. Также запишите, что вы ели, чтобы обсудить это со своим врачом.",
+          mistakeToAvoid:
+            "Не выбрасывайте иглы без колпачков в обычный мусор. Кто-то мог уколоться.",
+        },
+      ],
+      clinicalRedFlags: [
+        "У вас уровень ниже 70 мг/дл, и вы чувствуете головокружение или не можете ясно мыслить. Используйте правило 15/15.",
+        "У вас часто уровень выше 250 мг/дл, и вы не знаете, какая пища вызвала это.",
+        "Счетчик часто показывает ошибку. Проверьте срок годности полосок или батарею.",
+      ],
+    },
+    footcare: {
+      id: "footcare",
+      tabLabel: "Ежедневный уход за ногами",
+      title: "Как защитить ноги от ран",
+      badge: "Каждый вечер",
+      summary:
+        "Диабет может привести к онемению ног. Тогда вы плохо чувствуете боль или жар. Небольшая мозоль или порез могут остаться незамеченными, если не осматривать их каждый день.",
+      steps: [
+        {
+          number: 1,
+          title: "Смотри на свои подошвы каждый вечер",
+          action:
+            "Every evening, in good light, look closely at your soles, heels and between your toes. If you cannot lift your foot, put a mirror on the floor or ask someone in your family.",
+          doctorTip:
+            "Обратите внимание на покраснения, волдыри, трещины или пятна, которые кажутся теплыми.",
+          mistakeToAvoid:
+            "Не игнорируйте красное пятно или мозоль и надейтесь, что оно исчезнет. При диабете раны заживают медленнее.",
+        },
+        {
+          number: 2,
+          title: "Хорошо вымойте и высушите ноги",
+          action:
+            "Wash your feet every day with lukewarm water and mild soap. Do not soak them for more than 5 minutes, so the skin does not dry out. Pat them dry with a soft towel, especially between the toes.",
+          doctorTip:
+            "Проверяйте воду локтем или термометром, а не ногой. Ваша нога может не чувствовать, что вода слишком горячая.",
+          mistakeToAvoid:
+            "Не оставляйте кожу между пальцами ног влажной. Там легко разрастается грибок.",
+        },
+        {
+          number: 3,
+          title: "Крем на пятках, а не между пальцами ног.",
+          action:
+            "Put urea cream or a simple greasy cream on your heels, soles and the top of your foot. The skin stays soft and does not crack.",
+          doctorTip:
+            "Микробы проникают через потрескавшуюся кожу. Использование крема часто сохраняет кожу целой.",
+          mistakeToAvoid:
+            "Не наносите крем между пальцами ног. Кожа там становится слишком мягкой и рвется.",
+        },
+        {
+          number: 4,
+          title: "Хорошие носки и клетчатая обувь.",
+          action:
+            "Wear white or light cotton socks, with no thick seams and no tight elastic at the ankle. Before you put your shoes on, feel inside with your hand for small stones, folds or nails.",
+          doctorTip:
+            "На белых носках сразу видишь небольшое пятнышко крови или гноя.",
+          mistakeToAvoid:
+            "Никогда не ходите босиком, даже дома или на пляже. Осколок или острый предмет могут оставить глубокую рану.",
+        },
+      ],
+      clinicalRedFlags: [
+        "Рана, порез или волдырь не зажили в течение 48 часов.",
+        "Красная, опухшая или горячая область возле ногтя или на пятке.",
+        "Онемение, покалывание или вы больше не чувствуете прикосновения.",
+      ],
+    },
+  },
+
   ro: {
     glucometer: {
       id: "glucometer",
@@ -861,6 +994,44 @@ const TUTORIALS_DATA: Record<Lang, Record<TutorialTab, TutorialProgram>> = {
 };
 
 const FOOT_HOTSPOTS: Record<Lang, FootHotspot[]> = {
+  ru: [
+    {
+      id: "heel",
+      name: "Пятка и задний край",
+      shortName: "каблук",
+      inspectionNote:
+        "Ищите глубокие трещины и толстую твердую кожицу. Микробы проникают через трещины.",
+    },
+    {
+      id: "hallux",
+      name: "Отличный палец и ногтевое ложе",
+      shortName: "Большой палец ноги",
+      inspectionNote:
+        "Ногти стригите прямо поперек, не закругляя углы. Это останавливает врастание ногтей и инфекцию.",
+    },
+    {
+      id: "web_spaces",
+      name: "Пространства между пальцами ног",
+      shortName: "Между пальцами ног",
+      inspectionNote:
+        "Влажная кожа здесь приводит к микозу стопы. Держите его полностью сухим.",
+    },
+    {
+      id: "plantar_arch",
+      name: "Подушечка стопы",
+      shortName: "Подушечка стопы",
+      inspectionNote:
+        "Здесь сильнее всего нажимаешь, когда идешь. Если нога онемела, рану может скрыть мозоль, которая не болит.",
+    },
+    {
+      id: "lateral_margin",
+      name: "Внешний край и мизинец",
+      shortName: "Внешний край",
+      inspectionNote:
+        "Тесная обувь натирает здесь и вызывает появление волдырей и мозолей. Выбирайте обувь, широкую спереди.",
+    },
+  ],
+
   ro: [
     {
       id: "heel",

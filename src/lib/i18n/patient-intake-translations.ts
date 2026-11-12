@@ -9,6 +9,20 @@ type IntakeCopy = {
 };
 
 export const patientIntakeTranslations: Record<Lang, IntakeCopy> = {
+  ru: {
+    contact: "Данные пациента", care: "Потребности в уходе", location: "Адрес и расположение", documents: "Документы пациента",
+    hasDocuments: "У пациента есть документы.", documentHint: "Прикрепите медицинские документы или документы, удостоверяющие личность, сейчас или позже. Только то, что необходимо для ухода. PDF, JPEG, PNG или WebP, до 5 файлов по 5 МБ каждый, всего 10 МБ.",
+    medical: "Медицинский документ", identity: "Документ, удостоверяющий личность", upload: "Выберите документы", reading: "Чтение файлов…",
+    remove: "Удалить", fileError: "Используйте действительные файлы PDF, JPEG, PNG или WebP: до 5 файлов по 5 МБ каждый и общим размером 10 МБ.",
+    readError: "Не удалось прочитать файл. Попробуйте еще раз.", useGps: "Использовать мое местоположение", locating: "Поиск местоположения…",
+    gpsHint: "Используйте это только тогда, когда вы находитесь рядом с пациентом. GPS сохраняется самостоятельно. Введенный вами адрес останется прежним.",
+    gpsDenied: "Доступ к местоположению заблокирован. Разрешите это в браузере или введите адрес.",
+    gpsUnavailable: "Не удалось найти ваше местоположение. Попробуйте еще раз или введите адрес.",
+    gpsTimeout: "Местоположение заняло слишком много времени. Попробуйте еще раз снаружи или введите адрес.",
+    gpsUnsupported: "GPS требует поддерживаемого браузера и безопасного соединения (HTTPS).",
+    accuracy: "Точность", noDocuments: "Нет документов", download: "Скачать", more: "Подробнее",
+  },
+
   en: {
     contact: "Patient details", care: "Care needs", location: "Address and location", documents: "Patient documents",
     hasDocuments: "The patient has documents", documentHint: "Attach medical or ID documents now or later. Only what is needed for care. PDF, JPEG, PNG or WebP, up to 5 files, 5 MB each, 10 MB in total.",

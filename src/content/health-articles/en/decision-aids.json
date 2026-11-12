@@ -1,0 +1,51 @@
+{
+  "title": "Decision aids: preparing for a choice about health care",
+  "intro": "Some health decisions have more than one reasonable option. A patient decision aid explains a specific choice, compares benefits and harms and helps you consider what matters to you. It supports a conversation with a clinician rather than making the decision for you. A general decision guide can organise your thoughts, but it does not necessarily contain the evidence needed for a particular treatment choice.",
+  "sections": [
+    {
+      "heading": "Be clear about the actual decision",
+      "paragraphs": [
+        "Ask what problem is being addressed and what choices are medically appropriate for your situation. A decision about screening is different from investigating a symptom, and a planned treatment choice is different from an emergency. Ask how soon a decision is needed and whether there is time to read, return with questions or seek another opinion. Where appropriate, discuss observation, continuing the current plan or no treatment as well as an intervention. This does not mean every option is equally safe or that urgent care should wait for a worksheet. Clarify what might happen while waiting."
+      ]
+    },
+    {
+      "heading": "Check whether the tool is trustworthy and relevant",
+      "paragraphs": [
+        "Look for who produced it, its update date, the evidence used and any funding or conflicts of interest. A useful aid presents meaningful alternatives fairly, including uncertainties and practical consequences, rather than advertising one product. Check that it concerns your diagnosis, age group and stage of care. Costs, availability and health-service arrangements from another country may not apply. A testimonial can show one person's experience but cannot tell you how often an outcome occurs. Ask the clinician to help interpret unfamiliar terms and explain how general research applies to your own health."
+      ]
+    },
+    {
+      "heading": "Compare outcomes using the same frame",
+      "paragraphs": [
+        "Ask how many people benefit or experience harm out of the same sized group and over the same period. A claim that risk is halved is incomplete without the original risk and the size of the actual change. Pictures or simple tables may help. Ask whether a number describes symptom improvement, avoiding a serious event or merely a test result: these are different outcomes. The estimate for a group does not predict exactly what happens to one person. Discuss uncertainty, uncommon serious harms, recovery time and the possibility of needing further treatment, not only the headline success rate."
+      ]
+    },
+    {
+      "heading": "Bring your priorities and access needs into the discussion",
+      "paragraphs": [
+        "Tell the team what a good result would mean in daily life: less pain, clearer sight, staying independent, preserving fertility or avoiding a burdensome treatment schedule. Travel, cost, caring responsibilities and the ability to manage medicines can affect what is feasible. You can ask for an interpreter, plain language, accessible formats or a trusted support person. Support should help you express your wishes, not replace them with someone else's preference. If you want a clinician's recommendation, say so and ask why it fits your priorities. You do not have to understand every statistic before being allowed to ask questions."
+      ]
+    },
+    {
+      "heading": "Leave with a practical plan, including review",
+      "paragraphs": [
+        "Summarise in your own words what you understood and ask the clinician to correct any misunderstanding. Agree the choice, the next step, who arranges it, likely timescales and what to do if circumstances change. Record unanswered questions and ask for a copy of the agreed plan. A decision aid does not guarantee a good outcome, and changing your mind may require a new discussion about what is still possible. If you remain uncertain, explain which information or support is missing. Do not stop prescribed treatment or delay urgent assessment while researching independently."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: making the goal concrete",
+      "text": "Mira is discussing cataract treatment. Rather than saying only that she wants better vision, she explains that glare prevents safe evening work and asks how each option affects that goal, what recovery requires and which other eye conditions may limit improvement."
+    },
+    {
+      "title": "Hypothetical example: asking for absolute numbers",
+      "text": "A leaflet says a treatment reduces a future risk by half. Arben asks how many people would have the problem with and without treatment over the same period, and what side effects occur. The clinician uses a simple comparison and discusses whether those estimates fit his situation."
+    }
+  ],
+  "questions": [
+    "What are my reasonable options, including waiting or continuing the current plan?",
+    "What are the likely benefits, harms and uncertainties for someone like me?",
+    "How much time do I have, and what support would help me decide?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Dodaci prehrani: korist i sigurna primjena",
+  "intro": "Dodaci uključuju vitamine, minerale, biljke i druge koncentrirane sastojke u tabletama, kapima, prašcima ili napitcima. Neki imaju jasnu ulogu, poput liječenja manjka ili potrebe određene životne faze. Više nije automatski bolje, a prirodno ne znači bezopasno. Odluka treba obuhvatiti konkretan sastojak, svrhu i dozu.",
+  "sections": [
+    {
+      "heading": "Počnite s jasnim razlogom",
+      "paragraphs": [
+        "Raznolika prehrana daje mnoge nutrijente; dodaci ne zamjenjuju raznolikost ni liječenje. Liječnik ih može preporučiti za dokazan manjak, slabu apsorpciju, ograničenu prehranu ili priznatu prevenciju. Folna kiselina oko začeća je primjer; savjet o vitaminu D ovisi o lokalnim smjernicama i okolnostima. Pitajte o očekivanoj koristi, potrebi testa i provjeri. Umor, ispadanje kose i slaba koncentracija imaju mnoge uzroke; velika vitaminska mješavina može odgoditi dijagnozu. Nemojte prekinuti propisani dodatak samo zato što mnogima nije potreban."
+      ]
+    },
+    {
+      "heading": "Čitajte sastav i izbjegnite udvostručavanje",
+      "paragraphs": [
+        "Provjerite količinu po tableti ili obroku i predviđen broj obroka. Slična pakiranja mogu imati različitu jačinu. Zajedno razmotrite multivitamine, pojedinačne nutrijente, energetske proizvode i obogaćene napitke za ukupni unos. Visok postotak referentnog unosa ne dokazuje dodatnu korist niti predstavlja osobni cilj liječenja. Miligrami i mikrogrami nisu iste količine; pri nesigurnosti pitajte ljekarnika. Višak željeza i nekih vitamina može biti otrovan; čuvajte ih izvan dohvata djece, osobito privlačne gumene oblike. Dječje potrebe i proizvodi razlikuju se od odraslih."
+      ]
+    },
+    {
+      "heading": "Provjerite lijekove, bolesti i zahvate",
+      "paragraphs": [
+        "Prijavite sve dodatke, uključujući biljne, po potrebi fotografijom etikete. Sastojci mogu promijeniti djelovanje antikoagulansa i drugih lijekova; gospina trava ulazi u interakcije s mnogim terapijama, uključujući neke kontraceptive. Minerali mogu smetati apsorpciji lijekova pa razmak traži konkretne upute. Bolesti bubrega i jetre povećavaju rizik. Prije operacije pitajte što pauzirati i kada, bez pretpostavke da dodaci ne utječu na krvarenje ili anesteziju. Biotin u proizvodima za kosu i nokte može iskriviti određene nalaze; obavijestite liječnika i laboratorij te slijedite upute."
+      ]
+    },
+    {
+      "heading": "Odvojeno procijenite tvrdnju i kvalitetu",
+      "paragraphs": [
+        "Svjedočanstvo, laboratorijski pokus ili privlačan popis sastojaka ne dokazuju važan zdravstveni učinak gotovog proizvoda. Pitajte odnosi li se istraživanje na isti pripravak, dozu i ljude poput vas. Brzo mršavljenje, dramatični mišići ili izlječenje teških bolesti zahtijevaju osobit oprez. Propisi se razlikuju; dostupnost za kupnju ne znači istu procjenu koristi kao za lijek. Potvrda kvalitete može govoriti o proizvodnji ili sadržaju, ali ne dokazuje kliničku korist ili osobnu sigurnost. Birajte jasnu etiketu i sljedivog dobavljača; izbjegavajte nepoznate mješavine i savjete vezane uz skupe ponovljene kupnje."
+      ]
+    },
+    {
+      "heading": "Dogovorite plan i reagirajte na probleme",
+      "paragraphs": [
+        "Zapišite svrhu, dozu, trajanje i praćenje uz lijekove. Trudnoća, dojenje i djetinjstvo trebaju prikladan savjet; u trudnoći izbjegavajte vitamin A kao retinol i ulje jetre bakalara, osim specifičnog liječenja po specijalistu. Ne mijenjajte propisanu terapiju dodatkom niti pretpostavljajte sigurnost više proizvoda. Novi simptomi traže savjet: ponesite pakiranje i prijavite sumnju na nuspojavu lokalnim putem. Teška alergija, kolaps, teško disanje ili sumnja na trovanje traže hitnu službu ili toksikološki savjet. Ne izazivajte povraćanje nakon sumnje na predoziranje. Provjera može dati prednost hrani, jednostavnijem proizvodu ili bez dodatka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: udvostručeni sastojci",
+      "text": "Nina kupuje multivitamin dok već uzima nutrijent po preporuci liječnika. Ljekarnik provjerava obje etikete i ukupni unos prije kombinacije. Zadržavaju jasnu svrhu i izbjegavaju nepotrebno udvostručavanje, bez očekivanja dvostruke koristi."
+    },
+    {
+      "title": "Hipotetski primjer: izbjegnuto iznenađenje u nalazu",
+      "text": "Prije vađenja krvi Ilir pokazuje pripravak za kosu s biotinom. Tim provjerava utjecaj na planirani test i daje konkretne upute. Ne prešućuje proizvod zato što je bez recepta."
+    }
+  ],
+  "questions": [
+    "Koji točno problem sastojak rješava i što to podupire?",
+    "Je li ukupna doza sigurna uz moje proizvode, bolesti i lijekove?",
+    "Koliko ga uzimati, što pratiti i kada ponovno odlučiti?"
+  ]
+}

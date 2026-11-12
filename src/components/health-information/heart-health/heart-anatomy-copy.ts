@@ -19,6 +19,8 @@ export const HEART_PARTS: HeartPart[] = [
     id: "aorta",
     marker: 1,
     name: {
+  ru: "Аорта",
+
       ro: "Aorta",
       en: "Aorta",
       sq: "Aorta",
@@ -27,6 +29,8 @@ export const HEART_PARTS: HeartPart[] = [
       rom: "Aorta",
     },
     role: {
+  ru: "Самая крупная артерия тела. Он переносит богатую кислородом кровь от сердца к остальным частям тела.",
+
       ro: "Cea mai mare arteră din corp. Duce sângele bogat în oxigen de la inimă spre tot corpul.",
       en: "The body's largest artery. It carries oxygen-rich blood from the heart to the rest of the body.",
       sq: "Arteria më e madhe e trupit. Çon gjakun e pasur me oksigjen nga zemra në të gjithë trupin.",
@@ -35,6 +39,8 @@ export const HEART_PARTS: HeartPart[] = [
       rom: "I may bari arteriya and-o trupo. Ningerel o rat pherdo oksigenosa katar o ilo karing sa o trupo.",
     },
     whenHigh: {
+  ru: "Высокое кровяное давление постоянно давит на стенку аорты. С годами стена может затвердеть или ослабнуть.",
+
       ro: "Tensiunea mare apasă tot timpul pe peretele aortei. Cu anii, peretele se poate întări sau slăbi.",
       en: "High blood pressure pushes on the aortic wall all the time. Over the years the wall can stiffen or weaken.",
       sq: "Tensioni i lartë shtyp vazhdimisht murin e aortës. Me kalimin e viteve, muri mund të ngurtësohet ose të dobësohet.",
@@ -47,6 +53,8 @@ export const HEART_PARTS: HeartPart[] = [
     id: "left-ventricle",
     marker: 2,
     name: {
+  ru: "Левый желудочек",
+
       ro: "Ventriculul stâng",
       en: "Left ventricle",
       sq: "Barkushja e majtë",
@@ -55,6 +63,8 @@ export const HEART_PARTS: HeartPart[] = [
       rom: "O stingo kotor le ilesko (ventrikulo)",
     },
     role: {
+  ru: "Самая сильная камера сердца. Он сжимается при каждом ударе и выталкивает кровь в аорту.",
+
       ro: "Camera cea mai puternică a inimii. Se strânge la fiecare bătaie și împinge sângele în aortă.",
       en: "The heart's strongest chamber. It squeezes with every beat and pushes blood into the aorta.",
       sq: "Dhoma më e fortë e zemrës. Shtrëngohet me çdo rrahje dhe e shtyn gjakun në aortë.",
@@ -63,6 +73,8 @@ export const HEART_PARTS: HeartPart[] = [
       rom: "O may zuralo kotor le ilesko. Chidel pes ko sako marimos thaj phusavel o rat and-i aorta.",
     },
     whenHigh: {
+  ru: "Когда кровяное давление остается высоким в течение многих лет, мышцам приходится работать сильнее. Он утолщается и легче утомляется.",
+
       ro: "Când tensiunea rămâne mare ani la rând, mușchiul trebuie să împingă mai tare. Se îngroașă și obosește mai ușor.",
       en: "When blood pressure stays high for years, the muscle has to push harder. It thickens and tires more easily.",
       sq: "Kur tensioni mbetet i lartë për vite, muskuli duhet të shtyjë më fort. Ai trashet dhe lodhet më shpejt.",
@@ -75,6 +87,8 @@ export const HEART_PARTS: HeartPart[] = [
     id: "coronary-arteries",
     marker: 3,
     name: {
+  ru: "Коронарные артерии",
+
       ro: "Arterele coronare",
       en: "Coronary arteries",
       sq: "Arteriet koronare",
@@ -83,6 +97,8 @@ export const HEART_PARTS: HeartPart[] = [
       rom: "Le koronare arteriye",
     },
     role: {
+  ru: "Мелкие сосуды на поверхности сердца. Они доставляют кровь и кислород к самой сердечной мышце.",
+
       ro: "Vase mici de pe suprafața inimii. Aduc sânge și oxigen chiar mușchiului inimii.",
       en: "Small vessels on the surface of the heart. They bring blood and oxygen to the heart muscle itself.",
       sq: "Enë të vogla në sipërfaqen e zemrës. I sjellin gjak dhe oksigjen vetë muskulit të zemrës.",
@@ -91,6 +107,8 @@ export const HEART_PARTS: HeartPart[] = [
       rom: "Tikne ratengi droma opral po ilo. Anen o rat thaj o oksigeno chaches le ileske muskuloske.",
     },
     whenHigh: {
+  ru: "Высокое кровяное давление изнашивает их стенки, поэтому жировые отложения накапливаются легче. Если кто-то блокируется, следует сердечный приступ.",
+
       ro: "Tensiunea mare le uzează pereții, iar grăsimile se depun mai ușor. Dacă o arteră se blochează, apare infarctul.",
       en: "High blood pressure wears their walls, so fatty deposits build up more easily. If one becomes blocked, a heart attack follows.",
       sq: "Tensioni i lartë ua dëmton muret dhe yndyrat depozitohen më lehtë. Nëse një arterie bllokohet, ndodh infarkti.",
@@ -103,6 +121,8 @@ export const HEART_PARTS: HeartPart[] = [
     id: "vena-cava",
     marker: 4,
     name: {
+  ru: "Полая вена и правое предсердие",
+
       ro: "Vena cavă și atriul drept",
       en: "Vena cava and right atrium",
       sq: "Vena kava dhe atriumi i djathtë",
@@ -111,6 +131,8 @@ export const HEART_PARTS: HeartPart[] = [
       rom: "I bari vena thaj o chacho kotor le ilesko",
     },
     role: {
+  ru: "Кровь, доставившая кислород в организм, возвращается здесь к сердцу, прежде чем попасть в легкие.",
+
       ro: "Aici se întoarce în inimă sângele care a dat oxigenul corpului, înainte să plece spre plămâni.",
       en: "Blood that has delivered its oxygen to the body comes back to the heart here, before it goes on to the lungs.",
       sq: "Këtu kthehet në zemër gjaku që i ka dhënë oksigjenin trupit, para se të shkojë te mushkëritë.",
@@ -119,6 +141,8 @@ export const HEART_PARTS: HeartPart[] = [
       rom: "Kathe risarel and-o ilo o rat savo dindyas o oksigeno le truposke, angla te džal karing le phukne.",
     },
     whenHigh: {
+  ru: "Если сердце устает после многих лет высокого кровяного давления, кровь может задерживаться здесь. Это проявляется в виде опухших ног и усталости.",
+
       ro: "Dacă inima obosește după ani de tensiune mare, sângele se poate aduna în urmă. Apar picioare umflate și oboseală.",
       en: "If the heart tires after years of high blood pressure, blood can back up here. This shows as swollen legs and tiredness.",
       sq: "Nëse zemra lodhet pas vitesh me tension të lartë, gjaku mund të grumbullohet këtu. Shfaqen këmbë të ënjtura dhe lodhje.",
@@ -141,6 +165,20 @@ export interface HeartAnatomyUiCopy {
 }
 
 export const HEART_ANATOMY_UI_COPY: Record<Lang, HeartAnatomyUiCopy> = {
+  ru: {
+    heading: "Как работает сердце",
+    intro:
+      "В состоянии покоя сердце сокращается примерно 64 раза в минуту. С каждым ударом он выталкивает кровь в артерии. Кровяное давление — это сила давления крови на стенки артерий.",
+    diagramLabel:
+      "Вид спереди: сердце бьется в состоянии покоя, ЭКГ внизу.",
+    ecgCaption:
+      "Линия ниже показывает электрический сигнал сердца (ЭКГ). Каждый шип запускает такт.",
+    partsLabel: "Выбери часть сердца",
+    whenHighLabel: "Когда артериальное давление высокое:",
+    pause: "Пауза анимации",
+    play: "Воспроизвести анимацию",
+  },
+
   ro: {
     heading: "Cum lucrează inima",
     intro:

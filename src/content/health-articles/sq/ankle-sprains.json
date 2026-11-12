@@ -1,0 +1,51 @@
+{
+  "title": "Ndrydhja e kyçit të këmbës: vlerësimi, lëvizja dhe kthimi i sigurt në aktivitet",
+  "intro": "Ndrydhja e kyçit të këmbës dëmton ligamentet që mbështesin nyjën, shpesh kur këmba përdredhet. Mund të ketë dhimbje, ënjtje dhe mavijosje, por këto simptoma ndodhin edhe në fraktura e dëmtime të tjera. Vendimi i parë është nëse duhet vlerësim, jo çfarë fashe të blesh. Rikuperimi varet nga dëmtimi dhe rehabilitimi, jo nga një numër i garantuar ditësh.",
+  "sections": [
+    {
+      "heading": "Dallo kur dëmtimi kërkon vlerësim",
+      "paragraphs": [
+        "Kërko vlerësim të shpejtë për dhimbje të fortë, ënjtje të madhe, pamundësi për të mbështetur peshën ose simptoma që përkeqësohen. Deformimi i dukshëm, plaga e hapur, këmba e ftohtë ose me ngjyrë të ndryshuar, mpirja ose humbja e ndjeshmërisë kërkojnë vlerësim urgjent në emergjencë. Mos u përpiq ta drejtosh vetë nyjën. Aftësia për të bërë disa hapa nuk e përjashton me siguri frakturën dhe fotografia nuk tregon cilat struktura janë dëmtuar."
+      ]
+    },
+    {
+      "heading": "Kupto ekzaminimin dhe vendimin për imazheri",
+      "paragraphs": [
+        "Mjeku pyet si ndodhi dëmtimi dhe kontrollon ndjeshmërinë në prekje, lëvizjen, qarkullimin dhe ndjesitë. Vendos nëse duhet radiografi ose ekzaminim tjetër. Jo çdo ndrydhje kërkon imazheri dhe radiografia vlerëson kryesisht kockat, jo çdo dëmtim ligamenti. Trego ndrydhjet e mëparshme, vështirësinë në ecje, barnat dhe gjendjet e tjera shëndetësore. Simptomat që vazhdojnë pas vlerësimit fillestar mund të kërkojnë rishikim, jo supozimin se emërtimi i parë shpjegon gjithçka."
+      ]
+    },
+    {
+      "heading": "Përdor me kujdes mbrojtjen dhe lehtësimin e simptomave",
+      "paragraphs": [
+        "Shmang aktivitetet që qartësisht shtojnë dhimbjen dhe përdor siç duhet mbështetësen ose mjetin ndihmës të rekomanduar. Ngritja e kyçit dhe një kompresë e ftohtë e mbështjellë me pëlhurë mund të ndihmojnë rehatinë; mbro lëkurën dhe mos vendos akull drejtpërdrejt. Mbështetësja nuk duhet të shkaktojë mpirje, ndryshim ngjyre ose dhimbje në rritje. Pyet cili qetësues përshtatet me shëndetin dhe barnat e tua. Këto masa nuk zëvendësojnë vlerësimin kur ka shenja alarmuese."
+      ]
+    },
+    {
+      "heading": "Rifito gradualisht lëvizjen dhe besimin",
+      "paragraphs": [
+        "Pas vlerësimit të dëmtimit, ndiq këshillat për lëvizjen e tolerueshme dhe ngarkimin gradual. Mosveprimi i plotë i zgjatur nuk është automatikisht zgjedhja më e mirë, por as detyrimi përmes dhimbjes së rëndësishme nuk është provë rikuperimi. Fizioterapia mund të përfshijë lëvizshmëri, forcë dhe ekuilibër të përshtatur. Pyet si të përparosh dhe cilat simptoma kërkojnë ulje aktiviteti ose rivlerësim. Ushtrimet e përshtatshme për dikë mund të mos përshtaten për një dëmtim tjetër."
+      ]
+    },
+    {
+      "heading": "Planifiko kthimin në punë dhe sport sipas funksionit",
+      "paragraphs": [
+        "Ecja brenda shtëpisë nuk do të thotë domosdoshmërisht se kyçi është gati për vrapim, terren të pabarabartë ose ndryshim drejtimi. Diskuto punën, këpucët dhe sportin me profesionistin trajtues. Lëshimi i përsëritur i kyçit, ënjtja e vazhdueshme ose vështirësia për ecje normale kërkojnë rishikim. Mbështetëset dhe stërvitja mund të ulin përsëritjen te disa persona, por nuk parandalojnë çdo ndrydhje. Kthehu gradualisht sipas planit, jo kalendarit të rikuperimit të një miku."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: vlerësim në vend të vetëdiagnostikimit",
+      "text": "Dikush përdredh kyçin dhe nuk e mbështet dot peshën rehat. Kërkon vlerësim të shpejtë në vend që të provojë vazhdimisht të ecë për të vërtetuar se është vetëm ndrydhje. Përshkruan mekanizmin dhe çdo mpirje, plagë ose ndryshim ngjyre të këmbës."
+    },
+    {
+      "title": "Shembull hipotetik: përgatitja për kthim në sport",
+      "text": "Një person ecën rehat pas ndrydhjes, por ndihet i paqëndrueshëm kur kthehet. Pyet fizioterapistin për objektivat e ekuilibrit dhe forcës para një ndeshjeje. Nuk e merr uljen e dhimbjes si provë të vetme se konkurrimi i plotë është i sigurt."
+    }
+  ],
+  "questions": [
+    "A është ndrydhje pa komplikime dhe a më duhet imazheri ose kontroll pasues?",
+    "Si duhet t'i përdor mbështetësen, mjetet e ecjes dhe qetësuesit në rastin tim?",
+    "Cilat objektiva funksionale duhet të arrij para punës, vrapimit ose sportit?"
+  ]
+}

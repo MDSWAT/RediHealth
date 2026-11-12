@@ -37,6 +37,12 @@ import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 
 const COPY: Record<Lang, { hideMap: string; showMap: string; latest: string; changeArea: Record<Exclude<MapCountry, "ro">, string> }> = {
+ru: {
+"changeArea": {
+"al": "Изменить регион",
+"md":"Изменить район","hr":"Изменить жупанию","it":"Изменить регион"},
+ hideMap: "Скрыть карту", showMap: "Показать карту", latest: "Последние" },
+
   ro: {
     hideMap: "Ascunde harta",
     showMap: "Arată harta",

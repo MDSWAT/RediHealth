@@ -1,0 +1,51 @@
+{
+  "title": "Varicella: alleviare i sintomi e proteggere chi è a rischio",
+  "intro": "La varicella è un'infezione molto contagiosa causata dal virus varicella-zoster. Spesso provoca un'eruzione pruriginosa con macchie, vescicole e croste contemporanee, febbre e malessere. Molti bambini sani guariscono con cure di sostegno, ma neonati, persone incinte, adulti e immunodepressi possono ammalarsi seriamente. Per chi è a rischio anche la sola esposizione richiede consiglio tempestivo.",
+  "sections": [
+    {
+      "heading": "Riconoscere il quadro senza autodiagnosticare ogni eruzione",
+      "paragraphs": [
+        "Le lesioni compaiono su corpo, cuoio capelluto e bocca, con nuove macchie mentre altre formano croste. Colore e visibilità variano con la pelle. Fastidio e prurito interferiscono con appetito e sonno. I vaccinati possono avere forme lievi o atipiche. Altre malattie causano vescicole: chiedere consiglio se incerti. Telefonare prima di andare in ambulatorio per non esporre la sala d'attesa e segnalare contatti con varicella o herpes zoster."
+      ]
+    },
+    {
+      "heading": "Ridurre il contagio",
+      "paragraphs": [
+        "La varicella si diffonde attraverso aria condivisa e liquido delle vescicole, anche prima dell'eruzione evidente. Evitare scuola, nido e lavoro finché termina l'esclusione consigliata, generalmente quando tutte le lesioni sono croste; chiedere indicazioni per casi atipici e seguire le regole locali. Evitare neonati, persone incinte e immunodepressi. Lavare le mani, non grattare e non condividere asciugamani. Chi è suscettibile può prendere varicella dopo contatto con zoster, ma non 'prende zoster' dalla varicella."
+      ]
+    },
+    {
+      "heading": "Sollievo e sicurezza dei medicinali",
+      "paragraphs": [
+        "Offrire spesso bevande, vestiti larghi e bagni freschi delicati, asciugando a piccoli tocchi. Unghie corte limitano lesioni da grattamento. Il farmacista consiglia prodotti adatti all'età. Il paracetamolo può aiutare se appropriato, seguendo le istruzioni. Non dare aspirina al bambino con varicella ed evitare ibuprofene salvo indicazione medica, per il rischio di grave infezione cutanea. Controllare i prodotti combinati per non duplicare farmaci. Gli antibiotici non curano il virus."
+      ]
+    },
+    {
+      "heading": "Esposizione a rischio e cura precoce",
+      "paragraphs": [
+        "Chiedere rapidamente consiglio dopo esposizione in gravidanza, immunodepressione o per un neonato, anche senza sintomi. Segnalare prove di immunità precedente. Secondo rischio, immunità e tempo si possono valutare prevenzione o antivirali precoci. Questi funzionano meglio iniziati presto e non servono a ogni bambino sano. Non attendere un'eruzione diffusa e non usare prescrizioni altrui. Segnalare steroidi e immunosoppressori."
+      ]
+    },
+    {
+      "heading": "Allarmi e prevenzione futura",
+      "paragraphs": [
+        "Chiedere consiglio urgente per disidratazione, pelle sempre più calda e dolorosa, febbre persistente o in peggioramento e bambino più sofferente. Respiro difficile, confusione, difficoltà a svegliarsi, rigidità del collo o grave difficoltà nel cammino richiedono valutazione urgente o emergenza. Non considerare normale ogni peggioramento. Il vaccino previene varicella e forme gravi; criteri e calendario dipendono dal programma nazionale. Essendo il vaccino usuale vivo, gravidanza e problemi immunitari richiedono consiglio specifico. Il virus può restare e riattivarsi in seguito come zoster."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Contatto in gravidanza — esempio ipotetico",
+      "text": "Una persona incinta scopre che un bambino convivente potrebbe avere varicella. Contatta rapidamente l'équipe con dettagli dell'esposizione e precedenti malattia o vaccino, senza aspettare macchie."
+    },
+    {
+      "title": "Eruzione che cambia — esempio ipotetico",
+      "text": "Un bambino inizialmente ha prurito, poi una zona diventa calda, gonfia e più dolorosa. Chi lo assiste chiede consiglio urgente per possibile infezione secondaria, non soltanto altra crema."
+    }
+  ],
+  "questions": [
+    "L'eruzione è compatibile con varicella e c'è qualcuno a rischio in casa?",
+    "Quali farmaci sono adatti e servono prevenzione o antivirali?",
+    "Quando tornare a scuola o al lavoro e quali cambiamenti richiedono valutazione urgente?"
+  ]
+}

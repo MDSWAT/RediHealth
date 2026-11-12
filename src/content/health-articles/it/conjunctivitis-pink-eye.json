@@ -1,0 +1,51 @@
+{
+  "title": "Congiuntivite: cura dell'occhio rosso e irritato",
+  "intro": "La congiuntivite è l'infiammazione della sottile membrana che riveste il bianco dell'occhio e l'interno delle palpebre. Infezioni, allergie e irritanti possono causare arrossamenti simili. Molti casi passano senza cure importanti, ma un occhio rosso con dolore, sensibilità alla luce o cambiamenti della vista richiede valutazione urgente, senza presumere una comune congiuntivite.",
+  "sections": [
+    {
+      "heading": "I sintomi suggeriscono la causa senza dimostrarla",
+      "paragraphs": [
+        "Gli occhi possono prudere, bruciare, sembrare pieni di sabbia, lacrimare o produrre secrezioni che incollano le ciglia. Un'infezione virale può iniziare in un occhio e passare all'altro; l'allergia colpisce spesso entrambi, con starnuti o naso che cola. Secrezioni dense possono comparire con batteri, ma l'aspetto non distingue con certezza ogni causa. Anche secchezza, infiammazione delle palpebre, traumi e malattie della cornea arrossano l'occhio. Visita, storia clinica e talvolta un campione di secrezione aiutano a scegliere le cure."
+      ]
+    },
+    {
+      "heading": "Quando il rossore è urgente",
+      "paragraphs": [
+        "Richiedere valutazione oculistica urgente per dolore, forte sensibilità alla luce, rossore intenso o vista sfocata che persiste dopo aver pulito delicatamente le secrezioni. Perdita improvvisa della vista, forte mal di testa con nausea, lesione o esposizione chimica richiedono soccorso immediato. Un neonato con occhi rossi o appiccicosi deve essere valutato subito, perché alcune infezioni danneggiano la vista. Chi porta lenti a contatto e ha un occhio rosso deve toglierle e chiedere consiglio urgente: un'infezione corneale può inizialmente sembrare congiuntivite. Immunità ridotta o peggioramento richiedono controlli più precoci. Con questi segnali non attendere un periodo di autocura."
+      ]
+    },
+    {
+      "heading": "Sollievo e uso più sicuro dei colliri",
+      "paragraphs": [
+        "Lavare le mani prima e dopo le cure. Pulire delicatamente le croste dalle ciglia con acqua pulita e un nuovo tampone, diverso per ogni occhio. Un impacco fresco pulito e lacrime artificiali adatte possono alleviare il fastidio; chiedere al farmacista indicazioni per età e prodotto. Non strofinare gli occhi né toccare occhio, dita o ciglia con il contagocce. Non condividere colliri né riutilizzare vecchie prescrizioni. Sospendere le lenti durante i sintomi e seguire le indicazioni per riprenderle, sostituirle o disinfettare lenti e contenitori. Non mettere preparati casalinghi negli occhi."
+      ]
+    },
+    {
+      "heading": "La terapia dipende dalla diagnosi",
+      "paragraphs": [
+        "Gli antibiotici non agiscono sulla congiuntivite virale o allergica. Alcune infezioni batteriche lievi migliorano senza antibiotici, mentre il medico può consigliare colliri o pomate antibiotiche in casi selezionati. Alcune infezioni richiedono cure specifiche, comprese determinate infezioni erpetiche o sessualmente trasmesse: colliri avanzati non le sostituiscono. Ridurre l'esposizione e usare antistaminici adatti può aiutare l'allergia. Chiedere prima di usare colliri medicati in gravidanza o nel bambino piccolo. I colliri con corticosteroidi vanno usati soltanto sotto adeguata supervisione medica, perché la terapia sbagliata può aggravare infezioni o causare altri problemi oculari."
+      ]
+    },
+    {
+      "heading": "Ridurre il contagio e controllare l'andamento",
+      "paragraphs": [
+        "Le forme virali e batteriche si diffondono tramite mani e oggetti contaminati; l'allergia non è contagiosa. Non condividere asciugamani, cuscini, cosmetici e materiale per lenti. Lavare biancheria e panni per il viso ed evitare piscine durante i sintomi infettivi. Seguire le indicazioni locali per scuola e lavoro considerando febbre, malessere e possibilità di evitare contatti ravvicinati. Non usare antibiotici soltanto per una presunta regola di frequenza. Chiedere controllo se i sintomi peggiorano, non migliorano dopo alcuni giorni o restano dopo circa una settimana. Le forme virali possono durare di più, ma il rossore persistente richiede rivalutazione, non ripetute autocure."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un segnale per chi porta lenti",
+      "text": "Luka si sveglia con un occhio rosso e presume l'infezione del collega. Poiché porta lenti a contatto e l'occhio fa male, le toglie e cerca una valutazione urgente invece di farsi prestare il collirio del collega."
+    },
+    {
+      "title": "Esempio ipotetico: per l'allergia serve un altro piano",
+      "text": "Ogni stagione dei pollini Sara ha prurito, lacrimazione e starnuti. Il medico valuta la ricorrenza e discute la cura dell'allergia. Lei non si aspetta aiuto dagli antibiotici e sa che un nuovo dolore o calo visivo richiederebbero un'altra valutazione."
+    }
+  ],
+  "questions": [
+    "Qual è la causa probabile e serve una visita oggi?",
+    "Quali colliri sono adatti e come vanno usati e conservati?",
+    "Quando posso riprendere le lenti e cosa devo sostituire o pulire?"
+  ]
+}

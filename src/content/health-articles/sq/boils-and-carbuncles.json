@@ -1,0 +1,51 @@
+{
+  "title": "Çibanët dhe karbunkulat: kujdesi i sigurt dhe drenimi",
+  "intro": "Çibani është infeksion i dhimbshëm i lëkurës me qelb, shpesh rreth folikulit të qimes. Disa të lidhur formojnë zonë më të madhe të quajtur karbunkul. Disa të vegjël qetësohen me kujdes të thjeshtë, por përhapja, vendi i ndjeshëm ose rreziqet shëndetësore kërkojnë mjekim. Mos i shtrydhni, shponi apo prisni vetë: përhapet infeksioni dhe dëmtohet lëkura.",
+  "sections": [
+    {
+      "heading": "Kontrolloni gungën dhe ndryshimin e saj",
+      "paragraphs": [
+        "Çibani nis si gungë e ndjeshme e bëhet i ngrohtë, i fryrë dhe me qelb. Skuqja duket më pak në lëkurë të errët; vlerësoni dhe dhimbjen, nxehtësinë e ënjtjen. Jo çdo gungë është çiban: kisti i inflamuar, hidradeniti supurativ dhe gjendje të tjera ngjajnë. Tregoni fillimin, rritjen, episodet, zona të tjera dhe temperaturën. Përmendni diabetin, barna imunosupresive dhe infeksion rezistent të mëparshëm, sepse ndryshojnë kujdesin."
+      ]
+    },
+    {
+      "heading": "Masa të buta pa detyruar drenimin",
+      "paragraphs": [
+        "Për çiban të vogël të pakomplikuar, kompresa e pastër ngrohtësisht e rehatshme mund të lehtësojë dhe ndihmojë daljen natyrore. Kontrolloni temperaturën për djegie, sidomos te fëmijët ose ndjeshmëria e ulur. Në hapje spontane pastroni butë, mbuloni pastër dhe lani duart para e pas. Pyetni farmacistin për qetësues sipas shëndetit e barnave. Mos përdorni gjilpërë, presion të përsëritur ose kimikate të forta. Shmangni rruajtjen e fërkimin në zonë."
+      ]
+    },
+    {
+      "heading": "Njihni nevojën për vlerësim më herët",
+      "paragraphs": [
+        "Kërkoni shpejt këshillë për çiban në fytyrë, grup të madh ose të lidhur, dhimbje në rritje, nxehtësi ose ënjtje që përhapet, temperaturë apo gjendje të keqe. Diabeti ose imuniteti i ulur kërkojnë këshillë më herët, jo pritjen e infeksionit të madh. Gunga pa përmirësim ose që kthehet kërkon vlerësim. Përkeqësimi i shpejtë, konfuzioni, kolapsi ose frymëmarrja seriozisht e vështirë duan emergjencë. Hapja e vogël nuk tregon shtrirjen nën lëkurë; pak qelb nuk provon zgjidhjen."
+      ]
+    },
+    {
+      "heading": "Diskutoni drenimin profesional dhe antibiotikët",
+      "paragraphs": [
+        "Mjeku mund të zbrazë grumbullimin me procedurë e qetësim të përshtatshëm. Antibiotikët varen nga vendi, shtrirja, infeksioni rrethues dhe shëndeti; nuk janë automatikisht trajtimi i vetëm ose i nevojshëm. Tamponi mund të ndihmojë kur përsëritet ose nuk funksionon trajtimi. Tregoni alergjitë dhe antibiotikët e mëparshëm. Ndiqni planin e plagës e barnave dhe pyesni për kthim në simptoma që vazhdojnë. Mos merrni antibiotikë të huaj ose teknika interneti për drenim."
+      ]
+    },
+    {
+      "heading": "Ulni përhapjen dhe hetoni përsëritjen",
+      "paragraphs": [
+        "Lani duart pas prekjes, mbuloni plagët kulluese dhe mos ndani peshqirë, brisqe ose rroba në kontakt. Lani sendet siç duhet dhe ndiqni këshillën për sport, not e punë gjatë kullimit. Përsëritja mund të kërkojë kontroll për bartje bakteriale, sëmundje lëkure ose probleme bazë. Ndonjëherë mjeku rekomandon trajtim të koordinuar të personit ose familjes; mos nisni larje dezinfektuese ose trajtime hunde pa udhëzim. Rikthimi nuk provon papastërti dhe larja e ashpër dëmton barrierën e lëkurës."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: hapje natyrore",
+      "text": "Dikush përdor kompresë të pastër të ngrohtë dhe çibani i vogël hapet vetë. E mbulon, lan duart dhe ndjek dhimbjen e ënjtjen. Kërkon këshillë kur zona bëhet më e nxehtë ose e dhimbshme, jo shtrydhjen e pjesës tjetër."
+    },
+    {
+      "title": "Shembull hipotetik: gunga të përsëritura",
+      "text": "Dikush ka vazhdimisht gunga të dhimbshme në sqetulla. Kërkon kontroll dhe tregon vendet e trajtimet. Mjeku shqyrton çibanë të përsëritur apo sëmundje tjetër në vend të një kursi të pakonfirmuar tjetër."
+    }
+  ],
+  "questions": [
+    "Është çiban apo tjetër gjendje dhe a kërkojnë rreziqet e mia trajtim herët?",
+    "Ndihmojnë drenimi, tamponi ose antibiotikët dhe si kujdeset plaga?",
+    "Cilat ndryshime duan urgjencë dhe çfarë kontrollojmë në rikthim?"
+  ]
+}

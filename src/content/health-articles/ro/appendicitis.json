@@ -1,0 +1,51 @@
+{
+  "title": "Apendicita: evaluarea urgentă și alegerea tratamentului",
+  "intro": "Apendicita este inflamația apendicelui, o structură mică atașată intestinului. Se poate agrava și poate produce complicații serioase, astfel că suspiciunea necesită evaluare medicală urgentă. Durerea abdominală singură nu confirmă cauza și nu toate persoanele au tiparul cunoscut al durerii care se mută în dreapta jos. Articolul explică evaluarea și deciziile, nu o metodă de diagnostic sau tratament acasă.",
+  "sections": [
+    {
+      "heading": "Recunoaște durerea îngrijorătoare fără să aștepți tiparul clasic",
+      "paragraphs": [
+        "Durerea poate începe în mijlocul abdomenului și deveni apoi mai evidentă în dreapta jos. Poate fi însoțită de greață, vărsături, lipsa poftei de mâncare sau febră. Copiii, vârstnicii și gravidele pot avea simptome mai puțin tipice. Durerea persistentă ori în agravare necesită evaluare promptă chiar fără febră. Durerea severă, leșinul, confuzia, dificultatea de respirație ori deteriorarea rapidă impun ajutor de urgență. Nu apăsa repetat abdomenul și nu folosi un test de mișcare de pe internet ca să excluzi boala."
+      ]
+    },
+    {
+      "heading": "Oferă echipei informațiile care schimbă evaluarea",
+      "paragraphs": [
+        "Descrie când a început durerea, cum s-a schimbat, vărsăturile, simptomele intestinale ori urinare, medicamentele și operațiile anterioare. Spune medicului dacă ești ori ai putea fi însărcinată. Pot necesita atenție alte cauze, inclusiv afecțiuni urinare, intestinale și sarcina extrauterină. Nu presupune că un episod anterior de indigestie explică boala nouă. Ia o listă de medicamente dacă este disponibilă, fără să amâni îngrijirea urgentă pentru a aduna documente."
+      ]
+    },
+    {
+      "heading": "Înțelege investigațiile și supravegherea",
+      "paragraphs": [
+        "Echipa poate examina abdomenul și folosi analize de sânge, teste de urină și imagistică, precum ecografia ori tomografia computerizată. Alegerea depinde de situație, inclusiv de sarcină. Niciun simptom sau test nu rezolvă toate cazurile neclare, astfel că poate fi necesară examinarea repetată ori supravegherea. Întreabă ce sugerează rezultatele și care este planul dacă incertitudinea rămâne. Dacă pleci acasă după evaluare, asigură-te că știi când și unde să revii."
+      ]
+    },
+    {
+      "heading": "Discută tratamentul în contextul spitalicesc",
+      "paragraphs": [
+        "Îndepărtarea apendicelui este un tratament frecvent și poate fi laparoscopică sau prin operație deschisă. Antibioticele și alte abordări pot fi luate în considerare în situații selectate, după rezultate și complicații. Tratamentul antibiotic nu înlocuiește evaluarea printr-o soluție acasă; simptomele pot persista ori reveni și operația poate rămâne necesară. Întreabă de ce abordarea recomandată se potrivește cazului, ce riscuri și alternative are și ce ar modifica decizia. Urmează instrucțiunile echipei privind mâncarea, băuturile și medicamentele."
+      ]
+    },
+    {
+      "heading": "Cunoaște planul de recuperare și semnele de problemă",
+      "paragraphs": [
+        "Recuperarea depinde de procedură, de eventuala perforare a apendicelui și de alte aspecte ale sănătății. Cere instrucțiuni clare despre plagă, medicamente, activitate, controale și contacte. Durerea abdominală în creștere, febra, vărsăturile repetate, imposibilitatea de a păstra lichidele ori modificările îngrijorătoare ale plăgii necesită sfat medical. Starea gravă ori colapsul impun ajutor de urgență. O ameliorare scurtă nu dovedește întotdeauna că o problemă abdominală netratată s-a rezolvat, mai ales dacă durerea revine sau se extinde."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: luarea în serios a simptomelor atipice",
+      "text": "Un copil are durere abdominală în agravare și nu mănâncă, dar nu poate indica dreapta jos. Îngrijitorul cere evaluare promptă și explică schimbarea comportamentului și simptomelor. Nu așteaptă ca durerea să corespundă unei diagrame înainte de a cere ajutor."
+    },
+    {
+      "title": "Exemplu ipotetic: clarificarea tratamentului",
+      "text": "Un pacient primește un plan de tratament în spital și întreabă de ce sunt recomandate operația ori antibioticele în cazul său. Întreabă despre recidivă și semnele care ar necesita reevaluare, în loc să împrumute antibiotice și să încerce aceeași abordare acasă."
+    }
+  ],
+  "questions": [
+    "Ce rezultate susțin apendicita și ce alte cauze sunt luate în calcul?",
+    "De ce este recomandat acest tratament în situația mea și ce riscuri și alternative are?",
+    "Cum ar trebui să decurgă recuperarea și ce schimbări impun revenirea urgentă?"
+  ]
+}

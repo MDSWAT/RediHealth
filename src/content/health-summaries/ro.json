@@ -1,0 +1,410 @@
+{
+  "allergies": {
+    "intro": "O alergie apare atunci când sistemul imunitar reacționează la ceva care este de obicei inofensiv. Declanșatorii pot include polenul, animalele, alimentele sau medicamentele. Simptomele depind de declanșator și de locul unde apare reacția.",
+    "details": "Nu orice erupție, nas înfundat sau reacție la alimente este o alergie. Un clinician analizează modelul simptomelor și poate recomanda teste specifice. Managementul poate implica evitarea unui declanșator confirmat și discutarea unui tratament adecvat. O reacție severă care afectează respirația sau provoacă pierderea cunoștinței necesită ajutor de urgență.",
+    "questions": [
+      "Ce model sugerează o alergie mai degrabă decât o altă cauză?",
+      "Testarea ar schimba modul în care îmi gestionez simptomele?"
+    ]
+  },
+  "airway-diseases": {
+    "intro": "Căile respiratorii transportă aerul către și de la plămâni. Infecțiile, astmul și alte afecțiuni le pot îngusta sau irita, provocând tuse, respirație șuierătoare sau senzație de lipsă de aer. Simptome similare pot avea cauze diferite.",
+    "details": "Momentul apariției simptomelor, fumatul sau expunerea la locul de muncă și bolile anterioare ajută la orientarea evaluării. Testele de respirație pot fi utile pentru unele afecțiuni. Tratamentul depinde de diagnostic, nu doar de simptom. O dificultate severă de respirație apărută recent necesită ajutor medical urgent.",
+    "questions": [
+      "Ce ar putea explica simptomele mele de respirație?",
+      "Un test de respirație ar ajuta la clarificarea cauzei?"
+    ]
+  },
+  "eyes-nose-ears": {
+    "intro": "Ochii, nasul și urechile sprijină vederea, mirosul, auzul și echilibrul. Problemele pot implica iritație, infecție, alergie sau schimbări în modul în care funcționează aceste organe. Efectele lor pot varia de la disconfort ușor la dificultate în activitățile cotidiene.",
+    "details": "Evaluarea depinde de care simț este afectat, cât de repede a apărut schimbarea și dacă sunt prezente durere sau alte simptome. Unele probleme se rezolvă de la sine, în timp ce altele necesită îngrijire de specialist. O pierdere bruscă a vederii sau auzului ar trebui evaluată prompt, mai degrabă decât să așteptați o programare obișnuită.",
+    "questions": [
+      "Această schimbare necesită o evaluare urgentă?",
+      "Ce examen poate ajuta la identificarea problemei?"
+    ]
+  },
+  "diabetes": {
+    "intro": "Diabetul înseamnă că glucoza din sânge rămâne prea ridicată, deoarece insulina lipsește sau nu funcționează eficient. Diabetul de tip 1 și tip 2 au cauze și nevoi de tratament diferite. Alte forme pot apărea în timpul sarcinii sau cu anumite boli.",
+    "details": "Diagnosticul se face cu ajutorul testelor de sânge, nu numai pe baza simptomelor. Tratamentul urmărește să mențină glucoza sub control și să protejeze sănătatea pe termen lung, în timp ce se adaptează la viața de zi cu zi. Alimentația, activitatea fizică, medicamentele și monitorizarea pot juca toate un rol, în funcție de tipul de diabet. Deciziile privind tratamentul trebuie luate împreună cu echipa medicală.",
+    "questions": [
+      "Ce tip de diabet am?",
+      "Ce monitorizare și sprijin se potrivesc planului meu de tratament?"
+    ]
+  },
+  "gland-and-hormone-disorders": {
+    "intro": "Hormonii sunt semnale chimice produse de glande. Ei ajută la reglarea creșterii, consumului de energie, reproducerii și a multor alte funcții ale corpului. Probleme pot apărea atunci când o glandă produce prea mult sau prea puțin dintr-un hormon.",
+    "details": "Afecțiunile hormonale pot cauza simptome variate care apar și în alte boli. Rezultatele testelor trebuie interpretate alături de simptome, medicamentele luate și circumstanțele persoanei. Un singur rezultat anormal nu explică întotdeauna cum se simte cineva. Testele suplimentare sau sfatul unui specialist pot fi potrivite.",
+    "questions": [
+      "Ce înseamnă acest test hormonal în situația mea?",
+      "Am nevoie de un alt test sau evaluare de specialist?"
+    ]
+  },
+  "womens-health": {
+    "intro": "Sănătatea femeilor include sănătatea menstruală și reproductivă, sănătatea sânilor, menopauzei și multe condiții care afectează bunăstarea de zi cu zi. Nevoile se schimbă pe parcursul vieții, iar același simptom poate avea explicații diferite la vârste diferite.",
+    "details": "Tratamentul util începe cu o discuție despre simptome, impactul lor și prioritățile personale. Screeningul este diferit de investigarea unui simptom nou: un rezultat recent al screeningului nu explică fiecare schimbare nouă. Deciziile privind testele sau tratamentele trebuie să includă beneficiile așteptate, posibilele daune și alternativele disponibile.",
+    "questions": [
+      "Acest simptom are nevoie de investigare mai degrabă decât screening obișnuit?",
+      "Care dintre opțiuni se potrivesc simptomelor și priorităților mele?"
+    ]
+  },
+  "urinary-disorders-and-kidney-problems": {
+    "intro": "Rinichii filtrează sângele și produc urina, care trece prin tractul urinar. Infecțiile, calculii, scurgerile și schimbările în funcția renală sunt probleme diferite care pot afecta acest sistem.",
+    "details": "Durerea, schimbările în urinare sau umflarea pot motiva teste de urină, teste de sânge sau imagistică, în funcție de situație. Simptomele singure nu arată cât de bine funcționează rinichii. Sângele vizibil în urină, febra asociată cu simptome urinare sau dificultatea în urinare ar trebui discutate prompt cu un profesionist sanitar.",
+    "questions": [
+      "Care teste ar ajuta să explice schimbările în urinare?",
+      "Medicamentele mele ar putea afecta funcția renală?"
+    ]
+  },
+  "skin-and-hair": {
+    "intro": "Pielea protejează corpul, iar părul crește din foliculii din ea. Inflamația, infecția, condițiile moștenite și alți factori pot afecta oricare dintre ele. O erupție sau o porțiune de cădere a părului care se aseamănă pot avea mai multe explicații.",
+    "details": "Localizarea, aspectul și momentul unei schimbări ajută să orienteze evaluarea. Produsele folosite pe piele, medicamentele și alți simptomi pot fi importanți. Tratamentul ar trebui să corespundă cauzei. O leziune pe piele care se schimbă sau o problemă persistentă și inexplicată merită evaluare mai degrabă decât tratament prin încercare și eroare repetate.",
+    "questions": [
+      "Ce caracteristici ajută să distingem cauzele posibile?",
+      "Ce schimbări ar trebui să motiveze o alta programare?"
+    ]
+  },
+  "heart-and-circulation": {
+    "intro": "Inima pompează sânge prin artere, capilare și vene. Aceasta livrează oxigen și nutrienți și transportă deșeuri. Problemele pot afecta tensiunea arterială, ritmul cardiac, vasele de sânge sau capacitatea de pompare a inimii.",
+    "details": "Unele riscuri cardiovasculare cauzează puține simptome timpurii, deci controlurile corespunzătoare pot fi importante. Evaluarea și prevenția depind de starea generală de sănătate și istoricul persoanei. Presiunea în piept, pierderea cunoștinței sau dificultate respiratorie severă și bruscă pot fi urgențe; nu te baza pe o explicație online pentru a hotărî că aceste simptome sunt inofensive.",
+    "questions": [
+      "Ce riscuri cardiovasculare sunt relevante pentru mine?",
+      "Care verificări sau programări de urmărire sunt utile?"
+    ]
+  },
+  "infections-and-immune-system": {
+    "intro": "Sistemul imunitar recunoaște și răspunde la amenințări precum bacteriile și virusurile. Infectiile se dezvoltă atunci când un microorganism intră în corp și provoacă boală. Organisme diferite pot produce simptome similare, dar necesită abordări diferite.",
+    "details": "Cauza probabilă, severitatea și vulnerabilitatea unei persoane ghidează deciziile privind testarea și tratamentul. Antibioticele acționează împotriva bacteriilor, nu a virusurilor, și nu sunt potrivite pentru fiecare infecție. Vaccinarea și igienă adecvată pot ajuta la prevenirea unor infecții. Îmbolnăvirea progresivă sau simptomele neobișnuite pot necesita o nouă evaluare.",
+    "questions": [
+      "Un test ar fi probabil să schimbe decizia de tratament?",
+      "Care sunt semnele care înseamnă că ar trebui să caut din nou ajutor?"
+    ]
+  },
+  "childrens-health": {
+    "intro": "Sănătatea copilului include dezvoltarea, bolile comune, prevenția și sprijinul pentru familii. Vârsta unui copil și comportamentul obișnuit sunt importante atunci când se evaluează simptomele. Sfatul destinat adulților poate să nu fie potrivit pentru un copil.",
+    "details": "Un clinician consideră alimentația, hidratația, activitatea, creșterea și alte simptome împreună. Părinții și îngrijitorii pot ajuta prin descrierea a ceea ce s-a schimbat și când. Alegerea medicamentelor și dozarea necesită sfaturi specifice pentru copii. Un copil care are dificultate respiratorie severă, este greu de trezit sau pare grav bolnav are nevoie de ajutor urgent.",
+    "questions": [
+      "La ce ar trebui să fiu atent la vârsta copilului meu?",
+      "Când ar trebui să programez o nouă evaluare?"
+    ]
+  },
+  "cancer": {
+    "intro": "Cancerul este un grup de boli în care celulele anormale cresc în mod necontrolat. Cancerele diferite se comportă diferit. Organul afectat, tipul de celulă și cât de departe s-a răspândit boala ajută la ghidarea tratamentului.",
+    "details": "Diagnosticul poate implica imagistică, teste de laborator și examinarea unei probe de țesut. Tratamentul poate avea scopuri diferite, inclusiv vindecare, control al bolii sau ușurarea simptomelor. Deciziile ar trebui să ia în considerare beneficiile probabile, efectele secundare și obiectivele personale. O prognoză individuală nu poate fi determinată dintr-o descriere generală sau din o singură statistică.",
+    "questions": [
+      "Care este scopul fiecărei opțiuni de tratament?",
+      "Cum ar putea afecta tratamentul viața mea de zi cu zi?"
+    ]
+  },
+  "mens-health": {
+    "intro": "Sănătatea bărbaților include afecțiuni ale prostatei și testiculelor, sănătatea sexuală, fertilitatea și bunăstarea fizică și psihică în general. Simptomele pot afecta confortul, relațiile și viața cotidiană, chiar dacă sunt dificil de discutat.",
+    "details": "Schimbările urinare sau sexuale nu sunt de la sine o diagnosticare. O discuție confidențială poate ajuta la identificarea posibilelor cauze și a examinărilor corespunzătoare. Deciziile de screening trebuie să includă atât avantajele, cât și dezavantajele. Un nou nodul sau o schimbare persistentă și neexplicată trebuie verificată, mai degrabă decât considerată ca fiind o parte normală a îmbătrânirii.",
+    "questions": [
+      "Ce ar putea cauza această schimbare?",
+      "Care sunt avantajele și dezavantajele testării?"
+    ]
+  },
+  "muscle-and-joint-disorders": {
+    "intro": "Mușchii, tendoanele, articulațiile și țesuturile conexe susțin mișcarea. Traumatismul, suprasolicitarea, inflamația și alte afecțiuni pot provoca durere sau rigiditate. Intensitatea durerii nu corespunde întotdeauna cu ceea ce apare pe o scanare.",
+    "details": "Evaluarea ține seama de funcționalitate, simptome și circumstanțele în care au apărut. Nu toată lumea are nevoie de imagistică. Managementul poate implica ajustări ale activității, reabilitare sau alte tratamente alese pentru diagnostic. Discutați simptomele care se agravează sau limitează activitățile normale, mai degrabă decât să presupuneți că toată durerea are aceeași cauză.",
+    "questions": [
+      "Ce activități pot continua în siguranță?",
+      "Ar modifica imagistica sau reabilitarea îngrijirea mea?"
+    ]
+  },
+  "mental-health-brain-and-nerves": {
+    "intro": "Creierul și sistemul nervos influențează mișcarea, senzația, gândirea, starea de spirit și comportamentul. Afecțiunile de sănătate mentală și afecțiunile neurologice pot ambele afecta viața cotidiană, dar necesită evaluare individuală, mai degrabă decât presupuneri despre caracterul unei persoane.",
+    "details": "Îngrijirea poate include terapii prin vorbire, medicamente, reabilitare sau sprijin practic, în funcție de problemă. Informați clinicianul despre schimbările în funcționalitate și alte afecțiuni de sănătate. Slăbiciunea nouă și bruscă, dificultate în vorbire sau pierderea cunoștinței necesită o evaluare de urgență, chiar dacă alte simptome sunt prezente de mai mult timp.",
+    "questions": [
+      "Care simptome ajută la distingerea posibilelor cauze?",
+      "Ce sprijin ar putea îmbunătăți funcționarea mea cotidiană?"
+    ]
+  },
+  "pregnancy-and-birth": {
+    "intro": "Sarcina aduce schimbări corpului și noi alegeri privind ingrijirea, testele și nașterea. Contactul regulat cu echipa de maternitate ajută la monitorizarea bunăstării persoanei gravide și a bebelușului și oferă oportunitatea de a discuta preocupările.",
+    "details": "Unele teste sunt oferite în mod regulat, în timp ce altele depind de circumstanțele personale. Înțelegerea a ceea ce un test poate și nu poate arăta sprijină deciziile în cunoștință de cauză. Medicamentele și suplimentele ar trebui să fie discutate cu un profesionist calificat în timpul sarcinii. Întrebați echipa de maternitate care simptome necesită contact urgent și cum să-i ajungeți.",
+    "questions": [
+      "Ce informații ar furniza acest test de sarcină?",
+      "Cui ar trebui să mă adresez dacă mă îngrijorează între programări?"
+    ]
+  },
+  "sexual-health-and-contraception": {
+    "intro": "Sănătatea sexuală include bunăstarea, consimțământul, protecția împotriva infecției și alegeri privind prevenirea sarcinii. Metodele contraceptive diferă în modul în care funcționează, în modul în care sunt utilizate și care persoane le pot utiliza în siguranță.",
+    "details": "O metodă potrivită depinde de istoricul medical, preferințe și nevoi practice. Prevenirea sarcinii și protecția împotriva infecțiilor cu transmitere sexuală sunt obiective diferite; nu orice metodă oferă ambele. Sfaturile confidențiale pot ajuta, de asemenea, cu simptome, testare și preocupări privind funcția sexuală. Serviciile și eligibilitatea variază în funcție de țară.",
+    "questions": [
+      "Care opțiuni se potrivesc istoricului meu medical și preferințelor?",
+      "Am nevoie și de protecție sau testare pentru infecții?"
+    ]
+  },
+  "metabolic-disorders": {
+    "intro": "Metabolismul este colecția de procese care transformă alimentele în energie utilizabilă și materiale de construcție. Tulburările metabolice afectează unul sau mai multe dintre aceste procese. Ele includ condiții care implică glucoză, grăsimi și alte substanțe din corp.",
+    "details": "Unele tulburări sunt moștenite, în timp ce altele se dezvoltă printr-o combinație de influențe. Testele de sânge pot ajuta la identificarea unei probleme, dar semnificația lor depinde de contextul clinic. Ingrijirea poate implica alegeri alimentare, medicamente sau alte măsuri adaptate diagnosticului. Restricțiile alimentare generale nu sunt potrivite pentru fiecare tulburare metabolică.",
+    "questions": [
+      "Ce înseamnă rezultatul anormal pentru sănătatea mea?",
+      "Care schimbări sunt potrivite pentru această condiție specifică?"
+    ]
+  },
+  "addiction": {
+    "intro": "Dependența poate implica alcool, nicotină, alte substanțe sau anumite comportamente. Poate afecta controlul, sănătatea, relațiile și responsabilitățile zilnice. Căutarea ajutorului este o decizie de sănătate, nu o dovadă a unui eșec moral.",
+    "details": "Suportul poate combina consiliere, ajutor practic și medicamente atunci când este cazul. Abordarea cea mai sigură depinde de ceea ce se folosește și de starea de sănătate a persoanei. Oprirea bruscă a unor substanțe poate fi periculoasă, în special după ce s-a dezvoltat dependența. Discutați un plan cu un profesionist din domeniul sănătății în loc să folosiți un ghid general online ca program de dezintoxicare.",
+    "questions": [
+      "Ce sprijin este disponibil la nivel local?",
+      "Am nevoie de supraveghere medicală atunci când reduc sau încerc să mă las?"
+    ]
+  },
+  "digestive-system-disorders": {
+    "intro": "Sistemul digestiv procesează mâncarea, absoarbe nutrienți și elimină deșeurile. Problemele pot afecta esofagul, stomacul, intestinele sau organele conexe. Durerea, refluxul, greața și schimbările în obiceiurile intestinale pot avea multe cauze.",
+    "details": "Evaluarea depinde de cum s-au dezvoltat simptomele, durata lor și orice schimbări însoțitoare. Testele sunt alese pentru a răspunde unei întrebări specifice, mai degrabă decât să fie folosite în mod obișnuit pentru fiecare simptom. Simptomele persistente sau pierderea în greutate neexplicată necesită discuție medicală. Durerea abdominală severă sau semne de sângerare semnificativă necesită evaluare promptă.",
+    "questions": [
+      "Care sunt caracteristicile care ajută la identificarea cauzei simptomelor mele?",
+      "Cum ar schimba testul propus abordarea tratamentului meu?"
+    ]
+  },
+  "teeth-and-gums": {
+    "intro": "Dinții și gingiile susțin mâncatul, vorbirea și sănătatea orală. Caria dentară și bolile gingiilor se pot dezvolta treptat și pot să nu provoace durere la început. Problemele dentare pot afecta și încrederea și confortul zilnic.",
+    "details": "Îngrijirea orală regulată și controalele dentare adecvate ajută la identificarea problemelor. Cel mai bun tratament depinde de starea dintelui sau a gingiei și de nevoile persoanei. Durerea dentară nu arată în mod fiabil cât de gravă este o problemă. Hinchiul cu dificultate în înghițire sau respirație necesită ajutor urgent, mai degrabă decât așteptarea unei vizite dentare de rutină.",
+    "questions": [
+      "Ce provoacă problema la acest dinte sau la această gingie?",
+      "Care sunt avantajele și dezavantajele opțiunilor de tratament?"
+    ]
+  },
+  "early-benefit-assessment-of-medications": {
+    "intro": "Germania evaluează anumite medicamente noi pentru a examina dacă oferă un beneficiu suplimentar comparativ cu un tratament deja stabilit. Această evaluare se bazează pe dovezi din grupuri de pacienți și face parte din sistemul german de evaluare a medicamentelor.",
+    "details": "O evaluare poate lua în considerare rezultate importante pentru pacienți, cum ar fi simptomele, supraviețuirea, calitatea vieții și efectele adverse. Rezultatul depinde de comparație și de dovezile disponibile. Nu este o recomandare de prescriere personală, iar evaluarea sau aranjamentele de plată germane nu se aplică automat în alte țări.",
+    "questions": [
+      "Ce grup de pacienți și ce comparație privează această evaluare?",
+      "Cât de relevante sunt constatările pentru alegerile mele de tratament?"
+    ]
+  },
+  "health-care-in-germany": {
+    "intro": "Sistemele de sănătate diferă în modul în care sunt organizate programările, asigurările, recomandările și plata. Acest subiect privește Germania. Înțelegerea care serviciu oferă ce fel de îngrijire poate ușura găsirea punctului de contact potrivit.",
+    "details": "Regulile descrise în informațiile germane s-ar putea să nu se aplice în România, Moldova, Albania sau Italia. Înainte de a organiza un serviciu, verificați cu furnizatorul sau asiguratorul cerințele locale de acces și costurile posibile. Atunci când citiți despre un sistem de sănătate, faceți distincție între informațiile medicale generale și regulile administrative specifice unei țări.",
+    "questions": [
+      "Aceasta informație se aplică în țara în care primesc îngrijire medicală?",
+      "Ce furnizor sau asigurător poate confirma accesul și costurile?"
+    ]
+  },
+  "individual-health-care-services-igel": {
+    "intro": "În Germania, unele teste și tratamente oferite în afara acoperirii standard a asigurării sociale obligatorii se numesc servicii individuale de sănătate, sau IGeL. Pacienții pot trebui să plătească pentru aceste servicii din propria buzunar. Faptul că un serviciu este disponibil pentru cumpărare nu demonstrează în sine că îmbunătățește sănătatea.",
+    "details": "Înainte de a lua o decizie, întrebați ce beneficiu este susținut de cercetare, ce riscuri sau teste suplimentare ar putea urma și dacă există o alternativă acoperită. Un preț și o explicație clară ar trebui să fie disponibile. IGeL este o categorie germană; regulile de plată și serviciile disponibile diferă în alte locuri.",
+    "questions": [
+      "Ce beneficiu este dovedit și ce incertitudine rămâne?",
+      "Care sunt costurile, riscurile și alternativele acoperite?"
+    ]
+  },
+  "nursing-care": {
+    "intro": "Îngrijirea medicală sprijină persoanele cu nevoi de sănătate și activități zilnice. Poate fi furnizată acasă, în comunitate sau într-o instituție de îngrijire. Nevoile pot se schimbe după boală, accident sau pierderea independenței.",
+    "details": "Planificarea îngrijirii include înțelegerea a ceea ce poate face persoana, unde este nevoie de ajutor și ce îi este important. Cei care acordă îngrijire în familie pot avea nevoie și ei de sprijin. Serviciile disponibile, evaluările și aranjamentele financiare variază în funcție de țară. Un plan de îngrijire ar trebui revizuit atunci când se schimbă starea de sănătate sau circumstanțele practice.",
+    "questions": [
+      "Ce ajutor m-ar sprijini în independență și siguranță?",
+      "Care sunt serviciile locale care pot evalua nevoile mele de îngrijire?"
+    ]
+  },
+  "screening": {
+    "intro": "Screening-ul caută o afecțiune sau un risc crescut la persoane fără simptome corelate. Diferă de testele folosite pentru a investiga o problemă nouă. O ofertă de screening ar trebui luată în considerare în funcție de potențialele beneficii și posibilele daune.",
+    "details": "Screening-ul poate uneori detecta boala mai devreme, dar poate produce și alarme false, rata boala sau identifica modificări care nu ar cauza niciodată probleme. Pot urma teste suplimentare sau tratament. Programele adecvate depind de vârstă, risc personal și recomandări locale. Simptomele noi necesită evaluare chiar și după un rezultat de screening liniștitor.",
+    "questions": [
+      "Ce beneficiu se așteaptă pentru persoane ca mine?",
+      "Ce ar putea urma unui rezultat pozitiv sau incert?"
+    ]
+  },
+  "second-opinions-before-surgery": {
+    "intro": "O a doua opinie este o evaluare de către alt clinician cu privire la o operație propusă. Poate ajuta la clarificarea diagnosticului, motivele pentru chirurgie și alternativele disponibile. Este deosebit de utilă atunci când o decizie implică compromisuri importante.",
+    "details": "Aduceți rapoarte relevante, imagini și o listă de întrebări. Întrebați cum se compară beneficiile așteptate cu posibilele daune și ce s-ar putea întâmpla fără chirurgie. Eligibilitatea sau plata pentru o a doua opinie formală variază în funcție de țară. Nu amânați tratamentul de urgență în timp ce căutați sfaturi rutiniere suplimentare.",
+    "questions": [
+      "Care sunt alternativele la această operație?",
+      "Cum se compară rezultatele așteptate cu așteptarea sau îngrijirea non-chirurgicală?"
+    ]
+  },
+  "blood-and-immune-system": {
+    "intro": "Sângele transportă oxigen, nutrienți și alte substanțe în întregul corp. Celulele și proteinele sale ajută, de asemenea, la apărarea împotriva infecțiilor și la oprirea sângerării. Sistemul imunitar include celule și organe specializate care lucrează împreună pentru a recunoaște amenințări.",
+    "details": "Analizele de sânge măsoară diferite părți ale acestui sistem. Un rezultat în afara intervalului de referință nu înseamnă întotdeauna o boală gravă, iar un rezultat normal nu răspunde la fiecare întrebare clinică. Interpretarea depinde de simptome, antecedente medicale și motivul testării.",
+    "questions": [
+      "Ce parte a sângelui sau sistemului imunitar măsoară acest test?",
+      "Rezultatul necesită urmărire în situația mea?"
+    ]
+  },
+  "brain-and-nerves": {
+    "intro": "Sistemul nervos conectează creierul, măduva spinării și nervii din întregul corp. Procesează informații, controlează mișcarea și ajută la reglementarea multor funcții automate. Diferite părți au roluri diferite, deci modelul simptomelor este important.",
+    "details": "Un examen neurologic poate evalua forța, senzația, coordonarea și alte funcții. Testele suplimentare sunt selectate în funcție de întrebarea clinică. Schimbările bruște, cum ar fi slăbiciune nouă, dificultăți de vorbire sau pierderea conștiinței necesită evaluare urgentă în loc de o încercare de a identifica cauza online.",
+    "questions": [
+      "Ce sugerează modelul simptomelor?",
+      "Ce examen sau test ar putea clarifica problema?"
+    ]
+  },
+  "sex-organs": {
+    "intro": "Organele reproductive sunt implicate în reproducție, producția de hormoni și funcția sexuală. Structura și funcția lor se modifică de-a lungul vieții. Înțelegerea anatomiei normale poate face mai ușor să descrii simptomele și să discuți probleme de sănătate.",
+    "details": "Durerea, sângerarea, secreția sau o umflătură nouă pot avea explicații diferite. Un profesionist în domeniul sănătății poate discuta în mod confidențial despre examenul sau testarea potrivită. Ceea ce este obișnuit pentru o persoană poate diferi de alta, dar o schimbare persistentă sau neașteptată nu ar trebui să fie ignorată fără evaluare.",
+    "questions": [
+      "Este această schimbare de așteptat în circumstanțele mele?",
+      "Ce ar ajuta un examen sau test să stabilească?"
+    ]
+  },
+  "limbs": {
+    "intro": "Brațele și picioarele combină oase, articulații, mușchi, nervi și vase de sânge pentru a sprijini mișcarea și senzația. Problemele în oricare din aceste structuri pot afecta forța, echilibrul sau capacitatea de a efectua sarcinile zilnice.",
+    "details": "Simptomele cum ar fi durerea, umflarea, slăbiciunea sau amorțeala trebuie considerate împreună. Evaluarea poate include mișcarea, circulația și funcția nervilor. Reabilitarea poate ajuta la unele probleme, dar abordarea potrivită depinde de cauză. Schimbările majore și bruște în mișcare sau senzație necesită atenție medicală promptă.",
+    "questions": [
+      "Care structuri ar putea fi implicate în simptomele mele?",
+      "Ce ar putea ajuta la restabilirea funcției în siguranță?"
+    ]
+  },
+  "skin-hair-and-nails": {
+    "intro": "Pielea formează o barieră de protecție, ajută la reglarea temperaturii și permite senzația. Părul și unghiile sunt structuri conexe care cresc din celule specializate. Schimbările pot reflecta o problemă locală sau, uneori, o altă condiție de sănătate.",
+    "details": "Culoarea, textura, locația și viteza schimbării pot ajuta la orientarea evaluării. Expunerea la substanțe chimice, produsele de îngrijire zilnică și medicamentele pot fi relevante. Evitați presupunerea că o schimbare cosmetică identifică o boală specifică. O schimbare persistentă, dureroasă sau inexplicată poate fi discutată cu un clinician.",
+    "questions": [
+      "Ar putea o expunere sau un medicament să explice această schimbare?",
+      "Ce caracteristici ar necesita o evaluare suplimentară?"
+    ]
+  },
+  "endocrine-hormone-system": {
+    "intro": "Sistemul endocrin constă din glande și țesuturi care eliberează hormoni. Aceste semnale circulă prin sânge și ajută la coordonarea proceselor cum ar fi metabolismul, creșterea și reproducerea. Mecanismele de feed-back mențin de obicei activitatea hormonală într-un interval corespunzător.",
+    "details": "Nivelurile hormonale pot varia în funcție de timp, vârstă, sarcină și boală. Acesta este un motiv pentru care rezultatele testelor necesită interpretare clinică mai degrabă decât comparație cu un singur număr izolat. Tratamentul unei tulburări hormonale depinde de care semnal sau glandă este afectată.",
+    "questions": [
+      "Ar putea timpingul sau o altă condiție să influențeze rezultatul meu hormonal?",
+      "Ce controlează de obicei această glandă?"
+    ]
+  },
+  "bones-muscles-and-joints": {
+    "intro": "Oasele susțin și protejează corpul. Articulațiile conectează oasele, în timp ce mușchii și tendonii produc mișcare. Cartilajul, ligamentele și alte țesuturi ajută articulațiile să se miște și să rămână stabile. Împreună, aceste structuri formează sistemul musculoscheletic.",
+    "details": "Forța, coordonarea și mobilitatea articulatiilor contribuie la funcție. Rănile și bolile pot afecta diferite părți ale sistemului, uneori cu simptome care se suprapun. Un examen privește dincolo de un singur punct dureros pentru a înțelege cum este afectată mișcarea. Tratamentul și recuperarea ar trebui să corespundă problemei reale.",
+    "questions": [
+      "Cum afectează această problemă mișcarea și funcția mea?",
+      "Ce obiective ar trebui să ghideze recuperarea?"
+    ]
+  },
+  "lungs-and-airways": {
+    "intro": "Aerul circulă prin căile respiratorii în plămâni. În sacii aerieni minusculi, oxigenul trece în sânge și dioxidul de carbon se elimină. Respirația depinde, de asemenea, de mușchi, de peretele toracic și de semnale din sistemul nervos.",
+    "details": "Dificultatea respiratorie poate rezulta din probleme în plămâni sau în altă parte a corpului. Un clinician ia în considerare circumstanțele și alți simptomi înainte de a alege teste. Testele respiratorii și măsurătorile oxigenului răspund la întrebări diferite și nu pot înlocui o evaluare completă atunci când cineva se simte grav bolnav.",
+    "questions": [
+      "Ar putea ceva altceva decât plămânii să explice dificultatea mea respiratorie?",
+      "Ce va arăta testul respirator propus?"
+    ]
+  },
+  "stomach-bowel-and-digestion": {
+    "intro": "Digestia descompune mâncarea pentru ca organismul să poată absorbi și utiliza nutrienții. Stomacul amestecă mâncarea, intestinele absorb nutrienții și apa, iar alte organe furnizează substanțele necesare digestiei. Deșeurile rămase părăsesc corpul sub formă de scaun.",
+    "details": "Digestia normală variază între persoane. O schimbare durabilă a obiceiurilor intestinale sau disconfortul continuu este mai util de descris decât o singură comparație cu rutina altuia. Medicamentele, dieta și bolile pot influența toată digestia. Investigația depinde de modelul general și de simptomele însoțitoare.",
+    "questions": [
+      "Care schimbări față de modelul meu obișnuit sunt importante?",
+      "Ar putea medicamentele sau o altă boală să contribuie?"
+    ]
+  },
+  "mouth-and-teeth": {
+    "intro": "Gura inițiază digestia prin mestecarea alimentelor și producția de salivă și este importantă pentru vorbire și înghițire. Dinții, gingiile, limba și alte țesuturi lucrează împreună. Sănătatea lor afectează confortul și capacitatea de a consuma o dietă variată.",
+    "details": "Problemele pot implica dinții, țesuturile de susținere sau mucosa bucală. Un examen dentar poate ajuta la identificarea acestor cauze. O rană persistentă, o tumefacție neexplicată sau o dificultate continuă de înghițire merită evaluare. Îngrijirea zilnică a cavității bucale este utilă, dar nu înlocuiește evaluarea unei schimbări durabile.",
+    "questions": [
+      "Problema provine dintr-un dinte sau dintr-un alt țesut din gură?",
+      "Ce ar trebui să fac dacă schimbarea nu se vindecă?"
+    ]
+  },
+  "kidneys-bladder-and-urinary-tract": {
+    "intro": "Rinichii filtrează sângele, echilibrează lichidele și sărurile și produc urina. Urina se deplasează prin ureterii până la vezica urinară, unde este depozitată înainte de a ieși prin uretra. Aceste structuri au roluri distincte.",
+    "details": "Aspect urinei singur nu măsoară în mod fiabil sănătatea rinichilor. Testele de sânge și urina pot evalua funcții diferite sau semne de boală. Schimbările în urinare pot rezulta din rinichi, vezica urinară sau din alte cauze. Un clinician interpretează constatările alături de simptome, medicamente și rezultatele anterioare.",
+    "questions": [
+      "Care parte a aparatului urinar este evaluată?",
+      "Ce măsoară testele de sânge și urina?"
+    ]
+  },
+  "sensory-organs": {
+    "intro": "Organele senzoriale colectează informații despre lume și corp. Ochii și urechile susțin vederea, auzul și echilibrul, în timp ce receptorii ajută și la miros, gust și atingere. Creierul interpretează aceste semnale.",
+    "details": "Schimbările într-un simț pot afecta siguranța, comunicarea și independența. Cauza lor poate implica organul senzorial, nervii sau alte afecțiuni. Descrieți dacă o schimbare este bruscă, treptată sau intermitentă. Pierderea bruscă a vederii sau auzului ar trebui să beneficieze de o evaluare medicală urgentă.",
+    "questions": [
+      "Unde ar putea apărea schimbarea acestui simț?",
+      "Ar putea o ajutoare sau o recuperare să îmbunătățească funcționarea zilnică?"
+    ]
+  },
+  "metabolism": {
+    "intro": "Metabolismul include procesele chimice ale corpului pentru obținerea energiei, construirea țesuturilor și gestionarea deșeurilor. Enzimele și hormonii ajută la controlul acestor procese. Metabolismul implică multe organe, nu doar o singură parte a corpului.",
+    "details": "Corpul își ajustează utilizarea nutrienților în funcție de activitate, aportul alimentar și alte influențe. Cuvântul metabolism nu explică de sine stătător un simptom sau o schimbare a greutății. Când se suspectează o problemă metabolică specifică, testele și tratamentul util depind de întrebarea clinică pusă.",
+    "questions": [
+      "Care este procesul metabolic relevant pentru preocuparea mea?",
+      "Ce informații ar ajuta la identificarea unei probleme specifice?"
+    ]
+  },
+  "growth-and-aging": {
+    "intro": "Creșterea și îmbătrânirea implică schimbări în structura și funcția corpului în timp. Oamenii se dezvoltă și îmbătrânesc cu viteze diferite. Sănătatea, mediul și circumstanțele cotidiene pot influența ce înseamnă aceste schimbări pentru viața zilnică a unei persoane.",
+    "details": "Abilitatea obișnuită a unei persoane și viteza schimbării sunt importante atunci când se ia în considerare necesitatea unei evaluări. Problemele noi nu trebuie să fie atribuite automat vârstei. Îngrijirea poate fi concentrată pe dezvoltare, independență, confort și activități care sunt importante pentru persoană.",
+    "questions": [
+      "Este această evoluție de așteptat la această etapă a vieții?",
+      "Ce ar putea ajuta la menținerea funcției sau la sprijinirea dezvoltării?"
+    ]
+  },
+  "drugs-and-vaccines": {
+    "intro": "Medicamentele pot preveni boala, ușura simptomele sau trata o afecțiune. Vaccinurile pregătesc sistemul imunitar să răspundă la anumite infecții. Ambele sunt evaluate pentru beneficii și posibile daune, dar adecvarea lor depinde de persoană și scop.",
+    "details": "Înțelegerea beneficiului prevăzut, efectelor adverse obișnuite și utilizarea corectă susțin decizii mai sigure. Informați echipa de sănătate despre alte medicamente și suplimente. Nu modificați un tratament prescris pe baza unui rezumat general. Întrebările despre vaccinare sau medicamente pot fi discutate cu un profesionist calificat.",
+    "questions": [
+      "Ce beneficiu ar trebui să mă aștept de la acest tratament?",
+      "Ce interacțiuni sau efecte adverse ar trebui să discut?"
+    ]
+  },
+  "diagnosis-and-tests": {
+    "intro": "Testele de diagnostic ajută la răspunderea la întrebări despre sănătatea unei persoane. Pot include examinări, analize de sânge sau urină, imagistică și probe de țesuturi. Un test este cel mai util atunci când rezultatul ar putea clarifica o problemă sau influența tratamentul.",
+    "details": "Niciun test nu este perfect. Unele rezultate sunt falsă-asigurătoare sau sugerează boală atunci când aceasta nu există. Interpretarea depinde de simptome, de probabilitatea condiției și de alte descoperiri. Înainte de testare, este util să înțelegeți posibilele disconforturi, riscuri și ce ar însemna rezultatele diferite.",
+    "questions": [
+      "Ce întrebare specifică trebuie să răspundă acest test?",
+      "Cum ar schimba următorul pas fiecare rezultat posibil?"
+    ]
+  },
+  "non-drug-treatments": {
+    "intro": "Asistența medicală include tratamente care nu implică luarea unui medicament. Exemplele includ reabilitare, terapii conversaționale și schimbări în activități sau mediu. Utilitatea lor depinde de condiție, de tratament și de obiectivele persoanei.",
+    "details": "Un tratament fără medicamente poate avea și poveri, costuri sau efecte adverse. Întrebați ce dovezi o susțin, ce implică participarea și cum se va evalua progresul. Abordări diferite pot fi combinate după caz. O explicație atrăgătoare sau o afirmație că ceva este natural nu stabilesc că funcționează.",
+    "questions": [
+      "Ce dovezi susțin această opțiune pentru condiția mea?",
+      "Cum vom judeca dacă mă ajută?"
+    ]
+  },
+  "surgery": {
+    "intro": "Chirurgia este folosită pentru a diagnostica, repara, îndepărta sau înlocui țesuturi, sau pentru a ușura simptomele. Operațiile diferă foarte mult în scop, riscuri și recuperare. Dacă chirurgia este potrivită depinde de condiție și de circumstanțele persoanei.",
+    "details": "O decizie informată include discutarea beneficiilor așteptate, complicațiilor posibile, anesteziei și alternativelor. Recuperarea poate implica schimbări temporare în munca, activitatea sau nevoile de îngrijire. Întrebați ce s-ar putea întâmpla fără operație și cât de urgent este decizia. Informația generală nu poate prezice rezultatul chirurgical al unui individ.",
+    "questions": [
+      "De ce se propune chirurgia și care sunt alternativele?",
+      "Ce suport și timp de recuperare ar putea fi necesare?"
+    ]
+  },
+  "physical-therapy-and-daily-living-aids": {
+    "intro": "Fizioterapia și ajutoarele practice pot ajuta oamenii să se miște, să gestioneze simptomele și să îndeplinească activități zilnice. Necesitățile pot apărea după o rănire, o boală sau o afecțiune pe termen lung. Scopul este funcționalitatea semnificativă, nu completarea aceluiași program pentru toată lumea.",
+    "details": "Evaluarea poate identifica exerciții, adaptări sau echipamente potrivite. Un ajutor trebuie să se potrivească persoanei și mediului în care va fi folosit. Instrucțiunea, practica și urmărirea ulterioară pot fi importante. Discutați obiectivele, cum ar fi mersul, îmbrăcatul sau revenirea la muncă, astfel încât sprijinul să abordeze necesități reale.",
+    "questions": [
+      "Ce activitate zilnică ar trebui să prioritizăm?",
+      "Cum ar trebui să folosesc și să revizuiesc acest ajutor sau plan de exerciții?"
+    ]
+  },
+  "prevention": {
+    "intro": "Prevenția urmărește să reducă șansa de a se îmbolnăvi sau consecințele bolii. Poate implica vaccinare, reducerea expunerilor dăunătoare, obiceiuri zilnice sau screening-ul corespunzător. Valoarea unei măsuri preventive depinde de riscul pe care îl abordează.",
+    "details": "Nu orice ofertă preventivă oferă același beneficiu, iar unele pot provoca daune sau urmăriri inutile. Riscul personal și circumstanțele practice sunt importante. Luați în considerare ceea ce este susținut de dovezi și ceea ce este realist de menținut. Prevenția reduce unele riscuri, dar nu poate garanta că o persoană nu se va îmbolnăvi niciodată.",
+    "questions": [
+      "Care riscuri preventivabile sunt cele mai importante pentru mine?",
+      "Ce beneficiu și posibil prejudiciu implică această măsură?"
+    ]
+  },
+  "what-is-evidence-based-medicine": {
+    "intro": "Medicina bazată pe dovezi combină rezultatele cercetării cu expertiza clinică și nevoile și preferințele pacientului. Se întreabă dacă un test sau un tratament îmbunătățește rezultatele care au importanță pentru oameni, mai degrabă decât să se bazeze doar pe o explicație plauzibilă.",
+    "details": "Cercetarea poate arăta atât beneficii, cât și daune, dar incertitudinea rămâne adesea. Dovezile dintr-un grup nu dictează fiecare decizie individuală. Discuțiile utile fac ușor de înțeles mărimea efectelor așteptate, limitele dovezilor și alternativele disponibile.",
+    "questions": [
+      "Ce cercetare susține această recomandare?",
+      "Cum se aplică rezultatele circumstanțelor și preferințelor mele?"
+    ]
+  },
+  "studies-co": {
+    "intro": "Studiile medicale investighează întrebări despre sănătate, teste și tratamente. Designul lor afectează ce concluzii pot fi trase. O comparație între grupuri poate ajuta să se distingă efectul unui tratament de schimbările care s-ar fi întâmplat oricum.",
+    "details": "Un efect mare în titluri poate arăta diferit când se iau în considerare numerele absolute, timpul de urmărire și daunele. Rezultatele depind și de cine a fost studiat și cât de fiabil au fost măsurate rezultatele. Rar un singur studiu răspunde la fiecare întrebare; reviewurile sistematice reunesc cercetarea folosind o abordare planificată.",
+    "questions": [
+      "Cât de mare este beneficiul în termeni absoluți?",
+      "Ce limitări sau rezultate lipsă afectează concluzia?"
+    ]
+  },
+  "making-an-informed-decision": {
+    "intro": "O decizie informată în domeniul sănătății aduce împreună informații înțelese și ceea ce contează pentru persoana care o ia. Adesea există mai mult de o opțiune rezonabilă. Beneficiile, riscurile, cerințele practice și incertitudinea pot afecta modul în care cineva cântărește aceste opțiuni.",
+    "details": "Cereți explicații în limbaj simplu și timp pentru a lua în considerare alegerile neurgente. Discutați ce s-ar putea întâmpla cu fiecare opțiune, inclusiv niciun tratament sau așteptare atunci când este cazul. Un instrument de ajutor în decizii poate sprijini conversația, dar nu înlocuiește sfatul individual sau consimțământul.",
+    "questions": [
+      "Care sunt opțiunile mele, inclusiv așteptarea unde este cazul?",
+      "Care rezultate și compromisuri sunt cele mai importante pentru mine?"
+    ]
+  },
+  "our-methods-and-processes": {
+    "intro": "Informațiile fiabile despre sănătate explică cum autorii lor găsesc cercetări, le evaluează și decid ce să publice. Subiectul IQWiG conectat descrie abordarea sa pentru dezvoltarea informațiilor bazate pe dovezi. Cunoașterea metodelor ajută cititorii să judece cum sunt susținute afirmațiile.",
+    "details": "Verificări utile includ cine a produs informația, ce dovezi au fost considerate, când a fost actualizată și dacă incertitudinea este explicată. Legătura sursă de mai jos duce la materialul propriu al IQWiG. Această prezentare generală RediHealth este scrisă independent și nu este o publicație sau o aprobare IQWiG.",
+    "questions": [
+      "Pot identifica editorul și dovezile care o susțin?",
+      "Explică informația incertitudinea și procesul de actualizare?"
+    ]
+  }
+}

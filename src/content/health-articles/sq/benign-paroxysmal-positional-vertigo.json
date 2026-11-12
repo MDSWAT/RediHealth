@@ -1,0 +1,51 @@
+{
+  "title": "Vertigoja pozicionale: vlerësimi, trajtimi dhe siguria",
+  "intro": "Vertigoja pozicionale paroksizmale beninje, ose BPPV, shkakton episode të shkurtra rrotullimi me lëvizje të caktuara të kokës. Është problem i ekuilibrit në veshin e brendshëm dhe shpesh trajtohet me manovra ripozicionimi. Megjithatë, jo çdo marramendje është BPPV. Simptomat e reja ose të pazakonta duhen vlerësuar; fjala beninje nuk duhet të përdoret për të shpërfillur shenjat alarmuese ose rrezikun e rrëzimit.",
+  "sections": [
+    {
+      "heading": "Përshkruani shkaktarin dhe kohëzgjatjen",
+      "paragraphs": [
+        "Një episod tipik ndodh kur ktheheni në shtrat, shtriheni mbrapa ose shihni lart. Rrotullimi më i fortë zakonisht është i shkurtër, por të përzierat ose paqëndrueshmëria mund të zgjasin më shumë. Kristale të vogla që kanë hyrë në një kanal të veshit të brendshëm dërgojnë sinjale të gabuara lëvizjeje. Tregoni nëse simptomat nisin me pozicionin e kokës, kur ngriheni në këmbë apo vazhdojnë pa lëvizur. Përmendni ndryshime dëgjimi, dhimbje koke, të fikët, dëmtime të fundit dhe barna të reja, sepse mund të tregojnë shkaqe të tjera."
+      ]
+    },
+    {
+      "heading": "Njihni shenjat që kërkojnë ndihmë urgjente",
+      "paragraphs": [
+        "Kërkoni ndihmë emergjente për vertigo të papritur me vështirësi të foluri, varje të fytyrës, dobësi, shikim të dyfishtë, dhimbje koke të re të fortë ose pamundësi për të qëndruar në këmbë apo ecur. Goditja në tru ndonjëherë shfaqet kryesisht me humbje të rëndë ekuilibri. Edhe humbja e papritur e dëgjimit kërkon vlerësim urgjent. Mos drejtoni makinën vetë për të marrë ndihmë. Rrotullimi i ri që vazhdon, të vjellat e përsëritura ose simptoma shumë ndryshe nga BPPV e diagnostikuar më parë kërkojnë këshillë të shpejtë, jo ushtrime të përsëritura në shtëpi."
+      ]
+    },
+    {
+      "heading": "Lëreni ekzaminimin të udhëheqë diagnozën",
+      "paragraphs": [
+        "Një profesionist i trajnuar pyet për simptomat dhe mund të kryejë test pozicional duke vëzhguar sytë. Drejtimi dhe koha e lëvizjeve të syve ndihmojnë të përcaktohet veshi dhe kanali i prekur. Tregoni për problemet e qafës, shpinës ose lëvizshmërinë e kufizuar para testit, që pozicionet të përshtaten. Imazheria nuk nevojitet rregullisht në rastet tipike të konfirmuara, por gjetjet e pazakonta mund të kërkojnë hetime të tjera. Një video në internet nuk zëvendëson ekzaminimin dhe nuk përjashton me siguri shkakun neurologjik."
+      ]
+    },
+    {
+      "heading": "Zgjidhni manovrën sipas gjetjeve",
+      "paragraphs": [
+        "Ripozicionimi përdor një varg pozicionesh të kokës dhe trupit për të lëvizur kristalet e zhvendosura. Manovra e duhur varet nga kanali i prekur dhe aftësia juaj për të lëvizur në mënyrë të sigurt. Ajo mund të shkaktojë përkohësisht vertigo dhe ndonjëherë duhet përsëritur. Kërkojini profesionistit të demonstrojë çdo teknikë për në shtëpi dhe të shpjegojë kur duhet ndalur ose kërkuar rivlerësim. Barnat ndonjëherë lehtësojnë të përzierat, por nuk lëvizin kristalet. Mos ndërprisni barna të përshkruara dhe mos përsëritni manovra të rastësishme pa këshillë."
+      ]
+    },
+    {
+      "heading": "Planifikoni shërimin dhe rikthimin e mundshëm",
+      "paragraphs": [
+        "Derisa ekuilibri të jetë i qëndrueshëm, uluni gjatë episodit, përdorni mbështetje kur ngriheni dhe mbani rrugën për në banjë të ndriçuar e pa pengesa. Shmangni shkallët portative, lartësitë, drejtimin e makinës dhe makineritë kur simptomat i bëjnë të pasigurta. Pyetni kur mund të rifilloni aktivitetet e zakonshme. Mund të mbetet paqëndrueshmëri ose të ketë episod tjetër; kontrolli dallon rikthimin nga një problem tjetër. Nëse frika nga lëvizja vazhdon, rehabilitimi i mbikëqyrur i ekuilibrit mund të ndihmojë. Mos supozoni se çdo marramendje e ardhshme ka të njëjtin shkak."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: rrotullim i shkurtër në shtrat",
+      "text": "Një person ndien episode të shkurtra rrotullimi sa herë kthehet djathtas. Organizon vlerësim dhe përshkruan saktë shkaktarin. Pas ekzaminimit pozicional, profesionisti kryen manovrën e duhur dhe jep plan për simptomat që vazhdojnë ose rikthehen."
+    },
+    {
+      "title": "Shembull hipotetik: ndryshim i simptomave",
+      "text": "Dikush i trajtuar më parë për BPPV ka marramendje të rëndë të vazhdueshme dhe nuk ecën pa mbështetje. Kërkon vlerësim urgjent në vend që të supozojë se vlen diagnoza e vjetër dhe të përsërisë një ushtrim nga interneti."
+    }
+  ],
+  "questions": [
+    "A mbështesin simptomat dhe lëvizjet e syve diagnozën BPPV dhe cili kanal është prekur?",
+    "A është e sigurt manovra në shtëpi me problemet e mia të qafës, shpinës dhe shëndetit?",
+    "Cilat ndryshime kërkojnë ndihmë urgjente dhe kur duhen rishikuar simptomat e vazhdueshme?"
+  ]
+}

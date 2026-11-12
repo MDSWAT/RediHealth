@@ -1,0 +1,51 @@
+{
+  "title": "Dehidracija: nadoknada tekućine i kada tražiti pomoć",
+  "intro": "Dehidracija nastaje kada tijelo gubi više tekućine nego što prima. Povraćanje, proljev, temperatura, jako znojenje ili otežan pristup piću pridonose. Dojenčad, stariji i osobe ovisne o tuđoj njezi mogu se brže pogoršati. Blagi gubitak može se popraviti primjerenim pijenjem, ali ozbiljna dehidracija ili njezin uzrok trebaju liječenje.",
+  "sections": [
+    {
+      "heading": "Primijetite promjene od uobičajenog",
+      "paragraphs": [
+        "Žeđ, suha usta, glavobolja, umor, omaglica te rjeđa ili tamnija mokraća mogu biti tragovi. Kod dojenčeta važniji su manje mokre pelene, slabije hranjenje, malo suza ili neobična razdražljivost. Stariji možda ne osjećaju jaku žeđ. Nijedan znak, uključujući boju mokraće ili štipanje kože, sam ne određuje težinu. Simptomi imaju i druge uzroke. Razmotrite gubitak, zadržano piće, budnost i pristup pomoći. Nova trajna pretjerana žeđ ili mokrenje traže procjenu uzroka poput dijabetesa, a ne samo sve više vode."
+      ]
+    },
+    {
+      "heading": "Kada kućno pijenje nije dovoljno",
+      "paragraphs": [
+        "Tražite žuran savjet ako ne zadržavate tekućinu, mokraće je znatno manje, omaglica pri ustajanju traje, srce ili disanje su neobično brzi ili je dijete pospano odnosno slabo jede. Sumnja kod dojenčeta traži brz savjet. Hitna pomoć potrebna je za zbunjenost, teško buđenje, kolaps, teško disanje ili hladnu, plavu, sivu ili mrljastu kožu uz tešku bolest. Teška toplinska bolest s promjenom svijesti također je hitnost. Ne silite piće osobi bez svijesti, prepospanoj za sigurno gutanje ili koja teško diše. Ostanite uz nju i slijedite upute."
+      ]
+    },
+    {
+      "heading": "Nadoknadite gubitke pravom tekućinom",
+      "paragraphs": [
+        "Budnoj osobi koja guta nudite male česte gutljaje, posebno uz mučninu, postupno povećavajući prema podnošenju. Uz značajno povraćanje ili proljev ljekarnik može preporučiti oralnu rehidracijsku otopinu za vodu i soli zajedno. Svaku vrećicu pomiješajte s točnom navedenom količinom sigurne vode, bez dodatnog praha, soli, šećera ili soka. Proizvodi se ne miješaju jednako. Vrlo slatka pića pogoršavaju proljev, sportsko piće nije automatski jednako medicinskoj otopini. Nastavite dojiti i ne razrjeđujte formulu; tražite dobno primjeren plan hranjenja i rehidracije."
+      ]
+    },
+    {
+      "heading": "Neka stanja trebaju prilagođen plan",
+      "paragraphs": [
+        "Kod zatajenja srca, uznapredovale bubrežne bolesti ili ograničenja tekućine tražite individualni savjet uz povraćanje, proljev ili vrućinu, bez forsiranja velikih volumena. Rehidracija sadrži i soli koje treba razmotriti. Diuretici i drugi lijekovi utječu na ravnotežu ili sigurnost bubrega tijekom bolesti. Tražite poseban plan: koji lijek eventualno pauzirati i kad ga vratiti, bez samostalnog prekidanja svega. Liječnik može provjeriti tlak, soli, bubrege ili glukozu. Teški slučajevi ponekad trebaju pomno praćenu tekućinu u venu ili drugim potpomognutim putem."
+      ]
+    },
+    {
+      "heading": "Spriječite nov događaj praktičnom podrškom",
+      "paragraphs": [
+        "Držite prikladna pića nadohvat i nudite ih uz obroke i između aktivnosti. Omiljena šalica, podsjetnik, pomoć pri podizanju i dostupan zahod mogu značiti više od ponavljanja da treba piti. Poremećaj gutanja traži procijenjenu sigurnu gustoću i pomoć, a ne forsiranje rijetke tekućine. Na vrućini smanjite napor, nađite hladnije mjesto i planirajte stanke. Pratite bolju budnost, pijenje i povratak uobičajenog mokrenja; pogoršanje traži procjenu. Trajno povraćanje, proljev, teško gutanje ili manjak sigurne vode trebaju plan za uzrok, ne samo gubitak tekućine."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: male količine i praćenje",
+      "text": "Dijete s crijevnom infekcijom povrati nakon velikog pića. Liječnik preporuči prikladnu otopinu u malim čestim količinama i objasni alarme. Roditelj nastavlja plan hranjenja i traži pomoć uz manje mokrih pelena ili neobičnu pospanost."
+    },
+    {
+      "title": "Zamišljeni primjer: ograničenje mijenja savjet",
+      "text": "Za toplinskog vala stariji muškarac sa zatajenjem srca ima omaglicu uz diuretik. Skrbnik se javlja timu za procjenu i poseban plan tekućine i lijekova, umjesto neograničene vode ili prekida svega."
+    }
+  ],
+  "questions": [
+    "Može li se riješiti pijenjem ili treba procjena sada?",
+    "Koja otopina i hranjenje odgovaraju dobi i stanju?",
+    "Trebaju li moji lijekovi ili ograničenje tekućine poseban plan bolesti?"
+  ]
+}

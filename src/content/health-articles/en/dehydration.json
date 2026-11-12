@@ -1,0 +1,51 @@
+{
+  "title": "Dehydration: replacing fluid and knowing when to get help",
+  "intro": "Dehydration happens when the body loses more fluid than it takes in. Vomiting, diarrhoea, fever, heavy sweating or difficulty getting drinks can all contribute. Babies, older adults and people who depend on others for care can deteriorate more quickly. Mild fluid loss may improve with appropriate drinking, but serious dehydration or its underlying cause needs medical treatment.",
+  "sections": [
+    {
+      "heading": "Notice changes from the person's usual pattern",
+      "paragraphs": [
+        "Thirst, dry mouth, headache, tiredness, dizziness and less frequent or darker urine can be clues. In a baby, fewer wet nappies, reduced feeding, few tears or unusual irritability may be more useful than thirst. Older people may not feel strongly thirsty. No single sign, including urine colour or a skin-pinch test, establishes the severity. Symptoms can also have other causes. Consider the amount lost, what the person can keep down, their alertness and whether they can get help. New persistent excessive thirst or urination deserves assessment for causes such as diabetes rather than simply drinking more indefinitely."
+      ]
+    },
+    {
+      "heading": "Recognise when drinking at home is not enough",
+      "paragraphs": [
+        "Seek urgent advice if fluids cannot be kept down, urine is markedly reduced, dizziness on standing persists, the heart or breathing is unusually fast, or a child is unusually sleepy or feeding poorly. Babies with suspected dehydration need prompt advice. Call emergency services for confusion, difficulty waking, collapse, severe breathing difficulty or cold, blue, grey or blotchy skin with serious illness. Severe heat illness with altered awareness is also an emergency. Do not force drinks into someone who is unconscious, too drowsy to swallow safely or struggling to breathe. Stay with them and follow emergency instructions."
+      ]
+    },
+    {
+      "heading": "Replace losses with the right fluid",
+      "paragraphs": [
+        "For an alert person who can swallow, offer frequent small sips, especially if nauseated, and increase gradually as tolerated. With significant diarrhoea or vomiting, a pharmacist may recommend an oral rehydration solution to replace water and salts together. Mix each sachet with the exact amount of safe water specified; do not add extra powder, salt, sugar or juice. Different products are not mixed identically. Very sugary drinks can worsen diarrhoea, and a sports drink is not automatically equivalent to a medical rehydration solution. Continue breastfeeding, and do not dilute infant formula; ask for age-specific feeding and rehydration advice."
+      ]
+    },
+    {
+      "heading": "Some conditions require a tailored plan",
+      "paragraphs": [
+        "People with heart failure, advanced kidney disease or a prescribed fluid restriction should seek individual advice during vomiting, diarrhoea or heat rather than forcing large volumes. Rehydration products also contain salts that may need consideration. Diuretics and other medicines can affect fluid balance or kidney safety during illness. Ask the treating team for a specific sick-day plan, including which medicine, if any, to pause and when to restart; do not stop all treatment yourself. A clinician may check blood pressure, blood salts, kidney function or glucose. Severe cases may need carefully monitored fluid through a vein or another supported route."
+      ]
+    },
+    {
+      "heading": "Prevent the next episode with practical support",
+      "paragraphs": [
+        "Keep suitable drinks within reach and offer them regularly with meals and between activities. A preferred cup, reminders, help lifting a drink and convenient toilet access can matter more than repeated instructions to drink. People with swallowing problems need their assessed safe consistency and assistance, not forced thin fluids. During hot weather reduce strenuous activity, find a cooler place and plan breaks. Monitor recovery: improving alertness, drinking and the return of usual urination are useful signs, but worsening symptoms require reassessment. Persistent vomiting, diarrhoea, swallowing difficulty or difficulty obtaining safe water needs a plan addressing the cause as well as the fluid loss."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: small amounts and close observation",
+      "text": "A child with a stomach infection vomits after a large drink. A clinician recommends an appropriate rehydration solution offered in small frequent amounts and explains warning signs. The parent continues the feeding plan and seeks further help if wet nappies decrease or the child becomes unusually sleepy."
+    },
+    {
+      "title": "Hypothetical example: a fluid restriction changes the advice",
+      "text": "During a heatwave, an older man with heart failure becomes dizzy while taking a diuretic. His caregiver contacts the treating team for assessment and a specific fluid and medicine plan instead of giving unlimited water or stopping every medicine."
+    }
+  ],
+  "questions": [
+    "Can this be managed by drinking, or do we need assessment now?",
+    "Which rehydration product and feeding plan are right for this age and condition?",
+    "Do my medicines or fluid restriction need a specific illness plan?"
+  ]
+}

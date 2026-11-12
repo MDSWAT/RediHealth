@@ -1,0 +1,51 @@
+{
+  "title": "Tromboza venoasă profundă: recunoașterea și tratarea cheagului",
+  "intro": "Tromboza venoasă profundă este un cheag într-o venă profundă, de obicei la picior, uneori în braț sau pelvis. Necesită evaluare promptă deoarece poate crește ori o parte poate ajunge la plămâni, provocând embolie pulmonară. Simptomele singure nu confirmă și nu exclud diagnosticul. Umflarea ori durerea nouă inexplicabilă la un membru nu trebuie considerate automat întindere musculară.",
+  "sections": [
+    {
+      "heading": "Ce simptome cer ajutor imediat",
+      "paragraphs": [
+        "Semnele includ umflare, sensibilitate, căldură și schimbarea culorii pielii, frecvent la un singur picior. Unele cheaguri au puține semne sau deloc. Cereți sfat medical urgent în aceeași zi dacă suspectați cheag. Apelați urgența pentru lipsă de aer bruscă, durere toracică ori în partea superioară a spatelui, leșin, colaps sau sânge eliminat prin tuse cu respirație dificilă. Embolia poate apărea fără simptome evidente la picior. Nu conduceți în suspiciunea de urgență. Evaluarea anterioară liniștitoare nu înlătură necesitatea reacției la simptome respiratorii ori toracice noi."
+      ]
+    },
+    {
+      "heading": "Riscul nu se limitează la zborul lung",
+      "paragraphs": [
+        "Operația recentă, spitalizarea, traumatismul, imobilitatea ori piciorul în ghips cresc riscul, inclusiv după externare. Contează cancerul, cheagul anterior, unele tulburări de coagulare, sarcina și perioada după naștere. Medicamentele cu estrogen și călătoriile lungi contribuie. Comunicați acești factori și istoricul familial, dar cheagul apare și fără declanșator evident. Piciorul roșu umflat poate avea în schimb infecție sau altă problemă. Nici absența factorului de risc, nici testarea mișcării piciorului acasă nu exclud sigur tromboza."
+      ]
+    },
+    {
+      "heading": "Testele se interpretează într-o succesiune",
+      "paragraphs": [
+        "Medicul combină examinarea și probabilitatea clinică cu analize precum D-dimerul și ecografia venelor. D-dimerul crescut nu este diagnostic: multe situații îl cresc. Dacă rezultatul negativ este suficient depinde de evaluare și traseul diagnostic. Unii necesită ecografie repetată după prima negativă. Dacă testarea întârzie, medicul poate prescrie anticoagulare temporară după verificarea siguranței. Întrebați ce faceți în așteptare, cine comunică rezultatele și când reveniți. Nu începeți, continuați ori opriți tratamentul pe baza interpretării proprii a unui rezultat."
+      ]
+    },
+    {
+      "heading": "Anticoagulantele previn creșterea și alte cheaguri",
+      "paragraphs": [
+        "Tratamentul folosește de obicei comprimate sau injecții anticoagulante prescrise. Reduc coagularea cât corpul gestionează treptat cheagul; nu îl dizolvă instantaneu. Alegerea și durata depind de localizare, factori declanșatori, recidivă, sângerare, rinichi, sarcină și alte tratamente. Cazurile severe selectate necesită proceduri, dar extragerea ori tromboliza nu sunt obișnuite tuturor. Respectați exact schema și întrebați despre doza uitată. Verificați înaintea calmantelor, aspirinei, suplimentelor ori altor medicamente. Sângerarea necontrolată, vărsătura cu sânge, scaunul negru ori lovitura importantă la cap sub anticoagulant cer atenție medicală imediată."
+      ]
+    },
+    {
+      "heading": "Recuperarea și prevenția se individualizează",
+      "paragraphs": [
+        "După evaluare și tratament, urmați sfatul privind mersul, ridicarea piciorului și revenirea la muncă ori călătorii. Nu presupuneți că trebuie repaus prelungit la pat ori că puteți călători imediat. Compresia corect adaptată ajută unele persoane cu simptome; nu înlocuiește anticoagularea. Umflarea persistentă, greutatea ori schimbările pielii pot indica probleme posttrombotice și necesită control. Umflarea sau durerea nouă cer și reevaluare pentru recidivă. Înaintea altei operații, sarcini, ghips ori drum lung, comunicați cheagul anterior. Pauzele de mișcare și prevenția prescrisă ajută; nu împrumutați injecții și nu înlocuiți singur cu aspirină."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: simptome după externare",
+      "text": "După operație, Dario are acasă gambă nou umflată și dureroasă. Cere sfat în aceeași zi și menționează intervenția, fără să atribuie totul mersului redus. Știe să apeleze urgența dacă apare lipsă bruscă de aer ori durere toracică."
+    },
+    {
+      "title": "Exemplu ipotetic: de ce ecografie repetată",
+      "text": "Prima ecografie a Anei nu arată cheag, dar medicul explică necesitatea repetării din cauza evaluării de ansamblu. Ea păstrează programarea și urmează planul explicit de medicamente, fără să considere că un test negativ anulează urmărirea."
+    }
+  ],
+  "questions": [
+    "Care este planul testării și trebuie altă ecografie ori tratament în așteptare?",
+    "Cât iau medicamentul și ce precauții de sângerare ori interacțiuni sunt necesare?",
+    "Când reiau munca sau călătoriile și ce prevenție îmi trebuie ulterior?"
+  ]
+}

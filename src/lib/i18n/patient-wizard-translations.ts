@@ -10,6 +10,19 @@ type WizardCopy = {
 };
 
 export const patientWizardTranslations: Record<Lang, WizardCopy> = {
+  ru: {
+    steps: ["Данные пациента", "Уход и документы", "Обзор"],
+    hints: ["Начните с имени и контактных данных.", "Требования к уходу, местонахождение и документы. Все по желанию.", "Проверьте детали. Вы все равно можете вернуться и отредактировать."],
+    next: "Продолжить", back: "Назад", edit: "Редактировать", progress: "Шаги",
+    required: "Заполните это поле.", empty: "Не дано", ready: "Готов сохранить",
+    documents: "Документы", gps: "GPS-местоположение",
+    personal: "Личные данные", personalHint: "Необязательно.",
+    care: "Уход", careHint: "Приоритет и статус ухода.",
+    team: "Команда по уходу", teamHint: "Выберите, кто будет ухаживать за этим пациентом. Вы можете выбрать более одного.",
+    searchTeam: "Поиск по имени, должности, адресу электронной почты или округу", emptyTeam: "Еще никто не выбран. Выберите людей ниже.",
+    loadingTeam: "Загрузка участников команды…", teamError: "Не удалось загрузить членов команды.", retry: "Попробуйте еще раз",
+  },
+
   en: {
     steps: ["Patient details", "Care and documents", "Review"],
     hints: ["Start with the name and contact details.", "Care needs, location and documents. All optional.", "Check the details. You can still go back and edit."],

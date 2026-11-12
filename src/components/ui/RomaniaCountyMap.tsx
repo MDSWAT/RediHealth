@@ -95,6 +95,17 @@ type ExtraMapCopy = {
 };
 
 export const EXTRA_MAP_COPY: Record<Lang, ExtraMapCopy> = {
+"ru": {
+"albania": "Албания",
+"allAlbania": "Вся Албания",
+"albaniaTitle": "Выберите регион Албании",
+"albaniaSubtitle": "Выберите место на карте или в списке для медицинских новостей и выездных клиник.",
+"albaniaMapAriaLabel": "Карта регионов Албании",
+"selectedQarkPrefix": "Выбранный регион:",
+"recentQarqeLabel": "Регионы с местными новостями",
+"pickAlbaniaLabel": "Или выберите регион из списка",
+"moldova":"Молдова","croatia":"Хорватия","allMoldova":"Вся Молдова","allCroatia":"Вся Хорватия","moldovaTitle":"Выберите район Молдовы","moldovaSubtitle":"Выберите место на карте или в списке для местных медицинских новостей и выездных клиник.","moldovaMapAriaLabel":"Карта районов и муниципиев Молдовы","croatiaTitle":"Выберите жупанию Хорватии","croatiaSubtitle":"Выберите место на карте или в списке для медицинских новостей и выездных клиник.","croatiaMapAriaLabel":"Карта жупаний Хорватии","selectedRaionPrefix":"Выбранный район:","selectedZupanijaPrefix":"Выбранная жупания:","placePrefix":"Выбранное место:","recentRaioaneLabel":"Районы с местными новостями","recentZupanijeLabel":"Жупании с местными новостями","pickMoldovaLabel":"Или выберите район из списка","pickCroatiaLabel":"Или выберите жупанию из списка","pickItalyLabel":"Или выберите регион из списка"},
+
   ro: {
     moldova: "Moldova",
     croatia: "Croația",

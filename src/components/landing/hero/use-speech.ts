@@ -18,6 +18,8 @@ import { formatSpeechText } from "@/lib/audio/speech-engine";
 
 /** Preferred regional variants per page language, best first. */
 const VOICE_LOCALES: Record<Lang, string[]> = {
+  ru: ["ru-ru", "ru"],
+
   ro: ["ro-ro", "ro-md", "ro"],
   en: ["en-gb", "en-ie", "en-us", "en"],
   it: ["it-it", "it-ch", "it"],

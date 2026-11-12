@@ -1,0 +1,51 @@
+{
+  "title": "Alergije na životinje: prepoznati izloženost i napraviti plan",
+  "intro": "Alergija na životinje imunološka je reakcija na povezane bjelančevine, uključujući one u ljuskicama kože, slini ili mokraći. Dlaka ih prenosi, ali nije cijelo objašnjenje. Mačke, psi i druge životinje mogu izazvati simptome. Novi osip ili kašalj uz ljubimca ipak trebaju procjenu jer mogu sudjelovati prašina, pelud i druge izloženosti.",
+  "sections": [
+    {
+      "heading": "Pratiti obrazac bez namjernog izazivanja simptoma",
+      "paragraphs": [
+        "Nakon kontakta mogu nastati kihanje, začepljen ili curav nos, svrbež očiju i kožne tegobe. Kašalj, piskanje ili stezanje prsa mogu značiti zahvaćenost dišnih putova. Alergeni putuju na odjeći i ostaju u namještaju pa simptomi nastaju i bez trenutačne prisutnosti životinje. Zapišite mjesto, vrijeme i disanje; ne provjeravajte pretpostavku namjernim većim kontaktom, osobito ako je ranije utjecao na disanje."
+      ]
+    },
+    {
+      "heading": "Tumačiti testove uz povijest simptoma",
+      "paragraphs": [
+        "Liječnik procjenjuje odgovara li priča alergiji i treba li ispitati astmu. Kožni ubodni test ili krvni test specifičnih protutijela mogu pomoći prepoznati senzibilizaciju. Pozitivan nalaz sam ne dokazuje da životinja objašnjava svaki simptom. Navedite lijekove i slijedite pripremne upute umjesto samostalnog prekidanja terapije. Donesite podatke o drugim mogućim okidačima i simptomima daleko od životinja."
+      ]
+    },
+    {
+      "heading": "Razumjeti granice tvrdnji o hipoalergenosti",
+      "paragraphs": [
+        "Životinje bez dlake i pasmine reklamirane kao hipoalergene i dalje proizvode alergene. Reakcije variraju, a kratkodlaka pasmina ne jamči sigurnost. Kratak posjet bez simptoma ne dokazuje da će zajednički život biti bez problema. Prije važne odluke razgovarajte o riziku i potrebama kućanstva, posebno za dijete ili osobu s astmom."
+      ]
+    },
+    {
+      "heading": "Razgovarati o izvedivom smanjenju izloženosti",
+      "paragraphs": [
+        "Plan može uključivati izbjegavanje kontakta, zabranu ulaska u spavaću sobu, manje namještaja koji skuplja prašinu te prikladno čišćenje ili filtriranje. To smanjuje izloženost, ali ne jamči kontrolu simptoma. Alergeni ostaju nakon odlaska životinje, a boravak u jednoj sobi ne zadržava svaku česticu ondje. Dogovorite pristupačne i održive promjene s ukućanima i liječnikom, bez očekivanja da skupi uređaj ili jedno čišćenje rješavaju sve."
+      ]
+    },
+    {
+      "heading": "Prilagoditi liječenje i hitnost simptomima",
+      "paragraphs": [
+        "Za odgovarajuće simptome mogu se razmotriti antihistaminici, sprejevi za nos ili očni pripravci. Astma treba vlastitu procjenu i plan; tableta za kihanje ne zamjenjuje liječenje disanja. Specijalistička imunoterapija razmatra se u odabranim slučajevima, uz dokaze, rizike i obveze. Ponavljano piskanje ili noćni kašalj traže savjet. Teško disanje, otežan govor zbog zadušenosti ili oticanje jezika i grla zahtijevaju hitnu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: nova okolnost kod kuće",
+      "text": "Obitelj primijeti kašalj djeteta nakon udomljavanja mačke. Dogovara pregled i opisuje vrijeme, piskanje i spavaću sobu. Pita treba li razmotriti astmu i druge alergene, bez sigurnosti da je uzrok mačka ili da je kratka dlaka bezopasna."
+    },
+    {
+      "title": "Izmišljeni primjer: planiranje posjeta",
+      "text": "Osoba s potvrđenom alergijom pita rođaka o ljubimcima prije noćenja. Razmatra drugo noćenje i po potrebi postojeću terapiju sa stručnjakom. Ne provodi namjerno vrijeme uz životinju da vidi koliko će reakcija biti teška."
+    }
+  ],
+  "questions": [
+    "Odgovara li moja povijest alergiji na životinje i bi li testiranje promijenilo plan?",
+    "Zahtijevaju li kašalj ili piskanje procjenu astme?",
+    "Koje promjene i lijekovi imaju realnu korist i što učiniti ako se disanje pogorša?"
+  ]
+}

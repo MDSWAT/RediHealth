@@ -1,0 +1,51 @@
+{
+  "title": "Crupul: tuse lătrătoare și când respirația necesită ajutor",
+  "intro": "Crupul este de obicei o boală virală care umflă zona laringelui și traheei copilului mic. Tusea poate suna ca un lătrat, cu voce răgușită și uneori zgomot aspru la inspir, numit stridor. Multe episoade sunt ușoare, dar îngustarea căii respiratorii se poate agrava rapid. Contactați medicul dacă suspectați crup și cereți ajutor de urgență pentru respirație dificilă.",
+  "sections": [
+    {
+      "heading": "Urmăriți respirația și comportamentul, nu doar tusea",
+      "paragraphs": [
+        "Nasul care curge ori febra pot preceda tusea lătrătoare, adesea mai rea noaptea. Stridorul diferă de șuieratul mai grav asociat frecvent astmului. Observați dacă zgomotul apare doar când copilul este agitat sau și liniștit și dacă pielea se trage între coaste ori la gât. Copilul devenit neobișnuit de tăcut, epuizat ori greu de trezit se poate agrava chiar dacă zgomotul scade. Intensitatea tusei sau zgomotului nu măsoară sigur severitatea. Sugarii foarte mici și copiii cu probleme cunoscute ale căilor respiratorii necesită evaluare mai ușor justificată."
+      ]
+    },
+    {
+      "heading": "Semne pentru îngrijire urgentă sau de urgență",
+      "paragraphs": [
+        "Apelați urgența dacă respiră greu, devine albăstrui, cenușiu ori foarte palid, este moale sau greu de trezit, nu poate înghiți ori salivează în timp ce este bolnav. Retracțiile importante ale toracelui, agitația severă cu dificultate respiratorie și reacțiile reduse sunt tot semne de pericol. Stridorul în repaus necesită evaluare spitalicească urgentă. Păstrați copilul cu un adult calm în poziția în care respiră cel mai ușor; nu îl forțați culcat și nu încercați să examinați adânc gâtul. Debutul brusc după înec ori umflarea feței pot indica altă urgență. Urmați dispecerul."
+      ]
+    },
+    {
+      "heading": "Ce ajută când îngrijirea acasă este potrivită",
+      "paragraphs": [
+        "După confirmarea că îngrijirea acasă este potrivită, liniștiți copilul: plânsul poate crește efortul respirator. Oferiți lichide puține și dese când înghite confortabil și verificați regulat copilul, inclusiv noaptea. Folosiți tratament pentru durere ori febră potrivit vârstei conform prospectului sau medicului. Nu forțați lichidele când copilul respiră ori înghite greu. Nu folosiți camere cu aburi, vase cu apă clocotită sau inhalații cu vapori: aburul nu este tratament dovedit și poate arde. Siropurile antitusive și remediile sedative nu tratează umflarea căii respiratorii și pot fi nesigure."
+      ]
+    },
+    {
+      "heading": "Cum tratează medicul crupul",
+      "paragraphs": [
+        "Crupul tipic poate fi adesea diagnosticat din istoric și respirație, fără analize ori radiografii de rutină. Reducerea agitației la examinare este importantă. Medicul poate da corticosteroid, precum dexametazonă, pentru reducerea umflării; alegerea și doza depind de copil și severitate. Obstrucția mai importantă poate necesita adrenalină nebulizată și supraveghere în spital. Efectul poate trece, deci ameliorarea imediată nu înseamnă singură că poate pleca. Cazurile severe necesită sprijin specializat pentru căile respiratorii. Antibioticele nu tratează crupul viral necomplicat; altă infecție bacteriană diagnosticată cere plan diferit."
+      ]
+    },
+    {
+      "heading": "Planificați noaptea următoare și controlul",
+      "paragraphs": [
+        "Simptomele se ameliorează frecvent în următoarele zile, dar tusea poate dura, iar o altă noapte poate fi mai rea înainte de recuperare. Întrebați ce faceți dacă reapare stridorul după tratament și cum cereți ajutor în afara programului. Un episod anterior ușor nu garantează că următorul va fi ușor. Episoadele repetate, vârsta neobișnuită, respirația zgomotoasă persistentă ori lipsa ameliorării necesită căutarea altor cauze. Virusurile se pot transmite, iar alții pot avea doar răceală. Igiena mâinilor, acoperirea tusei și statul acasă cu febră ori stare rea reduc transmiterea; urmați recomandările locale pentru colectivitate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: schimbare în repaus",
+      "text": "Un copil mic tușește inițial lătrător doar când plânge. Mai târziu, liniștit în brațele tatălui, respiră zgomotos și pielea de sub coaste se retrage. Tatăl cere evaluare urgentă fără să aștepte dimineața doar fiindcă tusea pare cunoscută."
+    },
+    {
+      "title": "Exemplu ipotetic: supravegherea după tratament",
+      "text": "O fetiță se ameliorează după medicamentul nebulizat în spital. Părintele întreabă de ce mai trebuie supraveghere. Echipa explică efectul temporar și verifică menținerea respirației confortabile înainte de externare și de planul scris de revenire."
+    }
+  ],
+  "questions": [
+    "Este potrivită îngrijirea acasă acum și ce schimbări respiratorii cer ajutor imediat?",
+    "Ce tratament a primit și ce fac dacă simptomele reapar noaptea?",
+    "Episoadele repetate sau respirația zgomotoasă persistentă necesită alte investigații?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Kanceri i qafës së mitrës: simptomat, diagnoza, trajtimi dhe parandalimi",
+  "intro": "Ky kancer nis në qafën e mitrës, pjesa e poshtme që hapet në vaginë. Shumica e rasteve lidhen me infeksion të vazhdueshëm nga disa tipe HPV me rrezik të lartë. Ndryshimet parakanceroze dallojnë nga kanceri invaziv dhe shpesh trajtohen para zhvillimit të tij. Ekipi përshtat trajtimin me shtrirjen, shëndetin dhe prioritetet tuaja, përfshirë pjellorinë kur ka rëndësi.",
+  "sections": [
+    {
+      "heading": "HPV është i zakonshëm dhe nuk do të thotë kancer",
+      "paragraphs": [
+        "Shumica e infeksioneve nuk çojnë në kancer. Persistenca e tipeve me rrezik mund të shkaktojë ndryshime progresive; duhani dhe imuniteti i dobët shtojnë rrezikun. HPV mund të mbetet ose bëhet i zbulueshëm shumë kohë pas marrjes: rezultati pozitiv nuk tregon kohën dhe nuk provon tradhti. Përqendrohuni te ndjekja pa fajësim. Vaksina ul rrezikun nga tipe të rëndësishme, ndërsa depistimi gjen rrezik ose ndryshime sipas programit vendor."
+      ]
+    },
+    {
+      "heading": "Simptomat duhen vlerësuar pa pritur depistimin",
+      "paragraphs": [
+        "Mund të ketë gjakderdhje pas seksit, mes periodave ose pas menopauzës, ndryshim sekrecionesh, dhimbje pelvike apo gjatë seksit. Shpesh kanë shkaqe të tjera, por kërkojnë vlerësim. Sëmundja e hershme mund të mos japë simptoma. Mos prisni ftesën ose mendoni se testi i vjetër normal përjashton problemin e sotëm. Gjakderdhja shumë e madhe, të fikëtit ose dhimbja e fortë akute kërkojnë kujdes urgjent ose emergjent sipas rëndësisë. Tregoni nëse mund të jeni shtatzënë."
+      ]
+    },
+    {
+      "heading": "Nga rezultati jonormal te diagnoza",
+      "paragraphs": [
+        "HPV pozitiv ose depistim jonormal nuk janë diagnozë kanceri. Kolposkopia lejon kontroll më të afërt dhe biopsia përcakton natyrën e ndryshimeve. Nëse kanceri konfirmohet, ekzaminimi dhe imazheria vlerësojnë shtrirjen. Pyesni nëse është parakancer ose kancer invaziv, llojin, stadin dhe analizat në pritje. Mund të kërkoni shpjegim, përkthyes, person mbështetës dhe pushim gjatë ekzaminimit."
+      ]
+    },
+    {
+      "heading": "Trajtimi varet nga sëmundja dhe personi",
+      "paragraphs": [
+        "Disa kancere të hershme trajtohen me kirurgji, ndonjëherë duke ruajtur pjellorinë. Operacione të tjera heqin mitrën dhe ndonjëherë indet përreth ose nyjet. Radioterapia, përfshirë brakiterapinë, mund të kombinohet me kimioterapi; imunoterapia dhe barna të tjera përdoren në raste të caktuara. Zgjedhja dhe disponueshmëria varen nga stadi, tiparet e tumorit, trajtimet e mëparshme dhe praktika vendore. Diskutoni qëllimin, alternativat, efektet anësore dhe pjellorinë para fillimit; jo të gjithë kanë nevojë për të njëjtin operacion."
+      ]
+    },
+    {
+      "heading": "Mbështetja, ndjekja dhe parandalimi",
+      "paragraphs": [
+        "Trajtimi mund të ndikojë energjinë, zorrën, fshikëzën, rehatinë seksuale, menopauzën dhe emocionet. Kërkoni herët ndihmë për simptoma, pjellori, rehabilitim dhe shpenzime. Mbani kontrollet dhe raportoni gjakderdhje, dhimbje ose ndryshime të vazhdueshme. Për njerëzit pa kancer, vaksina HPV dhe depistimi sipas udhëzimit kombëtar ulin rrezikun; vaksina nuk zëvendëson depistimin apo vlerësimin e simptomave dhe nuk trajton kancerin ekzistues. Mosha e pranimit dhe intervalet ndryshojnë sipas shtetit dhe pas trajtimit: kërkoni plan individual."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rezultat pozitiv — shembull hipotetik",
+      "text": "Një person merr letër HPV pozitiv dhe mendon se ka kancer ose infeksion të fundit. Mjeku shpjegon kufijtë e rezultatit dhe nevojën për përsëritje ose kolposkopi. Bien dakord për komunikimin dhe ndjekjen."
+    },
+    {
+      "title": "Gjakderdhje pas testi normal — shembull hipotetik",
+      "text": "Dikush ka gjakderdhje pas seksit megjithëse depistimi i mëparshëm ishte normal. Cakton vizitë pa pritur ftesën tjetër. Ekzaminimi dhe testet hetojnë simptomën aktuale."
+    }
+  ],
+  "questions": [
+    "Rezultati tregon HPV, ndryshime parakanceroze apo kancer invaziv të konfirmuar?",
+    "Cili është qëllimi dhe si ndikon çdo trajtim në pjellori e jetën e përditshme?",
+    "Cili plan vendor për ndjekje, simptoma dhe parandalim më zbatohet?"
+  ]
+}

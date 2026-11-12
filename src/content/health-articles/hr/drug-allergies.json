@@ -1,0 +1,51 @@
+{
+  "title": "Alergije na lijekove: prepoznavanje i točan zapis",
+  "intro": "Alergija na lijek je imunološka reakcija. Razlikuje se od mnogih predvidljivih nuspojava, ali obje mogu tražiti liječničku pažnju. Može početi brzo ili kasnije. Sigurnost povezuje brzo djelovanje kod teških znakova, precizan opis i plan budućih lijekova umjesto nagađanja što je sigurno.",
+  "sections": [
+    {
+      "heading": "Nije svaka nuspojava alergija",
+      "paragraphs": [
+        "Svrbeće uzdignute koprivnjače, oteklina i neki osipi mogu sugerirati alergiju; mučnina ili proljev sami mogu biti uobičajena nuspojava ili druga bolest. Osip uz antibiotik može biti od infekcije. Ti tragovi sami ne utvrđuju dijagnozu. Neposredne reakcije mogu zahvatiti disanje ili krvotok, odgođene kožu ili organe. Ranije podnošenje ne isključuje kasniju reakciju. Opišite što se dogodilo, ne samo riječ alergija. Alergija člana obitelji ne znači automatski istu kod vas."
+      ]
+    },
+    {
+      "heading": "Teški simptomi traže hitno djelovanje",
+      "paragraphs": [
+        "Naglo oticanje jezika ili grla, piskanje, teško disanje ili gutanje, nesvjestica, kolaps ili brzo pogoršanje nakon lijeka mogu biti anafilaksija i bez osipa. Odmah koristite propisani autoinjektor adrenalina prema uputi i zovite hitnu. Ne ustajte i ne hodajte; lezite, polako podižući gornji dio ako teško dišete, u trudnoći na lijevi bok. Bez poboljšanja nakon pet minuta koristite drugi propisani injektor prema planu. Antihistaminici ne zamjenjuju adrenalin za disanje ili cirkulaciju. Bolan šireći osip s vrućicom, mjehurima, ljuštenjem ili ranama u ustima, očima ili genitalijama može biti teška odgođena reakcija: odmah bolnica."
+      ]
+    },
+    {
+      "heading": "Javite se propisivaču i zabilježite detalje",
+      "paragraphs": [
+        "Za novu sumnjivu reakciju brzo zatražite savjet prije druge doze; ne iskušavajte probnu. Liječnik odlučuje što prekinuti, hitno liječenje i sigurnu zamjenu nužne terapije. Zabilježite generički i trgovački naziv, jačinu, put, početak, doze prije simptoma, vrijeme i primljeno liječenje. Uključite druge lijekove, dodatke i bolest. Fotografije osipa i pakiranje pomažu, ali ne odgađajte hitnu zbog prikupljanja. Tražite odvojeno bilježenje sumnje na alergiju i običnih nuspojava uz stupanj sigurnosti."
+      ]
+    },
+    {
+      "heading": "Specijalist može razjasniti buduće izbore",
+      "paragraphs": [
+        "Testovi se biraju prema lijeku i povijesti; nema jednog pouzdanog testa za sve alergije. Kožni testovi, krv ili nadzirana provokacija mogu biti prikladni u odabranim slučajevima. Provokacija traži procjenu rizika i mjesto liječenja reakcije, nikad dom. Teške odgođene reakcije nisu za rutinsku provokaciju uzročnim lijekom. Mnoge stare penicilinske oznake pokažu se netočnima, ali ne brišite ih sami niti posuđujte antibiotik za test. Križne reakcije ovise o lijeku, ne samo sličnom imenu. Desenzibilizacija je zaseban nadziran postupak za odabrane nužne terapije, ne trajno izlječenje."
+      ]
+    },
+    {
+      "heading": "Neka nalaz bude koristan na svakom pregledu",
+      "paragraphs": [
+        "Zatražite pisani opis potvrđenog ili sumnjivog uzroka, povezanih lijekova za izbjegavanje i sigurnih alternativa. Ako je alergija isključena, ažurirajte zapis kod liječnika, ljekarne i službi. Nosite podatke prije recepata, injekcija, operacije i kupnje bez recepta. Pitajte treba li medicinska oznaka i hitni plan. Ne treba svaka alergija propisani adrenalin; odluka je osobna. Prijavite sumnjive nuspojave lokalnim sustavom uz pomoć. Jasan zapis štiti od ponovnog izlaganja i nepotrebnog izbjegavanja korisne terapije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: nesigurna oznaka iz djetinjstva",
+      "text": "Mira ima zapis penicilinske alergije, ali obitelj pamti samo osip tijekom dječje infekcije. Traži procjenu prije potrebe za antibiotikom. Ne iskušava ostatke kod kuće; zapis se mijenja nakon kliničkog zaključka."
+    },
+    {
+      "title": "Hipotetski primjer: odgođeno upozorenje",
+      "text": "Dan nekoliko dana nakon novog lijeka dobiva vrućicu, bolnu kožu i rane u ustima. Odmah traži bolnicu s popisom lijekova umjesto samo antihistaminika i čekanja."
+    }
+  ],
+  "questions": [
+    "Izgleda li kao alergija, druga ozbiljna reakcija ili predvidljiva nuspojava?",
+    "Što sada izbjegavati i trebam li specijalista ili hitni plan?",
+    "Koje točne podatke zapisati, uključujući sigurne alternative?"
+  ]
+}

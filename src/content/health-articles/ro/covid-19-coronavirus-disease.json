@@ -1,0 +1,51 @@
+{
+  "title": "COVID-19: testare, tratament precoce și recuperare",
+  "intro": "COVID este o infecție provocată de SARS-CoV-2. Poate semăna cu o răceală, dar poate provoca boală severă sau simptome de durată. Riscul depinde de vârstă, imunitate, sarcină și alte boli. Un debut ușor nu înseamnă că persoana cu risc crescut trebuie să aștepte înainte să întrebe despre tratament, iar infecția anterioară nu garantează protecție față de alta.",
+  "sections": [
+    {
+      "heading": "Recunoașteți simptomele și folosiți testele cu atenție",
+      "paragraphs": [
+        "Pot apărea febră, durere în gât, tuse, nas înfundat, oboseală, dureri, tulburări digestive ori modificarea mirosului și gustului. Simptomele se suprapun cu gripa și alte infecții, deci nu stabilesc singure diagnosticul. Testul antigen rapid poate ajuta, dar un singur rezultat negativ, mai ales la început, nu exclude infecția. Urmați prospectul și sfatul local actual pentru repetare ori test de laborator. Spuneți medicului când au început simptomele și despre un rezultat pozitiv recent anterior: unele teste de laborator pot rămâne pozitive după recuperare. Nu amânați îngrijirea urgentă pentru un test."
+      ]
+    },
+    {
+      "heading": "Cine trebuie să întrebe despre tratament precoce",
+      "paragraphs": [
+        "Vârstnicii și persoanele cu imunitate scăzută sau boli importante cardiace, pulmonare, renale ori alte boli cronice au risc mai mare. Sarcina poate crește și ea riscul. Contactați rapid medicul dacă apar simptome posibile într-un grup cu risc, chiar ușoare. Antiviralele, când sunt potrivite, trebuie începute în primele zile; eligibilitatea și disponibilitatea depind de țară și situație. Medicul are nevoie de lista completă de medicamente și suplimente și de date despre rinichi și ficat. Unele antivirale au interacțiuni importante. Nu opriți medicamente esențiale și nu împrumutați tratamentul altcuiva pentru a putea lua antiviral."
+      ]
+    },
+    {
+      "heading": "Îngrijirea acasă și semnele pentru ajutor",
+      "paragraphs": [
+        "În boala ușoară ajută odihna, lichidele regulate și tratamentul potrivit pentru durere ori febră; respectați restricțiile medicale de lichide și prospectul. Cereți sfatul farmacistului în sarcină, la copil ori pentru alte medicamente. Antibioticele nu tratează virusul, iar corticosteroizii nu sunt tratament obișnuit acasă pentru forma ușoară. Cereți sfat la agravare, dificultate de a bea ori deteriorarea unei boli cronice. Apelați urgența pentru lipsă severă de aer în repaus, imposibilitatea de a spune fraze scurte, durere sau presiune toracică persistentă, confuzie, colaps ori buze albăstrui sau cenușii. Sugarii cu alimentație slabă, respirație dificilă ori somnolență neobișnuită necesită evaluare promptă. Simptomele contează chiar cu o valoare aparent bună a oxigenului măsurată acasă."
+      ]
+    },
+    {
+      "heading": "Reduceți expunerea și verificați recomandările de vaccinare",
+      "paragraphs": [
+        "Virusul se transmite prin particule infecțioase din aer, mai ales în spații interioare comune. Evitați alte persoane când sunteți bolnav, aerisiți, acoperiți tusea și spălați mâinile. Dacă apropierea nu poate fi evitată, masca bine fixată și aerul mai curat adaugă protecție; nu vizitați persoane deosebit de vulnerabile. Urmați sfatul local actual pentru revenirea la școală ori muncă, inclusiv reguli specifice locului. Vaccinarea reduce boala severă, dar nu garantează absența infecției ori transmiterii. Întrebați medicul local ce vaccin și interval sunt recomandate pentru vârstă, sarcină sau imunitate. Schema altei țări poate să nu vi se aplice."
+      ]
+    },
+    {
+      "heading": "Recuperarea poate necesita plan individual",
+      "paragraphs": [
+        "Mulți se recuperează în zile sau săptămâni. Alții au oboseală persistentă, lipsă de aer, probleme de concentrare, miros modificat ori simptome fluctuante după infecția acută. Programați evaluare când recuperarea stagnează sau viața rămâne limitată; trebuie căutate și alte cauze tratabile. Durerea toracică severă nouă ori respirația dificilă nu trebuie atribuite automat formei de lungă durată. Discutați un jurnal, sprijin practic și revenire adaptată la muncă ori școală. Dacă activitatea produce agravare marcată întârziată, spuneți medicului și nu forțați pur și simplu creșterea efortului. Recuperarea se adaptează simptomelor și răspunsului, fără promisiunea unei date fixe de vindecare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: rezultat negativ timpuriu",
+      "text": "Ana are durere în gât și test negativ în prima zi. Fiind sub tratament imunosupresor, contactează imediat medicul pentru testare și tratament precoce, fără să aștepte tuse severă sau să considere infecția exclusă."
+    },
+    {
+      "title": "Exemplu ipotetic: adaptarea recuperării",
+      "text": "După dispariția febrei, Dario revine la ture lungi, dar a doua zi se simte mult mai rău. Notează tiparul și discută un plan individual cu alternarea activității și odihnei împreună cu medicul și angajatorul, în loc să forțeze ori să considere problema lipsă de efort."
+    }
+  ],
+  "questions": [
+    "Sunt eligibil pentru tratament precoce și cât de repede trebuie să vă contactez?",
+    "Medicamentele, rinichii sau ficatul îmi schimbă opțiunile?",
+    "Ce simptome cer ajutor urgent și cum evaluăm recuperarea întârziată?"
+  ]
+}

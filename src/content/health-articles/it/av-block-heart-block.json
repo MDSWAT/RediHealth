@@ -1,0 +1,51 @@
+{
+  "title": "Blocco AV: capire un problema della conduzione elettrica",
+  "intro": "Il blocco atrioventricolare, o AV, significa che i segnali dalle camere superiori raggiungono quelle inferiori troppo lentamente o in modo inaffidabile. È diverso da una coronaria ostruita, anche se le cardiopatie possono causare entrambi. Alcune forme richiedono osservazione; altre rallentano pericolosamente il cuore e necessitano di cure urgenti. Contano ECG, causa e condizioni cliniche più di una singola misurazione domestica del polso.",
+  "sections": [
+    {
+      "heading": "Riconoscere sintomi preoccupanti senza autodiagnosi",
+      "paragraphs": [
+        "Il blocco AV può causare stanchezza insolita, affanno, capogiri, sensazione di svenimento o sincope; forme lievi possono essere asintomatiche. Chiedete soccorso per collasso, svenimento con malessere persistente, dolore toracico o grave affanno. Se qualcuno non risponde e non respira normalmente, chiamate i soccorsi e seguite le istruzioni di rianimazione. Non guidate se state per svenire o siete acutamente malati. Un polso lento può avere altre spiegazioni, compreso l'allenamento: sintomi o dispositivo non identificano il tipo di blocco."
+      ]
+    },
+    {
+      "heading": "Chiedere grado e schema mostrati dall'ECG",
+      "paragraphs": [
+        "Il primo grado ritarda la conduzione ma generalmente trasmette ogni segnale. Il secondo salta intermittentemente segnali e comprende forme con rischi diversi. Nel blocco completo, di terzo grado, camere superiori e inferiori non comunicano normalmente. Il medico distingue i quadri all'ECG, talvolta con monitoraggio prolungato. Chiedete il reperto esatto senza presumere innocuo ogni secondo grado. Gli episodi possono essere intermittenti: annotate quando compaiono sintomi e se coincidono con i reperti registrati."
+      ]
+    },
+    {
+      "heading": "Cercare cause reversibili e medicinali rilevanti",
+      "paragraphs": [
+        "L'équipe rivede medicinali, procedure precedenti e condizioni che influenzano la conduzione. Alcuni farmaci della frequenza, alterazioni elettrolitiche, infezioni o danni cardiaci possono contribuire. Gli esami sono scelti secondo il caso e possono includere sangue e struttura cardiaca. Portate l'elenco accurato, inclusi prodotti da banco. Non sospendete da soli un farmaco: spiegate subito i dubbi perché il medico decida modifiche e monitoraggio. Trattare la causa può cambiare il piano a lungo termine."
+      ]
+    },
+    {
+      "heading": "Capire perché viene proposto un pacemaker",
+      "paragraphs": [
+        "L'osservazione può essere adatta ai reperti meno rischiosi, mentre blocchi importanti possono richiedere stimolazione temporanea o permanente. Alcuni quadri ad alto rischio richiedono pacemaker anche senza sintomi evidenti se manca una causa reversibile. Il pacemaker fornisce impulsi per sostenere battiti adeguati, non libera arterie ristrette. Chiedete motivazione, urgenza, benefici, rischi procedurali e alternative. Sentirsi bene per un momento non giustifica rinviare un trattamento urgente consigliato per un quadro pericoloso."
+      ]
+    },
+    {
+      "heading": "Concordare controlli e indicazioni di sicurezza",
+      "paragraphs": [
+        "Se si sceglie osservazione, chiarite date e cambiamenti che richiedono aiuto prima. Dopo l'impianto seguite istruzioni su ferita, attività e verifiche del dispositivo, portando i dati forniti. Informate i sanitari prima di procedure o esami radiologici per controllare compatibilità e precauzioni. Chiedete regole di lavoro, viaggio e guida nel vostro paese e condizione. Nuovi svenimenti, affanno o sintomi preoccupanti della ferita vanno valutati: il dispositivo non rende automaticamente innocuo ogni sintomo futuro."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: avviso di polso basso",
+      "text": "Una persona con capogiri vede un polso basso sull'orologio. Richiede una visita senza sospendere il farmaco cardiaco. Il medico controlla ECG, medicinali e coincidenza dei sintomi con il problema di conduzione."
+    },
+    {
+      "title": "Esempio ipotetico: pochi sintomi ma alto rischio",
+      "text": "Un paziente sta relativamente bene ma il monitoraggio mostra un blocco AV pericoloso. Chiede perché serva stimolazione e segue il piano urgente, senza considerare l'assenza di sintomi gravi prova che attendere sia sicuro."
+    }
+  ],
+  "questions": [
+    "Quale tipo preciso di blocco AV ho e spiega i sintomi?",
+    "Può contribuire un medicinale o una condizione trattabile e come valutarli in sicurezza?",
+    "Serve stimolazione, quanto è urgente e quali controlli o limiti di attività si applicano?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Uganuće gležnja: procjena, kretanje i siguran povratak aktivnosti",
+  "intro": "Uganuće oštećuje ligamente koji podupiru gležanj, često pri izvrtanju stopala. Mogu slijediti bol, oteklina i podljevi, ali javljaju se i kod prijeloma ili drugih ozljeda. Prva je odluka treba li pregled, a ne koji zavoj kupiti. Oporavak ovisi o ozljedi i rehabilitaciji, ne o zajamčenom broju dana.",
+  "sections": [
+    {
+      "heading": "Prepoznati kada ozljeda zahtijeva pregled",
+      "paragraphs": [
+        "Potražite brz pregled zbog jake boli, velike otekline, nemogućnosti oslanjanja ili pogoršanja umjesto poboljšanja. Očit deformitet, otvorena rana, hladno stopalo ili promjena boje, utrnulost i gubitak osjeta zahtijevaju hitnu procjenu. Ne pokušavajte sami ispraviti zglob. Mogućnost nekoliko koraka ne isključuje pouzdano prijelom, a fotografija ne pokazuje koje su strukture ozlijeđene."
+      ]
+    },
+    {
+      "heading": "Razumjeti pregled i odluku o snimanju",
+      "paragraphs": [
+        "Liječnik pita kako je ozljeda nastala te provjerava bolnost, pokretljivost, cirkulaciju i osjet. Odlučuje treba li rendgen ili druga pretraga. Ne treba svako uganuće snimanje, a rendgen prvenstveno procjenjuje kosti, ne svaku ozljedu ligamenata. Spomenite prijašnja uganuća, teškoće hodanja, lijekove i bolesti. Trajne tegobe nakon prvog pregleda mogu zahtijevati kontrolu umjesto pretpostavke da početna dijagnoza objašnjava sve."
+      ]
+    },
+    {
+      "heading": "Razumno koristiti zaštitu i olakšanje simptoma",
+      "paragraphs": [
+        "Izbjegavajte aktivnosti koje jasno pogoršavaju bol i pravilno koristite preporučenu potporu ili pomagalo za hodanje. Podizanje gležnja i hladni oblog omotan tkaninom mogu olakšati tegobe; ne stavljajte led izravno na kožu. Potpora ne smije izazvati utrnulost, promjenu boje ili veću bol. Pitajte koje ublažavanje boli odgovara vašem zdravlju i lijekovima. Ove mjere ne zamjenjuju pregled kada postoje znakovi upozorenja."
+      ]
+    },
+    {
+      "heading": "Postupno vraćati pokret i sigurnost",
+      "paragraphs": [
+        "Nakon procjene slijedite savjete o ugodnom pokretanju i postupnom opterećenju. Dugotrajno potpuno mirovanje nije automatski najbolji izbor, ali forsiranje kroz znatnu bol nije test oporavka. Fizioterapija može uključivati pokretljivost, snagu i ravnotežu prilagođene ozljedi. Pitajte kako napredovati i koji simptomi znače smanjenje aktivnosti ili novi pregled. Vježbe dobre za jednu osobu ne moraju odgovarati drugoj ozljedi."
+      ]
+    },
+    {
+      "heading": "Povratak poslu i sportu planirati prema funkciji",
+      "paragraphs": [
+        "Hodanje po kući ne znači nužno spremnost za trčanje, neravno tlo ili promjene smjera. Razgovarajte o poslu, obući i sportu sa stručnjakom. Ponavljano popuštanje gležnja, trajna oteklina ili otežan povratak normalnom hodu zaslužuju kontrolu. Potpore i trening nekima smanjuju ponavljanje, ali ne sprječavaju svako uganuće. Vraćajte se postupno prema dogovorenom planu, a ne oporavku prijatelja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: pregled umjesto samodijagnoze",
+      "text": "Osoba izvrne gležanj i ne može se ugodno osloniti. Dogovara brz pregled umjesto ponavljanog hodanja kao dokaza da je samo uganuće. Opisuje nastanak, utrnulost, rane ili promjenu boje stopala."
+    },
+    {
+      "title": "Izmišljeni primjer: povratak sportu",
+      "text": "Osoba nakon uganuća ugodno hoda, ali je nestabilna pri okretanju. Pita fizioterapeuta o ciljevima snage i ravnoteže prije utakmice. Samo manju bol ne smatra dokazom sigurnosti punog natjecanja."
+    }
+  ],
+  "questions": [
+    "Je li ovo nekomplicirano uganuće i trebam li snimanje ili kontrolu?",
+    "Kako koristiti potporu, pomagala i lijekove protiv boli u mom slučaju?",
+    "Koje funkcionalne ciljeve trebam postići prije posla, trčanja ili sporta?"
+  ]
+}

@@ -118,8 +118,8 @@ describe("mapOsmElement", () => {
     });
   });
 
-  it("skips unnamed, disused or position-less elements", () => {
-    expect(mapOsmElement({ type: "node", id: 1, lat: 1, lon: 1, tags: { amenity: "pharmacy" } }, "RO", "pharmacy")).toBeNull();
+  it("keeps unnamed health points, but skips disused or position-less elements", () => {
+    expect(mapOsmElement({ type: "node", id: 1, lat: 1, lon: 1, tags: { amenity: "pharmacy" } }, "RO", "pharmacy")?.name).toBe("Pharmacy");
     expect(mapOsmElement({ type: "node", id: 2, tags: { name: "A" } }, "RO", "pharmacy")).toBeNull();
     expect(
       mapOsmElement({ type: "node", id: 3, lat: 1, lon: 1, tags: { name: "A", disused: "yes" } }, "RO", "pharmacy"),
@@ -207,6 +207,19 @@ describe("website and phone helpers", () => {
     expect(normalizeInstitutePhone("00385 1 4812 345", "HR")).toBe("+385 1 4812 345");
     expect(primaryPhoneHref("+39 06 1234567; +39 06 7654321")).toBe("tel:+39061234567");
     expect(primaryPhoneHref("01/4812-345")).toBe("tel:014812345");
+  });
+
+  it("imports Moldovan names in Romanian or Russian and additional healthcare types", () => {
+    const element = { type: "node" as const, id: 14, lat: 47, lon: 28.8 };
+    expect(mapOsmElement({ ...element, tags: { healthcare: "laboratory", "name:ro": "Laborator medical" } }, "MD", "other"))
+      .toMatchObject({ name: "Laborator medical", category: "clinic", country_code: "MD" });
+    expect(mapOsmElement({ ...element, tags: { healthcare: "clinic", "name:ru": "Медицинский центр" } }, "MD", "clinic")?.name)
+      .toBe("Медицинский центр");
+    const inactiveTags: Record<string, string>[] = [{ healthcare: "no" }, { "disused:healthcare": "clinic" }, { closed: "yes" }];
+    for (const tags of inactiveTags) {
+      expect(mapOsmElement({ ...element, tags }, "MD", "clinic")).toBeNull();
+    }
+    expect(mapOsmElement({ ...element, lat: NaN }, "MD", "clinic")).toBeNull();
   });
 });
 

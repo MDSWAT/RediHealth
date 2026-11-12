@@ -8,6 +8,12 @@ import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 
 const copy: Record<Lang, { title: string; body: string; action: string }> = {
+  ru: {
+    title: "Срок действия этой ссылки истек",
+    body: "Чтобы защитить ваши данные, ссылки на портале перестают работать через 90 дней. Дайте нам свой адрес электронной почты, и мы сразу же отправим вам новую ссылку.",
+    action: "Get a new link",
+  },
+
   en: {
     title: "This link has expired",
     body: "To protect your details, portal links stop working after 90 days. Give us your email address and we send you a new link straight away.",

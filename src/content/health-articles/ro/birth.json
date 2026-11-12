@@ -1,0 +1,51 @@
+{
+  "title": "Nașterea: pregătirea pentru travaliu, alegeri și schimbări de plan",
+  "intro": "Nașterea implică schimbări fizice, decizii și sprijin atât pentru persoana care naște, cât și pentru copil. Travaliul nu urmează același calendar pentru toți. Planificarea ajută comunicarea și permite schimbări dacă sănătatea ori preferințele se modifică. Prezentarea arată ce discutați cu echipa; nu înlocuiește planul individual sau instrucțiunile de urgență.",
+  "sections": [
+    {
+      "heading": "Pregătiți preferințele și accesul practic la îngrijire",
+      "paragraphs": [
+        "Discutați locul nașterii, persoana de sprijin, comunicarea și prioritățile. Locul potrivit depinde de sarcină, servicii și transfer, nu doar de preferință. Întrebați contactul permanent pentru sfat și transportul. Menționați experiențe anterioare, traume, boli și preocupări despre examinări sau atingere. Planul scris consemnează preferințe, nu garantează o succesiune exactă. Puteți întreba și schimba preferințele pe parcurs."
+      ]
+    },
+    {
+      "heading": "Contactați echipa la început și pentru semne de alarmă",
+      "paragraphs": [
+        "Contracțiile devin uneori treptat mai puternice și regulate, iar începutul poate să se oprească și să reînceapă. Urmați sfatul echipei privind prezentarea, nu o regulă universală de contracții. Contactați maternitatea la ruperea membranelor, chiar înainte de contracții, și spuneți ora, culoarea și mirosul. Mișcările fetale reduse, sângerarea, lichidul verde sau maro, febra, durerea severă persistentă ori travaliul posibil înainte de termen cer sfat urgent. Hemoragia, colapsul, convulsiile sau respirația sever dificilă cer urgență. Nu așteptați confirmarea unui cronometru."
+      ]
+    },
+    {
+      "heading": "Înțelegeți etapele, examinările și monitorizarea",
+      "paragraphs": [
+        "Travaliul include de obicei deschiderea colului, nașterea copilului și eliminarea placentei. Echipa evaluează progresul și starea ambilor prin observații și monitorizarea inimii fetale potrivite situației. Întrebați scopul examenului ori monitorului, ce arată și alternativele rezonabile. Consimțământul, intimitatea și explicațiile rămân importante. Progresul lent ori un semnal neobișnuit se interpretează în tabloul întreg; un singur număr nu descrie travaliul fiecăruia și nu stabilește orice decizie."
+      ]
+    },
+    {
+      "heading": "Discutați confortul, analgezia și intervențiile posibile",
+      "paragraphs": [
+        "Mișcarea, pozițiile, respirația, atingerea de sprijin ori apa ajută când sunt potrivite. Medicamentele și epidurala sunt alte opțiuni, cu beneficii, limite și efecte adverse. Disponibilitatea depinde de loc și sănătate; solicitarea analgeziei nu este eșec. Inducerea, întărirea contracțiilor, nașterea vaginală asistată ori cezariana se propun pentru motive concrete. Întrebați motivul, urgența, principalele riscuri, beneficii și alternative. În urgență explicațiile sunt uneori scurte, dar echipa trebuie să vă informeze și să permită discuție ulterioară."
+      ]
+    },
+    {
+      "heading": "Includeți primele ore și sprijinul emoțional",
+      "paragraphs": [
+        "Echipa verifică bebelușul, sângerarea, placenta și leziunile părintelui. Întrebați despre contact piele pe piele și alimentație când sunt sigure, precum și medicamente ori proceduri pentru fiecare. Dacă îngrijirea suplimentară vă separă, întrebați cum primiți informații și păstrați contactul. Înaintea plecării confirmați urmărirea și semnele urgente. Nașterea dificilă ori neașteptată poate aduce emoții amestecate chiar cu stabilitate medicală. Cereți discutarea evenimentelor și ajutor pentru suferință persistentă, fără obligația de a fi doar recunoscători și tăcuți."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: schimbarea preferinței de analgezie",
+      "text": "O persoană plănuia respirație și mișcare, dar vrea ulterior epidurală. Spune moașei, întreabă potrivirea și opțiunile și actualizează preferințele. Planul inițial nu este promisiune de refuz al analgeziei."
+    },
+    {
+      "title": "Exemplu ipotetic: membrane rupte înainte de contracții",
+      "text": "Membranele se rup înaintea contracțiilor stabilite. Persoana sună maternitatea, descrie lichidul și mișcările și urmează planul individual. Nu așteaptă contracții puternice dacă echipa recomandă evaluare mai devreme."
+    }
+  ],
+  "questions": [
+    "Ce loc și sprijin se potrivesc sarcinii și cum contactez urgent îngrijirea?",
+    "Ce monitorizare, analgezie ori intervenții pot fi propuse și cum se explică deciziile?",
+    "Ce verificări și sprijin trebuie după naștere, inclusiv discutarea evenimentelor neașteptate?"
+  ]
+}

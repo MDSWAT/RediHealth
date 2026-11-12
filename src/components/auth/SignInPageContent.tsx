@@ -11,6 +11,8 @@ import type { Lang } from "@/lib/i18n/translations";
 
 // The words inside the terms sentence that open the Terms and the Privacy pages, per language.
 const TERMS_LINKS: Record<Lang, { terms: string; privacy: string }> = {
+  ru: { terms: "Условия", privacy: "Уведомление о конфиденциальности" },
+
   ro: { terms: "Termenii", privacy: "Politica de confidențialitate" },
   en: { terms: "Terms", privacy: "Privacy Notice" },
   sq: { terms: "Kushtet", privacy: "Njoftimin e Privatësisë" },

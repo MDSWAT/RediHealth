@@ -1,0 +1,51 @@
+{
+  "title": "La scala CDR: capire una valutazione della demenza",
+  "intro": "La Clinical Dementia Rating, o CDR, è una valutazione strutturata di come le difficoltà di pensiero e memoria influiscono sulla vita quotidiana. Un professionista formato integra informazioni della persona e di qualcuno che la conosce bene. Aiuta a descrivere gravità e cambiamenti nel tempo, ma un punteggio da solo non identifica la causa dei problemi di memoria, non predice il futuro individuale e non sostituisce una valutazione clinica completa.",
+  "sections": [
+    {
+      "heading": "Capire cosa cerca di descrivere la valutazione",
+      "paragraphs": [
+        "La CDR considera memoria, orientamento, giudizio e soluzione dei problemi, insieme ad attività nella comunità, casa e hobby e cura personale. L'attenzione è sul cambiamento rispetto alle capacità precedenti e sull'effetto delle difficoltà cognitive sull'autonomia. Non è semplicemente un quiz di conoscenze o un conteggio dei nomi dimenticati. Fare fatica a comprare per confusione è diverso dall'evitare negozi perché un ginocchio dolorante limita il cammino. Spiegate sia i cambiamenti cognitivi sia gli ostacoli fisici o sociali."
+      ]
+    },
+    {
+      "heading": "Preparare osservazioni concrete, non risposte provate",
+      "paragraphs": [
+        "Portate esempi di cosa è cambiato e quando: appuntamenti saltati, difficoltà in compiti familiari o aiuto necessario da poco. Descrivete ciò che la persona fa ancora autonomamente, oltre alle difficoltà. Un parente o amico con contatti regolari può fornire contesto utile, rispettando desideri e riservatezza. Segnalate esigenze linguistiche, uditive o visive. Non allenate risposte per ottenere un certo punteggio: un racconto accurato è più utile per organizzare il sostegno."
+      ]
+    },
+    {
+      "heading": "Distinguere la valutazione globale dalla somma dei domini",
+      "paragraphs": [
+        "I referti possono riportare CDR globale oppure CDR-SB, la somma dei punteggi dei domini. Sono sintesi diverse e i numeri non sono intercambiabili. La valutazione globale va da zero a tre, mentre la somma va da zero a diciotto; valori più alti indicano maggiore compromissione. Il punteggio globale segue regole specifiche e non una semplice media. Chiedete quale misura viene discussa e cosa significhi il profilo nella vita quotidiana, anziché confrontare numeri isolati di referti diversi."
+      ]
+    },
+    {
+      "heading": "Interpretare i cambiamenti nel quadro clinico complessivo",
+      "paragraphs": [
+        "I cambiamenti tra visite richiedono contesto: chi ha fornito informazioni, quale sostegno è disponibile e se la persona era malata. Medicinali, depressione, disturbi del sonno e difficoltà sensoriali possono influire sul funzionamento e vanno considerati nella valutazione generale. Confusione improvvisa o rapido peggioramento richiedono assistenza senza aspettare un altro punteggio di routine. La CDR da sola non dimostra la presenza di patologia Alzheimer. Il medico può usare anamnesi, esame, test cognitivi e altri accertamenti per esplorare la causa."
+      ]
+    },
+    {
+      "heading": "Usare i risultati per sostegno e prove sui trattamenti",
+      "paragraphs": [
+        "Chiedete come la valutazione orienti revisione dei farmaci, aiuto quotidiano, sicurezza e programmi futuri. Una variazione del CDR-SB medio in un gruppo di ricerca non promette lo stesso miglioramento a un individuo. Piccole differenze tra gruppi e cambiamenti individuali significativi sono questioni distinte. L'idoneità al trattamento dipende anche da diagnosi, salute, autorizzazione locale e terapia specifica, non solo dalla CDR. Questo articolo spiega la valutazione: non è una scheda autorizzata per assegnare punteggi né uno strumento di autodiagnosi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: spiegare perché serve aiuto",
+      "text": "Una figlia dice che il padre non cucina più. Il valutatore chiede se dimentica passaggi familiari, non riesce a stare in piedi per l'artrite o ha semplicemente scelto di affidare la cucina ad altri. I dettagli distinguono cambiamenti cognitivi da altre ragioni di assistenza."
+    },
+    {
+      "title": "Esempio ipotetico: confrontare referti",
+      "text": "Una famiglia vede un risultato CDR globale in un referto e un numero CDR-SB maggiore in un altro. Invece di presumere un peggioramento drammatico, chiede al medico di identificare le due misure e spiegare se valutazioni comparabili mostrano un cambiamento reale."
+    }
+  ],
+  "questions": [
+    "È una valutazione CDR globale o un CDR-SB e cosa descrive nella vita quotidiana?",
+    "Quali altri fattori di salute, comunicazione o sostegno possono aver influito?",
+    "Come cambieranno il piano di cura questi risultati e cosa richiede una rivalutazione anticipata?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Akne: njega kože i izbor liječenja",
+  "intro": "Akne uključuju začepljene folikule dlaka i upalu. Mogu uzrokovati mitesere, bijele prištiće, upalne promjene i dublje bolne kvržice, često na licu, prsima ili leđima. Nisu znak loše higijene. Najbolji plan ovisi o vrsti promjena, riziku ožiljaka, dosadašnjem liječenju i utjecaju na svakodnevni život.",
+  "sections": [
+    {
+      "heading": "Razumjeti promjene u koži",
+      "paragraphs": [
+        "Kožna masnoća i odumrle stanice mogu se nakupljati u folikulima. Upala i djelovanje bakterija koje normalno žive na koži pridonose nekim prištićima. Hormonalne promjene mogu povećati stvaranje masnoće, pa su akne česte u adolescenciji, ali mogu trajati ili početi u odrasloj dobi. Tamna boja mitesera ne znači da je unutra prljavština. Akne nisu zarazne, a ribanje ne uklanja njihov temeljni uzrok."
+      ]
+    },
+    {
+      "heading": "Odabrati rutinu koju možete održavati",
+      "paragraphs": [
+        "Nježno čišćenje i proizvodi označeni kao nekomedogeni mogu pomoći izbjeći dodatnu iritaciju ili začepljenje pora. Čačkanje i istiskivanje povećavaju rizik tragova i ožiljaka. Skupi proizvodi i složena rutina nisu automatski bolji. Recite ljekarniku ili liječniku koje proizvode već koristite: kombiniranje više nadražujućih tretmana može izazvati bolnost kože i otežati procjenu što pomaže."
+      ]
+    },
+    {
+      "heading": "Razgovarati o mogućnostima liječenja",
+      "paragraphs": [
+        "Mogućnosti uključuju benzoilperoksid, lokalne retinoide i druge lijekove za kožu. Nekima trebaju tablete na recept ili specijalistička skrb. Antibiotici se koriste selektivno zbog nuspojava i otpornosti; nemojte zato uzimati preostale tablete. Izotretinoin zahtijeva specijalistički nadzor i važne sigurnosne mjere. Recite liječniku ako ste trudni, možete zatrudnjeti ili planirate trudnoću jer neki lijekovi za akne nisu prikladni."
+      ]
+    },
+    {
+      "heading": "Procjenjivati napredak bez očekivanja promjene preko noći",
+      "paragraphs": [
+        "Liječenju treba vremena, a iritacija ili suhoća mogu se pojaviti prije punog učinka. Pitajte koje promjene očekivati, kako koristiti proizvod i kada provjeriti učinak. Kratka bilješka ili povremena fotografija, čuvana privatno, pomažu opisati promjene bez stalnog provjeravanja kože. Trajni tamni ili svijetli tragovi razlikuju se od novih upalnih prištića i mogu zahtijevati poseban razgovor."
+      ]
+    },
+    {
+      "heading": "Potražiti pomoć zbog ožiljaka, boli ili patnje",
+      "paragraphs": [
+        "Obratite se liječniku zbog dubokih bolnih kvržica, novih ožiljaka, nejasne dijagnoze ili izostanka poboljšanja uz dogovoreni plan. Brzo pogoršanje bolne otekline s vrućicom zahtijeva brzu procjenu, a ne jače proizvode za akne. Sram, vršnjačko nasilje i povlačenje iz aktivnosti također zaslužuju pozornost. Ne morate čekati da koža izgleda teško zahvaćena da biste tražili emocionalnu podršku ili savjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: jednostavnija rutina",
+      "text": "Student koristi piling, kiseli tonik i gel za akne, a koža peče. Donosi nazive proizvoda ljekarniku i pita koja je kombinacija primjerena. To pomaže prepoznati iritaciju i razjasniti plan; ne jamči da će određeni proizvod ukloniti akne."
+    },
+    {
+      "title": "Izmišljeni primjer: razgovor o ožiljcima",
+      "text": "Osoba primjećuje dublje kvržice i nova udubljenja unatoč propisanom liječenju. Dogovara kontrolu i objašnjava utjecaj na samopouzdanje. Pita treba li specijalističku uputnicu umjesto istiskivanja ili kupnje još jednog jakog sredstva."
+    }
+  ],
+  "questions": [
+    "Koju vrstu akni imam i postoji li rizik ožiljaka?",
+    "Kako koristiti liječenje i koje su nuspojave ili mjere opreza vezane uz trudnoću važne?",
+    "Kada provjeravamo napredak i što bi promijenilo plan?"
+  ]
+}

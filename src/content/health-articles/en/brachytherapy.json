@@ -1,0 +1,51 @@
+{
+  "title": "Brachytherapy: understand internal radiation and your treatment plan",
+  "intro": "Brachytherapy places a sealed radiation source in or close to the area being treated. It can deliver radiation locally while limiting exposure to some nearby tissue, but healthy tissue can still be affected. It is used for selected cancers and may be given alone or alongside other treatments. The procedure, safety precautions and side effects depend on the cancer site and the exact method, so another patient's instructions may not fit your care.",
+  "sections": [
+    {
+      "heading": "Clarify why this method is being recommended",
+      "paragraphs": [
+        "Ask the radiation oncologist what the treatment aims to achieve and how it fits with surgery, external-beam radiotherapy or medicines if those are also planned. Suitability depends on the tumour's location, extent, earlier treatment and your health. Discuss realistic benefit, alternatives and what uncertainty remains. A local radiation treatment does not automatically treat cancer elsewhere in the body. Ask which symptoms and longer-term outcomes matter most in your situation rather than judging the plan only by the name or the number of appointments."
+      ]
+    },
+    {
+      "heading": "Distinguish temporary treatment from permanent implants",
+      "paragraphs": [
+        "In temporary brachytherapy, a source is placed for a planned period through an applicator or catheter and then removed. Some treatments deliver brief high-dose-rate sessions; others use a longer or pulsed schedule. Permanent treatment leaves small sealed sources in place while their radiation gradually declines. These methods have different arrangements for admission, repeat visits and safety. Ask exactly which source and delivery system you will have, what will remain afterwards and how the team confirms completion. Do not assume a permanent implant means continuing strong radiation indefinitely."
+      ]
+    },
+    {
+      "heading": "Prepare for placement, imaging and discomfort",
+      "paragraphs": [
+        "Imaging helps plan and check the source position. Placing needles, catheters or an applicator may require anaesthesia or sedation depending on the site and technique. Ask how pain and nausea will be managed, whether movement will be restricted and how you can communicate during treatment. Provide medicines, allergies, previous procedures and pregnancy information. Follow individual instructions about food, drink and medicines, including any anticoagulant adjustment. Arrange transport and support after sedation where required; do not invent preparation rules from a general description."
+      ]
+    },
+    {
+      "heading": "Follow radiation precautions for your exact method",
+      "paragraphs": [
+        "The team may limit visits or close contact while an active source is in place. Once all sources from temporary treatment have been removed, that brachytherapy no longer makes you radioactive. Permanent implants may require temporary precautions around children or pregnant people and instructions about a displaced source, travel or medical procedures. Ask for written guidance, an appropriate contact and any treatment card you should carry. These rules depend on the isotope and treatment, so do not impose universal separation periods or handle a suspected loose source yourself."
+      ]
+    },
+    {
+      "heading": "Plan recovery, side-effect care and follow-up",
+      "paragraphs": [
+        "Possible effects depend on the treated area and can involve soreness, fatigue, urinary or bowel symptoms, sexual function or other nearby tissues. Ask which are expected, which may occur later and what support is available, including fertility advice before treatment when relevant. Get clear instructions for wounds and any catheter left in place. Fever, worsening severe pain, heavy bleeding or inability to urinate needs prompt assessment; collapse, severe breathlessness or other critical illness requires emergency help. Keep follow-up even if you feel well so response and delayed effects can be reviewed."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: checking contact precautions",
+      "text": "Someone receiving temporary brachytherapy worries about hugging a grandchild afterwards. They ask whether all radioactive sources have been removed and follow their own written discharge advice, rather than applying precautions described for someone else's permanent seed implant."
+    },
+    {
+      "title": "Hypothetical example: planning a day procedure",
+      "text": "A patient learns that applicator placement will involve sedation. They confirm medicine and eating instructions, organise an escort and ask how to report pain or urinary difficulty after discharge. They do not assume a short radiation session means the whole visit requires no preparation."
+    }
+  ],
+  "questions": [
+    "What benefit is expected for my cancer and how does brachytherapy compare with the alternatives?",
+    "Is my source temporary or permanent, and what preparation and contact precautions do I need?",
+    "Which side effects and urgent symptoms should I report, and how will treatment response be checked?"
+  ]
+}

@@ -7,6 +7,17 @@ export const demoPanelTranslations: Record<Lang, {
   /** Sample records and demo-store messages, keyed by the English text in src/lib/demo-panel.ts. */
   seed: Record<string, string>;
 }> = {
+  ru: {
+    title: "Демонстрация панели", notice: "Все данные здесь выдуманные. Изменения остаются в этом браузере. Электронная почта, звонки и видео моделируются, и в реальную базу данных ничего не попадает. Не вводите реальные данные пациента.",
+    role: "Role", mediator: "Посредник", doctor: "Доктор", reset: "Сбросить демо", resetConfirm: "Удалить изменения и восстановить образцы данных?",
+    exit: "Вернуться на сайт", storageError: "Изменение не было сохранено. Память браузера отключена, заполнена или повреждена. Освободите место или сбросьте демо-версию.",
+    resetToContinue: "Сбросьте демо-версию или включите хранилище браузера, чтобы продолжить.", notFound: "Эта страница недоступна для этой роли.", back: "Вернуться к демо",
+    video: "Имитация видеозвонка. Никакая камера, микрофон или внешние службы не используются.",
+    transcript: "Демо-пациент: Это имитация последующей консультации.",
+    kit: "Демонстрационный комплект",
+    seed: {},
+  },
+
   en: {
     title: "Panel demo", notice: "All data here is made up. Changes stay in this browser. Emails, calls and video are simulated and nothing reaches the real database. Do not enter real patient details.",
     role: "Role", mediator: "Mediator", doctor: "Doctor", reset: "Reset demo", resetConfirm: "Delete your changes and restore the sample data?",

@@ -14,6 +14,11 @@ export type GeoCountryCode = "ro" | "md" | "it" | "hr" | "al";
  * are often missing), which made server and client disagree and broke hydration. A fixed table cannot drift.
  */
 const MONTHS: Record<Lang, { long: string[]; short: string[] }> = {
+  ru: {
+    long: ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "Октябрь", "ноябрь", "декабрь"],
+    short: ["Ян", "февраль", "Мар", "апрель", "май", "июнь", "июль", "август", "Сентябрь", "октябрь", "ноябрь", "декабрь"],
+  },
+
   ro: {
     long: ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"],
     short: ["ian.", "feb.", "mar.", "apr.", "mai", "iun.", "iul.", "aug.", "sept.", "oct.", "nov.", "dec."],
@@ -72,6 +77,8 @@ export function formatNewsDate(value: string, lang: Lang, { short = false, year 
 /** Places whose name has established forms across the supported languages. */
 const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
   "București": {
+"ru": "Бухарест",
+
     ro: "București",
     en: "Bucharest",
     sq: "Bukureshti",
@@ -80,6 +87,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Bukureshti",
   },
   "Chișinău": {
+"ru": "Кишинэу",
+
     ro: "Chișinău",
     en: "Chișinău",
     sq: "Kishineu",
@@ -88,6 +97,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Kishinau",
   },
   "Găgăuzia": {
+"ru": "Гагаузия",
+
     ro: "Găgăuzia",
     en: "Gagauzia",
     sq: "Gagauzia",
@@ -96,6 +107,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Gagauziya",
   },
   "Stânga Nistrului": {
+"ru": "Левобережье Днестра",
+
     ro: "Stânga Nistrului",
     en: "Left Bank of the Dniester",
     sq: "Bregu i Majtë i Dniestrit",
@@ -104,6 +117,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Stinga Nistruski",
   },
   "Grad Zagreb": {
+"ru": "Город Загреб",
+
     ro: "Orașul Zagreb",
     en: "City of Zagreb",
     sq: "Qyteti i Zagrebit",
@@ -112,6 +127,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Foro Zagreb",
   },
   "Tiranë": {
+"ru": "Тирана",
+
     ro: "Tirana",
     en: "Tirana",
     sq: "Tiranë",
@@ -120,6 +137,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Tirana",
   },
   "Shkodër": {
+"ru": "Шкодер",
+
     ro: "Shkodër",
     en: "Shkodër",
     sq: "Shkodër",
@@ -128,6 +147,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Shkodra",
   },
   "Durrës": {
+"ru": "Дуррес",
+
     ro: "Durrës",
     en: "Durrës",
     sq: "Durrës",
@@ -136,6 +157,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Durres",
   },
   "Vlorë": {
+"ru": "Влёра",
+
     ro: "Vlorë",
     en: "Vlorë",
     sq: "Vlorë",
@@ -144,6 +167,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Vlora",
   },
   "Korçë": {
+"ru": "Корча",
+
     ro: "Korçë",
     en: "Korçë",
     sq: "Korçë",
@@ -152,6 +177,8 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
     rom: "Korcha",
   },
   "Gjirokastër": {
+"ru": "Гирокастра",
+
     ro: "Gjirokastër",
     en: "Gjirokastër",
     sq: "Gjirokastër",
@@ -277,6 +304,8 @@ export function countyLabel(county: string, lang: Lang, countryHint?: GeoCountry
   // Romania ("ro")
   if (county === "București") return placeName(county, lang);
   switch (lang) {
+    case "ru":
+      return `Уезд ${county}`;
     case "en":
       return `${county} County`;
     case "sq":
@@ -316,6 +345,8 @@ export function resolveNewsBasePath(pathname: string | null | undefined): "/news
 }
 
 export const newsPageDescriptions: Record<Lang, string> = {
+"ru": "Новости здоровья, выездные клиники и кампании вакцинации рядом с вами.",
+
   ro: "Alerte de sănătate, caravane medicale și campanii de vaccinare din județul sau raionul tău.",
   en: "Health alerts, mobile clinics and vaccination campaigns near you.",
   sq: "Njoftime shëndetësore, karvane mjekësore dhe fushata vaksinimi pranë teje.",

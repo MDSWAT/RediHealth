@@ -1,0 +1,51 @@
+{
+  "title": "Celijakija: dijagnoza, bezglutenska prehrana i svakodnevna skrb",
+  "intro": "Celijakija je autoimuna bolest u kojoj gluten pokreće oštećenje tankog crijeva. Razlikuje se od alergije na pšenicu i tegoba pripisanih glutenu bez celijakije. Pogađa djecu i odrasle s probavnim, izvancrijevnim ili slabo vidljivim simptomima. Točna dijagnoza važna je jer liječenje znači strogu doživotnu bezglutensku prehranu, a ne samo manje kruha kad se jave tegobe.",
+  "sections": [
+    {
+      "heading": "Simptomi nisu samo proljev",
+      "paragraphs": [
+        "Mogući su nadutost, trbušne tegobe, proljev ili zatvor, umor, anemija zbog manjka željeza i nenamjerni gubitak težine. Djeca mogu slabije rasti. Neki imaju svrbljiv mjehurićast osip, herpetiformni dermatitis. Drugi se otkriju zbog obiteljske povijesti ili povezane bolesti. Postoje i drugi uzroci: simptomi ni poboljšanje na dijeti ne dokazuju celijakiju. Navedite potvrđene dijagnoze u obitelji i ranije testove."
+      ]
+    },
+    {
+      "heading": "Razgovarajte o testiranju prije uklanjanja glutena",
+      "paragraphs": [
+        "Krvne pretrage traže odgovarajuća protutijela, a često trebaju biopsije tankog crijeva tijekom gornje endoskopije. Specijalist bira put, uključujući posebne kriterije za neku djecu. Izbjegavanje glutena može lažno umiriti nalaze. Ako ga jedete, ne počinjite dijetu prije plana testiranja. Ako ste ga već uklonili, recite liječniku; ne provodite sami prehrambenu provokaciju, osobito uz moguću neposrednu alergiju. Genetika ponekad razjašnjava dvojbe, ali sama ne potvrđuje dijagnozu."
+      ]
+    },
+    {
+      "heading": "Potvrđena dijagnoza mijenja prehranu doživotno",
+      "paragraphs": [
+        "Gluten se nalazi u pšenici, ječmu i raži, uključujući pir i ječmeni slad. Kruh i tjestenina očiti su izvori, ali prisutan je i u umacima, juhama i prerađevinama. S dijetetičarom naučite sastojke i oznake. Za zob birajte označeno bez glutena i razgovarajte o prikladnosti: kontaminacija je česta, a manjina ne podnosi ni čistu zob. Enzimski dodatak ne čini običnu glutensku hranu automatski sigurnom."
+      ]
+    },
+    {
+      "heading": "Spriječite križni kontakt i zadržite ravnotežu",
+      "paragraphs": [
+        "Mrvice, zajedničke površine, voda za kuhanje i pribor mogu prenijeti gluten. Dogovorite kuhinjska pravila, pitajte restorane i planirajte školske ili radne obroke. Obična riža, krumpir, povrće, mahunarke i prikladne neprerađene bjelančevine omogućuju raznolikost; provjerite dodatke i pripremu. Dijetetičar pomaže s troškom, vlaknima, kalcijem, željezom i drugim potrebama. Zapakirana bezglutenska hrana nije automatski uravnotežena. Dodaci služe utvrđenoj potrebi, a ne zamjeni prehrambene podrške."
+      ]
+    },
+    {
+      "heading": "Kontrole ostaju važne nakon poboljšanja",
+      "paragraphs": [
+        "Simptomi se mogu smiriti prije potpunog oporavka crijeva. Nastavite dijetu i kad ste dobro te kontrole simptoma, prehrane, dječjeg rasta i potrebnih pretraga. Trajne tegobe zahtijevaju procjenu nenamjernog glutena i drugih razloga, a ne okrivljavanje ili sve šire zabrane. Razgovarajte o kostima i testiranju bliskih srodnika. Jaka bol u trbuhu, povraćanje krvi, crna stolica ili značajna dehidracija trebaju hitnu skrb."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prije prvog testa — zamišljeni primjer",
+      "text": "Osoba s nadutošću i neobjašnjivim manjkom željeza želi odmah ukloniti gluten. Prvo razgovara s liječnikom kako bi testovi bili tumačivi. Samo poboljšanje na dijeti ne bi potvrdilo dijagnozu."
+    },
+    {
+      "title": "Zajednička kuhinja — zamišljeni primjer",
+      "text": "Nakon dijagnoze obitelj osigurava čistu površinu i sprječava mrvice u zajedničkim namazima i tosteru. Dijetetičar pomaže s pristupačnim uravnoteženim jelima umjesto zamjene svega posebnim pakiranjima."
+    }
+  ],
+  "questions": [
+    "Koji su testovi potrebni i kako postupati s glutenom prije njih?",
+    "Kako prepoznati gluten i spriječiti križni kontakt kod kuće, u školi ili na poslu?",
+    "Koje prehrambene kontrole, preglede i obiteljsko testiranje planirati?"
+  ]
+}

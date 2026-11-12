@@ -1,0 +1,51 @@
+{
+  "title": "Complicanze dei calcoli biliari: ostruzione e infiammazione",
+  "intro": "I calcoli biliari possono restare silenziosi per anni, ma un calcolo che blocca il drenaggio può causare più di una colica. L'infiammazione della colecisti, l'infezione dei dotti biliari o l'infiammazione del pancreas possono richiedere cure ospedaliere urgenti. Avere già una diagnosi di calcoli non rende ogni nuovo dolore addominale sicuro da gestire a casa.",
+  "sections": [
+    {
+      "heading": "La sede dell'ostruzione cambia il problema",
+      "paragraphs": [
+        "La colecisti conserva la bile prodotta dal fegato. Un calcolo che ne blocca l'uscita può causare colecistite, cioè infiammazione della colecisti. Un calcolo nel dotto biliare principale può ostacolare il flusso e provocare ittero; l'infezione dei dotti si chiama colangite. Un calcolo vicino alla zona comune di sbocco può provocare pancreatite, infiammazione del pancreas. Raramente un calcolo raggiunge l'intestino attraverso una comunicazione anomala e lo ostruisce. Sono complicanze distinte, non tappe inevitabili per ogni persona con calcoli."
+      ]
+    },
+    {
+      "heading": "Sintomi che non devono aspettare",
+      "paragraphs": [
+        "Richiedere una valutazione d'emergenza per dolore addominale improvviso e intenso, dolore irradiato alla schiena con vomito, febbre o brividi scuotenti con dolore addominale, oppure occhi o pelle gialli. Confusione, svenimento, respiro rapido o estrema debolezza possono indicare una grave malattia sistemica come la sepsi. Non guidare se si sta molto male. Anche un dolore persistente o ricorrente nell'addome superiore richiede consiglio medico tempestivo senza febbre. Urine scure o feci chiare possono accompagnare l'ostruzione biliare. Non occorrono tutti i sintomi per chiedere aiuto; altre malattie gravi possono provocare dolori simili."
+      ]
+    },
+    {
+      "heading": "Come si ricerca la causa in ospedale",
+      "paragraphs": [
+        "La valutazione comprende sintomi, visita ed esami del sangue per infiammazione ed effetti su fegato o pancreas. Spesso si inizia con l'ecografia, che però non mostra ogni calcolo nei dotti. Secondo i risultati possono servire una risonanza dei dotti, chiamata MRCP, ecoendoscopia o altre immagini. L'ERCP è una procedura endoscopica usata soprattutto per trattare un'ostruzione, non il primo esame di routine per tutti. Segnalare gravidanza, allergie, anticoagulanti e interventi precedenti. Un calcolo visibile non dimostra da solo che spieghi ogni disturbo."
+      ]
+    },
+    {
+      "heading": "Trattare sia la malattia sia l'ostruzione",
+      "paragraphs": [
+        "Le cure possono includere liquidi in vena, analgesici e antibiotici quando si sospetta infezione. Seguire le indicazioni del team su cibo e bevande; non iniziare lunghi digiuni a casa. I dotti infetti e ostruiti possono richiedere drenaggio urgente, spesso mediante ERCP, che rimuove un calcolo o inserisce uno stent temporaneo. Discutere pancreatite, sanguinamento e perforazione fra i rischi e chiedere se lo stent dovrà essere rimosso. Nella colecistite acuta si raccomanda spesso la rimozione precoce della colecisti se le condizioni lo permettono. Se l'intervento è inizialmente troppo rischioso, pazienti selezionati possono necessitare del drenaggio della colecisti. I tempi dipendono da complicanza e condizioni generali."
+      ]
+    },
+    {
+      "heading": "Recupero e prevenzione di nuovi episodi",
+      "paragraphs": [
+        "Rimuovere un calcolo dal dotto non elimina quelli rimasti nella colecisti: può essere consigliato altro trattamento. Il fegato continua a produrre bile dopo l'asportazione della colecisti e la maggior parte delle persone vive normalmente senza questo organo. Chiedere informazioni su recupero, cambiamenti intestinali e controlli. Evitare alimenti che scatenano i propri sintomi può aiutare durante l'attesa, ma la dieta non libera in modo affidabile un'ostruzione e non cura una colecisti infetta. Evitare «lavaggi» non dimostrati e dimagrimenti rapidi. Di norma i calcoli asintomatici nella colecisti non richiedono chirurgia; calcoli nei dotti o complicanze sono situazioni diverse. Concordare cosa fare per nuovi dolori, febbre o ittero dopo la dimissione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un attacco diverso",
+      "text": "Elena ha avuto episodi dolorosi brevi. Stavolta il dolore persiste, si sente febbrile e gli occhi sembrano gialli. Chiede una valutazione d'emergenza anziché ripetere un analgesico a casa e aspettarsi lo stesso andamento degli episodi precedenti."
+    },
+    {
+      "title": "Esempio ipotetico: procedure con scopi differenti",
+      "text": "Il team libera il dotto biliare di un uomo mediante ERCP. Lui chiede perché si parli ancora di chirurgia della colecisti. Il medico spiega che il dotto ora drena, ma i calcoli rimasti nella colecisti possono causare un altro episodio; concordano trattamento e controlli individuali."
+    }
+  ],
+  "questions": [
+    "Quale struttura è ostruita o infiammata nel mio caso?",
+    "Servono drenaggio del dotto, chirurgia della colecisti o entrambi, e quando?",
+    "Se viene inserito uno stent, chi organizza il controllo o la rimozione?"
+  ]
+}

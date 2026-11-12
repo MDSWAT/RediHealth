@@ -1,0 +1,51 @@
+{
+  "title": "Boala coronariană: simptome, tratament și viața de zi cu zi",
+  "intro": "Mușchiul inimii are nevoie de propria alimentare cu sânge bogat în oxigen. Boala coronariană apare când afectarea vaselor care îl hrănesc limitează această alimentare, frecvent prin acumularea plăcilor grase în pereții arterelor. Tratamentul urmărește ameliorarea simptomelor și reducerea infarctelor viitoare. Simptomele toracice noi sau schimbate necesită evaluare chiar fără diagnostic cardiac anterior.",
+  "sections": [
+    {
+      "heading": "Recunoașteți angina și posibila urgență",
+      "paragraphs": [
+        "Angina poate da presiune, strângere sau arsură în piept, uneori spre braț, mandibulă, gât, spate ori abdomenul superior. Pot apărea lipsă de aer, greață, transpirații sau slăbiciune neobișnuită; durerea toracică puternică nu este obligatorie. Apelați urgența pentru disconfort toracic nou persistent, simptome cu lipsă de aer ori transpirații sau durere în repaus severă ori care nu cedează. Nu conduceți singur. Dacă aveți angină diagnosticată, opriți activitatea și urmați planul prescris pentru criză, dar medicamentul nu trebuie să întârzie ajutorul când suspectați infarct. Episoadele mai dese, mai lungi ori declanșate mai ușor cer consult urgent chiar dacă trec."
+      ]
+    },
+    {
+      "heading": "Înțelegeți cauza fără a atribui vină",
+      "paragraphs": [
+        "Plăcile pot îngusta treptat o arteră. Dacă o placă se rupe și se formează un cheag, sângele poate fi blocat brusc, afectând mușchiul inimii. Fumatul, tensiunea ridicată, colesterolul mare, diabetul, boala renală, vârsta și istoricul familial contribuie la risc. Stilul de viață sănătos ajută, dar nu șterge toți factorii ereditari ori medicali. Nu orice angină provine dintr-o arteră mare blocată: afectarea vaselor mici sau spasmul pot necesita altă evaluare. Un test vechi liniștitor nu explică automat simptomele noi."
+      ]
+    },
+    {
+      "heading": "Investigațiile depind de caracterul acut sau stabil",
+      "paragraphs": [
+        "În suspiciunea de infarct, ECG-ul urgent și analizele fac parte din evaluarea spitalicească; pot fi necesare repetări. Un singur ECG normal nu exclude simptomele îngrijorătoare persistente. Pentru simptome stabile, medicul verifică istoricul, examenul și riscul, apoi poate utiliza angiografie coronariană CT, imagistică funcțională ori alte teste. Angiografia invazivă poate arăta anatomia arterelor și ajuta planificarea tratamentului când este potrivită. Întrebați ce clarifică testul, riscurile și pasul următor. Colesterolul sau scorul de risc singure nu stabilesc dacă durerea de astăzi este infarct."
+      ]
+    },
+    {
+      "heading": "Medicamentele și procedurile au scopuri diferite",
+      "paragraphs": [
+        "Planul poate include medicamente pentru colesterol, antiagregante prescrise împotriva cheagurilor și tratament pentru tensiune ori angină. Beneficiile, riscul de sângerare, bolile asociate și interacțiunile influențează alegerea. Nu începeți aspirină zilnică și nu opriți tratamentul cardiac pe cont propriu. Dacă primiți un nitrat precum GTN, învățați instrucțiunile crizei și discutați interacțiunile: nu se combină cu medicamente pentru disfuncție erectilă precum sildenafil ori tadalafil. Stenturile sau bypassul pot fi recomandate după simptome, anatomie și urgență. Nu înlocuiesc controlul continuu al factorilor de risc. După stent, clarificați planul antiagregant înaintea oricărei întreruperi ori proceduri programate."
+      ]
+    },
+    {
+      "heading": "Construiți o rutină realistă pe termen lung",
+      "paragraphs": [
+        "Întrebați despre recuperare cardiacă și mișcare sigură. Începeți cu pași tolerați, fără să forțați prin durerea toracică. Sprijinul pentru renunțarea la fumat, alimentația echilibrată, somnul și controlul individual al tensiunii, colesterolului și diabetului fac parte din îngrijire. Discutați devreme reacțiile adverse ori costurile, pentru adaptarea tratamentului în locul abandonului. Păstrați accesibile lista medicamentelor și tratamentul de criză prescris, iar familia să cunoască planul de urgență. Discutați cu medicul condusul, munca solicitantă și exercițiile noi. Anxietatea după diagnostic este frecventă; sprijinul psihologic și practic ajută alături de îngrijirea cardiacă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: schimbarea tiparului contează",
+      "text": "Arben are de obicei angină diagnosticată de scurtă durată la urcarea unei pante. Într-o seară apare presiune în piept în repaus, cu transpirații. Cere ajutor de urgență fără să presupună că diagnosticul cunoscut face episodul sigur."
+    },
+    {
+      "title": "Exemplu ipotetic: deschiderea arterei nu încheie planul",
+      "text": "După un stent, o femeie se simte bine și se întreabă dacă mai trebuie comprimatele. La control echipa explică rolurile distincte ale antiagregantului și tratamentului pentru colesterol, verifică reacțiile adverse și scrie planul convenit, fără să o lase să oprească singură medicamentele."
+    }
+  ],
+  "questions": [
+    "Ce simptome înseamnă să apelez urgența în loc să aștept?",
+    "Ce rol are fiecare medicament și ce interacțiuni ori sângerări trebuie să cunosc?",
+    "Recuperarea sau o procedură mi-ar ajuta situația și ce beneficiu se așteaptă?"
+  ]
+}

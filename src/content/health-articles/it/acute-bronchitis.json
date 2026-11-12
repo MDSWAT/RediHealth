@@ -1,0 +1,51 @@
+{
+  "title": "Bronchite acuta: comprendere una tosse che persiste",
+  "intro": "La bronchite acuta è un'infiammazione temporanea delle vie aeree più grandi nei polmoni, comune durante o dopo un'infezione respiratoria virale. La tosse può continuare quando il mal di gola o il naso che cola sono già migliorati. Una tosse persistente può essere estenuante, ma la durata da sola non dimostra che serva un antibiotico. Difficoltà respiratorie e altri segnali d'allarme richiedono una valutazione distinta.",
+  "sections": [
+    {
+      "heading": "Riconoscere i sintomi e i loro limiti",
+      "paragraphs": [
+        "La tosse può essere secca o produrre catarro. Possono accompagnarla stanchezza e fastidio provocato dai colpi di tosse. Il catarro verde o giallo, da solo, non dimostra un'infezione batterica. Bronchite, polmonite, asma e altre condizioni possono avere sintomi simili, perciò un'etichetta basata soltanto sulla tosse può essere fuorviante. Episodi ripetuti o una tosse di lunga durata richiedono una valutazione, invece di presumere che ogni episodio sia un'altra semplice infezione."
+      ]
+    },
+    {
+      "heading": "Capire cosa può stabilire una visita",
+      "paragraphs": [
+        "Il medico chiede come sono iniziati i sintomi, controlla febbre e problemi respiratori e ascolta il torace. Considera età, gravidanza, funzionalità immunitaria e malattie cardiache o polmonari preesistenti. Una radiografia toracica o altri esami possono servire se si sospettano polmonite o altri problemi, ma non sono di routine per ogni tosse senza complicazioni. Segnala affanno, sangue nel catarro e medicinali assunti, senza concentrarti soltanto sul suono della tosse."
+      ]
+    },
+    {
+      "heading": "Favorire il recupero e proteggere gli altri",
+      "paragraphs": [
+        "Riposo, liquidi sufficienti e assenza di fumo di tabacco possono rendere il recupero più gestibile. Chi ha una restrizione dei liquidi prescritta deve seguire le proprie indicazioni mediche. Copri la bocca quando tossisci, lava le mani ed evita contatti ravvicinati con persone vulnerabili mentre stai male, perché l'infezione che causa la bronchite può diffondersi. Non chinarti su recipienti di acqua bollente: inalare vapore può provocare ustioni. Chiedi al farmacista prima di usare prodotti per la tosse, soprattutto per bambini, gravidanza o insieme ad altri farmaci."
+      ]
+    },
+    {
+      "heading": "Comprendere perché spesso gli antibiotici non aiutano",
+      "paragraphs": [
+        "Gli antibiotici non curano i virus, responsabili di molti casi di bronchite acuta. Possono causare effetti indesiderati e favorire resistenze; non usare compresse avanzate o prescrizioni altrui. Il medico può raccomandarli per un'infezione batterica diversa o più seria. Un inalatore non serve automaticamente per ogni tosse; respiro sibilante o asma preesistente possono richiedere una valutazione diversa e un piano terapeutico individuale."
+      ]
+    },
+    {
+      "heading": "Definire un piano per il peggioramento dei sintomi",
+      "paragraphs": [
+        "Chiedi tempestivamente consiglio medico per affanno, dolore toracico, sangue nel catarro, febbre persistente, peggioramento importante o tosse che non migliora dopo circa tre settimane. Chiedi consiglio prima per un neonato, in gravidanza, in caso di fragilità, immunità ridotta o malattie preesistenti importanti. Grave difficoltà respiratoria, labbra blu o grigie, impossibilità di parlare normalmente per problemi respiratori, confusione o collasso richiedono soccorso d'emergenza. In queste circostanze non aspettare che un rimedio per la tosse faccia effetto."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: chiedere informazioni sul catarro",
+      "text": "Una persona ha tosse con catarro giallo dopo un raffreddore. Spiega al medico da quanto tempo dura e se ha febbre, dolore toracico o affanno. Chiede se serva una visita, invece di presumere che il colore del catarro dimostri la necessità di antibiotici."
+    },
+    {
+      "title": "Esempio ipotetico: modificare il piano di recupero",
+      "text": "Una persona che riposa a casa sviluppa affanno e si sente molto peggio. Chiede una valutazione tempestiva invece di aumentare semplicemente il medicinale per la tosse. Se la difficoltà respiratoria diventa grave o compare confusione, il passo appropriato è il soccorso d'emergenza, non l'attesa di una visita ordinaria."
+    }
+  ],
+  "questions": [
+    "I miei sintomi sono compatibili con una bronchite senza complicazioni o va indagata un'altra causa?",
+    "Quali opzioni per alleviare i sintomi sono adatte alle mie altre malattie e ai medicinali che assumo?",
+    "Quali cambiamenti richiedono aiuto urgente e quando va rivalutata una tosse persistente?"
+  ]
+}

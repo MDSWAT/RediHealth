@@ -1,0 +1,410 @@
+{
+  "allergies": {
+    "intro": "Un'allergia si manifesta quando il sistema immunitario reagisce a qualcosa che normalmente è innocuo. I fattori scatenanti possono includere polline, animali, cibo o medicinali. I sintomi dipendono dal fattore scatenante e da dove si verifica la reazione.",
+    "details": "Non ogni eruzione cutanea, naso chiuso o reazione al cibo è un'allergia. Un clinico considera il pattern dei sintomi e può raccomandare test specifici. La gestione può prevedere l'evitamento di un fattore scatenante confermato e la discussione di un trattamento appropriato. Una reazione grave che compromette la respirazione o causa collasso richiede aiuto d'emergenza.",
+    "questions": [
+      "Quale pattern suggerisce un'allergia piuttosto che un'altra causa?",
+      "Cambierebbe il modo in cui gestisco i sintomi se mi sottoponessi a test?"
+    ]
+  },
+  "airway-diseases": {
+    "intro": "Le vie aeree trasportano aria verso e dai polmoni. Infezioni, asma e altre condizioni possono restringerle o irritarle, causando tosse, respiro sibilante o fiato corto. Sintomi simili possono avere cause diverse.",
+    "details": "Il timing dei sintomi, il fumo o l'esposizione in ambiente lavorativo, e malattie precedenti aiutano a orientare la valutazione. I test respiratori possono essere utili per alcune condizioni. Il trattamento dipende dalla diagnosi, non dal sintomo da solo. Una nuova grave difficoltà respiratoria richiede aiuto medico urgente.",
+    "questions": [
+      "Cosa potrebbe spiegare i miei sintomi respiratori?",
+      "Potrebbe un test respiratorio aiutare a chiarire la causa?"
+    ]
+  },
+  "eyes-nose-ears": {
+    "intro": "Gli occhi, il naso e le orecchie supportano la vista, l'olfatto, l'udito e l'equilibrio. I problemi possono coinvolgere irritazione, infezione, allergia o cambiamenti nel funzionamento di questi organi. I loro effetti possono variare dal lieve disagio alle difficoltà nelle attività quotidiane.",
+    "details": "La valutazione dipende da quale senso è interessato, dalla velocità di insorgenza del cambiamento e dalla presenza di dolore o altri sintomi. Alcuni problemi si risolvono spontaneamente, mentre altri richiedono cure specialistiche. Una perdita improvvisa della vista o dell'udito dovrebbe essere valutata prontamente piuttosto che aspettare un appuntamento ordinario.",
+    "questions": [
+      "Questo cambiamento richiede una valutazione urgente?",
+      "Quale esame può aiutare a identificare il problema?"
+    ]
+  },
+  "diabetes": {
+    "intro": "Il diabete significa che la glicemia rimane troppo alta perché l'insulina manca o non funziona in modo efficace. Il diabete di tipo 1 e di tipo 2 hanno cause diverse e necessità di trattamento diverse. Altre forme possono svilupparsi durante la gravidanza o con determinate malattie.",
+    "details": "La diagnosi utilizza esami del sangue, non solo i sintomi. L'assistenza mira a gestire la glicemia e proteggere la salute a lungo termine adattandosi alla vita quotidiana. Il cibo, l'attività fisica, i medicinali e il monitoraggio possono tutti svolgere un ruolo, a seconda del tipo di diabete. Le decisioni sul trattamento dovrebbero essere prese insieme al team sanitario.",
+    "questions": [
+      "Quale tipo di diabete ho?",
+      "Quali monitoraggio e supporto si adattano al mio piano di trattamento?"
+    ]
+  },
+  "gland-and-hormone-disorders": {
+    "intro": "Gli ormoni sono segnali chimici prodotti dalle ghiandole. Aiutano a regolare la crescita, l'utilizzo dell'energia, la riproduzione e molte altre funzioni corporee. I problemi possono svilupparsi quando una ghiandola produce troppo o troppo poco di un ormone.",
+    "details": "Le condizioni ormonali possono causare sintomi vari che si verificano anche in altre malattie. I risultati dei test devono essere interpretati insieme ai sintomi, ai medicinali e alle circostanze della persona. Un singolo risultato anomalo non sempre spiega come si sente qualcuno. Un test di follow-up o una valutazione specialistica potrebbe essere appropriata.",
+    "questions": [
+      "Cosa significa questo test ormonale nella mia situazione?",
+      "Ho bisogno di un altro test o di una valutazione specialistica?"
+    ]
+  },
+  "womens-health": {
+    "intro": "La salute delle donne comprende la salute mestruale e riproduttiva, la salute del seno, la menopausa e molte condizioni che influiscono sul benessere quotidiano. Le necessità cambiano durante la vita, e lo stesso sintomo può avere spiegazioni diverse in diverse età.",
+    "details": "Un'assistenza utile inizia con una discussione sui sintomi, il loro impatto e le priorità personali. Lo screening è diverso dall'indagine di un nuovo sintomo: un recente risultato di screening non spiega ogni nuovo cambiamento. Le decisioni sui test o sui trattamenti dovrebbero includere i benefici attesi, i possibili danni e le alternative disponibili.",
+    "questions": [
+      "Questo sintomo ha bisogno di indagine piuttosto che di screening di routine?",
+      "Quali opzioni si adattano ai miei sintomi e alle mie priorità?"
+    ]
+  },
+  "urinary-disorders-and-kidney-problems": {
+    "intro": "I reni filtrano il sangue e producono l'urina, che passa attraverso le vie urinarie. Infezioni, calcoli, perdite e cambiamenti nella funzione renale sono problemi diversi che possono colpire questo sistema.",
+    "details": "Il dolore, i cambiamenti urinari o il gonfiore possono richiedere esami delle urine, esami del sangue o imaging, a seconda della situazione. I soli sintomi non mostrano quanto bene funzionano i reni. Il sangue visibile nelle urine, la febbre con sintomi urinari o la difficoltà a urinare devono essere discussi tempestivamente con un professionista sanitario.",
+    "questions": [
+      "Quali esami potrebbero spiegare i cambiamenti urinari?",
+      "I miei farmaci potrebbero influenzare la funzione renale?"
+    ]
+  },
+  "skin-and-hair": {
+    "intro": "La pelle protegge il corpo, mentre i capelli crescono dai follicoli al suo interno. L'infiammazione, l'infezione, le condizioni ereditate e altri fattori possono colpire l'una o l'altro. Un'eruzione cutanea o una perdita di capelli di aspetto simile possono avere diverse spiegazioni.",
+    "details": "La posizione, l'aspetto e i tempi di un cambiamento aiutano a guidare la valutazione. I prodotti utilizzati sulla pelle, i farmaci e altri sintomi possono avere importanza. Il trattamento deve corrispondere alla causa. Una lesione cutanea che cambia o un problema persistente e inspiegabile merita una valutazione piuttosto che un trattamento ripetuto per tentativi ed errori.",
+    "questions": [
+      "Quali caratteristiche aiutano a distinguere le possibili cause?",
+      "Quali cambiamenti dovrebbero richiedere un altro appuntamento?"
+    ]
+  },
+  "heart-and-circulation": {
+    "intro": "Il cuore pompa il sangue attraverso le arterie, i capillari e le vene. Questo fornisce ossigeno e nutrienti e trasporta i rifiuti. I problemi possono interessare la pressione sanguigna, il ritmo cardiaco, i vasi sanguigni o la capacità di pompa del cuore.",
+    "details": "Alcuni rischi cardiovascolari causano pochi sintomi precoci, pertanto i controlli appropriati possono essere importanti. La valutazione e la prevenzione dipendono dalla salute complessiva e dalla storia clinica della persona. La pressione al petto, il collasso o una grave dispnea improvvisa possono essere emergenze; non fare affidamento su una spiegazione online per decidere che questi sintomi sono innocui.",
+    "questions": [
+      "Quali rischi cardiovascolari sono rilevanti per me?",
+      "Quali controlli o appuntamenti di follow-up sono utili?"
+    ]
+  },
+  "infections-and-immune-system": {
+    "intro": "Il sistema immunitario riconosce e risponde a minacce come batteri e virus. Le infezioni si sviluppano quando un microrganismo entra nel corpo e causa malattia. Organismi diversi possono produrre sintomi simili ma richiedono approcci diversi.",
+    "details": "La causa probabile, la gravità e la vulnerabilità di una persona guidano le decisioni riguardo ai test e al trattamento. Gli antibiotici agiscono contro i batteri, non contro i virus, e non sono adatti a ogni infezione. La vaccinazione e l'igiene appropriata possono aiutare a prevenire alcune infezioni. Il peggioramento della malattia o sintomi inusuali possono richiedere una rivalutazione.",
+    "questions": [
+      "Un test è probabile che cambi la decisione sul trattamento?",
+      "Quali segni significano che dovrei cercare aiuto di nuovo?"
+    ]
+  },
+  "childrens-health": {
+    "intro": "La salute dei bambini comprende lo sviluppo, le malattie comuni, la prevenzione e il supporto alle famiglie. L'età di un bambino e il suo comportamento abituale sono importanti quando si valutano i sintomi. Il consiglio destinato agli adulti potrebbe non essere adatto a un bambino.",
+    "details": "Un clinico considera l'alimentazione, l'idratazione, l'attività, la crescita e altri sintomi insieme. I genitori e i caregiver possono aiutare descrivendo cosa è cambiato e quando. La scelta dei farmaci e il dosaggio richiedono consigli specifici per i bambini. Un bambino che ha grave difficoltà respiratoria, è difficile da svegliare o sembra gravemente malato ha bisogno di aiuto urgente.",
+    "questions": [
+      "A cosa devo stare attento all'età di mio figlio?",
+      "Quando dovrei organizzare un'altra valutazione?"
+    ]
+  },
+  "cancer": {
+    "intro": "Il cancro è un gruppo di malattie in cui le cellule anormali crescono in modo incontrollato. I diversi cancri si comportano diversamente. L'organo interessato, il tipo di cellula e quanto la malattia si è diffusa aiutano a guidare la cura.",
+    "details": "La diagnosi può comportare imaging, test di laboratorio e esame di un campione di tessuto. Il trattamento può avere diversi obiettivi, inclusa la cura, il controllo della malattia o il sollievo dei sintomi. Le decisioni dovrebbero considerare i probabili benefici, gli effetti collaterali e gli obiettivi personali. Una prospettiva individuale non può essere determinata da una descrizione generale o da una singola statistica.",
+    "questions": [
+      "Qual è l'obiettivo di ogni opzione di trattamento?",
+      "Come potrebbe il trattamento influenzare la mia vita quotidiana?"
+    ]
+  },
+  "mens-health": {
+    "intro": "La salute dell'uomo include le condizioni della prostata e dei testicoli, la salute sessuale, la fertilità e il benessere fisico e mentale più generale. I sintomi possono influenzare il comfort, le relazioni e la vita quotidiana, anche quando sono difficili da affrontare.",
+    "details": "I cambiamenti urinari o sessuali non sono una diagnosi da soli. Una conversazione riservata può aiutare a identificare le possibili cause e gli esami appropriati. Le scelte di screening dovrebbero includere sia i vantaggi che gli svantaggi. Un nuovo nodulo o un cambiamento inspiegato persistente dovrebbe essere controllato piuttosto che dato per scontato come parte normale dell'invecchiamento.",
+    "questions": [
+      "Cosa potrebbe causare questo cambiamento?",
+      "Quali sono i vantaggi e gli svantaggi dei test?"
+    ]
+  },
+  "muscle-and-joint-disorders": {
+    "intro": "I muscoli, i tendini, le articolazioni e i tessuti correlati sostengono il movimento. Il trauma, l'uso eccessivo, l'infiammazione e altre condizioni possono causare dolore o rigidità. La quantità di dolore non sempre corrisponde a quello che appare in una scansione.",
+    "details": "La valutazione esamina la funzionalità, i sintomi e le circostanze in cui hanno iniziato. Non tutti hanno bisogno di imaging. La gestione può comportare adattamenti dell'attività, riabilitazione o altri trattamenti scelti in base alla diagnosi. Discutete i sintomi che peggiorano o limitano le attività normali invece di dare per scontato che tutto il dolore abbia la stessa causa.",
+    "questions": [
+      "Quali attività posso continuare in sicurezza?",
+      "L'imaging o la riabilitazione cambierebbe la mia assistenza?"
+    ]
+  },
+  "mental-health-brain-and-nerves": {
+    "intro": "Il cervello e il sistema nervoso influenzano il movimento, la sensazione, il pensiero, l'umore e il comportamento. Le condizioni di salute mentale e le condizioni neurologiche possono entrambe influenzare la vita quotidiana, ma richiedono una valutazione individuale piuttosto che supposizioni sul carattere di una persona.",
+    "details": "L'assistenza può includere terapie conversazionali, medicine, riabilitazione o supporto pratico, a seconda del problema. Informate il clinico di cambiamenti nella funzionalità e di altre condizioni di salute. Una debolezza nuova improvvisa, difficoltà a parlare o perdita di coscienza necessitano di una valutazione d'emergenza, anche se altri sintomi sono stati presenti più a lungo.",
+    "questions": [
+      "Quali sintomi aiutano a distinguere le possibili cause?",
+      "Quale supporto potrebbe migliorare la mia funzionalità quotidiana?"
+    ]
+  },
+  "pregnancy-and-birth": {
+    "intro": "La gravidanza porta cambiamenti al corpo e nuove scelte riguardo alla cura, ai test e al parto. Il contatto regolare con l'équipe ostetrica aiuta a monitorare il benessere della persona incinta e del bambino e offre l'occasione di discutere le preoccupazioni.",
+    "details": "Alcuni test sono offerti di routine, mentre altri dipendono dalle circostanze personali. Comprendere cosa un test può e non può mostrare supporta decisioni consapevoli. I medicinali e gli integratori dovrebbero essere discussi con un professionista qualificato durante la gravidanza. Chiedete all'équipe ostetrica quali sintomi richiedono un contatto urgente e come raggiungerli.",
+    "questions": [
+      "Quali informazioni fornisce questo test di gravidanza?",
+      "Chi devo contattare se sono preoccupato tra un appuntamento e l'altro?"
+    ]
+  },
+  "sexual-health-and-contraception": {
+    "intro": "La salute sessuale include il benessere, il consenso, la protezione dalle infezioni e le scelte sulla prevenzione della gravidanza. I metodi contraccettivi differiscono nel modo in cui funzionano, nel modo in cui vengono utilizzati e nelle persone che possono utilizzarli in sicurezza.",
+    "details": "Un metodo adatto dipende dalla storia medica, dalle preferenze e dalle esigenze pratiche. La prevenzione della gravidanza e la protezione dalle infezioni sessualmente trasmissibili sono obiettivi diversi; non tutti i metodi forniscono entrambi. Il consiglio riservato può anche aiutare con i sintomi, i test e le preoccupazioni sulla funzione sessuale. I servizi e l'idoneità variano in base al paese.",
+    "questions": [
+      "Quali opzioni si adattano alla mia storia medica e alle mie preferenze?",
+      "Ho bisogno anche di protezione o test per le infezioni?"
+    ]
+  },
+  "metabolic-disorders": {
+    "intro": "Il metabolismo è l'insieme dei processi che trasformano il cibo in energia utilizzabile e materiali costruttivi. I disturbi metabolici colpiscono uno o più di questi processi. Includono condizioni che coinvolgono il glucosio, i grassi e altre sostanze nel corpo.",
+    "details": "Alcuni disturbi sono ereditari, mentre altri si sviluppano attraverso una combinazione di influenze. I test del sangue possono aiutare a identificare un problema, ma il loro significato dipende dal contesto clinico. La cura può comportare scelte alimentari, medicinali o altre misure adattate alla diagnosi. Le restrizioni dietetiche generali non sono appropriate per ogni condizione metabolica.",
+    "questions": [
+      "Cosa significa il risultato anomalo per la mia salute?",
+      "Quali cambiamenti sono appropriati per questa condizione specifica?"
+    ]
+  },
+  "addiction": {
+    "intro": "La dipendenza può riguardare alcol, nicotina, altre sostanze o certi comportamenti. Può influenzare il controllo, la salute, le relazioni e le responsabilità quotidiane. Cercare aiuto è una scelta sanitaria, non una prova di fallimento morale.",
+    "details": "Il supporto può combinare counselling, aiuto pratico e medicinali quando appropriato. L'approccio più sicuro dipende da ciò che viene utilizzato e dalla salute della persona. Interrompere improvvisamente alcune sostanze può essere pericoloso, soprattutto dopo che si è sviluppata la dipendenza. Discutere un piano con un professionista sanitario piuttosto che usare una guida online generale come programma di disintossicazione.",
+    "questions": [
+      "Quale supporto è disponibile localmente?",
+      "Ho bisogno di supervisione medica quando riduco o smetto?"
+    ]
+  },
+  "digestive-system-disorders": {
+    "intro": "Il sistema digerente elabora il cibo, assorbe i nutrienti e elimina i rifiuti. I problemi possono interessare l'esofago, lo stomaco, l'intestino o organi correlati. Il dolore, il reflusso, la nausea e i cambiamenti nelle abitudini intestinali possono avere molte cause.",
+    "details": "La valutazione dipende da come si sono sviluppati i sintomi, dalla loro durata e da eventuali cambiamenti associati. Gli esami vengono scelti per rispondere a una domanda specifica piuttosto che essere utilizzati routinariamente per ogni sintomo. I sintomi persistenti o la perdita di peso inspiegata richiedono una discussione medica. Il dolore addominale grave o i segni di sanguinamento significativo richiedono una valutazione tempestiva.",
+    "questions": [
+      "Quali caratteristiche aiutano a identificare la causa dei miei sintomi?",
+      "Come il test proposto cambierebbe la mia cura?"
+    ]
+  },
+  "teeth-and-gums": {
+    "intro": "I denti e le gengive supportano la masticazione, la parola e la salute orale. La carie dentale e la malattia gengivale possono svilupparsi gradualmente e potrebbero non causare dolore inizialmente. I problemi dentali possono anche influenzare la fiducia e il comfort quotidiano.",
+    "details": "L'igiene orale regolare e i controlli dentali appropriati aiutano a identificare i problemi. Il miglior trattamento dipende dalla condizione del dente o della gengiva e dalle esigenze della persona. Il dolore dentale non indica in modo affidabile la gravità di un problema. Il gonfiore con difficoltà a deglutire o respirare richiede aiuto urgente piuttosto che aspettare una visita dentale di routine.",
+    "questions": [
+      "Qual è la causa del problema di questo dente o gengiva?",
+      "Quali sono i vantaggi e gli svantaggi delle opzioni di trattamento?"
+    ]
+  },
+  "early-benefit-assessment-of-medications": {
+    "intro": "La Germania valuta alcuni nuovi medicinali per esaminare se offrono un beneficio aggiunto rispetto a un trattamento già consolidato. Questa valutazione riguarda le evidenze da gruppi di pazienti e fa parte del sistema tedesco di valutazione dei medicinali.",
+    "details": "Una valutazione può considerare esiti importanti per i pazienti, come i sintomi, la sopravvivenza, la qualità della vita e gli effetti avversi. Il risultato dipende dal confronto e dalle evidenze disponibili. Non è una raccomandazione di prescrizione personale, e la valutazione o gli accordi di pagamento tedeschi non si applicano automaticamente in altri paesi.",
+    "questions": [
+      "Quale gruppo di pazienti e quale confronto riguarda questa valutazione?",
+      "Quanto sono rilevanti questi risultati per le mie scelte di trattamento?"
+    ]
+  },
+  "health-care-in-germany": {
+    "intro": "I sistemi sanitari differiscono nel modo in cui sono organizzati gli appuntamenti, l'assicurazione, i rinvii e i pagamenti. Questo argomento riguarda la Germania. Capire quale servizio offre quale tipo di assistenza può rendere più facile trovare il punto di contatto giusto.",
+    "details": "Le regole descritte nelle informazioni tedesche potrebbero non applicarsi in Romania, Moldova, Albania o Italia. Prima di organizzare un servizio, verificare con il fornitore o l'assicuratore i requisiti di accesso locali e i possibili costi. Quando si legge su un sistema sanitario, distinguere le informazioni mediche generali dalle regole amministrative specifiche del paese.",
+    "questions": [
+      "Queste informazioni si applicano nel paese dove ricevo assistenza?",
+      "Quale fornitore o assicuratore può confermare l'accesso e i costi?"
+    ]
+  },
+  "individual-health-care-services-igel": {
+    "intro": "In Germania, alcuni test e trattamenti offerti al di fuori della copertura assicurativa statutaria standard sono chiamati servizi sanitari individuali, o IGeL. I pazienti potrebbero dover pagare questi servizi di tasca propria. La disponibilità all'acquisto non dimostra di per sé che un servizio migliora la salute.",
+    "details": "Prima di decidere, chiedere quale beneficio è supportato dalla ricerca, quali danni o ulteriori test potrebbero seguire e se esiste un'alternativa coperta. Dovrebbero essere disponibili un prezzo e una spiegazione chiara. IGeL è una categoria tedesca; le regole di pagamento e i servizi disponibili differiscono altrove.",
+    "questions": [
+      "Quale beneficio è provato e quale incertezza rimane?",
+      "Quali sono i costi, i rischi e le alternative coperte?"
+    ]
+  },
+  "nursing-care": {
+    "intro": "L'assistenza infermieristica sostiene le persone con esigenze di salute e nelle attività quotidiane. Può essere fornita a casa, nella comunità o in una struttura di cura. Le esigenze possono cambiare dopo una malattia, un infortunio o una perdita di indipendenza.",
+    "details": "La pianificazione dell'assistenza include comprendere cosa la persona può fare, dove è necessario aiuto e cosa è importante per lei. Anche i familiari che prestano assistenza possono aver bisogno di sostegno. I servizi disponibili, le valutazioni e gli accordi finanziari variano per paese. Un piano di assistenza dovrebbe essere rivisto quando le circostanze di salute o pratiche cambiano.",
+    "questions": [
+      "Quale aiuto potrebbe supportare la mia indipendenza e sicurezza?",
+      "Quali servizi locali possono valutare le mie esigenze di assistenza?"
+    ]
+  },
+  "screening": {
+    "intro": "Lo screening ricerca una condizione o un aumento del rischio in persone senza sintomi correlati. Differisce dai test utilizzati per indagare un nuovo problema. Un'offerta di screening dovrebbe essere considerata in termini sia di potenziali benefici che di possibili danni.",
+    "details": "Lo screening può talvolta individuare la malattia prima, ma può anche produrre falsi allarmi, non rilevare la malattia o identificare cambiamenti che non causerebbero mai problemi. Possono seguire ulteriori test o trattamenti. I programmi adatti dipendono dall'età, dal rischio personale e dalle linee guida locali. I nuovi sintomi richiedono una valutazione anche dopo un risultato di screening rassicurante.",
+    "questions": [
+      "Quanto beneficio ci si aspetta per persone come me?",
+      "Cosa potrebbe seguire un risultato positivo o incerto?"
+    ]
+  },
+  "second-opinions-before-surgery": {
+    "intro": "Un secondo parere è una valutazione di un altro clinico su un'operazione proposta. Può aiutare a chiarire la diagnosi, le ragioni dell'intervento e le alternative disponibili. È particolarmente utile quando una decisione comporta importanti compromessi.",
+    "details": "Porta relazioni rilevanti, imaging e un elenco di domande. Chiedi come i benefici attesi si confrontano con i possibili danni e cosa potrebbe accadere senza l'intervento chirurgico. L'idoneità o il pagamento per un secondo parere formale varia per paese. Non ritardare il trattamento di emergenza mentre cerchi consigli aggiuntivi di routine.",
+    "questions": [
+      "Quali sono le alternative a questo intervento?",
+      "Come si confrontano i risultati attesi con l'attesa o l'assistenza non chirurgica?"
+    ]
+  },
+  "blood-and-immune-system": {
+    "intro": "Il sangue trasporta ossigeno, nutrienti e altre sostanze in tutto il corpo. Le sue cellule e proteine aiutano anche a difendersi dalle infezioni e a fermare le emorragie. Il sistema immunitario include cellule e organi specializzati che lavorano insieme per riconoscere le minacce.",
+    "details": "Gli esami del sangue misurano diverse parti di questo sistema. Un risultato al di fuori dell'intervallo di riferimento non significa sempre una malattia grave, e un risultato normale non risponde a ogni domanda clinica. L'interpretazione dipende dai sintomi, dalla storia medica e dal motivo dell'esame.",
+    "questions": [
+      "Quale parte del sangue o del sistema immunitario misura questo esame?",
+      "Il risultato richiede un follow-up nella mia situazione?"
+    ]
+  },
+  "brain-and-nerves": {
+    "intro": "Il sistema nervoso collega il cervello, il midollo spinale e i nervi in tutto il corpo. Elabora le informazioni, controlla il movimento e aiuta a regolare molte funzioni automatiche. Diverse parti hanno ruoli diversi, quindi il pattern dei sintomi è importante.",
+    "details": "Un esame neurologico può valutare la forza, la sensibilità, il coordinamento e altre funzioni. Gli ulteriori esami sono selezionati in base alla domanda clinica. I cambiamenti improvvisi, come una nuova debolezza, difficoltà nel parlare o perdita di coscienza, richiedono una valutazione urgente piuttosto che un tentativo di identificare la causa online.",
+    "questions": [
+      "Cosa suggerisce il pattern dei sintomi?",
+      "Quale esame o test potrebbe chiarire il problema?"
+    ]
+  },
+  "sex-organs": {
+    "intro": "Gli organi riproduttivi sono coinvolti nella riproduzione, nella produzione di ormoni e nella funzione sessuale. La loro struttura e funzione cambiano nel corso della vita. Comprendere l'anatomia normale può facilitare la descrizione dei sintomi e la discussione delle preoccupazioni per la salute.",
+    "details": "Il dolore, il sanguinamento, le perdite o un nuovo nodulo possono avere spiegazioni diverse. Un professionista sanitario può discutere l'esame o i test appropriati in modo confidenziale. Ciò che è normale per una persona può differire da un'altra, ma un cambiamento persistente o inaspettato non dovrebbe essere ignorato senza valutazione.",
+    "questions": [
+      "Questo cambiamento è atteso nelle mie circostanze?",
+      "Cosa potrebbe stabilire un esame o un test?"
+    ]
+  },
+  "limbs": {
+    "intro": "Le braccia e le gambe combinano ossa, articolazioni, muscoli, nervi e vasi sanguigni per sostenere il movimento e la sensibilità. Problemi in una qualsiasi di queste strutture possono influire sulla forza, l'equilibrio o la capacità di svolgere le attività quotidiane.",
+    "details": "Sintomi come dolore, gonfiore, debolezza o intorpidimento devono essere considerati insieme. La valutazione può includere il movimento, la circolazione e la funzione nervosa. La riabilitazione può aiutare con alcuni problemi, ma l'approccio appropriato dipende dalla causa. Cambiamenti improvvisi e importanti nel movimento o nella sensibilità richiedono attenzione medica tempestiva.",
+    "questions": [
+      "Quali strutture potrebbero essere coinvolte nei miei sintomi?",
+      "Cosa potrebbe aiutare a ripristinare la funzione in modo sicuro?"
+    ]
+  },
+  "skin-hair-and-nails": {
+    "intro": "La pelle forma una barriera protettiva, aiuta a regolare la temperatura e consente la sensibilità. I capelli e le unghie sono strutture correlate che crescono da cellule specializzate. I cambiamenti possono riflettere un problema locale o, a volte, un'altra condizione di salute.",
+    "details": "Il colore, la texture, la posizione e la velocità del cambiamento possono aiutare a guidare la valutazione. L'esposizione a sostanze chimiche, prodotti per l'igiene quotidiana e medicinali può essere rilevante. Evita di presumere che un cambiamento cosmetico identifichi una malattia specifica. Un cambiamento persistente, doloroso o inspiegato può essere discusso con un clinico.",
+    "questions": [
+      "Potrebbe un'esposizione o un medicinale spiegare questo cambiamento?",
+      "Quali caratteristiche richiederebbero una valutazione ulteriore?"
+    ]
+  },
+  "endocrine-hormone-system": {
+    "intro": "Il sistema endocrino è costituito da ghiandole e tessuti che rilasciano ormoni. Questi segnali viaggiano attraverso il flusso sanguigno e aiutano a coordinare processi come il metabolismo, la crescita e la riproduzione. I meccanismi di retroazione mantengono normalmente l'attività ormonale entro un intervallo appropriato.",
+    "details": "I livelli ormonali possono variare con il tempo, l'età, la gravidanza e la malattia. Questo è un motivo per cui i risultati dei test richiedono un'interpretazione clinica piuttosto che un confronto con un singolo numero isolato. Il trattamento di un disturbo ormonale dipende da quale segnale o ghiandola è interessato.",
+    "questions": [
+      "Potrebbe il timing o un'altra condizione influenzare il mio risultato ormonale?",
+      "Cosa controlla normalmente questa ghiandola?"
+    ]
+  },
+  "bones-muscles-and-joints": {
+    "intro": "Le ossa sostengono e proteggono il corpo. Le articolazioni collegano le ossa, mentre i muscoli e i tendini producono il movimento. La cartilagine, i legamenti e altri tessuti aiutano le articolazioni a muoversi e a rimanere stabili. Insieme queste strutture formano l'apparato muscoloscheletrico.",
+    "details": "La forza, il coordinamento e il movimento articolare contribuiscono tutti alla funzionalità. Le lesioni e le malattie possono colpire diverse parti del sistema, a volte con sintomi che si sovrappongono. Un esame guarda oltre il singolo punto dolente per comprendere come il movimento è compromesso. Il trattamento e la riabilitazione devono corrispondere al problema effettivo.",
+    "questions": [
+      "In che modo questo problema influisce sul mio movimento e la mia funzionalità?",
+      "Quali obiettivi dovrebbero guidare la riabilitazione?"
+    ]
+  },
+  "lungs-and-airways": {
+    "intro": "L'aria viaggia attraverso le vie aeree nei polmoni. In minuscoli sacchi d'aria, l'ossigeno passa nel sangue e l'anidride carbonica lo lascia. La respirazione dipende anche dai muscoli, dalla gabbia toracica e dai segnali del sistema nervoso.",
+    "details": "La mancanza di respiro può risultare da problemi nei polmoni o altrove nel corpo. Un clinico considera le circostanze e altri sintomi prima di scegliere i test. I test respiratori e le misurazioni dell'ossigeno rispondono a domande diverse e non possono sostituire una valutazione completa quando qualcuno è gravemente malato.",
+    "questions": [
+      "Potrebbe qualcosa di diverso dai polmoni spiegare la mia mancanza di respiro?",
+      "Che cosa mostrerà il test respiratorio proposto?"
+    ]
+  },
+  "stomach-bowel-and-digestion": {
+    "intro": "La digestione scompone il cibo in modo che il corpo possa assorbire e utilizzare i nutrienti. Lo stomaco mescola il cibo, l'intestino assorbe i nutrienti e l'acqua, e altri organi forniscono le sostanze necessarie per la digestione. I rifiuti rimanenti lasciano il corpo come feci.",
+    "details": "La digestione normale varia da persona a persona. Un cambiamento duraturo nelle abitudini intestinali o un disagio continuo è più utile da descrivere rispetto a un singolo confronto con la routine di qualcun altro. I medicinali, la dieta e la malattia possono tutti influenzare la digestione. L'indagine dipende dal modello generale e dai sintomi associati.",
+    "questions": [
+      "Quali cambiamenti rispetto al mio solito modello sono importanti?",
+      "Potrebbe una medicina o un'altra malattia stare contribuendo?"
+    ]
+  },
+  "mouth-and-teeth": {
+    "intro": "La bocca avvia la digestione attraverso la masticazione e la saliva ed è importante per il linguaggio e la deglutizione. I denti, le gengive, la lingua e altri tessuti lavorano insieme. La loro salute influisce sul comfort e sulla capacità di mangiare una dieta varia.",
+    "details": "I problemi possono riguardare i denti, i tessuti di supporto o il rivestimento della bocca. Un esame dentale può aiutare a distinguere queste cause. Un'ulcera persistente, una protuberanza inspiegabile o un problema di deglutizione continuo merita una valutazione. L'igiene orale quotidiana è utile, ma non sostituisce la valutazione di un cambiamento duraturo.",
+    "questions": [
+      "Il problema viene da un dente o da un altro tessuto della bocca?",
+      "Cosa devo fare se il cambiamento non guarisce?"
+    ]
+  },
+  "kidneys-bladder-and-urinary-tract": {
+    "intro": "I reni filtrano il sangue, bilanciano fluidi e sali e producono l'urina. L'urina viaggia attraverso gli ureteri verso la vescica, dove viene immagazzinata prima di uscire attraverso l'uretra. Queste strutture hanno ruoli distinti.",
+    "details": "L'aspetto dell'urina da solo non misura in modo affidabile la salute renale. Gli esami del sangue e delle urine possono valutare diverse funzioni o segni di malattia. I cambiamenti nella minzione possono derivare dai reni, dalla vescica o da altre cause. Un clinico interpreta i risultati insieme ai sintomi, ai medicinali e ai risultati precedenti.",
+    "questions": [
+      "Quale parte del sistema urinario viene valutata?",
+      "Cosa misurano gli esami del sangue e delle urine?"
+    ]
+  },
+  "sensory-organs": {
+    "intro": "Gli organi sensoriali raccolgono informazioni sul mondo e sul corpo. Gli occhi e le orecchie supportano la visione, l'udito e l'equilibrio, mentre i recettori aiutano anche con l'olfatto, il gusto e il tatto. Il cervello interpreta questi segnali.",
+    "details": "I cambiamenti in un senso possono influire sulla sicurezza, la comunicazione e l'indipendenza. La loro causa può coinvolgere l'organo sensoriale, i nervi o altre condizioni. Descrivere se un cambiamento è improvviso, graduale o intermittente. Una perdita improvvisa della vista o dell'udito dovrebbe ricevere una valutazione medica tempestiva.",
+    "questions": [
+      "Dove potrebbe verificarsi il cambiamento in questo senso?",
+      "Un ausilio o una riabilitazione potrebbe migliorare la funzione quotidiana?"
+    ]
+  },
+  "metabolism": {
+    "intro": "Il metabolismo comprende i processi chimici del corpo per ottenere energia, costruire tessuti e gestire i rifiuti. Gli enzimi e gli ormoni aiutano a controllare questi processi. Il metabolismo coinvolge molti organi piuttosto che una singola parte del corpo.",
+    "details": "Il corpo regola l'uso dei nutrienti in base all'attività, all'assunzione di cibo e ad altri fattori. La parola metabolismo non spiega da sola un sintomo o un cambiamento di peso. Quando si sospetta un problema metabolico specifico, i test e il trattamento utili dipendono dalla domanda clinica.",
+    "questions": [
+      "Quale processo metabolico è rilevante per la mia preoccupazione?",
+      "Quali informazioni aiuterebbero a identificare un problema specifico?"
+    ]
+  },
+  "growth-and-aging": {
+    "intro": "La crescita e l'invecchiamento comportano cambiamenti nella struttura e nella funzione del corpo nel tempo. Le persone si sviluppano e invecchiano a ritmi diversi. La salute, l'ambiente e le circostanze quotidiane possono influenzare il significato di questi cambiamenti nella vita quotidiana di una persona.",
+    "details": "Le solite capacità di una persona e la velocità del cambiamento sono importanti quando si considera se è necessaria una valutazione. I nuovi problemi non dovrebbero essere automaticamente attribuiti all'età. L'assistenza può concentrarsi sullo sviluppo, l'indipendenza, il benessere e le attività che sono importanti per la persona.",
+    "questions": [
+      "Questo andamento è previsto in questa fase della vita?",
+      "Cosa potrebbe aiutare a mantenere la funzione o supportare lo sviluppo?"
+    ]
+  },
+  "drugs-and-vaccines": {
+    "intro": "I farmaci possono prevenire malattie, alleviare sintomi o trattare una condizione. I vaccini preparano il sistema immunitario a rispondere a infezioni particolari. Entrambi vengono valutati per i benefici e i possibili danni, ma la loro idoneità dipende dalla persona e dallo scopo.",
+    "details": "Comprendere il beneficio previsto, gli effetti avversi comuni e l'uso corretto supporta decisioni più sicure. Informate il team sanitario di altri farmaci e integratori. Non modificate un trattamento prescritto sulla base di un riassunto generale. Le domande sulla vaccinazione o sui farmaci possono essere discusse con un professionista qualificato.",
+    "questions": [
+      "Quale beneficio dovrei aspettarmi da questo trattamento?",
+      "Quali interazioni o effetti avversi dovrei discutere?"
+    ]
+  },
+  "diagnosis-and-tests": {
+    "intro": "I test diagnostici aiutano a rispondere a domande sulla salute di una persona. Possono includere esami, analisi del sangue o delle urine, imaging e campioni di tessuto. Un test è più utile quando il suo risultato potrebbe chiarire un problema o influenzare la cura.",
+    "details": "Nessun test è perfetto. Alcuni risultati sono falsamente rassicuranti o suggeriscono una malattia quando questa non è presente. L'interpretazione dipende dai sintomi, dalla probabilità della condizione e da altri reperti. Prima di fare un test, è utile comprendere il possibile disagio, i rischi e cosa significherebbero i diversi risultati.",
+    "questions": [
+      "Quale domanda specifica questo test intende rispondere?",
+      "Come cambierebbe il passo successivo con ogni possibile risultato?"
+    ]
+  },
+  "non-drug-treatments": {
+    "intro": "L'assistenza sanitaria include trattamenti che non comportano l'assunzione di un medicinale. Gli esempi includono riabilitazione, terapie verbali e cambiamenti alle attività o all'ambiente. La loro utilità dipende dalla condizione, dal trattamento e dagli obiettivi della persona.",
+    "details": "Un trattamento non farmacologico può comunque avere oneri, costi o effetti avversi. Chiedi quali prove lo supportano, cosa comporta la partecipazione e come verrà valutato il progresso. Diversi approcci possono essere combinati quando appropriato. Una spiegazione convincente o l'affermazione che qualcosa è naturale non stabilisce che funzioni.",
+    "questions": [
+      "Quali prove supportano questa opzione per la mia condizione?",
+      "Come giudicheremo se sta aiutando?"
+    ]
+  },
+  "surgery": {
+    "intro": "La chirurgia è utilizzata per diagnosticare, riparare, rimuovere o sostituire tessuto, o per alleviare i sintomi. Gli interventi differiscono notevolmente nel loro scopo, rischi e recupero. Se la chirurgia sia appropriata dipende dalla condizione e dalle circostanze della persona.",
+    "details": "Una decisione consapevole include una discussione sui benefici attesi, sulle possibili complicazioni, sull'anestesia e sulle alternative. Il recupero può comportare cambiamenti temporanei al lavoro, all'attività o alle esigenze di assistenza. Chiedi cosa potrebbe accadere senza l'operazione e quanto sia urgente la decisione. Le informazioni generali non possono prevedere l'esito chirurgico individuale.",
+    "questions": [
+      "Perché viene proposta la chirurgia e quali sono le alternative?",
+      "Di quale supporto e tempo di recupero potrei aver bisogno?"
+    ]
+  },
+  "physical-therapy-and-daily-living-aids": {
+    "intro": "La fisioterapia e gli ausili pratici possono aiutare le persone a muoversi, gestire i sintomi e svolgere le attività quotidiane. I bisogni possono emergere in seguito a un infortunio, una malattia o una condizione a lungo termine. L'obiettivo è una funzionalità significativa piuttosto che seguire lo stesso programma per tutti.",
+    "details": "La valutazione può identificare esercizi, adattamenti o attrezzature appropriati. Un ausilio deve adattarsi alla persona e all'ambiente in cui verrà utilizzato. L'istruzione, la pratica e il follow-up possono essere importanti. Discutete degli obiettivi come camminare, vestirsi o tornare al lavoro, affinché il supporto affronti i bisogni reali.",
+    "questions": [
+      "Quale attività quotidiana dovremmo prioritizzare?",
+      "Come devo utilizzare e valutare questo ausilio o piano di esercizi?"
+    ]
+  },
+  "prevention": {
+    "intro": "La prevenzione mira a ridurre la probabilità di ammalarsi o le conseguenze della malattia. Può comportare vaccinazioni, riduzione delle esposizioni dannose, abitudini quotidiane o screening appropriato. Il valore di una misura preventiva dipende dal rischio che affronta.",
+    "details": "Non ogni offerta preventiva fornisce lo stesso beneficio, e alcune possono causare danni o follow-up non necessari. Il rischio personale e le circostanze pratiche sono importanti. Considerate ciò che è supportato da prove e ciò che è realistico mantenere. La prevenzione riduce alcuni rischi ma non può garantire che una persona non si ammali mai.",
+    "questions": [
+      "Quali rischi prevenibili sono più importanti per me?",
+      "Quale beneficio e quale possibile danno comporta questa misura?"
+    ]
+  },
+  "what-is-evidence-based-medicine": {
+    "intro": "La medicina basata su prove combina i risultati della ricerca con l'esperienza clinica e i bisogni e le preferenze del paziente. Chiede se un test o un trattamento migliora i risultati che importano alle persone, piuttosto che affidarsi solo a una spiegazione plausibile.",
+    "details": "La ricerca può mostrare sia benefici che danni, ma spesso rimane l'incertezza. Le prove da un gruppo non determinano ogni decisione individuale. Discussioni utili rendono comprensibili la dimensione degli effetti attesi, i limiti delle prove e le alternative disponibili.",
+    "questions": [
+      "Quale ricerca supporta questa raccomandazione?",
+      "Come si applicano i risultati alle mie circostanze e preferenze?"
+    ]
+  },
+  "studies-co": {
+    "intro": "Gli studi medici indagano domande sulla salute, i test e i trattamenti. Il loro disegno influenza quali conclusioni si possono trarre. Un confronto tra gruppi può aiutare a distinguere l'effetto di un trattamento dai cambiamenti che sarebbero comunque avvenuti.",
+    "details": "Un grande effetto in titolo può apparire diverso quando si considerano i numeri assoluti, il tempo di follow-up e i danni. I risultati dipendono anche da chi è stato studiato e da quanto affidabilmente sono stati misurati gli esiti. Uno studio raramente risponde a ogni domanda; le revisioni sistematiche riuniscono la ricerca utilizzando un approccio pianificato.",
+    "questions": [
+      "Quanto grande è il beneficio in termini assoluti?",
+      "Quali limitazioni o esiti mancanti influenzano la conclusione?"
+    ]
+  },
+  "making-an-informed-decision": {
+    "intro": "Una decisione consapevole in ambito sanitario riunisce informazioni comprensibili e ciò che importa alla persona che la prende. Spesso esiste più di un'opzione ragionevole. Benefici, danni, esigenze pratiche e incertezza possono influenzare il modo in cui qualcuno pesa quelle opzioni.",
+    "details": "Chiedete spiegazioni in linguaggio semplice e prendetevi il tempo per considerare le scelte non urgenti. Discutete cosa potrebbe accadere con ogni opzione, incluso nessun trattamento o l'attesa quando appropriato. Un supporto decisionale può sostenere la conversazione, ma non sostituisce il consiglio individuale o il consenso.",
+    "questions": [
+      "Quali sono le mie opzioni, inclusa l'attesa dove appropriato?",
+      "Quali esiti e compromessi sono più importanti per me?"
+    ]
+  },
+  "our-methods-and-processes": {
+    "intro": "Le informazioni sanitarie affidabili spiegano come i loro autori trovano la ricerca, la valutano e decidono cosa pubblicare. L'argomento IQWiG collegato descrive il suo approccio allo sviluppo di informazioni basate su evidenze. Conoscere i metodi aiuta i lettori a giudicare come le affermazioni sono supportate.",
+    "details": "Controlli utili includono chi ha prodotto l'informazione, quali evidenze sono state considerate, quando è stata aggiornata e se l'incertezza è spiegata. Il link alla fonte di seguito conduce al materiale proprio di IQWiG. Questo panorama RediHealth è scritto in modo indipendente e non è una pubblicazione o un'approvazione di IQWiG.",
+    "questions": [
+      "Posso identificare l'editore e le evidenze di supporto?",
+      "L'informazione spiega l'incertezza e il suo processo di aggiornamento?"
+    ]
+  }
+}

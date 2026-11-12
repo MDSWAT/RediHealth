@@ -1,0 +1,51 @@
+{
+  "title": "BPOC: respirația zilnică și planul pentru exacerbări",
+  "intro": "Boala pulmonară obstructivă cronică, BPOC, limitează persistent fluxul de aer prin afectarea căilor respiratorii și plămânilor. Poate include bronșită cronică, emfizem sau ambele. Lipsa de aer, tusea și mucusul pot reduce activitatea, dar tratamentul și reabilitarea ameliorează simptomele și reduc exacerbările. Nu este doar o consecință inevitabilă a vârstei; problemele persistente cer evaluare și la nefumători.",
+  "sections": [
+    {
+      "heading": "Confirmarea diagnosticului și alte cauze",
+      "paragraphs": [
+        "Medicul discută simptomele, fumatul, praful și vaporii profesionali, poluarea din casă și bolile pulmonare. Spirometria, evaluată de obicei după bronhodilatator, confirmă obstrucția persistentă. Alte teste caută probleme asociate sau alternative, precum boală cardiacă, infecție ori anemie. Imaginea toracică singură nu înlocuiește testarea funcțională. Descrieți efectul asupra mersului, somnului și autoîngrijirii și numărul exacerbărilor."
+      ]
+    },
+    {
+      "heading": "Reduceți expunerea și recâștigați activitatea",
+      "paragraphs": [
+        "Renunțarea la fumat este esențială; consilierea și medicamentele potrivite pot ajuta. Discutați reducerea prafului, vaporilor, fumului și altor factori. Reabilitarea pulmonară combină exercițiul supravegheat, educația și autogestionarea adaptate capacității, nu forțarea prin simptome periculoase. Mișcarea treptată, dozarea sarcinilor și nutriția potrivită păstrează forța. Evitarea oricărei mișcări poate accentua slăbiciunea. Discutați anxietatea și depresia, care îngreunează gestionarea respirației."
+      ]
+    },
+    {
+      "heading": "Alegerea și tehnica inhalatorului",
+      "paragraphs": [
+        "Bronhodilatatoarele relaxează căile respiratorii. Produsele de scurtă și lungă durată au roluri diferite; anumite persoane beneficiază de corticosteroid inhalator. Combinația depinde de simptome, exacerbări și alte date, nu doar de culoarea dispozitivului. Cereți demonstrarea tehnicii cu inhalatorul propriu, verificarea indicației camerei de inhalare și explicarea întreținerii versus ameliorarea simptomelor. Raportați efectele adverse și dificultățile de manevrare. Păstrați lista medicamentelor și urmați instrucțiunile pentru steroidul inhalator, inclusiv igiena gurii."
+      ]
+    },
+    {
+      "heading": "Plan scris pentru agravare",
+      "paragraphs": [
+        "Exacerbarea înseamnă respirație, tuse ori mucus mai rele decât de obicei și poate necesita tratament suplimentar. Stabiliți când contactați echipa, folosirea medicației de salvare și dacă este indicat un pachet personal prescris. Nu începeți antibiotice împrumutate ori comprimate steroidiene fără plan. Cereți sfat urgent pentru lipsă de aer crescută, sânge la tuse ori picior nou dureros și umflat. Dificultatea severă, imposibilitatea vorbirii normale, presiunea toracică, buzele albastre sau cenușii ori confuzia nouă cer ajutor de urgență. Nu explicați o urgență nouă doar prin diagnosticul cunoscut."
+      ]
+    },
+    {
+      "heading": "Oxigen, prevenție și sprijin",
+      "paragraphs": [
+        "Oxigenul la domiciliu se prescrie persoanelor selectate după evaluarea oxigenului scăzut în sânge; nu tratează orice episod de dispnee. Folosiți setarea prescrisă și nu fumați, nu vapați și nu permiteți flăcări lângă echipament. Discutați vaccinările locale recomandate, controalele și sprijinul după internare. Boala avansată poate necesita tratamente specializate și planificarea îngrijirii. Ameliorarea simptomelor, sprijinul psihologic și ajutorul practic pot însoți tratamentul activ în orice etapă. Cereți plan potrivit priorităților și locuinței."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dispozitiv dificil — exemplu ipotetic",
+      "text": "O persoană spune că inhalatorul nu ajută. Medicul observă folosirea și găsește o problemă de tehnică ori forță a mâinii. Exersează și discută alt dispozitiv potrivit, fără să presupună eșecul medicamentului."
+    },
+    {
+      "title": "Respirație diferită — exemplu ipotetic",
+      "text": "O persoană cu BPOC respiră mai greu și are o gambă nou dureroasă și umflată. Cere evaluare urgentă, nu tratează automat o exacerbare obișnuită. Dispneea severă ori presiunea toracică ar cere urgență."
+    }
+  ],
+  "questions": [
+    "Spirometria și celelalte date confirmă BPOC și contribuie altă problemă?",
+    "Puteți verifica tehnica inhalatorului și indica reabilitare pulmonară?",
+    "Care este planul scris de exacerbare și ce semne cer ajutor urgent ori de urgență?"
+  ]
+}

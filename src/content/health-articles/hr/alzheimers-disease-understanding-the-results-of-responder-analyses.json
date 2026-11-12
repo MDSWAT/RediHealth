@@ -1,0 +1,51 @@
+{
+  "title": "Istraživanja Alzheimerove bolesti: kritičko čitanje rezultata odgovora",
+  "intro": "Analiza odgovora broji koliko sudionika studije zadovoljava definirani ishod umjesto prikazivanja samo prosječnog rezultata. Može olakšati razgovor o istraživanju, ali riječ responder ne znači nužno oporavak ili poboljšanje. U istraživanjima Alzheimerove bolesti ishod može biti izbjegavanje određene razine pogoršanja tijekom praćenja. Prije tumačenja naslova uvijek provjerite što se točno brojilo.",
+  "sections": [
+    {
+      "heading": "Počnite definicijom, smjerom i vremenom procjene",
+      "paragraphs": [
+        "Pitajte koja je mjera korištena, kako je odgovor definiran i kada procijenjen. Studija može brojiti poboljšanje, stabilnost ili ostanak ispod praga pogoršanja; to su različiti ishodi. Na mjerama poput CDR-SB viši rezultat znači veće oštećenje, pa je smjer važan. Prag treba obrazloženje značajnom promjenom, a ne samo prikladnim brojem. Unaprijed odabranu definiciju obično je lakše tumačiti nego onu odabranu nakon uvida u povoljnu usporedbu. Neke analize broje osobe kojima se stanje pogoršalo; tada manji broj respondera može ići u prilog liječenju."
+      ]
+    },
+    {
+      "heading": "Čitajte usporedbu u apsolutnim vrijednostima",
+      "paragraphs": [
+        "Stopa odgovora samo u liječenoj skupini ne pokazuje učinak liječenja. Sudionici usporedne skupine također mogu zadovoljiti definiciju zbog varijacija, uobičajene skrbi ili tijeka bolesti. Uspoređujte skupine procijenjene istim pravilom kroz isto razdoblje. Tražite broj ili stopu na jednak broj osoba i apsolutnu razliku, uz relativnu vrijednost. Velik relativni postotak može opisivati malu apsolutnu razliku i nije zajamčena osobna vjerojatnost koristi."
+      ]
+    },
+    {
+      "heading": "Odvojite prosjeke skupina od individualnih promjena",
+      "paragraphs": [
+        "Prosječna razlika opisuje skupine, a prag odgovora razvrstava pojedinačna opažanja. Osoba malo ispod i osoba malo iznad praga mogu imati vrlo slična iskustva, ali pasti u suprotne kategorije. Analiza također skriva koliko se svatko promijenio. Tražite cjelokupan obrazac i ishode važne za svakodnevicu, a ne samo oznaku respondera. Sporije prosječno pogoršanje ne znači da su se svi poboljšali, da je bolest stala ili da isto odgađanje vrijedi za svakog sudionika."
+      ]
+    },
+    {
+      "heading": "Provjerite neizvjesnost i nedostajuće rezultate",
+      "paragraphs": [
+        "Razmotrite broj sudionika, trajanje praćenja i neizvjesnost procjene. Nalazi male ili odabrane skupine možda nisu široko primjenjivi. Pitajte jesu li odustajanja i nedostajuće procjene dosljedno obrađeni, uključujući prekide zbog nuspojava. Isključivanje tih osoba može promijeniti dojam koristi. Više istraživačkih analiza može slučajno dati ohrabrujući rezultat. Intervali pouzdanosti i podudarnost s glavnim ishodima pokusa pokazuju koliko je nalaz čvrsto potkrijepljen."
+      ]
+    },
+    {
+      "heading": "Povežite rezultat sa stvarnom odlukom o liječenju",
+      "paragraphs": [
+        "Izvorni izvor koristi istraživanje liječenja Alzheimerove bolesti kao ilustraciju; statističko objašnjenje nije preporuka određenog lijeka. Razgovarajte sliči li populacija studije osobi koja razmatra liječenje i odvagnite korist naspram štete, praćenja, dolazaka i opterećenja skrbnika. Za konkretno liječenje provjerite lokalno odobrenje i kriterije. Pitajte što ostaje nepoznato kroz dulje razdoblje. Dobra odluka može priznati neizvjesnu korist uz naglasak na liječenju simptoma, dnevnoj podršci i osobnim ciljevima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni brojevi: usporedba je važna",
+      "text": "Zamislite dvije skupine od stotinu osoba. Četrdeset liječenih i trideset osoba iz usporedne skupine zadovoljava isto pravilo odgovora. Apsolutna razlika je deset na stotinu, a ne četrdeset dodatnih osoba kojima je pomognuto. Izmišljene brojke objašnjavaju računanje i nisu rezultati nijednog lijeka."
+    },
+    {
+      "title": "Hipotetski primjer: što znači odgovor?",
+      "text": "Obitelj čita da je sudionik bio responder, a potom saznaje da je pravilo značilo izostanak pogoršanja iznad praga. Pita kako je osoba funkcionirala u svakodnevici umjesto tumačenja oznake kao vraćenog pamćenja ili izlječenja."
+    }
+  ],
+  "questions": [
+    "Što se točno računalo kao odgovor, je li pravilo postavljeno unaprijed i zašto je promjena značajna?",
+    "Koliki su apsolutna razlika skupina, neizvjesnost i kakav je pristup nedostajućim rezultatima?",
+    "Kako se moguća korist, šteta i opterećenje liječenja odnose na našu situaciju i ciljeve?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Before surgery: understand the decision and make a workable plan",
+  "intro": "Being offered an operation does not mean every important question has already been answered. A planned procedure should have a clear purpose, a discussion of benefits and harms, and preparation suited to your health and circumstances. Emergency decisions may allow less time, but you can still ask for explanations. This guide helps structure a conversation; the details of consent, second opinions and payment depend on the country and service.",
+  "sections": [
+    {
+      "heading": "Start with the problem the operation is meant to solve",
+      "paragraphs": [
+        "Ask the surgeon to explain the diagnosis, the proposed procedure and its goal in plain language. Is the aim to relieve pain, improve function, prevent a complication or treat a dangerous disease? Discuss what matters most to you and whether that outcome is realistically likely. Ask what may happen without surgery, how urgent the choice is and whether waiting changes the options. A finding on a scan alone does not explain every symptom or establish that every person needs the same operation."
+      ]
+    },
+    {
+      "heading": "Compare alternatives and risks that matter to you",
+      "paragraphs": [
+        "Possible alternatives depend on the condition and may include medicines, rehabilitation, a less invasive procedure or observation. Ask about expected benefit, uncertainty, serious complications and the chance of needing further treatment. Request understandable frequencies and a time frame rather than vague terms such as low risk. Your other illnesses, frailty, smoking and previous operations may change the balance. A friend's result is not a personal prediction. For a major non-urgent choice, ask whether a second opinion or time to think would be useful and how to arrange it."
+      ]
+    },
+    {
+      "heading": "Make the consent conversation accessible",
+      "paragraphs": [
+        "Tell the team about language, hearing, vision or learning needs. Request an appropriate interpreter rather than relying on a child for a complex medical decision. A trusted person can help you remember questions, with your agreement. Signing a form does not replace understanding the procedure, alternatives and consequences. Explain what is unclear or unacceptable to you, including preferences about blood products or involvement of family where relevant. Ask whom to contact if you change your mind or new questions arise; local consent rules and emergency exceptions need individual explanation."
+      ]
+    },
+    {
+      "heading": "Get individual instructions for medicines and anaesthesia",
+      "paragraphs": [
+        "Bring a complete medicine and allergy list, including supplements, non-prescription products and what you actually take. Report past anaesthetic problems, implants, sleep apnoea and possible pregnancy. Ask what anaesthesia is proposed and how pain and nausea will be managed. Confirm written instructions about eating, drinking and every medicine that needs adjustment, including anticoagulants and diabetes medicines. Never choose your own fasting period or stop treatment from a general online guide. If instructions conflict, or you develop an infection or other health change, contact the surgical team before the procedure."
+      ]
+    },
+    {
+      "heading": "Plan recovery before agreeing that the plan is feasible",
+      "paragraphs": [
+        "Ask about likely hospital stay, wounds, movement, work, driving and follow-up, including who handles outstanding test results. Arrange transport and discuss help at home, stairs, caring responsibilities and obtaining medicines. Recovery estimates are not guarantees; ask which symptoms require urgent contact and which service to use after hours. Tell the team if the support you need is unavailable. After discharge, severe breathing difficulty, chest pain, collapse or rapidly worsening illness needs emergency help rather than waiting for a routine surgical review."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: checking the intended benefit",
+      "text": "A person offered surgery for a painful joint asks which activities are likely to improve and what rehabilitation would involve. They compare the available alternatives and their own priorities instead of deciding solely from the appearance of a scan."
+    },
+    {
+      "title": "Hypothetical example: conflicting instructions",
+      "text": "A patient receives a standard leaflet and a separate medicine plan that seem inconsistent. Before the operation they contact the team for a confirmed written plan, explain that they live alone and arrange the required return-home support."
+    }
+  ],
+  "questions": [
+    "What benefit is realistic for me, what are the alternatives and what happens if I wait?",
+    "Which risks and preparation instructions depend on my health, medicines and anaesthesia?",
+    "What recovery help, follow-up and urgent contact arrangements must be in place?"
+  ]
+}

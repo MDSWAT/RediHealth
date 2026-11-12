@@ -1,0 +1,51 @@
+{
+  "title": "Acneea: îngrijirea pielii și alegerea tratamentului",
+  "intro": "Acneea implică blocarea foliculilor de păr și inflamație. Poate provoca puncte negre, puncte albe, coșuri inflamate și noduli profunzi dureroși, adesea pe față, piept sau spate. Nu este un semn de igienă precară. Planul potrivit depinde de tipul leziunilor, riscul de cicatrici, tratamentele anterioare și efectul asupra vieții tale.",
+  "sections": [
+    {
+      "heading": "Înțelege modificările pielii",
+      "paragraphs": [
+        "Sebumul și celulele desprinse de la suprafața pielii se pot acumula în foliculi. Inflamația și activitatea bacteriilor prezente în mod normal pe piele contribuie la unele leziuni. Modificările hormonale pot crește producția de sebum, astfel că acneea este frecventă în adolescență, dar poate continua sau începe la maturitate. Culoarea unui punct negru nu înseamnă că în interior este murdărie. Acneea nu este contagioasă, iar frecarea agresivă nu îi elimină cauza."
+      ]
+    },
+    {
+      "heading": "Alege o rutină pe care o poți menține",
+      "paragraphs": [
+        "Curățarea blândă și produsele etichetate drept necomedogenice te pot ajuta să eviți iritarea suplimentară sau blocarea porilor. Scărpinarea ori stoarcerea coșurilor crește riscul de pete și cicatrici. Produsele scumpe și o rutină complicată nu sunt automat mai bune. Spune farmacistului sau medicului toate produsele pe care le folosești: combinarea mai multor tratamente iritante poate provoca usturime și poate face dificilă identificarea celui care ajută."
+      ]
+    },
+    {
+      "heading": "Discută opțiunile de tratament",
+      "paragraphs": [
+        "Opțiunile pot include peroxid de benzoil, retinoizi topici și alte medicamente aplicate pe piele. Unele persoane au nevoie de comprimate prescrise sau de îngrijire de specialitate. Antibioticele se folosesc selectiv din cauza efectelor adverse și a rezistenței; nu folosi comprimate rămase de la alt tratament. Isotretinoinul necesită supraveghere de specialitate și precauții importante. Spune medicului dacă ești însărcinată, ai putea rămâne însărcinată sau planifici o sarcină, deoarece unele medicamente pentru acnee nu sunt potrivite."
+      ]
+    },
+    {
+      "heading": "Evaluează progresul fără să aștepți schimbări peste noapte",
+      "paragraphs": [
+        "Tratamentul are nevoie de timp, iar iritația sau uscăciunea pot apărea înainte ca beneficiul complet să fie vizibil. Întreabă ce schimbări să aștepți, cum să folosești produsul ales și când să revii la control. O notiță scurtă sau o fotografie ocazională, păstrată privat, te poate ajuta să descrii schimbările fără să îți verifici pielea permanent. Petele persistente mai închise sau mai deschise la culoare diferă de coșurile inflamate noi și pot necesita o discuție separată."
+      ]
+    },
+    {
+      "heading": "Cere ajutor pentru cicatrici, durere sau suferință emoțională",
+      "paragraphs": [
+        "Consultă un medic pentru noduli profunzi dureroși, cicatrici în formare, un diagnostic neclar sau acnee care nu se ameliorează cu planul stabilit. Umflarea dureroasă care se agravează rapid și este însoțită de febră necesită evaluare promptă, nu produse antiacneice mai puternice. Rușinea, hărțuirea și renunțarea la activități merită, de asemenea, atenție. Nu trebuie să aștepți ca pielea să arate grav afectată ca să ceri sprijin emoțional sau sfaturi despre tratament."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: simplificarea rutinei",
+      "text": "Un elev folosește un exfoliant abraziv, o loțiune tonică cu acizi și un gel antiacneic, iar pielea îl ustură. Duce farmacistului denumirile produselor și întreabă ce combinație este potrivită. Astfel poate identifica iritația și clarifica un plan; acest lucru nu garantează că un anumit produs va elimina acneea."
+    },
+    {
+      "title": "Exemplu ipotetic: întrebări despre cicatrici",
+      "text": "O persoană observă noduli mai profunzi și mici adâncituri noi în piele, deși folosește tratamentul prescris. Programează un control și explică felul în care acneea îi afectează încrederea. Întreabă dacă este potrivită trimiterea la specialist, în loc să stoarcă nodulii sau să cumpere încă un tratament puternic."
+    }
+  ],
+  "questions": [
+    "Ce tip de acnee am și există risc de cicatrici?",
+    "Cum trebuie să folosesc acest tratament și ce efecte adverse sau precauții privind sarcina sunt importante?",
+    "Când reevaluăm progresul și ce ar putea schimba planul?"
+  ]
+}

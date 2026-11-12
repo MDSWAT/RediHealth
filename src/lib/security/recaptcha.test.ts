@@ -55,6 +55,20 @@ describe("reCAPTCHA server verification", () => {
     expect(await verifyRecaptcha("captcha-token", "help_request")).toBeNull();
   });
 
+  it("requires verification in production when the activation flag is absent", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("RECAPTCHA_ENABLED", "");
+    expect((await verifyRecaptcha(undefined, "help_request"))?.status).toBe(400);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("allows an explicit local-development opt-out", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("RECAPTCHA_ENABLED", "false");
+    expect(await verifyRecaptcha(undefined, "help_request")).toBeNull();
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
   it.each([undefined, null, "", " ", 42, {}, "x".repeat(4097)])("rejects malformed or missing tokens without calling Google: %j", async (token) => {
     expect((await verifyRecaptcha(token, "help_request"))?.status).toBe(400);
     expect(fetchMock).not.toHaveBeenCalled();

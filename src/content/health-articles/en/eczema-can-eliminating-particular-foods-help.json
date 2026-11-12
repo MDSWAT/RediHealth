@@ -1,0 +1,51 @@
+{
+  "title": "Eczema and food exclusions: when a focused assessment helps",
+  "intro": "It is understandable to look for a food that explains repeated eczema flares. Some people have both eczema and food allergy, but eczema does not mean that ordinary foods must be removed. A diet that excludes many foods may cause harm without improving the skin. The useful question is whether a specific food causes a reproducible reaction and how that can be assessed safely.",
+  "sections": [
+    {
+      "heading": "A flare after a meal does not prove the cause",
+      "paragraphs": [
+        "Eczema naturally improves and worsens, and heat, infection, irritants or changes in treatment may coincide with meals. Food allergy is more plausible when a particular food repeatedly produces a clear reaction, especially hives, swelling, vomiting or breathing symptoms soon afterward. Delayed patterns need careful assessment too. A food allergy can coexist without being the main driver of eczema. If a food is eaten regularly without allergic symptoms, do not remove it simply because it appears on a list of common allergens. First review whether the skin diagnosis and treatment plan are appropriate and being used effectively."
+      ]
+    },
+    {
+      "heading": "Use tests to answer a clinical question",
+      "paragraphs": [
+        "Explain the food, quantity, timing, symptoms, repeatability and treatment needed. A brief food and symptom diary can help when it does not become burdensome. Skin-prick and specific antibody tests may support an allergy assessment, but a positive result can mean sensitisation without actual clinical allergy. Broad screening panels often create confusing positive results in people with eczema. Hair analysis, food-specific IgG panels and similar unvalidated tests should not be used to build an exclusion diet. A clinician may recommend a supervised food challenge when appropriate. Never conduct a home challenge after a suspected immediate or serious reaction."
+      ]
+    },
+    {
+      "heading": "Removing foods has nutritional and allergy risks",
+      "paragraphs": [
+        "Excluding milk, eggs, wheat or several food groups can reduce energy, protein and micronutrient intake, especially in a growing child. Ordinary plant drinks are not substitutes for infant formula. Restriction can add cost, anxiety, social difficulties and feeding problems. Long avoidance of a previously tolerated food may also increase the risk of developing immediate allergy to it. Removing several foods at once makes any change in skin difficult to interpret. Avoid extending restrictions to a breastfeeding parent's diet without an individual indication and nutritional advice. Poor growth, unintended weight loss or an already narrow diet is a reason to seek professional support early."
+      ]
+    },
+    {
+      "heading": "A diagnostic exclusion needs a defined plan",
+      "paragraphs": [
+        "When the history makes a food reaction plausible, an allergy clinician and dietitian can agree whether a short, targeted exclusion is appropriate. Define exactly what is excluded, suitable replacements, how skin symptoms will be measured and when the result will be reviewed. Keep prescribed eczema care consistent so improvement is not falsely attributed to diet. Plan any reintroduction in advance: the setting and method depend on reaction risk and may require supervision. If there is no convincing benefit, do not continue indefinitely or add more exclusions without review. A confirmed allergy needs clear avoidance and emergency advice, while eczema still needs its own treatment."
+      ]
+    },
+    {
+      "heading": "Know when food-related symptoms are urgent",
+      "paragraphs": [
+        "Sudden throat or tongue swelling, breathing difficulty, collapse or rapid severe deterioration after food may be anaphylaxis. Use prescribed adrenaline according to the emergency plan and call emergency services; do not wait to see whether an eczema cream or antihistamine works. Do not stand or walk during a suspected severe reaction. Persistent vomiting, poor intake, dehydration or faltering growth needs prompt medical advice even without immediate allergy symptoms. For severe or poorly controlled eczema, ask for focused specialist assessment rather than repeatedly changing the whole family's food. The goal is safe nutrition and skin control with the fewest necessary restrictions."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a test without a matching reaction",
+      "text": "A panel reports that Lina is sensitised to a food she eats without symptoms. Her parent asks an allergy specialist to interpret this before stopping it. The team reviews the history and skin care instead of treating every positive test as a food allergy."
+    },
+    {
+      "title": "Hypothetical example: a clear reaction needs a different plan",
+      "text": "Arben develops hives and lip swelling soon after a particular food. He seeks medical advice and avoids a self-directed reintroduction. Breathing difficulty or collapse would require emergency care, not a trial of a longer eczema diet."
+    }
+  ],
+  "questions": [
+    "Does the history suggest a real food reaction or a coincidental eczema flare?",
+    "Which targeted tests or supervised assessment would change care?",
+    "If exclusion is advised, what replaces the nutrients and when and how will we review or reintroduce safely?"
+  ]
+}

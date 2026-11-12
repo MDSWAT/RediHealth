@@ -1,0 +1,51 @@
+{
+  "title": "Kujdesi i strukturuar për diabetin tip 1: DMP gjermane",
+  "intro": "Programi i menaxhimit të sëmundjes, DMP, organizon kujdesin e vazhdueshëm për gjendje kronike. Në Gjermani, programi bashkon kontrolle të planifikuara, edukim dhe koordinim në plan individual. Nuk shëron diabetin dhe nuk zëvendëson insulinën e përditshme. Artikulli përshkruan shërbim gjerman; jashtë tij pyesni për rrugën lokale të kujdesit.",
+  "sections": [
+    {
+      "heading": "Kuptoni pjesëmarrjen para regjistrimit",
+      "paragraphs": [
+        "Pjesëmarrja është vullnetare. Pyesni siguruesin publik gjerman dhe praktikën pjesëmarrëse nëse ofrohet programi dhe si regjistroheni. Jo çdo praktikë e ofron. Pjesëmarrja është falas për të siguruarit, por kontrolloni veç shërbimet ose pajisjet pa supozuar se çdo produkt përfshihet. Lexoni dokumentet e pjesëmarrjes dhe të dhënave: kush merr shënimet, pse dhe kush përgjigjet. Sqaroni vizitat, edukimin, largimin dhe vazhdimin e kujdesit të zakonshëm. DMP është kuadër koordinimi, jo premtim për çdo specialist ose teknologji menjëherë."
+      ]
+    },
+    {
+      "heading": "Bëjini synimet personale",
+      "paragraphs": [
+        "Plani mbështet jetën dhe ul hipogliceminë e rëndë, sheqerin e rrezikshëm të lartë dhe komplikimet. Diskutoni modelet e glukozës, punën ose shkollën, aktivitetin, ushqimin, gjumin, shtatzëninë e planifikuar dhe sëmundjet. Objektivat dhe insulina duan marrëveshje individuale mes përfitimit dhe rrezikut të hipoglicemisë. Sillni barnat e shtesat dhe vështirësitë me kosto, materiale, shikim, duar ose udhëzime. Pyesni kush koordinon dhe referon. Sensori, pompa dhe teknologjia duan vlerësim, trajnim dhe plan rezervë; regjistrimi nuk do të thotë pajisje automatikisht e përshtatshme ose e siguruar."
+      ]
+    },
+    {
+      "heading": "Përdorni edukimin për raste reale",
+      "paragraphs": [
+        "Edukimi ndërton aftësi për glukozën, insulinën, ushqimin, aktivitetin dhe ndryshimet. Kërkoni praktikë për njohjen e trajtimin e sheqerit të ulët, kontrollin e ketoneve dhe planin individual gjatë sëmundjes. Insulina nevojitet edhe kur jeni sëmurë dhe nuk hani: mos e ndaloni thjesht; ndiqni planin dhe kërkoni këshillë për përshtatje. Pompa do udhëzime për ndërprerjen e furnizimit dhe insulinë rezervë. Përfshini familjen ose person të besuar me pëlqim dhe kërkoni ndihmë gjuhësore. Edukimi përsëritet kur jeta ose trajtimi ndryshon, nuk është provim ku dështoni."
+      ]
+    },
+    {
+      "heading": "Planifikoni kontrollet pa pritur simptoma",
+      "paragraphs": [
+        "Vizitat shqyrtojnë glukozën, episodet e rënda, barnat, vendet e injektimit ose infuzionit dhe mirëqenien. Kontrollet e syve, veshkave dhe këmbëve gjejnë komplikime herët. Koha varet nga mosha, kohëzgjatja, gjetjet dhe kërkesat aktuale; kërkoni kalendar personal të shkruar, jo tabelë të vjetër. Tensioni, yndyrnat, duhani dhe rreziku kardiovaskular kanë rëndësi. Fëmijët duan kujdes sipas moshës, familje të përfshirë dhe kalim të planifikuar te shërbimi i të rriturve. Ankthi, frika nga sheqeri i ulët, depresioni dhe çrregullimet e ushqyerjes duan mbështetje. Diskutoni shtatzëninë me specialistin para konceptimit kur mundet."
+      ]
+    },
+    {
+      "heading": "Çfarë nuk pret vizitën e radhës",
+      "paragraphs": [
+        "Sheqeri shumë i ulët me humbje vetëdijeje ose gëlltitje të pasigurt kërkon emergjencë dhe planin e shpëtimit të mësuar; mos jepni ushqim ose pije nga goja. Të vjellat, dhimbja e barkut, frymëmarrja e thellë ose e shpejtë, përgjumja e pazakontë dhe ketonet e larta mund të tregojnë ketoacidozë dhe duan vlerësim urgjent, emergjencë kur janë të rënda. Mos prisni takimin e caktuar. Plagët e reja ose këmba e nxehtë e fryrë duan kontroll të shpejtë; humbja e papritur e shikimit emergjencë. Mbani kontaktet jashtë orarit, planin e insulinës dhe materialet pranë. Rishikoni urgjencën me ekipin për përmirësim pa fajësim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: koordinimi i vizitave",
+      "text": "Mira regjistrohet në praktikë pjesëmarrëse në Gjermani. Sjell shënimet e glukozës dhe kërkon datat e syve, veshkave e këmbëve dhe kush ndjek rezultatet jonormale. Verifikon me siguruesin, pa supozuar program të njëjtë në vend tjetër."
+    },
+    {
+      "title": "Shembull hipotetik: rutinë e re",
+      "text": "Arbeni nis turne nate dhe ka shpesh sheqer të ulët. Kontakton ekipin për vlerësim dhe edukim në kohë, pa pritur vizitën DMP. Ekipi përshtat planin individual; shembulli nuk jep doza insuline."
+    }
+  ],
+  "questions": [
+    "A më regjistrojnë siguruesi dhe praktika dhe çfarë nënkuptojnë dokumentet e të dhënave?",
+    "Kush koordinon kujdesin, edukimin, materialet dhe kalendarin tim?",
+    "Cili është plani im i shkruar për hipoglicemi, sëmundje, ketone dhe urgjencë?"
+  ]
+}

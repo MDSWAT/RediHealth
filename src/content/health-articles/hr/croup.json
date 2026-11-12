@@ -1,0 +1,51 @@
+{
+  "title": "Krup: lavežasti kašalj i kada disanje treba pomoć",
+  "intro": "Krup je obično virusna bolest koja uzrokuje oticanje oko grkljana i dušnika malog djeteta. Kašalj može zvučati poput laveža, uz promukao glas i ponekad grub zvuk pri udahu, stridor. Mnogi napadaji su blagi, ali suženje dišnog puta može se brzo pogoršati. Javite se liječniku ako sumnjate na krup i tražite hitnu pomoć zbog otežanog disanja.",
+  "sections": [
+    {
+      "heading": "Gledajte disanje i ponašanje, ne samo kašalj",
+      "paragraphs": [
+        "Curenje nosa ili temperatura mogu prethoditi lavežastom kašlju, često gorem noću. Stridor se razlikuje od nižeg piskanja često povezanog s astmom. Primijetite javlja li se samo uz uznemirenost ili i u miru te uvlači li se koža uz rebra ili vrat. Neobično tiho, iscrpljeno ili teško razbudivo dijete može se pogoršavati i kada zvuk oslabi. Glasnoća kašlja ili disanja nije pouzdana mjera težine. Vrlo mala dojenčad ili djeca s poznatim problemima dišnog puta trebaju raniju procjenu."
+      ]
+    },
+    {
+      "heading": "Znakovi za žurnu ili hitnu skrb",
+      "paragraphs": [
+        "Zovite hitnu službu ako se dijete bori za zrak, postane plavo, sivo ili izrazito blijedo, mlohavo ili teško razbudivo, ne može gutati ili slini dok je bolesno. Jako uvlačenje prsnog koša, teška uznemirenost s otežanim disanjem ili slab odgovor također su alarmi. Stridor u mirovanju zahtijeva žurnu bolničku procjenu. Ostavite dijete s mirnim skrbnikom u položaju koji mu odgovara; ne silite ga leći niti sami duboko pregledavajte grlo. Nagli početak nakon zagrcavanja ili oteklina lica mogu značiti drugu hitnost. Slijedite dispečera."
+      ]
+    },
+    {
+      "heading": "Što pomaže kada je kućna njega primjerena",
+      "paragraphs": [
+        "Nakon potvrde da je kućna njega prikladna, tješite i smirujte dijete: plakanje može povećati napor disanja. Nudite male česte količine tekućine ako guta ugodno i provjeravajte ga redovito, uključujući noć. Koristite dobno prikladan lijek za bol ili temperaturu prema uputi ili liječniku. Ne silite piti dijete koje teško diše ili guta. Nemojte koristiti parne sobe, kipuću vodu ili udisanje pare: para nije dokazano liječenje i može opeći. Sirupi protiv kašlja i sedativni pripravci ne liječe oteklinu i mogu biti nesigurni."
+      ]
+    },
+    {
+      "heading": "Kako liječnik liječi krup",
+      "paragraphs": [
+        "Tipičan krup često se dijagnosticira prema povijesti i disanju bez rutinske krvi ili rendgena. Važno je smanjiti uznemirenost tijekom pregleda. Liječnik može dati kortikosteroid poput deksametazona za oteklinu; izbor i doza ovise o djetetu i težini. Jača opstrukcija može trebati nebulizirani adrenalin i bolničko praćenje. Učinak može prestati pa trenutno poboljšanje samo ne dopušta odlazak. Teški slučajevi trebaju specijalističku potporu dišnog puta. Antibiotici ne liječe nekomplicirani virusni krup; druga dokazana bakterijska bolest treba drukčiji plan."
+      ]
+    },
+    {
+      "heading": "Planirajte iduću noć i kontrolu",
+      "paragraphs": [
+        "Simptomi često popuštaju idućih dana, ali kašalj može trajati dulje, a druga noć biti lošija prije oporavka. Pitajte što učiniti ako se stridor vrati nakon liječenja i gdje dobiti pomoć izvan radnog vremena. Prijašnja blaga epizoda ne jamči blagu sljedeću. Ponavljanje, neuobičajena dob, trajno bučno disanje ili izostanak poboljšanja traže provjeru drugih uzroka. Virusi se šire drugima koji mogu dobiti samo prehladu. Higijena ruku, pokrivanje kašlja i ostanak kod kuće uz temperaturu ili loše stanje smanjuju prijenos; pratite lokalne upute vrtića."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: promjena u miru",
+      "text": "Malo dijete isprva lavežasto kašlje samo uz plač. Kasnije, mirno u očevu krilu, bučno diše i uvlači kožu pod rebrima. Otac traži žurnu procjenu ne čekajući jutro samo zato što kašalj djeluje poznato."
+    },
+    {
+      "title": "Zamišljeni primjer: promatranje nakon liječenja",
+      "text": "Djevojčici je bolje nakon nebuliziranog lijeka u bolnici. Skrbnik pita zašto još treba promatranje. Tim objašnjava privremeni učinak i provjerava ostaje li disanje ugodno prije otpusta i pisanog plana povratka."
+    }
+  ],
+  "questions": [
+    "Je li kućna njega primjerena i koje promjene disanja traže pomoć odmah?",
+    "Što je dijete dobilo i što ako se simptomi vrate noćas?",
+    "Trebaju li ponavljane epizode ili trajno bučno disanje dodatnu procjenu?"
+  ]
+}

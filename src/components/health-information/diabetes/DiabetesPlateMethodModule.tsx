@@ -47,6 +47,24 @@ const FOOD_DATABASE_BASE: FoodItemBase[] = [
 ];
 
 const FOOD_TRANSLATIONS: Record<Lang, Record<string, FoodItemLocalization>> = {
+  ru: {
+    v1: { name: "Зеленый салат и шпинат" },
+    v2: { name: "Огурцы и помидоры" },
+    v3: { name: "Брокколи и цветная капуста на пару" },
+    v4: { name: "Болгарский перец" },
+    v5: { name: "Запеченная зеленая фасоль" },
+    p1: { name: "Жареная форель или лосось" },
+    p2: { name: "Куриная грудка без кожи" },
+    p3: { name: "Вареные яйца" },
+    p4: { name: "Творожный сыр или нежирный творог" },
+    p5: { name: "Тофу или вареная чечевица" },
+    c1: { name: "Цельнозерновая полента" },
+    c2: { name: "Коричневый или цельнозерновой рис басмати" },
+    c3: { name: "Сладкий картофель, запеченный в кожуре" },
+    c4: { name: "Отварная киноа или гречка" },
+    c5: { name: "Цельнозерновой ржаной хлеб (1 ломтик)" },
+  },
+
   ro: {
     v1: { name: "Salată verde și spanac" },
     v2: { name: "Castraveți și roșii" },
@@ -163,6 +181,39 @@ interface SectionConfig {
 }
 
 const SECTION_TRANSLATIONS: Record<Lang, Record<PlateSectionId, SectionConfig>> = {
+  ru: {
+    vegetables: {
+      id: "vegetables",
+      title: "Овощи, а не картофель",
+      shortName: "Овощи",
+      percentageLabel: "Половина тарелки (50%)",
+      handRule: "Две сложенные руки",
+      handDetail: "То, что помещается в обе руки, взятые вместе. Вы можете съесть много.",
+      clinicalPurpose:
+        "В них есть вода и клетчатка. Они насыщают, не повышая уровень сахара в крови, и замедляют пищеварение.",
+    },
+    protein: {
+      id: "protein",
+      title: "Нежирный белок",
+      shortName: "Белок",
+      percentageLabel: "Четверть тарелки (25%)",
+      handRule: "Одна ладонь",
+      handDetail: "Размер и толщина вашей ладони, без пальцев. Примерно 100–150 грамм.",
+      clinicalPurpose:
+        "Сохраняет ваши мышцы сильными, дольше сохраняет чувство сытости и не приводит к быстрому повышению уровня сахара в крови.",
+    },
+    carbs: {
+      id: "carbs",
+      title: "Углеводы с клетчаткой",
+      shortName: "Углеводы",
+      percentageLabel: "Четверть тарелки (25%)",
+      handRule: "Один кулак",
+      handDetail: "Размер вашего сжатого кулака. Примерно 1 стакан, или 150–200 грамм приготовленного.",
+      clinicalPurpose:
+        "Они дают вашему мозгу энергию. Цельнозерновые продукты повышают уровень сахара в крови медленно, без больших скачков.",
+    },
+  },
+
   ro: {
     vegetables: {
       id: "vegetables",
@@ -385,6 +436,32 @@ interface PlateUiStrings {
 }
 
 const UI_STRINGS: Record<Lang, PlateUiStrings> = {
+  ru: {
+    moduleAriaLabel: "Табличка для диабетиков",
+    title: "Как наполнить тарелку",
+    description: "Вам не нужны весы. Разделите тарелку на три части: половина овощей, четверть белков, четверть углеводов. Это поддерживает стабильный уровень сахара в крови и позволяет дольше сохранять чувство сытости.",
+    plateHint: "Коснитесь части тарелки",
+    plateAriaLabel: "Тарелка разделена на половину овощей, четверть белков и четверть углеводов.",
+    handRuleHeading: "Сколько, измеряется вручную",
+    clinicalPurposeHeading: "Почему это важно",
+    builderHeading: "Сделай свою тарелку",
+    builderSubtitle: "Выберите еду на один прием пищи. Посмотрите, цела ли тарелка и сколько в ней волокон.",
+    resetButton: "Вернемся к примеру",
+    fiberShort: "г волокна",
+    completeStatus: "Табличка готова.",
+    incompleteStatus: "Отсутствует одна часть пластины",
+    foodsCountSuffix: "выбранные продукты",
+    totalFiberPrefix: "Волокно:",
+    approxCaloriesPrefix: "Калории, примерно:",
+    fiberGramsSuffix: "граммы",
+    completeMessage: "У вас есть овощи, нежирный белок и углеводы с клетчаткой. Такая еда медленнее повышает уровень сахара в крови и дольше сохраняет чувство сытости.",
+    incompleteMessage: "Добавьте хотя бы по одному продукту из каждой части: овощи, белки и цельнозерновые углеводы.",
+    presetsTitle: "Примеры блюд",
+    presetTraditional: "Традиционный",
+    presetMediterranean: "Средиземноморский",
+    presetQuickLunch: "Быстрый обед",
+  },
+
   ro: {
     moduleAriaLabel: "Farfuria pentru diabet",
     title: "Cum îți împarți farfuria",

@@ -1,0 +1,51 @@
+{
+  "title": "Antikoagulantët: ulni rrezikun e gjakderdhjes duke ruajtur mbrojtjen",
+  "intro": "Antikoagulantët ulin mundësinë e mpiksjeve të dëmshme, por bëjnë që gjakderdhja të fillojë më lehtë ose të ndalet më vështirë. Përdorimi më i sigurt kërkon barin e duhur sipas recetës, kontrollin e ndërveprimeve dhe njohjen e rasteve kur duhet ndihmë. Mos e ndërprisni trajtimin vetëm për një mavijosje të vogël: arsyeja e tij, si parandalimi i goditjes në tru ose mpiksjeve, mbetet e rëndësishme. Gjakderdhja ose dëmtimi i konsiderueshëm duhen vlerësuar shpejt.",
+  "sections": [
+    {
+      "heading": "Njihni barin dhe ndiqni planin e monitorimit",
+      "paragraphs": [
+        "Mbani të disponueshëm emrin, fuqinë dhe udhëzimet aktuale të barit, si dhe kartën paralajmëruese nëse ju është dhënë. Warfarina kërkon analiza INR për dozimin; antikoagulantët oralë të drejtpërdrejtë nuk përdorin të njëjtën përshtatje rutinë me INR, por kërkojnë kontrolle, përfshirë funksionin e veshkave. Tregoni për sëmundje, ndryshime peshe ose vështirësi me tabletat. Për dozën e harruar ndiqni udhëzimet e atij bari ose pyetni farmacistin; mos shpikni dozë kompensuese. Përdorni kujtues nëse harrimi përsëritet."
+      ]
+    },
+    {
+      "heading": "Kontrolloni barnat e tjera dhe ndryshimet ushqimore",
+      "paragraphs": [
+        "Tregojini çdo përshkruesi dhe farmacisti se merrni antikoagulant. Pyetni para se të shtoni qetësues dhimbjesh, produkte bimore ose suplemente; ibuprofeni ose aspirina mund të shtojnë gjakderdhjen. Nëse aspirina është përshkruar qëllimisht me antikoagulantin, kërkoni rishikim pa e ndalur vetë. Disa antibiotikë dhe barna të tjera ndërveprojnë gjithashtu. Me warfarinën, ndryshimet e mëdha në vitaminën K mund të ndikojnë kontrollin, ndaj kërkoni këshillë për dietë të qëndrueshme, jo shmangie të të gjitha perimeve. Diskutoni alkoolin dhe shmangni pirjen e tepërt."
+      ]
+    },
+    {
+      "heading": "Ulni dëmtimet e shmangshme dhe planifikoni procedurat",
+      "paragraphs": [
+        "Zgjidhni pajisje mbrojtëse për aktivitetet, bëni kujdes me mjetet e mprehta dhe hiqni pengesat që shkaktojnë rrëzim. Furça e butë ose makina elektrike e rrojës mund të pakësojnë plagët e vogla. Njoftoni paraprakisht dentistin dhe ekipin që planifikon operacion, injeksione ose test invaziv. Ndryshimi i trajtimit varet nga procedura, bari, veshkat dhe rreziku i mpiksjes. Mos vendosni vetë të lini doza dhe mos përdorni planin e një personi tjetër. Kërkoni udhëzime të qarta si për ndërprerjen e mundshme ashtu edhe rifillimin."
+      ]
+    },
+    {
+      "heading": "Reagoni siç duhet ndaj gjakderdhjes dhe dëmtimit",
+      "paragraphs": [
+        "Për një prerje të vogël të jashtme, shtypni fort drejtpërdrejt me fashë të pastër. Gjakderdhja që nuk ndalet, aksidenti i madh ose goditja e konsiderueshme në kokë kërkojnë vlerësim të menjëhershëm, edhe kur gjaku i dukshëm është pak. Kërkoni kujdes urgjent për gjak në urinë, jashtëqitje të zeza, të vjella me gjak ose gjakderdhje të madhe të pashpjeguar. Dhimbja e fortë e kokës, konfuzioni, dobësia, kolapsi ose vështirësia në frymëmarrje kërkojnë ndihmë emergjente. Tregoni emrin e barit dhe kohën e dozës së fundit pa vonuar ndihmën për dokumente."
+      ]
+    },
+    {
+      "heading": "Raportoni problemet e vogla para ndryshimit të trajtimit",
+      "paragraphs": [
+        "Gjakderdhjet e përsëritura nga hunda, mavijosjet në shtim ose menstruacionet më të rënda meritojnë kontroll edhe kur nuk duken emergjencë. Shënoni ecurinë dhe barnat e reja dhe pyetni nëse duhen analiza ose përshtatje. Gjakderdhja mund të ketë edhe shkak që kërkon hetim, jo të shpjegohet tërësisht nga antikoagulanti. Njoftoni shpejt për shtatzëni ose planet për të, sepse zgjedhja e barit mund të ndryshojë. Rishikoni rregullisht me mjekun ekuilibrin mes parandalimit të mpiksjes dhe rrezikut të gjakderdhjes në vend që të vendosni vetëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: qetësues i ri dhimbjeje",
+      "text": "Dikush që merr antikoagulant ka dhimbje shpine dhe mendon të blejë ibuprofen. Fillimisht i tregon farmacistit listën dhe kërkon zgjedhje të përshtatshme. Përmend edhe aspirinën e përshkruar nga kardiologu, pa e hequr vetë nga lista."
+    },
+    {
+      "title": "Shembull hipotetik: rrëzim me goditje në kokë",
+      "text": "Një person me bar për parandalimin e mpiksjeve bie dhe godet kokën. Megjithëse skalpi gjakos pak, kërkon vlerësim të menjëhershëm dhe tregon emrin e barit e dozën e fundit, pa pritur mavijosje të madhe."
+    }
+  ],
+  "questions": [
+    "Çfarë analizash e kontrollesh kërkon antikoagulanti im dhe çfarë bëj pas dozës së harruar?",
+    "Cilët qetësues, suplemente, ndryshime diete ose procedura kërkojnë këshillë për mua?",
+    "Cila gjakderdhje ose goditje kërkon emergjencë dhe kë kontaktoj për gjakderdhje të vogla të përsëritura?"
+  ]
+}

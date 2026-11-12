@@ -52,6 +52,8 @@ type PageShellOptions = Pick<AdminShellProps, "pendingCount" | "mobilePatientCre
 
 /** Staff roles are stored in English; show them in the reader's language (same wording as the worker form). */
 const ROLE_LABELS: Record<Lang, Record<string, string>> = {
+ru: { "healthcare worker": "Медицинский работник", "case worker": "Сотрудник дела", "general practitioner": "Семейный врач", "super admin": "Суперадминистратор", superadmin: "Суперадминистратор" },
+
   en: { "healthcare worker": "Health worker", "case worker": "Case worker", "general practitioner": "Family doctor", "super admin": "Super admin", superadmin: "Super admin" },
   ro: { doctor: "Medic", mediator: "Mediator", nurse: "Asistent medical", "case worker": "Responsabil de caz", "general practitioner": "Medic de familie", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Personal medical" },
   sq: { doctor: "Mjek", mediator: "Mediator", nurse: "Infermier", "case worker": "Përgjegjës rasti", "general practitioner": "Mjek familje", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Punonjës shëndetësor" },
@@ -270,6 +272,22 @@ function AdminShellFrame({
   ].filter((link) => !mobilePrimaryTabs.some((tab) => tab.href === link.href));
 
   const reportCopyByLang = {
+  ru: {
+      title: "Сообщить о проблеме",
+      subtitle: "Расскажите нам, что пошло не так. Мы рассмотрим это.",
+      email: "Your email (optional)",
+      message: "Что случилось",
+      send: "Отправить отчет",
+      sending: "Отправка...",
+      cancel: "Отмена",
+      success: "Спасибо. Ваш отчет отправлен.",
+      genericError: "Не удалось отправить отчет. Попробуйте еще раз.",
+      detailError: "Напишите не менее 10 символов, чтобы мы могли понять проблему.",
+      placeholder: "Что вы делали, чего ожидали и что произошло?",
+      offline: "Работайте офлайн на этом устройстве",
+      offlineCheckError: "Не удалось проверить изменения в автономном режиме. Прежде чем выйти из системы, откройте автономный режим.",
+    },
+
     en: {
       title: "Report a problem",
       subtitle: "Tell us what went wrong. We will look into it.",

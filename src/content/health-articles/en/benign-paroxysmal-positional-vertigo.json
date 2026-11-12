@@ -1,0 +1,51 @@
+{
+  "title": "Positional vertigo: assessment, treatment and staying safe",
+  "intro": "Benign paroxysmal positional vertigo, or BPPV, causes brief bursts of spinning with particular head movements. It is an inner-ear balance problem and can often be treated with repositioning movements. However, not all dizziness is BPPV. New or unusual symptoms need assessment, and the word benign should never be used to dismiss warning signs or the risk of falling.",
+  "sections": [
+    {
+      "heading": "Describe the trigger and the timing",
+      "paragraphs": [
+        "A typical episode happens when rolling in bed, lying back or looking upwards. The strongest spinning is usually brief, although nausea or unsteadiness can last longer. Tiny crystals that have moved into an inner-ear canal send misleading movement signals. Tell the clinician whether symptoms begin with a head position, occur on standing or continue even when still. Mention hearing changes, headache, fainting, recent injury and new medicines, because these can point towards other causes."
+      ]
+    },
+    {
+      "heading": "Recognise symptoms that need urgent help",
+      "paragraphs": [
+        "Seek emergency help for sudden vertigo with trouble speaking, facial droop, weakness, double vision, a severe new headache or inability to stand or walk. A stroke can sometimes present mainly with severe imbalance. Sudden hearing loss also needs urgent assessment. Do not drive yourself for emergency care. Persistent new spinning, repeated vomiting or a pattern very different from previous diagnosed BPPV needs prompt medical advice rather than repeated attempts at home exercises."
+      ]
+    },
+    {
+      "heading": "Let examination guide the diagnosis",
+      "paragraphs": [
+        "A trained clinician asks about symptoms and may perform a positional test while watching your eyes. The direction and timing of eye movements help identify which ear and canal are involved. Tell them about neck or back problems and limited mobility before testing, so positioning can be adapted. Scans are not routinely necessary for a typical confirmed presentation, but atypical findings may need further investigation. An online video cannot replace the examination or reliably exclude a neurological cause."
+      ]
+    },
+    {
+      "heading": "Choose a repositioning manoeuvre suited to the findings",
+      "paragraphs": [
+        "Repositioning treatment uses a sequence of head and body positions to move displaced crystals. The appropriate manoeuvre depends on the affected canal and your ability to move safely. It can briefly provoke vertigo and sometimes needs repeating. Ask a clinician to demonstrate any home technique and explain when to stop or seek reassessment. Medicines may sometimes ease nausea but do not move the crystals. Do not stop prescribed medicines or repeatedly perform random manoeuvres without advice."
+      ]
+    },
+    {
+      "heading": "Plan for recovery and possible recurrence",
+      "paragraphs": [
+        "Until balance is dependable, sit down during an attack, use support when getting up and keep the route to the bathroom well lit and clear. Avoid ladders, heights, driving and machinery while symptoms make them unsafe. Ask when normal activities can resume. Residual unsteadiness or another episode later is possible; a review can distinguish recurrence from a different problem. If fear of movement persists, supervised balance rehabilitation may help. Do not assume every future dizzy spell has the same cause."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: brief spinning in bed",
+      "text": "A person gets short bursts of spinning whenever rolling to the right. They arrange an assessment and describe the trigger precisely. After a positional examination, the clinician performs an appropriate manoeuvre and gives a plan for persistent or returning symptoms."
+    },
+    {
+      "title": "Hypothetical example: a changed pattern",
+      "text": "Someone previously treated for BPPV develops continuous severe dizziness and cannot walk without support. They seek urgent assessment instead of assuming the old diagnosis applies and repeating an exercise from the internet."
+    }
+  ],
+  "questions": [
+    "Do my symptoms and eye movements support BPPV, and which canal is affected?",
+    "Is a home manoeuvre safe with my neck, back and other health problems?",
+    "What changes require urgent help, and when should persistent symptoms be reviewed?"
+  ]
+}

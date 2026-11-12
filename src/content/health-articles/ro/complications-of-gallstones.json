@@ -1,0 +1,51 @@
+{
+  "title": "Complicațiile calculilor biliari: blocaj și inflamație",
+  "intro": "Calculii biliari pot rămâne fără simptome ani de zile, dar o piatră care blochează drenajul poate provoca mai mult decât o criză dureroasă. Inflamația vezicii biliare, infecția căilor biliare sau inflamația pancreasului pot necesita tratament urgent în spital. Un diagnostic anterior de calculi nu înseamnă că orice durere abdominală nouă poate fi tratată în siguranță acasă.",
+  "sections": [
+    {
+      "heading": "Locul blocajului schimbă problema",
+      "paragraphs": [
+        "Vezica biliară stochează bila produsă de ficat. Un calcul care îi blochează ieșirea poate provoca colecistită, adică inflamația vezicii. Un calcul în canalul biliar principal poate împiedica scurgerea bilei și provoca icter; infecția căilor biliare se numește colangită. Un calcul lângă zona comună de drenaj poate declanșa și pancreatită, inflamația pancreasului. Rar, o piatră poate ajunge în intestin printr-o legătură anormală și îl poate bloca. Sunt complicații diferite, nu etape prin care va trece inevitabil orice persoană cu calculi."
+      ]
+    },
+    {
+      "heading": "Simptome care nu trebuie să aștepte",
+      "paragraphs": [
+        "Cereți evaluare de urgență pentru durere abdominală bruscă și severă, durere spre spate cu vărsături, febră sau frisoane puternice cu durere abdominală ori îngălbenirea ochilor sau pielii. Confuzia, leșinul, respirația rapidă sau slăbiciunea profundă pot indica o boală sistemică gravă, precum sepsisul. Nu conduceți dacă sunteți foarte bolnav. Durerea persistentă sau repetată în abdomenul superior necesită sfat medical prompt chiar fără febră. Urina închisă și scaunele decolorate pot însoți blocarea bilei. Nu trebuie să apară toate semnele înainte să cereți ajutor; și alte boli grave produc dureri asemănătoare."
+      ]
+    },
+    {
+      "heading": "Cum este verificată cauza în spital",
+      "paragraphs": [
+        "Evaluarea include simptomele, examinarea și analize de sânge pentru inflamație și afectarea ficatului sau pancreasului. Ecografia este adesea prima investigație, dar nu vede fiecare calcul din căile biliare. După rezultate, medicii pot folosi o examinare RMN a canalelor, numită MRCP, ecoendoscopie sau alte investigații imagistice. ERCP este o procedură endoscopică folosită în principal pentru tratarea blocajului, nu primul test obișnuit pentru toată lumea. Spuneți echipei despre sarcină, alergii, anticoagulante și operații anterioare. Un calcul văzut la investigație nu dovedește singur că explică toate simptomele."
+      ]
+    },
+    {
+      "heading": "Tratamentul vizează boala și blocajul",
+      "paragraphs": [
+        "Îngrijirea poate include perfuzii, calmante și antibiotice când se suspectează infecție. Respectați instrucțiunile echipei despre alimentație și lichide; nu începeți post prelungit acasă. Căile biliare infectate și blocate pot necesita drenaj urgent, adesea prin ERCP, care poate extrage piatra sau introduce un stent temporar. Discutați riscurile, inclusiv pancreatită, sângerare și perforație, și dacă stentul trebuie scos ulterior. În colecistita acută se recomandă frecvent îndepărtarea precoce a vezicii când starea permite. Dacă operația este inițial prea riscantă, unii pacienți au nevoie de drenajul vezicii. Momentul depinde de complicație și starea generală."
+      ]
+    },
+    {
+      "heading": "Recuperarea și prevenirea altei crize",
+      "paragraphs": [
+        "Extragerea unui calcul din canal nu elimină pietrele rămase în vezică; poate fi recomandat un tratament suplimentar. Ficatul continuă să producă bilă după îndepărtarea vezicii și majoritatea persoanelor pot trăi normal fără ea. Întrebați despre recuperare, modificările scaunului și controale. Evitarea alimentelor care vă declanșează simptomele poate ajuta până la tratament, dar dieta nu rezolvă sigur un blocaj și nu vindecă vezica infectată. Evitați curele nevalidate de «curățare a bilei» și slăbirea rapidă. Majoritatea calculilor veziculari fără simptome nu necesită operație de rutină; calculii din canal sau complicațiile sunt situații diferite. Cereți un plan clar pentru durere nouă, febră ori icter după externare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: o criză diferită",
+      "text": "Elena a avut anterior episoade scurte de durere. Acum durerea persistă, se simte febrilă și ochii par galbeni. Cere evaluare de urgență în loc să repete calmantul acasă și să aștepte o evoluție ca înainte."
+    },
+    {
+      "title": "Exemplu ipotetic: proceduri cu scopuri diferite",
+      "text": "Echipa din spital eliberează canalul biliar al unui bărbat prin ERCP. El întreabă de ce se mai discută operația vezicii. Medicul explică faptul că bila se scurge acum, dar pietrele rămase în vezică pot provoca alt episod; stabilesc un plan individual de tratament și control."
+    }
+  ],
+  "questions": [
+    "Ce structură este blocată sau inflamată în cazul meu?",
+    "Am nevoie de drenajul canalului, operația vezicii ori ambele și când?",
+    "Dacă se introduce un stent, cine organizează verificarea sau extragerea lui?"
+  ]
+}

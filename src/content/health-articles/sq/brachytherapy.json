@@ -1,0 +1,51 @@
+{
+  "title": "Brakiterapia: rrezatimi i brendshëm dhe plani i kujdesit",
+  "intro": "Brakiterapia vendos burim të mbyllur rrezatimi në zonën e trajtuar ose pranë saj. Jep rrezatim lokal duke kufizuar disa inde përreth, por edhe indi i shëndetshëm mund të preket. Përdoret për kancere të zgjedhura, vetëm ose me trajtime të tjera. Procedura, masat dhe efektet varen nga vendi dhe metoda; udhëzimet e tjetrit nuk vlejnë automatikisht.",
+  "sections": [
+    {
+      "heading": "Sqaroni pse rekomandohet metoda",
+      "paragraphs": [
+        "Pyetni onkologun e rrezatimit për qëllimin dhe lidhjen me operacion, rrezatim të jashtëm ose barna kur planifikohen. Përshtatshmëria varet nga vendi, shtrirja, trajtimi i mëparshëm dhe shëndeti. Diskutoni përfitimin realist, alternativat dhe pasigurinë. Trajtimi lokal nuk trajton automatikisht kancerin diku tjetër. Pyetni simptomat dhe rezultatet afatgjata personale pa gjykuar vetëm nga emri ose numri i takimeve."
+      ]
+    },
+    {
+      "heading": "Dalloni trajtimin e përkohshëm nga implantet e përhershme",
+      "paragraphs": [
+        "Në trajtimin e përkohshëm burimi qëndron për kohë të planifikuar përmes aplikatorit ose kateterit dhe hiqet. Disa japin seanca të shkurtra me dozë të lartë; të tjerë orar më të gjatë ose me pulse. Trajtimi i përhershëm lë burime të vogla të mbyllura me rrezatim që pakësohet. Shtrimi, vizitat dhe siguria ndryshojnë. Pyetni burimin e sistemin e saktë, çfarë mbetet dhe konfirmimin e përfundimit. Implant i përhershëm nuk do të thotë rrezatim i fortë pafund."
+      ]
+    },
+    {
+      "heading": "Përgatitni vendosjen, imazherinë dhe rehatinë",
+      "paragraphs": [
+        "Imazheria planifikon dhe kontrollon pozicionin. Gjilpërat, kateterët ose aplikatori mund të kërkojnë anestezi ose sedacion sipas vendit e teknikës. Pyetni menaxhimin e dhimbjes e të përzierave, lëvizjen e kufizuar dhe komunikimin gjatë trajtimit. Tregoni barna, alergji, procedura dhe shtatzëni. Ndiqni udhëzimin personal për ushqim, pije e barna, përfshirë antikoagulantët. Organizoni transport e ndihmë pas sedacionit kur kërkohet; mos shpikni rregulla nga përshkrimi i përgjithshëm."
+      ]
+    },
+    {
+      "heading": "Ndiqni masat e metodës së saktë",
+      "paragraphs": [
+        "Ekipi mund të kufizojë vizitat ose afërsinë gjatë burimit aktiv. Kur të gjitha burimet e përkohshme hiqen, ai trajtim nuk ju bën më radioaktiv. Implantet e përhershme mund të duan masa të përkohshme pranë fëmijëve ose shtatzënave dhe udhëzime për burim të zhvendosur, udhëtim ose procedura. Kërkoni udhëzim me shkrim, kontakt dhe kartë kur duhet. Rregullat varen nga izotopi e trajtimi: jo periudha universale ndarjeje dhe mos prekni vetë një burim të dyshuar të lirë."
+      ]
+    },
+    {
+      "heading": "Planifikoni rikuperimin, efektet dhe ndjekjen",
+      "paragraphs": [
+        "Efektet varen nga zona: dhimbje lokale, lodhje, simptoma urinare ose zorrësh, funksion seksual apo inde pranë. Pyetni çfarë pritet, çfarë shfaqet vonë dhe ndihmën, përfshirë fertilitetin para trajtimit kur duhet. Merrni udhëzime për plagët e kateterin e mbetur. Temperatura, dhimbja e fortë në rritje, gjakderdhja e madhe ose pamundësia urinare duan vlerësim të shpejtë; kolapsi, frymëmarrja shumë e vështirë ose gjendja kritike duan emergjencë. Mbani kontrollet edhe kur ndiheni mirë për përgjigjen dhe efektet e vonshme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: kontaktet",
+      "text": "Dikush me brakiterapi të përkohshme shqetësohet për përqafimin e nipit. Pyet nëse janë hequr të gjitha burimet dhe ndjek udhëzimin e vet, jo masat e një implanti të përhershëm të tjetrit."
+    },
+    {
+      "title": "Shembull hipotetik: procedura ditore",
+      "text": "Pacienti mëson se vendosja do sedacion. Konfirmon barna e ushqim, organizon shoqërues dhe pyet raportimin e dhimbjes ose urinimit të vështirë. Seanca e shkurtër nuk nënkupton vizitë pa përgatitje."
+    }
+  ],
+  "questions": [
+    "Çfarë përfitimi pritet për kancerin tim dhe si krahasohen alternativat?",
+    "Burimi është i përkohshëm apo i përhershëm dhe çfarë përgatitjeje e masash kontakti duhen?",
+    "Cilat efekte ose simptoma urgjente raportoj dhe si kontrollohet përgjigjja?"
+  ]
+}

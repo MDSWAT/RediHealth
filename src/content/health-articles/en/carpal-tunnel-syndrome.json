@@ -1,0 +1,51 @@
+{
+  "title": "Carpal tunnel syndrome: symptoms, assessment and treatment choices",
+  "intro": "Carpal tunnel syndrome happens when the median nerve is compressed as it passes through a narrow space at the wrist. It can cause tingling, numbness, pain and difficulty using the hand. Symptoms may come and go, especially at night, but persistent compression can damage the nerve. An assessment helps distinguish this problem from other causes of hand symptoms and decide whether a splint, injection or operation is appropriate.",
+  "sections": [
+    {
+      "heading": "Symptoms and changes worth reporting",
+      "paragraphs": [
+        "The thumb, index finger, middle finger and thumb-side part of the ring finger are commonly affected. Pain may extend into the forearm. Some people wake at night and shake the hand for relief. Reduced grip, dropping objects, constant numbness or wasting of the muscles at the thumb's base should be reported promptly rather than managed indefinitely with painkillers. Symptoms centred on the little finger, neck pain or other neurological changes may point to another or an additional problem."
+      ]
+    },
+    {
+      "heading": "What the clinician checks",
+      "paragraphs": [
+        "The clinician asks about symptom distribution, duration, sleep, work, hobbies and other health conditions, then examines sensation, strength and the wrist. Diabetes, pregnancy, inflammatory joint disease, anatomy and previous injury can contribute. Repeated forceful gripping, vibration or sustained wrist bending may aggravate symptoms, but a single activity does not explain every case. Nerve-conduction studies or imaging may be useful when the diagnosis is uncertain or more information is needed. Not everyone requires every test."
+      ]
+    },
+    {
+      "heading": "Splints and practical adjustments",
+      "paragraphs": [
+        "For suitable milder cases, a wrist splint worn at night can keep the wrist in a neutral position and reduce pressure. Ask about fit; a painfully tight splint is not the aim. Reduce or adapt tasks that repeatedly provoke symptoms, discuss tools and breaks at work, and avoid sleeping with the wrist sharply bent. Exercises may be advised, but their benefits are uncertain and they should not worsen symptoms. Arrange a review rather than continuing the same approach while numbness or weakness progresses."
+      ]
+    },
+    {
+      "heading": "Injections and surgery have different roles",
+      "paragraphs": [
+        "A corticosteroid injection may ease symptoms, often temporarily; recurrence is possible. Discuss risks, including those relevant to diabetes, with the treating clinician. Pain medicines may help discomfort but do not remove nerve compression. Surgery releases the ligament forming the tunnel's roof to create more room for the nerve. It may be recommended for persistent symptoms or significant nerve impairment. Benefits, wound problems, scar discomfort and other complications need discussion; surgery cannot guarantee full recovery of long-standing nerve damage."
+      ]
+    },
+    {
+      "heading": "Plan follow-up and recovery around your activities",
+      "paragraphs": [
+        "Ask what improvement to expect, when to reassess and what changes need earlier review. Pregnancy-associated symptoms sometimes improve after pregnancy, but persistent or severe symptoms still deserve care. After surgery, return to driving, lifting and work depends on healing, hand function and the demands of the task, not a universal date. Follow the team's wound and activity instructions. Rapidly worsening weakness, a new serious wrist injury or a cold, discoloured hand needs urgent assessment rather than assuming familiar carpal tunnel symptoms explain it."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Night symptoms — hypothetical example",
+      "text": "A person wakes with tingling in the thumb and neighbouring fingers. After assessment, they try a correctly fitted night splint and modify a provoking task. They agree a review date and seek earlier advice if numbness becomes constant or strength declines."
+    },
+    {
+      "title": "Persistent weakness — hypothetical example",
+      "text": "Another person keeps dropping objects despite initial treatment. They return for reassessment rather than adding more pain medicine. The specialist discusses nerve function, further testing if needed and whether surgical release offers a reasonable balance of benefits and risks."
+    }
+  ],
+  "questions": [
+    "Do my symptoms fit median-nerve compression, or could another condition be involved?",
+    "What can a splint or injection achieve, and what would make surgery preferable?",
+    "When should I return, and how should I adapt work, driving and lifting during recovery?"
+  ]
+}

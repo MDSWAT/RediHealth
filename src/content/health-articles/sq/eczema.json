@@ -1,0 +1,51 @@
+{
+  "title": "Ekzema atopike: kujdesi ditor dhe plani i acarimit",
+  "intro": "Ekzema atopike është inflamacion që e bën lëkurën të kruhet, thahet dhe acarohet lehtë. Shpesh nis në fëmijëri por vazhdon ose fillon te të rriturit. Acarimet prekin gjumin, punën dhe familjen. Vetë ekzema nuk ngjitet dhe nuk tregon higjienë të keqe. Trajtimi bashkon mbrojtjen ditore dhe barna sipas zonës e rëndesës.",
+  "sections": [
+    {
+      "heading": "Njihni modelin dhe kontrolloni diagnozën",
+      "paragraphs": [
+        "Lëkura mund të çahet, trashet, luspohet ose rrjedhë, me njolla që ndryshojnë. Inflamacioni duket i kuq në lëkurë të çelët, vjollcë, gri, më i errët ose i çelët në lëkurë kafe e të zezë; shihni strukturën dhe ndjesitë. Foshnjat shpesh preken në fytyrë, më vonë palosjet, duart dhe zona të tjera. Gjenet, barriera dhe imuniteti ndërveprojnë. Nxehtësia, djersa, sapuni agresiv dhe produkte të veçanta keqësojnë, por acarimi nuk provon alergji ushqimore. Skuqje të tjera ngjajnë. Kërkoni vlerësim për të renë ose të paqartën, sidomos kur nuk reagon si pritet."
+      ]
+    },
+    {
+      "heading": "Mbrojeni edhe mes acarimeve",
+      "paragraphs": [
+        "Përdorni rregullisht emolient pa aromë edhe kur përmirësohet dhe plan të butë larjeje me mjekun. Larja e shkurtër e rehatshme, tharja e butë dhe hidratimi pas ndihmojnë më shumë se banja e gjatë e nxehtë. Produkti duhet të jetë i përdorshëm vazhdimisht; kërkoni tjetër nëse pickon gjatë ose keqëson. Duart e pastra dhe shmangia e ndotjes së kutisë kanë rëndësi. Thonjtë e shkurtër dhe rrobat e rehatshme ulin dëmin pa fajësuar kruarjen. Mbetjet në rroba, fasha e çarçafë rrisin zjarrin: shmangni duhanin dhe flakët; larja ul grumbullimin, nuk e heq rrezikun. Vaska dhe dyshemeja mund të rrëshqasin."
+      ]
+    },
+    {
+      "heading": "Udhëzime sipas zonës për inflamacionin",
+      "paragraphs": [
+        "Kortikosteroidet lokale kontrollojnë acarimin me fuqi, sasi, vend dhe kohë të përshtatshme. Fytyra, qepallat, palosjet dhe foshnjat duan kujdes të veçantë. Kërkoni demonstrim dhe plan: çfarë ku, sa shpesh, kur ndalet ose ulet dhe si vazhdon hidratimi. Frika sjell nëntrajtim; përdorimi i gjatë i pambikëqyrur i produktit shumë të fortë dëmton. Mos ndani receta dhe mos vendosni krem të fortë trupi te qepallat. Trajtime të tjera lokale të përshkruara vlejnë për zona ose përsëritje. Mbështjelljet e lagështa dhe fashat mbyllëse duan mësim, sidomos me steroid sepse ndryshojnë ekspozimin."
+      ]
+    },
+    {
+      "heading": "Kur mund të jetë infeksion",
+      "paragraphs": [
+        "Përkeqësimi i shpejtë, dhimbja në rritje, ngrohtësia, fryrja, qelbi, kore të mëdha ose gjendja e keqe duan kontroll shpejt. Flluskat e dhimbshme të ngjashme ose plagët e vogla të thelluara, sidomos me ethe e përhapje, mund të jenë ekzemë herpetike që do trajtim urgjent atë ditë. Sytë e prekur duan specialist urgjent. Jo çdo njollë e lagur do antibiotik; mos provoni krem të mbetur. Mjeku dallon inflamacionin, bakteret dhe viruset. Sëmundja e rëndë, konfuzioni, kolapsi ose frymëmarrja rëndë kërkojnë emergjencë. Tregoni imunosupresantët dhe kontaktin me herpes buzësh. Ndryshimi serioz nuk pret vizitën rutinë."
+      ]
+    },
+    {
+      "heading": "Ekzema e vështirë dhe jeta ditore",
+      "paragraphs": [
+        "Në mungesë efekti kontrolloni diagnozën, aplikimin, sasinë e mjaftueshme, alergjinë e kontaktit dhe infeksionin para shtimit vetë. Rëndesa ose vazhdimësia mund të dojë fototerapi ose barna sistemike me monitorim. Mos përdorni solare ose barna imunitare pa mbikëqyrje. Diskutoni gjumin, ankthin, shkollën, punën dhe mbështetjen e kujdestarit. Heqja e shumë ushqimeve dhe testet e pavërtetuara krijojnë kufizime të panevojshme, sidomos te fëmija; reagimi ushqimor do vlerësim të përqendruar. Vendosni kontroll dhe plan të ri acarimi. Kontrolli i mirë është synim i arsyeshëm edhe pa shërim të përhershëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: cili krem dhe ku",
+      "text": "Prindi i Linës nuk di nëse steroidi vlen për fytyrë e këmbë. Mjeku shënon zonat dhe demonstron sasinë. Vazhdojnë emolientin dhe kontrollin, pa shmangur çdo antiinflamator ose përdorur kremin e fortë kudo."
+    },
+    {
+      "title": "Shembull hipotetik: acarim ndryshe",
+      "text": "Arbeni zakonisht ka njolla të thata me kruarje, tani flluska të ngjashme të dhimbshme, ethe dhe plagë që përhapen shpejt. Kërkon vlerësim urgjent atë ditë për ekzemë herpetike të mundshme, pa pritur vetëm hidratimin."
+    }
+  ],
+  "questions": [
+    "A është ekzemë atopike dhe çfarë e keqëson?",
+    "Cilin produkt, sasi e kohë përdor në çdo zonë gjatë dhe mes acarimeve?",
+    "Çfarë sugjeron infeksion dhe kur duhet urgjencë ose specialist?"
+  ]
+}

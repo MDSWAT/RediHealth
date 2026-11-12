@@ -1,0 +1,51 @@
+{
+  "title": "Trombosi venosa profonda: riconoscere e trattare un coagulo",
+  "intro": "La trombosi venosa profonda è un coagulo in una vena profonda, di solito nella gamba ma anche nel braccio o nella pelvi. Richiede valutazione tempestiva perché può crescere o raggiungere in parte i polmoni causando embolia polmonare. I soli sintomi non confermano né escludono la diagnosi. Nuovo gonfiore o dolore inspiegato in un arto non va attribuito automaticamente a uno stiramento.",
+  "sections": [
+    {
+      "heading": "Quali sintomi richiedono aiuto immediato",
+      "paragraphs": [
+        "Possibili segni sono gonfiore, dolorabilità, calore e colore cutaneo diverso, spesso in una gamba. Alcuni coaguli danno pochi o nessun sintomo. Chiedere consiglio urgente nella stessa giornata se si sospetta trombosi. Chiamare i soccorsi per affanno improvviso, dolore toracico o dorsale alto, svenimento, collasso o sangue con tosse e difficoltà respiratoria. Un'embolia può avvenire senza sintomi evidenti alla gamba. Non guidare in una sospetta emergenza. Una precedente valutazione rassicurante non elimina la necessità di agire su nuovi sintomi toracici o respiratori."
+      ]
+    },
+    {
+      "heading": "Il rischio non riguarda solo i voli lunghi",
+      "paragraphs": [
+        "Chirurgia recente, ricovero, trauma, mobilità ridotta o gesso aumentano il rischio anche dopo dimissione. Contano tumore, coaguli precedenti, disturbi della coagulazione, gravidanza e periodo dopo il parto. Farmaci con estrogeni e lunghi viaggi contribuiscono. Riferire fattori e familiarità, ma un coagulo può comparire senza motivo evidente. Una gamba rossa gonfia può dipendere anche da infezione o altro problema. Assenza di fattori e prove di movimento a casa non escludono affidabilmente la trombosi."
+      ]
+    },
+    {
+      "heading": "Gli esami si interpretano in sequenza",
+      "paragraphs": [
+        "Il medico combina visita e probabilità clinica con D-dimero ed ecografia venosa. Il D-dimero alto non è una diagnosi: molte condizioni lo aumentano. Se un negativo basta dipende dalla valutazione e dal percorso. Ad alcuni serve un'ecografia ripetuta dopo la prima negativa. Se gli esami tardano, il medico può prescrivere anticoagulazione temporanea dopo verifica della sicurezza. Chiedere cosa fare aspettando, chi comunica risultati e quando tornare. Non iniziare, proseguire o fermare la terapia interpretando autonomamente un risultato."
+      ]
+    },
+    {
+      "heading": "Gli anticoagulanti prevengono crescita e altri coaguli",
+      "paragraphs": [
+        "Di solito si usano compresse o iniezioni anticoagulanti prescritte. Riducono la coagulazione mentre il corpo affronta gradualmente il coagulo; non lo sciolgono istantaneamente. Scelta e durata dipendono da sede, cause scatenanti, recidiva, sanguinamento, funzione renale, gravidanza e altre cure. Alcuni casi gravi richiedono procedure specialistiche, ma rimozione o farmaci trombolitici non sono routine per tutti. Seguire il ciclo e chiedere delle dosi dimenticate. Verificare prima di analgesici, aspirina, integratori o nuovi farmaci. Emorragia incontrollabile, vomito con sangue, feci nere o importante colpo alla testa durante anticoagulazione richiedono attenzione immediata."
+      ]
+    },
+    {
+      "heading": "Recupero e prevenzione sono individuali",
+      "paragraphs": [
+        "Dopo valutazione e cura seguire consigli su cammino, gamba sollevata, lavoro e viaggi. Non presumere necessario un lungo riposo a letto né sicuro viaggiare subito. La compressione adatta aiuta alcuni sintomi, senza sostituire l'anticoagulante. Gonfiore persistente, pesantezza o cambiamenti cutanei possono essere problemi post-trombotici e meritano controllo. Nuovi dolore o gonfiore richiedono rivalutazione per recidiva. Prima di altra chirurgia, gravidanza, gesso o viaggi lunghi riferire il precedente coagulo. Pause di movimento e prevenzione prescritta aiutano; non prendere in prestito iniezioni né scegliere aspirina come sostituto."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: sintomi dopo la dimissione",
+      "text": "Dopo un intervento Dario ha un nuovo polpaccio gonfio e doloroso a casa. Chiede consiglio nella giornata e segnala l'operazione, senza attribuire tutto al poco movimento. Sa di chiamare i soccorsi per affanno improvviso o dolore toracico."
+    },
+    {
+      "title": "Esempio ipotetico: capire l'ecografia ripetuta",
+      "text": "L'ecografia iniziale di Ana non mostra coaguli, ma il medico spiega che l'insieme dei dati richiede di ripeterla. Lei mantiene l'appuntamento e segue il piano farmacologico esplicito senza pensare che un negativo renda inutile ogni controllo."
+    }
+  ],
+  "questions": [
+    "Qual è il percorso degli esami e servono un'altra ecografia o cure nell'attesa?",
+    "Quanto dura il farmaco e quali precauzioni per sanguinamento e interazioni?",
+    "Quando posso lavorare o viaggiare e quale prevenzione servirà in futuro?"
+  ]
+}

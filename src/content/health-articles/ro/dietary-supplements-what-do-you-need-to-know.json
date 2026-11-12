@@ -1,0 +1,51 @@
+{
+  "title": "Suplimentele alimentare: utilitate și folosire în siguranță",
+  "intro": "Suplimentele includ vitamine, minerale, plante și alte ingrediente concentrate, în comprimate, picături, pudre sau băuturi. Unele au rol clar, precum tratarea unui deficit ori acoperirea unei nevoi specifice etapei de viață. Mai mult nu înseamnă automat mai bine, iar natural nu înseamnă inofensiv. Decizia privește un ingredient, scop și doză, nu promisiunea generală de sănătate.",
+  "sections": [
+    {
+      "heading": "Porniți de la un motiv clar",
+      "paragraphs": [
+        "Dieta variată oferă mulți nutrienți; suplimentele nu înlocuiesc varietatea sau tratamentul medical. Medicul poate recomanda produs pentru deficit dovedit, absorbție redusă, dietă restrictivă ori prevenție recunoscută. Acidul folic în perioada concepției este exemplu; sfatul despre vitamina D depinde de ghidul local și situație. Întrebați despre beneficiu, utilitatea testării și reevaluare. Oboseala, căderea părului și concentrarea slabă au multe cauze: amestecul mare de vitamine poate întârzia diagnosticul. Nu opriți un supliment prescris doar fiindcă sfatul general spune că mulți nu au nevoie."
+      ]
+    },
+    {
+      "heading": "Citiți ingredientele și evitați dublarea",
+      "paragraphs": [
+        "Verificați cantitatea pe comprimat ori porție și numărul de porții presupus pe etichetă. Ambalajele similare pot avea concentrații diferite. Verificați împreună multivitaminele, nutrienții separați, produsele energizante și băuturile fortificate pentru aportul total. Un procent mare din aportul de referință nu dovedește beneficiu suplimentar și nu reprezintă țintă individuală de tratament. Miligramele și microgramele sunt cantități diferite; întrebați farmacistul, nu convertiți nesigur. Excesul de fier și unele vitamine pot fi toxice; țineți produsele, mai ales jeleurile atrăgătoare, departe de copii. Nevoile și produsele copiilor diferă de cele ale adulților."
+      ]
+    },
+    {
+      "heading": "Verificați medicamentele, bolile și procedurile",
+      "paragraphs": [
+        "Spuneți echipei toate suplimentele, inclusiv plantele; fotografia etichetei ajută. Ingredientele pot modifica efectul anticoagulantelor și altor medicamente; sunătoarea interacționează cu multe tratamente, inclusiv unele contraceptive. Mineralele pot reduce absorbția unor medicamente, deci distanțarea necesită instrucțiuni specifice. Bolile renale și hepatice pot crește riscul. Înaintea operației întrebați ce produse se opresc și când, fără presupunerea că suplimentele nu influențează sângerarea ori anestezia. Biotina din produse pentru păr și unghii poate denatura anumite analize: anunțați medicul și laboratorul înainte și urmați instrucțiunile."
+      ]
+    },
+    {
+      "heading": "Evaluați separat promisiunea și calitatea",
+      "paragraphs": [
+        "Mărturia personală, experimentul de laborator ori lista atrăgătoare nu dovedesc efectul produsului final asupra sănătății. Întrebați dacă studiile privesc același preparat, doză și persoane ca dumneavoastră. Slăbirea rapidă, creșterea musculară spectaculoasă și vindecarea bolilor grave cer prudență deosebită. Regulile diferă între țări; disponibilitatea la vânzare nu înseamnă aceeași evaluare a beneficiului ca pentru medicamente. Certificarea calității poate descrie fabricația ori conținutul, fără a dovedi beneficiul clinic sau siguranța individuală. Preferați etichetă clară și furnizor identificabil; evitați amestecurile necunoscute și sfaturile legate de cumpărături repetate scumpe."
+      ]
+    },
+    {
+      "heading": "Plan clar și reacție la probleme",
+      "paragraphs": [
+        "Notați scopul, doza, durata și monitorizarea lângă medicamente. Sarcina, alăptarea și copilăria cer sfat potrivit; în sarcină evitați suplimentele cu vitamina A ca retinol și uleiul de ficat de cod, exceptând tratament indicat specific de specialist. Nu înlocuiți tratamentul prescris și nu presupuneți că produsele multiple se combină sigur. Simptomele noi cer sfat; aduceți ambalajul și raportați reacția suspectată local. Alergia severă, colapsul, respirația foarte grea ori suspiciunea de otrăvire cer ajutor urgent de urgență sau toxicologie. Nu provocați vărsături după supradozaj suspectat. Reevaluarea poate favoriza schimbarea hranei, produs mai simplu sau lipsa suplimentului."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: ingrediente dublate",
+      "text": "Nina cumpără multivitamine, deși ia deja un nutrient recomandat medical. Farmacistul verifică etichetele și aportul total înainte de combinare. Păstrează scopul clar și evită dublarea inutilă, fără presupunerea unui beneficiu dublu."
+    },
+    {
+      "title": "Exemplu ipotetic: evitarea unei surprize la analize",
+      "text": "Înainte de recoltare, Ilir arată produsul pentru păr cu biotină. Echipa verifică dacă analiza este influențată și oferă instrucțiuni specifice. El nu ascunde produsul fiindcă este fără rețetă."
+    }
+  ],
+  "questions": [
+    "Ce problemă precisă rezolvă ingredientul și ce dovezi există?",
+    "Doza totală este sigură cu produsele, bolile și medicamentele mele?",
+    "Cât timp îl iau, ce monitorizăm și când reevaluăm?"
+  ]
+}

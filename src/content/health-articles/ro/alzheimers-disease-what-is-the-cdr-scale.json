@@ -1,0 +1,51 @@
+{
+  "title": "Scala CDR: înțelegerea unei evaluări a demenței",
+  "intro": "Clinical Dementia Rating, sau CDR, este o evaluare structurată a modului în care dificultățile de gândire și memorie afectează viața zilnică. Un profesionist instruit combină informațiile persoanei cu cele oferite de cineva care o cunoaște bine. Poate descrie severitatea și schimbările în timp, dar un scor singur nu identifică originea problemelor de memorie, nu prezice viitorul individual și nu înlocuiește evaluarea clinică completă.",
+  "sections": [
+    {
+      "heading": "Înțelegeți ce încearcă să surprindă evaluarea",
+      "paragraphs": [
+        "CDR analizează memoria, orientarea, judecata și rezolvarea problemelor, alături de activitățile în comunitate, casă și hobbyuri și îngrijirea personală. Accentul cade pe schimbarea față de abilitățile anterioare și pe efectul dificultăților cognitive asupra independenței. Nu este doar un test de cunoștințe sau o numărătoare a numelor uitate. Dificultatea de a face cumpărături din cauza confuziei diferă de evitarea magazinelor deoarece un genunchi dureros împiedică mersul. Explicați atât schimbările cognitive, cât și obstacolele fizice sau sociale."
+      ]
+    },
+    {
+      "heading": "Pregătiți observații concrete, nu răspunsuri exersate",
+      "paragraphs": [
+        "Aduceți exemple despre ce s-a schimbat și când: programări ratate, dificultăți la sarcini familiare sau ajutor devenit necesar. Descrieți ce face persoana încă independent, nu doar dificultățile. O rudă sau un prieten cu contact regulat poate oferi context util, cu respectarea dorințelor și intimității persoanei. Spuneți evaluatorului despre nevoile lingvistice, de auz sau vedere. Nu antrenați răspunsurile pentru un anumit scor; o relatare exactă ajută mai mult la planificarea sprijinului."
+      ]
+    },
+    {
+      "heading": "Deosebiți scorul global de suma domeniilor",
+      "paragraphs": [
+        "Rapoartele pot prezenta un scor CDR global sau CDR-SB, suma scorurilor pe domenii. Sunt rezumate diferite, iar numerele nu sunt interschimbabile. Scorul global variază de la zero la trei, iar suma domeniilor de la zero la optsprezece; valorile mai mari indică afectare mai accentuată. Scorul global urmează reguli de calcul, nu o medie simplă. Întrebați ce măsură este discutată și ce înseamnă profilul pentru viața zilnică, în loc să comparați numere izolate din rapoarte diferite."
+      ]
+    },
+    {
+      "heading": "Interpretați schimbarea în contextul clinic complet",
+      "paragraphs": [
+        "Schimbările între consultații necesită context: cine a furnizat informațiile, ce sprijin există acum și dacă persoana era bolnavă. Medicamentele, depresia, problemele de somn și dificultățile senzoriale pot influența funcționarea și trebuie considerate în evaluarea generală. Confuzia apărută brusc sau deteriorarea rapidă necesită evaluare medicală fără a aștepta alt scor de rutină. CDR nu arată singur dacă este prezentă patologia Alzheimer. Clinicianul poate folosi istoricul, examinarea, teste cognitive și alte investigații pentru a cerceta cauza."
+      ]
+    },
+    {
+      "heading": "Folosiți rezultatele pentru sprijin și discutarea dovezilor",
+      "paragraphs": [
+        "Întrebați cum orientează evaluarea revizuirea medicamentelor, ajutorul zilnic, siguranța și planurile viitoare. Schimbarea scorului CDR-SB mediu într-un grup de studiu nu promite aceeași ameliorare pentru o persoană. Diferențele mici între grupuri și schimbările individuale relevante sunt întrebări distincte. Eligibilitatea pentru tratament depinde și de diagnostic, sănătate, aprobarea locală și tratamentul specific, nu doar de CDR. Articolul explică evaluarea; nu este formular autorizat de calcul sau instrument de autodiagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: explicați de ce este necesar ajutorul",
+      "text": "O fiică spune că tatăl ei nu mai gătește. Evaluatorul întreabă dacă uită etape familiare, nu poate sta în picioare din cauza artritei sau a ales să lase altcuiva gătitul. Detaliile diferențiază schimbarea cognitivă de alte motive pentru ajutor."
+    },
+    {
+      "title": "Exemplu ipotetic: compararea rapoartelor",
+      "text": "Familia vede un rezultat CDR global într-un raport și un număr CDR-SB mai mare în altul. În loc să presupună o deteriorare dramatică, cere medicului să identifice cele două măsuri și să explice dacă evaluările comparabile arată o schimbare reală."
+    }
+  ],
+  "questions": [
+    "Este un scor CDR global sau CDR-SB și ce descrie în viața zilnică?",
+    "Ce alți factori de sănătate, comunicare sau sprijin au putut influența evaluarea?",
+    "Cum schimbă rezultatele planul de îngrijire și ce trebuie reevaluat mai devreme?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Medicines assessed by IQWiG: how to read a benefit assessment",
+  "intro": "A new medicine can be authorised for use without being better than the treatment already available. IQWiG, Germany's Institute for Quality and Efficiency in Health Care, examines evidence about benefits and harms, including comparisons requested by the Federal Joint Committee, G-BA. Understanding what was compared helps you use an assessment in a treatment discussion.",
+  "sections": [
+    {
+      "heading": "Separate authorisation from additional benefit",
+      "paragraphs": [
+        "Authorisation concerns whether a medicine can be used for a specified indication on the basis of quality, efficacy and safety. An additional-benefit assessment asks how it compares with an appropriate existing treatment for particular patients. A study against placebo may support an authorisation but not answer every question about comparison with standard care. The German assessment process informs health-system decisions, including reimbursement negotiations; it is not an individual prescription. Other countries have their own decisions. This page explains how to understand assessments and does not reproduce a complete, continually updated catalogue of every medicine assessed."
+      ]
+    },
+    {
+      "heading": "Match the report to the exact clinical situation",
+      "paragraphs": [
+        "Search using the active ingredient as well as the brand and check the indication, age group, disease stage, previous treatments and date. The same medicine can have different conclusions for different patient groups or uses. A combination treatment is not automatically equivalent to the medicine alone. Read the specified comparator and whether the study actually provides a suitable comparison. A report about previously untreated adults may not apply to a child or someone whose earlier treatments failed. Ask your clinician to identify the assessment that matches your situation and to explain important differences rather than relying on a search-result headline."
+      ]
+    },
+    {
+      "heading": "Look for outcomes that matter to people",
+      "paragraphs": [
+        "Relevant outcomes include survival, symptoms, daily functioning, quality of life and adverse effects. A better laboratory value or scan finding does not always show that people feel better or live longer. Ask how many people benefited or were harmed, over what period, and how large the difference was in absolute terms. Small studies, short follow-up, missing information or an unsuitable comparison can make the answer uncertain. The absence of usable evidence for an advantage is not automatically proof that the treatments are identical or that the new medicine has no effect. Benefits and harms also need to be weighed together."
+      ]
+    },
+    {
+      "heading": "Check which stage of the process you are reading",
+      "paragraphs": [
+        "A manufacturer supplies evidence for the German early assessment process. IQWiG may assess that evidence on behalf of G-BA, and further comments or information can be considered before G-BA makes its resolution. Distinguish a company claim, an IQWiG assessment or addendum and the final G-BA decision; conclusions can differ or be updated. European joint clinical assessments may also contribute within the relevant procedures, but do not remove the need to understand the national decision and patient group. Use the official dated documents and check for later versions. A patient summary makes a report easier to understand but does not replace its scope or limitations."
+      ]
+    },
+    {
+      "heading": "Bring the evidence into a personal care decision",
+      "paragraphs": [
+        "Ask how the findings fit your other illnesses, medicines, prior response, priorities and ability to manage treatment. Convenience, administration, monitoring, side effects, costs and access can matter even when an additional benefit is uncertain. Agree what improvement would justify continuing, how safety will be monitored and when to review. Do not stop an effective prescribed medicine because of a headline, and do not start a new one simply because it is newer. If treatment is changing, get clear instructions and a contact for problems. An assessment supports a shared decision; it cannot guarantee your individual response."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: the same medicine, different groups",
+      "text": "Ana reads that a medicine has an added benefit, then notices that the report concerns patients who have not received an earlier therapy. She has already had that therapy, so asks her clinician for the conclusion and evidence relevant to her group before assuming the result applies."
+    },
+    {
+      "title": "Hypothetical example: uncertainty is not a stopping instruction",
+      "text": "Ilir sees an assessment saying that an added benefit was not established. He asks whether the problem was missing comparison data and how his current response affects the choice. He continues the agreed prescription while discussing a safe plan, rather than stopping it on his own."
+    }
+  ],
+  "questions": [
+    "Does this assessment match my diagnosis, stage and treatment history?",
+    "What benefits, harms and uncertainties were found compared with which treatment?",
+    "How do the results change my options, monitoring and review plan?"
+  ]
+}

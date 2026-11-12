@@ -15,6 +15,8 @@ export interface InlineAudioNarratorButtonProps {
 }
 
 const DEFAULT_LABEL: Record<string, string> = {
+  ru: "Слушайте этот раздел",
+
   ro: "Ascultă această secțiune",
   en: "Listen to this section",
   sq: "Dëgjo këtë pjesë",

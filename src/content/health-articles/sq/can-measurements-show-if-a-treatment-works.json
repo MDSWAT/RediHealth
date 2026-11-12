@@ -1,0 +1,51 @@
+{
+  "title": "Rezultate më të mira analizash do të thonë trajtim i dobishëm?",
+  "intro": "Analizat, skanimet dhe matjet ndihmojnë diagnozën, kontrollin e dëmin. Por numri më i mirë nuk përgjigjet për çdo përfitim. Vlen çfarë u mat, lidhja me rezultatet e rëndësishme dhe çfarë tjetër bën trajtimi. Dallimi ndihmon pyetjet pa hedhur poshtë testet ose ndryshuar vetë recetën.",
+  "sections": [
+    {
+      "heading": "Identifikoni pyetjen pas matjes",
+      "paragraphs": [
+        "Pyetni nëse përdoret për diagnozë, dozë, siguri ose përfitim. Janë qëllime të ndryshme. Markeri i dobishëm për njërin nuk provon parandalim komplikacionesh. Dhimbja, aktivitetet, shtrimi dhe mbijetesa janë rezultate direkte. Pyetësori i mirë i simptomave mat diçka të rëndësishme edhe kur raportohet nga pacienti, jo pajisja."
+      ]
+    },
+    {
+      "heading": "Kuptoni treguesin zëvendësues pa e quajtur të padobishëm",
+      "paragraphs": [
+        "Rezultati zëvendësues përfaqëson një tjetër në studim, për shembull vlerë fiziologjike para komplikacionit afatgjatë. Disa kanë prova të forta në kontekst, të tjerë priten vetëm të parashikojnë dhe duan konfirmim. Lidhja marker-rrezik nuk mjafton: trajtimi ndryshon markerin por efekte të tjera anulojnë dobinë. Pyetni provat për markerin, barin dhe gjendjen, jo të gjithë numrat njësoj të besueshëm ose jo."
+      ]
+    },
+    {
+      "heading": "Kërkoni krahasim të drejtë",
+      "paragraphs": [
+        "Ndryshimi pas trajtimit mund të jetë bar, luhatje natyrore, rikuperim, kujdes tjetër ose matje. Studimet krahasuese ndajnë mundësitë. Shihni çfarë mori grupi tjetër dhe matjen e njëjtë. Mesatarja nuk jep efekt të njëjtë te secili. Kërkoni dallimin real, periudhën dhe dëmet, jo vetëm përqindje ose imazh tërheqës."
+      ]
+    },
+    {
+      "heading": "Kontrolloni madhësinë, pasigurinë dhe jetën",
+      "paragraphs": [
+        "Ndryshimi statistikor mund të jetë i vogël për përmirësim të ndjeshëm; mungesa e dallimit të qartë mund të lërë pasiguri. Shqyrtoni sa persona, kohën dhe të dhënat e humbura ose largimet. Nuk transferohet automatikisht mes popullatave ose trajtimeve. Pyetni nëse tejkalon variacionin dhe pragu është i perceptueshëm. Drejtimi ka rëndësi: më lart nuk është gjithmonë më mirë."
+      ]
+    },
+    {
+      "heading": "Kombinojeni me simptomat, dëmet dhe qëllimet",
+      "paragraphs": [
+        "Në kontroll diskutoni ndjenjën, funksionin, efektet dhe qëllimet bashkë me matjen. Markeri qetësues nuk hedh poshtë simptoma të reja. Pasiguria nuk do të thotë se trajtimi i provuar nuk ndihmon ose duhet ndalur. Pyetni provat direkte, të nxjerra dhe ndjekjen. Ndiqni planin e kontaktin në paqartësi ose ndryshime. Vendimet përdorin gjithë pamjen e përfitimit e dëmit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: numër i mirë, përditshmëri e vështirë",
+      "text": "Analiza përmirësohet por shfaqet marramendje. Personi i tregon të dyja dhe pyet për përfitim, efekte e alternativa. Rezultati nuk fshin vështirësinë dhe nuk ndryshon recetën vetëm nga artikulli."
+    },
+    {
+      "title": "Shembull hipotetik: skanimi i tumorit",
+      "text": "Familja lexon se një bar zvogëlon tumoret. Pyet simptomat, cilësinë ose mbijetesën dhe efektet. Dallon gjetjen nga garancia e përfitimit të njëjtë për të afërmin."
+    }
+  ],
+  "questions": [
+    "Për çfarë përdoret matja dhe është rezultat direkt apo zëvendësues?",
+    "Çfarë prove krahasuese e lidh me përfitim të rëndësishëm për mua?",
+    "Si ndikojnë simptomat, efektet, pasiguria dhe qëllimet në vendim?"
+  ]
+}

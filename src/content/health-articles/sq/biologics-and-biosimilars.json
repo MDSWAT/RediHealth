@@ -1,0 +1,51 @@
+{
+  "title": "Biologjikët dhe biosimilarët: kuptoni barin dhe ndryshimin e mundshëm",
+  "intro": "Barnat biologjike prodhohen me sisteme të gjalla. Përfshijnë trajtime të ndryshme për sëmundje inflamatore, kancer e diabet. Biosimilari zhvillohet shumë i ngjashëm me biologjikun referues të autorizuar, pa dallime klinikisht domethënëse në efektshmëri ose siguri për përdorimin e miratuar. Nuk është version inferior. Udhëzimet praktike dhe rregullat e recetës ose zëvendësimit në farmaci duhen kontrolluar për produktin dhe vendin tuaj.",
+  "sections": [
+    {
+      "heading": "Dalloni biosimilarin nga gjeneriku i zakonshëm",
+      "paragraphs": [
+        "Biologjikët shpesh janë molekula të mëdha komplekse dhe prodhimi përfshin procese biologjike të kontrolluara. Ndryshime të vogla natyrore ndodhin edhe mes loteve të referencës. Prandaj biosimilari vlerësohet me krahasime të gjera, jo thjesht si kopje kimike identike. Autoritetet shqyrtojnë cilësinë, aktivitetin biologjik dhe provat klinike të përshtatshme. Fjala nënkupton krahasim të miratuar me një referencë të caktuar; nuk do të thotë se të gjithë biologjikët zëvendësojnë njëri-tjetrin ose çdo produkt online i plotëson standardet."
+      ]
+    },
+    {
+      "heading": "Pyetni për çfarë është miratuar bari",
+      "paragraphs": [
+        "Biosimilari mund të autorizohet për disa gjendje nëpërmjet vlerësimit shkencor të justifikuar të referencës dhe provave krahasuese. Jo çdo sëmundje kërkon provë të madhe krejt më vete për atë biosimilar. Gjithsesi duhet kontrolluar përdorimi i saktë, grupmosha, rruga dhe forma. Pyetni mjekun pse përshtatet me diagnozën dhe fazën e trajtimit. Përfitimi, monitorimi dhe rreziqet varen nga bari dhe sëmundja konkrete, jo vetëm etiketa biologjik."
+      ]
+    },
+    {
+      "heading": "Kuptoni ndryshimin dhe rregullat lokale",
+      "paragraphs": [
+        "Pyetni nëse substanca aktive mbetet njësoj, cilën markë merrni dhe pse propozohet ndryshimi. Biosimilarët e miratuar priten të punojnë po aq mirë sa referenca, por receta dhe zëvendësimi ndryshojnë mes vendeve. Këshilla evropiane për këmbyeshmërinë nuk është vetë leje universale për çdo farmaci të zëvendësojë automatikisht; vlejnë rregullat kombëtare. Mund të ndryshojnë paketimi, pajisja ose nevoja për trajnim. Diskutoni shqetësimet dhe ndjekjen, pa ndalur trajtimin gjatë zgjidhjes së ndryshimit administrativ."
+      ]
+    },
+    {
+      "heading": "Kontrolloni pajisjen, ruajtjen dhe planin e sigurisë",
+      "paragraphs": [
+        "Konfirmoni emrin, udhëzimet e dozës, ruajtjen dhe veprimin pas doze të humbur ose gabimi magazinimi. Mos supozoni se çdo biologjik do të njëjtin frigorifer ose transport. Kërkoni demonstrim kur ndryshon pajisja e injektimit dhe ndiqni udhëzimet. Disa ndikojnë mbrojtjen imunitare e kërkojnë kontrolle infeksioni, plan vaksinimi ose teste; të tjerë kanë rreziqe të tjera. Tregoni infeksione, barna, plane shtatzënie dhe udhëtime. Mos ndryshoni vaksina ose trajtim vetëm nga ky artikull i përgjithshëm."
+      ]
+    },
+    {
+      "heading": "Raportoni probleme me regjistër të qartë të barit",
+      "paragraphs": [
+        "Mbani markën dhe, kur mundet, lotin, dhe tregoni kur nisën simptomat në raport me trajtimin ose ndryshimin. Simptomat e reja duhen vlerësuar, por koha vetë nuk provon shkakun ose efekt më të dobët të biosimilarit. Vendosni si kontrollohen sëmundja dhe efektet anësore. Frymëmarrja shumë e vështirë, ënjtja e gojës apo fytit ose kolapsi pas trajtimit kërkojnë emergjencë. Për simptoma të tjera serioze kontaktoni shpejt shërbimin sipas udhëzimeve specifike; mos prisni kontroll rutinë kur jeni akutisht keq."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: stilolaps injektimi ndryshe",
+      "text": "Një person merr biosimilar të miratuar me stilolaps tjetër. Kërkon demonstrim nga infermieri dhe konfirmon ruajtjen e recetën para injektimit. Mban markën e re dhe pyet kur është kontrolli i sëmundjes."
+    },
+    {
+      "title": "Shembull hipotetik: simptoma pas ndryshimit",
+      "text": "Pas markës së re dikush ka më shumë shqetësim në nyje. Kontakton ekipin me datat, produktin dhe dozat e humbura. Ekipi kontrollon aktivitetin e sëmundjes dhe shkaqe të tjera, pa supozuar dështim të biosimilarit ose se simptoma mund të shpërfillet."
+    }
+  ],
+  "questions": [
+    "Me cilën referencë krahasohet dhe a është produkti i saktë i miratuar për mua?",
+    "Ndryshon pajisja, ruajtja, receta ose monitorimi dhe cilat rregulla lokale vlejnë?",
+    "Cilat simptoma raportoj, çfarë detajesh mbaj dhe kë kontaktoj urgjentisht?"
+  ]
+}

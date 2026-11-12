@@ -1,0 +1,51 @@
+{
+  "title": "Sëmundja e Alzheimerit: vlerësimi, mbështetja e përditshme dhe planifikimi",
+  "intro": "Sëmundja e Alzheimerit është një gjendje progresive e trurit dhe shkak i demencës. Demenca përshkruan vështirësi në të menduar që ndikojnë jetën e përditshme, jo harresën e zakonshme të rastit. Alzheimeri mund të prekë kujtesën, gjuhën, gjykimin dhe pavarësinë. Vlerësimi ka rëndësi sepse sëmundje të tjera mund të japin probleme të ngjashme dhe trajtimi, mbështetja praktike e planifikimi varen nga situata e personit.",
+  "sections": [
+    {
+      "heading": "Përshkruaj ndryshimet në funksionimin e përditshëm",
+      "paragraphs": [
+        "Shembuj janë humbja e përsëritur e kujtesës për biseda të fundit, vështirësia me detyra të njohura ose humbja e rrugës në një vend të njohur. Një emër i harruar nuk vendos diagnozë demence. Shëno ndryshimet me kohën, përfshirë gjumin, humorin, dëgjimin dhe shikimin. Me pëlqimin e personit, dikush që e njeh mirë mund të japë vëzhgime në takim. Përshkruaj ngjarje konkrete me respekt, në vend që ta testosh, të debatosh me të ose ta vësh në siklet në shtëpi."
+      ]
+    },
+    {
+      "heading": "Kupto çfarë përfshin vlerësimi",
+      "paragraphs": [
+        "Mjeku shqyrton simptomat, historinë mjekësore, barnat dhe ndikimin në aktivitetet e përditshme. Vlerësimi njohës, analizat e gjakut ose imazheria e trurit mund të jenë të dobishme; testet specialistike zgjidhen sipas rastit. Depresioni, efektet e barnave dhe probleme të tjera mjekësore mund të kontribuojnë dhe kërkojnë vëmendje. Një rezultat i shkurtër kujtese nuk e përshkruan të gjithë personin dhe nuk vendos çdo çështje kujdesi. Pyet si lidhen gjetjet dhe nëse mund të ketë më shumë se një gjendje."
+      ]
+    },
+    {
+      "heading": "Diskuto qëllimet dhe pasiguritë e trajtimit",
+      "paragraphs": [
+        "Barna si donepezili ose memantina mund të ndihmojnë disa simptoma te pacientët e përshtatshëm, por nuk e shërojnë sëmundjen. Përfitimet dhe efektet anësore duhen rivlerësuar. Disa trajtime specialistike synojnë procesin e sëmundjes në raste të hershme të përzgjedhura dhe kërkojnë vlerësim e monitorim të rreptë; disponueshmëria dhe përshtatshmëria ndryshojnë ndërmjet vendeve. Pyet për rezultate realiste dhe rreziqe serioze, pa supozuar se çdo bar i ri të përshtatet. Rëndësi kanë edhe aktivitetet kuptimplota, komunikimi dhe kujdesi për sëmundjet e tjera."
+      ]
+    },
+    {
+      "heading": "Përshtat mbështetjen duke ruajtur pjesëmarrjen",
+      "paragraphs": [
+        "Rutina e parashikueshme, kujtesat e qarta dhe mjedisi i menaxhueshëm mund të ndihmojnë. Rishiko sigurinë e barnave, gatimit, financave dhe lëvizjes pa hequr automatikisht çdo zgjedhje. Pyet për terapi okupacionale, mbështetje lokale dhe ndihmë për kujdestarët familjarë. Diskuto shqetësimet e drejtimit të makinës me profesionistin përkatës dhe rregullat lokale. Preferencat e ardhshme të kujdesit dhe mënyrat e vendimmarrjes diskutohen më lehtë herët, me pjesëmarrjen e personit dhe këshillë lokale të përshtatshme."
+      ]
+    },
+    {
+      "heading": "Dallo ndryshimet e papritura dhe lodhjen e kujdestarit",
+      "paragraphs": [
+        "Konfuzioni i papritur, përgjumja e pazakontë ose përkeqësimi i shpejtë nuk duhen quajtur thjesht përparim i demencës. Infeksioni, dehidratimi, barnat dhe probleme të tjera urgjente mund të japin ndryshim akut. Kërko vlerësim të shpejtë; shenjat e goditjes në tru, kolapsi ose gjendja e rëndë kërkojnë ndihmë urgjente. Ndryshimet e sjelljes mund të tregojnë dhimbje, frikë ose nevojë të paplotësuar, jo vështirësi të qëllimshme. Kujdestarët gjithashtu kanë nevojë për mbështetje, pushime të planifikuara dhe këshillë kur siguria bëhet e vështirë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: përgatitja për vlerësim",
+      "text": "Dikush vëren fatura të papaguara dhe pyetje të përsëritura te prindi. Me pëlqimin e tij, shkruan shembuj dhe shkojnë bashkë në takim. Pyet për shkaqe të mundshme, teste dhe mbështetje, në vend që të vendosë se një test kujtese në shtëpi provon Alzheimerin."
+    },
+    {
+      "title": "Shembull hipotetik: reagimi ndaj një ndryshimi të shpejtë",
+      "text": "Një person me demencë të njohur bëhet shumë më konfuz brenda një kohe të shkurtër dhe tepër i përgjumur. Kujdestari kërkon vlerësim të shpejtë dhe përshkruan ndryshimin nga gjendja e zakonshme. Nuk pret vizitën tjetër rutinë dhe nuk supozon se ka filluar pashmangshëm një fazë e re."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën dhe a mund të kontribuojnë probleme të tjera të trajtueshme?",
+    "Cilat janë përfitimet realiste, rreziqet dhe rivlerësimet e trajtimit të propozuar?",
+    "Çfarë mbështetjeje praktike, ndryshimesh sigurie dhe diskutimesh për të ardhmen janë më të dobishme tani?"
+  ]
+}

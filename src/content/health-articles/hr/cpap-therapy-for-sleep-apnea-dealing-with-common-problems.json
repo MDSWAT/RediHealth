@@ -1,0 +1,51 @@
+{
+  "title": "CPAP za apneju u snu: rješavanje svakodnevnih teškoća",
+  "intro": "CPAP kroz masku dovodi zrak pod tlakom kako bi gornji dišni put ostao otvoren tijekom spavanja. Liječi opstruktivnu apneju dok se koristi; nije samo uređaj protiv hrkanja. Propuštanje, suhoća ili tjeskoba otežavaju liječenje, ali prilagodba opreme i postupno vježbanje često pomažu. Rano se javite službi za spavanje bez samostalnog mijenjanja propisanog tlaka.",
+  "sections": [
+    {
+      "heading": "Prva provjera: pristajanje, spojevi i udobnost",
+      "paragraphs": [
+        "Namjestite masku prema uputi uz uključen uređaj i u uobičajenom položaju spavanja. Trake trebaju održati brtvljenje bez bolnog usijecanja. Prejako stezanje može deformirati jastučić i povećati curenje. Provjerite spojeve cijevi i istrošenost jastučića ili traka. Zrak prema očima može biti curenje, ali strujanje iz predviđenih otvora za izdah normalno je i nužno: nikada ne blokirajte otvore ili ventile. Pitajte za drugu veličinu ili vrstu ako ponavljano namještanje ne uspije. Ozljeda kože ili trajna nadraženost očiju traže kontrolu, a ne sve jače trake."
+      ]
+    },
+    {
+      "heading": "Suhoća, začepljen nos i voda u cijevi",
+      "paragraphs": [
+        "Suha usta mogu nastati curenjem kroz usta, posebno uz nosnu masku; začepljen nos dodatno smeta. Razgovarajte o maski, fiziološkoj otopini ili liječenju upale nosa. Grijano ovlaživanje može pomoći prema uputi uređaja i tima. Voda u cijevi je kondenzacija: odobrena grijana cijev ili primjerena promjena vlažnosti odnosno prostorije mogu pomoći. Koristite preporučenu vrstu i razinu vode, praznite i čistite spremnik prema uputi, bez eteričnih ulja ili lijekova. Nemojte improvizirati lijepljenje usta trakom."
+      ]
+    },
+    {
+      "heading": "Osjećaj zarobljenosti, neugodan tlak ili gutanje zraka",
+      "paragraphs": [
+        "Kratko vježbajte budni u mirnom okruženju, primjerice čitajući, i postupno se privikavajte. Pitajte kako rade dopuštena rampa ili značajke udobnosti; to se razlikuje od mijenjanja propisane terapije. Ako je izdah težak, tlak se čini pretjeranim ili nadutost traje, zatražite provjeru postavki i podataka. Druga maska ili odabrani PAP način nekima odgovara, ali ne trebaju svi drugi uređaj. Nemojte dodavati sedative ili alkohol radi podnošenja maske. Trajna panika ili nesanica mogu tražiti dodatnu podršku uz prilagodbu opreme."
+      ]
+    },
+    {
+      "heading": "Čišćenje i praktično održavanje",
+      "paragraphs": [
+        "Slijedite raspored proizvođača za pranje perivih dijelova, potpuno sušenje i zamjenu filtara ili istrošenih komponenti. Koristite samo preporučena sredstva; električni uređaj ne uranjajte. Ulaz zraka mora biti slobodan na prikladnoj stabilnoj površini. Neobična buka može značiti labav spoj, filtar ili kvar: provjerite, nemojte pokrivati uređaj radi tišine. Ozon ili ultraljubičasti uređaji ne zamjenjuju propisano čišćenje i mogu oštetiti opremu ili izložiti štetnim tvarima. Pitajte dobavljača za model, održavanje, napajanje na putovanju i postupak kod kvara ili nestanka struje."
+      ]
+    },
+    {
+      "heading": "Provjerite pomaže li liječenje",
+      "paragraphs": [
+        "Koristite propisanu terapiju za spavanje, uključujući drijemanje, prema planu. Ako često skidate masku u snu, recite timu; zapišite kada smeta i donesite masku ili podatke. Trajna pospanost može biti posljedica curenja, kratke uporabe, preostalih smetnji disanja ili druge bolesti odnosno poremećaja sna. Ne vozite niti radite s opasnim strojevima pospani i provjerite lokalna pravila s liječnikom. Bolji osjećaj ili mršavljenje sami ne dokazuju da liječenje više ne treba: potrebna je procjena. Teška zaduha, bol u prsima ili kolaps trebaju hitnu pomoć, a ne rješavanje CPAP poteškoća."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: curenje se ne rješava silom",
+      "text": "Mara svake noći zateže masku jer zrak dolazi do očiju. Koža boli, a curenje ostaje. Sestra provjerava masku dok leži, zamjenjuje istrošeni jastučić i pokazuje normalno strujanje iz sigurnosnog otvora."
+    },
+    {
+      "title": "Zamišljeni primjer: korisne informacije",
+      "text": "Ivan koristi uređaj, ali se budi suhih usta i skida ga prije jutra. Bilježi probleme i javlja se službi. Zajedno pregledaju curenje, nosne tegobe i ovlaživanje umjesto pukog savjeta da se više trudi ili sam snizi propisani tlak."
+    }
+  ],
+  "questions": [
+    "Koji je protok neželjeno curenje, a koji normalan sigurnosni izdah?",
+    "Koje postavke udobnosti mogu mijenjati i koje traže tim?",
+    "Kome se javljam ako uređaj otkaže ili ostajem pospan unatoč uporabi?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "NIPT për sindromat Down, Edwards dhe Patau: depistimi dhe hapat e tjerë",
+  "intro": "Testimi prenatal joinvaziv, NIPT, është analizë gjaku në shtatzëni që vlerëson mundësinë e disa gjendjeve kromozomale. Panelet e zakonshme kontrollojnë sindromat Down, Edwards dhe Patau. Është depistim, jo diagnozë, dhe nuk tregon se foshnja nuk ka asnjë problem shëndeti. Zgjedhja e depistimit dhe veprimi pas rezultatit duan informacion të qartë dhe respekt për preferencat.",
+  "sections": [
+    {
+      "heading": "Vendosni çfarë doni të dini para marrjes së gjakut",
+      "paragraphs": [
+        "Pyetni cilat gjendje përfshin testi i saktë, kur bëhet dhe si ndikojnë rezultatet në zgjedhje. Mund të diskutoni pa e ditur ende vendimin pas një rezultati të papritur. Kërkoni interpretues, këshillim gjenetik ose informacion të balancuar për jetën me gjendjet. Qasja, financimi publik dhe kriteret ndryshojnë sipas vendit; paketat private mund të kenë prova të ndryshme. Më shumë elemente nuk sjellin automatikisht informacion më të mirë ose të dobishëm. Depistimi është zgjedhje; diskutoni edhe moskryerjen."
+      ]
+    },
+    {
+      "heading": "Kuptoni çfarë mat mostra",
+      "paragraphs": [
+        "Mostra përmban fragmente ADN-je nga personi shtatzënë dhe placenta. Laboratori i përdor për vlerësim kromozomal, jo për ekzaminim të drejtpërdrejtë të çdo qelize të foshnjës. Dallimet placentë-foshnjë dhe faktorë të tjerë biologjikë mund të japin rezultate çorientuese. Tregoni binjakët, shtatzëninë që nisi me më shumë fetuse dhe historinë përkatëse, sepse përshtatshmëria ose interpretimi ndryshojnë. Pyetni si i menaxhon laboratori, pa supozuar funksionim identik në çdo shtatzëni."
+      ]
+    },
+    {
+      "heading": "Interpretoni mundësinë e ulët, të lartë dhe mungesën e rezultatit",
+      "paragraphs": [
+        "Mundësia e ulët e pakëson por nuk e eliminon gjasën e gjendjeve të testuara dhe nuk përjashton probleme të tjera gjenetike ose strukturore. Mundësia e lartë kërkon diskutim diagnostik, jo provë të gjendjes. Saktësia e rezultatit pozitiv varet nga gjendja dhe gjasa fillestare, jo vetëm një pretendim reklamues. Ndonjëherë laboratori nuk jep rezultat. Kjo nuk është njësoj si negativ qetësues: ekipi duhet të shpjegojë arsyet dhe testet, përsëritjen e mostrës ose vlerësime të tjera."
+      ]
+    },
+    {
+      "heading": "Diskutoni diagnozën para vendimeve të mëdha",
+      "paragraphs": [
+        "Pas mundësisë së lartë, këshillimi gjenetik dhe ekografia e përshtatshme sqarojnë hapat. Marrja e vileve korionike ose amniocenteza ofrojnë diagnozë, por janë invazive me kohë, rreziqe dhe kufij të tyre. Pyetni çfarë përcaktojnë, kur vjen rezultati dhe nëse duhet konfirmim tjetër. Mos merrni vendim të pakthyeshëm për shtatzëninë vetëm nga NIPT. Vendimet pas këshillimit duhet të respektojnë dëshirat e rrethanat, me ndihmë dhe pa presion të rezultatit apo dikujt tjetër."
+      ]
+    },
+    {
+      "heading": "Vazhdoni kujdesin e shtatzënisë dhe njihni kufijtë",
+      "paragraphs": [
+        "NIPT nuk zëvendëson ekografitë e rekomanduara ose kujdesin rutinë. Ekografia e mëvonshme anormale mund të kërkojë hetim edhe pas mundësisë së ulët në gjak. Diskutoni kush shpjegon raportin, kur telefononi në mungesë dhe ndihmën gjatë pritjes. Sindromat kanë pasoja dhe përvoja të ndryshme; etiketa nuk parashikon çdo aspekt të jetës së fëmijës. Kërkoni informacion specialistik specifik dhe kohë për kuptim. Testi nuk vlerëson as dhimbjen e fortë ose gjakderdhjen e madhe; kërkoni veçmas këshillë obstetrike."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: mundësi e lartë",
+      "text": "Një person shtatzënë merr rezultat me mundësi të lartë dhe shqetësohet. Organizon këshillim, pyet kuptimin personal dhe diskuton diagnozën para vendimeve të mëdha. Nuk e quan kategorinë e depistimit diagnozë të konfirmuar."
+    },
+    {
+      "title": "Shembull hipotetik: laborator pa rezultat",
+      "text": "Mostra nuk jep rezultat të raportueshëm. Pacientja pyet arsyen, përshtatshmërinë e mostrës tjetër dhe vlerësimet e rekomanduara. Nuk mendon se mungesa e rezultatit do të thotë mungesë e gjendjeve."
+    }
+  ],
+  "questions": [
+    "Çfarë teston saktë kjo analizë dhe cilët janë kufijtë në shtatzëninë time?",
+    "Çfarë do të thotë çdo rezultat, përfshirë mungesën e një rezultati të raportueshëm?",
+    "Cilat teste diagnostike, ekografi dhe këshillime ofrohen para vendimeve të tjera?"
+  ]
+}

@@ -32,6 +32,12 @@ const copyByLang: Record<
     complete: string;
   }
 > = {
+  ru: {
+    ariaLabel: "Уровень чтения",
+    simple: "Простой язык",
+    complete: "Полное руководство",
+  },
+
   ro: {
     ariaLabel: "Formatul ghidului",
     simple: "Pe scurt",

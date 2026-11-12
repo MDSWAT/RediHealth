@@ -12,6 +12,8 @@ import { TopicNextSteps } from "./TopicNextSteps";
 import { TrueFalseQuizSection } from "@/components/landing/TrueFalseQuizSection";
 import { ROMANIAN_MEDICAL_GLOSSARY } from "@/lib/i18n/romanian-medical-glossary";
 import { ROMANES_GLOSSARY_TERMS } from "@/lib/i18n/romanes-glossary";
+import { InformedHealthDirectory } from "./InformedHealthDirectory";
+import { HealthArticleDirectory } from "./HealthArticleDirectory";
 
 /** Kept for links that still pass a view; the page now has a single view. */
 export type HealthInfoView = "menu" | "topics" | "triage";
@@ -76,6 +78,9 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
           />
         </Container>
       </section>
+
+      <div className="border-t border-border py-10 sm:py-14"><Container><HealthArticleDirectory /></Container></div>
+      <InformedHealthDirectory />
 
       <TrueFalseQuizSection className="border-t border-border" />
 

@@ -2,6 +2,8 @@
 
 A Next.js healthcare coordination platform (patient intake, worker assignments, mediator cases, and a patient self-service portal).
 
+Romani localization is awaiting translated and reviewed text in standard written Romani used in Romania. The [translation catalog and handoff instructions](localization/romani/README.md) cover source extraction and validation; this preparation does not add a selectable Romani website version.
+
 ## Interactive panel demo
 
 `/demo` replaces the old showcase with the same panel components used by staff, with mediator
@@ -142,11 +144,14 @@ Required variables:
 | `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET` | Optional Google OAuth sign-in |
 | `HOSTINGER_MAIL_API_TOKEN`, `HOSTINGER_MAIL_FROM`, `HOSTINGER_MAIL_DISPLAY_NAME` | Used to send one-time login codes and patient portal links |
 | `OPERATIONAL_ALERT_EMAIL` | Fallback recipient for issue reports and operational alerts. Super admins can set the recipient in **Panel → Settings**, which takes precedence |
-| `LLMSRELAY_API_KEY` or `ANTHROPIC_API_KEY` | API key for the Health Assistant's symptom intake and prescription-image transcription |
-| `LLMSRELAY_MODEL` / `ANTHROPIC_MODEL` | Optional model override; defaults to `claude-haiku-4.5` |
-| `ANTHROPIC_BASE_URL` | Optional Anthropic-compatible endpoint override; defaults to `https://api.llmsrelay.com` |
+| `ANTHROPIC_API_KEY` | Server-only Anthropic API key for the Health Assistant, prescription-image review and AI summaries; requests go directly to `https://api.anthropic.com` |
+| `ANTHROPIC_MODEL` | Exact Claude model ID; defaults to `claude-haiku-4-5-20251001`. Legacy relay model and endpoint variables are ignored by the assistant |
+| `RECAPTCHA_ENABLED` | `true` for Google reCAPTCHA v3; defaults to enabled in production, disabled in development. Explicit `false` disables it |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Public Google v3 site key, embedded at build time |
+| `RECAPTCHA_SECRET_KEY`, `RECAPTCHA_ALLOWED_HOSTNAMES` | Server-only matching secret and comma-separated exact allowed hostnames |
+| `LLMSRELAY_API_KEY` | Optional separate key for meeting audio transcription only; not a substitute for the Anthropic key |
 | `LLMSRELAY_TRANSCRIPTION_MODEL` | Optional server transcription model for follow-up meeting audio (default `whisper-1`) |
-| `LLMSRELAY_BASE_URL` | Optional base URL for the relay's OpenAI-style endpoints and transcription (default `https://api.llmsrelay.com`) |
+| `LLMSRELAY_BASE_URL` | Optional meeting audio transcription relay URL (default `https://api.llmsrelay.com`) |
 | `JITSI_DOMAIN` | Video meeting provider (default `meet.jit.si`) |
 | `HEALTH_CHECK_TOKEN` | Bearer token that unlocks the detailed output of `GET /api/health`; without it the endpoint only returns the overall status |
 | `DEV_ALLOWED_ORIGINS` | Development only: comma-separated LAN hosts allowed to load the dev server |
@@ -334,6 +339,16 @@ header (`cf-ipcountry`, `x-vercel-ip-country`, …). If there is no such header,
 it uses the site language. On a first visit the same country header also picks
 the site language (RO and MD → ro, AL → sq, IT → it, HR → hr).
 
+The language selector also offers **Русский** (`ru`), with `/ru/...` routes,
+Russian public, staff, portal and offline copy, metadata, date formatting and device
+speech when a Russian voice is installed. Russian defaults to Moldova for the directory;
+Moldova's country-based default language remains Romanian. The Russian text includes
+machine translations and should receive native-speaker and clinical review before release.
+
+Choosing a country loads the complete active directory in stable 500-record API pages
+and frames all returned map locations. GPS and “Search this area” retain nearby search.
+The visible results list expands in groups of 20 independently of the map markers.
+
 Super Admins manage the list of the country they are working in at **Panel → Medical institutes**
 (`/panel/institutes`). From there they can add, edit, hide or delete entries,
 pick coordinates on a map, and re-import a country from OpenStreetMap. Entries
@@ -345,15 +360,121 @@ key):
 npm run import:institutes -- RO AL IT MD HR
 ```
 
+To refresh only Moldova, use `npm run import:institutes -- MD`. The import includes
+hospitals, clinics, doctors, dentists, pharmacies and other tagged healthcare services
+(such as laboratories and health posts), including unnamed facilities with category
+labels. Romanian and Russian names are supported. Closed/disused entries are skipped,
+OSM references prevent repeat-import duplicates, and incomplete Overpass responses are
+retried rather than treated as complete. This imports available OSM coverage; it is
+not an exhaustive official register. On 10 November 2026 the configured control database
+was populated and verified with 2,098 active Moldovan OSM records across all six categories.
+
 Map data © OpenStreetMap contributors (ODbL).
 
+## On-site health summaries and InformedHealth sources
+
+The health-information library includes 51 independently authored topic overviews at
+`/health-information/topics/[topic]`, with search, category filters and complete text in
+English, Romanian, Albanian, Italian and Russian. The original eight interactive guides
+retain their existing URLs and features. Directory entries open local, language-prefixed
+pages; each overview includes an introduction, an explanation and two questions to discuss
+with a healthcare professional. Additional local summaries appear before the source footer.
+
+Each overview ends with an InformedHealth/IQWiG source link and an explicit statement that
+the RediHealth text is independently written, not an IQWiG reproduction, translation or
+endorsement. Country-specific service information remains explicitly about Germany.
+Source links were checked on 10 November 2026. The source index's broken second-opinion
+category link is replaced in the overview footer by IQWiG's working article on preparing
+for surgery and making decisions. These source pages provide background and further reading;
+the overviews do not reproduce the full content or cover every linked disease article.
+
+English text is in `src/content/health-summaries/en.json`, with translation drafts in the
+four companion locale files. Translations received automated comparison checks and targeted
+corrections; **this is not clinical or native-speaker certification**. Medical and language
+review is still needed before a public release. No patient data is used for this content.
+The website does not call a translation service at runtime. Topic summaries and their
+language alternates are included in the sitemap. The application also supports Croatian
+and Romani after the upstream merge. This additional library currently has authored text
+in five languages; Croatian and Romani routes show explicitly labelled English content
+until their translations are written, with the article body marked as English.
+
+IQWiG's [legal notice](https://www.informedhealth.org/about-us/legal-notice/) welcomes
+citations and links; full-text republication/translation has not been licensed for this
+project. Source article bodies, photos, diagrams and videos are not copied or hosted.
+
+### Individual articles
+
+Individual articles live at `/health-information/articles/[article]`. The required target is
+all seven supported languages: English, Romanian, Albanian, Italian, Russian, Croatian and Romani. Each includes substantial topic-specific sections, two hypothetical everyday
+examples, consultation questions and bottom source links. Article search and topic-area
+filters open local pages; category overviews also list available individual articles.
+The earlier five-language drafts remain readable during the expansion. Each manifest entry
+records its actual `availableLanguages`; an unavailable translation is clearly identified as
+English, never counted as translated. **The full library is not complete:**
+`src/content/health-articles/coverage.json` records completion in all seven languages,
+per-language availability and missing topics. The directory displays availability for its language.
+
+The inventory contains 488 unique individual entries found through the 51 alphabetical
+topic-area indexes, including the replacement article for the broken second-opinion link.
+Aliases are deduplicated by source URL. This scope does not replicate every separate
+learn-more page, personal story, glossary definition, quiz, image or video.
+
+Content is in `src/content/health-articles/{en,ro,sq,it,ru,hr,rom}/`. Current work is authored and
+translated directly by the assistant, without calling the configured generation or translation
+service. `direct-authorship.json` records this method and content hashes, without claiming
+provider-based or independent human review. The first three entries retain their earlier
+provider-assisted provenance. The network-free workflow after writing all seven files is:
+
+```bash
+npm run health:register-direct -- article-id another-article-id
+npm run health:assemble -- --allow-partial
+npm test
+```
+
+The full inventory is still the required scope; partial assembly only updates the accurately
+labelled preview. Registration checks structure, examples, questions and numeric consistency.
+It does not certify medical accuracy or native fluency. Independent review remains pending.
+
+The earlier provider-assisted workflow remains available as an optional CLI. English drafts there are authored
+from general medical knowledge using the verified topic title; a separate reference check
+returns factual correction notes, rather than rewriting the publisher's text. Translation
+comparison checks flag medical terminology, omissions, negations, warnings and numbers.
+`editorial-status.json` binds available versions to content hashes. These automated checks
+are **not clinical or native-language certification**; the articles visibly remain editorial
+drafts pending independent review.
+
+That optional CLI uses configured provider credentials. No patient information is sent.
+Provider billing/authentication errors stop the run. Completed stages are retained; the
+ignored `.health-content-cache/` contains source and review material for local work only.
+
+```bash
+npm run health:inventory
+npm run health:generate -- --model=claude-sonnet-4.6
+npm run health:audit -- --model=claude-sonnet-4.6
+npm run health:assemble
+```
+
+Generation defaults to one worker to keep credit reservations low. `HEALTH_CONTENT_WORKERS`
+can increase it (maximum eight) when the provider permits. `health:assemble` exits with an
+error if any indexed topic remains unavailable; `--allow-partial` explicitly assembles only
+checked complete entries for an editorial preview. Unfinished topics return 404 and are
+not linked as readable articles. Building and reading the website require no provider calls.
+
 ## Production
+
+User emails support English, Romanian, Albanian, Italian, Russian, Croatian and Romani in both HTML and plain text.
+Sign-in codes and public help-request confirmations use the visitor's selected site language.
+Staff replies, portal links and appointment invitations use the staff member's selected site
+language; reply previews and sent text share the same template. Portal and directory links
+retain that language. Patient-entered text, care plans and appointment titles are preserved
+as entered. Internal operational alerts and issue reports retain their technical English text.
 
 The app runs on Vercel or on a single Node server (VPS).
 
 ### Bot protection
 
-Bot protection is **disabled by default** (`RECAPTCHA_ENABLED=false`). When enabled,
+Bot protection is **enabled by default in production** and disabled in development.
+The explicit `RECAPTCHA_ENABLED` setting overrides that default. When enabled,
 public submissions use **Google reCAPTCHA v3**: help requests, email sign-in
 (both requesting and verifying codes), portal recovery emails, issue reports,
 the AI assistant/prescription review, and patient portal updates. Authenticated
@@ -365,9 +486,20 @@ and demo forms do not submit data and do not need CAPTCHA.
 2. Set `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY`, and
    `RECAPTCHA_ALLOWED_HOSTNAMES` in the hosting environment. The hostname list
    is comma-separated, without protocols, paths, or ports.
-3. Set `RECAPTCHA_ENABLED=true`, then rebuild and deploy: the public site key is
-   embedded at build time. Keep `RECAPTCHA_ENABLED=false` to leave forms working
-   without CAPTCHA; no Google CAPTCHA script or verification call runs in that mode.
+3. In Vercel, open **Project → Settings → Environment Variables**, select the
+   intended deployment environment and set `RECAPTCHA_ENABLED=true`. Replace any
+   old `false` value. For production, the example hostname is `redi-health.vercel.app`;
+   add your custom hostname in both Google and `RECAPTCHA_ALLOWED_HOSTNAMES` if used.
+   Preview deployments require their own explicitly registered hostnames and keys.
+4. Set `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` for the direct Claude API. Keep your
+   existing authentication, database, email and encryption configuration. Paste values
+   without the example file's quote delimiters. Keys remain server-only, apart from
+   the deliberately public reCAPTCHA site key.
+5. Save, then use **Deployments → latest deployment → Redeploy**. The public site
+   key is embedded at build time. The example file does not provision keys or update
+   Vercel automatically; real credentials must be supplied before these services work.
+   For local testing without Google, explicitly use `RECAPTCHA_ENABLED=false` in
+   `.env.local`; no CAPTCHA script or verification call runs in that mode.
 
 Every submission obtains a fresh token. Server checks require success, score
 **at least 0.5**, the expected action, an allowed hostname, and a token no older

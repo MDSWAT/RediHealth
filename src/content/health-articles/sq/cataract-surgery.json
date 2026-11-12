@@ -1,0 +1,51 @@
+{
+  "title": "Operacioni i kataraktit: përgatitja, thjerrëzat dhe rikuperimi",
+  "intro": "Operacioni heq thjerrëzën natyrore të turbullt dhe vendos një artificiale brenda syrit. Për shumë njerëz përmirëson shikimin dhe aktivitetet, por përfitimi varet edhe nga pjesa tjetër e syrit. Para pëlqimit diskutoni prioritetet, thjerrëzën, anestezinë, ndërlikimet dhe ndihmën më pas. Informacioni këtu lidhet me të rriturit.",
+  "sections": [
+    {
+      "heading": "Përcaktoni qëllimin dhe zgjidhni thjerrëzën",
+      "paragraphs": [
+        "Matjet ndihmojnë zgjedhjen e fuqisë së thjerrëzës. Shpjegoni rëndësinë e leximit, kompjuterit dhe shikimit larg. Thjerrëza monofokale fokusohet në një largësi të zgjedhur, ndaj shpesh duhen syze për të tjerat. Alternativat mund të japin gamë më të gjerë, por kanë kompromise si verbim apo rrathë drite dhe nuk përshtaten për të gjithë. Pyesni për ndikimin e astigmatizmit, retinës dhe operacioneve të mëparshme. Asnjë zgjedhje nuk garanton shikim të përsosur pa syze."
+      ]
+    },
+    {
+      "heading": "Përgatitja individuale",
+      "paragraphs": [
+        "Sillni listën e plotë të barnave, alergjive dhe procedurave të syrit. Tregoni nëse keni vështirësi të rrini pa lëvizur, të merrni frymë shtrirë, të dëgjoni udhëzimet ose të vendosni pika. Ndiqni klinikën për lentet e kontaktit, ushqimin, lëngjet dhe barnat; udhëzimet ndryshojnë sipas anestezisë dhe shëndetit. Mos ndërprisni vetë holluesit e gjakut apo recetat e tjera. Organizoni transport sepse nuk duhet të drejtoni për në shtëpi dhe ndihmë me pika ose vakte nëse duhet. Kërkoni udhëzime të shkruara në gjuhën që kuptoni."
+      ]
+    },
+    {
+      "heading": "Gjatë operacionit",
+      "paragraphs": [
+        "Shumica e procedurave të të rriturve përdorin anestezi lokale, me personin zgjuar, por mund të duhet plan tjetër. Kirurgu hap një prerje të vogël, heq thjerrëzën e turbullt, shpesh të copëtuar me ultratinguj, dhe vendos artificiale në kapsulën e mbetur. Mund të shihni drita ose lëvizje; njoftoni ekipin nëse keni parehati. Shumë largohen po atë ditë pas kontrollit. Për të dy sytë diskutoni planin dhe kohën për secilin, jo një afat universal."
+      ]
+    },
+    {
+      "heading": "Rikuperimi dhe kontrollet",
+      "paragraphs": [
+        "Përdorni pikat saktë siç përshkruhen, mbani kontrollet dhe ndiqni udhëzimet për mburojën, larjen dhe aktivitetet. Mos fërkoni syrin. Shikimi fillimisht mund të jetë i turbullt dhe të përmirësohet gradualisht; pas shërimit mund të duhen syze të reja. Drejtimi, ngritja e peshave, sporti dhe puna varen nga rikuperimi dhe kërkesat vendore. Pyesni përpara. Ndjesia e lehtë e rërës mund të ndodhë, por dhimbja ose shikimi në përkeqësim nuk duhen quajtur automatikisht normale."
+      ]
+    },
+    {
+      "heading": "Ndërlikimet dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Mund të ndodhin infeksion, inflamacion, ndryshim presioni, shkëputje e retinës ose probleme të thjerrëzës e kapsulës, ndonjëherë me nevojë për trajtim apo operacion tjetër. Kontaktoni menjëherë shërbimin e syrit për shikim më të dobët, dhimbje të rëndësishme të vazhdueshme, skuqje të madhe, shkëndija të reja, shumë pika lëvizëse ose perde të errët. Nëse ekipi nuk arrihet, përdorni kujdes urgjent ose emergjent të syrit. Turbullimi i mëvonshëm mund të vijë nga kapsula pas implantit, jo kthimi i kataraktit fillestar. Mund të trajtohet me lazer pas ekzaminimit; mos vendosni vetë shkakun."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zgjedhje sipas nevojave — shembull hipotetik",
+      "text": "Një person lexon gjatë dhe drejton natën. Pyet për syzet e leximit, shikimin larg dhe rrathët e dritës për secilën zgjedhje, pa supozuar se më e shtrenjta është më e mira. Kirurgu shqyrton edhe shëndetin e syrit."
+    },
+    {
+      "title": "Ndryshim pas kthimit — shembull hipotetik",
+      "text": "Pas përmirësimit fillestar, dhimbja shtohet dhe shikimi dobësohet. Personi telefonon menjëherë kontaktin e daljes, pa pritur kontrollin rutinë. Ekipi vlerëson shkakun dhe urgjencën e trajtimit."
+    }
+  ],
+  "questions": [
+    "Çfarë përmirësimi është realist dhe çfarë kompromisesh ka thjerrëza e propozuar?",
+    "Cilat janë udhëzimet e mia të sakta për barnat, agjërimin, pikat dhe transportin?",
+    "Cilat shenja kërkojnë ndihmë të menjëhershme, kë telefonoj dhe kur rifilloj aktivitetet?"
+  ]
+}

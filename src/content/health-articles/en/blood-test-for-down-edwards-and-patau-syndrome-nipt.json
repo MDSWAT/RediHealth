@@ -1,0 +1,51 @@
+{
+  "title": "NIPT for Down, Edwards and Patau syndromes: screening and next steps",
+  "intro": "Non-invasive prenatal testing, or NIPT, is a blood test during pregnancy that estimates the chance of certain chromosome conditions. Common panels screen for Down, Edwards and Patau syndromes. It is a screening test, not a diagnosis, and cannot establish that a baby has no health problems. Choosing whether to have screening, and what to do with a result, should involve clear information and respect for your preferences.",
+  "sections": [
+    {
+      "heading": "Decide what information you want before the blood draw",
+      "paragraphs": [
+        "Ask which conditions the specific test covers, when it can be done and how results might affect your choices. You can discuss testing without already knowing what you would decide after an unexpected result. Request an interpreter, genetic counselling or balanced information about living with the conditions when helpful. Availability, public funding and eligibility vary by country, and private packages may include tests with different evidence. More items on a panel do not automatically mean better or more useful information. Screening is optional; discuss the option of declining as well."
+      ]
+    },
+    {
+      "heading": "Understand what the blood sample measures",
+      "paragraphs": [
+        "The sample contains fragments of DNA from the pregnant person and the placenta. The laboratory uses this material to estimate chromosome-related chances; it does not directly examine every cell of the baby. Differences between placenta and baby and other biological factors can produce misleading results. Tell the team about twins, a pregnancy that began with more than one fetus and relevant medical history, since interpretation or test suitability may change. Ask how the chosen laboratory handles these circumstances rather than assuming a single test works identically in every pregnancy."
+      ]
+    },
+    {
+      "heading": "Interpret lower-chance, higher-chance and no-result reports",
+      "paragraphs": [
+        "A lower-chance result reduces the likelihood of the screened conditions but does not eliminate it or rule out other genetic or structural problems. A higher-chance result means diagnostic assessment should be discussed; it is not proof of the condition. The chance that a positive screen is correct depends on the condition and the starting likelihood, not only a headline accuracy claim. Sometimes the laboratory cannot give a result. This is not the same as a reassuring negative: the team should explain possible reasons and options for further testing, repeat sampling or other assessment."
+      ]
+    },
+    {
+      "heading": "Discuss diagnostic testing before major decisions",
+      "paragraphs": [
+        "After a higher-chance result, genetic counselling and an appropriate ultrasound assessment help clarify the next steps. Chorionic villus sampling or amniocentesis can offer diagnostic information, but they are invasive procedures with their own timing, risks and limitations. Ask what the test would establish, how long results take and whether additional confirmation might be needed. Do not make an irreversible pregnancy decision from NIPT alone. Decisions after counselling should respect your wishes and circumstances, with support rather than pressure from a result or another person."
+      ]
+    },
+    {
+      "heading": "Continue pregnancy care and keep the limits clear",
+      "paragraphs": [
+        "NIPT does not replace recommended ultrasound examinations or routine maternity care. A later abnormal scan can need investigation even after a lower-chance blood result. Discuss who will explain the report, when to call if no result arrives and what support is available while waiting. Down, Edwards and Patau syndromes have different health implications and ranges of experience; a screening label cannot predict every aspect of an individual child's life. Ask for condition-specific specialist information and time to understand it. The test also does not assess urgent symptoms such as severe pain or significant bleeding; seek maternity advice for those separately."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a higher-chance result",
+      "text": "A pregnant person receives a higher-chance screen and feels overwhelmed. They arrange counselling, ask what the result means in their situation and discuss diagnostic options before making major decisions. They do not interpret the laboratory's screening category as a confirmed diagnosis."
+    },
+    {
+      "title": "Hypothetical example: the laboratory gives no result",
+      "text": "A sample produces no reportable result. The patient asks why, whether another sample is appropriate and what other tests or ultrasound assessment are recommended. They do not assume that the absence of a result means the screened conditions are absent."
+    }
+  ],
+  "questions": [
+    "Which conditions does this exact test assess, and what are its limitations in my pregnancy?",
+    "What would each possible result mean for me, including a result that cannot be reported?",
+    "What diagnostic tests, ultrasound follow-up and counselling would be available before further decisions?"
+  ]
+}

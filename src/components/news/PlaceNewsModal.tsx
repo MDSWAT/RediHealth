@@ -59,6 +59,24 @@ const COPY: Record<Lang, {
   where: string;
   when: string;
 }> = {
+  ru: {
+    close: "Закрыть",
+    tabsLabel: "Типы новостей",
+    local: "Местный",
+    national: "Вся страна",
+    count: (n) => (n === 1 ? "1 news item" : `${n} новости`),
+    noLocal: (p) => `Нет новостей для ${p} еще. Ниже новости по всей стране.`,
+    highAlert: "Оповещение о здоровье",
+    seasonalAlert: "Сезонное предупреждение",
+    measures: "Как защитить себя:",
+    readGuide: "Подробнее",
+    freeServices: "Бесплатные услуги:",
+    readTime: "минута чтения",
+    read: "Читать",
+    where: "Где",
+    when: "Часы",
+  },
+
   ro: {
     close: "Închide",
     tabsLabel: "Tipuri de știri",

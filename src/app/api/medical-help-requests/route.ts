@@ -11,6 +11,7 @@ import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { isValidEmail, text } from "@/lib/text";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { verifyRecaptcha } from "@/lib/security/recaptcha";
+import { getRequestLang } from "@/lib/i18n/server-routing";
 
 type RequestPayload = {
   name?: unknown;
@@ -132,6 +133,7 @@ export async function POST(request: Request) {
       phone,
       email,
       description,
+      lang: await getRequestLang(request),
     });
   }
 

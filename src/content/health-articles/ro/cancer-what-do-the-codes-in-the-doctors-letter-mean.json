@@ -1,0 +1,51 @@
+{
+  "title": "Cum înțelegeți codurile oncologice dintr-o scrisoare medicală",
+  "intro": "Scrisorile medicale despre cancer pot conține abrevieri pentru locul de origine, extinderea bolii, aspectul celulelor și investigațiile sau tratamentele deja efectuate. Codurile ajută profesioniștii să comunice, dar nu reprezintă singure o recomandare de tratament ori o predicție personală de supraviețuire. Cereți explicarea întregului raport, inclusiv a incertitudinilor și a clasificării utilizate.",
+  "sections": [
+    {
+      "heading": "TNM descrie extinderea multor cancere",
+      "paragraphs": [
+        "În sistemul TNM, T descrie dimensiunea sau extinderea locală a tumorii primare, N afectarea ganglionilor limfatici regionali, iar M răspândirea la distanță. Cifrele și uneori literele suplimentare precizează categoriile. Definițiile depind de localizarea cancerului și ediția clasificării. Nu transformați o categorie în stadiu folosind un tabel pentru alt cancer. Unele cancere, inclusiv multe cancere hematologice și tumori cerebrale, folosesc alte sisteme."
+      ]
+    },
+    {
+      "heading": "Contează momentul și baza evaluării",
+      "paragraphs": [
+        "Litera mică c indică în general evaluarea clinică, bazată pe examinare, imagistică și alte informații diagnostice. Litera p indică o clasificare bazată pe examinarea anatomopatologică a țesutului îndepărtat chirurgical. Prefixul y indică evaluarea în timpul sau după tratamentul inițial, iar r clasificarea unei recidive. Aceste prefixe pot explica diferențele dintre rapoarte. O schimbare după investigații suplimentare nu înseamnă automat agravare rapidă. Întrebați ce informații erau disponibile la fiecare evaluare."
+      ]
+    },
+    {
+      "heading": "Gradul nu este același lucru cu stadiul",
+      "paragraphs": [
+        "Gradul descrie caracteristicile celulelor și țesutului tumoral la microscop. În multe sisteme, celulele mai puțin asemănătoare celor normale sunt asociate cu un comportament mai agresiv, dar regulile diferă între cancere. Stadiul descrie extinderea bolii. Niciunul nu înlocuiește informațiile despre tipul cancerului, biomarkeri, sănătatea generală ori răspunsul la tratament. Același grad nu are obligatoriu aceeași semnificație în tumori diferite."
+      ]
+    },
+    {
+      "heading": "Boala reziduală și incertitudinile",
+      "paragraphs": [
+        "Clasificarea R descrie tumora rămasă după tratament: R0 înseamnă că nu s-a identificat tumoră reziduală, R1 tumoră reziduală microscopică, iar R2 tumoră reziduală vizibilă. Întrebați ce localizări și evaluări acoperă afirmația. Marginile chirurgicale libere sunt o informație utilă, dar nu garantează că boala nu va reveni. Litera X în anumite categorii înseamnă că evaluarea nu s-a putut face, nu automat un rezultat favorabil sau nefavorabil. Analizele în așteptare pot lăsa raportul incomplet."
+      ]
+    },
+    {
+      "heading": "Pregătirea discuției cu echipa medicală",
+      "paragraphs": [
+        "Cereți o copie și marcați termenii necunoscuți, data și rezultatele încă așteptate. Discutați legătura cu scopul tratamentului, opțiunile, beneficiile și riscurile probabile. Unele sisteme combină extinderea anatomică și alte caracteristici tumorale pentru stabilirea stadiului. Statisticile populaționale nu prezic exact evoluția individuală. Pentru îngrijire în altă țară sau limbă, luați raportul original și solicitați interpret calificat, fără să traduceți singuri abrevieri izolate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Grad și stadiu — exemplu ipotetic",
+      "text": "O persoană crede că gradul și stadiul din scrisoare sunt același scor. Medicul explică aspectul microscopic și extinderea bolii, apoi ce schimbă fiecare în opțiunile disponibile."
+    },
+    {
+      "title": "Două rapoarte diferite — exemplu ipotetic",
+      "text": "Raportul imagistic și cel anatomopatologic ulterior folosesc prefixe și categorii diferite. Persoana întreabă dacă diferența reflectă informații noi despre țesut, tratamentul primit ori o schimbare reală a bolii."
+    }
+  ],
+  "questions": [
+    "Ce clasificare specifică acestui cancer și ce ediție folosește raportul?",
+    "Ce este confirmat, ce rămâne incert și ce rezultate mai sunt așteptate?",
+    "Cum afectează rezultatele scopul tratamentului, opțiunile și monitorizarea mea?"
+  ]
+}

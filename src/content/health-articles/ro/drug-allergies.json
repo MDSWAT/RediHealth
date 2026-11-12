@@ -1,0 +1,51 @@
+{
+  "title": "Alergiile medicamentoase: recunoașterea reacțiilor și evidența corectă",
+  "intro": "Alergia medicamentoasă este reacție imună la un medicament. Diferă de multe reacții adverse previzibile, dar ambele pot cere atenție medicală. Reacția poate începe repede sau mai târziu. Abordarea sigură combină intervenția la semne grave, relatarea precisă și planul medicamentelor viitoare, fără ghicirea siguranței.",
+  "sections": [
+    {
+      "heading": "Nu orice efect nedorit este alergie",
+      "paragraphs": [
+        "Urticaria pruriginoasă, umflarea și unele erupții sugerează alergie; greața ori diareea izolată pot fi efect obișnuit sau altă boală. Erupția sub antibiotic poate proveni din infecție. Indiciile nu stabilesc singure diagnosticul. Reacțiile imediate pot afecta respirația și circulația, cele întârziate pielea ori organele interne. Tolerarea anterioară nu exclude reacția ulterioară. Descrieți ce s-a întâmplat, nu doar cuvântul alergie. Alergia unei rude nu înseamnă automat că aveți aceeași alergie."
+      ]
+    },
+    {
+      "heading": "Semnele grave cer urgență",
+      "paragraphs": [
+        "Umflarea bruscă a limbii ori gâtului, wheezingul, înghițirea sau respirația dificilă, leșinul, colapsul ori deteriorarea rapidă după medicament pot fi anafilaxie, uneori fără erupție. Folosiți imediat autoinjectorul de adrenalină prescris conform instrucțiunilor și chemați urgența. Nu stați în picioare și nu mergeți; culcați-vă, ridicând lent partea superioară dacă respirați greu, pe stânga în sarcină. Fără ameliorare după cinci minute, folosiți al doilea dispozitiv prescris conform planului. Antihistaminicul nu înlocuiește adrenalina pentru respirație ori circulație. Erupția dureroasă extinsă cu febră, bășici, piele desprinsă sau leziuni în gură, ochi ori organe genitale poate fi reacție întârziată gravă: evaluare imediată la spital."
+      ]
+    },
+    {
+      "heading": "Contactați prescriptorul și notați detaliile",
+      "paragraphs": [
+        "La reacție nouă suspectată cereți prompt sfat înaintea altei doze; nu testați printr-o doză de probă. Medicul decide oprirea, tratamentul urgent și înlocuirea sigură a terapiei esențiale. Notați denumirea generică și comercială, concentrația, calea, data începerii, dozele înaintea simptomelor, intervalul și tratamentul primit. Includeți alte medicamente, suplimente și boala tratată. Fotografia erupției și ambalajul ajută, fără întârzierea urgenței pentru colectare. Cereți evidențierea separată a alergiei suspectate și efectelor obișnuite, cu gradul certitudinii."
+      ]
+    },
+    {
+      "heading": "Specialistul poate clarifica alegerile viitoare",
+      "paragraphs": [
+        "Testarea depinde de medicament și istoric; nu există test unic sigur pentru orice alergie medicamentoasă. Testele cutanate, de sânge ori provocarea supravegheată pot fi potrivite selectiv. Provocarea cere evaluarea riscului și loc cu tratament al reacției, niciodată improvizație acasă. Reacțiile întârziate severe nu sunt potrivite provocării obișnuite cu medicamentul responsabil. Multe etichete vechi de alergie la penicilină se dovedesc incorecte, dar nu le ștergeți singur și nu împrumutați antibiotic pentru test. Reacțiile încrucișate depind de substanțe, nu de nume similare. Desensibilizarea specializată este procedură monitorizată pentru tratamente esențiale selectate, nu vindecare permanentă."
+      ]
+    },
+    {
+      "heading": "Faceți rezultatul util la orice consultație",
+      "paragraphs": [
+        "Cereți descriere scrisă a substanței confirmate ori suspectate, medicamentelor înrudite de evitat și alternativelor considerate sigure. La excluderea alergiei, actualizați evidența la medic, farmacie și servicii relevante. Purtați informația și arătați-o înainte de rețete, injecții, operații și produse fără rețetă. Întrebați de alertă medicală și plan urgent. Nu orice alergie cere adrenalină prescrisă; decizia este individuală. Raportați reacția suspectată prin sistemul local cu ajutor profesional dacă trebuie. Evidența clară previne reexpunerea accidentală și evitarea inutilă a unui tratament util."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: etichetă incertă din copilărie",
+      "text": "Mira are notată alergie la penicilină, dar familia își amintește doar erupție în infecția copilăriei. Cere evaluare structurată înainte să aibă nevoie de antibiotic. Nu testează resturi de tablete acasă; evidența se schimbă după concluzia medicului."
+    },
+    {
+      "title": "Exemplu ipotetic: alarmă întârziată",
+      "text": "La câteva zile după medicament nou, Dan are febră, piele dureroasă și leziuni în gură. Cere evaluare imediată la spital cu lista medicamentelor, nu doar antihistaminic și așteptare."
+    }
+  ],
+  "questions": [
+    "Pare alergie, altă reacție gravă ori efect previzibil?",
+    "Ce evit acum și trebuie specialist ori plan de urgență?",
+    "Ce informații exacte se notează, inclusiv alternativele sigure?"
+  ]
+}

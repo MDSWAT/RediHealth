@@ -1,0 +1,51 @@
+{
+  "title": "La medic: pregătire, întrebări și un plan clar",
+  "intro": "O consultație utilă reunește experiența dumneavoastră și evaluarea clinicianului. Nu trebuie să cunoașteți diagnosticul înainte de a cere ajutor. O descriere scurtă a schimbărilor, lista medicamentelor și principala îngrijorare pot ușura discuția. Regulile de programare, asigurare și trimitere diferă între țări și cabinete; articolul original indicat descrie sistemul medical german.",
+  "sections": [
+    {
+      "heading": "Alegeți serviciul și explicați urgența problemei",
+      "paragraphs": [
+        "Pentru o problemă persistentă sau care nu este o urgență, un cabinet de asistență primară vă poate adesea evalua și coordona îngrijirea de specialitate. În Germania, cabinetul medicului de familie este numit frecvent Hausarztpraxis; nu presupuneți că regulile sale de trimitere se aplică în altă țară. Spuneți personalului de programări despre agravările importante pentru a vă orienta corespunzător. Întrebați din timp despre costuri, acoperire și documente, dacă este posibil. Durerea toracică severă, dificultatea respiratorie gravă sau semnele de AVC necesită ajutor de urgență, nu așteptarea unei programări obișnuite."
+      ]
+    },
+    {
+      "heading": "Pregătiți o descriere scurtă și informații exacte despre medicamente",
+      "paragraphs": [
+        "Notați când au început simptomele, ce le ameliorează sau agravează și cum afectează somnul, munca ori activitățile zilnice. Stabiliți prioritățile, mai ales dacă timpul trebuie împărțit între mai multe probleme. Aduceți rezultatele relevante și lista medicamentelor prescrise, produselor fără rețetă, suplimentelor și alergiilor. Includeți ce luați efectiv, nu doar ce vi s-a prescris. Menționați sarcina, posibilitatea ei și tratamentele recente, după caz. Fotografiile sau un jurnal pot ajuta când problema apare și dispare."
+      ]
+    },
+    {
+      "heading": "Organizați comunicarea și intimitatea potrivite",
+      "paragraphs": [
+        "Întrebați înainte despre interpret, sprijin în limbaj mimico-gestual, informații accesibile sau acces fizic. Un interpret profesionist poate fi deosebit de util pentru decizii complexe ori sensibile; un copil nu trebuie făcut responsabil de interpretarea medicală. Puteți dori prezența unei persoane de încredere, dar și timp singur cu medicul. Întrebați cine primește informații și cum este gestionată confidențialitatea. Dacă o examinare vă incomodează, întrebați ce presupune, de ce este necesară și dacă poate fi prezent un însoțitor medical."
+      ]
+    },
+    {
+      "heading": "Discutați opțiunile înainte de a accepta pasul următor",
+      "paragraphs": [
+        "Întrebați ce consideră clinicianul că se întâmplă, ce rămâne incert și cum ar schimba îngrijirea un test propus. Pentru tratament, discutați beneficiile probabile, riscurile importante, alternativele și ce s-ar putea întâmpla prin simplă supraveghere. Explicați obstacolele practice, precum costul, munca în schimburi sau dificultatea de a înghiți comprimate. Puteți cere formulări mai simple ori timp de gândire pentru o decizie neurgentă. O a doua opinie poate ajuta la o alegere majoră neclară; accesul și plata diferă. Nu interpretați un rezultat izolat de simptome și examinare."
+      ]
+    },
+    {
+      "heading": "Confirmați urmărirea și redați planul cu propriile cuvinte",
+      "paragraphs": [
+        "Înainte de plecare, clarificați ce faceți acum, cum utilizați medicamentele noi și ce tratamente anterioare continuați sau modificați. Întrebați când sunt așteptate rezultatele, cine vă contactează și ce faceți dacă nu primiți un mesaj. Lipsa unui răspuns nu înseamnă automat rezultat normal. Confirmați controlul și simptomele care necesită îngrijire mai devreme ori de urgență. Repetați pe scurt planul pentru verificarea înțelegerii și cereți instrucțiuni scrise dacă ajută. Dacă planul nu este realizabil, spuneți înainte de plecare, în loc să îl abandonați fără discuție."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: un simptom intermitent",
+      "text": "O persoană are o erupție care dispare înaintea consultațiilor. Aduce fotografii datate, notează produsele noi pentru piele și explică faptul că mâncărimea îi tulbură somnul. Clinicianul folosește istoricul alături de examinare, fără a considera că aspectul normal exclude problema."
+    },
+    {
+      "title": "Exemplu ipotetic: un plan neclar pentru rezultate",
+      "text": "După recomandarea unei analize de sânge, pacientul întreabă când va fi gata și cine o va explica. Păstrează datele de contact și stabilește când să sune dacă nu primește rezultatul, evitând o așteptare nelimitată bazată pe presupunerea că totul este bine."
+    }
+  ],
+  "questions": [
+    "Care este explicația cea mai probabilă și ce incertitudine contează pentru decizia următoare?",
+    "Cum m-ar ajuta acest test sau tratament și care sunt alternativele și riscurile?",
+    "Cine explică rezultatele, când revin și ce simptome necesită ajutor mai devreme?"
+  ]
+}

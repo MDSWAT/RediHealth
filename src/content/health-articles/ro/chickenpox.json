@@ -1,0 +1,51 @@
+{
+  "title": "Varicela: îngrijirea simptomelor și protejarea persoanelor cu risc",
+  "intro": "Varicela este o infecție foarte contagioasă produsă de virusul varicelo-zosterian. Poate provoca erupție cu mâncărime, pete, vezicule și cruste simultan, febră și stare generală proastă. Mulți copii altfel sănătoși se vindecă prin îngrijire de susținere, dar nou-născuții, gravidele, adulții și persoanele imunodeprimate pot face forme mai grave. La risc crescut, chiar expunerea necesită sfat prompt.",
+  "sections": [
+    {
+      "heading": "Recunoașteți tiparul fără autodiagnosticul oricărei erupții",
+      "paragraphs": [
+        "Leziunile pot apărea pe corp, scalp și în gură; unele sunt noi când altele fac crustă. Culoarea și vizibilitatea diferă după nuanța pielii. Disconfortul afectează apetitul și somnul. Persoanele vaccinate pot avea forme ușoare ori atipice. Alte boli produc pete și vezicule, deci cereți sfat dacă nu este clar. Anunțați clinica înainte de prezentare pentru a nu expune sala de așteptare și menționați contactul cu varicelă sau zona zoster."
+      ]
+    },
+    {
+      "heading": "Reduceți transmiterea",
+      "paragraphs": [
+        "Varicela se transmite prin aerul comun și lichidul veziculelor, inclusiv înainte ca erupția să fie evidentă. Evitați școala, grădinița și serviciul până la încheierea perioadei recomandate, în general când toate leziunile au cruste; cereți sfat pentru cazuri atipice și urmați regulile locale. Evitați nou-născuții, gravidele și persoanele imunodeprimate. Spălați mâinile, evitați scărpinarea și prosoapele comune. O persoană fără imunitate poate face varicelă după contact cu zona zoster, dar nu 'ia zona zoster' de la varicelă."
+      ]
+    },
+    {
+      "heading": "Confort și siguranța medicamentelor",
+      "paragraphs": [
+        "Oferiți băuturi frecvent, haine lejere și baie răcoroasă blândă, apoi uscați prin tamponare. Unghiile scurte reduc leziunile prin scărpinare. Farmacistul poate recomanda produse potrivite vârstei pentru mâncărime și disconfort. Paracetamolul poate ajuta dacă este potrivit, conform instrucțiunilor. Nu dați aspirină copilului cu varicelă și evitați ibuprofenul dacă medicul nu îl recomandă, din cauza riscului de infecție cutanată gravă. Verificați produsele combinate pentru dublarea substanțelor. Antibioticele nu tratează virusul."
+      ]
+    },
+    {
+      "heading": "Expunere la risc și tratament precoce",
+      "paragraphs": [
+        "Cereți sfat prompt după expunere în sarcină, imunosupresie ori la nou-născut, chiar fără simptome. Spuneți dacă există dovezi de imunitate anterioară. După risc, imunitate și timp, se poate indica tratament preventiv ori antiviral precoce. Antiviralele sunt mai eficiente începute prompt și nu sunt necesare fiecărui copil sănătos. Nu așteptați erupția extinsă și nu folosiți rețeta altuia. Menționați corticosteroizii și tratamentele imunosupresoare."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă și prevenție",
+      "paragraphs": [
+        "Cereți sfat urgent pentru deshidratare, piele tot mai caldă și dureroasă în jurul leziunilor, febră persistentă ori agravată sau copil tot mai bolnav. Dificultatea respiratorie, confuzia, trezirea dificilă, rigiditatea cefei ori mersul foarte dificil necesită evaluare urgentă sau de urgență. Nu considerați orice agravare normală. Vaccinarea previne varicela și formele grave; eligibilitatea și schema depind de programul național. Vaccinul uzual este viu, deci sarcina și problemele imunitare cer sfat specific. Virusul poate rămâne în organism și se poate reactiva ulterior ca zona zoster."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Contact în sarcină — exemplu ipotetic",
+      "text": "O gravidă află că un copil din casă ar putea avea varicelă. Contactează prompt echipa medicală cu detaliile expunerii și ale bolii ori vaccinării anterioare, fără să aștepte erupția."
+    },
+    {
+      "title": "Erupție care se schimbă — exemplu ipotetic",
+      "text": "Un copil are inițial leziuni care mănâncă, apoi o zonă devine caldă, umflată și tot mai dureroasă. Îngrijitorul cere sfat urgent pentru posibilă infecție secundară, nu doar mai multă cremă."
+    }
+  ],
+  "questions": [
+    "Erupția corespunde varicelei și există persoane cu risc crescut în casă?",
+    "Ce medicamente sunt potrivite și este necesară prevenție ori terapie antivirală?",
+    "Când este sigură revenirea la școală sau muncă și ce schimbări cer evaluare urgentă?"
+  ]
+}

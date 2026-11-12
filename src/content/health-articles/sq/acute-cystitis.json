@@ -1,0 +1,51 @@
+{
+  "title": "Cistiti akut: simptomat e fshikëzës dhe kur të kërkosh ndihmë",
+  "intro": "Cistiti është inflamacion i fshikëzës urinare, shpesh i shkaktuar nga një infeksion bakterial. Djegia gjatë urinimit, nevoja për të urinuar shpesh dhe parehatia poshtë barkut janë shqetësime të zakonshme. Simptoma të ngjashme mund të kenë shkaqe të tjera, ndaj përgjigjja e duhur varet nga e gjithë situata, përfshirë shtatzëninë, moshën, sëmundjet e tjera dhe shenjat se mund të jenë prekur veshkat ose pjesa tjetër e trupit.",
+  "sections": [
+    {
+      "heading": "Dallo simptomat e fshikëzës nga shenjat alarmuese",
+      "paragraphs": [
+        "Një infeksion i fshikëzës pa komplikime zakonisht shkakton simptoma të lidhura me urinimin, si nevojë urgjente dhe urinim të shpeshtë në sasi të vogla. Temperatura, të dridhurat e forta, dhimbja anash ose në shpinë poshtë brinjëve, apo të vjellat mund të sugjerojnë infeksion më serioz dhe kërkojnë vlerësim urgjent. Gjaku i dukshëm në urinë gjithashtu kërkon këshillë mjekësore. Urina e turbullt ose me erë të fortë nuk vërteton vetvetiu infeksion; hidratimi, barnat dhe faktorë të tjerë mund ta ndryshojnë pamjen e saj."
+      ]
+    },
+    {
+      "heading": "Shpjego situatën gjatë konsultës",
+      "paragraphs": [
+        "Tregoji mjekut kur filluan simptomat, nëse je ose mund të jesh shtatzënë dhe nëse ke kateter, sëmundje të veshkave, diabet ose imunitet të dobësuar. Fëmijët, burrat dhe të moshuarit e brishtë kanë nevojë për vlerësim të përshtatur, jo për kopjimin e trajtimit të përdorur nga një grua e rritur e shëndetshme. Përmend sekrecionet gjenitale, irritimin, një kontakt të ri seksual ose vështirësinë për ta zbrazur fshikëzën, sepse këto mund të tregojnë një problem tjetër ose të ndryshojnë analizat e dobishme."
+      ]
+    },
+    {
+      "heading": "Kupto analizat e urinës dhe kufijtë e tyre",
+      "paragraphs": [
+        "Simptomat dhe historia mjekësore mund të mjaftojnë për disa raste pa komplikime; situata të tjera kërkojnë analizë ose kulturë urine për të identifikuar bakteret dhe antibiotikët e përshtatshëm. Ndiq udhëzimet për mbledhjen e mostrës. Një rezultat pozitiv nuk shpjegon automatikisht çdo simptomë: disa njerëz kanë baktere në urinë pa një infeksion që kërkon trajtim. Mjeku duhet t'i interpretojë rezultatet në kontekst. Mos e vono kujdesin urgjent duke u përpjekur të sigurosh një mostër."
+      ]
+    },
+    {
+      "heading": "Ndiq një plan të dakordësuar trajtimi dhe lehtësimi",
+      "paragraphs": [
+        "Antibiotikët mund të rekomandohen në varësi të situatës dhe rëndesës. Ndiq udhëzimet e recetës dhe kontakto mjekun për efekte anësore ose mungesë përmirësimi; mos i ndaj tabletat me të tjerë dhe mos përdor barna të mbetura. Pushimi dhe lëngjet e mjaftueshme për të shmangur dehidratimin mund të ndihmojnë rehatinë, por respekto çdo kufizim të përshkruar të lëngjeve. Pyet cili qetësues dhimbjeje është i përshtatshëm. Produktet me boronicë të kuqe dhe qeskat për cistit nuk janë trajtim i besueshëm për një infeksion të nisur dhe nuk duhet të zëvendësojnë kujdesin e nevojshëm."
+      ]
+    },
+    {
+      "heading": "Dije kur nevojitet rivlerësim",
+      "paragraphs": [
+        "Kërko këshillë të shpejtë nëse simptomat përkeqësohen ose nuk përmirësohen siç pritet me planin e rënë dakord. Shtatzënia, temperatura, dhimbja në anën e veshkave, infeksionet e përsëritura dhe gjaku i vazhdueshëm në urinë kërkojnë vëmendje të veçantë. Konfuzioni i papritur, përgjumja e theksuar, kolapsi ose gjendja shumë e rëndë kërkojnë ndihmë urgjente. Pas episodeve të përsëritura, diskuto me mjekun faktorët kontribues dhe parandalimin, në vend që të vetëtrajtohesh vazhdimisht. Simptomat e reja nuk duhen lidhur automatikisht me një diagnozë të mëparshme cistiti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: dallimi i një ndryshimi",
+      "text": "Dikush me djegie gjatë urinimit fillon të ketë temperaturë dhe dhimbje në shpinë poshtë brinjëve. Kërkon vlerësim urgjent dhe shpjegon si simptomat urinare, ashtu edhe dhimbjen e re, në vend që të supozojë se është ende një problem i fshikëzës pa komplikime."
+    },
+    {
+      "title": "Shembull hipotetik: përgatitja për simptoma të përsëritura",
+      "text": "Një person me episode të përsëritura sjell në takim një listë të analizave të mëparshme, barnave të përshkruara dhe kohës së simptomave. Pyet nëse do të ndihmonte një kulturë urine ose vlerësimi i një shkaku tjetër, në vend që të përdorë antibiotikë të mbetur nga një episod i mëparshëm."
+    }
+  ],
+  "questions": [
+    "A sugjerojnë simptomat e mia infeksion të fshikëzës apo një shkak tjetër dhe a më duhen analiza urine?",
+    "Cili trajtim përshtatet me një shtatzëni të mundshme, sëmundjet e mia dhe alergjitë ndaj barnave?",
+    "Çfarë duhet të përmirësohet, kur duhet t'ju kontaktoj përsëri dhe cilat shenja kërkojnë ndihmë urgjente?"
+  ]
+}

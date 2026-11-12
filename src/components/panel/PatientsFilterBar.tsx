@@ -83,6 +83,36 @@ export function PatientsFilterBar({
   const crm = crmTranslations[lang];
   const [showFilters, setShowFilters] = useState(false);
   const t = {
+  ru: {
+      search: "Поиск по имени, телефону, электронной почте или заметкам",
+      add: "Добавить пациента",
+      exportCsv: "Экспортировать CSV",
+      refreshTitle: "Обновить пациентов",
+      refreshing: "Освежающий...",
+      refresh: "Обновить",
+      careStatus: "Статус ухода",
+      priority: "Приоритет",
+      allPatients: "Все пациенты",
+      active: "Под присмотром",
+      inactive: "Неактивный",
+      archived: "В архиве",
+      allPriorities: "Все приоритеты",
+      critical: "Критический",
+      high: "Высокий",
+      moderate: "Средний",
+      low: "Низкий",
+      urgency: "Follow-up",
+      allUrgency: "Все",
+      overdue: "Просрочено",
+      dueToday: "Срок оплаты сегодня",
+      upcoming: "Предстоящие",
+      noFollowup: "Никаких последующих действий",
+      completed: "Готово",
+      createdFrom: "Добавлено из",
+      createdTo: "Добавлено до",
+      clearDates: "Очистить даты",
+    },
+
     en: {
       search: "Search by name, phone, email or notes",
       add: "Add patient",

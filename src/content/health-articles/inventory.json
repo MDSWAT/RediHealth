@@ -1,0 +1,6326 @@
+{
+  "checkedOn": "2026-11-10",
+  "scope": "Unique individual topics linked from the alphabetical indexes of the 51 topic areas; excludes glossary entries, quizzes, videos and separate learn-more articles.",
+  "failedAreas": [],
+  "topics": [
+    {
+      "id": "abdominal-aortic-aneurysm",
+      "sourceUrl": "https://www.informedhealth.org/abdominal-aortic-aneurysm.html",
+      "sourceTitle": "Abdominal aortic aneurysm",
+      "aliases": [
+        "Abdominal aortic aneurysm"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "abortion-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/abortion-in-germany.html",
+      "sourceTitle": "Abortion",
+      "aliases": [
+        "Abortion"
+      ],
+      "areaIds": [
+        "womens-health",
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "acne",
+      "sourceUrl": "https://www.informedhealth.org/acne.html",
+      "sourceTitle": "Acne",
+      "aliases": [
+        "Acne",
+        "Pimples"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "acute-bronchitis",
+      "sourceUrl": "https://www.informedhealth.org/acute-bronchitis.html",
+      "sourceTitle": "Acute bronchitis",
+      "aliases": [
+        "Acute bronchitis",
+        "Bronchitis"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "acute-cystitis",
+      "sourceUrl": "https://www.informedhealth.org/acute-cystitis.html",
+      "sourceTitle": "Cystitis",
+      "aliases": [
+        "Cystitis",
+        "Inflammation of the bladder"
+      ],
+      "areaIds": [
+        "womens-health",
+        "urinary-disorders-and-kidney-problems",
+        "infections-and-immune-system",
+        "pregnancy-and-birth",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "acute-pancreatitis",
+      "sourceUrl": "https://www.informedhealth.org/acute-pancreatitis.html",
+      "sourceTitle": "Inflammation of the pancreas",
+      "aliases": [
+        "Inflammation of the pancreas",
+        "Pancreatitis"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "after-the-baby-is-born",
+      "sourceUrl": "https://www.informedhealth.org/after-the-baby-is-born.html",
+      "sourceTitle": "After birth",
+      "aliases": [
+        "After birth",
+        "Postpartum period"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "age-related-farsightedness-presbyopia",
+      "sourceUrl": "https://www.informedhealth.org/age-related-farsightedness-presbyopia.html",
+      "sourceTitle": "Age-related farsightedness",
+      "aliases": [
+        "Age-related farsightedness",
+        "Contact lenses",
+        "Glasses",
+        "Presbyopia",
+        "Reading glasses"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "age-related-macular-degeneration-amd",
+      "sourceUrl": "https://www.informedhealth.org/age-related-macular-degeneration-amd.html",
+      "sourceTitle": "Age-related macular degeneration",
+      "aliases": [
+        "Age-related macular degeneration",
+        "AMD",
+        "Macular degeneration"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "alcohol",
+      "sourceUrl": "https://www.informedhealth.org/alcohol.html",
+      "sourceTitle": "Abuse, alcohol",
+      "aliases": [
+        "Abuse, alcohol",
+        "Addiction, alcohol",
+        "Alcohol dependence"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves",
+        "addiction",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "allergic-contact-dermatitis",
+      "sourceUrl": "https://www.informedhealth.org/allergic-contact-dermatitis.html",
+      "sourceTitle": "Allergic contact dermatitis",
+      "aliases": [
+        "Allergic contact dermatitis",
+        "Latex allergy",
+        "Nickel allergy"
+      ],
+      "areaIds": [
+        "allergies"
+      ]
+    },
+    {
+      "id": "allergies",
+      "sourceUrl": "https://www.informedhealth.org/allergies.html",
+      "sourceTitle": "Allergies",
+      "aliases": [
+        "Allergies"
+      ],
+      "areaIds": [
+        "allergies",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "allergies-to-animals",
+      "sourceUrl": "https://www.informedhealth.org/allergies-to-animals.html",
+      "sourceTitle": "Allergy to animals",
+      "aliases": [
+        "Allergy to animals",
+        "Cat allergy"
+      ],
+      "areaIds": [
+        "allergies"
+      ]
+    },
+    {
+      "id": "alzheimers-disease",
+      "sourceUrl": "https://www.informedhealth.org/alzheimers-disease.html",
+      "sourceTitle": "Alzheimer's disease",
+      "aliases": [
+        "Alzheimer's disease",
+        "Dementia",
+        "Forgetfulness",
+        "Memory disorder"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "mental-health-brain-and-nerves",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "alzheimers-disease-understanding-the-results-of-responder-analyses",
+      "sourceUrl": "https://www.informedhealth.org/alzheimers-disease-understanding-the-results-of-responder-analyses.html",
+      "sourceTitle": "Responder analysis, Alzheimer&#39;s disease",
+      "aliases": [
+        "Responder analysis, Alzheimer&#39;s disease"
+      ],
+      "areaIds": [
+        "studies-co"
+      ]
+    },
+    {
+      "id": "alzheimers-disease-what-is-the-cdr-scale",
+      "sourceUrl": "https://www.informedhealth.org/alzheimers-disease-what-is-the-cdr-scale.html",
+      "sourceTitle": "CDR, Alzheimer&#39;s disease",
+      "aliases": [
+        "CDR, Alzheimer&#39;s disease",
+        "Clinical dementia rating, Alzheimer&#39;s disease"
+      ],
+      "areaIds": [
+        "studies-co"
+      ]
+    },
+    {
+      "id": "ankle-fractures",
+      "sourceUrl": "https://www.informedhealth.org/ankle-fractures.html",
+      "sourceTitle": "Ankle fracture",
+      "aliases": [
+        "Ankle fracture",
+        "Fracture of the ankle"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "ankle-sprains",
+      "sourceUrl": "https://www.informedhealth.org/ankle-sprains.html",
+      "sourceTitle": "Ankle sprains",
+      "aliases": [
+        "Ankle sprains",
+        "Pulled ligament",
+        "Sprained ankle",
+        "Torn ligament"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "anticoagulants-how-can-you-prevent-bleeding",
+      "sourceUrl": "https://www.informedhealth.org/anticoagulants-how-can-you-prevent-bleeding.html",
+      "sourceTitle": "Antiplatelets, preventing bleeding",
+      "aliases": [
+        "Antiplatelets, preventing bleeding",
+        "Bleedings"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines",
+        "prevention"
+      ]
+    },
+    {
+      "id": "appendicitis",
+      "sourceUrl": "https://www.informedhealth.org/appendicitis.html",
+      "sourceTitle": "Appendicitis",
+      "aliases": [
+        "Appendicitis"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "asthma",
+      "sourceUrl": "https://www.informedhealth.org/asthma.html",
+      "sourceTitle": "Asthma",
+      "aliases": [
+        "Asthma",
+        "Exercise-induced asthma"
+      ],
+      "areaIds": [
+        "airway-diseases"
+      ]
+    },
+    {
+      "id": "at-the-doctors",
+      "sourceUrl": "https://www.informedhealth.org/at-the-doctors.html",
+      "sourceTitle": "Doctor’s practice",
+      "aliases": [
+        "Doctor’s practice"
+      ],
+      "areaIds": [
+        "health-care-in-germany"
+      ]
+    },
+    {
+      "id": "at-the-hospital",
+      "sourceUrl": "https://www.informedhealth.org/at-the-hospital.html",
+      "sourceTitle": "Hospital",
+      "aliases": [
+        "Hospital"
+      ],
+      "areaIds": [
+        "health-care-in-germany"
+      ]
+    },
+    {
+      "id": "athletes-foot",
+      "sourceUrl": "https://www.informedhealth.org/athletes-foot.html",
+      "sourceTitle": "Athlete's foot",
+      "aliases": [
+        "Athlete's foot",
+        "Fungal infection, Foot",
+        "Tinea pedis"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "atrial-fibrillation",
+      "sourceUrl": "https://www.informedhealth.org/atrial-fibrillation.html",
+      "sourceTitle": "Atrial fibrillation",
+      "aliases": [
+        "Atrial fibrillation"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "atrial-flutter",
+      "sourceUrl": "https://www.informedhealth.org/atrial-flutter.html",
+      "sourceTitle": "Atrial flutter",
+      "aliases": [
+        "Atrial flutter"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "attention-deficit-hyperactivity-disorder-adhd",
+      "sourceUrl": "https://www.informedhealth.org/attention-deficit-hyperactivity-disorder-adhd.html",
+      "sourceTitle": "ADHD",
+      "aliases": [
+        "ADHD",
+        "Attention deficit disorder",
+        "Hyperactivity disorder"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "autism",
+      "sourceUrl": "https://www.informedhealth.org/autism.html",
+      "sourceTitle": "Autism",
+      "aliases": [
+        "Autism"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "av-block-heart-block",
+      "sourceUrl": "https://www.informedhealth.org/av-block-heart-block.html",
+      "sourceTitle": "AV block",
+      "aliases": [
+        "AV block",
+        "Bradycardia, heart rhythm disorder",
+        "Heart block"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "babys-first-weeks-newborn-check-ups",
+      "sourceUrl": "https://www.informedhealth.org/babys-first-weeks-newborn-check-ups.html",
+      "sourceTitle": "Newborn screening",
+      "aliases": [
+        "Newborn screening"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "bacterial-vaginosis",
+      "sourceUrl": "https://www.informedhealth.org/bacterial-vaginosis.html",
+      "sourceTitle": "Bacterial vaginosis",
+      "aliases": [
+        "Bacterial vaginosis",
+        "Gardnerellae",
+        "Vaginal infection, bacterial",
+        "Vaginosis"
+      ],
+      "areaIds": [
+        "womens-health",
+        "infections-and-immune-system",
+        "pregnancy-and-birth",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "bakers-cysts",
+      "sourceUrl": "https://www.informedhealth.org/bakers-cysts.html",
+      "sourceTitle": "Baker’s cyst",
+      "aliases": [
+        "Baker’s cyst",
+        "Cyst, knee"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "balanitis-inflammation-of-the-head-of-the-penis",
+      "sourceUrl": "https://www.informedhealth.org/balanitis-inflammation-of-the-head-of-the-penis.html",
+      "sourceTitle": "Balanitis",
+      "aliases": [
+        "Balanitis",
+        "Balanoposthitis",
+        "Inflamed foreskin",
+        "Inflamed glans"
+      ],
+      "areaIds": [
+        "mens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "bedbugs",
+      "sourceUrl": "https://www.informedhealth.org/bedbugs.html",
+      "sourceTitle": "Bed bugs",
+      "aliases": [
+        "Bed bugs"
+      ],
+      "areaIds": [
+        "allergies",
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "bedwetting",
+      "sourceUrl": "https://www.informedhealth.org/bedwetting.html",
+      "sourceTitle": "Bedwetting",
+      "aliases": [
+        "Bedwetting",
+        "Enuresis"
+      ],
+      "areaIds": [
+        "urinary-disorders-and-kidney-problems",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "before-surgery-getting-information-and-making-a-decision",
+      "sourceUrl": "https://www.informedhealth.org/before-surgery-getting-information-and-making-a-decision.html",
+      "sourceTitle": "Before surgery: Getting information and making a decision",
+      "aliases": [],
+      "areaIds": [
+        "second-opinions-before-surgery"
+      ]
+    },
+    {
+      "id": "benign-enlarged-prostate",
+      "sourceUrl": "https://www.informedhealth.org/benign-enlarged-prostate.html",
+      "sourceTitle": "Benign enlarged prostate",
+      "aliases": [
+        "Benign enlarged prostate",
+        "Benign prostatic syndrome",
+        "Enlarged prostate"
+      ],
+      "areaIds": [
+        "urinary-disorders-and-kidney-problems",
+        "mens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "benign-paroxysmal-positional-vertigo",
+      "sourceUrl": "https://www.informedhealth.org/benign-paroxysmal-positional-vertigo.html",
+      "sourceTitle": "Benign positional vertigo",
+      "aliases": [
+        "Benign positional vertigo",
+        "Dizziness",
+        "Positional vertigo",
+        "Vertigo"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "biologics-and-biosimilars",
+      "sourceUrl": "https://www.informedhealth.org/biologics-and-biosimilars.html",
+      "sourceTitle": "Biologics",
+      "aliases": [
+        "Biologics",
+        "Biosimilars",
+        "Generics"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "birth",
+      "sourceUrl": "https://www.informedhealth.org/birth.html",
+      "sourceTitle": "Birth",
+      "aliases": [
+        "Birth",
+        "Childbirth"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "bladder-training",
+      "sourceUrl": "https://www.informedhealth.org/bladder-training.html",
+      "sourceTitle": "Bladder training",
+      "aliases": [
+        "Bladder training"
+      ],
+      "areaIds": [
+        "kidneys-bladder-and-urinary-tract",
+        "physical-therapy-and-daily-living-aids"
+      ]
+    },
+    {
+      "id": "blood-test-for-down-edwards-and-patau-syndrome-nipt",
+      "sourceUrl": "https://www.informedhealth.org/blood-test-for-down-edwards-and-patau-syndrome-nipt.html",
+      "sourceTitle": "Non-invasive prenatal test",
+      "aliases": [
+        "Non-invasive prenatal test",
+        "Trisomies"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "boils-and-carbuncles",
+      "sourceUrl": "https://www.informedhealth.org/boils-and-carbuncles.html",
+      "sourceTitle": "Abscess",
+      "aliases": [
+        "Abscess",
+        "Boil",
+        "Carbuncle",
+        "Skin abscess"
+      ],
+      "areaIds": [
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "brachytherapy",
+      "sourceUrl": "https://www.informedhealth.org/brachytherapy.html",
+      "sourceTitle": "Brachytherapy",
+      "aliases": [
+        "Brachytherapy",
+        "Radiation therapy, internal",
+        "Radiotherapy, internal"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "brain-aneurysm",
+      "sourceUrl": "https://www.informedhealth.org/brain-aneurysm.html",
+      "sourceTitle": "Brain aneurysm",
+      "aliases": [
+        "Brain aneurysm",
+        "Cerebral aneurysm"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "breast-cancer",
+      "sourceUrl": "https://www.informedhealth.org/breast-cancer.html",
+      "sourceTitle": "Biomarkers",
+      "aliases": [
+        "Biomarkers",
+        "BRCA",
+        "Breast cancer",
+        "Recurrent breast cancer"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer",
+        "screening"
+      ]
+    },
+    {
+      "id": "breast-cancer-treating-lymphedema",
+      "sourceUrl": "https://www.informedhealth.org/breast-cancer-treating-lymphedema.html",
+      "sourceTitle": "Lymphedema",
+      "aliases": [
+        "Lymphedema"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer",
+        "screening"
+      ]
+    },
+    {
+      "id": "bruised-knee",
+      "sourceUrl": "https://www.informedhealth.org/bruised-knee.html",
+      "sourceTitle": "Bruise, knee",
+      "aliases": [
+        "Bruise, knee",
+        "Bruised knee",
+        "Contusion, knee"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "bunions",
+      "sourceUrl": "https://www.informedhealth.org/bunions.html",
+      "sourceTitle": "Bunion",
+      "aliases": [
+        "Bunion",
+        "Hallux valgus",
+        "Toe deformity"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "bursitis",
+      "sourceUrl": "https://www.informedhealth.org/bursitis.html",
+      "sourceTitle": "Bursitis",
+      "aliases": [
+        "Bursitis"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "calcium-calculator",
+      "sourceUrl": "https://www.informedhealth.org/calcium-calculator.html",
+      "sourceTitle": "Calcium calculator",
+      "aliases": [
+        "Calcium calculator"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "can-measurements-show-if-a-treatment-works",
+      "sourceUrl": "https://www.informedhealth.org/can-measurements-show-if-a-treatment-works.html",
+      "sourceTitle": "Endpoint",
+      "aliases": [
+        "Endpoint",
+        "Measurements",
+        "Patient-relevant endpoint",
+        "Surrogate endpoint"
+      ],
+      "areaIds": [
+        "studies-co"
+      ]
+    },
+    {
+      "id": "can-mothers-reduce-their-childs-risk-of-getting-eczema-by-avoiding-certain-foods-during-pregnancy-and-while-breastfeeding",
+      "sourceUrl": "https://www.informedhealth.org/can-mothers-reduce-their-childs-risk-of-getting-eczema-by-avoiding-certain-foods-during-pregnancy-and-while-breastfeeding.html",
+      "sourceTitle": "Breastfeeding, eczema",
+      "aliases": [
+        "Breastfeeding, eczema"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "can-noise-damage-your-hearing",
+      "sourceUrl": "https://www.informedhealth.org/can-noise-damage-your-hearing.html",
+      "sourceTitle": "Noise, hearing loss",
+      "aliases": [
+        "Noise, hearing loss"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "cancer-what-do-the-codes-in-the-doctors-letter-mean",
+      "sourceUrl": "https://www.informedhealth.org/cancer-what-do-the-codes-in-the-doctors-letter-mean.html",
+      "sourceTitle": "Grading",
+      "aliases": [
+        "Grading",
+        "Staging",
+        "TNM classification"
+      ],
+      "areaIds": [
+        "health-care-in-germany"
+      ]
+    },
+    {
+      "id": "canker-sores-mouth-ulcers",
+      "sourceUrl": "https://www.informedhealth.org/canker-sores-mouth-ulcers.html",
+      "sourceTitle": "Canker sores",
+      "aliases": [
+        "Canker sores"
+      ],
+      "areaIds": [
+        "teeth-and-gums",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "cardiopulmonary-resuscitation-cpr-what-you-need-to-know",
+      "sourceUrl": "https://www.informedhealth.org/cardiopulmonary-resuscitation-cpr-what-you-need-to-know.html",
+      "sourceTitle": "Cardiac massage",
+      "aliases": [
+        "Cardiac massage",
+        "First aid, Resuscitation",
+        "Heart, Resuscitation",
+        "Reanimation",
+        "Resuscitation"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "carpal-tunnel-syndrome",
+      "sourceUrl": "https://www.informedhealth.org/carpal-tunnel-syndrome.html",
+      "sourceTitle": "Carpal tunnel syndrome",
+      "aliases": [
+        "Carpal tunnel syndrome"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "cataract-surgery",
+      "sourceUrl": "https://www.informedhealth.org/cataract-surgery.html",
+      "sourceTitle": "Artificial lens",
+      "aliases": [
+        "Artificial lens"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "cataracts",
+      "sourceUrl": "https://www.informedhealth.org/cataracts.html",
+      "sourceTitle": "Cataract",
+      "aliases": [
+        "Cataract"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "causes-and-signs-of-edema",
+      "sourceUrl": "https://www.informedhealth.org/causes-and-signs-of-edema.html",
+      "sourceTitle": "Edema",
+      "aliases": [
+        "Edema",
+        "Water retention"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "celiac-disease",
+      "sourceUrl": "https://www.informedhealth.org/celiac-disease.html",
+      "sourceTitle": "Celiac disease",
+      "aliases": [
+        "Celiac disease",
+        "Gluten intolerance"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "cervical-cancer",
+      "sourceUrl": "https://www.informedhealth.org/cervical-cancer.html",
+      "sourceTitle": "Cervical cancer",
+      "aliases": [
+        "Cervical cancer"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer",
+        "screening"
+      ]
+    },
+    {
+      "id": "cervical-cancer-how-are-precancerous-cells-treated",
+      "sourceUrl": "https://www.informedhealth.org/cervical-cancer-how-are-precancerous-cells-treated.html",
+      "sourceTitle": "Dysplasia",
+      "aliases": [
+        "Dysplasia"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer",
+        "screening"
+      ]
+    },
+    {
+      "id": "chickenpox",
+      "sourceUrl": "https://www.informedhealth.org/chickenpox.html",
+      "sourceTitle": "Chickenpox",
+      "aliases": [
+        "Chickenpox",
+        "Varicella"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "children-and-sun-practical-information-for-parents",
+      "sourceUrl": "https://www.informedhealth.org/children-and-sun-practical-information-for-parents.html",
+      "sourceTitle": "Health check-up, Sun protection",
+      "aliases": [
+        "Health check-up, Sun protection",
+        "Skin, Sun protection",
+        "Sun screen, children"
+      ],
+      "areaIds": [
+        "prevention"
+      ]
+    },
+    {
+      "id": "chlamydia",
+      "sourceUrl": "https://www.informedhealth.org/chlamydia.html",
+      "sourceTitle": "Chlamydia infection",
+      "aliases": [
+        "Chlamydia infection"
+      ],
+      "areaIds": [
+        "womens-health",
+        "infections-and-immune-system",
+        "mens-health",
+        "pregnancy-and-birth",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "chronic-kidney-disease",
+      "sourceUrl": "https://www.informedhealth.org/chronic-kidney-disease.html",
+      "sourceTitle": "Chronic kidney disease",
+      "aliases": [
+        "Chronic kidney disease",
+        "Kidney insufficiency",
+        "Renal insufficiency"
+      ],
+      "areaIds": [
+        "urinary-disorders-and-kidney-problems"
+      ]
+    },
+    {
+      "id": "chronic-obstructive-pulmonary-disease-copd",
+      "sourceUrl": "https://www.informedhealth.org/chronic-obstructive-pulmonary-disease-copd.html",
+      "sourceTitle": "Chronic obstructive pulmonary disease (COPD)",
+      "aliases": [
+        "Chronic obstructive pulmonary disease (COPD)",
+        "COPD",
+        "Pulmonary disease, chronic obstructive (COPD)",
+        "Pulmonary emphysema"
+      ],
+      "areaIds": [
+        "airway-diseases"
+      ]
+    },
+    {
+      "id": "chronic-wounds",
+      "sourceUrl": "https://www.informedhealth.org/chronic-wounds.html",
+      "sourceTitle": "Chronic wounds",
+      "aliases": [
+        "Chronic wounds",
+        "Wounds, chronic"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "climate-and-health",
+      "sourceUrl": "https://www.informedhealth.org/climate-and-health.html",
+      "sourceTitle": "Climate and health",
+      "aliases": [
+        "Climate and health"
+      ],
+      "areaIds": [
+        "prevention"
+      ]
+    },
+    {
+      "id": "cluster-headache",
+      "sourceUrl": "https://www.informedhealth.org/cluster-headache.html",
+      "sourceTitle": "Cluster headache",
+      "aliases": [
+        "Cluster headache"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "cognitive-behavioral-therapy-cbt",
+      "sourceUrl": "https://www.informedhealth.org/cognitive-behavioral-therapy-cbt.html",
+      "sourceTitle": "Behavioral therapy, cognitive",
+      "aliases": [
+        "Behavioral therapy, cognitive",
+        "Cognitive behavioral therapy"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "cold-sores",
+      "sourceUrl": "https://www.informedhealth.org/cold-sores.html",
+      "sourceTitle": "Cold sores",
+      "aliases": [
+        "Cold sores",
+        "Herpes labialis"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "colorectal-cancer",
+      "sourceUrl": "https://www.informedhealth.org/colorectal-cancer.html",
+      "sourceTitle": "Bowel cancer",
+      "aliases": [
+        "Bowel cancer",
+        "Coloscopy"
+      ],
+      "areaIds": [
+        "cancer",
+        "digestive-system-disorders",
+        "screening"
+      ]
+    },
+    {
+      "id": "comments-praise-and-criticism",
+      "sourceUrl": "https://www.informedhealth.org/comments-praise-and-criticism.html",
+      "sourceTitle": "Give Feedback",
+      "aliases": [
+        "Give Feedback",
+        "Readers feedback",
+        "Suggestions for improvement"
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "common-colds",
+      "sourceUrl": "https://www.informedhealth.org/common-colds.html",
+      "sourceTitle": "Cold",
+      "aliases": [
+        "Cold",
+        "Common cold",
+        "Sore throat",
+        "Stuffy nose"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "complications-of-gallstones",
+      "sourceUrl": "https://www.informedhealth.org/complications-of-gallstones.html",
+      "sourceTitle": "Cholecystitis",
+      "aliases": [
+        "Cholecystitis"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "concussion",
+      "sourceUrl": "https://www.informedhealth.org/concussion.html",
+      "sourceTitle": "Concussion",
+      "aliases": [
+        "Concussion",
+        "Head injury",
+        "Traumatic brain injury"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "conjunctivitis-pink-eye",
+      "sourceUrl": "https://www.informedhealth.org/conjunctivitis-pink-eye.html",
+      "sourceTitle": "Conjunctivitis",
+      "aliases": [
+        "Conjunctivitis",
+        "Pink eye"
+      ],
+      "areaIds": [
+        "allergies",
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "corns",
+      "sourceUrl": "https://www.informedhealth.org/corns.html",
+      "sourceTitle": "Clavus",
+      "aliases": [
+        "Clavus",
+        "Corn"
+      ],
+      "areaIds": [
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "coronary-artery-disease",
+      "sourceUrl": "https://www.informedhealth.org/coronary-artery-disease.html",
+      "sourceTitle": "Angina pectoris",
+      "aliases": [
+        "Angina pectoris",
+        "Coronary artery disease",
+        "Heart attack"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "cough",
+      "sourceUrl": "https://www.informedhealth.org/cough.html",
+      "sourceTitle": "Cough",
+      "aliases": [
+        "Cough"
+      ],
+      "areaIds": [
+        "airway-diseases"
+      ]
+    },
+    {
+      "id": "covid-19-coronavirus-disease",
+      "sourceUrl": "https://www.informedhealth.org/covid-19-coronavirus-disease.html",
+      "sourceTitle": "Corona, vaccines",
+      "aliases": [
+        "Corona, vaccines",
+        "Coronavirus",
+        "COVID-19"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "cpap-therapy-for-sleep-apnea-dealing-with-common-problems",
+      "sourceUrl": "https://www.informedhealth.org/cpap-therapy-for-sleep-apnea-dealing-with-common-problems.html",
+      "sourceTitle": "CPAP therapy",
+      "aliases": [
+        "CPAP therapy"
+      ],
+      "areaIds": [
+        "airway-diseases"
+      ]
+    },
+    {
+      "id": "croup",
+      "sourceUrl": "https://www.informedhealth.org/croup.html",
+      "sourceTitle": "Croup",
+      "aliases": [
+        "Croup"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "crowns-bridges-implants-what-types-of-replacement-teeth-are-there",
+      "sourceUrl": "https://www.informedhealth.org/crowns-bridges-implants-what-types-of-replacement-teeth-are-there.html",
+      "sourceTitle": "Replacement teeth",
+      "aliases": [
+        "Replacement teeth"
+      ],
+      "areaIds": [
+        "teeth-and-gums",
+        "mouth-and-teeth",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "decision-aids",
+      "sourceUrl": "https://www.informedhealth.org/decision-aids.html",
+      "sourceTitle": "Decision guide",
+      "aliases": [
+        "Decision guide"
+      ],
+      "areaIds": [
+        "making-an-informed-decision"
+      ]
+    },
+    {
+      "id": "deep-vein-thrombosis-dvt",
+      "sourceUrl": "https://www.informedhealth.org/deep-vein-thrombosis-dvt.html",
+      "sourceTitle": "Deep vein thrombosis (DVT)",
+      "aliases": [
+        "Deep vein thrombosis (DVT)",
+        "DVT",
+        "Vein thrombosis, deep"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "dehydration",
+      "sourceUrl": "https://www.informedhealth.org/dehydration.html",
+      "sourceTitle": "Dehydration",
+      "aliases": [
+        "Dehydration",
+        "Heat, effects on health"
+      ],
+      "areaIds": [
+        "urinary-disorders-and-kidney-problems",
+        "heart-and-circulation",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "depression",
+      "sourceUrl": "https://www.informedhealth.org/depression.html",
+      "sourceTitle": "Burnout syndrome",
+      "aliases": [
+        "Burnout syndrome",
+        "Depression"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "depression-after-childbirth-what-can-help",
+      "sourceUrl": "https://www.informedhealth.org/depression-after-childbirth-what-can-help.html",
+      "sourceTitle": "Baby Blues",
+      "aliases": [
+        "Baby Blues",
+        "Depression, postpartum",
+        "Postpartum depression"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "deviated-septum-in-the-nose-nasal-septal-deviation",
+      "sourceUrl": "https://www.informedhealth.org/deviated-septum-in-the-nose-nasal-septal-deviation.html",
+      "sourceTitle": "Deviated septum",
+      "aliases": [
+        "Deviated septum",
+        "Nasal septal deviation"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "diabetic-foot-how-can-you-prevent-wounds",
+      "sourceUrl": "https://www.informedhealth.org/diabetic-foot-how-can-you-prevent-wounds.html",
+      "sourceTitle": "Diabetic foot",
+      "aliases": [
+        "Diabetic foot"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "diabetes",
+        "metabolic-disorders"
+      ]
+    },
+    {
+      "id": "diarrhea",
+      "sourceUrl": "https://www.informedhealth.org/diarrhea.html",
+      "sourceTitle": "Diarrhea",
+      "aliases": [
+        "Diarrhea",
+        "Gastroenteritis",
+        "Intestinal infection",
+        "Norovirus",
+        "Rotavirus",
+        "Salmonella"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "dietary-advice-and-nutritional-therapy-services",
+      "sourceUrl": "https://www.informedhealth.org/dietary-advice-and-nutritional-therapy-services.html",
+      "sourceTitle": "Nutritional counseling",
+      "aliases": [
+        "Nutritional counseling",
+        "Nutritional therapy"
+      ],
+      "areaIds": [
+        "stomach-bowel-and-digestion",
+        "metabolism",
+        "non-drug-treatments",
+        "prevention"
+      ]
+    },
+    {
+      "id": "dietary-supplements-what-do-you-need-to-know",
+      "sourceUrl": "https://www.informedhealth.org/dietary-supplements-what-do-you-need-to-know.html",
+      "sourceTitle": "Dietary supplements",
+      "aliases": [
+        "Dietary supplements"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "addiction",
+        "health-care-in-germany",
+        "nursing-care",
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "disease-management-program-for-type-1-diabetes-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/disease-management-program-for-type-1-diabetes-in-germany.html",
+      "sourceTitle": "Disease management program, Diabetes",
+      "aliases": [
+        "Disease management program, Diabetes",
+        "DMP, Diabetes"
+      ],
+      "areaIds": [
+        "health-care-in-germany"
+      ]
+    },
+    {
+      "id": "dislocated-kneecap",
+      "sourceUrl": "https://www.informedhealth.org/dislocated-kneecap.html",
+      "sourceTitle": "Dislocation",
+      "aliases": [
+        "Dislocation",
+        "Kneecap, dislocated",
+        "Patellar dislocation"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "diverticular-disease-and-diverticulitis",
+      "sourceUrl": "https://www.informedhealth.org/diverticular-disease-and-diverticulitis.html",
+      "sourceTitle": "Diverticula",
+      "aliases": [
+        "Diverticula"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "donanemab-kisunla-for-early-stage-alzheimers-disease",
+      "sourceUrl": "https://www.informedhealth.org/donanemab-kisunla-for-early-stage-alzheimers-disease.html",
+      "sourceTitle": "Donanemab , Alzheimer&#39;s disease",
+      "aliases": [
+        "Donanemab , Alzheimer&#39;s disease",
+        "Kisunla, Alzheimer&#39;s disease"
+      ],
+      "areaIds": [
+        "early-benefit-assessment-of-medications"
+      ]
+    },
+    {
+      "id": "down-edwards-and-patau-syndrome",
+      "sourceUrl": "https://www.informedhealth.org/down-edwards-and-patau-syndrome.html",
+      "sourceTitle": "Trisomy 13",
+      "aliases": [
+        "Trisomy 13",
+        "Trisomy 18",
+        "Trisomy 21"
+      ],
+      "areaIds": [
+        "growth-and-aging"
+      ]
+    },
+    {
+      "id": "drug-allergies",
+      "sourceUrl": "https://www.informedhealth.org/drug-allergies.html",
+      "sourceTitle": "Allergy, drugs",
+      "aliases": [
+        "Allergy, drugs",
+        "Drug allergy",
+        "Medication allergy"
+      ],
+      "areaIds": [
+        "allergies"
+      ]
+    },
+    {
+      "id": "drugs-assessed-by-iqwig",
+      "sourceUrl": "https://www.informedhealth.org/drugs-assessed-by-iqwig.html",
+      "sourceTitle": "AMNOG assessments",
+      "aliases": [
+        "AMNOG assessments",
+        "Early assessments of medications",
+        "Early benefit assessment"
+      ],
+      "areaIds": [
+        "early-benefit-assessment-of-medications"
+      ]
+    },
+    {
+      "id": "dust-mite-allergies",
+      "sourceUrl": "https://www.informedhealth.org/dust-mite-allergies.html",
+      "sourceTitle": "Dust mite allergy",
+      "aliases": [
+        "Dust mite allergy"
+      ],
+      "areaIds": [
+        "allergies"
+      ]
+    },
+    {
+      "id": "eczema",
+      "sourceUrl": "https://www.informedhealth.org/eczema.html",
+      "sourceTitle": "Atopic dermatitis",
+      "aliases": [
+        "Atopic dermatitis",
+        "Atopic eczema",
+        "Eczema"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "eczema-can-eliminating-particular-foods-help",
+      "sourceUrl": "https://www.informedhealth.org/eczema-can-eliminating-particular-foods-help.html",
+      "sourceTitle": "Diet, eczema",
+      "aliases": [
+        "Diet, eczema"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "eczema-in-children-can-prebiotics-or-probiotics-help-prevent-it",
+      "sourceUrl": "https://www.informedhealth.org/eczema-in-children-can-prebiotics-or-probiotics-help-prevent-it.html",
+      "sourceTitle": "Probiotics, eczema",
+      "aliases": [
+        "Probiotics, eczema"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "endometriosis",
+      "sourceUrl": "https://www.informedhealth.org/endometriosis.html",
+      "sourceTitle": "Endometriosis",
+      "aliases": [
+        "Endometriosis"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "womens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "enlarged-hemorrhoids",
+      "sourceUrl": "https://www.informedhealth.org/enlarged-hemorrhoids.html",
+      "sourceTitle": "Hemorrhoids",
+      "aliases": [
+        "Hemorrhoids"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "enlarged-tonsils-and-adenoids",
+      "sourceUrl": "https://www.informedhealth.org/enlarged-tonsils-and-adenoids.html",
+      "sourceTitle": "Tonsils, enlarged",
+      "aliases": [
+        "Tonsils, enlarged"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "eyes-nose-ears",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "epidurals-and-other-medications-to-relieve-labor-pain",
+      "sourceUrl": "https://www.informedhealth.org/epidurals-and-other-medications-to-relieve-labor-pain.html",
+      "sourceTitle": "Epidural",
+      "aliases": [
+        "Epidural"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "epilepsy",
+      "sourceUrl": "https://www.informedhealth.org/epilepsy.html",
+      "sourceTitle": "Epilepsy",
+      "aliases": [
+        "Epilepsy",
+        "Seizure",
+        "Seizure, epileptic",
+        "Status epilepticus"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "erysipelas-and-cellulitis",
+      "sourceUrl": "https://www.informedhealth.org/erysipelas-and-cellulitis.html",
+      "sourceTitle": "Cellulitis",
+      "aliases": [
+        "Cellulitis",
+        "Erysipelas",
+        "Skin infection"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "evaluating-the-evidence",
+      "sourceUrl": "https://www.informedhealth.org/evaluating-the-evidence.html",
+      "sourceTitle": "AMSTAR 2",
+      "aliases": [
+        "AMSTAR 2",
+        "Evidence assessment"
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "evidence-based-medicine-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/evidence-based-medicine-in-germany.html",
+      "sourceTitle": "AQuMed",
+      "aliases": [
+        "AQuMed",
+        "AWMF",
+        "Cochrane Germany",
+        "Evidence-based medicine, Germany",
+        "Federal Joint Committee (G-BA)",
+        "German Network for Evidence-based Medicine",
+        "Social Code Book V"
+      ],
+      "areaIds": [
+        "what-is-evidence-based-medicine"
+      ]
+    },
+    {
+      "id": "evidence-the-cornerstone-of-our-information",
+      "sourceUrl": "https://www.informedhealth.org/evidence-the-cornerstone-of-our-information.html",
+      "sourceTitle": "Evidence-based health information",
+      "aliases": [
+        "Evidence-based health information"
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "external-radiotherapy",
+      "sourceUrl": "https://www.informedhealth.org/external-radiotherapy.html",
+      "sourceTitle": "Radiation therapy, external",
+      "aliases": [
+        "Radiation therapy, external",
+        "Radiotherapy, external"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "eye-health-who-can-you-go-to",
+      "sourceUrl": "https://www.informedhealth.org/eye-health-who-can-you-go-to.html",
+      "sourceTitle": "Eye care professionals",
+      "aliases": [
+        "Eye care professionals",
+        "Eye doctor",
+        "Ophthalmology department",
+        "Optician",
+        "Optometrist",
+        "Orthopist"
+      ],
+      "areaIds": [
+        "health-care-in-germany"
+      ]
+    },
+    {
+      "id": "falls-in-older-people",
+      "sourceUrl": "https://www.informedhealth.org/falls-in-older-people.html",
+      "sourceTitle": "Fall prevention",
+      "aliases": [
+        "Fall prevention",
+        "Preventing falls"
+      ],
+      "areaIds": [
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "farsightedness-hyperopia",
+      "sourceUrl": "https://www.informedhealth.org/farsightedness-hyperopia.html",
+      "sourceTitle": "Farsightedness",
+      "aliases": [
+        "Farsightedness",
+        "Hyperopia",
+        "Long-sightedness"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "fast-heart-rate-in-paroxysmal-supraventricular-tachycardia",
+      "sourceUrl": "https://www.informedhealth.org/fast-heart-rate-in-paroxysmal-supraventricular-tachycardia.html",
+      "sourceTitle": "Heartbeat, fast",
+      "aliases": [
+        "Heartbeat, fast",
+        "Supraventricular tachycardia"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "fasting",
+      "sourceUrl": "https://www.informedhealth.org/fasting.html",
+      "sourceTitle": "fasting",
+      "aliases": [
+        "fasting"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "fever-in-children",
+      "sourceUrl": "https://www.informedhealth.org/fever-in-children.html",
+      "sourceTitle": "Fever in children",
+      "aliases": [
+        "Fever in children",
+        "High temperature"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "fibromyalgia",
+      "sourceUrl": "https://www.informedhealth.org/fibromyalgia.html",
+      "sourceTitle": "Fibromyalgia",
+      "aliases": [
+        "Fibromyalgia",
+        "Muscle pain",
+        "Pain disorder"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves",
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "finding-high-quality-health-information-on-the-internet",
+      "sourceUrl": "https://www.informedhealth.org/finding-high-quality-health-information-on-the-internet.html",
+      "sourceTitle": "Good health information",
+      "aliases": [
+        "Good health information",
+        "Good practice health information",
+        "Search engines"
+      ],
+      "areaIds": [
+        "making-an-informed-decision"
+      ]
+    },
+    {
+      "id": "first-aid-for-head-injuries",
+      "sourceUrl": "https://www.informedhealth.org/first-aid-for-head-injuries.html",
+      "sourceTitle": "Concussion, First aid",
+      "aliases": [
+        "Concussion, First aid",
+        "First aid, Head injury",
+        "Head injury, First aid",
+        "Traumatic brain injury, First aid"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "food-allergies",
+      "sourceUrl": "https://www.informedhealth.org/food-allergies.html",
+      "sourceTitle": "Cross reactivity",
+      "aliases": [
+        "Cross reactivity",
+        "Food allergies"
+      ],
+      "areaIds": [
+        "allergies"
+      ]
+    },
+    {
+      "id": "foot-deformities",
+      "sourceUrl": "https://www.informedhealth.org/foot-deformities.html",
+      "sourceTitle": "Club foot",
+      "aliases": [
+        "Club foot",
+        "Deformities of the feet",
+        "Equinus foot",
+        "Fallen arch",
+        "Feet misalignments",
+        "Flat foot",
+        "High-arched foot",
+        "Pronated foot",
+        "Splayfoot"
+      ],
+      "areaIds": [
+        "limbs"
+      ]
+    },
+    {
+      "id": "frozen-shoulder",
+      "sourceUrl": "https://www.informedhealth.org/frozen-shoulder.html",
+      "sourceTitle": "Adhesive capsulitis",
+      "aliases": [
+        "Adhesive capsulitis",
+        "Frozen shoulder",
+        "Periarthritis"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "functional-dyspepsia",
+      "sourceUrl": "https://www.informedhealth.org/functional-dyspepsia.html",
+      "sourceTitle": "Dyspepsia",
+      "aliases": [
+        "Dyspepsia",
+        "Functional dyspepsia",
+        "Irritable stomach"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "gallstones",
+      "sourceUrl": "https://www.informedhealth.org/gallstones.html",
+      "sourceTitle": "Bile duct stones",
+      "aliases": [
+        "Bile duct stones",
+        "Cholangitis",
+        "Gallstone disease",
+        "Gallstones",
+        "Porcelain gallbladder"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "gastritis",
+      "sourceUrl": "https://www.informedhealth.org/gastritis.html",
+      "sourceTitle": "Gastritis",
+      "aliases": [
+        "Gastritis",
+        "Inflammation of the stomach lining"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "gathering-information-and-making-a-decision",
+      "sourceUrl": "https://www.informedhealth.org/gathering-information-and-making-a-decision.html",
+      "sourceTitle": "Making a decision",
+      "aliases": [
+        "Making a decision",
+        "Shared decision making"
+      ],
+      "areaIds": [
+        "making-an-informed-decision"
+      ]
+    },
+    {
+      "id": "generalized-anxiety-disorder",
+      "sourceUrl": "https://www.informedhealth.org/generalized-anxiety-disorder.html",
+      "sourceTitle": "Anxiety disorder",
+      "aliases": [
+        "Anxiety disorder",
+        "Generalized anxiety disorder"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "genital-herpes",
+      "sourceUrl": "https://www.informedhealth.org/genital-herpes.html",
+      "sourceTitle": "Genital herpes",
+      "aliases": [
+        "Genital herpes",
+        "Herpes genitalis"
+      ],
+      "areaIds": [
+        "womens-health",
+        "skin-and-hair",
+        "infections-and-immune-system",
+        "mens-health",
+        "pregnancy-and-birth",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "genital-warts",
+      "sourceUrl": "https://www.informedhealth.org/genital-warts.html",
+      "sourceTitle": "Condyloma",
+      "aliases": [
+        "Condyloma",
+        "Genital warts"
+      ],
+      "areaIds": [
+        "womens-health",
+        "skin-and-hair",
+        "mens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "gestational-diabetes",
+      "sourceUrl": "https://www.informedhealth.org/gestational-diabetes.html",
+      "sourceTitle": "Diabetes during pregnancy",
+      "aliases": [
+        "Diabetes during pregnancy",
+        "Gestational diabetes"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "diabetes",
+        "pregnancy-and-birth",
+        "metabolic-disorders",
+        "screening"
+      ]
+    },
+    {
+      "id": "gingivitis-and-periodontitis",
+      "sourceUrl": "https://www.informedhealth.org/gingivitis-and-periodontitis.html",
+      "sourceTitle": "Gingivitis",
+      "aliases": [
+        "Gingivitis",
+        "Inflammation of the gums",
+        "Periodontitis"
+      ],
+      "areaIds": [
+        "teeth-and-gums"
+      ]
+    },
+    {
+      "id": "giving-mouth-to-mouth-resuscitation",
+      "sourceUrl": "https://www.informedhealth.org/giving-mouth-to-mouth-resuscitation.html",
+      "sourceTitle": "Mouth-to-mouth resuscitation",
+      "aliases": [
+        "Mouth-to-mouth resuscitation",
+        "Rescue breathing"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "glaucoma",
+      "sourceUrl": "https://www.informedhealth.org/glaucoma.html",
+      "sourceTitle": "Glaucoma",
+      "aliases": [
+        "Glaucoma",
+        "Intraocular pressure, increased"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "individual-health-care-services-igel",
+        "screening"
+      ]
+    },
+    {
+      "id": "gluten-and-wheat-sensitivity-allergy-or-celiac-disease",
+      "sourceUrl": "https://www.informedhealth.org/gluten-and-wheat-sensitivity-allergy-or-celiac-disease.html",
+      "sourceTitle": "Gluten sensitivity",
+      "aliases": [
+        "Gluten sensitivity",
+        "Wheat allergy",
+        "Wheat sensitivity"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "going-to-see-a-gynecologist",
+      "sourceUrl": "https://www.informedhealth.org/going-to-see-a-gynecologist.html",
+      "sourceTitle": "Gynecological examination",
+      "aliases": [
+        "Gynecological examination",
+        "Pelvic exam"
+      ],
+      "areaIds": [
+        "sex-organs",
+        "prevention"
+      ]
+    },
+    {
+      "id": "gonorrhea-the-clap",
+      "sourceUrl": "https://www.informedhealth.org/gonorrhea-the-clap.html",
+      "sourceTitle": "Clap, the",
+      "aliases": [
+        "Clap, the",
+        "Gonorrhea"
+      ],
+      "areaIds": [
+        "womens-health",
+        "infections-and-immune-system",
+        "mens-health",
+        "pregnancy-and-birth",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "gout",
+      "sourceUrl": "https://www.informedhealth.org/gout.html",
+      "sourceTitle": "Gout",
+      "aliases": [
+        "Gout",
+        "Joint inflammation"
+      ],
+      "areaIds": [
+        "urinary-disorders-and-kidney-problems",
+        "muscle-and-joint-disorders",
+        "metabolic-disorders"
+      ]
+    },
+    {
+      "id": "graves-disease",
+      "sourceUrl": "https://www.informedhealth.org/graves-disease.html",
+      "sourceTitle": "Graves' disease",
+      "aliases": [
+        "Graves' disease"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders"
+      ]
+    },
+    {
+      "id": "growing-body-of-knowledge-the-starting-point",
+      "sourceUrl": "https://www.informedhealth.org/growing-body-of-knowledge-the-starting-point.html",
+      "sourceTitle": "Federal Ministry of Health (FMH)",
+      "aliases": [
+        "Federal Ministry of Health (FMH)"
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "growth-in-childhood-and-puberty",
+      "sourceUrl": "https://www.informedhealth.org/growth-in-childhood-and-puberty.html",
+      "sourceTitle": "Growth",
+      "aliases": [
+        "Growth"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system",
+        "growth-and-aging"
+      ]
+    },
+    {
+      "id": "hair-loss-in-chemotherapy",
+      "sourceUrl": "https://www.informedhealth.org/hair-loss-in-chemotherapy.html",
+      "sourceTitle": "Hair loss in chemotherapy",
+      "aliases": [
+        "Hair loss in chemotherapy"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "cancer"
+      ]
+    },
+    {
+      "id": "hand-foot-and-mouth-disease",
+      "sourceUrl": "https://www.informedhealth.org/hand-foot-and-mouth-disease.html",
+      "sourceTitle": "Hand-foot-and-mouth disease",
+      "aliases": [
+        "Hand-foot-and-mouth disease"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "harvesting-blood-stem-cells-for-transplantation",
+      "sourceUrl": "https://www.informedhealth.org/harvesting-blood-stem-cells-for-transplantation.html",
+      "sourceTitle": "Apheresis",
+      "aliases": [
+        "Apheresis",
+        "Blood transfusion",
+        "Bone marrow, Stem cell transplantation",
+        "Growth factor",
+        "Stem cells, isolation",
+        "Umbilical cord blood"
+      ],
+      "areaIds": [
+        "blood-and-immune-system",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "hashimotos-disease",
+      "sourceUrl": "https://www.informedhealth.org/hashimotos-disease.html",
+      "sourceTitle": "Hashimoto’s thyroiditis",
+      "aliases": [
+        "Hashimoto’s thyroiditis",
+        "Thyroiditis"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders"
+      ]
+    },
+    {
+      "id": "hay-fever",
+      "sourceUrl": "https://www.informedhealth.org/hay-fever.html",
+      "sourceTitle": "Allergic rhinitis",
+      "aliases": [
+        "Allergic rhinitis",
+        "Allergy, hay fever",
+        "Hay fever",
+        "Pollen allergy"
+      ],
+      "areaIds": [
+        "allergies"
+      ]
+    },
+    {
+      "id": "head-lice",
+      "sourceUrl": "https://www.informedhealth.org/head-lice.html",
+      "sourceTitle": "Head lice",
+      "aliases": [
+        "Head lice",
+        "Lice"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "headaches",
+      "sourceUrl": "https://www.informedhealth.org/headaches.html",
+      "sourceTitle": "Headaches",
+      "aliases": [
+        "Headaches",
+        "Medication overuse headache"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "health-care-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/health-care-in-germany.html",
+      "sourceTitle": "Inpatient care",
+      "aliases": [
+        "Inpatient care",
+        "Outpatient care"
+      ],
+      "areaIds": [
+        "health-care-in-germany"
+      ]
+    },
+    {
+      "id": "health-insurance-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/health-insurance-in-germany.html",
+      "sourceTitle": "Health insurance",
+      "aliases": [
+        "Health insurance"
+      ],
+      "areaIds": [
+        "health-care-in-germany"
+      ]
+    },
+    {
+      "id": "hearing-loss-and-deafness-in-adults",
+      "sourceUrl": "https://www.informedhealth.org/hearing-loss-and-deafness-in-adults.html",
+      "sourceTitle": "Deafness, adult",
+      "aliases": [
+        "Deafness, adult",
+        "Hearing loss, adult",
+        "Hearing loss, age-related"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "hearing-loss-and-deafness-in-children",
+      "sourceUrl": "https://www.informedhealth.org/hearing-loss-and-deafness-in-children.html",
+      "sourceTitle": "Deafness, children",
+      "aliases": [
+        "Deafness, children",
+        "Hearing loss, children"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "hearing-tests-in-newborns",
+      "sourceUrl": "https://www.informedhealth.org/hearing-tests-in-newborns.html",
+      "sourceTitle": "Hearing disorders, early detection in children",
+      "aliases": [
+        "Hearing disorders, early detection in children"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "heart-failure",
+      "sourceUrl": "https://www.informedhealth.org/heart-failure.html",
+      "sourceTitle": "Cardiac insufficiency",
+      "aliases": [
+        "Cardiac insufficiency",
+        "Chronic heart failure",
+        "Heart failure"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "heart-rhythm-disorders-arrhythmias",
+      "sourceUrl": "https://www.informedhealth.org/heart-rhythm-disorders-arrhythmias.html",
+      "sourceTitle": "Arrhythmias",
+      "aliases": [
+        "Arrhythmias",
+        "Heart rhythm disorders"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "heart-valve-diseases",
+      "sourceUrl": "https://www.informedhealth.org/heart-valve-diseases.html",
+      "sourceTitle": "Heart valve defect",
+      "aliases": [
+        "Heart valve defect",
+        "Heart valve disorders",
+        "Valve defect"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "heartburn-and-gerd",
+      "sourceUrl": "https://www.informedhealth.org/heartburn-and-gerd.html",
+      "sourceTitle": "Gastro-esophageal reflux disease",
+      "aliases": [
+        "Gastro-esophageal reflux disease",
+        "GERD",
+        "Heartburn",
+        "Reflux disease"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "heavy-periods",
+      "sourceUrl": "https://www.informedhealth.org/heavy-periods.html",
+      "sourceTitle": "Heavy periods",
+      "aliases": [
+        "Heavy periods",
+        "Menorrhagia"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "womens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "hemangioma",
+      "sourceUrl": "https://www.informedhealth.org/hemangioma.html",
+      "sourceTitle": "Hemangioma",
+      "aliases": [
+        "Hemangioma",
+        "Strawberry mark"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "hemodialysis-for-chronic-kidney-disease",
+      "sourceUrl": "https://www.informedhealth.org/hemodialysis-for-chronic-kidney-disease.html",
+      "sourceTitle": "Hemodialysis, treatment",
+      "aliases": [
+        "Hemodialysis, treatment"
+      ],
+      "areaIds": [
+        "urinary-disorders-and-kidney-problems"
+      ]
+    },
+    {
+      "id": "hemophilia",
+      "sourceUrl": "https://www.informedhealth.org/hemophilia.html",
+      "sourceTitle": "Hemophilia",
+      "aliases": [
+        "Hemophilia"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "hepatitis-b",
+      "sourceUrl": "https://www.informedhealth.org/hepatitis-b.html",
+      "sourceTitle": "Hepatitis B",
+      "aliases": [
+        "Hepatitis B",
+        "Inflammation of the liver"
+      ],
+      "areaIds": [
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "hepatitis-c",
+      "sourceUrl": "https://www.informedhealth.org/hepatitis-c.html",
+      "sourceTitle": "Hepatitis C",
+      "aliases": [
+        "Hepatitis C"
+      ],
+      "areaIds": [
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "hernias",
+      "sourceUrl": "https://www.informedhealth.org/hernias.html",
+      "sourceTitle": "Abdominal hernia",
+      "aliases": [
+        "Abdominal hernia",
+        "Diaphragmatic hernia",
+        "Femur hernia",
+        "Hernias",
+        "Incisional hernia",
+        "Inguinal hernia"
+      ],
+      "areaIds": [
+        "mens-health",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "high-blood-pressure",
+      "sourceUrl": "https://www.informedhealth.org/high-blood-pressure.html",
+      "sourceTitle": "Blood pressure",
+      "aliases": [
+        "Blood pressure",
+        "High blood pressure",
+        "Hypertension"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "high-cholesterol",
+      "sourceUrl": "https://www.informedhealth.org/high-cholesterol.html",
+      "sourceTitle": "Blood lipids",
+      "aliases": [
+        "Blood lipids",
+        "High cholesterol",
+        "Hypercholesterolemia"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "metabolic-disorders"
+      ]
+    },
+    {
+      "id": "hormone-therapy-for-menopause",
+      "sourceUrl": "https://www.informedhealth.org/hormone-therapy-for-menopause.html",
+      "sourceTitle": "Hormone therapy, menopause",
+      "aliases": [
+        "Hormone therapy, menopause"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "womens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "how-are-genes-passed-on",
+      "sourceUrl": "https://www.informedhealth.org/how-are-genes-passed-on.html",
+      "sourceTitle": "Heredity",
+      "aliases": [
+        "Heredity"
+      ],
+      "areaIds": [
+        "growth-and-aging"
+      ]
+    },
+    {
+      "id": "how-are-hearing-and-speaking-connected",
+      "sourceUrl": "https://www.informedhealth.org/how-are-hearing-and-speaking-connected.html",
+      "sourceTitle": "Hearing, children",
+      "aliases": [
+        "Hearing, children"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "how-are-our-muscles-structured-and-how-do-they-work",
+      "sourceUrl": "https://www.informedhealth.org/how-are-our-muscles-structured-and-how-do-they-work.html",
+      "sourceTitle": "Muscles",
+      "aliases": [
+        "Muscles"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "how-are-sex-cells-made-meiosis",
+      "sourceUrl": "https://www.informedhealth.org/how-are-sex-cells-made-meiosis.html",
+      "sourceTitle": "Meiosis",
+      "aliases": [
+        "Meiosis"
+      ],
+      "areaIds": [
+        "growth-and-aging"
+      ]
+    },
+    {
+      "id": "how-can-gallstones-be-treated",
+      "sourceUrl": "https://www.informedhealth.org/how-can-gallstones-be-treated.html",
+      "sourceTitle": "Gallbladder surgery",
+      "aliases": [
+        "Gallbladder surgery"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "how-can-hearing-loss-be-prevented",
+      "sourceUrl": "https://www.informedhealth.org/how-can-hearing-loss-be-prevented.html",
+      "sourceTitle": "Hearing loss, prevention",
+      "aliases": [
+        "Hearing loss, prevention"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "how-can-i-find-support-groups-and-information-centers-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/how-can-i-find-support-groups-and-information-centers-in-germany.html",
+      "sourceTitle": "Independent Patient Counseling Germany (UPD)",
+      "aliases": [
+        "Independent Patient Counseling Germany (UPD)",
+        "Information center",
+        "Self-help"
+      ],
+      "areaIds": [
+        "making-an-informed-decision"
+      ]
+    },
+    {
+      "id": "how-can-informedhealthorg-help",
+      "sourceUrl": "https://www.informedhealth.org/how-can-informedhealthorg-help.html",
+      "sourceTitle": "informedhealth.org",
+      "aliases": [
+        "informedhealth.org"
+      ],
+      "areaIds": [
+        "making-an-informed-decision"
+      ]
+    },
+    {
+      "id": "how-can-labor-be-induced",
+      "sourceUrl": "https://www.informedhealth.org/how-can-labor-be-induced.html",
+      "sourceTitle": "Inducing labor",
+      "aliases": [
+        "Inducing labor"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "how-can-you-get-enough-calcium",
+      "sourceUrl": "https://www.informedhealth.org/how-can-you-get-enough-calcium.html",
+      "sourceTitle": "Calcium",
+      "aliases": [
+        "Calcium"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "how-can-you-get-enough-iron",
+      "sourceUrl": "https://www.informedhealth.org/how-can-you-get-enough-iron.html",
+      "sourceTitle": "Iron needs",
+      "aliases": [
+        "Iron needs"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "how-can-you-monitor-and-adjust-treatment-with-vitamin-k-antagonists",
+      "sourceUrl": "https://www.informedhealth.org/how-can-you-monitor-and-adjust-treatment-with-vitamin-k-antagonists.html",
+      "sourceTitle": "Coumarins",
+      "aliases": [
+        "Coumarins",
+        "Vitamin k antagonists"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines",
+        "prevention"
+      ]
+    },
+    {
+      "id": "how-do-bowel-movements-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-bowel-movements-work.html",
+      "sourceTitle": "Defecation",
+      "aliases": [
+        "Defecation",
+        "Stool"
+      ],
+      "areaIds": [
+        "stomach-bowel-and-digestion"
+      ]
+    },
+    {
+      "id": "how-do-cancer-cells-grow-and-spread",
+      "sourceUrl": "https://www.informedhealth.org/how-do-cancer-cells-grow-and-spread.html",
+      "sourceTitle": "Apoptosis",
+      "aliases": [
+        "Apoptosis",
+        "Cancer, Growth",
+        "Carcinoma in situ",
+        "Cell death",
+        "In situ neoplasm"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "how-do-common-types-of-headaches-differ",
+      "sourceUrl": "https://www.informedhealth.org/how-do-common-types-of-headaches-differ.html",
+      "sourceTitle": "Types of headache",
+      "aliases": [
+        "Types of headache"
+      ],
+      "areaIds": [
+        "brain-and-nerves"
+      ]
+    },
+    {
+      "id": "how-do-dermatomes-help-in-the-diagnosis-of-diseases",
+      "sourceUrl": "https://www.informedhealth.org/how-do-dermatomes-help-in-the-diagnosis-of-diseases.html",
+      "sourceTitle": "Dermatome",
+      "aliases": [
+        "Dermatome",
+        "Myotome"
+      ],
+      "areaIds": [
+        "brain-and-nerves",
+        "bones-muscles-and-joints",
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "how-do-hands-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-hands-work.html",
+      "sourceTitle": "Hand",
+      "aliases": [
+        "Hand",
+        "Wrist"
+      ],
+      "areaIds": [
+        "limbs"
+      ]
+    },
+    {
+      "id": "how-do-implantable-cardioverter-defibrillators-icds-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-implantable-cardioverter-defibrillators-icds-work.html",
+      "sourceTitle": "Defibrillator, internal",
+      "aliases": [
+        "Defibrillator, internal",
+        "ICD",
+        "Implantable defibrillator"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "how-do-joints-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-joints-work.html",
+      "sourceTitle": "Joints",
+      "aliases": [
+        "Joints"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "how-do-lungs-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-lungs-work.html",
+      "sourceTitle": "Air sacs",
+      "aliases": [
+        "Air sacs",
+        "Alveoli",
+        "Bronchi",
+        "Lung"
+      ],
+      "areaIds": [
+        "lungs-and-airways"
+      ]
+    },
+    {
+      "id": "how-do-most-cells-divide-mitosis",
+      "sourceUrl": "https://www.informedhealth.org/how-do-most-cells-divide-mitosis.html",
+      "sourceTitle": "Cell division",
+      "aliases": [
+        "Cell division",
+        "Division of the nucleus",
+        "Mitosis"
+      ],
+      "areaIds": [
+        "growth-and-aging"
+      ]
+    },
+    {
+      "id": "how-do-teeth-and-the-periodontium-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-teeth-and-the-periodontium-work.html",
+      "sourceTitle": "Periodontium",
+      "aliases": [
+        "Periodontium"
+      ],
+      "areaIds": [
+        "teeth-and-gums",
+        "mouth-and-teeth"
+      ]
+    },
+    {
+      "id": "how-do-the-bones-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-the-bones-work.html",
+      "sourceTitle": "Bone structure",
+      "aliases": [
+        "Bone structure"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "how-do-the-female-sex-organs-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-the-female-sex-organs-work.html",
+      "sourceTitle": "Cervix",
+      "aliases": [
+        "Cervix",
+        "Clitoris",
+        "Fallopian tube",
+        "Genitalia, female",
+        "Hymen",
+        "Ovaries",
+        "Tubes",
+        "Utero",
+        "Vagina",
+        "Vulva",
+        "Womb"
+      ],
+      "areaIds": [
+        "womens-health",
+        "pregnancy-and-birth",
+        "sex-organs"
+      ]
+    },
+    {
+      "id": "how-do-the-kidneys-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-the-kidneys-work.html",
+      "sourceTitle": "Adrenal glands",
+      "aliases": [
+        "Adrenal glands",
+        "Kidneys"
+      ],
+      "areaIds": [
+        "kidneys-bladder-and-urinary-tract"
+      ]
+    },
+    {
+      "id": "how-do-the-parathyroid-glands-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-the-parathyroid-glands-work.html",
+      "sourceTitle": "Parathyroid glands",
+      "aliases": [
+        "Parathyroid glands",
+        "Parathyroid hormone"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system",
+        "metabolism"
+      ]
+    },
+    {
+      "id": "how-do-the-tonsils-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-the-tonsils-work.html",
+      "sourceTitle": "Adenoids",
+      "aliases": [
+        "Adenoids",
+        "Lingual tonsil",
+        "Palatal tonsil",
+        "Tonsils"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "how-do-ultrasound-examinations-work",
+      "sourceUrl": "https://www.informedhealth.org/how-do-ultrasound-examinations-work.html",
+      "sourceTitle": "Sonography",
+      "aliases": [
+        "Sonography",
+        "Ultrasound scan"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "how-do-you-use-an-automated-external-defibrillator-aed",
+      "sourceUrl": "https://www.informedhealth.org/how-do-you-use-an-automated-external-defibrillator-aed.html",
+      "sourceTitle": "AED",
+      "aliases": [
+        "AED",
+        "Automated external defibrillator",
+        "Defibrillator, external"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "how-does-chemotherapy-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-chemotherapy-work.html",
+      "sourceTitle": "Chemotherapy",
+      "aliases": [
+        "Chemotherapy",
+        "Cytostatics"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "how-does-dialysis-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-dialysis-work.html",
+      "sourceTitle": "Dialysis",
+      "aliases": [
+        "Dialysis",
+        "Hemodialysis",
+        "Peritoneal dialysis"
+      ],
+      "areaIds": [
+        "kidneys-bladder-and-urinary-tract",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "how-does-mechanical-ventilation-work-during-an-operation",
+      "sourceUrl": "https://www.informedhealth.org/how-does-mechanical-ventilation-work-during-an-operation.html",
+      "sourceTitle": "Ventilation, surgery",
+      "aliases": [
+        "Ventilation, surgery"
+      ],
+      "areaIds": [
+        "surgery"
+      ]
+    },
+    {
+      "id": "how-does-our-sense-of-balance-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-our-sense-of-balance-work.html",
+      "sourceTitle": "Balance",
+      "aliases": [
+        "Balance",
+        "Organ of balance"
+      ],
+      "areaIds": [
+        "sensory-organs"
+      ]
+    },
+    {
+      "id": "how-does-our-sense-of-taste-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-our-sense-of-taste-work.html",
+      "sourceTitle": "Sense of taste",
+      "aliases": [
+        "Sense of taste",
+        "Taste"
+      ],
+      "areaIds": [
+        "brain-and-nerves",
+        "sensory-organs"
+      ]
+    },
+    {
+      "id": "how-does-skin-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-skin-work.html",
+      "sourceTitle": "Dermis",
+      "aliases": [
+        "Dermis",
+        "Epidermis",
+        "Skin",
+        "Subcutis"
+      ],
+      "areaIds": [
+        "skin-hair-and-nails",
+        "sensory-organs"
+      ]
+    },
+    {
+      "id": "how-does-the-ankle-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-ankle-work.html",
+      "sourceTitle": "Ankle",
+      "aliases": [
+        "Ankle",
+        "Joints, Ankle"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "how-does-the-brain-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-brain-work.html",
+      "sourceTitle": "Brain",
+      "aliases": [
+        "Brain",
+        "Hypothalamus"
+      ],
+      "areaIds": [
+        "brain-and-nerves"
+      ]
+    },
+    {
+      "id": "how-does-the-ear-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-ear-work.html",
+      "sourceTitle": "Auditory canal",
+      "aliases": [
+        "Auditory canal",
+        "Ear",
+        "Eardrum",
+        "Hearing",
+        "Inner ear",
+        "Middle ear"
+      ],
+      "areaIds": [
+        "brain-and-nerves",
+        "sensory-organs"
+      ]
+    },
+    {
+      "id": "how-does-the-eye-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-eye-work.html",
+      "sourceTitle": "Eye",
+      "aliases": [
+        "Eye",
+        "Macula",
+        "Retina"
+      ],
+      "areaIds": [
+        "brain-and-nerves",
+        "sensory-organs"
+      ]
+    },
+    {
+      "id": "how-does-the-gallbladder-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-gallbladder-work.html",
+      "sourceTitle": "Digestion, Gallbladder",
+      "aliases": [
+        "Digestion, Gallbladder",
+        "Gallbladder"
+      ],
+      "areaIds": [
+        "stomach-bowel-and-digestion",
+        "metabolism"
+      ]
+    },
+    {
+      "id": "how-does-the-heart-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-heart-work.html",
+      "sourceTitle": "Heart",
+      "aliases": [
+        "Heart",
+        "Heart muscle"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "how-does-the-immune-system-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-immune-system-work.html",
+      "sourceTitle": "Immune system",
+      "aliases": [
+        "Immune system"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "how-does-the-intestine-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-intestine-work.html",
+      "sourceTitle": "Bowel",
+      "aliases": [
+        "Bowel",
+        "Digestion, Bowel",
+        "Large bowel",
+        "Small bowel",
+        "Vermiform appendix"
+      ],
+      "areaIds": [
+        "stomach-bowel-and-digestion"
+      ]
+    },
+    {
+      "id": "how-does-the-knee-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-knee-work.html",
+      "sourceTitle": "Joints, Knee",
+      "aliases": [
+        "Joints, Knee",
+        "Knee"
+      ],
+      "areaIds": [
+        "limbs"
+      ]
+    },
+    {
+      "id": "how-does-the-larynx-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-larynx-work.html",
+      "sourceTitle": "Larynx",
+      "aliases": [
+        "Larynx",
+        "Vocal cords"
+      ],
+      "areaIds": [
+        "lungs-and-airways"
+      ]
+    },
+    {
+      "id": "how-does-the-liver-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-liver-work.html",
+      "sourceTitle": "Digestion, Liver",
+      "aliases": [
+        "Digestion, Liver",
+        "Liver"
+      ],
+      "areaIds": [
+        "stomach-bowel-and-digestion",
+        "metabolism"
+      ]
+    },
+    {
+      "id": "how-does-the-menstrual-cycle-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-menstrual-cycle-work.html",
+      "sourceTitle": "Cycle, menstrual",
+      "aliases": [
+        "Cycle, menstrual",
+        "Menstrual cycle",
+        "Menstrual period",
+        "Menstruation",
+        "Ovulation",
+        "Period"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system"
+      ]
+    },
+    {
+      "id": "how-does-the-nervous-system-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-nervous-system-work.html",
+      "sourceTitle": "Nervous system",
+      "aliases": [
+        "Nervous system",
+        "Spinal cord",
+        "Vegetative nervous system"
+      ],
+      "areaIds": [
+        "brain-and-nerves"
+      ]
+    },
+    {
+      "id": "how-does-the-pancreas-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-pancreas-work.html",
+      "sourceTitle": "Digestion",
+      "aliases": [
+        "Digestion",
+        "Glucagon",
+        "Insulin"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system",
+        "stomach-bowel-and-digestion",
+        "metabolism"
+      ]
+    },
+    {
+      "id": "how-does-the-pituitary-gland-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-pituitary-gland-work.html",
+      "sourceTitle": "Hypophysis",
+      "aliases": [
+        "Hypophysis",
+        "Pituitary gland"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system"
+      ]
+    },
+    {
+      "id": "how-does-the-prostate-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-prostate-work.html",
+      "sourceTitle": "Bulbourethral gland",
+      "aliases": [
+        "Bulbourethral gland",
+        "Prostate",
+        "Sperm"
+      ],
+      "areaIds": [
+        "sex-organs"
+      ]
+    },
+    {
+      "id": "how-does-the-shoulder-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-shoulder-work.html",
+      "sourceTitle": "Joints, Shoulder",
+      "aliases": [
+        "Joints, Shoulder",
+        "Shoulder"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "how-does-the-spine-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-spine-work.html",
+      "sourceTitle": "Backbone",
+      "aliases": [
+        "Backbone",
+        "Lumbar vertebra",
+        "Sacral bone",
+        "Spinal column"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "how-does-the-stomach-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-stomach-work.html",
+      "sourceTitle": "Digestion, Stomach",
+      "aliases": [
+        "Digestion, Stomach",
+        "Stomach"
+      ],
+      "areaIds": [
+        "stomach-bowel-and-digestion"
+      ]
+    },
+    {
+      "id": "how-does-the-thyroid-gland-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-thyroid-gland-work.html",
+      "sourceTitle": "Thyroid",
+      "aliases": [
+        "Thyroid"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system"
+      ]
+    },
+    {
+      "id": "how-does-the-tongue-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-tongue-work.html",
+      "sourceTitle": "Tongue",
+      "aliases": [
+        "Tongue"
+      ],
+      "areaIds": [
+        "stomach-bowel-and-digestion",
+        "mouth-and-teeth",
+        "sensory-organs"
+      ]
+    },
+    {
+      "id": "how-does-the-urinary-system-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-the-urinary-system-work.html",
+      "sourceTitle": "Bladder",
+      "aliases": [
+        "Bladder",
+        "Urine"
+      ],
+      "areaIds": [
+        "kidneys-bladder-and-urinary-tract"
+      ]
+    },
+    {
+      "id": "how-does-ventilation-therapy-for-respiratory-problems-work",
+      "sourceUrl": "https://www.informedhealth.org/how-does-ventilation-therapy-for-respiratory-problems-work.html",
+      "sourceTitle": "Ventilation therapy",
+      "aliases": [
+        "Ventilation therapy"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "how-is-blood-pressure-measured",
+      "sourceUrl": "https://www.informedhealth.org/how-is-blood-pressure-measured.html",
+      "sourceTitle": "Blood pressure measurement",
+      "aliases": [
+        "Blood pressure measurement",
+        "Diastolic blood pressure",
+        "Sphygmomanometer",
+        "Systolic blood pressure"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "how-is-body-temperature-regulated-and-what-is-fever",
+      "sourceUrl": "https://www.informedhealth.org/how-is-body-temperature-regulated-and-what-is-fever.html",
+      "sourceTitle": "Fever",
+      "aliases": [
+        "Fever"
+      ],
+      "areaIds": [
+        "blood-and-immune-system",
+        "metabolism"
+      ]
+    },
+    {
+      "id": "how-is-cervical-cancer-treated",
+      "sourceUrl": "https://www.informedhealth.org/how-is-cervical-cancer-treated.html",
+      "sourceTitle": "Conization",
+      "aliases": [
+        "Conization"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer",
+        "screening"
+      ]
+    },
+    {
+      "id": "how-is-diabetes-diagnosed",
+      "sourceUrl": "https://www.informedhealth.org/how-is-diabetes-diagnosed.html",
+      "sourceTitle": "Blood sugar measurement",
+      "aliases": [
+        "Blood sugar measurement",
+        "Diabetes",
+        "Glucose tolerance test (oGTT), diagnosis",
+        "Oral glucose tolerance test (oGTT), diagnosis"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "how-is-our-sleep-regulated",
+      "sourceUrl": "https://www.informedhealth.org/how-is-our-sleep-regulated.html",
+      "sourceTitle": "Sleep control",
+      "aliases": [
+        "Sleep control"
+      ],
+      "areaIds": [
+        "brain-and-nerves",
+        "endocrine-hormone-system"
+      ]
+    },
+    {
+      "id": "how-is-the-heart-rhythm-regulated",
+      "sourceUrl": "https://www.informedhealth.org/how-is-the-heart-rhythm-regulated.html",
+      "sourceTitle": "Cardiac conduction system",
+      "aliases": [
+        "Cardiac conduction system",
+        "Electrical conduction system",
+        "Heart rhythm",
+        "Sinus node"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "how-is-the-quality-of-studies-assessed",
+      "sourceUrl": "https://www.informedhealth.org/how-is-the-quality-of-studies-assessed.html",
+      "sourceTitle": "Blinding",
+      "aliases": [
+        "Blinding",
+        "Duration of study",
+        "Evaluation of studies",
+        "Follow-up",
+        "Number of participants",
+        "Study design",
+        "Study evaluation"
+      ],
+      "areaIds": [
+        "studies-co"
+      ]
+    },
+    {
+      "id": "how-much-sun-is-too-much",
+      "sourceUrl": "https://www.informedhealth.org/how-much-sun-is-too-much.html",
+      "sourceTitle": "Sun screen",
+      "aliases": [
+        "Sun screen",
+        "UV radiation"
+      ],
+      "areaIds": [
+        "skin-hair-and-nails",
+        "prevention"
+      ]
+    },
+    {
+      "id": "how-much-vitamin-d-do-we-need-and-how-can-we-get-it",
+      "sourceUrl": "https://www.informedhealth.org/how-much-vitamin-d-do-we-need-and-how-can-we-get-it.html",
+      "sourceTitle": "Vitamin D",
+      "aliases": [
+        "Vitamin D"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "how-our-content-is-structured",
+      "sourceUrl": "https://www.informedhealth.org/how-our-content-is-structured.html",
+      "sourceTitle": "Real-life stories",
+      "aliases": [
+        "Real-life stories",
+        "\"In Brief\"",
+        "\"Learn more\"",
+        "\"Research summaries\""
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "how-our-teeth-and-jaws-work-together",
+      "sourceUrl": "https://www.informedhealth.org/how-our-teeth-and-jaws-work-together.html",
+      "sourceTitle": "Baby teeth",
+      "aliases": [
+        "Baby teeth",
+        "Jaws",
+        "Teeth",
+        "Teeth, set of"
+      ],
+      "areaIds": [
+        "teeth-and-gums",
+        "bones-muscles-and-joints",
+        "mouth-and-teeth"
+      ]
+    },
+    {
+      "id": "how-to-cut-toenails-properly",
+      "sourceUrl": "https://www.informedhealth.org/how-to-cut-toenails-properly.html",
+      "sourceTitle": "Toenails, trimming",
+      "aliases": [
+        "Toenails, trimming"
+      ],
+      "areaIds": [
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "how-to-put-someone-into-the-recovery-position",
+      "sourceUrl": "https://www.informedhealth.org/how-to-put-someone-into-the-recovery-position.html",
+      "sourceTitle": "Recovery position",
+      "aliases": [
+        "Recovery position"
+      ],
+      "areaIds": [
+        "non-drug-treatments",
+        "prevention"
+      ]
+    },
+    {
+      "id": "hpv-vaccine-what-does-it-protect-against-and-for-whom-is-it-an-option",
+      "sourceUrl": "https://www.informedhealth.org/hpv-vaccine-what-does-it-protect-against-and-for-whom-is-it-an-option.html",
+      "sourceTitle": "Vaccination, HPV",
+      "aliases": [
+        "Vaccination, HPV"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer",
+        "screening"
+      ]
+    },
+    {
+      "id": "human-papillomaviruses-hpv-how-can-you-be-infected-and-what-consequences-can-that-have",
+      "sourceUrl": "https://www.informedhealth.org/human-papillomaviruses-hpv-how-can-you-be-infected-and-what-consequences-can-that-have.html",
+      "sourceTitle": "Human papillomaviruses (HPV)",
+      "aliases": [
+        "Human papillomaviruses (HPV)"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer",
+        "screening"
+      ]
+    },
+    {
+      "id": "hyperglycemia-and-hypoglycemia-in-type-2-diabetes",
+      "sourceUrl": "https://www.informedhealth.org/hyperglycemia-and-hypoglycemia-in-type-2-diabetes.html",
+      "sourceTitle": "Hyperglycemia",
+      "aliases": [
+        "Hyperglycemia",
+        "Hypoglycemia"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "diabetes",
+        "metabolic-disorders"
+      ]
+    },
+    {
+      "id": "hyperparathyroidism",
+      "sourceUrl": "https://www.informedhealth.org/hyperparathyroidism.html",
+      "sourceTitle": "Hyperparathyroidism",
+      "aliases": [
+        "Hyperparathyroidism",
+        "Overactive parathyroid glands",
+        "Parathyroid gland overactivity"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "metabolic-disorders"
+      ]
+    },
+    {
+      "id": "hysterectomy-surgical-removal-of-the-womb",
+      "sourceUrl": "https://www.informedhealth.org/hysterectomy-surgical-removal-of-the-womb.html",
+      "sourceTitle": "Hysterectomy",
+      "aliases": [
+        "Hysterectomy"
+      ],
+      "areaIds": [
+        "womens-health",
+        "pregnancy-and-birth",
+        "sex-organs",
+        "endocrine-hormone-system",
+        "non-drug-treatments",
+        "surgery"
+      ]
+    },
+    {
+      "id": "impaired-vision-what-can-help-in-everyday-life",
+      "sourceUrl": "https://www.informedhealth.org/impaired-vision-what-can-help-in-everyday-life.html",
+      "sourceTitle": "Blindness",
+      "aliases": [
+        "Blindness",
+        "Visual impairment"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "impetigo",
+      "sourceUrl": "https://www.informedhealth.org/impetigo.html",
+      "sourceTitle": "Impetigo",
+      "aliases": [
+        "Impetigo"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "inducing-labor-when-your-baby-is-overdue",
+      "sourceUrl": "https://www.informedhealth.org/inducing-labor-when-your-baby-is-overdue.html",
+      "sourceTitle": "Overdue pregnancy",
+      "aliases": [
+        "Overdue pregnancy"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "infertility",
+      "sourceUrl": "https://www.informedhealth.org/infertility.html",
+      "sourceTitle": "Artificial fertilization",
+      "aliases": [
+        "Artificial fertilization",
+        "Artificial insemination",
+        "Fertility disorder",
+        "In vitro fertilization (IVF)",
+        "Infertility",
+        "Intracytoplasmic sperm injection (ICSI)",
+        "Sterility"
+      ],
+      "areaIds": [
+        "womens-health",
+        "mens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "influenza-the-flu",
+      "sourceUrl": "https://www.informedhealth.org/influenza-the-flu.html",
+      "sourceTitle": "Flu",
+      "aliases": [
+        "Flu",
+        "Influenza"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "ingrown-toenail",
+      "sourceUrl": "https://www.informedhealth.org/ingrown-toenail.html",
+      "sourceTitle": "Ingrown nail",
+      "aliases": [
+        "Ingrown nail",
+        "Onychocryptosis",
+        "Unguis incarnatus"
+      ],
+      "areaIds": [
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "insect-venom-allergies",
+      "sourceUrl": "https://www.informedhealth.org/insect-venom-allergies.html",
+      "sourceTitle": "Allergy, insect venom",
+      "aliases": [
+        "Allergy, insect venom",
+        "Bee venom allergy",
+        "Insect venom allergy",
+        "Wasp venom allergy"
+      ],
+      "areaIds": [
+        "allergies"
+      ]
+    },
+    {
+      "id": "iron-deficiency-and-anemia",
+      "sourceUrl": "https://www.informedhealth.org/iron-deficiency-and-anemia.html",
+      "sourceTitle": "Iron deficiency and iron deficiency anemia",
+      "aliases": [
+        "Iron deficiency and iron deficiency anemia"
+      ],
+      "areaIds": [
+        "womens-health",
+        "childrens-health",
+        "pregnancy-and-birth",
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "irritable-bowel-syndrome",
+      "sourceUrl": "https://www.informedhealth.org/irritable-bowel-syndrome.html",
+      "sourceTitle": "Irritable bowel syndrome",
+      "aliases": [
+        "Irritable bowel syndrome",
+        "Irritable colon",
+        "Spastic colon"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "is-telemonitoring-a-good-idea-for-advanced-heart-failure",
+      "sourceUrl": "https://www.informedhealth.org/is-telemonitoring-a-good-idea-for-advanced-heart-failure.html",
+      "sourceTitle": "Telemonitoring, advanced heart failure",
+      "aliases": [
+        "Telemonitoring, advanced heart failure"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "keeping-our-information-up-to-date",
+      "sourceUrl": "https://www.informedhealth.org/keeping-our-information-up-to-date.html",
+      "sourceTitle": "Keeping our information up-to-date",
+      "aliases": [
+        "Keeping our information up-to-date"
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "kidney-stones",
+      "sourceUrl": "https://www.informedhealth.org/kidney-stones.html",
+      "sourceTitle": "Kidney stones",
+      "aliases": [
+        "Kidney stones",
+        "Urinary stones"
+      ],
+      "areaIds": [
+        "urinary-disorders-and-kidney-problems",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "lactose-intolerance",
+      "sourceUrl": "https://www.informedhealth.org/lactose-intolerance.html",
+      "sourceTitle": "Dairy sensitivity",
+      "aliases": [
+        "Dairy sensitivity",
+        "Lactose intolerance"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "lasting-pain-after-shingles",
+      "sourceUrl": "https://www.informedhealth.org/lasting-pain-after-shingles.html",
+      "sourceTitle": "Post-herpetic neuralgia",
+      "aliases": [
+        "Post-herpetic neuralgia"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "lazy-eye-amblyopia-in-children",
+      "sourceUrl": "https://www.informedhealth.org/lazy-eye-amblyopia-in-children.html",
+      "sourceTitle": "Amblyopia",
+      "aliases": [
+        "Amblyopia",
+        "Eye test",
+        "Eyepatch",
+        "Lazy eye",
+        "Squint",
+        "Strabismus"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "learning-disorders",
+      "sourceUrl": "https://www.informedhealth.org/learning-disorders.html",
+      "sourceTitle": "Dyscalculia",
+      "aliases": [
+        "Dyscalculia",
+        "Dyslexia",
+        "Reading disorder",
+        "Writing disorder"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "lecanemab-leqembi-for-early-stage-alzheimers-disease",
+      "sourceUrl": "https://www.informedhealth.org/lecanemab-leqembi-for-early-stage-alzheimers-disease.html",
+      "sourceTitle": "Lecanemab, Alzheimer&#39;s disease",
+      "aliases": [
+        "Lecanemab, Alzheimer&#39;s disease",
+        "Leqembi, Alzheimer&#39;s disease"
+      ],
+      "areaIds": [
+        "early-benefit-assessment-of-medications"
+      ]
+    },
+    {
+      "id": "light-therapy-tablets-and-injections",
+      "sourceUrl": "https://www.informedhealth.org/light-therapy-tablets-and-injections.html",
+      "sourceTitle": "Light therapy, eczema",
+      "aliases": [
+        "Light therapy, eczema"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "localized-prostate-cancer",
+      "sourceUrl": "https://www.informedhealth.org/localized-prostate-cancer.html",
+      "sourceTitle": "Prostate cancer",
+      "aliases": [
+        "Prostate cancer"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "cancer",
+        "mens-health",
+        "sexual-health-and-contraception",
+        "individual-health-care-services-igel",
+        "screening"
+      ]
+    },
+    {
+      "id": "low-back-pain",
+      "sourceUrl": "https://www.informedhealth.org/low-back-pain.html",
+      "sourceTitle": "Back pain",
+      "aliases": [
+        "Back pain",
+        "Low back pain",
+        "Lumbago"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "lyme-disease",
+      "sourceUrl": "https://www.informedhealth.org/lyme-disease.html",
+      "sourceTitle": "Lyme borreliosis",
+      "aliases": [
+        "Lyme borreliosis",
+        "Lyme disease"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "managing-pain-during-childbirth",
+      "sourceUrl": "https://www.informedhealth.org/managing-pain-during-childbirth.html",
+      "sourceTitle": "Contractions",
+      "aliases": [
+        "Contractions"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "mecfs-myalgic-encephalomyelitischronic-fatigue-syndrome",
+      "sourceUrl": "https://www.informedhealth.org/mecfs-myalgic-encephalomyelitischronic-fatigue-syndrome.html",
+      "sourceTitle": "Chronic fatigue syndrome",
+      "aliases": [
+        "Chronic fatigue syndrome",
+        "ME/CFS",
+        "Myalgic encephalomyelitis"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "medically-unexplained-physical-symptoms",
+      "sourceUrl": "https://www.informedhealth.org/medically-unexplained-physical-symptoms.html",
+      "sourceTitle": "Functional symptoms",
+      "aliases": [
+        "Functional symptoms",
+        "Somatic symptom disorder"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "mental-health-brain-and-nerves",
+        "muscle-and-joint-disorders",
+        "metabolic-disorders",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "medication-list",
+      "sourceUrl": "https://www.informedhealth.org/medication-list.html",
+      "sourceTitle": "Medication list",
+      "aliases": [
+        "Medication list"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "melanoma",
+      "sourceUrl": "https://www.informedhealth.org/melanoma.html",
+      "sourceTitle": "Melanoma",
+      "aliases": [
+        "Melanoma"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "cancer",
+        "individual-health-care-services-igel",
+        "screening"
+      ]
+    },
+    {
+      "id": "menopause",
+      "sourceUrl": "https://www.informedhealth.org/menopause.html",
+      "sourceTitle": "Climacteric period",
+      "aliases": [
+        "Climacteric period",
+        "Hot flashes",
+        "Menopause",
+        "Perimenopause"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "womens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "mental-health-problems-where-can-you-find-help-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/mental-health-problems-where-can-you-find-help-in-germany.html",
+      "sourceTitle": "Psychotherapy, help",
+      "aliases": [
+        "Psychotherapy, help"
+      ],
+      "areaIds": [
+        "health-care-in-germany",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "metastatic-breast-cancer",
+      "sourceUrl": "https://www.informedhealth.org/metastatic-breast-cancer.html",
+      "sourceTitle": "Metastatic breast cancer",
+      "aliases": [
+        "Metastatic breast cancer"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer"
+      ]
+    },
+    {
+      "id": "middle-ear-infection",
+      "sourceUrl": "https://www.informedhealth.org/middle-ear-infection.html",
+      "sourceTitle": "Earache",
+      "aliases": [
+        "Earache",
+        "Mastoiditis",
+        "Middle ear infection",
+        "Otitis media"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "eyes-nose-ears",
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "migraine",
+      "sourceUrl": "https://www.informedhealth.org/migraine.html",
+      "sourceTitle": "Migraine",
+      "aliases": [
+        "Migraine"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "misaligned-teeth-and-jaws",
+      "sourceUrl": "https://www.informedhealth.org/misaligned-teeth-and-jaws.html",
+      "sourceTitle": "Braces",
+      "aliases": [
+        "Braces",
+        "Jaws, misaligned",
+        "Teeth, misaligned"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "teeth-and-gums"
+      ]
+    },
+    {
+      "id": "moles-birthmarks-and-other-types-of-nevus",
+      "sourceUrl": "https://www.informedhealth.org/moles-birthmarks-and-other-types-of-nevus.html",
+      "sourceTitle": "Birthmark",
+      "aliases": [
+        "Birthmark",
+        "Mole",
+        "Nevus"
+      ],
+      "areaIds": [
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "motor-development-disorders",
+      "sourceUrl": "https://www.informedhealth.org/motor-development-disorders.html",
+      "sourceTitle": "Motor development disorder",
+      "aliases": [
+        "Motor development disorder"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "mouth-sores-what-can-you-do-yourself",
+      "sourceUrl": "https://www.informedhealth.org/mouth-sores-what-can-you-do-yourself.html",
+      "sourceTitle": "Mouth sores",
+      "aliases": [
+        "Mouth sores"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "teeth-and-gums",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "mumps",
+      "sourceUrl": "https://www.informedhealth.org/mumps.html",
+      "sourceTitle": "Mumps",
+      "aliases": [
+        "Mumps"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "muscle-strains",
+      "sourceUrl": "https://www.informedhealth.org/muscle-strains.html",
+      "sourceTitle": "Strain, muscle",
+      "aliases": [
+        "Strain, muscle",
+        "Torn muscle"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "nail-fungus",
+      "sourceUrl": "https://www.informedhealth.org/nail-fungus.html",
+      "sourceTitle": "Nail fungus",
+      "aliases": [
+        "Nail fungus",
+        "Onychomycosis",
+        "Tinea unguium"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "neck-pain",
+      "sourceUrl": "https://www.informedhealth.org/neck-pain.html",
+      "sourceTitle": "Neck pain",
+      "aliases": [
+        "Neck pain"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "negative-pressure-wound-therapy",
+      "sourceUrl": "https://www.informedhealth.org/negative-pressure-wound-therapy.html",
+      "sourceTitle": "Negative pressure wound therapy",
+      "aliases": [
+        "Negative pressure wound therapy"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "non-melanoma-skin-cancer",
+      "sourceUrl": "https://www.informedhealth.org/non-melanoma-skin-cancer.html",
+      "sourceTitle": "Basal cell cancer",
+      "aliases": [
+        "Basal cell cancer",
+        "Basalioma",
+        "Cancer, squamous cell",
+        "Non-melanoma cancer",
+        "Non-melanoma skin cancer",
+        "Spinalioma",
+        "Squamous cell carcinoma"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "cancer",
+        "individual-health-care-services-igel",
+        "screening"
+      ]
+    },
+    {
+      "id": "nosebleeds",
+      "sourceUrl": "https://www.informedhealth.org/nosebleeds.html",
+      "sourceTitle": "Nosebleed",
+      "aliases": [
+        "Nosebleed"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "obesity",
+      "sourceUrl": "https://www.informedhealth.org/obesity.html",
+      "sourceTitle": "Losing weight",
+      "aliases": [
+        "Losing weight",
+        "Obesity",
+        "Overweight",
+        "Weight loss"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "metabolic-disorders",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "obsessive-compulsive-disorder-ocd",
+      "sourceUrl": "https://www.informedhealth.org/obsessive-compulsive-disorder-ocd.html",
+      "sourceTitle": "Obsessive-compulsive disorder",
+      "aliases": [
+        "Obsessive-compulsive disorder"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "obstructive-sleep-apnea",
+      "sourceUrl": "https://www.informedhealth.org/obstructive-sleep-apnea.html",
+      "sourceTitle": "Obstructive sleep apnea",
+      "aliases": [
+        "Obstructive sleep apnea",
+        "Sleep apnea",
+        "Snoring"
+      ],
+      "areaIds": [
+        "airway-diseases"
+      ]
+    },
+    {
+      "id": "off-label-use-what-to-be-aware-of",
+      "sourceUrl": "https://www.informedhealth.org/off-label-use-what-to-be-aware-of.html",
+      "sourceTitle": "Off-label use",
+      "aliases": [
+        "Off-label use"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "oral-thrush",
+      "sourceUrl": "https://www.informedhealth.org/oral-thrush.html",
+      "sourceTitle": "Candidiasis, oral",
+      "aliases": [
+        "Candidiasis, oral",
+        "fungal infection, oral cavity",
+        "Oral candidiasis",
+        "Oral thrush"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system",
+        "cancer"
+      ]
+    },
+    {
+      "id": "osteoarthritis",
+      "sourceUrl": "https://www.informedhealth.org/osteoarthritis.html",
+      "sourceTitle": "Heberden’s nodes",
+      "aliases": [
+        "Heberden’s nodes",
+        "Osteoarthritis"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "osteoarthritis-of-the-knee",
+      "sourceUrl": "https://www.informedhealth.org/osteoarthritis-of-the-knee.html",
+      "sourceTitle": "Gonarthrosis",
+      "aliases": [
+        "Gonarthrosis",
+        "Knee osteoarthritis"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "osteoporosis-and-bone-fractures",
+      "sourceUrl": "https://www.informedhealth.org/osteoporosis-and-bone-fractures.html",
+      "sourceTitle": "Bone atrophy",
+      "aliases": [
+        "Bone atrophy",
+        "Osteoporosis"
+      ],
+      "areaIds": [
+        "womens-health",
+        "muscle-and-joint-disorders",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "outer-ear-infection",
+      "sourceUrl": "https://www.informedhealth.org/outer-ear-infection.html",
+      "sourceTitle": "Otitis externa",
+      "aliases": [
+        "Otitis externa",
+        "Swimmer's ear"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "ovarian-cysts",
+      "sourceUrl": "https://www.informedhealth.org/ovarian-cysts.html",
+      "sourceTitle": "Cysts, Ovary",
+      "aliases": [
+        "Cysts, Ovary",
+        "Ovarian cyst"
+      ],
+      "areaIds": [
+        "womens-health"
+      ]
+    },
+    {
+      "id": "overactive-thyroid-hyperthyroidism",
+      "sourceUrl": "https://www.informedhealth.org/overactive-thyroid-hyperthyroidism.html",
+      "sourceTitle": "Goiter",
+      "aliases": [
+        "Goiter",
+        "Hyperthyroidism",
+        "Overactive thyroid",
+        "Struma"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders"
+      ]
+    },
+    {
+      "id": "pain-after-surgery",
+      "sourceUrl": "https://www.informedhealth.org/pain-after-surgery.html",
+      "sourceTitle": "Pain after surgery",
+      "aliases": [
+        "Pain after surgery"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "health-care-in-germany",
+        "surgery"
+      ]
+    },
+    {
+      "id": "pain-under-the-foot-plantar-fasciitis",
+      "sourceUrl": "https://www.informedhealth.org/pain-under-the-foot-plantar-fasciitis.html",
+      "sourceTitle": "Foot pain",
+      "aliases": [
+        "Foot pain",
+        "Heel spur",
+        "Plantar fasciitis"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "parkinsons-disease",
+      "sourceUrl": "https://www.informedhealth.org/parkinsons-disease.html",
+      "sourceTitle": "Parkinson's disease",
+      "aliases": [
+        "Parkinson's disease",
+        "Shaking palsy"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "passive-therapeutic-services",
+      "sourceUrl": "https://www.informedhealth.org/passive-therapeutic-services.html",
+      "sourceTitle": "Physical therapy",
+      "aliases": [
+        "Physical therapy"
+      ],
+      "areaIds": [
+        "physical-therapy-and-daily-living-aids"
+      ]
+    },
+    {
+      "id": "patellofemoral-pain-syndrome-runners-knee",
+      "sourceUrl": "https://www.informedhealth.org/patellofemoral-pain-syndrome-runners-knee.html",
+      "sourceTitle": "Knee pain",
+      "aliases": [
+        "Knee pain",
+        "Patellofemoral pain",
+        "Runner's knee"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "pelvic-floor-exercises",
+      "sourceUrl": "https://www.informedhealth.org/pelvic-floor-exercises.html",
+      "sourceTitle": "Pelvic floor exercises",
+      "aliases": [
+        "Pelvic floor exercises"
+      ],
+      "areaIds": [
+        "kidneys-bladder-and-urinary-tract",
+        "physical-therapy-and-daily-living-aids"
+      ]
+    },
+    {
+      "id": "pelvic-floor-exercises-and-vaginal-pessaries-for-pelvic-organ-prolapse",
+      "sourceUrl": "https://www.informedhealth.org/pelvic-floor-exercises-and-vaginal-pessaries-for-pelvic-organ-prolapse.html",
+      "sourceTitle": "Pessary",
+      "aliases": [
+        "Pessary"
+      ],
+      "areaIds": [
+        "womens-health",
+        "pregnancy-and-birth",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "pelvic-organ-prolapse",
+      "sourceUrl": "https://www.informedhealth.org/pelvic-organ-prolapse.html",
+      "sourceTitle": "Bladder prolapse",
+      "aliases": [
+        "Bladder prolapse",
+        "Genital prolapse",
+        "Pelvic organ prolapse",
+        "Uterine prolapse",
+        "Vaginal prolapse"
+      ],
+      "areaIds": [
+        "womens-health",
+        "pregnancy-and-birth",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "peptic-ulcers",
+      "sourceUrl": "https://www.informedhealth.org/peptic-ulcers.html",
+      "sourceTitle": "Bowel ulcers",
+      "aliases": [
+        "Bowel ulcers",
+        "Duodenal ulcer",
+        "Stomach ulcer"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "period-pain",
+      "sourceUrl": "https://www.informedhealth.org/period-pain.html",
+      "sourceTitle": "Dysmenorrhea",
+      "aliases": [
+        "Dysmenorrhea",
+        "Pain during periods"
+      ],
+      "areaIds": [
+        "womens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "peritoneal-dialysis-for-chronic-kidney-disease",
+      "sourceUrl": "https://www.informedhealth.org/peritoneal-dialysis-for-chronic-kidney-disease.html",
+      "sourceTitle": "Peritoneal dialysis, treatment",
+      "aliases": [
+        "Peritoneal dialysis, treatment"
+      ],
+      "areaIds": [
+        "urinary-disorders-and-kidney-problems"
+      ]
+    },
+    {
+      "id": "personalized-medicine",
+      "sourceUrl": "https://www.informedhealth.org/personalized-medicine.html",
+      "sourceTitle": "Personalized medicine",
+      "aliases": [
+        "Personalized medicine"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "phimosis",
+      "sourceUrl": "https://www.informedhealth.org/phimosis.html",
+      "sourceTitle": "Foreskin adhesion",
+      "aliases": [
+        "Foreskin adhesion",
+        "Phimosis"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "mens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "physical-therapy",
+      "sourceUrl": "https://www.informedhealth.org/physical-therapy.html",
+      "sourceTitle": "Physiotherapy",
+      "aliases": [
+        "Physiotherapy"
+      ],
+      "areaIds": [
+        "physical-therapy-and-daily-living-aids"
+      ]
+    },
+    {
+      "id": "pneumonia",
+      "sourceUrl": "https://www.informedhealth.org/pneumonia.html",
+      "sourceTitle": "Pneumonia",
+      "aliases": [
+        "Pneumonia"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "podiatry-specialist-foot-care",
+      "sourceUrl": "https://www.informedhealth.org/podiatry-specialist-foot-care.html",
+      "sourceTitle": "Foot treatment, medical",
+      "aliases": [
+        "Foot treatment, medical",
+        "Podiatry"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "post-traumatic-stress-disorder-ptsd",
+      "sourceUrl": "https://www.informedhealth.org/post-traumatic-stress-disorder-ptsd.html",
+      "sourceTitle": "Post-traumatic stress disorder",
+      "aliases": [
+        "Post-traumatic stress disorder",
+        "Stress disorder",
+        "Trauma"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "potty-training",
+      "sourceUrl": "https://www.informedhealth.org/potty-training.html",
+      "sourceTitle": "Potty training",
+      "aliases": [
+        "Potty training",
+        "Toilet training"
+      ],
+      "areaIds": [
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "pregnancy",
+      "sourceUrl": "https://www.informedhealth.org/pregnancy.html",
+      "sourceTitle": "Pregnancy",
+      "aliases": [
+        "Pregnancy"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "premature-ejaculation",
+      "sourceUrl": "https://www.informedhealth.org/premature-ejaculation.html",
+      "sourceTitle": "Ejaculatio praecox",
+      "aliases": [
+        "Ejaculatio praecox",
+        "Premature ejaculation"
+      ],
+      "areaIds": [
+        "mens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "premenstrual-syndrome",
+      "sourceUrl": "https://www.informedhealth.org/premenstrual-syndrome.html",
+      "sourceTitle": "PMS",
+      "aliases": [
+        "PMS",
+        "Premenstrual syndrome"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "womens-health",
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "prenatal-care-and-maternity-records-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/prenatal-care-and-maternity-records-in-germany.html",
+      "sourceTitle": "Maternity log",
+      "aliases": [
+        "Maternity log",
+        "Rhesus factor",
+        "Screening in pregnancy"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "prenatal-testing",
+      "sourceUrl": "https://www.informedhealth.org/prenatal-testing.html",
+      "sourceTitle": "Prenatal diagnostics",
+      "aliases": [
+        "Prenatal diagnostics",
+        "Prenatal examinations"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "pressure-ulcers",
+      "sourceUrl": "https://www.informedhealth.org/pressure-ulcers.html",
+      "sourceTitle": "Bedsores",
+      "aliases": [
+        "Bedsores",
+        "Pressure ulcers"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "prevention-diagnosis-treatment-what-is-tested-in-evidence-based-medicine",
+      "sourceUrl": "https://www.informedhealth.org/prevention-diagnosis-treatment-what-is-tested-in-evidence-based-medicine.html",
+      "sourceTitle": "Benefit assessment",
+      "aliases": [
+        "Benefit assessment",
+        "Screening test",
+        "Studies and research",
+        "Treatments",
+        "What is tested in EBM?"
+      ],
+      "areaIds": [
+        "studies-co"
+      ]
+    },
+    {
+      "id": "psa-tests-for-prostate-cancer-screening",
+      "sourceUrl": "https://www.informedhealth.org/psa-tests-for-prostate-cancer-screening.html",
+      "sourceTitle": "PSA-Test",
+      "aliases": [
+        "PSA-Test"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "cancer",
+        "mens-health",
+        "sexual-health-and-contraception",
+        "individual-health-care-services-igel",
+        "screening"
+      ]
+    },
+    {
+      "id": "psoriasis",
+      "sourceUrl": "https://www.informedhealth.org/psoriasis.html",
+      "sourceTitle": "Psoriasis",
+      "aliases": [
+        "Psoriasis"
+      ],
+      "areaIds": [
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "psoriatic-arthritis-psoriasis-with-joint-inflammation",
+      "sourceUrl": "https://www.informedhealth.org/psoriatic-arthritis-psoriasis-with-joint-inflammation.html",
+      "sourceTitle": "Psoriasis with joint inflammation",
+      "aliases": [
+        "Psoriasis with joint inflammation",
+        "Psoriatic arthritis"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "psychotherapy-providers-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/psychotherapy-providers-in-germany.html",
+      "sourceTitle": "Psychotherapy, professions",
+      "aliases": [
+        "Psychotherapy, professions"
+      ],
+      "areaIds": [
+        "health-care-in-germany",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "pubic-lice",
+      "sourceUrl": "https://www.informedhealth.org/pubic-lice.html",
+      "sourceTitle": "Crabs",
+      "aliases": [
+        "Crabs",
+        "Pubic lice"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "pulmonary-embolism",
+      "sourceUrl": "https://www.informedhealth.org/pulmonary-embolism.html",
+      "sourceTitle": "Embolism",
+      "aliases": [
+        "Embolism",
+        "Pulmonary embolism"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "quality-assurance-involvement-of-experts-and-patients",
+      "sourceUrl": "https://www.informedhealth.org/quality-assurance-involvement-of-experts-and-patients.html",
+      "sourceTitle": "IQWiG's Board of Trustees",
+      "aliases": [
+        "IQWiG's Board of Trustees",
+        "Review",
+        "Stakeholder",
+        "Testing by users"
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "retinal-detachment",
+      "sourceUrl": "https://www.informedhealth.org/retinal-detachment.html",
+      "sourceTitle": "Retinal detachment",
+      "aliases": [
+        "Retinal detachment"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "rheumatoid-arthritis",
+      "sourceUrl": "https://www.informedhealth.org/rheumatoid-arthritis.html",
+      "sourceTitle": "Arthritis",
+      "aliases": [
+        "Arthritis",
+        "Rheumatoid arthritis"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "rosacea",
+      "sourceUrl": "https://www.informedhealth.org/rosacea.html",
+      "sourceTitle": "Acne rosacea",
+      "aliases": [
+        "Acne rosacea",
+        "Rosacea"
+      ],
+      "areaIds": [
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "rubella-german-measles",
+      "sourceUrl": "https://www.informedhealth.org/rubella-german-measles.html",
+      "sourceTitle": "Rubella",
+      "aliases": [
+        "Rubella"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "childrens-health",
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "scabies",
+      "sourceUrl": "https://www.informedhealth.org/scabies.html",
+      "sourceTitle": "Scabies",
+      "aliases": [
+        "Scabies"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "scarlet-fever",
+      "sourceUrl": "https://www.informedhealth.org/scarlet-fever.html",
+      "sourceTitle": "Scarlet fever",
+      "aliases": [
+        "Scarlet fever"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "schizophrenia",
+      "sourceUrl": "https://www.informedhealth.org/schizophrenia.html",
+      "sourceTitle": "Psychosis",
+      "aliases": [
+        "Psychosis",
+        "Schizophrenia"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "scoliosis-in-teenagers",
+      "sourceUrl": "https://www.informedhealth.org/scoliosis-in-teenagers.html",
+      "sourceTitle": "Scoliosis in teenagers",
+      "aliases": [
+        "Scoliosis in teenagers"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "screening",
+      "sourceUrl": "https://www.informedhealth.org/screening.html",
+      "sourceTitle": "Prevention",
+      "aliases": [
+        "Prevention",
+        "Screening"
+      ],
+      "areaIds": [
+        "womens-health",
+        "skin-and-hair",
+        "cancer",
+        "mens-health",
+        "digestive-system-disorders",
+        "screening"
+      ]
+    },
+    {
+      "id": "seborrheic-dermatitis",
+      "sourceUrl": "https://www.informedhealth.org/seborrheic-dermatitis.html",
+      "sourceTitle": "Seborrheic dermatitis",
+      "aliases": [
+        "Seborrheic dermatitis"
+      ],
+      "areaIds": [
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "sensitivity-and-specificity",
+      "sourceUrl": "https://www.informedhealth.org/sensitivity-and-specificity.html",
+      "sourceTitle": "Screening examination",
+      "aliases": [
+        "Screening examination",
+        "Sensitivity",
+        "Specificity"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests",
+        "prevention"
+      ]
+    },
+    {
+      "id": "shingles",
+      "sourceUrl": "https://www.informedhealth.org/shingles.html",
+      "sourceTitle": "Herpes zoster",
+      "aliases": [
+        "Herpes zoster",
+        "Shingles"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "shoulder-pain",
+      "sourceUrl": "https://www.informedhealth.org/shoulder-pain.html",
+      "sourceTitle": "Calcific tendinitis, shoulder",
+      "aliases": [
+        "Calcific tendinitis, shoulder",
+        "Rotator cuff",
+        "Shoulder impingement",
+        "Shoulder pain"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "sinusitis",
+      "sourceUrl": "https://www.informedhealth.org/sinusitis.html",
+      "sourceTitle": "Acute sinusitis",
+      "aliases": [
+        "Acute sinusitis",
+        "Chronic sinusitis",
+        "Rhinosinusitis",
+        "Sinusitis"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "skin-care-for-eczema",
+      "sourceUrl": "https://www.informedhealth.org/skin-care-for-eczema.html",
+      "sourceTitle": "Skin care, eczema",
+      "aliases": [
+        "Skin care, eczema"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "sleep-disorders-and-problems-insomnia",
+      "sourceUrl": "https://www.informedhealth.org/sleep-disorders-and-problems-insomnia.html",
+      "sourceTitle": "Insomnia",
+      "aliases": [
+        "Insomnia",
+        "Sleep disorder",
+        "Sleeping problems"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "slipped-disc",
+      "sourceUrl": "https://www.informedhealth.org/slipped-disc.html",
+      "sourceTitle": "Disc, herniated",
+      "aliases": [
+        "Disc, herniated",
+        "Disc, prolapsed",
+        "Slipped disk"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "small-objects-in-the-eye",
+      "sourceUrl": "https://www.informedhealth.org/small-objects-in-the-eye.html",
+      "sourceTitle": "Corneal abrasion",
+      "aliases": [
+        "Corneal abrasion",
+        "Objects in the eye"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "smoking",
+      "sourceUrl": "https://www.informedhealth.org/smoking.html",
+      "sourceTitle": "E-cigarettes",
+      "aliases": [
+        "E-cigarettes",
+        "Nicotine replacement therapy",
+        "Nicotine withdrawal",
+        "Non-smoking",
+        "Smoking",
+        "Tobacco Heating-Systems"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "cancer",
+        "mental-health-brain-and-nerves",
+        "addiction"
+      ]
+    },
+    {
+      "id": "speech-and-language-development-disorders",
+      "sourceUrl": "https://www.informedhealth.org/speech-and-language-development-disorders.html",
+      "sourceTitle": "Language disorder",
+      "aliases": [
+        "Language disorder"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "spinal-stenosis-in-the-lower-back-lumbar-spinal-stenosis",
+      "sourceUrl": "https://www.informedhealth.org/spinal-stenosis-in-the-lower-back-lumbar-spinal-stenosis.html",
+      "sourceTitle": "Spinal narrowing",
+      "aliases": [
+        "Spinal narrowing",
+        "Spinal stenosis"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "spondylolisthesis",
+      "sourceUrl": "https://www.informedhealth.org/spondylolisthesis.html",
+      "sourceTitle": "Degenerative spondylolisthesis",
+      "aliases": [
+        "Degenerative spondylolisthesis",
+        "Spondylolisthesis"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "standard-check-ups-for-children-and-teenagers-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/standard-check-ups-for-children-and-teenagers-in-germany.html",
+      "sourceTitle": "Standard check-ups",
+      "aliases": [
+        "Standard check-ups"
+      ],
+      "areaIds": [
+        "growth-and-aging",
+        "diagnosis-and-tests",
+        "prevention"
+      ]
+    },
+    {
+      "id": "stem-cell-transplantation-for-treating-cancer",
+      "sourceUrl": "https://www.informedhealth.org/stem-cell-transplantation-for-treating-cancer.html",
+      "sourceTitle": "Stem cell transplantation",
+      "aliases": [
+        "Stem cell transplantation",
+        "Stem cells"
+      ],
+      "areaIds": [
+        "blood-and-immune-system",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "steroids-and-other-topical-medications",
+      "sourceUrl": "https://www.informedhealth.org/steroids-and-other-topical-medications.html",
+      "sourceTitle": "Topical steroid, eczema",
+      "aliases": [
+        "Topical steroid, eczema"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "stroke",
+      "sourceUrl": "https://www.informedhealth.org/stroke.html",
+      "sourceTitle": "Apoplexy",
+      "aliases": [
+        "Apoplexy",
+        "Cerebral infarct",
+        "Stroke"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "nursing-care"
+      ]
+    },
+    {
+      "id": "structure-of-the-feet",
+      "sourceUrl": "https://www.informedhealth.org/structure-of-the-feet.html",
+      "sourceTitle": "Foot, structure and function",
+      "aliases": [
+        "Foot, structure and function"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "structure-of-the-nails",
+      "sourceUrl": "https://www.informedhealth.org/structure-of-the-nails.html",
+      "sourceTitle": "Fingernails",
+      "aliases": [
+        "Fingernails",
+        "Nails",
+        "Toenails"
+      ],
+      "areaIds": [
+        "skin-hair-and-nails"
+      ]
+    },
+    {
+      "id": "styes-and-chalazia-inflammation-of-the-eyelid",
+      "sourceUrl": "https://www.informedhealth.org/styes-and-chalazia-inflammation-of-the-eyelid.html",
+      "sourceTitle": "Chalazion",
+      "aliases": [
+        "Chalazion",
+        "Eyelid inflammation",
+        "Hordeolum",
+        "Stye"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "skin-and-hair"
+      ]
+    },
+    {
+      "id": "sudden-hearing-loss",
+      "sourceUrl": "https://www.informedhealth.org/sudden-hearing-loss.html",
+      "sourceTitle": "Hearing loss",
+      "aliases": [
+        "Hearing loss"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "sudep-sudden-unexpected-death-in-epilepsy",
+      "sourceUrl": "https://www.informedhealth.org/sudep-sudden-unexpected-death-in-epilepsy.html",
+      "sourceTitle": "Sudden unexpected death in epilepsy (SUDEP)",
+      "aliases": [
+        "Sudden unexpected death in epilepsy (SUDEP)"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "support-group-associations-that-help-us-prepare-our-information",
+      "sourceUrl": "https://www.informedhealth.org/support-group-associations-that-help-us-prepare-our-information.html",
+      "sourceTitle": "Patient representatives",
+      "aliases": [
+        "Patient representatives"
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "surgery",
+      "sourceUrl": "https://www.informedhealth.org/surgery.html",
+      "sourceTitle": "Surgery",
+      "aliases": [
+        "Surgery"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "health-care-in-germany",
+        "surgery"
+      ]
+    },
+    {
+      "id": "symptoms-after-thrombosis-post-thrombotic-syndrome",
+      "sourceUrl": "https://www.informedhealth.org/symptoms-after-thrombosis-post-thrombotic-syndrome.html",
+      "sourceTitle": "Post-thrombotic syndrome",
+      "aliases": [
+        "Post-thrombotic syndrome",
+        "Thrombosis, symptoms after",
+        "Vein thrombosis, symptoms after"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "syphilis",
+      "sourceUrl": "https://www.informedhealth.org/syphilis.html",
+      "sourceTitle": "Chancre",
+      "aliases": [
+        "Chancre",
+        "Syphilis"
+      ],
+      "areaIds": [
+        "womens-health",
+        "infections-and-immune-system",
+        "mens-health",
+        "pregnancy-and-birth",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "systematic-searches",
+      "sourceUrl": "https://www.informedhealth.org/systematic-searches.html",
+      "sourceTitle": "Systematic search",
+      "aliases": [
+        "Systematic search"
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "tendon-overuse-injuries-tendinopathy",
+      "sourceUrl": "https://www.informedhealth.org/tendon-overuse-injuries-tendinopathy.html",
+      "sourceTitle": "Tendon overuse injuries",
+      "aliases": [
+        "Tendon overuse injuries"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "tennis-elbow-and-golfers-elbow",
+      "sourceUrl": "https://www.informedhealth.org/tennis-elbow-and-golfers-elbow.html",
+      "sourceTitle": "Epicondylitis",
+      "aliases": [
+        "Epicondylitis",
+        "Golfer's elbow",
+        "Tennis elbow"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "tenosynovitis",
+      "sourceUrl": "https://www.informedhealth.org/tenosynovitis.html",
+      "sourceTitle": "Tendonitis",
+      "aliases": [
+        "Tendonitis",
+        "Tendovaginitis",
+        "Trigger finger"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "tension-headache",
+      "sourceUrl": "https://www.informedhealth.org/tension-headache.html",
+      "sourceTitle": "Tension headache",
+      "aliases": [
+        "Tension headache"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "the-basic-principles-of-evidence-based-medicine",
+      "sourceUrl": "https://www.informedhealth.org/the-basic-principles-of-evidence-based-medicine.html",
+      "sourceTitle": "Evidence-based medicine, basic principles",
+      "aliases": [
+        "Evidence-based medicine, basic principles",
+        "Medical experience",
+        "Patient guidance",
+        "Retinopathy of prematurity"
+      ],
+      "areaIds": [
+        "what-is-evidence-based-medicine"
+      ]
+    },
+    {
+      "id": "the-breast-cancer-screening-program-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/the-breast-cancer-screening-program-in-germany.html",
+      "sourceTitle": "Mammography",
+      "aliases": [
+        "Mammography"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer",
+        "screening"
+      ]
+    },
+    {
+      "id": "the-classic-and-asian-forms-of-massage",
+      "sourceUrl": "https://www.informedhealth.org/the-classic-and-asian-forms-of-massage.html",
+      "sourceTitle": "Massages",
+      "aliases": [
+        "Massages"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints",
+        "physical-therapy-and-daily-living-aids"
+      ]
+    },
+    {
+      "id": "the-first-step-gathering-information",
+      "sourceUrl": "https://www.informedhealth.org/the-first-step-gathering-information.html",
+      "sourceTitle": "Looking for information",
+      "aliases": [
+        "Looking for information",
+        "Reliable information"
+      ],
+      "areaIds": [
+        "making-an-informed-decision"
+      ]
+    },
+    {
+      "id": "the-german-healthcare-system",
+      "sourceUrl": "https://www.informedhealth.org/the-german-healthcare-system.html",
+      "sourceTitle": "Health care system",
+      "aliases": [
+        "Health care system"
+      ],
+      "areaIds": [
+        "health-care-in-germany"
+      ]
+    },
+    {
+      "id": "the-history-of-evidence-based-medicine",
+      "sourceUrl": "https://www.informedhealth.org/the-history-of-evidence-based-medicine.html",
+      "sourceTitle": "Archie Cochrane",
+      "aliases": [
+        "Archie Cochrane",
+        "Cochrane Collaboration",
+        "David Sackett",
+        "Evidence-based medicine, history",
+        "Gordon Guyatt",
+        "History of EBM",
+        "Iain Chalmers",
+        "James Lind"
+      ],
+      "areaIds": [
+        "what-is-evidence-based-medicine"
+      ]
+    },
+    {
+      "id": "the-innate-and-adaptive-immune-systems",
+      "sourceUrl": "https://www.informedhealth.org/the-innate-and-adaptive-immune-systems.html",
+      "sourceTitle": "B cells",
+      "aliases": [
+        "B cells",
+        "Granulocytes",
+        "Immune system, innate and adaptive",
+        "Killer cells",
+        "Macrophage",
+        "T cells"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "the-lymphatic-system",
+      "sourceUrl": "https://www.informedhealth.org/the-lymphatic-system.html",
+      "sourceTitle": "Blood poisoning",
+      "aliases": [
+        "Blood poisoning",
+        "Lymphatic system"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "the-second-step-evaluating-the-information",
+      "sourceUrl": "https://www.informedhealth.org/the-second-step-evaluating-the-information.html",
+      "sourceTitle": "Assessing information",
+      "aliases": [
+        "Assessing information"
+      ],
+      "areaIds": [
+        "making-an-informed-decision"
+      ]
+    },
+    {
+      "id": "tick-bites",
+      "sourceUrl": "https://www.informedhealth.org/tick-bites.html",
+      "sourceTitle": "Ticks",
+      "aliases": [
+        "Ticks"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "tick-borne-encephalitis-tbe",
+      "sourceUrl": "https://www.informedhealth.org/tick-borne-encephalitis-tbe.html",
+      "sourceTitle": "TBE",
+      "aliases": [
+        "TBE"
+      ],
+      "areaIds": [
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "tinea-versicolor",
+      "sourceUrl": "https://www.informedhealth.org/tinea-versicolor.html",
+      "sourceTitle": "Fungal infection of the skin",
+      "aliases": [
+        "Fungal infection of the skin",
+        "Pityriasis",
+        "Pityriasis versicolor",
+        "Tinea versicolor"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "tinnitus",
+      "sourceUrl": "https://www.informedhealth.org/tinnitus.html",
+      "sourceTitle": "Ear noise",
+      "aliases": [
+        "Ear noise",
+        "Tinnitus"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "tips-for-adults-with-hearing-loss-or-deafness",
+      "sourceUrl": "https://www.informedhealth.org/tips-for-adults-with-hearing-loss-or-deafness.html",
+      "sourceTitle": "Hearing loss, daily life",
+      "aliases": [
+        "Hearing loss, daily life"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "tonsillitis",
+      "sourceUrl": "https://www.informedhealth.org/tonsillitis.html",
+      "sourceTitle": "Pharyngitis",
+      "aliases": [
+        "Pharyngitis",
+        "Tonsillitis"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "infections-and-immune-system",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "tooth-decay",
+      "sourceUrl": "https://www.informedhealth.org/tooth-decay.html",
+      "sourceTitle": "Tooth decay",
+      "aliases": [
+        "Tooth decay"
+      ],
+      "areaIds": [
+        "teeth-and-gums"
+      ]
+    },
+    {
+      "id": "torn-acl-anterior-cruciate-ligament-in-the-knee",
+      "sourceUrl": "https://www.informedhealth.org/torn-acl-anterior-cruciate-ligament-in-the-knee.html",
+      "sourceTitle": "ACL tear",
+      "aliases": [
+        "ACL tear",
+        "Anterior cruciate ligament tear",
+        "Torn ACL"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "torn-meniscus-and-meniscus-damage",
+      "sourceUrl": "https://www.informedhealth.org/torn-meniscus-and-meniscus-damage.html",
+      "sourceTitle": "Knee injury, meniscus",
+      "aliases": [
+        "Knee injury, meniscus",
+        "Torn meniscus"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "travelers-diarrhea",
+      "sourceUrl": "https://www.informedhealth.org/travelers-diarrhea.html",
+      "sourceTitle": "Traveler's diarrhea",
+      "aliases": [
+        "Traveler's diarrhea"
+      ],
+      "areaIds": [
+        "digestive-system-disorders"
+      ]
+    },
+    {
+      "id": "trichomoniasis",
+      "sourceUrl": "https://www.informedhealth.org/trichomoniasis.html",
+      "sourceTitle": "Trichomoniasis",
+      "aliases": [
+        "Trichomoniasis"
+      ],
+      "areaIds": [
+        "womens-health",
+        "infections-and-immune-system",
+        "mens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "type-1-diabetes",
+      "sourceUrl": "https://www.informedhealth.org/type-1-diabetes.html",
+      "sourceTitle": "Diabetes, type 1",
+      "aliases": [
+        "Diabetes, type 1",
+        "Type 1 diabetes"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "diabetes",
+        "metabolic-disorders"
+      ]
+    },
+    {
+      "id": "type-2-diabetes",
+      "sourceUrl": "https://www.informedhealth.org/type-2-diabetes.html",
+      "sourceTitle": "Diabetes, type 2",
+      "aliases": [
+        "Diabetes, type 2",
+        "Type 2 diabetes"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "diabetes",
+        "metabolic-disorders"
+      ]
+    },
+    {
+      "id": "types-of-insulin",
+      "sourceUrl": "https://www.informedhealth.org/types-of-insulin.html",
+      "sourceTitle": "Insulin, types",
+      "aliases": [
+        "Insulin, types"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders",
+        "diabetes",
+        "metabolic-disorders"
+      ]
+    },
+    {
+      "id": "ultrasound-scans-in-pregnancy",
+      "sourceUrl": "https://www.informedhealth.org/ultrasound-scans-in-pregnancy.html",
+      "sourceTitle": "Ultrasound scan, Pregnancy",
+      "aliases": [
+        "Ultrasound scan, Pregnancy"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "underactive-thyroid-hypothyroidism",
+      "sourceUrl": "https://www.informedhealth.org/underactive-thyroid-hypothyroidism.html",
+      "sourceTitle": "Hypothyroidism",
+      "aliases": [
+        "Hypothyroidism",
+        "Underactive thyroid"
+      ],
+      "areaIds": [
+        "gland-and-hormone-disorders"
+      ]
+    },
+    {
+      "id": "understanding-chronic-pain",
+      "sourceUrl": "https://www.informedhealth.org/understanding-chronic-pain.html",
+      "sourceTitle": "Chronic pain",
+      "aliases": [
+        "Chronic pain"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves",
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "understanding-tests-used-to-detect-bone-problems",
+      "sourceUrl": "https://www.informedhealth.org/understanding-tests-used-to-detect-bone-problems.html",
+      "sourceTitle": "Bone biopsy",
+      "aliases": [
+        "Bone biopsy",
+        "Bone examinations",
+        "Bone scintigraphy",
+        "Computed tomography (CT)",
+        "DEXA",
+        "Magnetic resonance imaging",
+        "Magnetic resonance tomography",
+        "MRI",
+        "Osteodensitometry",
+        "Osteodensitrometry",
+        "Scintigraphy",
+        "Skeletal Scintigraphy",
+        "X-ray"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "understanding-thyroid-tests",
+      "sourceUrl": "https://www.informedhealth.org/understanding-thyroid-tests.html",
+      "sourceTitle": "Thyroid examination",
+      "aliases": [
+        "Thyroid examination",
+        "Thyroid tests"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system"
+      ]
+    },
+    {
+      "id": "understanding-urine-tests",
+      "sourceUrl": "https://www.informedhealth.org/understanding-urine-tests.html",
+      "sourceTitle": "Pregnancy test, Urine test",
+      "aliases": [
+        "Pregnancy test, Urine test",
+        "Urine test"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "unexplained-chronic-cough",
+      "sourceUrl": "https://www.informedhealth.org/unexplained-chronic-cough.html",
+      "sourceTitle": "Unexplained chronic cough",
+      "aliases": [
+        "Unexplained chronic cough"
+      ],
+      "areaIds": [
+        "airway-diseases"
+      ]
+    },
+    {
+      "id": "up-to-date-medical-knowledge",
+      "sourceUrl": "https://www.informedhealth.org/up-to-date-medical-knowledge.html",
+      "sourceTitle": "Methods of IQWiG",
+      "aliases": [
+        "Methods of IQWiG"
+      ],
+      "areaIds": [
+        "our-methods-and-processes"
+      ]
+    },
+    {
+      "id": "using-eye-drops-properly",
+      "sourceUrl": "https://www.informedhealth.org/using-eye-drops-properly.html",
+      "sourceTitle": "Eye drops",
+      "aliases": [
+        "Eye drops"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "using-medication",
+      "sourceUrl": "https://www.informedhealth.org/using-medication.html",
+      "sourceTitle": "Medications",
+      "aliases": [
+        "Medications",
+        "Pharmaceuticals"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "addiction",
+        "health-care-in-germany",
+        "nursing-care",
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "using-steroids-correctly-and-avoiding-side-effects",
+      "sourceUrl": "https://www.informedhealth.org/using-steroids-correctly-and-avoiding-side-effects.html",
+      "sourceTitle": "Cortisone",
+      "aliases": [
+        "Cortisone",
+        "Glucocorticoids",
+        "Steroids"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "uterine-fibroids",
+      "sourceUrl": "https://www.informedhealth.org/uterine-fibroids.html",
+      "sourceTitle": "Fibroids",
+      "aliases": [
+        "Fibroids"
+      ],
+      "areaIds": [
+        "womens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "vaginal-yeast-infection-thrush",
+      "sourceUrl": "https://www.informedhealth.org/vaginal-yeast-infection-thrush.html",
+      "sourceTitle": "Candida albicans",
+      "aliases": [
+        "Candida albicans",
+        "Vaginal infection, Fungus",
+        "Vaginal yeast infection"
+      ],
+      "areaIds": [
+        "womens-health",
+        "infections-and-immune-system",
+        "pregnancy-and-birth",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "varicoceles",
+      "sourceUrl": "https://www.informedhealth.org/varicoceles.html",
+      "sourceTitle": "Varicocele",
+      "aliases": [
+        "Varicocele"
+      ],
+      "areaIds": [
+        "mens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "varicose-veins",
+      "sourceUrl": "https://www.informedhealth.org/varicose-veins.html",
+      "sourceTitle": "Spider veins",
+      "aliases": [
+        "Spider veins",
+        "Varices",
+        "Varicose veins"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "vascular-dementia",
+      "sourceUrl": "https://www.informedhealth.org/vascular-dementia.html",
+      "sourceTitle": "Vascular dementia",
+      "aliases": [
+        "Vascular dementia"
+      ],
+      "areaIds": [
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "ventricular-tachycardia",
+      "sourceUrl": "https://www.informedhealth.org/ventricular-tachycardia.html",
+      "sourceTitle": "Sudden cardiac death",
+      "aliases": [
+        "Sudden cardiac death",
+        "Ventricular fibrillation"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "vitamin-d-deficiency",
+      "sourceUrl": "https://www.informedhealth.org/vitamin-d-deficiency.html",
+      "sourceTitle": "Vitamin D deficiency",
+      "aliases": [
+        "Vitamin D deficiency"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "vocal-nodules",
+      "sourceUrl": "https://www.informedhealth.org/vocal-nodules.html",
+      "sourceTitle": "Dysphonia",
+      "aliases": [
+        "Dysphonia",
+        "Vocal cord nodules",
+        "Vocal nodules"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "warts",
+      "sourceUrl": "https://www.informedhealth.org/warts.html",
+      "sourceTitle": "Plantar warts",
+      "aliases": [
+        "Plantar warts",
+        "Warts"
+      ],
+      "areaIds": [
+        "skin-and-hair",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "what-are-anticoagulants",
+      "sourceUrl": "https://www.informedhealth.org/what-are-anticoagulants.html",
+      "sourceTitle": "Anticoagulants",
+      "aliases": [
+        "Anticoagulants",
+        "Antiplatelets",
+        "Blood thinners"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines",
+        "prevention"
+      ]
+    },
+    {
+      "id": "what-are-blood-clots-and-what-causes-them",
+      "sourceUrl": "https://www.informedhealth.org/what-are-blood-clots-and-what-causes-them.html",
+      "sourceTitle": "Blood clot",
+      "aliases": [
+        "Blood clot",
+        "Clot",
+        "Thrombus"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "blood-and-immune-system",
+        "surgery"
+      ]
+    },
+    {
+      "id": "what-are-calories",
+      "sourceUrl": "https://www.informedhealth.org/what-are-calories.html",
+      "sourceTitle": "Nutrition",
+      "aliases": [
+        "Nutrition"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system",
+        "stomach-bowel-and-digestion",
+        "metabolism",
+        "prevention"
+      ]
+    },
+    {
+      "id": "what-are-clinical-practice-guidelines",
+      "sourceUrl": "https://www.informedhealth.org/what-are-clinical-practice-guidelines.html",
+      "sourceTitle": "Guidelines",
+      "aliases": [
+        "Guidelines",
+        "Patient guidelines"
+      ],
+      "areaIds": [
+        "studies-co"
+      ]
+    },
+    {
+      "id": "what-are-dietary-supplements",
+      "sourceUrl": "https://www.informedhealth.org/what-are-dietary-supplements.html",
+      "sourceTitle": "Dietary supplements",
+      "aliases": [
+        "Dietary supplements",
+        "Minerals",
+        "Vitamins"
+      ],
+      "areaIds": [
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "what-are-digital-health-applications-digas",
+      "sourceUrl": "https://www.informedhealth.org/what-are-digital-health-applications-digas.html",
+      "sourceTitle": "Digital Health Applications (DiHA)",
+      "aliases": [
+        "Digital Health Applications (DiHA)"
+      ],
+      "areaIds": [
+        "health-care-in-germany",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "what-are-disease-management-programs-dmps",
+      "sourceUrl": "https://www.informedhealth.org/what-are-disease-management-programs-dmps.html",
+      "sourceTitle": "Disease management program",
+      "aliases": [
+        "Disease management program",
+        "DMP"
+      ],
+      "areaIds": [
+        "health-care-in-germany"
+      ]
+    },
+    {
+      "id": "what-are-hormones-and-what-do-they-do",
+      "sourceUrl": "https://www.informedhealth.org/what-are-hormones-and-what-do-they-do.html",
+      "sourceTitle": "Chemical messengers",
+      "aliases": [
+        "Chemical messengers",
+        "Hormones"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system"
+      ]
+    },
+    {
+      "id": "what-are-immunological-tests",
+      "sourceUrl": "https://www.informedhealth.org/what-are-immunological-tests.html",
+      "sourceTitle": "Immunological tests",
+      "aliases": [
+        "Immunological tests",
+        "Pregnancy test, Immunological tests",
+        "Rapid test"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-are-ligaments",
+      "sourceUrl": "https://www.informedhealth.org/what-are-ligaments.html",
+      "sourceTitle": "Ligaments",
+      "aliases": [
+        "Ligaments"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "what-are-microbes",
+      "sourceUrl": "https://www.informedhealth.org/what-are-microbes.html",
+      "sourceTitle": "Bacteria",
+      "aliases": [
+        "Bacteria",
+        "Fungi",
+        "Microorganisms",
+        "Viruses"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "what-are-systematic-reviews-and-meta-analyses",
+      "sourceUrl": "https://www.informedhealth.org/what-are-systematic-reviews-and-meta-analyses.html",
+      "sourceTitle": "Meta-analysis",
+      "aliases": [
+        "Meta-analysis",
+        "Peer reviews",
+        "PICO framework",
+        "Publication bias",
+        "Search",
+        "Systematic review"
+      ],
+      "areaIds": [
+        "studies-co"
+      ]
+    },
+    {
+      "id": "what-are-tendons-and-tendon-sheaths",
+      "sourceUrl": "https://www.informedhealth.org/what-are-tendons-and-tendon-sheaths.html",
+      "sourceTitle": "Tendon sheaths",
+      "aliases": [
+        "Tendon sheaths",
+        "Tendons"
+      ],
+      "areaIds": [
+        "bones-muscles-and-joints"
+      ]
+    },
+    {
+      "id": "what-are-the-advantages-and-disadvantages-of-professional-teeth-cleaning",
+      "sourceUrl": "https://www.informedhealth.org/what-are-the-advantages-and-disadvantages-of-professional-teeth-cleaning.html",
+      "sourceTitle": "Professional teeth-cleaning",
+      "aliases": [
+        "Professional teeth-cleaning"
+      ],
+      "areaIds": [
+        "teeth-and-gums"
+      ]
+    },
+    {
+      "id": "what-are-the-organs-of-the-immune-system",
+      "sourceUrl": "https://www.informedhealth.org/what-are-the-organs-of-the-immune-system.html",
+      "sourceTitle": "Bone marrow",
+      "aliases": [
+        "Bone marrow",
+        "Immune system, Organs",
+        "Lymph node",
+        "Spleen",
+        "Thymus"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "what-are-the-treatment-options-for-phimosis",
+      "sourceUrl": "https://www.informedhealth.org/what-are-the-treatment-options-for-phimosis.html",
+      "sourceTitle": "Circumcision",
+      "aliases": [
+        "Circumcision"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "mens-health",
+        "sexual-health-and-contraception"
+      ]
+    },
+    {
+      "id": "what-can-be-done-if-a-baby-is-likely-to-be-born-too-early",
+      "sourceUrl": "https://www.informedhealth.org/what-can-be-done-if-a-baby-is-likely-to-be-born-too-early.html",
+      "sourceTitle": "Preterm birth",
+      "aliases": [
+        "Preterm birth"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "what-can-help-adults-with-hearing-loss-or-deafness",
+      "sourceUrl": "https://www.informedhealth.org/what-can-help-adults-with-hearing-loss-or-deafness.html",
+      "sourceTitle": "Hearing loss, treatment",
+      "aliases": [
+        "Hearing loss, treatment"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "what-can-help-children-with-hearing-loss-or-deafness",
+      "sourceUrl": "https://www.informedhealth.org/what-can-help-children-with-hearing-loss-or-deafness.html",
+      "sourceTitle": "Hearing loss, treatment in children",
+      "aliases": [
+        "Hearing loss, treatment in children"
+      ],
+      "areaIds": [
+        "eyes-nose-ears",
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "what-can-help-relieve-anxiety-before-surgery",
+      "sourceUrl": "https://www.informedhealth.org/what-can-help-relieve-anxiety-before-surgery.html",
+      "sourceTitle": "Anxiety before surgery",
+      "aliases": [
+        "Anxiety before surgery"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "health-care-in-germany",
+        "surgery"
+      ]
+    },
+    {
+      "id": "what-can-you-do-if-you-have-bppv",
+      "sourceUrl": "https://www.informedhealth.org/what-can-you-do-if-you-have-bppv.html",
+      "sourceTitle": "Epley maneuver",
+      "aliases": [
+        "Epley maneuver",
+        "Semont maneuver"
+      ],
+      "areaIds": [
+        "eyes-nose-ears"
+      ]
+    },
+    {
+      "id": "what-do-ear-examinations-involve",
+      "sourceUrl": "https://www.informedhealth.org/what-do-ear-examinations-involve.html",
+      "sourceTitle": "Audiometry",
+      "aliases": [
+        "Audiometry",
+        "Auditory brainstem response",
+        "Ear examination",
+        "Hearing test",
+        "OAE test",
+        "Otoscopy",
+        "Tuning-fork test",
+        "Tympanometry"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-do-glucose-tolerance-tests-involve",
+      "sourceUrl": "https://www.informedhealth.org/what-do-glucose-tolerance-tests-involve.html",
+      "sourceTitle": "Glucose test",
+      "aliases": [
+        "Glucose test",
+        "Glucose tolerance test (oGTT)",
+        "Oral glucose tolerance test (oGTT)"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-do-the-male-sex-organs-do",
+      "sourceUrl": "https://www.informedhealth.org/what-do-the-male-sex-organs-do.html",
+      "sourceTitle": "Genitalia, male",
+      "aliases": [
+        "Genitalia, male",
+        "Penis",
+        "Testicles"
+      ],
+      "areaIds": [
+        "mens-health",
+        "sex-organs"
+      ]
+    },
+    {
+      "id": "what-does-blood-do",
+      "sourceUrl": "https://www.informedhealth.org/what-does-blood-do.html",
+      "sourceTitle": "Blood",
+      "aliases": [
+        "Blood",
+        "Blood cells",
+        "Bone marrow, Blood",
+        "Erythrocytes",
+        "Leukocytes, Blood",
+        "Plasma",
+        "Stem cells, Blood",
+        "Thrombocytes, Blood"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "what-does-genetic-testing-involve",
+      "sourceUrl": "https://www.informedhealth.org/what-does-genetic-testing-involve.html",
+      "sourceTitle": "DNA analysis",
+      "aliases": [
+        "DNA analysis",
+        "Genetic testing"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-does-your-body-mass-index-say-about-your-health",
+      "sourceUrl": "https://www.informedhealth.org/what-does-your-body-mass-index-say-about-your-health.html",
+      "sourceTitle": "BMI",
+      "aliases": [
+        "BMI",
+        "Body fat percentage",
+        "Body-Mass-Index"
+      ],
+      "areaIds": [
+        "endocrine-hormone-system",
+        "stomach-bowel-and-digestion",
+        "metabolism",
+        "diagnosis-and-tests",
+        "prevention"
+      ]
+    },
+    {
+      "id": "what-happens-during-a-biopsy",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-during-a-biopsy.html",
+      "sourceTitle": "Biopsy",
+      "aliases": [
+        "Biopsy",
+        "Tissue sample"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-happens-during-a-brain-hemorrhage-bleeding-in-the-brain",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-during-a-brain-hemorrhage-bleeding-in-the-brain.html",
+      "sourceTitle": "Brain hemorrhage",
+      "aliases": [
+        "Brain hemorrhage"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "mental-health-brain-and-nerves"
+      ]
+    },
+    {
+      "id": "what-happens-during-a-gastroscopy",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-during-a-gastroscopy.html",
+      "sourceTitle": "Gastroscopy",
+      "aliases": [
+        "Gastroscopy",
+        "Stomach inspection"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-happens-during-a-lumbar-puncture-spinal-tap",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-during-a-lumbar-puncture-spinal-tap.html",
+      "sourceTitle": "Cerebrospinal fluid",
+      "aliases": [
+        "Cerebrospinal fluid",
+        "Lumbar puncture",
+        "Spinal fluid"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-happens-during-a-neurological-examination",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-during-a-neurological-examination.html",
+      "sourceTitle": "Neurological examination",
+      "aliases": [
+        "Neurological examination",
+        "Patellar reflex"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-happens-during-a-pet-scan",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-during-a-pet-scan.html",
+      "sourceTitle": "Imaging technique",
+      "aliases": [
+        "Imaging technique",
+        "PET scan",
+        "Positron emission tomography (PET)"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-happens-during-a-skin-examination",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-during-a-skin-examination.html",
+      "sourceTitle": "Skin examinations",
+      "aliases": [
+        "Skin examinations"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-happens-during-an-electroencephalogram-eeg",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-during-an-electroencephalogram-eeg.html",
+      "sourceTitle": "EEG",
+      "aliases": [
+        "EEG",
+        "Electroencephalogram"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-happens-during-cardiac-catheterization",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-during-cardiac-catheterization.html",
+      "sourceTitle": "Cardiac catheterization",
+      "aliases": [
+        "Cardiac catheterization",
+        "Coronary angiography"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-happens-if-you-get-pneumonia-in-the-hospital",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-if-you-get-pneumonia-in-the-hospital.html",
+      "sourceTitle": "Multiresistant bacteria",
+      "aliases": [
+        "Multiresistant bacteria",
+        "Nosocomial infection"
+      ],
+      "areaIds": [
+        "airway-diseases",
+        "infections-and-immune-system"
+      ]
+    },
+    {
+      "id": "what-happens-in-a-sleep-study",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-in-a-sleep-study.html",
+      "sourceTitle": "Polysomnography",
+      "aliases": [
+        "Polysomnography",
+        "Sleep study"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-happens-in-puberty",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-in-puberty.html",
+      "sourceTitle": "Development, sexual",
+      "aliases": [
+        "Development, sexual",
+        "Puberty"
+      ],
+      "areaIds": [
+        "womens-health",
+        "childrens-health",
+        "mens-health"
+      ]
+    },
+    {
+      "id": "what-happens-when-you-age",
+      "sourceUrl": "https://www.informedhealth.org/what-happens-when-you-age.html",
+      "sourceTitle": "Aging",
+      "aliases": [
+        "Aging"
+      ],
+      "areaIds": [
+        "growth-and-aging"
+      ]
+    },
+    {
+      "id": "what-helps-children-cope-with-anxiety-before-an-operation",
+      "sourceUrl": "https://www.informedhealth.org/what-helps-children-cope-with-anxiety-before-an-operation.html",
+      "sourceTitle": "Anxiety before surgery, children",
+      "aliases": [
+        "Anxiety before surgery, children"
+      ],
+      "areaIds": [
+        "childrens-health",
+        "health-care-in-germany",
+        "surgery"
+      ]
+    },
+    {
+      "id": "what-helps-reduce-nausea-in-pregnancy",
+      "sourceUrl": "https://www.informedhealth.org/what-helps-reduce-nausea-in-pregnancy.html",
+      "sourceTitle": "Morning sickness",
+      "aliases": [
+        "Morning sickness"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "what-is-a-living-will",
+      "sourceUrl": "https://www.informedhealth.org/what-is-a-living-will.html",
+      "sourceTitle": "Health care power of attorney (POA)",
+      "aliases": [
+        "Health care power of attorney (POA)",
+        "Living will"
+      ],
+      "areaIds": [
+        "non-drug-treatments",
+        "surgery",
+        "prevention"
+      ]
+    },
+    {
+      "id": "what-is-an-echocardiogram",
+      "sourceUrl": "https://www.informedhealth.org/what-is-an-echocardiogram.html",
+      "sourceTitle": "Cardiac ultrasound",
+      "aliases": [
+        "Cardiac ultrasound",
+        "Doppler echocardiography",
+        "Echocardiography",
+        "Heart echo",
+        "TEE"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-is-an-electrocardiogram-ecg",
+      "sourceUrl": "https://www.informedhealth.org/what-is-an-electrocardiogram-ecg.html",
+      "sourceTitle": "ECG",
+      "aliases": [
+        "ECG",
+        "Electrocardiogram",
+        "Electrocardiography",
+        "Exercise ECG",
+        "Heart rhythm, examination",
+        "Holter monitor"
+      ],
+      "areaIds": [
+        "heart-and-circulation"
+      ]
+    },
+    {
+      "id": "what-is-an-inflammation",
+      "sourceUrl": "https://www.informedhealth.org/what-is-an-inflammation.html",
+      "sourceTitle": "Inflammation",
+      "aliases": [
+        "Inflammation"
+      ],
+      "areaIds": [
+        "blood-and-immune-system"
+      ]
+    },
+    {
+      "id": "what-is-evidence-based-medicine",
+      "sourceUrl": "https://www.informedhealth.org/what-is-evidence-based-medicine.html",
+      "sourceTitle": "EBM methods",
+      "aliases": [
+        "EBM methods",
+        "Evidence-based medicine, definition",
+        "Scientific evidence",
+        "What is evidence-based medicine?"
+      ],
+      "areaIds": [
+        "what-is-evidence-based-medicine"
+      ]
+    },
+    {
+      "id": "what-is-joint-aspiration",
+      "sourceUrl": "https://www.informedhealth.org/what-is-joint-aspiration.html",
+      "sourceTitle": "Joint aspiration",
+      "aliases": [
+        "Joint aspiration"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-is-laparoscopy",
+      "sourceUrl": "https://www.informedhealth.org/what-is-laparoscopy.html",
+      "sourceTitle": "Laparoscopy",
+      "aliases": [
+        "Laparoscopy"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests",
+        "surgery"
+      ]
+    },
+    {
+      "id": "what-is-nitrous-oxide-laughing-gas-and-what-effects-does-it-have",
+      "sourceUrl": "https://www.informedhealth.org/what-is-nitrous-oxide-laughing-gas-and-what-effects-does-it-have.html",
+      "sourceTitle": "Laughing gas",
+      "aliases": [
+        "Laughing gas",
+        "Nitrous oxide"
+      ],
+      "areaIds": [
+        "prevention"
+      ]
+    },
+    {
+      "id": "what-is-normal-sleep",
+      "sourceUrl": "https://www.informedhealth.org/what-is-normal-sleep.html",
+      "sourceTitle": "Sleep",
+      "aliases": [
+        "Sleep",
+        "Stages of sleep"
+      ],
+      "areaIds": [
+        "brain-and-nerves",
+        "endocrine-hormone-system"
+      ]
+    },
+    {
+      "id": "what-is-occupational-therapy",
+      "sourceUrl": "https://www.informedhealth.org/what-is-occupational-therapy.html",
+      "sourceTitle": "Occupational therapy",
+      "aliases": [
+        "Occupational therapy"
+      ],
+      "areaIds": [
+        "physical-therapy-and-daily-living-aids"
+      ]
+    },
+    {
+      "id": "what-is-overdiagnosis",
+      "sourceUrl": "https://www.informedhealth.org/what-is-overdiagnosis.html",
+      "sourceTitle": "Overdiagnosis",
+      "aliases": [
+        "Overdiagnosis"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-is-psychotherapy-and-what-does-it-involve",
+      "sourceUrl": "https://www.informedhealth.org/what-is-psychotherapy-and-what-does-it-involve.html",
+      "sourceTitle": "Psychotherapy, what it involves",
+      "aliases": [
+        "Psychotherapy, what it involves"
+      ],
+      "areaIds": [
+        "health-care-in-germany",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "what-is-speech-therapy",
+      "sourceUrl": "https://www.informedhealth.org/what-is-speech-therapy.html",
+      "sourceTitle": "Logopedics",
+      "aliases": [
+        "Logopedics",
+        "Speech therapy"
+      ],
+      "areaIds": [
+        "physical-therapy-and-daily-living-aids"
+      ]
+    },
+    {
+      "id": "what-is-the-structure-of-hair-and-how-does-it-grow",
+      "sourceUrl": "https://www.informedhealth.org/what-is-the-structure-of-hair-and-how-does-it-grow.html",
+      "sourceTitle": "Body hair",
+      "aliases": [
+        "Body hair",
+        "Hair",
+        "Terminal hair",
+        "Vellus hair"
+      ],
+      "areaIds": [
+        "skin-hair-and-nails"
+      ]
+    },
+    {
+      "id": "what-is-voice-therapy",
+      "sourceUrl": "https://www.informedhealth.org/what-is-voice-therapy.html",
+      "sourceTitle": "Speech disorder",
+      "aliases": [
+        "Speech disorder",
+        "Voice therapy"
+      ],
+      "areaIds": [
+        "lungs-and-airways",
+        "non-drug-treatments"
+      ]
+    },
+    {
+      "id": "what-kind-of-lung-function-tests-are-there-and-what-do-they-involve",
+      "sourceUrl": "https://www.informedhealth.org/what-kind-of-lung-function-tests-are-there-and-what-do-they-involve.html",
+      "sourceTitle": "Blood gas analysis",
+      "aliases": [
+        "Blood gas analysis",
+        "Body plethysmography",
+        "Lung function test",
+        "Peak flow",
+        "Spirometry"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-kinds-of-allergy-tests-are-there",
+      "sourceUrl": "https://www.informedhealth.org/what-kinds-of-allergy-tests-are-there.html",
+      "sourceTitle": "Allergy tests",
+      "aliases": [
+        "Allergy tests"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-kinds-of-eye-examinations-are-there",
+      "sourceUrl": "https://www.informedhealth.org/what-kinds-of-eye-examinations-are-there.html",
+      "sourceTitle": "Eye examination",
+      "aliases": [
+        "Eye examination",
+        "Field of vision test",
+        "Intraocular pressure",
+        "Perimetry"
+      ],
+      "areaIds": [
+        "diagnosis-and-tests"
+      ]
+    },
+    {
+      "id": "what-role-does-breast-density-play",
+      "sourceUrl": "https://www.informedhealth.org/what-role-does-breast-density-play.html",
+      "sourceTitle": "Breast density",
+      "aliases": [
+        "Breast density"
+      ],
+      "areaIds": [
+        "womens-health",
+        "cancer",
+        "screening"
+      ]
+    },
+    {
+      "id": "what-screening-tests-does-german-public-health-insurance-cover",
+      "sourceUrl": "https://www.informedhealth.org/what-screening-tests-does-german-public-health-insurance-cover.html",
+      "sourceTitle": "Cancer screening",
+      "aliases": [
+        "Cancer screening"
+      ],
+      "areaIds": [
+        "womens-health",
+        "skin-and-hair",
+        "cancer",
+        "mens-health",
+        "digestive-system-disorders",
+        "screening"
+      ]
+    },
+    {
+      "id": "what-types-of-studies-are-there",
+      "sourceUrl": "https://www.informedhealth.org/what-types-of-studies-are-there.html",
+      "sourceTitle": "Case control studies",
+      "aliases": [
+        "Case control studies",
+        "Cause and effect",
+        "Cohort studies",
+        "Correlation",
+        "Cross-sectional studies",
+        "Observational study",
+        "Prospective",
+        "Qualitative studies",
+        "Randomization",
+        "Randomized controlled trial (RCT)",
+        "Retrospective",
+        "Types of studies"
+      ],
+      "areaIds": [
+        "studies-co"
+      ]
+    },
+    {
+      "id": "when-are-statins-recommended",
+      "sourceUrl": "https://www.informedhealth.org/when-are-statins-recommended.html",
+      "sourceTitle": "Statins",
+      "aliases": [
+        "Statins"
+      ],
+      "areaIds": [
+        "heart-and-circulation",
+        "metabolic-disorders"
+      ]
+    },
+    {
+      "id": "when-is-a-c-section-an-option",
+      "sourceUrl": "https://www.informedhealth.org/when-is-a-c-section-an-option.html",
+      "sourceTitle": "Cesarean section",
+      "aliases": [
+        "Cesarean section"
+      ],
+      "areaIds": [
+        "pregnancy-and-birth"
+      ]
+    },
+    {
+      "id": "which-vaccinations-are-recommended-in-germany",
+      "sourceUrl": "https://www.informedhealth.org/which-vaccinations-are-recommended-in-germany.html",
+      "sourceTitle": "MMR vaccine",
+      "aliases": [
+        "MMR vaccine",
+        "Vaccine",
+        "6-in-1 vaccine"
+      ],
+      "areaIds": [
+        "drugs-and-vaccines"
+      ]
+    },
+    {
+      "id": "why-are-vitamin-d-supplements-recommended-for-babies",
+      "sourceUrl": "https://www.informedhealth.org/why-are-vitamin-d-supplements-recommended-for-babies.html",
+      "sourceTitle": "Rickets, prevention",
+      "aliases": [
+        "Rickets, prevention"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    },
+    {
+      "id": "wisdom-teeth",
+      "sourceUrl": "https://www.informedhealth.org/wisdom-teeth.html",
+      "sourceTitle": "Wisdom teeth",
+      "aliases": [
+        "Wisdom teeth"
+      ],
+      "areaIds": [
+        "teeth-and-gums"
+      ]
+    },
+    {
+      "id": "worms-in-children-pinworms",
+      "sourceUrl": "https://www.informedhealth.org/worms-in-children-pinworms.html",
+      "sourceTitle": "Pinworms",
+      "aliases": [
+        "Pinworms",
+        "Threadworms",
+        "Worms"
+      ],
+      "areaIds": [
+        "childrens-health"
+      ]
+    },
+    {
+      "id": "wrist-injuries",
+      "sourceUrl": "https://www.informedhealth.org/wrist-injuries.html",
+      "sourceTitle": "Wrist injuries",
+      "aliases": [
+        "Wrist injuries"
+      ],
+      "areaIds": [
+        "muscle-and-joint-disorders"
+      ]
+    }
+  ]
+}

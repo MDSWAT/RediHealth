@@ -1,0 +1,51 @@
+{
+  "title": "Biološki lijekovi i bioslični lijekovi: razumijevanje terapije i zamjene",
+  "intro": "Biološki lijekovi proizvode se pomoću živih sustava. Uključuju različita liječenja, primjerice za upalne bolesti, rak i dijabetes. Bioslični lijek razvija se kao vrlo sličan odobrenom referentnom biološkom lijeku, bez klinički značajnih razlika učinkovitosti ili sigurnosti u odobrenoj uporabi. Nije lošija verzija. Praktične upute i pravila propisivanja ili ljekarničke zamjene ipak treba provjeriti za proizvod i zemlju.",
+  "sections": [
+    {
+      "heading": "Razlikujte bioslični lijek od običnog generika",
+      "paragraphs": [
+        "Biološki lijekovi često su velike složene molekule proizvedene kontroliranim biološkim procesima. Male prirodne varijacije postoje i među serijama referentnog lijeka. Bioslični se zato procjenjuje opsežnim usporedbama, umjesto samo kao identična kemijska kopija. Regulatori ispituju kvalitetu, biološku aktivnost i prikladne kliničke dokaze. Naziv znači odobrenu usporedbu s određenom referencom; ne znači da svi biološki lijekovi zamjenjuju jedni druge ili svaki internetski proizvod ispunjava standarde."
+      ]
+    },
+    {
+      "heading": "Pitajte za koje je bolesti lijek odobren",
+      "paragraphs": [
+        "Bioslični lijek može biti odobren za više bolesti znanstveno obrazloženom procjenom reference i usporednih dokaza. Svaka bolest ne zahtijeva sasvim zaseban veliki pokus tog biosličnog lijeka. Ipak treba provjeriti točnu uporabu, dob, put primjene i oblik. Pitajte zašto odgovara dijagnozi i fazi liječenja. Očekivana korist, praćenje i rizici proizlaze iz konkretnog lijeka i bolesti, a ne samo oznake biološki."
+      ]
+    },
+    {
+      "heading": "Razumijte predloženu promjenu i lokalnu zamjenu",
+      "paragraphs": [
+        "Pitajte ostaje li djelatna tvar ista, koju marku dobivate i zašto se mijenja. Od odobrenih biosličnih lijekova očekuje se jednako dobro djelovanje kao reference, ali propisivanje i zamjena razlikuju se među zemljama. Europski stav o međusobnoj zamjenjivosti sam nije univerzalno dopuštenje svim ljekarnama za automatsku zamjenu; važna su nacionalna pravila. Mogu se promijeniti pakiranje, uređaj ili obuka. Razgovarajte o zabrinutostima i kontroli umjesto prekida terapije tijekom administrativne promjene."
+      ]
+    },
+    {
+      "heading": "Provjerite rukovanje, uređaje i osobnu sigurnost",
+      "paragraphs": [
+        "Potvrdite naziv, propisanu dozu, čuvanje i postupak nakon propuštanja ili pogrešnog čuvanja. Ne pretpostavljajte jednako hlađenje ili prijevoz za sve lijekove. Zatražite demonstraciju novog uređaja i slijedite upute. Neki biološki lijekovi utječu na imunitet te trebaju provjere infekcija, planiranje cjepiva ili druge testove; drugi imaju drukčije rizike. Navedite infekcije, druge lijekove, planiranje trudnoće i putovanja. Ne mijenjajte cjepiva ili terapiju samo na temelju općeg članka."
+      ]
+    },
+    {
+      "heading": "Prijavite probleme uz jasnu evidenciju lijeka",
+      "paragraphs": [
+        "Sačuvajte marku i po mogućnosti seriju te navedite početak simptoma u odnosu na terapiju ili zamjenu. Novi simptomi zaslužuju procjenu, ali vremenski slijed ne dokazuje uzrok ili manju učinkovitost. Dogovorite kontrolu osnovne bolesti i nuspojava. Teško disanje, oticanje usta ili grla ili kolaps nakon terapije zahtijevaju hitnu pomoć. Za druge ozbiljne simptome brzo kontaktirajte službu prema posebnim uputama lijeka; ne čekajte redovnu kontrolu ako ste akutno loše."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: drukčija injekcijska brizgalica",
+      "text": "Osoba dobiva odobren bioslični lijek s drukčijom brizgalicom. Traži demonstraciju i potvrđuje čuvanje i recept prije injekcije. Čuva podatke o marki i pita kada provjeriti bolest."
+    },
+    {
+      "title": "Hipotetski primjer: simptomi nakon zamjene",
+      "text": "Nakon promjene marke osoba primjećuje više zglobnih tegoba. Javlja timu datume, proizvod i propuštene doze. Tim provjerava aktivnost bolesti i druge uzroke bez automatskog zaključka o neuspjehu ili zanemarivanja simptoma."
+    }
+  ],
+  "questions": [
+    "S kojom se referencom uspoređuje i je li točan proizvod odobren za moj slučaj?",
+    "Mijenja li zamjena uređaj, čuvanje, recept ili kontrole i koja lokalna pravila vrijede?",
+    "Koje simptome prijaviti, koje podatke bilježiti i kome se hitno javiti?"
+  ]
+}

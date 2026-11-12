@@ -33,6 +33,14 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
   Record<Lang, BloodPressureTierContent>
 > = {
   hypotension: {
+  ru: {
+      label: "Низкое кровяное давление (гипотония)",
+      physiologicEffect:
+        "У вас низкое кровяное давление. Если вы быстро встанете, ваш мозг на мгновение может получить меньше кислорода.",
+      actionProtocol:
+        "Если вы чувствуете себя хорошо, обычно это не проблема. Если вы чувствуете головокружение или слабость, выпейте воды и медленно встаньте. Обратитесь к врачу, если это будет продолжаться.",
+    },
+
     ro: {
       label: "Tensiune mică (hipotensiune)",
       physiologicEffect:
@@ -78,6 +86,14 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
   },
 
   optimal: {
+  ru: {
+      label: "Оптимальное артериальное давление",
+      physiologicEffect:
+        "Ваше сердце и артерии работают без дополнительной нагрузки. Ваш долгосрочный риск сердечно-сосудистых заболеваний очень низок.",
+      actionProtocol:
+        "Оставайтесь активными, ешьте меньше соленой и жирной пищи и проверяйте свое кровяное давление раз в год.",
+    },
+
     ro: {
       label: "Tensiune optimă",
       physiologicEffect:
@@ -123,6 +139,14 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
   },
 
   normal: {
+  ru: {
+      label: "Нормальное кровяное давление",
+      physiologicEffect:
+        "Ваше кровяное давление в пределах нормы.",
+      actionProtocol:
+        "Ешьте менее 5 граммов соли в день и двигайтесь каждый день.",
+    },
+
     ro: {
       label: "Tensiune normală",
       physiologicEffect:
@@ -168,6 +192,14 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
   },
 
   high_normal: {
+  ru: {
+      label: "Высокое нормальное кровяное давление",
+      physiologicEffect:
+        "Стенки артерий находятся под большим давлением, поэтому сердце работает интенсивнее.",
+      actionProtocol:
+        "Ешьте меньше соли, бросьте курить, если вы курите, и пейте меньше алкоголя. Проверяйте свое артериальное давление один раз в месяц в аптеке или клинике.",
+    },
+
     ro: {
       label: "Tensiune normal-înaltă",
       physiologicEffect:
@@ -213,6 +245,14 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
   },
 
   grade_1_hypertension: {
+  ru: {
+      label: "Высокое кровяное давление (гипертония) 1 степени.",
+      physiologicEffect:
+        "Ваши кровеносные сосуды находятся под постоянным напряжением. Это способствует накоплению жировых бляшек в артериях.",
+      actionProtocol:
+        "Запишитесь на прием к своему семейному врачу. Для подтверждения вас могут попросить провести измерение дома в течение 7 дней или носить 24-часовой монитор Холтера.",
+    },
+
     ro: {
       label: "Tensiune mare (hipertensiune) gradul 1",
       physiologicEffect:
@@ -258,6 +298,14 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
   },
 
   grade_2_hypertension: {
+  ru: {
+      label: "Высокое кровяное давление (гипертония) 2 степени.",
+      physiologicEffect:
+        "Существует реальный риск повреждения сердца, мозга, почек и глаз.",
+      actionProtocol:
+        "В ближайшее время обратитесь к семейному врачу или кардиологу. Обычно вам понадобятся лекарства.",
+    },
+
     ro: {
       label: "Tensiune mare (hipertensiune) gradul 2",
       physiologicEffect:
@@ -303,6 +351,14 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
   },
 
   grade_3_hypertension: {
+  ru: {
+      label: "Очень высокое кровяное давление (гипертония) 3 степени.",
+      physiologicEffect:
+        "Такое высокое давление подвергает опасности кровеносные сосуды мозга и сердца.",
+      actionProtocol:
+        "Это очень высокий показатель (180/120 мм рт. ст. и более). Посидите спокойно 5 минут и измерьте еще раз. Если оно по-прежнему составляет 180/120 мм рт. ст. или более, позвоните своему врачу, в круглосуточную поликлинику или обратитесь в отделение неотложной помощи.",
+    },
+
     ro: {
       label: "Tensiune foarte mare (hipertensiune) gradul 3",
       physiologicEffect:
@@ -348,6 +404,14 @@ export const BLOOD_PRESSURE_TIER_STRINGS: Record<
   },
 
   hypertensive_crisis: {
+  ru: {
+      label: "Гипертонический криз (неотложная помощь)",
+      physiologicEffect:
+        "Такое высокое давление может вызвать жидкость в легких, кровотечение в мозге или разрыв аорты.",
+      actionProtocol:
+        "Позвоните по номеру 112 со своего телефона прямо сейчас. Сядьте и постарайтесь сохранять спокойствие. Не принимайте двойную дозу лекарства, если вам этого не посоветовал оператор службы 112.",
+    },
+
     ro: {
       label: "Criză hipertensivă (urgență)",
       physiologicEffect:
@@ -398,6 +462,8 @@ export const BP_PRESET_STRINGS: Record<
   Record<Lang, string>
 > = {
   optimal: {
+  ru: "Оптимальный (115/75)",
+
     ro: "Optim (115/75)",
     en: "Optimal (115/75)",
     sq: "Optimal (115/75)",
@@ -406,6 +472,8 @@ export const BP_PRESET_STRINGS: Record<
     rom: "Optimalno (115/75)",
   },
   high_normal: {
+  ru: "Высокий-нормальный (135/85)",
+
     ro: "Normal-înalt (135/85)",
     en: "High-normal (135/85)",
     sq: "Normal i lartë (135/85)",
@@ -414,6 +482,8 @@ export const BP_PRESET_STRINGS: Record<
     rom: "Ucho-normalno (135/85)",
   },
   grade_1: {
+  ru: "1 класс (148/94)",
+
     ro: "Gradul 1 (148/94)",
     en: "Grade 1 (148/94)",
     sq: "Shkalla 1 (148/94)",
@@ -422,6 +492,8 @@ export const BP_PRESET_STRINGS: Record<
     rom: "1. stepeni (148/94)",
   },
   grade_2: {
+  ru: "2 класс (165/102)",
+
     ro: "Gradul 2 (165/102)",
     en: "Grade 2 (165/102)",
     sq: "Shkalla 2 (165/102)",
@@ -430,6 +502,8 @@ export const BP_PRESET_STRINGS: Record<
     rom: "2. stepeni (165/102)",
   },
   crisis: {
+  ru: "Скорая помощь (185/122)",
+
     ro: "Urgență (185/122)",
     en: "Emergency (185/122)",
     sq: "Urgjencë (185/122)",
@@ -441,6 +515,8 @@ export const BP_PRESET_STRINGS: Record<
 
 export const BP_SIMULATOR_UI_STRINGS = {
   guidelineBadge: {
+  ru: "Группы артериального давления следуют рекомендациям Европейского общества кардиологов (ESC) 2024 года.",
+
     ro: "Grupele de tensiune urmează ghidul european ESC 2024, folosit și de Societatea Română de Cardiologie.",
     en: "The blood pressure groups follow the 2024 guidelines of the European Society of Cardiology (ESC).",
     sq: "Grupet e tensionit ndjekin udhëzuesin e vitit 2024 të Shoqatës Evropiane të Kardiologjisë (ESC).",
@@ -449,6 +525,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "E grupe e tensijake dzhan pala o 2024 sikavimos e Evropake Kardiologikane Amalipnasko (ESC).",
   },
   title: {
+  ru: "Что означает ваше кровяное давление",
+
     ro: "Ce înseamnă tensiunea ta",
     en: "What your blood pressure means",
     sq: "Çfarë do të thotë tensioni yt",
@@ -457,6 +535,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "So znachil tiri tensija",
   },
   subtitle: {
+  ru: "Переместите два ползунка на свои цифры. Вы увидите, что они означают и что делать. Если два числа попадают в разные группы, учитывается более серьезное.",
+
     ro: "Mută cele două bare la valorile tale. Vezi ce înseamnă și ce să faci. Dacă cele două numere sunt în grupe diferite, contează grupa mai gravă.",
     en: "Move the two sliders to your numbers. You will see what they mean and what to do. If the two numbers fall in different groups, the more serious one counts.",
     sq: "Lëviz dy shiritat te vlerat e tua. Do të shohësh çfarë do të thonë dhe çfarë të bësh. Nëse dy numrat bien në grupe të ndryshme, vlen grupi më i rëndë.",
@@ -465,6 +545,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "Phirav e duj linije ko tire numere. Ka dikhes so znachinen thaj so te keres. Te si e duj numere ande aver grupe, ginavel pes i maj phari grupa.",
   },
   quickExamples: {
+  ru: "Примеры:",
+
     ro: "Exemple:",
     en: "Examples:",
     sq: "Shembuj:",
@@ -473,6 +555,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "Primerura:",
   },
   systolicLabel: {
+  ru: "Верхнее число (систолическое)",
+
     ro: "Numărul mare (sistolică)",
     en: "Top number (systolic)",
     sq: "Numri i madh (sistolik)",
@@ -481,6 +565,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "Baro numero (sistolikano)",
   },
   systolicSubtext: {
+  ru: "Давление в артериях, когда сердце сжимается.",
+
     ro: "Presiunea din artere când inima se strânge.",
     en: "The pressure in your arteries when your heart squeezes.",
     sq: "Presioni në arterie kur zemra shtrëngohet.",
@@ -489,6 +575,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "O tasavimos ande arterije kana o ilo kidel pes.",
   },
   diastolicLabel: {
+  ru: "Нижнее число (диастолическое)",
+
     ro: "Numărul mic (diastolică)",
     en: "Bottom number (diastolic)",
     sq: "Numri i vogël (diastolik)",
@@ -497,6 +585,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "Cikno numero (dijastolikano)",
   },
   diastolicSubtext: {
+  ru: "Давление в артериях, когда сердце отдыхает между ударами.",
+
     ro: "Presiunea din artere când inima se odihnește între bătăi.",
     en: "The pressure in your arteries when your heart rests between beats.",
     sq: "Presioni në arterie kur zemra pushon mes rrahjeve.",
@@ -505,6 +595,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "O tasavimos ande arterije kana o ilo hodinisarel mashkar o marimos.",
   },
   redFlagCheckbox: {
+  ru: "Отметьте это, если у вас также есть боль или стеснение в груди, внезапная одышка, нечеткость зрения, онемение одной стороны тела или очень сильная головная боль.",
+
     ro: "Bifează dacă ai și: durere sau apăsare în piept, lipsă bruscă de aer, vedere încețoșată, amorțeală pe o parte a corpului sau durere de cap foarte puternică.",
     en: "Tick this if you also have chest pain or tightness, sudden shortness of breath, blurred vision, numbness on one side of the body, or a very bad headache.",
     sq: "Shëno nëse ke edhe: dhimbje ose shtrëngim në gjoks, mungesë të papritur ajri, shikim të turbullt, mpirje në njërën anë të trupit ose dhimbje shumë të fortë koke.",
@@ -513,6 +605,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "Semnisar te si tut vi: dukh vaj tasavimos ko kolin, sigo phari phurdinimos, kalo dikhiben, pamortimos pe jekh rig e truposki vaj but zurali dukh ko shero.",
   },
   physiologicLabel: {
+  ru: "Что происходит в вашем организме:",
+
     ro: "Ce se întâmplă în corp:",
     en: "What happens in your body:",
     sq: "Çfarë ndodh në trup:",
@@ -521,6 +615,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "So kerel pes ando trupo:",
   },
   actionProtocolLabel: {
+  ru: "Что делать:",
+
     ro: "Ce să faci:",
     en: "What to do:",
     sq: "Çfarë të bësh:",
@@ -529,6 +625,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "So te keres:",
   },
   emergencyNotice: {
+  ru: "Позвоните 112 самостоятельно. Приложение не звонит вам.",
+
     ro: "Sună tu la 112. Aplicația nu sună în locul tău.",
     en: "Call 112 yourself. The app does not call for you.",
     sq: "Telefono vetë në 112. Aplikacioni nuk telefonon për ty.",
@@ -537,6 +635,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
     rom: "Akhar tu 112. I aplikacija na akharel namesto tute.",
   },
   call112Btn: {
+  ru: "Позвоните 112",
+
     ro: "Sună la 112",
     en: "Call 112",
     sq: "Telefono 112",
@@ -548,6 +648,8 @@ export const BP_SIMULATOR_UI_STRINGS = {
 
 export const ESH_STEPPER_STRINGS = {
   headerEyebrow: {
+  ru: "По данным Европейского общества гипертонии (ESH).",
+
     ro: "După ghidul ESH (Societatea Europeană de Hipertensiune)",
     en: "Based on the European Society of Hypertension (ESH)",
     sq: "Sipas Shoqatës Evropiane të Hipertensionit (ESH)",
@@ -556,6 +658,8 @@ export const ESH_STEPPER_STRINGS = {
     rom: "Pala o sikavimos e Evropake Amalipnasko vash Hipertenzija (ESH)",
   },
   headerTitle: {
+  ru: "Как измерить артериальное давление дома",
+
     ro: "Cum îți măsori corect tensiunea acasă",
     en: "How to measure your blood pressure at home",
     sq: "Si ta masësh saktë tensionin në shtëpi",
@@ -564,6 +668,8 @@ export const ESH_STEPPER_STRINGS = {
     rom: "Sar te merisares čačes tiri tensija khere",
   },
   prevStep: {
+  ru: "Назад",
+
     ro: "Înapoi",
     en: "Back",
     sq: "Kthehu",
@@ -572,6 +678,8 @@ export const ESH_STEPPER_STRINGS = {
     rom: "Palpale",
   },
   nextStep: {
+  ru: "Следующий шаг",
+
     ro: "Pasul următor",
     en: "Next step",
     sq: "Hapi tjetër",
@@ -580,6 +688,8 @@ export const ESH_STEPPER_STRINGS = {
     rom: "Aver drom",
   },
   stepPrefix: {
+  ru: "Шаг",
+
     ro: "Pasul",
     en: "Step",
     sq: "Hapi",
@@ -588,6 +698,8 @@ export const ESH_STEPPER_STRINGS = {
     rom: "Drom",
   },
   actionLabel: {
+  ru: "Что делать:",
+
     ro: "Ce faci:",
     en: "What to do:",
     sq: "Çfarë të bësh:",
@@ -596,6 +708,8 @@ export const ESH_STEPPER_STRINGS = {
     rom: "So keres:",
   },
   goodToKnowLabel: {
+  ru: "Приятно знать",
+
     ro: "Bine de știut",
     en: "Good to know",
     sq: "Mirë ta dish",
@@ -604,6 +718,8 @@ export const ESH_STEPPER_STRINGS = {
     rom: "Mishto te dzhanes",
   },
   mistakeLabel: {
+  ru: "Распространенная ошибка",
+
     ro: "Greșeală frecventă",
     en: "Common mistake",
     sq: "Gabim i shpeshtë",
@@ -615,6 +731,8 @@ export const ESH_STEPPER_STRINGS = {
     {
       number: 1,
       title: {
+  ru: "Сначала отдохните 5 минут",
+
         ro: "Odihnește-te 5 minute înainte",
         en: "Rest for 5 minutes first",
         sq: "Pusho 5 minuta më parë",
@@ -623,6 +741,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Anglal hodinisar 5 minute",
       },
       action: {
+  ru: "За 30 минут до этого воздержитесь от кофе, курения и физических упражнений. Сходите в туалет. Затем спокойно посидите в кресле 5 минут, не разговаривая.",
+
         ro: "Cu 30 de minute înainte, nu bea cafea, nu fuma și nu face efort. Mergi la toaletă. Apoi stai pe scaun 5 minute, liniștit și fără să vorbești.",
         en: "For 30 minutes before, skip coffee, smoking and exercise. Go to the toilet. Then sit quietly in a chair for 5 minutes without talking.",
         sq: "30 minuta para matjes, mos pi kafe, mos pi duhan dhe mos bëj sforcime. Shko në tualet. Pastaj rri ulur i qetë 5 minuta pa folur.",
@@ -631,6 +751,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "30 minute anglal, ma pi kafava, ma thuvjar thaj ma ker phari buchi. Dzha ko toaleto. Porme besh mirno pe skamin 5 minute bi te des duma.",
       },
       doctorTip: {
+  ru: "Полный мочевой пузырь или оживленная беседа могут повысить показатели на 10–15 мм рт. ст.",
+
         ro: "Vezica plină sau o discuție aprinsă pot crește tensiunea cu 10–15 mmHg.",
         en: "A full bladder or a lively chat can push your reading up by 10–15 mmHg.",
         sq: "Fshikëza e mbushur ose një bisedë e gjallë mund ta rrisin tensionin me 10–15 mmHg.",
@@ -639,6 +761,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Phpherdo murtheruno vaj zurali duma shaj te vazden i tensija vash 10–15 mmHg.",
       },
       mistakeToAvoid: {
+  ru: "Не проводите измерения сразу после подъема по лестнице, переноски тяжелых сумок или после ссоры.",
+
         ro: "Nu măsura imediat după ce ai urcat scări, ai cărat sacoșe sau te-ai certat cu cineva.",
         en: "Do not measure right after climbing stairs, carrying heavy bags or an argument.",
         sq: "Mos e mat menjëherë pasi ke ngjitur shkallë, ke mbajtur çanta të rënda ose je zënë me dikë.",
@@ -650,6 +774,8 @@ export const ESH_STEPPER_STRINGS = {
     {
       number: 2,
       title: {
+  ru: "Как сидеть",
+
         ro: "Cum stai pe scaun",
         en: "How to sit",
         sq: "Si të ulesh",
@@ -658,6 +784,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Sar te beshes",
       },
       action: {
+  ru: "Сядьте на стул со спинкой, спина прямая, ступни на полу. Положите руку на стол. Середина манжеты должна находиться на уровне сердца.",
+
         ro: "Stai pe un scaun cu spătar, cu spatele drept și tălpile pe podea. Sprijină brațul pe masă. Mijlocul manșetei trebuie să fie la nivelul inimii.",
         en: "Sit on a chair with a backrest, back straight, feet flat on the floor. Rest your arm on a table. The middle of the cuff should be level with your heart.",
         sq: "Ulu në një karrige me mbështetëse, me shpinën drejt dhe këmbët në dysheme. Mbështet krahun në tavolinë. Mesi i manshetës duhet të jetë në nivelin e zemrës.",
@@ -666,6 +794,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Besh pe skamin, o dumo vorta thaj e pindre tele pe phuv. Čhiv o vast pe skafidi. O mashkar e manshetako musaj te avel ko nivelo e ilesko.",
       },
       doctorTip: {
+  ru: "Если ваша рука свисает сбоку, на мониторе отображается большее число, чем ваше реальное.",
+
         ro: "Dacă brațul atârnă pe lângă corp, aparatul arată o valoare mai mare decât cea reală.",
         en: "If your arm hangs down by your side, the monitor shows a higher number than your real one.",
         sq: "Nëse krahu varet poshtë, aparati tregon një vlerë më të lartë se e vërteta.",
@@ -674,6 +804,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Te mukhes o vast te umbladjol pasha o trupo, o aparato sikavel maj baro numero katar o čačuno.",
       },
       mistakeToAvoid: {
+  ru: "Не скрещивайте ноги. Он сжимает вены и повышает кровяное давление.",
+
         ro: "Nu ține picioarele încrucișate. Așa se strâng venele și tensiunea crește.",
         en: "Do not cross your legs. It squeezes the veins and raises your blood pressure.",
         sq: "Mos i kryqëzo këmbët. Kjo shtrëngon venat dhe rrit tensionin.",
@@ -685,6 +817,8 @@ export const ESH_STEPPER_STRINGS = {
     {
       number: 3,
       title: {
+  ru: "Наденьте манжету на голую кожу",
+
         ro: "Pune manșeta pe piele",
         en: "Put the cuff on bare skin",
         sq: "Vendose manshetën mbi lëkurë",
@@ -693,6 +827,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Čhiv i mansheta pe nangi morti",
       },
       action: {
+  ru: "Наложите манжету прямо на кожу на 2–3 см выше локтя. Трубка должна проходить по середине руки. Закрепите его так, чтобы один палец помещался под ним.",
+
         ro: "Pune manșeta direct pe piele, la 2–3 cm deasupra cotului. Furtunul trebuie să fie pe mijlocul brațului. Strânge-o cât să încapă un deget sub ea.",
         en: "Put the cuff straight on your skin, 2–3 cm above the elbow. The tube should run down the middle of your arm. Fasten it so one finger fits underneath.",
         sq: "Vendose manshetën drejt mbi lëkurë, 2–3 cm mbi bërryl. Tubi duhet të jetë në mes të krahut. Shtrëngoje sa të futet një gisht poshtë saj.",
@@ -701,6 +837,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Čhiv i mansheta vorta pe morti, 2–3 cm opral o kohni. O cjevo musaj te dzhal ko mashkar e vastesko. Phand la kadja te del jekh naj telal.",
       },
       doctorTip: {
+  ru: "Используйте клинически протестированный монитор для плеча, а не для запястья.",
+
         ro: "Folosește un tensiometru electronic de braț, verificat clinic. Nu unul de încheietură.",
         en: "Use a clinically tested upper-arm monitor, not a wrist one.",
         sq: "Përdor një aparat elektronik për krah, të testuar klinikisht. Jo për kyçin e dorës.",
@@ -709,6 +847,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Labyar klinikano dikhlo digitalno tensiometro vash o vast, na vash o globi e vastesko.",
       },
       mistakeToAvoid: {
+  ru: "Не закатывайте тугой рукав, который сжимает руку. Никогда не надевайте манжету на толстую одежду.",
+
         ro: "Nu sufleca o mânecă strâmtă care îți strânge brațul. Nu pune manșeta peste haine groase.",
         en: "Do not roll up a tight sleeve that squeezes your arm. Never put the cuff over thick clothes.",
         sq: "Mos e përvish një mëngë të ngushtë që të shtrëngon krahun. Mos e vendos manshetën mbi rroba të trasha.",
@@ -720,6 +860,8 @@ export const ESH_STEPPER_STRINGS = {
     {
       number: 4,
       title: {
+  ru: "Измерьте дважды и запишите",
+
         ro: "Măsoară de 2 ori și notează",
         en: "Measure twice and write it down",
         sq: "Mate 2 herë dhe shëno",
@@ -728,6 +870,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Merisar 2 droma thaj ramosar",
       },
       action: {
+  ru: "Запустите монитор. Сохраняйте спокойствие и тишину, пока манжета не опустится. Подождите 1–2 минуты и измерьте еще раз. Запишите оба показания и свой пульс.",
+
         ro: "Pornește aparatul. Nu te mișca și nu vorbi până se dezumflă manșeta. Așteaptă 1–2 minute și măsoară din nou. Notează ambele valori și pulsul.",
         en: "Start the monitor. Stay still and quiet until the cuff goes down. Wait 1–2 minutes and measure again. Write down both readings and your pulse.",
         sq: "Ndize aparatin. Mos lëviz dhe mos fol derisa manshetja të shfryhet. Prit 1–2 minuta dhe mate përsëri. Shëno të dyja vlerat dhe pulsin.",
@@ -736,6 +880,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "Muk o aparato. Ma phir thaj ma de duma dzhi kaj i mansheta na mukhel i balval. Azhuker 1–2 minute thaj merisar pale. Ramosar solduj numere thaj o pulso.",
       },
       doctorTip: {
+  ru: "Первое значение часто немного выше, потому что вы напряжены. Второй лучше показывает ваше реальное давление.",
+
         ro: "Prima valoare iese des puțin mai mare, din emoție. A doua arată mai bine tensiunea ta reală.",
         en: "The first reading is often a bit higher because you are tense. The second one shows your real pressure better.",
         sq: "Vlera e parë shpesh del pak më e lartë nga emocioni. E dyta tregon më mirë tensionin tënd të vërtetë.",
@@ -744,6 +890,8 @@ export const ESH_STEPPER_STRINGS = {
         rom: "O angluno numero butivar ikljol zalog maj baro katar i dar. O dujto sikavel maj mishto tiri čačuni tensija.",
       },
       mistakeToAvoid: {
+  ru: "Никогда не принимайте дополнительную дозу лекарства после одного высокого значения. Сначала спросите своего врача.",
+
         ro: "Nu lua o doză în plus de medicament după o singură valoare mare. Întreabă întâi medicul.",
         en: "Never take an extra dose of your medicine after one high reading. Ask your doctor first.",
         sq: "Mos merr kurrë një dozë shtesë ilaçi pas një vlere të vetme të lartë. Pyet më parë mjekun.",
@@ -803,6 +951,8 @@ export function evaluateBloodPressure(
       diastolic,
       tier: "hypotension",
       label: {
+  ru: tierData.en.label,
+
         ro: tierData.ro.label,
         en: tierData.en.label,
         sq: tierData.sq.label,
@@ -813,6 +963,8 @@ export function evaluateBloodPressure(
       labelRo: tierData.ro.label,
       badgeTone: "amber",
       physiologicEffect: {
+  ru: tierData.en.physiologicEffect,
+
         ro: tierData.ro.physiologicEffect,
         en: tierData.en.physiologicEffect,
         sq: tierData.sq.physiologicEffect,
@@ -822,6 +974,8 @@ export function evaluateBloodPressure(
       },
       physiologicEffectRo: tierData.ro.physiologicEffect,
       actionProtocol: {
+  ru: tierData.en.actionProtocol,
+
         ro: tierData.ro.actionProtocol,
         en: tierData.en.actionProtocol,
         sq: tierData.sq.actionProtocol,
@@ -863,6 +1017,8 @@ export function evaluateBloodPressure(
         diastolic,
         tier: "hypertensive_crisis",
         label: {
+  ru: tierData.en.label,
+
           ro: tierData.ro.label,
           en: tierData.en.label,
           sq: tierData.sq.label,
@@ -873,6 +1029,8 @@ export function evaluateBloodPressure(
         labelRo: tierData.ro.label,
         badgeTone: "ruby",
         physiologicEffect: {
+  ru: tierData.en.physiologicEffect,
+
           ro: tierData.ro.physiologicEffect,
           en: tierData.en.physiologicEffect,
           sq: tierData.sq.physiologicEffect,
@@ -882,6 +1040,8 @@ export function evaluateBloodPressure(
         },
         physiologicEffectRo: tierData.ro.physiologicEffect,
         actionProtocol: {
+  ru: tierData.en.actionProtocol,
+
           ro: tierData.ro.actionProtocol,
           en: tierData.en.actionProtocol,
           sq: tierData.sq.actionProtocol,
@@ -902,6 +1062,8 @@ export function evaluateBloodPressure(
       diastolic,
       tier: "grade_3_hypertension",
       label: {
+  ru: tierData.en.label,
+
         ro: tierData.ro.label,
         en: tierData.en.label,
         sq: tierData.sq.label,
@@ -912,6 +1074,8 @@ export function evaluateBloodPressure(
       labelRo: tierData.ro.label,
       badgeTone: "ruby",
       physiologicEffect: {
+  ru: tierData.en.physiologicEffect,
+
         ro: tierData.ro.physiologicEffect,
         en: tierData.en.physiologicEffect,
         sq: tierData.sq.physiologicEffect,
@@ -921,6 +1085,8 @@ export function evaluateBloodPressure(
       },
       physiologicEffectRo: tierData.ro.physiologicEffect,
       actionProtocol: {
+  ru: tierData.en.actionProtocol,
+
         ro: tierData.ro.actionProtocol,
         en: tierData.en.actionProtocol,
         sq: tierData.sq.actionProtocol,
@@ -973,6 +1139,8 @@ export function evaluateBloodPressure(
     diastolic,
     tier: selectedTier,
     label: {
+  ru: tierData.en.label,
+
       ro: tierData.ro.label,
       en: tierData.en.label,
       sq: tierData.sq.label,
@@ -983,6 +1151,8 @@ export function evaluateBloodPressure(
     labelRo: tierData.ro.label,
     badgeTone,
     physiologicEffect: {
+  ru: tierData.en.physiologicEffect,
+
       ro: tierData.ro.physiologicEffect,
       en: tierData.en.physiologicEffect,
       sq: tierData.sq.physiologicEffect,
@@ -992,6 +1162,8 @@ export function evaluateBloodPressure(
     },
     physiologicEffectRo: tierData.ro.physiologicEffect,
     actionProtocol: {
+  ru: tierData.en.actionProtocol,
+
       ro: tierData.ro.actionProtocol,
       en: tierData.en.actionProtocol,
       sq: tierData.sq.actionProtocol,
@@ -1036,7 +1208,7 @@ export function mapBloodPressureToFHIR(
           display: "Blood pressure panel with all children optional",
         },
       ],
-      text: lang === "en"
+      text: lang === "ru" ? "Артериальное давление" : lang === "en"
         ? "Blood pressure panel"
         : lang === "sq"
         ? "Paneli i tensionit të gjakut"
@@ -1059,7 +1231,7 @@ export function mapBloodPressureToFHIR(
               display: "Systolic blood pressure",
             },
           ],
-          text: lang === "en"
+          text: lang === "ru" ? "Систолическое давление" : lang === "en"
             ? "Systolic blood pressure"
             : lang === "sq"
             ? "Tensioni sistolik"
@@ -1087,7 +1259,7 @@ export function mapBloodPressureToFHIR(
               display: "Diastolic blood pressure",
             },
           ],
-          text: lang === "en"
+          text: lang === "ru" ? "Диастолическое давление" : lang === "en"
             ? "Diastolic blood pressure"
             : lang === "sq"
             ? "Tensioni diastolik"

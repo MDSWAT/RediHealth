@@ -1,0 +1,51 @@
+{
+  "title": "Brachiterapia: radiazioni interne e piano terapeutico",
+  "intro": "La brachiterapia colloca una sorgente sigillata di radiazioni nell'area trattata o vicino ad essa. Irradia localmente limitando alcuni tessuti vicini, ma può comunque danneggiare tessuto sano. Si usa per tumori selezionati, da sola o insieme ad altre cure. Procedura, precauzioni ed effetti dipendono da sede e metodo; le istruzioni di un altro paziente possono non essere adatte.",
+  "sections": [
+    {
+      "heading": "Chiarire perché viene proposta",
+      "paragraphs": [
+        "Chiedete al radioterapista l'obiettivo e come si collega a chirurgia, radioterapia esterna o farmaci se previsti. L'idoneità dipende da sede, estensione, cure precedenti e salute. Discutete beneficio realistico, alternative e incertezze. Una cura locale non tratta automaticamente tumore altrove. Chiedete sintomi ed esiti a lungo termine importanti per voi, senza valutare il piano soltanto dal nome o dal numero di appuntamenti."
+      ]
+    },
+    {
+      "heading": "Distinguere sorgenti temporanee e impianti permanenti",
+      "paragraphs": [
+        "Nel trattamento temporaneo la sorgente rimane per un periodo pianificato tramite applicatore o catetere, poi viene rimossa. Alcuni metodi danno brevi sedute ad alto rateo; altri tempi più lunghi o impulsi. Quello permanente lascia piccole sorgenti sigillate con radioattività decrescente. Ricovero, visite e sicurezza cambiano. Chiedete sorgente e sistema precisi, cosa rimane e come si conferma il completamento. Permanente non significa radiazione forte indefinita."
+      ]
+    },
+    {
+      "heading": "Preparare posizionamento, immagini e controllo del disagio",
+      "paragraphs": [
+        "Le immagini pianificano e verificano la posizione. Inserire aghi, cateteri o applicatori può richiedere anestesia o sedazione secondo sede e tecnica. Chiedete gestione di dolore e nausea, limiti al movimento e comunicazione durante la cura. Fornite medicinali, allergie, precedenti procedure e informazioni di gravidanza. Seguite istruzioni personali per cibo, bevande e farmaci, inclusi anticoagulanti. Organizzate trasporto e sostegno dopo sedazione se richiesti; non inventate regole da una descrizione generale."
+      ]
+    },
+    {
+      "heading": "Seguire precauzioni specifiche",
+      "paragraphs": [
+        "Il team può limitare visite o vicinanza durante una sorgente attiva. Dopo rimozione di tutte le sorgenti temporanee quella brachiterapia non vi rende più radioattivi. Impianti permanenti possono richiedere precauzioni temporanee con bambini o persone incinte e istruzioni per sorgenti spostate, viaggi o procedure. Chiedete indicazioni scritte, contatto ed eventuale tessera. Dipendono da isotopo e cura: niente separazioni universali e non maneggiate una presunta sorgente libera."
+      ]
+    },
+    {
+      "heading": "Pianificare recupero, effetti e controlli",
+      "paragraphs": [
+        "Gli effetti dipendono dalla sede: dolore locale, stanchezza, disturbi urinari o intestinali, funzione sessuale o tessuti vicini. Chiedete quelli attesi, tardivi e il sostegno, inclusa fertilità prima della cura quando pertinente. Ottenete istruzioni per ferite e catetere rimasto. Febbre, forte dolore crescente, emorragia o impossibilità a urinare richiedono visita tempestiva; collasso, grave affanno o malattia critica emergenza. Mantenete controlli anche se state bene per risposta ed effetti tardivi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: precauzioni di contatto",
+      "text": "Una persona con brachiterapia temporanea teme di abbracciare un nipote. Chiede se tutte le sorgenti siano state rimosse e segue le proprie indicazioni, senza applicare quelle di impianti permanenti altrui."
+    },
+    {
+      "title": "Esempio ipotetico: intervento in giornata",
+      "text": "Il paziente scopre che serve sedazione per l'applicatore. Conferma farmaci e digiuno, organizza accompagnamento e chiede come segnalare dolore o difficoltà urinaria. Una breve irradiazione non significa intera visita senza preparazione."
+    }
+  ],
+  "questions": [
+    "Quale beneficio è atteso per il mio tumore e come si confrontano le alternative?",
+    "La sorgente è temporanea o permanente e quali preparazioni e precauzioni servono?",
+    "Quali effetti o segnali urgenti segnalare e come verificare la risposta?"
+  ]
+}

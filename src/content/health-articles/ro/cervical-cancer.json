@@ -1,0 +1,51 @@
+{
+  "title": "Cancerul de col uterin: simptome, diagnostic, tratament și prevenție",
+  "intro": "Cancerul de col uterin începe în partea inferioară a uterului care se deschide în vagin. Majoritatea cazurilor sunt legate de infecția persistentă cu anumite tipuri de HPV cu risc înalt. Modificările precanceroase diferă de cancerul invaziv și pot fi adesea tratate înaintea apariției lui. După diagnostic, echipa adaptează tratamentul extinderii, sănătății și priorităților, inclusiv fertilității când este relevantă.",
+  "sections": [
+    {
+      "heading": "HPV este frecvent și nu înseamnă cancer",
+      "paragraphs": [
+        "Majoritatea infecțiilor nu produc cancer. Persistența tipurilor cu risc înalt poate provoca modificări progresive; fumatul și imunitatea scăzută cresc riscul. HPV poate rămâne detectabil ori deveni detectabil mult după infectare: rezultatul pozitiv nu stabilește momentul și nu dovedește infidelitatea partenerului. Concentrați-vă pe monitorizare, fără învinovățire. Vaccinarea reduce riscul pentru tipuri importante, iar screeningul cervical identifică riscul sau modificările conform programului local."
+      ]
+    },
+    {
+      "heading": "Simptomele cer evaluare, nu așteptarea screeningului",
+      "paragraphs": [
+        "Pot apărea sângerare după contact sexual, între menstruații ori după menopauză, secreții schimbate, durere pelvină sau la contact. Au frecvent alte cauze, dar necesită consult. Boala timpurie poate fi fără simptome. Nu așteptați invitația și nu considerați screeningul anterior normal o excludere a problemei actuale. Sângerarea foarte abundentă, leșinul ori durerea acută severă cer îngrijire urgentă sau de urgență după gravitate. Spuneți dacă este posibilă sarcina."
+      ]
+    },
+    {
+      "heading": "De la rezultat anormal la diagnostic confirmat",
+      "paragraphs": [
+        "HPV pozitiv sau screening anormal nu înseamnă diagnostic de cancer. Colposcopia examinează mai atent colul, iar biopsia poate stabili natura modificărilor. Dacă se confirmă cancerul, examenul și imagistica potrivită evaluează extinderea. Întrebați dacă este precancer ori cancer invaziv, ce tip și stadiu și dacă mai sunt teste în așteptare. Puteți cere explicații, interpret, persoană de sprijin și pauză la examinare."
+      ]
+    },
+    {
+      "heading": "Tratamentul depinde de boală și persoană",
+      "paragraphs": [
+        "Unele cancere timpurii se tratează chirurgical, uneori cu păstrarea fertilității. Alte operații îndepărtează uterul și uneori țesuturile din jur ori ganglionii. Radioterapia, inclusiv brahiterapia, poate fi combinată cu chimioterapia; în anumite situații se folosesc imunoterapie sau alte medicamente. Disponibilitatea și indicația depind de stadiu, caracteristicile tumorii, tratamentele anterioare și practica locală. Discutați scopul, alternativele, efectele adverse și fertilitatea înainte de începere; nu toate persoanele au nevoie de aceeași operație."
+      ]
+    },
+    {
+      "heading": "Sprijin, monitorizare și prevenție",
+      "paragraphs": [
+        "Tratamentul poate afecta energia, intestinul, vezica, confortul sexual, menopauza și starea emoțională. Cereți ajutor pentru simptome, fertilitate, recuperare și costuri practice. Respectați controalele și raportați sângerări noi, durere ori schimbări persistente. Fără cancer, vaccinarea HPV și screeningul conform ghidurilor naționale reduc riscul; vaccinul nu înlocuiește screeningul sau evaluarea simptomelor și nu tratează cancerul existent. Eligibilitatea și intervalele diferă între țări și se pot schimba după tratament; solicitați plan individual."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Screening pozitiv — exemplu ipotetic",
+      "text": "O persoană primește HPV pozitiv și se teme de cancer ori infecție recentă. Medicul explică ce arată rezultatul și dacă trebuie repetat testul sau făcută colposcopie. Stabilesc comunicarea rezultatelor și monitorizarea."
+    },
+    {
+      "title": "Sângerare după screening normal — exemplu ipotetic",
+      "text": "O persoană are sângerare după contact deși screeningul anterior era normal. Programează consult fără să aștepte invitația următoare. Examinarea și testele investighează simptomul actual."
+    }
+  ],
+  "questions": [
+    "Rezultatul înseamnă HPV, modificări precanceroase sau cancer invaziv confirmat?",
+    "Care este scopul tratamentului și efectul fiecărei opțiuni asupra fertilității și vieții zilnice?",
+    "Ce plan local de monitorizare, sprijin pentru simptome și prevenție mi se aplică?"
+  ]
+}

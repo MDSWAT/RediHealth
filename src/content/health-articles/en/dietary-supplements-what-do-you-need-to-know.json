@@ -1,0 +1,51 @@
+{
+  "title": "Dietary supplements: deciding what is useful and using it safely",
+  "intro": "Supplements include vitamins, minerals, herbs and other concentrated ingredients sold as tablets, drops, powders or drinks. Some have a clear role, such as treating a deficiency or meeting a specific life-stage need. More is not automatically better, and natural does not mean harmless. The decision should concern a particular ingredient, purpose and dose, rather than a general promise of better health.",
+  "sections": [
+    {
+      "heading": "Start with a clear reason",
+      "paragraphs": [
+        "A varied diet supplies many nutrients, and supplements do not replace food variety or medical treatment. A clinician may recommend a product for a documented deficiency, impaired absorption, a restricted diet or a recognised preventive need. Folic acid around conception is one example; vitamin D advice depends on local guidance and individual circumstances. Ask what benefit is expected, whether a test is useful and when the need will be reviewed. Fatigue, hair loss or poor concentration have many possible causes: buying a large vitamin mixture can delay diagnosis. Do not stop a medically prescribed supplement simply because general advice says that many people do not need one."
+      ]
+    },
+    {
+      "heading": "Read the ingredients and avoid adding the same nutrient twice",
+      "paragraphs": [
+        "Check the amount per tablet or serving and how many servings the label assumes. Similar packaging can hide different strengths. Bring together multivitamins, single nutrients, energy products and fortified drinks to check the combined intake. A high percentage of a reference intake does not establish extra benefit, and a reference intake is not a personalised treatment target. Dose units matter: milligrams and micrograms are different amounts. Ask a pharmacist if you are unsure rather than converting doses yourself. Excess iron and some vitamins can be toxic; keep products, especially appealing gummies, out of children's reach. Children's needs and products differ from adults'."
+      ]
+    },
+    {
+      "heading": "Check medicines, illnesses and planned procedures",
+      "paragraphs": [
+        "Tell your pharmacist and medical team about every supplement, including herbal products, with a photograph of the label if helpful. Ingredients can alter the effect of anticoagulants and other medicines; St John's wort interacts with many treatments, including some contraceptives. Minerals can also interfere with absorption of certain medicines, so any spacing instructions need to be specific. Kidney or liver disease can increase risk. Before an operation, ask the treating team which products to pause and when, rather than assuming food supplements cannot affect bleeding or anaesthesia. Biotin in some hair or nail products can distort certain blood tests: tell the clinician and laboratory before testing and follow their instructions."
+      ]
+    },
+    {
+      "heading": "Judge the claim and the quality separately",
+      "paragraphs": [
+        "A testimonial, laboratory experiment or attractive ingredient list does not prove that the final product improves meaningful health outcomes. Ask whether research concerns the same preparation, dose and people like you. Products claiming rapid weight loss, dramatic muscle gain or a cure for serious illness deserve particular caution. Rules differ across countries; being available to buy does not mean the product has passed the same benefit assessment as a medicine. A quality certification may provide information about manufacturing or contents, but does not prove clinical benefit or safety for you. Prefer clearly labelled products from a traceable supplier and avoid unidentified mixtures or advice tied to expensive repeat purchases."
+      ]
+    },
+    {
+      "heading": "Use an agreed plan and respond to problems",
+      "paragraphs": [
+        "If a supplement is appropriate, record its purpose, dose, duration and any monitoring alongside your medicines. Pregnancy, breastfeeding and childhood need suitable advice; avoid supplements containing vitamin A as retinol and cod liver oil in pregnancy unless a specialist has specifically directed treatment. Do not replace a prescribed treatment with a supplement or assume that several products can be combined safely. New symptoms after starting one deserve advice; bring the packaging and report suspected adverse effects through your local system. Severe allergy, collapse, major breathing difficulty or suspected poisoning requires urgent emergency or poison-service advice. Do not induce vomiting after a suspected overdose. A review may conclude that food changes, a simpler product or no supplement is the better choice."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: duplicate ingredients",
+      "text": "Nina buys a multivitamin while already taking a separate nutrient recommended by her clinician. A pharmacist checks both labels and the total intake before she combines them. They keep the treatment purpose clear and avoid an unnecessary duplicate rather than assuming two products give twice the benefit."
+    },
+    {
+      "title": "Hypothetical example: a laboratory surprise avoided",
+      "text": "Before a blood test, Ilir shows his clinician a hair supplement containing biotin. The team checks whether the planned test is affected and gives specific instructions. He does not hide the product because it is sold without a prescription."
+    }
+  ],
+  "questions": [
+    "What specific problem would this ingredient address, and what evidence supports it?",
+    "Is the total dose safe with my other products, illnesses and medicines?",
+    "How long should I take it, what needs monitoring and when should we reconsider it?"
+  ]
+}

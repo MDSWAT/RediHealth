@@ -32,6 +32,16 @@ interface HubTranslations {
 }
 
 const HUB_TRANSLATIONS: Record<Lang, HubTranslations> = {
+  ru: {
+    ariaLabel: "Уроки диабета",
+    tabs: {
+      glucose: { label: "Уровень сахара в крови" },
+      insulin: { label: "Как работает инсулин" },
+      plate: { label: "Правильная тарелка" },
+      tutorials: { label: "Практические руководства" },
+    },
+  },
+
   ro: {
     ariaLabel: "Lecții despre diabet",
     tabs: {

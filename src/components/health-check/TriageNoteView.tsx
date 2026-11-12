@@ -50,6 +50,8 @@ export interface TriageNoteCopy {
 }
 
 export const TRIAGE_NOTE_COPY: Record<Lang, TriageNoteCopy> = {
+"ru": {"eyebrow":"Клиническая заметка","openFullCheck":"Открыть проверку симптомов","emptyTitle":"В этой ссылке нет заметки","emptyBody":"Ссылка неполная или не содержит описания симптомов. Вы можете начать новую проверку.","startCheck":"Проверить симптомы"},
+
   ro: {
     eyebrow: "Notă clinică",
     openFullCheck: "Deschide evaluarea interactivă",

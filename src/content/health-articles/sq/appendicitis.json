@@ -1,0 +1,51 @@
+{
+  "title": "Apendiciti: vlerësimi urgjent dhe vendimet e trajtimit",
+  "intro": "Apendiciti është inflamacion i apendiksit, një strukturë e vogël e lidhur me zorrën. Mund të përkeqësohet dhe të shkaktojë komplikime serioze, ndaj dyshimi kërkon vlerësim urgjent mjekësor. Vetëm dhimbja e barkut nuk e konfirmon shkakun dhe jo të gjithë kanë modelin e njohur të zhvendosjes së dhimbjes poshtë djathtas. Artikulli shpjegon vlerësimin dhe vendimet, jo një mënyrë për diagnozë ose trajtim në shtëpi.",
+  "sections": [
+    {
+      "heading": "Dallo dhimbjen shqetësuese pa pritur modelin klasik",
+      "paragraphs": [
+        "Dhimbja mund të fillojë në mes të barkut dhe më pas të bëhet më e dukshme poshtë djathtas. Mund të ketë të përziera, të vjella, mungesë oreksi ose temperaturë. Fëmijët, të moshuarit dhe shtatzënat mund të kenë simptoma më pak tipike. Dhimbja që vazhdon ose përkeqësohet kërkon vlerësim të shpejtë edhe pa temperaturë. Dhimbja e fortë, të fikëtit, konfuzioni, vështirësia në frymëmarrje ose përkeqësimi i shpejtë kërkojnë ndihmë emergjente. Mos e shtyp vazhdimisht barkun dhe mos përdor test lëvizjeje nga interneti për ta përjashtuar."
+      ]
+    },
+    {
+      "heading": "Jep informacionin që ndryshon vlerësimin",
+      "paragraphs": [
+        "Përshkruaj kur filloi dhimbja, ndryshimet, të vjellat, simptomat e zorrës ose urinimit, barnat dhe operacionet e mëparshme. Tregoji mjekut për shtatzëninë ose mundësinë e saj. Mund të duhen shqyrtuar shkaqe të tjera, përfshirë gjendje urinare, të zorrës dhe shtatzëni jashtë mitrës. Mos supozo se një episod i mëparshëm mostretjeje shpjegon sëmundjen e re. Merr listën e barnave nëse e ke, por mos vono kujdesin urgjent për të mbledhur dokumente."
+      ]
+    },
+    {
+      "heading": "Kupto testet dhe vëzhgimin",
+      "paragraphs": [
+        "Ekipi mund të ekzaminojë barkun dhe të përdorë analiza gjaku, urine dhe imazheri si ekografia ose tomografia e kompjuterizuar. Zgjedhja varet nga situata, përfshirë shtatzëninë. Asnjë simptomë apo test i vetëm nuk zgjidh çdo rast të paqartë, prandaj mund të duhet ekzaminim i përsëritur ose vëzhgim. Pyet çfarë sugjerojnë gjetjet dhe cili është plani nëse pasiguria mbetet. Nëse dërgohesh në shtëpi pas vlerësimit, sigurohu se di kur dhe ku të kthehesh."
+      ]
+    },
+    {
+      "heading": "Diskuto trajtimin në kontekstin spitalor",
+      "paragraphs": [
+        "Heqja e apendiksit është trajtim i zakonshëm dhe mund të bëhet me laparoskopi ose operacion të hapur. Antibiotikët dhe qasje të tjera mund të shqyrtohen në situata të përzgjedhura sipas gjetjeve dhe komplikimeve. Antibiotikët nuk zëvendësojnë vlerësimin si trajtim shtëpie; simptomat mund të vazhdojnë ose rikthehen dhe mund të duhet përsëri operacion. Pyet pse qasja e rekomanduar i përshtatet rastit, për rreziqet, alternativat dhe çfarë do ta ndryshonte vendimin. Ndiq udhëzimet e ekipit për ushqim, pije dhe barna."
+      ]
+    },
+    {
+      "heading": "Dije planin e rikuperimit dhe shenjat e problemeve",
+      "paragraphs": [
+        "Rikuperimi varet nga procedura, nëse apendiksi është çarë dhe faktorë të tjerë shëndetësorë. Merr udhëzime të qarta për plagën, barnat, aktivitetin, ndjekjen dhe kontaktet. Dhimbja në rritje, temperatura, të vjellat e përsëritura, pamundësia për të mbajtur lëngje ose ndryshime shqetësuese të plagës kërkojnë këshillë mjekësore. Gjendja e rëndë ose kolapsi kërkojnë ndihmë emergjente. Përmirësimi i shkurtër nuk provon gjithmonë se një problem barku i patrajtuar është zgjidhur, sidomos kur dhimbja rikthehet ose përhapet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: marrja seriozisht e simptomave jotipike",
+      "text": "Një fëmijë ka dhimbje barku në përkeqësim dhe nuk ha, por nuk e tregon dot anën e poshtme djathtas. Kujdestari kërkon vlerësim të shpejtë dhe shpjegon ndryshimin e sjelljes e simptomave. Nuk pret që dhimbja t'i përshtatet një skeme para se të kërkojë ndihmë."
+    },
+    {
+      "title": "Shembull hipotetik: sqarimi i zgjedhjes së trajtimit",
+      "text": "Një pacient merr një plan spitalor dhe pyet pse në rastin e tij rekomandohet operacioni ose antibiotiku. Pyet për rikthimin dhe shenjat për rivlerësim, në vend që të marrë hua antibiotikë dhe të provojë të njëjtën qasje në shtëpi."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin apendicitin dhe cilat shkaqe të tjera po shqyrtohen?",
+    "Pse rekomandohet ky trajtim për mua dhe cilat janë rreziqet e alternativat?",
+    "Si duhet të ecë rikuperimi dhe cilat ndryshime kërkojnë kthim urgjent?"
+  ]
+}

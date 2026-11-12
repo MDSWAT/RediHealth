@@ -5,6 +5,8 @@ import { getRequestLang } from "@/lib/i18n/server-routing";
 import type { Lang } from "@/lib/i18n/translations";
 
 const descriptions: Record<Lang, string> = {
+  ru: "Расскажите, что пошло не так на сайте. Команда RediHealth рассмотрит это.",
+
   ro: "Spune-ne ce n-a mers pe site. Echipa RediHealth se uită.",
   en: "Tell us what went wrong on the site. The RediHealth team will look at it.",
   sq: "Na trego çfarë nuk funksionoi në faqe. Ekipi i RediHealth do ta shohë.",

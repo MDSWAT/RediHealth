@@ -35,6 +35,33 @@ type TrustCopy = {
 
 // Wording is limited to what is true without written permission: no emblems, no accreditation claims.
 const COPY: Record<Lang, TrustCopy> = {
+  ru: {
+    title: "С кем мы работаем",
+    subtitle:
+      "RediHealth позволяет вам связаться с семейными врачами, больницами и медицинскими посредниками. Ко всем относятся с уважением.",
+    commitmentsTitle: "Что мы обещаем",
+    newTab: "открывается в новой вкладке",
+    sources: [
+      {
+        id: "oms",
+        name: "Всемирная организация здравоохранения",
+        role: "Our information follows public WHO guidance on health and prevention.",
+        href: "https://www.who.int/health-topics/health-promotion",
+        hrefLabel: "кто.int",
+      },
+      {
+        id: "mediatori",
+        name: "Медиаторы общественного здравоохранения",
+        role: "We work with health mediators in rural and vulnerable communities.",
+      },
+      {
+        id: "redi",
+        name: "REDI",
+        role: "A European project that helps people reach a doctor more easily.",
+      },
+    ],
+  },
+
   ro: {
     title: "Cu cine lucrăm",
     subtitle:

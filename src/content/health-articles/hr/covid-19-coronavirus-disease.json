@@ -1,0 +1,51 @@
+{
+  "title": "COVID-19: testiranje, rano liječenje i oporavak",
+  "intro": "COVID je infekcija uzrokovana virusom SARS-CoV-2. Može sličiti prehladi, ali izazvati i tešku bolest ili trajne simptome. Rizik ovisi o dobi, imunitetu, trudnoći i drugim bolestima. Blag početak ne znači da osoba većeg rizika treba čekati prije pitanja o liječenju, a ranija infekcija ne jamči zaštitu od nove.",
+  "sections": [
+    {
+      "heading": "Prepoznajte simptome i promišljeno koristite testove",
+      "paragraphs": [
+        "Mogu se javiti temperatura, grlobolja, kašalj, začepljen nos, umor, bolovi, probavne smetnje ili promjene mirisa i okusa. Simptomi se preklapaju s gripom i drugim infekcijama pa sami ne daju pouzdanu dijagnozu. Brzi antigenski test pomaže, ali jedan negativan nalaz, osobito rano, ne isključuje infekciju. Slijedite uputu testa i aktualni lokalni savjet o ponavljanju ili laboratorijskom testu. Recite liječniku kada su simptomi počeli i za nedavnu prijašnju pozitivnost: neki laboratorijski testovi ostaju pozitivni nakon oporavka. Ne odgađajte hitnu skrb radi testa."
+      ]
+    },
+    {
+      "heading": "Tko treba pitati o ranom liječenju",
+      "paragraphs": [
+        "Starije osobe i ljudi oslabljenog imuniteta ili s važnim srčanim, plućnim, bubrežnim ili drugim kroničnim bolestima imaju veći rizik. Trudnoća ga također može povećati. Brzo se javite liječniku ako ste rizični i razvijete moguće simptome, čak i blage. Antivirusno liječenje, kada je prikladno, počinje u prvim danima; kriteriji i dostupnost ovise o državi i pojedincu. Liječnik treba puni popis lijekova i dodataka te podatke o bubrezima i jetri. Neki antivirusni lijekovi imaju važne interakcije. Ne prekidajte nužne lijekove i ne posuđujte tuđu terapiju kako biste omogućili liječenje."
+      ]
+    },
+    {
+      "heading": "Kućna njega i znakovi za pomoć",
+      "paragraphs": [
+        "Kod blage bolesti mogu pomoći odmor, redovito pijenje i primjeren lijek za bol ili temperaturu; poštujte medicinska ograničenja tekućine i upute proizvoda. Pitajte ljekarnika o trudnoći, djeci ili drugim lijekovima. Antibiotici ne liječe virus, a steroidi nisu rutinsko kućno liječenje blage bolesti. Tražite savjet ako se pogoršavate, teško pijete ili se kronična bolest pogorša. Hitna pomoć potrebna je za tešku zaduhu u mirovanju, nemogućnost kratkih rečenica, trajnu bol ili pritisak u prsima, zbunjenost, kolaps ili plave odnosno sive usne. Dojenčad sa slabim hranjenjem, otežanim disanjem ili neobičnom pospanošću treba brzu procjenu. Simptomi su važni i kad kućni nalaz kisika izgleda dobro."
+      ]
+    },
+    {
+      "heading": "Smanjite izlaganje i provjerite savjet o cijepljenju",
+      "paragraphs": [
+        "Virus se širi zaraznim česticama u zraku, posebno u zajedničkim zatvorenim prostorima. Dok ste bolesni izbjegavajte druge, provjetravajte, pokrivajte kašalj i perite ruke. Ako je kontakt neizbježan, dobro prianjajuća maska i čišći zrak dodatno štite; ne posjećujte posebno ranjive ljude. Slijedite aktualne lokalne upute za školu ili posao, uključujući pravila ustanove. Cijepljenje smanjuje tešku bolest, ali ne jamči odsutnost infekcije ili prijenosa. Pitajte lokalnog liječnika koje cjepivo i kada preporučuje prema dobi, trudnoći ili imunitetu. Raspored druge države možda ne vrijedi za vas."
+      ]
+    },
+    {
+      "heading": "Oporavak može zahtijevati individualni plan",
+      "paragraphs": [
+        "Mnogi se oporave kroz dane ili tjedne. Drugi imaju trajni umor, zaduhu, teškoće koncentracije, promijenjen miris ili promjenjive simptome nakon akutne infekcije. Dogovorite procjenu ako oporavak ne napreduje ili život ostaje ograničen; treba razmotriti i druge uzroke koji se liječe. Nova jaka bol u prsima ili teško disanje ne smiju se automatski pripisati dugom COVID-u. Razgovarajte o dnevniku, praktičnoj podršci i prilagođenom povratku radu ili školi. Ako aktivnost izaziva veliko odgođeno pogoršanje, recite liječniku i nemojte samo forsirati povećanje vježbanja. Rehabilitacija prati simptome i odgovor, bez obećanja točnog datuma oporavka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: rani negativan nalaz",
+      "text": "Ana ima grlobolju i negativan kućni test prvog dana. Budući da uzima imunosupresive, odmah se javlja liječniku za testiranje i rano liječenje, bez čekanja teškog kašlja ili pretpostavke da je infekcija isključena."
+    },
+    {
+      "title": "Zamišljeni primjer: prilagodba oporavka",
+      "text": "Nakon pada temperature Dario se vrati dugim smjenama, ali sutradan je znatno lošije. Zapisuje obrazac i s liječnikom i poslodavcem dogovara individualnu ravnotežu aktivnosti i odmora umjesto ponovljenog forsiranja ili pretpostavke nedovoljnog truda."
+    }
+  ],
+  "questions": [
+    "Mogu li dobiti rano liječenje i koliko brzo vam se trebam javiti?",
+    "Utječu li lijekovi ili zdravlje bubrega i jetre na mogućnosti?",
+    "Koji simptomi trebaju hitnu pomoć i kako pratiti spor oporavak?"
+  ]
+}

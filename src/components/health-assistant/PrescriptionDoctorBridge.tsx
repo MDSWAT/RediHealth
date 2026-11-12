@@ -14,6 +14,12 @@ export function PrescriptionDoctorBridge({ className = "" }: PrescriptionDoctorB
   const { lang } = useLanguage();
 
   const dict: Record<Lang, { heading: string; body: string; buttonText: string }> = {
+ru: {
+      heading: "Не уверены в своем рецепте?",
+      body: "Не уверены, что эти лекарства безопасны с другими таблетками, которые вы принимаете? Прежде чем начать, поговорите с врачом онлайн бесплатно.",
+      buttonText: "Поговорите с врачом о вашем рецепте",
+    },
+
     en: {
       heading: "Not sure about your prescription?",
       body: "Not sure these medicines are safe with other pills you take? Talk to a doctor online for free before you start them.",

@@ -1,0 +1,51 @@
+{
+  "title": "Sindroma e tunelit karpal: simptomat, vlerësimi dhe trajtimi",
+  "intro": "Sindroma e tunelit karpal ndodh kur nervi median shtypet në hapësirën e ngushtë të kyçit të dorës. Shkakton shpime, mpirje, dhimbje dhe vështirësi në përdorimin e dorës. Simptomat mund të vijnë e të ikin, sidomos natën, por shtypja e vazhdueshme mund të dëmtojë nervin. Vlerësimi dallon shkaqe të tjera dhe ndihmon zgjedhjen mes ortozës, injeksionit dhe operacionit.",
+  "sections": [
+    {
+      "heading": "Simptomat dhe ndryshimet për t'u raportuar",
+      "paragraphs": [
+        "Preken zakonisht gishti i madh, treguesi, i mesit dhe ana e gishtit të unazës nga gishti i madh. Dhimbja mund të shtrihet në parakrah. Disa zgjohen natën dhe tundin dorën për lehtësim. Kapja e dobët, rrëzimi i sendeve, mpirja e përhershme ose pakësimi i muskujve në bazën e gishtit të madh kërkojnë këshillë të shpejtë, jo vetëm qetësues pa afat. Simptomat kryesisht te gishti i vogël, dhimbja e qafës apo ndryshime të tjera neurologjike mund të tregojnë problem tjetër ose shtesë."
+      ]
+    },
+    {
+      "heading": "Çfarë kontrollon mjeku",
+      "paragraphs": [
+        "Mjeku pyet për shpërndarjen dhe kohëzgjatjen, gjumin, punën, aktivitetet dhe sëmundjet, pastaj kontrollon ndjeshmërinë, forcën dhe kyçin. Diabeti, shtatzënia, sëmundjet inflamatore të kyçeve, anatomia dhe dëmtimet e mëparshme mund të ndikojnë. Kapja e fortë e përsëritur, dridhjet dhe përkulja e zgjatur mund të përkeqësojnë simptomat, por një aktivitet nuk shpjegon çdo rast. Testet e përçimit nervor ose imazheria ndihmojnë kur diagnoza është e pasigurt ose duhen hollësi. Jo të gjithë kanë nevojë për çdo test."
+      ]
+    },
+    {
+      "heading": "Ortoza dhe përshtatjet praktike",
+      "paragraphs": [
+        "Në raste të lehta të përshtatshme, ortoza gjatë natës mban kyçin neutral dhe ul presionin. Kërkoni kontroll të përshtatjes; nuk duhet të shtrëngojë me dhimbje. Përshtatni aktivitetet që nxisin simptomat, diskutoni veglat dhe pushimet dhe shmangni gjumin me kyç shumë të përkulur. Mund të këshillohen ushtrime, por përfitimi është i pasigurt dhe nuk duhet të përkeqësojnë simptomat. Kërkoni rishikim kur mpirja ose dobësia shtohen në vend të vazhdimit të pandryshuar."
+      ]
+    },
+    {
+      "heading": "Injeksioni dhe kirurgjia kanë role të ndryshme",
+      "paragraphs": [
+        "Injeksioni me kortikosteroid mund të lehtësojë, shpesh përkohësisht; simptomat mund të rikthehen. Diskutoni rreziqet, përfshirë ato të diabetit. Qetësuesit ndihmojnë dhimbjen, por nuk heqin shtypjen e nervit. Operacioni çliron ligamentin që formon çatinë e tunelit për të krijuar hapësirë. Mund të rekomandohet për simptoma të vazhdueshme ose dëmtim të rëndësishëm nervor. Diskutoni përfitimet, plagën, shqetësimin e shenjës dhe ndërlikime të tjera; dëmtimi i vjetër nervor mund të mos rikuperohet plotësisht."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe rikuperimi",
+      "paragraphs": [
+        "Pyesni çfarë përmirësimi pritet, kur duhet rivlerësim dhe cilat shenja kërkojnë ardhje më herët. Simptomat e shtatzënisë ndonjëherë përmirësohen më pas, por të rëndat ose të vazhdueshmet kërkojnë kujdes. Kthimi në drejtim automjeti, ngritje peshe dhe punë pas operacionit varet nga shërimi, funksioni dhe detyra, jo një datë universale. Ndiqni udhëzimet për plagën dhe aktivitetin. Dobësia që përkeqësohet shpejt, dëmtimi i rëndë ose dora e ftohtë me ngjyrë të ndryshuar kërkojnë vlerësim urgjent."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Simptoma natën — shembull hipotetik",
+      "text": "Një person zgjohet me shpime në gishtin e madh dhe gishtat pranë. Pas vlerësimit provon ortozë të përshtatur dhe ndryshon një detyrë provokuese. Cakton rishikim dhe kërkon më herët këshillë nëse mpirja bëhet e vazhdueshme ose forca bie."
+    },
+    {
+      "title": "Dobësi e vazhdueshme — shembull hipotetik",
+      "text": "Një tjetër vazhdon të rrëzojë sende pavarësisht trajtimit fillestar. Kthehet për vlerësim, jo për të shtuar qetësues. Specialisti diskuton funksionin nervor, testet sipas nevojës dhe përfitimet e rreziqet e operacionit."
+    }
+  ],
+  "questions": [
+    "A përputhen simptomat me shtypjen e nervit median apo mund të ketë shkak tjetër?",
+    "Çfarë mund të arrijë ortoza ose injeksioni dhe kur preferohet kirurgjia?",
+    "Kur të rikthehem dhe si ta përshtat punën, drejtimin dhe ngritjen e peshave?"
+  ]
+}

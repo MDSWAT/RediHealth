@@ -135,6 +135,57 @@ const COPY: Record<
     referredTo: string;
   }
 > = {
+  ru: {
+"moveUp": "Выше",
+"moveDown": "Ниже",
+"listen": "Слушать",
+"stopListen": "Стоп",
+
+"left": "Слева",
+"right": "Справа",
+"whyHurt": "Почему здесь может болеть?",
+"hideWhy": "Скрыть объяснение",
+"dismissInfo": "Закрыть сведения",
+"whatItDoes": "Для чего это нужно",
+"referredTo": "Боль может отдавать",
+
+
+
+
+
+
+
+
+
+"bodyType": "Модель тела",
+"bodyGeneral": "Общая",
+"bodyFemale": "Женская",
+
+    views: "Посмотреть",
+    open: "Опции",
+    camera: "Камера",
+    zoomIn: "Увеличить масштаб",
+    zoomOut: "Уменьшить масштаб",
+    turnLeft: "Поверните налево",
+    turnRight: "Поверните направо",
+    resetView: "Начальный вид",
+    close: "Закрыть параметры",
+    liteNote: "3D-тело отключено для сохранения данных. Выберите регион из списка.",
+    liteLoad: "Показать 3D-тело",
+    options: "Варианты модели",
+    layer: "Что показать",
+    layers: {
+"skeletal": "Кости",
+
+
+ hybrid: "Все тело", muscular: "Мышцы", organs: "Органы", surface: "Только кожа" },
+    search: "Найдите часть тела",
+    searchPlaceholder: "например сердце, колено",
+    noResults: "Ничего не найдено. Попробуйте другое слово.",
+
+
+  },
+
   ro: {
     views: "Unghi",
     bodyType: "Anatomie afișată",

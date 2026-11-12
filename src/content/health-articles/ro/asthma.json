@@ -1,0 +1,51 @@
+{
+  "title": "Astmul: un plan personal pentru simptomele zilnice și crize",
+  "intro": "Astmul provoacă inflamație și îngustare variabilă a căilor respiratorii. Respirația șuierătoare, tusea, apăsarea în piept și lipsa de aer pot apărea și dispărea, inclusiv noaptea sau la efort. Tratamentul permite adesea un control bun, dar o criză poate pune viața în pericol. Diagnosticul confirmat, inhalatoarele potrivite, tehnica corectă și planul scris sunt mai utile decât orientarea după culoarea unui inhalator ori ghicirea pașilor la agravare.",
+  "sections": [
+    {
+      "heading": "Descrie simptomele și posibilii factori declanșatori",
+      "paragraphs": [
+        "Spune medicului când apar simptomele, dacă întrerup somnul sau activitatea și ce pare să le provoace. Fumul, poluarea, aerul rece, infecțiile, efortul sau alergenii pot contribui, dar diferă de la o persoană la alta. Tusea ori respirația șuierătoare singure nu dovedesc astmul. Menționează expunerile la serviciu, crizele anterioare și tratamentele utile sau problematice. Evitarea oricărui exercițiu nu este automat necesară; discută activitatea sigură și dacă simptomele sugerează control insuficient."
+      ]
+    },
+    {
+      "heading": "Înțelege evaluarea și controalele",
+      "paragraphs": [
+        "Evaluarea poate include teste respiratorii precum spirometria, măsurători în timp și alte investigații alese după vârstă și situație. Simptomele variază, astfel că o examinare când te simți bine poate să nu clarifice totul. Întreabă ce dovezi susțin diagnosticul și dacă poate contribui altă afecțiune. După diagnosticare, trezirile nocturne repetate, nevoia tot mai frecventă de ameliorare sau dificultatea activităților obișnuite trebuie reevaluate, nu acceptate ca inevitabile."
+      ]
+    },
+    {
+      "heading": "Află rolul fiecărui inhalator prescris",
+      "paragraphs": [
+        "Unele tratamente reduc inflamația de fond, altele ameliorează simptomele, iar anumite combinații prescrise îndeplinesc ambele roluri. Inhalatoarele nu se folosesc toate la fel. Cere denumirile medicamentelor, scopul și instrucțiunile, fără să te bazezi doar pe culoare. Nu opri tratamentul regulat doar pentru că te simți mai bine și nu folosi în loc inhalatorul altei persoane. Discută efectele adverse, sarcina, costurile și dificultatea de a-ți aminti tratamentul, pentru un plan practic adaptat."
+      ]
+    },
+    {
+      "heading": "Verifică tehnica și păstrează planul la îndemână",
+      "paragraphs": [
+        "Adu dispozitivele la consultație și arată cum le folosești. Tehnica diferă între dispozitive; pentru unele poate fi recomandată o cameră de inhalare. Întreabă cum verifici dozele rămase și când refaci rezerva. Planul scris trebuie să explice tratamentul obișnuit, semnele agravării și pașii în criză. Comunică instrucțiunile relevante îngrijitorilor ori școlii, când este cazul. După o criză, programează o reevaluare promptă chiar dacă simptomele s-au liniștit."
+      ]
+    },
+    {
+      "heading": "Acționează prompt dacă respirația se agravează",
+      "paragraphs": [
+        "Urmează planul prescris și folosește inhalatorul de ameliorare recomandat în timp ce obții ajutorul necesar. Cere ajutor de urgență pentru lipsă de aer severă ori în agravare, dificultatea de a vorbi normal, buze albăstrui sau cenușii, epuizare, confuzie ori somnolență. O criză care nu răspunde conform planului sau în lipsa inhalatorului de ameliorare prescris necesită ajutor urgent. Nu amâna deoarece o criză anterioară a fost ușoară ori pentru că aștepți un control obișnuit. Nu conduce dacă te simți foarte rău."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: discutarea simptomelor la efort",
+      "text": "Un elev tușește și respiră șuierător la sport și uneori se trezește noaptea. Descrie ambele situații la consultație și întreabă dacă sunt necesare teste ori revizuirea tratamentului. Nu presupune că trebuie să renunțe definitiv la exercițiu și nu ignoră simptomele nocturne."
+    },
+    {
+      "title": "Exemplu ipotetic: clarificarea rolului dispozitivelor",
+      "text": "O persoană are mai multe inhalatoare, dar nu știe care este pentru agravare. Le aduce la consultație și cere verificarea tehnicii și instrucțiuni scrise clare. Păstrează planul la îndemână, fără să se bazeze pe o culoare reținută sau o schemă de pe internet."
+    }
+  ],
+  "questions": [
+    "Ce dovezi susțin diagnosticul și cum evaluăm controlul astmului?",
+    "Ce rol are fiecare inhalator și îmi puteți verifica tehnica?",
+    "Ce trebuie să precizeze exact planul despre agravare și ajutor de urgență?"
+  ]
+}

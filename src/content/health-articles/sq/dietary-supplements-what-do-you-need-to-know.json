@@ -1,0 +1,51 @@
+{
+  "title": "Shtesat ushqimore: dobia dhe përdorimi i sigurt",
+  "intro": "Shtesat përmbajnë vitamina, minerale, bimë dhe përbërës të tjerë të përqendruar në tableta, pika, pluhura ose pije. Disa kanë rol të qartë, si trajtimi i mungesës ose nevoja në një fazë jete. Më shumë nuk është automatikisht më mirë dhe natyral nuk do të thotë i padëmshëm. Vendimi duhet të lidhet me përbërës, qëllim dhe dozë të caktuar.",
+  "sections": [
+    {
+      "heading": "Filloni me arsye të qartë",
+      "paragraphs": [
+        "Dieta e larmishme jep shumë ushqyes; shtesat nuk zëvendësojnë larminë apo trajtimin mjekësor. Mjeku rekomandon produkt për mungesë të vërtetuar, përthithje të dobët, dietë të kufizuar ose parandalim të njohur. Acidi folik rreth konceptimit është shembull; vitamina D varet nga udhëzimi lokal dhe rrethanat. Pyesni për përfitimin, vlerën e testit dhe rishikimin. Lodhja, rënia e flokëve dhe përqendrimi i dobët kanë shumë shkaqe; përzierja e madhe e vitaminave mund të vonojë diagnozën. Mos ndaloni produktin e përshkruar vetëm sepse shumë njerëz nuk kanë nevojë."
+      ]
+    },
+    {
+      "heading": "Lexoni përbërjen dhe shmangni dyfishimin",
+      "paragraphs": [
+        "Kontrolloni sasinë për tabletë ose porcion dhe numrin e porcioneve në etiketë. Paketat e ngjashme mund të kenë fuqi të ndryshme. Shihni bashkë multivitaminat, ushqyesit veçmas, produktet energjike dhe pijet e fortifikuara për totalin. Përqindja e lartë e marrjes referencë nuk provon përfitim shtesë dhe nuk është objektiv personal trajtimi. Miligramët dhe mikrogramët janë sasi të ndryshme; pyesni farmacistin në vend të llogaritjes së pasigurt. Hekuri i tepërt dhe disa vitamina janë toksike; mbajini larg fëmijëve, sidomos produktet si karamele. Nevojat dhe produktet e fëmijëve ndryshojnë nga të rriturit."
+      ]
+    },
+    {
+      "heading": "Kontrolloni ilaçet, sëmundjet dhe procedurat",
+      "paragraphs": [
+        "Tregoni çdo shtesë, përfshirë bimët, me fotografi etikete nëse ndihmon. Përbërësit ndryshojnë efektin e antikoagulantëve dhe barnave të tjera; kantarioni ndërvepron me shumë trajtime, edhe disa kontraceptivë. Mineralet mund të pengojnë përthithjen e disa ilaçeve, ndaj ndarja në kohë do udhëzim specifik. Veshkat dhe mëlçia e sëmurë rrisin rrezikun. Para operacionit pyesni çfarë të ndaloni dhe kur; mos supozoni mungesë efekti mbi gjakrrjedhjen ose anestezinë. Biotina në produktet për flokë e thonj shtrembëron disa analiza; njoftoni mjekun dhe laboratorin dhe ndiqni udhëzimet."
+      ]
+    },
+    {
+      "heading": "Gjykoni veçmas pretendimin dhe cilësinë",
+      "paragraphs": [
+        "Dëshmia personale, eksperimenti laboratorik ose lista tërheqëse nuk provojnë përmirësim real nga produkti përfundimtar. Pyesni nëse studimi vlen për të njëjtën përgatitje, dozë dhe njerëz si ju. Premtimet për dobësim të shpejtë, muskuj dramatikë ose shërim sëmundjesh të rënda duan kujdes të veçantë. Rregullat ndryshojnë mes vendeve; shitja nuk do të thotë vlerësim përfitimi si një ilaç. Certifikimi i cilësisë mund të informojë për prodhimin ose përmbajtjen, jo të provojë dobi klinike ose siguri personale. Zgjidhni etiketë të qartë e furnizues të identifikueshëm; shmangni përzierjet e panjohura dhe këshillën e lidhur me blerje të shtrenjta të përsëritura."
+      ]
+    },
+    {
+      "heading": "Plan i qartë dhe reagim ndaj problemeve",
+      "paragraphs": [
+        "Regjistroni qëllimin, dozën, kohën dhe monitorimin pranë barnave. Shtatzënia, gjidhënia dhe fëmijëria duan këshillë të përshtatshme; në shtatzëni shmangni vitaminën A si retinol dhe vajin e mëlçisë së merlucit, përveç trajtimit specifik nga specialisti. Mos zëvendësoni kurën dhe mos supozoni kombinim të sigurt të disa produkteve. Shenjat e reja duan këshillë; sillni paketën dhe raportoni efektin e dyshuar sipas sistemit lokal. Alergjia e rëndë, kolapsi, frymëmarrja shumë e vështirë ose helmimi i dyshuar duan ndihmë urgjente emergjence ose toksikologjie. Mos shkaktoni të vjella pas mbidoze të dyshuar. Rishikimi mund të zgjedhë ushqim, produkt më të thjeshtë ose asnjë shtesë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: përbërës të dyfishuar",
+      "text": "Nina blen multivitamina duke marrë tashmë ushqyes të rekomanduar nga mjeku. Farmacisti kontrollon etiketat dhe totalin para kombinimit. Mbajnë qëllimin të qartë dhe shmangin dyfishimin e panevojshëm, pa supozuar përfitim të dyfishtë."
+    },
+    {
+      "title": "Shembull hipotetik: shmangia e surprizës në analiza",
+      "text": "Para analizës Iliri tregon produktin për flokë me biotinë. Ekipi kontrollon ndikimin te testi dhe jep udhëzime specifike. Ai nuk e fsheh produktin sepse shitet pa recetë."
+    }
+  ],
+  "questions": [
+    "Çfarë problemi specifik trajton përbërësi dhe cilat prova e mbështesin?",
+    "A është totali i sigurt me produktet, sëmundjet dhe barnat e mia?",
+    "Sa gjatë ta marr, çfarë monitorohet dhe kur rishikohet?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Predrakave stanice vrata maternice: praćenje, liječenje i kontrole",
+  "intro": "Abnormalne stanice vrata maternice često se nazivaju displazija ili cervikalna intraepitelna neoplazija, CIN. Nisu isto što i invazivni rak. Neke se povuku, a druge češće napreduju bez liječenja. Cilj je spriječiti rak uz izbjegavanje nepotrebnih zahvata. Kolposkopija i, kada treba, biopsija pomažu odabrati praćenje ili uklanjanje područja.",
+  "sections": [
+    {
+      "heading": "Razumjeti točan rezultat",
+      "paragraphs": [
+        "CIN1 opisuje promjene niskog stupnja, CIN2 srednjeg i CIN3 visokog. To su stupnjevi predrakavih promjena, a ne stadiji raka. Žljezdane abnormalnosti imaju druge nazive i mogu tražiti drugi pristup. Sam pozitivan HPV ne određuje tkivni stupanj. Pitajte potječe li nalaz iz probira, promatranja ili biopsije, je li invazija isključena i čekaju li se rezultati. Ne birajte liječenje prema izdvojenoj kratici."
+      ]
+    },
+    {
+      "heading": "Praćenje je aktivan plan",
+      "paragraphs": [
+        "Niske se promjene često prate jer mogu nestati. Neke odabrane srednje promjene mogu se pratiti prema specijalističkim kriterijima uz pouzdan dolazak. Visoke ili trajne češće trebaju liječenje. Važni su svi nalazi, preglednost cijelog područja, dob, trudnoća, reproduktivni planovi i mogućnost kontrola. Recite ako ste trudni: procjena je važna i kad se liječenje odgodi. Sumnja na invaziju traži drugačiji pravodoban dijagnostički put."
+      ]
+    },
+    {
+      "heading": "Uklanjanje ili uništenje stanica",
+      "paragraphs": [
+        "Često ekscizijsko liječenje koristi zagrijanu električnu omču, LLETZ ili LEEP, obično uz lokalnu anesteziju. Drugi pristup uklanja stožasti uzorak. Ekscizija daje tkivo i rubove za laboratorij. Destruktivne metode, poput topline ili zamrzavanja, prikladne su samo u odabranim okolnostima nakon procjene i ne daju isti uzorak. Pitajte što se predlaže, zašto i što ako laboratorijski rezultat mijenja plan."
+      ]
+    },
+    {
+      "heading": "Koristi, rizici i buduća trudnoća",
+      "paragraphs": [
+        "Liječenje smanjuje mogućnost razvoja raka, ali nosi rizike krvarenja, infekcije i suženja vrata maternice. Ekscizija može povećati rizik budućeg prijevremenog poroda, posebno dublja ili ponovljena. Većina liječenih nema tu komplikaciju. Prije liječenja raspravite količinu tkiva i želje za trudnoću; ne izbjegavajte potrebnu skrb bez specijalističkog plana. Budućem rodilištu recite o ranijim zahvatima na vratu maternice."
+      ]
+    },
+    {
+      "heading": "Cijeljenje i testovi dio su liječenja",
+      "paragraphs": [
+        "Slijedite pisane upute o krvarenju, iscjetku, analgeticima, vaginalnom odnosu, tamponima, plivanju i vježbanju. Tražite kontakt izvan radnog vremena. Jako krvarenje, veliki ugrušci, temperatura, neugodan miris iscjetka, rastuća bol ili loše stanje trebaju brzu procjenu; teško krvarenje s nesvjesticom hitnu pomoć. Dolazite na testove i kad ste dobro: liječenje ne jamči nestanak HPV-a ni svih povrata. Pitajte kada stižu rezultati i tražite ih ako izostanu. Ne pretpostavite trenutačan povrat uobičajenom razmaku probira."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Niski stupanj — zamišljeni primjer",
+      "text": "Osobi je preporučeno praćenje. Pita datum i kako nastaviti ako se preseli, umjesto tumačenja da ne treba ništa učiniti. Klinika osigurava nastavak kontrola."
+    },
+    {
+      "title": "Liječenje i trudnoća — zamišljeni primjer",
+      "text": "Osoba s visokim stupnjem želi trudnoću. Sa specijalistom raspravlja eksciziju, dubinu, prikladne alternative i rizike. Plan povezuje prevenciju raka i reproduktivne prioritete."
+    }
+  ],
+  "questions": [
+    "Koja je abnormalnost potvrđena i zašto se preporučuje praćenje ili liječenje?",
+    "Koje su koristi i rizici postupka za mene i buduću trudnoću?",
+    "Koje upute za cijeljenje, znakove upozorenja i kontrolne testove trebam slijediti?"
+  ]
+}

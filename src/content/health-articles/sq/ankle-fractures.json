@@ -1,0 +1,51 @@
+{
+  "title": "Frakturat e kyçit të këmbës: trajtimi dhe rikuperimi i sigurt",
+  "intro": "Fraktura e kyçit të këmbës është thyerje e një kocke rreth nyjës. Disa fraktura janë të qëndrueshme, ndërsa të tjera ndikojnë rreshtimin ose stabilitetin dhe kërkojnë trajtim më të përfshirë. Dhimbja dhe ënjtja nuk dallojnë me siguri frakturën nga ndrydhja. Kërko vlerësim nëse mund të ketë frakturë dhe ndiq planin për dëmtimin tënd, pa supozuar se çizmoja mbrojtëse, këshillat e ecjes ose koha e rikuperimit të dikujt tjetër vlejnë për ty.",
+  "sections": [
+    {
+      "heading": "Dallo dëmtimin që kërkon kujdes urgjent",
+      "paragraphs": [
+        "Dhimbja e fortë, ënjtja e madhe ose vështirësia për të mbajtur peshë pas dëmtimit kërkojnë vlerësim të shpejtë. Këndi jonormal, plaga e hapur ose kocka e dukshme, gishtat e mpirë ose këmba e ftohtë, e zbehtë a blu kërkojnë vlerësim në urgjencë. Mos provo ta shtysh kockën brenda ose ta drejtosh kyçin. Mbroje nga dëmtimi i mëtejshëm dhe kërko transport, pa drejtuar vetë. Mjeku duhet të kontrollojë qarkullimin, ndjeshmërinë dhe lëkurën, jo vetëm kockat."
+      ]
+    },
+    {
+      "heading": "Kupto pse trajtimi ndryshon ndërmjet frakturave",
+      "paragraphs": [
+        "Radiografitë ndihmojnë të tregojnë modelin e frakturës dhe rreshtimin; ndonjëherë duhet imazheri shtesë. Një dëmtim i qëndrueshëm mund të trajtohet me çizme mbrojtëse ose allçi të përshtatshme dhe ndjekje. Dëmtime të tjera kërkojnë rivendosjen e rreshtimit nga mjeku ose operacion për fiksimin e kockave. Vendimi merr parasysh stabilitetin, lëkurën, ënjtjen, sëmundjet e tjera dhe rrethanat. Pyet pse opsioni i propozuar është i përshtatshëm dhe çfarë problemesh synon të parandalojë."
+      ]
+    },
+    {
+      "heading": "Sqaro udhëzimet për peshëmbajtjen dhe mbështetjen",
+      "paragraphs": [
+        "Para largimit, pyet saktësisht sa peshë mund të vendosësh mbi anën e dëmtuar, si të përdorësh mjetet ndihmëse dhe kur ndryshon plani. Dhënia e një çizmeje mbrojtëse nuk do të thotë automatikisht se ecja pa kufizime është e sigurt. Kërko ndihmë për ushtrimin e mjeteve dhe planifikimin e shkallëve, larjes dhe transportit. Mbaj udhëzimet e shkruara dhe kontaktin e ndjekjes. Nëse nuk ia del sigurt në shtëpi, thuaje para daljes, jo të improvizosh një zgjidhje të pasigurt."
+      ]
+    },
+    {
+      "heading": "Kujdesu për allçinë ose çizmen dhe vëzhgo ndryshimet",
+      "paragraphs": [
+        "Ndiq udhëzimet për mbajtjen e mbështetëses të pastër dhe, kur kërkohet, të thatë. Mos fut objekte për të kruar nën allçi dhe mos e hiq vetë. Dhimbja në rritje, mpirja, fërkimi i fortë, rrjedhja, era e keqe ose ndryshimi i ngjyrës së gishtave kërkojnë kontakt të shpejtë; gishtat e ftohtë ose me ngjyrë të ndryshuar kërkojnë vlerësim urgjent. Pyet nëse duhen masa kundër mpiksjeve gjatë lëvizshmërisë së ulët. Dhimbja ose ënjtja e re e pulpës kërkon këshillë urgjente; dhimbja e kraharorit ose gulçimi i pashpjeguar kërkojnë ndihmë emergjente."
+      ]
+    },
+    {
+      "heading": "Kthehu në aktivitet me një plan rikuperimi",
+      "paragraphs": [
+        "Shërimi i kockës dhe rehabilitimi nuk janë të njëjtë: ngurtësia, ënjtja dhe dobësia mund të vazhdojnë pas bashkimit të kockës. Ndiq kontrollet dhe pyet kur duhet të përparojnë lëvizja, ngarkimi dhe fizioterapia. Ushqimi i ekuilibruar dhe mbështetja për ndalimin e duhanit mund të diskutohen gjatë rikuperimit. Kthehu në punë të rëndë ose sport sipas funksionit dhe këshillës profesionale, jo thjesht sepse dhimbja u ul. Rishiko paqëndrueshmërinë, përkeqësimin ose vështirësinë për të rifituar ecjen normale."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: udhëzime daljeje të përdorshme",
+      "text": "Një person me frakturë kyçi banon në kat të sipërm dhe i këshillohet të kufizojë peshën mbi anën e dëmtuar. Para kthimit kërkon shpjegim për mjetet e ecjes, shkallët dhe ndjekjen. Nuk supozon se çizmoja e një të afërmi do të thotë se ka të njëjtat udhëzime."
+    },
+    {
+      "title": "Shembull hipotetik: dallimi i një problemi me mbështetësen",
+      "text": "Dikush me allçi ndien shtrëngim në rritje dhe mpirje të gishtave. Kontakton kujdesin urgjent në vend që të presë takimin tjetër ose ta presë vetë allçinë në shtëpi. Raporton dhimbjen, ngjyrën e gishtave dhe kur filloi ndryshimi."
+    }
+  ],
+  "questions": [
+    "A është fraktura e qëndrueshme dhe pse rekomandohet ky trajtim?",
+    "Sa peshë mund të vendos mbi këmbë dhe çfarë mbështetjeje ose parandalimi mpiksjesh më duhet?",
+    "Cilat ndryshime kërkojnë kontakt urgjent dhe cilët objektiva udhëheqin rehabilitimin dhe kthimin në aktivitet?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Donanemab (Kisunla) për Alzheimer të hershëm: përfitimi dhe rreziku",
+  "intro": "Donanemab është antitrup që ndihmon largimin e depozitave të amiloidit nga truri. Mund të ngadalësojë rënien te disa njerëz me Alzheimer të hershëm simptomatik, por nuk shëron dhe nuk rikthen aftësitë e humbura. Kërkon përzgjedhje specialistike, infuzione dhe skanime të përsëritura. Pranueshmëria, financimi dhe siguria kontrollohen në vendin e kujdesit.",
+  "sections": [
+    {
+      "heading": "Kush mund të vlerësohet në Bashkimin Europian",
+      "paragraphs": [
+        "Indikacioni i BE përfshin të rritur me dëmtim të lehtë njohës ose demencë të lehtë nga Alzheimer dhe amiloid të konfirmuar. Kufizohet te një ose asnjë kopje e variantit ApoE4; dy kopje janë jashtë indikacionit për siguri. Testi gjenetik do shpjegim dhe pëlqim, përfshirë kuptimin dhe kufijtë për të afërmit. Amiloidi pozitiv vetëm nuk mjafton: shenjat, diagnoza, faza, imazhet, historia dhe barnat shqyrtohen bashkë. Nuk është trajtim i përgjithshëm për çdo ankesë kujtese ose demencë të avancuar."
+      ]
+    },
+    {
+      "heading": "Përfitim pa supozuar përmirësim",
+      "paragraphs": [
+        "Studimet gjetën përkeqësim mesatar më të ngadaltë të kujtesës, mendimit dhe funksionit ditor kundrejt placebos gjatë ndjekjes. Të dy grupet përgjithësisht u përkeqësuan. Largimi i amiloidit në skanim nuk është njësoj me përmirësim të dukshëm në jetë dhe mesatarja nuk parashikon individin. Kërkoni shpjegim praktik të ndryshimit, kohës së studiuar dhe pasigurisë afatgjatë. Autorizimi dhe vlerësimi i përfitimit shtesë ose rimbursimit janë pyetje të ndryshme. Diskutoni kujdesin mbështetës dhe trajtimet e tjera pavarësisht zgjedhjes."
+      ]
+    },
+    {
+      "heading": "Ënjtja dhe gjakrrjedhja e trurit janë rreziqe kryesore",
+      "paragraphs": [
+        "Anomalitë imazherike të lidhura me amiloidin, ARIA, përfshijnë ënjtje dhe ndryshime nga gjakrrjedhja. Mund të jenë pa simptoma, por disa janë të rënda ose fatale. Rezonanca duhet para dhe në momente të caktuara gjatë kurës, shtesë në simptoma; ndjesia e mirë nuk zëvendëson monitorimin. Në BE nuk fillohet nën antikoagulim të vazhdueshëm; gjakrrjedhje ose gjetje të caktuara, tensioni i pakontrolluar dhe pamundësia e rezonancës mund ta përjashtojnë. Kjo nuk është listë e plotë. Mos ndaloni antikoagulantin thelbësor për t'u pranuar: specialistët vlerësojnë gjithçka."
+      ]
+    },
+    {
+      "heading": "Shenjat urgjente dhe karta e trajtimit",
+      "paragraphs": [
+        "Kontaktoni shpejt ekipin për dhimbje koke të re, konfuzion, marramendje, ekuilibër të prishur, të përziera ose shikim të ndryshuar gjatë kurës. Dobësia e papritur, vështirësia e të folurit, krizat, vetëdija e ulur ose dhimbja e fortë e papritur e kokës kërkojnë emergjencë; mos drejtoni vetë. Mund të jenë goditje në tru, ARIA ose tjetër urgjencë, jo të dallueshme sigurt në shtëpi. Tregoni donanemabin dhe kartën, sepse ndikon në vlerësim dhe trajtimet e gjakrrjedhjes. Skuqja, të dridhurat, shtrëngimi i gjoksit, gulçimi ose tensioni i ndryshuar gjatë infuzionit duan njoftim të menjëhershëm; reaksioni i rëndë jashtë klinikës do emergjencë."
+      ]
+    },
+    {
+      "heading": "Plan i zbatueshëm dhe rishikim",
+      "paragraphs": [
+        "Infuzionet bëhen me mbikëqyrje, përgjithësisht çdo katër javë sipas informacionit të BE. Specialisti vendos dozën, skanimet dhe ndalimin; kufiri europian është tetëmbëdhjetë muaj, me ndalim më herët sipas pastrimit të amiloidit, progresit ose sigurisë. Mos merrni skemë nga vend tjetër. Mendoni udhëtimin, shoqërimin, rezonancën, koston, dëshirat dhe përfshirjen e personit me mbështetje. Pyesni kush lexon imazhet para infuzionit dhe kontaktin urgjent. Efektet mund të kërkojnë pushim ose ndalim të përhershëm. Mosmarrja e ilaçit përsëri duhet të ketë plan kujdesi e mbështetjeje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: më shumë se testi i kujtesës",
+      "text": "Nadia ka probleme të lehta kujtese dhe pyet për Kisunla. Specialisti sqaron diagnozën dhe fazën, pastaj amiloidin, këshillimin gjenetik, rezonancën dhe barnat. Familja nuk supozon se diagnoza garanton pranueshmëri ose pagesë."
+    },
+    {
+      "title": "Shembull hipotetik: shenja të reja gjatë kurës",
+      "text": "Pas fillimit, Iliri papritur flet me vështirësi. Partnerja thërret emergjencën dhe tregon kartën. Nuk presin vizitën e infuzionit ose vendosin vetë mes goditjes në tru dhe ARIA."
+    }
+  ],
+  "questions": [
+    "A përmbush indikacionin aktual lokal dhe cilat teste ose barna ndikojnë?",
+    "Sa i madh është përfitimi i mundshëm krahas rreziqeve dhe barrës?",
+    "Cili është plani i skanimeve, urgjencës dhe ndalimit dhe çfarë mbështetje vazhdon nëse refuzoj?"
+  ]
+}

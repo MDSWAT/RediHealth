@@ -1,0 +1,51 @@
+{
+  "title": "At the doctor's: prepare, ask and leave with a clear plan",
+  "intro": "A useful medical appointment brings together your experience and the clinician's assessment. You do not need to know the diagnosis before asking for help. A short account of what changed, a medicine list and your main concern can make the conversation easier. Booking, insurance and referral rules vary by country and clinic; the linked original article describes the German healthcare system.",
+  "sections": [
+    {
+      "heading": "Choose the service and explain how urgent the problem is",
+      "paragraphs": [
+        "For an ongoing or non-emergency problem, a primary-care practice can often assess you and coordinate specialist care. In Germany, a family doctor's practice is commonly called a Hausarztpraxis; do not assume its referral rules apply in another country. Tell booking staff about important worsening symptoms so they can direct you appropriately. Ask about fees, coverage and documents in advance when possible. Severe chest pain, serious breathing difficulty or signs of stroke need emergency help rather than waiting for a routine slot."
+      ]
+    },
+    {
+      "heading": "Prepare a short account and accurate medicine information",
+      "paragraphs": [
+        "Write down when symptoms started, what makes them better or worse and how they affect sleep, work or daily tasks. Prioritise the concerns you most want addressed, especially if several problems compete for time. Bring relevant results and a list of prescription medicines, over-the-counter products, supplements and allergies. Include what you actually take, not only what was prescribed. Mention pregnancy, possible pregnancy and recent treatment where relevant. Photographs or a symptom diary can help with a problem that comes and goes."
+      ]
+    },
+    {
+      "heading": "Arrange communication and privacy that work for you",
+      "paragraphs": [
+        "Ask before the appointment about an interpreter, sign-language support, accessible information or physical access. A professional interpreter can be particularly helpful for complex or sensitive decisions; a child should not be made responsible for medical interpretation. You may want a trusted person present, but also time alone with the clinician. Ask who will receive information and how confidentiality is handled. If an examination feels uncomfortable, ask what it involves, why it is needed and whether a chaperone is available."
+      ]
+    },
+    {
+      "heading": "Discuss options before agreeing to the next step",
+      "paragraphs": [
+        "Ask what the clinician thinks is happening, what remains uncertain and how a proposed test would change care. For treatment, discuss likely benefits, important harms, alternatives and what could happen with observation. Explain practical barriers such as cost, shift work or difficulty swallowing tablets. You can ask for simpler wording or time to consider a non-urgent decision. A second opinion may help when a major choice remains unclear; access and payment rules differ. Avoid treating a test result in isolation from symptoms and examination."
+      ]
+    },
+    {
+      "heading": "Confirm follow-up and repeat the plan in your own words",
+      "paragraphs": [
+        "Before leaving, clarify what to do now, how to use any new medicine and which previous medicines should continue or change. Ask when results are expected, who will contact you and what to do if no message arrives. Silence does not automatically mean a result is normal. Confirm review arrangements and symptoms that require earlier or emergency care. Briefly repeat the plan to check understanding and request written instructions if helpful. If the plan is not feasible, say so before leaving rather than silently abandoning it."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: an intermittent symptom",
+      "text": "A person has a rash that disappears before appointments. They bring dated photographs, note new skin products and explain that itching disrupts sleep. The clinician uses this history with the examination rather than assuming normal-looking skin means there was no problem."
+    },
+    {
+      "title": "Hypothetical example: an unclear test plan",
+      "text": "After a blood test is ordered, a patient asks when the result should be available and who will explain it. They save the contact details and agree when to call if no result arrives, avoiding an indefinite wait based on assumed reassurance."
+    }
+  ],
+  "questions": [
+    "What is the most likely explanation, and which uncertainty matters for the next decision?",
+    "How would this test or treatment help me, and what are the alternatives and risks?",
+    "Who will explain results, when should I return and what symptoms need earlier help?"
+  ]
+}

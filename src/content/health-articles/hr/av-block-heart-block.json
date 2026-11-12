@@ -1,0 +1,51 @@
+{
+  "title": "AV blok: što znači problem električne provodljivosti",
+  "intro": "Atrioventrikularni ili AV blok znači da električni signali iz gornjih srčanih šupljina stižu u donje presporo ili nepouzdano. Razlikuje se od začepljene koronarne arterije, iako bolest srca može uzrokovati oboje. Neki oblici trebaju samo praćenje, a drugi opasno usporavaju srce i traže hitno liječenje. EKG, uzrok i kliničko stanje važniji su od jednog kućnog očitanja pulsa.",
+  "sections": [
+    {
+      "heading": "Prepoznati zabrinjavajuće simptome bez samodijagnoze",
+      "paragraphs": [
+        "AV blok može uzrokovati neobičan umor, zadušenost, omaglicu, osjećaj nesvjestice ili nesvjesticu; blaži oblici nemaju simptome. Tražite hitnu pomoć za kolaps, nesvjesticu uz trajno loše stanje, bol u prsima ili teško disanje. Ako osoba ne reagira i ne diše normalno, nazovite hitnu službu i slijedite upute oživljavanja. Ne vozite sami kad ste pred nesvjesticom ili akutno loše. Usporen puls ima i druga objašnjenja, uključujući normalne promjene povezane s kondicijom; simptomi ili uređaj ne određuju tip bloka."
+      ]
+    },
+    {
+      "heading": "Pitati koji stupanj i obrazac pokazuje EKG",
+      "paragraphs": [
+        "Prvi stupanj odgađa provođenje, ali obično propušta svaki signal. Drugi povremeno ne provodi signale i uključuje obrasce različitog rizika. U potpunom, trećem stupnju, gornje i donje šupljine ne komuniciraju normalno. Liječnik razlikuje obrasce EKG-om, ponekad uz duže praćenje. Tražite točan nalaz, bez pretpostavke da je svaki drugi stupanj bezazlen. Epizode dolaze i prolaze: zapišite simptome i jesu li odgovarali nalazu praćenja."
+      ]
+    },
+    {
+      "heading": "Provjeriti reverzibilne uzroke i lijekove",
+      "paragraphs": [
+        "Tim provjerava lijekove, prethodne zahvate i stanja koja utječu na provođenje. Neki lijekovi za frekvenciju, poremećaji elektrolita, infekcija ili oštećenje srca pridonose. Testovi ovise o okolnostima, uključujući krv i strukturu srca. Donesite točan popis, uključujući pripravke bez recepta. Ne prekidajte lijek sami: brzo objasnite brige kako bi liječnik odlučio promjene i praćenje. Liječenje uzroka može izmijeniti dugoročni plan."
+      ]
+    },
+    {
+      "heading": "Razumjeti preporuku elektrostimulatora",
+      "paragraphs": [
+        "Praćenje odgovara nižem riziku, dok značajan blok može tražiti privremenu ili trajnu stimulaciju. Neki visokorizični obrasci trebaju trajni elektrostimulator i bez očitih simptoma ako nema reverzibilnog uzroka. Uređaj daje impulse koji podupiru primjereno kucanje; ne otvara sužene arterije. Pitajte zašto treba, koliko hitno, koristi, rizike zahvata i alternative. Trenutačno dobro stanje nije razlog za odgodu hitnog liječenja preporučenog zbog opasnog obrasca."
+      ]
+    },
+    {
+      "heading": "Dogovoriti praćenje i sigurnosne upute",
+      "paragraphs": [
+        "Ako se odabere praćenje, razjasnite datume i promjene koje traže raniju pomoć. Nakon ugradnje slijedite upute o rani, aktivnosti i provjeri uređaja te nosite njegove podatke. Prije zahvata ili snimanja obavijestite zdravstveni tim radi kompatibilnosti i mjera opreza. Pitajte pravila rada, putovanja i vožnje za vašu zemlju i stanje. Nova nesvjestica, zadušenost ili zabrinjavajuće promjene rane trebaju procjenu; uređaj ne čini sve buduće simptome automatski bezopasnima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: upozorenje niskog pulsa",
+      "text": "Osobi se vrti i sat pokazuje nizak puls. Traži pregled umjesto samostalnog prekida srčanog lijeka. Liječnik provjerava EKG, lijekove i podudaranje simptoma s problemom provođenja."
+    },
+    {
+      "title": "Izmišljeni primjer: malo simptoma, visok rizik",
+      "text": "Pacijent se osjeća prilično dobro, ali praćenje pokazuje opasan AV blok. Pita zašto se savjetuje stimulacija i slijedi hitni plan, ne smatrajući odsutnost teških simptoma dokazom da je čekanje sigurno."
+    }
+  ],
+  "questions": [
+    "Koji točno AV blok imam i objašnjava li simptome?",
+    "Može li pridonijeti lijek ili izlječivo stanje i kako će se sigurno procijeniti?",
+    "Trebam li stimulaciju, koliko je odluka hitna i koje kontrole ili ograničenja aktivnosti vrijede?"
+  ]
+}

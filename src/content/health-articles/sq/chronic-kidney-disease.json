@@ -1,0 +1,51 @@
+{
+  "title": "Sëmundja kronike e veshkave: analizat dhe mbrojtja e funksionit",
+  "intro": "Sëmundja kronike e veshkave është anomali e qëndrueshme strukture ose funksioni, përgjithësisht mbi tre muaj. Herët shpesh nuk ka simptoma dhe nuk çon automatikisht në dializë. Analizat e gjakut dhe urinës zbulojnë problemin, rrezikun dhe ndryshimet. Trajtimi ngadalëson përparimin, ul rrezikun kardiovaskular dhe menaxhon ndërlikimet duke mbështetur jetën e përditshme.",
+  "sections": [
+    {
+      "heading": "Interpretoni bashkë gjakun dhe urinën",
+      "paragraphs": [
+        "Gjaku vlerëson filtrimin, raportuar si eGFR. Është vlerësim funksioni, jo përqindje e thjeshtë e indit të mbetur. Raporti albuminë-kreatininë në urinë, ACR, kërkon rrjedhje proteinash që mund të tregojë dëmtim. Prirja, përsëritjet dhe gjetjet e tjera vlejnë më shumë se një numër i vetëm. Ndryshimi i menjëhershëm mund të jetë dëmtim akut dhe kërkon përgjigje tjetër. Pyesni çfarë është konfirmuar, çfarë përsëritet dhe kuptimin e kategorisë së rrezikut."
+      ]
+    },
+    {
+      "heading": "Shkaku përtej simptomave",
+      "paragraphs": [
+        "Diabeti dhe tensioni i lartë kontribuojnë shpesh. Shkaqe të tjera janë sëmundjet inflamatore ose të trashëguara, infeksionet e përsëritura, bllokimi i urinës dhe barna të caktuara. Vlerësimi përfshin historinë, tensionin, analiza, ekografi ose hetime specialistike. Më vonë mund të ketë lodhje, ënjtje, të përziera, kruajtje ose mungesë fryme, por kanë shkaqe të tjera. Preken edhe gjaku, kockat dhe ekuilibri i kripërave. Të ndihesh mirë nuk e heq monitorimin."
+      ]
+    },
+    {
+      "heading": "Barnat dhe zakonet mbrojtëse",
+      "paragraphs": [
+        "Caktoni objektiva personale për tensionin dhe diabetin, merrni barnat mbrojtëse dhe diskutoni parandalimin kardiovaskular. Disa doza ndryshojnë sipas filtrimit dhe kërkojnë kontroll efektesh e kaliumi. Sillni receta, produkte pa recetë dhe suplemente. Ibuprofeni dhe naprokseni mund të jenë të rrezikshëm, sidomos me dehidratim; pyesni para përdorimit. Mos ndalni vetë barnat. Kërkoni plan të shkruar për të vjella, diarre ose sëmundje dehidratuese, përfshirë kontaktin dhe menaxhimin e barnave."
+      ]
+    },
+    {
+      "heading": "Ushqimi dhe lëngjet sipas analizave",
+      "paragraphs": [
+        "Dietologu renal ndihmon me kripën, ushqyerjen dhe proteinat pa përjashtime të panevojshme. Kufizimi i kaliumit, fosfatit dhe lëngjeve ndryshon sipas analizave, stadit dhe trajtimit. Disa zëvendësues kripe kanë kalium: kontrolloni përpara. Mos detyroni shumë ujë për të 'shpëlarë' veshkat, mos kufizoni rëndë pa këshillë dhe mos u mbështetni te detoksi. Aktiviteti sipas mundësisë dhe lënia e duhanit ndihmojnë. Kërkoni ndryshime praktike për buxhetin dhe vaktet tuaja."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe mundësitë e ardhshme",
+      "paragraphs": [
+        "Kontrollet dhe referimi varen nga rreziku, shpejtësia, shkaku dhe ndërlikimet. Shumë mbeten të qëndrueshëm gjatë. Në sëmundje të avancuar diskutoni herët dializën, transplantin kur përshtatet dhe kujdesin konservativ të plotë. Vendimet lidhen me simptoma, prognozë dhe qëllime personale, jo vetëm analizën. Kërkoni këshillë urgjente për pakësim të madh urine, të vjella të vazhdueshme ose ënjtje të shpejtë. Mungesa e rëndë e frymës, dhimbja e kraharorit, rrëzimi ose konfuzioni i ri kërkojnë emergjencë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Analizë e papritur — shembull hipotetik",
+      "text": "Dikush ndihet mirë, por analiza e veshkave del jonormale. Kërkon rezultatet e mëparshme, albuminën urinare dhe plan për të konfirmuar vazhdimësinë. Nuk e merr filtrimin si përqindje të saktë veshkash të mbetura."
+    },
+    {
+      "title": "Zgjedhja e qetësuesit — shembull hipotetik",
+      "text": "Një person me sëmundje renale do antiinflamator pa recetë gjatë të vjellave. Pyet farmacistin ose ekipin për plan më të sigurt dhe lëngjet, pa e quajtur të padëmshëm vetëm sepse shitet lirshëm."
+    }
+  ],
+  "questions": [
+    "Çfarë tregojnë prirja e filtrimit dhe albumina për shkakun dhe rrezikun?",
+    "Cilat barna, ndryshime ushqimore dhe udhëzime gjatë sëmundjes më përshtaten?",
+    "Kur duhet kontroll ose specialist dhe cilat simptoma kërkojnë urgjencë?"
+  ]
+}

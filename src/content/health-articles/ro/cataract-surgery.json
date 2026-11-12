@@ -1,0 +1,51 @@
+{
+  "title": "Operația de cataractă: pregătire, lentile și recuperare",
+  "intro": "Operația îndepărtează cristalinul natural opac și îl înlocuiește cu o lentilă artificială în interiorul ochiului. Pentru multe persoane ameliorează vederea și activitățile zilnice, dar beneficiul depinde și de restul ochiului. Înainte de consimțământ, discutați prioritățile, lentila, anestezia, complicațiile și ajutorul necesar după. Informațiile privesc adulții.",
+  "sections": [
+    {
+      "heading": "Stabiliți scopul și alegeți lentila",
+      "paragraphs": [
+        "Măsurătorile ajută alegerea puterii lentilei. Explicați importanța cititului, calculatorului și vederii la distanță. Lentila monofocală focalizează la o distanță aleasă, deci sunt frecvent necesari ochelari pentru altele. Unele lentile oferă interval mai larg, dar pot produce compromisuri precum halouri și orbire de la lumini și nu se potrivesc tuturor. Întrebați cum influențează astigmatismul, bolile retinei și operațiile anterioare. Nicio lentilă nu garantează vedere perfectă fără ochelari."
+      ]
+    },
+    {
+      "heading": "Pregătirea după instrucțiuni individuale",
+      "paragraphs": [
+        "Aduceți lista completă a medicamentelor, alergiilor și procedurilor oculare anterioare. Menționați dificultatea de a sta nemișcat, de a respira culcat, auzul redus sau problemele cu picăturile. Urmați instrucțiunile clinicii despre lentilele de contact, alimentație, lichide și medicamente, care depind de anestezie și sănătate. Nu opriți singuri anticoagulantele ori alte tratamente. Organizați transportul, deoarece nu trebuie să conduceți acasă, și ajutor pentru picături ori mese dacă este necesar. Cereți instrucțiuni scrise într-o limbă înțeleasă."
+      ]
+    },
+    {
+      "heading": "Ce se întâmplă la operație",
+      "paragraphs": [
+        "La majoritatea adulților se folosește anestezie locală, cu pacientul treaz, dar se poate alege alt plan. Chirurgul face o deschidere mică, îndepărtează cristalinul opac, adesea fragmentat cu ultrasunete, și introduce lentila în capsula rămasă. Puteți observa lumini sau mișcare; spuneți echipei dacă aveți disconfort. Multe persoane pleacă în aceeași zi după verificări. Dacă ambii ochi necesită tratament, discutați planul și intervalul pentru fiecare, fără presupunerea unui program universal."
+      ]
+    },
+    {
+      "heading": "Recuperare și controale",
+      "paragraphs": [
+        "Folosiți picăturile exact cum s-au prescris, mergeți la controale și respectați indicațiile pentru protecție, spălat și activitate. Nu frecați ochiul. Vederea poate fi inițial neclară și se ameliorează treptat; ochelarii pot necesita schimbare după vindecare. Reluarea condusului, ridicării, sportului și muncii depinde de recuperare și cerințele locale. Întrebați înainte. Senzația ușoară de nisip poate apărea, dar durerea sau vederea în agravare nu trebuie acceptate automat ca normale."
+      ]
+    },
+    {
+      "heading": "Complicații și semne de alarmă",
+      "paragraphs": [
+        "Sunt posibile infecția, inflamația, modificările presiunii, dezlipirea de retină și problemele lentilei ori capsulei; uneori necesită tratament sau operație suplimentară. Contactați imediat serviciul oftalmologic pentru vedere în agravare, durere persistentă importantă, roșeață accentuată, fulgere noi, multe puncte plutitoare noi ori o perdea întunecată. Dacă echipa nu poate fi contactată, folosiți serviciul oftalmologic urgent sau de urgență. Încețoșarea tardivă poate proveni din capsula din spatele implantului, nu din reapariția cristalinului opac. Uneori se tratează cu laser după examinare; nu stabiliți singuri cauza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Alegere după activități — exemplu ipotetic",
+      "text": "O persoană citește mult și conduce noaptea. Întreabă despre ochelarii de citit, vederea la distanță și halouri pentru fiecare lentilă, fără să presupună că cea mai scumpă este cea mai bună. Chirurgul evaluează și sănătatea ochiului."
+    },
+    {
+      "title": "Schimbare după externare — exemplu ipotetic",
+      "text": "După ameliorarea inițială, o persoană observă durere tot mai mare și vedere mai slabă. Sună imediat la contactul primit, fără să aștepte controlul programat. Echipa evaluează cauza și urgența tratamentului."
+    }
+  ],
+  "questions": [
+    "Ce ameliorare este realistă și ce compromisuri are lentila propusă?",
+    "Care sunt instrucțiunile mele exacte pentru medicamente, post alimentar, picături și transport?",
+    "Ce simptome cer ajutor imediat, pe cine sun și când îmi reiau activitățile?"
+  ]
+}

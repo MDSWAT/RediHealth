@@ -1,0 +1,51 @@
+{
+  "title": "Climate and health: preparing for heat, smoke and extreme weather",
+  "intro": "Climate change affects health through hotter conditions, extreme weather, air quality, food and water security and disruption of essential services. The risks differ by place and by a person's health, housing, work and access to help. Practical preparation can reduce harm, but protection also requires community services and public action. Use local weather and health alerts rather than assuming a general article can predict the conditions at your home.",
+  "sections": [
+    {
+      "heading": "Prepare for heat before someone becomes ill",
+      "paragraphs": [
+        "Plan a cooler place to spend the hottest periods, shade rooms where possible and adapt strenuous activity. Check on people who may need help, including older adults, young children, pregnant people and those with chronic illness. Drink appropriately for your age and health; people with prescribed fluid limits need an individual plan. Never leave children or dependent people in a parked vehicle. Confusion, collapse or suspected heatstroke is an emergency: call for help and begin cooling rather than waiting for a routine appointment."
+      ]
+    },
+    {
+      "heading": "Air pollution and smoke need their own plan",
+      "paragraphs": [
+        "Heat and wildfire smoke can worsen respiratory and cardiovascular problems. Follow local air-quality advice, reduce outdoor exertion during dangerous pollution and identify a cooler, cleaner-air space. Keeping smoke out must be balanced with avoiding dangerous indoor heat; relocate to a suitable public space if your home cannot be kept safe. Follow existing asthma or lung-disease action plans and keep prescribed medicines accessible. Severe breathlessness or chest pain needs urgent or emergency assessment, not simply an assumption that the weather is responsible."
+      ]
+    },
+    {
+      "heading": "Floods and changing infection risks",
+      "paragraphs": [
+        "Floodwater can hide electrical hazards, injuries and contamination. Do not walk or drive through it, and follow evacuation and drinking-water advice from authorities. Keep children away from contaminated areas and seek advice for exposed wounds. Food spoiled by flooding or loss of refrigeration may be unsafe even when it looks normal. Never operate a fuel-burning generator inside a home or garage because of carbon-monoxide risk. Changes in temperature and rainfall can also alter local tick, mosquito and infection patterns; follow location-specific prevention advice rather than assuming every disease is present everywhere."
+      ]
+    },
+    {
+      "heading": "Protect treatment and access to care",
+      "paragraphs": [
+        "Ask a clinician or pharmacist about medicine storage during heat and what to do if vomiting, dehydration or a power cut affects treatment. Some medicines change heat tolerance, but do not stop or adjust them on your own. Plan for refrigeration-dependent medicines, electrically powered medical equipment, transport and an alternative way to contact your care team. Keep an up-to-date medicine list and essential contact details available. A plan should be realistic for your housing and finances, with help from services when private cooling or transport is unavailable."
+      ]
+    },
+    {
+      "heading": "Mental health and shared prevention matter too",
+      "paragraphs": [
+        "Extreme weather, displacement and worry about the future can cause stress, sleep problems and grief. Seek support if distress persists or interferes with daily life. Agree practical check-ins with trusted people and know which local services offer shelter, safe water or accessible information. Safer housing, shade, clean energy and cleaner transport can protect health beyond a single emergency. Personal action is useful, but people should not be blamed for hazards they cannot control. Review your household plan after an event and address gaps while conditions are calm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A heat alert and a fluid limit — hypothetical example",
+      "text": "An older person with heart disease receives a heat warning. They ask their team how to manage the existing fluid plan, arrange time in a cooler place and agree a check-in. They do not independently stop medicines or drink unlimited water."
+    },
+    {
+      "title": "Smoke and an unsafe indoor temperature — hypothetical example",
+      "text": "A family closes windows because of smoke but their home becomes dangerously hot. They follow local alerts and move to an available cooler clean-air location instead of treating closed windows as the only protection that matters."
+    }
+  ],
+  "questions": [
+    "Which local heat, air-quality and flood alerts should I use?",
+    "How should my health conditions, medicines and medical equipment change the household plan?",
+    "Where can we get cooling, safe water, transport or emotional support if home measures are insufficient?"
+  ]
+}

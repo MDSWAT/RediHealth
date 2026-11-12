@@ -1,0 +1,51 @@
+{
+  "title": "Klamidia: testimi, trajtimi dhe parandalimi i riinfektimit",
+  "intro": "Klamidia është infeksion bakterial seksualisht i transmetueshëm, shpesh pa simptoma. Mund të mbahet e transmetohet pa e ditur; të ndihesh mirë nuk e përjashton. Testet dhe antibiotikët e duhur trajtojnë infeksionin dhe ulin ndërlikimet. Kujdesi përfshin partnerët e fundit, rifillimin e seksit dhe testet e mëvonshme. Pozitiviteti është çështje shëndeti pa fajësim, jo mënyrë e sigurt për të datuar infeksionin.",
+  "sections": [
+    {
+      "heading": "Simptomat dhe ndërlikimet",
+      "paragraphs": [
+        "Mund të ketë djegie gjatë urinimit, sekrecion jo të zakonshëm vaginal ose nga penisi, gjak pas seksit ose mes periodave, dhimbje fundbarku apo dhimbje e ënjtje testikujsh. Infeksioni rektal jep dhimbje, sekrecione ose gjak, por mund të jetë i heshtur. Pa trajtim lidhet me inflamacion pelvik, probleme pjellorie, shtatzëni jashtë mitrës ose inflamacion epididimi. Ka edhe shkaqe të tjera, ndaj mund të duhet ekzaminim. Infeksioni gjatë shtatzënisë mund të prekë foshnjën në lindje."
+      ]
+    },
+    {
+      "heading": "Testi dhe vendet e mostrave",
+      "paragraphs": [
+        "Shërbimi seksual mund të këshillojë test pa simptoma, sidomos pas diagnozës së partnerit ose ekspozimit. Shpesh përdoren urina ose tampon vaginal; sipas kontaktit e shenjave duhen mostra rektale ose fyti. Disa merren vetë sipas udhëzimit. Tregoni kur ndodhi kontakti: testimi shumë herët mund ta humbë infeksionin dhe të kërkojë përsëritje. Pyesni për infeksione të tjera dhe komunikimin konfidencial të rezultatit."
+      ]
+    },
+    {
+      "heading": "Përfundoni antibiotikun e përshkruar",
+      "paragraphs": [
+        "Bari dhe kohëzgjatja varen nga vendi, shtatzënia, alergjitë, barnat dhe udhëzimi vendor. Ndiqni recetën edhe kur përmirësoheni; kontaktoni për doza të harruara, të vjella që pengojnë trajtimin ose efekte anësore. Mos ndani tableta ose përdorni antibiotikë të mbetur. Tregoni shtatzëninë e mundshme ose ushqyerjen me gji. Trajtimi pastron infeksionin, por nuk zhbën patjetër dëmin e mëparshëm. Simptomat e vazhdueshme kërkojnë rivlerësim për ndërlikime ose tjetër infeksion."
+      ]
+    },
+    {
+      "heading": "Partnerët dhe ndërprerja e përkohshme e seksit",
+      "paragraphs": [
+        "Partnerët aktualë dhe të fundit përkatës duan këshillë, test dhe shpesh trajtim edhe pa shenja. Klinika ndihmon njoftimin konfidencial; kërkoni mënyrë të sigurt nëse kontakti ju rrezikon. Shmangni seksin vaginal, anal e oral derisa të kalojë periudha e këshilluar, të plotësohet trajtimi juaj e i partnerëve dhe të zhduken simptomat përkatëse. Udhëzimi i saktë varet nga skema. Prezervativët dhe barrierat ulin rrezikun e ardhshëm, por nuk zëvendësojnë këtë pauzë."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe simptomat urgjente",
+      "paragraphs": [
+        "Riinfektimi është i mundshëm sepse trajtimi nuk jep imunitet afatgjatë. Ritestimi më vonë, shpesh rreth tre muajsh, kërkon riinfektim; konfirmimi i shërimit është tjetër qëllim, sidomos në shtatzëni ose raste të zgjedhura. Ndiqni kohën sepse testi shumë herët ngatërron. Dhimbja pelvike me temperaturë, gjendja e keqe ose dhimbja testikulare kërkojnë vlerësim urgjent. Dhimbja testikulare e papritur dhe e fortë është emergjencë. Dhimbja e fortë e barkut, të fikëtit ose gjaku me shtatzëni të mundshme mund të tregojnë shtatzëni ektopike dhe kërkojnë emergjencë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pa simptoma pas diagnozës së partnerit — shembull hipotetik",
+      "text": "Dikush ndihet mirë, por partneri ka klamidia. Kërkon këshillë e test, përshkruan llojet dhe kohën e kontaktit dhe ndjek trajtimin e këshilluar. Mungesa e shenjave nuk e bën testin të panevojshëm."
+    },
+    {
+      "title": "Plani pas trajtimit — shembull hipotetik",
+      "text": "Një person mbaron tabletat, por partneri nuk është trajtuar. Pyet kur rifillon seksin, organizon njoftim të mbështetur dhe testin e mëvonshëm, pa menduar se tableta e fundit mbyll çdo rrezik."
+    }
+  ],
+  "questions": [
+    "Cilat vende mostrash dhe kohë testimi më përshtaten, dhe çfarë infeksionesh të tjera duhen?",
+    "Cili është trajtimi im i saktë dhe udhëzimi për rifillimin e seksit?",
+    "Duhet test shërimi, ritestim i mëvonshëm ose vlerësim urgjent i simptomave?"
+  ]
+}

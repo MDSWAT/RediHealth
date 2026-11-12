@@ -1,0 +1,51 @@
+{
+  "title": "Boala diverticulară și diverticulita: simptome, tratament și alegeri zilnice",
+  "intro": "Diverticulii sunt mici pungi ale peretelui intestinului gros. Mulți îi au fără simptome: diverticuloză. Boala diverticulară descrie simptomele sau complicațiile asociate, iar diverticulita înseamnă inflamarea pungilor. Termenii nu cer același tratament, iar diagnosticul vechi nu trebuie să explice automat orice simptom abdominal nou.",
+  "sections": [
+    {
+      "heading": "Tipar familiar sau boală acută nouă",
+      "paragraphs": [
+        "Disconfortul intermitent abdominal inferior, balonarea, constipația ori diareea pot apărea în boala diverticulară. Durerea este frecvent în stânga, dar locul singur nu dovedește cauza. Diverticulita acută produce mai des durere persistentă și sensibilitate, uneori febră, greață ori scaune schimbate. Alte boli intestinale, urinare sau pelvine seamănă. Explicați debutul, agravarea, febra, sângerarea, vărsăturile, eliminarea scaunului și gazelor, medicamentele și episoadele. Imunosupresia și bolile importante cresc riscul și schimbă uneori prezentarea. Nu diagnosticați recidiva doar fiindcă o imagine veche arăta diverticuli."
+      ]
+    },
+    {
+      "heading": "Când evaluarea este urgentă",
+      "paragraphs": [
+        "Durerea agravată ori persistentă, febra sau frisoanele, sângele în scaun și imposibilitatea păstrării lichidelor cer sfat prompt. Durerea severă cu abdomen umflat, vărsături ori imposibilitatea eliminării scaunului și gazelor poate însemna obstrucție sau complicație și cere urgență. Sângerarea rectală mare, leșinul, confuzia, lipsa importantă de aer și infecția severă cer tot urgență. Sângerarea diverticulară poate fi fără inflamație dureroasă, dar nu devine sigură dacă este abundentă. Anunțați anticoagulantele și imunitatea redusă. Nu așteptați toate semnele împreună și nu tratați durerea severă doar cu laxative."
+      ]
+    },
+    {
+      "heading": "Diagnosticul și tratamentul depind de gravitate",
+      "paragraphs": [
+        "Medicul examinează și poate cere analize de sânge, scaun sau CT pentru confirmare, complicații și alte cauze. Colonoscopia se discută uneori după recuperare, în funcție de rezultate, examene anterioare și alarme persistente; nu este investigație de organizat singur în criza dureroasă. Diverticulita necomplicată la persoana cu stare generală bună se poate trata fără antibiotice după evaluare, cu urmărire clară. Starea alterată, imunosupresia ori bolile importante cresc necesitatea antibioticelor și spitalului. Abcesul, perforația, obstrucția ori fistula pot necesita drenaj, chirurgie sau alt tratament specializat."
+      ]
+    },
+    {
+      "heading": "Alimentație, durere și recuperare",
+      "paragraphs": [
+        "În episodul acut întrebați ce puteți mânca și bea și când creșteți aportul. Se poate recomanda scurt dietă modificată, dar postul prelungit și dieta lichidă lungă nu sunt soluții generale. Cereți reevaluare la durere crescută, lichide nepăstrate sau lipsa ameliorării conform planului. Discutați analgezicul potrivit: paracetamolul poate fi opțiune, iar antiinflamatoarele precum ibuprofenul și opioidele pot crea probleme și nu se încep neglijent. Nu opriți medicamente esențiale prescrise fără sfat. În afara episodului acut, creșteți treptat fibrele la aport mic, cu lichide potrivite și respectarea restricției individuale. Nu trebuie evitate în general nucile, semințele și cojile de fructe doar pentru diverticuli."
+      ]
+    },
+    {
+      "heading": "Simptome persistente și decizia chirurgicală",
+      "paragraphs": [
+        "Dieta echilibrată, mișcarea posibilă și renunțarea la fumat ajută sănătatea fără garanția absenței recidivei. Medicul poate discuta constipația sau altă explicație a durerii, nu antibiotice repetate. Slăbirea nouă, sângerarea continuă ori schimbarea persistentă a tranzitului cer investigații, nu atribuirea automată diverticulilor. Operația electivă se decide individual după complicații, povara episoadelor, sănătate, preferințe și beneficiu, nu doar numărarea crizelor. Întrebați despre persistența simptomelor, riscuri, recuperare și posibila stomă. Păstrați planul pentru crize și contactul în afara programului."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: diverticuli întâmplători",
+      "text": "Examinarea Anei a descoperit diverticuli fără simptome. Ea întreabă despre hrană și fibre, fără antibiotice ori eliminarea tuturor semințelor. La durere persistentă nouă sau sângerare cere evaluare, fără presupunerea lipsei pericolului."
+    },
+    {
+      "title": "Exemplu ipotetic: schimbare acută",
+      "text": "Milan avea disconfort intermitent, dar acum durere constantă agravată, febră și vărsături repetate. Cere evaluare urgentă, nu laxativ și așteptarea controlului obișnuit. Durerea severă cu abdomen umflat sau gaze neeliminate cere urgență."
+    }
+  ],
+  "questions": [
+    "Este inflamație necomplicată, complicație sau altă boală?",
+    "Care este planul de tratament, hrană și lichide și când trebuie ameliorare ori control?",
+    "După recuperare trebuie investigație intestinală sau discuție individuală despre operație?"
+  ]
+}

@@ -65,6 +65,33 @@ interface TopicPageUiStrings {
 }
 
 const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
+  ru: {
+"tocHeading": "В этом руководстве",
+"tocAria": "Содержание руководства",
+"tocOverview": "Обзор",
+"tocExplainer": "Наглядное объяснение",
+"tocMyth": "Правда или миф",
+"clinicalContextBadge": "Подробная медицинская информация",
+"clinicalPriorityLabel": "Рекомендуемая первая привычка:",
+"clinicalAlertLabel": "Важный признак для наблюдения:",
+
+    whyItMattersAudioPrefix: "Почему это важно",
+    stepsAudioPrefix: "Что вы можете сделать",
+    warningSignsAudioPrefix: "Когда получить помощь",
+    dualGlossaryTitle: "Медицинский словарь",
+    dualGlossaryDescription:
+      "22 термина из рецептов и направлений простыми словами.",
+    dualGlossaryCta: "Открыть словарь",
+    romanesGlossaryTitle: "Медицинские слова на цыганском языке",
+    romanesGlossaryDescription:
+      "Слова в этом руководстве также на цыганском языке.",
+    romanesGlossaryCta: "Смотрите слова",
+    listenGuideLabel: "Слушайте руководство",
+    onlineDoctorLabel: "Онлайн врач",
+    ariaSentenceSection: "Текст руководства",
+    ariaMobileActions: "Кнопки руководства",
+  },
+
   ro: {
     whyItMattersAudioPrefix: "De ce contează",
     stepsAudioPrefix: "Ce poți face",

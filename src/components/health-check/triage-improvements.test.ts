@@ -22,7 +22,7 @@ import {
   parseTriageReproductionSearch,
 } from "./triage-permalink";
 
-const LANGUAGES: Lang[] = ["ro", "en", "sq", "it", "hr", "rom"];
+const LANGUAGES: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
 
 describe("Health Check triage improvements", () => {
   it("predicts neck and throat symptoms for neck sub-regions instead of cranial headache or migraine", () => {

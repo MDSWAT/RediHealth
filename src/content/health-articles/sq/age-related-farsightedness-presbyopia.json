@@ -1,0 +1,51 @@
+{
+  "title": "Presbiopia: vështirësia për të fokusuar afër me kalimin e moshës",
+  "intro": "Presbiopia është ulja graduale e aftësisë së syrit për të fokusuar objektet e afërta, ndërsa thjerrëza natyrore bëhet më pak elastike me moshën. Leximi i shkronjave të vogla ose shikimi i telefonit mund të vështirësohet edhe kur shikimi në largësi duket i qartë. Është e zakonshme, por simptomat e reja pamore përsëri meritojnë ekzaminim, jo supozimin se çdo ndryshim është plakje normale.",
+  "sections": [
+    {
+      "heading": "Vëre cilat veprimtari janë vështirësuar",
+      "paragraphs": [
+        "Mund ta mbash librin më larg, të kesh nevojë për dritë më të fortë ose të ndjesh lodhje të syve gjatë punës nga afër. Shpjego cilat detyra preken dhe nëse vështirësia është graduale, e papritur, në të dy sytë apo kryesisht në njërin. Presbiopia ndryshon nga hipermetropia e zakonshme, megjithëse të dyja mund të ndikojnë shikimin nga afër dhe të ndodhin bashkë. Ajo gjithashtu nuk shpjegon çdo dhimbje koke ose çdo episod shikimi të turbullt."
+      ]
+    },
+    {
+      "heading": "Cakto ekzaminim, jo vetëm syze më të forta",
+      "paragraphs": [
+        "Specialisti i syve mund të kontrollojë fokusimin, ndryshimin ndërmjet syve dhe shëndetin e tyre. Merr syzet aktuale dhe shpjego distancat e punës: telefoni, ekrani i kompjuterit dhe punimet e imta mund të kërkojnë zgjidhje të ndryshme. Përmend diabetin, barnat, ndërhyrjet e mëparshme në sy dhe simptoma të tjera. Blerja e syzeve për lexim mund të ndihmojë një detyrë, por nuk zëvendëson ekzaminimin dhe nuk përjashton kataraktin, sëmundjen e retinës ose probleme të tjera."
+      ]
+    },
+    {
+      "heading": "Zgjidh korrigjimin sipas përdorimit të syve",
+      "paragraphs": [
+        "Mundësitë përfshijnë syze për lexim, lente që mundësojnë fokusim në disa distanca dhe lente kontakti të përshtatshme. Zgjedhja varet nga receta ekzistuese, ndryshimi ndërmjet syve, rehatia, kostoja dhe detyrat e përditshme. Syzet e gatshme për lexim kanë të njëjtën fuqi në të dy lentet dhe mund të mos u përshtaten të gjithëve. Pyet si funksionon lentja e propozuar në çdo distancë dhe nëse duhen syze të veçanta për disa veprimtari. Mos supozo se e njëjta palë përshtatet për drejtimin e makinës dhe leximin."
+      ]
+    },
+    {
+      "heading": "Lehtëso punën nga afër pa pritur shërim",
+      "paragraphs": [
+        "Teksti më i madh, ndriçimi i mirë dhe një distancë e rehatshme pune mund të pakësojnë vështirësitë praktike. Mbaji lentet të pastra dhe kërko ndihmë nëse skeleti nuk përshtatet mirë. Presbiopia mund të përparojë, ndaj receta mund të ketë nevojë për rishikim. Mbajtja e syzeve të zgjedhura siç duhet nuk do të thotë se sytë janë bërë të varur prej tyre. Ndryshimet në cilësimet e ekranit mund të ndihmojnë qasjen te informacioni, por nuk diagnostikojnë një problem të syrit dhe nuk zëvendësojnë korrigjimin optik të nevojshëm."
+      ]
+    },
+    {
+      "heading": "Trajto simptomat e papritura si një problem tjetër",
+      "paragraphs": [
+        "Humbja e papritur ose ulja e theksuar e shikimit, një hije ose perde e re mbi fushën pamore, vezullimet e reja ose shtimi i papritur i pikave lëvizëse kërkojnë vlerësim urgjent të syve. Mos ia atribuo presbiopisë dhe mos prit të provosh syze më të forta. Dhimbja e fortë e syrit ose dëmtimi i tij gjithashtu kërkojnë ndihmë të shpejtë. Nëse vështirësia nga afër rikthehet gradualisht pa shenja alarmuese, cakto kontroll rutinë të recetës dhe shëndetit të syve, në vend që të hamendësosh vazhdimisht fuqinë e lenteve."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: shpjegimi i një detyre pune",
+      "text": "Dikush e lexon telefonin duke e mbajtur më larg, por e ka të vështirë ekranin e kompjuterit. Në vizitën e syve përshkruan të dy distancat dhe syzet ekzistuese. Pyet cili korrigjim i përshtatet detyrave, në vend që të blejë syze më të forta thjesht sepse numri i tyre është më i lartë."
+    },
+    {
+      "title": "Shembull hipotetik: dallimi i një ndryshimi urgjent",
+      "text": "Një person që zakonisht përdor syze për lexim vëren papritur vezullime dhe një hije të errët në njërin sy. Kërkon vlerësim urgjent të syrit. Nuk supozon se syzet kanë pushuar së funksionuari dhe nuk e shtyn kujdesin deri në takimin tjetër rutinë."
+    }
+  ],
+  "questions": [
+    "A tregon ekzaminimi vetëm presbiopi apo edhe një problem tjetër të syve?",
+    "Cila mundësi lentesh përshtatet me leximin, punën në ekran dhe nevojat e mia për shikim në largësi?",
+    "Kur duhet t'i kontrolloj përsëri sytë dhe cilat simptoma të reja kërkojnë vëmendje urgjente?"
+  ]
+}

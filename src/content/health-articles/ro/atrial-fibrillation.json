@@ -1,0 +1,51 @@
+{
+  "title": "Fibrilația atrială: simptome, prevenirea AVC și alegeri terapeutice",
+  "intro": "Fibrilația atrială, sau FA, este un ritm electric anormal în camerele superioare ale inimii, care produce adesea puls neregulat. Poate apărea în episoade sau poate persista, iar unele persoane nu observă simptome. Îngrijirea urmărește confirmarea ritmului, controlul simptomelor, tratarea factorilor favorizanți și reducerea riscului de AVC. Revenirea senzației de puls regulat nu rezolvă singură problema protecției împotriva AVC.",
+  "sections": [
+    {
+      "heading": "Știți când palpitațiile necesită ajutor urgent",
+      "paragraphs": [
+        "FA poate produce bătăi rapide sau fâlfâire în piept, oboseală, lipsă de aer și toleranță redusă la efort. Un puls neregulat nou sau repetat merită evaluare medicală. Cereți ajutor de urgență pentru palpitații cu durere toracică, lipsă severă de aer, leșin sau stare generală foarte proastă. Asimetria facială bruscă, slăbiciunea brațului ori dificultatea de vorbire pot însemna AVC, chiar dacă trec repede. Nu conduceți spre urgență. Un episod aparent ușor nu estimează riscul de AVC, iar absența palpitațiilor nu exclude FA."
+      ]
+    },
+    {
+      "heading": "Confirmați ritmul și căutați problemele favorizante",
+      "paragraphs": [
+        "ECG înregistrează activitatea electrică a inimii. Dacă episoadele sunt intermitente, poate fi necesară monitorizare mai lungă, deoarece înregistrarea scurtă le poate rata. Alerta unui ceas sau pulsul neregulat justifică sfat medical, nu reprezintă diagnostic final. Descrieți momentul episoadelor, simptomele, medicamentele și alcoolul. Analizele și ecocardiografia pot evalua tiroida, structura inimii și alte aspecte. Hipertensiunea, apneea de somn și alte boli pot influența planul general."
+      ]
+    },
+    {
+      "heading": "Discutați separat prevenirea AVC",
+      "paragraphs": [
+        "FA poate permite formarea cheagurilor, iar un cheag ajuns în creier poate provoca AVC. Clinicianul evaluează riscul prin vârstă, AVC anterior și alte boli, împreună cu riscul hemoragic și adecvarea medicamentelor. Anticoagulantele pot reduce riscul, dar necesită utilizare sigură și controale. Aspirina nu înlocuiește echivalent un anticoagulant prescris pentru FA. Nu începeți, opriți sau modificați prevenirea cheagurilor după senzația pulsului ori un calcul de risc făcut acasă."
+      ]
+    },
+    {
+      "heading": "Comparați controlul frecvenței cu cel al ritmului",
+      "paragraphs": [
+        "Controlul frecvenței încetinește bătăile, deși FA poate continua. Controlul ritmului urmărește restabilirea sau menținerea unui ritm mai normal prin medicamente selectate, cardioversie sau ablație prin cateter. Alegerea depinde de simptome, durată, sănătatea inimii și preferințe; uneori sunt necesare mai multe abordări în timp. Cardioversia cere evaluare atent planificată a riscului de cheaguri și anticoagulării. Întrebați despre beneficii așteptate, recidivă, monitorizare și complicații. O procedură care ameliorează simptomele nu elimină automat necesitatea prevenirii AVC."
+      ]
+    },
+    {
+      "heading": "Stabiliți un plan practic pe termen lung",
+      "paragraphs": [
+        "Reevaluați medicamentele, reacțiile adverse și simptomele la controale, inclusiv oboseala nouă, amețeala ori limitarea efortului. Întrebați ce faceți la alt episod și când cereți ajutor urgent. Colaborați pentru tensiune, somn, fumat, alcool și mișcare potrivită. Revenirea treptată la nivelul de efort convenit poate susține sănătatea; continuarea efortului cu durere toracică ori lipsă severă de aer este nesigură. Un jurnal poate ajuta, dar evitați verificările constante care cresc anxietatea. Tratamentul și riscul pot necesita actualizare odată cu sănătatea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: alertă fără simptome",
+      "text": "Ceasul semnalează repetat un ritm neregulat la o persoană care se simte bine. Aceasta programează o evaluare și aduce înregistrările. Clinicianul confirmă ritmul prin testare adecvată și discută riscul de AVC, fără a ignora constatarea pentru lipsa palpitațiilor."
+    },
+    {
+      "title": "Exemplu ipotetic: ameliorare după cardioversie",
+      "text": "După cardioversie, pacientul simte puls regulat și se gândește să oprească anticoagulantul. Respectă prescripția și cere echipei de cardiologie reevaluarea planului, fără a presupune că ameliorarea elimină riscul de cheaguri."
+    }
+  ],
+  "questions": [
+    "FA este confirmată și am nevoie de monitorizare mai lungă sau evaluarea factorilor favorizanți?",
+    "Care este riscul meu de AVC și cum mi se aplică beneficiile și riscurile hemoragice ale anticoagulării?",
+    "De ce recomandați această abordare a frecvenței sau ritmului și ce fac la un nou episod?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ausili decisionali: prepararsi a una scelta sanitaria",
+  "intro": "Alcune decisioni sanitarie hanno più opzioni ragionevoli. Un ausilio decisionale per pazienti spiega una scelta concreta, confronta benefici e danni e aiuta a capire cosa conta per voi. Sostiene il colloquio con il medico senza decidere al vostro posto. Una guida generale organizza i pensieri ma non contiene necessariamente le prove per una specifica scelta terapeutica.",
+  "sections": [
+    {
+      "heading": "Chiarire la decisione reale",
+      "paragraphs": [
+        "Chiedere quale problema si affronta e quali scelte siano clinicamente adatte alla propria situazione. Decidere uno screening è diverso dall'indagare un sintomo, e una terapia programmata da un'emergenza. Chiedere quanto presto occorre decidere e se c'è tempo per leggere, tornare con domande o chiedere un secondo parere. Quando appropriato, discutere osservazione, continuare il piano attuale o nessuna terapia oltre all'intervento. Non significa che ogni alternativa sia altrettanto sicura o che l'urgenza aspetti un questionario. Chiarire cosa può accadere nell'attesa."
+      ]
+    },
+    {
+      "heading": "Verificare affidabilità e pertinenza",
+      "paragraphs": [
+        "Cercare autore, aggiornamento, prove utilizzate e finanziamenti o conflitti d'interesse. Un buon ausilio presenta alternative significative in modo equilibrato, con incertezze e conseguenze pratiche, senza pubblicizzare un prodotto. Verificare diagnosi, età e fase di cura. Costi e servizi di un altro paese possono non applicarsi. Una testimonianza descrive un'esperienza, non la frequenza dell'esito. Chiedere al medico termini comprensibili e come la ricerca generale si applica alla propria salute."
+      ]
+    },
+    {
+      "heading": "Confrontare gli esiti nella stessa cornice",
+      "paragraphs": [
+        "Chiedere quante persone beneficiano o subiscono danni su gruppi della stessa dimensione e nello stesso periodo. Dire che il rischio si dimezza è incompleto senza rischio iniziale e cambiamento effettivo. Figure o tabelle semplici aiutano. Chiarire se il numero indica miglioramento dei sintomi, prevenzione di un evento grave o solo risultato di un test: sono esiti diversi. Una stima di gruppo non predice esattamente l'individuo. Discutere incertezza, danni gravi rari, recupero e possibili ulteriori cure, non solo la percentuale di successo in evidenza."
+      ]
+    },
+    {
+      "heading": "Portare priorità e bisogni di accesso nel colloquio",
+      "paragraphs": [
+        "Dire cosa significa un buon risultato nella vita: meno dolore, vista più chiara, indipendenza, fertilità conservata o evitare un calendario pesante. Viaggi, costo, assistenza ad altri e gestione dei farmaci incidono sulla fattibilità. Si può chiedere interprete, linguaggio semplice, formati accessibili o persona fidata. Il sostegno deve aiutare a esprimere i propri desideri, senza sostituirli. Se si vuole una raccomandazione medica, dirlo e chiedere perché risponde alle priorità. Non occorre comprendere ogni statistica per poter fare domande."
+      ]
+    },
+    {
+      "heading": "Uscire con un piano pratico e una revisione",
+      "paragraphs": [
+        "Riassumere con parole proprie quanto capito e chiedere correzioni. Concordare scelta, prossimo passo, chi lo organizza, tempi e cosa fare se cambia la situazione. Annotare domande aperte e chiedere copia del piano. L'ausilio non garantisce un buon esito; cambiare idea può richiedere un nuovo confronto su ciò che è ancora possibile. Se resta incertezza, spiegare quale informazione o aiuto manca. Non interrompere farmaci prescritti né ritardare valutazioni urgenti mentre si ricerca da soli."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un obiettivo concreto",
+      "text": "Mira discute la cura della cataratta. Non dice solo di volere una vista migliore: spiega che l'abbagliamento impedisce di lavorare in sicurezza la sera. Chiede come le alternative incidano sull'obiettivo, cosa richieda il recupero e quali altre malattie oculari limitino il miglioramento."
+    },
+    {
+      "title": "Esempio ipotetico: chiedere numeri assoluti",
+      "text": "Un opuscolo dice che la terapia dimezza un rischio futuro. Arben chiede quante persone avrebbero il problema con e senza cura nello stesso periodo e quali effetti indesiderati ci siano. Il medico usa un confronto semplice e valuta se le stime gli corrispondano."
+    }
+  ],
+  "questions": [
+    "Quali opzioni ragionevoli ho, comprese attesa o continuazione del piano?",
+    "Quali benefici, danni e incertezze sono probabili per una persona come me?",
+    "Quanto tempo ho e quale sostegno mi aiuta a decidere?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Tumore al seno: diagnosi, scelte e sostegno nelle cure",
+  "intro": "Il tumore al seno nasce da cellule anomale che crescono e possono invadere tessuti o diffondersi. Può interessare età e generi diversi. Esistono più tipi e non tutti richiedono le stesse cure. Una nuova alterazione va valutata e una diagnosi spiegata con obiettivi e sostegno. La panoramica prepara il colloquio, non sceglie un regime personale.",
+  "sections": [
+    {
+      "heading": "Valutare nuovi cambiamenti senza diagnosi dall'aspetto",
+      "paragraphs": [
+        "Nuovo nodulo mammario o ascellare, forma diversa, pelle infossata, capezzolo retratto o secrezione insolita richiedono indagini. Molti non sono tumori, ma assenza di dolore o screening normale recente non annullano un sintomo persistente. La clinica può combinare visita, mammografia o ecografia e campione di tessuto. Chiedete esami, tempi e referente. Screening senza sintomi e indagine di un sintomo sono distinti: non aspettate il prossimo invito."
+      ]
+    },
+    {
+      "heading": "Comprendere patologia ed estensione",
+      "paragraphs": [
+        "La biopsia distingue cellule confinate da invasive e dà tipo e grado. Il grado descrive le cellule, lo stadio l'estensione: non sono intercambiabili. Recettori di estrogeni e progesterone e HER2 guidano farmaci adatti. Le immagini aggiuntive dipendono dai riscontri, non ogni scansione per tutti. Chiedete linfonodi, diffusione distante e risultati pendenti. Consulenza o test genetici possono essere pertinenti secondo persona e famiglia."
+      ]
+    },
+    {
+      "heading": "Confrontare sequenza locale e sistemica",
+      "paragraphs": [
+        "Localmente si può conservare il seno o fare mastectomia, con radioterapia secondo il caso. Discutete ricostruzione o scelta di non farla e scopo e conseguenze della chirurgia linfonodale. Cure sistemiche includono chemioterapia, blocco ormonale, bersagli molecolari o immunoterapia quando indicati. Non tutti necessitano di tutto e i farmaci precedono o seguono chirurgia. Chiedete ragione della sequenza, riduzione di rischio o sintomi, danni e alternative. Malattia metastatica ha solitamente obiettivi di controllo, sollievo e vita più lunga, non promessa di guarigione."
+      ]
+    },
+    {
+      "heading": "Pianificare presto effetti, fertilità e sostegno",
+      "paragraphs": [
+        "Chiedete energia, lavoro, infezioni, sensibilità, sessualità e immagine corporea. Fertilità e contraccezione vanno discusse prima quando pertinenti; gravidanza richiede specialisti. Comunicate farmaci e integratori senza aggiungere rimedi pubblicizzati. Fisioterapia, ferite, nutrizione e aiuto emotivo o finanziario fanno parte delle cure. Chiedete gonfiore di braccio o torace e servizio linfedema dopo trattamenti rilevanti. Ottenete un referente e istruzioni scritte per effetti e urgenze fuori orario."
+      ]
+    },
+    {
+      "heading": "Chiarire controlli e sintomi urgenti",
+      "paragraphs": [
+        "I controlli valutano recupero, effetti e possibile ricorrenza secondo situazione. Segnalate nuovi sintomi persistenti senza aspettare, ma non ogni sintomo significa recidiva. Febbre, brividi o malessere improvviso durante cure che riducono l'immunità richiedono subito consiglio oncologico secondo il piano. Grave affanno, dolore toracico, confusione o collasso richiedono emergenza. Cure palliative aiutano sintomi e qualità di vita insieme alle terapie, non solo negli ultimi giorni. Chiedete spiegazioni e sostegno quando scelte o emozioni sopraffanno."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: programmi diversi",
+      "text": "Due amiche ricevono farmaci diversi. Una chiede recettori, stadio e obiettivi senza presumere cure inferiori. Porta domande scritte e conferma risultati pendenti."
+    },
+    {
+      "title": "Esempio ipotetico: fertilità prima delle cure",
+      "text": "Una paziente che potrebbe volere figli lo dice prima di iniziare. Discute consulenza tempestiva, opzioni realistiche e contraccezione mentre il piano viene organizzato, non dopo effetti sulla fertilità."
+    }
+  ],
+  "questions": [
+    "Cosa mostrano biopsia, recettori e stadio e cosa resta incerto?",
+    "Perché questa sequenza e quali benefici, rischi e alternative personali?",
+    "Quali sostegno, controlli e contatto urgente servono durante e dopo?"
+  ]
+}

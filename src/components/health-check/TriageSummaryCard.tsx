@@ -82,6 +82,8 @@ function useSafeLanguage(propLang?: Lang): Lang {
 }
 
 const LOCALE_DATE_MAP: Record<Lang, string> = {
+ru: "ru-RU",
+
   ro: "ro-RO",
   en: "en-GB",
   sq: "sq-AL",
@@ -146,6 +148,32 @@ export interface SummaryCardCopy {
 }
 
 export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
+  ru: {
+"myLanguageTab": "На моем языке",
+"romanianTab": "На румынском",
+"qrTitle": "QR-код для передачи врачу без интернета",
+"qrHint": "Врач или медсестра могут отсканировать QR-код без интернета, чтобы прочитать медицинскую сводку.",
+
+    title: "Краткое описание симптомов, RediHealth",
+    structure: "Точка выбрана на теле",
+    sensation: "ощущение",
+    triggers: "Триггеры",
+    specialty: "Предлагаемая специальность",
+    redFlag: "Внимание: выбран аварийный знак.",
+    noRedFlag: "Аварийный знак не выбран.",
+    copy: "Копировать",
+    copied: "Скопировано",
+    copyFailed: "Не удалось скопировать. Вместо этого покажите экран врачу.",
+    savedNote: "Заметка готова",
+    whatsapp: "WhatsApp",
+    screenFor: "Для врача",
+    patientSummary: "Симптомы пациента",
+    close: "Закрыть",
+    inRomanian: "Показать на румынском языке",
+    inOwnLanguage: "Показать на английском языке",
+    savePdf: "Сохранить как PDF",
+  },
+
   ro: {
     title: "Rezumatul simptomelor, RediHealth",
     structure: "Punct ales pe corp",

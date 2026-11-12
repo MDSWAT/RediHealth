@@ -1,0 +1,51 @@
+{
+  "title": "Përdorimi i alkoolit: dallimi i dëmit dhe kërkimi i sigurt i mbështetjes",
+  "intro": "Problemet nga alkooli nuk përcaktohen vetëm nga një numër pijesh. Vështirësia për ta kontrolluar pirjen, dëmi i përsëritur dhe simptomat e ndërprerjes mund të kenë rëndësi. Alkooli mund të ndikojë shëndetin fizik, humorin, gjumin, marrëdhëniet dhe sigurinë. Mund të kërkosh mbështetje pa pritur krizë. Nëse trupi është bërë i varur, ndalimi i papritur mund të jetë i rrezikshëm; ndihma përfshin planifikimin e një ndryshimi të sigurt, jo detoksifikim pa mbështetje.",
+  "sections": [
+    {
+      "heading": "Përshkruaj modelin pa gjykuar veten",
+      "paragraphs": [
+        "Shenja të dobishme janë pirja më shumë se sa synoje, përpjekjet e pasuksesshme për ta pakësuar, dëshira e fortë dhe vazhdimi pavarësisht problemeve. Nevoja për sasi në rritje ose pirja për të lehtësuar dridhjet mund të sugjerojnë varësi. Shëno çfarë pi zakonisht, përfshirë madhësinë e enëve, pijet më të forta dhe ditët pa alkool. Vendet e përcaktojnë ndryshe një pije standarde, ndaj përshkruaj pijen dhe sasinë reale, jo vetëm etiketën e njësisë. Informacioni ndihmon vlerësimin; nuk është provë morale."
+      ]
+    },
+    {
+      "heading": "Dallo kur ndërprerja kërkon ndihmë mjekësore",
+      "paragraphs": [
+        "Dridhjet, djersitja, të përzierat, ankthi ose rrahjet e shpejta pas pakësimit të alkoolit mund të jenë simptoma të ndërprerjes. Personat me episode të mëparshme të rënda, kriza konvulsive ose probleme të mëdha shëndetësore kërkojnë kujdes të veçantë. Mos përdor skemë nga interneti ose qetësuesit e dikujt tjetër për t'i menaxhuar vetë. Kontakto mjekun ose shërbimin e varësive para ndalimit të menjëhershëm nëse mund të kesh varësi. Konfuzioni, halucinacionet, krizat konvulsive ose agjitacioni i rëndë gjatë ndërprerjes kërkojnë ndihmë urgjente."
+      ]
+    },
+    {
+      "heading": "Kërko një vlerësim të plotë shëndetësor",
+      "paragraphs": [
+        "Konsulta mund të shqyrtojë pirjen, barnat, ushqyerjen, mëlçinë, shëndetin mendor dhe sigurinë e menjëhershme. Shpjego përdorimin e substancave të tjera dhe nëse je ose mund të jesh shtatzënë. Analizat e gjakut mund të identifikojnë ndikimet shëndetësore, por një rezultat normal nuk provon se pirja është e padëmshme. Kujdesi mund të përfshijë mjekun e familjes, shërbime specialistike ose spitalin, sipas rrezikut dhe nevojave. Shpjego pengesa si puna, kujdesi për fëmijët, paratë ose privatësia."
+      ]
+    },
+    {
+      "heading": "Ndërto mbështetje përtej menaxhimit të ndërprerjes",
+      "paragraphs": [
+        "Një plan afatgjatë mund të përfshijë trajtim psikologjik, barna të zgjedhura nga mjeku, mbështetje nga persona me përvoja të ngjashme dhe ndihmë për gjumin ose vështirësi sociale. Trajtimi i ndërprerjes nuk zgjidh vetë çdo arsye për pirjen. Diskuto qëllimet dhe veprimet pas një episodi rikthimi, pa e parë si provë se rikuperimi është i pamundur. Familjarët mund të mbështesin duke vendosur kufij, por nuk duhet të marrin përgjegjësi për mbikëqyrjen e një detoksifikimi potencialisht të rrezikshëm në shtëpi."
+      ]
+    },
+    {
+      "heading": "Reago ndaj dehjes dhe rreziqeve të menjëhershme",
+      "paragraphs": [
+        "Një person pa ndjenja, që zgjohet me vështirësi, me frymëmarrje të ngadaltë ose të çrregullt, kriza konvulsive ose kolaps pas pirjes kërkon ndihmë urgjente. Mos supozo se mjafton ta zërë gjumi derisa t'i kalojë dhe mos i jep më alkool, kafe ose dush të ftohtë për ta kthjelluar. Qëndro me të, vëzhgo frymëmarrjen dhe ndiq udhëzimet e urgjencës. Alkooli ndikon edhe drejtimin e makinës dhe përdorimin e sigurt të barnave; siguro alternativë të sigurt në vend që të hamendësosh kur ka kaluar efekti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: kërkimi i një plani të sigurt ndërprerjeje",
+      "text": "Dikush vëren dridhje përpara pijes së parë dhe dëshiron të ndalojë. Ia tregon mjekut dhe përshkruan përpjekjet e mëparshme për pakësim. Pyet nëse nevojitet menaxhim i mbikëqyrur i ndërprerjes, në vend që të ndalojë papritur vetëm ose të marrë hua tableta gjumi."
+    },
+    {
+      "title": "Shembull hipotetik: mbështetja pas një rikthimi",
+      "text": "Një person pi përsëri pas një periudhe ndryshimi. Kontakton shërbimin mbështetës për të diskutuar çfarë ndodhi dhe për ta rishikuar planin. Përshkruan simptomat e ndërprerjes dhe rreziqet e menjëhershme, në vend që të supozojë se trajtimi dështoi ose se një detoksifikim tjetër pa ndihmë është i sigurt."
+    }
+  ],
+  "questions": [
+    "A sugjerojnë simptomat e mia varësi ose rrezik nga ndërprerja?",
+    "Çfarë mbështetjeje dhe monitorimi mjekësor do ta bënte ndryshimin më të sigurt për mua?",
+    "Cilat trajtime afatgjata përshtaten me rrethanat e mia dhe kë duhet të kontaktoj gjatë një pengese?"
+  ]
+}

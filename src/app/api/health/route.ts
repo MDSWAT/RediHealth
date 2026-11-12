@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { configuredCountries, getControlDatabase, getCountryDatabase, hasControlDatabase } from "@/lib/database";
 import { isEmailConfigured } from "@/lib/email";
 import { notifyOperationalIssue } from "@/lib/operational-alerts";
+import { resolveLlmConfig } from "@/lib/llm";
 
 export const dynamic = "force-dynamic";
 
@@ -52,9 +53,12 @@ export async function GET(request: Request) {
   }
 
   checks.email = { status: isEmailConfigured() ? "configured" : "not-configured" };
-  checks.aiAssistant = {
-    status: process.env.LLMSRELAY_API_KEY || process.env.ANTHROPIC_API_KEY ? "configured" : "not-configured",
-  };
+  try {
+    resolveLlmConfig();
+    checks.aiAssistant = { status: "configured" };
+  } catch {
+    checks.aiAssistant = { status: "not-configured" };
+  }
 
   const hasError = Object.values(checks).some((check) => check.status === "error");
   const hasMissingConfig = Object.values(checks).some((check) => check.status === "not-configured");

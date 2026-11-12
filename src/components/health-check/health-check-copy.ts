@@ -74,6 +74,102 @@ export type Copy = {
 };
 
 export const COPY: Record<Lang, Copy> = {
+  ru: {
+"showMoreBody": "Показать больше тела",
+"showLessBody": "Показать меньше тела",
+"bodyTypeLabel": "Анатомия",
+"whatItFeelsLike": "Что вы чувствуете?",
+"questionProgress": "Вопрос {current} из {total}",
+"noExtraFinish": "Других симптомов нет, показать результат",
+"autoVoiceActive": "Аудиогид включён",
+"recommendationGiven": "Рекомендация готова",
+"showingSpotSymptoms": "Варианты для: {spot}",
+"showAllAreaSymptoms": "Показать все варианты для этой области",
+"qrRestoredBadge": "Результат восстановлен из QR-кода",
+"openMenu": "Открыть",
+"chooseArea": "Выберите область тела",
+"chooseSymptom": "Выберите симптом из списка",
+"close": "Закрыть",
+"exactSpotHeading": "Где именно в этой области?",
+"exactSpotLead": "Нажмите на 3D-модель или выберите место ниже.",
+"exactSpotAnyHint": "Болит не в одной точке или во всей области",
+"progressLabel": "Ход проверки симптомов",
+"selectedTrailLabel": "Выбранные ответы",
+"severityLead": "Выберите, насколько симптомы мешают вам сейчас.",
+"durationLead": "Выберите, как давно симптомы начались или повторяются.",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"bodyModelLabel": "Модель тела",
+"bodyGeneral": "Общая",
+"bodyFemale": "Женская",
+"exactSpot": "Точное место (необязательно)",
+"exactSpotAny": "Вся область",
+"sideLabel": "Сторона",
+"bothSides": "Обе стороны или середина",
+"sheetBadge": "Памятка",
+"nextStepLabel": "Рекомендуемый следующий шаг",
+"copySheet": "Копировать памятку",
+"copiedSheet": "Скопировано",
+
+    chosen: "Выбрано",
+    confirmReset: "Удалить ответы?",
+    confirmYes: "Да, начать сначала",
+    confirmNo: "Нет",
+    pickArea: "Выберите область тела",
+    pickSymptom: "Выберите симптом",
+    pickBoth: "Выберите, насколько плохо и как долго",
+    orList: "Или выберите из списка",
+    area: "Область тела",
+    change: "Изменить",
+    left: "Слева",
+    right: "Справа",
+    doctorTitle: "Поговорите с врачом",
+    doctorBody: "Бесплатно, с врачом-волонтером, по видео или телефону.",
+    doctorBook: "Записаться на консультацию",
+    doctorNow: "Дежурный врач сейчас",
+    readAbout: "Подробнее",
+    selfCare: "Дома можно попробовать",
+    meaning: "Что это может означать",
+    summaryFold: "Резюме для врача",
+    forWhom: "Для кого это?",
+    forSelf: "Для меня",
+    forChild: "Для ребенка",
+    childNote: "Для детей домашние советы не всегда подходят. Не жди. Позвоните своему семейному врачу или педиатру.",
+    childRow: "Для ребенка",
+    otherTitle: "Что-то другое, или не уверен",
+    otherDescription: "Здесь ничего не подходит.",
+    otherBody: "Расскажите нам своими словами или поговорите с врачом.",
+    otherAssistant: "Напишите помощнику",
+    otherDoctor: "Поговорите с врачом",
+    alsoFeel: "У вас также есть",
+    alsoFeelHint: "Необязательно. Отметьте все, что у вас есть.",
+    listen: "Слушай",
+    stopListening: "Стоп",
+    largeText: "Текст большего размера",
+  },
+
   ro: {
     chosen: "Ai ales",
     confirmReset: "Ștergi răspunsurile?",

@@ -59,6 +59,8 @@ const RECORDED: Partial<Record<Lang, ReadonlySet<string>>> = Object.fromEntries(
   Object.entries(voiceManifest.clips).map(([lang, ids]) => [lang, new Set(ids)]),
 );
 const DEVICE_VOICE_LANG: Partial<Record<Lang, string>> = {
+  ru: "ru-RU",
+
   ro: "ro-RO",
   en: "en-GB",
   it: "it-IT",

@@ -18,6 +18,8 @@ export default function PanelLoading() {
   const pathname = stripLangFromPathname(usePathname()).replace(/^\/demo(?=\/|$)/, "/panel");
   const t = panelTranslations[lang].adminShell;
   const loading = {
+ru: "Загрузка…",
+
     en: "Loading…",
     ro: "Se încarcă…",
     sq: "Duke ngarkuar…",

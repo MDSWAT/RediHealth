@@ -1,0 +1,51 @@
+{
+  "title": "Donanemab (Kisunla) în Alzheimer precoce: beneficii și riscuri",
+  "intro": "Donanemab este un anticorp care ajută eliminarea depozitelor de amiloid din creier. Poate încetini declinul la unele persoane cu Alzheimer simptomatic precoce, dar nu vindecă boala și nu restabilește abilitățile pierdute. Necesită selecție specializată, perfuzii și imagini cerebrale repetate. Eligibilitatea, finanțarea și cerințele de siguranță se verifică în țara tratamentului.",
+  "sections": [
+    {
+      "heading": "Cine poate fi evaluat în Uniunea Europeană",
+      "paragraphs": [
+        "Indicația UE privește adulții cu afectare cognitivă ușoară ori demență ușoară din Alzheimer și patologie amiloidă confirmată. Este limitată la persoane cu o copie ori fără copii ale variantei ApoE4; două copii sunt în afara indicației din motive de siguranță. Testarea genetică necesită explicație și consimțământ, inclusiv sensul și limitele rezultatului pentru rude. Amiloidul pozitiv singur nu selectează tratamentul: simptomele, diagnosticul, stadiul, imaginile, istoricul și medicamentele se evaluează împreună. Nu este opțiune generală pentru orice problemă de memorie sau demență avansată."
+      ]
+    },
+    {
+      "heading": "Beneficiu posibil fără presupunerea ameliorării",
+      "paragraphs": [
+        "Studiile au arătat agravare medie mai lentă a memoriei, gândirii și funcției zilnice față de placebo în perioada studiată. Ambele grupuri s-au deteriorat în general. Eliminarea amiloidului pe imagine diferă de ameliorarea vizibilă în viață, iar media nu prezice evoluția individuală. Cereți explicarea diferenței în termeni practici, perioadei și incertitudinilor pe termen lung. Autorizarea și evaluarea beneficiului suplimentar ori rambursării răspund la întrebări diferite. Discutați sprijinul pentru demență și celelalte tratamente potrivite indiferent de alegere."
+      ]
+    },
+    {
+      "heading": "Edemul și sângerarea cerebrală sunt riscuri centrale",
+      "paragraphs": [
+        "Anomaliile imagistice legate de amiloid, ARIA, includ edem și modificări legate de sângerare. Pot fi asimptomatice, dar unele sunt grave sau fatale. RMN este necesar înainte și la momentele stabilite, suplimentar la simptome; starea bună nu înlocuiește monitorizarea. În UE tratamentul nu se începe sub anticoagulare în curs; anumite sângerări ori anomalii anterioare, tensiunea necontrolată și imposibilitatea RMN îl pot exclude. Nu este listă completă de eligibilitate. Nu opriți anticoagulantul esențial pentru eligibilitate: specialiștii evaluează situația completă."
+      ]
+    },
+    {
+      "heading": "Semne urgente și cardul de tratament",
+      "paragraphs": [
+        "Contactați prompt echipa pentru cefalee nouă, confuzie, amețeală, dezechilibru, greață sau vedere schimbată în timpul tratamentului. Slăbiciunea bruscă, vorbirea dificilă, convulsia, conștiența redusă ori cefaleea severă bruscă cer urgență; nu conduceți. Pot fi AVC, ARIA sau altă urgență, imposibil de diferențiat sigur acasă. Spuneți medicilor de donanemab și arătați cardul: contează la simptome cerebrale și tratamente care influențează sângerarea. Reacția de perfuzie poate da roșeață, frisoane, constricție toracică, respirație grea ori tensiune schimbată: anunțați imediat personalul, iar în afara clinicii cereți urgență pentru reacție severă."
+      ]
+    },
+    {
+      "heading": "Plan practic de tratament și reevaluare",
+      "paragraphs": [
+        "Perfuziile se fac supravegheat, în general la patru săptămâni conform informației UE. Specialistul stabilește doza, imaginile și oprirea; în UE durata maximă este optsprezece luni, uneori mai scurtă după eliminarea amiloidului, progresie ori siguranță. Nu transferați schema altei țări. Luați în calcul transportul, sprijinul la consultații, accesul RMN, costurile, dorințele și participarea persoanei la decizii cu suport adecvat. Întrebați cine verifică RMN înaintea perfuziei și contactul urgent. Reacțiile pot cere pauză ori oprire permanentă. Refuzul trebuie însoțit de plan clar de îngrijire și sprijin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: eligibilitate dincolo de memorie",
+      "text": "Nadia are dificultăți ușoare de memorie și întreabă de Kisunla. Specialistul clarifică diagnosticul și stadiul, apoi amiloidul, consilierea genetică, RMN și medicamentele. Familia nu presupune că diagnosticul garantează eligibilitatea ori finanțarea."
+    },
+    {
+      "title": "Exemplu ipotetic: simptome noi sub tratament",
+      "text": "După începerea donanemabului, Ilir are brusc dificultăți de vorbire. Partenera cheamă urgența și arată cardul. Nu așteaptă perfuzia următoare și nu decid acasă între AVC și ARIA."
+    }
+  ],
+  "questions": [
+    "Îndeplinesc indicația locală actuală și ce teste ori medicamente influențează eligibilitatea?",
+    "Cât de mare este beneficiul probabil comparativ cu riscurile și povara?",
+    "Care sunt planurile RMN, contactului urgent și opririi și ce sprijin continuă dacă refuz ori opresc?"
+  ]
+}

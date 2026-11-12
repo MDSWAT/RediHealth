@@ -1,0 +1,51 @@
+{
+  "title": "Čukljevi: smanjenje pritiska, izbor liječenja i oporavak",
+  "intro": "Čukalj je promjena položaja oko zgloba palca, često s koštanom izbočinom na unutarnjoj strani stopala. Palac se naginje drugima i stvara gužvu, trenje ili bol. Nije samo tvrda koža, a izgled ne određuje opseg liječenja. Cilj su udobnost i funkcija; operacija ovisi o simptomima i okolnostima, ne samo izgledu.",
+  "sections": [
+    {
+      "heading": "Opišite bol i pritisak",
+      "paragraphs": [
+        "Navedite bol na izbočini, ispod prednjeg stopala ili u susjednim prstima. Opišite hod, cipele, kožu i ograničenja rada ili sporta. Građa, obiteljska sklonost i bolesti pridonose; uske cipele pogoršavaju, ali nisu jedini uzrok. Naglo vruć i jako bolan zglob može biti giht ili infekcija. Ne pripisujte svaku novu bol poznatom čuklju."
+      ]
+    },
+    {
+      "heading": "Pregledajte cijelo stopalo",
+      "paragraphs": [
+        "Procjena uključuje položaj, pokretljivost, kožu, cirkulaciju i stajanje ili hod. Rendgen pod opterećenjem pomaže planiranju operacije, ali ne odlučuje samo kut. Navedite dijabetes, slab krvotok, utrnulost, upalni artritis i operacije: mijenjaju sigurnost i cijeljenje. Pitajte o artrozi ili drugom uzroku i što dodaje podolog ili specijalist."
+      ]
+    },
+    {
+      "heading": "Realno smanjite pritisak",
+      "paragraphs": [
+        "Dovoljno široke i duboke cipele smanjuju trenje; isprobajte stojeći umjesto većeg broja koji klizi drugdje. Podlošci, ulošci ili razdjelnici mogu pomoći simptomima, ali ne stvarati nov pritisak. Tražite prilagodbu uz slabiji osjet ili krhku kožu. Poboljšavaju udobnost, ali ne ispravljaju pouzdano trajnu deformaciju. Oprez s obećanjima trajne korekcije. Ljekarnik ili liječnik savjetuje prikladan analgetik."
+      ]
+    },
+    {
+      "heading": "Usporedite operaciju i kontrolu simptoma",
+      "paragraphs": [
+        "Operacija se razmatra kod trajne boli i ograničenja unatoč mjerama. Postupci mogu poravnati kosti i tkiva, ne samo odstraniti izbočinu. Pitajte vrstu, prikladnost i realan ishod. Rizici uključuju infekciju, ukočenost, živce, trajnu bol, povratak i teško koštano cijeljenje. Izbor obuće može ostati ograničen. Vidljivost ne znači nužnost; zahtjevi oporavka dio su odluke."
+      ]
+    },
+    {
+      "heading": "Dogovorite pomoć i zaštitite kožu",
+      "paragraphs": [
+        "Nakon zahvata opterećenje, posebna obuća, elevacija, zavoji, vožnja i posao ovise o metodi. Dogovorite pomoć i prijevoz bez tuđeg rasporeda. Oteklina može trajati dulje od rane: pitajte očekivanja. Rastuća bol, crvenilo, iscjedak ili vrućica traže brz savjet; hladno, blijedo ili naglo utrnulo stopalo hitnu procjenu. Nova oteklina lista ili zaduha trebaju hitno, s hitnom pomoći za bol u prsima ili teško disanje. Bez operacije pregledajte rast boli, oštećenje kože ili slabije kretanje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: obuća i podlošci",
+      "text": "Osoba ima trenje u dugim smjenama. Pokušava prikladno široke cipele i pita podologa za podloške. Provjerava nove pritiske bez očekivanja da razdjelnik trajno ispravi kosti."
+    },
+    {
+      "title": "Hipotetski primjer: odluka o zahvatu",
+      "text": "Uz trajnu bol pri hodu osoba pita korekciju, rizike i izbivanje sa stajaćeg posla. Dogovara pomoć i alternative prije rezervacije, ne bira samo zbog uskih cipela."
+    }
+  ],
+  "questions": [
+    "Je li čukalj glavni uzrok i mijenjaju li cirkulacija, živci ili artritis plan?",
+    "Koja obuća, potpora i analgetik odgovaraju i što realno postižu?",
+    "Koje koristi, rizici i pomoć u oporavku vrijede za moj zahvat?"
+  ]
+}

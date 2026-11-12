@@ -1,0 +1,51 @@
+{
+  "title": "Ankle fractures: treatment choices and recovering safely",
+  "intro": "An ankle fracture is a break in a bone around the ankle joint. Some fractures are stable, while others affect alignment or joint stability and need more involved treatment. Pain and swelling cannot reliably distinguish a fracture from a sprain. Get assessed if a fracture is possible, and follow the plan for your particular injury rather than assuming another person's boot, walking advice or recovery time applies.",
+  "sections": [
+    {
+      "heading": "Recognise an injury that needs urgent care",
+      "paragraphs": [
+        "Severe pain, substantial swelling or difficulty bearing weight after injury needs prompt assessment. An abnormal angle, an open wound or visible bone, numb toes, or a cold, pale or blue foot requires emergency assessment. Do not try to push a bone back or straighten the ankle. Protect it from further injury and get help with transport rather than driving yourself. A clinician needs to examine circulation, sensation and skin as well as the bones."
+      ]
+    },
+    {
+      "heading": "Understand why treatment differs between fractures",
+      "paragraphs": [
+        "X-rays help show the fracture pattern and alignment; additional imaging is sometimes needed. A stable injury may be treated with a suitable boot or cast and follow-up. Other injuries need a clinician to restore alignment or surgery to hold the bones in position. The decision considers stability, skin and swelling, other illnesses and the person's circumstances. Ask why the proposed option is appropriate and what problems it aims to prevent."
+      ]
+    },
+    {
+      "heading": "Clarify weight-bearing and support instructions",
+      "paragraphs": [
+        "Before leaving, ask exactly how much weight you may put through the injured side, how to use walking aids and when the plan will change. Being given a boot does not automatically mean unrestricted walking is safe. Ask for help practising any needed aids and planning stairs, washing and transport. Keep written instructions and the follow-up contact. If you cannot manage safely at home, say so before discharge rather than improvising an unsafe arrangement."
+      ]
+    },
+    {
+      "heading": "Care for the cast or boot and monitor changes",
+      "paragraphs": [
+        "Follow instructions for keeping the support clean and, where required, dry. Do not insert objects to scratch inside a cast or remove it yourself. Increasing pain, numbness, marked rubbing, discharge, bad smell or toes changing colour require prompt contact; cold or discoloured toes need urgent assessment. Ask whether you need measures to reduce blood-clot risk during reduced mobility. New calf pain or swelling needs urgent advice; chest pain or unexplained breathlessness requires emergency help."
+      ]
+    },
+    {
+      "heading": "Return to activity with a recovery plan",
+      "paragraphs": [
+        "Healing and rehabilitation are not identical: stiffness, swelling and weakness can continue after the bone has healed. Attend planned reviews and ask when movement, loading and physiotherapy should progress. A balanced diet and support to stop smoking may be discussed as part of recovery. Return to demanding work or sport according to function and professional advice, not simply because pain has eased. Review ongoing instability, worsening symptoms or difficulty recovering normal walking."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: making discharge instructions usable",
+      "text": "A person with an ankle fracture lives upstairs and is told to limit weight on the injured side. They ask the team to explain walking-aid use, stair arrangements and follow-up before going home. They do not assume that a relative's walking boot makes the same instructions apply to them."
+    },
+    {
+      "title": "Hypothetical example: recognising a support problem",
+      "text": "Someone wearing a cast develops increasing tightness and numb toes. They contact urgent care instead of waiting for their next fracture-clinic appointment or trying to cut the cast off at home. They report pain, toe colour and when the change began."
+    }
+  ],
+  "questions": [
+    "Is the fracture stable, and why is this treatment recommended?",
+    "How much weight may I put on the leg, and what support or clot-prevention plan do I need?",
+    "Which changes need urgent contact, and what milestones guide rehabilitation and return to activity?"
+  ]
+}

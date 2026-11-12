@@ -37,6 +37,8 @@ const ACTION_LABELS: Record<
     startSymptoms: string;
   }
 > = {
+"ru": {"startSymptoms":"Проверить симптомы"},
+
   ro: {
     startSymptoms: "Începe verificarea",
   },

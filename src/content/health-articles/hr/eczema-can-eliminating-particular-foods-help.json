@@ -1,0 +1,51 @@
+{
+  "title": "Ekcem i izostavljanje hrane: kada pomaže ciljana procjena",
+  "intro": "Razumljivo je tražiti hranu koja objašnjava pogoršanja. Neki imaju ekcem i alergiju na hranu, ali ekcem ne traži uklanjanje uobičajenih namirnica. Dijeta s mnogo zabrana može štetiti bez pomoći koži. Pitanje je izaziva li određena hrana ponovljivu reakciju i kako to sigurno provjeriti.",
+  "sections": [
+    {
+      "heading": "Pogoršanje nakon jela ne dokazuje uzrok",
+      "paragraphs": [
+        "Ekcem prirodno varira; vrućina, infekcija, nadražaji i liječenje mogu se poklopiti s obrocima. Alergija je vjerojatnija kad hrana ponavlja jasnu reakciju, osobito koprivnjaču, oteklinu, povraćanje ili disanje ubrzo poslije. I odgođeni obrasci traže procjenu. Alergija može biti prisutna bez glavnog utjecaja na ekcem. Ne uklanjajte redovito podnošenu hranu samo jer je na popisu alergena. Najprije provjerite dijagnozu i pravilnu uporabu plana za kožu."
+      ]
+    },
+    {
+      "heading": "Testovi odgovaraju kliničkom pitanju",
+      "paragraphs": [
+        "Opišite hranu, količinu, vrijeme, tegobe, ponovljivost i liječenje. Kratak dnevnik pomaže bez preopterećenja. Kožni test i specifična protutijela podupiru procjenu, ali pozitivan nalaz može značiti senzibilizaciju bez alergije. Široki paneli često stvaraju zbunjujuće pozitivne rezultate. Analiza kose, prehrambeni IgG paneli i neprovjereni testovi nisu osnova za dijetu. Liječnik može preporučiti nadziranu provokaciju hranom. Nikad kod kuće nakon sumnjive neposredne ili teške reakcije."
+      ]
+    },
+    {
+      "heading": "Prehrambeni i alergijski rizici",
+      "paragraphs": [
+        "Uklanjanje mlijeka, jaja, pšenice ili skupina smanjuje energiju, proteine i mikronutrijente, osobito djeci. Obični biljni napitci ne zamjenjuju dojenačku formulu. Ograničenja dodaju trošak, tjeskobu, društvene i hranidbene teškoće. Dugo izbjegavanje podnošene hrane može povećati rizik neposredne alergije. Više zabrana odjednom otežava tumačenje kože. Ne ograničavajte prehranu osobe koja doji bez indikacije i savjeta. Slab rast, nenamjerno mršavljenje ili već uzak jelovnik traže ranu podršku."
+      ]
+    },
+    {
+      "heading": "Dijagnostička eliminacija treba plan",
+      "paragraphs": [
+        "Kad povijest podupire reakciju, alergolog i dijetetičar dogovaraju je li kratka ciljana eliminacija prikladna. Odredite hranu, zamjene, mjerenje tegoba i kontrolu. Zadržite propisanu njegu kako poboljšanje ne bi bilo pogrešno pripisano dijeti. Povratak planirajte unaprijed: mjesto i metoda ovise o riziku i mogu tražiti nadzor. Bez uvjerljive koristi ne nastavljajte neograničeno ili dodajte zabrane bez pregleda. Potvrđena alergija treba izbjegavanje i hitni plan, a ekcem svoje liječenje."
+      ]
+    },
+    {
+      "heading": "Kada su tegobe nakon hrane hitne",
+      "paragraphs": [
+        "Naglo oticanje jezika ili grla, teško disanje, kolaps ili brzo pogoršanje mogu biti anafilaksija. Koristite propisani adrenalin prema planu i zovite hitnu, bez čekanja kreme ili antihistaminika. Ne ustajte i ne hodajte tijekom sumnjive teške reakcije. Trajno povraćanje, slab unos, dehidracija ili slab rast traže brz savjet i bez neposredne alergije. Težak nekontroliran ekcem treba ciljanu stručnu procjenu, ne stalnu promjenu obiteljske hrane. Cilj su sigurna prehrana i koža s najmanje nužnih ograničenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: test bez reakcije",
+      "text": "Panel pokazuje Lininu senzibilizaciju na hranu koju jede bez simptoma. Roditelj traži tumačenje prije uklanjanja. Tim provjerava povijest i njegu umjesto svakog pozitivnog nalaza kao alergije."
+    },
+    {
+      "title": "Hipotetski primjer: jasna reakcija",
+      "text": "Arben dobije koprivnjaču i otečene usne ubrzo nakon hrane. Traži savjet i ne vraća je sam. Teško disanje ili kolaps traže hitnu, ne dulju dijetu za ekcem."
+    }
+  ],
+  "questions": [
+    "Upućuje li povijest na reakciju ili slučajno pogoršanje?",
+    "Koji ciljani testovi ili nadzirana procjena mijenjaju skrb?",
+    "Ako izostavljamo, što zamjenjuje nutrijente i kada i kako sigurno provjeriti ili vratiti?"
+  ]
+}

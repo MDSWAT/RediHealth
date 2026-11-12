@@ -12,6 +12,8 @@ type CountryAccess = {
 };
 
 const labelByLang: Record<Lang, string> = {
+  ru: "Страна",
+
   en: "Country",
   ro: "Țara",
   sq: "Shteti",

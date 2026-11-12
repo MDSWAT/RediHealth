@@ -21,6 +21,8 @@ export function hasWebGL(): boolean {
 
 /** Shown in place of the 3D body when this device cannot draw it. */
 export const WEBGL_ERROR: Record<Lang, string> = {
+  ru: "3D-тело не открывается на этом устройстве. Выберите регион из списка.",
+
   ro: "Corpul 3D nu se poate deschide pe acest dispozitiv. Alege zona din listă.",
   en: "The 3D body cannot open on this device. Choose the area from the list.",
   sq: "Trupi 3D nuk hapet në këtë pajisje. Zgjidh zonën nga lista.",

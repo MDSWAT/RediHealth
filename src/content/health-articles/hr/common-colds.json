@@ -1,0 +1,51 @@
+{
+  "title": "Prehlada: oporavak, olakšanje i znakovi upozorenja",
+  "intro": "Curenje nosa, grebanje u grlu i kašalj često nastaju zbog virusne infekcije gornjih dišnih putova. Većina običnih prehlada prolazi uz vrijeme i jednostavnu njegu. Gripa i COVID mogu izazvati slične tegobe: sami simptomi ne otkrivaju pouzdano virus, osobito kod osoba s rizikom od teške bolesti.",
+  "sections": [
+    {
+      "heading": "Što očekivati",
+      "paragraphs": [
+        "Simptomi često počinju postupno: kihanje, začepljen nos i nelagoda u grlu, zatim kašalj i umor. Oporavak obično traje oko tjedan ili dva, iako kašalj može potrajati. Djeca mogu dobivati ponovljene infekcije u vrtiću ili školi; novi napadaj bolesti ne znači nužno oslabljen imunitet. Ipak, trajni simptomi, slab rast ili neuobičajeno teške infekcije traže procjenu. Žuta ili zelena sluz iz nosa sama po sebi ne dokazuje bakterijsku infekciju ni potrebu za antibiotikom."
+      ]
+    },
+    {
+      "heading": "Olakšajte pijenje, spavanje i disanje kroz nos",
+      "paragraphs": [
+        "Odmarajte prema potrebi, redovito nudite tekućinu i izbjegavajte duhanski dim. Poštujte postojeće medicinsko ograničenje tekućine umjesto prisilnog pijenja velikih količina. Fiziološke kapi ili sprej mogu olakšati začepljenost; ljekarnik može objasniti primjenu prema dobi i nježno izvlačenje sluzi kod dojenčeta. Med može ublažiti kašalj odraslih i djece starije od godine dana, ali nikada se ne daje mlađoj dojenčadi. Napitci neka budu mlaki; izbjegavajte posude s kipućom vodom za inhalaciju zbog opeklina. Dojenče koje ne može normalno jesti zahtijeva veću pozornost."
+      ]
+    },
+    {
+      "heading": "Provjerite lijekove prije kombiniranja",
+      "paragraphs": [
+        "Lijekovi protiv boli ili temperature mogu poboljšati osjećaj, ali ne liječe infekciju. Pitajte ljekarnika što odgovara dobi, trudnoći, bubrežnoj bolesti, želučanim tegobama i drugim lijekovima. Slijedite uputu i ne udvostručujte sastojak prisutan u više pripravaka za prehladu. Proizvodi za odrasle nisu automatski sigurni za djecu. Dekongestivni sprejevi smiju se koristiti samo kratko prema uputi jer dulja primjena može pogoršati začepljenost. Antibiotici ne liječe nekompliciranu virusnu prehladu. Dijagnosticirana bakterijska komplikacija druga je situacija u kojoj ih liječnik može propisati."
+      ]
+    },
+    {
+      "heading": "Zaštitite druge i razmotrite druge infekcije",
+      "paragraphs": [
+        "Perite ruke, pokrivajte kašalj i kihanje, bacajte maramice te provjetravajte prostorije. Dok ste bolesni, izbjegavajte blizak kontakt s ranjivim osobama i ostanite kod kuće ako imate temperaturu ili ne možete obavljati uobičajene aktivnosti. Razmotrite masku koja dobro prianja kada kontakt nije moguće izbjeći. Cjepivo protiv gripe ne sprječava obične prehlade. Ako su mogući gripa ili COVID, a vi ste starija osoba, trudni, oslabljenog imuniteta ili imate važnu kroničnu bolest, brzo se javite liječniku radi testiranja i liječenja. Antivirusno liječenje treba započeti rano: ne čekajte teške simptome."
+      ]
+    },
+    {
+      "heading": "Kada promijeniti plan",
+      "paragraphs": [
+        "Tražite hitnu pomoć zbog teškog otežanog disanja, plavih ili sivih usana, kolapsa, zbunjenosti ili jake boli u prsima. Potrebna je brza procjena kod dehidracije, temperature u malog dojenčeta, pogoršanja kronične bolesti, trajne temperature ili jasnog pogoršanja nakon početnog poboljšanja. Dogovorite pregled ako se simptomi ne počnu popravljati nakon otprilike deset dana ili kašalj traje dulje od približno tri tjedna. To su smjernice, a ne uputa da čekate uz zabrinjavajuće simptome. Ubrzano disanje, neuobičajena pospanost ili znatno smanjeno hranjenje djeteta traže raniji savjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: provjera kombiniranog pripravka",
+      "text": "Mira želi vrećicu za začepljen nos nakon što je već popila lijek protiv boli. Ljekarnik primjećuje isti aktivni sastojak u oba pripravka i pomaže joj izbjeći slučajno prekoračenje doze. Bira jedan odgovarajući proizvod i fiziološki sprej."
+    },
+    {
+      "title": "Zamišljeni primjer: blage tegobe uz veći rizik",
+      "text": "Starijeg muškarca s plućnom bolešću počinje boljeti grlo nakon respiratorne infekcije u obitelji. Iako još može piti i hodati, brzo se javlja liječniku radi testiranja i mogućeg ranog liječenja, umjesto da svaki blagi početak smatra običnom prehladom."
+    }
+  ],
+  "questions": [
+    "Koji su lijekovi za simptome sigurni uz moju terapiju?",
+    "Znači li moja zdravstvena povijest da trebam ranije testiranje ili liječenje?",
+    "Zbog kojih se promjena trebam ponovno javiti ili potražiti hitnu pomoć?"
+  ]
+}

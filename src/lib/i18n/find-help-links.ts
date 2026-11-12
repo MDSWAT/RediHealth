@@ -20,6 +20,20 @@ export type FindHelpLinkCopy = {
 };
 
 export const FIND_HELP_LINKS: Record<Lang, FindHelpLinkCopy> = {
+  ru: {
+    nav: "Аптеки и клиники",
+    navDescription: "Найдите место рядом с вами",
+    heroOption: "Мне нужна аптека или врач поблизости",
+    heroOptionHint: "Аптеки, кабинеты и больницы на карте",
+    pharmacyFirst: "Сначала спросите у фармацевта",
+    pharmacyFirstHint: "Фармацевт может проконсультировать вас бесплатно, без предварительной записи.",
+    familyDoctor: "Найдите семейного врача поблизости",
+    hospital: "Найти ближайшую больницу",
+    noDoctorNeeded: "Не нужен врач?",
+    nearestPharmacy: "Найдите ближайшую аптеку",
+    nearbyPlace: "Найдите аптеку или врача поблизости",
+  },
+
   ro: {
     nav: "Farmacii și clinici",
     navDescription: "Găsește un loc aproape de tine",

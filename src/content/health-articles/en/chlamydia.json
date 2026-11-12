@@ -1,0 +1,51 @@
+{
+  "title": "Chlamydia: testing, treatment and preventing reinfection",
+  "intro": "Chlamydia is a bacterial sexually transmitted infection that often causes no symptoms. A person can carry and pass it on without knowing, so feeling well does not rule it out. Testing and appropriate antibiotics can treat the infection and reduce complications. Care also includes recent partners, advice on when sex can resume and later testing when indicated. A positive result is a health issue to address without blame, not a reliable way to date an infection.",
+  "sections": [
+    {
+      "heading": "Symptoms and possible complications",
+      "paragraphs": [
+        "Symptoms may include burning when passing urine, unusual vaginal or penile discharge, bleeding after sex or between periods, lower abdominal pain, or testicular pain and swelling. Rectal infection may cause pain, discharge or bleeding, but can also be silent. Untreated infection can contribute to pelvic inflammatory disease, fertility problems, ectopic pregnancy or epididymal inflammation. These symptoms have other possible causes, so an examination may be needed rather than assuming a positive test explains every problem. Infection during pregnancy can affect the newborn at birth."
+      ]
+    },
+    {
+      "heading": "Choose the right test and sample sites",
+      "paragraphs": [
+        "A clinician or sexual-health service can advise testing even without symptoms, particularly after a partner's diagnosis or relevant exposure. Laboratory tests often use a urine sample or a vaginal swab; rectal or throat samples may be appropriate according to exposure and symptoms. Some swabs can be self-collected using the kit instructions. Tell the service when contact occurred, because testing very soon may miss infection and a repeat may be advised. Ask about tests for other infections and how confidential results will reach you."
+      ]
+    },
+    {
+      "heading": "Complete the prescribed antibiotic treatment",
+      "paragraphs": [
+        "The antibiotic and duration depend on the infection site, pregnancy, allergies, other medicines and local guidance. Follow the exact prescription even if symptoms improve, and contact the service if doses are missed, vomiting prevents treatment or side effects occur. Do not share tablets or use leftover antibiotics. Tell the prescriber if pregnancy is possible or if breastfeeding. Antibiotics can clear the infection but may not reverse damage already caused. Persistent symptoms deserve reassessment, including consideration of complications or another infection."
+      ]
+    },
+    {
+      "heading": "Partner care and a temporary pause in sex",
+      "paragraphs": [
+        "Current and relevant recent partners need advice, testing and often treatment even when they feel well. A clinic can help with confidential partner notification; ask about a safe approach if contacting a partner could put you at risk. Avoid vaginal, anal and oral sex until the service's recommended waiting period has passed, treatment requirements are met for you and partners, and relevant symptoms have resolved. The exact instruction depends on the regimen. Condoms and appropriate barriers reduce future risk but do not replace this treatment-related pause."
+      ]
+    },
+    {
+      "heading": "Follow-up and symptoms that cannot wait",
+      "paragraphs": [
+        "Reinfection is possible because treatment does not provide lasting immunity. Repeat testing later, commonly around three months, helps detect reinfection; a test confirming cure is a different question and is particularly important in pregnancy or selected situations. Follow the clinic's timing because testing too early can be misleading. Seek urgent assessment for pelvic pain with fever, significant illness or testicular pain. Sudden severe testicular pain needs emergency assessment. Severe abdominal pain, faintness or bleeding when pregnancy is possible can indicate ectopic pregnancy and needs emergency care."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "No symptoms after a partner's result — hypothetical example",
+      "text": "A person feels well but learns a partner has chlamydia. They arrange advice and testing, describe the kinds and timing of sexual contact and follow any treatment recommendation. They do not use lack of symptoms as proof that testing is unnecessary."
+    },
+    {
+      "title": "Planning after treatment — hypothetical example",
+      "text": "A person completes their tablets but a partner has not yet received care. They ask the clinic when it is safe to resume sex, arrange supported notification and book the advised repeat test rather than assuming the last tablet ends all reinfection risk."
+    }
+  ],
+  "questions": [
+    "Which sample sites and testing times fit my exposures, and should other infections be checked?",
+    "What is my exact treatment and instruction about resuming sex with partners?",
+    "Do I need a cure check, later retesting or urgent assessment of my symptoms?"
+  ]
+}

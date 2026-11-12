@@ -1,0 +1,51 @@
+{
+  "title": "Pozicijska vrtoglavica: procjena, liječenje i sigurnost",
+  "intro": "Benigna paroksizmalna pozicijska vrtoglavica, odnosno BPPV, izaziva kratke navale vrtnje pri određenim pokretima glave. Riječ je o problemu ravnoteže u unutarnjem uhu koji se često liječi repozicijskim pokretima. Međutim, nije svaka omaglica BPPV. Novi ili neobični simptomi zahtijevaju procjenu, a riječ dobroćudna nikada ne smije služiti odbacivanju upozoravajućih znakova ili rizika pada.",
+  "sections": [
+    {
+      "heading": "Opišite okidač i trajanje",
+      "paragraphs": [
+        "Tipična epizoda javlja se pri okretanju u krevetu, lijeganju ili gledanju prema gore. Najjača vrtnja obično je kratka, iako mučnina ili nestabilnost mogu trajati dulje. Sitni kristali koji su se pomaknuli u kanal unutarnjeg uha šalju pogrešne signale o kretanju. Recite počinju li simptomi položajem glave, pri ustajanju ili traju i u mirovanju. Navedite promjene sluha, glavobolju, nesvjesticu, nedavnu ozljedu i nove lijekove jer mogu upućivati na druge uzroke."
+      ]
+    },
+    {
+      "heading": "Prepoznajte simptome za hitnu pomoć",
+      "paragraphs": [
+        "Tražite hitnu pomoć kod iznenadne vrtoglavice s teškoćama govora, spuštenom stranom lica, slabošću, dvoslikama, novom jakom glavoboljom ili nemogućnošću stajanja ili hodanja. Moždani udar ponekad se očituje prvenstveno teškom nestabilnošću. Nagli gubitak sluha također zahtijeva hitnu procjenu. Nemojte sami voziti na hitni pregled. Nova trajna vrtnja, ponavljano povraćanje ili obrazac bitno drukčiji od ranijeg potvrđenog BPPV-a zahtijevaju brz savjet umjesto ponavljanja kućnih vježbi."
+      ]
+    },
+    {
+      "heading": "Neka pregled vodi dijagnozu",
+      "paragraphs": [
+        "Osposobljeni stručnjak pita o simptomima i može provesti pozicijski test promatrajući oči. Smjer i vrijeme pokreta očiju pomažu odrediti zahvaćeno uho i kanal. Prije testa navedite probleme vrata ili leđa i ograničenu pokretljivost kako bi se položaji prilagodili. Snimanje nije redovno potrebno kod tipične potvrđene slike, ali netipični nalazi mogu zahtijevati dodatno ispitivanje. Internetska snimka ne zamjenjuje pregled i ne isključuje pouzdano neurološki uzrok."
+      ]
+    },
+    {
+      "heading": "Odaberite repozicijski manevar prema nalazu",
+      "paragraphs": [
+        "Repozicijsko liječenje koristi slijed položaja glave i tijela za pomicanje premještenih kristala. Odgovarajući manevar ovisi o zahvaćenom kanalu i sigurnoj pokretljivosti. Može kratko izazvati vrtoglavicu i ponekad ga treba ponoviti. Zamolite stručnjaka da pokaže eventualnu kućnu tehniku i objasni kada stati ili tražiti novu procjenu. Lijekovi ponekad ublažavaju mučninu, ali ne pomiču kristale. Ne prekidajte propisane lijekove i ne ponavljajte nasumične manevre bez savjeta."
+      ]
+    },
+    {
+      "heading": "Planirajte oporavak i moguće ponavljanje",
+      "paragraphs": [
+        "Dok ravnoteža nije pouzdana, sjednite tijekom napadaja, koristite oslonac pri ustajanju i držite put do kupaonice osvijetljenim i prohodnim. Izbjegavajte ljestve, visinu, vožnju i strojeve dok ih simptomi čine nesigurnima. Pitajte kada nastaviti normalne aktivnosti. Zaostala nestabilnost ili kasnija nova epizoda mogući su; pregled razlikuje povratak od drugog problema. Ako strah od pokreta traje, nadzirana rehabilitacija ravnoteže može pomoći. Ne pretpostavljajte da svaka buduća vrtoglavica ima isti uzrok."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: kratka vrtnja u krevetu",
+      "text": "Osoba kratko osjeća vrtnju kad se okrene udesno. Dogovara pregled i precizno opisuje okidač. Nakon pozicijskog testa stručnjak provodi odgovarajući manevar i daje plan za trajne ili povratne simptome."
+    },
+    {
+      "title": "Hipotetski primjer: promjena obrasca",
+      "text": "Osoba ranije liječena od BPPV-a razvije stalnu tešku vrtoglavicu i ne može hodati bez oslonca. Traži hitnu procjenu umjesto pretpostavljanja stare dijagnoze i ponavljanja internetske vježbe."
+    }
+  ],
+  "questions": [
+    "Podupiru li simptomi i pokreti očiju BPPV i koji je kanal zahvaćen?",
+    "Je li kućni manevar siguran uz moje probleme vrata, leđa i druge bolesti?",
+    "Koje promjene zahtijevaju hitnu pomoć i kada pregledati trajne simptome?"
+  ]
+}

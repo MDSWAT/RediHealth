@@ -19,6 +19,15 @@ interface PreventiveScreeningSelectorProps {
 
 /** Interface words that are not in the screening copy. */
 const UI: Record<Lang, { inPlan: string; details: string; remove: string; step: string; tabsLabel: string; quote: [string, string] }> = {
+  ru: {
+    quote: ["“", "”"],
+    inPlan: "В моем списке",
+    details: "Почему это важно и что спросить у врача",
+    remove: "Удалить из списка",
+    step: "Шаг {n} из {total}",
+    tabsLabel: "Профилактические проверки",
+  },
+
   ro: {
     quote: ["„", "”"],
     inPlan: "În lista mea",

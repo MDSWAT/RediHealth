@@ -1,0 +1,51 @@
+{
+  "title": "Anticoagulantele: reduceți riscul de sângerare păstrând protecția",
+  "intro": "Anticoagulantele reduc riscul cheagurilor periculoase, dar fac sângerarea mai ușor de declanșat sau mai greu de oprit. Utilizarea sigură presupune medicamentul corect conform prescripției, verificarea interacțiunilor și recunoașterea momentului când trebuie ajutor. Nu opriți tratamentul doar pentru o vânătaie mică: motivul anticoagulării, precum prevenirea AVC sau a cheagurilor, rămâne important. Sângerarea ori traumatismul semnificativ necesită evaluare promptă.",
+  "sections": [
+    {
+      "heading": "Cunoașteți medicamentul și respectați monitorizarea",
+      "paragraphs": [
+        "Păstrați la îndemână numele medicamentului, concentrația și instrucțiunile actuale, precum și cardul de alertă pentru anticoagulare, dacă ați primit unul. Warfarina necesită analize INR pentru stabilirea dozei; anticoagulantele orale directe nu folosesc aceeași ajustare de rutină prin INR, dar necesită controale adecvate, inclusiv funcția renală. Spuneți echipei despre boli, schimbări de greutate sau dificultăți la administrare. Pentru o doză uitată, urmați instrucțiunile medicamentului respectiv ori întrebați farmacistul; nu inventați o doză de recuperare. Folosiți mementouri dacă uitați repetat."
+      ]
+    },
+    {
+      "heading": "Verificați celelalte medicamente și schimbările alimentare",
+      "paragraphs": [
+        "Spuneți fiecărui prescriptor și farmacist că luați anticoagulant. Întrebați înainte de a adăuga analgezice, remedii din plante sau suplimente; produse precum ibuprofenul sau aspirina pot crește riscul de sângerare. Dacă aspirina a fost prescrisă intenționat împreună cu anticoagulantul, cereți reevaluare fără a o opri singur. Unele antibiotice și alte medicamente interacționează. Cu warfarina, schimbările majore ale aportului de vitamina K pot influența controlul, deci cereți sfat despre o alimentație constantă, nu evitați toate legumele. Discutați consumul de alcool și evitați excesul."
+      ]
+    },
+    {
+      "heading": "Reduceți traumatismele evitabile și pregătiți procedurile",
+      "paragraphs": [
+        "Alegeți protecție adecvată activităților, atenție cu uneltele ascuțite și îndepărtați obstacolele de care vă puteți împiedica. O periuță moale sau un aparat electric de ras pot limita rănile mici. Anunțați din timp dentistul și orice echipă care planifică o operație, injecții sau un test invaziv. Necesitatea modificării tratamentului depinde de procedură, medicament, rinichi și riscul de cheaguri. Nu decideți singur să omiteți doze și nu folosiți planul altei persoane. Cereți instrucțiuni clare pentru eventuală întrerupere și reluare."
+      ]
+    },
+    {
+      "heading": "Reacționați adecvat la sângerare și traumatisme",
+      "paragraphs": [
+        "Pentru o tăietură externă mică, aplicați presiune directă fermă cu un pansament curat. Sângerarea care nu se oprește, accidentul major ori traumatismul important al capului necesită evaluare medicală imediată, chiar dacă sângele vizibil este puțin. Cereți îngrijire urgentă pentru sânge în urină, scaun negru, vărsături cu sânge sau sângerare importantă neexplicată. Durerea de cap severă, confuzia, slăbiciunea, colapsul ori dificultatea respiratorie impun ajutor de urgență. Spuneți salvatorilor numele anticoagulantului și ora ultimei doze, fără a întârzia căutând documente."
+      ]
+    },
+    {
+      "heading": "Raportați problemele mici înainte de a schimba tratamentul",
+      "paragraphs": [
+        "Sângerările nazale repetate, vânătăile în creștere sau menstruațiile mai abundente merită evaluare, chiar dacă nu par urgențe. Notați tiparul și medicamentele noi și întrebați dacă este necesară o analiză sau ajustare. Sângerarea poate avea și o cauză care necesită investigații, fără a fi explicată complet de anticoagulare. Anunțați prompt sarcina sau planurile de sarcină, deoarece alegerea medicamentului poate necesita schimbare. Reevaluați regulat cu medicul echilibrul dintre prevenirea cheagurilor și riscul hemoragic, în loc să decideți singur."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: un analgezic nou",
+      "text": "O persoană cu anticoagulant are durere de spate și se gândește să cumpere ibuprofen. Arată întâi farmacistului lista medicamentelor și cere o opțiune potrivită. Menționează și aspirina prescrisă de cardiolog, fără a o elimina singură de pe listă."
+    },
+    {
+      "title": "Exemplu ipotetic: cădere cu lovitură la cap",
+      "text": "O persoană care ia un medicament pentru prevenirea cheagurilor cade și se lovește la cap. Deși scalpul sângerează puțin, cere evaluare imediată și spune numele medicamentului și ultima doză, fără a aștepta o vânătaie mare."
+    }
+  ],
+  "questions": [
+    "Ce analize și controale necesită anticoagulantul meu și ce fac după o doză uitată?",
+    "Ce analgezice, suplimente, schimbări alimentare sau proceduri necesită sfat în cazul meu?",
+    "Ce sângerare ori traumatism necesită urgență și pe cine contactez pentru sângerări mici repetate?"
+  ]
+}

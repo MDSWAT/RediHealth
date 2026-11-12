@@ -13,7 +13,15 @@
     "test:watch": "vitest",
     "migrate": "tsx --env-file=.env.local scripts/migrate.ts",
     "import:institutes": "tsx scripts/import-medical-institutes.ts",
-    "encrypt:patients": "tsx scripts/encrypt-patient-data.ts"
+    "encrypt:patients": "tsx scripts/encrypt-patient-data.ts",
+    "romani:export": "tsx scripts/romani-catalog.ts export",
+    "romani:check": "tsx scripts/romani-catalog.ts check",
+    "romani:import": "tsx scripts/romani-catalog.ts import",
+    "health:inventory": "tsx scripts/health-content/inventory.ts",
+    "health:generate": "tsx scripts/health-content/generate.ts",
+    "health:assemble": "tsx scripts/health-content/assemble.ts",
+    "health:audit": "tsx scripts/health-content/audit.ts",
+    "health:register-direct": "tsx scripts/health-content/register-direct.ts"
   },
   "dependencies": {
     "@types/three": "^0.187.0",

@@ -1,0 +1,51 @@
+{
+  "title": "Colorectal cancer: symptoms, investigations and treatment choices",
+  "intro": "Colorectal cancer begins in the colon or rectum, which are parts of the large bowel. Some cancers develop from polyps, although many polyps never become cancer. Screening can find risk before symptoms, while new symptoms require their own assessment. If cancer is diagnosed, treatment depends on its exact location, spread and biological features as well as your health and priorities. Colon and rectal treatment plans are not always the same.",
+  "sections": [
+    {
+      "heading": "Symptoms worth discussing",
+      "paragraphs": [
+        "Possible signs include blood in the stool, a persistent change in bowel habit, unexplained iron-deficiency anaemia, abdominal discomfort or unintended weight loss. These often have other causes, but should not automatically be blamed on haemorrhoids or diet. Early cancer can be symptom-free. Heavy or continuing bleeding with faintness needs emergency care. Severe abdominal pain, vomiting, swelling and inability to pass stool or gas may indicate obstruction and need urgent or emergency assessment. Tell the clinician how the symptoms have changed and about family history."
+      ]
+    },
+    {
+      "heading": "Tests answer different questions",
+      "paragraphs": [
+        "Assessment may include examination, blood tests and a faecal immunochemical test, or FIT, looking for blood in a stool sample. A positive FIT is not a cancer diagnosis. A negative result does not remove the need to reassess persistent or concerning symptoms. Colonoscopy allows direct examination and tissue sampling or removal of some polyps; alternative investigations may be appropriate in selected cases. Ask about preparation, sedation, transport and risks such as bleeding or perforation. Biopsy establishes the tissue diagnosis, and imaging helps assess extent if cancer is found."
+      ]
+    },
+    {
+      "heading": "Understand the report before choosing treatment",
+      "paragraphs": [
+        "Ask where the tumour is, its type and stage, whether lymph nodes or distant sites are involved and whether further tests are pending. Tumour-marker blood tests alone cannot confirm or exclude every bowel cancer. Some tissue tests identify features that influence treatment or suggest an inherited risk such as Lynch syndrome. A genetics discussion may matter for you and relatives. The specialist team combines these findings with fitness, other illnesses and preferences. Request explanations and an interpreter if needed rather than making decisions from isolated abbreviations."
+      ]
+    },
+    {
+      "heading": "Treatment may combine several approaches",
+      "paragraphs": [
+        "Some early lesions can be removed locally; others need bowel surgery, often with nearby lymph nodes. A stoma, an opening of bowel onto the abdomen, is sometimes temporary and sometimes permanent. Chemotherapy may be used before or after surgery or for cancer that has spread. Radiotherapy is especially relevant in some rectal cancers. Targeted medicines or immunotherapy help selected cancers according to their features and treatment setting. Ask about the aim, sequence, likely benefits, harms and alternatives, including support if more than one reasonable option exists."
+      ]
+    },
+    {
+      "heading": "Recovery, surveillance and prevention",
+      "paragraphs": [
+        "Bowel function, nutrition, fatigue, sexual wellbeing and emotional health may need support during and after treatment. A stoma nurse or dietitian can help with practical concerns. Keep the surveillance plan and report persistent new symptoms. People without symptoms should ask about local screening eligibility; family history or inflammatory bowel disease may require a different pathway. Physical activity, avoiding smoking and a balanced diet support health but do not guarantee prevention or replace screening. Do not wait for a routine screening invitation when bleeding or another concerning change has appeared."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Symptoms after a reassuring stool test — hypothetical example",
+      "text": "A person previously had a negative screening test but now has continuing bleeding and a change in bowel habit. They return to the clinician rather than assuming the old result explains the new symptoms. The next investigation is based on the current assessment."
+    },
+    {
+      "title": "Preparing for surgery — hypothetical example",
+      "text": "Someone is told a stoma may be needed. They ask whether it is likely to be temporary or permanent, meet a stoma nurse and discuss recovery and home support before the operation. The team explains what may change once the surgical findings are known."
+    }
+  ],
+  "questions": [
+    "What do the current tests confirm, and what still needs investigation?",
+    "How do tumour location, stage and tissue features change my treatment options?",
+    "What support, follow-up and family-risk or screening advice will I need?"
+  ]
+}

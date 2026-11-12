@@ -1,0 +1,51 @@
+{
+  "title": "Dal medico: prepararsi, fare domande e chiarire il piano",
+  "intro": "Una visita utile unisce la vostra esperienza alla valutazione del professionista. Non occorre conoscere la diagnosi prima di chiedere aiuto. Un breve racconto dei cambiamenti, l'elenco dei medicinali e la preoccupazione principale facilitano il colloquio. Prenotazioni, assicurazione e invio agli specialisti seguono regole diverse secondo paese e ambulatorio; l'articolo originale collegato descrive il sistema sanitario tedesco.",
+  "sections": [
+    {
+      "heading": "Scegliere il servizio e spiegare l'urgenza",
+      "paragraphs": [
+        "Per un problema persistente o non emergente, un ambulatorio di cure primarie può spesso valutare la situazione e coordinare gli specialisti. In Germania lo studio del medico di famiglia è comunemente chiamato Hausarztpraxis: non presumete che le sue regole di invio valgano altrove. Segnalate al personale delle prenotazioni peggioramenti importanti per ricevere indicazioni adeguate. Quando possibile chiedete prima informazioni su costi, copertura e documenti. Forte dolore toracico, grave difficoltà respiratoria o segni di ictus richiedono soccorso immediato anziché aspettare un appuntamento ordinario."
+      ]
+    },
+    {
+      "heading": "Preparare un breve resoconto e informazioni precise sui farmaci",
+      "paragraphs": [
+        "Annotate inizio dei sintomi, fattori che li migliorano o peggiorano e conseguenze su sonno, lavoro e attività quotidiane. Date priorità alle preoccupazioni principali, soprattutto se i problemi sono diversi e il tempo limitato. Portate risultati pertinenti e un elenco di medicinali prescritti, prodotti da banco, integratori e allergie. Indicate ciò che assumete davvero, non solo quanto prescritto. Segnalate gravidanza, sua possibilità e trattamenti recenti se rilevanti. Fotografie o un diario possono aiutare quando il disturbo compare e scompare."
+      ]
+    },
+    {
+      "heading": "Organizzare comunicazione e riservatezza adatte",
+      "paragraphs": [
+        "Chiedete prima della visita un interprete, supporto in lingua dei segni, informazioni accessibili o accesso fisico adeguato. Un interprete professionista è particolarmente utile per decisioni complesse o delicate; non si dovrebbe affidare a un bambino la responsabilità dell'interpretariato medico. Potreste desiderare una persona fidata presente e anche del tempo da soli con il medico. Chiedete chi riceverà informazioni e come viene tutelata la riservatezza. Se un esame vi mette a disagio, chiedete in cosa consiste, perché serve e se è disponibile un accompagnatore sanitario."
+      ]
+    },
+    {
+      "heading": "Discutere le opzioni prima del passo successivo",
+      "paragraphs": [
+        "Chiedete quale sia l'ipotesi del medico, cosa resti incerto e come un esame proposto cambierebbe le cure. Per un trattamento discutete benefici probabili, rischi importanti, alternative e possibili conseguenze della sola osservazione. Spiegate ostacoli pratici come costo, turni lavorativi o difficoltà a deglutire compresse. Potete chiedere parole più semplici o tempo per una decisione non urgente. Un secondo parere può aiutare nelle scelte importanti poco chiare; accesso e pagamento variano. Evitate di interpretare un risultato separatamente da sintomi e visita."
+      ]
+    },
+    {
+      "heading": "Confermare i controlli e ripetere il piano con parole proprie",
+      "paragraphs": [
+        "Prima di uscire chiarite cosa fare ora, come usare i nuovi medicinali e quali precedenti continuare o modificare. Chiedete quando arriveranno i risultati, chi vi contatterà e cosa fare se non arriva alcun messaggio. Il silenzio non significa automaticamente risultato normale. Confermate controlli e sintomi che richiedono cure anticipate o urgenti. Ripetete brevemente il piano per verificare di aver capito e chiedete istruzioni scritte se utili. Se il piano non è attuabile, ditelo prima di uscire anziché abbandonarlo senza parlarne."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un sintomo intermittente",
+      "text": "Una persona ha un'eruzione che scompare prima delle visite. Porta fotografie datate, annota nuovi prodotti cutanei e spiega che il prurito disturba il sonno. Il medico considera la storia insieme all'esame, senza presumere che la pelle apparentemente normale escluda il problema."
+    },
+    {
+      "title": "Esempio ipotetico: risultati senza un piano chiaro",
+      "text": "Dopo la prescrizione di un esame del sangue, un paziente chiede quando sarà disponibile e chi lo spiegherà. Conserva i recapiti e concorda quando telefonare se non riceve il risultato, evitando un'attesa indefinita basata su una rassicurazione presunta."
+    }
+  ],
+  "questions": [
+    "Qual è la spiegazione più probabile e quale incertezza conta per la prossima decisione?",
+    "Come mi aiuterebbe questo esame o trattamento e quali sono alternative e rischi?",
+    "Chi spiegherà i risultati, quando devo tornare e quali sintomi richiedono aiuto prima?"
+  ]
+}

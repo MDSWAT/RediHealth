@@ -1,0 +1,51 @@
+{
+  "title": "Structured care for type 1 diabetes: the German DMP",
+  "intro": "A disease management programme, or DMP, organises continuing care for a chronic condition. In Germany, the diabetes programme brings planned reviews, education and coordination into an individual treatment plan. It does not cure diabetes or replace daily insulin care. This article describes a German service; people elsewhere should ask about their own local diabetes pathway.",
+  "sections": [
+    {
+      "heading": "Understand participation before enrolling",
+      "paragraphs": [
+        "Participation is voluntary. Ask your German statutory health insurer and a participating practice whether the programme is available and how to enrol. Not every practice offers it. Programme participation is free for insured participants, but ask separately about any proposed service or device rather than assuming every possible product is included. Read the participation and data-information documents and ask who receives programme records, why they are collected and whom to contact with questions. Clarify attendance and education arrangements, how to leave the programme and how ordinary care continues. A DMP is a framework for coordinated care, not a promise of immediate access to every specialist or technology."
+      ]
+    },
+    {
+      "heading": "Make the treatment goals personal",
+      "paragraphs": [
+        "The plan should support daily life while reducing severe low glucose, dangerous high glucose and longer-term complications. Discuss your usual glucose patterns, work or school, exercise, eating, sleep, pregnancy plans and other illnesses. Targets and insulin arrangements need individual agreement, balancing benefit against hypoglycaemia risk. Bring a current list of medicines and supplements and describe problems with costs, supplies, vision, dexterity or understanding instructions. Ask who coordinates the plan and referrals. Decisions about a glucose sensor, pump or other technology require assessment, training and a backup plan; enrolling does not by itself mean that any particular device is suitable or automatically provided."
+      ]
+    },
+    {
+      "heading": "Use education to practise real situations",
+      "paragraphs": [
+        "Structured education should build skills in glucose monitoring, insulin use, food, activity and managing everyday changes. Ask to practise recognising and treating low glucose, knowing when ketones need checking and following an individual illness-day plan. Insulin remains necessary even when you are ill and not eating: do not simply stop it; use your agreed plan and obtain advice about adjustments. Pump users need clear instructions for interrupted delivery and backup insulin. Include family or a trusted person with your consent, and request language support when needed. Education should be revisited when circumstances or treatment change, rather than treated as an examination you can fail."
+      ]
+    },
+    {
+      "heading": "Plan checks and referrals rather than waiting for symptoms",
+      "paragraphs": [
+        "Regular reviews assess glucose control, severe episodes, medicines, injection or infusion sites and wellbeing. Eye, kidney and foot checks help detect complications before they become obvious. Their timing depends on age, duration of diabetes, findings and current programme requirements; ask for your own written schedule instead of applying an old generic table. Blood pressure, blood lipids, smoking and cardiovascular risk also need attention. Children require age-appropriate care with family involvement and a planned transition to adult services. Psychological strain, fear of low glucose, depression or disordered eating deserve support. Pregnancy planning should trigger specialist discussion before conception where possible."
+      ]
+    },
+    {
+      "heading": "Know what cannot wait for the next DMP appointment",
+      "paragraphs": [
+        "Severe low glucose with unconsciousness or inability to swallow safely requires emergency help and the trained rescue plan; do not give food or drink by mouth. Vomiting, abdominal pain, deep or rapid breathing, unusual drowsiness or high ketones can signal diabetic ketoacidosis and need urgent assessment, with emergency care for severe symptoms. Do not delay because a routine appointment is already booked. New foot wounds or a hot swollen foot need rapid assessment, and sudden vision loss needs emergency care. Keep urgent and out-of-hours contacts, your insulin plan and necessary supplies accessible. Review any emergency afterward with the team to understand what happened and improve the plan without blame."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: coordinating several appointments",
+      "text": "Mira joins a participating practice in Germany. She brings glucose records and asks the coordinator to write down her next eye, kidney and foot reviews and who follows abnormal results. She checks enrolment with her insurer rather than assuming the same programme exists in another country."
+    },
+    {
+      "title": "Hypothetical example: education for a changed routine",
+      "text": "Arben starts night shifts and has repeated low glucose. He contacts the diabetes team for a timely review and refresher education rather than waiting for the next planned DMP visit. The team adapts the individual plan; this example does not specify insulin doses."
+    }
+  ],
+  "questions": [
+    "Can my insurer and practice enrol me, and what do the participation and data documents mean?",
+    "Who coordinates my care, education, supplies and personal review schedule?",
+    "What is my written plan for low glucose, illness, ketones and urgent help?"
+  ]
+}

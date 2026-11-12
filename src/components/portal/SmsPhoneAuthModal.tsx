@@ -37,6 +37,22 @@ const authModalCopy: Record<
     fallbackLinkText: string;
   }
 > = {
+  ru: {
+    step2Subtitle: (p) => `Мы отправили 4-значный код на ${p}. Введите его ниже.`,
+    invalidPhoneError: "Напишите номер телефона, например 0721 000 000.",
+    tooManyAttempts: "Слишком много попыток. Подождите минуту и ​​повторите попытку.",
+    smsSent: "Мы отправили вам код в текстовом сообщении.",
+    genericError: "Что-то пошло не так. Попробуйте еще раз.",
+    demoNotice: "Тестовый код (только демо):",
+    digit: (n) => `цифра ${n} из 4`,
+    sending: "Отправка…",
+    verifying: "Проверка…",
+    changeNumber: "Изменить номер",
+    resendSms: "Отправьте код еще раз",
+    fallbackQuestion: "У вас нет телефона или вам нужна помощь со входом в систему?",
+    fallbackLinkText: "Обратитесь за помощью к медицинскому посреднику",
+  },
+
   ro: {
     step2Subtitle: (p) => `Am trimis un cod de 4 cifre la ${p}. Scrie-l mai jos.`,
     invalidPhoneError: "Scrie un număr de telefon, de exemplu 0721 000 000.",

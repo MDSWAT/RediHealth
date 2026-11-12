@@ -27,6 +27,8 @@ const COUNTRY_TO_LANG: Record<string, Lang> = {
 };
 
 const LANG_TO_COUNTRY: Record<Lang, CountryCode> = {
+  ru: "MD",
+
   ro: "RO",
   sq: "AL",
   it: "IT",

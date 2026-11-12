@@ -22,6 +22,12 @@ export function TriagePlainLanguageToggle({
 
   // Same order, labels and look as the topic pages' format switch: concise overview first.
   const dict: Record<Lang, { simple: string; standard: string; aria: string }> = {
+ru: {
+      simple: "Простой язык",
+      standard: "Полное руководство",
+      aria: "Уровень чтения",
+    },
+
     en: {
       simple: "In brief",
       standard: "Complete guide",

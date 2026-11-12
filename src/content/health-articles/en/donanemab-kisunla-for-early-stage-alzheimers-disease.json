@@ -1,0 +1,51 @@
+{
+  "title": "Donanemab (Kisunla) for early Alzheimer's disease: weighing benefit and risk",
+  "intro": "Donanemab is an antibody treatment that helps remove amyloid deposits from the brain. It may slow decline in some people with early symptomatic Alzheimer's disease, but it does not cure the disease or restore lost abilities. It requires specialist selection, intravenous treatment and repeated brain scans. Eligibility, funding and safety requirements must be checked in the country where care is provided.",
+  "sections": [
+    {
+      "heading": "Who may be considered in the European Union",
+      "paragraphs": [
+        "The EU indication concerns adults with mild cognitive impairment or mild dementia due to Alzheimer's disease and confirmed amyloid pathology. It is restricted to people with one or no copy of the ApoE4 variant; people with two copies are outside that indication because of safety concerns. Genetic testing needs explanation and consent, including what the result does and does not mean for relatives. A positive amyloid test alone is not enough to select treatment: symptoms, diagnosis, stage, scans, medical history and other medicines must be assessed together. The treatment is not a general option for any memory complaint or advanced dementia."
+      ]
+    },
+    {
+      "heading": "Understand the expected benefit without assuming improvement",
+      "paragraphs": [
+        "Trials found slower average worsening of memory, thinking and everyday function with donanemab than with placebo over the study period. People in both groups generally deteriorated. Removing amyloid on a scan is different from showing a noticeable improvement in daily life, and an average result cannot predict an individual's course. Ask the specialist to explain the size of the difference in everyday terms, the time period studied and uncertainty about longer-term outcomes. Regulatory approval and a health system's assessment of added benefit or reimbursement answer different questions. Discuss supportive dementia care and other appropriate treatments whether or not donanemab is chosen."
+      ]
+    },
+    {
+      "heading": "Brain swelling and bleeding are central safety issues",
+      "paragraphs": [
+        "Amyloid-related imaging abnormalities, called ARIA, include brain swelling and bleeding-related changes. They can occur without symptoms, but some are serious or fatal. MRI is needed before treatment and at specified points during it, with extra scans if symptoms arise; feeling well does not replace monitoring. Under EU requirements, treatment must not be started during ongoing anticoagulant therapy, and certain previous brain bleeds or scan abnormalities, poorly controlled blood pressure and inability to undergo MRI can rule it out. This is not a complete eligibility checklist. Do not stop an essential anticoagulant to make yourself eligible: the treating specialists must assess the whole situation."
+      ]
+    },
+    {
+      "heading": "Know the urgent symptoms and carry treatment information",
+      "paragraphs": [
+        "Contact the treatment team promptly for new headache, confusion, dizziness, balance problems, nausea or changes in vision during treatment. Sudden weakness, speech difficulty, seizure, reduced consciousness or a severe sudden headache needs emergency assessment; do not drive yourself. These may be stroke, ARIA or another emergency, and cannot be distinguished safely at home. Tell emergency clinicians that you receive donanemab and show the patient card, because this matters when they assess brain symptoms and consider treatments affecting bleeding. Infusion reactions can include flushing, chills, chest tightness, breathing difficulty or blood pressure changes: alert staff immediately, and obtain emergency help for a severe reaction outside the clinic."
+      ]
+    },
+    {
+      "heading": "Make a workable treatment and review plan",
+      "paragraphs": [
+        "Infusions are given in a supervised setting, generally every four weeks under the EU product information. The specialist sets the dose, scans and stopping rules; EU treatment has a maximum duration of eighteen months and may stop earlier according to amyloid clearance, progression or safety. Do not transfer dosing or scan schedules from another country's website. Consider travel, appointment support, MRI access, costs and the person's wishes and ability to participate in decisions with appropriate support. Ask who reviews scan results before infusions and how to reach the team urgently. Treatment may be paused or permanently stopped for adverse effects. Choosing not to take it should still lead to a clear plan for ongoing care and support."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: eligibility is not just a memory test",
+      "text": "Nadia has mild memory problems and asks about Kisunla. The specialist first clarifies the diagnosis and disease stage, then discusses amyloid confirmation, genetic counselling, MRI and her medicines. The family does not assume that a diagnosis alone guarantees eligibility or funding."
+    },
+    {
+      "title": "Hypothetical example: new symptoms during treatment",
+      "text": "After starting donanemab, Ilir suddenly has difficulty speaking. His partner calls emergency services and shows the treatment card. They do not wait for the next infusion visit or decide at home whether the cause is stroke or ARIA."
+    }
+  ],
+  "questions": [
+    "Do I meet the current local indication, and which tests or medicines affect suitability?",
+    "How large is the likely benefit for someone like me compared with the risks and burden?",
+    "What are the scan, urgent-contact and stopping plans, and what support continues if I decline or stop?"
+  ]
+}

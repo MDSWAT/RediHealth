@@ -1,0 +1,51 @@
+{
+  "title": "Acne: prendersi cura della pelle e scegliere il trattamento",
+  "intro": "L'acne comporta l'ostruzione dei follicoli piliferi e un'infiammazione. Può provocare punti neri, punti bianchi, brufoli infiammati e noduli profondi dolorosi, spesso su viso, torace o schiena. Non indica scarsa igiene. Il piano più adatto dipende dal tipo di lesioni, dal rischio di cicatrici, dai trattamenti precedenti e dall'impatto sulla tua vita.",
+  "sections": [
+    {
+      "heading": "Comprendere i cambiamenti della pelle",
+      "paragraphs": [
+        "Il sebo e le cellule cutanee eliminate dalla superficie possono accumularsi nei follicoli. L'infiammazione e l'attività dei batteri normalmente presenti sulla pelle contribuiscono ad alcune lesioni. I cambiamenti ormonali possono aumentare la produzione di sebo: l'acne è quindi comune nell'adolescenza, ma può continuare o iniziare nell'età adulta. Il colore di un punto nero non significa che contenga sporco. L'acne non è contagiosa e sfregare energicamente la pelle non ne elimina la causa."
+      ]
+    },
+    {
+      "heading": "Adottare una routine sostenibile",
+      "paragraphs": [
+        "Una detersione delicata e prodotti indicati come non comedogenici possono aiutarti a evitare ulteriori irritazioni o pori ostruiti. Toccare continuamente o schiacciare i brufoli aumenta il rischio di macchie e cicatrici. Prodotti costosi e routine complicate non sono automaticamente migliori. Elenca al farmacista o al medico tutti i prodotti che usi: combinare diversi trattamenti irritanti può rendere la pelle dolente e impedire di capire quale stia aiutando."
+      ]
+    },
+    {
+      "heading": "Discutere le opzioni terapeutiche",
+      "paragraphs": [
+        "Le opzioni possono comprendere perossido di benzoile, retinoidi topici e altri medicinali applicati sulla pelle. Alcune persone necessitano di compresse su prescrizione o di assistenza specialistica. Gli antibiotici si usano in casi selezionati a causa degli effetti indesiderati e delle resistenze: non usare compresse avanzate da altre cure. L'isotretinoina richiede supervisione specialistica e importanti precauzioni. Informa chi prescrive se sei incinta, potresti esserlo o stai programmando una gravidanza, perché alcuni farmaci per l'acne non sono adatti."
+      ]
+    },
+    {
+      "heading": "Valutare i progressi senza aspettarsi cambiamenti immediati",
+      "paragraphs": [
+        "Il trattamento richiede tempo; irritazione o secchezza possono comparire prima che il beneficio completo diventi evidente. Chiedi quali cambiamenti aspettarti, come usare il prodotto scelto e quando rivalutarlo. Un breve appunto o una fotografia occasionale, conservata privatamente, può aiutarti a descrivere i cambiamenti senza controllare continuamente la pelle. Le macchie persistenti più scure o più chiare sono diverse dalle nuove lesioni infiammate e possono richiedere una discussione separata."
+      ]
+    },
+    {
+      "heading": "Chiedere aiuto per cicatrici, dolore o disagio",
+      "paragraphs": [
+        "Consulta un medico in caso di noduli profondi dolorosi, cicatrici in formazione, diagnosi incerta o acne che non migliora con il piano concordato. Un gonfiore doloroso che peggiora rapidamente con febbre richiede una valutazione tempestiva, non prodotti più forti contro l'acne. Anche vergogna, bullismo e rinuncia alle attività meritano attenzione. Non devi aspettare che la pelle appaia gravemente colpita per chiedere sostegno emotivo o consigli sul trattamento."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: semplificare la routine",
+      "text": "Uno studente usa uno scrub, un tonico agli acidi e un gel antiacne, e sente bruciore alla pelle. Porta al farmacista i nomi dei prodotti e chiede quale combinazione sia appropriata. Questo aiuta a individuare l'irritazione e a chiarire un piano; non garantisce che un particolare prodotto elimini l'acne."
+    },
+    {
+      "title": "Esempio ipotetico: chiedere informazioni sulle cicatrici",
+      "text": "Una persona nota noduli più profondi e nuovi avvallamenti nella pelle nonostante usi il trattamento prescritto. Prenota un controllo e spiega come l'acne influenzi la sua fiducia in sé. Chiede se sia indicata una visita specialistica invece di schiacciare i noduli o acquistare un altro trattamento forte."
+    }
+  ],
+  "questions": [
+    "Quale tipo di acne ho e c'è un rischio di cicatrici?",
+    "Come devo usare questo trattamento e quali effetti indesiderati o precauzioni in gravidanza sono importanti?",
+    "Quando rivaluteremo i progressi e cosa potrebbe modificare il piano?"
+  ]
+}

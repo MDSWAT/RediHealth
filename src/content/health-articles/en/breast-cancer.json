@@ -1,0 +1,51 @@
+{
+  "title": "Breast cancer: diagnosis, treatment choices and support throughout care",
+  "intro": "Breast cancer starts when abnormal breast cells grow and may invade nearby tissue or spread elsewhere. It can affect people of different ages and genders. There are several types, so the same treatment is not right for everyone. A new breast change deserves assessment, and a diagnosis should lead to a clear explanation of the findings, treatment goals and support available. This overview helps prepare that conversation rather than choosing a personal cancer regimen.",
+  "sections": [
+    {
+      "heading": "Have new changes assessed without diagnosing from appearance",
+      "paragraphs": [
+        "A new lump in the breast or armpit, a change in shape, skin dimpling, nipple inversion or unusual discharge can need investigation. Many breast changes are not cancer, but painlessness or a recent normal screening test does not remove the need to check a new persistent change. A breast clinic may combine examination, mammography or ultrasound and a tissue sample. Ask which tests are needed, when results will arrive and who explains them. Screening for people without symptoms and investigating a new symptom are different processes; do not wait for the next screening invitation."
+      ]
+    },
+    {
+      "heading": "Understand the pathology and extent before comparing plans",
+      "paragraphs": [
+        "A biopsy can establish whether abnormal cells are confined to their original area or invasive, and provide information about tumour type and grade. Grade describes cell features, while stage describes the extent of disease; they are not interchangeable. Testing for oestrogen and progesterone receptors and HER2 helps identify treatments likely to work. Additional imaging is selected according to findings rather than automatically giving every person every scan. Ask whether lymph nodes are involved, whether any distant spread is known and which results remain outstanding. Genetic counselling or testing may be relevant according to personal and family circumstances."
+      ]
+    },
+    {
+      "heading": "Compare local and whole-body treatments as a sequence",
+      "paragraphs": [
+        "Local treatment can include breast-conserving surgery or mastectomy, with radiotherapy according to the case. Discuss reconstruction or choosing not to reconstruct, and the purpose and consequences of lymph-node surgery. Whole-body treatment may include chemotherapy, hormone-blocking medicines, targeted treatment or immunotherapy when the cancer's features support it. Not everyone needs every treatment, and medicines may come before or after surgery. Ask why this sequence is recommended, the expected reduction in risk or symptom burden, important harms and alternatives. Metastatic disease usually has different goals, such as controlling cancer, relieving symptoms and extending life, rather than promising cure."
+      ]
+    },
+    {
+      "heading": "Plan side-effect care, fertility and everyday support early",
+      "paragraphs": [
+        "Ask how treatment may affect energy, work, infection risk, sensation, sexuality and body image. Fertility preservation or contraception questions should be raised before treatment when relevant; pregnancy needs specialist planning. Discuss medicines and supplements with the oncology team rather than adding products advertised as cancer remedies. Physiotherapy, wound care, nutrition support and help with emotional or financial strain can be part of care. Ask about arm or chest swelling and access to a lymphoedema service after relevant treatment. Get a named contact and written instructions for side effects, including how to obtain urgent advice outside clinic hours."
+      ]
+    },
+    {
+      "heading": "Keep follow-up and urgent symptom plans clear",
+      "paragraphs": [
+        "Follow-up checks recovery, ongoing treatment effects and possible recurrence, using a schedule matched to your situation. Report new persistent symptoms rather than waiting silently for the next routine appointment, but remember that a symptom is not automatically recurrence. Fever, chills or feeling suddenly unwell during treatment that can reduce immunity needs immediate oncology advice under your specific safety plan. Severe breathlessness, chest pain, confusion or collapse requires emergency help. Palliative care can support symptoms and quality of life alongside cancer treatment; it is not restricted to the final days. Ask for understandable information and support when choices or emotions feel overwhelming."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: different plans for two people",
+      "text": "Two friends with breast cancer are offered different medicines. One asks their team to explain receptor findings, stage and treatment goals rather than assuming the difference means poorer care. They bring a written list of questions and confirm which test results are still pending."
+    },
+    {
+      "title": "Hypothetical example: raising fertility before treatment",
+      "text": "A patient who may want children tells the oncology team before starting treatment. They discuss timely specialist advice, realistic options and contraception while the cancer plan is organised, instead of waiting until after treatment has affected fertility."
+    }
+  ],
+  "questions": [
+    "What do the biopsy, receptor results and stage show, and what remains uncertain?",
+    "Why do you recommend this treatment sequence, and what benefits, risks and alternatives apply to me?",
+    "What support, follow-up and urgent contact plan do I need during and after treatment?"
+  ]
+}

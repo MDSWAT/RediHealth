@@ -1,0 +1,51 @@
+{
+  "title": "Bambini al sole: un piano pratico per la famiglia",
+  "intro": "Giocare fuori è prezioso e la protezione si può organizzare prima del fastidio. I raggi ultravioletti danneggiano pelle e occhi anche senza forte caldo. Le scottature infantili aumentano il rischio successivo di tumori cutanei. Combinare ombra, vestiti e crema adatta, prevenendo il surriscaldamento. Nessuna misura blocca tutto e anche la pelle scura ha bisogno di protezione.",
+  "sections": [
+    {
+      "heading": "Pianificare secondo UV, non solo temperatura",
+      "paragraphs": [
+        "Controllare le previsioni UV e scegliere, se possibile, ore meno intense per attività lunghe. Nuvole e brezza fresca non eliminano affidabilmente i raggi. Acqua, sabbia e altre superfici possono rifletterli. Scegliere pause all'ombra e osservarne lo spostamento. L'ombrellone non sostituisce vestiti e protezione delle parti scoperte. Chiedere se farmaci o condizioni cutanee aumentino la sensibilità del bambino."
+      ]
+    },
+    {
+      "heading": "Vestiti e ombra semplificano la protezione",
+      "paragraphs": [
+        "Scegliere abiti comodi che coprano spalle e altre zone, cappello per viso, orecchie e collo e occhiali ben adattati con protezione UV. Non scaldare troppo con strati inutili. Indumenti protettivi da nuoto aiutano, ma restano parti esposte. Tenere i piccoli lattanti lontano dal sole diretto, soprattutto sotto sei mesi. Usare un parasole ventilato del passeggino, non una coperta che intrappola calore. Controllare spesso il bambino."
+      ]
+    },
+    {
+      "heading": "Crema abbondante e ripetuta",
+      "paragraphs": [
+        "Per bambini dell'età adatta scegliere ampio spettro UVA e UVB con SPF almeno 30, seguendo le istruzioni. Coprire bene le zone scoperte, comprese orecchie, collo e dorso dei piedi. Riapplicare almeno ogni due ore e dopo nuoto, sudore o asciugatura, anche se resistente all'acqua. Per lattanti sotto sei mesi chiedere consiglio specifico senza affidarsi alla crema. SPF maggiore non significa tempo illimitato o assenza di riapplicazione."
+      ]
+    },
+    {
+      "heading": "Una routine sostenibile per gli adulti",
+      "paragraphs": [
+        "Tenere cappelli, crema e bevande adatte nella borsa delle uscite. Concordare chi controlla tra casa, scuola, sport e altri caregiver. Offrire scelte gestibili, come quale cappello adatto usare, ma la responsabilità resta adulta. Spiegare semplicemente e dare esempio. Ombra e abiti freschi aiutano il caldo; la crema non previene disidratazione o colpo di calore. Alimentazione e liquidi del lattante richiedono consiglio per età: non diluire la formula per bevande aggiuntive."
+      ]
+    },
+    {
+      "heading": "Agire presto per scottature o troppo caldo",
+      "paragraphs": [
+        "Portare il bambino fuori dal sole, raffreddare delicatamente la pelle senza ghiaccio e non rompere vesciche. Non raffreddare troppo un lattante. Chiedere consiglio rapido per scottatura in lattante o piccolo bambino, vesciche, gonfiore, disidratazione, febbre o forte malessere. Confusione, collasso, convulsioni o sospetto colpo di calore richiedono emergenza e raffreddamento nell'attesa. Non forzare bevande a un bambino assonnato o incosciente. Il rossore è meno evidente sulla pelle scura: osservare anche calore e dolore al tatto."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Lezione all'aperto — esempio ipotetico",
+      "text": "Chi assiste controlla le previsioni, prepara cappello e crema e concorda chi sorveglia la riapplicazione. Organizza pausa all'ombra senza ritenere sufficiente l'applicazione mattutina per tutto il giorno."
+    },
+    {
+      "title": "Passeggiata calda col lattante — esempio ipotetico",
+      "text": "La famiglia sceglie un'ora fresca, usa un parasole ventilato e controlla spesso il piccolo. Non copre il passeggino con una coperta. Se compare malessere o scottatura chiede consiglio, non soltanto altra crema."
+    }
+  ],
+  "questions": [
+    "Quale protezione si adatta a età, pelle e medicinali del bambino?",
+    "Chi mantiene ombra, abiti e crema a scuola, sport o durante l'assistenza?",
+    "Quali segni di scottatura, disidratazione o malattia da caldo richiedono un medico?"
+  ]
+}

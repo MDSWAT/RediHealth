@@ -36,6 +36,17 @@ const dict: Record<
     loading: string;
   }
 > = {
+ru: {
+"call112": "Позвонить 112",
+
+    title: "Помощник по здоровью",
+    subtitle: "Ответьте на несколько коротких вопросов. Мы направим вас к информации, к врачу или медицинскому посреднику.",
+    emergencyNotice:
+      "При сильной боли в груди, затрудненном дыхании, внезапных симптомах инсульта, сильном кровотечении или непосредственной опасности позвоните по телефону.",
+    emergencyDisclaimer: "Приложение не звонит вам.",
+    loading: "Загрузка помощника по здоровью…",
+  },
+
   en: {
     title: "Health assistant",
     subtitle: "Answer a few short questions. We point you to information, a doctor or a health mediator.",

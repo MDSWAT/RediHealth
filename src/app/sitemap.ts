@@ -3,6 +3,8 @@ import { healthTopicSlugs } from "@/lib/i18n/health-information-topics";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { languages } from "@/lib/i18n/translations";
 import { getSiteUrl } from "@/lib/site-url";
+import { healthSummaryPath, informedHealthAreas } from "@/lib/data/informedhealth-directory";
+import { healthArticleIndex, healthArticlePath } from "@/lib/data/health-article-index";
 
 const publicPaths = [
   "/",
@@ -22,6 +24,8 @@ const publicPaths = [
   "/stiri",
   "/terms",
   ...healthTopicSlugs.map((slug) => `/health-information/${slug}`),
+  ...informedHealthAreas.map(area => healthSummaryPath(area.id)),
+  ...healthArticleIndex.map(item => healthArticlePath(item.id)),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -25,6 +25,8 @@ const URGENCY_UI_BY_LANG: Record<
     cardLabels: [string, string, string, string];
   }
 > = {
+"ru": {"urgencyBadge":"Экстренная помощь 112","cardLabels":["Точное место","Главный симптом","Возраст и дыхание","Оставайтесь на линии"]},
+
   ro: {
     urgencyBadge: "Urgență 112",
     cardLabels: [

@@ -1,0 +1,51 @@
+{
+  "title": "Calcium intake estimates: read food labels and use the result sensibly",
+  "intro": "Estimating calcium from food can help an adult understand their diet and discuss whether changes are useful. The result is approximate: portions, brands and day-to-day eating vary. It is not a diagnosis of calcium deficiency, a bone-density test or an automatic supplement prescription. Children, pregnancy, breastfeeding and medical conditions need advice suited to their circumstances rather than an adult estimate copied without checking.",
+  "sections": [
+    {
+      "heading": "Record the food and the portion actually consumed",
+      "paragraphs": [
+        "Include a representative range of days rather than only the day you ate especially well. Record drinks, dairy foods, fortified alternatives, other calcium-containing foods and existing supplements. On a label, check whether the amount is per serving or per weight or volume, and compare it with your actual portion. Do not count the same food twice in a mixed meal. If the label uses a percentage of a reference value, find out what that reference is before treating the percentage as your personal requirement."
+      ]
+    },
+    {
+      "heading": "Choose the right reference before judging the total",
+      "paragraphs": [
+        "Calcium supports bones, teeth and other body functions. Recommended intakes are based on population guidance and can differ by age, life stage and national authority. Ask which recommendation is appropriate for you, particularly with osteoporosis treatment, kidney disease or a restricted diet. A tolerable upper limit is a safety boundary, not a target to aim for. A single day below a reference value does not establish deficiency, and repeatedly taking more than needed is not a reliable way to make bones stronger."
+      ]
+    },
+    {
+      "heading": "Consider food sources and absorption together",
+      "paragraphs": [
+        "Dairy foods, calcium-fortified plant drinks, some tofu, certain green vegetables and fish eaten with edible bones can contribute. The amount varies, so check the product rather than assuming every plant drink or tofu is fortified. Calcium in some foods, such as spinach, is less readily absorbed because of other compounds present. Vitamin D also supports calcium absorption, but that does not justify taking high doses of either nutrient without advice. If avoiding dairy or following a restricted diet, a dietitian can help find workable alternatives that fit preferences, cost and other nutritional needs."
+      ]
+    },
+    {
+      "heading": "Review supplements and medicines before filling a supposed gap",
+      "paragraphs": [
+        "A supplement may be useful in selected circumstances, but add its calcium to the dietary total and check the amount of elemental calcium on the label. Do not confuse the weight of a calcium compound with the calcium it supplies. Excess supplementation can cause unwanted effects and may increase stone risk in some people. Calcium can interfere with medicines such as thyroid replacement and some antibiotics, so ask a pharmacist about your exact products and timing. Do not apply another person's separation schedule or stop prescribed treatment yourself."
+      ]
+    },
+    {
+      "heading": "Use an estimate as a conversation, not a verdict on bone health",
+      "paragraphs": [
+        "Food records contain uncertainty, and the body regulates blood calcium closely; a routine blood calcium result does not simply measure how much calcium you usually eat. Bone strength also depends on factors such as activity, smoking, hormones, illnesses and medicines. If there is a fracture risk, symptoms or a known medical condition, ask what assessment is needed rather than relying on a calculator total. Agree practical dietary changes and review when appropriate. With kidney stones or abnormal calcium tests, get individual advice instead of automatically removing calcium-rich foods or adding large supplements."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Invented label example: checking the portion",
+      "text": "A fictional food label lists 200 mg of calcium per serving. Eating 2 of those servings would contribute 400 mg. These invented values explain portion arithmetic, not a daily requirement or a recommendation to eat that product."
+    },
+    {
+      "title": "Hypothetical example: a fortified drink",
+      "text": "An adult replaces milk with a plant drink and records their usual portions. They check whether the chosen brand contains added calcium and discuss the overall diet and existing supplement with a professional rather than assuming every milk alternative has the same nutrients."
+    }
+  ],
+  "questions": [
+    "Which calcium reference applies to my age, health and life stage?",
+    "Does my food record suggest a practical dietary change, and is a supplement appropriate?",
+    "Could calcium interact with my medicines, and do my bone or kidney concerns need separate assessment?"
+  ]
+}

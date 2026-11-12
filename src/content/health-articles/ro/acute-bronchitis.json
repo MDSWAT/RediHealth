@@ -1,0 +1,51 @@
+{
+  "title": "Bronșita acută: cum înțelegi o tuse care persistă",
+  "intro": "Bronșita acută este o inflamație temporară a căilor respiratorii mai mari din plămâni, frecventă în timpul sau după o infecție respiratorie virală. Tusea poate continua după ameliorarea durerii în gât ori a secrețiilor nazale. O tuse persistentă poate fi epuizantă, dar durata ei nu dovedește singură că este necesar un antibiotic. Dificultățile de respirație și alte semne de alarmă necesită evaluare separată.",
+  "sections": [
+    {
+      "heading": "Recunoaște manifestările și limitele lor",
+      "paragraphs": [
+        "Tusea poate fi uscată sau cu expectorație. Poate fi însoțită de oboseală și disconfort provocat de tuse. Mucusul verde ori galben nu dovedește singur o infecție bacteriană. Bronșita, pneumonia, astmul și alte afecțiuni pot avea simptome asemănătoare, astfel că un diagnostic bazat numai pe tuse poate induce în eroare. Episoadele repetate sau tusea de lungă durată necesită evaluare, nu presupunerea că fiecare episod este încă o infecție simplă."
+      ]
+    },
+    {
+      "heading": "Află ce poate stabili o consultație",
+      "paragraphs": [
+        "Medicul întreabă cum au început simptomele, verifică febra și problemele de respirație și ascultă plămânii. Ia în considerare vârsta, sarcina, imunitatea și bolile cardiace sau pulmonare existente. O radiografie toracică ori alte investigații pot fi necesare dacă se suspectează pneumonie sau altă problemă, dar nu se fac de rutină pentru orice tuse necomplicată. Menționează lipsa de aer, sângele din expectorație și medicamentele folosite, nu doar felul în care sună tusea."
+      ]
+    },
+    {
+      "heading": "Sprijină recuperarea și protejează-i pe ceilalți",
+      "paragraphs": [
+        "Odihna, aportul suficient de lichide și evitarea fumului de tutun pot face recuperarea mai ușor de gestionat. Persoanele cu restricții de lichide prescrise trebuie să urmeze sfatul lor medical individual. Acoperă gura când tușești, spală mâinile și evită contactul apropiat cu persoane vulnerabile cât timp te simți rău, deoarece infecția care provoacă bronșita se poate transmite. Nu te apleca peste vase cu apă clocotită: inhalarea aburilor poate provoca arsuri. Întreabă farmacistul înainte să folosești produse pentru tuse, mai ales la copii, în sarcină sau împreună cu alte medicamente."
+      ]
+    },
+    {
+      "heading": "Înțelege de ce antibioticele nu ajută adesea",
+      "paragraphs": [
+        "Antibioticele nu tratează virusurile, care provoacă multe cazuri de bronșită acută. Pot produce efecte adverse și contribui la rezistența bacteriană; nu folosi comprimate rămase sau prescrise altei persoane. Medicul le poate recomanda pentru o altă infecție bacteriană ori una mai gravă. Un inhalator nu este necesar automat pentru orice tuse; respirația șuierătoare ori astmul cunoscut pot necesita o evaluare diferită și un plan individual de tratament."
+      ]
+    },
+    {
+      "heading": "Stabilește un plan pentru agravarea simptomelor",
+      "paragraphs": [
+        "Cere sfat medical prompt pentru lipsă de aer, durere în piept, sânge în expectorație, febră persistentă, agravare importantă sau tuse care nu se ameliorează după aproximativ trei săptămâni. Cere sfat mai devreme în cazul unui bebeluș, al sarcinii, fragilității, imunității scăzute sau unei boli importante preexistente. Dificultatea severă de respirație, buzele albăstrui ori cenușii, imposibilitatea de a vorbi normal din cauza respirației, confuzia sau colapsul necesită ajutor de urgență. Nu aștepta efectul unui remediu pentru tuse în aceste situații."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: întrebări despre expectorație",
+      "text": "O persoană tușește cu mucus galben după o răceală. Îi spune medicului de cât timp durează și dacă are febră, durere în piept sau lipsă de aer. Întreabă dacă este necesară o consultație, în loc să presupună că nuanța mucusului înseamnă că are nevoie de antibiotice."
+    },
+    {
+      "title": "Exemplu ipotetic: schimbarea planului de recuperare",
+      "text": "O persoană care se odihnește acasă începe să respire greu și se simte mult mai rău. Cere evaluare promptă în loc să mărească pur și simplu cantitatea de medicament pentru tuse. Dacă dificultatea respiratorie devine severă sau apare confuzia, următorul pas este ajutorul de urgență, nu așteptarea unei programări obișnuite."
+    }
+  ],
+  "questions": [
+    "Simptomele mele corespund unei bronșite necomplicate sau trebuie investigată altă cauză?",
+    "Ce opțiuni pentru ameliorarea simptomelor sunt potrivite cu celelalte boli și medicamente ale mele?",
+    "Ce schimbări impun ajutor urgent și când trebuie reevaluată o tuse persistentă?"
+  ]
+}

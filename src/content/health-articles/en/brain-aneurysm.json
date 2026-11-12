@@ -1,0 +1,51 @@
+{
+  "title": "Brain aneurysm: monitoring, treatment choices and emergency warning signs",
+  "intro": "A brain aneurysm is a bulge in an artery in or near the brain. Many are found incidentally and never rupture, but a rupture can cause life-threatening bleeding. Finding an unruptured aneurysm therefore calls for an individual assessment, not an automatic operation or a promise of no risk. Sudden severe headache or new neurological symptoms need urgent action rather than waiting for a monitoring appointment.",
+  "sections": [
+    {
+      "heading": "Recognise a possible emergency before reading further",
+      "paragraphs": [
+        "A sudden extremely severe headache, especially one reaching its worst intensity rapidly, needs emergency assessment even if you have never been diagnosed with an aneurysm. Collapse, a seizure, new weakness, facial droop, speech difficulty or sudden visual loss also requires emergency help. Neck stiffness, vomiting or altered awareness may accompany bleeding. Do not drive yourself or wait to see whether a painkiller works. Many headaches have other causes, but an online symptom comparison cannot safely exclude a brain haemorrhage or stroke."
+      ]
+    },
+    {
+      "heading": "Clarify what the scan has shown",
+      "paragraphs": [
+        "Ask where the aneurysm is, its size and shape, and whether it has bled or changed since an earlier scan. CT or MRI-based vessel imaging and, in selected cases, catheter angiography help specialists assess the anatomy. The reason for each test and its risks should be explained. A small incidental aneurysm may not explain a long-standing headache; other causes can still need assessment. Tell the team about family history, previous bleeding, blood pressure, smoking and other health conditions that may affect the discussion."
+      ]
+    },
+    {
+      "heading": "Compare observation with preventive treatment",
+      "paragraphs": [
+        "For an unruptured aneurysm, specialists weigh the chance of future rupture against the risks of a procedure. Location, size, growth, symptoms, age, health and personal priorities all matter. Monitoring may include planned imaging and management of relevant risks rather than immediate intervention. Ask for your estimated risk over a clear period and the uncertainty around it. Do not apply another person's size threshold or an internet calculator as a treatment rule. A decision can be revisited if scans or health change."
+      ]
+    },
+    {
+      "heading": "Understand clipping and endovascular approaches",
+      "paragraphs": [
+        "Surgical clipping places a clip across the aneurysm's neck through an operation to stop blood entering the bulge. Endovascular treatment reaches the artery through blood vessels and may use coils or selected other devices. Suitability depends on the aneurysm and expertise available. Both have risks, including stroke, bleeding and the possible need for further treatment. Ask about recovery, follow-up imaging and any medicine instructions associated with the chosen device. A ruptured aneurysm usually needs urgent specialist treatment; securing it helps prevent more bleeding but does not automatically reverse existing brain injury."
+      ]
+    },
+    {
+      "heading": "Make everyday care and follow-up practical",
+      "paragraphs": [
+        "Work with the team on blood pressure and smoking cessation, and discuss safe activity, work, driving and travel for your circumstances. Do not stop or start blood-pressure or clot-related medicines yourself. Ask whether relatives need advice about screening; it is not recommended automatically for everyone and depends on family and clinical factors. Keep scan appointments because growth cannot reliably be judged from how you feel. Anxiety during observation and difficulties with fatigue, memory or mood after bleeding deserve support. Obtain a clear plan for new symptoms and a contact for non-emergency questions."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: an incidental finding",
+      "text": "A scan for another reason shows a small unruptured aneurysm. The patient asks about its location, changes, personal rupture risk and procedural risks. They agree a monitoring plan when appropriate instead of assuming every aneurysm must be operated on immediately."
+    },
+    {
+      "title": "Hypothetical example: a sudden new headache",
+      "text": "Someone awaiting a routine aneurysm scan develops an abrupt, exceptionally severe headache. They seek emergency help and mention the known aneurysm rather than waiting for the scan or assuming a familiar diagnosis makes the symptom safe."
+    }
+  ],
+  "questions": [
+    "What does the scan show, and which factors affect my personal risk?",
+    "Why do you recommend monitoring or a procedure, and what are the benefits, harms and uncertainties?",
+    "What follow-up, everyday precautions and emergency plan should I have?"
+  ]
+}

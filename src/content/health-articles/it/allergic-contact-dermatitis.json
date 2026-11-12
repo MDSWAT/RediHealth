@@ -1,0 +1,51 @@
+{
+  "title": "Dermatite allergica da contatto: trovare la causa e proteggere la pelle",
+  "intro": "La dermatite allergica da contatto è un'infiammazione pruriginosa dovuta a una reazione immunitaria a qualcosa che tocca la pelle. Spesso compare con ritardo: l'ultimo prodotto usato non è necessariamente la causa. Individuare la sostanza rilevante conta quanto curare l'eruzione. Non è contagiosa e un'eruzione simile può dipendere invece da irritazione o da un altro problema cutaneo.",
+  "sections": [
+    {
+      "heading": "Distinguere allergia e irritazione",
+      "paragraphs": [
+        "Nichel, profumi, conservanti e sostanze in alcuni materiali di lavoro possono scatenare allergia nelle persone sensibilizzate. La dermatite irritativa deriva da un danno diretto, per esempio lavori frequenti con le mani bagnate o detergenti, e non richiede un'allergia. I due meccanismi possono coesistere. Sono possibili prurito, screpolature, gonfiore e piccole vescicole; l'infiammazione può apparire rossa, violacea, marrone o grigia secondo il colore della pelle. L'aspetto da solo non identifica con certezza il fattore scatenante."
+      ]
+    },
+    {
+      "heading": "Preparare una storia utile delle esposizioni",
+      "paragraphs": [
+        "Annota le zone colpite e cosa le tocca a casa, al lavoro e durante gli hobby. Conserva nomi dei prodotti ed elenchi degli ingredienti, compresi guanti, cosmetici, adesivi e medicinali locali. Una fotografia della riacutizzazione può aiutare se la pelle migliora prima della visita. Etichette come naturale o ipoallergenico non garantiscono l'idoneità. Non riapplicare deliberatamente una sostanza sospetta sulla pelle danneggiata per verificare da solo l'ipotesi."
+      ]
+    },
+    {
+      "heading": "Comprendere il patch test specialistico",
+      "paragraphs": [
+        "Il medico esamina la pelle e considera altre cause. Il dermatologo può usare il patch test per indagare l'allergia da contatto ritardata. Piccole quantità di sostanze selezionate vengono applicate in condizioni controllate e la pelle viene valutata alle letture programmate. È diverso dal prick test per le allergie immediate. Anche un patch test positivo richiede interpretazione: la sostanza deve essere rilevante per le esposizioni reali, non soltanto provocare una reazione al test."
+      ]
+    },
+    {
+      "heading": "Combinare cura della pelle e cambiamenti realistici",
+      "paragraphs": [
+        "Il trattamento può comprendere un emolliente appropriato e una crema antinfiammatoria prescritta. Contano prodotto, potenza e zona del corpo, soprattutto intorno agli occhi o nei bambini. Chiedi come usarlo e quando rivalutarlo; non prendere in prestito creme cortisoniche altrui. Al lavoro, discuti prodotti più sicuri o protezioni adatte con il servizio competente per salute o sicurezza. Alcuni componenti dei guanti possono causare a loro volta allergia: cambiarli senza criterio può non risolvere il problema."
+      ]
+    },
+    {
+      "heading": "Sapere quando rivedere il piano",
+      "paragraphs": [
+        "Richiedi un controllo per disturbi persistenti o ricorrenti, sonno disturbato, fissurazioni dolorose o difficoltà nelle attività quotidiane. Dolore crescente, calore, pus, gonfiore che si estende o febbre possono indicare infezione e richiedono valutazione tempestiva. Difficoltà respiratoria o gonfiore di lingua o gola richiedono soccorso d'emergenza e non sono una normale reazione cutanea ritardata. Se evitare la sostanza sembra inefficace, rivedi diagnosi ed esposizioni invece di aggiungere continuamente nuove creme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: guardare oltre un sapone nuovo",
+      "text": "Una persona sviluppa eczema alle mani dopo aver cambiato sapone, ma indossa anche nuovi guanti da lavoro. Porta al medico entrambi gli elenchi degli ingredienti e descrive il lavoro con le mani bagnate. Chiede se siano coinvolte irritazione, allergia o entrambe, invece di presumere che la causa sia soltanto il sapone."
+    },
+    {
+      "title": "Esempio ipotetico: usare il risultato di un test",
+      "text": "Un patch test identifica un'allergia a un conservante. La persona chiede i nomi usati negli ingredienti e controlla i prodotti abituali con aiuto professionale. Discute sostituzioni pratiche, invece di eliminare tutti i prodotti domestici o aspettarsi che una crema da sola prevenga l'esposizione."
+    }
+  ],
+  "questions": [
+    "Si tratta di dermatite allergica da contatto, irritazione o un'altra condizione?",
+    "Un patch test sarebbe utile e come si collegherebbe il risultato ai miei prodotti o al lavoro?",
+    "Quali cambiamenti di cura ed esposizione sono realistici e quali segnali richiedono una rivalutazione tempestiva?"
+  ]
+}

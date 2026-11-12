@@ -21,6 +21,7 @@ type Props = {
   /** Accessible name for a cluster, e.g. "3 places". */
   clusterLabel?: (count: number) => string;
   onSearchArea?: (center: LatLng) => void;
+  frameAll?: boolean;
 };
 
 const iconCache = new Map<string, L.DivIcon>();
@@ -345,10 +346,12 @@ function MapController({
   institutes,
   selectedId,
   userLocation,
+  frameAll,
 }: {
   institutes: MedicalInstitute[];
   selectedId: string | null;
   userLocation?: LatLng | null;
+  frameAll?: boolean;
 }) {
   const map = useMap();
 
@@ -378,12 +381,12 @@ function MapController({
     if (points.length === 0) return;
     // Frame the closest results, and include userLocation only when within local range (<= 80 km)
     // so distant / out-of-country GPS never stretches fitBounds across half a continent.
-    const framed = points.slice(0, 25);
+    const framed = frameAll ? points : points.slice(0, 25);
     if (userLocation && isUserWithinLocalRange(userLocation, institutes)) {
       framed.push([userLocation.lat, userLocation.lng]);
     }
     map.fitBounds(L.latLngBounds(framed), { padding: [48, 48], maxZoom: 15, animate: !prefersReducedMotion() });
-  }, [institutes, userLocation, map]);
+  }, [institutes, userLocation, frameAll, map]);
 
   useEffect(() => {
     if (!selectedId || !isMapAlive(map)) return;
@@ -462,6 +465,7 @@ export default function InstitutesMapInner({
   youAreHereLabel,
   clusterLabel,
   onSearchArea,
+  frameAll,
 }: Props) {
   const userIsLocal = useMemo(() => isUserWithinLocalRange(userLocation, institutes), [userLocation, institutes]);
   const center: [number, number] =
@@ -488,7 +492,7 @@ export default function InstitutesMapInner({
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxZoom={19}
         />
-        <MapController institutes={institutes} selectedId={selectedId} userLocation={userLocation} />
+        <MapController institutes={institutes} selectedId={selectedId} userLocation={userLocation} frameAll={frameAll} />
         {onSearchArea && searchThisAreaLabel ? (
           <SearchAreaButton label={searchThisAreaLabel} onSearch={onSearchArea} />
         ) : null}

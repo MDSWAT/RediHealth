@@ -866,6 +866,7 @@ export const HEALTH_MYTHS_ROM: HealthMyth[] = [
 ];
 
 export function getHealthMyths(lang: Lang): HealthMyth[] {
+  if (lang === "ru") return HEALTH_MYTHS_RU;
   if (lang === "en") return HEALTH_MYTHS_EN;
   if (lang === "sq") return HEALTH_MYTHS_SQ;
   if (lang === "it") return HEALTH_MYTHS_IT;
@@ -875,6 +876,7 @@ export function getHealthMyths(lang: Lang): HealthMyth[] {
 }
 
 export function getMythCategories(lang: Lang): MythCategory[] {
+  if (lang === "ru") return MYTH_CATEGORIES_RU;
   if (lang === "en") return MYTH_CATEGORIES_EN;
   if (lang === "sq") return MYTH_CATEGORIES_SQ;
   if (lang === "it") return MYTH_CATEGORIES_IT;
@@ -884,6 +886,8 @@ export function getMythCategories(lang: Lang): MythCategory[] {
 }
 
 export const SPEECH_LANG_BY_LOCALE: Record<Lang, string> = {
+  ru: "ru-RU",
+
   ro: "ro-RO",
   en: "en-GB",
   sq: "sq-AL",
@@ -895,6 +899,8 @@ export const SPEECH_LANG_BY_LOCALE: Record<Lang, string> = {
 export const HEALTH_DETAIL_SHARED_STRINGS = {
   whyItMatters: {
     heading: {
+  ru: "Почему это важно",
+
       ro: "De ce contează",
       en: "Why it matters",
       sq: "Pse ka rëndësi",
@@ -903,6 +909,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Sostar si vazhno",
     },
     subtitleTemplate: {
+  ru: "3 факта по теме «{topic}».",
+
       ro: "3 lucruri bune de știut despre {topic}.",
       en: "3 things to know about {topic}.",
       sq: "3 gjëra që duhet t'i dish për këtë temë.",
@@ -911,6 +919,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "3 lačhe bukja te dzhanes vash akaja tema.",
     },
     listenAllLabel: {
+  ru: "Прослушайте все 3 пункта.",
+
       ro: "Ascultă toate cele 3 puncte",
       en: "Listen to all 3 points",
       sq: "Dëgjo të 3 pikat",
@@ -919,6 +929,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashun savore 3 kotora",
     },
     listenPillarLabel: {
+  ru: "Прослушайте пункт {number}",
+
       ro: "Ascultă punctul {number}",
       en: "Listen to point {number}",
       sq: "Dëgjo pikën {number}",
@@ -927,6 +939,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashun o kotor {number}",
     },
     pillar1Title: {
+  ru: "Что происходит в организме",
+
       ro: "Ce se întâmplă în corp",
       en: "What happens in the body",
       sq: "Çfarë ndodh në trup",
@@ -935,6 +949,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "So kerel pes ando trupo",
     },
     pillar1Desc: {
+  ru: "Все части вашего тела работают вместе. Когда вы заботитесь о своих кровеносных сосудах и органах, все ваше тело работает легче.",
+
       ro: "Toate părțile corpului lucrează împreună. Când ai grijă de vasele de sânge și de organe, tot corpul merge mai ușor.",
       en: "All parts of your body work together. When you look after your blood vessels and organs, your whole body works more easily.",
       sq: "Të gjitha pjesët e trupit punojnë bashkë. Kur kujdesesh për enët e gjakut dhe organet, i gjithë trupi punon më lehtë.",
@@ -943,6 +959,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Savore kotora tire truposke keren buchi khetane. Kana arakhes e rateske droma thaj e organura, sasto trupo phirel maj lokhes.",
     },
     pillar2Title: {
+  ru: "Как это влияет на вашу повседневную жизнь",
+
       ro: "Cum te afectează zi de zi",
       en: "How it affects your daily life",
       sq: "Si të ndikon çdo ditë",
@@ -951,6 +969,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Sar dikhel pe tiro sako dives",
     },
     pillar2Desc: {
+  ru: "Многие проблемы со здоровьем поначалу не беспокоят. Если вы обнаружите их рано, вы сохраните силы для работы и семьи.",
+
       ro: "Multe probleme de sănătate nu dor la început. Dacă le afli din timp, îți păstrezi puterea pentru muncă și familie.",
       en: "Many health problems do not hurt at first. If you find them early, you keep your strength for work and family.",
       sq: "Shumë probleme shëndetësore nuk dhembin në fillim. Po t'i zbulosh herët, e ruan forcën për punën dhe familjen.",
@@ -959,6 +979,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "But sastipnaske problemura anglal na dukhan. Te arakhes len rano, inkeres tiri zor vash i buchi thaj i familija.",
     },
     pillar3Title: {
+  ru: "Что вы можете легко изменить",
+
       ro: "Ce poți schimba ușor",
       en: "What you can change easily",
       sq: "Çfarë mund të ndryshosh lehtë",
@@ -967,6 +989,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "So shaj lokhes te paruves",
     },
     pillar3Desc: {
+  ru: "Маленькие привычки, выполняемые каждый день, со временем очень помогают. Например, немного движения и меньше соленой еды.",
+
       ro: "Obiceiurile mici, făcute în fiecare zi, ajută mult în timp. De exemplu, puțină mișcare și mâncare mai puțin sărată.",
       en: "Small habits, done every day, help a lot over time. For example, a little movement and less salty food.",
       sq: "Zakonet e vogla, të bëra çdo ditë, ndihmojnë shumë me kohë. Për shembull, pak lëvizje dhe ushqim me më pak kripë.",
@@ -978,6 +1002,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   actionableSteps: {
     heading: {
+  ru: "Что вы можете делать каждый день",
+
       ro: "Ce poți face în fiecare zi",
       en: "What you can do every day",
       sq: "Çfarë mund të bësh çdo ditë",
@@ -986,6 +1012,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "So shaj te keres sako dives",
     },
     subtitleTemplate: {
+  ru: "Отметьте, что вы сделали сегодня для {topic}.",
+
       ro: "Bifează ce ai făcut azi pentru {topic}.",
       en: "Tick what you did today for {topic}.",
       sq: "Shëno çfarë bëre sot.",
@@ -994,6 +1022,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Semnisar so kerdjan adives.",
     },
     completedBadge: {
+  ru: "{completed} из {total} выполнено",
+
       ro: "{completed} din {total} făcute",
       en: "{completed} of {total} done",
       sq: "{completed} nga {total} të bëra",
@@ -1002,6 +1032,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "{completed} katar {total} kerde",
     },
     listenStepLabel: {
+  ru: "Слушай: {title}",
+
       ro: "Ascultă: {title}",
       en: "Listen: {title}",
       sq: "Dëgjo: {title}",
@@ -1013,6 +1045,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   warningSigns: {
     heading: {
+  ru: "Признаки того, что вам нужна помощь прямо сейчас",
+
       ro: "Semne că ai nevoie de ajutor acum",
       en: "Signs you need help now",
       sq: "Kur të kërkosh ndihmë menjëherë",
@@ -1021,6 +1055,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Semnja kaj trubul tuke azhutimos akana",
     },
     subtitleWarning: {
+  ru: "Позвоните 112 самостоятельно. Приложение не звонит вам.",
+
       ro: "Sună tu la 112. Aplicația nu sună în locul tău.",
       en: "Call 112 yourself. The app does not call for you.",
       sq: "Telefono vetë në 112. Aplikacioni nuk telefonon për ty.",
@@ -1029,6 +1065,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Akhar tu 112. I aplikacija na akharel namesto tute.",
     },
     prompt: {
+  ru: "Если у вас или у кого-то из ваших близких есть какие-либо из этих признаков, связанных с {topic}, немедленно обратитесь за медицинской помощью:",
+
       ro: "Dacă tu sau cineva de lângă tine are unul dintre aceste semne legate de {topic}, cere imediat ajutor medical:",
       en: "If you or someone near you has any of these signs linked to {topic}, get medical help right away:",
       sq: "Nëse ti ose dikush pranë teje ka një nga këto shenja, kërko menjëherë ndihmë mjekësore:",
@@ -1037,6 +1075,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Te si tut vaj varekas pasha tute jekh katar akala semnja, mang sigo sastipnasko azhutimos:",
     },
     modalTrigger: {
+  ru: "Когда звонить 112",
+
       ro: "Când suni la 112",
       en: "When to call 112",
       sq: "Kur të telefonosh në 112",
@@ -1045,6 +1085,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Kana te akhares 112",
     },
     modalTitle: {
+  ru: "Скорая медицинская помощь 112",
+
       ro: "Urgență medicală 112",
       en: "Medical emergency 112",
       sq: "Urgjencë mjekësore 112",
@@ -1053,6 +1095,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Sastipnaski sigardiari 112",
     },
     modalSubtitle: {
+  ru: "Звонок бесплатный, днем и ночью, из любой сети.",
+
       ro: "Apelul e gratuit, zi și noapte, din orice rețea.",
       en: "Free to call, day and night, from any network.",
       sq: "Telefonata është falas, ditë e natë, nga çdo rrjet.",
@@ -1061,6 +1105,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "O akharimos si bi lovesko, dives thaj rat, katar sako mrezha.",
     },
     closeAria: {
+  ru: "Закрыть окно",
+
       ro: "Închide fereastra",
       en: "Close window",
       sq: "Mbyll dritaren",
@@ -1069,6 +1115,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Phand i pendzhara",
     },
     dispatchTitle: {
+  ru: "Что говорить, когда звонишь 112",
+
       ro: "Ce spui când suni la 112",
       en: "What to say when you call 112",
       sq: "Çfarë të thuash kur telefonon në 112",
@@ -1077,6 +1125,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "So te phenes kana akhares 112",
     },
     dispatchStep1: {
+  ru: "Где вы находитесь: точный адрес, деревня или город, или известное место поблизости.",
+
       ro: "Unde ești: adresa exactă, satul sau orașul, ori un loc cunoscut din apropiere.",
       en: "Where you are: the exact address, village or town, or a well-known place nearby.",
       sq: "Ku je: adresa e saktë, fshati ose qyteti, ose një vend i njohur aty pranë.",
@@ -1085,6 +1135,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Kaj san: vorta adresa, o gav vaj o foro, vaj jekh pinzhardo than pashe.",
     },
     dispatchStep2: {
+  ru: "Что произошло и какие симптомы у человека.",
+
       ro: "Ce s-a întâmplat și ce simptome are persoana.",
       en: "What happened and what symptoms the person has.",
       sq: "Çfarë ndodhi dhe çfarë shenjash ka personi.",
@@ -1093,6 +1145,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "So kerdilo thaj save semnja si e manushes.",
     },
     dispatchStep3: {
+  ru: "В сознании ли человек и дышит ли он.",
+
       ro: "Dacă persoana e conștientă și respiră.",
       en: "Whether the person is conscious and breathing.",
       sq: "Nëse personi është në vete dhe merr frymë.",
@@ -1101,6 +1155,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Si li o manush pe godjate thaj phurdinel li.",
     },
     dispatchStep4: {
+  ru: "Отвечайте на вопросы спокойно и не кладите трубку первым.",
+
       ro: "Răspunde calm la întrebări și nu închide tu primul.",
       en: "Answer the questions calmly and don't hang up first.",
       sq: "Përgjigju qetë pyetjeve dhe mos e mbyll ti i pari telefonin.",
@@ -1109,6 +1165,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "De atveto mirno ko phuchimata thaj ma phand tu angluno o telefono.",
     },
     closeBtn: {
+  ru: "Закрыть",
+
       ro: "Închide",
       en: "Close",
       sq: "Mbyll",
@@ -1117,6 +1175,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Phand",
     },
     dialBtn: {
+  ru: "Позвоните 112",
+
       ro: "Sună la 112",
       en: "Call 112",
       sq: "Telefono 112",
@@ -1128,6 +1188,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   topicMyth: {
     badge: {
+  ru: "Правда или ложь?",
+
       ro: "Adevărat sau fals?",
       en: "True or false?",
       sq: "E vërtetë apo e gabuar?",
@@ -1136,6 +1198,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Čače vaj xoxaimos?",
     },
     audioPrompt: {
+  ru: "{statement} Правда или ложь?",
+
       ro: "{statement} E adevărat sau fals?",
       en: "{statement} True or false?",
       sq: "{statement} E vërtetë apo e gabuar?",
@@ -1144,6 +1208,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "{statement} Čače vaj xoxaimos?",
     },
     trueBtn: {
+  ru: "Правда",
+
       ro: "Adevărat",
       en: "True",
       sq: "E vërtetë",
@@ -1152,6 +1218,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Čače",
     },
     falseBtn: {
+  ru: "Ложь",
+
       ro: "Fals",
       en: "False",
       sq: "E gabuar",
@@ -1160,6 +1228,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Xoxaimos",
     },
     correctBadge: {
+  ru: "Это верно",
+
       ro: "Ai răspuns corect",
       en: "That's right",
       sq: "Përgjigje e saktë",
@@ -1168,6 +1238,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Čačo atveto",
     },
     sourcePrefix: {
+  ru: "Источник:",
+
       ro: "Sursă:",
       en: "Source:",
       sq: "Burimi:",
@@ -1179,6 +1251,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   topicMetaBadge: {
     readMinutesLong: {
+  ru: "{minutes} мин чтения",
+
       ro: "{minutes} minute de citit",
       en: "{minutes} min read",
       sq: "{minutes} minuta lexim",
@@ -1187,6 +1261,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "{minutes} minute drabarimos",
     },
     readMinutesShort: {
+  ru: "{minutes} мин чтения",
+
       ro: "{minutes} min de citit",
       en: "{minutes} min read",
       sq: "{minutes} min lexim",
@@ -1195,6 +1271,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "{minutes} min drabarimos",
     },
     audioMinutes: {
+  ru: "{minutes} мин аудио",
+
       ro: "{minutes} min audio",
       en: "{minutes} min audio",
       sq: "{minutes} min audio",
@@ -1203,6 +1281,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "{minutes} min audio",
     },
     audioMinutesLong: {
+  ru: "{minutes} мин аудио",
+
       ro: "{minutes} minute audio",
       en: "{minutes} min audio",
       sq: "{minutes} minuta audio",
@@ -1214,6 +1294,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   topicHero: {
     backToGuides: {
+  ru: "Вернуться к руководствам по здоровью",
+
       ro: "Înapoi la ghiduri",
       en: "Back to health guides",
       sq: "Kthehu te udhëzuesit",
@@ -1222,6 +1304,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Palpale ko sikavimata",
     },
     listenGuide: {
+  ru: "Слушайте руководство",
+
       ro: "Ascultă ghidul",
       en: "Listen to guide",
       sq: "Dëgjo udhëzuesin",
@@ -1230,6 +1314,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashun o sikavimos",
     },
     stopAudio: {
+  ru: "Остановить звук",
+
       ro: "Oprește audio",
       en: "Stop audio",
       sq: "Ndalo audion",
@@ -1238,6 +1324,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ačhav o glaso",
     },
     ariaIntro: {
+  ru: "Об этой теме",
+
       ro: "Despre acest subiect",
       en: "About this topic",
       sq: "Për këtë temë",
@@ -1246,6 +1334,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Vash akaja tema",
     },
     ariaNav: {
+  ru: "Навигация",
+
       ro: "Navigare",
       en: "Navigation",
       sq: "Navigimi",
@@ -1257,6 +1347,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   relatedTopics: {
     heading: {
+  ru: "Больше руководств по здоровью",
+
       ro: "Alte ghiduri de sănătate",
       en: "More health guides",
       sq: "Udhëzues të tjerë për shëndetin",
@@ -1268,6 +1360,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   topicDetailPageContent: {
     romanesGlossaryTitle: {
+  ru: "Медицинские слова на цыганском языке",
+
       ro: "Cuvinte medicale în romani",
       en: "Medical words in Romani",
       sq: "Fjalë mjekësore në gjuhën rome",
@@ -1276,6 +1370,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Sastipnaske alava pe romani čhib",
     },
     ariaSentenceSection: {
+  ru: "Текст руководства, прочитайте вслух",
+
       ro: "Textul ghidului, citit cu voce",
       en: "Guide text, read aloud",
       sq: "Teksti i udhëzuesit, i lexuar me zë",
@@ -1284,6 +1380,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "O teksto e sikavimasko, drabardo glasosa",
     },
     ariaMobileActions: {
+  ru: "Быстрые действия",
+
       ro: "Acțiuni rapide",
       en: "Quick actions",
       sq: "Veprime të shpejta",
@@ -1295,6 +1393,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   romanesGlossaryDrawer: {
     title: {
+  ru: "Медицинские слова на цыганском языке",
+
       ro: "Cuvinte medicale în romani",
       en: "Medical words in Romani",
       sq: "Fjalë mjekësore në gjuhën rome",
@@ -1303,6 +1403,7 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Sastipnaske alava pe romani čhib",
     },
     subtitle: {
+  ru: "Повседневные слова на цыганском и румынском языках",
       ro: "Termeni medicali explicați clar, în romani și în română",
       en: "Medical terms explained clearly, in Romani and English",
       sq: "Terma mjekësorë të shpjeguar qartë, në gjuhën rome dhe në shqip",
@@ -1311,6 +1412,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Sastipnaske alava ashkarde chaches, pe romani čhib",
     },
     closeAria: {
+  ru: "Закрыть список слов",
+
       ro: "Închide lista de cuvinte",
       en: "Close word list",
       sq: "Mbyll listën e fjalëve",
@@ -1319,6 +1422,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Phand i lista e alavenge",
     },
     searchPlaceholder: {
+  ru: "Поиск слова или симптома",
+
       ro: "Caută un cuvânt sau un simptom",
       en: "Search for a word or symptom",
       sq: "Kërko një fjalë ose një simptomë",
@@ -1327,6 +1432,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Rod jekh alav vaj simptomo",
     },
     pronounceAriaTemplate: {
+  ru: "Послушайте, как сказать {term}",
+
       ro: "Ascultă cum se spune {term}",
       en: "Hear how to say {term}",
       sq: "Dëgjo si thuhet {term}",
@@ -1335,6 +1442,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashun sar phenel pes {term}",
     },
     pronunciationLabel: {
+  ru: "Произношение:",
+
       ro: "Pronunție:",
       en: "Pronunciation:",
       sq: "Shqiptimi:",
@@ -1343,6 +1452,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Izgovoro:",
     },
     categoryAll: {
+  ru: "Все",
+
       ro: "Toate",
       en: "All",
       sq: "Të gjitha",
@@ -1359,6 +1470,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Generalno sastipen",
     },
     categoryHeart: {
+  ru: "Сердце",
+
       ro: "Inimă",
       en: "Heart",
       sq: "Zemra",
@@ -1367,6 +1480,7 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "O ilo",
     },
     categorySymptoms: {
+  ru: "Симптомы",
       ro: "Simptome și urgențe",
       en: "Symptoms and emergencies",
       sq: "Simptomat dhe urgjencat",
@@ -1375,6 +1489,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Simptomura thaj sigardiarja",
     },
     categoryBody: {
+  ru: "Тело",
+
       ro: "Corp",
       en: "Body",
       sq: "Trupi",
@@ -1383,6 +1499,7 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "O trupo",
     },
     categoryTreatments: {
+  ru: "Лечение",
       ro: "Prevenție și tratament",
       en: "Prevention and treatment",
       sq: "Parandalim dhe trajtim",
@@ -1391,6 +1508,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Arakhimos thaj sastjarimos",
     },
     emptyState: {
+  ru: "Слов не найдено. Попробуйте другой поиск.",
+
       ro: "Nu am găsit niciun cuvânt. Încearcă altă căutare.",
       en: "No words found. Try another search.",
       sq: "Nuk u gjet asnjë fjalë. Provo një kërkim tjetër.",
@@ -1402,6 +1521,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   globalAudioPlayer: {
     playerAria: {
+  ru: "Аудиогид",
+
       ro: "Ghid audio",
       en: "Audio guide",
       sq: "Udhëzues audio",
@@ -1410,6 +1531,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Audio sikavimos",
     },
     minimizedText: {
+  ru: "Прослушивание ({progressPercent}%)",
+
       ro: "Ascultare pornită ({progressPercent}%)",
       en: "Listening ({progressPercent}%)",
       sq: "Po dëgjon ({progressPercent}%)",
@@ -1418,6 +1541,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashunel pes ({progressPercent}%)",
     },
     durationSubtitle: {
+  ru: "Прочитать вслух · примерно {durationMinutes} минут.",
+
       ro: "Citit cu voce · cam {durationMinutes} minute",
       en: "Read aloud · about {durationMinutes} minutes",
       sq: "Lexuar me zë · rreth {durationMinutes} minuta",
@@ -1426,6 +1551,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Drabardo glasosa · pashe {durationMinutes} minute",
     },
     fallbackVoice: {
+  ru: "Резервный голос",
+
       ro: "Voce de rezervă",
       en: "Backup voice",
       sq: "Zë rezervë",
@@ -1434,6 +1561,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Rezervno glaso",
     },
     transcriptMode: {
+  ru: "Только текст",
+
       ro: "Doar text",
       en: "Text only",
       sq: "Vetëm tekst",
@@ -1442,6 +1571,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Samo teksto",
     },
     minimizeAria: {
+  ru: "Свернуть",
+
       ro: "Micșorează",
       en: "Minimise",
       sq: "Zvogëlo",
@@ -1450,6 +1581,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Tiknjar",
     },
     closeAria: {
+  ru: "Остановиться и закрыть",
+
       ro: "Oprește și închide",
       en: "Stop and close",
       sq: "Ndalo dhe mbyll",
@@ -1458,6 +1591,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ačhav thaj phand",
     },
     statusPlaying: {
+  ru: "Играя",
+
       ro: "Se aude",
       en: "Playing",
       sq: "Po luhet",
@@ -1466,6 +1601,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashunel pes",
     },
     statusPaused: {
+  ru: "Приостановлено",
+
       ro: "Pe pauză",
       en: "Paused",
       sq: "Në pauzë",
@@ -1474,6 +1611,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Pe pauza",
     },
     progressSummary: {
+  ru: "{progressPercent} % прослушали",
+
       ro: "{progressPercent}% ascultat",
       en: "{progressPercent}% listened",
       sq: "{progressPercent}% e dëgjuar",
@@ -1482,6 +1621,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "{progressPercent}% ashundo",
     },
     scrubberAria: {
+  ru: "Как много ты слышал",
+
       ro: "Cât ai ascultat",
       en: "How much you have heard",
       sq: "Sa ke dëgjuar",
@@ -1490,6 +1631,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Kozom ashundjan",
     },
     scrubberTitle: {
+  ru: "Коснитесь панели, чтобы перейти к этой части.",
+
       ro: "Apasă pe bară ca să sari la acea parte",
       en: "Tap the bar to jump to that part",
       sq: "Prek shiritin për të kaluar te ajo pjesë",
@@ -1498,6 +1641,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Azba i linija te dzhas ko kodo kotor",
     },
     rewindButton: {
+  ru: "Начать заново",
+
       ro: "De la început",
       en: "Start again",
       sq: "Nga fillimi",
@@ -1506,6 +1651,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Katar o anglunipen",
     },
     rewindAria: {
+  ru: "Послушай еще раз с самого начала",
+
       ro: "Ascultă din nou de la început",
       en: "Listen again from the start",
       sq: "Dëgjo sërish nga fillimi",
@@ -1514,6 +1661,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashun pale katar o anglunipen",
     },
     playButton: {
+  ru: "Слушай",
+
       ro: "Ascultă",
       en: "Listen",
       sq: "Dëgjo",
@@ -1522,6 +1671,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashun",
     },
     pauseButton: {
+  ru: "Пауза",
+
       ro: "Pauză",
       en: "Pause",
       sq: "Pauzë",
@@ -1530,6 +1681,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Pauza",
     },
     playAria: {
+  ru: "Продолжайте слушать",
+
       ro: "Continuă să asculți",
       en: "Keep listening",
       sq: "Vazhdo të dëgjosh",
@@ -1538,6 +1691,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Dzha maj dur ashunimasa",
     },
     pauseAria: {
+  ru: "Пауза",
+
       ro: "Pune pe pauză",
       en: "Pause",
       sq: "Ndalo për pak",
@@ -1546,6 +1701,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Čhiv pe pauza",
     },
     speedGroupAria: {
+  ru: "Скорость голоса",
+
       ro: "Viteza vocii",
       en: "Voice speed",
       sq: "Shpejtësia e zërit",
@@ -1554,6 +1711,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Sigipen e glasesko",
     },
     calmSpeed: {
+  ru: "медленный",
+
       ro: "rar",
       en: "slow",
       sq: "ngadalë",
@@ -1562,6 +1721,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "lokhes",
     },
     calmSpeedTitle: {
+  ru: "Медленнее (0,85x), легче следовать",
+
       ro: "Mai rar (0.85x), mai ușor de urmărit",
       en: "Slower (0.85x), easier to follow",
       sq: "Më ngadalë (0.85x), më lehtë për ta ndjekur",
@@ -1570,6 +1731,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Maj lokhes (0.85x), maj lokho te ashunes",
     },
     normalSpeed: {
+  ru: "нормальный",
+
       ro: "normal",
       en: "normal",
       sq: "normale",
@@ -1578,6 +1741,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "normalno",
     },
     normalSpeedTitle: {
+  ru: "Нормальная скорость (1,0x)",
+
       ro: "Viteză normală (1.0x)",
       en: "Normal speed (1.0x)",
       sq: "Shpejtësi normale (1.0x)",
@@ -1589,6 +1754,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
 
   synchronizedReader: {
     sentenceClickTitle: {
+  ru: "Нажмите, чтобы услышать это предложение",
+
       ro: "Apasă ca să asculți propoziția",
       en: "Tap to hear this sentence",
       sq: "Prek për të dëgjuar këtë fjali",
@@ -1597,6 +1764,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Azba te ashunes akaja rečenica",
     },
     termTitleTemplate: {
+  ru: "{term} на цыганском языке. Нажмите, чтобы увидеть перевод и узнать, как его сказать.",
+
       ro: "{term} în romani. Apasă ca să vezi traducerea și pronunția.",
       en: "{term} in Romani. Tap to see the translation and how to say it.",
       sq: "{term} në gjuhën rome. Prek për përkthimin dhe shqiptimin.",
@@ -1605,6 +1774,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "{term} pe romani čhib. Azba te dikhes so znachil thaj sar phenel pes.",
     },
     popoverAria: {
+  ru: "Цыганский перевод",
+
       ro: "Traducere din romani",
       en: "Romani translation",
       sq: "Përkthim nga gjuha rome",
@@ -1613,6 +1784,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Znachimos katar romani čhib",
     },
     popoverBadge: {
+  ru: "Медицинское слово на цыганском языке",
+
       ro: "Cuvânt medical în romani",
       en: "Medical word in Romani",
       sq: "Fjalë mjekësore në gjuhën rome",
@@ -1621,6 +1794,7 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Sastipnasko alav pe romani čhib",
     },
     romanianLabel: {
+  ru: "На румынском:",
       ro: "Sensul medical:",
       en: "Medical meaning:",
       sq: "Kuptimi mjekësor:",
@@ -1629,6 +1803,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "So znachil:",
     },
     closeAria: {
+  ru: "Закрыть перевод",
+
       ro: "Închide traducerea",
       en: "Close translation",
       sq: "Mbyll përkthimin",
@@ -1637,6 +1813,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Phand o znachimos",
     },
     phoneticGuide: {
+  ru: "Как это сказать:",
+
       ro: "Cum se pronunță:",
       en: "How to say it:",
       sq: "Si shqiptohet:",
@@ -1645,6 +1823,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Sar phenel pes:",
     },
     listenPronunciationAria: {
+  ru: "Послушайте, как это сказать на цыганском языке.",
+
       ro: "Ascultă cum se spune în romani",
       en: "Hear how to say it in Romani",
       sq: "Dëgjo si thuhet në gjuhën rome",
@@ -1653,6 +1833,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashun sar phenel pes pe romani čhib",
     },
     listenPronunciationButton: {
+  ru: "Слушай",
+
       ro: "Ascultă",
       en: "Listen",
       sq: "Dëgjo",
@@ -1661,6 +1843,8 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashun",
     },
     dismissButton: {
+  ru: "понял",
+
       ro: "Am înțeles",
       en: "Got it",
       sq: "E kuptova",
@@ -1670,3 +1854,76 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
     },
   },
 };
+
+export const MYTH_CATEGORIES_RU: MythCategory[] = [
+  { slug: "toate", label: "Все мифы" },
+  { slug: "vaccinuri", label: "Вакцины" },
+  { slug: "diabet", label: "Диабет и сахар" },
+  { slug: "inima", label: "Сердце и давление" },
+  { slug: "antibiotice", label: "Антибиотики" },
+  { slug: "femei", label: "Женское здоровье" },
+  { slug: "alimentatie", label: "Питание и соль" },
+  { slug: "miscare", label: "Физическая активность" },
+  { slug: "echilibru", label: "Психическое благополучие" },
+];
+
+const russianMythContent: Record<string, { statement: string; explanation: string }> = {
+  "myth-flu-vaccine": {
+    statement: "Прививка от гриппа вызывает грипп.",
+    explanation: "Многие так думают, потому что после прививки иногда чувствуют недомогание. Вакцина содержит неактивные части вируса, которые не могут вызвать болезнь. Она учит организм бороться с настоящим вирусом.",
+  },
+  "myth-diabetes-sugar": {
+    statement: "Диабет бывает только у тех, кто ест слишком много сахара.",
+    explanation: "Избыток сахара может привести к набору веса. Но у диабета 2-го типа несколько причин: наследственность, недостаток движения и то, как организм использует инсулин. Причина не только в сладостях.",
+  },
+  "myth-blood-pressure": {
+    statement: "При высоком давлении всегда болит или кружится голова.",
+    explanation: "Чаще всего высокое давление не вызывает никаких симптомов. Поэтому его называют тихим убийцей. Надёжный способ выявить его — регулярно измерять давление.",
+  },
+  "myth-antibiotics-cold": {
+    statement: "Антибиотики помогают быстрее вылечить простуду или грипп.",
+    explanation: "Простуду и грипп вызывают вирусы. Антибиотики действуют только на бактерии. Приём без назначения врача может навредить полезным бактериям кишечника. Со временем антибиотики также могут терять эффективность.",
+  },
+  "myth-womens-mammography": {
+    statement: "Если в груди не прощупывается уплотнение, обследование не нужно.",
+    explanation: "Маммография или УЗИ молочных желёз могут выявить небольшие изменения задолго до того, как их можно прощупать. Когда проблему обнаруживают рано, лечение проще и эффективнее.",
+  },
+  "myth-smoking-filters": {
+    statement: "Сигареты с фильтром или нагреваемый табак не вредят сердцу.",
+    explanation: "Никотин и вдыхаемые вещества сужают сосуды и учащают пульс независимо от способа курения. Отказ от курения — важный шаг для здоровья сердца.",
+  },
+  "myth-healthy-eating-salt": {
+    statement: "Розовая гималайская или морская соль полезна, поэтому её можно есть сколько угодно.",
+    explanation: "Любая пищевая соль примерно на 98% состоит из хлорида натрия. Все её виды одинаково повышают давление. Розовая соль не защищает сердце лучше обычной. Важно общее количество: менее 5 граммов в день.",
+  },
+  "myth-physical-activity-gym": {
+    statement: "Физическая активность полезна только при интенсивных тренировках или занятиях в спортзале.",
+    explanation: "Быстрая ходьба, работа в саду и подъём по лестнице тоже защищают сердце. Каждая минута ежедневного движения помогает снизить давление и уровень сахара в крови. Дорогое оборудование не нужно.",
+  },
+  "myth-mental-weakness": {
+    statement: "Если вы тревожитесь или долго грустите, значит, вы слабый человек.",
+    explanation: "Тревожные расстройства и депрессия — реальные заболевания. На них влияют работа мозга, гормоны и стресс. Это не слабость характера. Помощь специалиста и дыхательные упражнения под руководством могут помочь.",
+  },
+};
+
+const russianMythTerms: Record<string, string> = {
+  "Family medicine": "Семейная медицина",
+  "Endocrinology and nutrition": "Эндокринология и питание",
+  Cardiology: "Кардиология",
+  "Infectious diseases": "Инфекционные болезни",
+  "Obstetrics and gynecology": "Акушерство и гинекология",
+  "World Health Organization": "Всемирная организация здравоохранения",
+  "International Diabetes Federation": "Международная диабетическая федерация",
+  "European Society of Cardiology": "Европейское общество кардиологов",
+  "European screening guidelines": "Европейские рекомендации по скринингу",
+  "World Health Organization and European prevention guidelines": "Всемирная организация здравоохранения и европейские рекомендации по профилактике",
+};
+
+export const HEALTH_MYTHS_RU: HealthMyth[] = HEALTH_MYTHS_EN.map((myth) => ({
+  ...myth,
+  ...russianMythContent[myth.id],
+  category: MYTH_CATEGORIES_RU.find((category) => category.slug === myth.categorySlug)?.label ?? myth.category,
+  statusTag: "Неправда",
+  doctorSpecialty: russianMythTerms[myth.doctorSpecialty] ?? myth.doctorSpecialty,
+  source: russianMythTerms[myth.source] ?? myth.source,
+}));

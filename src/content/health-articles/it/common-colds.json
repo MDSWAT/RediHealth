@@ -1,0 +1,51 @@
+{
+  "title": "Raffreddore: guarigione, sollievo e segnali d'allarme",
+  "intro": "Naso che cola, gola irritata e tosse dipendono spesso da un'infezione virale delle vie respiratorie superiori. La maggior parte dei comuni raffreddori passa con il tempo e semplici cure. Influenza e COVID possono causare sintomi simili: i soli disturbi non identificano con certezza il virus, soprattutto nelle persone a rischio di malattia grave.",
+  "sections": [
+    {
+      "heading": "Che cosa aspettarsi",
+      "paragraphs": [
+        "I sintomi compaiono spesso gradualmente: starnuti, congestione e fastidio alla gola, poi tosse e stanchezza. In genere si guarisce in circa una o due settimane, anche se la tosse può durare più a lungo. I bambini possono prendere infezioni ripetute al nido o a scuola; un nuovo episodio non significa necessariamente difese basse. Sintomi persistenti, crescita insufficiente o infezioni insolitamente gravi richiedono valutazione. Il muco nasale giallo o verde, da solo, non dimostra un'infezione batterica né la necessità di antibiotici."
+      ]
+    },
+    {
+      "heading": "Facilitare il bere, il sonno e la respirazione nasale",
+      "paragraphs": [
+        "Riposare secondo necessità, offrire regolarmente liquidi ed evitare il fumo. Rispettare eventuali restrizioni mediche sui liquidi senza forzare grandi quantità. Gocce o spray nasali salini possono alleviare la congestione; il farmacista può spiegarne l'uso adatto all'età e l'aspirazione delicata nel lattante. Il miele può calmare la tosse negli adulti e nei bambini oltre un anno, ma non va mai dato ai lattanti più piccoli. Le bevande siano tiepide; evitare recipienti di acqua bollente per inalare vapore, per il rischio di ustioni. Un lattante che non si alimenta normalmente richiede maggiore attenzione."
+      ]
+    },
+    {
+      "heading": "Controllare i farmaci prima di combinarli",
+      "paragraphs": [
+        "I medicinali per dolore o febbre possono migliorare il benessere, ma non curano l'infezione. Chiedere al farmacista cosa sia adatto considerando età, gravidanza, malattie renali, problemi gastrici e altri farmaci. Seguire il foglietto illustrativo senza duplicare un principio attivo presente in più prodotti per il raffreddore. I prodotti per adulti non sono automaticamente sicuri per i bambini. Gli spray decongestionanti hanno una durata d'uso breve: l'impiego prolungato può peggiorare la congestione. Gli antibiotici non trattano un raffreddore virale senza complicanze. Una complicanza batterica diagnosticata è una situazione diversa, per cui il medico può prescriverli."
+      ]
+    },
+    {
+      "heading": "Proteggere gli altri e considerare altre infezioni",
+      "paragraphs": [
+        "Lavare le mani, coprire tosse e starnuti, gettare i fazzoletti e arieggiare gli ambienti. Evitare contatti ravvicinati con persone vulnerabili quando si è malati e restare a casa se si ha febbre o non si riescono a svolgere le normali attività. Valutare una mascherina ben aderente se il contatto è inevitabile. Il vaccino antinfluenzale non previene i comuni raffreddori. Se sono possibili influenza o COVID e si è anziani, in gravidanza, immunodepressi o con importanti patologie croniche, contattare tempestivamente il medico per test e trattamento. Gli antivirali vanno iniziati presto: non aspettare sintomi gravi."
+      ]
+    },
+    {
+      "heading": "Quando cambiare programma",
+      "paragraphs": [
+        "Chiedere soccorso immediato per grave difficoltà respiratoria, labbra bluastre o grigie, collasso, confusione o forte dolore toracico. Richiedere una valutazione tempestiva per disidratazione, febbre nel lattante piccolo, peggioramento di una patologia cronica, febbre persistente o netto peggioramento dopo un iniziale miglioramento. Programmare una visita se i sintomi non iniziano a migliorare dopo circa dieci giorni o la tosse supera circa tre settimane. Sono indicazioni orientative, non un invito ad aspettare con sintomi preoccupanti. Respiro accelerato, sonnolenza insolita o alimentazione molto ridotta nel bambino richiedono consiglio prima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: controllare un prodotto combinato",
+      "text": "Mira vorrebbe una bustina per il naso chiuso dopo aver già preso un antidolorifico. Il farmacista nota lo stesso principio attivo nei due prodotti e l'aiuta a evitare un eccesso accidentale. Sceglie un solo prodotto adatto e uno spray salino."
+    },
+    {
+      "title": "Esempio ipotetico: disturbi lievi, rischio maggiore",
+      "text": "Un uomo anziano con malattia polmonare sviluppa mal di gola dopo un'infezione respiratoria in famiglia. Pur riuscendo ancora a bere e camminare, contatta presto il medico per test ed eventuale terapia precoce, senza presumere che ogni esordio lieve sia un semplice raffreddore."
+    }
+  ],
+  "questions": [
+    "Quali farmaci per i sintomi sono sicuri con la mia terapia?",
+    "La mia storia clinica richiede test o trattamento più precoci?",
+    "Quali cambiamenti richiedono di ricontattarvi o chiedere aiuto urgente?"
+  ]
+}

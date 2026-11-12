@@ -1,0 +1,51 @@
+{
+  "title": "Răceala: recuperare, ameliorare și semne de alarmă",
+  "intro": "Nasul care curge, usturimea în gât și tusea apar frecvent într-o infecție virală a căilor respiratorii superioare. Majoritatea răcelilor obișnuite trec cu timpul și îngrijire simplă. Gripa și COVID pot produce simptome asemănătoare: simptomele singure nu identifică sigur virusul, mai ales la cineva cu risc de boală gravă.",
+  "sections": [
+    {
+      "heading": "La ce să vă așteptați",
+      "paragraphs": [
+        "Simptomele apar adesea treptat: strănut, nas înfundat și disconfort în gât, apoi tuse și oboseală. Recuperarea durează de obicei o săptămână sau două, iar tusea poate persista. Copiii pot face infecții repetate la creșă sau școală; un nou episod nu înseamnă neapărat imunitate scăzută. Simptomele persistente, creșterea insuficientă sau infecțiile neobișnuit de severe necesită evaluare. Mucusul nazal galben sau verde nu dovedește singur o infecție bacteriană și nu justifică automat antibiotice."
+      ]
+    },
+    {
+      "heading": "Ajutați hidratarea, somnul și respirația pe nas",
+      "paragraphs": [
+        "Odihniți-vă după nevoie, oferiți lichide regulat și evitați fumul de tutun. Respectați eventualele restricții medicale de lichide, fără a forța cantități mari. Picăturile sau sprayul nazal salin pot ameliora congestia; farmacistul poate explica folosirea potrivită vârstei și aspirarea blândă la sugar. Mierea poate calma tusea la adulți și copii de peste un an, dar nu se dă niciodată sugarilor mai mici. Băuturile să fie călduțe; evitați inhalarea aburilor deasupra vaselor cu apă clocotită, din cauza arsurilor. Sugarul care nu se alimentează normal necesită atenție sporită."
+      ]
+    },
+    {
+      "heading": "Verificați medicamentele înainte de a le combina",
+      "paragraphs": [
+        "Medicamentele pentru durere sau febră pot crește confortul, dar nu vindecă infecția. Întrebați farmacistul ce este potrivit pentru vârstă, sarcină, boli renale, probleme gastrice și celelalte tratamente. Urmați prospectul și nu dublați o substanță prezentă în mai multe remedii pentru răceală. Produsele pentru adulți nu sunt automat sigure pentru copii. Sprayurile decongestionante se folosesc doar pe durata scurtă indicată: utilizarea prelungită poate agrava congestia. Antibioticele nu tratează răceala virală necomplicată. O complicație bacteriană diagnosticată este o situație diferită, pentru care medicul poate prescrie antibiotic."
+      ]
+    },
+    {
+      "heading": "Protejați alte persoane și luați în calcul alte infecții",
+      "paragraphs": [
+        "Spălați mâinile, acoperiți tusea și strănutul, aruncați șervețelele și aerisiți încăperile. Evitați contactul apropiat cu persoane vulnerabile cât sunteți bolnav și rămâneți acasă dacă aveți febră sau nu vă puteți desfășura activitățile obișnuite. O mască bine fixată poate ajuta când contactul nu poate fi evitat. Vaccinul antigripal nu previne răcelile obișnuite. Dacă sunt posibile gripa ori COVID și sunteți vârstnic, gravidă, imunodeprimat sau aveți o boală cronică importantă, cereți rapid sfatul medicului privind testarea și tratamentul. Antiviralele au o fereastră timpurie de administrare; nu așteptați agravarea."
+      ]
+    },
+    {
+      "heading": "Când trebuie schimbat planul",
+      "paragraphs": [
+        "Solicitați ajutor de urgență pentru dificultate respiratorie severă, buze albăstrui sau cenușii, colaps, confuzie ori durere toracică severă. Cereți evaluare promptă pentru deshidratare, febră la sugarul mic, agravarea unei boli cronice, febră persistentă sau deteriorare clară după o ameliorare inițială. Programați un consult dacă simptomele nu încep să se amelioreze după aproximativ zece zile sau tusea depășește circa trei săptămâni. Duratele sunt orientative: nu așteptați dacă apar semne îngrijorătoare. Respirația rapidă, somnolența neobișnuită ori alimentația mult redusă la copil necesită sfat mai devreme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: verificarea unui produs combinat",
+      "text": "Mira vrea un plic pentru nas înfundat după ce a luat deja un calmant. Farmacistul observă aceeași substanță în ambele produse și o ajută să evite o doză excesivă accidentală. Ea alege un singur produs potrivit și spray salin."
+    },
+    {
+      "title": "Exemplu ipotetic: simptome ușoare, risc mai mare",
+      "text": "Un bărbat vârstnic cu boală pulmonară începe să aibă durere în gât după o infecție respiratorie în familie. Deși poate încă bea și merge, contactează rapid medicul pentru testare și posibil tratament precoce, fără să presupună că orice debut ușor este doar răceală."
+    }
+  ],
+  "questions": [
+    "Ce medicamente pentru simptome sunt sigure împreună cu tratamentul meu?",
+    "Istoricul meu medical impune testare sau tratament mai devreme?",
+    "Ce schimbări înseamnă că trebuie să vă contactez din nou sau să cer ajutor urgent?"
+  ]
+}

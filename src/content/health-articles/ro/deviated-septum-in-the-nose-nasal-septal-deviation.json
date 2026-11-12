@@ -1,0 +1,51 @@
+{
+  "title": "Deviația de sept nazal: înțelegerea nasului înfundat",
+  "intro": "Septul este peretele de cartilaj și os care desparte fosele nazale. Rareori este perfect drept. Deviația contează când contribuie la o obstrucție supărătoare, nu doar fiindcă apare la examinare. Evaluarea trebuie să lege anatomia de simptome și să caute alte cauze tratabile înaintea deciziei chirurgicale.",
+  "sections": [
+    {
+      "heading": "Ce pot însemna simptomele",
+      "paragraphs": [
+        "Un pasaj îngustat îngreunează respirația nazală, uneori mai mult pe o parte, cu respirație orală, uscăciune ori somn perturbat. Forma poate proveni din traumatism sau din dezvoltarea feței. Alergia, mucoasa umflată, cornetele mărite, polipii și alte boli pot obstrua și ele aerul. Sforăitul, durerea facială ori oboseala singure nu dovedesc cauza septală. Pauzele respiratorii în somn cer evaluarea apneei; îndreptarea septului nu garantează vindecarea acesteia. O deviație vizibilă fără simptome relevante nu necesită de obicei tratament."
+      ]
+    },
+    {
+      "heading": "Pregătirea consultației ORL",
+      "paragraphs": [
+        "Descrieți partea înfundată, alternanța, durata și efectele asupra somnului, efortului ori muncii. Menționați traumatisme, sângerări, miros redus, alergii, operații și toate sprayurile nazale. Medicul examinează interiorul și exteriorul nasului, uneori cu instrument optic subțire. Testele alergologice, măsurătorile fluxului, imaginile sau studiul somnului se aleg după constatări, fără a fi necesare tuturor. Obstrucția persistentă unilaterală, mai ales cu secreție cu sânge, cere consult prompt, nu automedicație repetată ca pentru răceală."
+      ]
+    },
+    {
+      "heading": "Tratarea umflării, fără promisiunea îndreptării prin medicamente",
+      "paragraphs": [
+        "Un produs salin ori tratamentul alergiei pot ajuta când iritația și inflamația contribuie. Sprayul nazal corticoid prescris reduce inflamația, nu deplasează septul. Întrebați despre tehnică, perioada de probă și reevaluare. Orientarea spre peretele lateral al nasului, nu spre sept, poate reduce iritația. Decongestionantele ajută scurt, dar folosirea prelungită agravează uneori blocajul; respectați limita scurtă din prospect și întrebați farmacistul dacă sunt potrivite. Nu încercați îndreptarea cu degete, instrumente ori dispozitive nedovedite."
+      ]
+    },
+    {
+      "heading": "Ce poate și ce nu poate face septoplastia",
+      "paragraphs": [
+        "Septoplastia modifică peretele intern pentru flux mai bun când simptomele și examenul indică o cauză structurală. Uneori se tratează și cornetele mărite. Modificarea aspectului exterior necesită discuție separată despre rinoplastie ori intervenție combinată. Întrebați despre beneficiul realist, alternative și alte cauze ce vor necesita tratament. Riscurile includ sângerare, infecție, perforație septală, obstrucție persistentă și uneori modificări de formă sau sensibilitate. Contează și riscul anesteziei și sănătatea individuală. La copilul în creștere, necesitatea și momentul cer judecată specializată. Ameliorarea este posibilă, fără garanția dispariției complete ori permanente."
+      ]
+    },
+    {
+      "heading": "Recuperare și semne de alarmă",
+      "paragraphs": [
+        "Blocajul și disconfortul temporar după operație nu înseamnă obligatoriu eșec. Cereți instrucțiuni scrise pentru îngrijire, tampoane ori atele, muncă, sport, suflarea nasului și controale; nu scoateți singur suporturile interne. Durerea ori obstrucția în creștere, febra, secreția urât mirositoare sau sângerarea importantă cer sfat urgent. După traumatism recent, umflătura dureroasă din interior poate fi hematom septal care necesită evaluare de urgență, chiar dacă exteriorul pare acceptabil. Sângerarea necontrolată, scurgerea limpede după traumatism cranian, cefaleea severă cu tulburări vizuale ori dificultatea respiratorie gravă cer urgență. Sunt diferite de deviația veche stabilă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: două cauze împreună",
+      "text": "Mira are deviație și strănut sezonier. Tratamentul alergiei reduce umflarea, dar o parte rămâne deranjantă. Notează problemele persistente de somn și respirație și discută dacă operația ar ajuta componenta structurală, păstrând planul potrivit pentru alergie."
+    },
+    {
+      "title": "Exemplu ipotetic: traumatismul schimbă planul",
+      "text": "După o lovitură la sport, Leo are blocaj în creștere și umflătură dureroasă în nas. Cere evaluare de urgență pentru posibilă colecție de sânge, fără să aștepte consultația electivă pentru deviație."
+    }
+  ],
+  "questions": [
+    "Ce constatări explică obstrucția și ce alte cauze există?",
+    "Ce beneficii și riscuri are operația față de continuarea tratamentului medical?",
+    "Care este planul recuperării și ce schimbări cer ajutor urgent?"
+  ]
+}

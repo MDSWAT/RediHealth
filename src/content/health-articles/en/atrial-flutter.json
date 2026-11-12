@@ -1,0 +1,51 @@
+{
+  "title": "Atrial flutter: understand the rhythm and plan treatment",
+  "intro": "Atrial flutter is a heart rhythm problem in which an electrical signal circulates repeatedly through the upper chambers, making them beat rapidly. The pulse you feel may be fast and regular or sometimes irregular. Flutter differs from atrial fibrillation, but the two can occur in the same person. Assessment needs to address symptoms, heart function and stroke risk rather than only the number shown on a pulse monitor.",
+  "sections": [
+    {
+      "heading": "Recognise symptoms and emergency warning signs",
+      "paragraphs": [
+        "Flutter may cause a racing heart, fatigue, breathlessness, reduced exercise tolerance or dizziness. Some people have few symptoms. A persistent new fast pulse needs prompt medical advice, even if it seems regular. Seek emergency help for chest pain, severe breathlessness, fainting or sudden weakness, facial droop or speech difficulty. Do not drive yourself for emergency care. A previous flutter diagnosis does not make new chest pain harmless, and stroke symptoms remain an emergency even if they disappear."
+      ]
+    },
+    {
+      "heading": "Use an ECG to identify the rhythm",
+      "paragraphs": [
+        "The electrical activity on an ECG helps distinguish flutter from atrial fibrillation and other fast rhythms. The atria can beat faster than the lower chambers because not every signal passes through, so a wrist pulse cannot reveal the whole pattern. Intermittent episodes may require longer monitoring. Tell the clinician about previous heart surgery or ablation, medicines and the timing of symptoms. Tests may assess heart structure, thyroid function or other contributing conditions. The type and location of the electrical circuit can influence treatment choices."
+      ]
+    },
+    {
+      "heading": "Discuss rate control and restoration of rhythm",
+      "paragraphs": [
+        "Medicines can slow the lower chambers or help control the abnormal rhythm. Cardioversion uses a carefully controlled electrical treatment to restore rhythm in suitable circumstances; urgent treatment may be required if the circulation is unstable. The team considers how long flutter has lasted and the risk of an existing clot before a planned cardioversion. Ask what preparation and anticoagulation are needed and what happens if flutter returns. Never take extra heart medicine or try to reset the rhythm yourself without an agreed medical plan."
+      ]
+    },
+    {
+      "heading": "Ask whether catheter ablation fits your type of flutter",
+      "paragraphs": [
+        "Ablation passes catheters through blood vessels to interrupt the electrical circuit. For typical flutter, targeting a particular area in the right atrium can be an effective option. Other circuits, including those associated with previous procedures, can require a different approach. Discuss expected success for your case, risks, anaesthesia, recovery and the chance of another procedure. Treating flutter does not guarantee that atrial fibrillation will never develop. Follow-up remains important even when the racing heartbeat has stopped."
+      ]
+    },
+    {
+      "heading": "Keep stroke prevention and follow-up explicit",
+      "paragraphs": [
+        "Flutter can be associated with clot formation and stroke. Anticoagulation decisions consider individual stroke and bleeding risks, any atrial fibrillation and the treatment plan. Do not stop prescribed protection because a procedure seemed successful or a pulse reading looks normal. Ask when the prescription will be reviewed and what monitoring is planned. Address relevant blood pressure, heart disease, sleep problems, smoking and alcohol with the team. Record recurring symptoms and seek reassessment if breathlessness, swelling or exercise tolerance worsens rather than assuming recurrence is always harmless."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a regular but fast pulse",
+      "text": "A person notices a persistently fast pulse that feels evenly spaced. They arrange prompt assessment rather than assuming regularity means a normal rhythm. An ECG identifies flutter, and the team discusses symptom treatment and clot risk separately."
+    },
+    {
+      "title": "Hypothetical example: a new rhythm after ablation",
+      "text": "After treatment for typical flutter, a patient later notices irregular palpitations. They bring the symptoms to their clinician instead of assuming the old circuit has necessarily returned. Monitoring checks for atrial fibrillation or another cause and guides the updated plan."
+    }
+  ],
+  "questions": [
+    "What type of flutter do I have, and is atrial fibrillation also present?",
+    "How do medicines, cardioversion and ablation compare for my symptoms and heart health?",
+    "What anticoagulation and monitoring do I need before and after treatment, and when should I seek urgent help?"
+  ]
+}

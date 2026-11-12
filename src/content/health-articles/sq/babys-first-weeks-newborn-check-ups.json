@@ -1,0 +1,51 @@
+{
+  "title": "Javët e para të foshnjës: kontrollet, depistimi dhe ndihma urgjente",
+  "intro": "Kontrollet e të porsalindurit bashkojnë ekzaminimin fizik, mbështetjen për ushqyerje dhe depistimin e gjendjeve që mund të mos duken në lindje. Takimi është edhe mundësi për pyetje dhe organizimin e ndjekjes. Orari dhe shërbimet ndryshojnë mes vendeve, ndaj konfirmoni planin lokal para daljes nga materniteti. Një ekzaminim i mëparshëm normal nuk do të thotë se foshnja nuk mund të sëmuret mes vizitave.",
+  "sections": [
+    {
+      "heading": "Dijeni cilat takime janë rezervuar dhe kush përgjigjet",
+      "paragraphs": [
+        "Kërkoni plan me shkrim që emërton mjekun ose shërbimin, vendin dhe çfarë të bëni nëse humbet vizita. Në Gjermani, programi i hershëm përfshin kontroll menjëherë pas lindjes, një tjetër mes ditës së tretë e të dhjetë dhe një në javën e katërt deri të pestë. Këto janë afate gjermane, jo kalendar universal. Pas daljes së hershme ose lindjes në shtëpi, organizoni shprehimisht vlerësimin tjetër në vend që të supozoni se e ka rezervuar spitali. Sillni dokumentet e foshnjës dhe fletëdaljen."
+      ]
+    },
+    {
+      "heading": "Kuptoni ekzaminimin dhe kufijtë e tij",
+      "paragraphs": [
+        "Mjeku shqyrton shtatzëninë dhe lindjen, ekzaminon foshnjën dhe vlerëson gjetje si tingujt e zemrës, ijet, sytë dhe, kur është e përshtatshme, testikujt. Pesha dhe mirëqenia vlerësohen bashkë me vëzhgimet e familjes. Disa gjetje kërkojnë riekzaminim ose referim te specialisti edhe kur foshnja duket rehat. Pyetni çfarë u kontrollua, çfarë mbetet e paqartë dhe kur duhen referimet. Rezultati i depistimit sugjeron nevojën për vlerësim të mëtejshëm; nuk është gjithmonë diagnozë dhe nuk zbulon çdo sëmundje."
+      ]
+    },
+    {
+      "heading": "Diskutoni ushqyerjen, peshën dhe vëzhgimet e përditshme",
+      "paragraphs": [
+        "Përshkruani sa shpesh ofrohet ushqim, nëse foshnja zgjohet për të pirë, gëlltitjen, të vjellat dhe ndryshimet e pelenave të lagura ose me jashtëqitje. Mamia ose mjeku mund të vëzhgojë ushqyerjen dhe ecurinë e peshës në vend që të gjykojë vetëm një matje. Mund të ketë humbje fillestare peshe, por sasia, rikthimi dhe gjendja përcaktojnë nevojën për ndihmë. Kërkoni këshillë individuale për gjidhënien, formulën dhe shtesat e rekomanduara. Mos e holloni formulën përtej udhëzimeve dhe mos e quani ushqyerjen vazhdimisht të dobët thjesht përgjumje natyrale."
+      ]
+    },
+    {
+      "heading": "Ndiqni rezultatet e depistimit dhe planin e mëtejshëm",
+      "paragraphs": [
+        "Depistimi i dëgjimit, testet me pikë gjaku dhe kontrollet e tjera ofrohen sipas programeve lokale dhe pëlqimit. Pyetni cilat u kryen, cilat mungojnë, si vijnë rezultatet dhe kë të telefononi nëse nuk dëgjoni asgjë. Një rezultat dëgjimi i paqartë mund të kërkojë përsëritje; nuk përcakton vetë shurdhësinë. Tregoni historinë familjare dhe shqetësimet për dëgjimin ose shikimin edhe pas rezultateve qetësuese. Mbani takimet për rezultate anormale apo të paplota dhe kërkoni shpjegim ose interpretim kur dokumentet janë të vështira."
+      ]
+    },
+    {
+      "heading": "Mos prisni kontrollin rutinë kur foshnja është e sëmurë",
+      "paragraphs": [
+        "Vështirësia në frymëmarrje, ngjyra blu ose gri, zgjimi shumë i vështirë, krizat ose përkeqësimi i shpejtë kërkojnë ndihmë emergjente. Temperatura e lartë ose jashtëzakonisht e ulët te i porsalinduri, ushqyerja shumë e pakësuar, më pak pelena të lagura apo verdhëza në rritje kërkojnë vlerësim urgjent. Të vjellat jeshile janë shenjë alarmi urgjente. Foshnja mund të ketë infeksion serioz pa temperaturë. Në telefon tregoni moshën dhe ndryshimet; ndiqni këshillën urgjente pa pritur vizitën e rezervuar apo provuar fillimisht kura shtëpie."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: kontroll pas daljes së hershme",
+      "text": "Familja shkon në shtëpi para ekzaminimit tjetër. Para largimit pyet kush e kryen, konfirmon datën dhe merr dokumentet e daljes. Kontrollon edhe si komunikohen rezultatet e gjakut dhe dëgjimit, pa supozuar se mungesa e mesazhit do të thotë se janë të gjitha normale."
+    },
+    {
+      "title": "Shembull hipotetik: veprim mes takimeve",
+      "text": "I porsalinduri zgjohet më vështirë dhe pi shumë më pak. Kujdestari kërkon ndihmë urgjente dhe përshkruan moshën, ushqyerjen dhe pelenat e lagura. Nuk pret vizitën rutinë të nesërme vetëm sepse ekzaminimi i mëparshëm ishte qetësues."
+    }
+  ],
+  "questions": [
+    "Cilat ekzaminime dhe teste depistimi janë kryer dhe cilat takime apo rezultate presim ende?",
+    "Si ecin ushqyerja dhe pesha dhe çfarë mbështetjeje individuale i duhet foshnjës?",
+    "Cilat ndryshime kërkojnë ndihmë urgjente dhe cilin shërbim lokal kontaktojmë mes vizitave?"
+  ]
+}

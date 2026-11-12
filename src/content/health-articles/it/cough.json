@@ -1,0 +1,51 @@
+{
+  "title": "Tosse: capire l'andamento e scegliere il passo successivo",
+  "intro": "La tosse aiuta a liberare le vie respiratorie, ma se irritante o persistente può disturbare sonno, lavoro e vita quotidiana. È un sintomo, non una singola malattia. Molti episodi seguono infezioni virali e migliorano gradualmente; altri richiedono la cura della causa. Esordio, durata e sintomi associati contano più della scelta di uno sciroppo soltanto dal suono.",
+  "sections": [
+    {
+      "heading": "Osservare l'andamento senza autodiagnosi",
+      "paragraphs": [
+        "Annotare se la tosse è secca o con muco, quotidiana, notturna oppure legata a esercizio, pasti, fumo o esposizioni lavorative. Segnare febbre, sibili, affanno ed eventuale episodio di soffocamento. Le cause comprendono infezioni, asma, infiammazione nasale, reflusso, malattie da fumo e alcuni farmaci, inclusi ACE-inibitori. Cause meno comuni possono essere serie. Una nuova tosse dopo un farmaco richiede discussione, non sospensione autonoma. La tosse grassa non è automaticamente batterica e la sola tosse notturna non dimostra asma."
+      ]
+    },
+    {
+      "heading": "I segnali urgenti cambiano subito il piano",
+      "paragraphs": [
+        "Chiedere soccorso immediato per grave difficoltà respiratoria, labbra bluastre o grigie, collasso o soffocamento con impossibilità a respirare o parlare. Tossire più di poche striature di sangue, oppure sangue con dolore toracico o difficoltà respiratoria, richiede valutazione d'emergenza. Anche piccole tracce di sangue vanno controllate tempestivamente. Richiedere consiglio urgente per rapido peggioramento, dolore toracico, febbre importante, disidratazione o forte malessere. Un bambino con tosse iniziata dopo soffocamento con cibo o un oggetto va valutato anche se l'episodio iniziale è passato. Lattanti con pause respiratorie, scarsa alimentazione o sonnolenza insolita richiedono attenzione urgente."
+      ]
+    },
+    {
+      "heading": "Conta la durata, ma gli allarmi prevalgono sul calendario",
+      "paragraphs": [
+        "La tosse postinfettiva può continuare settimane mentre gli altri sintomi migliorano. Programmare valutazione se supera circa tre settimane, prima se peggiora o ci sono rischi importanti. Nei bambini una tosse grassa quotidiana oltre quattro settimane richiede particolare valutazione. Non considerare settimane continue di tosse grassa semplicemente un altro raffreddore. Calo di peso inspiegato, sudorazioni notturne, infezioni toraciche ripetute o esposizione rilevante a tubercolosi richiedono controllo. Il medico può visitare il torace, rivedere farmaci e decidere radiografia, funzionalità respiratoria o test infettivi. Non servono tutti gli esami a ogni persona."
+      ]
+    },
+    {
+      "heading": "Le misure di sollievo hanno limiti",
+      "paragraphs": [
+        "Evitare fumo e aerosol da svapo, riducendo irritanti noti. Bere regolarmente può lenire la gola; rispettare eventuali restrizioni mediche dei liquidi. Il miele può dare sollievo ad adulti e bambini oltre un anno, ma mai ai lattanti più piccoli. Evitare recipienti di vapore bollente e rischi di soffocamento come pastiglie nel bambino piccolo. I prodotti da banco hanno benefici limitati e possono causare sonnolenza, interazioni o dosi duplicate. Chiedere al farmacista per età, gravidanza e altri farmaci; non usare prodotti adulti per bambini. Analgesici o antipiretici possono alleviare dolore o febbre senza fermare la tosse."
+      ]
+    },
+    {
+      "heading": "Trattare la causa e concordare la rivalutazione",
+      "paragraphs": [
+        "La maggior parte delle tossi virali non complicate non richiede antibiotici. Inalatori, steroidi o farmaci antireflusso non sono una prova standard per ogni tosse: devono corrispondere alla valutazione clinica. Un'infezione batterica diagnosticata o una patologia respiratoria cronica può richiedere cure specifiche. La tosse lunga inspiegata può necessitare di uno specialista e trattamento mirato per il controllo della tosse, non antibiotici ripetuti. Riferire perdita di sonno, perdite urinarie o svenimenti tossendo, che meritano aiuto e possono influire sulla sicurezza. Chiedere tempi di miglioramento, cosa fare se il piano fallisce e quali segnali richiedono controllo anticipato. I sintomi persistenti vanno presi sul serio senza presumere la causa peggiore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un diario utile",
+      "text": "Ilir ha tosse secca dopo un cambio di terapia per la pressione. Segna l'inizio e porta tutti i farmaci alla visita. Il medico cerca altre cause e decide se modificare la terapia; Ilir non la sospende autonomamente."
+    },
+    {
+      "title": "Esempio ipotetico: tosse grassa continua",
+      "text": "Una bambina sembra attiva tra i raffreddori, ma tossisce con catarro ogni giorno da settimane. Il genitore nota l'assenza di giorni senza tosse e organizza una visita. Il medico valuta la persistenza invece di raccomandare ripetuti sedativi da banco."
+    }
+  ],
+  "questions": [
+    "Quali cause corrispondono al mio andamento e servono esami?",
+    "Quali misure di sollievo o farmaci sono adatti a me?",
+    "Quando dovrebbe migliorare e cosa richiede un controllo anticipato?"
+  ]
+}

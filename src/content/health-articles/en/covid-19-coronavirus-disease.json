@@ -1,0 +1,51 @@
+{
+  "title": "COVID-19: testing, early treatment and recovery",
+  "intro": "COVID is an infection caused by SARS-CoV-2. It can resemble a cold, but it can also cause severe illness or lasting symptoms. Risk varies with age, immunity, pregnancy and other health conditions. A mild beginning does not mean that a person at higher risk should wait before asking about treatment, and a past infection does not guarantee protection from another one.",
+  "sections": [
+    {
+      "heading": "Recognise symptoms and use tests thoughtfully",
+      "paragraphs": [
+        "Fever, sore throat, cough, congestion, tiredness, aches, digestive upset or altered smell and taste can occur. Symptoms overlap with flu and other respiratory infections, so the pattern alone is not a reliable diagnosis. A rapid antigen test can help, but a single negative test, particularly early in illness, does not exclude infection. Follow the kit and current local advice about repeat testing or a laboratory test. Tell a clinician when symptoms started and about a recent previous positive result, because some laboratory tests can remain positive after recovery. Do not postpone urgent care to obtain a test."
+      ]
+    },
+    {
+      "heading": "Who should ask about early treatment",
+      "paragraphs": [
+        "Older adults and people with weakened immunity or important heart, lung, kidney or other chronic conditions have greater risk. Pregnancy can also increase risk. Contact a clinician promptly if you belong to a higher-risk group and develop possible symptoms, even if mild. Antiviral treatment, when appropriate, must begin within the first few days; eligibility and availability depend on the country and individual situation. The clinician needs a complete medicine list, including supplements, and information about kidney and liver health. Some antivirals have important interactions. Do not stop essential medicines or borrow someone else's course to make treatment possible."
+      ]
+    },
+    {
+      "heading": "Home care and signs requiring help",
+      "paragraphs": [
+        "For mild illness, rest, regular drinks and suitable pain or fever relief can help; follow any medical fluid restriction and product instructions. Ask a pharmacist about pregnancy, children or other medicines. Antibiotics do not treat the virus, and steroids are not a routine home treatment for mild illness. Seek advice if symptoms worsen, drinking becomes difficult or a chronic condition deteriorates. Get emergency help for severe breathlessness at rest, inability to speak short sentences, persistent chest pain or pressure, confusion, collapse or blue or grey lips. Babies with poor feeding, breathing difficulty or unusual sleepiness need prompt assessment. Symptoms matter even if a home oxygen reading looks reassuring."
+      ]
+    },
+    {
+      "heading": "Reduce exposure and check current vaccine advice",
+      "paragraphs": [
+        "The virus spreads through infectious particles in the air, especially in shared indoor spaces. Stay away from others when ill, improve ventilation, cover coughs and wash hands. If contact is unavoidable, a well-fitting mask and cleaner air add protection; avoid visiting particularly vulnerable people. Follow current local guidance for returning to school or work, including any setting-specific rules. Vaccination reduces the risk of severe disease but does not guarantee no infection or transmission. Ask a local clinician which current vaccine and timing are recommended for your age, pregnancy or immune condition. A schedule from another country may not apply to you."
+      ]
+    },
+    {
+      "heading": "Recovery can require an individual plan",
+      "paragraphs": [
+        "Many people recover over days to weeks. Others have persistent fatigue, breathlessness, concentration problems, altered smell or symptoms that fluctuate after the acute infection. Arrange assessment when recovery is not progressing or daily life remains limited; other treatable causes must also be considered. New severe chest pain or breathing difficulty should not automatically be blamed on long COVID. Discuss a symptom diary, practical support and a tailored return to work or school. If activity causes a delayed marked worsening, tell the clinician and avoid simply forcing increases in exercise. Rehabilitation should fit the person's symptoms and response, rather than promising a fixed recovery date."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: an early negative result",
+      "text": "Ana has a sore throat and a negative home test on the first day. Because she takes immune-suppressing treatment, she contacts her clinician immediately about testing and early treatment instead of waiting for a severe cough or assuming the test rules infection out."
+    },
+    {
+      "title": "Hypothetical example: adjusting recovery",
+      "text": "After the fever settles, Dario returns to long work shifts but feels substantially worse the following day. He records the pattern and discusses a paced, individual plan with his clinician and employer, rather than repeatedly pushing harder or assuming the problem is lack of effort."
+    }
+  ],
+  "questions": [
+    "Am I eligible for early treatment, and how quickly must I contact you?",
+    "Do my medicines or kidney and liver health affect the options?",
+    "Which symptoms need urgent help, and how should we review delayed recovery?"
+  ]
+}

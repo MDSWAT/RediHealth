@@ -1,0 +1,51 @@
+{
+  "title": "Klima dhe shëndeti: përgatitje për vapë, tym dhe mot ekstrem",
+  "intro": "Ndryshimi klimatik prek shëndetin përmes vapës, motit ekstrem, ajrit, ushqimit, ujit dhe ndërprerjes së shërbimeve. Rreziku ndryshon sipas vendit, shëndetit, banesës, punës dhe ndihmës. Përgatitja ul dëmin, por duhen edhe shërbime komunitare dhe veprim publik. Ndiqni alarmet vendore, jo supozimin se një artikull parashikon kushtet e shtëpisë.",
+  "sections": [
+    {
+      "heading": "Përgatituni para sëmundjes nga vapa",
+      "paragraphs": [
+        "Planifikoni vend më të freskët në orët e nxehta, hijezoni dhomat dhe përshtatni sforcimin. Kontrolloni të moshuarit, fëmijët e vegjël, shtatzënat dhe të sëmurët kronikë që duan ndihmë. Pini sipas moshës e shëndetit; kufizimi i përshkruar kërkon plan individual. Mos lini fëmijë ose persona të varur në makinë të parkuar. Konfuzioni, rrëzimi ose dyshimi për goditje nga nxehtësia janë emergjencë: kërkoni ndihmë dhe filloni freskimin."
+      ]
+    },
+    {
+      "heading": "Ajri dhe tymi kërkojnë plan të veçantë",
+      "paragraphs": [
+        "Vapa e tymi përkeqësojnë mushkëritë dhe zemrën. Ndiqni këshillën vendore për ajrin, ulni sforcimin jashtë në ndotje të rrezikshme dhe gjeni vend më të freskët me ajër të pastër. Mbajtja e tymit jashtë duhet balancuar me nxehtësinë brenda; shkoni në hapësirë publike të përshtatshme nëse shtëpia s'është e sigurt. Ndiqni planin e astmës ose mushkërive dhe mbani barnat pranë. Frymëmarrja shumë e vështirë ose dhimbja e kraharorit kërkojnë urgjencë ose emergjencë, jo fajësim automatik të motit."
+      ]
+    },
+    {
+      "heading": "Përmbytjet dhe infeksionet",
+      "paragraphs": [
+        "Uji i përmbytjes fsheh rrymë elektrike, lëndime dhe ndotje. Mos ecni e drejtoni në të; ndiqni evakuimin dhe ujin e pijshëm sipas autoriteteve. Mbani fëmijët larg dhe kërkoni këshillë për plagë të ekspozuara. Ushqimi i përmbytur ose pa frigorifer mund të jetë i pasigurt edhe me pamje normale. Mos përdorni gjenerator me karburant brenda shtëpisë ose garazhit nga monoksidi i karbonit. Temperatura dhe reshjet ndryshojnë rriqrat, mushkonjat dhe infeksionet vendore; ndiqni parandalimin sipas vendit, jo supozimin se çdo sëmundje është kudo."
+      ]
+    },
+    {
+      "heading": "Ruani trajtimin dhe aksesin",
+      "paragraphs": [
+        "Pyesni mjekun ose farmacistin për ruajtjen e barnave në vapë dhe çfarë bëhet me të vjella, dehidratim ose energji të ndërprerë. Disa barna ndryshojnë tolerancën, por mos i ndalni vetë. Planifikoni barnat që duan frigorifer, pajisjet elektrike, transportin dhe kontakt alternativ me ekipin. Mbani listën dhe numrat thelbësorë. Plani duhet t'i përshtatet banesës dhe buxhetit, me ndihmë shërbimesh kur mungon ftohja ose transporti privat."
+      ]
+    },
+    {
+      "heading": "Shëndeti mendor dhe parandalimi së bashku",
+      "paragraphs": [
+        "Moti ekstrem, shpërngulja dhe shqetësimi japin stres, pagjumësi e pikëllim. Kërkoni mbështetje nëse zgjat ose pengon jetën. Caktoni kontroll me njerëz të besuar dhe shërbime për strehë, ujë dhe informacion të arritshëm. Banesat e sigurta, hija, energjia dhe transporti i pastër mbrojnë përtej emergjencës. Veprimi personal ndihmon, por nuk duhen fajësuar njerëzit për rreziqe jashtë kontrollit. Rishikoni planin pas ngjarjes dhe plotësoni boshllëqet në qetësi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Alarm vape me kufi lëngjesh — shembull hipotetik",
+      "text": "Një i moshuar me sëmundje zemre merr alarm. Pyet ekipin për planin e lëngjeve, organizon vend të freskët dhe kontakt kontrolli. Nuk ndal barnat ose pi ujë pa kufi."
+    },
+    {
+      "title": "Tym dhe nxehtësi brenda — shembull hipotetik",
+      "text": "Familja mbyll dritaret për tym, por shtëpia nxehet rrezikshëm. Ndjek alarmet dhe shkon në vend të freskët me ajër të pastër, pa quajtur dritaret e mbyllura mbrojtjen e vetme."
+    }
+  ],
+  "questions": [
+    "Cilat alarme vendore për vapë, ajër dhe përmbytje të ndjek?",
+    "Si ndryshon plani nga sëmundjet, barnat dhe pajisjet e mia?",
+    "Ku gjejmë freskim, ujë të sigurt, transport ose mbështetje emocionale kur shtëpia nuk mjafton?"
+  ]
+}

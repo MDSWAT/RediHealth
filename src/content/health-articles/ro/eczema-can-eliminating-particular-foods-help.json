@@ -1,0 +1,51 @@
+{
+  "title": "Eczema și excluderea alimentelor: când ajută evaluarea țintită",
+  "intro": "Este firesc să căutați un aliment care explică puseele repetate. Unele persoane au eczemă și alergie alimentară, dar eczema nu înseamnă eliminarea alimentelor obișnuite. Dieta care exclude multe poate dăuna fără ameliorarea pielii. Întrebarea utilă este dacă un aliment produce o reacție repetabilă și cum se evaluează sigur.",
+  "sections": [
+    {
+      "heading": "Puseul după masă nu dovedește cauza",
+      "paragraphs": [
+        "Eczema variază natural; căldura, infecția, iritanții și tratamentul pot coincide cu mesele. Alergia e mai plauzibilă când alimentul provoacă repetat reacție clară, mai ales urticarie, umflare, vărsături ori semne respiratorii imediat după. Tiparele întârziate cer și ele evaluare. Alergia poate coexista fără să fie cauza principală a eczemei. Nu eliminați alimentul consumat regulat fără simptome doar pentru lista alergenilor. Verificați întâi diagnosticul și folosirea corectă a tratamentului pielii."
+      ]
+    },
+    {
+      "heading": "Testele răspund unei întrebări clinice",
+      "paragraphs": [
+        "Descrieți alimentul, cantitatea, intervalul, simptomele, repetarea și tratamentul. Jurnalul scurt poate ajuta fără povară excesivă. Testul cutanat și anticorpii specifici pot susține evaluarea, dar rezultatul pozitiv poate însemna sensibilizare fără alergie clinică. Panourile largi dau rezultate pozitive confuze în eczemă. Analiza firului de păr, panourile IgG alimentare și testele nevalidate nu justifică dieta. Medicul poate indica provocare alimentară supravegheată. Nu faceți provocare acasă după reacție imediată suspectată ori gravă."
+      ]
+    },
+    {
+      "heading": "Riscuri nutriționale și alergice",
+      "paragraphs": [
+        "Eliminarea laptelui, ouălor, grâului sau mai multor grupe scade energia, proteinele și micronutrienții, mai ales copilului în creștere. Băuturile vegetale obișnuite nu înlocuiesc formula sugarului. Restricția adaugă cost, anxietate, probleme sociale și de hrănire. Evitarea lungă a alimentului tolerat poate crește riscul alergiei imediate. Excluderea simultană complică interpretarea pielii. Nu extindeți restricțiile la dieta persoanei care alăptează fără indicație și sfat nutrițional. Creșterea slabă, slăbirea neintenționată ori dieta deja îngustă cer sprijin timpuriu."
+      ]
+    },
+    {
+      "heading": "Excluderea diagnostică cere plan definit",
+      "paragraphs": [
+        "La istoric plauzibil, alergologul și dieteticianul stabilesc dacă este potrivită excluderea scurtă țintită. Definiți alimentul, înlocuitorii, măsurarea simptomelor și reevaluarea. Păstrați consecvent tratamentul prescris pentru a nu atribui fals beneficiul dietei. Planificați reintroducerea: locul și metoda depind de risc și pot cere supraveghere. Fără beneficiu convingător nu continuați nelimitat și nu adăugați excluderi fără control. Alergia confirmată cere evitarea și plan urgent, iar eczema tratament propriu."
+      ]
+    },
+    {
+      "heading": "Când simptomele alimentare sunt urgente",
+      "paragraphs": [
+        "Umflarea bruscă a gâtului ori limbii, respirația dificilă, colapsul ori deteriorarea rapidă după aliment pot fi anafilaxie. Folosiți adrenalina prescrisă conform planului și sunați la urgență; nu așteptați crema ori antihistaminicul. Nu stați în picioare și nu mergeți în reacție severă suspectată. Vărsăturile persistente, aportul slab, deshidratarea și creșterea afectată cer sfat prompt chiar fără reacție imediată. Pentru eczemă severă necontrolată cereți evaluare specializată, nu schimbarea repetată a hranei întregii familii. Scopul este nutriție sigură și control cutanat cu restricții minime necesare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: test fără reacție corespunzătoare",
+      "text": "Panoul arată sensibilizare a Linei la aliment mâncat fără simptome. Părintele cere interpretare înaintea eliminării. Echipa verifică istoricul și îngrijirea, fără transformarea oricărui pozitiv în alergie."
+    },
+    {
+      "title": "Exemplu ipotetic: reacție clară, alt plan",
+      "text": "Arben are urticarie și buze umflate curând după un aliment. Cere sfat și nu reintroduce singur. Respirația dificilă ori colapsul cer urgență, nu dietă mai lungă pentru eczemă."
+    }
+  ],
+  "questions": [
+    "Istoricul indică reacție reală sau coincidență cu puseul?",
+    "Ce teste țintite ori evaluare supravegheată schimbă îngrijirea?",
+    "La excludere, ce înlocuiește nutrienții și când și cum reevaluăm ori reintroducem sigur?"
+  ]
+}

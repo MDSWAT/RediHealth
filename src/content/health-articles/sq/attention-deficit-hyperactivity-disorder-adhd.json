@@ -1,0 +1,51 @@
+{
+  "title": "ADHD: vlerësimi dhe mbështetja praktike në jetën e përditshme",
+  "intro": "Çrregullimi i deficitit të vëmendjes dhe hiperaktivitetit, ose ADHD, ndikon te vëmendja, kontrolli i impulseve dhe rregullimi i aktivitetit. Fillon në fëmijëri, megjithëse disa identifikohen vetëm në moshë të rritur. Energjia, shpërqendrimi gjatë një jave stresuese ose rezultati i lartë në internet nuk e vendosin diagnozën. Vlerësimi shqyrton vështirësitë e vazhdueshme, zhvillimin dhe ndikimin në fusha të ndryshme të jetës, krahas pikave të forta dhe shpjegimeve të tjera.",
+  "sections": [
+    {
+      "heading": "Përshkruani modelet pa fajësuar sjelljen",
+      "paragraphs": [
+        "ADHD mund të përfshijë humbjen e fillit të detyrave, harrimin e sendeve, vështirësinë për të pritur, ndërprerjen e të tjerëve ose shqetësimin motorik. Disa kanë kryesisht vështirësi vëmendjeje pa hiperaktivitet të dukshëm. Vëreni kur ndodhin problemet dhe ndikimin në mësim, marrëdhënie, punë e siguri. Mjediset kërkuese mund t'i nxjerrin më në pah. As përtacia dhe as prindërimi i dobët nuk janë shpjegim i mjaftueshëm. Megjithatë, një sjellje e vetme nuk konfirmon ADHD; mosha, pritshmëritë dhe mjedisi kanë rëndësi."
+      ]
+    },
+    {
+      "heading": "Kërkoni vlerësim të plotë",
+      "paragraphs": [
+        "Profesionisti mund të mbledhë historinë e zhvillimit dhe informacion nga shtëpia, shkolla ose puna, me pyetësorë dhe intervista. Nuk ka një analizë gjaku ose skanim që konfirmon ADHD. Problemet e gjumit, ankthi, vështirësitë e të nxënit dhe gjendje të tjera mund ta ngjajnë ose shoqërojnë. Të rriturve u ndihmojnë raportet e vjetra shkollore ose vëzhgimet e familjarëve, kur ka, por mungesën e dokumenteve duhet ta diskutojnë, jo të supozojnë se vlerësimi është i pamundur. Përshkruani sinqerisht edhe strategjitë që fshehin përpjekjen."
+      ]
+    },
+    {
+      "heading": "Përshtatni detyrat dhe mjedisin ndërsa prisni",
+      "paragraphs": [
+        "Mbështetja nuk duhet të presë etiketën diagnostike. Ndani detyrën në hapa të qartë, ulni shpërqendrimet dhe përdorni kujtues të dukshëm ose vend të përhershëm për sendet kryesore. Bini dakord për rutina realiste me personin, pa imponuar shumë ndryshime njëherësh. Në shkollë ose punë diskutoni udhëzime me shkrim, pushime të planifikuara ose vend më të qetë. Shikoni çfarë ndihmon realisht; një përshtatje për dikë mund të bezdisë tjetrin. Vlerësoni përparimin dhe shmangni ndëshkimin për vështirësi që kërkojnë mbështetje."
+      ]
+    },
+    {
+      "heading": "Krahasoni mbështetjen, strategjitë dhe barnat",
+      "paragraphs": [
+        "Plani varet nga mosha, ndikimi, preferencat dhe gjendjet shoqëruese. Mbështetja e prindërve, qasjet e sjelljes, edukimi dhe strategjitë psikologjike ndihmojnë funksionimin. Barnat mund të përshtaten pas vlerësimit specialistik dhe diskutimit të përfitimeve e dëmeve. Para dhe gjatë përshkrimit, ekipi rishikon shëndetin fizik e mendor, përfshirë historinë e zemrës, gjumin dhe oreksin. Monitorimi mund të përfshijë pulsin, tensionin dhe rritjen te fëmijët. Mos ndani barna, mos ndryshoni vetë dozat dhe mos blini produkte të paverifikuara që premtojnë shërim të ADHD."
+      ]
+    },
+    {
+      "heading": "Matni suksesin përmes funksionimit dhe mirëqenies",
+      "paragraphs": [
+        "Caktoni synime konkrete, si rutina e mëngjesit me më pak konflikt ose menaxhim më i besueshëm i afateve. Rishikoni përfitimet, efektet anësore dhe pritshmëritë jorealiste. Tregojini përshkruesit ndryshime të rëndësishme humori, oreksi ose gjumi; dhimbja e gjoksit ose të fikëtit kërkojnë vlerësim urgjent. Vështirësitë ndryshojnë me shkollën, punën ose përgjegjësitë familjare, ndaj rishikoni mbështetjen. ADHD mund të bashkëjetojë me autizëm, depresion ose gjendje të tjera që duan kujdesin e tyre, pa ia atribuar çdo problem ADHD-së."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: mëngjese të vështira",
+      "text": "Një fëmijë harron vazhdimisht hapa gjatë përgatitjes. Familja dhe mësuesi identifikojnë modelin; familja provon listë të shkurtër me figura dhe rroba gati më parë. Shikojnë nëse ulet stresi ndërsa organizojnë vlerësimin, pa e quajtur fëmijën të pabindur."
+    },
+    {
+      "title": "Shembull hipotetik: vështirësi në moshë të rritur",
+      "text": "Një i rritur arrin afatet vetëm duke punuar vonë dhe ndihet i rraskapitur. Përshkruan detyrat e humbura dhe përpjekjen e fshehtë. Prioritetet me shkrim dhe kontrollet e planifikuara në punë diskutohen krahas trajtimit, jo vetëm rezultati i pyetësorit."
+    }
+  ],
+  "questions": [
+    "Çfarë e mbështet diagnozën dhe cilat shpjegime ose gjendje shoqëruese duhen vlerësuar?",
+    "Çfarë ndryshimesh provojmë në shtëpi, shkollë ose punë dhe si e gjykojmë dobinë?",
+    "Nëse mendojmë për barna, çfarë përfitimesh, efektesh anësore dhe monitorimi presim?"
+  ]
+}

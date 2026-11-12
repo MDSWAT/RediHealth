@@ -858,6 +858,14 @@ const VIEWPORT_LABELS: Record<
   Lang,
   { canvasAria: string; loadingTitle: string; left: string; right: string; loadError: string }
 > = {
+  ru: {
+    canvasAria: "3D-модель тела. Поворачивайте её стрелками влево и вправо. Выберите область из списка.",
+    loadingTitle: "Загрузка 3D-тела",
+    left: "ушел",
+    right: "правильно",
+    loadError: "3D тело не загрузилось. Выберите регион из списка.",
+  },
+
   ro: {
     canvasAria: "Corp 3D. Folosește săgețile stânga și dreapta ca să îl rotești. Alege zona din listă.",
     loadingTitle: "Se încarcă corpul 3D",

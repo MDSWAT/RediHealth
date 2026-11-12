@@ -79,13 +79,16 @@ const ROM: Rules = {
 
 const ORDER: Exclude<PathwayId, "learn">[] = ["symptoms", "prescription", "navigation", "risk"];
 
+const RU: Rules = {
+  symptoms: [/бол[ьи]|болит|больно|температур|лихорад|каш[её]л|рвот|тошн|кровотеч|дыша|дыхани|одышк|груд|головокруж|понос|диаре|инсульт|обморок|судорог|без сознани|скорую|скорая|112/],
+  prescription: [/рецепт|таблет|лекарств|препарат|доз[аыу]|дозиров|антибиот/],
+  navigation: [/страхов|документ|больниц|поликлиник|семейн.{0,8}врач|направлен|медиатор|посредник|регистрац|куда идти/],
+  risk: [/риск|кур[еюи]|давлен|диабет|сахар|вес|холестерин|сердц/],
+};
+
 function normalize(query: string): string {
-  return query
-    .toLowerCase()
-    .replace(/đ/g, "d")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim();
+  // Strip accents from Latin input while preserving Cyrillic letters such as й and ё.
+  return query.toLowerCase().replace(/đ/g, "d").normalize("NFD").replace(/([a-z])[̀-ͯ]+/g, "$1").normalize("NFC").trim();
 }
 
 /**
@@ -96,7 +99,7 @@ export function classifyLocalIntent(query: string, lang: string): PathwayId | nu
   if (lang === "ro") return null;
   const q = normalize(query);
   if (!q) return null;
-  const byLang: Partial<Record<string, Rules>> = { sq: SQ, it: IT, hr: HR, rom: ROM };
+  const byLang: Partial<Record<string, Rules>> = { sq: SQ, it: IT, hr: HR, rom: ROM, ru: RU };
   const sets = (lang === "rom" ? [ROM, HR, EN] : [byLang[lang], EN]).filter(Boolean) as Rules[];
   for (const pathway of ORDER) {
     for (const rules of sets) {

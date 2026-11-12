@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isRecaptchaEnabled } from "./recaptcha-config";
 
 export type CaptchaAction =
   | "help_request"
@@ -22,7 +23,7 @@ export async function verifyRecaptcha(
   token: unknown,
   action: CaptchaAction,
 ): Promise<NextResponse | null> {
-  if (process.env.RECAPTCHA_ENABLED !== "true") return null;
+  if (!isRecaptchaEnabled()) return null;
 
   const secret = process.env.RECAPTCHA_SECRET_KEY;
   const hostnames = (process.env.RECAPTCHA_ALLOWED_HOSTNAMES || "")

@@ -23,6 +23,20 @@ type Copy = {
 };
 
 export const copyByLang: Record<Lang, Copy> = {
+ru: {
+    title: "Сообщить о проблеме",
+    subtitle: "Расскажите нам, что пошло не так. Наша команда рассмотрит это.",
+    emailLabel: "Ваш адрес электронной почты (необязательно)",
+    emailPlaceholder: "you@example.com",
+    issueLabel: "Что случилось?",
+    issuePlaceholder: "Что вы хотели сделать, и что произошло вместо этого?",
+    send: "Отправить отчет",
+    sending: "Отправка…",
+    success: "Спасибо. Ваш отчет отправлен.",
+    genericError: "Отчет не был отправлен. Попробуйте еще раз.",
+    detailError: "Напишите не менее 10 символов, чтобы мы поняли проблему.",
+  },
+
   en: {
     title: "Report a problem",
     subtitle: "Tell us what went wrong. Our team will look at it.",

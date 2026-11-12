@@ -1,0 +1,51 @@
+{
+  "title": "Asma: un piano personale per sintomi quotidiani e attacchi",
+  "intro": "L'asma provoca infiammazione e restringimento variabili delle vie aeree. Respiro sibilante, tosse, costrizione toracica e affanno possono comparire e scomparire, anche di notte o durante l'attività. Il trattamento spesso permette buon controllo, ma un attacco può essere letale. Diagnosi confermata, inalatori adatti, tecnica corretta e piano scritto sono più utili che basarsi sul colore di un dispositivo o improvvisare quando i sintomi peggiorano.",
+  "sections": [
+    {
+      "heading": "Descrivere sintomi e possibili fattori scatenanti",
+      "paragraphs": [
+        "Spiega quando compaiono i sintomi, se interrompono sonno o attività e cosa sembra provocarli. Fumo, inquinamento, aria fredda, infezioni, esercizio o allergeni possono contribuire, ma variano tra persone. Tosse o sibili da soli non dimostrano asma. Segnala esposizioni lavorative, precedenti attacchi e trattamenti utili o problematici. Evitare ogni esercizio non è automaticamente necessario: discuti attività sicura e possibile controllo insufficiente."
+      ]
+    },
+    {
+      "heading": "Comprendere valutazione e controlli",
+      "paragraphs": [
+        "La valutazione può includere prove respiratorie come spirometria, misurazioni nel tempo e altri esami secondo età e circostanze. Poiché i sintomi variano, una visita quando stai bene può non risolvere il dubbio. Chiedi quali prove sostengano la diagnosi e se contribuisca un'altra condizione. Dopo la diagnosi, ripetuti risvegli notturni, crescente necessità di sollievo o difficoltà nelle attività normali richiedono rivalutazione, non accettazione come inevitabili."
+      ]
+    },
+    {
+      "heading": "Conoscere la funzione di ogni inalatore prescritto",
+      "paragraphs": [
+        "Alcuni trattamenti riducono l'infiammazione di fondo, altri alleviano i sintomi e determinate combinazioni prescritte svolgono entrambe le funzioni. Non tutti gli inalatori si usano allo stesso modo. Chiedi nomi dei medicinali, scopo e istruzioni, senza basarti solo sul colore. Non interrompere una cura regolare perché ti senti meglio e non sostituirla con l'inalatore altrui. Discuti effetti indesiderati, gravidanza, costi e difficoltà a ricordare le cure per concordare un piano praticabile."
+      ]
+    },
+    {
+      "heading": "Controllare la tecnica e rendere accessibile il piano",
+      "paragraphs": [
+        "Porta i dispositivi alle visite e mostra come li usi. La tecnica cambia tra dispositivi; con alcuni può essere consigliato un distanziatore. Chiedi come controllare le dosi residue e quando rinnovare le scorte. Un piano scritto deve spiegare cura abituale, segnali di peggioramento e azioni durante l'attacco. Condividi le indicazioni pertinenti con chi assiste o con la scuola quando serve. Dopo un attacco, organizza un controllo tempestivo anche se i sintomi si sono risolti."
+      ]
+    },
+    {
+      "heading": "Agire prontamente se il respiro peggiora",
+      "paragraphs": [
+        "Segui il piano prescritto e usa l'inalatore di sollievo raccomandato mentre ottieni l'aiuto necessario. Chiedi soccorso d'emergenza per affanno grave o crescente, difficoltà a parlare normalmente, labbra blu o grigie, esaurimento, confusione o sonnolenza. Un attacco che non risponde come descritto dal piano o senza il proprio inalatore di sollievo prescritto richiede aiuto urgente. Non rimandare perché un attacco precedente era lieve o stai aspettando una visita ordinaria. Non guidare se stai molto male."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: discutere i sintomi durante lo sport",
+      "text": "Uno studente tossisce e ha sibili durante lo sport e talvolta si sveglia di notte. Descrive entrambi gli schemi alla visita e chiede se servano esami o revisione delle cure. Non presume di dover rinunciare per sempre all'esercizio e non ignora i sintomi notturni."
+    },
+    {
+      "title": "Esempio ipotetico: chiarire il ruolo dei dispositivi",
+      "text": "Una persona ha più inalatori ma non sa quale usare al peggioramento. Porta i dispositivi e chiede controllo della tecnica e istruzioni scritte chiare. Tiene il piano accessibile invece di affidarsi a un colore ricordato o a uno schema di dosaggio online."
+    }
+  ],
+  "questions": [
+    "Quali prove sostengono la diagnosi e come giudicheremo il controllo dell'asma?",
+    "Qual è il ruolo di ogni inalatore e potete controllare la mia tecnica?",
+    "Cosa deve indicare esattamente il piano su peggioramento e soccorso d'emergenza?"
+  ]
+}

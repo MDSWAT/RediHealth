@@ -1,0 +1,51 @@
+{
+  "title": "Para operacionit: kuptoni vendimin dhe bëni plan të realizueshëm",
+  "intro": "Ofrimi i një operacioni nuk do të thotë se çdo pyetje e rëndësishme ka përgjigje. Procedura e planifikuar duhet të ketë qëllim të qartë, diskutim për përfitimet e dëmet dhe përgatitje sipas shëndetit e rrethanave. Urgjencat lejojnë më pak kohë, por mund të kërkoni shpjegime. Udhëzuesi strukturon bisedën; pëlqimi, mendimi i dytë dhe pagesa varen nga vendi e shërbimi.",
+  "sections": [
+    {
+      "heading": "Filloni me problemin që synon operacioni",
+      "paragraphs": [
+        "Kërkoni shpjegim të thjeshtë të diagnozës, procedurës dhe qëllimit. Synohet lehtësim dhimbjeje, funksion më i mirë, parandalim komplikacioni apo trajtim sëmundjeje të rrezikshme? Diskutoni çfarë ka më shumë rëndësi dhe sa realist është rezultati. Pyetni çfarë ndodh pa operacion, urgjencën dhe nëse pritja ndryshon mundësitë. Një gjetje në skanim nuk shpjegon çdo simptomë dhe nuk provon se të gjithë duan të njëjtin operacion."
+      ]
+    },
+    {
+      "heading": "Krahasoni alternativa dhe rreziqe personale",
+      "paragraphs": [
+        "Alternativat varen nga gjendja dhe mund të jenë barna, rehabilitim, procedurë më pak invazive ose vëzhgim. Pyetni përfitimin e pritshëm, pasigurinë, komplikacionet serioze dhe mundësinë e trajtimit tjetër. Kërkoni frekuenca të kuptueshme dhe afat, jo vetëm rrezik i ulët. Sëmundjet e tjera, brishtësia, duhani dhe operacionet e mëparshme mund të ndryshojnë balancën. Rezultati i mikut nuk është parashikim personal. Për zgjedhje të madhe jourgjente pyesni nëse ndihmon mendim i dytë ose kohë dhe si organizohen."
+      ]
+    },
+    {
+      "heading": "Bëjeni të kuptueshme bisedën për pëlqimin",
+      "paragraphs": [
+        "Tregoni nevojat për gjuhë, dëgjim, shikim ose të mësuar. Kërkoni interpretues të përshtatshëm në vend të përgjegjësisë së një fëmije për vendim kompleks. Një person i besuar mund të ndihmojë me pyetje me pëlqimin tuaj. Firma nuk zëvendëson kuptimin e procedurës, alternativave dhe pasojave. Shpjegoni paqartësitë ose të papranueshmet, përfshirë produkte gjaku ose familjen kur duhet. Pyetni kë kontaktoni nëse ndryshoni mendje apo dalin pyetje; rregullat lokale dhe përjashtimet urgjente duan shpjegim individual."
+      ]
+    },
+    {
+      "heading": "Merrni udhëzime individuale për barna dhe anestezi",
+      "paragraphs": [
+        "Sillni listë të plotë barnash e alergjish, përfshirë shtesa, produkte pa recetë dhe çfarë merrni realisht. Tregoni probleme anestezie, implante, apne gjumi dhe shtatzëni të mundshme. Pyetni llojin e anestezisë dhe kontrollin e dhimbjes e të përzierave. Konfirmoni me shkrim ngrënien, pirjen dhe çdo bar për ndryshim, përfshirë antikoagulantët e barnat e diabetit. Mos zgjidhni vetë agjërimin dhe mos ndaloni trajtim nga një udhëzim i përgjithshëm. Në kundërshti udhëzimesh, infeksion ose ndryshim shëndeti kontaktoni ekipin para procedurës."
+      ]
+    },
+    {
+      "heading": "Planifikoni rikuperimin dhe realizueshmërinë",
+      "paragraphs": [
+        "Pyetni qëndrimin e mundshëm, plagët, lëvizjen, punën, drejtimin dhe ndjekjen, përfshirë përgjegjësin për rezultate që mungojnë. Organizoni transport e diskutoni ndihmën në shtëpi, shkallët, kujdesin për të tjerët dhe marrjen e barnave. Parashikimet nuk janë garanci; pyesni shenjat urgjente dhe shërbimin jashtë orarit. Tregoni nëse ndihma e nevojshme mungon. Pas daljes, frymëmarrja shumë e vështirë, dhimbja e gjoksit, kolapsi ose përkeqësimi i shpejtë kërkojnë emergjencë, jo pritje për kontroll rutinë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: kontrolli i përfitimit",
+      "text": "Dikush me operacion të propozuar për artikulacion të dhimbshëm pyet cilat aktivitete mund të përmirësohen dhe për rehabilitimin. Krahason alternativat e përparësitë e veta pa vendosur vetëm nga skanimi."
+    },
+    {
+      "title": "Shembull hipotetik: udhëzime të kundërta",
+      "text": "Pacienti merr fletë standarde dhe plan barnash që duken ndryshe. Para operacionit kontakton ekipin për plan të shkruar të konfirmuar, shpjegon se jeton vetëm dhe organizon ndihmën për kthim në shtëpi."
+    }
+  ],
+  "questions": [
+    "Çfarë përfitimi është realist, cilat alternativa kam dhe çfarë ndodh nëse pres?",
+    "Cilat rreziqe e udhëzime varen nga shëndeti, barnat dhe anestezia ime?",
+    "Çfarë ndihme rikuperimi, kontrollesh e kontaktesh urgjente duhen organizuar?"
+  ]
+}

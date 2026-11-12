@@ -37,6 +37,29 @@ export function TreatmentPlanEditor({
   const { lang } = useLanguage();
   const copy = treatmentTranslations[lang];
   const t = {
+  ru: {
+      saved: "План лечения сохранен.",
+      diagnosis: "Диагностика и выводы",
+      diagnosisPh: "Основной диагноз, степень тяжести симптомов, заключения",
+      goals: "Цели ухода",
+      goalsPh: "Краткосрочные и долгосрочные цели",
+      meds: "Лекарства и методы лечения",
+      medsPh: "Лекарственные средства, дозы или рекомендуемая терапия",
+      instructions: "Инструкции для пациента",
+      instructionsPh: "Диета, отдых, ежедневные привычки, следующий осмотр",
+      attachTitle: "Добавьте фото в план",
+      attachHint: "Например, скан рецепта или карта терапии.",
+      selectImage: "Выбрать изображение",
+      photoLabel: "Название фотографии",
+      photoPh: "например Рецепт, схема терапии",
+      ready: "Фото готово",
+      attachButton: "Прикрепить фото",
+      attached: "Фотографии в этом плане",
+      removePhoto: "Удалить фото",
+      saving: "Сохранение...",
+      save: "Сохранить план",
+    },
+
     en: {
       saved: "Treatment plan saved.",
       diagnosis: "Diagnosis and findings",

@@ -39,6 +39,8 @@ const STEP_COPY: Record<
     expandAria: string;
   }
 > = {
+"ru": {"prevSentenceAria":"Предыдущее предложение","nextSentenceAria":"Следующее предложение","prevLabel":"−1 предл.","nextLabel":"+1 предл.","expandAria":"Развернуть аудиоплеер"},
+
   ro: {
     prevSentenceAria: "Propoziția anterioară",
     nextSentenceAria: "Propoziția următoare",

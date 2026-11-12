@@ -1,0 +1,51 @@
+{
+  "title": "Acute bronchitis: understanding a lingering cough",
+  "intro": "Acute bronchitis is temporary inflammation of the larger airways in the lungs, commonly during or after a viral respiratory infection. Coughing may continue after a sore throat or runny nose has improved. A persistent cough can be exhausting, but its duration alone does not show that an antibiotic is needed. Breathing difficulties and other warning signs need separate assessment.",
+  "sections": [
+    {
+      "heading": "Recognise the pattern and its limits",
+      "paragraphs": [
+        "The cough may be dry or bring up mucus. Tiredness and discomfort from coughing can accompany it. Green or yellow mucus does not, by itself, establish a bacterial infection. Bronchitis, pneumonia, asthma and other conditions can produce overlapping symptoms, so a label based on a cough alone can be misleading. Repeated episodes or a longstanding cough need evaluation rather than assuming each episode is another simple infection."
+      ]
+    },
+    {
+      "heading": "Know what an examination can establish",
+      "paragraphs": [
+        "A clinician asks how symptoms began, checks for fever and breathing problems, and listens to the chest. They consider age, pregnancy, immune function and existing heart or lung disease. A chest X-ray or other tests may be needed if pneumonia or another problem is suspected, but are not routine for every uncomplicated cough. Mention breathlessness, blood in mucus and medicines you take, rather than focusing only on the cough's sound."
+      ]
+    },
+    {
+      "heading": "Support recovery and protect others",
+      "paragraphs": [
+        "Rest, enough fluids and avoiding tobacco smoke can make recovery more manageable. People with prescribed fluid restrictions should follow their own medical advice. Cover coughs, wash hands and avoid close contact with vulnerable people while unwell, because the infection causing bronchitis may spread. Do not lean over bowls of boiling water: steam inhalation can cause burns. Ask a pharmacist before using cough products, especially for children, pregnancy or alongside other medicines."
+      ]
+    },
+    {
+      "heading": "Understand why antibiotics are often unhelpful",
+      "paragraphs": [
+        "Antibiotics do not treat viruses, which cause many cases of acute bronchitis. They can cause side effects and contribute to resistance, so using leftovers or another person's prescription is inappropriate. A clinician may recommend them for a different or more serious bacterial infection. An inhaler is not automatically needed for every cough; wheezing or existing asthma may require a different assessment and an individual treatment plan."
+      ]
+    },
+    {
+      "heading": "Make a clear plan for worsening symptoms",
+      "paragraphs": [
+        "Seek prompt medical advice for breathlessness, chest pain, blood in mucus, persistent fever, significant worsening or a cough that is not improving after about three weeks. Seek advice earlier for a baby, pregnancy, frailty, weakened immunity or important existing illness. Severe breathing difficulty, blue or grey lips, inability to speak normally because of breathing, confusion or collapse require emergency help. Do not wait for a cough remedy to work in those circumstances."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: asking about mucus",
+      "text": "Someone has a cough with yellow mucus after a cold. They tell a clinician how long it has lasted and whether they have fever, chest pain or breathlessness. They ask whether an examination is needed instead of assuming the mucus colour means they need antibiotics."
+    },
+    {
+      "title": "Hypothetical example: changing a recovery plan",
+      "text": "A person resting at home develops new breathlessness and feels much more unwell. They seek prompt assessment rather than simply increasing a cough medicine. If breathing becomes severe or they become confused, the appropriate next step is emergency help, not waiting for a routine appointment."
+    }
+  ],
+  "questions": [
+    "Do my symptoms fit uncomplicated bronchitis, or should another cause be investigated?",
+    "Which symptom-relief options are appropriate with my other conditions and medicines?",
+    "What changes mean I should seek urgent help, and when should a persistent cough be reviewed?"
+  ]
+}

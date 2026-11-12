@@ -1,0 +1,51 @@
+{
+  "title": "Duboka venska tromboza: prepoznavanje i liječenje ugruška",
+  "intro": "Duboka venska tromboza ugrušak je u dubokoj veni, najčešće noge, ponekad ruke ili zdjelice. Treba brzu procjenu jer može rasti ili dio može otići u pluća i izazvati plućnu emboliju. Simptomi sami ne potvrđuju ni isključuju dijagnozu. Nova neobjašnjiva oteklina ili bol jednog uda ne smije se automatski liječiti kao istegnuće bez razmatranja uzroka.",
+  "sections": [
+    {
+      "heading": "Koji simptomi trebaju pomoć odmah",
+      "paragraphs": [
+        "Mogući znakovi su oteklina, osjetljivost, toplina i promjena boje kože, često jedne noge. Neki ugrušci imaju malo ili nimalo simptoma. Kod sumnje tražite žuran savjet istog dana. Zovite hitnu službu zbog iznenadne zaduhe, boli u prsima ili gornjim leđima, nesvjestice, kolapsa ili krvi uz kašalj i teško disanje. Embolija može nastati bez vidljivih simptoma noge. Nemojte voziti u mogućoj hitnosti. Ranija umirujuća procjena ne uklanja potrebu djelovati na nove simptome disanja ili prsnog koša."
+      ]
+    },
+    {
+      "heading": "Rizik nije samo dug let",
+      "paragraphs": [
+        "Nedavna operacija, bolnica, ozljeda, slaba pokretljivost ili gips povećavaju rizik i nakon otpusta. Važni su rak, prijašnji ugrušak, poremećaji zgrušavanja, trudnoća i vrijeme nakon poroda. Pridonose estrogeni lijekovi i duga putovanja. Recite čimbenike i obiteljsku povijest, ali ugrušak je moguć bez očitog povoda. Crvena otečena noga može biti infekcija ili drugi problem. Izostanak rizika ili kućni test pokretom stopala ne mogu pouzdano isključiti trombozu."
+      ]
+    },
+    {
+      "heading": "Pretrage se tumače kao niz",
+      "paragraphs": [
+        "Liječnik povezuje pregled i kliničku vjerojatnost s D-dimerom i ultrazvukom vena. Visok D-dimer nije dijagnoza: povisuju ga mnoga stanja. Je li negativan nalaz dovoljan ovisi o procjeni i putu testiranja. Nekima treba ponovljen ultrazvuk nakon prvog negativnog. Ako test kasni, liječnik može propisati privremeni antikoagulans nakon sigurnosne provjere. Pitajte što raditi čekajući, tko javlja nalaz i kad se vratiti. Nemojte započeti, nastaviti ili prekinuti liječenje prema vlastitom tumačenju testa."
+      ]
+    },
+    {
+      "heading": "Antikoagulansi sprječavaju rast i nove ugruške",
+      "paragraphs": [
+        "Liječenje najčešće koristi propisane antikoagulantne tablete ili injekcije. Smanjuju zgrušavanje dok tijelo postupno obrađuje ugrušak; ne otapaju ga odmah. Izbor i trajanje ovise o mjestu, povodu, ponavljanju, krvarenju, bubrezima, trudnoći i drugoj terapiji. Odabrani teški slučajevi trebaju zahvate, ali uklanjanje ili tromboliza nisu rutina za sve. Slijedite točan tijek i pitajte o propuštenoj dozi. Provjerite prije analgetika, aspirina, dodataka ili novih lijekova. Nezaustavljivo krvarenje, povraćanje krvi, crna stolica ili značajan udarac u glavu uz antikoagulans zahtijevaju procjenu odmah."
+      ]
+    },
+    {
+      "heading": "Oporavak i buduća prevencija su individualni",
+      "paragraphs": [
+        "Nakon procjene i terapije slijedite savjet o hodanju, podizanju noge, poslu i putovanju. Ne pretpostavljajte da je dug odmor u krevetu nužan ni da je putovanje odmah sigurno. Pravilna kompresija pomaže odabranim simptomima, bez zamjene antikoagulansa. Trajna oteklina, težina ili promjene kože mogu biti posttrombotične smetnje i traže kontrolu. Nova bol ili oteklina treba provjeru ponavljanja. Prije nove operacije, trudnoće, gipsa ili dugog puta recite za prijašnji ugrušak. Stanke kretanja i propisana prevencija pomažu; ne posuđujte injekcije i ne birajte aspirin kao zamjenu sami."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: simptomi nakon otpusta",
+      "text": "Nakon operacije Dario kod kuće dobiva novu oteklinu i bol lista. Traži savjet istog dana i spominje operaciju, bez pripisivanja svega manjem hodanju. Zna zvati hitnu službu kod nagle zaduhe ili boli u prsima."
+    },
+    {
+      "title": "Zamišljeni primjer: razumjeti ponavljanje ultrazvuka",
+      "text": "Anin prvi ultrazvuk ne pokazuje ugrušak, ali liječnik objašnjava da cjelokupni nalazi zahtijevaju ponavljanje. Čuva termin i slijedi izričit plan lijekova umjesto pretpostavke da jedan negativan nalaz ukida sve kontrole."
+    }
+  ],
+  "questions": [
+    "Koji je plan pretraga i trebam li novi ultrazvuk ili terapiju dok čekam?",
+    "Koliko uzimam lijek i koje mjere za krvarenje i interakcije vrijede?",
+    "Kada se vraćam poslu ili putovanju i koja mi prevencija treba ubuduće?"
+  ]
+}

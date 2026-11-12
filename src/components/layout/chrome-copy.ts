@@ -19,6 +19,13 @@ export type ChromeCopy = {
 };
 
 export const chromeCopy: Record<Lang, ChromeCopy> = {
+  ru: {
+    primaryNav: "Основная навигация",
+    footerNav: "Навигация в нижнем колонтитуле",
+    homeLink: "RediHealth, домашняя страница",
+    emergencyQuestion: "Чрезвычайная ситуация?",
+  },
+
   ro: {
     primaryNav: "Navigare principală",
     footerNav: "Navigare în subsolul paginii",

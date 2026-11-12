@@ -25,7 +25,7 @@ export function PanelRuntimeProvider({ value, children }: { value: PanelRuntime;
 }
 
 export function demoPanelHref(href: string): string {
-  return href.replace(/^(\/(?:en|ro|sq|it))?\/panel(?=\/|\?|$)/, "$1/demo");
+  return href.replace(/^(\/(?:en|ro|sq|it|ru))?\/panel(?=\/|\?|$)/, "$1/demo");
 }
 
 export function usePanelRuntime() {
@@ -50,12 +50,12 @@ export function usePanelPathname() {
 }
 
 export function offlinePanelHref(href: string) {
-  return href.replace(/^(\/(?:en|ro|sq|it))?\/panel(?=\/|\?|$)/, "$1/offline");
+  return href.replace(/^(\/(?:en|ro|sq|it|ru))?\/panel(?=\/|\?|$)/, "$1/offline");
 }
 
 export function PanelLink(props: ComponentProps<typeof NextLink>) {
   const runtime = useContext(Context);
-  if (runtime?.offline && typeof props.href === "string" && /^(\/(?:en|ro|sq|it))?\/panel(?=\/|\?|$)/.test(props.href)) {
+  if (runtime?.offline && typeof props.href === "string" && /^(\/(?:en|ro|sq|it|ru))?\/panel(?=\/|\?|$)/.test(props.href)) {
     const href = offlinePanelHref(props.href);
     return <a href={href} className={props.className} title={props.title} aria-label={props["aria-label"]} aria-current={props["aria-current"]} onClick={(event) => {
       if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;

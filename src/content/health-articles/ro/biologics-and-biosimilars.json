@@ -1,0 +1,51 @@
+{
+  "title": "Biologice și biosimilare: medicamentul și o posibilă schimbare",
+  "intro": "Medicamentele biologice sunt fabricate folosind sisteme vii. Includ tratamente diferite, precum unele pentru boli inflamatorii, cancer și diabet. Un biosimilar este dezvoltat foarte asemănător unui biologic de referință autorizat, fără diferențe semnificative clinic de eficacitate sau siguranță pentru utilizarea aprobată. Nu este o versiune inferioară. Instrucțiunile practice și regulile de prescriere ori substituție în farmacie trebuie verificate pentru produsul și țara dumneavoastră.",
+  "sections": [
+    {
+      "heading": "Diferențiați biosimilarul de genericul obișnuit",
+      "paragraphs": [
+        "Biologicele sunt adesea molecule mari și complexe, fabricate prin procese biologice controlate. Există mici variații naturale chiar între loturile medicamentului de referință. Biosimilarul este deci evaluat prin comparații extinse, nu descris doar ca o copie chimică identică. Autoritățile evaluează calitatea, activitatea biologică și dovezile clinice potrivite produsului. Biosimilar înseamnă comparație aprobată cu un anumit medicament de referință; nu că toate biologicele se înlocuiesc între ele ori orice produs online respectă standardele."
+      ]
+    },
+    {
+      "heading": "Întrebați ce afecțiuni are aprobate medicamentul",
+      "paragraphs": [
+        "Biosimilarul poate fi autorizat pentru mai multe boli prin evaluare justificată științific a referinței și a dovezilor comparative. Nu fiecare boală necesită un studiu mare complet separat pentru acel biosimilar. Rămâne necesară verificarea indicației exacte, vârstei, căii de administrare și formei. Întrebați de ce este potrivit diagnosticului și etapei tratamentului. Beneficiul, monitorizarea și principalele riscuri depind de medicamentul și boala concretă, nu doar de eticheta biologic."
+      ]
+    },
+    {
+      "heading": "Înțelegeți schimbarea și substituția locală",
+      "paragraphs": [
+        "Întrebați dacă substanța activă rămâne aceeași, ce marcă primiți și motivul schimbării. Biosimilarele aprobate sunt așteptate să funcționeze la fel de bine ca referința, dar prescrierea și substituția diferă între țări. Recomandarea europeană despre interschimbabilitate nu este ea însăși permisiune universală pentru substituția automată în orice farmacie; regulile naționale contează. Se pot schimba ambalajul, dispozitivul ori instruirea. Discutați grijile și urmărirea în loc să opriți tratamentul în timpul rezolvării schimbării administrative."
+      ]
+    },
+    {
+      "heading": "Verificați manipularea, dispozitivele și siguranța individuală",
+      "paragraphs": [
+        "Confirmați numele, doza prescrisă, păstrarea și conduita pentru doză omisă ori eroare de depozitare. Nu presupuneți că toate biologicele cer aceeași refrigerare sau transport. Cereți demonstrație dacă se schimbă dispozitivul și folosiți instrucțiunile produsului. Unele afectează imunitatea și necesită verificări de infecții, planificarea vaccinării ori alte teste; altele au riscuri diferite. Spuneți echipei despre infecții, alte medicamente, sarcină planificată și călătorii. Nu schimbați vaccinuri sau tratament doar fiindcă sunt menționate în articolul general."
+      ]
+    },
+    {
+      "heading": "Raportați probleme cu o evidență clară",
+      "paragraphs": [
+        "Păstrați marca și, când există, lotul și precizați momentul simptomelor față de tratament ori schimbare. Simptomele noi merită evaluare, dar simpla succesiune nu dovedește cauza medicamentoasă ori eficacitatea mai mică a biosimilarului. Stabiliți evaluarea bolii inițiale și efectelor adverse. Respirația sever dificilă, umflarea gurii ori gâtului sau colapsul după tratament cer urgență. Contactați prompt serviciul pentru alte simptome grave conform instrucțiunilor specifice; nu așteptați control obișnuit când sunteți acut bolnav."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: stilou injector diferit",
+      "text": "O persoană primește biosimilar aprobat cu alt stilou. Cere asistentei demonstrație și confirmă depozitarea și prescripția înainte de injectare. Păstrează noua marcă și întreabă când trebuie controlată boala."
+    },
+    {
+      "title": "Exemplu ipotetic: simptome după schimbare",
+      "text": "După schimbarea mărcii cineva are mai mult disconfort articular. Contactează echipa cu date, produs și dozele omise. Echipa verifică activitatea bolii și alte explicații, fără a presupune nici eșecul biosimilarului, nici că simptomul poate fi ignorat."
+    }
+  ],
+  "questions": [
+    "Cu ce medicament de referință este comparat și produsul exact este aprobat pentru situația mea?",
+    "Schimbarea modifică dispozitivul, păstrarea, rețeta sau monitorizarea și ce reguli locale se aplică?",
+    "Ce simptome raportez, ce detalii păstrez și pe cine contactez urgent?"
+  ]
+}

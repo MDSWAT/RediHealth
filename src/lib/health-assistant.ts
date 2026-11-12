@@ -25,9 +25,11 @@ export type AssistantResponse = {
 };
 
 export const urgentPattern =
-  /chest pain|difficulty breathing|shortness of breath|unconscious|fainting|seizure|stroke|face droop|severe bleeding|suicid|overdose|bol u prsima|pritisak u prsima|teško dišem|tesko disem|nedostatak zraka|zaduha|gušenje|gusenje|moždani udar|mozdani udar|bez svijesti|nesvjestica|jako krvarenje|napadaj|predoziranj|dukh and-o kolin|dukh ando kolin|dukh ko kolin|nashti phurdav|phari phurdinimos|perav tele|bi godjako|baro rat|rat thabdel/i;
+  /chest pain|difficulty breathing|shortness of breath|unconscious|fainting|seizure|stroke|face droop|severe bleeding|suicid|overdose|bol u prsima|pritisak u prsima|teško dišem|tesko disem|nedostatak zraka|zaduha|gušenje|gusenje|moždani udar|mozdani udar|bez svijesti|nesvjestica|jako krvarenje|napadaj|predoziranj|dukh and-o kolin|dukh ando kolin|dukh ko kolin|nashti phurdav|phari phurdinimos|perav tele|bi godjako|baro rat|rat thabdel|chest pain|difficulty breathing|shortness of breath|unconscious|fainting|seizure|stroke|face droop|severe bleeding|suicid|overdose|боль\s+в\s+груди|трудно\s+дышать|затрудн[её]нное\s+дыхание|одышка|без\s+сознания|обморок|судорог|инсульт|перекос\s+лица|сильное\s+кровотечение|суицид|передозиров/i;
 
 const responseLanguageLabel: Record<Lang, string> = {
+  ru: "Russian",
+
   en: "English",
   ro: "Romanian",
   sq: "Albanian",
@@ -37,6 +39,11 @@ const responseLanguageLabel: Record<Lang, string> = {
 };
 
 const emergencyResponseByLang: Record<Lang, { possibleCause: string; message: string }> = {
+  ru: {
+    possibleCause: "Эти симптомы могут быть вызваны серьезными состояниями, требующими неотложной оценки.",
+    message: "Ваши симптомы могут потребовать неотложной оценки. Позвоните по номеру 112 прямо сейчас или обратитесь в ближайшее отделение неотложной помощи. Не ждите ответа онлайн.",
+  },
+
   en: {
     possibleCause: "These symptoms can be caused by serious conditions that need emergency assessment.",
     message: "Your symptoms may need emergency assessment. Call 112 now or go to the nearest emergency department. Do not wait for an online response.",
@@ -64,6 +71,8 @@ const emergencyResponseByLang: Record<Lang, { possibleCause: string; message: st
 };
 
 const defaultPossibleCauseByLang: Record<Lang, string> = {
+  ru: "Пока недостаточно информации, чтобы предположить возможную причину.",
+
   en: "There is not enough information yet to suggest a possible cause.",
   ro: "Nu exista inca suficiente informatii pentru a sugera o cauza posibila.",
   sq: "Nuk ka ende informacion te mjaftueshem per te sugjeruar nje shkak te mundshem.",
@@ -73,6 +82,8 @@ const defaultPossibleCauseByLang: Record<Lang, string> = {
 };
 
 const defaultMessageByLang: Record<Lang, string> = {
+  ru: "Пожалуйста, поделитесь этой информацией с медицинским работником.",
+
   en: "Please share this information with a healthcare professional.",
   ro: "Te rugam sa impartasesti aceste informatii cu un profesionist medical.",
   sq: "Te lutem ndaj kete informacion me nje profesionist shendetesor.",

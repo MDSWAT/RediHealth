@@ -1,0 +1,51 @@
+{
+  "title": "Poate zgomotul să afecteze auzul?",
+  "intro": "Sunetele puternice pot leza structurile delicate ale urechii interne. Leziunea poate apărea după un singur sunet foarte intens, precum o explozie, sau după expuneri repetate la serviciu, muzică ori activități recreative. Pierderea auzului poate fi permanentă și se poate asocia cu tinitus, de exemplu un țiuit fără sursă externă. Lipsa durerii nu înseamnă că sunetul este sigur.",
+  "sections": [
+    {
+      "heading": "Cum se pot observa problemele",
+      "paragraphs": [
+        "După zgomot, vocile pot părea înfundate, urechile pot țiui, iar conversațiile pe fond de zgomot pot deveni greu de urmărit. Unele schimbări sunt treptate și sunt remarcate întâi de cei din jur. Ameliorarea temporară nu dovedește că expunerea a fost inofensivă. Ceara, infecțiile și problemele urechii interne pot produce simptome asemănătoare; numai simptomele nu stabilesc cauza."
+      ]
+    },
+    {
+      "heading": "Scăderea bruscă a auzului necesită evaluare urgentă",
+      "paragraphs": [
+        "Solicitați evaluare medicală urgentă dacă auzul scade brusc la oricare ureche, chiar dacă pare doar înfundată sau schimbarea urmează unui concert. Nu așteptați un test de rutină ori dispariția spontană. Agravarea rapidă, durerea sau secrețiile necesită și ele sfat prompt. Schimbările bruște asociate cu slăbiciune facială ori alte semne posibile de accident vascular cerebral sunt urgențe. Examinarea și testele de auz ajută la identificarea cauzelor care necesită tratament rapid."
+      ]
+    },
+    {
+      "heading": "Intensitatea, durata și distanța contează",
+      "paragraphs": [
+        "Riscul depinde de intensitate, durata și frecvența expunerii, dar și de distanța față de sursă. Un impuls foarte intens poate provoca leziuni imediat; sesiunile repetate adaugă expunere. Nevoia de a ridica vocea pentru a vorbi cu cineva apropiat este un avertisment, nu un test precis de siguranță. Procentul volumului telefonului sau o aplicație necalibrată nu garantează ascultarea sigură. La serviciu, cereți evaluarea adecvată a zgomotului."
+      ]
+    },
+    {
+      "heading": "Reducerea expunerii și protecția potrivită",
+      "paragraphs": [
+        "Reduceți volumul, îndepărtați-vă de boxe sau utilaje și faceți pauze în locuri mai liniștite. Pentru zgomot periculos inevitabil, folosiți protecție auditivă potrivită activității și montată corect. Dopurile și căștile de protecție au performanțe diferite; verificarea profesională a potrivirii poate ajuta. Căștile obișnuite pentru muzică și anularea activă a zgomotului nu sunt automat protecție certificată. Luați în calcul alarmele, comunicarea și compatibilitatea cu alte echipamente."
+      ]
+    },
+    {
+      "heading": "Îngrijirea auzului pe termen lung",
+      "paragraphs": [
+        "Programați o evaluare pentru țiuit persistent, dificultăți de înțelegere a vorbirii sau scădere treptată a auzului. După rezultate, sprijinul poate include tratarea altor boli ale urechii, aparate auditive, adaptarea comunicării ori îngrijirea tinitusului. Suplimentele și remediile casnice nu inversează în mod fiabil leziunile permanente produse de zgomot. Protecția rămâne importantă. Copiii au nevoie de expunere redusă și echipamente care li se potrivesc. Angajatorii trebuie să reducă zgomotul la sursă, nu să se bazeze exclusiv pe protecția individuală."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "După un eveniment zgomotos — exemplu ipotetic",
+      "text": "După ce a stat lângă o boxă, o persoană observă țiuit și o scădere bruscă importantă a auzului la o ureche. Merge într-un loc liniștit și solicită evaluare urgentă, fără să aștepte mai multe zile."
+    },
+    {
+      "title": "Unelte zgomotoase — exemplu ipotetic",
+      "text": "Un lucrător folosește căști pentru muzică în timpul operării unei unelte zgomotoase. Evaluarea locului de muncă conduce la o metodă mai silențioasă și protecție potrivită. Creșterea volumului muzicii ar adăuga expunere."
+    }
+  ],
+  "questions": [
+    "Schimbarea auzului necesită evaluare urgentă și ce teste sunt potrivite?",
+    "Cum se poate reduce zgomotul la sursă și ce protecție se potrivește activității?",
+    "Ce monitorizare sau sprijin pentru comunicare ar ajuta dacă simptomele persistă?"
+  ]
+}

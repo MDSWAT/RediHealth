@@ -1,0 +1,51 @@
+{
+  "title": "Instrumentele de sprijin decizional: pregătirea unei alegeri medicale",
+  "intro": "Unele decizii medicale au mai multe opțiuni rezonabile. Un instrument decizional pentru pacient explică alegerea concretă, compară beneficiile și riscurile și vă ajută să identificați ce contează. Sprijină discuția cu medicul, fără a decide în locul dumneavoastră. Un ghid general vă organizează gândurile, dar nu conține neapărat dovezile necesare unei anumite alegeri de tratament.",
+  "sections": [
+    {
+      "heading": "Clarificați decizia reală",
+      "paragraphs": [
+        "Întrebați ce problemă se abordează și ce alegeri sunt medical potrivite în situația dumneavoastră. Decizia despre screening diferă de investigarea unui simptom, iar tratamentul planificat de urgență. Întrebați cât de repede trebuie decis și dacă este timp pentru lectură, întrebări ulterioare ori a doua opinie. Când este potrivit, discutați supravegherea, continuarea planului sau absența tratamentului, alături de intervenție. Nu înseamnă că toate variantele sunt la fel de sigure ori că urgența așteaptă o fișă. Clarificați ce se poate întâmpla cât așteptați."
+      ]
+    },
+    {
+      "heading": "Verificați încrederea și relevanța instrumentului",
+      "paragraphs": [
+        "Căutați autorul, data actualizării, dovezile și eventualele finanțări sau conflicte de interese. Un instrument util prezintă echilibrat alternative importante, incertitudini și consecințe practice, fără să promoveze un produs. Verificați diagnosticul, grupa de vârstă și etapa îngrijirii. Costurile, disponibilitatea și organizarea din altă țară pot să nu se aplice. Mărturia unei persoane descrie experiența ei, nu frecvența unui rezultat. Cereți medicului explicarea termenilor și a modului în care cercetarea generală se aplică sănătății dumneavoastră."
+      ]
+    },
+    {
+      "heading": "Comparați rezultatele în același cadru",
+      "paragraphs": [
+        "Întrebați câte persoane beneficiază ori au efecte nedorite într-un grup de aceeași mărime și pe aceeași perioadă. Afirmația că riscul se înjumătățește este incompletă fără riscul inițial și schimbarea efectivă. Imaginile ori tabelele simple ajută. Întrebați dacă numărul descrie ameliorarea simptomelor, evitarea unui eveniment grav sau doar rezultatul unui test: sunt rezultate diferite. Estimarea de grup nu prezice exact cazul individual. Discutați incertitudinea, riscurile grave rare, recuperarea și posibilitatea altui tratament, nu doar rata de succes din titlu."
+      ]
+    },
+    {
+      "heading": "Includeți prioritățile și nevoile de acces",
+      "paragraphs": [
+        "Spuneți ce înseamnă rezultatul bun în viața zilnică: mai puțină durere, vedere clară, independență, fertilitate păstrată ori evitarea unui program împovărător. Transportul, costul, îngrijirea altora și gestionarea medicamentelor influențează fezabilitatea. Puteți cere interpret, limbaj simplu, format accesibil ori persoană de sprijin. Ajutorul trebuie să vă exprime dorințele, nu să le înlocuiască. Dacă doriți recomandarea medicului, spuneți și întrebați de ce corespunde priorităților. Nu trebuie să înțelegeți fiecare statistică înainte să puteți pune întrebări."
+      ]
+    },
+    {
+      "heading": "Plecați cu plan practic și reevaluare",
+      "paragraphs": [
+        "Spuneți cu propriile cuvinte ce ați înțeles și cereți corectarea neînțelegerilor. Conveniți alegerea, următorul pas, cine îl organizează, termenele probabile și ce faceți la schimbări. Notați întrebările rămase și cereți o copie a planului. Instrumentul nu garantează rezultat bun, iar răzgândirea poate necesita discuție nouă despre ce mai este posibil. Dacă rămâneți nesigur, explicați ce informație ori sprijin lipsește. Nu opriți tratamentul prescris și nu amânați evaluarea urgentă pentru cercetare independentă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: obiectiv concret",
+      "text": "Mira discută tratamentul cataractei. În loc să spună doar că vrea să vadă mai bine, explică faptul că strălucirea deranjantă a luminilor împiedică munca sigură seara. Întreabă efectul variantelor asupra obiectivului, recuperarea și alte boli oculare care limitează ameliorarea."
+    },
+    {
+      "title": "Exemplu ipotetic: cererea numerelor absolute",
+      "text": "Un pliant afirmă că tratamentul înjumătățește un risc viitor. Arben întreabă câte persoane ar avea problema cu și fără tratament pe aceeași perioadă și ce reacții adverse apar. Medicul face o comparație simplă și discută dacă estimările i se potrivesc."
+    }
+  ],
+  "questions": [
+    "Ce opțiuni rezonabile am, inclusiv așteptarea ori continuarea planului?",
+    "Ce beneficii, riscuri și incertitudini sunt probabile pentru cineva ca mine?",
+    "Cât timp am și ce sprijin m-ar ajuta să decid?"
+  ]
+}

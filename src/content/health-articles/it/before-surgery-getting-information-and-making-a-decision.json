@@ -1,0 +1,51 @@
+{
+  "title": "Prima dell'intervento: capire la scelta e organizzare un piano praticabile",
+  "intro": "Ricevere una proposta chirurgica non significa che tutte le domande importanti abbiano risposta. Un intervento programmato deve avere uno scopo chiaro, discussione di benefici e danni e preparazione adatta alla salute e alle circostanze. Le emergenze lasciano meno tempo, ma si possono chiedere spiegazioni. La guida aiuta la conversazione; consenso, secondo parere e pagamento dipendono dal paese e servizio.",
+  "sections": [
+    {
+      "heading": "Partire dal problema che l'intervento vuole risolvere",
+      "paragraphs": [
+        "Chiedete al chirurgo una spiegazione semplice di diagnosi, procedura e obiettivo. Si vuole alleviare dolore, migliorare funzione, prevenire complicazioni o curare una malattia pericolosa? Discutete cosa conta per voi e quanto sia realistico ottenerlo. Chiedete cosa può accadere senza intervento, l'urgenza e se aspettare modifica le opzioni. Un reperto radiologico da solo non spiega ogni sintomo e non dimostra che tutti debbano essere operati allo stesso modo."
+      ]
+    },
+    {
+      "heading": "Confrontare alternative e rischi personali",
+      "paragraphs": [
+        "Le alternative dipendono dalla condizione: farmaci, riabilitazione, procedura meno invasiva o osservazione. Chiedete beneficio atteso, incertezza, complicazioni gravi e possibilità di ulteriori cure. Richiedete frequenze comprensibili e periodo di riferimento, non solo espressioni come basso rischio. Altre malattie, fragilità, fumo e interventi precedenti possono cambiare il bilancio. L'esito di un amico non predice il vostro. Per una scelta importante non urgente chiedete se serva tempo o secondo parere e come ottenerlo."
+      ]
+    },
+    {
+      "heading": "Rendere accessibile il colloquio sul consenso",
+      "paragraphs": [
+        "Comunicate esigenze linguistiche, uditive, visive o di apprendimento. Chiedete un interprete adatto invece di affidare una scelta complessa a un bambino. Una persona fidata può aiutare con le domande, con il vostro accordo. Firmare non sostituisce comprendere procedura, alternative e conseguenze. Spiegate dubbi o aspetti inaccettabili, comprese preferenze su emoderivati o coinvolgimento familiare quando pertinenti. Chiedete chi contattare se cambiate idea o emergono domande; regole locali ed eccezioni d'emergenza richiedono spiegazione individuale."
+      ]
+    },
+    {
+      "heading": "Ottenere istruzioni personali su medicinali e anestesia",
+      "paragraphs": [
+        "Portate elenco completo di medicinali e allergie, inclusi integratori, prodotti senza ricetta e assunzione effettiva. Riferite precedenti problemi anestesiologici, impianti, apnee e possibile gravidanza. Chiedete anestesia proposta e gestione di dolore e nausea. Confermate per iscritto cibo, bevande e ogni medicinale da modificare, inclusi anticoagulanti e farmaci del diabete. Non stabilite autonomamente il digiuno né sospendete cure da guide generali. Se le istruzioni discordano o compaiono infezione o cambiamenti di salute, contattate il team prima della procedura."
+      ]
+    },
+    {
+      "heading": "Pianificare il recupero e verificarne la fattibilità",
+      "paragraphs": [
+        "Chiedete degenza prevista, ferite, movimento, lavoro, guida e controlli, incluso chi gestisce risultati ancora attesi. Organizzate trasporto e aiuto domestico, scale, responsabilità di cura e acquisto dei medicinali. Le stime non sono garanzie: chiedete segnali urgenti e servizio fuori orario. Dite se il sostegno necessario manca. Dopo le dimissioni difficoltà respiratoria grave, dolore toracico, collasso o rapido peggioramento richiedono soccorso d'emergenza invece di aspettare il controllo chirurgico ordinario."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: verificare il beneficio atteso",
+      "text": "Una persona con proposta chirurgica per un'articolazione dolorosa chiede quali attività miglioreranno probabilmente e la riabilitazione necessaria. Confronta alternative e priorità personali invece di decidere solo dall'immagine."
+    },
+    {
+      "title": "Esempio ipotetico: istruzioni discordanti",
+      "text": "Un paziente riceve un foglio standard e un piano farmacologico apparentemente diversi. Prima dell'intervento contatta il team per un piano scritto confermato, spiega che vive solo e organizza il sostegno al rientro."
+    }
+  ],
+  "questions": [
+    "Quale beneficio è realistico, quali alternative ho e cosa accade se aspetto?",
+    "Quali rischi e istruzioni dipendono da salute, farmaci e anestesia?",
+    "Quale aiuto nel recupero, controlli e contatti urgenti devono essere organizzati?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "ADHD: procjena i praktična podrška u svakodnevici",
+  "intro": "Poremećaj pažnje s hiperaktivnošću, ADHD, utječe na pažnju, kontrolu impulsa i regulaciju aktivnosti. Počinje u djetinjstvu, iako se nekima prepozna tek u odrasloj dobi. Energičnost, rastresenost tijekom stresnog tjedna ili visok rezultat internetskog upitnika ne potvrđuju ga. Procjena razmatra trajne teškoće, razvoj i posljedice u raznim područjima života, uz snage i druga objašnjenja.",
+  "sections": [
+    {
+      "heading": "Opisati obrasce bez okrivljavanja ponašanja",
+      "paragraphs": [
+        "ADHD može uključiti gubljenje tijeka zadatka, zaboravljanje stvari, teško čekanje, upadanje u riječ ili nemir. Neki uglavnom imaju teškoće pažnje bez očite hiperaktivnosti. Pratite kada nastaju i utjecaj na učenje, odnose, rad i sigurnost. Zahtjevno okruženje čini ih vidljivijima. Lijenost ni loše roditeljstvo nisu dovoljno objašnjenje. Ipak, samo jedno ponašanje ne potvrđuje ADHD: važni su dob, očekivanja i okolina."
+      ]
+    },
+    {
+      "heading": "Tražiti cjelovitu procjenu",
+      "paragraphs": [
+        "Liječnik može prikupiti razvojnu povijest i informacije iz doma, škole ili posla, uz upitnike i razgovore. Ne postoji pojedinačan krvni test ili snimka za ADHD. Problemi spavanja, anksioznost, teškoće učenja i druga stanja mogu nalikovati ili biti pridruženi. Odraslima mogu pomoći stara školska izvješća ili opažanja rođaka, ako postoje; nedostatak zapisa treba raspraviti, ne pretpostaviti nemoguću procjenu. Iskreno opišite i strategije kojima skrivate potreban trud."
+      ]
+    },
+    {
+      "heading": "Prilagoditi zadatke i okolinu dok čekate pomoć",
+      "paragraphs": [
+        "Podrška ne mora čekati dijagnostičku oznaku. Podijelite zadatak u jasne korake, smanjite izbježne smetnje i koristite vidljive podsjetnike ili stalno mjesto za važne stvari. Dogovorite realne rutine s osobom umjesto mnogo nametnutih promjena. U školi ili na poslu razmotrite pisane upute, planirane stanke i tiši prostor. Provjerite stvarnu korist: što pomaže jednome može frustrirati drugoga. Prepoznajte napredak i izbjegavajte kažnjavanje teškoća za koje treba podrška."
+      ]
+    },
+    {
+      "heading": "Usporediti podršku, vještine i lijekove",
+      "paragraphs": [
+        "Plan ovisi o dobi, utjecaju, željama i pridruženim stanjima. Podrška roditeljima, bihevioralni pristupi, edukacija i psihološke strategije pomažu svakodnevnom funkcioniranju. Lijekovi mogu odgovarati nakon specijalističke procjene i razgovora o koristima i štetama. Prije i tijekom propisivanja tim provjerava fizičko i mentalno zdravlje, uključujući srčanu povijest, san i apetit. Kontrole mogu uključiti puls, tlak i rast djece. Ne dijelite lijekove, ne mijenjajte sami doze i ne kupujte neprovjerene proizvode koji obećavaju izlječenje ADHD-a."
+      ]
+    },
+    {
+      "heading": "Mjeriti uspjeh funkcioniranjem i dobrobiti",
+      "paragraphs": [
+        "Dogovorite određene ciljeve, poput jutra s manje sukoba ili pouzdanijih rokova. Provjerite korist, nuspojave i jesu li zahtjevi i dalje nerealni. Prijavite znatne promjene raspoloženja, apetita i sna; jaka bol u prsima ili nesvjestica trebaju hitnu procjenu. Teškoće se mijenjaju sa školskim prijelazima, zaposlenjem ili obiteljskim obvezama, pa preispitajte podršku. ADHD može biti uz autizam, depresiju i druga stanja koja zaslužuju vlastitu skrb, bez pripisivanja svega ADHD-u."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: teška jutra",
+      "text": "Dijete stalno preskače korake pripremanja. Obitelj i učitelj prepoznaju obrazac te pokušavaju kratku slikovnu listu i unaprijed pripremljenu odjeću. Dok organiziraju procjenu, prate smanjuje li se stres umjesto označavanja djeteta neposlušnim."
+    },
+    {
+      "title": "Izmišljeni primjer: teškoće odrasle osobe",
+      "text": "Odrasla osoba stiže rokove samo radeći kasno i iscrpljena je. Na procjeni opisuje propuštene zadatke i skriven trud. Uz liječenje se razmatraju pisani prioriteti i dogovorene provjere na poslu, ne samo rezultat upitnika."
+    }
+  ],
+  "questions": [
+    "Što podupire dijagnozu i koja druga objašnjenja ili pridružena stanja treba procijeniti?",
+    "Koje promjene pokušati kod kuće, u školi ili na poslu i kako ocijeniti korist?",
+    "Ako razmatramo lijek, koje koristi, nuspojave i kontrole očekivati?"
+  ]
+}

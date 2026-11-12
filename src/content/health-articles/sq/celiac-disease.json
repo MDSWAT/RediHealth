@@ -1,0 +1,51 @@
+{
+  "title": "Sëmundja celiake: testimi, dieta pa gluten dhe kujdesi i përditshëm",
+  "intro": "Sëmundja celiake është autoimune: gluteni nxit dëmtim të zorrës së hollë. Ndryshon nga alergjia ndaj grurit dhe simptomat që i atribuohen glutenit pa sëmundje celiake. Prek fëmijë dhe të rritur, me shenja tretëse, jashtë zorrës ose pak simptoma. Diagnoza e saktë ka rëndësi sepse trajtimi është dietë rreptësisht pa gluten gjatë gjithë jetës, jo thjesht më pak bukë kur ka shqetësime.",
+  "sections": [
+    {
+      "heading": "Jo vetëm diarre",
+      "paragraphs": [
+        "Mund të ketë fryrje, dhimbje barku, diarre ose kapsllëk, lodhje, anemi nga mungesa e hekurit dhe humbje peshe pa qëllim. Fëmijët mund të mos rriten mirë. Disa kanë skuqje me flluska e kruajtje, dermatit herpetiform. Të tjerë zbulohen nga historia familjare ose një sëmundje e lidhur. Këto shenja kanë edhe shkaqe të tjera; simptomat apo përmirësimi nga dieta nuk vërtetojnë diagnozën. Tregoni për të afërm të diagnostikuar dhe teste të mëparshme."
+      ]
+    },
+    {
+      "heading": "Diskutoni testimin para heqjes së glutenit",
+      "paragraphs": [
+        "Analizat matin antitrupa përkatës dhe diagnoza shpesh përfshin biopsi të zorrës gjatë endoskopisë së sipërme. Specialisti zgjedh rrugën, përfshirë kriteret e veçanta për disa fëmijë. Heqja e glutenit mund të japë rezultate gabimisht qetësuese. Nëse e konsumoni, mos nisni dietë pa diskutuar planin. Nëse e keni hequr, njoftoni mjekun; mos bëni vetë provokim ushqimor, sidomos kur mund të ketë alergji të menjëhershme. Testimi gjenetik ndonjëherë sqaron pasigurinë, por nuk është konfirmim më vete."
+      ]
+    },
+    {
+      "heading": "Diagnoza e konfirmuar ndryshon dietën përjetë",
+      "paragraphs": [
+        "Gluteni gjendet në grurë, elb dhe thekër, përfshirë speltën dhe maltin e elbit. Buka e makaronat janë burime të dukshme, por edhe salcat, supat dhe produktet e përpunuara mund ta përmbajnë. Mësoni etiketat me dietologun. Tërshëra kërkon kujdes: zgjidhni të etiketuar pa gluten dhe diskutoni përshtatshmërinë, sepse ndotja është e zakonshme dhe pak njerëz nuk tolerojnë as tërshërë të pandotur. Suplementi enzimatik nuk e bën automatikisht të sigurt ushqimin me gluten."
+      ]
+    },
+    {
+      "heading": "Shmangni kontaktin e kryqëzuar dhe ruani ekuilibrin",
+      "paragraphs": [
+        "Thërrimet, sipërfaqet, uji i gatimit dhe mjetet e përbashkëta mund të transferojnë gluten. Planifikoni kuzhinën, pyesni restorantin dhe organizoni vaktet në shkollë e punë. Orizi i thjeshtë, patatet, perimet, bishtajoret dhe burimet e përshtatshme të papërpunuara të proteinave japin shumëllojshmëri; kontrolloni shtesat e përgatitjen. Dietologu ndihmon me koston, fibrat, kalciumin, hekurin dhe nevoja të tjera. Produktet e paketuara pa gluten nuk janë automatikisht të balancuara. Suplementet plotësojnë nevojë të vlerësuar, jo zëvendësojnë mbështetjen ushqyese."
+      ]
+    },
+    {
+      "heading": "Ndjekja vazhdon pas përmirësimit",
+      "paragraphs": [
+        "Simptomat mund të përmirësohen para shërimit të plotë të zorrës. Vazhdoni dietën edhe kur ndiheni mirë dhe kontrollet për simptoma, ushqyerje, rritjen e fëmijëve dhe analizat. Simptomat e vazhdueshme kërkojnë rishikim për ekspozim pa dashje dhe shkaqe të tjera, jo fajësim ose kufizime gjithnjë më të gjera. Diskutoni kockat dhe testimin e të afërmve. Dhimbja e fortë e barkut, të vjellat me gjak, jashtëqitjet e zeza ose dehidratimi i rëndësishëm kërkojnë kujdes urgjent."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Para testit — shembull hipotetik",
+      "text": "Një person me fryrje dhe mungesë hekuri të pashpjeguar do ta heqë menjëherë glutenin. Flet fillimisht me mjekun që testet të interpretohen saktë. Përmirësimi nga dieta vetëm nuk konfirmon diagnozën."
+    },
+    {
+      "title": "Kuzhinë e përbashkët — shembull hipotetik",
+      "text": "Pas diagnozës familja mban hapësirë të pastër dhe shmang thërrimet në produktet për lyerje e tostierë. Dietologu ndihmon me vakte të përballueshme e të balancuara, jo vetëm zëvendësime të shtrenjta të paketuara."
+    }
+  ],
+  "questions": [
+    "Cilat teste duhen dhe si ta menaxhoj glutenin para tyre?",
+    "Si ta dalloj glutenin dhe shmang kontaktin e kryqëzuar në shtëpi, shkollë ose punë?",
+    "Çfarë kontrollesh ushqyese, ndjekjeje dhe testimi familjar të planifikojmë?"
+  ]
+}

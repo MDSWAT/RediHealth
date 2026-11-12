@@ -1,0 +1,51 @@
+{
+  "title": "BPCO: respirare meglio e prepararsi alle riacutizzazioni",
+  "intro": "La broncopneumopatia cronica ostruttiva, BPCO, limita stabilmente il flusso d'aria per danni a vie respiratorie e polmoni. Può comprendere bronchite cronica, enfisema o entrambi. Affanno, tosse e muco limitano l'attività, ma cure e riabilitazione migliorano i sintomi e riducono riacutizzazioni. Non è soltanto invecchiamento inevitabile; disturbi persistenti meritano visita anche in chi non ha fumato.",
+  "sections": [
+    {
+      "heading": "Confermare e cercare altre cause",
+      "paragraphs": [
+        "Il medico chiede sintomi, fumo, polveri e vapori lavorativi, inquinamento domestico e malattie precedenti. La spirometria, solitamente valutata dopo broncodilatatore, conferma l'ostruzione persistente. Altri test cercano cuore, infezione o anemia. Un'immagine toracica da sola non sostituisce i test funzionali. Spiegare l'effetto su cammino, sonno e cura di sé e quante riacutizzazioni si sono verificate."
+      ]
+    },
+    {
+      "heading": "Ridurre esposizioni e riprendere attività",
+      "paragraphs": [
+        "Smettere di fumare è fondamentale, con consulenza e farmaci adatti. Chiedere come ridurre polveri, vapori, fumo e altri fattori. La riabilitazione unisce esercizio supervisionato, educazione e autogestione adattati alle capacità, senza ignorare sintomi pericolosi. Movimento graduale, compiti dosati e nutrizione aiutano la forza. Evitare ogni attività può indebolire ulteriormente. Discutere ansia e umore basso che rendono più difficile affrontare il respiro."
+      ]
+    },
+    {
+      "heading": "Scelta e tecnica dell'inalatore",
+      "paragraphs": [
+        "I broncodilatatori rilassano le vie aeree. Breve e lunga durata hanno ruoli differenti; alcuni beneficiano anche di corticosteroidi inalatori. La combinazione dipende da sintomi, episodi e altri dati, non dal colore. Chiedere al professionista di osservare il dispositivo usato davvero, verificare il distanziatore e spiegare mantenimento rispetto a sollievo. Segnalare effetti indesiderati e difficoltà manuali. Tenere elenco aggiornato e seguire le istruzioni sullo steroide, compresa igiene orale."
+      ]
+    },
+    {
+      "heading": "Piano scritto per il peggioramento",
+      "paragraphs": [
+        "Una riacutizzazione peggiora respiro, tosse o muco e può richiedere altre cure. Chiedere quando chiamare, come usare il farmaco al bisogno e se è adatto un pacchetto d'emergenza personale prescritto. Non iniziare antibiotici altrui o steroidi senza piano. Chiedere consiglio urgente per maggiore affanno, sangue con tosse o nuova gamba gonfia dolorosa. Grave difficoltà, incapacità di parlare normalmente, pressione toracica, labbra blu o grigie o confusione nuova richiedono emergenza. Non spiegare ogni nuovo allarme con la diagnosi nota."
+      ]
+    },
+    {
+      "heading": "Ossigeno, prevenzione e sostegno",
+      "paragraphs": [
+        "L'ossigeno domiciliare è prescritto a persone selezionate dopo valutazione dell'ossigenazione bassa, non per ogni affanno. Usare la regolazione prescritta e mai fumare, svapare o avere fiamme vicine. Discutere vaccinazioni locali, controlli e supporto dopo ricovero. La malattia avanzata può richiedere cure specialistiche e pianificazione. Sollievo dei sintomi, sostegno psicologico e assistenza pratica accompagnano le cure attive a ogni fase. Chiedere un piano adatto a priorità e abitazione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dispositivo difficile — esempio ipotetico",
+      "text": "Una persona dice che l'inalatore non aiuta. Il medico osserva un problema di tecnica o forza della mano. Provano insieme e valutano un dispositivo adatto invece di ritenere fallito il farmaco."
+    },
+    {
+      "title": "Un cambiamento del respiro — esempio ipotetico",
+      "text": "Una persona con BPCO ha più affanno e un nuovo polpaccio gonfio doloroso. Chiede valutazione urgente, non una semplice cura abituale per il torace. Affanno grave o pressione toracica richiederebbero emergenza."
+    }
+  ],
+  "questions": [
+    "Spirometria e altri dati confermano BPCO e c'è un altro problema?",
+    "Potete controllare la tecnica e indirizzarmi alla riabilitazione?",
+    "Qual è il mio piano scritto e quali sintomi richiedono aiuto urgente o emergenza?"
+  ]
+}

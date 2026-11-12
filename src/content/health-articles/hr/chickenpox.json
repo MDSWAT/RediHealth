@@ -1,0 +1,51 @@
+{
+  "title": "Vodene kozice: njega simptoma i zaštita rizičnih osoba",
+  "intro": "Vodene kozice, varicela, vrlo su zarazna infekcija virusom varicella-zoster. Često uzrokuju svrbljive točkice, mjehuriće i kraste istodobno, temperaturu i malaksalost. Mnoga zdrava djeca oporave se uz potpornu skrb, ali novorođenčad, trudnice, odrasli i osobe oslabljenog imuniteta mogu ozbiljnije oboljeti. Kod visokog rizika i sama izloženost traži brz savjet.",
+  "sections": [
+    {
+      "heading": "Prepoznati obrazac bez samodijagnoze svakog osipa",
+      "paragraphs": [
+        "Promjene se javljaju po tijelu, vlasištu i u ustima; nove dok starije stvaraju kraste. Boja i vidljivost ovise o koži. Nelagoda remeti apetit i san. Cijepljeni mogu imati blažu ili netipičnu bolest. Druge bolesti također stvaraju mjehuriće, pa tražite savjet ako ste nesigurni. Najavite dolazak klinici radi zaštite čekaonice i navedite kontakt s kozicama ili herpes zosterom."
+      ]
+    },
+    {
+      "heading": "Smanjite prijenos",
+      "paragraphs": [
+        "Infekcija se širi zajedničkim zrakom i tekućinom mjehurića, i prije jasnog osipa. Izbjegavajte školu, vrtić i posao do kraja preporučene izolacije, uglavnom dok sve promjene ne postanu kraste; za netipične slučajeve pitajte posebno i slijedite lokalna pravila. Izbjegavajte novorođenčad, trudnice i imunokompromitirane. Perite ruke, ne češite i ne dijelite ručnike. Osjetljiva osoba može dobiti kozice nakon kontakta sa zosterom, ali ne 'dobije zoster' od kozica."
+      ]
+    },
+    {
+      "heading": "Udobnost i sigurnost lijekova",
+      "paragraphs": [
+        "Često nudite piće, široku odjeću i nježno hladnije kupanje, potom kožu tapkajte. Kratki nokti smanjuju ozljede češanjem. Ljekarnik može savjetovati pripravke prema dobi. Paracetamol pomaže ako je prikladan, prema uputi. Ne dajte aspirin djetetu s kozicama, a ibuprofen izbjegavajte osim po liječničkom savjetu zbog moguće ozbiljne kožne infekcije. Provjerite kombinirane proizvode da ne udvostručite lijekove. Antibiotici ne liječe virus."
+      ]
+    },
+    {
+      "heading": "Visokorizičan kontakt i rano liječenje",
+      "paragraphs": [
+        "Brzo tražite savjet nakon kontakta u trudnoći, oslabljenom imunitetu ili za novorođenče, i bez simptoma. Navedite dokaze ranijeg imuniteta. Prema riziku, imunitetu i vremenu mogu se razmotriti prevencija ili rani antivirusni lijek. Najbolje djeluju započeti rano i ne trebaju svakom zdravom djetetu. Ne čekajte proširen osip i ne koristite tuđi recept. Navedite steroide i imunosupresive."
+      ]
+    },
+    {
+      "heading": "Upozorenja i buduća prevencija",
+      "paragraphs": [
+        "Tražite hitan savjet za dehidraciju, sve topliju bolnu kožu, trajnu ili jaču temperaturu ili sve lošije dijete. Teško disanje, zbunjenost, teško buđenje, ukočen vrat ili jako otežan hod traže hitnu procjenu. Ne smatrajte svako pogoršanje normalnim. Cjepivo sprječava bolest i teške oblike; kriteriji i raspored ovise o državi. Uobičajeno je cjepivo živo pa trudnoća i imunosni problemi trebaju poseban savjet. Virus ostaje u tijelu i može se poslije aktivirati kao zoster."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontakt u trudnoći — zamišljeni primjer",
+      "text": "Trudnica sazna da dijete u kući možda ima kozice. Brzo kontaktira tim s detaljima kontakta i ranije bolesti ili cijepljenja, bez čekanja osipa."
+    },
+    {
+      "title": "Osip koji se mijenja — zamišljeni primjer",
+      "text": "Dijete prvo svrbi, zatim područje postaje vruće, otečeno i sve bolnije. Skrbnik traži hitan savjet zbog moguće sekundarne infekcije umjesto samo dodatne kreme."
+    }
+  ],
+  "questions": [
+    "Odgovara li osip kozicama i ima li kod kuće rizičnih osoba?",
+    "Koji su lijekovi prikladni i trebamo li preventivno ili antivirusno liječenje?",
+    "Kada je siguran povratak u školu ili posao i koje promjene traže hitnu procjenu?"
+  ]
+}

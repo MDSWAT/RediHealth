@@ -51,6 +51,8 @@ const CATEGORY_QUERIES: { category: InstituteCategory; selectors: string[] }[] =
   { category: "gp", selectors: ['["amenity"="doctors"]', '["healthcare"="doctor"]'] },
   { category: "dentist", selectors: ['["amenity"="dentist"]', '["healthcare"="dentist"]'] },
   { category: "pharmacy", selectors: ['["amenity"="pharmacy"]', '["healthcare"="pharmacy"]'] },
+  // Include laboratories, health posts, rehabilitation, nursing and specialist services too.
+  { category: "other", selectors: ['["healthcare"]["healthcare"!="no"]', '["amenity"~"^(health_post|nursing_home)$"]'] },
 ];
 
 const COUNTRY_OSM_LANG: Record<CountryCode, string> = {
@@ -173,20 +175,23 @@ export function mapOsmElement(
   const tags = element.tags ?? {};
   const lat = element.lat ?? element.center?.lat;
   const lng = element.lon ?? element.center?.lon;
-  if (lat == null || lng == null) return null;
-  if (isExcludedOsmTags(tags)) return null;
+  if (lat == null || lng == null || !Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) return null;
+  if (isExcludedOsmTags(tags) || tags.closed === "yes" || tags.healthcare === "no") return null;
 
   const osmLang = COUNTRY_OSM_LANG[country];
   const candidates = [
     firstValue(tags.name, 255),
     firstValue(tags[`name:${osmLang}`], 255),
+    ...(country === "MD" ? [firstValue(tags["name:ru"], 255)] : []),
+    firstValue(tags["name:en"], 255),
     firstValue(tags[`name:${country.toLowerCase()}`], 255),
     firstValue(tags.official_name, 255),
     firstValue(tags.short_name, 255),
     firstValue(tags.brand, 255),
     firstValue(tags.operator, 255),
   ];
-  const name = candidates.find((candidate): candidate is string => Boolean(candidate && !isInvalidInstituteName(candidate)));
+  const name = candidates.find((candidate): candidate is string => Boolean(candidate && !isInvalidInstituteName(candidate)))
+    ?? (candidates.every(candidate => !candidate) ? ({hospital: "Hospital", clinic: "Clinic", gp: "Doctor", dentist: "Dentist", pharmacy: "Pharmacy", other: "Healthcare facility"}[categoryFromTags(tags, "", fallbackCategory)]) : undefined);
   if (!name) return null;
 
   const streetName = tags["addr:street"] || tags["addr:place"] || tags["contact:street"];
@@ -297,7 +302,10 @@ async function runOverpassQuery(query: string): Promise<OsmElement[]> {
         throw new Error(`Overpass (${endpoint}) responded with ${response.status}`);
       }
       const data = (await response.json()) as { elements?: OsmElement[] };
-      return Array.isArray(data.elements) ? data.elements : [];
+      if ("remark" in data || !Array.isArray(data.elements)) {
+        throw new Error("Overpass returned an incomplete response; refusing a partial import.");
+      }
+      return data.elements;
     } catch (error) {
       lastError = error;
       console.warn(`Overpass attempt ${attempt + 1} failed:`, error instanceof Error ? error.message : error);

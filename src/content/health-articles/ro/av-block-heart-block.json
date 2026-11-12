@@ -1,0 +1,51 @@
+{
+  "title": "Blocul AV: ce înseamnă o problemă de conducere electrică",
+  "intro": "Blocul atrioventricular, sau AV, înseamnă că semnalele electrice din camerele superioare ajung prea lent ori nesigur la cele inferioare. Diferă de o arteră coronară blocată, deși boala cardiacă le poate cauza pe ambele. Unele forme necesită doar supraveghere; altele pot încetini periculos inima și cer tratament urgent. Tiparul ECG, cauza și starea clinică contează mai mult decât o singură măsurare a pulsului acasă.",
+  "sections": [
+    {
+      "heading": "Recunoașteți simptomele îngrijorătoare fără autodiagnostic",
+      "paragraphs": [
+        "Blocul AV poate cauza oboseală neobișnuită, lipsă de aer, amețeală, senzație de leșin sau leșin; formele ușoare pot fi fără simptome. Cereți ajutor de urgență pentru colaps, leșin cu stare proastă persistentă, durere toracică ori lipsă severă de aer. Dacă persoana nu răspunde și nu respiră normal, sunați la urgență și urmați instrucțiunile de resuscitare. Nu conduceți când vă simțiți aproape de leșin sau acut bolnav. Pulsul lent poate avea alte explicații, inclusiv adaptarea la antrenament; simptomele sau dispozitivul nu identifică singure tipul blocului."
+      ]
+    },
+    {
+      "heading": "Întrebați ce grad și tipar arată ECG",
+      "paragraphs": [
+        "Blocul de gradul întâi întârzie conducerea, dar de obicei transmite fiecare semnal. Cel de gradul al doilea omite intermitent semnale și include tipare cu riscuri diferite. În blocul complet, de gradul al treilea, camerele superioare și inferioare nu mai comunică normal. Clinicianul le diferențiază pe ECG, uneori prin monitorizare mai lungă. Cereți constatarea exactă, fără a presupune că orice bloc de gradul al doilea este inofensiv. Episoadele pot fi intermitente; notați când apar simptomele și concordanța cu monitorizarea."
+      ]
+    },
+    {
+      "heading": "Căutați cauze reversibile și medicamente relevante",
+      "paragraphs": [
+        "Echipa verifică medicamentele, procedurile cardiace anterioare și bolile care influențează conducerea. Unele medicamente pentru frecvență, tulburările electroliților, infecțiile sau leziunile inimii pot contribui. Testele sunt alese după situație și pot include analize și evaluarea structurii cardiace. Aduceți lista exactă, inclusiv produse fără rețetă. Nu opriți singur tratamentul; explicați prompt îngrijorările pentru ca medicul să decidă schimbarea și monitorizarea. Tratarea cauzei poate modifica planul pe termen lung."
+      ]
+    },
+    {
+      "heading": "Înțelegeți recomandarea unui stimulator cardiac",
+      "paragraphs": [
+        "Supravegherea poate fi potrivită în cazuri cu risc redus, iar blocul important poate necesita stimulare temporară sau permanentă. Unele tipare cu risc înalt necesită stimulator permanent chiar fără simptome evidente dacă nu există cauză reversibilă. Stimulatorul furnizează impulsuri pentru bătăi adecvate; nu desfundă arterele îngustate. Întrebați de ce este recomandat, cât de urgent, ce beneficii, riscuri procedurale și alternative există. Starea bună de moment nu justifică amânarea tratamentului urgent recomandat pentru un tipar periculos."
+      ]
+    },
+    {
+      "heading": "Stabiliți controalele și instrucțiunile de siguranță",
+      "paragraphs": [
+        "Dacă se alege supravegherea, clarificați datele și schimbările care impun ajutor mai devreme. După implantare, urmați instrucțiunile pentru plagă, activitate și verificarea dispozitivului și purtați informațiile primite despre el. Anunțați echipele medicale înaintea procedurilor sau scanărilor pentru verificarea compatibilității și precauțiilor. Întrebați regulile de muncă, călătorie și condus pentru țara și starea dumneavoastră. Leșinul nou, lipsa de aer ori semnele îngrijorătoare ale plăgii necesită evaluare; dispozitivul nu face automat inofensive simptomele viitoare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: alertă de puls scăzut",
+      "text": "O persoană amețită observă puls mic pe ceas. Cere evaluare fără a opri singură medicația cardiacă. Clinicianul verifică ECG, medicamentele și dacă simptomele coincid cu problema de conducere."
+    },
+    {
+      "title": "Exemplu ipotetic: puține simptome, dar risc înalt",
+      "text": "Un pacient se simte relativ bine, dar monitorizarea arată o formă periculoasă de bloc AV. Întreabă de ce este indicată stimularea și urmează planul urgent, fără a considera absența simptomelor severe dovadă că așteptarea este sigură."
+    }
+  ],
+  "questions": [
+    "Ce tip exact de bloc AV am și explică simptomele?",
+    "Poate contribui un medicament sau o boală tratabilă și cum se evaluează sigur?",
+    "Am nevoie de stimulare, cât de urgent și ce controale ori restricții se aplică?"
+  ]
+}

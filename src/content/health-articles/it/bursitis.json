@@ -1,0 +1,51 @@
+{
+  "title": "Borsite: ridurre l'irritazione e riconoscere l'infezione",
+  "intro": "Le borse sono piccole sacche di liquido che riducono l'attrito fra tessuti vicino alle articolazioni. Infiammandosi causano dolore, sensibilità o gonfiore. Possono interessare spalla, anca, gomito o ginocchio. Pressione ripetuta, traumi e malattie contribuiscono, ma una borsa infetta richiede cure diverse. Non ogni dolore articolare o gonfiore è borsite.",
+  "sections": [
+    {
+      "heading": "Descrivere sede e fattori aggravanti",
+      "paragraphs": [
+        "Indicate dove fa male, inizio del gonfiore e movimenti o pressioni aggravanti. Inginocchiarsi, appoggiarsi sui gomiti o attività ripetitiva nuova possono contare. Riferite caduta, graffio, puntura, procedura, gotta o artrite infiammatoria. Alcune borse superficiali si gonfiano visibilmente, quelle profonde danno soprattutto dolore. Tendini, artrite o infezione articolare possono somigliare: non diagnosticate solo da foto o provocazione con attività."
+      ]
+    },
+    {
+      "heading": "Anticipare la visita se caldo o rapido peggioramento",
+      "paragraphs": [
+        "Calore crescente, rossore diffuso, forte dolorabilità, febbre, brividi o malessere richiedono presto valutazione, specie dopo ferite o con diabete e immunità ridotta. Sulla pelle scura il rossore è meno chiaro: contano calore, gonfiore e stato generale. Dolore grave o impossibilità d'uso richiedono urgenza. Confusione, collasso o grave difficoltà respiratoria emergenza. Non infilate aghi, schiacciate o presumete che la vecchia diagnosi escluda nuova infezione."
+      ]
+    },
+    {
+      "heading": "Comprendere visita e test selettivi",
+      "paragraphs": [
+        "Il medico valuta zona, movimento, pelle e salute. Gli esami dipendono dai riscontri: non serve sempre una scansione. Talvolta si campiona liquido per infezione o cristalli o si cercano altre cause con immagini. Chiedete cosa cambia il test e se sia stata considerata infezione prima di un'iniezione. Portate medicinali, inclusi anticoagulanti e immunosoppressori. Ricorrenza o scarsa risposta meritano rivalutazione anziché un'etichetta incerta ripetuta."
+      ]
+    },
+    {
+      "heading": "Ridurre pressione mantenendo il recupero pratico",
+      "paragraphs": [
+        "Escluse infezione e lesioni serie, modificate temporaneamente attività o pressione aggravanti. Imbottitura, posizione lavorativa o pause possono aiutare. Impacco freddo avvolto allevia: proteggete la pelle e interrompete con freddo doloroso o insensibilità. Chiedete analgesici compatibili. Bilanciate riposo e movimento raccomandato per la sede, senza immobilità indefinita. Il fisioterapista può adattare carico e tecnica."
+      ]
+    },
+    {
+      "heading": "Rivedere cure e ricorrenza",
+      "paragraphs": [
+        "Borsite infetta può richiedere antibiotici e drenaggio medico. In casi selezionati non infetti si discute un'iniezione dopo benefici e rischi: non va bene per ogni gonfiore. Chirurgia è rara e dipende da persistenza o complicazioni. Concordate controllo, ritorno al lavoro o sport e contatto anticipato. Ricorrenza può indicare pressione persistente o altra malattia. Giudicate dolore e funzione, non la promessa che scompaia a una data precisa."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: pressione al lavoro",
+      "text": "Un lavoratore ha gonfiore sulla rotula dopo ripetuto inginocchiamento. Escluse infezione e lesioni importanti discute imbottitura, compiti e ritorno graduale. Non drena da solo a ogni turno."
+    },
+    {
+      "title": "Esempio ipotetico: nuovo calore e febbre",
+      "text": "Una persona con vecchia borsite del gomito sviluppa rapido dolore, calore e febbre dopo un graffio. Cerca valutazione e riferisce la ferita invece di presumere stessa riacutizzazione semplice e chiedere altro cortisone."
+    }
+  ],
+  "questions": [
+    "È borsite o possono esserci infezione, cristalli o altro problema?",
+    "Quali attività, analgesici o test si adattano alla sede e salute?",
+    "Altre cure aiuterebbero e cosa richiede visita anticipata o urgenza?"
+  ]
+}

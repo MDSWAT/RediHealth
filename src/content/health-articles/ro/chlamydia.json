@@ -1,0 +1,51 @@
+{
+  "title": "Chlamydia: testare, tratament și prevenirea reinfectării",
+  "intro": "Chlamydia este o infecție bacteriană transmisă sexual, frecvent fără simptome. O persoană o poate transmite fără să știe; starea bună nu o exclude. Testarea și antibioticele potrivite tratează infecția și reduc complicațiile. Îngrijirea include partenerii recenți, momentul reluării sexului și testele ulterioare. Rezultatul pozitiv este o problemă de sănătate de abordat fără vină, nu un mod sigur de a data infectarea.",
+  "sections": [
+    {
+      "heading": "Simptome și complicații posibile",
+      "paragraphs": [
+        "Pot apărea usturime la urinare, secreții vaginale ori peniene neobișnuite, sângerare după contact ori între menstruații, durere abdominală inferioară sau durere și umflare testiculară. Infecția rectală poate provoca durere, secreții ori sânge, dar poate fi tăcută. Netratată, poate contribui la boală inflamatorie pelvină, probleme de fertilitate, sarcină ectopică ori inflamația epididimului. Simptomele pot avea alte cauze și necesita examinare. Infecția în sarcină poate afecta nou-născutul la naștere."
+      ]
+    },
+    {
+      "heading": "Alegeți testul și locurile de recoltare",
+      "paragraphs": [
+        "Serviciul medical poate recomanda testare fără simptome, mai ales după diagnosticul partenerului ori expunere. Se folosesc frecvent urină sau tampon vaginal; după contact și simptome pot fi potrivite probe rectale ori faringiene. Unele tampoane se autorecoltează conform instrucțiunilor. Spuneți când a fost contactul: testarea prea devreme poate rata infecția și poate necesita repetare. Discutați testele pentru alte infecții și comunicarea confidențială a rezultatului."
+      ]
+    },
+    {
+      "heading": "Finalizați antibioticul prescris",
+      "paragraphs": [
+        "Antibioticul și durata depind de localizare, sarcină, alergii, alte medicamente și ghidul local. Urmați rețeta chiar dacă simptomele se ameliorează; contactați serviciul pentru doze omise, vărsături care împiedică tratamentul ori reacții adverse. Nu împărțiți comprimate și nu folosiți antibiotice rămase. Spuneți dacă sarcina este posibilă ori alăptați. Tratamentul elimină infecția, dar nu inversează neapărat leziunile existente. Simptomele persistente cer reevaluare pentru complicații sau altă infecție."
+      ]
+    },
+    {
+      "heading": "Îngrijirea partenerilor și pauza sexuală",
+      "paragraphs": [
+        "Partenerii actuali și recenți relevanți necesită sfat, testare și adesea tratament, chiar fără simptome. Clinica poate ajuta notificarea confidențială; cereți abordare sigură dacă contactarea partenerului vă pune în pericol. Evitați sexul vaginal, anal și oral până la expirarea intervalului recomandat, îndeplinirea cerințelor de tratament pentru dumneavoastră și parteneri și dispariția simptomelor relevante. Instrucțiunea exactă depinde de schemă. Prezervativele și barierele reduc riscul ulterior, dar nu înlocuiesc pauza legată de tratament."
+      ]
+    },
+    {
+      "heading": "Controale și simptome care nu pot aștepta",
+      "paragraphs": [
+        "Reinfectarea este posibilă deoarece tratamentul nu produce imunitate durabilă. Retestarea ulterioară, frecvent în jur de trei luni, caută reinfectarea; confirmarea vindecării este alt scop, important mai ales în sarcină ori anumite situații. Urmați momentul recomandat: testul prea precoce poate induce în eroare. Durerea pelvină cu febră, starea generală proastă ori durerea testiculară cer evaluare urgentă. Durerea testiculară bruscă severă este urgență. Durerea abdominală severă, leșinul ori sângerarea cu posibilă sarcină pot indica sarcină ectopică și cer ajutor de urgență."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fără simptome după rezultatul partenerului — exemplu ipotetic",
+      "text": "O persoană se simte bine, dar partenerul are chlamydia. Cere testare și sfat, descrie tipul și momentul contactului și urmează indicația. Absența simptomelor nu dovedește că testul este inutil."
+    },
+    {
+      "title": "Plan după tratament — exemplu ipotetic",
+      "text": "O persoană termină comprimatele, dar partenerul nu a primit îngrijire. Întreabă când poate relua sexul, organizează notificarea asistată și testul ulterior, fără să considere ultima tabletă sfârșitul riscului de reinfectare."
+    }
+  ],
+  "questions": [
+    "Ce locuri de recoltare și momente se potrivesc expunerii și ce alte infecții verificăm?",
+    "Care sunt tratamentul exact și instrucțiunile de reluare a sexului cu partenerii?",
+    "Am nevoie de confirmarea vindecării, retestare sau evaluarea urgentă a simptomelor?"
+  ]
+}

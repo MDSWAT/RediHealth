@@ -1,0 +1,51 @@
+{
+  "title": "Antikoagulansi: smanjite rizik krvarenja uz očuvanje zaštite",
+  "intro": "Antikoagulansi smanjuju mogućnost štetnih ugrušaka, ali i olakšavaju krvarenje ili otežavaju njegovo zaustavljanje. Sigurnija uporaba znači uzimati pravi lijek prema uputama, provjeravati interakcije i znati kada tražiti pomoć. Ne prekidajte terapiju samo zbog male modrice: razlog antikoagulacije, poput prevencije udara ili ugrušaka, i dalje je važan. Znatno krvarenje ili ozljeda zahtijevaju brzu procjenu.",
+  "sections": [
+    {
+      "heading": "Poznajte lijek i pridržavajte se plana praćenja",
+      "paragraphs": [
+        "Držite dostupnima naziv, jačinu i aktualne upute te karticu o antikoagulaciji ako je dobivena. Varfarin zahtijeva krvne testove INR za doziranje; izravni oralni antikoagulansi ne koriste istu rutinsku prilagodbu INR-om, ali i dalje trebaju odgovarajuće kontrole, uključujući bubrege. Navedite bolest, promjene težine ili teškoće uzimanja tableta. Za propuštenu dozu slijedite upute baš tog lijeka ili pitajte ljekarnika; ne izmišljajte nadoknadu. Koristite podsjetnike ako često zaboravljate."
+      ]
+    },
+    {
+      "heading": "Provjerite druge lijekove i promjene prehrane",
+      "paragraphs": [
+        "Svakom liječniku i ljekarniku recite da uzimate antikoagulans. Pitajte prije dodavanja analgetika, biljnih pripravaka ili dodataka; proizvodi poput ibuprofena ili aspirina povećavaju rizik krvarenja. Ako je aspirin namjerno propisan uz antikoagulans, tražite kontrolu umjesto samostalnog prekida. Neki antibiotici i drugi lijekovi također djeluju međusobno. Uz varfarin velike promjene unosa vitamina K mogu promijeniti kontrolu, pa tražite savjet o dosljednoj prehrani umjesto izbjegavanja svega povrća. Razgovarajte o alkoholu i izbjegavajte obilno pijenje."
+      ]
+    },
+    {
+      "heading": "Smanjite izbježive ozljede i planirajte zahvate",
+      "paragraphs": [
+        "Odaberite odgovarajuću zaštitnu opremu, pažljivo koristite oštre alate i uklonite opasnosti od spoticanja. Meka četkica ili električni aparat za brijanje mogu smanjiti manje ozljede. Unaprijed obavijestite stomatologa i tim koji planira operaciju, injekcije ili invazivnu pretragu. Potreba za promjenom ovisi o postupku, lijeku, bubrezima i riziku ugrušaka. Ne odlučujte sami preskakati doze i ne koristite tuđi plan prije zahvata. Tražite jasne upute za eventualni prekid i ponovno uvođenje."
+      ]
+    },
+    {
+      "heading": "Primjereno reagirajte na krvarenje i ozljedu",
+      "paragraphs": [
+        "Kod manjeg vanjskog reza pritisnite izravno i čvrsto čistom gazom. Krvarenje koje ne prestaje, velika nesreća ili znatna ozljeda glave zahtijevaju neposrednu procjenu i ako je malo vidljive krvi. Tražite hitnu skrb zbog krvi u mokraći, crne stolice, povraćanja krvi ili znatnog neobjašnjenog krvarenja. Jaka glavobolja, zbunjenost, slabost, kolaps ili teško disanje zahtijevaju hitnu pomoć. Navedite naziv antikoagulansa i posljednju dozu bez odgađanja radi traženja dokumenata."
+      ]
+    },
+    {
+      "heading": "Prijavite manje probleme prije promjene terapije",
+      "paragraphs": [
+        "Ponavljana krvarenja iz nosa, sve više modrica ili obilnije menstruacije zaslužuju kontrolu i kada nisu hitni. Zabilježite obrazac i nove lijekove te pitajte treba li pretraga ili prilagodba. Krvarenje može imati uzrok koji zahtijeva obradu, umjesto objašnjenja samo antikoagulacijom. Odmah navedite trudnoću ili planiranje trudnoće jer možda treba promijeniti lijek. S liječnikom redovno provjeravajte ravnotežu zaštite od ugrušaka i rizika krvarenja, umjesto samostalne odluke."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: novi analgetik",
+      "text": "Osoba na antikoagulansu ima bol u leđima i razmišlja o ibuprofenu. Prvo pokazuje popis lijekova ljekarniku i pita za prikladnu mogućnost. Navodi i aspirin koji je propisao kardiolog, umjesto uklanjanja s popisa."
+    },
+    {
+      "title": "Hipotetski primjer: pad i ozljeda glave",
+      "text": "Osoba na lijeku protiv ugrušaka padne i udari glavom. Iako vlasište malo krvari, traži neposrednu procjenu i navodi lijek i zadnju dozu umjesto čekanja velike modrice."
+    }
+  ],
+  "questions": [
+    "Koje testove i kontrole zahtijeva moj antikoagulans i što učiniti kod propuštene doze?",
+    "Koji analgetici, dodaci, prehrambene promjene ili postupci trebaju savjet u mom slučaju?",
+    "Koje krvarenje ili ozljeda zahtijevaju hitnu pomoć i kome prijaviti ponavljano manje krvarenje?"
+  ]
+}

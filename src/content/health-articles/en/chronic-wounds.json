@@ -1,0 +1,51 @@
+{
+  "title": "Chronic wounds: why healing stalls and how care is planned",
+  "intro": "A chronic wound stays open, heals unusually slowly or repeatedly breaks down. Good dressings matter, but healing also depends on the cause: blood supply, pressure, swelling, nerve damage, infection and general health can all contribute. A wound that is not progressing needs assessment rather than an endless trial of different creams. Seek earlier advice for a new wound if you have diabetes, poor circulation or reduced immunity.",
+  "sections": [
+    {
+      "heading": "Different wounds need different approaches",
+      "paragraphs": [
+        "Venous leg ulcers can develop when blood return through the leg veins is impaired. Arterial ulcers involve inadequate blood supply, while diabetic foot wounds may combine circulation problems, nerve damage and repeated pressure. Pressure injuries can occur when someone cannot change position easily. Other skin diseases and, occasionally, tumours can also cause a non-healing area. A painless wound is not necessarily a minor wound: nerve damage may reduce warning pain. Do not diagnose the cause from a photograph or location alone."
+      ]
+    },
+    {
+      "heading": "Assess the wound and the person together",
+      "paragraphs": [
+        "The team reviews how the wound began, medicines, illnesses, mobility, pain and previous treatment. They assess size, depth, surrounding skin, drainage and signs of infection, and check circulation and sensation where relevant. Blood-flow tests may be needed before choosing compression. A wound swab is not automatically helpful, because bacteria can be present without clinical infection. An atypical wound or one that fails to improve may need specialist review or a tissue sample. Agree how progress will be recorded and when the plan will be reconsidered."
+      ]
+    },
+    {
+      "heading": "Dressings are part of a cause-based plan",
+      "paragraphs": [
+        "Cleaning, suitable dressings and protection of nearby skin help manage moisture and comfort. Removal of dead tissue, if needed, should be undertaken by appropriately trained professionals using a method suited to the wound and blood supply. Do not cut tissue yourself or put household disinfectants or unprescribed remedies into the wound. Venous disease may need professionally chosen compression; arterial disease may need vascular treatment. A diabetic foot may need an offloading device to reduce pressure. These measures are not interchangeable, and tight self-bandaging can be harmful."
+      ]
+    },
+    {
+      "heading": "Support healing and daily life",
+      "paragraphs": [
+        "Ask for pain relief and a dressing-change plan that you or a caregiver can follow safely, with access to supplies. Nutrition, diabetes management, stopping smoking and appropriate movement or pressure relief can support recovery. Follow the team on footwear, leg positioning and activity rather than assuming that more walking or complete bed rest suits every wound. Discuss sleep, smell, leakage, work and social isolation; these concerns are part of care. Antibiotics are used for clinical infection, not merely to make every chronic wound heal faster."
+      ]
+    },
+    {
+      "heading": "Know when the wound needs urgent reassessment",
+      "paragraphs": [
+        "Seek prompt advice for spreading redness or warmth, increasing pain, pus, fever, rapid enlargement or feeling unwell. A new foot wound in diabetes needs urgent contact with the foot-care or medical service even without pain. A suddenly cold, pale or blue limb, severe new pain, rapidly darkening tissue, confusion or severe systemic illness needs emergency assessment. Do not wait for a routine dressing visit. After healing, continue the prevention plan, which may include suitable compression, foot checks, pressure relief and treatment of the underlying cause to reduce recurrence."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A painless foot sore — hypothetical example",
+      "text": "A person with diabetes discovers a sore under the foot but feels little pain. They contact their foot-care service promptly and reduce pressure as instructed rather than waiting for pain to prove it is serious."
+    },
+    {
+      "title": "A leg ulcer with swelling — hypothetical example",
+      "text": "A person wants to tighten a bandage to reduce swelling. The nurse first assesses circulation and the likely cause, then chooses suitable compression if appropriate. They agree a progress review and what changes require an earlier call."
+    }
+  ],
+  "questions": [
+    "What is preventing this wound from healing, and does circulation need further assessment?",
+    "What dressing, pressure relief or compression is appropriate, and who will provide it?",
+    "How will we judge progress, and which changes need urgent or emergency care?"
+  ]
+}

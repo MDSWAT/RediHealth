@@ -1,0 +1,1602 @@
+{
+  "acne": [
+    {
+      "label": "NHS — Acne",
+      "url": "https://www.nhs.uk/conditions/acne/"
+    }
+  ],
+  "acute-bronchitis": [
+    {
+      "label": "NHS — Bronchitis",
+      "url": "https://www.nhs.uk/conditions/bronchitis/"
+    }
+  ],
+  "acute-cystitis": [
+    {
+      "label": "NHS — Urinary tract infections",
+      "url": "https://www.nhs.uk/conditions/urinary-tract-infections-utis/"
+    }
+  ],
+  "acute-pancreatitis": [
+    {
+      "label": "NHS — Acute pancreatitis",
+      "url": "https://www.nhs.uk/conditions/acute-pancreatitis/"
+    }
+  ],
+  "age-related-farsightedness-presbyopia": [
+    {
+      "label": "National Eye Institute — Presbyopia",
+      "url": "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/presbyopia"
+    },
+    {
+      "label": "National Eye Institute — Retinal detachment",
+      "url": "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/retinal-detachment"
+    }
+  ],
+  "allergic-contact-dermatitis": [
+    {
+      "label": "NHS — Contact dermatitis",
+      "url": "https://www.nhs.uk/conditions/contact-dermatitis/"
+    },
+    {
+      "label": "NHS — Diagnosing contact dermatitis",
+      "url": "https://www.nhs.uk/conditions/contact-dermatitis/diagnosis/"
+    }
+  ],
+  "allergies-to-animals": [
+    {
+      "label": "ACAAI — Pet allergies",
+      "url": "https://acaai.org/allergies/allergic-conditions/pet-allergies/"
+    }
+  ],
+  "alcohol": [
+    {
+      "label": "NHS — Alcohol-use disorder",
+      "url": "https://www.nhs.uk/conditions/alcohol-use-disorder/"
+    }
+  ],
+  "age-related-macular-degeneration-amd": [
+    {
+      "label": "National Eye Institute — Age-related macular degeneration",
+      "url": "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/age-related-macular-degeneration"
+    },
+    {
+      "label": "National Eye Institute — AREDS and AREDS2 questions",
+      "url": "https://www.nei.nih.gov/eye-health-information/clinical-trials/age-related-eye-disease-studies-aredsareds2/aredsareds2-frequently-asked-questions"
+    }
+  ],
+  "alzheimers-disease": [
+    {
+      "label": "NHS — Alzheimer’s disease",
+      "url": "https://www.nhs.uk/conditions/alzheimers-disease/"
+    },
+    {
+      "label": "NHS — Alzheimer’s treatment",
+      "url": "https://www.nhs.uk/conditions/alzheimers-disease/treatment/"
+    },
+    {
+      "label": "NIH — Alzheimer’s disease",
+      "url": "https://health.nih.gov/health-topics-a-z/alzheimers-disease"
+    }
+  ],
+  "ankle-sprains": [
+    {
+      "label": "NHS — Sprains and strains",
+      "url": "https://www.nhs.uk/conditions/sprains-and-strains/"
+    }
+  ],
+  "ankle-fractures": [
+    {
+      "label": "NHS — Broken ankle",
+      "url": "https://www.nhs.uk/conditions/broken-ankle/"
+    },
+    {
+      "label": "NHS — Deep vein thrombosis",
+      "url": "https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
+    }
+  ],
+  "appendicitis": [
+    {
+      "label": "NHS — Appendicitis",
+      "url": "https://www.nhs.uk/conditions/appendicitis/"
+    }
+  ],
+  "asthma": [
+    {
+      "label": "NHS — Asthma",
+      "url": "https://www.nhs.uk/conditions/asthma/"
+    }
+  ],
+  "athletes-foot": [
+    {
+      "label": "NHS — Athlete’s foot",
+      "url": "https://www.nhs.uk/conditions/athletes-foot/"
+    }
+  ],
+  "bacterial-vaginosis": [
+    {
+      "label": "NHS — Bacterial vaginosis",
+      "url": "https://www.nhs.uk/conditions/bacterial-vaginosis/"
+    }
+  ],
+  "benign-enlarged-prostate": [
+    {
+      "label": "NHS — Enlarged prostate",
+      "url": "https://www.nhs.uk/conditions/enlarged-prostate/"
+    },
+    {
+      "label": "NHS — PSA test",
+      "url": "https://www.nhs.uk/tests-and-treatments/psa-test/"
+    }
+  ],
+  "bedbugs": [
+    {
+      "label": "NHS — Bedbugs",
+      "url": "https://www.nhs.uk/conditions/bedbugs/"
+    }
+  ],
+  "benign-paroxysmal-positional-vertigo": [
+    {
+      "label": "NHS — Vertigo",
+      "url": "https://www.nhs.uk/conditions/vertigo/"
+    }
+  ],
+  "after-the-baby-is-born": [
+    {
+      "label": "NHS — Your body after the birth",
+      "url": "https://www.nhs.uk/pregnancy/labour-and-birth/your-body/"
+    },
+    {
+      "label": "CDC — Urgent maternal warning signs",
+      "url": "https://www.cdc.gov/hearher/maternal-warning-signs/index.html"
+    },
+    {
+      "label": "NHS — Postnatal depression",
+      "url": "https://www.nhs.uk/mental-health/conditions/postnatal-depression/"
+    }
+  ],
+  "at-the-doctors": [
+    {
+      "label": "NHS — GP appointments and bookings (England)",
+      "url": "https://www.nhs.uk/nhs-services/gps/gp-appointments-and-bookings/"
+    }
+  ],
+  "at-the-hospital": [
+    {
+      "label": "NHS — Going into hospital as a patient (England)",
+      "url": "https://www.nhs.uk/nhs-services/hospitals/going-into-hospital/going-into-hospital-as-a-patient/"
+    },
+    {
+      "label": "NHS — Being discharged from hospital (England)",
+      "url": "https://www.nhs.uk/nhs-services/hospitals/going-into-hospital/being-discharged-from-hospital/"
+    }
+  ],
+  "alzheimers-disease-what-is-the-cdr-scale": [
+    {
+      "label": "Washington University — CDR dementia staging instrument",
+      "url": "https://knightadrc.wustl.edu/professionals-clinicians/cdr-dementia-staging-instrument/"
+    },
+    {
+      "label": "NACC — Uniform Data Set coding guidebook",
+      "url": "https://files.alz.washington.edu/documentation/wm-uds4-ivp-coding-guidebook.pdf"
+    }
+  ],
+  "alzheimers-disease-understanding-the-results-of-responder-analyses": [
+    {
+      "label": "FDA — Clinical outcome assessment endpoints (draft guidance, 2023)",
+      "url": "https://www.fda.gov/media/166830/download"
+    },
+    {
+      "label": "FDA — Considerations for clinical outcome assessment development",
+      "url": "https://www.fda.gov/media/142629/download"
+    }
+  ],
+  "anticoagulants-how-can-you-prevent-bleeding": [
+    {
+      "label": "NHS — Anticoagulant medicines",
+      "url": "https://www.nhs.uk/medicines/anticoagulants/"
+    },
+    {
+      "label": "NHS — Anticoagulant considerations",
+      "url": "https://www.nhs.uk/medicines/anticoagulants/considerations/"
+    },
+    {
+      "label": "NHS — Anticoagulant side effects",
+      "url": "https://www.nhs.uk/medicines/anticoagulants/side-effects/"
+    }
+  ],
+  "atrial-fibrillation": [
+    {
+      "label": "NHS — Atrial fibrillation",
+      "url": "https://www.nhs.uk/conditions/atrial-fibrillation/"
+    },
+    {
+      "label": "ACC — Atrial fibrillation guideline key perspectives",
+      "url": "https://www.acc.org/Latest-in-Cardiology/ten-points-to-remember/2023/11/27/19/46/2023-acc-guideline-for-af-gl-af"
+    }
+  ],
+  "atrial-flutter": [
+    {
+      "label": "American Heart Association — Atrial flutter",
+      "url": "https://www.heart.org/en/health-topics/atrial-fibrillation/what-is-atrial-fibrillation-afib-or-af/atrial-flutter"
+    },
+    {
+      "label": "ACC/AHA/ACCP/HRS — Atrial fibrillation guideline, including typical flutter",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017"
+    },
+    {
+      "label": "NHLBI — Types of arrhythmia",
+      "url": "https://www.nhlbi.nih.gov/health/arrhythmias/types"
+    }
+  ],
+  "autism": [
+    {
+      "label": "NHS — What is autism?",
+      "url": "https://www.nhs.uk/conditions/autism/what-is-autism/"
+    },
+    {
+      "label": "NHS — Help and support for autistic people",
+      "url": "https://www.nhs.uk/conditions/autism/help-and-support/"
+    }
+  ],
+  "attention-deficit-hyperactivity-disorder-adhd": [
+    {
+      "label": "NHS — ADHD in children and young people",
+      "url": "https://www.nhs.uk/conditions/adhd-children-teenagers/"
+    },
+    {
+      "label": "NHS — ADHD in adults",
+      "url": "https://www.nhs.uk/conditions/adhd-adults/"
+    }
+  ],
+  "av-block-heart-block": [
+    {
+      "label": "NHLBI — Conduction disorders",
+      "url": "https://www.nhlbi.nih.gov/health/conduction-disorders"
+    },
+    {
+      "label": "NHS — Heart block",
+      "url": "https://www.nhs.uk/conditions/heart-block/"
+    },
+    {
+      "label": "ACC/AHA/HRS — Bradycardia and conduction delay guideline",
+      "url": "https://doi.org/10.1161/CIR.0000000000000628"
+    }
+  ],
+  "abortion-in-germany": [
+    {
+      "label": "BIÖG — Legal requirements and time limits in Germany",
+      "url": "https://www.familienplanung.de/schwangerschaftskonflikt/schwangerschaftsabbruch/schwangerschaftsabbruch-rechtslage-indikationen-und-fristen/"
+    },
+    {
+      "label": "BMG — Family planning and abortion costs",
+      "url": "https://www.bundesgesundheitsministerium.de/familienplanung-schwangerschaftsabbruch"
+    }
+  ],
+  "babys-first-weeks-newborn-check-ups": [
+    {
+      "label": "NHS — Newborn physical examination",
+      "url": "https://www.nhs.uk/baby/newborn-screening/physical-examination/"
+    },
+    {
+      "label": "BIÖG — Early newborn examination in Germany",
+      "url": "https://www.kindergesundheit-info.de/themen/frueherkennung-u1-u9-und-j1/untersuchungen-u1-bis-u9/u2-untersuchung/"
+    },
+    {
+      "label": "German federal health portal — Child health examinations",
+      "url": "https://gesund.bund.de/gesundheitsuntersuchungen-kinder-jugendliche"
+    },
+    {
+      "label": "NHS — Urgent medical help for babies and young children",
+      "url": "https://www.nhs.uk/baby/health/when-to-get-urgent-medical-help-for-babies-and-children-under-5/"
+    }
+  ],
+  "bakers-cysts": [
+    {
+      "label": "NHS — Baker’s cyst",
+      "url": "https://www.nhs.uk/conditions/bakers-cyst/"
+    },
+    {
+      "label": "Health New Zealand — Baker’s cyst",
+      "url": "https://www.healthnz.govt.nz/health-topics/conditions-treatments/bones-and-joints/bakers-cyst-popliteal-cyst"
+    },
+    {
+      "label": "AAOS OrthoInfo — Baker’s cyst",
+      "url": "https://www.orthoinfo.org/bodypart/kneelower-leg/bakers-cyst-popliteal-cyst/"
+    }
+  ],
+  "balanitis-inflammation-of-the-head-of-the-penis": [
+    {
+      "label": "NHS — Balanitis",
+      "url": "https://www.nhs.uk/conditions/balanitis/"
+    },
+    {
+      "label": "NHS — Tight foreskin and paraphimosis",
+      "url": "https://www.nhs.uk/conditions/phimosis/"
+    },
+    {
+      "label": "Royal Children’s Hospital — Penis and foreskin care",
+      "url": "https://www.rch.org.au/kidsinfo/fact_sheets/Penis_and_foreskin_care/"
+    }
+  ],
+  "bedwetting": [
+    {
+      "label": "NHS — Bedwetting in children",
+      "url": "https://www.nhs.uk/symptoms/bedwetting/"
+    },
+    {
+      "label": "NICE — Bedwetting assessment and management",
+      "url": "https://www.nice.org.uk/guidance/cg111/chapter/Recommendations"
+    },
+    {
+      "label": "NIDDK — Treating bladder control problems and bedwetting in children",
+      "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/bladder-control-problems-bedwetting-children/treatment"
+    },
+    {
+      "label": "Medicines for Children — Desmopressin for bedwetting",
+      "url": "https://www.medicinesforchildren.org.uk/medicines/desmopressin-for-bedwetting/"
+    }
+  ],
+  "before-surgery-getting-information-and-making-a-decision": [
+    {
+      "label": "NHS — Seeing a specialist before surgery",
+      "url": "https://www.nhs.uk/tests-and-treatments/having-surgery/specialist/"
+    },
+    {
+      "label": "NHS — Preparation before surgery",
+      "url": "https://www.nhs.uk/tests-and-treatments/having-surgery/preparation/"
+    },
+    {
+      "label": "NHS — Consent to treatment",
+      "url": "https://www.nhs.uk/tests-and-treatments/consent-to-treatment/"
+    }
+  ],
+  "biologics-and-biosimilars": [
+    {
+      "label": "EMA — Biosimilar medicines overview",
+      "url": "https://www.ema.europa.eu/en/human-regulatory-overview/biosimilar-medicines-overview"
+    },
+    {
+      "label": "FDA — Biosimilars and interchangeable biosimilars",
+      "url": "https://www.fda.gov/drugs/biosimilars/9-things-know-about-biosimilars-and-interchangeable-biosimilars"
+    },
+    {
+      "label": "FDA — Overview for health care professionals",
+      "url": "https://www.fda.gov/drugs/biosimilars/overview-health-care-professionals"
+    }
+  ],
+  "bladder-training": [
+    {
+      "label": "NHS — Non-surgical treatment for urinary incontinence",
+      "url": "https://www.nhs.uk/conditions/urinary-incontinence/treatment/"
+    },
+    {
+      "label": "NIDDK — Treatments for bladder control problems",
+      "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/bladder-control-problems/treatment"
+    },
+    {
+      "label": "NICE — Supported bladder training",
+      "url": "https://www.nice.org.uk/guidance/qs77/chapter/Quality-statement-5-Bladder-training"
+    },
+    {
+      "label": "NHS — Back pain and emergency bladder warning signs",
+      "url": "https://www.nhs.uk/conditions/back-pain/"
+    }
+  ],
+  "blood-test-for-down-edwards-and-patau-syndrome-nipt": [
+    {
+      "label": "ACOG — Current guidance on prenatal screening and diagnosis",
+      "url": "https://www.acog.org/advocacy/policy-priorities/non-invasive-prenatal-testing/current-acog-guidance"
+    },
+    {
+      "label": "NHS inform — Non-invasive prenatal testing",
+      "url": "https://www.nhsinform.scot/healthy-living/screening/pregnancy/non-invasive-prenatal-testing-nipt"
+    },
+    {
+      "label": "NHS — Further assessment after antenatal screening",
+      "url": "https://www.nhs.uk/pregnancy/your-pregnancy-care/if-antenatal-screening-tests-find-something/"
+    }
+  ],
+  "birth": [
+    {
+      "label": "NHS — Stages of labour and birth",
+      "url": "https://www.nhs.uk/pregnancy/labour-and-birth/the-stages-of-labour-and-birth/"
+    },
+    {
+      "label": "NHS — Signs that labour has begun",
+      "url": "https://www.nhs.uk/pregnancy/labour-and-birth/signs-that-labour-has-begun/"
+    },
+    {
+      "label": "NHS — Pain relief in labour",
+      "url": "https://www.nhs.uk/pregnancy/labour-and-birth/pain-relief-in-labour/"
+    },
+    {
+      "label": "NICE — Intrapartum care",
+      "url": "https://www.nice.org.uk/guidance/ng235/chapter/Recommendations"
+    }
+  ],
+  "boils-and-carbuncles": [
+    {
+      "label": "NHS — Boils",
+      "url": "https://www.nhs.uk/conditions/boils/"
+    },
+    {
+      "label": "American Academy of Dermatology — Safe care for boils",
+      "url": "https://www.aad.org/public/everyday-care/injured-skin/treat-boils-styes"
+    },
+    {
+      "label": "HSE — Treatment of boils and carbuncles",
+      "url": "https://www2.hse.ie/conditions/boils-carbuncles/treatment/"
+    }
+  ],
+  "brachytherapy": [
+    {
+      "label": "NCI — Brachytherapy to treat cancer",
+      "url": "https://www.cancer.gov/about-cancer/treatment/types/radiation-therapy/brachytherapy"
+    },
+    {
+      "label": "ACR and RSNA — Brachytherapy procedures and safety",
+      "url": "https://www.radiologyinfo.org/en/info/brachy"
+    }
+  ],
+  "brain-aneurysm": [
+    {
+      "label": "NHS — Brain aneurysm",
+      "url": "https://www.nhs.uk/conditions/brain-aneurysm/"
+    },
+    {
+      "label": "American Stroke Association — Aneurysm treatment and haemorrhagic stroke",
+      "url": "https://www.stroke.org/en/about-stroke/types-of-stroke/hemorrhagic-strokes-bleeds"
+    },
+    {
+      "label": "NINDS — Cerebral aneurysms",
+      "url": "https://www.ninds.nih.gov/health-information/disorders/cerebral-aneurysms"
+    }
+  ],
+  "bruised-knee": [
+    {
+      "label": "NHS — Knee pain and urgent assessment",
+      "url": "https://www.nhs.uk/symptoms/knee-pain/"
+    },
+    {
+      "label": "NHS — Safe early care for sprains and strains",
+      "url": "https://www.nhs.uk/conditions/sprains-and-strains/"
+    }
+  ],
+  "bunions": [
+    {
+      "label": "NHS — Bunions",
+      "url": "https://www.nhs.uk/conditions/bunions/"
+    },
+    {
+      "label": "AAOS OrthoInfo — Bunion assessment and treatment",
+      "url": "https://www.orthoinfo.org/bodypart/foot-ankle/bunions/"
+    }
+  ],
+  "bursitis": [
+    {
+      "label": "NHS — Bursitis",
+      "url": "https://www.nhs.uk/conditions/bursitis/"
+    },
+    {
+      "label": "AAOS OrthoInfo — Kneecap bursitis and infection",
+      "url": "https://www.orthoinfo.org/bodypart/kneelower-leg/prepatellar-kneecap-bursitis/"
+    }
+  ],
+  "breast-cancer": [
+    {
+      "label": "NCI — Breast cancer treatment",
+      "url": "https://www.cancer.gov/types/breast/treatment"
+    },
+    {
+      "label": "NHS — Breast cancer tests and next steps",
+      "url": "https://www.nhs.uk/conditions/breast-cancer-in-women/tests-and-next-steps-for-breast-cancer-in-women/"
+    },
+    {
+      "label": "NHS — Breast cancer treatment choices",
+      "url": "https://www.nhs.uk/conditions/breast-cancer-in-women/treatment-for-breast-cancer-in-women/"
+    },
+    {
+      "label": "WHO — Breast cancer overview",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/breast-cancer"
+    }
+  ],
+  "breast-cancer-treating-lymphedema": [
+    {
+      "label": "NCI — Lymphedema and cancer",
+      "url": "https://www.cancer.gov/about-cancer/treatment/side-effects/lymphedema"
+    },
+    {
+      "label": "NHS — Lymphoedema diagnosis",
+      "url": "https://www.nhs.uk/conditions/lymphoedema/diagnosis/"
+    },
+    {
+      "label": "NHS — Lymphoedema treatment",
+      "url": "https://www.nhs.uk/conditions/lymphoedema/treatment/"
+    }
+  ],
+  "calcium-calculator": [
+    {
+      "label": "NIH Office of Dietary Supplements — Calcium",
+      "url": "https://ods.od.nih.gov/factsheets/Calcium-Consumer/"
+    },
+    {
+      "label": "NHS — Calcium in food and supplements",
+      "url": "https://www.nhs.uk/conditions/vitamins-and-minerals/calcium/"
+    },
+    {
+      "label": "EFSA — Dietary reference values for calcium",
+      "url": "https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2015.4101"
+    }
+  ],
+  "can-measurements-show-if-a-treatment-works": [
+    {
+      "label": "FDA — Clinical outcomes, biomarkers and surrogate endpoints",
+      "url": "https://www.fda.gov/drugs/development-resources/surrogate-endpoint-resources-drug-and-biologic-development"
+    }
+  ],
+  "can-mothers-reduce-their-childs-risk-of-getting-eczema-by-avoiding-certain-foods-during-pregnancy-and-while-breastfeeding": [
+    {
+      "label": "NHS — Food allergies in babies and young children",
+      "url": "https://www.nhs.uk/baby/weaning-and-feeding/food-allergies-in-babies-and-young-children/"
+    },
+    {
+      "label": "EAACI — Preventing food allergy in infants and young children",
+      "url": "https://eaaci.org/guidelines-position-papers/eaaci-guideline-preventing-the-development-of-food-allergy-in-infants-and-young-children-2020-update/"
+    },
+    {
+      "label": "Cochrane — Maternal dietary antigen avoidance and atopic disease",
+      "url": "https://www.cochrane.org/evidence/CD000133_maternal-dietary-antigen-avoidance-during-pregnancy-or-lactation-or-both-preventing-or-treating"
+    },
+    {
+      "label": "NHS — Foods to avoid in pregnancy",
+      "url": "https://www.nhs.uk/pregnancy/keeping-well/foods-to-avoid/"
+    }
+  ],
+  "can-noise-damage-your-hearing": [
+    {
+      "label": "NIDCD — Noise-induced hearing loss",
+      "url": "https://www.nidcd.nih.gov/health/noise-induced-hearing-loss"
+    },
+    {
+      "label": "NHS — Hearing loss",
+      "url": "https://www.nhs.uk/conditions/hearing-loss/"
+    },
+    {
+      "label": "CDC/NIOSH — Hearing protection",
+      "url": "https://www.cdc.gov/niosh/noise/prevent/ppe.html"
+    }
+  ],
+  "cancer-what-do-the-codes-in-the-doctors-letter-mean": [
+    {
+      "label": "NCI — Cancer staging",
+      "url": "https://www.cancer.gov/about-cancer/diagnosis-staging/staging"
+    },
+    {
+      "label": "NCI — Tumor grade",
+      "url": "https://www.cancer.gov/about-cancer/diagnosis-staging/diagnosis/tumor-grade"
+    },
+    {
+      "label": "UICC — TNM classification",
+      "url": "https://www.uicc.org/what-we-do/sharing-knowledge/tnm"
+    },
+    {
+      "label": "DKFZ — Understanding cancer diagnoses and findings",
+      "url": "https://www.krebsinformationsdienst.de/untersuchungen-bei-krebs/diagnose-und-befunde-bedeutung"
+    }
+  ],
+  "canker-sores-mouth-ulcers": [
+    {
+      "label": "NHS — Mouth ulcers",
+      "url": "https://www.nhs.uk/conditions/mouth-ulcers/"
+    },
+    {
+      "label": "Cambridge University Hospitals — Recurrent oral ulceration",
+      "url": "https://www.cuh.nhs.uk/patient-information/recurrent-oral-ulceration/"
+    }
+  ],
+  "cardiopulmonary-resuscitation-cpr-what-you-need-to-know": [
+    {
+      "label": "European Resuscitation Council — Adult basic life support guidelines",
+      "url": "https://www.erc.edu/media/wrhj5sye/gl2025-04-bls-e.pdf"
+    },
+    {
+      "label": "Resuscitation Council UK — Adult basic life support",
+      "url": "https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/adult-basic-life-support-guidelines"
+    },
+    {
+      "label": "European Commission — Emergency number",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/112"
+    },
+    {
+      "label": "Government of Moldova — Emergency numbers",
+      "url": "https://evo.gov.md/acasa/numere-de-urgenta"
+    }
+  ],
+  "carpal-tunnel-syndrome": [
+    {
+      "label": "NHS — Carpal tunnel syndrome",
+      "url": "https://www.nhs.uk/conditions/carpal-tunnel-syndrome/"
+    },
+    {
+      "label": "AAOS — Carpal tunnel syndrome",
+      "url": "https://www.orthoinfo.org/bodypart/hand-wrist/carpal-tunnel-syndrome/"
+    }
+  ],
+  "cataracts": [
+    {
+      "label": "NHS — Cataracts in adults",
+      "url": "https://www.nhs.uk/conditions/cataracts/"
+    },
+    {
+      "label": "National Eye Institute — Cataracts",
+      "url": "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/cataracts"
+    },
+    {
+      "label": "NHS — Vision loss",
+      "url": "https://www.nhs.uk/conditions/vision-loss/"
+    },
+    {
+      "label": "NHS — Floaters and flashes",
+      "url": "https://www.nhs.uk/symptoms/floaters-and-flashes-in-the-eyes/"
+    }
+  ],
+  "cataract-surgery": [
+    {
+      "label": "NHS — Cataract surgery",
+      "url": "https://www.nhs.uk/tests-and-treatments/cataract-surgery/"
+    },
+    {
+      "label": "National Eye Institute — Cataract surgery",
+      "url": "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/cataracts/cataract-surgery"
+    },
+    {
+      "label": "Moorfields — Cataract lens options",
+      "url": "https://www.moorfields.nhs.uk/private/about-moorfields-private/blog-articles/cataract-surgery-what-type-of-lens-replacement-is-right-for-me"
+    },
+    {
+      "label": "Guy’s and St Thomas’ — Having cataract surgery",
+      "url": "https://www.guysandstthomas.nhs.uk/health-information/cataract-surgery/having-cataract-surgery"
+    }
+  ],
+  "causes-and-signs-of-edema": [
+    {
+      "label": "NHS — Swollen ankles, feet and legs",
+      "url": "https://www.nhs.uk/conditions/oedema/"
+    },
+    {
+      "label": "Healthdirect — Fluid retention",
+      "url": "https://www.healthdirect.gov.au/symptoms/fluid-retention"
+    },
+    {
+      "label": "NHS — Pre-eclampsia",
+      "url": "https://www.nhs.uk/conditions/pre-eclampsia/"
+    },
+    {
+      "label": "NHS — Deep vein thrombosis",
+      "url": "https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
+    }
+  ],
+  "celiac-disease": [
+    {
+      "label": "NHS — Coeliac disease",
+      "url": "https://www.nhs.uk/conditions/coeliac-disease/"
+    },
+    {
+      "label": "NIDDK — Diagnosis of celiac disease",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/celiac-disease/diagnosis"
+    },
+    {
+      "label": "NIDDK — Eating, diet and nutrition for celiac disease",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/celiac-disease/eating-diet-nutrition"
+    },
+    {
+      "label": "NHS — Treatment of coeliac disease",
+      "url": "https://www.nhs.uk/conditions/coeliac-disease/treatment/"
+    }
+  ],
+  "cervical-cancer": [
+    {
+      "label": "WHO — Cervical cancer",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/cervical-cancer"
+    },
+    {
+      "label": "NHS — Symptoms of cervical cancer",
+      "url": "https://www.nhs.uk/conditions/cervical-cancer/symptoms/"
+    },
+    {
+      "label": "NHS — Tests and next steps",
+      "url": "https://www.nhs.uk/conditions/cervical-cancer/tests-and-next-steps/"
+    },
+    {
+      "label": "NHS — Treatment for cervical cancer",
+      "url": "https://www.nhs.uk/conditions/cervical-cancer/treatment/"
+    },
+    {
+      "label": "NHS — Cervical screening results",
+      "url": "https://www.nhs.uk/tests-and-treatments/cervical-screening/your-results/"
+    }
+  ],
+  "cervical-cancer-how-are-precancerous-cells-treated": [
+    {
+      "label": "NHS — Colposcopy",
+      "url": "https://www.nhs.uk/tests-and-treatments/colposcopy/"
+    },
+    {
+      "label": "RCOG — LLETZ",
+      "url": "https://www.rcog.org.uk/for-the-public/browse-our-patient-information/large-loop-excision-of-the-transformation-zone-lletz/"
+    },
+    {
+      "label": "UK Health Security Agency — Having a colposcopy",
+      "url": "https://www.gov.uk/government/publications/cervical-screening-colposcopy/cervical-screening-having-a-colposcopy"
+    }
+  ],
+  "chickenpox": [
+    {
+      "label": "NHS — Chickenpox",
+      "url": "https://www.nhs.uk/conditions/chickenpox/"
+    },
+    {
+      "label": "CDC — Treating chickenpox",
+      "url": "https://www.cdc.gov/chickenpox/treatment/index.html"
+    },
+    {
+      "label": "CDC — Chickenpox vaccination",
+      "url": "https://www.cdc.gov/chickenpox/vaccines/index.html"
+    }
+  ],
+  "children-and-sun-practical-information-for-parents": [
+    {
+      "label": "NHS — Keeping your baby safe in the sun",
+      "url": "https://www.nhs.uk/baby/first-aid-and-safety/safety/safety-in-the-sun/"
+    },
+    {
+      "label": "NHS — Sunscreen and sun safety",
+      "url": "https://www.nhs.uk/live-well/seasonal-health/sunscreen-and-sun-safety/"
+    },
+    {
+      "label": "WHO — Ultraviolet radiation",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/ultraviolet-radiation"
+    },
+    {
+      "label": "NHS — Sunburn",
+      "url": "https://www.nhs.uk/conditions/sunburn/"
+    },
+    {
+      "label": "NHS — Heat exhaustion and heatstroke",
+      "url": "https://www.nhs.uk/conditions/heat-exhaustion-heatstroke/"
+    }
+  ],
+  "chlamydia": [
+    {
+      "label": "NHS — Chlamydia",
+      "url": "https://www.nhs.uk/conditions/chlamydia/"
+    },
+    {
+      "label": "CDC — About chlamydia",
+      "url": "https://www.cdc.gov/chlamydia/about/index.html"
+    },
+    {
+      "label": "CDC — Chlamydial infection treatment guidance",
+      "url": "https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm"
+    }
+  ],
+  "chronic-kidney-disease": [
+    {
+      "label": "NHS — Chronic kidney disease",
+      "url": "https://www.nhs.uk/conditions/kidney-disease/"
+    },
+    {
+      "label": "NIDDK — Tests and diagnosis",
+      "url": "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/tests-diagnosis"
+    },
+    {
+      "label": "NIDDK — Managing chronic kidney disease",
+      "url": "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/managing"
+    },
+    {
+      "label": "NIDDK — Healthy eating with chronic kidney disease",
+      "url": "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease"
+    },
+    {
+      "label": "NIDDK — Keeping kidneys safe with medicines",
+      "url": "https://www.niddk.nih.gov/health-information/kidney-disease/keeping-kidneys-safe"
+    }
+  ],
+  "chronic-obstructive-pulmonary-disease-copd": [
+    {
+      "label": "NHS — Chronic obstructive pulmonary disease",
+      "url": "https://www.nhs.uk/conditions/chronic-obstructive-pulmonary-disease-copd/"
+    },
+    {
+      "label": "WHO — COPD",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/chronic-obstructive-pulmonary-disease-(copd)"
+    },
+    {
+      "label": "NICE — COPD diagnosis and management",
+      "url": "https://www.nice.org.uk/guidance/ng115/chapter/recommendations"
+    },
+    {
+      "label": "NHS — Home oxygen treatment",
+      "url": "https://www.nhs.uk/tests-and-treatments/home-oxygen-treatment/"
+    }
+  ],
+  "chronic-wounds": [
+    {
+      "label": "NHS — Venous leg ulcers",
+      "url": "https://www.nhs.uk/conditions/leg-ulcer/"
+    },
+    {
+      "label": "NHS — Leg ulcer treatment",
+      "url": "https://www.nhs.uk/conditions/leg-ulcer/treatment/"
+    },
+    {
+      "label": "NICE — Diabetic foot problems",
+      "url": "https://www.nice.org.uk/guidance/ng19/chapter/Recommendations"
+    },
+    {
+      "label": "NICE — Leg ulcer infection",
+      "url": "https://www.nice.org.uk/guidance/ng152/chapter/recommendations"
+    },
+    {
+      "label": "NIDDK — Diabetes and foot problems",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems"
+    }
+  ],
+  "climate-and-health": [
+    {
+      "label": "WHO — Climate change and health",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/climate-change-and-health"
+    },
+    {
+      "label": "WHO — Heat and health",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/climate-change-heat-and-health"
+    },
+    {
+      "label": "CDC — Heat and medications",
+      "url": "https://www.cdc.gov/heat-health/hcp/clinical-guidance/heat-and-medications-guidance-for-clinicians.html"
+    },
+    {
+      "label": "CDC — Floodwater safety",
+      "url": "https://www.cdc.gov/natural-disasters/psa-toolkit/floodwater-safety.html"
+    },
+    {
+      "label": "EPA — Cleaner indoor air during wildfire smoke",
+      "url": "https://www.epa.gov/emergencies-iaq/create-clean-room-protect-indoor-air-quality-during-wildfire"
+    },
+    {
+      "label": "NOAA — Safety after storms",
+      "url": "https://www.noaa.gov/use-caution-after-storms"
+    }
+  ],
+  "cluster-headache": [
+    {
+      "label": "NHS — Cluster headaches",
+      "url": "https://www.nhs.uk/conditions/cluster-headaches/"
+    },
+    {
+      "label": "NICE — Headache diagnosis and management",
+      "url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations"
+    },
+    {
+      "label": "European Academy of Neurology — Cluster headache treatment guideline",
+      "url": "https://doi.org/10.1111/ene.15956"
+    }
+  ],
+  "cognitive-behavioral-therapy-cbt": [
+    {
+      "label": "NHS — Cognitive behavioural therapy",
+      "url": "https://www.nhs.uk/tests-and-treatments/cognitive-behavioural-therapy-cbt/"
+    },
+    {
+      "label": "BABCP — What is CBT?",
+      "url": "https://babcp.com/what-is-cbt/"
+    },
+    {
+      "label": "ABCT — What to expect from cognitive behavioral therapies",
+      "url": "https://www.abct.org/get-help/what-to-expect-from-cognitive-behavioral-therapies/"
+    },
+    {
+      "label": "NICE — Depression treatment and management",
+      "url": "https://www.nice.org.uk/guidance/ng222/chapter/recommendations"
+    }
+  ],
+  "cold-sores": [
+    {
+      "label": "NHS — Cold sores",
+      "url": "https://www.nhs.uk/conditions/cold-sores/"
+    },
+    {
+      "label": "WHO — Herpes simplex virus",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/herpes-simplex-virus"
+    },
+    {
+      "label": "NHS — Herpes simplex eye infections",
+      "url": "https://www.nhs.uk/conditions/herpes-simplex-eye-infections/"
+    },
+    {
+      "label": "NHS — Neonatal herpes",
+      "url": "https://www.nhs.uk/conditions/neonatal-herpes/"
+    }
+  ],
+  "colorectal-cancer": [
+    {
+      "label": "NHS — Symptoms of bowel cancer",
+      "url": "https://www.nhs.uk/conditions/bowel-cancer/symptoms/"
+    },
+    {
+      "label": "NHS — Tests and next steps",
+      "url": "https://www.nhs.uk/conditions/bowel-cancer/tests-and-next-steps/"
+    },
+    {
+      "label": "NHS — Treatment for bowel cancer",
+      "url": "https://www.nhs.uk/conditions/bowel-cancer/treatment/"
+    },
+    {
+      "label": "NCI — Colon cancer treatment",
+      "url": "https://www.cancer.gov/types/colorectal/patient/colon-treatment-pdq"
+    },
+    {
+      "label": "NCI — Rectal cancer treatment",
+      "url": "https://www.cancer.gov/types/colorectal/patient/rectal-treatment-pdq"
+    },
+    {
+      "label": "NICE — Suspected cancer referral and follow-up",
+      "url": "https://www.nice.org.uk/guidance/ng12/chapter/recommendations-organised-by-site-of-cancer"
+    }
+  ],
+  "common-colds": [
+    {
+      "label": "NHS: Common cold",
+      "url": "https://www.nhs.uk/conditions/common-cold/"
+    },
+    {
+      "label": "CDC: Managing a common cold",
+      "url": "https://www.cdc.gov/common-cold/treatment/index.html"
+    },
+    {
+      "label": "CDC: About the common cold",
+      "url": "https://www.cdc.gov/common-cold/about/index.html"
+    },
+    {
+      "label": "CDC: Appropriate antibiotic use",
+      "url": "https://www.cdc.gov/antibiotic-use/about/"
+    }
+  ],
+  "complications-of-gallstones": [
+    {
+      "label": "NHS: Gallstones",
+      "url": "https://www.nhs.uk/conditions/gallstones/"
+    },
+    {
+      "label": "NHS: Acute cholecystitis",
+      "url": "https://www.nhs.uk/conditions/acute-cholecystitis/"
+    },
+    {
+      "label": "NIDDK: Gallstone symptoms and causes",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/gallstones/symptoms-causes"
+    },
+    {
+      "label": "NIDDK: Gallstone diagnosis",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/gallstones/diagnosis"
+    },
+    {
+      "label": "NIDDK: Gallstone treatment",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/gallstones/treatment"
+    },
+    {
+      "label": "NIDDK: ERCP",
+      "url": "https://www.niddk.nih.gov/health-information/diagnostic-tests/endoscopic-retrograde-cholangiopancreatography"
+    }
+  ],
+  "concussion": [
+    {
+      "label": "NHS: Head injury and concussion",
+      "url": "https://www.nhs.uk/conditions/head-injury-and-concussion/"
+    },
+    {
+      "label": "CDC: Concussion signs and danger signs",
+      "url": "https://www.cdc.gov/heads-up/signs-symptoms/index.html"
+    },
+    {
+      "label": "CDC: Recovery after concussion in children",
+      "url": "https://www.cdc.gov/heads-up/guidelines/recovery-from-concussion.html"
+    },
+    {
+      "label": "CDC: What to do after mild brain injury",
+      "url": "https://www.cdc.gov/traumatic-brain-injury/response/index.html"
+    },
+    {
+      "label": "CDC: Return to sport",
+      "url": "https://www.cdc.gov/heads-up/guidelines/returning-to-sports.html"
+    }
+  ],
+  "conjunctivitis-pink-eye": [
+    {
+      "label": "NHS: Conjunctivitis",
+      "url": "https://www.nhs.uk/conditions/conjunctivitis/"
+    },
+    {
+      "label": "NHS: Red eye warning signs",
+      "url": "https://www.nhs.uk/symptoms/red-eye/"
+    },
+    {
+      "label": "CDC: Conjunctivitis treatment",
+      "url": "https://www.cdc.gov/conjunctivitis/treatment/index.html"
+    },
+    {
+      "label": "CDC: Preventing conjunctivitis",
+      "url": "https://www.cdc.gov/conjunctivitis/prevention/index.html"
+    },
+    {
+      "label": "National Eye Institute: Pink eye",
+      "url": "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/pink-eye"
+    },
+    {
+      "label": "NHS: Steroid eye-drop precautions",
+      "url": "https://www.nhs.uk/medicines/dexamethasone-eye-drops/"
+    }
+  ],
+  "corns": [
+    {
+      "label": "NHS: Corns and calluses",
+      "url": "https://www.nhs.uk/conditions/corns-and-calluses/"
+    },
+    {
+      "label": "NIDDK: Diabetes and foot problems",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems"
+    }
+  ],
+  "coronary-artery-disease": [
+    {
+      "label": "NHS: Coronary heart disease",
+      "url": "https://www.nhs.uk/conditions/coronary-heart-disease/"
+    },
+    {
+      "label": "NHS: Angina and emergency symptoms",
+      "url": "https://www.nhs.uk/conditions/angina/"
+    },
+    {
+      "label": "NHS: Coronary heart disease treatment",
+      "url": "https://www.nhs.uk/conditions/coronary-heart-disease/treatment/"
+    },
+    {
+      "label": "NHLBI: Diagnosis of coronary heart disease",
+      "url": "https://www.nhlbi.nih.gov/health/coronary-heart-disease/diagnosis"
+    },
+    {
+      "label": "NHLBI: Coronary heart disease treatment",
+      "url": "https://www.nhlbi.nih.gov/health/coronary-heart-disease/treatment"
+    },
+    {
+      "label": "NHS: Nitrate interactions",
+      "url": "https://www.nhs.uk/medicines/glyceryl-trinitrate-gtn/taking-glyceryl-trinitrate-gtn-with-other-medicines-and-herbal-supplements/"
+    },
+    {
+      "label": "NICE: Assessment of recent-onset chest pain",
+      "url": "https://www.nice.org.uk/guidance/cg95/chapter/recommendations"
+    },
+    {
+      "label": "NHS: GTN common questions",
+      "url": "https://www.nhs.uk/medicines/glyceryl-trinitrate-gtn/common-questions-about-glyceryl-trinitrate-gtn/"
+    }
+  ],
+  "cough": [
+    {
+      "label": "NHS: Cough",
+      "url": "https://www.nhs.uk/symptoms/cough/"
+    },
+    {
+      "label": "NHS: Coughing up blood",
+      "url": "https://www.nhs.uk/symptoms/coughing-up-blood/"
+    },
+    {
+      "label": "NICE: Acute cough recommendations",
+      "url": "https://www.nice.org.uk/guidance/ng120/chapter/recommendations"
+    },
+    {
+      "label": "Royal Children’s Hospital: Cough in children",
+      "url": "https://www.rch.org.au/kidsinfo/fact_sheets/Cough/"
+    },
+    {
+      "label": "Royal Children’s Hospital: Clinical cough guideline",
+      "url": "https://www.rch.org.au/clinicalguide/guideline_index/cough/"
+    }
+  ],
+  "covid-19-coronavirus-disease": [
+    {
+      "label": "WHO: Coronavirus disease",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/coronavirus-disease-(covid-19)"
+    },
+    {
+      "label": "CDC: Testing",
+      "url": "https://www.cdc.gov/covid/testing/index.html"
+    },
+    {
+      "label": "CDC: Treatment options",
+      "url": "https://www.cdc.gov/covid/treatment/index.html"
+    },
+    {
+      "label": "NHS: Symptoms and when to get help",
+      "url": "https://www.nhs.uk/conditions/covid-19/covid-19-symptoms-and-what-to-do/"
+    },
+    {
+      "label": "WHO: Post-COVID condition",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/post-covid-19-condition-(long-covid)"
+    },
+    {
+      "label": "NHS: Long COVID",
+      "url": "https://www.nhs.uk/conditions/long-covid/"
+    },
+    {
+      "label": "FDA: Pulse oximeter limitations",
+      "url": "https://www.fda.gov/consumers/consumer-updates/pulse-oximeter-basics"
+    }
+  ],
+  "cpap-therapy-for-sleep-apnea-dealing-with-common-problems": [
+    {
+      "label": "American Thoracic Society: PAP troubleshooting",
+      "url": "https://site.thoracic.org/advocacy-patients/patient-resources/pap-therapy-quick-tips-for-troubleshooting-to-address-problems-with-use"
+    },
+    {
+      "label": "NICE: Sleep apnoea treatment and follow-up",
+      "url": "https://www.nice.org.uk/guidance/NG202/chapter/1-obstructive-sleep-apnoeahypopnoea-syndrome"
+    },
+    {
+      "label": "NHS: Sleep apnoea",
+      "url": "https://www.nhs.uk/conditions/sleep-apnoea/"
+    },
+    {
+      "label": "University Hospitals of North Midlands: CPAP equipment advice",
+      "url": "https://www.uhnm.nhs.uk/hospitals-and-services/sleep-service/adult-sleep-service/advice-for-current-cpap-patients/"
+    },
+    {
+      "label": "FDA: CPAP cleaning devices and manufacturer instructions",
+      "url": "https://www.fda.gov/consumers/consumer-updates/do-you-need-device-claims-clean-cpap-machine"
+    }
+  ],
+  "croup": [
+    {
+      "label": "NHS: Croup",
+      "url": "https://www.nhs.uk/conditions/croup/"
+    },
+    {
+      "label": "Royal Children’s Hospital: Croup advice for families",
+      "url": "https://www.rch.org.au/kidsinfo/fact_sheets/Croup/"
+    },
+    {
+      "label": "Royal Children’s Hospital: Clinical croup guideline",
+      "url": "https://www.rch.org.au/clinicalguide/guideline_index/croup_laryngotracheobronchitis/"
+    }
+  ],
+  "crowns-bridges-implants-what-types-of-replacement-teeth-are-there": [
+    {
+      "label": "NHS: Dental treatments",
+      "url": "https://www.nhs.uk/live-well/healthy-teeth-and-gums/dental-treatments/"
+    },
+    {
+      "label": "NHS: Dentures",
+      "url": "https://www.nhs.uk/tests-and-treatments/dentures/"
+    },
+    {
+      "label": "Leeds Teaching Hospitals: Bridges",
+      "url": "https://www.leedsth.nhs.uk/patients/resources/bridges/"
+    },
+    {
+      "label": "Leeds Teaching Hospitals: Dental implants",
+      "url": "https://www.leedsth.nhs.uk/patients/resources/dental-implants/"
+    },
+    {
+      "label": "Cambridge University Hospitals: Dental implants in restorative dentistry",
+      "url": "https://www.cuh.nhs.uk/patient-information/dental-implants-in-restorative-dentistry/"
+    }
+  ],
+  "decision-aids": [
+    {
+      "label": "NICE: Shared decision making and risk communication",
+      "url": "https://www.nice.org.uk/guidance/ng197/chapter/recommendations"
+    },
+    {
+      "label": "Ottawa Hospital Research Institute: Decision guides and decision aids",
+      "url": "https://decisionaid.ohri.ca/decguide.html"
+    },
+    {
+      "label": "AHRQ: Shared decision-making tools",
+      "url": "https://www.ahrq.gov/evidencenow/tools/share-approach.html"
+    },
+    {
+      "label": "NHS England: Shared decision making",
+      "url": "https://www.england.nhs.uk/personalisedcare/shared-decision-making/about/"
+    }
+  ],
+  "deep-vein-thrombosis-dvt": [
+    {
+      "label": "NHS: Deep-vein thrombosis",
+      "url": "https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
+    },
+    {
+      "label": "NHS: Pulmonary embolism",
+      "url": "https://www.nhs.uk/conditions/pulmonary-embolism/"
+    },
+    {
+      "label": "CDC: Venous blood clots",
+      "url": "https://www.cdc.gov/blood-clots/about/index.html"
+    },
+    {
+      "label": "CDC: Blood-clot diagnosis and treatment",
+      "url": "https://www.cdc.gov/blood-clots/testing-diagnosis/index.html"
+    },
+    {
+      "label": "NICE: Venous thromboembolic diseases",
+      "url": "https://www.nice.org.uk/guidance/ng158/chapter/recommendations"
+    },
+    {
+      "label": "NHS: Anticoagulant bleeding precautions",
+      "url": "https://www.nhs.uk/medicines/anticoagulants/side-effects/"
+    }
+  ],
+  "dehydration": [
+    {
+      "label": "NHS: Dehydration",
+      "url": "https://www.nhs.uk/conditions/dehydration/"
+    },
+    {
+      "label": "NHS: Diarrhoea and vomiting",
+      "url": "https://www.nhs.uk/symptoms/diarrhoea-and-vomiting/"
+    },
+    {
+      "label": "WHO: Diarrhoeal disease and rehydration",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease"
+    },
+    {
+      "label": "NIDDK: Fluid needs in chronic kidney disease",
+      "url": "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease"
+    },
+    {
+      "label": "NHS: Heat exhaustion and heatstroke",
+      "url": "https://www.nhs.uk/conditions/heat-exhaustion-heatstroke/"
+    }
+  ],
+  "depression": [
+    {
+      "label": "WHO: Depression",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/depression"
+    },
+    {
+      "label": "NIMH: Depression symptoms, assessment and care",
+      "url": "https://www.nimh.nih.gov/health/publications/depression"
+    },
+    {
+      "label": "NHS: Depression assessment",
+      "url": "https://www.nhs.uk/mental-health/conditions/depression-in-adults/diagnosis/"
+    },
+    {
+      "label": "NHS: Depression treatment",
+      "url": "https://www.nhs.uk/mental-health/conditions/depression-in-adults/treatment/"
+    },
+    {
+      "label": "NHS: Antidepressant benefits, side effects and withdrawal",
+      "url": "https://www.nhs.uk/medicines/antidepressants/"
+    }
+  ],
+  "depression-after-childbirth-what-can-help": [
+    {
+      "label": "NHS: Postnatal depression",
+      "url": "https://www.nhs.uk/mental-health/conditions/postnatal-depression/"
+    },
+    {
+      "label": "NIMH: Perinatal depression",
+      "url": "https://www.nimh.nih.gov/health/publications/perinatal-depression"
+    },
+    {
+      "label": "NHS: Postpartum psychosis",
+      "url": "https://www.nhs.uk/mental-health/conditions/post-partum-psychosis/"
+    }
+  ],
+  "deviated-septum-in-the-nose-nasal-septal-deviation": [
+    {
+      "label": "NHS: Broken nose and urgent warning signs",
+      "url": "https://www.nhs.uk/conditions/broken-nose/"
+    },
+    {
+      "label": "Cambridge University Hospitals: Information after septorhinoplasty",
+      "url": "https://www.cuh.nhs.uk/patient-information/information-after-septorhinoplasty/"
+    },
+    {
+      "label": "Frimley Health: Septoplasty",
+      "url": "https://www.fhft.nhs.uk/patients-and-visitors/patient-information-library/septoplasty"
+    }
+  ],
+  "diabetic-foot-how-can-you-prevent-wounds": [
+    {
+      "label": "NIDDK: Diabetes and foot problems",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems"
+    },
+    {
+      "label": "NICE: Diabetic foot problems, prevention and management",
+      "url": "https://www.nice.org.uk/guidance/ng19/chapter/Recommendations"
+    },
+    {
+      "label": "NHS inform: Diabetic foot issues",
+      "url": "https://www.nhsinform.scot/illnesses-and-conditions/diabetes/diabetic-foot-issues/"
+    },
+    {
+      "label": "CDC: Your feet and diabetes",
+      "url": "https://www.cdc.gov/diabetes/diabetes-complications/diabetes-and-your-feet.html"
+    }
+  ],
+  "diarrhea": [
+    {
+      "label": "NHS: Diarrhoea and vomiting",
+      "url": "https://www.nhs.uk/symptoms/diarrhoea-and-vomiting/"
+    },
+    {
+      "label": "WHO: Diarrhoeal disease",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease"
+    },
+    {
+      "label": "NIDDK: Treatment of diarrhea",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/diarrhea/treatment"
+    },
+    {
+      "label": "NIDDK: Symptoms and causes of diarrhea",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/diarrhea/symptoms-causes"
+    }
+  ],
+  "dietary-advice-and-nutritional-therapy-services": [
+    {
+      "label": "NHS: Eating a balanced diet",
+      "url": "https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/"
+    },
+    {
+      "label": "NHS: Malnutrition",
+      "url": "https://www.nhs.uk/conditions/malnutrition/"
+    },
+    {
+      "label": "NHS: Coeliac disease diagnosis",
+      "url": "https://www.nhs.uk/conditions/coeliac-disease/diagnosis/"
+    },
+    {
+      "label": "NICE: Nutrition support for adults",
+      "url": "https://www.nice.org.uk/guidance/cg32/chapter/Recommendations"
+    },
+    {
+      "label": "HCPC: Checking the professional register in the United Kingdom",
+      "url": "https://www.hcpc-uk.org/check-the-register/"
+    }
+  ],
+  "dietary-supplements-what-do-you-need-to-know": [
+    {
+      "label": "NIH Office of Dietary Supplements: What you need to know",
+      "url": "https://ods.od.nih.gov/factsheets/WYNTK-Consumer/"
+    },
+    {
+      "label": "NCCIH: Using dietary supplements wisely",
+      "url": "https://www.nccih.nih.gov/health/using-dietary-supplements-wisely"
+    },
+    {
+      "label": "NHS: Vitamins and minerals",
+      "url": "https://www.nhs.uk/conditions/vitamins-and-minerals/"
+    },
+    {
+      "label": "NHS: Vitamins and supplements in pregnancy",
+      "url": "https://www.nhs.uk/best-start-in-life/pregnancy/vitamins-and-supplements-in-pregnancy/"
+    },
+    {
+      "label": "Health Canada: Biotin and false laboratory results",
+      "url": "https://www.canada.ca/en/health-canada/services/drugs-health-products/medical-devices/biotin-risk-false-lab-test-results.html"
+    }
+  ],
+  "disease-management-program-for-type-1-diabetes-in-germany": [
+    {
+      "label": "G-BA: Current DMP requirements, including type one diabetes",
+      "url": "https://www.g-ba.de/richtlinien/83/"
+    },
+    {
+      "label": "German Federal Ministry of Health: Disease management programmes",
+      "url": "https://gesund.bund.de/wege-im-gesundheitswesen/erwachsenenleben/chronisch-krank/disease-management-programme"
+    },
+    {
+      "label": "Federal Office for Social Security: Basic DMP information",
+      "url": "https://www.bundesamtsozialesicherung.de/de/themen/disease-management-programme/dmp-grundlegende-informationen/"
+    },
+    {
+      "label": "NHS: Diabetic ketoacidosis",
+      "url": "https://www.nhs.uk/conditions/diabetic-ketoacidosis/"
+    }
+  ],
+  "dislocated-kneecap": [
+    {
+      "label": "NHS: Dislocated kneecap",
+      "url": "https://www.nhs.uk/conditions/dislocated-kneecap/"
+    },
+    {
+      "label": "American Academy of Orthopaedic Surgeons: Patellar instability in children",
+      "url": "https://www.orthoinfo.org/bodypart/kneelower-leg/patellar-dislocation-and-instability-in-children-unstable-kneecap/"
+    },
+    {
+      "label": "NHS: Deep vein thrombosis",
+      "url": "https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
+    }
+  ],
+  "diverticular-disease-and-diverticulitis": [
+    {
+      "label": "NHS: Diverticular disease and diverticulitis",
+      "url": "https://www.nhs.uk/conditions/diverticular-disease-and-diverticulitis/"
+    },
+    {
+      "label": "NICE: Diverticular disease diagnosis and management",
+      "url": "https://www.nice.org.uk/guidance/ng147/chapter/Recommendations"
+    },
+    {
+      "label": "NIDDK: Treatment for diverticular disease",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/diverticulosis-diverticulitis/treatment"
+    },
+    {
+      "label": "NIDDK: Diagnosis of diverticular disease",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/diverticulosis-diverticulitis/diagnosis"
+    },
+    {
+      "label": "NIDDK: Eating and nutrition for diverticular disease",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/diverticulosis-diverticulitis/eating-diet-nutrition"
+    }
+  ],
+  "donanemab-kisunla-for-early-stage-alzheimers-disease": [
+    {
+      "label": "European Medicines Agency: Kisunla overview and European indication",
+      "url": "https://www.ema.europa.eu/en/medicines/human/EPAR/kisunla"
+    },
+    {
+      "label": "European Medicines Agency: Kisunla product information and patient leaflet",
+      "url": "https://www.ema.europa.eu/en/documents/product-information/kisunla-epar-product-information_en.pdf"
+    },
+    {
+      "label": "G-BA: Donanemab benefit assessment in Germany",
+      "url": "https://www.g-ba.de/bewertungsverfahren/nutzenbewertung/1278/"
+    }
+  ],
+  "down-edwards-and-patau-syndrome": [
+    {
+      "label": "NHS: What is Down syndrome?",
+      "url": "https://www.nhs.uk/conditions/downs-syndrome/what-is-downs-syndrome/"
+    },
+    {
+      "label": "NHS: Medical support for Down syndrome",
+      "url": "https://www.nhs.uk/conditions/downs-syndrome/medical-support/"
+    },
+    {
+      "label": "NHS: Edwards syndrome",
+      "url": "https://www.nhs.uk/conditions/edwards-syndrome/"
+    },
+    {
+      "label": "NHS: Patau syndrome",
+      "url": "https://www.nhs.uk/conditions/pataus-syndrome/"
+    },
+    {
+      "label": "UK Health Security Agency: NIPT screening and its limitations",
+      "url": "https://www.gov.uk/government/publications/screening-for-downs-syndrome-edwards-syndrome-and-pataus-syndrome-nipt-summary-information/nipt-for-downs-syndrome-edwards-syndrome-and-pataus-syndrome"
+    }
+  ],
+  "drug-allergies": [
+    {
+      "label": "NICE: Drug allergy diagnosis and management",
+      "url": "https://www.nice.org.uk/guidance/cg183/chapter/recommendations"
+    },
+    {
+      "label": "CDC: Clinical features and assessment of penicillin allergy",
+      "url": "https://www.cdc.gov/antibiotic-use/hcp/clinical-signs/index.html"
+    },
+    {
+      "label": "NHS: Anaphylaxis",
+      "url": "https://www.nhs.uk/conditions/anaphylaxis/"
+    },
+    {
+      "label": "NHS: Stevens-Johnson syndrome",
+      "url": "https://www.nhs.uk/conditions/stevens-johnson-syndrome/"
+    }
+  ],
+  "drugs-assessed-by-iqwig": [
+    {
+      "label": "G-BA: Benefit assessment of medicinal products in Germany",
+      "url": "https://www.g-ba.de/english/benefitassessment/"
+    },
+    {
+      "label": "G-BA: European joint clinical assessment and national benefit assessment",
+      "url": "https://www.g-ba.de/themen/arzneimittel/arzneimittel-richtlinie-anlagen/nutzenbewertung-35a/eu-hta-verordnung/"
+    }
+  ],
+  "eczema": [
+    {
+      "label": "NHS: Atopic eczema",
+      "url": "https://www.nhs.uk/conditions/atopic-eczema/"
+    },
+    {
+      "label": "NHS: Emollients",
+      "url": "https://www.nhs.uk/tests-and-treatments/emollients/"
+    },
+    {
+      "label": "NICE: Atopic eczema in children, diagnosis and management",
+      "url": "https://www.nice.org.uk/guidance/cg57/chapter/Recommendations"
+    },
+    {
+      "label": "MHRA: Safe use of emollient skin creams",
+      "url": "https://www.gov.uk/guidance/safe-use-of-emollient-skin-creams-to-treat-dry-skin-conditions"
+    }
+  ],
+  "eczema-can-eliminating-particular-foods-help": [
+    {
+      "label": "American Academy of Dermatology: Eczema and allergy testing",
+      "url": "https://www.aad.org/public/diseases/eczema/childhood/treating/allergy-testing"
+    },
+    {
+      "label": "NICE: Food allergy assessment in children",
+      "url": "https://www.nice.org.uk/guidance/cg116/chapter/Recommendations"
+    },
+    {
+      "label": "ASCIA: Eczema and food allergy",
+      "url": "https://www.allergy.org.au/patients/fast-facts/eczema-and-food-allergy"
+    },
+    {
+      "label": "NHS: Food allergy",
+      "url": "https://www.nhs.uk/conditions/food-allergy/"
+    },
+    {
+      "label": "British Association of Dermatologists: Food allergy and eczema",
+      "url": "https://www.bad.org.uk/pils/food-allergy-and-eczema-in-children-and-young-people"
+    }
+  ],
+  "eczema-in-children-can-prebiotics-or-probiotics-help-prevent-it": [
+    {
+      "label": "NCCIH: Probiotics usefulness and safety",
+      "url": "https://www.nccih.nih.gov/health/probiotics-usefulness-and-safety"
+    },
+    {
+      "label": "Cochrane: Probiotics in infants for prevention of allergic disease, review abstract",
+      "url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006475.pub2/pdf/CDSR/CD006475/CD006475_abstract.pdf"
+    },
+    {
+      "label": "Cochrane: Prebiotics for prevention of allergic disease",
+      "url": "https://www.cochrane.org/evidence/CD006474_prebiotics-infants-prevention-allergic-disease-and-food-allergy"
+    },
+    {
+      "label": "FDA: Risk of invasive disease in preterm infants given probiotics",
+      "url": "https://www.fda.gov/safety/medical-product-safety-information/risk-invasive-disease-preterm-infants-given-probiotics-formulated-contain-live-bacteria-or-yeast"
+    }
+  ],
+  "endometriosis": [
+    {
+      "label": "WHO: Endometriosis",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/endometriosis"
+    },
+    {
+      "label": "NHS: Endometriosis",
+      "url": "https://www.nhs.uk/conditions/endometriosis/"
+    },
+    {
+      "label": "NICE: Endometriosis diagnosis and management",
+      "url": "https://www.nice.org.uk/guidance/ng73/chapter/Recommendations"
+    },
+    {
+      "label": "NHS: Pelvic pain and urgent warning signs",
+      "url": "https://www.nhs.uk/symptoms/pelvic-pain/"
+    }
+  ],
+  "enlarged-hemorrhoids": [
+    {
+      "label": "NHS: Piles and haemorrhoids",
+      "url": "https://www.nhs.uk/conditions/piles-haemorrhoids/"
+    },
+    {
+      "label": "NIDDK: Treatment of hemorrhoids",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/hemorrhoids/treatment"
+    },
+    {
+      "label": "American Society of Colon and Rectal Surgeons: Hemorrhoids",
+      "url": "https://fascrs.org/Web/Patients/Diseases-and-Conditions/A-Z/Hemorrhoids.aspx"
+    },
+    {
+      "label": "NHS: Rectal bleeding",
+      "url": "https://www.nhs.uk/symptoms/bleeding-from-the-bottom-rectal-bleeding/"
+    }
+  ]
+}

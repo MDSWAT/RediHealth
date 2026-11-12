@@ -26,6 +26,8 @@ function useSafeLanguageContext(): { lang: Lang } {
 }
 
 const QUOTES: Record<Lang, [string, string]> = {
+  ru: ["“", "”"],
+
   ro: ["„", "”"],
   en: ["“", "”"],
   sq: ["«", "»"],

@@ -1,0 +1,51 @@
+{
+  "title": "Aftele bucale: îngrijire și semne care necesită consult",
+  "intro": "Afta este o ulcerație superficială dureroasă a mucoasei bucale. Chiar și mică, poate îngreuna alimentația, periajul și vorbitul. Aftele obișnuite nu sunt contagioase și se vindecă adesea fără tratament specific. Totuși, nu orice leziune din gură este o aftă: o ulcerație persistentă sau neobișnuită trebuie examinată, nu tratată repetat acasă.",
+  "sections": [
+    {
+      "heading": "Recunoașterea unui tipar familiar",
+      "paragraphs": [
+        "Aftele pot avea centru palid și margine roșie și pot apărea pe interiorul buzelor, obraji ori limbă. Unele persoane au episoade rare, altele leziuni recurente. Ulcerațiile mari sau numeroase pot fi mai supărătoare și se vindecă mai greu. Herpesul este o altă afecțiune și poate apărea și în gură, deci localizarea singură nu confirmă diagnosticul. Aspectul ori evoluția nefamiliară trebuie evaluate de medic sau dentist."
+      ]
+    },
+    {
+      "heading": "De ce poate fi utilă evaluarea",
+      "paragraphs": [
+        "Cauza aftelor recurente este adesea neclară. Pot contribui predispoziția familială, traumatismele minore și stresul. Un dinte ascuțit, o proteză nepotrivită sau mușcarea obrazului pot produce ulcerații traumatice. Medicamentele, carențele și unele boli digestive ori inflamatorii pot produce alte ulcerații. Menționați medicamentele noi, simptomele intestinale, problemele pielii, articulațiilor sau leziunile din alte zone. Uneori sunt indicate analize; recurența nu înseamnă automat o carență."
+      ]
+    },
+    {
+      "heading": "Alimentație și igienă mai blânde",
+      "paragraphs": [
+        "Încercați alimente moi și băuturi mai reci; evitați temporar ceea ce ustură, inclusiv produsele foarte picante, acide, aspre ori fierbinți. Folosiți o periuță moale și curățați delicat, fără să abandonați igiena. Dentistul poate corecta proteza care freacă sau dintele ascuțit; nu piliți singuri dintele. Observați iritanții fără eliminarea unor grupe alimentare întregi. Un jurnal scurt al episoadelor, posibililor factori declanșatori și vindecării poate ajuta consultația."
+      ]
+    },
+    {
+      "heading": "Tratamentul urmărește ameliorarea episodului",
+      "paragraphs": [
+        "Farmacistul sau dentistul poate recomanda un preparat împotriva durerii, apă de gură ori corticosteroid local potrivit. Alegerea depinde de vârstă, alte boli, sarcină și diagnosticul leziunii. Respectați instrucțiunile și verificați utilizarea la copii; nu folosiți rețeta altei persoane. Formele severe recurente pot necesita specialist. Tratamentele pot calma durerea sau scurta episodul, dar nu previn sigur toate recurențele. Dozele mari de vitamine fără indicație nu înlocuiesc evaluarea."
+      ]
+    },
+    {
+      "heading": "Când este necesar consultul",
+      "paragraphs": [
+        "Cereți examinare dacă ulcerația durează peste trei săptămâni, diferă de cele obișnuite, sângerează sau devine mai roșie și dureroasă. Solicitați sfat mai devreme pentru leziuni mari, numeroase, episoade frecvente ori alte simptome. Rareori, leziunile persistente au o cauză gravă, inclusiv cancer oral; verificarea este o precauție, nu un diagnostic. Cereți ajutor prompt dacă durerea împiedică hidratarea sau apare stare generală proastă, mai ales în imunosupresie. Dificultățile de respirație ori dificultatea severă la înghițire sunt urgențe."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "O proteză care freacă — exemplu ipotetic",
+      "text": "O leziune reapare unde freacă proteza. Persoana programează un consult în loc să folosească gel anestezic la nesfârșit. Dentistul verifică leziunea și proteza și explică când trebuie revenit dacă nu se vindecă."
+    },
+    {
+      "title": "Recurențe și alte simptome — exemplu ipotetic",
+      "text": "O persoană cu afte recurente și simptome intestinale persistente aduce lista medicamentelor și jurnalul episoadelor. Investigațiile ori suplimentele se aleg după evaluare, fără presupunerea unei carențe pentru fiecare aftă."
+    }
+  ],
+  "questions": [
+    "Leziunea pare aftă, traumatism sau altă afecțiune?",
+    "Ce tratament se potrivește vârstei, sănătății și medicamentelor mele?",
+    "Ce durată a vindecării sau tipar de recurență necesită o nouă examinare?"
+  ]
+}

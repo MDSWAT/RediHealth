@@ -1,0 +1,51 @@
+{
+  "title": "COVID-19: testimi, trajtimi i hershëm dhe rikuperimi",
+  "intro": "COVID është infeksion nga SARS-CoV-2. Mund të ngjajë me ftohjen, por mund të shkaktojë sëmundje të rëndë ose shenja afatgjata. Rreziku varet nga mosha, imuniteti, shtatzënia dhe sëmundjet e tjera. Fillimi i lehtë nuk do të thotë që personi me rrezik të lartë duhet të presë për të pyetur për trajtimin; infeksioni i kaluar nuk garanton mbrojtje nga tjetri.",
+  "sections": [
+    {
+      "heading": "Njihni shenjat dhe përdorni testet me kujdes",
+      "paragraphs": [
+        "Mund të ketë temperaturë, dhimbje fyti, kollë, hundë të zëna, lodhje, dhimbje trupi, shqetësime tretjeje ose ndryshim të nuhatjes e shijes. Shenjat mbivendosen me gripin dhe infeksione të tjera, prandaj vetëm modeli nuk jep diagnozë të sigurt. Testi i shpejtë antigjenik ndihmon, por një negativ i vetëm, sidomos herët, nuk përjashton infeksionin. Ndiqni udhëzimet e testit dhe këshillën aktuale vendore për përsëritje ose laborator. Tregoni mjekut fillimin e shenjave dhe pozitivitetin e fundit: disa teste laboratorike mbeten pozitive pas shërimit. Mos vononi kujdesin urgjent për të siguruar test."
+      ]
+    },
+    {
+      "heading": "Kush duhet të pyesë për trajtim të hershëm",
+      "paragraphs": [
+        "Të moshuarit dhe personat me imunitet të dobësuar ose sëmundje të rëndësishme të zemrës, mushkërive, veshkave ose të tjera kronike kanë rrezik më të madh. Edhe shtatzënia e rrit rrezikun. Kontaktoni shpejt mjekun nëse jeni në grup rreziku dhe shfaqni shenja të mundshme, edhe të lehta. Antiviralët, kur përshtaten, duhen nisur në ditët e para; e drejta dhe mundësia varen nga vendi dhe rasti. Mjekut i duhet lista e plotë e ilaçeve e suplementeve dhe gjendja e veshkave e mëlçisë. Disa antiviralë kanë ndërveprime të rëndësishme. Mos ndaloni ilaçet thelbësore ose merrni kurën e dikujt tjetër për të bërë trajtimin."
+      ]
+    },
+    {
+      "heading": "Kujdesi në shtëpi dhe shenjat për ndihmë",
+      "paragraphs": [
+        "Për sëmundjen e lehtë ndihmojnë pushimi, pijet e rregullta dhe ilaçi i përshtatshëm për dhimbje ose temperaturë; ndiqni kufizimet mjekësore të lëngjeve dhe udhëzimet. Pyetni farmacistin për shtatzëni, fëmijë ose ilaçe të tjera. Antibiotikët nuk trajtojnë virusin dhe steroidet nuk janë trajtim rutinë në shtëpi për sëmundje të lehtë. Kërkoni këshillë në përkeqësim, vështirësi për të pirë ose përkeqësim të sëmundjes kronike. Thirrni urgjencën për mungesë të rëndë fryme në pushim, pamundësi për fjali të shkurtra, dhimbje ose presion të vazhdueshëm gjoksi, konfuzion, kolaps apo buzë blu ose gri. Foshnjat me ushqyerje të dobët, frymëmarrje të vështirë ose përgjumje të pazakontë kërkojnë vlerësim të shpejtë. Simptomat vlejnë edhe nëse matja shtëpiake e oksigjenit duket mirë."
+      ]
+    },
+    {
+      "heading": "Ulni ekspozimin dhe kontrolloni këshillën për vaksina",
+      "paragraphs": [
+        "Virusi përhapet me grimca infektive në ajër, veçanërisht në ambiente të përbashkëta të mbyllura. Shmangni të tjerët kur jeni të sëmurë, ajrosni, mbuloni kollën dhe lani duart. Kur kontakti nuk shmanget, maska që puthitet mirë dhe ajri më i pastër shtojnë mbrojtje; mos vizitoni persona veçanërisht të cenueshëm. Ndiqni udhëzimet aktuale vendore për shkollën ose punën dhe rregullat e vendit. Vaksinimi ul sëmundjen e rëndë, por nuk garanton mungesën e infeksionit ose transmetimit. Pyetni mjekun vendor për vaksinën dhe kohën sipas moshës, shtatzënisë ose imunitetit. Skema e një vendi tjetër mund të mos vlejë për ju."
+      ]
+    },
+    {
+      "heading": "Rikuperimi mund të kërkojë plan individual",
+      "paragraphs": [
+        "Shumë persona shërohen brenda ditësh ose javësh. Të tjerët kanë lodhje, mungesë fryme, vështirësi përqendrimi, nuhatje të ndryshuar ose shenja që luhaten pas infeksionit akut. Caktoni kontroll kur përmirësimi ngec ose jeta mbetet e kufizuar; duhen shqyrtuar edhe shkaqe të tjera të trajtueshme. Dhimbja e re e fortë e gjoksit ose vështirësia respiratore nuk i atribuohen automatikisht formës afatgjatë. Diskutoni ditar, mbështetje praktike dhe kthim të përshtatur në punë apo shkollë. Nëse aktiviteti sjell përkeqësim të madh të vonuar, tregoni mjekut dhe mos e shtoni ushtrimin me zor. Rehabilitimi përshtatet me shenjat dhe reagimin, pa premtuar datë fikse shërimi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: negativ herët",
+      "text": "Ana ka dhimbje fyti dhe test negativ ditën e parë. Meqë merr imunosupresantë, kontakton menjëherë mjekun për testim dhe trajtim të hershëm, pa pritur kollë të rëndë ose supozuar se infeksioni përjashtohet."
+    },
+    {
+      "title": "Shembull hipotetik: përshtatja e rikuperimit",
+      "text": "Pas kalimit të temperaturës, Dario kthehet në turne të gjata, por ditën tjetër ndihet shumë më keq. Regjistron modelin dhe diskuton plan individual me balancë aktiviteti e pushimi me mjekun dhe punëdhënësin, në vend që të forcojë vazhdimisht përpjekjen."
+    }
+  ],
+  "questions": [
+    "A mund të marr trajtim të hershëm dhe sa shpejt t'ju kontaktoj?",
+    "A ndikojnë ilaçet ose shëndeti i veshkave e mëlçisë në zgjedhje?",
+    "Cilat shenja kërkojnë urgjencën dhe si ta kontrollojmë rikuperimin e vonuar?"
+  ]
+}

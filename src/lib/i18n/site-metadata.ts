@@ -8,6 +8,14 @@ type SiteMetadata = {
 };
 
 export const siteMetadata: Record<Lang, SiteMetadata> = {
+  ru: {
+    title: "RediHealth: медицинская информация и помощь в поиске медицинской помощи",
+    description:
+      "Бесплатная медицинская информация простыми словами. Проверьте свои симптомы, найдите аптеку или врача и обратитесь за помощью к медицинскому посреднику.",
+    skipLink: "Перейти к основному содержанию",
+    openGraphLocale: "ru_RU",
+  },
+
   en: {
     title: "RediHealth: health information and help finding care",
     description:

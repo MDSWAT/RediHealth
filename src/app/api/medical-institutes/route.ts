@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { countryCenter, findNearbyInstitutes } from "@/lib/data/medical-institutes";
+import { countryCenter, findCountryInstitutes, findNearbyInstitutes } from "@/lib/data/medical-institutes";
 import { hasControlDatabase } from "@/lib/database";
 import {
   countryFromHeaders,
@@ -17,7 +17,7 @@ function parseCoordinate(value: string | null, max: number) {
 /**
  * Public lookup for the "Find help" map.
  * - `lat` + `lng`: nearest institutes to that point (any supported country unless `country` is given).
- * - `country` only: institutes around that country's capital.
+ * - `country` only: all active institutes in the country, in stable 500-record pages.
  * - neither: country detected from CDN headers, falling back to Romania.
  */
 export async function GET(request: Request) {
@@ -32,6 +32,10 @@ export async function GET(request: Request) {
   const categoryParam = searchParams.get("category");
   const search = (searchParams.get("q") || "").trim().slice(0, 100);
   const limit = Number(searchParams.get("limit") || 80);
+  const page = Number(searchParams.get("page") || 0);
+  if (!Number.isSafeInteger(page) || page < 0) {
+    return NextResponse.json({ error: "Invalid page." }, { status: 400 });
+  }
 
   let country: CountryCode | null = isSupportedCountry(countryParam) ? countryParam : null;
   if ((lat == null || lng == null) && !country) {
@@ -42,7 +46,10 @@ export async function GET(request: Request) {
   const center = lat != null && lng != null ? { lat, lng } : countryCenter(country ?? "RO");
 
   try {
-    const institutes = await findNearbyInstitutes({
+    const countryPage = (lat == null || lng == null) && country
+      ? await findCountryInstitutes({ country, category: isInstituteCategory(categoryParam) ? categoryParam : null, search, page })
+      : null;
+    const institutes = countryPage?.institutes ?? await findNearbyInstitutes({
       lat: center.lat,
       lng: center.lng,
       country,
@@ -56,6 +63,7 @@ export async function GET(request: Request) {
         country: country ?? institutes[0]?.country_code ?? null,
         center,
         institutes,
+        hasMore: countryPage?.hasMore ?? false,
       },
       { headers: { "Cache-Control": "public, max-age=60, s-maxage=300, stale-while-revalidate=600" } },
     );

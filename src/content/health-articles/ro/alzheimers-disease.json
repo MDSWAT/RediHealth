@@ -1,0 +1,51 @@
+{
+  "title": "Boala Alzheimer: evaluare, sprijin zilnic și planificarea îngrijirii",
+  "intro": "Boala Alzheimer este o afecțiune progresivă a creierului și o cauză de demență. Demența descrie dificultăți de gândire care afectează viața zilnică, nu uitarea ocazională obișnuită. Alzheimer poate afecta memoria, limbajul, judecata și autonomia. Evaluarea este importantă deoarece alte boli pot provoca probleme asemănătoare, iar tratamentul util, sprijinul practic și planificarea depind de situația persoanei.",
+  "sections": [
+    {
+      "heading": "Descrie schimbările activităților zilnice",
+      "paragraphs": [
+        "Exemplele includ uitarea repetată a conversațiilor recente, dificultatea de a gestiona sarcini familiare sau rătăcirea într-un loc cunoscut. Un singur nume uitat nu stabilește demența. Notează schimbările în timp, inclusiv somnul, dispoziția, auzul și vederea. Cu acordul persoanei, cineva care o cunoaște bine poate oferi observații la consultație. Descrie întâmplări concrete cu respect, în loc să o testezi, contrazici sau faci de rușine acasă."
+      ]
+    },
+    {
+      "heading": "Înțelege ce presupune evaluarea",
+      "paragraphs": [
+        "Medicul analizează simptomele, istoricul, medicamentele și efectul asupra activităților zilnice. Evaluarea cognitivă, analizele de sânge ori imagistica cerebrală pot fi utile; testele specializate se aleg în funcție de caz. Depresia, efectele medicamentelor și alte probleme medicale pot contribui și necesită atenție. Un scor scurt de memorie nu descrie întreaga persoană și nu stabilește toate deciziile de îngrijire. Întreabă cum se leagă rezultatele și dacă pot exista mai multe afecțiuni."
+      ]
+    },
+    {
+      "heading": "Discută obiectivele și incertitudinile tratamentului",
+      "paragraphs": [
+        "Medicamente precum donepezilul ori memantina pot ajuta unele simptome la persoanele potrivite, dar nu vindecă boala. Beneficiile și efectele adverse necesită reevaluare. Unele tratamente specializate vizează procesul bolii în cazuri timpurii selectate și necesită evaluare și monitorizare stricte; disponibilitatea și eligibilitatea diferă între țări. Întreabă despre rezultate realiste și riscuri grave, fără să presupui că orice medicament nou este potrivit. Contează și activitățile semnificative, sprijinul comunicării și tratarea altor boli."
+      ]
+    },
+    {
+      "heading": "Adaptează sprijinul păstrând participarea persoanei",
+      "paragraphs": [
+        "O rutină previzibilă, mementourile clare și un mediu ușor de folosit pot ajuta. Revizuiește siguranța medicamentelor, gătitului, banilor și deplasărilor fără să elimini automat toate alegerile. Întreabă despre terapie ocupațională, sprijin local și ajutor pentru aparținători. Discută îngrijorările privind condusul cu profesionistul potrivit, ținând cont de regulile locale. Preferințele de îngrijire și modalitățile de luare a deciziilor sunt mai ușor de discutat devreme, cu participarea persoanei și sfat local adecvat."
+      ]
+    },
+    {
+      "heading": "Recunoaște schimbările bruște și suprasolicitarea îngrijitorului",
+      "paragraphs": [
+        "Confuzia bruscă, somnolența neobișnuită sau deteriorarea rapidă nu trebuie numite pur și simplu progresia demenței. Infecția, deshidratarea, medicamentele și alte probleme urgente pot provoca o schimbare acută. Cere evaluare medicală promptă; semnele de accident vascular cerebral, colapsul ori starea gravă impun ajutor de urgență. Modificările comportamentale pot indica durere, teamă sau o nevoie neîmplinită, nu dificultate provocată intenționat. Îngrijitorii au și ei nevoie de sprijin, pauze planificate și sfaturi când siguranța devine greu de menținut."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: pregătirea evaluării",
+      "text": "O persoană observă facturi neplătite și întrebări repetate la un părinte. Cu acordul lui, notează exemple și merg împreună la consultație. Întreabă despre cauze posibile, investigații și sprijin, în loc să decidă că un test de memorie făcut acasă dovedește boala Alzheimer."
+    },
+    {
+      "title": "Exemplu ipotetic: reacția la o schimbare abruptă",
+      "text": "O persoană cu demență cunoscută devine mult mai confuză într-un timp scurt și neobișnuit de somnoroasă. Îngrijitorul cere evaluare promptă și descrie diferența față de starea obișnuită. Nu așteaptă următorul control de rutină și nu presupune că a început inevitabil un nou stadiu."
+    }
+  ],
+  "questions": [
+    "Ce rezultate susțin diagnosticul și ar putea contribui alte probleme tratabile?",
+    "Ce beneficii realiste, riscuri și reevaluări presupune tratamentul propus?",
+    "Ce sprijin practic, schimbări de siguranță și discuții despre viitor sunt utile acum?"
+  ]
+}

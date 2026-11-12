@@ -1,0 +1,51 @@
+{
+  "title": "Dhimbja cluster e kokës: njohja e sulmeve dhe trajtimi",
+  "intro": "Dhimbja cluster shkakton sulme jashtëzakonisht të forta, zakonisht rreth syrit ose tëmthit në njërën anë. Përsëriten në periudha aktive, nganjëherë në orë të ngjashme, me pushime ndërmjet; disa kanë model më të vazhdueshëm. Ka trajtime për sulmin dhe parandalimin. Dhimbja e parë e fortë ose ndryshimi kërkon vlerësim sepse mund të ngjajë me sëmundje të tjera.",
+  "sections": [
+    {
+      "heading": "Si duket sulmi",
+      "paragraphs": [
+        "Dhimbja rritet shpejt dhe djeg ose shpon. Syri nga ana e dhimbjes loton ose skuqet, qepalla ënjtet apo bie, hunda rrjedh ose bllokohet. Personi shpesh është i shqetësuar dhe lëviz në vend të shtrirjes. Sulmet përsëriten ditën ose zgjojnë natën. Modeli ndihmon mjekun, por nuk e bën të sigurt vetëdiagnozën. Shënoni fillimin, zgjatjen, anën, shenjat dhe përgjigjen ndaj trajtimit."
+      ]
+    },
+    {
+      "heading": "Diagnoza kontrollon edhe alarmet",
+      "paragraphs": [
+        "Mjeku merr historinë dhe ekzaminon nervat e sytë; specialisti dhe imazheria mund të përjashtojnë shkaqe të tjera. Kërkoni emergjencë për dhimbje papritur shpërthyese, dobësi të re, konfuzion, humbje shikimi ose qepallë të re të rënë apo bebëza të pabarabarta, edhe me diagnozë të vjetër. Temperatura me qafë të ngurtë kërkon urgjencë. Syri i kuq i dhimbshëm me shikim të ndryshuar nuk duhet quajtur automatikisht sulm i zakonshëm. Raportoni ndryshim ose trajtim që nuk ndihmon."
+      ]
+    },
+    {
+      "heading": "Trajtimi duhet të veprojë shpejt",
+      "paragraphs": [
+        "Oksigjeni i përshkruar me maskë të përshtatshme dhe triptani me injeksion ose në hundë janë trajtime të njohura. Qetësuesit e zakonshëm dhe tabletat e ngadalta nuk zëvendësojnë planin. Triptani varet nga sëmundjet dhe barnat e tjera. Oksigjeni kërkon recetë, udhëzim dhe mbrojtje nga zjarri: mos pini duhan ose lejoni flakë. Mos improvizoni me pajisje të tjetrit ose shtoni doza vetë. Diskutoni aksesin në shtëpi, punë dhe udhëtim."
+      ]
+    },
+    {
+      "heading": "Parandalimi nuk është i njëjtë me ndalimin e sulmit",
+      "paragraphs": [
+        "Specialisti mund të përdorë parandalues, shpesh verapamil, gjatë periudhës aktive. Kërkon përshkrim të kujdesshëm dhe elektrokardiogram sepse ndikon përçimin e zemrës. Mund të jepet trajtim i shkurtër kalimtar ose alternativa derisa të veprojë apo kur nuk përshtatet. Zgjedhja, ndjekja dhe ndalja janë individuale. Alkooli nxit sulme te disa gjatë periudhës. Ditari ndihmon, por dieta gjerësisht kufizuese nuk është zgjidhje e përgjithshme e provuar."
+      ]
+    },
+    {
+      "heading": "Mbështetje për jetën",
+      "paragraphs": [
+        "Sulmet prishin gjumin, punën, marrëdhëniet dhe emocionet. Kërkoni plan të shkruar të qartë, ndjekje gjatë periudhës së re dhe ndihmë për dhimbjen e pakontrolluar. Diskutoni përshtatje pune dhe mbështetje nga njerëz të besuar ose organizata. Dhimbja e fortë e përsëritur kërkon kujdes aktiv, jo nënvlerësim. Nëse strategjia nuk ndihmon ose përdoret vështirë, kërkoni rishikim. Diagnoza nuk parandalon urgjenca të tjera; mbani planin e alarmit bashkë me trajtimin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sulme gjatë natës — shembull hipotetik",
+      "text": "Dikush zgjohet vazhdimisht me dhimbje të fortë te i njëjti sy dhe hundë që rrjedh. Sjell ditarin në vizitë në vend të blerjes së përsëritur të qetësuesve. Mjeku vlerëson modelin dhe shkaqe të tjera."
+    },
+    {
+      "title": "Shenjë e re e syrit — shembull hipotetik",
+      "text": "Një person me diagnozë cluster vëren për herë të parë qepallë të rënë. Kërkon vlerësim emergjent pa ia atribuar çdo shenjë diagnozës së vjetër."
+    }
+  ],
+  "questions": [
+    "A përputhet modeli me cluster dhe cilat shkaqe të tjera duhen përjashtuar?",
+    "Cili trajtim i shpejtë përshtatet dhe si e marr e përdor sigurt?",
+    "Duhet parandalim, kontroll zemre dhe mbështetje në periudhën tjetër aktive?"
+  ]
+}

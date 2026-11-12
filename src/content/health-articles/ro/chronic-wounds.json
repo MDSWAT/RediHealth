@@ -1,0 +1,51 @@
+{
+  "title": "Rănile cronice: de ce întârzie vindecarea și cum se planifică îngrijirea",
+  "intro": "O rană cronică rămâne deschisă, se vindecă neobișnuit de lent ori se redeschide. Pansamentele contează, dar și cauza: circulația, presiunea, edemul, leziunile nervoase, infecția și sănătatea generală pot contribui. O rană fără progres necesită evaluare, nu creme schimbate la nesfârșit. Cereți sfat devreme pentru o rană nouă dacă aveți diabet, circulație slabă sau imunitate redusă.",
+  "sections": [
+    {
+      "heading": "Cauze diferite cer abordări diferite",
+      "paragraphs": [
+        "Ulcerele venoase apar când întoarcerea sângelui din picioare este afectată. Cele arteriale au aport insuficient, iar rănile piciorului diabetic pot combina circulația, neuropatia și presiunea repetată. Leziunile de presiune apar la dificultatea schimbării poziției. Alte boli cutanate și uneori tumori produc zone nevindecate. Lipsa durerii nu înseamnă rană minoră: neuropatia poate elimina avertismentul. Nu stabiliți cauza doar din fotografie ori localizare."
+      ]
+    },
+    {
+      "heading": "Evaluați rana și persoana împreună",
+      "paragraphs": [
+        "Echipa discută debutul, medicamentele, bolile, mobilitatea, durerea și tratamentele. Verifică dimensiunea, adâncimea, pielea, secrețiile și infecția, precum și circulația și sensibilitatea când este relevant. Pot fi necesare teste de flux înainte de compresie. Tamponul nu ajută automat: bacteriile pot exista fără infecție clinică. Rana atipică ori fără progres poate necesita specialist sau probă tisulară. Stabiliți documentarea progresului și reevaluarea planului."
+      ]
+    },
+    {
+      "heading": "Pansamente într-un plan care tratează cauza",
+      "paragraphs": [
+        "Curățarea, pansamentele și protejarea pielii ajută umiditatea și confortul. Îndepărtarea țesutului mort, dacă este indicată, se face de profesioniști instruiți, potrivit rănii și circulației. Nu tăiați singuri și nu aplicați dezinfectanți casnici ori remedii neprescrise. Boala venoasă poate necesita compresie aleasă profesional; cea arterială, tratament vascular. Piciorul diabetic poate necesita dispozitiv de descărcare a presiunii. Măsurile nu sunt interschimbabile; bandajarea strânsă improvizată poate dăuna."
+      ]
+    },
+    {
+      "heading": "Sprijiniți vindecarea și viața zilnică",
+      "paragraphs": [
+        "Cereți calmarea durerii, plan sigur de schimbare a pansamentului și acces la materiale. Nutriția, controlul diabetului, renunțarea la fumat, mișcarea ori reducerea presiunii potrivite ajută. Urmați echipa pentru încălțăminte, poziția piciorului și activitate; nici mersul mai mult, nici repausul complet nu se potrivesc tuturor. Discutați somnul, mirosul, scurgerile, munca și izolarea. Antibioticele tratează infecția clinică, nu grăbesc orice rană cronică."
+      ]
+    },
+    {
+      "heading": "Când este necesară reevaluarea urgentă",
+      "paragraphs": [
+        "Cereți sfat prompt pentru roșeață ori căldură extinsă, durere crescută, puroi, febră, mărire rapidă ori stare proastă. Rana nouă la picior în diabet cere contact urgent chiar fără durere. Membrul brusc rece, palid sau albastru, durerea severă nouă, țesutul rapid înnegrit, confuzia ori boala sistemică severă necesită evaluare de urgență. Nu așteptați pansamentul programat. După vindecare, continuați prevenția: compresia indicată, verificarea picioarelor, reducerea presiunii și tratarea cauzei reduc recurența."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rană fără durere — exemplu ipotetic",
+      "text": "O persoană cu diabet găsește o rană pe talpă fără durere importantă. Contactează prompt serviciul specializat și reduce presiunea conform indicației, fără să aștepte durerea ca dovadă de gravitate."
+    },
+    {
+      "title": "Ulcer cu edem — exemplu ipotetic",
+      "text": "O persoană vrea să strângă bandajul. Asistenta verifică întâi circulația și cauza, apoi alege compresia potrivită dacă este indicată. Stabilesc controlul și schimbările care cer apel mai devreme."
+    }
+  ],
+  "questions": [
+    "Ce împiedică vindecarea și necesită circulația investigații?",
+    "Ce pansament, descărcare sau compresie este potrivită și cine le asigură?",
+    "Cum măsurăm progresul și ce schimbări cer îngrijire urgentă ori de urgență?"
+  ]
+}

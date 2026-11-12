@@ -20,6 +20,12 @@ export function PrescriptionAudioPlayer({ speechText, className = "" }: Prescrip
   const isPlayingRef = useRef(false);
 
   const dict = {
+  ru: {
+      listen: "Слушайте объяснение",
+      stop: "Хватит слушать",
+      speechLang: "ru-RU",
+    },
+
     en: {
       listen: "Listen to the explanation",
       stop: "Stop listening",

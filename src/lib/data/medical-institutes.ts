@@ -137,6 +137,34 @@ export function countryCenter(country: CountryCode): { lat: number; lng: number 
   return { lat, lng };
 }
 
+/** Browse the whole country, using stable pages rather than a radius around its capital. */
+export async function findCountryInstitutes(query: {
+  country: CountryCode;
+  category?: InstituteCategory | null;
+  search?: string;
+  page?: number;
+}) {
+  const db = getControlDatabase();
+  const pageSize = 500;
+  const page = Math.max(0, Math.floor(query.page ?? 0));
+  const conditions = ["is_active = 1", "country_code = ?"];
+  const params: unknown[] = [query.country];
+  if (query.category) {
+    conditions.push("category = ?");
+    params.push(query.category);
+  }
+  if (query.search?.trim()) {
+    const term = `%${query.search.trim().toLowerCase()}%`;
+    conditions.push("(LOWER(name) LIKE ? OR LOWER(COALESCE(city, '')) LIKE ? OR LOWER(COALESCE(address, '')) LIKE ?)");
+    params.push(term, term, term);
+  }
+  const [rows] = await db.query<InstituteRow[]>(
+    `SELECT ${PUBLIC_COLUMNS} FROM medical_institutes WHERE ${conditions.join(" AND ")} ORDER BY id ASC LIMIT ? OFFSET ?`,
+    [...params, pageSize + 1, page * pageSize],
+  );
+  return { institutes: rows.slice(0, pageSize).map(toInstitute), hasMore: rows.length > pageSize };
+}
+
 export type AdminListQuery = {
   search?: string;
   country?: CountryCode | null;

@@ -5,6 +5,8 @@ import { getRequestLang } from "@/lib/i18n/server-routing";
 import type { Lang } from "@/lib/i18n/translations";
 
 const descriptions: Record<Lang, string> = {
+  ru: "Ответьте на несколько коротких вопросов. Мы направим вас к информации, к врачу или медицинскому посреднику.",
+
   ro: "Răspunde la câteva întrebări scurte. Te trimitem spre informații, un medic sau un mediator sanitar.",
   en: "Answer a few short questions. We point you to information, a doctor or a health mediator.",
   sq: "Përgjigju disa pyetjeve të shkurtra. Të tregojmë ku gjen informacion, një mjek ose një mediator shëndetësor.",

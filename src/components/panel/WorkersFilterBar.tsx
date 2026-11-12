@@ -43,6 +43,21 @@ export function WorkersFilterBar({
 }: WorkersFilterBarProps) {
   const { lang } = useLanguage();
   const t = {
+  ru: {
+      search: "Поиск по имени, электронной почте, телефону или должности",
+      addWorker: "Добавить сотрудника",
+      addMediator: "Добавить посредника",
+      addMediatorTitle: "Добавить аккаунт посредника",
+      exportCsv: "Экспортировать CSV",
+      refreshTitle: "Обновить список сотрудников",
+      refreshing: "Освежающий...",
+      refresh: "Обновить",
+      staffStatus: "Статус",
+      all: "Весь персонал",
+      active: "Активный",
+      inactive: "Неактивный",
+    },
+
     en: {
       search: "Search by name, email, phone or role",
       addWorker: "Add staff member",

@@ -1,0 +1,51 @@
+{
+  "title": "CPAP per l'apnea del sonno: risolvere i problemi quotidiani",
+  "intro": "La CPAP usa aria pressurizzata attraverso una maschera per tenere aperte le vie aeree superiori durante il sonno. Tratta l'apnea ostruttiva mentre viene utilizzata; non è soltanto una macchina contro il russamento. Perdite, secchezza o ansia possono ostacolare la cura, ma adattamento dell'attrezzatura e pratica graduale aiutano spesso. Contattare presto il centro del sonno senza modificare da soli la pressione prescritta.",
+  "sections": [
+    {
+      "heading": "Primo controllo: aderenza, collegamenti e comfort",
+      "paragraphs": [
+        "Adattare la maschera secondo istruzioni con macchina accesa e nella posizione abituale del sonno. Le cinghie devono mantenere la tenuta senza premere dolorosamente. Stringere troppo può deformare il cuscinetto e aumentare le perdite. Controllare collegamenti e usura di cuscinetto o fasce. Aria verso gli occhi può indicare perdita, ma il flusso dai fori di espirazione previsti è normale ed essenziale: non bloccare mai fori o valvole. Chiedere un'altra misura o tipo se gli aggiustamenti falliscono. Lesioni cutanee o irritazione oculare persistente richiedono controllo, non cinghie sempre più strette."
+      ]
+    },
+    {
+      "heading": "Secchezza, naso chiuso e acqua nel tubo",
+      "paragraphs": [
+        "La bocca secca può dipendere da perdita orale, soprattutto con maschera nasale; il naso chiuso contribuisce. Discutere maschera, soluzione salina o trattamento dell'infiammazione nasale. L'umidificazione riscaldata può aiutare seguendo istruzioni ed équipe. L'acqua nel tubo è condensa: tubi riscaldati compatibili o modifiche appropriate di umidità e ambiente possono aiutare. Usare tipo e livello d'acqua raccomandati, svuotare e pulire la camera come indicato, senza aggiungere oli essenziali o farmaci. Non improvvisare la chiusura della bocca con nastro adesivo."
+      ]
+    },
+    {
+      "heading": "Sensazione di costrizione, pressione scomoda o aria ingerita",
+      "paragraphs": [
+        "Provare brevemente da svegli in un ambiente calmo, ad esempio leggendo, e abituarsi gradualmente. Chiedere come usare rampa o funzioni di comfort autorizzate: sono diverse dal modificare la prescrizione. Se espirare è difficile, la pressione sembra eccessiva o il gonfiore persiste, chiedere revisione di impostazioni e dati. Un'altra maschera o una modalità PAP selezionata può aiutare alcuni, ma non tutti necessitano di un'altra macchina. Non aggiungere sedativi o alcol per tollerare la maschera. Panico o insonnia persistenti possono richiedere aiuto aggiuntivo insieme agli adattamenti."
+      ]
+    },
+    {
+      "heading": "Pulizia e manutenzione pratica",
+      "paragraphs": [
+        "Seguire i tempi del produttore per lavaggio delle parti lavabili, asciugatura completa e sostituzione di filtri o componenti usurati. Usare solo prodotti raccomandati; non immergere la macchina elettrica. Tenere libera l'entrata dell'aria su una superficie stabile adatta. Rumori inattesi possono indicare collegamento allentato, filtro o guasto: vanno controllati senza coprire la macchina per silenziarla. Dispositivi a ozono o ultravioletti non sostituiscono la pulizia prescritta e possono danneggiare l'attrezzatura o esporre a sostanze nocive. Chiedere al fornitore consigli sul modello, manutenzione, alimentazione in viaggio e cosa fare con guasti o interruzioni elettriche."
+      ]
+    },
+    {
+      "heading": "Controllare se la cura aiuta",
+      "paragraphs": [
+        "Usare il trattamento prescritto per dormire, anche nei sonnellini, secondo piano. Se si toglie spesso la maschera dormendo, dirlo al centro; annotare quando compare disagio e portare maschera o dati. La sonnolenza può dipendere da perdite, uso limitato, disturbi respiratori residui o altre condizioni mediche o del sonno. Non guidare né usare macchinari pericolosi quando assonnati e verificare le regole locali con il medico. Stare meglio o dimagrire non dimostra da solo che la cura non serva: occorre rivalutazione. Affanno grave, dolore toracico o collasso richiedono emergenza, non tentativi di sistemare la CPAP."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: una perdita non si risolve con la forza",
+      "text": "Mara stringe la maschera ogni notte perché l'aria arriva agli occhi. La pelle fa male ma la perdita continua. L'infermiera controlla l'aderenza da sdraiata, sostituisce il cuscinetto usurato e mostra il normale flusso dal foro di sicurezza."
+    },
+    {
+      "title": "Esempio ipotetico: portare informazioni utili",
+      "text": "Ivan usa la macchina ma si sveglia con bocca secca e la toglie prima del mattino. Segna i problemi e contatta il centro. Rivedono insieme perdite, sintomi nasali e umidificazione, senza dirgli soltanto di impegnarsi o ridurre da solo la pressione prescritta."
+    }
+  ],
+  "questions": [
+    "Quale flusso è una perdita e quale il normale sfiato di sicurezza?",
+    "Quali impostazioni di comfort posso cambiare e quali richiedono il centro?",
+    "Chi contatto se la macchina si guasta o resto assonnato nonostante l'uso?"
+  ]
+}

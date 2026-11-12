@@ -58,3 +58,6 @@ test-results/
 .piper-venv/
 .piper-voices/
 .piper-espeak/
+
+# Local source/review cache for health article authoring (never served)
+.health-content-cache/

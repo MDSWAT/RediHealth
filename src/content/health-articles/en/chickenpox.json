@@ -1,0 +1,51 @@
+{
+  "title": "Chickenpox: caring for symptoms and protecting people at higher risk",
+  "intro": "Chickenpox, or varicella, is a very contagious infection caused by the varicella-zoster virus. It often causes an itchy rash with spots, blisters and crusts present at the same time, together with fever or feeling unwell. Many otherwise healthy children recover with supportive care, but newborns, pregnant people, adults and people with weakened immunity can have more serious illness. Exposure alone can require prompt advice for someone at higher risk.",
+  "sections": [
+    {
+      "heading": "Recognise the pattern without diagnosing every rash yourself",
+      "paragraphs": [
+        "Spots can appear on the body, scalp and inside the mouth, and new crops may appear while older lesions crust. Their colour and visibility vary with skin tone. Appetite and sleep may be affected by discomfort. Vaccinated people can have milder or less typical disease. Other illnesses also cause spots or blisters, so ask for clinical advice if uncertain. Call ahead before attending a clinic to avoid exposing a waiting room, and mention any relevant contact with chickenpox or shingles."
+      ]
+    },
+    {
+      "heading": "Reduce spread while the illness is contagious",
+      "paragraphs": [
+        "Chickenpox can spread through shared air and contact with blister fluid, including before the rash is obvious. Avoid school, nursery or work until the recommended exclusion period has ended, generally when all spots have crusted; obtain individual advice for atypical cases and follow local public-health rules. Avoid contact with newborns, pregnant people and anyone with weakened immunity. Wash hands, avoid scratching and do not share towels. A susceptible person can catch chickenpox after exposure to shingles, although they do not 'catch shingles' from chickenpox."
+      ]
+    },
+    {
+      "heading": "Comfort measures and medicine safety",
+      "paragraphs": [
+        "Offer frequent drinks, comfortable loose clothing and gentle cool bathing, then pat the skin dry. Keep nails short to limit scratching and skin injury. A pharmacist can advise age-appropriate products for itch and discomfort. Paracetamol may help if suitable, following the product or clinician's instructions. Do not give aspirin to a child with chickenpox, and avoid ibuprofen unless a doctor advises it because of concern about serious skin infection. Check combined products to avoid duplicate medicines. Antibiotics do not treat the virus itself."
+      ]
+    },
+    {
+      "heading": "Higher-risk exposure and early treatment",
+      "paragraphs": [
+        "Seek prompt medical advice after exposure if pregnant, immunocompromised or caring for an exposed newborn, even before symptoms. Tell the clinician whether there is evidence of previous immunity. Depending on risk, immunity and timing, preventive treatment or early antiviral medicine may be considered. Antivirals work best when started promptly and are not needed for every healthy child. Do not wait for a widespread rash to ask about a higher-risk situation or use someone else's prescription. Tell the clinician about steroid or immune-suppressing treatment."
+      ]
+    },
+    {
+      "heading": "Warning signs and prevention for the future",
+      "paragraphs": [
+        "Get urgent advice for dehydration, worsening hot painful skin around spots, persistent or worsening fever, or an increasingly unwell child. Breathing difficulty, confusion, difficulty waking, a stiff neck or major difficulty walking needs urgent or emergency assessment. Do not assume all deterioration is normal chickenpox. Vaccination helps prevent chickenpox and severe disease; eligibility and schedules depend on the national programme. Because the usual vaccine is live, pregnancy and immune problems require specific advice. The virus can remain in the body after infection and later reactivate as shingles."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "An exposure during pregnancy — hypothetical example",
+      "text": "A pregnant person learns that a household child may have chickenpox. They contact their maternity or medical team promptly with details of the contact and any past infection or vaccination, rather than waiting to see if spots appear."
+    },
+    {
+      "title": "A change in a child's rash — hypothetical example",
+      "text": "A child initially has itchy spots but later a patch becomes hot, increasingly painful and swollen. The caregiver seeks urgent advice for possible secondary infection instead of simply adding more itch cream."
+    }
+  ],
+  "questions": [
+    "Does this rash fit chickenpox, and is anyone in the household at higher risk?",
+    "Which medicines are suitable, and do we need preventive or antiviral treatment?",
+    "When is return to school or work safe, and which changes need urgent assessment?"
+  ]
+}

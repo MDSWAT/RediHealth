@@ -1,0 +1,51 @@
+{
+  "title": "Akutni pankreatitis: hitna procjena i oporavak",
+  "intro": "Akutni pankreatitis nagla je upala gušterače, organa koji pomaže probavi i stvara hormone, uključujući inzulin. Može biti ozbiljan i zahtijeva hitnu bolničku procjenu. Simptomi ne potvrđuju sami dijagnozu: i druga hitna stanja izazivaju jaku bol u trbuhu. Ovaj članak objašnjava razgovor s bolničkim timom, a ne kućno liječenje mogućeg napada.",
+  "sections": [
+    {
+      "heading": "Prepoznati simptome koji traže hitnu pomoć",
+      "paragraphs": [
+        "Jaka bol u gornjem dijelu trbuha, posebno nagla, trajna ili ona koja se širi u leđa, zahtijeva hitnu procjenu. Mogu se javiti povraćanje, vrućica, ubrzan puls ili teško disanje. Jaka bol uz zadušenost, nesvjesticu ili brzo pogoršanje traži hitnu pomoć. Ne vozite sami ako ste ozbiljno bolesni. Opišite simptome i početak, bez čekanja da budete sigurni da je uzrok gušterača."
+      ]
+    },
+    {
+      "heading": "Razumjeti ispitivanje dijagnoze i uzroka",
+      "paragraphs": [
+        "Krvne pretrage, uključujući enzime gušterače poput lipaze, pomažu procjeni. Ultrazvuk ili druge snimke mogu tražiti žučne kamence ili komplikacije; ne trebaju svima sve snimke odmah. Kamenci i alkohol česti su uzroci, ali pridonose i lijekovi, visoke masnoće u krvi i druge bolesti. Ponekad uzrok nije odmah pronađen. Iskreno navedite lijekove i alkohol, bez samostalnog prekidanja propisanog liječenja."
+      ]
+    },
+    {
+      "heading": "Znati cilj bolničkog liječenja",
+      "paragraphs": [
+        "Tim prati cirkulaciju, disanje, bubrežnu funkciju i druge znakove težine. Liječenje može uključivati infuzije, ublažavanje boli te potporu protiv mučnine i za prehranu. Nekima treba intenzivna skrb. Antibiotici se daju kad postoji odgovarajuća infekcija, ne automatski za svaku upalu gušterače. Začepljen žučni vod ili drugi poseban problem može zahtijevati zahvat. Pitajte što svaka mjera rješava i koje bi promjene izmijenile plan."
+      ]
+    },
+    {
+      "heading": "Slijediti osobni plan prehrane i oporavka",
+      "paragraphs": [
+        "Nemojte si nametati post ili restriktivnu prehranu kao kućno liječenje. Tim odlučuje kada i kako možete jesti prema stanju i podnošenju hrane. Ako jedenje nije moguće, može trebati posebna nutritivna potpora. Oporavak varira, a poboljšanje ne uklanja sve rizike komplikacija. Prije otpusta razjasnite prehranu, lijekove i kontakt za nove simptome."
+      ]
+    },
+    {
+      "heading": "Riješiti uzrok i prepoznati zastoj oporavka",
+      "paragraphs": [
+        "Kontrole mogu obuhvatiti razgovor o operaciji žučnog mjehura ako su uzrok kamenci, provjeru lijekova ili masnoća u krvi. Pitajte o izbjegavanju alkohola i pomoći ako ovisnost otežava prestanak; apstinencijska kriza može trebati medicinski nadzor. Nova ili jača bol, vrućica, ponavljano povraćanje, nemogućnost zadržavanja tekućine ili žutica nakon otpusta zahtijevaju brz savjet. Teško stanje, kolaps ili problemi disanja traže hitnu pomoć. Ne smatrajte svako pogoršanje normalnim cijeljenjem."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: opisati hitan problem",
+      "text": "Osoba dobiva jaku bol u gornjem trbuhu koja se širi u leđa i stalno povraća. Traži hitnu pomoć, opisuje simptome i uzima popis lijekova ako je dostupan. Ne odgađa pomoć tražeći dijetu koja bi smirila gušteraču."
+    },
+    {
+      "title": "Izmišljeni primjer: priprema za otpust",
+      "text": "Pacijent čiji je napad povezan s kamencima pita treba li dodatno liječenje protiv ponavljanja, kakve su kontrole i koji simptomi znače hitan povratak. Traži pisane upute umjesto pretpostavke da otpust znači kraj potrebne skrbi."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu i mogući uzrok kod mene?",
+    "Kakav je plan protiv boli, za prehranu i praćenje komplikacija?",
+    "Koje kontrole rješavaju uzrok i koji simptomi zahtijevaju hitnu ponovnu procjenu?"
+  ]
+}

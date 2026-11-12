@@ -14,6 +14,33 @@ function useSafeLanguage() {
 }
 
 const familyCopy = {
+  ru: {
+    title: "К кому обращен призыв?",
+    self: "Для меня",
+    family: "Для семьи",
+    community: "Для кого-то другого",
+    nameLabelSelf: "Ваше имя",
+    nameLabelOther: "Имя человека, который разговаривает с врачом",
+    namePlaceholder: "например Мария Ионеску",
+    phoneLabel: "Номер мобильного телефона (мы отправим вам ссылку)",
+    phonePlaceholder: "0721 000 000",
+    assistedDataTitle: "О человеке, для которого вы бронируете",
+    relationLabel: "Как они связаны с вами",
+    relationPlaceholder: "Выберите…",
+    relations: [
+      "Ребенок",
+      "Родитель или дедушка или бабушка",
+      "Муж или жена",
+      "Еще один член семьи",
+      "Сосед или кто-то из сообщества",
+    ],
+    ageLabel: "Возраст, примерно",
+    agePlaceholder: "например 5 лет, 72 года",
+    reasonLabel: "О чем ты хочешь поговорить? (необязательно)",
+    reasonPlaceholder: "например температура в течение 2 дней, вопросы о таблетках от давления",
+    whatsAppNotice: "Также отправьте подтверждение и ссылку на WhatsApp.",
+  },
+
   ro: {
     title: "Pentru cine este apelul?",
     self: "Pentru mine",

@@ -1,0 +1,51 @@
+{
+  "title": "Brahiterapija: unutarnje zračenje i plan liječenja",
+  "intro": "Brahiterapija postavlja zatvoren izvor zračenja u područje liječenja ili blizu njega. Zrači lokalno i ograničava izlaganje dijela okolnih tkiva, ali zdravo tkivo ipak može stradati. Koristi se za odabrane tumore samostalno ili uz drugo liječenje. Postupak, mjere i nuspojave ovise o mjestu i metodi; tuđe upute možda ne odgovaraju vašoj skrbi.",
+  "sections": [
+    {
+      "heading": "Razjasnite razlog preporuke",
+      "paragraphs": [
+        "Pitajte radioterapijskog onkologa cilj i povezanost s operacijom, vanjskim zračenjem ili lijekovima ako su planirani. Prikladnost ovisi o mjestu, opsegu, ranijem liječenju i zdravlju. Razgovarajte o realnoj koristi, alternativama i neizvjesnosti. Lokalna terapija ne liječi automatski rak drugdje. Pitajte važne simptome i dugoročne ishode umjesto procjene samo po nazivu ili broju termina."
+      ]
+    },
+    {
+      "heading": "Razlikujte privremeno liječenje od trajnih implantata",
+      "paragraphs": [
+        "Privremeni izvor postavlja se kroz aplikator ili kateter na planirano vrijeme i zatim uklanja. Neke metode daju kratke seanse visoke brzine doze, druge dulje ili pulsno. Trajna terapija ostavlja male zatvorene izvore s postupno slabijim zračenjem. Boravak, posjeti i sigurnost razlikuju se. Pitajte točan izvor i sustav, što ostaje i provjeru završetka. Trajan implantat ne znači trajno snažno zračenje."
+      ]
+    },
+    {
+      "heading": "Pripremite postavljanje, snimanje i nelagodu",
+      "paragraphs": [
+        "Snimanje planira i provjerava položaj. Igle, kateteri ili aplikator mogu zahtijevati anesteziju ili sedaciju prema mjestu i tehnici. Pitajte kontrolu boli i mučnine, ograničenja kretanja i komunikaciju tijekom terapije. Navedite lijekove, alergije, ranije postupke i trudnoću. Slijedite osobne upute o jelu, piću i lijekovima, uključujući antikoagulanse. Dogovorite prijevoz i pomoć nakon sedacije kada treba; ne izmišljajte pripremu prema općem opisu."
+      ]
+    },
+    {
+      "heading": "Slijedite mjere baš svoje metode",
+      "paragraphs": [
+        "Tim može ograničiti posjete ili blizak kontakt uz aktivan izvor. Kada se uklone svi privremeni izvori, ta brahiterapija više vas ne čini radioaktivnim. Trajni implantati mogu trebati privremene mjere uz djecu ili trudnice i upute za pomaknuti izvor, put ili postupke. Tražite pisani savjet, kontakt i eventualnu karticu. Pravila ovise o izotopu i liječenju; bez univerzalne izolacije i ne rukujte sami mogućim ispalim izvorom."
+      ]
+    },
+    {
+      "heading": "Planirajte oporavak, nuspojave i praćenje",
+      "paragraphs": [
+        "Učinci ovise o području: bolnost, umor, mokraćni ili crijevni simptomi, spolna funkcija ili druga tkiva. Pitajte očekivane i kasne učinke te podršku, uključujući plodnost prije terapije kada treba. Dobijte upute za rane i preostali kateter. Vrućica, rastuća jaka bol, obilno krvarenje ili nemogućnost mokrenja traže brzu procjenu; kolaps, teško disanje ili kritično stanje hitnu pomoć. Dolazite na kontrole i ako ste dobro radi odgovora i kasnih posljedica."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: mjere kontakta",
+      "text": "Osoba na privremenoj brahiterapiji brine oko grljenja unuka. Pita jesu li svi izvori uklonjeni i slijedi svoje upute, umjesto tuđih mjera za trajne implantate."
+    },
+    {
+      "title": "Hipotetski primjer: dnevni zahvat",
+      "text": "Pacijent saznaje da aplikator traži sedaciju. Potvrđuje lijekove i jelo, dogovara pratnju i pita o prijavi boli ili teškoća mokrenja. Kratko zračenje ne znači cijeli posjet bez pripreme."
+    }
+  ],
+  "questions": [
+    "Koja se korist očekuje za moj tumor i koje su alternative?",
+    "Je li izvor privremen ili trajan i koje pripreme i mjere trebam?",
+    "Koje učinke i hitne simptome prijaviti i kako se provjerava odgovor?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Kërkimi për Alzheimerin: leximi kritik i rezultateve të përgjigjes",
+  "intro": "Analiza e personave që plotësojnë kriterin e përgjigjes numëron sa pjesëmarrës arrijnë një rezultat të përcaktuar, në vend që të japë vetëm mesataren. E lehtëson diskutimin, por përgjigje nuk do të thotë domosdoshmërisht shërim ose përmirësim. Në kërkimin për Alzheimerin, rezultati mund të jetë shmangia e një përkeqësimi të caktuar gjatë ndjekjes. Zbuloni saktësisht çfarë është numëruar para se të interpretoni një titull.",
+  "sections": [
+    {
+      "heading": "Filloni me përkufizimin, drejtimin dhe kohën",
+      "paragraphs": [
+        "Pyetni çfarë matjeje u përdor, si u përkufizua përgjigjja dhe kur u vlerësua. Studimi mund të numërojë përmirësim, qëndrueshmëri ose qëndrim poshtë pragut të përkeqësimit; këto janë rezultate të ndryshme. Në matje si CDR-SB, vlerat më të larta tregojnë dëmtim më të madh, ndaj drejtimi ka rëndësi. Pragu kërkon arsye të mbështetur në ndryshim domethënës, jo thjesht numër të volitshëm. Përkufizimi i zgjedhur paraprakisht zakonisht interpretohet më lehtë se ai i përzgjedhur pasi shihet cili krahasim duket i favorshëm. Disa analiza numërojnë personat që përkeqësohen; atëherë më pak përgjigjës mund të favorizojnë trajtimin."
+      ]
+    },
+    {
+      "heading": "Lexoni krahasimin në terma absolutë",
+      "paragraphs": [
+        "Vetëm përqindja e përgjigjes në grupin e trajtuar nuk tregon efektin e trajtimit. Edhe grupi krahasues mund të plotësojë kriterin për shkak të ndryshueshmërisë, kujdesit të zakonshëm ose ecurisë së sëmundjes. Krahasoni grupe të vlerësuara gjatë së njëjtës periudhë dhe me të njëjtin rregull. Kërkoni numra ose norma për të njëjtin numër njerëzish dhe diferencën absolute, krahas shifrës relative. Një përqindje relative mbresëlënëse mund të përshkruajë ndryshim absolut modest dhe nuk garanton mundësinë individuale të përfitimit."
+      ]
+    },
+    {
+      "heading": "Ndani mesataret e grupeve nga ndryshimi individual",
+      "paragraphs": [
+        "Diferenca mesatare përshkruan grupet, ndërsa pragu i përgjigjes klasifikon vëzhgime individuale. Një person pak poshtë pragut dhe një tjetër pak sipër mund të kenë përvoja shumë të ngjashme, por kategori të kundërta. Analiza fsheh edhe sa shumë ndryshoi secili. Kërkoni pamjen e përgjithshme dhe rezultatet me rëndësi në jetën e përditshme, jo vetëm etiketën. Rënia mesatare më e ngadaltë nuk do të thotë se të gjithë u përmirësuan, sëmundja ndaloi ose vonesa është e njëjtë për secilin."
+      ]
+    },
+    {
+      "heading": "Kontrolloni pasigurinë dhe rezultatet që mungojnë",
+      "paragraphs": [
+        "Merrni parasysh numrin e pjesëmarrësve, kohëzgjatjen e ndjekjes dhe pasigurinë e vlerësimit. Rezultatet e një grupi të vogël ose të përzgjedhur mund të mos vlejnë gjerësisht. Pyetni nëse tërheqjet dhe matjet që mungojnë u trajtuan njëtrajtshëm, përfshirë ata që ndaluan trajtimin për efekte anësore. Përjashtimi i tyre mund të ndryshojë përshtypjen e përfitimit. Disa analiza eksploruese mund të japin rastësisht rezultat inkurajues. Intervalet e besimit dhe përputhja me rezultatet kryesore tregojnë sa fort mbështetet gjetja."
+      ]
+    },
+    {
+      "heading": "Lidheni rezultatin me vendimin real për trajtim",
+      "paragraphs": [
+        "Burimi origjinal përdor kërkimin e trajtimit të Alzheimerit si ilustrim; shpjegimi statistikor nuk rekomandon një bar të caktuar. Diskutoni nëse popullata e studimit i ngjan personit që mendon trajtimin dhe peshoni përfitimin e mundshëm kundrejt dëmeve, monitorimit, vizitave dhe barrës së kujdestarit. Miratimi lokal dhe përshtatshmëria duhen kontrolluar për trajtimin konkret. Pyetni çfarë mbetet e panjohur në afat më të gjatë. Vendimi i mirë mund të pranojë përfitim të pasigurt duke vazhduar përparësinë ndaj simptomave, mbështetjes dhe synimeve personale."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Numra të trilluar: krahasimi ka rëndësi",
+      "text": "Përfytyroni dy grupe me nga njëqind njerëz. Dyzet të trajtuar dhe tridhjetë në grupin krahasues plotësojnë të njëjtin kriter. Diferenca absolute është dhjetë njerëz për njëqind, jo dyzet njerëz shtesë të ndihmuar. Këto shifra të shpikura shpjegojnë aritmetikën dhe nuk janë rezultate për ndonjë bar."
+    },
+    {
+      "title": "Shembull hipotetik: çfarë do të thotë përgjigje?",
+      "text": "Familja lexon se pjesëmarrësi plotësoi kriterin e përgjigjes, pastaj mëson se kjo nënkuptonte moskalimin e pragut të përkeqësimit. Pyet për funksionimin e përditshëm, pa e interpretuar etiketën si rikthim kujtese ose shërim."
+    }
+  ],
+  "questions": [
+    "Çfarë u quajt saktësisht përgjigje, a u caktua rregulli paraprakisht dhe pse ndryshimi është domethënës?",
+    "Cilat janë diferenca absolute, pasiguria dhe mënyra e trajtimit të rezultateve që mungojnë?",
+    "Si lidhen përfitimi i mundshëm, dëmet dhe barra e trajtimit me gjendjen dhe synimet tona?"
+  ]
+}

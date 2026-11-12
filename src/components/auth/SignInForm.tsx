@@ -15,6 +15,8 @@ type Stage = "email" | "code";
 
 // The sign-in APIs answer in English; a rate limit gets its own sentence, anything else the form's own message.
 const TOO_MANY: Record<Lang, string> = {
+  ru: "Слишком много попыток. Пожалуйста, подождите немного и повторите попытку.",
+
   ro: "Prea multe încercări. Așteaptă puțin și încearcă din nou.",
   en: "Too many attempts. Please wait a little and try again.",
   sq: "Shumë përpjekje. Prit pak dhe provo përsëri.",
@@ -99,7 +101,7 @@ export function SignInForm({
       const captchaToken = await executeCaptcha("email_code");
       const response = await fetch("/api/auth/email-code/request", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", [REQUEST_LANG_HEADER]: lang },
         body: JSON.stringify({ email: normalizedEmail, captchaToken }),
       });
       if (!response.ok) {

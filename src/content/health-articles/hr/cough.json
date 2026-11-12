@@ -1,0 +1,51 @@
+{
+  "title": "Kašalj: razumjeti obrazac i odabrati sljedeći korak",
+  "intro": "Kašalj čisti dišne putove, ali nadražajni ili trajni kašalj može ometati san, rad i svakodnevicu. To je simptom, a ne jedna bolest. Mnogi slučajevi prate virusne infekcije i postupno prolaze; drugi zahtijevaju liječenje uzroka. Početak, trajanje i pridruženi simptomi korisniji su od biranja sirupa samo prema zvuku.",
+  "sections": [
+    {
+      "heading": "Pratite obrazac bez samodijagnoze",
+      "paragraphs": [
+        "Zabilježite je li kašalj suh ili s iskašljajem, svakodnevan, budi li noću ili prati napor, obroke, dim ili izlaganje na poslu. Zabilježite temperaturu, piskanje, zaduhu i zagrcavanje. Uzroci uključuju infekcije, astmu, upalu nosa, refluks, bolesti povezane s pušenjem i neke lijekove, uključujući ACE inhibitore. Rjeđi uzroci mogu biti ozbiljni. Novi kašalj nakon uvođenja lijeka treba razgovor, a ne samostalni prekid terapije. Vlažan kašalj nije automatski bakterijski, a samo noćni kašalj ne dokazuje astmu."
+      ]
+    },
+    {
+      "heading": "Žurni znakovi odmah mijenjaju plan",
+      "paragraphs": [
+        "Tražite hitnu pomoć zbog teškog otežanog disanja, plavih ili sivih usana, kolapsa ili gušenja s nemogućnošću disanja ili govora. Iskašljavanje više od nekoliko tragova krvi ili krvi s boli u prsima ili otežanim disanjem također zahtijeva hitnu procjenu. I male tragove krvi treba brzo provjeriti. Žuran savjet potreban je za brzo pogoršanje, bol u prsima, značajnu temperaturu, dehidraciju ili izrazito loše stanje. Dijete čiji je kašalj počeo nakon zagrcavanja hranom ili predmetom treba procjenu i ako je prvi događaj prošao. Dojenčad s prekidima disanja, slabim hranjenjem ili neobičnom pospanošću traži žurnu pozornost."
+      ]
+    },
+    {
+      "heading": "Trajanje je važno, ali alarmi su važniji od kalendara",
+      "paragraphs": [
+        "Kašalj nakon infekcije može potrajati tjednima dok se ostalo popravlja. Dogovorite procjenu ako traje dulje od otprilike tri tjedna, ranije kod pogoršanja ili važnih rizika. Kod djece svakodnevni vlažni kašalj dulji od četiri tjedna posebno treba procjenu. Nemojte neprekidne tjedne vlažnog kašlja nazivati samo novom prehladom. Neobjašnjivo mršavljenje, noćno znojenje, ponavljane prsne infekcije ili važno izlaganje tuberkulozi također traže pregled. Liječnik može pregledati prsa, provjeriti lijekove i odlučiti o snimci, funkcijskom testu pluća ili testiranju infekcije. Ne treba svatko sve pretrage."
+      ]
+    },
+    {
+      "heading": "Mjere olakšanja imaju granice",
+      "paragraphs": [
+        "Izbjegavajte dim i aerosole elektroničkih cigareta te smanjite poznate nadražaje. Redovito pijenje može umiriti grlo; poštujte medicinska ograničenja tekućine. Med može donekle pomoći odraslima i djeci starijoj od godine dana, ali nikada mlađoj dojenčadi. Izbjegavajte posude s vrućom parom i rizike gušenja pastilama kod male djece. Bezreceptni pripravci imaju ograničenu korist i mogu izazvati pospanost, interakcije ili slučajno udvostručenu dozu. Pitajte ljekarnika o dobi, trudnoći i drugim lijekovima; ne dajte djetetu proizvod za odrasle. Analgetik ili antipiretik može pomoći boli ili temperaturi bez zaustavljanja kašlja."
+      ]
+    },
+    {
+      "heading": "Liječite uzrok i dogovorite kontrolu",
+      "paragraphs": [
+        "Većini nekompliciranih virusnih kašljeva ne trebaju antibiotici. Inhalatori, steroidi ili lijekovi za refluks nisu standardni pokušaj za svaki kašalj: moraju odgovarati kliničkoj procjeni. Dokazana bakterijska infekcija ili kronična bolest dišnih putova može trebati posebno liječenje. Dugotrajan neobjašnjen kašalj može zahtijevati specijalista i prilagođeno liječenje kontrole kašlja, umjesto ponovljenih antibiotika. Recite za gubitak sna, bježanje mokraće ili nesvjesticu uz kašalj jer trebaju podršku i utječu na sigurnost. Pitajte kad se očekuje poboljšanje, što ako plan ne uspije i koji znakovi traže raniji povratak. Trajne simptome treba ozbiljno shvatiti bez pretpostavljanja najgoreg uzroka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: koristan dnevnik",
+      "text": "Ilir ima suh kašalj nakon promjene lijeka za tlak. Zapisuje početak i donosi sve lijekove na pregled. Liječnik provjerava druge uzroke i odlučuje treba li promjena; Ilir ne prekida lijek sam."
+    },
+    {
+      "title": "Zamišljeni primjer: vlažan kašalj koji traje",
+      "text": "Djevojčica djeluje aktivno između prehlada, ali ima vlažan kašalj svakog dana tjednima. Roditelj primjećuje da nije bilo dana bez kašlja i dogovara pregled. Liječnik procjenjuje trajni obrazac umjesto ponavljanih pripravaka za suzbijanje iz trgovine."
+    }
+  ],
+  "questions": [
+    "Koji uzroci odgovaraju mom obrascu i trebam li pretrage?",
+    "Koje mjere olakšanja ili lijekovi odgovaraju meni?",
+    "Kada treba doći poboljšanje i što traži raniji povratak?"
+  ]
+}

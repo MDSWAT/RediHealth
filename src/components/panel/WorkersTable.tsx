@@ -38,6 +38,26 @@ export function WorkersTable({
 }: WorkersTableProps) {
   const { lang } = useLanguage();
   const t = {
+  ru: {
+      errDelete: "Не удалось удалить.",
+      errDeleteUnexpected: "Не удалось удалить. Попробуйте еще раз.",
+      errUpdate: "Не удалось изменить статус.",
+      dismiss: "Закрыть",
+      showing: (v: number, total: number) => `${v} из ${total} персонал`,
+      noneTitle: "Персонала пока нет",
+      noneHint: "Добавьте медицинского работника или администратора.",
+      staffId: "Персонал нет.",
+      general: "Общий",
+      statusToggle: "Изменить статус",
+      assigned: (count: number) => `${count} назначенный пациент${count === 1 ? "" : "с"}`,
+      deleteQ: "Удалить этого сотрудника?",
+      yesDelete: "Да, удалить",
+      cancel: "Отмена",
+      deleteWorker: "Удалить",
+      editWorker: "Редактировать",
+      assignPatients: "Назначение пациентов",
+    },
+
     en: {
       errDelete: "Could not delete.",
       errDeleteUnexpected: "Could not delete. Try again.",

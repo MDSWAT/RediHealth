@@ -1,0 +1,51 @@
+{
+  "title": "Astma: osobni plan za svakodnevne simptome i napadaje",
+  "intro": "Astma uzrokuje promjenjivu upalu i sužavanje dišnih putova. Piskanje, kašalj, stezanje u prsima i zaduha mogu se javljati i povlačiti, uključujući noću ili tijekom aktivnosti. Liječenje često omogućuje dobru kontrolu, ali napadaj može ugroziti život. Potvrđena dijagnoza, odgovarajući inhalatori, pravilna tehnika i pisani plan postupanja korisniji su od oslanjanja na boju inhalatora ili nagađanja što učiniti kad se simptomi pogoršaju.",
+  "sections": [
+    {
+      "heading": "Opišite simptome i moguće okidače",
+      "paragraphs": [
+        "Recite liječniku kada se simptomi javljaju, ometaju li san ili aktivnost i što ih naizgled izaziva. Dim, onečišćenje zraka, hladan zrak, infekcije, vježbanje ili alergeni mogu pridonijeti, ali okidači se razlikuju. Sam kašalj ili piskanje ne dokazuju astmu. Navedite izloženosti na poslu, prijašnje napadaje i liječenje koje je pomoglo ili uzrokovalo probleme. Potpuno izbjegavanje vježbanja nije automatski potrebno; razgovarajte o sigurnoj aktivnosti i mogućoj nedovoljnoj kontroli simptoma."
+      ]
+    },
+    {
+      "heading": "Razumijte procjenu i praćenje",
+      "paragraphs": [
+        "Procjena može uključiti testove disanja poput spirometrije, mjerenja kroz vrijeme i druge pretrage prema dobi i okolnostima. Budući da simptomi variraju, pregled kad se dobro osjećate možda neće razjasniti dijagnozu. Pitajte koji je dokazi podupiru i može li pridonijeti druga bolest. Nakon postavljanja dijagnoze ponavljano noćno buđenje, sve veća potreba za ublažavanjem simptoma ili teškoće pri normalnim aktivnostima razlog su za kontrolu, umjesto prihvaćanja kao neizbježnih."
+      ]
+    },
+    {
+      "heading": "Znajte čemu služi svaki propisani inhalator",
+      "paragraphs": [
+        "Neki lijekovi smanjuju osnovnu upalu, neki ublažavaju simptome, a određene propisane kombinacije imaju obje uloge. Ne koristi se svaki inhalator na isti način. Pitajte za stvarne nazive lijekova, svrhu i upute, umjesto oslanjanja samo na boju. Nemojte prekinuti redovno liječenje samo zato što se osjećate bolje niti ga zamijeniti tuđim inhalatorom. Razgovarajte o nuspojavama, trudnoći, troškovima i zaboravljanju terapije kako bi liječnik prilagodio provediv plan."
+      ]
+    },
+    {
+      "heading": "Provjerite tehniku i držite plan dostupnim",
+      "paragraphs": [
+        "Donesite uređaje na pregled i pokažite kako ih koristite. Tehnika ovisi o uređaju; uz neke inhalatore može se preporučiti komora. Pitajte kako provjeriti preostale doze i kada zamijeniti zalihe. Pisani plan treba objasniti uobičajeno liječenje, znakove pogoršanja i postupanje tijekom napadaja. Prema potrebi podijelite odgovarajuće upute sa skrbnicima ili školom. Nakon napadaja dogovorite brzu kontrolu i ako su se simptomi smirili."
+      ]
+    },
+    {
+      "heading": "Brzo reagirajte kada disanje slabi",
+      "paragraphs": [
+        "Slijedite propisani plan i koristite preporučeni lijek za brzo olakšanje uz traženje pomoći kad je potrebna. Tražite hitnu pomoć kod teške ili sve jače zaduhe, teškoća s normalnim govorom, plavih ili sivih usana, iscrpljenosti, zbunjenosti ili pospanosti. Napadaj koji ne reagira prema vašem planu ili napadaj bez dostupnog propisanog lijeka zahtijeva hitnu pomoć. Ne odgađajte zato što je prethodni napadaj bio blag ili čekate redovni termin. Nemojte sami voziti ako ste ozbiljno loše."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: simptomi tijekom sporta",
+      "text": "Učenik kašlje i piska tijekom sporta te se ponekad budi noću. Na pregledu opisuje oba obrasca i pita treba li testiranje ili promjena liječenja. Ne pretpostavlja da mora trajno izbjegavati vježbanje niti ignorira noćne simptome."
+    },
+    {
+      "title": "Hipotetski primjer: razjašnjenje uloge uređaja",
+      "text": "Osoba ima više inhalatora, ali ne zna koji služi kod pogoršanja. Donosi uređaje i traži provjeru tehnike te jasne pisane upute. Plan drži dostupnim umjesto oslanjanja na zapamćenu boju ili internetski raspored doziranja."
+    }
+  ],
+  "questions": [
+    "Koji dokazi podupiru dijagnozu i kako ćemo procijeniti je li astma kontrolirana?",
+    "Čemu služi svaki moj inhalator i možete li provjeriti moju tehniku?",
+    "Što točno moj plan treba navesti o pogoršanju simptoma i hitnoj pomoći?"
+  ]
+}

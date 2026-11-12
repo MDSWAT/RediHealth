@@ -21,6 +21,8 @@ interface PainDiagramCopy {
 }
 
 export const PAIN_DIAGRAM_COPY: Record<Lang, PainDiagramCopy> = {
+"ru": {"heading":"Область боли","front":"Спереди","back":"Сзади","rightShort":"П","leftShort":"Л"},
+
   ro: {
     heading: "Zona dureroasă pe corp",
     front: "Față",

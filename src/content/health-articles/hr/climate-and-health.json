@@ -1,0 +1,51 @@
+{
+  "title": "Klima i zdravlje: priprema za vrućinu, dim i ekstremno vrijeme",
+  "intro": "Klimatske promjene utječu kroz vrućinu, ekstremno vrijeme, zrak, sigurnost hrane i vode te prekide usluga. Rizici ovise o mjestu, zdravlju, stanovanju, radu i pomoći. Priprema smanjuje štetu, ali trebaju i zajedničke službe i javne mjere. Koristite lokalna upozorenja umjesto očekivanja da članak predviđa uvjete doma.",
+  "sections": [
+    {
+      "heading": "Priprema za vrućinu prije bolesti",
+      "paragraphs": [
+        "Planirajte hladniji prostor za najtoplije sate, zasjenite sobe i prilagodite napor. Provjerite starije, malu djecu, trudnice i kronične bolesnike koji trebaju pomoć. Pijte prema dobi i zdravlju; propisano ograničenje traži osobni plan. Ne ostavljajte djecu ili ovisne osobe u parkiranom vozilu. Zbunjenost, kolaps ili sumnja na toplinski udar hitnost su: zovite pomoć i započnite hlađenje."
+      ]
+    },
+    {
+      "heading": "Onečišćenje i dim traže plan",
+      "paragraphs": [
+        "Vrućina i dim pogoršavaju dišne i srčanožilne probleme. Slijedite lokalni savjet, smanjite vanjski napor pri opasnom zraku i nađite hladniji čišći prostor. Isključivanje dima treba uravnotežiti s izbjegavanjem pregrijane kuće: prijeđite u prikladan javni prostor ako dom nije siguran. Slijedite plućni plan i držite terapiju dostupnom. Teška zaduha ili bol u prsima traže hitnu procjenu, a ne pretpostavku da je vrijeme krivo."
+      ]
+    },
+    {
+      "heading": "Poplave i zarazni rizici",
+      "paragraphs": [
+        "Poplavna voda skriva struju, ozljede i nečistoću. Ne hodajte ni vozite kroz nju; pratite evakuaciju i savjete za vodu. Držite djecu dalje i pitajte za izložene rane. Hrana nakon poplave ili gubitka hlađenja može biti nesigurna i normalnog izgleda. Nikad ne koristite generator na gorivo u kući ili garaži zbog ugljikova monoksida. Temperatura i kiša mijenjaju lokalne krpelje, komarce i infekcije; pratite lokalnu prevenciju bez pretpostavke da je svaka bolest svugdje."
+      ]
+    },
+    {
+      "heading": "Zaštitite terapiju i pristup skrbi",
+      "paragraphs": [
+        "Pitajte o čuvanju lijekova na vrućini i planu za povraćanje, dehidraciju ili nestanak struje. Neki mijenjaju podnošenje topline, ali ne prekidajte ih sami. Planirajte hlađene lijekove, električnu opremu, prijevoz i drugi kontakt s timom. Imajte ažuran popis i kontakte. Plan treba odgovarati domu i financijama, uz pomoć službi kad privatno hlađenje ili prijevoz nisu dostupni."
+      ]
+    },
+    {
+      "heading": "Mentalno zdravlje i zajednička prevencija",
+      "paragraphs": [
+        "Ekstremno vrijeme, raseljavanje i briga stvaraju stres, nesanicu i tugu. Tražite podršku ako traju ili ometaju život. Dogovorite provjere s pouzdanima i službe za sklonište, vodu i pristupačne informacije. Sigurnije stanovanje, hlad, čista energija i prijevoz štite i izvan hitnosti. Osobno djelovanje koristi, ali ljudi nisu krivi za nekontrolirane opasnosti. Nakon događaja pregledajte plan i popunite praznine u miru."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vrućina uz ograničenje tekućine — zamišljeni primjer",
+      "text": "Starija osoba sa srčanom bolešću primi upozorenje. Pita tim za plan tekućine, organizira hlad i provjeru. Ne prekida sama lijekove niti pije neograničeno."
+    },
+    {
+      "title": "Dim i pregrijavanje doma — zamišljeni primjer",
+      "text": "Obitelj zatvori prozore zbog dima, ali kuća postane opasno vruća. Prema upozorenjima odlazi u hladniji čist prostor umjesto gledanja samo zatvorenih prozora."
+    }
+  ],
+  "questions": [
+    "Koja lokalna upozorenja za vrućinu, zrak i poplave koristiti?",
+    "Kako bolesti, lijekovi i oprema mijenjaju kućni plan?",
+    "Gdje dobiti hlađenje, sigurnu vodu, prijevoz ili emocionalnu podršku kad dom ne dostaje?"
+  ]
+}

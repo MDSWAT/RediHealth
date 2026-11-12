@@ -1,0 +1,51 @@
+{
+  "title": "Kanceri i gjirit: diagnoza, zgjedhjet dhe mbështetja",
+  "intro": "Kanceri i gjirit fillon kur qelizat jonormale rriten e mund të pushtojnë indet ose përhapen. Prek mosha e gjini të ndryshme. Ka disa lloje, prandaj trajtimi nuk është i njëjtë. Ndryshimi i ri do vlerësim dhe diagnoza shpjegim të qartë të gjetjeve, qëllimeve e ndihmës. Artikulli përgatit bisedën, nuk zgjedh skemë personale.",
+  "sections": [
+    {
+      "heading": "Kontrolloni ndryshimet pa diagnozë nga pamja",
+      "paragraphs": [
+        "Gunga e re në gji ose sqetull, formë e ndryshuar, gropëzim, thithë e futur ose sekrecion i pazakontë duan hetim. Shumë nuk janë kancer, por mungesa e dhimbjes ose depistimi i fundit normal nuk përjashtojnë kontrollin e ndryshimit të vazhdueshëm. Klinika mund të kombinojë ekzaminim, mamografi ose ekografi dhe mostër indi. Pyetni testet, kohën dhe përgjegjësin. Depistimi pa simptoma ndryshon nga hetimi i simptomës; mos prisni ftesën tjetër."
+      ]
+    },
+    {
+      "heading": "Kuptoni patologjinë dhe shtrirjen",
+      "paragraphs": [
+        "Biopsia dallon qelizat e kufizuara nga invazive dhe jep lloj e gradë. Grada përshkruan qelizat, stadi shtrirjen; nuk zëvendësohen. Receptorët e estrogjenit e progesteronit dhe HER2 ndihmojnë zgjedhjen e barnave. Imazhet shtesë varen nga gjetjet, jo çdo skanim për këdo. Pyetni nyjat limfatike, përhapjen e largët dhe rezultatet ende pa ardhur. Këshillimi ose testimi gjenetik mund të varet nga rrethanat personale e familjare."
+      ]
+    },
+    {
+      "heading": "Krahasoni rendin e trajtimeve lokale e sistemike",
+      "paragraphs": [
+        "Lokalisht mund të ruhet gjiri ose bëhet mastektomi, me rrezatim sipas rastit. Diskutoni rindërtimin ose jo dhe arsyen e pasojat e operimit të nyjave. Trajtimi i gjithë trupit mund të jetë kimioterapi, bllokim hormonal, terapi e synuar ose imunoterapi kur përshtatet. Jo të gjithë duan çdo trajtim dhe barnat mund të jenë para ose pas operacionit. Pyetni rendin, uljen e rrezikut ose simptomave, dëmet e alternativat. Sëmundja metastatike zakonisht synon kontroll, lehtësim dhe jetë më të gjatë, jo premtim shërimi."
+      ]
+    },
+    {
+      "heading": "Planifikoni efektet, fertilitetin dhe ndihmën herët",
+      "paragraphs": [
+        "Pyetni energjinë, punën, infeksionin, ndjesinë, seksualitetin dhe imazhin trupor. Ruajtja e fertilitetit ose kontracepsioni diskutohen para kur duhen; shtatzënia do specialist. Tregoni barna e shtesa ekipit pa shtuar produkte të reklamuara. Fizioterapia, plaga, ushqyerja dhe ndihma emocionale e financiare janë pjesë. Pyetni ënjtjen e krahut ose kraharorit dhe shërbimin e limfedemës. Merrni kontakt dhe udhëzime të shkruara për efekte e këshillë jashtë orarit."
+      ]
+    },
+    {
+      "heading": "Mbani të qartë kontrollin dhe urgjencën",
+      "paragraphs": [
+        "Ndjekja kontrollon rikuperim, efekte dhe rikthim sipas situatës. Raportoni simptoma të reja të vazhdueshme pa pritur, por simptoma nuk është automatikisht rikthim. Temperatura, dridhjet ose përkeqësimi i papritur gjatë trajtimit që ul imunitetin duan këshillë të menjëhershme sipas planit personal. Frymëmarrja shumë e vështirë, dhimbja e gjoksit, konfuzioni ose kolapsi duan emergjencë. Kujdesi paliativ ndihmon simptoma e jetë krahas trajtimit, jo vetëm ditët e fundit. Kërkoni shpjegim e ndihmë kur mbingarkoheni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: plane të ndryshme",
+      "text": "Dy mike marrin barna të ndryshme. Njëra pyet receptorët, stadin dhe qëllimet pa menduar kujdes më të dobët. Sjell pyetje të shkruara dhe konfirmon rezultatet e mbetura."
+    },
+    {
+      "title": "Shembull hipotetik: fertilitet para trajtimit",
+      "text": "Një paciente që mund të dojë fëmijë e thotë para fillimit. Diskuton specialistin në kohë, opsionet realiste e kontracepsionin gjatë organizimit, jo pas ndikimit në fertilitet."
+    }
+  ],
+  "questions": [
+    "Çfarë tregojnë biopsia, receptorët e stadi dhe çfarë mbetet e pasigurt?",
+    "Pse ky rend dhe cilat përfitime, dëme e alternativa vlejnë për mua?",
+    "Çfarë ndihme, kontrollesh e kontakti urgjent duhen gjatë e pas trajtimit?"
+  ]
+}

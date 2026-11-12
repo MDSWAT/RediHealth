@@ -59,6 +59,8 @@ type LocalizedRomanesTerm = RomanesGlossaryTerm & {
 };
 
 const CATEGORY_GENERAL_FALLBACK: Record<Lang, string> = {
+"ru": "Общее здоровье",
+
   ro: "Sănătate generală",
   en: "General health",
   sq: "Shëndeti i përgjithshëm",
@@ -68,6 +70,8 @@ const CATEGORY_GENERAL_FALLBACK: Record<Lang, string> = {
 };
 
 const CATEGORY_EMERGENCY_FALLBACK: Record<Lang, string> = {
+"ru": "Неотложные состояния",
+
   ro: "Urgențe",
   en: "Emergencies",
   sq: "Urgjencat",
@@ -80,6 +84,10 @@ const ROMANES_COUNT_BY_LANG: Record<
   Lang,
   { one: string; many: (n: number) => string; bridgeLabel: string }
 > = {
+"ru": {
+"many": n=>`Показано слов: ${n}`,
+"one":"Показано 1 слово","bridgeLabel":"Медицинское значение"},
+
   ro: {
     one: "1 cuvânt afișat",
     many: (n) => (n >= 20 ? `${n} de cuvinte afișate` : `${n} cuvinte afișate`),

@@ -1,0 +1,51 @@
+{
+  "title": "KOPB: lakše svakodnevno disanje i plan pogoršanja",
+  "intro": "Kronična opstruktivna plućna bolest, KOPB, trajno ograničava protok zraka zbog oštećenja dišnih putova i pluća. Obuhvaća kronični bronhitis, emfizem ili oboje. Zaduha, kašalj i sluz ograničavaju aktivnost, ali liječenje i rehabilitacija olakšavaju simptome i smanjuju pogoršanja. Nije samo neizbježno starenje; trajne tegobe traže procjenu i kod nepušača.",
+  "sections": [
+    {
+      "heading": "Potvrda dijagnoze i drugi uzroci",
+      "paragraphs": [
+        "Liječnik pita o simptomima, pušenju, prašini i parama na radu, kućnom onečišćenju i ranijim bolestima. Spirometrija, uglavnom nakon lijeka za širenje putova, potvrđuje trajnu opstrukciju. Drugi testovi traže srčanu bolest, infekciju ili anemiju. Sama snimka ne zamjenjuje funkcijsko testiranje. Opišite učinak na hod, san i samostalnost te broj pogoršanja."
+      ]
+    },
+    {
+      "heading": "Manje izlaganja i povrat aktivnosti",
+      "paragraphs": [
+        "Prestanak pušenja ključan je, uz savjetovanje i prikladne lijekove. Raspravite prašinu, pare, dim i druge okidače. Plućna rehabilitacija spaja nadziranu vježbu, edukaciju i samoupravljanje prema sposobnosti, bez ignoriranja opasnih simptoma. Postupna aktivnost, raspored zadataka i prehrana čuvaju snagu. Izbjegavanje svakog pokreta povećava slabost. Razgovarajte o tjeskobi i lošem raspoloženju koji otežavaju disanje."
+      ]
+    },
+    {
+      "heading": "Inhalator i tehnika jednako su važni",
+      "paragraphs": [
+        "Bronhodilatatori opuštaju dišne putove. Kratko i dugodjelujući imaju različite uloge; neki koriste i inhalacijski kortikosteroid. Izbor ovisi o simptomima, pogoršanjima i drugim nalazima, a ne boji. Tražite da stručnjak promatra stvarni uređaj, procijeni komoru i objasni održavanje nasuprot olakšanju. Prijavite nuspojave i teško rukovanje. Imajte popis i slijedite upute za steroid, uključujući njegu usta."
+      ]
+    },
+    {
+      "heading": "Pisani plan pogoršanja",
+      "paragraphs": [
+        "Pogoršanje znači lošije disanje, kašalj ili sluz i može trebati dodatnu terapiju. Pitajte kada zvati, kako primijeniti lijek za olakšanje i treba li osobno propisan paket. Ne započinjite tuđe antibiotike ili steroidne tablete bez plana. Hitan savjet treba za jaču zaduhu, iskašljavanje krvi ili novu bolnu otečenu nogu. Teško disanje, nemogućnost normalnog govora, pritisak u prsima, plave ili sive usne ili nova zbunjenost traže hitnu pomoć. Poznata dijagnoza ne objašnjava svaku novu hitnost."
+      ]
+    },
+    {
+      "heading": "Kisik, prevencija i podrška",
+      "paragraphs": [
+        "Kućni kisik propisuje se odabranima nakon procjene niskog kisika u krvi, ne za svaki nedostatak zraka. Koristite propisanu postavku; ne pušite, ne koristite e-cigarete niti dopustite plamen blizu. Raspravite lokalna cjepiva, kontrole i pomoć nakon bolnice. Uznapredovala bolest može tražiti specijalističko liječenje i planiranje. Olakšanje simptoma, psihološka i praktična pomoć prate aktivnu skrb u svakoj fazi. Tražite plan prema prioritetima i stanovanju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Težak uređaj — zamišljeni primjer",
+      "text": "Osoba kaže da inhalator ne pomaže. Liječnik vidi problem tehnike ili snage šake. Vježbaju i razmatraju drugi prikladan uređaj umjesto automatskog zaključka da lijek ne djeluje."
+    },
+    {
+      "title": "Promijenjeno disanje — zamišljeni primjer",
+      "text": "Osoba s KOPB-om ima veću zaduhu i nov bolni otečeni list. Traži hitnu procjenu, ne liječi sve kao običnu epizodu. Teška zaduha ili pritisak u prsima tražili bi hitnu pomoć."
+    }
+  ],
+  "questions": [
+    "Potvrđuju li spirometrija i nalazi KOPB i doprinosi li nešto drugo?",
+    "Možete li provjeriti tehniku i uputiti me na plućnu rehabilitaciju?",
+    "Koji je moj pisani plan i koji simptomi traže hitan savjet ili pomoć?"
+  ]
+}

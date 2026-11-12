@@ -19,6 +19,9 @@ async function main() {
   const { importCountryFromOsm } = await import("@/lib/osm-import");
 
   const requested = process.argv.slice(2).map((value) => value.toUpperCase());
+  if (requested.some((value) => !isSupportedCountry(value))) {
+    throw new Error(`Unsupported country. Choose from ${SUPPORTED_COUNTRIES.join(", ")}.`);
+  }
   const countries: CountryCode[] = requested.length
     ? requested.filter(isSupportedCountry)
     : [...SUPPORTED_COUNTRIES];

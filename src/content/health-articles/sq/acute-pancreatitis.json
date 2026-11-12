@@ -1,0 +1,51 @@
+{
+  "title": "Pankreatiti akut: vlerësimi urgjent dhe rikuperimi",
+  "intro": "Pankreatiti akut është inflamacion i papritur i pankreasit, organ që ndihmon tretjen e ushqimit dhe prodhon hormone, përfshirë insulinën. Mund të bëhet serioz dhe kërkon vlerësim urgjent në spital. Vetëm simptomat nuk e konfirmojnë diagnozën: edhe urgjenca të tjera mund të shkaktojnë dhimbje të forta barku. Artikulli shpjegon çfarë të diskutosh me ekipin e spitalit, jo si të trajtosh në shtëpi një episod të dyshuar.",
+  "sections": [
+    {
+      "heading": "Dallo simptomat që kërkojnë ndihmë urgjente",
+      "paragraphs": [
+        "Dhimbja e fortë në pjesën e sipërme të barkut kërkon vlerësim urgjent, sidomos kur fillon papritur, vazhdon ose përhapet në shpinë. Mund të shoqërohet me të vjella, temperaturë, rrahje të shpejta zemre ose vështirësi në frymëmarrje. Dhimbja e fortë me gulçim, të fikët ose përkeqësim të shpejtë kërkon ndihmë urgjente të menjëhershme. Mos drejto makinën kur je rëndë. Tregoji shërbimit simptomat dhe kur filluan, në vend që të presësh derisa të jesh i sigurt se shkaku është pankreasi."
+      ]
+    },
+    {
+      "heading": "Kupto si hetohen diagnoza dhe shkaku",
+      "paragraphs": [
+        "Analizat e gjakut, përfshirë enzimat pankreatike si lipaza, ndihmojnë në vlerësimin e diagnozës. Ekografia ose ekzaminime të tjera imazherike mund të kërkojnë gurë në tëmth ose komplikime; jo çdo person ka nevojë menjëherë për çdo ekzaminim. Gurët në tëmth dhe alkooli janë shkaqe të zakonshme, por mund të kontribuojnë barnat, yndyrat e larta në gjak dhe gjendje të tjera. Ndonjëherë shkaku nuk gjendet fillimisht. Jep informacion të saktë për barnat dhe alkoolin pa ndërprerë vetë barnat e përshkruara."
+      ]
+    },
+    {
+      "heading": "Dije çfarë synon kujdesi në spital",
+      "paragraphs": [
+        "Ekipi monitoron qarkullimin, frymëmarrjen, funksionin e veshkave dhe tregues të tjerë të rëndesës. Trajtimi mund të përfshijë lëngje intravenoze, lehtësim dhimbjeje dhe mbështetje për të përzierat dhe ushqyerjen. Disa njerëz kanë nevojë për kujdes intensiv. Antibiotikët përdoren kur i kërkon një infeksion, jo automatikisht për çdo pankreas të inflamuar. Një kanal biliar i bllokuar ose problem tjetër specifik mund të kërkojë procedurë. Pyet çfarë trajton çdo ndërhyrje dhe cilat ndryshime do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Ndiq një plan individual për ushqimin dhe rikuperimin",
+      "paragraphs": [
+        "Mos vendos vetë të mos hash ose të mbash dietë kufizuese si trajtim në shtëpi. Ekipi vendos kur dhe si mund të hash sipas gjendjes dhe tolerancës tënde. Nëse ngrënia nuk është e mundur, mund të nevojitet mbështetje e specializuar ushqimore. Rikuperimi ndryshon dhe përmirësimi i ndjesisë nuk heq çdo rrezik komplikimesh. Përpara daljes nga spitali, sqaro çfarë të hash, si t'i përdorësh barnat e përshkruara dhe kë të kontaktosh për simptoma të reja."
+      ]
+    },
+    {
+      "heading": "Trajto shkakun dhe dallo përkeqësimet",
+      "paragraphs": [
+        "Ndjekja mund të përfshijë diskutimin e heqjes së fshikëzës së tëmthit nëse gurët shkaktuan episodin, rishikimin e barnave ose menaxhimin e yndyrave në gjak. Pyet për shmangien e alkoolit dhe për mbështetje nëse varësia e bën të vështirë ndalimin; abstinenca nga alkooli mund të kërkojë mbikëqyrje mjekësore për simptomat e tërheqjes. Dhimbja e re ose e përkeqësuar, temperatura, të vjellat e përsëritura, pamundësia për të mbajtur lëngje ose verdhëza pas daljes nga spitali kërkojnë këshillë të shpejtë mjekësore. Gjendja e rëndë, kolapsi ose problemet e frymëmarrjes kërkojnë ndihmë urgjente. Mos supozo se çdo përkeqësim është shërim normal."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: përshkrimi i një problemi urgjent",
+      "text": "Dikujt i fillon dhimbje e fortë në pjesën e sipërme të barkut që përhapet në shpinë dhe vazhdon të vjellë. Kërkon ndihmë urgjente, përshkruan simptomat dhe merr listën e barnave nëse e ka. Nuk e vonon kujdesin për të kërkuar një dietë që mund të qetësojë pankreasin."
+    },
+    {
+      "title": "Shembull hipotetik: përgatitja për daljen nga spitali",
+      "text": "Një pacient, episodi i të cilit lidhej me gurë në tëmth, pyet nëse nevojitet trajtim i mëtejshëm për të ulur rikthimin, çfarë ndjekjeje është caktuar dhe cilat simptoma kërkojnë kthim urgjent. Kërkon udhëzime me shkrim, në vend që të supozojë se dalja nga spitali do të thotë se nuk ka më nevojë për kujdes."
+    }
+  ],
+  "questions": [
+    "Cilat prova mbështesin diagnozën dhe shkakun e dyshuar në rastin tim?",
+    "Cili është plani për lehtësimin e dhimbjes, ushqyerjen dhe monitorimin e komplikimeve?",
+    "Çfarë ndjekjeje trajton shkakun dhe cilat simptoma kërkojnë rivlerësim urgjent?"
+  ]
+}

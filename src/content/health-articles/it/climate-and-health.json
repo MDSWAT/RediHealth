@@ -1,0 +1,51 @@
+{
+  "title": "Clima e salute: prepararsi a caldo, fumo e meteo estremo",
+  "intro": "Il cambiamento climatico incide tramite caldo, eventi estremi, aria, sicurezza di cibo e acqua e servizi interrotti. I rischi variano con luogo, salute, casa, lavoro e aiuti. Prepararsi riduce i danni, ma servono anche servizi e azione pubblica. Usare allerte locali senza ritenere un articolo capace di prevedere le condizioni di casa.",
+  "sections": [
+    {
+      "heading": "Prepararsi al caldo prima di stare male",
+      "paragraphs": [
+        "Pianificare un luogo fresco nelle ore più calde, ombreggiare le stanze e adattare gli sforzi. Controllare chi necessita aiuto, come anziani, piccoli bambini, persone incinte e malati cronici. Bere secondo età e salute; limiti prescritti richiedono piano personale. Mai lasciare bambini o dipendenti in un veicolo parcheggiato. Confusione, collasso o sospetto colpo di calore sono emergenze: chiedere aiuto e iniziare il raffreddamento."
+      ]
+    },
+    {
+      "heading": "Aria e fumo richiedono un piano",
+      "paragraphs": [
+        "Caldo e fumo peggiorano problemi respiratori e cardiovascolari. Seguire indicazioni locali, ridurre sforzi fuori con inquinamento pericoloso e identificare un luogo fresco con aria più pulita. Escludere il fumo va bilanciato contro il caldo interno: spostarsi in spazio pubblico adatto se la casa non è sicura. Seguire il piano respiratorio e tenere farmaci disponibili. Affanno grave o dolore toracico richiedono valutazione urgente o emergenza, non attribuzione automatica al tempo."
+      ]
+    },
+    {
+      "heading": "Alluvioni e rischio infettivo",
+      "paragraphs": [
+        "L'acqua alluvionale nasconde elettricità, ferite e contaminazione. Non attraversarla a piedi o in auto; seguire evacuazione e indicazioni sull'acqua potabile. Tenere bambini lontani e chiedere consiglio per ferite esposte. Cibo allagato o senza refrigerazione può essere pericoloso pur normale. Mai usare generatori a combustibile in casa o garage per il monossido di carbonio. Temperatura e pioggia modificano zecche, zanzare e infezioni locali: seguire prevenzione specifica, senza presumere ogni malattia ovunque."
+      ]
+    },
+    {
+      "heading": "Proteggere terapia e accesso alle cure",
+      "paragraphs": [
+        "Chiedere di conservazione dei farmaci al caldo e gestione di vomito, disidratazione o blackout. Alcuni modificano la tolleranza al caldo, ma non sospenderli da soli. Pianificare farmaci refrigerati, dispositivi elettrici, trasporto e contatto alternativo con l'équipe. Tenere lista aggiornata e contatti essenziali. Il piano deve adattarsi a casa e finanze, con servizi d'aiuto se mancano raffrescamento o trasporto privati."
+      ]
+    },
+    {
+      "heading": "Salute mentale e prevenzione condivisa",
+      "paragraphs": [
+        "Meteo estremo, sfollamento e preoccupazione possono causare stress, problemi di sonno e lutto. Chiedere supporto se persiste o interferisce con la vita. Concordare contatti con persone fidate e conoscere servizi per riparo, acqua e informazioni accessibili. Case sicure, ombra, energia e trasporti puliti proteggono oltre l'emergenza. L'azione personale serve, ma non va colpevolizzato chi non controlla i rischi. Rivedere il piano dopo l'evento e colmare lacune nella calma."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Allerta con limite ai liquidi — esempio ipotetico",
+      "text": "Un anziano cardiopatico riceve allerta caldo. Chiede all'équipe come gestire i liquidi, organizza un luogo fresco e un contatto. Non sospende farmaci né beve senza limiti."
+    },
+    {
+      "title": "Fumo e caldo in casa — esempio ipotetico",
+      "text": "La famiglia chiude per il fumo ma la casa diventa pericolosamente calda. Segue allerte e raggiunge un luogo fresco con aria pulita, senza considerare le finestre chiuse l'unica priorità."
+    }
+  ],
+  "questions": [
+    "Quali allerte locali per caldo, aria e alluvioni usare?",
+    "Come salute, farmaci e dispositivi modificano il piano domestico?",
+    "Dove trovare fresco, acqua sicura, trasporto o sostegno emotivo se la casa non basta?"
+  ]
+}

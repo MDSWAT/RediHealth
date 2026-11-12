@@ -10,6 +10,8 @@ import type { Lang } from "@/lib/i18n/translations";
 import type { CountryCode } from "@/lib/countries";
 import { portalPath } from "@/lib/security/portal-token";
 import { escapeHtml } from "@/lib/text";
+import { emailTranslations, helpReplyContent, type HelpReplyInput } from "@/lib/i18n/email-translations";
+import { withLangPrefix } from "@/lib/i18n/routing";
 
 type PanelEmailCopy = {
   greeting: string;
@@ -56,6 +58,55 @@ type PanelEmailCopy = {
 };
 
 const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
+  ru: {
+    greeting: "Здравствуйте",
+    teamName: "Команда RediHealth",
+    footerBrand: "RediHealth · Поддержка здравоохранения и портал пациентов",
+    footerContactLead: "Вопросы или отзывы?",
+    footerContactLink: "Обратиться в службу поддержки",
+    patientFallbackName: "Пациент",
+    emergencyHeading: "Экстренное уведомление:",
+    emergencyText: "RediHealth не является службой экстренной помощи. При угрозе жизни немедленно звоните по номеру 112.",
+    portal: {
+      subject: "Ваш портал пациентов RediHealth и ссылка на план медицинского обслуживания",
+      preview: "Ваш портал пациентов RediHealth готов.",
+      badge: "Портал для пациентов",
+      heading: "Ваш медицинский портал готов",
+      intro: "Ваш личный портал пациента теперь активен. Получите доступ к своему профилю, чтобы просмотреть инструкции по уходу, сообщить о симптомах и связаться со своей командой по уходу.",
+      textIntro: "Ваш профиль пациента RediHealth и доступ к порталу готовы! Вы можете просмотреть свой медицинский профиль, заметки о состоянии, инструкции по уходу, сообщить о новых симптомах, добавить фотографии и запросить дальнейшее наблюдение, используя личную ссылку:",
+      cta: "Открыть портал пациента",
+      linkDuration: "Эта безопасная ссылка на портал действительна в течение 90 дней. После этого (или если вы потеряете ее) запросите новую ссылку на странице входа в RediHealth.",
+      conditionSummary: "Краткое описание состояния/симптомов",
+      portalDetailsHeading: "На вашем портале для пациентов",
+      portalDetails: [
+        "Просмотр инструкций по диагностике и плану ухода",
+        "Сообщайте о новых симптомах и отслеживайте уровень срочности",
+        "Планируйте и посещайте последующие видеовизиты",
+        "Загрузите медицинские фотографии или соответствующие медицинские документы.",
+      ],
+      fallbackName: "Ценный клиент",
+      treatmentPlan: "План лечения",
+      datesNotRecorded: "Даты не записаны",
+      diagnosis: "Диагностика",
+      medications: "Лекарства/терапия",
+      careInstructions: "Рекомендации по уходу",
+      footerReason: "Вы получили это письмо, поскольку для вас на RediHealth был создан профиль пациента.",
+    },
+    meeting: {
+      subject: "Приглашение",
+      preview: (title: string) => `Видео-приглашение на встречу: ${title}`,
+      badge: "Видео встреча",
+      heading: "Вас приглашают на видео-посещение",
+      intro: "Запланирована видеоконсультация с вашей медицинской группой поддержки. Когда придет время встречи, нажмите кнопку ниже, чтобы присоединиться прямо в браузере.",
+      textInvitation: (title) => `Вас пригласили на видео-встречу RediHealth: ${title}.`,
+      cta: "Присоединяйтесь к видеопосещению",
+      appointment: "Запланированная встреча",
+      joinText: "Присоединяйтесь к встрече по адресу:",
+      closing: "Если вам нужна помощь в подключении, обратитесь к своему медицинскому персоналу.",
+      footerReason: "Вы получили это электронное письмо, поскольку на RediHealth для вас была назначена встреча.",
+    },
+  },
+
   en: {
     greeting: "Hello",
     teamName: "The RediHealth Team",
@@ -347,6 +398,8 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
 };
 
 const emailSignOffByLang: Record<Lang, string> = {
+"ru": "С уважением",
+
   en: "Best regards",
   ro: "Cu stimă",
   sq: "Me respekt",
@@ -448,17 +501,18 @@ export function renderBrandEmail({
   codeBlock,
   cta,
   emergencyNotice = false,
-  closingText = "Best regards,",
-  footerReason = "You received this email regarding your RediHealth activity.",
+  closingText,
+  footerReason,
   align = "center",
 }: BrandEmailOptions) {
   const copy = panelEmailCopy[lang];
+  const userCopy = emailTranslations[lang];
   const safePreviewText = escapeHtml(previewText);
   const safeHeading = escapeHtml(heading);
   const safeRecipientName = recipientName ? escapeHtml(recipientName) : "";
   const safeIntro = intro ? escapeHtml(intro) : "";
-  const safeClosingText = escapeHtml(closingText);
-  const safeFooterReason = escapeHtml(footerReason);
+  const safeClosingText = escapeHtml(closingText ?? userCopy.closing);
+  const safeFooterReason = escapeHtml(footerReason ?? userCopy.defaultReason);
   const isCentered = align === "center";
   const textAlign = isCentered ? "center" : "left";
 
@@ -481,13 +535,13 @@ export function renderBrandEmail({
             <tr>
               <td class="email-box" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 22px 16px; text-align: center;">
                 <div style="font-size: 11px; line-height: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #64748b; margin-bottom: 8px;">
-                  Verification Code
+                  ${escapeHtml(userCopy.code.label)}
                 </div>
                 <div class="email-code-digits" style="font-family: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', monospace; font-size: 38px; line-height: 44px; font-weight: 800; letter-spacing: 8px; text-indent: 8px; color: #0f172a; margin: 4px 0 8px 0;">
                   ${escapeHtml(codeBlock.code)}
                 </div>
                 <div class="email-subtext" style="font-size: 12px; line-height: 16px; color: #94a3b8; font-weight: 500;">
-                  Expires in ${escapeHtml(codeBlock.expiresInText || "10 minutes")} · Do not share this code
+                  ${escapeHtml(userCopy.code.expires)} ${escapeHtml(codeBlock.expiresInText || userCopy.code.duration)} · ${escapeHtml(userCopy.code.secret)}
                 </div>
               </td>
             </tr>
@@ -691,11 +745,41 @@ export function renderBrandEmail({
 </html>`;
 }
 
+export function renderSignInCodeEmail({ email, code, lang }: { email: string; code: string; lang: Lang }) {
+  const copy = emailTranslations[lang];
+  const auth = copy.code;
+  return {
+    subject: auth.subject,
+    text: [`${copy.greeting},`, auth.intro, code, `${auth.expires} ${auth.duration}.`, auth.ignored, auth.secret, `${copy.closing}\n${copy.team}`].join("\n\n"),
+    html: renderBrandEmail({
+      lang, previewText: auth.subject, badgeText: auth.badge, heading: auth.heading, recipientName: email,
+      intro: auth.intro, codeBlock: { code }, closingText: auth.secret, footerReason: auth.reason,
+      contentHtml: `<tr><td style="padding: 0 0 20px; font-size: 14px; line-height: 22px;">${escapeHtml(auth.ignored)}</td></tr>`,
+    }),
+  };
+}
+
+export function renderHelpRequestReplyEmail(input: HelpReplyInput) {
+  const copy = emailTranslations[input.lang];
+  const content = helpReplyContent(input);
+  return {
+    subject: content.subject, text: content.text,
+    html: renderBrandEmail({
+      lang: input.lang, previewText: content.heading, heading: content.heading, recipientName: input.name,
+      intro: content.intro, footerReason: copy.reply.reason,
+      contentHtml: content.details.length
+        ? `<tr><td style="padding: 0 0 20px; font-size: 14px; line-height: 22px;">${content.details.map(line => `<p>${escapeHtml(line)}</p>`).join("")}</td></tr>` : undefined,
+      cta: input.templateId === "referral" ? { label: copy.reply.map, url: content.mapUrl } : undefined,
+    }),
+  };
+}
+
 export type HelpRequestEmailParams = {
   name: string;
   phone: string;
   email: string;
   description: string;
+  lang?: Lang;
 };
 
 export async function sendHelpRequestConfirmationEmail({
@@ -703,28 +787,31 @@ export async function sendHelpRequestConfirmationEmail({
   phone,
   email,
   description,
+  lang = "en",
 }: HelpRequestEmailParams) {
   if (!isEmailConfigured()) {
     console.warn("Hostinger Mail API is not configured. Skipping confirmation email.");
     return false;
   }
 
-  const recipientName = name.trim() || "Valued Customer";
+  const copy = emailTranslations[lang];
+  const requestCopy = copy.request;
+  const recipientName = name.trim() || panelEmailCopy[lang].patientFallbackName;
 
-  const textContent = `Hello ${recipientName},
+  const textContent = `${copy.greeting} ${recipientName},
 
-Thank you for reaching out to RediHealth. We have received your request for medical help and our healthcare team will review it as soon as possible.
+${requestCopy.intro}
 
-Summary of your request:
-- Name: ${name.trim() || "Not provided"}
-- Phone: ${phone.trim()}
-- Email: ${email.trim()}
-- Description: ${description.trim()}
+${requestCopy.summary}:
+- ${requestCopy.name}: ${name.trim() || requestCopy.missing}
+- ${requestCopy.phone}: ${phone.trim()}
+- ${requestCopy.email}: ${email.trim()}
+- ${requestCopy.description}: ${description.trim()}
 
-IMPORTANT: RediHealth is not an emergency response service. If you are experiencing a life-threatening medical emergency, please call 112 or contact your local emergency services immediately.
+${panelEmailCopy[lang].emergencyHeading} ${panelEmailCopy[lang].emergencyText}
 
-Best regards,
-The RediHealth Team`;
+${copy.closing}
+${copy.team}`;
 
   const summaryHtml = `
       <tr>
@@ -732,15 +819,15 @@ The RediHealth Team`;
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
             <tr>
               <td style="padding: 14px 18px; font-size: 13px; line-height: 18px; font-weight: 700; color: #0f172a; border-bottom: 1px solid #e2e8f0; text-transform: uppercase; letter-spacing: 0.05em;">
-                Request Summary
+                ${escapeHtml(requestCopy.summary)}
               </td>
             </tr>
             <tr>
               <td style="padding: 14px 18px;">
-                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">Name:</strong> ${escapeHtml(name.trim() || "Not provided")}</p>
-                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">Phone:</strong> ${escapeHtml(phone.trim())}</p>
-                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">Email:</strong> ${escapeHtml(email.trim())}</p>
-                <p style="margin: 0 0 6px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">Description:</strong></p>
+                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">${escapeHtml(requestCopy.name)}:</strong> ${escapeHtml(name.trim() || requestCopy.missing)}</p>
+                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">${escapeHtml(requestCopy.phone)}:</strong> ${escapeHtml(phone.trim())}</p>
+                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">${escapeHtml(requestCopy.email)}:</strong> ${escapeHtml(email.trim())}</p>
+                <p style="margin: 0 0 6px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">${escapeHtml(requestCopy.description)}:</strong></p>
                 <div style="padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff; font-size: 14px; line-height: 22px; color: #334155; white-space: pre-wrap;">${escapeHtml(description.trim())}</div>
               </td>
             </tr>
@@ -749,21 +836,21 @@ The RediHealth Team`;
       </tr>`;
 
   const htmlContent = renderBrandEmail({
-    previewText: "Your RediHealth medical help request has been received.",
-    badgeText: "Request Received",
-    heading: "We received your request",
+    lang,
+    previewText: requestCopy.heading,
+    badgeText: requestCopy.badge,
+    heading: requestCopy.heading,
     recipientName,
-    intro:
-      "Thank you for reaching out to RediHealth. Our healthcare team has received your medical assistance request and will review it shortly.",
+    intro: requestCopy.intro,
     contentHtml: summaryHtml,
     emergencyNotice: true,
-    footerReason: "You received this email because a medical assistance request was submitted for this address.",
+    footerReason: requestCopy.reason,
   });
 
   try {
     await sendEmail({
       to: email.trim(),
-      subject: "Confirmation: Medical Help Request Received - RediHealth",
+      subject: requestCopy.subject,
       text: textContent,
       html: htmlContent,
     });
@@ -810,7 +897,7 @@ export async function sendPatientPortalLinkEmail({
     requestBaseUrl ||
     process.env.AUTH_URL ||
     "http://localhost:3000";
-  const portalUrl = `${baseUrl.replace(/\/$/, "")}${portalPath(accessToken, country)}`;
+  const portalUrl = `${baseUrl.replace(/\/$/, "")}${withLangPrefix(portalPath(accessToken, country), lang)}`;
 
   const textContent = `${copy.greeting} ${recipientName},
 

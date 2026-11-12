@@ -1,0 +1,51 @@
+{
+  "title": "Diareea: rehidratare, recunoașterea pericolului și recuperare",
+  "intro": "Diareea înseamnă scaune moi ori apoase mai frecvente decât de obicei. Episoadele bruște urmează adesea o infecție și se ameliorează în câteva zile, dar nu orice episod este gastroenterită. Prioritatea imediată este înlocuirea apei și sărurilor. Vârsta, bolile, medicamentele recente și semnele de alarmă stabilesc când ajunge îngrijirea acasă și când trebuie evaluare.",
+  "sections": [
+    {
+      "heading": "Tiparul și cauza posibilă",
+      "paragraphs": [
+        "Virusurile, alimentele ori apa contaminate, medicamentele și intoleranțele pot provoca diaree. Persistența sau recurența poate cere investigații pentru boală celiacă ori boli inflamatorii intestinale. Spuneți când a început, frecvența, sângele, febra, durerea, vărsăturile, urina, schimbarea greutății, călătoriile, contactele bolnave, antibioticele și spitalizările recente. Diareea în timpul ori după antibiotice necesită sfat: unele infecții cer tratament specific. Mai multe persoane bolnave nu dovedesc singure alimentul responsabil. Testele depind de gravitate, durată și risc; un episod scurt ușor nu necesită mereu probă de scaun."
+      ]
+    },
+    {
+      "heading": "Înlocuiți lichidele și continuați alimentația",
+      "paragraphs": [
+        "Beți înghițituri mici dese când greața îngreunează consumul. Soluția de rehidratare orală înlocuiește și sărurile, fiind utilă la pierderi importante ori risc de deshidratare. Dizolvați plicul în exact cantitatea de apă sigură indicată pe produs; nu adăugați zahăr, sare ori pudră suplimentară. Băuturile foarte dulci și sucul pot agrava diareea și nu echivalează cu soluția. Continuați alăptarea și formula la concentrația obișnuită; nu diluați. Mâncați alimente obișnuite tolerate, fără post. Cereți timpuriu sfat pentru sugar, vârstnic fragil, sarcină, imunosupresie ori boală importantă. Bolile renale, cardiace și restricția de lichide cer plan individual de lichide și medicamente."
+      ]
+    },
+    {
+      "heading": "Când cereți ajutor",
+      "paragraphs": [
+        "Cereți sfat prompt pentru sânge în scaun, febră mare, durere agravată, vărsături repetate, imposibilitatea păstrării lichidelor ori deshidratare: urină mult redusă, gură uscată, amețeală sau somnolență neobișnuită. La sugar contează scutecele mai puțin ude și refuzul alimentării; nu așteptați zile. Durerea abdominală severă constantă, leșinul, confuzia, trezirea dificilă, respirația foarte grea, vărsăturile cu sânge ori verzi cer urgență. Nu forțați lichide unei persoane care nu poate înghiți în siguranță. Adultul fără ameliorare după câteva zile să ceară evaluare, mai devreme la risc; persistența o săptămână sau recurența cu slăbire necesită evaluare chiar fără semne dramatice."
+      ]
+    },
+    {
+      "heading": "Limitele medicamentelor",
+      "paragraphs": [
+        "Antibioticele nu ajută de rutină într-o viroză scurtă și pot dăuna. Medicul le indică pentru anumite infecții ori riscuri. Unii adulți pot lua scurt antidiareic după consultarea farmacistului, dar nu pentru ignorarea sângelui, febrei ori durerii importante. Nu folosiți singur medicamente care încetinesc intestinul la suspiciune de infecție asociată antibioticelor. Copiii necesită sfat potrivit vârstei, nu produse și doze de adult. Beneficiile probioticelor variază după preparat și situație; nu înlocuiesc rehidratarea. Discutați medicamentele uzuale și planul pentru zilele de boală, fără oprirea nediferențiată a tratamentului esențial."
+      ]
+    },
+    {
+      "heading": "Reduceți transmiterea",
+      "paragraphs": [
+        "Spălați mâinile cu apă și săpun după toaletă sau schimbarea scutecelor și înainte de alimente. Curățați baia contaminată, gestionați atent rufele murdare și nu împărțiți prosoapele. Evitați pregătirea mâncării altora în timpul bolii. La episod probabil infecțios, reveniți la muncă ori școală după cel puțin două zile fără diaree sau vărsături; alimentația publică, sănătatea, îngrijirea copiilor și anumite infecții pot avea reguli locale mai stricte. Verificați înainte de înot ori rol cu risc. Apa sigură, păstrarea și prepararea alimentelor previn episoade viitoare. La persistență, țineți jurnal simplu fără diete restrictive care ascund diagnosticul ori afectează nutriția."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: rehidratare realizabilă",
+      "text": "Mara are greață după scaune apoase. Cere farmacistului produs potrivit, respectă cantitatea de apă și bea puțin și des. Când urina scade mult și amețeala se agravează, cere evaluare promptă, nu doar medicament care oprește scaunele."
+    },
+    {
+      "title": "Exemplu ipotetic: alt tipar de risc",
+      "text": "Petru are diaree frecventă după antibiotice. Spune medicului despre tratament și spitalizarea recentă, fără presupunerea unei toxiinfecții obișnuite. Sângele, durerea severă ori starea generală mai rea ar cere ajutor mai urgent."
+    }
+  ],
+  "questions": [
+    "Ce semne și riscuri personale impun evaluarea acum?",
+    "Ce produs de rehidratare și plan de lichide sunt potrivite mie ori copilului?",
+    "Antibioticele recente, medicamentele uzuale sau persistența cer teste ori alt tratament?"
+  ]
+}

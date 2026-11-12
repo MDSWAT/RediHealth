@@ -1,0 +1,51 @@
+{
+  "title": "Procjena kalcija: etikete i razumna uporaba rezultata",
+  "intro": "Procjena kalcija iz hrane pomaže odrasloj osobi razumjeti prehranu i promjene. Približna je jer porcije, marke i dani variraju. Nije dijagnoza manjka, mjerenje kostiju ni automatski recept dodatka. Djeca, trudnoća, dojenje i bolesti trebaju prilagođen savjet umjesto kopiranja odrasle procjene.",
+  "sections": [
+    {
+      "heading": "Bilježite hranu i stvarnu porciju",
+      "paragraphs": [
+        "Uključite reprezentativne dane, ne samo idealan. Pišite pića, mliječno, obogaćene alternative, druge izvore i dodatke. Provjerite je li iznos po porciji, masi ili volumenu i usporedite potrošeno. Ne brojite isti sastojak dvaput. Kod postotka reference pitajte osnovu prije tumačenja kao osobne potrebe."
+      ]
+    },
+    {
+      "heading": "Odaberite odgovarajuću referencu",
+      "paragraphs": [
+        "Kalcij podupire kosti, zube i druge funkcije. Populacijske preporuke variraju s dobi, razdobljem i državnom službom. Pitajte što vrijedi, posebno kod osteoporoze, bubrega ili ograničene prehrane. Gornja podnošljiva granica sigurnost je, ne cilj. Jedan niži dan ne dokazuje manjak i ponavljani višak ne jamči jače kosti."
+      ]
+    },
+    {
+      "heading": "Razmotrite izvore i apsorpciju",
+      "paragraphs": [
+        "Mliječno, obogaćeni biljni napitci, neki tofu, zeleno povrće i riba s jestivim kostima pridonose. Provjerite proizvod: nije svaki napitak ili tofu obogaćen. Špinat ima tvari koje smanjuju apsorpciju. Vitamin D pomaže, ali ne opravdava visoke doze bez savjeta. Dijetetičar uz ograničenja nalazi alternative prema željama, cijeni i drugim potrebama."
+      ]
+    },
+    {
+      "heading": "Provjerite dodatke i lijekove",
+      "paragraphs": [
+        "Dodatak ponekad pomaže, ali uključite njegov kalcij u ukupno i čitajte elementarni kalcij. Masa spoja nije isto što i kalcij. Višak stvara nuspojave i nekima povećava kamence. Kalcij ometa nadomjestak hormona štitnjače i neke antibiotike: pitajte ljekarnika točne proizvode i vrijeme. Ne kopirajte tuđi razmak niti prekidajte terapiju sami."
+      ]
+    },
+    {
+      "heading": "Koristite procjenu za razgovor, ne presudu kostima",
+      "paragraphs": [
+        "Dnevnici su nesigurni, a tijelo strogo regulira kalcij krvi: nalaz ne mjeri samo prehranu. Kosti ovise i o aktivnosti, pušenju, hormonima, bolestima i lijekovima. Kod rizika prijeloma ili simptoma tražite procjenu umjesto samo zbroja. Dogovorite promjene i kontrolu. Uz kamence ili abnormalne nalaze pitajte osobno, bez automatskog izbacivanja hrane ili velikih dodataka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljena etiketa: provjera porcije",
+      "text": "Izmišljena etiketa navodi 200 mg kalcija po porciji. Konzumacija 2 porcije daje 400 mg. Brojevi objašnjavaju računanje, ne dnevnu potrebu ni preporuku proizvoda."
+    },
+    {
+      "title": "Hipotetski primjer: obogaćeni napitak",
+      "text": "Odrasla osoba zamijeni mlijeko biljnim napitkom i zapisuje porcije. Provjerava dodani kalcij i razgovara o prehrani i dodatku, bez pretpostavke istih hranjivih tvari u svakoj alternativi."
+    }
+  ],
+  "questions": [
+    "Koja referenca vrijedi za moju dob, zdravlje i razdoblje?",
+    "Sugerira li zapis promjenu i treba li dodatak?",
+    "Postoje li interakcije i trebaju li kosti ili bubrezi zasebnu procjenu?"
+  ]
+}

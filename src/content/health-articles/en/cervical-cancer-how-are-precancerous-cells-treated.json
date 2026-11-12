@@ -1,0 +1,51 @@
+{
+  "title": "Precancerous cervical cells: monitoring, treatment and follow-up",
+  "intro": "Abnormal cells on the cervix are often called dysplasia or cervical intraepithelial neoplasia, abbreviated CIN. These changes are not the same as invasive cervical cancer. Some regress, while others have a greater chance of progressing if left untreated. The aim is to prevent cancer while avoiding unnecessary treatment. A colposcopy assessment and, when appropriate, a biopsy help the team recommend monitoring or removal of the abnormal area.",
+  "sections": [
+    {
+      "heading": "Understand which result you have",
+      "paragraphs": [
+        "CIN1 describes low-grade changes, CIN2 intermediate-grade changes and CIN3 high-grade changes. These are grades of precancerous change, not cancer stages. Glandular abnormalities have different names and may require a different approach. An HPV-positive screening result alone does not identify the tissue grade. Ask whether the result comes from screening, visual assessment or a tissue sample, whether invasion has been excluded and whether further results are pending. Do not choose treatment from an isolated abbreviation."
+      ]
+    },
+    {
+      "heading": "Monitoring is an active plan, not forgetting the result",
+      "paragraphs": [
+        "Low-grade changes are often monitored because they may disappear. Some selected intermediate-grade changes can also be monitored under specialist criteria, with reliable return for planned tests. High-grade or persistent changes are more likely to need treatment. Decisions consider the full results, whether the whole area can be assessed, age, pregnancy, future pregnancy plans and the ability to attend follow-up. If currently pregnant, tell the team: assessment can still be important even when treatment is deferred. Suspected invasion needs a different, prompt diagnostic pathway."
+      ]
+    },
+    {
+      "heading": "How removal or destruction of cells works",
+      "paragraphs": [
+        "A common excisional treatment is a heated wire loop, called LLETZ or LEEP, used to remove the affected area, usually with local anaesthesia. Another approach is removal of a cone-shaped tissue sample. Excision allows laboratory examination of the removed tissue and its edges. Destructive methods, such as thermal treatment or freezing, are suitable only in selected circumstances after appropriate assessment; they do not provide the same tissue sample. Ask what is proposed, why and what happens if the laboratory result changes the plan."
+      ]
+    },
+    {
+      "heading": "Balance benefits with risks, including future pregnancy",
+      "paragraphs": [
+        "Treatment reduces the chance that significant cell changes develop into cancer, but carries risks such as bleeding, infection and narrowing of the cervix. Excisional treatment can increase the chance of a future preterm birth, particularly after deeper or repeated removal. Most people who have treatment do not have this pregnancy complication. Discuss how much tissue needs removing and future pregnancy wishes before treatment; do not avoid needed care without a specialist plan. Tell a future maternity team about previous cervical procedures."
+      ]
+    },
+    {
+      "heading": "Healing and later tests are part of treatment",
+      "paragraphs": [
+        "Follow written advice about bleeding and discharge, pain relief, vaginal sex, tampons, swimming and exercise while healing. Ask whom to contact outside clinic hours. Heavy bleeding, large clots, fever, unpleasant-smelling discharge, increasing pain or feeling unwell needs prompt assessment; severe bleeding with faintness needs emergency help. Attend follow-up cervical testing even if you feel well, because treatment does not guarantee HPV clearance or prevent every recurrence. Ask when results are expected and chase missing results. Do not assume you can return immediately to the usual screening interval."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A low-grade result — hypothetical example",
+      "text": "A person is advised to monitor a low-grade change. They ask for the next appointment date and what happens if they move away, instead of interpreting monitoring as 'nothing needs doing'. The clinic makes sure follow-up can continue."
+    },
+    {
+      "title": "Treatment and future pregnancy — hypothetical example",
+      "text": "Someone with a high-grade change wants a future pregnancy. They discuss the proposed excision, its depth, alternatives where appropriate and pregnancy risks with the specialist. Their plan addresses cancer prevention and reproductive priorities together."
+    }
+  ],
+  "questions": [
+    "What exact abnormality is confirmed, and why is monitoring or treatment recommended?",
+    "What are the benefits and risks of the proposed procedure for me and a future pregnancy?",
+    "What healing instructions, warning signs and follow-up tests should I follow?"
+  ]
+}

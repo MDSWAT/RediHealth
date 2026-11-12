@@ -1,0 +1,51 @@
+{
+  "title": "Conjunctivitis: caring for a red, irritated eye",
+  "intro": "Conjunctivitis is inflammation of the thin covering over the white of the eye and inside the eyelids. Infection, allergy and irritants can cause similar-looking redness. Many cases settle without major treatment, but a red eye with pain, light sensitivity or a change in vision needs urgent assessment rather than an assumption that it is ordinary conjunctivitis.",
+  "sections": [
+    {
+      "heading": "Symptoms suggest a cause but do not prove it",
+      "paragraphs": [
+        "Eyes may feel gritty, itchy or burning, water more than usual or develop discharge that sticks the lashes together. Viral illness may start in one eye and spread to the other; allergy commonly affects both and may accompany sneezing or a runny nose. Thick discharge can occur with bacterial infection, but its appearance alone cannot reliably distinguish every cause. Dry eyes, eyelid inflammation, injury and corneal disease can also make an eye red. An examination, history and occasionally a sample help decide what treatment is appropriate."
+      ]
+    },
+    {
+      "heading": "Know when redness is urgent",
+      "paragraphs": [
+        "Seek urgent eye assessment for pain, marked light sensitivity, intense redness or blurred vision that remains after discharge is gently cleared. Sudden loss of vision, severe headache with nausea, an injured eye or a chemical exposure need emergency care. A newborn with red or sticky eyes needs prompt medical assessment because some infections can damage sight. Contact-lens wearers with a red eye should remove the lenses and obtain urgent advice: corneal infection may initially resemble conjunctivitis. People with weakened immunity or worsening symptoms should also be assessed sooner. Do not wait for a routine self-care period when these features are present."
+      ]
+    },
+    {
+      "heading": "Comfort measures and safer use of eye drops",
+      "paragraphs": [
+        "Wash hands before and after eye care. Gently clean crusts from the lashes with clean water and a fresh pad, using a separate pad for each eye. A clean cool compress and suitable artificial tears may relieve discomfort; ask a pharmacist about age and product instructions. Do not rub the eyes or touch the dropper tip to the eye, fingers or lashes. Avoid sharing drops or using old prescriptions. Keep contact lenses out while the eyes are affected and follow advice about restarting and replacing or disinfecting lenses and cases. Do not put household remedies into an eye."
+      ]
+    },
+    {
+      "heading": "Treatment depends on the diagnosis",
+      "paragraphs": [
+        "Antibiotics do not work against viral conjunctivitis or allergy. Some mild bacterial infections improve without them, while a clinician may recommend antibiotic drops or ointment for selected cases. Certain infections need specific treatment, including some herpes infections and sexually transmitted infections; ordinary leftover drops are not a substitute. Allergic symptoms may respond to reducing exposure and suitable antihistamine treatment. Ask before using medicated drops during pregnancy or for a small child. Steroid-containing eye drops should be used only under appropriate medical supervision, since the wrong treatment can worsen some infections or cause other eye problems."
+      ]
+    },
+    {
+      "heading": "Reduce spread and review the course",
+      "paragraphs": [
+        "Viral and bacterial forms can spread through hands and contaminated objects; allergy itself is not contagious. Avoid sharing towels, pillows, cosmetics and contact-lens equipment. Wash bedding and face cloths and avoid swimming while infectious symptoms persist. Follow local school or workplace advice, taking account of fever, how unwell you feel and whether close contact can be avoided. Do not use antibiotics solely to satisfy an assumed attendance rule. Arrange review if symptoms worsen, fail to improve over several days or remain after about a week. Viral symptoms sometimes last longer, but persistent redness deserves reassessment rather than repeated self-treatment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a contact-lens warning",
+      "text": "Luka wakes with a red eye and assumes it is the same infection his colleague had. Because he wears contact lenses and the eye is painful, he removes the lenses and seeks urgent assessment instead of borrowing his colleague's drops."
+    },
+    {
+      "title": "Hypothetical example: allergy needs a different plan",
+      "text": "Each pollen season, Sara develops itchy, watery eyes and sneezing. A clinician checks the recurring pattern and discusses allergy treatment. She does not expect antibiotics to help, and knows that new pain or reduced vision would require a fresh assessment."
+    }
+  ],
+  "questions": [
+    "What is the likely cause, and do I need an eye examination today?",
+    "Which drops are suitable, and how should I use and store them?",
+    "When can I restart contact lenses, and what needs replacing or cleaning?"
+  ]
+}

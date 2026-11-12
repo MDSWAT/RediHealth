@@ -1,0 +1,51 @@
+{
+  "title": "Stimare il calcio: leggere le etichette e usare il risultato",
+  "intro": "Stimare il calcio alimentare aiuta un adulto a capire la dieta e discutere modifiche. Il valore è approssimativo: porzioni, marche e giorni variano. Non diagnostica carenza, non misura densità ossea e non prescrive integratori automaticamente. Bambini, gravidanza, allattamento e malattie richiedono indicazioni adatte, non una stima adulta copiata senza verifica.",
+  "sections": [
+    {
+      "heading": "Registrare alimento e porzione reale",
+      "paragraphs": [
+        "Includete giorni rappresentativi, non solo quello ideale. Annotate bevande, latticini, alternative fortificate, altre fonti e integratori. Verificate se il valore è per porzione, peso o volume e confrontate il consumo. Non contate due volte un ingrediente del pasto. Per una percentuale di riferimento chiarite la base prima di chiamarla fabbisogno personale."
+      ]
+    },
+    {
+      "heading": "Scegliere il riferimento corretto",
+      "paragraphs": [
+        "Il calcio sostiene ossa, denti e altre funzioni. Le raccomandazioni sono di popolazione e variano per età, fase e autorità nazionale. Chiedete cosa si applica, specie con osteoporosi, reni o dieta ristretta. Il limite massimo tollerabile è confine di sicurezza, non obiettivo. Un giorno sotto riferimento non prova carenza e un eccesso ripetuto non rinforza sicuramente le ossa."
+      ]
+    },
+    {
+      "heading": "Considerare fonti e assorbimento",
+      "paragraphs": [
+        "Latticini, bevande vegetali fortificate, alcuni tofu, verdure e pesce con lische commestibili contribuiscono. Controllate il prodotto: non ogni bevanda o tofu è fortificato. Negli spinaci altri composti riducono l'assorbimento. Vitamina D aiuta ma non giustifica alte dosi senza consiglio. Evitando latticini o con restrizioni, il dietista trova alternative secondo preferenze, costo e altri bisogni."
+      ]
+    },
+    {
+      "heading": "Verificare integratori e farmaci",
+      "paragraphs": [
+        "Un integratore può essere utile, ma sommatelo alla dieta e controllate il calcio elementare. Il peso del composto non equivale al calcio fornito. Eccesso può creare effetti avversi e calcoli in alcune persone. Calcio interferisce con sostitutivi tiroidei e alcuni antibiotici: chiedete prodotti e tempi al farmacista. Non copiate separazioni altrui né sospendete cure."
+      ]
+    },
+    {
+      "heading": "Usare la stima come colloquio, non verdetto osseo",
+      "paragraphs": [
+        "I diari sono incerti e il corpo regola strettamente il calcio ematico: l'analisi non misura semplicemente quanto mangiate. Le ossa dipendono anche da attività, fumo, ormoni, malattie e farmaci. Con rischio di frattura o sintomi chiedete accertamenti, non solo un totale. Concordate modifiche e controlli. Con calcoli o valori anomali chiedete consiglio invece di togliere automaticamente alimenti o aggiungere grandi integratori."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Etichetta inventata: verificare la porzione",
+      "text": "Un'etichetta fittizia indica 200 mg di calcio per porzione. Consumare 2 porzioni fornisce 400 mg. I valori spiegano l'aritmetica, non un fabbisogno o consiglio sul prodotto."
+    },
+    {
+      "title": "Esempio ipotetico: bevanda fortificata",
+      "text": "Un adulto sostituisce latte con bevanda vegetale e registra le porzioni. Verifica calcio aggiunto e discute dieta e integratore senza presumere stessi nutrienti in ogni alternativa."
+    }
+  ],
+  "questions": [
+    "Quale riferimento si applica a età, salute e fase di vita?",
+    "Il diario suggerisce una modifica e serve un integratore?",
+    "Ci sono interazioni e ossa o reni necessitano valutazione separata?"
+  ]
+}

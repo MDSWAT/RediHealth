@@ -1,0 +1,51 @@
+{
+  "title": "Proljev: nadoknada tekućine, znakovi opasnosti i oporavak",
+  "intro": "Proljev znači mekane ili vodenaste stolice češće nego što je za vas uobičajeno. Nagli napadaji često slijede infekciju i prolaze u nekoliko dana, ali nisu uvijek crijevna viroza. Prvi cilj je nadoknaditi vodu i soli. Dob, bolesti, nedavni lijekovi i znakovi upozorenja određuju kada je dovoljna kućna skrb, a kada pregled.",
+  "sections": [
+    {
+      "heading": "Razmotrite tijek i mogući uzrok",
+      "paragraphs": [
+        "Virusi, zagađena hrana ili voda, lijekovi i nepodnošenje hrane mogu izazvati proljev. Trajne ili ponavljane tegobe mogu tražiti obradu celijakije ili upalnih bolesti crijeva. Navedite početak, učestalost, krv, vrućicu, bol, povraćanje, mokrenje, težinu, putovanja, bolesne kontakte, antibiotike i nedavnu bolnicu. Proljev tijekom ili nakon antibiotika traži savjet jer neke infekcije trebaju posebno liječenje. Više oboljelih ne dokazuje samo po sebi odgovornu namirnicu. Pretrage ovise o težini, trajanju i riziku; kratak blag napadaj ne treba uvijek uzorak stolice."
+      ]
+    },
+    {
+      "heading": "Nadoknadite tekućinu i nastavite prehranu",
+      "paragraphs": [
+        "Pijte male česte gutljaje ako mučnina otežava. Oralna rehidracijska otopina nadoknađuje i soli te osobito pomaže kod većih gubitaka ili rizika dehidracije. Vrećicu pomiješajte s točno onoliko sigurne vode koliko navodi proizvod; ne dodajte šećer, sol ni prašak. Vrlo slatka pića i sokovi mogu pogoršati proljev i nisu jednaki otopini. Nastavite dojiti i davati formulu u uobičajenoj koncentraciji, bez razrjeđivanja. Jedite podnošljivu uobičajenu hranu čim možete, bez gladovanja. Rano tražite savjet za dojenče, krhku stariju osobu, trudnoću, oslabljen imunitet ili važnu bolest. Bolesti bubrega, srca i ograničenje tekućine traže osobni plan tekućine i lijekova."
+      ]
+    },
+    {
+      "heading": "Kada potražiti pomoć",
+      "paragraphs": [
+        "Brzo tražite savjet zbog krvi u stolici, visoke vrućice, sve jače boli, ponavljanog povraćanja, nemogućnosti zadržavanja tekućine ili dehidracije: mnogo manje mokraće, suha usta, omaglica ili neobična pospanost. Kod dojenčeta važni su manje mokre pelene i prestanak hranjenja; ne čekajte danima. Jaka stalna trbušna bol, kolaps, smetenost, teško buđenje, teško disanje, krvavo ili zeleno povraćanje traže hitnu službu. Ne silite piće osobi koja ne može sigurno gutati. Odrasla osoba bez poboljšanja nakon nekoliko dana treba savjet, ranije uz rizike; proljev dulji od tjedna ili povrat uz mršavljenje traži obradu i bez dramatičnih znakova."
+      ]
+    },
+    {
+      "heading": "Lijekovi imaju granice",
+      "paragraphs": [
+        "Antibiotici obično ne koriste kod kratke viroze i mogu štetiti. Liječnik ih daje za posebne infekcije ili rizike. Neki odrasli mogu kratko uzeti antidiaroik nakon razgovora s ljekarnikom, ali ne radi zanemarivanja krvi, vrućice ili znatne boli. Ne uzimajte sami lijek koji usporava crijeva kod sumnje na infekciju povezanu s antibioticima. Djeca trebaju savjet primjeren dobi, a ne proizvode ili doze za odrasle. Korist probiotika ovisi o pripravku i situaciji; ne zamjenjuju rehidraciju. Razgovarajte o redovitim lijekovima i planu za dane bolesti, bez neselektivnog prekidanja nužnog liječenja."
+      ]
+    },
+    {
+      "heading": "Smanjite širenje",
+      "paragraphs": [
+        "Temeljito perite ruke sapunom i vodom nakon zahoda ili mijenjanja pelena te prije hrane. Čistite onečišćene površine, oprezno postupajte s prljavim rubljem i ne dijelite ručnike. Dok ste bolesni izbjegavajte pripremu hrane drugima. Kod vjerojatno zaraznog proljeva izostanite iz škole ili posla najmanje dva dana nakon posljednjeg proljeva ili povraćanja; prehrana, zdravstvo, skrb o djeci i određene infekcije mogu imati stroža lokalna pravila. Provjerite prije plivanja ili povratka u rizičnu ulogu. Sigurna voda te čuvanje i priprema hrane sprječavaju nove napadaje. Kod trajnih simptoma vodite jednostavan dnevnik bez ograničavajućih dijeta koje skrivaju dijagnozu ili narušavaju prehranu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: izvediva rehidracija",
+      "text": "Mara osjeća mučninu nakon vodenastih stolica. Traži odgovarajući pripravak od ljekarnika, poštuje količinu vode i pije malo i često. Kad mokraće bude vrlo malo i omaglica raste, traži brz pregled umjesto samo lijeka za zaustavljanje stolice."
+    },
+    {
+      "title": "Hipotetski primjer: drukčiji rizik",
+      "text": "Petru dobiva čest proljev nakon antibiotika. Liječniku kaže za terapiju i nedavnu bolnicu umjesto pretpostavke običnog trovanja hranom. Krv, jaka bol ili pogoršano opće stanje učinili bi pomoć hitnijom."
+    }
+  ],
+  "questions": [
+    "Koji znakovi i osobni rizici traže pregled sada?",
+    "Koji rehidracijski pripravak i plan tekućine odgovaraju meni ili djetetu?",
+    "Traže li antibiotici, redoviti lijekovi ili trajni simptomi pretrage ili drugo liječenje?"
+  ]
+}

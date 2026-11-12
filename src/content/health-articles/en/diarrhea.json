@@ -1,0 +1,51 @@
+{
+  "title": "Diarrhoea: replacing fluids, recognising danger and recovering",
+  "intro": "Diarrhoea means loose or watery stools more often than is normal for you. Sudden episodes often follow an infection and improve within days, but not every episode is a stomach bug. The immediate priority is replacing lost water and salts. Age, other illnesses, recent medicines and warning signs help decide when home care is enough and when assessment is needed.",
+  "sections": [
+    {
+      "heading": "Consider the pattern and possible cause",
+      "paragraphs": [
+        "Viruses, contaminated food or water, medicines and food intolerance can cause diarrhoea. Persistent or recurrent symptoms may need investigation for conditions such as coeliac disease or inflammatory bowel disease. Tell the clinician when it began, stool frequency, blood, fever, pain, vomiting, urine output, weight change, travel, sick contacts and recent antibiotics or hospital care. Diarrhoea during or after antibiotics needs advice because some infections require specific treatment. Do not assume that symptoms shared by several people prove which food caused them. Tests are selected according to severity, duration and risk; a short mild episode does not always need a stool sample."
+      ]
+    },
+    {
+      "heading": "Replace fluids and continue nutrition",
+      "paragraphs": [
+        "Take small frequent sips if nausea makes drinking difficult. Oral rehydration solution replaces salts as well as water and is especially useful with substantial losses or dehydration risk. Mix a pharmacy sachet with exactly the amount of safe water stated on that product; do not add extra sugar, salt or powder. Highly sugary drinks and fruit juice can worsen diarrhoea and are not equivalent to rehydration solution. Continue breastfeeding and usual-strength formula; do not dilute feeds. Eat tolerable normal foods when able rather than fasting. Ask early for individual advice for an infant, frail older person, pregnancy, immune suppression or significant illness. Kidney or heart disease and a fluid restriction require a tailored fluid and medication plan."
+      ]
+    },
+    {
+      "heading": "Know when to seek help",
+      "paragraphs": [
+        "Seek prompt medical advice for blood in stool, high fever, worsening pain, repeated vomiting, inability to retain fluids or dehydration such as much less urine, dry mouth, dizziness or unusual drowsiness. Fewer wet nappies or stopping feeds are important in a baby; infants need earlier advice rather than waiting several days. Severe constant abdominal pain, collapse, confusion, difficulty waking, major breathing difficulty, vomiting blood or green vomit require emergency care. Do not force drinks into someone who is not alert enough to swallow safely. Ask for review if an adult is not improving after a couple of days, sooner with risk factors; diarrhoea persisting for a week, or recurring with weight loss, needs assessment even without dramatic symptoms."
+      ]
+    },
+    {
+      "heading": "Medicines have limits",
+      "paragraphs": [
+        "Antibiotics are not routinely useful for a short viral illness and can cause harm. A clinician may prescribe them for particular infections or risk situations. Some adults can use a short course of an antidiarrhoeal medicine after checking with a pharmacist, but not as a way to ignore blood, fever or significant pain. Do not self-treat suspected antibiotic-associated infection with a bowel-slowing medicine. Children need age-appropriate professional advice rather than adult products or doses. Probiotic benefits vary by preparation and situation; they are not a replacement for rehydration. Discuss regular medicines and an agreed illness-day plan instead of stopping essential treatment indiscriminately."
+      ]
+    },
+    {
+      "heading": "Reduce spread while returning to everyday life",
+      "paragraphs": [
+        "Wash hands thoroughly with soap and water after the toilet or nappy changes and before handling food. Clean contaminated bathroom surfaces, manage soiled laundry carefully and do not share towels. Avoid preparing food for others while ill. For a likely infectious episode, remain away from work or school until at least two days after the last diarrhoea or vomiting; food handling, health care, childcare and certain infections may have stricter local rules. Check before swimming or returning to a high-risk role. Safe drinking water, food storage and cooking reduce future risk. If symptoms continue, keep a simple diary without starting restrictive exclusion diets that could obscure diagnosis or impair nutrition."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: making rehydration manageable",
+      "text": "Mara feels nauseated after watery stools. She asks a pharmacist for a suitable rehydration product, follows its water instructions and takes small frequent sips. When urine becomes very scant and dizziness worsens despite this, she seeks prompt assessment rather than just taking a medicine to stop stools."
+    },
+    {
+      "title": "Hypothetical example: a different risk pattern",
+      "text": "Petru develops frequent diarrhoea after an antibiotic course. He tells the clinician about the antibiotic and recent hospital stay rather than assuming it is ordinary food poisoning. Blood, severe pain or worsening general condition would make the need for help more urgent."
+    }
+  ],
+  "questions": [
+    "Which warning signs or personal risks mean I should be assessed now?",
+    "Which rehydration product and fluid plan suit me or my child?",
+    "Do my recent antibiotics, usual medicines or persistent symptoms require tests or a different treatment?"
+  ]
+}

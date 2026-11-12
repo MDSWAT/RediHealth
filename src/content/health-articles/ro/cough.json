@@ -1,0 +1,51 @@
+{
+  "title": "Tusea: înțelegerea tiparului și alegerea pasului următor",
+  "intro": "Tusea ajută la curățarea căilor respiratorii, dar când irită sau persistă poate afecta somnul, munca și viața zilnică. Este un simptom, nu o singură boală. Multe episoade urmează infecțiilor virale și se ameliorează treptat; altele necesită tratarea cauzei. Debutul, durata și simptomele asociate sunt mai utile decât alegerea siropului doar după sunet.",
+  "sections": [
+    {
+      "heading": "Observați tiparul fără autodiagnostic",
+      "paragraphs": [
+        "Notați dacă tusea este seacă ori cu mucus, apare zilnic, vă trezește noaptea sau urmează efortului, meselor, fumului ori expunerii la serviciu. Notați febra, șuieratul respirator, lipsa de aer și eventualul episod de înec. Cauzele includ infecții, astm, inflamație nazală, reflux, boli legate de fumat și unele medicamente, inclusiv inhibitorii ECA. Cauzele mai rare pot fi grave. Tusea nouă după un medicament necesită discuție, nu oprirea tratamentului prescris pe cont propriu. Tusea umedă nu este automat bacteriană, iar tusea nocturnă singură nu dovedește astmul."
+      ]
+    },
+    {
+      "heading": "Semnele urgente schimbă imediat planul",
+      "paragraphs": [
+        "Cereți ajutor de urgență pentru dificultate respiratorie severă, buze albăstrui ori cenușii, colaps sau înec cu imposibilitatea de a respira ori vorbi. Expectorația cu mai mult decât câteva striuri de sânge sau sângele asociat durerii toracice ori respirației dificile necesită evaluare de urgență. Chiar și petele mici de sânge trebuie verificate prompt. Cereți sfat urgent pentru agravare rapidă, durere toracică, febră importantă, deshidratare ori stare generală foarte rea. Copilul care a început să tușească după înec cu aliment ori obiect necesită evaluare chiar dacă episodul imediat s-a liniștit. Pauzele de respirație, alimentația slabă ori somnolența neobișnuită la sugar cer atenție urgentă."
+      ]
+    },
+    {
+      "heading": "Durata contează, dar semnele de alarmă au prioritate",
+      "paragraphs": [
+        "Tusea după infecție poate continua câteva săptămâni în timp ce celelalte simptome se ameliorează. Programați evaluare dacă depășește aproximativ trei săptămâni sau mai devreme la agravare ori factori de risc importanți. La copil, tusea umedă zilnică peste patru săptămâni necesită în mod special investigație. Nu considerați automat săptămânile repetate de tuse umedă o nouă răceală. Slăbirea inexplicabilă, transpirațiile nocturne, infecțiile toracice repetate ori expunerea relevantă la tuberculoză cer evaluare. Medicul poate examina toracele, verifica medicamentele și decide radiografie, teste respiratorii sau pentru infecție. Nu toate testele sunt necesare tuturor."
+      ]
+    },
+    {
+      "heading": "Măsurile de confort au limite",
+      "paragraphs": [
+        "Evitați fumul și aerosolii de vapat și reduceți iritanții cunoscuți. Lichidele regulate pot calma gâtul; respectați eventualele restricții medicale. Mierea poate ameliora tusea la adulți și copii de peste un an, dar nu se dă niciodată sugarilor mai mici. Evitați vasele cu aburi fierbinți și obiectele cu risc de înec, precum pastilele de supt la copilul mic. Produsele fără rețetă au beneficii limitate și pot provoca somnolență, interacțiuni ori dublarea accidentală a dozelor. Întrebați farmacistul despre vârstă, sarcină și alte tratamente; nu folosiți produse de adulți la copii. Calmantele sau antitermicele pot ameliora durerea ori febra fără să oprească tusea."
+      ]
+    },
+    {
+      "heading": "Tratați cauza și stabiliți reevaluarea",
+      "paragraphs": [
+        "Majoritatea tuselor virale necomplicate nu necesită antibiotice. Inhalatoarele, corticosteroizii ori medicamentele pentru reflux nu sunt o probă standard pentru orice tuse; trebuie să corespundă evaluării clinice. Infecția bacteriană diagnosticată sau boala respiratorie cronică pot necesita tratament specific. Tusea inexplicabilă de durată poate necesita specialist și tratament adaptat de control al tusei, nu antibiotice repetate. Spuneți despre pierderea somnului, scurgerile urinare ori leșinul la tuse, care necesită sprijin și pot afecta siguranța. Întrebați când se așteaptă ameliorarea, ce faceți dacă planul nu funcționează și ce semne cer revenire mai devreme. Simptomele persistente merită luate în serios fără a presupune cauza cea mai gravă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: un jurnal util",
+      "text": "Ilir are tuse seacă după schimbarea tratamentului pentru tensiune. Notează debutul și aduce toate medicamentele la consult. Medicul verifică alte cauze și decide dacă schimbarea tratamentului este potrivită; Ilir nu îl oprește singur."
+    },
+    {
+      "title": "Exemplu ipotetic: tuse umedă care continuă",
+      "text": "O fetiță pare activă între răceli, dar tușește umed zilnic de câteva săptămâni. Părintele observă lipsa zilelor fără tuse și cere consult. Medicul evaluează persistența în loc să recomande repetat antitusive cumpărate din magazin."
+    }
+  ],
+  "questions": [
+    "Ce cauze se potrivesc tiparului meu și sunt necesare teste?",
+    "Ce măsuri de confort ori medicamente sunt potrivite pentru mine?",
+    "Când ar trebui să se amelioreze și ce impune revenirea mai devreme?"
+  ]
+}

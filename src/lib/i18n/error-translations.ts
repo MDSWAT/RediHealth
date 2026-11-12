@@ -8,6 +8,13 @@ type ErrorCopy = {
 };
 
 export const errorTranslations: Record<Lang, ErrorCopy> = {
+  ru: {
+    title: "Что-то пошло не так",
+    body: "Эта страница не загрузилась. Попробуйте еще раз. Если это по-прежнему не работает, вернитесь через несколько минут.",
+    retry: "Попробуйте еще раз",
+    home: "Перейти на домашнюю страницу",
+  },
+
   en: {
     title: "Something went wrong",
     body: "This page did not load. Try again. If it still does not work, come back in a few minutes.",

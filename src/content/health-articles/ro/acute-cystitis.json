@@ -1,0 +1,51 @@
+{
+  "title": "Cistita acută: simptome urinare și când să ceri ajutor",
+  "intro": "Cistita este inflamația vezicii urinare, frecvent provocată de o infecție bacteriană. Usturimea la urinare, nevoia de a urina des și disconfortul în partea de jos a abdomenului sunt manifestări obișnuite. Simptome asemănătoare pot avea alte cauze, astfel că răspunsul potrivit depinde de întregul context, inclusiv sarcină, vârstă, alte boli și eventuale semne că sunt afectați rinichii sau restul organismului.",
+  "sections": [
+    {
+      "heading": "Deosebește simptomele vezicii de semnele de alarmă",
+      "paragraphs": [
+        "O infecție necomplicată a vezicii provoacă de obicei simptome legate de urinare, precum nevoia urgentă și eliminarea frecventă a unor cantități mici de urină. Febra, frisoanele puternice, durerea într-o parte sau în spate sub coaste ori vărsăturile pot sugera o infecție mai gravă și necesită evaluare urgentă. Sângele vizibil în urină necesită, de asemenea, sfat medical. Urina tulbure sau cu miros puternic nu dovedește singură o infecție; hidratarea, medicamentele și alți factori îi pot modifica aspectul."
+      ]
+    },
+    {
+      "heading": "Explică situația ta la consultație",
+      "paragraphs": [
+        "Spune medicului când au început simptomele, dacă ești sau ai putea fi însărcinată și dacă ai sondă urinară, boală renală, diabet sau imunitate scăzută. Copiii, bărbații și vârstnicii fragili au nevoie de evaluare adaptată, nu de copierea unui tratament folosit de o femeie adultă sănătoasă. Menționează secrețiile genitale, iritația, un contact sexual nou sau dificultatea de a goli vezica, deoarece acestea pot indica altă problemă ori schimba investigațiile utile."
+      ]
+    },
+    {
+      "heading": "Înțelege analizele de urină și limitele lor",
+      "paragraphs": [
+        "Simptomele și istoricul medical pot fi suficiente în unele cazuri necomplicate; alte situații necesită analiză de urină sau urocultură pentru identificarea bacteriilor și a antibioticelor potrivite. Urmează instrucțiunile de recoltare. Un rezultat pozitiv nu explică automat fiecare simptom: unele persoane au bacterii în urină fără o infecție care necesită tratament. Medicul trebuie să interpreteze rezultatele în context. Nu amâna îngrijirea urgentă încercând să obții o probă."
+      ]
+    },
+    {
+      "heading": "Urmează un plan stabilit pentru tratament și confort",
+      "paragraphs": [
+        "Antibioticele pot fi recomandate în funcție de situația persoanei și de gravitate. Urmează instrucțiunile prescripției și contactează medicul pentru efecte adverse sau lipsa ameliorării; nu împărți comprimatele și nu folosi medicamente rămase. Odihna și suficiente lichide pentru evitarea deshidratării pot ajuta confortul, dar respectă eventualele restricții de lichide prescrise. Întreabă ce calmant este potrivit. Produsele cu merișor și plicurile pentru cistită nu tratează în mod fiabil o infecție instalată și nu trebuie să înlocuiască îngrijirea necesară."
+      ]
+    },
+    {
+      "heading": "Află când este necesară reevaluarea",
+      "paragraphs": [
+        "Cere sfat prompt dacă simptomele se agravează sau nu se ameliorează conform așteptărilor stabilite în plan. Sarcina, febra, durerea în zona rinichilor, infecțiile repetate și sângele persistent în urină necesită atenție specială. Confuzia bruscă, somnolența pronunțată, colapsul sau starea generală foarte gravă impun ajutor de urgență. După episoade repetate, discută cu medicul factorii favorizanți și prevenția, în loc să te tratezi singur în mod repetat. Simptomele noi nu trebuie atribuite automat unui diagnostic anterior de cistită."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: recunoașterea unei schimbări",
+      "text": "O persoană cu usturime la urinare face febră și are dureri în spate, sub coaste. Cere evaluare urgentă și explică atât simptomele urinare, cât și durerea nouă, în loc să presupună că este în continuare o problemă necomplicată a vezicii."
+    },
+    {
+      "title": "Exemplu ipotetic: pregătirea pentru simptome repetate",
+      "text": "O persoană cu episoade repetate duce la consultație o listă cu analizele anterioare, medicamentele prescrise și perioadele în care au apărut simptomele. Întreabă dacă ar ajuta o urocultură sau evaluarea altei cauze, în loc să folosească antibiotice rămase de la un episod anterior."
+    }
+  ],
+  "questions": [
+    "Simptomele mele sugerează o infecție a vezicii sau altă cauză și am nevoie de analize de urină?",
+    "Ce tratament este potrivit în raport cu o posibilă sarcină, bolile mele și alergiile la medicamente?",
+    "Ce ar trebui să se amelioreze, când să vă contactez din nou și ce semne necesită ajutor urgent?"
+  ]
+}

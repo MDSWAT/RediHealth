@@ -1,0 +1,51 @@
+{
+  "title": "Kuptimi i kodeve të kancerit në raportin mjekësor",
+  "intro": "Raporti për kancerin mund të përdorë shkurtime për vendin e origjinës, përhapjen, pamjen e qelizave dhe ekzaminimet ose trajtimet e kryera. Kodet ndihmojnë komunikimin profesional, por nuk janë më vete rekomandim trajtimi apo parashikim personal mbijetese. Kërkoni shpjegimin e të gjithë raportit, përfshirë pasiguritë dhe sistemin e klasifikimit.",
+  "sections": [
+    {
+      "heading": "TNM përshkruan shtrirjen e shumë kancereve",
+      "paragraphs": [
+        "Në sistemin TNM, T përshkruan madhësinë ose shtrirjen lokale të tumorit fillestar, N përfshirjen e nyjeve limfatike rajonale dhe M përhapjen në vende të largëta. Numrat dhe nganjëherë shkronja shtesë japin hollësi. Përkufizimet varen nga vendi i kancerit dhe botimi i klasifikimit. Një tabelë për një kancer tjetër nuk përcakton stadin tuaj. Disa kancere, përfshirë shumë kancere të gjakut dhe tumore të trurit, përdorin sisteme të tjera."
+      ]
+    },
+    {
+      "heading": "Baza dhe koha e vlerësimit kanë rëndësi",
+      "paragraphs": [
+        "Shkronja e vogël c zakonisht tregon vlerësim klinik, me ekzaminime, imazheri dhe të dhëna diagnostike. Shkronja p tregon klasifikim të mbështetur nga ekzaminimi patologjik i indit të hequr kirurgjikisht. Parashtesa y tregon vlerësim gjatë ose pas trajtimit fillestar, ndërsa r klasifikimin e kancerit të rikthyer. Këto shpjegojnë disa dallime mes raporteve. Ndryshimi pas të dhënave të reja nuk nënkupton automatikisht përkeqësim të shpejtë. Pyesni cilat gjetje ishin të disponueshme në secilin moment."
+      ]
+    },
+    {
+      "heading": "Grada ndryshon nga stadi",
+      "paragraphs": [
+        "Grada përshkruan tiparet e qelizave dhe indit tumoral nën mikroskop. Në shumë sisteme, qelizat që ngjajnë më pak me ato normale lidhen me sjellje më agresive, por rregullat ndryshojnë sipas kancerit. Stadi përshkruan shtrirjen e sëmundjes. Asnjëri nuk zëvendëson informacionin për llojin e kancerit, biomarkerët, shëndetin e përgjithshëm apo përgjigjen ndaj trajtimit. E njëjta gradë nuk ka domosdoshmërisht të njëjtin kuptim për çdo tumor."
+      ]
+    },
+    {
+      "heading": "Sëmundja e mbetur dhe pasiguria",
+      "paragraphs": [
+        "Klasifikimi R përshkruan tumorin e mbetur pas trajtimit: R0 do të thotë se nuk u identifikua tumor i mbetur, R1 mbetje mikroskopike dhe R2 tumor i mbetur i dukshëm. Pyesni cilat vende dhe ekzaminime mbulon ky përfundim. Kufijtë kirurgjikalë të pastër janë të dobishëm, por nuk garantojnë se kanceri nuk rikthehet. X në disa kategori do të thotë se vlerësimi nuk u bë dot, jo automatikisht rezultat i mirë ose i keq. Analizat në pritje mund ta lënë raportin të paplotë."
+      ]
+    },
+    {
+      "heading": "Përgatituni për bisedën e radhës",
+      "paragraphs": [
+        "Kërkoni kopjen dhe shënoni termat e panjohur, datën dhe rezultatet në pritje. Pyesni si lidhen gjetjet me qëllimin e trajtimit, alternativat, përfitimet dhe dëmet e mundshme. Disa sisteme ndërthurin shtrirjen anatomike me tipare të tjera tumorale për përcaktimin e stadit. Statistikat e popullatës nuk parashikojnë saktë ecurinë individuale. Për kujdes në një shtet apo gjuhë tjetër, merrni raportin origjinal dhe kërkoni përkthyes të kualifikuar, jo përkthim vetjak të shkurtimeve të veçuara."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Grada dhe stadi — shembull hipotetik",
+      "text": "Një person mendon se grada dhe stadi janë i njëjti vlerësim. Mjeku shpjegon cili përshkruan pamjen mikroskopike dhe cili shtrirjen, pastaj ndikimin e secilit në alternativat e trajtimit."
+    },
+    {
+      "title": "Dy raporte — shembull hipotetik",
+      "text": "Raporti i imazherisë dhe raporti i mëvonshëm patologjik kanë parashtesa e kategori të ndryshme. Personi pyet nëse ndryshimi vjen nga të dhëna të reja të indit, trajtimi i kryer apo ndryshim i vërtetë i sëmundjes."
+    }
+  ],
+  "questions": [
+    "Cilin klasifikim specifik për këtë kancer dhe cilin botim përdor raporti?",
+    "Cilat gjetje janë të konfirmuara, cilat të pasigurta dhe çfarë analizash priten?",
+    "Si ndikojnë gjetjet te qëllimi i trajtimit, alternativat dhe ndjekja ime?"
+  ]
+}

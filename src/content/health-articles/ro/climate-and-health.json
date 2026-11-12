@@ -1,0 +1,51 @@
+{
+  "title": "Clima și sănătatea: pregătire pentru căldură, fum și vreme extremă",
+  "intro": "Schimbările climatice afectează sănătatea prin căldură, fenomene extreme, calitatea aerului, siguranța hranei și apei și întreruperea serviciilor. Riscurile diferă după loc, sănătate, locuință, muncă și acces la ajutor. Pregătirea reduce daunele, dar protecția necesită și servicii comunitare și acțiune publică. Folosiți alertele locale, nu presupuneți că un articol general prezice condițiile de acasă.",
+  "sections": [
+    {
+      "heading": "Pregătiți-vă înainte de îmbolnăvire",
+      "paragraphs": [
+        "Planificați un loc mai răcoros pentru orele cele mai calde, umbriți camerele și adaptați efortul. Verificați persoanele care pot necesita ajutor, inclusiv vârstnici, copii mici, gravide și bolnavi cronici. Beți potrivit vârstei și sănătății; restricțiile prescrise de lichide necesită plan individual. Nu lăsați copii sau persoane dependente într-un vehicul parcat. Confuzia, prăbușirea ori suspiciunea de insolație severă sunt urgențe: cereți ajutor și începeți răcorirea."
+      ]
+    },
+    {
+      "heading": "Poluarea și fumul cer plan separat",
+      "paragraphs": [
+        "Căldura și fumul de incendiu agravează probleme respiratorii și cardiovasculare. Urmați sfatul local despre aer, reduceți efortul afară la poluare periculoasă și identificați spațiu răcoros cu aer mai curat. Excluderea fumului trebuie echilibrată cu evitarea căldurii interioare periculoase; mergeți într-un spațiu public potrivit dacă locuința nu este sigură. Păstrați planul pentru astm ori boala pulmonară și accesul la tratament. Dispneea severă ori durerea toracică cer evaluare urgentă sau de urgență, nu atribuirea automată vremii."
+      ]
+    },
+    {
+      "heading": "Inundații și riscuri infecțioase",
+      "paragraphs": [
+        "Apa de inundație ascunde pericole electrice, traumatisme și contaminare. Nu treceți prin ea pe jos ori cu mașina; urmați evacuarea și recomandările pentru apa potabilă. Țineți copiii departe de zone contaminate și cereți sfat pentru răni expuse. Hrana afectată de inundație ori întreruperea răcirii poate fi nesigură deși arată normal. Nu folosiți generator cu combustibil în casă ori garaj din cauza monoxidului de carbon. Temperatura și ploile schimbă și tiparele locale de căpușe, țânțari și infecții; urmați prevenția locală, fără să presupuneți prezența oricărei boli peste tot."
+      ]
+    },
+    {
+      "heading": "Protejați tratamentul și accesul la îngrijire",
+      "paragraphs": [
+        "Întrebați despre păstrarea medicamentelor pe căldură și gestionarea vărsăturilor, deshidratării ori penei de curent. Unele tratamente modifică toleranța la căldură, dar nu le opriți sau ajustați singuri. Planificați medicamentele refrigerate, aparatura electrică, transportul și alt contact cu echipa. Păstrați lista actuală și contactele esențiale. Planul trebuie să respecte locuința și bugetul, cu sprijinul serviciilor când răcorirea ori transportul privat lipsesc."
+      ]
+    },
+    {
+      "heading": "Sănătate mintală și prevenție comună",
+      "paragraphs": [
+        "Vremea extremă, strămutarea și îngrijorarea pot produce stres, insomnie și doliu. Cereți sprijin când suferința persistă ori afectează viața. Stabiliți verificări cu oameni de încredere și servicii locale pentru adăpost, apă și informații accesibile. Locuințele sigure, umbra, energia și transportul curate protejează dincolo de urgențe. Acțiunea personală ajută, dar oamenii nu trebuie învinovățiți pentru riscuri necontrolabile. Revizuiți planul după eveniment și rezolvați lipsurile în perioade liniștite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Alertă și restricție de lichide — exemplu ipotetic",
+      "text": "O persoană vârstnică cu boală cardiacă primește alertă de căldură. Cere echipei adaptarea planului de lichide, organizează loc răcoros și verificare. Nu oprește singură medicamente și nu bea nelimitat."
+    },
+    {
+      "title": "Fum și căldură în casă — exemplu ipotetic",
+      "text": "Familia închide ferestrele din cauza fumului, dar casa devine periculos de caldă. Urmează alertele și merge într-un spațiu disponibil răcoros cu aer curat, fără să considere ferestrele închise singura prioritate."
+    }
+  ],
+  "questions": [
+    "Ce alerte locale pentru căldură, aer și inundații folosesc?",
+    "Cum schimbă bolile, medicamentele și aparatura planul casei?",
+    "Unde găsim răcorire, apă sigură, transport ori sprijin emoțional dacă măsurile de acasă nu ajung?"
+  ]
+}

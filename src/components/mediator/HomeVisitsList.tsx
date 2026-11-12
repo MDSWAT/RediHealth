@@ -16,6 +16,27 @@ function useSafeLanguage() {
 type VisitSeedText = Record<string, { patientAge: string; purpose: string }>;
 
 const visitsCopy = {
+  ru: {
+    title: (n: number) => `Сегодняшние визиты(${n})`,
+    subtitle: "Сортировано по времени.",
+    progress: (done: number, total: number) => `${done} из ${total} сделано`,
+    urgent: "Срочно",
+    completed: "Готово",
+    purpose: "Причина:",
+    openMap: "Открыть карту",
+    callPatient: "Позвонить пациенту",
+    arrived: "я здесь",
+    addMeasurements: "Добавить измерения",
+    connectDoctor: "Подключить врача",
+    endVisit: "Завершение визита",
+    seed: {
+      "visit-1": { patientAge: "68 years", purpose: "Проверка артериального давления и проверка рецепта" },
+      "visit-2": { patientAge: "74 years", purpose: "Проверка уровня сахара в крови и видеозвонок с врачом" },
+      "visit-3": { patientAge: "24 years, 7 months pregnant", purpose: "Запись на дородовые осмотры и файл CNAS" },
+      "visit-4": { patientAge: "5 years, with his mother", purpose: "Проверка температуры и помощь в записи к педиатру" },
+    } as VisitSeedText,
+  },
+
   ro: {
     title: (n: number) => `Vizitele de azi (${n})`,
     subtitle: "În ordinea orei.",

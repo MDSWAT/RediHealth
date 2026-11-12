@@ -1,0 +1,51 @@
+{
+  "title": "Pancreatite acuta: valutazione urgente e recupero",
+  "intro": "La pancreatite acuta è un'infiammazione improvvisa del pancreas, un organo che aiuta a digerire il cibo e produce ormoni, tra cui l'insulina. Può diventare grave e richiede una valutazione ospedaliera urgente. I soli sintomi non confermano la diagnosi: anche altre emergenze possono causare forte dolore addominale. Questo articolo spiega cosa discutere con il team ospedaliero, non come curare a casa un attacco sospetto.",
+  "sections": [
+    {
+      "heading": "Riconoscere i sintomi che richiedono aiuto urgente",
+      "paragraphs": [
+        "Un forte dolore nella parte alta dell'addome richiede valutazione urgente, soprattutto se inizia improvvisamente, persiste o si irradia alla schiena. Possono accompagnarlo vomito, febbre, battito accelerato o difficoltà respiratoria. Dolore intenso con affanno, svenimento o rapido peggioramento richiede soccorso d'emergenza. Non guidare se stai molto male. Descrivi al servizio i sintomi e quando sono iniziati, invece di aspettare di essere certo che il pancreas ne sia la causa."
+      ]
+    },
+    {
+      "heading": "Comprendere come vengono indagati diagnosi e causa",
+      "paragraphs": [
+        "Gli esami del sangue, compresi gli enzimi pancreatici come la lipasi, aiutano a valutare la diagnosi. Ecografia o altri esami di diagnostica per immagini possono cercare calcoli biliari o complicazioni; non tutti necessitano subito di ogni esame. Calcoli biliari e alcol sono cause comuni, ma possono contribuire medicinali, grassi elevati nel sangue e altre condizioni. Talvolta inizialmente non si trova la causa. Fornisci una storia accurata di farmaci e alcol senza interrompere autonomamente medicinali prescritti."
+      ]
+    },
+    {
+      "heading": "Conoscere gli obiettivi delle cure ospedaliere",
+      "paragraphs": [
+        "Il team monitora circolazione, respirazione, funzionalità renale e altri segni di gravità. Il trattamento può comprendere liquidi per via endovenosa, controllo del dolore e supporto per nausea e nutrizione. Alcune persone necessitano di terapia intensiva. Gli antibiotici si usano quando un'infezione li richiede, non automaticamente per ogni infiammazione del pancreas. Un dotto biliare ostruito o un altro problema specifico possono richiedere una procedura. Chiedi a cosa serva ogni intervento e quali cambiamenti modificherebbero il piano."
+      ]
+    },
+    {
+      "heading": "Seguire un piano individuale per alimentazione e recupero",
+      "paragraphs": [
+        "Non imporre a te stesso digiuno o una dieta restrittiva come cura domestica. Il team decide quando e come puoi mangiare in base alle condizioni e alla tolleranza. Se non riesci ad alimentarti, può servire un supporto nutrizionale specialistico. Il recupero varia e sentirsi meglio non elimina ogni rischio di complicazioni. Prima della dimissione, chiarisci cosa mangiare, come usare i medicinali prescritti e chi contattare per nuovi sintomi."
+      ]
+    },
+    {
+      "heading": "Affrontare la causa e riconoscere i peggioramenti",
+      "paragraphs": [
+        "Il controllo successivo può comprendere la discussione di un intervento alla colecisti se i calcoli hanno causato l'attacco, la revisione dei farmaci o la gestione dei grassi nel sangue. Chiedi come evitare l'alcol e quale sostegno ricevere se la dipendenza rende difficile smettere: l'astinenza può richiedere supervisione medica. Dolore nuovo o crescente, febbre, vomito ripetuto, impossibilità di trattenere liquidi o ittero dopo la dimissione richiedono consiglio medico tempestivo. Grave malessere, collasso o problemi respiratori richiedono soccorso d'emergenza. Non presumere che ogni peggioramento sia una normale fase della guarigione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: descrivere un problema urgente",
+      "text": "Una persona sviluppa forte dolore nella parte alta dell'addome che si irradia alla schiena e continua a vomitare. Chiede aiuto urgente, descrive i sintomi e porta l'elenco dei medicinali se disponibile. Non rimanda le cure per cercare una dieta che possa calmare il pancreas."
+    },
+    {
+      "title": "Esempio ipotetico: prepararsi alla dimissione",
+      "text": "Un paziente il cui attacco era associato a calcoli biliari chiede se servano altre cure per ridurre le recidive, quali controlli siano programmati e quali sintomi richiedano un ritorno urgente. Chiede istruzioni scritte invece di presumere che lasciare l'ospedale significhi non avere più bisogno di cure."
+    }
+  ],
+  "questions": [
+    "Quali elementi sostengono la diagnosi e la causa sospettata nel mio caso?",
+    "Qual è il piano per controllo del dolore, nutrizione e monitoraggio delle complicazioni?",
+    "Quali controlli affrontano la causa e quali sintomi richiedono una rivalutazione urgente?"
+  ]
+}

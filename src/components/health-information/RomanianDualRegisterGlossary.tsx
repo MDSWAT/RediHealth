@@ -65,6 +65,10 @@ const BRIDGE_EXTRAS_BY_LANG: Record<
     countMany: (n: number) => string;
   }
 > = {
+"ru": {
+"countMany": n=>`Показано терминов: ${n}`,
+"inThisGuide":"В этом руководстве","bridgeArrowLabel":"Простыми словами","countOne":"Показан 1 термин"},
+
   ro: {
     inThisGuide: "În acest ghid",
     bridgeArrowLabel: "Ce înseamnă",

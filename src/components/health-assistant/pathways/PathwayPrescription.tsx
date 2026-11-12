@@ -33,6 +33,8 @@ interface PathwayPrescriptionProps {
 
 /** Brand and generic names as they appear on prescriptions; amoxicillin is spelled per language. */
 const AMOXICILLIN: Record<Lang, string> = {
+ru: "Амоксициллин",
+
   ro: "Amoxicilină",
   en: "Amoxicillin",
   sq: "Amoksicilinë",

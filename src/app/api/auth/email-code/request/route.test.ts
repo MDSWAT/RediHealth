@@ -12,18 +12,18 @@ vi.mock("next/headers", () => ({
 }));
 vi.mock("@/lib/login-access", () => ({ checkLoginAccess: mocks.access }));
 vi.mock("@/lib/security/recaptcha", () => ({ verifyRecaptcha: mocks.captcha }));
-vi.mock("@/lib/email", () => ({
+vi.mock("@/lib/email", async (importOriginal) => ({
+  ...await importOriginal<typeof import("@/lib/email")>(),
   isEmailConfigured: () => true,
-  renderBrandEmail: () => "<p>code</p>",
   sendEmail: mocks.sendEmail,
 }));
 
 import { POST } from "./route";
 
-function request(body: string, ip = "198.51.100.10") {
+function request(body: string, ip = "198.51.100.10", lang = "en") {
   return new Request("http://localhost/api/auth/email-code/request", {
     method: "POST",
-    headers: { "content-type": "application/json", "x-forwarded-for": ip },
+    headers: { "content-type": "application/json", "x-forwarded-for": ip, "x-redihealth-lang": lang },
     body,
   });
 }
@@ -60,6 +60,19 @@ describe("email code request route", () => {
       expect.objectContaining({ to: "staff@example.com", subject: "Your RediHealth verification code" }),
     );
     expect(mocks.set).toHaveBeenCalledWith("redihealth_email_otp", expect.any(String), expect.objectContaining({ httpOnly: true }));
+  });
+
+  it.each(["ro", "sq", "it", "ru"])("uses the selected %s language for the actual sign-in email", async (lang) => {
+    const response = await POST(request(JSON.stringify({ email: `staff-${lang}@example.com` }), `locale-${lang}`, lang));
+    expect(response.status).toBe(200);
+    const message = mocks.sendEmail.mock.calls[0][0] as { subject: string; text: string; html: string };
+    expect(message.html.includes(`<html lang="${lang}"`)).toBe(true);
+    expect(message.subject.includes("Your RediHealth verification code")).toBe(false);
+    expect(message.text.includes("Use the one-time verification code")).toBe(false);
+    const code = message.text.match(/^\d{6}$/m)?.[0];
+    expect(code).toBeDefined();
+    expect(message.subject.includes(code!)).toBe(false);
+    expect(message.html.includes(code!)).toBe(true);
   });
 
   it("blocks email sending and account lookups when bot verification fails", async () => {

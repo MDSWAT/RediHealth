@@ -1,0 +1,51 @@
+{
+  "title": "Flutterul atrial: înțelegeți ritmul și planificați tratamentul",
+  "intro": "Flutterul atrial este o tulburare de ritm în care un semnal electric circulă repetat prin camerele superioare ale inimii, făcându-le să bată rapid. Pulsul simțit poate fi rapid și regulat sau uneori neregulat. Flutterul diferă de fibrilația atrială, dar ambele pot apărea la aceeași persoană. Evaluarea trebuie să urmărească simptomele, funcția inimii și riscul de AVC, nu doar cifra unui monitor de puls.",
+  "sections": [
+    {
+      "heading": "Recunoașteți simptomele și semnele de urgență",
+      "paragraphs": [
+        "Flutterul poate provoca inimă accelerată, oboseală, lipsă de aer, toleranță redusă la efort sau amețeală. Unele persoane au puține simptome. Un puls rapid nou și persistent necesită sfat medical prompt, chiar dacă pare regulat. Cereți ajutor de urgență pentru durere toracică, lipsă severă de aer, leșin sau slăbiciune bruscă, asimetrie facială ori dificultăți de vorbire. Nu conduceți spre urgență. Diagnosticul anterior de flutter nu face inofensivă o durere toracică nouă, iar simptomele de AVC rămân urgență chiar dacă dispar."
+      ]
+    },
+    {
+      "heading": "Folosiți ECG pentru identificarea ritmului",
+      "paragraphs": [
+        "Activitatea electrică de pe ECG ajută la diferențierea flutterului de fibrilația atrială și alte ritmuri rapide. Atriile pot bate mai rapid decât camerele inferioare, deoarece nu toate semnalele trec, deci pulsul la încheietură nu arată întregul tipar. Episoadele intermitente pot necesita monitorizare mai lungă. Spuneți clinicianului despre operații cardiace sau ablații anterioare, medicamente și momentul simptomelor. Testele pot evalua structura inimii, tiroida ori alți factori favorizanți. Tipul și localizarea circuitului electric pot influența alegerea tratamentului."
+      ]
+    },
+    {
+      "heading": "Discutați controlul frecvenței și restabilirea ritmului",
+      "paragraphs": [
+        "Medicamentele pot încetini camerele inferioare sau ajuta la controlarea ritmului anormal. Cardioversia folosește tratament electric atent controlat pentru restabilirea ritmului în situații potrivite; dacă circulația este instabilă, poate fi necesar tratament urgent. Echipa ia în considerare durata flutterului și riscul unui cheag existent înaintea cardioversiei planificate. Întrebați ce pregătire și anticoagulare sunt necesare și ce se întâmplă dacă revine. Nu luați medicamente cardiace suplimentare și nu încercați singur restabilirea ritmului fără un plan medical convenit."
+      ]
+    },
+    {
+      "heading": "Întrebați dacă ablația se potrivește tipului dumneavoastră",
+      "paragraphs": [
+        "Ablația introduce catetere prin vase pentru a întrerupe circuitul electric. Pentru flutterul tipic, tratarea unei anumite zone din atriul drept poate fi eficientă. Alte circuite, inclusiv cele asociate procedurilor anterioare, pot necesita abordare diferită. Discutați succesul așteptat pentru cazul dumneavoastră, riscurile, anestezia, recuperarea și posibilitatea altei proceduri. Tratarea flutterului nu garantează că fibrilația atrială nu va apărea niciodată. Urmărirea rămâne importantă chiar dacă senzația de inimă accelerată s-a oprit."
+      ]
+    },
+    {
+      "heading": "Clarificați prevenirea AVC și urmărirea",
+      "paragraphs": [
+        "Flutterul poate fi asociat cu formarea cheagurilor și AVC. Deciziile de anticoagulare țin cont de riscurile individuale de AVC și sângerare, eventuală fibrilație atrială și planul de tratament. Nu opriți protecția prescrisă fiindcă o procedură pare reușită sau pulsul afișat este normal. Întrebați când se reevaluează prescripția și ce monitorizare este planificată. Abordați cu echipa tensiunea, boala cardiacă, somnul, fumatul și alcoolul, după caz. Notați simptomele recurente și cereți reevaluare dacă lipsa de aer, umflarea sau toleranța la efort se agravează, fără a considera recidiva mereu inofensivă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: puls regulat, dar rapid",
+      "text": "O persoană observă un puls persistent rapid cu bătăi egal distanțate. Cere evaluare promptă, fără a presupune că regularitatea înseamnă ritm normal. ECG identifică flutterul, iar echipa discută separat simptomele și riscul cheagurilor."
+    },
+    {
+      "title": "Exemplu ipotetic: alt ritm după ablație",
+      "text": "După tratamentul flutterului tipic, un pacient observă ulterior palpitații neregulate. Le discută cu medicul, fără a presupune că a revenit obligatoriu vechiul circuit. Monitorizarea caută fibrilație atrială sau altă cauză și orientează planul actualizat."
+    }
+  ],
+  "questions": [
+    "Ce tip de flutter am și este prezentă și fibrilația atrială?",
+    "Cum se compară medicamentele, cardioversia și ablația pentru simptomele și sănătatea inimii mele?",
+    "Ce anticoagulare și monitorizare îmi trebuie înainte și după tratament și când cer ajutor urgent?"
+  ]
+}

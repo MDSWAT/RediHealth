@@ -1,0 +1,51 @@
+{
+  "title": "Barnat e vlerësuara nga IQWiG: si lexohet përfitimi",
+  "intro": "Një ilaç i ri mund të autorizohet pa qenë më i mirë se trajtimi ekzistues. IQWiG, instituti gjerman për cilësi dhe efikasitet në kujdesin shëndetësor, shqyrton përfitimet e dëmet, edhe krahasimet e kërkuara nga komiteti federal G-BA. Kuptimi i krahasimit ndihmon diskutimin e trajtimit.",
+  "sections": [
+    {
+      "heading": "Autorizimi dhe përfitimi shtesë",
+      "paragraphs": [
+        "Autorizimi lidhet me përdorimin për indikacion të caktuar bazuar në cilësi, efekt dhe siguri. Përfitimi shtesë krahason me trajtimin ekzistues të përshtatshëm për grupin. Studimi kundër placebos mund të mbështesë autorizimin pa iu përgjigjur krahasimit me standardin. Procesi gjerman ndihmon vendime sistemi dhe pagesash; nuk është recetë personale. Vende të tjera vendosin veçmas. Kjo faqe shpjegon vlerësimet dhe nuk riprodhon katalog të plotë të përditësuar vazhdimisht të çdo ilaçi."
+      ]
+    },
+    {
+      "heading": "Përputhni raportin me situatën e saktë",
+      "paragraphs": [
+        "Kërkoni lëndën aktive dhe markën, indikacionin, moshën, fazën, terapitë e mëparshme dhe datën. I njëjti ilaç mund të ketë përfundime të ndryshme sipas grupeve ose përdorimit. Kombinimi nuk është automatikisht ilaçi vetëm. Shihni krahasuesin dhe nëse studimi e bën krahasimin të vlefshëm. Raporti për të rritur të patrajtuar nuk vlen vetvetiu për fëmijë ose terapi të dështuara. Kërkojini mjekut raportin përkatës dhe ndryshimet, jo vetëm titull kërkimi."
+      ]
+    },
+    {
+      "heading": "Shihni rezultatet që kanë rëndësi për njerëzit",
+      "paragraphs": [
+        "Mbijetesa, shenjat, funksioni ditor, cilësia e jetës dhe efektet e dëmshme janë të rëndësishme. Analiza ose imazhi më i mirë nuk provon jetë më të gjatë apo ndjesi më të mirë. Pyesni sa përfituan ose u dëmtuan, në çfarë kohe dhe ndryshimin absolut. Studime të vogla, ndjekje e shkurtër, të dhëna që mungojnë ose krahasues i gabuar sjellin pasiguri. Mungesa e provës së përdorshme për avantazh nuk provon automatikisht barazi ose mungesë efekti. Përfitimet peshohen me dëmet."
+      ]
+    },
+    {
+      "heading": "Kontrolloni fazën e procesit",
+      "paragraphs": [
+        "Prodhuesi jep dëshmi për vlerësimin e hershëm gjerman. IQWiG mund t'i shqyrtojë për G-BA dhe komentet ose të dhënat shtohen para vendimit. Dalloni pretendimin e kompanisë, raportin ose shtesën IQWiG dhe vendimin përfundimtar G-BA; përfundimet ndryshojnë ose përditësohen. Vlerësimet klinike të përbashkëta europiane mund të kontribuojnë pa zëvendësuar kuptimin e vendimit kombëtar dhe grupit. Përdorni dokumente zyrtare me datë dhe shihni versionet e reja. Përmbledhja ndihmon, por nuk ndryshon fushën dhe kufijtë."
+      ]
+    },
+    {
+      "heading": "Lidhni dëshmitë me vendimin personal",
+      "paragraphs": [
+        "Pyesni për përputhjen me sëmundjet, barnat, përgjigjen, prioritetet dhe mundësinë e trajtimit. Rehatia, administrimi, kontrolli, efektet, kostoja dhe aksesi kanë rëndësi edhe kur përfitimi shtesë është i pasigurt. Vendosni çfarë përmirësimi justifikon vazhdimin, sigurinë dhe rishikimin. Mos ndaloni ilaç efektiv nga titulli dhe mos filloni vetëm sepse është i ri. Në ndryshim merrni udhëzime dhe kontakt. Vlerësimi ndihmon vendimin e përbashkët, pa garantuar përgjigjen individuale."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: i njëjti ilaç, grupe të tjera",
+      "text": "Ana lexon për përfitim shtesë, por raporti është për persona pa një terapi të mëparshme. Ajo e ka marrë dhe pyet për dëshmitë e grupit të saj para supozimit se vlejnë."
+    },
+    {
+      "title": "Shembull hipotetik: pasiguria nuk është urdhër ndalimi",
+      "text": "Iliri sheh se përfitimi shtesë nuk u provua. Pyet nëse munguan krahasimet dhe si ndikon përgjigjja e tij. Vazhdon recetën ndërsa diskuton plan të sigurt, pa ndalim vetë."
+    }
+  ],
+  "questions": [
+    "A përputhet vlerësimi me diagnozën, fazën dhe historinë time?",
+    "Çfarë përfitimesh, dëmesh e pasigurish u gjetën kundrejt cilit trajtim?",
+    "Si ndryshojnë opsionet, monitorimi dhe rishikimi im?"
+  ]
+}

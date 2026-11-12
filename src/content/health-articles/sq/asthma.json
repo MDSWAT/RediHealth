@@ -1,0 +1,51 @@
+{
+  "title": "Astma: një plan personal për simptomat e përditshme dhe krizat",
+  "intro": "Astma shkakton inflamacion dhe ngushtim të ndryshueshëm të rrugëve të frymëmarrjes. Fishkëllima, kolla, shtrëngimi në kraharor dhe gulçimi mund të shfaqen e të largohen, edhe natën ose gjatë aktivitetit. Trajtimi shpesh lejon kontroll të mirë, por kriza mund të kërcënojë jetën. Diagnoza e konfirmuar, inhalatorët e përshtatshëm, teknika dhe plani me shkrim vlejnë më shumë se mbështetja te ngjyra e inhalatorit ose hamendësimi gjatë përkeqësimit.",
+  "sections": [
+    {
+      "heading": "Përshkruaj simptomat dhe shkaktarët e mundshëm",
+      "paragraphs": [
+        "Tregoji mjekut kur shfaqen simptomat, nëse ndërpresin gjumin ose aktivitetin dhe çfarë duket se i provokon. Tymi, ndotja, ajri i ftohtë, infeksionet, ushtrimi ose alergjenët mund të kontribuojnë, por shkaktarët ndryshojnë mes njerëzve. Vetëm kolla ose fishkëllima nuk provojnë astmë. Përmend ekspozimet në punë, krizat e mëparshme dhe trajtimet që ndihmuan ose shkaktuan probleme. Nuk është automatikisht e nevojshme të shmangësh çdo ushtrim; diskuto aktivitetin e sigurt dhe nëse simptomat tregojnë kontroll të pamjaftueshëm."
+      ]
+    },
+    {
+      "heading": "Kupto vlerësimin dhe ndjekjen",
+      "paragraphs": [
+        "Vlerësimi mund të përfshijë teste si spirometria, matje me kalimin e kohës dhe teste të tjera sipas moshës e rrethanave. Meqë simptomat ndryshojnë, ekzaminimi kur ndihesh mirë mund të mos e zgjidhë pyetjen. Pyet cilat prova mbështesin diagnozën dhe nëse kontribuon një gjendje tjetër. Pas diagnozës, zgjimi i përsëritur natën, nevoja në rritje për lehtësim ose vështirësia në aktivitetet normale duhen rivlerësuar, jo pranuar si të pashmangshme."
+      ]
+    },
+    {
+      "heading": "Dije rolin e çdo inhalatori të përshkruar",
+      "paragraphs": [
+        "Disa trajtime ulin inflamacionin bazë, disa lehtësojnë simptomat dhe kombinime të caktuara të përshkruara kryejnë të dy rolet. Jo çdo inhalator përdoret njësoj. Kërko emrat e barnave, qëllimin dhe udhëzimet, jo vetëm ngjyrën. Mos ndalo trajtimin e rregullt vetëm sepse ndihesh më mirë dhe mos e zëvendëso me inhalatorin e dikujt tjetër. Diskuto efektet anësore, shtatzëninë, kostot dhe vështirësinë për ta kujtuar trajtimin, që plani të jetë i realizueshëm."
+      ]
+    },
+    {
+      "heading": "Kontrollo teknikën dhe mbaje planin të arritshëm",
+      "paragraphs": [
+        "Merri pajisjet në takime dhe trego si i përdor. Teknika ndryshon sipas pajisjes; për disa inhalatorë mund të rekomandohet dhomë ndërmjetëse. Pyet si kontrollohen dozat e mbetura dhe kur duhen zëvendësuar furnizimet. Plani me shkrim duhet të shpjegojë trajtimin e zakonshëm, shenjat e përkeqësimit dhe veprimet në krizë. Ndaj udhëzimet përkatëse me kujdestarët ose shkollën kur nevojitet. Pas krizës, cakto rishikim të shpejtë edhe nëse simptomat janë qetësuar."
+      ]
+    },
+    {
+      "heading": "Vepro shpejt kur frymëmarrja përkeqësohet",
+      "paragraphs": [
+        "Ndiq planin e përshkruar dhe përdor inhalatorin lehtësues të rekomanduar ndërsa merr ndihmë kur duhet. Kërko ndihmë emergjente për gulçim të rëndë ose në përkeqësim, vështirësi të të folurit, buzë blu ose gri, rraskapitje, konfuzion ose përgjumje. Një krizë që nuk përgjigjet siç përshkruan plani ose pa inhalatorin lehtësues të përshkruar kërkon ndihmë urgjente. Mos vono sepse kriza e mëparshme ishte e lehtë ose po pret takim rutinë. Mos drejto makinën kur je rëndë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: diskutimi i simptomave gjatë ushtrimit",
+      "text": "Një nxënës kollitet dhe ka fishkëllimë gjatë sportit, dhe ndonjëherë zgjohet natën. Përshkruan të dy modelet në takim dhe pyet nëse duhen teste ose rishikim trajtimi. Nuk supozon se duhet të heqë dorë përgjithmonë nga ushtrimi dhe nuk i injoron simptomat e natës."
+    },
+    {
+      "title": "Shembull hipotetik: sqarimi i roleve të pajisjeve",
+      "text": "Dikush ka disa inhalatorë, por nuk di cili përdoret kur përkeqësohet. I sjell pajisjet dhe kërkon kontroll teknike e udhëzime të qarta me shkrim. E mban planin pranë, në vend që të mbështetet në një ngjyrë të kujtuar ose skemë dozimi nga interneti."
+    }
+  ],
+  "questions": [
+    "Cilat prova mbështesin diagnozën time dhe si do ta gjykojmë kontrollin e astmës?",
+    "Çfarë bën secili inhalator dhe a mund ta kontrolloni teknikën time?",
+    "Çfarë duhet të thotë saktësisht plani për përkeqësimin dhe ndihmën emergjente?"
+  ]
+}

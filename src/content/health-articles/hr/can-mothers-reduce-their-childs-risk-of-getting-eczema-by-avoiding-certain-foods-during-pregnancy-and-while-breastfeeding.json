@@ -1,0 +1,51 @@
+{
+  "title": "Sprječava li izbjegavanje hrane u trudnoći ili dojenju ekcem?",
+  "intro": "Roditelji izbjegavaju mlijeko, jaja, orašasto i drugo radi sprječavanja ekcema. Rutinsko izbacivanje alergena u trudnoći ili dojenju samo zbog toga nije preporučeno. Pouzdana korist nije dokazana, a restrikcije otežavaju prehranu. To se razlikuje od osobne potvrđene alergije ili individualnog plana djetetu s potvrđenim problemom.",
+  "sections": [
+    {
+      "heading": "Odvojite ekcem, alergiju i prevenciju",
+      "paragraphs": [
+        "Ekcem je upala s čimbenicima kožne barijere i nasljeđa. Alergija na hranu može pratiti teži ekcem, ali nije automatski dokazana. Prevencija prije pojave druga je od obrade već bolesnog djeteta. Obiteljska povijest usmjerava rizik, ne dokazuje da izbacivanje roditeljskog obroka sprječava bolest."
+      ]
+    },
+    {
+      "heading": "Razumijte dokaze i neizvjesnost",
+      "paragraphs": [
+        "Studije ne potvrđuju prevenciju rutinskim ograničenjem u trudnoći. Pri dojenju dokazi također ne opravdavaju široko preventivno izbacivanje. Mali ili nejasni rezultat nije obećanje djetetu. Alergološke smjernice su i protiv izbjegavanja majke samo radi alergije na hranu. Ne znači obvezu jesti sve, nego nedostatak osnove za restrikcije svima."
+      ]
+    },
+    {
+      "heading": "Čuvajte prehranu i stvarne alergije",
+      "paragraphs": [
+        "Jedite raznoliko prema razdoblju uz odvojene savjete sigurnosti hrane. Infekcijski rizik nije isto što i alergen. Uz svoju alergiju slijedite plan bez namjernog izlaganja za dijete. Vegetarijansku, vegansku ili ograničenu prehranu raspravite za zamjene. Ne izbacujte više skupina bez savjeta o bjelančevinama, kalciju i drugome."
+      ]
+    },
+    {
+      "heading": "Kod djetetova ekcema tražite procjenu, ne krivnju",
+      "paragraphs": [
+        "Razgovarajte o koži, terapiji, težini i ponovljivim simptomima hrane. Svako pogoršanje nije prehrana, a pozitivan test sam ne dokazuje uzrok. Uz indicirano izbacivanje pitajte hranu, razlog, prehranu i kontrolu. Bez širokih neograničenih zabrana ili kućnog vraćanja nakon ozbiljne reakcije. Teško disanje, oticanje usta ili grla ili kolaps traže hitnu pomoć."
+      ]
+    },
+    {
+      "heading": "Dohrana je odvojena podržana odluka",
+      "paragraphs": [
+        "Izbacivanje roditeljske hrane i uvođenje djetetu nisu isto. Pitajte dob, sigurne teksture i alergene, posebno uz težak ekcem ili alergiju. Ne kopirajte rokove ili izazove s interneta. Dojenje može imati koristi, ali nijedan izbor ne jamči odsutnost ekcema. Tražite podršku bez krivnje i povezan plan kože i hranjenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: ekcem u obitelji",
+      "text": "Trudna osoba planira ukloniti mlijeko i jaja koja podnosi zbog obitelji. Pita dokaze i prehranu. Zadržava prikladnu prehranu bez pretpostavke nužnosti ili krivnje za budući ekcem."
+    },
+    {
+      "title": "Hipotetski primjer: ekcem i sumnja na hranu",
+      "text": "Roditelj koji doji opisuje ekcem i mogući obrazac liječniku. Razmatraju kožu i procjenu alergije kada treba, bez trajnog uklanjanja mnogih namirnica ili prekida hranjenja bez plana."
+    }
+  ],
+  "questions": [
+    "Je li tema prevencija, moja alergija ili moguća djetetova?",
+    "Je li izbacivanje indicirano i kako organizirati prehranu i kontrolu?",
+    "Koji savjet odgovara dobi, težini ekcema i povijesti alergije?"
+  ]
+}

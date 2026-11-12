@@ -1,0 +1,51 @@
+{
+  "title": "Mjetet vendimmarrëse: përgatitja për një zgjedhje shëndetësore",
+  "intro": "Disa vendime shëndetësore kanë më shumë se një mundësi të arsyeshme. Mjeti vendimmarrës për pacientin shpjegon zgjedhjen, krahason përfitime e dëme dhe ndihmon të mendoni çfarë ka rëndësi. Mbështet bisedën me mjekun, pa vendosur për ju. Një udhëzues i përgjithshëm organizon mendimet, por nuk përmban domosdoshmërisht provat për një trajtim të caktuar.",
+  "sections": [
+    {
+      "heading": "Sqaroni vendimin e vërtetë",
+      "paragraphs": [
+        "Pyetni çfarë problemi trajtohet dhe cilat zgjedhje janë të përshtatshme mjekësisht për ju. Vendimi për depistim ndryshon nga hetimi i simptomës dhe trajtimi i planifikuar nga emergjenca. Pyetni sa shpejt duhet vendimi dhe nëse ka kohë për lexim, pyetje të tjera ose mendim të dytë. Kur përshtatet, diskutoni ndjekjen, vazhdimin e planit ose pa trajtim, krahas ndërhyrjes. Kjo nuk do të thotë se çdo mundësi është njëlloj e sigurt ose se urgjenca pret një fletë pune. Sqaroni çfarë mund të ndodhë gjatë pritjes."
+      ]
+    },
+    {
+      "heading": "Kontrolloni besueshmërinë dhe rëndësinë për ju",
+      "paragraphs": [
+        "Shihni autorin, datën e përditësimit, provat dhe financimin ose konfliktet e interesit. Mjeti i dobishëm paraqet alternativa të rëndësishme me ekuilibër, përfshirë pasiguritë dhe pasojat praktike, jo reklamë për produkt. Kontrolloni diagnozën, grupmoshën dhe fazën e kujdesit. Kostot dhe shërbimet e një vendi tjetër mund të mos vlejnë për ju. Dëshmia personale tregon një përvojë, jo sa shpesh ndodh rezultati. Kërkoni shpjegim për termat dhe si zbatohen kërkimet në shëndetin tuaj."
+      ]
+    },
+    {
+      "heading": "Krahasoni rezultatet në të njëjtën kornizë",
+      "paragraphs": [
+        "Pyetni sa persona përfitojnë ose dëmtohen në grupe me madhësi të njëjtë dhe gjatë të njëjtës periudhë. Pohimi se rreziku përgjysmohet është i paplotë pa rrezikun fillestar dhe ndryshimin real. Figura ose tabela të thjeshta ndihmojnë. Sqaroni nëse numri tregon lehtësim simptomash, shmangie ngjarjeje serioze ose vetëm rezultat testi: janë rezultate të ndryshme. Mesatarja e grupit nuk parashikon saktë individin. Diskutoni pasigurinë, dëmet serioze të rralla, rikuperimin dhe nevojën për trajtim tjetër, jo vetëm suksesin kryesor."
+      ]
+    },
+    {
+      "heading": "Përfshini përparësitë dhe nevojat për qasje",
+      "paragraphs": [
+        "Tregoni çfarë do të thotë rezultat i mirë çdo ditë: më pak dhimbje, shikim më i qartë, pavarësi, ruajtje fertiliteti ose shmangie e orarit të rëndë të trajtimit. Udhëtimi, kostoja, kujdesi për të tjerët dhe menaxhimi i ilaçeve ndikojnë mundësinë praktike. Mund të kërkoni përkthyes, gjuhë të thjeshtë, format të arritshëm ose person të besuar. Mbështetja shpreh dëshirat tuaja, nuk i zëvendëson. Nëse doni rekomandim mjeku, thojeni dhe pyetni pse përshtatet me përparësitë. Nuk duhet të kuptoni çdo statistikë për të pasur të drejtën e pyetjeve."
+      ]
+    },
+    {
+      "heading": "Dilni me plan praktik dhe kontroll",
+      "paragraphs": [
+        "Përmblidhni me fjalët tuaja kuptimin dhe kërkoni korrigjim. Bini dakord për zgjedhjen, hapin tjetër, përgjegjësin, kohën dhe çfarë ndodh nëse rrethanat ndryshojnë. Shënoni pyetjet e pambyllura dhe kërkoni kopje të planit. Mjeti nuk garanton rezultat të mirë; ndryshimi i mendimit mund të kërkojë bisedë tjetër për çfarë mbetet e mundshme. Nëse jeni ende të pasigurt, shpjegoni çfarë informacioni ose ndihme mungon. Mos ndaloni trajtimin e përshkruar ose vononi vlerësimin urgjent gjatë kërkimit vetë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: qëllim konkret",
+      "text": "Mira diskuton trajtimin e kataraktit. Nuk thotë vetëm se do shikim më të mirë: shpjegon se vezullimi e pengon të punojë sigurt mbrëmjeve. Pyet si ndikojnë alternativat te ky qëllim, çfarë kërkon rikuperimi dhe çfarë sëmundjesh të tjera kufizojnë përmirësimin."
+    },
+    {
+      "title": "Shembull hipotetik: numrat absolutë",
+      "text": "Fletëpalosja thotë se trajtimi përgjysmon rrezikun e ardhshëm. Arbeni pyet sa persona do ta kishin problemin me dhe pa trajtim në të njëjtën periudhë dhe çfarë efektesh anësore ka. Mjeku përdor krahasim të thjeshtë dhe diskuton përshtatjen e vlerësimeve."
+    }
+  ],
+  "questions": [
+    "Cilat mundësi të arsyeshme kam, përfshirë pritjen ose vazhdimin e planit?",
+    "Çfarë përfitimesh, dëmesh e pasigurish priten për dikë si unë?",
+    "Sa kohë kam dhe çfarë mbështetjeje më ndihmon të vendos?"
+  ]
+}

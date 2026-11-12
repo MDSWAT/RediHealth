@@ -1,0 +1,2176 @@
+{
+  "abdominal-aortic-aneurysm": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-10",
+    "independentlyAuthored": true,
+    "authoringMethod": "provider-assisted",
+    "sourceCheckMethod": "provider-assisted",
+    "translationCheckMethod": "provider-assisted",
+    "automatedSourceCheck": true,
+    "automatedTranslationCheck": true,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "7be6697757473ed2e557599bc0327b805f100e9948018208c3807891081ed712",
+      "ro": "ff1c225bfebd9f173a921aa3b9dcc1a29537fc5f9864c6a7ac398ac86ebb7daf",
+      "sq": "8c01c659fd454803b0ef893bdcbfd4669c2ac65a7c8c6a1b031088dae86cf94d",
+      "it": "78190b2b30fc94a7f2ed95fd033f4239c244d18e945181c2991924d608550a21",
+      "ru": "14393498b078244acced96c827c3933125273d8b3deff22eac116d265ff33efb"
+    }
+  },
+  "abortion-in-germany": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "c4519a365249a2447611af82a900f88f477ad08dee91de4adecb1edd56c28cf5",
+      "ro": "65838b94fab0e84cd5634239e5e68d45947bfdf9efd813cb57b48bce91179dc2",
+      "sq": "25ccdde0c964b336787c42f8f35ce13e235b56ec6a07109c276664f8e78f0705",
+      "it": "111f9402c6b4429d6d2fbcd5ab99fb846eff259560117fbee99beb5981e713ae",
+      "ru": "92653f447f0c37ba2377556c97866a6888311c7c69bb9103a79cbfe17ceb2966",
+      "hr": "0153802371feb669988b6e3b16625eb7b5be65c1a087c3eb505b378a692739dd",
+      "rom": "2fb37688e7d8180a2fc8112e97ddbd134c7d36dff877373e71ebce83a6a684ec"
+    }
+  },
+  "acne": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "cc857f2d5c613d9a2db75ad78594414e28d9f43f5512428c2c4cd18822da5bdd",
+      "ro": "de4a10f5891dc5b2a990ee22db87d509fa05d040e4e3b38e1ed81be7a2c52744",
+      "sq": "881a7f781673287f395ea649c3597caa7b1a74c56ef67f5ca95eff5c284215cf",
+      "it": "1c6c269e9a835c09201d023f1321f86aa06b3348b69bd57012ec50273b7c3c95",
+      "ru": "749a00401d53da6363dac0f39ad46ce5e16dc0ccd2ee4e7c09a2ca5fac262bef",
+      "hr": "cd79ab7fcfff03520b8d1c62c852005b8e07c421533b4be62b1c23651f5c2d65",
+      "rom": "5db4d4019d3a541b37af454fce671d788f1e3abfce3ce3139af37e61273789c8"
+    }
+  },
+  "acute-bronchitis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "1dbfafccdca09f21199b913656bb4db180df6f19d60684861935f0e03afdc3af",
+      "ro": "d52e1c1b05ae784d5981166cdd1cfa09b4ee99063fdeab44654e1e02234fde6b",
+      "sq": "31f13632853fdb390508141abfa3b43c7db890622499b99c968694b64490d56f",
+      "it": "cd703703aec9d46863e496c696bb8981c7492ea6b98648b817e54f0f196b1943",
+      "ru": "3a7c1cdc9c95d160f403f6d3a91397e502b629742e0a4cb5b6bbcf5817a87f93",
+      "hr": "d866eff84225beb5654cdb4e58dbec275b7f06173ab5ac681a3b241be12696c9",
+      "rom": "0c261fe9a3fc6e546d6271413d0a69a134dd3f424a41709639a11a98b9bd0256"
+    }
+  },
+  "acute-cystitis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "c60bb90cc75789cb4035687b5d995cf8945f97de5f902e693f482c2071e03b04",
+      "ro": "6a11677abff9c9dc502104bc709858eb11eebce148235ece6df81100a4598dd4",
+      "sq": "57b2709eee1b278b9596eb9beec625828bc084706628850c5b1f010657c8d5b4",
+      "it": "643d53f2f803453e09a86caf72da47ba9739cc64eb8ec6f2fe1938f8058b5a7e",
+      "ru": "ec8768ba10f44d32317a115a7c215e97c66a2528ed15619f6da0e312e9ffa3ea",
+      "hr": "88fa97c8e0b7b67749c1fe260f2de099f8bcab2dd6fdfd9fae76354b57d1e604",
+      "rom": "ca6b1dd4d6a11a694c526690bef70744bccddd71c41fd8c520e9336aa653fdca"
+    }
+  },
+  "acute-pancreatitis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "e1d827c5efd885a3da29ce1b4f5625d46d7f933335fa8ad23a0f7fd78cff8ff7",
+      "ro": "c2ef42f5e839725474eb28446c06efebafbe8d69ccbe4e4017ddd207e6a860e0",
+      "sq": "eaabbfa662023e9b36be98facbe9ce0600647be39c08bf21b7a56526a2962eef",
+      "it": "88e1f01e3898cbdaffa5133a373b25c126e443aab9f44c0888d526dfbff4c299",
+      "ru": "4d5e7272ac396b167536cee74455e2b36c432e06d1ee2fd55a0cd72557f87746",
+      "hr": "66b81b6aaaf2e45015dec3cf797ea8116bd744c72dbb311f99d9d73d7c5ae0f2",
+      "rom": "c0e965377964dc1ed566715e9febdd8a4f6ad3fbb1387ccfb3cb703524e2d4dc"
+    }
+  },
+  "after-the-baby-is-born": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "40869343b745b30849d10137e0f57632e9f23cdf3850a3236fcfba9f137a1687",
+      "ro": "df2e97509681fcd5cbf6b2ef0839f958f2d5ea970958a4ad17ff7a4da1b88e21",
+      "sq": "3e9e9b9eda17e2ec06ec140074f3ab51c89bae2c4f283afb471aa7dd56f6446c",
+      "it": "c464bf06abebfc6f5743fb25ef74b3edc6990b64aaa2bf3abc7cb9b3d0756391",
+      "ru": "2d51a70577e697ecf482c80b1a3a6ec9b01c566b8dc82f876d79fae017724db2",
+      "hr": "0818ebfb01df3d6b89f50196286792c4a4e6f90510c9e75cb6500be1c1321e9b",
+      "rom": "59f96ef3d334a0f85da716904ca5b765df59fe7ba6c267f37afff7a8e08813c3"
+    }
+  },
+  "age-related-farsightedness-presbyopia": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "65a3032b4d40aba1ddda3255d3e95b524fe05dbe8cac55459e5399d903ea19e5",
+      "ro": "7d3b97a94bee1ae5e0ce8a95001078341ac927981efaeaa11f02a495066c0274",
+      "sq": "1e1ee60432026238d45f01aebb1ec334cc3a25cc59a7b735757fa0041deccbec",
+      "it": "d96bb2648dc18df1f03fa348ace531416b474857ac901ab525588acbd1fdb55f",
+      "ru": "563ed8caea192ca4cd80be223e88708b2dc44d64643c9c51588a38c9242bf513",
+      "hr": "98a3a34005a79334d10244143ac89b6e261d9f9577d12ee361b5bcb178ce8ea6",
+      "rom": "ec60628e3cbe0209c87f3dded5633ce426fd9e918d1c41e705a87934cf8385c0"
+    }
+  },
+  "age-related-macular-degeneration-amd": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "704f0f49dd25c435def3fc4e021a0260bbb5f03ec4d104082f91c0d40ad798ad",
+      "ro": "e39ae9c9edd5b193d063c9fb6894b0f1bd46770c4ab1b5dc68e1827d1cff32a3",
+      "sq": "2e129d90403f68f044d93e7000c88aecab4ad7dc2f14340244f9cd65b3518ebf",
+      "it": "76db85022eadcb2aca7fe438ea55a7d2fc8c4f1224364bb477657ed28924d079",
+      "ru": "2d4877d2a68726f4a5458f1d896f0f576033a8f0d6b5334e953c858c72a7636f",
+      "hr": "e9030858c37208d1d72d957cd0bfa6dc268955d72cbfa91846ebfca33742e2dc",
+      "rom": "a8ba036d23acafd0efaff0925cc395cfd2e2e0c0eb2d0d18399d051182df890c"
+    }
+  },
+  "alcohol": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "ece0ee14a17d04ee180ecd041183f4d8de64bd45cf0a50b638e6e67516af5e72",
+      "ro": "c31c82c739017747c4553d50978900348bc02bcf273fc19eef711a36ae436ad9",
+      "sq": "51be869fd50e9a28eed968fbe09bf718498f91fd8a50a7f56a796eb24e541953",
+      "it": "6080e8c7bb2072ea192fbb83c79fca706688eb3059db3ffa370960ccece06cca",
+      "ru": "577cbe0efcbf0b969123074d72fc11ebcbb86523483b21f3d1ccd250b2775a8c",
+      "hr": "1c16b46dfce5f6686d4751c21cd2b1217ad55ec6a6c54a5d39ea46e39f6448bb",
+      "rom": "65e75018fb7693a79e143d72169fe93170482c56316e4173ce986c3c41e2f49c"
+    }
+  },
+  "allergic-contact-dermatitis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "c2263fa99396331a7a81fe29a25fe5f225ec25f2d5e4f78f582c7eb5c5391a1e",
+      "ro": "e016b2c06172e62a8796d12a272fe9b93a044740a7f8a9b463b5d7457e91f8cd",
+      "sq": "097572601466be66b81b3505774189f7f482c7b559723d6d2c7fc4c8adedbadf",
+      "it": "87757baf3a9612bf7412ce1d188add649618c100b12b578716917404cb45f46c",
+      "ru": "8fb47ce15ac7cf62a9404a65566179dff3d55d9de80631f5b0649d3cbd0f0428",
+      "hr": "2b74ddb5a3c58249ba3f714112cc6525e3bee761c1f125b955c4fab0df06feff",
+      "rom": "277b15b6097708cc81c1581b79226c31cb2a90096ed34a8c23d10194c245ef92"
+    }
+  },
+  "allergies": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-10",
+    "independentlyAuthored": true,
+    "authoringMethod": "provider-assisted",
+    "sourceCheckMethod": "provider-assisted",
+    "translationCheckMethod": "provider-assisted",
+    "automatedSourceCheck": true,
+    "automatedTranslationCheck": true,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "998979c9b147e75b83cce28565e7cfaa3c76273e1f4f60aef8120fdb4cb8accc",
+      "ro": "a62938478d58567da53b2dc48629cf7c6313f4f91b62790ec35b02be8e8ffd67",
+      "sq": "6823a83ff694830a87cdcc0d7a69f3ee0908456ecae91a66119c98c0bda6b651",
+      "it": "f2c88dd6398c50a4e0c5e07dea3b0e1e5eaf0dd3519dcddc1e4e2f9a04099055",
+      "ru": "160119b0e41d0ffa846bc105c72667c77835c11ee37f8e78fbd13e2175a8d8b4"
+    }
+  },
+  "allergies-to-animals": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "9b0e224ee9590042255acc6a12d4bcd680cb8f057abf9d578f4da6e248a02e3c",
+      "ro": "76829c1ee081f0b4d5e6780fa796eeef1f04baa06c7a580e526cf2982281d8a3",
+      "sq": "713b4d2a2136e9c05da45eea338b417cb3cf4a54afcf4af7dc855a8ea4fb1673",
+      "it": "a12646d875c3fd4439005e4b3f72c1819eec44a328e111d923bc61ee82ca211b",
+      "ru": "03846324bb8f0a709140fa1894bd5e186d5a946650f73481b5999f18526c31cc",
+      "hr": "ca980715f1ad89df0eeb8bfe23a5938bc2ba2c1854e9f1272945919ee2da0331",
+      "rom": "28832b24ec8d377b59e07750d2bc5bdefcda2f9b36fddb6aa1b801d35510ba06"
+    }
+  },
+  "alzheimers-disease": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "d89b8d4098f5068a7b786f4463ed41eb81737d22d6d7a7e7f9196e4175580fd3",
+      "ro": "a4b6d1175fccc7c8f7417bfb9b474e07479c81c8f20696f0e5d763beb087ddfa",
+      "sq": "bcd9a0917eeb406b6cc96fcde59896814d063056fc712911a3462a306f12f7c7",
+      "it": "6fef02cb4cb88cda23d59da621ec04c84bf3ffc6b73729a33964de2bfa26a243",
+      "ru": "b5dd43beb90a54de8f8ac7bd8781b67b728def6c49f8d6abadf12b1d3c50471a",
+      "hr": "3f0825dd7cee431f55783e1e6158463427d30172767b61e19b2b9f4ae9989061",
+      "rom": "774be0af427201e70406ab7af2e172b181045014c4371d0ed11ceb9959a93de4"
+    }
+  },
+  "alzheimers-disease-understanding-the-results-of-responder-analyses": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "b4862d87b926f4a35acbdf43d92be94feb2f3642c8bc612ea2152b981e2975c2",
+      "ro": "4ed48ddb0739f7f90ea0b5075de2abd8d11216d352dbb9c1f65c51a9982b353e",
+      "sq": "f38ecd6d5bdd8cfdbf9256198d4c89be7b27a0b80dac361432367ee2eed18965",
+      "it": "8001f2fda2056e7e7fc3b21f83a7334b33fef10356ccbce7d22b67e90f963cfc",
+      "ru": "b7b1395e7dbc25ba9fd99aebb0e05cd6909306e082908404ae75c695f4059079",
+      "hr": "31f1b8caa5f20740f38fd88ed8c69769a806a9b25dddc30050164f92a0493e29",
+      "rom": "366d5706ea7d3df2c7404c8127b72db9b62c70f99773b2930fe03c74a0141e65"
+    }
+  },
+  "alzheimers-disease-what-is-the-cdr-scale": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "4c0434f34454d6d0f8dfe4de48bdd8a8deb1398b40aa1d5bde53e5ceb239662a",
+      "ro": "1092c7d01587e1940056ab7b0cfee7fbbfa7349134d988feaf7b2e61cf449754",
+      "sq": "fe6049097a096b7a641d8946d035f0933201a3e76813259cd7c0a68c46d2fd93",
+      "it": "19151d6c1044aebc23d55d2081e71878bdc72140e853ca3a151c0681a366a49f",
+      "ru": "d6fac6abd9ed9aedbd52b606afefa57186f406e10a34e0662c64628cf25a1eab",
+      "hr": "0deb938354428541b89805433ed9bc110668e6d2afddbdc9897ed31667310c79",
+      "rom": "225592c89ca025b0c0a6f1292821410f996d0657cb71918cec77c82f610c3a65"
+    }
+  },
+  "ankle-fractures": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "92b125e24a11852bd8bf0f4ae4c357231c437786ed365ab0c3c7857ed7c7f274",
+      "ro": "9d294fc8677ab61203e8f5524330581d84839cec789b587d63b512239df2abf9",
+      "sq": "a5a9ab27f7ca8537b366ac6542bc57b7ddf70bc30ed62ebd3984d133672093b5",
+      "it": "f4e240e3c719dac945b143863e419b6da6a61f878e479ab25d663e9023ea611c",
+      "ru": "22e672e38583d81d5cd51bf00f3bff141904d626e9af3b9032fad92d4c91b4dc",
+      "hr": "d6b7d0ae4ce26cabcc825569ee17070774bc1a33b2602e1d6e386131905bbb3b",
+      "rom": "976bc8a42bffa3d9e8569724b1c89c5a4b008af7e05563f9b1cb5b68284b55dc"
+    }
+  },
+  "ankle-sprains": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "14a66e5d3ab75ef45a05de9acdf8ae9d015c7c569ced7c4a0ece4ea4127c364f",
+      "ro": "63fd6657dc0eeeb393d86e06fff104373bdb9c08fb876dc8f2c7c388cb490a19",
+      "sq": "9a188d567dffbfc0a4acfa643ac4487f952c063998c5f61abf30877b318d40cf",
+      "it": "89131483bc6c87bcb60b607725139a8fcccfebab0c62d5ce5654cf719c287cbc",
+      "ru": "3b8341a1a9a6177f733c686626d873c6c0409a3e7aa90d93448d6c079137414e",
+      "hr": "eb1716cebb071dcea0ed7f170cbf1e915a7eec0aebda21dd2646405db4ad26e5",
+      "rom": "9bad98d3e25604542198ec816698b80b866d3da2ff02d9af005a72641c9090b1"
+    }
+  },
+  "anticoagulants-how-can-you-prevent-bleeding": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "6f660371a8bb966144961544aae8af53b4566b57efc2facb433862632a4c4125",
+      "ro": "d0ba8ef8bca06b01ad531b2d98073109de419ba51bacd7945ececea6970d6b43",
+      "sq": "91a2f3e0379c66bc6b8e89e3626d63e3d75bc15b899ccf8cf28601eeb0ae0725",
+      "it": "551235d34dc06d66e12941406f5a5a78959f7b5bb9ef9359477ed2b6a25feff6",
+      "ru": "22ca0d334aea88d183b09c98b86eee9811340360b235206b0548f7c0acb99969",
+      "hr": "8b937c2be37ba95294dc1d169e3bc15a84e6a3cfc98d62ca699e5b258da3065a",
+      "rom": "11abc1c6d2d377f2daf3dd7b967dc3152c10a13a8daa7ccf21d4abf3c8dfbf1f"
+    }
+  },
+  "appendicitis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "5daa309405911b1543d2065af431423affe2b06981026acc159320448eaf8fc1",
+      "ro": "0f28289fbc80c22afb2b91455867f3e21d686aaaa46a45b48326bdaa8dd0128b",
+      "sq": "e0d64a036c2ac4ad1e5b4f59974b0c998a81b5007f82c6fadd5e32c2bdfdf481",
+      "it": "c7878266ac7d2b6dea511024e09c3c0465e0b61a504bcf00a7c2494f5c2ff695",
+      "ru": "29bfde85168a44638a85c335728beaa2cfafd9c3f92308e27fc0f3b4fd19bd68",
+      "hr": "796bac41992559cb7a3734505929403c3d22f7527f964e1fdf10fb26d0862994",
+      "rom": "9d6d690eecbf07f271020dd99bd377bf395a9c3c14119a1b7754b68246f99229"
+    }
+  },
+  "asthma": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "1fa2b60c6e784c204d04657a67779b5f63a0738cc3159c64aec49b297a698922",
+      "ro": "56ee82cd843e637fe150b1fb83e08c5f6a20f4672c33794def5714518f5ce19f",
+      "sq": "0f652b762d66d231059dcf65e93465d54ff402039394ab58d46245a25f704462",
+      "it": "c5eb4fcc42d194837a8240aeabeb945fc2a62a0d1176a891d1cb9cd0d98f7d8d",
+      "ru": "7712203b7212298bb6cd9dfb0da264a0fdb18fe95265ef3b4c1b987d83944510",
+      "hr": "2c0e9ea55467c1d9e24c42f741202294727584e1612c6817ade25c99b8f37f35",
+      "rom": "9ca6007cbf0167970c4f7d60936a6e590f392413c5c8dc0184f119309747fdac"
+    }
+  },
+  "at-the-doctors": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "0546bb9053c07585fb51ea8dfad5145ff54f394ff4030d2b70290e55936e0d2f",
+      "ro": "bc637f01229bcce92662a2a1ee1df7eb54ebb48a4bb7f64316d3a6d046734670",
+      "sq": "68ad19539cb2c3ed6eaa7d9a0afd5026b9119e9b54143c2ab4d6deba0ec5d593",
+      "it": "3e940fb7c4a63d8e5d050e6bc370e000e96a2148e1f376ec0b960faff5dd8975",
+      "ru": "64189319c93be8a4a9732f5d2f48550e9344def8122f553cf8c00c42a65329d4",
+      "hr": "62e30c5951d7e67be7b8477f816e3d3c2010453fdf2b50a66a67a28a48df589a",
+      "rom": "d625a29f7a1063ca40dda550faa20c76c9110e16b3a43e67a88cf9f3d5bb66b3"
+    }
+  },
+  "at-the-hospital": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "b1daf3267042146dbdc3f1a34f758e4d4c6485da7686477af85b743d4eaf59fe",
+      "ro": "98dd855f9766b86f5c60861bc6d50a493758d34364ded72ea850da5b8d66b797",
+      "sq": "8796fa314b3a3f6f7166f1707ebe2517517345550b8c60d072c5bff88778d768",
+      "it": "5e03f421163d150cbb0eff1ef366a0f74a57a9f917d9d0bd8a1906856dc4e3fa",
+      "ru": "ad5e3d03cc3a7274cae2cde609c38a61fcbfa114701f75df762699a33385fd2d",
+      "hr": "7f82e5f7fad9a81e08a726326727b4e116bd00cd83e52f180763e389dcf1dbfc",
+      "rom": "992fe6638b855011b12f0db35aced18b2de70a69ff65b1894989358a9a807781"
+    }
+  },
+  "athletes-foot": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "3e14f882c4f282214062fbf5cbb9de723872eb27ffd2b7eed1a4d53a14decccf",
+      "ro": "939808afb32d0f6fb9b0e3cb298833156a1311cdc8b522ffa147de70e14ef39a",
+      "sq": "29b9a7596f6af4b7ae9329160a3aeb45eda8ea0c781721ed8d9a442856dcd458",
+      "it": "49c7f9d9c634ef4fa8a8a09d29a92ce76392e734a138919abea002af2278693e",
+      "ru": "464a83d3e0ca38a184be638b5b33fb51f3e10a36e9c3d9501730a973fafd198e",
+      "hr": "5f1a1bb952ca72dbc5b9da2eb7ec405c67459ff88a0a53c8fb10461a68cd2c34",
+      "rom": "b520a1f178f3b30cd181723dad93f24638297cb8efbda678c4cd296c98b7a47a"
+    }
+  },
+  "atrial-fibrillation": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "01912b1c1f7c29b493f96e6cd5eddd7e4f325091f802b908edd7b684aa554c83",
+      "ro": "fd758b8a0eebab11e53f3f70de4e4ffc45ecdbe45e3dba63403db2e9bd81ae32",
+      "sq": "8c2b0eb2fe7816e672988dc9f0c992d405dc6286e51710a1ea60b79b038ca13e",
+      "it": "bdd31e90a81320b32973ffff180ac917f621c372475cad72d6b8b8a529ceb528",
+      "ru": "9842c056b9370113054c6feae3209867d7bfadf855b3943e7f8a78589ca0bce5",
+      "hr": "46e580fe56ac34795ba6d14cb69fcf3be6594e0e0a1a9b0c5a29e5e43df6b7e3",
+      "rom": "1ee46ccaf4d37b3c25787865286d98f136f6cf2f12ca1db39f6280f470142ac9"
+    }
+  },
+  "atrial-flutter": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "1b3efba17269b5934d55a8a9b9a4d4ba9ea414c8651a0d232744dc4fb4d3f619",
+      "ro": "6de38a0839156932e84641f3b38c0c631497eb150139d7fb33740f2aca78d900",
+      "sq": "e6acd0fe98b74ed381e38999ed91079a5c612259cd9b27aa42d9396ef665fc31",
+      "it": "a0d762a8431830cd367cc7f3411cf45b02ab12ae692aa079ab4ab6092f26ff3a",
+      "ru": "cf0c2f8a09b3693f24bdc8f2832e3173c1d1837772950a8bdfd2bdb5b658c00d",
+      "hr": "ceff58cf3929ec20d0119b605a2498d4ae77076ecb5bc3385d23e93f88069355",
+      "rom": "675baf994864792cd92ed94cf052281b9c67b58bc70cb378e54fa4f30b5d4c2e"
+    }
+  },
+  "attention-deficit-hyperactivity-disorder-adhd": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "72165329de583629ffe9c12cc979e8b738af19c304e9d835aa7343a7417d8fa7",
+      "ro": "936363a28f544c14e0674434c36788813fd982fbab3d08fea3d0bf2ff15c9fba",
+      "sq": "b1bdebf0d2fb7daf4bb17b0b687a8a1f0f66e6a9aeaf1bfd3341976f38b17cf9",
+      "it": "507d65abc3697725e786f4b3a0a4377d0058169fafa40da2cdba925b47623925",
+      "ru": "fad9723d62b64e6d1650812c5f9fb295e0df2bd00c2cf4c72ff162076128ce20",
+      "hr": "5ce627999bde83e2fd2081757d146429825e17577ff38fadce232e58df84739e",
+      "rom": "4aac585b113bc0ff49bb27b0417af92c3b418596bdd64fa07fd82027023ce0ae"
+    }
+  },
+  "autism": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "6b982651e87236d9c757e74072d02c2ca3481fe0068c302d2f33418d35ce31a2",
+      "ro": "956b688b7484cda86b6dec58d69350590da326940751185c136490738ee06def",
+      "sq": "91d4fc518c46394d61f40a2bfc82962b5968c944cfa6b0a9e95f978fdba321cc",
+      "it": "efc36643d8eff17bbce11a3984176753e9ef61d9a3739a5edd8c41468c407f63",
+      "ru": "8b18197ca9ab6f5cb5b02bb668f6b2bd00a858fe7cc1c97850461a10f48a18eb",
+      "hr": "539e609872cbf2aeb3264b333019a8e110fb156ddad2be051a8e1d96841ff98b",
+      "rom": "900d45d711954b523f8bae55760d0244694c0f1ed90e25fb4b5f4e8722354659"
+    }
+  },
+  "av-block-heart-block": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "82c3bbe4c5c67da37e6d50336eb1eb5deafd8a57189e6aebe43b96ab09b0ff58",
+      "ro": "d3acd1680a0c428c79a06d0aec87b59ba9e5049b168c042cf3e61da6172c75db",
+      "sq": "44929b1a9454abb8fb020c1991642c3cb5a60389c3a237d0ebe7cb5405b751f8",
+      "it": "075a05b07a0fed270ccb7dc6d9960b44ca0ba2414e4bbd9f9c1008d1c749c892",
+      "ru": "8b3c3c8e76a1c2dc061f6ab6f35cf3ea721959b6191f20809f403932fd53c13a",
+      "hr": "b57cea4fcb80256428ad50f1b0717562ec06bb6af8b67010f02104aa0778a011",
+      "rom": "dd6f9a82a3ad464e93dac29b3ba89f58a23ebaea1f921cacc6a2435e685f350c"
+    }
+  },
+  "babys-first-weeks-newborn-check-ups": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "4f41a7ac49071d3cab95be4947366a4dc2584e3ea58993793fa20c5ee789487c",
+      "ro": "f9830ff2ea8c9503e1faa10811ca3c8711f537b13d3e6641e64d7eed931e526c",
+      "sq": "90913fe3520f35166657f241557b887ce8387cf8d5a00af1c6038150068a3bbf",
+      "it": "b4ae1e2e350afe0088788b2cda6e1d390257c78b2ba8aab5c89df0ef5a875ae7",
+      "ru": "dcccec457501e5694898ee50ecefda13059c0649cabda2b6199007c4a4c1f920",
+      "hr": "992b86b2a0248162b3ff66e14606a6d35f5198a33df21972f6e2a9fbdb79bd23",
+      "rom": "2b6f1ea425d4496277b1c4ba67e980653811ca7bc5e82b80bbb6cd8bfefa01bb"
+    }
+  },
+  "bacterial-vaginosis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "7717f47ca28edc4d83e0bf6ff33efdf45746d56438c6e76dc4dc2c230ca37467",
+      "ro": "6bafa6254d6ca1e7595de0bf5c8c9023cd40e953f5269e98850cf696f101668b",
+      "sq": "ecaf72cc3ced44e21be20978543e96bac07ea083d8f4fd0f27289b06f47cdb6c",
+      "it": "78a888edc264771a69e0ee05a4752eae78e8cbb2e1f6c223ced07ddce30df967",
+      "ru": "6f5e750a82b5c6a4c9c9db279ad9642ef75cc3d3c3f328ae3a11026373d6dc53",
+      "hr": "8264f2054de89a81620656ac920303e06cdc1e331e9d51f0d942bfc8772cdafe",
+      "rom": "723e3182133909fb306fee01da8a67cb01ebc8397dd32620a023d7626afd2dd1"
+    }
+  },
+  "bakers-cysts": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "3e48e6cb8395e41960f2a804393c45030dae4799dc6f0ed0779d40d40d5113a8",
+      "ro": "64a0060553f217125413e4d6a7632cb670469e37635dabb1f3164a30bec430f6",
+      "sq": "b883a0196509cc02afe9da5fb64c9f34a1567c6cc0a66fa54a81c585b4a60c0e",
+      "it": "f66035b5232fa02d076935f96aa5c33c7ec9916b10a1183d110a245a3fc31d5c",
+      "ru": "78c5ea854b1ce883a6bc2926b05444564169ac2a62470d22e023e224edcb3818",
+      "hr": "13b216b2618fdc729ef4859f9081e9f3737afa72b7470915d38ce52ca445ad8a",
+      "rom": "01b645bb5f42d9e648560fbd867a8ad765de744b52dc9ef955f88e701fedbf82"
+    }
+  },
+  "balanitis-inflammation-of-the-head-of-the-penis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "c8daf9a05c8f5d8233b36025819188ddf50131e379ec25d76ec39e68ab9a3db4",
+      "ro": "2b4b5e7f33574c27a3d217989c22269bafdbc72e0a00ce3f3d620719470b1cc0",
+      "sq": "71b9afe09924dd5588e36ddd54eb406bb3d29ab28308e0b96dd53dbaf3b271bf",
+      "it": "9841161c3c2c622af2ea9db073466ea76775f81ba85870f5ae4f44e14f6f8b12",
+      "ru": "823f65bd018dbd1540faaad6a5b110b0e4549f74f48fef87cc17327d666ab786",
+      "hr": "ecf3113e93087e70220aede520bc9b5a3e8e673a4559b3cf8b26a82ecb77a61a",
+      "rom": "0c1711133ac83203f18383a9cc0d8106c738540642ff8c3a193ef38ee4f61c1e"
+    }
+  },
+  "bedbugs": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "74261f05c89a178f6f8cb98cde862af8a56a29f992e0dc7c14cac9b3a2da2ec4",
+      "ro": "5c29d8fbf5d27ec12ba49b1326a96196a4d10ed2645bac9f63b84111e8a6c00f",
+      "sq": "95af54c65c2daae2c8350662762c7ba0cd910ccfcfc9a01986d17613f96530cc",
+      "it": "8f26a02625f2b9b69fbf1968d162c373e6ebffe5b66a60b7f9cc44208854c7c9",
+      "ru": "ff0f7815344d15ff977f743315126fc37e49a0abdf57f97a1204fef4217ca6bf",
+      "hr": "d6ce19ef6080a15935b18bc0baaedc382a7850402d0fc1d7653e1881dee6e18d",
+      "rom": "129bb4b3be9f8b0c4a5545b7545dac081a31547ad1d4ecc15168dabbce1b6e17"
+    }
+  },
+  "bedwetting": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "d23a0fdfeacfba04b111436732930bdd9d3f476222631be75387181a565f205e",
+      "ro": "eab93dac806bd56aae1111e6ad05b8d0a9f635e8d9fd7f2695738942c65044e0",
+      "sq": "0fce5b644dd997134205033d245ba687f29be37c3d36496391ff2a378acaf8dd",
+      "it": "d60a17e872e45372a70be52a3faaddff6003aabff71625c1cd44e665580e9313",
+      "ru": "195a26dd7beafe2decfbd369ba9c5d67d454d283358ccdd89b0cf3587eaddea0",
+      "hr": "1c5b7878ccb457c099a45b92a65730d08d7bab4a4cd5fb4f03911f41bb4dd9ee",
+      "rom": "d85d6c02eeb33807f5f82c1d76d32eeedef815541798e389c7505f8954e4c4f2"
+    }
+  },
+  "before-surgery-getting-information-and-making-a-decision": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "2a2ca590053be60f026ae9cc71cbef3fa0a64ea2d71010ce1efec274896280a5",
+      "ro": "d55bd8a06830ac4056dbd72dd5ef47d01c5901a4f264bd0bd624f1ab8464a2fd",
+      "sq": "aeec1da36ab80f61de34ff13087ed87f05108b591bfb0a1488c1be196b2d2108",
+      "it": "9abb50c9d79b2230121b8175ce785e50c1b0c212f6ad3c734ab20ab1c05448fc",
+      "ru": "d3a8c6c6add5b4bd0448a0f77659e0e14ac369169fdc8b8965e7d7dcb289b5ed",
+      "hr": "0be0d6380db6e9e3301e6c10178894f9c8d64d72c6d31bb05c8a493817f9ce6e",
+      "rom": "d5250e9f3a1b855dcfb10c2400b28238d020a451f149f6b7ff0191a112c84e96"
+    }
+  },
+  "benign-enlarged-prostate": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "c177142eee94f3f59d111730848601eb8bc294a20922a95000aecdca15245f15",
+      "ro": "ae93035334246393532689a60e67f1d42f48c42e21ee2c9627107c2e857d64b3",
+      "sq": "3bb5c645ad1d8c1ac04ba76394d89ba9b843ca04a791c358b03d43f99c7befda",
+      "it": "2e2bc73cdccdaa090ee1e4b362f6fed90bceb4c0792b68d1c1a75e1cfe2f1352",
+      "ru": "deb13cb5d806c305ce0a2d577b231fd2c3e70a18cc038645f59cc9d545481f53",
+      "hr": "050740d0c88b79453966ed9caa8b1e769ae8f2e4e29558a5698dbcd1e92d7442",
+      "rom": "35ffe71782e3f5fb8c5abb71a7ccfbb3f5b0768a6ea5e9603c43928f63b428a1"
+    }
+  },
+  "benign-paroxysmal-positional-vertigo": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "a7b64f5f3673ab505c3d81793c92f72656339d3ea540b7bd5b9568369baad854",
+      "ro": "58eb4b4e954cde880eed6362a81f9eb571d7234f4c4903bd59f198bef4a01b88",
+      "sq": "ce6ac6facca3651521014110906976208ad0f2a4a43e92e9d06eebd5d8cd111d",
+      "it": "30c4b6186a9278da98291e00ec37a37215121cba95d19ae453362ca890860806",
+      "ru": "72c032121fb076090a2d8df76798c4e8d924ac5ca1b22394a7cd7076ba09b772",
+      "hr": "7fdb9183f53d68ee1f5a03ea12bb3a52492772c44ceed06731d2fcf28f12a47e",
+      "rom": "2d0dde674d78fd9891ba46e6c0f18d7b34c2be632cd288d99802b4160a05b73d"
+    }
+  },
+  "biologics-and-biosimilars": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "1adbdc3fcda8ce8fdbc6ff8bf28929e6c46b37d1a7b19ffccfd5371e6d0365bc",
+      "ro": "d0635b8b32f837de7a57ee73ef23488192bb051ba95c951e91abf6e795e44866",
+      "sq": "d3268321c1c5043420a4fae25846bd30a0b17d64d732fed728bb25cd85aa689c",
+      "it": "4ed851691879d560f63fde5840e453ff1e6c0b588758376dd1b6399b6e3e13ca",
+      "ru": "8e7c4316f5e73b77503adb504cceb0203d145453818cd45205fc34961bc3a79e",
+      "hr": "ade70684ce3f2e8c20a2bd2b38cd13b4b0745e22a7e25fafb2d222085be893c6",
+      "rom": "e84febcbb41e385704101f8fc76a4367c6db08824870f2d78f0db29a647b7385"
+    }
+  },
+  "birth": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "9db1bb9cfa70021da7d4f4a60ed82cb9499a5c6f9c6f21d40dde6909ef06f7de",
+      "ro": "190706ed1192cc2e5e7bb95d4f7b7d3e856e9cc26a40885c2bc686979aed9f64",
+      "sq": "de67deada2dbd4e2c62b312d032ee331e276c488e3815b5b8e8cd1ddd2aa8e6e",
+      "it": "5c9a3c918a32bdd0abe1c1e2fc4651ca40f12ea13123183c6e4e852296d5b162",
+      "ru": "253b7e020f3a65bf8f16816732607e90beee78d8b586c2d6d138ce14a49f3943",
+      "hr": "2b69e83928e9d8639197a3f7e104b246561aa6c062ae69f7bfb4c473098e447a",
+      "rom": "b419303a63d92c37b278a759927acaa9883c768631c7588fb070b7c2923bc717"
+    }
+  },
+  "bladder-training": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "ff6622237a08ef89c40b7b343f89d9a988da4cd57ebefd16abfe0f6c424009f5",
+      "ro": "1abfe64a898db3e6399aea216e7705a46e180e169fd44565dedbfde1bfb56582",
+      "sq": "186d94ab620107edd97fbfa44c7950195b21b53e4c7e3ae84fcbc5147836d1bf",
+      "it": "5c6646b3c6430cddd1df27ab97e50ae389bdd7c605692511ec14ae6cbb279e2a",
+      "ru": "842f1ff25fbe7d72442f1c0cf4fbb2e0cc140fcd3f0743601c7cd5149a20590f",
+      "hr": "05570f20be33882487a4ae44edab8c7c70de858acca60a46567d89e76d2cf7b0",
+      "rom": "afa610b4d647ec609449d847e241ed2796d374ff1cef8651863f52851102b949"
+    }
+  },
+  "blood-test-for-down-edwards-and-patau-syndrome-nipt": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "2a7656e79832ae6a51dc051a6b0bb1ebe6244f1b012eab3ebad0f6929ddeebfa",
+      "ro": "b6bde5bd4f8044e9e46979c97bf4a80f20290e904cd71ff9e8ecec3b5c400280",
+      "sq": "e8034ff57edecae8c871976028bbd82df1e51b2c73d73054c8b842b54c989026",
+      "it": "eb99151e3901aa8d819c45537f19c57ea3b648eb7100b605f8516e8a16cdc7f0",
+      "ru": "16c641039c11b2e495e1775640c32c7b64b4735f2154f88e3e9ad3f1d196dbd0",
+      "hr": "7f28d322d2baa886e54a40ee025fa4a8fa86364d44e94cc63feb6b284e9f21ba",
+      "rom": "c95dc11fad1cb1363642f7c3a21efa11de11e5ade3a30e444af93778eb2db66f"
+    }
+  },
+  "boils-and-carbuncles": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "34d6c494ddbb27a014911ad5d5e068cc0fc65cbc7f0662b8b1b94b7b048954f9",
+      "ro": "ba1c4529c783e36ef0659af95a1efa90b0cb895ee95f32de5b62336be117ac08",
+      "sq": "41ef1e23a9ea42cd0105728b0f63a10d300b2cbbf7732737e2f76d6f76ae4899",
+      "it": "ac73e3d7f9346888dc535fd38b48e1a8e86750f8ff79bdc62d9f70e28302b249",
+      "ru": "966c026ccc59e72c66bab3828376121494dce8a7397fa055eab8fde9abfeca63",
+      "hr": "a6f063e1c4d5c5a925cfdb80c9e36edc2c9c2d3c1b9101684d1614798957d6bb",
+      "rom": "255ac1633b9886734d40e3f80d3f36219c81e846a4c942c17d862e688add3ef8"
+    }
+  },
+  "brachytherapy": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "d3c6c819129d23798763b292d7c09c310acb422f2b1a80137f142b9d9bbd51fc",
+      "ro": "66d88067ccc3ce09988678f5994f707571250db3ad9cf02b328c4ad0073fba1a",
+      "sq": "31ff590852d2e28c28205b0d41e222ac1074d74743c4179d237315408f152a91",
+      "it": "05f5a0dc78ba1ed45c31c7f2d31c6221b95b7d05819bf838fd56a845a3d3fb13",
+      "ru": "fc690ba02ca14bfb469a0976ae92b6dde18ae2fcb48f19f0c82850180b4c8527",
+      "hr": "4ac6df07e2fdf8643b69cb96b29b351170ccee3b1a9ff8ffe5c8cbf35ab03075",
+      "rom": "d1474ac8e67f995dc6a95dd5d9155cece71b5f27852e8011752981b2664b38b7"
+    }
+  },
+  "brain-aneurysm": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "fad8150f77ee9bae407f9230956b8336a8303c7a16584b17e43a21bdeb998e89",
+      "ro": "94c486a18b41790d8084f46ab10ad2f9a1b1bd69116d5cbc765eb0e5ac60316f",
+      "sq": "257e9c2a0fee41a3fbfd6ba50dfb92abce43795f95ef9ff7bfecb9f4bf66f693",
+      "it": "4c156a03830368aed8d0ba3d2320d5acd20092d8c55e97d67083401df77a53cd",
+      "ru": "7a2a5f1eac2c2ae53f528be3ed06b38c773bc893947b70a13ecc0bae77a374dd",
+      "hr": "6e4d0f652c75144561ac123a98642e68f5573215aa76a23fe1bfd7fc715fcaaa",
+      "rom": "fdc57d2f6af50686775b4c66cd25f64e3485a29bf7aef5b145d14598d4194611"
+    }
+  },
+  "breast-cancer": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "9484386bc8ecf379174a0d0451c5546b783c50da44f7f6a1e0e06fb245444d2a",
+      "ro": "5dbcb928fee6ed65e7b21e1109c30033fea45e753a449b7517973c9963639d25",
+      "sq": "b305bc08975b085c55211ce81de01fe447ade926ced3d4de8e6052e496c2add2",
+      "it": "5f315443a5d8805100f9f45213b0b570ea1f79dc77a274fb8a6e14d427403cc5",
+      "ru": "314c779ab698c54201ca2b3138f1da47e6fe87dffa5e742c0ad69e6efd99c617",
+      "hr": "cd23dae762f05911d438c8393cd9c0b5b20b85400c1881e42de7e215c96e6ce7",
+      "rom": "d75ff5f1c9db6935a788563da28dfa9acce43f8f5b27f4f3054b1fc78a68278c"
+    }
+  },
+  "breast-cancer-treating-lymphedema": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "382bdcf2658243df7746314a1248d2fccb8e5b49ffae545f5e8741e58b65fa07",
+      "ro": "69f5f7bf745311f6f5fd628e56cfc25936e27449a934fd06f53766058880f9ea",
+      "sq": "8a4f72b56932ebde8ee162ea451997e5706ff83701ac3972a99f62a71b8dfe4a",
+      "it": "775a18fafb4bd6cedc93242053d44af32aaa6a47bac593f606c5d7a0b1cac02e",
+      "ru": "3f25c95feb64b77f32e88198c84581b7b29535a556b73c4a014ee9dfbe1f87c4",
+      "hr": "fedc686c9ecc0d67bc624550d71e82e0e600de33ffad97abd6997bedb67ac98c",
+      "rom": "4e5de8f47125133dea7bebcb3a5cdb5718444446b82720f1b61dbe5e65bc9d82"
+    }
+  },
+  "bruised-knee": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "f27c89b83dd230290dc7b7601e6d2ef74f6afc974be6d04b223de7841de7863b",
+      "ro": "5a7aad31e599d1355ee0e72b88333b34dc2cd314bf5fd2fa574f297d9cd09afb",
+      "sq": "3cfbbf29c362a9bf5664e9d9334a31d1d46ff0b3b4b43cdf31382cb5d2462eba",
+      "it": "4f4225876019f289958c3e8eb4dcf7ad1755678b667de883a4b72dd4eb26e91f",
+      "ru": "35b747c68d8748fb16de04ef7c580df57d3dd4e610cabb1b42c688d62ddbe659",
+      "hr": "c5ae41463ff7c986aa737eec73d789c29a0eac7d5be42f9de718d339a02017de",
+      "rom": "0a9a89493dae2d4e0b5917db588453514e5acca99d41923ff502bfad476939f2"
+    }
+  },
+  "bunions": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "aa5c878fadf70fe9ee60266ad482bd3a17f4fd59be08dc9c2db883c38b5cfa54",
+      "ro": "3e2b530852ac349425e1dc314ae836434d912852a529017d47b4a7c30fdfddce",
+      "sq": "80a01b9fc3a2df33c9e8986d88662b1e5235dc9be23b09a01d1c377198329a47",
+      "it": "4a76a4ede7b8d9435a90c93558977eed08e4972d8a103f0c24bf6dd1f72c14d5",
+      "ru": "9c32a7edfcbf28ed1b49e898aea43c48f04b2aad01b7f77c1dd407e742f889bc",
+      "hr": "b6c6e16c44aef18f74a2d20a12d425946c2034961cf30d607d399fb08a3ae46f",
+      "rom": "b2c38bec0f888542282e1b4143bae91a4352ea151f32df50e23b87148297d8f6"
+    }
+  },
+  "bursitis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "8fc1cb12e3ea5d60e6124c839d9c5984cac71f5f25e9131113916776441be742",
+      "ro": "1df7c283cd7c346462754df39d555e0ccf6c5126879aefa4df7214836e188c09",
+      "sq": "d09df318a3892b0d5a58acadd11a83632080b857b51d7c38fe07fbd9d9ff0d60",
+      "it": "6f3f94b4addaecf8075098d0e0b090d7065641f7cd8d1648867a6a46d8c9ffbe",
+      "ru": "dcadb0564134d9b1d4a3ba0fc02af4676a67844d63258e7c694dae409aa7ab37",
+      "hr": "bca74fa30eae4efa96f992435ad507d93c28e2e287f07b714cbc231445002c0e",
+      "rom": "043a11839a4a524cb57780fb497f6f7fac59d2f31115998d00b728c75fe8cb8a"
+    }
+  },
+  "calcium-calculator": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "464030b1bafebb43eaaa3115e29b2287dea324198a40149abe6581ae3ca05a8a",
+      "ro": "2b7be7dc9e889bf1d28dfe74cf3950126ea904562f6256babdd1e1d6005276ee",
+      "sq": "9a316658484ba1f1996caef28666312fdebe5ed0bfdeed542fb9ba4e24963da6",
+      "it": "8d75f3c8501812b40aa0cdcf3a588fad91d3f2c80a34be0d47b6e9985955cc6a",
+      "ru": "4d017602307c92dd953bda49b80c0e42d8126749f0a327d22126718b4196c555",
+      "hr": "64c8bef970bd28c6e1d84b29b577cb3e8ca9f1d1281d88f565f788169b7beae3",
+      "rom": "808d6179b9734704552b2e369d31e1bd1871ea64d0318cdab2fcdb0e7f14989e"
+    }
+  },
+  "can-measurements-show-if-a-treatment-works": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "0683a0573c6f17df6850ed4d6988e8dcadc49edf17f3c35627adf7f4118dbb73",
+      "ro": "6021f7e4892c24707386bae1bec615c9e22c929502e754c3a4fb6345987fbfcc",
+      "sq": "91de49c9bfbd0e51a2bf2554392f0c7f71f8a1019b63c11e411dda810c84f86d",
+      "it": "e1b2b62d0970ed9173204446741ef66e7dee028f5ff15bb98aa4baf79bb51219",
+      "ru": "11d9b08a0dacfb580cda5301a34f9716828708e2172a98c30b4204c3456dc008",
+      "hr": "bbcbac96b7b6e9bb05c4a544db251025f4af7369153f1b4b1400b65af0a91256",
+      "rom": "1678b2a09d95ea0de400645b5a7152cc68dd579491ab9b55fb2627b0f450d315"
+    }
+  },
+  "can-mothers-reduce-their-childs-risk-of-getting-eczema-by-avoiding-certain-foods-during-pregnancy-and-while-breastfeeding": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "e94bf4dd7045ebfe3aec64c4db25851a15de7b053448e68f620660144493864d",
+      "ro": "a35f3e68ebebfec0348ce62638a288d5619834e4302cd2a285ddcc79c9cf9827",
+      "sq": "a9dbcaca7474f04acbc2d2b796b3ddd829c6b4f02dcdb8c81a04e0c37b26bda1",
+      "it": "25d67522a943a69efd19cc4e72579112463504a8c81f7c181f78011fc0da6a92",
+      "ru": "26f439f8dcf98cb1936d769883b1e9d0237fd658c64e7224eb76b664df95fc71",
+      "hr": "e1cbdfa56b4314a9cd38394a239cea94c9668d124b98bd8a0cfb7cb78e81b631",
+      "rom": "5bf3d3c58041e49ad46c28c2251e857cf0388e742a5e8c5da5c2c001ccccade8"
+    }
+  },
+  "can-noise-damage-your-hearing": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "f735c5291710bf0bbc053b38853ac8406b9499f0ff74059c0e14db26153f3165",
+      "ro": "994c7476dfc9811df245d8239190f00e83baf664e9d9af17349bbd7ad0d5e27d",
+      "sq": "a632c0c445067df2e55f24b37c259154b9358901f3b98e6d00ee0869727d23b0",
+      "it": "79a24e29e46e83b7511fc8d434771ad69adfe031ad8e015beb72c6bc7832b384",
+      "ru": "327b15258fc2b8143723b68dacb46bf4df12412290a0cc83cd96d79287cf8c62",
+      "hr": "6815823fd154a83a3202639d5c33adf179a889f5f32aad6c298c0e51e7321cb8",
+      "rom": "ea0509b1d69625a2a3e421e52e9e280acc3bbef63ab26d178b518dfe50dbf17c"
+    }
+  },
+  "cancer-what-do-the-codes-in-the-doctors-letter-mean": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "51f3c73b439aa3c86d66c92d4b7da6ba62658ac84705e35f9cb1ce495d68440f",
+      "ro": "1f9830dcd9ec5d2b30be30eaf09678375495afb12681a477a3dd40d278529306",
+      "sq": "948fe4ebc5385cfc835abfbeac2945d08741a91fe9a053204a0b98e2088957f1",
+      "it": "66d262c31615a0f8934e2d0739518bfe3e6bf2afb47520b2ed4142a553721908",
+      "ru": "5fe9fbf20fd54d2d1a93949db21e0b8ba216a1e2ed6b8d676682ec6f91443907",
+      "hr": "ddedd3d87e79f1106f615b194777e78c2452a0961cb474d65f596e1e66a548f3",
+      "rom": "5a5d8a54e4cf68b09f894a9450bf730fcb4f92ae37dbe0a406356bbbb082149b"
+    }
+  },
+  "canker-sores-mouth-ulcers": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "cfe1775161c1b23cfdf4a7e0e36777f2b3f1a70d9a4143d8066af49f8dbb1d9b",
+      "ro": "572e96bb0eed95081c5cca3be21b827bfd121a9810cb2294cffb74e994412aed",
+      "sq": "b937383c681a7c37740b799a56c9f0d4803e3f3583977a926ce9aee0b117caa7",
+      "it": "6c5773c892c82cb426895494706799fbd6f8de736fa2dee33551e023f0d3f05b",
+      "ru": "b1c3caf58486b409a3cc29495915235bfbaf673065eaa142babd1afd08bce1d6",
+      "hr": "51252144f8e576ba722fb53751108405d4506d7bfab4535d39eba0045e32e1b4",
+      "rom": "de51bd39ea7e72c6cd362e02da35b07a4f2285c2b5f2dc7fc3be09615e49af12"
+    }
+  },
+  "cardiopulmonary-resuscitation-cpr-what-you-need-to-know": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "b43d042554b2ee1ba5e97252db6513a8a60baa7a3a0f339f5daa3358f334a8a7",
+      "ro": "f31032e4e8c1efff9b569e148cbd572a96a86406e892baca009c6b22450d5b60",
+      "sq": "25911f320493418d8561e50261ca80b71ea494fccf770a0f6873417b131b80c8",
+      "it": "3245be3bc0e8cbc09e8148741307c8776009e6b478744623d3a1571ed0f1edb8",
+      "ru": "84b2dc169633a61fe8cb16fa7204c4d6b56835f73f3119ca4f87140e78ccd4f1",
+      "hr": "66ebc9d606faff635728f3f39cd3dbb9a9d71e14d92ddf9c7ae57aec64f6fda2",
+      "rom": "e5b4d3b9660250ade6d8205eccae4d07e59b86bc55091460bd068c72638e8026"
+    }
+  },
+  "carpal-tunnel-syndrome": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "3dd00c9dabfff16d49950f4314e835730b16b3a999199a56692da13fa0d4ff71",
+      "ro": "327882f122f99554b1fa3fb74357cab3f94353a7d6522c21c9f39d9351635462",
+      "sq": "506ca372e1793dfedd7799131a8f5210ed84f420687ab9bc12a6ea0fc7dfe088",
+      "it": "c535c3b8e98969d08f0096203d083a525c39f48b955575b9ade89176af0a0908",
+      "ru": "8698acc6d6da5c762f5738fae9f03192a29469b3742176fddb763ba055649882",
+      "hr": "8d40aeaee13b4728a8ac8eaf9690d18e7e2aae817784eec7581c2c8840eae0df",
+      "rom": "111b91934011349b406ed462f1b98f6105edada3e0da6fd39a4ce21381f53e07"
+    }
+  },
+  "cataract-surgery": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "4b72f5f18986afe06fa957e61279a70602ce8ea41da7e46596f05d0ec78c569c",
+      "ro": "177c2c7487a058f0df7ef3b91d10157bb68c8e7262a43fe8e65b1cfacbaf212d",
+      "sq": "73e6d8e1287dc9fc472a25f91cb18b8715893f7daeba7111f405fb11149b1e0a",
+      "it": "35206332938f334078e7124a799954e2b1e637d08a4b87716c25943bc1116ed0",
+      "ru": "ae08f48f87b375209634e159c4569bd2804fca26cd7dfc521e38c453616dedf7",
+      "hr": "f0d076f8a3c97824d6db99f5cb272cd737984b703daf3c3ecd1d07ceac789901",
+      "rom": "f7028f92e3d3108555640db8184eb816568f203dea2f306fe121baf309f12f41"
+    }
+  },
+  "cataracts": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "f24a944957362a395472cb501df684972f3df1b996c2cd3bb2d14f0fc1dcdc14",
+      "ro": "2631b18e8a4e04847e829231f49a14bb71e777885bc163de434377afb2920796",
+      "sq": "cc10abc4684ca9b812d728072266da7b1bee887f63e8e36150c962de3c0f43ae",
+      "it": "e7a03aa5bc40aa052abb7884b37e8dd9fc2a04876ca3014a32a345041b8670f0",
+      "ru": "d050e314f12465d0cc9ed94f178f93be866bf41df8dd0940900e1718bd711757",
+      "hr": "fd613e7ae08730afac3e86ef45ad2c9640a61d36fdc1138f798f3ca01c05a3ec",
+      "rom": "285423e4d26d5486a26bd0d3b8d80ad4126d8b2f38bf11b794e1bb5ee4443477"
+    }
+  },
+  "causes-and-signs-of-edema": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "de4ee5dcef20791b825233901e5f02156998693e60740ae81d3278379c971409",
+      "ro": "c14c25d51a33d736eac67bdc63eb2567e642a345f4642aedf53d4c81e8a6ca71",
+      "sq": "50b39a875c5027980bcf0ec35ffc2de911fdf371934b58457ab74baabe3b4468",
+      "it": "4b1c294af2375e5ffbd23252c2ca6845b1e916174265c2e93e7905399def746e",
+      "ru": "b90b6704f262e37d4f280c3d260c6e53c2e0e0ab4438fe3c499b6c3508fa5f23",
+      "hr": "223682119debc9a16c2c0e746531322c59acc6beeee2c4bc86a06c46c2813851",
+      "rom": "52ce915486e869a7ebaa4e823836e51706ae28a8fdcc97f7e3e20914643534ab"
+    }
+  },
+  "celiac-disease": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "5a6cd398acfc5c22c7e1eaafd00982c2f9af58c619553f887ed4f8b9e13d9b64",
+      "ro": "c5da2ec5ae892e8d0fa8722251d46ef7a6bc32efecc11405ab524aadfa80bc73",
+      "sq": "74e333b51afdfbb951035a4852ee395ffb74947cf80ab3e9c39a6504651014fc",
+      "it": "a277187cabab529d2ffac7232cefd0cfaa5447250665b6c3133808b751ab609a",
+      "ru": "04f2680abe1dfdcdafb08932de1838390c9a0dddacf5ea0ca93f25318a295da4",
+      "hr": "de7a73d2cf050e360b1aa011fc816499fb53d6f38cd8f6327fa68e2733512139",
+      "rom": "39560fc05f63e4206ed8c3ff7e98e8d7694dd00c0cdd02faa41192abef745707"
+    }
+  },
+  "cervical-cancer": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "ac7b8cd6b475bbdf4d579b92a97893ac7a9ac11e23c5c577ad661bfe0dcbef4d",
+      "ro": "c3add3b48d627fa662ef33ad544bf44b2750627f0ec5f76e23f3aa435b01efdf",
+      "sq": "075f870c7d89f0736466ff27fdd6a800bae9f49703f06a9aeb5cb50b2bb98045",
+      "it": "2dc708cf9dcf48eab44c8c5886e8d4a5e66635928e15a1637f6dd65c7ae26fd6",
+      "ru": "c948cd16090140ff76712936a02da3c754f5d34a087077af15bc959bfb860617",
+      "hr": "965033d89f46cfd3cec9d8635c261aea8562f134ad4550eeffbcc9af8eab9e5d",
+      "rom": "af660b85b587ee403e0765f841ece01d795c0cadbd6b3598d20416be2e2bdf1d"
+    }
+  },
+  "cervical-cancer-how-are-precancerous-cells-treated": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "3e3a21ae819cdd030d00bf369f8f5c32cd9d588a2c6fe062ce6900d4e1f6d2b4",
+      "ro": "dc7b72bb8df1736138974161e56019a93c297c0c6d685df62e96565e72b24d5b",
+      "sq": "59c72f56f8d8f232851ba4a308c24d913213ef6eb977095440e52c047d591c83",
+      "it": "070a7516291d27a42d7c750ed5bbc5fe9d4e400fac660515085da869256e82ea",
+      "ru": "69e8252ea3d11d64b0b4027b71d2f588b7319cecaf114b1879b837bd4b990d21",
+      "hr": "4922e6d7660e3d33e96765d23dd04d6d601dc0b47d2d6705d491ddc9a57afbcd",
+      "rom": "69607bf42eaebd3e7649e8bed991b0d39ef2c1e1dca597114cf00297a55c14fa"
+    }
+  },
+  "chickenpox": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "0c7038e50557ba3cfca5b6e75153f4ab051b0e908e778af3f03551fcc0b73531",
+      "ro": "fbe3aec479db15c4c2b6337e7fb736b191245d2fdb0b903ea3025deba89be9e4",
+      "sq": "7fba35afa1695f1eea291d4fcec3d2cb3701ca5b41401344976ba807ef48b3f2",
+      "it": "92916160be5d926e561248bfaab4e06287522167e9c0b0f0938dc6a4705b6e82",
+      "ru": "da7b5b401c6cfe01de3fd5698ef8d6e51a86ec3aa86c6193ee14d9c3d4cf5693",
+      "hr": "d2955ca803da36df8cf1c89e7d63816d7bb00ef9ed7880e1a1dbfd03d2e2d471",
+      "rom": "d507785fc86ad71f797a822b5336cf3e004d83bc043438533e8f9f7ce9858c94"
+    }
+  },
+  "children-and-sun-practical-information-for-parents": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "f8acff3cc6bc0acb54ddc9ffb18095aee0c072aa8279bbd9cf08d51c2c093e53",
+      "ro": "5bee3e8f6f27e89dd289347cc13472ab1d98cc55bfa03355431212df18abeca2",
+      "sq": "b5bdad4237a860734267d759aeda2fbd6edcca2ae23c5061d773d58a7be10980",
+      "it": "0a2870316a967b09ee77fd56f56f3f7b84cf38bff5e84a33db0bf5e0f251d5e7",
+      "ru": "5b17c48434127a7be18a4961ed872e8e42ff9cd137a920e9d2fb6b5813201c5e",
+      "hr": "b766eb935b46fcf7ece58e6208c0737888a6b53c9ac30e6689b6d0dde407a7d1",
+      "rom": "c7c0b96d10c8c9d3338ed9f15c6601ae3ed6ebd664cedb5f76bbe8c6b8a1fe37"
+    }
+  },
+  "chlamydia": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "0d3421ceae8da8d286b1e2f8730ad515b8a68b4c398fb1854c310c6cf67535b2",
+      "ro": "bb750aec9be6e296d243b1e357d07237707071d294dc4d0984877a144208cab0",
+      "sq": "96e6c5ae4fec54ca1756194413bfcdf13bdeed91bd8eb474deb99109af6f1fc1",
+      "it": "592584b42b235bb86da909f0e268a8162d1083de03d0027ad5106a96bf0965de",
+      "ru": "37d5138506bf509be7d26abf08913452eb4c735baba3df897ee905c807f37cff",
+      "hr": "ff2a3e530f8b8d8ed25f7788ee5cc9f8a732839140777b88cd9815ba0b94eb0c",
+      "rom": "438b74f455819779eff0bdcfcc3a88337bb5f2626888015997b70c736da094bf"
+    }
+  },
+  "chronic-kidney-disease": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "7a04b90cdbdd5f8c56c8a0cb69d40c23d8fb71503f5810312c3658b616acdc0c",
+      "ro": "3fabc70ee95800d8f4e0500e9fd8d003828c7f6d089245a2da8df9c99db92acd",
+      "sq": "a7e98315b5e77185c13ab642b341b19d7a088d81d7423b4c3c9f8e385b2c7ae0",
+      "it": "e4f932edde23ab5cc69983595c361f8b5bd74f10f29aad57629ef55faa2035fa",
+      "ru": "b5aee4a31feb9d8c2be81243ad968a40b94f284308fa5a9ff6980830a51e667c",
+      "hr": "b58e0e983257ddb687f6c39a9b10fd613865d0908bfbfd6900b1f725d918ff30",
+      "rom": "f6ba2c0ccf5611595e0f9a5739abedd922edb3bcb298ba13bf2a732870db46d2"
+    }
+  },
+  "chronic-obstructive-pulmonary-disease-copd": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "d71fd2808995b592778df598208edf5a1e5b3e29177132c4931d5baba5a502cf",
+      "ro": "e0303b51c269f54bc678a4d9976ff7e447f730b21b02aaedaf8f831778f597fd",
+      "sq": "c90fbe0997c8d8f1064b83048f1661c846cc187c6c95fb297afbe4c98b0d4616",
+      "it": "72589a349d781e2e0b2b45f9cb90a8c5605399593bd1b8e6bbc4b5ff2173e8a3",
+      "ru": "d9a7db69295157308706e704ac2ddbc2eeb788b61a2438775c7eca35eb685aeb",
+      "hr": "3311d856948ce849bdac9fe5fd9dc6234d68c9a269a3d04ac22b2d84be4fb883",
+      "rom": "21ca9d311efff2d9881578fc97101cc614af64aaf7ab7d153838262201a66256"
+    }
+  },
+  "chronic-wounds": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "e68a67ea8f5c578a0f637b36852af2c0ba8d8f55f89ad1bd16ff7bb40d9347df",
+      "ro": "01b5f142235af3370f25c6dae22d0c08468ca4f605a242aac8f60e5a493878ae",
+      "sq": "e9d824947072bba17dbe511991659ea8ad0fb90153c8f7d198937be8b7f73e5b",
+      "it": "45cdc46be358558bf049c1f125b13918ade6aa640f27025fd27e6be2042faf64",
+      "ru": "828e6ecc4f9da98d6e67548aaec83ad2107fe5820968dda7e0faf9641f21f2d2",
+      "hr": "aac811a353ae62d0db717c7e8daf161567a187c54743040a587ca32cb997473d",
+      "rom": "a4291265029b090395762af27f5e2a73a4a5266ae8c3b711abfa5d71450923f7"
+    }
+  },
+  "climate-and-health": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "96c552c524f5496e2f214b6f7241386a01dccb3a0b479e935af05eecfe0768e9",
+      "ro": "c39701e2d7514beb255844e3f7b542b81e45574c460c67ab5cd4e8e8a2fe21a7",
+      "sq": "ade811f5291d7251ef33f03282534aed31f2287da29cca4ce409572ce2960462",
+      "it": "6b20e46150ed7f2a7100d4f4610df74cf3817b8db1c92d34d18ec9c29e3f3757",
+      "ru": "2c95b684e5f846b99ec1491fd9a5bd64acf3df1ae26dda2e65a18fa9db412774",
+      "hr": "45c58fdfd1cc10eab24c1d5af5dd4131349ffe431643f102724145034a9d95fc",
+      "rom": "d68e3978eca099345c9e12747d471ef1d81aa28a0cf9635cc5d0077444a03d02"
+    }
+  },
+  "cluster-headache": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "6869e1205af3e5017fc5fe2422abf627ebdc269f5817722c58139d98973a041d",
+      "ro": "1b5ecd5ad88439cf6e6e701ed11c9b14bbaa7b66f89603d69d1dd54b9f4cb9dc",
+      "sq": "590e2dbaaf998693dd74a75a5efccd78daf071c9786ff0b3591694ad723fd998",
+      "it": "069eedd68cf2edcc93b7138151d078fe124ddd5a8fbf779534cc0983271c48ca",
+      "ru": "22103b57f20ee603757448b36e6deca75a7c0fe55e6a8db8c4583f3c825fdb95",
+      "hr": "1afd5691a4f509ff18dcff8bf15de937b1e4ba5ec82ba7b6eff1abfbbbcaeca1",
+      "rom": "28b706c78c900e7533582a3483cdb2666dcfd9dbaa56798a43b29a85dbb78a97"
+    }
+  },
+  "cognitive-behavioral-therapy-cbt": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "6e0d457e76bf6544d86184840d83e6c338858b14c07b143137b9f98f01ac528f",
+      "ro": "10c5e2778e7326c28ec03c734eee6aefa8540bd4fd0594d4929df8eb668a9e28",
+      "sq": "61b1af534d5d6aa0179a38b9215e73f9332b76341b7262fe6dbe208f88bc1d86",
+      "it": "b3cc0a23db58bfad71bc8b27e49365616bb6ba0ec3b4a899007324c7d44d2308",
+      "ru": "73044e3a95e0c450a5a22bf7bacffa2de4401f01588546f7eb224d74dc02ddb5",
+      "hr": "a8b9a0fe3f210855e8ebd482f74d6d24b76bdba062dce1b8d6eac018dd1f81b7",
+      "rom": "f611111c9b7106351c3f7961b7a4d8e9b0b7fa173e87f6631a7492873d4a1ec7"
+    }
+  },
+  "cold-sores": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "dab163c2c2bb322de15494b8ac16396349b248e9dfb6f6a9015bf2edebad222a",
+      "ro": "7321156d07bbf22cd6c603a3181e0d7fe2512147f89d1763c0b1ff19e90790d6",
+      "sq": "bce9886e4c1af8d9f0a2c13fd8ac56eb0220ba0de7797558b99d7aec22fc4034",
+      "it": "208310491f6827b8acd86a32d0049f8c0244496229645564af51def9e83e668e",
+      "ru": "07494b0daac6dd88545c64fb7a71ead4c22526411a61c7c9f54f6d70c5b487d0",
+      "hr": "87a7f54a115473a55698b0ef61200ff51345c4b1662993d905bd452d92212985",
+      "rom": "c2fab2001185967804d713f5627f43f7b12117889e66573adeb9d96f84c6526e"
+    }
+  },
+  "colorectal-cancer": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "906cae53f7249506247c8fa1ce13563ac08be987d2ca9610ffa455fa9d9b179b",
+      "ro": "eb38703242efc687219c55cdb7c936edc5aa879783c66dc1e7298cc2906bd223",
+      "sq": "b3007f5c84809c95645c7b7e991e9af2aa47cfe5a8b58d2849e3ee013152b395",
+      "it": "fb9900f069c13a6aca03775edf7c17b046a1d92883e829ee049c8f801f4cbc2a",
+      "ru": "25fe8a75af9d0a63ea28c5e30c9c76cfa3c0691ef1e339d51106466bfde0e716",
+      "hr": "dbebd990a383140b646decb0e49c9e9ab01cbf73c9eebd1c2687ae2446964666",
+      "rom": "4d5a64c076f9a43806ae9680300168a624142712aaf2d8358b8ff1f210d3161d"
+    }
+  },
+  "common-colds": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "db49e86575d45394a30e39fc66a4e3acf140d1cab18a94ece14a71b2b6e127b4",
+      "ro": "4ab6e3f845b9409dcfe65d9c1d50159db64ba8221bf26b5ffba310b46b1b80a7",
+      "sq": "a6d5ac42d8a23556d589fefde4f2e9ce5f1b59472e2dfff02b26ef0f5f638a2f",
+      "it": "d60f31280f184200e94c0ef59a77380dc846f03a6e930c96e9c273bef37e1d90",
+      "ru": "df12fc6dafaec8013ba2890b17330b364b51607c7aa56cd88aeb65c099e226e4",
+      "hr": "bde545a040cd42250d808e80f52af4c3334e850526df3a554bc9a4c3d553d8df",
+      "rom": "96574a3797f4d5d321418d1a35c8ed113dcf39fc7b036fa43c368d8300d965c7"
+    }
+  },
+  "complications-of-gallstones": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "0dd85307e3a389d093e03895acbe3cae7e47938f9263a0f5d6e9d0c74a663fa7",
+      "ro": "dda14b5caa1d85a40cc79ca59751d3202b0e8f7102c2666865b4a051f2d48229",
+      "sq": "7a30d7151cb902338366a7c63cd0eba310bfebb392b945da7398dde4e63037f8",
+      "it": "e0f24ca3fa93ed22559300520ae6f41f6c2783dc08614c5c138c351a0752639b",
+      "ru": "37d4aa7efb8782b6f03082ea658160828902ef3ecbdde10f9683aeb9e48bdf97",
+      "hr": "988da5b42b508f13951e1b8bf4179c491136d732c47217cd952654863b3bcc88",
+      "rom": "482c4f20067141885d1d0fa43ed7951a8959314df411b3f881bd5f1a5da03a7b"
+    }
+  },
+  "concussion": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-11",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "7ebed9437591a6c6ad1a77a0a362b7cc4a1ed586fdfcfb5e05329f7819ebf653",
+      "ro": "d1015c0df5b1795508d40067c34abb67796b21daf1b911c9975369d05113f7bc",
+      "sq": "b867f9dc00795221d02db29efa2102e87a1c919e35aa7309ed9666f0af539cf8",
+      "it": "5f07e3572443c882bf747e66fa77c82d69f0d7318e8c8df98ec5d46467082d39",
+      "ru": "10a28b748511fa5c853e075c0d5e1553f4fd16f6fad197aea3a8586d6383fb62",
+      "hr": "efbf6f2059103af96200822e9420ba21f8db5f92e69ff3539353b3e938cbd842",
+      "rom": "37f4478851f3a7281c4816905db93f15c65fe283174d7ed0f30a7dd9f06266a2"
+    }
+  },
+  "conjunctivitis-pink-eye": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "04aaa2bc63d07dad4b4c3c08c7bb219288ecd07f9a1c23b29d0c6af6eefe6797",
+      "ro": "cef9a6850a510cb6aa58a1b1a71d5e8cf34f7fa065890c5c3a465ebbe7236f3d",
+      "sq": "d622f4114fb79111261462167eeb0c387aedbc78d8ddae5dad87d27f4c3d9f83",
+      "it": "3d55fcc7258d40859903140845c996056fb5a1de98c583c4353ecca13192d2ad",
+      "ru": "bd071a39f52afe4208af3285daeb54e258fdfe847051901ff395acbe3f766e72",
+      "hr": "9addb920b2796cf900cd7fa7b285ee3a029d8df585ebfe485d092d9c3ce8abcc",
+      "rom": "adcf2d5ed43edb53a230974387e49d8c2d505f20fe27791a60157e395711e923"
+    }
+  },
+  "corns": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "34663867e82430323bd3ff91a49150a7153a8f5b5912343a3328d6c561eff146",
+      "ro": "d73ed48444544d9ac251dd531d52efbbacc67d8bb1da0509a8b617825541a0d0",
+      "sq": "cce715cc621e5baaf36413435380f611e9232d87cf32d2a94ad1e6cd036d8200",
+      "it": "05cce70a3f2ef4274eb95bf114149cb13599aaac97930e2a33a9366826cc8181",
+      "ru": "d1db7d721d2a2c05e789a5be2596a2bedfd6989667b159daaa18cd258662ef5d",
+      "hr": "ca31d1656243593948afc8ba7d7ddfa46ae884d9c7b6213c1aec274f78d127c7",
+      "rom": "dcc2e6723caa6ba8829e09050fa5da1ee6fe04ad7103017b3397500570444d8b"
+    }
+  },
+  "coronary-artery-disease": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "c89a0c6bd9cbfbe9eb7b88eb095466284c085f96672ab69a66c50a4e0a894c27",
+      "ro": "c505e6f617c670ee203dd77b6dfaeaf84b788d6fd9ac08d1ff373ca49d794810",
+      "sq": "e3dde4c86efa013f538b5ff37d269ca9ae96421a2ab5fb04f7475751d2b522b9",
+      "it": "f9ad1f514bae6060ab4683cdd0b596301c6695f2ec977e1de3494e68dd513830",
+      "ru": "045eac36660be607ecc369df6ddb2cf38b6df5852e3fa0b63b64f3a4ec1cdd9d",
+      "hr": "a84f91ca83e5997a0681babd3f4cf74ca4bfe0dc03b78e2b221e514bab931b24",
+      "rom": "ef3fbd5e93dbb5d0d6ef6b3871a92b119e88f504a3bd88c1879a9748d75040b4"
+    }
+  },
+  "cough": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "56f5578c6a6daa8fe11aefd9e8e1f0fff4316369625a66d8bf2a55c42d2df959",
+      "ro": "a99750b97cb93bf66b7c29a7738119652aebb7175df88a3c03922858855525c2",
+      "sq": "54e57fc8a67d0239f355f7998e67abb4ea20cb7877d3cedcdbb17c7ebd968da3",
+      "it": "c5048effab94402611a1f8227ca85c84a4dd4b37ad1ddcdcd73e1fcd35df5d15",
+      "ru": "3a1d430e505da8420e4d7454857a2efa6bb3c653619092d7561e7c1d42e0c6bf",
+      "hr": "fa6a40db3c4243f03a45b7565a7aff04195dadaf8bcef3d399f4ddabba207044",
+      "rom": "331e4d5dd4e8b8116b4ae8ff017f29710ce144080cf15752db1bfff5d7e9a456"
+    }
+  },
+  "covid-19-coronavirus-disease": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "9c71fe6e764b4573a22b7d3e7346ad830a6f6c814ff287797ac2157585a71626",
+      "ro": "8cae959bc34c6686fd285435d3e1bafcd5980eed848797ad58698dbc1e34bea5",
+      "sq": "5479dbfb139de5e05a7e11a44aa4ea350141a11231bad69bd71fdc40c295f265",
+      "it": "bc2d4f86345eec6c96736b8e56d29275b5c90dba08ed5ca758ce66f07ee671e8",
+      "ru": "15538e474837b2e0c2953da7c8bc2c6823b6d354e4fa1e97f6e28ff270019555",
+      "hr": "5aa200c2532f4857f109efdd7a568b33948cd7918624841266eb375adeaec1c0",
+      "rom": "58b1ffdea8aab282d15fb0e63dadc9b89426462faa6b8573739e13f05af29cf2"
+    }
+  },
+  "cpap-therapy-for-sleep-apnea-dealing-with-common-problems": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "40f2d33ea3be89c0ef91885ab07dd410b0b0ab307b747152f53e771aa635f5b9",
+      "ro": "54d4a214f78cd2f5cc07d26620109abdef004f2438034c8710c6f5eaf0991d7a",
+      "sq": "61831ec62213ac135c2a2d7c69edbd1253c951fac488fcab59f371a4ad205811",
+      "it": "483e31d247fcbfe7f8151abd4457894a25116001904203ada66027f359bd6bc9",
+      "ru": "efb7797a41a89ddfb0f99d427f0054b05b26391696b17fccbc6453d40c45c81e",
+      "hr": "c61d4d545c9c1719c6d41edc7880afc5bc02286de7e2f8f200ae216ad00e02cb",
+      "rom": "a0e6dad184085442ee7cdbc423cc082373b39c078d38479428a8a3650b82e411"
+    }
+  },
+  "croup": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "7e30bf132bbffc3056d3361374d6c23df1a3eb07e672b75241ff26c59288d840",
+      "ro": "5fe45139147c64b0d8f1804a2dd965ae1eed9d0652085cfe0e82f3f671a41450",
+      "sq": "0b1320b9daceaf59770307830561f9320479f6a6012a6e67d5aa19810b1dc4a5",
+      "it": "8b96ccd5575bc3aa48336b2f87c4a255e338778af9a728dbfb2b8be3aee49977",
+      "ru": "ea558309941163982f7a9cfc6fac22c2332d76ad8d285ad6c931eb513cd84ea6",
+      "hr": "b1afcc220bdb03116c6da2cd494fe9d733f843b62f99ff343af533d0e2409e55",
+      "rom": "55233c142a01cd2d4bc1d8699f7f100d9703823f42caf538edb3426d3e901a12"
+    }
+  },
+  "crowns-bridges-implants-what-types-of-replacement-teeth-are-there": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "aed36829d2bce7950f16d3d8e2d3bb072a84ad9d3f30f09174383d568c0f2ed3",
+      "ro": "c885ce99fc9fb2420d993f2339bb013decd18a7b528382dbcbba397dcf2f1ff7",
+      "sq": "d6b66d0019313b4b83931b46975d8d888fc7fcbc6fa6dd1c1c8b2a356ab9d6b5",
+      "it": "23b74e2ee1c1fb3c60c9b59af3eba0093602f0eac8f5ae743ad452b733e95ecf",
+      "ru": "ad34ac5dacce129f8a68eed97f2019b4c2efec38a71b4ac28a89c89472753172",
+      "hr": "2ef4b2d13dce6e6b1d16e015b42398484c3c0e2bf56fa625575b0c3f4a74a86e",
+      "rom": "2b23eec61edb67e08acaf468b59b4c20164b86f992b84d5f5823952b2928d76f"
+    }
+  },
+  "decision-aids": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "42698406da11ccda98b854045854c2a2b035eb72b69fefbf145b56550f3d0821",
+      "ro": "82c0e97165731936d4d4b5e37005e6ccda0e5661e2323d40c9e242e5838b068c",
+      "sq": "2dfaf4849a19f6cce5e5b3c33b637d2c8d2ce7bd67fbf2aaf7e8846e358f9967",
+      "it": "dc5129b698172ba1606a6196f9d2c0c522ff0ee9f1fb09c83f7f72e88c9f6bc0",
+      "ru": "be6ae0a0369c6f666070ff929286f28ecde07f6cd57ecb92cd6734cb7c9f9e96",
+      "hr": "3e597d62c543b88c403f6013f33ae872d0a6ec93ab6d16917aed8855c8af0ed8",
+      "rom": "27fc7f925a619bfd22fb6620c4741cc3a5f157fab8589ac471b1dc5d30e5870f"
+    }
+  },
+  "deep-vein-thrombosis-dvt": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "8eb5d1b1176265a7c21c063128e77a79055d47ca8a857bef9c1a889cdbe2f3a7",
+      "ro": "e419cb1d95b797da3384c46d65f2c0a1f7c7b1cfa45e899a19a3515cbfe10f94",
+      "sq": "9db527cab9e985cbf3a4f9dc86c1dc392600f77b7dd3e07595f35ccb18cad6b5",
+      "it": "52ffdb41f1f9db42d6e69604265f40429ec72b300306e3fe8a85476d98392f7f",
+      "ru": "4a3842c0e8c8a93ac221aa933df71ad3094d9d6c508e0f6d7b857a5476921c74",
+      "hr": "007388d9b65ffd993de1c42bad001b4fb28959d9ebf9f417e6c9ccdccb4ecff3",
+      "rom": "88a1715b64c0d13fa1e933a3a6fb47ce64ef03a8bd3491685d7aa85a04dacb35"
+    }
+  },
+  "dehydration": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "65bec134f0f21fd3a355602e4b4029d825ebc7037d9453a32b0d444a0a08e2e0",
+      "ro": "6eb69976a84c436eba19095b021f08c3c7b01e5d80dde15f447bc599b5d08c1f",
+      "sq": "edec83c9836cc9e4cd5d8b051198783d1936239551a01af14d2fdc56207ede92",
+      "it": "1d28519aff3ded5dac7ce20ee78e9b9543cdfe807c1d5d8d799aa242990c7e2f",
+      "ru": "11a49d41664a54cdec8d78fa30f532a028501c2a215f074a0306539292dc803b",
+      "hr": "16b9a23fed03d2873bd9ceacd215f4b385b6ff8d3fd2f8d256d05b6e3d155312",
+      "rom": "6bf978f3737f03d553462bc9b3998fc6d3cb8d37d6207aeb131d115e20dd14e6"
+    }
+  },
+  "depression": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "d5642f0be04c9238212374dc281a567c6e0a9dfbfcb5af79d5a4b3d5ffdcf33e",
+      "ro": "90296ace9b1e0431b23f94b747c7ae0ccbd59bb5ba653c7c3d4925f520126d88",
+      "sq": "6b46356bfb1ea84214f8f154e1f0ffa42f54d95e877ccc091d531fb99b008bf7",
+      "it": "a80e6e43d845ce2372bd041a46a515685095fd3ba963f1ca215c3b5514c97ca7",
+      "ru": "a604ec1de649fafac2ca5c725c98ea2520354e117979976dd32989b96323847a",
+      "hr": "d006544534b8dbc324e143c2bb1d98e13ed29ef92c3282a3d7d5d980be3e2630",
+      "rom": "9774fd62fcabb96c9b9c175b278270056698c1e5312e08be4659cd76de563cc2"
+    }
+  },
+  "depression-after-childbirth-what-can-help": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "d7f824ab325f4e5ac6621350bde8d4fc9a315e3270022ec58c087adb300dbe54",
+      "ro": "b2b31baf472c1ed0357a3a4ec354ba841f763815f1e34c8a14e7b8f4ce037987",
+      "sq": "b262a23b1652628cfa43d1055c074fdaf2f954f46d992300061df8b5de51ea85",
+      "it": "46b879648d8a0040250007a0ae6b6ee7189326f11f09def7303e2326619f0459",
+      "ru": "da1525b2fbe20328127bb8dc4d7dc052f271a6952e6e1976b01b56ad97460780",
+      "hr": "5ebaecade0732e91b00b419e50189055bfdc06fc8fc9ee221f445c1cb1a80f2b",
+      "rom": "2db38b720fda35db573cfeaa90c0db738750fb7db785ca0b372417b6c85b5a49"
+    }
+  },
+  "deviated-septum-in-the-nose-nasal-septal-deviation": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "04724071b9ecfaf1dd4151dcf95ac54c0f0c1269dcbbb3f84302a9e08ec8e99b",
+      "ro": "9497df5b9c3f7375ae15cc574503b141bef4cc900546a276b8432a978dfbf8f4",
+      "sq": "4e3b55eb28a1c3b898ce6b7fc345d517ba3954495735f98c8c5b0d624ef7ade1",
+      "it": "f8473ec1ccd2c8d366f25bcb101651d51193deea7b40725bacdfd35cc53e4109",
+      "ru": "00c02b4e4c5bbe09957a37c065555c55ea48bcac0737f773cdac27085898efe9",
+      "hr": "38559da87241c6f228600e48bf837a0719929f422e2b1fe4e1b8686d0fcbd79c",
+      "rom": "3c90b3404fc436eb62cf8a6d5db8e5757be70d52a754aa94edaf89cdb5e1fbf6"
+    }
+  },
+  "diabetic-foot-how-can-you-prevent-wounds": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "48683b9bcf7bb7bd7f995be8b257dc6320806cfb942b9cf95862a69f38e08ba3",
+      "ro": "676319f075ca9d9250bc0e8605c4373e7c49d9c03c4726a352b41d2af6f9b2b3",
+      "sq": "a7eafafce60080e8b2cf4ac1fdd92d8421df36c793d9bb071b66e28cb2790a9f",
+      "it": "4710f7102ca0f44cd58d11ffbdd6e94b82d59cf2ed9bfcee2f3d6dfb2f1b17f6",
+      "ru": "b0de6310ae1e5bde9b3d748c1c3a97394619bb0bf4ae4ee83db3dab4173c117a",
+      "hr": "141b0ea1760dd8f7c960c25773375ce2809d5fadc00d64a220a94658b7fad103",
+      "rom": "ff72a157c08cd3746642b9d8d1f43c09f3e065a2be22311aea891f969d76ab70"
+    }
+  },
+  "diarrhea": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "00bb3c9fd2e610411369d9ee488a84382c0ce78e7a7b86525ac313e439e94299",
+      "ro": "b5e0ec53d868ba75f20a621a5de80d4cc2e5795e96f2702e8678be4ec22fce70",
+      "sq": "e6922900decf3eff8912274e934d689a4806c1299f0b663214d162c9a00d1049",
+      "it": "26f1c4ad2ee5d708e03304fb256fd57b771947c96240ecead86ae8feacd03507",
+      "ru": "1d1e15b48f06757a71611285085b12a75bad461bc8e6c54cdf11333661944682",
+      "hr": "a6675448047eb2567defd2c714c9c9407caee73e5d11b4eafcbddf9f57ecfbfb",
+      "rom": "23b4267311a71329023b48f801ee4244e83fd89d2edd1a100f39c14c5d3d9e58"
+    }
+  },
+  "dietary-advice-and-nutritional-therapy-services": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "749cdc81a2de045e469bd560ba25e58724e56c8951c3011d3aeb65833c902a0e",
+      "ro": "25de1041a6705d99b141d9a873e079492aec6718eaa1c834ff935b0a47b9f32c",
+      "sq": "e570f4430571e6b3cb5c689fb3f86d542df06fa3d9319346be8a9d3d322a1cb9",
+      "it": "a31c49c778f35079088a8f0e74bbf3c1c100a80bfa21d8a9275d9e1f2ef72151",
+      "ru": "4641fde60a19926d66cef0084b83250082d1b3f50782b97d59f1caa354538351",
+      "hr": "5683fc17d91e1bfd0c6d485689acf2935702979f0cb8e791089037d08be03c47",
+      "rom": "0a1fc300a159ad8bedd872af5787ab9293a5cb91f8fe1fc17f30f52690fee5a8"
+    }
+  },
+  "dietary-supplements-what-do-you-need-to-know": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "2eb89e95ad561f82934cedd2b9b6ed0b0242ae10f55a836ee817d30c7bf6c000",
+      "ro": "dec4e27fd17be54c122bab1e631cd1abf9b1a1337978858bd49aafc935d46f22",
+      "sq": "944c8d125a669b473e7e5e81bf632747526491425d23277ac7e8dd76239d45f5",
+      "it": "f04524ea21e85243591463ee5160b0e5fed5b351bdae119af43cb2dc2fb34693",
+      "ru": "02063c5d357d2969d0a4a952fe25f950099c32df4b41f9abf15e036993607f67",
+      "hr": "9390e51748d00d3aaf180e689e07fbc1881739053a0016e0f8c20daf03208b89",
+      "rom": "6ac70fbefb47e5f3725c8fd04b260dcb9f9f180bc8683ac57790c9ad45bc7cce"
+    }
+  },
+  "disease-management-program-for-type-1-diabetes-in-germany": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "8b3a59546fb0eb14098800afd75180fcf59d29d79ffa2a644b061d981bb3e682",
+      "ro": "5d7fead9794402757351bd1ba88fdd3dae173f9b8aa3c91d84a20acfaddd1c24",
+      "sq": "1b7879d3bdbba82d77c45f2d37fc9453c70b84d98cf50322d577fe3b526d5220",
+      "it": "4ddbc7a8a823012825bedcdc359f25adce5e38289f03ee88b8985130e95759bd",
+      "ru": "b952faed3b883c77b15332d31c10b36e7774d07d4aef06f772e570d097241f4d",
+      "hr": "2a462a86a4b142853c116021ee10037a128b8e6ee68cb3c0dd6e635b2acd2620",
+      "rom": "31a39082dac4b09733ca2533490ecdc035f0cb4a4011eea9fa923fe389dc692c"
+    }
+  },
+  "dislocated-kneecap": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "e340bfa6380e34c2a37226452ea4cdc42eb8260d21d95970bb441bcb32f9b4ad",
+      "ro": "32dc81d33c3d517f6d3ecc8508564a529397365be589f82a2b045c1034afb215",
+      "sq": "66107568b64ce7773b3c2c4a97afad61c980b6b1b55643b5752f48310a2eb261",
+      "it": "2dd951cce2cdb0ad62eb0db502c50b993fea8b68c30d79128baf6b066b9c3124",
+      "ru": "9bd3f1f22a788eb4d5fd00a6b661f28d05ca67ad05a923f98cab30e6cbb3c85d",
+      "hr": "85a49528015538a0dce249da4acebe448b51925c79a372619a8e74700aae496b",
+      "rom": "11dfc37381d7aabf11b1efb3546681e7ea218ac7c4773959f97f25b0a821a343"
+    }
+  },
+  "diverticular-disease-and-diverticulitis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "70062dca317d1d49d464224d24a8401e360cf7f050c777b43102c8897e0837ae",
+      "ro": "64fc4a1624df1cd093046adf7463f41df83e3a15ddb57fa264eac5583dfd4df8",
+      "sq": "a0de776b8257a17cb39fd13e403f61900b413a9380e02bea92fd2bcfad4bb46c",
+      "it": "f63696b063eec259e4693511f12573665f5cf25bf66e3469ebfd558ee0cc7be1",
+      "ru": "f0fcd6aa463091b0496784eac19347373e4d33d822b6849892c2c3cf9c883aa2",
+      "hr": "46fd3f4f21e2af3e53884463465874b508dd4a0feb080ceaf8234f33f131cd9f",
+      "rom": "3d77bb7f926154665f99211fdd286ac1de4caa09966ca4057b2ac86a98d68890"
+    }
+  },
+  "donanemab-kisunla-for-early-stage-alzheimers-disease": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "68fd3e1b4acfb493786997ca18f58386c6cdcedbc58c10cea3fff16486a7e2a9",
+      "ro": "eea3ac009c43302a7d50c5b93823f0339ae856503e0c5fda773c071a77a8529c",
+      "sq": "5221018d6404af7259491522f0d29fc3c218ddefde79d4042d075d54f1949b75",
+      "it": "bb5aeb0e922f8f3308b862c96e8327e10e732f9cc57f2987511248b2fc153dc3",
+      "ru": "04f436e5bd2845835716ad8faf4ae5c91008d1f541a087accf2c6aaa0be9c8fd",
+      "hr": "7e0943448409dc8fd5770e1197ff8c779716c7f615306b197fcbd95093960c48",
+      "rom": "1a4708c05ef00be7ff35ae1dd7e21662b1196a556aa9a0f6315b766907119707"
+    }
+  },
+  "down-edwards-and-patau-syndrome": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "7b8b9ad6cec2e6a48ccb26be2294fadcb258ce0f354bd66fdd910947cbd87208",
+      "ro": "d8bb0763710bb9c2094eee01820921741c229abc9b099f9ec710da39a8121b7c",
+      "sq": "0600f330b5183f521bfe243f04bcc3659f08ca2ec8fda17a0183ed5a10809b60",
+      "it": "1649edce602576d9280da05c8845e874f9898ed04c48955640baaf921ce10e90",
+      "ru": "9457063920f74f4734938f4faa728aa61b059d936d69bc6527a7d34461d03cc5",
+      "hr": "3f5e2a4cfdb029512adc7f4df48a806b7ee2ac8c0929b7d658e7813f12528af2",
+      "rom": "507c2299da2f69e06a5e6e3245b919fa2b01e0a6d69999639f4da8970ce7e730"
+    }
+  },
+  "drug-allergies": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "237fdc3bae41951ad340ec2f473ad584e18777de00dfc13ab3086a5415e47ad3",
+      "ro": "e54946f491dd3aee3d9719841001a4fb32ca943cb8bf7b4b8feabd6b17858758",
+      "sq": "dc13c94a16851a7bb54d19d9d2d42b6be3e311109d3d15a09a27fd018070dad4",
+      "it": "d7c1f9a6c761665910c33cd9bcd36c50c8a56a34494a4133e101cc123920468c",
+      "ru": "c16bd22e8eb6467c285cbe91784e949a914521cc98762204873d9d5540454cd7",
+      "hr": "686d80167a08f66e301b9be1ef07a2b5fb928d7e1e1bcd70a049b748b5f8a1e7",
+      "rom": "aef540ee65801450c4992c34753b795a51b32891474327583334b4ae6bb67403"
+    }
+  },
+  "drugs-assessed-by-iqwig": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "57a1dace13c4a8d4caddf593b6c1dd4419c5606c805fc195d3134d04b3075139",
+      "ro": "388f80913ddb2da21770be54805649b49421634c1c7deca36392cdd6062c735b",
+      "sq": "201280abba7e3d8ab324e2fc89e90b1a578dc7473a2253b585f077e3cf1cd817",
+      "it": "c25b351c05b08fc3bf3b412ca618fc72365c3af6487af8f34019e9e0dcd44943",
+      "ru": "c68e3f32e4c885b3331d1a1bd1525df355632904069845cd7fc6a266aa404b45",
+      "hr": "53386def767b35c755eab180fceb71c2d5e68ee6899e641150b76becd9aa61ca",
+      "rom": "aa00ec43071ea22b64195bb5d4d0abd4a59dc5b777c54beffd39f112e1c47085"
+    }
+  },
+  "dust-mite-allergies": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-10",
+    "independentlyAuthored": true,
+    "authoringMethod": "provider-assisted",
+    "sourceCheckMethod": "provider-assisted",
+    "translationCheckMethod": "provider-assisted",
+    "automatedSourceCheck": true,
+    "automatedTranslationCheck": true,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "394d4ab70c8b33d7e378b4c85215273db7b30cc2960bef6c369b2ce95f89c5c7",
+      "ro": "b1b9d4c0d115c98502db47617c6dd1d2ca3defe62dc8eb6f42c95fd363d59135",
+      "sq": "be0458767bff40c5afaccef11897f8d4ada343fc2c52af48fc7097b108fbdae0",
+      "it": "56fdbdecf63c5ab30385be8757a73216939a1c71dce1d4849d4aae6579698609",
+      "ru": "760a8c9d31be61a3cc837274c81f55495d4f2565289a0ea012fdaa21af4bd9c1"
+    }
+  },
+  "eczema": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "660820905af6baf541f095feb54162cd85803e8d0adfb0efc2f398520dfbf2e7",
+      "ro": "49d9900afc20c0451230912a86e9b4c18e7734afb403aa6cdf02ea78e6b3ec81",
+      "sq": "2143abad15cbbcfb67b4763d7baac7217b5657f0399306548c1fa902e5b1814e",
+      "it": "bc5f8af38c1a1440a0cdcc1d558e7980d2f0b8c552d4ebb6087190ae4a5e3fcc",
+      "ru": "723bae17b8c1e467e081872b7c43101e90d92d019fa743e1106bb76235f95d1d",
+      "hr": "373a644cbb4f3de13a99ada1f2301d2a0cadeaec708d1b5f8e7cc77facbe1523",
+      "rom": "66b0ed69e060799aeb2dfe7ade93fd22caced011e172dae2e44e7f9d1478562c"
+    }
+  },
+  "eczema-can-eliminating-particular-foods-help": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "33eacd0033980029ad8b5e483a5d38be3f4975b3e0f4b2c1a0245c06527b2d58",
+      "ro": "865519e67fe4027b494fdad957d3bb00075ca9092e3dd0df1461295d874b2e07",
+      "sq": "f6bfacaba3b5cf1476c4f4134a39f00cb239501ad8d79d6e763266e46f6b0ffc",
+      "it": "2979a9cca40d87d674f063259663aac4fbab6e211602b424ffce5263b3de9d2a",
+      "ru": "d4f78207e3cb3ca0dbf76ef2d90f0a963ff07c814c0c1e14d7267482e30f8829",
+      "hr": "680c77b3a172b8a6bde04db41b37a4f520fcce5d5bb967e89edf577e4564ce2b",
+      "rom": "07d906a4ba80a79306d6653bdea25da014714be38ab2c35d719522a2509f62d0"
+    }
+  },
+  "eczema-in-children-can-prebiotics-or-probiotics-help-prevent-it": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "2a9477510fd4ccef861d8831637e8d6ce94f74ae6f744b08bcfe614ad0465ada",
+      "ro": "32876ff18c6308ddfdcdddc212549dd04be8f5228fd6d4b75af381656e1b9415",
+      "sq": "4b26903cb3b51807409c5e0633a3eba092997276dab1c7888cd6eb117016fb75",
+      "it": "5b4a9eceab2615e2b7be40dc0f5489cfd89a2601f92b45efb99c448565b48601",
+      "ru": "d8e2603e6d40e1529f57c423e27c23eb602dd7d999d6347f5fe49ad2da90cf83",
+      "hr": "f0f169b6675078a5fb645760af463dc6ed143cfd630fd21cd83ae1c48b1c2ba9",
+      "rom": "6b33a6b5cb7c1fb5430a73be08e5dc2a1565496e2f49def86c4649490a98af14"
+    }
+  },
+  "endometriosis": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "312f31713deeac067a6f114dc9d8178910b268a3234d80442cc8091d8f86a000",
+      "ro": "96e3b6afbda4960d03ef3ba5f9c683fc519af6a6005d370b3260e5c5012c4f0c",
+      "sq": "91a3e2a625ca8343bc7c6d7fc45bc1d9037c85f8b4438310a82cb293df0af849",
+      "it": "89dea235d5c9f25e61b207d5c2b14593d7c8b0cb9b1565611c76328921ee25c9",
+      "ru": "149cc7c3023659e9f3941e1b851a6af02af6075ad18072e58646cb24911b454b",
+      "hr": "1eb11ab4547244b55ef158665a30c39037b7f135e268c2ec446f3ce83ad20e41",
+      "rom": "aef63422a003b3a85a1c99a6aa7b1769a913b83c64d6dd615d11fcd5efcce079"
+    }
+  },
+  "enlarged-hemorrhoids": {
+    "processVersion": 2,
+    "sourceCheckedOn": "2026-11-12",
+    "independentlyAuthored": true,
+    "authoringMethod": "direct-assistant",
+    "sourceCheckMethod": "assistant-source-comparison",
+    "translationCheckMethod": "direct-assistant-comparison",
+    "automatedSourceCheck": false,
+    "automatedTranslationCheck": false,
+    "humanClinicalReview": false,
+    "contentHashes": {
+      "en": "65f72694692cb2b089926f2336741fd43b27794e5e08ac8621e04d188b992317",
+      "ro": "007df5938b6dd38061d5ce6c1484933f9d19ff905fc1db1fde7ac725fc955b10",
+      "sq": "b068c8d515ceacf4d1982b3f370d1b71b443fe1710269e974976f980c713eb3b",
+      "it": "6942c3f22d9ad15700f57a893d9e58137ef2caaad49d20e5fd05c4ec37093c01",
+      "ru": "d66125d7959db7b99bece24e523afed7ed6b5907c6cd813bf1b818f0286fee21",
+      "hr": "57560f1c5404dba5a75ca7ef63bc6be5c779e19e9889e932d68e3c3db09e273c",
+      "rom": "a6d1a86f1f6200c4bb31405f0afe4f33e5099c110418961f19b73588db02e88f"
+    }
+  }
+}

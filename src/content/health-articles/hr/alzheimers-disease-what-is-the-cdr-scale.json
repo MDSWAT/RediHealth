@@ -1,0 +1,51 @@
+{
+  "title": "Ljestvica CDR: razumijevanje procjene demencije",
+  "intro": "Clinical Dementia Rating, odnosno CDR, strukturirana je procjena utjecaja teškoća mišljenja i pamćenja na svakodnevni život. Osposobljeni stručnjak povezuje podatke osobe i nekoga tko je dobro poznaje. Procjena može opisati težinu i promjene kroz vrijeme, ali sam rezultat ne utvrđuje uzrok problema pamćenja, ne predviđa osobnu budućnost i ne zamjenjuje cjelovitu kliničku procjenu.",
+  "sections": [
+    {
+      "heading": "Razumijte što procjena nastoji obuhvatiti",
+      "paragraphs": [
+        "CDR razmatra pamćenje, orijentaciju, prosuđivanje i rješavanje problema, uz aktivnosti u zajednici, dom i hobije te osobnu njegu. Naglasak je na promjeni u odnosu na ranije sposobnosti i utjecaju kognitivnih teškoća na samostalnost. Nije samo kviz činjenica ili broj zaboravljenih imena. Teškoće kupnje zbog zbunjenosti znače nešto drugo od izbjegavanja trgovine jer bolno koljeno otežava hodanje. Objasnite kognitivne promjene te tjelesne i društvene prepreke."
+      ]
+    },
+    {
+      "heading": "Pripremite konkretna opažanja umjesto uvježbanih odgovora",
+      "paragraphs": [
+        "Donesite primjere što se promijenilo i kada: propuštene termine, teškoće s poznatim zadacima ili novopotrebnu pomoć. Opišite i ono što osoba još radi samostalno, uz teškoće. Rođak ili prijatelj s redovitim kontaktom može dati koristan kontekst, uz poštovanje želja i privatnosti osobe. Navedite jezične potrebe te teškoće sluha ili vida. Nemojte uvježbavati odgovore radi određenog rezultata; točan opis korisniji je za plan podrške."
+      ]
+    },
+    {
+      "heading": "Razlikujte ukupnu ocjenu od zbroja područja",
+      "paragraphs": [
+        "Izvješće može navoditi ukupnu ocjenu CDR ili CDR-SB, zbroj ocjena područja. To su različiti sažeci čiji brojevi nisu zamjenjivi. Ukupna ocjena kreće se od nule do tri, a zbroj područja od nule do osamnaest; više vrijednosti označavaju veće oštećenje. Ukupna ocjena slijedi pravila bodovanja, a ne jednostavan prosjek. Pitajte o kojoj je mjeri riječ i što obrazac znači u životu, umjesto usporedbe izdvojenih brojeva iz različitih izvješća."
+      ]
+    },
+    {
+      "heading": "Tumačite promjenu uz širu kliničku sliku",
+      "paragraphs": [
+        "Promjene između posjeta trebaju kontekst: tko je dao podatke, koja je podrška sada dostupna i je li osoba bila bolesna. Lijekovi, depresija, problemi spavanja i osjetilne teškoće mogu utjecati na funkcioniranje i zahtijevaju razmatranje u ukupnoj procjeni. Nagla zbunjenost ili brzo pogoršanje razlog su za liječničku procjenu umjesto čekanja novog redovnog rezultata. CDR sam ne pokazuje postoji li Alzheimerova patologija. Liječnik može poviješću bolesti, pregledom, kognitivnim testovima i drugim pretragama istražiti uzrok."
+      ]
+    },
+    {
+      "heading": "Koristite nalaze za podršku i razgovor o dokazima liječenja",
+      "paragraphs": [
+        "Pitajte kako procjena usmjerava pregled lijekova, pomoć u zadacima, sigurnost i planiranje budućnosti. Promjena prosječnog rezultata CDR-SB istraživačke skupine nije obećanje jednakog poboljšanja pojedinca. Male razlike skupina i značajne individualne promjene različita su pitanja. Prikladnost liječenja također ovisi o dijagnozi, zdravlju, lokalnom odobrenju i samom liječenju, ne samo o rezultatu CDR. Članak objašnjava procjenu; nije ovlašteni obrazac bodovanja ni alat za samodijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: objasnite zašto treba pomoć",
+      "text": "Kći kaže da otac više ne kuha. Procjenitelj pita zaboravlja li poznate korake, ne može li stajati zbog artritisa ili je kuhanje svojevoljno prepustio drugima. Detalji razlikuju kognitivnu promjenu od drugih razloga za pomoć."
+    },
+    {
+      "title": "Hipotetski primjer: usporedba izvješća",
+      "text": "Obitelj vidi ukupni rezultat CDR u jednom izvješću i veći broj CDR-SB u drugom. Umjesto zaključka o dramatičnom pogoršanju traži objašnjenje dviju mjera i pokazuju li usporedive procjene stvarnu promjenu."
+    }
+  ],
+  "questions": [
+    "Je li ovo ukupna ocjena CDR ili rezultat CDR-SB i što opisuje u svakodnevici?",
+    "Koji drugi zdravstveni, komunikacijski ili čimbenici podrške mogu utjecati na procjenu?",
+    "Kako će nalazi promijeniti plan skrbi i što treba raniju ponovnu procjenu?"
+  ]
+}

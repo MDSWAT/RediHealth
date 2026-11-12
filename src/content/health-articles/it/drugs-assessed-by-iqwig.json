@@ -1,0 +1,51 @@
+{
+  "title": "Farmaci valutati da IQWiG: leggere una valutazione del beneficio",
+  "intro": "Un farmaco nuovo può essere autorizzato senza essere migliore delle cure esistenti. IQWiG, istituto tedesco per qualità ed efficienza sanitaria, esamina benefici e danni, compresi i confronti richiesti dal Comitato federale G-BA. Capire il confronto aiuta a usare la valutazione nel colloquio terapeutico.",
+  "sections": [
+    {
+      "heading": "Distinguere autorizzazione e beneficio aggiunto",
+      "paragraphs": [
+        "L'autorizzazione riguarda un'indicazione sulla base di qualità, efficacia e sicurezza. Il beneficio aggiunto confronta con una terapia esistente appropriata per determinati pazienti. Uno studio contro placebo può sostenere l'autorizzazione senza risolvere il confronto con lo standard. Il processo tedesco informa scelte di sistema e rimborso, non è prescrizione personale. Altri paesi decidono diversamente. Questa pagina spiega le valutazioni senza riprodurre un catalogo completo e continuamente aggiornato di ogni farmaco valutato."
+      ]
+    },
+    {
+      "heading": "Abbinare il rapporto alla situazione precisa",
+      "paragraphs": [
+        "Cercate principio attivo e marca, indicazione, età, fase, cure precedenti e data. Lo stesso medicinale può avere conclusioni diverse per gruppi o usi. Un'associazione non equivale automaticamente al farmaco solo. Controllate comparatore e adeguatezza del confronto. Un rapporto su adulti mai trattati non si applica automaticamente a bambini o chi ha fallito altre cure. Chiedete al medico il documento pertinente e le differenze anziché affidarvi al titolo della ricerca."
+      ]
+    },
+    {
+      "heading": "Cercare risultati importanti per le persone",
+      "paragraphs": [
+        "Contano sopravvivenza, sintomi, funzione quotidiana, qualità di vita ed effetti avversi. Un esame o immagine migliore non dimostra sempre benessere o vita più lunga. Chiedete quante persone hanno benefici o danni, in quale periodo e la differenza assoluta. Studi piccoli, osservazione breve, informazioni mancanti o confronto inadatto creano incertezza. L'assenza di prove utilizzabili di vantaggio non prova automaticamente equivalenza o mancanza di effetto. Benefici e danni vanno pesati insieme."
+      ]
+    },
+    {
+      "heading": "Verificare la fase del processo",
+      "paragraphs": [
+        "Il produttore presenta prove nel processo tedesco. IQWiG può valutarle per G-BA e commenti o informazioni aggiuntive precedono la decisione. Distinguete affermazioni aziendali, rapporto o addendum IQWiG e risoluzione finale G-BA; possono differire o aggiornarsi. Le valutazioni cliniche congiunte europee possono contribuire senza eliminare la necessità di capire decisione nazionale e gruppo. Usate documenti ufficiali datati cercando versioni successive. Il riassunto per pazienti facilita senza sostituire campo e limiti."
+      ]
+    },
+    {
+      "heading": "Portare le prove nella scelta personale",
+      "paragraphs": [
+        "Chiedete come si adattano a malattie, farmaci, risposta precedente, priorità e capacità di gestire la cura. Praticità, somministrazione, controlli, effetti, costo e accesso contano anche con beneficio aggiunto incerto. Concordate miglioramento necessario per continuare, sicurezza e revisione. Non sospendete una cura efficace per un titolo né iniziate perché nuova. Per cambiamenti ottenete istruzioni e contatto. La valutazione sostiene una scelta condivisa senza garantire la risposta individuale."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: stesso farmaco, gruppi diversi",
+      "text": "Ana legge di beneficio aggiunto ma il rapporto riguarda chi non ha ricevuto una certa terapia. Lei l'ha già ricevuta e chiede conclusioni e prove per il proprio gruppo prima di applicarle."
+    },
+    {
+      "title": "Esempio ipotetico: incertezza non significa sospendere",
+      "text": "Ilir vede che il beneficio aggiunto non è dimostrato. Chiede se mancano confronti e come conta la sua risposta. Continua la prescrizione mentre discute un piano sicuro, senza sospensione autonoma."
+    }
+  ],
+  "questions": [
+    "La valutazione corrisponde a diagnosi, fase e storia delle mie cure?",
+    "Quali benefici, danni e incertezze emergono rispetto a quale terapia?",
+    "Come cambiano opzioni, controlli e revisione del mio piano?"
+  ]
+}

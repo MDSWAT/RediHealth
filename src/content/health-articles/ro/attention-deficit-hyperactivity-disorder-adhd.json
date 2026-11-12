@@ -1,0 +1,51 @@
+{
+  "title": "ADHD: evaluare și sprijin practic în viața zilnică",
+  "intro": "Tulburarea de deficit de atenție și hiperactivitate, sau ADHD, afectează atenția, controlul impulsurilor și reglarea activității. Începe în copilărie, deși unii sunt identificați abia ca adulți. Energia crescută, distragerea într-o săptămână stresantă ori un scor online mare nu stabilesc diagnosticul. Evaluarea analizează dificultățile persistente, dezvoltarea și efectele în mai multe domenii ale vieții, alături de punctele forte și alte explicații.",
+  "sections": [
+    {
+      "heading": "Descrieți tiparele fără a învinovăți comportamentul",
+      "paragraphs": [
+        "ADHD poate include pierderea firului sarcinilor, uitarea obiectelor, dificultatea de a aștepta, întreruperea altora ori neliniștea. Unele persoane au mai ales dificultăți de atenție, fără hiperactivitate evidentă. Observați când apar problemele și efectul asupra învățării, relațiilor, muncii și siguranței. Mediile solicitante le pot evidenția. Nici lenea, nici educația parentală deficitară nu sunt explicații suficiente. Totuși, un comportament izolat nu confirmă ADHD; contează vârsta, așteptările și mediul."
+      ]
+    },
+    {
+      "heading": "Cereți o evaluare cuprinzătoare",
+      "paragraphs": [
+        "Clinicianul poate aduna istoricul dezvoltării și informații de acasă, școală sau muncă, folosind chestionare alături de interviuri. Nu există o singură analiză de sânge sau scanare care confirmă ADHD. Somnul deficitar, anxietatea, dificultățile de învățare și alte afecțiuni îl pot imita sau însoți. Adulților le pot folosi rapoarte școlare vechi ori observațiile unei rude, dacă există, dar lipsa documentelor trebuie discutată, nu considerată imposibilitate de evaluare. Explicați sincer dificultățile și strategiile care ascund efortul necesar."
+      ]
+    },
+    {
+      "heading": "Adaptați sarcinile și mediul în așteptarea ajutorului",
+      "paragraphs": [
+        "Sprijinul nu trebuie să aștepte diagnosticul. Împărțiți sarcina în pași clari, reduceți distragerile evitabile și folosiți mementouri vizibile ori un loc constant pentru obiectele esențiale. Stabiliți rutine realiste împreună cu persoana, fără multe schimbări impuse simultan. La școală sau muncă, discutați instrucțiuni scrise, pauze planificate sau un mediu mai liniștit. Verificați ce ajută efectiv; o adaptare utilă cuiva poate frustra pe altcineva. Recunoașteți progresul și evitați pedepsirea dificultăților pentru care este necesar sprijin."
+      ]
+    },
+    {
+      "heading": "Comparați sprijinul, strategiile și medicamentele",
+      "paragraphs": [
+        "Planul depinde de vârstă, impact, preferințe și afecțiuni asociate. Sprijinul părinților, abordările comportamentale, educația și strategiile psihologice pot ajuta funcționarea zilnică. Medicamentele pot fi potrivite după evaluare de specialitate și discutarea beneficiilor și riscurilor. Înaintea și în timpul prescrierii, echipa verifică sănătatea fizică și mintală relevantă, inclusiv istoricul cardiac, somnul și apetitul. Monitorizarea poate include pulsul, tensiunea și creșterea la copii. Nu împărțiți medicamente, nu ajustați singur dozele și nu cumpărați produse neverificate care promit vindecarea ADHD."
+      ]
+    },
+    {
+      "heading": "Măsurați succesul prin funcționare și stare de bine",
+      "paragraphs": [
+        "Stabiliți obiective concrete, precum rutina de dimineață cu mai puțin conflict ori gestionarea mai sigură a termenelor. Reevaluați beneficiile, reacțiile adverse și dacă cerințele rămân nerealiste. Spuneți prescriptorului despre schimbări importante ale dispoziției, apetitului ori somnului; simptome severe precum durerea toracică sau leșinul necesită evaluare urgentă. Dificultățile se pot schimba la trecerea școlară, angajare sau responsabilități familiale, deci adaptați sprijinul. ADHD poate coexista cu autism, depresie sau alte afecțiuni care merită îngrijire proprie, fără a atribui totul ADHD."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: dimineți dificile",
+      "text": "Un copil omite repetat pași când se pregătește. Familia și profesorul identifică tiparul, iar familia încearcă o listă scurtă cu imagini și haine pregătite anterior. Verifică dacă stresul scade în timp ce organizează evaluarea, fără a eticheta copilul drept neascultător."
+    },
+    {
+      "title": "Exemplu ipotetic: dificultăți la adult",
+      "text": "Un adult respectă termenele doar lucrând târziu și se simte epuizat. La evaluare descrie atât sarcinile ratate, cât și efortul ascuns. Discută priorități scrise și verificări programate la muncă alături de tratament, fără a se baza numai pe scorul unui chestionar."
+    }
+  ],
+  "questions": [
+    "Ce susține diagnosticul și ce alte explicații ori afecțiuni asociate trebuie evaluate?",
+    "Ce schimbări încercăm acasă, la școală ori muncă și cum le apreciem utilitatea?",
+    "Dacă luăm în calcul medicamente, ce beneficii, reacții adverse și monitorizare sunt așteptate?"
+  ]
+}

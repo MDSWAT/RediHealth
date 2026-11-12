@@ -1,0 +1,51 @@
+{
+  "title": "Atletsko stopalo: liječenje gljivica i smanjenje ponavljanja",
+  "intro": "Atletsko stopalo gljivična je infekcija kože stopala, ne bolest samo sportaša. Može izazvati svrbež, ljuskanje i pukotine, često između prstiju, ali i na tabanu ili stranama stopala. Druga kožna stanja mogu izgledati slično. Dobra skrb spaja odgovarajuću dijagnozu i protugljivično liječenje s kontrolom vlage i mogućnosti širenja.",
+  "sections": [
+    {
+      "heading": "Prepoznati simptome bez pretpostavke da je svaki osip gljivičan",
+      "paragraphs": [
+        "Koža se može ljuštiti, biti bjelkasta i vlažna između prstiju ili suha i ljuskava drugdje. Mogući su sitni mjehurići i bolnost. Promjene boje manje su vidljive na tamnijoj koži. Ekcem, kontaktna alergija i drugi problemi nalikuju gljivicama. Kod neobičnog izgleda, ponavljanja ili neuspjeha liječenja zatražite procjenu umjesto stalnog mijenjanja proizvoda. Liječnik može pregledati kožu ili uzeti uzorak ako dijagnoza nije jasna."
+      ]
+    },
+    {
+      "heading": "Izabrati liječenje primjereno osobi i mjestu",
+      "paragraphs": [
+        "Postoje protugljivične kreme, sprejevi i drugi pripravci, ali primjerenost i upute razlikuju se. Ljekarnik ili liječnik savjetuju, posebno za djecu, trudnoću, druge bolesti ili lijekove. Slijedite preporučeni tijek, bez prekidanja samo zbog manjeg svrbeža ili veće primjene radi brzine. Ne koristite tuđe liječenje. Promjene noktiju mogu trebati zasebnu procjenu jer liječenje okolne kože ne liječi automatski gljivice nokta."
+      ]
+    },
+    {
+      "heading": "Izbjegavati postupke koji skrivaju problem",
+      "paragraphs": [
+        "Sama steroidna krema može prikriti ili pogoršati neke gljivične infekcije, čak i uz kratko poboljšanje crvenila ili svrbeža. Ne posuđujte steroid i ne koristite kombinirani proizvod bez savjeta. Jake kemikalije, izbjeljivač i agresivno struganje oštećuju kožu i nisu siguran prečac. Recite koje ste proizvode probali i je li područje postalo bolnije ili nadraženije. To razlikuje trajnu infekciju od iritacije ili pogrešne dijagnoze."
+      ]
+    },
+    {
+      "heading": "Praktično kontrolirati vlagu i higijenu",
+      "paragraphs": [
+        "Nakon pranja pažljivo osušite stopala, uključujući prostor između prstiju, i promijenite vlažne čarape. Pustite obuću da se osuši i birajte primjerenu aktivnostima, bez stalne vlage stopala. Ne dijelite obuću ni ručnike i koristite prikladnu obuću u zajedničkim svlačionicama. To smanjuje izloženost i ponavljanje, ali ne zamjenjuje potrebno liječenje. Razgovarajte o ponavljanju ako radne čizme, znojenje ili ograničeno pranje otežavaju upute."
+      ]
+    },
+    {
+      "heading": "Znati kada ranije tražiti liječničku pomoć",
+      "paragraphs": [
+        "Zatražite savjet ako se simptomi šire, ostaju nakon preporučenog tijeka, zahvaćaju nokte ili stalno vraćaju. Dijabetes, loša cirkulacija, slabiji osjet ili imunitet traže poseban oprez. Vruće, sve bolnije ili otečeno stopalo, širenje upale, rana ili vrućica zahtijevaju brzu procjenu, a ne liječenje kao običnog atletskog stopala. Zaštitite oštećenu kožu i nemojte je rezati ni kopati. Pitajte o kontrolama ako dijagnoza ostaje nejasna."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: ponovljeni neuspjeh liječenja",
+      "text": "Osobi se koža ljušti i svrbi unatoč više ljekarničkih proizvoda. Na pregled donosi nazive i opisuje uporabu. Pita treba li potvrditi dijagnozu, umjesto pretpostavke da će jači proizvod ili steroid riješiti problem."
+    },
+    {
+      "title": "Izmišljeni primjer: veći rizik",
+      "text": "Osoba s dijabetesom primjećuje bolnu pukotinu, novu toplinu i oteklinu stopala. Traži brz pregled umjesto čekanja djelovanja protugljivične kreme. Objašnjava dijabetes i promjenu simptoma."
+    }
+  ],
+  "questions": [
+    "Izgleda li ovo kao gljivična infekcija ili bi pomogli uzorak kože ili druga dijagnoza?",
+    "Koje liječenje i trajanje odgovaraju mojoj koži, bolestima i lijekovima?",
+    "Koje promjene ukazuju na infekciju ili komplikaciju i kako realno smanjiti ponavljanje?"
+  ]
+}

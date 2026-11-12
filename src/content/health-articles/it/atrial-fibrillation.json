@@ -1,0 +1,51 @@
+{
+  "title": "Fibrillazione atriale: sintomi, prevenzione dell'ictus e scelte terapeutiche",
+  "intro": "La fibrillazione atriale, o FA, è un ritmo elettrico anomalo nelle camere superiori del cuore che spesso produce un polso irregolare. Può essere intermittente o persistente e alcune persone non avvertono sintomi. Le cure mirano a confermare il ritmo, controllare i sintomi, affrontare condizioni contribuenti e ridurre il rischio di ictus. Sentire nuovamente un battito regolare non risolve da solo la questione della protezione dall'ictus.",
+  "sections": [
+    {
+      "heading": "Sapere quando le palpitazioni richiedono urgenza",
+      "paragraphs": [
+        "La FA può causare battito accelerato o svolazzante, stanchezza, affanno e minore tolleranza allo sforzo. Un polso irregolare nuovo o ricorrente merita valutazione. Chiedete soccorso per palpitazioni con dolore toracico, grave affanno, svenimento o forte malessere. Improvvisa asimmetria facciale, debolezza di un braccio o difficoltà nel parlare possono indicare ictus anche se migliorano presto. Non guidate per andare al pronto soccorso. Un episodio apparentemente lieve non misura il rischio di ictus e l'assenza di palpitazioni non esclude la FA."
+      ]
+    },
+    {
+      "heading": "Confermare il ritmo e cercare condizioni contribuenti",
+      "paragraphs": [
+        "L'ECG registra l'attività elettrica del cuore. Per episodi intermittenti può servire monitoraggio prolungato, perché una registrazione breve può non rilevarli. Un avviso dell'orologio o un polso irregolare giustificano un consulto, non sono diagnosi definitive. Descrivete tempi degli episodi, sintomi, medicinali e consumo di alcol. Esami ematici ed ecocardiogramma possono valutare tiroide, struttura cardiaca e altri aspetti pertinenti. Ipertensione, apnee notturne e altre condizioni influenzano il piano complessivo."
+      ]
+    },
+    {
+      "heading": "Discutere separatamente la prevenzione dell'ictus",
+      "paragraphs": [
+        "La FA può favorire coaguli e un coagulo che raggiunge il cervello può causare ictus. Il medico valuta rischio secondo età, ictus precedenti e altre malattie, insieme a rischio emorragico e idoneità dei medicinali. Gli anticoagulanti possono ridurlo ma richiedono uso sicuro e controlli. L'aspirina non è un sostituto intercambiabile dell'anticoagulante prescritto per FA. Non iniziate, sospendete o modificate la prevenzione dei coaguli in base alla sensazione del polso o a un calcolo domestico del rischio."
+      ]
+    },
+    {
+      "heading": "Confrontare controllo della frequenza e del ritmo",
+      "paragraphs": [
+        "Il controllo della frequenza rallenta i battiti mentre la FA può continuare. Quello del ritmo mira a ripristinare o mantenere un ritmo più normale con medicinali selezionati, cardioversione o ablazione transcatetere. La scelta dipende da sintomi, durata, salute cardiaca e preferenze; nel tempo possono servire più approcci. La cardioversione richiede una valutazione attentamente pianificata di rischio trombotico e anticoagulazione. Chiedete benefici attesi, recidive, monitoraggio e complicazioni. Una procedura che migliora i sintomi non elimina automaticamente il bisogno di prevenzione dell'ictus."
+      ]
+    },
+    {
+      "heading": "Concordare un piano pratico a lungo termine",
+      "paragraphs": [
+        "Rivedete medicinali, effetti avversi e sintomi ai controlli, compresi nuova stanchezza, capogiri e limiti allo sforzo. Chiedete cosa fare durante un altro episodio e quando cercare urgenza. Collaborate su pressione, sonno, fumo, alcol e attività fisica adatta. Riprendere gradualmente un livello concordato di esercizio favorisce la salute; insistere con dolore toracico o forte affanno è pericoloso. Un diario può aiutare, ma evitate controlli continui che aumentano l'ansia. Terapia e valutazione del rischio possono cambiare con la salute."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un avviso senza sintomi",
+      "text": "Un orologio segnala ripetutamente un ritmo irregolare a una persona che sta bene. Questa prenota una valutazione e porta le registrazioni. Il medico conferma il ritmo con esami appropriati e discute l'ictus, senza ignorare il dato per assenza di palpitazioni."
+    },
+    {
+      "title": "Esempio ipotetico: stare meglio dopo cardioversione",
+      "text": "Dopo cardioversione il paziente sente un polso regolare e pensa di sospendere l'anticoagulante. Segue la prescrizione e chiede all'équipe cardiologica di rivedere il piano, senza presumere che il miglioramento elimini il rischio di coaguli."
+    }
+  ],
+  "questions": [
+    "La FA è confermata e servono monitoraggio prolungato o valutazione di condizioni contribuenti?",
+    "Qual è il mio rischio di ictus e come si applicano a me benefici e rischi emorragici dell'anticoagulazione?",
+    "Perché consigliate questo approccio alla frequenza o al ritmo e qual è il piano per un altro episodio?"
+  ]
+}

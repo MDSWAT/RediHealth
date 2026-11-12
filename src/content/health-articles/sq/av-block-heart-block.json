@@ -1,0 +1,51 @@
+{
+  "title": "Blloku AV: kuptimi i një problemi të përçimit elektrik",
+  "intro": "Blloku atrioventrikular, ose AV, do të thotë se sinjalet nga dhomat e sipërme arrijnë te të poshtmet shumë ngadalë ose jo rregullisht. Ndryshon nga bllokimi i arteries koronare, megjithëse sëmundja e zemrës shkakton të dyja. Disa forma duan vëzhgim; të tjera ngadalësojnë rrezikshëm zemrën dhe kërkojnë trajtim urgjent. EKG-ja, shkaku dhe gjendja klinike vlejnë më shumë se një matje pulsi në shtëpi.",
+  "sections": [
+    {
+      "heading": "Njihni shenjat shqetësuese pa vetëdiagnostikim",
+      "paragraphs": [
+        "Blloku AV shkakton lodhje të pazakontë, mungesë fryme, marramendje, ndjesi të fikëti ose të fikët; format e lehta mund të jenë pa simptoma. Kërkoni ndihmë emergjente për kolaps, të fikët me gjendje të keqe që vazhdon, dhimbje gjoksi ose mungesë të rëndë fryme. Nëse dikush nuk reagon dhe nuk merr frymë normalisht, telefononi urgjencën dhe ndiqni udhëzimet e reanimimit. Mos drejtoni kur ju bie të fikët ose jeni akutisht keq. Pulsi i ngadaltë ka edhe shpjegime të tjera, përfshirë stërvitjen normale; simptomat ose pajisja nuk identifikojnë llojin."
+      ]
+    },
+    {
+      "heading": "Pyetni çfarë shkalle dhe modeli tregon EKG",
+      "paragraphs": [
+        "Shkalla e parë vonon përçimin, por zakonisht kalon çdo sinjal. Shkalla e dytë herë pas here nuk përçon sinjale dhe përfshin modele me rreziqe të ndryshme. Në bllokun e plotë, të shkallës së tretë, dhomat e sipërme dhe të poshtme nuk komunikojnë normalisht. Mjeku i dallon në EKG, ndonjëherë me monitorim më të gjatë. Kërkoni gjetjen e saktë, pa supozuar se çdo shkallë e dytë është e padëmshme. Episodet mund të ndërpriten; shënoni kohën e simptomave dhe lidhjen me monitorimin."
+      ]
+    },
+    {
+      "heading": "Shqyrtoni shkaqet e kthyeshme dhe barnat",
+      "paragraphs": [
+        "Ekipi rishikon barnat, procedurat e mëparshme dhe sëmundjet që ndikojnë përçimin. Disa barna të frekuencës, çrregullimet e elektroliteve, infeksioni ose dëmtimi i zemrës kontribuojnë. Testet zgjidhen sipas rastit dhe përfshijnë analiza e strukturën e zemrës. Merrni listën e saktë, përfshirë produktet pa recetë. Mos ndaloni vetë barin; tregoni shqetësimet shpejt që mjeku të vendosë ndryshimet dhe monitorimin. Trajtimi i shkakut mund të ndryshojë planin afatgjatë."
+      ]
+    },
+    {
+      "heading": "Kuptoni pse mund të rekomandohet stimuluesi",
+      "paragraphs": [
+        "Vëzhgimi përshtatet për gjetje me rrezik të ulët, ndërsa blloku i rëndësishëm mund të kërkojë stimulim të përkohshëm ose të përhershëm. Disa modele me rrezik të lartë duan stimulues të përhershëm edhe pa simptoma të dukshme kur nuk ka shkak të kthyeshëm. Pajisja jep impulse për rrahje të mjaftueshme; nuk hap arterie të ngushtuara. Pyetni arsyen, urgjencën, përfitimet, rreziqet dhe alternativat. Të ndihesh mirë për çastin nuk është arsye të shtysh trajtimin urgjent për një model të rrezikshëm."
+      ]
+    },
+    {
+      "heading": "Përcaktoni ndjekjen dhe sigurinë",
+      "paragraphs": [
+        "Nëse zgjidhet vëzhgimi, sqaroni datat dhe ndryshimet që kërkojnë ndihmë më herët. Pas implantimit ndiqni udhëzimet për plagën, aktivitetin dhe kontrollin e pajisjes, duke mbajtur informacionin e saj. Njoftoni ekipet para procedurave ose skanimeve që të verifikohen përputhshmëria e masat. Pyetni për punën, udhëtimin dhe drejtimin sipas vendit e gjendjes. Të fikëtit e ri, mungesa e frymës ose ndryshimet shqetësuese të plagës duan vlerësim; pajisja nuk e bën çdo simptomë të ardhshme të padëmshme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: alarm pulsi të ulët",
+      "text": "Një person me marramendje vëren puls të ulët në orë. Kërkon vlerësim, pa ndalur vetë barin e zemrës. Mjeku kontrollon EKG, barnat dhe nëse simptomat përkojnë me problemin e përçimit."
+    },
+    {
+      "title": "Shembull hipotetik: pak simptoma, rrezik i lartë",
+      "text": "Pacienti ndihet relativisht mirë, por monitorimi tregon bllok AV të rrezikshëm. Pyet pse këshillohet stimulimi dhe ndjek planin urgjent, pa e marrë mungesën e simptomave të rënda si provë sigurie për pritjen."
+    }
+  ],
+  "questions": [
+    "Çfarë lloji të saktë blloku AV kam dhe a shpjegon simptomat?",
+    "A kontribuon një bar ose gjendje e trajtueshme dhe si do të vlerësohet sigurt?",
+    "A duhet stimulim, sa urgjent dhe çfarë ndjekjeje ose kufizimesh nevojiten?"
+  ]
+}

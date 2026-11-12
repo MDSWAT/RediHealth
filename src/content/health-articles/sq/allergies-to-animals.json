@@ -1,0 +1,51 @@
+{
+  "title": "Alergjitë ndaj kafshëve: ekspozimi dhe një plan praktik",
+  "intro": "Alergjia ndaj kafshëve është reagim imunitar ndaj proteinave të lidhura me kafshën, përfshirë ato në grimcat e lëkurës, pështymë ose urinë. Qimet mund t'i bartin këto substanca, por nuk e shpjegojnë të gjithë alergjinë. Macet, qentë dhe kafshë të tjera mund të shkaktojnë simptoma. Skuqja ose kolla e re pranë një kafshe përsëri kërkon vlerësim, sepse mund të përfshihen pluhuri, poleni dhe ekspozime të tjera.",
+  "sections": [
+    {
+      "heading": "Kërko modele pa provokuar qëllimisht simptoma",
+      "paragraphs": [
+        "Pas ekspozimit mund të shfaqen teshtima, hundë e bllokuar ose që rrjedh, kruarje sysh dhe simptoma të lëkurës. Kolla, fishkëllima në frymëmarrje ose shtrëngimi në kraharor mund të tregojnë përfshirjen e rrugëve të frymëmarrjes. Alergjenët mund të udhëtojnë në veshje dhe të mbeten në mobilie, ndaj simptomat mund të shfaqen edhe ku nuk ka kafshë. Shëno vendet, kohën dhe simptomat e frymëmarrjes; mos e provo idenë duke shtuar qëllimisht kontaktin, sidomos nëse ekspozimi i mëparshëm ndikoi frymëmarrjen."
+      ]
+    },
+    {
+      "heading": "Përdor testet në kontekstin e historisë sate",
+      "paragraphs": [
+        "Mjeku mund të vlerësojë nëse historia përputhet me alergji dhe nëse duhet hetuar astma. Testi me shpim ose analiza e gjakut për antitrupa specifikë mund të ndihmojnë në identifikimin e sensibilizimit. Një rezultat pozitiv nuk provon vetvetiu se kafsha shpjegon çdo simptomë. Tregoji shërbimit të testimit barnat që përdor dhe ndiq udhëzimet e përgatitjes pa e ndërprerë vetë trajtimin. Sill informacion për shkaktarë të tjerë të mundshëm dhe nëse simptomat ndodhin edhe larg kafshëve."
+      ]
+    },
+    {
+      "heading": "Kupto çfarë nuk premtojnë etiketat hipoalergjike",
+      "paragraphs": [
+        "Kafshët pa qime dhe racat e reklamuara si hipoalergjike mund të prodhojnë përsëri alergjenë. Reagimet individuale ndryshojnë dhe një racë me qime të shkurtra nuk garanton siguri. Mos e merr një vizitë të shkurtër pa simptoma si provë se bashkëjetesa do të jetë pa probleme. Diskuto rrezikun dhe nevojat e familjes përpara një vendimi të madh, sidomos kur preket një fëmijë ose dikush me astmë."
+      ]
+    },
+    {
+      "heading": "Diskuto mënyra realiste për uljen e ekspozimit",
+      "paragraphs": [
+        "Sipas rrethanave, plani mund të përfshijë shmangien e kontaktit, mbajtjen e kafshëve jashtë dhomës së gjumit, pakësimin e mobilieve që mbledhin pluhur dhe pastrim ose filtrim të përshtatshëm. Masat mund të ulin ekspozimin, por nuk garantojnë kontroll të simptomave. Alergjenët mund të mbeten pasi kafsha largohet dhe kufizimi i saj në një dhomë nuk mban aty çdo grimcë. Përcakto me familjen dhe mjekun ndryshime të përballueshme e të qëndrueshme, pa supozuar se një pajisje e shtrenjtë ose një pastrim i vetëm e zgjidh problemin."
+      ]
+    },
+    {
+      "heading": "Përshtat trajtimin dhe urgjencën me simptomat",
+      "paragraphs": [
+        "Për simptomat përkatëse mund të diskutohen antihistaminikë, sprej nazalë të përshtatshëm ose trajtime për sytë. Astma kërkon vlerësimin dhe planin e vet; një tabletë për teshtimat nuk zëvendëson menaxhimin e problemeve të frymëmarrjes. Imunoterapia specialistike mund të shqyrtohet në raste të përzgjedhura, duke diskutuar provat, rreziqet dhe angazhimin. Kërko këshillë mjekësore për fishkëllimë të përsëritur ose kollë gjatë natës. Vështirësia e rëndë në frymëmarrje, pamundësia për të folur nga gulçimi ose ënjtja e gjuhës a fytit kërkojnë ndihmë urgjente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: hetimi i një ndryshimi në shtëpi",
+      "text": "Një familje vëren kollën e fëmijës pasi adopton një mace. Cakton vlerësim dhe përshkruan kohën e simptomave, fishkëllimën dhe mjedisin e dhomës së gjumit. Pyet nëse duhen shqyrtuar astma dhe alergjenë të tjerë, pa supozuar se macja është patjetër përgjegjëse ose se qimet e shkurtra e bëjnë të padëmshme."
+    },
+    {
+      "title": "Shembull hipotetik: planifikimi i një vizite",
+      "text": "Dikush me alergji të diagnostikuar ndaj kafshëve pyet një të afërm për kafshët përpara një vizite me fjetje. Diskuton strehim alternativ dhe, kur duhet, planin ekzistues të trajtimit me një profesionist. Nuk kalon qëllimisht kohë me kafshën për të parë sa i rëndë bëhet reagimi."
+    }
+  ],
+  "questions": [
+    "A përputhet historia ime me alergji ndaj kafshëve dhe a do ta ndryshonte testimi planin?",
+    "A kërkojnë kolla ose fishkëllima ime vlerësim për astmë?",
+    "Cilat ndryshime ekspozimi dhe trajtime ofrojnë përfitime realiste dhe çfarë duhet të bëj nëse frymëmarrja përkeqësohet?"
+  ]
+}

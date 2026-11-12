@@ -1,0 +1,51 @@
+{
+  "title": "Piede d’atleta: trattare l'infezione fungina e ridurre le recidive",
+  "intro": "Il piede d'atleta è un'infezione fungina della pelle dei piedi, non limitata agli sportivi. Può causare prurito, desquamazione e fissurazioni, spesso tra le dita, ma anche su pianta o lati. Altre malattie cutanee possono assomigliargli. Una cura efficace unisce diagnosi e antimicotico appropriati all'attenzione per l'umidità e per le occasioni di diffusione del fungo.",
+  "sections": [
+    {
+      "heading": "Riconoscere i sintomi senza presumere che ogni eruzione sia fungina",
+      "paragraphs": [
+        "La pelle può spellarsi, apparire biancastra e umida tra le dita oppure secca e squamosa altrove. Sono possibili piccole vescicole o dolore. I cambiamenti di colore possono essere meno visibili sulla pelle scura. Eczema, allergia da contatto e altri problemi possono imitare la micosi. Se l'aspetto è insolito, i sintomi ricorrono o la cura fallisce, chiedi valutazione invece di cambiare continuamente prodotti. Il medico può esaminare la pelle o prelevare un campione se la diagnosi è incerta."
+      ]
+    },
+    {
+      "heading": "Scegliere la cura adatta alla persona e alla zona",
+      "paragraphs": [
+        "Esistono creme, spray e altri antimicotici, ma indicazioni e modalità differiscono. Farmacista o medico possono consigliare, soprattutto per bambini, gravidanza, altre malattie o medicinali. Segui la durata raccomandata senza interrompere soltanto perché il prurito diminuisce né applicare di più per accelerare. Non usare il trattamento altrui. Le alterazioni delle unghie possono richiedere valutazione separata, perché curare la pelle circostante non tratta automaticamente una micosi ungueale."
+      ]
+    },
+    {
+      "heading": "Evitare cure che possono nascondere il problema",
+      "paragraphs": [
+        "Una crema cortisonica da sola può mascherare o peggiorare alcune micosi, anche se rossore o prurito migliorano brevemente. Non prendere cortisonici in prestito né usare combinazioni senza consiglio appropriato. Sostanze aggressive, candeggina e raschiamento intenso possono danneggiare la pelle e non sono scorciatoie sicure. Spiega quali prodotti hai provato e se la zona è diventata più dolente o irritata. Questo aiuta a distinguere infezione persistente, irritazione o diagnosi sbagliata."
+      ]
+    },
+    {
+      "heading": "Rendere pratici igiene e controllo dell'umidità",
+      "paragraphs": [
+        "Asciuga accuratamente i piedi dopo il lavaggio, anche tra le dita, e cambia i calzini umidi. Lascia asciugare le scarpe e scegli quelle adatte all'attività senza mantenere i piedi sempre umidi. Non condividere scarpe o asciugamani e usa calzature appropriate negli spogliatoi comuni. Queste misure limitano esposizione e recidive ma non sostituiscono la cura necessaria. Discuti problemi ricorrenti se scarponi da lavoro, sudorazione o accesso limitato al lavaggio rendono difficile seguire i consigli."
+      ]
+    },
+    {
+      "heading": "Sapere quando chiedere aiuto prima",
+      "paragraphs": [
+        "Chiedi consiglio se i sintomi si estendono, persistono dopo il ciclo raccomandato, coinvolgono unghie o ricorrono. Diabete, cattiva circolazione, sensibilità ridotta o immunità compromessa richiedono particolare attenzione ai piedi. Un piede caldo, sempre più dolente o gonfio, infiammazione che si estende, ferite o febbre richiedono valutazione tempestiva, non trattamento come semplice piede d'atleta. Proteggi la cute lesa e non tagliarla o scavarla. Chiedi quali controlli servano se la diagnosi resta incerta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: rivalutare cure ripetutamente inefficaci",
+      "text": "Una persona ha prurito e desquamazione nonostante vari prodotti di farmacia. Porta i nomi e descrive l'uso durante la visita. Chiede se vada confermata la diagnosi invece di presumere che un prodotto più forte o cortisonico risolva il problema."
+    },
+    {
+      "title": "Esempio ipotetico: riconoscere un rischio diverso",
+      "text": "Una persona con diabete nota una fissurazione dolorosa con nuovo calore e gonfiore del piede. Chiede valutazione tempestiva invece di aspettare l'effetto della crema antimicotica. Segnala diabete e cambiamento recente dei sintomi."
+    }
+  ],
+  "questions": [
+    "Sembra un'infezione fungina o servirebbero un campione cutaneo o un'altra diagnosi?",
+    "Quali cura e durata sono adatte a pelle, malattie e medicinali che uso?",
+    "Quali cambiamenti suggeriscono infezione o complicazioni e come posso ridurre realisticamente le recidive?"
+  ]
+}

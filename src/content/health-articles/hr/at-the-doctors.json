@@ -1,0 +1,51 @@
+{
+  "title": "Kod liječnika: pripremite se, pitajte i otiđite s jasnim planom",
+  "intro": "Koristan liječnički pregled povezuje vaše iskustvo i liječničku procjenu. Ne morate znati dijagnozu prije traženja pomoći. Kratak opis promjene, popis lijekova i glavna zabrinutost olakšavaju razgovor. Pravila naručivanja, osiguranja i uputnica razlikuju se prema zemlji i ambulanti; povezani izvorni članak opisuje njemački zdravstveni sustav.",
+  "sections": [
+    {
+      "heading": "Odaberite službu i objasnite hitnost problema",
+      "paragraphs": [
+        "Kod trajnog ili nehitnog problema ambulanta primarne skrbi često može procijeniti stanje i koordinirati specijalističku skrb. U Njemačkoj se ordinacija obiteljskog liječnika često zove Hausarztpraxis; ne pretpostavljajte da njezina pravila uputnica vrijede drugdje. Osoblju za naručivanje navedite važno pogoršanje simptoma radi odgovarajućeg usmjeravanja. Unaprijed pitajte o naknadama, pokriću i dokumentima kada možete. Jaka bol u prsima, ozbiljne teškoće disanja ili znakovi moždanog udara zahtijevaju hitnu pomoć umjesto čekanja redovnog termina."
+      ]
+    },
+    {
+      "heading": "Pripremite kratak opis i točne podatke o lijekovima",
+      "paragraphs": [
+        "Zapišite početak simptoma, što ih ublažava ili pogoršava te utjecaj na san, posao i svakodnevne zadatke. Odredite najvažnija pitanja, osobito ako više problema dijeli ograničeno vrijeme. Donesite relevantne nalaze te popis lijekova na recept, bezreceptnih proizvoda, dodataka i alergija. Navedite što stvarno uzimate, a ne samo što je propisano. Prema potrebi spomenite trudnoću, moguću trudnoću i nedavno liječenje. Fotografije ili dnevnik mogu pomoći kod povremenog problema."
+      ]
+    },
+    {
+      "heading": "Dogovorite komunikaciju i privatnost prema potrebama",
+      "paragraphs": [
+        "Prije termina pitajte o tumaču, znakovnom jeziku, pristupačnim informacijama ili fizičkom pristupu. Profesionalni tumač osobito pomaže kod složenih ili osjetljivih odluka; dijete ne treba biti odgovorno za medicinsko tumačenje. Možda želite pouzdanu osobu uz sebe, ali i vrijeme nasamo s liječnikom. Pitajte tko prima podatke i kako se čuva povjerljivost. Ako vas pregled uznemiruje, pitajte što uključuje, zašto treba i može li biti prisutna dodatna osoba iz osoblja."
+      ]
+    },
+    {
+      "heading": "Razgovarajte o mogućnostima prije sljedećeg koraka",
+      "paragraphs": [
+        "Pitajte što liječnik misli da se događa, što je neizvjesno i kako bi predloženi test promijenio skrb. Za liječenje razgovarajte o koristima, važnim štetama, alternativama i mogućem tijeku uz praćenje. Objasnite prepreke poput cijene, smjenskog rada ili gutanja tableta. Možete tražiti jednostavniji jezik ili vrijeme za nehitnu odluku. Drugo mišljenje može pomoći kada velika odluka ostane nejasna; pristup i plaćanje razlikuju se. Nemojte tumačiti rezultat izolirano od simptoma i pregleda."
+      ]
+    },
+    {
+      "heading": "Potvrdite praćenje i ponovite plan svojim riječima",
+      "paragraphs": [
+        "Prije odlaska razjasnite što sada učiniti, kako koristiti novi lijek i koje prijašnje lijekove nastaviti ili mijenjati. Pitajte kada se očekuju nalazi, tko će se javiti i što učiniti ako poruka ne stigne. Šutnja ne znači automatski uredan nalaz. Potvrdite kontrolu i simptome za raniju ili hitnu skrb. Kratko ponovite plan radi provjere razumijevanja i zatražite pisane upute ako koriste. Ako plan nije izvediv, recite prije odlaska umjesto prešutnog odustajanja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: povremeni simptom",
+      "text": "Osoba ima osip koji nestane prije pregleda. Donosi datirane fotografije, bilježi nove proizvode i objašnjava da svrbež ometa san. Liječnik povezuje taj opis s pregledom umjesto pretpostavke da normalan izgled kože znači da problema nije bilo."
+    },
+    {
+      "title": "Hipotetski primjer: nejasan plan nalaza",
+      "text": "Nakon naručene krvne pretrage pacijent pita kada će nalaz biti dostupan i tko ga objašnjava. Sprema kontakt i dogovara kada nazvati ako nalaz ne stigne, izbjegavajući neograničeno čekanje na temelju pretpostavljene urednosti."
+    }
+  ],
+  "questions": [
+    "Koje je najvjerojatnije objašnjenje i koja je neizvjesnost važna za sljedeću odluku?",
+    "Kako mi test ili liječenje pomaže i koje su alternative i rizici?",
+    "Tko objašnjava nalaze, kada se vraćam i koji simptomi trebaju raniju pomoć?"
+  ]
+}

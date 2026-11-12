@@ -1,0 +1,51 @@
+{
+  "title": "Edemul: de ce se acumulează lichid și când cereți ajutor",
+  "intro": "Edemul este umflarea produsă de acumularea lichidului în țesuturi. Pantofii sau inelele pot strânge, un membru poate părea greu, iar pielea întinsă. Uneori apare după ședere ori stat în picioare prelungit, dar umflarea nouă sau persistentă poate semnala boală. Localizarea, viteza apariției și simptomele asociate stabilesc urgența evaluării; aspectul singur nu stabilește cauza.",
+  "sections": [
+    {
+      "heading": "Tiparele oferă indicii, nu diagnosticul",
+      "paragraphs": [
+        "Poate fi afectat un singur membru, ambele picioare, fața ori zone întinse. Uneori apăsarea lasă o adâncitură, numită godeu; alte edeme nu lasă. Niciun semn nu identifică singur cauza. Notați apariția bruscă, variația zilnică, traumatismele și asocierea cu durere, căldură, roșeață, lipsă de aer ori urină redusă. Lichidul se poate acumula și în plămâni sau abdomen; nu toate retențiile importante se văd la glezne."
+      ]
+    },
+    {
+      "heading": "Cauze circulatorii și boli ale organelor",
+      "paragraphs": [
+        "Venele care nu întorc eficient sângele pot favoriza umflarea picioarelor. Cheagurile, infecția și inflamația pot produce edem local. Drenajul limfatic afectat poate determina limfedem, inclusiv după unele tratamente oncologice. Bolile inimii, rinichilor, ficatului și proteinele scăzute în sânge pot produce retenție; medicamentele pot contribui. Căldura, imobilitatea sau sarcina pot provoca edem ușor, dar nu trebuie presupuse drept cauză pentru o schimbare îngrijorătoare. Pot coexista mai multe cauze."
+      ]
+    },
+    {
+      "heading": "Semne care necesită ajutor urgent",
+      "paragraphs": [
+        "Solicitați evaluare urgentă pentru umflarea inexplicabilă a unui singur picior, debut brusc ori sever, zonă roșie caldă dureroasă, febră sau agravare rapidă. Asocierea cu lipsă de aer, durere toracică, tuse cu sânge, leșin ori confuzie este urgență. Umflarea bruscă a buzelor, limbii sau gâtului cu dificultate la respirație ori înghițire este tot urgență. În sarcină, edemul brusc crescut al feței, mâinilor sau picioarelor, cefaleea severă, tulburările vizuale ori durerea sub coaste cer imediat sfat obstetrical, fiind posibilă preeclampsia. Nu conduceți dacă vă simțiți grav rău."
+      ]
+    },
+    {
+      "heading": "Tratamentul urmărește cauza",
+      "paragraphs": [
+        "Medicul verifică tratamentele și istoricul, examinează edemul și organele relevante. După constatări, pot fi necesare analize de sânge, urină, ecografie sau alte investigații. Planul poate include revizuirea medicamentelor, tratarea bolii de bază ori îngrijirea problemelor venoase sau limfatice. Diureticele ajută anumite cauze, nu orice membru umflat, și necesită prescriere și monitorizare individuale. Nu împrumutați diuretice și nu opriți singuri tratamentul. Compresia trebuie aleasă după evaluarea profesională a indicației și potrivirii."
+      ]
+    },
+    {
+      "heading": "Îngrijire zilnică după un plan stabilit",
+      "paragraphs": [
+        "După excluderea cauzelor urgente, mișcarea blândă, evitarea pozițiilor prelungite, încălțămintea comodă și ridicarea picioarelor pot ajuta anumite edeme periferice. Spălați, uscați și îngrijiți pielea; raportați rănile sau infecția. Urmați recomandările individuale despre sare, lichide și monitorizarea greutății; restricția severă a lichidelor nu este remediu general. Stabiliți semnele pentru contact și data controlului. Dacă edemul cunoscut își schimbă brusc caracterul, cereți reevaluare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gambă umflată după călătorie — exemplu ipotetic",
+      "text": "După un drum lung, o persoană are umflare nouă și durere la o singură gambă. Solicită evaluare urgentă pentru posibil cheag, fără să considere șederea explicație suficientă. Durerea toracică sau lipsa de aer ar cere ajutor de urgență."
+    },
+    {
+      "title": "Edem în timpul tratamentului — exemplu ipotetic",
+      "text": "După schimbarea unui medicament, pantofii încep să strângă. Persoana anunță medicul și aduce lista completă, fără să oprească tratamentul ori să împrumute diuretic. Medicul verifică efectele medicamentelor și alte cauze înainte de modificare."
+    }
+  ],
+  "questions": [
+    "Care este cauza probabilă și au fost luate în calcul cauzele urgente?",
+    "Compresia, schimbarea medicamentului ori alte tratamente mi se potrivesc?",
+    "Ce monitorizez și ce schimbări cer ajutor urgent sau control mai devreme?"
+  ]
+}

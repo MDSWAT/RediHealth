@@ -1,0 +1,51 @@
+{
+  "title": "Aneurizma cerebrale: ndjekja, trajtimi dhe shenjat emergjente",
+  "intro": "Aneurizma cerebrale është fryrje e arteries në ose pranë trurit. Shumë zbulohen rastësisht e nuk çahen kurrë, por çarja mund të sjellë gjakderdhje kërcënuese për jetën. Zbulimi kërkon vlerësim individual, jo operacion automatik ose premtim pa rrezik. Dhimbja e papritur e fortë e kokës ose simptoma të reja neurologjike duan urgjencë, jo pritjen e kontrollit.",
+  "sections": [
+    {
+      "heading": "Njihni emergjencën para leximit të mëtejshëm",
+      "paragraphs": [
+        "Dhimbja e papritur jashtëzakonisht e fortë, sidomos me kulm të shpejtë, kërkon emergjencë edhe pa diagnozë të njohur. Kolapsi, kriza, dobësia e re, rënia e fytyrës, vështirësia e të folurit ose humbja e papritur e shikimit gjithashtu. Qafa e ngurtë, të vjellat ose vetëdija e ndryshuar mund të shoqërojnë gjakderdhjen. Mos drejtoni dhe mos prisni qetësuesin. Shumë dhimbje kanë shkaqe të tjera, por krahasimi online nuk përjashton sigurt hemorragjinë ose goditjen."
+      ]
+    },
+    {
+      "heading": "Sqaroni çfarë tregojnë imazhet",
+      "paragraphs": [
+        "Pyetni vendin, madhësinë, formën, gjakderdhjen ose ndryshimin nga skanimi i mëparshëm. Imazhet vaskulare CT ose MRI dhe ndonjëherë angiografia me kateter vlerësojnë anatominë. Duhen shpjeguar arsyeja dhe rreziqet. Aneurizma e vogël rastësore mund të mos shpjegojë dhimbjen e vjetër; duhen vlerësuar shkaqe të tjera. Tregoni familjaritetin, gjakderdhjen e kaluar, tensionin, duhanin e sëmundje të tjera që ndikojnë."
+      ]
+    },
+    {
+      "heading": "Krahasoni vëzhgimin dhe trajtimin parandalues",
+      "paragraphs": [
+        "Për aneurizëm të paçarë specialisti peshon çarjen e ardhshme kundrejt procedurës. Vendi, madhësia, rritja, simptomat, mosha, shëndeti dhe përparësitë kanë rëndësi. Ndjekja përfshin imazhe e menaxhim rreziku, jo domosdoshmërisht ndërhyrje. Kërkoni vlerësim personal për periudhë të qartë dhe pasigurinë. Mos përdorni kufirin e madhësisë së tjetrit ose llogaritës interneti si rregull. Vendimi rishikohet kur imazhet ose shëndeti ndryshojnë."
+      ]
+    },
+    {
+      "heading": "Kuptoni klipsin dhe trajtimin endovaskular",
+      "paragraphs": [
+        "Operacioni vendos klips te qafa e aneurizmës për të ndalur hyrjen e gjakut. Trajtimi endovaskular arrin përmes enëve dhe përdor spirale ose pajisje të zgjedhura. Përshtatshmëria varet nga aneurizma e përvoja. Të dy kanë rreziqe goditjeje, gjakderdhjeje e trajtimi tjetër. Pyetni rikuperimin, skanimet dhe udhëzimet e barnave për pajisjen. Aneurizma e çarë zakonisht do urgjencë specialistike; mbyllja parandalon gjakderdhje tjetër por nuk zhbën automatikisht dëmin ekzistues."
+      ]
+    },
+    {
+      "heading": "Bëjeni praktike kujdesin dhe ndjekjen",
+      "paragraphs": [
+        "Punoni për tensionin e lënien e duhanit dhe diskutoni aktivitet, punë, drejtim e udhëtim personal. Mos nisni ose ndaloni vetë barna tensioni ose mpiksjeje. Pyetni nëse familjarët duan këshillë për depistim; nuk vlen automatikisht për të gjithë, varet nga faktorët familjarë e klinikë. Mbani skanimet sepse rritja nuk gjykohet sigurt nga ndjenja. Ankthi dhe lodhja, kujtesa ose humori pas gjakderdhjes meritojnë ndihmë. Merrni plan për simptoma të reja dhe kontakt jourgjent."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: gjetje rastësore",
+      "text": "Skanimi për tjetër arsye gjen aneurizëm të vogël të paçarë. Pacienti pyet vendin, ndryshimin, rrezikun personal e procedural. Pranon ndjekje kur duhet, jo supozim operacioni të menjëhershëm për çdo rast."
+    },
+    {
+      "title": "Shembull hipotetik: dhimbje e re e papritur",
+      "text": "Dikush që pret skanim rutinë ka dhimbje të papritur jashtëzakonisht të fortë. Kërkon emergjencë dhe përmend aneurizmën, jo pritjen e skanimit ose supozimin e sigurisë nga diagnoza e njohur."
+    }
+  ],
+  "questions": [
+    "Çfarë tregon skanimi dhe cilët faktorë ndikojnë rrezikun tim?",
+    "Pse rekomandohet ndjekje ose procedurë dhe cilat janë përfitimet, dëmet e pasiguritë?",
+    "Çfarë ndjekjeje, masash të përditshme dhe plani emergjent duhen?"
+  ]
+}

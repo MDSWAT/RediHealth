@@ -1,0 +1,51 @@
+{
+  "title": "Shkalla CDR: kuptimi i vlerësimit të demencës",
+  "intro": "Clinical Dementia Rating, ose CDR, është vlerësim i strukturuar se si vështirësitë e të menduarit dhe kujtesës ndikojnë në jetën e përditshme. Një profesionist i trajnuar bashkon informacionin nga personi dhe dikush që e njeh mirë. Ndihmon në përshkrimin e rëndesës dhe ndryshimeve në kohë, por vetëm rezultati nuk përcakton shkakun e problemeve të kujtesës, nuk parashikon të ardhmen individuale dhe nuk zëvendëson vlerësimin e plotë klinik.",
+  "sections": [
+    {
+      "heading": "Kuptoni çfarë synon të tregojë vlerësimi",
+      "paragraphs": [
+        "CDR shqyrton kujtesën, orientimin, gjykimin dhe zgjidhjen e problemeve, krahas veprimtarive në komunitet, shtëpisë e hobive dhe kujdesit personal. Vëmendja është te ndryshimi nga aftësitë e mëparshme dhe ndikimi i vështirësive njohëse në pavarësi. Nuk është thjesht kuiz faktesh ose numërim emrash të harruar. Vështirësia në blerje për shkak të konfuzionit ndryshon nga shmangia e dyqaneve sepse dhimbja e gjurit pengon ecjen. Shpjegoni si ndryshimet njohëse, ashtu edhe pengesat fizike ose shoqërore."
+      ]
+    },
+    {
+      "heading": "Përgatitni vëzhgime konkrete, jo përgjigje të mësuara",
+      "paragraphs": [
+        "Sillni shembuj se çfarë ka ndryshuar dhe kur: takime të humbura, vështirësi në detyra të njohura ose ndihmë e nevojitur rishtas. Përshkruani edhe çfarë bën personi në mënyrë të pavarur. Një i afërm ose mik me kontakt të rregullt mund të japë kontekst, duke respektuar dëshirat dhe privatësinë. Tregoni për nevojat gjuhësore, të dëgjimit ose shikimit. Mos stërvitni përgjigje për të marrë rezultat të caktuar; përshkrimi i saktë vlen më shumë për planifikimin e ndihmës."
+      ]
+    },
+    {
+      "heading": "Dalloni vlerësimin global nga shuma e fushave",
+      "paragraphs": [
+        "Raportet mund të tregojnë CDR globale ose CDR-SB, shumën e vlerësimeve të fushave. Janë përmbledhje të ndryshme dhe numrat nuk janë të këmbyeshëm. Vlerësimi global shkon nga zero në tre, ndërsa shuma nga zero në tetëmbëdhjetë; vlerat më të larta tregojnë dëmtim më të madh. Vlerësimi global përdor rregulla, jo mesatare të thjeshtë. Pyetni për cilën matje flitet dhe çfarë do të thotë profili në jetën e përditshme, në vend që të krahasoni numra të veçuar nga raporte të ndryshme."
+      ]
+    },
+    {
+      "heading": "Interpretoni ndryshimin me pamjen e plotë klinike",
+      "paragraphs": [
+        "Ndryshimet mes vizitave kërkojnë kontekst: kush dha informacion, çfarë mbështetjeje ka tani dhe nëse personi ishte i sëmurë. Barnat, depresioni, problemet e gjumit dhe shqisave mund të ndikojnë në funksionim dhe duhen shqyrtuar në vlerësimin e përgjithshëm. Konfuzioni i papritur ose përkeqësimi i shpejtë kërkojnë vlerësim mjekësor pa pritur matjen tjetër rutinë. CDR nuk tregon vetë nëse ka patologji Alzheimer. Mjeku mund të përdorë historinë, ekzaminimin, testet njohëse dhe hetime të tjera për të shqyrtuar shkakun."
+      ]
+    },
+    {
+      "heading": "Përdorni gjetjet për mbështetjen dhe provat e trajtimit",
+      "paragraphs": [
+        "Pyetni si ndihmon vlerësimi për rishikimin e barnave, detyrat e përditshme, sigurinë dhe planifikimin. Ndryshimi i mesatares CDR-SB të një grupi studimor nuk premton që individi të përmirësohet po aq. Diferencat e vogla mes grupeve dhe ndryshimet domethënëse individuale janë çështje të veçanta. Përshtatshmëria për trajtim varet edhe nga diagnoza, shëndeti, miratimi lokal dhe trajtimi konkret, jo vetëm CDR. Ky artikull shpjegon vlerësimin; nuk është formular i autorizuar pikëzimi ose mjet vetëdiagnostikimi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: pse nevojitet ndihmë",
+      "text": "Një vajzë thotë se babai nuk gatuan më. Vlerësuesi pyet nëse harron hapat e njohur, nuk qëndron dot në këmbë nga artriti apo thjesht ka zgjedhur t'ia lërë gatimin dikujt tjetër. Detajet dallojnë ndryshimin njohës nga arsyet e tjera për ndihmë."
+    },
+    {
+      "title": "Shembull hipotetik: krahasimi i raporteve",
+      "text": "Familja sheh një rezultat CDR global në një raport dhe numër CDR-SB më të madh në tjetrin. Në vend që të supozojë përkeqësim dramatik, kërkon të identifikohen matjet dhe të shpjegohet nëse vlerësimet e krahasueshme tregojnë ndryshim real."
+    }
+  ],
+  "questions": [
+    "Është rezultat CDR global apo CDR-SB dhe çfarë përshkruan në jetën e përditshme?",
+    "Cilët faktorë të tjerë shëndetësorë, komunikimi ose mbështetjeje mund të kenë ndikuar?",
+    "Si do të ndryshojnë gjetjet planin e kujdesit dhe çfarë kërkon rivlerësim më shpejt?"
+  ]
+}

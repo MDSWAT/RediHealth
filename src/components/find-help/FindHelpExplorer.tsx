@@ -78,6 +78,7 @@ type ApiResponse = {
   country: CountryCode | null;
   center: { lat: number; lng: number };
   institutes: MedicalInstitute[];
+  hasMore?: boolean;
 };
 
 function CategoryIcon({
@@ -502,11 +503,24 @@ export function FindHelpExplorer({
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch(`/api/medical-institutes?${requestQuery}`, { signal: controller.signal })
-      .then(async (response) => {
+    const load = async () => {
+      const institutes: MedicalInstitute[] = [];
+      let page = 0;
+      let data: ApiResponse;
+      do {
+        const response = await fetch(`/api/medical-institutes?${requestQuery}&page=${page}`, { signal: controller.signal });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const data = (await response.json()) as ApiResponse;
-        setInstitutes(Array.isArray(data.institutes) ? data.institutes : []);
+        data = (await response.json()) as ApiResponse;
+        if (!Array.isArray(data.institutes)) throw new Error("Invalid directory response");
+        institutes.push(...data.institutes);
+        page += 1;
+      } while (data.hasMore && data.institutes.length > 0);
+      return { ...data, institutes };
+    };
+    load()
+      .then((data) => {
+        if (controller.signal.aborted) return;
+        setInstitutes(data.institutes);
         if (data.country) setActiveCountry(data.country);
         setSelectedId(null);
         pendingHoverIdRef.current = null;
@@ -928,7 +942,8 @@ export function FindHelpExplorer({
               hoveredId={hoveredId}
               onSelect={selectInstitute}
               onHoverChange={scheduleHoverChange}
-              userLocation={userLocation}
+              userLocation={area.kind === "point" ? userLocation : null}
+              frameAll={area.kind === "country"}
               categoryLabels={copy.categories}
               searchThisAreaLabel={copy.searchThisArea}
               youAreHereLabel={copy.youAreHere}

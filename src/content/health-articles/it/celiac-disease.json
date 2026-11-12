@@ -1,0 +1,51 @@
+{
+  "title": "Celiachia: diagnosi, dieta senza glutine e cura quotidiana",
+  "intro": "La celiachia è una malattia autoimmune in cui il glutine provoca danni all'intestino tenue. È diversa dall'allergia al grano e dai sintomi attribuiti al glutine senza celiachia. Colpisce bambini e adulti con sintomi digestivi, extraintestinali o pochi segni evidenti. La diagnosi corretta conta perché la cura è una dieta rigorosamente senza glutine per tutta la vita, non meno pane solo quando si sta male.",
+  "sections": [
+    {
+      "heading": "Non soltanto diarrea",
+      "paragraphs": [
+        "Possibili segni sono gonfiore, disturbi addominali, diarrea o stitichezza, stanchezza, anemia da carenza di ferro e dimagrimento involontario. Nei bambini può rallentare la crescita. Alcuni hanno un'eruzione pruriginosa con vescicole, la dermatite erpetiforme. Altri sono individuati per familiarità o condizioni associate. Esistono altre cause: sintomi e miglioramento con la dieta non dimostrano la celiachia. Segnalare familiari con diagnosi confermata ed esami precedenti."
+      ]
+    },
+    {
+      "heading": "Discutere gli esami prima di togliere il glutine",
+      "paragraphs": [
+        "Gli esami cercano anticorpi pertinenti e spesso la diagnosi comprende biopsie intestinali durante endoscopia superiore. Lo specialista stabilisce il percorso, inclusi criteri particolari per alcuni bambini. Evitare glutine può rendere i risultati falsamente rassicuranti. Se lo si mangia, non iniziare la dieta prima di concordare gli esami. Se già escluso, dirlo al medico; non effettuare prove alimentari da soli, soprattutto se possibile un'allergia immediata. La genetica può chiarire dubbi, ma non conferma da sola."
+      ]
+    },
+    {
+      "heading": "La diagnosi confermata cambia la dieta per sempre",
+      "paragraphs": [
+        "Il glutine è in grano, orzo e segale, compresi farro e malto d'orzo. Pane e pasta sono fonti evidenti, ma anche salse, zuppe e prodotti lavorati possono contenerlo. Imparare ingredienti ed etichette con il dietista. Per l'avena scegliere prodotti dichiarati senza glutine e discuterne l'idoneità: la contaminazione è frequente e una minoranza non tollera neppure avena incontaminata. Un integratore enzimatico non rende automaticamente sicuro il normale cibo con glutine."
+      ]
+    },
+    {
+      "heading": "Evitare contaminazioni senza perdere equilibrio",
+      "paragraphs": [
+        "Briciole, superfici, acqua di cottura e utensili condivisi trasferiscono glutine. Concordare procedure in cucina, chiedere ai ristoranti e organizzare pasti scolastici o lavorativi. Riso semplice, patate, verdure, legumi e fonti proteiche non lavorate adatte permettono varietà: controllare aggiunte e preparazione. Il dietista aiuta con costi, fibre, calcio, ferro e altri bisogni. I confezionati senza glutine non sono automaticamente equilibrati. Gli integratori devono rispondere a necessità valutate, non sostituire il supporto nutrizionale."
+      ]
+    },
+    {
+      "heading": "I controlli continuano dopo il miglioramento",
+      "paragraphs": [
+        "I sintomi possono migliorare prima della completa ripresa intestinale. Continuare la dieta anche stando bene e i controlli di sintomi, nutrizione, crescita dei bambini ed esami pertinenti. Disturbi persistenti richiedono rivalutazione di esposizione involontaria e altre cause, non colpevolizzazione o esclusioni sempre più ampie. Discutere salute ossea e test dei parenti stretti. Dolore addominale intenso, vomito con sangue, feci nere o disidratazione significativa richiedono assistenza urgente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prima del test — esempio ipotetico",
+      "text": "Una persona con gonfiore e ferro basso inspiegato vuole eliminare subito il glutine. Parla prima col medico per rendere interpretabili gli esami. Il solo miglioramento con una dieta restrittiva non confermerebbe la diagnosi."
+    },
+    {
+      "title": "Cucina condivisa — esempio ipotetico",
+      "text": "Dopo la diagnosi la famiglia organizza una zona pulita e previene briciole in creme condivise e tostapane. Il dietista aiuta con pasti equilibrati accessibili, senza sostituire tutto con confezionati specializzati."
+    }
+  ],
+  "questions": [
+    "Quali esami sono adatti e come gestire il glutine prima di effettuarli?",
+    "Come riconoscere il glutine e prevenire contaminazioni a casa, scuola o lavoro?",
+    "Quali controlli nutrizionali, visite e test familiari pianificare?"
+  ]
+}

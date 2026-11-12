@@ -6,10 +6,12 @@ import {
   emailAuthCookies,
   encryptEmailCode,
 } from "@/lib/email-auth";
-import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
+import { isEmailConfigured, renderSignInCodeEmail, sendEmail } from "@/lib/email";
 import { checkLoginAccess } from "@/lib/login-access";
 import { isValidEmail } from "@/lib/text";
 import { verifyRecaptcha } from "@/lib/security/recaptcha";
+
+import { getRequestLang } from "@/lib/i18n/server-routing";
 
 function rateLimitResponse(retryAfterSeconds: number) {
   return NextResponse.json(
@@ -81,41 +83,12 @@ export async function POST(request: Request) {
   const code = createOneTimeCode();
   const token = await encryptEmailCode({ email: normalizedEmail, code });
 
-  const signInHtml = renderBrandEmail({
-    previewText: "Your RediHealth verification code",
-    badgeText: "Verification Code",
-    heading: "Sign in to RediHealth",
-    recipientName: normalizedEmail,
-    intro: "Use the one-time verification code below to securely access your RediHealth account.",
-    codeBlock: {
-      code,
-      expiresInText: "10 minutes",
-    },
-    closingText: "For your security, never share this code with anyone.",
-    footerReason: "You received this email because a sign-in attempt was initiated for your email address.",
-  });
-
-  const plainTextContent = `Hello,
-
-Your verification code for RediHealth is:
-${code}
-
-This code will expire in 10 minutes.
-
-If you did not request this verification code, you can safely ignore this email. No changes have been made to your account.
-
-For your security, never share this code with anyone.
-
-Best regards,
-The RediHealth Team
-https://redihealth.org`;
+  const message = renderSignInCodeEmail({ email: normalizedEmail, code, lang: await getRequestLang(request) });
 
   try {
     await sendEmail({
       to: normalizedEmail,
-      subject: "Your RediHealth verification code",
-      text: plainTextContent,
-      html: signInHtml,
+      ...message,
     });
   } catch (error) {
     let providerStatus: number | undefined;

@@ -1,0 +1,51 @@
+{
+  "title": "Drug allergies: recognising reactions and keeping an accurate record",
+  "intro": "A drug allergy is an immune reaction to a medicine. It is different from many predictable side effects, but both can need medical attention. Reactions can begin soon after a dose or develop later. The safest approach combines prompt action for serious symptoms, a precise account of what happened and a plan for future medicines rather than guessing which drugs are safe.",
+  "sections": [
+    {
+      "heading": "Allergy is not the same as every unwanted effect",
+      "paragraphs": [
+        "Itchy raised hives, swelling and some rashes can suggest allergy, while nausea or diarrhoea alone may reflect an ordinary side effect or another illness. A rash during antibiotic treatment can also come from the infection. These clues do not establish a diagnosis by themselves. Immediate reactions may involve breathing or circulation, and delayed reactions can affect skin or internal organs. Having tolerated a medicine before does not exclude a later reaction. Tell the clinician what you actually experienced rather than using only the word allergy. A family member's allergy does not automatically mean that you have the same one."
+      ]
+    },
+    {
+      "heading": "Severe symptoms need emergency action",
+      "paragraphs": [
+        "Sudden tongue or throat swelling, wheeze, breathing or swallowing difficulty, fainting, collapse or rapid severe deterioration after a medicine can be anaphylaxis, sometimes without a rash. Use your prescribed adrenaline auto-injector immediately according to its instructions and call emergency services. Do not stand or walk; lie down, adjusting your upper body slowly if breathing is difficult, and lie on the left side in pregnancy. If not improving after five minutes, use a second prescribed injector according to the emergency plan. Antihistamines do not replace adrenaline for breathing or circulation problems. A painful spreading rash with fever, blisters, peeling skin or sores in the mouth, eyes or genitals can be a severe delayed reaction and needs immediate hospital assessment."
+      ]
+    },
+    {
+      "heading": "Contact the prescriber and document the details",
+      "paragraphs": [
+        "For a new suspected reaction, obtain prompt advice before another dose of the suspected medicine; do not take a trial dose to see what happens. The clinician decides what to stop, what urgent treatment is needed and how essential therapy will be replaced safely. Record the generic and brand name, strength, route, start date, number of doses before symptoms, timing and treatment received. Include other medicines, supplements and the illness being treated. Photographs of a rash and the original packaging may help, but do not delay emergency care to collect them. Ask that suspected allergy and ordinary side effects are recorded distinctly, with the level of certainty explained."
+      ]
+    },
+    {
+      "heading": "Specialist investigation can clarify future choices",
+      "paragraphs": [
+        "Testing is selected according to the medicine and reaction history; there is no single screening test that reliably checks every drug allergy. Skin tests, blood tests or a supervised drug challenge may be appropriate in selected cases. A challenge must be risk assessed and done where reactions can be treated, never improvised at home. People with severe delayed reactions are not suitable for routine challenge to the culprit drug. Many old penicillin allergy labels prove inaccurate after proper assessment, but do not remove your own label or borrow an antibiotic to test it. Cross-reactions depend on the particular drugs, not just similar names. Specialist desensitisation is a separate monitored procedure for selected essential treatments, not a permanent cure."
+      ]
+    },
+    {
+      "heading": "Make the result useful at every appointment",
+      "paragraphs": [
+        "After assessment, request a written description of the confirmed or suspected culprit, related medicines to avoid and alternatives considered safe. If an allergy is excluded, ask for the record to be updated with your doctor, pharmacy and other relevant services. Carry the information and show it before new prescriptions, injections, surgery or buying non-prescription medicines. Ask whether a medical alert and an emergency plan are needed. Do not assume every person with a drug allergy needs an adrenaline prescription; that decision is individual. Report suspected adverse reactions through the local reporting system with professional help if needed. A clear record protects against both accidental re-exposure and unnecessary avoidance of useful treatment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: an uncertain childhood label",
+      "text": "Mira's record says penicillin allergy, but her family recalls only a rash during a childhood infection. She asks for a structured assessment before an antibiotic is needed. She does not take leftover tablets at home, and the record is changed only after the clinician establishes the appropriate conclusion."
+    },
+    {
+      "title": "Hypothetical example: a delayed warning",
+      "text": "Several days after starting a new medicine, Dan develops fever, painful skin and sores in his mouth. He seeks immediate hospital assessment and brings his medicine list rather than taking only an antihistamine and waiting for the rash to settle."
+    }
+  ],
+  "questions": [
+    "Does this sound like allergy, another serious reaction or a predictable side effect?",
+    "What should I avoid now, and do I need specialist testing or an emergency plan?",
+    "What exact information should be written in my records, including safe alternatives?"
+  ]
+}

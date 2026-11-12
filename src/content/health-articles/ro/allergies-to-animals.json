@@ -1,0 +1,51 @@
+{
+  "title": "Alergia la animale: recunoașterea expunerii și un plan practic",
+  "intro": "Alergia la animale este o reacție imunitară la proteine asociate unui animal, inclusiv din particulele de piele, salivă sau urină. Părul poate transporta aceste substanțe, dar nu explică singur alergia. Pisicile, câinii și alte animale pot declanșa simptome. O erupție sau tuse nouă lângă un animal necesită totuși evaluare, deoarece pot fi implicate și praful, polenul sau alte expuneri.",
+  "sections": [
+    {
+      "heading": "Caută tipare fără să provoci intenționat simptome",
+      "paragraphs": [
+        "După expunere pot apărea strănut, nas înfundat ori secreții nazale, mâncărimi ale ochilor și simptome cutanate. Tusea, respirația șuierătoare ori senzația de apăsare în piept pot indica afectarea căilor respiratorii. Alergenii se pot transporta pe haine și pot rămâne în mobilier, astfel că simptomele pot apărea unde nu este prezent niciun animal. Notează locurile, momentul apariției și simptomele respiratorii; nu îți testa ipoteza crescând intenționat contactul, mai ales dacă anterior a afectat respirația."
+      ]
+    },
+    {
+      "heading": "Interpretează testele în contextul istoricului",
+      "paragraphs": [
+        "Medicul poate evalua dacă istoricul sugerează alergie și dacă trebuie investigat astmul. Testul prin înțepare sau analiza de sânge pentru anticorpi specifici pot ajuta la identificarea sensibilizării. Un rezultat pozitiv nu dovedește singur că animalul explică toate simptomele. Spune serviciului de testare ce medicamente folosești și urmează instrucțiunile sale, fără să întrerupi singur tratamentul. Adu informații despre alți factori posibili și despre apariția simptomelor departe de animale."
+      ]
+    },
+    {
+      "heading": "Înțelege limitele promisiunilor hipoalergenice",
+      "paragraphs": [
+        "Animalele fără păr și rasele promovate drept hipoalergenice pot produce în continuare alergeni. Reacțiile individuale variază, iar alegerea unei rase cu păr scurt nu garantează siguranța. Nu considera o vizită scurtă fără simptome drept dovadă că locuitul cu animalul va fi lipsit de probleme. Discută riscul și nevoile familiei înainte de o decizie importantă, mai ales dacă este afectat un copil ori cineva cu astm."
+      ]
+    },
+    {
+      "heading": "Discută modalități realiste de reducere a expunerii",
+      "paragraphs": [
+        "În funcție de situație, planul poate include evitarea contactului, ținerea animalelor în afara dormitorului, reducerea obiectelor care adună praf și curățarea sau filtrarea potrivită. Măsurile pot reduce expunerea, dar nu garantează controlul simptomelor. Alergenii pot persista după plecarea animalului, iar limitarea lui la o cameră nu reține toate particulele. Stabilește cu familia și medicul schimbări accesibile și sustenabile, fără să presupui că un aparat scump sau o singură curățenie vor rezolva problema."
+      ]
+    },
+    {
+      "heading": "Adaptează tratamentul și urgența la simptome",
+      "paragraphs": [
+        "Pentru simptomele relevante se pot discuta antihistaminice, spray-uri nazale potrivite sau tratamente pentru ochi. Astmul necesită evaluare și plan propriu; un comprimat pentru strănut nu înlocuiește îngrijirea problemelor respiratorii. Imunoterapia la specialist poate fi luată în considerare în cazuri selectate, cu discutarea dovezilor, riscurilor și efortului necesar. Cere sfat medical pentru respirație șuierătoare repetată sau tuse nocturnă. Dificultatea severă de respirație, imposibilitatea de a vorbi din cauza lipsei de aer ori umflarea limbii sau gâtului impun ajutor de urgență."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: investigarea unei schimbări acasă",
+      "text": "O familie observă tusea copilului după adoptarea unei pisici. Programează o evaluare și descrie momentul apariției, respirația șuierătoare și mediul din dormitor. Întreabă dacă trebuie luate în calcul astmul și alți alergeni, fără să presupună nici că pisica este sigur cauza, nici că părul scurt o face inofensivă."
+    },
+    {
+      "title": "Exemplu ipotetic: planificarea unei vizite",
+      "text": "O persoană cu alergie la animale diagnosticată întreabă o rudă despre animalele din locuință înaintea unei vizite cu înnoptare. Discută despre cazare alternativă și, când este necesar, despre planul de tratament existent cu un profesionist. Nu petrece intenționat timp cu animalul ca să vadă cât de severă devine reacția."
+    }
+  ],
+  "questions": [
+    "Istoricul meu sugerează alergie la animale și ar schimba testarea planul?",
+    "Tusea sau respirația șuierătoare necesită evaluare pentru astm?",
+    "Ce schimbări ale expunerii și tratamente oferă beneficii realiste și ce fac dacă respirația se agravează?"
+  ]
+}

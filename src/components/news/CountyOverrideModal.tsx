@@ -42,6 +42,10 @@ export type CountyOverrideModalProps = {
 const NATIONAL_RO = "Toate județele";
 
 const MODAL_COUNTRY_COPY: Record<Lang, Record<Exclude<MapCountry, "ro">, { title: string; subtitle: string; search: string }>> = {
+"ru": {
+"al": {"title":"Выберите регион Албании","subtitle":"Медицинские новости и выездные клиники вашего региона.","search":"Поиск региона…"},
+"md":{"title":"Выберите район Молдовы","subtitle":"Медицинские новости и выездные клиники вашего района.","search":"Поиск района или муниципия…"},"hr":{"title":"Выберите жупанию Хорватии","subtitle":"Медицинские новости и выездные клиники вашей жупании.","search":"Поиск жупании…"},"it":{"title":"Выберите регион Италии","subtitle":"Медицинские новости и выездные клиники вашего региона.","search":"Поиск региона…"}},
+
   ro: {
     md: { title: "Alege un raion din Moldova", subtitle: "Vezi alertele și caravanele din raionul ales.", search: "Caută raionul sau municipiul..." },
     hr: { title: "Alege un comitat din Croația", subtitle: "Vezi alertele și clinicile mobile din zona aleasă.", search: "Caută comitatul..." },

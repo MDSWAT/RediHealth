@@ -1,0 +1,51 @@
+{
+  "title": "Prvi tjedni bebe: pregledi, probir i kada tražiti pomoć",
+  "intro": "Pregledi novorođenčeta povezuju tjelesni pregled, podršku hranjenju i probir na stanja koja pri rođenju mogu biti nevidljiva. Termin je i prilika za razgovor o zabrinutostima i dogovor kontrola. Raspored i usluge razlikuju se među zemljama, pa prije otpusta potvrdite lokalni plan. Uredan prethodni pregled ne znači da se beba ne može razboljeti između posjeta.",
+  "sections": [
+    {
+      "heading": "Znajte koji su pregledi dogovoreni i tko je odgovoran",
+      "paragraphs": [
+        "Tražite pisani plan s liječnikom ili službom, mjestom pregleda i postupkom ako propustite termin. U Njemačkoj rani program uključuje pregled odmah nakon rođenja, sljedeći između trećeg i desetog dana te još jedan u četvrtom do petom tjednu. To su njemački termini, a ne univerzalni raspored. Nakon ranog otpusta ili poroda kod kuće izričito dogovorite sljedeću procjenu umjesto pretpostavke da ju je bolnica rezervirala. Ponesite djetetovu dokumentaciju i otpusno pismo."
+      ]
+    },
+    {
+      "heading": "Razumijte pregled i njegova ograničenja",
+      "paragraphs": [
+        "Liječnik razmatra trudnoću i porod, pregledava bebu te procjenjuje nalaze poput srčanih tonova, kukova, očiju i, kada je primjenjivo, testisa. Težinu i opće stanje procjenjuje uz obiteljska opažanja. Neki nalazi zahtijevaju ponovni pregled ili upućivanje stručnjaku čak i kada beba izgleda zadovoljno. Pitajte što je pregledano, što ostaje nejasno i kada treba obaviti daljnje preglede. Nalaz probira upućuje na dodatnu procjenu; nije uvijek dijagnoza, a probir ne otkriva svaku bolest."
+      ]
+    },
+    {
+      "heading": "Razgovarajte o hranjenju, težini i svakodnevnim opažanjima",
+      "paragraphs": [
+        "Opišite koliko često nudite hranu, budi li se beba za hranjenje, gutanje, povraćanje i promjene mokrih pelena ili stolice. Primalja ili liječnik mogu promatrati hranjenje i pratiti kretanje težine umjesto procjene samo jednog mjerenja. Početni gubitak težine može se dogoditi, ali njegova veličina, oporavak i stanje bebe određuju treba li pomoć. Tražite individualni savjet o dojenju ili formuli i preporučenim dodacima. Nemojte razrjeđivati formulu više od uputa niti trajno loše hranjenje pripisati samo pospanom temperamentu."
+      ]
+    },
+    {
+      "heading": "Pratite rezultate probira i daljnji plan",
+      "paragraphs": [
+        "Probir sluha, testovi iz kapi krvi i drugi pregledi nude se prema lokalnim programima i pravilima pristanka. Pitajte što je obavljeno, što još treba, kako stižu nalazi i koga nazvati ako nema vijesti. Nejasan nalaz sluha može zahtijevati ponavljanje; sam ne potvrđuje gluhoću. Navedite obiteljsku anamnezu i zabrinutost za sluh ili vid čak i nakon urednih nalaza. Dođite na preglede zbog abnormalnih ili nepotpunih rezultata te zatražite objašnjenje ili tumača ako su dokumenti teško razumljivi."
+      ]
+    },
+    {
+      "heading": "Ne čekajte redovni pregled ako je beba bolesna",
+      "paragraphs": [
+        "Otežano disanje, plava ili siva boja, vrlo teško buđenje, napadaji ili brzo pogoršanje zahtijevaju hitnu pomoć. Vrućica ili neuobičajeno niska temperatura u novorođenčeta, znatno slabije hranjenje, manje mokrih pelena ili sve jača žutica zahtijevaju hitnu kliničku procjenu. Zeleno povraćanje hitan je znak upozorenja. Novorođenče može imati tešku infekciju bez vrućice. Pri pozivu navedite dob i promjene; slijedite hitne upute umjesto čekanja zakazanog pregleda ili prvog pokušavanja kućnih pripravaka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: pregled nakon ranog otpusta",
+      "text": "Obitelj odlazi kući prije sljedećeg pregleda. Prije odlaska pita tko će ga obaviti, potvrđuje datum i uzima otpusne dokumente. Provjerava i kako će dobiti nalaze krvi i sluha, bez pretpostavke da odsutnost poruke znači da je sve uredno."
+    },
+    {
+      "title": "Hipotetski primjer: reagiranje između pregleda",
+      "text": "Novorođenče se sve teže budi i mnogo manje jede. Skrbnik traži hitnu liječničku pomoć i opisuje dob, hranjenje i mokre pelene. Ne čeka sutrašnji redovni pregled samo zato što je prethodni nalaz bio uredan."
+    }
+  ],
+  "questions": [
+    "Koji su pregledi i testovi probira dovršeni, a koje termine ili rezultate još čekamo?",
+    "Kako napreduju hranjenje i težina i koja individualna podrška treba našoj bebi?",
+    "Koje promjene zahtijevaju hitnu pomoć i koju lokalnu službu kontaktirati između posjeta?"
+  ]
+}

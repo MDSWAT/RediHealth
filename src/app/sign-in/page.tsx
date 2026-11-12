@@ -5,6 +5,8 @@ import { getRequestLang } from "@/lib/i18n/server-routing";
 import type { Lang } from "@/lib/i18n/translations";
 
 const descriptions: Record<Lang, string> = {
+  ru: "Войдите в RediHealth с помощью кода, отправленного на вашу электронную почту, или с помощью Google.",
+
   ro: "Intră în RediHealth cu un cod primit pe email sau cu contul Google.",
   en: "Sign in to RediHealth with a code sent to your email, or with Google.",
   sq: "Hyr në RediHealth me një kod që vjen në email ose me llogarinë Google.",

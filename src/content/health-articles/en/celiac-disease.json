@@ -1,0 +1,51 @@
+{
+  "title": "Celiac disease: testing, a gluten-free diet and everyday care",
+  "intro": "Celiac disease, also spelled coeliac disease, is an autoimmune condition in which gluten triggers damage to the small intestine. It is different from wheat allergy and from symptoms attributed to gluten without celiac disease. It can affect children and adults, with digestive symptoms, problems outside the gut or few obvious symptoms. Correct testing matters because treatment is a strict lifelong gluten-free diet, not simply choosing less bread when symptoms occur.",
+  "sections": [
+    {
+      "heading": "Symptoms are not limited to diarrhoea",
+      "paragraphs": [
+        "Possible features include bloating, abdominal discomfort, diarrhoea or constipation, tiredness, iron-deficiency anaemia and unintended weight loss. Children may grow poorly. Some people have an itchy blistering rash called dermatitis herpetiformis. Others are identified through testing because of family history or another associated condition. These findings have other possible causes, and neither symptoms nor improvement after changing food proves celiac disease. Tell the clinician about relatives with a confirmed diagnosis and previous tests."
+      ]
+    },
+    {
+      "heading": "Do not remove gluten before discussing testing",
+      "paragraphs": [
+        "Blood tests look for relevant antibodies, and diagnosis often also involves small-intestinal biopsies taken during an upper endoscopy. The specialist determines the appropriate pathway, including particular criteria used in some children. Gluten avoidance can make results falsely reassuring. If you are still eating gluten, do not start a gluten-free diet before discussing the testing plan. If you have already excluded it, tell the clinician; do not undertake a food challenge yourself, particularly if an immediate allergy is possible. Genetic testing can sometimes help clarify uncertainty but is not a stand-alone confirmation."
+      ]
+    },
+    {
+      "heading": "A confirmed diagnosis changes food choices for life",
+      "paragraphs": [
+        "Gluten is present in wheat, barley and rye, including forms such as spelt and ingredients such as barley malt. Bread and pasta are obvious sources, but sauces, soups and processed foods may also contain it. Learn to check ingredients and gluten-free labelling with a dietitian. Oats need particular care: choose products labelled gluten-free and discuss suitability, since contamination is common and a minority do not tolerate even uncontaminated oats. Do not assume that an enzyme supplement makes ordinary gluten-containing food safe."
+      ]
+    },
+    {
+      "heading": "Prevent cross-contact without losing a balanced diet",
+      "paragraphs": [
+        "Crumbs, shared preparation surfaces, cooking water or serving utensils can transfer gluten into otherwise suitable food. Agree practical kitchen arrangements, ask restaurants about preparation and plan for school or work meals. Naturally gluten-free foods such as plain rice, potatoes, vegetables, pulses and suitable unprocessed protein foods can form varied meals; check added ingredients and preparation. A dietitian can help with cost, fibre, calcium, iron and other needs. Gluten-free packaged food is not automatically nutritionally balanced. Supplements should address an assessed need rather than replace dietary support."
+      ]
+    },
+    {
+      "heading": "Follow-up matters even after symptoms improve",
+      "paragraphs": [
+        "Symptoms may improve before the intestine fully recovers. Continue the diet even when feeling well and attend agreed reviews for symptoms, nutrition, growth in children and relevant tests. Persistent symptoms deserve reassessment for inadvertent gluten exposure and other explanations, not automatic blame or ever wider exclusions. Discuss bone health and whether close relatives need testing. Severe abdominal pain, vomiting blood, black stools or significant dehydration needs urgent care rather than being assumed to be a routine gluten reaction."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Before the first test — hypothetical example",
+      "text": "A person with bloating and unexplained iron deficiency wants to stop gluten immediately. They speak with the clinician first so the tests can be interpreted properly. Feeling better on a restrictive diet alone would not establish the diagnosis."
+    },
+    {
+      "title": "A shared kitchen — hypothetical example",
+      "text": "After diagnosis, a family keeps a clean preparation space and agrees how to avoid crumbs in shared spreads and toasters. A dietitian helps them choose affordable balanced meals instead of replacing every food with a specialised packaged product."
+    }
+  ],
+  "questions": [
+    "What testing is appropriate, and how should my current gluten intake be managed before it?",
+    "How can I recognise gluten and prevent cross-contact at home, school or work?",
+    "What nutritional checks, follow-up and family testing should we plan?"
+  ]
+}

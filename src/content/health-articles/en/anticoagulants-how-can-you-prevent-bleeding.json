@@ -1,0 +1,51 @@
+{
+  "title": "Anticoagulants: reduce bleeding risk without losing protection",
+  "intro": "Anticoagulants reduce the chance of harmful blood clots but also make bleeding easier or harder to stop. Safer use means taking the right medicine as prescribed, checking interactions and knowing when to seek help. Do not stop treatment merely because you notice a small bruise: the reason for anticoagulation, such as stroke or clot prevention, still matters. Significant bleeding or injury needs prompt assessment.",
+  "sections": [
+    {
+      "heading": "Know your medicine and keep the monitoring plan",
+      "paragraphs": [
+        "Keep the medicine name, strength and current instructions available, along with an anticoagulant alert card if supplied. Warfarin requires INR blood tests to guide dosing; direct oral anticoagulants do not use the same routine INR adjustment, but still need appropriate reviews, including kidney function. Tell the team about illness, weight changes or difficulty taking tablets. For a missed dose, follow the instructions for that specific medicine or ask a pharmacist; do not invent a catch-up dose. Use reminders if forgetting is a recurring problem."
+      ]
+    },
+    {
+      "heading": "Check other medicines and changes in diet",
+      "paragraphs": [
+        "Tell every prescriber and pharmacist that you take an anticoagulant. Ask before adding painkillers, herbal remedies or supplements; products such as ibuprofen or aspirin can increase bleeding risk. If aspirin was deliberately prescribed with your anticoagulant, ask for review rather than stopping it yourself. Some antibiotics and other medicines also interact. With warfarin, major changes in vitamin K intake can affect control, so seek advice about a consistent diet rather than avoiding all vegetables. Discuss alcohol and avoid heavy drinking."
+      ]
+    },
+    {
+      "heading": "Reduce avoidable injuries and plan procedures",
+      "paragraphs": [
+        "Choose suitable protective equipment for activities, use care with sharp tools and address trip hazards. A soft toothbrush or electric razor may reduce minor injuries. Tell your dentist and any team planning surgery, injections or an invasive test well in advance. Whether treatment needs changing depends on the procedure, medicine, kidney function and clotting risk. Do not decide to skip doses yourself or use someone else's pre-procedure plan. Ask for clear instructions covering both any interruption and the restart."
+      ]
+    },
+    {
+      "heading": "Respond to bleeding and injury at the right level",
+      "paragraphs": [
+        "For a minor external cut, apply firm direct pressure with a clean dressing. Bleeding that will not stop, a major accident or a significant head injury requires immediate medical assessment, even if there is little visible blood. Seek urgent care for blood in urine, black stools, vomiting blood or substantial unexplained bleeding. Severe headache, confusion, weakness, collapse or breathing difficulty warrants emergency help. Tell responders the anticoagulant name and when the last dose was taken, without delaying care to find paperwork."
+      ]
+    },
+    {
+      "heading": "Report smaller problems before changing treatment",
+      "paragraphs": [
+        "Repeated nosebleeds, increasing bruising or heavier periods deserve review, even when they do not seem like an emergency. Record the pattern and new medicines, and ask whether a test or treatment adjustment is needed. Bleeding can also have a cause needing investigation rather than being explained entirely by anticoagulation. Tell the team promptly about pregnancy or plans for pregnancy because medicine choice may need changing. Regularly review the balance of clot prevention and bleeding risk with your clinician instead of making that decision alone."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a new painkiller",
+      "text": "Someone taking an anticoagulant develops back pain and considers buying ibuprofen. They show the pharmacist their medicine list first and ask for a suitable option. They also mention aspirin already prescribed by their heart specialist rather than removing it from the list."
+    },
+    {
+      "title": "Hypothetical example: a fall with a head injury",
+      "text": "A person taking a blood-clot prevention medicine falls and hits their head. Although the scalp is not bleeding much, they seek immediate assessment and tell staff the medicine name and last dose instead of waiting for a large bruise to appear."
+    }
+  ],
+  "questions": [
+    "Which tests and reviews does my particular anticoagulant need, and what should I do after a missed dose?",
+    "Which painkillers, supplements, diet changes or procedures require advice in my case?",
+    "What bleeding or injury needs emergency care, and whom do I contact about recurring minor bleeding?"
+  ]
+}

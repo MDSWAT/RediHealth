@@ -15,6 +15,12 @@ export const MEDICAL_SAFETY_DISCLAIMER_COPY: Record<
   Lang,
   { badge: string; body: string }
 > = {
+  ru: {
+    badge: "Это руководство не заменяет врача.",
+    body:
+      "На этой странице представлена информация о здоровье. Оно не дает вам диагноза или лечения. Для этого обратитесь к врачу. В случае чрезвычайной ситуации звоните по номеру 112.",
+  },
+
   ro: {
     badge: "Acest ghid nu înlocuiește medicul",
     body:

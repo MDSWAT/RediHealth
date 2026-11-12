@@ -1,0 +1,51 @@
+{
+  "title": "După naștere: recuperare, sprijin și semne de alarmă",
+  "intro": "Perioada de după naștere presupune vindecare fizică, învățarea îngrijirii nou-născutului și adaptarea la somnul întrerupt. Recuperarea depinde de naștere, complicații și sprijinul disponibil. Atât părintele, cât și copilul au nevoie de urmărire, chiar dacă nașterea a părut fără probleme. Acest ghid se concentrează pe organizarea îngrijirii și recunoașterea dificultăților, fără a stabili un termen pentru revenirea la normal.",
+  "sections": [
+    {
+      "heading": "Plecați acasă cu un plan pentru părinte și copil",
+      "paragraphs": [
+        "Înainte de externare, întrebați cine va verifica recuperarea, hrănirea și sănătatea copilului și pe cine puteți contacta în afara programului. Confirmați urmărirea tensiunii, anemiei, diabetului sau altor complicații ale sarcinii, după caz. Organizați transportul și ajutorul concret pentru mese, rufe și ceilalți copii. Screeningul și vizitele la domiciliu diferă între țări; serviciile germane descrise în sursa originală nu sunt drepturi automate în alte țări. Întrebați echipa locală ce este disponibil și ce consultații trebuie programate."
+      ]
+    },
+    {
+      "heading": "Sprijiniți vindecarea fără a ignora durerea în creștere",
+      "paragraphs": [
+        "Sângerarea vaginală își schimbă în mod normal aspectul și scade pe parcursul recuperării. Rupturile perineale, suturile sau plaga de cezariană pot necesita îngrijire specifică. Urmați instrucțiunile de externare pentru igienă, calmarea durerii și activitate; verificați compatibilitatea medicamentelor cu alăptarea. Cereți sfat pentru dificultăți la urinare, constipație persistentă, pierderi involuntare sau exerciții dureroase pentru planșeul pelvin. Mișcarea blândă și odihna se adaptează stării dumneavoastră. Durerea în creștere, deschiderea plăgii sau secreția urât mirositoare nu trebuie considerate inevitabile după naștere."
+      ]
+    },
+    {
+      "heading": "Acționați prompt la semnele fizice de alarmă",
+      "paragraphs": [
+        "Sângerarea abundentă sau care crește rapid, leșinul, durerea toracică, dificultatea respiratorie, durerea de cap severă persistentă ori modificările vederii necesită atenție medicală imediată. Un picior dureros și umflat, febra sau durerea abdominală severă necesită, de asemenea, evaluare urgentă. Complicații grave pot începe după externare, inclusiv când tensiunea a fost normală în sarcină. Spuneți echipei că ați născut recent și când. În caz de colaps, lipsă severă de aer sau altă stare critică, solicitați ajutor de urgență fără a aștepta următorul control postnatal."
+      ]
+    },
+    {
+      "heading": "Cereți ajutor pentru hrănire și sănătatea emoțională",
+      "paragraphs": [
+        "Solicitați ajutor practic, fără judecată, pentru alăptare, formulă sau combinarea lor. Durerea persistentă la sân, un sân fierbinte și dureros cu febră ori îngrijorarea că bebelușul se hrănește insuficient necesită sfat. Legătura afectivă se poate forma treptat. Plânsul ușor poate fi trecător, dar tristețea în agravare, anxietatea, dificultatea de a face față ori simptomele persistente merită sprijin profesional. Confuzia severă, halucinațiile sau riscul imediat de vătămare reprezintă urgențe. Un adult de încredere trebuie să rămână și să ajute la siguranța părintelui și copilului cât se organizează îngrijirea urgentă."
+      ]
+    },
+    {
+      "heading": "Folosiți controalele și pentru alte probleme decât plaga",
+      "paragraphs": [
+        "Consultațiile postnatale permit discutarea somnului, dispoziției, experienței nașterii, continenței, vieții sexuale, contracepției și bolilor existente. Fertilitatea poate reveni înaintea primei menstruații, iar alăptarea nu asigură automat contracepție eficientă. Întrebați ce metodă se potrivește situației dumneavoastră. Partenerii și rudele pot ajuta prin sarcini concrete și observarea schimbărilor, respectând intimitatea și alegerile. Dacă durerea, epuizarea sau suferința vă împiedică activitățile zilnice, cereți un control mai devreme, fără a aștepta data programată."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: ajutor practic pentru hrănire",
+      "text": "Un părinte are dureri la alăptare și se teme că bebelușul nu primește suficient lapte. Cere moașei să observe o masă și să verifice copilul, în loc să suporte durerea. O rudă pregătește mesele și face treburile casnice, permițând odihna și controalele."
+    },
+    {
+      "title": "Exemplu ipotetic: durere de cap după externare",
+      "text": "După o naștere aparent fără complicații, un părinte dezvoltă acasă o durere de cap severă persistentă și vedere încețoșată. Solicită evaluare imediată și menționează explicit nașterea recentă, fără a atribui simptomele doar lipsei de somn."
+    }
+  ],
+  "questions": [
+    "Cine urmărește recuperarea mea și controalele copilului și pe cine contactăm urgent?",
+    "Ce schimbări ale sângerării, durerii, plăgii sau dispoziției necesită evaluare înaintea următoarei consultații?",
+    "Ce sprijin există pentru hrănire, simptomele planșeului pelvin, sănătatea mintală și contracepție?"
+  ]
+}

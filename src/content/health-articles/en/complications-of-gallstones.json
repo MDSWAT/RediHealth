@@ -1,0 +1,51 @@
+{
+  "title": "Gallstone complications: recognising blockage and inflammation",
+  "intro": "Gallstones can remain silent for years, but a stone that obstructs drainage can cause more than a painful attack. Inflammation of the gallbladder, infection of the bile ducts or inflammation of the pancreas may need urgent hospital treatment. A previous diagnosis of gallstones does not make every new abdominal pain safe to manage at home.",
+  "sections": [
+    {
+      "heading": "Different places of blockage cause different problems",
+      "paragraphs": [
+        "The gallbladder stores bile made by the liver. A stone blocking its outlet can cause cholecystitis, meaning gallbladder inflammation. A stone in the main bile duct may obstruct bile flow, causing jaundice; infection of the ducts is called cholangitis. A stone near the shared drainage area can also trigger pancreatitis, inflammation of the pancreas. Rarely, a stone can reach the bowel through an abnormal connection and obstruct it. These are distinct complications, not stages that everyone with gallstones will inevitably pass through."
+      ]
+    },
+    {
+      "heading": "Symptoms that should not wait",
+      "paragraphs": [
+        "Seek emergency assessment for sudden severe abdominal pain, pain spreading to the back with vomiting, fever or shaking chills with abdominal pain, or yellow eyes or skin. Confusion, fainting, rapid breathing or profound weakness may indicate a severe systemic illness such as sepsis. Do not drive yourself if seriously unwell. Persistent or recurrent upper abdominal pain also needs prompt medical advice even without fever. Dark urine or pale stools can accompany blocked bile flow. You do not need every listed symptom before seeking help, and other serious illnesses can cause similar pain."
+      ]
+    },
+    {
+      "heading": "How the hospital checks the cause",
+      "paragraphs": [
+        "Assessment includes symptoms, examination and blood tests looking for inflammation and effects on the liver or pancreas. Ultrasound often comes first, but it does not reveal every bile-duct stone. Depending on findings, clinicians may use a special MRI scan of the ducts, called MRCP, endoscopic ultrasound or other imaging. ERCP is an endoscopic procedure mainly used to treat a duct blockage, rather than a routine first test for everyone. Tell the team about pregnancy, allergies, blood-thinning medicines and previous operations. A stone seen on a scan does not by itself prove it explains all symptoms."
+      ]
+    },
+    {
+      "heading": "Treatment addresses both illness and the obstruction",
+      "paragraphs": [
+        "Hospital care may include fluids into a vein, pain relief and antibiotics when infection is suspected. Follow the treating team's eating and drinking instructions; do not start prolonged fasting at home. Infected obstructed bile ducts may need urgent drainage, often by ERCP, which can remove a stone or place a temporary stent. Discuss risks including pancreatitis, bleeding and perforation, and whether a stent needs later removal. For acute cholecystitis, early gallbladder removal is often recommended when medically suitable. If surgery is unsafe initially, selected patients may need drainage of the gallbladder. Timing depends on the complication and overall condition."
+      ]
+    },
+    {
+      "heading": "Plan for recovery and prevention of another attack",
+      "paragraphs": [
+        "Removing a duct stone does not remove stones still in the gallbladder, so further treatment may be advised. The liver continues to make bile after gallbladder removal, and most people can live normally without the organ. Ask about recovery, bowel changes and follow-up. Avoiding personally triggering foods can reduce symptoms while awaiting treatment, but diet cannot reliably clear an obstruction or cure an infected gallbladder. Avoid unproven gallbladder flushes and rapid weight-loss diets. Most symptom-free gallbladder stones do not need routine surgery; this differs from a duct stone or a complication. Get a clear plan for any new pain, fever or jaundice after discharge."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a changed attack",
+      "text": "Elena has previously had short painful episodes. This time pain persists, she feels feverish and her eyes look yellow. She seeks emergency assessment instead of repeating a home painkiller and waiting for the attack to behave like earlier ones."
+    },
+    {
+      "title": "Hypothetical example: two procedures, different purposes",
+      "text": "A hospital team clears a man's blocked bile duct by ERCP. He asks why gallbladder surgery is still being discussed. The clinician explains that the duct is now draining, but stones remaining in the gallbladder could cause another episode; they agree an individual treatment and follow-up plan."
+    }
+  ],
+  "questions": [
+    "Which structure is blocked or inflamed in my case?",
+    "Do I need duct drainage, gallbladder surgery or both, and when?",
+    "If a stent is placed, who arranges its review or removal?"
+  ]
+}

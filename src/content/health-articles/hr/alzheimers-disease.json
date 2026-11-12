@@ -1,0 +1,51 @@
+{
+  "title": "Alzheimerova bolest: procjena, svakodnevna podrška i planiranje",
+  "intro": "Alzheimerova bolest progresivna je bolest mozga i uzrok demencije. Demencija opisuje teškoće mišljenja koje utječu na svakodnevni život, za razliku od obične povremene zaboravljivosti. Alzheimerova bolest može zahvatiti pamćenje, jezik, prosuđivanje i samostalnost. Procjena je važna jer druge bolesti mogu izazvati slične probleme, a korisno liječenje, praktična podrška i planiranje ovise o osobnoj situaciji.",
+  "sections": [
+    {
+      "heading": "Opišite promjene svakodnevnog funkcioniranja",
+      "paragraphs": [
+        "Primjeri uključuju ponavljano zaboravljanje nedavnih razgovora, teškoće s poznatim zadacima ili gubljenje na poznatom mjestu. Jedno zaboravljeno ime ne potvrđuje demenciju. Zabilježite promjene kroz vrijeme, uključujući san, raspoloženje, sluh i vid. Uz pristanak osobe netko tko je dobro poznaje može iznijeti opažanja na pregledu. S poštovanjem opišite konkretne događaje umjesto ispitivanja, prepiranja ili posramljivanja osobe kod kuće."
+      ]
+    },
+    {
+      "heading": "Razumijte sadržaj procjene",
+      "paragraphs": [
+        "Liječnik razmatra simptome, bolesti, lijekove i utjecaj na dnevne aktivnosti. Kognitivna procjena, krvne pretrage ili snimanje mozga mogu pomoći; specijalistički testovi odabiru se prema slučaju. Depresija, učinci lijekova i drugi problemi mogu pridonijeti i zahtijevati pažnju. Kratak rezultat pamćenja ne opisuje cijelu osobu i ne određuje svaku odluku o skrbi. Pitajte kako se nalazi povezuju i može li biti prisutno više bolesti."
+      ]
+    },
+    {
+      "heading": "Razgovarajte o ciljevima liječenja i neizvjesnosti",
+      "paragraphs": [
+        "Lijekovi poput donepezila ili memantina mogu pomoći nekim simptomima prikladnih pacijenata, ali ne liječe uzrok do izlječenja. Koristi i nuspojave treba provjeravati. Neka specijalistička liječenja ciljaju tijek bolesti u odabranim ranim slučajevima i zahtijevaju strogu procjenu i praćenje; dostupnost i kriteriji razlikuju se među zemljama. Pitajte o realnim ishodima i ozbiljnim rizicima umjesto pretpostavke da je svaki novi lijek prikladan. Važni su i smislene aktivnosti, komunikacijska podrška i skrb o drugim bolestima."
+      ]
+    },
+    {
+      "heading": "Prilagodite podršku uz očuvanje sudjelovanja",
+      "paragraphs": [
+        "Predvidiva rutina, jasni podsjetnici i jednostavno okruženje mogu pomoći. Provjerite sigurnost lijekova, kuhanja, financija i izlazaka bez automatskog oduzimanja svih izbora. Pitajte o radnoj terapiji, lokalnoj podršci i pomoći obiteljskim skrbnicima. Zabrinutosti oko vožnje raspravite s odgovarajućim stručnjakom prema lokalnim pravilima. O budućim željama za skrb i uređenju odlučivanja lakše je razgovarati rano, uz sudjelovanje osobe i prikladan lokalni savjet."
+      ]
+    },
+    {
+      "heading": "Prepoznajte nagle promjene i opterećenje skrbnika",
+      "paragraphs": [
+        "Naglu zbunjenost, neobičnu pospanost ili brzo pogoršanje ne treba jednostavno nazvati napredovanjem demencije. Infekcija, dehidracija, lijekovi i drugi hitni problemi mogu izazvati akutnu promjenu. Tražite brzu procjenu; znakovi moždanog udara, kolaps ili teška bolest zahtijevaju hitnu pomoć. Promjena ponašanja može označavati bol, strah ili nezadovoljenu potrebu, umjesto namjernog otežavanja. Skrbnici također trebaju podršku, planirane odmore i savjet kada sigurnost postaje teško održiva."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: priprema za procjenu",
+      "text": "Osoba primjećuje neplaćene račune i ponavljana pitanja kod roditelja. Uz njegov pristanak zapisuje primjere i zajedno idu na pregled. Pita o mogućim uzrocima, testovima i podršci umjesto zaključka da kućni kviz pamćenja dokazuje Alzheimerovu bolest."
+    },
+    {
+      "title": "Hipotetski primjer: reakcija na naglu promjenu",
+      "text": "Osoba s potvrđenom demencijom u kratkom razdoblju postaje mnogo zbunjenija i neobično pospana. Skrbnik traži brzu liječničku procjenu i opisuje promjenu prema uobičajenom stanju. Ne čeka redovni pregled pamćenja niti pretpostavlja da je neizbježno počeo novi stadij."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu i mogu li pridonijeti drugi izlječivi problemi?",
+    "Koje su realne koristi, rizici i dogovorene kontrole predloženog liječenja?",
+    "Koja praktična podrška, sigurnosne promjene i razgovori o budućnosti sada najviše koriste?"
+  ]
+}

@@ -16,6 +16,30 @@ function useSafeLanguage() {
 type CaseSeedText = Record<string, { age: string; lastVisited: string; nextAction: string; notes: string }>;
 
 const casesCopy = {
+  ru: {
+    title: "Отслеженные дела",
+    subtitle: "Люди, за которыми вы следите в полевых условиях.",
+    searchPlaceholder: "Поиск по названию или деревне",
+    all: (n: number) => `Все (${n})`,
+    mothers: "Матери и младенцы",
+    chronic: "Хроническое заболевание",
+    noDocuments: "Нет удостоверения личности или CNAS",
+    postOp: "После операции",
+    urgency: { Scăzut: "Низкий", Moderat: "Умеренный", Urgent: "Срочно" },
+    lastVisit: "Последний визит:",
+    nextStep: "Следующий шаг:",
+    notes: "Примечания:",
+    openFile: "Посмотреть файл",
+    empty: "Случаев не обнаружено.",
+    seed: {
+      "case-1": { age: "26 years", lastVisited: "3 days ago", nextAction: "УЗИ третьего триместра: 15 ноября.", notes: "Беременность нормальная, АД 115/75 мм рт.ст." },
+      "case-2": { age: "71 years", lastVisited: "вчера", nextAction: "Ежедневная проверка уровня сахара в крови и назначение инсулина", notes: "Уровень сахара в крови сильно колеблется. Нужна помощь в лечении." },
+      "case-3": { age: "58 years", lastVisited: "5 days ago", nextAction: "Подайте заявку на получение удостоверения личности в SPCLEP Tecuci", notes: "Без удостоверения личности уже 4 года. Документы гражданского состояния готовы." },
+      "case-4": { age: "63 years", lastVisited: "4 days ago", nextAction: "Снятие швов и проверка раны: 12 ноября.", notes: "Операция по поводу паховой грыжи. Рана чистая, выделений нет." },
+      "case-5": { age: "9 months", lastVisited: "2 weeks ago", nextAction: "Вакцина MMR у семейного врача: 20 ноября.", notes: "Набирает вес нормально. Вакцины актуальны." },
+    } as CaseSeedText,
+  },
+
   ro: {
     title: "Cazuri urmărite",
     subtitle: "Persoanele pe care le urmărești în teren.",

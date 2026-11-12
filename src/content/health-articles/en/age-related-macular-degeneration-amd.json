@@ -1,0 +1,51 @@
+{
+  "title": "Age-related macular degeneration: changes in central vision",
+  "intro": "Age-related macular degeneration, or AMD, affects the macula, the part of the retina used for sharp central vision. Reading, recognising faces and seeing detail can become difficult even when some side vision remains useful. Early disease may cause no obvious symptoms. New distortion or a central blurred patch needs assessment rather than simply buying stronger reading glasses.",
+  "sections": [
+    {
+      "heading": "Notice changes in the quality of vision",
+      "paragraphs": [
+        "Straight lines may look bent, letters may seem missing or faces may be difficult to recognise. One eye can compensate for the other, so a change may go unnoticed. Describe when symptoms began and whether they affect one or both eyes. These experiences are not a diagnosis by themselves; cataract and other retinal or neurological problems can also affect sight. A sudden or marked change needs urgent eye assessment."
+      ]
+    },
+    {
+      "heading": "Find out which type and stage you have",
+      "paragraphs": [
+        "An eye examination, often with dilated pupils and retinal imaging such as optical coherence tomography, helps establish the diagnosis. Dry AMD involves degenerative changes in the macula. Wet, or neovascular, AMD involves abnormal blood vessels and can cause faster deterioration. The distinction changes treatment and urgency. Ask which eye and stage are involved, what the scan shows and how follow-up will be arranged rather than treating every mention of AMD as the same condition."
+      ]
+    },
+    {
+      "heading": "Discuss benefits and limits of treatment",
+      "paragraphs": [
+        "Wet AMD is commonly treated with medicines injected into the eye to control abnormal blood-vessel activity. Treatment and monitoring may need to continue; it is not a guaranteed restoration of normal sight. Options for dry AMD depend on stage and local availability. Ask a specialist about the expected benefit, risks and alternatives for your situation. New pain, redness or a drop in vision after an eye procedure requires prompt advice from the treating service."
+      ]
+    },
+    {
+      "heading": "Make informed choices about risk factors and supplements",
+      "paragraphs": [
+        "Stopping smoking and looking after general cardiovascular health are useful topics to discuss. Particular vitamin and mineral formulations may help selected stages of AMD, but ordinary multivitamins are not interchangeable with them and supplements do not cure lost vision. Some formulations containing beta-carotene carry risks for people who smoke or used to smoke. Tell the eye team your smoking history and medicines before choosing supplements. Do not assume an eye-health label proves suitability."
+      ]
+    },
+    {
+      "heading": "Protect independence and respond to new symptoms",
+      "paragraphs": [
+        "Low-vision support can help with lighting, magnification, larger text and practical tasks. Ask about reading medicine labels, cooking safely and driving requirements in your country. If your clinician recommends home monitoring, learn how to use it and what change to report; a normal home check does not replace appointments. New wavy lines, a missing central area or rapidly worsening vision should be reported urgently rather than saved for the next routine review."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: reporting distortion",
+      "text": "Someone notices that a window frame appears bent when looking through one eye. They contact an eye-care service promptly and explain the new distortion. They do not assume the problem is normal ageing or postpone assessment until they can replace their glasses."
+    },
+    {
+      "title": "Hypothetical example: comparing supplements",
+      "text": "A person with AMD brings a supplement packet and medicine list to their appointment. They mention that they previously smoked and ask whether that formulation is appropriate for their disease stage. They also ask for help reading labels, instead of expecting the supplement to restore vision."
+    }
+  ],
+  "questions": [
+    "Which type and stage of AMD affects each eye, and what changes need urgent contact?",
+    "What benefits, risks and follow-up should I expect from the proposed treatment?",
+    "Would a specific supplement or low-vision service help my situation?"
+  ]
+}

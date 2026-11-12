@@ -14,6 +14,8 @@ export const DICTIONARY_TAB_LABELS: Record<
     tablistAria: string;
   }
 > = {
+"ru": {"dictionary":"Словарь","romanes":"На романи","tablistAria":"Выберите медицинский словарь"},
+
   ro: {
     dictionary: "Dicționar",
     romanes: "În romani",

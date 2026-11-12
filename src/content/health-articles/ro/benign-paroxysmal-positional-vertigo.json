@@ -1,0 +1,51 @@
+{
+  "title": "Vertijul pozițional: evaluare, tratament și siguranță",
+  "intro": "Vertijul pozițional paroxistic benign, numit VPPB, provoacă episoade scurte de senzație de rotire la anumite mișcări ale capului. Este o problemă de echilibru a urechii interne și poate fi adesea tratată prin manevre de repoziționare. Totuși, nu orice amețeală este VPPB. Simptomele noi sau neobișnuite necesită evaluare, iar termenul benign nu trebuie să ducă la ignorarea semnelor de alarmă ori a riscului de cădere.",
+  "sections": [
+    {
+      "heading": "Descrieți declanșatorul și durata",
+      "paragraphs": [
+        "Un episod tipic apare la întoarcerea în pat, culcarea pe spate sau privirea în sus. Rotirea intensă este de obicei scurtă, deși greața ori instabilitatea pot dura mai mult. Cristale minuscule ajunse într-un canal al urechii interne transmit semnale înșelătoare de mișcare. Spuneți medicului dacă simptomele încep la schimbarea poziției capului, la ridicare în picioare sau continuă în repaus. Menționați modificări ale auzului, dureri de cap, leșin, traumatisme recente și medicamente noi, deoarece pot indica alte cauze."
+      ]
+    },
+    {
+      "heading": "Recunoașteți simptomele care necesită ajutor urgent",
+      "paragraphs": [
+        "Cereți ajutor de urgență pentru vertij apărut brusc cu dificultăți de vorbire, asimetrie facială, slăbiciune, vedere dublă, o durere de cap nouă severă ori imposibilitatea de a sta în picioare sau a merge. Un accident vascular cerebral se poate manifesta uneori mai ales prin dezechilibru sever. Pierderea bruscă a auzului necesită și ea evaluare urgentă. Nu conduceți pentru a ajunge la urgență. Rotirea nouă persistentă, vărsăturile repetate ori un tipar foarte diferit de VPPB diagnosticat anterior necesită sfat medical prompt, nu exerciții repetate acasă."
+      ]
+    },
+    {
+      "heading": "Examinarea trebuie să orienteze diagnosticul",
+      "paragraphs": [
+        "Un clinician instruit întreabă despre simptome și poate face un test pozițional urmărind ochii. Direcția și momentul mișcărilor oculare ajută la identificarea urechii și canalului implicat. Spuneți înainte de test dacă aveți probleme cervicale, de spate sau mobilitate redusă, pentru adaptarea pozițiilor. Investigațiile imagistice nu sunt necesare de rutină într-un caz tipic confirmat, dar constatările neobișnuite pot impune investigații suplimentare. Un videoclip nu înlocuiește examinarea și nu exclude sigur o cauză neurologică."
+      ]
+    },
+    {
+      "heading": "Alegeți manevra potrivită constatărilor",
+      "paragraphs": [
+        "Tratamentul de repoziționare folosește o succesiune de poziții ale capului și corpului pentru a deplasa cristalele. Manevra adecvată depinde de canalul afectat și de posibilitatea de a vă mișca în siguranță. Poate provoca temporar vertij și uneori trebuie repetată. Cereți unui clinician să demonstreze orice tehnică pentru acasă și să explice când trebuie oprită sau solicitată reevaluarea. Medicamentele pot calma uneori greața, dar nu mută cristalele. Nu opriți medicamente prescrise și nu repetați manevre alese la întâmplare fără sfat medical."
+      ]
+    },
+    {
+      "heading": "Pregătiți recuperarea și eventualele recidive",
+      "paragraphs": [
+        "Până când echilibrul este stabil, așezați-vă în timpul episodului, folosiți sprijin la ridicare și păstrați drumul spre baie luminat și liber. Evitați scările mobile, înălțimile, condusul și utilajele cât timp simptomele le fac nesigure. Întrebați când puteți relua activitățile obișnuite. Pot rămâne instabilitate sau episoade ulterioare; un control poate diferenția recidiva de altă problemă. Dacă teama de mișcare persistă, recuperarea supravegheată a echilibrului poate ajuta. Nu presupuneți că orice amețeală viitoare are aceeași cauză."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: rotire scurtă în pat",
+      "text": "O persoană simte episoade scurte de rotire când se întoarce spre dreapta. Programează o evaluare și descrie exact declanșatorul. După examinarea pozițională, clinicianul efectuează o manevră adecvată și oferă un plan pentru simptome persistente sau recurente."
+    },
+    {
+      "title": "Exemplu ipotetic: schimbarea simptomelor",
+      "text": "Cineva tratat anterior pentru VPPB dezvoltă amețeală severă continuă și nu poate merge fără sprijin. Solicită evaluare urgentă, în loc să presupună că vechiul diagnostic explică totul și să repete un exercițiu de pe internet."
+    }
+  ],
+  "questions": [
+    "Simptomele și mișcările ochilor susțin diagnosticul de VPPB și ce canal este afectat?",
+    "O manevră acasă este sigură cu problemele mele cervicale, de spate și celelalte afecțiuni?",
+    "Ce schimbări necesită ajutor urgent și când trebuie reevaluate simptomele persistente?"
+  ]
+}

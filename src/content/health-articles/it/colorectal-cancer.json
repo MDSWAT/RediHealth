@@ -1,0 +1,51 @@
+{
+  "title": "Tumore colorettale: sintomi, accertamenti e opzioni di cura",
+  "intro": "Il tumore colorettale nasce nel colon o retto, parti dell'intestino crasso. Alcuni derivano da polipi, ma molti polipi non diventano tumore. Lo screening trova rischi prima dei sintomi, mentre disturbi nuovi richiedono valutazione propria. Le cure dipendono da sede, estensione, biologia, salute e priorità. I piani di colon e retto non sono sempre uguali.",
+  "sections": [
+    {
+      "heading": "Sintomi da discutere",
+      "paragraphs": [
+        "Possibili segni sono sangue nelle feci, cambiamento persistente dell'alvo, anemia da ferro inspiegata, disturbi addominali e perdita involontaria di peso. Spesso hanno altre cause, ma non attribuirli automaticamente a emorroidi o dieta. Il tumore iniziale può essere silente. Sangue abbondante o continuo con svenimento richiede emergenza. Dolore intenso, vomito, gonfiore e impossibilità di evacuare feci o gas possono essere occlusione e richiedono urgenza o emergenza. Riferire andamento e familiarità."
+      ]
+    },
+    {
+      "heading": "Esami con domande diverse",
+      "paragraphs": [
+        "Possono servire visita, sangue e FIT, test immunochimico per sangue nelle feci. Il positivo non è diagnosi e il negativo non elimina rivalutazione di sintomi persistenti. La colonscopia osserva, preleva tessuto e rimuove alcuni polipi; alternative sono possibili in casi selezionati. Chiedere preparazione, sedazione, trasporto e rischi di sanguinamento o perforazione. La biopsia definisce la diagnosi e le immagini l'estensione."
+      ]
+    },
+    {
+      "heading": "Capire il referto prima della scelta",
+      "paragraphs": [
+        "Chiedere sede, tipo, stadio, linfonodi, metastasi e risultati attesi. I marcatori nel sangue da soli non confermano o escludono ogni tumore. Test tissutali orientano cure o suggeriscono rischio ereditario come Lynch; la genetica può riguardare anche parenti. Il team unisce dati, forma fisica, malattie e preferenze. Chiedere spiegazioni e interprete senza decidere da sigle isolate."
+      ]
+    },
+    {
+      "heading": "Combinazioni terapeutiche",
+      "paragraphs": [
+        "Alcune lesioni precoci si rimuovono localmente, altre richiedono chirurgia e spesso linfonodi vicini. La stomia, apertura intestinale sull'addome, è talvolta temporanea o permanente. Chemioterapia può precedere o seguire chirurgia o curare diffusione. Radioterapia è rilevante in alcuni tumori rettali. Farmaci mirati e immunoterapia aiutano casi selezionati secondo caratteristiche e contesto. Discutere obiettivo, sequenza, benefici, danni e alternative con supporto alla scelta."
+      ]
+    },
+    {
+      "heading": "Recupero, sorveglianza e prevenzione",
+      "paragraphs": [
+        "Intestino, nutrizione, fatica, benessere sessuale ed emozioni possono richiedere aiuto. Stomaterapista e dietista offrono supporto pratico. Seguire controlli e riferire nuovi sintomi persistenti. Senza sintomi chiedere screening locale; familiarità o malattia infiammatoria richiedono talvolta altro percorso. Attività, niente fumo e dieta equilibrata sostengono salute senza garanzie o sostituzione dello screening. Non attendere inviti con sangue o cambiamenti preoccupanti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sintomi dopo test rassicurante — esempio ipotetico",
+      "text": "Una persona aveva screening negativo ma ora sangue e alvo modificato persistono. Torna dal medico senza ritenere il vecchio esito sufficiente. Il nuovo accertamento dipende dalla valutazione attuale."
+    },
+    {
+      "title": "Preparare la chirurgia — esempio ipotetico",
+      "text": "Una persona potrebbe necessitare stomia. Chiede se temporanea o permanente, incontra l'infermiere e discute recupero e supporto domestico. Il team spiega cosa può cambiare con i reperti operatori."
+    }
+  ],
+  "questions": [
+    "Cosa confermano i test e cosa manca da indagare?",
+    "Come sede, stadio e tessuto cambiano le opzioni?",
+    "Quali aiuti, controlli e consigli familiari o di screening mi servono?"
+  ]
+}

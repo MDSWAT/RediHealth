@@ -1,0 +1,51 @@
+{
+  "title": "Myku i këmbës: trajtimi i infeksionit dhe pakësimi i rikthimit",
+  "intro": "Myku i këmbës, i quajtur edhe këmba e atletit, është infeksion kërpudhor i lëkurës së këmbëve dhe nuk prek vetëm sportistët. Mund të shkaktojë kruarje, luspa dhe çarje, shpesh mes gishtave, por edhe në shputa ose anët e këmbës. Gjendje të tjera të lëkurës mund të ngjajnë me të. Kujdesi efektiv bashkon diagnozën dhe trajtimin e duhur me vëmendjen ndaj lagështisë dhe përhapjes së kërpudhës.",
+  "sections": [
+    {
+      "heading": "Dallo simptomat pa quajtur çdo skuqje infeksion kërpudhor",
+      "paragraphs": [
+        "Lëkura mund të zhvishet, të duket e bardhë e lagësht mes gishtave ose e thatë me luspa diku tjetër. Mund të ketë flluska të vogla ose dhimbje. Ndryshimet e ngjyrës mund të jenë më pak të dukshme në lëkurë të errët. Ekzema, alergjia e kontaktit dhe probleme të tjera mund të ngjajnë me mykun. Nëse pamja është e pazakontë, simptomat rikthehen ose trajtimi dështon, kërko vlerësim në vend që të ndërrosh vazhdimisht produkte. Kur diagnoza është e pasigurt, mjeku mund ta ekzaminojë lëkurën ose të marrë mostër."
+      ]
+    },
+    {
+      "heading": "Zgjidh trajtimin sipas personit dhe zonës",
+      "paragraphs": [
+        "Ka kremra, sprej dhe preparate të tjera kundër kërpudhave, por përshtatshmëria dhe udhëzimet ndryshojnë. Farmacisti ose mjeku mund të këshillojë, sidomos për fëmijë, shtatzëni, sëmundje ose barna të tjera. Ndiq kohëzgjatjen e rekomanduar, jo ta ndalosh vetëm nga pakësimi i kruarjes ose të vendosësh më shumë për shpejtësi. Mos përdor trajtimin e dikujt tjetër. Ndryshimet e thonjve mund të kërkojnë vlerësim veçmas, sepse trajtimi i lëkurës përreth nuk trajton automatikisht infeksionin e thoit."
+      ]
+    },
+    {
+      "heading": "Shmang trajtimet që mund ta fshehin problemin",
+      "paragraphs": [
+        "Një krem vetëm me kortikosteroid mund të fshehë ose përkeqësojë disa infeksione kërpudhore edhe nëse kruarja ose skuqja lehtësohen përkohësisht. Mos merr hua kortikosteroid dhe mos përdor produkte të kombinuara pa këshillë të përshtatshme. Kimikatet e forta, zbardhuesi dhe gërvishtja agresive mund të dëmtojnë lëkurën dhe nuk janë zgjidhje të shpejta të sigurta. Trego çfarë ke provuar dhe nëse zona është bërë më e dhimbshme ose e irrituar. Kjo ndihmon dallimin e infeksionit nga irritimi ose diagnoza e pasaktë."
+      ]
+    },
+    {
+      "heading": "Bëje praktik kontrollin e lagështisë dhe higjienën",
+      "paragraphs": [
+        "Thaji këmbët me kujdes pas larjes, edhe mes gishtave, dhe ndërro çorapet e lagura. Lëri këpucët të thahen dhe zgjidh të përshtatshme për aktivitetin pa i mbajtur këmbët vazhdimisht të lagështa. Mos ndaj këpucë ose peshqirë dhe përdor këpucë të përshtatshme në dhoma të përbashkëta ndërrimi. Masat kufizojnë ekspozimin dhe rikthimin, por nuk zëvendësojnë trajtimin e nevojshëm. Diskuto përsëritjen nëse çizmet e punës, djersitja ose mundësia e kufizuar për larje e bëjnë këshillën të vështirë."
+      ]
+    },
+    {
+      "heading": "Dije kur të kërkosh ndihmë më herët",
+      "paragraphs": [
+        "Kërko këshillë nëse simptomat përhapen, vazhdojnë pas trajtimit të rekomanduar, prekin thonjtë ose përsëriten. Diabeti, qarkullimi i dobët, ndjeshmëria e ulur ose imuniteti i dobësuar kërkojnë kujdes të veçantë për këmbët. Këmba e nxehtë, gjithnjë më e dhimbshme ose e ënjtur, inflamacioni që përhapet, plaga ose temperatura kërkojnë vlerësim të shpejtë, jo trajtim si myk i zakonshëm. Mbro lëkurën e çarë dhe mos e prit ose gërmo. Pyet çfarë ndjekjeje duhet nëse diagnoza mbetet e paqartë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: rivlerësimi i trajtimeve të pasuksesshme",
+      "text": "Dikush ka kruarje dhe zhveshje të lëkurës pavarësisht disa produkteve farmaceutike. I sjell emrat dhe shpjegon përdorimin në takim. Pyet nëse duhet konfirmuar diagnoza, në vend që të supozojë se një produkt më i fortë ose krem me kortikosteroid do ta zgjidhë problemin."
+    },
+    {
+      "title": "Shembull hipotetik: dallimi i rrezikut më të lartë",
+      "text": "Një person me diabet vëren çarje të dhimbshme dhe nxehtësi e ënjtje të re të këmbës. Kërkon vlerësim të shpejtë pa pritur që kremi kundër mykut të veprojë. Shpjegon diabetin dhe ndryshimin e fundit të simptomave."
+    }
+  ],
+  "questions": [
+    "A duket si infeksion kërpudhor apo do të ndihmonte mostër lëkure ose diagnozë tjetër?",
+    "Cili trajtim dhe kohëzgjatje përshtaten me lëkurën, sëmundjet dhe barnat e mia?",
+    "Cilat ndryshime sugjerojnë infeksion ose komplikim dhe si ta pakësoj realisht rikthimin?"
+  ]
+}

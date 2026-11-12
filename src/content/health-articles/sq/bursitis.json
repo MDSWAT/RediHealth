@@ -1,0 +1,51 @@
+{
+  "title": "Bursiti: ulja e irritimit dhe njohja e infeksionit",
+  "intro": "Bursat janë qese të vogla me lëng që ulin fërkimin mes indeve pranë nyjeve. Inflamacioni shkakton dhimbje, ndjeshmëri ose ënjtje. Mund të prekë shpatull, ijë, bërryl ose gju. Presioni i përsëritur, dëmtimi dhe disa sëmundje kontribuojnë, por bursa e infektuar kërkon kujdes tjetër. Jo çdo dhimbje ose ënjtje është bursit.",
+  "sections": [
+    {
+      "heading": "Përshkruani vendin dhe çfarë e provokon",
+      "paragraphs": [
+        "Tregoni vendin, fillimin dhe lëvizjet ose presionin që rëndojnë. Gjunjëzimi, mbështetja në bërryla ose aktivitet i ri i përsëritur mund të kenë rëndësi. Përmendni rënie, gërvishtje, shpim, procedurë, përdhes ose artrit inflamator. Bursa sipërfaqësore mund të fryhet, ndërsa e thella jep kryesisht dhimbje. Tendinat, artriti ose infeksioni artikular ngjajnë; mos diagnostikoni vetëm nga fotoja ose provokimi nga aktiviteti."
+      ]
+    },
+    {
+      "heading": "Kontrolloni herët zonën e nxehtë ose që përkeqësohet",
+      "paragraphs": [
+        "Nxehtësia në rritje, skuqja e përhapur, ndjeshmëria e fortë, temperatura, të dridhurat ose gjendja e keqe kërkojnë vlerësim të shpejtë, sidomos pas plage ose me diabet a imunitet të ulur. Skuqja mund të duket pak në lëkurë të errët; vlejnë ngrohtësia, ënjtja e gjendja. Dhimbja e fortë ose pamundësia e përdorimit duan urgjencë. Konfuzioni, kolapsi ose frymëmarrja seriozisht e vështirë emergjencë. Mos shponi, shtrydhni apo supozoni se diagnoza e njohur përjashton infeksionin."
+      ]
+    },
+    {
+      "heading": "Kuptoni ekzaminimin dhe testet e zgjedhura",
+      "paragraphs": [
+        "Mjeku shqyrton zonën, lëvizjen, lëkurën dhe shëndetin. Testet varen nga gjetjet; jo çdo rast do skanim. Ndonjëherë merret lëng për infeksion ose kristale, ose imazheria kërkon tjetër shkak. Pyetni çfarë ndryshon testi dhe nëse infeksioni është shqyrtuar para injeksionit. Sillni listë me antikoagulantë dhe barna imuniteti. Përsëritja ose përgjigjja e dobët kërkon rivlerësim, jo etiketë të pasigurt vazhdimisht."
+      ]
+    },
+    {
+      "heading": "Ulni presionin dhe bëjeni rikuperimin praktik",
+      "paragraphs": [
+        "Pas përjashtimit të infeksionit dhe dëmtimit serioz, ndryshoni përkohësisht aktivitetin ose presionin. Mbrojtëse, pozicion pune ose pushime mund të ndihmojnë. Kompresa e ftohtë me pëlhurë lehtëson; mbroni lëkurën dhe ndaloni në dhimbje nga i ftohti ose mpirje. Pyetni qetësues sipas shëndetit e barnave. Balanconi pushimin me lëvizjen e rekomanduar, jo palëvizshmëri pafund. Fizioterapia ndihmon ngarkesën e teknikën kur duhet."
+      ]
+    },
+    {
+      "heading": "Rishikoni trajtimin dhe përsëritjen",
+      "paragraphs": [
+        "Bursiti i infektuar mund të kërkojë antibiotikë dhe drenim mjekësor. Për disa jo të infektuar diskutohet injeksion sipas përfitimit e rrezikut; nuk vlen për çdo ënjtje. Kirurgjia është e pazakontë dhe varet nga vazhdimësia ose komplikacionet. Vendosni kontrollin, kthimin në punë ose sport dhe kontaktin e hershëm. Rikthimi mund të tregojë presion ende aktiv ose sëmundje tjetër. Vlerësoni dhimbje e funksion, jo premtim zhdukjeje në datë fikse."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: presioni në punë",
+      "text": "Punëtori ka ënjtje mbi kapakun pas gjunjëzimit të përsëritur. Pas kontrollit pa infeksion ose dëmtim të rëndësishëm diskuton mbrojtje, detyra e kthim gradual. Nuk e zbraz vetë për çdo turn."
+    },
+    {
+      "title": "Shembull hipotetik: nxehtësi e temperaturë",
+      "text": "Dikush me bursit të vjetër në bërryl ka dhimbje e ngrohtësi të shpejtë dhe temperaturë pas gërvishtjes. Kërkon kontroll e tregon plagën në vend të episodit të supozuar të thjeshtë dhe injeksionit tjetër steroid."
+    }
+  ],
+  "questions": [
+    "Është bursit dhe a mund të ketë infeksion, kristale ose problem tjetër?",
+    "Cilat ndryshime, qetësues ose teste i përshtaten vendit e shëndetit?",
+    "Ndihmon tjetër trajtim dhe çfarë kërkon kontroll më herët ose urgjencë?"
+  ]
+}

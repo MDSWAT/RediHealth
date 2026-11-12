@@ -1,0 +1,51 @@
+{
+  "title": "Boala cronică de rinichi: analizele și protejarea funcției renale",
+  "intro": "Boala cronică de rinichi înseamnă o anomalie persistentă a structurii ori funcției renale, în general de peste trei luni. La început poate fi fără simptome și nu duce automat la dializă. Analizele de sânge și urină identifică problema, riscul și evoluția. Tratamentul urmărește încetinirea progresiei, reducerea riscului cardiovascular și controlul complicațiilor, susținând viața zilnică.",
+  "sections": [
+    {
+      "heading": "Interpretați împreună sângele și urina",
+      "paragraphs": [
+        "Analiza de sânge estimează filtrarea, raportată ca eGFR. Este o estimare funcțională, nu un procent simplu de țesut renal rămas. Raportul albumină-creatinină urinară, ACR, caută pierderea proteinelor care poate indica leziune renală. Contează tendințele, repetarea și alte date, nu o singură valoare. Schimbarea bruscă poate însemna leziune renală acută și necesită alt răspuns. Întrebați ce este confirmat, dacă se repetă testele și ce înseamnă categoria de risc."
+      ]
+    },
+    {
+      "heading": "Identificați cauza dincolo de simptome",
+      "paragraphs": [
+        "Diabetul și hipertensiunea contribuie frecvent. Alte cauze sunt bolile inflamatorii ori ereditare, infecțiile repetate, blocarea urinei și unele medicamente. Evaluarea poate include istoricul, tensiunea, analize, ecografie ori investigații specializate. Mai târziu apar uneori oboseală, edeme, greață, mâncărime și lipsă de aer, dar au și alte explicații. Pot fi afectate hemograma, oasele și echilibrul sărurilor. Starea bună nu justifică oprirea monitorizării."
+      ]
+    },
+    {
+      "heading": "Medicamente și obiceiuri protectoare",
+      "paragraphs": [
+        "Stabiliți obiective individuale pentru tensiune și diabet, urmați tratamentul protector și discutați prevenția cardiovasculară. Unele doze necesită ajustare cu schimbarea filtrării și analize pentru efecte și potasiu. Aduceți toate rețetele, produsele fără rețetă și suplimentele. Ibuprofenul și naproxenul pot fi riscante, mai ales la deshidratare; întrebați înainte. Nu opriți singuri medicamente prescrise. Cereți plan scris pentru vărsături, diaree ori boală deshidratantă, inclusiv contactul și gestionarea tratamentelor."
+      ]
+    },
+    {
+      "heading": "Dieta și lichidele se adaptează analizelor",
+      "paragraphs": [
+        "Dieteticianul renal ajută cu sarea, alimentația și proteinele fără restricții inutile. Limitarea potasiului, fosfaților și lichidelor diferă după analize, stadiu și tratament. Unii înlocuitori de sare conțin potasiu: verificați înainte. Nu forțați multă apă pentru 'spălarea' rinichilor, nu limitați sever băuturile fără sfat și nu vă bazați pe detox. Mișcarea adaptată și renunțarea la fumat sprijină sănătatea. Cereți schimbări practice compatibile cu bugetul și mesele obișnuite."
+      ]
+    },
+    {
+      "heading": "Controale și opțiuni viitoare",
+      "paragraphs": [
+        "Frecvența controalelor și trimiterea la specialist depind de risc, viteză, cauză și complicații. Mulți rămân stabili mult timp. În boala avansată, discutați din timp dializa, transplantul când este potrivit și îngrijirea conservatoare completă. Alegerile țin de simptome, prognostic și priorități, nu doar de o valoare. Cereți sfat urgent pentru urină mult redusă, vărsături persistente ori umflare rapidă. Lipsa severă de aer, durerea toracică, prăbușirea ori confuzia nouă necesită ajutor de urgență."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Analiză neașteptată — exemplu ipotetic",
+      "text": "O persoană se simte bine, dar analiza renală este anormală. Cere valorile anterioare, albumina urinară și plan de confirmare a persistenței. Nu interpretează filtrarea ca procent exact de rinichi rămași."
+    },
+    {
+      "title": "Alegerea calmantului — exemplu ipotetic",
+      "text": "O persoană cu boală renală dorește antiinflamator fără rețetă în timpul unei boli cu vărsături. Cere farmacistului ori echipei plan sigur și recomandări pentru lichide, fără să presupună că produsul fără rețetă nu afectează rinichii."
+    }
+  ],
+  "questions": [
+    "Ce arată evoluția filtrării și albumina urinară despre cauză și risc?",
+    "Ce medicamente, schimbări alimentare și instrucțiuni în boală mi se potrivesc?",
+    "Când trebuie control ori specialist și ce simptome cer ajutor urgent?"
+  ]
+}

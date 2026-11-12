@@ -1,0 +1,51 @@
+{
+  "title": "Fibrilacioni atrial: simptomat, parandalimi i goditjes në tru dhe trajtimi",
+  "intro": "Fibrilacioni atrial, ose FA, është ritëm elektrik jonormal në dhomat e sipërme të zemrës që shpesh jep puls të parregullt. Mund të vijë e të shkojë ose të vazhdojë, dhe disa nuk vënë re simptoma. Kujdesi synon konfirmimin e ritmit, kontrollin e simptomave, trajtimin e gjendjeve kontribuuese dhe uljen e rrezikut të goditjes në tru. Ndjesia e një pulsi sërish të rregullt nuk zgjidh vetë çështjen e mbrojtjes nga goditja.",
+  "sections": [
+    {
+      "heading": "Dalloni kur palpitacionet kërkojnë ndihmë urgjente",
+      "paragraphs": [
+        "FA mund të shkaktojë rrahje të shpejta ose dridhje në gjoks, lodhje, mungesë fryme dhe tolerancë më të ulët ndaj ushtrimit. Pulsi i ri ose i përsëritur i parregullt kërkon vlerësim. Kërkoni ndihmë emergjente për palpitacione me dhimbje gjoksi, mungesë të rëndë fryme, të fikët ose gjendje shumë të keqe. Varja e papritur e fytyrës, dobësia e krahut ose vështirësia në të folur mund të jenë goditje në tru edhe kur kalojnë shpejt. Mos drejtoni vetë makinën. Episodi i lehtë nuk mat rrezikun e goditjes dhe mungesa e palpitacioneve nuk përjashton FA."
+      ]
+    },
+    {
+      "heading": "Konfirmoni ritmin dhe shqyrtoni problemet kontribuuese",
+      "paragraphs": [
+        "EKG regjistron aktivitetin elektrik të zemrës. Për episode të herëpashershme mund të duhet monitorim më i gjatë, sepse regjistrimi i shkurtër mund t'i humbasë. Alarmi i orës ose pulsi i parregullt janë arsye për këshillë, jo diagnozë përfundimtare. Përshkruani kohën e episodeve, simptomat, barnat dhe alkoolin. Analizat dhe ekokardiograma mund të shqyrtojnë tiroiden, strukturën e zemrës dhe çështje të tjera. Tensioni i lartë, apnea e gjumit dhe sëmundje të tjera ndikojnë planin e përgjithshëm."
+      ]
+    },
+    {
+      "heading": "Diskutoni veçmas parandalimin e goditjes në tru",
+      "paragraphs": [
+        "FA mund të lejojë formimin e mpiksjeve dhe mpiksja që arrin trurin mund të shkaktojë goditje. Mjeku vlerëson rrezikun nga mosha, goditja e mëparshme dhe sëmundje të tjera, bashkë me rrezikun e gjakderdhjes dhe përshtatshmërinë e barnave. Antikoagulantët mund të ulin rrezikun, por duhen përdorur sigurt dhe rishikuar. Aspirina nuk është zëvendësues i këmbyeshëm i antikoagulantit të përshkruar për FA. Mos filloni, ndaloni ose ndryshoni barin sipas ndjesisë së pulsit ose një llogaritjeje rreziku në shtëpi."
+      ]
+    },
+    {
+      "heading": "Krahasoni kontrollin e frekuencës me atë të ritmit",
+      "paragraphs": [
+        "Kontrolli i frekuencës ngadalëson rrahjet, ndërsa FA mund të vazhdojë. Kontrolli i ritmit synon rikthimin ose ruajtjen e ritmit më normal përmes barnave të zgjedhura, kardioversionit ose ablacionit me kateter. Zgjedhja varet nga simptomat, kohëzgjatja, shëndeti i zemrës dhe preferencat; disa kanë nevojë për më shumë se një qasje me kohën. Kardioversioni kërkon planifikim të kujdesshëm të rrezikut të mpiksjes dhe antikoagulimit. Pyetni për përfitimet, rikthimin, monitorimin dhe komplikimet. Procedura që përmirëson simptomat nuk heq automatikisht nevojën për parandalimin e goditjes."
+      ]
+    },
+    {
+      "heading": "Bini dakord për plan praktik afatgjatë",
+      "paragraphs": [
+        "Rishikoni barnat, efektet anësore dhe simptomat në kontrolle, përfshirë lodhjen e re, marramendjen ose kufizimin e aktivitetit. Pyetni çfarë bëni gjatë episodit tjetër dhe kur duhet ndihmë urgjente. Punoni me ekipin për tensionin, gjumin, duhanin, alkoolin dhe aktivitetin e përshtatshëm. Rikthimi gradual te niveli i rënë dakord ndihmon shëndetin; vazhdimi përmes dhimbjes së gjoksit ose mungesës së rëndë të frymës është i pasigurt. Mbani ditar nëse ndihmon, por shmangni kontrollet e pandërprera që shtojnë ankthin. Trajtimi dhe vlerësimi i rrezikut ndryshojnë me shëndetin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: alarm pa simptoma",
+      "text": "Ora sinjalizon vazhdimisht ritëm të parregullt te dikush që ndihet mirë. Ai organizon vlerësim dhe merr regjistrimet. Mjeku konfirmon ritmin me testimin e duhur dhe diskuton goditjen në tru, pa e shpërfillur gjetjen vetëm sepse nuk ka palpitacione."
+    },
+    {
+      "title": "Shembull hipotetik: më mirë pas kardioversionit",
+      "text": "Pas kardioversionit pacienti ndien puls të rregullt dhe mendon të ndalojë antikoagulantin. Ndjek recetën ekzistuese dhe kërkon rishikim nga kardiologjia, pa supozuar se përmirësimi i simptomave zhduk rrezikun e mpiksjes."
+    }
+  ],
+  "questions": [
+    "A është konfirmuar FA dhe a duhen monitorim më i gjatë ose vlerësim i gjendjeve kontribuuese?",
+    "Cili është rreziku im për goditje në tru dhe si vlejnë për mua përfitimet dhe gjakderdhja nga antikoagulimi?",
+    "Pse rekomandoni këtë qasje të frekuencës ose ritmit dhe cili është plani për episod tjetër?"
+  ]
+}

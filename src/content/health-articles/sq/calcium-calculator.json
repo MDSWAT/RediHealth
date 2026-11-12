@@ -1,0 +1,51 @@
+{
+  "title": "Vlerësimi i kalciumit: etiketat dhe përdorimi i arsyeshëm",
+  "intro": "Vlerësimi i kalciumit nga ushqimi ndihmon të rriturin të kuptojë dietën dhe ndryshimet. Është i përafërt: porcionet, markat dhe ditët ndryshojnë. Nuk është diagnozë mangësie, test densiteti kockor ose recetë automatike shtese. Fëmijët, shtatzënia, gjidhënia dhe sëmundjet duan këshillë personale, jo kopjim të një vlerësimi për të rritur.",
+  "sections": [
+    {
+      "heading": "Regjistroni ushqimin dhe porcionin real",
+      "paragraphs": [
+        "Përfshini ditë përfaqësuese, jo vetëm ditën ideale. Shënoni pije, bulmet, alternativa të fortifikuara, burime të tjera dhe shtesa ekzistuese. Kontrolloni nëse etiketa jep për porcion, peshë ose vëllim dhe krahasojeni me konsumimin. Mos numëroni dy herë të njëjtin ushqim në vakt. Për përqindje reference, sqaroni bazën para se ta quani nevojë personale."
+      ]
+    },
+    {
+      "heading": "Zgjidhni referencën e duhur",
+      "paragraphs": [
+        "Kalciumi mbështet kockat, dhëmbët dhe funksione të tjera. Rekomandimet janë popullative dhe ndryshojnë nga mosha, faza dhe autoriteti kombëtar. Pyetni çfarë vlen, sidomos me osteoporozë, veshka ose dietë të kufizuar. Kufiri i sipërm është kufi sigurie, jo objektiv. Një ditë më pak nuk provon mangësi dhe teprica e përsëritur nuk forcon me siguri kockat."
+      ]
+    },
+    {
+      "heading": "Shqyrtoni burimet dhe përthithjen",
+      "paragraphs": [
+        "Bulmeti, pijet bimore me kalcium, disa tofu, perime të gjelbra dhe peshku me hala të ngrënshme kontribuojnë. Kontrolloni produktin: jo çdo pije ose tofu ka shtesë. Kalciumi i spinaqit përthithet më pak nga përbërës të tjerë. Vitamina D ndihmon por nuk justifikon doza të larta pa këshillë. Me shmangie bulmeti ose dietë të kufizuar, dietologu gjen alternativa sipas shijes, kostos e nevojave."
+      ]
+    },
+    {
+      "heading": "Kontrolloni shtesat dhe barnat",
+      "paragraphs": [
+        "Shtesa mund të ndihmojë, por përfshijeni në total dhe lexoni kalciumin elementar. Pesha e përbërjes nuk është e njëjtë me kalciumin që jep. Teprica mund të sjellë efekte dhe gurë te disa persona. Kalciumi ndërhyn me zëvendësimin e tiroides ose disa antibiotikë: pyesni farmacistin produktin e kohën. Mos kopjoni orarin e tjetrit dhe mos ndaloni vetë terapi."
+      ]
+    },
+    {
+      "heading": "Përdoreni për bisedë, jo vendim për kockat",
+      "paragraphs": [
+        "Regjistrat kanë pasiguri dhe trupi kontrollon fort kalciumin në gjak; analiza nuk mat thjesht dietën. Kockat varen nga aktiviteti, duhani, hormonet, sëmundjet dhe barnat. Me rrezik frakture ose simptoma kërkoni vlerësim, jo vetëm totalin e llogaritësit. Vendosni ndryshime e kontroll. Me gurë veshkash ose analiza anormale merrni këshillë, jo heqje automatike ushqimesh apo shtesa të mëdha."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Etiketë e shpikur: porcioni",
+      "text": "Një etiketë fiktive jep 200 mg kalcium për porcion. Ngrënia e 2 porcioneve jep 400 mg. Shifrat shpjegojnë llogaritjen, jo nevojën ditore ose rekomandimin e produktit."
+    },
+    {
+      "title": "Shembull hipotetik: pije e fortifikuar",
+      "text": "I rrituri zëvendëson qumështin me pije bimore dhe regjistron porcionet. Kontrollon kalciumin e shtuar të markës dhe diskuton dietën e shtesën, jo supozim për të njëjtët ushqyes në çdo alternativë."
+    }
+  ],
+  "questions": [
+    "Cila referencë vlen për moshën, shëndetin dhe fazën time?",
+    "A sugjeron regjistri ndryshim të dobishëm dhe shtesë të përshtatshme?",
+    "Ndërhyn kalciumi me barnat dhe duhen kockat ose veshkat vlerësuar veçmas?"
+  ]
+}

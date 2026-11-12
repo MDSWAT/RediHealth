@@ -1,0 +1,51 @@
+{
+  "title": "Disidratazione: reintegrare liquidi e sapere quando chiedere aiuto",
+  "intro": "La disidratazione avviene quando il corpo perde più liquidi di quanti ne assuma. Vomito, diarrea, febbre, forte sudorazione o difficoltà ad avere bevande contribuiscono. Lattanti, anziani e persone dipendenti dall'assistenza peggiorano più rapidamente. Una perdita lieve può migliorare bevendo adeguatamente, ma disidratazione grave o sua causa richiedono cure mediche.",
+  "sections": [
+    {
+      "heading": "Notare i cambiamenti rispetto al solito",
+      "paragraphs": [
+        "Sete, bocca secca, mal di testa, stanchezza, vertigini e urine più rare o scure sono indizi. Nel lattante contano pannolini meno bagnati, alimentazione ridotta, poche lacrime o irritabilità insolita. L'anziano può avvertire poca sete. Nessun segno singolo, inclusi colore delle urine o pizzicotto cutaneo, stabilisce la gravità. I sintomi hanno altre cause. Considerare perdite, capacità di trattenere liquidi, vigilanza e accesso all'aiuto. Sete o minzione eccessiva nuova persistente richiedono controllo per cause come diabete, non semplicemente bere sempre più."
+      ]
+    },
+    {
+      "heading": "Quando bere a casa non basta",
+      "paragraphs": [
+        "Chiedere consiglio urgente se non si trattengono liquidi, l'urina cala molto, persistono capogiri alzandosi, cuore o respiro sono insolitamente rapidi o il bambino è sonnolento o mangia poco. Sospetta disidratazione nel lattante richiede aiuto tempestivo. Chiamare i soccorsi per confusione, difficile risveglio, collasso, grave difficoltà respiratoria o pelle fredda, blu, grigia o marezzata con malattia seria. Grave malattia da calore con coscienza alterata è un'emergenza. Non forzare bevande a chi è incosciente, troppo sonnolento per deglutire o respira con fatica. Restare vicino e seguire le istruzioni."
+      ]
+    },
+    {
+      "heading": "Reintegrare con il liquido giusto",
+      "paragraphs": [
+        "Alla persona vigile che deglutisce offrire piccoli sorsi frequenti, specie con nausea, aumentando gradualmente secondo tolleranza. Con vomito o diarrea importanti il farmacista può consigliare soluzione reidratante orale per acqua e sali insieme. Mescolare ogni bustina nell'esatta quantità d'acqua sicura indicata, senza polvere extra, sale, zucchero o succo. I prodotti non si preparano tutti allo stesso modo. Bevande molto zuccherate peggiorano la diarrea; una bevanda sportiva non equivale automaticamente a soluzione medica. Continuare l'allattamento, non diluire il latte artificiale e chiedere istruzioni adatte all'età."
+      ]
+    },
+    {
+      "heading": "Alcune condizioni richiedono un piano adattato",
+      "paragraphs": [
+        "Con scompenso cardiaco, malattia renale avanzata o restrizione dei liquidi chiedere consiglio individuale durante vomito, diarrea o caldo senza forzare grandi volumi. Le soluzioni contengono sali da considerare. Diuretici e altri farmaci influenzano equilibrio idrico e sicurezza renale durante la malattia. Chiedere un piano specifico: quale farmaco eventualmente sospendere e quando riprenderlo; non fermare tutto da soli. Il medico può controllare pressione, sali, funzione renale o glicemia. Casi gravi possono richiedere liquidi attentamente monitorati in vena o tramite altra via assistita."
+      ]
+    },
+    {
+      "heading": "Prevenire con sostegno pratico",
+      "paragraphs": [
+        "Tenere bevande adatte a portata e offrirle ai pasti e tra attività. Tazza preferita, promemoria, aiuto per sollevarla e accesso al bagno possono contare più del ripetere di bere. I disturbi della deglutizione richiedono consistenza sicura valutata e assistenza, non liquidi sottili forzati. Col caldo ridurre sforzi, cercare fresco e programmare pause. Seguire il ritorno di vigilanza, capacità di bere e minzione abituale; il peggioramento richiede rivalutazione. Vomito, diarrea o difficoltà a deglutire persistenti o mancanza di acqua sicura richiedono un piano per la causa oltre alle perdite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: piccole quantità e osservazione",
+      "text": "Un bambino con infezione intestinale vomita dopo aver bevuto molto. Il medico consiglia soluzione adatta in piccole quantità frequenti e spiega gli allarmi. Il genitore continua il piano alimentare e chiede aiuto con meno pannolini bagnati o sonnolenza insolita."
+    },
+    {
+      "title": "Esempio ipotetico: la restrizione cambia il consiglio",
+      "text": "Durante un'ondata di caldo un anziano con scompenso ha vertigini assumendo un diuretico. Chi lo assiste contatta l'équipe per valutazione e piano specifico di liquidi e farmaci invece di acqua illimitata o sospendere tutto."
+    }
+  ],
+  "questions": [
+    "Si gestisce bevendo o serve valutazione adesso?",
+    "Quale soluzione e alimentazione sono adatte all'età e alla condizione?",
+    "Farmaci o restrizione dei liquidi richiedono un piano per la malattia?"
+  ]
+}

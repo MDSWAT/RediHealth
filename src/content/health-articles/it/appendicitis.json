@@ -1,0 +1,51 @@
+{
+  "title": "Appendicite: valutazione urgente e scelte terapeutiche",
+  "intro": "L'appendicite è un'infiammazione dell'appendice, una piccola struttura collegata all'intestino. Può peggiorare e causare gravi complicazioni, perciò un sospetto richiede valutazione medica urgente. Il solo dolore addominale non conferma la causa e non tutti hanno il tipico spostamento del dolore in basso a destra. L'articolo spiega valutazione e decisioni, non un metodo per diagnosticare o curare il problema a casa.",
+  "sections": [
+    {
+      "heading": "Riconoscere il dolore preoccupante senza aspettare lo schema classico",
+      "paragraphs": [
+        "Il dolore può iniziare al centro dell'addome e diventare poi più evidente in basso a destra. Possono accompagnarlo nausea, vomito, perdita di appetito o febbre. Bambini, anziani e persone incinte possono avere sintomi meno tipici. Dolore persistente o crescente richiede valutazione tempestiva anche senza febbre. Dolore intenso, svenimento, confusione, difficoltà respiratoria o rapido peggioramento richiedono soccorso d'emergenza. Non premere ripetutamente l'addome e non usare test di movimento online per escluderla."
+      ]
+    },
+    {
+      "heading": "Fornire le informazioni che cambiano la valutazione",
+      "paragraphs": [
+        "Descrivi inizio e andamento del dolore, vomito, sintomi intestinali o urinari, medicinali e precedenti operazioni. Segnala gravidanza o sua possibilità. Vanno considerate altre cause, comprese condizioni urinarie, intestinali e gravidanza extrauterina. Non presumere che una precedente indigestione spieghi un nuovo disturbo. Porta l'elenco dei medicinali se disponibile, senza ritardare cure urgenti per raccogliere documenti."
+      ]
+    },
+    {
+      "heading": "Comprendere esami e osservazione",
+      "paragraphs": [
+        "Il team può visitare l'addome e usare analisi del sangue, urine e immagini come ecografia o tomografia computerizzata. La scelta dipende dalla situazione, inclusa la gravidanza. Nessun sintomo o esame risolve tutti i casi incerti: possono servire visite ripetute o osservazione. Chiedi cosa suggeriscano i risultati e il piano se resta incertezza. Se torni a casa dopo la valutazione, assicurati di capire quando e dove rientrare."
+      ]
+    },
+    {
+      "heading": "Discutere il trattamento nel contesto ospedaliero",
+      "paragraphs": [
+        "L'asportazione dell'appendice è un trattamento comune, con tecnica laparoscopica o chirurgia aperta. Antibiotici e altre strategie possono essere considerati in situazioni selezionate secondo risultati e complicazioni. Gli antibiotici non sostituiscono la valutazione con una cura domestica: i sintomi possono persistere o tornare e può comunque servire un intervento. Chiedi perché l'approccio sia appropriato, rischi, alternative e cosa cambierebbe la decisione. Segui le indicazioni del team su cibo, bevande e medicinali."
+      ]
+    },
+    {
+      "heading": "Conoscere il recupero e i segnali di complicazione",
+      "paragraphs": [
+        "Il recupero dipende dalla procedura, dall'eventuale perforazione e da altri fattori di salute. Ottieni indicazioni chiare su ferita, farmaci, attività, controlli e contatti. Dolore addominale crescente, febbre, vomito ripetuto, impossibilità di trattenere liquidi o cambiamenti preoccupanti della ferita richiedono consiglio medico. Grave malessere o collasso richiedono soccorso d'emergenza. Un breve miglioramento non dimostra sempre la risoluzione di un problema addominale non trattato, soprattutto se il dolore ritorna o si diffonde."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: considerare seriamente sintomi atipici",
+      "text": "Un bambino ha dolore addominale crescente e non mangia, ma non indica la parte inferiore destra. Chi lo assiste chiede valutazione tempestiva e descrive cambiamenti di comportamento e sintomi. Non aspetta che il dolore corrisponda a un disegno prima di chiedere aiuto."
+    },
+    {
+      "title": "Esempio ipotetico: chiarire una scelta terapeutica",
+      "text": "Un paziente riceve un piano ospedaliero e chiede perché siano raccomandati intervento o antibiotici nel suo caso. Chiede possibilità di recidiva e segnali per rivalutazione, invece di prendere antibiotici in prestito e tentare lo stesso approccio a casa."
+    }
+  ],
+  "questions": [
+    "Quali risultati sostengono l'appendicite e quali altre cause vengono considerate?",
+    "Perché questo trattamento è raccomandato per me e quali rischi e alternative presenta?",
+    "Come dovrebbe procedere il recupero e quali cambiamenti richiedono un ritorno urgente?"
+  ]
+}

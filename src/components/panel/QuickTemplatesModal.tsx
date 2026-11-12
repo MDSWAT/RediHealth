@@ -6,6 +6,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { REQUEST_LANG_HEADER } from "@/lib/i18n/routing";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
 import { usePanelRuntime } from "./PanelRuntime";
+import { helpReplyContent, type ReplyTemplateId } from "@/lib/i18n/email-translations";
 
 interface QuickTemplatesModalProps {
   request: MedicalHelpRequestItem;
@@ -15,12 +16,24 @@ interface QuickTemplatesModalProps {
 export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalProps) {
   const { lang } = useLanguage();
   const { request: fetch } = usePanelRuntime();
-  // Greeting line: "Bună, Maria," or just "Bună," when the name is missing.
-  const greet = (hello: string, name: string) => (name ? `${hello}, ${name},` : `${hello},`);
-  // Quote the start of the request; add an ellipsis only when the text was actually cut.
-  // A full stop follows the closing quote, so a trailing one inside the quote is dropped (never two full stops).
-  const excerpt = (text: string) => (text.length > 100 ? `${text.slice(0, 100).trimEnd()}…` : text.trim().replace(/\.+$/, ""));
   const ui = {
+  ru: {
+      title: "Шаблоны электронных писем",
+      subtitle: "Готовые сообщения для",
+      email: "Email",
+      call: "Позвонить",
+      sendErr: "Не удалось отправить письмо.",
+      sendEmail: "Отправить письмо",
+      sending: "Отправка...",
+      sent: "Отправлено",
+      copied: "Скопировано",
+      copyBody: "Копировать текст",
+      close: "Закрыть",
+      t1: "Мы получили ваш запрос",
+      t2: "Предложите позвонить или посетить",
+      t3: "Куда обратиться за уходом",
+    },
+
     en: {
       title: "Email templates",
       subtitle: "Ready messages for",
@@ -119,77 +132,11 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
     },
   }[lang];
 
-  const templates = [
-    {
-      id: "acknowledgment",
-      title: ui.t1,
-      body: (req: MedicalHelpRequestItem) => {
-        const name = req.full_name?.trim() || "";
-        if (lang === "ro") {
-          return `${greet("Bună", name)}\n\nAm primit mesajul tău: „${excerpt(req.description)}”. Un coleg din echipă îl citește acum și te sună în curând la ${req.phone}.\n\nToate cele bune,\nEchipa RediHealth`;
-        }
-        if (lang === "sq") {
-          return `${greet("Përshëndetje", name)}\n\nE morëm mesazhin tënd: "${excerpt(req.description)}". Një koleg nga ekipi po e lexon dhe do të të telefonojë së shpejti në ${req.phone}.\n\nMe respekt,\nEkipi RediHealth`;
-        }
-        if (lang === "it") {
-          return `${greet("Ciao", name)}\n\nAbbiamo ricevuto il tuo messaggio: «${excerpt(req.description)}». Un operatore lo sta leggendo e ti chiamerà presto al numero ${req.phone}.\n\nUn saluto,\nIl team RediHealth`;
-        }
-        if (lang === "hr") {
-          return `${greet("Pozdrav", name)}\n\nPrimili smo tvoju poruku: „${excerpt(req.description)}”. Član našeg tima sada je čita i uskoro će te nazvati na broj ${req.phone}.\n\nSrdačan pozdrav,\nRediHealth tim`;
-        }
-        if (lang === "rom") {
-          return `${greet("Mishto avilyan", name)}\n\nLiyam cho mesazho: „${excerpt(req.description)}”. Ekh manush katar amari ekipa drabarel les akana thaj sigo ka akharel tut pe ${req.phone}.\n\nSastipnasa,\nI ekipa RediHealth`;
-        }
-        return `${greet("Hello", name)}\n\nWe got your message: "${excerpt(req.description)}". Someone from our team is reading it now and will call you soon at ${req.phone}.\n\nBest wishes,\nThe RediHealth team`;
-      },
-    },
-    {
-      id: "consultation",
-      title: ui.t2,
-      body: (req: MedicalHelpRequestItem) => {
-        const name = req.full_name?.trim() || "";
-        if (lang === "ro") {
-          return `${greet("Bună", name)}\n\nÎți mulțumim că ne-ai scris. Putem să te sunăm pentru o discuție scurtă sau să-ți spunem unde e cel mai apropiat medic. Scrie-ne când poți vorbi.\n\nTelefonul tău: ${req.phone}\n\nToate cele bune,\nEchipa RediHealth`;
-        }
-        if (lang === "sq") {
-          return `${greet("Përshëndetje", name)}\n\nFaleminderit që na shkrove. Mund të të telefonojmë për një bisedë të shkurtër ose të të tregojmë mjekun më të afërt. Na shkruaj kur mund të flasësh.\n\nTelefoni yt: ${req.phone}\n\nMe respekt,\nEkipi RediHealth`;
-        }
-        if (lang === "it") {
-          return `${greet("Ciao", name)}\n\nGrazie per averci scritto. Possiamo chiamarti per parlare un momento o dirti dov'è il medico più vicino. Scrivici quando puoi parlare.\n\nIl tuo telefono: ${req.phone}\n\nUn saluto,\nIl team RediHealth`;
-        }
-        if (lang === "hr") {
-          return `${greet("Pozdrav", name)}\n\nHvala što si nam se javio. Možemo te nazvati na kratak razgovor ili ti reći gdje je najbliži obiteljski liječnik. Javi nam kada možeš razgovarati.\n\nTvoj telefon: ${req.phone}\n\nSrdačan pozdrav,\nRediHealth tim`;
-        }
-        if (lang === "rom") {
-          return `${greet("Mishto avilyan", name)}\n\nNais tuke ke lekhardyan amenge. Shaj te akharas tut vash ekh kharno vakerimos vay te phenas tuke kaj si o may pashutno doktori. Lekhar amenge kana shaj te des duma.\n\nCho telefono: ${req.phone}\n\nSastipnasa,\nI ekipa RediHealth`;
-        }
-        return `${greet("Hello", name)}\n\nThank you for writing to us. We can call you for a short talk, or tell you where the nearest doctor is. Let us know when you can talk.\n\nYour phone: ${req.phone}\n\nBest wishes,\nThe RediHealth team`;
-      },
-    },
-    {
-      id: "referral",
-      title: ui.t3,
-      body: (req: MedicalHelpRequestItem) => {
-        const name = req.full_name?.trim() || "";
-        if (lang === "ro") {
-          return `${greet("Bună", name)}\n\nPentru ce ne-ai scris, cel mai bine este să mergi la medicul de familie sau la clinica din zona ta. Găsești clinici și farmacii aproape de tine pe harta noastră: https://redihealth.org/find-help.\n\nToate cele bune,\nEchipa RediHealth`;
-        }
-        if (lang === "sq") {
-          return `${greet("Përshëndetje", name)}\n\nPër atë që na shkrove, më mirë shko te mjeku i familjes ose te klinika në zonën tënde. Klinika dhe farmaci afër teje gjen në hartën tonë: https://redihealth.org/find-help.\n\nMe respekt,\nEkipi RediHealth`;
-        }
-        if (lang === "it") {
-          return `${greet("Ciao", name)}\n\nPer quello che ci hai scritto, la cosa migliore è andare dal tuo medico di base o da una clinica della tua zona. Trovi cliniche e farmacie vicino a te sulla nostra mappa: https://redihealth.org/find-help.\n\nUn saluto,\nIl team RediHealth`;
-        }
-        if (lang === "hr") {
-          return `${greet("Pozdrav", name)}\n\nZa ono o čemu si nam pisao najbolje je javiti se svom obiteljskom liječniku ili ambulanti u blizini. Klinike i ljekarne blizu tebe možeš pronaći na našoj karti: https://redihealth.org/find-help.\n\nSrdačan pozdrav,\nRediHealth tim`;
-        }
-        if (lang === "rom") {
-          return `${greet("Mishto avilyan", name)}\n\nVash kodya so lekhardyan amenge, may mishto si te zhas ko cho familijako doktori vay ki klinika and-i chi zona. Arakhes klinike thaj farmaciye pasha tute pe amari mapa: https://redihealth.org/find-help.\n\nSastipnasa,\nI ekipa RediHealth`;
-        }
-        return `${greet("Hello", name)}\n\nFor what you wrote to us, it is best to see your family doctor or a local clinic. You can find clinics and pharmacies near you on our map: https://redihealth.org/find-help.\n\nBest wishes,\nThe RediHealth team`;
-      },
-    },
-  ];
+  const templates = ([
+    {id: "acknowledgment", title: ui.t1},
+    {id: "consultation", title: ui.t2},
+    {id: "referral", title: ui.t3},
+  ] satisfies {id: ReplyTemplateId; title: string}[]).map(template => ({...template, body: (req: MedicalHelpRequestItem) => helpReplyContent({templateId: template.id, name: req.full_name ?? "", phone: req.phone, description: req.description, lang}).text}));
 
   const titleId = useId();
   const closeRef = useRef<HTMLButtonElement>(null);

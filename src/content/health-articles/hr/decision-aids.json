@@ -1,0 +1,51 @@
+{
+  "title": "Pomagala za odluku: priprema zdravstvenog izbora",
+  "intro": "Neke zdravstvene odluke imaju više razumnih mogućnosti. Pomagalo za pacijenta objašnjava određeni izbor, uspoređuje koristi i štete te pomaže razmotriti što vam je važno. Podupire razgovor s liječnikom umjesto odlučivanja za vas. Opći vodič uređuje misli, ali ne sadrži nužno dokaze potrebne za određeni izbor liječenja.",
+  "sections": [
+    {
+      "heading": "Razjasnite stvarnu odluku",
+      "paragraphs": [
+        "Pitajte koji se problem rješava i koje su mogućnosti medicinski prikladne za vas. Odluka o probiru razlikuje se od obrade simptoma, a planirano liječenje od hitnosti. Pitajte koliko brzo treba odlučiti i ima li vremena za čitanje, nove upite ili drugo mišljenje. Kada je primjereno, uz zahvat razmotrite praćenje, nastavak sadašnjeg plana ili bez liječenja. To ne znači da su sve mogućnosti jednako sigurne ili da hitna skrb čeka upitnik. Razjasnite što se može dogoditi tijekom čekanja."
+      ]
+    },
+    {
+      "heading": "Provjerite pouzdanost i relevantnost",
+      "paragraphs": [
+        "Pogledajte autora, datum ažuriranja, dokaze te financiranje ili sukobe interesa. Korisno pomagalo pošteno predstavlja značajne alternative, neizvjesnosti i praktične posljedice umjesto reklame za proizvod. Provjerite dijagnozu, dob i fazu skrbi. Cijene, dostupnost i službe druge zemlje možda ne vrijede za vas. Osobno svjedočanstvo opisuje jedno iskustvo, a ne učestalost ishoda. Zamolite liječnika da pojasni pojmove i kako opće istraživanje vrijedi za vaše zdravlje."
+      ]
+    },
+    {
+      "heading": "Usporedite ishode u istom okviru",
+      "paragraphs": [
+        "Pitajte koliko ljudi ima korist ili štetu u skupinama iste veličine kroz isto vrijeme. Tvrdnja da se rizik prepolovi nepotpuna je bez početnog rizika i stvarne promjene. Jednostavne slike ili tablice mogu pomoći. Razjasnite opisuje li broj ublažavanje simptoma, izbjegavanje ozbiljnog događaja ili samo test: to su različiti ishodi. Skupna procjena ne predviđa točno pojedinca. Razgovarajte o neizvjesnosti, rijetkim teškim štetama, oporavku i potrebi daljnjeg liječenja, ne samo istaknutoj uspješnosti."
+      ]
+    },
+    {
+      "heading": "Uključite prioritete i potrebe pristupa",
+      "paragraphs": [
+        "Recite što dobar ishod znači u svakodnevici: manje boli, jasniji vid, neovisnost, očuvana plodnost ili izbjegavanje zahtjevnog rasporeda. Putovanje, cijena, briga za druge i upravljanje lijekovima utječu na izvedivost. Možete tražiti tumača, jednostavan jezik, pristupačan oblik ili osobu od povjerenja. Podrška treba pomoći izraziti vaše želje, ne zamijeniti ih tuđima. Ako želite liječničku preporuku, recite i pitajte zašto odgovara prioritetima. Ne morate razumjeti svaku statistiku da biste smjeli pitati."
+      ]
+    },
+    {
+      "heading": "Otiđite s praktičnim planom i kontrolom",
+      "paragraphs": [
+        "Svojim riječima sažmite što ste razumjeli i zatražite ispravak nesporazuma. Dogovorite izbor, idući korak, odgovornu osobu, vjerojatno vrijeme i postupak pri promjeni okolnosti. Zapišite otvorena pitanja i zatražite kopiju plana. Pomagalo ne jamči dobar ishod; promjena mišljenja može tražiti nov razgovor o još mogućem. Ako ste nesigurni, recite koje informacije ili podrška nedostaju. Ne prekidajte propisanu terapiju i ne odgađajte žurnu procjenu zbog samostalnog istraživanja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: konkretan cilj",
+      "text": "Mira razgovara o liječenju mrene. Umjesto samo želje za boljim vidom, kaže da blještanje onemogućuje siguran večernji rad. Pita kako mogućnosti utječu na cilj, što oporavak traži i koje druge očne bolesti ograničavaju poboljšanje."
+    },
+    {
+      "title": "Zamišljeni primjer: apsolutni brojevi",
+      "text": "Letak kaže da liječenje prepolovi budući rizik. Arben pita koliko bi ljudi imalo problem s liječenjem i bez njega kroz isto vrijeme te koje su nuspojave. Liječnik daje jednostavnu usporedbu i razmatra odgovaraju li procjene njegovu stanju."
+    }
+  ],
+  "questions": [
+    "Koje razumne mogućnosti imam, uključujući čekanje ili nastavak plana?",
+    "Koje su koristi, štete i neizvjesnosti vjerojatne za nekoga poput mene?",
+    "Koliko imam vremena i koja podrška pomaže odlučiti?"
+  ]
+}

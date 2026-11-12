@@ -1,0 +1,51 @@
+{
+  "title": "Diabetul și picioarele: prevenirea rănilor și intervenția timpurie",
+  "intro": "Diabetul poate afecta nervii și circulația picioarelor. O bășică poate fi nedureroasă, dar poate deveni rană gravă; durerea nu este un indicator sigur al protecției. Inspecția zilnică, încălțămintea potrivită, evaluarea profesională și reacția rapidă la modificări se completează. După un ulcer, prevenția rămâne deosebit de importantă chiar după vindecare.",
+  "sections": [
+    {
+      "heading": "Cunoașteți riscul individual",
+      "paragraphs": [
+        "Pierderea sensibilității protectoare ascunde presiunea, frecarea și căldura. Circulația redusă încetinește vindecarea, iar deformările concentrează presiunea. Cereți echipei evaluarea sensibilității, circulației, pielii, unghiilor, încălțămintei și istoricului de ulcer ori amputație. Evaluarea completă este necesară de obicei cel puțin anual, cu monitorizare specializată mai frecventă la risc mare. Echipa trebuie să explice riscul și contactul pentru probleme noi. Controlul glicemiei, tensiunii, colesterolului și sprijinul pentru renunțarea la fumat ajută, dar valorile bune nu fac inofensivă o rană nouă."
+      ]
+    },
+    {
+      "heading": "Includeți inspecția în rutina zilnică",
+      "paragraphs": [
+        "La lumină bună, priviți fața, talpa, călcâiul și între degete: bășici, crăpături, leziuni, sânge, umflare ori modificări de culoare și căldură. Folosiți oglindă sau ajutorul unei persoane de încredere dacă nu vedeți ori nu ajungeți. Verificați pantofii pentru pietricele, căptușeală deteriorată sau obiecte. Spălați blând cu apă călduță, nu fierbinte; verificați sigur temperatura, nu cu piciorul amorțit, și evitați înmuierea prelungită. Uscați între degete. Hidratați pielea uscată, nu spațiile dintre degete. Cereți demonstrarea îngrijirii adaptate mobilității, vederii și locuinței."
+      ]
+    },
+    {
+      "heading": "Evitați presiunea, arsurile și tăieturile",
+      "paragraphs": [
+        "Purtați pantofi protectori potriviți și șosete curate inclusiv în casă; mersul desculț ori doar în șosete permite răni. Degetele trebuie să aibă loc, fără alunecare sau frecare. După purtarea scurtă a pantofilor noi, inspectați picioarele și opriți perechea care lasă semn ori bășică. Deformările și ulcerele anterioare pot necesita încălțăminte ori branțuri prescrise și controale ale potrivirii. Nu folosiți sticle fierbinți, perne electrice, lame, acizi ori plasturi medicamentoși pentru bătături. Cereți îngrijire profesională pentru calozități, unghii groase ori încarnate sau când nu vedeți, simțiți ori ajungeți sigur. Nu săpați la colțurile unghiilor și nu tăiați pielea îngroșată."
+      ]
+    },
+    {
+      "heading": "Modificările noi cer evaluare promptă, chiar fără durere",
+      "paragraphs": [
+        "Contactați echipa în aceeași zi pentru rană, bășică, secreție, urmă roșie persistentă ori picior neobișnuit de cald, roșu și umflat. Nu așteptați controlul obișnuit sau apariția durerii. Piciorul cald umflat poate însemna infecție ori artropatie Charcot acută, chiar cu piele intactă. Evitați sprijinul pe picior la suspiciune Charcot până la evaluarea urgentă și întrebați cum vă deplasați sigur. Piciorul brusc rece, palid ori albăstrui, țesutul negru, infecția rapid extinsă, febra cu rană, starea gravă ori confuzia cer urgență. Pe pielea închisă roșeața se vede uneori greu; contează și căldura, umflarea și schimbarea culorii."
+      ]
+    },
+    {
+      "heading": "Rana necesită plan, nu doar pansament",
+      "paragraphs": [
+        "Acoperiți pielea lezată cu pansament curat, reduceți presiunea și cereți sfat; nu spargeți bășicile și nu aplicați substanțe agresive ori remedii casnice. Specialistul poate evalua circulația, descărca presiunea prin dispozitiv potrivit, curăța rana și trata infecția prezentă. Antibioticele nu înlocuiesc descărcarea și evaluarea circulației și nu sunt necesare de rutină pentru ulcer neinfectat. Întrebați cât puteți călca, cine schimbă pansamentul și când se verifică rana. Stabiliți accesul în afara programului. Îngrijirea timpurie poate preveni complicații grave; prevenția continuă după vindecare deoarece recidiva este posibilă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: avertisment nedureros",
+      "text": "Dan vede sânge pe șosetă după pantofi noi, dar nu simte durere. Renunță la pantofi, inspectează piciorul, protejează pielea lezată și contactează echipa în acea zi. Lipsa durerii nu îl convinge că poate continua mersul în siguranță."
+    },
+    {
+      "title": "Exemplu ipotetic: inspecție accesibilă",
+      "text": "Ana nu se poate apleca să vadă călcâiele. Cu acordul ei, fiica ajută la verificarea zilnică și păstrează contactul urgent lângă medicamente. Medicul organizează îngrijirea profesională a unghiilor și controalele potrivite."
+    }
+  ],
+  "questions": [
+    "Ce risc am și cât de des trebuie evaluare profesională?",
+    "Ce încălțăminte și îngrijire sunt sigure pentru sensibilitatea și circulația mea?",
+    "Pe cine contactez astăzi sau în afara programului la o schimbare nouă?"
+  ]
+}

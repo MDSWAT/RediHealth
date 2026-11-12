@@ -1,0 +1,51 @@
+{
+  "title": "Alzheimer’s disease: assessment, daily support and planning ahead",
+  "intro": "Alzheimer’s disease is a progressive brain condition and a cause of dementia. Dementia describes difficulties with thinking that affect daily life, rather than ordinary occasional forgetfulness. Alzheimer’s can affect memory, language, judgement and independence. An assessment matters because other illnesses can cause similar problems, and useful treatment, practical support and future planning depend on the person's own situation.",
+  "sections": [
+    {
+      "heading": "Describe changes in everyday functioning",
+      "paragraphs": [
+        "Examples include repeatedly losing track of recent conversations, difficulty managing familiar tasks or getting lost in a known place. A single forgotten name does not establish dementia. Note changes over time, including sleep, mood, hearing and vision. With the person's agreement, someone who knows them well can offer observations at an appointment. Describe specific events respectfully rather than testing, arguing with or embarrassing the person at home."
+      ]
+    },
+    {
+      "heading": "Understand what assessment involves",
+      "paragraphs": [
+        "The clinician considers symptoms, medical history, medicines and the effect on daily activities. Cognitive assessment, blood tests or brain imaging may be useful; specialist tests are selected according to the case. Depression, medication effects and other medical problems may contribute and need attention. A brief memory score alone does not describe the whole person or determine every care decision. Ask how findings fit together and whether more than one condition may be present."
+      ]
+    },
+    {
+      "heading": "Discuss treatment goals and uncertainties",
+      "paragraphs": [
+        "Medicines such as donepezil or memantine may help some symptoms in appropriate patients, but do not cure the disease. Benefits and side effects need review. Some specialist treatments target the disease process in selected early cases and require strict assessment and monitoring; availability and eligibility differ between countries. Ask about realistic outcomes and serious risks rather than assuming every new medicine is suitable. Meaningful activities, communication support and attention to other illnesses also matter."
+      ]
+    },
+    {
+      "heading": "Adapt support while preserving participation",
+      "paragraphs": [
+        "A predictable routine, clear reminders and a manageable environment may help. Review safety around medicines, cooking, finances and getting out and about without automatically removing all choices. Ask about occupational therapy, local support and help for family carers. Discuss driving concerns with the appropriate professional and local rules. Future care preferences and decision-making arrangements are easier to discuss early, with the person's participation and appropriate local advice."
+      ]
+    },
+    {
+      "heading": "Recognise sudden changes and carer strain",
+      "paragraphs": [
+        "Sudden confusion, unusual drowsiness or rapid deterioration should not simply be labelled dementia progression. Infection, dehydration, medicines and other urgent problems can cause an acute change. Seek prompt medical assessment; stroke-like symptoms, collapse or severe illness require emergency help. Changes in behaviour may signal pain, fear or an unmet need rather than deliberate difficulty. Carers also need support, planned breaks and advice when safety becomes hard to maintain."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: preparing for an assessment",
+      "text": "Someone notices missed bills and repeated questions in a parent. With their agreement, they write down examples and attend an appointment together. They ask about possible causes, tests and support rather than deciding that a home memory quiz proves Alzheimer’s disease."
+    },
+    {
+      "title": "Hypothetical example: reacting to an abrupt change",
+      "text": "A person with established dementia becomes much more confused over a short period and unusually sleepy. Their carer seeks prompt medical assessment and reports the change from usual functioning. They do not wait for the next routine memory-clinic visit or assume a new stage has inevitably begun."
+    }
+  ],
+  "questions": [
+    "What findings support this diagnosis, and could other treatable problems be contributing?",
+    "What are the realistic benefits, risks and review arrangements for the proposed treatment?",
+    "Which practical support, safety changes and future-planning discussions are most useful now?"
+  ]
+}

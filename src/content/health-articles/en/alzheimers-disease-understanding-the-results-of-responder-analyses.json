@@ -1,0 +1,51 @@
+{
+  "title": "Alzheimer's research: reading responder results critically",
+  "intro": "A responder analysis counts how many study participants meet a defined outcome, rather than reporting only an average score. It can make research easier to discuss, but the word responder does not necessarily mean recovery or improvement. In Alzheimer's research the outcome may instead be avoiding a specified amount of worsening during follow-up. Always find out exactly what was counted before interpreting a headline.",
+  "sections": [
+    {
+      "heading": "Start with the definition, direction and time point",
+      "paragraphs": [
+        "Ask which measure was used, how response was defined and when it was assessed. A study might count improvement, stability or remaining below a worsening threshold; these are different outcomes. On measures such as CDR-SB, higher scores indicate more impairment, so the direction matters. The threshold needs a reason grounded in meaningful change, not merely a convenient number. A definition chosen in advance is generally easier to interpret than one selected after seeing which comparison looks favourable. Some analyses count people whose condition worsens; then fewer responders may favour treatment."
+      ]
+    },
+    {
+      "heading": "Read the comparison in absolute terms",
+      "paragraphs": [
+        "A response rate in the treated group alone does not show the treatment effect. People in the comparison group can also meet the definition because of variation, background care or the course of illness. Compare groups assessed over the same period with the same rule. Request counts or rates out of the same number of people and the absolute difference, as well as any relative figure. A large-sounding relative percentage can describe a modest absolute difference and is not an individual's guaranteed chance of benefit."
+      ]
+    },
+    {
+      "heading": "Keep group averages and individual changes separate",
+      "paragraphs": [
+        "An average difference describes groups, while a responder threshold classifies individual observations. A person just below the cutoff and someone just above it may have very similar experiences but fall into opposite categories. The analysis also hides how far each person changed. Ask to see the overall pattern and outcomes that matter in daily life, not only the responder label. Slower average decline does not mean that everyone improved, that disease stopped or that the same delay applies to every participant."
+      ]
+    },
+    {
+      "heading": "Check uncertainty and what happened to missing results",
+      "paragraphs": [
+        "Consider the number of participants, length of follow-up and uncertainty around the estimate. Results from a small or selected group may not apply broadly. Ask whether withdrawals and missing assessments were handled consistently, including people who stopped treatment because of side effects. Excluding those people can change the impression of benefit. Several exploratory analyses may produce an encouraging result by chance. Confidence intervals and consistency with the trial's main outcomes help show how firmly the finding is supported."
+      ]
+    },
+    {
+      "heading": "Bring the result back to a real treatment decision",
+      "paragraphs": [
+        "The original source uses Alzheimer's treatment research as an illustration; a statistical explanation is not a recommendation for a particular medicine. Discuss whether the study population resembles the person considering treatment, and weigh possible benefit against harms, monitoring, visits and caregiver burden. Local authorisation and eligibility must be checked for the specific treatment. Ask what remains unknown over longer periods. A good decision can acknowledge uncertain benefit while still prioritising symptom care, daily support and the person's own goals."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fictional numbers: the comparison matters",
+      "text": "Imagine two groups of a hundred people. Forty treated participants and thirty comparison participants meet the same response rule. The absolute difference is ten people per hundred, not forty additional people helped. These invented figures explain arithmetic and are not results for any medicine."
+    },
+    {
+      "title": "Hypothetical example: what does response mean?",
+      "text": "A family reads that a participant was a responder, then learns that the rule meant not worsening beyond a cutoff. They ask how the person functioned in daily life rather than interpreting the label as restored memory or a cure."
+    }
+  ],
+  "questions": [
+    "What exactly counted as response, was that rule set in advance and why is the change meaningful?",
+    "What are the absolute group difference, uncertainty and approach to missing results?",
+    "How do the potential benefit, harms and treatment burden relate to our situation and goals?"
+  ]
+}

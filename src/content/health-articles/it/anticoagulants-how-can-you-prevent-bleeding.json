@@ -1,0 +1,51 @@
+{
+  "title": "Anticoagulanti: ridurre il sanguinamento mantenendo la protezione",
+  "intro": "Gli anticoagulanti riducono il rischio di coaguli pericolosi ma facilitano il sanguinamento o lo rendono più difficile da fermare. Un uso più sicuro richiede il medicinale corretto come prescritto, controllo delle interazioni e conoscenza dei segnali che richiedono aiuto. Non sospendete solo per un piccolo livido: la ragione della terapia, come prevenire ictus o trombi, resta importante. Sanguinamenti o traumi significativi richiedono valutazione rapida.",
+  "sections": [
+    {
+      "heading": "Conoscere il medicinale e seguire i controlli",
+      "paragraphs": [
+        "Tenete disponibili nome, dosaggio della confezione e istruzioni attuali, insieme alla tessera di segnalazione se fornita. Il warfarin richiede esami INR per guidare la dose; gli anticoagulanti orali diretti non usano lo stesso aggiustamento routinario tramite INR, ma necessitano comunque di controlli, inclusa la funzione renale. Segnalate malattie, variazioni di peso o difficoltà nell'assunzione. Per una dose dimenticata seguite le istruzioni di quel medicinale o chiedete al farmacista: non inventate una dose di recupero. Usate promemoria se dimenticate spesso."
+      ]
+    },
+    {
+      "heading": "Controllare altri medicinali e cambiamenti alimentari",
+      "paragraphs": [
+        "Dite a ogni prescrittore e farmacista che assumete un anticoagulante. Chiedete prima di aggiungere analgesici, prodotti erboristici o integratori: ibuprofene e aspirina possono aumentare il rischio emorragico. Se l'aspirina è stata prescritta intenzionalmente insieme all'anticoagulante, chiedete una revisione anziché sospenderla da soli. Interagiscono anche alcuni antibiotici e altri farmaci. Con warfarin, grandi variazioni di vitamina K possono alterare il controllo: chiedete una dieta costante anziché eliminare tutte le verdure. Discutete l'alcol ed evitate il consumo eccessivo."
+      ]
+    },
+    {
+      "heading": "Ridurre i traumi evitabili e pianificare le procedure",
+      "paragraphs": [
+        "Usate protezioni adatte alle attività, attenzione agli utensili taglienti e rimuovete ostacoli che fanno inciampare. Uno spazzolino morbido o rasoio elettrico possono limitare piccole ferite. Informate con anticipo dentista e équipe che programmano interventi, iniezioni o esami invasivi. L'eventuale modifica dipende da procedura, medicinale, funzione renale e rischio trombotico. Non decidete autonomamente di saltare dosi e non usate il piano preoperatorio di un'altra persona. Chiedete istruzioni chiare sia sull'eventuale interruzione sia sulla ripresa."
+      ]
+    },
+    {
+      "heading": "Reagire adeguatamente a sanguinamento e traumi",
+      "paragraphs": [
+        "Per un piccolo taglio esterno applicate una pressione diretta e decisa con una medicazione pulita. Sanguinamento che non si ferma, incidente grave o trauma cranico significativo richiedono valutazione immediata anche con poco sangue visibile. Chiedete assistenza urgente per sangue nelle urine, feci nere, vomito ematico o sanguinamento rilevante inspiegato. Forte cefalea, confusione, debolezza, collasso o difficoltà respiratoria richiedono soccorso immediato. Comunicate nome dell'anticoagulante e ultima assunzione senza ritardare le cure per cercare documenti."
+      ]
+    },
+    {
+      "heading": "Segnalare problemi minori prima di cambiare terapia",
+      "paragraphs": [
+        "Epistassi ripetute, lividi in aumento o mestruazioni più abbondanti meritano controllo anche se non sembrano emergenze. Annotate andamento e nuovi medicinali e chiedete se servono esami o aggiustamenti. Il sanguinamento può avere anche una causa da indagare anziché essere spiegato interamente dalla terapia. Segnalate rapidamente una gravidanza o il desiderio di concepire, perché il medicinale può dover cambiare. Rivedete periodicamente con il medico il rapporto tra prevenzione dei coaguli e rischio emorragico, senza decidere da soli."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un nuovo antidolorifico",
+      "text": "Una persona in terapia anticoagulante ha mal di schiena e pensa di comprare ibuprofene. Mostra prima al farmacista l'elenco dei medicinali e chiede un'opzione adatta. Segnala anche l'aspirina prescritta dal cardiologo, senza eliminarla autonomamente dall'elenco."
+    },
+    {
+      "title": "Esempio ipotetico: caduta con trauma alla testa",
+      "text": "Una persona che assume un farmaco per prevenire i coaguli cade e batte la testa. Pur sanguinando poco dal cuoio capelluto, richiede subito una valutazione e comunica nome e ultima dose, senza aspettare un grande livido."
+    }
+  ],
+  "questions": [
+    "Quali esami e controlli richiede il mio anticoagulante e cosa fare per una dose dimenticata?",
+    "Quali analgesici, integratori, cambiamenti alimentari o procedure richiedono consiglio nel mio caso?",
+    "Quali sanguinamenti o traumi richiedono soccorso e chi contattare per episodi minori ricorrenti?"
+  ]
+}

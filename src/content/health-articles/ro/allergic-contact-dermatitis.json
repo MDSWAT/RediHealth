@@ -1,0 +1,51 @@
+{
+  "title": "Dermatita alergică de contact: identificarea cauzei și protejarea pielii",
+  "intro": "Dermatita alergică de contact este o inflamație a pielii cu mâncărime, provocată de o reacție imunitară la o substanță care atinge pielea. Apare adesea cu întârziere, astfel că ultimul produs folosit nu este neapărat cauza. Identificarea substanței relevante este la fel de importantă ca tratarea erupției. Afecțiunea nu este contagioasă, iar o erupție asemănătoare poate fi cauzată de iritație sau de altă problemă cutanată.",
+  "sections": [
+    {
+      "heading": "Deosebește alergia de iritație",
+      "paragraphs": [
+        "Nichelul, ingredientele parfumante, conservanții și substanțele din unele materiale de lucru pot declanșa alergie la persoanele sensibilizate. Dermatita iritativă apare prin deteriorarea directă a pielii, de exemplu prin lucrul repetat cu mâinile ude sau prin detergenți, și nu necesită o alergie. Ambele mecanisme pot exista împreună. Pot apărea mâncărime, crăpături, umflare și vezicule mici; inflamația poate arăta roșie, violacee, brună sau cenușie, în funcție de culoarea pielii. Aspectul singur nu identifică sigur cauza."
+      ]
+    },
+    {
+      "heading": "Pregătește un istoric util al expunerilor",
+      "paragraphs": [
+        "Notează zonele afectate și ce le atinge acasă, la serviciu și în timpul hobbyurilor. Păstrează denumirile produselor și listele de ingrediente, inclusiv pentru mănuși, cosmetice, adezivi și medicamente aplicate pe piele. O fotografie a episodului poate ajuta dacă pielea se ameliorează înainte de consultație. Etichetele precum natural sau hipoalergenic nu garantează că produsul este potrivit. Nu reaplica intenționat o substanță suspectă pe pielea afectată ca să îți testezi singur ipoteza."
+      ]
+    },
+    {
+      "heading": "Înțelege testarea epicutanată la specialist",
+      "paragraphs": [
+        "Medicul examinează pielea și ia în calcul alte cauze. Dermatologul poate folosi teste epicutanate pentru investigarea alergiei de contact întârziate. Cantități mici din substanțele selectate se aplică în condiții controlate, iar pielea este verificată la citirile programate. Procedura diferă de testul prin înțepare pentru alergii imediate. Un rezultat epicutanat pozitiv necesită interpretare: substanța trebuie să fie relevantă pentru expunerile tale reale, nu doar să producă o reacție la test."
+      ]
+    },
+    {
+      "heading": "Combină îngrijirea pielii cu schimbări realiste ale expunerii",
+      "paragraphs": [
+        "Tratamentul poate include un emolient potrivit și o cremă antiinflamatoare prescrisă. Contează produsul, concentrația și zona corpului, mai ales în jurul ochilor sau la copii. Întreabă cum să îl folosești și când să revii la control; nu împrumuta crema cu corticoid a altei persoane. La serviciu, discută produse mai sigure ori echipament de protecție adecvat cu serviciul de sănătate sau securitate în muncă. Unele ingrediente ale mănușilor pot provoca ele însele alergie, astfel că schimbarea lor la întâmplare poate să nu rezolve problema."
+      ]
+    },
+    {
+      "heading": "Află când trebuie revizuit planul",
+      "paragraphs": [
+        "Programează un control dacă boala persistă ori revine, îți perturbă somnul, produce crăpături dureroase sau îngreunează activitățile zilnice. Durerea în creștere, căldura locală, puroiul, umflarea care se extinde sau febra pot indica infecție și necesită evaluare promptă. Dificultatea de respirație ori umflarea limbii sau gâtului impun ajutor de urgență și nu reprezintă un episod obișnuit de reacție cutanată întârziată. Dacă evitarea pare ineficientă, reanalizează diagnosticul și expunerile în loc să adaugi mereu creme noi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: privirea dincolo de un săpun nou",
+      "text": "O persoană dezvoltă eczemă la mâini după schimbarea săpunului, dar poartă și mănuși noi la serviciu. Duce medicului ambele liste de ingrediente și explică activitățile cu mâinile ude. Întreabă dacă sunt implicate iritația, alergia sau ambele, în loc să presupună că numai săpunul este cauza."
+    },
+    {
+      "title": "Exemplu ipotetic: folosirea rezultatului unui test",
+      "text": "Testarea epicutanată identifică alergia la un conservant. Persoana cere denumirile lui din listele de ingrediente și verifică produsele obișnuite cu ajutor profesional. Discută alternative practice, în loc să arunce toate produsele din casă sau să aștepte ca o cremă să prevină singură expunerea."
+    }
+  ],
+  "questions": [
+    "Este dermatită alergică de contact, iritație sau altă afecțiune?",
+    "Ar ajuta testarea epicutanată și cum s-ar lega rezultatul de produsele sau munca mea?",
+    "Ce schimbări ale îngrijirii și expunerii sunt realiste și ce semne necesită reevaluare promptă?"
+  ]
+}

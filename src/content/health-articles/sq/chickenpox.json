@@ -1,0 +1,51 @@
+{
+  "title": "Lija e dhenve: kujdesi dhe mbrojtja e personave me rrezik",
+  "intro": "Lija e dhenve, varicela, është infeksion shumë ngjitës nga virusi varicela-zoster. Shpesh jep skuqje me kruajtje, njolla, flluska dhe kore njëkohësisht, temperaturë e gjendje të keqe. Shumë fëmijë të shëndetshëm shërohen me kujdes mbështetës, por të porsalindurit, shtatzënat, të rriturit dhe personat me imunitet të dobët mund të sëmuren rëndë. Vetë ekspozimi mund të kërkojë këshillë të shpejtë te rreziku i lartë.",
+  "sections": [
+    {
+      "heading": "Njihni modelin pa vetëdiagnostikuar çdo skuqje",
+      "paragraphs": [
+        "Njollat dalin në trup, skalp dhe gojë; të rejat shfaqen ndërsa të vjetrat bëhen kore. Ngjyra dhe dukshmëria varen nga lëkura. Parehatia pengon oreksin dhe gjumin. Të vaksinuarit mund të kenë formë më të lehtë ose jo tipike. Edhe sëmundje të tjera japin flluska, prandaj kërkoni këshillë kur ka dyshim. Telefononi para vizitës për të mos ekspozuar sallën e pritjes dhe përmendni kontakt me varicelë ose herpes zoster."
+      ]
+    },
+    {
+      "heading": "Pakësoni përhapjen",
+      "paragraphs": [
+        "Infeksioni përhapet nga ajri i përbashkët dhe lëngu i flluskave, edhe para skuqjes së dukshme. Shmangni shkollën, çerdhen e punën deri në përfundimin e përjashtimit të këshilluar, zakonisht kur të gjitha njollat bëhen kore; kërkoni këshillë për raste jo tipike dhe ndiqni rregullat vendore. Shmangni të porsalindurit, shtatzënat dhe personat me imunitet të dobët. Lani duart, mos kruani dhe mos ndani peshqirë. Personi pa imunitet mund të marrë varicelë nga zoster, por nuk 'merr zoster' nga varicela."
+      ]
+    },
+    {
+      "heading": "Rehatia dhe siguria e barnave",
+      "paragraphs": [
+        "Jepni shpesh lëngje, rroba të lirshme dhe banjë të freskët të butë; thajeni me prekje. Thonjtë e shkurtër pakësojnë dëmtimin nga kruajtja. Farmacisti këshillon produkte sipas moshës. Paracetamoli mund të ndihmojë kur është i përshtatshëm, sipas udhëzimit. Mos i jepni aspirinë fëmijës me varicelë dhe shmangni ibuprofenin përveçse me këshillë mjeku, për shkak të shqetësimit për infeksion të rëndë të lëkurës. Kontrolloni produktet e kombinuara për dyfishim barnash. Antibiotikët nuk trajtojnë virusin."
+      ]
+    },
+    {
+      "heading": "Rreziku i lartë dhe trajtimi i hershëm",
+      "paragraphs": [
+        "Kërkoni këshillë të shpejtë pas ekspozimit në shtatzëni, imunitet të dobësuar ose për të porsalindurin, edhe pa shenja. Tregoni nëse ka dëshmi imuniteti të mëparshëm. Sipas rrezikut, imunitetit dhe kohës mund të merret parasysh parandalim ose antiviral i hershëm. Antiviralët ndihmojnë më mirë kur nisen shpejt dhe nuk duhen për çdo fëmijë të shëndetshëm. Mos prisni skuqje të gjerë ose përdorni recetë tjetërkujt. Përmendni steroidet dhe trajtimet imunosupresive."
+      ]
+    },
+    {
+      "heading": "Shenjat alarmuese dhe parandalimi",
+      "paragraphs": [
+        "Kërkoni këshillë urgjente për dehidratim, lëkurë gjithnjë më të nxehtë e të dhimbshme, temperaturë të vazhdueshme ose përkeqësim të fëmijës. Vështirësia në frymëmarrje, konfuzioni, zgjimi i vështirë, qafa e ngurtë ose ecja shumë e vështirë kërkojnë vlerësim urgjent ose emergjent. Mos quani çdo përkeqësim normal. Vaksina ndihmon parandalimin dhe format e rënda; pranimi dhe skema varen nga shteti. Vaksina e zakonshme është e gjallë, ndaj shtatzënia dhe problemet imunitare kërkojnë këshillë të veçantë. Virusi mbetet në trup dhe mund të riaktivizohet si zoster."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ekspozim në shtatzëni — shembull hipotetik",
+      "text": "Një shtatzënë mëson se fëmija në shtëpi mund të ketë varicelë. Kontakton shpejt ekipin mjekësor me hollësi kontakti dhe historinë e sëmundjes ose vaksinimit, pa pritur njolla."
+    },
+    {
+      "title": "Ndryshim i skuqjes — shembull hipotetik",
+      "text": "Fëmija fillimisht ka kruajtje, pastaj një zonë bëhet e nxehtë, e fryrë dhe gjithnjë më e dhimbshme. Kujdestari kërkon këshillë urgjente për infeksion dytësor të mundshëm, jo vetëm më shumë krem."
+    }
+  ],
+  "questions": [
+    "A përputhet skuqja me varicelën dhe a ka njerëz me rrezik në shtëpi?",
+    "Cilat barna duhen dhe a nevojitet parandalim ose antiviral?",
+    "Kur lejohet kthimi në shkollë ose punë dhe çfarë ndryshimesh kërkojnë urgjencë?"
+  ]
+}

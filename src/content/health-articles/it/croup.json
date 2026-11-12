@@ -1,0 +1,51 @@
+{
+  "title": "Croup: tosse abbaiante e quando il respiro richiede aiuto",
+  "intro": "Il croup è solitamente una malattia virale che gonfia la zona della laringe e della trachea nel bambino piccolo. La tosse può sembrare un abbaio, con voce rauca e talvolta un rumore aspro inspirando, detto stridore. Molti episodi sono lievi, ma il restringimento può peggiorare rapidamente. Contattare il medico se si sospetta croup e chiedere soccorso per difficoltà respiratoria.",
+  "sections": [
+    {
+      "heading": "Guardare respiro e comportamento, non solo tosse",
+      "paragraphs": [
+        "Naso che cola o febbre possono precedere la tosse abbaiante, spesso peggiore di notte. Lo stridore è diverso dal fischio più basso spesso associato all'asma. Notare se il rumore compare solo da agitato o anche da calmo e se la pelle rientra intorno a coste o collo. Un bambino insolitamente silenzioso, esausto o difficile da svegliare può peggiorare anche se il rumore diventa più debole. La forza della tosse o del rumore non misura affidabilmente la gravità. Lattanti molto piccoli o bambini con problemi noti delle vie aeree richiedono una soglia più bassa per la valutazione."
+      ]
+    },
+    {
+      "heading": "Segnali per cure urgenti o immediate",
+      "paragraphs": [
+        "Chiamare i soccorsi se il bambino fatica a respirare, diventa bluastro, grigio o molto pallido, floscio o difficile da svegliare, non riesce a deglutire o sbava mentre sta male. Marcati rientramenti del torace, forte agitazione con difficoltà respiratoria o scarsa risposta sono altri allarmi. Stridore a riposo richiede valutazione ospedaliera urgente. Tenere il bambino con un adulto calmo nella posizione più comoda; non forzarlo disteso né esaminare in profondità la gola. Esordio improvviso dopo soffocamento o gonfiore del viso possono indicare un'altra emergenza. Seguire l'operatore dei soccorsi."
+      ]
+    },
+    {
+      "heading": "Cosa aiuta quando le cure a casa sono adatte",
+      "paragraphs": [
+        "Dopo conferma che le cure domestiche siano appropriate, rassicurare il bambino: piangere aumenta lo sforzo respiratorio. Offrire piccoli sorsi frequenti se deglutisce bene e controllarlo regolarmente, anche di notte. Usare farmaci per dolore o febbre adatti all'età secondo istruzioni o medico. Non forzare liquidi se respira o deglutisce con fatica. Non usare stanze a vapore, recipienti bollenti o inalazioni di vapore: non è un trattamento dimostrato e può ustionare. Sciroppi antitosse e rimedi sedativi non trattano il gonfiore e possono essere pericolosi."
+      ]
+    },
+    {
+      "heading": "Come il medico tratta il croup",
+      "paragraphs": [
+        "Il croup tipico si diagnostica spesso da storia e respiro senza esami ematici o radiografie abituali. È importante minimizzare l'agitazione durante la visita. Il medico può dare un corticosteroide come desametasone per ridurre il gonfiore; scelta e dose dipendono da bambino e gravità. Un'ostruzione maggiore può richiedere adrenalina nebulizzata e monitoraggio ospedaliero. L'effetto può svanire, quindi il miglioramento immediato non basta per andare via. I casi gravi richiedono supporto specialistico delle vie aeree. Gli antibiotici non curano il croup virale non complicato; un'altra infezione batterica diagnosticata richiede un piano diverso."
+      ]
+    },
+    {
+      "heading": "Programmare la notte successiva e il controllo",
+      "paragraphs": [
+        "I sintomi spesso migliorano nei giorni successivi, ma la tosse può durare e un'altra notte può essere peggiore prima del recupero. Chiedere cosa fare se lo stridore ritorna dopo le cure e come avere aiuto fuori orario. Un episodio lieve precedente non garantisce che il prossimo lo sia. Recidive, età insolita, rumore persistente o mancato miglioramento richiedono ricerca di altre cause. I virus si trasmettono e possono dare agli altri soltanto un raffreddore. Igiene delle mani, coprire la tosse e restare a casa con febbre o malessere riducono il contagio; seguire i consigli locali per il nido."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un cambiamento da calmo",
+      "text": "Un bambino inizialmente tossisce abbaiando solo quando piange. Più tardi, tranquillo in braccio al padre, respira rumorosamente e la pelle sotto le coste rientra. Il padre chiede valutazione urgente senza aspettare il mattino solo perché la tosse sembra familiare."
+    },
+    {
+      "title": "Esempio ipotetico: osservazione dopo la cura",
+      "text": "Una bambina migliora dopo un farmaco nebulizzato in ospedale. Il genitore chiede perché restare in osservazione. L'équipe spiega che l'effetto è temporaneo e controlla che il respiro resti confortevole prima di dimissione e piano scritto per il ritorno."
+    }
+  ],
+  "questions": [
+    "Le cure a casa sono adatte e quali cambiamenti respiratori richiedono soccorso subito?",
+    "Quale trattamento è stato dato e cosa fare se i sintomi tornano stanotte?",
+    "Episodi ripetuti o rumore respiratorio persistente richiedono altri accertamenti?"
+  ]
+}

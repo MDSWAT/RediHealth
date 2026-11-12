@@ -17,11 +17,21 @@ export const COUNTRY_INFO: Record<CountryCode, { lang: Lang; center: [number, nu
 };
 
 export const COUNTRY_LABELS: Record<CountryCode, Record<Lang, string>> = {
-  RO: { en: "Romania", ro: "România", sq: "Rumania", it: "Romania", hr: "Rumunjska", rom: "Rumuniya" },
-  AL: { en: "Albania", ro: "Albania", sq: "Shqipëria", it: "Albania", hr: "Albanija", rom: "Albaniya" },
-  IT: { en: "Italy", ro: "Italia", sq: "Italia", it: "Italia", hr: "Italija", rom: "Italiya" },
-  MD: { en: "Moldova", ro: "Republica Moldova", sq: "Moldavia", it: "Moldavia", hr: "Moldavija", rom: "Moldova" },
-  HR: { en: "Croatia", ro: "Croația", sq: "Kroacia", it: "Croazia", hr: "Hrvatska", rom: "Kroatiya" },
+  RO: {
+ru: "Румыния",
+ en: "Romania", ro: "România", sq: "Rumania", it: "Romania", hr: "Rumunjska", rom: "Rumuniya" },
+  AL: {
+ru: "Албания",
+ en: "Albania", ro: "Albania", sq: "Shqipëria", it: "Albania", hr: "Albanija", rom: "Albaniya" },
+  IT: {
+ru: "Италия",
+ en: "Italy", ro: "Italia", sq: "Italia", it: "Italia", hr: "Italija", rom: "Italiya" },
+  MD: {
+ru: "Молдова",
+ en: "Moldova", ro: "Republica Moldova", sq: "Moldavia", it: "Moldavia", hr: "Moldavija", rom: "Moldova" },
+  HR: {
+"ru": "Хорватия",
+ en: "Croatia", ro: "Croația", sq: "Kroacia", it: "Croazia", hr: "Hrvatska", rom: "Kroatiya" },
 };
 
 export function isSupportedCountry(value: unknown): value is CountryCode {

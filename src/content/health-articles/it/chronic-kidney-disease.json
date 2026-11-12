@@ -1,0 +1,51 @@
+{
+  "title": "Malattia renale cronica: capire gli esami e proteggere i reni",
+  "intro": "La malattia renale cronica è un'alterazione duratura della struttura o funzione dei reni, generalmente presente oltre tre mesi. All'inizio spesso non dà sintomi e non porta automaticamente alla dialisi. Sangue e urine aiutano a identificarla, stimare il rischio e seguirla. Le cure rallentano la progressione, riducono il rischio cardiovascolare e gestiscono complicanze sostenendo la vita quotidiana.",
+  "sections": [
+    {
+      "heading": "Leggere insieme sangue e urine",
+      "paragraphs": [
+        "Il sangue permette di stimare la filtrazione, riportata come eGFR. È una stima funzionale, non una semplice percentuale di tessuto rimasto. Il rapporto albumina-creatinina urinario, ACR, cerca perdite proteiche indicative di danno. Contano andamento, ripetizioni e altri dati, non un numero isolato. Un cambiamento brusco può indicare danno renale acuto e richiede risposta diversa. Chiedere cosa è confermato, quali test ripetere e il significato della categoria di rischio."
+      ]
+    },
+    {
+      "heading": "Cercare la causa oltre i sintomi",
+      "paragraphs": [
+        "Diabete e pressione alta contribuiscono spesso. Altre cause includono malattie infiammatorie o ereditarie, infezioni ripetute, ostruzione urinaria e alcuni farmaci. La valutazione può includere storia, pressione, analisi, ecografia o esami specialistici. Più avanti compaiono stanchezza, gonfiore, nausea, prurito o affanno, ma hanno altre spiegazioni. Possono risentirne sangue, ossa ed equilibrio dei sali. Stare bene non permette di interrompere i controlli."
+      ]
+    },
+    {
+      "heading": "Farmaci e abitudini protettive",
+      "paragraphs": [
+        "Concordare obiettivi personali per pressione e diabete, assumere terapie protettive e discutere prevenzione cardiovascolare. Alcune dosi cambiano con la filtrazione e servono esami per effetti e potassio. Portare prescrizioni, prodotti da banco e integratori. Ibuprofene e naprossene possono essere rischiosi, soprattutto disidratati: chiedere prima. Non interrompere medicinali prescritti da soli. Richiedere un piano scritto per vomito, diarrea o malattia disidratante, con contatti e gestione dei farmaci."
+      ]
+    },
+    {
+      "heading": "Dieta e liquidi secondo gli esami",
+      "paragraphs": [
+        "Il dietista renale aiuta con sale, nutrizione e proteine senza esclusioni inutili. Potassio, fosfato e liquidi non richiedono gli stessi limiti per tutti: cambiano con esami, stadio e cure. Alcuni sostituti del sale contengono potassio, quindi verificare. Non forzare molta acqua per 'lavare' i reni, limitare drasticamente senza consiglio o affidarsi al detox. Movimento possibile e smettere di fumare aiutano la salute. Chiedere cambiamenti pratici adatti a budget e pasti abituali."
+      ]
+    },
+    {
+      "heading": "Controlli e opzioni future",
+      "paragraphs": [
+        "Frequenza dei controlli e invio specialistico dipendono da rischio, rapidità, causa e complicanze. Molti rimangono stabili a lungo. Nella malattia avanzata discutere presto dialisi, trapianto se idoneo e cura conservativa completa. Le scelte riguardano sintomi, prognosi e obiettivi personali, non solo un valore. Chiedere consiglio urgente per urina molto ridotta, vomito persistente o rapido gonfiore. Affanno grave, dolore toracico, collasso o nuova confusione richiedono emergenza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esame inatteso — esempio ipotetico",
+      "text": "Una persona sta bene ma ha un esame renale alterato. Chiede risultati precedenti, albumina nelle urine e conferma della persistenza. Non interpreta la filtrazione come percentuale esatta di reni rimasti."
+    },
+    {
+      "title": "Scegliere un antidolorifico — esempio ipotetico",
+      "text": "Una persona con malattia renale vuole un antinfiammatorio da banco durante vomito. Chiede a farmacista o équipe un piano più sicuro e consiglio sui liquidi, senza presumere innocuo ogni prodotto senza ricetta."
+    }
+  ],
+  "questions": [
+    "Cosa dicono andamento della filtrazione e albumina urinaria su causa e rischio?",
+    "Quali medicinali, dieta e istruzioni in caso di malattia sono adatti a me?",
+    "Quando fare controlli o visita specialistica e quali sintomi richiedono aiuto urgente?"
+  ]
+}

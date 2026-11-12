@@ -17,6 +17,31 @@ function useSafeLanguage() {
 }
 
 const calendarCopy = {
+  ru: {
+    steps: ["День и время", "Ваш телефон", "Готово"],
+    stepOf: (n: number) => `Шаг ${n} из 3`,
+    chooseDay: "Выберите день",
+    availableHours: (formatted: string) => `Свободное время, ${formatted}`,
+    slotDuration: "Звонок длится 20 минут",
+    continueToContact: "Продолжить",
+    contactTitle: "Куда мы отправляем подтверждение",
+    bookingFor: (formatted: string, time: string) => `Звонок: ${formatted} в ${time}`,
+    changeTime: "Изменить время",
+    back: "Назад",
+    confirmBooking: "Забронировать",
+    confirming: "Бронирование…",
+    errorSelectTime: "Выберите время.",
+    errorName: "Напишите имя человека, который разговаривает с врачом.",
+    errorPhone: "Напишите номер мобильного телефона, например 0721 000 000.",
+    errorGeneric: "Бронирование не прошло. Попробуйте еще раз.",
+    dayNames: ["Солнце", "Пн.", "Вт", "ср.", "Чт", "Пт", "Суббота"],
+    dayNamesLong: ["воскресенье", "понедельник", "вторник", "среда", "Четверг", "пятница", "суббота"],
+    monthNames: ["Ян", "февраль", "Мар", "апрель", "май", "июнь", "июль", "август", "Сентябрь", "октябрь", "ноябрь", "декабрь"],
+    monthNamesLong: ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "Октябрь", "ноябрь", "декабрь"],
+    sms: (date: string, time: string, link: string) =>
+      `RediHealth: Вам позвонил врач ${date} в ${time}. Тогда откройте эту ссылку, чтобы присоединиться к звонку: ${link}`,
+  },
+
   ro: {
     steps: ["Ziua și ora", "Telefonul tău", "Gata"],
     stepOf: (n: number) => `Pasul ${n} din 3`,

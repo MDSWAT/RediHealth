@@ -1,0 +1,51 @@
+{
+  "title": "Divertikularna bolest i divertikulitis: simptomi, liječenje i svakodnevica",
+  "intro": "Divertikuli su male vrećice u stijenci debelog crijeva. Mnogi ih imaju bez simptoma, što zovemo divertikulozom. Divertikularna bolest označava povezane simptome ili komplikacije, a divertikulitis upalu vrećica. Ti pojmovi ne traže isto liječenje i stara dijagnoza ne treba automatski objašnjavati svaku novu trbušnu tegobu.",
+  "sections": [
+    {
+      "heading": "Poznat obrazac ili nova akutna bolest",
+      "paragraphs": [
+        "Povremena nelagoda donjeg trbuha, nadutost, zatvor ili proljev mogu pratiti bolest. Bol je često lijevo, ali položaj ne utvrđuje uzrok. Akutni divertikulitis češće izaziva trajnu bol i osjetljivost, katkad vrućicu, mučninu ili promjenu stolice. Druga crijevna, mokraćna ili zdjelična stanja mogu biti slična. Navedite početak, pogoršanje, vrućicu, krv, povraćanje, stolicu i plinove, lijekove i ranije epizode. Imunosupresija i važne bolesti povećavaju rizik i mogu promijeniti znakove. Ne zaključujte da je povrat samo zato što je stara snimka pokazala vrećice."
+      ]
+    },
+    {
+      "heading": "Kada je procjena hitna",
+      "paragraphs": [
+        "Sve jača ili trajna bol, vrućica ili tresavica, krv u stolici i nemogućnost zadržavanja tekućine traže brz savjet. Jaka bol uz otečen trbuh, povraćanje ili nemogućnost stolice i plinova može značiti opstrukciju ili komplikaciju i traži hitnu službu. Obilno krvarenje, nesvjestica, smetenost, jaka zaduha ili teška infekcija također. Divertikularno krvarenje može nastati bez bolne upale, ali velik gubitak nije siguran. Odmah navedite antikoagulanse i oslabljen imunitet. Ne čekajte sve znakove zajedno niti liječite jaku bol samo laksativom."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i terapija ovise o težini",
+      "paragraphs": [
+        "Liječnik pregledava i može zatražiti krv, stolicu ili CT radi potvrde, komplikacija i drugih uzroka. Kolonoskopija se razmatra nakon oporavka prema nalazima, ranijim pregledima i trajnim alarmima; ne dogovara se samostalno tijekom bolnog napadaja. Osoba dobrog općeg stanja s nekompliciranim divertikulitisom može nakon procjene biti liječena bez antibiotika uz jasan nadzor. Loše stanje, imunosupresija ili važne druge bolesti povećavaju potrebu za antibioticima ili bolnicom. Apsces, perforacija, opstrukcija ili fistula mogu zahtijevati drenažu, operaciju ili drugo specijalističko liječenje."
+      ]
+    },
+    {
+      "heading": "Hrana, bol i oporavak",
+      "paragraphs": [
+        "Tijekom akutne epizode pitajte što jesti i piti te kada povećati unos. Može se savjetovati kratka prilagodba, ali dugotrajno gladovanje ili tekuća prehrana nisu opće rješenje. Zatražite procjenu ako bol raste, ne zadržavate tekućinu ili nema dogovorenog poboljšanja. Razgovarajte o analgeziji: paracetamol može biti mogućnost, dok nesteroidni protuupalni lijekovi poput ibuprofena i opioidi mogu stvarati probleme i ne počinju se olako. Ne prekidajte nužne propisane lijekove bez savjeta. Izvan akutnog napadaja postupno povećajte vlakna ako ih je malo uz prikladnu tekućinu i osobna ograničenja. Nema opće potrebe izbjegavati orašaste plodove, sjemenke ili voćne kore samo zbog divertikula."
+      ]
+    },
+    {
+      "heading": "Trajne tegobe i odluke o operaciji",
+      "paragraphs": [
+        "Uravnotežena prehrana, moguća aktivnost i prestanak pušenja podupiru zdravlje bez jamstva da se napadaj neće vratiti. Liječnik može liječiti zatvor ili tražiti drugi uzrok boli umjesto ponavljanja antibiotika. Novo mršavljenje, trajna krv ili promjena pražnjenja traže obradu, ne automatsko pripisivanje divertikulima. Planirana kirurgija ovisi o komplikacijama, opterećenju epizodama, zdravlju, željama i koristi, ne samo broju napadaja. Pitajte o preostalim simptomima, komplikacijama zahvata, oporavku i mogućoj stomi. Imajte plan za pogoršanje i kontakt izvan radnog vremena."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: slučajan nalaz",
+      "text": "Anin prijašnji pregled otkriva divertikule bez tegoba. Pita o prehrani i vlaknima umjesto antibiotika ili uklanjanja svih sjemenki. Kod nove trajne boli ili krvarenja tražit će pregled bez pretpostavke da je bezazleno."
+    },
+    {
+      "title": "Hipotetski primjer: akutna promjena",
+      "text": "Milan je imao povremenu nelagodu, sada stalnu sve jaču bol, vrućicu i povraćanje. Traži hitnu procjenu umjesto laksativa i čekanja kontrole. Jaka bol s nadutošću ili bez plinova tražila bi hitnu službu."
+    }
+  ],
+  "questions": [
+    "Jesu li tegobe nekomplicirana upala, komplikacija ili drugo stanje?",
+    "Koji je plan liječenja, hrane i tekućine i kada očekivati poboljšanje ili kontrolu?",
+    "Trebam li nakon oporavka obradu crijeva ili osobni razgovor o operaciji?"
+  ]
+}

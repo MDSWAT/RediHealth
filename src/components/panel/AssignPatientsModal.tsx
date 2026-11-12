@@ -27,6 +27,24 @@ export function AssignPatientsModal({
 }: AssignPatientsModalProps) {
   const { lang } = useLanguage();
   const t = {
+  ru: {
+      errSave: "Не удалось сохранить.",
+      errUnexpected: "Не удалось сохранить. Попробуйте еще раз.",
+      title: "Назначение пациентов",
+      assignedCount: (count: number) => `Назначенные пациенты: ${count}`,
+      success: "Сохранено.",
+      search: "Поиск пациентов",
+      none: "Больных не обнаружено.",
+      assignedTo: "Назначено",
+      otherWorker: "кто-то другой",
+      assigned: "Назначено",
+      unassigned: "Неназначенный",
+      selectedCount: (count: number) => `Выбрано: ${count}`,
+      cancel: "Отмена",
+      saving: "Сохранение...",
+      save: "Сохранить",
+    },
+
     en: {
       errSave: "Could not save.",
       errUnexpected: "Could not save. Try again.",

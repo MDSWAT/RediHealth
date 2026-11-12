@@ -1,0 +1,51 @@
+{
+  "title": "Depressione: riconoscere i sintomi e trovare cure sostenibili",
+  "intro": "La depressione può influire su umore, interesse, energia, sonno, pensiero e salute fisica. È una malattia curabile, non una prova di carattere o gratitudine. Alcuni sentono tristezza, altri vuoto, irritabilità o incapacità nelle attività normali. Il sostegno considera seriamente sintomi e difficoltà reali come isolamento, discriminazione, problemi economici o malattia.",
+  "sections": [
+    {
+      "heading": "Riconoscere un cambiamento persistente",
+      "paragraphs": [
+        "Umore basso o perdita d'interesse quasi ogni giorno per circa due settimane sono motivi per valutazione, specie con sonno o appetito alterati, stanchezza, scarsa concentrazione, colpa o disperazione. Non aspettare se sofferenza è grave o sicurezza a rischio. La depressione può seguire una perdita o comparire senza evento evidente, e coesistere con lutto, ansia o malattia fisica. Nei bambini può prevalere irritabilità e serve valutazione adatta all'età. Un punteggio di screening apre un colloquio, non stabilisce da solo diagnosi."
+      ]
+    },
+    {
+      "heading": "Una valutazione utile supera l'etichetta",
+      "paragraphs": [
+        "Riferire inizio, impatto quotidiano, episodi precedenti, farmaci, alcol o droghe e sostegni. Segnalare periodi di umore insolitamente alto o irritabile, poco bisogno di sonno, pensieri accelerati o impulsività: possono suggerire bipolarità e cambiare le cure. Malattie tiroidee ed effetti farmacologici possono somigliare alla depressione o aggravarla. Gli esami cercano queste cause quando appropriato, non esiste un unico test ematico per depressione. Chiedere interprete o altro modo di esprimersi se lingua o lettura ostacolano il confronto."
+      ]
+    },
+    {
+      "heading": "Scegliere insieme e verificare i progressi",
+      "paragraphs": [
+        "Le possibilità includono autoaiuto guidato, terapie come attivazione comportamentale, cognitivo-comportamentale o interpersonale e antidepressivi se adatti. La scelta dipende da gravità, risposta precedente, preferenze, accesso e altre condizioni. La combinazione può aiutare, soprattutto nella malattia più grave. Concordare obiettivi pratici e data di controllo senza attesa indefinita. Se il primo approccio non funziona, rivedere diagnosi, ostacoli, tollerabilità e alternative: non migliorare non è un fallimento personale. Depressione grave o persistente può richiedere trattamenti specialistici e talvolta ricovero."
+      ]
+    },
+    {
+      "heading": "I farmaci richiedono controllo e piano di sospensione",
+      "paragraphs": [
+        "Gli antidepressivi richiedono tempo e possono dare effetti indesiderati prima dei benefici. Discutere sonno, effetti digestivi o sessuali e interazioni, incluso iperico. Organizzare controllo precoce dopo inizio o modifica. Nuova agitazione, pensieri suicidari o forte elevazione dell'umore richiedono consiglio tempestivo; pericolo immediato richiede soccorso. I giovani necessitano attenzione particolare. Non sospendere bruscamente per miglioramento o effetti: i sintomi da sospensione possono essere difficili e il medico deve pianificare modifiche graduali. Gravidanza o allattamento richiedono valutazione individuale benefici-rischi, non interruzione automatica."
+      ]
+    },
+    {
+      "heading": "Sostegno pratico e sicurezza fanno parte delle cure",
+      "paragraphs": [
+        "Piccoli passi fattibili, pasti regolari, sonno gestibile, attività adatta e persone fidate sostengono la terapia. Non sono un ordine di guarire con la volontà. Familiari possono aiutare appuntamenti, trasporti o compiti con consenso. Se compaiono pensieri autolesivi o suicidari, parlarne presto con un professionista e cercare sostegno fidato. Se si teme di agire, non si riesce a stare al sicuro, ci si è già fatti male o ci sono grave confusione o sintomi psicotici angoscianti, cercare soccorso immediato. Chiedere a qualcuno di restare mentre si organizza aiuto. Concordare piano di sicurezza e ricaduta con l'équipe e contatti per peggioramento."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: aiuto per iniziare",
+      "text": "Da settimane Arben evita amici e fatica a preparare pasti. La sorella ascolta senza dirgli di essere positivo. Con il suo accordo aiuta a fissare una visita e lo accompagna, mentre lui descrive sintomi e obiettivi propri."
+    },
+    {
+      "title": "Esempio ipotetico: rivedere invece di abbandonare",
+      "text": "Mira inizia la cura ma ha nausea fastidiosa e umore ancora basso. Contatta il prescrittore, che verifica sicurezza, tempi ed effetti e concorda i prossimi passi. Non sospende bruscamente né conclude che nessuna cura possa aiutarla."
+    }
+  ],
+  "questions": [
+    "Altra malattia, farmaci o sintomi bipolari cambiano la valutazione?",
+    "Quale cura risponde ai miei bisogni e quando ne rivediamo gli effetti?",
+    "Qual è il piano per peggioramento, effetti indesiderati o crisi di sicurezza?"
+  ]
+}

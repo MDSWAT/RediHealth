@@ -1,0 +1,51 @@
+{
+  "title": "Undulacija atrija: razumijevanje ritma i plan liječenja",
+  "intro": "Undulacija atrija, odnosno atrijski flutter, poremećaj je ritma pri kojem električni signal kruži kroz gornje srčane šupljine i izaziva brzo kucanje. Puls može biti brz i pravilan ili ponekad nepravilan. Flutter se razlikuje od fibrilacije atrija, ali mogu se javiti u istoj osobi. Procjena treba obuhvatiti simptome, funkciju srca i rizik moždanog udara, a ne samo broj na mjeraču pulsa.",
+  "sections": [
+    {
+      "heading": "Prepoznajte simptome i hitne znakove upozorenja",
+      "paragraphs": [
+        "Flutter može uzrokovati ubrzano srce, umor, zaduhu, slabiju podnošljivost napora ili omaglicu. Neke osobe imaju malo simptoma. Nov trajan brz puls zahtijeva brz liječnički savjet, čak i ako je pravilan. Tražite hitnu pomoć kod boli u prsima, teške zaduhe, nesvjestice ili nagle slabosti, spuštene strane lica ili teškoća govora. Nemojte sami voziti na hitni pregled. Prijašnja dijagnoza ne čini novu bol u prsima bezopasnom, a simptomi moždanog udara ostaju hitni i ako nestanu."
+      ]
+    },
+    {
+      "heading": "Prepoznajte ritam pomoću EKG-a",
+      "paragraphs": [
+        "Električna aktivnost na EKG-u razlikuje flutter od fibrilacije atrija i drugih brzih ritmova. Pretklijetke mogu kucati brže od klijetki jer svaki signal ne prolazi, pa puls na zapešću ne pokazuje cijeli obrazac. Povremene epizode mogu zahtijevati dulje praćenje. Navedite raniju operaciju srca ili ablaciju, lijekove i vrijeme simptoma. Testovi mogu procijeniti građu srca, štitnjaču ili druga pridružena stanja. Vrsta i mjesto električnog kruga mogu utjecati na izbor liječenja."
+      ]
+    },
+    {
+      "heading": "Razgovarajte o kontroli frekvencije i vraćanju ritma",
+      "paragraphs": [
+        "Lijekovi mogu usporiti klijetke ili pomoći kontrolirati abnormalan ritam. Kardioverzija pažljivo kontroliranim električnim postupkom vraća ritam u prikladnim okolnostima; hitno liječenje može trebati kod nestabilne cirkulacije. Prije planirane kardioverzije tim razmatra trajanje fluttera i rizik postojećeg ugruška. Pitajte o pripremi, antikoagulaciji i postupku ako se flutter vrati. Nikada ne uzimajte dodatni lijek za srce i ne pokušavajte sami vratiti ritam bez dogovorenog liječničkog plana."
+      ]
+    },
+    {
+      "heading": "Pitajte odgovara li ablacija vašoj vrsti fluttera",
+      "paragraphs": [
+        "Ablacijom se kateteri provode kroz krvne žile kako bi se prekinuo električni krug. Kod tipičnog fluttera djelovanje na određeno područje desne pretklijetke može biti učinkovito. Drugi krugovi, uključujući one povezane s ranijim zahvatima, mogu zahtijevati drukčiji pristup. Razgovarajte o uspješnosti za vaš slučaj, rizicima, anesteziji, oporavku i mogućnosti novog zahvata. Liječenje fluttera ne jamči da se nikad neće razviti fibrilacija atrija. Kontrole ostaju važne i nakon prestanka ubrzanih otkucaja."
+      ]
+    },
+    {
+      "heading": "Jasno dogovorite zaštitu od udara i praćenje",
+      "paragraphs": [
+        "Flutter može biti povezan sa stvaranjem ugrušaka i moždanim udarom. Odluke o antikoagulaciji razmatraju osobne rizike udara i krvarenja, eventualnu fibrilaciju atrija i plan liječenja. Ne prekidajte propisanu zaštitu jer zahvat izgleda uspješno ili mjerenje pulsa normalno. Pitajte kada provjeriti recept i kakvo je praćenje planirano. S timom razmotrite tlak, bolesti srca, spavanje, pušenje i alkohol. Bilježite ponavljane simptome i tražite novu procjenu ako se pogoršaju zaduha, otekline ili podnošenje napora; ne pretpostavljajte da je povratak uvijek bezopasan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: pravilan, ali brz puls",
+      "text": "Osoba primjećuje trajan brz puls s jednakim razmacima. Dogovara brzu procjenu umjesto pretpostavke da pravilnost znači normalan ritam. EKG otkriva flutter, a tim odvojeno razmatra liječenje simptoma i rizik ugrušaka."
+    },
+    {
+      "title": "Hipotetski primjer: novi ritam nakon ablacije",
+      "text": "Nakon liječenja tipičnog fluttera pacijent kasnije primjećuje nepravilno lupanje. Prijavljuje simptome liječniku umjesto pretpostavke da se sigurno vratio stari krug. Praćenje provjerava fibrilaciju atrija ili drugi uzrok i usmjerava novi plan."
+    }
+  ],
+  "questions": [
+    "Koju vrstu fluttera imam i postoji li i fibrilacija atrija?",
+    "Kako se lijekovi, kardioverzija i ablacija uspoređuju za moje simptome i zdravlje srca?",
+    "Koja antikoagulacija i praćenje trebaju prije i poslije liječenja i kada tražiti hitnu pomoć?"
+  ]
+}

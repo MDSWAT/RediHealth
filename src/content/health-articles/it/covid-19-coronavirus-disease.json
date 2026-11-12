@@ -1,0 +1,51 @@
+{
+  "title": "COVID-19: test, trattamento precoce e recupero",
+  "intro": "COVID è un'infezione causata da SARS-CoV-2. Può sembrare un raffreddore ma provocare anche malattia grave o sintomi duraturi. Il rischio varia con età, immunità, gravidanza e altre condizioni. Un esordio lieve non significa che una persona a rischio elevato debba aspettare prima di chiedere delle cure; un'infezione passata non garantisce protezione da un'altra.",
+  "sections": [
+    {
+      "heading": "Riconoscere i sintomi e usare i test con attenzione",
+      "paragraphs": [
+        "Possono comparire febbre, mal di gola, tosse, congestione, stanchezza, dolori, disturbi digestivi o alterazioni di gusto e olfatto. I sintomi si sovrappongono a influenza e altre infezioni, quindi non bastano per una diagnosi sicura. Il test antigenico rapido aiuta, ma un singolo negativo, soprattutto all'inizio, non esclude l'infezione. Seguire il kit e le indicazioni locali aggiornate per ripetizione o test di laboratorio. Comunicare inizio dei sintomi e una recente positività precedente: alcuni test di laboratorio restano positivi dopo la guarigione. Non rimandare cure urgenti per ottenere un test."
+      ]
+    },
+    {
+      "heading": "Chi dovrebbe chiedere cure precoci",
+      "paragraphs": [
+        "Anziani e persone con immunità ridotta o importanti malattie cardiache, polmonari, renali o altre patologie croniche hanno rischio maggiore. Anche la gravidanza può aumentarlo. Contattare presto il medico se si appartiene a un gruppo a rischio e compaiono sintomi possibili, anche lievi. Gli antivirali, quando adatti, vanno iniziati nei primi giorni; criteri e disponibilità dipendono da paese e situazione. Servono elenco completo di farmaci e integratori e informazioni su reni e fegato. Alcuni antivirali hanno interazioni importanti. Non sospendere farmaci essenziali né prendere il ciclo di un'altra persona per rendere possibile la cura."
+      ]
+    },
+    {
+      "heading": "Cure a casa e segnali per chiedere aiuto",
+      "paragraphs": [
+        "Per forme lievi possono aiutare riposo, liquidi regolari e adeguati farmaci per dolore o febbre; rispettare restrizioni mediche dei liquidi e istruzioni. Chiedere al farmacista per gravidanza, bambini o altre terapie. Gli antibiotici non curano il virus e gli steroidi non sono una cura domestica abituale delle forme lievi. Chiedere consiglio se si peggiora, bere diventa difficile o una malattia cronica si aggrava. Chiedere soccorso immediato per grave affanno a riposo, impossibilità a dire frasi brevi, dolore o pressione toracica persistente, confusione, collasso o labbra bluastre o grigie. Lattanti che mangiano poco, respirano male o sono insolitamente sonnolenti richiedono valutazione tempestiva. I sintomi contano anche con un valore domestico dell'ossigeno apparentemente buono."
+      ]
+    },
+    {
+      "heading": "Ridurre l'esposizione e verificare i consigli vaccinali",
+      "paragraphs": [
+        "Il virus si trasmette con particelle infettive nell'aria, soprattutto negli spazi chiusi condivisi. Evitare gli altri quando malati, ventilare, coprire la tosse e lavare le mani. Se il contatto è inevitabile, mascherina aderente e aria più pulita aggiungono protezione; evitare visite a persone particolarmente vulnerabili. Seguire le indicazioni locali attuali per tornare a scuola o lavoro, incluse regole specifiche del luogo. Il vaccino riduce la malattia grave ma non garantisce assenza di infezione o trasmissione. Chiedere al medico locale quale vaccino e quando siano raccomandati per età, gravidanza o immunità. Una tabella di un altro paese può non essere applicabile."
+      ]
+    },
+    {
+      "heading": "Il recupero può richiedere un piano individuale",
+      "paragraphs": [
+        "Molti guariscono in giorni o settimane. Altri hanno stanchezza persistente, affanno, difficoltà di concentrazione, olfatto alterato o sintomi fluttuanti dopo l'infezione acuta. Organizzare valutazione quando il recupero non progredisce o la vita resta limitata; vanno considerate altre cause curabili. Nuovo dolore toracico forte o difficoltà respiratoria non vanno attribuiti automaticamente al long COVID. Discutere diario, aiuto pratico e ritorno adattato a scuola o lavoro. Se l'attività provoca un marcato peggioramento ritardato, dirlo al medico senza forzare aumenti di esercizio. La riabilitazione segue sintomi e risposta individuale, senza promettere una data fissa di guarigione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: un negativo precoce",
+      "text": "Ana ha mal di gola e test domestico negativo il primo giorno. Poiché assume immunosoppressori, contatta subito il medico per test e cure precoci, senza aspettare tosse grave o considerare esclusa l'infezione."
+    },
+    {
+      "title": "Esempio ipotetico: adattare il recupero",
+      "text": "Passata la febbre, Dario riprende turni lunghi ma il giorno dopo sta molto peggio. Registra l'andamento e discute un piano individuale che alterni attività e riposo con medico e datore di lavoro, senza continuare a forzare o pensare che manchi impegno."
+    }
+  ],
+  "questions": [
+    "Posso ricevere cure precoci e quanto rapidamente devo contattarvi?",
+    "Farmaci o salute di reni e fegato cambiano le possibilità?",
+    "Quali sintomi richiedono aiuto urgente e come rivedere un recupero lento?"
+  ]
+}

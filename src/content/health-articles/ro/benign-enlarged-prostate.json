@@ -1,0 +1,51 @@
+{
+  "title": "Mărirea benignă a prostatei: simptome urinare și alegerea tratamentului",
+  "intro": "Mărirea benignă a prostatei este creșterea necanceroasă a unei glande situate sub vezica urinară. Poate afecta fluxul urinei, dar nu orice simptom urinar provine de la prostată. Pot apărea jet slab, dificultatea de a începe urinarea, urgență sau treziri nocturne pentru urinare. Evaluarea deosebește simptomele supărătoare, dar gestionabile, de infecție, retenție ori altă afecțiune care necesită îngrijire diferită.",
+  "sections": [
+    {
+      "heading": "Explică efectul asupra vieții zilnice",
+      "paragraphs": [
+        "Spune medicului despre jet, frecvență, pierderi de urină, disconfort și senzația de golire incompletă. Explică somnul perturbat, limitările la serviciu ori grija de a găsi toalete. Un jurnal al băuturilor și urinării poate ajuta dacă este cerut. Dimensiunea prostatei nu explică întregul tablou. Medicamentele și alte probleme de sănătate pot contribui, deci adu lista completă, inclusiv remedii pentru răceală fără rețetă și suplimente. Nu opri singur medicamentele prescrise."
+      ]
+    },
+    {
+      "heading": "Înțelege examinarea și analizele",
+      "paragraphs": [
+        "Evaluarea poate include examinare, analiză de urină și analize de sânge selectate. Specialistul poate măsura fluxul urinar ori urina rămasă în vezică. Dacă se propune testul PSA, discută scopul și limitele: o valoare crescută nu stabilește singură cancerul. Mărirea benignă nu este același lucru cu cancerul de prostată, dar pot exista împreună. Simptomele urinare noi merită totuși evaluare, nu liniștire bazată numai pe vârstă."
+      ]
+    },
+    {
+      "heading": "Adaptează planul la simptome și priorități",
+      "paragraphs": [
+        "Simptomele ușoare fără complicații pot fi monitorizate cu sfaturi, fără tratament imediat. Discută momentul consumului de lichide, cafeina ori alcoolul dacă sunt relevante, menținând hidratarea potrivită și indicațiile individuale privind lichidele. Nu restricționa sever lichidele ca reacție la simptome. Obiceiurile vezicale și schimbările practice trebuie adaptate cauzei. Stabilește cum apreciezi progresul și când revizuiți planul, mai ales dacă somnul ori funcționarea zilnică rămân afectate."
+      ]
+    },
+    {
+      "heading": "Compară realist medicamentele și procedurile",
+      "paragraphs": [
+        "Unele medicamente relaxează musculatura din jurul evacuării vezicii; altele acționează asupra creșterii prostatei ori anumitor simptome vezicale. Diferă beneficiile, rapiditatea efectului și reacțiile adverse, inclusiv amețeala ori efectele sexuale. Procedurile pot fi luate în calcul pentru simptome supărătoare persistente sau complicații. Întreabă despre sângerare, recuperare, continență, ejaculare și posibilitatea altui tratament, în raport cu procedura propusă. Tratamentul ales pentru altcineva nu este automat potrivit și pentru tine."
+      ]
+    },
+    {
+      "heading": "Recunoaște semnele care nu trebuie să aștepte",
+      "paragraphs": [
+        "Imposibilitatea nou apărută de a urina necesită ajutor medical urgent, mai ales dacă vezica pare plină ori dureroasă. Poate fi necesară o sondă pentru golire; nu aștepta un control obișnuit și nu încerca să forțezi problema cu cantități mari de lichide. Sângele în urină, urinarea dureroasă, febra ori durerea în zona rinichilor necesită de asemenea sfat prompt. Starea gravă, confuzia ori colapsul impun ajutor de urgență. Schimbările după tratament merită reevaluare, nu atribuirea automată îmbătrânirii."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: pregătirea unui control util",
+      "text": "O persoană se trezește repetat să urineze și se teme de drumuri lungi. Descrie efectul asupra somnului și aduce lista medicamentelor și jurnalul cerut. Întreabă dacă prostata, vezica ori altă afecțiune explică simptomele, în loc să cumpere un produs promovat pentru prostată."
+    },
+    {
+      "title": "Exemplu ipotetic: recunoașterea retenției",
+      "text": "O persoană care avea jet slab nu mai poate urina brusc și simte disconfort vezical tot mai mare. Cere ajutor urgent în loc să aștepte reevaluarea următoarei rețete. Spune când a urinat ultima dată și ce medicamente recente ori alte simptome are."
+    }
+  ],
+  "questions": [
+    "Care este cauza probabilă și ce informații aduc testele propuse?",
+    "Ce monitorizare, medicamente sau proceduri se potrivesc priorităților și riscului meu de complicații?",
+    "Ce efecte adverse și semne de alarmă contează și când revizuim planul?"
+  ]
+}

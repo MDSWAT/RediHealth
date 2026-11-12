@@ -1,0 +1,51 @@
+{
+  "title": "Acute cystitis: bladder symptoms and when to seek help",
+  "intro": "Cystitis is inflammation of the bladder, commonly caused by a bacterial infection. Burning when passing urine, needing to urinate frequently and discomfort low in the abdomen are typical concerns. Similar symptoms can have other causes, so the right response depends on the whole picture, including pregnancy, age, other illnesses and any signs that the kidneys or the rest of the body are affected.",
+  "sections": [
+    {
+      "heading": "Separate bladder symptoms from warning signs",
+      "paragraphs": [
+        "An uncomplicated bladder infection usually causes symptoms centred on urination, such as urgency and passing small amounts frequently. Fever, shaking chills, pain in the side or back beneath the ribs, or vomiting can suggest a more serious infection and need urgent assessment. Visible blood in urine also needs medical advice. Cloudy or strong-smelling urine alone does not establish an infection; hydration, medicines and other factors can change its appearance."
+      ]
+    },
+    {
+      "heading": "Explain the context during a consultation",
+      "paragraphs": [
+        "Tell the clinician when symptoms began, whether you are pregnant or could be, and whether you have a catheter, kidney disease, diabetes or weakened immunity. Children, men and frail older people need an appropriately tailored assessment rather than copying a treatment used by a healthy adult woman. Mention genital discharge, irritation, new sexual exposure or difficulty emptying the bladder, because these can point to another problem or change which tests are useful."
+      ]
+    },
+    {
+      "heading": "Understand urine tests and their limitations",
+      "paragraphs": [
+        "Symptoms and medical history may be enough for some uncomplicated cases; other situations require a urine test or culture to identify bacteria and suitable antibiotics. Follow instructions for collecting a sample. A positive result does not automatically explain every symptom: some people have bacteria in their urine without an infection needing treatment. A clinician must interpret results in context. Do not delay urgent care while trying to obtain a sample."
+      ]
+    },
+    {
+      "heading": "Use an agreed treatment and comfort plan",
+      "paragraphs": [
+        "Antibiotics may be recommended, depending on the person's situation and severity. Follow the prescribed instructions and contact the prescriber about side effects or failure to improve; do not share tablets or use leftovers. Rest and enough fluids to avoid dehydration may help comfort, but follow any prescribed fluid restriction. Ask which pain relief is suitable. Cranberry products and cystitis sachets are not reliable treatment for an established infection and must not replace necessary care."
+      ]
+    },
+    {
+      "heading": "Know what requires reassessment",
+      "paragraphs": [
+        "Seek prompt advice if symptoms worsen or do not improve as expected with the agreed plan. Pregnancy, fever, flank pain, recurrent infections and persistent blood in urine warrant particular attention. Sudden confusion, marked drowsiness, collapse or severe illness require emergency help. After repeated episodes, discuss possible contributing factors and prevention with a clinician rather than repeatedly treating yourself. New symptoms should not automatically be attributed to a previous diagnosis of cystitis."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: recognising a change",
+      "text": "Someone with burning urination develops a fever and pain below the ribs at the back. They seek urgent assessment and explain both the urinary symptoms and the new pain instead of assuming this is still an uncomplicated bladder problem."
+    },
+    {
+      "title": "Hypothetical example: preparing for recurrent symptoms",
+      "text": "A person with repeated episodes brings a list of previous tests, prescribed medicines and the timing of symptoms to an appointment. They ask whether a culture or evaluation of another cause would help, rather than using antibiotics left from an earlier episode."
+    }
+  ],
+  "questions": [
+    "Do my symptoms suggest a bladder infection or another cause, and do I need urine testing?",
+    "Which treatment is appropriate with my pregnancy status, health conditions and medicine allergies?",
+    "What should improve, when should I contact you again, and which signs require urgent help?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "COPD: improving daily breathing and planning for flare-ups",
+  "intro": "Chronic obstructive pulmonary disease, or COPD, causes lasting airflow limitation from damage to the airways and lungs. It can involve chronic bronchitis, emphysema or both. Breathlessness, cough and mucus may gradually limit activity, but treatment and rehabilitation can improve symptoms and reduce flare-ups. COPD is not simply an inevitable consequence of getting older, and persistent breathing problems deserve assessment even in someone who has never smoked.",
+  "sections": [
+    {
+      "heading": "Confirm the diagnosis and consider other causes",
+      "paragraphs": [
+        "A clinician asks about symptoms, smoking, workplace dust or fumes, household pollution and previous lung disease. Spirometry, a breathing test usually assessed after an airway-opening medicine, helps confirm persistent airflow obstruction. Other tests may look for alternative or additional problems such as heart disease, infection or anaemia. A chest image alone does not replace lung-function testing for the diagnosis. Tell the team how breathlessness affects walking, sleep and self-care, as well as how many flare-ups you have had."
+      ]
+    },
+    {
+      "heading": "Reduce exposures and rebuild confidence with activity",
+      "paragraphs": [
+        "Stopping smoking is a key treatment, and counselling with appropriate cessation medicines can help. Ask about reducing dust, fumes, indoor smoke and other triggers. Pulmonary rehabilitation combines supervised exercise, education and self-management support, tailored to your abilities; it is not a demand to push through dangerous symptoms. Gradual activity, pacing tasks and appropriate nutrition can help preserve strength. Avoiding all movement because of breathlessness can lead to further weakness. Discuss anxiety and low mood, which can make breathing difficulties harder to manage."
+      ]
+    },
+    {
+      "heading": "Inhaler choice and technique both matter",
+      "paragraphs": [
+        "Bronchodilator inhalers relax the airways. Short-acting and longer-acting medicines have different roles, and selected people also benefit from an inhaled corticosteroid. The combination depends on symptoms, flare-up history and other findings, not simply the colour of an inhaler. Ask a professional to watch your technique with your actual device, check whether a spacer is appropriate and explain maintenance versus symptom-relief use. Report side effects and difficulty handling the device. Keep an updated medicine list and follow instructions for any prescribed inhaled steroid, including mouth care."
+      ]
+    },
+    {
+      "heading": "Agree a written action plan for worsening symptoms",
+      "paragraphs": [
+        "A flare-up means breathing, cough or mucus is worse than usual and may require extra treatment. Ask which changes mean contacting the team, how to use prescribed reliever medicine and whether a personally prescribed rescue pack is appropriate. Do not begin borrowed antibiotics or steroid tablets without a plan. Seek urgent advice for increased breathlessness, coughing blood or a new painful swollen leg. Severe breathing difficulty, inability to speak normally, chest pressure, blue or grey lips or new confusion needs emergency help. Do not let a familiar diagnosis explain away a new emergency."
+      ]
+    },
+    {
+      "heading": "Oxygen, prevention and continuing support",
+      "paragraphs": [
+        "Home oxygen is prescribed for selected people after assessment of low blood oxygen; it is not a general treatment for every episode of breathlessness. Use the prescribed setting and never smoke, vape or allow flames near oxygen equipment. Discuss recommended local vaccinations to reduce respiratory infections, regular reviews and support after a hospital admission. Advanced COPD may need specialist treatments and help planning future care. Symptom relief, psychological support and practical assistance can accompany active treatment at any stage. Ask for a plan that matches your priorities and living situation."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A device that is hard to use — hypothetical example",
+      "text": "A person says their inhaler is not helping. At review, the clinician watches them use it and identifies a technique or hand-strength problem. They practise together and consider another suitable device instead of assuming the medicine has failed."
+    },
+    {
+      "title": "A change from usual breathing — hypothetical example",
+      "text": "Someone with COPD becomes more breathless and has a new painful swollen calf. They seek urgent assessment rather than treating every change as a routine chest flare-up. Severe breathlessness or chest pressure would require emergency help."
+    }
+  ],
+  "questions": [
+    "Have spirometry and other findings confirmed COPD, and is anything else contributing?",
+    "Can you check my inhaler technique and refer me for pulmonary rehabilitation?",
+    "What is my written flare-up plan, and which symptoms require urgent or emergency help?"
+  ]
+}

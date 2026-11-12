@@ -7,6 +7,8 @@ import { translations, type Lang } from "@/lib/i18n/translations";
 
 // Own titles here: the shared page-title table still says "video" for this page, and the call is voice only.
 const META: Record<Lang, { title: string; description: string }> = {
+  ru: { title: "Запишитесь на прием к врачу - RediHealth", description: "Выберите день и время для бесплатного звонка врача-волонтера." },
+
   ro: { title: "Programează un apel cu medicul - RediHealth", description: "Alege ziua și ora pentru un apel gratuit cu un medic voluntar." },
   en: { title: "Book a call with a doctor - RediHealth", description: "Choose a day and time for a free call with a volunteer doctor." },
   sq: { title: "Cakto një thirrje me mjekun - RediHealth", description: "Zgjidh ditën dhe orën për një thirrje falas me një mjek vullnetar." },

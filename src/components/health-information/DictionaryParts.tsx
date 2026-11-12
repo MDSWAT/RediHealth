@@ -55,6 +55,8 @@ export const DICTIONARY_UTILITY_COPY: Record<
     resetFilters: string;
   }
 > = {
+"ru": {"clearSearch":"Очистить поиск","largeTextLabel":"Крупнее","largeTextAria":"Увеличить текст словаря","stopAudio":"Стоп","resetFilters":"Показать всё"},
+
   ro: {
     clearSearch: "Șterge căutarea",
     largeTextLabel: "Text mare",

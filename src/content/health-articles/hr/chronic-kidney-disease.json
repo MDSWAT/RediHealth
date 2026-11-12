@@ -1,0 +1,51 @@
+{
+  "title": "Kronična bubrežna bolest: razumijevanje nalaza i zaštita bubrega",
+  "intro": "Kronična bubrežna bolest znači trajnu nepravilnost građe ili funkcije bubrega, uglavnom dulju od tri mjeseca. Rana bolest često nema simptoma i ne vodi automatski dijalizi. Krv i mokraća pomažu utvrditi problem, rizik i promjene. Liječenje usporava napredovanje, smanjuje srčanožilni rizik i kontrolira komplikacije uz podršku svakodnevnom životu.",
+  "sections": [
+    {
+      "heading": "Tumačite krv i mokraću zajedno",
+      "paragraphs": [
+        "Krvna pretraga procjenjuje filtraciju, eGFR. To je procjena funkcije, a ne jednostavan postotak preostalog tkiva. Omjer albumina i kreatinina u mokraći, ACR, traži gubitak bjelančevina koji upućuje na oštećenje. Trend, ponavljanja i drugi nalazi važniji su od jednog broja. Nagla promjena može biti akutno oštećenje i traži drugu reakciju. Pitajte što je potvrđeno, što ponoviti i značenje kategorije rizika."
+      ]
+    },
+    {
+      "heading": "Uzrok i simptomi",
+      "paragraphs": [
+        "Dijabetes i visoki tlak česti su doprinosi. Drugi su upalne ili nasljedne bolesti, ponovljene infekcije, zastoj mokraće i neki lijekovi. Procjena uključuje povijest, tlak, pretrage, ultrazvuk ili specijalističke postupke. Kasnije mogu nastati umor, oticanje, mučnina, svrbež ili zaduha, ali imaju i druge razloge. Mogu biti pogođeni krvna slika, kosti i ravnoteža soli. Dobro stanje ne znači prekid praćenja."
+      ]
+    },
+    {
+      "heading": "Lijekovi i zaštitne navike",
+      "paragraphs": [
+        "Dogovorite osobne ciljeve tlaka i dijabetesa, uzimajte zaštitne lijekove i raspravite srčanožilnu prevenciju. Neki lijekovi trebaju prilagodbu doze s filtracijom, uz provjeru učinaka i kalija. Donesite sve recepte, bezreceptne proizvode i dodatke. Ibuprofen i naproksen mogu biti rizični, posebno uz dehidraciju: pitajte prije uporabe. Ne prekidajte propisano sami. Tražite pisani plan za povraćanje, proljev ili drugu dehidrirajuću bolest, s kontaktom i postupanjem s lijekovima."
+      ]
+    },
+    {
+      "heading": "Prehrana i tekućina prema nalazima",
+      "paragraphs": [
+        "Bubrežni dijetetičar pomaže sa soli, prehranom i proteinima bez nepotrebnih zabrana. Kalij, fosfat i tekućina nemaju ista ograničenja za sve: ovise o nalazima, stadiju i terapiji. Neke zamjene za sol sadrže kalij pa provjerite. Ne forsirajte vodu za 'ispiranje', ne ograničavajte jako bez savjeta i ne oslanjajte se na detoks. Kretanje prema mogućnosti i prestanak pušenja podupiru zdravlje. Tražite promjene prema budžetu i običnim jelima."
+      ]
+    },
+    {
+      "heading": "Kontrole i buduće mogućnosti",
+      "paragraphs": [
+        "Kontrole i specijalist ovise o riziku, brzini promjene, uzroku i komplikacijama. Mnogi dugo ostanu stabilni. Za uznapredovalu bolest rano raspravite dijalizu, transplantaciju kada je prikladna i sveobuhvatnu konzervativnu skrb. Odluke uključuju simptome, prognozu i osobne ciljeve, a ne samo broj. Hitno tražite savjet za jako manje mokraće, trajno povraćanje ili brzo oticanje. Teška zaduha, bol u prsima, kolaps ili nova zbunjenost traže hitnu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Neočekivan nalaz — zamišljeni primjer",
+      "text": "Osoba je dobro, ali bubrežni nalaz je abnormalan. Traži prijašnje rezultate, albumin u mokraći i plan potvrde trajanja. Filtraciju ne tumači kao točan postotak preostalih bubrega."
+    },
+    {
+      "title": "Izbor analgetika — zamišljeni primjer",
+      "text": "Osoba s bubrežnom bolešću želi bezreceptni protuupalni lijek dok povraća. Pita ljekarnika ili tim o sigurnijem planu i tekućini, bez pretpostavke da bezreceptno znači bezopasno za bubrege."
+    }
+  ],
+  "questions": [
+    "Što trend filtracije i albumin govore o uzroku i riziku?",
+    "Koji lijekovi, prehrana i upute tijekom bolesti odgovaraju meni?",
+    "Kada trebam kontrolu ili specijalista i koji simptomi traže hitnu pomoć?"
+  ]
+}

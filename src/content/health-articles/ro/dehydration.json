@@ -1,0 +1,51 @@
+{
+  "title": "Deshidratarea: refacerea lichidelor și când cereți ajutor",
+  "intro": "Deshidratarea apare când corpul pierde mai multe lichide decât primește. Vărsăturile, diareea, febra, transpirația abundentă ori accesul dificil la băuturi contribuie. Sugarii, vârstnicii și persoanele dependente de îngrijire se pot agrava mai repede. Pierderea ușoară se poate ameliora prin hidratare potrivită, dar deshidratarea gravă ori cauza ei necesită tratament medical.",
+  "sections": [
+    {
+      "heading": "Observați schimbarea față de normalul persoanei",
+      "paragraphs": [
+        "Setea, gura uscată, durerea de cap, oboseala, amețeala și urina mai rară ori închisă pot fi indicii. La sugar contează scutecele ude mai puține, alimentația redusă, lacrimile puține ori iritabilitatea neobișnuită. Vârstnicul poate simți puțină sete. Niciun semn singur, inclusiv culoarea urinei sau pliul pielii, nu stabilește severitatea. Simptomele au și alte cauze. Luați în calcul pierderile, lichidele păstrate, vigilența și accesul la ajutor. Setea excesivă ori urinarea excesivă nouă persistentă cer evaluare pentru cauze precum diabetul, nu doar apă tot mai multă."
+      ]
+    },
+    {
+      "heading": "Când băutul acasă nu este suficient",
+      "paragraphs": [
+        "Cereți sfat urgent dacă nu puteți păstra lichide, urina scade mult, amețeala la ridicare persistă, inima ori respirația sunt neobișnuit de rapide sau copilul este neobișnuit de somnolent ori mănâncă slab. Sugarul cu suspiciune de deshidratare necesită sfat prompt. Apelați urgența pentru confuzie, trezire dificilă, colaps, respirație sever afectată ori piele rece, albăstruie, cenușie sau pătată în boală gravă. Boala severă de căldură cu conștiență modificată este tot urgență. Nu forțați lichide unei persoane inconștiente, prea somnolente pentru înghițire sigură ori cu respirație dificilă. Rămâneți lângă ea și urmați instrucțiunile."
+      ]
+    },
+    {
+      "heading": "Înlocuiți pierderile cu lichidul potrivit",
+      "paragraphs": [
+        "Persoanei alerte care înghite îi oferiți înghițituri mici dese, mai ales la greață, crescând treptat după toleranță. În diaree ori vărsături importante, farmacistul poate recomanda soluție de rehidratare orală pentru apă și săruri împreună. Amestecați fiecare plic cu exact apa sigură indicată; nu adăugați pulbere suplimentară, sare, zahăr ori suc. Produsele nu au toate aceeași diluție. Băuturile foarte dulci pot agrava diareea, iar băutura sportivă nu este automat echivalentă cu soluția medicală. Continuați alăptarea și nu diluați formula; cereți plan potrivit vârstei pentru alimentare și rehidratare."
+      ]
+    },
+    {
+      "heading": "Unele boli necesită plan adaptat",
+      "paragraphs": [
+        "Persoanele cu insuficiență cardiacă, boală renală avansată ori restricție prescrisă de lichide cer sfat individual în vărsături, diaree sau căldură, fără să forțeze volume mari. Produsele de rehidratare conțin și săruri care pot conta. Diureticele și alte medicamente afectează echilibrul lichidelor ori siguranța renală în boală. Cereți plan specific pentru zilele de boală: ce medicament, dacă este cazul, se întrerupe și când se reia; nu opriți tot singur. Medicul poate verifica tensiunea, sărurile, rinichii și glicemia. Cazurile severe necesită uneori lichide atent supravegheate prin venă sau altă cale asistată."
+      ]
+    },
+    {
+      "heading": "Preveniți episodul următor prin sprijin practic",
+      "paragraphs": [
+        "Puneți lichide potrivite la îndemână și oferiți regulat la mese și între activități. Cana preferată, reamintirea, ajutorul la ridicarea băuturii și accesul la toaletă pot conta mai mult decât îndemnul repetat. Problemele de înghițire cer consistența sigură evaluată și ajutor, nu lichide subțiri forțate. La căldură reduceți efortul, găsiți răcoare și planificați pauze. Urmăriți revenirea vigilenței, băutului și urinării obișnuite, dar agravarea cere reevaluare. Vărsăturile, diareea, înghițirea dificilă persistente ori lipsa apei sigure cer plan pentru cauză, nu numai pierderea de lichide."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: cantități mici și supraveghere",
+      "text": "Un copil cu infecție digestivă varsă după o băutură mare. Medicul recomandă soluție potrivită în cantități mici dese și explică alarmele. Părintele continuă planul alimentar și cere ajutor dacă scutecele ude scad ori copilul devine neobișnuit de somnolent."
+    },
+    {
+      "title": "Exemplu ipotetic: restricția schimbă sfatul",
+      "text": "În caniculă, un vârstnic cu insuficiență cardiacă amețește luând diuretic. Îngrijitorul contactează echipa pentru evaluare și plan specific de lichide și medicamente, fără apă nelimitată ori oprirea tuturor medicamentelor."
+    }
+  ],
+  "questions": [
+    "Se poate gestiona prin băut sau este necesară evaluare acum?",
+    "Ce produs de rehidratare și alimentație se potrivesc vârstei și bolilor?",
+    "Medicamentele ori restricția de lichide necesită plan specific de boală?"
+  ]
+}

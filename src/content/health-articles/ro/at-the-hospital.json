@@ -1,0 +1,51 @@
+{
+  "title": "La spital: înțelegeți îngrijirea și pregătiți întoarcerea acasă",
+  "intro": "O vizită la spital poate însemna o consultație în ambulatoriu, o procedură de o zi sau internare peste noapte. Dacă știți de ce mergeți și cine răspunde de pasul următor, incertitudinea poate scădea. Acest ghid oferă sfaturi practice de pregătire și comunicare. Regulile de internare, asigurare și plată diferă între țări; articolul original indicat explică organizarea din Germania, nu drepturi universale.",
+  "sections": [
+    {
+      "heading": "Clarificați internarea înaintea unei vizite planificate",
+      "paragraphs": [
+        "Verificați secția, data, ora sosirii și contactele și întrebați dacă veți rămâne peste noapte. Confirmați cu spitalul și asigurătorul eventualele cerințe de trimitere, acoperire sau plată. Întrebați despre transport, interpretare, accesibilitate și sprijin pentru un îngrijitor. Urmați instrucțiunile individuale despre alimente, lichide și medicamente; nu inventați o perioadă de post și nu opriți singur un anticoagulant. Contactați echipa dacă instrucțiunile se contrazic, starea se schimbă ori apare o infecție înaintea internării."
+      ]
+    },
+    {
+      "heading": "Aduceți informații care previn greșeli evitabile",
+      "paragraphs": [
+        "Aduceți lista actuală a medicamentelor, detalii despre alergii, rapoarte relevante și documentele solicitate. Includeți medicamentele fără rețetă și suplimentele și spuneți ce luați efectiv. Informați personalul despre implanturi, reacții anterioare la anestezie, nevoi de comunicare și ajutorul necesar pentru mers sau îngrijire personală. Ochelarii și aparatele auditive pot ușura discuțiile; întrebați cum le păstrați în siguranță. Confirmați-vă identitatea la verificări și spuneți dacă un medicament, o procedură ori o etichetă par diferite de ce așteptați."
+      ]
+    },
+    {
+      "heading": "Întrebați cine coordonează deciziile",
+      "paragraphs": [
+        "Vă pot vizita mai mulți profesioniști, cu roluri diferite. Întrebați cine conduce tratamentul și cum contactați pe cineva pentru întrebări. Înaintea unei proceduri, discutați scopul, beneficiile probabile, riscurile importante, alternativele și recuperarea. Cereți interpret sau explicații mai clare dacă este necesar și spuneți dacă nu înțelegeți discuția despre consimțământ. Pentru o decizie majoră neurgentă, întrebați dacă există timp de gândire ori posibilitatea altei opinii. Spuneți echipei pe cine doriți implicat și ce informații pot fi comunicate."
+      ]
+    },
+    {
+      "heading": "Raportați schimbările fără a aștepta următoarea vizită",
+      "paragraphs": [
+        "Folosiți sistemul de chemare dacă vă simțiți mult mai rău, apare lipsa de aer sau durerea toracică, amețiți puternic ori observați altă schimbare îngrijorătoare. Cereți ajutor înainte de ridicare dacă sunteți slăbit, instabil sau conectat la echipamente. Discutați devreme durerea și greața și urmați sfaturile echipei pentru mișcare, plagă și prevenirea cheagurilor. Igiena mâinilor contează pentru personal, vizitatori și pacienți. Dacă simțiți că o îngrijorare importantă nu a fost auzită, cereți asistentei responsabile sau clinicianului curant să o reevalueze."
+      ]
+    },
+    {
+      "heading": "Faceți instrucțiunile de externare utilizabile acasă",
+      "paragraphs": [
+        "Înainte de plecare, obțineți un rezumat inteligibil al diagnosticului, tratamentului și analizelor în așteptare. Parcurgeți lista medicamentelor: ce este nou, schimbat, oprit sau continuat, de ce și cine va reevalua. Confirmați îngrijirea plăgii, restricțiile de activitate, controalele, semnele de alarmă și un contact pentru probleme. Explicați dacă locuiți singur, nu puteți urca scări ori nu aveți ajutor pentru procurarea medicamentelor. Întrebați ce sprijin, echipamente sau recuperare pot fi organizate. O rudă poate ajuta cu acordul dumneavoastră, dar nu trebuie presupus că poate oferi toată îngrijirea necesară."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: instrucțiuni neclare pentru medicamente",
+      "text": "Înaintea unei proceduri, un pacient primește o broșură veche care pare să contrazică planul recent pentru medicamente. Contactează echipa spitalului pentru clarificare, în loc să decidă prin presupuneri ce comprimate să oprească."
+    },
+    {
+      "title": "Exemplu ipotetic: obstacole practice la externare",
+      "text": "Un pacient poate pleca după tratament, dar nu poate urca în siguranță scările de acasă și nu înțelege rețetele noi. Spune echipei înainte de plecare, cere verificarea listei de medicamente și discută transportul și sprijinul necesar."
+    }
+  ],
+  "questions": [
+    "Cine coordonează îngrijirea și care sunt beneficiile, riscurile și alternativele tratamentului planificat?",
+    "Ce medicamente iau înainte de internare și după externare și cine confirmă modificările?",
+    "Ce ajutor îmi trebuie acasă, cine urmărește rezultatele în așteptare și pe cine contactez dacă mă agravez?"
+  ]
+}

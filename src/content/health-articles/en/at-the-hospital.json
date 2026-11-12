@@ -1,0 +1,51 @@
+{
+  "title": "At the hospital: understand your care and prepare to go home",
+  "intro": "A hospital visit may be an outpatient appointment, a day procedure or an overnight stay. Knowing why you are attending and who is responsible for the next step can reduce uncertainty. This guide offers practical preparation and communication advice. Admission, insurance and payment rules differ between countries; the original linked article explains arrangements in Germany rather than universal entitlements.",
+  "sections": [
+    {
+      "heading": "Clarify the admission before a planned visit",
+      "paragraphs": [
+        "Check the department, date, arrival time and contact details, and ask whether you are expected to stay overnight. Confirm any referral, coverage or payment requirements with the hospital and insurer where relevant. Ask about transport, interpreting, accessibility and support for a carer. Follow individual instructions about food, drink and medicines; do not invent a fasting period or stop a blood thinner yourself. Contact the team if instructions conflict, your health changes or you develop an infection before admission."
+      ]
+    },
+    {
+      "heading": "Bring information that helps prevent avoidable mistakes",
+      "paragraphs": [
+        "Bring a current medicine list, allergy details, relevant reports and any requested documents. Include non-prescription medicines and supplements, and describe what you actually take. Tell staff about implants, previous reactions to anaesthesia, communication needs and help needed for walking or personal care. Glasses and hearing aids can make discussions easier; ask how to store them safely. Confirm your identity when staff check it, and speak up if a medicine, procedure or label seems different from what you expected."
+      ]
+    },
+    {
+      "heading": "Ask who is coordinating the decisions",
+      "paragraphs": [
+        "Several professionals may visit, each with a different role. Ask who leads your treatment and how to contact someone with a question. Before a procedure, discuss its purpose, likely benefits, important risks, alternatives and what recovery involves. Request an interpreter or a clearer explanation if needed, and say if you do not understand a consent discussion. For a non-urgent major decision, ask whether time or another opinion is possible. Tell the team whom you want involved and what information may be shared."
+      ]
+    },
+    {
+      "heading": "Report changes rather than waiting for the next ward round",
+      "paragraphs": [
+        "Use the call system if you feel significantly worse, develop new breathlessness or chest pain, become very dizzy or notice another concerning change. Ask for help before standing if you are weak, unsteady or attached to equipment. Discuss pain and nausea early, and follow the team's advice on movement, wound care and clot prevention. Hand hygiene matters for staff, visitors and patients. If you are worried that an important concern has not been heard, ask for the nurse in charge or the treating clinician to review it."
+      ]
+    },
+    {
+      "heading": "Make discharge instructions usable at home",
+      "paragraphs": [
+        "Before leaving, obtain an understandable summary of the diagnosis, treatment and outstanding tests. Go through the medicine list: what is new, changed, stopped or continued, why, and who will review it. Confirm wound care, activity restrictions, follow-up, warning signs and a contact for problems. Explain if you live alone, cannot manage stairs or lack help obtaining medicines. Ask what support, equipment or rehabilitation can be arranged. A relative can help with permission, but should not be assumed able to provide all required care."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: unclear medicine instructions",
+      "text": "Before a planned procedure, a patient receives an old leaflet that appears to conflict with a recent medicine plan. They contact the hospital team to clarify the instructions rather than choosing which tablets to stop based on guesswork."
+    },
+    {
+      "title": "Hypothetical example: discharge with practical barriers",
+      "text": "A patient is ready to leave after treatment but cannot safely climb the stairs at home and is unsure about new prescriptions. They tell the ward team before departure, request a reviewed medicine list and discuss transport and support arrangements."
+    }
+  ],
+  "questions": [
+    "Who is coordinating my care, and what are the benefits, risks and alternatives of the planned treatment?",
+    "Which medicines should I take before admission and after discharge, and who will confirm changes?",
+    "What help will I need at home, who follows up pending results and whom do I contact if I worsen?"
+  ]
+}

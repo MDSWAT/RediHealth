@@ -1,0 +1,51 @@
+{
+  "title": "Upala slijepog crijeva: hitna procjena i odluke o liječenju",
+  "intro": "Apendicitis je upala crvuljka, malog nastavka crijeva koji se često naziva slijepim crijevom. Može se pogoršati i uzrokovati ozbiljne komplikacije, pa sumnja zahtijeva hitnu liječničku procjenu. Sama bol u trbuhu ne potvrđuje uzrok, a nemaju svi poznati obrazac širenja boli prema donjoj desnoj strani. Članak objašnjava procjenu i odluke; ne služi dijagnosticiranju ili liječenju kod kuće.",
+  "sections": [
+    {
+      "heading": "Prepoznajte zabrinjavajuću bol bez čekanja tipičnog obrasca",
+      "paragraphs": [
+        "Bol može početi oko sredine trbuha i poslije biti izraženija dolje desno. Mogu je pratiti mučnina, povraćanje, slabiji apetit ili vrućica. Djeca, starije osobe i trudnice mogu imati manje tipične simptome. Sve jača ili trajna bol zahtijeva brzu procjenu čak i bez vrućice. Jaka bol, nesvjestica, zbunjenost, otežano disanje ili brzo pogoršanje zahtijevaju hitnu pomoć. Nemojte ponavljano pritiskati trbuh ili internetskim testom pokreta pokušavati isključiti bolest."
+      ]
+    },
+    {
+      "heading": "Dajte timu podatke koji mijenjaju procjenu",
+      "paragraphs": [
+        "Opišite početak i promjene boli, povraćanje, crijevne ili mokraćne simptome, lijekove i ranije operacije. Navedite trudnoću ili mogućnost trudnoće. Možda treba razmotriti druge uzroke, uključujući bolesti mokraćnog sustava, crijevne probleme i izvanmaterničnu trudnoću. Ne pretpostavljajte da ranija loša probava objašnjava novu bolest. Ponesite popis lijekova ako je dostupan, ali ne odgađajte hitnu skrb radi prikupljanja dokumentacije."
+      ]
+    },
+    {
+      "heading": "Razumijte pretrage i promatranje",
+      "paragraphs": [
+        "Tim može pregledati trbuh te koristiti krvne i mokraćne pretrage i snimanje poput ultrazvuka ili CT-a. Izbor ovisi o okolnostima, uključujući trudnoću. Nijedan pojedinačni simptom ili test ne razjašnjava svaki neizvjestan slučaj, pa mogu biti potrebni ponovni pregled ili promatranje. Pitajte na što upućuju sadašnji nalazi i kakav je plan ako ostane neizvjesnost. Ako vas nakon procjene pošalju kući, morate razumjeti kada i kamo se vratiti."
+      ]
+    },
+    {
+      "heading": "Razgovarajte o liječenju u bolničkim uvjetima",
+      "paragraphs": [
+        "Uklanjanje crvuljka uobičajeno je liječenje, laparoskopskom ili otvorenom operacijom. Antibiotici i drugi pristupi mogu se razmotriti u odabranim okolnostima, prema nalazima i komplikacijama. Antibiotici nisu kućna zamjena za procjenu; simptomi mogu trajati ili se vratiti, a operacija ipak biti potrebna. Pitajte zašto preporučeni pristup odgovara vašem slučaju, koji su rizici, alternative i što bi promijenilo odluku. Slijedite upute tima o hrani, piću i lijekovima."
+      ]
+    },
+    {
+      "heading": "Upoznajte plan oporavka i znakove problema",
+      "paragraphs": [
+        "Oporavak ovisi o zahvatu, tome je li crvuljak puknuo i drugim zdravstvenim čimbenicima. Zatražite jasne upute o njezi rane, lijekovima, aktivnosti, kontrolama i kontaktima. Sve jača bol u trbuhu, vrućica, ponavljano povraćanje, nemogućnost zadržavanja tekućine ili zabrinjavajuće promjene rane zahtijevaju liječnički savjet. Teška bolest ili kolaps zahtijevaju hitnu pomoć. Kratko poboljšanje ne dokazuje da se neliječeni trbušni problem riješio, osobito ako se bol vrati ili proširi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: ozbiljno shvaćanje netipičnih simptoma",
+      "text": "Dijete ima sve jaču bol u trbuhu i ne jede, ali ne može pokazati donju desnu stranu. Skrbnik traži brzu procjenu i objašnjava promjene ponašanja i simptoma. Ne čeka da bol odgovara crtežu prije traženja pomoći."
+    },
+    {
+      "title": "Hipotetski primjer: razjašnjenje izbora liječenja",
+      "text": "Pacijentu je ponuđen bolnički plan pa pita zašto se u njegovu slučaju preporučuju operacija ili antibiotici. Pita o mogućem povratku bolesti i znakovima za ponovnu procjenu, umjesto posuđivanja antibiotika i pokušaja istog liječenja kod kuće."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru apendicitis i koji se drugi uzroci razmatraju?",
+    "Zašto se preporučuje ovo liječenje u mojem slučaju i koji su rizici i alternative?",
+    "Kako bi oporavak trebao izgledati i koje promjene zahtijevaju hitan povratak?"
+  ]
+}

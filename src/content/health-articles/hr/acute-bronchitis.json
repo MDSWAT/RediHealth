@@ -1,0 +1,51 @@
+{
+  "title": "Akutni bronhitis: razumjeti dugotrajan kašalj",
+  "intro": "Akutni bronhitis privremena je upala većih dišnih putova u plućima, često tijekom ili nakon virusne respiratorne infekcije. Kašalj može trajati i nakon poboljšanja grlobolje ili curenja nosa. Uporan kašalj iscrpljuje, ali samo trajanje ne pokazuje da treba antibiotik. Poteškoće s disanjem i drugi znakovi upozorenja zahtijevaju zasebnu procjenu.",
+  "sections": [
+    {
+      "heading": "Prepoznati obrazac i njegova ograničenja",
+      "paragraphs": [
+        "Kašalj može biti suh ili uz iskašljavanje sluzi, s umorom i nelagodom zbog kašljanja. Zelena ili žuta sluz sama ne potvrđuje bakterijsku infekciju. Bronhitis, upala pluća, astma i druga stanja mogu imati slične simptome, pa zaključak samo prema kašlju može zavarati. Ponavljane epizode ili dugotrajan kašalj zahtijevaju procjenu umjesto pretpostavke da je svaki put riječ o jednostavnoj infekciji."
+      ]
+    },
+    {
+      "heading": "Znati što pregled može ustanoviti",
+      "paragraphs": [
+        "Liječnik pita kako su simptomi počeli, provjerava vrućicu i disanje te sluša pluća. Uvažava dob, trudnoću, imunitet i postojeću bolest srca ili pluća. Rendgen ili druge pretrage mogu trebati kod sumnje na upalu pluća ili drugi problem, ali nisu rutinski potrebni za svaki nekomplicirani kašalj. Spomenite zadušenost, krv u sluzi i lijekove, a ne samo zvuk kašlja."
+      ]
+    },
+    {
+      "heading": "Podržati oporavak i zaštititi druge",
+      "paragraphs": [
+        "Odmor, dovoljno tekućine i izbjegavanje duhanskog dima mogu olakšati oporavak. Ako imate propisano ograničenje tekućine, slijedite vlastite upute. Pokrijte kašalj, perite ruke i izbjegavajte blizak kontakt s osjetljivim osobama dok ste bolesni jer se uzročna infekcija može širiti. Ne naginjite se nad kipuću vodu: udisanje pare može opeći. Pitajte ljekarnika prije pripravaka za kašalj, posebno za djecu, trudnoću ili uz druge lijekove."
+      ]
+    },
+    {
+      "heading": "Razumjeti zašto antibiotici često ne pomažu",
+      "paragraphs": [
+        "Antibiotici ne liječe viruse, uzročnike mnogih akutnih bronhitisa. Mogu imati nuspojave i pridonijeti otpornosti, pa nisu prikladni ostaci ili tuđi recept. Liječnik ih može preporučiti za drugu ili ozbiljniju bakterijsku infekciju. Inhalator nije automatski potreban za svaki kašalj; piskanje ili postojeća astma mogu zahtijevati drukčiju procjenu i individualni plan."
+      ]
+    },
+    {
+      "heading": "Dogovoriti postupak kod pogoršanja",
+      "paragraphs": [
+        "Potražite brz medicinski savjet zbog zadušenosti, boli u prsima, krvi u sluzi, trajne vrućice, znatnog pogoršanja ili kašlja bez poboljšanja nakon otprilike tri tjedna. Javite se ranije za dojenče, trudnoću, krhkost, slabiji imunitet ili važnu postojeću bolest. Teško disanje, plave ili sive usne, nemogućnost normalnog govora zbog disanja, smetenost ili kolaps zahtijevaju hitnu pomoć. Tada ne čekajte djelovanje sredstva protiv kašlja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izmišljeni primjer: pitanje o sluzi",
+      "text": "Osoba nakon prehlade kašlje žutu sluz. Liječniku opisuje trajanje, vrućicu, bol u prsima i zadušenost. Pita treba li pregled umjesto pretpostavke da boja sluzi znači potrebu za antibioticima."
+    },
+    {
+      "title": "Izmišljeni primjer: promjena plana oporavka",
+      "text": "Osobi koja se odmara kod kuće javlja se nova zadušenost i osjeća se mnogo lošije. Traži brzu procjenu umjesto povećavanja lijeka protiv kašlja. Teško disanje ili smetenost znače hitnu pomoć, a ne čekanje redovnog termina."
+    }
+  ],
+  "questions": [
+    "Odgovaraju li simptomi nekompliciranom bronhitisu ili treba istražiti drugi uzrok?",
+    "Koje olakšanje simptoma odgovara mojim bolestima i lijekovima?",
+    "Koje promjene traže hitnu pomoć i kada provjeriti uporan kašalj?"
+  ]
+}

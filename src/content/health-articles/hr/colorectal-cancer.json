@@ -1,0 +1,51 @@
+{
+  "title": "Kolorektalni rak: simptomi, pretrage i izbor liječenja",
+  "intro": "Kolorektalni rak počinje u kolonu ili rektumu. Neki nastaju iz polipa, ali mnogi polipi nikad nisu rak. Probir nalazi rizik prije simptoma, a novi simptomi trebaju vlastitu procjenu. Liječenje ovisi o mjestu, proširenosti, biologiji, zdravlju i ciljevima. Planovi kolona i rektuma nisu uvijek isti.",
+  "sections": [
+    {
+      "heading": "Simptomi za razgovor",
+      "paragraphs": [
+        "Mogući su krv u stolici, trajna promjena pražnjenja, neobjašnjiva anemija manjka željeza, nelagoda ili nenamjerni gubitak težine. Često su drugi uzroci, ali ne pripisujte sve hemoroidima ili prehrani. Rana bolest može biti tiha. Jako ili trajno krvarenje s nesvjesticom traži hitnu pomoć. Jaka bol, povraćanje, oteklina i nemogućnost stolice ili plinova mogu biti opstrukcija i traže hitnu procjenu. Navedite promjene i obiteljsku povijest."
+      ]
+    },
+    {
+      "heading": "Pretrage imaju različite uloge",
+      "paragraphs": [
+        "Procjena uključuje pregled, krv i FIT za krv u stolici. Pozitivan nije dijagnoza, negativan ne ukida ponovnu procjenu trajnih tegoba. Kolonoskopija izravno gleda, uzima tkivo i uklanja neke polipe; alternative su za odabrane. Pitajte o pripremi, sedaciji, prijevozu te krvarenju i perforaciji. Biopsija utvrđuje tkivni nalaz, snimanje proširenost."
+      ]
+    },
+    {
+      "heading": "Razumijte nalaz prije odluke",
+      "paragraphs": [
+        "Pitajte mjesto, vrstu, stadij, čvorove, udaljeno širenje i testove u tijeku. Krvni biljezi sami ne potvrđuju ili isključuju svaki rak. Tkivne pretrage usmjeravaju terapiju ili sugeriraju nasljednost poput Lyncha; genetika može biti važna rodbini. Tim spaja podatke s kondicijom, bolestima i željama. Tražite objašnjenje i tumača bez odluke iz kratica."
+      ]
+    },
+    {
+      "heading": "Liječenje može kombinirati postupke",
+      "paragraphs": [
+        "Rane se lezije ponekad uklanjaju lokalno, druge kirurgijom i obližnjim čvorovima. Stoma, otvor crijeva na trbuhu, privremena je ili trajna. Kemoterapija može biti prije ili poslije operacije ili za proširen rak. Zračenje je osobito važno za neke rektalne tumore. Ciljani lijekovi i imunoterapija pomažu odabranima prema obilježjima i okolnostima. Raspravite cilj, slijed, koristi, štete i alternative uz podršku odluci."
+      ]
+    },
+    {
+      "heading": "Oporavak, nadzor i prevencija",
+      "paragraphs": [
+        "Funkcija crijeva, prehrana, umor, spolno i emocionalno zdravlje mogu trebati pomoć. Stoma-sestra i dijetetičar pomažu praktično. Pratite kontrole i nove trajne simptome. Bez simptoma pitajte lokalni probir; obitelj ili upalna bolest mogu tražiti drugi put. Kretanje, nepušenje i ravnoteža prehrane pomažu bez jamstva i zamjene probira. Ne čekajte poziv uz krv ili zabrinjavajuću promjenu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Simptomi nakon urednog testa — zamišljeni primjer",
+      "text": "Osoba je imala negativan probir, ali sada krv i promjena stolice traju. Vraća se liječniku bez oslanjanja na stari rezultat. Sljedeća pretraga odgovara sadašnjem stanju."
+    },
+    {
+      "title": "Priprema operacije — zamišljeni primjer",
+      "text": "Osoba možda treba stomu. Pita je li privremena ili trajna, susreće sestru i raspravlja oporavak te dom. Tim objašnjava moguće promjene prema operacijskim nalazima."
+    }
+  ],
+  "questions": [
+    "Što pretrage potvrđuju i što još istražiti?",
+    "Kako mjesto, stadij i tkivo mijenjaju izbor terapije?",
+    "Koju podršku, kontrolu i savjete za obitelj ili probir trebam?"
+  ]
+}

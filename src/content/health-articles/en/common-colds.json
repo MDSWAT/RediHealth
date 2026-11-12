@@ -1,0 +1,51 @@
+{
+  "title": "Common colds: recovery, relief and warning signs",
+  "intro": "A runny nose, scratchy throat and cough often come from a viral infection of the upper airways. Most ordinary colds settle with time and simple care. Flu and COVID can cause similar symptoms: symptoms alone cannot reliably identify the virus, especially when someone is at risk of serious illness.",
+  "sections": [
+    {
+      "heading": "What to expect",
+      "paragraphs": [
+        "Symptoms often develop gradually, with sneezing, congestion and throat discomfort followed by coughing and tiredness. Recovery usually takes about a week or two, although a cough can linger. Children can catch repeated infections at nursery or school; a new episode does not necessarily mean weak immunity. Persistent symptoms, poor growth or unusually severe infections deserve assessment. Yellow or green nasal mucus by itself does not establish a bacterial infection or a need for antibiotics."
+      ]
+    },
+    {
+      "heading": "Make drinking, sleeping and nasal breathing easier",
+      "paragraphs": [
+        "Rest as needed, offer regular drinks and avoid tobacco smoke. Follow any existing medical fluid restriction rather than forcing large quantities. Saline nasal drops or spray may ease congestion; a pharmacist can explain age-appropriate use and gentle suction for a baby. Honey may soothe coughing in adults and children over a year old, but must never be given to younger babies. Keep drinks comfortably warm and avoid bowls of boiling water for steam inhalation because of burns. An infant who cannot feed normally needs closer attention."
+      ]
+    },
+    {
+      "heading": "Check medicines before combining products",
+      "paragraphs": [
+        "Pain or fever medicines can improve comfort but do not cure the infection. Ask a pharmacist which product is suitable for age, pregnancy, kidney disease, stomach problems and other medicines. Follow the label and do not double up on an ingredient found in several cold remedies. Adult products are not automatically safe for children. Decongestant sprays have a short permitted duration because prolonged use can worsen congestion; check the specific instructions. Antibiotics do not treat an uncomplicated viral cold. A diagnosed bacterial complication is a different situation, for which a clinician may prescribe them."
+      ]
+    },
+    {
+      "heading": "Protect others and consider different infections",
+      "paragraphs": [
+        "Wash hands, cover coughs and sneezes, dispose of tissues and improve indoor ventilation. Avoid close contact with vulnerable people while unwell, and stay home if feverish or too ill for usual activities. Consider a well-fitting mask when contact cannot be avoided. A flu vaccine does not prevent ordinary colds. If flu or COVID is possible and you are older, pregnant, immunocompromised or have important chronic disease, contact a clinician promptly about testing and treatment. Antivirals have an early treatment window; do not wait for severe symptoms before asking."
+      ]
+    },
+    {
+      "heading": "When the plan should change",
+      "paragraphs": [
+        "Get emergency help for severe breathing difficulty, blue or grey lips, collapse, confusion or severe chest pain. Seek prompt assessment for dehydration, fever in a young baby, worsening chronic illness, persistent fever or marked deterioration after initial improvement. Arrange a review if symptoms are not beginning to improve after about ten days or a cough persists beyond about three weeks. These times are guides, not instructions to wait through worrying symptoms. Rapid breathing, unusual sleepiness or substantially reduced feeding in a child warrant advice earlier."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: checking a combined remedy",
+      "text": "Mira wants a sachet for congestion after already taking a painkiller. The pharmacist notices both contain the same active ingredient and helps her avoid an accidental excess. She chooses a suitable single product and saline spray instead."
+    },
+    {
+      "title": "Hypothetical example: mild symptoms, higher risk",
+      "text": "An older man with lung disease develops a sore throat after a household respiratory infection. Although he can still drink and walk, he contacts his clinician promptly about testing and possible early treatment instead of assuming every mild start is an ordinary cold."
+    }
+  ],
+  "questions": [
+    "Which symptom medicines are safe with my existing treatment?",
+    "Does my health history mean I should test or seek treatment earlier?",
+    "Which changes mean I should contact you again or get urgent help?"
+  ]
+}

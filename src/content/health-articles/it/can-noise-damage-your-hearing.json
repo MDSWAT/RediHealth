@@ -1,0 +1,51 @@
+{
+  "title": "Il rumore può danneggiare l'udito?",
+  "intro": "I suoni forti possono lesionare le delicate strutture dell'orecchio interno. Può bastare un singolo rumore intensissimo, come un'esplosione, oppure il danno può accumularsi con esposizioni ripetute al lavoro, alla musica o durante gli hobby. La perdita uditiva può essere permanente e accompagnata da acufene, per esempio un fischio senza fonte esterna. L'assenza di dolore non garantisce sicurezza.",
+  "sections": [
+    {
+      "heading": "Come si manifesta il problema",
+      "paragraphs": [
+        "Dopo il rumore le voci possono sembrare ovattate, le orecchie fischiare e le conversazioni in ambienti rumorosi risultare difficili. I cambiamenti graduali a volte vengono notati prima dagli altri. Un miglioramento temporaneo non dimostra che l'esposizione sia stata innocua. Cerume, infezioni e disturbi dell'orecchio interno possono causare sintomi simili: i soli sintomi non identificano la causa."
+      ]
+    },
+    {
+      "heading": "Il calo improvviso richiede valutazione urgente",
+      "paragraphs": [
+        "Chiedere assistenza medica urgente se l'udito diminuisce improvvisamente in qualsiasi orecchio, anche se sembra soltanto tappato o il problema segue un concerto. Non attendere un controllo ordinario o la scomparsa spontanea. Anche peggioramento rapido, dolore o secrezioni richiedono un parere tempestivo. Un cambiamento improvviso con debolezza del viso o altri possibili segni di ictus richiede assistenza di emergenza. Visita e test possono individuare cause da trattare rapidamente."
+      ]
+    },
+    {
+      "heading": "Contano intensità, durata e distanza",
+      "paragraphs": [
+        "Il rischio dipende dal livello sonoro, da quanto spesso e a lungo dura e dalla distanza dalla fonte. Un impulso intensissimo può lesionare subito; le esposizioni ripetute si sommano. Dover alzare la voce per parlare con una persona vicina è un segnale di allarme, non una misura precisa di sicurezza. La percentuale del volume del telefono o un'app non calibrata non garantiscono ascolto sicuro. Sul lavoro chiedere una valutazione adeguata del rumore."
+      ]
+    },
+    {
+      "heading": "Ridurre l'esposizione e proteggersi",
+      "paragraphs": [
+        "Abbassare il volume, allontanarsi da casse o macchinari e fare pause in ambienti tranquilli. Per rumore pericoloso inevitabile servono protezioni adatte all'attività e indossate correttamente. Tappi e cuffie protettive differiscono per adattamento e prestazioni; una verifica professionale della tenuta può aiutare. Le normali cuffie musicali e la cancellazione attiva del rumore non sono automaticamente protezioni certificate. Considerare allarmi, comunicazione e compatibilità con altri dispositivi di sicurezza."
+      ]
+    },
+    {
+      "heading": "Seguire la salute dell'udito",
+      "paragraphs": [
+        "Organizzare una valutazione per acufene persistente, difficoltà a comprendere le parole o peggioramento graduale. Secondo i risultati possono essere utili cure di altri problemi dell'orecchio, apparecchi acustici, adattamenti comunicativi o assistenza per l'acufene. Integratori e rimedi casalinghi non fanno regredire in modo affidabile le lesioni permanenti da rumore. Proteggersi rimane importante. I bambini necessitano di esposizione ridotta e protezioni della misura adatta. Il datore di lavoro deve ridurre il rumore alla fonte, senza affidarsi esclusivamente alla protezione personale."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dopo un evento rumoroso — esempio ipotetico",
+      "text": "Dopo essere rimasta vicino a una cassa, una persona avverte fischi e un forte calo improvviso dell'udito da un lato. Si sposta in un luogo tranquillo e chiede valutazione urgente senza aspettare diversi giorni."
+    },
+    {
+      "title": "Utensili rumorosi — esempio ipotetico",
+      "text": "Un lavoratore usa cuffie musicali con un utensile rumoroso. La valutazione porta a un metodo più silenzioso e protezioni ben adattate. Alzare la musica per coprire l'utensile aggiungerebbe esposizione."
+    }
+  ],
+  "questions": [
+    "Questo cambiamento richiede valutazione urgente e quali esami sono appropriati?",
+    "Come ridurre il rumore alla fonte e quali protezioni sono adatte alla mia attività?",
+    "Quale controllo o aiuto comunicativo può servire se i sintomi persistono?"
+  ]
+}

@@ -31,6 +31,21 @@ export function PatientPhotosTab({
 }: PatientPhotosTabProps) {
   const { lang } = useLanguage();
   const t = {
+  ru: {
+      title: "Фотографии и документы",
+      subtitle: "Клинические фотографии, результаты анализов или рецепты.",
+      attachNew: "Добавить фотографию или документ",
+      selectImage: "Выбрать изображение",
+      label: "Название",
+      labelPh: "например Кожная сыпь, Результат анализа крови",
+      notes: "Примечание",
+      notesPh: "Что изображено на фото",
+      ready: "Изображение готово",
+      attach: "Прикрепить",
+      empty: "Фото пока нет.",
+      remove: "Удалить фото",
+    },
+
     en: {
       title: "Photos and documents",
       subtitle: "Clinical photos, lab results or prescriptions.",

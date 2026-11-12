@@ -1,0 +1,51 @@
+{
+  "title": "Qelizat parakanceroze të qafës së mitrës: monitorimi dhe trajtimi",
+  "intro": "Qelizat jonormale të qafës së mitrës quhen shpesh displazi ose neoplazi intraepiteliale cervikale, CIN. Nuk janë e njëjta gjë me kancerin invaziv. Disa zhduken, të tjera kanë më shumë mundësi përparimi pa trajtim. Synimi është parandalimi pa ndërhyrje të panevojshme. Kolposkopia dhe, kur duhet, biopsia ndihmojnë zgjedhjen e monitorimit apo heqjes së zonës.",
+  "sections": [
+    {
+      "heading": "Kuptoni rezultatin e saktë",
+      "paragraphs": [
+        "CIN1 përshkruan ndryshime të gradës së ulët, CIN2 të ndërmjetme dhe CIN3 të lartë. Janë grada parakanceroze, jo stade kanceri. Ndryshimet gjëndrore kanë emra dhe qasje të tjera. HPV pozitiv vetëm nuk tregon gradën e indit. Pyesni nëse rezultati vjen nga depistimi, vlerësimi pamor apo biopsia, nëse është përjashtuar invazioni dhe nëse priten rezultate. Mos zgjidhni trajtim nga një shkurtim i veçuar."
+      ]
+    },
+    {
+      "heading": "Monitorimi është plan aktiv",
+      "paragraphs": [
+        "Ndryshimet e ulëta shpesh ndiqen sepse mund të zhduken. Disa të ndërmjetme të përzgjedhura mund të monitorohen sipas kritereve specialistike, me kthim të besueshëm për testet. Të lartat ose të vazhdueshmet kërkojnë më shpesh trajtim. Vendimi merr parasysh rezultatet, dukshmërinë e gjithë zonës, moshën, shtatzëninë, planet riprodhuese dhe mundësinë e ndjekjes. Tregoni nëse jeni shtatzënë: vlerësimi mbetet i rëndësishëm edhe nëse trajtimi shtyhet. Dyshimi për invazion kërkon rrugë tjetër të shpejtë diagnostike."
+      ]
+    },
+    {
+      "heading": "Si hiqen ose shkatërrohen qelizat",
+      "paragraphs": [
+        "Një heqje e zakonshme përdor lak elektrik të nxehur, LLETZ ose LEEP, zakonisht me anestezi lokale. Metodë tjetër heq ind në formë koni. Heqja jep ind dhe skaje për ekzaminim laboratorik. Metodat shkatërruese, si nxehtësia ose ngrirja, përdoren vetëm në raste të përshtatshme pas vlerësimit; nuk japin të njëjtën mostër. Pyesni çfarë propozohet, pse dhe si ndryshon plani nga rezultati i laboratorit."
+      ]
+    },
+    {
+      "heading": "Peshoni përfitimet dhe rrezikun e shtatzënisë",
+      "paragraphs": [
+        "Trajtimi ul mundësinë e përparimit në kancer, por mund të sjellë gjakderdhje, infeksion ose ngushtim të qafës. Heqja e indit mund të shtojë mundësinë e lindjes së parakohshme, sidomos pas heqjes më të thellë ose të përsëritur. Shumica nuk e kanë këtë ndërlikim. Diskutoni sasinë e indit dhe planet e shtatzënisë përpara; mos shmangni kujdesin e nevojshëm pa plan specialistik. Njoftoni ekipin e ardhshëm të shtatzënisë për procedurat cervikale."
+      ]
+    },
+    {
+      "heading": "Shërimi dhe testet janë pjesë e kujdesit",
+      "paragraphs": [
+        "Ndiqni udhëzimet e shkruara për gjakderdhje, sekrecione, qetësues, seks vaginal, tamponë, not dhe ushtrime. Merrni kontakt jashtë orarit. Gjakderdhja e madhe, mpiksjet e mëdha, temperatura, sekrecioni me erë të keqe, dhimbja në shtim ose gjendja e keqe kërkojnë vlerësim të shpejtë; gjakderdhja e rëndë me të fikët kërkon emergjencë. Mbani testet pas trajtimit edhe kur jeni mirë: nuk garantohet zhdukja e HPV ose çdo rikthim. Pyesni kur vijnë rezultatet dhe kërkojini nëse mungojnë. Mos supozoni kthim të menjëhershëm në intervalin rutinë të depistimit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gradë e ulët — shembull hipotetik",
+      "text": "Një person këshillohet për monitorim. Kërkon datën e vizitës dhe çfarë ndodh nëse shpërngulet, pa e kuptuar si mungesë nevoje për kujdes. Klinika siguron vazhdimësinë."
+    },
+    {
+      "title": "Trajtim dhe shtatzëni — shembull hipotetik",
+      "text": "Dikush me ndryshim të gradës së lartë dëshiron fëmijë. Diskuton heqjen, thellësinë, alternativat kur përshtaten dhe rreziqet me specialistin. Plani përfshin parandalimin e kancerit dhe prioritetet riprodhuese."
+    }
+  ],
+  "questions": [
+    "Cila anomali është konfirmuar dhe pse këshillohet monitorim ose trajtim?",
+    "Cilat janë përfitimet dhe rreziqet për mua dhe një shtatzëni të ardhshme?",
+    "Cilat udhëzime shërimi, shenja alarmi dhe teste të ndjekjes duhet të zbatoj?"
+  ]
+}

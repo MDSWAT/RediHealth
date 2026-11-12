@@ -1,0 +1,410 @@
+{
+  "allergies": {
+    "intro": "Një alergi ndodh kur sistemi imunitar reagon ndaj diçkaje që zakonisht është e padëmshme. Shkaktarët mund të përfshijnë pollen, kafshë, ushqim ose ilaçe. Simptomat varen nga shkaktari dhe ku ndodh reaksioni.",
+    "details": "Jo çdo shpërthim, hundë e bllokuar ose reaksion ndaj ushqimit është alergi. Një klinician vlerëson mënyrën e shfaqjes së simptomave dhe mund të rekomandojë teste të synuara. Menaxhimi mund të përfshijë shmangien e një shkaktari të konfirmuar dhe diskutimin e trajtimit të përshtatshëm. Një reaksion i rëndë që prek frymëmarrjen ose shkakton kolaps ka nevojë për ndihmë emergjente.",
+    "questions": [
+      "Cili model sugjeron allergi më shumë se një shkak tjetër?",
+      "A do të ndryshonte testimi mënyrën se si i menaxhoj simptomat e mia?"
+    ]
+  },
+  "airway-diseases": {
+    "intro": "Ajrat frymëmarrje dhurojnë ajrin në dhe jashtë mushkërive. Infeksionet, astma dhe kushte të tjera mund t'i ngushin ose t'i irritojnë ato, duke shkaktuar kolë, fishkëllim ose mungesë fryme. Simptomat e ngjashme mund të kenë shkaqe të ndryshme.",
+    "details": "Koha e shfaqjes së simptomave, pirja e duhanit ose ekspozimi në vendin e punës, dhe sëmundjet e mëparshme ndihmojnë në udhëzimin e vlerësimit. Testet e frymëmarrjes mund të jenë të dobishme për disa kushte. Trajtimi varet nga diagnoza, më shumë se nga simptoma vetë. Vështirësia e re e rëndë e frymëmarrjes kërkon ndihmë urgjente mjekësore.",
+    "questions": [
+      "Çfarë mund të shpjegojë simptomat e mia të frymëmarrjes?",
+      "A do të ndihmonte një test frymëmarrje të sqarojë shkakun?"
+    ]
+  },
+  "eyes-nose-ears": {
+    "intro": "Sytë, hundëja dhe veshët mbështesin pamjen, nuhatin, dëgjimin dhe ekuilibrin. Problemet mund të përfshijnë irritim, infeksion, alergi ose ndryshime në mënyrën se si funksionojnë këto organe. Efektet e tyre mund të variojnë nga diskomfort i lehtë në vështirësi me veprimtaritë e përditshme.",
+    "details": "Vlerësimi varet nga cili sens është prekur, sa shpejt ndodhi ndryshimi dhe nëse janë të pranishme dhimbja ose simptoma të tjera. Disa probleme zgjidhen vetë, ndërsa të tjera kanë nevojë për kujdes specialist. Një humbje e papritur e pamjes ose dëgjimit duhet të vlerësohet shpejt më shumë se sa të pret një vizitë rutine.",
+    "questions": [
+      "A ka ky ndryshim nevojë për vlerësim urgjent?",
+      "Cila ekzaminim mund të ndihmojë të identifikojë problemin?"
+    ]
+  },
+  "diabetes": {
+    "intro": "Diabeti do të thotë që glukoza në gjak mbetet shumë e lartë sepse insulina mungon ose nuk funksionon në mënyrë efektive. Diabeti i tipit 1 dhe i tipit 2 kanë shkaqe dhe nevoja të ndryshme trajtimi. Forma të tjera mund të zhvillohen gjatë shtatzënisë ose me sëmundje të caktuara.",
+    "details": "Diagnoza përdor teste të gjakut, jo vetëm simptomat. Kujdesi synon të menaxhojë glukozën dhe të mbrojë shëndetin afatgjatë ndërsa përshtatet me jetën përditore. Ushqimi, aktiviteti, ilaçet dhe monitorimi mund të luajnë rol, në varësi të tipit të diabetit. Vendimet e trajtimit duhet të merren me ekipin e kujdesit shëndetësor.",
+    "questions": [
+      "Cili lloj diabeti kam unë?",
+      "Cili monitorim dhe mbështetje përshtaten me planin tim të trajtimit?"
+    ]
+  },
+  "gland-and-hormone-disorders": {
+    "intro": "Hormonet janë sinjale kimike të prodhuara nga gjëndrat. Ato ndihmojnë të rregullojnë rritjen, përdorimin e energjisë, riprodhimin dhe shumë funksione të tjera të trupit. Probleme mund të zhvillohen kur një gjëndër prodhon shumë ose shumë pak të një harmoni.",
+    "details": "Kushtet hormonale mund të shkaktojnë simptoma të ndryshme që ndodhin edhe në sëmundje të tjera. Rezultatet e testeve duhet të interpretohen krahas simptomave, ilaçeve dhe rrethanave të personit. Një rezultat i vetëm anomal nuk shpjegon gjithmonë se si ndihet dikush. Testimi i vazhdueshëm ose këshilla nga specialist mund të jenë të përshtatshme.",
+    "questions": [
+      "Çfarë do të thotë ky test hormoni në situatën time?",
+      "A më duhet një test tjetër ose vlerësim nga specialist?"
+    ]
+  },
+  "womens-health": {
+    "intro": "Shëndeti i grave përfshin shëndetin menstrual dhe riprodhues, shëndetin e gjirit, menopozën dhe shumë gjendje që ndikojnë në mirëqenien e përditshme. Nevojat ndryshojnë gjatë jetës, dhe i njëjti simptom mund të ketë shpjegime të ndryshme në mosha të ndryshme.",
+    "details": "Kujdesi i dobishëm fillon me një diskutim të simptomave, ndikimit të tyre dhe prioriteteve personale. Screening është i ndryshëm nga hetimi i një simptomi të ri: një rezultat i fundit screening nuk shpjegon çdo ndryshim të ri. Vendimet për teste ose trajtime duhet të përfshijnë përfitimet e pritshme, dëmet e mundshme dhe alternativat e disponueshme.",
+    "questions": [
+      "A ka ky simptom nevojën për hetim në vend të screening-ut rutinë?",
+      "Cilat opsione përshtaten me simptomat dhe prioritetet e mia?"
+    ]
+  },
+  "urinary-disorders-and-kidney-problems": {
+    "intro": "Veshkat filtrojnë gjakun dhe prodhojnë urinë, e cila kalon përmes rrugëve urinare. Infeksionet, gurët, rrjedhjet dhe ndryshimet në funksionin e veshkave janë probleme të ndryshme që mund të ndikojnë këtë sistem.",
+    "details": "Dhimbja, ndryshimet në urinë ose fryrja mund të kërkojnë teste urine, teste gjaku ose përthyerje me imazhe, në varësi të situatës. Vetëm simptomat nuk tregojnë se sa mirë funksionojnë veshkat. Gjaku i dukshëm në urinë, ethe me simptoma urinare ose vështirësi në kalimin e urinës duhet të diskutohen menjëherë me një profesionist shëndetesore.",
+    "questions": [
+      "Cilat teste do të ndihmojnë të shpjegohen ndryshimet në urinë?",
+      "A mund të ndikojnë ilaçet e mia në funksionin e veshkave?"
+    ]
+  },
+  "skin-and-hair": {
+    "intro": "Lëkura mbron trupin, ndërsa flokët rriten nga folikushat brenda saj. Inflamacioni, infeksioni, kushtet e trasheguara dhe faktorë të tjerë mund të ndikojnë në njërin ose tjetrin. Një shpërthim ose rënie flokësh me pamje të ngjashme mund të ketë disa shpjegime.",
+    "details": "Vendndodhja, pamja dhe koha e ndryshimit ndihmojnë në udhëzimin e vlerësimit. Produktet e përdorura në lëkurë, ilaçet dhe simptomat e tjera mund të jenë të rëndësishme. Trajtimi duhet të përputhet me shkakun. Një lezion lëkure që po ndryshon ose një problem i patpërtë i pashpjeguar meriton vlerësim në vend të trajtimit të përsëritur me prova dhe gabime.",
+    "questions": [
+      "Cilat veçori ndihmojnë të dallojnë shkaqet e mundshme?",
+      "Cilat ndryshime duhet të nxisin një takim tjetër?"
+    ]
+  },
+  "heart-and-circulation": {
+    "intro": "Zemra pompon gjakun përmes arterieve, kapilareve dhe venave. Kjo furnizon oksigjen dhe lëndë ushqyese dhe largon mbetjet. Problemet mund të ndikojnë presionin e gjakut, ritmin e zemrës, enët e gjakut ose aftësinë e pompimit të zemrës.",
+    "details": "Disa rreziqe kardiovaskulare shkaktojnë pak simptoma të hershme, kështu që kontrollet e përshtatshme mund të jenë të rëndësishme. Vlerësimi dhe parandalimi varen nga shëndeti i përgjithshëm dhe historia e personit. Shtypja në kraharor, kolaps ose mungesë fryme e papritur e rëndë mund të jenë urgjenca; mos mbivlerëso një shpjegim në internet për të vendosur nëse këto simptoma janë të pafara.",
+    "questions": [
+      "Cilat rreziqe kardiovaskulare janë të rëndësishme për mua?",
+      "Cilat kontrolle ose takime pasuese janë të dobishme?"
+    ]
+  },
+  "infections-and-immune-system": {
+    "intro": "Sistemi imunitar njeh dhe përgjigjet ndaj kërcënimeve si bakteret dhe virusët. Infeksionet zhvillohen kur një mikroorganism hyn në trup dhe shkakton sëmundje. Organizmat e ndryshëm mund të prodhojnë simptoma të ngjashme, por kërkojnë qasje të ndryshme.",
+    "details": "Shkaku i mundshëm, rrezja dhe prania e një personi përshtypet drejt vendimeve në lidhje me testimin dhe trajtimin. Antibiotikët veprojnë kundër baktereve, jo viruseve, dhe nuk janë të përshtatshëm për çdo infeksion. Vaksinimit dhe higjenës e duhur mund të ndihmojnë në parandalimin e disa infeksioneve. Përkeqësimi i sëmundjes ose simptoma të pashpjeguara mund të kenë nevojë për rishqyrtim.",
+    "questions": [
+      "A është e mundur që një test të ndryshojë vendimin për trajtim?",
+      "Cilat shenja nënkuptojnë se duhet të kërkoj ndihmë përsëri?"
+    ]
+  },
+  "childrens-health": {
+    "intro": "Shëndeti i fëmijëve përfshin zhvillimin, sëmundjet e zakonshme, parandalimin dhe mbështetjen për familjet. Mosha e një fëmije dhe sjellja e tij e zakonshme janë të rëndësishme kur vlerësohen simptomatat. Këshilla e synuar për të rriturit mund të mos jetë e përshtatshme për një fëmijë.",
+    "details": "Një klinician merr në konsideratë ushqyerjen, pijen, aktivitetin, rritjen dhe simptoma të tjera së bashku. Prindërit dhe kujdestarët mund të ndihmojnë duke përshkruar se çfarë ka ndryshuar dhe kur. Zgjedhja e barit dhe dozimi kërkojnë këshilla specifike për fëmijë. Një fëmijë që ka vështirësi serioze të frymëmarrjes, është i vështirë për t'u zgjuar ose duket seriozisht i sëmurë ka nevojë për ndihmë urgjente.",
+    "questions": [
+      "Çfarë duhet t'i kushtoj vëmendje në moshën e fëmijës tim?",
+      "Kur duhet të organizoj një vlerësim tjetër?"
+    ]
+  },
+  "cancer": {
+    "intro": "Kanceri është një grup sëmundjesh në të cilat qeliza të anormale rriten në një mënyrë të pakontrolluar. Sëmundjet e ndryshme të kancerit sillej ndryshe. Organi i përfshirë, lloji i qelizës dhe sa larg ka përhapur sëmundja ndihmojnë të udhëzojnë kujdesin.",
+    "details": "Diagnoza mund të përfshijë imazhere, teste laboratorike dhe ekzaminimin e një kampioni të indeve. Trajtimi mund të ketë qëllime të ndryshme, duke përfshirë shërim, kontroll të sëmundjes ose lehtësim të simptomave. Vendimět duhet të marrin në konsideratë përfitimet e mundshme, efektet anësore dhe qëllimet personale. Një perspektivë individuale nuk mund të përcaktohet nga një përshkrim i përgjithshëm ose një statistikë e vetme.",
+    "questions": [
+      "Cili është qëllimi i secilit opsion trajtimi?",
+      "Si mund të ndikojë trajtimi në jetën time të përditshme?"
+    ]
+  },
+  "mens-health": {
+    "intro": "Shëndeti i burrave përfshin kushtet e prostates dhe testiseve, shëndetin seksual, fertilitetin dhe mirëqenien fizike dhe mendore më të gjerë. Simptomat mund të ndikojnë në komoditetin, marrëdhëniet dhe jetën e përditshme, edhe kur janë të vështira për t'u folur.",
+    "details": "Ndryshimet në urinimin ose në funksionin seksual nuk janë diagnozë në vetvete. Një bisedë konfidenciale mund të ndihmojë në identifikimin e shkaqeve të mundshme dhe ekzaminimeve të përshtatshme. Zgjedhjet e kontrollit duhet të përfshijnë avantazhet dhe disavantazhet. Një grumbullim i ri ose një ndryshim i paqartë që vazhdon duhet të kontrollohet në vend që të supozohet se është pjesë normale e plakjes.",
+    "questions": [
+      "Çfarë mund të shkaktojë këtë ndryshim?",
+      "Cilat janë avantazhet dhe disavantazhet e testimit?"
+    ]
+  },
+  "muscle-and-joint-disorders": {
+    "intro": "Muskujt, përfundimet e tendove, artikulacionet dhe indet e ndërlidhura mbështesin lëvizjen. Lëndimi, përdorimi i tepërt, inflamacioni dhe kushte të tjera mund të shkaktojnë dhimbje ose ngurtësi. Sasia e dhimbjes nuk përputhet gjithmonë me atë që duket në një skan.",
+    "details": "Vlerësimi shikon funksionin, simptomat dhe rrethanat në të cilat ato filluan. Jo të gjithë kanë nevojë për imazher. Menaxhimi mund të përfshijë rregullimet e aktivitetit, rehabilitimin ose trajtime të tjera të zgjedhura për diagnozën. Diskutoni simptomat që përkeqësohen ose kufizojnë aktivitetet normale në vend që të supozoni se të gjitha dhimbjet kanë të njëjtin shkak.",
+    "questions": [
+      "Cilat aktivitete mund të vazhdoj në mënyrë të sigurt?",
+      "A do të ndryshonte imagjeria ose rehabilitimi kujdesin tim?"
+    ]
+  },
+  "mental-health-brain-and-nerves": {
+    "intro": "Truri dhe sistemi nervor ndikojnë në lëvizjen, ndjenjën, mendimin, disponimin dhe sjelljen. Kushtet e shëndetit mendor dhe kushtet neurologjike mund të ndikojnë në jetën e përditshme, por ato kërkojnë vlerësim individual në vend të supozimeve për karakterin e një personi.",
+    "details": "Kujdesi mund të përfshijë terapitë bisedore, ilaçet, rehabilitimin ose mbështetjen praktike, në varësi të problemit. Tregojuni një klinicianti për ndryshimet në funksionimin dhe kushtet e tjera shëndetësore. Dobësia e re të papritur, vështirësia në të folur ose humbja e ndërgjegjes ka nevojë për vlerësim emergjent, edhe nëse simptomat e tjera kanë qenë të pranishme për më gjatë.",
+    "questions": [
+      "Cilat simptoma ndihmojnë në dallimin e shkaqeve të mundshme?",
+      "Çfarë mbështetjeje mund të përmirësojë funksionimin tim të përditshëm?"
+    ]
+  },
+  "pregnancy-and-birth": {
+    "intro": "Shtatzënia sjell ndryshime në trup dhe zgjedhje të reja për kujdesin, testet dhe lindjen. Kontakti i rregullt me ekipin e obstetrikës ndihmon të monitorohet mirëqenia e gruas shtatzanë dhe bebes dhe ofron mundësinë për të diskutuar shqetësimet.",
+    "details": "Disa teste ofrohen në mënyrë rutinore, ndërsa të tjerat varen nga rrethanat personale. Të kuptosh se çfarë mund të tregojë një test dhe çfarë nuk mund të tregojë e ndihmon në marrjen e vendimeve të informuara. Ilaçet dhe suplementet duhet të diskutohen me një profesionist të kualifikuar gjatë shtatzënisë. Pyet ekipin e nënës se cilat simptoma kërkojnë kontakt urgjent dhe si t'i arrish ata.",
+    "questions": [
+      "Çfarë informacioni do të jepte ky test i shtatzënisë?",
+      "Kë duhet të kontaktoj nëse jam e shqetësuar ndërmjet konsultimeve?"
+    ]
+  },
+  "sexual-health-and-contraception": {
+    "intro": "Shëndeti seksual përfshin mirëqenien, pajtimin, mbrojtjen nga infeksionet dhe zgjedhjet për parandalimin e shtatzënisë. Metodat kontraceptive ndryshojnë në atë se si funksionojnë, si përdoren dhe cilat persona mund t'i përdorin ato në mënyrë të sigurt.",
+    "details": "Një metodë e përshtatshme varet nga historia mjekësore, preferencat dhe nevojat praktike. Parandalimi i shtatzënisë dhe mbrojtja nga infeksionet e transmetuara seksualisht janë qëllime të ndryshme; jo çdo metodë ofron të dyja. Këshilla konfidenciale mund të ndihmojë edhe me simptomat, testimet dhe shqetësimet në lidhje me funksionin seksual. Shërbimet dhe përshtatshmëria ndryshojnë sipas vendit.",
+    "questions": [
+      "Cilat opsione përshtaten me historinë time mjekësore dhe preferencat?",
+      "A kam nevojë edhe për mbrojtje ose testim për infeksionet?"
+    ]
+  },
+  "metabolic-disorders": {
+    "intro": "Metabolizmi është koleksioni i proceseve që shndërrojnë ushqimin në energji të përdorshme dhe materiale ndërtimi. Çrregullimet metabolike ndikojnë në një ose më shumë nga këto procese. Ato përfshijnë gjendje që përfshijnë glukozën, yndyrën dhe substanca të tjera në trup.",
+    "details": "Disa çrregullime trashëgohen, ndërsa të tjerat zhvillohen përmes një kombinimi të ndikimeve. Testet e gjakut mund të ndihmojnë në identifikimin e një problemi, por kuptimi i tyre varet nga konteksti klinik. Kujdesi mund të përfshijë zgjedhje ushqimi, ilaçe ose masa të tjera të përshtatura sipas diagnozës. Kufizimet e përgjithshme të dietës nuk janë të përshtatshme për çdo gjendje metabolike.",
+    "questions": [
+      "Çfarë do të thotë rezultati anormal për shëndetin tim?",
+      "Cilat ndryshime janë të përshtatshme për këtë gjendje specifike?"
+    ]
+  },
+  "addiction": {
+    "intro": "Varësia mund të përfshijë alkoholon, nikotinën, substanca të tjera ose sjellje të caktuara. Mund të ndikojë në kontrollin, shëndetin, marrëdhëniet dhe përgjegjësitë e përditshme. Kërkimi i ndihmës është një vendim shëndetësor, jo dëshmi e dështimit moral.",
+    "details": "Mbështetja mund të kombinojë këshillim, ndihmë praktike dhe ilaçe kur është e përshtatshme. Qasja më e sigurt varet nga ajo që përdoret dhe shëndeti i personit. Ndërprerja e disa substancave papritmas mund të jetë e rrezikshme, veçanërisht pasi ka zhvilluar varësinë. Diskutoni një plan me një profesionist shëndetësor në vend që të përdorni një udhëzues online të përgjithshëm si orar tërheqjeje.",
+    "questions": [
+      "Çfarë mbështetjeje është në dispozicion lokalisht?",
+      "A kam nevojë për mbikëqyrje mjekësore kur zvogëloj ose ndaloj?"
+    ]
+  },
+  "digestive-system-disorders": {
+    "intro": "Sistemi tretës përpunon ushqimin, përthith lëndët ushqyese dhe heq mbetjet. Problemet mund të prekën ezofagën, stomakun, zorrët ose organet e lidhura. Dhimbja, refluksi, nauseja dhe ndryshimet në zakonet e zorrëve mund të kenë shumë shkaqe.",
+    "details": "Vlerësimi varet nga mënyra se si u zhvilluan simptomat, kohëzgjatja e tyre dhe çdo ndryshim shoqërues. Testet zgjidhen për të përgjigjur një pyetjeje të caktuar në vend që të përdoren rutinisht për çdo simptomë. Simptomat e vazhdueshme ose humbja e peshës e pashpjeguar kërkojnë diskutim mjekësor. Dhimbja e rëndë në barkë ose shenja të gjakderdhjes të konsiderueshme kërkojnë vlerësim të nxituar.",
+    "questions": [
+      "Cilat veçori ndihmojnë të identifikojnë shkakun e simptomave të mia?",
+      "Çfarë do të ndryshonte testi i propozuar në kujdesin tim?"
+    ]
+  },
+  "teeth-and-gums": {
+    "intro": "Dhëmbët dhe mishrat mbështesin ngrënien, të folurën dhe shëndetin e gojës. Dekompozimi i dhëmbëve dhe sëmundja e mishrave mund të zhvillohen gradualisht dhe mund të mos shkaktojnë dhimbje në fillim. Problemet dentare mund të prekin gjithashtu besimin dhe rehatin e përditshme.",
+    "details": "Kujdesi i rregullt i gojës dhe kontroller dentarë të përshtatshme ndihmojnë në identifikimin e problemeve. Trajtimi më i mirë varet nga gjendja e dhëmbit ose mishrave dhe nevojat e personit. Dhimbja dentare nuk tregon në mënyrë të besueshme se sa i serioz është një problem. Tumorja me vështirësi në gëlltitje ose frenim të frymëmarrjes kërkojnë ndihmë urgjente në vend të pritjes për një vizitë dentare rutine.",
+    "questions": [
+      "Çfarë po shkakton problemin me këtë dhëmb ose mishrat?",
+      "Cilat janë përfitimet dhe disavantazhet e opsioneve të trajtimit?"
+    ]
+  },
+  "early-benefit-assessment-of-medications": {
+    "intro": "Gjermania vlerëson disa ilaçe të rinj për të ekzaminuar nëse ata ofrojnë përfitim shtesë në krahasim me një trajtim të vendosur. Kjo vlerësim përfshin dëshmi nga grupe pacientësh dhe është pjesë e sistemit gjerman për vlerësimin e ilaçeve.",
+    "details": "Një vlerësim mund të shqyrtojë rezultate të rëndësishme për pacientët, të tilla si simptomat, mbijetesa, cilësia e jetës dhe efektet anësore. Rezultati varet nga krahasimi dhe dëshma e disponueshme. Nuk është një rekomandim personal për përshkrim, dhe vlerësimi ose masat e pagesës gjermane nuk zbatohen automatikisht në vende të tjera.",
+    "questions": [
+      "Cilës grupe pacientësh dhe krahasimi i përket kjo vlerësim?",
+      "Sa të rëndësishme janë gjetjet për zgjedhjet e mi të trajtimit?"
+    ]
+  },
+  "health-care-in-germany": {
+    "intro": "Sistemet shëndetësore ndryshojnë në mënyrën se si organizohen takimet, sigurimi, dërgesa dhe pagesa. Ky temë përfshin Gjermaninë. Kuptimi i shërbimit që ofron çfarë lloji kujdesi mund ta bëjë më të lehtë gjetjen e pikës së kontaktit të duhur.",
+    "details": "Rregullat e përshkruara në informacionet gjermane mund të mos zbatohen në Rumani, Moldavi, Shqipëri ose Itali. Para organizimit të një shërbimi, kontrolloni kërkesat e aksesit lokal dhe kostot e mundshme me ofruesin ose siguruesen. Gjatë leximit për një sistem shëndetësor, dallojini informacionin mjekësor të përgjithshëm nga rregullat administrative specifike të vendit.",
+    "questions": [
+      "A zbatohet ky informacion në vendin ku marr kujdes?",
+      "Cili ofrues ose siguruese mund të konfirmojë aksesin dhe kostot?"
+    ]
+  },
+  "individual-health-care-services-igel": {
+    "intro": "Në Gjermani, disa teste dhe trajtimesh të ofruara jashtë mbrojtjes standarde të sigurimeve ligjore quhen shërbime individuale shëndetësore, ose IGeL. Pacientët mund të duhet të paguajnë për këto shërbime vetë. Disponueshmëria për blerje nuk tregon në vetvete se një shërbim përmirëson shëndetin.",
+    "details": "Para se të vendosni, pyesni se çfarë përfitimi mbështetet nga kërkimet, çfarë dëmesh ose testesh të mëtejshme mund të ndjekin dhe nëse ekziston një alternativë e mbuluar. Një çmim dhe një shpjegim i qartë duhet të jenë të disponueshëm. IGeL është një kategori gjermane; rregullat e pagesës dhe shërbimët e disponueshëm ndryshojnë diku tjetër.",
+    "questions": [
+      "Çfarë përfitimi është provuar, dhe çfarë pasigurie mbetet?",
+      "Cilat janë kostot, rreziqet dhe alternativat e mbuluara?"
+    ]
+  },
+  "nursing-care": {
+    "intro": "Kujdesi infermieror mbështet njerëzit me nevojat shëndetësore dhe aktivitetet e përditshme. Ai mund të sigurohet në shtëpi, në komunitet ose në një zyrë kujdesi. Nevojat mund të ndryshojnë pas sëmundjeje, lëndimi ose humbjes së pavarësisë.",
+    "details": "Planifikimi i kujdesit përfshin kuptimin e asaj që personi mund të bëjë, ku është e nevojshme ndihma dhe çfarë është e rëndësishme për të. Të afërmit që ofrojnë kujdes mund të kenë nevojë për mbështetje gjithashtu. Shërbimet, vlerësimet dhe marrëveshjet financiare të disponueshme ndryshojnë sipas vendit. Një plan kujdesi duhet të rishqyrtohet kur ndryshojnë shëndeti ose rrethanat praktike.",
+    "questions": [
+      "Çfarë ndihme do të mbështeste pavarësinë dhe sigurinë time?",
+      "Cilat shërbime lokale mund të vlerësojnë nevojat e mia për kujdes?"
+    ]
+  },
+  "screening": {
+    "intro": "Shja për një gjendje ose rrezik të shtuar tek njerëzit pa simptoma të lidhur. Ajo ndryshon nga testet e përdorura për të hetuar një ankesë të re. Një ofertë për depistim duhet të konsiderohet në terma të dy përfitimeve të mundshme dhe dëmeve të mundshme.",
+    "details": "Depistimi ndonjëherë mund të zbulojë sëmundjen më herët, por mund të prodhojë alarme të rreme, të humbasë sëmundjen ose të identifikojë ndryshime që nuk do të shkaktonin asnjë problem. Testet ose trajtimi i mëtejshëm mund të ndjekin. Programet e përshtatshme varen nga mosha, rreziku personal dhe udhëzimi lokal. Simptomat e reja kanë nevojë për vlerësim edhe pas një rezultati depistimi të qetësuese.",
+    "questions": [
+      "Sa përfitim pritet për njerëz si unë?",
+      "Çfarë mund të pasojë një rezultati pozitiv ose të pasigurt?"
+    ]
+  },
+  "second-opinions-before-surgery": {
+    "intro": "Një mendim i dytë është një vlerësim nga një klinician tjetër për një operacion të propozuar. Mund të ndihmojë të qartësojë diagnozën, arsyet për kirurgjinë dhe alternativat e disponueshme. Është veçanërisht e dobishme kur një vendim përfshin këmbime të rëndësishme.",
+    "details": "Merrni raporte relevante, imazherim dhe një listë pyetjesh. Pyetni se si përfitim i pritur krahasohet me dëmet e mundshme dhe çfarë mund të ndodhë pa kirurgjinë. Përshtatshmëria ose pagesa për një mendim të dytë formal ndryshon sipas vendit. Mos vononi trajtimin e emergjencës ndërsa kërkoni këshilla rutine shtesë.",
+    "questions": [
+      "Cilat janë alternativat ndaj këtij operacioni?",
+      "Si krahasohen rezultatet e pritura me pritjen ose kujdesin jo-kirurgjik?"
+    ]
+  },
+  "blood-and-immune-system": {
+    "intro": "Gjaku përqarkon oksigjen, lëndë ushqyese dhe substanca të tjera nëpër trup. Qelizat dhe proteinat e tij ndihmojnë gjithashtu në mbrojtje ndaj infeksionit dhe ndalojnë gjakderdhjen. Sistemi imunitar përfshin qeliza dhe organe të specializuara që punojnë së bashku për të njohur kërcënime.",
+    "details": "Testet e gjakut matin pjesë të ndryshme të këtij sistemi. Një rezultat jashtë diapazonit referent nuk do të thotë gjithmonë një sëmundje serioze, dhe një rezultat normal nuk përgjigjet çdo pyetjeje klinike. Interpretimi varet nga simptomat, anamneza mjekësore dhe arsyeja e testit.",
+    "questions": [
+      "Cilën pjesë të gjakut ose sistemit imunitar mat ky test?",
+      "A ka nevojë për ndjekje rezultati në situatën time?"
+    ]
+  },
+  "brain-and-nerves": {
+    "intro": "Sistemi nervor lidh trurin, vargun e shpinës dhe nervat në të gjithë trupin. Ai përpunon informacionin, kontrollon lëvizjen dhe ndihmon në rregullimin e shumë funksioneve automatike. Pjesë të ndryshme kanë role të ndryshme, prandaj modeli i simptomave ka rëndësi.",
+    "details": "Një ekzamin neurologjik mund të vlerësojë fuqinë, ndjeshmërinë, koordinimin dhe funksione të tjera. Testet e mëtejshme zgjidhen sipas pyetjes klinike. Ndryshime të papritura si dobësi e re, vështirësi në të folur ose humbje ndërgjegjeje kërkojnë vlerësim urgjent në vend që të përpiqemi të identifikojmë shkakun në internet.",
+    "questions": [
+      "Çfarë sugjeron modeli i simptomave?",
+      "Cili ekzamin ose test mund ta qartësojë problemin?"
+    ]
+  },
+  "sex-organs": {
+    "intro": "Organet riprodhese janë të përfshira në riprodhim, prodhimin e hormoneve dhe funksionin seksual. Struktura dhe funksioni i tyre ndryshojnë gjatë jetës. Të kuptuarit e anatomisë normale mund ta bëjë më të lehtë përshkrimin e simptomave dhe diskutimin e shqetësimeve për shëndetin.",
+    "details": "Dhimbja, gjakderdhja, sekretime ose një bumb i ri mund të kenë shpjegime të ndryshme. Një profesionist shëndetësor mund të diskutojë ekzaminimin ose testimin e përshtatshëm me konfidencialitet. Ajo që është e zakonshme për një person mund të ndryshojë nga një tjetër, por një ndryshim i vazhdueshëm ose i papritur nuk duhet të refuzohet pa vlerësim.",
+    "questions": [
+      "A është ky ndryshim i pritshëm në rrethanat e mia?",
+      "Çfarë do të ndihmonte një ekzaminim ose test të përcaktojë?"
+    ]
+  },
+  "limbs": {
+    "intro": "Krahët dhe këmbët kombinojnë kocka, nyje, muskuj, nervat dhe enët e gjakut për të mbështetur lëvizjen dhe ndjenjën. Probleme në ndonjë nga këto struktura mund të ndikojnë në forcën, ekuilibrin ose aftësinë për të kryer detyra të përditshme.",
+    "details": "Simptomat si dhimbje, fryrje, dobësi ose torpescencë duhet të konsiderohen së bashku. Vlerësimi mund të përfshijë lëvizjen, qarkullimin dhe funksionin e nervave. Rehabilitimi mund të ndihmojë me disa probleme, por qasja e përshtatshme varet nga shkaku. Ndryshimet e mëdha të papritura në lëvizje ose ndjenjë kanë nevojë për vëmendjen mjekësore pa vonesë.",
+    "questions": [
+      "Cilat struktura mund të jenë të përfshira në simptomat e mia?",
+      "Çfarë mund të ndihmojë në rivendosjen e funksionit në mënyrë të sigurt?"
+    ]
+  },
+  "skin-hair-and-nails": {
+    "intro": "Lëkura formon një pengesë mbrojtëse, ndihmon në rregullimin e temperaturës dhe lejon ndjenjën. Flokët dhe thonjtë janë struktura të lidhura që rriten nga qeliza të specializuara. Ndryshimet mund të pasqyrojnë një problem lokal ose, ndonjëherë, një gjendje tjetër shëndeti.",
+    "details": "Ngjyra, tekstura, vendi dhe shpejtësia e ndryshimit mund të ndihmojnë në udhëzimin e vlerësimit. Ekspozimi ndaj kimikateve, produkteve të përditshme të kujdesit dhe barnave mund të jetë i rëndësishëm. Shmangni supozimin se një ndryshim kozmetik identifikon një sëmundje specifike. Një ndryshim i vazhdueshëm, i dhimbshëm ose i pashpjeguar mund të diskutohet me një klinician.",
+    "questions": [
+      "A mund ta shpjegojë një ekspozim ose barne këtë ndryshim?",
+      "Cilat veçori do të kishte nevojë për vlerësim të mëtejshëm?"
+    ]
+  },
+  "endocrine-hormone-system": {
+    "intro": "Sistemi endokrin përbëhet nga grurëza dhe indet që lëshojnë hormona. Këto sinjale udhëtojnë përmes gjakut dhe ndihmojnë në koordinimin e proceseve si metabolizmi, rritja dhe riprodhimi. Mekanizmat e rregullimit zakonisht e mbajnë aktivitetin e hormonit brenda një diapazoni të përshtatshëm.",
+    "details": "Nivelet e hormoneve mund të ndryshojnë me kohën, moshën, shtatzëninë dhe sëmundjen. Kjo është një arsye pse rezultatet e provave kanë nevojë për interpretim klinik në vend të krahasimit me një numër të vetëm në izolim. Trajtimi i një çregulli hormonal varet nga cili sinjal ose glandë është i prekur.",
+    "questions": [
+      "A mund ta ndikojnë kohëzgjatja ose një gjendje tjetër rezultatin e hormonit tim?",
+      "Çfarë kontrollon normalisht kjo glandë?"
+    ]
+  },
+  "bones-muscles-and-joints": {
+    "intro": "Kockat mbështesin dhe mbrojnë trupin. Artikulimet lidhin kockat, ndërsa muskujt dhe tendot prodhojnë lëvizje. Kartilazhi, lidhësat dhe inde të tjera ndihmojnë artikulimet të lëvizen dhe mbeten të qëndrueshme. Së bashku këto struktura formojnë sistemin muskuloskeletor.",
+    "details": "Forca, koordinimi dhe lëvizja e artikulimeve kontribuojnë të gjitha në funksion. Lëndimi dhe sëmundja mund të prekin pjesë të ndryshme të sistemit, ndonjëherë me simpotoma që mbivendosen. Një ekzaminim shikon përtej një vendi të vetëm dhimbjeje për të kuptuar se si ndikohet lëvizja. Trajtimi dhe rehabilitimi duhet të përputhen me problemin aktual.",
+    "questions": [
+      "Si ndikon ky problem në lëvizjen dhe funksionimin tim?",
+      "Cilat qëllime duhet të udhëzojnë rehabilitimin?"
+    ]
+  },
+  "lungs-and-airways": {
+    "intro": "Ajri udhëton përmes kanaleve të frymëmarrjes në mushka. Në përthypësinë e vogla të ajrit, oksigjeni kalon në gjak dhe dioksidi i karbonit del nga ai. Frymëmarrja varet gjithashtu nga muskujt, murit të kraharorit dhe sinjalet nga sistemi nervoz.",
+    "details": "Mungesë ajri mund të rezultojë nga probleme në mushka ose diku tjetër në trup. Një klinikan merr parasysh rrethanat dhe simptomat e tjera përpara se të zgjedhë teste. Testet e frymëmarrjes dhe matjet e oksigenit përgjigjen pyetjeve të ndryshme dhe nuk mund të zëvendësojnë një vlerësim të plotë kur dikush është shumë i sëmurë.",
+    "questions": [
+      "A mund të shpjegojë diçka tjetër përveç mushkave mungesën e ajrit tim?",
+      "Çfarë do të tregojë testi i frymëmarrjes i propozuar?"
+    ]
+  },
+  "stomach-bowel-and-digestion": {
+    "intro": "Tretja zbërthen ushqimin në mënyrë që trupi të mund të thithë dhe të përdorë lëndët ushqyese. Stomaku përzieh ushqimin, zorrët thithin lëndët ushqyese dhe ujin, dhe organet e tjera furnizon substanca të nevojshme për tretje. Mbetjet e mbetura largohen nga trupi si jashtëqitje.",
+    "details": "Tretja normale ndryshon midis njerëzve. Një ndryshim i vazhdueshëm në zakonet e jashtëqitjes ose e pakënaqësia e vazhdueshme është më e dobishme për të përshkruar sesa një krahasim i vetëm me rutinën e dikujt tjetër. Medikimet, dieta dhe sëmundja mund të ndikojnë të gjitha në tretje. Hetimet varen nga modeli i përgjithshëm dhe simptomat shoqnuese.",
+    "questions": [
+      "Cilat ndryshime nga modeli im i zakonshëm janë të rëndësishme?",
+      "A mund të kontribuojnë medikimet ose një sëmundje tjetër?"
+    ]
+  },
+  "mouth-and-teeth": {
+    "intro": "Gura fillon tretjen përmes përmastimit dhe pështymës dhe është e rëndësishme për të folur dhe gëlltitur. Dhëmbët, mishrat e dhëmbëve, gjuha dhe inde të tjera punojnë së bashku. Shëndeti i tyre prek komoditetin dhe aftësinë për të ngrënë një dietë të larmishme.",
+    "details": "Problemet mund të përfshijnë dhëmbë, indet mbështetëse ose mbulesën e gojës. Një ekzaminim dentar mund të ndihmojë të dallohen këto shkaqe. Një plagë e vazhdueshme, një gungë e pa shpjeguar ose një problem i vazhdueshëm gëllitjeje meritojnë vlerësim. Kujdesi i përditshëm oral është i dobishëm, por ai nuk e zëvendëson vlerësimin e një ndryshimi të qëndrueshëm.",
+    "questions": [
+      "A vjen problemi nga një dhëmb ose një tjetër ind i gojës?",
+      "Çfarë duhet të bëj nëse ndryshimi nuk shërohet?"
+    ]
+  },
+  "kidneys-bladder-and-urinary-tract": {
+    "intro": "Veshkat filtrojnë gjakun, balancojnë lëngjet dhe kripërat, dhe prodhojnë urinë. Urina udhëton përmes ureterave në fshikën urinare, ku ruhet përpara se të dalë përmes uretres. Këto struktura kanë role të dallueshme.",
+    "details": "Pamja e urines vetëm nuk mat në mënyrë të besueshme shëndetin e veshkave. Testet e gjakut dhe urines mund të vlerësojnë funksione të ndryshme ose shenja të sëmundjes. Ndryshimet në miksje mund të dalin nga veshkat, fshikja urinare ose vendi tjetër. Një klinician e interpreton gjetjet krahas simptomave, ilaçeve dhe rezultateve të mëparshme.",
+    "questions": [
+      "Cila pjesë e sistemit urintar po vlerësohet?",
+      "Çfarë matin testet e gjakut dhe urines?"
+    ]
+  },
+  "sensory-organs": {
+    "intro": "Organet sensore mbledhin informacione rreth botës dhe trupit. Sytë dhe veshet mbështesin vizionin, dëgjimin dhe ekuilibrin, ndërsa receptorët ndihmojnë edhe në erën, shijen dhe prekjen. Truri interpreton këto sinjale.",
+    "details": "Ndryshimet në një ndjesi mund të prekin sigurinë, komunikimin dhe pavarësinë. Shkaku i tyre mund të përfshijë organin sensorial, nervat ose kushte të tjera. Përshkruani nëse një ndryshim është i papritur, gradualisht ose ndonjëherë. Humbja e papritur e vizionit ose dëgjimit duhet të marrë vlerësim mjekësor të menjëhershëm.",
+    "questions": [
+      "Ku mund të ndodhet ndryshimi në këtë ndjesi?",
+      "A mund ta përmirësojë një ndihmë ose rikuperim funksionimin e përditshëm?"
+    ]
+  },
+  "metabolism": {
+    "intro": "Metabolizmi përfshin proceset kimike të trupit për të marrë energji, për të ndërtuar indet dhe për të trajtuar mbetjet. Enzimat dhe hormonet ndihmojnë në kontrollin e këtyre proceseve. Metabolizmi përfshin shumë organe, jo vetëm një pjesë të vetme të trupit.",
+    "details": "Trupi përshtatet në përdorimin e lëndëve ushqyese në përputhje me aktivitetin, marrjen e ushqimit dhe ndikime të tjera. Fjala metabolizëm nuk shpjegon në vetvete një simptomë ose ndryshim në peshë. Kur dyshohej për një problem metabolik të veçantë, testet dhe trajtimi i dobishëm varen nga pyetja klinike.",
+    "questions": [
+      "Cili proces metabolik lidhet me shqetësimin tim?",
+      "Çfarë informacioni do të ndihmonte në identifikimin e një problemi të veçantë?"
+    ]
+  },
+  "growth-and-aging": {
+    "intro": "Rritja dhe plakja përfshijnë ndryshime në strukturën dhe funksionin e trupit me kalimin e kohës. Njerëzit zhvillohen dhe plaken me ritme të ndryshme. Shëndeti, mjedisi dhe rrethanat e përditshme mund të ndikojnë në atë që këto ndryshime nënkuptojnë për jetën e përditshme të një individi.",
+    "details": "Aftësitë zakonore të një personi dhe shpejtësia e një ndryshimi kanë rëndësi kur merret parasysh nëse duhet bërë një vlerësim. Problemet e reja nuk duhet të atribuohen automatikisht moshës. Kujdesi mund të fokusohet në zhvillim, pavarësi, komoditet dhe aktivitete që janë të rëndësishme për personin.",
+    "questions": [
+      "A është ky model i pritshëm në këtë fazë të jetës?",
+      "Çfarë mund të ndihmojë në ruajtjen e funksionit ose në mbështetjen e zhvillimit?"
+    ]
+  },
+  "drugs-and-vaccines": {
+    "intro": "Ilaçet mund të parandalojnë sëmundjen, të lehtësojnë simptomat ose të trajtojnë një gjendje. Vakcinat përgatitni sistemin imunitar të t'i përgjigjet infeksioneve të veçanta. Të dyja vlerësohen për përfitimet dhe dëmit të mundshëm, por përshtatshmëria e tyre varet nga personi dhe qëllimi.",
+    "details": "Kuptimi i përfitimit të synuar, efekteve anësore të zakonshme dhe përdorimit të saktë mbështet vendimmarrjen më të sigurt. Tregojini ekipit të kujdesit shëndetësor për ilaçe të tjera dhe suplemente. Mos ndryshoni një trajtim të përshkruar bazuar në një përmbledhje të përgjithshme. Pyetjet në lidhje me vaksinimin ose ilaçet mund të diskutohen me një profesionist të kualifikuar.",
+    "questions": [
+      "Cilin përfitim duhet ta pres nga kjo trajtim?",
+      "Cilat ndërveprime ose efekte anësore duhet të diskutoj?"
+    ]
+  },
+  "diagnosis-and-tests": {
+    "intro": "Testet diagnostikuese ndihmojnë të përgjigjen pyetjeve rreth shëndetit të një personi. Ato mund të përfshijnë ekzaminimet, testet e gjakut ose urinës, imazhimet dhe mostrat e indeve. Një test është më i dobishëm kur rezultati i tij mund të sqarojë një problem ose të ndikojë në kujdesin e shëndetit.",
+    "details": "Asnjë test nuk është i përsosur. Disa rezultate janë gënjeshtare tranquilizuese ose sugjerojnë sëmundje kur ajo është e pranishme. Interpretimi varet nga simptomat, gjasat e sëmundjes dhe gjetjet e tjera. Para se të bëhet testi, është i dobishëm të kuptosh mundësitë e diskomforit, rreziqet dhe atë që do të nënkuptojnë rezultatet e ndryshme.",
+    "questions": [
+      "Cila është pyetja specifike që ky test synon të përgjigjet?",
+      "Si do ta ndryshonte çdo rezultat të mundshëm hapin tjetër?"
+    ]
+  },
+  "non-drug-treatments": {
+    "intro": "Kujdesi i shëndetit përfshin trajtime që nuk përfshijnë marrjen e një bije. Shembujt përfshijnë rehabilitimin, terapitë e bisedës dhe ndryshimet në aktivitete ose mjedis. Përdorimi i tyre varet nga sëmundja, trajtimet dhe qëllimet e personit.",
+    "details": "Një trajtim jo-bije mund të ketë ende barrë, kosto ose efekte të padëshiruara. Pyet cilat prova e mbështesin atë, çfarë përfshin pjesëmarrja dhe si do të vlerësohet përparimi. Qasjet e ndryshme mund të kombinohen kur është e përshtatshme. Një shpjegim i tërheqshëm ose një pretendim se diçka është natyrale nuk përcakton se funksionon.",
+    "questions": [
+      "Cilat prova mbështesin këtë mundësi për gjendjen time?",
+      "Si do të gjykojmë nëse po më ndihmon?"
+    ]
+  },
+  "surgery": {
+    "intro": "Kirurgjia përdoret për të diagnostikuar, riparuar, hequr ose zëvendësuar indin, ose për të lehtësuar simptomat. Operacionet ndryshojnë shumë në qëllimin e tyre, rreziqet dhe rikuperimin. Nëse kirurgjia është e përshtatshme varet nga sëmundja dhe rrethanat e personit.",
+    "details": "Një vendim i informuar përfshin diskutimin e përfitimeve të pritura, komplikacioneve të mundshme, anestezisë dhe alternativave. Rikuperimi mund të përfshijë ndryshime të përkohshme në punë, aktivitet ose nevojat për kujdes. Pyet çfarë mund të ndodhte pa operacion dhe sa urgjente është vendimi. Informacioni i përgjithshëm nuk mund të parashikojë rezultatin kirurgjik të një individi.",
+    "questions": [
+      "Pse propozohet kirurgjia dhe cilat janë alternativat?",
+      "Çfarë mbështetjeje dhe kohe rikuperimi mund të kem nevojë?"
+    ]
+  },
+  "physical-therapy-and-daily-living-aids": {
+    "intro": "Terapia fizike dhe ndihma praktike mund të ndihmojnë njerëzit të lëvizin, të menaxhojnë simptomat dhe të kryejnë aktivitete të përditshme. Nevojat mund të lindin pas një lëndie, sëmundjeje ose një gjendjeje afatgjatë. Qëllimi është funksionim i kuptimshëm dhe jo përfundimi i të njëjtit program për të gjithë.",
+    "details": "Vlerësimi mund të identifikojë ushtrime të përshtatshme, përshtatje ose pajisje. Një ndihmë duhet të përshtatet me personin dhe mjedisin në të cilin do të përdoret. Udhëzimi, praktika dhe ndjekja mund të jenë të rëndësishme. Diskutoni qëllimet si ecja, veshja ose kthimi në punë në mënyrë që mbështetja të adresojë nevojat reale.",
+    "questions": [
+      "Cilën aktivitet të përditshëm duhet të përprioritizojmë?",
+      "Si duhet ta përdor dhe rishqyrtoj këtë ndihmë ose plan ushtrimesh?"
+    ]
+  },
+  "prevention": {
+    "intro": "Parandalimi synon të zvogëlojë mundësinë e sëmundjes ose pasojave të saj. Mund të përfshijë vaksinim, zvogëlimin e ekspozimeve të dëmshme, zakoneve të përditshme ose kërkime të përshtatshme. Vlera e një mase parandaluese varet nga rreziku që ajo adresohet.",
+    "details": "Jo çdo ofertë parandaluese ofron të njëjtën dobi, dhe disa mund të shkaktojnë dëm ose ndjekje të panevojshme. Rreziku personal dhe rrethanat praktike kanë rëndësi. Merrni në konsideratë atë që mbështetet me prova dhe atë që është realiste për të ruajtur. Parandalimi zvogëlon disa rreziqe, por nuk mund të garantojë që një person nuk do të sëmurët kurrë.",
+    "questions": [
+      "Cilat rreziqe të parandalueshme kanë më shumë rëndësi për mua?",
+      "Cilën dobi dhe dëm të mundshëm përfshin kjo masë?"
+    ]
+  },
+  "what-is-evidence-based-medicine": {
+    "intro": "Mjekësia e bazuar në prova kombinon gjetjet e kërkimit me ekspertizën klinike dhe nevojat dhe preferencat e pacientit. Ajo pyet nëse një test ose trajtim përmirëson rezultatet që kanë rëndësi për njerëzit, në vend se të mbështetet vetëm në një shpjegim të arsyeshëm.",
+    "details": "Kërkimi mund të tregojë si përfitime ashtu edhe dëme, por pasiguria shpesh mbetet. Prova nga një grup nuk diktojnë çdo vendim individual. Diskutimet e dobishme e bëjnë të kuptueshëm madhësinë e efekteve të pritshme, kufizimet e provave dhe alternativat e disponueshme.",
+    "questions": [
+      "Cilën kërkimë mbështet kjo rekomandim?",
+      "Si zbatohen gjetjet në rrethanat dhe preferencat e mia?"
+    ]
+  },
+  "studies-co": {
+    "intro": "Studimet mjekësore hetojnë pyetje mbi shëndetin, testet dhe trajtimet. Dizajni i tyre ndikon në përfundimet që mund të nxirren. Një krahasim midis grupeve mund të ndihmojë të dallohet efekti i një trajtimi nga ndryshimet që do të kishin ndodhur në të kundërt.",
+    "details": "Një efekt i madh i përshkruar në tituj mund të duket ndryshe kur merren në konsideratë numrat absolutë, koha e ndjekjes dhe dëmet. Rezultatet gjithashtu varen nga kush u studiua dhe sa besueshmërisht u matën përfundimet. Një studim vetëm rrallë përgjigjet të gjitha pyetjeve; rishikimet sistematike bashkojnë kërkimin duke përdorur një qasje të planifikuar.",
+    "questions": [
+      "Sa i madh është përfitimi në terma absolutë?",
+      "Cilat kufizime ose rezultate që mungojnë ndikojnë në përfundim?"
+    ]
+  },
+  "making-an-informed-decision": {
+    "intro": "Një vendim i informuar për shëndetin bashkon informacionin e kuptueshëm dhe atë që ka rëndësi për personin që e merr atë. Shpesh ekziston më shumë se një opsion i arsyeshëm. Përfitimet, dëmet, kërkesat praktike dhe pasiguria mund të ndikojnë në mënyrën se si dikush i shqyrton ato opsione.",
+    "details": "Kërkoni shpjegime në gjuhë të thjeshtë dhe kohë për të konsideruar zgjedhjet jo-urgjente. Diskutoni se çfarë mund të ndodhë me secilën opsion, përfshirë mos trajtimin ose pritjen kur është e përshtatshme. Një mjet ndihmor i vendimeve mund të mbështesë bisedën, por nuk e zëvendëson këshillën individuale ose pëlqimin.",
+    "questions": [
+      "Cilat janë opsionet e mia, përfshirë pritjen kur është e përshtatshme?",
+      "Cilat rezultate dhe zgjedhje të vështira kanë më shumë rëndësi për mua?"
+    ]
+  },
+  "our-methods-and-processes": {
+    "intro": "Informacioni i besueshëm mbi shëndetin shpjegon se si autorët e tij gjejnë kërkimin, e vlerësojnë atë dhe vendosin se çfarë të botojnë. Tema e lidhur e IQWiG përshkruan qasjen e tij në zhvillimin e informacionit të bazuar në prova. Njohja e metodave ndihmon lexuesit të gjykojnë se si kërkimet mbështeten.",
+    "details": "Kontrollet e dobishme përfshijnë kush e prodhoi informacionin, cilat prova u morën në konsideratë, kur u përditësua dhe nëse pasiguria shpjegohet. Lidhja e burimit më poshtë çon në materialin e vet të IQWiG. Ky përmbledhje e RediHealth është shkruar në mënyrë të pavarur dhe nuk është një botim ose pëlqim i IQWiG.",
+    "questions": [
+      "A mund t'i identifikój botuesin dhe provat mbështetëse?",
+      "A shpjegon informacioni pasigurinë dhe procesin e përditësimit të tij?"
+    ]
+  }
+}

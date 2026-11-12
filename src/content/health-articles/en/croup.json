@@ -1,0 +1,51 @@
+{
+  "title": "Croup: a barking cough and when breathing needs help",
+  "intro": "Croup is usually a viral illness that causes swelling around a young child's voice box and windpipe. The cough may sound like a bark, with a hoarse voice and sometimes a harsh noise on breathing in, called stridor. Many episodes are mild, but airway narrowing can worsen quickly. Contact a clinician if you think your child has croup, and seek emergency help for difficult breathing.",
+  "sections": [
+    {
+      "heading": "Look at breathing and behaviour, not just the cough",
+      "paragraphs": [
+        "A runny nose or fever may come first, followed by barking cough, often worse at night. Stridor is different from the lower, whistling wheeze often associated with asthma. Notice whether the noise happens only while upset or also while calm, and whether skin pulls in around the ribs or neck. A child who becomes unusually quiet, exhausted or hard to wake may be getting worse even if the noise becomes softer. The loudness of a cough or breathing noise is not a reliable severity score. Very young babies or children with known airway problems need a lower threshold for assessment."
+      ]
+    },
+    {
+      "heading": "Know the signs for urgent or emergency care",
+      "paragraphs": [
+        "Get emergency help if the child struggles to breathe, turns blue, grey or markedly pale, becomes limp or difficult to wake, cannot swallow or drools while unwell. Significant pulling in of the chest, severe agitation with breathing difficulty or poor responsiveness are also danger signs. Stridor while resting needs urgent hospital assessment. Keep the child with a calm caregiver in the position they find easiest; do not force them flat or inspect deep in the throat yourself. A sudden choking onset or facial swelling may point to another emergency rather than croup. Follow the emergency dispatcher's instructions."
+      ]
+    },
+    {
+      "heading": "What helps when home care is appropriate",
+      "paragraphs": [
+        "After advice confirms that home care is suitable, comfort the child and keep them calm; crying can increase breathing effort. Offer small regular drinks when swallowing is comfortable and check them regularly, including overnight. Use age-appropriate pain or fever relief according to the label or clinician's advice. Do not force drinks into a child struggling to breathe or swallow. Do not use steam rooms, boiling-water bowls or vapour inhalation to treat croup: steam is not a proven treatment and can burn. Cough mixtures and sedating remedies do not treat the airway swelling and can be unsafe."
+      ]
+    },
+    {
+      "heading": "How a clinician treats croup",
+      "paragraphs": [
+        "Typical croup can often be diagnosed from the history and breathing without routine blood tests or X-rays. Minimising distress during examination is important. A clinician may give a corticosteroid such as dexamethasone to reduce swelling; the choice and dose depend on the child and severity. More significant obstruction may need nebulised adrenaline and hospital monitoring. Its effect can wear off, so improvement immediately after treatment does not by itself mean the child can leave. Severe cases need specialist airway support. Antibiotics do not treat uncomplicated viral croup, although another diagnosed bacterial illness requires a different plan."
+      ]
+    },
+    {
+      "heading": "Plan the next night and follow-up",
+      "paragraphs": [
+        "Symptoms commonly improve over the next few days, but the cough may last longer and another night can be worse before recovery. Ask what to do if stridor returns after treatment, and how to obtain help out of hours. Do not assume a previously mild episode guarantees the next one will be mild. Repeated episodes, an unusual age, persistent noisy breathing or failure to improve deserve review for other causes. The viruses causing croup can spread to others, who may develop ordinary cold symptoms instead. Hand hygiene, covering coughs and staying home when feverish or unwell reduce spread; follow local childcare advice."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a change while calm",
+      "text": "A toddler initially barks only when crying. Later, while resting on his father's lap, he has noisy breathing and the skin beneath his ribs pulls inward. His father seeks urgent assessment instead of waiting until morning because the cough itself seems familiar."
+    },
+    {
+      "title": "Hypothetical example: observation after treatment",
+      "text": "A child improves after nebulised medicine in hospital. Her caregiver asks why observation is still needed. The team explains that the medicine's effect is temporary and checks that comfortable breathing continues before deciding on discharge and a written return plan."
+    }
+  ],
+  "questions": [
+    "Is home care appropriate now, and which breathing changes need immediate help?",
+    "What treatment was given, and what should I do if symptoms return tonight?",
+    "Do repeated episodes or persistent noisy breathing need further assessment?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Te mjeku: përgatitja, pyetjet dhe një plan i qartë",
+  "intro": "Një vizitë e dobishme bashkon përvojën tuaj me vlerësimin e profesionistit. Nuk duhet ta dini diagnozën para se të kërkoni ndihmë. Një përshkrim i shkurtër i ndryshimeve, lista e barnave dhe shqetësimi kryesor e lehtësojnë bisedën. Rregullat e rezervimit, sigurimit dhe referimit ndryshojnë sipas vendit e klinikës; artikulli origjinal i lidhur përshkruan sistemin gjerman të kujdesit shëndetësor.",
+  "sections": [
+    {
+      "heading": "Zgjidhni shërbimin dhe shpjegoni urgjencën",
+      "paragraphs": [
+        "Për një problem të vazhdueshëm ose jo emergjent, kujdesi parësor shpesh mund t'ju vlerësojë dhe të koordinojë specialistët. Në Gjermani, praktika e mjekut të familjes quhet shpesh Hausarztpraxis; mos supozoni se rregullat e referimit vlejnë në një vend tjetër. Tregojini personelit të rezervimit për përkeqësime të rëndësishme që t'ju drejtojë siç duhet. Kur mundeni, pyetni paraprakisht për tarifat, mbulimin dhe dokumentet. Dhimbja e fortë e gjoksit, vështirësia serioze në frymëmarrje ose shenjat e goditjes në tru kërkojnë ndihmë emergjente, jo pritje për takim rutinë."
+      ]
+    },
+    {
+      "heading": "Përgatitni historinë e shkurtër dhe informacion të saktë për barnat",
+      "paragraphs": [
+        "Shënoni kur nisën simptomat, çfarë i përmirëson ose përkeqëson dhe si ndikojnë te gjumi, puna apo detyrat e përditshme. Vendosni përparësi për shqetësimet kryesore, sidomos nëse disa probleme duhen diskutuar brenda kohës së kufizuar. Merrni rezultatet përkatëse dhe listën e barnave me recetë, produkteve pa recetë, suplementeve dhe alergjive. Përfshini çfarë merrni realisht, jo vetëm çfarë është përshkruar. Përmendni shtatzëninë, mundësinë e saj dhe trajtimet e fundit kur ka rëndësi. Fotografitë ose ditari ndihmojnë për probleme që shfaqen e zhduken."
+      ]
+    },
+    {
+      "heading": "Siguroni komunikim dhe privatësi të përshtatshme",
+      "paragraphs": [
+        "Pyetni para takimit për përkthyes, gjuhë shenjash, informacion të aksesueshëm ose hyrje të përshtatshme. Përkthyesi profesionist ndihmon veçanërisht për vendime komplekse ose të ndjeshme; fëmija nuk duhet bërë përgjegjës për interpretimin mjekësor. Mund të dëshironi një person të besuar pranë, por edhe kohë vetëm me mjekun. Pyetni kush do të marrë informacion dhe si ruhet konfidencialiteti. Nëse një ekzaminim ju shqetëson, pyetni çfarë përfshin, pse nevojitet dhe nëse mund të jetë i pranishëm një shoqërues klinik."
+      ]
+    },
+    {
+      "heading": "Diskutoni mundësitë para se të pranoni hapin tjetër",
+      "paragraphs": [
+        "Pyetni çfarë mendon mjeku se po ndodh, çfarë mbetet e pasigurt dhe si do ta ndryshonte kujdesin një test i propozuar. Për trajtimin diskutoni përfitimet e mundshme, dëmet e rëndësishme, alternativat dhe çfarë mund të ndodhë vetëm me vëzhgim. Shpjegoni pengesa si kostoja, puna me turne ose vështirësia për të gëlltitur tableta. Mund të kërkoni fjalë më të thjeshta ose kohë për një vendim jo urgjent. Një mendim i dytë mund të ndihmojë për zgjedhje të mëdha të paqarta; qasja dhe pagesa ndryshojnë. Mos interpretoni një rezultat veçmas nga simptomat dhe ekzaminimi."
+      ]
+    },
+    {
+      "heading": "Konfirmoni ndjekjen dhe përsëriteni planin me fjalët tuaja",
+      "paragraphs": [
+        "Para largimit, sqaroni çfarë të bëni tani, si të përdorni barnat e reja dhe cilat të mëparshme vazhdojnë ose ndryshojnë. Pyetni kur priten rezultatet, kush do t'ju kontaktojë dhe çfarë të bëni nëse nuk vjen mesazh. Heshtja nuk do të thotë automatikisht rezultat normal. Konfirmoni kontrollin dhe shenjat që kërkojnë kujdes më të hershëm ose emergjent. Përsëriteni shkurt planin për të verifikuar kuptimin dhe kërkoni udhëzime me shkrim nëse ndihmojnë. Nëse plani nuk është i realizueshëm, thuajeni para largimit në vend që ta braktisni pa diskutim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: simptomë që vjen e shkon",
+      "text": "Një person ka skuqje që zhduket para vizitave. Merr fotografi me data, shënon produktet e reja për lëkurën dhe shpjegon se kruarja i prish gjumin. Mjeku e përdor historinë me ekzaminimin, pa supozuar se lëkura që duket normale përjashton problemin."
+    },
+    {
+      "title": "Shembull hipotetik: plan i paqartë për analizën",
+      "text": "Pas kërkesës për analizë gjaku, pacienti pyet kur do të jetë gati dhe kush do ta shpjegojë. Ruan kontaktet dhe bie dakord kur të telefonojë nëse nuk merr rezultat, duke shmangur pritjen pa afat me supozimin se gjithçka është mirë."
+    }
+  ],
+  "questions": [
+    "Cili është shpjegimi më i mundshëm dhe cila pasiguri ka rëndësi për vendimin tjetër?",
+    "Si do të më ndihmonte ky test ose trajtim dhe cilat janë alternativat e rreziqet?",
+    "Kush shpjegon rezultatet, kur duhet të kthehem dhe cilat simptoma kërkojnë ndihmë më herët?"
+  ]
+}

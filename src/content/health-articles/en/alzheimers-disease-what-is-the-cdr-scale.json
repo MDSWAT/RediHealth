@@ -1,0 +1,51 @@
+{
+  "title": "The CDR scale: understanding a dementia assessment",
+  "intro": "The Clinical Dementia Rating, or CDR, is a structured assessment of how thinking and memory difficulties affect everyday life. A trained professional combines information from the person and someone who knows them well. It can help describe severity and changes over time, but a score alone does not identify the cause of memory problems, predict an individual's future or replace a full clinical assessment.",
+  "sections": [
+    {
+      "heading": "Understand what the assessment is trying to capture",
+      "paragraphs": [
+        "The CDR considers memory, orientation, judgment and problem-solving alongside community activities, home and hobbies, and personal care. The focus is change from the person's previous abilities and the effect of cognitive difficulties on independence. It is not simply a quiz of facts or a tally of forgotten names. Difficulty shopping because of confusion means something different from avoiding shops because a painful knee makes walking difficult. Explain both cognitive changes and physical or social barriers."
+      ]
+    },
+    {
+      "heading": "Prepare concrete observations rather than rehearsed answers",
+      "paragraphs": [
+        "Bring examples of what has changed and when: missed appointments, trouble managing familiar tasks or newly needed help. Describe what the person still does independently as well as difficulties. A relative or friend who has regular contact can provide useful context, with appropriate respect for the person's wishes and privacy. Tell the assessor about language, hearing or vision needs. Do not coach answers to obtain a particular score; an accurate account is more useful for planning support."
+      ]
+    },
+    {
+      "heading": "Distinguish the global rating from the sum of boxes",
+      "paragraphs": [
+        "Reports may show a global CDR rating or CDR-SB, the sum of the domain ratings. These are different summaries and their numbers are not interchangeable. The global rating ranges from zero to three, while the sum of boxes ranges from zero to eighteen; higher values indicate greater impairment. The global rating uses scoring rules rather than a simple average. Ask which measure is being discussed and what its pattern means in daily life instead of comparing isolated numbers from different reports."
+      ]
+    },
+    {
+      "heading": "Interpret change alongside the wider clinical picture",
+      "paragraphs": [
+        "Changes between visits need context: who supplied information, what support is now available and whether the person was unwell. Medicines, depression, sleep problems and sensory difficulties can affect functioning and need consideration in the overall assessment. Sudden confusion or rapid deterioration should prompt medical assessment rather than waiting for another routine dementia score. The CDR does not by itself show whether Alzheimer pathology is present. A clinician may use history, examination, cognitive tests and other investigations to explore the cause."
+      ]
+    },
+    {
+      "heading": "Use the findings to discuss support and treatment evidence",
+      "paragraphs": [
+        "Ask how the assessment informs medication review, help with daily tasks, safety and future planning. A change in a research group's average CDR-SB score is not a promise that an individual will improve by that amount. Small group differences and meaningful individual changes are distinct questions. Treatment eligibility also depends on the diagnosis, health factors, local approval and the specific treatment, not only a CDR result. This article explains the assessment; it is not an authorised scoring form or a self-diagnosis tool."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: explain why help is needed",
+      "text": "A daughter says her father no longer cooks. The assessor asks whether he forgets familiar steps, cannot stand because of arthritis or has simply handed over cooking by choice. These details help distinguish cognitive change from other reasons for needing help."
+    },
+    {
+      "title": "Hypothetical example: comparing reports",
+      "text": "A family sees a global CDR result in one report and a larger CDR-SB number in another. Rather than assuming dramatic deterioration, they ask the clinician to identify the two measures and explain whether comparable assessments show a real change."
+    }
+  ],
+  "questions": [
+    "Is this a global CDR rating or a CDR-SB score, and what does it describe in everyday life?",
+    "What other health, communication or support factors may have influenced the assessment?",
+    "How will the findings change our care plan, and what needs reassessment sooner?"
+  ]
+}

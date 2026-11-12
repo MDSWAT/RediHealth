@@ -1,0 +1,51 @@
+{
+  "title": "Edema: pse mblidhet lëng dhe kur të kërkoni ndihmë",
+  "intro": "Edema është ënjtja nga grumbullimi i lëngut në inde. Këpucët ose unazat shtrëngojnë, gjymtyra ndihet e rëndë apo lëkura e tendosur. Mund të vijë pas qëndrimit gjatë ulur ose në këmbë, por ënjtja e re ose e vazhdueshme mund të tregojë sëmundje. Vendi, shpejtësia e fillimit dhe shenjat shoqëruese përcaktojnë urgjencën; pamja vetëm nuk tregon shkakun.",
+  "sections": [
+    {
+      "heading": "Modelet japin të dhëna, jo diagnozë",
+      "paragraphs": [
+        "Mund të ënjtet një gjymtyrë, të dyja këmbët, fytyra ose zona më të gjera. Shtypja ndonjëherë lë gropëz, ndonjëherë jo; asnjëra nuk përcakton vetëm shkakun. Shënoni nëse filloi papritur, ndryshon gjatë ditës, pason dëmtim ose ka dhimbje, nxehtësi, skuqje, mungesë fryme apo pakësim urine. Lëngu mund të mblidhet edhe në mushkëri ose bark; jo çdo mbajtje e rëndësishme shihet te kyçet."
+      ]
+    },
+    {
+      "heading": "Qarkullimi dhe sëmundjet e organeve",
+      "paragraphs": [
+        "Venat që nuk kthejnë mirë gjakun mund të japin ënjtje të këmbëve. Mpiksja, infeksioni ose inflamacioni mund të shkaktojnë ënjtje lokale. Problemet e drenimit limfatik japin limfedemë, edhe pas disa trajtimeve të kancerit. Sëmundjet e zemrës, veshkave, mëlçisë dhe proteinat e ulëta në gjak mund të mbajnë lëng; edhe barnat ndikojnë. Nxehtësia, palëvizshmëria ose shtatzënia mund të japin ënjtje të lehtë, por nuk duhen supozuar për një ndryshim shqetësues. Mund të ketë disa shkaqe."
+      ]
+    },
+    {
+      "heading": "Shenjat urgjente",
+      "paragraphs": [
+        "Kërkoni vlerësim urgjent për një këmbë të ënjtur pa shpjegim, ënjtje të papritur ose të rëndë, zonë të kuqe të nxehtë e të dhimbshme, temperaturë ose përkeqësim të shpejtë. Mungesa e frymës, dhimbja e kraharorit, kollitja me gjak, të fikëtit ose konfuzioni kërkojnë ndihmë emergjente. Ënjtja e papritur e buzëve, gjuhës ose fytit me vështirësi frymëmarrjeje apo gëlltitjeje është gjithashtu emergjencë. Në shtatzëni, shtimi i papritur i ënjtjes së fytyrës, duarve ose këmbëve, dhimbja e fortë e kokës, shikimi i ndryshuar apo dhimbja nën brinjë kërkojnë menjëherë këshillë obstetrike për mundësi preeklampsie. Mos drejtoni nëse jeni rëndë."
+      ]
+    },
+    {
+      "heading": "Trajtimi synon shkakun",
+      "paragraphs": [
+        "Mjeku shqyrton barnat dhe historinë, ekzaminon ënjtjen dhe sistemet përkatëse. Sipas gjetjeve mund të duhen analiza gjaku, urine, ekografi ose të tjera. Plani mund të ndryshojë barna, të trajtojë sëmundjen bazë ose problemin venoz e limfatik. Diuretikët ndihmojnë disa shkaqe, jo çdo gjymtyrë të ënjtur, dhe kërkojnë përshkrim e monitorim individual. Mos merrni diuretik të tjetrit ose ndërprisni vetë recetën. Kompresioni zgjidhet pas vlerësimit profesional të përshtatshmërisë dhe masës."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm me plan",
+      "paragraphs": [
+        "Pasi përjashtohen shkaqet urgjente, lëvizja e lehtë, shmangia e pozicioneve të gjata, këpucët e rehatshme dhe ngritja e këmbëve mund të ndihmojnë disa edema periferike. Lani, thani dhe kujdesuni për lëkurën, duke raportuar plagë ose infeksion. Ndiqni këshillën individuale për kripën, lëngjet dhe peshën; kufizimi i rëndë i lëngjeve nuk është zgjidhje e përgjithshme. Pyesni kur të kontaktoni dhe kur të kontrolloheni. Ndryshimi i papritur i një ënjtjeje të njohur kërkon rivlerësim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pulpë e ënjtur pas udhëtimit — shembull hipotetik",
+      "text": "Pas udhëtimit të gjatë shfaqet ënjtje dhe dhimbje në një pulpë. Personi kërkon vlerësim urgjent për mpiksje të mundshme, pa fajësuar vetëm qëndrimin ulur. Dhimbja e kraharorit ose mungesa e frymës do të kërkonin ndihmë emergjente."
+    },
+    {
+      "title": "Ënjtje gjatë barnave — shembull hipotetik",
+      "text": "Pas ndryshimit të një bari këpucët shtrëngojnë gradualisht. Personi njofton mjekun dhe sjell listën e barnave pa i ndërprerë apo marrë diuretik tjetërkund. Mjeku shqyrton efektet dhe shkaqe të tjera para ndryshimit të planit."
+    }
+  ],
+  "questions": [
+    "Cili është shkaku i mundshëm dhe a janë shqyrtuar shkaqet urgjente?",
+    "A më përshtaten kompresioni, ndryshimi i barnave ose trajtime të tjera?",
+    "Çfarë të monitoroj dhe cilat ndryshime kërkojnë ndihmë urgjente ose kontroll më herët?"
+  ]
+}

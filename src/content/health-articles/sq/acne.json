@@ -1,0 +1,51 @@
+{
+  "title": "Aknet: kujdesi për lëkurën dhe zgjedhja e trajtimit",
+  "intro": "Aknet përfshijnë bllokimin e folikulave të qimeve dhe inflamacionin. Mund të shkaktojnë pika të zeza, pika të bardha, puçrra të inflamuara dhe nyje të thella të dhimbshme, shpesh në fytyrë, kraharor ose shpinë. Nuk janë shenjë e higjienës së dobët. Plani i përshtatshëm varet nga lloji i puçrrave, rreziku i shenjave, trajtimet e mëparshme dhe ndikimi në jetën tënde.",
+  "sections": [
+    {
+      "heading": "Kupto ndryshimet në lëkurë",
+      "paragraphs": [
+        "Yndyra e lëkurës dhe qelizat e vdekura mund të grumbullohen brenda folikulave. Inflamacioni dhe aktiviteti i baktereve që gjenden normalisht në lëkurë kontribuojnë në disa puçrra. Ndryshimet hormonale mund të shtojnë prodhimin e yndyrës, prandaj aknet janë të shpeshta në adoleshencë, por mund të vazhdojnë ose të fillojnë në moshë të rritur. Ngjyra e pikës së zezë nuk do të thotë se brenda ka papastërti. Aknet nuk janë ngjitëse dhe fërkimi i fortë nuk heq shkakun e tyre."
+      ]
+    },
+    {
+      "heading": "Zgjidh një rutinë që mund ta mbash",
+      "paragraphs": [
+        "Pastrimi i butë dhe produktet e shënuara si jokomedogjene mund të ndihmojnë të shmangësh irritimin shtesë ose bllokimin e poreve. Ngacmimi ose shtrydhja e puçrrave shton rrezikun e njollave dhe shenjave. Produktet e shtrenjta dhe rutina e ndërlikuar nuk janë automatikisht më të mira. Tregoji farmacistit ose mjekut të gjitha produktet që përdor: kombinimi i disa trajtimeve irrituese mund të shkaktojë dhimbje dhe ta vështirësojë dallimin e asaj që po ndihmon."
+      ]
+    },
+    {
+      "heading": "Diskuto mundësitë e trajtimit",
+      "paragraphs": [
+        "Mundësitë mund të përfshijnë peroksid benzoili, retinoide për përdorim në lëkurë dhe barna të tjera që aplikohen lokalisht. Disa njerëz kanë nevojë për tableta me recetë ose kujdes specialistik. Antibiotikët përdoren në raste të përzgjedhura për shkak të efekteve anësore dhe rezistencës; mos përdor tableta të mbetura nga një trajtim tjetër. Izotretinoina kërkon mbikëqyrje specialistike dhe masa të rëndësishme sigurie. Tregoji mjekut nëse je shtatzënë, mund të mbetesh shtatzënë ose planifikon shtatzëni, sepse disa barna për aknet nuk janë të përshtatshme."
+      ]
+    },
+    {
+      "heading": "Vlerëso përparimin pa pritur ndryshim brenda natës",
+      "paragraphs": [
+        "Trajtimi kërkon kohë dhe irritimi ose tharja mund të shfaqen përpara se përfitimi i plotë të duket. Pyet çfarë ndryshimesh të presësh, si ta përdorësh produktin e zgjedhur dhe kur ta rivlerësoni. Një shënim i shkurtër ose fotografi e herëpashershme, e mbajtur private, mund të të ndihmojë t'i përshkruash ndryshimet pa kontrolluar vazhdimisht lëkurën. Njollat e qëndrueshme më të errëta ose më të çelëta ndryshojnë nga puçrrat e reja të inflamuara dhe mund të kërkojnë diskutim më vete."
+      ]
+    },
+    {
+      "heading": "Kërko ndihmë për shenjat, dhimbjen ose shqetësimin emocional",
+      "paragraphs": [
+        "Konsultohu me mjekun për nyje të thella të dhimbshme, shenja që po formohen, diagnozë të paqartë ose akne që nuk përmirësohen me planin e rënë dakord. Ënjtja e dhimbshme që përkeqësohet shpejt dhe shoqërohet me temperaturë kërkon vlerësim të shpejtë, jo produkte më të forta kundër akneve. Turpi, bullizmi dhe shmangia e aktiviteteve gjithashtu meritojnë vëmendje. Nuk duhet të presësh derisa lëkura të duket rëndë e prekur për të kërkuar mbështetje emocionale ose këshilla trajtimi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: thjeshtimi i rutinës",
+      "text": "Një nxënës përdor një pastrues gërryes, tonik me acide dhe xhel kundër akneve, dhe lëkura i djeg. I tregon farmacistit emrat e produkteve dhe pyet cili kombinim është i përshtatshëm. Kjo ndihmon të identifikohet irritimi dhe të sqarohet një plan; nuk garanton se një produkt i caktuar do t'i largojë aknet."
+    },
+    {
+      "title": "Shembull hipotetik: pyetje për shenjat",
+      "text": "Dikush vëren nyje më të thella dhe gropëza të reja në lëkurë pavarësisht përdorimit të trajtimit të përshkruar. Cakton një rivlerësim dhe shpjegon ndikimin e akneve në vetëbesim. Pyet nëse nevojitet specialist, në vend që t'i shtrydhë nyjet ose të blejë një tjetër trajtim të fortë."
+    }
+  ],
+  "questions": [
+    "Çfarë lloji aknesh kam dhe a ka rrezik për shenja?",
+    "Si duhet ta përdor këtë trajtim dhe cilat efekte anësore ose masa sigurie lidhur me shtatzëninë kanë rëndësi?",
+    "Kur do ta rivlerësojmë përparimin dhe çfarë do ta ndryshonte planin?"
+  ]
+}

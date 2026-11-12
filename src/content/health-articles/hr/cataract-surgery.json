@@ -1,0 +1,51 @@
+{
+  "title": "Operacija katarakte: priprema, izbor leće i oporavak",
+  "intro": "Operacijom se zamućena prirodna leća uklanja i zamjenjuje umjetnom lećom u oku. Mnogima poboljšava vid i svakodnevne aktivnosti, ali korist ovisi i o ostatku oka. Prije pristanka razgovarajte o prioritetima, leći, anesteziji, komplikacijama i pomoći nakon zahvata. Ove se informacije odnose na odrasle.",
+  "sections": [
+    {
+      "heading": "Dogovorite cilj i odaberite leću",
+      "paragraphs": [
+        "Mjerenja oka pomažu odabrati jakost leće. Recite koliko su važni čitanje, računalo i gledanje u daljinu. Monofokalna leća fokusira na odabranoj udaljenosti pa često trebaju naočale za druge. Neke alternative nude širi raspon, ali uz kompromise poput blještanja i krugova te nisu za svakoga. Pitajte kako utječu astigmatizam, bolest mrežnice ili ranije operacije. Nijedan izbor ne jamči savršen vid bez naočala."
+      ]
+    },
+    {
+      "heading": "Individualna priprema",
+      "paragraphs": [
+        "Ponesite potpuni popis lijekova, alergija i prethodnih očnih postupaka. Recite ako teško ležite mirno, dišete ležeći, čujete upute ili primjenjujete kapi. Slijedite kliniku za kontaktne leće, hranu, piće i lijekove: upute ovise o anesteziji i zdravlju. Ne prekidajte sami lijekove za razrjeđivanje krvi ili druge terapije. Organizirajte prijevoz jer ne trebate voziti kući te pomoć s kapima ili obrocima ako treba. Tražite pisane upute na jeziku koji razumijete."
+      ]
+    },
+    {
+      "heading": "Tijek operacije",
+      "paragraphs": [
+        "Većina zahvata odraslih koristi lokalnu anesteziju uz budnost, ali moguć je drugi plan. Kirurg napravi mali otvor, ukloni zamućenu leću, često je usitni ultrazvukom, i postavi umjetnu u preostalu kapsulu. Možete vidjeti svjetla ili pokrete; javite nelagodu. Mnogi odlaze kući isti dan nakon provjera. Ako oba oka trebaju liječenje, razgovarajte o vremenu i planu za svako bez pretpostavke univerzalnog rasporeda."
+      ]
+    },
+    {
+      "heading": "Oporavak i kontrole",
+      "paragraphs": [
+        "Primjenjujte propisane kapi točno, dolazite na kontrole i slijedite upute o štitniku, pranju i aktivnosti. Ne trljajte oko. Vid isprva može biti zamućen i popravljati se postupno; nakon cijeljenja možda trebaju nove naočale. Vožnja, dizanje, sport i rad ovise o oporavku i lokalnim zahtjevima. Pitajte prije povratka. Blagi osjećaj pijeska moguć je, ali pogoršanje boli ili vida ne treba automatski prihvatiti kao normalno."
+      ]
+    },
+    {
+      "heading": "Komplikacije i upozorenja",
+      "paragraphs": [
+        "Moguće su infekcija, upala, promjene tlaka, odvajanje mrežnice i problemi leće ili kapsule; neki traže dodatno liječenje ili operaciju. Odmah kontaktirajte očnu službu za slabiji vid, značajnu trajnu bol, jako crvenilo, nove bljeskove ili mnogo novih plutajućih točkica te tamnu zavjesu. Ako tim nije dostupan, koristite hitnu očnu skrb. Kasnije zamućenje može nastati na kapsuli iza implantata, a ne ponovnim rastom izvorne leće. Nakon pregleda može se liječiti laserom; ne određujte uzrok sami."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izbor prema potrebama — zamišljeni primjer",
+      "text": "Osoba dugo čita i vozi noću. Pita kako svaka leća utječe na naočale za čitanje, daljinu i krugove, bez pretpostavke da je najskuplja najbolja. Kirurg razmatra i zdravlje oka."
+    },
+    {
+      "title": "Promjena kod kuće — zamišljeni primjer",
+      "text": "Nakon početnog poboljšanja rastu bol i teškoće vida. Osoba odmah zove kontakt iz otpusnih uputa umjesto čekanja redovite kontrole. Tim procjenjuje uzrok i hitnost liječenja."
+    }
+  ],
+  "questions": [
+    "Koje je poboljšanje realno i koji su kompromisi predložene leće?",
+    "Koje su moje točne upute za lijekove, gladovanje, kapi i prijevoz?",
+    "Koji simptomi traže trenutačnu pomoć, koga zvati i kada nastaviti aktivnosti?"
+  ]
+}

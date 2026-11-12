@@ -1,0 +1,51 @@
+{
+  "title": "Fibrilacija atrija: simptomi, prevencija moždanog udara i liječenje",
+  "intro": "Fibrilacija atrija, odnosno AF, abnormalan je električni ritam gornjih srčanih šupljina koji često uzrokuje nepravilan puls. Može se javljati povremeno ili biti trajno prisutna, a neke osobe ne primjećuju simptome. Skrb ima više ciljeva: potvrditi ritam, kontrolirati simptome, liječiti pridružena stanja i smanjiti rizik moždanog udara. Ponovno pravilan osjećaj otkucaja sam po sebi ne rješava pitanje zaštite od udara.",
+  "sections": [
+    {
+      "heading": "Znajte kada lupanje srca treba hitnu pomoć",
+      "paragraphs": [
+        "AF može uzrokovati ubrzano ili treperavo lupanje, umor, zaduhu i slabiju podnošljivost napora. Nov ili ponavljan nepravilan puls zaslužuje liječničku procjenu. Tražite hitnu pomoć kod lupanja uz bol u prsima, tešku zaduhu, nesvjesticu ili vrlo loše stanje. Naglo spuštanje jedne strane lica, slabost ruke ili teškoće govora mogu značiti moždani udar i ako brzo prođu. Nemojte sami voziti na hitni pregled. Naizgled blaga epizoda ne određuje rizik udara, a odsutnost lupanja ne isključuje AF."
+      ]
+    },
+    {
+      "heading": "Potvrdite ritam i potražite pridružene probleme",
+      "paragraphs": [
+        "EKG bilježi električnu aktivnost srca. Povremene epizode mogu zahtijevati dulje praćenje jer ih kratka snimka može propustiti. Upozorenje sata ili nepravilan puls razlog su za savjet, a ne konačna dijagnoza. Opišite vrijeme epizoda, simptome, lijekove i alkohol. Krvne pretrage i ultrazvuk srca mogu procijeniti štitnjaču, građu srca i druge važne čimbenike. Visoki tlak, apneja u snu i druga stanja mogu utjecati na cjelokupan plan."
+      ]
+    },
+    {
+      "heading": "Odvojeno razgovarajte o prevenciji moždanog udara",
+      "paragraphs": [
+        "AF može omogućiti stvaranje ugrušaka, a ugrušak koji dođe do mozga može uzrokovati moždani udar. Liječnik procjenjuje rizik prema dobi, prijašnjem udaru i drugim bolestima, uz rizik krvarenja i prikladnost lijeka. Antikoagulansi mogu smanjiti rizik, ali zahtijevaju sigurnu primjenu i kontrole. Aspirin nije zamjenjiv s antikoagulansom propisanim za AF. Ne započinjite, prekidajte ili mijenjajte lijek protiv ugrušaka prema osjećaju pulsa ili kućnom izračunu rizika."
+      ]
+    },
+    {
+      "heading": "Usporedite kontrolu frekvencije i kontrolu ritma",
+      "paragraphs": [
+        "Kontrola frekvencije usporava otkucaje, dok AF može ostati. Kontrola ritma nastoji vratiti ili održati normalniji ritam odabranim lijekovima, kardioverzijom ili kateterskom ablacijom. Izbor ovisi o simptomima, trajanju, zdravlju srca i željama; neke osobe s vremenom trebaju više pristupa. Kardioverzija zahtijeva pažljivo planiranu procjenu ugrušaka i antikoagulacije. Pitajte o koristima, ponavljanju, praćenju i komplikacijama. Zahvat koji poboljša simptome ne uklanja automatski potrebu za zaštitom od moždanog udara."
+      ]
+    },
+    {
+      "heading": "Dogovorite praktičan dugoročan plan",
+      "paragraphs": [
+        "Na kontrolama provjerite lijekove, nuspojave i simptome, uključujući novi umor, omaglicu ili ograničenja pri naporu. Pitajte što učiniti kod nove epizode i kada tražiti hitnu pomoć. S timom radite na tlaku, spavanju, pušenju, alkoholu i prikladnoj aktivnosti. Postupan povratak dogovorenoj razini vježbanja može pomoći zdravlju; nastavljanje uz bol u prsima ili tešku zaduhu nije sigurno. Bilježite simptome ako koristi, ali izbjegavajte stalno provjeravanje koje pojačava tjeskobu. Liječenje i procjene rizika mogu se mijenjati sa zdravljem."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hipotetski primjer: upozorenje bez simptoma",
+      "text": "Sat opetovano upozorava na nepravilan ritam kod osobe koja se dobro osjeća. Ona dogovara pregled i donosi snimke. Liječnik potvrđuje ritam odgovarajućim testovima i razgovara o riziku udara umjesto odbacivanja nalaza zbog odsutnosti lupanja."
+    },
+    {
+      "title": "Hipotetski primjer: bolje stanje nakon kardioverzije",
+      "text": "Nakon kardioverzije pacijent osjeća pravilan puls i razmišlja o prestanku antikoagulansa. Slijedi postojeći recept i traži provjeru plana kod kardiološkog tima umjesto pretpostavke da poboljšanje simptoma znači nestanak rizika ugrušaka."
+    }
+  ],
+  "questions": [
+    "Je li AF potvrđena i trebam li dulje praćenje ili procjenu pridruženih bolesti?",
+    "Koliki je moj rizik moždanog udara i kako se na mene odnose koristi i rizici krvarenja uz antikoagulaciju?",
+    "Zašto preporučujete ovaj pristup frekvenciji ili ritmu i kakav je plan za novu epizodu?"
+  ]
+}

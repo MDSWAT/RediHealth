@@ -33,6 +33,8 @@ export interface TopicHeroSectionProps {
 }
 
 const MODE_BADGE_COPY: Record<Lang, { simple: string; complete: string }> = {
+"ru": {"simple":"Краткое содержание","complete":"Подробная медицинская информация"},
+
   ro: {
     simple: "Rezumat esențial",
     complete: "Context clinic extins",

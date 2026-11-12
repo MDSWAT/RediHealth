@@ -27,6 +27,8 @@ const INPUT_COPY: Record<
     starters: [string, string, string];
   }
 > = {
+"ru": {"label":"Или кратко расскажите, что вас беспокоит","placeholder":"Например: температура 2 дня, нет медицинской страховки…","buttonLabel":"Начать","routePrefix":"Предлагаемое руководство:","openRoute":"Продолжить","startersLabel":"Примеры","starters":["Температура 2 дня","Как принимать назначенное лекарство","Прием врача без страховки"]},
+
   en: {
     label: "Or tell us in a few words what is worrying you",
     placeholder: "For example: I've had a fever for 2 days, I have no health insurance…",

@@ -1,0 +1,51 @@
+{
+  "title": "Diarrea: reintegrare liquidi, riconoscere i pericoli e riprendersi",
+  "intro": "Diarrea significa feci molli o acquose più frequenti del proprio normale. Gli episodi improvvisi spesso seguono un'infezione e migliorano in pochi giorni, ma non sono sempre gastroenterite. La priorità è reintegrare acqua e sali. Età, malattie, farmaci recenti e segnali d'allarme aiutano a decidere quando bastano le cure domestiche e quando serve valutazione.",
+  "sections": [
+    {
+      "heading": "Considerare andamento e possibile causa",
+      "paragraphs": [
+        "Virus, alimenti o acqua contaminati, farmaci e intolleranze possono provocare diarrea. Sintomi persistenti o ricorrenti possono richiedere indagini per celiachia o malattie infiammatorie intestinali. Riferite inizio, frequenza, sangue, febbre, dolore, vomito, urina, peso, viaggi, contatti malati e antibiotici o ricoveri recenti. La diarrea durante o dopo antibiotici richiede consiglio perché alcune infezioni necessitano di terapia specifica. Più persone malate non dimostrano da sole quale alimento sia responsabile. Gli esami dipendono da gravità, durata e rischio; un episodio breve e lieve non richiede sempre un campione fecale."
+      ]
+    },
+    {
+      "heading": "Reintegrare liquidi e continuare a nutrirsi",
+      "paragraphs": [
+        "Bevete piccoli sorsi frequenti se la nausea ostacola. La soluzione reidratante orale sostituisce anche i sali ed è utile soprattutto per perdite consistenti o rischio di disidratazione. Sciogliete la bustina esattamente nella quantità di acqua sicura indicata dal prodotto; non aggiungete zucchero, sale o polvere. Bevande molto zuccherate e succhi possono peggiorare la diarrea e non equivalgono alla soluzione. Continuate seno e formula alla normale concentrazione, senza diluirla. Mangiate alimenti normali tollerati appena possibile, evitando il digiuno. Chiedete presto consiglio per lattanti, anziani fragili, gravidanza, immunodepressione o malattie importanti. Patologie renali o cardiache e limiti ai liquidi richiedono un piano individuale di idratazione e farmaci."
+      ]
+    },
+    {
+      "heading": "Quando chiedere aiuto",
+      "paragraphs": [
+        "Cercate consiglio tempestivo per sangue, febbre alta, dolore crescente, vomito ripetuto, impossibilità di trattenere liquidi o disidratazione: urina molto ridotta, bocca secca, capogiri o sonnolenza insolita. Nel lattante contano meno pannolini bagnati o interruzione delle poppate; non aspettate giorni. Dolore addominale forte e costante, collasso, confusione, difficoltà a svegliarsi, grave affanno, vomito sanguinolento o verde richiedono emergenza. Non forzate bevande in chi non può deglutire in sicurezza. Un adulto che non migliora dopo un paio di giorni chieda valutazione, prima se a rischio; persistenza per una settimana o ricorrenza con dimagrimento richiedono controllo anche senza sintomi drammatici."
+      ]
+    },
+    {
+      "heading": "I farmaci hanno limiti",
+      "paragraphs": [
+        "Gli antibiotici non sono normalmente utili per una breve virosi e possono danneggiare. Il medico li prescrive per infezioni o rischi particolari. Alcuni adulti possono usare brevemente un antidiarroico dopo consiglio del farmacista, senza ignorare sangue, febbre o dolore importante. Non assumete autonomamente farmaci che rallentano l'intestino se si sospetta infezione associata ad antibiotici. I bambini richiedono indicazioni adeguate all'età, non prodotti o dosi per adulti. I benefici dei probiotici variano secondo preparato e situazione; non sostituiscono la reidratazione. Discutete farmaci abituali e piano per i giorni di malattia, senza interrompere indiscriminatamente cure essenziali."
+      ]
+    },
+    {
+      "heading": "Limitare il contagio",
+      "paragraphs": [
+        "Lavate accuratamente le mani con acqua e sapone dopo bagno o pannolini e prima del cibo. Pulite superfici contaminate, gestite con cura la biancheria sporca e non condividete asciugamani. Evitate di cucinare per altri mentre state male. Per un episodio probabilmente infettivo, restate lontani da scuola o lavoro almeno due giorni dopo l'ultima diarrea o vomito; alimentazione, sanità, assistenza ai bambini e alcune infezioni possono avere regole locali più rigorose. Verificate prima di nuotare o tornare a ruoli a rischio. Acqua sicura, conservazione e cottura corrette prevengono nuovi episodi. Per sintomi persistenti tenete un diario semplice senza diete restrittive che oscurino la diagnosi o compromettano la nutrizione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: rendere possibile la reidratazione",
+      "text": "Mara ha nausea dopo scariche acquose. Chiede al farmacista un prodotto adatto, segue la quantità d'acqua e beve poco e spesso. Quando l'urina diventa scarsissima e aumentano i capogiri, cerca valutazione tempestiva anziché limitarsi a fermare le scariche con un farmaco."
+    },
+    {
+      "title": "Esempio ipotetico: un rischio diverso",
+      "text": "Petru sviluppa diarrea frequente dopo antibiotici. Riferisce trattamento e ricovero recente anziché presumere una comune tossinfezione. Sangue, dolore forte o peggioramento generale renderebbero l'aiuto più urgente."
+    }
+  ],
+  "questions": [
+    "Quali segnali e rischi personali richiedono una valutazione adesso?",
+    "Quale prodotto reidratante e piano di liquidi è adatto a me o al bambino?",
+    "Antibiotici recenti, farmaci abituali o sintomi persistenti richiedono esami o altre cure?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Rezultatele mai bune ale testelor înseamnă că tratamentul ajută?",
+  "intro": "Analizele, imaginile și măsurătorile ajută diagnosticul, monitorizarea și detectarea efectelor nocive. Un număr mai bun nu răspunde automat tuturor întrebărilor despre beneficiu. Contează ce s-a măsurat, relația cu rezultatele importante și celelalte efecte ale tratamentului. Distincția ajută întrebările fără respingerea testelor sau schimbarea singuri a prescripției.",
+  "sections": [
+    {
+      "heading": "Identificați întrebarea din spatele măsurătorii",
+      "paragraphs": [
+        "Întrebați dacă rezultatul diagnostichează, ajustează doza, verifică siguranța sau estimează beneficiul. Sunt scopuri diferite. Un marker util într-un scop nu dovedește prevenirea complicațiilor. Durerea, activitățile zilnice, internarea și supraviețuirea contează direct. Un chestionar bine făcut despre simptome poate măsura rezultat important chiar dacă îl raportează pacientul, nu aparatul."
+      ]
+    },
+    {
+      "heading": "Înțelegeți surogatul fără a-l considera inutil",
+      "paragraphs": [
+        "Obiectivul surogat înlocuiește alt rezultat într-un studiu. De exemplu, valoarea fiziologică se măsoară mai devreme decât complicația îndelungată. Unele au dovezi solide într-un context; altele doar prezic probabil și cer confirmare. Legătura marker-risc nu este suficientă: tratamentul îmbunătățește markerul, dar alte efecte anulează beneficiul. Întrebați dovezile pentru markerul, tratamentul și boala concretă, fără a considera toate numerele la fel de fiabile ori nefiabile."
+      ]
+    },
+    {
+      "heading": "Căutați comparație corectă, nu doar înainte și după",
+      "paragraphs": [
+        "Schimbarea poate reflecta medicamentul, variația, recuperarea, altă îngrijire sau măsurarea. Studiile cu grupuri potrivite separă posibilitățile. Aflați tratamentul comparator și măsurarea consecventă. Mediile nu arată același efect la fiecare individ. Cereți diferența reală între grupuri, perioada și efectele nocive, nu doar procentul spectaculos ori imaginea."
+      ]
+    },
+    {
+      "heading": "Verificați amploarea, incertitudinea și importanța zilnică",
+      "paragraphs": [
+        "O schimbare detectabilă statistic poate fi prea mică pentru viață, iar lipsa diferenței clare lasă uneori incertitudine mare. Luați în calcul numărul, durata și rezultatele lipsă ori retragerile. Populația sau tratamentul nu se transferă automat. Întrebați dacă schimbarea depășește variația obișnuită și pragul înseamnă ceva observabil. Sensul scalei contează: mai mare nu este întotdeauna mai bun."
+      ]
+    },
+    {
+      "heading": "Asociați rezultatul cu simptomele, riscurile și scopurile",
+      "paragraphs": [
+        "Discutați cum vă simțiți și funcționați, efectele adverse și ce doriți, alături de rezultat. Markerul liniștitor nu exclude simptome noi importante. Incertitudinea surogatului nu înseamnă nici că tratamentul consacrat nu ajută sau trebuie oprit. Întrebați dovezile directe, cele deduse și controlul care clarifică. Urmați planul și contactați echipa la neclarități sau schimbări. Decizia folosește întregul beneficiu și risc."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: număr mai bun, viață mai dificilă",
+      "text": "Analiza se îmbunătățește, dar apar amețeli supărătoare. Persoana raportează ambele și întreabă beneficiile, reacțiile și alternativele. Rezultatul nu șterge dificultatea, iar prescripția nu se schimbă doar din articol."
+    },
+    {
+      "title": "Exemplu ipotetic: imaginea unei tumori",
+      "text": "Familia citește că tratamentul micșorează tumori. Întreabă dacă îmbunătățește simptomele, calitatea ori supraviețuirea și ce reacții apar. Distinge imaginea de garanția aceluiași beneficiu rudei."
+    }
+  ],
+  "questions": [
+    "La ce folosește măsurarea și este rezultat direct sau surogat?",
+    "Ce dovezi comparative leagă schimbarea de beneficiul important pentru mine?",
+    "Cum schimbă simptomele, efectele adverse, incertitudinea și scopurile decizia?"
+  ]
+}

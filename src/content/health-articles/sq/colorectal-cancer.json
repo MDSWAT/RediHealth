@@ -1,0 +1,51 @@
+{
+  "title": "Kanceri kolorektal: simptomat, hetimet dhe zgjedhja e trajtimit",
+  "intro": "Kanceri kolorektal nis në kolon ose rektum, pjesë të zorrës së trashë. Disa fillojnë nga polipe, por shumë polipe nuk bëhen kancer. Depistimi gjen rrezik para shenjave; simptomat e reja duan vlerësim më vete. Trajtimi varet nga vendi, shtrirja, tiparet biologjike, shëndeti dhe prioritetet. Plani i kolonit dhe rektumit mund të ndryshojë.",
+  "sections": [
+    {
+      "heading": "Simptomat për t'u diskutuar",
+      "paragraphs": [
+        "Mund të ketë gjak në jashtëqitje, ndryshim të vazhdueshëm të zorrës, anemi hekuri të pashpjeguar, dhimbje ose humbje peshe pa qëllim. Shpesh kanë shkaqe të tjera, por jo fajësim automatik të hemorroideve ose dietës. Herët mund të mos ketë shenja. Gjakderdhja e madhe ose e vazhdueshme me të fikët kërkon emergjencë. Dhimbja e fortë, të vjellat, fryrja dhe pamundësia për jashtëqitje apo gaz mund të jenë bllokim dhe kërkojnë urgjencë ose emergjencë. Tregoni ecurinë dhe historinë familjare."
+      ]
+    },
+    {
+      "heading": "Testet përgjigjen ndryshe",
+      "paragraphs": [
+        "Mund të duhen ekzaminim, gjak dhe FIT, test imunokimik për gjak në feçe. Pozitivi nuk është diagnozë dhe negativi nuk heq rivlerësimin e shenjave të vazhdueshme. Kolonoskopia sheh drejtpërdrejt dhe merr ind ose heq polipe; alternativa vlejnë për raste të zgjedhura. Pyesni për përgatitje, qetësim, transport dhe gjakderdhje ose shpim. Biopsia përcakton diagnozën e indit dhe imazheria shtrirjen."
+      ]
+    },
+    {
+      "heading": "Kuptoni raportin para vendimit",
+      "paragraphs": [
+        "Pyesni vendin, llojin, stadin, nyjet, përhapjen dhe analizat në pritje. Markerët në gjak vetëm nuk konfirmojnë apo përjashtojnë çdo kancer. Disa teste indi drejtojnë trajtimin ose sugjerojnë trashëgimi si sindroma Lynch; gjenetika mund të ketë rëndësi edhe për familjen. Ekipi ndërthur të dhënat me gjendjen, sëmundjet dhe preferencat. Kërkoni shpjegim e përkthyes, jo vendim nga shkurtime të veçuara."
+      ]
+    },
+    {
+      "heading": "Trajtimi mund të kombinohet",
+      "paragraphs": [
+        "Disa lezione të hershme hiqen lokalisht; të tjera duan kirurgji dhe shpesh nyje pranë. Stoma, hapje e zorrës në bark, mund të jetë e përkohshme ose e përhershme. Kimioterapia përdoret para ose pas operacionit ose për përhapje. Radioterapia ka rol në disa kancere rektale. Barnat e synuara ose imunoterapia ndihmojnë raste sipas tipareve e kontekstit. Diskutoni qëllimin, rendin, përfitimin, dëmin dhe alternativat me mbështetje për zgjedhje."
+      ]
+    },
+    {
+      "heading": "Rikuperim, ndjekje dhe parandalim",
+      "paragraphs": [
+        "Funksioni i zorrës, ushqyerja, lodhja, jeta seksuale dhe emocionet duan ndihmë. Infermierja e stomës dhe dietologu ndihmojnë praktikisht. Ndiqni kontrollet dhe raportoni shenja të reja të vazhdueshme. Pa simptoma pyesni për depistimin vendor; familja ose inflamacioni intestinal mund të duan rrugë tjetër. Aktiviteti, mosduhanpirja dhe dieta e balancuar mbështesin shëndetin, pa garanci dhe pa zëvendësim depistimi. Mos prisni ftesë kur ka gjak ose ndryshim shqetësues."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shenja pas testi normal — shembull hipotetik",
+      "text": "Dikush kishte depistim negativ, por tani ka gjak dhe ndryshim të vazhdueshëm. Kthehet te mjeku pa e quajtur testin e vjetër shpjegim. Hetimi varet nga vlerësimi i sotëm."
+    },
+    {
+      "title": "Përgatitja për operacion — shembull hipotetik",
+      "text": "Një person mund të ketë nevojë për stomë. Pyet nëse është e përkohshme ose e përhershme, takon infermieren dhe diskuton rikuperimin e shtëpinë. Ekipi shpjegon çfarë mund të ndryshojë sipas gjetjeve."
+    }
+  ],
+  "questions": [
+    "Çfarë konfirmojnë analizat dhe çfarë ende duhet hetuar?",
+    "Si ndikojnë vendi, stadi dhe indi në trajtim?",
+    "Çfarë mbështetjeje, ndjekjeje dhe këshille familjare apo depistimi më duhet?"
+  ]
+}

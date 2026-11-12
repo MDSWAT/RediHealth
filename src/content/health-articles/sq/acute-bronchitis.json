@@ -1,0 +1,51 @@
+{
+  "title": "Bronkiti akut: të kuptosh një kollë që vazhdon",
+  "intro": "Bronkiti akut është inflamacion i përkohshëm i rrugëve më të mëdha të frymëmarrjes në mushkëri, shpesh gjatë ose pas një infeksioni viral të frymëmarrjes. Kolla mund të vazhdojë pasi dhimbja e fytit ose rrjedhja e hundës janë përmirësuar. Kolla e vazhdueshme mund të jetë rraskapitëse, por vetëm kohëzgjatja nuk tregon se nevojitet antibiotik. Vështirësia në frymëmarrje dhe shenjat e tjera alarmuese kërkojnë vlerësim më vete.",
+  "sections": [
+    {
+      "heading": "Dallo shenjat dhe kufijtë e tyre",
+      "paragraphs": [
+        "Kolla mund të jetë e thatë ose me gëlbazë. Mund të shoqërohet me lodhje dhe parehati nga kollitja. Gëlbaza e gjelbër ose e verdhë nuk vërteton vetvetiu infeksion bakterial. Bronkiti, pneumonia, astma dhe gjendje të tjera mund të kenë simptoma të ngjashme, prandaj një diagnozë e bazuar vetëm te kolla mund të jetë e gabuar. Episodet e përsëritura ose kolla afatgjatë kërkojnë vlerësim, jo supozimin se çdo episod është një tjetër infeksion i thjeshtë."
+      ]
+    },
+    {
+      "heading": "Kupto çfarë mund të tregojë ekzaminimi",
+      "paragraphs": [
+        "Mjeku pyet si filluan simptomat, kontrollon temperaturën dhe problemet e frymëmarrjes dhe dëgjon mushkëritë. Merr parasysh moshën, shtatzëninë, funksionin imunitar dhe sëmundjet ekzistuese të zemrës ose mushkërive. Radiografia e kraharorit ose analiza të tjera mund të nevojiten nëse dyshohet pneumoni ose problem tjetër, por nuk bëhen zakonisht për çdo kollë pa komplikime. Përmend gulçimin, gjakun në gëlbazë dhe barnat që merr, jo vetëm tingullin e kollës."
+      ]
+    },
+    {
+      "heading": "Mbështet rikuperimin dhe mbro të tjerët",
+      "paragraphs": [
+        "Pushimi, lëngjet e mjaftueshme dhe shmangia e tymit të duhanit mund ta bëjnë rikuperimin më të përballueshëm. Personat me kufizim të përshkruar të lëngjeve duhet të ndjekin këshillën e tyre individuale mjekësore. Mbulo kollën, laj duart dhe shmang kontaktin e afërt me njerëz të cenueshëm kur je i sëmurë, sepse infeksioni që shkakton bronkitin mund të përhapet. Mos u përkul mbi enë me ujë të valuar: thithja e avullit mund të shkaktojë djegie. Pyet farmacistin përpara përdorimit të produkteve kundër kollës, sidomos për fëmijë, shtatzëni ose bashkë me barna të tjera."
+      ]
+    },
+    {
+      "heading": "Kupto pse antibiotikët shpesh nuk ndihmojnë",
+      "paragraphs": [
+        "Antibiotikët nuk trajtojnë viruset, të cilat shkaktojnë shumë raste të bronkitit akut. Mund të shkaktojnë efekte anësore dhe të kontribuojnë në rezistencën bakteriale; mos përdor tableta të mbetura ose recetën e dikujt tjetër. Mjeku mund t'i rekomandojë për një infeksion tjetër bakterial ose më serioz. Inhalatori nuk nevojitet automatikisht për çdo kollë; fishkëllima në frymëmarrje ose astma e njohur mund të kërkojnë vlerësim tjetër dhe plan individual trajtimi."
+      ]
+    },
+    {
+      "heading": "Bëj një plan të qartë për përkeqësimin",
+      "paragraphs": [
+        "Kërko shpejt këshillë mjekësore për gulçim, dhimbje kraharori, gjak në gëlbazë, temperaturë të vazhdueshme, përkeqësim të dukshëm ose kollë që nuk përmirësohet pas rreth tre javësh. Kërko këshillë më herët për foshnjat, gjatë shtatzënisë, në gjendje brishtësie, me imunitet të dobësuar ose sëmundje të rëndësishme ekzistuese. Vështirësia e rëndë në frymëmarrje, buzët blu ose gri, pamundësia për të folur normalisht nga vështirësia në frymëmarrje, konfuzioni ose kolapsi kërkojnë ndihmë urgjente. Mos prit që një ilaç kundër kollës të bëjë efekt në këto rrethana."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: pyetje për gëlbazën",
+      "text": "Dikush ka kollë me gëlbazë të verdhë pas një ftohjeje. I tregon mjekut sa ka zgjatur dhe nëse ka temperaturë, dhimbje kraharori ose gulçim. Pyet nëse nevojitet ekzaminim, në vend që të supozojë se ngjyra e gëlbazës do të thotë se i duhen antibiotikë."
+    },
+    {
+      "title": "Shembull hipotetik: ndryshimi i planit të rikuperimit",
+      "text": "Një person që pushon në shtëpi fillon të ketë gulçim dhe ndihet shumë më keq. Kërkon vlerësim të shpejtë në vend që thjesht të shtojë ilaçin kundër kollës. Nëse frymëmarrja vështirësohet rëndë ose shfaqet konfuzion, hapi i duhur është ndihma urgjente, jo pritja e një takimi rutinë."
+    }
+  ],
+  "questions": [
+    "A përputhen simptomat e mia me bronkit pa komplikime apo duhet hetuar një shkak tjetër?",
+    "Cilat mundësi për lehtësimin e simptomave përshtaten me sëmundjet dhe barnat e mia të tjera?",
+    "Cilat ndryshime kërkojnë ndihmë urgjente dhe kur duhet rivlerësuar një kollë e vazhdueshme?"
+  ]
+}

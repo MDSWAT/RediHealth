@@ -1,0 +1,51 @@
+{
+  "title": "Asthma: a personal plan for everyday symptoms and attacks",
+  "intro": "Asthma causes variable inflammation and narrowing of the airways. Wheezing, cough, chest tightness and breathlessness may come and go, including at night or with activity. Treatment often allows good control, but an attack can become life-threatening. A confirmed diagnosis, suitable inhalers, correct technique and a written action plan are more useful than relying on an inhaler's colour or guessing what to do when symptoms worsen.",
+  "sections": [
+    {
+      "heading": "Describe symptoms and possible triggers",
+      "paragraphs": [
+        "Tell the clinician when symptoms occur, whether they interrupt sleep or activity, and what seems to provoke them. Smoke, air pollution, cold air, infections, exercise or allergens can contribute, but triggers differ between people. Coughing or wheezing alone does not prove asthma. Mention workplace exposures, previous attacks and any treatment that helped or caused problems. Avoiding all exercise is not automatically necessary; discuss safe activity and whether symptoms suggest inadequate control."
+      ]
+    },
+    {
+      "heading": "Understand assessment and follow-up",
+      "paragraphs": [
+        "Assessment may include breathing tests such as spirometry, measurements over time and other tests selected for age and circumstances. Because symptoms vary, an examination when you feel well may not settle the question. Ask what evidence supports the diagnosis and whether another condition could contribute. Once asthma is diagnosed, repeated night waking, increasing need for symptom relief or difficulty with normal activities should prompt review rather than being accepted as inevitable."
+      ]
+    },
+    {
+      "heading": "Know what each prescribed inhaler does",
+      "paragraphs": [
+        "Some treatments reduce underlying inflammation, some provide symptom relief, and certain prescribed combinations can serve both roles. Not every inhaler can be used in the same way. Ask for the actual medicine names, purpose and instructions, rather than relying only on colour. Do not stop a regular treatment simply because you feel better, or substitute someone else's inhaler. Discuss side effects, pregnancy, costs and difficulty remembering treatment so the clinician can tailor a workable plan."
+      ]
+    },
+    {
+      "heading": "Check technique and keep the plan accessible",
+      "paragraphs": [
+        "Bring your devices to appointments and demonstrate how you use them. Technique differs between devices; a spacer may be recommended with some inhalers. Ask how to check remaining doses and when to replace supplies. A written action plan should explain usual treatment, signs of worsening and what to do during an attack. Share appropriate instructions with carers or school when relevant. After an attack, arrange prompt review even if symptoms have settled."
+      ]
+    },
+    {
+      "heading": "Act promptly during worsening breathing",
+      "paragraphs": [
+        "Follow your prescribed action plan and use the recommended reliever while obtaining help when needed. Seek emergency help for severe or worsening breathlessness, difficulty speaking normally, blue or grey lips, exhaustion, confusion or drowsiness. An attack that is not responding as your plan describes, or an attack without your prescribed reliever available, needs urgent help. Do not delay because a previous attack was mild or because you are waiting for a routine appointment. Do not drive yourself when seriously unwell."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: discussing exercise symptoms",
+      "text": "A student coughs and wheezes during sport and sometimes wakes at night. They describe both patterns at an appointment and ask whether testing or a treatment review is needed. They do not assume they must permanently avoid exercise or simply ignore the night symptoms."
+    },
+    {
+      "title": "Hypothetical example: clarifying device roles",
+      "text": "Someone has several inhalers but is unsure which is for worsening symptoms. They bring the devices and ask the clinician to check technique and write clear instructions. They keep the plan accessible rather than relying on a remembered colour or an internet dosing schedule."
+    }
+  ],
+  "questions": [
+    "What evidence supports my diagnosis, and how will we judge whether asthma is controlled?",
+    "What does each of my inhalers do, and can you check my technique?",
+    "What exactly should my action plan say about worsening symptoms and emergency help?"
+  ]
+}

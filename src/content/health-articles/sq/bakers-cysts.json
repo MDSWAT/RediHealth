@@ -1,0 +1,51 @@
+{
+  "title": "Kistet e Bakerit: ënjtja prapa gjurit dhe zgjedhjet e trajtimit",
+  "intro": "Kisti i Bakerit është një xhep me lëng të artikulacionit që formohet prapa gjurit. Mund të ndihet si gungë e butë dhe të shkaktojë tendosje, dhimbje ose vështirësi në përkulje, megjithëse disa nuk shqetësojnë. Te të rriturit shpesh shoqëron një problem tjetër, si artriti ose dëmtimi i kërcit. Gunga e re duhet ekzaminuar, jo identifikuar vetëm nga pamja, ndërsa ënjtja e papritur e pulpës kërkon urgjencë tjetër.",
+  "sections": [
+    {
+      "heading": "Përshkruani gungën dhe ndikimin në lëvizje",
+      "paragraphs": [
+        "Tregoni kur e vutë re ënjtjen, nëse ndryshon dhe çfarë ndodh gjatë ecjes, përkuljes ose drejtimit të gjurit. Përmendni dëmtimin, artritin e njohur, bllokimin ose simptoma të tjera artikulare. Kisti nuk është thjesht një masë që duhet hequr gjithmonë: lëngu i tepërt mund të kalojë në një hapësirë prapa gjurit kur artikulacioni irritohet. Edhe fëmijët mund të kenë kiste pa të njëjtat probleme bazë si të rriturit. Ënjtja që vazhdon, zmadhohet ose nuk shpjegohet kërkon vlerësim edhe pa dhimbje."
+      ]
+    },
+    {
+      "heading": "Kontrolloni diagnozën dhe problemin bazë të gjurit",
+      "paragraphs": [
+        "Ekzaminimi ndihmon të vlerësohen gunga, lëvizja dhe shkaqe të tjera. Ekografia mund të tregojë nëse ka lëng dhe të ndihmojë hetimin e një mpiksjeje të dyshuar. Imazheri tjetër, si rezonanca magnetike, mund të sqarojë dëmtime ose gjetje të pasigurta; jo të gjithë kanë nevojë për çdo skanim. Pyetni nëse ka artrozë, artrit inflamator ose dëmtim kërci për t'u trajtuar. Emërtimi i kistit është vetëm pjesë e vlerësimit kur një gjendje tjetër vazhdon të prodhojë lëng dhe simptoma."
+      ]
+    },
+    {
+      "heading": "Përshtatni masat e përditshme me simptomat",
+      "paragraphs": [
+        "Kisti i konfirmuar me pak shqetësim mund të kërkojë vetëm vëzhgim. Për simptoma bezdisëse diskutoni pakësimin e përkohshëm të aktiviteteve që rëndojnë gjurin, lëvizjen e përshtatshme dhe fizioterapinë. Kompresa e ftohtë e mbështjellë me pëlhurë dhe ngritja e këmbës mund të lehtësojnë; mbroni lëkurën dhe ndaloni nëse i ftohti dhemb ose mpin. Pyetni farmacistin ose mjekun për qetësues të përshtatshëm me barnat dhe gjendjet tuaja. Mos e detyroni vazhdimisht gjurin përmes dhimbjes, mos masazhoni pulpën e ënjtur pa shpjegim dhe mos e shponi vetë gungën."
+      ]
+    },
+    {
+      "heading": "Kuptoni çfarë arrijnë dhe çfarë nuk arrijnë procedurat",
+      "paragraphs": [
+        "Trajtimi i gjendjes së gjurit mund të pakësojë ënjtjen pa hequr kistin. Në raste të zgjedhura mjeku mund të konsiderojë injeksion për inflamacionin ose zbrazje të lëngut me gjilpërë. Kisti mund të rikthehet, sidomos nëse burimi i lëngut mbetet. Operacioni mund të trajtojë dëmtim të gjurit; heqja e vetë kistit është e pazakontë. Pyetni cilin problem synon trajtimi, përfitimin e mundshëm, infeksionin ose rreziqe të tjera dhe menaxhimin e rikthimit. Një skanim që tregon kist nuk kërkon automatikisht procedurë."
+      ]
+    },
+    {
+      "heading": "Veproni për simptoma të reja në pulpë",
+      "paragraphs": [
+        "Kisti mund të çahet dhe lëngu të përhapet në pulpë, duke shkaktuar dhimbje, ngrohtësi ose ënjtje. Mpiksja në venë të thellë mund të duket njësoj dhe një kist ekzistues nuk e përjashton. Dhimbja ose ënjtja e papritur apo në rritje, ngrohtësia ose ndryshimi i ngjyrës kërkojnë vlerësim urgjent, jo diagnozë shtëpie të çarjes. Dhimbja e gjoksit ose vështirësia në frymëmarrje bashkë me simptomat e këmbës kërkojnë emergjencë. Gjuri shumë i dhimbshëm e i nxehtë me temperaturë ose gjendje të keqe kërkon vlerësim urgjent për shkaqe si infeksioni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: zgjedhja e vëzhgimit",
+      "text": "Një person ka kist të vogël të konfirmuar dhe kryen aktivitetet normale. Pyet për artrozën bazë, ushtrimet e përshtatshme dhe ndryshimet për kontroll. Nuk rezervon zbrazje vetëm sepse gunga duket."
+    },
+    {
+      "title": "Shembull hipotetik: pulpë e sapoënjtur",
+      "text": "Dikush me kist të diagnostikuar zhvillon papritur dhimbje dhe ënjtje të pulpës. Kërkon vlerësim urgjent dhe përmend diagnozën e vjetër e simptomat e reja. Nuk masazhon këmbën dhe nuk mendon se kisti e bën të pamundur mpiksjen."
+    }
+  ],
+  "questions": [
+    "A është patjetër kist i Bakerit dhe a prodhon lëngun një gjendje tjetër e gjurit?",
+    "Cilat masa të përditshme ose trajtime përshtaten me simptomat dhe a mund të rikthehet kisti?",
+    "Cilat ndryshime kërkojnë vlerësim urgjent dhe kur rishikohen simptomat që vazhdojnë?"
+  ]
+}

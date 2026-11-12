@@ -1,0 +1,51 @@
+{
+  "title": "Cancerul colorectal: simptome, investigații și alegerea tratamentului",
+  "intro": "Cancerul colorectal începe în colon sau rect, părți ale intestinului gros. Unele cancere provin din polipi, dar mulți polipi nu devin maligni. Screeningul identifică riscuri înaintea simptomelor, iar simptomele noi cer evaluare proprie. Tratamentul depinde de loc, extindere, biologie, sănătate și priorități. Planurile pentru colon și rect pot fi diferite.",
+  "sections": [
+    {
+      "heading": "Simptome de discutat",
+      "paragraphs": [
+        "Pot apărea sânge în scaun, schimbare persistentă a tranzitului, anemie feriprivă inexplicabilă, disconfort abdominal ori slăbire neintenționată. Au adesea alte cauze, dar nu trebuie atribuite automat hemoroizilor sau dietei. Cancerul timpuriu poate fi fără simptome. Sângerarea abundentă ori continuă cu leșin cere ajutor de urgență. Durerea severă, vărsăturile, abdomenul umflat și imposibilitatea eliminării scaunului sau gazelor pot indica ocluzie și cer evaluare urgentă ori de urgență. Descrieți evoluția și istoricul familial."
+      ]
+    },
+    {
+      "heading": "Testele răspund unor întrebări diferite",
+      "paragraphs": [
+        "Evaluarea poate include examinare, sânge și FIT, test imunochimic pentru sânge în scaun. FIT pozitiv nu confirmă cancerul, iar unul negativ nu exclude reevaluarea simptomelor persistente ori îngrijorătoare. Colonoscopia vede direct și permite probe sau îndepărtarea unor polipi; există alternative pentru cazuri selectate. Întrebați despre pregătire, sedare, transport și riscuri precum sângerare sau perforație. Biopsia confirmă diagnosticul tisular, iar imagistica evaluează extinderea."
+      ]
+    },
+    {
+      "heading": "Înțelegeți raportul înainte de decizie",
+      "paragraphs": [
+        "Cereți localizarea, tipul, stadiul, ganglionii ori metastazele și testele în așteptare. Markerii tumorali din sânge nu confirmă sau exclud singuri orice cancer colorectal. Unele teste tisulare ghidează tratamentul ori sugerează risc ereditar precum sindrom Lynch; consilierea genetică poate conta și pentru rude. Echipa combină datele cu starea fizică, bolile și preferințele. Cereți explicații și interpret, fără decizii după abrevieri izolate."
+      ]
+    },
+    {
+      "heading": "Tratament combinat după situație",
+      "paragraphs": [
+        "Unele leziuni timpurii se îndepărtează local; altele necesită chirurgie intestinală și adesea ganglionii apropiați. Stoma, deschiderea intestinului pe abdomen, poate fi temporară ori permanentă. Chimioterapia poate preceda sau urma operația ori trata boala răspândită. Radioterapia contează în anumite cancere rectale. Tratamentele țintite și imunoterapia ajută cazuri selectate după caracteristici și context. Discutați scopul, ordinea, beneficiile, riscurile și alternativele, inclusiv sprijin la alegere."
+      ]
+    },
+    {
+      "heading": "Recuperare, urmărire și prevenție",
+      "paragraphs": [
+        "Tranzitul, nutriția, oboseala, viața sexuală și emoțiile pot necesita sprijin. Asistenta de stomă și dieteticianul ajută practic. Respectați monitorizarea și raportați simptome noi persistente. Fără simptome, verificați eligibilitatea locală pentru screening; istoricul familial ori boala inflamatorie intestinală pot necesita alt traseu. Mișcarea, evitarea fumatului și dieta echilibrată ajută sănătatea, fără garanție și fără înlocuirea screeningului. Nu așteptați invitația când apar sânge ori schimbări îngrijorătoare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Simptome după test liniștitor — exemplu ipotetic",
+      "text": "O persoană avea screening negativ, dar acum sângerează persistent și tranzitul se schimbă. Revine la medic, fără să considere testul vechi explicație. Următoarea investigație depinde de evaluarea actuală."
+    },
+    {
+      "title": "Pregătirea operației — exemplu ipotetic",
+      "text": "O persoană află că poate fi necesară stomă. Întreabă dacă va fi temporară ori permanentă, întâlnește asistenta și discută recuperarea și sprijinul acasă. Echipa explică schimbările posibile după constatările operatorii."
+    }
+  ],
+  "questions": [
+    "Ce confirmă testele și ce mai investigăm?",
+    "Cum schimbă localizarea, stadiul și țesutul opțiunile de tratament?",
+    "Ce sprijin, urmărire și recomandări de risc familial ori screening îmi trebuie?"
+  ]
+}
