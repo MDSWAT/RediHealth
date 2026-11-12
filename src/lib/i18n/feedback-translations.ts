@@ -14,6 +14,7 @@ export type FeedbackWidgetCopy = {
   inviteCloseAria: string;
   inviteQuickScaleHint: string;
   footerLink: string;
+  compactTriggerLabel: string;
   modalTitle: string;
   modalSubtitle: string;
   closeAria: string;
@@ -96,7 +97,7 @@ export type FeedbackAdminCopy = {
 export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
 "ru": {
 "stepIndicator": (current, total) => `Шаг ${current} из ${total}`,
-"inviteTitle":"Есть минута, чтобы оценить платформу?","inviteBody":"Ваш анонимный отзыв поможет сделать медицинскую информацию понятнее и доступнее.","inviteOpenCta":"Оставить отзыв","inviteLaterCta":"Позже","inviteCloseAria":"Закрыть приглашение","inviteQuickScaleHint":"Или оцените полезность от 1 до 5:","footerLink":"Оставить отзыв","modalTitle":"Ваше мнение о RediHealth","modalSubtitle":"Это займёт около минуты. Ответы анонимны.","closeAria":"Закрыть форму отзыва","stepTitles":{"ratings":"Оценки","openQuestion":"Что вы хотели бы видеть в приложении","demographics":"Необязательные сведения о себе"},"scaleLow":"1 · Совсем нет","scaleHigh":"5 · Очень","scaleValueLabels":["1 — Совсем нет","2 — Немного","3 — Умеренно","4 — Сильно","5 — Очень сильно"],"questions":{"rating_usefulness":{"label":"Полезность","question":"Насколько полезна для вас платформа?"},"rating_ease_of_use":{"label":"Удобство","question":"Насколько легко пользоваться платформой?"},"rating_visual_design":{"label":"Внешний вид","question":"Насколько вам нравится оформление платформы?"},"rating_content_clarity":{"label":"Понятность","question":"Насколько понятны информация и доступные действия?"},"rating_future_use":{"label":"Использование в будущем","question":"Насколько вероятно, что вы будете пользоваться платформой снова?"}},"openQuestionLabel":"Что вы хотели бы найти или делать в таком приложении?","openQuestionPlaceholder":"Напишите об идеях, функциях или медицинской информации, которые были бы вам полезны…","openQuestionHint":"Можно пропустить. Не указывайте имена, номера телефонов или личные идентификационные номера.","demographicsIntro":"Эти необязательные сведения помогают понять, кому доступна платформа.","privacyNote":"Мы не сохраняем ваше имя, электронную почту, телефон или IP-адрес.","genderLabel":"Пол","genderOptions":{"female":"Женский","male":"Мужской","other":"Другой вариант","prefer_not_to_say":"Предпочитаю не отвечать"},"ageGroupLabel":"Возрастная группа","ageGroupPlaceholder":"Выберите возрастную группу","ageGroupOptions":{
+"inviteTitle":"Есть минута, чтобы оценить платформу?","inviteBody":"Ваш анонимный отзыв поможет сделать медицинскую информацию понятнее и доступнее.","inviteOpenCta":"Оставить отзыв","inviteLaterCta":"Позже","inviteCloseAria":"Закрыть приглашение","inviteQuickScaleHint":"Или оцените полезность от 1 до 5:","footerLink":"Оставить отзыв","compactTriggerLabel":"Отзыв","modalTitle":"Ваше мнение о RediHealth","modalSubtitle":"Это займёт около минуты. Ответы анонимны.","closeAria":"Закрыть форму отзыва","stepTitles":{"ratings":"Оценки","openQuestion":"Что вы хотели бы видеть в приложении","demographics":"Необязательные сведения о себе"},"scaleLow":"1 · Совсем нет","scaleHigh":"5 · Очень","scaleValueLabels":["1 — Совсем нет","2 — Немного","3 — Умеренно","4 — Сильно","5 — Очень сильно"],"questions":{"rating_usefulness":{"label":"Полезность","question":"Насколько полезна для вас платформа?"},"rating_ease_of_use":{"label":"Удобство","question":"Насколько легко пользоваться платформой?"},"rating_visual_design":{"label":"Внешний вид","question":"Насколько вам нравится оформление платформы?"},"rating_content_clarity":{"label":"Понятность","question":"Насколько понятны информация и доступные действия?"},"rating_future_use":{"label":"Использование в будущем","question":"Насколько вероятно, что вы будете пользоваться платформой снова?"}},"openQuestionLabel":"Что вы хотели бы найти или делать в таком приложении?","openQuestionPlaceholder":"Напишите об идеях, функциях или медицинской информации, которые были бы вам полезны…","openQuestionHint":"Можно пропустить. Не указывайте имена, номера телефонов или личные идентификационные номера.","demographicsIntro":"Эти необязательные сведения помогают понять, кому доступна платформа.","privacyNote":"Мы не сохраняем ваше имя, электронную почту, телефон или IP-адрес.","genderLabel":"Пол","genderOptions":{"female":"Женский","male":"Мужской","other":"Другой вариант","prefer_not_to_say":"Предпочитаю не отвечать"},"ageGroupLabel":"Возрастная группа","ageGroupPlaceholder":"Выберите возрастную группу","ageGroupOptions":{
 "prefer_not_to_say": "Предпочитаю не отвечать",
 "under_18":"До 18 лет","18_24":"18–24 года","25_34":"25–34 года","35_44":"35–44 года","45_54":"45–54 года","55_64":"55–64 года","65_plus":"65 лет и старше"},"maritalStatusLabel":"Семейное положение","maritalStatusPlaceholder":"Выберите вариант","maritalStatusOptions":{
 "married_or_partnered": "В браке или отношениях",
@@ -111,6 +112,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     inviteCloseAria: "Închide invitația de feedback",
     inviteQuickScaleHint: "Sau alege direct o notă de la 1 la 5 pentru utilitate:",
     footerLink: "Lasă feedback",
+    compactTriggerLabel: "Feedback",
     modalTitle: "Spune-ne părerea ta despre RediHealth",
     modalSubtitle: "Durează aproximativ un minut. Toate răspunsurile sunt complet anonime.",
     closeAria: "Închide formularul de feedback",
@@ -203,6 +205,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     inviteCloseAria: "Dismiss feedback invitation",
     inviteQuickScaleHint: "Or tap a score from 1 to 5 for usefulness to begin:",
     footerLink: "Leave feedback",
+    compactTriggerLabel: "Feedback",
     modalTitle: "Share your thoughts on RediHealth",
     modalSubtitle: "Takes about one minute. Every response is stored anonymously.",
     closeAria: "Close feedback form",
@@ -295,6 +298,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     inviteCloseAria: "Mbyll ftesën për përshtypje",
     inviteQuickScaleHint: "Ose zgjidh një vlerësim nga 1 në 5 për dobishmërinë:",
     footerLink: "Lër përshtypje",
+    compactTriggerLabel: "Përshtypje",
     modalTitle: "Na trego mendimin tënd për RediHealth",
     modalSubtitle: "Zgjat rreth një minutë. Të gjitha përgjigjet ruhen në mënyrë anonime.",
     closeAria: "Mbyll formularin e përshtypjeve",
@@ -387,6 +391,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     inviteCloseAria: "Chiudi l'invito al questionario",
     inviteQuickScaleHint: "Oppure scegli subito un voto da 1 a 5 per l'utilità:",
     footerLink: "Lascia un parere",
+    compactTriggerLabel: "Parere",
     modalTitle: "Raccontaci la tua esperienza su RediHealth",
     modalSubtitle: "Richiede circa un minuto. Tutte le risposte sono completamente anonime.",
     closeAria: "Chiudi il modulo di valutazione",
@@ -479,6 +484,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     inviteCloseAria: "Zatvori poziv za povratnu informaciju",
     inviteQuickScaleHint: "Ili odmah odaberi ocjenu od 1 do 5 za korisnost:",
     footerLink: "Ostavi povratnu informaciju",
+    compactTriggerLabel: "Povratna info",
     modalTitle: "Podijeli svoje mišljenje o RediHealthu",
     modalSubtitle: "Traje oko jednu minutu. Svi odgovori spremaju se potpuno anonimno.",
     closeAria: "Zatvori obrazac za povratne informacije",
@@ -571,6 +577,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     inviteCloseAria: "Phandav o akharipe vash feedback",
     inviteQuickScaleHint: "Vaj alosar sigo ekh nota katar 1 dji ko 5:",
     footerLink: "Mekh feedback",
+    compactTriggerLabel: "Feedback",
     modalTitle: "Phen amenge chiro gindo vash RediHealth",
     modalSubtitle: "Lel karing ekh minuta. Savore palpale phenimata garaven pe anonimno.",
     closeAria: "Phandav o formularo",

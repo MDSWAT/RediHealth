@@ -10,19 +10,26 @@ import { Container } from "@/components/ui/Container";
 import { IconTile } from "@/components/ui/IconTile";
 import { Logo } from "@/components/ui/Logo";
 import {
+  AlertCircleIcon,
   CloseIcon,
+  ExternalLinkIcon,
+  GlobeIcon,
   MenuIcon,
+  MessageDotsIcon,
   PhoneIcon,
   ArrowRightIcon,
   ChevronDownIcon,
   ChevronRightIcon,
   UserIcon,
 } from "@/components/ui/icons";
+import { openSiteFeedback } from "@/components/layout/FeedbackWidget";
 import { LanguageSelector } from "@/components/layout/LanguageSelector";
+import { openReportIssue, reportIssueCopy } from "@/components/layout/ReportIssueWidget";
 import { NAV_LINK_ICONS, type NavLinkHref } from "@/components/layout/nav-links";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { cn } from "@/lib/cn";
+import { feedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix, stripLangFromPathname } from "@/lib/i18n/routing";
 import { translations } from "@/lib/i18n/translations";
@@ -30,12 +37,6 @@ import { findHelpLinks } from "@/lib/i18n/find-help-links";
 
 const FOCUSABLE_SELECTOR =
   'a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])';
-
-/** A row of the desktop "Start here" dropdown: icon tile, text, pressed colour. */
-const MENU_ROW =
-  "group flex items-center gap-3 p-3 press-row focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none";
-const MENU_ROW_LABEL = "block text-body font-semibold leading-snug text-foreground dark:text-paper";
-const MENU_ROW_TEXT = "mt-0.5 block text-body leading-snug text-muted-foreground dark:text-mist";
 
 /** Shared focus ring of the phone menu rows: sapphire on paper, paper on ink. */
 const DRAWER_FOCUS =
@@ -477,7 +478,7 @@ export function Header() {
           )}
         />
 
-        {/* Phone/tablet menu: opens under the bar, traps Tab focus, and scrolls independently. */}
+        {/* Phone/tablet menu: full-screen below the bar, traps Tab focus, and scrolls independently. */}
         <div
           ref={mobileMenuRef}
           id="mobile-menu"
@@ -485,7 +486,7 @@ export function Header() {
           aria-modal={mobileOpen ? "true" : undefined}
           aria-label={chrome.primaryNav}
           inert={!mobileOpen}
-          style={{ maxHeight: drawerHeight ?? "calc(100dvh - var(--site-header-h, 4rem))" }}
+          style={{ height: drawerHeight ?? "calc(100dvh - var(--site-header-h, 4rem))" }}
           className={cn(
             "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-background text-foreground shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-950 dark:text-paper print:hidden xl:hidden",
             "transition-[opacity,translate,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
@@ -494,14 +495,14 @@ export function Header() {
               : "pointer-events-none invisible -translate-y-2 opacity-0",
           )}
         >
-          <Container className="flex flex-col gap-4 py-4 pb-[calc(2rem+env(safe-area-inset-bottom))]">
-            {/* 112 card: always the first thing in the menu. The button wraps below the text on narrow screens. */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-(--radius-surface) border border-primary/25 bg-primary-soft p-4 dark:border-ruby-300/30 dark:bg-primary-soft/15">
-              <div className="min-w-40 flex-1 wrap-break-word">
-                <p className="text-body font-semibold leading-snug text-foreground dark:text-paper">
+          <Container className="flex min-h-full flex-col gap-2.5 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+            {/* 112 strip: calm, high-clarity emergency row at the top. */}
+            <div className="flex flex-wrap items-center justify-between gap-2.5 rounded-xl border border-primary/15 bg-primary-soft/65 px-3.5 py-2.5 dark:border-ruby-300/25 dark:bg-primary-soft/12">
+              <div className="min-w-36 flex-1 wrap-break-word">
+                <p className="text-[13.5px] font-semibold leading-tight text-foreground dark:text-paper">
                   {tHeader.emergencyTitle}
                 </p>
-                <p className="mt-0.5 text-body leading-snug text-muted-foreground dark:text-mist">
+                <p className="mt-0.5 text-xs leading-snug text-muted-foreground dark:text-mist">
                   {tHeader.emergencyCallPrompt}
                 </p>
               </div>
@@ -512,20 +513,47 @@ export function Header() {
                   setMobileOpen(false);
                   setDialerOpen(true);
                 }}
-                className="shrink-0 dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
+                className="min-h-9.5 shrink-0 rounded-lg px-3.5 py-1.5 text-xs font-semibold shadow-none dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
               >
-                <PhoneIcon className="h-5 w-5" />
+                <PhoneIcon className="h-3.5 w-3.5" />
                 <span>{tHeader.call112}</span>
               </Button>
             </div>
 
-            <LanguageSelector variant="drawer" onNavigate={closeMobile} />
+            {/* Minimalist top utility pair: Language + Account side-by-side; language list expands full-width below. */}
+            <div className="grid grid-cols-2 gap-2">
+              <LanguageSelector variant="drawer" gridPaired onNavigate={closeMobile} />
 
-            {/* Five patient destinations as one divided list. */}
+              <Link
+                href={withLangPrefix(portalLink.href, lang)}
+                aria-current={isPortalActive ? "page" : undefined}
+                onClick={closeMobile}
+                className={cn(
+                  "order-2 flex min-h-10 items-center gap-2 rounded-xl border px-3 py-1.5 text-[13.5px] font-medium text-foreground dark:text-paper",
+                  DRAWER_ROW_MOTION,
+                  DRAWER_FOCUS,
+                  isPortalActive
+                    ? "border-sapphire bg-sapphire-soft/45 font-semibold text-sapphire dark:border-paper dark:bg-white/10 dark:text-paper"
+                    : "border-border/75 bg-muted/40 hover:bg-muted/75 dark:border-white/12 dark:bg-white/5 dark:hover:bg-white/10",
+                )}
+              >
+                <UserIcon
+                  className={cn(
+                    "h-4 w-4 shrink-0",
+                    isPortalActive ? "text-sapphire dark:text-paper" : "text-muted-foreground dark:text-mist",
+                  )}
+                />
+                <span className="min-w-0 flex-1 truncate">{portalLink.label}</span>
+                <ChevronRightIcon className="h-4 w-4 shrink-0 text-muted-foreground/65 dark:text-mist/70" />
+              </Link>
+            </div>
+
+            {/* Five patient destinations: clean hairline list with understated monochrome icons. */}
             <nav aria-label={chrome.primaryNav}>
-              <ul className="divide-y divide-border border-y border-border dark:divide-white/10 dark:border-white/10">
+              <ul className="divide-y divide-border/65 border-y border-border/65 dark:divide-white/10 dark:border-white/10">
                 {primaryLinks.map((link) => {
                   const isActive = isActiveHref(link.href);
+                  const NavIcon = NAV_LINK_ICONS[link.href];
 
                   return (
                     <li key={link.href}>
@@ -534,36 +562,44 @@ export function Header() {
                         aria-current={isActive ? "page" : undefined}
                         onClick={closeMobile}
                         className={cn(
-                          "relative flex min-h-16 items-center gap-3.5 px-3 py-3",
+                          "group relative flex min-h-13 items-center gap-3 px-2 py-2",
                           DRAWER_ROW_MOTION,
                           DRAWER_FOCUS,
                           isActive
-                            ? "bg-sapphire-soft dark:bg-white/10"
-                            : "hover:bg-muted dark:hover:bg-white/5",
+                            ? "bg-sapphire-soft/55 dark:bg-white/10"
+                            : "hover:bg-muted/55 dark:hover:bg-white/5",
                         )}
                       >
                         {isActive && (
-                          <span aria-hidden="true" className="absolute inset-y-0 left-0 w-0.75 bg-sapphire dark:bg-paper" />
+                          <span aria-hidden="true" className="absolute inset-y-1.5 left-0 w-0.5 rounded-full bg-sapphire dark:bg-paper" />
                         )}
-                        <IconTile
-                          icon={NAV_LINK_ICONS[link.href]}
-                          tone={isActive ? "sapphire-solid" : "sapphire-soft"}
-                          size={40}
-                        />
-                        <span className="min-w-0 flex-1 wrap-break-word">
+                        <span
+                          aria-hidden="true"
+                          className={cn(
+                            "flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-lg transition-colors duration-(--dur-fast)",
+                            isActive
+                              ? "bg-sapphire text-white"
+                              : "bg-muted/70 text-foreground/75 group-hover:bg-muted group-hover:text-foreground dark:bg-white/8 dark:text-paper/80",
+                          )}
+                        >
+                          <NavIcon className="h-4.5 w-4.5" />
+                        </span>
+                        <span className="min-w-0 flex-1">
                           <span
                             className={cn(
-                              "block text-[17px] font-semibold leading-snug",
-                              isActive ? "text-sapphire dark:text-paper" : "text-foreground dark:text-paper",
+                              "block text-[15px] leading-tight",
+                              isActive
+                                ? "font-semibold text-sapphire dark:text-paper"
+                                : "font-medium text-foreground dark:text-paper",
                             )}
                           >
                             {link.label}
                           </span>
-                          <span className="mt-0.5 block text-body leading-snug text-muted-foreground dark:text-mist">
+                          <span className="mt-0.5 block line-clamp-1 text-xs leading-snug text-muted-foreground dark:text-mist">
                             {link.subtext}
                           </span>
                         </span>
-                        <ChevronRightIcon className="h-5 w-5 shrink-0 text-muted-foreground dark:text-mist" />
+                        <ChevronRightIcon className="h-4 w-4 shrink-0 text-muted-foreground/55 transition-transform duration-(--dur-fast) group-hover:translate-x-0.5 dark:text-mist/60" />
                       </Link>
                     </li>
                   );
@@ -576,57 +612,108 @@ export function Header() {
               onClick={closeMobile}
               variant="action"
               fullWidth
-              className="min-h-12 dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
+              className="min-h-11 rounded-xl text-sm font-semibold shadow-none dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
             >
               <span>{tHeader.startHere}</span>
-              <ArrowRightIcon className="h-5 w-5" />
+              <ArrowRightIcon className="h-4 w-4" />
             </Button>
 
-            {/* Health mediators: amber, the colour of a person who helps. */}
+            {/* Health mediators: quiet neutral card with a restrained amber icon accent. */}
             <Link
               href={withLangPrefix("/mediatori", lang)}
               aria-current={isMediatorsActive ? "page" : undefined}
               onClick={closeMobile}
               className={cn(
-                "flex min-h-16 items-center gap-3.5 rounded-(--radius-control) border px-3 py-3",
+                "group flex min-h-12.5 items-center gap-3 rounded-xl border px-3 py-2",
                 DRAWER_ROW_MOTION,
                 DRAWER_FOCUS,
                 isMediatorsActive
-                  ? "border-amber-care bg-amber-care-soft dark:bg-amber-care/25"
-                  : "border-amber-care-border bg-amber-care-soft/60 hover:bg-amber-care-soft dark:border-amber-care/35 dark:bg-amber-care/12 dark:hover:bg-amber-care/20",
+                  ? "border-amber-care/50 bg-amber-care-soft/65 dark:bg-amber-care/20"
+                  : "border-border/75 bg-muted/30 hover:bg-muted/65 dark:border-white/12 dark:bg-white/5 dark:hover:bg-white/10",
               )}
             >
-              <IconTile icon={NAV_LINK_ICONS["/mediatori"]} tone="amber" size={40} />
-              <span className="min-w-0 flex-1 wrap-break-word">
-                <span className="block text-body font-semibold leading-snug text-foreground dark:text-paper">
+              <span
+                aria-hidden="true"
+                className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-lg bg-amber-care/14 text-amber-care dark:bg-amber-care/25 dark:text-amber-200"
+              >
+                {(() => {
+                  const MediatorIcon = NAV_LINK_ICONS["/mediatori"];
+                  return <MediatorIcon className="h-4.5 w-4.5" />;
+                })()}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-medium leading-tight text-foreground dark:text-paper">
                   {tHeader.forMediators}
                 </span>
-                <span className="mt-0.5 block text-body leading-snug text-muted-foreground dark:text-mist">
-                  {tHeader.mediatorDrawerDescription}
+                <span className="mt-0.5 block line-clamp-1 text-xs leading-snug text-muted-foreground dark:text-mist">
+                  {tHeader.forMediatorsSub}
                 </span>
               </span>
-              <ChevronRightIcon className="h-5 w-5 shrink-0 text-muted-foreground dark:text-mist" />
+              <ChevronRightIcon className="h-4 w-4 shrink-0 text-muted-foreground/55 transition-transform duration-(--dur-fast) group-hover:translate-x-0.5 dark:text-mist/60" />
             </Link>
 
-            <Link
-              href={withLangPrefix(portalLink.href, lang)}
-              aria-current={isPortalActive ? "page" : undefined}
-              onClick={closeMobile}
-              className={cn(
-                "flex min-h-14 items-center gap-3.5 rounded-(--radius-control) border bg-card px-3 py-2 dark:bg-ink-900",
-                DRAWER_ROW_MOTION,
-                DRAWER_FOCUS,
-                isPortalActive
-                  ? "border-sapphire dark:border-paper"
-                  : "border-border-control hover:bg-muted dark:border-white/40 dark:hover:bg-white/10",
-              )}
-            >
-              <IconTile icon={UserIcon} tone={isPortalActive ? "sapphire-solid" : "neutral"} size={40} />
-              <span className="min-w-0 flex-1 wrap-break-word text-body font-semibold leading-snug text-foreground dark:text-paper">
-                {portalLink.label}
-              </span>
-              <ChevronRightIcon className="h-5 w-5 shrink-0 text-muted-foreground dark:text-mist" />
-            </Link>
+            {/* Minimalist bottom utility bar: clean monochrome inline actions separated by hairlines. */}
+            <div className="mt-auto border-t border-border/65 pt-2.5 dark:border-white/10">
+              <div className="flex flex-wrap items-center justify-between gap-x-1 gap-y-1">
+                <a
+                  href="https://www.redi-ngo.eu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeMobile}
+                  className={cn(
+                    "group inline-flex min-h-10 items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
+                    DRAWER_ROW_MOTION,
+                    DRAWER_FOCUS,
+                  )}
+                >
+                  <GlobeIcon className="h-4 w-4 shrink-0 text-foreground/65 transition-colors duration-(--dur-fast) group-hover:text-sapphire dark:text-paper/70 dark:group-hover:text-paper" />
+                  <span>redi-ngo.eu</span>
+                  <ExternalLinkIcon className="h-3 w-3 shrink-0 opacity-55 transition-opacity duration-(--dur-fast) group-hover:opacity-100" />
+                </a>
+
+                <span aria-hidden="true" className="h-3.5 w-px bg-border/80 max-[374px]:hidden dark:bg-white/12" />
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    closeMobile();
+                    openSiteFeedback();
+                  }}
+                  className={cn(
+                    "group inline-flex min-h-10 items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
+                    DRAWER_ROW_MOTION,
+                    DRAWER_FOCUS,
+                  )}
+                >
+                  <MessageDotsIcon className="h-4 w-4 shrink-0 text-foreground/65 transition-colors duration-(--dur-fast) group-hover:text-sapphire dark:text-paper/70 dark:group-hover:text-paper" />
+                  <span>{(feedbackWidgetCopy[lang] ?? feedbackWidgetCopy.ro).compactTriggerLabel}</span>
+                </button>
+
+                <span aria-hidden="true" className="h-3.5 w-px bg-border/80 max-[374px]:hidden dark:bg-white/12" />
+
+                <Link
+                  href={withLangPrefix("/report-issue", lang)}
+                  onClick={(event) => {
+                    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+                      closeMobile();
+                      return;
+                    }
+                    closeMobile();
+                    if (openReportIssue()) {
+                      event.preventDefault();
+                    }
+                  }}
+                  className={cn(
+                    "group inline-flex min-h-10 items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
+                    DRAWER_ROW_MOTION,
+                    DRAWER_FOCUS,
+                  )}
+                >
+                  <AlertCircleIcon className="h-4 w-4 shrink-0 text-foreground/65 transition-colors duration-(--dur-fast) group-hover:text-primary dark:text-paper/70 dark:group-hover:text-ruby-300" />
+                  <span>{(reportIssueCopy[lang] ?? reportIssueCopy.ro).trigger}</span>
+                </Link>
+              </div>
+            </div>
           </Container>
         </div>
       </header>

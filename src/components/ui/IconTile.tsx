@@ -2,7 +2,7 @@ import type { ComponentType, SVGProps } from "react";
 import { cn } from "@/lib/cn";
 
 export type IconTileTone = "sapphire-soft" | "sapphire-solid" | "amber" | "neutral" | "on-dark";
-export type IconTileSize = 40 | 48;
+export type IconTileSize = 36 | 40 | 48;
 
 const TONES: Record<IconTileTone, string> = {
   "sapphire-soft": "bg-sapphire-soft text-sapphire dark:bg-white/10 dark:text-paper",
@@ -15,6 +15,7 @@ const TONES: Record<IconTileTone, string> = {
 };
 
 const SIZES: Record<IconTileSize, { tile: string; glyph: string }> = {
+  36: { tile: "h-9 w-9", glyph: "h-4.5 w-4.5" },
   40: { tile: "h-10 w-10", glyph: "h-5 w-5" },
   48: { tile: "h-12 w-12", glyph: "h-6 w-6" },
 };

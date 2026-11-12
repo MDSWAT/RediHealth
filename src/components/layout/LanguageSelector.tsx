@@ -21,6 +21,8 @@ export type LanguageSelectorProps = {
   className?: string;
   variant?: "default" | "drawer";
   tone?: "default" | "light";
+  /** Pairs the drawer trigger cleanly in a 2-column grid while letting the open menu span both columns. */
+  gridPaired?: boolean;
   onNavigate?: () => void;
 };
 
@@ -89,6 +91,7 @@ export function LanguageSelector({
   className,
   variant = "default",
   tone = "default",
+  gridPaired = false,
   onNavigate,
 }: LanguageSelectorProps) {
   const { lang, setLang } = useLanguage();
@@ -270,7 +273,11 @@ export function LanguageSelector({
 
   if (variant === "drawer") {
     return (
-      <div ref={rootRef} onBlur={handleBlur} className={cn("w-full text-left", className)}>
+      <div
+        ref={rootRef}
+        onBlur={handleBlur}
+        className={cn(gridPaired ? "contents" : "w-full text-left", className)}
+      >
         <button
           ref={buttonRef}
           type="button"
@@ -279,24 +286,39 @@ export function LanguageSelector({
           aria-expanded={open}
           aria-controls={open ? panelId : undefined}
           className={cn(
-            "flex min-h-11 w-full items-center gap-2.5 rounded-(--radius-control) border bg-card px-3.5 py-2 text-left text-body font-semibold text-foreground press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900 dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper",
-            open ? "border-sapphire dark:border-paper" : "border-border-control dark:border-white/40",
+            "flex w-full items-center gap-2 text-left text-foreground press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-paper dark:focus-visible:ring-paper",
+            gridPaired
+              ? "order-1 min-h-10 rounded-xl border px-3 py-1.5 text-[13.5px] font-medium bg-muted/40 hover:bg-muted/75 dark:bg-white/5 dark:hover:bg-white/10"
+              : "min-h-11 rounded-(--radius-control) border bg-card px-3.5 py-2 text-body font-semibold hover:bg-muted dark:bg-ink-900 dark:hover:bg-white/10",
+            open
+              ? "border-sapphire bg-card dark:border-paper dark:bg-ink-900"
+              : gridPaired
+                ? "border-border/75 dark:border-white/12"
+                : "border-border-control dark:border-white/40",
           )}
         >
-          <GlobeIcon className="h-5 w-5 shrink-0 text-muted-foreground dark:text-mist" />
+          <GlobeIcon className={cn("shrink-0 text-muted-foreground dark:text-mist", gridPaired ? "h-4.5 w-4.5" : "h-5 w-5")} />
           <span className="sr-only">{copy.label}: </span>
-          <span lang={activeLang.code} className="min-w-0 flex-1 break-words">
+          <span lang={activeLang.code} className="min-w-0 flex-1 truncate">
             {activeLang.label}
           </span>
           <ChevronDownIcon
-            className={cn("h-5 w-5 text-muted-foreground dark:text-mist", chevronMotion, open && "rotate-180")}
+            className={cn(
+              "text-muted-foreground dark:text-mist",
+              gridPaired ? "h-4.5 w-4.5" : "h-5 w-5",
+              chevronMotion,
+              open && "rotate-180",
+            )}
           />
         </button>
 
         {open ? (
           <div
             id={panelId}
-            className="fhs-enter mt-2 rounded-(--radius-surface) border border-border bg-card p-1.5 dark:border-white/10 dark:bg-ink-800"
+            className={cn(
+              "fhs-enter rounded-(--radius-surface) border border-border bg-card p-1.5 dark:border-white/10 dark:bg-ink-800",
+              gridPaired ? "order-3 col-span-2 mt-0.5" : "mt-2",
+            )}
           >
             {panelBody}
           </div>
