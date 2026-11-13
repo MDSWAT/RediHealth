@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { UsersIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { RequestMediatorModal } from "./RequestMediatorModal";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -131,7 +132,7 @@ export function MediatorPublicHero() {
                 type="button"
                 onClick={() => setModalOpen(true)}
                 aria-haspopup="dialog"
-                className="press-solid inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="press-solid inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-6 py-3 shadow-2xs text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <UsersIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{copy.ctaRequest}</span>
@@ -139,21 +140,24 @@ export function MediatorPublicHero() {
 
               <Link
                 href={withLangPrefix("/sign-in", lang)}
-                className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-5 py-3 text-center text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="press-row inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-5 py-3 text-center text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 {copy.ctaSignIn}
               </Link>
             </div>
           </div>
 
-          <ul className="mt-12 grid gap-x-10 gap-y-6 border-t border-border pt-8 md:grid-cols-3">
+          {/* What a mediator does: three columns, each under its own hairline that draws as it
+              arrives, the columns following one another (on phones they sit below the fold). */}
+          <Reveal stagger="editorial" className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-3">
             {services.map((service) => (
-              <li key={service.title}>
-                <h2 className="text-balance text-base font-semibold text-foreground">{service.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.body}</p>
-              </li>
+              <div key={service.title}>
+                <span aria-hidden="true" className="rule-draw block h-px w-full bg-border" />
+                <h2 className="mt-5 text-balance text-base font-semibold text-foreground">{service.title}</h2>
+                <p className="mt-2 max-w-[42ch] text-sm leading-relaxed text-muted-foreground">{service.body}</p>
+              </div>
             ))}
-          </ul>
+          </Reveal>
         </Container>
       </section>
 

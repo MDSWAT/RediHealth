@@ -3,6 +3,7 @@
 import {
   type ComponentType,
   type KeyboardEvent as ReactKeyboardEvent,
+  type CSSProperties,
   type SVGProps,
   useCallback,
   useEffect,
@@ -33,7 +34,7 @@ import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { useReadingLevel } from "@/lib/comfort-preferences";
-import { useCalmReducedMotion } from "@/lib/motion/tokens";
+import { DURATION, ENTRANCE_OFFSET_PX, useCalmReducedMotion } from "@/lib/motion/tokens";
 import { toSentences, useSpeech } from "@/components/landing/hero/use-speech";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { scrollExpandedIntoModalView, useSheetDialog } from "@/components/news/use-sheet-dialog";
@@ -536,15 +537,15 @@ export function SmartSearchModal() {
       <div
         aria-hidden="true"
         onClick={handleClose}
-        className="fixed inset-0 -z-10 bg-ink-950/35 backdrop-blur-xs transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]"
+        className="scrim-in fixed inset-0 -z-10 bg-ink-950/35"
       />
 
       <motion.div
         ref={panelRef}
         tabIndex={-1}
-        initial={reducedMotion ? false : { opacity: 0, y: 10 }}
+        initial={reducedMotion ? false : { opacity: 0, y: ENTRANCE_OFFSET_PX }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: reducedMotion ? 0 : 0.16, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: reducedMotion ? 0 : DURATION.slow, ease: [0.16, 1, 0.3, 1] }}
         className="mx-auto flex max-h-[92%] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-ink-900/12 bg-white text-foreground shadow-[0_24px_64px_-16px_rgba(12,24,48,0.22)] md:max-h-[80vh] md:rounded-2xl dark:border-paper/15 dark:bg-ink-950 dark:text-paper"
       >
         <h2 id={dialogTitleId} className="sr-only">
@@ -635,7 +636,7 @@ export function SmartSearchModal() {
           <div
             role="tablist"
             aria-label={copy.modalLabel}
-            className="flex shrink-0 items-center gap-5 overflow-x-auto border-b border-ink-900/10 px-5 [scrollbar-width:none] dark:border-paper/10 sm:px-6 [&::-webkit-scrollbar]:hidden"
+            className="flex shrink-0 items-center overflow-x-auto border-b border-ink-900/10 px-2 [scrollbar-width:none] dark:border-paper/10 sm:px-3 [&::-webkit-scrollbar]:hidden"
           >
             {visibleTabs.map((cat) => {
               const isSelected = effectiveCategory === cat;
@@ -654,10 +655,12 @@ export function SmartSearchModal() {
                     setExpandedQuestionId(null);
                   }}
                   className={cn(
-                    "inline-flex min-h-11 shrink-0 items-center gap-1.5 border-b-2 px-0.5 text-[13.5px] font-medium whitespace-nowrap transition-colors",
+                    // tab-ink: the marker under the chosen tab draws out from its centre; the label sits
+                    // exactly over it (px-3 matches the marker's 0.75rem inset).
+                    "tab-ink inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-3 text-[13.5px] font-medium whitespace-nowrap transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none",
                     isSelected
-                      ? "border-sapphire text-sapphire dark:border-sapphire-border dark:text-sapphire-border"
-                      : "border-transparent text-ink-900/60 hover:text-foreground dark:text-paper/65 dark:hover:text-paper",
+                      ? "text-sapphire dark:text-sapphire-border"
+                      : "text-ink-900/60 hover:text-foreground dark:text-paper/65 dark:hover:text-paper",
                   )}
                 >
                   <span>{copy.categories[cat]}</span>
@@ -700,7 +703,11 @@ export function SmartSearchModal() {
                     const isHighlighted = activeIndex === idx;
                     const RowIcon = row.isRecent ? ClockIcon : SearchIcon;
                     return (
-                      <li key={`${row.isRecent ? "recent" : "suggest"}-${row.query}`}>
+                      <li
+                        key={`${row.isRecent ? "recent" : "suggest"}-${row.query}`}
+                        className="list-in"
+                        style={{ "--i": idx } as CSSProperties}
+                      >
                         <button
                           type="button"
                           data-search-row={idx}
@@ -743,13 +750,17 @@ export function SmartSearchModal() {
                 </p>
 
                 <div className="divide-y divide-ink-900/8 dark:divide-paper/10">
-                  {copy.guidedJourneys.map((journey) => {
+                  {copy.guidedJourneys.map((journey, journeyIdx) => {
                     const isExpanded = expandedJourneyId === journey.id;
                     const JourneyIcon = JOURNEY_ICONS[journey.id];
                     const panelId = `${baseId}-journey-${journey.id}`;
 
                     return (
-                      <div key={journey.id}>
+                      <div
+                        key={journey.id}
+                        className="list-in"
+                        style={{ "--i": autocompleteRows.length + journeyIdx } as CSSProperties}
+                      >
                         <button
                           type="button"
                           aria-expanded={isExpanded}
@@ -773,7 +784,7 @@ export function SmartSearchModal() {
                           </span>
                           <ChevronDownIcon
                             className={cn(
-                              "h-4 w-4 shrink-0 text-ink-900/45 transition-transform duration-150 dark:text-paper/45",
+                              "h-4 w-4 shrink-0 text-ink-900/45 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-paper/45",
                               isExpanded && "rotate-180",
                             )}
                             aria-hidden="true"
@@ -818,10 +829,10 @@ export function SmartSearchModal() {
                                       key={action.href}
                                       href={actionHref}
                                       onClick={() => handleFollowLink(actionHref, false)}
-                                      className="inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire hover:underline dark:text-sapphire-border"
+                                      className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
                                     >
-                                      <span>{action.label}</span>
-                                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                      <span className="link-draw">{action.label}</span>
+                                      <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                                     </Link>
                                   );
                                 })}
@@ -873,9 +884,9 @@ export function SmartSearchModal() {
                       applyQuery(catalogResponse.didYouMean!, true);
                       inputRef.current?.focus();
                     }}
-                    className="inline-flex min-h-11 items-center font-semibold whitespace-nowrap text-sapphire hover:underline dark:text-sapphire-border"
+                    className="group inline-flex min-h-11 items-center font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
                   >
-                    {catalogResponse.didYouMean}
+                    <span className="link-draw">{catalogResponse.didYouMean}</span>
                   </button>
                 </p>
               ) : null}
@@ -886,7 +897,14 @@ export function SmartSearchModal() {
                   aria-label={copy.aiAnswerTitle}
                   className="rounded-xl border border-sapphire/15 bg-sapphire/[0.03] px-4 py-3.5 dark:border-sapphire-border/20 dark:bg-sapphire/[0.08]"
                 >
-                  <p className="text-[14.5px] leading-relaxed text-foreground dark:text-paper">
+                  {/* Keyed: when the fuller answer replaces the catalogue lead, it settles in instead of snapping. */}
+                  <p
+                    key={activeAiAnswer ? "answer" : "lead"}
+                    className={cn(
+                      "text-[14.5px] leading-relaxed text-foreground dark:text-paper",
+                      activeAiAnswer && "swap-in",
+                    )}
+                  >
                     {overviewBody}
                   </p>
 
@@ -894,10 +912,10 @@ export function SmartSearchModal() {
                     <Link
                       href={overview.primaryAction.href}
                       onClick={() => handleFollowLink(overview.primaryAction.href, true)}
-                      className="inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire hover:underline dark:text-sapphire-border"
+                      className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
                     >
-                      <span>{overview.primaryAction.label}</span>
-                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                      <span className="link-draw">{overview.primaryAction.label}</span>
+                      <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                     </Link>
 
                     {hasOverviewDetails ? (
@@ -918,7 +936,7 @@ export function SmartSearchModal() {
                         </span>
                         <ChevronDownIcon
                           className={cn(
-                            "h-4 w-4 shrink-0 transition-transform duration-150",
+                            "h-4 w-4 shrink-0 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
                             expandedOverview && "rotate-180",
                           )}
                           aria-hidden="true"
@@ -962,10 +980,10 @@ export function SmartSearchModal() {
                                     applyQuery(follow, true);
                                     inputRef.current?.focus();
                                   }}
-                                  className="inline-flex min-h-11 items-center gap-1.5 text-[13px] font-medium whitespace-nowrap text-sapphire hover:underline dark:text-sapphire-border"
+                                  className="group inline-flex min-h-11 items-center gap-1.5 text-[13px] font-medium whitespace-nowrap text-sapphire dark:text-sapphire-border"
                                 >
                                   <SearchIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                                  <span>{follow}</span>
+                                  <span className="link-draw">{follow}</span>
                                 </button>
                               ))}
                             </div>
@@ -979,7 +997,7 @@ export function SmartSearchModal() {
 
               {/* Clean single-column Google result rows */}
               {results.length === 0 ? (
-                <div className="rounded-xl border border-ink-900/10 px-5 py-7 text-center dark:border-paper/10">
+                <div className="swap-in rounded-xl border border-ink-900/10 px-5 py-7 text-center dark:border-paper/10">
                   <p className="text-[16px] font-semibold text-foreground dark:text-paper">
                     {copy.emptyTitle}
                   </p>
@@ -1000,15 +1018,16 @@ export function SmartSearchModal() {
                     <Link
                       href={assistantHref}
                       onClick={() => handleFollowLink(assistantHref, false)}
-                      className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-sapphire px-4 text-[14px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-sapphire/90"
+                      className="group press-solid inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-sapphire px-4 text-[14px] font-semibold whitespace-nowrap text-white transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire/90 motion-reduce:transition-none"
                     >
                       <span>{copy.askAssistantLabel}</span>
-                      <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                      <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
                     </Link>
                   </div>
                 </div>
               ) : (
-                <div className="divide-y divide-ink-900/8 dark:divide-paper/10">
+                // Keyed by tab: a tab switch replays the ordered entrance; while typing only new rows arrive.
+                <div key={effectiveCategory} className="divide-y divide-ink-900/8 dark:divide-paper/10">
                   {results.map((result, idx) => {
                     const isHighlighted = activeIndex === idx;
                     const isExpanded = expandedResultId === result.id;
@@ -1020,8 +1039,9 @@ export function SmartSearchModal() {
                         key={result.id}
                         data-search-row={idx}
                         onMouseEnter={() => setActiveIndex(idx)}
+                        style={{ "--i": idx } as CSSProperties}
                         className={cn(
-                          "rounded-lg px-2 py-2.5 transition-colors",
+                          "list-in rounded-lg px-2 py-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
                           isHighlighted && "bg-ink-900/[0.025] dark:bg-paper/[0.04]",
                         )}
                       >
@@ -1031,8 +1051,8 @@ export function SmartSearchModal() {
                             onClick={() => handleFollowLink(result.href, true)}
                             className="group min-w-0 flex-1 py-0.5"
                           >
-                            <h3 className="text-[16px] leading-snug font-semibold text-sapphire group-hover:underline dark:text-sapphire-border">
-                              {result.title}
+                            <h3 className="text-[16px] leading-snug font-semibold text-sapphire dark:text-sapphire-border">
+                              <span className="link-draw [box-decoration-break:clone]">{result.title}</span>
                             </h3>
                             <p className="mt-0.5 text-[14px] leading-relaxed text-ink-900/75 dark:text-paper/75">
                               {result.summary}
@@ -1054,7 +1074,7 @@ export function SmartSearchModal() {
                           >
                             <ChevronDownIcon
                               className={cn(
-                                "h-4 w-4 transition-transform duration-150",
+                                "h-4 w-4 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
                                 isExpanded && "rotate-180",
                               )}
                               aria-hidden="true"
@@ -1107,10 +1127,10 @@ export function SmartSearchModal() {
                                 <Link
                                   href={result.href}
                                   onClick={() => handleFollowLink(result.href, true)}
-                                  className="inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire hover:underline dark:text-sapphire-border"
+                                  className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
                                 >
-                                  <span>{copy.openPageLabel}</span>
-                                  <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                  <span className="link-draw">{copy.openPageLabel}</span>
+                                  <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                                 </Link>
                               </div>
                             </div>
@@ -1156,7 +1176,7 @@ export function SmartSearchModal() {
                             </span>
                             <ChevronDownIcon
                               className={cn(
-                                "h-4 w-4 shrink-0 text-ink-900/45 transition-transform duration-150 dark:text-paper/45",
+                                "h-4 w-4 shrink-0 text-ink-900/45 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-paper/45",
                                 isExpanded && "rotate-180",
                               )}
                               aria-hidden="true"
@@ -1180,11 +1200,11 @@ export function SmartSearchModal() {
                                   <Link
                                     href={rq.href}
                                     onClick={() => handleFollowLink(rq.href!, true)}
-                                    className="inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire hover:underline dark:text-sapphire-border"
+                                    className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
                                   >
-                                    <span>{rq.linkLabel ?? copy.openPageLabel}</span>
+                                    <span className="link-draw">{rq.linkLabel ?? copy.openPageLabel}</span>
                                     <ArrowRightIcon
-                                      className="h-3.5 w-3.5 shrink-0"
+                                      className="arrow-travel h-3.5 w-3.5 shrink-0"
                                       aria-hidden="true"
                                     />
                                   </Link>

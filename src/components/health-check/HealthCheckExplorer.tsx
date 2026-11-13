@@ -180,7 +180,8 @@ function RowCheck({ urgent = false }: { urgent?: boolean }) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="m3.5 8.5 2.8 2.8 6.2-6.6" />
+      {/* Draws itself once when the row is chosen (static under reduced motion / Calm Motion). */}
+      <path className="stroke-draw" pathLength={1} d="m3.5 8.5 2.8 2.8 6.2-6.6" />
     </svg>
   );
 }
@@ -372,6 +373,7 @@ function AreaOptionCard({
   title,
   description,
   hotkey,
+  index,
 }: {
   partId: BodyPartId;
   checked: boolean;
@@ -380,6 +382,7 @@ function AreaOptionCard({
   title: string;
   description: string;
   hotkey?: string;
+  index?: number;
 }) {
   const Icon = BODY_PART_ICONS[partId];
   return (
@@ -392,7 +395,8 @@ function AreaOptionCard({
       tabIndex={checked || focusable ? 0 : -1}
       onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
       title={description}
-      className={`${groupedRowInset} group flex w-full items-center gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:min-h-[3.75rem] max-lg:px-4 max-lg:py-2.5 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-2.5 lg:py-2 lg:focus-visible:ring-offset-2 ${
+      style={index === undefined ? undefined : ({ "--i": index } as CSSProperties)}
+      className={`${groupedRowInset} ${index === undefined ? "" : "list-in"} group flex w-full items-center gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:min-h-[3.75rem] max-lg:px-4 max-lg:py-2.5 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-2.5 lg:py-2 lg:focus-visible:ring-offset-2 ${
         checked
           ? "max-lg:bg-sapphire-soft/40 lg:border-sapphire lg:bg-sapphire-soft/45"
           : "lg:border-border lg:bg-card lg:hover:border-sapphire/50 lg:hover:bg-sapphire-soft/25"
@@ -693,6 +697,7 @@ function OptionRow({
   speakLabel,
   hotkey,
   inset = false,
+  index,
 }: {
   checked: boolean;
   onSelect: (byPointer: boolean) => void;
@@ -708,10 +713,15 @@ function OptionRow({
   hotkey?: string;
   /** Separator starts after the icon (rows with an icon). */
   inset?: boolean;
+  /** Position in its list: rows of a fresh question arrive one after another (`list-in`). */
+  index?: number;
 }) {
   const urgent = tone === "urgent";
   return (
-    <div className={inset ? groupedRowInset : groupedRow}>
+    <div
+      className={`${inset ? groupedRowInset : groupedRow} ${index === undefined ? "" : "list-in"}`}
+      style={index === undefined ? undefined : ({ "--i": index } as CSSProperties)}
+    >
       <button
         type="button"
         role="radio"
@@ -749,7 +759,11 @@ function OptionRow({
                   : "border-foreground/45"
             }`}
           >
-            {checked && <span className={`h-2 w-2 rounded-xs ${urgent ? "bg-primary" : "bg-sapphire"}`} />}
+            <span
+              className={`h-2 w-2 rounded-xs transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                urgent ? "bg-primary" : "bg-sapphire"
+              } ${checked ? "opacity-100" : "opacity-0"}`}
+            />
           </span>
         )}
         {iconBadge}
@@ -813,7 +827,7 @@ function ContinueRow({
         className={`${emergency ? emergencyButton : primaryButton} w-full lg:min-h-11 lg:w-auto lg:min-w-40`}
       >
         <span>{label}</span>
-        <ArrowRightIcon className="h-4.5 w-4.5" aria-hidden="true" />
+        <ArrowRightIcon className="arrow-travel h-4.5 w-4.5" aria-hidden="true" />
       </button>
       {!disabled && (
         <span aria-hidden="true" className="hidden items-center gap-1 text-xs text-muted-foreground lg:inline-flex">
@@ -1884,14 +1898,14 @@ export function HealthCheckExplorer() {
   const placeLink = (category: InstituteCategory, label: string) => (
     <Link
       href={withLangPrefix(findHelpHref(category), activeLang)}
-      className="group mt-3 flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
+      className="card-interactive press-row group mt-3 flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
     >
       <span className="inline-flex min-w-0 items-center gap-2.5">
         <PinIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
         <span className="min-w-0 truncate">{label}</span>
       </span>
       <ArrowRightIcon
-        className="h-4.5 w-4.5 shrink-0 text-sapphire transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:group-hover:translate-x-0.5"
+        className="arrow-travel h-4.5 w-4.5 shrink-0 text-sapphire"
         aria-hidden="true"
       />
     </Link>
@@ -1907,7 +1921,7 @@ export function HealthCheckExplorer() {
         className={`${primaryButton} min-w-0 flex-1 justify-between px-3.5 sm:px-4 text-left whitespace-nowrap`}
       >
         <span className="min-w-0 truncate">{c.doctorBook}</span>
-        <ArrowRightIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+        <ArrowRightIcon className="arrow-travel h-4.5 w-4.5 shrink-0" aria-hidden="true" />
       </Link>
 
       <Link
@@ -2193,7 +2207,7 @@ export function HealthCheckExplorer() {
                   </button>
                 ) : null}
                 <p className="shrink-0 whitespace-nowrap text-xs font-medium text-muted-foreground tabular-nums sm:text-sm">
-                  <span aria-hidden="true" className="sm:hidden">{displayStep}/{totalSteps}</span>
+                  <span key={displayStep} aria-hidden="true" className="swap-in inline-block sm:hidden">{displayStep}/{totalSteps}</span>
                   <span className="sr-only sm:not-sr-only">{stepIndicatorText}</span>
                 </p>
               </div>
@@ -2270,12 +2284,14 @@ export function HealthCheckExplorer() {
               aria-valuetext={stepIndicatorText}
             >
               {Array.from({ length: totalSteps }, (_, idx) => idx + 1).map((segment) => (
-                <div
-                  key={segment}
-                  className={`h-1 flex-1 rounded-sm transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
-                    displayStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
-                  }`}
-                />
+                <div key={segment} className="h-1 flex-1 rounded-sm overflow-hidden bg-border">
+                  {/* The fill sweeps in from the start of the segment (and back out when going back). */}
+                  <div
+                    className={`h-full w-full origin-left bg-sapphire transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none rtl:origin-right dark:bg-sapphire-border ${
+                      displayStep >= segment ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
+                </div>
               ))}
             </div>
 
@@ -2285,7 +2301,7 @@ export function HealthCheckExplorer() {
               <nav aria-label={c.selectedTrailLabel} className="mt-2.5">
                 <ol className="flex flex-wrap items-center gap-x-1 gap-y-0.5 text-xs text-muted-foreground sm:text-[0.8125rem]">
                   {trailItems.map((item, index) => (
-                    <li key={item.key} className="flex min-w-0 max-w-full items-center">
+                    <li key={item.key} className="swap-in flex min-w-0 max-w-full items-center">
                       {index > 0 && (
                         <span aria-hidden="true" className="mx-1.5 text-muted-foreground/50">
                           ›
@@ -2294,9 +2310,9 @@ export function HealthCheckExplorer() {
                       <button
                         type="button"
                         onClick={() => goToStep(item.target)}
-                        className="-my-1.5 inline-flex min-h-11 items-center rounded-md max-w-full py-1.5 font-medium whitespace-nowrap text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="group press-row -my-1.5 inline-flex min-h-11 items-center rounded-md max-w-full py-1.5 font-medium whitespace-nowrap text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
-                        <span className="max-w-[11rem] truncate sm:max-w-[16rem]">{item.label}</span>
+                        <span className="link-draw max-w-[11rem] truncate sm:max-w-[16rem]">{item.label}</span>
                       </button>
                     </li>
                   ))}
@@ -2356,7 +2372,7 @@ export function HealthCheckExplorer() {
                   </div>
 
                   {setupOpen && (
-                    <div id={`${baseId}-setup`} className="mt-2 divide-y divide-border/70 border-t border-border/70">
+                    <div id={`${baseId}-setup`} className="swap-in mt-2 divide-y divide-border/70 border-t border-border/70">
                       <div className="flex flex-wrap items-center justify-between gap-2.5 py-2.5">
                         <span id={`${baseId}-who`} className="text-sm font-medium text-muted-foreground">
                           {c.forWhom}
@@ -2451,6 +2467,7 @@ export function HealthCheckExplorer() {
                   {BODY_PARTS.map((id, index) => (
                     <AreaOptionCard
                       key={id}
+                      index={index}
                       hotkey={isDesktop ? HOTKEYS[index] : undefined}
                       partId={id}
                       checked={selectedPart === id}
@@ -2479,6 +2496,7 @@ export function HealthCheckExplorer() {
                   style={{ "--rows": Math.ceil((quickSpots.length + 1) / 2) } as CSSProperties}
                 >
                   <OptionRow
+                    index={0}
                     checked={detail === null}
                     focusable={detail === null}
                     hotkey={isDesktop ? HOTKEYS[0] : undefined}
@@ -2492,6 +2510,7 @@ export function HealthCheckExplorer() {
                     return (
                       <OptionRow
                         key={sub}
+                        index={index + 1}
                         checked={active}
                         hotkey={isDesktop ? HOTKEYS[index + 1] : undefined}
                         onSelect={(byPointer) => handleSelectQuickSpot(sub, byPointer)}
@@ -2585,6 +2604,7 @@ export function HealthCheckExplorer() {
                     return (
                       <OptionRow
                         key={symptom.id}
+                        index={index}
                         inset
                         checked={isChecked}
                         hotkey={isDesktop ? HOTKEYS[index] : undefined}
@@ -2613,6 +2633,7 @@ export function HealthCheckExplorer() {
                   })}
 
                   <OptionRow
+                    index={symptomsList.length}
                     inset
                     checked={otherChosen}
                     hotkey={isDesktop ? HOTKEYS[symptomsList.length] : undefined}
@@ -2658,7 +2679,7 @@ export function HealthCheckExplorer() {
                     <div className="mt-3.5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                       <Link href={withLangPrefix("/health-assistant", activeLang)} className={`${primaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}>
                         <span className="min-w-0 truncate">{c.otherAssistant}</span>
-                        <ArrowRightIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                        <ArrowRightIcon className="arrow-travel h-4.5 w-4.5 shrink-0" aria-hidden="true" />
                       </Link>
                       <Link href={withLangPrefix("/medic-online?source=triage", activeLang)} className={`${secondaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}>
                         <span className="min-w-0 truncate">{c.otherDoctor}</span>
@@ -2702,7 +2723,8 @@ export function HealthCheckExplorer() {
                           tabIndex={checked || (!severity && index === 0) ? 0 : -1}
                           title={dict.severity[key].description}
                           onClick={(e) => handleSelectSeverity(key, e.detail > 0)}
-                          className={`flex min-h-[4.75rem] flex-1 flex-col items-start gap-1.5 whitespace-nowrap rounded-xl border px-3 py-2.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                          style={{ "--i": index } as CSSProperties}
+                          className={`list-in press-row flex min-h-[4.75rem] flex-1 flex-col items-start gap-1.5 whitespace-nowrap rounded-xl border px-3 py-2.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                             checked
                               ? urgent
                                 ? "border-primary bg-primary-soft/45"
@@ -2751,7 +2773,8 @@ export function HealthCheckExplorer() {
                           tabIndex={checked || (!duration && index === 0) ? 0 : -1}
                           title={dict.duration[key].hint}
                           onClick={(e) => handleSelectDuration(key, e.detail > 0)}
-                          className={`flex min-h-11 min-w-[13.5rem] flex-1 items-center gap-2.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                          style={{ "--i": index + SEVERITY_KEYS.length } as CSSProperties}
+                          className={`list-in press-row flex min-h-11 min-w-[13.5rem] flex-1 items-center gap-2.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                             checked
                               ? "border-sapphire bg-sapphire-soft/45"
                               : "border-border bg-card hover:border-sapphire/50 hover:bg-sapphire-soft/25"
@@ -2824,9 +2847,10 @@ export function HealthCheckExplorer() {
                   onKeyDown={handleRadioKeys}
                   className={`grid grid-cols-1 ${optionGroup}`}
                 >
-                  {SEVERITY_KEYS.map((key) => (
+                  {SEVERITY_KEYS.map((key, index) => (
                     <OptionRow
                       key={key}
+                      index={index}
                       inset
                       checked={severity === key}
                       focusable={!severity && key === SEVERITY_KEYS[0]}
@@ -2852,9 +2876,10 @@ export function HealthCheckExplorer() {
                   onKeyDown={handleRadioKeys}
                   className={`grid grid-cols-1 ${optionGroup}`}
                 >
-                  {DURATION_KEYS.map((key) => (
+                  {DURATION_KEYS.map((key, index) => (
                     <OptionRow
                       key={key}
+                      index={index}
                       inset
                       checked={duration === key}
                       focusable={!duration && key === DURATION_KEYS[0]}
@@ -3033,13 +3058,13 @@ export function HealthCheckExplorer() {
                         {topicMapping && (
                           <Link
                             href={withLangPrefix(`/health-information/${topicMapping.slug}`, activeLang)}
-                            className="group mt-4 flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
+                            className="card-interactive press-row group mt-4 flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-sapphire hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
                           >
                             <span className="min-w-0 truncate">
                               {c.readAbout}: {topicMapping.title}
                             </span>
                             <ArrowRightIcon
-                              className="h-4.5 w-4.5 shrink-0 text-sapphire transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:group-hover:translate-x-0.5"
+                              className="arrow-travel h-4.5 w-4.5 shrink-0 text-sapphire"
                               aria-hidden="true"
                             />
                           </Link>

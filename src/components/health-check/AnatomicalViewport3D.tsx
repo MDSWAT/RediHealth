@@ -2997,6 +2997,15 @@ export function AnatomicalViewport3D({
           role="status"
           className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 bg-surface-subtle p-6 text-center"
         >
+          {/* A quiet stand-in shaped like the body that is coming (head, torso, legs). */}
+          <div aria-hidden="true" className="flex flex-col items-center gap-1">
+            <div className="skeleton-sheen h-7 w-6 rounded-lg" />
+            <div className="skeleton-sheen h-14 w-12 rounded-xl" />
+            <div className="flex gap-1">
+              <div className="skeleton-sheen h-14 w-4 rounded-md" />
+              <div className="skeleton-sheen h-14 w-4 rounded-md" />
+            </div>
+          </div>
           <div className="h-1.5 w-40 overflow-hidden rounded-md bg-border">
             <div
               className="h-full w-full origin-left bg-sapphire transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none"
@@ -3017,7 +3026,7 @@ export function AnatomicalViewport3D({
         <div
           role="tooltip"
           style={{ left: `${hoverBadge.x}px`, top: `${hoverBadge.y}px` }}
-          className="pointer-events-none absolute z-30 max-w-[235px] rounded-lg bg-foreground px-3 py-2 text-white shadow-lg"
+          className="popover-in pointer-events-none absolute z-30 max-w-[235px] rounded-lg bg-foreground px-3 py-2 text-white shadow-lg"
         >
           <span className="block text-sm font-semibold leading-snug">{hoverBadge.name}</span>
           {hoverBadge.areaLabel && (

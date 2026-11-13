@@ -24,15 +24,16 @@ export default async function ContactPage() {
 
       <section className="py-10 sm:py-14">
         <Container>
-          <div className="max-w-2xl space-y-6 text-base leading-relaxed text-muted-foreground">
+          <div className="max-w-[65ch] space-y-8 text-base leading-relaxed text-muted-foreground">
             <div>
               <h2 className="text-title text-foreground">{copy.enquiries}</h2>
+              {/* The address is the page's main action: a full-height target whose underline draws in. */}
               <a
                 href="mailto:support@redihealth.app"
-                className="mt-2 inline-flex items-center gap-2 rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="group press-row mt-1 inline-flex min-h-11 items-center gap-2.5 rounded-sm text-lg font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-sapphire-light dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
               >
-                <MailIcon className="h-4 w-4" aria-hidden="true" />
-                support@redihealth.app
+                <MailIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                <span className="link-draw">support@redihealth.app</span>
               </a>
             </div>
 
@@ -46,7 +47,7 @@ export default async function ContactPage() {
 
             <p>
               {copy.helpBefore}{" "}
-              <Link href={withLangPrefix("/get-help", lang)} className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              <Link href={withLangPrefix("/get-help", lang)} className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:hover:text-white hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                 {copy.helpLink}
               </Link>{" "}
               {copy.helpAfter}

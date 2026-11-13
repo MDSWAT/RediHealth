@@ -222,7 +222,8 @@ export function MedicOnlineHero() {
         </div>
 
         {/* The two ways in share one surface, split by a hairline: no row of look-alike cards. */}
-        <div className="mt-8 divide-y divide-border rounded-xl border border-border bg-card">
+        {/* The page's one lit surface: a soft pointer light and top-edge highlight on fine pointers. */}
+        <div className="surface-spotlight mt-8 divide-y divide-border rounded-xl border border-border bg-card shadow-(--shadow-card-rest)">
           <div className="grid grid-cols-1 divide-y divide-border md:grid-cols-2 md:divide-x md:divide-y-0">
             <div className="flex flex-col p-6">
               {isOnDuty && (
@@ -252,7 +253,10 @@ export function MedicOnlineHero() {
                       : "border-border-control bg-background text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/35 hover:text-sapphire"
                   }`}
                 >
-                  {soundChecked ? <CheckIcon className="h-4.5 w-4.5 shrink-0" /> : <VolumeIcon className="h-4.5 w-4.5 shrink-0" />}
+                  {/* The icon is the control; after the test it eases into its played state instead of snapping. */}
+                  <span key={soundChecked ? "ok" : "test"} className={soundChecked ? "swap-in inline-flex" : "inline-flex"}>
+                    {soundChecked ? <CheckIcon className="h-4.5 w-4.5 shrink-0" /> : <VolumeIcon className="h-4.5 w-4.5 shrink-0" />}
+                  </span>
                   <span className="sr-only" aria-live="polite">
                     {soundChecked ? c.soundOk : c.soundTest}
                   </span>
@@ -287,7 +291,7 @@ export function MedicOnlineHero() {
               className="group -mx-2 inline-flex min-h-[44px] max-w-full shrink-0 items-center gap-2 self-start whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border sm:self-auto"
             >
               <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-              <span className="min-w-0 truncate underline-offset-4 group-hover:underline">{findHelp.nearestPharmacy}</span>
+              <span className="link-draw min-w-0 truncate">{findHelp.nearestPharmacy}</span>
             </Link>
           </div>
         </div>

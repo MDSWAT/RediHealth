@@ -334,8 +334,11 @@ const AVAILABLE_TIME_SLOTS = [
 
 // Day and time pickers are one surface of cells split by hairlines (no grid of bordered boxes);
 // the chosen cell is filled with ink. The focus ring sits inside the cell so the surface does not clip it.
+// Selection crossfades at --dur-base, and the chosen cell gains a short bar under its figure that
+// draws out from the centre, so the choice is marked by shape as well as by the inverted colours.
 const cellBase =
-  "press-row whitespace-nowrap text-center transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring";
+  "press-row relative whitespace-nowrap text-center transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring " +
+  "after:pointer-events-none after:absolute after:inset-x-[30%] after:bottom-1 after:h-0.5 after:rounded-xs after:bg-current after:scale-x-0 after:transition-transform after:duration-[var(--dur-base)] after:ease-[var(--ease-out-calm)] aria-pressed:after:scale-x-100 motion-reduce:after:transition-none";
 const cellOn = "bg-foreground text-background";
 const cellOff = "bg-card text-foreground hover:bg-muted";
 const nextButton =
@@ -454,7 +457,7 @@ export function AppointmentBookingCalendar() {
 
   // The error sits right above the button that caused it, so it is seen on a phone without scrolling up.
   const errorNote = error ? (
-    <p role="alert" className="mt-6 rounded-lg border border-amber-care-border bg-amber-care-soft/40 px-3.5 py-3 text-sm font-medium text-foreground dark:bg-amber-care/10">
+    <p role="alert" className="swap-in mt-6 rounded-lg border border-amber-care-border bg-amber-care-soft/40 px-3.5 py-3 text-sm font-medium text-foreground dark:bg-amber-care/10">
       {error}
     </p>
   ) : null;
@@ -470,13 +473,15 @@ export function AppointmentBookingCalendar() {
           const reached = step >= n;
           return (
             <li key={label} aria-current={step === n ? "step" : undefined}>
-              <span
-                aria-hidden="true"
-                className={cn(
-                  "block h-1 rounded-sm transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)]",
-                  reached ? "bg-foreground" : "bg-border",
-                )}
-              />
+              {/* The bar fills from its start edge as the step is reached, rather than changing colour at once. */}
+              <span aria-hidden="true" className="block h-1 overflow-hidden rounded-sm bg-border">
+                <span
+                  className={cn(
+                    "block h-full w-full origin-left rounded-sm bg-foreground transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none rtl:origin-right",
+                    reached ? "scale-x-100" : "scale-x-0",
+                  )}
+                />
+              </span>
               <span className={cn("mt-2 block text-xs leading-snug", reached ? "font-semibold text-foreground" : "text-muted-foreground")}>
                 {label}
               </span>
@@ -519,7 +524,8 @@ export function AppointmentBookingCalendar() {
                 })}
               </div>
 
-              <div className="mt-6 border-t border-border pt-5">
+              {/* Keyed on the day: a new day's hours replace the last ones in place. */}
+              <div key={selectedDate} className="swap-in mt-6 border-t border-border pt-5">
                 <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                   <h3 className="text-balance text-sm font-semibold text-foreground">
                     {copy.availableHours(selectedDayObj.fullFormatted)}
@@ -558,7 +564,7 @@ export function AppointmentBookingCalendar() {
               <div className="mt-6 flex justify-end border-t border-border pt-4">
                 <button type="button" onClick={handleNextToContact} className={nextButton}>
                   <span className="min-w-0 truncate">{copy.continueToContact}</span>
-                  <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                  <ArrowRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0" />
                 </button>
               </div>
             </div>
@@ -578,9 +584,9 @@ export function AppointmentBookingCalendar() {
                   <button
                     type="button"
                     onClick={() => goTo(1)}
-                    className="press-row min-h-11 max-w-full whitespace-nowrap rounded-sm text-sm font-medium text-sapphire underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="group press-row min-h-11 max-w-full whitespace-nowrap rounded-sm text-sm font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <span className="min-w-0 truncate">{copy.changeTime}</span>
+                    <span className="link-draw min-w-0 truncate">{copy.changeTime}</span>
                   </button>
                 </div>
               </div>
@@ -634,13 +640,14 @@ export function AppointmentBookingCalendar() {
             <dl className="mt-4 divide-y divide-border text-sm">
               <div className="flex items-baseline justify-between gap-4 py-2.5 first:pt-0">
                 <dt className="text-muted-foreground">{copy.summaryDayLabel}</dt>
-                <dd className="text-right font-semibold text-foreground tabular-nums">{selectedDayObj.fullFormatted}</dd>
+                <dd key={selectedDate} className="swap-in text-right font-semibold text-foreground tabular-nums">{selectedDayObj.fullFormatted}</dd>
               </div>
               <div className="flex items-baseline justify-between gap-4 py-2.5 last:pb-0">
                 <dt className="text-muted-foreground">{copy.summaryTimeLabel}</dt>
                 <dd
+                  key={selectedTime || "pending"}
                   className={cn(
-                    "text-right tabular-nums",
+                    "swap-in text-right tabular-nums",
                     selectedTime ? "font-semibold text-foreground" : "text-muted-foreground",
                   )}
                 >

@@ -36,6 +36,11 @@ function pickHeroLabel(
   return entry[lang] ?? entry.ro;
 }
 
+const LISTEN_SWAP_CLASS =
+  "transition-[opacity,translate] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none";
+const LISTEN_SWAP_IN = "opacity-100 translate-y-0";
+const LISTEN_SWAP_OUT = "pointer-events-none opacity-0 translate-y-1";
+
 /**
  * Unified 1-tap Read Aloud control for all health reading pages.
  * Safe outside LanguageContext.Provider and omits itself when browser speech is disabled for the locale.
@@ -129,19 +134,36 @@ export function ArticleListenButton({
         className,
       )}
     >
-      {isPlaying ? (
+      {/*
+        Both states are stacked in one cell: the button keeps the width of the longer label, so
+        toggling never shifts the row, and the icon and label cross-fade instead of snapping.
+      */}
+      <span className="grid shrink-0 [&>*]:col-start-1 [&>*]:row-start-1" aria-hidden="true">
+        <VolumeIcon
+          className={cn(LISTEN_SWAP_CLASS, "h-4 w-4", isPlaying ? LISTEN_SWAP_OUT : LISTEN_SWAP_IN)}
+        />
         <svg
-          className="h-4 w-4 shrink-0 text-white"
+          className={cn(LISTEN_SWAP_CLASS, "h-4 w-4 text-white", isPlaying ? LISTEN_SWAP_IN : LISTEN_SWAP_OUT)}
           viewBox="0 0 24 24"
           fill="currentColor"
-          aria-hidden="true"
         >
           <rect x="6" y="6" width="12" height="12" rx="2" />
         </svg>
-      ) : (
-        <VolumeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-      )}
-      <span>{isPlaying ? resolvedStopLabel : resolvedListenLabel}</span>
+      </span>
+      <span className="grid [&>*]:col-start-1 [&>*]:row-start-1">
+        <span
+          aria-hidden={isPlaying}
+          className={cn(LISTEN_SWAP_CLASS, isPlaying ? LISTEN_SWAP_OUT : LISTEN_SWAP_IN)}
+        >
+          {resolvedListenLabel}
+        </span>
+        <span
+          aria-hidden={!isPlaying}
+          className={cn(LISTEN_SWAP_CLASS, isPlaying ? LISTEN_SWAP_IN : LISTEN_SWAP_OUT)}
+        >
+          {resolvedStopLabel}
+        </span>
+      </span>
     </button>
   );
 }

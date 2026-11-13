@@ -238,7 +238,9 @@ export function RegionalHealthRibbon() {
 
   const renderStationaryHeadline = () =>
     activeHeadline ? (
-      <div className="min-w-0 flex-1">
+      // Keyed on the headline: stepping with the arrows eases the next one in (only after a step,
+      // so the ribbon does not move on page load).
+      <div key={activeHeadline.slug} className={`min-w-0 flex-1 ${paused ? "swap-in" : ""}`}>
         <Link
           href={withLangPrefix(`${newsBasePath}/${activeHeadline.slug}`, lang)}
           className="inline-flex min-h-11 max-w-full items-center gap-2.5 rounded-lg px-1.5 text-paper/95 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-paper motion-reduce:transition-none"
@@ -266,7 +268,7 @@ export function RegionalHealthRibbon() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="-ml-1.5 inline-flex min-h-11 min-w-0 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-1.5 font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none"
+              className="press-on-dark -ml-1.5 inline-flex min-h-11 min-w-0 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-1.5 font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none"
             >
               <PinIcon className="h-3.5 w-3.5 shrink-0 text-paper/80" />
               <span className="truncate">{areaDisplay}</span>
@@ -317,7 +319,7 @@ export function RegionalHealthRibbon() {
                   }}
                   aria-label={control.prev}
                   title={control.prev}
-                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-paper/75 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/10 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none"
+                  className="press-on-dark inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-paper/75 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/10 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none"
                 >
                   <ChevronLeftIcon className="h-4 w-4" />
                 </button>
@@ -327,7 +329,7 @@ export function RegionalHealthRibbon() {
                     onClick={() => setPaused((value) => !value)}
                     aria-label={paused ? control.play : control.pause}
                     title={paused ? control.play : control.pause}
-                    className={`${styles.pause} hidden h-11 w-9 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-paper/75 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/10 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none md:inline-flex`}
+                    className={`${styles.pause} press-on-dark hidden h-11 w-9 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-paper/75 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/10 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none md:inline-flex`}
                   >
                     <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true">
                       {paused ? <path d="M4 2.5v11l9-5.5z" /> : <path d="M3.5 2.5h3v11h-3zM9.500 2.5h3v11h-3z" />}
@@ -342,7 +344,7 @@ export function RegionalHealthRibbon() {
                   }}
                   aria-label={control.next}
                   title={control.next}
-                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-paper/75 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/10 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none"
+                  className="press-on-dark inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-paper/75 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/10 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none"
                 >
                   <ChevronRightIcon className="h-4 w-4" />
                 </button>

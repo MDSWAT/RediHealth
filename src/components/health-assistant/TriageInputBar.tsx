@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import { ArrowRightIcon, SearchIcon } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import { classifyLocalIntent } from "@/components/health-assistant/intent-keywords";
@@ -156,8 +156,11 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
         {t.label}
       </label>
       <div className="flex flex-col gap-2.5 sm:relative sm:block">
-        <div className="relative flex items-center">
-          <span className="pointer-events-none absolute left-4 text-muted-foreground" aria-hidden="true">
+        <div className="group/field relative flex items-center">
+          <span
+            className="pointer-events-none absolute left-4 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-focus-within/field:text-sapphire motion-reduce:transition-none dark:group-focus-within/field:text-sapphire-border"
+            aria-hidden="true"
+          >
             <SearchIcon className="h-5 w-5" />
           </span>
           <input
@@ -167,16 +170,16 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.placeholder}
-            className="min-h-13 w-full rounded-xl border border-border-control bg-card py-3 pl-11 pr-4 text-base text-foreground placeholder:text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:pr-32"
+            className="field-focus min-h-13 w-full rounded-xl border border-border-control bg-card py-3 pl-11 pr-4 text-base text-foreground placeholder:text-muted-foreground sm:pr-32"
           />
         </div>
         <button
           type="submit"
           disabled={!trimmed}
-          className="press-solid inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none sm:absolute sm:right-1 sm:top-1/2 sm:-translate-y-1/2"
+          className="group press-solid inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none sm:absolute sm:right-1 sm:top-1/2 sm:-translate-y-1/2"
         >
           <span>{t.buttonLabel}</span>
-          <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
+          <ArrowRightIcon className="arrow-travel h-3.5 w-3.5" aria-hidden="true" />
         </button>
       </div>
 
@@ -190,24 +193,25 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
             <button
               type="button"
               onClick={() => onSubmitQuery(trimmed)}
-              className="press-solid inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-sapphire px-3.5 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group press-solid inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-sapphire px-3.5 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <span>{t.openRoute}</span>
-              <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
+              <ArrowRightIcon className="arrow-travel h-3.5 w-3.5" aria-hidden="true" />
             </button>
           </div>
         )}
       </div>
 
       <div role="group" aria-label={t.startersLabel} className="mt-3 flex flex-wrap gap-2">
-        {t.starters.map((prompt) => (
+        {t.starters.map((prompt, index) => (
           <button
             key={prompt}
+            style={{ "--i": index } as CSSProperties}
             type="button"
             onClick={() => {
               activateQuickPrompt(prompt, setQuery, onSubmitQuery);
             }}
-            className="press-row inline-flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border border-stone-200/90 bg-card px-3.5 py-2 text-left text-sm font-medium text-foreground shadow-2xs transition-[color,background-color,border-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:border-stone-800"
+            className="list-in press-row inline-flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border border-stone-200/90 bg-card px-3.5 py-2 text-left text-sm font-medium text-foreground shadow-2xs transition-[color,background-color,border-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:border-stone-800"
           >
             <span className="min-w-0 truncate">{prompt}</span>
           </button>

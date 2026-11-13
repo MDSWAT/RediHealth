@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { IconTile } from "@/components/ui/IconTile";
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { NAV_LINK_ICONS } from "@/components/layout/nav-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -42,7 +43,8 @@ export function HelpOptionsMediatorBand({ className }: HelpOptionsMediatorBandPr
           href={withLangPrefix(MEDIATOR_HREF, lang)}
           className="press-row group inline-flex min-h-11 shrink-0 self-start items-center justify-center gap-2 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-4 py-2 text-base font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:self-center dark:border-white/40 dark:bg-ink-800 dark:text-sapphire-border dark:hover:border-white/60 dark:hover:bg-white/10 dark:focus-visible:ring-paper"
         >
-          {mb.cta}
+          <span>{mb.cta}</span>
+          <ArrowRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0" />
         </Link>
       </div>
     </div>

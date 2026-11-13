@@ -7,6 +7,7 @@ import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate"
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations } from "@/lib/i18n/translations";
+import { DURATION, useCalmReducedMotion } from "@/lib/motion/tokens";
 
 function useSafeLanguage() {
   try {
@@ -69,6 +70,8 @@ export function UniversalEmergencyBanner({
   const chrome = getChromeCopy(lang);
 
   const [dialerOpen, setDialerOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
+  const reducedMotion = useCalmReducedMotion();
   const dismissed = useSyncExternalStore(
     subscribe,
     () => dismissedThisView || readDismissed(),
@@ -81,45 +84,61 @@ export function UniversalEmergencyBanner({
 
   const dark = tone === "dark";
 
+  // Closing folds the line away (height and opacity) before it is removed, so the header below
+  // eases up instead of jumping by the strip's height. Instant under reduced or calm motion.
+  const handleDismiss = () => {
+    if (reducedMotion) {
+      dismiss();
+      return;
+    }
+    setClosing(true);
+    window.setTimeout(dismiss, DURATION.base * 1000);
+  };
+
   return (
     <>
-      <aside
-        aria-label={e.bannerAriaLabel}
-        className={`emergency-banner border-b transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none ${
-          dark ? "border-white/10 text-paper/75" : "border-border text-muted-foreground"
-        }`}
-      >
-        <Container size={size} className="flex min-h-[2rem] items-center gap-2 py-1 text-[13px] leading-snug">
-          <PhoneIcon className={`h-3 w-3 shrink-0 ${dark ? "text-paper/70" : "text-primary"}`} aria-hidden="true" />
-          <p className="min-w-0 leading-snug">
-            <span className="md:hidden">{chrome.emergencyQuestion}</span>
-            <span className="hidden md:inline">{e.bannerText}</span>
-          </p>
-          <button
-            type="button"
-            onClick={() => setDialerOpen(true)}
-            className={`inline-flex h-7 shrink-0 items-center whitespace-nowrap rounded-md px-1.5 font-semibold underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
-              dark
-                ? "text-paper decoration-paper/40 hover:decoration-paper focus-visible:outline-paper"
-                : "text-primary decoration-primary/35 hover:decoration-primary focus-visible:outline-ring"
+      {/* The header measures `.emergency-banner` to publish its height, so it sits on the folding wrapper. */}
+      <div className="emergency-banner calm-collapse" data-open={closing ? "false" : "true"}>
+        <div className="calm-collapse-inner">
+          <aside
+            aria-label={e.bannerAriaLabel}
+            className={`border-b transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none ${
+              dark ? "border-white/10 text-paper/75" : "border-border text-muted-foreground"
             }`}
           >
-            {e.call112}
-          </button>
-          <button
-            type="button"
-            onClick={dismiss}
-            aria-label={e.dismissBannerAria}
-            className={`-mr-1.5 ml-auto inline-flex h-7 w-7 shrink-0 items-center justify-center whitespace-nowrap rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
-              dark
-                ? "text-paper/60 hover:bg-white/10 hover:text-paper focus-visible:outline-paper"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-ring"
-            }`}
-          >
-            <CloseIcon className="h-3.5 w-3.5" />
-          </button>
-        </Container>
-      </aside>
+            <Container size={size} className="flex min-h-[2rem] items-center gap-2 py-1 text-[13px] leading-snug">
+              <PhoneIcon className={`h-3 w-3 shrink-0 ${dark ? "text-paper/70" : "text-primary"}`} aria-hidden="true" />
+              <p className="min-w-0 leading-snug">
+                <span className="md:hidden">{chrome.emergencyQuestion}</span>
+                <span className="hidden md:inline">{e.bannerText}</span>
+              </p>
+              <button
+                type="button"
+                onClick={() => setDialerOpen(true)}
+                className={`${dark ? "press-on-dark" : "press-row"} inline-flex h-7 shrink-0 items-center whitespace-nowrap rounded-md px-1.5 font-semibold underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
+                  dark
+                    ? "text-paper decoration-paper/40 hover:decoration-paper focus-visible:outline-paper"
+                    : "text-primary decoration-primary/35 hover:decoration-primary focus-visible:outline-ring"
+                }`}
+              >
+                {e.call112}
+              </button>
+              <button
+                type="button"
+                onClick={handleDismiss}
+                aria-label={e.dismissBannerAria}
+                className={`${dark ? "press-on-dark" : "press-row"} -mr-1.5 ml-auto inline-flex h-7 w-7 shrink-0 items-center justify-center whitespace-nowrap rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
+                  dark
+                    ? "text-paper/60 hover:bg-white/10 hover:text-paper focus-visible:outline-paper"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-ring"
+                }`}
+              >
+                <CloseIcon className="h-3.5 w-3.5" />
+              </button>
+            </Container>
+          </aside>
+        </div>
+      </div>
 
       <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} />
     </>

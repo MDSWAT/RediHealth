@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { ChevronDownIcon, CloseIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import {
@@ -244,7 +244,7 @@ export function ComfortMenu({
 
   const controlsBody = (
     <div className="space-y-3.5 text-left">
-      <div>
+      <div style={{ "--i": 0 } as CSSProperties} className={cn(isOpen && "list-in")}>
         <p className="text-xs font-semibold text-muted-foreground dark:text-mist">{copy.textSizeLabel}</p>
         <div role="group" aria-label={copy.textSizeLabel} className="mt-1.5 grid grid-cols-3 gap-1.5">
           {scaleOptions.map((option) => {
@@ -270,7 +270,7 @@ export function ComfortMenu({
         </div>
       </div>
 
-      <div>
+      <div style={{ "--i": 1 } as CSSProperties} className={cn(isOpen && "list-in")}>
         <p className="text-xs font-semibold text-muted-foreground dark:text-mist">{copy.explanationLabel}</p>
         <div role="group" aria-label={copy.explanationLabel} className="mt-1.5 grid grid-cols-2 gap-1.5">
           {(
@@ -300,7 +300,7 @@ export function ComfortMenu({
         </div>
       </div>
 
-      <div className="pt-0.5">
+      <div style={{ "--i": 2 } as CSSProperties} className={cn(isOpen && "list-in", "pt-0.5")}>
         <button
           type="button"
           role="switch"
@@ -324,11 +324,17 @@ export function ComfortMenu({
           <span
             aria-hidden="true"
             className={cn(
-              "inline-flex h-6 w-11 shrink-0 items-center rounded-md p-0.5 transition-colors duration-(--dur-fast) motion-reduce:transition-none",
-              calmMotion ? "bg-sapphire justify-end" : "bg-ink-950/20 justify-start dark:bg-white/25",
+              "inline-flex h-6 w-11 shrink-0 items-center justify-start rounded-md p-0.5 transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+              calmMotion ? "bg-sapphire" : "bg-ink-950/20 dark:bg-white/25",
             )}
           >
-            <span className="h-5 w-5 rounded-sm bg-white shadow-xs" />
+            {/* The thumb travels the track (20px) rather than jumping between ends. */}
+            <span
+              className={cn(
+                "h-5 w-5 rounded-sm bg-white shadow-xs transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                calmMotion ? "translate-x-5" : "translate-x-0",
+              )}
+            />
           </span>
         </button>
       </div>
@@ -477,7 +483,7 @@ export function ComfortMenu({
           isOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1.5 opacity-0",
         )}
       >
-        <div className="w-auto rounded-2xl border border-stone-200/90 bg-card/98 p-4 text-foreground shadow-xl shadow-ink-950/12 backdrop-blur-md sm:w-84 dark:border-stone-800 dark:bg-ink-900/98 dark:text-paper dark:shadow-black/45">
+        <div className="w-auto rounded-(--radius-surface) border border-border bg-card p-4 text-foreground shadow-(--shadow-card-hover) sm:w-84 dark:border-white/10 dark:bg-ink-900 dark:text-paper">
           <div className="mb-3 flex items-center justify-between gap-2 border-b border-border/70 pb-2.5 dark:border-white/10">
             <h2 className="text-sm font-semibold text-foreground dark:text-paper">{copy.title}</h2>
             <button

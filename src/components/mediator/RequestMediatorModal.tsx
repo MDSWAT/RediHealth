@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useReadAloud } from "@/components/health-check/readingTools";
-import { AlertCircleIcon, CloseIcon, LockIcon, VolumeIcon } from "@/components/ui/icons";
+import { CloseIcon, LockIcon, VolumeIcon } from "@/components/ui/icons";
+import styles from "./RequestMediatorModal.module.css";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
@@ -366,8 +367,8 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
   };
 
   const fieldClass =
-    "mt-1.5 block min-h-11 w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground " +
-    "placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
+    "field-focus mt-1.5 block min-h-11 w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground " +
+    "placeholder:text-muted-foreground focus:outline-none sm:text-sm";
   const bigFieldClass = fieldClass.replace("min-h-11", "min-h-12").replace("text-base", "text-base");
   const labelClass = "block text-sm font-medium text-foreground";
 
@@ -376,13 +377,13 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
       role="dialog"
       aria-modal="true"
       aria-labelledby="request-mediator-title"
-      className="fhs-fade fixed inset-0 z-50 flex items-end justify-center bg-slate-950/50 sm:items-center sm:p-4"
+      className="scrim-in fixed inset-0 z-50 flex items-end justify-center bg-slate-950/50 sm:items-center sm:p-4"
     >
       <div className="fixed inset-0 -z-10" onClick={onClose} aria-hidden="true" />
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="fhs-enter relative flex max-h-[92dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-xl bg-card shadow-xl focus:outline-none sm:max-h-[88dvh] sm:rounded-xl"
+        className={`${styles.panel} relative flex max-h-[92dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-xl bg-card shadow-xl focus:outline-none sm:max-h-[88dvh] sm:rounded-xl`}
       >
         <div className="flex shrink-0 items-start justify-between gap-4 border-b border-border px-5 pb-4 pt-5 sm:px-7">
           <h2 id="request-mediator-title" className="text-lg font-semibold tracking-tight text-foreground">
@@ -409,7 +410,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
         </div>
 
         {trackingCode !== null ? (
-          <div className="fhs-enter overflow-y-auto px-5 py-6 sm:px-7">
+          <div className="swap-in overflow-y-auto px-5 py-6 sm:px-7">
             <p className="text-base leading-relaxed text-muted-foreground">{copy.successBody}</p>
             {trackingCode ? (
               <p className="mt-5 text-sm text-muted-foreground">
@@ -431,9 +432,8 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
               <p className="text-sm leading-relaxed text-muted-foreground">{copy.subtitle}</p>
 
               {errorMessage ? (
-                <p role="alert" className="fhs-fade flex items-start gap-2 rounded-lg border border-primary/20 bg-primary-soft px-3 py-2.5 text-sm text-foreground">
-                  <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                  <span>{errorMessage}</span>
+                <p role="alert" className="swap-in border-l-2 border-primary py-0.5 pl-3 text-sm font-medium leading-relaxed text-foreground">
+                  {errorMessage}
                 </p>
               ) : null}
 

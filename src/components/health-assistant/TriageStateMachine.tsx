@@ -385,7 +385,7 @@ export function TriageStateMachine({
                 <span>{copy.machine.back}</span>
               </button>
               <span className="shrink-0 whitespace-nowrap text-xs font-medium text-muted-foreground tabular-nums sm:text-sm">
-                <span aria-hidden="true" className="sm:hidden">
+                <span key={displayStep} aria-hidden="true" className="swap-in inline-block sm:hidden">
                   {displayStep} / {totalSteps}
                 </span>
                 <span className="sr-only sm:not-sr-only">{stepLabel}</span>
@@ -418,9 +418,10 @@ export function TriageStateMachine({
           aria-valuemax={totalSteps}
           aria-valuetext={stepLabel}
         >
+          {/* Fills with a long-tailed ease on the compositor (scaleX), never a width relayout. */}
           <div
-            className="h-full bg-sapphire transition-[width] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none dark:bg-sapphire-border"
-            style={{ width: `${(displayStep / totalSteps) * 100}%` }}
+            className="h-full w-full origin-left bg-sapphire transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none rtl:origin-right dark:bg-sapphire-border"
+            style={{ transform: `scaleX(${displayStep / totalSteps})` }}
           />
         </div>
       </header>
@@ -433,7 +434,7 @@ export function TriageStateMachine({
           >
             <ol className="flex items-center gap-x-1 text-xs text-muted-foreground sm:text-[0.8125rem]">
               {trailItems.map((item, index) => (
-                <li key={item.key} className="flex shrink-0 items-center">
+                <li key={item.key} className="swap-in flex shrink-0 items-center">
                   {index > 0 && (
                     <span aria-hidden="true" className="mx-1 text-muted-foreground/50">
                       ›
@@ -442,9 +443,9 @@ export function TriageStateMachine({
                   <button
                     type="button"
                     onClick={() => handleTrailSelect(item.action, item.stepsBack)}
-                    className="-my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-1.5 py-1.5 font-medium text-sapphire press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="group -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-1.5 py-1.5 font-medium text-sapphire press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <span>{item.label}</span>
+                    <span className="link-draw">{item.label}</span>
                   </button>
                 </li>
               ))}

@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
@@ -89,22 +90,26 @@ export default function NotFound() {
           </div>
           <nav
             aria-label={page.title}
-            className="mt-6 grid grid-cols-1 gap-2.5 border-t border-border pt-6 sm:grid-cols-2"
+            className="relative mt-8 grid grid-cols-1 gap-2.5 pt-6 sm:grid-cols-2"
           >
+            <span aria-hidden="true" className="rule-draw absolute inset-x-0 top-0 h-px bg-border" style={{ animationDelay: "420ms" }} />
             {[
               { href: "/health-assistant", label: rescue.assistantLabel },
               { href: "/medic-online", label: rescue.doctorLabel },
               { href: "/find-help", label: rescue.findHelpLabel },
               { href: "/health-information", label: page.exploreHealth },
-            ].map((item) => (
+            ].map((item, index) => (
+              // The four ways on arrive one after another once the route has drawn; each is a card
+              // whose label underline draws and whose arrow hands off on hover.
               <Link
                 key={item.href}
                 href={withLangPrefix(item.href, lang)}
-                className="group press-row inline-flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                className="card-interactive list-in group press-row inline-flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-3 text-left text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                style={{ "--i": index + 4 } as CSSProperties}
               >
-                <span>{item.label}</span>
+                <span className="link-draw">{item.label}</span>
                 <ArrowRightIcon
-                  className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-sapphire motion-reduce:transform-none motion-reduce:transition-none"
+                  className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
                   aria-hidden="true"
                 />
               </Link>

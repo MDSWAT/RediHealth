@@ -134,6 +134,14 @@ function pickSpeechLang(lang: Lang): string {
   );
 }
 
+/*
+ * The sentence being read takes a soft tint and a 2px sapphire rule that draws from the start of
+ * the line (a sized background, so it follows wrapped lines), and lets go the same way. Under
+ * reduced motion it simply appears.
+ */
+const SENTENCE_CLASS =
+  "box-decoration-clone rounded-xs bg-[linear-gradient(var(--color-sapphire),var(--color-sapphire))] bg-no-repeat bg-position-[0_100%] transition-[background-color,background-size] duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none";
+
 export function SynchronizedSentenceReader({
   paragraphs,
   activeSentenceIndex = null,
@@ -325,14 +333,14 @@ export function SynchronizedSentenceReader({
                         }
                       : undefined
                   }
-                  className={`box-decoration-clone rounded-xs transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
+                  className={`${SENTENCE_CLASS} ${
                     sentencesClickable ? "cursor-pointer" : ""
                   } ${
                     isActive
-                      ? "bg-sapphire-soft text-foreground shadow-[inset_0_-2px_0_0_var(--color-sapphire)]"
+                      ? "bg-sapphire-soft bg-size-[100%_2px] text-foreground"
                       : sentencesClickable
-                        ? "hover:bg-muted/60"
-                        : ""
+                        ? "bg-size-[0%_2px] hover:bg-muted/60"
+                        : "bg-size-[0%_2px]"
                   }`}
                   title={
                     sentencesClickable
@@ -383,7 +391,7 @@ export function SynchronizedSentenceReader({
       {activePopoverTerm && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/40 sm:bg-transparent"
+            className="hh-fade fixed inset-0 z-40 bg-black/40 sm:bg-transparent"
             onClick={() => setActivePopoverTerm(null)}
             aria-hidden="true"
           />

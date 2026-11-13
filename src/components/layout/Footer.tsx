@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
+import { Reveal } from "@/components/ui/Reveal";
 import { PhoneIcon } from "@/components/ui/icons";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { EmergencySignsModal } from "@/components/emergency/EmergencySignsModal";
@@ -82,24 +83,28 @@ export function Footer() {
               <p className="text-body text-mist">{tFooter.brandDescription}</p>
             </div>
 
-            <nav aria-label={chrome.footerNav} className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
-              {columns.map((column) => (
-                <div key={column.heading} className="min-w-0">
-                  <h2 className="text-body font-semibold leading-snug text-paper">{column.heading}</h2>
-                  <ul className="mt-2">
-                    {column.links.map((link) => (
-                      <li key={link.href}>
-                        <Link
-                          href={withLangPrefix(link.href, lang)}
-                          className="hero-focus -mx-2 flex min-h-11 items-center rounded-(--radius-control) px-2 py-2.5 text-body leading-snug break-words text-mist press-on-dark hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <nav aria-label={chrome.footerNav}>
+              {/* The four columns arrive one after another as the footer comes into view. */}
+              <Reveal stagger className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
+                {columns.map((column) => (
+                  <div key={column.heading} className="min-w-0">
+                    <h2 className="text-body font-semibold leading-snug text-paper">{column.heading}</h2>
+                    <ul className="mt-2">
+                      {column.links.map((link) => (
+                        <li key={link.href}>
+                          <Link
+                            href={withLangPrefix(link.href, lang)}
+                            className="group hero-focus -mx-2 flex min-h-11 items-center rounded-(--radius-control) px-2 py-2.5 text-body leading-snug break-words text-mist press-on-dark hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+                          >
+                            {/* The underline draws under the label on hover or keyboard focus. */}
+                            <span className="link-draw [box-decoration-break:clone]">{link.label}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </Reveal>
             </nav>
           </div>
 

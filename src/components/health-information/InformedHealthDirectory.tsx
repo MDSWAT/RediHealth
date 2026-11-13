@@ -2,7 +2,7 @@
 import { healthContentLanguageNotice } from "@/lib/i18n/health-content-language";
 
 
-import { useId, useState } from "react";
+import { useId, useState, type CSSProperties } from "react";
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon, SearchIcon, TagIcon, VolumeIcon } from "@/components/ui/icons";
 import { FilterDropdown, FilterMenuOption } from "@/components/ui/FilterDropdown";
@@ -97,18 +97,19 @@ export function InformedHealthDirectory() {
 
         <p role="status" aria-live="polite" className="mt-4 text-sm text-muted-foreground">{copy.results(results.length)}</p>
         {results.length ? (
-          <ul className="mt-2 grid gap-x-8 md:grid-cols-2 xl:grid-cols-3">
-            {visible.map(area => (
-              <li key={area.id} className="border-b border-border">
-                <Link href={withLangPrefix(healthSummaryPath(area.id), lang)} className="group flex min-h-16 items-center justify-between gap-4 py-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring">
+          // Keyed by group: a new filter deals its rows in, in order.
+          <ul key={group} className="mt-2 grid gap-x-8 md:grid-cols-2 xl:grid-cols-3">
+            {visible.map((area, index) => (
+              <li key={area.id} className="list-in border-b border-border" style={{ "--i": index } as CSSProperties}>
+                <Link href={withLangPrefix(healthSummaryPath(area.id), lang)} className="press-row group flex min-h-16 items-center justify-between gap-4 py-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring">
                   <span className="min-w-0">
-                    <span className="block text-base font-semibold leading-snug underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire group-hover:underline">{area.titles[lang]}</span>
+                    <span className="block text-base font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire"><span className="link-draw box-decoration-clone">{area.titles[lang]}</span></span>
                     <span className="mt-1 inline-flex items-center gap-1.5 text-xs leading-normal text-muted-foreground">
                       <VolumeIcon className="h-3.5 w-3.5 shrink-0 text-sapphire/80" aria-hidden="true" />
                       <span>{healthSummaryCopy[lang].read}</span>
                     </span>
                   </span>
-                  <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-sapphire motion-reduce:transition-none" aria-hidden="true" />
+                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none" aria-hidden="true" />
                 </Link>
               </li>
             ))}

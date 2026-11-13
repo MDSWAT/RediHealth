@@ -80,7 +80,10 @@ export function MythCardCarousel({
         <div className="flex shrink-0 items-center gap-2.5">
           <span className="text-meta tabular-nums text-muted-foreground dark:text-mist" aria-live="polite">
             <span className="sr-only">{t.quiz.mythProgressPrefix} </span>
-            <span className="font-semibold text-foreground dark:text-paper">{currentIndex + 1}</span>
+            {/* Keyed by position, so the figure settles in as the card changes. */}
+            <span key={currentIndex} className="swap-in inline-block font-semibold text-foreground dark:text-paper">
+              {currentIndex + 1}
+            </span>
             <span aria-hidden="true" className="mx-1 text-muted-foreground/60">
               /
             </span>
@@ -106,10 +109,12 @@ export function MythCardCarousel({
               >
                 <span
                   className={cn(
-                    "relative block w-full overflow-hidden rounded-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-focus-visible/seg:ring-2 group-focus-visible/seg:ring-ring dark:group-focus-visible/seg:ring-paper",
+                    // One height for every segment: the current one is drawn at full thickness and the
+                    // rest at two thirds, so the marker eases along the row instead of snapping.
+                    "relative block h-1.5 w-full overflow-hidden rounded-sm transition-[background-color,scale] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none group-focus-visible/seg:ring-2 group-focus-visible/seg:ring-ring dark:group-focus-visible/seg:ring-paper",
                     isCurrent
-                      ? "h-1.5 bg-foreground dark:bg-paper"
-                      : "h-1 bg-sapphire-border/90 group-hover/seg:bg-foreground/45 dark:bg-white/25 dark:group-hover/seg:bg-white/50",
+                      ? "bg-foreground dark:bg-paper"
+                      : "scale-y-[0.67] bg-sapphire-border/90 group-focus-visible/seg:scale-y-100 group-hover/seg:bg-foreground/45 dark:bg-white/25 dark:group-hover/seg:bg-white/50",
                   )}
                 >
                   <span

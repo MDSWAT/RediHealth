@@ -25,12 +25,11 @@ const TOO_MANY: Record<Lang, string> = {
   rom: "But zumavimata. Azhuker zalag thaj zumav palem.",
 };
 
+// field-focus: the edge darkens on hover and focus eases in a sapphire edge with a soft halo
+// (aria-invalid aware). Static under reduced motion and Calm Motion.
 const inputClass =
-  "mt-1.5 block h-12 w-full rounded-lg border border-border-control bg-card px-3.5 text-base text-foreground " +
-  "transition-[border-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 motion-reduce:transition-none " +
-  "placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 " +
-  "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
-  "aria-[invalid=true]:border-amber-care";
+  "field-focus mt-1.5 block h-12 w-full rounded-lg border border-border-control bg-card px-3.5 text-base text-foreground " +
+  "placeholder:text-muted-foreground";
 
 export function SignInForm({
   googleConfigured,
@@ -174,7 +173,7 @@ export function SignInForm({
               placeholder={form.emailPlaceholder}
             />
             {error ? (
-              <p id="email-error" role="alert" className="mt-2 text-sm text-amber-care dark:text-amber-care-border">
+              <p id="email-error" role="alert" className="swap-in mt-2 text-sm text-amber-care dark:text-amber-care-border">
                 {error}
               </p>
             ) : (
@@ -218,7 +217,7 @@ export function SignInForm({
               placeholder="123456"
             />
             {error ? (
-              <p id="code-error" role="alert" className="mt-2 text-sm text-amber-care dark:text-amber-care-border">
+              <p id="code-error" role="alert" className="swap-in mt-2 text-sm text-amber-care dark:text-amber-care-border">
                 {error}
               </p>
             ) : null}
@@ -262,12 +261,12 @@ export function SignInForm({
           placeholder={form.portalRecoveryEmailPlaceholder}
         />
         {portalRecoveryError ? (
-          <p id="portal-recovery-error" className="mt-2 text-sm text-amber-care dark:text-amber-care-border" role="alert">
+          <p id="portal-recovery-error" className="swap-in mt-2 text-sm text-amber-care dark:text-amber-care-border" role="alert">
             {portalRecoveryError}
           </p>
         ) : null}
         {portalRecoveryMessage ? (
-          <p id="portal-recovery-message" className="mt-2 text-sm text-muted-foreground" role="status">
+          <p id="portal-recovery-message" className="swap-in mt-2 text-sm text-muted-foreground" role="status">
             {portalRecoveryMessage}
           </p>
         ) : null}

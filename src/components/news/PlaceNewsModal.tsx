@@ -4,7 +4,7 @@ import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRightIcon, CheckIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
 import {
   ALL_ALBANIA,
   ALL_CROATIA,
@@ -401,7 +401,14 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
                     >
                       {x.count}
                     </span>
-                    {selected && <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 bg-foreground" />}
+                    {/* The marker draws out from the centre under the chosen tab instead of jumping. */}
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "absolute inset-x-0 bottom-0 h-0.5 origin-center bg-foreground transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+                        selected ? "scale-x-100" : "scale-x-0",
+                      )}
+                    />
                   </button>
                 );
               })}
@@ -422,7 +429,8 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
               <p className="mt-1 text-sm text-muted-foreground">{np.emptySubtitle}</p>
             </div>
           ) : (
-            <>
+            // Keyed on the tab: the filtered list replaces the last one in place, items in order.
+            <div key={tab} className="swap-in">
               {groups.local.length === 0 && tab === "all" && (
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.noLocal(noteName)}</p>
               )}
@@ -432,7 +440,7 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
               {national.length > 0 && (
                 <NewsList heading={showHeadings ? c.national : undefined} items={national} showRegion={false} {...itemProps} />
               )}
-            </>
+            </div>
           )}
         </div>
       </div>
@@ -529,7 +537,7 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
       <h4 lang={a.language} className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-pretty">
         <Link
           href={withLangPrefix(`${basePath}/${a.slug}`, lang)}
-          className="outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-2 focus-visible:after:ring-ring"
+          className="link-draw outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-2 focus-visible:after:ring-ring"
         >
           {a.title}
         </Link>
@@ -562,7 +570,7 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
       <div className="mt-3 flex justify-end text-xs">
         <span aria-hidden="true" className="inline-flex shrink-0 items-center gap-1 font-semibold text-sapphire dark:text-sapphire-border">
           {c.read}
-          <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+          <ArrowRightIcon className="arrow-travel h-3.5 w-3.5" />
         </span>
       </div>
     </article>
@@ -597,14 +605,16 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
       {a.preventiveSteps && a.preventiveSteps.length > 0 && (
         <>
           <p className="mt-4 text-xs font-semibold text-foreground">{c.measures}</p>
-          <ul lang={a.language} className="mt-2 space-y-1.5 text-sm text-foreground">
+          <ol lang={a.language} className="mt-2 space-y-1.5 text-sm text-foreground">
             {a.preventiveSteps.map((step, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <CheckIcon aria-hidden="true" className={cn("mt-0.5 h-4 w-4 shrink-0", tone.icon)} />
+              <li key={i} className="flex items-baseline gap-2.5">
+                <span aria-hidden="true" className={cn("w-3 shrink-0 text-right text-xs font-semibold tabular-nums", tone.icon)}>
+                  {i + 1}
+                </span>
                 <span>{step}</span>
               </li>
             ))}
-          </ul>
+          </ol>
         </>
       )}
 
@@ -622,7 +632,7 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
             className="group inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {c.readGuide}
-            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+            <ArrowRightIcon aria-hidden="true" className="arrow-travel h-3.5 w-3.5 shrink-0" />
           </Link>
         </div>
       </div>

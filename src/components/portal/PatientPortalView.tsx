@@ -1,13 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import {
-  AlertCircleIcon,
   ArrowLeftIcon,
   BellIcon,
   CalendarIcon,
-  CheckCircleIcon,
   ChevronRightIcon,
   ClockIcon,
   EditIcon,
@@ -714,7 +712,10 @@ const portalTranslations = {
 
 const labelClass = "mb-1.5 block text-sm font-semibold text-foreground";
 const fieldClass =
-  "w-full rounded-lg border border-border-control bg-background text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
+  "field-focus w-full rounded-lg border border-border-control bg-background text-base text-foreground placeholder:text-muted-foreground sm:text-sm";
+// An empty list says so in a quiet framed block, so it reads as a state and not as missing content.
+const emptyStateClass =
+  "swap-in rounded-lg border border-dashed border-border-control px-4 py-6 text-center text-sm leading-relaxed text-muted-foreground";
 const fileClass =
   "w-full text-sm text-foreground file:mr-3 file:min-h-[40px] file:rounded-lg file:border-0 file:bg-muted file:px-3 file:text-sm file:font-semibold file:text-foreground hover:file:bg-muted/70";
 const primaryButton =
@@ -922,9 +923,8 @@ export function PatientPortalView({
           </header>
 
           {errorMessage ? (
-            <p role="alert" className="flex items-start gap-2 border-b border-amber-care-border bg-amber-care-soft/40 px-4 py-3 text-sm font-medium text-foreground dark:bg-amber-care/10 sm:px-8">
-              <AlertCircleIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
-              <span>{errorMessage}</span>
+            <p key={errorMessage} role="alert" className="swap-in border-b border-amber-care-border bg-amber-care-soft/40 px-4 py-3 text-sm font-medium text-foreground dark:bg-amber-care/10 sm:px-8">
+              {errorMessage}
             </p>
           ) : null}
 
@@ -932,8 +932,8 @@ export function PatientPortalView({
             <section aria-label={t.homeIntro} className="px-4 py-5 sm:px-8 sm:py-6">
               <p className="text-sm text-muted-foreground">{t.homeIntro}</p>
               <ul className="mt-3 divide-y divide-border border-y border-border">
-                {homeActions.map(({ key, Icon, title, hint, onClick }) => (
-                  <li key={key}>
+                {homeActions.map(({ key, Icon, title, hint, onClick }, index) => (
+                  <li key={key} className="list-in" style={{ "--i": index } as CSSProperties}>
                     <button
                       type="button"
                       onClick={onClick}
@@ -941,10 +941,10 @@ export function PatientPortalView({
                     >
                       <Icon aria-hidden="true" className="h-5 w-5 shrink-0 text-sapphire" />
                       <span className="min-w-0 flex-1">
-                        <span className="block font-semibold text-foreground">{title}</span>
+                        <span className="block font-semibold text-foreground"><span className="link-draw">{title}</span></span>
                         <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{hint}</span>
                       </span>
-                      <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                      <ChevronRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground" />
                     </button>
                   </li>
                 ))}
@@ -953,14 +953,13 @@ export function PatientPortalView({
           ) : null}
 
           {activeTab === "actions" && activeAction === "symptoms" ? (
-            <section className="px-4 py-5 sm:px-8 sm:py-6">
+            <section className="swap-in px-4 py-5 sm:px-8 sm:py-6">
               <SectionTitle title={t.symptomsTitle} />
               <p className="mb-4 text-sm text-muted-foreground">{t.actionHint}</p>
 
               {symptomsSavedMsg ? (
-                <p role="status" className="mb-4 flex items-center gap-2 text-sm text-foreground">
-                  <CheckCircleIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-sapphire" />
-                  <span>{t.symptomsSaved}</span>
+                <p role="status" className="swap-in mb-4 border-l-2 border-sapphire pl-3 text-sm font-medium text-foreground dark:border-sapphire-border">
+                  {t.symptomsSaved}
                 </p>
               ) : null}
 
@@ -1002,7 +1001,7 @@ export function PatientPortalView({
           ) : null}
 
           {activeTab === "actions" && activeAction === "followups" ? (
-            <section className="px-4 py-5 sm:px-8 sm:py-6">
+            <section className="swap-in px-4 py-5 sm:px-8 sm:py-6">
               <div className="mb-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <SectionTitle title={t.followupsTitle} count={sortedFollowups.length} />
                 <button
@@ -1017,7 +1016,7 @@ export function PatientPortalView({
               </div>
 
               {showAddFollowup ? (
-                <form onSubmit={handleAddFollowup} className="mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-sm">
+                <form onSubmit={handleAddFollowup} className="swap-in mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-sm">
                   <div>
                     <label htmlFor="portal-followup-title" className={labelClass}>{t.followupTitle}</label>
                     <input
@@ -1094,7 +1093,7 @@ export function PatientPortalView({
                       {item.status !== "completed" ? (
                         <div className="mt-3 pl-7">
                           {completingFollowupId === item.id ? (
-                            <form onSubmit={handleCompleteFollowup} className="grid grid-cols-1 gap-4">
+                            <form onSubmit={handleCompleteFollowup} className="swap-in grid grid-cols-1 gap-4">
                               <div>
                                 <label htmlFor={`portal-complete-notes-${item.id}`} className={labelClass}>{t.completionNotes}</label>
                                 <textarea
@@ -1200,13 +1199,13 @@ export function PatientPortalView({
                   ))}
                 </ul>
               ) : (
-                <p className="text-sm text-muted-foreground">{t.noFollowups}</p>
+                <p className={emptyStateClass}>{t.noFollowups}</p>
               )}
             </section>
           ) : null}
 
           {activeTab === "plan" ? (
-            <section className="px-4 py-5 sm:px-8 sm:py-6">
+            <section className="swap-in px-4 py-5 sm:px-8 sm:py-6">
               <SectionTitle title={treatmentTranslations[lang].title} />
               {(() => {
                 const planEntries = sortTreatments(getTreatmentEntries(patient.treatment_plan));
@@ -1306,8 +1305,8 @@ export function PatientPortalView({
 
               {patient.photos && patient.photos.length > 0 ? (
                 <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                  {patient.photos.map((item) => (
-                    <li key={item.id} className="overflow-hidden rounded-lg border border-border bg-card">
+                  {patient.photos.map((item, index) => (
+                    <li key={item.id} className="list-in overflow-hidden rounded-lg border border-border bg-card" style={{ "--i": index } as CSSProperties}>
                       <div className="aspect-square w-full overflow-hidden bg-muted">
                         <img src={item.data_url} alt={item.name} className="h-full w-full object-cover" />
                       </div>
@@ -1320,13 +1319,13 @@ export function PatientPortalView({
                   ))}
                 </ul>
               ) : (
-                <p className="text-sm text-muted-foreground">{t.noPhotos}</p>
+                <p className={emptyStateClass}>{t.noPhotos}</p>
               )}
             </section>
           ) : null}
 
           {activeTab === "notes" ? (
-            <section className="px-4 py-5 sm:px-8 sm:py-6">
+            <section className="swap-in px-4 py-5 sm:px-8 sm:py-6">
               <SectionTitle title={t.notesTabTitle} />
 
               {notesLog.length > 0 ? (
@@ -1342,7 +1341,7 @@ export function PatientPortalView({
                   ))}
                 </ul>
               ) : (
-                <p className="text-sm text-muted-foreground">{t.noNoteEntries}</p>
+                <p className={emptyStateClass}>{t.noNoteEntries}</p>
               )}
             </section>
           ) : null}

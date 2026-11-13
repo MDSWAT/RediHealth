@@ -7,6 +7,7 @@ import {
   useId,
   useRef,
   useState,
+  type CSSProperties,
   type FocusEvent,
   type KeyboardEvent as ReactKeyboardEvent,
   type MouseEvent,
@@ -265,7 +266,7 @@ export function LanguageSelector({
         {orderedLanguages.map((item, idx) => {
           const isSelected = item.code === lang;
           return (
-            <li key={item.code}>
+            <li key={item.code} style={{ "--i": idx } as CSSProperties} className={cn(isOpen && "list-in")}>
               <a
                 ref={(el) => {
                   optionRefs.current[idx] = el;
@@ -290,7 +291,10 @@ export function LanguageSelector({
         })}
       </ul>
 
-      <div className="mt-1.5 border-t border-border pt-1.5 dark:border-white/10">
+      <div
+        style={{ "--i": orderedLanguages.length } as CSSProperties}
+        className={cn(isOpen && "list-in", "mt-1.5 border-t border-border pt-1.5 dark:border-white/10")}
+      >
         <Link
           href={glossaryHref}
           onClick={() => {
@@ -363,7 +367,7 @@ export function LanguageSelector({
                 {orderedLanguages.map((item, idx) => {
                   const isSelected = item.code === lang;
                   return (
-                    <li key={item.code}>
+                    <li key={item.code} style={{ "--i": idx } as CSSProperties} className={cn(isOpen && "list-in")}>
                       <a
                         ref={(el) => {
                           optionRefs.current[idx] = el;
@@ -497,7 +501,7 @@ export function LanguageSelector({
         id={panelId}
         inert={!isOpen}
         className={cn(
-          "absolute right-0 top-full z-50 mt-2 w-72 rounded-2xl border border-stone-200/90 bg-card/98 p-2 shadow-xl shadow-ink-950/12 backdrop-blur-md dark:border-stone-800 dark:bg-ink-900/98 dark:shadow-black/45",
+          "absolute right-0 top-full z-50 mt-2 w-72 rounded-(--radius-surface) border border-border bg-card p-2 shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-900",
           "transition-[opacity,translate,visibility] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
           isOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
         )}

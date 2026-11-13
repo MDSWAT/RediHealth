@@ -1,0 +1,70 @@
+/*
+ * Health topics spotlight (desktop). Only clip, opacity, colour and background-size move here,
+ * on the shared tokens; all of it is static under reduced motion and in-app Calm Motion.
+ */
+
+/* The photo of the card coming in uncovers from its top edge while the card fades up. The card
+   going out keeps its photo whole until it has faded, then closes it for its next turn. */
+.photo {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path var(--dur-slower) var(--ease-out-expo) 40ms;
+}
+
+.card[data-shown="false"] .photo {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0s linear var(--dur-base);
+}
+
+/* The name of the topic on the card carries a sapphire rule under it. When the card moves on,
+   the rule retracts to the right under the old name and draws from the left under the new one. */
+.name {
+  background-image: linear-gradient(var(--color-sapphire), var(--color-sapphire));
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  background-size: 0% 2px;
+  padding-bottom: 2px;
+  transition: background-size var(--dur-slow) var(--ease-out-calm);
+}
+
+:global(.dark) .name {
+  background-image: linear-gradient(var(--color-sapphire-border), var(--color-sapphire-border));
+}
+
+.name[data-current] {
+  background-position: 0% 100%;
+  background-size: 100% 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover > .name:not([data-current]) {
+    background-position: 0% 100%;
+    background-size: 100% 1px;
+  }
+}
+
+a:focus-visible > .name:not([data-current]) {
+  background-position: 0% 100%;
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo,
+  .card[data-shown="false"] .photo {
+    clip-path: none;
+    transition: none;
+  }
+
+  .name {
+    transition: none;
+  }
+}
+
+html[data-calm-motion] .photo,
+html[data-calm-motion] .card[data-shown="false"] .photo {
+  clip-path: none;
+  transition: none;
+}
+
+html[data-calm-motion] .name {
+  transition: none;
+}

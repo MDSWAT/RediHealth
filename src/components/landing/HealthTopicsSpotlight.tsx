@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { litProgress, litTopicIndex } from "./health-topics-wheel-config";
+import styles from "./HealthTopicsSpotlight.module.css";
 
 export type SpotlightTopic = {
   slug: string;
@@ -160,12 +161,14 @@ export function HealthTopicsSpotlight({ topics, wheel, heading, children }: Heal
                 key={slug}
                 href={href}
                 inert={!shown}
+                data-shown={shown}
                 className={cn(
-                  "press-row group col-start-1 row-start-1 flex flex-col [@media(max-height:820px)]:flex-row overflow-hidden rounded-(--radius-surface) border border-sand-line bg-card transition-[opacity,translate,border-color] duration-(--dur-base) ease-(--ease-out-calm) hover:border-sapphire/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:border-white/10 dark:bg-ink-800 dark:hover:border-white/25 dark:focus-visible:ring-paper",
+                  styles.card,
+                  "surface-spotlight press-row group col-start-1 row-start-1 flex flex-col [@media(max-height:820px)]:flex-row overflow-hidden rounded-(--radius-surface) border border-sand-line bg-card shadow-(--shadow-card-rest) transition-[opacity,translate,border-color,box-shadow] duration-(--dur-base) ease-(--ease-out-calm) hover:border-sapphire/35 hover:shadow-(--shadow-card-hover) active:shadow-(--shadow-card-rest) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:border-white/10 dark:bg-ink-800 dark:hover:border-white/25 dark:focus-visible:ring-paper",
                   shown ? "opacity-100" : "pointer-events-none translate-y-2 opacity-0",
                 )}
               >
-                <div className="relative h-[clamp(8rem,calc(100svh-43rem),17.5rem)] shrink-0 overflow-hidden bg-surface-subtle [@media(max-height:820px)]:h-auto [@media(max-height:820px)]:min-h-[clamp(9rem,calc(100svh-28rem),15rem)] [@media(max-height:820px)]:w-2/5">
+                <div className={cn(styles.photo, "relative h-[clamp(8rem,calc(100svh-43rem),17.5rem)] shrink-0 overflow-hidden bg-surface-subtle [@media(max-height:820px)]:h-auto [@media(max-height:820px)]:min-h-[clamp(9rem,calc(100svh-28rem),15rem)] [@media(max-height:820px)]:w-2/5")}>
                   <Image src={image} alt="" fill sizes="(min-width: 1024px) 40vw, 1px" className="object-cover" />
                 </div>
                 <div className="flex min-w-0 flex-1 items-start gap-4 p-5 [@media(max-height:820px)]:self-center [@media(max-height:820px)]:gap-3 [@media(max-height:820px)]:p-4">
@@ -177,13 +180,13 @@ export function HealthTopicsSpotlight({ topics, wheel, heading, children }: Heal
                   </span>
                   <div className="min-w-0 flex-1">
                     <h3 className="text-balance text-xl font-semibold leading-snug text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper dark:group-hover:text-sapphire-border">
-                      {title}
+                      <span className="link-draw">{title}</span>
                     </h3>
                     <p className="mt-1 text-pretty text-body text-muted-foreground dark:text-mist">{description}</p>
                   </div>
                   <ArrowRightIcon
                     aria-hidden="true"
-                    className="mt-1 h-5 w-5 shrink-0 text-sapphire transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none dark:text-paper"
+                    className="arrow-travel mt-1 h-5 w-5 shrink-0 text-sapphire dark:text-paper"
                   />
                 </div>
               </Link>
@@ -191,7 +194,7 @@ export function HealthTopicsSpotlight({ topics, wheel, heading, children }: Heal
           })}
         </div>
 
-        {/* Every topic by name, in wheel order. The one on the card is set in bold. */}
+        {/* Every topic by name, in wheel order. The one on the card is set in bold over a sapphire rule. */}
         <ul className="mt-[clamp(0.5rem,2svh,1rem)] grid grid-cols-2 gap-x-6">
           {topics.map(({ slug, title, href }, index) => {
             const current = index === active;
@@ -208,7 +211,9 @@ export function HealthTopicsSpotlight({ topics, wheel, heading, children }: Heal
                       : "text-muted-foreground hover:text-foreground dark:text-mist dark:hover:text-paper",
                   )}
                 >
-                  <span className="min-w-0 wrap-break-word">{title}</span>
+                  <span className={cn(styles.name, "min-w-0 wrap-break-word")} data-current={current ? "" : undefined}>
+                    {title}
+                  </span>
                 </Link>
               </li>
             );

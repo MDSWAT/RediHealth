@@ -436,7 +436,7 @@ export function RomanesGlossaryDrawer({
 
         {/* Community lexicon specimen cards */}
         {filteredTerms.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-border bg-surface-subtle/50 px-5 py-10 text-center">
+          <div className="swap-in rounded-2xl border border-dashed border-border bg-surface-subtle/50 px-5 py-10 text-center">
             <p className="text-base text-muted-foreground">
               {pickLocale(s.emptyState, currentLang)}
             </p>
@@ -451,7 +451,8 @@ export function RomanesGlossaryDrawer({
             )}
           </div>
         ) : (
-          <ul className="space-y-3.5">
+          // Keyed by category: choosing a filter deals the matching cards in again, in order.
+          <ul key={selectedCategory} className="space-y-3.5">
             {filteredTerms.map((term, index) => {
               const translated = getTranslatedTerm(term, currentLang);
               const categoryLabel = getCategoryLabel(term, currentLang);
@@ -474,9 +475,9 @@ export function RomanesGlossaryDrawer({
               return (
                 <li
                   key={term.id}
-                  style={{ "--stagger": Math.min(index, 4) } as CSSProperties}
+                  style={{ "--i": index } as CSSProperties}
                   className={cn(
-                    "rh-dict-card overflow-hidden rounded-2xl border bg-card p-4 shadow-[var(--shadow-card-rest)] transition-shadow duration-[var(--dur-base)] hover:shadow-[var(--shadow-card-hover)] sm:p-5",
+                    "list-in overflow-hidden rounded-2xl border bg-card p-4 shadow-[var(--shadow-card-rest)] transition-shadow duration-[var(--dur-base)] hover:shadow-[var(--shadow-card-hover)] sm:p-5",
                     isEmergency ? "border-primary/35" : "border-border",
                   )}
                 >

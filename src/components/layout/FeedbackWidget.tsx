@@ -3,13 +3,13 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useId, useRef, useState, type FormEvent, type MouseEvent } from "react";
 import { usePathname } from "next/navigation";
+import styles from "@/components/layout/ChromeDialogs.module.css";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { Button } from "@/components/ui/Button";
 import {
   AlertCircleIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  CheckCircleIcon,
   CloseIcon,
   MessageDotsIcon,
   ShieldIcon,
@@ -594,7 +594,7 @@ export function FeedbackWidget() {
   }
 
   const inputBaseClass =
-    "min-h-11 w-full rounded-(--radius-control) border border-border-control bg-background px-3.5 py-2 text-base text-foreground placeholder:text-muted-foreground/80 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
+    "min-h-11 w-full rounded-(--radius-control) border border-border-control bg-background px-3.5 py-2 text-base text-foreground placeholder:text-muted-foreground/80 field-focus sm:text-sm";
 
   return (
     <>
@@ -625,7 +625,7 @@ export function FeedbackWidget() {
                     ? { opacity: 0, transition: { duration: DURATION.fast } }
                     : { opacity: 0, x: "105%", transition: { duration: 0.32, ease: EASE_IN_OUT } }
                 }
-                className="feedback-trigger pointer-events-auto group flex flex-col items-center gap-1 rounded-l-xl border border-r-0 border-sapphire/30 bg-card/95 px-1.5 py-2 text-[11px] font-semibold text-sapphire shadow-[0_8px_24px_-6px_rgba(15,23,42,0.2)] backdrop-blur-md transition-[background-color,color,border-color,padding] duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire hover:pr-2.5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:gap-1.5 sm:px-2.5 sm:py-3 sm:text-xs dark:border-white/16 dark:bg-ink-900/95 dark:text-paper dark:hover:bg-sapphire"
+                className="feedback-trigger pointer-events-auto group flex flex-col items-center gap-1 rounded-l-xl border border-r-0 border-sapphire/30 bg-card px-1.5 py-2 text-[11px] font-semibold text-sapphire shadow-[0_8px_24px_-6px_rgba(15,23,42,0.2)] transition-[background-color,color,border-color,padding] duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire hover:pr-2.5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:gap-1.5 sm:px-2.5 sm:py-3 sm:text-xs dark:border-white/16 dark:bg-ink-900 dark:text-paper dark:hover:bg-sapphire"
               >
                 <MessageDotsIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span className="[writing-mode:vertical-rl] rotate-180 tracking-wide whitespace-nowrap">
@@ -647,7 +647,7 @@ export function FeedbackWidget() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
             transition={reducedMotion ? { duration: 0 } : CLINICAL_SETTLE_SPRING}
-            className="feedback-invite-card fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 mx-auto max-w-sm overflow-hidden rounded-2xl border border-sapphire/25 bg-card/98 text-foreground shadow-[0_18px_42px_-12px_rgba(15,23,42,0.24)] backdrop-blur-md sm:inset-x-auto sm:right-3 sm:bottom-16 sm:mx-0 sm:w-[22rem] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
+            className="feedback-invite-card fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 mx-auto max-w-sm overflow-hidden rounded-2xl border border-sapphire/25 bg-card text-foreground shadow-[0_18px_42px_-12px_rgba(15,23,42,0.24)] sm:inset-x-auto sm:right-3 sm:bottom-16 sm:mx-0 sm:w-[22rem] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
           >
             <div aria-hidden="true" className="h-1 w-full bg-sapphire" />
             <div className="p-4">
@@ -687,7 +687,7 @@ export function FeedbackWidget() {
                       type="button"
                       onClick={() => openModal(score)}
                       aria-label={t.scaleValueLabels[idx]}
-                      className="flex min-h-11 items-center justify-center rounded-lg border border-border-control/80 bg-card text-sm font-semibold tabular-nums text-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/15 dark:bg-ink-800 dark:text-paper"
+                      className="press-solid flex min-h-11 items-center justify-center rounded-lg border border-border-control/80 bg-card text-sm font-semibold tabular-nums text-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/15 dark:bg-ink-800 dark:text-paper"
                     >
                       {score}
                     </button>
@@ -732,7 +732,8 @@ export function FeedbackWidget() {
           "m-0 mt-auto w-full max-w-none overflow-visible bg-transparent p-0 text-foreground",
           "sm:m-auto sm:w-[calc(100%-2rem)] sm:max-w-2xl",
           "backdrop:bg-ink-950/55 backdrop:backdrop-blur-[2px]",
-          "transition-[opacity,translate] duration-(--dur-base) ease-(--ease-out-calm)",
+          styles.backdropFade,
+          "transition-[opacity,translate] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
           "starting:open:translate-y-2 starting:open:opacity-0",
         ].join(" ")}
       >
@@ -790,11 +791,18 @@ export function FeedbackWidget() {
                         onClick={() => jumpToStep(idx)}
                         className="group py-1 focus-visible:outline-none"
                       >
+                        {/* Each segment fills from the left as the reader reaches it, and empties the same way back. */}
                         <span
-                          className={`block h-1.5 w-full rounded-xs transition-colors duration-(--dur-base) group-focus-visible:ring-2 group-focus-visible:ring-ring ${
-                            idx <= step ? "bg-sapphire" : "bg-border group-hover:bg-sapphire/35"
+                          className={`relative block h-1.5 w-full overflow-hidden rounded-xs bg-border transition-colors duration-(--dur-fast) group-focus-visible:ring-2 group-focus-visible:ring-ring motion-reduce:transition-none ${
+                            idx <= step ? "" : "group-hover:bg-sapphire/35"
                           }`}
-                        />
+                        >
+                          <span
+                            aria-hidden="true"
+                            style={{ transform: idx <= step ? "none" : "scaleX(0)" }}
+                            className="absolute inset-0 origin-left bg-sapphire transition-transform duration-(--dur-slow) ease-(--ease-out-calm) motion-reduce:transition-none"
+                          />
+                        </span>
                       </button>
                     );
                   })}
@@ -805,9 +813,8 @@ export function FeedbackWidget() {
 
           {/* Modal Body */}
           {submitted ? (
-            <div className="space-y-5 p-6 sm:p-8">
-              <div className="flex items-start gap-3.5 rounded-xl bg-sapphire-soft p-4 text-sapphire">
-                <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0" />
+            <div className="swap-in space-y-5 p-6 sm:p-8">
+              <div className="rounded-xl bg-sapphire-soft p-4">
                 <div className="space-y-1 text-sm leading-relaxed">
                   <p className="font-semibold text-foreground">{t.thankYouBody}</p>
                   <p className="text-muted-foreground">{t.privacyNote}</p>

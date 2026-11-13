@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useReadAloud } from "@/components/health-check/readingTools";
 import { Container } from "@/components/ui/Container";
-import { ArrowLeftIcon, CalendarIcon, CheckCircleIcon, CheckIcon, ClockIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
+import { ArrowLeftIcon, CalendarIcon, ClockIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { playSoundCheck } from "./sound-check";
 import { useOnCallStatus } from "./OnCallStatusBanner";
@@ -278,16 +278,14 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
 
                 <div className="mt-6 border-t border-border pt-6">
                   <div role="status" aria-live="polite" aria-atomic="true">
+                    {/* Each change of place eases in where the last one stood: the wait reads as calm progress. */}
                     {doctorConnected ? (
-                      <div className="flex items-start gap-3">
-                        <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
-                        <div>
-                          <p className="text-lg font-semibold text-foreground">{copy.doctorReady}</p>
-                          <p className="mt-0.5 text-sm text-muted-foreground">{copy.pressButtonBelow}</p>
-                        </div>
+                      <div key="ready" className="swap-in border-l-2 border-sapphire pl-3 dark:border-sapphire-border">
+                        <p className="text-lg font-semibold text-foreground">{copy.doctorReady}</p>
+                        <p className="mt-0.5 text-sm text-muted-foreground">{copy.pressButtonBelow}</p>
                       </div>
                     ) : (
-                      <div>
+                      <div key={`place-${position}`} className="swap-in border-l-2 border-border pl-3">
                         <p className="text-lg font-semibold text-foreground tabular-nums">{copy.positionText(position)}</p>
                         <p className="mt-0.5 text-sm text-muted-foreground">{copy.estimatedTime(position)}</p>
                       </div>
@@ -296,7 +294,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
 
                   <div className="mt-4 h-1 w-full overflow-hidden rounded-sm bg-muted" aria-hidden="true">
                     <div
-                      className="h-full w-full origin-left rounded-sm bg-sapphire transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] motion-reduce:transition-none"
+                      className="h-full w-full origin-left rounded-sm bg-sapphire transition-transform duration-[var(--dur-slower)] ease-[var(--ease-out-expo)] motion-reduce:transition-none dark:bg-sapphire-border"
                       style={{ transform: `scaleX(${progress})` }}
                     />
                   </div>
@@ -334,9 +332,10 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
             )}
 
             <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-              <span className="flex items-center gap-2 text-sm text-muted-foreground" aria-live="polite">
-                {soundTested ? <CheckIcon className="h-4 w-4 text-sapphire" /> : null}
-                {soundTested ? copy.soundSuccess : copy.checkVolume}
+              <span className="text-sm text-muted-foreground" aria-live="polite">
+                <span key={soundTested ? "ok" : "check"} className={soundTested ? "swap-in inline-block font-medium text-foreground" : "inline-block"}>
+                  {soundTested ? copy.soundSuccess : copy.checkVolume}
+                </span>
               </span>
               <button
                 type="button"
@@ -358,7 +357,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
             </h2>
             <ul className="mt-3 divide-y divide-border rounded-xl border border-border bg-card">
               {copy.steps.map(([title, desc], i) => (
-                <li key={title}>
+                <li key={title} className="list-in" style={{ "--i": i } as CSSProperties}>
                   <label className="press-row flex min-h-12 cursor-pointer items-start gap-3 p-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/40">
                     <input
                       type="checkbox"
@@ -367,7 +366,15 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
                       className="mt-0.5 h-5 w-5 shrink-0 rounded border-border-control accent-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     />
                     <span>
-                      <span className={cn("block text-sm font-semibold", prepChecks[i] ? "text-muted-foreground" : "text-foreground")}>{title}</span>
+                      {/* Done reads by a strike that eases in, not by colour alone. */}
+                      <span
+                        className={cn(
+                          "block text-sm font-semibold line-through decoration-[1.5px] transition-[color,text-decoration-color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+                          prepChecks[i] ? "text-muted-foreground decoration-muted-foreground" : "text-foreground decoration-transparent",
+                        )}
+                      >
+                        {title}
+                      </span>
                       <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{desc}</span>
                     </span>
                   </label>

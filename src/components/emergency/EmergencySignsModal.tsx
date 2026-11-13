@@ -6,6 +6,7 @@ import { useReadAloud } from "@/components/health-check/readingTools";
 import { useModalAutoScroll } from "@/components/news/use-sheet-dialog";
 import { DispatcherScriptAccordion } from "@/components/emergency/DispatcherScriptAccordion";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
+import styles from "@/components/emergency/EmergencyOverlay.module.css";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
@@ -95,7 +96,7 @@ export function EmergencySignsModal({
         aria-modal="true"
         aria-labelledby="emergency-signs-title"
         aria-describedby="emergency-signs-description"
-        className="fhs-fade fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4 backdrop-blur-xs"
+        className="scrim-in fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4"
       >
         <div
           className="fixed inset-0 -z-10"
@@ -106,7 +107,7 @@ export function EmergencySignsModal({
         <div
           ref={panelRef}
           tabIndex={-1}
-          className="fhs-enter relative flex max-h-[92dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-2xl sm:max-h-[85dvh] sm:rounded-xl focus:outline-none"
+          className={`${styles.panel} relative flex max-h-[92dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-2xl sm:max-h-[85dvh] sm:rounded-xl focus:outline-none`}
         >
           <div className="flex shrink-0 items-start justify-between gap-4 border-b border-border px-5 pb-4 pt-5 sm:px-7 sm:pt-6">
             <div className="min-w-0">
@@ -135,7 +136,7 @@ export function EmergencySignsModal({
                         ...signs.map((s) => `${s.title}. ${s.description}`),
                       ])
                 }
-                className="press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                className="press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
               >
                 <VolumeIcon className="h-4 w-4" aria-hidden="true" />
                 <span>{voice.speaking ? audio.stop : audio.listen}</span>
@@ -158,7 +159,12 @@ export function EmergencySignsModal({
           >
             <ul className="divide-y divide-border">
               {signs.map((sign, index) => (
-                <li key={sign.id} className="flex items-start gap-3 py-4">
+                <li
+                  key={sign.id}
+                  // The signs arrive in reading order, just behind the sheet.
+                  style={{ "--i": index + 2 } as React.CSSProperties}
+                  className="list-in flex items-start gap-3 py-4"
+                >
                   <span
                     aria-hidden="true"
                     className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary-soft text-xs font-semibold tabular-nums text-primary"
@@ -188,7 +194,7 @@ export function EmergencySignsModal({
             <button
               type="button"
               onClick={() => setDialerGateOpen(true)}
-              className="press-on-dark flex min-h-14 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
+              className="press-solid flex min-h-14 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
             >
               <PhoneIcon className="h-4 w-4" aria-hidden="true" />
               <span>{e.call112}</span>

@@ -1036,3 +1036,594 @@ html[data-text-scale="xl"] :is(button, a).whitespace-nowrap {
     text-overflow: ellipsis;
   }
 }
+
+/* ==========================================================================
+ * Craft layer. One shared vocabulary for the finer motion and surface detail,
+ * so pages do not each invent their own. Everything here is colour, opacity,
+ * shadow, clip or a short horizontal travel: never a hover lift, never a
+ * scale, never an overshoot. Hover effects are gated to fine pointers; every
+ * moving piece is static under reduced motion and in-app Calm Motion.
+ * ========================================================================== */
+:root {
+  /* A longer-tailed deceleration for larger moves (masks, drawers, drawn lines). */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-slower: 640ms;
+  /* Cadence between siblings that arrive together (mirrors STAGGER_UI_S / STAGGER_EDITORIAL_S). */
+  --stagger-ui: 48ms;
+  --stagger-editorial: 84ms;
+}
+
+/* Typography finish: balanced headings, no orphans in prose, steady numerals where they tick. */
+:where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+:where(p, li, dd, figcaption, blockquote) {
+  text-wrap: pretty;
+}
+
+/* Native form parts take the site palette instead of the browser's default blue. */
+:root {
+  accent-color: var(--color-sapphire);
+  caret-color: var(--color-sapphire);
+}
+
+.dark {
+  accent-color: var(--color-sapphire-border);
+  caret-color: var(--color-paper);
+  color-scheme: dark;
+}
+
+/* Quiet, palette-toned scrollbars on fine pointers (touch keeps the system overlay bars). */
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scrollbar-color: color-mix(in oklab, var(--color-sapphire) 34%, transparent) transparent;
+  }
+
+  .dark {
+    scrollbar-color: rgb(255 255 255 / 0.22) transparent;
+  }
+}
+
+/* In-page anchors glide instead of jumping; instant under reduced motion (rules above win). */
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-calm-motion]) {
+    scroll-behavior: smooth;
+  }
+
+  /* The focus ring settles in from slightly wide, so the eye catches where focus went. */
+  /* Zero specificity, so it never replaces an element's own animation. */
+  :where(:focus-visible) {
+    animation: focus-ring-in var(--dur-fast) var(--ease-out-calm);
+  }
+}
+
+@keyframes focus-ring-in {
+  from {
+    outline-offset: 6px;
+    outline-color: transparent;
+  }
+}
+
+/*
+ * link-draw: an underline that draws from the left on hover or keyboard focus, and retracts to
+ * the right. For text links and for the label inside a row link (put it on the label span and
+ * `group` on the row). Touch gets a plain underline on press.
+ */
+@utility link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  background-size: 0% 1.5px;
+  padding-bottom: 1px;
+  transition: background-size var(--dur-base) var(--ease-out-calm);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    :where(.group):hover & {
+      background-position: 0% 100%;
+      background-size: 100% 1.5px;
+    }
+  }
+
+  &:focus-visible,
+  :where(.group):focus-visible & {
+    background-position: 0% 100%;
+    background-size: 100% 1.5px;
+  }
+
+  &:active,
+  :where(.group):active & {
+    background-position: 0% 100%;
+    background-size: 100% 1.5px;
+    transition-duration: 0ms;
+  }
+}
+
+/*
+ * arrow-travel: put on the arrow glyph of a link or button (parent carries `group`). The arrow
+ * leaves to the right while a second copy arrives from the left, a 240ms hand-off instead of a
+ * nudge. The glyph fades out as it leaves and back in as it arrives, so it needs no clipping
+ * wrapper; works on any inline SVG.
+ */
+@utility arrow-travel {
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    :where(.group):hover & {
+      animation: arrow-travel var(--dur-slow) var(--ease-out-expo);
+    }
+  }
+}
+
+@keyframes arrow-travel {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  45% {
+    transform: translateX(0.5em);
+    opacity: 0;
+  }
+  46% {
+    transform: translateX(-0.5em);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/*
+ * card-interactive: the one hover language for a clickable surface. The shadow deepens and the
+ * edge takes a sapphire tint; nothing moves. Press lands at once (touch included).
+ */
+@utility card-interactive {
+  box-shadow: var(--shadow-card-rest);
+  transition:
+    box-shadow var(--dur-base) var(--ease-out-calm),
+    border-color var(--dur-base) var(--ease-out-calm),
+    background-color var(--dur-base) var(--ease-out-calm);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: var(--shadow-card-hover);
+      border-color: color-mix(in oklab, var(--color-sapphire) 38%, var(--color-border));
+    }
+  }
+
+  &:focus-visible {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  &:active {
+    box-shadow: var(--shadow-card-rest);
+    transition-duration: 0ms;
+  }
+}
+
+/*
+ * edge-light: a hairline along the top edge of a surface that brightens under the pointer.
+ * Pairs with .surface-spotlight (both read --spot-x, published by PointerSpotlight.tsx).
+ */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .surface-spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      90deg,
+      transparent calc(var(--spot-x, 50%) - 9rem),
+      color-mix(in oklab, var(--color-sapphire) 55%, transparent) var(--spot-x, 50%),
+      transparent calc(var(--spot-x, 50%) + 9rem)
+    );
+    transition: opacity var(--dur-base) var(--ease-out-calm);
+  }
+
+  .surface-spotlight:hover::after {
+    opacity: 1;
+  }
+
+  .dark .surface-spotlight::before {
+    background: radial-gradient(
+      360px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      oklch(1 0 0 / 0.06),
+      transparent 70%
+    );
+  }
+
+  .dark .surface-spotlight::after,
+  [data-tone="ink"] .surface-spotlight::after {
+    background: linear-gradient(
+      90deg,
+      transparent calc(var(--spot-x, 50%) - 9rem),
+      oklch(1 0 0 / 0.45) var(--spot-x, 50%),
+      transparent calc(var(--spot-x, 50%) + 9rem)
+    );
+  }
+}
+
+/*
+ * Reveal variants (Reveal.tsx `variant`). "rise" is the default above. "mask" uncovers media
+ * from the bottom edge with a clip, so an image arrives as a surface, not as a fade. "fade" is
+ * for blocks that must not move (tables, maps). `stagger` hands the entrance to the children,
+ * which then arrive one after another.
+ */
+[data-reveal="armed"][data-reveal-variant="mask"] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 100% 0 round var(--radius-surface));
+}
+
+[data-reveal="revealed"][data-reveal-variant="mask"] {
+  clip-path: inset(0 0 0 0 round var(--radius-surface));
+  transition: clip-path var(--dur-slower) var(--ease-out-expo) var(--reveal-delay, 0ms);
+}
+
+[data-reveal="armed"][data-reveal-variant="fade"] {
+  transform: none;
+}
+
+[data-reveal="armed"][data-reveal-stagger] {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal="armed"][data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+}
+
+[data-reveal="revealed"][data-reveal-stagger] > * {
+  transition:
+    opacity var(--dur-slow) var(--ease-out-calm) calc(var(--reveal-delay, 0ms) + var(--reveal-step, 0ms)),
+    transform var(--dur-slow) var(--ease-out-calm) calc(var(--reveal-delay, 0ms) + var(--reveal-step, 0ms));
+}
+
+[data-reveal-stagger="editorial"] {
+  --reveal-gap: var(--stagger-editorial);
+}
+
+[data-reveal-stagger] > :nth-child(2) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 1); }
+[data-reveal-stagger] > :nth-child(3) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 2); }
+[data-reveal-stagger] > :nth-child(4) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 3); }
+[data-reveal-stagger] > :nth-child(5) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 4); }
+[data-reveal-stagger] > :nth-child(6) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 5); }
+[data-reveal-stagger] > :nth-child(n + 7) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 6); }
+
+@media (prefers-reduced-motion: reduce), print {
+  [data-reveal="armed"][data-reveal-variant="mask"] {
+    clip-path: none;
+  }
+
+  [data-reveal="armed"][data-reveal-stagger] > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-reveal="revealed"][data-reveal-variant="mask"],
+  [data-reveal="revealed"][data-reveal-stagger] > * {
+    transition: none;
+  }
+}
+
+/*
+ * rule-draw: a hairline (an <hr> or an empty span) that draws from the left the first time it is
+ * revealed. Inside a Reveal it follows the reveal; on its own it runs once on load.
+ */
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.rule-draw {
+  transform-origin: 0 50%;
+  animation: rule-draw var(--dur-slower) var(--ease-out-expo) backwards;
+}
+
+[dir="rtl"] .rule-draw {
+  transform-origin: 100% 50%;
+}
+
+/* Inside a Reveal the rule waits, undrawn, and draws when its block is revealed. */
+[data-reveal="armed"] .rule-draw {
+  animation: none;
+  transform: scaleX(0);
+}
+
+[data-reveal="revealed"] .rule-draw {
+  animation: none;
+  transition: transform var(--dur-slower) var(--ease-out-expo)
+    calc(var(--reveal-delay, 0ms) + var(--reveal-step, 0ms) + 80ms);
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  [data-reveal="armed"] .rule-draw {
+    transform: none;
+  }
+
+  [data-reveal="revealed"] .rule-draw {
+    transition: none;
+  }
+}
+
+/*
+ * read-progress: a 2px line under the pinned header that fills as a long page is read. Pure CSS
+ * (a scroll timeline), so it costs no script; browsers without scroll timelines show nothing.
+ */
+.read-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    html:not([data-calm-motion]) .read-progress {
+      display: block;
+      position: fixed;
+      inset: var(--chrome-h) 0 auto 0;
+      z-index: 30;
+      height: 2px;
+      background: var(--color-sapphire);
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+      pointer-events: none;
+      animation: read-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+
+    .dark .read-progress {
+      background: var(--color-sapphire-border);
+    }
+  }
+}
+
+@keyframes read-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/*
+ * skeleton-sheen: one loading placeholder for anything that takes longer than a moment. A slow
+ * band of light crosses a muted block; under reduced motion it is a still block.
+ */
+@keyframes skeleton-sheen {
+  from {
+    background-position: 160% 0;
+  }
+
+  to {
+    background-position: -60% 0;
+  }
+}
+
+.skeleton-sheen {
+  border-radius: var(--radius-control);
+  background-color: var(--color-muted);
+  background-image: linear-gradient(
+    100deg,
+    transparent 30%,
+    color-mix(in oklab, var(--color-card) 70%, transparent) 50%,
+    transparent 70%
+  );
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  animation: skeleton-sheen 1.6s var(--ease-in-out-calm) infinite;
+}
+
+.dark .skeleton-sheen {
+  background-color: var(--color-ink-800);
+  background-image: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.07) 50%, transparent 70%);
+}
+
+/*
+ * Shared overlay entrances. scrim-in: the backdrop fades and softly blurs what is behind it, so
+ * a dialog reads as a layer above the page. dialog-in: centred dialogs settle from 8px;
+ * sheet-in: bottom sheets rise from the edge on phones; drawer-in: side panels slide from the end.
+ */
+@keyframes scrim-in {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+.scrim-in {
+  backdrop-filter: blur(3px);
+  animation: scrim-in var(--dur-base) var(--ease-out-calm) backwards;
+}
+
+.dialog-in {
+  animation: dialog-in var(--dur-slow) var(--ease-out-expo) backwards;
+}
+
+.sheet-in {
+  animation: sheet-in var(--dur-slow) var(--ease-out-expo) backwards;
+}
+
+.drawer-in {
+  animation: drawer-in var(--dur-slow) var(--ease-out-expo) backwards;
+}
+
+[dir="rtl"] .drawer-in {
+  animation-name: drawer-in-rtl;
+}
+
+@keyframes drawer-in-rtl {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+/* Popovers and menus open from their trigger: a short fade with a 4px settle. */
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+.popover-in {
+  animation: popover-in var(--dur-fast) var(--ease-out-calm) backwards;
+}
+
+/* Content that replaces other content in the same place (tab bodies, filtered lists, results). */
+@keyframes swap-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.swap-in {
+  animation: swap-in var(--dur-base) var(--ease-out-calm) backwards;
+}
+
+/* Items of a freshly shown list arrive in order; set `--i` (0-based) on each, capped at 8 steps. */
+.list-in {
+  animation: swap-in var(--dur-slow) var(--ease-out-calm) backwards;
+  animation-delay: calc(min(var(--i, 0), 8) * var(--stagger-ui));
+}
+
+/* A confirmation mark (check, route, ring) that draws itself once: put pathLength="1" on the path. */
+@keyframes stroke-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+.stroke-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: stroke-draw var(--dur-slower) var(--ease-out-expo) 120ms backwards;
+}
+
+/*
+ * field-focus: text inputs and textareas. The edge darkens on hover, and focus trades the
+ * outline for a sapphire edge with a soft halo that eases in.
+ */
+@utility field-focus {
+  transition:
+    border-color var(--dur-fast) var(--ease-out-calm),
+    box-shadow var(--dur-base) var(--ease-out-calm),
+    background-color var(--dur-fast) var(--ease-out-calm);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover:not(:disabled, :focus-visible) {
+      border-color: color-mix(in oklab, var(--color-foreground) 55%, var(--color-border-control));
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--color-sapphire);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-sapphire) 16%, transparent);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--color-primary);
+  }
+
+  &[aria-invalid="true"]:focus-visible {
+    box-shadow: 0 0 0 4px var(--color-primary-ring);
+  }
+
+  &:where(.dark, .dark *):focus-visible {
+    border-color: var(--color-sapphire-border);
+    box-shadow: 0 0 0 4px rgb(191 219 254 / 0.2);
+  }
+}
+
+/*
+ * tab-ink: the active marker of a tab row or segmented control. Put it on each tab; the marker
+ * under the active one (aria-selected, aria-current or data-active) draws out from the centre.
+ */
+@utility tab-ink {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0.75rem 0 0.75rem;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform var(--dur-base) var(--ease-out-calm);
+  }
+
+  &:is([aria-selected="true"], [aria-current], [data-active="true"])::after {
+    transform: scaleX(1);
+  }
+}
+
+/* A fixed bar or header that has content scrolled beneath it gains a hairline and a soft shadow. */
+@supports (animation-timeline: scroll()) {
+  html:not([data-calm-motion]) .scroll-edge {
+    animation: scroll-edge linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 4rem;
+  }
+}
+
+@keyframes scroll-edge {
+  from {
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  to {
+    box-shadow:
+      0 1px 0 0 var(--color-border),
+      0 10px 24px -18px oklch(0.2 0.03 255 / 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rule-draw,
+  .skeleton-sheen,
+  .scrim-in,
+  .dialog-in,
+  .sheet-in,
+  .drawer-in,
+  .popover-in,
+  .swap-in,
+  .list-in,
+  .stroke-draw {
+    animation: none;
+  }
+
+  .tab-ink::after,
+  .link-draw,
+  .field-focus {
+    transition: none;
+  }
+}
+
+@media print {
+  .read-progress {
+    display: none !important;
+  }
+}

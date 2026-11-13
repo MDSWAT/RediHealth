@@ -22,7 +22,6 @@ import {
   PhoneIcon,
   PinIcon,
   PrescriptionIcon,
-  ShieldIcon,
   UsersIcon,
   VolumeIcon,
   VolumeMuteIcon,
@@ -33,7 +32,7 @@ import type { Lang } from "@/lib/i18n/translations";
 import { toSentences, useSpeech } from "./use-speech";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { playEarcon } from "@/lib/audio/earcon";
-import { useCalmReducedMotion } from "@/lib/motion/tokens";
+import { DURATION, EASE_OUT, useCalmReducedMotion } from "@/lib/motion/tokens";
 
 const NEED_ICONS: Record<HeroNeedId, ComponentType<SVGProps<SVGSVGElement>>> = {
   learn: BookIcon,
@@ -70,7 +69,6 @@ type SubtitleState = {
   key: string;
   text: string;
   tone: SubtitleTone;
-  icon: ComponentType<SVGProps<SVGSVGElement>>;
 };
 
 export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
@@ -245,26 +243,16 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
   const progressScale = step === 2 ? 1 : hoveredNeed !== null || speaking ? 0.62 : 0.34;
 
   const behaviouralSubtitle: SubtitleState = speaking
-    ? { key: "speaking", text: copy.subtitles.speaking, tone: "sapphire", icon: VolumeIcon }
+    ? { key: "speaking", text: copy.subtitles.speaking, tone: "sapphire" }
     : hoveredNeed
-      ? {
-          key: `need-${hoveredNeed}`,
-          text: copy.needs[hoveredNeed].hint,
-          tone: "sapphire",
-          icon: NEED_ICONS[hoveredNeed],
-        }
+      ? { key: `need-${hoveredNeed}`, text: copy.needs[hoveredNeed].hint, tone: "sapphire" }
       : hoveredMediators
-        ? { key: "mediators", text: copy.subtitles.mediators, tone: "amber", icon: UsersIcon }
+        ? { key: "mediators", text: copy.subtitles.mediators, tone: "amber" }
         : lastVisitedNeed
-          ? {
-              key: `returned-${lastVisitedNeed}`,
-              text: copy.subtitles.returned,
-              tone: "sapphire",
-              icon: NEED_ICONS[lastVisitedNeed],
-            }
+          ? { key: `returned-${lastVisitedNeed}`, text: copy.subtitles.returned, tone: "sapphire" }
           : idleNudge
-            ? { key: "idle", text: copy.subtitles.idle, tone: "amber", icon: HandHelpingIcon }
-            : { key: "default", text: copy.subtitles.default, tone: "neutral", icon: ShieldIcon };
+            ? { key: "idle", text: copy.subtitles.idle, tone: "amber" }
+            : { key: "default", text: copy.subtitles.default, tone: "neutral" };
 
   return (
     <section
@@ -422,8 +410,6 @@ function QuestionView({
     visible: false,
   });
 
-  const SubtitleIcon = subtitle.icon;
-
   const handleRowActivate = (id: HeroNeedId, buttonEl: HTMLButtonElement) => {
     const li = buttonEl.parentElement;
     if (li) {
@@ -525,8 +511,8 @@ function QuestionView({
                 </span>
                 <ChevronRightIcon
                   className={cn(
-                    "h-5 w-5 shrink-0 transition-[color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
-                    isHovered ? "translate-x-1 text-sapphire" : "text-ink-950/35",
+                    "arrow-travel h-5 w-5 shrink-0 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+                    isHovered ? "text-sapphire" : "text-ink-950/35",
                   )}
                 />
               </button>
@@ -537,8 +523,7 @@ function QuestionView({
 
       <div className="mt-auto">
         {speaking && (
-          <div className="mt-3 flex min-h-5 items-center gap-2 text-[13px] font-medium text-sapphire lg:hidden">
-            <VolumeIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+          <div className="swap-in mt-3 flex min-h-5 items-center text-[13px] font-medium text-sapphire lg:hidden">
             <span>{copy.subtitles.speaking}</span>
           </div>
         )}
@@ -547,14 +532,14 @@ function QuestionView({
           <AnimatePresence mode="wait" initial={false}>
             <motion.span
               key={subtitle.key}
-              initial={calmMotion ? false : { opacity: 0, y: 3 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={calmMotion ? undefined : { opacity: 0, y: -3 }}
-              transition={
-                calmMotion ? { duration: 0 } : { type: "spring", stiffness: 500, damping: 36, mass: 0.45 }
-              }
+              // A plain line of text that hands over to the next one: the old line lifts away
+              // quickly, the new one settles in on the shared tokens. No icon decorates it.
+              initial={calmMotion ? false : { opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: DURATION.base, ease: EASE_OUT } }}
+              exit={calmMotion ? undefined : { opacity: 0, y: -4, transition: { duration: DURATION.fast * 0.75, ease: EASE_OUT } }}
+              transition={calmMotion ? { duration: 0 } : undefined}
               className={cn(
-                "flex min-w-0 items-center gap-2",
+                "flex min-w-0 items-center",
                 subtitle.tone === "amber"
                   ? "font-medium text-amber-care-hover"
                   : subtitle.tone === "sapphire"
@@ -562,7 +547,6 @@ function QuestionView({
                     : "text-stone-500",
               )}
             >
-              <SubtitleIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               <span>{subtitle.text}</span>
             </motion.span>
           </AnimatePresence>
@@ -584,7 +568,7 @@ function QuestionView({
               <UsersIcon className="h-4 w-4 shrink-0 text-amber-care/85 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-amber-care motion-reduce:transition-none" />
               <span className="min-w-0 truncate">{copy.mediators}</span>
             </span>
-            <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-950/35 transition-[color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-ink-950 motion-reduce:transition-none" />
+            <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-950/35 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-ink-950 motion-reduce:transition-none" />
           </Link>
         </div>
       </div>
@@ -666,7 +650,7 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
             )}
           >
             <span className="min-w-0 truncate">{need.action.label}</span>
-            <ChevronRightIcon className="h-4 w-4 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+            <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0" />
           </Link>
         )}
 

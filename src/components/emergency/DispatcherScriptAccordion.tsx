@@ -44,7 +44,7 @@ export function DispatcherScriptAccordion({
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-controls={panelId}
-        className="flex min-h-12 w-full items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-left text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-primary-soft/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
+        className="press-row flex min-h-12 w-full items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-left text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-primary-soft/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
       >
         <span>{e.dispatcherGuideTitle}</span>
         <ChevronDownIcon
@@ -56,31 +56,38 @@ export function DispatcherScriptAccordion({
         />
       </button>
 
-      {isOpen && (
-        <div id={panelId} className="fhs-fade px-4 pb-4 text-sm text-foreground">
-          <p className="text-muted-foreground leading-relaxed">{e.dispatcherGuideSubtitle}</p>
+      {/* Opens by height instead of appearing at full size; the steps then arrive in order. */}
+      <div id={panelId} className="calm-collapse" data-open={isOpen ? "true" : "false"}>
+        <div className="calm-collapse-inner" inert={!isOpen}>
+          <div className="px-4 pb-4 text-sm text-foreground">
+            <p className="text-muted-foreground leading-relaxed">{e.dispatcherGuideSubtitle}</p>
 
-          <ol className="mt-3 space-y-3">
-            {e.dispatcherSteps.map((step, idx) => (
-              <li key={idx} className="flex items-start gap-3">
-                <span className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-card text-[11px] font-semibold tabular-nums text-primary ring-1 ring-primary/20">
-                  {idx + 1}
-                </span>
-                <div className="min-w-0">
-                  <strong className="block font-semibold leading-snug">{step.title}</strong>
-                  <span className="mt-0.5 block leading-relaxed text-muted-foreground">
-                    {step.description}
+            <ol className="mt-3 space-y-3">
+              {e.dispatcherSteps.map((step, idx) => (
+                <li
+                  key={idx}
+                  style={{ "--i": idx } as React.CSSProperties}
+                  className={cn(isOpen && "list-in", "flex items-start gap-3")}
+                >
+                  <span className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-card text-[11px] font-semibold tabular-nums text-primary ring-1 ring-primary/20">
+                    {idx + 1}
                   </span>
-                </div>
-              </li>
-            ))}
-          </ol>
+                  <div className="min-w-0">
+                    <strong className="block font-semibold leading-snug">{step.title}</strong>
+                    <span className="mt-0.5 block leading-relaxed text-muted-foreground">
+                      {step.description}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ol>
 
-          <p className="mt-4 border-t border-primary/15 pt-3 font-medium leading-relaxed text-foreground">
-            {e.dispatcherImportantNote}
-          </p>
+            <p className="mt-4 border-t border-primary/15 pt-3 font-medium leading-relaxed text-foreground">
+              {e.dispatcherImportantNote}
+            </p>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

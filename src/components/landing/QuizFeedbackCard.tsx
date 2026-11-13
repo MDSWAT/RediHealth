@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type SVGProps } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type SVGProps } from "react";
 import type { HealthMyth } from "@/lib/i18n/health-myths";
 import { Button } from "@/components/ui/Button";
 import { ArrowRightIcon } from "@/components/ui/icons";
@@ -18,6 +18,9 @@ export interface QuizFeedbackCardProps {
 }
 
 type MarkProps = SVGProps<SVGSVGElement>;
+
+/** Place in the reading order of the verdict: each part follows the one above it by one beat. */
+const step = (index: number) => ({ "--i": index }) as CSSProperties;
 
 /** A ringed verdict glyph whose stroke draws itself once, on the frame after it mounts. */
 function DrawnMark({ path, ...props }: MarkProps & { path: string }) {
@@ -67,7 +70,7 @@ export function QuizFeedbackCard({
   }, [focusOnMount]);
 
   return (
-    <div className="fhs-enter mt-5 border-t border-border/90 pt-5 transition-[opacity,transform] duration-(--dur-base) ease-(--ease-out-calm) starting:translate-y-1.5 starting:opacity-0 motion-reduce:transition-none dark:border-white/15">
+    <div className="fhs-enter mt-5 border-t border-border/90 pt-5 dark:border-white/15">
       <div className="flex items-center gap-2.5">
         <DrawnMark
           path={isMatch ? "M6 10.4 8.7 13 14 7.4" : "M7 7l6 6M13 7l-6 6"}
@@ -81,15 +84,15 @@ export function QuizFeedbackCard({
         </p>
       </div>
 
-      <p className="mt-2.5 max-w-[60ch] text-pretty text-body leading-relaxed text-foreground/90 dark:text-paper/90">
+      <p style={step(1)} className="list-in mt-2.5 max-w-[60ch] text-pretty text-body leading-relaxed text-foreground/90 dark:text-paper/90">
         {myth.explanation}
       </p>
 
-      <p className="mt-2 text-meta text-muted-foreground dark:text-mist">
+      <p style={step(2)} className="list-in mt-2 text-meta text-muted-foreground dark:text-mist">
         <span>{q.sourcePrefix}</span> {myth.source}
       </p>
 
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 pt-1">
+      <div style={step(3)} className="list-in mt-5 flex flex-wrap items-center justify-between gap-3 pt-1">
         <MythDoctorHandoverButton
           mythId={myth.id}
           mythStatement={myth.statement}
@@ -102,7 +105,7 @@ export function QuizFeedbackCard({
           className="group shrink-0 whitespace-nowrap dark:bg-paper dark:text-ink-950 dark:hover:bg-paper/90 dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-800"
         >
           <span>{isLastMyth ? q.restartFirstMyth : q.nextMyth}</span>
-          <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
+          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
         </Button>
       </div>
     </div>

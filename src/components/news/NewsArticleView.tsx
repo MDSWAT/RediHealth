@@ -11,7 +11,8 @@ import {
   HealthArticleShell,
 } from "@/components/health-information/HealthArticleShell";
 import { TopicNextSteps } from "@/components/health-information/TopicNextSteps";
-import { CheckIcon, ClockIcon, PinIcon } from "@/components/ui/icons";
+import { ClockIcon, PinIcon } from "@/components/ui/icons";
+import { Reveal } from "@/components/ui/Reveal";
 import { EXTRA_MAP_COPY } from "@/components/ui/RomaniaCountyMap";
 import { formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
 import {
@@ -221,6 +222,8 @@ export function NewsArticleView({ id }: { id: string }) {
 
   return (
     <main id="main-content" className="min-h-[85vh] flex-1">
+      {/* A 2px line under the header fills as the item is read (CSS scroll timeline; off under reduced motion). */}
+      <div className="read-progress" aria-hidden="true" />
       <HealthArticleShell>
         <HealthArticleBackLink href={withLangPrefix(basePath, lang)} label={np.backToNews} />
         <article>
@@ -262,6 +265,7 @@ export function NewsArticleView({ id }: { id: string }) {
           </div>
 
           {article.caravanDetails && (
+            <Reveal>
             <section
               aria-labelledby="article-caravan"
               className="mt-10 rounded-xl border border-border bg-card p-6 sm:p-7"
@@ -303,9 +307,11 @@ export function NewsArticleView({ id }: { id: string }) {
                 )}
               </dl>
             </section>
+            </Reveal>
           )}
 
           {article.preventiveSteps && article.preventiveSteps.length > 0 && (
+            <Reveal>
             <section
               aria-labelledby="article-prevention"
               className="mt-10 rounded-xl border border-border bg-card p-6 sm:p-7"
@@ -316,21 +322,25 @@ export function NewsArticleView({ id }: { id: string }) {
               >
                 {c.prevention}
               </h2>
-              <ul
+              {/* Numbered steps read as an order to follow; a hairline separates them instead of check marks. */}
+              <ol
                 lang={article.language}
-                className="mt-4 space-y-3 text-[1.0625rem] leading-[1.7] text-foreground sm:text-[1.125rem]"
+                className="mt-4 divide-y divide-border text-[1.0625rem] leading-[1.7] text-foreground sm:text-[1.125rem]"
               >
                 {article.preventiveSteps.map((step, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5">
-                    <CheckIcon
+                  <li key={idx} className="flex items-baseline gap-4 py-3 first:pt-0 last:pb-0">
+                    <span
                       aria-hidden="true"
-                      className="mt-1 h-5 w-5 shrink-0 text-sapphire"
-                    />
+                      className="w-5 shrink-0 text-right text-base font-semibold tabular-nums text-sapphire dark:text-sapphire-border"
+                    >
+                      {idx + 1}
+                    </span>
                     <span>{step}</span>
                   </li>
                 ))}
-              </ul>
+              </ol>
             </section>
+            </Reveal>
           )}
 
           {tags.length > 0 && (

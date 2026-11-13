@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type CSSProperties } from "react";
 import { signOut } from "next-auth/react";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
@@ -589,7 +589,7 @@ export function OfflineWorkspace() {
                   </label>
                   <input
                     id="offline-passphrase"
-                    className="min-h-[44px] w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                    className="field-focus min-h-[44px] w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground sm:text-sm"
                     type="password"
                     autoComplete="off"
                     required
@@ -736,7 +736,8 @@ export function OfflineWorkspace() {
         >
           <Container className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs">
-              <span className="font-semibold text-foreground">
+              {/* Connection and queue are plain text; each eases in where it stood when it changes. */}
+              <span key={online ? "online" : "offline"} className="swap-in font-semibold text-foreground">
                 {online ? copy.online : copy.offline}
               </span>
               <span aria-hidden="true" className="h-3 w-px bg-border" />
@@ -745,7 +746,8 @@ export function OfflineWorkspace() {
               </span>
               <span aria-hidden="true" className="h-3 w-px bg-border" />
               <span
-                className={`tabular-nums ${
+                key={`pending-${pending}`}
+                className={`swap-in tabular-nums ${
                   pending > 0
                     ? "font-semibold text-amber-care"
                     : "text-muted-foreground"
@@ -772,7 +774,7 @@ export function OfflineWorkspace() {
                   <button
                     type="button"
                     onClick={stayUnlocked}
-                    className="press-row inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-border-control bg-card px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                    className="press-row inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-border-control bg-card px-3 py-1 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
                   >
                     {copy.stayUnlocked}
                   </button>
@@ -829,10 +831,15 @@ export function OfflineWorkspace() {
             </div>
           </Container>
 
-          {vaultDetailsOpen ? (
-            <Container>
+          {/* Opens and closes as a height collapse; inert while closed so it stays out of the tab order. */}
+          <div
+            id={detailsPanelId}
+            data-open={vaultDetailsOpen ? "true" : "false"}
+            className="calm-collapse -mt-3"
+          >
+            <div className="calm-collapse-inner" inert={!vaultDetailsOpen || undefined}>
+            <Container className="pt-3">
               <div
-                id={detailsPanelId}
                 className="space-y-2 rounded-xl border border-border bg-muted/35 p-3.5 text-xs text-muted-foreground"
               >
                 <p>{copy.editsNote}</p>
@@ -860,11 +867,12 @@ export function OfflineWorkspace() {
                 </div>
               </div>
             </Container>
-          ) : null}
+            </div>
+          </div>
 
           {error ? (
             <Container>
-              <p role="alert" className="crm-error">
+              <p key={error} role="alert" className="crm-error swap-in">
                 {error}
               </p>
             </Container>
@@ -873,8 +881,9 @@ export function OfflineWorkspace() {
           {notice ? (
             <Container>
               <p
+                key={notice}
                 role="status"
-                className="rounded-lg border border-border bg-muted/60 px-3.5 py-2 text-xs font-medium text-foreground"
+                className="swap-in rounded-lg border border-border bg-muted/60 px-3.5 py-2 text-xs font-medium text-foreground"
               >
                 {notice}
               </p>
@@ -883,12 +892,13 @@ export function OfflineWorkspace() {
 
           {failedOps.length > 0 ? (
             <Container className="space-y-2.5">
-              {failedOps.map((op) => {
+              {failedOps.map((op, index) => {
                 const entityName = copy.entityLabels[op.entity] ?? op.entity;
                 return (
                   <div
                     key={op.operationId}
-                    className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-care/40 bg-amber-care/10 p-3.5 text-sm text-foreground"
+                    style={{ "--i": index } as CSSProperties}
+                    className="list-in flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-care/40 bg-amber-care/10 p-3.5 text-sm text-foreground"
                   >
                     <div className="min-w-0 space-y-0.5">
                       <p className="tabular-nums font-semibold">
@@ -927,7 +937,7 @@ export function OfflineWorkspace() {
 
           {review ? (
             <Container>
-              <section className="space-y-4 rounded-xl border border-border bg-card p-4 shadow-sm sm:p-5">
+              <section className="swap-in space-y-4 rounded-xl border border-border bg-card p-4 shadow-sm sm:p-5">
                 <div className="space-y-1">
                   <h2 className="text-balance tabular-nums text-base font-semibold text-foreground">
                     {copy.reviewTitle} — {copy.entityLabels[review.op.entity] ?? review.op.entity} #

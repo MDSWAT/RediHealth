@@ -309,18 +309,19 @@ export function NewsHub() {
                 className="group inline-flex min-h-[44px] max-w-full shrink-0 items-center gap-1 whitespace-nowrap rounded-sm text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <span className="min-w-0 truncate">{np.resetFilter}</span>
-                <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                <ArrowRightIcon aria-hidden="true" className="arrow-travel h-3.5 w-3.5 shrink-0" />
               </button>
             </div>
-            <ul className="divide-y divide-border">
-              {latest.map((article) => (
-                <li key={article.id}>
+            {/* Keyed on the country: switching the map re-lists the latest items in order, not all at once. */}
+            <ul key={activeCountry} className="divide-y divide-border">
+              {latest.map((article, index) => (
+                <li key={article.id} className="list-in" style={{ "--i": index } as React.CSSProperties}>
                   <Link
                     href={withLangPrefix(`${basePath}/${article.slug}`, lang)}
                     className="group press-row -mx-2.5 flex min-h-12 flex-col gap-1 rounded-lg px-2.5 py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/45 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
                   >
                     <span lang={article.language} className="text-[15px] font-medium leading-snug text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire dark:group-hover:text-sapphire-border">
-                      {article.title}
+                      <span className="link-draw">{article.title}</span>
                     </span>
                     <span className="shrink-0 text-xs text-muted-foreground tabular-nums">
                       {categoryLabels[article.category] ?? article.category}
@@ -333,6 +334,12 @@ export function NewsHub() {
                 </li>
               ))}
             </ul>
+            {latest.length === 0 && (
+              <div key={`empty-${activeCountry}`} className="swap-in border-b border-border py-8">
+                <p className="text-base font-semibold text-foreground">{np.emptyTitle}</p>
+                <p className="mt-1 max-w-prose text-sm leading-relaxed text-muted-foreground">{np.emptySubtitle}</p>
+              </div>
+            )}
           </section>
 
           <section

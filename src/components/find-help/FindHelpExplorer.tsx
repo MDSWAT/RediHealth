@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { useLargeText, useReadAloud } from "@/components/health-check/readingTools";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
@@ -40,9 +40,10 @@ import {
 function MapLoading() {
   const { lang, t } = useLanguage();
   const label = t?.findHelpPage?.loadingMap ?? findHelpTranslations[lang].page.loadingMap;
+  // The map surface itself shimmers while the tiles load, so the frame never reads as broken.
   return (
-    <div className="flex h-full items-center justify-center bg-muted text-sm text-muted-foreground">
-      {label}
+    <div role="status" className="skeleton-sheen relative flex h-full items-center justify-center !rounded-none">
+      <span className="text-sm font-medium text-muted-foreground">{label}</span>
     </div>
   );
 }
@@ -72,6 +73,20 @@ const COLD_LOAD_SKELETON_WIDTHS: readonly { title: string; address: string; meta
   { title: "w-7/12", address: "w-2/3", meta: "w-1/3" },
   { title: "w-3/5", address: "w-3/4", meta: "w-5/12" },
 ];
+
+/** Offsets each placeholder row's sheen a little, so the light travels down the list as one wave. */
+function rowSheen(index: number): CSSProperties {
+  return { animationDelay: `${index * 90}ms` };
+}
+
+function RetryIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M20 11a8 8 0 1 0-2.34 5.66" />
+      <path d="M20 4v7h-7" />
+    </svg>
+  );
+}
 
 function prefersReducedMotion() {
   return prefersCalmOrReducedMotion();
@@ -681,6 +696,10 @@ export function FindHelpExplorer({
   };
 
   const filtered = Boolean(category || search || emergencyOnly || openNowOnly);
+  /** Placeholders on the first load, and again when a retry or a new search has nothing on screen yet. */
+  const showSkeleton = isColdLoad || (isRevalidating && displayedInstitutes.length === 0);
+  /** Changes whenever a fresh set of results lands, so the rows arrive in order once per set. */
+  const resultSetKey = `${settled?.key ?? ""}|${emergencyOnly ? 1 : 0}${openNowOnly ? 1 : 0}`;
   const mobilePreviewInstitute = useMemo(
     () => (mobilePreviewId ? displayedInstitutes.find((item) => item.id === mobilePreviewId) ?? null : null),
     [displayedInstitutes, mobilePreviewId],
@@ -753,10 +772,6 @@ export function FindHelpExplorer({
           <form onSubmit={submitSearch} className="flex flex-nowrap items-center gap-2 sm:col-span-2 lg:col-span-1" role="search">
             <label className="relative min-w-0 flex-1">
               <span className="sr-only">{copy.searchPlaceholder}</span>
-              <SearchIcon
-                className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
-                aria-hidden="true"
-              />
               <input
                 type="search"
                 name="q"
@@ -766,9 +781,14 @@ export function FindHelpExplorer({
                   if (!event.target.value) setSearch("");
                 }}
                 placeholder={copy.searchHint}
-                className={`min-h-12 w-full rounded-xl border border-border-control bg-card pl-10 text-base outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus:border-sapphire focus:bg-card focus-visible:ring-2 focus-visible:ring-ring sm:text-sm ${
+                className={`field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-card pl-10 text-base placeholder:text-muted-foreground sm:text-sm ${
                   searchInput ? "pr-12" : "pr-3"
                 }`}
+              />
+              {/* After the input so it can follow its focus: the glass takes the focus colour with the edge. */}
+              <SearchIcon
+                className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none peer-focus-visible:text-sapphire dark:peer-focus-visible:text-sapphire-border"
+                aria-hidden="true"
               />
               {searchInput && (
                 <button
@@ -1013,9 +1033,14 @@ export function FindHelpExplorer({
           }`}
           aria-busy={loading}
         >
-          {isColdLoad ? (
+          {showSkeleton ? (
             <div role="status" aria-label={copy.loading}>
               <span className="sr-only">{copy.loading}</span>
+              {/* Shaped like the result rows (kind, name, address, hours, call and directions), so the
+                  list lands in place instead of replacing a different shape. */}
+              <div className="mb-3 flex min-h-11 items-center" aria-hidden="true">
+                <div className="skeleton-sheen h-4 w-28" />
+              </div>
               <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-stone-200/90 bg-card shadow-2xs dark:border-stone-800">
                 {COLD_LOAD_SKELETON_WIDTHS.map((spec, idx) => (
                   <li
@@ -1024,42 +1049,59 @@ export function FindHelpExplorer({
                     aria-hidden="true"
                   >
                     <div className="space-y-2.5">
-                      <div className="flex items-center gap-2">
-                        <div className="h-5 w-20 animate-pulse rounded-md bg-muted motion-reduce:animate-none" />
-                        <div className={`h-5 ${spec.title} animate-pulse rounded-md bg-muted motion-reduce:animate-none`} />
-                      </div>
-                      <div className={`h-4 ${spec.address} animate-pulse rounded-md bg-muted/80 motion-reduce:animate-none`} />
-                      <div className={`h-4 ${spec.meta} animate-pulse rounded-md bg-muted/70 motion-reduce:animate-none`} />
+                      <div className="skeleton-sheen h-3.5 w-24" style={rowSheen(idx)} />
+                      <div className={`skeleton-sheen h-5 ${spec.title}`} style={rowSheen(idx)} />
+                      <div className={`skeleton-sheen h-4 ${spec.address}`} style={rowSheen(idx)} />
+                      <div className={`skeleton-sheen h-4 ${spec.meta}`} style={rowSheen(idx)} />
                     </div>
-                    <div className="mt-3 flex gap-2">
-                      <div className="h-11 w-32 animate-pulse rounded-xl bg-muted/75 motion-reduce:animate-none" />
-                      <div className="h-11 w-28 animate-pulse rounded-xl bg-muted/75 motion-reduce:animate-none" />
+                    <div className="mt-3.5 flex gap-2">
+                      <div className="skeleton-sheen h-11 w-36 !rounded-xl" style={rowSheen(idx)} />
+                      <div className="skeleton-sheen h-11 w-11 !rounded-xl" style={rowSheen(idx)} />
+                      <div className="skeleton-sheen h-11 w-11 !rounded-xl" style={rowSheen(idx)} />
                     </div>
                   </li>
                 ))}
               </ul>
             </div>
           ) : error ? (
-            <div className="rounded-2xl border border-stone-200/90 bg-card p-5 text-sm text-foreground shadow-2xs dark:border-stone-800" role="alert">
-              <p>{copy.loadError}</p>
+            // The directory did not answer (a network drop, or the server's database is unreachable).
+            // One clear next step, with the failure stated plainly and nothing alarming around it.
+            <div
+              className="swap-in rounded-2xl border border-stone-200/90 bg-card px-5 py-6 shadow-2xs sm:px-6 sm:py-7 dark:border-stone-800"
+              role="alert"
+            >
+              <p className="max-w-[44ch] text-base font-semibold leading-snug text-foreground">{copy.loadError}</p>
               <button
                 type="button"
                 onClick={() => setReloadKey((value) => value + 1)}
-                className="mt-3 inline-flex min-h-11 items-center whitespace-nowrap rounded-xl border border-border-control bg-card px-4 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={`${primaryFilledActionClass} mt-4`}
               >
-                {copy.retry}
+                <RetryIcon className="h-4 w-4 shrink-0" />
+                <span>{copy.retry}</span>
               </button>
             </div>
-          ) : displayedInstitutes.length === 0 && !isRevalidating ? (
-            <div className="rounded-2xl border border-stone-200/90 bg-card p-6 shadow-2xs dark:border-stone-800" role="status">
-              <p className="text-sm text-muted-foreground">{copy.noResults}</p>
+          ) : displayedInstitutes.length === 0 ? (
+            <div
+              className="swap-in rounded-2xl border border-stone-200/90 bg-card px-5 py-6 shadow-2xs sm:px-6 sm:py-7 dark:border-stone-800"
+              role="status"
+            >
+              <p className="max-w-[44ch] text-base font-semibold leading-snug text-foreground">{copy.noResults}</p>
               {filtered ? (
                 <button
                   type="button"
                   onClick={clearFilters}
-                  className="mt-3 inline-flex min-h-11 items-center whitespace-nowrap rounded-xl border border-sapphire/35 bg-sapphire-soft/45 px-4 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className={`${primaryFilledActionClass} mt-4`}
                 >
                   {copy.clearFilters}
+                </button>
+              ) : area.kind === "point" ? (
+                // Nothing near this point and nothing to clear: widen to the whole country.
+                <button
+                  type="button"
+                  onClick={() => chooseCountry(activeCountry)}
+                  className={`${primaryFilledActionClass} mt-4`}
+                >
+                  {copy.wholeCountryOption(copy.countries[activeCountry])}
                 </button>
               ) : null}
             </div>
@@ -1084,8 +1126,11 @@ export function FindHelpExplorer({
                 ) : null}
               </div>
 
-              <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-stone-200/90 bg-card shadow-2xs dark:border-stone-800">
-                {displayedInstitutes.slice(0, visibleCount).map((institute) => {
+              <ul
+                key={resultSetKey}
+                className="divide-y divide-border overflow-hidden rounded-2xl border border-stone-200/90 bg-card shadow-2xs dark:border-stone-800"
+              >
+                {displayedInstitutes.slice(0, visibleCount).map((institute, index) => {
                   const active = institute.id === selectedId;
                   const hovered = institute.id === hoveredId;
                   const hours = formatOpeningHours(institute.hours, copy);
@@ -1103,6 +1148,9 @@ export function FindHelpExplorer({
                   return (
                     <li
                       key={institute.id}
+                      // Rows of a fresh set (and of each "show more" page) arrive one after another.
+                      className="list-in"
+                      style={{ "--i": index % PAGE_SIZE } as CSSProperties}
                       ref={(node) => {
                         if (node) itemRefs.current.set(institute.id, node);
                         else itemRefs.current.delete(institute.id);
@@ -1112,12 +1160,14 @@ export function FindHelpExplorer({
                         onClick={() => showInstitute(institute.id)}
                         onMouseEnter={() => scheduleHoverChange(institute.id)}
                         onMouseLeave={() => scheduleHoverChange(null)}
-                        className={`cursor-pointer px-4 py-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] sm:px-5 ${
+                        // The selected place carries a sapphire edge that eases in; a pin hovered on the
+                        // map lights the same row with a fainter edge, so list and map read as one.
+                        className={`group cursor-pointer px-4 py-4 transition-[background-color,box-shadow] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none sm:px-5 ${
                           active
-                            ? "bg-sapphire-soft"
+                            ? "bg-sapphire-soft shadow-[inset_3px_0_0_0_var(--color-sapphire)] dark:shadow-[inset_3px_0_0_0_var(--color-sapphire-border)]"
                             : hovered
-                              ? "bg-sapphire-soft/45"
-                              : "hover:bg-muted/50"
+                              ? "bg-sapphire-soft/45 shadow-[inset_3px_0_0_0_color-mix(in_oklab,var(--color-sapphire)_45%,transparent)]"
+                              : "shadow-[inset_0_0_0_0_transparent] hover:bg-muted/50"
                         }`}
                       >
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
@@ -1147,7 +1197,7 @@ export function FindHelpExplorer({
                             }}
                             className="inline-flex min-h-11 items-center rounded-md py-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                           >
-                            {institute.name}
+                            <span className="link-draw">{institute.name}</span>
                           </button>
                         </h3>
 
@@ -1295,8 +1345,9 @@ export function FindHelpExplorer({
           {/* Anchored mobile facility preview sheet on pin tap (< lg) — zero scrollIntoView page-yanking */}
           {mobilePreviewInstitute && (
             <aside
+              key={mobilePreviewInstitute.id}
               aria-label={mobilePreviewInstitute.name}
-              className="mt-3 rounded-2xl border border-sapphire/35 bg-card p-4 shadow-sm lg:hidden"
+              className="swap-in mt-3 rounded-2xl border border-sapphire/35 bg-card p-4 shadow-(--shadow-card-hover) lg:hidden"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0 flex-1">
@@ -1472,7 +1523,14 @@ export function FindHelpExplorer({
         data-bottom-bar
         className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-card/95 px-4 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur-sm lg:hidden print:hidden"
       >
-        <div className="mx-auto grid max-w-md grid-cols-2 gap-1 rounded-xl border border-border-control bg-surface-subtle p-1">
+        <div className="relative mx-auto grid max-w-md grid-cols-2 gap-1 rounded-xl border border-border-control bg-surface-subtle p-1">
+          {/* One sapphire plate that slides to the chosen view, instead of two backgrounds swapping. */}
+          <span
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.375rem)] rounded-lg bg-sapphire shadow-2xs transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+              mobileView === "map" ? "translate-x-[calc(100%+0.25rem)]" : "translate-x-0"
+            }`}
+          />
           {(
             [
               { id: "list", label: copy.viewList, Icon: ListViewIcon },
@@ -1486,8 +1544,8 @@ export function FindHelpExplorer({
                 type="button"
                 aria-pressed={active}
                 onClick={() => switchMobileView(id, id === "list" ? selectedId : null)}
-                className={`inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 text-sm font-semibold transition-[color,background-color,filter] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface-subtle ${
-                  active ? "bg-sapphire text-white shadow-2xs press-solid" : "text-foreground hover:bg-card press-row"
+                className={`relative inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 text-sm font-semibold transition-[color,background-color,filter] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface-subtle ${
+                  active ? "text-white press-solid" : "text-foreground hover:bg-card/70 press-row"
                 }`}
               >
                 <Icon className="h-5 w-5 shrink-0" />

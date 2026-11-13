@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { PhoneIcon } from "@/components/ui/icons";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { HEALTH_ARTICLE_SECTION_H2_CLASS } from "./HealthArticleShell";
@@ -203,30 +203,26 @@ export function WarningSignsEmergencyCard({
           )}
         </p>
 
-        <ul className="mt-4 divide-y divide-border border-y border-border">
+        {/*
+          Signs are read as a short numbered list (the figures are typographic, not an alert icon
+          repeated on every line), so the eye can keep its place and count them.
+        */}
+        <ol className="mt-4 divide-y divide-border border-y border-border">
           {warningSigns.map((sign, idx) => (
             <li
               key={idx}
-              className="flex items-start gap-3 py-3.5 text-[1.0625rem] font-medium leading-[1.65] text-foreground sm:text-[1.125rem]"
+              className="grid grid-cols-[2rem_minmax(0,1fr)] items-baseline gap-x-3 py-3.5 text-[1.0625rem] font-medium leading-[1.65] text-foreground sm:text-[1.125rem]"
             >
-              <svg
-                className="mt-1.5 h-[18px] w-[18px] shrink-0 text-primary"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <span
                 aria-hidden="true"
+                className="text-base font-semibold tabular-nums text-primary dark:text-red-300"
               >
-                <circle cx="12" cy="12" r="10" />
-                <line x1="12" y1="8" x2="12" y2="12.5" />
-                <circle cx="12" cy="16.2" r="0.8" fill="currentColor" />
-              </svg>
+                {String(idx + 1).padStart(2, "0")}
+              </span>
               <span>{sign}</span>
             </li>
           ))}
-        </ul>
+        </ol>
 
         <div className="mt-6 flex flex-col items-start gap-x-6 gap-y-2 sm:flex-row sm:items-center print:hidden">
           <button
@@ -318,7 +314,8 @@ export function WarningSignsEmergencyCard({
                 {dispatchSteps.map((stepText, idx) => (
                   <li
                     key={idx}
-                    className="flex flex-col rounded-lg border border-border bg-surface-subtle/60 p-3.5"
+                    style={{ "--i": idx + 2 } as CSSProperties}
+                    className="list-in flex flex-col rounded-lg border border-border bg-surface-subtle/60 p-3.5"
                   >
                     <div className="flex items-baseline gap-2">
                       <span className="text-sm font-bold tabular-nums text-primary">

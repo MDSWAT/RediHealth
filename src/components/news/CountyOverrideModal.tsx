@@ -328,7 +328,7 @@ export function CountyOverrideModal({
               type="button"
               onClick={close}
               aria-label={nr.closeModal}
-              className="-mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row -mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <CloseIcon className="h-5 w-5" />
             </button>
@@ -349,7 +349,7 @@ export function CountyOverrideModal({
                     aria-pressed={active}
                     onClick={() => setCountryOverride(c)}
                     className={cn(
-                      "-mb-px min-h-11 whitespace-nowrap border-b-2 px-0.5 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                      "press-row -mb-px min-h-11 whitespace-nowrap border-b-2 px-0.5 text-sm transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                       active
                         ? "border-foreground font-semibold text-foreground"
                         : "border-transparent font-medium text-muted-foreground hover:text-foreground",
@@ -373,14 +373,15 @@ export function CountyOverrideModal({
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder={searchPlaceholder}
               aria-label={searchPlaceholder}
-              className="min-h-11 w-full rounded-lg border border-border-control bg-background py-2.5 pl-9 pr-3 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+              className="field-focus min-h-11 w-full rounded-lg border border-border-control bg-background py-2.5 pl-9 pr-3 text-base text-foreground placeholder:text-muted-foreground sm:text-sm"
             />
           </div>
         </div>
 
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
           {groups.length > 0 ? (
-            <div className="pb-[env(safe-area-inset-bottom)] sm:pb-0">
+            // Keyed on the country: switching Romania / Moldova eases the new list in place.
+            <div key={effectiveCountry} className="swap-in pb-[env(safe-area-inset-bottom)] sm:pb-0">
               {groups.map((group) => (
                 <div key={group.country}>
                   {group.heading && (
@@ -395,7 +396,7 @@ export function CountyOverrideModal({
               ))}
             </div>
           ) : (
-            <p role="status" className="px-5 py-8 text-center text-sm text-muted-foreground">
+            <p role="status" className="swap-in px-5 py-8 text-center text-sm text-muted-foreground">
               {nr.noCountyFound} {quoteTerm(searchTerm.trim(), lang)}.
             </p>
           )}

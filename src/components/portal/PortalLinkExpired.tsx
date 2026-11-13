@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { ClockIcon } from "@/components/ui/icons";
@@ -59,13 +60,16 @@ export function PortalLinkExpired() {
   return (
     <main id="main-content" className="flex flex-1 items-center py-20 sm:py-28">
       <Container>
-        <div className="fhs-enter mx-auto max-w-xl text-center">
-          <ClockIcon className="mx-auto h-8 w-8 text-muted-foreground" />
-          <h1 className="mt-6 text-balance text-page text-foreground">
+        {/* The note arrives in reading order (mark, title, reassurance, way forward), 48ms apart. */}
+        <div className="mx-auto max-w-xl text-center">
+          <ClockIcon aria-hidden="true" className="list-in mx-auto h-8 w-8 text-muted-foreground" style={{ "--i": 0 } as CSSProperties} />
+          <h1 className="list-in mt-6 text-balance text-page text-foreground" style={{ "--i": 1 } as CSSProperties}>
             {text.title}
           </h1>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{text.body}</p>
-          <div className="mt-8 flex flex-col items-center gap-3">
+          <p className="list-in mx-auto mt-5 max-w-[52ch] text-lg leading-relaxed text-muted-foreground" style={{ "--i": 2 } as CSSProperties}>
+            {text.body}
+          </p>
+          <div className="list-in mt-8 flex flex-col items-center gap-3" style={{ "--i": 3 } as CSSProperties}>
             <Link
               href={withLangPrefix("/contul-meu", lang)}
               className="press-solid inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
@@ -74,9 +78,9 @@ export function PortalLinkExpired() {
             </Link>
             <Link
               href={withLangPrefix("/mediatori#solicita", lang)}
-              className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-sapphire underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
+              className="group press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
             >
-              {text.help}
+              <span className="link-draw">{text.help}</span>
             </Link>
           </div>
         </div>

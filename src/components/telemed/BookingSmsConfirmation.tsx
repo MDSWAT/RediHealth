@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { CheckCircleIcon, CalendarIcon, PhoneIcon } from "@/components/ui/icons";
+import { CalendarIcon, PhoneIcon } from "@/components/ui/icons";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -190,9 +190,22 @@ export function BookingSmsConfirmation({
   };
 
   return (
-    <div className="w-full rounded-xl border border-border bg-card p-6 sm:p-8">
+    <div className="fhs-enter w-full rounded-xl border border-border bg-card p-6 sm:p-8">
       <div className="flex items-start gap-3">
-        <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
+        {/* The confirmation mark draws itself once: ring first, then the tick (static under reduced motion). */}
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          className="mt-0.5 h-6 w-6 shrink-0 text-sapphire dark:text-sapphire-border"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="9.25" pathLength={1} className="stroke-draw" transform="rotate(-90 12 12)" />
+          <path d="m8 12.25 2.75 2.75L16.25 9.5" pathLength={1} className="stroke-draw" style={{ animationDelay: "360ms" }} />
+        </svg>
         <h2 ref={headingRef} tabIndex={-1} className="text-balance text-2xl font-semibold tracking-tight text-foreground focus:outline-none">{copy.title}</h2>
       </div>
 
@@ -219,7 +232,7 @@ export function BookingSmsConfirmation({
       <div className="mt-8 space-y-2.5">
         <Link
           href={withLangPrefix(`/medic-online/meet/${confirmation.magicRoomId}`, lang)}
-          className="inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]"
+          className="press-solid inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]"
         >
           <PhoneIcon className="h-4 w-4 shrink-0" />
           <span className="min-w-0 truncate">{copy.openRoom}</span>
@@ -260,7 +273,7 @@ export function BookingSmsConfirmation({
             <button
               type="button"
               onClick={onReset}
-              className="inline-flex min-h-[44px] max-w-full items-center justify-center whitespace-nowrap rounded-sm px-2 text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-[0.9375rem]"
+              className="press-row inline-flex min-h-[44px] max-w-full items-center justify-center whitespace-nowrap rounded-sm px-2 text-sm font-medium text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground hover:decoration-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-[0.9375rem]"
             >
               <span className="min-w-0 truncate">{copy.anotherBooking}</span>
             </button>

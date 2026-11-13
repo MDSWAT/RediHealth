@@ -3,15 +3,18 @@
 import {
   useCallback,
   useEffect,
+  useId,
   useRef,
   useState,
   type CSSProperties,
 } from "react";
+import { motion } from "motion/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import type { MythCategory } from "@/lib/i18n/health-myths";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { DURATION, EASE_OUT, useCalmReducedMotion } from "@/lib/motion/tokens";
 
 export interface MythCategoryProgress {
   total: number;
@@ -45,6 +48,8 @@ export function MythCategoryFilter({
   const { t } = useLanguage();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: false, end: false });
+  const markerId = useId();
+  const calmMotion = useCalmReducedMotion();
 
   const measure = useCallback(() => {
     const el = scrollerRef.current;
@@ -128,12 +133,21 @@ export function MythCategoryFilter({
               aria-pressed={isActive}
               onClick={() => onSelect(cat.slug)}
               className={cn(
-                "flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border px-3.5 py-2 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none lg:-ml-px lg:min-h-10 lg:rounded-none lg:border-0 lg:border-l-2 lg:bg-transparent lg:px-0 lg:py-1.5 lg:pl-4 lg:text-[15px] dark:focus-visible:ring-paper",
+                "relative flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border px-3.5 py-2 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none lg:-ml-px lg:min-h-10 lg:rounded-none lg:border-0 lg:border-l-2 lg:bg-transparent lg:px-0 lg:py-1.5 lg:pl-4 lg:text-[15px] dark:focus-visible:ring-paper",
                 isActive
-                  ? "border-sapphire bg-sapphire font-semibold text-paper dark:border-paper dark:bg-paper dark:text-ink-950 lg:border-foreground lg:bg-transparent lg:text-foreground dark:lg:border-paper dark:lg:bg-transparent dark:lg:text-paper"
+                  ? "border-sapphire bg-sapphire font-semibold text-paper dark:border-paper dark:bg-paper dark:text-ink-950 lg:border-transparent lg:bg-transparent lg:text-foreground dark:lg:border-transparent dark:lg:bg-transparent dark:lg:text-paper"
                   : "border-border-control bg-card font-medium text-foreground hover:border-sapphire/40 hover:text-foreground active:text-foreground dark:border-ink-700 dark:bg-ink-900 dark:text-mist dark:hover:border-ink-500 dark:hover:text-paper dark:active:text-paper lg:border-transparent lg:bg-transparent lg:text-muted-foreground dark:lg:border-transparent dark:lg:bg-transparent",
               )}
             >
+              {/* From lg the active rule glides down the list to the chosen category. */}
+              {isActive && (
+                <motion.span
+                  aria-hidden="true"
+                  layoutId={`myth-category-marker-${markerId}`}
+                  transition={calmMotion ? { duration: 0 } : { duration: DURATION.base, ease: EASE_OUT }}
+                  className="pointer-events-none absolute inset-y-0 -left-0.5 hidden w-0.5 bg-foreground lg:block dark:bg-paper"
+                />
+              )}
               <span>{cat.label}</span>
               {hasAnswered && tally && (
                 <span className="hidden text-meta font-normal tabular-nums text-sapphire dark:text-sapphire-border lg:inline">

@@ -133,33 +133,10 @@ function splitSpeechSentences(text: string): ParsedSentenceSpan[] {
   return spans;
 }
 
-function VocalCadenceBars({ active }: { active: boolean }) {
-  return (
-    <span
-      aria-hidden="true"
-      className="inline-flex h-3.5 items-end gap-[2px]"
-    >
-      {[0, 1, 2, 3].map((barIdx) => (
-        <span
-          key={barIdx}
-          className={`w-[2.5px] origin-bottom rounded-xs bg-sapphire transition-transform duration-[var(--dur-fast)] ${
-            active
-              ? "rh-cadence-bar motion-reduce:animate-none"
-              : "scale-y-[0.35]"
-          }`}
-          style={
-            active
-              ? {
-                  height: "14px",
-                  animationDelay: `${barIdx * 130}ms`,
-                }
-              : { height: "14px" }
-          }
-        />
-      ))}
-    </span>
-  );
-}
+const PLAY_SWAP_CLASS =
+  "flex items-center justify-center gap-2 transition-[opacity,translate] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none";
+const PLAY_SWAP_IN = "opacity-100 translate-y-0";
+const PLAY_SWAP_OUT = "pointer-events-none opacity-0 translate-y-1";
 
 export function GlobalHealthAudioPlayer({
   title,
@@ -485,29 +462,9 @@ export function GlobalHealthAudioPlayer({
 
   if (!isActive) return null;
 
-  const cadenceStyle = (
-    <style>{`
-      @keyframes rh-vocal-cadence {
-        0%, 100% { transform: scaleY(0.32); }
-        45% { transform: scaleY(1); }
-        75% { transform: scaleY(0.55); }
-      }
-      .rh-cadence-bar {
-        animation: rh-vocal-cadence 820ms var(--ease-in-out-calm) infinite;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .rh-cadence-bar {
-          animation: none !important;
-          transform: scaleY(0.65) !important;
-        }
-      }
-    `}</style>
-  );
-
   if (isMinimized) {
     return (
-      <div className="fixed bottom-4 right-4 z-40 flex items-center gap-1 rounded-lg border border-sapphire-border bg-card p-1.5 shadow-lg">
-        {cadenceStyle}
+      <div className="hh-dialog fixed bottom-4 right-4 z-40 flex items-center gap-1 rounded-lg border border-sapphire-border bg-card p-1.5 shadow-lg">
         <button
           type="button"
           onClick={handleTogglePlay}
@@ -546,7 +503,6 @@ export function GlobalHealthAudioPlayer({
           aria-label={stepUi.expandAria}
           className="press-row inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          <VocalCadenceBars active={isPlaying} />
           <span className="tabular-nums">
             {pickLocale(s.minimizedText, currentLang).replace(
               "{progressPercent}",
@@ -564,14 +520,11 @@ export function GlobalHealthAudioPlayer({
       aria-label={pickLocale(s.playerAria, currentLang)}
       className={`hh-dialog fixed bottom-4 inset-x-4 z-40 mx-auto max-w-xl rounded-lg border border-border bg-card p-3.5 shadow-xl sm:p-4 ${className}`}
     >
-      {cadenceStyle}
-
       {/* Top row: Title, vocal cadence, and minimize/close */}
       <div className="flex items-center justify-between gap-3 border-b border-border/50 pb-2.5">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <VocalCadenceBars active={isPlaying} />
-            <p className="truncate text-xs font-semibold leading-snug text-foreground">
+              <p className="truncate text-xs font-semibold leading-snug text-foreground">
               {title}
             </p>
           </div>
@@ -633,7 +586,7 @@ export function GlobalHealthAudioPlayer({
       {/* Chapter-segmented rAF pointer-drag scrubber */}
       <div className="my-3">
         <div className="mb-1.5 flex items-center justify-between text-xs font-medium text-muted-foreground tabular-nums">
-          <span>
+          <span key={isPlaying ? "playing" : "paused"} className="swap-in">
             {isPlaying
               ? pickLocale(s.statusPlaying, currentLang)
               : pickLocale(s.statusPaused, currentLang)}
@@ -677,7 +630,7 @@ export function GlobalHealthAudioPlayer({
               seekTo(100);
             }
           }}
-          className="flex h-11 w-full cursor-pointer touch-none select-none items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="group/scrub relative flex h-11 w-full cursor-pointer touch-none select-none items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           title={pickLocale(s.scrubberTitle, currentLang)}
         >
           <div className="relative h-2 w-full overflow-hidden rounded-sm bg-muted">
@@ -695,6 +648,18 @@ export function GlobalHealthAudioPlayer({
               />
             ))}
           </div>
+          {/*
+            The handle rides the play head, so the bar reads as something to drag. It travels on
+            the same curve as the fill and takes the sapphire edge on hover, focus and drag.
+          */}
+          <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 right-0">
+            <span
+              className="absolute inset-y-0 left-0 w-full transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none"
+              style={{ transform: `translateX(${progressPercent}%)` }}
+            >
+              <span className="absolute top-1/2 left-0 h-5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-xs border border-card bg-sapphire shadow-xs transition-[box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/scrub:ring-4 group-hover/scrub:ring-sapphire/20 group-focus-visible/scrub:ring-4 group-focus-visible/scrub:ring-sapphire/20 group-active/scrub:ring-4 group-active/scrub:ring-sapphire/25 motion-reduce:transition-none dark:bg-sapphire-border" />
+            </span>
+          </span>
         </div>
       </div>
 
@@ -757,32 +722,31 @@ export function GlobalHealthAudioPlayer({
               : pickLocale(s.playAria, currentLang)
           }
         >
-          {isPlaying ? (
-            <span className="flex items-center gap-2">
-              <svg
-                className="h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
+          {/*
+            Play and pause share one cell: the button holds the width of the longer label and
+            the two states cross-fade, so the controls row never shifts under the thumb.
+          */}
+          <span className="grid [&>*]:col-start-1 [&>*]:row-start-1">
+            <span
+              aria-hidden={isPlaying}
+              className={`${PLAY_SWAP_CLASS} ${isPlaying ? PLAY_SWAP_OUT : PLAY_SWAP_IN}`}
+            >
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg>
+              <span>{pickLocale(s.playButton, currentLang)}</span>
+            </span>
+            <span
+              aria-hidden={!isPlaying}
+              className={`${PLAY_SWAP_CLASS} ${isPlaying ? PLAY_SWAP_IN : PLAY_SWAP_OUT}`}
+            >
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <rect x="6" y="4" width="4" height="16" />
                 <rect x="14" y="4" width="4" height="16" />
               </svg>
               <span>{pickLocale(s.pauseButton, currentLang)}</span>
             </span>
-          ) : (
-            <span className="flex items-center gap-2">
-              <svg
-                className="h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <polygon points="5 3 19 12 5 21 5 3" />
-              </svg>
-              <span>{pickLocale(s.playButton, currentLang)}</span>
-            </span>
-          )}
+          </span>
         </button>
 
         {/* Voice speed */}

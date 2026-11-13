@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import { CheckCircleIcon, LockIcon, VolumeIcon } from "@/components/ui/icons";
+import { LockIcon, VolumeIcon } from "@/components/ui/icons";
 import { useReadAloud } from "@/components/health-check/readingTools";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang, Translations } from "@/lib/i18n/translations";
@@ -22,11 +22,42 @@ type Fields = {
 
 type Errors = Partial<Record<keyof Fields, string>>;
 
+// field-focus: the edge firms up under the pointer and focus brings a soft sapphire halo; an
+// invalid field keeps a primary edge (and a primary halo while it is being corrected).
 const inputClass =
-  "mt-1.5 block w-full min-h-12 rounded-lg border border-border bg-card px-3.5 text-base text-foreground " +
-  "placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 " +
-  "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
-  "aria-[invalid=true]:border-primary";
+  "field-focus mt-1.5 block w-full min-h-12 rounded-lg border border-border-control bg-card px-3.5 text-base text-foreground " +
+  "placeholder:text-muted-foreground aria-[invalid=true]:border-primary";
+
+/** Field messages ease in under their field instead of snapping the form taller. */
+const fieldErrorClass = "swap-in mt-1.5 text-sm font-medium text-primary";
+
+/** The confirmation mark: a ring, then the tick, each drawn once (static under reduced motion). */
+function SentMark() {
+  return (
+    <svg viewBox="0 0 28 28" fill="none" className="h-7 w-7 text-live-sage" aria-hidden="true" focusable="false">
+      <circle
+        className="stroke-draw"
+        pathLength={1}
+        cx="14"
+        cy="14"
+        r="12"
+        transform="rotate(-90 14 14)"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path
+        className="stroke-draw"
+        style={{ animationDelay: "360ms" }}
+        pathLength={1}
+        d="m9 14.5 3.25 3.25L19 11"
+        stroke="currentColor"
+        strokeWidth="2.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export const QUICK_HELP_TOPICS: Record<Lang, { id: string; label: string; text: string }[]> = {
   ro: [
@@ -243,7 +274,7 @@ export function RequestHelpForm({
   if (submitted) {
     return (
       <div className="fhs-enter rounded-xl border border-border bg-card p-6 sm:p-10">
-        <CheckCircleIcon className="h-7 w-7 text-live-sage" aria-hidden="true" />
+        <SentMark />
         <h2
           ref={successHeadingRef}
           tabIndex={-1}
@@ -308,7 +339,7 @@ export function RequestHelpForm({
                       form.privacyNote,
                     ])
               }
-              className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <VolumeIcon className="h-4 w-4" aria-hidden="true" />
               <span>{voice.speaking ? listenCopy.stop : listenCopy.listen}</span>
@@ -364,7 +395,7 @@ export function RequestHelpForm({
               ))}
             </select>
             {countyError ? (
-              <p id="county-error" className="mt-1.5 text-sm text-primary">{form.errorCounty}</p>
+              <p id="county-error" className={fieldErrorClass}>{form.errorCounty}</p>
             ) : null}
           </div>
         ) : null}
@@ -409,7 +440,7 @@ export function RequestHelpForm({
               placeholder={form.phonePlaceholder}
             />
             {errors.phone ? (
-              <p id="phone-error" className="mt-1.5 text-sm text-primary">
+              <p id="phone-error" className={fieldErrorClass}>
                 {errors.phone}
               </p>
             ) : null}
@@ -437,7 +468,7 @@ export function RequestHelpForm({
               placeholder={form.emailPlaceholder}
             />
             {errors.email ? (
-              <p id="email-error" className="mt-1.5 text-sm text-primary">
+              <p id="email-error" className={fieldErrorClass}>
                 {errors.email}
               </p>
             ) : null}
@@ -487,7 +518,7 @@ export function RequestHelpForm({
             placeholder={form.descriptionPlaceholder}
           />
           {errors.description ? (
-            <p id="description-error" className="mt-1.5 text-sm text-primary">
+            <p id="description-error" className={fieldErrorClass}>
               {errors.description}
             </p>
           ) : (
@@ -524,7 +555,7 @@ export function RequestHelpForm({
             </span>
           </label>
           {consentAttempted && !privacyConsent ? (
-            <p id="consent-error" className="mt-1.5 text-sm text-primary">{form.privacyConsentRequired}</p>
+            <p id="consent-error" className={fieldErrorClass}>{form.privacyConsentRequired}</p>
           ) : null}
         </div>
 

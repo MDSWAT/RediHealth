@@ -1,12 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRightIcon,
   BookIcon,
-  CheckCircleIcon,
   SearchIcon,
   StethoscopeIcon,
 } from "@/components/ui/icons";
@@ -187,6 +186,10 @@ export function HealthInformationTopicGrid({
     ? filteredTopics
     : filteredTopics.slice(0, FIRST_VIEW_LIMIT);
 
+  // Cards revealed by "show all" count their stagger from the first new card, not from the top.
+  const dealStyle = (index: number) =>
+    ({ "--i": showAll && index >= FIRST_VIEW_LIMIT ? index - FIRST_VIEW_LIMIT : index }) as CSSProperties;
+
   const isSingleSpotlight = visibleTopics.length === 1;
   const isPairedView = visibleTopics.length === 2;
   const promoteLeadCard =
@@ -240,10 +243,7 @@ export function HealthInformationTopicGrid({
         >
           <StethoscopeIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
           <span className="min-w-0 truncate">{checkSymptomLabel}</span>
-          <ArrowRightIcon
-            className="h-4 w-4 text-sapphire transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-safe:group-hover:translate-x-0.5 motion-reduce:transition-none"
-            aria-hidden="true"
-          />
+          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
         </Link>
       </div>
 
@@ -279,7 +279,10 @@ export function HealthInformationTopicGrid({
       {/* Count on the left, reading tools on the right; no box around them. */}
       <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-border pt-5">
         <p role="status" className="mr-auto text-sm font-medium text-muted-foreground tabular-nums">
-          {resultCountText}
+          {/* The figure settles in again whenever the filter changes it. */}
+          <span key={resultCountText} className="swap-in inline-block">
+            {resultCountText}
+          </span>
         </p>
         {onOpenDictionary && (
           <button
@@ -300,7 +303,7 @@ export function HealthInformationTopicGrid({
       </div>
 
       {filteredTopics.length === 0 ? (
-        <div className="mt-8 rounded-2xl border border-dashed border-border-control px-6 py-12 text-center">
+        <div key="empty" className="swap-in mt-8 rounded-2xl border border-dashed border-border-control px-6 py-12 text-center">
           <p className="text-lg font-semibold text-foreground">{gridCopy.emptyTitle}</p>
           <p className="mx-auto mt-1.5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
             {gridCopy.emptyDescription}
@@ -309,6 +312,7 @@ export function HealthInformationTopicGrid({
             type="button"
             onClick={() => {
               setSelectedCategory("toate");
+              setShowAll(false);
             }}
             className="press-row mt-5 inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 text-sm font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
@@ -316,23 +320,25 @@ export function HealthInformationTopicGrid({
           </button>
         </div>
       ) : isSingleSpotlight ? (
-        <div className="mt-8">
+        <div key={selectedCategory} className="swap-in mt-8">
           <LeadTopicCard {...cardData(visibleTopics[0])} wide />
         </div>
       ) : (
         <>
+          {/* Keyed by filter: a new choice re-deals the cards in order; "show all" only deals the new ones. */}
           <ul
+            key={selectedCategory}
             className={`mt-8 grid grid-cols-1 gap-5 sm:gap-6 ${
               isPairedView ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"
             }`}
           >
             {visibleTopics.map((topic, index) =>
               promoteLeadCard && index === 0 ? (
-                <li key={topic.slug} className="flex sm:col-span-2">
+                <li key={topic.slug} className="list-in flex sm:col-span-2" style={dealStyle(index)}>
                   <LeadTopicCard {...cardData(topic)} />
                 </li>
               ) : (
-                <li key={topic.slug} className="flex">
+                <li key={topic.slug} className="list-in flex" style={dealStyle(index)}>
                   <TopicCard {...cardData(topic)} priority={index < 3} />
                 </li>
               ),
@@ -369,10 +375,9 @@ type TopicCardProps = {
   lang: Lang;
 };
 
-/** The card is one link: border at rest, a 2px lift and a darker edge on hover. */
+/** The card is one link: the shared card hover (shadow deepens, edge tints, nothing moves). */
 const cardLinkClass =
-  "press-row group flex w-full overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] duration-(--dur-base) ease-(--ease-out-calm) " +
-  "hover:border-sapphire/45 hover:shadow-(--shadow-card-hover) motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0 motion-reduce:transition-none " +
+  "card-interactive press-row group flex w-full overflow-hidden rounded-2xl border border-border bg-card motion-reduce:transition-none " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 const photoClass =
@@ -394,10 +399,7 @@ function CardFooter({ readMinutes, audioMinutes, lang, actionLabel }: Pick<Topic
     <div className="mt-auto flex items-center justify-between gap-3 pt-5">
       <TopicMetaBadge readMinutes={readMinutes} audioMinutes={audioMinutes} compact bordered={false} lang={lang} />
       <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire transition-[background-color,color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-sapphire group-hover:text-white motion-reduce:transition-none">
-        <ArrowRightIcon
-          aria-hidden="true"
-          className="h-4 w-4 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-safe:group-hover:translate-x-0.5 motion-reduce:transition-none"
-        />
+        <ArrowRightIcon aria-hidden="true" className="arrow-travel h-4 w-4" />
       </span>
       <span className="sr-only">{actionLabel}</span>
     </div>
@@ -422,7 +424,7 @@ function TopicCard(props: TopicCardProps & { priority?: boolean }) {
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <CardCategory topic={topic} label={categoryLabel} />
         <h3 className="mt-2 text-xl font-semibold leading-snug tracking-[-0.015em] text-foreground text-balance">
-          {topic.title}
+          <span className="link-draw box-decoration-clone">{topic.title}</span>
         </h3>
         <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground text-pretty">{topic.description}</p>
 
@@ -474,22 +476,19 @@ function LeadTopicCard(props: TopicCardProps & { wide?: boolean }) {
       <div className={`flex flex-1 flex-col p-6 sm:p-7 ${wide ? "lg:col-span-6 lg:p-9" : ""}`}>
         <CardCategory topic={topic} label={categoryLabel} />
         <h3 className="mt-2 text-2xl font-semibold leading-tight tracking-[-0.02em] text-foreground text-balance sm:text-[28px]">
-          {topic.title}
+          <span className="link-draw box-decoration-clone">{topic.title}</span>
         </h3>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground text-pretty">{topic.description}</p>
 
         {topic.recommendationBody && (
-          <p className="mt-5 flex items-start gap-2.5 text-[15px] leading-relaxed text-foreground">
-            <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-live-sage" aria-hidden="true" />
-            <span>
-              <span className="font-semibold">{topic.recommendationTitle || firstStepLabel}.</span>{" "}
-              <span className="text-muted-foreground">{topic.recommendationBody}</span>
-            </span>
+          <p className="mt-5 border-l-2 border-sapphire/50 pl-4 text-[15px] leading-relaxed text-foreground">
+            <span className="font-semibold">{topic.recommendationTitle || firstStepLabel}.</span>{" "}
+            <span className="text-muted-foreground">{topic.recommendationBody}</span>
           </p>
         )}
 
         {isComplete && keyFact && (
-          <div className="mt-4 border-t border-border pt-4">
+          <div className="swap-in mt-4 border-t border-border pt-4">
             <p className="text-xs font-semibold text-sapphire">{keyFactLabel}</p>
             <p className="mt-1 text-[15px] leading-relaxed text-foreground">{keyFact}</p>
           </div>

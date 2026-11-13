@@ -185,6 +185,8 @@ export function ReportIssuePageContent() {
   }
 
   const trimmedLength = message.trim().length;
+  /** The too-short message sits under the field it is about, and the field is marked invalid. */
+  const detailInvalid = error === t.detailError && trimmedLength < 10;
 
   return (
     <main id="main-content" className="flex-1">
@@ -206,7 +208,7 @@ export function ReportIssuePageContent() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder={t.emailPlaceholder}
-                className="min-h-11 w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground transition-colors duration-[var(--dur-fast)] hover:border-sapphire/50 motion-reduce:transition-none placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                className="field-focus min-h-12 w-full rounded-lg border border-border-control bg-background px-3.5 py-2 text-base text-foreground placeholder:text-muted-foreground sm:text-sm"
               />
             </div>
 
@@ -219,23 +221,41 @@ export function ReportIssuePageContent() {
                 rows={8}
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
-                aria-describedby="report-message-hint"
+                aria-invalid={detailInvalid}
+                aria-describedby={detailInvalid ? "report-message-error report-message-hint" : "report-message-hint"}
                 placeholder={t.issuePlaceholder}
-                className="w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground transition-colors duration-[var(--dur-fast)] hover:border-sapphire/50 motion-reduce:transition-none placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                className="field-focus w-full rounded-lg border border-border-control bg-background px-3.5 py-2.5 text-base text-foreground placeholder:text-muted-foreground sm:text-sm"
               />
+              {/* A hairline under the field fills toward the 10-character minimum, so "how much more"
+                  is visible without counting; the words beside it say the same thing. */}
+              <span aria-hidden="true" className="mt-2 block h-0.5 overflow-hidden rounded-sm bg-border">
+                <span
+                  className={`block h-full origin-left transition-[transform,background-color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                    trimmedLength >= 10 ? "bg-live-sage" : "bg-sapphire"
+                  }`}
+                  style={{ transform: `scaleX(${Math.min(trimmedLength, 10) / 10})` }}
+                />
+              </span>
               <p id="report-message-hint" className="mt-1.5 flex items-center justify-between gap-3 text-xs text-muted-foreground tabular-nums">
                 <span>{t.messageHint}</span>
-                <span>{trimmedLength >= 10 ? t.readyHint : `${trimmedLength}/10`}</span>
+                <span key={trimmedLength >= 10 ? "ready" : "count"} className={trimmedLength >= 10 ? "swap-in font-semibold text-foreground" : undefined}>
+                  {trimmedLength >= 10 ? t.readyHint : `${trimmedLength}/10`}
+                </span>
               </p>
+              {detailInvalid ? (
+                <p id="report-message-error" role="alert" className="swap-in mt-1.5 text-sm font-medium text-primary">
+                  {error}
+                </p>
+              ) : null}
             </div>
 
-            {error ? (
-              <p role="alert" className="fhs-enter rounded-lg border border-primary/20 bg-primary-soft px-3 py-2 text-sm text-foreground">
+            {error && error !== t.detailError ? (
+              <p role="alert" className="swap-in border-l-2 border-primary py-0.5 pl-3 text-sm font-medium leading-relaxed text-foreground">
                 {error}
               </p>
             ) : null}
             {success ? (
-              <p role="status" className="fhs-enter rounded-lg border border-border bg-muted/60 px-3 py-2 text-sm text-foreground">
+              <p role="status" className="swap-in border-l-2 border-live-sage py-0.5 pl-3 text-sm font-medium leading-relaxed text-foreground">
                 {success}
               </p>
             ) : null}

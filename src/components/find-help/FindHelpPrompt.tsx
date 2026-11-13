@@ -32,17 +32,17 @@ export function FindHelpPrompt({ lang: langProp, className }: { lang?: Lang; cla
       <div className="flex flex-wrap items-center gap-2 sm:shrink-0">
         <Link
           href={withLangPrefix(findHelpHref("pharmacy"), lang)}
-          className="inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-sapphire/30 bg-sapphire-soft px-4 py-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
+          className="press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-sapphire/30 bg-sapphire-soft px-4 py-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 hover:bg-sapphire-soft/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
         >
           <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
           <span className="min-w-0 truncate">{copy.nearestPharmacy}</span>
         </Link>
         <Link
           href={withLangPrefix(findHelpHref(), lang)}
-          className="inline-flex min-h-11 max-w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
+          className="group press-row inline-flex min-h-11 max-w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
         >
           <span className="min-w-0 truncate">{copy.nearbyPlace}</span>
-          <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire motion-reduce:transition-none" aria-hidden="true" />
         </Link>
       </div>
     </div>

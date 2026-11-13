@@ -4,10 +4,13 @@ import { Container } from "@/components/ui/Container";
 import { IconTile, type IconTileTone } from "@/components/ui/IconTile";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon, GlobeIcon, HandHelpingIcon, CheckCircleIcon, HeartIcon, LockIcon, MessageDotsIcon } from "@/components/ui/icons";
 import { NAV_LINK_ICONS, type NavIcon } from "@/components/layout/nav-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
+import { STAGGER_EDITORIAL_S } from "@/lib/motion/tokens";
+import { revealDelay } from "./reveal-delay";
 
 /** The promises, in order: free for everyone, data stays private, clear guidance. */
 const PROMISE_ICONS = [HeartIcon, LockIcon, MessageDotsIcon];
@@ -241,22 +244,23 @@ export function TrustSection() {
     <Section tone="paper">
       <Container>
         <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-12">
-          <div className="lg:col-span-4">
+          <Reveal className="lg:col-span-4">
             <SectionHeading
               as="h2"
               align="left"
               title={copy.title}
               subtitle={copy.subtitle}
             />
-          </div>
+          </Reveal>
 
           <div className="lg:col-span-8">
             <ul className="divide-y divide-border border-y border-border sm:overflow-hidden sm:rounded-(--radius-surface) sm:border sm:bg-card sm:shadow-(--shadow-card-rest) dark:divide-white/10 dark:border-white/10 dark:sm:bg-ink-800">
-              {copy.sources.map((item) => (
+              {copy.sources.map((item, index) => (
                 <li key={item.id} className="py-5 sm:p-6">
                   {/* Every row the same: blue tile, name, one line. A partner's website, where there is
-                      one, is a plain link under that line rather than a button only one row has. */}
-                  <div className="flex min-w-0 items-start gap-4">
+                      one, is a plain link under that line rather than a button only one row has.
+                      The rows settle in one after another, a beat behind the heading. */}
+                  <Reveal delay={revealDelay(index + 1)} className="flex min-w-0 items-start gap-4">
                     <IconTile size={40} {...SOURCE_TILES[item.id]} />
                     <div className="min-w-0">
                       <h3 className="text-balance text-title">{item.name}</h3>
@@ -268,15 +272,15 @@ export function TrustSection() {
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="-my-2 -mx-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 text-body font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/50 hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-white/10 dark:focus-visible:ring-paper"
+                          className="group -my-2 -mx-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-white/10 dark:focus-visible:ring-paper"
                         >
-                          {item.hrefLabel}
+                          <span className="link-draw">{item.hrefLabel}</span>
                           <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0 -rotate-45" />
                           <span className="sr-only"> ({copy.newTab})</span>
                         </a>
                       )}
                     </div>
-                  </div>
+                  </Reveal>
                 </li>
               ))}
             </ul>
@@ -284,22 +288,31 @@ export function TrustSection() {
         </div>
 
         <div className="mt-14 sm:mt-16">
-          <div>
+          <Reveal>
             <h3 className="text-balance text-title font-bold">{copy.commitmentsTitle}</h3>
-          </div>
+          </Reveal>
           {/* Three promises, not steps: an icon each, no numbers. */}
           <ul className="mt-6 grid gap-8 sm:grid-cols-3 lg:gap-10">
             {t.landing.trustSection.commitments.map(({ title, description }, index) => {
               const Icon = PROMISE_ICONS[index] ?? CheckCircleIcon;
               return (
               <li key={title}>
-                <div className="border-t-2 border-foreground/80 pt-5 dark:border-paper/80">
-                  <Icon aria-hidden="true" className="h-6 w-6 text-sapphire dark:text-sapphire-border" />
-                  <p className="mt-3 text-lead font-semibold tabular-nums">{title}</p>
-                  <p className="mt-2 text-pretty text-body tabular-nums text-muted-foreground dark:text-mist">
-                    {description}
-                  </p>
-                </div>
+                {/* Each promise draws its heavy rule first, then its words settle in under it; the
+                    three follow one another left to right. */}
+                <Reveal stagger="editorial" delay={STAGGER_EDITORIAL_S * index}>
+                  <span
+                    aria-hidden="true"
+                    style={{ animationDelay: `${Math.round(STAGGER_EDITORIAL_S * index * 1000)}ms` }}
+                    className="rule-draw block h-0.5 bg-foreground/80 dark:bg-paper/80"
+                  />
+                  <div className="pt-5">
+                    <Icon aria-hidden="true" className="h-6 w-6 text-sapphire dark:text-sapphire-border" />
+                    <p className="mt-3 text-lead font-semibold tabular-nums">{title}</p>
+                    <p className="mt-2 text-pretty text-body tabular-nums text-muted-foreground dark:text-mist">
+                      {description}
+                    </p>
+                  </div>
+                </Reveal>
               </li>
               );
             })}

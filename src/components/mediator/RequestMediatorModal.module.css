@@ -1,0 +1,33 @@
+/*
+ * The request panel arrives the way it sits: on phones it is a bottom sheet, so it rises from
+ * the screen edge; from `sm` up it is a centred dialog, so it settles from 8px. Same timing
+ * tokens as the shared sheet-in / dialog-in; static under reduced motion and Calm Motion.
+ */
+@keyframes panel-sheet {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes panel-dialog {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.panel {
+  animation: panel-sheet var(--dur-slow) var(--ease-out-expo) both;
+}
+
+@media (min-width: 40rem) {
+  .panel {
+    animation-name: panel-dialog;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+}

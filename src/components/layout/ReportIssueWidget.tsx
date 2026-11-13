@@ -4,6 +4,7 @@ import { captchaErrorMessage, useRecaptcha } from "@/components/security/Recaptc
 
 import { useEffect, useId, useRef, useState, type FormEvent, type MouseEvent } from "react";
 import { AlertCircleIcon, CloseIcon, MailIcon } from "@/components/ui/icons";
+import styles from "@/components/layout/ChromeDialogs.module.css";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -315,7 +316,7 @@ export function ReportIssueWidget() {
   }
 
   const fieldClass =
-    "w-full rounded-lg border bg-background text-base text-foreground placeholder:text-muted-foreground/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
+    "field-focus w-full rounded-lg border bg-background text-base text-foreground placeholder:text-muted-foreground/80 sm:text-sm";
 
   return (
     <>
@@ -325,13 +326,13 @@ export function ReportIssueWidget() {
         onClick={openDialog}
         aria-label={t.trigger}
         aria-haspopup="dialog"
-        className="report-issue-trigger group fixed bottom-3 right-3 z-30 hidden h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground shadow-xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) lg:flex hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="report-issue-trigger group press-row fixed bottom-3 right-3 z-30 hidden h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground shadow-xs transition-[color,background-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) hover:shadow-(--shadow-card-hover) motion-reduce:transition-none lg:flex hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <AlertCircleIcon className="h-[18px] w-[18px]" aria-hidden="true" />
         {/* Label on hover or keyboard focus only, above the icon so adjacent bottom-right controls stay clear. */}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute right-0 bottom-full mb-2 whitespace-nowrap rounded-md bg-ink-950 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-xs transition-opacity duration-(--dur-fast) group-hover:opacity-100 group-focus-visible:opacity-100"
+          className="pointer-events-none absolute right-0 bottom-full mb-2 translate-y-1 whitespace-nowrap rounded-md bg-ink-950 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-xs transition-[opacity,translate] duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 motion-reduce:transition-none"
         >
           {t.trigger}
         </span>
@@ -347,7 +348,8 @@ export function ReportIssueWidget() {
           "m-0 mt-auto w-full max-w-none overflow-visible bg-transparent p-0 text-foreground",
           "sm:m-auto sm:w-[calc(100%-2rem)] sm:max-w-xl",
           "backdrop:bg-ink-950/45",
-          "transition-[opacity,translate] duration-(--dur-base) ease-(--ease-out-calm)",
+          styles.backdropFade,
+          "transition-[opacity,translate] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
           "starting:open:translate-y-2 starting:open:opacity-0",
         ].join(" ")}
       >
@@ -365,7 +367,7 @@ export function ReportIssueWidget() {
               type="button"
               onClick={() => setOpen(false)}
               aria-label={t.close}
-              className="-mr-1.5 -mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row -mr-2 -mt-1.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <CloseIcon className="h-5 w-5" />
             </button>
@@ -376,8 +378,9 @@ export function ReportIssueWidget() {
               <label htmlFor={emailId} className="mb-1.5 block text-sm font-medium text-foreground">
                 {t.emailLabel}
               </label>
-              <div className="relative">
-                <MailIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <div className="group relative">
+                {/* The envelope takes the focus colour with its field, so the active field reads at a glance. */}
+                <MailIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-focus-within:text-sapphire motion-reduce:transition-none dark:group-focus-within:text-sapphire-border" />
                 <input
                   id={emailId}
                   type="email"
@@ -411,13 +414,13 @@ export function ReportIssueWidget() {
             </div>
 
             {error ? (
-              <p id={errorId} role="alert" className="flex items-start gap-2 rounded-lg border border-primary/30 bg-primary-soft/50 px-3 py-2 text-sm text-primary-active">
+              <p id={errorId} role="alert" className="swap-in flex items-start gap-2 rounded-lg border border-primary/30 bg-primary-soft/50 px-3 py-2 text-sm text-primary-active">
                 <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>{error.text}</span>
               </p>
             ) : null}
             {success ? (
-              <p role="status" className="rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm font-medium text-foreground">
+              <p role="status" className="swap-in rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm font-medium text-foreground">
                 {success}
               </p>
             ) : null}

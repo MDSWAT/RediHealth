@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import styles from "./AssistantNavigation.module.css";
 import { ActivityIcon, FileTextIcon, MessageDotsIcon, PinIcon } from "@/components/ui/icons";
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -81,14 +82,16 @@ ru: {
             key={href}
             href={withLangPrefix(href, lang)}
             aria-current={isActive ? "page" : undefined}
-            className={`press-row inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-t-md border-b-2 px-3 py-2.5 text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:px-4 ${
+            className={`${styles.tab} press-row inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-t-md border-b-2 px-3 py-2.5 text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:px-4 ${
               isActive
-                ? "border-sapphire font-semibold text-foreground"
-                : "border-transparent font-medium text-muted-foreground hover:border-border hover:text-foreground"
+                ? "border-transparent font-semibold text-foreground"
+                : "border-transparent font-medium text-muted-foreground hover:text-foreground"
             }`}
           >
             <Icon
-              className={`h-4 w-4 shrink-0 ${isActive ? "text-sapphire" : "text-muted-foreground"}`}
+              className={`h-4 w-4 shrink-0 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                isActive ? "text-sapphire dark:text-sapphire-border" : "text-muted-foreground"
+              }`}
               aria-hidden="true"
             />
             <span>{label}</span>

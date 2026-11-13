@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import { CheckCircleIcon, CopyIcon, PrinterIcon, VolumeIcon } from "@/components/ui/icons";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
@@ -756,10 +756,11 @@ export function TriageSummaryCard({
       )}
 
       <dl className={`mt-3 select-text divide-y divide-border overflow-hidden ${surfaceClass} tabular-nums`}>
-        {rows.map((row) => (
+        {rows.map((row, index) => (
           <div
             key={row.label}
-            className="grid grid-cols-[minmax(7rem,38%)_1fr] items-baseline gap-3 px-4 py-3 even:bg-surface-subtle/45"
+            style={{ "--i": index } as CSSProperties}
+            className="list-in grid grid-cols-[minmax(7rem,38%)_1fr] items-baseline gap-3 px-4 py-3 even:bg-surface-subtle/45"
           >
             <dt className="text-[13px] font-medium text-muted-foreground">{row.label}</dt>
             <dd className="text-[15px] font-semibold leading-snug text-foreground">{row.value}</dd>
@@ -837,7 +838,7 @@ export function TriageSummaryCard({
                 id={inlineQrHintId}
                 role="tooltip"
                 data-qr-hint="inline"
-                className="rounded-xl border border-stone-200/90 bg-card p-3.5 text-xs leading-relaxed text-foreground shadow-lg dark:border-stone-800"
+                className="popover-in rounded-xl border border-stone-200/90 bg-card p-3.5 text-xs leading-relaxed text-foreground shadow-lg dark:border-stone-800"
               >
                 {t.qrHint}
               </div>
@@ -967,6 +968,8 @@ export function TriageSummaryCard({
                 lang={activeDialogLang}
                 className="flex-1 select-text overflow-y-auto p-5 print:overflow-visible print:p-0 sm:p-6"
               >
+                {/* Switching between the reader's language and Romanian settles the new text in place. */}
+                <div key={activeDialogLang} className="swap-in">
                 <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-3.5">
                   <h3 className="text-xl font-semibold text-foreground sm:text-2xl">
                     {activeDialogCopy.patientSummary}
@@ -1085,7 +1088,7 @@ export function TriageSummaryCard({
                           id={dialogQrHintId}
                           role="tooltip"
                           data-qr-hint="dialog"
-                          className="rounded-xl border border-stone-200/90 bg-card p-3.5 text-xs leading-relaxed text-foreground shadow-lg dark:border-stone-800"
+                          className="popover-in rounded-xl border border-stone-200/90 bg-card p-3.5 text-xs leading-relaxed text-foreground shadow-lg dark:border-stone-800"
                         >
                           {activeDialogCopy.qrHint}
                         </div>
@@ -1093,6 +1096,7 @@ export function TriageSummaryCard({
                     )}
                   </div>
                 )}
+                </div>
               </div>
 
               <div className="flex shrink-0 flex-nowrap items-center justify-between gap-2 border-t border-border bg-card px-5 py-3.5 pb-[max(0.875rem,env(safe-area-inset-bottom))] print:hidden sm:px-6">

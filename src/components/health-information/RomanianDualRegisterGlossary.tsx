@@ -362,7 +362,7 @@ export function RomanianDualRegisterGlossary({
 
         {/* 3-band editorial dual-register specimen cards */}
         {filteredEntries.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-border bg-surface-subtle/50 px-5 py-10 text-center">
+          <div className="swap-in rounded-2xl border border-dashed border-border bg-surface-subtle/50 px-5 py-10 text-center">
             <p className="text-base text-muted-foreground">{copy.emptyState}</p>
             {isFiltered && (
               <button
@@ -375,7 +375,8 @@ export function RomanianDualRegisterGlossary({
             )}
           </div>
         ) : (
-          <ul className="space-y-3.5">
+          // Keyed by category: choosing a filter deals the matching cards in again, in order.
+          <ul key={selectedCategory} className="space-y-3.5">
             {filteredEntries.map((entry, index) => {
               const loc = getLocalizedGlossaryEntry(entry, lang);
               const isEmergencyTerm = entry.category === "urgente";
@@ -396,9 +397,9 @@ export function RomanianDualRegisterGlossary({
               return (
                 <li
                   key={entry.id}
-                  style={{ "--stagger": Math.min(index, 4) } as CSSProperties}
+                  style={{ "--i": index } as CSSProperties}
                   className={cn(
-                    "rh-dict-card overflow-hidden rounded-2xl border bg-card shadow-[var(--shadow-card-rest)] transition-shadow duration-[var(--dur-base)] hover:shadow-[var(--shadow-card-hover)]",
+                    "list-in overflow-hidden rounded-2xl border bg-card shadow-[var(--shadow-card-rest)] transition-shadow duration-[var(--dur-base)] hover:shadow-[var(--shadow-card-hover)]",
                     isEmergencyTerm ? "border-primary/35" : "border-border",
                   )}
                 >

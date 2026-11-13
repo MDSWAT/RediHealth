@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { IconTile } from "@/components/ui/IconTile";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { HelpOptionsMediatorBand } from "@/components/landing/HelpOptionsMediatorBand";
 import { CarePath } from "@/components/landing/hero/CarePath";
@@ -233,16 +234,17 @@ export function HelpOptions() {
   return (
     <Section id="help-options" tone="paper" className="scroll-mt-20">
       <Container>
-        <div>
+        <Reveal>
           <SectionHeading
             as="h2"
             align="left"
             title={copy.title}
             subtitle={copy.subtitle}
           />
-        </div>
+        </Reveal>
 
-        <div className="mt-7 grid gap-5 lg:mt-10 lg:grid-cols-12 lg:gap-6">
+        {/* The lead card arrives first, the three rows a beat after it, then the mediator band. */}
+        <Reveal stagger="editorial" delay={0.06} className="mt-7 grid gap-5 lg:mt-10 lg:grid-cols-12 lg:gap-6">
           <div className="lg:col-span-5">
             <Link
               href={withLangPrefix(lead.href, lang)}
@@ -260,8 +262,8 @@ export function HelpOptions() {
               </div>
 
               <span className="mt-7 inline-flex min-h-11 self-start items-center gap-2.5 whitespace-nowrap rounded-(--radius-control) bg-paper px-5 py-2.5 text-base font-semibold text-ink-950 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:bg-white">
-                <span>{lead.cta}</span>
-                <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                <span className="link-draw">{lead.cta}</span>
+                <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
               </span>
             </Link>
           </div>
@@ -273,6 +275,11 @@ export function HelpOptions() {
                   href={withLangPrefix(href, lang)}
                   className="press-row group relative flex h-full min-h-19 flex-col justify-between gap-3.5 px-5 py-5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none sm:flex-row sm:items-center sm:gap-6 sm:px-6 lg:py-6 dark:hover:bg-ink-900 dark:focus-visible:ring-paper"
                 >
+                  {/* A sapphire rule at the row's leading edge opens from its middle on hover or focus. */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-y-3 start-0 w-0.5 bg-sapphire transition-[clip-path] duration-(--dur-base) ease-(--ease-out-calm) [clip-path:inset(50%_0_50%_0)] group-hover:[clip-path:inset(0)] group-focus-visible:[clip-path:inset(0)] motion-reduce:transition-none dark:bg-sapphire-border"
+                  />
                   <div className="flex min-w-0 items-start gap-3.5 sm:gap-4">
                     <IconTile icon={NAV_LINK_ICONS[href]} tone="sapphire-soft" />
                     <div className="min-w-0 flex-1">
@@ -286,18 +293,18 @@ export function HelpOptions() {
                   </div>
 
                   <span className="ml-15.5 inline-flex min-h-11 shrink-0 self-start items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) bg-sapphire-soft px-3.5 py-2 text-base font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire-light sm:ml-0 sm:min-h-11 sm:self-center sm:bg-transparent sm:px-0 sm:py-0 dark:bg-white/10 dark:text-sapphire-border dark:group-hover:text-paper dark:sm:bg-transparent">
-                    <span className="sm:underline sm:decoration-sapphire/30 sm:underline-offset-4 sm:group-hover:decoration-sapphire dark:sm:decoration-white/30 dark:sm:group-hover:decoration-white">
-                      {cta}
-                    </span>
-                    <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                    <span className="link-draw">{cta}</span>
+                    <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
                   </span>
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
-        <HelpOptionsMediatorBand className="mt-5" />
+        <Reveal className="mt-5" delay={0.18}>
+          <HelpOptionsMediatorBand />
+        </Reveal>
       </Container>
     </Section>
   );

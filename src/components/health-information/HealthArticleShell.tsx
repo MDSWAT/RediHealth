@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon, ChevronDownIcon } from "@/components/ui/icons";
@@ -159,27 +159,38 @@ export function HealthArticleToc({
   return (
     <details
       className={cn(
-        "group mt-8 rounded-xl border border-border bg-card print:hidden",
+        "group/toc mt-8 rounded-xl border border-border bg-card print:hidden",
         className,
       )}
     >
       <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-5 py-3 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
         <span>{title}</span>
         <ChevronDownIcon
-          className="h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] group-open:rotate-180 motion-reduce:transition-none"
+          className="h-5 w-5 shrink-0 text-muted-foreground transition-[transform,color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] group-open/toc:rotate-180 group-open/toc:text-sapphire motion-reduce:transition-none"
           aria-hidden="true"
         />
       </summary>
 
-      <nav aria-label={ariaLabel} className="border-t border-border px-5 py-2.5">
+      {/* Shown only while open, so the entrance replays on every opening. */}
+      <nav aria-label={ariaLabel} className="swap-in border-t border-border px-5 py-2.5">
         <ol className="divide-y divide-border/70">
-          {items.map((item) => (
-            <li key={item.href}>
+          {items.map((item, index) => (
+            <li
+              key={item.href}
+              className="list-in"
+              style={{ "--i": index } as CSSProperties}
+            >
               <a
                 href={item.href}
-                className="flex min-h-11 items-center gap-3 py-2 text-base font-medium text-foreground underline-offset-4 transition-colors duration-[var(--dur-fast)] hover:text-sapphire hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="group flex min-h-11 items-baseline gap-3 py-2 text-base font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire focus-visible:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
               >
-                {item.label}
+                <span
+                  aria-hidden="true"
+                  className="w-6 shrink-0 text-sm font-semibold tabular-nums text-muted-foreground"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="link-draw">{item.label}</span>
               </a>
             </li>
           ))}
@@ -234,13 +245,13 @@ export function HealthArticleRelatedList({
           <li key={item.key}>
             <Link
               href={item.href}
-              className="group flex min-h-14 items-center justify-between gap-4 py-3.5 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row group flex min-h-14 items-center justify-between gap-4 py-3.5 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <span className="min-w-0">
                 <span
                   lang={item.titleLang}
                   className={cn(
-                    "block text-[1.0625rem] leading-snug underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire group-hover:underline sm:text-lg",
+                    "link-draw inline box-decoration-clone text-[1.0625rem] leading-snug group-hover:text-sapphire sm:text-lg",
                     item.emphasized ? "font-semibold" : "font-medium",
                   )}
                 >
@@ -254,7 +265,7 @@ export function HealthArticleRelatedList({
               </span>
 
               <ArrowRightIcon
-                className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-sapphire motion-reduce:transition-none"
+                className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
                 aria-hidden="true"
               />
             </Link>

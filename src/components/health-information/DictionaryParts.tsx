@@ -326,7 +326,6 @@ export function DictionarySearch({
 
   return (
     <div className={cn("relative", className)}>
-      <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
       {/* 16px text so iPhones do not zoom into the field. */}
       <input
         ref={inputRef}
@@ -336,10 +335,12 @@ export function DictionarySearch({
         placeholder={placeholder}
         aria-label={placeholder}
         className={cn(
-          "min-h-12 w-full rounded-xl border border-border-control bg-surface-card/70 pl-10 text-base text-foreground placeholder:text-muted-foreground/80 transition-colors duration-(--dur-fast) motion-reduce:transition-none focus:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
+          "field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-surface-card/70 pl-10 text-base text-foreground placeholder:text-muted-foreground/80 motion-reduce:transition-none focus:bg-card [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
           value.length > 0 ? "pr-12" : "pr-4",
         )}
       />
+      {/* After the field in source so it can follow it: the glass takes the sapphire with focus. */}
+      <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) peer-focus-visible:text-sapphire motion-reduce:transition-none dark:peer-focus-visible:text-sapphire-border" />
       {value.length > 0 && (
         <button
           type="button"
@@ -349,7 +350,7 @@ export function DictionarySearch({
           }}
           aria-label={clearLabel}
           title={clearLabel}
-          className="press-row absolute right-0.5 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="popover-in press-row absolute right-0.5 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <CloseIcon className="h-4 w-4" />
         </button>
@@ -443,6 +444,11 @@ export function DictionaryFilters<T extends string>({
   );
 }
 
+const SPEAK_SWAP_CLASS =
+  "transition-[opacity,translate] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none";
+const SPEAK_SWAP_IN = "opacity-100 translate-y-0";
+const SPEAK_SWAP_OUT = "pointer-events-none opacity-0 translate-y-1";
+
 /**
  * Tactile audio pronunciation pill with explicit listen/stop text and a 4-bar waveform while speaking.
  */
@@ -481,25 +487,22 @@ export function DictionarySpeakButton({
             : "press-row border-sapphire-border bg-sapphire-soft text-sapphire hover:border-sapphire/40 hover:bg-sapphire-soft/80",
       )}
     >
-      {speaking ? (
-        <>
-          <span
-            aria-hidden="true"
-            className="inline-flex h-4 w-4 shrink-0 items-center justify-between gap-[2px]"
-          >
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-xs bg-current" />
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-xs bg-current" />
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-xs bg-current" />
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-xs bg-current" />
-          </span>
-          <span>{stopText}</span>
-        </>
-      ) : (
-        <>
-          <VolumeIcon className="h-4 w-4 shrink-0" />
-          <span>{listenText}</span>
-        </>
-      )}
+      {/*
+        Listen and stop share one cell, so the button keeps its width and the two states
+        cross-fade. While speaking it shows a still stop square (the control), not a looping wave.
+      */}
+      <span aria-hidden="true" className="grid shrink-0 place-items-center [&>*]:col-start-1 [&>*]:row-start-1">
+        <VolumeIcon className={cn(SPEAK_SWAP_CLASS, "h-4 w-4", speaking ? SPEAK_SWAP_OUT : SPEAK_SWAP_IN)} />
+        <span className={cn(SPEAK_SWAP_CLASS, "h-2.5 w-2.5 rounded-xs bg-current", speaking ? SPEAK_SWAP_IN : SPEAK_SWAP_OUT)} />
+      </span>
+      <span className="grid [&>*]:col-start-1 [&>*]:row-start-1">
+        <span aria-hidden={speaking} className={cn(SPEAK_SWAP_CLASS, speaking ? SPEAK_SWAP_OUT : SPEAK_SWAP_IN)}>
+          {listenText}
+        </span>
+        <span aria-hidden={!speaking} className={cn(SPEAK_SWAP_CLASS, speaking ? SPEAK_SWAP_IN : SPEAK_SWAP_OUT)}>
+          {stopText}
+        </span>
+      </span>
     </button>
   );
 }

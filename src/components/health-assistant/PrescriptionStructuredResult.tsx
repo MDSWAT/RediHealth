@@ -1,9 +1,8 @@
 "use client";
 
-import { type ReactNode, useEffect, useState } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useState } from "react";
 import {
   AlertCircleIcon,
-  CheckCircleIcon,
   ChevronDownIcon,
   PhoneIcon,
   PrinterIcon,
@@ -617,7 +616,8 @@ export function PrescriptionStructuredResult({
               return (
                 <article
                   key={`${med.name}-${index}`}
-                  className="rounded-xl border border-border bg-background p-4 shadow-2xs sm:p-5 print:break-inside-avoid"
+                  style={{ "--i": index } as CSSProperties}
+                  className="list-in rounded-xl border border-border bg-background p-4 shadow-2xs sm:p-5 print:break-inside-avoid"
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div className="min-w-0 flex-1">
@@ -644,7 +644,7 @@ export function PrescriptionStructuredResult({
                         onClick={() => handleToggleCardSpeech(index, med)}
                         aria-pressed={isCardSpeaking}
                         aria-label={result.listenMedicineAria(stripUnclearForSpeech(med.name) || med.name)}
-                        className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg border px-3.5 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring print:hidden ${
+                        className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg border px-3.5 py-2 text-sm font-semibold whitespace-nowrap press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring print:hidden ${
                           isCardSpeaking
                             ? "border-sapphire bg-sapphire-soft text-obsidian-navy dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-foreground"
                             : "border-border bg-card text-foreground hover:bg-muted"
@@ -764,7 +764,8 @@ export function PrescriptionStructuredResult({
             {explanationBlocks.map((block, index) => (
               <div
                 key={index}
-                className="rounded-lg border border-border bg-background p-4 whitespace-pre-line text-base leading-relaxed text-foreground"
+                style={{ "--i": index + validMedicines.length } as CSSProperties}
+                className="list-in rounded-lg border border-border bg-background p-4 whitespace-pre-line text-base leading-relaxed text-foreground"
               >
                 {renderWithUnclearHighlights(block)}
               </div>
@@ -779,11 +780,11 @@ export function PrescriptionStructuredResult({
           onToggle={(event) => setTranscriptOpen(event.currentTarget.open)}
           className="group mt-6 rounded-lg border border-border bg-background/60 p-4 print:[&>div]:block print:[&_pre]:block"
         >
-          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-md text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-md text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire motion-reduce:transition-none dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
             <span>{result.transcriptHeading}</span>
-            <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] group-open:rotate-180 motion-reduce:transition-none print:hidden" />
+            <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-open:rotate-180 motion-reduce:transition-none print:hidden" />
           </summary>
-          <div className="mt-2 border-t border-border pt-3">
+          <div className="swap-in mt-2 border-t border-border pt-3">
             <p className="text-sm text-muted-foreground">{result.transcriptNote}</p>
             <pre className="mt-2.5 overflow-x-auto rounded-lg border border-border bg-muted/50 p-4 whitespace-pre-wrap font-mono text-sm leading-relaxed text-foreground">
               {renderWithUnclearHighlights(transcript)}
@@ -794,14 +795,13 @@ export function PrescriptionStructuredResult({
 
       <section className="mt-8 border-t border-border pt-6">
         <h3 className="text-sm font-semibold text-foreground">{result.rulesHeading}</h3>
-        <ul className="mt-3 space-y-2.5">
+        <ol className="mt-3 list-decimal space-y-2.5 pl-5 text-sm leading-relaxed text-foreground marker:font-semibold marker:text-sapphire marker:tabular-nums dark:marker:text-sapphire-border">
           {rx.rules.map((rule) => (
-            <li key={rule} className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
-              <CheckCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />
-              <span>{rule}</span>
+            <li key={rule} className="pl-1">
+              {rule}
             </li>
           ))}
-        </ul>
+        </ol>
       </section>
 
       <PrescriptionDoctorBridge />

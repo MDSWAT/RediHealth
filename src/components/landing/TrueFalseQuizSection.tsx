@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -117,15 +118,16 @@ function AnswerMark({
     <span
       aria-hidden="true"
       className={cn(
-        "flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm)",
+        "flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
         tone === "selected-right" && "bg-white/20 text-white",
         tone === "selected-wrong" &&
           "bg-paper/20 text-paper dark:bg-ink-950/15 dark:text-ink-950",
         tone === "hint-right" && "bg-sapphire text-white",
+        // Idle marks fill in when their button is pointed at or focused, so the choice answers first.
         tone === "idle" &&
           (value
-            ? "border border-sapphire/35 bg-sapphire-soft text-sapphire dark:border-sapphire-border/40 dark:bg-white/10 dark:text-sapphire-border"
-            : "border border-border-control bg-muted text-foreground dark:border-white/30 dark:bg-white/10 dark:text-paper"),
+            ? "border border-sapphire/35 bg-sapphire-soft text-sapphire group-hover:border-sapphire group-hover:bg-sapphire group-hover:text-white group-focus-visible:border-sapphire group-focus-visible:bg-sapphire group-focus-visible:text-white dark:border-sapphire-border/40 dark:bg-white/10 dark:text-sapphire-border dark:group-hover:border-sapphire-border dark:group-hover:bg-sapphire-border dark:group-hover:text-ink-950 dark:group-focus-visible:bg-sapphire-border dark:group-focus-visible:text-ink-950"
+            : "border border-border-control bg-muted text-foreground group-hover:border-ink-950 group-hover:bg-ink-950 group-hover:text-paper group-focus-visible:border-ink-950 group-focus-visible:bg-ink-950 group-focus-visible:text-paper dark:border-white/30 dark:bg-white/10 dark:text-paper dark:group-hover:border-paper dark:group-hover:bg-paper dark:group-hover:text-ink-950 dark:group-focus-visible:bg-paper dark:group-focus-visible:text-ink-950"),
         tone === "muted" &&
           "border border-border text-muted-foreground/70 dark:border-white/15 dark:text-mist/70",
       )}
@@ -328,15 +330,18 @@ export function TrueFalseQuizSection({
       className={cn("py-10 sm:py-16 lg:py-24", className)}
     >
       <Container>
-        <SectionHeading
-          as="h2"
-          title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
-          subtitle={q.sectionSubtitle}
-        />
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
+            subtitle={q.sectionSubtitle}
+          />
+        </Reveal>
 
         {/* From lg: the categories as a list on the left, the myth quiz on the right.
             Below lg: the categories as one row above the quiz. */}
-        <div className="mt-6 lg:mt-8 lg:grid lg:grid-cols-12 lg:items-start lg:gap-12">
+        {/* The categories arrive first, the myth card a beat after them. */}
+        <Reveal stagger="editorial" delay={0.06} className="mt-6 lg:mt-8 lg:grid lg:grid-cols-12 lg:items-start lg:gap-12">
           <MythCategoryFilter
             className="lg:col-span-4"
             categories={categories}
@@ -393,6 +398,7 @@ export function TrueFalseQuizSection({
                       </span>
                     );
                     if (hasAnswered) {
+                      const settle = justAnsweredId === currentMyth.id;
                       const chosen = currentAnswer === value;
                       const isRightOption = value === currentMyth.isTrue;
                       const tone = chosen
@@ -405,8 +411,11 @@ export function TrueFalseQuizSection({
                       return (
                         <p
                           key={String(value)}
+                          // The other chip follows the chosen one by one beat.
+                          style={settle && !chosen ? { animationDelay: "var(--stagger-ui)" } : undefined}
                           className={cn(
                             ANSWER_SHELL,
+                            settle && "swap-in",
                             chosen &&
                               isMatch &&
                               "border border-sapphire bg-sapphire font-semibold text-white",
@@ -435,7 +444,7 @@ export function TrueFalseQuizSection({
                         aria-keyshortcuts={keyShortcuts(keys)}
                         className={cn(
                           ANSWER_SHELL,
-                          "press-row border border-border-control bg-card font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:border-white/30 dark:bg-ink-900 dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper",
+                          "press-row group border border-border-control bg-card font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:border-white/30 dark:bg-ink-900 dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper",
                         )}
                       >
                         <AnswerMark value={value} tone="idle" />
@@ -467,9 +476,13 @@ export function TrueFalseQuizSection({
             {answeredInView > 0 && (
               <div
                 role="status"
-                className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-(--radius-control) border border-sapphire-border/70 bg-card px-4 py-2.5 text-sm tabular-nums text-muted-foreground dark:border-ink-800 dark:bg-ink-900 dark:text-mist"
+                className="swap-in mt-4 flex flex-wrap items-center justify-between gap-3 rounded-(--radius-control) border border-sapphire-border/70 bg-card px-4 py-2.5 text-sm tabular-nums text-muted-foreground dark:border-ink-800 dark:bg-ink-900 dark:text-mist"
               >
-                <span className="font-medium text-foreground dark:text-paper">
+                {/* Keyed by the tally, so a new score settles in place instead of snapping. */}
+                <span
+                  key={`${correctInView}-${answeredInView}`}
+                  className="swap-in font-medium text-foreground dark:text-paper"
+                >
                   {extra.score(correctInView, answeredInView)}
                 </span>
                 <button
@@ -483,7 +496,7 @@ export function TrueFalseQuizSection({
               </div>
             )}
           </div>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

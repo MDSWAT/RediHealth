@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { PhoneIcon, CloseIcon } from "@/components/ui/icons";
 import { DesktopEmergencyCard } from "@/components/emergency/DesktopEmergencyCard";
+import styles from "@/components/emergency/EmergencyOverlay.module.css";
+import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations } from "@/lib/i18n/translations";
 
@@ -88,7 +90,7 @@ export function EmergencyDialerGate({
       role="dialog"
       aria-modal="true"
       aria-labelledby="dialer-gate-title"
-      className="fhs-fade fixed inset-0 z-[110] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4 backdrop-blur-xs"
+      className="scrim-in fixed inset-0 z-[110] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4"
     >
       <div
         className="fixed inset-0 -z-10"
@@ -100,7 +102,7 @@ export function EmergencyDialerGate({
         <div
           ref={panelRef}
           tabIndex={-1}
-          className="fhs-enter relative w-full max-w-lg rounded-t-xl bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl focus:outline-none sm:rounded-xl sm:p-6"
+          className={cn(styles.panel, "relative w-full max-w-lg rounded-t-xl bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl focus:outline-none sm:rounded-xl sm:p-6")}
         >
           <div className="flex items-start justify-between gap-3">
             <h2 id="dialer-gate-title" className="pt-1 text-lg font-semibold tracking-tight text-foreground">
@@ -125,7 +127,7 @@ export function EmergencyDialerGate({
             <a
               href="tel:112"
               onClick={() => onOpenChange(false)}
-              className="press-on-dark flex min-h-14 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
+              className="press-solid flex min-h-14 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
             >
               <PhoneIcon className="h-5 w-5" aria-hidden="true" />
               <span>{e.openDialerButton}</span>
@@ -141,7 +143,7 @@ export function EmergencyDialerGate({
           </div>
         </div>
       ) : (
-        <div ref={panelRef} tabIndex={-1} className="fhs-enter relative w-full max-w-lg focus:outline-none">
+        <div ref={panelRef} tabIndex={-1} className={cn(styles.card, "relative w-full max-w-lg focus:outline-none")}>
           <DesktopEmergencyCard titleId="dialer-gate-title" onDismiss={() => onOpenChange(false)} />
         </div>
       )}

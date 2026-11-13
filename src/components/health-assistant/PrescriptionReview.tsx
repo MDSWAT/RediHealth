@@ -3,7 +3,7 @@
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 /* eslint-disable @next/next/no-img-element -- preview is an object URL from user file */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import {
   AlertCircleIcon,
@@ -217,7 +217,7 @@ function SpeakerHeaderSvg() {
 
 function ArrowRightSvg() {
   return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0">
       <path
         d="M4.25 10h11.5m0 0-4.25-4.25M15.75 10l-4.25 4.25"
         stroke="currentColor"
@@ -874,7 +874,7 @@ export function PrescriptionReview() {
 
             {/* Step 1: Visual capture dropzone */}
             {preview ? (
-              <div className="rounded-2xl border border-border bg-surface-subtle/30 p-5 text-center sm:p-7">
+              <div className="swap-in rounded-2xl border border-border bg-surface-subtle/30 p-5 text-center sm:p-7">
                 <p className="text-sm font-semibold text-foreground">{t.photoReady}</p>
 
                 <figure className="mt-4 flex flex-col items-center">
@@ -926,19 +926,29 @@ export function PrescriptionReview() {
                   event.preventDefault();
                   setIsDragging(true);
                 }}
-                onDragLeave={() => setIsDragging(false)}
+                onDragLeave={(event) => {
+                  // Moving over the zone's own children fires dragleave too; only leave for real.
+                  if (event.currentTarget.contains(event.relatedTarget as Node | null)) return;
+                  setIsDragging(false);
+                }}
                 onDrop={(event) => {
                   event.preventDefault();
                   setIsDragging(false);
                   handleFileSelected(event.dataTransfer.files?.[0] ?? null);
                 }}
-                className={`rounded-2xl border-2 border-dashed p-6 text-center transition-colors duration-[var(--dur-fast)] sm:p-8 ${
+                className={`swap-in rounded-2xl border-2 p-6 text-center transition-[border-color,background-color,box-shadow] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none sm:p-8 ${
                   isDragging
-                    ? "border-sapphire bg-sapphire-soft/50 dark:border-sapphire-light dark:bg-sapphire/15"
-                    : "border-border-control bg-surface-subtle/30 dark:bg-muted/10"
+                    ? "border-solid border-sapphire bg-sapphire-soft/50 shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-sapphire)_14%,transparent)] dark:border-sapphire-light dark:bg-sapphire/15"
+                    : "border-dashed border-border-control bg-surface-subtle/30 dark:bg-muted/10"
                 }`}
               >
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sapphire-soft text-sapphire shadow-xs dark:bg-sapphire/20 dark:text-sapphire-light">
+                <div
+                  className={`mx-auto flex h-14 w-14 items-center justify-center rounded-2xl shadow-xs transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                    isDragging
+                      ? "bg-sapphire text-white dark:bg-sapphire-border dark:text-ink-950"
+                      : "bg-sapphire-soft text-sapphire dark:bg-sapphire/20 dark:text-sapphire-light"
+                  }`}
+                >
                   <CameraIcon className="h-7 w-7" />
                 </div>
 
@@ -959,7 +969,7 @@ export function PrescriptionReview() {
                   <button
                     type="button"
                     onClick={() => cameraInput.current?.click()}
-                    className="press-row inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-auto sm:px-6 sm:text-[0.9375rem]"
+                    className="press-solid inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-auto sm:px-6 sm:text-[0.9375rem]"
                   >
                     <CameraIcon className="h-5 w-5 shrink-0" />
                     <span className="min-w-0 truncate">{t.cameraCapture}</span>
@@ -1023,7 +1033,7 @@ export function PrescriptionReview() {
             {error && !preview ? (
               <div
                 role="alert"
-                className="flex items-start gap-2.5 rounded-lg border border-amber-care-border bg-amber-care-soft/60 p-3.5 text-sm font-medium leading-relaxed text-foreground dark:border-amber-care/40 dark:bg-amber-care/15"
+                className="swap-in flex items-start gap-2.5 rounded-lg border border-amber-care-border bg-amber-care-soft/60 p-3.5 text-sm font-medium leading-relaxed text-foreground dark:border-amber-care/40 dark:bg-amber-care/15"
               >
                 <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
                 <span>{error}</span>
@@ -1078,7 +1088,7 @@ export function PrescriptionReview() {
                   </p>
 
                   <div className="mt-3.5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-                    {REASON_ORDER.map((reasonKey) => {
+                    {REASON_ORDER.map((reasonKey, index) => {
                       const active = selectedReasons.includes(reasonKey);
                       return (
                         <button
@@ -1086,7 +1096,8 @@ export function PrescriptionReview() {
                           type="button"
                           onClick={() => toggleReasonChip(reasonKey)}
                           aria-pressed={active}
-                          className={`flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-left font-medium transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                          style={{ "--i": index } as CSSProperties}
+                          className={`list-in press-row flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-left font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                             largeText ? "text-base" : "text-sm"
                           } ${
                             active
@@ -1095,7 +1106,7 @@ export function PrescriptionReview() {
                           }`}
                         >
                           <span
-                            className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${
+                            className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
                               active
                                 ? "bg-sapphire text-white"
                                 : "bg-surface-subtle text-sapphire dark:bg-muted dark:text-sapphire-border"
@@ -1129,7 +1140,7 @@ export function PrescriptionReview() {
                       value={context}
                       onChange={(event) => setContext(event.target.value)}
                       placeholder={t.whyPh}
-                      className={`mt-1.5 w-full resize-none rounded-lg border border-border bg-background p-3 text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      className={`field-focus mt-1.5 w-full resize-none rounded-lg border border-border-control bg-background p-3 text-foreground placeholder:text-muted-foreground ${
                         largeText ? "text-base" : "text-sm"
                       }`}
                     />
@@ -1139,7 +1150,7 @@ export function PrescriptionReview() {
                 {error ? (
                   <div
                     role="alert"
-                    className="flex items-start gap-2.5 rounded-lg border border-amber-care-border bg-amber-care-soft/60 p-3.5 text-sm font-medium leading-relaxed text-foreground dark:border-amber-care/40 dark:bg-amber-care/15"
+                    className="swap-in flex items-start gap-2.5 rounded-lg border border-amber-care-border bg-amber-care-soft/60 p-3.5 text-sm font-medium leading-relaxed text-foreground dark:border-amber-care/40 dark:bg-amber-care/15"
                   >
                     <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
                     <span>{error}</span>
@@ -1150,7 +1161,7 @@ export function PrescriptionReview() {
                   <button
                     type="submit"
                     disabled={isSubmitting || !file}
-                    className="inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:w-auto sm:px-7 sm:text-[0.9375rem]"
+                    className="group press-solid inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:w-auto sm:px-7 sm:text-[0.9375rem]"
                   >
                     <span className="min-w-0 truncate">{isSubmitting ? t.reviewing : t.reviewButton}</span>
                     {!isSubmitting ? <ArrowRightSvg /> : null}
@@ -1180,14 +1191,23 @@ export function PrescriptionReview() {
           >
             <p className="text-sm font-semibold text-foreground">{t.skeletonHeading}</p>
             <div className="mt-4 space-y-3" aria-hidden="true">
-              {[0, 1, 2].map((row) => (
+              {[0, 1].map((row) => (
                 <div
                   key={row}
-                  className="animate-pulse rounded-lg border border-border bg-background p-4 motion-reduce:animate-none"
+                  style={{ "--i": row } as CSSProperties}
+                  className="list-in rounded-xl border border-border bg-background p-4 sm:p-5"
                 >
-                  <div className="h-4 w-2/5 rounded-md bg-muted" />
-                  <div className="mt-2.5 h-3.5 w-full rounded-md bg-muted/80" />
-                  <div className="mt-2 h-3.5 w-4/5 rounded-md bg-muted/70" />
+                  {/* Name and strength, purpose line, then the four times of day: the card that is coming. */}
+                  <div className="flex items-baseline gap-2.5">
+                    <div className="skeleton-sheen h-5 w-2/5" />
+                    <div className="skeleton-sheen h-4 w-14" />
+                  </div>
+                  <div className="skeleton-sheen mt-2.5 h-3.5 w-4/5" />
+                  <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+                    {[0, 1, 2, 3].map((slot) => (
+                      <div key={slot} className="skeleton-sheen h-16" />
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
@@ -1229,11 +1249,11 @@ export function PrescriptionReview() {
               </ol>
               <Link
                 href={withLangPrefix("/find-help?category=pharmacy", lang)}
-                className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900"
+                className="group press-row mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900"
               >
                 <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
                 <span className="min-w-0 truncate">{helpLinks.nav}</span>
-                <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
               </Link>
             </div>
 
@@ -1248,10 +1268,10 @@ export function PrescriptionReview() {
               </div>
               <Link
                 href={withLangPrefix("/medic-online?source=prescription", lang)}
-                className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-sapphire px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="group press-solid mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-sapphire px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <span className="min-w-0 truncate">{headerCopy.navMedic}</span>
-                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
               </Link>
             </div>
           </aside>

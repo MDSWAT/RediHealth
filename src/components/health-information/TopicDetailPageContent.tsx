@@ -3,6 +3,7 @@
 import { useState, useCallback, useMemo } from "react";
 import type { ComponentType, SVGProps } from "react";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { useLanguage } from "@/lib/i18n/language-context";
 import {
   ActivityIcon,
@@ -343,6 +344,9 @@ export function TopicDetailPageContent({
 
   return (
     <div className="bg-background">
+      {/* A long read: a hairline under the header fills as the guide is read. */}
+      <div className="read-progress" aria-hidden="true" />
+
       {/* Hero section */}
       <TopicHeroSection
         topic={topic}
@@ -428,16 +432,20 @@ export function TopicDetailPageContent({
               data-print-guide-section
               className="scroll-mt-28"
             >
-              <WhyItMattersInfographic
-                topicTitle={topic.title}
-                keyFacts={topic.keyFacts}
-                lang={lang}
-              />
+              <Reveal>
+                <WhyItMattersInfographic
+                  topicTitle={topic.title}
+                  keyFacts={topic.keyFacts}
+                  lang={lang}
+                />
+              </Reveal>
             </div>
 
             {/* Interactive health literacy visualizer or anatomical explainer */}
             <div id="section-explainer" className="scroll-mt-28 overflow-x-hidden">
-              <TopicExplainer slug={topic.slug} lang={lang} />
+              <Reveal variant="fade">
+                <TopicExplainer slug={topic.slug} lang={lang} />
+              </Reveal>
             </div>
 
             {/* Daily actionable steps checklist */}
@@ -446,12 +454,14 @@ export function TopicDetailPageContent({
               data-print-guide-section
               className="scroll-mt-28"
             >
-              <ActionableStepsChecklist
-                slug={topic.slug}
-                topicTitle={topic.title}
-                recommendations={topic.recommendations}
-                lang={lang}
-              />
+              <Reveal>
+                <ActionableStepsChecklist
+                  slug={topic.slug}
+                  topicTitle={topic.title}
+                  recommendations={topic.recommendations}
+                  lang={lang}
+                />
+              </Reveal>
             </div>
 
             {/* Clinical warning signs and 112 guidance */}
@@ -460,59 +470,65 @@ export function TopicDetailPageContent({
               data-print-guide-section
               className="scroll-mt-28"
             >
-              <WarningSignsEmergencyCard
-                topicTitle={topic.title}
-                warningSigns={topic.warningSigns}
-                lang={lang}
-              />
+              <Reveal>
+                <WarningSignsEmergencyCard
+                  topicTitle={topic.title}
+                  warningSigns={topic.warningSigns}
+                  lang={lang}
+                />
+              </Reveal>
             </div>
 
             {/* Topic myth challenge */}
             <div id="section-myth" className="scroll-mt-28 print:hidden">
-              <TopicMythCard myth={topicMyth} lang={lang} />
+              <Reveal>
+                <TopicMythCard myth={topicMyth} lang={lang} />
+              </Reveal>
             </div>
 
             {/* Calm hairline glossary helpers */}
-            <section
-              aria-label={ui.dualGlossaryTitle}
-              className="divide-y divide-border rounded-xl border border-border bg-card print:hidden"
-            >
-              <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-                <div className="max-w-xl">
-                  <h2 className="text-lg font-semibold leading-snug text-foreground">
-                    {ui.dualGlossaryTitle}
-                  </h2>
-                  <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">
-                    {dualGlossaryDescription}
-                  </p>
+            <Reveal className="print:hidden">
+              <section
+                aria-label={ui.dualGlossaryTitle}
+                className="divide-y divide-border rounded-xl border border-border bg-card print:hidden"
+              >
+                <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+                  <div className="max-w-xl">
+                    <h2 className="text-lg font-semibold leading-snug text-foreground">
+                      {ui.dualGlossaryTitle}
+                    </h2>
+                    <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">
+                      {dualGlossaryDescription}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setOpenDrawer("dictionary")}
+                    className="press-solid inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    {ui.dualGlossaryCta}
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setOpenDrawer("dictionary")}
-                  className="press-solid inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                >
-                  {ui.dualGlossaryCta}
-                </button>
-              </div>
 
-              <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-                <div className="max-w-xl">
-                  <h2 className="text-lg font-semibold leading-snug text-foreground">
-                    {ui.romanesGlossaryTitle}
-                  </h2>
-                  <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">
-                    {ui.romanesGlossaryDescription}
-                  </p>
+                <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+                  <div className="max-w-xl">
+                    <h2 className="text-lg font-semibold leading-snug text-foreground">
+                      {ui.romanesGlossaryTitle}
+                    </h2>
+                    <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">
+                      {ui.romanesGlossaryDescription}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setOpenDrawer("romanes")}
+                    className="press-row inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {ui.romanesGlossaryCta}
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setOpenDrawer("romanes")}
-                  className="press-row inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  {ui.romanesGlossaryCta}
-                </button>
-              </div>
-            </section>
+              </section>
+            </Reveal>
 
             {/* Related topics */}
             <RelatedTopicsCarousel topics={relatedTopics} lang={lang} />

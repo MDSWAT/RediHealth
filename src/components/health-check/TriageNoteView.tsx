@@ -3,7 +3,7 @@
 import { readPublicOrigin, SERVER_PUBLIC_ORIGIN } from "@/components/health-check/public-origin";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useMemo, useSyncExternalStore } from "react";
+import { useMemo, useSyncExternalStore, type CSSProperties } from "react";
 import {
   dangerPanel,
   emergencyButton,
@@ -14,7 +14,7 @@ import {
 } from "@/components/health-assistant/step-ui";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { Container } from "@/components/ui/Container";
-import { AlertCircleIcon, ArrowRightIcon, FileTextIcon, PhoneIcon } from "@/components/ui/icons";
+import { AlertCircleIcon, ArrowRightIcon, PhoneIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
 import {
   getHealthCheckTranslations,
@@ -355,16 +355,13 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
       <Container className="max-w-3xl">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3 px-0.5 print:hidden">
           <Logo href={withLangPrefix("/", activeLang)} label={chrome.homeLink} />
-          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <FileTextIcon className="h-4 w-4 shrink-0 text-sapphire" />
-            <span>{noteCopy.eyebrow}</span>
-          </span>
+          <span className="text-xs font-medium text-muted-foreground">{noteCopy.eyebrow}</span>
         </div>
 
         <div className="rounded-2xl border border-border bg-card p-5 sm:p-8">
           {structuredProps ? (
             <>
-              <header className="border-b border-border pb-4">
+              <header className="list-in border-b border-border pb-4">
                 <p className="text-xs font-semibold text-sapphire sm:text-sm">
                   {tSummary.screenFor}
                 </p>
@@ -372,7 +369,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               </header>
 
               {structuredProps.redFlagNoticed ? (
-                <div role="alert" className={`mt-4 ${dangerPanel}`}>
+                <div role="alert" style={{ "--i": 1 } as CSSProperties} className={`list-in mt-4 ${dangerPanel}`}>
                   <div className="flex items-start gap-3">
                     <AlertCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                     <div className="min-w-0 flex-1">
@@ -399,7 +396,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                 </div>
               ) : (
                 structuredProps.recommendationDetail && (
-                  <div className={`mt-4 ${softPanel}`}>
+                  <div style={{ "--i": 1 } as CSSProperties} className={`list-in mt-4 ${softPanel}`}>
                     <p className="text-base font-semibold leading-snug text-foreground">
                       {structuredProps.recommendationDetail}
                     </p>
@@ -444,13 +441,13 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                 lang={activeLang}
               />
 
-              <div className="mt-6 border-t border-border pt-5 print:hidden">
+              <div style={{ "--i": 3 } as CSSProperties} className="list-in mt-6 border-t border-border pt-5 print:hidden">
                 <Link
                   href={structuredProps.reproducePath}
                   className={`${primaryButton} w-full whitespace-nowrap text-sm sm:w-auto sm:text-[0.9375rem]`}
                 >
                   <span className="min-w-0 truncate">{noteCopy.openFullCheck}</span>
-                  <ArrowRightIcon className="h-4 w-4 shrink-0" />
+                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
                 </Link>
               </div>
 
@@ -460,7 +457,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
             </>
           ) : fallback ? (
             <>
-              <header className="border-b border-border pb-4">
+              <header className="list-in border-b border-border pb-4">
                 <p className="text-xs font-semibold text-sapphire sm:text-sm">
                   {tSummary.screenFor}
                 </p>
@@ -468,7 +465,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               </header>
 
               {fallback.redFlagNoticed ? (
-                <div role="alert" className={`mt-4 ${dangerPanel}`}>
+                <div role="alert" style={{ "--i": 1 } as CSSProperties} className={`list-in mt-4 ${dangerPanel}`}>
                   <div className="flex items-start gap-3">
                     <AlertCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                     <div className="min-w-0 flex-1">
@@ -490,7 +487,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                 </div>
               ) : (
                 fallback.recommendationDetail && (
-                  <div className={`mt-4 ${softPanel}`}>
+                  <div style={{ "--i": 1 } as CSSProperties} className={`list-in mt-4 ${softPanel}`}>
                     <p className="text-base font-semibold leading-snug text-foreground">
                       {fallback.recommendationDetail}
                     </p>
@@ -514,13 +511,13 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                 lang={activeLang}
               />
 
-              <div className="mt-6 border-t border-border pt-5 print:hidden">
+              <div style={{ "--i": 3 } as CSSProperties} className="list-in mt-6 border-t border-border pt-5 print:hidden">
                 <Link
                   href={withLangPrefix("/health-check", activeLang)}
                   className={`${primaryButton} w-full whitespace-nowrap text-sm sm:w-auto sm:text-[0.9375rem]`}
                 >
                   <span className="min-w-0 truncate">{noteCopy.startCheck}</span>
-                  <ArrowRightIcon className="h-4 w-4 shrink-0" />
+                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
                 </Link>
               </div>
 
@@ -529,7 +526,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               </p>
             </>
           ) : (
-            <div>
+            <div className="swap-in">
               <h1 className={stepHeading}>{noteCopy.emptyTitle}</h1>
               <p className={stepLead}>{noteCopy.emptyBody}</p>
               <div className="mt-6">
@@ -538,7 +535,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                   className={`${primaryButton} w-full whitespace-nowrap text-sm sm:w-auto sm:text-[0.9375rem]`}
                 >
                   <span className="min-w-0 truncate">{noteCopy.startCheck}</span>
-                  <ArrowRightIcon className="h-4 w-4 shrink-0" />
+                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
                 </Link>
               </div>
             </div>

@@ -64,7 +64,7 @@ describe("UI elevation pass (Elements #1-#26)", () => {
     const dialerGate = readSrc("src/components/emergency/EmergencyDialerGate.tsx");
     expect(dialerGate).toContain("border-border-control");
     expect(dialerGate).toContain("press-row");
-    expect(dialerGate).toContain("press-on-dark");
+    expect(dialerGate).toContain("press-solid");
   });
 
   it("unifies cross-link ring tokens and 48px targets in FindHelpPageContent.tsx", () => {

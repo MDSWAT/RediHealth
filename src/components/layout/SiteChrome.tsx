@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/Header";
 import { FeedbackWidget } from "@/components/layout/FeedbackWidget";
 import { ReportIssueWidget } from "@/components/layout/ReportIssueWidget";
 import { SmartSearchModal } from "@/components/search/SmartSearchModal";
+import { PointerSpotlight } from "@/components/ui/PointerSpotlight";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { RecaptchaProvider, RecaptchaNotice } from "@/components/security/RecaptchaProvider";
@@ -64,6 +65,7 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang }: SiteChrome
     <MotionConfig reducedMotion={calmMotion ? "always" : "user"}>
       <LanguageProvider requestLang={lang}>
         <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
+          <PointerSpotlight />
           {isChromelessSurface ? null : <Header />}
           {isChromelessSurface ? null : <SmartSearchModal />}
           {children}

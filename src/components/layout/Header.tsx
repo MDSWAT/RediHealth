@@ -4,7 +4,7 @@ import { UniversalEmergencyBanner } from "@/components/layout/UniversalEmergency
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getSession } from "next-auth/react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { IconTile } from "@/components/ui/IconTile";
@@ -263,11 +263,13 @@ export function Header() {
       <header
         ref={headerRef}
         className={cn(
-          "site-header sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+          // scroll-edge: the hairline and soft shadow build as the page scrolls under the bar (scroll-linked, so
+          // it holds still for anyone not scrolling). In dark the hairline token follows the bar's own edge.
+          "site-header shadow-2xs scroll-edge sticky top-0 z-50 transition-[background-color,border-color] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:[--color-border:rgb(255_255_255/0.1)]",
           // Solid ground once the page moves under it: no translucent glass.
           isTransparent
             ? "border-b border-transparent bg-transparent text-paper"
-            : "border-b border-border bg-background text-foreground shadow-2xs dark:border-white/10 dark:bg-ink-950 dark:text-paper",
+            : "border-b border-border bg-background text-foreground dark:border-white/10 dark:bg-ink-950 dark:text-paper",
         )}
       >
         {/* The 112 line rides on top of the bar, so it stays in view while the page scrolls. */}
@@ -294,7 +296,7 @@ export function Header() {
                         onClick={() => setOpenHeaderMenu(null)}
                         aria-current={isActive ? "page" : undefined}
                         className={cn(
-                          "relative flex min-h-11 flex-col justify-center rounded-lg px-3.5 py-1.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+                          "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-3.5 py-1.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
                           isTransparent
                             ? isActive
                               ? "font-semibold text-white focus-visible:ring-paper/70"
@@ -306,15 +308,6 @@ export function Header() {
                       >
                         <span className="whitespace-nowrap text-sm">{link.label}</span>
                         <span className="sr-only">{link.subtext}</span>
-                        {isActive && (
-                          <span
-                            aria-hidden="true"
-                            className={cn(
-                              "absolute bottom-0 left-3.5 right-3.5 h-0.5",
-                              isTransparent ? "bg-paper" : "bg-sapphire dark:bg-paper",
-                            )}
-                          />
-                        )}
                       </Link>
                     </li>
                   );
@@ -366,7 +359,7 @@ export function Header() {
                   aria-label={portalLink.label}
                   aria-current={isPortalActive ? "page" : undefined}
                   className={cn(
-                    "press-row relative inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg px-0 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+                    "press-row tab-ink relative inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg px-0 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
                     isTransparent
                       ? isPortalActive
                         ? "font-semibold text-white focus-visible:ring-paper/70"
@@ -378,15 +371,6 @@ export function Header() {
                 >
                   <UserIcon className="h-5 w-5 shrink-0" />
                   <span className="sr-only">{portalLink.label}</span>
-                  {isPortalActive && (
-                    <span
-                      aria-hidden="true"
-                      className={cn(
-                        "absolute bottom-0 left-2 right-2 h-0.5",
-                        isTransparent ? "bg-paper" : "bg-sapphire dark:bg-paper",
-                      )}
-                    />
-                  )}
                 </Link>
 
                 {/* Split "Start here" CTA + accessible mediator disclosure toggle */}
@@ -464,11 +448,15 @@ export function Header() {
                         : "pointer-events-none invisible -translate-y-1.5 opacity-0",
                     )}
                   >
-                    <div className="w-80 rounded-2xl border border-stone-200/90 bg-card/95 p-2 text-left text-foreground shadow-xl shadow-ink-950/10 backdrop-blur-md dark:border-stone-800 dark:bg-ink-900/95 dark:shadow-black/40">
+                    <div className="w-80 rounded-(--radius-surface) border border-border bg-card p-2 text-left text-foreground shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-900">
                       <Link
                         href={withLangPrefix("/health-assistant#triage", lang)}
                         onClick={() => setOpenHeaderMenu(null)}
-                        className="group press-row flex min-h-12 items-center gap-3.5 rounded-xl p-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5"
+                        style={{ "--i": 0 } as CSSProperties}
+                        className={cn(
+                          startMenuOpen && "list-in",
+                          "group press-row flex min-h-12 items-center gap-3.5 rounded-(--radius-control) p-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5",
+                        )}
                       >
                         <IconTile
                           icon={NAV_LINK_ICONS["/health-assistant"]}
@@ -483,13 +471,17 @@ export function Header() {
                             {tHeader.navCereSub}
                           </span>
                         </span>
-                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground/60 transition-[color,transform] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:translate-x-0.5 group-hover:text-sapphire" />
+                        <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:text-sapphire" />
                       </Link>
 
                       <Link
                         href={withLangPrefix("/mediatori", lang)}
                         onClick={() => setOpenHeaderMenu(null)}
-                        className="group press-row mt-1 flex min-h-12 items-center gap-3.5 rounded-xl p-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5"
+                        style={{ "--i": 1 } as CSSProperties}
+                        className={cn(
+                          startMenuOpen && "list-in",
+                          "group press-row mt-1 flex min-h-12 items-center gap-3.5 rounded-(--radius-control) p-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5",
+                        )}
                       >
                         <IconTile
                           icon={NAV_LINK_ICONS["/mediatori"]}
@@ -505,7 +497,7 @@ export function Header() {
                             {tHeader.forMediatorsSub}
                           </span>
                         </span>
-                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground/60 transition-[color,transform] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:translate-x-0.5 group-hover:text-amber-care" />
+                        <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:text-amber-care" />
                       </Link>
                     </div>
                   </div>
@@ -557,7 +549,12 @@ export function Header() {
                   });
                 }}
               >
-                {mobileOpen ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+                {/* The glyph hands over in place (keyed, so each swap replays a short settle). */}
+                {mobileOpen ? (
+                  <CloseIcon key="close" className="h-6 w-6" />
+                ) : (
+                  <MenuIcon key="menu" className="h-6 w-6" />
+                )}
               </button>
             </div>
           </div>
@@ -598,7 +595,9 @@ export function Header() {
                 closeMobile();
                 openSmartSearch();
               }}
+              style={{ "--i": 0 } as CSSProperties}
               className={cn(
+                mobileOpen && "list-in",
                 "flex min-h-12 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-left text-ink-900 press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-ink-900/20 hover:bg-ink-900/[0.02] dark:border-paper/14 dark:bg-ink-900 dark:text-paper dark:hover:bg-white/[0.06]",
                 DRAWER_FOCUS,
               )}
@@ -612,12 +611,16 @@ export function Header() {
             {/* Primary destinations */}
             <nav aria-label={chrome.primaryNav}>
               <ul className="divide-y divide-ink-900/8 dark:divide-white/10">
-                {primaryLinks.map((link) => {
+                {primaryLinks.map((link, index) => {
                   const isActive = isActiveHref(link.href);
                   const NavIcon = NAV_LINK_ICONS[link.href];
 
                   return (
-                    <li key={link.href}>
+                    <li
+                      key={link.href}
+                      style={{ "--i": index + 1 } as CSSProperties}
+                      className={cn(mobileOpen && "list-in")}
+                    >
                       <Link
                         href={withLangPrefix(link.href, lang)}
                         aria-current={isActive ? "page" : undefined}
@@ -651,7 +654,7 @@ export function Header() {
                           {link.label}
                           <span className="sr-only"> — {link.subtext}</span>
                         </span>
-                        <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-transform duration-(--dur-fast) group-hover:translate-x-0.5 dark:text-paper/35" />
+                        <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35" />
                       </Link>
                     </li>
                   );
@@ -660,7 +663,10 @@ export function Header() {
             </nav>
 
             {/* Secondary & Preferences */}
-            <div className="border-t border-ink-900/10 pt-2 dark:border-white/10">
+            <div
+              style={{ "--i": primaryLinks.length + 1 } as CSSProperties}
+              className={cn(mobileOpen && "list-in", "border-t border-ink-900/10 pt-2 dark:border-white/10")}
+            >
               <div className="divide-y divide-ink-900/8 dark:divide-white/10">
                 <Link
                   href={withLangPrefix(portalLink.href, lang)}
@@ -694,7 +700,7 @@ export function Header() {
                   >
                     {portalLink.label}
                   </span>
-                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-transform duration-(--dur-fast) group-hover:translate-x-0.5 dark:text-paper/35" />
+                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35" />
                 </Link>
 
                 <Link
@@ -730,7 +736,7 @@ export function Header() {
                     {tHeader.forMediators}
                     <span className="sr-only"> — {tHeader.forMediatorsSub}</span>
                   </span>
-                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-transform duration-(--dur-fast) group-hover:translate-x-0.5 dark:text-paper/35" />
+                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35" />
                 </Link>
 
                 <LanguageSelector
@@ -756,7 +762,10 @@ export function Header() {
             </div>
 
             {/* Bottom 112 emergency row and quiet utility links */}
-            <div className="mt-auto space-y-2 border-t border-ink-900/10 pt-3 dark:border-white/10">
+            <div
+              style={{ "--i": primaryLinks.length + 2 } as CSSProperties}
+              className={cn(mobileOpen && "list-in", "mt-auto space-y-2 border-t border-ink-900/10 pt-3 dark:border-white/10")}
+            >
               <div className="flex min-h-11 items-center justify-between gap-3 px-2.5 py-1">
                 <p className="text-sm font-medium text-foreground dark:text-paper">
                   {chrome.emergencyQuestion}

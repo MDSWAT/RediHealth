@@ -9,7 +9,7 @@ type Size = "sm" | "md" | "lg";
 // Every variant has a pressed colour, so a tap is answered on phones, where hover never fires.
 // Disabled is neutral (muted ground, muted text), never a washed-out brand colour.
 const base =
-  "inline-flex items-center justify-center font-semibold whitespace-nowrap max-w-full " +
+  "group inline-flex items-center justify-center font-semibold whitespace-nowrap max-w-full " +
   "transition-[background-color,border-color,color,box-shadow,opacity,filter] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none " +
   "focus-visible:outline-none focus-visible:ring-2 " +
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +

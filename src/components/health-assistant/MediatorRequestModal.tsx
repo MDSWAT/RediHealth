@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { CheckCircleIcon, HandHelpingIcon, XIcon } from "@/components/ui/icons";
+import { HandHelpingIcon, XIcon } from "@/components/ui/icons";
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
@@ -346,18 +346,18 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
       {/* Portal: the triage step wrapper animates transform, which would trap a fixed overlay inside the card. */}
       {isOpen &&
         createPortal(
-          <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/50 sm:items-center sm:p-4">
+          <div className="scrim-in fixed inset-0 z-[60] flex items-end justify-center bg-black/50 sm:items-center sm:p-4">
             <div
               ref={dialogRef}
               role="dialog"
               aria-modal="true"
               aria-labelledby={`${ids}-title`}
-              className="assistant-step-in relative max-h-[100dvh] w-full max-w-lg overflow-y-auto rounded-t-2xl border border-border bg-card p-6 shadow-xl sm:rounded-2xl sm:p-7"
+              className="dialog-in relative max-h-[100dvh] w-full max-w-lg overflow-y-auto rounded-t-2xl border border-border bg-card p-6 shadow-xl sm:rounded-2xl sm:p-7"
             >
               <button
                 type="button"
                 onClick={handleClose}
-                className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-xl text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="press-row absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-xl text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={t.close}
               >
                 <XIcon className="h-5 w-5" />
@@ -490,8 +490,21 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                   </div>
                 </form>
               ) : (
-                <div className="py-2" role="status">
-                  <CheckCircleIcon className="h-7 w-7 text-sapphire dark:text-sapphire-border" />
+                <div className="swap-in py-2" role="status">
+                  {/* The confirmation mark draws itself once (static under reduced motion / Calm Motion). */}
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    className="h-7 w-7 text-sapphire dark:text-sapphire-border"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="9.25" opacity="0.35" />
+                    <path className="stroke-draw" pathLength={1} d="m7.75 12.25 2.9 2.9 5.6-6.1" />
+                  </svg>
                   <h2 id={`${ids}-title`} className="mt-3 text-lg font-semibold text-foreground">
                     {t.successTitle}
                   </h2>

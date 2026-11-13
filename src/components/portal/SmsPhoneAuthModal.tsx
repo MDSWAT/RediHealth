@@ -5,9 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import {
-  AlertCircleIcon,
   ArrowRightIcon,
-  CheckCircleIcon,
   ChevronRightIcon,
   VolumeIcon,
   PhoneIcon,
@@ -175,10 +173,10 @@ const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card dark:focus-visible:ring-offset-ink-900";
 
 const FIELD =
-  "min-h-14 w-full rounded-xl border border-border-control bg-white text-xl font-semibold tabular-nums text-foreground placeholder:font-normal placeholder:text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:border-white/15 dark:bg-ink-950 dark:text-paper dark:placeholder:text-mist/60";
+  "field-focus min-h-14 w-full rounded-xl border border-border-control bg-white text-xl font-semibold tabular-nums text-foreground placeholder:font-normal placeholder:text-muted-foreground dark:border-white/15 dark:bg-ink-950 dark:text-paper dark:placeholder:text-mist/60";
 
 const SUBMIT_BUTTON =
-  `press-solid inline-flex min-h-14 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white transition-[background-color,filter] duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-foreground/15 disabled:text-foreground/45 dark:disabled:bg-white/15 dark:disabled:text-white/45 motion-reduce:transition-none sm:px-5 sm:text-[0.9375rem] ${FOCUS_RING}`;
+  `group press-solid inline-flex min-h-14 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white transition-[background-color,filter] duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-foreground/15 disabled:text-foreground/45 dark:disabled:bg-white/15 dark:disabled:text-white/45 motion-reduce:transition-none sm:px-5 sm:text-[0.9375rem] ${FOCUS_RING}`;
 
 const FIELD_LABEL = "text-base font-semibold text-foreground dark:text-paper";
 const CALM_EASE: [number, number, number, number] = [0.25, 1, 0.5, 1];
@@ -476,17 +474,16 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
           <p
             id="auth-phone-error"
             role="alert"
-            className="mt-4 flex items-start gap-2 rounded-xl border border-primary/35 bg-primary-soft p-3 text-body text-foreground dark:bg-primary/15 dark:text-paper"
+            key={error}
+            className="swap-in mt-4 rounded-xl border border-primary/35 border-l-4 border-l-primary bg-primary-soft p-3 text-body text-foreground dark:bg-primary/15 dark:text-paper"
           >
-            <AlertCircleIcon aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <span>{error}</span>
+            {error}
           </p>
         )}
 
         {sent && step === 2 && !error && (
-          <p role="status" className="mt-4 flex items-start gap-2 text-body text-muted-foreground dark:text-mist">
-            <CheckCircleIcon aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-sapphire dark:text-sapphire-border" />
-            <span>{copy.smsSent}</span>
+          <p role="status" className="swap-in mt-4 text-body text-muted-foreground dark:text-mist">
+            {copy.smsSent}
           </p>
         )}
 
@@ -530,19 +527,13 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                     placeholder={page.phonePlaceholder}
                     aria-invalid={Boolean(error)}
                     aria-describedby={error ? "auth-phone-error" : undefined}
-                    className={`pl-11 pr-11 ${FIELD}`}
+                    className={`pl-11 pr-4 ${FIELD}`}
                   />
-                  {phoneReady && (
-                    <CheckCircleIcon
-                      aria-hidden="true"
-                      className="pointer-events-none absolute right-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-sapphire dark:text-sapphire-border"
-                    />
-                  )}
                 </div>
               </div>
               <button type="submit" disabled={isLoading} className={SUBMIT_BUTTON}>
                 <span className="min-w-0 truncate">{isLoading ? copy.sending : page.sendCode}</span>
-                {!isLoading && <ArrowRightIcon aria-hidden="true" className="h-5 w-5 shrink-0" />}
+                {!isLoading && <ArrowRightIcon aria-hidden="true" className="arrow-travel h-5 w-5 shrink-0" />}
               </button>
             </motion.form>
           ) : (
@@ -582,15 +573,22 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                       return (
                         <div
                           key={slot}
-                          className={`flex h-16 items-center justify-center rounded-xl border-2 text-2xl font-bold tabular-nums transition-[border-color,box-shadow,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                          className={`flex h-16 items-center justify-center rounded-xl border-2 text-2xl font-bold tabular-nums transition-[border-color,box-shadow,background-color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
                             isActiveSlot
-                              ? "border-sapphire bg-sapphire-soft text-foreground ring-2 ring-sapphire/25 dark:border-sapphire-border dark:bg-sapphire/25 dark:text-paper"
+                              ? "border-sapphire bg-sapphire-soft text-foreground shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-sapphire)_16%,transparent)] dark:border-sapphire-border dark:bg-sapphire/25 dark:text-paper"
                               : digit
                                 ? "border-sapphire/50 bg-white text-foreground dark:border-sapphire-border/60 dark:bg-ink-950 dark:text-paper"
                                 : "border-border-control bg-muted/60 text-muted-foreground dark:border-white/15 dark:bg-ink-950/60 dark:text-mist/60"
                           }`}
                         >
-                          {digit || (isActiveSlot ? <span className="h-6 w-0.5 bg-sapphire dark:bg-sapphire-border" /> : "–")}
+                          {/* A typed digit settles into its box; the empty active box shows the caret. */}
+                          {digit ? (
+                            <span key={`${slot}-${digit}`} className="swap-in">{digit}</span>
+                          ) : isActiveSlot ? (
+                            <span className="h-6 w-0.5 bg-sapphire dark:bg-sapphire-border" />
+                          ) : (
+                            "–"
+                          )}
                         </div>
                       );
                     })}
@@ -608,7 +606,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                 className={SUBMIT_BUTTON}
               >
                 <span className="min-w-0 truncate">{isLoading ? copy.verifying : page.verifyCode}</span>
-                {!isLoading && <ArrowRightIcon aria-hidden="true" className="h-5 w-5 shrink-0" />}
+                {!isLoading && <ArrowRightIcon aria-hidden="true" className="arrow-travel h-5 w-5 shrink-0" />}
               </button>
 
               <div className="-mx-2 flex flex-wrap items-center justify-between gap-2 text-sm">
@@ -619,7 +617,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                     setOtpCode("");
                     setError("");
                   }}
-                  className={`press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 text-muted-foreground underline underline-offset-4 hover:text-foreground dark:text-mist dark:hover:text-paper ${FOCUS_RING}`}
+                  className={`press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground hover:decoration-current dark:text-mist dark:decoration-white/25 dark:hover:text-paper ${FOCUS_RING}`}
                 >
                   <span className="min-w-0 truncate">{copy.changeNumber}</span>
                 </button>
@@ -627,9 +625,9 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                   type="button"
                   onClick={() => void handleSendCode()}
                   disabled={isLoading}
-                  className={`press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 font-semibold text-sapphire underline-offset-4 hover:underline disabled:cursor-not-allowed disabled:text-foreground/45 disabled:no-underline dark:text-sapphire-border dark:disabled:text-white/45 ${FOCUS_RING}`}
+                  className={`group press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 font-semibold text-sapphire disabled:cursor-not-allowed disabled:text-foreground/45 dark:text-sapphire-border dark:disabled:text-white/45 ${FOCUS_RING}`}
                 >
-                  <span className="min-w-0 truncate">{copy.resendSms}</span>
+                  <span className="link-draw min-w-0 truncate group-disabled:bg-none">{copy.resendSms}</span>
                 </button>
               </div>
             </motion.div>
@@ -639,13 +637,13 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
         <div className="mt-6 border-t border-border/80 pt-4 dark:border-white/10">
           <Link
             href={withLangPrefix("/mediatori#solicita", lang)}
-            className={`press-row -mx-1 flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-md px-1 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/60 hover:text-foreground dark:text-mist dark:hover:bg-white/[0.06] dark:hover:text-paper sm:text-[0.9375rem] ${FOCUS_RING}`}
+            className={`group press-row -mx-1 flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-md px-1 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/60 hover:text-foreground dark:text-mist dark:hover:bg-white/[0.06] dark:hover:text-paper sm:text-[0.9375rem] ${FOCUS_RING}`}
           >
             <span className="flex min-w-0 items-center gap-2.5">
               <UsersIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-amber-care" />
               <span className="min-w-0 truncate">{copy.fallbackLinkText}</span>
             </span>
-            <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
+            <ChevronRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0" />
           </Link>
         </div>
       </div>

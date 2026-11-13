@@ -3,11 +3,13 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { HealthTopicsSpotlight } from "@/components/landing/HealthTopicsSpotlight";
 import { HealthTopicsWheel } from "@/components/landing/HealthTopicsWheel";
 import { WHEEL_ICONS } from "@/components/landing/HealthTopicsWheelIcons";
 import { WHEEL_ORDER } from "@/components/landing/health-topics-wheel-config";
+import { revealDelay } from "@/components/landing/reveal-delay";
 import { cn } from "@/lib/cn";
 import { getHealthTopicsList } from "@/lib/i18n/health-information-topics";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
@@ -24,7 +26,7 @@ function ViewAllLink({ href, label, className }: { href: string; label: string; 
       )}
     >
       <span className="min-w-0 overflow-hidden text-ellipsis">{label}</span>
-      <ArrowRightIcon className="h-5 w-5 shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
+      <ArrowRightIcon className="arrow-travel h-5 w-5 shrink-0" />
     </Link>
   );
 }
@@ -73,38 +75,39 @@ export async function HealthTopics() {
           }
           heading={
             // Short desktop screens (under 760px tall) drop the subtitle, so the section fits.
-            <div className="lg:[@media(max-height:760px)]:[&_p]:hidden">
+            <Reveal className="lg:[@media(max-height:760px)]:[&_p]:hidden">
               <SectionHeading
                 as="h2"
                 title={title}
                 subtitle={subtitle}
                 action={<ViewAllLink href={viewAllHref} label={viewAll} className="hidden sm:inline-flex lg:hidden" />}
               />
-            </div>
+            </Reveal>
           }
         >
           {/* Phones: the heading's empty action slot already adds a 16px gap, so the grid adds the other 16px. */}
           <ul className="mt-4 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 lg:hidden">
-            {topics.map(({ slug, title: topicTitle, description, image }) => (
+            {topics.map(({ slug, title: topicTitle, description, image }, index) => (
               <li key={slug}>
-                <div className="h-full">
+                {/* Tiles settle in one after another as the grid is scrolled to, never all at once. */}
+                <Reveal className="h-full" delay={revealDelay(index)}>
                   <Link
                     href={withLangPrefix(`/health-information/${slug}`, lang)}
-                    className="press-row group flex h-full flex-col rounded-(--radius-surface) transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:overflow-hidden sm:border sm:border-sand-line sm:bg-card sm:hover:border-sapphire/35 dark:focus-visible:ring-paper dark:sm:border-white/10 dark:sm:bg-ink-800 dark:sm:hover:border-white/25"
+                    className="press-row group flex h-full flex-col rounded-(--radius-surface) transition-[background-color,border-color,box-shadow] duration-(--dur-base) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:overflow-hidden sm:border sm:border-sand-line sm:bg-card sm:shadow-(--shadow-card-rest) sm:hover:border-sapphire/35 sm:hover:shadow-(--shadow-card-hover) sm:active:shadow-(--shadow-card-rest) dark:focus-visible:ring-paper dark:sm:border-white/10 dark:sm:bg-ink-800 dark:sm:hover:border-white/25"
                   >
                     <div className="relative aspect-4/3 overflow-hidden rounded-(--radius-surface) bg-surface-subtle sm:rounded-none">
                       <Image src={image} alt="" fill sizes="(min-width: 640px) 33vw, 50vw" className="object-cover" />
                     </div>
                     <div className="min-w-0 px-1 pb-1 pt-2 sm:p-4">
                       <h3 className="text-balance wrap-break-word text-base font-semibold leading-snug text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper dark:group-hover:text-sapphire-border">
-                        {topicTitle}
+                        <span className="link-draw">{topicTitle}</span>
                       </h3>
                       <p className="mt-1 hidden text-pretty text-body text-muted-foreground sm:block dark:text-mist">
                         {description}
                       </p>
                     </div>
                   </Link>
-                </div>
+                </Reveal>
               </li>
             ))}
           </ul>

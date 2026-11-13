@@ -54,6 +54,8 @@ export default async function HealthArticlePage({ params }: Props) {
 
   return (
     <main id="main-content" className="flex-1">
+      {/* Long read: a hairline under the header fills as the page is read. */}
+      <div className="read-progress" aria-hidden="true" />
       <HealthArticleShell>
         <HealthArticleBackLink
           href={withLangPrefix("/health-information#health-articles", lang)}

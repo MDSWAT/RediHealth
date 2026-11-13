@@ -26,8 +26,17 @@ export default async function AccessibilityPage() {
 
       <section className="py-10 sm:py-14">
         <Container>
-          <div className="max-w-2xl space-y-4 text-base leading-relaxed text-muted-foreground">
-            {copy.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          {/* The opening paragraph leads at a larger size in the body colour; the rest follow at a
+              comfortable measure. */}
+          <div className="max-w-[65ch] space-y-4 text-base leading-relaxed text-muted-foreground">
+            {copy.paragraphs.map((paragraph, index) => (
+              <p
+                key={paragraph}
+                className={index === 0 ? "mb-6 text-lg leading-relaxed text-foreground sm:text-xl sm:leading-relaxed" : undefined}
+              >
+                {paragraph}
+              </p>
+            ))}
             <p>
               {copy.contactLead}{" "}
               <a href="mailto:support@redihealth.app" className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">

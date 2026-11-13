@@ -21,7 +21,7 @@ export const subHeading = "text-base font-semibold text-foreground";
 /** A whole-row button or link: icon tile, title, description, arrow. */
 const optionRowBase = `group flex w-full items-start gap-4 rounded-xl border p-4 text-left transition-[border-color,background-color] ${motion} ${focusRing} sm:p-5`;
 
-export const optionRow = `${optionRowBase} border-stone-200/90 bg-card shadow-2xs hover:border-sapphire/45 hover:bg-sapphire-soft/25 dark:border-stone-800`;
+export const optionRow = `${optionRowBase} press-row border-stone-200/90 bg-card shadow-2xs hover:border-sapphire/45 hover:bg-sapphire-soft/25 dark:border-stone-800`;
 
 /** The same row once chosen (radio rows). */
 export const optionRowSelected = `${optionRowBase} border-sapphire bg-sapphire-soft/40 shadow-2xs`;
@@ -32,18 +32,19 @@ export const optionTitle = "block text-base font-semibold leading-snug text-fore
 
 export const optionDesc = "mt-1 block text-sm leading-relaxed text-muted-foreground";
 
-export const optionArrow = `mt-1 h-4.5 w-4.5 shrink-0 text-stone-400 transition-[color,transform] ${motion} group-hover:text-sapphire motion-safe:group-hover:translate-x-0.5`;
+/** The arrow hands off (leaves right, returns from the left) on hover; see `arrow-travel` in globals.css. */
+export const optionArrow = `arrow-travel mt-1 h-4.5 w-4.5 shrink-0 text-stone-400 transition-colors ${motion} group-hover:text-sapphire`;
 
-const buttonBase = `inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-center text-sm font-semibold transition-[background-color,border-color] sm:px-5 sm:text-[0.9375rem] ${motion}`;
+const buttonBase = `group inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-center text-sm font-semibold transition-[background-color,border-color] sm:px-5 sm:text-[0.9375rem] ${motion}`;
 
-export const primaryButton = `${buttonBase} bg-sapphire text-white shadow-2xs hover:bg-sapphire-light ${focusRing} disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none`;
+export const primaryButton = `${buttonBase} press-solid bg-sapphire text-white shadow-2xs hover:bg-sapphire-light ${focusRing} disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none`;
 
-export const secondaryButton = `${buttonBase} border border-border-control bg-card text-foreground shadow-2xs hover:border-sapphire/50 hover:bg-sapphire-soft/30 ${focusRing}`;
+export const secondaryButton = `${buttonBase} press-row border border-border-control bg-card text-foreground shadow-2xs hover:border-sapphire/50 hover:bg-sapphire-soft/30 ${focusRing}`;
 
 /** Outline button for the "yes, I have a danger sign" answer inside the red panel. */
 export const dangerOutlineButton = `${buttonBase} border border-primary/40 bg-card text-primary hover:border-primary hover:bg-primary-soft/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2`;
 
-export const emergencyButton = `${buttonBase} bg-primary text-white shadow-2xs hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2`;
+export const emergencyButton = `${buttonBase} bg-primary text-white shadow-2xs hover:bg-primary-hover active:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2`;
 
 /** A calm tinted panel (no border) for a short aside inside a step. */
 export const softPanel = "rounded-xl border border-sapphire/15 bg-sapphire-soft/55 p-5 dark:border-sapphire/25 dark:bg-sapphire/15";
@@ -51,7 +52,8 @@ export const softPanel = "rounded-xl border border-sapphire/15 bg-sapphire-soft/
 /** The danger-signs panel: the only red surface in the steps. */
 export const dangerPanel = "rounded-xl border border-primary/25 bg-primary-soft/50 p-5 sm:p-6";
 
-export const textInput = `min-h-12 w-full rounded-xl border border-border-control bg-card px-4 py-3 text-base text-foreground placeholder:text-muted-foreground transition-colors ${motion} hover:border-sapphire/60 focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`;
+/** `field-focus` gives the hover edge and the eased sapphire focus halo (aria-invalid aware). */
+export const textInput = `field-focus min-h-12 w-full rounded-xl border border-border-control bg-card px-4 py-3 text-base text-foreground placeholder:text-muted-foreground`;
 
 export const textLink = `group/link inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg font-semibold text-sapphire dark:text-sapphire-border ${focusRing}`;
 

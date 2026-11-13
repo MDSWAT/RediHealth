@@ -1,0 +1,55 @@
+/*
+ * Care-tools tab row. The active tool's marker is a 2px sapphire line that draws out from the
+ * centre when the page arrives (each tool is its own page, so this runs once per visit). On fine
+ * pointers an inactive tab previews the same line in a quiet border tone. Transform and colour
+ * only; static under reduced motion and in-app Calm Motion.
+ */
+.tab {
+  position: relative;
+}
+
+.tab::after {
+  content: "";
+  position: absolute;
+  inset: auto 0.75rem -2px 0.75rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-border);
+  transform: scaleX(0);
+  transition: transform var(--dur-base) var(--ease-out-calm);
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tab:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.tab[aria-current]::after {
+  background: var(--color-sapphire);
+  transform: scaleX(1);
+  animation: tab-marker-in var(--dur-slow) var(--ease-out-expo) 80ms both;
+}
+
+:global(.dark) .tab[aria-current]::after {
+  background: var(--color-sapphire-border);
+}
+
+@keyframes tab-marker-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab::after {
+    transition: none;
+    animation: none !important;
+  }
+}
+
+:global(html[data-calm-motion]) .tab::after {
+  transition: none;
+  animation: none !important;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon } from "@/components/ui/icons";
@@ -1005,7 +1005,7 @@ export function AnatomicalBodyMap({
                         type="button"
                         aria-label={t.close}
                         onClick={closePanel}
-                        className="flex h-8 w-8 items-center justify-center rounded-xl text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="press-row -my-1.5 -mr-1.5 flex h-11 w-11 items-center justify-center rounded-xl text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
                         <CloseIcon className="h-4 w-4" />
                       </button>
@@ -1024,16 +1024,20 @@ export function AnatomicalBodyMap({
                           onChange={(e) => setSearchQuery(e.target.value)}
                           placeholder={t.searchPlaceholder}
                           autoComplete="off"
-                          className="min-h-11 w-full rounded-xl border border-border-control bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-sapphire focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="field-focus min-h-11 w-full rounded-xl border border-border-control bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
                         />
                       </div>
                       {searchQuery.trim().length >= 2 && (
-                        <ul className="mt-2 max-h-44 divide-y divide-border overflow-y-auto rounded-xl border border-border bg-card">
+                        <ul className="popover-in mt-2 max-h-44 divide-y divide-border overflow-y-auto rounded-xl border border-border bg-card">
                           {searchResults.length === 0 ? (
                             <li className="px-3 py-2 text-xs text-muted-foreground">{t.noResults}</li>
                           ) : (
-                            searchResults.map((item) => (
-                              <li key={`${item.subRegion}-${item.side}`}>
+                            searchResults.map((item, index) => (
+                              <li
+                                key={`${item.subRegion}-${item.side}`}
+                                className="list-in"
+                                style={{ "--i": index } as CSSProperties}
+                              >
                                 <button
                                   type="button"
                                   onClick={() => {
@@ -1041,7 +1045,7 @@ export function AnatomicalBodyMap({
                                     setSearchQuery("");
                                     setPanelOpen(false);
                                   }}
-                                  className="flex min-h-11 w-full items-center justify-between gap-2 whitespace-nowrap px-3 py-2 text-left text-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                                  className="press-row flex min-h-11 w-full items-center justify-between gap-2 whitespace-nowrap px-3 py-2 text-left text-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
                                 >
                                   <span className="min-w-0 truncate font-medium text-foreground">{item.label}</span>
                                   <span className="shrink-0 text-muted-foreground">{dict.bodyParts[item.macroPart].title}</span>

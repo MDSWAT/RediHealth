@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { Container } from "@/components/ui/Container";
 import { RequestHelpForm } from "@/components/get-help/RequestHelpForm";
@@ -58,7 +58,7 @@ export function GetHelpPageContent({
                   <button
                     type="button"
                     onClick={() => setDialerOpen(true)}
-                    className="mt-3 inline-flex min-h-11 max-w-full items-center justify-center whitespace-nowrap rounded-lg bg-primary px-4 text-sm font-semibold text-white transition-colors motion-reduce:transition-none hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    className="press-solid mt-3 inline-flex min-h-11 max-w-full items-center justify-center whitespace-nowrap rounded-lg bg-primary px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   >
                     <span className="min-w-0 truncate">{CALL_112[lang]}</span>
                   </button>
@@ -67,16 +67,24 @@ export function GetHelpPageContent({
 
               <div>
                 <h2 className="text-base font-semibold text-foreground">{page.sidebar.whatsNextTitle}</h2>
-                <ol className="mt-4 space-y-3">
+                {/* The steps read as one path: a hairline joins the numbers, and the steps arrive in order. */}
+                <ol className="mt-4">
                   {page.sidebar.steps.map((step, index) => (
-                    <li key={step} className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground">
+                    <li
+                      key={step}
+                      className="list-in relative flex items-start gap-3 pb-4 text-sm leading-relaxed text-muted-foreground last:pb-0"
+                      style={{ "--i": index } as CSSProperties}
+                    >
+                      {index < page.sidebar.steps.length - 1 ? (
+                        <span aria-hidden="true" className="absolute bottom-0 left-3 top-7 w-px bg-border" />
+                      ) : null}
                       <span
                         aria-hidden="true"
-                        className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-xs font-semibold tabular-nums text-sapphire"
+                        className="relative inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-xs font-semibold tabular-nums text-sapphire"
                       >
                         {index + 1}
                       </span>
-                      <span>{step}</span>
+                      <span className="pt-px">{step}</span>
                     </li>
                   ))}
                 </ol>
