@@ -131,15 +131,15 @@ export function MediatorPublicHero() {
                 type="button"
                 onClick={() => setModalOpen(true)}
                 aria-haspopup="dialog"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sapphire px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
               >
-                <UsersIcon className="h-4 w-4" aria-hidden="true" />
+                <UsersIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{copy.ctaRequest}</span>
               </button>
 
               <Link
                 href={withLangPrefix("/sign-in", lang)}
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-border bg-card px-5 py-3 text-center text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-5 py-3 text-center text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 {copy.ctaSignIn}
               </Link>
@@ -149,7 +149,7 @@ export function MediatorPublicHero() {
           <ul className="mt-12 grid gap-x-10 gap-y-6 border-t border-border pt-8 md:grid-cols-3">
             {services.map((service) => (
               <li key={service.title}>
-                <h2 className="text-base font-semibold text-foreground">{service.title}</h2>
+                <h2 className="text-balance text-base font-semibold text-foreground">{service.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.body}</p>
               </li>
             ))}

@@ -44,7 +44,7 @@ export function DispatcherScriptAccordion({
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-controls={panelId}
-        className="flex min-h-12 w-full items-center justify-between gap-3 rounded-xl px-4 text-left text-[15px] font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-primary-soft/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="flex min-h-12 w-full items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-left text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-primary-soft/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
       >
         <span>{e.dispatcherGuideTitle}</span>
         <ChevronDownIcon
@@ -63,7 +63,7 @@ export function DispatcherScriptAccordion({
           <ol className="mt-3 space-y-3">
             {e.dispatcherSteps.map((step, idx) => (
               <li key={idx} className="flex items-start gap-3">
-                <span className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-card text-[11px] font-semibold tabular-nums text-primary ring-1 ring-primary/20">
+                <span className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-card text-[11px] font-semibold tabular-nums text-primary ring-1 ring-primary/20">
                   {idx + 1}
                 </span>
                 <div className="min-w-0">

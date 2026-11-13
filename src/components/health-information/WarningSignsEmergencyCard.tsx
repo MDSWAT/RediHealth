@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AlertCircleIcon, PhoneIcon } from "@/components/ui/icons";
+import { PhoneIcon } from "@/components/ui/icons";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
+import { HEALTH_ARTICLE_SECTION_H2_CLASS } from "./HealthArticleShell";
 import { InlineAudioNarratorButton } from "./InlineAudioNarratorButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -21,14 +22,18 @@ export interface WarningSignsEmergencyCardProps {
 const URGENCY_UI_BY_LANG: Record<
   Lang,
   {
-    urgencyBadge: string;
     cardLabels: [string, string, string, string];
   }
 > = {
-"ru": {"urgencyBadge":"Экстренная помощь 112","cardLabels":["Точное место","Главный симптом","Возраст и дыхание","Оставайтесь на линии"]},
-
+  ru: {
+    cardLabels: [
+      "Точное место",
+      "Главный симптом",
+      "Возраст и дыхание",
+      "Оставайтесь на линии",
+    ],
+  },
   ro: {
-    urgencyBadge: "Urgență 112",
     cardLabels: [
       "Adresa exactă",
       "Simptomul principal",
@@ -37,7 +42,6 @@ const URGENCY_UI_BY_LANG: Record<
     ],
   },
   en: {
-    urgencyBadge: "112 emergency",
     cardLabels: [
       "Exact location",
       "Main symptom",
@@ -46,7 +50,6 @@ const URGENCY_UI_BY_LANG: Record<
     ],
   },
   sq: {
-    urgencyBadge: "Urgjenca 112",
     cardLabels: [
       "Adresa e saktë",
       "Simptoma kryesore",
@@ -55,7 +58,6 @@ const URGENCY_UI_BY_LANG: Record<
     ],
   },
   it: {
-    urgencyBadge: "Emergenza 112",
     cardLabels: [
       "Indirizzo preciso",
       "Sintomo principale",
@@ -64,7 +66,6 @@ const URGENCY_UI_BY_LANG: Record<
     ],
   },
   hr: {
-    urgencyBadge: "Hitna služba 112",
     cardLabels: [
       "Točna adresa",
       "Glavni simptom",
@@ -73,7 +74,6 @@ const URGENCY_UI_BY_LANG: Record<
     ],
   },
   rom: {
-    urgencyBadge: "Urgenca 112",
     cardLabels: [
       "Chachi adresa",
       "Angluno simptomo",
@@ -174,22 +174,15 @@ export function WarningSignsEmergencyCard({
         aria-labelledby="warning-signs-heading"
         className={`rounded-xl border border-border border-l-4 border-l-primary bg-card p-6 sm:p-8 break-inside-avoid ${className}`}
       >
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
-            <div className="mb-2 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
-                <AlertCircleIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                <span>{urgencyUi.urgencyBadge}</span>
-              </span>
-            </div>
-
             <h2
               id="warning-signs-heading"
-              className="text-xl font-semibold leading-snug tracking-tight text-foreground text-balance sm:text-3xl"
+              className={HEALTH_ARTICLE_SECTION_H2_CLASS}
             >
               {pickLocale(s.heading, currentLang)}
             </h2>
-            <p className="mt-1 text-sm font-medium leading-normal text-foreground">
+            <p className="mt-1.5 text-base font-medium leading-normal text-foreground">
               {pickLocale(s.subtitleWarning, currentLang)}
             </p>
           </div>
@@ -203,7 +196,7 @@ export function WarningSignsEmergencyCard({
           </div>
         </div>
 
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-4 text-base leading-relaxed text-foreground/90">
           {pickLocale(s.prompt, currentLang).replace(
             "{topic}",
             topicTitle.toLowerCase(),
@@ -214,36 +207,23 @@ export function WarningSignsEmergencyCard({
           {warningSigns.map((sign, idx) => (
             <li
               key={idx}
-              className="flex items-start justify-between gap-3 py-3.5 text-base font-medium text-foreground"
+              className="flex items-start gap-3 py-3.5 text-[1.0625rem] font-medium leading-[1.65] text-foreground sm:text-[1.125rem]"
             >
-              <div className="flex items-start gap-3">
-                <svg
-                  className="mt-1 h-[18px] w-[18px] shrink-0 text-primary"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="12.5" />
-                  <circle cx="12" cy="16.2" r="0.8" fill="currentColor" />
-                </svg>
-                <span className="leading-relaxed">{sign}</span>
-              </div>
-
-              <InlineAudioNarratorButton
-                textToSpeak={sign}
-                label={pickLocale(
-                  HEALTH_DETAIL_SHARED_STRINGS.actionableSteps.listenStepLabel,
-                  currentLang,
-                ).replace("{title}", sign)}
-                lang={speechLang}
-                variant="ghost"
-                className="-my-2 -mr-2 shrink-0"
-              />
+              <svg
+                className="mt-1.5 h-[18px] w-[18px] shrink-0 text-primary"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12.5" />
+                <circle cx="12" cy="16.2" r="0.8" fill="currentColor" />
+              </svg>
+              <span>{sign}</span>
             </li>
           ))}
         </ul>
@@ -253,7 +233,7 @@ export function WarningSignsEmergencyCard({
             type="button"
             onClick={() => setDialerOpen(true)}
             aria-haspopup="dialog"
-            className="inline-flex min-h-[48px] w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
+            className="inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
           >
             <PhoneIcon className="h-4 w-4" aria-hidden="true" />
             <span>{pickLocale(s.dialBtn, currentLang)}</span>
@@ -264,7 +244,7 @@ export function WarningSignsEmergencyCard({
             type="button"
             onClick={() => setIsModalOpen(true)}
             aria-haspopup="dialog"
-            className="inline-flex min-h-[44px] items-center rounded-sm text-sm font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-12 items-center whitespace-nowrap rounded-sm px-1 text-base font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           >
             {pickLocale(s.modalTrigger, currentLang)}
           </button>
@@ -293,10 +273,6 @@ export function WarningSignsEmergencyCard({
 
             <div className="flex items-start justify-between gap-4 border-b border-border pb-4">
               <div>
-                <span className="mb-1.5 inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
-                  <AlertCircleIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                  <span>{urgencyUi.urgencyBadge}</span>
-                </span>
                 <h3
                   id="emergency-modal-title"
                   className="text-xl font-semibold tracking-tight text-foreground"
@@ -305,7 +281,7 @@ export function WarningSignsEmergencyCard({
                 </h3>
                 <p
                   id="emergency-modal-desc"
-                  className="mt-1 text-sm text-muted-foreground"
+                  className="mt-1 text-base text-muted-foreground"
                 >
                   {pickLocale(s.modalSubtitle, currentLang)}{" "}
                   {pickLocale(s.subtitleWarning, currentLang)}
@@ -316,7 +292,7 @@ export function WarningSignsEmergencyCard({
                 ref={closeRef}
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="flex min-h-12 min-w-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
                 aria-label={pickLocale(s.closeAria, currentLang)}
               >
                 <svg
@@ -334,7 +310,7 @@ export function WarningSignsEmergencyCard({
             </div>
 
             <div className="mt-4">
-              <p className="text-sm font-semibold text-foreground">
+              <p className="text-base font-semibold text-foreground">
                 {pickLocale(s.dispatchTitle, currentLang)}
               </p>
 
@@ -344,15 +320,15 @@ export function WarningSignsEmergencyCard({
                     key={idx}
                     className="flex flex-col rounded-lg border border-border bg-surface-subtle/60 p-3.5"
                   >
-                    <div className="flex items-center gap-2">
-                      <span className="inline-flex items-center justify-center rounded-md bg-primary-soft px-2 py-0.5 text-xs font-bold tabular-nums text-primary">
-                        {String(idx + 1).padStart(2, "0")}
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-sm font-bold tabular-nums text-primary">
+                        {String(idx + 1).padStart(2, "0")}.
                       </span>
-                      <span className="text-xs font-semibold text-foreground">
+                      <span className="text-sm font-semibold text-foreground">
                         {urgencyUi.cardLabels[idx]}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-2 text-base leading-relaxed text-foreground/90">
                       {stepText}
                     </p>
                   </li>
@@ -364,7 +340,7 @@ export function WarningSignsEmergencyCard({
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
               >
                 {pickLocale(s.closeBtn, currentLang)}
               </button>
@@ -375,7 +351,7 @@ export function WarningSignsEmergencyCard({
                   setDialerOpen(true);
                 }}
                 aria-haspopup="dialog"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <PhoneIcon className="h-4 w-4" aria-hidden="true" />
                 <span>{pickLocale(s.dialBtn, currentLang)}</span>

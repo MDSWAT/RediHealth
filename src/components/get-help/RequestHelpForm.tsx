@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import { CheckCircleIcon, LockIcon } from "@/components/ui/icons";
+import { CheckCircleIcon, LockIcon, VolumeIcon } from "@/components/ui/icons";
+import { useReadAloud } from "@/components/health-check/readingTools";
 import { useLanguage } from "@/lib/i18n/language-context";
-import type { Translations } from "@/lib/i18n/translations";
+import type { Lang, Translations } from "@/lib/i18n/translations";
 import { isValidEmail } from "@/lib/text";
 import { COUNTRY_LABELS, type CountryCode } from "@/lib/countries";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
@@ -22,15 +23,107 @@ type Fields = {
 type Errors = Partial<Record<keyof Fields, string>>;
 
 const inputClass =
-  "mt-1.5 block w-full rounded-lg border border-border bg-card px-3.5 text-base text-foreground " +
+  "mt-1.5 block w-full min-h-12 rounded-lg border border-border bg-card px-3.5 text-base text-foreground " +
   "placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 " +
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
   "aria-[invalid=true]:border-primary";
 
+export const QUICK_HELP_TOPICS: Record<Lang, { id: string; label: string; text: string }[]> = {
+  ro: [
+    { id: "pain", label: "Durere sau febră", text: "Am durere sau febră și am nevoie de ajutor." },
+    { id: "child", label: "Copil bolnav", text: "Copilul meu este bolnav și am nevoie de ajutor." },
+    { id: "pills", label: "Rețetă sau pastile", text: "Am nevoie de o rețetă sau de pastilele mele." },
+    { id: "noid", label: "Fără buletin sau asigurare", text: "Nu am buletin sau asigurare și am nevoie de un medic." },
+    { id: "family", label: "Caut medic de familie", text: "Caut un medic de familie și am nevoie de ajutor." },
+  ],
+  en: [
+    { id: "pain", label: "Pain or fever", text: "I have pain or a fever and need help." },
+    { id: "child", label: "Sick child", text: "My child is sick and I need help." },
+    { id: "pills", label: "Prescription or pills", text: "I need a prescription or my pills." },
+    { id: "noid", label: "No ID or insurance", text: "I have no ID or insurance and need a doctor." },
+    { id: "family", label: "Need family doctor", text: "I need a family doctor and want help finding one." },
+  ],
+  sq: [
+    { id: "pain", label: "Dhimbje ose ethe", text: "Kam dhimbje ose ethe dhe kam nevojë për ndihmë." },
+    { id: "child", label: "Fëmijë i sëmurë", text: "Fëmija im është i sëmurë dhe kam nevojë për ndihmë." },
+    { id: "pills", label: "Recetë ose ilaçe", text: "Kam nevojë për një recetë ose për ilaçet e mia." },
+    { id: "noid", label: "Pa letërnjoftim ose sigurim", text: "Nuk kam letërnjoftim ose sigurim dhe kam nevojë për mjek." },
+    { id: "family", label: "Dua mjek familjeje", text: "Kërkoj një mjek familjeje dhe kam nevojë për ndihmë." },
+  ],
+  it: [
+    { id: "pain", label: "Dolore o febbre", text: "Ho dolore o febbre e ho bisogno di aiuto." },
+    { id: "child", label: "Bambino malato", text: "Mio figlio è malato e ho bisogno di aiuto." },
+    { id: "pills", label: "Ricetta o medicine", text: "Ho bisogno di una ricetta o delle mie medicine." },
+    { id: "noid", label: "Senza documento o assicurazione", text: "Non ho documento o assicurazione e ho bisogno di un medico." },
+    { id: "family", label: "Cerco un medico di famiglia", text: "Cerco un medico di famiglia e ho bisogno di aiuto." },
+  ],
+  hr: [
+    { id: "pain", label: "Bol ili vrućica", text: "Imam bol ili vrućicu i trebam pomoć." },
+    { id: "child", label: "Bolesno dijete", text: "Moje dijete je bolesno i trebam pomoć." },
+    { id: "pills", label: "Recept ili tablete", text: "Trebam recept ili svoje tablete." },
+    { id: "noid", label: "Bez osobne ili osiguranja", text: "Nemam osobnu ili osiguranje i trebam liječnika." },
+    { id: "family", label: "Trebam obiteljskog liječnika", text: "Trebam obiteljskog liječnika i pomoć da ga nađem." },
+  ],
+  rom: [
+    { id: "pain", label: "Dukh vay tatipen", text: "Si ma dukh vay tatipen thaj trubul ma zhutimos." },
+    { id: "child", label: "Nasvalo chhavoro", text: "Murro chhavoro si nasvalo thaj trubul ma zhutimos." },
+    { id: "pills", label: "Receto vay draba", text: "Trubul ma receto vay murre draba." },
+    { id: "noid", label: "Bi buletinosko vay asigurimosko", text: "Nane ma buletino vay asigurimo thaj trubul ma doktori." },
+    { id: "family", label: "Familiako doktori", text: "Rodav familiako doktori thaj trubul ma zhutimos." },
+  ],
+  ru: [
+    { id: "pain", label: "Боль или температура", text: "У меня боль или температура, мне нужна помощь." },
+    { id: "child", label: "Болен ребёнок", text: "Мой ребёнок болен, мне нужна помощь." },
+    { id: "pills", label: "Рецепт или таблетки", text: "Мне нужен рецепт или мои таблетки." },
+    { id: "noid", label: "Нет документа или страховки", text: "У меня нет документа или страховки, нужен врач." },
+    { id: "family", label: "Нужен семейный врач", text: "Мне нужен семейный врач, помогите его найти." },
+  ],
+};
+
+const DESCRIPTION_PREFIX: Record<Lang, string> = {
+  ro: "Solicitare telefonică: ",
+  en: "Callback request: ",
+  sq: "Kërkesë me telefon: ",
+  it: "Richiesta telefonica: ",
+  hr: "Zahtjev za poziv: ",
+  rom: "Mangipe telefonosa: ",
+  ru: "Запрос звонка: ",
+};
+
+const LISTEN_COPY: Record<Lang, { listen: string; stop: string }> = {
+  ro: { listen: "Ascultă", stop: "Oprește" },
+  en: { listen: "Listen", stop: "Stop" },
+  sq: { listen: "Dëgjo", stop: "Ndalo" },
+  it: { listen: "Ascolta", stop: "Ferma" },
+  hr: { listen: "Poslušaj", stop: "Zaustavi" },
+  rom: { listen: "Ashun", stop: "Achav" },
+  ru: { listen: "Прослушать", stop: "Остановить" },
+};
+
+const QUICK_TOPICS_TITLE: Record<Lang, string> = {
+  ro: "Atinge ce ți se potrivește",
+  en: "Tap what fits",
+  sq: "Prek atë që të përshtatet",
+  it: "Tocca ciò che ti serve",
+  hr: "Dodirni što ti odgovara",
+  rom: "Alosar so mishtol tuke",
+  ru: "Нажмите, что подходит",
+};
+
+export function normalizeHelpPhone(raw: string): string {
+  return raw.trim().replace(/[\s().-]+/g, "");
+}
+
+export function buildRequestDescription(raw: string, lang: Lang): string {
+  const trimmed = raw.trim();
+  if (trimmed.length >= 10) return trimmed;
+  return `${DESCRIPTION_PREFIX[lang]}${trimmed}`;
+}
+
 function validate(values: Fields, t: Translations["getHelpPage"]["form"]): Errors {
   const errors: Errors = {};
 
-  if (!values.phone.trim()) {
+  if (!normalizeHelpPhone(values.phone)) {
     errors.phone = t.errorPhone;
   }
 
@@ -38,7 +131,7 @@ function validate(values: Fields, t: Translations["getHelpPage"]["form"]): Error
     errors.email = t.errorEmailInvalid;
   }
 
-  if (values.description.trim().length < 10) {
+  if (values.description.trim().length < 3) {
     errors.description = t.errorDescription;
   }
 
@@ -66,6 +159,8 @@ export function RequestHelpForm({
   const { t, lang } = useLanguage();
   const executeCaptcha = useRecaptcha();
   const form = t.getHelpPage.form;
+  const voice = useReadAloud(lang);
+  const listenCopy = LISTEN_COPY[lang];
 
   const [country, setCountry] = useState<CountryCode | "">(initialCountry ?? "");
   const [county, setCounty] = useState("");
@@ -121,7 +216,15 @@ export function RequestHelpForm({
       const response = await fetch("/api/medical-help-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json", [REQUEST_LANG_HEADER]: lang },
-        body: JSON.stringify({ ...values, country, county, privacyConsent, captchaToken }),
+        body: JSON.stringify({
+          ...values,
+          phone: normalizeHelpPhone(values.phone),
+          description: buildRequestDescription(values.description, lang),
+          country,
+          county,
+          privacyConsent,
+          captchaToken,
+        }),
       });
       if (response.ok) {
         setSubmitted(true);
@@ -190,6 +293,28 @@ export function RequestHelpForm({
         </p>
       ) : null}
       <div className="grid gap-6">
+        {voice.available ? (
+          <div>
+            <button
+              type="button"
+              aria-pressed={voice.speaking}
+              onClick={() =>
+                voice.speaking
+                  ? voice.stop()
+                  : voice.speak([
+                      form.phoneLabel,
+                      form.descriptionLabel,
+                      form.descriptionHint,
+                      form.privacyNote,
+                    ])
+              }
+              className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              <VolumeIcon className="h-4 w-4" aria-hidden="true" />
+              <span>{voice.speaking ? listenCopy.stop : listenCopy.listen}</span>
+            </button>
+          </div>
+        ) : null}
         {countries.length > 1 ? (
           <div>
             <label htmlFor="country" className="text-sm font-semibold text-foreground">
@@ -204,7 +329,7 @@ export function RequestHelpForm({
                 setCounty("");
                 setCountyError(false);
               }}
-              className={`${inputClass} h-11`}
+              className={`${inputClass} h-12`}
             >
               {countries.map((code) => (
                 <option key={code} value={code}>
@@ -229,7 +354,7 @@ export function RequestHelpForm({
                 setCounty(event.target.value);
                 setCountyError(false);
               }}
-              className={`${inputClass} h-11`}
+              className={`${inputClass} h-12`}
               aria-invalid={countyError}
               aria-describedby={countyError ? "county-error" : undefined}
             >
@@ -256,7 +381,7 @@ export function RequestHelpForm({
             autoComplete="name"
             value={values.name}
             onChange={(event) => update("name", event.target.value)}
-            className={`${inputClass} h-11`}
+            className={`${inputClass} h-12`}
             placeholder={form.fullNamePlaceholder}
           />
         </div>
@@ -280,7 +405,7 @@ export function RequestHelpForm({
               onChange={(event) => update("phone", event.target.value)}
               aria-invalid={Boolean(errors.phone)}
               aria-describedby={errors.phone ? "phone-error" : undefined}
-              className={`${inputClass} h-11`}
+              className={`${inputClass} h-12`}
               placeholder={form.phonePlaceholder}
             />
             {errors.phone ? (
@@ -308,7 +433,7 @@ export function RequestHelpForm({
               onChange={(event) => update("email", event.target.value)}
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? "email-error" : undefined}
-              className={`${inputClass} h-11`}
+              className={`${inputClass} h-12`}
               placeholder={form.emailPlaceholder}
             />
             {errors.email ? (
@@ -326,6 +451,27 @@ export function RequestHelpForm({
           >
             {form.descriptionLabel}
           </label>
+          <p className="mt-2 text-sm font-semibold text-foreground">{QUICK_TOPICS_TITLE[lang]}</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {QUICK_HELP_TOPICS[lang].map((topic) => {
+              const active = values.description === topic.text;
+              return (
+                <button
+                  key={topic.id}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => update("description", topic.text)}
+                  className={`inline-flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3.5 sm:text-sm ${
+                    active
+                      ? "border-sapphire bg-sapphire-soft text-sapphire ring-1 ring-sapphire/30"
+                      : "border-border-control bg-card text-foreground hover:bg-muted"
+                  }`}
+                >
+                  <span className="min-w-0 truncate">{topic.label}</span>
+                </button>
+              );
+            })}
+          </div>
           <textarea
             id="description"
             name="description"
@@ -383,7 +529,7 @@ export function RequestHelpForm({
         </div>
 
         <div>
-          <Button type="submit" size="lg" variant="secondary" disabled={isSubmitting} className="disabled:bg-muted disabled:text-muted-foreground">
+          <Button type="submit" size="lg" variant="secondary" disabled={isSubmitting} className="min-h-13 whitespace-nowrap text-sm disabled:bg-muted disabled:text-muted-foreground sm:text-[0.9375rem]">
             {isSubmitting ? form.submitting : form.submit}
           </Button>
         </div>

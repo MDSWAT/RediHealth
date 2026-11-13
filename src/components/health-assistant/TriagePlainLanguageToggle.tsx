@@ -11,6 +11,44 @@ interface TriagePlainLanguageToggleProps {
   className?: string;
 }
 
+export const TRIAGE_READING_LEVEL_COPY: Record<Lang, { simple: string; standard: string; aria: string }> = {
+  ru: {
+    simple: "Коротко",
+    standard: "Подробно",
+    aria: "Режим чтения",
+  },
+  en: {
+    simple: "Easy",
+    standard: "Detailed",
+    aria: "Reading mode",
+  },
+  ro: {
+    simple: "Pe scurt",
+    standard: "Detaliat",
+    aria: "Mod de citire",
+  },
+  sq: {
+    simple: "Shkurt",
+    standard: "Detajuar",
+    aria: "Mënyra e leximit",
+  },
+  it: {
+    simple: "Semplice",
+    standard: "Dettagliato",
+    aria: "Modalità di lettura",
+  },
+  hr: {
+    simple: "Ukratko",
+    standard: "Detaljno",
+    aria: "Način čitanja",
+  },
+  rom: {
+    simple: "Skurto",
+    standard: "Detaliime",
+    aria: "Sar drabares",
+  },
+};
+
 export function TriagePlainLanguageToggle({
   enabled,
   onToggle,
@@ -20,46 +58,7 @@ export function TriagePlainLanguageToggle({
   const simpleBtnRef = useRef<HTMLButtonElement | null>(null);
   const standardBtnRef = useRef<HTMLButtonElement | null>(null);
 
-  // Same order, labels and look as the topic pages' format switch: concise overview first.
-  const dict: Record<Lang, { simple: string; standard: string; aria: string }> = {
-ru: {
-      simple: "Простой язык",
-      standard: "Полное руководство",
-      aria: "Уровень чтения",
-    },
-
-    en: {
-      simple: "In brief",
-      standard: "Complete guide",
-      aria: "Guide format",
-    },
-    ro: {
-      simple: "Pe scurt",
-      standard: "Ghid complet",
-      aria: "Formatul ghidului",
-    },
-    sq: {
-      simple: "Shkurt",
-      standard: "Udhëzues i plotë",
-      aria: "Formati i udhëzuesit",
-    },
-    it: {
-      simple: "In breve",
-      standard: "Guida completa",
-      aria: "Formato della guida",
-    },
-    hr: {
-      simple: "Ukratko",
-      standard: "Potpuni vodič",
-      aria: "Format vodiča",
-    },
-    rom: {
-      simple: "Xarnes",
-      standard: "Sasto sikavimos",
-      aria: "Sar sikavel pes",
-    },
-  };
-  const labels = dict[lang] || dict[DEFAULT_LANG];
+  const labels = TRIAGE_READING_LEVEL_COPY[lang] || TRIAGE_READING_LEVEL_COPY[DEFAULT_LANG];
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "ArrowLeft" || event.key === "Home") {
@@ -78,7 +77,7 @@ ru: {
       role="group"
       aria-label={labels.aria}
       onKeyDown={handleKeyDown}
-      className={`relative grid w-full grid-cols-2 items-center rounded-xl border border-border bg-card p-1 shadow-2xs sm:inline-grid sm:w-auto ${className}`}
+      className={`relative inline-grid w-auto shrink-0 grid-cols-2 items-center rounded-xl border border-stone-200/90 bg-card p-1 shadow-2xs dark:border-stone-800 ${className}`}
     >
       <span
         aria-hidden="true"
@@ -95,7 +94,7 @@ ru: {
           if (!enabled) onToggle();
         }}
         aria-pressed={enabled}
-        className={`relative z-10 inline-flex min-h-11 items-center justify-center rounded-lg px-3 py-2 text-center text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none sm:whitespace-nowrap sm:px-3.5 sm:text-sm ${
+        className={`relative z-10 inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-2.5 py-1.5 text-center text-[13px] leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:px-3.5 sm:text-sm ${
           enabled
             ? "font-semibold text-white"
             : "font-medium text-muted-foreground hover:text-foreground"
@@ -111,7 +110,7 @@ ru: {
           if (enabled) onToggle();
         }}
         aria-pressed={!enabled}
-        className={`relative z-10 inline-flex min-h-11 items-center justify-center rounded-lg px-3 py-2 text-center text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none sm:whitespace-nowrap sm:px-3.5 sm:text-sm ${
+        className={`relative z-10 inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-2.5 py-1.5 text-center text-[13px] leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:px-3.5 sm:text-sm ${
           !enabled
             ? "font-semibold text-white"
             : "font-medium text-muted-foreground hover:text-foreground"

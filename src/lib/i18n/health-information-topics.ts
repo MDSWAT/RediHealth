@@ -48,7 +48,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       seekAdviceTitle:
         "Когда обратиться к врачу",
       seekAdviceBody:
-        "Обратитесь к врачу, если вы заметили какой-либо из этих признаков. В случае чрезвычайной ситуации немедленно звоните 112.",
+        "Обратитесь к врачу, если заметили любой из этих признаков. В экстренной ситуации сразу звоните 112.",
       relatedTopics:
         "Другие руководства",
       readMore:
@@ -61,69 +61,69 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "heart-health",
         title: "Здоровье сердца",
         description:
-          "Повседневные привычки, которые поддерживают здоровье вашего сердца и кровяного давления.",
+          "Простые привычки для здоровья сердца и нормального давления.",
         intro:
-          "Ваше сердце перекачивает кровь по всему телу каждую минуту дня. Забота о нем снижает риск сердечно-сосудистых заболеваний и инсульта. Большинство привычек, которые помогают, небольшие.",
+          "Сердце качает кровь по всему телу каждую минуту. Забота о нем снижает риск болезней сердца и инсульта. Помогают даже небольшие привычки.",
         keyFacts: [
-          "Высокое кровяное давление и уровень холестерина незаметно перегружают артерии и заставляют сердце работать интенсивнее в течение многих лет без каких-либо признаков.",
-          "Здоровое сердце и нормальное кровяное давление обеспечивают лучшую выносливость, более ровное дыхание и меньший риск инсульта.",
-          "Употребление меньшего количества соли, быстрая ходьба большую часть дня и регулярная проверка артериального давления защищают ваше сердце.",
+          "Высокое давление и холестерин годами незаметно перегружают сосуды и заставляют сердце работать с лишней нагрузкой — без всяких симптомов.",
+          "Здоровое сердце и нормальное давление дают больше сил, легкое дыхание и снижают риск инсульта.",
+          "Меньше соли в еде, быстрая ходьба почти каждый день и регулярное измерение давления защищают сердце.",
         ],
         recommendations: [
           {
-            title: "Перемещайтесь большую часть дней",
+            title: "Двигайтесь почти каждый день",
             description:
-              "Ходите быстро или занимайтесь любыми видами деятельности, которые вам нравятся. Короткие прогулки тоже имеют значение.",
+              "Ходите в быстром темпе или выберите любое занятие по душе. Короткие прогулки тоже идут на пользу.",
           },
           {
-            title: "Ешьте для своего сердца",
+            title: "Питайтесь с пользой для сердца",
             description:
-              "Ешьте больше овощей, фруктов и цельнозерновых продуктов. Используйте меньше соли и ешьте меньше готовых блюд.",
+              "Ешьте больше овощей, фруктов и цельнозерновых продуктов. Добавляйте меньше соли и реже берите готовые блюда.",
           },
           {
-            title: "Проверьте свои номера",
+            title: "Следите за показателями",
             description:
-              "Проверьте свое кровяное давление и уровень холестерина. Проблемы легче лечить, если они обнаружены на ранней стадии.",
+              "Регулярно проверяйте давление и холестерин. На ранней стадии проблемы лечатся проще.",
           },
         ],
         warningSigns: [
-          "Боль в груди, давление или стеснение, особенно если они распространяются на руку, шею или челюсть.",
-          "Внезапная одышка или учащенное или нерегулярное сердцебиение.",
-          "Непроходящая усталость или опухшие ноги.",
+          "Боль, давление или сжатие в груди, особенно если они отдают в руку, шею или челюсть.",
+          "Внезапная одышка, учащенное или неровное сердцебиение.",
+          "Постоянная усталость, которая не проходит, или отеки на ногах.",
         ],
       },
       {
         slug: "diabetes",
         title: "Диабет",
         description:
-          "Что повышает риск и как поддерживать стабильный уровень сахара в крови.",
+          "От чего растет риск и как держать сахар в крови в норме.",
         intro:
-          "Диабет влияет на то, как ваш организм обрабатывает сахар в крови. Диабет 2 типа часто связан с повседневными привычками. Часто вы можете отсрочить или предотвратить это, и при правильной помощи вы сможете жить с этим хорошо.",
+          "Диабет меняет то, как организм усваивает сахар из крови. Диабет 2 типа часто связан с повседневными привычками. Его нередко можно отсрочить или предотвратить, а при правильной помощи — спокойно с ним жить.",
         keyFacts: [
           "При диабете 2 типа сахар остается в крови, а не попадает в клетки, и может годами незаметно повреждать кровеносные сосуды.",
-          "Поддержание стабильного уровня сахара в крови дает вам равномерную энергию в течение дня и защищает ваши глаза, почки, нервы и сердце.",
-          "Небольшие ежедневные привычки, такие как наполнение половины тарелки овощами и прогулки после еды, снижают риск.",
+          "Стабильный уровень сахара в крови дает ровную энергию на весь день и защищает глаза, почки, нервы и сердце.",
+          "Простые ежедневные привычки — например, половина тарелки овощей и прогулка после еды — снижают риск.",
         ],
         recommendations: [
           {
-            title: "Сбалансируйте свою тарелку",
+            title: "Сбалансируйте тарелку",
             description:
               "Наполните половину тарелки овощами. Выбирайте цельнозерновой хлеб, рис и макароны.",
           },
           {
-            title: "Оставайтесь активными",
+            title: "Больше двигайтесь",
             description:
-              "Регулярное движение помогает организму лучше использовать сахар в крови.",
+              "Регулярное движение помогает организму лучше усваивать сахар из крови.",
           },
           {
-            title: "Пройти проверку",
+            title: "Сдайте анализ",
             description:
-              "Если в вашей семье есть диабет или у вас есть другие факторы риска, попросите врача сделать простой анализ крови.",
+              "Если у близких есть диабет или у вас есть факторы риска, попросите врача назначить простой анализ крови.",
           },
         ],
         warningSigns: [
-          "Сильная жажда или потребность в туалете чаще, чем обычно.",
-          "Похудение без усилий или постоянное чувство усталости.",
+          "Сильная жажда или частое мочеиспускание, чаще обычного.",
+          "Потеря веса без причины или постоянная усталость.",
           "Затуманенное зрение или порезы, которые медленно заживают.",
         ],
       },
@@ -131,202 +131,202 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "healthy-eating",
         title: "Здоровое питание",
         description:
-          "Дешевый и простой выбор продуктов питания, которые сохранят ваше здоровье.",
+          "Простая и доступная еда на каждый день.",
         intro:
-          "Правильное питание не должно быть трудным или дорогим. Несколько простых правил, которые следует соблюдать каждый день, дадут вашему организму то, что ему нужно.",
+          "Здоровое питание не обязано быть сложным или дорогим. Несколько простых правил на каждый день дадут организму все необходимое.",
         keyFacts: [
-          "Клетчатка из овощей и цельнозерновых продуктов поддерживает стабильный уровень сахара в крови и кровяное давление.",
-          "Простая домашняя еда дает вам постоянную энергию в течение дня и предотвращает усталость после еды.",
-          "Сезонные овощи, фасоль и чечевица стоят дешево, а питьевая вода вместо сладких напитков сразу помогает.",
+          "Клетчатка из овощей и цельнозерновых продуктов помогает держать сахар в крови и давление в норме.",
+          "Простая домашняя еда дает ровную энергию в течение дня и избавляет от сонливости после еды.",
+          "Сезонные овощи, фасоль и чечевица стоят недорого, а вода вместо сладких напитков сразу приносит пользу.",
         ],
         recommendations: [
           {
             title: "Больше овощей и фруктов",
             description:
-              "Добавляйте овощи или фрукты в большинство блюд. Свежие или замороженные подойдут.",
+              "Добавляйте овощи или фрукты почти к каждому приему пищи. Подойдут и свежие, и замороженные.",
           },
           {
             title: "Готовьте дома",
             description:
-              "По возможности отдавайте предпочтение цельнозерновым и домашним блюдам, а не готовым блюдам.",
+              "По возможности выбирайте цельнозерновые продукты и домашнюю еду вместо готовых полуфабрикатов.",
           },
           {
-            title: "Пить воду",
+            title: "Пейте воду",
             description:
-              "Сделайте воду своим основным напитком. Ограничьте сладкие напитки и фруктовые соки.",
+              "Пусть вода будет вашим главным напитком. Сладкие напитки и соки лучше ограничить.",
           },
         ],
         warningSigns: [
-          "Быстрое похудение или набор веса без каких-либо усилий.",
+          "Быстрая потеря или набор веса без видимой причины.",
           "Проблемы с желудком, которые не проходят, или потеря аппетита.",
-          "Ощущение слабости, слабости или сильной усталости, даже если вы едите.",
+          "Сильная слабость, головокружение или усталость, даже если вы нормально едите.",
         ],
       },
       {
         slug: "physical-activity",
         title: "Физическая активность",
         description:
-          "Простые способы больше двигаться независимо от вашей физической подготовки.",
+          "Простые способы двигаться больше при любой подготовке.",
         intro:
-          "Больше двигаться — это одна из лучших вещей, которые вы можете сделать для своего тела и разума. Вам не нужен тренажерный зал. Ежедневное движение имеет значение.",
+          "Больше двигаться — одно из лучших решений для тела и настроения. Спортзал не нужен. Важно любое движение каждый день.",
         keyFacts: [
-          "Движение ускоряет кровоток, укрепляет сердце и мышцы и помогает клеткам использовать сахар в крови для получения энергии.",
-          "Регулярное движение дает вам больше энергии, более глубокий ночной сон, а также лучший баланс и подвижность.",
-          "Вам не нужен тренажерный зал: вставайте каждый час и совершайте 15–30-минутную прогулку в большинстве дней.",
+          "Движение улучшает кровообращение, укрепляет сердце и мышцы и помогает клеткам использовать сахар из крови для энергии.",
+          "Регулярное движение дает больше сил, крепкий сон, лучшее равновесие и подвижность.",
+          "Спортзал не нужен: вставайте со стула каждый час и гуляйте по 15–30 минут почти каждый день.",
         ],
         recommendations: [
           {
             title: "Начните с малого",
             description:
-              "Начните с коротких прогулок или чего-нибудь, что вам нравится. Каждую неделю делайте немного больше.",
+              "Начните с коротких прогулок или любого занятия по душе. Каждую неделю добавляйте понемногу.",
           },
           {
-            title: "Перемещайтесь большую часть дней",
+            title: "Двигайтесь почти каждый день",
             description:
-              "Небольшое движение в большинстве дней дает больше, чем время от времени тяжелая тренировка.",
+              "Небольшая активность почти каждый день полезнее, чем редкая тяжелая тренировка.",
           },
           {
-            title: "Наращивайте силу",
+            title: "Укрепляйте мышцы",
             description:
-              "Делайте то, что тренирует ваши мышцы, например, ношение сумок, работа в саду или приседания.",
+              "Давайте нагрузку мышцам: носите сумки из магазина, работайте в саду или делайте приседания.",
           },
         ],
         warningSigns: [
-          "Боль в груди, головокружение или необычная одышка, когда вы активны.",
+          "Боль в груди, головокружение или сильная одышка при нагрузке.",
           "Боль в суставах или отек, которые усиливаются при движении.",
-          "Ощущение слабости или нерегулярного сердцебиения во время тренировки.",
+          "Предобморочное состояние или перебои в сердцебиении при движении.",
         ],
       },
       {
         slug: "mental-wellbeing",
         title: "Психическое здоровье",
         description:
-          "Берегите свой разум и знайте, когда обратиться за помощью.",
+          "Как беречь душевное равновесие и когда просить о помощи.",
         intro:
-          "Ваше психическое здоровье является частью вашего здоровья. У каждого бывают хорошие и плохие времена. Просить о помощи, когда она вам нужна, — это нормально.",
+          "Психическое здоровье — важная часть общего здоровья. У каждого бывают хорошие и трудные периоды. Просить о помощи, когда тяжело, — нормально.",
         keyFacts: [
-          "Длительный стресс поддерживает высокий уровень гормонов стресса, напрягает мышцы, учащает пульс и нарушает сон.",
-          "Забота о своем разуме помогает вам лучше спать, концентрироваться в течение дня и оставаться на связи с окружающими вас людьми.",
-          "Медленные дыхательные упражнения, регулярный сон и откровенный разговор с человеком, которому вы доверяете, быстро снимают напряжение.",
+          "Затяжной стресс держит организм в напряжении, напрягает мышцы, учащает пульс и портит сон.",
+          "Забота о душевном состоянии помогает лучше спать, легче сосредоточиться днем и сохранять тепло в общении с близкими.",
+          "Медленное глубокое дыхание, регулярный сон и откровенный разговор с близким человеком быстро снимают напряжение.",
         ],
         recommendations: [
           {
-            title: "Оставайтесь на связи",
+            title: "Общайтесь с близкими",
             description:
-              "Проводите время с людьми, которым вы доверяете. Близость к другим защищает ваш разум.",
+              "Проводите время с людьми, которым доверяете. Поддержка близких бережет психику.",
           },
           {
-            title: "Следите за основами",
+            title: "Берегите режим дня",
             description:
               "Сон, движение и время на свежем воздухе помогают вам чувствовать себя лучше.",
           },
           {
-            title: "Попросите помощи",
+            title: "Просите о помощи",
             description:
-              "Если ситуация кажется вам слишком сложной, поговорите с кем-то, кому вы доверяете, или с врачом.",
+              "Если становится слишком тяжело, поговорите с близким человеком или с врачом.",
           },
         ],
         warningSigns: [
           "Чувство подавленности, беспокойства или безнадежности в течение нескольких недель.",
-          "Вам трудно справляться с повседневной жизнью, работой или близкими вам людьми.",
-          "Мысли о том, чтобы причинить себе вред. Если это произойдет, немедленно обратитесь за помощью.",
+          "Становится трудно справляться с повседневными делами, работой или общением.",
+          "Мысли о том, чтобы причинить себе вред. Если они появились, немедленно обратитесь за помощью.",
         ],
       },
       {
         slug: "smoking",
         title: "Отказ от курения",
         description:
-          "Почему стоит бросить курить и что облегчает эту задачу.",
+          "Зачем бросать курить и что помогает справиться.",
         intro:
-          "Отказ от курения – одно из лучших действий, которые вы можете сделать для своего здоровья. Ваше тело начинает быстро восстанавливаться. Большинство людей пробуют несколько раз, прежде чем останавливаются навсегда.",
+          "Отказ от курения — лучшее, что вы можете сделать для своего здоровья. Организм начинает восстанавливаться очень быстро. Многие пробуют несколько раз, прежде чем бросить окончательно.",
         keyFacts: [
-          "Через несколько часов после выкуривания последней сигареты уровень кислорода повышается, кровеносные сосуды расслабляются, и легкие начинают очищаться.",
-          "Когда ваши легкие и кровообращение восстанавливаются, вы легче дышите на лестнице, меньше кашляете и восстанавливаете чувство вкуса.",
-          "Назначение даты отказа от курения, трехминутное ожидание пристрастия и обращение к врачу за поддержкой удваивают ваши шансы бросить курить.",
+          "Уже через несколько часов после последней сигареты уровень кислорода растет, сосуды расслабляются, а легкие начинают очищаться.",
+          "По мере восстановления легких и сосудов вам легче подниматься по лестнице, уменьшается кашель, возвращаются вкус и обоняние.",
+          "Если выбрать дату отказа, переждать трехминутный порыв закурить и попросить поддержки у врача, шансы бросить удваиваются.",
         ],
         recommendations: [
           {
-            title: "Выберите дату отказа от курения",
+            title: "Выберите день отказа",
             description:
-              "Выберите день и расскажите людям, которым вы доверяете. Запланируйте, что вы будете делать, когда захотите курить.",
+              "Наметьте день и скажите об этом близким. Заранее решите, чем займетесь, когда потянет закурить.",
           },
           {
-            title: "Получить помощь",
+            title: "Обратитесь за помощью",
             description:
-              "Услуги по прекращению курения и одобренные вспомогательные средства повышают вероятность того, что вы останетесь свободным от курения.",
+              "Программы помощи и одобренные средства от курения повышают шансы бросить насовсем.",
           },
           {
-            title: "Продолжайте пытаться",
+            title: "Не сдавайтесь",
             description:
-              "Если вы снова закурите, не бросайте. Извлеките из этого урок и попробуйте еще раз.",
+              "Если сорвались и закурили снова — не опускайте руки. Сделайте вывод и попробуйте еще раз.",
           },
         ],
         warningSigns: [
-          "Непрекращающийся кашель или изменение кашля, который беспокоит вас в течение длительного времени.",
+          "Кашель, который не проходит, или изменение привычного долгого кашля.",
           "Кашель с кровью или боль в груди, которая не проходит.",
-          "Все больше и больше задыхаюсь, занимаясь повседневными делами.",
+          "Нарастающая одышка при обычных повседневных делах.",
         ],
       },
       {
         slug: "preventive-screening",
         title: "Проверка здоровья",
         description:
-          "Тесты, которые выявляют проблемы со здоровьем на ранней стадии, часто до того, как вы почувствуете себя плохо.",
+          "Анализы и осмотры, которые находят болезнь раньше симптомов.",
         intro:
-          "Скрининг направлен на выявление ранних признаков заболевания до того, как вы заметите что-то неладное. Проблемы, обнаруженные на ранней стадии, зачастую легче лечить.",
+          "Профилактическая проверка ищет первые признаки болезни еще до того, как вы почувствуете недомогание. Ранние проблемы лечить намного проще.",
         keyFacts: [
-          "Многие заболевания, такие как высокое кровяное давление, диабет или ранние формы рака, начинаются в организме незаметно задолго до появления боли.",
-          "Даже если вы каждый день чувствуете себя хорошо, плановая проверка дает вам душевное спокойствие и позволяет выявить изменения, а лечение является простым.",
-          "Спросите своего семейного врача, какие бесплатные осмотры и скрининговые тесты, соответствующие возрасту, вы можете забронировать в этом году.",
+          "Многие болезни — высокое давление, диабет или ранние стадии рака — долго развиваются незаметно, пока ничего не болит.",
+          "Даже если вы каждый день чувствуете себя хорошо, плановый осмотр дает спокойствие и выявляет изменения, пока лечение простое.",
+          "Узнайте у семейного врача, какие бесплатные осмотры и обследования по возрасту вы можете пройти в этом году.",
         ],
         recommendations: [
           {
-            title: "Спросите, что вам нужно",
+            title: "Узнайте, что вам подходит",
             description:
-              "Спросите своего врача, какие обследования подходят для вашего возраста и анамнеза.",
+              "Спросите врача, какие обследования подходят для вашего возраста и состояния здоровья.",
           },
           {
-            title: "Перейти к своим чекам",
+            title: "Проходите плановые осмотры",
             description:
-              "Отвечайте на приглашения на скрининг и регулярно проходите осмотры.",
+              "Приходите по приглашениям на обследование и не пропускайте регулярные осмотры.",
           },
           {
-            title: "Поделитесь своей семейной историей",
+            title: "Расскажите о болезнях в семье",
             description:
-              "Расскажите своему врачу о заболеваниях в вашей семье. Это помогает решить, какие тесты вам нужны.",
+              "Сообщите врачу, какими болезнями болели ваши близкие. Это поможет выбрать нужные анализы.",
           },
         ],
         warningSigns: [
-          "Новая шишка, необычное кровотечение или родинка, меняющая форму или цвет.",
-          "Любой новый симптом, который не проходит и не имеет четкой причины.",
-          "Результат проверки, который просит вас вернуться. Не ждите.",
+          "Новое уплотнение, необычное кровотечение или родинка, которая меняет форму или цвет.",
+          "Любой новый симптом, который не проходит без понятной причины.",
+          "Результат анализа, после которого просят прийти повторно. Не откладывайте.",
         ],
       },
       {
         slug: "womens-health",
         title: "Женское здоровье",
         description:
-          "Ваше здоровье в любом возрасте, от менструации до менопаузы.",
+          "Здоровье женщины в любом возрасте — от цикла до менопаузы.",
         intro:
-          "Потребности женского здоровья меняются на протяжении всей жизни: от менструации и беременности до менопаузы и после нее. Знание того, что для вас нормально, поможет вам заметить, когда что-то меняется.",
+          "Задачи женского здоровья меняются с возрастом: от месячных и беременности до менопаузы и позже. Когда вы знаете, что для вас норма, легче сразу заметить перемены.",
         keyFacts: [
-          "В организме женщины происходят естественные гормональные изменения от менструации и беременности до менопаузы, влияющие на кости, сердце и настроение.",
-          "Знание того, что является нормальным для вашего тела, поможет вам заранее обнаружить изменения в груди, необычное кровотечение или постоянную боль в области таза.",
-          "Регулярный скрининг шейки матки, ежемесячный самоконтроль груди и регулярные визиты к беременным выявляют проблемы на ранних стадиях, когда их легче всего вылечить.",
+          "Организм женщины проходит естественные гормональные этапы от месячных и беременности до менопаузы — это влияет на кости, сердце и настроение.",
+          "Знание особенностей своего тела помогает вовремя заметить изменения в груди, необычные кровотечения или тянущую боль внизу живота.",
+          "Регулярный мазок шейки матки, ежемесячный самоосмотр груди и плановые осмотры при беременности выявляют проблемы рано, когда их легче лечить.",
         ],
         recommendations: [
           {
-            title: "Знай свой нормальный",
+            title: "Знайте, что для вас норма",
             description:
-              "Обратите внимание на свой обычный цикл и тело, чтобы изменения были заметны.",
+              "Наблюдайте за своим обычным циклом и самочувствием, чтобы сразу замечать перемены.",
           },
           {
-            title: "Следите за проверками",
+            title: "Проходите регулярные осмотры",
             description:
-              "Посещайте осмотры и приемы, рекомендованные для вашего возраста.",
+              "Приходите на осмотры и обследования, рекомендованные для вашего возраста.",
           },
           {
-            title: "Получите помощь заранее",
+            title: "Обращайтесь к врачу вовремя",
             description:
               "Поговорите с врачом о любом симптоме, который вас беспокоит.",
           },
@@ -334,7 +334,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         warningSigns: [
           "Необычные кровотечения между менструациями или после менопаузы.",
           "Сильная или продолжительная боль в нижней части живота или таза.",
-          "Новое изменение в груди, например уплотнение, вмятина или изменение кожи.",
+          "Новые изменения в груди: уплотнение, втяжение или изменение кожи.",
         ],
       },
     ],
@@ -364,7 +364,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "heart-health",
         title: "Heart health",
         description:
-          "Everyday habits that keep your heart and blood pressure healthy.",
+          "Everyday habits for a healthy heart and blood pressure.",
         intro:
           "Your heart pumps blood around your body every minute of the day. Looking after it lowers your risk of heart disease and stroke. Most of the habits that help are small.",
         keyFacts: [
@@ -434,7 +434,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "healthy-eating",
         title: "Healthy eating",
         description:
-          "Cheap, simple food choices that keep you healthy.",
+          "Low-cost, simple food choices for every day.",
         intro:
           "Eating well does not have to be hard or expensive. A few simple rules, followed most days, give your body what it needs.",
         keyFacts: [
@@ -574,7 +574,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "preventive-screening",
         title: "Health screening",
         description:
-          "Tests that find health problems early, often before you feel ill.",
+          "Tests that catch health problems early, before you feel ill.",
         intro:
           "Screening looks for early signs of illness before you notice anything wrong. Problems found early are often easier to treat.",
         keyFacts: [
@@ -736,7 +736,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "healthy-eating",
         title: "Alimentație sănătoasă",
         description:
-          "Mâncare sănătoasă și ieftină, pentru fiecare zi.",
+          "Mâncare simplă și ieftină, pentru fiecare zi.",
         intro:
           "Ca să mănânci sănătos, nu ai nevoie de rețete grele sau scumpe. Câteva reguli simple, respectate zilnic, te ajută mult.",
         keyFacts: [
@@ -771,7 +771,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "physical-activity",
         title: "Activitate fizică",
         description:
-          "Cum te miști mai mult, oricât de puțin te-ai mișcat până acum.",
+          "Cum te miști mai mult, chiar dacă nu ai făcut sport.",
         intro:
           "Mișcarea regulată face bine corpului și minții. Nu ai nevoie de sală. Contează și mersul pe jos.",
         keyFacts: [
@@ -1003,7 +1003,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "diabetes",
         title: "Diabeti",
         description:
-          "Çfarë e rrit rrezikun dhe si ta mbash sheqerin në gjak nën kontroll.",
+          "Çfarë e rrit rrezikun dhe si ta mbash sheqerin nën kontroll.",
         intro:
           "Diabeti ndikon në mënyrën si trupi përdor sheqerin në gjak. Me ndihmën e duhur, mund të parandalohet ose të mbahet nën kontroll.",
         keyFacts: [
@@ -1178,7 +1178,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "preventive-screening",
         title: "Kontrollet parandaluese",
         description:
-          "Kontrolle që zbulojnë problemet herët, para se të kesh shenja.",
+          "Kontrolle që zbulojnë problemet herët, para shenjave.",
         intro:
           "Kontrollet parandaluese kërkojnë shenjat e para të një sëmundjeje, edhe kur ndihesh mirë.",
         keyFacts: [
@@ -1305,7 +1305,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "diabetes",
         title: "Diabete",
         description:
-          "Cosa aumenta il rischio e come tenere sotto controllo lo zucchero nel sangue.",
+          "Cosa aumenta il rischio e come tenere stabile lo zucchero nel sangue.",
         intro:
           "Il diabete cambia il modo in cui il corpo usa lo zucchero nel sangue. Con l'aiuto giusto, si può prevenire o tenere sotto controllo.",
         keyFacts: [
@@ -1642,7 +1642,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "healthy-eating",
         title: "Zdrava prehrana",
         description:
-          "Povoljna i jednostavna hrana koja čuva tvoje zdravlje svaki dan.",
+          "Povoljna i jednostavna hrana za svaki dan.",
         intro:
           "Zdrava prehrana ne mora biti komplicirana ni skupa. Nekoliko jednostavnih pravila iz dana u dan daje tvom tijelu sve što mu treba.",
         keyFacts: [
@@ -1747,7 +1747,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "smoking",
         title: "Prestanak pušenja",
         description:
-          "Zašto se isplati prestati pušiti i što ti olakšava taj korak.",
+          "Zašto se isplati prestati pušiti i što ti olakšava.",
         intro:
           "Prestanak pušenja jedna je od najboljih odluka za tvoje zdravlje. Tijelo se počinje brzo oporavljati. Većina ljudi pokuša više puta prije nego što potpuno prestane.",
         keyFacts: [
@@ -1782,7 +1782,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "preventive-screening",
         title: "Preventivni pregledi",
         description:
-          "Pretrage koje otkrivaju zdravstvene probleme rano, prije pojave simptoma.",
+          "Pretrage koje otkrivaju probleme rano, prije prvih znakova.",
         intro:
           "Preventivni pregledi traže prve znakove bolesti dok se još osjećaš sasvim dobro. Rano otkrivene bolesti lakše se liječe.",
         keyFacts: [
@@ -1921,7 +1921,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
           {
             title: "Balansirisar o charo",
             description:
-              "Phpher dopash charo zelenimasa. Alosar integralno manro, rizo thaj makarone.",
+              "Pher dopash charo zelenimasa. Alosar integralno manro, rizo thaj makarone.",
           },
           {
             title: "Ačhov aktivno",
@@ -1944,7 +1944,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "healthy-eating",
         title: "Sasto xaben",
         description:
-          "Ieftino thaj lokho xaben savo inkerel tut sasto sako dives.",
+          "Ieftino thaj lokho xaben vash sako dives.",
         intro:
           "Te xas sasto na musaj te avel pharo vaj kuč. Xanci lokhe pravila sako dives den tire truposke so trubul leske.",
         keyFacts: [
@@ -2049,7 +2049,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "smoking",
         title: "Mukhimos e thuvjarimasko",
         description:
-          "Sostar vazhil te mukhes e cigare thaj so kerel les maj lokho.",
+          "Sostar vazhil te mukhes e cigare thaj so azhutil tut.",
         intro:
           "Te mukhes o thuvjarimos si jekh katar e maj lačhe bukja vash tiro sastipen. Tiro trupo astarel sigo te sastjovel.",
         keyFacts: [
@@ -2084,7 +2084,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         slug: "preventive-screening",
         title: "Preventivno dikhiben",
         description:
-          "Dikhibena save arakhen sastipnaske problemura rano, anglal te hatjares nasvalipen.",
+          "Dikhibena save arakhen problemura rano, anglal e semnja.",
         intro:
           "O preventivno dikhiben rodel e anglune semnja e nasvalipnaske anglal te dukhal tut vareso. Problemura arakhle rano sastjaren pes maj lokhes.",
         keyFacts: [
@@ -2186,27 +2186,27 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "heart-health": {
       title: "Здоровье сердца",
       description:
-        "Простые привычки для здорового кровяного давления и сильного сердца.",
+        "Простые привычки для здорового давления и крепкого сердца.",
     },
     diabetes: {
       title: "Профилактика диабета",
       description:
-        "Ранние признаки и как поддерживать стабильный уровень сахара в крови.",
+        "Ранние признаки и как держать сахар в крови в норме.",
     },
     "healthy-eating": {
       title: "Здоровое питание",
       description:
-        "Дешевые, сытные блюда с меньшим количеством соли и сахара.",
+        "Простая и сытная еда с меньшим количеством соли и сахара.",
     },
     "physical-activity": {
       title: "Физическая активность",
       description:
-        "Способы больше двигаться каждый день, в любом возрасте, без спортзала.",
+        "Как больше двигаться каждый день в любом возрасте без спортзала.",
     },
     "mental-wellbeing": {
       title: "Психическое здоровье",
       description:
-        "Выявите стресс и беспокойство, которые не исчезнут, и найдите бесплатную помощь.",
+        "Как заметить затяжной стресс и тревогу и где найти бесплатную помощь.",
     },
     smoking: {
       title: "Отказ от курения",
@@ -2216,12 +2216,12 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "preventive-screening": {
       title: "Проверка здоровья",
       description:
-        "Бесплатные осмотры, позволяющие обнаружить болезнь на ранней стадии, прежде чем она начнет болеть.",
+        "Бесплатные осмотры, которые находят болезнь раньше, чем появятся боли.",
     },
     "womens-health": {
       title: "Женское здоровье",
       description:
-        "Беременность, осмотры гинеколога и что нормально в каждом возрасте.",
+        "Беременность, осмотры у гинеколога и что нормально в каждом возрасте.",
     },
   },
 
@@ -2244,12 +2244,12 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "physical-activity": {
       title: "Activitate fizică",
       description:
-        "Cum te miști mai mult în fiecare zi, la orice vârstă, fără sală.",
+        "Cum te miști mai mult zilnic, la orice vârstă, fără sală.",
     },
     "mental-wellbeing": {
       title: "Echilibru emoțional",
       description:
-        "Cum recunoști stresul și grijile care nu trec și unde primești ajutor gratuit.",
+        "Recunoaște stresul și grijile care nu trec și găsește ajutor gratuit.",
     },
     smoking: {
       title: "Renunțarea la fumat",
@@ -2259,12 +2259,12 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "preventive-screening": {
       title: "Screening preventiv",
       description:
-        "Controale gratuite care găsesc bolile devreme, înainte să te doară.",
+        "Controale gratuite care găsesc bolile devreme, înainte să doară.",
     },
     "womens-health": {
       title: "Sănătatea femeii",
       description:
-        "Sarcina, controlul la ginecolog și ce e normal la fiecare vârstă.",
+        "Sarcina, controlul ginecologic și ce e normal la fiecare vârstă.",
     },
   },
   en: {
@@ -2276,12 +2276,12 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     diabetes: {
       title: "Diabetes prevention",
       description:
-        "Early signs, and how to keep your blood sugar steady.",
+        "Early signs and how to keep your blood sugar steady.",
     },
     "healthy-eating": {
       title: "Healthy eating",
       description:
-        "Cheap, filling meals with less salt and sugar.",
+        "Low-cost, filling meals with less salt and sugar.",
     },
     "physical-activity": {
       title: "Physical activity",
@@ -2291,7 +2291,7 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "mental-wellbeing": {
       title: "Mental health",
       description:
-        "Spot stress and worry that will not go away, and find free help.",
+        "Spot stress and worry that stay too long, and find free help.",
     },
     smoking: {
       title: "Quitting smoking",
@@ -2301,29 +2301,29 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "preventive-screening": {
       title: "Health screening",
       description:
-        "Free check-ups that find illness early, before it hurts.",
+        "Free check-ups that catch illness early, before it hurts.",
     },
     "womens-health": {
       title: "Women's health",
       description:
-        "Pregnancy, check-ups with a gynaecologist and what is normal at each age.",
+        "Pregnancy, gynaecologist visits and what is normal at each age.",
     },
   },
   sq: {
     "heart-health": {
       title: "Shëndeti i zemrës",
       description:
-        "Zakone të thjeshta për tension normal dhe një zemër të fortë.",
+        "Zakone të thjeshta për tension normal dhe zemër të fortë.",
     },
     diabetes: {
       title: "Parandalimi i diabetit",
       description:
-        "Shenjat e para dhe si ta mbash sheqerin në gjak nën kontroll.",
+        "Shenjat e para dhe si ta mbash sheqerin nën kontroll.",
     },
     "healthy-eating": {
       title: "Ushqyerja e shëndetshme",
       description:
-        "Vakte të lira që të ngopin, me më pak kripë dhe sheqer.",
+        "Vakte të lira e të shëndetshme, me më pak kripë e sheqer.",
     },
     "physical-activity": {
       title: "Aktiviteti fizik",
@@ -2333,7 +2333,7 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "mental-wellbeing": {
       title: "Ekuilibri emocional",
       description:
-        "Njih stresin dhe ankthin që nuk kalojnë dhe gjej ndihmë falas.",
+        "Njih stresin dhe ankthin që zgjatin dhe gjej ndihmë falas.",
     },
     smoking: {
       title: "Lënia e duhanit",
@@ -2343,34 +2343,34 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "preventive-screening": {
       title: "Kontrollet parandaluese",
       description:
-        "Kontrolle falas që zbulojnë sëmundjet herët, para se të të dhembë diçka.",
+        "Kontrolle falas që zbulojnë sëmundjet herët, para dhimbjes.",
     },
     "womens-health": {
       title: "Shëndeti i gruas",
       description:
-        "Shtatzënia, kontrollet te gjinekologu dhe çfarë është normale në çdo moshë.",
+        "Shtatzënia, vizitat te gjinekologu dhe çfarë është normale në çdo moshë.",
     },
   },
   it: {
     "heart-health": {
       title: "Salute del cuore",
       description:
-        "Abitudini semplici per una pressione nella norma e un cuore forte.",
+        "Abitudini semplici per pressione regolare e cuore forte.",
     },
     diabetes: {
       title: "Prevenzione del diabete",
       description:
-        "I primi segnali e come tenere sotto controllo lo zucchero nel sangue.",
+        "I primi segnali e come tenere stabile lo zucchero nel sangue.",
     },
     "healthy-eating": {
       title: "Alimentazione sana",
       description:
-        "Pasti economici che saziano, con meno sale e zucchero.",
+        "Pasti economici e sazianti, con meno sale e zucchero.",
     },
     "physical-activity": {
       title: "Attività fisica",
       description:
-        "Come muoverti di più ogni giorno, a qualsiasi età, senza palestra.",
+        "Come muoverti di più ogni giorno, a ogni età, senza palestra.",
     },
     "mental-wellbeing": {
       title: "Equilibrio emotivo",
@@ -2385,7 +2385,7 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "preventive-screening": {
       title: "Screening preventivo",
       description:
-        "Controlli gratuiti che trovano le malattie presto, prima che facciano male.",
+        "Controlli gratuiti per scoprire i problemi presto, prima del dolore.",
     },
     "womens-health": {
       title: "Salute della donna",
@@ -2397,7 +2397,7 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "heart-health": {
       title: "Zdravlje srca",
       description:
-        "Jednostavne navike za zdrav krvni tlak i snažno srce.",
+        "Jednostavne navike za zdrav tlak i snažno srce.",
     },
     diabetes: {
       title: "Prevencija dijabetesa",
@@ -2417,22 +2417,22 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
     "mental-wellbeing": {
       title: "Mentalno zdravlje",
       description:
-        "Prepoznaj stres i brige koje ne prolaze te pronađi besplatnu pomoć.",
+        "Prepoznaj stres i brige koje ne prolaze i pronađi besplatnu pomoć.",
     },
     smoking: {
       title: "Prestanak pušenja",
       description:
-        "Kako prestati pušiti i tko ti u tome može pomoći.",
+        "Kako prestati pušiti i tko ti može pomoći.",
     },
     "preventive-screening": {
       title: "Preventivni pregledi",
       description:
-        "Besplatni pregledi koji otkrivaju bolesti rano, prije nego što zaboli.",
+        "Besplatni pregledi koji otkrivaju bolesti rano, prije boli.",
     },
     "womens-health": {
       title: "Zdravlje žena",
       description:
-        "Trudnoća, ginekološki pregledi i što je uobičajeno u svakoj dobi.",
+        "Trudnoća, ginekološki pregledi i što je normalno u svakoj dobi.",
     },
   },
   rom: {

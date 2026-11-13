@@ -15,9 +15,9 @@ export interface CessationRecoveryTimelineProps {
 
 /** Step navigation, as on every explainer: Back is a quiet text button, Next is ink-filled. */
 const BACK_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:text-muted-foreground/50 disabled:hover:bg-transparent";
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground/50 disabled:hover:bg-transparent";
 const NEXT_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
 
 /** What happens after the last cigarette: five time points, one calm lung diagram. */
 export function CessationRecoveryTimeline({ lang, className = "" }: CessationRecoveryTimelineProps) {
@@ -58,7 +58,7 @@ export function CessationRecoveryTimeline({ lang, className = "" }: CessationRec
       <div
         role="radiogroup"
         aria-label={copy.scrubberLabel}
-        className="mt-5 grid grid-cols-5 divide-x divide-border overflow-hidden rounded-lg border border-border"
+        className="mt-5 flex flex-wrap gap-1.5 sm:grid sm:grid-cols-5 sm:gap-0 sm:divide-x sm:divide-border sm:overflow-hidden sm:rounded-lg sm:border sm:border-border"
       >
         {milestones.map((milestone, index) => {
           const selected = index === activeStep;
@@ -75,9 +75,9 @@ export function CessationRecoveryTimeline({ lang, className = "" }: CessationRec
               onClick={() => select(index)}
               onKeyDown={onOptionKeyDown}
               className={cn(
-                "min-h-11 px-1.5 py-2 text-center text-xs font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:text-sm",
+                "min-h-11 flex-1 whitespace-nowrap rounded-lg border border-border px-2.5 py-2 text-center text-xs font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:flex-none sm:rounded-none sm:border-0 sm:px-1.5 sm:text-sm",
                 selected
-                  ? "bg-foreground text-background"
+                  ? "border-foreground bg-foreground text-background"
                   : "bg-card text-muted-foreground hover:bg-surface-subtle/60 hover:text-foreground",
               )}
             >

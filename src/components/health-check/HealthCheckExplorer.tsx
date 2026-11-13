@@ -17,7 +17,6 @@ import {
 import Link from "next/link";
 import { flushSync } from "react-dom";
 import {
-  AlertCircleIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
   CheckCircleIcon,
@@ -38,6 +37,7 @@ import {
   subHeading,
 } from "@/components/health-assistant/step-ui";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
+import { prefersCalmOrReducedMotion, useTextScale } from "@/lib/comfort-preferences";
 import type { InstituteCategory } from "@/lib/medical-institutes";
 import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { AnatomicalBodyMap } from "@/components/health-check/AnatomicalBodyMap";
@@ -208,8 +208,7 @@ const BODY_PARTS: readonly BodyPartId[] = ["head", "chest", "stomach", "pelvis",
 const AUTO_ADVANCE_MS = 320;
 
 function prefersReducedMotion(): boolean {
-  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return prefersCalmOrReducedMotion();
 }
 
 /** How much of the top of the screen is covered by pinned site chrome once scrolled. */
@@ -330,6 +329,16 @@ function getVisceralFocusForSymptoms(
   return null;
 }
 
+const AREA_VIEW_SWITCH_COPY: Record<Lang, { list: string; body3d: string; groupLabel: string }> = {
+  ro: { list: "Listă", body3d: "Corp 3D", groupLabel: "Cum vrei să alegi zona" },
+  en: { list: "List", body3d: "3D body", groupLabel: "How to choose the area" },
+  sq: { list: "Lista", body3d: "Trupi 3D", groupLabel: "Si dëshiron ta zgjedhësh zonën" },
+  it: { list: "Elenco", body3d: "Corpo 3D", groupLabel: "Come scegliere la zona" },
+  hr: { list: "Popis", body3d: "3D tijelo", groupLabel: "Način odabira područja" },
+  rom: { list: "Lista", body3d: "3D trupo", groupLabel: "Sar kames te alosares o than" },
+  ru: { list: "Список", body3d: "3D-модель", groupLabel: "Способ выбора области" },
+};
+
 function useSafeLanguage(): Lang {
   let contextLang: Lang = DEFAULT_LANG;
   try {
@@ -383,7 +392,7 @@ function AreaOptionCard({
       tabIndex={checked || focusable ? 0 : -1}
       onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
       title={description}
-      className={`${groupedRowInset} group flex w-full items-center gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire max-lg:min-h-[3.75rem] max-lg:px-4 max-lg:py-2.5 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-2.5 lg:py-2 lg:focus-visible:ring-offset-2 ${
+      className={`${groupedRowInset} group flex w-full items-center gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:min-h-[3.75rem] max-lg:px-4 max-lg:py-2.5 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-2.5 lg:py-2 lg:focus-visible:ring-offset-2 ${
         checked
           ? "max-lg:bg-sapphire-soft/40 lg:border-sapphire lg:bg-sapphire-soft/45"
           : "lg:border-border lg:bg-card lg:hover:border-sapphire/50 lg:hover:bg-sapphire-soft/25"
@@ -598,7 +607,7 @@ function SeverityComfortVisual({
         {[1, 2, 3].map((bar) => (
           <span
             key={bar}
-            className={`w-1 rounded-full ${
+            className={`w-1 rounded-sm ${
               bar === 1 ? "h-2" : bar === 2 ? "h-3.5" : "h-5"
             } ${
               bar <= level
@@ -711,7 +720,7 @@ function OptionRow({
         data-hotkey={hotkey}
         tabIndex={checked || focusable ? 0 : -1}
         onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
-        className={`flex w-full items-start gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire max-lg:min-h-[3.25rem] max-lg:px-4 max-lg:py-3 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-3 lg:py-2.5 lg:focus-visible:ring-offset-2 ${
+        className={`flex w-full items-start gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:min-h-[3.25rem] max-lg:px-4 max-lg:py-3 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-3 lg:py-2.5 lg:focus-visible:ring-offset-2 ${
           onSpeak ? "pr-12" : ""
         } ${
           checked
@@ -730,7 +739,7 @@ function OptionRow({
         ) : (
           <span
             aria-hidden="true"
-            className={`mt-1 hidden h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border-[1.5px] lg:flex ${
+            className={`mt-1 hidden h-[18px] w-[18px] shrink-0 items-center justify-center rounded-sm border-[1.5px] lg:flex ${
               checked
                 ? urgent
                   ? "border-primary"
@@ -740,7 +749,7 @@ function OptionRow({
                   : "border-foreground/45"
             }`}
           >
-            {checked && <span className={`h-2 w-2 rounded-full ${urgent ? "bg-primary" : "bg-sapphire"}`} />}
+            {checked && <span className={`h-2 w-2 rounded-xs ${urgent ? "bg-primary" : "bg-sapphire"}`} />}
           </span>
         )}
         {iconBadge}
@@ -768,7 +777,7 @@ function OptionRow({
           onClick={onSpeak}
           aria-pressed={speakingThis}
           aria-label={speakLabel}
-          className={`absolute right-2 top-1/2 z-10 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:h-8 lg:w-8 ${
+          className={`absolute right-2 top-1/2 z-10 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:h-8 lg:w-8 ${
             speakingThis
               ? "bg-sapphire-soft text-sapphire"
               : "text-muted-foreground hover:bg-sapphire-soft/60 hover:text-sapphire"
@@ -838,7 +847,7 @@ function ResetControl({
       <button
         type="button"
         onClick={() => setAsking(true)}
-        className="inline-flex min-h-11 items-center rounded-xl px-2 text-sm font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+        className="inline-flex min-h-11 items-center whitespace-nowrap rounded-xl px-2 text-sm font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {label}
       </button>
@@ -854,14 +863,14 @@ function ResetControl({
           setAsking(false);
           onConfirm();
         }}
-        className="inline-flex min-h-11 items-center rounded-xl px-2 font-semibold text-sapphire underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+        className="inline-flex min-h-11 items-center rounded-xl px-2 font-semibold whitespace-nowrap text-sapphire underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {c.confirmYes}
       </button>
       <button
         type="button"
         onClick={() => setAsking(false)}
-        className="inline-flex min-h-11 items-center rounded-xl px-2 font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+        className="inline-flex min-h-11 items-center rounded-xl px-2 font-medium whitespace-nowrap text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {c.confirmNo}
       </button>
@@ -924,9 +933,12 @@ export function HealthCheckExplorer() {
   const gridRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLElement>(null);
-  const trailRef = useRef<HTMLOListElement>(null);
-  /** Phones: the sheet can be pulled down so the 3D body gets more room. */
+  /** Phones: the sheet can be pulled down so the 3D body gets more room, or switched cleanly to list-first. */
   const [stageExpanded, setStageExpanded] = useState(false);
+  const [mobileAreaModeOverride, setMobileAreaModeOverride] = useState<"3d" | "list" | null>(null);
+  const [textScale] = useTextScale();
+  const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? (textScale === "xl" ? "list" : "3d");
+  const mobileListOnly = stepId === "area" && effectiveMobileAreaMode === "list";
   const stageExpandedRef = useRef(false);
   const sheetDragRef = useRef<{ y: number; dy: number } | null>(null);
   useEffect(() => {
@@ -1290,14 +1302,6 @@ export function HealthCheckExplorer() {
       if (stageExpandedRef.current) snapSheet(false);
     }, 450);
   }
-
-  // The answer line shows the latest answer; a fade marks that earlier ones are scrolled out of view.
-  useEffect(() => {
-    const el = trailRef.current;
-    if (!el) return;
-    el.scrollLeft = el.scrollWidth;
-    el.dataset.overflow = String(el.scrollLeft > 1);
-  }, [stepId, isDesktop]);
 
   // Desktop, like a form: a letter (or number) key picks that option and moves on; Enter continues;
   // Backspace goes back a step.
@@ -1700,8 +1704,8 @@ export function HealthCheckExplorer() {
     if (viewStep === "result" && severity && duration && !isEmergency) {
       trailItems.push({
         key: "severity",
-        label: `${dict.severity[severity].title} · ${dict.duration[duration].label}${
-          extraSymptoms.length > 0 ? ` · +${extraSymptoms.length}` : ""
+        label: `${dict.severity[severity].title}, ${dict.duration[duration].label}${
+          extraSymptoms.length > 0 ? `, +${extraSymptoms.length}` : ""
         }`,
         target: "severity",
       });
@@ -1880,11 +1884,11 @@ export function HealthCheckExplorer() {
   const placeLink = (category: InstituteCategory, label: string) => (
     <Link
       href={withLangPrefix(findHelpHref(category), activeLang)}
-      className="group mt-3 flex min-h-12 items-center justify-between gap-3 rounded-xl border border-border-control bg-card px-4 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+      className="group mt-3 flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
     >
       <span className="inline-flex min-w-0 items-center gap-2.5">
         <PinIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
-        <span className="min-w-0">{label}</span>
+        <span className="min-w-0 truncate">{label}</span>
       </span>
       <ArrowRightIcon
         className="h-4.5 w-4.5 shrink-0 text-sapphire transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:group-hover:translate-x-0.5"
@@ -1893,37 +1897,38 @@ export function HealthCheckExplorer() {
     </Link>
   );
 
+  const routingIconButton =
+    "press-row inline-flex h-11 w-[44px] min-h-11 min-w-[44px] sm:h-12 sm:w-12 sm:min-h-12 sm:min-w-12 shrink-0 items-center justify-center rounded-xl border border-border-control bg-card text-sapphire shadow-2xs transition-[background-color,border-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
+
   const renderRoutingStack = (placeCategory?: InstituteCategory, placeLabel?: string) => (
-    <div className="space-y-2.5">
+    <div className="flex flex-nowrap items-center gap-1.5 sm:gap-2">
       <Link
         href={withLangPrefix("/medic-online?source=triage", activeLang)}
-        className={`${primaryButton} w-full justify-between px-5`}
+        className={`${primaryButton} min-w-0 flex-1 justify-between px-3.5 sm:px-4 text-left whitespace-nowrap`}
       >
-        <span>{c.doctorBook}</span>
+        <span className="min-w-0 truncate">{c.doctorBook}</span>
         <ArrowRightIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
       </Link>
 
       <Link
         href={withLangPrefix("/medic-online?queue=now&source=triage", activeLang)}
-        className={`${secondaryButton} w-full justify-between px-4`}
+        aria-label={c.doctorNow}
+        title={c.doctorNow}
+        className={`${routingIconButton} whitespace-nowrap`}
       >
-        <span className="inline-flex min-w-0 items-center gap-2.5">
-          <StethoscopeIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
-          <span className="min-w-0">{c.doctorNow}</span>
-        </span>
-        <ArrowRightIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
+        <StethoscopeIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+        <span className="sr-only">{c.doctorNow}</span>
       </Link>
 
       {placeCategory && placeLabel && (
         <Link
           href={withLangPrefix(findHelpHref(placeCategory), activeLang)}
-          className={`${secondaryButton} w-full justify-between px-4`}
+          aria-label={placeLabel}
+          title={placeLabel}
+          className={`${routingIconButton} whitespace-nowrap`}
         >
-          <span className="inline-flex min-w-0 items-center gap-2.5">
-            <PinIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
-            <span className="min-w-0">{placeLabel}</span>
-          </span>
-          <ArrowRightIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
+          <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+          <span className="sr-only">{placeLabel}</span>
         </Link>
       )}
     </div>
@@ -2003,7 +2008,7 @@ export function HealthCheckExplorer() {
         ref={gridRef}
         className={
           stageVisibleInLayout
-            ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1.12fr)_minmax(30rem,39rem)] xl:grid-cols-[minmax(0,1.18fr)_minmax(34rem,42rem)] lg:grid-rows-[auto_1fr] lg:gap-x-7 xl:gap-x-10"
+            ? "grid grid-cols-1 lg:grid-cols-[minmax(0,1.12fr)_minmax(30rem,39rem)] xl:grid-cols-[minmax(0,1.18fr)_minmax(34rem,42rem)] 2xl:grid-cols-[minmax(0,1.15fr)_minmax(36rem,0.95fr)] lg:grid-rows-[auto_1fr] lg:gap-x-7 xl:gap-x-10"
             : ""
         }
       >
@@ -2011,16 +2016,48 @@ export function HealthCheckExplorer() {
           ref={headerRef}
           className={`max-w-3xl ${stageVisibleInLayout ? "lg:col-start-1 lg:row-start-1" : ""}`}
         >
-          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-4xl">
+          <h1 className="text-2xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-3xl">
             {dict.ui.heading}
           </h1>
-          <p className="mt-2 max-w-[62ch] text-base leading-relaxed text-muted-foreground sm:text-lg lg:mt-1 lg:text-base">
+          <p className="mt-1.5 max-w-[62ch] text-base leading-relaxed text-muted-foreground">
             <span className="lg:hidden">{dict.ui.subtitle}</span>
             <span className="hidden lg:inline">{firstSentence(dict.ui.subtitle)}</span>
           </p>
+
+          {bodyShown && stepId === "area" && (
+            <div
+              role="group"
+              aria-label={(AREA_VIEW_SWITCH_COPY[activeLang] ?? AREA_VIEW_SWITCH_COPY.ro).groupLabel}
+              className="mt-3.5 grid grid-cols-2 gap-1.5 rounded-xl border border-border bg-muted/60 p-1 lg:hidden"
+            >
+              {(
+                [
+                  { id: "list", label: (AREA_VIEW_SWITCH_COPY[activeLang] ?? AREA_VIEW_SWITCH_COPY.ro).list },
+                  { id: "3d", label: (AREA_VIEW_SWITCH_COPY[activeLang] ?? AREA_VIEW_SWITCH_COPY.ro).body3d },
+                ] as const
+              ).map((opt) => {
+                const active = effectiveMobileAreaMode === opt.id;
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => setMobileAreaModeOverride(opt.id)}
+                    className={`min-h-11 rounded-lg px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      active
+                        ? "bg-card text-sapphire shadow-2xs ring-1 ring-border/70"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </header>
 
-        {/* 3D stage: pinned under the site header on phones; left column under the title on desktop. Hidden on the result. */}
+        {/* 3D stage: pinned under the site header on phones (unless list-first mode is active); left column on desktop. */}
         <section
           ref={stageRef}
           aria-label={dict.ui.viewer3D.subModelInfo}
@@ -2028,7 +2065,7 @@ export function HealthCheckExplorer() {
             stepId === "result"
               ? "hidden"
               : bodyShown
-                ? "mt-4 sm:mt-5 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] max-lg:z-0 lg:col-start-1 lg:row-start-2 lg:mt-3.5"
+                ? `${mobileListOnly ? "max-lg:hidden " : ""}mt-4 sm:mt-5 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] max-lg:z-0 lg:col-start-1 lg:row-start-2 lg:mt-3.5`
                 : stepId === "area"
                   ? "mt-5 mb-4"
                   : "hidden"
@@ -2066,24 +2103,26 @@ export function HealthCheckExplorer() {
           />
         </section>
 
-        {/* Question card: a sheet over the body on phones; pinned beside it, level with the title, on desktop. */}
+        {/* Question card: a sheet over the body on phones (or full calm card in list-first mode); pinned beside it on desktop. */}
         <section
           ref={cardRef}
           data-triage-card
           aria-labelledby={`${baseId}-q`}
           className={`min-w-0 rounded-2xl border border-border bg-card ${
             stageVisibleInLayout
-              ? "max-lg:relative max-lg:z-10 max-lg:-mt-4 max-lg:overflow-x-clip max-lg:rounded-t-[1.5rem] max-lg:border-0 max-lg:bg-muted max-lg:px-4 max-lg:pb-6 max-lg:pt-2 max-lg:shadow-[0_-10px_30px_-18px_rgb(15_23_42/0.35)] max-sm:-mx-4 max-sm:rounded-b-none sm:max-lg:px-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-2.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
-              : "mt-6 w-full p-5 sm:mt-8 sm:p-8"
+              ? mobileListOnly
+                ? "max-lg:mt-4 max-lg:p-4 max-lg:pb-6 sm:max-lg:p-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-2.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
+                : "max-lg:relative max-lg:z-10 max-lg:-mt-4 max-lg:overflow-x-clip max-lg:rounded-t-[1.5rem] max-lg:border-0 max-lg:bg-muted max-lg:px-4 max-lg:pb-6 max-lg:pt-2 max-lg:shadow-[0_-10px_30px_-18px_rgb(15_23_42/0.35)] max-sm:-mx-4 max-sm:rounded-b-none sm:max-lg:px-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-2.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
+              : "mt-6 w-full p-4 sm:mt-8 sm:p-8"
           }`}
         >
-          {stageVisibleInLayout && (
+          {stageVisibleInLayout && !mobileListOnly && (
             // Sheet handle (phones): drag down for a bigger body, up (or tap) to bring the questions back.
             <button
               type="button"
               aria-expanded={stageExpanded}
               aria-label={stageExpanded ? c.showLessBody : c.showMoreBody}
-              className="mx-auto -mt-1 mb-1 flex h-7 w-24 touch-none items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:hidden"
+              className="mx-auto -mt-1 mb-1 flex h-7 w-24 touch-none items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
               onPointerDown={(e) => {
                 sheetDragRef.current = { y: e.clientY, dy: 0 };
                 try {
@@ -2126,20 +2165,20 @@ export function HealthCheckExplorer() {
                 if (e.detail === 0) snapSheet(!stageExpanded);
               }}
             >
-              <span aria-hidden="true" className="h-1 w-9 rounded-full bg-foreground/20" />
+              <span aria-hidden="true" className="h-1 w-9 rounded-sm bg-foreground/20" />
             </button>
           )}
           {/* Top bar: Back + Step X of Y + reading tools + progress + answer chips */}
           <div className={stageVisibleInLayout ? "mb-4 lg:mb-0 lg:shrink-0 lg:px-6 lg:pb-4 lg:pt-4" : "mb-7"}>
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex min-h-11 min-w-0 items-center gap-2">
+            <div className="flex flex-nowrap items-center justify-between gap-1.5 sm:gap-2">
+              <div className="flex min-h-11 min-w-0 items-center gap-1.5 sm:gap-2">
                 {displayStep > 1 ? (
                   <button
                     type="button"
                     onClick={goBack}
                     data-back
                     aria-keyshortcuts="Backspace"
-                    className="-ml-2 inline-flex min-h-11 shrink-0 items-center gap-0.5 rounded-xl px-1.5 text-base font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-9 lg:gap-1.5 lg:px-2 lg:text-sm lg:font-semibold"
+                    className="-ml-1.5 inline-flex min-h-11 shrink-0 items-center gap-0.5 whitespace-nowrap rounded-xl px-1 sm:px-1.5 text-sm font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:min-h-9 lg:gap-1.5 lg:px-2 lg:text-sm lg:font-semibold"
                   >
                     <ChevronRightIcon className="h-5 w-5 rotate-180 lg:hidden" aria-hidden="true" />
                     <ArrowLeftIcon className="hidden h-4 w-4 lg:block" aria-hidden="true" />
@@ -2153,19 +2192,20 @@ export function HealthCheckExplorer() {
                     </kbd>
                   </button>
                 ) : null}
-                <p className="truncate text-sm font-medium text-muted-foreground tabular-nums">
-                  {stepIndicatorText}
+                <p className="shrink-0 whitespace-nowrap text-xs font-medium text-muted-foreground tabular-nums sm:text-sm">
+                  <span aria-hidden="true" className="sm:hidden">{displayStep}/{totalSteps}</span>
+                  <span className="sr-only sm:not-sr-only">{stepIndicatorText}</span>
                 </p>
               </div>
 
-              <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+              <div className="flex shrink-0 items-center gap-1 sm:gap-2">
                 {stepId === "result" && (
                   <button
                     type="button"
                     onClick={handleCopyDiagnosticSheet}
                     aria-label={sheetCopied ? c.copiedSheet : c.copySheet}
                     title={sheetCopied ? c.copiedSheet : c.copySheet}
-                    className={`inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-xl border px-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:px-3 lg:min-h-9 lg:min-w-9 ${
+                    className={`inline-flex h-[44px] min-h-11 w-[44px] min-w-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-0 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:h-11 sm:w-auto sm:min-w-11 sm:px-3 sm:text-sm lg:h-9 lg:min-h-9 lg:min-w-9 ${
                       sheetCopied
                         ? "border-sapphire bg-sapphire text-white"
                         : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30"
@@ -2189,10 +2229,10 @@ export function HealthCheckExplorer() {
                     aria-pressed={voice.speaking}
                     aria-label={voice.speaking ? c.stopListening : c.listen}
                     title={voice.speaking ? c.stopListening : c.listen}
-                    className={`inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-xl border px-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:px-3 lg:min-h-9 lg:min-w-9 ${
+                    className={`inline-flex h-[44px] min-h-11 w-[44px] min-w-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-0 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:h-11 sm:w-auto sm:min-w-11 sm:px-3 sm:text-sm lg:h-9 lg:min-h-9 lg:min-w-9 ${
                       voice.speaking
-                        ? "border-sapphire bg-sapphire-soft text-sapphire max-lg:border-transparent"
-                        : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30 max-lg:border-transparent max-lg:bg-transparent max-lg:text-sapphire"
+                        ? "border-sapphire bg-sapphire-soft text-sapphire"
+                        : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30"
                     }`}
                   >
                     <SpeakerIcon off={voice.speaking} />
@@ -2208,10 +2248,10 @@ export function HealthCheckExplorer() {
                   aria-pressed={largeText}
                   aria-label={c.largeText}
                   title={c.largeText}
-                  className={`inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-xl border px-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:px-3 lg:min-h-9 lg:min-w-9 ${
+                  className={`inline-flex h-[44px] min-h-11 w-[44px] min-w-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-0 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:h-11 sm:w-auto sm:min-w-11 sm:px-3 sm:text-sm lg:h-9 lg:min-h-9 lg:min-w-9 ${
                     largeText
-                      ? "border-sapphire bg-sapphire-soft text-sapphire max-lg:border-transparent"
-                      : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30 max-lg:border-transparent max-lg:bg-transparent max-lg:text-sapphire"
+                      ? "border-sapphire bg-sapphire-soft text-sapphire"
+                      : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30"
                   }`}
                 >
                   <span aria-hidden="true">A+</span>
@@ -2232,7 +2272,7 @@ export function HealthCheckExplorer() {
               {Array.from({ length: totalSteps }, (_, idx) => idx + 1).map((segment) => (
                 <div
                   key={segment}
-                  className={`h-1 flex-1 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
+                  className={`h-1 flex-1 rounded-sm transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
                     displayStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
                   }`}
                 />
@@ -2243,15 +2283,9 @@ export function HealthCheckExplorer() {
               // One quiet line of earlier answers, each a link back to that question. Full labels; when
               // they do not fit, the line scrolls sideways (snapped to the latest) and fades at the edge.
               <nav aria-label={c.selectedTrailLabel} className="mt-2.5">
-                <ol
-                  ref={trailRef}
-                  onScroll={(e) => {
-                    e.currentTarget.dataset.overflow = String(e.currentTarget.scrollLeft > 1);
-                  }}
-                  className="-mx-1 flex items-center overflow-x-auto whitespace-nowrap px-1 text-sm [scrollbar-width:none] data-[overflow=true]:[mask-image:linear-gradient(to_right,transparent,#000_1.5rem,#000)] lg:text-[0.8125rem] [&::-webkit-scrollbar]:hidden"
-                >
+                <ol className="flex flex-wrap items-center gap-x-1 gap-y-0.5 text-xs text-muted-foreground sm:text-[0.8125rem]">
                   {trailItems.map((item, index) => (
-                    <li key={item.key} className="flex shrink-0 items-center">
+                    <li key={item.key} className="flex min-w-0 max-w-full items-center">
                       {index > 0 && (
                         <span aria-hidden="true" className="mx-1.5 text-muted-foreground/50">
                           ›
@@ -2260,9 +2294,9 @@ export function HealthCheckExplorer() {
                       <button
                         type="button"
                         onClick={() => goToStep(item.target)}
-                        className="-my-1.5 min-h-9 rounded-md py-1.5 font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire lg:min-h-7"
+                        className="-my-1.5 inline-flex min-h-11 items-center rounded-md max-w-full py-1.5 font-medium whitespace-nowrap text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
-                        {item.label}
+                        <span className="max-w-[11rem] truncate sm:max-w-[16rem]">{item.label}</span>
                       </button>
                     </li>
                   ))}
@@ -2315,7 +2349,7 @@ export function HealthCheckExplorer() {
                       aria-expanded={setupOpen}
                       aria-controls={`${baseId}-setup`}
                       onClick={() => setSetupOpen((open) => !open)}
-                      className="-mr-2 inline-flex min-h-11 shrink-0 items-center rounded-xl px-2 text-sm font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire max-lg:no-underline"
+                      className="-mr-2 inline-flex min-h-11 shrink-0 items-center rounded-xl px-2 text-sm font-semibold whitespace-nowrap text-sapphire underline decoration-sapphire/30 underline-offset-4 hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:no-underline"
                     >
                       {c.change}
                     </button>
@@ -2331,7 +2365,7 @@ export function HealthCheckExplorer() {
                           role="radiogroup"
                           aria-labelledby={`${baseId}-who`}
                           onKeyDown={handleRadioKeys}
-                          className="inline-grid grid-cols-2 gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
+                          className="inline-flex flex-wrap gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
                         >
                           {(
                             [
@@ -2348,7 +2382,7 @@ export function HealthCheckExplorer() {
                                 aria-checked={active}
                                 tabIndex={active ? 0 : -1}
                                 onClick={() => handleForWhomChange(opt.id)}
-                                className={`inline-flex min-h-9 items-center justify-center rounded-lg px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                                className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-xs font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                                   active
                                     ? "bg-sapphire text-white"
                                     : "text-muted-foreground hover:text-foreground"
@@ -2369,7 +2403,7 @@ export function HealthCheckExplorer() {
                           role="radiogroup"
                           aria-labelledby={`${baseId}-anat`}
                           onKeyDown={handleRadioKeys}
-                          className="inline-grid grid-cols-2 gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
+                          className="inline-flex flex-wrap gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
                         >
                           {(
                             [
@@ -2386,7 +2420,7 @@ export function HealthCheckExplorer() {
                                 aria-checked={active}
                                 tabIndex={active ? 0 : -1}
                                 onClick={() => handleBodyProfileChange(opt.id)}
-                                className={`inline-flex min-h-9 items-center justify-center rounded-lg px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                                className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-xs font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                                   active
                                     ? "bg-sapphire text-white"
                                     : "text-muted-foreground hover:text-foreground"
@@ -2477,7 +2511,7 @@ export function HealthCheckExplorer() {
                     <button
                       type="button"
                       onClick={() => setSideFromBody(false)}
-                      className="inline-flex min-h-11 items-center rounded-md px-1.5 font-semibold text-sapphire underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                      className="inline-flex min-h-11 items-center rounded-md px-1.5 font-semibold whitespace-nowrap text-sapphire underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       {c.change}
                     </button>
@@ -2491,7 +2525,7 @@ export function HealthCheckExplorer() {
                     className="rounded-xl bg-card p-3.5 max-lg:shadow-[0_0_0_1px_var(--color-border)] lg:bg-muted/55"
                   >
                     <p className="text-sm font-semibold text-foreground">{c.sideLabel}</p>
-                    <div className="mt-2 grid grid-cols-3 gap-1 rounded-xl bg-muted p-1 lg:bg-background/80 lg:ring-1 lg:ring-border">
+                    <div className="mt-2 flex flex-wrap gap-1 rounded-xl bg-muted p-1 lg:bg-background/80 lg:ring-1 lg:ring-border">
                       {(
                         [
                           { id: "Center", label: c.bothSides },
@@ -2509,7 +2543,7 @@ export function HealthCheckExplorer() {
                             aria-keyshortcuts={hotkey}
                             data-hotkey={hotkey}
                             onClick={() => handleSelectSpotSide(detail.subRegion, opt.id)}
-                            className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-lg px-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                            className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-2.5 text-sm font-semibold flex-1 whitespace-nowrap sm:px-3 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                               active
                                 ? "bg-card text-sapphire shadow-sm ring-1 ring-border lg:bg-sapphire lg:text-white lg:ring-0"
                                 : "text-muted-foreground hover:text-foreground"
@@ -2569,9 +2603,8 @@ export function HealthCheckExplorer() {
                         speakLabel={`${c.listen}: ${symptom.title}`}
                         badge={
                           urgent ? (
-                            <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-primary">
-                              <AlertCircleIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                              <span>{dict.ui.urgentBadge}</span>
+                            <span className="shrink-0 text-xs font-semibold text-primary">
+                              {dict.ui.urgentBadge}
                             </span>
                           ) : null
                         }
@@ -2610,9 +2643,9 @@ export function HealthCheckExplorer() {
                   <button
                     type="button"
                     onClick={() => setShowAllAreaSymptoms(true)}
-                    className="inline-flex min-h-11 w-full items-center justify-between gap-2 rounded-xl bg-card px-4 py-2.5 text-left text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire max-lg:shadow-[0_0_0_1px_var(--color-border)] max-lg:active:bg-muted lg:min-h-10 lg:border lg:border-border-control lg:hover:border-sapphire/60 lg:hover:bg-sapphire-soft/30"
+                    className="inline-flex min-h-11 w-full items-center justify-between gap-2 whitespace-nowrap rounded-xl bg-card px-4 py-2.5 text-left text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:shadow-[0_0_0_1px_var(--color-border)] max-lg:active:bg-muted lg:min-h-11 lg:border lg:border-border-control lg:hover:border-sapphire/60 lg:hover:bg-sapphire-soft/30"
                   >
-                    <span>
+                    <span className="min-w-0 truncate">
                       {c.showAllAreaSymptoms} ({predictedPartition.secondary.length})
                     </span>
                     <ChevronRightIcon className="h-4 w-4 shrink-0 rotate-90" aria-hidden="true" />
@@ -2623,12 +2656,12 @@ export function HealthCheckExplorer() {
                   <div className={`${softPanel} max-lg:bg-card max-lg:shadow-[0_0_0_1px_var(--color-border)]`}>
                     <p className="text-base font-medium text-foreground">{c.otherBody}</p>
                     <div className="mt-3.5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-                      <Link href={withLangPrefix("/health-assistant", activeLang)} className={primaryButton}>
-                        <span>{c.otherAssistant}</span>
-                        <ArrowRightIcon className="h-4.5 w-4.5" aria-hidden="true" />
+                      <Link href={withLangPrefix("/health-assistant", activeLang)} className={`${primaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}>
+                        <span className="min-w-0 truncate">{c.otherAssistant}</span>
+                        <ArrowRightIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
                       </Link>
-                      <Link href={withLangPrefix("/medic-online?source=triage", activeLang)} className={secondaryButton}>
-                        <span>{c.otherDoctor}</span>
+                      <Link href={withLangPrefix("/medic-online?source=triage", activeLang)} className={`${secondaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}>
+                        <span className="min-w-0 truncate">{c.otherDoctor}</span>
                       </Link>
                     </div>
                   </div>
@@ -2653,7 +2686,7 @@ export function HealthCheckExplorer() {
                     role="radiogroup"
                     aria-labelledby={`${baseId}-sev`}
                     onKeyDown={handleRadioKeys}
-                    className="mt-2 grid grid-cols-3 gap-2"
+                    className="mt-2 flex flex-wrap gap-2"
                   >
                     {SEVERITY_KEYS.map((key, index) => {
                       const checked = severity === key;
@@ -2669,7 +2702,7 @@ export function HealthCheckExplorer() {
                           tabIndex={checked || (!severity && index === 0) ? 0 : -1}
                           title={dict.severity[key].description}
                           onClick={(e) => handleSelectSeverity(key, e.detail > 0)}
-                          className={`flex min-h-[4.75rem] flex-col items-start gap-1.5 rounded-xl border px-3 py-2.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
+                          className={`flex min-h-[4.75rem] flex-1 flex-col items-start gap-1.5 whitespace-nowrap rounded-xl border px-3 py-2.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                             checked
                               ? urgent
                                 ? "border-primary bg-primary-soft/45"
@@ -2681,7 +2714,7 @@ export function HealthCheckExplorer() {
                             <SeverityComfortVisual severityKey={key} checked={checked} />
                             <KeyBadge letter={String(index + 1)} checked={checked} urgent={urgent} />
                           </span>
-                          <span className="text-sm font-semibold leading-snug text-foreground">
+                          <span className="whitespace-nowrap text-sm font-semibold leading-snug text-foreground">
                             {dict.severity[key].title}
                           </span>
                         </button>
@@ -2703,7 +2736,7 @@ export function HealthCheckExplorer() {
                     role="radiogroup"
                     aria-labelledby={`${baseId}-dur`}
                     onKeyDown={handleRadioKeys}
-                    className="mt-2 grid grid-cols-2 gap-2"
+                    className="mt-2 flex flex-wrap gap-2"
                   >
                     {DURATION_KEYS.map((key, index) => {
                       const checked = duration === key;
@@ -2718,7 +2751,7 @@ export function HealthCheckExplorer() {
                           tabIndex={checked || (!duration && index === 0) ? 0 : -1}
                           title={dict.duration[key].hint}
                           onClick={(e) => handleSelectDuration(key, e.detail > 0)}
-                          className={`flex min-h-11 items-center gap-2.5 rounded-xl border px-2.5 py-1.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
+                          className={`flex min-h-11 min-w-[13.5rem] flex-1 items-center gap-2.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                             checked
                               ? "border-sapphire bg-sapphire-soft/45"
                               : "border-border bg-card hover:border-sapphire/50 hover:bg-sapphire-soft/25"
@@ -2726,7 +2759,7 @@ export function HealthCheckExplorer() {
                         >
                           <KeyBadge letter={HOTKEYS[index]} checked={checked} />
                           <DurationHorizonVisual durationKey={key} checked={checked} />
-                          <span className="min-w-0 text-sm font-semibold leading-snug text-foreground">
+                          <span className="whitespace-nowrap text-sm font-semibold leading-snug text-foreground">
                             {dict.duration[key].label}
                           </span>
                         </button>
@@ -2739,7 +2772,7 @@ export function HealthCheckExplorer() {
                   <div>
                     <p id={`${baseId}-also`} className="text-sm font-semibold text-foreground">
                       {c.alsoFeel}{" "}
-                      <span className="font-normal text-muted-foreground">· {c.alsoFeelHint}</span>
+                      <span className="font-normal text-muted-foreground">— {c.alsoFeelHint}</span>
                     </p>
                     <div role="group" aria-labelledby={`${baseId}-also`} className="mt-2 flex flex-wrap gap-1.5">
                       {extraCandidates.map((symptom) => {
@@ -2752,18 +2785,18 @@ export function HealthCheckExplorer() {
                             aria-pressed={checked}
                             title={symptom.description}
                             onClick={() => toggleExtra(symptom)}
-                            className={`inline-flex min-h-9 max-w-full items-center gap-1.5 rounded-full border px-3 py-1 text-left text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
+                            className={`inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-lg whitespace-nowrap border px-3 py-1.5 text-left text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                               checked
                                 ? urgent
-                                  ? "border-primary bg-primary text-white"
-                                  : "border-sapphire bg-sapphire text-white"
+                                  ? "border-primary bg-primary text-white press-solid"
+                                  : "border-sapphire bg-sapphire text-white press-solid"
                                 : urgent
-                                  ? "border-primary/40 bg-primary-soft/30 text-primary hover:border-primary/60"
-                                  : "border-border bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/25"
+                                  ? "border-primary/40 bg-primary-soft/30 text-primary press-row hover:border-primary/60"
+                                  : "border-border-control bg-card text-foreground press-row hover:border-sapphire/50 hover:bg-sapphire-soft/25"
                             }`}
                           >
-                            <span aria-hidden="true" className="text-xs">{checked ? "✓" : "+"}</span>
-                            <span className="truncate">{symptom.title}</span>
+                            <span aria-hidden="true" className="shrink-0 text-xs">{checked ? "✓" : "+"}</span>
+                            <span className="min-w-0 truncate">{symptom.title}</span>
                           </button>
                         );
                       })}
@@ -2852,7 +2885,7 @@ export function HealthCheckExplorer() {
                     return (
                       <label
                         key={symptom.id}
-                        className={`${groupedRowInset} flex min-h-[3.25rem] cursor-pointer items-center gap-3 px-4 py-2.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] active:bg-muted has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-sapphire ${
+                        className={`${groupedRowInset} flex min-h-[3.25rem] cursor-pointer items-center gap-3 px-4 py-2.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] active:bg-muted has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-ring ${
                           checked ? (urgent ? "bg-primary-soft/40" : "bg-sapphire-soft/40") : urgent ? "bg-primary-soft/15" : ""
                         }`}
                       >
@@ -2862,9 +2895,8 @@ export function HealthCheckExplorer() {
                             {symptom.title}
                           </span>
                           {urgent && (
-                            <span className="mt-0.5 inline-flex items-center gap-1 text-xs font-semibold text-primary">
-                              <AlertCircleIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                              <span>{dict.ui.urgentBadge}</span>
+                            <span className="mt-0.5 block text-xs font-semibold text-primary">
+                              {dict.ui.urgentBadge}
                             </span>
                           )}
                         </span>
@@ -2919,16 +2951,16 @@ export function HealthCheckExplorer() {
                           </p>
                         )}
                         <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
-                          <a href="tel:112" className={emergencyButton}>
-                            <PhoneIcon className="h-5 w-5" aria-hidden="true" />
-                            <span>{dict.ui.emergency.call112Now}</span>
+                          <a href="tel:112" className={`${emergencyButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}>
+                            <PhoneIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                            <span className="min-w-0 truncate">{dict.ui.emergency.call112Now}</span>
                           </a>
                           <button
                             type="button"
                             onClick={() => openModal("doctor")}
-                            className={secondaryButton}
+                            className={`${secondaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}
                           >
-                            {dict.ui.showDoctor}
+                            <span className="min-w-0 truncate">{dict.ui.showDoctor}</span>
                           </button>
                         </div>
                         {placeLink("hospital", places.hospital)}
@@ -2950,7 +2982,7 @@ export function HealthCheckExplorer() {
                             >
                               {c.nextStepLabel}
                             </p>
-                            <h3 className="mt-1.5 text-xl font-semibold leading-snug tracking-[-0.015em] text-foreground text-balance sm:text-2xl">
+                            <h3 className="mt-1.5 text-lg font-semibold leading-snug tracking-[-0.015em] text-foreground text-balance sm:text-xl">
                               {dict.urgency[careLevel].title}
                             </h3>
                             <p className="mt-2 text-base leading-relaxed text-muted-foreground">
@@ -3001,9 +3033,9 @@ export function HealthCheckExplorer() {
                         {topicMapping && (
                           <Link
                             href={withLangPrefix(`/health-information/${topicMapping.slug}`, activeLang)}
-                            className="group mt-4 flex min-h-12 items-center justify-between gap-3 rounded-xl border border-border-control bg-card px-4 py-2.5 text-base font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+                            className="group mt-4 flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
                           >
-                            <span className="min-w-0">
+                            <span className="min-w-0 truncate">
                               {c.readAbout}: {topicMapping.title}
                             </span>
                             <ArrowRightIcon
@@ -3046,6 +3078,7 @@ export function HealthCheckExplorer() {
                               part: selectedPart,
                               subRegion: detail?.subRegion ?? null,
                               side: detail?.side ?? "Center",
+                              bodyProfile,
                             }
                           : undefined
                       }
@@ -3107,17 +3140,17 @@ export function HealthCheckExplorer() {
               <a
                 data-autofocus
                 href="tel:112"
-                className={emergencyButton}
+                className={`${emergencyButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}
               >
-                <PhoneIcon className="h-5 w-5" />
-                <span>{dict.ui.emergency.call112Now}</span>
+                <PhoneIcon className="h-5 w-5 shrink-0" />
+                <span className="min-w-0 truncate">{dict.ui.emergency.call112Now}</span>
               </a>
               <button
                 type="button"
                 onClick={handleContinueFromEmergencyModal}
-                className={secondaryButton}
+                className={`${secondaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}
               >
-                {dict.ui.emergency.continueReview}
+                <span className="min-w-0 truncate">{dict.ui.emergency.continueReview}</span>
               </button>
             </div>
           </div>

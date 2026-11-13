@@ -176,7 +176,7 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
             type="button"
             onClick={() => setTonesEnabled((on) => !on)}
             aria-pressed={tonesEnabled}
-            className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+            className={`inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               tonesEnabled
                 ? "border-sapphire-border bg-sapphire-soft text-sapphire"
                 : "border-border bg-card text-muted-foreground hover:text-foreground"
@@ -199,7 +199,7 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
         </div>
       </div>
 
-      <div role="tablist" aria-label={copy.patternGroupLabel} className={`mt-4 ${TAB_LIST_CLASS} grid-cols-2`}>
+      <div role="tablist" aria-label={copy.patternGroupLabel} className={`mt-4 ${TAB_LIST_CLASS}`}>
         {PATTERN_IDS.map((id) => {
           const selected = id === patternId;
           return (
@@ -263,7 +263,7 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
         <button
           type="button"
           onClick={running ? stop : start}
-          className={STAGE_PRIMARY_CONTROL_CLASS}
+          className={`${STAGE_PRIMARY_CONTROL_CLASS} whitespace-nowrap focus-visible:ring-ring`}
         >
           {running ? copy.stop : copy.start}
         </button>

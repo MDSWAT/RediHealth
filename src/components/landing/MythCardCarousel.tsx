@@ -21,7 +21,7 @@ export interface MythCardCarouselProps {
 }
 
 const navButton =
-  "press-row inline-flex min-h-10 min-w-10 items-center justify-center rounded-(--radius-control) border border-sapphire-border/80 bg-card/85 text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:border-transparent disabled:bg-transparent disabled:text-muted-foreground/45 motion-reduce:transition-none dark:border-white/20 dark:bg-ink-800 dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper dark:disabled:border-transparent dark:disabled:bg-transparent dark:disabled:text-mist/40";
+  "press-row inline-flex min-h-11 min-w-11 items-center justify-center rounded-(--radius-control) border border-sapphire-border/80 bg-card/85 text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:border-transparent disabled:bg-transparent disabled:text-muted-foreground/45 motion-reduce:transition-none dark:border-white/20 dark:bg-ink-800 dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper dark:disabled:border-transparent dark:disabled:bg-transparent dark:disabled:text-mist/40";
 
 const RESULT_FILL: Record<MythResult, string> = {
   correct: "inset-0 bg-sapphire dark:bg-sapphire-border",
@@ -106,7 +106,7 @@ export function MythCardCarousel({
               >
                 <span
                   className={cn(
-                    "relative block w-full overflow-hidden rounded-full transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-focus-visible/seg:ring-2 group-focus-visible/seg:ring-ring dark:group-focus-visible/seg:ring-paper",
+                    "relative block w-full overflow-hidden rounded-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-focus-visible/seg:ring-2 group-focus-visible/seg:ring-ring dark:group-focus-visible/seg:ring-paper",
                     isCurrent
                       ? "h-1.5 bg-foreground dark:bg-paper"
                       : "h-1 bg-sapphire-border/90 group-hover/seg:bg-foreground/45 dark:bg-white/25 dark:group-hover/seg:bg-white/50",

@@ -449,7 +449,7 @@ function DirectionPad({
   const tip =
     "pointer-events-none absolute right-full top-1/2 mr-2 hidden -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-sm transition-[opacity,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/pad:translate-x-0 group-hover/pad:opacity-100 group-focus-visible/pad:translate-x-0 group-focus-visible/pad:opacity-100 sm:block";
   const btn =
-    "group/pad relative inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground active:bg-sapphire-soft active:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire touch-none select-none";
+    "group/pad relative inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground active:bg-sapphire-soft active:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring touch-none select-none";
 
   const moveButton = (move: PadMove, Icon: typeof ChevronLeftIcon, iconClass: string, area: string) => (
     <button
@@ -767,7 +767,7 @@ export function AnatomicalBodyMap({
       aria-label={label}
       title={label}
       onClick={() => cameraRef.current?.[action]()}
-      className="flex min-h-10 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted active:bg-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+      className="flex min-h-11 items-center justify-center rounded-xl border border-border-control bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted active:bg-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       <Icon className="h-5 w-5" />
     </button>
@@ -818,9 +818,9 @@ export function AnatomicalBodyMap({
               type="button"
               aria-expanded={literacyOpen}
               onClick={() => setLiteracyOpen((v) => !v)}
-              className="inline-flex h-8 items-center gap-1 rounded-lg px-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+              className="inline-flex h-8 max-w-full items-center gap-1 whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <span>{literacyOpen ? t.hideWhy : t.whyHurt}</span>
+              <span className="min-w-0 truncate">{literacyOpen ? t.hideWhy : t.whyHurt}</span>
               <ChevronDownIcon
                 className={`h-3.5 w-3.5 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${literacyOpen ? "rotate-180" : ""}`}
               />
@@ -831,10 +831,10 @@ export function AnatomicalBodyMap({
                 onClick={() => (voice.speaking ? voice.stop() : voice.speak(speechParts))}
                 aria-label={`${voice.speaking ? t.stopListen : t.listen}: ${hudLocalized.label}`}
                 aria-pressed={voice.speaking}
-                className={`inline-flex h-8 shrink-0 items-center gap-1 rounded-lg border px-2 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                className={`inline-flex h-8 shrink-0 items-center gap-1 whitespace-nowrap rounded-lg border px-2 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                   voice.speaking
                     ? "border-sapphire bg-sapphire-soft text-sapphire"
-                    : "border-border bg-card text-foreground hover:bg-muted"
+                    : "border-border-control bg-card text-foreground hover:bg-muted"
                 }`}
               >
                 {voice.speaking ? (
@@ -853,7 +853,7 @@ export function AnatomicalBodyMap({
                 setDismissedSpot(effectiveSubRegion);
               }}
               aria-label={`${t.dismissInfo}: ${hudLocalized.label}`}
-              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <CloseIcon className="h-4 w-4" />
             </button>
@@ -890,7 +890,7 @@ export function AnatomicalBodyMap({
             <button
               type="button"
               onClick={() => setForceBody(true)}
-              className="inline-flex min-h-11 items-center rounded-sm px-1 font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:min-h-9"
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:min-h-9"
             >
               {t.liteLoad}
             </button>
@@ -933,10 +933,11 @@ export function AnatomicalBodyMap({
                   aria-label={t.open}
                   title={t.open}
                   onClick={() => setPanelOpen((open) => !open)}
-                  className="inline-flex min-h-10 items-center gap-1.5 rounded-xl border border-border/90 bg-card/95 px-2.5 text-xs font-medium text-foreground shadow-xs backdrop-blur-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-border/90 bg-card/95 px-3 text-xs font-semibold text-foreground shadow-xs backdrop-blur-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
                 >
-                  <SearchIcon className="h-3.5 w-3.5 text-muted-foreground" />
-                  <SlidersIcon className="h-3.5 w-3.5 text-muted-foreground" />
+                  <SearchIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
+                  <span className="whitespace-nowrap">{t.open}</span>
+                  <SlidersIcon className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
                 </button>
               </div>
             )}
@@ -1004,7 +1005,7 @@ export function AnatomicalBodyMap({
                         type="button"
                         aria-label={t.close}
                         onClick={closePanel}
-                        className="flex h-8 w-8 items-center justify-center rounded-xl text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                        className="flex h-8 w-8 items-center justify-center rounded-xl text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
                         <CloseIcon className="h-4 w-4" />
                       </button>
@@ -1023,7 +1024,7 @@ export function AnatomicalBodyMap({
                           onChange={(e) => setSearchQuery(e.target.value)}
                           placeholder={t.searchPlaceholder}
                           autoComplete="off"
-                          className="min-h-10 w-full rounded-xl border border-border bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-sapphire focus:outline-none"
+                          className="min-h-11 w-full rounded-xl border border-border-control bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-sapphire focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         />
                       </div>
                       {searchQuery.trim().length >= 2 && (
@@ -1040,10 +1041,10 @@ export function AnatomicalBodyMap({
                                     setSearchQuery("");
                                     setPanelOpen(false);
                                   }}
-                                  className="flex min-h-10 w-full items-center justify-between gap-2 px-3 py-2 text-left text-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire"
+                                  className="flex min-h-11 w-full items-center justify-between gap-2 whitespace-nowrap px-3 py-2 text-left text-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
                                 >
-                                  <span className="font-medium text-foreground">{item.label}</span>
-                                  <span className="text-muted-foreground">{dict.bodyParts[item.macroPart].title}</span>
+                                  <span className="min-w-0 truncate font-medium text-foreground">{item.label}</span>
+                                  <span className="shrink-0 text-muted-foreground">{dict.bodyParts[item.macroPart].title}</span>
                                 </button>
                               </li>
                             ))
@@ -1054,7 +1055,7 @@ export function AnatomicalBodyMap({
 
                     <div role="group" aria-label={t.bodyType} className="mt-2.5">
                       <p className={sectionTitle}>{t.bodyType}</p>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="flex flex-wrap gap-2">
                         {(
                           [
                             { id: "general", label: t.bodyGeneral, Icon: WholeBodyIcon },
@@ -1071,10 +1072,10 @@ export function AnatomicalBodyMap({
                                 setBodyProfile(id);
                                 closePanel();
                               }}
-                              className={`flex min-h-10 items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                              className={`flex min-h-11 flex-1 items-center gap-2 whitespace-nowrap rounded-xl border px-3 py-2 text-left text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                                 active
                                   ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-                                  : "border-border bg-card text-foreground hover:bg-muted"
+                                  : "border-border-control bg-card text-foreground hover:bg-muted"
                               }`}
                             >
                               <Icon className="h-5 w-5 shrink-0" />
@@ -1087,11 +1088,10 @@ export function AnatomicalBodyMap({
 
                     <div role="group" aria-label={t.layer} className="mt-2.5">
                       <p className={sectionTitle}>{t.layer}</p>
-                      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                      <div className="flex flex-wrap gap-2">
                         {LAYER_ORDER.map((id) => {
                           const active = effectiveLayerMode === id;
                           const Icon = LAYER_ICON[id];
-                          const spanClass = id === "hybrid" ? "col-span-2 sm:col-span-2" : "";
                           return (
                             <button
                               key={id}
@@ -1102,10 +1102,10 @@ export function AnatomicalBodyMap({
                                 setLayerMode(id);
                                 closePanel();
                               }}
-                              className={`${spanClass} flex min-h-10 items-center gap-2 rounded-xl border px-2.5 py-2 text-left text-sm font-medium leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                              className={`flex min-h-11 flex-1 items-center gap-2 whitespace-nowrap rounded-xl border px-3 py-2 text-left text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                                 active
                                   ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-                                  : "border-border bg-card text-foreground hover:bg-muted"
+                                  : "border-border-control bg-card text-foreground hover:bg-muted"
                               }`}
                             >
                               <Icon className="h-4.5 w-4.5 shrink-0" />
@@ -1159,77 +1159,102 @@ export function AnatomicalBodyMap({
             {showTools && (
               <div
                 role="toolbar"
-                aria-label={`${t.views}, ${t.layer}`}
-                className="absolute inset-x-2 bottom-5 z-30 mx-auto w-fit max-w-[calc(100%-1rem)] rounded-xl border border-border/90 bg-card/95 p-1 shadow-xs backdrop-blur-md lg:bottom-3 lg:shadow-sm"
+                aria-label={`${t.views}, ${t.camera}, ${t.layer}`}
+                className="absolute inset-x-2 bottom-4 z-30 mx-auto w-fit max-w-[calc(100%-1rem)] rounded-xl border border-border/90 bg-card/95 p-1 shadow-xs backdrop-blur-md lg:bottom-3 lg:shadow-sm"
               >
-                {/* Icon-only everywhere: a small label shows on hover or keyboard focus (and briefly on phones after a press). */}
-                <div className="flex flex-nowrap items-center justify-center gap-0.5 sm:gap-1">
-                  {(["front", "back"] as const).map((preset) => {
-                    const active = !freeView && viewAngle === preset;
-                    const label = preset === "front" ? dict.ui.viewer3D.front : dict.ui.viewer3D.back;
-                    const Icon = preset === "front" ? FrontViewIcon : BackViewIcon;
-                    return (
-                      <button
-                        key={preset}
-                        type="button"
-                        aria-label={label}
-                        aria-pressed={active}
-                        onClick={() => {
-                          setUserAngle(preset);
-                          setFreeView(false);
-                          setViewRequest((n) => n + 1);
-                          announceMobileHint(label);
-                        }}
-                        className={`group/tool relative inline-flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 justify-center items-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                          active
-                            ? "bg-sapphire-soft text-sapphire"
-                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                        }`}
-                      >
-                        <Icon className="h-4 w-4 shrink-0" />
-                        <span
-                          aria-hidden="true"
-                          className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-sm transition-[opacity,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/tool:translate-y-0 group-hover/tool:opacity-100 group-focus-visible/tool:translate-y-0 group-focus-visible/tool:opacity-100 sm:block"
+                <div className="flex flex-wrap items-center justify-center gap-1">
+                  <div className="flex shrink-0 items-center gap-1">
+                    {(["front", "back"] as const).map((preset) => {
+                      const active = !freeView && viewAngle === preset;
+                      const label = preset === "front" ? dict.ui.viewer3D.front : dict.ui.viewer3D.back;
+                      const Icon = preset === "front" ? FrontViewIcon : BackViewIcon;
+                      return (
+                        <button
+                          key={preset}
+                          type="button"
+                          aria-label={label}
+                          aria-pressed={active}
+                          onClick={() => {
+                            setUserAngle(preset);
+                            setFreeView(false);
+                            setViewRequest((n) => n + 1);
+                            announceMobileHint(label);
+                          }}
+                          className={`inline-flex h-9 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-2.5 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                            active
+                              ? "bg-sapphire-soft text-sapphire"
+                              : "text-foreground/80 hover:bg-muted hover:text-foreground"
+                          }`}
                         >
-                          {label}
-                        </span>
-                      </button>
-                    );
-                  })}
+                          <Icon className="h-4 w-4 shrink-0" />
+                          <span>{label}</span>
+                        </button>
+                      );
+                    })}
 
-                  <span aria-hidden="true" className="mx-0.5 h-4 w-px shrink-0 bg-border" />
+                    <span aria-hidden="true" className="mx-0.5 h-4 w-px shrink-0 bg-border" />
 
-                  {LAYER_ORDER.map((id) => {
-                    const active = effectiveLayerMode === id;
-                    const label = t.layers[id];
-                    const Icon = LAYER_ICON[id];
-                    return (
-                      <button
-                        key={id}
-                        type="button"
-                        aria-label={label}
-                        aria-pressed={active}
-                        onClick={() => {
-                          setUserOverrodeLayer(true);
-                          setLayerMode(id);
-                          announceMobileHint(label);
-                        }}
-                        className={`group/tool relative inline-flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 justify-center items-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                          active
-                            ? "bg-sapphire-soft text-sapphire"
-                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                        }`}
-                      >
-                        <Icon className="h-4 w-4 shrink-0" />
-                        <span
-                          aria-hidden="true"
-                          className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-sm transition-[opacity,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/tool:translate-y-0 group-hover/tool:opacity-100 group-focus-visible/tool:translate-y-0 group-focus-visible/tool:opacity-100 sm:block"
+                    <button
+                      type="button"
+                      aria-label={t.zoomOut}
+                      title={t.zoomOut}
+                      onClick={() => {
+                        cameraRef.current?.zoomOut();
+                        announceMobileHint(t.zoomOut);
+                      }}
+                      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <ZoomOutIcon className="h-4 w-4 shrink-0" />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={t.zoomIn}
+                      title={t.zoomIn}
+                      onClick={() => {
+                        cameraRef.current?.zoomIn();
+                        announceMobileHint(t.zoomIn);
+                      }}
+                      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <ZoomInIcon className="h-4 w-4 shrink-0" />
+                    </button>
+                  </div>
+
+                  <span aria-hidden="true" className="mx-0.5 hidden h-4 w-px shrink-0 bg-border sm:block" />
+
+                  <div className="flex shrink-0 items-center gap-1">
+                    {LAYER_ORDER.map((id) => {
+                      const active = effectiveLayerMode === id;
+                      const label = t.layers[id];
+                      const Icon = LAYER_ICON[id];
+                      return (
+                        <button
+                          key={id}
+                          type="button"
+                          aria-label={label}
+                          aria-pressed={active}
+                          onClick={() => {
+                            setUserOverrodeLayer(true);
+                            setLayerMode(id);
+                            announceMobileHint(label);
+                          }}
+                          className={`group/tool relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                            active
+                              ? "bg-sapphire-soft text-sapphire"
+                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          }`}
                         >
-                          {label}
-                        </span>
-                      </button>
-                    );
-                  })}
+                          <Icon className="h-4 w-4 shrink-0" />
+                          <span
+                            aria-hidden="true"
+                            className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-sm transition-[opacity,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/tool:translate-y-0 group-hover/tool:opacity-100 group-focus-visible/tool:translate-y-0 group-focus-visible/tool:opacity-100 sm:block"
+                          >
+                            {label}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             )}

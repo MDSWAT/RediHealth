@@ -172,13 +172,13 @@ export function ReportIssuePageContent() {
     <main id="main-content" className="flex-1">
       <section className="border-b border-border bg-muted/40 py-10 sm:py-14">
         <Container>
-          <SectionHeading as="h1" title={t.title} subtitle={t.subtitle} />
+          <SectionHeading as="h1" title={t.title} subtitle={t.subtitle} titleClassName="text-page" />
         </Container>
       </section>
 
       <section className="py-10 sm:py-14">
         <Container>
-          <form onSubmit={onSubmit} className="mx-auto max-w-2xl space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6">
+          <form onSubmit={onSubmit} className="max-w-2xl space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6">
             <div>
               <label htmlFor="report-email" className="mb-1.5 block text-sm font-semibold text-foreground">{t.emailLabel}</label>
               <input
@@ -188,7 +188,7 @@ export function ReportIssuePageContent() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder={t.emailPlaceholder}
-                className="min-h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                className="min-h-11 w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
               />
             </div>
 
@@ -202,7 +202,7 @@ export function ReportIssuePageContent() {
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
                 placeholder={t.issuePlaceholder}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                className="w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
               />
             </div>
 
@@ -218,7 +218,7 @@ export function ReportIssuePageContent() {
             ) : null}
 
             <div className="flex justify-end">
-              <Button type="submit" variant="secondary" disabled={isSubmitting} className="disabled:bg-muted disabled:text-muted-foreground">
+              <Button type="submit" variant="action" disabled={isSubmitting} className="disabled:bg-muted disabled:text-muted-foreground">
                 {isSubmitting ? t.sending : t.send}
               </Button>
             </div>

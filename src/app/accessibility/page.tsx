@@ -20,7 +20,7 @@ export default async function AccessibilityPage() {
     <main id="main-content" className="flex-1">
       <section className="border-b border-border bg-muted/40 py-10 sm:py-14">
         <Container>
-          <SectionHeading as="h1" title={copy.title} subtitle={copy.description} />
+          <SectionHeading as="h1" title={copy.title} subtitle={copy.description} titleClassName="text-page" />
         </Container>
       </section>
 
@@ -30,7 +30,7 @@ export default async function AccessibilityPage() {
             {copy.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <p>
               {copy.contactLead}{" "}
-              <a href="mailto:support@redihealth.app" className="text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire">
+              <a href="mailto:support@redihealth.app" className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                 support@redihealth.app
               </a>{" "}
               {copy.contact}

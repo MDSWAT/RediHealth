@@ -14,7 +14,7 @@ export default async function TermsPage() {
     <main id="main-content" className="flex-1">
       <section className="border-b border-border bg-muted/40 py-10 sm:py-14">
         <Container>
-          <SectionHeading as="h1" title={copy.title} subtitle={copy.description} />
+          <SectionHeading as="h1" title={copy.title} subtitle={copy.description} titleClassName="text-page" />
         </Container>
       </section>
 
@@ -23,7 +23,7 @@ export default async function TermsPage() {
           <div className="max-w-2xl space-y-6 text-base leading-relaxed text-muted-foreground">
             {copy.sections.map((section) => (
               <div key={section.title}>
-                <h2 className="text-base font-semibold text-foreground">{section.title}</h2>
+                <h2 className="text-title text-foreground">{section.title}</h2>
                 <p className="mt-2">{section.body}</p>
               </div>
             ))}

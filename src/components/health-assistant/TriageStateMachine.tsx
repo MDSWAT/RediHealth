@@ -19,14 +19,18 @@ import {
 import { classifyLocalIntent } from "@/components/health-assistant/intent-keywords";
 import { useLanguage } from "@/lib/i18n/language-context";
 import {
+  getCalmMotionSnapshot,
+  getReadingLevelSnapshot,
+  setReadingLevel,
+  subscribeComfort,
+} from "@/lib/comfort-preferences";
+import {
   initialTriageState,
   PathwayId,
   triageReducer,
   type TriageAction,
   type TriageState,
 } from "@/lib/triage-state";
-
-const READING_LEVEL_KEY = "redihealth_reading_level";
 
 type TrailActionType = "JUMP_TO_START" | "JUMP_TO_GATE" | "JUMP_TO_STEP2";
 
@@ -209,7 +213,7 @@ export function TriageStateMachine({
     if (prev === displayStep) return;
     const el = contentRef.current;
     if (!el || typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || getCalmMotionSnapshot()) {
       el.style.opacity = "";
       el.style.transform = "";
       el.style.transition = "";
@@ -238,29 +242,27 @@ export function TriageStateMachine({
     return () => window.cancelAnimationFrame(rafId);
   }, [viewKey, displayStep]);
 
-  // Restore the reader's reading level.
+  // Keep reading level synced with the global comfort preferences store.
+  const plainLanguageRef = useRef(state.plainLanguage);
   useEffect(() => {
-    try {
-      const shared = localStorage.getItem(READING_LEVEL_KEY);
-      const legacy = localStorage.getItem("redihealth_plain_language");
-      const storedPlain =
-        shared === "simple" ? true : shared === "complete" ? false : legacy === "false" ? false : null;
-      if (storedPlain === false) {
-        dispatch({ type: "TOGGLE_PLAIN_LANGUAGE", value: false });
+    plainLanguageRef.current = state.plainLanguage;
+  }, [state.plainLanguage]);
+
+  useEffect(() => {
+    const syncReadingLevel = () => {
+      const nextPlain = getReadingLevelSnapshot() === "simple";
+      if (nextPlain !== plainLanguageRef.current) {
+        dispatch({ type: "TOGGLE_PLAIN_LANGUAGE", value: nextPlain });
       }
-    } catch {
-      // Ignore
-    }
+    };
+    syncReadingLevel();
+    return subscribeComfort(syncReadingLevel);
   }, []);
 
   function toggleReadingLevel() {
     const nextPlain = !state.plainLanguage;
     dispatch({ type: "TOGGLE_PLAIN_LANGUAGE", value: nextPlain });
-    try {
-      localStorage.setItem(READING_LEVEL_KEY, nextPlain ? "simple" : "complete");
-    } catch {
-      // Ignore
-    }
+    setReadingLevel(nextPlain ? "simple" : "complete");
   }
 
   // Handle keyboard Escape to go back
@@ -283,7 +285,7 @@ export function TriageStateMachine({
     }
     const card = cardRef.current;
     if (card && card.getBoundingClientRect().top < 0) {
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches || getCalmMotionSnapshot();
       card.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" });
     }
     contentRef.current?.focus({ preventScroll: true });
@@ -295,11 +297,7 @@ export function TriageStateMachine({
   const trailItems: { key: string; label: string; action: TrailActionType; stepsBack: number }[] = [];
   if (displayStep > 1 && state.pathway) {
     const pathwayOption = copy.tree.options[state.pathway];
-    const pathwayLabel = state.searchQuery
-      ? `“${state.searchQuery}”`
-      : state.plainLanguage
-        ? pathwayOption.plainTitle
-        : pathwayOption.title;
+    const pathwayLabel = pathwayOption.title;
     trailItems.push({
       key: "pathway",
       label: pathwayLabel,
@@ -372,34 +370,47 @@ export function TriageStateMachine({
       ref={cardRef}
       data-triage-card
       aria-label={copy.machine.intro}
-      className={`scroll-mt-[calc(var(--chrome-h,0px)+1rem)] rounded-2xl border border-border bg-card p-5 sm:p-8 ${className}`}
+      className={`min-w-0 overflow-hidden scroll-mt-[calc(var(--chrome-h,0px)+1rem)] rounded-2xl border border-stone-200/90 bg-card shadow-(--shadow-card-rest) dark:border-stone-800 ${className}`}
     >
-      <div className="mb-7">
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
-          <div className="flex min-h-11 items-center gap-2.5">
-            {displayStep > 1 ? (
+      <header className="relative flex flex-wrap items-center justify-between gap-2.5 border-b border-stone-200/80 bg-muted/25 px-4 py-3.5 sm:flex-nowrap sm:gap-4 sm:px-7 dark:border-stone-800">
+        <div className="flex min-h-11 w-full items-center justify-between gap-3 sm:w-auto sm:min-w-0 sm:justify-start">
+          {displayStep > 1 ? (
+            <>
               <button
                 type="button"
                 onClick={stepBack}
-                className="-ml-2 inline-flex min-h-11 items-center gap-1.5 rounded-xl px-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3.5 py-2 text-sm font-semibold text-sapphire shadow-2xs press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/40 hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
+                <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{copy.machine.back}</span>
               </button>
-            ) : null}
-            <p className="text-sm font-medium text-muted-foreground tabular-nums">
-              {stepLabel}
-            </p>
-          </div>
-
-          <TriagePlainLanguageToggle
-            enabled={state.plainLanguage}
-            onToggle={toggleReadingLevel}
-          />
+              <span className="shrink-0 whitespace-nowrap text-xs font-medium text-muted-foreground tabular-nums sm:text-sm">
+                <span aria-hidden="true" className="sm:hidden">
+                  {displayStep} / {totalSteps}
+                </span>
+                <span className="sr-only sm:not-sr-only">{stepLabel}</span>
+              </span>
+            </>
+          ) : (
+            <div className="flex items-center gap-2.5">
+              {/* Decorative 20px SVG mark matching hero instrument header */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Icons/Logo.svg" alt="" width={20} height={20} className="h-5 w-5 shrink-0" />
+              <p className="shrink-0 whitespace-nowrap text-sm font-semibold text-foreground tabular-nums">
+                {stepLabel}
+              </p>
+            </div>
+          )}
         </div>
 
+        <TriagePlainLanguageToggle
+          enabled={state.plainLanguage}
+          onToggle={toggleReadingLevel}
+        />
+
+        {/* Full-bleed 2px sapphire progress hairline along bottom edge of instrument header */}
         <div
-          className="mt-3 flex h-1 w-full gap-1.5"
+          className="absolute inset-x-0 bottom-0 h-0.5 bg-stone-200/80 dark:bg-stone-800"
           role="progressbar"
           aria-label={copy.machine.progressLabel}
           aria-valuenow={displayStep}
@@ -407,38 +418,45 @@ export function TriageStateMachine({
           aria-valuemax={totalSteps}
           aria-valuetext={stepLabel}
         >
-          {Array.from({ length: totalSteps }, (_, idx) => idx + 1).map((segment) => (
-            <div
-              key={segment}
-              className={`h-1 flex-1 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
-                displayStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
-              }`}
-            />
-          ))}
+          <div
+            className="h-full bg-sapphire transition-[width] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none dark:bg-sapphire-border"
+            style={{ width: `${(displayStep / totalSteps) * 100}%` }}
+          />
         </div>
+      </header>
 
-        {trailItems.length > 0 && (
-          <nav aria-label={copy.machine.selectedTrailLabel} className="mt-4 flex flex-wrap gap-2">
-            {trailItems.map((item) => (
-              <button
-                key={item.key}
-                type="button"
-                onClick={() => handleTrailSelect(item.action, item.stepsBack)}
-                className="inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-full border border-sapphire/25 bg-sapphire-soft/70 px-3.5 py-1.5 text-left text-sm font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
-              >
-                <span className="truncate">{item.label}</span>
-                <span aria-hidden="true" className="shrink-0 text-sapphire/70">↺</span>
-              </button>
-            ))}
+      <div className="p-5 sm:p-7">
+        {trailItems.length > 1 && (
+          <nav
+            aria-label={copy.machine.selectedTrailLabel}
+            className="mb-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            <ol className="flex items-center gap-x-1 text-xs text-muted-foreground sm:text-[0.8125rem]">
+              {trailItems.map((item, index) => (
+                <li key={item.key} className="flex shrink-0 items-center">
+                  {index > 0 && (
+                    <span aria-hidden="true" className="mx-1 text-muted-foreground/50">
+                      ›
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => handleTrailSelect(item.action, item.stepsBack)}
+                    className="-my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-1.5 py-1.5 font-medium text-sapphire press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <span>{item.label}</span>
+                  </button>
+                </li>
+              ))}
+            </ol>
           </nav>
         )}
-      </div>
 
-      <div
-        key={viewKey}
-        ref={contentRef}
-        tabIndex={-1}
-      >
+        <div
+          key={viewKey}
+          ref={contentRef}
+          tabIndex={-1}
+        >
         {state.step === 1 && (
           <TriageDecisionTree
             onSelectPathway={(pathway) => dispatch({ type: "SELECT_PATHWAY", pathway })}
@@ -514,6 +532,7 @@ export function TriageStateMachine({
             plainLanguage={state.plainLanguage}
           />
         )}
+        </div>
       </div>
 
       <p className="sr-only" aria-live="polite" aria-atomic="true">

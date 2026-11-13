@@ -21,7 +21,7 @@ export default async function PrivacyPage() {
     <main id="main-content" className="flex-1">
       <section className="border-b border-border bg-muted/40 py-10 sm:py-14">
         <Container>
-          <SectionHeading as="h1" title={copy.title} subtitle={copy.description} />
+          <SectionHeading as="h1" title={copy.title} subtitle={copy.description} titleClassName="text-page" />
         </Container>
       </section>
 
@@ -29,36 +29,36 @@ export default async function PrivacyPage() {
         <Container>
           <div className="max-w-2xl space-y-6 text-base leading-relaxed text-muted-foreground">
             <div>
-              <h2 className="text-base font-semibold text-foreground">{copy.botTitle}</h2>
+              <h2 className="text-title text-foreground">{copy.botTitle}</h2>
               <p className="mt-2">{copy.botBody}</p>
               <RecaptchaNotice />
             </div>
             <div>
-              <h2 className="text-base font-semibold text-foreground">{copy.collectTitle}</h2>
+              <h2 className="text-title text-foreground">{copy.collectTitle}</h2>
               <p className="mt-2">
                 {copy.collectBody}
               </p>
             </div>
 
             <div>
-              <h2 className="text-base font-semibold text-foreground">{copy.useTitle}</h2>
+              <h2 className="text-title text-foreground">{copy.useTitle}</h2>
               <p className="mt-2">
                 {copy.useBody}
               </p>
             </div>
 
             <div>
-              <h2 className="text-base font-semibold text-foreground">{copy.accessTitle}</h2>
+              <h2 className="text-title text-foreground">{copy.accessTitle}</h2>
               <p className="mt-2">
                 {copy.accessBody}
               </p>
             </div>
 
             <div>
-              <h2 className="text-base font-semibold text-foreground">{copy.choicesTitle}</h2>
+              <h2 className="text-title text-foreground">{copy.choicesTitle}</h2>
               <p className="mt-2">
                 {copy.choicesBody}{" "}
-                <a href="mailto:support@redihealth.app" className="text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire">
+                <a href="mailto:support@redihealth.app" className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                   support@redihealth.app
                 </a>
                 .

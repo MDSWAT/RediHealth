@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  useCallback,
   useEffect,
   useId,
   useRef,
@@ -23,6 +24,10 @@ export type LanguageSelectorProps = {
   tone?: "default" | "light";
   /** Pairs the drawer trigger cleanly in a 2-column grid while letting the open menu span both columns. */
   gridPaired?: boolean;
+  /** Renders the drawer selector as a progressive-disclosure Settings row inside a grouped card. */
+  listRow?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
   onNavigate?: () => void;
 };
 
@@ -92,11 +97,39 @@ export function LanguageSelector({
   variant = "default",
   tone = "default",
   gridPaired = false,
+  listRow = false,
+  open,
+  onOpenChange,
   onNavigate,
 }: LanguageSelectorProps) {
   const { lang, setLang } = useLanguage();
   const pathname = usePathname() || "/";
-  const [open, setOpen] = useState(false);
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const isControlled = open !== undefined;
+  const isOpen = isControlled ? open : uncontrolledOpen;
+  const isOpenRef = useRef(isOpen);
+  const onOpenChangeRef = useRef(onOpenChange);
+
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
+
+  useEffect(() => {
+    onOpenChangeRef.current = onOpenChange;
+  }, [onOpenChange]);
+
+  const setOpen = useCallback(
+    (next: boolean | ((prev: boolean) => boolean)) => {
+      const resolved = typeof next === "function" ? next(isOpenRef.current) : next;
+      isOpenRef.current = resolved;
+      if (!isControlled) {
+        setUncontrolledOpen(resolved);
+      }
+      onOpenChangeRef.current?.(resolved);
+    },
+    [isControlled],
+  );
+
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const optionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -121,7 +154,7 @@ export function LanguageSelector({
   }, []);
 
   useEffect(() => {
-    if (!open) {
+    if (!isOpen) {
       pointerOutsideRef.current = false;
       return;
     }
@@ -160,7 +193,7 @@ export function LanguageSelector({
       document.removeEventListener("pointercancel", handlePointerEnd);
       document.removeEventListener("keydown", handleKeyDown, true);
     };
-  }, [open, variant]);
+  }, [isOpen, variant, setOpen]);
 
   function focusOption(index: number) {
     const count = orderedLanguages.length;
@@ -178,12 +211,14 @@ export function LanguageSelector({
   function handleTriggerKeyDown(event: ReactKeyboardEvent<HTMLButtonElement>) {
     if (event.key === "ArrowDown") {
       event.preventDefault();
+      const wasOpen = isOpenRef.current;
       setOpen(true);
-      focusOption(open ? 0 : activeIndex);
+      focusOption(wasOpen ? 0 : activeIndex);
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
+      const wasOpen = isOpenRef.current;
       setOpen(true);
-      focusOption(open ? orderedLanguages.length - 1 : activeIndex);
+      focusOption(wasOpen ? orderedLanguages.length - 1 : activeIndex);
     }
   }
 
@@ -241,13 +276,13 @@ export function LanguageSelector({
                 aria-current={isSelected ? "true" : undefined}
                 onClick={(event) => handleSelect(event, item.code)}
                 className={cn(
-                  "flex min-h-11 w-full items-center justify-between gap-2 rounded-(--radius-control) px-3 py-2 text-body leading-snug press-row focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+                  "flex min-h-11 w-full max-w-full items-center justify-between gap-2 whitespace-nowrap rounded-(--radius-control) px-3 py-2 text-body leading-snug press-row focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
                   isSelected
                     ? "bg-sapphire-soft font-semibold text-sapphire dark:bg-white/10 dark:text-paper"
                     : "text-foreground hover:bg-muted dark:text-paper dark:hover:bg-white/5",
                 )}
               >
-                <span className="min-w-0 break-words">{item.label}</span>
+                <span className="min-w-0 flex-1 truncate">{item.label}</span>
                 {isSelected ? <CheckIcon className="h-5 w-5 shrink-0" /> : null}
               </a>
             </li>
@@ -262,14 +297,114 @@ export function LanguageSelector({
             setOpen(false);
             onNavigate?.();
           }}
-          className="flex min-h-11 items-center justify-between gap-3 rounded-(--radius-control) px-3 py-2 text-body leading-snug text-muted-foreground press-row hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+          className="flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-(--radius-control) px-3 py-2 text-body leading-snug text-muted-foreground press-row hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
         >
-          <span>{copy.romaniNote}</span>
+          <span className="min-w-0 truncate">{copy.romaniNote}</span>
           <ArrowRightIcon className="h-5 w-5 shrink-0 text-sapphire dark:text-paper" />
         </Link>
       </div>
     </>
   );
+
+  if (variant === "drawer" && listRow) {
+    return (
+      <div ref={rootRef} onBlur={handleBlur} className={cn("w-full text-left", className)}>
+        <button
+          ref={buttonRef}
+          type="button"
+          onClick={() => setOpen((prev) => !prev)}
+          onKeyDown={handleTriggerKeyDown}
+          aria-expanded={isOpen}
+          aria-controls={panelId}
+          className={cn(
+            "group flex min-h-12 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-lg px-2.5 py-2.5 text-left press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper",
+            isOpen
+              ? "bg-sapphire/[0.06] dark:bg-white/[0.07]"
+              : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",
+          )}
+        >
+          <GlobeIcon
+            className={cn(
+              "h-4.5 w-4.5 shrink-0 transition-colors duration-(--dur-fast)",
+              isOpen
+                ? "text-sapphire dark:text-sapphire-border"
+                : "text-ink-900/50 group-hover:text-foreground dark:text-paper/55 dark:group-hover:text-paper",
+            )}
+            aria-hidden="true"
+          />
+          <span className="min-w-0 flex-1 truncate text-[15.5px] font-medium leading-snug text-foreground dark:text-paper">
+            {copy.label}
+          </span>
+          <span
+            lang={activeLang.code}
+            className="shrink-0 whitespace-nowrap text-sm font-medium text-muted-foreground dark:text-mist"
+          >
+            {activeLang.label}
+          </span>
+          <ChevronDownIcon
+            className={cn(
+              "h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35",
+              chevronMotion,
+              isOpen && "rotate-180 text-sapphire dark:text-paper",
+            )}
+          />
+        </button>
+
+        <div
+          id={panelId}
+          className={cn(
+            "grid transition-[grid-template-rows,opacity] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+          )}
+        >
+          <div className="overflow-hidden" inert={!isOpen}>
+            <div className="px-1 pt-1.5 pb-3">
+              <ul aria-label={copy.label} onKeyDown={handleListKeyDown} className="grid grid-cols-2 gap-1.5">
+                {orderedLanguages.map((item, idx) => {
+                  const isSelected = item.code === lang;
+                  return (
+                    <li key={item.code}>
+                      <a
+                        ref={(el) => {
+                          optionRefs.current[idx] = el;
+                        }}
+                        href={withLangPrefix(pathname, item.code)}
+                        hrefLang={item.code}
+                        lang={item.code}
+                        aria-current={isSelected ? "true" : undefined}
+                        onClick={(event) => handleSelect(event, item.code)}
+                        className={cn(
+                          "flex min-h-11 max-w-full items-center justify-between gap-2 whitespace-nowrap rounded-lg border px-3 py-2 text-sm leading-snug press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper",
+                          isSelected
+                            ? "border-sapphire bg-sapphire/[0.06] font-semibold text-sapphire dark:border-paper dark:bg-white/15 dark:text-paper"
+                            : "border-ink-900/12 bg-white text-foreground hover:bg-ink-900/[0.03] dark:border-white/12 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
+                        )}
+                      >
+                        <span className="min-w-0 flex-1 truncate">{item.label}</span>
+                        {isSelected ? <CheckIcon className="h-4 w-4 shrink-0" /> : null}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <Link
+                href={glossaryHref}
+                onClick={() => {
+                  setOpen(false);
+                  onNavigate?.();
+                }}
+                className="mt-2 flex min-h-11 items-center justify-between max-w-full gap-2.5 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-xs leading-snug text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-ink-900/[0.035] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper dark:focus-visible:ring-paper"
+              >
+                <span className="min-w-0 truncate">{copy.romaniNote}</span>
+                <ArrowRightIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-paper" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (variant === "drawer") {
     return (
@@ -283,14 +418,14 @@ export function LanguageSelector({
           type="button"
           onClick={() => setOpen((prev) => !prev)}
           onKeyDown={handleTriggerKeyDown}
-          aria-expanded={open}
-          aria-controls={open ? panelId : undefined}
+          aria-expanded={isOpen}
+          aria-controls={isOpen ? panelId : undefined}
           className={cn(
-            "flex w-full items-center gap-2 text-left text-foreground press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-paper dark:focus-visible:ring-paper",
+            "flex w-full max-w-full items-center gap-2 whitespace-nowrap text-left text-foreground press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-paper dark:focus-visible:ring-paper",
             gridPaired
-              ? "order-1 min-h-10 rounded-xl border px-3 py-1.5 text-[13.5px] font-medium bg-muted/40 hover:bg-muted/75 dark:bg-white/5 dark:hover:bg-white/10"
+              ? "order-1 min-h-11 rounded-xl border px-3 py-1.5 text-[13.5px] font-medium bg-muted/40 hover:bg-muted/75 dark:bg-white/5 dark:hover:bg-white/10"
               : "min-h-11 rounded-(--radius-control) border bg-card px-3.5 py-2 text-body font-semibold hover:bg-muted dark:bg-ink-900 dark:hover:bg-white/10",
-            open
+            isOpen
               ? "border-sapphire bg-card dark:border-paper dark:bg-ink-900"
               : gridPaired
                 ? "border-border/75 dark:border-white/12"
@@ -299,7 +434,7 @@ export function LanguageSelector({
         >
           <GlobeIcon className={cn("shrink-0 text-muted-foreground dark:text-mist", gridPaired ? "h-4.5 w-4.5" : "h-5 w-5")} />
           <span className="sr-only">{copy.label}: </span>
-          <span lang={activeLang.code} className="min-w-0 flex-1 truncate">
+          <span lang={activeLang.code} className="min-w-0 flex-1 truncate whitespace-nowrap">
             {activeLang.label}
           </span>
           <ChevronDownIcon
@@ -307,12 +442,12 @@ export function LanguageSelector({
               "text-muted-foreground dark:text-mist",
               gridPaired ? "h-4.5 w-4.5" : "h-5 w-5",
               chevronMotion,
-              open && "rotate-180",
+              isOpen && "rotate-180",
             )}
           />
         </button>
 
-        {open ? (
+        {isOpen ? (
           <div
             id={panelId}
             className={cn(
@@ -334,10 +469,10 @@ export function LanguageSelector({
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         onKeyDown={handleTriggerKeyDown}
-        aria-expanded={open}
+        aria-expanded={isOpen}
         aria-controls={panelId}
         className={cn(
-          "inline-flex min-h-11 min-w-20 items-center justify-between gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+          "inline-flex min-h-11 min-w-20 max-w-full items-center justify-between gap-1.5 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
           tone === "light"
             ? "text-paper/85 hover:bg-white/10 hover:text-paper focus-visible:ring-paper/70"
             : "text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
@@ -353,18 +488,18 @@ export function LanguageSelector({
             "h-4 w-4",
             chevronMotion,
             tone === "light" ? "text-paper/65" : "text-muted-foreground dark:text-mist",
-            open && "rotate-180",
+            isOpen && "rotate-180",
           )}
         />
       </button>
 
       <div
         id={panelId}
-        inert={!open}
+        inert={!isOpen}
         className={cn(
-          "absolute right-0 top-full z-50 mt-2 w-72 rounded-(--radius-surface) border border-border bg-card p-1.5 shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-800",
+          "absolute right-0 top-full z-50 mt-2 w-72 rounded-2xl border border-stone-200/90 bg-card/98 p-2 shadow-xl shadow-ink-950/12 backdrop-blur-md dark:border-stone-800 dark:bg-ink-900/98 dark:shadow-black/45",
           "transition-[opacity,translate,visibility] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-          open ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
+          isOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
         )}
       >
         {panelBody}

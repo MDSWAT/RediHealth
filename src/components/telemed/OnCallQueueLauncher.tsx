@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { CalendarIcon, CheckCircleIcon, CheckIcon, ClockIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
+import { useReadAloud } from "@/components/health-check/readingTools";
+import { Container } from "@/components/ui/Container";
+import { ArrowLeftIcon, CalendarIcon, CheckCircleIcon, CheckIcon, ClockIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { playSoundCheck } from "./sound-check";
 import { useOnCallStatus } from "./OnCallStatusBanner";
@@ -19,8 +21,11 @@ function useSafeLanguage() {
   }
 }
 
-const queueCopy = {
+export const queueCopy = {
   ru: {
+    listen: "Слушать",
+    stop: "Остановить",
+    back: "Назад",
     doctorWillTakeYou: "Дежурный врач скоро примет вас",
     stayOnPage: "Держите эту страницу открытой. Когда врач будет готов, вы услышите короткий звук.",
     doctorReady: "Доктор ждет вас",
@@ -28,7 +33,7 @@ const queueCopy = {
     positionText: (pos: number) => (pos > 0 ? `Ты номер ${pos} в очереди` : "Ты следующий"),
     estimatedTime: (pos: number) => `Время ожидания: ${pos > 1 ? "около 3–5 минут" : "меньше минуты"}`,
     enterNow: "Обратитесь к врачу",
-    connectCall: "Присоединяйтесь к звонку",
+    connectCall: "Войти в звонок",
     soundSuccess: "Звук работает",
     checkVolume: "Увеличьте громкость",
     testSoundButton: "Тестовый звук",
@@ -44,6 +49,9 @@ const queueCopy = {
   },
 
   ro: {
+    listen: "Ascultă",
+    stop: "Oprește",
+    back: "Înapoi",
     doctorWillTakeYou: "Medicul de gardă vine în curând",
     stayOnPage: "Nu închide pagina. Auzi un sunet scurt când medicul e gata.",
     doctorReady: "Medicul te așteaptă",
@@ -66,6 +74,9 @@ const queueCopy = {
     ],
   },
   en: {
+    listen: "Listen",
+    stop: "Stop",
+    back: "Back",
     doctorWillTakeYou: "The on-call doctor will see you soon",
     stayOnPage: "Keep this page open. You will hear a short sound when the doctor is ready.",
     doctorReady: "The doctor is waiting for you",
@@ -88,6 +99,9 @@ const queueCopy = {
     ],
   },
   sq: {
+    listen: "Dëgjo",
+    stop: "Ndalo",
+    back: "Kthehu",
     doctorWillTakeYou: "Mjeku kujdestar vjen së shpejti",
     stayOnPage: "Mos e mbyll faqen. Do të dëgjosh një zë të shkurtër kur mjeku të jetë gati.",
     doctorReady: "Mjeku të pret",
@@ -110,6 +124,9 @@ const queueCopy = {
     ],
   },
   it: {
+    listen: "Ascolta",
+    stop: "Ferma",
+    back: "Indietro",
     doctorWillTakeYou: "Il medico di guardia arriva a breve",
     stayOnPage: "Non chiudere la pagina. Sentirai un breve suono quando il medico è pronto.",
     doctorReady: "Il medico ti aspetta",
@@ -132,6 +149,9 @@ const queueCopy = {
     ],
   },
   hr: {
+    listen: "Slušaj",
+    stop: "Zaustavi",
+    back: "Natrag",
     doctorWillTakeYou: "Dežurni liječnik uskoro će te primiti",
     stayOnPage: "Ne zatvaraj ovu stranicu. Čut ćeš kratak zvuk kada liječnik bude spreman.",
     doctorReady: "Liječnik te čeka",
@@ -154,6 +174,9 @@ const queueCopy = {
     ],
   },
   rom: {
+    listen: "Shun",
+    stop: "Ushtav",
+    back: "Palpale",
     doctorWillTakeYou: "O doktori kay si pe buchi ka lel tut sigo",
     stayOnPage: "Ma phand kadi rig. Ka shunes xarno avazi kana o doktori si gata.",
     doctorReady: "O doktori azhukerel tut",
@@ -197,6 +220,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
   const [prepChecks, setPrepChecks] = useState<boolean[]>([false, false, false]);
   const roomId = useRef(`oncall-${queueToken.toLowerCase()}`);
   const { isOnDuty } = useOnCallStatus();
+  const voice = useReadAloud(lang);
 
   // Demo queue: one step forward after 8 s, the doctor joins after 16 s with a short tone.
   // Outside duty hours nobody is on call, so the line does not move and the hours are shown instead.
@@ -214,115 +238,145 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
     };
   }, [isOnDuty]);
 
+  const readParts = [
+    ...(isOnDuty ? [copy.doctorWillTakeYou, copy.stayOnPage] : [copy.closedTitle, copy.closedBody]),
+    copy.prepHeading,
+    ...copy.steps.flatMap(([title, desc]) => [title, desc]),
+  ];
+
   const progress = doctorConnected ? 1 : position >= 2 ? 0.35 : position === 1 ? 0.75 : 0.95;
 
   return (
-    <main id="main-content" className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
-      <section className="rounded-xl border border-border bg-card p-6 sm:p-8">
-        {isOnDuty ? (
-          <>
-            <h1 className="text-balance text-2xl font-semibold tracking-tight text-foreground">{copy.doctorWillTakeYou}</h1>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">{copy.stayOnPage}</p>
-
-            <div className="mt-6 border-t border-border pt-6">
-              <div role="status" aria-live="polite" aria-atomic="true">
-                {doctorConnected ? (
-                  <div className="flex items-start gap-3">
-                    <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
-                    <div>
-                      <p className="text-lg font-semibold text-foreground">{copy.doctorReady}</p>
-                      <p className="mt-0.5 text-sm text-muted-foreground">{copy.pressButtonBelow}</p>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <p className="text-lg font-semibold text-foreground tabular-nums">{copy.positionText(position)}</p>
-                    <p className="mt-0.5 text-sm text-muted-foreground">{copy.estimatedTime(position)}</p>
-                  </div>
-                )}
-              </div>
-
-              <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-muted" aria-hidden="true">
-                <div
-                  className="h-full w-full origin-left rounded-full bg-sapphire transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] motion-reduce:transition-none"
-                  style={{ transform: `scaleX(${progress})` }}
-                />
-              </div>
-            </div>
-
+    <main id="main-content" className="flex-1 bg-background py-8 sm:py-12">
+      <Container>
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <Link
+            href={withLangPrefix("/medic-online", lang)}
+            className="inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+            <span className="min-w-0 truncate">{copy.back}</span>
+          </Link>
+          {voice.available ? (
             <button
               type="button"
-              onClick={() => router.push(withLangPrefix(`/medic-online/meet/${roomId.current}`, lang))}
-              className={cn(
-                "mt-6 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                "bg-sapphire hover:bg-sapphire-light",
-              )}
+              onClick={() => (voice.speaking ? voice.stop() : voice.speak(readParts))}
+              aria-pressed={voice.speaking}
+              className="inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <PhoneIcon className="h-5 w-5" />
-              {doctorConnected ? copy.enterNow : copy.connectCall}
+              <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" />
+              <span className="min-w-0 truncate">{voice.speaking ? copy.stop : copy.listen}</span>
             </button>
-          </>
-        ) : (
-          <>
-            <div className="flex items-start gap-3">
-              <ClockIcon aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-muted-foreground" />
-              <div>
-                <h1 className="text-balance text-2xl font-semibold tracking-tight text-foreground">{copy.closedTitle}</h1>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground tabular-nums sm:text-base">{copy.closedBody}</p>
-              </div>
-            </div>
-            <Link
-              href={withLangPrefix("/medic-online/programare", lang)}
-              className="mt-6 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
-              <CalendarIcon className="h-5 w-5" />
-              {copy.book}
-            </Link>
-          </>
-        )}
-
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-          <span className="flex items-center gap-2 text-sm text-muted-foreground" aria-live="polite">
-            {soundTested ? <CheckIcon className="h-4 w-4 text-sapphire" /> : null}
-            {soundTested ? copy.soundSuccess : copy.checkVolume}
-          </span>
-          <button
-            type="button"
-            onClick={() => {
-              playSoundCheck();
-              setSoundTested(true);
-            }}
-            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-border bg-background px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <VolumeIcon className="h-4 w-4 text-sapphire" />
-            {copy.testSoundButton}
-          </button>
+          ) : null}
         </div>
-      </section>
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
+          <section className="rounded-xl border border-border bg-card p-6 sm:p-8">
+            {isOnDuty ? (
+              <>
+                <h1 className="text-balance text-page text-foreground">{copy.doctorWillTakeYou}</h1>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">{copy.stayOnPage}</p>
 
-      <section aria-labelledby="queue-prep-heading" className="mt-8">
-        <h2 id="queue-prep-heading" className="text-base font-semibold text-foreground">
-          {copy.prepHeading}
-        </h2>
-        <ul className="mt-3 divide-y divide-border rounded-xl border border-border bg-card">
-          {copy.steps.map(([title, desc], i) => (
-            <li key={title}>
-              <label className="flex cursor-pointer items-start gap-3 p-4 transition-colors duration-[var(--dur-fast)] hover:bg-muted/40">
-                <input
-                  type="checkbox"
-                  checked={prepChecks[i]}
-                  onChange={() => setPrepChecks((prev) => prev.map((v, j) => (j === i ? !v : v)))}
-                  className="mt-0.5 h-5 w-5 shrink-0 rounded border-border accent-sapphire"
-                />
-                <span>
-                  <span className={cn("block text-sm font-semibold", prepChecks[i] ? "text-muted-foreground" : "text-foreground")}>{title}</span>
-                  <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{desc}</span>
-                </span>
-              </label>
-            </li>
-          ))}
-        </ul>
-      </section>
+                <div className="mt-6 border-t border-border pt-6">
+                  <div role="status" aria-live="polite" aria-atomic="true">
+                    {doctorConnected ? (
+                      <div className="flex items-start gap-3">
+                        <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
+                        <div>
+                          <p className="text-lg font-semibold text-foreground">{copy.doctorReady}</p>
+                          <p className="mt-0.5 text-sm text-muted-foreground">{copy.pressButtonBelow}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-lg font-semibold text-foreground tabular-nums">{copy.positionText(position)}</p>
+                        <p className="mt-0.5 text-sm text-muted-foreground">{copy.estimatedTime(position)}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-4 h-1 w-full overflow-hidden rounded-sm bg-muted" aria-hidden="true">
+                    <div
+                      className="h-full w-full origin-left rounded-sm bg-sapphire transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] motion-reduce:transition-none"
+                      style={{ transform: `scaleX(${progress})` }}
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => router.push(withLangPrefix(`/medic-online/meet/${roomId.current}`, lang))}
+                  className={cn(
+                    "mt-6 inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]",
+                    "bg-sapphire hover:bg-sapphire-light",
+                  )}
+                >
+                  <PhoneIcon className="h-5 w-5 shrink-0" />
+                  <span className="min-w-0 truncate">{doctorConnected ? copy.enterNow : copy.connectCall}</span>
+                </button>
+              </>
+            ) : (
+              <>
+                <div className="flex items-start gap-3">
+                  <ClockIcon aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-muted-foreground" />
+                  <div>
+                    <h1 className="text-balance text-page text-foreground">{copy.closedTitle}</h1>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground tabular-nums sm:text-base">{copy.closedBody}</p>
+                  </div>
+                </div>
+                <Link
+                  href={withLangPrefix("/medic-online/programare", lang)}
+                  className="mt-6 inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]"
+                >
+                  <CalendarIcon className="h-5 w-5 shrink-0" />
+                  <span className="min-w-0 truncate">{copy.book}</span>
+                </Link>
+              </>
+            )}
+
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+              <span className="flex items-center gap-2 text-sm text-muted-foreground" aria-live="polite">
+                {soundTested ? <CheckIcon className="h-4 w-4 text-sapphire" /> : null}
+                {soundTested ? copy.soundSuccess : copy.checkVolume}
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  playSoundCheck();
+                  setSoundTested(true);
+                }}
+                className="inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" />
+                <span className="min-w-0 truncate">{copy.testSoundButton}</span>
+              </button>
+            </div>
+          </section>
+
+          <section aria-labelledby="queue-prep-heading" className="lg:sticky lg:top-[calc(var(--chrome-h,0px)+1.5rem)]">
+            <h2 id="queue-prep-heading" className="text-balance text-title text-foreground">
+              {copy.prepHeading}
+            </h2>
+            <ul className="mt-3 divide-y divide-border rounded-xl border border-border bg-card">
+              {copy.steps.map(([title, desc], i) => (
+                <li key={title}>
+                  <label className="flex cursor-pointer items-start gap-3 p-4 transition-colors duration-[var(--dur-fast)] hover:bg-muted/40">
+                    <input
+                      type="checkbox"
+                      checked={prepChecks[i]}
+                      onChange={() => setPrepChecks((prev) => prev.map((v, j) => (j === i ? !v : v)))}
+                      className="mt-0.5 h-5 w-5 shrink-0 rounded border-border-control accent-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    />
+                    <span>
+                      <span className={cn("block text-sm font-semibold", prepChecks[i] ? "text-muted-foreground" : "text-foreground")}>{title}</span>
+                      <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{desc}</span>
+                    </span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </Container>
     </main>
   );
 }

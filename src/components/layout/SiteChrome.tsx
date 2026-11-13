@@ -2,14 +2,18 @@
 
 import { useEffect, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import { MotionConfig } from "motion/react";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { FeedbackWidget } from "@/components/layout/FeedbackWidget";
 import { ReportIssueWidget } from "@/components/layout/ReportIssueWidget";
+import { SmartSearchModal } from "@/components/search/SmartSearchModal";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { RecaptchaProvider, RecaptchaNotice } from "@/components/security/RecaptchaProvider";
 import { initClientNoiseFilter } from "@/lib/client-noise-filter";
+import { useComfortDomSync } from "@/lib/comfort-preferences";
+import { useCalmReducedMotion } from "@/lib/motion/tokens";
 import type { Lang } from "@/lib/i18n/translations";
 
 if (typeof window !== "undefined") {
@@ -53,17 +57,22 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang }: SiteChrome
   // Symptom check and prescription review are interactive tasks: they end at their action button, with no footer after them.
   const hideFooter = isChromelessSurface || path === "/health-check" || path === "/prescription-review";
   useSkipLinkTarget(pathname);
+  useComfortDomSync();
+  const calmMotion = useCalmReducedMotion();
 
   return (
-    <LanguageProvider requestLang={lang}>
-      <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
-        {isChromelessSurface ? null : <Header />}
-        {children}
-        {isChromelessSurface ? null : <FeedbackWidget />}
-        {isChromelessSurface ? null : <ReportIssueWidget />}
-        {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
-        {hideFooter ? null : <Footer />}
-      </RecaptchaProvider>
-    </LanguageProvider>
+    <MotionConfig reducedMotion={calmMotion ? "always" : "user"}>
+      <LanguageProvider requestLang={lang}>
+        <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
+          {isChromelessSurface ? null : <Header />}
+          {isChromelessSurface ? null : <SmartSearchModal />}
+          {children}
+          {isChromelessSurface ? null : <FeedbackWidget />}
+          {isChromelessSurface ? null : <ReportIssueWidget />}
+          {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
+          {hideFooter ? null : <Footer />}
+        </RecaptchaProvider>
+      </LanguageProvider>
+    </MotionConfig>
   );
 }

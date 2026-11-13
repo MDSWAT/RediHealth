@@ -1,54 +1,60 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { ClockIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 
-const copy: Record<Lang, { title: string; body: string; action: string }> = {
+export const expiredCopy: Record<Lang, { title: string; body: string; action: string; help: string }> = {
   ru: {
-    title: "Срок действия этой ссылки истек",
-    body: "Чтобы защитить ваши данные, ссылки на портале перестают работать через 90 дней. Дайте нам свой адрес электронной почты, и мы сразу же отправим вам новую ссылку.",
-    action: "Get a new link",
+    title: "Срок действия ссылки из SMS истек",
+    body: "Ничего страшного. Войдите сразу по номеру телефона: мы отправим код по SMS. Электронная почта и пароль не нужны.",
+    action: "Войти по номеру телефона",
+    help: "Нужна помощь? Позвать медиатора",
   },
-
   en: {
-    title: "This link has expired",
-    body: "To protect your details, portal links stop working after 90 days. Give us your email address and we send you a new link straight away.",
-    action: "Get a new link",
+    title: "This SMS link has expired",
+    body: "That is fine. Sign in right away with your phone number and we send you a code by SMS. No email or password needed.",
+    action: "Sign in with my phone number",
+    help: "Need help? Ask a mediator",
   },
   ro: {
-    title: "Linkul a expirat",
-    body: "Ca să-ți protejăm datele, linkurile spre portal nu mai merg după 90 de zile. Scrie-ți adresa de email și îți trimitem imediat un link nou.",
-    action: "Cere un link nou",
+    title: "Linkul din SMS a expirat",
+    body: "Nu e nicio problemă. Intră chiar acum cu numărul tău de telefon și îți trimitem un cod prin SMS. Nu ai nevoie de email sau de parolă.",
+    action: "Intră cu numărul de telefon",
+    help: "Ai nevoie de ajutor? Cere un mediator",
   },
   sq: {
-    title: "Lidhja ka skaduar",
-    body: "Për të mbrojtur të dhënat e tua, lidhjet e portalit nuk punojnë më pas 90 ditësh. Shkruaj adresën e emailit dhe të dërgojmë menjëherë një lidhje të re.",
-    action: "Kërko lidhje të re",
+    title: "Lidhja nga SMS ka skaduar",
+    body: "S'ka problem. Hyr menjëherë me numrin e telefonit dhe të dërgojmë një kod me SMS. Nuk të duhet email ose fjalëkalim.",
+    action: "Hyr me numrin e telefonit",
+    help: "Të duhet ndihmë? Kërko një mediator",
   },
   it: {
-    title: "Il link è scaduto",
-    body: "Per proteggere i tuoi dati, i link del portale smettono di funzionare dopo 90 giorni. Scrivi la tua email e ti mandiamo subito un link nuovo.",
-    action: "Chiedi un nuovo link",
+    title: "Il link dell'SMS è scaduto",
+    body: "Non è un problema. Accedi subito con il tuo numero di telefono e ti mandiamo un codice per SMS. Non servono email o password.",
+    action: "Accedi con il numero di telefono",
+    help: "Serve aiuto? Chiedi un mediatore",
   },
   hr: {
-    title: "Ova poveznica je istekla",
-    body: "Radi zaštite tvojih podataka poveznice za portal prestaju vrijediti nakon 90 dana. Upiši svoju adresu e-pošte i odmah ćemo ti poslati novu poveznicu.",
-    action: "Zatraži novu poveznicu",
+    title: "Poveznica iz SMS poruke je istekla",
+    body: "Nema problema. Prijavi se odmah svojim brojem telefona, a mi ti šaljemo kod SMS porukom. Ne trebaju ti e-pošta ni lozinka.",
+    action: "Prijavi se brojem telefona",
+    help: "Treba ti pomoć? Zatraži medijatora",
   },
   rom: {
-    title: "Kadava linko nakhlo",
-    body: "Te arakhas che date, e linkurya vash o portalo aven bi-zorale palo 90 divesa. Lekhav chi email adresa thaj sigo ka bichhalas tuke nevo linko.",
-    action: "Mang nevo linko",
+    title: "O linko andar o SMS nakhlo",
+    body: "Naj problema. Kher andre akana le nomerosa e telefonosko thaj bichhalas tuke kodo ko SMS. Na trebul tuke email vay parola.",
+    action: "Kher andre le nomerosa e telefonosko",
+    help: "Trebul tuke zhutipen? Mang mediatores",
   },
 };
 
 export function PortalLinkExpired() {
   const { lang } = useLanguage();
-  const text = copy[lang];
+  const text = expiredCopy[lang] ?? expiredCopy.ro;
 
   return (
     <main id="main-content" className="flex flex-1 items-center py-20 sm:py-28">
@@ -59,10 +65,19 @@ export function PortalLinkExpired() {
             {text.title}
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{text.body}</p>
-          <div className="mt-8 flex justify-center">
-            <Button href={withLangPrefix("/sign-in", lang)} size="lg">
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <Link
+              href={withLangPrefix("/contul-meu", lang)}
+              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-6 text-base font-semibold text-white transition-colors hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+            >
               {text.action}
-            </Button>
+            </Link>
+            <Link
+              href={withLangPrefix("/mediatori#solicita", lang)}
+              className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire dark:text-sapphire-border"
+            >
+              {text.help}
+            </Link>
           </div>
         </div>
       </Container>

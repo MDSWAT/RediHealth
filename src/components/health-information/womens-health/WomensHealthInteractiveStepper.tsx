@@ -72,7 +72,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
       <div
         role="tablist"
         aria-label={copy.trackAriaLabel}
-        className="grid grid-cols-2 gap-x-4 border-b border-border sm:flex sm:gap-x-0"
+        className="flex items-center gap-5 overflow-x-auto border-b border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6"
       >
         {TRACKS.map((t, index) => {
           const selected = track === t;
@@ -91,7 +91,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
               onClick={() => setTrack(t)}
               onKeyDown={trackTabs.onKeyDown}
               className={cn(
-                "-mb-px flex min-h-11 items-end gap-2 border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:mr-6",
+                "-mb-px flex min-h-11 shrink-0 items-end gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                 selected
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
@@ -127,7 +127,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                     onClick={() => setTrimester(index)}
                     onKeyDown={trimesterRadio.onKeyDown}
                     className={cn(
-                      "flex min-h-[60px] items-center gap-3 px-3.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire",
+                      "flex min-h-[60px] items-center gap-3 px-3.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                       selected ? "bg-surface-subtle text-foreground" : "bg-card text-foreground hover:bg-surface-subtle/50",
                     )}
                   >
@@ -176,11 +176,11 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
               </div>
               <figcaption className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5 border-t border-border pt-3 text-sm text-foreground">
                 <span className="inline-flex items-center gap-2.5">
-                  <span aria-hidden="true" className="block h-3.5 w-1 rounded-full bg-sapphire" />
+                  <span aria-hidden="true" className="block h-3.5 w-1 rounded-xs bg-sapphire" />
                   {copy.whoContactTitle}
                 </span>
                 <span className="inline-flex items-center gap-2.5">
-                  <span aria-hidden="true" className="block h-2.5 w-6 rounded-full bg-sapphire" />
+                  <span aria-hidden="true" className="block h-2.5 w-6 rounded-xs bg-sapphire" />
                   {current.name}, {current.weeks.charAt(0).toLowerCase() + current.weeks.slice(1)}
                 </span>
               </figcaption>
@@ -252,7 +252,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                     onClick={() => setCheckId(check.id)}
                     onKeyDown={checkRadio.onKeyDown}
                     className={cn(
-                      "flex min-h-[52px] items-center justify-between px-4 py-3 text-left text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire",
+                      "flex min-h-[52px] items-center justify-between px-4 py-3 text-left text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                       selected ? "bg-surface-subtle text-foreground" : "bg-card text-foreground hover:bg-surface-subtle/50",
                     )}
                   >

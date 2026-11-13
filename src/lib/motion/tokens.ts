@@ -1,4 +1,5 @@
 import * as React from "react";
+import { getCalmMotionSnapshot, subscribeComfort } from "@/lib/comfort-preferences";
 
 /**
  * Shared motion tokens for RediHealth.
@@ -56,15 +57,20 @@ export const ENTRANCE_OFFSET_PX = 8;
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 function subscribeReducedMotion(onStoreChange: () => void): () => void {
+  const unsubComfort = subscribeComfort(onStoreChange);
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
-    return () => {};
+    return unsubComfort;
   }
   const mql = window.matchMedia(REDUCED_MOTION_QUERY);
   mql.addEventListener("change", onStoreChange);
-  return () => mql.removeEventListener("change", onStoreChange);
+  return () => {
+    unsubComfort();
+    mql.removeEventListener("change", onStoreChange);
+  };
 }
 
 function getReducedMotionSnapshot(): boolean {
+  if (getCalmMotionSnapshot()) return true;
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
     return false;
   }
@@ -76,7 +82,7 @@ function getReducedMotionServerSnapshot(): boolean {
 }
 
 /**
- * SSR-safe reactive hook over `(prefers-reduced-motion: reduce)`.
+ * SSR-safe reactive hook over `(prefers-reduced-motion: reduce)` and in-app Calm Motion.
  * Renders `false` on the server and syncs without tearing on the client.
  */
 export function useCalmReducedMotion(): boolean {

@@ -17,23 +17,23 @@ const EN: Rules = {
     /\bpain/, /\bhurt/, /ache\b/, /aching/, /\bfever/, /temperature/, /\bcough/, /vomit/, /nause/,
     /\bsick\b/, /\bill\b/, /bleed/, /breath/, /\bchest\b/, /dizz/, /diarrh/, /stroke/, /faint/,
     /unconscious/, /emergenc/, /ambulance/, /\b112\b/, /throat/, /\brash\b/, /swell/, /swollen/, /injur/,
-    /chills/, /seizure/,
+    /chills/, /seizure/, /\btooth/, /toothache/, /\bearache/, /\bbaby\b.*\b(hot|burning)/,
   ],
-  prescription: [/prescri/, /\bpills?\b/, /tablet/, /medicin/, /medicat/, /\bdose/, /dosage/, /antibiotic/, /\bdrugs?\b/],
+  prescription: [/prescri/, /\bpills?\b/, /tablet/, /medicin/, /medicat/, /\bdose/, /dosage/, /antibiotic/, /\bdrugs?\b/, /\bmeds?\b/, /syrup/, /ointment/, /\bprescription/],
   navigation: [
     /insur/, /\bid\b/, /identity/, /hospital/, /family doctor/, /\bgp\b/, /referral/, /document/, /papers/,
-    /mediator/, /\brights?\b/, /regist/, /where (do|should|can) i go/,
+    /mediator/, /\brights?\b/, /regist/, /\bno id\b/, /uninsured/, /no insurance/, /free doctor/, /where (do|should|can) i go/,
   ],
   risk: [/\brisk/, /smok/, /blood pressure/, /diabet/, /sugar/, /weight/, /cholesterol/, /\bheart\b/],
 };
 
 const SQ: Rules = {
   symptoms: [
-    /dhemb/, /dhimb/, /\bethe/, /temperatur/, /koll/, /vjell/, /perzier/, /gjakderdh/, /humb.* gjak/, /frym/,
+    /dhemb/, /dhimb/, /\bethe/, /dhemb.*dhemb|dhembje/, /temperatur/, /koll/, /vjell/, /perzier/, /gjakderdh/, /humb.* gjak/, /frym/,
     /gjoks/, /marramendj/, /diarre/, /urgjenc/, /ambulanc/, /semur/, /\bfyt/, /\b112\b/, /te fikët|te fiket|fikem/,
   ],
-  prescription: [/recet/, /ilac/, /\bhape/, /pilul/, /tablet/, /\bdoz/, /antibiotik/, /barn/],
-  navigation: [/sigurim/, /leternjoftim/, /spital/, /mjek(u|un)? (i |te )?familj/, /dokument/, /ndermjetes/, /te drejt/, /fleta e dergimit/],
+  prescription: [/recet/, /ilac/, /\bhape/, /pilul/, /tablet/, /\bdoz/, /antibiotik/, /barn/, /\bhape/],
+  navigation: [/sigurim/, /leternjoftim/, /spital/, /mjek(u|un)? (i |te )?familj/, /dokument/, /\bpa dokument/, /\bpa sigurim/, /ndermjetes/, /te drejt/, /fleta e dergimit/],
   risk: [/rrezik/, /duhan/, /presion/, /diabet/, /sheqer/, /pesh/, /kolesterol/, /zemr/],
 };
 
@@ -45,7 +45,7 @@ const IT: Rules = {
   prescription: [/ricett/, /pastigli/, /compress/, /farmac/, /medicin/, /\bdos(e|i|aggio)\b/, /antibiotic/],
   navigation: [
     /assicura/, /carta d'?identita/, /documento d'?identita/, /ospedal/, /medico di famiglia/, /impegnativ/,
-    /document/, /mediator/, /dirit/, /tessera/, /dove (devo|posso) andare/,
+    /document/, /mediator/, /dirit/, /tessera/, /senza document/, /senza tessera/, /dove (devo|posso) andare/,
   ],
   risk: [/rischi/, /\bfum/, /pression/, /diabet/, /zucchero/, /\bpeso\b/, /colesterol/, /cuore/],
 };
@@ -59,7 +59,7 @@ const HR: Rules = {
   prescription: [/recept/, /lijek/, /tablete?/, /pilul/, /kapsul/, /\bdoz(a|e|iranje)\b/, /antibiotik/, /terapij/, /sirup/],
   navigation: [
     /osiguranj/, /\bhzzo\b/, /iskaznic/, /osobn/, /bolnic/, /obiteljsk.* lijecnik|doktor.* opce/, /uputnic/,
-    /dokument/, /medijator/, /\bprav(a|o)\b/, /upis/, /gdje (da |mogu )?idem|kamo otici/,
+    /dokument|dokumen/, /bez osobn|bez osiguranj/, /medijator/, /\bprav(a|o)\b/, /upis/, /gdje (da |mogu )?idem|kamo otici/,
   ],
   risk: [/rizik/, /pusenj|pusim|cigaret/, /krvni tlak|\btlak\b/, /dijabet/, /secer/, /tezin|debljin/, /kolesterol/, /\bsrce\b/],
 };
@@ -71,7 +71,7 @@ const ROM: Rules = {
   ],
   prescription: [/recet/, /\bdrab/, /\bxap/, /pilul/, /tablet/, /\bdoz/, /antibiotik/],
   navigation: [
-    /asigurim/, /buletin/, /\blil(a)?\b/, /bolnits/, /doktor/, /familijako/, /mediator/, /chachipen|chachimata/,
+    /asigurim/, /bi lilengo/, /nane buletin/, /buletin/, /\blil(a)?\b/, /bolnits/, /doktor/, /familijako/, /mediator/, /chachipen|chachimata/,
     /sastipnasko/, /kaj te djav|kaj shaj djav/,
   ],
   risk: [/rizik/, /thuv|cigara/, /tensia|rat.* zor/, /diabet/, /zahari|guglipen/, /pharipen/, /\bilo\b/],
@@ -82,7 +82,7 @@ const ORDER: Exclude<PathwayId, "learn">[] = ["symptoms", "prescription", "navig
 const RU: Rules = {
   symptoms: [/бол[ьи]|болит|больно|температур|лихорад|каш[её]л|рвот|тошн|кровотеч|дыша|дыхани|одышк|груд|головокруж|понос|диаре|инсульт|обморок|судорог|без сознани|скорую|скорая|112/],
   prescription: [/рецепт|таблет|лекарств|препарат|доз[аыу]|дозиров|антибиот/],
-  navigation: [/страхов|документ|больниц|поликлиник|семейн.{0,8}врач|направлен|медиатор|посредник|регистрац|куда идти/],
+  navigation: [/страхов|без страховк|нет документ|документ|больниц|поликлиник|семейн.{0,8}врач|направлен|медиатор|посредник|регистрац|куда идти/],
   risk: [/риск|кур[еюи]|давлен|диабет|сахар|вес|холестерин|сердц/],
 };
 

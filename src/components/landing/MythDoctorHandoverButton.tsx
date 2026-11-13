@@ -31,7 +31,7 @@ export function MythDoctorHandoverButton({
     <Link
       href={targetHref}
       className={cn(
-        "press-row -ml-2.5 inline-flex min-h-11 items-center gap-2 rounded-(--radius-control) px-2.5 text-[15px] font-medium text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/60 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+        "press-row -ml-2.5 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-(--radius-control) px-2.5 text-[15px] font-medium text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/60 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
         className,
       )}
     >

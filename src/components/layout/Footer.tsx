@@ -111,14 +111,14 @@ export function Footer() {
             <button
               type="button"
               onClick={() => setDialerOpen(true)}
-              className="hero-focus -my-2 inline-flex min-h-11 items-center rounded-sm font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-paper motion-reduce:transition-none"
+              className="hero-focus -my-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-paper motion-reduce:transition-none"
             >
               {tFooter.call112Button}
             </button>
             <button
               type="button"
               onClick={() => setEmergencySignsOpen(true)}
-              className="hero-focus -my-2 inline-flex min-h-11 items-center rounded-sm text-mist underline decoration-mist/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-paper hover:decoration-paper motion-reduce:transition-none"
+              className="hero-focus -my-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm text-mist underline decoration-mist/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-paper hover:decoration-paper motion-reduce:transition-none"
             >
               {tFooter.seeAlarmSigns}
             </button>
@@ -127,9 +127,7 @@ export function Footer() {
           <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-meta text-mist lg:flex-row lg:items-center lg:justify-between lg:gap-8">
             <p className="text-pretty leading-relaxed">
               <span className="font-medium text-paper/85">{tFooter.copyrightLine}</span>
-              <span aria-hidden="true" className="mx-2.5 text-white/25">
-                ·
-              </span>
+              <span aria-hidden="true" className="mx-2.5 inline-block h-3 w-px align-middle bg-white/20" />
               <span>{tFooter.nonEmergencyWarning}</span>
             </p>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:shrink-0">
@@ -138,7 +136,7 @@ export function Footer() {
                 onClick={() => {
                   openSiteFeedback();
                 }}
-                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-10 items-center rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none whitespace-nowrap"
               >
                 {(feedbackWidgetCopy[lang] ?? feedbackWidgetCopy.ro).footerLink}
               </button>
@@ -149,7 +147,7 @@ export function Footer() {
                   if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
                   if (openReportIssue()) event.preventDefault();
                 }}
-                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-10 items-center rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none whitespace-nowrap"
               >
                 {tFooter.reportIssueFallback}
               </Link>

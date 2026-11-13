@@ -197,17 +197,29 @@
     0 0 0 1cqw var(--color-ring);
 }
 
-.node:hover,
-.node:focus-visible {
+.node[data-picked] {
   z-index: 1;
 }
 
-/* Hold the ring still while a button is targeted, so it is easy to click. A parent can hold
-   it too with `data-wheel-held` (the landing spotlight does while its card is targeted). */
-.wheel:has(.node:hover, .node:focus-visible) .outer,
-.wheel:has(.node:hover, .node:focus-visible) .face,
-.wheel:has(.node:hover, .node:focus-visible) .lit,
+.node:hover,
+.node:focus-visible {
+  z-index: 2;
+}
+
+/* Hold the entire wheel still while hovered, focused, or held by the spotlight container. */
+.wheel:hover .outer,
+.wheel:hover .inner,
+.wheel:hover .hub,
+.wheel:hover .face,
+.wheel:hover .lit,
+.wheel:focus-within .outer,
+.wheel:focus-within .inner,
+.wheel:focus-within .hub,
+.wheel:focus-within .face,
+.wheel:focus-within .lit,
 :global([data-wheel-held]) .outer,
+:global([data-wheel-held]) .inner,
+:global([data-wheel-held]) .hub,
 :global([data-wheel-held]) .face,
 :global([data-wheel-held]) .lit {
   animation-play-state: paused;
@@ -256,4 +268,19 @@
   .node:focus-visible .lit {
     transition: none;
   }
+}
+
+:global(html[data-calm-motion]) .outer,
+:global(html[data-calm-motion]) .inner,
+:global(html[data-calm-motion]) .hub,
+:global(html[data-calm-motion]) .face,
+:global(html[data-calm-motion]) .lit {
+  animation: none;
+}
+
+:global(html[data-calm-motion]) .node:hover .face,
+:global(html[data-calm-motion]) .node:focus-visible .face,
+:global(html[data-calm-motion]) .node:hover .lit,
+:global(html[data-calm-motion]) .node:focus-visible .lit {
+  transition: none;
 }

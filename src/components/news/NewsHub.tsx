@@ -19,7 +19,11 @@ import { useUserCounty } from "@/lib/geo-ip";
 import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
 import { PlaceNewsModal } from "@/components/news/PlaceNewsModal";
 import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
-import { ArrowRightIcon, PinIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, PinIcon, SearchIcon, StethoscopeIcon, UsersIcon, VolumeIcon } from "@/components/ui/icons";
+import { useReadAloud } from "@/components/health-check/readingTools";
+import { openSmartSearch } from "@/components/search/smart-search-events";
+import { getSmartSearchCopy } from "@/lib/i18n/smart-search-copy";
+import { HEALTH_DETAIL_SHARED_STRINGS } from "@/lib/i18n/health-myths";
 import {
   ALBANIA_WIDE,
   CROATIA_WIDE,
@@ -82,7 +86,7 @@ ru: {
 };
 
 const utilityButton =
-  "inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "press-row inline-flex min-h-11 items-center gap-2 rounded-lg border border-border-control max-w-full bg-card px-3.5 py-2 text-sm font-medium text-foreground whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-4";
 
 /**
  * NewsHub: the regional news page. Conditional maps follow the active language:
@@ -97,6 +101,11 @@ export function NewsHub() {
   const np = t.newsPage;
   const c = COPY[lang] ?? COPY.ro;
   const extra = EXTRA_MAP_COPY[lang] ?? EXTRA_MAP_COPY.ro;
+  const searchCopy = getSmartSearchCopy(lang);
+  const voice = useReadAloud(lang);
+  const voiceStrings = HEALTH_DETAIL_SHARED_STRINGS.topicHero;
+  const listenLabel = voiceStrings.listenGuide[lang] ?? voiceStrings.listenGuide.ro;
+  const stopLabel = voiceStrings.stopAudio[lang] ?? voiceStrings.stopAudio.ro;
   const { county, setCounty } = useUserCounty();
 
   const mapCountries = useMemo(() => mapCountriesForLang(lang), [lang]);
@@ -208,7 +217,44 @@ export function NewsHub() {
               <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{np.heroTitle}</h1>
               <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">{np.heroSubtitle}</p>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap">
+              <button
+                type="button"
+                onClick={() => openSmartSearch()}
+                aria-label={searchCopy.triggerLabel}
+                title={searchCopy.triggerLabel}
+                className="press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <SearchIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="sr-only">{searchCopy.triggerLabel}</span>
+              </button>
+              {voice.available && (
+                <button
+                  type="button"
+                  aria-pressed={voice.speaking}
+                  aria-label={voice.speaking ? stopLabel : listenLabel}
+                  title={voice.speaking ? stopLabel : listenLabel}
+                  onClick={() => {
+                    if (voice.speaking) {
+                      voice.stop();
+                    } else {
+                      voice.speak([np.heroTitle, np.heroSubtitle]);
+                    }
+                  }}
+                  className={`press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    voice.speaking
+                      ? "border-sapphire bg-sapphire text-white shadow-2xs"
+                      : "border-border-control bg-card text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {voice.speaking ? (
+                    <span aria-hidden="true" className="block h-3 w-3 rounded-xs bg-current" />
+                  ) : (
+                    <VolumeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  )}
+                  <span className="sr-only">{voice.speaking ? stopLabel : listenLabel}</span>
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => setShowMap((prev) => !prev)}
@@ -216,13 +262,14 @@ export function NewsHub() {
                 aria-controls="news-county-map"
                 className={utilityButton}
               >
-                {showMap ? c.hideMap : c.showMap}
+                <span className="min-w-0 truncate">{showMap ? c.hideMap : c.showMap}</span>
               </button>
               <button type="button" onClick={() => setCountyModalOpen(true)} className={utilityButton}>
-                <PinIcon className="h-4 w-4 text-muted-foreground" />
-                <span>{countyDisplay}</span>
-                <span aria-hidden="true" className="text-muted-foreground">·</span>
-                <span className="font-normal text-muted-foreground">{changeActionLabel}</span>
+                <PinIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
+                <span className="min-w-0 truncate">{countyDisplay}</span>
+                <span className="ml-1 shrink-0 border-l border-border pl-2.5 font-normal text-muted-foreground">
+                  {changeActionLabel}
+                </span>
               </button>
             </div>
           </div>
@@ -252,10 +299,10 @@ export function NewsHub() {
               <button
                 type="button"
                 onClick={() => setModalState({ place: countryAllValue(activeCountry), country: activeCountry })}
-                className="group inline-flex min-h-[44px] items-center gap-1 rounded-sm text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="group inline-flex min-h-[44px] max-w-full shrink-0 items-center gap-1 whitespace-nowrap rounded-sm text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                {np.resetFilter}
-                <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                <span className="min-w-0 truncate">{np.resetFilter}</span>
+                <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
               </button>
             </div>
             <ul className="divide-y divide-border">
@@ -269,7 +316,10 @@ export function NewsHub() {
                       {article.title}
                     </span>
                     <span className="shrink-0 text-xs text-muted-foreground tabular-nums">
-                      {categoryLabels[article.category] ?? article.category} · {placeLabel(article.county, articleCountry(article))} ·{" "}
+                      {categoryLabels[article.category] ?? article.category}
+                      <span aria-hidden="true" className="mx-1.5 inline-block h-3 w-px align-middle bg-border" />
+                      {placeLabel(article.county, articleCountry(article))}
+                      <span aria-hidden="true" className="mx-1.5 inline-block h-3 w-px align-middle bg-border" />
                       <time dateTime={article.date}>{formatNewsDate(article.date, lang, { short: true, year: false })}</time>
                     </span>
                   </Link>
@@ -283,7 +333,7 @@ export function NewsHub() {
             className="mt-12 flex flex-col gap-5 rounded-xl border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"
           >
             <div className="max-w-xl space-y-1">
-              <h2 id="news-handover-heading" className="text-lg font-semibold text-foreground">
+              <h2 id="news-handover-heading" className="text-balance text-lg font-semibold text-foreground">
                 {np.handoverTitle}
               </h2>
               <p className="text-sm leading-relaxed text-muted-foreground">{np.handoverSubtitle}</p>
@@ -291,17 +341,17 @@ export function NewsHub() {
             <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
               <Link
                 href={withLangPrefix("/medic-online", lang)}
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-[48px] max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
-                <StethoscopeIcon className="h-4 w-4" />
-                <span>{np.handoverTelemed}</span>
+                <StethoscopeIcon className="h-4 w-4 shrink-0" />
+                <span className="min-w-0 truncate">{np.handoverTelemed}</span>
               </Link>
               <Link
                 href={withLangPrefix("/mediatori", lang)}
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="press-row inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border-control max-w-full bg-card px-5 py-2.5 text-sm font-semibold text-foreground whitespace-nowrap transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <UsersIcon className="h-4 w-4 text-sapphire" />
-                <span>{np.handoverMediator}</span>
+                <UsersIcon className="h-4 w-4 shrink-0 text-sapphire" />
+                <span className="min-w-0 truncate">{np.handoverMediator}</span>
               </Link>
             </div>
           </section>
@@ -321,6 +371,7 @@ export function NewsHub() {
         currentCounty={selectedAreaForMap}
         onSelectCounty={selectArea}
         country={activeCountry}
+        countries={mapCountries}
       />
     </main>
   );

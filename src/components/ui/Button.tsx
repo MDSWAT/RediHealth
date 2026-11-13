@@ -3,13 +3,13 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "reac
 import { cn } from "@/lib/cn";
 
 type Variant = "primary" | "action" | "secondary" | "outline" | "ghost";
-type Size = "md" | "lg";
+type Size = "sm" | "md" | "lg";
 
 // Calm feedback: colour and subtle top-edge hairline refraction only, zero scale or bounce.
 // Every variant has a pressed colour, so a tap is answered on phones, where hover never fires.
 // Disabled is neutral (muted ground, muted text), never a washed-out brand colour.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-semibold " +
+  "inline-flex items-center justify-center font-semibold whitespace-nowrap max-w-full " +
   "transition-[background-color,border-color,color,box-shadow,opacity,filter] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none " +
   "focus-visible:outline-none focus-visible:ring-2 " +
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
@@ -31,8 +31,9 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  md: "min-h-11 px-5 text-base",
-  lg: "min-h-13 px-7 text-base sm:text-lg",
+  sm: "h-10 min-h-[44px] px-3.5 text-xs sm:text-sm rounded-lg gap-1.5",
+  md: "h-11 min-h-[44px] px-4 text-sm rounded-lg gap-2",
+  lg: "h-12 min-h-[48px] px-4 text-sm sm:px-5 sm:text-[0.9375rem] rounded-xl gap-2",
 };
 
 type CommonProps = {

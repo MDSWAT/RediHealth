@@ -10,6 +10,7 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import type { MythCategory } from "@/lib/i18n/health-myths";
+import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
 import { useLanguage } from "@/lib/i18n/language-context";
 
 export interface MythCategoryProgress {
@@ -81,9 +82,7 @@ export function MythCategoryFilter({
     else if (right + pad > el.scrollLeft + el.clientWidth)
       target = right + pad - el.clientWidth;
     if (target === null) return;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const reduced = prefersCalmOrReducedMotion();
     el.scrollTo({ left: target, behavior: reduced ? "auto" : "smooth" });
   }, [activeCategory]);
 
@@ -98,9 +97,7 @@ export function MythCategoryFilter({
   const page = (direction: 1 | -1) => {
     const el = scrollerRef.current;
     if (!el) return;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const reduced = prefersCalmOrReducedMotion();
     el.scrollBy({
       left: direction * el.clientWidth * 0.6,
       behavior: reduced ? "auto" : "smooth",
@@ -118,7 +115,7 @@ export function MythCategoryFilter({
         role="group"
         aria-label={t.quiz.filterAriaLabel}
         style={maskStyle}
-        className="flex gap-x-6 overflow-x-auto border-b border-sapphire-border/80 [scrollbar-width:none] lg:flex-col lg:items-start lg:overflow-visible lg:border-b-0 lg:border-l dark:border-ink-800 [&::-webkit-scrollbar]:hidden"
+        className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] lg:flex-col lg:items-start lg:gap-0 lg:overflow-visible lg:border-l lg:border-sapphire-border/80 lg:pb-0 dark:lg:border-ink-800 [&::-webkit-scrollbar]:hidden"
       >
         {categories.map((cat) => {
           const isActive = activeCategory === cat.slug;
@@ -131,15 +128,15 @@ export function MythCategoryFilter({
               aria-pressed={isActive}
               onClick={() => onSelect(cat.slug)}
               className={cn(
-                "-mb-px flex min-h-11 shrink-0 items-baseline gap-1.5 whitespace-nowrap border-b-2 pb-2.5 pt-2 text-[15px] lg:mb-0 lg:-ml-px lg:min-h-10 lg:items-center lg:border-b-0 lg:border-l-2 lg:py-1.5 lg:pl-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none dark:focus-visible:ring-paper",
+                "flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border px-3.5 py-2 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none lg:-ml-px lg:min-h-10 lg:rounded-none lg:border-0 lg:border-l-2 lg:bg-transparent lg:px-0 lg:py-1.5 lg:pl-4 lg:text-[15px] dark:focus-visible:ring-paper",
                 isActive
-                  ? "border-foreground font-semibold text-foreground dark:border-paper dark:text-paper"
-                  : "border-transparent font-medium text-muted-foreground hover:text-foreground active:text-foreground dark:text-mist dark:hover:text-paper dark:active:text-paper",
+                  ? "border-sapphire bg-sapphire font-semibold text-paper dark:border-paper dark:bg-paper dark:text-ink-950 lg:border-foreground lg:bg-transparent lg:text-foreground dark:lg:border-paper dark:lg:bg-transparent dark:lg:text-paper"
+                  : "border-border-control bg-card font-medium text-foreground hover:border-sapphire/40 hover:text-foreground active:text-foreground dark:border-ink-700 dark:bg-ink-900 dark:text-mist dark:hover:border-ink-500 dark:hover:text-paper dark:active:text-paper lg:border-transparent lg:bg-transparent lg:text-muted-foreground dark:lg:border-transparent dark:lg:bg-transparent",
               )}
             >
               <span>{cat.label}</span>
               {hasAnswered && tally && (
-                <span className="text-meta font-normal tabular-nums text-sapphire dark:text-sapphire-border">
+                <span className="hidden text-meta font-normal tabular-nums text-sapphire dark:text-sapphire-border lg:inline">
                   {tally.answered}/{tally.total}
                 </span>
               )}

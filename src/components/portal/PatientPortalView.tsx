@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState } from "react";
 import {
   AlertCircleIcon,
   ArrowLeftIcon,
@@ -16,8 +16,12 @@ import {
   PhoneIcon,
   PinIcon,
   PlusIcon,
+  PrinterIcon,
   UserIcon,
 } from "@/components/ui/icons";
+import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
+import { Container } from "@/components/ui/Container";
+import { getTreatmentEntries, sortTreatments } from "@/lib/treatments";
 import { formatNewsDate } from "@/components/news/news-format";
 import type { PatientItem, PatientPriority } from "@/lib/types/patient";
 import { followupLabel, sortFollowups } from "@/lib/panel-dates";
@@ -710,22 +714,19 @@ const portalTranslations = {
 
 const labelClass = "mb-1.5 block text-sm font-semibold text-foreground";
 const fieldClass =
-  "w-full rounded-lg border border-border bg-background text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
+  "w-full rounded-lg border border-border-control bg-background text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
 const fileClass =
   "w-full text-sm text-foreground file:mr-3 file:min-h-[40px] file:rounded-lg file:border-0 file:bg-muted file:px-3 file:text-sm file:font-semibold file:text-foreground hover:file:bg-muted/70";
 const primaryButton =
-  "inline-flex min-h-[44px] items-center justify-center rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
+  "inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
 const secondaryButton =
-  "inline-flex min-h-[44px] items-center justify-center rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground";
+  "inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground";
 
-function SectionTitle({ icon, title, count }: { icon: ReactNode; title: string; count?: number }) {
+function SectionTitle({ title, count }: { title: string; count?: number }) {
   return (
-    <h2 className="mb-2 flex items-center gap-2.5 text-lg font-semibold text-foreground">
-      <span aria-hidden="true" className="text-sapphire">
-        {icon}
-      </span>
+    <h2 className="mb-2 text-balance text-lg font-semibold text-foreground">
       {title}
-      {count !== undefined ? <span className="font-normal text-muted-foreground tabular-nums">{count}</span> : null}
+      {count !== undefined ? <span className="ml-2 font-normal text-muted-foreground tabular-nums">{count}</span> : null}
     </h2>
   );
 }
@@ -864,8 +865,8 @@ export function PatientPortalView({
   ];
 
   return (
-    <div className="min-h-screen bg-background py-6 sm:py-10">
-      <main id="main-content" className="mx-auto w-full max-w-4xl px-4 sm:px-6">
+    <main id="main-content" className="min-h-screen bg-background py-6 sm:py-10">
+      <Container>
         {/* Calm, always-visible reminder: this page is not for emergencies. */}
         <p className="mb-4 flex items-start gap-2.5 rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted-foreground">
           <PhoneIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -880,14 +881,14 @@ export function PatientPortalView({
               <button
                 type="button"
                 onClick={() => setActiveTab("home")}
-                className="-ml-2 mb-3 inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-2 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="-ml-2 mb-3 inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <ArrowLeftIcon className="h-4 w-4" />
+                <ArrowLeftIcon className="h-4 w-4 shrink-0" />
                 {t.backHome}
               </button>
             ) : null}
 
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{patient.full_name}</h1>
+            <h1 className="text-balance text-page text-foreground">{patient.full_name}</h1>
             <p className="mt-1 text-sm text-muted-foreground">{t.homeTitle}</p>
 
             <details className="group mt-4 border-t border-border pt-3">
@@ -953,7 +954,7 @@ export function PatientPortalView({
 
           {activeTab === "actions" && activeAction === "symptoms" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
-              <SectionTitle icon={<BellIcon className="h-5 w-5" />} title={t.symptomsTitle} />
+              <SectionTitle title={t.symptomsTitle} />
               <p className="mb-4 text-sm text-muted-foreground">{t.actionHint}</p>
 
               {symptomsSavedMsg ? (
@@ -1003,7 +1004,7 @@ export function PatientPortalView({
           {activeTab === "actions" && activeAction === "followups" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
               <div className="mb-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <SectionTitle icon={<CalendarIcon className="h-5 w-5" />} title={t.followupsTitle} count={sortedFollowups.length} />
+                <SectionTitle title={t.followupsTitle} count={sortedFollowups.length} />
                 <button
                   type="button"
                   aria-expanded={showAddFollowup}
@@ -1082,8 +1083,8 @@ export function PatientPortalView({
                           </div>
                         </div>
                         <span
-                          className={`inline-flex w-fit shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold ${
-                            item.status === "completed" ? "bg-sapphire-soft text-sapphire dark:text-sapphire-border" : "bg-muted text-foreground"
+                          className={`inline-flex w-fit shrink-0 text-xs font-semibold ${
+                            item.status === "completed" ? "text-sapphire dark:text-sapphire-border" : "text-muted-foreground"
                           }`}
                         >
                           {statusLabel(item.status)}
@@ -1154,7 +1155,7 @@ export function PatientPortalView({
                                         <button
                                           type="button"
                                           onClick={() => removeCompletionPhotoDraft(photoItem.id)}
-                                          className="min-h-[44px] shrink-0 rounded-sm px-1 font-medium text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                          className="min-h-[44px] shrink-0 whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                         >
                                           {t.cancel}
                                         </button>
@@ -1206,14 +1207,57 @@ export function PatientPortalView({
 
           {activeTab === "plan" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
-              <SectionTitle icon={<EditIcon className="h-5 w-5" />} title={treatmentTranslations[lang].title} />
+              <SectionTitle title={treatmentTranslations[lang].title} />
+              {(() => {
+                const planEntries = sortTreatments(getTreatmentEntries(patient.treatment_plan));
+                if (planEntries.length === 0) return null;
+                const planLabels: Record<Lang, { print: string }> = {
+                  ro: { print: "Tipărește planul" },
+                  en: { print: "Print plan" },
+                  sq: { print: "Printo planin" },
+                  it: { print: "Stampa il piano" },
+                  hr: { print: "Ispiši plan" },
+                  rom: { print: "Printirisar o plano" },
+                  ru: { print: "Распечатать план" },
+                };
+                const planShareText = planEntries
+                  .map((entry) =>
+                    [
+                      entry.title || treatmentTranslations[lang].legacy,
+                      entry.medications,
+                      entry.care_instructions,
+                    ]
+                      .filter(Boolean)
+                      .join("\n")
+                  )
+                  .join("\n\n");
+                return (
+                  <div className="mb-4 flex flex-nowrap items-center gap-2 print:hidden">
+                    <button
+                      type="button"
+                      onClick={() => window.print()}
+                      className="press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    >
+                      <PrinterIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
+                      <span>{planLabels[lang]?.print ?? planLabels.ro.print}</span>
+                    </button>
+                    <FamilyShareButton
+                      iconOnly
+                      align="right"
+                      lang={lang}
+                      title={treatmentTranslations[lang].title}
+                      text={planShareText}
+                    />
+                  </div>
+                );
+              })()}
               <TreatmentPlansView plan={patient.treatment_plan} />
             </section>
           ) : null}
 
           {activeTab === "photos" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
-              <SectionTitle icon={<ImageIcon className="h-5 w-5" />} title={t.photosTitle} count={patient.photos?.length || 0} />
+              <SectionTitle title={t.photosTitle} count={patient.photos?.length || 0} />
 
               <form onSubmit={handleUploadPhoto} className="mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-sm">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -1283,7 +1327,7 @@ export function PatientPortalView({
 
           {activeTab === "notes" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
-              <SectionTitle icon={<EditIcon className="h-5 w-5" />} title={t.notesTabTitle} />
+              <SectionTitle title={t.notesTabTitle} />
 
               {notesLog.length > 0 ? (
                 <ul className="divide-y divide-border border-y border-border">
@@ -1303,7 +1347,7 @@ export function PatientPortalView({
             </section>
           ) : null}
         </article>
-      </main>
-    </div>
+      </Container>
+    </main>
   );
 }

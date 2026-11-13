@@ -198,7 +198,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
 
   const segment = (selected: boolean) =>
     cn(
-      "min-h-[44px] rounded-lg border px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+      "min-h-[44px] rounded-lg border px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
       selected
         ? "border-foreground bg-surface-subtle text-foreground"
         : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
@@ -223,7 +223,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
       <div
         role="tablist"
         aria-label={ui.tabsLabel}
-        className="grid grid-cols-[auto_auto_auto] gap-x-3 border-b border-border sm:flex sm:gap-x-0 print:hidden"
+        className="flex items-center gap-5 overflow-x-auto border-b border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6 print:hidden"
       >
         {tabs.map((tab) => {
           const selected = activeTab === tab.key;
@@ -242,7 +242,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
               onClick={() => setActiveTab(tab.key)}
               onKeyDown={onTabKeyDown}
               className={cn(
-                "-mb-px flex min-h-11 items-end gap-2 border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:mr-6",
+                "-mb-px inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                 selected
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
@@ -430,7 +430,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                       aria-current={isActive ? "step" : undefined}
                       onClick={() => setTimelineStep(idx)}
                       className={cn(
-                        "flex w-full items-start gap-3 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+                        "flex w-full items-start gap-3 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                       )}
                     >
@@ -471,9 +471,9 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                 <button
                   type="button"
                   onClick={handlePrintChecklist}
-                  className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 self-start rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle print:hidden"
+                  className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 self-start whitespace-nowrap rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle print:hidden"
                 >
-                  <PrinterIcon className="h-4 w-4" aria-hidden="true" />
+                  <PrinterIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                   {copy.printChecklistButton}
                 </button>
               )}
@@ -485,7 +485,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                 <button
                   type="button"
                   onClick={() => setActiveTab("recommendations")}
-                  className="mt-3 inline-flex min-h-[44px] items-center text-sm font-semibold text-foreground underline underline-offset-4 hover:text-muted-foreground print:hidden"
+                  className="mt-3 inline-flex min-h-[44px] items-center whitespace-nowrap text-sm font-semibold text-foreground underline underline-offset-4 hover:text-muted-foreground print:hidden"
                 >
                   {copy.tabRecommendations}
                 </button>
@@ -498,7 +498,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                       <div className="space-y-1.5">
                         <p className="text-base font-bold text-foreground">{inv.title}</p>
                         <p className="text-sm text-muted-foreground">
-                          {inv.frequency} · {inv.cnasBadge}
+                          {inv.frequency} — {inv.cnasBadge}
                         </p>
                         <p className="text-xs leading-relaxed text-muted-foreground">
                           <span className="font-semibold text-foreground">{copy.preparationLabel}: </span>
@@ -514,7 +514,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                       <button
                         type="button"
                         onClick={() => toggleCheck(inv.id)}
-                        className="inline-flex min-h-[44px] shrink-0 items-center self-start text-xs font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground sm:self-center print:hidden"
+                        className="inline-flex min-h-[44px] shrink-0 items-center self-start whitespace-nowrap text-xs font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground sm:self-center print:hidden"
                       >
                         {ui.remove}
                       </button>

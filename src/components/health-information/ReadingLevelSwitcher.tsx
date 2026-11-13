@@ -2,6 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";
+import {
+  getReadingLevelSnapshot,
+  setReadingLevel,
+  subscribeComfort,
+} from "@/lib/comfort-preferences";
 import type { Lang } from "@/lib/i18n/translations";
 
 export interface ReadingLevelSwitcherProps {
@@ -24,7 +29,7 @@ function useSafeLanguage(): Lang {
   }
 }
 
-const copyByLang: Record<
+export const READING_LEVEL_COPY: Record<
   Lang,
   {
     ariaLabel: string;
@@ -33,40 +38,39 @@ const copyByLang: Record<
   }
 > = {
   ru: {
-    ariaLabel: "Уровень чтения",
-    simple: "Простой язык",
-    complete: "Полное руководство",
+    ariaLabel: "Режим чтения",
+    simple: "Коротко",
+    complete: "Подробно",
   },
-
   ro: {
-    ariaLabel: "Formatul ghidului",
+    ariaLabel: "Mod de citire",
     simple: "Pe scurt",
-    complete: "Ghid complet",
+    complete: "Detaliat",
   },
   en: {
-    ariaLabel: "Guide format",
-    simple: "In brief",
-    complete: "Complete guide",
+    ariaLabel: "Reading mode",
+    simple: "Easy",
+    complete: "Detailed",
   },
   sq: {
-    ariaLabel: "Formati i udhëzuesit",
+    ariaLabel: "Mënyra e leximit",
     simple: "Shkurt",
-    complete: "Udhëzues i plotë",
+    complete: "Detajuar",
   },
   it: {
-    ariaLabel: "Formato della guida",
-    simple: "In breve",
-    complete: "Guida completa",
+    ariaLabel: "Modalità di lettura",
+    simple: "Semplice",
+    complete: "Dettagliato",
   },
   hr: {
-    ariaLabel: "Format vodiča",
+    ariaLabel: "Način čitanja",
     simple: "Ukratko",
-    complete: "Potpuni vodič",
+    complete: "Detaljno",
   },
   rom: {
-    ariaLabel: "Sar sikavel pes",
-    simple: "Xarnes",
-    complete: "Sa o sikavimos",
+    ariaLabel: "Sar drabares",
+    simple: "Skurto",
+    complete: "Detaliime",
   },
 };
 
@@ -77,7 +81,7 @@ export function ReadingLevelSwitcher({
   labels,
 }: ReadingLevelSwitcherProps) {
   const lang = useSafeLanguage();
-  const copy = copyByLang[lang] ?? copyByLang.ro;
+  const copy = READING_LEVEL_COPY[lang] ?? READING_LEVEL_COPY.ro;
   const ariaLabel = labels?.ariaLabel ?? copy.ariaLabel;
   const simpleText = labels?.simple ?? copy.simple;
   const completeText = labels?.complete ?? copy.complete;
@@ -85,27 +89,26 @@ export function ReadingLevelSwitcher({
   const simpleBtnRef = useRef<HTMLButtonElement | null>(null);
   const completeBtnRef = useRef<HTMLButtonElement | null>(null);
 
-  // Restore the reader's last choice once, on mount. Later changes come from clicks or arrow keys.
-  const initialRef = useRef({ level, onChange });
+  // Restore the reader's last choice on mount and keep in sync when changed from Header ComfortMenu.
+  const latestRef = useRef({ level, onChange });
   useEffect(() => {
-    const { level: initialLevel, onChange: restore } = initialRef.current;
-    try {
-      const stored = localStorage.getItem("redihealth_reading_level");
-      if ((stored === "simple" || stored === "complete") && stored !== initialLevel) {
-        restore(stored);
+    latestRef.current = { level, onChange };
+  }, [level, onChange]);
+
+  useEffect(() => {
+    const syncFromStore = () => {
+      const stored = getReadingLevelSnapshot();
+      if (stored !== latestRef.current.level) {
+        latestRef.current.onChange(stored);
       }
-    } catch {
-      // LocalStorage access restricted in private mode
-    }
+    };
+    syncFromStore();
+    return subscribeComfort(syncFromStore);
   }, []);
 
   const handleSelect = (newLevel: "simple" | "complete") => {
     onChange(newLevel);
-    try {
-      localStorage.setItem("redihealth_reading_level", newLevel);
-    } catch {
-      // LocalStorage access restricted
-    }
+    setReadingLevel(newLevel);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -140,7 +143,7 @@ export function ReadingLevelSwitcher({
         type="button"
         onClick={() => handleSelect("simple")}
         aria-pressed={level === "simple"}
-        className={`relative z-10 inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg px-3.5 py-2 text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none ${
+        className={`relative z-10 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-base transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
           level === "simple"
             ? "font-semibold text-white"
             : "font-medium text-muted-foreground hover:text-foreground"
@@ -154,7 +157,7 @@ export function ReadingLevelSwitcher({
         type="button"
         onClick={() => handleSelect("complete")}
         aria-pressed={level === "complete"}
-        className={`relative z-10 inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg px-3.5 py-2 text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none ${
+        className={`relative z-10 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-base transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
           level === "complete"
             ? "font-semibold text-white"
             : "font-medium text-muted-foreground hover:text-foreground"

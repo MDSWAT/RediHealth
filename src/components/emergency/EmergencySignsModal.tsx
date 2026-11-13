@@ -1,15 +1,27 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { CloseIcon, PhoneIcon } from "@/components/ui/icons";
+import { CloseIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
+import { useReadAloud } from "@/components/health-check/readingTools";
+import { useModalAutoScroll } from "@/components/news/use-sheet-dialog";
 import { DispatcherScriptAccordion } from "@/components/emergency/DispatcherScriptAccordion";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { translations } from "@/lib/i18n/translations";
+import { translations, type Lang } from "@/lib/i18n/translations";
 
 export type EmergencySignsModalProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+};
+
+export const signsAudioCopy: Record<Lang, { listen: string; stop: string }> = {
+  ro: { listen: "Ascultă semnele", stop: "Oprește" },
+  en: { listen: "Listen to signs", stop: "Stop" },
+  sq: { listen: "Dëgjo shenjat", stop: "Ndalo" },
+  it: { listen: "Ascolta i segnali", stop: "Ferma" },
+  hr: { listen: "Poslušaj znakove", stop: "Zaustavi" },
+  rom: { listen: "Ashun e semnurya", stop: "Achav" },
+  ru: { listen: "Прослушать признаки", stop: "Остановить" },
 };
 
 function useSafeLanguage() {
@@ -37,12 +49,21 @@ export function EmergencySignsModal({
   open,
   onOpenChange,
 }: EmergencySignsModalProps) {
-  const { t } = useSafeLanguage();
+  const { t, lang } = useSafeLanguage();
+  const voice = useReadAloud(lang);
+  const { stop: stopVoice } = voice;
+  const audio = signsAudioCopy[lang];
   const e = t.emergency;
   const signs = e.signs;
 
   const [dialerGateOpen, setDialerGateOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) stopVoice();
+  }, [open, stopVoice]);
   const panelRef = useRef<HTMLDivElement>(null);
+
+  useModalAutoScroll(open, panelRef);
 
   useEffect(() => {
     if (!open) return;
@@ -100,24 +121,56 @@ export function EmergencySignsModal({
               </p>
             </div>
 
+            <div className="-mr-2 -mt-1 flex shrink-0 items-center gap-2">
+            {voice.available ? (
+              <button
+                type="button"
+                aria-pressed={voice.speaking}
+                onClick={() =>
+                  voice.speaking
+                    ? voice.stop()
+                    : voice.speak([
+                        e.signsModalTitle,
+                        e.signsModalSubtitle,
+                        ...signs.map((s) => `${s.title}. ${s.description}`),
+                      ])
+                }
+                className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                <VolumeIcon className="h-4 w-4" aria-hidden="true" />
+                <span>{voice.speaking ? audio.stop : audio.listen}</span>
+              </button>
+            ) : null}
             <button
               type="button"
               onClick={() => onOpenChange(false)}
               aria-label={e.closeSignsModalAria}
-              className="-mr-2 -mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <CloseIcon className="h-5 w-5" aria-hidden="true" />
             </button>
+            </div>
           </div>
 
-          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-5 sm:px-7">
+          <div
+            data-modal-scroller="true"
+            className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-5 sm:px-7"
+          >
             <ul className="divide-y divide-border">
-              {signs.map((sign) => (
-                <li key={sign.id} className="py-4">
-                  <h3 className="text-[15px] font-semibold leading-snug">{sign.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {sign.description}
-                  </p>
+              {signs.map((sign, index) => (
+                <li key={sign.id} className="flex items-start gap-3 py-4">
+                  <span
+                    aria-hidden="true"
+                    className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary-soft text-xs font-semibold tabular-nums text-primary"
+                  >
+                    {index + 1}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-[15px] font-semibold leading-snug">{sign.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {sign.description}
+                    </p>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -135,7 +188,7 @@ export function EmergencySignsModal({
             <button
               type="button"
               onClick={() => setDialerGateOpen(true)}
-              className="flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="flex min-h-14 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <PhoneIcon className="h-4 w-4" aria-hidden="true" />
               <span>{e.call112}</span>

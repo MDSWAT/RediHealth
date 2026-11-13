@@ -1,4 +1,4 @@
-import type { SubRegionId } from "@/components/health-check/anatomy-3d-data";
+import type { BodyAnatomyProfile, SubRegionId } from "@/components/health-check/anatomy-3d-data";
 import type { BodyPartId } from "@/lib/i18n/health-check-translations";
 import type { Lang } from "@/lib/i18n/translations";
 
@@ -8,6 +8,7 @@ export interface PainAreaDiagramInput {
   part: BodyPartId;
   subRegion?: SubRegionId | null;
   side?: PainDiagramSide;
+  bodyProfile?: BodyAnatomyProfile;
   urgent?: boolean;
   lang?: Lang;
 }
@@ -164,42 +165,57 @@ function resolvePointsForFigure(
   view: "front" | "back",
   spec: LocusSpec,
   side: PainDiagramSide,
-  subRegion?: SubRegionId | null
+  subRegion?: SubRegionId | null,
+  isFemale = false
 ): Array<{ cx: number; cy: number; rx: number; ry: number }> {
   // Anatomical orientation:
   // On FRONT view: patient's Right is viewer-left (-dx), patient's Left is viewer-right (+dx).
   // On BACK view: patient's Left is viewer-left (-dx), patient's Right is viewer-right (+dx).
   const rightSign = view === "front" ? -1 : 1;
   const leftSign = -rightSign;
+  const effectiveDx = isFemale && spec.dx >= 18 ? Number((spec.dx * 0.89).toFixed(2)) : spec.dx;
 
   // Fixed unilateral visceral organs when side === "Center"
   if (subRegion === "heart" || subRegion === "stomach_organ") {
-    return [{ cx: midX + leftSign * spec.dx, cy: spec.y, rx: spec.rx, ry: spec.ry }];
+    return [{ cx: midX + leftSign * effectiveDx, cy: spec.y, rx: spec.rx, ry: spec.ry }];
   }
   if (subRegion === "liver") {
-    return [{ cx: midX + rightSign * spec.dx, cy: spec.y, rx: spec.rx, ry: spec.ry }];
+    return [{ cx: midX + rightSign * effectiveDx, cy: spec.y, rx: spec.rx, ry: spec.ry }];
   }
 
   if (side === "Left") {
-    const offset = spec.dx > 0 ? spec.dx : 5.5;
+    const offset = effectiveDx > 0 ? effectiveDx : 5.5;
     return [{ cx: midX + leftSign * offset, cy: spec.y, rx: spec.rx, ry: spec.ry }];
   }
   if (side === "Right") {
-    const offset = spec.dx > 0 ? spec.dx : 5.5;
+    const offset = effectiveDx > 0 ? effectiveDx : 5.5;
     return [{ cx: midX + rightSign * offset, cy: spec.y, rx: spec.rx, ry: spec.ry }];
   }
 
-  if (spec.pairedLimb && spec.dx > 0) {
+  if (spec.pairedLimb && effectiveDx > 0) {
     return [
-      { cx: midX - spec.dx, cy: spec.y, rx: spec.rx, ry: spec.ry },
-      { cx: midX + spec.dx, cy: spec.y, rx: spec.rx, ry: spec.ry },
+      { cx: midX - effectiveDx, cy: spec.y, rx: spec.rx, ry: spec.ry },
+      { cx: midX + effectiveDx, cy: spec.y, rx: spec.rx, ry: spec.ry },
     ];
   }
 
   return [{ cx: midX, cy: spec.y, rx: spec.rx, ry: spec.ry }];
 }
 
-function buildSilhouettePaths(midX: number, isBack: boolean): string {
+function buildSilhouettePaths(midX: number, isBack: boolean, isFemale = false): string {
+  if (isFemale) {
+    // Clean proportional clinical female silhouette centered at midX over y=7..146
+    const head = `<ellipse cx="${midX}" cy="18.2" rx="8.8" ry="10.9" />`;
+    const body = `<path d="M ${midX - 4.0} 28.5 L ${midX - 4.6} 35.2 C ${midX - 12.5} 36.6 ${midX - 17.5} 39.5 ${midX - 19.2} 46 L ${midX - 26.8} 86.5 C ${midX - 27.5} 90.2 ${midX - 24.3} 92.5 ${midX - 22.5} 89 L ${midX - 16.0} 53 L ${midX - 12.8} 53 C ${midX - 12.2} 62 ${midX - 11.2} 69 ${midX - 11.2} 75 C ${midX - 11.2} 81 ${midX - 16.2} 84 ${midX - 16.2} 92 L ${midX - 14.0} 141 C ${midX - 14.0} 145.5 ${midX - 6.5} 145.5 ${midX - 6.2} 141 L ${midX - 3.0} 94 L ${midX + 3.0} 94 L ${midX + 6.2} 141 C ${midX + 6.5} 145.5 ${midX + 14.0} 145.5 ${midX + 14.0} 141 L ${midX + 16.2} 92 C ${midX + 16.2} 84 ${midX + 11.2} 81 ${midX + 11.2} 75 C ${midX + 11.2} 69 ${midX + 12.2} 62 ${midX + 12.8} 53 L ${midX + 16.0} 53 L ${midX + 22.5} 89 C ${midX + 24.3} 92.5 ${midX + 27.5} 90.2 ${midX + 26.8} 86.5 L ${midX + 19.2} 46 C ${midX + 17.5} 39.5 ${midX + 12.5} 36.6 ${midX + 4.6} 35.2 L ${midX + 4.0} 28.5 Z" />`;
+    const landmarks = isBack
+      ? `<line x1="${midX}" y1="32" x2="${midX}" y2="83" stroke="#cbd5e1" stroke-width="0.9" stroke-dasharray="2 2" />
+         <path d="M ${midX - 7.8} 43 Q ${midX - 4.4} 48.5 ${midX - 2.6} 44 M ${midX + 7.8} 43 Q ${midX + 4.4} 48.5 ${midX + 2.6} 44" fill="none" stroke="#cbd5e1" stroke-width="0.9" />`
+      : `<path d="M ${midX - 9.5} 38 Q ${midX} 41 ${midX + 9.5} 38" fill="none" stroke="#cbd5e1" stroke-width="0.9" />
+         <line x1="${midX - 4.0}" y1="35" x2="${midX + 4.0}" y2="35" stroke="#cbd5e1" stroke-width="0.8" />
+         <path d="M ${midX - 9.6} 50.5 Q ${midX - 5.5} 54.5 ${midX - 1.6} 50.5 M ${midX + 1.6} 50.5 Q ${midX + 5.5} 54.5 ${midX + 9.6} 50.5" fill="none" stroke="#cbd5e1" stroke-width="0.8" />`;
+    return `${head}${body}${landmarks}`;
+  }
+
   // Clean clinical human silhouette centered at midX over y=8..148
   const head = `<ellipse cx="${midX}" cy="18" rx="9.2" ry="11.2" />`;
   const body = `<path d="M ${midX - 4.5} 28.5 L ${midX - 5.2} 35 C ${midX - 15} 36.5 ${midX - 20.5} 39.5 ${midX - 22.5} 46 L ${midX - 30.5} 87 C ${midX - 31.3} 91 ${midX - 27.5} 93.5 ${midX - 25.5} 90 L ${midX - 18.2} 53 L ${midX - 14.5} 53 L ${midX - 13.2} 76 L ${midX - 15.2} 91 L ${midX - 14.5} 141 C ${midX - 14.5} 145.5 ${midX - 6.5} 145.5 ${midX - 6.2} 141 L ${midX - 3.2} 94 L ${midX + 3.2} 94 L ${midX + 6.2} 141 C ${midX + 6.5} 145.5 ${midX + 14.5} 145.5 ${midX + 14.5} 141 L ${midX + 15.2} 91 L ${midX + 13.2} 76 L ${midX + 14.5} 53 L ${midX + 18.2} 53 L ${midX + 25.5} 90 C ${midX + 27.5} 93.5 ${midX + 31.3} 91 ${midX + 30.5} 87 L ${midX + 22.5} 46 C ${midX + 20.5} 39.5 ${midX + 15} 36.5 ${midX + 5.2} 35 L ${midX + 4.5} 28.5 Z" />`;
@@ -219,6 +235,10 @@ export function buildPainAreaDiagramSvg(input: PainAreaDiagramInput): string {
   const lang = input.lang ?? "ro";
   const copy = PAIN_DIAGRAM_COPY[lang] ?? PAIN_DIAGRAM_COPY.en;
   const side = input.side ?? "Center";
+  const isFemale =
+    input.bodyProfile === "female" ||
+    input.subRegion === "breast" ||
+    input.subRegion === "uterus_ovaries";
   const spec =
     (input.subRegion ? SUB_REGION_LOCUS[input.subRegion] : undefined) ?? MACRO_LOCUS[input.part];
 
@@ -229,7 +249,7 @@ export function buildPainAreaDiagramSvg(input: PainAreaDiagramInput): string {
   const frontMid = 50;
   const backMid = 146;
   const activeMid = spec.view === "front" ? frontMid : backMid;
-  const points = resolvePointsForFigure(activeMid, spec.view, spec, side, input.subRegion);
+  const points = resolvePointsForFigure(activeMid, spec.view, spec, side, input.subRegion, isFemale);
 
   const highlightMarkup = points
     .map(
@@ -250,7 +270,7 @@ export function buildPainAreaDiagramSvg(input: PainAreaDiagramInput): string {
 
     <g opacity="${frontActive ? "1" : "0.48"}">
       <g fill="#ffffff" stroke="${frontActive ? "#334155" : "#94a3b8"}" stroke-width="1.25" stroke-linejoin="round">
-        ${buildSilhouettePaths(frontMid, false)}
+        ${buildSilhouettePaths(frontMid, false, isFemale)}
       </g>
       <text x="14" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="#64748b">${escapeXml(copy.rightShort)}</text>
       <text x="80" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="#64748b">${escapeXml(copy.leftShort)}</text>
@@ -259,7 +279,7 @@ export function buildPainAreaDiagramSvg(input: PainAreaDiagramInput): string {
 
     <g opacity="${backActive ? "1" : "0.48"}">
       <g fill="#ffffff" stroke="${backActive ? "#334155" : "#94a3b8"}" stroke-width="1.25" stroke-linejoin="round">
-        ${buildSilhouettePaths(backMid, true)}
+        ${buildSilhouettePaths(backMid, true, isFemale)}
       </g>
       <text x="110" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="#64748b">${escapeXml(copy.leftShort)}</text>
       <text x="176" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="#64748b">${escapeXml(copy.rightShort)}</text>

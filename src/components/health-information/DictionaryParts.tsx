@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CloseIcon, SearchIcon, VolumeIcon } from "@/components/ui/icons";
+import { useModalAutoScroll } from "@/components/news/use-sheet-dialog";
 import { cn } from "@/lib/cn";
 import type { Lang } from "@/lib/i18n/translations";
 
@@ -152,6 +153,8 @@ export function DictionaryDrawerFrame({
     onCloseRef.current = onClose;
   }, [onClose]);
 
+  useModalAutoScroll(true, panelRef);
+
   useEffect(() => {
     const handoff = pendingTabHandoff;
     if (activeDrawerInstances === 0 && !handoff) {
@@ -239,7 +242,7 @@ export function DictionaryDrawerFrame({
         <header className="shrink-0 border-b border-border bg-card">
           <div className="rh-dict-masthead pt-2.5 sm:pt-0">
             <div
-              className="mx-auto mb-2 h-1.5 w-12 shrink-0 rounded-full bg-border sm:hidden"
+              className="mx-auto mb-2 h-1.5 w-12 shrink-0 rounded-sm bg-border sm:hidden"
               aria-hidden="true"
             />
             <div
@@ -267,10 +270,10 @@ export function DictionaryDrawerFrame({
                   aria-label={utilCopy.largeTextAria}
                   title={utilCopy.largeTextAria}
                   className={cn(
-                    "inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1.5 rounded-xl border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+                    "inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-3 text-xs font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     largeText
-                      ? "border-sapphire bg-sapphire text-white shadow-xs"
-                      : "border-border bg-card text-foreground hover:bg-muted",
+                      ? "press-solid border-sapphire bg-sapphire text-white shadow-xs"
+                      : "press-row border-border-control bg-card text-foreground hover:bg-muted",
                   )}
                 >
                   <span aria-hidden="true" className="text-[13px] font-bold tracking-tight">
@@ -284,7 +287,7 @@ export function DictionaryDrawerFrame({
                   onClick={onClose}
                   aria-label={closeLabel}
                   title={closeLabel}
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-transparent text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-border hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                  className="press-row flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-transparent text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-border hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <CloseIcon className="h-5 w-5" />
                 </button>
@@ -333,8 +336,8 @@ export function DictionarySearch({
         placeholder={placeholder}
         aria-label={placeholder}
         className={cn(
-          "min-h-[46px] w-full rounded-xl border border-border bg-surface-card/70 pl-10 text-base text-foreground placeholder:text-muted-foreground/80 transition-colors duration-[var(--dur-fast)] focus:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
-          value.length > 0 ? "pr-11" : "pr-4",
+          "min-h-12 w-full rounded-xl border border-border-control bg-surface-card/70 pl-10 text-base text-foreground placeholder:text-muted-foreground/80 transition-colors duration-(--dur-fast) motion-reduce:transition-none focus:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
+          value.length > 0 ? "pr-12" : "pr-4",
         )}
       />
       {value.length > 0 && (
@@ -346,7 +349,7 @@ export function DictionarySearch({
           }}
           aria-label={clearLabel}
           title={clearLabel}
-          className="absolute right-1.5 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="press-row absolute right-0.5 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <CloseIcon className="h-4 w-4" />
         </button>
@@ -393,14 +396,14 @@ export function DictionaryFilters<T extends string>({
             aria-pressed={isSelected}
             onClick={() => onSelect(option.value)}
             className={cn(
-              "inline-flex min-h-[40px] max-w-full items-center gap-1.5 rounded-full border px-3 py-1.5 text-[13px] font-semibold leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-1 sm:min-h-[42px] sm:px-3.5",
+              "inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-[13px] font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 sm:px-3.5",
               isEmergency
                 ? isSelected
-                  ? "border-primary bg-primary text-white shadow-xs"
+                  ? "border-primary bg-primary text-white shadow-xs active:bg-primary-active"
                   : "border-primary/25 bg-primary-soft/60 text-primary hover:border-primary/50 hover:bg-primary-soft"
                 : isSelected
-                  ? "border-sapphire bg-sapphire text-white shadow-xs"
-                  : "border-border bg-card text-foreground hover:border-sapphire/35 hover:bg-sapphire-soft/55 hover:text-sapphire",
+                  ? "press-solid border-sapphire bg-sapphire text-white shadow-xs"
+                  : "press-row border-border-control bg-card text-foreground hover:border-sapphire/35 hover:bg-sapphire-soft/55 hover:text-sapphire",
             )}
           >
             {option.icon && (
@@ -418,11 +421,11 @@ export function DictionaryFilters<T extends string>({
                 {option.icon}
               </span>
             )}
-            <span className="truncate">{option.label}</span>
+            <span className="whitespace-nowrap">{option.label}</span>
             {typeof option.count === "number" && (
               <span
                 className={cn(
-                  "rounded-full px-1.5 py-0.5 text-[11px] font-bold tabular-nums leading-none",
+                  "rounded-md px-1.5 py-0.5 text-[11px] font-bold tabular-nums leading-none",
                   isSelected
                     ? "bg-white/20 text-white"
                     : isEmergency
@@ -468,14 +471,14 @@ export function DictionarySpeakButton({
       aria-pressed={speaking}
       title={label}
       className={cn(
-        "inline-flex min-h-[40px] shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[13px] font-semibold leading-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-1",
+        "inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl border px-3.5 py-1.5 text-[13px] font-semibold leading-none transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
         isEmergency
           ? speaking
-            ? "border-primary bg-primary text-white shadow-xs hover:bg-primary-hover"
+            ? "border-primary bg-primary text-white shadow-xs hover:bg-primary-hover active:bg-primary-active"
             : "border-primary/25 bg-primary-soft text-primary hover:border-primary/45 hover:bg-primary-soft/80"
           : speaking
-            ? "border-sapphire bg-sapphire text-white shadow-xs hover:bg-sapphire-light"
-            : "border-sapphire-border bg-sapphire-soft text-sapphire hover:border-sapphire/40 hover:bg-sapphire-soft/80",
+            ? "press-solid border-sapphire bg-sapphire text-white shadow-xs hover:bg-sapphire-light"
+            : "press-row border-sapphire-border bg-sapphire-soft text-sapphire hover:border-sapphire/40 hover:bg-sapphire-soft/80",
       )}
     >
       {speaking ? (
@@ -484,10 +487,10 @@ export function DictionarySpeakButton({
             aria-hidden="true"
             className="inline-flex h-4 w-4 shrink-0 items-center justify-between gap-[2px]"
           >
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-full bg-current" />
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-full bg-current" />
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-full bg-current" />
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-full bg-current" />
+            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-xs bg-current" />
+            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-xs bg-current" />
+            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-xs bg-current" />
+            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-xs bg-current" />
           </span>
           <span>{stopText}</span>
         </>

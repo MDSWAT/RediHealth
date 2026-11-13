@@ -1,10 +1,23 @@
 "use client";
 
+import { useState } from "react";
+import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { Container } from "@/components/ui/Container";
 import { RequestHelpForm } from "@/components/get-help/RequestHelpForm";
 import { PhoneIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import type { Lang } from "@/lib/i18n/translations";
 import type { CountryCode } from "@/lib/countries";
+
+const CALL_112: Record<Lang, string> = {
+  ro: "Sună la 112",
+  en: "Call 112",
+  sq: "Telefono 112",
+  it: "Chiama il 112",
+  hr: "Nazovi 112",
+  rom: "Akhar ko 112",
+  ru: "Позвонить на 112",
+};
 
 export function GetHelpPageContent({
   countries,
@@ -13,7 +26,8 @@ export function GetHelpPageContent({
   countries: CountryCode[];
   initialCountry: CountryCode | null;
 }) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const [dialerOpen, setDialerOpen] = useState(false);
   const page = t.getHelpPage;
 
   return (
@@ -41,19 +55,28 @@ export function GetHelpPageContent({
                 <div>
                   <h2 className="text-base font-semibold text-foreground">{page.sidebar.emergencyTitle}</h2>
                   <p className="mt-1 text-sm leading-relaxed text-foreground/80">{page.sidebar.emergencyBody}</p>
+                  <button
+                    type="button"
+                    onClick={() => setDialerOpen(true)}
+                    className="mt-3 inline-flex min-h-11 max-w-full items-center justify-center whitespace-nowrap rounded-lg bg-primary px-4 text-sm font-semibold text-white transition-colors motion-reduce:transition-none hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    <span className="min-w-0 truncate">{CALL_112[lang]}</span>
+                  </button>
                 </div>
               </div>
 
               <div>
                 <h2 className="text-base font-semibold text-foreground">{page.sidebar.whatsNextTitle}</h2>
-                <ol className="mt-4 space-y-3 border-l border-border pl-5">
-                  {page.sidebar.steps.map((step) => (
-                    <li key={step} className="relative text-sm leading-relaxed text-muted-foreground">
+                <ol className="mt-4 space-y-3">
+                  {page.sidebar.steps.map((step, index) => (
+                    <li key={step} className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground">
                       <span
                         aria-hidden="true"
-                        className="absolute -left-[1.5625rem] top-[0.45rem] h-2 w-2 rounded-full bg-border ring-4 ring-background"
-                      />
-                      {step}
+                        className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-xs font-semibold tabular-nums text-sapphire"
+                      >
+                        {index + 1}
+                      </span>
+                      <span>{step}</span>
                     </li>
                   ))}
                 </ol>
@@ -62,6 +85,7 @@ export function GetHelpPageContent({
           </div>
         </Container>
       </section>
+      <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} />
     </main>
   );
 }

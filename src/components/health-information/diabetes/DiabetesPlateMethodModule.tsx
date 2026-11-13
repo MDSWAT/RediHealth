@@ -834,7 +834,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
           <button
             type="button"
             onClick={() => setSelectedFoodIds(DEFAULT_SELECTION)}
-            className="min-h-[44px] shrink-0 self-start rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-[44px] shrink-0 items-center justify-center self-start whitespace-nowrap rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {ui.resetButton}
           </button>
@@ -900,7 +900,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
                             <span className="block text-sm font-medium leading-snug break-words text-foreground">{food.name}</span>
                             <span className="mt-0.5 block text-xs tabular-nums text-muted-foreground">
                               {food.caloriesApprox} kcal
-                              {food.fiberGrams > 0 && ` · ${oneDecimal.format(food.fiberGrams)} ${ui.fiberShort}`}
+                              {food.fiberGrams > 0 && `, ${oneDecimal.format(food.fiberGrams)} ${ui.fiberShort}`}
                             </span>
                           </span>
                         </button>

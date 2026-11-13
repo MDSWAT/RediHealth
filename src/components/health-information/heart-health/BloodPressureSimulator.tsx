@@ -136,7 +136,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                     setDiastolic(preset.diastolic);
                     setHasRedFlags(Boolean(preset.hasRedFlags));
                   }}
-                  className={`inline-flex min-h-[44px] shrink-0 items-center justify-center whitespace-nowrap rounded-lg border px-3 text-center text-xs font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:shrink sm:grow sm:basis-0 sm:px-2 sm:tracking-[-0.01em] ${
+                  className={`inline-flex min-h-[44px] shrink-0 items-center justify-center whitespace-nowrap rounded-lg border px-3 text-center text-xs font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:shrink sm:grow sm:basis-0 sm:px-2 sm:tracking-[-0.01em] ${
                     isSelected
                       ? "border-foreground bg-foreground text-white"
                       : "border-border bg-card text-foreground hover:border-foreground/40 hover:bg-muted/40"
@@ -278,9 +278,9 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                 type="button"
                 onClick={() => setDialerOpen(true)}
                 aria-haspopup="dialog"
-                className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
-                <PhoneIcon className="h-4 w-4" />
+                <PhoneIcon className="h-4 w-4 shrink-0" />
                 {pickLocale(ui.call112Btn, lang)}
               </button>
             </div>
@@ -309,7 +309,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                   type="button"
                   onClick={() => setActiveStepIndex(idx)}
                   aria-current={isCurrent ? "step" : undefined}
-                  className={`flex h-full min-h-[52px] w-full items-center gap-3 px-3.5 py-3 text-left md:flex-col md:items-start md:gap-2 md:py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire ${
+                  className={`flex h-full min-h-[52px] w-full items-center gap-3 px-3.5 py-3 text-left md:flex-col md:items-start md:gap-2 md:py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring ${
                     isCurrent ? "bg-surface-subtle" : "bg-card hover:bg-surface-subtle/50"
                   }`}
                 >
@@ -363,7 +363,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
               type="button"
               onClick={() => setActiveStepIndex((prev) => Math.max(0, prev - 1))}
               disabled={activeStepIndex === 0}
-              className="-ml-3 inline-flex min-h-[44px] items-center rounded-lg px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:text-muted-foreground disabled:hover:bg-transparent"
+              className="-ml-3 inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground disabled:hover:bg-transparent"
             >
               {pickLocale(esh.prevStep, lang)}
             </button>
@@ -371,7 +371,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
               type="button"
               onClick={() => setActiveStepIndex((prev) => Math.min(steps.length - 1, prev + 1))}
               disabled={activeStepIndex === steps.length - 1}
-              className="inline-flex min-h-[44px] items-center rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
+              className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
             >
               {pickLocale(esh.nextStep, lang)}
             </button>

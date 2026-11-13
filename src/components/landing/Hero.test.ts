@@ -66,7 +66,7 @@ describe("hero copy", () => {
   });
 
   it("says the same headline promise in every locale as the Romanian concept wording", () => {
-    expect(heroCopy.ro.title).toBe("Informații medicale pe înțelesul tău și îndrumare către îngrijirea potrivită.");
+    expect(heroCopy.ro.title).toBe("Informații medicale clare și ajutor să ajungi la medic.");
     expect(heroCopy.en.title).toMatch(/right care/);
     expect(heroCopy.sq.title).toMatch(/kujdes\S* (e|të) duhur/);
     expect(heroCopy.it.title).toMatch(/cure giuste/);
@@ -97,6 +97,15 @@ describe("hero copy", () => {
         );
         expect(midSentenceCaps, `${lang}: ${text}`).toEqual([]);
       }
+    }
+  });
+
+  it("keeps hero copy free of middle dots and clinical vulnerable framing", () => {
+    for (const [lang, entry] of Object.entries(heroCopy)) {
+      for (const text of allStrings(entry)) {
+        expect(text, `${lang}: ${text}`).not.toContain("·");
+      }
+      expect(entry.lead, lang).not.toMatch(/vulnerabil|vulnerable/i);
     }
   });
 
@@ -245,13 +254,19 @@ describe("landing interaction rules", () => {
     expect(hero).not.toMatch(/hero-scroll|will-change|translate3d|addEventListener\("scroll"/);
   });
 
-  it("shows the hero photo as an in-flow band on phones and full-bleed from lg, loaded eagerly", () => {
+  it("shows the hero photo as an ambient top wash on phones and full-bleed from lg, loaded eagerly", () => {
     const hero = sources.find(([file]) => file === "Hero.tsx")![1];
-    expect(hero).toMatch(/relative h-\[clamp\(140px,22svh,220px\)\][^"]*lg:absolute lg:inset-0/);
+    expect(hero).toMatch(/absolute inset-x-0 top-0 -z-30 h-56 lg:inset-0 lg:h-auto/);
     expect(hero).toMatch(/loading="eager"\s+fetchPriority="high"/);
     expect(hero).not.toMatch(/\bpriority\b|\bquality=/);
     // Phones read every line on solid ink: both full-bleed scrims exist from lg only.
     expect(hero.match(/-z-20 hidden bg-\[linear-gradient[^"]*lg:block/g)).toHaveLength(2);
+  });
+
+  it("renders the triage panel inline at all viewport sizes without hiding it below lg", () => {
+    const hero = sources.find(([file]) => file === "Hero.tsx")![1];
+    expect(hero).toMatch(/<div id="triage" className="scroll-mt-24">/);
+    expect(hero).not.toMatch(/id="triage" className="[^"]*hidden/);
   });
 
   it("numbers the hero steps for screen readers and shows figures without a leading zero", () => {
@@ -350,6 +365,27 @@ describe("landing accent roles and one source of copy", () => {
     }
     expect(JSON.stringify(heroCopy.sq)).not.toMatch(/ndërmjetës/i);
     expect(heroCopy.sq.panel.mediators).toMatch(/mediator/);
+  });
+  it("keeps hover hints and behavioural subtitles short enough for one line across all languages", () => {
+    for (const [lang, copy] of Object.entries(heroCopy)) {
+      for (const [key, text] of Object.entries(copy.panel.subtitles)) {
+        expect(text.length, `${lang}.subtitles.${key}: "${text}"`).toBeLessThanOrEqual(48);
+      }
+      for (const id of HERO_NEED_ORDER) {
+        const hint = copy.panel.needs[id].hint;
+        expect(hint.length, `${lang}.needs.${id}.hint: "${hint}"`).toBeLessThanOrEqual(48);
+      }
+    }
+  });
+
+  it("places the behavioural context dock below the 6 options inside Step 1", () => {
+    const html = renderHero("ro");
+    const listEnd = html.indexOf("</ul>");
+    const dockIdx = html.indexOf(heroCopy.ro.panel.subtitles.default);
+    const mediatorsIdx = html.indexOf(heroCopy.ro.panel.mediators);
+    expect(listEnd).toBeGreaterThan(-1);
+    expect(dockIdx).toBeGreaterThan(listEnd);
+    expect(mediatorsIdx).toBeGreaterThan(dockIdx);
   });
 });
 

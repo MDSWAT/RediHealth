@@ -388,7 +388,7 @@ export function ReportIssueWidget() {
                   placeholder={t.emailPlaceholder}
                   aria-invalid={error?.field === "email" || undefined}
                   aria-describedby={error?.field === "email" ? errorId : undefined}
-                  className={`${fieldClass} min-h-[44px] py-2 pl-9 pr-3 ${error?.field === "email" ? "border-primary" : "border-border"}`}
+                  className={`${fieldClass} min-h-11 py-2 pl-9 pr-3 ${error?.field === "email" ? "border-primary" : "border-border-control"}`}
                 />
               </div>
             </div>
@@ -406,7 +406,7 @@ export function ReportIssueWidget() {
                 rows={5}
                 aria-invalid={error?.field === "message" || undefined}
                 aria-describedby={error?.field === "message" ? errorId : undefined}
-                className={`${fieldClass} px-3 py-2 ${error?.field === "message" ? "border-primary" : "border-border"}`}
+                className={`${fieldClass} px-3 py-2 ${error?.field === "message" ? "border-primary" : "border-border-control"}`}
               />
             </div>
 

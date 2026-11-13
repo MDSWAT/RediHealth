@@ -5096,7 +5096,7 @@ export const EXERCISES_BY_FAMILY: Record<ExerciseFamilyId, TherapeuticExercise[]
     },
     {
       name: "Retracția bărbiei (aliniere posturală cervicală)",
-      dose: "8 repetări · menținere 3 secunde",
+      dose: "8 repetări, menținere 3 secunde",
       effort: "Ușor",
       targetStructure: "Flexorii cervicali profunzi și baza craniului",
       steps:
@@ -5125,7 +5125,7 @@ export const EXERCISES_BY_FAMILY: Record<ExerciseFamilyId, TherapeuticExercise[]
     },
     {
       name: "Activarea scapulară în poziție așezat",
-      dose: "8–10 repetări · menținere 5 secunde",
+      dose: "8–10 repetări, menținere 5 secunde",
       effort: "Ușor",
       targetStructure: "Stabilizatorii omoplatului și coafa rotatorilor",
       steps:
@@ -5292,7 +5292,7 @@ export const EXERCISES_BY_FAMILY: Record<ExerciseFamilyId, TherapeuticExercise[]
   hip: [
     {
       name: "Activarea izometrică a fesierilor",
-      dose: "10 repetări · menținere 5 secunde",
+      dose: "10 repetări, menținere 5 secunde",
       effort: "Ușor",
       targetStructure: "Mușchii fesieri și bazin",
       steps:
@@ -5321,7 +5321,7 @@ export const EXERCISES_BY_FAMILY: Record<ExerciseFamilyId, TherapeuticExercise[]
     },
     {
       name: "Contracația izometrică a cvadricepsului (quad set)",
-      dose: "10 repetări · menținere 5 secunde",
+      dose: "10 repetări, menținere 5 secunde",
       effort: "Ușor",
       targetStructure: "Cvadriceps femural și tendonul rotulian",
       steps:
@@ -5370,7 +5370,7 @@ export const EXERCISES_BY_FAMILY: Record<ExerciseFamilyId, TherapeuticExercise[]
   pelvis: [
     {
       name: "Respirație diafragmatică cu relaxarea planșeului pelvin",
-      dose: "2 minute · ritm lent și calm",
+      dose: "2 minute, ritm lent și calm",
       effort: "Foarte ușor",
       targetStructure: "Diafragm, perete abdominal inferior și planșeul pelvin",
       steps:

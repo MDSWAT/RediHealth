@@ -60,7 +60,7 @@ ru: {
       heading: "Želiš li razgovarati s liječnikom?",
       body: "Ako ti nešto nije jasno, možeš besplatno telefonom razgovarati s liječnikom volonterom.",
       bookOnline: "Dogovori poziv",
-      checkOnCall: "Pogledaj vrijeme dežurstva",
+      checkOnCall: "Vrijeme dežurstva",
     },
     rom: {
       heading: "Manges te vorbis jekhe doktorestar?",
@@ -87,16 +87,16 @@ ru: {
       <div className="mt-4 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
         <Link
           href={consultUrl}
-          className={primaryButton}
+          className={`${primaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}
         >
           <StethoscopeIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-          {t.bookOnline}
+          <span className="min-w-0 truncate">{t.bookOnline}</span>
         </Link>
         <Link
           href={onCallUrl}
-          className={secondaryButton}
+          className={`${secondaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}
         >
-          {t.checkOnCall}
+          <span className="min-w-0 truncate">{t.checkOnCall}</span>
         </Link>
       </div>
     </section>

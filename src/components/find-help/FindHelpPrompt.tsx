@@ -29,19 +29,19 @@ export function FindHelpPrompt({ lang: langProp, className }: { lang?: Lang; cla
         <p className="text-base font-semibold text-foreground">{copy.noDoctorNeeded}</p>
         <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{copy.pharmacyFirstHint}</p>
       </div>
-      <div className="flex flex-col gap-2 sm:shrink-0 sm:flex-row sm:flex-wrap sm:items-center">
+      <div className="flex flex-wrap items-center gap-2 sm:shrink-0">
         <Link
           href={withLangPrefix(findHelpHref("pharmacy"), lang)}
-          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-sapphire/30 bg-sapphire-soft px-4 py-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+          className="inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-sapphire/30 bg-sapphire-soft px-4 py-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
         >
           <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span>{copy.nearestPharmacy}</span>
+          <span className="min-w-0 truncate">{copy.nearestPharmacy}</span>
         </Link>
         <Link
           href={withLangPrefix(findHelpHref(), lang)}
-          className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+          className="inline-flex min-h-11 max-w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
         >
-          <span>{copy.nearbyPlace}</span>
+          <span className="min-w-0 truncate">{copy.nearbyPlace}</span>
           <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
         </Link>
       </div>

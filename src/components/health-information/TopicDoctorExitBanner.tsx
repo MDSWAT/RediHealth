@@ -92,7 +92,7 @@ export function TopicDoctorExitBanner({
         <div className="max-w-2xl space-y-3">
           <h2
             id="doctor-exit-title"
-            className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
+            className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
           >
             {copy.title}
           </h2>
@@ -105,10 +105,10 @@ export function TopicDoctorExitBanner({
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
           <Link
             href={targetHref}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+            className="inline-flex min-h-[48px] max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
-            <StethoscopeIcon className="h-4 w-4" />
-            <span>{copy.buttonText}</span>
+            <StethoscopeIcon className="h-4 w-4 shrink-0" />
+            <span className="min-w-0 truncate">{copy.buttonText}</span>
           </Link>
         </div>
       </div>

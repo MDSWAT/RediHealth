@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useEffect, useId, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AlertCircleIcon, ArrowRightIcon, CheckIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, CheckIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
 import {
   ALL_ALBANIA,
   ALL_CROATIA,
@@ -283,7 +284,7 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
     listRef.current?.scrollTo({ top: 0 });
   }, [tab]);
 
-  if (!place) return null;
+  if (!place || typeof document === "undefined") return null;
 
   const targetCountry = placeCountry(place, countryHint);
   const title = isNationalCounty(place)
@@ -339,19 +340,19 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
     showCategory: tab === "all",
   };
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
-      className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4"
+      className="fixed inset-x-0 top-(--sheet-vv-top,0px) z-[80] flex h-(--sheet-vv-height,100dvh) items-end justify-center sm:inset-0 sm:h-auto sm:items-center sm:p-4"
     >
-      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-slate-950/45" onClick={onClose} aria-hidden="true" />
+      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-slate-950/55" onClick={onClose} aria-hidden="true" />
 
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="news-sheet relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] sm:max-h-[85dvh] sm:rounded-xl focus:outline-none"
+        className="news-sheet relative flex max-h-[min(92dvh,calc(var(--sheet-vv-height,100dvh)-0.75rem))] w-full max-w-2xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] sm:max-h-[min(85dvh,calc(var(--sheet-vv-height,100dvh)-2rem))] sm:rounded-xl focus:outline-none"
       >
         <div className="shrink-0 border-b border-border px-5 pt-5 sm:px-7 sm:pt-6">
           <div className="flex items-start justify-between gap-4">
@@ -435,7 +436,8 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -502,15 +504,15 @@ function Meta({
   return (
     <p className="flex flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground tabular-nums">
       {lead ?? (showCategory && <span className="font-semibold text-foreground/80">{labels[a.category] ?? a.category}</span>)}
-      {(lead || showCategory) && <span aria-hidden="true">·</span>}
+      {(lead || showCategory) && <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />}
       {showRegion && (
         <>
           <span>{region}</span>
-          <span aria-hidden="true">·</span>
+          <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
         </>
       )}
       <time dateTime={a.date}>{date}</time>
-      <span aria-hidden="true">·</span>
+      <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
       <span>
         {a.readTimeMinutes} {c.readTime}
       </span>
@@ -541,7 +543,7 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
             <PinIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
             <dd>
               <span className="font-medium">{caravan.village}</span>
-              <span className="text-muted-foreground"> · {caravan.landmark}</span>
+              <span className="text-muted-foreground">, {caravan.landmark}</span>
             </dd>
           </div>
           <div className="flex items-start gap-2">
@@ -580,8 +582,7 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
       <Meta
         {...props}
         lead={
-          <span className={cn("inline-flex items-center gap-1 font-semibold", tone.label)}>
-            <AlertCircleIcon aria-hidden="true" className="h-3.5 w-3.5" />
+          <span className={cn("font-semibold", tone.label)}>
             {high ? c.highAlert : c.seasonalAlert}
           </span>
         }
@@ -611,17 +612,17 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
         <div className="flex flex-wrap items-center gap-2">
           <Link
             href={withLangPrefix("/medic-online", lang)}
-            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg bg-card px-3 text-xs font-semibold text-sapphire shadow-[0_1px_2px_rgb(15_23_42/0.08)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft dark:text-sapphire-border dark:hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg bg-card px-3 text-xs font-semibold text-sapphire shadow-[0_1px_2px_rgb(15_23_42/0.08)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft dark:text-sapphire-border dark:hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            <StethoscopeIcon aria-hidden="true" className="h-4 w-4" />
+            <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
             {np.handoverTelemed}
           </Link>
           <Link
             href={href}
-            className="group inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="group inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {c.readGuide}
-            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
           </Link>
         </div>
       </div>

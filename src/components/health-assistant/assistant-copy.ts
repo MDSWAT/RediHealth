@@ -292,7 +292,7 @@ const ro: AssistantCopy = {
     lead: "Răspunde cu Da sau Nu la 3 întrebări scurte. Rezultatul nu este un diagnostic.",
     quickTitle: "Nu ți se aplică nimic din listă?",
     quickBody: "Ai sub 45 de ani, nu ai diabet sau tensiune mare în familie și nu ai des aceste simptome.",
-    quickButton: "Vezi rezultatul: risc scăzut",
+    quickButton: "Vezi risc scăzut",
     questions: {
       q1: {
         title: "Vârstă și familie",
@@ -655,7 +655,7 @@ const en: AssistantCopy = {
     lead: "Answer Yes or No to 3 short questions. The result is not a diagnosis.",
     quickTitle: "None of these apply to you?",
     quickBody: "You are under 45, nobody in your family has diabetes or high blood pressure, and you rarely have these symptoms.",
-    quickButton: "See result: low risk",
+    quickButton: "See low risk",
     questions: {
       q1: {
         title: "Age and family",
@@ -967,7 +967,7 @@ const sq: AssistantCopy = {
     doctorLabel: "Çfarë është e vërtetë",
     sourceLabel: "Burimi",
     readGuide: "Lexo udhëzuesin e plotë",
-    browseGuides: "Shiko të gjithë udhëzuesit",
+    browseGuides: "Të gjithë udhëzuesit",
     topics: {
       vaccines: {
         title: "Vaksinat dhe imuniteti",
@@ -1017,7 +1017,7 @@ const sq: AssistantCopy = {
     lead: "Përgjigju me Po ose Jo 3 pyetjeve të shkurtra. Rezultati nuk është diagnozë.",
     quickTitle: "Nuk të përket asgjë nga lista?",
     quickBody: "Je nën 45 vjeç, askush në familje nuk ka diabet ose presion të lartë dhe nuk i ke shpesh këto shenja.",
-    quickButton: "Shiko rezultatin: rrezik i ulët",
+    quickButton: "Shiko rrezik të ulët",
     questions: {
       q1: {
         title: "Mosha dhe familja",
@@ -1074,7 +1074,7 @@ const sq: AssistantCopy = {
     ],
     callNow: "Telefono tani 112",
     yes: "Po, kam të paktën një shenjë",
-    yesSeeTips: "Po, shiko çfarë t'i thuash 112",
+    yesSeeTips: "Po, çfarë t'i thuash 112",
     no: "Jo, simptomat e mia janë më të lehta",
     noNoneOfThese: "Jo, asnjërën nga këto",
     note: "Nëse je në rrezik, telefono vetë 112. Aplikacioni nuk telefonon për ty.",
@@ -1379,7 +1379,7 @@ const it: AssistantCopy = {
     lead: "Rispondi Sì o No a 3 domande brevi. Il risultato non è una diagnosi.",
     quickTitle: "Nessuna di queste cose ti riguarda?",
     quickBody: "Hai meno di 45 anni, nessuno in famiglia ha diabete o pressione alta e non hai spesso questi sintomi.",
-    quickButton: "Vedi il risultato: rischio basso",
+    quickButton: "Vedi rischio basso",
     questions: {
       q1: {
         title: "Età e famiglia",
@@ -1691,7 +1691,7 @@ const hr: AssistantCopy = {
     doctorLabel: "Što je točno",
     sourceLabel: "Izvor",
     readGuide: "Pročitaj cijeli vodič",
-    browseGuides: "Pogledaj sve zdravstvene vodiče",
+    browseGuides: "Svi zdravstveni vodiči",
     topics: {
       vaccines: {
         title: "Cjepiva i imunitet",
@@ -1741,7 +1741,7 @@ const hr: AssistantCopy = {
     lead: "Odgovori s Da ili Ne na 3 kratka pitanja. Rezultat nije medicinska dijagnoza.",
     quickTitle: "Ništa s popisa se ne odnosi na tebe?",
     quickBody: "Imaš manje od 45 godina, nitko u obitelji nema dijabetes ni povišeni krvni tlak i rijetko imaš ove simptome.",
-    quickButton: "Pogledaj rezultat: nizak rizik",
+    quickButton: "Vidi nizak rizik",
     questions: {
       q1: {
         title: "Dob i obitelj",
@@ -1798,7 +1798,7 @@ const hr: AssistantCopy = {
     ],
     callNow: "Nazovi 112 odmah",
     yes: "Da, imam barem jedan znak",
-    yesSeeTips: "Da, pogledaj što reći broju 112",
+    yesSeeTips: "Da, što reći na 112",
     no: "Ne, moji su simptomi blaži",
     noNoneOfThese: "Ne, ništa od navedenog",
     note: "Ako si u opasnosti, sam ili sama nazovi 112. Aplikacija ne poziva umjesto tebe.",
@@ -2053,7 +2053,7 @@ const rom: AssistantCopy = {
     doctorLabel: "So si chacho",
     sourceLabel: "Katar avel",
     readGuide: "Ginav o sasto sikavimos",
-    browseGuides: "Dikh sa le sastipnaske sikavimata",
+    browseGuides: "Sa le sikavimata",
     topics: {
       vaccines: {
         title: "Vakcine thaj arakhimos e truposko",
@@ -2103,7 +2103,7 @@ const rom: AssistantCopy = {
     lead: "De anglalipe Va vaj Na pe 3 skurte phuchimata. O rezultato na-i doktorikani diagnoza.",
     quickTitle: "Khanchi katar i lista na maladjol tuke?",
     quickBody: "Si tut telal 45 bersha, khonik and-i familija na-i les diabeto vaj bari tensia, thaj na-i tut butivar kadala simptome.",
-    quickButton: "Dikh o rezultato: tikno riziko",
+    quickButton: "Dikh tikno riziko",
     questions: {
       q1: {
         title: "Bersha thaj familija",
@@ -2160,7 +2160,7 @@ const rom: AssistantCopy = {
     ],
     callNow: "Akhar 112 akana",
     yes: "Va, si man barem jekh znako",
-    yesSeeTips: "Va, dikh so te phenes ko 112",
+    yesSeeTips: "Va, so te phenes ko 112",
     no: "Na, mure simptome si maj lokhe",
     noNoneOfThese: "Na, nijekh katar kadala",
     note: "Te san and-i dar, akhar tu ko 112. I aplikacia na akharel vash tute.",
@@ -2395,11 +2395,11 @@ ru: {
       },
       symptoms: {
         title: "У меня проблемы со здоровьем",
-        plainTitle: "я сейчас нехорошо себя чувствую",
+        plainTitle: "Я сейчас нехорошо себя чувствую",
         subtitle: "Сначала мы проверяем наличие настораживающих признаков, а затем направляем вас к врачу.",
       },
       prescription: {
-        title: "у меня есть рецепт",
+        title: "У меня есть рецепт",
         plainTitle: "У меня есть рецепт, и я не понимаю, как принимать таблетки.",
         subtitle: "Сфотографируйте рецепт или найдите лекарство.",
       },
@@ -2417,8 +2417,8 @@ ru: {
     verdictFalse: "Ложь",
     doctorLabel: "Что правда",
     sourceLabel: "Источник",
-    readGuide: "Прочитать полное руководство",
-    browseGuides: "Просмотреть все руководства по здоровью",
+    readGuide: "Открыть руководство",
+    browseGuides: "Все руководства",
     topics: {
       vaccines: {
         title: "Вакцины и иммунитет",
@@ -2468,7 +2468,7 @@ ru: {
     lead: "Ответьте «Да» или «Нет» на 3 коротких вопроса. Результат не является диагнозом.",
     quickTitle: "Ничего из этого к вам не относится?",
     quickBody: "Вам меньше 45 лет, никто в вашей семье не страдает диабетом или повышенным кровяным давлением, и эти симптомы наблюдаются у вас редко.",
-    quickButton: "Посмотреть результат: низкий риск",
+    quickButton: "Показать низкий риск",
     questions: {
       q1: {
         title: "Возраст и семья",
@@ -2508,8 +2508,8 @@ ru: {
   },
   gate: {
 "callNow": "Позвоните 112 сейчас",
-"yesSeeTips": "Да, что сказать оператору 112",
-"noNoneOfThese": "Нет, ничего из перечисленного",
+"yesSeeTips": "Да, что сказать в 112",
+"noNoneOfThese": "Нет, ничего из этого",
 
     heading: "Есть ли у вас сейчас какие-либо из этих предупреждающих знаков?",
     plainHeading: "Есть ли у вас сейчас какие-то очень серьезные признаки?",

@@ -316,6 +316,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
         part: parsed.part,
         subRegion: parsed.subRegion,
         side: parsed.side,
+        bodyProfile: parsed.bodyProfile,
       },
       symptoms,
       selfCareTips,
@@ -351,8 +352,8 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
 
   return (
     <main id="main-content" className="flex-1 pt-2 pb-12 sm:pt-4 sm:pb-16">
-      <Container>
-        <div className="mx-auto mb-4 flex max-w-2xl flex-wrap items-center justify-between gap-3 px-0.5 print:hidden">
+      <Container className="max-w-3xl">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 px-0.5 print:hidden">
           <Logo href={withLangPrefix("/", activeLang)} label={chrome.homeLink} />
           <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <FileTextIcon className="h-4 w-4 shrink-0 text-sapphire" />
@@ -360,7 +361,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
           </span>
         </div>
 
-        <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-5 sm:p-8">
+        <div className="rounded-2xl border border-border bg-card p-5 sm:p-8">
           {structuredProps ? (
             <>
               <header className="border-b border-border pb-4">
@@ -390,10 +391,10 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                   </div>
                   <a
                     href="tel:112"
-                    className={`mt-4 w-full print:hidden sm:w-auto ${emergencyButton}`}
+                    className={`mt-4 w-full whitespace-nowrap text-sm sm:text-[0.9375rem] print:hidden sm:w-auto ${emergencyButton}`}
                   >
                     <PhoneIcon className="h-4 w-4 shrink-0" />
-                    <span>{dict.ui.emergency.call112Now}</span>
+                    <span className="min-w-0 truncate">{dict.ui.emergency.call112Now}</span>
                   </a>
                 </div>
               ) : (
@@ -446,9 +447,9 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               <div className="mt-6 border-t border-border pt-5 print:hidden">
                 <Link
                   href={structuredProps.reproducePath}
-                  className={`${primaryButton} w-full sm:w-auto`}
+                  className={`${primaryButton} w-full whitespace-nowrap text-sm sm:w-auto sm:text-[0.9375rem]`}
                 >
-                  <span>{noteCopy.openFullCheck}</span>
+                  <span className="min-w-0 truncate">{noteCopy.openFullCheck}</span>
                   <ArrowRightIcon className="h-4 w-4 shrink-0" />
                 </Link>
               </div>
@@ -481,10 +482,10 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                   </div>
                   <a
                     href="tel:112"
-                    className={`mt-4 w-full print:hidden sm:w-auto ${emergencyButton}`}
+                    className={`mt-4 w-full whitespace-nowrap text-sm sm:text-[0.9375rem] print:hidden sm:w-auto ${emergencyButton}`}
                   >
                     <PhoneIcon className="h-4 w-4 shrink-0" />
-                    <span>{dict.ui.emergency.call112Now}</span>
+                    <span className="min-w-0 truncate">{dict.ui.emergency.call112Now}</span>
                   </a>
                 </div>
               ) : (
@@ -516,9 +517,9 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               <div className="mt-6 border-t border-border pt-5 print:hidden">
                 <Link
                   href={withLangPrefix("/health-check", activeLang)}
-                  className={`${primaryButton} w-full sm:w-auto`}
+                  className={`${primaryButton} w-full whitespace-nowrap text-sm sm:w-auto sm:text-[0.9375rem]`}
                 >
-                  <span>{noteCopy.startCheck}</span>
+                  <span className="min-w-0 truncate">{noteCopy.startCheck}</span>
                   <ArrowRightIcon className="h-4 w-4 shrink-0" />
                 </Link>
               </div>
@@ -534,9 +535,9 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               <div className="mt-6">
                 <Link
                   href={withLangPrefix("/health-check", activeLang)}
-                  className={`${primaryButton} w-full sm:w-auto`}
+                  className={`${primaryButton} w-full whitespace-nowrap text-sm sm:w-auto sm:text-[0.9375rem]`}
                 >
-                  <span>{noteCopy.startCheck}</span>
+                  <span className="min-w-0 truncate">{noteCopy.startCheck}</span>
                   <ArrowRightIcon className="h-4 w-4 shrink-0" />
                 </Link>
               </div>

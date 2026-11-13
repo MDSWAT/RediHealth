@@ -89,16 +89,16 @@ export function UniversalEmergencyBanner({
           dark ? "border-white/10 text-paper/75" : "border-border text-muted-foreground"
         }`}
       >
-        <Container size={size} className="flex h-8 items-center gap-2 text-[13px] leading-none">
+        <Container size={size} className="flex min-h-[2rem] items-center gap-2 py-1 text-[13px] leading-snug">
           <PhoneIcon className={`h-3 w-3 shrink-0 ${dark ? "text-paper/70" : "text-primary"}`} aria-hidden="true" />
-          <p className="min-w-0 truncate">
+          <p className="min-w-0 leading-snug">
             <span className="md:hidden">{chrome.emergencyQuestion}</span>
             <span className="hidden md:inline">{e.bannerText}</span>
           </p>
           <button
             type="button"
             onClick={() => setDialerOpen(true)}
-            className={`inline-flex h-7 shrink-0 items-center rounded-md px-1.5 font-semibold underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
+            className={`inline-flex h-7 shrink-0 items-center whitespace-nowrap rounded-md px-1.5 font-semibold underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
               dark
                 ? "text-paper decoration-paper/40 hover:decoration-paper focus-visible:outline-paper"
                 : "text-primary decoration-primary/35 hover:decoration-primary focus-visible:outline-ring"
@@ -110,7 +110,7 @@ export function UniversalEmergencyBanner({
             type="button"
             onClick={dismiss}
             aria-label={e.dismissBannerAria}
-            className={`-mr-1.5 ml-auto inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
+            className={`-mr-1.5 ml-auto inline-flex h-7 w-7 shrink-0 items-center justify-center whitespace-nowrap rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
               dark
                 ? "text-paper/60 hover:bg-white/10 hover:text-paper focus-visible:outline-paper"
                 : "text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-ring"

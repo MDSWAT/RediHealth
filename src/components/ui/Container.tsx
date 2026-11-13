@@ -12,9 +12,9 @@ type ContainerProps = {
 
 const MAX_WIDTHS: Record<ContainerSize, string> = {
   narrow: "max-w-4xl",
-  default: "max-w-6xl",
-  wide: "max-w-7xl",
-  workspace: "max-w-[92rem] xl:px-10",
+  default: "max-w-none xl:px-10 2xl:px-12",
+  wide: "max-w-none xl:px-10 2xl:px-12",
+  workspace: "max-w-none xl:px-10 2xl:px-12",
 };
 
 export function Container({
@@ -23,8 +23,16 @@ export function Container({
   as: Tag = "div",
   size = "default",
 }: ContainerProps) {
+  const hasCustomMaxWidth = Boolean(className && /\bmax-w-/.test(className));
+
   return (
-    <Tag className={cn("mx-auto w-full px-5 sm:px-6 lg:px-8", MAX_WIDTHS[size], className)}>
+    <Tag
+      className={cn(
+        "mx-auto w-full px-5 sm:px-6 lg:px-8",
+        !hasCustomMaxWidth && MAX_WIDTHS[size],
+        className,
+      )}
+    >
       {children}
     </Tag>
   );

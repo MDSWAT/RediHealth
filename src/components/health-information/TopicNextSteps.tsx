@@ -45,10 +45,10 @@ export function TopicNextSteps({ lang, topicSlug, topicTitle, className = "" }: 
         </div>
         <Link
           href={doctorHref}
-          className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-lg bg-foreground px-5 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+          className="inline-flex min-h-12 max-w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-foreground px-5 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
         >
-          <StethoscopeIcon className="h-4 w-4" aria-hidden="true" />
-          <span>{doctor.buttonText}</span>
+          <StethoscopeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <span className="min-w-0 truncate">{doctor.buttonText}</span>
         </Link>
       </div>
 
@@ -59,10 +59,10 @@ export function TopicNextSteps({ lang, topicSlug, topicTitle, className = "" }: 
         </div>
         <Link
           href={withLangPrefix(findHelpHref("pharmacy"), lang)}
-          className="group -mx-2 inline-flex min-h-[44px] shrink-0 items-center gap-2 self-start rounded-lg px-2 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:self-auto"
+          className="group -mx-2 inline-flex min-h-12 max-w-full items-center gap-2 self-start whitespace-nowrap rounded-lg px-2 py-1.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:shrink-0 sm:self-auto sm:text-[0.9375rem]"
         >
-          <PinIcon className="h-4 w-4" aria-hidden="true" />
-          <span className="underline-offset-4 group-hover:underline">{findHelp.nearestPharmacy}</span>
+          <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <span className="min-w-0 truncate underline-offset-4 group-hover:underline">{findHelp.nearestPharmacy}</span>
         </Link>
       </div>
 

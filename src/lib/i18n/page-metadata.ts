@@ -126,7 +126,7 @@ const pageTitlesByLang: Record<Lang, Partial<Record<PageMetadataKey, string>>> =
     terms: "Kushtet e përdorimit - RediHealth",
     stiri: "Lajme dhe njoftime për shëndetin - RediHealth",
     "medic-online": "Mjek online - RediHealth",
-    mediatori: "Ndërmjetësit shëndetësorë - RediHealth",
+    mediatori: "Mediatorët shëndetësorë - RediHealth",
     "contul-meu": "Llogaria ime dhe dosja mjekësore - RediHealth",
     "medic-online-programare": "Rezervo një video-thirrje - RediHealth",
   },

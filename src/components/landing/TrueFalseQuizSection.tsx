@@ -28,36 +28,32 @@ const extraCopy: Record<
   }
 > = {
   ru: {
-
-
-    score: (c, a) => `${c} из ${a} правильный`,
-
-
+    score: (c, a) => `${c} из ${a} верно`,
     restart: "Начать сначала",
   },
 
   ro: {
-    score: (c, a) => `${c}/${a} corecte`,
+    score: (c, a) => `${c} din ${a} corecte`,
     restart: "Începe din nou",
   },
   en: {
-    score: (c, a) => `${c}/${a} correct`,
+    score: (c, a) => `${c} of ${a} correct`,
     restart: "Start over",
   },
   sq: {
-    score: (c, a) => `${c}/${a} të sakta`,
+    score: (c, a) => `${c} nga ${a} të sakta`,
     restart: "Rinis",
   },
   it: {
-    score: (c, a) => `${c}/${a} corrette`,
+    score: (c, a) => `${c} su ${a} corrette`,
     restart: "Ricomincia",
   },
   hr: {
-    score: (c, a) => `${c}/${a} točnih`,
+    score: (c, a) => `${c} od ${a} točnih`,
     restart: "Kreni ispočetka",
   },
   rom: {
-    score: (c, a) => `${c}/${a} chache`,
+    score: (c, a) => `${c} anda ${a} chache`,
     restart: "Shird pale",
   },
 };
@@ -107,7 +103,7 @@ const ANSWER_VALUES = [true, false] as const;
 
 // Horizontal control row on every screen size so answers read as tactile choices, never tall mobile bricks.
 const ANSWER_SHELL =
-  "flex min-h-12 min-w-0 flex-row items-center gap-2.5 rounded-(--radius-control) px-3.5 py-2.5 text-left text-[15px] sm:px-4 sm:text-base";
+  "flex min-h-14 min-w-0 max-w-full flex-row items-center gap-2.5 whitespace-nowrap rounded-(--radius-control) px-3.5 py-2.5 text-left text-sm sm:px-4 sm:text-[0.9375rem]";
 
 function AnswerMark({
   value,
@@ -121,7 +117,7 @@ function AnswerMark({
     <span
       aria-hidden="true"
       className={cn(
-        "flex h-5 w-5 shrink-0 items-center justify-center rounded-full transition-colors duration-(--dur-fast) ease-(--ease-out-calm)",
+        "flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm)",
         tone === "selected-right" && "bg-white/20 text-white",
         tone === "selected-wrong" &&
           "bg-paper/20 text-paper dark:bg-ink-950/15 dark:text-ink-950",
@@ -329,40 +325,14 @@ export function TrueFalseQuizSection({
       id="mituri-sanatate"
       aria-labelledby="quiz-section-heading"
       tone="sapphire-soft"
-      className={className}
+      className={cn("py-10 sm:py-16 lg:py-24", className)}
     >
       <Container>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            as="h2"
-            title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
-            subtitle={q.sectionSubtitle}
-          />
-          {answeredInView > 0 && (
-            <div
-              role="status"
-              className="flex shrink-0 items-center gap-3 text-meta tabular-nums text-muted-foreground dark:text-mist"
-            >
-              <span className="font-medium text-foreground dark:text-paper">
-                {extra.score(correctInView, filteredMyths.length)}
-              </span>
-              <span
-                aria-hidden="true"
-                className="text-sapphire-border dark:text-white/20"
-              >
-                ·
-              </span>
-              <button
-                type="button"
-                onClick={handleRestart}
-                className="press-row -mx-2 inline-flex min-h-11 items-center gap-1.5 rounded-(--radius-control) px-2 font-medium text-sapphire underline decoration-sapphire/35 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:text-paper"
-              >
-                <RefreshIcon className="h-3.5 w-3.5 shrink-0" />
-                <span>{extra.restart}</span>
-              </button>
-            </div>
-          )}
-        </div>
+        <SectionHeading
+          as="h2"
+          title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
+          subtitle={q.sectionSubtitle}
+        />
 
         {/* From lg: the categories as a list on the left, the myth quiz on the right.
             Below lg: the categories as one row above the quiz. */}
@@ -376,7 +346,7 @@ export function TrueFalseQuizSection({
           />
 
           <div
-            className="mt-7 max-w-3xl lg:col-span-8 lg:mt-0"
+            className="mt-5 max-w-3xl lg:col-span-8 lg:mt-0"
             onKeyDown={handleKeyDown}
           >
             <MythCardCarousel
@@ -387,7 +357,7 @@ export function TrueFalseQuizSection({
             >
               <div className="rounded-(--radius-surface) border border-sapphire-border/80 bg-card p-5 shadow-(--shadow-card-rest) sm:p-8 dark:border-white/10 dark:bg-ink-800">
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="max-w-[28ch] text-pretty text-xl/[1.3] font-bold tracking-[-0.02em] sm:text-2xl/[1.25] lg:text-[1.75rem]/[1.2]">
+                  <h3 className="max-w-[28ch] text-pretty text-lg/[1.35] font-bold tracking-[-0.02em] sm:text-xl/[1.3]">
                     <span
                       aria-hidden="true"
                       className="select-none text-sapphire dark:text-sapphire-border"
@@ -418,7 +388,7 @@ export function TrueFalseQuizSection({
                 >
                   {ANSWER_VALUES.map((value) => {
                     const label = (
-                      <span className="min-w-0 wrap-break-word">
+                      <span className="min-w-0 truncate whitespace-nowrap">
                         {value ? q.trueButton : q.falseButton}
                       </span>
                     );
@@ -493,6 +463,25 @@ export function TrueFalseQuizSection({
                 )}
               </div>
             </MythCardCarousel>
+
+            {answeredInView > 0 && (
+              <div
+                role="status"
+                className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-(--radius-control) border border-sapphire-border/70 bg-card px-4 py-2.5 text-sm tabular-nums text-muted-foreground dark:border-ink-800 dark:bg-ink-900 dark:text-mist"
+              >
+                <span className="font-medium text-foreground dark:text-paper">
+                  {extra.score(correctInView, answeredInView)}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleRestart}
+                  className="press-row -my-1 -mr-2 inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) px-2.5 text-sm font-medium text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:text-paper"
+                >
+                  <RefreshIcon className="h-3.5 w-3.5 shrink-0" />
+                  <span className="min-w-0 truncate">{extra.restart}</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </Container>

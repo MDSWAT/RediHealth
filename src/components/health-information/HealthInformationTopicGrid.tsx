@@ -22,6 +22,8 @@ import {
 } from "@/lib/i18n/health-information-topics";
 import { TopicMetaBadge } from "./TopicMetaBadge";
 import { ReadingLevelSwitcher } from "./ReadingLevelSwitcher";
+import { openSmartSearch } from "@/components/search/smart-search-events";
+import { getSmartSearchCopy } from "@/lib/i18n/smart-search-copy";
 
 export type { TopicItem };
 export { getHealthTopicsList, HEALTH_TOPICS_LIST };
@@ -138,7 +140,7 @@ export function HealthInformationTopicGrid({
 
   const [selectedCategory, setSelectedCategory] =
     useState<string>(initialCategory);
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const searchCopy = getSmartSearchCopy(lang);
 
   const filterChips = useMemo(
     () => [
@@ -163,24 +165,12 @@ export function HealthInformationTopicGrid({
     return map;
   }, [filterChips]);
 
-  const normalizedQuery = searchQuery.trim().toLowerCase();
-  const filteredTopics = topics.filter((topic) => {
-    const matchesCategory =
+  const filteredTopics = topics.filter(
+    (topic) =>
       selectedCategory === "toate" ||
       topic.categorySlug === selectedCategory ||
-      topic.slug === selectedCategory;
-    if (!matchesCategory) return false;
-    if (!normalizedQuery) return true;
-    const categoryLabel = categoryLabelsBySlug[topic.categorySlug] ?? "";
-    const firstFact = fullTopicsBySlug[topic.slug] ?? topic.keyFact ?? "";
-    return (
-      topic.title.toLowerCase().includes(normalizedQuery) ||
-      topic.description.toLowerCase().includes(normalizedQuery) ||
-      firstFact.toLowerCase().includes(normalizedQuery) ||
-      topic.categorySlug.toLowerCase().includes(normalizedQuery) ||
-      categoryLabel.toLowerCase().includes(normalizedQuery)
-    );
-  });
+      topic.slug === selectedCategory,
+  );
 
   const resultCountText =
     filteredTopics.length === 1
@@ -201,7 +191,6 @@ export function HealthInformationTopicGrid({
   const isPairedView = visibleTopics.length === 2;
   const promoteLeadCard =
     selectedCategory === "toate" &&
-    normalizedQuery.length === 0 &&
     visibleTopics.length >= 3;
 
   const cardData = (topic: TopicItem) => ({
@@ -219,7 +208,7 @@ export function HealthInformationTopicGrid({
   });
 
   return (
-    <section aria-labelledby="health-library-title" className={className}>
+    <section id="health-guides" aria-labelledby="health-library-title" className={`scroll-mt-24 ${className}`}>
       {/* The page H1 already names the library; this heading is for screen readers. */}
       <h2 id="health-library-title" className="sr-only">
         {lib.title}
@@ -227,34 +216,32 @@ export function HealthInformationTopicGrid({
 
       {/* Search first: most people arrive with a word in mind. The symptom check is the side door. */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div className="relative flex-1">
-          <SearchIcon
-            className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground"
-            aria-hidden="true"
-          />
-          <input
-            id="health-library-search"
-            name="q"
-            type="search"
-            autoComplete="off"
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setShowAll(false);
-            }}
-            placeholder={gridCopy.searchPlaceholder}
-            aria-label={gridCopy.searchAriaLabel}
-            className="min-h-13 w-full rounded-xl border border-border-control bg-card pl-12 pr-4 text-base text-foreground placeholder:text-muted-foreground transition-[border-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-          />
-        </div>
+        <button
+          id="health-library-search"
+          type="button"
+          onClick={() => openSmartSearch()}
+          aria-label={gridCopy.searchAriaLabel}
+          className="press-row group flex min-h-12 w-full flex-1 items-center justify-between gap-3 rounded-xl border border-border-control bg-card px-4 py-2.5 text-left text-base text-muted-foreground transition-[border-color,background-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-sapphire/60 hover:bg-sapphire-soft/20 focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <span className="flex min-w-0 items-center gap-3">
+            <SearchIcon
+              className="h-5 w-5 shrink-0 text-muted-foreground transition-colors group-hover:text-sapphire motion-reduce:transition-none"
+              aria-hidden="true"
+            />
+            <span className="truncate">{searchCopy.triggerPlaceholder}</span>
+          </span>
+          <span className="hidden shrink-0 whitespace-nowrap rounded-lg border border-border bg-surface-subtle px-3 py-1 text-sm font-semibold text-foreground transition-colors group-hover:border-sapphire/40 group-hover:text-sapphire motion-reduce:transition-none sm:inline-flex">
+            {searchCopy.triggerLabel}
+          </span>
+        </button>
         <Link
           href={withLangPrefix("/health-check", lang)}
-          className="group inline-flex min-h-13 shrink-0 items-center justify-center gap-2 rounded-xl border border-border-control bg-card px-5 text-[15px] font-semibold text-foreground transition-[border-color,background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/40 motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+          className="press-row group inline-flex min-h-12 max-w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-5 text-sm font-semibold text-foreground transition-[border-color,background-color] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
         >
-          <StethoscopeIcon className="h-4.5 w-4.5 text-sapphire" aria-hidden="true" />
-          <span>{checkSymptomLabel}</span>
+          <StethoscopeIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
+          <span className="min-w-0 truncate">{checkSymptomLabel}</span>
           <ArrowRightIcon
-            className="h-4 w-4 text-sapphire transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:group-hover:translate-x-0.5"
+            className="h-4 w-4 text-sapphire transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-safe:group-hover:translate-x-0.5 motion-reduce:transition-none"
             aria-hidden="true"
           />
         </Link>
@@ -277,10 +264,10 @@ export function HealthInformationTopicGrid({
                 setSelectedCategory(chip.slug);
                 setShowAll(false);
               }}
-              className={`inline-flex min-h-11 shrink-0 items-center rounded-xl border px-4 text-sm font-medium transition-[color,background-color,border-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+              className={`inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-xl border px-4 text-sm font-medium transition-[color,background-color,border-color] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                 isActive
-                  ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                  : "border-border-control bg-card text-foreground hover:border-sapphire hover:bg-sapphire-soft/50"
+                  ? "press-solid border-sapphire bg-sapphire text-white shadow-2xs"
+                  : "press-row border-border-control bg-card text-foreground hover:border-sapphire hover:bg-sapphire-soft/50"
               }`}
             >
               {chip.label}
@@ -293,21 +280,20 @@ export function HealthInformationTopicGrid({
       <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-border pt-5">
         <p role="status" className="mr-auto text-sm font-medium text-muted-foreground tabular-nums">
           {resultCountText}
-          {searchQuery ? gridCopy.countSearchSuffix : ""}
         </p>
         {onOpenDictionary && (
           <button
             type="button"
             aria-haspopup="dialog"
             onClick={onOpenDictionary}
-            className="-mr-3 inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:mr-0"
+            className="press-row -mr-3 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl px-3 text-sm font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:mr-0"
           >
             <BookIcon className="h-4.5 w-4.5" aria-hidden="true" />
             <span>{lib.dictionary}</span>
           </button>
         )}
         {/* Phones: count and dictionary share a line; the reading switch wraps under them, in reading order. */}
-        <div className="flex w-full items-center gap-3 sm:w-auto">
+        <div className="flex w-full flex-wrap items-center justify-between gap-2.5 sm:w-auto sm:justify-start">
           <span className="text-sm font-medium text-muted-foreground">{lib.howToRead}</span>
           <ReadingLevelSwitcher level={readingLevel} onChange={(lvl) => onReadingLevelChange?.(lvl)} />
         </div>
@@ -322,10 +308,9 @@ export function HealthInformationTopicGrid({
           <button
             type="button"
             onClick={() => {
-              setSearchQuery("");
               setSelectedCategory("toate");
             }}
-            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl border border-border-control bg-card px-4 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="press-row mt-5 inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 text-sm font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {gridCopy.emptyResetButton}
           </button>
@@ -338,7 +323,7 @@ export function HealthInformationTopicGrid({
         <>
           <ul
             className={`mt-8 grid grid-cols-1 gap-5 sm:gap-6 ${
-              isPairedView ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
+              isPairedView ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"
             }`}
           >
             {visibleTopics.map((topic, index) =>
@@ -358,9 +343,9 @@ export function HealthInformationTopicGrid({
               <button
                 type="button"
                 onClick={() => setShowAll(true)}
-                className="inline-flex min-h-12 items-center justify-center rounded-xl border border-border-control bg-card px-5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="press-row inline-flex min-h-12 max-w-full items-center justify-center whitespace-nowrap rounded-xl border border-border-control bg-card px-5 text-sm font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-[0.9375rem]"
               >
-                {lib.showAll}
+                <span className="min-w-0 truncate">{lib.showAll}</span>
               </button>
             </div>
           )}
@@ -384,14 +369,14 @@ type TopicCardProps = {
   lang: Lang;
 };
 
-/** The card is one link: border at rest, a 2px lift and a darker edge on hover, photo zooms in its frame. */
+/** The card is one link: border at rest, a 2px lift and a darker edge on hover. */
 const cardLinkClass =
-  "group flex w-full overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] " +
-  "hover:border-sapphire/45 hover:shadow-[var(--shadow-card-hover)] motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0 motion-reduce:transition-none " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  "press-row group flex w-full overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] duration-(--dur-base) ease-(--ease-out-calm) " +
+  "hover:border-sapphire/45 hover:shadow-(--shadow-card-hover) motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0 motion-reduce:transition-none " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 const photoClass =
-  "object-cover transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] motion-safe:group-hover:scale-[1.03] motion-reduce:transition-none";
+  "object-cover transition-opacity duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none";
 
 function CardCategory({ topic, label }: { topic: TopicItem; label: string }) {
   const TopicIcon = topic.icon;
@@ -411,7 +396,7 @@ function CardFooter({ readMinutes, audioMinutes, lang, actionLabel }: Pick<Topic
       <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire transition-[background-color,color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-sapphire group-hover:text-white motion-reduce:transition-none">
         <ArrowRightIcon
           aria-hidden="true"
-          className="h-4 w-4 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:group-hover:translate-x-0.5"
+          className="h-4 w-4 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-safe:group-hover:translate-x-0.5 motion-reduce:transition-none"
         />
       </span>
       <span className="sr-only">{actionLabel}</span>

@@ -5,46 +5,16 @@ import type { Lang } from "@/lib/i18n/translations";
 import voiceManifest from "@/components/health-check/voice-manifest.json";
 import { isVoiceLang, normaliseSegment, segmentId, segmentUrl, spokenForm, type VoiceLang } from "@/components/health-check/spoken-segments";
 import { findBestVoice } from "@/lib/audio/speech-engine";
+import { useTextScale } from "@/lib/comfort-preferences";
 
-/* ---------- Larger text: one switch that scales the whole page, remembered on this device ---------- */
-
-const TEXT_KEY = "redihealth-large-text";
-const textListeners = new Set<() => void>();
-
-function readLargeText(): boolean {
-  try {
-    return window.localStorage.getItem(TEXT_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
-
-function subscribeLargeText(listener: () => void) {
-  textListeners.add(listener);
-  return () => textListeners.delete(listener);
-}
+/* ---------- Larger text: backed by shared comfort preferences so header and pages stay in sync ---------- */
 
 export function useLargeText(): [boolean, () => void] {
-  const enabled = useSyncExternalStore(subscribeLargeText, readLargeText, () => false);
-
-  useEffect(() => {
-    if (!enabled) return;
-    const root = document.documentElement;
-    const previous = root.style.fontSize;
-    root.style.fontSize = "115%";
-    return () => {
-      root.style.fontSize = previous;
-    };
-  }, [enabled]);
-
+  const [scale, setScale] = useTextScale();
+  const enabled = scale !== "normal";
   const toggle = useCallback(() => {
-    try {
-      window.localStorage.setItem(TEXT_KEY, readLargeText() ? "0" : "1");
-    } catch {
-      // Storage blocked: nothing to remember, the switch simply does not persist.
-    }
-    textListeners.forEach((l) => l());
-  }, []);
+    setScale(scale === "normal" ? "large" : "normal");
+  }, [scale, setScale]);
 
   return [enabled, toggle];
 }

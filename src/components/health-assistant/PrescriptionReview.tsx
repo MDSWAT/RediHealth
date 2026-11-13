@@ -4,15 +4,28 @@ import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 /* eslint-disable @next/next/no-img-element -- preview is an object URL from user file */
 
 import { useEffect, useRef, useState } from "react";
-import { AlertCircleIcon, CameraIcon, CheckCircleIcon, ImageIcon, TrashIcon } from "@/components/ui/icons";
+import Link from "next/link";
+import {
+  AlertCircleIcon,
+  ArrowRightIcon,
+  CameraIcon,
+  CheckCircleIcon,
+  ImageIcon,
+  PinIcon,
+  TrashIcon,
+} from "@/components/ui/icons";
+import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
+import { getPrescriptionDoctorBridgeCopy } from "@/components/health-assistant/PrescriptionDoctorBridge";
 import { PrescriptionStructuredResult } from "@/components/health-assistant/PrescriptionStructuredResult";
 import { useLargeText, useReadAloud } from "@/components/health-check/readingTools";
+import { prefersCalmOrReducedMotion, useReadingLevel } from "@/lib/comfort-preferences";
 import { Container } from "@/components/ui/Container";
 import type { PrescribedMedicineItem } from "@/lib/health-assistant";
+import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { DEFAULT_LANG } from "@/lib/i18n/routing";
-import type { Lang } from "@/lib/i18n/translations";
+import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
+import { translations, type Lang } from "@/lib/i18n/translations";
 
 type ReviewResponse = {
   message: string;
@@ -221,6 +234,12 @@ export function PrescriptionReview() {
   const { lang } = useLanguage();
   const [largeText, toggleLargeText] = useLargeText();
   const voice = useReadAloud(lang);
+  const [readingLevel] = useReadingLevel();
+  const assistantCopy = useAssistantCopy();
+  const doctorBridge = getPrescriptionDoctorBridgeCopy(lang);
+  const helpLinks = findHelpLinks(lang);
+  const headerCopy = translations[lang]?.header ?? translations[DEFAULT_LANG].header;
+  const safetyRules = readingLevel === "simple" ? assistantCopy.rx.plainRules : assistantCopy.rx.rules;
 
   const dict: Record<Lang, PrescriptionReviewCopy> = {
   ru: {
@@ -311,8 +330,8 @@ export function PrescriptionReview() {
       },
       noteLabel: "Or write briefly in your own words (optional)",
       whyPh: "For example: I got it after a doctor's visit for a sore throat and fever…",
-      reviewButton: "Read and explain prescription",
-      reviewing: "Reading your prescription…",
+      reviewButton: "Explain prescription",
+      reviewing: "Reading prescription…",
       reviewingHint: "This can take up to a minute. Keep this page open.",
       uploadReqErr: "Take or upload a photo of your prescription to continue.",
       fileErr: "Choose a JPEG, PNG or WebP image smaller than 8 MB.",
@@ -447,7 +466,7 @@ export function PrescriptionReview() {
       noteLabel: "Oppure scrivi in breve con parole tue (facoltativo)",
       whyPh: "Ad esempio: l'ho ricevuta dopo una visita per mal di gola e febbre…",
       reviewButton: "Leggi e spiega la ricetta",
-      reviewing: "Lettura della ricetta in corso…",
+      reviewing: "Lettura ricetta…",
       reviewingHint: "Può richiedere fino a un minuto. Tieni aperta questa pagina.",
       uploadReqErr: "Scatta o carica una foto della ricetta per continuare.",
       fileErr: "Scegli un'immagine JPEG, PNG o WebP più piccola di 8 MB.",
@@ -536,7 +555,7 @@ export function PrescriptionReview() {
       },
       noteLabel: "Vaj ramov skurto chire vorbenca (te manges)",
       whyPh: "Misal: ljem la pala jekh drom ko doktori vash dukh and-o korr thaj tatipen…",
-      reviewButton: "Ginav thaj shpjegin i receta",
+      reviewButton: "Shpjegin i receta",
       reviewing: "Ginavel pe i receta…",
       reviewingHint: "Shaj djal dji ko jekh minuto. Mekh kadaja rig puterdi.",
       uploadReqErr: "Ker vaj thov jekh poza e recetaki te djas maj dur.",
@@ -565,7 +584,7 @@ export function PrescriptionReview() {
   const [isDragging, setIsDragging] = useState(false);
 
   function getScrollBehavior(): ScrollBehavior {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (prefersCalmOrReducedMotion()) {
       return "auto";
     }
     return "smooth";
@@ -751,82 +770,86 @@ export function PrescriptionReview() {
   return (
     <main
       id="main-content"
-      className={`flex-1 pt-0.5 pb-10 sm:pt-2 sm:pb-14 ${largeText ? "hc-large-text" : ""}`}
+      className={`flex-1 pt-2 pb-10 sm:pt-3 sm:pb-14 ${largeText ? "hc-large-text" : ""}`}
     >
       <Container>
         <AssistantNavigation />
 
-        <header className="max-w-3xl print:hidden">
-          <h1 className="text-3xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-4xl">
-            {t.title}
-          </h1>
-          <p className="mt-2.5 max-w-[62ch] text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {t.subtitle}
-          </p>
+        <header className="flex flex-col gap-3.5 sm:flex-row sm:items-end sm:justify-between print:hidden">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-3xl">
+              {t.title}
+            </h1>
+            <p className="mt-1.5 max-w-[62ch] text-base leading-relaxed text-muted-foreground">
+              {t.subtitle}
+            </p>
+          </div>
+
+          <div className="flex shrink-0 flex-wrap items-center gap-2">
+            {voice.available ? (
+              <button
+                type="button"
+                onClick={handleHeaderListen}
+                aria-pressed={voice.speaking}
+                className={`inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  voice.speaking
+                    ? "border-sapphire bg-sapphire-soft text-sapphire dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-sapphire-border"
+                    : "border-border bg-card text-foreground hover:bg-muted"
+                }`}
+              >
+                <SpeakerHeaderSvg />
+                <span>{voice.speaking ? t.stopListening : t.listenPage}</span>
+              </button>
+            ) : null}
+
+            <button
+              type="button"
+              onClick={toggleLargeText}
+              aria-pressed={largeText}
+              className={`inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                largeText
+                  ? "border-sapphire bg-sapphire-soft text-sapphire dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-sapphire-border"
+                  : "border-border bg-card text-foreground hover:bg-muted"
+              }`}
+            >
+              <span aria-hidden="true" className="font-bold text-sapphire dark:text-sapphire-border">
+                A+
+              </span>
+              <span>{t.largeTextLabel}</span>
+            </button>
+          </div>
         </header>
 
-        <section className="mt-6 max-w-3xl rounded-2xl border border-border bg-card shadow-xs print:hidden sm:mt-8">
-          <form onSubmit={handleSubmit} className="space-y-6 p-5 sm:p-8" aria-busy={isSubmitting}>
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
-                <p className="text-sm font-medium text-muted-foreground tabular-nums">
-                  {currentStepLabel}
-                </p>
+        <div className="mt-5 grid gap-6 sm:mt-6 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem] xl:gap-8 print:block">
+          <div className="min-w-0 space-y-6">
+            <section className="rounded-2xl border border-border bg-card shadow-xs print:hidden">
+              <form onSubmit={handleSubmit} className="space-y-6 p-5 sm:p-8" aria-busy={isSubmitting}>
+                <div>
+                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
+                    <p className="whitespace-nowrap text-sm font-medium text-muted-foreground tabular-nums">
+                      {currentStepLabel}
+                    </p>
+                  </div>
 
-                <div className="flex shrink-0 flex-wrap items-center gap-2">
-                  {voice.available ? (
-                    <button
-                      type="button"
-                      onClick={handleHeaderListen}
-                      aria-pressed={voice.speaking}
-                      className={`inline-flex min-h-11 items-center gap-2 rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                        voice.speaking
-                          ? "border-sapphire bg-sapphire-soft text-sapphire dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-sapphire-border"
-                          : "border-border bg-card text-foreground hover:bg-muted"
-                      }`}
-                    >
-                      <SpeakerHeaderSvg />
-                      <span>{voice.speaking ? t.stopListening : t.listenPage}</span>
-                    </button>
-                  ) : null}
-
-                  <button
-                    type="button"
-                    onClick={toggleLargeText}
-                    aria-pressed={largeText}
-                    className={`inline-flex min-h-11 items-center gap-1.5 rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
-                      largeText
-                        ? "border-sapphire bg-sapphire-soft text-sapphire dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-sapphire-border"
-                        : "border-border bg-card text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    <span aria-hidden="true" className="font-bold text-sapphire dark:text-sapphire-border">
-                      A+
-                    </span>
-                    <span>{t.largeTextLabel}</span>
-                  </button>
-                </div>
-              </div>
-
-              <div
-                className="mt-3 flex h-1 w-full gap-1.5"
-                role="progressbar"
-                aria-label={t.title}
-                aria-valuenow={currentStep}
-                aria-valuemin={1}
-                aria-valuemax={2}
-                aria-valuetext={currentStepLabel}
-              >
-                {[1, 2].map((segment) => (
                   <div
-                    key={segment}
-                    className={`h-1 flex-1 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
-                      currentStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
+                    className="mt-3 flex h-1 w-full gap-1.5"
+                    role="progressbar"
+                    aria-label={t.title}
+                    aria-valuenow={currentStep}
+                    aria-valuemin={1}
+                    aria-valuemax={2}
+                    aria-valuetext={currentStepLabel}
+                  >
+                    {[1, 2].map((segment) => (
+                      <div
+                        key={segment}
+                        className={`h-1 flex-1 rounded-sm transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
+                          currentStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
 
             {/* Separate inputs: one opens the camera directly on phones, the other the gallery. */}
             <input
@@ -871,26 +894,26 @@ export function PrescriptionReview() {
                   <button
                     type="button"
                     onClick={() => cameraInput.current?.click()}
-                    className="press-row inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire dark:bg-ink-900"
+                    className="press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900"
                   >
                     <CameraIcon className="h-4 w-4 shrink-0" />
-                    <span>{t.retakeLight}</span>
+                    <span className="min-w-0 truncate">{t.retakeLight}</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => galleryInput.current?.click()}
-                    className="press-row inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire dark:bg-ink-900"
+                    className="press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900"
                   >
                     <ImageIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
-                    <span>{t.galleryUpload}</span>
+                    <span className="min-w-0 truncate">{t.galleryUpload}</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={handleRemovePhoto}
                     disabled={isSubmitting}
-                    className="press-row inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-rose-200 bg-rose-50/60 px-4 py-2 text-sm font-semibold text-rose-700 transition-colors hover:bg-rose-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 disabled:cursor-not-allowed disabled:opacity-60 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:bg-rose-950/60"
+                    className="press-row inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-rose-200 bg-rose-50/60 px-4 py-2 text-sm font-semibold text-rose-700 transition-colors hover:bg-rose-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 disabled:cursor-not-allowed disabled:opacity-60 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:bg-rose-950/60"
                   >
                     <TrashIcon className="h-4 w-4 shrink-0" />
                     <span>{t.removePhoto}</span>
@@ -936,26 +959,26 @@ export function PrescriptionReview() {
                   <button
                     type="button"
                     onClick={() => cameraInput.current?.click()}
-                    className="press-row inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-xl bg-sapphire px-6 py-3.5 text-base font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire active:scale-[0.98] motion-reduce:active:scale-100 sm:w-auto"
+                    className="press-row inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-auto sm:px-6 sm:text-[0.9375rem]"
                   >
                     <CameraIcon className="h-5 w-5 shrink-0" />
-                    <span>{t.cameraCapture}</span>
+                    <span className="min-w-0 truncate">{t.cameraCapture}</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => galleryInput.current?.click()}
-                    className="press-row inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-xl border border-border-control bg-card px-6 py-3.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire active:scale-[0.98] motion-reduce:active:scale-100 dark:bg-ink-900 sm:w-auto"
+                    className="press-row inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-5 py-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900 sm:w-auto sm:px-6 sm:text-[0.9375rem]"
                   >
                     <ImageIcon className="h-5 w-5 shrink-0 text-muted-foreground" />
-                    <span>{t.galleryUpload}</span>
+                    <span className="min-w-0 truncate">{t.galleryUpload}</span>
                   </button>
                 </div>
 
                 {/* Informational Guidance Box: clearly labeled and non-interactive */}
                 <div className="mt-6 rounded-xl border border-sapphire-border/40 bg-card/85 p-4 text-left shadow-2xs dark:border-white/10 dark:bg-ink-900/60 sm:p-4.5">
                   <div className="flex items-center gap-2">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sapphire-soft text-sapphire dark:bg-sapphire/20 dark:text-sapphire-light">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-md bg-sapphire-soft text-sapphire dark:bg-sapphire/20 dark:text-sapphire-light">
                       <svg viewBox="0 0 16 16" fill="currentColor" className="h-3 w-3" aria-hidden="true">
                         <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 3.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm1.25 7.25h-2.5a.75.75 0 0 1 0-1.5h.5V7.75h-.5a.75.75 0 0 1 0-1.5h1.75a.75.75 0 0 1 .75.75v3.25h.5a.75.75 0 0 1 0 1.5Z" />
                       </svg>
@@ -1026,20 +1049,16 @@ export function PrescriptionReview() {
                     <button
                       type="button"
                       onClick={() => cameraInput.current?.click()}
-                      className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg border border-amber-care-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire dark:border-amber-care/50"
+                      className="inline-flex min-h-11 max-w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-amber-care-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-amber-care/50"
                     >
-                      <CameraIcon className="h-4 w-4 text-amber-care dark:text-amber-care-border" />
-                      <span>{t.retakeLight}</span>
+                      <CameraIcon className="h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
+                      <span className="min-w-0 truncate">{t.retakeLight}</span>
                     </button>
                   </div>
                 ) : qualityState === "good" ? (
-                  <div
-                    role="status"
-                    className="inline-flex items-center gap-2 rounded-full border border-live-sage/35 bg-live-sage/12 px-3.5 py-1.5 text-sm font-semibold text-foreground"
-                  >
-                    <CheckCircleIcon className="h-4 w-4 shrink-0 text-live-sage" />
-                    <span>{t.photoReady}</span>
-                  </div>
+                  <p role="status" className="text-sm font-semibold text-live-sage">
+                    {t.photoReady}
+                  </p>
                 ) : null}
 
                 {/* 1-tap visual reason chips + optional note */}
@@ -1067,7 +1086,7 @@ export function PrescriptionReview() {
                           type="button"
                           onClick={() => toggleReasonChip(reasonKey)}
                           aria-pressed={active}
-                          className={`flex min-h-11 items-center gap-2.5 rounded-xl border px-3.5 py-2.5 text-left font-medium transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                          className={`flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-left font-medium transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                             largeText ? "text-base" : "text-sm"
                           } ${
                             active
@@ -1084,7 +1103,7 @@ export function PrescriptionReview() {
                           >
                             <ReasonChipIcon reason={reasonKey} />
                           </span>
-                          <span className="flex-1 leading-snug">{t.reasons[reasonKey]}</span>
+                          <span className="min-w-0 flex-1 truncate leading-snug">{t.reasons[reasonKey]}</span>
                           {active ? (
                             <CheckCircleIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />
                           ) : null}
@@ -1110,7 +1129,7 @@ export function PrescriptionReview() {
                       value={context}
                       onChange={(event) => setContext(event.target.value)}
                       placeholder={t.whyPh}
-                      className={`mt-1.5 w-full resize-none rounded-lg border border-border bg-background p-3 text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                      className={`mt-1.5 w-full resize-none rounded-lg border border-border bg-background p-3 text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                         largeText ? "text-base" : "text-sm"
                       }`}
                     />
@@ -1131,9 +1150,9 @@ export function PrescriptionReview() {
                   <button
                     type="submit"
                     disabled={isSubmitting || !file}
-                    className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-xl bg-sapphire px-7 py-3 text-base font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:w-auto"
+                    className="inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:w-auto sm:px-7 sm:text-[0.9375rem]"
                   >
-                    <span>{isSubmitting ? t.reviewing : t.reviewButton}</span>
+                    <span className="min-w-0 truncate">{isSubmitting ? t.reviewing : t.reviewButton}</span>
                     {!isSubmitting ? <ArrowRightSvg /> : null}
                   </button>
 
@@ -1157,7 +1176,7 @@ export function PrescriptionReview() {
         {isSubmitting && !result ? (
           <section
             aria-label={t.skeletonHeading}
-            className="mt-6 max-w-3xl rounded-2xl border border-border bg-card p-5 shadow-xs print:hidden sm:p-8"
+            className="rounded-2xl border border-border bg-card p-5 shadow-xs print:hidden sm:p-8"
           >
             <p className="text-sm font-semibold text-foreground">{t.skeletonHeading}</p>
             <div className="mt-4 space-y-3" aria-hidden="true">
@@ -1178,7 +1197,7 @@ export function PrescriptionReview() {
         {result && (
           <section
             ref={resultSectionRef}
-            className="assistant-step-in mt-6 max-w-3xl rounded-2xl border border-border bg-card p-5 shadow-xs sm:p-8"
+            className="assistant-step-in rounded-2xl border border-border bg-card p-5 shadow-xs sm:p-8"
           >
             <PrescriptionStructuredResult
               aiMessage={result.message}
@@ -1188,6 +1207,55 @@ export function PrescriptionReview() {
             />
           </section>
         )}
+          </div>
+
+          <aside className="min-w-0 space-y-4 lg:sticky lg:top-[calc(var(--site-header-h,4rem)+1.5rem)] print:hidden">
+            <div className="rounded-2xl border border-border bg-card p-5 shadow-xs sm:p-6">
+              <h2 className="text-balance text-base font-semibold text-foreground">
+                {assistantCopy.rx.rulesHeading}
+              </h2>
+              <ol className="mt-4 space-y-3">
+                {safetyRules.map((rule, index) => (
+                  <li key={rule} className="flex items-start gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-xs font-semibold text-sapphire tabular-nums dark:bg-sapphire/20 dark:text-sapphire-light"
+                    >
+                      {index + 1}
+                    </span>
+                    <span className="text-sm leading-relaxed text-muted-foreground">{rule}</span>
+                  </li>
+                ))}
+              </ol>
+              <Link
+                href={withLangPrefix("/find-help?category=pharmacy", lang)}
+                className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900"
+              >
+                <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+                <span className="min-w-0 truncate">{helpLinks.nav}</span>
+                <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+              </Link>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-surface-subtle/60 p-5 shadow-xs dark:bg-card sm:p-6">
+              <div className="min-w-0">
+                <h2 className="text-balance text-base font-semibold text-foreground">
+                  {doctorBridge.heading}
+                </h2>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                  {doctorBridge.body}
+                </p>
+              </div>
+              <Link
+                href={withLangPrefix("/medic-online?source=prescription", lang)}
+                className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-sapphire px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <span className="min-w-0 truncate">{headerCopy.navMedic}</span>
+                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              </Link>
+            </div>
+          </aside>
+        </div>
       </Container>
     </main>
   );

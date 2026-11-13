@@ -1706,7 +1706,7 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
   const energised = activeMode === "healthy" && currentStepIndex === 3;
 
   const playClass =
-    "min-h-[44px] rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2";
+    "inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
   return (
     <section
@@ -1809,7 +1809,7 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
                 </svg>
                 <span>
                   {ui.insulinKeyLabel}
-                  {activeMode === "type1" && <span className="text-amber-care-hover"> · {ui.type1AbsenceKeys}</span>}
+                  {activeMode === "type1" && <span className="text-amber-care-hover"> — {ui.type1AbsenceKeys}</span>}
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -1838,10 +1838,18 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
                 <span>{ui.cellInterior}</span>
               </li>
               <li className="flex items-start gap-2">
-                <span
-                  className={`mt-0.5 h-3 w-4 shrink-0 rounded-full border ${energised ? "border-live-sage bg-live-sage-soft" : "border-sapphire-border bg-card"}`}
-                  aria-hidden="true"
-                />
+                <svg viewBox="0 0 16 12" className="mt-0.5 h-3 w-4 shrink-0" aria-hidden="true">
+                  <rect
+                    x="1"
+                    y="1"
+                    width="14"
+                    height="10"
+                    rx="5"
+                    fill={energised ? "var(--color-live-sage-soft)" : "var(--color-card)"}
+                    stroke={energised ? "var(--color-live-sage)" : "var(--color-sapphire-border)"}
+                    strokeWidth="1.5"
+                  />
+                </svg>
                 <span>
                   {ui.mitochondria}:{" "}
                   <span className="text-muted-foreground">{energised ? ui.energyProduction : ui.restingText}</span>

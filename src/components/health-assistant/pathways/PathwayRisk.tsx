@@ -5,8 +5,6 @@ import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoct
 import { type RiskLevel, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import {
   primaryButton,
-  secondaryButton,
-  softPanel,
   stepHeading,
   stepLead,
   subHeading,
@@ -38,7 +36,7 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
 
   const yesCount = QUESTION_IDS.filter((id) => answers[id]).length;
   const level: RiskLevel = yesCount >= 2 ? "high" : yesCount === 1 ? "moderate" : "low";
-  const anyAnswered = QUESTION_IDS.some((id) => answers[id] !== undefined);
+  const allAnswered = QUESTION_IDS.every((id) => answers[id] !== undefined);
 
   if (step === 2) {
     return (
@@ -46,20 +44,7 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
         <h2 className={stepHeading}>{risk.heading}</h2>
         <p className={stepLead}>{risk.lead}</p>
 
-        {/* Shown only before any answer, so "low risk" never contradicts a Yes already given. */}
-        {!anyAnswered ? (
-          <div className={`mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ${softPanel}`}>
-            <div>
-              <h3 className={subHeading}>{risk.quickTitle}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{risk.quickBody}</p>
-            </div>
-            <button type="button" onClick={onQuickResolve} className={`shrink-0 ${secondaryButton}`}>
-              {risk.quickButton}
-            </button>
-          </div>
-        ) : null}
-
-        <ol className="mt-6 divide-y divide-border border-y border-border">
+        <ol className="mt-6 divide-y divide-border border-t border-border">
           {QUESTION_IDS.map((id, idx) => {
             const q = risk.questions[id];
             const current = answers[id];
@@ -80,10 +65,10 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
                         data-risk-yes={value ? "" : undefined}
                         aria-pressed={selected}
                         onClick={() => onAnswer(id, value)}
-                        className={`min-h-12 rounded-xl border text-base font-semibold transition-[background-color,border-color,color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 ${
+                        className={`min-h-12 whitespace-nowrap rounded-xl border px-4 text-sm font-semibold transition-[background-color,border-color,color,filter] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem] ${
                           selected
-                            ? "border-sapphire bg-sapphire text-white"
-                            : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30"
+                            ? "border-sapphire bg-sapphire text-white press-solid"
+                            : "border-border-control bg-card text-foreground press-row hover:border-sapphire/60 hover:bg-sapphire-soft/30"
                         }`}
                       >
                         {value ? risk.yes : risk.no}
@@ -96,16 +81,18 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
           })}
         </ol>
 
-        {anyAnswered ? (
-          <button
-            type="button"
-            data-risk-submit
-            onClick={onQuickResolve}
-            className={`mt-6 w-full sm:w-auto ${primaryButton}`}
-          >
-            {risk.submit}
-          </button>
-        ) : null}
+        {allAnswered && (
+          <div className="mt-2 border-t border-border pt-5">
+            <button
+              type="button"
+              data-risk-submit
+              onClick={onQuickResolve}
+              className={`w-full sm:w-auto ${primaryButton}`}
+            >
+              {risk.submit}
+            </button>
+          </div>
+        )}
       </div>
     );
   }
@@ -124,7 +111,7 @@ export function PathwayRisk({ step, answers, onAnswer, plainLanguage, onQuickRes
         </p>
         <div className="mt-2 flex h-1.5 gap-1.5" aria-hidden="true">
           {[1, 2, 3].map((segment) => (
-            <div key={segment} className={`flex-1 rounded-full ${segment <= filled ? tone.bar : "bg-muted"}`} />
+            <div key={segment} className={`flex-1 rounded-sm ${segment <= filled ? tone.bar : "bg-muted"}`} />
           ))}
         </div>
       </div>

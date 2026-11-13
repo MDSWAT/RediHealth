@@ -8,11 +8,13 @@ import {
   PhoneIcon,
   PrinterIcon,
 } from "@/components/ui/icons";
+import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { PrescriptionAudioPlayer } from "@/components/health-assistant/PrescriptionAudioPlayer";
 import { PrescriptionDoctorBridge } from "@/components/health-assistant/PrescriptionDoctorBridge";
 import { type AssistantCopy, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import { useReadAloud } from "@/components/health-check/readingTools";
 import type { PrescribedMedicineItem } from "@/lib/health-assistant";
+import type { Lang } from "@/lib/i18n/translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 
 interface PrescriptionStructuredResultProps {
@@ -57,6 +59,131 @@ function isMedicineUnclear(med: PrescribedMedicineItem): boolean {
       med.warnings?.some((warning) => containsUnclearMarker(warning))
   );
 }
+
+/**
+ * Normalizes daily timing slots from structured fields and only maps unambiguous
+ * explicit markers (such as "1-0-1" or explicit time-of-day words) without inventing doses.
+ */
+function deriveSafeTimeSlots(med: PrescribedMedicineItem): {
+  morning?: string;
+  midday?: string;
+  evening?: string;
+  bedtime?: string;
+} {
+  if (med.morning || med.midday || med.evening || med.bedtime) {
+    return {
+      morning: med.morning,
+      midday: med.midday,
+      evening: med.evening,
+      bedtime: med.bedtime,
+    };
+  }
+
+  const hintText = [med.purpose, med.name, ...(med.warnings ?? [])]
+    .filter(Boolean)
+    .join(" ");
+  if (!hintText) return {};
+
+  const schemeMatch = hintText.match(/\b([0-4])\s*-\s*([0-4])\s*-\s*([0-4])(?:\s*-\s*([0-4]))?\b/);
+  if (schemeMatch) {
+    const [, m, mid, ev, bed] = schemeMatch;
+    return {
+      morning: m !== "0" ? m : undefined,
+      midday: mid !== "0" ? mid : undefined,
+      evening: ev !== "0" ? ev : undefined,
+      bedtime: bed && bed !== "0" ? bed : undefined,
+    };
+  }
+
+  const morning = /\b(?:dimineaț|dimineat|morning|mëngjes|mattin|ujutr|disrja|утром)\w*/i.test(
+    hintText
+  )
+    ? "✓"
+    : undefined;
+  const midday = /\b(?:prânz|pranz|amiaz|midday|noon|mesdit|mezzogiorn|podne|днём|днем)\w*/i.test(
+    hintText
+  )
+    ? "✓"
+    : undefined;
+  const evening = /\b(?:sear[ăa]|evening|mbrëmj|ser[ae]|navečer|večerom|вечером)\w*/i.test(hintText)
+    ? "✓"
+    : undefined;
+  const bedtime =
+    /\b(?:culcar|noapt|bedtime|night|gjum|nott|spavanj|перед сном|на ночь)\w*/i.test(hintText)
+      ? "✓"
+      : undefined;
+
+  return { morning, midday, evening, bedtime };
+}
+
+const FRIDGE_COPY: Record<
+  Lang,
+  {
+    title: string;
+    subtitle: string;
+    medicineCol: string;
+    notesCol: string;
+    printedOn: string;
+    footer: string;
+  }
+> = {
+  ro: {
+    title: "Program zilnic de tratament (pentru frigider)",
+    subtitle: "Păstrează această foaie la vedere și bifează fiecare doză după administrare.",
+    medicineCol: "Medicament",
+    notesCol: "Indicații și atenționări",
+    printedOn: "Tipărit pe",
+    footer: "Verifică întotdeauna doza exactă cu farmacistul sau medicul înainte de administrare.",
+  },
+  en: {
+    title: "Daily medicine schedule (fridge sheet)",
+    subtitle: "Keep this sheet visible and check each dose after taking it.",
+    medicineCol: "Medicine",
+    notesCol: "Meal timing and notes",
+    printedOn: "Printed on",
+    footer: "Always confirm exact doses with your pharmacist or doctor before taking medicines.",
+  },
+  sq: {
+    title: "Orari ditor i barnave (për frigorifer)",
+    subtitle: "Mbaje këtë fletë në vend të dukshëm dhe shëno çdo dozë pas marrjes.",
+    medicineCol: "Bari",
+    notesCol: "Udhëzime dhe shënime",
+    printedOn: "Printuar më",
+    footer: "Kontrollo gjithmonë dozën e saktë me farmacistin ose mjekun para përdorimit.",
+  },
+  it: {
+    title: "Programma giornaliero dei farmaci (da frigo)",
+    subtitle: "Tieni questo foglio in vista e segna ogni dose dopo averla presa.",
+    medicineCol: "Farmaco",
+    notesCol: "Orari dei pasti e note",
+    printedOn: "Stampato il",
+    footer: "Conferma sempre le dosi esatte con il farmacista o il medico prima dell'uso.",
+  },
+  hr: {
+    title: "Dnevni raspored lijekova (za hladnjak)",
+    subtitle: "Drži ovaj list na vidljivom mjestu i označi svaku dozu nakon uzimanja.",
+    medicineCol: "Lijek",
+    notesCol: "Upute i napomene",
+    printedOn: "Ispisano",
+    footer: "Uvijek provjeri točnu dozu s ljekarnikom ili liječnikom prije uzimanja.",
+  },
+  rom: {
+    title: "Rasporedo pe svako dives vaš lekurja",
+    subtitle: "Inker kadava lil po dikhlo than thaj semnosar svako doza pali xamos.",
+    medicineCol: "Lekuri",
+    notesCol: "Xamoske vaxtja thaj note",
+    printedOn: "Printirime po",
+    footer: "Dikh sajekh e farmaceutosa vai e doktorea e čače doza anglal te les o lekuri.",
+  },
+  ru: {
+    title: "Ежедневный график приёма лекарств (на холодильник)",
+    subtitle: "Держите этот лист на видном месте и отмечайте каждую дозу после приёма.",
+    medicineCol: "Лекарство",
+    notesCol: "Приём пищи и примечания",
+    printedOn: "Распечатано",
+    footer: "Всегда уточняйте точную дозировку у фармацевта или врача перед приёмом.",
+  },
+};
 
 function stripUnclearForSpeech(text: string): string {
   return text.replace(UNCLEAR_CAPTURE_REGEX, "").replace(/\s{2,}/g, " ").trim();
@@ -115,10 +242,9 @@ function renderWithUnclearHighlights(text: string): ReactNode {
       return (
         <mark
           key={`${part}-${index}`}
-          className="mx-0.5 inline-flex items-center gap-1 rounded-md border border-amber-care-border bg-amber-care-soft px-1.5 py-0.5 align-baseline font-sans text-xs font-semibold text-foreground dark:border-amber-care/45 dark:bg-amber-care/20"
+          className="bg-amber-care-soft px-1 font-semibold text-foreground dark:bg-amber-care/20"
         >
-          <AlertCircleIcon className="h-3.5 w-3.5 shrink-0 text-amber-care dark:text-amber-care-border" />
-          <span>{part}</span>
+          {part}
         </mark>
       );
     }
@@ -252,48 +378,6 @@ function PillCapsuleSvg({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-function MealPlateSvg({ className = "h-3.5 w-3.5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className={className}>
-      <circle cx="10" cy="10" r="4.6" stroke="currentColor" strokeWidth="1.6" />
-      <path
-        d="M3.25 5.25v4.2a1.3 1.3 0 0 0 1.3 1.3v4.5M3.25 7.6h1.6M16.5 5.25v9.95M15.1 5.25c0 2 0 3.4 1.4 3.4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function CalendarDurationSvg({ className = "h-3.5 w-3.5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className={className}>
-      <rect x="3.25" y="4.75" width="13.5" height="12" rx="2" stroke="currentColor" strokeWidth="1.6" />
-      <path
-        d="M6.75 3v3M13.25 3v3M3.25 8.5h13.5"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function PharmacistCrossSvg({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className={className}>
-      <path
-        d="M8 3.5h4v4.5h4.5v4H12v4.5H8V12H3.5V8H8V3.5Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function SpeakerListenSvg({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className={className}>
@@ -344,19 +428,63 @@ export function PrescriptionStructuredResult({
   const [isPrinting, setIsPrinting] = useState(false);
   const [activeSpeechCard, setActiveSpeechCard] = useState<number | null>(null);
 
+  const hasFridgeSchedule = validMedicines.length > 0;
+  const fridge = FRIDGE_COPY[lang] ?? FRIDGE_COPY.ro;
+  const printedDate = new Date().toLocaleDateString(lang === "rom" ? "ro-RO" : lang);
+
+  const familyShareLines = validMedicines.map((med) => {
+    const slots = deriveSafeTimeSlots(med);
+    const activeSlotLabels = [
+      slots.morning ? `${result.scheduleSlots.morning}: ${slots.morning}` : null,
+      slots.midday ? `${result.scheduleSlots.midday}: ${slots.midday}` : null,
+      slots.evening ? `${result.scheduleSlots.evening}: ${slots.evening}` : null,
+      slots.bedtime ? `${result.scheduleSlots.bedtime}: ${slots.bedtime}` : null,
+    ].filter(Boolean);
+    const metaParts = [
+      activeSlotLabels.join(", "),
+      med.foodTiming && med.foodTiming !== "any" ? result.foodTiming[med.foodTiming] : null,
+      med.duration ? result.durationLabel(med.duration) : null,
+    ].filter(Boolean);
+    const head = `${med.name}${med.strength ? ` (${med.strength})` : ""}`;
+    return metaParts.length > 0 ? `${head} — ${metaParts.join(", ")}` : head;
+  });
+  const familyShareText = [
+    ...(familyShareLines.length > 0 ? familyShareLines : message ? [message] : []),
+    rx.rules[0],
+  ]
+    .filter(Boolean)
+    .join("\n");
+
   useEffect(() => {
-    const handleBeforePrint = () => setIsPrinting(true);
-    const handleAfterPrint = () => setIsPrinting(false);
+    const syncPrintMode = (active: boolean) => {
+      if (active && hasFridgeSchedule) {
+        document.documentElement.setAttribute("data-print-mode", "fridge-sheet");
+      } else {
+        document.documentElement.removeAttribute("data-print-mode");
+      }
+    };
+    const handleBeforePrint = () => {
+      setIsPrinting(true);
+      syncPrintMode(true);
+    };
+    const handleAfterPrint = () => {
+      setIsPrinting(false);
+      syncPrintMode(false);
+    };
     window.addEventListener("beforeprint", handleBeforePrint);
     window.addEventListener("afterprint", handleAfterPrint);
     return () => {
       window.removeEventListener("beforeprint", handleBeforePrint);
       window.removeEventListener("afterprint", handleAfterPrint);
+      document.documentElement.removeAttribute("data-print-mode");
     };
-  }, []);
+  }, [hasFridgeSchedule]);
 
   function handlePrint() {
     setIsPrinting(true);
+    if (hasFridgeSchedule) {
+      document.documentElement.setAttribute("data-print-mode", "fridge-sheet");
+    }
     requestAnimationFrame(() => {
       window.print();
     });
@@ -376,22 +504,27 @@ export function PrescriptionStructuredResult({
 
   return (
     <div className={className}>
-      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div
+        data-fridge-screen-only={hasFridgeSchedule ? "true" : undefined}
+        className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between"
+      >
         <div>
           <h2 className="text-xl font-semibold text-foreground">{result.heading}</h2>
           <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">{result.lead}</p>
         </div>
-        <div className="flex shrink-0 flex-wrap gap-2 print:hidden">
+        <div className="flex shrink-0 flex-nowrap items-center gap-2 print:hidden">
           <PrescriptionAudioPlayer speechText={speechText} />
           <button
             type="button"
             onClick={handlePrint}
             aria-label={result.printAria}
-            className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            title={result.print}
+            className="press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-border-control bg-card text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            <PrinterIcon className="h-4 w-4 text-muted-foreground" />
-            <span>{result.print}</span>
+            <PrinterIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+            <span className="sr-only">{result.print}</span>
           </button>
+          <FamilyShareButton iconOnly align="right" title={result.heading} text={familyShareText} lang={lang} />
         </div>
       </div>
 
@@ -406,7 +539,7 @@ export function PrescriptionStructuredResult({
           </p>
           <a
             href="tel:112"
-            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             <PhoneIcon className="h-4 w-4" />
             <span>{symptoms.callNow}</span>
@@ -417,29 +550,39 @@ export function PrescriptionStructuredResult({
       {hasUnclearContent ? (
         <div
           role="status"
-          className="mt-6 flex items-start gap-3.5 rounded-xl border border-amber-care-border bg-amber-care-soft/65 p-4 sm:p-5 dark:border-amber-care/45 dark:bg-amber-care/15 print:break-inside-avoid"
+          className="mt-6 rounded-xl border border-amber-care-border border-l-4 border-l-amber-care bg-amber-care-soft/65 p-4 sm:p-5 dark:border-amber-care/45 dark:bg-amber-care/15 print:break-inside-avoid"
         >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-amber-care-border bg-card text-amber-care dark:border-amber-care/50 dark:text-amber-care-border">
-            <PharmacistCrossSvg className="h-5 w-5" />
-          </div>
-          <div className="min-w-0 flex-1">
-            <h3 className="text-base font-semibold text-foreground">{result.pharmacistBannerTitle}</h3>
+          <div className="min-w-0">
+            <h3 className="text-balance text-base font-semibold text-foreground">{result.pharmacistBannerTitle}</h3>
             <p className="mt-1 text-sm leading-relaxed text-foreground/90">{result.pharmacistBannerBody}</p>
           </div>
         </div>
       ) : null}
 
-      {validMedicines.length > 0 ? (
-        <section className="mt-6">
+      <div data-fridge-screen-only={hasFridgeSchedule ? "true" : undefined}>
+        {validMedicines.length > 0 ? (
+          <section className="mt-6">
           <div className="mb-3.5">
             <h3 className="text-base font-semibold text-foreground">{result.medicinesHeading}</h3>
             <p className="mt-0.5 text-sm text-muted-foreground">{result.medicinesLead}</p>
           </div>
 
-          <div className="space-y-4">
+          <div
+            className={
+              validMedicines.length > 1
+                ? "grid gap-4 xl:grid-cols-2 print:block print:space-y-4"
+                : "space-y-4"
+            }
+          >
             {validMedicines.map((med, index) => {
               const medUnclear = isMedicineUnclear(med);
-              const hasSchedule = Boolean(med.morning || med.midday || med.evening || med.bedtime);
+              const derivedSlots = deriveSafeTimeSlots(med);
+              const hasSchedule = Boolean(
+                derivedSlots.morning ||
+                  derivedSlots.midday ||
+                  derivedSlots.evening ||
+                  derivedSlots.bedtime
+              );
               const hasFoodRule = Boolean(med.foodTiming && med.foodTiming !== "any");
               const hasBadges = hasFoodRule || Boolean(med.duration) || medUnclear;
               const isCardSpeaking = voice.speaking && activeSpeechCard === index;
@@ -448,25 +591,25 @@ export function PrescriptionStructuredResult({
                 {
                   key: "morning" as const,
                   label: result.scheduleSlots.morning,
-                  value: med.morning,
+                  value: derivedSlots.morning,
                   Icon: SunriseSlotSvg,
                 },
                 {
                   key: "midday" as const,
                   label: result.scheduleSlots.midday,
-                  value: med.midday,
+                  value: derivedSlots.midday,
                   Icon: MiddaySunSvg,
                 },
                 {
                   key: "evening" as const,
                   label: result.scheduleSlots.evening,
-                  value: med.evening,
+                  value: derivedSlots.evening,
                   Icon: SunsetSlotSvg,
                 },
                 {
                   key: "bedtime" as const,
                   label: result.scheduleSlots.bedtime,
-                  value: med.bedtime,
+                  value: derivedSlots.bedtime,
                   Icon: BedtimeMoonSvg,
                 },
               ];
@@ -478,15 +621,12 @@ export function PrescriptionStructuredResult({
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-sapphire dark:bg-sapphire/20 dark:text-sapphire-border">
-                          <PillCapsuleSvg className="h-4 w-4" />
-                        </span>
+                      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
                         <h4 className="text-lg font-semibold leading-snug text-foreground break-words">
                           {renderWithUnclearHighlights(med.name)}
                         </h4>
                         {med.strength ? (
-                          <span className="inline-flex items-center rounded-md border border-sapphire/25 bg-sapphire-soft/75 px-2.5 py-0.5 text-xs font-semibold text-obsidian-navy dark:border-sapphire/40 dark:bg-sapphire/20 dark:text-foreground">
+                          <span className="text-sm font-medium text-muted-foreground tabular-nums">
                             {renderWithUnclearHighlights(med.strength)}
                           </span>
                         ) : null}
@@ -504,7 +644,7 @@ export function PrescriptionStructuredResult({
                         onClick={() => handleToggleCardSpeech(index, med)}
                         aria-pressed={isCardSpeaking}
                         aria-label={result.listenMedicineAria(stripUnclearForSpeech(med.name) || med.name)}
-                        className={`inline-flex min-h-10 shrink-0 items-center gap-1.5 self-start rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire print:hidden sm:text-sm ${
+                        className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg border px-3.5 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring print:hidden ${
                           isCardSpeaking
                             ? "border-sapphire bg-sapphire-soft text-obsidian-navy dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-foreground"
                             : "border-border bg-card text-foreground hover:bg-muted"
@@ -531,14 +671,14 @@ export function PrescriptionStructuredResult({
                           >
                             <div className="flex items-center gap-1.5">
                               <Icon
-                                className={`h-4 w-4 shrink-0 ${
+                                className={`h-5 w-5 shrink-0 ${
                                   active
                                     ? "text-sapphire dark:text-sapphire-border"
                                     : "text-muted-foreground"
                                 }`}
                               />
                               <span
-                                className={`text-xs ${
+                                className={`text-sm ${
                                   active
                                     ? "font-semibold text-obsidian-navy dark:text-foreground"
                                     : "font-medium text-muted-foreground"
@@ -566,26 +706,33 @@ export function PrescriptionStructuredResult({
                   ) : null}
 
                   {hasBadges ? (
-                    <div className="mt-3.5 flex flex-wrap gap-2">
+                    <div className="mt-2.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs">
                       {med.foodTiming && med.foodTiming !== "any" ? (
-                        <span className="inline-flex items-center gap-1.5 rounded-md border border-sapphire/25 bg-sapphire-soft/50 px-2.5 py-1 text-xs font-semibold text-obsidian-navy dark:border-sapphire/40 dark:bg-sapphire/15 dark:text-foreground">
-                          <MealPlateSvg className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
-                          <span>{result.foodTiming[med.foodTiming]}</span>
+                        <span className="font-medium text-muted-foreground">
+                          {result.foodTiming[med.foodTiming]}
                         </span>
                       ) : null}
 
                       {med.duration ? (
-                        <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface-subtle px-2.5 py-1 text-xs font-semibold text-foreground dark:bg-muted/40">
-                          <CalendarDurationSvg className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-                          <span>{renderWithUnclearHighlights(result.durationLabel(med.duration))}</span>
-                        </span>
+                        <>
+                          {med.foodTiming && med.foodTiming !== "any" ? (
+                            <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
+                          ) : null}
+                          <span className="font-medium text-muted-foreground tabular-nums">
+                            {renderWithUnclearHighlights(result.durationLabel(med.duration))}
+                          </span>
+                        </>
                       ) : null}
 
                       {medUnclear ? (
-                        <span className="inline-flex items-center gap-1.5 rounded-md border border-amber-care-border bg-amber-care-soft/75 px-2.5 py-1 text-xs font-semibold text-foreground dark:border-amber-care/45 dark:bg-amber-care/20">
-                          <AlertCircleIcon className="h-3.5 w-3.5 shrink-0 text-amber-care dark:text-amber-care-border" />
-                          <span>{result.unclearBadge}</span>
-                        </span>
+                        <>
+                          {(med.foodTiming && med.foodTiming !== "any") || med.duration ? (
+                            <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
+                          ) : null}
+                          <span className="font-semibold text-amber-care dark:text-amber-care-border">
+                            {result.unclearBadge}
+                          </span>
+                        </>
                       ) : null}
                     </div>
                   ) : null}
@@ -632,7 +779,7 @@ export function PrescriptionStructuredResult({
           onToggle={(event) => setTranscriptOpen(event.currentTarget.open)}
           className="group mt-6 rounded-lg border border-border bg-background/60 p-4 print:[&>div]:block print:[&_pre]:block"
         >
-          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-md text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-md text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
             <span>{result.transcriptHeading}</span>
             <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] group-open:rotate-180 motion-reduce:transition-none print:hidden" />
           </summary>
@@ -658,6 +805,87 @@ export function PrescriptionStructuredResult({
       </section>
 
       <PrescriptionDoctorBridge />
+      </div>
+
+      {hasFridgeSchedule ? (
+        <section className="hidden text-black print:mt-4 print:block">
+          <div className="border-b-2 border-black pb-3">
+            <h2 className="text-2xl font-bold leading-tight">{fridge.title}</h2>
+            <p className="mt-1 text-base leading-snug">{fridge.subtitle}</p>
+            <p className="mt-1 text-sm font-semibold">
+              {fridge.printedOn}: {printedDate}
+            </p>
+          </div>
+
+          <table className="mt-4 w-full border-collapse border-2 border-black text-left text-base">
+            <thead>
+              <tr className="border-b-2 border-black bg-neutral-100">
+                <th scope="col" className="border-r border-black px-3 py-2.5 font-bold">
+                  {fridge.medicineCol}
+                </th>
+                <th scope="col" className="border-r border-black px-3 py-2.5 text-center font-bold">
+                  {result.scheduleSlots.morning}
+                </th>
+                <th scope="col" className="border-r border-black px-3 py-2.5 text-center font-bold">
+                  {result.scheduleSlots.midday}
+                </th>
+                <th scope="col" className="border-r border-black px-3 py-2.5 text-center font-bold">
+                  {result.scheduleSlots.evening}
+                </th>
+                <th scope="col" className="border-r border-black px-3 py-2.5 text-center font-bold">
+                  {result.scheduleSlots.bedtime}
+                </th>
+                <th scope="col" className="px-3 py-2.5 font-bold">
+                  {fridge.notesCol}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {validMedicines.map((med, index) => {
+                const slots = deriveSafeTimeSlots(med);
+                const notes = [
+                  med.foodTiming && med.foodTiming !== "any"
+                    ? result.foodTiming[med.foodTiming]
+                    : null,
+                  med.duration ? result.durationLabel(med.duration) : null,
+                  ...(med.warnings ?? []),
+                ]
+                  .filter(Boolean)
+                  .join(", ");
+
+                return (
+                  <tr key={`${med.name}-fridge-${index}`} className="border-b border-black align-top">
+                    <td className="border-r border-black px-3 py-3">
+                      <div className="text-lg font-bold leading-snug">
+                        {med.name}
+                        {med.strength ? ` (${med.strength})` : ""}
+                      </div>
+                      {med.purpose ? <p className="mt-1 text-sm leading-snug">{med.purpose}</p> : null}
+                    </td>
+                    <td className="border-r border-black px-3 py-3 text-center text-lg font-bold">
+                      {slots.morning || "—"}
+                    </td>
+                    <td className="border-r border-black px-3 py-3 text-center text-lg font-bold">
+                      {slots.midday || "—"}
+                    </td>
+                    <td className="border-r border-black px-3 py-3 text-center text-lg font-bold">
+                      {slots.evening || "—"}
+                    </td>
+                    <td className="border-r border-black px-3 py-3 text-center text-lg font-bold">
+                      {slots.bedtime || "—"}
+                    </td>
+                    <td className="px-3 py-3 text-sm leading-snug">{notes || "—"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          <p className="mt-4 border-t border-black pt-2 text-sm font-semibold">
+            {fridge.footer} {rx.rules[0]}
+          </p>
+        </section>
+      ) : null}
     </div>
   );
 }

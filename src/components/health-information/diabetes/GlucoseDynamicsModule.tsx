@@ -1152,7 +1152,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
   const peakIndex = Math.round(peak.minute / 60);
 
   const stepButtonClass =
-    "min-h-[44px] min-w-[44px] rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire";
+    "inline-flex min-h-[44px] min-w-[44px] items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
   return (
     <section
@@ -1353,7 +1353,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               <p className="shrink-0 text-sm text-muted-foreground" aria-live="polite">
                 {ui.scrubberLabel}{" "}
                 <strong className="font-semibold tabular-nums text-foreground">{scrubbedMinute} min</strong>
-                {" · "}
+                {" — "}
                 <strong className="font-semibold tabular-nums text-foreground">{scrubbedGlucose} mg/dL</strong>
               </p>
             </div>
@@ -1367,7 +1367,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               onChange={(e) => setScrubbedMinute(Number(e.target.value))}
               aria-label={ui.scrubberHeading}
               aria-valuetext={`${scrubbedMinute} min, ${scrubbedGlucose} mg/dL`}
-              className="h-2 w-full cursor-pointer accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+              className="h-2 w-full cursor-pointer accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
             <div className="flex justify-between text-xs tabular-nums text-muted-foreground" aria-hidden="true">
               <span>0 min</span>
@@ -1458,7 +1458,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               aria-valuemax={SLIDER_MAX}
               aria-valuenow={sliderValue}
               aria-valuetext={ui.valueText.replace("{value}", String(sliderValue)).replace("{label}", interpretation.label)}
-              className="h-2 w-full cursor-pointer accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+              className="h-2 w-full cursor-pointer accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
             <div className="relative mt-2 h-4 text-xs tabular-nums text-muted-foreground" aria-hidden="true">
               <span className="absolute left-0 hidden sm:inline">{SLIDER_MIN}</span>
@@ -1474,7 +1474,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               {ZONE_RANGES.map(([from, to], i) => (
                 <span
                   key={from}
-                  className={`absolute inset-y-0 rounded-full transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+                  className={`absolute inset-y-0 rounded-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
                     i === activeZone ? "bg-foreground" : "bg-border"
                   }`}
                   style={{ left: `calc(${pct(from)}% + 1px)`, width: `calc(${pct(to) - pct(from)}% - 2px)` }}

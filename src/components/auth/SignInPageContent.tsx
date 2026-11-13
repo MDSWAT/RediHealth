@@ -66,11 +66,11 @@ export function SignInPageContent({
 
   return (
     <main id="main-content" className="flex-1">
-      <section className="border-b border-border bg-muted/40 py-12 sm:py-16">
+      <section className="border-b border-border bg-muted/40 py-10 sm:py-14">
         <Container>
-          <div className="mx-auto max-w-xl text-center">
-            <LockIcon className="mx-auto h-7 w-7 text-sapphire" />
-            <h1 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <div className="max-w-2xl">
+            <LockIcon className="h-7 w-7 text-sapphire" aria-hidden="true" />
+            <h1 className="mt-4 text-balance text-page text-foreground">
               {page.heroTitle}
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -82,12 +82,12 @@ export function SignInPageContent({
 
       <section className="py-10 sm:py-14">
         <Container>
-          <div className="mx-auto max-w-xl">
+          <div className="max-w-xl">
             <SignInForm
               googleConfigured={googleConfigured}
               initialError={initialErrorMessage}
             />
-            <p className="mt-5 text-center text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               {termsWithLinks(page.terms, lang)}
             </p>
           </div>

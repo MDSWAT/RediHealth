@@ -36,27 +36,27 @@ const ORDER = [1, 0, 2, 3] as const;
 /** Every locale defines every string, so no locale falls back to another language. */
 const COPY: Record<Lang, HelpOptionsCopy> = {
   ru: {
-    title: "Как мы можем помочь?",
-    subtitle: "Выберите то, что вам нужно, для вас или вашей семьи. Это все бесплатно, и ваши данные остаются конфиденциальными.",
+    title: "Чем мы можем помочь?",
+    subtitle: "Выберите нужный шаг для себя или близких.",
     options: [
       {
-        title: "Путеводители по здоровью",
-        description: "Простые руководства, тревожные знаки, которые следует знать, и распространенные мифы, проверенные на практике.",
-        cta: "Прочтите руководства",
+        title: "Справочник о здоровье",
+        description: "Простые объяснения, опасные симптомы и разбор частых мифов.",
+        cta: "Читать справочник",
       },
       {
-        title: "Узнайте, что делать",
-        description: "Ассистент поможет вам понять ваши симптомы и определить, что делать дальше, за 3 или менее шагов.",
+        title: "Узнать, что делать",
+        description: "Проверьте симптомы и узнайте, куда обратиться дальше.",
         cta: "Открыть помощник",
       },
       {
-        title: "Поговорите с врачом онлайн",
-        description: "Бесплатная консультация дежурного врача по телефону.",
-        cta: "Посетите дежурных врачей",
+        title: "Поговорить с врачом онлайн",
+        description: "Бесплатный телефонный звонок дежурному врачу.",
+        cta: "Смотреть врачей",
       },
       {
-        title: "Найдите, куда пойти",
-        description: "Карта клиник, больниц и служб неотложной помощи в вашем округе. Вы можете обойтись без медицинской карты.",
+        title: "Найти, куда пойти",
+        description: "Поликлиники, больницы и скорая помощь рядом, даже без полиса.",
         cta: "Открыть карту",
       },
     ],
@@ -68,22 +68,22 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
     options: [
       {
         title: "Ghiduri de sănătate",
-        description: "Explicații clare, semne de alarmă și mituri verificate.",
+        description: "Explicații simple, semne de alarmă și mituri lămurite.",
         cta: "Citește ghidurile",
       },
       {
         title: "Află ce poți face",
-        description: "Înțelege simptomele și află încotro să mergi.",
+        description: "Verifică simptomele și vezi încotro să mergi.",
         cta: "Deschide asistentul",
       },
       {
         title: "Vorbește cu un medic online",
-        description: "Sfat gratuit prin telefon de la medicul de gardă.",
+        description: "Apel gratuit la telefon cu medicul de gardă.",
         cta: "Vezi medicii",
       },
       {
         title: "Găsește unde să mergi",
-        description: "Dispensare, spitale și urgențe apropiate, chiar și fără card.",
+        description: "Cabinete, spitale și camere de gardă aproape, și fără asigurare.",
         cta: "Deschide harta",
       },
     ],
@@ -94,22 +94,22 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
     options: [
       {
         title: "Health guides",
-        description: "Plain answers, alarm signs, and common myths checked.",
+        description: "Plain answers, warning signs and common myths explained.",
         cta: "Read guides",
       },
       {
         title: "Find out what to do",
-        description: "Understand your symptoms and where to go next.",
+        description: "Check your symptoms and see where to go next.",
         cta: "Open assistant",
       },
       {
         title: "Talk to a doctor online",
-        description: "Free phone advice from an on-call doctor.",
+        description: "Free phone call with an on-call doctor.",
         cta: "See doctors",
       },
       {
         title: "Find where to go",
-        description: "Nearby clinics, hospitals, and emergency care, even uninsured.",
+        description: "Clinics, hospitals and emergency care near you, even without insurance.",
         cta: "Open map",
       },
     ],
@@ -120,22 +120,22 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
     options: [
       {
         title: "Udhëzues për shëndetin",
-        description: "Shpjegime të qarta, shenja alarmi dhe mite të kontrolluara.",
+        description: "Përgjigje të thjeshta, shenja alarmi dhe mite të sqaruara.",
         cta: "Lexo udhëzuesit",
       },
       {
         title: "Mëso çfarë të bësh",
-        description: "Kupto simptomat dhe mëso ku të drejtohesh.",
+        description: "Kontrollo simptomat dhe shiko ku të drejtohesh më tej.",
         cta: "Hap asistentin",
       },
       {
         title: "Fol me një mjek online",
-        description: "Këshillë falas me telefon nga mjeku kujdestar.",
+        description: "Telefonatë falas me mjekun kujdestar.",
         cta: "Shiko mjekët",
       },
       {
         title: "Gjej ku të shkosh",
-        description: "Ambulanca, spitale dhe urgjenca afër teje, edhe pa kartë.",
+        description: "Ambulanca, spitale dhe urgjenca afër teje, edhe pa sigurim.",
         cta: "Hap hartën",
       },
     ],
@@ -146,22 +146,22 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
     options: [
       {
         title: "Guide sulla salute",
-        description: "Spiegazioni chiare, segnali di allarme e miti verificati.",
+        description: "Spiegazioni semplici, segnali di allarme e miti chiariti.",
         cta: "Leggi le guide",
       },
       {
         title: "Capisci cosa fare",
-        description: "Comprendi i sintomi e scopri a chi rivolgerti.",
+        description: "Controlla i sintomi e vedi a chi rivolgerti.",
         cta: "Apri l'assistente",
       },
       {
         title: "Parla con un medico online",
-        description: "Consiglio telefonico gratuito dal medico di guardia.",
+        description: "Chiamata gratuita con un medico di guardia.",
         cta: "Vedi i medici",
       },
       {
         title: "Trova dove andare",
-        description: "Ambulatori, ospedali e pronto soccorso vicini, anche senza tessera.",
+        description: "Ambulatori, ospedali e pronto soccorso vicino a te, anche senza tessera.",
         cta: "Apri la mappa",
       },
     ],
@@ -172,22 +172,22 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
     options: [
       {
         title: "Zdravstveni vodiči",
-        description: "Jasna objašnjenja, znakovi uzbune i provjereni mitovi.",
+        description: "Jednostavni odgovori, znakovi upozorenja i razjašnjeni mitovi.",
         cta: "Pročitaj vodiče",
       },
       {
         title: "Saznaj što možeš učiniti",
-        description: "Razumij simptome i saznaj kamo se uputiti.",
+        description: "Provjeri simptome i vidi kamo dalje.",
         cta: "Otvori asistenta",
       },
       {
         title: "Razgovaraj s liječnikom online",
-        description: "Besplatan telefonski savjet dežurnog liječnika.",
+        description: "Besplatan telefonski poziv s dežurnim liječnikom.",
         cta: "Pogledaj liječnike",
       },
       {
         title: "Pronađi kamo otići",
-        description: "Ambulante, bolnice i hitne službe u blizini, i bez iskaznice.",
+        description: "Ambulante, bolnice i hitne službe u blizini, i bez osiguranja.",
         cta: "Otvori kartu",
       },
     ],
@@ -198,22 +198,22 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
     options: [
       {
         title: "Sastipnaske sikavimata",
-        description: "Chache sikavimata, znakoja vash dar thaj xoxamne vorbe kontrolirime.",
+        description: "Lokhe xaljarimata, znakoja vash dar thaj xoxamne vorbe hajarne.",
         cta: "Ginav sikavimata",
       },
       {
         title: "Dzan so shaj keres",
-        description: "Haljar chire simptome thaj dzan kaj te djas.",
+        description: "Kontrolir chire simptome thaj dikh kaj te djas.",
         cta: "Phuter o azhutitori",
       },
       {
         title: "Vorbin jekhe doktorestar online",
-        description: "Bi lovengo svato pe telefono katar o doktori pe straza.",
+        description: "Bi lovengo akharimos pe telefono e doktoresa pe straza.",
         cta: "Dikh doktoren",
       },
       {
         title: "Arakh kaj te djas",
-        description: "Klinike, bolnitse thaj sigardiari buchi pasha tute, vi bi kartako.",
+        description: "Klinike, bolnitse thaj sigardiari buchi pasha tute, vi bi siguripnasko.",
         cta: "Phuter i harta",
       },
     ],
@@ -231,7 +231,7 @@ export function HelpOptions() {
   const [lead, ...rows] = ORDER.map((index) => ({ ...copy.options[index], href: OPTION_HREFS[index] }));
 
   return (
-    <Section tone="paper">
+    <Section id="help-options" tone="paper" className="scroll-mt-20">
       <Container>
         <div>
           <SectionHeading
@@ -259,24 +259,24 @@ export function HelpOptions() {
                 <CarePath steps={(heroCopy[lang] ?? heroCopy.ro).journey} className="mt-5" />
               </div>
 
-              <span className="mt-7 inline-flex min-h-11 self-start items-center gap-2.5 rounded-(--radius-control) bg-paper px-5 py-2.5 text-base font-semibold text-ink-950 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:bg-white">
+              <span className="mt-7 inline-flex min-h-11 self-start items-center gap-2.5 whitespace-nowrap rounded-(--radius-control) bg-paper px-5 py-2.5 text-base font-semibold text-ink-950 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:bg-white">
                 <span>{lead.cta}</span>
                 <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
               </span>
             </Link>
           </div>
 
-          <ul className="flex flex-col divide-y divide-border border-y border-border lg:col-span-7 dark:divide-white/10 dark:border-white/10">
+          <ul className="flex flex-col divide-y divide-border overflow-hidden rounded-(--radius-surface) border border-border bg-card shadow-(--shadow-card-rest) lg:col-span-7 dark:divide-white/10 dark:border-white/10 dark:bg-ink-800">
             {rows.map(({ href, title, description, cta }) => (
               <li key={href} className="flex-1">
                 <Link
                   href={withLangPrefix(href, lang)}
-                  className="press-row group relative flex h-full min-h-19 flex-col justify-between gap-3 px-2 py-5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none sm:flex-row sm:items-center sm:gap-6 sm:px-4 lg:py-6 dark:hover:bg-ink-900 dark:focus-visible:ring-paper"
+                  className="press-row group relative flex h-full min-h-19 flex-col justify-between gap-3.5 px-5 py-5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none sm:flex-row sm:items-center sm:gap-6 sm:px-6 lg:py-6 dark:hover:bg-ink-900 dark:focus-visible:ring-paper"
                 >
                   <div className="flex min-w-0 items-start gap-3.5 sm:gap-4">
                     <IconTile icon={NAV_LINK_ICONS[href]} tone="sapphire-soft" />
                     <div className="min-w-0 flex-1">
-                      <h3 className="text-title text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire dark:text-paper dark:group-hover:text-paper">
+                      <h3 className="text-balance text-title text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire dark:text-paper dark:group-hover:text-paper">
                         <span className="min-w-0 wrap-break-word">{title}</span>
                       </h3>
                       <p className="mt-1 text-pretty text-body leading-relaxed text-muted-foreground dark:text-mist">
@@ -285,8 +285,8 @@ export function HelpOptions() {
                     </div>
                   </div>
 
-                  <span className="inline-flex min-h-10 shrink-0 items-center gap-1.5 pl-14 text-base font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire-light sm:self-center sm:pl-0 dark:text-sapphire-border dark:group-hover:text-paper">
-                    <span className="underline decoration-sapphire/30 underline-offset-4 group-hover:decoration-sapphire dark:decoration-white/30 dark:group-hover:decoration-white">
+                  <span className="ml-15.5 inline-flex min-h-11 shrink-0 self-start items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) bg-sapphire-soft px-3.5 py-2 text-base font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire-light sm:ml-0 sm:min-h-10 sm:self-center sm:bg-transparent sm:px-0 sm:py-0 dark:bg-white/10 dark:text-sapphire-border dark:group-hover:text-paper dark:sm:bg-transparent">
+                    <span className="sm:underline sm:decoration-sapphire/30 sm:underline-offset-4 sm:group-hover:decoration-sapphire dark:sm:decoration-white/30 dark:sm:group-hover:decoration-white">
                       {cta}
                     </span>
                     <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />

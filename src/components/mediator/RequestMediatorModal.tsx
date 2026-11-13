@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AlertCircleIcon, CloseIcon, LockIcon } from "@/components/ui/icons";
+import { useReadAloud } from "@/components/health-check/readingTools";
+import { AlertCircleIcon, CloseIcon, LockIcon, VolumeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
@@ -27,14 +28,16 @@ export const modalCopy = {
     closeButton: "Закрыть",
     title: "Попросите медиатора по вопросам здоровья",
     subtitle: "Для вас или кого-то из вашего сообщества, которому нужна помощь в посещении врача или получении документов.",
-    errorRequired: "Напишите округ, город или село, имя и номер телефона.",
-    step1: "1. Где нужна помощь",
+    errorRequired: "Выберите округ и напишите номер телефона.",
+    step1: "1. Какая помощь вам нужна",
     localityPlaceholder: "например Тофлеа",
-    step2: "2. Кто обращается",
-    step3: "3. Какая помощь вам нужна",
+    step2: "2. Округ и телефон",
+    step3: "3. Подробнее (по желанию)",
+    listen: "Слушать",
+    stop: "Остановить",
     categories: [
       "Запись к семейному врачу",
-      "удостоверение личности или медицинская страховка",
+      "Удостоверение личности или медицинская страховка",
       "Беременная и еще не осмотренная врачом",
       "Ребенок без вакцин и тестов",
       "Пожилой человек, который не может выйти из дома",
@@ -59,11 +62,13 @@ export const modalCopy = {
     closeButton: "Închide",
     title: "Cere un mediator sanitar",
     subtitle: "Pentru tine sau pentru cineva din comunitate care are nevoie de ajutor la medic sau cu actele.",
-    errorRequired: "Scrie județul, localitatea, numele și telefonul.",
-    step1: "1. Unde e nevoie de ajutor",
+    errorRequired: "Alege județul și scrie numărul de telefon.",
+    step1: "1. Cu ce ai nevoie de ajutor",
     localityPlaceholder: "ex.: Toflea",
-    step2: "2. Cine cere ajutor",
-    step3: "3. Cu ce ai nevoie de ajutor",
+    step2: "2. Județul și telefonul",
+    step3: "3. Mai multe detalii (nu e obligatoriu)",
+    listen: "Ascultă",
+    stop: "Oprește",
     categories: [
       "Înscriere la medicul de familie",
       "Buletin sau asigurare CNAS",
@@ -90,11 +95,13 @@ export const modalCopy = {
     closeButton: "Close",
     title: "Ask for a health mediator",
     subtitle: "For you, or for someone in your community who needs help seeing a doctor or getting documents.",
-    errorRequired: "Write the county, town or village, name and phone number.",
-    step1: "1. Where help is needed",
+    errorRequired: "Choose the county and write your phone number.",
+    step1: "1. What you need help with",
     localityPlaceholder: "e.g. Toflea",
-    step2: "2. Who is asking",
-    step3: "3. What you need help with",
+    step2: "2. County and phone number",
+    step3: "3. More details (optional)",
+    listen: "Listen",
+    stop: "Stop",
     categories: [
       "Registering with a family doctor",
       "ID card or health insurance",
@@ -121,11 +128,13 @@ export const modalCopy = {
     closeButton: "Mbyll",
     title: "Kërko një mediator shëndetësor",
     subtitle: "Për ty ose për dikë nga komuniteti që ka nevojë për ndihmë te mjeku ose me dokumentet.",
-    errorRequired: "Shkruaj qarkun, vendbanimin, emrin dhe telefonin.",
-    step1: "1. Ku duhet ndihma",
+    errorRequired: "Zgjidh qarkun dhe shkruaj numrin e telefonit.",
+    step1: "1. Për çfarë të duhet ndihmë",
     localityPlaceholder: "p.sh. Toflea",
-    step2: "2. Kush kërkon ndihmë",
-    step3: "3. Për çfarë të duhet ndihmë",
+    step2: "2. Qarku dhe telefoni",
+    step3: "3. Më shumë detaje (s'është e detyrueshme)",
+    listen: "Dëgjo",
+    stop: "Ndalo",
     categories: [
       "Regjistrim te mjeku i familjes",
       "Letërnjoftim ose sigurim shëndetësor",
@@ -152,11 +161,13 @@ export const modalCopy = {
     closeButton: "Chiudi",
     title: "Chiedi un mediatore sanitario",
     subtitle: "Per te o per qualcuno della tua comunità che ha bisogno di aiuto con il medico o con i documenti.",
-    errorRequired: "Scrivi provincia, paese o città, nome e telefono.",
-    step1: "1. Dove serve aiuto",
+    errorRequired: "Scegli la provincia e scrivi il numero di telefono.",
+    step1: "1. Per cosa ti serve aiuto",
     localityPlaceholder: "es. Toflea",
-    step2: "2. Chi chiede aiuto",
-    step3: "3. Per cosa ti serve aiuto",
+    step2: "2. Provincia e telefono",
+    step3: "3. Altri dettagli (facoltativo)",
+    listen: "Ascolta",
+    stop: "Ferma",
     categories: [
       "Iscrizione dal medico di famiglia",
       "Carta d'identità o tessera sanitaria",
@@ -183,11 +194,13 @@ export const modalCopy = {
     closeButton: "Zatvori",
     title: "Zatraži zdravstvenog medijatora",
     subtitle: "Za tebe ili za nekoga iz tvoje zajednice kome treba pomoć kod liječnika ili s dokumentima.",
-    errorRequired: "Upiši županiju, mjesto, ime i broj telefona.",
-    step1: "1. Gdje je potrebna pomoć",
+    errorRequired: "Odaberi županiju i upiši broj telefona.",
+    step1: "1. U čemu ti treba pomoć",
     localityPlaceholder: "npr. Čakovec",
-    step2: "2. Tko traži pomoć",
-    step3: "3. U čemu ti treba pomoć",
+    step2: "2. Županija i telefon",
+    step3: "3. Više pojedinosti (nije obvezno)",
+    listen: "Slušaj",
+    stop: "Zaustavi",
     categories: [
       "Upis kod obiteljskog liječnika",
       "Osobna iskaznica ili zdravstveno osiguranje HZZO",
@@ -214,11 +227,13 @@ export const modalCopy = {
     closeButton: "Phand",
     title: "Mang ekhe sastipnaske mediatores",
     subtitle: "Vash tuke vay vash varekon katar chi komuniteta kaske trebul zhutipen ko doktori vay e lilenca.",
-    errorRequired: "Lekhav o zhudeco, o gav vay foro, o anav thaj o telefono.",
-    step1: "1. Kay trebul zhutipen",
+    errorRequired: "Alosar o zhudeco thaj lekhav o gin e telefonosko.",
+    step1: "1. Sosa trebul tuke zhutipen",
     localityPlaceholder: "misal: Toflea",
-    step2: "2. Kon mangel zhutipen",
-    step3: "3. Sosa trebul tuke zhutipen",
+    step2: "2. Zhudeco thaj telefono",
+    step3: "3. Majbut detalya (nay musay)",
+    listen: "Ashun",
+    stop: "Ačhav",
     categories: [
       "Lekhavipe ko familiyako doktori",
       "Buletino vay sastipnaski siguranciya",
@@ -239,6 +254,32 @@ export const modalCopy = {
     genericError: "O mangipe na bichhaldilo. Zumav palem.",
   },
 };
+
+export function normalizeMediatorPhone(raw: string): string {
+  return raw.trim().replace(/[\s().-]+/g, "");
+}
+
+export interface MediatorRequestInput {
+  county: string;
+  locality: string;
+  requesterName: string;
+  requesterPhone: string;
+  beneficiaryName: string;
+  helpCategory: string;
+  notes: string;
+}
+
+export function buildMediatorRequestPayload(input: MediatorRequestInput) {
+  return {
+    county: input.county,
+    locality: input.locality.trim() || "Confirmare telefonică",
+    requesterName: input.requesterName.trim() || "Solicitant telefonic",
+    requesterPhone: normalizeMediatorPhone(input.requesterPhone),
+    beneficiaryName: input.beneficiaryName.trim() || undefined,
+    helpCategory: input.helpCategory,
+    notes: input.notes.trim() || undefined,
+  };
+}
 
 const ROMANIAN_COUNTIES = [
   "Alba", "Arad", "Argeș", "Bacău", "Bihor", "Bistrița-Năsăud", "Botoșani", "Brașov", "Brăila", "Buzău",
@@ -264,6 +305,11 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
   const [errorMessage, setErrorMessage] = useState("");
   const [trackingCode, setTrackingCode] = useState<string | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const voice = useReadAloud(lang);
+  const { stop: stopVoice } = voice;
+  useEffect(() => {
+    if (!isOpen) stopVoice();
+  }, [isOpen, stopVoice]);
 
   // Dialog behaviour: focus moves in, Escape closes, the page behind does not scroll,
   // and focus returns to the button that opened it.
@@ -288,7 +334,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!county || !locality.trim() || !requesterName.trim() || !requesterPhone.trim()) {
+    if (!county || normalizeMediatorPhone(requesterPhone).length < 9) {
       setErrorMessage(copy.errorRequired);
       return;
     }
@@ -300,15 +346,9 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
       const response = await fetch("/api/mediatori/request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          county,
-          locality: locality.trim(),
-          requesterName: requesterName.trim(),
-          requesterPhone: requesterPhone.trim(),
-          beneficiaryName: beneficiaryName.trim() || undefined,
-          helpCategory,
-          notes: notes.trim() || undefined,
-        }),
+        body: JSON.stringify(
+          buildMediatorRequestPayload({ county, locality, requesterName, requesterPhone, beneficiaryName, helpCategory, notes }),
+        ),
       });
 
       const data = (await response.json().catch(() => ({}))) as { trackingCode?: string };
@@ -327,7 +367,8 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
 
   const fieldClass =
     "mt-1.5 block min-h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground " +
-    "placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:text-sm";
+    "placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
+  const bigFieldClass = fieldClass.replace("min-h-11", "min-h-12").replace("text-base", "text-base");
   const labelClass = "block text-sm font-medium text-foreground";
 
   return (
@@ -347,10 +388,20 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
           <h2 id="request-mediator-title" className="text-lg font-semibold tracking-tight text-foreground">
             {trackingCode !== null ? copy.successTitle : copy.title}
           </h2>
+          {voice.available ? (
+            <button
+              type="button"
+              onClick={() => (voice.speaking ? voice.stop() : voice.speak([copy.title, copy.subtitle, copy.privacy]))}
+              className="inline-flex items-center gap-1.5 ml-auto min-h-11 shrink-0 whitespace-nowrap rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <VolumeIcon className="h-4 w-4 text-sapphire" aria-hidden="true" />
+              {voice.speaking ? copy.stop : copy.listen}
+            </button>
+          ) : null}
           <button
             type="button"
             onClick={onClose}
-            className="-mr-2 -mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="-mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={copy.closeAria}
           >
             <CloseIcon className="h-5 w-5" aria-hidden="true" />
@@ -369,7 +420,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
             <button
               type="button"
               onClick={onClose}
-              className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-sapphire px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light"
+              className="mt-6 inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {copy.closeButton}
             </button>
@@ -386,30 +437,27 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
                 </p>
               ) : null}
 
-              <fieldset className="space-y-3">
+              <fieldset>
                 <legend className="text-sm font-semibold text-foreground">{copy.step1}</legend>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <label className={labelClass}>
-                    {labels.countyLabel}
-                    <select required value={county} onChange={(e) => setCounty(e.target.value)} className={fieldClass}>
-                      <option value="">{copy.selectCounty}</option>
-                      {ROMANIAN_COUNTIES.map((c) => (
-                        <option key={c} value={c}>{c}</option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className={labelClass}>
-                    {labels.localityLabel}
-                    <input
-                      type="text"
-                      required
-                      autoComplete="address-level2"
-                      value={locality}
-                      onChange={(e) => setLocality(e.target.value)}
-                      placeholder={copy.localityPlaceholder}
-                      className={fieldClass}
-                    />
-                  </label>
+                <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                  {copy.categories.map((cat) => {
+                    const isSelected = helpCategory === cat;
+                    return (
+                      <button
+                        key={cat}
+                        type="button"
+                        onClick={() => setHelpCategory(cat)}
+                        aria-pressed={isSelected}
+                        className={`flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border px-3 py-2 text-left text-sm transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                          isSelected
+                            ? "border-sapphire bg-sapphire/10 font-semibold text-sapphire"
+                            : "border-border bg-background text-foreground hover:bg-muted"
+                        }`}
+                      >
+                        <span className="min-w-0 truncate">{cat}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </fieldset>
 
@@ -417,15 +465,13 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
                 <legend className="text-sm font-semibold text-foreground">{copy.step2}</legend>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <label className={labelClass}>
-                    {labels.nameLabel}
-                    <input
-                      type="text"
-                      required
-                      autoComplete="name"
-                      value={requesterName}
-                      onChange={(e) => setRequesterName(e.target.value)}
-                      className={fieldClass}
-                    />
+                    {labels.countyLabel}
+                    <select required value={county} onChange={(e) => setCounty(e.target.value)} className={bigFieldClass}>
+                      <option value="">{copy.selectCounty}</option>
+                      {ROMANIAN_COUNTIES.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
                   </label>
                   <label className={labelClass}>
                     {labels.phoneLabel}
@@ -436,6 +482,34 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
                       autoComplete="tel"
                       value={requesterPhone}
                       onChange={(e) => setRequesterPhone(e.target.value)}
+                      onBlur={() => setRequesterPhone(normalizeMediatorPhone(requesterPhone))}
+                      className={bigFieldClass}
+                    />
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset className="space-y-3">
+                <legend className="text-sm font-semibold text-foreground">{copy.step3}</legend>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className={labelClass}>
+                    {labels.localityLabel}
+                    <input
+                      type="text"
+                      autoComplete="address-level2"
+                      value={locality}
+                      onChange={(e) => setLocality(e.target.value)}
+                      placeholder={copy.localityPlaceholder}
+                      className={fieldClass}
+                    />
+                  </label>
+                  <label className={labelClass}>
+                    {labels.nameLabel}
+                    <input
+                      type="text"
+                      autoComplete="name"
+                      value={requesterName}
+                      onChange={(e) => setRequesterName(e.target.value)}
                       className={fieldClass}
                     />
                   </label>
@@ -449,32 +523,6 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
                     className={fieldClass}
                   />
                 </label>
-              </fieldset>
-
-              <fieldset>
-                <legend className="text-sm font-semibold text-foreground">{copy.step3}</legend>
-                <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                  {copy.categories.map((cat) => {
-                    const isSelected = helpCategory === cat;
-                    return (
-                      <button
-                        key={cat}
-                        type="button"
-                        onClick={() => setHelpCategory(cat)}
-                        aria-pressed={isSelected}
-                        className={`flex min-h-11 items-center rounded-lg border px-3 py-2 text-left text-sm transition-colors duration-[var(--dur-fast)] ${
-                          isSelected
-                            ? "border-sapphire bg-sapphire/10 font-semibold text-sapphire"
-                            : "border-border bg-background text-foreground hover:bg-muted"
-                        }`}
-                      >
-                        {cat}
-                      </button>
-                    );
-                  })}
-                </div>
-              </fieldset>
-
               <label className={labelClass}>
                 {copy.notesLabel}
                 <textarea
@@ -486,6 +534,8 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
                 />
               </label>
 
+              </fieldset>
+
               <p className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground">
                 <LockIcon className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{copy.privacy}</span>
@@ -496,9 +546,9 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-sapphire px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
+                className="inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none sm:text-[0.9375rem]"
               >
-                {isSubmitting ? copy.submitting : copy.submit}
+                <span className="min-w-0 truncate">{isSubmitting ? copy.submitting : copy.submit}</span>
               </button>
             </div>
           </form>

@@ -12,7 +12,7 @@ const translatedCopy: Record<HealthContentLang, DirectoryCopy> = {
   en: {
     jump: "Explore more health topics", title: "Health topics, explained simply",
     intro: "Read original RediHealth overviews about conditions, the human body, tests and treatment choices.",
-    source: "RediHealth summaries · Further reading: InformedHealth.org / IQWiG",
+    source: "RediHealth summaries — Further reading: InformedHealth.org / IQWiG",
     languageNote: "Read each summary here in your selected language. A link to the original source is at the bottom. Topics about health services in Germany are identified as such.",
     search: "Search these topics", group: "Topic group", all: "All topics",
     groups: { conditions: "Health and conditions", services: "Health services", body: "The human body", treatments: "Tests and treatments", evidence: "Research and decisions" },
@@ -22,7 +22,7 @@ const translatedCopy: Record<HealthContentLang, DirectoryCopy> = {
   ro: {
     jump: "Explorează mai multe subiecte de sănătate", title: "Subiecte de sănătate, pe înțelesul tău",
     intro: "Citește rezumate originale RediHealth despre boli, corpul uman, analize și opțiuni de tratament.",
-    source: "Rezumate RediHealth · Lecturi suplimentare: InformedHealth.org / IQWiG",
+    source: "Rezumate RediHealth — Lecturi suplimentare: InformedHealth.org / IQWiG",
     languageNote: "Citești fiecare rezumat aici, în limba aleasă. La final găsești linkul către sursa originală. Subiectele despre servicii medicale din Germania sunt marcate ca atare.",
     search: "Caută în aceste subiecte", group: "Grup de subiecte", all: "Toate subiectele",
     groups: { conditions: "Sănătate și afecțiuni", services: "Servicii medicale", body: "Corpul uman", treatments: "Analize și tratamente", evidence: "Cercetare și decizii" },
@@ -32,7 +32,7 @@ const translatedCopy: Record<HealthContentLang, DirectoryCopy> = {
   sq: {
     jump: "Eksploro më shumë tema shëndetësore", title: "Tema shëndetësore të shpjeguara thjesht",
     intro: "Lexo përmbledhje origjinale të RediHealth për sëmundjet, trupin e njeriut, analizat dhe mundësitë e trajtimit.",
-    source: "Përmbledhje RediHealth · Lexime të mëtejshme: InformedHealth.org / IQWiG",
+    source: "Përmbledhje RediHealth — Lexime të mëtejshme: InformedHealth.org / IQWiG",
     languageNote: "Lexoje çdo përmbledhje këtu në gjuhën e zgjedhur. Në fund gjen lidhjen me burimin origjinal. Temat për shërbimet shëndetësore në Gjermani janë shënuar si të tilla.",
     search: "Kërko në këto tema", group: "Grupi i temave", all: "Të gjitha temat",
     groups: { conditions: "Shëndeti dhe sëmundjet", services: "Shërbimet shëndetësore", body: "Trupi i njeriut", treatments: "Analizat dhe trajtimet", evidence: "Kërkimi dhe vendimmarrja" },
@@ -42,7 +42,7 @@ const translatedCopy: Record<HealthContentLang, DirectoryCopy> = {
   it: {
     jump: "Esplora altri argomenti sulla salute", title: "Argomenti sulla salute spiegati con semplicità",
     intro: "Leggi le sintesi originali di RediHealth su malattie, corpo umano, esami e scelte terapeutiche.",
-    source: "Sintesi RediHealth · Approfondimenti: InformedHealth.org / IQWiG",
+    source: "Sintesi RediHealth — Approfondimenti: InformedHealth.org / IQWiG",
     languageNote: "Leggi ogni sintesi qui nella lingua scelta. Il link alla fonte originale si trova in fondo. Gli argomenti sui servizi sanitari in Germania sono indicati come tali.",
     search: "Cerca in questi argomenti", group: "Gruppo di argomenti", all: "Tutti gli argomenti",
     groups: { conditions: "Salute e malattie", services: "Servizi sanitari", body: "Il corpo umano", treatments: "Esami e trattamenti", evidence: "Ricerca e decisioni" },
@@ -52,7 +52,7 @@ const translatedCopy: Record<HealthContentLang, DirectoryCopy> = {
   ru: {
     jump: "Другие темы о здоровье", title: "О здоровье простыми словами",
     intro: "Читайте оригинальные обзоры RediHealth о заболеваниях, организме человека, обследованиях и вариантах лечения.",
-    source: "Обзоры RediHealth · Дополнительные материалы: InformedHealth.org / IQWiG",
+    source: "Обзоры RediHealth — Дополнительные материалы: InformedHealth.org / IQWiG",
     languageNote: "Читайте каждый обзор здесь на выбранном языке. Ссылка на исходный материал находится внизу. Темы о медицинских услугах в Германии отмечены отдельно.",
     search: "Поиск по этим темам", group: "Группа тем", all: "Все темы",
     groups: { conditions: "Здоровье и заболевания", services: "Медицинские услуги", body: "Организм человека", treatments: "Обследования и лечение", evidence: "Исследования и решения" },

@@ -161,7 +161,7 @@ const rawTranslations = {
       "sendWhatsApp": "Поделиться в WhatsApp",
       "showDoctor": "Покажи врачу",
       "requestMediatorHelp": "Поговорите с посредником",
-      "scheduleDoctor": "Запишитесь к врачу онлайн",
+      "scheduleDoctor": "Запись к врачу онлайн",
       "readEducationalTopic": "Прочитать руководство",
       "disclaimer": "Это не диагноз. Если вы чувствуете себя хуже или боль очень сильная, позвоните 112.",
       "viewer3D": {
@@ -1794,8 +1794,8 @@ const rawTranslations = {
       "copied": "U kopjua",
       "sendWhatsApp": "Ndaj në WhatsApp",
       "showDoctor": "Tregoja mjekut",
-      "requestMediatorHelp": "Fol me një ndërmjetës",
-      "scheduleDoctor": "Lër takim me mjekun online",
+      "requestMediatorHelp": "Fol me një mediator",
+      "scheduleDoctor": "Takim me mjekun online",
       "readEducationalTopic": "Lexo udhëzuesin",
       "disclaimer": "Kjo nuk është diagnozë. Nëse ndihesh më keq ose të dhemb shumë, telefono 112.",
       "viewer3D": {
@@ -3429,8 +3429,8 @@ const rawTranslations = {
       "copied": "Kopirime",
       "sendWhatsApp": "Bičhal pe WhatsApp",
       "showDoctor": "Sikav e doktoreske",
-      "requestMediatorHelp": "De duma sastipnaske mediatoresa",
-      "scheduleDoctor": "Ker termin ko doktori online",
+      "requestMediatorHelp": "De duma mediatoresa",
+      "scheduleDoctor": "Ker termin online",
       "readEducationalTopic": "Drabar o sikavimos",
       "disclaimer": "Akava naj dijagnoza. Te hatjares tut maj nasul vaj i dukh si but bari, akhar 112.",
       "viewer3D": {

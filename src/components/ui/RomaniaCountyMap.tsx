@@ -626,7 +626,7 @@ export function RomaniaCountyMap({
                   aria-pressed={country === c}
                   onClick={() => switchCountry(c)}
                   className={cn(
-                    "-mb-px min-h-[44px] border-b-2 px-0.5 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                    "-mb-px min-h-[44px] whitespace-nowrap border-b-2 px-0.5 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                     country === c
                       ? "border-foreground font-semibold text-foreground"
                       : "border-transparent font-medium text-muted-foreground hover:text-foreground",
@@ -642,7 +642,7 @@ export function RomaniaCountyMap({
             aria-pressed={isAll}
             onClick={() => chooseArea(allValue, country)}
             className={cn(
-              "min-h-[44px] rounded-lg border px-3 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              "min-h-[44px] whitespace-nowrap rounded-lg border px-3 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               isAll ? "border-foreground bg-foreground text-background" : "border-border bg-background text-foreground hover:bg-muted",
             )}
           >
@@ -755,7 +755,7 @@ export function RomaniaCountyMap({
         {shown ? (
           <>
             {prefix} <strong className="font-semibold text-foreground">{label(shown)}</strong>
-            {hubs.has(shown) && <span> · {m.hasAlertsSuffix}</span>}
+            {hubs.has(shown) && <span> — {m.hasAlertsSuffix}</span>}
           </>
         ) : (
           <>
@@ -779,7 +779,7 @@ export function RomaniaCountyMap({
                   aria-pressed={effectiveSelected === hub}
                   onClick={() => chooseArea(hub, country)}
                   className={cn(
-                    "min-h-[44px] rounded-lg border px-3 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "min-h-[44px] whitespace-nowrap rounded-lg border px-3 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     effectiveSelected === hub
                       ? "border-sapphire bg-sapphire text-white"
                       : "border-border bg-background text-foreground hover:bg-muted",

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { CheckCircleIcon, CalendarIcon, PhoneIcon } from "@/components/ui/icons";
+import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -24,7 +25,7 @@ const confirmationCopy = {
     forPatient: "Для:",
     smsTitle: (phone: string) => `Мы отправили текстовое сообщение на ${phone}`,
     whatsAppSent: "Мы также отправили подтверждение в WhatsApp.",
-    openRoom: "Присоединяйтесь к звонку",
+    openRoom: "Войти в звонок",
     addToCalendar: "Добавить в календарь",
     anotherBooking: "Забронировать еще",
     calSummary: (code: string) => `RediHealth звонок врачу (${code})`,
@@ -79,7 +80,7 @@ const confirmationCopy = {
     whatsAppSent: "Ti abbiamo mandato la conferma anche su WhatsApp.",
     openRoom: "Entra nella chiamata",
     addToCalendar: "Aggiungi al calendario",
-    anotherBooking: "Prenota un'altra chiamata",
+    anotherBooking: "Prenota un altro orario",
     calSummary: (code: string) => `Chiamata con il medico RediHealth (${code})`,
     calDesc: (link: string) => `Chiamata con un medico volontario RediHealth. Entra da qui: ${link}`,
   },
@@ -189,10 +190,10 @@ export function BookingSmsConfirmation({
   };
 
   return (
-    <div className="mx-auto max-w-xl rounded-xl border border-border bg-card p-6 sm:p-8">
+    <div className="max-w-2xl rounded-xl border border-border bg-card p-6 sm:p-8">
       <div className="flex items-start gap-3">
         <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
-        <h2 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold tracking-tight text-foreground focus:outline-none">{copy.title}</h2>
+        <h2 ref={headingRef} tabIndex={-1} className="text-balance text-2xl font-semibold tracking-tight text-foreground focus:outline-none">{copy.title}</h2>
       </div>
 
       <p className="mt-2 text-base font-medium text-foreground tabular-nums">
@@ -215,24 +216,43 @@ export function BookingSmsConfirmation({
         </div>
       </div>
 
-      <div className="mt-8 space-y-3">
+      <div className="mt-8 space-y-2.5">
         <Link
           href={withLangPrefix(`/medic-online/meet/${confirmation.magicRoomId}`, lang)}
-          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]"
         >
-          <PhoneIcon className="h-4 w-4" />
-          {copy.openRoom}
+          <PhoneIcon className="h-4 w-4 shrink-0" />
+          <span className="min-w-0 truncate">{copy.openRoom}</span>
         </Link>
 
-        {confirmation.startsAt && (
-          <button
-            type="button"
-            onClick={handleDownloadCalendar}
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <CalendarIcon className="h-4 w-4" />
-            {copy.addToCalendar}
-          </button>
+        {confirmation.startsAt ? (
+          <div className="flex flex-nowrap items-center gap-2">
+            <button
+              type="button"
+              onClick={handleDownloadCalendar}
+              className="press-row inline-flex min-h-11 min-w-0 max-w-full flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-4 sm:text-[0.9375rem]"
+            >
+              <CalendarIcon className="h-4 w-4 shrink-0" />
+              {copy.addToCalendar}
+            </button>
+
+            <FamilyShareButton
+              iconOnly
+              align="right"
+              title={copy.title}
+              text={`${confirmation.formattedDate}, ${copy.atHour} ${confirmation.time}\n${copy.codeLabel}: ${confirmation.bookingCode}\n${copy.forPatient}: ${confirmation.patientName}`}
+              url={confirmation.magicLink}
+              lang={lang}
+            />
+          </div>
+        ) : (
+          <FamilyShareButton
+            title={copy.title}
+            text={`${confirmation.formattedDate}, ${copy.atHour} ${confirmation.time}\n${copy.codeLabel}: ${confirmation.bookingCode}\n${copy.forPatient}: ${confirmation.patientName}`}
+            url={confirmation.magicLink}
+            lang={lang}
+            className="w-full [&>button]:w-full"
+          />
         )}
 
         {onReset && (
@@ -240,9 +260,9 @@ export function BookingSmsConfirmation({
             <button
               type="button"
               onClick={onReset}
-              className="min-h-[44px] rounded-sm px-2 text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex min-h-[44px] max-w-full items-center justify-center whitespace-nowrap rounded-sm px-2 text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-[0.9375rem]"
             >
-              {copy.anotherBooking}
+              <span className="min-w-0 truncate">{copy.anotherBooking}</span>
             </button>
           </div>
         )}

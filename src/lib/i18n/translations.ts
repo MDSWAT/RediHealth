@@ -515,7 +515,7 @@ export const translations: Record<Lang, Translations> = {
       panel: "Панель",
     },
     header: {
-"forMediatorsSub": "Инструменты для медицинских посредников",
+"forMediatorsSub": "Инструменты для медицинских медиаторов",
 
       getHelp: "Получить помощь",
       demo: "Демо",
@@ -527,7 +527,7 @@ export const translations: Record<Lang, Translations> = {
       navMedicSub: "Запись и вызов врача",
       navStiri: "Новости",
       navStiriSub: "Местные оповещения и мобильные клиники",
-      forMediators: "Для медиаторов здравоохранения",
+      forMediators: "Для медицинских медиаторов",
       myAccount: "Мой аккаунт",
       medicalPanel: "Медицинская панель",
       startHere: "Начните здесь",
@@ -537,8 +537,8 @@ export const translations: Record<Lang, Translations> = {
       emergencyCallPrompt: "Позвоните 112 напрямую",
       call112: "Позвоните 112",
       mediatorProfessionals: "Для профессионалов",
-      mediatorDrawerDescription: "Вы медиатор по вопросам здоровья? Ваш полевой модуль и семейные записи здесь.",
-      enterMediatorModule: "Откройте модуль посредника",
+      mediatorDrawerDescription: "Вы медицинский медиатор? Ваши инструменты для выездов и записи здесь.",
+      enterMediatorModule: "Раздел для медиаторов",
     },
     hero: {
       trustBadge: "Бесплатная государственная услуга, созданная совместно с сообществами",
@@ -551,7 +551,7 @@ export const translations: Record<Lang, Translations> = {
       assistantCta: "Прочтите руководства",
       assistantHref: "/health-information",
       assistantAlwaysVisible: true,
-      mediatorPill: "Вы медиатор по вопросам здоровья? Откройте свою панель",
+      mediatorPill: "Вы медицинский медиатор? Откройте свою панель",
       mediatorHref: "/panel",
       telemedicinePill: "Онлайн врач",
       emergencyNoticeVerbatim:
@@ -598,7 +598,7 @@ export const translations: Record<Lang, Translations> = {
             icon: "HandHelpingIcon",
             title: "Я не знаю, куда идти (семейный врач, CNAS)",
             desc: "Помогите зарегистрироваться у семейного врача, пакета неотложной помощи и ваших документов.",
-            actionLabel: "Задайте вопрос посреднику",
+            actionLabel: "Задайте вопрос медиатору",
             actionHref: "/get-help?mode=mediator",
           },
         ],
@@ -620,7 +620,7 @@ export const translations: Record<Lang, Translations> = {
         factcheckLine2:
           "Вакцина против гриппа не содержит живого вируса, который мог бы заразить вас гриппом.",
         source: "Источник: ВОЗ, Министерство здравоохранения.",
-        button: "Задайте вопрос посреднику",
+        button: "Задайте вопрос медиатору",
       },
     },
     footer: {
@@ -635,10 +635,10 @@ export const translations: Record<Lang, Translations> = {
       },
       brandDescription:
         "RediHealth помогает людям из уязвимых сообществ понять свое здоровье, узнать, что делать дальше, и обратиться к врачу.",
-      mediatorPartnershipBadge: "Партнерство с сетью медиаторов здравоохранения",
+      mediatorPartnershipBadge: "Партнерство с сетью медицинских медиаторов",
       whoStandardBadge: "Бесплатная государственная услуга по стандартам ВОЗ",
       col1Heading: "Информация о здоровье",
-      col1Link1: "Путеводители по здоровью",
+      col1Link1: "Справочник о здоровье",
       col1Link2: "Попросите совета",
       col1Link3: "Проверьте свои симптомы",
       col1Link4: "Местные новости и оповещения о здоровье",
@@ -648,7 +648,7 @@ export const translations: Record<Lang, Translations> = {
       col2Link3: "Найдите клинику или больницу",
       col2Link4: "Мой аккаунт и рецепты",
       col3Heading: "Для медиаторов и врачей",
-      col3Link1: "Модуль медиаторов здоровья",
+      col3Link1: "Раздел для медицинских медиаторов",
       col3Link2: "Панель полей",
       col3Link3: "Портал для врачей",
       col3Link4: "Как врачи и медиаторы работают вместе",
@@ -670,7 +670,7 @@ export const translations: Record<Lang, Translations> = {
     },
     landing: {
       mythBuster: {
-        title: "Правда или ложь",
+        title: "Самые частые мифы о здоровье и проверенные факты",
         subtitle: "Слухи о здоровье распространялись быстро. Проверьте их, прежде чем что-либо решить.",
         messageLabel: "Сообщение",
       },
@@ -697,31 +697,31 @@ export const translations: Record<Lang, Translations> = {
             href: "/find-help",
           },
         ],
-        mediatorBand: { text: "Вы медиатор по вопросам здоровья?", cta: "Откройте модуль посредника" },
+        mediatorBand: { text: "Вы медицинский медиатор?", cta: "Раздел для медиаторов" },
       },
       healthTopics: {
         title: "Позаботьтесь о своем здоровье",
-        subtitle: "Небольшие шаги, которые вы предпримете сегодня, могут со временем снизить риски для здоровья.",
+        subtitle: "Простые руководства о давлении, диабете, питании и плановых осмотрах.",
         viewAll: "Просмотреть все руководства по здоровью",
       },
       medicalAssistance: {
         title: "Поможем попасть к врачу",
         subtitle:
-          "Не можете найти врача или записаться на прием? Кто-то из нашей команды читает ваш запрос и связывается с вами.",
-        requestHelp: "Попросите помощи",
+          "Не можете записаться на приём? Наша команда прочитает ваше сообщение и свяжется с вами.",
+        requestHelp: "Попросить помощь",
         findServices: "Найти медицинские услуги",
         steps: [
           {
-            title: "Расскажите нам, что вам нужно",
-            description: "Напишите кратко, что вам нужно. Никаких сложных форм.",
+            title: "Расскажите, что вас беспокоит",
+            description: "Коротко опишите проблему. Без сложных форм.",
           },
           {
-            title: "Получите четкий ответ",
-            description: "Мы просто говорим вам, что вы можете сделать.",
+            title: "Получите чёткий ответ",
+            description: "Показываем понятные следующие шаги.",
           },
           {
             title: "Поговорите с врачом онлайн",
-            description: "При необходимости мы свяжем вас с врачом.",
+            description: "Если нужно, соединим вас со специалистом.",
           },
         ],
       },
@@ -732,9 +732,9 @@ export const translations: Record<Lang, Translations> = {
         partnersLabel: "Правительство и партнеры в сфере здравоохранения",
         partnerLogo: "Логотип партнера",
         commitments: [
-          { title: "Бесплатно для всех", description: "Вы ничего не платите. Любой может использовать его." },
-          { title: "Ваши данные остаются конфиденциальными", description: "Мы заботимся о вашей информации и не разглашаем ее." },
-          { title: "Простой язык", description: "Мы говорим кратко и избегаем резких слов." },
+          { title: "Бесплатно для всех", description: "Вы ничего не платите, со страховкой или без неё." },
+          { title: "Ваши данные под защитой", description: "Мы бережно храним сведения о вас и нигде их не публикуем." },
+          { title: "Простые и прямые ответы", description: "Обычные слова без сложных терминов — сразу к тому, что поможет." },
         ],
       },
       emergencyNotice: {
@@ -836,13 +836,13 @@ export const translations: Record<Lang, Translations> = {
     },
     healthInfoPage: {
       eyebrow: "Информация о здоровье",
-      heroTitle: "Путеводители по здоровью",
-      heroSubtitle: "Читайте о распространенных заболеваниях, о том, как защитить себя и когда обращаться к врачу.",
+      heroTitle: "Справочник о здоровье",
+      heroSubtitle: "Читайте о частых заболеваниях, как беречь себя и когда обращаться к врачу.",
       browseTitle: "Выберите тему",
-      browseSubtitle: "В каждом руководстве показано, что вы можете делать каждый день для своего здоровья.",
+      browseSubtitle: "В каждом разделе — простые шаги для вашего здоровья на каждый день.",
       readMore: "Подробнее",
-      usingInfoTitle: "Как пользоваться руководствами",
-      usingInfoSubtitle: "Руководства помогут вам лучше понять и сделать выбор. Они не заменяют консультацию врача.",
+      usingInfoTitle: "Как пользоваться справочником",
+      usingInfoSubtitle: "Эти материалы помогут понять, что происходит, и решить, что делать. Они не заменяют приём врача.",
       usingInfoSteps: [
         { title: "Прочтите ключевые моменты", description: "Выберите тему, которая вас волнует, и прочитайте вступительную часть." },
         { title: "Узнайте свои риски", description: "Посмотрите на привычки, которые влияют на ваше здоровье, и на то, что вы можете изменить." },
@@ -855,7 +855,7 @@ export const translations: Record<Lang, Translations> = {
       menuSubtitle: "Прочтите руководство или проверьте симптом.",
       tabs: {
         menu: "Меню",
-        topics: "Путеводители",
+        topics: "Разделы",
         triage: "Проверьте симптом",
       },
       triageGateway: {
@@ -1007,8 +1007,8 @@ export const translations: Record<Lang, Translations> = {
       geoError: "Нам не удалось найти ваше местоположение. Выберите свой округ из списка.",
     },
     quiz: {
-      sectionTitle: "Правда или ложь",
-      sectionSubtitle: "Большая часть медицинской информации распространяется из уст в уста. Вот что верно, а что нет.",
+      sectionTitle: "Частые мифы о здоровье простыми словами",
+      sectionSubtitle: "Проверьте, что правда, а что вымысел, с ясными ответами врачей.",
       filterAriaLabel: "Фильтруйте мифы по категориям",
       audioNarratorLabel: "Послушайте вопрос и объяснение.",
       trueButton: "Правда",
@@ -1030,9 +1030,9 @@ export const translations: Record<Lang, Translations> = {
       nextMythAria: "Следующий миф",
     },
     mediatorBand: {
-      question: "Вы посредник в области общественного здравоохранения?",
-      description: "Инструменты для выездов на места, управляемой сортировки и записей семей, которые вы поддерживаете.",
-      cta: "Откройте модуль посредника",
+      question: "Вы медицинский медиатор?",
+      description: "Простые инструменты для работы на выезде и помощи людям в общинах.",
+      cta: "Раздел для медиаторов",
     },
     newsPage: {
       heroTitle: "Новости здравоохранения и местные оповещения",
@@ -1057,9 +1057,9 @@ export const translations: Record<Lang, Translations> = {
       playAudio: "Слушай",
       pauseAudio: "Пауза",
       handoverTitle: "Нужна медицинская помощь?",
-      handoverSubtitle: "Поговорите с врачом онлайн или попросите помощи у посредника.",
+      handoverSubtitle: "Поговорите с врачом онлайн или попросите помощи у медицинского медиатора.",
       handoverTelemed: "Поговорите с врачом",
-      handoverMediator: "Найдите медиатора по вопросам здоровья",
+      handoverMediator: "Найдите медицинского медиатора",
       changeCounty: "Изменить округ",
       saveSelection: "Сохранить",
     },
@@ -1091,10 +1091,10 @@ export const translations: Record<Lang, Translations> = {
       bandwidthAudioOnly: "Включаю только звук, чтобы звонок не сбросился",
     },
     mediatorsPage: {
-      heroTitle: "Медиаторы здоровья",
-      heroSubtitle: "Медиатор по вопросам здоровья поможет вам оформить документы, удостоверяющие личность, зарегистрироваться у семейного врача, записаться на прием в больницу и получить бесплатное лечение.",
-      requestHelpButton: "Попросите посредника",
-      modalTitle: "Попросите посредника в вашем регионе",
+      heroTitle: "Медицинские медиаторы",
+      heroSubtitle: "Медицинский медиатор поможет вам оформить документы, удостоверяющие личность, зарегистрироваться у семейного врача, записаться на прием в больницу и получить бесплатное лечение.",
+      requestHelpButton: "Обратиться к медиатору",
+      modalTitle: "Обратиться к медиатору в вашем регионе",
       nameLabel: "Полное имя",
       phoneLabel: "Телефон",
       countyLabel: "Округ",
@@ -1303,7 +1303,7 @@ export const translations: Record<Lang, Translations> = {
     },
     landing: {
       mythBuster: {
-        title: "True or false",
+        title: "Common health myths, explained with verified facts",
         subtitle: "Health rumours spread fast. Check them before you decide anything.",
         messageLabel: "Message",
       },
@@ -1330,31 +1330,31 @@ export const translations: Record<Lang, Translations> = {
             href: "/find-help",
           },
         ],
-        mediatorBand: { text: "Are you a health mediator?", cta: "Open the mediator module" },
+        mediatorBand: { text: "Are you a health mediator?", cta: "Mediator tools" },
       },
       healthTopics: {
         title: "Take care of your health",
-        subtitle: "Small steps you take today can lower your health risks over time.",
+        subtitle: "Plain guides on blood pressure, diabetes, food and preventive checkups.",
         viewAll: "See all health guides",
       },
       medicalAssistance: {
         title: "We help you reach a doctor",
         subtitle:
-          "Can't find a doctor or get an appointment? Someone from our team reads your request and contacts you.",
+          "Need a doctor or an appointment? Someone on our team reads your message and gets back to you.",
         requestHelp: "Ask for help",
         findServices: "Find health services",
         steps: [
           {
             title: "Tell us what you need",
-            description: "Write briefly what you need. No complicated forms.",
+            description: "Write a short note about your problem. No long forms.",
           },
           {
             title: "Get a clear answer",
-            description: "We give you clear, actionable next steps.",
+            description: "We show you simple next steps.",
           },
           {
             title: "Talk to a doctor online",
-            description: "If needed, we put you in touch with a doctor.",
+            description: "If needed, we arrange a call for you.",
           },
         ],
       },
@@ -1365,9 +1365,9 @@ export const translations: Record<Lang, Translations> = {
         partnersLabel: "Government and healthcare partners",
         partnerLogo: "Partner logo",
         commitments: [
-          { title: "Free for everyone", description: "You pay nothing. Anyone can use it." },
-          { title: "Your data stays private", description: "We look after your information and do not make it public." },
-          { title: "Clear, direct guidance", description: "We explain medical terms clearly and go straight to what you can do." },
+          { title: "Free for everyone", description: "You pay nothing, with or without insurance." },
+          { title: "Your data stays private", description: "Your details stay confidential and are never made public." },
+          { title: "Plain, direct answers", description: "Everyday words, no medical jargon, straight to what helps." },
         ],
       },
       emergencyNotice: {
@@ -1470,12 +1470,12 @@ export const translations: Record<Lang, Translations> = {
     healthInfoPage: {
       eyebrow: "Health information",
       heroTitle: "Health guides",
-      heroSubtitle: "Read about common illnesses, how to protect yourself and when to see a doctor.",
+      heroSubtitle: "Read about common conditions, how to protect yourself and when to see a doctor.",
       browseTitle: "Pick a topic",
       browseSubtitle: "Each guide shows what you can do every day for your health.",
       readMore: "Read more",
       usingInfoTitle: "How to use the guides",
-      usingInfoSubtitle: "The guides help you understand and choose better. They do not replace a doctor's advice.",
+      usingInfoSubtitle: "They help you understand your choices. They do not replace a doctor's advice.",
       usingInfoSteps: [
         { title: "Read the key points", description: "Pick a topic that matters to you and read the opening part." },
         { title: "Find out your risks", description: "Look at the habits that affect your health and what you can change." },
@@ -1640,8 +1640,8 @@ export const translations: Record<Lang, Translations> = {
       geoError: "We couldn't find your location. Choose your county from the list.",
     },
     quiz: {
-      sectionTitle: "True or false",
-      sectionSubtitle: "Check common health claims in seconds.",
+      sectionTitle: "Common myths, clearly explained",
+      sectionSubtitle: "Check what you have heard and get trusted answers from doctors.",
       filterAriaLabel: "Filter myths by category",
       audioNarratorLabel: "Listen to the question and explanation",
       trueButton: "True",
@@ -1663,9 +1663,9 @@ export const translations: Record<Lang, Translations> = {
       nextMythAria: "Next myth",
     },
     mediatorBand: {
-      question: "Community health mediator?",
-      description: "Field triage and follow-up records for the families you support.",
-      cta: "Mediator module",
+      question: "Are you a health mediator?",
+      description: "Simple tools for home visits and supporting people in your community.",
+      cta: "Mediator tools",
     },
     newsPage: {
       heroTitle: "Health news and local alerts",
@@ -1935,7 +1935,7 @@ export const translations: Record<Lang, Translations> = {
     },
     landing: {
       mythBuster: {
-        title: "Adevărat sau fals",
+        title: "Cele mai frecvente mituri, explicate cu informații verificate",
         subtitle: "Zvonurile despre sănătate circulă repede. Verifică-le înainte să hotărăști ceva.",
         messageLabel: "Mesaj",
       },
@@ -1962,16 +1962,16 @@ export const translations: Record<Lang, Translations> = {
             href: "/find-help",
           },
         ],
-        mediatorBand: { text: "Ești mediator sanitar?", cta: "Deschide modulul mediatorilor" },
+        mediatorBand: { text: "Ești mediator sanitar?", cta: "Modulul mediatorilor" },
       },
       healthTopics: {
         title: "Ai grijă de sănătatea ta",
-        subtitle: "Pașii mici pe care îi faci azi îți pot reduce riscurile de sănătate pe termen lung.",
+        subtitle: "Ghiduri simple despre tensiune, diabet, alimentație și controale la timp.",
         viewAll: "Vezi toate ghidurile de sănătate",
       },
       medicalAssistance: {
         title: "Te ajutăm să ajungi la medic",
-        subtitle: "Cineva din echipa noastră îți citește cererea și te contactează.",
+        subtitle: "Nu reușești să faci o programare? Cineva din echipa noastră îți citește mesajul și îți răspunde.",
         requestHelp: "Cere ajutor",
         findServices: "Caută servicii medicale",
         steps: [
@@ -1981,11 +1981,11 @@ export const translations: Record<Lang, Translations> = {
           },
           {
             title: "Primești un răspuns clar",
-            description: "Îți arătăm clar ce pași poți urma.",
+            description: "Îți arătăm pe scurt ce ai de făcut.",
           },
           {
             title: "Vorbești cu un medic online",
-            description: "Dacă e nevoie, te punem în legătură cu un medic.",
+            description: "Dacă e nevoie, te punem în legătură directă.",
           },
         ],
       },
@@ -1996,9 +1996,9 @@ export const translations: Record<Lang, Translations> = {
         partnersLabel: "Parteneri guvernamentali și medicali",
         partnerLogo: "Logo partener",
         commitments: [
-          { title: "Gratuit pentru toți", description: "Nu plătești nimic. Oricine îl poate folosi." },
-          { title: "Datele tale sunt private", description: "Avem grijă de informațiile tale și nu le facem publice." },
-          { title: "Explicații clare și directe", description: "Explicăm termenii medicali firesc și mergem direct la ce ai de făcut." },
+          { title: "Gratuit pentru toți", description: "Nu plătești nimic, cu sau fără asigurare." },
+          { title: "Datele tale rămân private", description: "Păstrăm informațiile tale în siguranță și nu le facem publice." },
+          { title: "Explicații pe înțelesul tău", description: "Cuvinte obișnuite, fără termeni greoi, direct la ce poți face." },
         ],
       },
       emergencyNotice: {
@@ -2106,7 +2106,7 @@ export const translations: Record<Lang, Translations> = {
       browseSubtitle: "Fiecare ghid îți arată ce poți face zilnic pentru sănătatea ta.",
       readMore: "Citește mai mult",
       usingInfoTitle: "Cum folosești ghidurile",
-      usingInfoSubtitle: "Ghidurile te ajută să înțelegi și să alegi mai bine. Nu înlocuiesc sfatul medicului.",
+      usingInfoSubtitle: "Ele te ajută să înțelegi și să alegi mai bine. Nu înlocuiesc sfatul medicului.",
       usingInfoSteps: [
         { title: "Citește ce e important", description: "Alege un subiect care te privește și citește partea de început." },
         { title: "Află ce riscuri ai", description: "Uită-te la obiceiurile care îți afectează sănătatea și la ce poți schimba." },
@@ -2271,8 +2271,8 @@ export const translations: Record<Lang, Translations> = {
       geoError: "Nu am putut afla locația. Alege județul din listă.",
     },
     quiz: {
-      sectionTitle: "Adevărat sau fals",
-      sectionSubtitle: "Verifică rapid ce auzi des despre sănătate.",
+      sectionTitle: "Mituri frecvente, explicate simplu",
+      sectionSubtitle: "Verifică ce ai auzit și află răspunsul corect de la medici.",
       filterAriaLabel: "Filtrează miturile după categorie",
       audioNarratorLabel: "Ascultă întrebarea și explicația",
       trueButton: "Adevărat",
@@ -2295,7 +2295,7 @@ export const translations: Record<Lang, Translations> = {
     },
     mediatorBand: {
       question: "Ești mediator sanitar?",
-      description: "Triaj ghidat și evidență pe teren pentru familiile sprijinite.",
+      description: "Instrumente simple pentru vizite pe teren și sprijin în comunitate.",
       cta: "Modulul mediatorilor",
     },
     newsPage: {
@@ -2447,7 +2447,7 @@ export const translations: Record<Lang, Translations> = {
       assistantCta: "Lexo udhëzuesit",
       assistantHref: "/health-information",
       assistantAlwaysVisible: true,
-      mediatorPill: "Je ndërmjetës shëndetësor? Hap panelin tënd",
+      mediatorPill: "Je mediator shëndetësor? Hap panelin tënd",
       mediatorHref: "/panel",
       telemedicinePill: "Mjek online",
       emergencyNoticeVerbatim:
@@ -2494,7 +2494,7 @@ export const translations: Record<Lang, Translations> = {
             icon: "HandHelpingIcon",
             title: "Nuk di ku të shkoj (mjeku i familjes, sigurimet)",
             desc: "Ndihmë për regjistrimin te mjeku i familjes, paketën e urgjencës dhe dokumentet.",
-            actionLabel: "Kërko një ndërmjetës",
+            actionLabel: "Kërko një mediator",
             actionHref: "/get-help?mode=mediator",
           },
         ],
@@ -2516,7 +2516,7 @@ export const translations: Record<Lang, Translations> = {
         factcheckLine2:
           "Vaksina e gripit nuk ka virus të gjallë që mund të të japë grip.",
         source: "Burimi: OBSH, Ministria e Shëndetësisë",
-        button: "Pyet një ndërmjetës",
+        button: "Pyet një mediator",
       },
     },
     footer: {
@@ -2566,7 +2566,7 @@ export const translations: Record<Lang, Translations> = {
     },
     landing: {
       mythBuster: {
-        title: "E vërtetë apo e rreme",
+        title: "Mitet më të shpeshta, të shpjeguara me fakte të verifikuara",
         subtitle: "Thashethemet për shëndetin përhapen shpejt. Kontrolloji para se të vendosësh diçka.",
         messageLabel: "Mesazh",
       },
@@ -2593,31 +2593,31 @@ export const translations: Record<Lang, Translations> = {
             href: "/find-help",
           },
         ],
-        mediatorBand: { text: "Je mediator shëndetësor?", cta: "Hap modulin e mediatorëve" },
+        mediatorBand: { text: "Je mediator shëndetësor?", cta: "Mjetet e mediatorit" },
       },
       healthTopics: {
         title: "Kujdesu për shëndetin tënd",
-        subtitle: "Hapat e vegjël që bën sot mund të ulin rreziqet për shëndetin tënd me kalimin e kohës.",
+        subtitle: "Udhëzues të thjeshtë për tensionin, diabetin, ushqimin dhe kontrollet në kohë.",
         viewAll: "Shiko të gjithë udhëzuesit shëndetësorë",
       },
       medicalAssistance: {
         title: "Të ndihmojmë të arrish te mjeku",
         subtitle:
-          "Nuk gjen mjek ose nuk merr dot takim? Dikush nga ekipi ynë lexon kërkesën tënde dhe të kontakton.",
+          "Nuk merr dot një takim? Ekipi ynë lexon mesazhin tënd dhe të kthen përgjigje.",
         requestHelp: "Kërko ndihmë",
         findServices: "Gjej shërbime shëndetësore",
         steps: [
           {
             title: "Na thuaj çfarë të duhet",
-            description: "Shkruaj shkurt çfarë të duhet. Pa formularë të ndërlikuar.",
+            description: "Shkruaj shkurt shqetësimin tënd. Pa formularë të gjatë.",
           },
           {
             title: "Merr një përgjigje të qartë",
-            description: "Të tregojmë qartë hapat që mund të ndjekësh.",
+            description: "Të tregojmë thjesht çfarë mund të bësh më pas.",
           },
           {
             title: "Fol me një mjek online",
-            description: "Nëse duhet, të lidhim me një mjek.",
+            description: "Nëse duhet, të lidhim drejtpërdrejt për një bisedë.",
           },
         ],
       },
@@ -2628,9 +2628,9 @@ export const translations: Record<Lang, Translations> = {
         partnersLabel: "Partnerë qeveritarë dhe shëndetësorë",
         partnerLogo: "Logo partneri",
         commitments: [
-          { title: "Falas për të gjithë", description: "Nuk paguan asgjë. Çdokush mund ta përdorë." },
-          { title: "Të dhënat e tua mbeten private", description: "Kujdesemi për informacionin tënd dhe nuk e bëjmë publik." },
-          { title: "Shpjegime të qarta dhe të drejtpërdrejta", description: "Shpjegojmë termat mjekësorë natyrshëm dhe shkojmë drejt te çfarë mund të bësh." },
+          { title: "Falas për të gjithë", description: "Nuk paguan asgjë, me ose pa sigurim shëndetësor." },
+          { title: "Të dhënat e tua mbeten private", description: "I mbajmë informacionet e tua të sigurta dhe nuk i bëjmë publike." },
+          { title: "Shpjegime të thjeshta e të qarta", description: "Fjalë të zakonshme, pa terma të rëndë, drejt te ajo që të ndihmon." },
         ],
       },
       emergencyNotice: {
@@ -2738,7 +2738,7 @@ export const translations: Record<Lang, Translations> = {
       browseSubtitle: "Çdo udhëzues të tregon çfarë mund të bësh çdo ditë për shëndetin tënd.",
       readMore: "Lexo më shumë",
       usingInfoTitle: "Si t'i përdorësh udhëzuesit",
-      usingInfoSubtitle: "Udhëzuesit të ndihmojnë të kuptosh dhe të zgjedhësh më mirë. Nuk zëvendësojnë këshillën e mjekut.",
+      usingInfoSubtitle: "Ata të ndihmojnë të kuptosh dhe të vendosësh më mirë. Nuk zëvendësojnë këshillën e mjekut.",
       usingInfoSteps: [
         { title: "Lexo pikat kryesore", description: "Zgjidh një temë që të intereson dhe lexo pjesën e parë." },
         { title: "Mëso cilat janë rreziqet e tua", description: "Shiko zakonet që ndikojnë në shëndetin tënd dhe çfarë mund të ndryshosh." },
@@ -2903,8 +2903,8 @@ export const translations: Record<Lang, Translations> = {
       geoError: "Nuk e gjetëm dot vendndodhjen. Zgjidh qarkun nga lista.",
     },
     quiz: {
-      sectionTitle: "E vërtetë apo e rreme",
-      sectionSubtitle: "Kontrollo shpejt çfarë dëgjon shpesh për shëndetin.",
+      sectionTitle: "Mite të shpeshta, të sqaruara thjesht",
+      sectionSubtitle: "Kontrollo çfarë ke dëgjuar dhe merr përgjigje të sigurta nga mjekët.",
       filterAriaLabel: "Filtro mitet sipas kategorisë",
       audioNarratorLabel: "Dëgjo pyetjen dhe shpjegimin",
       trueButton: "E vërtetë",
@@ -2927,8 +2927,8 @@ export const translations: Record<Lang, Translations> = {
     },
     mediatorBand: {
       question: "Je mediator shëndetësor?",
-      description: "Triazh i udhëhequr dhe regjistër për familjet që mbështet.",
-      cta: "Moduli i mediatorëve",
+      description: "Mjete të thjeshta për vizitat në shtëpi dhe mbështetjen e njerëzve në komunitet.",
+      cta: "Mjetet e mediatorit",
     },
     newsPage: {
       heroTitle: "Lajme për shëndetin dhe njoftime lokale",
@@ -3198,7 +3198,7 @@ export const translations: Record<Lang, Translations> = {
     },
     landing: {
       mythBuster: {
-        title: "Vero o falso",
+        title: "I falsi miti più comuni, spiegati con informazioni verificate",
         subtitle: "Le voci sulla salute girano in fretta. Controllale prima di decidere qualcosa.",
         messageLabel: "Messaggio",
       },
@@ -3225,31 +3225,31 @@ export const translations: Record<Lang, Translations> = {
             href: "/find-help",
           },
         ],
-        mediatorBand: { text: "Sei un mediatore sanitario?", cta: "Apri il modulo mediatori" },
+        mediatorBand: { text: "Sei un mediatore sanitario?", cta: "Strumenti per mediatori" },
       },
       healthTopics: {
         title: "Prenditi cura della tua salute",
-        subtitle: "I piccoli passi che fai oggi possono ridurre nel tempo i rischi per la tua salute.",
+        subtitle: "Guide semplici su pressione, diabete, alimentazione e controlli preventivi.",
         viewAll: "Vedi tutte le guide alla salute",
       },
       medicalAssistance: {
         title: "Ti aiutiamo ad arrivare dal medico",
         subtitle:
-          "Non trovi un medico o non riesci a prendere un appuntamento? Qualcuno del nostro team legge la tua richiesta e ti contatta.",
+          "Non riesci a prenotare una visita? Il nostro team legge il tuo messaggio e ti risponde.",
         requestHelp: "Chiedi aiuto",
         findServices: "Trova servizi sanitari",
         steps: [
           {
             title: "Dicci di cosa hai bisogno",
-            description: "Scrivi in breve di cosa hai bisogno. Niente moduli complicati.",
+            description: "Scrivi in breve qual è il problema. Niente moduli complicati.",
           },
           {
             title: "Ricevi una risposta chiara",
-            description: "Ti indichiamo chiaramente cosa puoi fare.",
+            description: "Ti mostriamo in modo semplice i prossimi passi.",
           },
           {
             title: "Parla con un medico online",
-            description: "Se serve, ti mettiamo in contatto con un medico.",
+            description: "Se serve, ti mettiamo subito in contatto.",
           },
         ],
       },
@@ -3260,9 +3260,9 @@ export const translations: Record<Lang, Translations> = {
         partnersLabel: "Partner governativi e sanitari",
         partnerLogo: "Logo partner",
         commitments: [
-          { title: "Gratis per tutti", description: "Non paghi niente. Chiunque può usarlo." },
-          { title: "I tuoi dati restano privati", description: "Abbiamo cura delle tue informazioni e non le rendiamo pubbliche." },
-          { title: "Spiegazioni chiare e dirette", description: "Spieghiamo i termini medici con chiarezza e andiamo dritti a cosa puoi fare." },
+          { title: "Gratis per tutti", description: "Non paghi niente, con o senza assicurazione." },
+          { title: "I tuoi dati restano privati", description: "Teniamo al sicuro le tue informazioni e non le rendiamo pubbliche." },
+          { title: "Risposte semplici e dirette", description: "Parole di ogni giorno, senza gergo medico, subito a ciò che aiuta." },
         ],
       },
       emergencyNotice: {
@@ -3365,12 +3365,12 @@ export const translations: Record<Lang, Translations> = {
     healthInfoPage: {
       eyebrow: "Informazioni sanitarie",
       heroTitle: "Guide sulla salute",
-      heroSubtitle: "Leggi delle malattie più comuni, di come proteggerti e di quando andare dal medico.",
+      heroSubtitle: "Scopri le malattie più comuni, come proteggerti e quando andare dal medico.",
       browseTitle: "Scegli un argomento",
       browseSubtitle: "Ogni guida ti mostra cosa puoi fare ogni giorno per la tua salute.",
       readMore: "Leggi di più",
       usingInfoTitle: "Come usare le guide",
-      usingInfoSubtitle: "Le guide ti aiutano a capire e a scegliere meglio. Non sostituiscono il parere del medico.",
+      usingInfoSubtitle: "Ti aiutano a capire e a scegliere meglio. Non sostituiscono il parere del medico.",
       usingInfoSteps: [
         { title: "Leggi i punti chiave", description: "Scegli un argomento che ti riguarda e leggi la parte iniziale." },
         { title: "Scopri i tuoi rischi", description: "Guarda le abitudini che pesano sulla tua salute e cosa puoi cambiare." },
@@ -3535,8 +3535,8 @@ export const translations: Record<Lang, Translations> = {
       geoError: "Non riusciamo a trovare la tua posizione. Scegli la provincia dall'elenco.",
     },
     quiz: {
-      sectionTitle: "Vero o falso",
-      sectionSubtitle: "Verifica subito ciò che si dice spesso sulla salute.",
+      sectionTitle: "Falsi miti, spiegati semplice",
+      sectionSubtitle: "Verifica ciò che hai sentito e leggi risposte chiare dai medici.",
       filterAriaLabel: "Filtra i miti per categoria",
       audioNarratorLabel: "Ascolta la domanda e la spiegazione",
       trueButton: "Vero",
@@ -3559,8 +3559,8 @@ export const translations: Record<Lang, Translations> = {
     },
     mediatorBand: {
       question: "Sei un mediatore sanitario?",
-      description: "Triage guidato e registro per le famiglie che segui sul campo.",
-      cta: "Modulo mediatori",
+      description: "Strumenti semplici per le visite a domicilio e il supporto nella tua comunità.",
+      cta: "Strumenti per mediatori",
     },
     newsPage: {
       heroTitle: "Notizie sulla salute e avvisi locali",
@@ -3830,7 +3830,7 @@ export const translations: Record<Lang, Translations> = {
     },
     landing: {
       mythBuster: {
-        title: "Točno ili netočno",
+        title: "Najčešći mitovi o zdravlju uz provjerene informacije",
         subtitle: "Glasine o zdravlju brzo se šire. Provjeri ih prije nego što doneseš odluku.",
         messageLabel: "Poruka",
       },
@@ -3857,17 +3857,17 @@ export const translations: Record<Lang, Translations> = {
             href: "/find-help",
           },
         ],
-        mediatorBand: { text: "Jesi li zdravstveni medijator?", cta: "Otvori modul za medijatore" },
+        mediatorBand: { text: "Jesi li zdravstveni medijator?", cta: "Alati za medijatore" },
       },
       healthTopics: {
         title: "Brini o svom zdravlju",
-        subtitle: "Mali koraci koje učiniš danas mogu dugoročno smanjiti rizike za tvoje zdravlje.",
+        subtitle: "Jednostavni vodiči o krvnom tlaku, šećernoj bolesti, prehrani i preventivnim pregledima.",
         viewAll: "Pogledaj sve zdravstvene vodiče",
       },
       medicalAssistance: {
         title: "Pomažemo ti doći do liječnika",
         subtitle:
-          "Ne možeš pronaći obiteljskog liječnika ili dogovoriti termin? Netko iz našeg tima čita tvoj zahtjev i javlja ti se.",
+          "Ne možeš dogovoriti pregled? Netko iz našeg tima čita tvoju poruku i javlja ti se.",
         requestHelp: "Potraži pomoć",
         findServices: "Ljekarne i klinike",
         steps: [
@@ -3877,11 +3877,11 @@ export const translations: Record<Lang, Translations> = {
           },
           {
             title: "Dobij jasan odgovor",
-            description: "Jasno ti pokažemo koje korake možeš poduzeti.",
+            description: "Pokažemo ti jednostavne sljedeće korake.",
           },
           {
             title: "Razgovaraj s liječnikom online",
-            description: "Po potrebi te povezujemo s liječnikom.",
+            description: "Po potrebi te odmah spajamo na razgovor.",
           },
         ],
       },
@@ -3892,9 +3892,9 @@ export const translations: Record<Lang, Translations> = {
         partnersLabel: "Državni i zdravstveni partneri",
         partnerLogo: "Logotip partnera",
         commitments: [
-          { title: "Besplatno za sve", description: "Ne plaćaš ništa. Svatko je može koristiti." },
-          { title: "Tvoji podaci ostaju privatni", description: "Čuvamo tvoje podatke i ne objavljujemo ih javno." },
-          { title: "Jasna i izravna objašnjenja", description: "Medicinske pojmove objašnjavamo prirodno i odmah prelazimo na ono što možeš učiniti." },
+          { title: "Besplatno za sve", description: "Ne plaćaš ništa, sa zdravstvenim osiguranjem ili bez njega." },
+          { title: "Tvoji podaci ostaju privatni", description: "Čuvamo tvoje informacije na sigurnom i ne objavljujemo ih javno." },
+          { title: "Jednostavni i izravni odgovori", description: "Svakodnevne riječi, bez teških medicinskih izraza, odmah do onoga što pomaže." },
         ],
       },
       emergencyNotice: {
@@ -3997,12 +3997,12 @@ export const translations: Record<Lang, Translations> = {
     healthInfoPage: {
       eyebrow: "Informacije o zdravlju",
       heroTitle: "Zdravstveni vodiči",
-      heroSubtitle: "Čitaj o čestim bolestima, poput povišenog krvnog tlaka i šećerne bolesti, kako se zaštititi i kada otići obiteljskom liječniku.",
+      heroSubtitle: "Čitaj o čestim bolestima, kako se zaštititi i kada otići liječniku.",
       browseTitle: "Odaberi temu",
       browseSubtitle: "Svaki vodič pokazuje što svakodnevno možeš učiniti za svoje zdravlje.",
       readMore: "Pročitaj više",
       usingInfoTitle: "Kako koristiti vodiče",
-      usingInfoSubtitle: "Vodiči ti pomažu razumjeti i lakše odlučiti. Ne zamjenjuju savjet liječnika.",
+      usingInfoSubtitle: "Pomažu ti razumjeti i lakše odlučiti. Ne zamjenjuju savjet liječnika.",
       usingInfoSteps: [
         { title: "Pročitaj najvažnije", description: "Odaberi temu koja te zanima i pročitaj uvodni dio." },
         { title: "Prepoznaj svoje rizike", description: "Pogledaj navike koje utječu na krvni tlak, šećer u krvi i zdravlje." },
@@ -4167,8 +4167,8 @@ export const translations: Record<Lang, Translations> = {
       geoError: "Nismo uspjeli odrediti lokaciju. Odaberi županiju s popisa.",
     },
     quiz: {
-      sectionTitle: "Točno ili netočno",
-      sectionSubtitle: "Brzo provjeri česte tvrdnje o zdravlju.",
+      sectionTitle: "Česti mitovi, jednostavno objašnjeni",
+      sectionSubtitle: "Provjeri što si čuo i saznaj pouzdane odgovore liječnika.",
       filterAriaLabel: "Filtriraj mitove po kategoriji",
       audioNarratorLabel: "Poslušaj pitanje i objašnjenje",
       trueButton: "Točno",
@@ -4190,9 +4190,9 @@ export const translations: Record<Lang, Translations> = {
       nextMythAria: "Sljedeći mit",
     },
     mediatorBand: {
-      question: "Zdravstveni si medijator?",
-      description: "Vođena trijaža i evidencija za obitelji kojima pomažeš na terenu.",
-      cta: "Modul za medijatore",
+      question: "Jesi li zdravstveni medijator?",
+      description: "Jednostavni alati za kućne posjete i podršku ljudima u zajednici.",
+      cta: "Alati za medijatore",
     },
     newsPage: {
       heroTitle: "Zdravstvene vijesti i lokalna upozorenja",
@@ -4462,7 +4462,7 @@ export const translations: Record<Lang, Translations> = {
     },
     landing: {
       mythBuster: {
-        title: "Chacho vay xoxamno",
+        title: "E may but ashunde xoxamne vorbi thaj dikhle informaciye",
         subtitle: "E xoxamne vorbi vash o sastipen phiren sigo. Dikh len anglal te alosares vareso.",
         messageLabel: "Mesazho",
       },
@@ -4489,31 +4489,31 @@ export const translations: Record<Lang, Translations> = {
             href: "/find-help",
           },
         ],
-        mediatorBand: { text: "San sastipnasko mediatori?", cta: "Putar o mediatoresko modulo" },
+        mediatorBand: { text: "San sastipnasko mediatori?", cta: "Mediatoreske instrumenturya" },
       },
       healthTopics: {
         title: "Arakh cho sastipen",
-        subtitle: "E tikne pasha kay keres adyes shay te tiknyaren e sastipnaske rizikurya.",
+        subtitle: "Ashkarde sikavimata vash sar phurdel o rat, o gudlo rat, o xabe thaj o preventivno dikhiben.",
         viewAll: "Dikh savore sastipnaske sikavimata",
       },
       medicalAssistance: {
         title: "Zhutinas tut te areses ko doktori",
         subtitle:
-          "Nashti arakhes familiyako doktori vay programiripe? Varekon katar amaro timo ginel cho mangipe thaj akharel tut.",
+          "Nashti keres programiripe? Amaro timo ginel cho mesazho thaj akharel tut.",
         requestHelp: "Rod zhutimos",
         findServices: "Farmaciye thaj klinike",
         steps: [
           {
             title: "Phen so trubul tuke",
-            description: "Lekhav khurdeles so dukhal tut vay so trubul tuke. Bi phare formularengo.",
+            description: "Lekhav khurdeles so dukhal tut. Bi phare formularengo.",
           },
           {
             title: "Le ashkardo palpale",
-            description: "Sikavas tuke chaches save pasha te le.",
+            description: "Sikavas tuke loke save pasha te keres may dur.",
           },
           {
             title: "Vaker ekhe doktoreya online",
-            description: "Te trubul, phandas tut ekhe doktoreya.",
+            description: "Te trubul, phandas tut direktno.",
           },
         ],
       },
@@ -4524,9 +4524,9 @@ export const translations: Record<Lang, Translations> = {
         partnersLabel: "Themeske thaj sastipnaske partnerya",
         partnerLogo: "Partneresko semno",
         commitments: [
-          { title: "Bi lovesko savorenge", description: "Na pokines khanch. Sako manush shay te labarel les." },
-          { title: "Che podatke achhen garavde", description: "Arakhas che informaciye thaj na chivas len avri." },
-          { title: "Chache thaj vorta ashkarimata", description: "Ashkaras e doktorenge alava mishto thaj phenas vorta so shay te keres." },
+          { title: "Bi lovesko savorenge", description: "Na pokines khanch, si tut vay nay tut sastipnasko asiguripe." },
+          { title: "Che podatke achhen garavde", description: "Arakhas che informaciye mishto thaj na chivas len avri." },
+          { title: "Vorta thaj ashkarde palpale", description: "Sako diveseske alava, bi phare doktorenge lavengo, vorta ko so zhutil." },
         ],
       },
       emergencyNotice: {
@@ -4629,12 +4629,12 @@ export const translations: Record<Lang, Translations> = {
     healthInfoPage: {
       eyebrow: "Sastipnaske informaciye",
       heroTitle: "Sastipnaske sikavimata",
-      heroSubtitle: "Gin vash e nasvalimata sar kana o rat phurdel zurales thaj o gudlo rat, sar te arakhes tut thaj kana te zhas ko doktori.",
+      heroSubtitle: "Gin vash e nasvalimata kay aven butivar, sar te arakhes tut thaj kana te zhas ko doktori.",
       browseTitle: "Alosar ekh tema",
-      browseSubtitle: "Sako sikavipe sikavel so shay te keres sako dives vash cho sastipen.",
+      browseSubtitle: "Sako sikavipe phenel so shay te keres sako dives vash cho sastipen.",
       readMore: "Gin may but",
       usingInfoTitle: "Sar te labares e sikavimata",
-      usingInfoSubtitle: "E sikavimata zhutin tut te xatyares thaj te alosares may mishto. Na paraven e doktoreski godi.",
+      usingInfoSubtitle: "On zhutin tut te xatyares thaj te alosares may mishto. Na paraven e doktoreski godi.",
       usingInfoSteps: [
         { title: "Gin e sherutne buchya", description: "Alosar ekh tema kay trubul tuke thaj gin o angluno kotor." },
         { title: "Sikljov che rizikurya", description: "Dikh save tabiyetya dukhaven o ilo thaj o rat thaj so shay te paruves." },
@@ -4799,8 +4799,8 @@ export const translations: Record<Lang, Translations> = {
       geoError: "Nashti arakhlam cho than. Alosar i rig katar i lista.",
     },
     quiz: {
-      sectionTitle: "Chacho vay xoxamno",
-      sectionSubtitle: "Dikh sigo so ashunes butivar vash o sastipen.",
+      sectionTitle: "But ashunde mituri, lokes hakyarde",
+      sectionSubtitle: "Dikh so ashundyan thaj le chache vorbi katar e doktorya.",
       filterAriaLabel: "Alosar e xoxamne vorbi palo felo",
       audioNarratorLabel: "Ashun o phuchipe thaj o ashkaripe",
       trueButton: "Chacho",
@@ -4823,8 +4823,8 @@ export const translations: Record<Lang, Translations> = {
     },
     mediatorBand: {
       question: "San sastipnasko mediatori?",
-      description: "Sikavdo triyazho thaj lekhavipe vash e familiye kolen zhutis.",
-      cta: "Mediatoresko modulo",
+      description: "Loke instrumenturya vash o vizite khere thaj zhutimos ando komuniteto.",
+      cta: "Mediatoreske instrumenturya",
     },
     newsPage: {
       heroTitle: "Sastipnaske nevimata thaj thanune avizurya",
@@ -4860,7 +4860,7 @@ export const translations: Record<Lang, Translations> = {
       heroSubtitle: "Bi azhukeripnasko thaj bi lunge dromengo. O doktori ashunel tut po telefono thaj phenel tuke so te keres.",
       cardOnCallTitle: "Vaker akana e doktoreya pe straja",
       cardOnCallSubtitle: "May butivar azhukeres may zalag sar 10 minute",
-      cardOnCallAction: "De andre ki azhukeripnaski soba",
+      cardOnCallAction: "De andre ki soba",
       cardBookingTitle: "Programisar akharipe e doktoreya",
       cardBookingSubtitle: "Alosar o dives thaj o chaso",
       cardBookingAction: "Programisar akana",

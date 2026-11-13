@@ -1,18 +1,18 @@
 "use client";
 
-import { readPublicOrigin, SERVER_PUBLIC_ORIGIN } from "@/components/health-check/public-origin";
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { CheckCircleIcon, CopyIcon } from "@/components/ui/icons";
+import { CheckCircleIcon, CopyIcon, PrinterIcon, VolumeIcon } from "@/components/ui/icons";
+import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
+import { useReadAloud } from "./readingTools";
 import { detectPhonePlatform } from "./phone-platform";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 import { getHealthCheckTranslations, type BodyPartId } from "@/lib/i18n/health-check-translations";
-import { getLocalizedSubRegion, type SubRegionId } from "./anatomy-3d-data";
+import { getLocalizedSubRegion, type BodyAnatomyProfile, type SubRegionId } from "./anatomy-3d-data";
 import { renderClinicalQrSvgData } from "./clinical-qr-svg";
 import { COPY as HC_COPY } from "./health-check-copy";
 import { PAIN_DIAGRAM_COPY, buildPainAreaDiagramSvg, type PainDiagramSide } from "./pain-area-diagram";
-import { buildFallbackTriageNoteUrl } from "./triage-permalink";
 import { useDialogFocus } from "./useDialogFocus";
 import { printSummary } from "./printSummary";
 
@@ -25,6 +25,7 @@ export interface PainLocationSummary {
   part: BodyPartId;
   subRegion?: SubRegionId | null;
   side?: PainDiagramSide;
+  bodyProfile?: BodyAnatomyProfile;
 }
 
 export interface TriageSummaryCardProps {
@@ -145,6 +146,8 @@ export interface SummaryCardCopy {
   qrTitle: string;
   qrHint: string;
   savePdf: string;
+  listen: string;
+  stopListening: string;
 }
 
 export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
@@ -172,6 +175,8 @@ export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
     inRomanian: "Показать на румынском языке",
     inOwnLanguage: "Показать на английском языке",
     savePdf: "Сохранить как PDF",
+    listen: "Прослушать сводку",
+    stopListening: "Остановить чтение",
   },
 
   ro: {
@@ -197,6 +202,8 @@ export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
     qrTitle: "Cod QR offline pentru notițe și medic",
     qrHint: "Pe Android (Samsung), camera oferă direct „Adăugare în notițe”. Pe iPhone, atinge pictograma Live Text din colțul camerei ca să trimiți în Notițe, fără internet.",
     savePdf: "Salvează PDF",
+    listen: "Ascultă rezumatul",
+    stopListening: "Oprește citirea",
   },
   en: {
     title: "Symptom summary, RediHealth",
@@ -221,6 +228,8 @@ export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
     qrTitle: "Offline QR code for notes and doctor",
     qrHint: "On Android (Samsung), the camera offers “Add to note” directly. On iPhone, tap the Live Text icon in the camera corner to send to Notes, completely offline.",
     savePdf: "Save as PDF",
+    listen: "Listen to summary",
+    stopListening: "Stop reading",
   },
   sq: {
     title: "Përmbledhja e simptomave, RediHealth",
@@ -245,6 +254,8 @@ export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
     qrTitle: "Kod QR offline për shënime dhe mjekun",
     qrHint: "Skano këtë kod QR me kamerën e iPhone ose Android për ta shtuar përmbledhjen direkt në shënime, krejtësisht pa internet.",
     savePdf: "Ruaje si PDF",
+    listen: "Dëgjo përmbledhjen",
+    stopListening: "Ndalo leximin",
   },
   it: {
     title: "Riepilogo dei sintomi, RediHealth",
@@ -269,6 +280,8 @@ export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
     qrTitle: "Codice QR offline per note e medico",
     qrHint: "Scansiona questo codice QR con la fotocamera di iPhone o Android per aggiungere il riepilogo direttamente nelle note, completamente senza internet.",
     savePdf: "Salva come PDF",
+    listen: "Ascolta il riepilogo",
+    stopListening: "Ferma la lettura",
   },
   hr: {
     title: "Sažetak simptoma, RediHealth",
@@ -293,6 +306,8 @@ export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
     qrTitle: "Offline QR kod za bilješke i liječnika",
     qrHint: "Skeniraj ovaj QR kod kamerom na iPhoneu ili Androidu za dodavanje sažetka izravno u bilješke, potpuno bez interneta.",
     savePdf: "Spremi kao PDF",
+    listen: "Poslušaj sažetak",
+    stopListening: "Zaustavi čitanje",
   },
   rom: {
     title: "Skurto lil le simptomengo, RediHealth",
@@ -317,6 +332,8 @@ export const SUMMARY_COPY: Record<Lang, SummaryCardCopy> = {
     qrTitle: "Offline QR kodo vash o notitse thaj o doktori",
     qrHint: "Skanisar kadava QR kodo le telefonoska kamerasa (iPhone vaj Android) te thos o xarno lil direktno ande notitse, bi internetosko.",
     savePdf: "Arakh sar PDF",
+    listen: "Ašun o rezumato",
+    stopListening: "Ačhav o drabaripen",
   },
 };
 
@@ -354,17 +371,22 @@ export function TriageSummaryCard({
   const activeLang = useSafeLanguage(lang);
   const dict = getHealthCheckTranslations(activeLang);
   const t = COPY[activeLang] ?? COPY.ro;
-  const originUrl = useSyncExternalStore(
-    () => () => {},
-    readPublicOrigin,
-    () => SERVER_PUBLIC_ORIGIN,
-  );
+  const voice = useReadAloud(activeLang);
 
   const [copyState, setCopyState] = useState<"idle" | "copied" | "saved" | "failed">("idle");
   const [internalOpen, setInternalOpen] = useState(false);
   const [showRomanian, setShowRomanian] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const qrIdPrefix = useId();
+  const inlineQrHintId = `${qrIdPrefix}-inline-qr-hint`;
+  const dialogQrHintId = `${qrIdPrefix}-dialog-qr-hint`;
+  const [inlineQrHintOpen, setInlineQrHintOpen] = useState(false);
+  const [inlineQrHintPinned, setInlineQrHintPinned] = useState(false);
+  const [dialogQrHintOpen, setDialogQrHintOpen] = useState(false);
+  const [dialogQrHintPinned, setDialogQrHintPinned] = useState(false);
+  const inlineQrWrapRef = useRef<HTMLDivElement>(null);
+  const dialogQrWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     return () => {
@@ -372,14 +394,52 @@ export function TriageSummaryCard({
     };
   }, []);
 
+  useEffect(() => {
+    if (!inlineQrHintOpen && !dialogQrHintOpen) return;
+    function handlePointerDown(event: PointerEvent) {
+      const target = event.target as Node | null;
+      if (inlineQrHintOpen && inlineQrWrapRef.current && target && !inlineQrWrapRef.current.contains(target)) {
+        setInlineQrHintPinned(false);
+        setInlineQrHintOpen(false);
+      }
+      if (dialogQrHintOpen && dialogQrWrapRef.current && target && !dialogQrWrapRef.current.contains(target)) {
+        setDialogQrHintPinned(false);
+        setDialogQrHintOpen(false);
+      }
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape" && inlineQrHintOpen) {
+        setInlineQrHintPinned(false);
+        setInlineQrHintOpen(false);
+      }
+    }
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [inlineQrHintOpen, dialogQrHintOpen]);
+
   const isControlled = doctorOpen !== undefined;
   const open = isControlled ? doctorOpen : internalOpen;
   const setOpen = (value: boolean) => {
     if (!isControlled) setInternalOpen(value);
     onDoctorOpenChange?.(value);
-    if (!value) setShowRomanian(false);
+    if (!value) {
+      setShowRomanian(false);
+      setDialogQrHintOpen(false);
+      setDialogQrHintPinned(false);
+    }
   };
-  useDialogFocus(dialogRef, open, () => setOpen(false));
+  useDialogFocus(dialogRef, open, () => {
+    if (dialogQrHintOpen) {
+      setDialogQrHintPinned(false);
+      setDialogQrHintOpen(false);
+      return;
+    }
+    setOpen(false);
+  });
 
   const effectiveDate = useMemo(() => date ?? new Date(), [date]);
   const currentDate = formatDate(effectiveDate, activeLang);
@@ -466,10 +526,6 @@ export function TriageSummaryCard({
   const activeReproduceUrl = useRomanianInDialog ? (romanianReproduceUrl ?? reproduceUrl) : reproduceUrl;
   const activeNoteUrl = useRomanianInDialog ? (romanianNoteUrl ?? noteUrl) : noteUrl;
 
-  function handleWhatsApp() {
-    window.open(`https://wa.me/?text=${encodeURIComponent(formattedSummary)}`, "_blank", "noopener,noreferrer");
-  }
-
   /**
    * "Copy to notes": the note goes on the clipboard, and on an iPhone or Android phone the
    * system share sheet opens as well, where Notes, Keep or Samsung Notes saves it in one tap.
@@ -518,6 +574,7 @@ export function TriageSummaryCard({
             part: painLocation.part,
             subRegion: painLocation.subRegion,
             side: painLocation.side,
+            bodyProfile: painLocation.bodyProfile,
             urgent: redFlagNoticed,
             lang: activeLang,
           })
@@ -532,6 +589,7 @@ export function TriageSummaryCard({
             part: painLocation.part,
             subRegion: painLocation.subRegion,
             side: painLocation.side,
+            bodyProfile: painLocation.bodyProfile,
             urgent: redFlagNoticed,
             lang: activeDialogLang,
           })
@@ -613,6 +671,7 @@ export function TriageSummaryCard({
           part: painLocation.part,
           subRegion: painLocation.subRegion,
           side: painLocation.side,
+          bodyProfile: painLocation.bodyProfile,
           urgent: redFlagNoticed,
           lang: printLang,
         })
@@ -657,17 +716,15 @@ export function TriageSummaryCard({
     : "rounded-2xl border border-border bg-card";
 
   const focusRing =
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2";
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
-  const primaryActionBtn = `inline-flex min-h-11 flex-1 min-w-[9rem] items-center justify-center whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light ${focusRing}`;
+  const primaryActionBtn = `press-solid inline-flex min-h-11 w-full min-w-0 items-center justify-center whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light sm:w-auto sm:flex-1 ${focusRing}`;
 
-  const secondaryBtn = `inline-flex min-h-11 flex-1 min-w-[7.5rem] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 ${focusRing}`;
+  const iconActionBtn = `press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-border-control bg-card text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire ${focusRing}`;
 
-  const activeFeedbackBtn = `inline-flex min-h-11 flex-1 min-w-[7.5rem] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-sapphire bg-sapphire-soft px-3.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${focusRing}`;
+  const iconActiveBtn = `press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-sapphire bg-sapphire-soft text-sapphire shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${focusRing}`;
 
-  const modalSecondaryBtn = `inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 ${focusRing}`;
-
-  const modalActiveFeedbackBtn = `inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-sapphire bg-sapphire-soft px-3.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${focusRing}`;
+  const modalCloseBtn = `press-row inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-5 text-sm font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 hover:bg-sapphire-soft/30 ${focusRing}`;
 
   return (
     <section className={`select-text ${bare ? "pt-2.5" : "border-t border-border pt-6"} ${className}`}>
@@ -726,19 +783,46 @@ export function TriageSummaryCard({
       )}
 
       {inlineQrSvg.size > 0 && (
-        <div className={`mt-3.5 flex items-center gap-3.5 ${surfaceClass} p-4`}>
-          <div className="shrink-0 rounded-xl border border-border bg-white p-2">
+        <div
+          ref={inlineQrWrapRef}
+          onMouseLeave={() => {
+            if (!inlineQrHintPinned) setInlineQrHintOpen(false);
+          }}
+          className={`relative mt-3.5 flex items-center gap-3.5 ${surfaceClass} p-4`}
+        >
+          <button
+            type="button"
+            data-qr-trigger="inline"
+            aria-label={t.qrTitle}
+            aria-expanded={inlineQrHintOpen}
+            aria-describedby={inlineQrHintOpen ? inlineQrHintId : undefined}
+            onMouseEnter={() => setInlineQrHintOpen(true)}
+            onFocus={() => setInlineQrHintOpen(true)}
+            onBlur={(e) => {
+              if (!inlineQrWrapRef.current?.contains(e.relatedTarget as Node | null)) {
+                setInlineQrHintPinned(false);
+                setInlineQrHintOpen(false);
+              }
+            }}
+            onClick={() => {
+              setInlineQrHintPinned((prev) => {
+                const next = !prev;
+                setInlineQrHintOpen(next);
+                return next;
+              });
+            }}
+            className={`press-row shrink-0 cursor-pointer rounded-xl border border-border-control bg-white p-2 shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 ${focusRing}`}
+          >
             <svg
               viewBox={`0 0 ${inlineQrSvg.size} ${inlineQrSvg.size}`}
               shapeRendering="crispEdges"
-              role="img"
-              aria-label={t.qrTitle}
+              aria-hidden="true"
               className="h-20 w-20"
             >
               <rect width={inlineQrSvg.size} height={inlineQrSvg.size} fill="#ffffff" />
               <path d={inlineQrSvg.path} fill="#0b132b" />
             </svg>
-          </div>
+          </button>
           <div className="min-w-0">
             <p className="text-xs font-semibold text-foreground sm:text-sm">{t.qrTitle}</p>
             {recommendationDetail && (
@@ -746,31 +830,81 @@ export function TriageSummaryCard({
                 {recommendationDetail}
               </p>
             )}
-            <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{t.qrHint}</p>
           </div>
+          {inlineQrHintOpen && (
+            <div className="absolute bottom-full left-0 right-0 z-30 pb-2">
+              <div
+                id={inlineQrHintId}
+                role="tooltip"
+                data-qr-hint="inline"
+                className="rounded-xl border border-stone-200/90 bg-card p-3.5 text-xs leading-relaxed text-foreground shadow-lg dark:border-stone-800"
+              >
+                {t.qrHint}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
-      <div className="mt-4 flex flex-wrap gap-2 print:hidden">
-        {!isControlled && (
-          <button type="button" onClick={() => setOpen(true)} className={primaryActionBtn}>
-            {dict.ui.showDoctor}
+      <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-nowrap sm:items-center sm:gap-2 print:hidden">
+        <button type="button" onClick={() => setOpen(true)} className={primaryActionBtn}>
+          <span>{dict.ui.showDoctor}</span>
+        </button>
+        <div className="flex w-full flex-nowrap items-center justify-center gap-2 sm:w-auto sm:shrink-0 sm:justify-end">
+          {voice.available && (
+            <button
+              type="button"
+              aria-pressed={voice.speaking}
+              aria-label={voice.speaking ? t.stopListening : t.listen}
+              title={voice.speaking ? t.stopListening : t.listen}
+              onClick={() => {
+                if (voice.speaking) {
+                  voice.stop();
+                } else {
+                  voice.speak([formattedSummary]);
+                }
+              }}
+              className={voice.speaking ? iconActiveBtn : iconActionBtn}
+            >
+              {voice.speaking ? (
+                <span aria-hidden="true" className="block h-3 w-3 rounded-xs bg-current" />
+              ) : (
+                <VolumeIcon className="h-4 w-4 shrink-0" />
+              )}
+              <span className="sr-only">{voice.speaking ? t.stopListening : t.listen}</span>
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => void handleCopyToNotes(false)}
+            aria-label={copyState === "saved" ? t.savedNote : copyState === "copied" ? t.copied : t.copy}
+            title={copyState === "saved" ? t.savedNote : copyState === "copied" ? t.copied : t.copy}
+            className={copyDone ? iconActiveBtn : iconActionBtn}
+          >
+            {copyDone ? <CheckCircleIcon className="h-4 w-4 shrink-0" /> : <CopyIcon className="h-4 w-4 shrink-0" />}
+            <span className="sr-only" aria-live="polite">
+              {copyState === "saved" ? t.savedNote : copyState === "copied" ? t.copied : t.copy}
+            </span>
           </button>
-        )}
-        <button
-          type="button"
-          onClick={() => void handleCopyToNotes(false)}
-          className={copyDone ? activeFeedbackBtn : secondaryBtn}
-        >
-          {copyDone ? <CheckCircleIcon className="h-4 w-4 shrink-0" /> : <CopyIcon className="h-4 w-4 shrink-0" />}
-          <span>{copyState === "saved" ? t.savedNote : copyState === "copied" ? t.copied : t.copy}</span>
-        </button>
-        <button type="button" onClick={handlePrint} className={secondaryBtn}>
-          {t.savePdf}
-        </button>
-        <button type="button" onClick={handleWhatsApp} className={secondaryBtn}>
-          {t.whatsapp}
-        </button>
+          <button
+            type="button"
+            onClick={handlePrint}
+            aria-label={t.savePdf}
+            title={t.savePdf}
+            className={iconActionBtn}
+          >
+            <PrinterIcon className="h-4 w-4 shrink-0" />
+            <span className="sr-only">{t.savePdf}</span>
+          </button>
+          <FamilyShareButton
+            iconOnly
+            align="right"
+            title={t.patientSummary}
+            text={inlineQrPayload}
+            url={reproduceUrl ?? noteUrl}
+            lang={activeLang}
+          />
+        </div>
       </div>
       {copyState === "failed" && (
         <p role="status" className="mt-2 text-sm font-medium text-primary">
@@ -799,31 +933,31 @@ export function TriageSummaryCard({
                   <div
                     role="group"
                     aria-label={t.screenFor}
-                    className="grid grid-cols-2 gap-1 rounded-xl bg-muted p-1"
+                    className="flex flex-nowrap gap-1 rounded-xl bg-muted p-1"
                   >
                     <button
                       type="button"
                       aria-pressed={!showRomanian}
                       onClick={() => setShowRomanian(false)}
-                      className={`min-h-11 rounded-lg px-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                      className={`inline-flex min-h-11 min-w-0 flex-1 items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 sm:text-sm ${
                         !showRomanian
                           ? "bg-card text-sapphire shadow-2xs"
                           : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      {t.myLanguageTab}
+                      <span className="min-w-0 truncate">{t.myLanguageTab}</span>
                     </button>
                     <button
                       type="button"
                       aria-pressed={showRomanian}
                       onClick={() => setShowRomanian(true)}
-                      className={`min-h-11 rounded-lg px-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+                      className={`inline-flex min-h-11 min-w-0 flex-1 items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 sm:text-sm ${
                         showRomanian
                           ? "bg-card text-sapphire shadow-2xs"
                           : "text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      {t.romanianTab}
+                      <span className="min-w-0 truncate">{t.romanianTab}</span>
                     </button>
                   </div>
                 </div>
@@ -897,19 +1031,46 @@ export function TriageSummaryCard({
                 </p>
 
                 {qrSvg.size > 0 && (
-                  <div className="mt-3.5 flex flex-col items-center gap-3.5 rounded-2xl bg-surface-subtle/55 p-4 sm:flex-row sm:items-center">
-                    <div className="shrink-0 rounded-xl border border-border bg-white p-2">
+                  <div
+                    ref={dialogQrWrapRef}
+                    onMouseLeave={() => {
+                      if (!dialogQrHintPinned) setDialogQrHintOpen(false);
+                    }}
+                    className="relative mt-3.5 flex flex-col items-center gap-3.5 rounded-2xl bg-surface-subtle/55 p-4 sm:flex-row sm:items-center"
+                  >
+                    <button
+                      type="button"
+                      data-qr-trigger="dialog"
+                      aria-label={activeDialogCopy.qrTitle}
+                      aria-expanded={dialogQrHintOpen}
+                      aria-describedby={dialogQrHintOpen ? dialogQrHintId : undefined}
+                      onMouseEnter={() => setDialogQrHintOpen(true)}
+                      onFocus={() => setDialogQrHintOpen(true)}
+                      onBlur={(e) => {
+                        if (!dialogQrWrapRef.current?.contains(e.relatedTarget as Node | null)) {
+                          setDialogQrHintPinned(false);
+                          setDialogQrHintOpen(false);
+                        }
+                      }}
+                      onClick={() => {
+                        setDialogQrHintPinned((prev) => {
+                          const next = !prev;
+                          setDialogQrHintOpen(next);
+                          return next;
+                        });
+                      }}
+                      className={`press-row shrink-0 cursor-pointer rounded-xl border border-border-control bg-white p-2 shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 ${focusRing}`}
+                    >
                       <svg
                         viewBox={`0 0 ${qrSvg.size} ${qrSvg.size}`}
                         shapeRendering="crispEdges"
-                        role="img"
-                        aria-label={activeDialogCopy.qrTitle}
+                        aria-hidden="true"
                         className="h-28 w-28"
                       >
                         <rect width={qrSvg.size} height={qrSvg.size} fill="#ffffff" />
                         <path d={qrSvg.path} fill="#0b132b" />
                       </svg>
-                    </div>
+                    </button>
                     <div className="min-w-0 text-center sm:text-left">
                       <p className="text-sm font-semibold text-foreground">{activeDialogCopy.qrTitle}</p>
                       {activeRecommendationDetail && (
@@ -917,39 +1078,71 @@ export function TriageSummaryCard({
                           {activeRecommendationDetail}
                         </p>
                       )}
-                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                        {activeDialogCopy.qrHint}
-                      </p>
                     </div>
+                    {dialogQrHintOpen && (
+                      <div className="absolute bottom-full left-0 right-0 z-30 pb-2">
+                        <div
+                          id={dialogQrHintId}
+                          role="tooltip"
+                          data-qr-hint="dialog"
+                          className="rounded-xl border border-stone-200/90 bg-card p-3.5 text-xs leading-relaxed text-foreground shadow-lg dark:border-stone-800"
+                        >
+                          {activeDialogCopy.qrHint}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
 
-              <div className="grid shrink-0 grid-cols-2 gap-2 border-t border-border bg-card px-5 py-3.5 pb-[max(0.875rem,env(safe-area-inset-bottom))] print:hidden sm:grid-cols-3 sm:px-6">
-                <button
-                  type="button"
-                  onClick={() => void handleCopyToNotes(true)}
-                  className={copyDone ? modalActiveFeedbackBtn : modalSecondaryBtn}
-                >
-                  {copyDone ? <CheckCircleIcon className="h-4 w-4 shrink-0" /> : <CopyIcon className="h-4 w-4 shrink-0" />}
-                  <span>
-                    {copyState === "saved"
-                      ? activeDialogCopy.savedNote
-                      : copyState === "copied"
-                        ? activeDialogCopy.copied
-                        : activeDialogCopy.copy}
-                  </span>
-                </button>
-                <button type="button" onClick={handlePrint} className={modalSecondaryBtn}>
-                  {activeDialogCopy.savePdf}
-                </button>
+              <div className="flex shrink-0 flex-nowrap items-center justify-between gap-2 border-t border-border bg-card px-5 py-3.5 pb-[max(0.875rem,env(safe-area-inset-bottom))] print:hidden sm:px-6">
+                <div className="flex flex-nowrap items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => void handleCopyToNotes(true)}
+                    aria-label={
+                      copyState === "saved"
+                        ? activeDialogCopy.savedNote
+                        : copyState === "copied"
+                          ? activeDialogCopy.copied
+                          : activeDialogCopy.copy
+                    }
+                    title={
+                      copyState === "saved"
+                        ? activeDialogCopy.savedNote
+                        : copyState === "copied"
+                          ? activeDialogCopy.copied
+                          : activeDialogCopy.copy
+                    }
+                    className={copyDone ? iconActiveBtn : iconActionBtn}
+                  >
+                    {copyDone ? <CheckCircleIcon className="h-4 w-4 shrink-0" /> : <CopyIcon className="h-4 w-4 shrink-0" />}
+                    <span className="sr-only">
+                      {copyState === "saved"
+                        ? activeDialogCopy.savedNote
+                        : copyState === "copied"
+                          ? activeDialogCopy.copied
+                          : activeDialogCopy.copy}
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handlePrint}
+                    aria-label={activeDialogCopy.savePdf}
+                    title={activeDialogCopy.savePdf}
+                    className={iconActionBtn}
+                  >
+                    <PrinterIcon className="h-4 w-4 shrink-0" />
+                    <span className="sr-only">{activeDialogCopy.savePdf}</span>
+                  </button>
+                </div>
                 <button
                   type="button"
                   data-autofocus
                   onClick={() => setOpen(false)}
-                  className={modalSecondaryBtn}
+                  className={modalCloseBtn}
                 >
-                  {activeDialogCopy.close}
+                  <span className="min-w-0 truncate">{activeDialogCopy.close}</span>
                 </button>
               </div>
             </div>

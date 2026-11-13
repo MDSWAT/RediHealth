@@ -7,7 +7,7 @@
  */
 
 const FEEDBACK =
-  "transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2";
+  "transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 /** List of rows. Two columns from `sm` keeps long lists short; a top hairline closes the set. */
 export const ROW_LIST_CLASS = "grid grid-cols-1 border-t border-border sm:grid-cols-2 sm:gap-x-8";
@@ -15,11 +15,11 @@ export const ROW_LIST_CLASS = "grid grid-cols-1 border-t border-border sm:grid-c
 export const ROW_LIST_SINGLE_CLASS = "grid grid-cols-1 border-t border-border";
 
 /** One choice row. */
-export const ROW_CLASS = `group flex min-h-[48px] w-full items-center gap-3 border-b border-border py-2.5 text-left ${FEEDBACK} has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-sapphire has-[:focus-visible]:ring-offset-2`;
+export const ROW_CLASS = `group flex min-h-[48px] w-full items-center gap-3 border-b border-border py-2.5 text-left ${FEEDBACK} has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-2`;
 
 /** Radio dot: a ring when not chosen, a thick ring (reads as a filled dot) when chosen. */
 export function radioDotClass(selected: boolean): string {
-  return `h-4 w-4 shrink-0 rounded-full border-solid transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+  return `h-4 w-4 shrink-0 rounded-xs border-solid transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
     selected ? "border-[5px] border-foreground" : "border-[1.5px] border-muted-foreground/60 group-hover:border-foreground/70"
   }`;
 }
@@ -37,13 +37,14 @@ export function tickBoxClass(selected: boolean): string {
  * one row on a single hairline and the chosen tab carries a 2px ink underline.
  * Pass the phone column count (`grid-cols-2`, `grid-cols-3`) with the list class.
  */
-export const TAB_LIST_CLASS = "grid gap-x-4 sm:flex sm:gap-x-6 sm:border-b sm:border-border";
+export const TAB_LIST_CLASS =
+  "flex items-center gap-5 overflow-x-auto border-b border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6";
 
 export function tabClass(selected: boolean): string {
-  return `flex min-h-11 items-end pb-2.5 pt-2 text-left text-sm font-semibold leading-snug sm:-mb-px ${FEEDBACK} focus-visible:ring-inset focus-visible:ring-offset-0 ${
+  return `-mb-px inline-flex min-h-11 shrink-0 items-center whitespace-nowrap border-b-2 pb-2.5 pt-2 text-sm font-semibold ${FEEDBACK} focus-visible:ring-inset focus-visible:ring-offset-0 ${
     selected
-      ? "text-foreground shadow-[inset_0_-2px_0_var(--color-foreground)]"
-      : "text-muted-foreground shadow-[inset_0_-1px_0_var(--color-border)] hover:text-foreground sm:shadow-none"
+      ? "border-foreground text-foreground"
+      : "border-transparent text-muted-foreground hover:text-foreground"
   }`;
 }
 

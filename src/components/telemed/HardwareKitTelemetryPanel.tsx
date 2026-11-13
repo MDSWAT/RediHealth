@@ -484,7 +484,7 @@ export function HardwareKitTelemetryPanel({
           type="button"
           onClick={handlePairBluetooth}
           disabled={bluetoothConnecting}
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted shadow-xs transition-colors shrink-0"
+          className="inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-border bg-background px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted shadow-xs transition-colors shrink-0"
         >
           {bluetoothConnecting ? copy.searchingSensor : copy.connectSensor}
         </button>
@@ -740,7 +740,7 @@ export function HardwareKitTelemetryPanel({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:opacity-60 transition-colors"
+          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:opacity-60 transition-colors"
         >
           {isSubmitting ? copy.submitting : copy.submit}
         </button>

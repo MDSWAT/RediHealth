@@ -98,7 +98,7 @@ export function PrescriptionAudioPlayer({ speechText, className = "" }: Prescrip
         type="button"
         onClick={handleToggleSpeech}
         aria-pressed={isPlaying}
-        className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted"
+        className="inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted"
       >
         {isPlaying ? <VolumeMuteIcon className="h-4 w-4" /> : <VolumeIcon className="h-4 w-4" />}
         <span>{isPlaying ? t.stop : t.listen}</span>

@@ -1541,14 +1541,14 @@ export const HEALTH_DETAIL_SHARED_STRINGS = {
       rom: "Ashunel pes ({progressPercent}%)",
     },
     durationSubtitle: {
-  ru: "Прочитать вслух · примерно {durationMinutes} минут.",
+  ru: "Прочитать вслух — примерно {durationMinutes} минут.",
 
-      ro: "Citit cu voce · cam {durationMinutes} minute",
-      en: "Read aloud · about {durationMinutes} minutes",
-      sq: "Lexuar me zë · rreth {durationMinutes} minuta",
-      it: "Letta ad alta voce · circa {durationMinutes} minuti",
-      hr: "Čitano naglas · oko {durationMinutes} minuta",
-      rom: "Drabardo glasosa · pashe {durationMinutes} minute",
+      ro: "Citit cu voce — cam {durationMinutes} minute",
+      en: "Read aloud — about {durationMinutes} minutes",
+      sq: "Lexuar me zë — rreth {durationMinutes} minuta",
+      it: "Letta ad alta voce — circa {durationMinutes} minuti",
+      hr: "Čitano naglas — oko {durationMinutes} minuta",
+      rom: "Drabardo glasosa — pashe {durationMinutes} minute",
     },
     fallbackVoice: {
   ru: "Резервный голос",

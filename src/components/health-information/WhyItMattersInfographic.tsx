@@ -1,5 +1,6 @@
 "use client";
 
+import { HEALTH_ARTICLE_SECTION_H2_CLASS } from "./HealthArticleShell";
 import { InlineAudioNarratorButton } from "./InlineAudioNarratorButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -30,15 +31,21 @@ function useSafeLanguageContext(): { lang: Lang } {
   }
 }
 
-function pickLocale(entry: Record<"ro", string> & Partial<Record<Lang, string>>, lang: Lang): string {
+function pickLocale(
+  entry: Record<"ro", string> & Partial<Record<Lang, string>>,
+  lang: Lang,
+): string {
   return entry[lang] ?? entry.ro;
 }
 
 function pickSpeechLang(lang: Lang): string {
-  return (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ?? (lang === "hr" ? "hr-HR" : "ro-RO");
+  return (
+    (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ??
+    (lang === "hr" ? "hr-HR" : "ro-RO")
+  );
 }
 
-/** Three key facts as a quiet, typographic row: a rule, a short heading, one sentence. */
+/** Three key facts as a quiet, single-column numbered hairline list. */
 export function WhyItMattersInfographic({
   topicTitle,
   keyFacts = [],
@@ -51,47 +58,49 @@ export function WhyItMattersInfographic({
   const s = HEALTH_DETAIL_SHARED_STRINGS.whyItMatters;
   const speechLang = pickSpeechLang(currentLang);
 
-  const resolvedPillars: InfographicPillar[] = pillars || [
-    { number: "01", title: pickLocale(s.pillar1Title, currentLang), description: keyFacts[0] || pickLocale(s.pillar1Desc, currentLang) },
-    { number: "02", title: pickLocale(s.pillar2Title, currentLang), description: keyFacts[1] || pickLocale(s.pillar2Desc, currentLang) },
-    { number: "03", title: pickLocale(s.pillar3Title, currentLang), description: keyFacts[2] || pickLocale(s.pillar3Desc, currentLang) },
-  ];
+  const facts: string[] = pillars
+    ? pillars.map((p) => `${p.title}: ${p.description}`)
+    : keyFacts.length > 0
+      ? keyFacts
+      : [
+          pickLocale(s.pillar1Desc, currentLang),
+          pickLocale(s.pillar2Desc, currentLang),
+          pickLocale(s.pillar3Desc, currentLang),
+        ];
 
   return (
     <section aria-labelledby="why-it-matters-heading" className={className}>
       <div className="flex items-start justify-between gap-4">
-        <div>
+        <div className="min-w-0 flex-1">
           <h2
             id="why-it-matters-heading"
-            className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
+            className={HEALTH_ARTICLE_SECTION_H2_CLASS}
           >
             {pickLocale(s.heading, currentLang)}
           </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {pickLocale(s.subtitleTemplate, currentLang).replace("{topic}", topicTitle.toLowerCase())}
+          <p className="mt-1.5 text-base text-muted-foreground">
+            {pickLocale(s.subtitleTemplate, currentLang).replace(
+              "{topic}",
+              topicTitle.toLowerCase(),
+            )}
           </p>
         </div>
 
         <InlineAudioNarratorButton
-          textToSpeak={`${pickLocale(s.heading, currentLang)}. ${resolvedPillars
-            .map((p) => `${p.title}. ${p.description}`)
-            .join(" ")}`}
+          textToSpeak={`${pickLocale(s.heading, currentLang)}. ${facts.join(" ")}`}
           label={pickLocale(s.listenAllLabel, currentLang)}
           lang={speechLang}
         />
       </div>
 
-      <ul className="mt-6 grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-3">
-        {resolvedPillars.map((pillar) => (
-          <li
-            key={pillar.number}
-            className="border-t border-border pt-4 md:row-span-2 md:grid md:grid-rows-subgrid md:gap-y-2"
-          >
-            <h3 className="text-base font-semibold leading-snug text-foreground">
-              {pillar.title}
-            </h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground md:mt-0">
-              {pillar.description}
+      <ul className="mt-5 divide-y divide-border rounded-xl border border-border bg-card px-6 py-2 sm:px-8">
+        {facts.map((fact, idx) => (
+          <li key={idx} className="flex items-start gap-4 py-4 sm:py-5">
+            <span className="mt-0.5 shrink-0 text-lg font-semibold tabular-nums text-sapphire">
+              {idx + 1}.
+            </span>
+            <p className="text-[1.0625rem] leading-[1.7] text-foreground sm:text-[1.125rem]">
+              {fact}
             </p>
           </li>
         ))}

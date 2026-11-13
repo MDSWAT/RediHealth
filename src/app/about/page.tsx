@@ -14,7 +14,7 @@ export default async function AboutPage() {
     <main id="main-content" className="flex-1">
       <section className="border-b border-border bg-muted/40 py-10 sm:py-14">
         <Container>
-          <SectionHeading as="h1" title={copy.title} subtitle={copy.description} />
+          <SectionHeading as="h1" title={copy.title} subtitle={copy.description} titleClassName="text-page" />
         </Container>
       </section>
 

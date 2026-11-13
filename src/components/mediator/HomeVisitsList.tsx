@@ -330,9 +330,9 @@ export function HomeVisitsList({
               <div className="mt-4 pt-3 border-t border-border flex flex-wrap items-center gap-2">
                 <a
                   href={`tel:${visit.phone.replace(/\s+/g, "")}`}
-                  className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
                 >
-                  <PhoneIcon className="h-3.5 w-3.5 text-sapphire" />
+                  <PhoneIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
                   {copy.callPatient}
                 </a>
 
@@ -340,7 +340,7 @@ export function HomeVisitsList({
                   <button
                     type="button"
                     onClick={() => updateStatus(visit.id, "arrived")}
-                    className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
+                    className="inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
                   >
                     {copy.arrived}
                   </button>
@@ -352,7 +352,7 @@ export function HomeVisitsList({
                       <button
                         type="button"
                         onClick={() => onLaunchTelemetry(visit)}
-                        className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-sapphire/30 bg-sapphire/10 px-3 py-1.5 text-xs font-semibold text-sapphire"
+                        className="inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-sapphire/30 bg-sapphire/10 px-3 py-1.5 text-xs font-semibold text-sapphire"
                       >
                         {copy.addMeasurements}
                       </button>
@@ -362,7 +362,7 @@ export function HomeVisitsList({
                       <button
                         type="button"
                         onClick={() => onLaunchHandover(visit)}
-                        className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md bg-sapphire px-3 py-1.5 text-xs font-semibold text-white hover:bg-sapphire-light"
+                        className="inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-sapphire px-3 py-1.5 text-xs font-semibold text-white hover:bg-sapphire-light"
                       >
                         {copy.connectDoctor}
                       </button>
@@ -371,7 +371,7 @@ export function HomeVisitsList({
                     <button
                       type="button"
                       onClick={() => updateStatus(visit.id, "completed")}
-                      className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90"
+                      className="inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90"
                     >
                       {copy.endVisit}
                     </button>

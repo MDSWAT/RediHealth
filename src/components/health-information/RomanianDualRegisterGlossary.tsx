@@ -353,7 +353,7 @@ export function RomanianDualRegisterGlossary({
             <button
               type="button"
               onClick={handleResetFilters}
-              className="inline-flex min-h-[32px] items-center rounded-full bg-sapphire-soft px-3 py-1 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+              className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg bg-sapphire-soft px-3.5 py-2 text-xs font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {util.resetFilters}
             </button>
@@ -368,7 +368,7 @@ export function RomanianDualRegisterGlossary({
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="mt-4 inline-flex min-h-[42px] items-center justify-center rounded-full bg-sapphire px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+                className="press-solid mt-4 inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-4 py-2 text-sm font-semibold text-white transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 {util.resetFilters}
               </button>
@@ -415,7 +415,7 @@ export function RomanianDualRegisterGlossary({
                       <div className="flex flex-wrap items-center gap-1.5">
                         <span
                           className={cn(
-                            "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold",
+                            "inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-[11.5px] font-semibold",
                             isEmergencyTerm
                               ? "bg-primary text-white"
                               : "bg-card text-sapphire ring-1 ring-inset ring-border",
@@ -425,7 +425,7 @@ export function RomanianDualRegisterGlossary({
                           <span>{cleanCatLabel}</span>
                         </span>
                         {isTopicMatch && (
-                          <span className="inline-flex items-center rounded-full bg-sapphire-soft px-2.5 py-0.5 text-[11.5px] font-semibold text-sapphire ring-1 ring-inset ring-sapphire-border">
+                          <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2.5 py-0.5 text-[11.5px] font-semibold text-sapphire ring-1 ring-inset ring-sapphire-border">
                             {extras.inThisGuide}
                           </span>
                         )}

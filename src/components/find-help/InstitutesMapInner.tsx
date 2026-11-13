@@ -5,6 +5,7 @@ import L from "leaflet";
 import { CircleMarker, MapContainer, Marker, Popup, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { primaryPhoneHref, type InstituteCategory, type MedicalInstitute } from "@/lib/medical-institutes";
+import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
 
 type LatLng = { lat: number; lng: number };
 
@@ -37,7 +38,7 @@ const CLUSTER_RADIUS_PX = 56;
 const LOCAL_USER_RANGE_KM = 80;
 
 function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return prefersCalmOrReducedMotion();
 }
 
 function isMapAlive(map: L.Map): boolean {
@@ -445,9 +446,9 @@ function SearchAreaButton({ label, onSearch }: { label: string; onSearch: (cente
           setMoved(false);
           onSearch({ lat: center.lat, lng: center.lng });
         }}
-        className="pointer-events-auto min-h-11 rounded-lg bg-card px-4 text-sm font-semibold text-sapphire shadow-md ring-1 ring-black/5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="pointer-events-auto inline-flex min-h-11 max-w-[calc(100%-2rem)] items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 text-sm font-semibold text-sapphire shadow-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        {label}
+        <span className="min-w-0 truncate">{label}</span>
       </button>
     </div>
   );

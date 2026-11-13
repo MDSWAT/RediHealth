@@ -138,9 +138,9 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
                         // Keep focus in the input so blur does not close the list before the click lands.
                         onMouseDown={(e) => e.preventDefault()}
                         onClick={() => handleSelectDrug(drug)}
-                        className="flex min-h-11 w-full items-center rounded-lg px-3 text-left text-base text-foreground hover:bg-sapphire-soft/50"
+                        className="flex min-h-11 w-full items-center whitespace-nowrap rounded-lg px-3 text-left text-sm text-foreground hover:bg-sapphire-soft/50 sm:text-[0.9375rem]"
                       >
-                        {drug}
+                        <span className="min-w-0 truncate">{drug}</span>
                       </button>
                     </li>
                   ))}

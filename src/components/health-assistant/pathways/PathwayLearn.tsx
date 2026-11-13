@@ -98,9 +98,9 @@ export function PathwayLearn({ step, selectedTopicId, onSelectTopic, plainLangua
         {learn.sourceLabel}: {topic.source}
       </p>
 
-      <Link href={guideHref} className={`mt-3 text-base ${textLink}`}>
-        <span className={textLinkLabel}>{current.guideSlug ? learn.readGuide : learn.browseGuides}</span>
-        <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+      <Link href={guideHref} className={`mt-3 max-w-full text-sm sm:text-[0.9375rem] ${textLink}`}>
+        <span className={`min-w-0 truncate ${textLinkLabel}`}>{current.guideSlug ? learn.readGuide : learn.browseGuides}</span>
+        <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
       </Link>
 
       <UniversalDoctorExit pathway="learn" summary={learn.summary(topic.title)} />

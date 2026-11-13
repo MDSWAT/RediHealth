@@ -19,11 +19,11 @@ function ViewAllLink({ href, label, className }: { href: string; label: string; 
     <Link
       href={href}
       className={cn(
-        "press-solid group min-h-12 items-center justify-center gap-2 rounded-(--radius-control) bg-sapphire px-5 py-2 text-center text-base font-semibold text-white transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sand motion-reduce:transition-none dark:bg-paper dark:text-ink-950 dark:hover:bg-paper/90 dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-900",
+        "press-solid group min-h-12 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-(--radius-control) bg-sapphire px-4 py-2 text-center text-sm font-semibold text-white transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sand motion-reduce:transition-none sm:px-5 sm:text-base dark:bg-paper dark:text-ink-950 dark:hover:bg-paper/90 dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-900",
         className,
       )}
     >
-      <span className="min-w-0">{label}</span>
+      <span className="min-w-0 overflow-hidden text-ellipsis">{label}</span>
       <ArrowRightIcon className="h-5 w-5 shrink-0 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 motion-reduce:transition-none" />
     </Link>
   );
@@ -110,7 +110,7 @@ export async function HealthTopics() {
           </ul>
 
           <div className="mt-6 sm:hidden lg:mt-[clamp(1rem,2.5svh,1.5rem)] lg:block">
-            <ViewAllLink href={viewAllHref} label={viewAll} className="flex w-full lg:inline-flex lg:w-auto" />
+            <ViewAllLink href={viewAllHref} label={viewAll} className="inline-flex w-full lg:w-auto" />
           </div>
         </HealthTopicsSpotlight>
       </Container>

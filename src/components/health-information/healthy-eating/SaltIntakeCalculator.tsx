@@ -33,15 +33,15 @@ type Zone = "optimal" | "caution" | "high";
 /** Red stays reserved for 112 and emergencies, so "well over the limit" is a deeper amber. */
 const ZONE_STYLE: Record<Zone, { badge: string; bar: string }> = {
   optimal: {
-    badge: "border-live-sage/30 bg-live-sage-soft text-foreground",
+    badge: "text-foreground",
     bar: "bg-live-sage",
   },
   caution: {
-    badge: "border-amber-care-border bg-amber-care-soft text-amber-care-hover",
+    badge: "text-amber-care-hover",
     bar: "bg-amber-care",
   },
   high: {
-    badge: "border-amber-care bg-amber-care-soft text-amber-care-hover",
+    badge: "text-amber-care-hover",
     bar: "bg-amber-care-hover",
   },
 };
@@ -97,14 +97,14 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
             </div>
           </div>
 
-          <span className={`inline-flex self-start rounded-md border px-2.5 py-1 text-xs font-semibold sm:self-auto ${style.badge}`}>
+          <span className={`self-start text-sm font-semibold sm:self-auto ${style.badge}`}>
             {zoneTitle}
           </span>
         </div>
 
         <div className="mt-3.5">
           <div
-            className="relative h-2.5 w-full overflow-hidden rounded-full bg-surface-subtle"
+            className="relative h-2.5 w-full overflow-hidden rounded-xs bg-surface-subtle"
             role="meter"
             aria-valuenow={totalSalt}
             aria-valuemin={0}
@@ -113,7 +113,7 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
             aria-label={copy.currentIntakeLabel}
           >
             <div
-              className={`absolute inset-y-0 left-0 w-full origin-left rounded-full ${style.bar}`}
+              className={`absolute inset-y-0 left-0 w-full origin-left rounded-xs ${style.bar}`}
               style={{
                 transform: `scaleX(${fill})`,
                 transition: "transform var(--dur-base) var(--ease-out-calm), background-color var(--dur-base) var(--ease-out-calm)",
@@ -145,7 +145,7 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
             <button
               type="button"
               onClick={() => setSelectedIds([])}
-              className="min-h-[44px] rounded-lg px-1 text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+              className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.resetLabel}
             </button>

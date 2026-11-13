@@ -64,11 +64,29 @@ export type TriageAction =
   | { type: "SET_NAVIGATION_SCENARIO"; scenario: "family_doctor" | "no_insurance_id" | "hospital_documents" }
   | { type: "INIT_FROM_URL"; pathway?: PathwayId; campaign?: string; entry?: string };
 
+// Everyday spoken, phonetic, dental and pediatric words. Short stems are anchored to a word start
+// so that they do not fire inside unrelated words.
+const SYMPTOM_COLLOQUIAL =
+  /\b(capu|masea|masel|dint|burt|stomac|urech|gat|piept|spate|arde|fierbint|racit|raceal|stranut|sange|hurt|pain|fever|cough|sick|tooth|dhemb|ethe|dolor|febbr|vrucic|dukhal|tatipen)|ache\b|\bboli\b/;
+const SYMPTOM_CYRILLIC = ["болит", "температур", "кашел", "зуб"];
+const PRESCRIPTION_COLLOQUIAL =
+  /\b(sirop|picatur|unguent|schem|pill|meds|prescription|barna|recet|ricett|farmac|lijek|recept(?!ie)|drab)/;
+const PRESCRIPTION_CYRILLIC = ["таблет", "рецепт", "лекарств"];
+const NAVIGATION_COLLOQUIAL =
+  /n am acte|fara acte|n am buletin|fara buletin|neinscris|neasigurat|doctor gratis|consultatie gratuita|\bno id\b|no insurance|uninsured|family doctor|pa dokument|pa sigurim|senza document|senza tessera|bez dokument|bez osiguranj|bez osobne|nane buletin|bi lilengo/;
+const NAVIGATION_CYRILLIC = ["нет документ", "без страховк", "поликлиник"];
+
 /**
  * Keyword-based intent classifier for natural language triage input (Change 28)
  */
 export function classifyIntentToPathway(query: string): PathwayId {
-  const q = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+  const q = query
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[-'’.,!?]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
   // Pathway 3: Symptoms / pain / acute illness / emergency 112
   if (
@@ -94,8 +112,20 @@ export function classifyIntentToPathway(query: string): PathwayId {
     q.includes("greata") ||
     q.includes("amet") ||
     q.includes("diaree") ||
-    q.includes("arsur")
+    q.includes("arsur") ||
+    SYMPTOM_COLLOQUIAL.test(q) ||
+    SYMPTOM_CYRILLIC.some((w) => q.includes(w))
   ) {
+    return "symptoms";
+  }
+
+  // Strong medication words win over the weaker child words below ("sirop pentru copil").
+  if (PRESCRIPTION_COLLOQUIAL.test(q) || PRESCRIPTION_CYRILLIC.some((w) => q.includes(w))) {
+    return "prescription";
+  }
+
+  // Weaker everyday words: child and baby mentions usually describe a sick child.
+  if (/\b(copil|bebe|copilas|copilu)/.test(q)) {
     return "symptoms";
   }
 
@@ -108,7 +138,9 @@ export function classifyIntentToPathway(query: string): PathwayId {
     q.includes("doza") ||
     q.includes("antibiotic") ||
     q.includes("prospect") ||
-    q.includes("farmaci")
+    q.includes("farmaci") ||
+    q.includes("compensat") ||
+    q.includes("schema")
   ) {
     return "prescription";
   }
@@ -130,7 +162,9 @@ export function classifyIntentToPathway(query: string): PathwayId {
     q.includes("drepturi") ||
     q.includes("mediator") ||
     q.includes("acte") ||
-    q.includes("trimitere")
+    q.includes("trimitere") ||
+    NAVIGATION_COLLOQUIAL.test(q) ||
+    NAVIGATION_CYRILLIC.some((w) => q.includes(w))
   ) {
     return "navigation";
   }

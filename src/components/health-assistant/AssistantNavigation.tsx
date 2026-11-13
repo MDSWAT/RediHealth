@@ -69,21 +69,28 @@ ru: {
   ];
 
   return (
-    <nav aria-label={t.navLabel} className="mb-2 grid grid-cols-4 border-b border-border sm:mb-4 lg:mb-5 sm:flex sm:gap-1 sm:overflow-x-auto scrollbar-none">
+    <nav
+      aria-label={t.navLabel}
+      className="mb-4 flex items-center gap-1 overflow-x-auto border-b border-stone-200/80 scrollbar-none sm:mb-5 sm:gap-1.5 dark:border-stone-800"
+    >
       {items.map(({ href, label, Icon }) => {
-        const isActive = normalizedPathname === href;
+        const isActive =
+          normalizedPathname === href || normalizedPathname.startsWith(`${href}/`);
         return (
           <Link
             key={href}
             href={withLangPrefix(href, lang)}
             aria-current={isActive ? "page" : undefined}
-            className={`inline-flex min-h-[44px] items-center justify-center gap-2 border-b-2 px-1 py-2 text-center text-[13px] font-semibold sm:text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] rounded-none sm:flex-shrink-0 sm:justify-start sm:px-4 sm:text-left ${
+            className={`inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-3 py-2.5 text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] sm:px-4 ${
               isActive
-                ? "border-foreground text-foreground"
-                : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
+                ? "border-sapphire font-semibold text-foreground"
+                : "border-transparent font-medium text-muted-foreground hover:border-border hover:text-foreground"
             }`}
           >
-            <Icon className="hidden h-4 w-4 shrink-0 sm:block" />
+            <Icon
+              className={`h-4 w-4 shrink-0 ${isActive ? "text-sapphire" : "text-muted-foreground"}`}
+              aria-hidden="true"
+            />
             <span>{label}</span>
           </Link>
         );

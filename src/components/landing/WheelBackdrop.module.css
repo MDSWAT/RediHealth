@@ -149,3 +149,10 @@
     animation: none;
   }
 }
+
+:global(html[data-calm-motion]) .outer,
+:global(html[data-calm-motion]) .inner,
+:global(html[data-calm-motion]) .hub,
+:global(html[data-calm-motion]) .face {
+  animation: none;
+}

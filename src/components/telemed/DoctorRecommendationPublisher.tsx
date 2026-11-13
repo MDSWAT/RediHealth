@@ -359,7 +359,7 @@ export function DoctorRecommendationPublisher({
             <button
               type="button"
               onClick={handleAddStep}
-              className="min-h-[44px] rounded-lg border border-border bg-muted px-4 text-xs font-semibold text-foreground hover:bg-card"
+              className="min-h-[44px] whitespace-nowrap rounded-lg border border-border bg-muted px-4 text-xs font-semibold text-foreground hover:bg-card"
             >
               {copy.addStep}
             </button>
@@ -432,7 +432,7 @@ export function DoctorRecommendationPublisher({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:opacity-60 transition-colors"
+            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:opacity-60 transition-colors"
           >
             {isSubmitting ? copy.sending : copy.submit}
           </button>

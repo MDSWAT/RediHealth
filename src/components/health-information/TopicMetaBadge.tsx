@@ -41,13 +41,13 @@ export function TopicMetaBadge({
   const voiceEnabled = useVoiceEnabled();
 
   if (compact) {
-    // Cards: one quiet line of text, no icons or colour.
+    // Cards: one quiet line of text, no icons, middle dots, or colour.
     return (
       <p className={`text-sm text-muted-foreground tabular-nums ${className}`}>
         {pickLocale(s.readMinutesShort, currentLang).replace("{minutes}", String(readMinutes))}
         {voiceEnabled && (
           <>
-            <span aria-hidden="true"> · </span>
+            <span>, </span>
             {pickLocale(s.audioMinutes, currentLang).replace("{minutes}", String(audioMinutes))}
           </>
         )}
@@ -57,13 +57,13 @@ export function TopicMetaBadge({
 
   return (
     <div
-      className={`flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground ${
+      className={`flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-muted-foreground ${
         bordered ? "border-b border-border/40 pb-2.5" : ""
       } ${className}`}
     >
       <span className="inline-flex items-center gap-1.5 tabular-nums">
         <svg
-          className="h-3.5 w-3.5 text-sapphire shrink-0"
+          className="h-4 w-4 shrink-0 text-sapphire"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -79,16 +79,10 @@ export function TopicMetaBadge({
       </span>
 
       {voiceEnabled && (
-        <>
-          <span className="text-border" aria-hidden="true">
-            ·
-          </span>
-
-          <span className="inline-flex items-center gap-1.5 tabular-nums">
-            <VolumeIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" aria-hidden="true" />
-            <span>{pickLocale(s.audioMinutesLong, currentLang).replace("{minutes}", String(audioMinutes))}</span>
-          </span>
-        </>
+        <span className="inline-flex items-center gap-1.5 tabular-nums">
+          <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+          <span>{pickLocale(s.audioMinutesLong, currentLang).replace("{minutes}", String(audioMinutes))}</span>
+        </span>
       )}
     </div>
   );

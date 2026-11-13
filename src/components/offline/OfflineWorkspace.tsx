@@ -15,7 +15,7 @@ import {
 import type { OfflineData, OfflineOperation, OfflineSnapshot } from "@/lib/offline-types";
 import { OFFLINE_CACHE_LIMIT } from "@/lib/offline-types";
 import { Button } from "@/components/ui/Button";
-import { ShieldIcon } from "@/components/ui/icons";
+import { Container } from "@/components/ui/Container";
 import { PanelRuntimeProvider } from "@/components/panel/PanelRuntime";
 import { AdminShell, PersistentPanelShell } from "@/components/panel/AdminShell";
 import { WorkerDashboard } from "@/components/panel/WorkerDashboard";
@@ -105,7 +105,7 @@ function formatClinicalFieldValue(field: string, value: unknown, copy: OfflineCo
         const parts = [rec.date, rec.time, rec.title, rec.status, rec.notes]
           .filter((part): part is string => typeof part === "string" && part.trim().length > 0)
           .map((part) => part.trim());
-        return parts.join(" · ");
+        return parts.join(" — ");
       })
       .filter(Boolean)
       .join("\n");
@@ -525,26 +525,20 @@ export function OfflineWorkspace() {
 
   if (!store || !runtime) {
     return (
-      <main id="main-content" className="flex-1 px-4 py-10 sm:py-16">
-        <div className="mx-auto w-full max-w-xl rounded-2xl border border-border bg-card p-6 shadow-xs sm:p-8">
-          <div className="mb-4 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-md border border-sapphire/25 bg-sapphire-soft px-2.5 py-1 text-xs font-semibold text-sapphire">
-              <ShieldIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              <span>{copy.encryptionBadge}</span>
+      <main id="main-content" className="flex-1 py-10 sm:py-16">
+        <Container>
+          <div className="max-w-2xl rounded-2xl border border-border bg-card p-6 shadow-xs sm:p-8">
+          <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+            <span className="font-semibold text-sapphire">
+              {copy.encryptionBadge}
             </span>
-
-            <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/50 px-2.5 py-1 text-xs font-medium text-foreground">
-              <span
-                className={`h-2 w-2 shrink-0 rounded-full ${
-                  online ? "bg-live-sage" : "bg-amber-care"
-                }`}
-                aria-hidden="true"
-              />
-              <span>{online ? copy.online : copy.offline}</span>
+            <span aria-hidden="true" className="h-3 w-px bg-border" />
+            <span className="font-medium text-foreground">
+              {online ? copy.online : copy.offline}
             </span>
           </div>
 
-          <h1 className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <h1 className="text-balance text-page text-foreground">
             {title}
           </h1>
 
@@ -595,7 +589,7 @@ export function OfflineWorkspace() {
                   </label>
                   <input
                     id="offline-passphrase"
-                    className="min-h-[44px] w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                    className="min-h-[44px] w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
                     type="password"
                     autoComplete="off"
                     required
@@ -610,7 +604,7 @@ export function OfflineWorkspace() {
                 <label className="flex min-h-[44px] cursor-pointer items-start gap-3 text-sm leading-relaxed text-foreground">
                   <input
                     type="checkbox"
-                    className="mt-0.5 h-5 w-5 shrink-0 rounded border-border accent-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    className="mt-0.5 h-5 w-5 shrink-0 rounded border-border-control accent-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     required
                     checked={trustedDevice}
                     onChange={(event) => setTrustedDevice(event.target.checked)}
@@ -622,9 +616,9 @@ export function OfflineWorkspace() {
 
               <Button
                 type="submit"
-                variant="secondary"
+                variant="action"
                 disabled={busy}
-                className="min-h-[44px] rounded-lg disabled:bg-muted disabled:text-muted-foreground"
+                className="min-h-[44px] whitespace-nowrap rounded-lg disabled:bg-muted disabled:text-muted-foreground"
               >
                 {busy ? copy.wait : legacy ? copy.migrate : exists ? copy.reopen : copy.enable}
               </Button>
@@ -650,7 +644,7 @@ export function OfflineWorkspace() {
 
           <div className="mt-7 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-border pt-5 text-sm">
             <a
-              className="inline-flex min-h-[44px] items-center rounded-lg px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               href={withLangPrefix("/panel", lang)}
             >
               {copy.backToPanel}
@@ -658,7 +652,7 @@ export function OfflineWorkspace() {
             {exists ? (
               <button
                 type="button"
-                className="inline-flex min-h-[44px] items-center rounded-lg px-2 font-medium text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed"
+                className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 font-medium text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed"
                 disabled={busy}
                 onClick={() => void logout(true)}
               >
@@ -667,6 +661,7 @@ export function OfflineWorkspace() {
             ) : null}
           </div>
         </div>
+        </Container>
       </main>
     );
   }
@@ -736,41 +731,31 @@ export function OfflineWorkspace() {
     <PanelRuntimeProvider value={runtime}>
       <PersistentPanelShell {...props}>
         <section
-          className="space-y-3 border-b border-border bg-card px-4 py-3 text-foreground"
+          className="space-y-3 border-b border-border bg-card py-3 text-foreground"
           aria-label={title}
         >
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
-            <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="inline-flex items-center gap-2 rounded-md border border-border bg-muted/50 px-2.5 py-1.5 font-semibold text-foreground">
-                <span
-                  className={`h-2 w-2 shrink-0 rounded-full ${
-                    online ? "bg-live-sage" : "bg-amber-care"
-                  }`}
-                  aria-hidden="true"
-                />
-                <span>{online ? copy.online : copy.offline}</span>
+          <Container className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs">
+              <span className="font-semibold text-foreground">
+                {online ? copy.online : copy.offline}
               </span>
-
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-sapphire/25 bg-sapphire-soft px-2.5 py-1.5 font-semibold text-sapphire">
-                <ShieldIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                <span>{copy.encryptionBadge}</span>
+              <span aria-hidden="true" className="h-3 w-px bg-border" />
+              <span className="font-semibold text-sapphire">
+                {copy.encryptionBadge}
               </span>
-
+              <span aria-hidden="true" className="h-3 w-px bg-border" />
               <span
-                className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 tabular-nums ${
+                className={`tabular-nums ${
                   pending > 0
-                    ? "border-amber-care/40 bg-amber-care/15 font-semibold text-foreground"
-                    : "border-border bg-muted/40 text-muted-foreground"
+                    ? "font-semibold text-amber-care"
+                    : "text-muted-foreground"
                 }`}
               >
-                {pending > 0 ? (
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-amber-care" aria-hidden="true" />
-                ) : null}
-                <span>{copy.pendingChanges(pending)}</span>
+                {copy.pendingChanges(pending)}
               </span>
 
               <span className="hidden text-muted-foreground md:inline">
-                {data.identity.workerName} · {data.identity.country} · {copy.expires}{" "}
+                {data.identity.workerName}, {data.identity.country} — {copy.expires}{" "}
                 <span className="tabular-nums font-medium text-foreground">
                   {new Date(data.expiresAt).toLocaleDateString(offlineDateLocale[lang])}
                 </span>
@@ -779,16 +764,15 @@ export function OfflineWorkspace() {
               {idleCountdownSec !== null && idleCountdownSec <= IDLE_WARNING_SECONDS ? (
                 <div
                   role="status"
-                  className="inline-flex flex-wrap items-center gap-2 rounded-lg border border-amber-care/45 bg-amber-care/15 px-2.5 py-1 text-xs font-semibold text-foreground"
+                  className="inline-flex flex-wrap items-center gap-2 text-xs font-semibold text-foreground"
                 >
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-amber-care" aria-hidden="true" />
-                  <span className="tabular-nums">
+                  <span className="tabular-nums text-amber-care">
                     {copy.idlePauseIn(formatIdleClock(idleCountdownSec))}
                   </span>
                   <button
                     type="button"
                     onClick={stayUnlocked}
-                    className="inline-flex min-h-[44px] items-center rounded-lg border border-border bg-card px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-border-control bg-card px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {copy.stayUnlocked}
                   </button>
@@ -799,7 +783,7 @@ export function OfflineWorkspace() {
             <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
-                className="crm-button min-h-[44px] rounded-lg text-xs"
+                className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
                 disabled={busy || !online}
                 onClick={() => void sync()}
               >
@@ -808,7 +792,7 @@ export function OfflineWorkspace() {
 
               <button
                 type="button"
-                className="crm-button min-h-[44px] rounded-lg text-xs"
+                className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
                 disabled={busy}
                 onClick={lock}
               >
@@ -817,7 +801,7 @@ export function OfflineWorkspace() {
 
               <button
                 type="button"
-                className="crm-button min-h-[44px] rounded-lg text-xs"
+                className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
                 disabled={busy}
                 onClick={() => void logout()}
               >
@@ -826,7 +810,7 @@ export function OfflineWorkspace() {
 
               {online ? (
                 <a
-                  className="inline-flex min-h-[44px] items-center rounded-lg border border-sapphire/25 bg-sapphire-soft px-3 py-2 text-xs font-semibold text-sapphire transition-colors hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-sapphire/25 bg-sapphire-soft px-3 py-2 text-xs font-semibold text-sapphire transition-colors hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   href={withLangPrefix("/panel", lang)}
                 >
                   {copy.openPanel}
@@ -838,65 +822,67 @@ export function OfflineWorkspace() {
                 aria-expanded={vaultDetailsOpen}
                 aria-controls={detailsPanelId}
                 onClick={() => setVaultDetailsOpen((prev) => !prev)}
-                className="inline-flex min-h-[44px] items-center rounded-lg border border-border bg-muted/50 px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-border-control bg-muted/50 px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {copy.vaultDetailsToggle}
               </button>
             </div>
-          </div>
+          </Container>
 
           {vaultDetailsOpen ? (
-            <div
-              id={detailsPanelId}
-              className="mx-auto max-w-7xl space-y-2 rounded-xl border border-border bg-muted/35 p-3.5 text-xs text-muted-foreground"
-            >
-              <p>{copy.editsNote}</p>
-              <p>{copy.autoAccessNote}</p>
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-                {storageEstimate ? (
-                  <span className="tabular-nums font-medium text-foreground">
-                    {copy.storageMeterLabel}:{" "}
-                    {copy.storageQuotaSummary(
-                      formatMegabytes(storageEstimate.usageBytes),
-                      formatMegabytes(storageEstimate.quotaBytes),
-                    )}
-                  </span>
-                ) : null}
-                {pending > 0 ? (
-                  <button
-                    type="button"
-                    className="inline-flex min-h-[44px] items-center rounded-lg px-2 text-xs font-semibold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    disabled={busy}
-                    onClick={() => void logout(true)}
-                  >
-                    {copy.discardAndRemove}
-                  </button>
-                ) : null}
+            <Container>
+              <div
+                id={detailsPanelId}
+                className="space-y-2 rounded-xl border border-border bg-muted/35 p-3.5 text-xs text-muted-foreground"
+              >
+                <p>{copy.editsNote}</p>
+                <p>{copy.autoAccessNote}</p>
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+                  {storageEstimate ? (
+                    <span className="tabular-nums font-medium text-foreground">
+                      {copy.storageMeterLabel}:{" "}
+                      {copy.storageQuotaSummary(
+                        formatMegabytes(storageEstimate.usageBytes),
+                        formatMegabytes(storageEstimate.quotaBytes),
+                      )}
+                    </span>
+                  ) : null}
+                  {pending > 0 ? (
+                    <button
+                      type="button"
+                      className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      disabled={busy}
+                      onClick={() => void logout(true)}
+                    >
+                      {copy.discardAndRemove}
+                    </button>
+                  ) : null}
+                </div>
               </div>
-            </div>
+            </Container>
           ) : null}
 
           {error ? (
-            <div className="mx-auto max-w-7xl">
+            <Container>
               <p role="alert" className="crm-error">
                 {error}
               </p>
-            </div>
+            </Container>
           ) : null}
 
           {notice ? (
-            <div className="mx-auto max-w-7xl">
+            <Container>
               <p
                 role="status"
                 className="rounded-lg border border-border bg-muted/60 px-3.5 py-2 text-xs font-medium text-foreground"
               >
                 {notice}
               </p>
-            </div>
+            </Container>
           ) : null}
 
           {failedOps.length > 0 ? (
-            <div className="mx-auto max-w-7xl space-y-2.5">
+            <Container className="space-y-2.5">
               {failedOps.map((op) => {
                 const entityName = copy.entityLabels[op.entity] ?? op.entity;
                 return (
@@ -914,7 +900,7 @@ export function OfflineWorkspace() {
                     </div>
                     <button
                       type="button"
-                      className="crm-button min-h-[44px] rounded-lg text-xs"
+                      className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
                       disabled={!online || busy}
                       onClick={() => {
                         void getSnapshot(errors)
@@ -936,15 +922,15 @@ export function OfflineWorkspace() {
                   </div>
                 );
               })}
-            </div>
+            </Container>
           ) : null}
 
           {review ? (
-            <div className="mx-auto max-w-7xl">
+            <Container>
               <section className="space-y-4 rounded-xl border border-border bg-card p-4 shadow-sm sm:p-5">
                 <div className="space-y-1">
-                  <h2 className="tabular-nums text-base font-semibold text-foreground">
-                    {copy.reviewTitle} · {copy.entityLabels[review.op.entity] ?? review.op.entity} #
+                  <h2 className="text-balance tabular-nums text-base font-semibold text-foreground">
+                    {copy.reviewTitle} — {copy.entityLabels[review.op.entity] ?? review.op.entity} #
                     {review.op.id}
                   </h2>
                   <p className="text-sm leading-relaxed text-muted-foreground">{copy.reviewBody}</p>
@@ -1001,14 +987,14 @@ export function OfflineWorkspace() {
                 <div className="flex flex-wrap items-center gap-2.5">
                   <button
                     type="button"
-                    className="crm-button min-h-[44px] rounded-lg text-xs"
+                    className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
                     onClick={() => void resolveConflict(false)}
                   >
                     {copy.useOnline}
                   </button>
                   <button
                     type="button"
-                    className="crm-button crm-primary min-h-[44px] rounded-lg text-xs"
+                    className="crm-button crm-primary min-h-[44px] whitespace-nowrap rounded-lg text-xs"
                     disabled={
                       !review.op.create &&
                       !review.snapshot.revisions[`${review.op.entity}:${review.op.id}`]
@@ -1019,14 +1005,14 @@ export function OfflineWorkspace() {
                   </button>
                   <button
                     type="button"
-                    className="crm-button min-h-[44px] rounded-lg text-xs"
+                    className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
                     onClick={() => setReview(null)}
                   >
                     {copy.cancel}
                   </button>
                 </div>
               </section>
-            </div>
+            </Container>
           ) : null}
         </section>
 

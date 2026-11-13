@@ -551,7 +551,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                     type="button"
                     aria-pressed={isSelected}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`min-h-[48px] flex items-center gap-2.5 rounded-lg border p-3 text-left text-xs font-medium transition-colors duration-[var(--dur-fast)] ${
+                    className={`min-h-[48px] flex items-center gap-2.5 whitespace-nowrap rounded-lg border p-3 text-left text-xs font-medium transition-colors duration-[var(--dur-fast)] ${
                       isSelected
                         ? "border-sapphire bg-sapphire text-white shadow-xs font-semibold"
                         : "border-border bg-background text-foreground hover:bg-muted"
@@ -590,7 +590,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 setErrorMessage("");
                 setStep(2);
               }}
-              className="min-h-[44px] rounded-lg bg-foreground px-5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="min-h-[44px] whitespace-nowrap rounded-lg bg-foreground px-5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {copy.next}
             </button>
@@ -630,7 +630,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               <button
                 type="button"
                 onClick={() => setIdDocumentData(null)}
-                className="mt-3 text-xs font-semibold text-sapphire underline-offset-4 hover:underline"
+                className="mt-3 whitespace-nowrap text-xs font-semibold text-sapphire underline-offset-4 hover:underline"
               >
                 {copy.retakePhoto}
               </button>
@@ -656,7 +656,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
             <button
               type="button"
               onClick={() => setStep(1)}
-              className="min-h-[44px] rounded-lg px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="min-h-[44px] whitespace-nowrap rounded-lg px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.back}
             </button>
@@ -664,7 +664,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
             <button
               type="button"
               onClick={() => setStep(3)}
-              className="min-h-[44px] rounded-lg bg-foreground px-5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="min-h-[44px] whitespace-nowrap rounded-lg bg-foreground px-5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {copy.next}
             </button>
@@ -717,14 +717,14 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
           </div>
 
           <div className="rounded-md bg-muted/40 p-3 text-xs text-muted-foreground">
-            {copy.summaryPatient} <strong>{fullName}</strong> ({age || copy.ageUnknown}) · {copy.summaryProblem} <strong>{copy.categories[selectedCategory]}</strong>
+            {copy.summaryPatient} <strong>{fullName}</strong> ({age || copy.ageUnknown}), {copy.summaryProblem} <strong>{copy.categories[selectedCategory]}</strong>
           </div>
 
           <div className="pt-2 flex items-center justify-between">
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="min-h-[44px] rounded-lg px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="min-h-[44px] whitespace-nowrap rounded-lg px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.back}
             </button>
@@ -733,7 +733,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               type="button"
               disabled={isSubmitting}
               onClick={handleFinalSubmit}
-              className="min-h-[44px] rounded-lg bg-foreground px-6 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
+              className="min-h-[44px] whitespace-nowrap rounded-lg bg-foreground px-6 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
             >
               {isSubmitting ? copy.submitting : copy.submit}
             </button>

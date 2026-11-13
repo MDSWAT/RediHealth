@@ -114,8 +114,8 @@ export function DemoPageContent({ children }: { children: ReactNode }) {
             <option value="mediator">{t.mediator}</option><option value="doctor">{t.doctor}</option>
           </select>
         </label>
-        <button type="button" onClick={reset} className="min-h-10 rounded-lg border border-amber-300 bg-white px-3 text-xs font-semibold">{t.reset}</button>
-        <Link href={withLangPrefix("/", lang)} className="inline-flex min-h-10 items-center rounded-lg px-2 text-xs font-semibold underline underline-offset-2">{t.exit}</Link>
+        <button type="button" onClick={reset} className="min-h-11 whitespace-nowrap rounded-lg border border-amber-300 bg-white px-3 text-xs font-semibold">{t.reset}</button>
+        <Link href={withLangPrefix("/", lang)} className="inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2 text-xs font-semibold underline underline-offset-2">{t.exit}</Link>
       </div>
     </div>
     {error && <p role="alert" className="mt-2 text-sm font-semibold text-red-700">{error}</p>}

@@ -85,7 +85,7 @@
   }
 }
 
-/* Reduced motion: nothing moves, the first headline shows, and there is nothing to pause. */
+/* Reduced motion or calm motion: nothing moves, the active headline shows clearly. */
 @media (prefers-reduced-motion: reduce) {
   .ticker[data-moving] {
     mask-image: none;
@@ -103,5 +103,32 @@
   .repeat,
   .pause {
     display: none;
+  }
+}
+
+:global(html[data-calm-motion]) .ticker[data-moving],
+:global(html[data-text-scale="large"]) .ticker[data-moving],
+:global(html[data-text-scale="xl"]) .ticker[data-moving] {
+  mask-image: none;
+}
+
+:global(html[data-calm-motion]) .ticker[data-moving] .track,
+:global(html[data-text-scale="large"]) .ticker[data-moving] .track,
+:global(html[data-text-scale="xl"]) .ticker[data-moving] .track,
+:global(html[data-calm-motion]) .miniOuter,
+:global(html[data-calm-motion]) .miniInner {
+  animation: none;
+}
+
+/* Under md (phones), the ribbon stays calm and stationary without running marquee animations. */
+@media (max-width: 767px) {
+  .ticker[data-moving] {
+    mask-image: none;
+  }
+
+  .ticker[data-moving] .track,
+  .miniOuter,
+  .miniInner {
+    animation: none;
   }
 }

@@ -167,8 +167,8 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
 
 
 "openNowLive": "Сейчас открыто",
-"openNowFilter": "Сейчас открыто / круглосуточно",
-"emergencyWalkInFilter": "Неотложный прием без медицинской карты",
+"openNowFilter": "Открыто сейчас",
+"emergencyWalkInFilter": "Неотложная помощь",
 "emergencyRightsCallout": "В экстренной ситуации обратитесь в отделение неотложной помощи, даже без страховки или удостоверения личности. Уточните местные условия помощи.",
 "cityQuickJumpLabel": "Перейти к городу",
 "viewModeLabel": "Режим мобильного просмотра",

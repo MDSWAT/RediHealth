@@ -4,7 +4,21 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
+import { openSmartSearch } from "@/components/search/smart-search-events";
 import { translations, type Lang } from "@/lib/i18n/translations";
+
+const rescueCopy: Record<
+  Lang,
+  { searchLabel: string; assistantLabel: string; doctorLabel: string; findHelpLabel: string }
+> = {
+  ro: { searchLabel: "Caută pe site", assistantLabel: "Asistent de sănătate", doctorLabel: "Medic online", findHelpLabel: "Găsește ajutor" },
+  en: { searchLabel: "Search the site", assistantLabel: "Health assistant", doctorLabel: "Online doctor", findHelpLabel: "Find help" },
+  sq: { searchLabel: "Kërko në faqe", assistantLabel: "Asistent shëndetësor", doctorLabel: "Mjek online", findHelpLabel: "Gjej ndihmë" },
+  it: { searchLabel: "Cerca nel sito", assistantLabel: "Assistente sanitario", doctorLabel: "Medico online", findHelpLabel: "Trova aiuto" },
+  hr: { searchLabel: "Pretraži stranicu", assistantLabel: "Zdravstveni asistent", doctorLabel: "Liječnik online", findHelpLabel: "Pronađi pomoć" },
+  rom: { searchLabel: "Rod pe sajt", assistantLabel: "Sastipnasko asistento", doctorLabel: "Doktori online", findHelpLabel: "Rod zhutimos" },
+  ru: { searchLabel: "Искать на сайте", assistantLabel: "Помощник по здоровью", doctorLabel: "Врач онлайн", findHelpLabel: "Найти помощь" },
+};
 
 function useSafeLanguage() {
   try {
@@ -45,6 +59,7 @@ function MissingRoute() {
 export default function NotFound() {
   const { lang, t } = useSafeLanguage();
   const page = t.notFoundPage;
+  const rescue = rescueCopy[lang];
 
   return (
     <main id="main-content" className="flex flex-1 items-center py-16 sm:py-24">
@@ -58,13 +73,30 @@ export default function NotFound() {
             {page.subtitle}
           </p>
           <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-            <Button href={withLangPrefix("/", lang)} variant="secondary" className="sm:whitespace-nowrap">
+            <Button
+              type="button"
+              variant="action"
+              onClick={() => openSmartSearch()}
+              className="min-h-12 whitespace-nowrap"
+            >
+              {rescue.searchLabel}
+            </Button>
+            <Button href={withLangPrefix("/", lang)} variant="secondary" className="min-h-12 whitespace-nowrap">
               {page.backHome}
+            </Button>
+            <Button href={withLangPrefix("/health-assistant", lang)} variant="outline" className="min-h-12 whitespace-nowrap">
+              {rescue.assistantLabel}
+            </Button>
+            <Button href={withLangPrefix("/medic-online", lang)} variant="outline" className="min-h-12 whitespace-nowrap">
+              {rescue.doctorLabel}
+            </Button>
+            <Button href={withLangPrefix("/find-help", lang)} variant="outline" className="min-h-12 whitespace-nowrap">
+              {rescue.findHelpLabel}
             </Button>
             <Button
               href={withLangPrefix("/health-information", lang)}
               variant="outline"
-              className="sm:whitespace-nowrap"
+              className="min-h-12 whitespace-nowrap"
             >
               {page.exploreHealth}
             </Button>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { MedicOnlineHero } from "@/components/telemed/MedicOnlineHero";
-import { ClockIcon, FileTextIcon, MessageDotsIcon, ShieldIcon, StethoscopeIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
@@ -9,8 +8,7 @@ import type { Lang } from "@/lib/i18n/translations";
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
   const descriptions: Record<Lang, string> = {
-  ru: "Поговорите с врачом-волонтером бесплатно по телефону. Вам не нужно устанавливать приложение.",
-
+    ru: "Поговорите с врачом-волонтером бесплатно с телефона. Устанавливать приложение не нужно.",
     ro: "Vorbește gratuit cu un medic voluntar, de pe telefon. Nu trebuie să instalezi nicio aplicație.",
     en: "Talk to a volunteer doctor for free, on your phone. You do not need to install an app.",
     sq: "Fol falas me një mjek vullnetar, nga telefoni. Nuk të duhet të instalosh asnjë aplikacion.",
@@ -43,20 +41,19 @@ const copy: Record<
     privacyDesc: string;
   }
 > = {
-ru: {
-"stepsBadge": "Три простых шага",
-
+  ru: {
+    stepsBadge: "Три простых шага",
     stepsTitle: "Как это работает",
-    stepsSubtitle: "Вам не нужен банковский счет, медицинская карта или приложение.",
-    step1Title: "Выбирайте, когда говорить",
-    step1Desc: "Посетите дежурного врача прямо сейчас или забронируйте удобное для вас время.",
-    step2Title: "Получить ссылку по СМС",
-    step2Desc: "Нажмите на ссылку. Вызов откроется в вашем браузере.",
-    step3Title: "Получите консультацию в письменном виде",
-    step3Desc: "После звонка врач отправляет вам указания, что делать дальше. Вы найдете его в своей учетной записи и в текстовом сообщении.",
+    stepsSubtitle: "Банковская карта, страховой полис и приложение не нужны.",
+    step1Title: "Выберите время звонка",
+    step1Desc: "Поговорите с дежурным врачом сейчас или запишитесь на удобное время.",
+    step2Title: "Получите ссылку по SMS",
+    step2Desc: "Нажмите на ссылку — звонок откроется в браузере.",
+    step3Title: "Получите рекомендации в письменном виде",
+    step3Desc: "После звонка врач пришлёт рекомендации. Они останутся в вашем профиле и придут по SMS.",
     heading: "Лицензированные врачи",
-    desc: "Врачи RediHealth — это семейные врачи, педиатры или врачи внутренних болезней. Они волонтеры и доходчиво объясняют, что делать.",
-    privacyTitle: "То, что вы говорите, остается между вами и врачом.",
+    desc: "Врачи RediHealth — семейные врачи, педиатры и терапевты. Они работают как волонтёры и понятно объясняют, что делать.",
+    privacyTitle: "Всё сказанное остаётся между вами и врачом",
     privacyDesc: "Звонки шифруются.",
   },
 
@@ -65,7 +62,7 @@ ru: {
     stepsTitle: "Cum funcționează",
     stepsSubtitle: "Nu ai nevoie de cont bancar, card de sănătate sau aplicație.",
     step1Title: "Alegi când vorbești",
-    step1Desc: "Intri acum la medicul de gardă sau îți faci programare la o oră care îți convine.",
+    step1Desc: "Intri acum la medicul de gardă sau îți alegi o oră potrivită.",
     step2Title: "Primești un link prin SMS",
     step2Desc: "Apeși pe link. Apelul se deschide în browser.",
     step3Title: "Primești sfaturile în scris",
@@ -78,13 +75,13 @@ ru: {
   en: {
     stepsBadge: "Three simple steps",
     stepsTitle: "How it works",
-    stepsSubtitle: "You do not need a bank account, a health card or an app.",
+    stepsSubtitle: "No bank account, health card or app needed.",
     step1Title: "Choose when to talk",
-    step1Desc: "See the on-call doctor now, or book a time that suits you.",
-    step2Title: "Get a link by text message",
+    step1Desc: "Talk to the on-call doctor now or book a time that suits you.",
+    step2Title: "Get a link by SMS",
     step2Desc: "Tap the link. The call opens in your browser.",
     step3Title: "Get the advice in writing",
-    step3Desc: "After the call, the doctor sends you what to do next. You find it in your account and by text message.",
+    step3Desc: "After the call, the doctor sends your next steps. Find them in your account and by SMS.",
     heading: "Licensed doctors",
     desc: "RediHealth doctors are family doctors, paediatricians or internal medicine doctors. They are volunteers and explain clearly what to do.",
     privacyTitle: "What you say stays between you and the doctor",
@@ -95,11 +92,11 @@ ru: {
     stepsTitle: "Si funksionon",
     stepsSubtitle: "Nuk të duhet llogari bankare, kartë shëndetësore apo aplikacion.",
     step1Title: "Zgjidh kur flet",
-    step1Desc: "Hyr tani te mjeku kujdestar ose cakto një orë që të përshtatet.",
+    step1Desc: "Fol tani me mjekun kujdestar ose zgjidh një orar që të përshtatet.",
     step2Title: "Merr një lidhje me SMS",
     step2Desc: "Shtyp lidhjen. Thirrja hapet në shfletues.",
     step3Title: "Merr këshillat me shkrim",
-    step3Desc: "Pas thirrjes, mjeku të dërgon çfarë duhet të bësh. I gjen në llogari dhe me SMS.",
+    step3Desc: "Pas thirrjes, mjeku të dërgon hapat e radhës. I gjen në llogari dhe me SMS.",
     heading: "Mjekë me licencë",
     desc: "Mjekët e RediHealth janë mjekë familjeje, pediatër ose mjekë të sëmundjeve të brendshme. Janë vullnetarë dhe të shpjegojnë qartë çfarë të bësh.",
     privacyTitle: "Çfarë thua mbetet mes teje dhe mjekut",
@@ -131,7 +128,7 @@ ru: {
     step3Title: "Primi pisane upute",
     step3Desc: "Nakon poziva liječnik ti šalje upute što dalje. Sve pronalaziš na svojem računu i putem SMS poruke.",
     heading: "Licencirani liječnici",
-    desc: "Liječnici na platformi RediHealth su obiteljski liječnici, pedijatri i specijalisti interne medicine. Rade volonterski i razumljivo ti objašnjavaju daljnje korake.",
+    desc: "Liječnici na platformi RediHealth su obiteljski liječnici, pedijatri i internisti. Rade volonterski i jasno objašnjavaju što dalje.",
     privacyTitle: "Ono što kažeš ostaje između tebe i liječnika",
     privacyDesc: "Pozivi su šifrirani.",
   },
@@ -165,7 +162,7 @@ export default async function MedicOnlinePage() {
       <section aria-labelledby="medic-steps-heading" className="border-b border-border bg-card py-14 sm:py-20">
         <Container>
           <div className="max-w-2xl">
-            <h2 id="medic-steps-heading" className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            <h2 id="medic-steps-heading" className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               {c.stepsTitle}
             </h2>
             <p className="mt-2 text-base leading-relaxed text-muted-foreground">{c.stepsSubtitle}</p>
@@ -173,34 +170,21 @@ export default async function MedicOnlinePage() {
 
           <ol className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
             {[
-              { num: "01", title: c.step1Title, desc: c.step1Desc, icon: ClockIcon },
-              { num: "02", title: c.step2Title, desc: c.step2Desc, icon: MessageDotsIcon },
-              { num: "03", title: c.step3Title, desc: c.step3Desc, icon: FileTextIcon },
-            ].map(({ num, title, desc, icon: StepIcon }) => (
+              { num: "01", title: c.step1Title, desc: c.step1Desc },
+              { num: "02", title: c.step2Title, desc: c.step2Desc },
+              { num: "03", title: c.step3Title, desc: c.step3Desc },
+            ].map(({ num, title, desc }) => (
               <li
                 key={title}
-                className="group relative flex flex-col justify-between rounded-2xl border border-stone-200/90 bg-gradient-to-b from-background via-background to-card p-6 shadow-xs transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:-translate-y-1 hover:border-sapphire/50 hover:shadow-lg hover:shadow-sapphire/5 dark:border-stone-800 dark:hover:border-sapphire/50 dark:hover:shadow-sapphire/10"
+                className="rounded-xl border border-border bg-background p-6"
               >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sapphire-soft/90 text-sm font-bold tabular-nums text-sapphire ring-1 ring-sapphire/20 shadow-2xs transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:scale-105 dark:bg-sapphire/20 dark:text-sapphire-light">
-                      {num}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="flex h-9 w-9 items-center justify-center rounded-xl bg-muted/60 text-muted-foreground transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-sapphire-soft group-hover:text-sapphire dark:group-hover:bg-sapphire/20 dark:group-hover:text-sapphire-light"
-                    >
-                      <StepIcon className="h-4.5 w-4.5" />
-                    </span>
-                  </div>
-
-                  <h3 className="mt-5 text-lg font-semibold tracking-[-0.015em] text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light">
-                    {title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {desc}
-                  </p>
-                </div>
+                <span className="text-sm font-semibold tabular-nums text-sapphire">{num}</span>
+                <h3 className="mt-3 text-balance text-lg font-semibold tracking-tight text-foreground">
+                  {title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {desc}
+                </p>
               </li>
             ))}
           </ol>
@@ -212,19 +196,15 @@ export default async function MedicOnlinePage() {
         <Container>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] md:items-start md:gap-12">
             <div className="max-w-xl">
-              <h2 id="medic-team-heading" className="flex items-center gap-2.5 text-xl font-semibold text-foreground">
-                <StethoscopeIcon className="h-5 w-5 shrink-0 text-sapphire" />
+              <h2 id="medic-team-heading" className="text-balance text-xl font-semibold text-foreground">
                 {c.heading}
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">{c.desc}</p>
             </div>
 
-            <div className="flex items-start gap-3 border-t border-border pt-4 md:border-l md:border-t-0 md:pl-6 md:pt-0">
-              <ShieldIcon className="mt-0.5 h-5 w-5 shrink-0 text-sapphire" />
-              <div>
-                <p className="text-sm font-semibold text-foreground">{c.privacyTitle}</p>
-                <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{c.privacyDesc}</p>
-              </div>
+            <div className="border-t border-border pt-4 md:border-l md:border-t-0 md:pl-6 md:pt-0">
+              <p className="text-sm font-semibold text-foreground">{c.privacyTitle}</p>
+              <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{c.privacyDesc}</p>
             </div>
           </div>
         </Container>

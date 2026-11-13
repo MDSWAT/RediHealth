@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertCircleIcon, PhoneIcon } from "@/components/ui/icons";
+import { PhoneIcon } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import {
   dangerOutlineButton,
@@ -27,11 +27,10 @@ export function PathwaySymptomsEmergencyGate({
   return (
     <div>
       <div className={dangerPanel}>
-        <h2 className={`flex items-start gap-3 ${stepHeading}`}>
-          <AlertCircleIcon className="mt-1 h-5 w-5 shrink-0 text-primary sm:mt-1.5" aria-hidden="true" />
-          <span>{plainLanguage ? gate.plainHeading : gate.heading}</span>
+        <h2 className={stepHeading}>
+          {plainLanguage ? gate.plainHeading : gate.heading}
         </h2>
-        <ul className="mt-4 space-y-2 pl-8 text-base leading-relaxed text-foreground">
+        <ul className="mt-4 space-y-2 pl-5 text-base leading-relaxed text-foreground">
           {signs.map((sign) => (
             <li key={sign} className="list-disc marker:text-primary">
               {sign}
@@ -42,10 +41,10 @@ export function PathwaySymptomsEmergencyGate({
         <div className="mt-6 space-y-3">
           <a
             href="tel:112"
-            className={`w-full ${emergencyButton}`}
+            className={`w-full whitespace-nowrap ${emergencyButton}`}
           >
-            <PhoneIcon className="h-5 w-5" aria-hidden="true" />
-            <span>{gate.callNow}</span>
+            <PhoneIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+            <span className="min-w-0 truncate">{gate.callNow}</span>
           </a>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -53,17 +52,17 @@ export function PathwaySymptomsEmergencyGate({
               type="button"
               data-gate-emergency
               onClick={onSelectEmergency}
-              className={dangerOutlineButton}
+              className={`max-w-full ${dangerOutlineButton}`}
             >
-              {gate.yesSeeTips}
+              <span className="min-w-0 truncate">{gate.yesSeeTips}</span>
             </button>
             <button
               type="button"
               data-gate-mild
               onClick={onSelectMild}
-              className={secondaryButton}
+              className={`max-w-full ${secondaryButton}`}
             >
-              {gate.noNoneOfThese}
+              <span className="min-w-0 truncate">{gate.noNoneOfThese}</span>
             </button>
           </div>
         </div>

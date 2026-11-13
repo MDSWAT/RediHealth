@@ -37,7 +37,7 @@ export function HealthyEatingInteractiveHub({
 
   return (
     <div className={`${HUB_CARD_CLASS} ${className}`} data-testid="healthy-eating-hub">
-      <div role="tablist" aria-label={copy.title} className={`${TAB_LIST_CLASS} grid-cols-3`}>
+      <div role="tablist" aria-label={copy.title} className={TAB_LIST_CLASS}>
         {HUB_TABS.map((tab) => {
           const selected = activeTab === tab;
           return (

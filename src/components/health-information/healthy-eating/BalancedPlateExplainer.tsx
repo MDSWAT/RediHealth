@@ -121,7 +121,7 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
             <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
               {activeSector.culturalStaples.map((staple) => (
                 <li key={staple} className="flex items-start gap-2 text-sm leading-snug text-foreground">
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground" aria-hidden="true" />
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-xs bg-muted-foreground" aria-hidden="true" />
                   <span>{staple}</span>
                 </li>
               ))}
@@ -168,7 +168,7 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
                   {has[key] ? (
                     <CheckIcon className="h-3.5 w-3.5 text-live-sage" />
                   ) : (
-                    <span className="h-3 w-3 rounded-full border border-muted-foreground/60" aria-hidden="true" />
+                    <span className="h-3 w-3 rounded-xs border border-muted-foreground/60" aria-hidden="true" />
                   )}
                   <span className={has[key] ? "font-semibold" : "text-muted-foreground"}>{copy.builderChecklist[key]}</span>
                 </li>
@@ -179,7 +179,7 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
           <button
             type="button"
             onClick={() => setSelectedFoodIds([])}
-            className="min-h-[44px] rounded-lg text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {copy.builderReset}
           </button>

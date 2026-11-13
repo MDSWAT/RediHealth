@@ -18,7 +18,7 @@ interface MediatorRequestModalProps {
 
 const dict = {
   ru: {
-    trigger: "Запросить медицинского посредника",
+    trigger: "Помощь медиатора",
     title: "Запросить медиатора по вопросам общественного здравоохранения",
     subtitle:
       "Медиатор по вопросам здравоохранения – это человек из вашего сообщества, который бесплатно помогает вам с врачами, документами и посещениями больниц.",
@@ -48,7 +48,7 @@ const dict = {
   },
 
   en: {
-    trigger: "Request a health mediator",
+    trigger: "Ask a health mediator",
     title: "Request a community health mediator",
     subtitle:
       "A health mediator is someone from your community who helps you, free of charge, with doctors, papers and hospital visits.",
@@ -77,7 +77,7 @@ const dict = {
     close: "Close",
   },
   ro: {
-    trigger: "Cere ajutorul unui mediator sanitar",
+    trigger: "Cere un mediator sanitar",
     title: "Cere ajutorul unui mediator sanitar",
     subtitle:
       "Mediatorul sanitar este o persoană din comunitate care te ajută gratuit cu medicii, actele și drumurile la spital.",
@@ -106,7 +106,7 @@ const dict = {
     close: "Închide",
   },
   sq: {
-    trigger: "Kërko një mediator shëndetësor",
+    trigger: "Kërko mediator shëndeti",
     title: "Kërko një mediator shëndetësor nga komuniteti",
     subtitle:
       "Mediatori shëndetësor është një person nga komuniteti që të ndihmon falas me mjekët, dokumentet dhe vizitat në spital.",
@@ -135,7 +135,7 @@ const dict = {
     close: "Mbyll",
   },
   it: {
-    trigger: "Chiedi un mediatore sanitario",
+    trigger: "Chiedi un mediatore",
     title: "Chiedi un mediatore sanitario di comunità",
     subtitle:
       "Il mediatore sanitario è una persona della comunità che ti aiuta gratuitamente con medici, documenti e visite in ospedale.",
@@ -164,7 +164,7 @@ const dict = {
     close: "Chiudi",
   },
   hr: {
-    trigger: "Zatraži zdravstvenog medijatora",
+    trigger: "Zatraži medijatora",
     title: "Zatraži zdravstvenog medijatora iz zajednice",
     subtitle:
       "Zdravstveni medijator je osoba iz tvoje zajednice koja ti besplatno pomaže s liječnicima, dokumentima i odlascima u bolnicu.",
@@ -193,7 +193,7 @@ const dict = {
     close: "Zatvori",
   },
   rom: {
-    trigger: "Mang jekhe sastipnaske mediatores",
+    trigger: "Mang jekhe mediatores",
     title: "Mang jekhe sastipnaske mediatores katar i komuniteta",
     subtitle:
       "O sastipnasko mediatori si jekh manush katar i komuniteta so azhutinel tut bi lovengo le doktorensa, le lilensa thaj ki bolnitsa.",
@@ -337,10 +337,10 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
         type="button"
         data-mediator-trigger
         onClick={() => setIsOpen(true)}
-        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-amber-care bg-card px-5 py-2.5 text-center text-base font-semibold text-amber-care transition-[background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-amber-care-soft/40 motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-care focus-visible:ring-offset-2 sm:w-auto"
+        className="inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-amber-care bg-card px-4 py-2.5 text-center text-sm font-semibold text-amber-care press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-amber-care-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto sm:px-5 sm:text-[0.9375rem]"
       >
         <HandHelpingIcon className="h-4 w-4 shrink-0" />
-        <span>{t.trigger}</span>
+        <span className="min-w-0 truncate">{t.trigger}</span>
       </button>
 
       {/* Portal: the triage step wrapper animates transform, which would trap a fixed overlay inside the card. */}
@@ -357,7 +357,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
               <button
                 type="button"
                 onClick={handleClose}
-                className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-xl text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground"
+                className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-xl text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={t.close}
               >
                 <XIcon className="h-5 w-5" />

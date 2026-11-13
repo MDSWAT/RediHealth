@@ -544,7 +544,7 @@ export function GlobalHealthAudioPlayer({
           type="button"
           onClick={() => setIsMinimized(false)}
           aria-label={stepUi.expandAria}
-          className="inline-flex min-h-[44px] items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
         >
           <VocalCadenceBars active={isPlaying} />
           <span className="tabular-nums">
@@ -583,17 +583,17 @@ export function GlobalHealthAudioPlayer({
               )}
             </p>
             {currentChapterLabel && (
-              <span className="rounded-md bg-sapphire-soft px-1.5 py-0.5 text-[11px] font-medium text-sapphire">
+              <span className="border-l border-border pl-2 text-[11px] font-medium text-sapphire dark:text-sapphire-border">
                 {currentChapterLabel}
               </span>
             )}
             {speechEngine.isFallbackVoice() && (
-              <span className="rounded-md bg-stone-100 px-1.5 py-0.5 text-[10px] font-medium text-stone-600">
+              <span className="border-l border-border pl-2 text-[11px] font-medium text-muted-foreground">
                 {pickLocale(s.fallbackVoice, currentLang)}
               </span>
             )}
             {speechEngine.getTier() === "transcript" && (
-              <span className="rounded-md border border-amber-care/35 bg-amber-care/10 px-1.5 py-0.5 text-[11px] font-medium text-foreground">
+              <span className="border-l border-border pl-2 text-[11px] font-medium text-amber-care dark:text-amber-care-border">
                 {pickLocale(s.transcriptMode, currentLang)}
               </span>
             )}
@@ -704,7 +704,7 @@ export function GlobalHealthAudioPlayer({
           <button
             type="button"
             onClick={() => handleStepSentence(-1)}
-            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 rounded-lg border border-border bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
             aria-label={stepUi.prevSentenceAria}
           >
             <svg
@@ -726,7 +726,7 @@ export function GlobalHealthAudioPlayer({
           <button
             type="button"
             onClick={() => handleStepSentence(1)}
-            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 rounded-lg border border-border bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
             aria-label={stepUi.nextSentenceAria}
           >
             <span className="hidden tabular-nums sm:inline">{stepUi.nextLabel}</span>
@@ -750,7 +750,7 @@ export function GlobalHealthAudioPlayer({
         <button
           type="button"
           onClick={handleTogglePlay}
-          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
           aria-label={
             isPlaying
               ? pickLocale(s.pauseAria, currentLang)
@@ -795,7 +795,7 @@ export function GlobalHealthAudioPlayer({
             type="button"
             onClick={() => handleSetSpeed(0.85)}
             aria-pressed={speed === 0.85}
-            className={`inline-flex min-h-[44px] items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+            className={`inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
               speed === 0.85
                 ? "bg-card font-bold text-sapphire shadow-xs"
                 : "text-muted-foreground hover:text-foreground"
@@ -812,7 +812,7 @@ export function GlobalHealthAudioPlayer({
             type="button"
             onClick={() => handleSetSpeed(1.0)}
             aria-pressed={speed === 1.0}
-            className={`inline-flex min-h-[44px] items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+            className={`inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
               speed === 1.0
                 ? "bg-card font-bold text-sapphire shadow-xs"
                 : "text-muted-foreground hover:text-foreground"

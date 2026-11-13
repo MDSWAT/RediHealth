@@ -602,11 +602,7 @@ export function FeedbackWidget() {
           Flush against the right edge on both desktop and mobile; on mobile (< 640px),
           gently glides into the right edge past ~10% scroll and returns near the top. */}
       {!isConsultationOrPortal ? (
-        <div
-          className={`pointer-events-none fixed right-0 top-[35%] z-30 -translate-y-1/2 overflow-hidden py-4 pl-4 sm:top-1/2 ${
-            isClinicalTaskSurface ? "max-lg:hidden" : ""
-          }`}
-        >
+        <div className="pointer-events-none fixed right-0 top-[35%] z-30 -translate-y-1/2 overflow-hidden py-4 pl-4 sm:top-1/2 max-lg:hidden">
           <AnimatePresence initial={false}>
             {!inviteVisible && !modalOpen && !mobileScrollTucked ? (
               <motion.button
@@ -635,11 +631,6 @@ export function FeedbackWidget() {
                 <span className="[writing-mode:vertical-rl] rotate-180 tracking-wide whitespace-nowrap">
                   {t.compactTriggerLabel}
                 </span>
-                {answeredRatingsCount > 0 && !submitted ? (
-                  <span className="mt-0.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-sapphire text-[10px] font-bold tabular-nums text-white group-hover:bg-white group-hover:text-sapphire">
-                    {answeredRatingsCount}
-                  </span>
-                ) : null}
               </motion.button>
             ) : null}
           </AnimatePresence>
@@ -661,28 +652,20 @@ export function FeedbackWidget() {
             <div aria-hidden="true" className="h-1 w-full bg-sapphire" />
             <div className="p-4">
               <div className="flex items-start justify-between gap-2.5">
-                <div className="flex min-w-0 items-start gap-2.5">
-                  <span
-                    aria-hidden="true"
-                    className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire"
-                  >
-                    <MessageDotsIcon className="h-4.5 w-4.5" />
-                  </span>
-                  <div className="min-w-0">
-                    <h2 className="text-sm font-semibold leading-snug text-foreground dark:text-paper">
-                      {t.inviteTitle}
-                    </h2>
-                    <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground dark:text-mist">
-                      {t.inviteBody}
-                    </p>
-                  </div>
+                <div className="min-w-0">
+                  <h2 className="text-sm font-semibold leading-snug text-foreground dark:text-paper">
+                    {t.inviteTitle}
+                  </h2>
+                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground dark:text-mist">
+                    {t.inviteBody}
+                  </p>
                 </div>
 
                 <button
                   type="button"
                   onClick={snoozeInvite}
                   aria-label={t.inviteCloseAria}
-                  className="-mr-1 -mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="-mr-2 -mt-2 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <CloseIcon className="h-4 w-4" />
                 </button>
@@ -704,7 +687,7 @@ export function FeedbackWidget() {
                       type="button"
                       onClick={() => openModal(score)}
                       aria-label={t.scaleValueLabels[idx]}
-                      className="flex min-h-9 items-center justify-center rounded-lg border border-border-control/80 bg-card text-sm font-semibold tabular-nums text-foreground transition-colors duration-(--dur-fast) hover:border-sapphire hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/15 dark:bg-ink-800 dark:text-paper"
+                      className="flex min-h-11 items-center justify-center rounded-lg border border-border-control/80 bg-card text-sm font-semibold tabular-nums text-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/15 dark:bg-ink-800 dark:text-paper"
                     >
                       {score}
                     </button>
@@ -720,14 +703,14 @@ export function FeedbackWidget() {
                 <button
                   type="button"
                   onClick={snoozeInvite}
-                  className="inline-flex min-h-9 items-center rounded-lg px-2.5 text-xs font-medium text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="inline-flex min-h-11 items-center rounded-lg px-2.5 text-xs font-medium whitespace-nowrap text-muted-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {t.inviteLaterCta}
                 </button>
                 <button
                   type="button"
                   onClick={() => openModal()}
-                  className="inline-flex min-h-9 items-center gap-1.5 rounded-lg bg-sapphire px-3.5 text-xs font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-sapphire/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-sapphire px-3.5 text-xs font-semibold whitespace-nowrap text-white transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-sapphire/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <span>{t.inviteOpenCta}</span>
                   <ArrowRightIcon className="h-3.5 w-3.5" />
@@ -808,7 +791,7 @@ export function FeedbackWidget() {
                         className="group py-1 focus-visible:outline-none"
                       >
                         <span
-                          className={`block h-1.5 w-full rounded-full transition-colors duration-(--dur-base) group-focus-visible:ring-2 group-focus-visible:ring-ring ${
+                          className={`block h-1.5 w-full rounded-xs transition-colors duration-(--dur-base) group-focus-visible:ring-2 group-focus-visible:ring-ring ${
                             idx <= step ? "bg-sapphire" : "bg-border group-hover:bg-sapphire/35"
                           }`}
                         />

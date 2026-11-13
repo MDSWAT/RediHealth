@@ -57,9 +57,11 @@ export default function GlobalError({
               border: 0,
               borderRadius: "0.5rem",
               minHeight: "2.75rem",
+              maxWidth: "100%",
               padding: "0.75rem 1.5rem",
               fontSize: "1rem",
               fontWeight: 600,
+              whiteSpace: "nowrap",
               cursor: "pointer",
             }}
           >

@@ -1403,7 +1403,7 @@ export function DiabetesStepTutorialsModule({
               type="button"
               aria-pressed={isCurrentStepDone}
               onClick={() => toggleStepCompleted(currentStepKey)}
-              className={`flex min-h-[44px] shrink-0 items-center gap-2 self-start rounded-lg border px-3.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+              className={`inline-flex min-h-[44px] shrink-0 items-center gap-2 self-start whitespace-nowrap rounded-lg border px-3.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                 isCurrentStepDone
                   ? "border-live-sage/40 bg-live-sage-soft text-foreground"
                   : "border-border bg-card text-foreground hover:bg-surface-subtle"
@@ -1510,7 +1510,7 @@ export function DiabetesStepTutorialsModule({
                           className="sr-only"
                         />
                         <span
-                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-sm text-[11px] font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
                             isSelected ? "bg-foreground text-white" : "border border-foreground text-foreground"
                           }`}
                           aria-hidden="true"

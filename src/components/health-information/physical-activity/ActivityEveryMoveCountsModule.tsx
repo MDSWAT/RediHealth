@@ -30,9 +30,9 @@ const MODES: Mode[] = ["stepper", "ring"];
 
 /** Step navigation, as on every explainer: Back is a quiet text button, Next is ink-filled. */
 const BACK_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire disabled:cursor-not-allowed disabled:text-muted-foreground/50 disabled:hover:bg-transparent";
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground/50 disabled:hover:bg-transparent";
 const NEXT_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
 
 /** Day labels and minute labels share the chart's geometry, as percentages of its box. */
 const pctX = (units: number) => `${(units / ACTIVITY_VIEWBOX.width) * 100}%`;
@@ -126,7 +126,7 @@ export function ActivityEveryMoveCountsModule({
       <div
         role="tablist"
         aria-label={copy.tabsLabel}
-        className="grid grid-cols-2 gap-x-4 border-b border-border sm:flex sm:gap-x-0"
+        className="flex items-center gap-5 overflow-x-auto border-b border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6"
       >
         {MODES.map((mode) => {
           const selected = activeMode === mode;
@@ -145,7 +145,7 @@ export function ActivityEveryMoveCountsModule({
               onClick={() => setActiveMode(mode)}
               onKeyDown={onTabKeyDown}
               className={cn(
-                "-mb-px flex min-h-11 items-end gap-2 border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:mr-6",
+                "-mb-px flex min-h-11 shrink-0 items-end gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                 selected
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
@@ -180,7 +180,7 @@ export function ActivityEveryMoveCountsModule({
                     onClick={() => selectStage(index)}
                     onKeyDown={onStageKeyDown}
                     className={cn(
-                      "flex min-h-[60px] items-start gap-3 px-3.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire",
+                      "flex min-h-[60px] items-start gap-3 px-3.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                       selected ? "bg-surface-subtle text-foreground" : "bg-card text-foreground hover:bg-surface-subtle/50",
                     )}
                   >

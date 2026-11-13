@@ -75,7 +75,7 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
           <li key={item.title} className="flex gap-3">
             <span
               aria-hidden="true"
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sapphire-soft text-sm font-semibold tabular-nums text-sapphire"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-sm font-semibold tabular-nums text-sapphire"
             >
               {idx + 1}
             </span>

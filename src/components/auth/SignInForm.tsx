@@ -26,7 +26,7 @@ const TOO_MANY: Record<Lang, string> = {
 };
 
 const inputClass =
-  "mt-1.5 block h-12 w-full rounded-lg border border-border bg-card px-3.5 text-base text-foreground " +
+  "mt-1.5 block h-12 w-full rounded-lg border border-border-control bg-card px-3.5 text-base text-foreground " +
   "placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 " +
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
   "aria-[invalid=true]:border-amber-care";
@@ -181,8 +181,8 @@ export function SignInForm({
             </p>
           )}
           <div className="mt-7">
-            <Button type="submit" size="lg" disabled={isSubmitting}>
-              {isSubmitting ? form.sendingCode : form.emailMeCode}
+            <Button type="submit" variant="action" size="lg" disabled={isSubmitting}>
+              <span className="min-w-0 truncate">{isSubmitting ? form.sendingCode : form.emailMeCode}</span>
             </Button>
           </div>
         </form>
@@ -221,19 +221,19 @@ export function SignInForm({
             </p>
           ) : null}
           <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Button type="submit" size="lg" disabled={isSubmitting}>
-              {isSubmitting ? form.signingIn : form.continueLabel}
+            <Button type="submit" variant="action" size="lg" disabled={isSubmitting}>
+              <span className="min-w-0 truncate">{isSubmitting ? form.signingIn : form.continueLabel}</span>
             </Button>
             <button
               type="button"
-              className="min-h-[44px] text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="min-h-[44px] max-w-full whitespace-nowrap text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               onClick={() => {
                 setCode("");
                 setError("");
                 setStage("email");
               }}
             >
-              {form.useDifferentEmail}
+              <span className="min-w-0 truncate">{form.useDifferentEmail}</span>
             </button>
           </div>
         </form>
@@ -270,7 +270,7 @@ export function SignInForm({
         ) : null}
         <div className="mt-4">
           <Button type="submit" size="md" disabled={isRequestingPortal}>
-            {isRequestingPortal ? form.portalRecoverySending : form.portalRecoveryButton}
+            <span className="min-w-0 truncate">{isRequestingPortal ? form.portalRecoverySending : form.portalRecoveryButton}</span>
           </Button>
         </div>
       </form>
@@ -293,8 +293,8 @@ export function SignInForm({
               })
             }
           >
-            <GoogleIcon className="h-5 w-5" />
-            {form.continueWithGoogle}
+            <GoogleIcon className="h-5 w-5 shrink-0" />
+            <span className="min-w-0 truncate">{form.continueWithGoogle}</span>
           </Button>
         </>
       ) : null}

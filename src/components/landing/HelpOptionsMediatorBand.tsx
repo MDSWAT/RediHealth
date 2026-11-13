@@ -29,7 +29,7 @@ export function HelpOptionsMediatorBand({ className }: HelpOptionsMediatorBandPr
         <div className="flex min-w-0 items-start gap-3.5 sm:items-center sm:gap-4">
           <IconTile icon={NAV_LINK_ICONS[MEDIATOR_HREF]} tone="amber" size={40} />
           <div className="min-w-0 flex-1">
-            <h3 className="text-title text-foreground dark:text-paper">
+            <h3 className="text-balance text-title text-foreground dark:text-paper">
               {mb.question}
             </h3>
             <p className="mt-0.5 text-pretty text-body text-muted-foreground dark:text-mist">
@@ -40,7 +40,7 @@ export function HelpOptionsMediatorBand({ className }: HelpOptionsMediatorBandPr
 
         <Link
           href={withLangPrefix(MEDIATOR_HREF, lang)}
-          className="press-row group inline-flex min-h-11 shrink-0 self-start items-center justify-center gap-2 rounded-(--radius-control) border border-border-control bg-card px-4 py-2 text-base font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:self-center dark:border-white/40 dark:bg-ink-800 dark:text-sapphire-border dark:hover:border-white/60 dark:hover:bg-white/10 dark:focus-visible:ring-paper"
+          className="press-row group inline-flex min-h-11 shrink-0 self-start items-center justify-center gap-2 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-4 py-2 text-base font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:self-center dark:border-white/40 dark:bg-ink-800 dark:text-sapphire-border dark:hover:border-white/60 dark:hover:bg-white/10 dark:focus-visible:ring-paper"
         >
           {mb.cta}
         </Link>
