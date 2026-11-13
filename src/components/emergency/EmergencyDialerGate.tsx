@@ -110,7 +110,7 @@ export function EmergencyDialerGate({
               type="button"
               onClick={() => onOpenChange(false)}
               aria-label={e.closeWindowAria}
-              className="-mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row -mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
             >
               <CloseIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -125,7 +125,7 @@ export function EmergencyDialerGate({
             <a
               href="tel:112"
               onClick={() => onOpenChange(false)}
-              className="flex min-h-14 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="press-on-dark flex min-h-14 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
             >
               <PhoneIcon className="h-5 w-5" aria-hidden="true" />
               <span>{e.openDialerButton}</span>
@@ -134,7 +134,7 @@ export function EmergencyDialerGate({
             <button
               type="button"
               onClick={() => onOpenChange(false)}
-              className="flex min-h-12 whitespace-nowrap w-full items-center justify-center rounded-lg border border-border bg-card text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row flex min-h-12 whitespace-nowrap w-full items-center justify-center rounded-lg border border-border-control bg-card text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
             >
               {e.cancelButton}
             </button>

@@ -2309,7 +2309,7 @@ export function HealthCheckExplorer() {
           <div
             className={
               stageVisibleInLayout
-                ? "lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:overscroll-contain lg:px-6 lg:pb-6 lg:pt-1"
+                ? "lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:overscroll-auto lg:px-6 lg:pb-6 lg:pt-1"
                 : undefined
             }
           >
@@ -2933,7 +2933,7 @@ export function HealthCheckExplorer() {
 
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
                   {/* Left column: Primary care guidance, what it may mean, and care routing */}
-                  <div className="space-y-6 lg:col-span-7">
+                  <div className="space-y-6 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-span-7 lg:-mx-1 lg:max-h-[calc(100dvh-var(--chrome-h,0px)-2rem)] lg:overflow-y-auto lg:overscroll-auto lg:px-1 lg:pr-2 lg:pb-3 print:static print:max-h-none print:overflow-visible">
                     {isEmergency ? (
                       <div className={dangerPanel} role="alert">
                         <h3 className="text-xl font-semibold leading-snug text-foreground">
@@ -3059,8 +3059,8 @@ export function HealthCheckExplorer() {
                   </div>
 
                   {/* Right column: Doctor Summary, Anatomical Pain Diagram, PDF & QR Handoff */}
-                  {/* Desktop: the summary stays in view beside the advice and scrolls on its own when it is taller than the screen. */}
-                  <div className="border-t border-border pt-6 lg:sticky lg:top-[calc(var(--chrome-h)+1rem)] lg:col-span-5 lg:max-h-[calc(100dvh-var(--chrome-h)-2rem)] lg:overflow-y-auto lg:overscroll-contain lg:border-l lg:border-t-0 lg:pl-8 lg:pr-2 lg:pt-0 print:static print:max-h-none print:overflow-visible">
+                  {/* Desktop: both columns stay in view and scroll on their own when taller than the screen, chaining smoothly to page scroll. */}
+                  <div className="border-t border-border pt-6 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-span-5 lg:max-h-[calc(100dvh-var(--chrome-h,0px)-2rem)] lg:overflow-y-auto lg:overscroll-auto lg:border-l lg:border-t-0 lg:pl-8 lg:pr-2 lg:pb-3 lg:pt-0 print:static print:max-h-none print:overflow-visible">
                     <h3 className={subHeading}>{c.summaryFold}</h3>
                     <TriageSummaryCard
                       bare

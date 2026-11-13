@@ -321,7 +321,7 @@ export function DoctorRecommendationPublisher({
             value={primaryDiagnosis}
             onChange={(e) => setPrimaryDiagnosis(e.target.value)}
             placeholder={copy.diagnosisPlaceholder}
-            className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs sm:text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+            className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -354,12 +354,12 @@ export function DoctorRecommendationPublisher({
               onChange={(e) => setNewStepText(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddStep())}
               placeholder={copy.newStepPlaceholder}
-              className="flex-1 min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+              className="flex-1 min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
             <button
               type="button"
               onClick={handleAddStep}
-              className="min-h-[44px] whitespace-nowrap rounded-lg border border-border bg-muted px-4 text-xs font-semibold text-foreground hover:bg-card"
+              className="press-row min-h-[44px] whitespace-nowrap rounded-lg border border-border-control bg-muted px-4 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.addStep}
             </button>
@@ -404,7 +404,7 @@ export function DoctorRecommendationPublisher({
               type="date"
               value={controlDate}
               onChange={(e) => setControlDate(e.target.value)}
-              className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs sm:text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
@@ -418,7 +418,7 @@ export function DoctorRecommendationPublisher({
                 type="checkbox"
                 checked={sendSms}
                 onChange={(e) => setSendSms(e.target.checked)}
-                className="h-4 w-4 rounded border-border text-sapphire focus:ring-sapphire"
+                className="h-5 w-5 rounded border-border-control accent-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               />
               <label htmlFor="sendSmsRec" className="text-xs text-foreground font-medium cursor-pointer">
                 {copy.smsLabel}
@@ -432,7 +432,7 @@ export function DoctorRecommendationPublisher({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:opacity-60 transition-colors"
+            className="press-solid inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60"
           >
             {isSubmitting ? copy.sending : copy.submit}
           </button>

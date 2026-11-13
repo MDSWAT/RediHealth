@@ -190,7 +190,7 @@ export function BookingSmsConfirmation({
   };
 
   return (
-    <div className="max-w-2xl rounded-xl border border-border bg-card p-6 sm:p-8">
+    <div className="w-full rounded-xl border border-border bg-card p-6 sm:p-8">
       <div className="flex items-start gap-3">
         <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
         <h2 ref={headingRef} tabIndex={-1} className="text-balance text-2xl font-semibold tracking-tight text-foreground focus:outline-none">{copy.title}</h2>

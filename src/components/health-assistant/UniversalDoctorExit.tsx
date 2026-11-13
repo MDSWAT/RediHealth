@@ -87,14 +87,14 @@ ru: {
       <div className="mt-4 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
         <Link
           href={consultUrl}
-          className={`${primaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}
+          className={`group ${primaryButton} whitespace-nowrap text-sm duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none sm:text-[0.9375rem]`}
         >
           <StethoscopeIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
           <span className="min-w-0 truncate">{t.bookOnline}</span>
         </Link>
         <Link
           href={onCallUrl}
-          className={`${secondaryButton} whitespace-nowrap text-sm sm:text-[0.9375rem]`}
+          className={`group ${secondaryButton} whitespace-nowrap text-sm duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none sm:text-[0.9375rem]`}
         >
           <span className="min-w-0 truncate">{t.checkOnCall}</span>
         </Link>

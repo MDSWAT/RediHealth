@@ -519,7 +519,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder={copy.namePlaceholder}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
@@ -533,7 +533,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 placeholder={copy.agePlaceholder}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
@@ -551,10 +551,10 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                     type="button"
                     aria-pressed={isSelected}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`min-h-[48px] flex items-center gap-2.5 whitespace-nowrap rounded-lg border p-3 text-left text-xs font-medium transition-colors duration-[var(--dur-fast)] ${
+                    className={`press-row min-h-[48px] flex items-center gap-2.5 whitespace-nowrap rounded-lg border p-3 text-left text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                       isSelected
                         ? "border-sapphire bg-sapphire text-white shadow-xs font-semibold"
-                        : "border-border bg-background text-foreground hover:bg-muted"
+                        : "border-border-control bg-background text-foreground hover:bg-muted"
                     }`}
                   >
                     <cat.Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -575,7 +575,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               value={complaintText}
               onChange={(e) => setComplaintText(e.target.value)}
               placeholder={copy.complaintPlaceholder}
-              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+              className="w-full rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
@@ -686,7 +686,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               value={familyPhone}
               onChange={(e) => setFamilyPhone(e.target.value)}
               placeholder="0721 000 000"
-              className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
             <p className="mt-1 text-[11px] text-muted-foreground">
               {copy.phoneHelp}
@@ -701,7 +701,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 aria-label={copy.countyLabel}
                 value={county}
                 onChange={(e) => setCounty(e.target.value)}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground"
+                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
             <div>
@@ -711,7 +711,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 aria-label={copy.localityLabel}
                 value={locality}
                 onChange={(e) => setLocality(e.target.value)}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground"
+                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>

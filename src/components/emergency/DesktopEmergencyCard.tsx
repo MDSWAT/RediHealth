@@ -53,7 +53,7 @@ export function DesktopEmergencyCard({
           type="button"
           onClick={onDismiss}
           aria-label={e.closeWindowAria}
-          className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="press-row absolute right-3 top-3 flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-lg border border-transparent text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:border-border-control hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
         >
           <CloseIcon className="h-5 w-5" aria-hidden="true" />
         </button>
@@ -70,7 +70,7 @@ export function DesktopEmergencyCard({
             <p className="mt-0.5 text-sm text-muted-foreground">{e.desktopDialSubtitle}</p>
           </div>
 
-          <p className="text-4xl font-semibold tracking-tight text-primary">112</p>
+          <p className="text-4xl font-semibold tracking-tight tabular-nums text-primary">112</p>
 
           <p className="text-sm leading-relaxed text-muted-foreground">{e.desktopFreeNote}</p>
 

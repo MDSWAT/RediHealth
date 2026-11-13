@@ -102,7 +102,7 @@ export function FilterDropdown({
         <div
           id={panelId}
           className={cn(
-            "fhs-enter absolute top-full z-30 mt-2 max-h-[min(70dvh,28rem)] w-[min(calc(100vw-2.5rem),24rem)] overflow-y-auto overscroll-contain rounded-2xl border border-stone-200/90 bg-card/98 p-2 shadow-xl shadow-ink-950/10 backdrop-blur-md sm:w-88 dark:border-stone-800 dark:bg-ink-900/98",
+            "fhs-enter absolute top-full z-30 mt-2 max-h-[min(70dvh,28rem)] w-[min(calc(100vw-2.5rem),24rem)] overflow-y-auto overscroll-contain rounded-2xl border border-border-control/80 bg-card/98 p-2 shadow-xl shadow-ink-950/10 backdrop-blur-md sm:w-88 dark:border-white/12 dark:bg-ink-900/98",
             align === "right" ? "right-0" : "left-0",
           )}
           onClick={(event) => {
@@ -136,7 +136,7 @@ export function FilterMenuOption({
       aria-pressed={selected}
       onClick={onSelect}
       className={cn(
-        "flex min-h-11 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-lg px-3 py-2 text-left text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "press-row flex min-h-11 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-lg px-3 py-2 text-left text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         selected
           ? "bg-sapphire-soft font-semibold text-sapphire dark:bg-white/12 dark:text-paper"
           : "font-medium text-foreground hover:bg-muted",

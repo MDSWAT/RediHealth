@@ -50,7 +50,7 @@ export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }
       />
 
       <Container className="relative z-10 flex flex-1 flex-col justify-center">
-        <div className="mx-auto w-full max-w-[460px] py-6 sm:py-12">
+        <div className="fhs-enter mx-auto w-full max-w-[460px] py-6 sm:py-12">
           <Link
             href={withLangPrefix("/", lang)}
             className="press-row -ml-2 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-(--radius-control) px-2 text-base font-semibold text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-mist dark:hover:text-paper"

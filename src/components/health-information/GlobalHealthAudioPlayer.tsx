@@ -516,7 +516,7 @@ export function GlobalHealthAudioPlayer({
               ? pickLocale(s.pauseAria, currentLang)
               : pickLocale(s.playAria, currentLang)
           }
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-sapphire text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="press-solid flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-sapphire text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           {isPlaying ? (
             <svg
@@ -544,7 +544,7 @@ export function GlobalHealthAudioPlayer({
           type="button"
           onClick={() => setIsMinimized(false)}
           aria-label={stepUi.expandAria}
-          className="inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="press-row inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <VocalCadenceBars active={isPlaying} />
           <span className="tabular-nums">
@@ -604,7 +604,7 @@ export function GlobalHealthAudioPlayer({
           <button
             type="button"
             onClick={() => setIsMinimized(true)}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="press-row flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={pickLocale(s.minimizeAria, currentLang)}
           >
             <svg
@@ -622,7 +622,7 @@ export function GlobalHealthAudioPlayer({
           <button
             type="button"
             onClick={handleClose}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="press-row flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={pickLocale(s.closeAria, currentLang)}
           >
             <CloseIcon className="h-5 w-5" />
@@ -677,7 +677,7 @@ export function GlobalHealthAudioPlayer({
               seekTo(100);
             }
           }}
-          className="flex h-11 w-full cursor-pointer touch-none select-none items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="flex h-11 w-full cursor-pointer touch-none select-none items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           title={pickLocale(s.scrubberTitle, currentLang)}
         >
           <div className="relative h-2 w-full overflow-hidden rounded-sm bg-muted">
@@ -704,7 +704,7 @@ export function GlobalHealthAudioPlayer({
           <button
             type="button"
             onClick={() => handleStepSentence(-1)}
-            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="press-row inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-border-control bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={stepUi.prevSentenceAria}
           >
             <svg
@@ -726,7 +726,7 @@ export function GlobalHealthAudioPlayer({
           <button
             type="button"
             onClick={() => handleStepSentence(1)}
-            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="press-row inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-border-control bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={stepUi.nextSentenceAria}
           >
             <span className="hidden tabular-nums sm:inline">{stepUi.nextLabel}</span>
@@ -750,7 +750,7 @@ export function GlobalHealthAudioPlayer({
         <button
           type="button"
           onClick={handleTogglePlay}
-          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="press-solid inline-flex min-h-[48px] min-w-[48px] items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           aria-label={
             isPlaying
               ? pickLocale(s.pauseAria, currentLang)
@@ -789,13 +789,13 @@ export function GlobalHealthAudioPlayer({
         <div
           role="group"
           aria-label={pickLocale(s.speedGroupAria, currentLang)}
-          className="inline-flex items-center gap-1 rounded-lg border border-border bg-muted/40 p-1"
+          className="inline-flex items-center gap-1 rounded-lg border border-border-control bg-muted/40 p-1"
         >
           <button
             type="button"
             onClick={() => handleSetSpeed(0.85)}
             aria-pressed={speed === 0.85}
-            className={`inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+            className={`press-row inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               speed === 0.85
                 ? "bg-card font-bold text-sapphire shadow-xs"
                 : "text-muted-foreground hover:text-foreground"
@@ -812,7 +812,7 @@ export function GlobalHealthAudioPlayer({
             type="button"
             onClick={() => handleSetSpeed(1.0)}
             aria-pressed={speed === 1.0}
-            className={`inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+            className={`press-row inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               speed === 1.0
                 ? "bg-card font-bold text-sapphire shadow-xs"
                 : "text-muted-foreground hover:text-foreground"

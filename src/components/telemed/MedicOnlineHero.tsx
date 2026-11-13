@@ -183,15 +183,15 @@ export function MedicOnlineHero() {
   const stopLabel = voiceStrings.stopAudio[lang] ?? voiceStrings.stopAudio.ro;
   // Outside duty hours the booking is the useful action, so it takes the primary style.
   const { isOnDuty } = useOnCallStatus();
-  const primaryStyle = "bg-sapphire text-white hover:bg-sapphire-light";
-  const secondaryStyle = "border border-border-control bg-background text-foreground hover:bg-muted";
+  const primaryStyle = "press-solid motion-reduce:transition-none bg-sapphire text-white hover:bg-sapphire-light";
+  const secondaryStyle = "press-row motion-reduce:transition-none border border-border-control bg-background text-foreground hover:bg-muted";
 
   return (
     <section className="border-b border-border bg-background py-10 sm:py-16">
       <Container>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-3xl">
-            <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">{mp.heroTitle}</h1>
+            <h1 className="text-balance text-page text-foreground">{mp.heroTitle}</h1>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">{mp.heroSubtitle}</p>
           </div>
           {voice.available && (

@@ -386,7 +386,11 @@ function MapController({
     if (userLocation && isUserWithinLocalRange(userLocation, institutes)) {
       framed.push([userLocation.lat, userLocation.lng]);
     }
-    map.fitBounds(L.latLngBounds(framed), { padding: [48, 48], maxZoom: 15, animate: !prefersReducedMotion() });
+    map.fitBounds(L.latLngBounds(framed), {
+      padding: frameAll ? [24, 24] : [48, 48],
+      maxZoom: 15,
+      animate: !prefersReducedMotion(),
+    });
   }, [institutes, userLocation, frameAll, map]);
 
   useEffect(() => {
@@ -481,6 +485,8 @@ export default function InstitutesMapInner({
       <MapContainer
         center={center}
         zoom={13}
+        zoomSnap={0.25}
+        zoomDelta={0.5}
         scrollWheelZoom={false}
         attributionControl={false}
         zoomAnimation={!prefersReducedMotion()}

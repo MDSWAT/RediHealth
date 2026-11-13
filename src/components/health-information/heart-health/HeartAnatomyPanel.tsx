@@ -50,7 +50,7 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
             aria-pressed={!paused}
             aria-label={paused ? copy.play : copy.pause}
             title={paused ? copy.play : copy.pause}
-            className="absolute right-0 top-0 inline-flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:hidden"
+            className="press-row absolute right-0 top-0 inline-flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:hidden motion-reduce:transition-none"
           >
             {paused ? (
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -83,7 +83,7 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
                     onClick={() => toggle(part.id)}
                     aria-expanded={open}
                     aria-controls={detailId}
-                    className="flex min-h-[44px] w-full items-start gap-3 rounded-lg px-2.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                    className="press-row flex min-h-[44px] w-full items-start gap-3 rounded-lg px-2.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <span
                       aria-hidden="true"
@@ -102,13 +102,19 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
                       </span>
                     </span>
                   </button>
-                  <p
+                  <div
                     id={detailId}
-                    hidden={!open}
-                    className="pb-3 pl-11 pr-2.5 text-sm leading-relaxed text-foreground"
+                    aria-hidden={!open}
+                    className={`grid transition-[grid-template-rows,opacity] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                      open ? "mt-2 grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0"
+                    }`}
                   >
-                    <strong className="font-semibold">{copy.whenHighLabel}</strong> {part.whenHigh[lang]}
-                  </p>
+                    <div className="min-h-0 overflow-hidden">
+                      <p className="pb-3 pl-11 pr-2.5 text-sm leading-relaxed text-foreground">
+                        <strong className="font-semibold">{copy.whenHighLabel}</strong> {part.whenHigh[lang]}
+                      </p>
+                    </div>
+                  </div>
                 </li>
               );
             })}

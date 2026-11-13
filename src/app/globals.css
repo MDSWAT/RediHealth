@@ -837,6 +837,34 @@ h2 {
   }
 }
 
+/* Calm grid-row collapse/expand without layout thrash */
+.calm-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows var(--dur-base) var(--ease-out-calm),
+    opacity var(--dur-fast) var(--ease-out-calm);
+  pointer-events: none;
+}
+
+.calm-collapse[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.calm-collapse-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calm-collapse {
+    transition: none !important;
+  }
+}
+
 /* ---------- Print stylesheet (PDF & paper handouts) ---------- */
 @media print {
   @page {
@@ -965,6 +993,10 @@ h2 {
 /* ---------- In-app Calm Motion & Large-Print Fridge Sheet helpers ---------- */
 html[data-calm-motion] {
   scroll-behavior: auto !important;
+}
+
+html[data-calm-motion] .calm-collapse {
+  transition: none !important;
 }
 
 html[data-calm-motion] *,

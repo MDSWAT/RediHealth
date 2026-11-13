@@ -489,7 +489,7 @@ export function TopicDetailPageContent({
                 <button
                   type="button"
                   onClick={() => setOpenDrawer("dictionary")}
-                  className="inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+                  className="press-solid inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   {ui.dualGlossaryCta}
                 </button>
@@ -507,7 +507,7 @@ export function TopicDetailPageContent({
                 <button
                   type="button"
                   onClick={() => setOpenDrawer("romanes")}
-                  className="inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                  className="press-row inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {ui.romanesGlossaryCta}
                 </button>

@@ -29,6 +29,10 @@ export type FindHelpCopy = {
   distantLocationNotice: (country: string) => string;
   showingCountry: (country: string) => string;
   nearCity: (city: string) => string;
+  suggestedByLanguage: (city: string, country: string) => string;
+  suggestedByRegion: (city: string, country: string) => string;
+  quickSuggestionsLabel: string;
+  wholeCountryOption: (country: string) => string;
   searchThisArea: string;
   loading: string;
   loadError: string;
@@ -157,6 +161,10 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
 "distantLocationNotice": (country) => `Вы находитесь далеко от выбранной страны: ${country}.`,
 "showingCountry": (country) => `Показаны места: ${country}`,
 "nearCity": (city) => `Рядом с городом ${city}`,
+"suggestedByLanguage": (city, country) => `Предложено по языку: ${city}, ${country}`,
+"suggestedByRegion": (city, country) => `Предложено для вашего региона: ${city}, ${country}`,
+"quickSuggestionsLabel": "Быстрый выбор места",
+"wholeCountryOption": (country) => `Вся страна: ${country}`,
 "mapLegendLabel": "Обозначения карты",
 "legendPlace": "Медицинское учреждение",
 "legendEmergency": "Отделение неотложной помощи",
@@ -251,6 +259,10 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       `There are no health services near you. Showing places in ${country}.`,
     showingCountry: (country) => `Places in ${country}`,
     nearCity: (city) => `Near ${city}`,
+    suggestedByLanguage: (city, country) => `Suggested for this language: ${city}, ${country}`,
+    suggestedByRegion: (city, country) => `Suggested for your region: ${city}, ${country}`,
+    quickSuggestionsLabel: "Quick location switch",
+    wholeCountryOption: (country) => `All of ${country}`,
     searchThisArea: "Search this area",
     loading: "Loading places…",
     loadError: "The places did not load. Try again.",
@@ -333,6 +345,10 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       `Nu sunt servicii medicale lângă tine. Îți arătăm locuri din ${country}.`,
     showingCountry: (country) => `Locuri din ${country}`,
     nearCity: (city) => `Lângă ${city}`,
+    suggestedByLanguage: (city, country) => `Sugerat după limbă: ${city}, ${country}`,
+    suggestedByRegion: (city, country) => `Sugerat pentru zona ta: ${city}, ${country}`,
+    quickSuggestionsLabel: "Schimbă rapid zona",
+    wholeCountryOption: (country) => `Toată țara: ${country}`,
     searchThisArea: "Caută în această zonă",
     loading: "Se încarcă locurile…",
     loadError: "Locurile nu s-au încărcat. Încearcă din nou.",
@@ -422,6 +438,10 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       `Nuk ka shërbime shëndetësore pranë teje. Po të tregojmë vende në ${country}.`,
     showingCountry: (country) => `Vende në ${country}`,
     nearCity: (city) => `Pranë ${city}`,
+    suggestedByLanguage: (city, country) => `Sugjeruar sipas gjuhës: ${city}, ${country}`,
+    suggestedByRegion: (city, country) => `Sugjeruar për zonën tënde: ${city}, ${country}`,
+    quickSuggestionsLabel: "Ndrysho shpejt zonën",
+    wholeCountryOption: (country) => `Gjithë shteti: ${country}`,
     searchThisArea: "Kërko në këtë zonë",
     loading: "Po ngarkohen vendet…",
     loadError: "Vendet nuk u ngarkuan. Provo përsëri.",
@@ -504,6 +524,10 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       `Non ci sono servizi sanitari vicino a te. Ti mostriamo i posti in ${country}.`,
     showingCountry: (country) => `Posti in ${country}`,
     nearCity: (city) => `Vicino a ${city}`,
+    suggestedByLanguage: (city, country) => `Suggerito per la lingua: ${city}, ${country}`,
+    suggestedByRegion: (city, country) => `Suggerito per la tua zona: ${city}, ${country}`,
+    quickSuggestionsLabel: "Cambia zona rapidamente",
+    wholeCountryOption: (country) => `Tutto il paese: ${country}`,
     searchThisArea: "Cerca in quest'area",
     loading: "Caricamento dei posti…",
     loadError: "I posti non si sono caricati. Riprova.",
@@ -586,6 +610,10 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       `U tvojoj blizini nema zdravstvenih usluga. Prikazujemo mjesta u državi: ${country}.`,
     showingCountry: (country) => `Mjesta u državi: ${country}`,
     nearCity: (city) => `U blizini: ${city}`,
+    suggestedByLanguage: (city, country) => `Predloženo prema jeziku: ${city}, ${country}`,
+    suggestedByRegion: (city, country) => `Predloženo za tvoju regiju: ${city}, ${country}`,
+    quickSuggestionsLabel: "Brza promjena područja",
+    wholeCountryOption: (country) => `Cijela država: ${country}`,
     searchThisArea: "Pretraži ovo područje",
     loading: "Učitavanje mjesta…",
     loadError: "Mjesta se nisu učitala. Pokušaj ponovno.",
@@ -668,6 +696,10 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       `Nane sastipaske thana pashe tute. Sikavas tuke thana ando ${country}.`,
     showingCountry: (country) => `Thana ando ${country}`,
     nearCity: (city) => `Pashe ${city}`,
+    suggestedByLanguage: (city, country) => `Sikavdo pala chhib: ${city}, ${country}`,
+    suggestedByRegion: (city, country) => `Sikavdo vash cho than: ${city}, ${country}`,
+    quickSuggestionsLabel: "Paruv sigo o than",
+    wholeCountryOption: (country) => `Sasto them: ${country}`,
     searchThisArea: "Rod ande kado than",
     loading: "Pharen pes e thana…",
     loadError: "E thana na pherdile. Ker maj jekh data.",

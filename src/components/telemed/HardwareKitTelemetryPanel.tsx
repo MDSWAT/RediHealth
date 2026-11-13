@@ -484,7 +484,7 @@ export function HardwareKitTelemetryPanel({
           type="button"
           onClick={handlePairBluetooth}
           disabled={bluetoothConnecting}
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-border bg-background px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted shadow-xs transition-colors shrink-0"
+          className="press-row inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-background px-4 py-2 text-sm font-semibold text-foreground hover:bg-muted shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring shrink-0"
         >
           {bluetoothConnecting ? copy.searchingSensor : copy.connectSensor}
         </button>
@@ -547,7 +547,7 @@ export function HardwareKitTelemetryPanel({
                     type="button"
                     aria-label={copy.decrease(copy.nameSystolic)}
                     onClick={() => setSystolic((v) => Math.max(60, v - 5))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     -
                   </button>
@@ -558,7 +558,7 @@ export function HardwareKitTelemetryPanel({
                     type="button"
                     aria-label={copy.increase(copy.nameSystolic)}
                     onClick={() => setSystolic((v) => Math.min(260, v + 5))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     +
                   </button>
@@ -572,7 +572,7 @@ export function HardwareKitTelemetryPanel({
                     type="button"
                     aria-label={copy.decrease(copy.nameDiastolic)}
                     onClick={() => setDiastolic((v) => Math.max(40, v - 5))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     -
                   </button>
@@ -583,7 +583,7 @@ export function HardwareKitTelemetryPanel({
                     type="button"
                     aria-label={copy.increase(copy.nameDiastolic)}
                     onClick={() => setDiastolic((v) => Math.min(150, v + 5))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     +
                   </button>
@@ -607,7 +607,7 @@ export function HardwareKitTelemetryPanel({
                     type="button"
                     aria-label={copy.decrease(copy.nameSpo2)}
                     onClick={() => setSpo2((v) => Math.max(50, v - 1))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     -
                   </button>
@@ -618,7 +618,7 @@ export function HardwareKitTelemetryPanel({
                     type="button"
                     aria-label={copy.increase(copy.nameSpo2)}
                     onClick={() => setSpo2((v) => Math.min(100, v + 1))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     +
                   </button>
@@ -632,7 +632,7 @@ export function HardwareKitTelemetryPanel({
                     type="button"
                     aria-label={copy.decrease(copy.namePulse)}
                     onClick={() => setPulse((v) => Math.max(30, v - 2))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     -
                   </button>
@@ -643,7 +643,7 @@ export function HardwareKitTelemetryPanel({
                     type="button"
                     aria-label={copy.increase(copy.namePulse)}
                     onClick={() => setPulse((v) => Math.min(220, v + 2))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     +
                   </button>
@@ -662,7 +662,7 @@ export function HardwareKitTelemetryPanel({
                 aria-label={copy.glucoseContext}
                 value={glucoseContext}
                 onChange={(e) => setGlucoseContext(e.target.value as "fasting" | "postprandial" | "random")}
-                className="text-xs rounded-md border border-border bg-background px-2 py-1 text-foreground"
+                className="min-h-[44px] rounded-md border border-border-control bg-background px-2 py-1 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="random">{copy.glucoseRandom}</option>
                 <option value="fasting">{copy.glucoseFasting}</option>
@@ -674,7 +674,7 @@ export function HardwareKitTelemetryPanel({
                 type="button"
                 aria-label={copy.decrease(copy.nameGlucose)}
                 onClick={() => setGlucose((v) => Math.max(20, v - 5))}
-                className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 -
               </button>
@@ -685,7 +685,7 @@ export function HardwareKitTelemetryPanel({
                 type="button"
                 aria-label={copy.increase(copy.nameGlucose)}
                 onClick={() => setGlucose((v) => Math.min(600, v + 5))}
-                className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 +
               </button>
@@ -702,7 +702,7 @@ export function HardwareKitTelemetryPanel({
                 type="button"
                 aria-label={copy.decrease(copy.nameTemperature)}
                 onClick={() => setTemperature((v) => Number((Math.max(32, v - 0.2)).toFixed(1)))}
-                className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 -
               </button>
@@ -713,7 +713,7 @@ export function HardwareKitTelemetryPanel({
                 type="button"
                 aria-label={copy.increase(copy.nameTemperature)}
                 onClick={() => setTemperature((v) => Number((Math.min(43, v + 0.2)).toFixed(1)))}
-                className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-base font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 +
               </button>
@@ -732,7 +732,7 @@ export function HardwareKitTelemetryPanel({
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder={copy.notesPlaceholder}
-            className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+            className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -740,7 +740,7 @@ export function HardwareKitTelemetryPanel({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:opacity-60 transition-colors"
+          className="press-solid inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60"
         >
           {isSubmitting ? copy.submitting : copy.submit}
         </button>

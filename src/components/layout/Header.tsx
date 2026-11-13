@@ -364,15 +364,29 @@ export function Header() {
                   onClick={() => setOpenHeaderMenu(null)}
                   title={portalLink.label}
                   aria-label={portalLink.label}
+                  aria-current={isPortalActive ? "page" : undefined}
                   className={cn(
-                    "press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg px-0 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+                    "press-row relative inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg px-0 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
                     isTransparent
-                      ? "text-paper/85 hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
-                      : "text-foreground/80 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
+                      ? isPortalActive
+                        ? "font-semibold text-white focus-visible:ring-paper/70"
+                        : "text-paper/85 hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
+                      : isPortalActive
+                        ? "bg-sapphire-soft/50 text-sapphire hover:bg-sapphire-soft focus-visible:ring-ring dark:bg-white/10 dark:text-paper dark:hover:bg-white/15 dark:focus-visible:ring-paper"
+                        : "text-foreground/80 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
                   )}
                 >
                   <UserIcon className="h-5 w-5 shrink-0" />
                   <span className="sr-only">{portalLink.label}</span>
+                  {isPortalActive && (
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "absolute bottom-0 left-2 right-2 h-0.5",
+                        isTransparent ? "bg-paper" : "bg-sapphire dark:bg-paper",
+                      )}
+                    />
+                  )}
                 </Link>
 
                 {/* Split "Start here" CTA + accessible mediator disclosure toggle */}
@@ -387,7 +401,7 @@ export function Header() {
                 >
                   <div
                     className={cn(
-                      "inline-flex items-center rounded-xl border shadow-xs transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:shadow-md",
+                      "inline-flex items-center rounded-xl border shadow-xs transition-[background-color,border-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:shadow-md",
                       isTransparent
                         ? "border-transparent bg-paper text-foreground hover:bg-white"
                         : "border-ink-950/10 bg-ink-950 text-white hover:bg-ink-900 dark:border-white/10 dark:bg-paper dark:text-ink-950 dark:hover:bg-white",
@@ -397,10 +411,10 @@ export function Header() {
                       href={withLangPrefix("/health-assistant#triage", lang)}
                       onClick={() => setOpenHeaderMenu(null)}
                       className={cn(
-                        "inline-flex min-h-11 items-center whitespace-nowrap rounded-l-xl pl-4 pr-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                        "inline-flex min-h-11 items-center whitespace-nowrap rounded-l-xl pl-4 pr-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         isTransparent
-                          ? "hover:text-sapphire"
-                          : "hover:text-white/85 dark:hover:text-ink-950/80",
+                          ? "press-row hover:text-sapphire"
+                          : "press-on-dark hover:text-white/85 dark:hover:text-ink-950/80",
                       )}
                     >
                       <span>{tHeader.startHere}</span>
@@ -410,7 +424,7 @@ export function Header() {
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "h-4 w-px shrink-0 transition-opacity duration-[var(--dur-fast)]",
+                        "h-4 w-px shrink-0 transition-opacity duration-[var(--dur-fast)] motion-reduce:transition-none",
                         isTransparent ? "bg-foreground/15" : "bg-white/20 dark:bg-ink-950/20",
                       )}
                     />
@@ -425,10 +439,10 @@ export function Header() {
                         setOpenHeaderMenu((prev) => (prev === "start" ? null : "start"))
                       }
                       className={cn(
-                        "inline-flex min-h-11 w-9 items-center justify-center whitespace-nowrap rounded-r-xl pr-0.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                        "inline-flex min-h-11 w-10 items-center justify-center whitespace-nowrap rounded-r-xl pr-0.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         isTransparent
-                          ? "hover:text-sapphire"
-                          : "hover:text-white/85 dark:hover:text-ink-950/80",
+                          ? "press-row hover:text-sapphire"
+                          : "press-on-dark hover:text-white/85 dark:hover:text-ink-950/80",
                       )}
                     >
                       <ChevronDownIcon
@@ -454,7 +468,7 @@ export function Header() {
                       <Link
                         href={withLangPrefix("/health-assistant#triage", lang)}
                         onClick={() => setOpenHeaderMenu(null)}
-                        className="group flex items-center gap-3.5 rounded-xl p-2.5 transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5"
+                        className="group press-row flex min-h-12 items-center gap-3.5 rounded-xl p-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5"
                       >
                         <IconTile
                           icon={NAV_LINK_ICONS["/health-assistant"]}
@@ -475,7 +489,7 @@ export function Header() {
                       <Link
                         href={withLangPrefix("/mediatori", lang)}
                         onClick={() => setOpenHeaderMenu(null)}
-                        className="group mt-1 flex items-center gap-3.5 rounded-xl p-2.5 transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5"
+                        className="group press-row mt-1 flex min-h-12 items-center gap-3.5 rounded-xl p-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5"
                       >
                         <IconTile
                           icon={NAV_LINK_ICONS["/mediatori"]}

@@ -366,7 +366,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
   };
 
   const fieldClass =
-    "mt-1.5 block min-h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground " +
+    "mt-1.5 block min-h-11 w-full rounded-lg border border-border-control bg-background px-3 py-2 text-base text-foreground " +
     "placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
   const bigFieldClass = fieldClass.replace("min-h-11", "min-h-12").replace("text-base", "text-base");
   const labelClass = "block text-sm font-medium text-foreground";
@@ -392,7 +392,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
             <button
               type="button"
               onClick={() => (voice.speaking ? voice.stop() : voice.speak([copy.title, copy.subtitle, copy.privacy]))}
-              className="inline-flex items-center gap-1.5 ml-auto min-h-11 shrink-0 whitespace-nowrap rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row inline-flex items-center gap-1.5 ml-auto min-h-11 shrink-0 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <VolumeIcon className="h-4 w-4 text-sapphire" aria-hidden="true" />
               {voice.speaking ? copy.stop : copy.listen}
@@ -401,7 +401,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
           <button
             type="button"
             onClick={onClose}
-            className="-mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="press-row -mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={copy.closeAria}
           >
             <CloseIcon className="h-5 w-5" aria-hidden="true" />
@@ -420,7 +420,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
             <button
               type="button"
               onClick={onClose}
-              className="mt-6 inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="press-solid mt-6 inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {copy.closeButton}
             </button>
@@ -448,10 +448,10 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
                         type="button"
                         onClick={() => setHelpCategory(cat)}
                         aria-pressed={isSelected}
-                        className={`flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border px-3 py-2 text-left text-sm transition-colors duration-[var(--dur-fast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                        className={`press-row flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border px-3 py-2 text-left text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                           isSelected
-                            ? "border-sapphire bg-sapphire/10 font-semibold text-sapphire"
-                            : "border-border bg-background text-foreground hover:bg-muted"
+                            ? "border-sapphire bg-sapphire-soft font-semibold text-sapphire dark:border-sapphire-border dark:bg-sapphire/25 dark:text-paper"
+                            : "border-border-control bg-background text-foreground hover:bg-muted"
                         }`}
                       >
                         <span className="min-w-0 truncate">{cat}</span>
@@ -546,7 +546,7 @@ export function RequestMediatorModal({ isOpen, onClose }: RequestMediatorModalPr
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none sm:text-[0.9375rem]"
+                className="press-solid inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none sm:text-[0.9375rem]"
               >
                 <span className="min-w-0 truncate">{isSubmitting ? copy.submitting : copy.submit}</span>
               </button>

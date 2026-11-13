@@ -122,7 +122,10 @@ export function ArticleListenButton({
       onClick={handleToggle}
       aria-pressed={isPlaying}
       className={cn(
-        "inline-flex min-h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 print:hidden",
+        "press-solid inline-flex min-h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-lg px-5 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden",
+        isPlaying
+          ? "bg-ink-900 hover:bg-ink-950 dark:bg-sapphire-light dark:hover:bg-sapphire"
+          : "bg-sapphire hover:bg-sapphire-light",
         className,
       )}
     >

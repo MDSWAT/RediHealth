@@ -252,7 +252,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <Link
             href={withLangPrefix("/medic-online", lang)}
-            className="inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span className="min-w-0 truncate">{copy.back}</span>
@@ -262,7 +262,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
               type="button"
               onClick={() => (voice.speaking ? voice.stop() : voice.speak(readParts))}
               aria-pressed={voice.speaking}
-              className="inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" />
               <span className="min-w-0 truncate">{voice.speaking ? copy.stop : copy.listen}</span>
@@ -306,7 +306,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
                   type="button"
                   onClick={() => router.push(withLangPrefix(`/medic-online/meet/${roomId.current}`, lang))}
                   className={cn(
-                    "mt-6 inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]",
+                    "press-solid mt-6 inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]",
                     "bg-sapphire hover:bg-sapphire-light",
                   )}
                 >
@@ -325,7 +325,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
                 </div>
                 <Link
                   href={withLangPrefix("/medic-online/programare", lang)}
-                  className="mt-6 inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]"
+                  className="press-solid mt-6 inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]"
                 >
                   <CalendarIcon className="h-5 w-5 shrink-0" />
                   <span className="min-w-0 truncate">{copy.book}</span>
@@ -344,7 +344,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
                   playSoundCheck();
                   setSoundTested(true);
                 }}
-                className="inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" />
                 <span className="min-w-0 truncate">{copy.testSoundButton}</span>
@@ -359,7 +359,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
             <ul className="mt-3 divide-y divide-border rounded-xl border border-border bg-card">
               {copy.steps.map(([title, desc], i) => (
                 <li key={title}>
-                  <label className="flex cursor-pointer items-start gap-3 p-4 transition-colors duration-[var(--dur-fast)] hover:bg-muted/40">
+                  <label className="press-row flex min-h-12 cursor-pointer items-start gap-3 p-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/40">
                     <input
                       type="checkbox"
                       checked={prepChecks[i]}

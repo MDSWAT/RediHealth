@@ -233,7 +233,7 @@ export function WarningSignsEmergencyCard({
             type="button"
             onClick={() => setDialerOpen(true)}
             aria-haspopup="dialog"
-            className="inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
+            className="press-on-dark inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
           >
             <PhoneIcon className="h-4 w-4" aria-hidden="true" />
             <span>{pickLocale(s.dialBtn, currentLang)}</span>
@@ -244,7 +244,7 @@ export function WarningSignsEmergencyCard({
             type="button"
             onClick={() => setIsModalOpen(true)}
             aria-haspopup="dialog"
-            className="inline-flex min-h-12 items-center whitespace-nowrap rounded-sm px-1 text-base font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="press-row inline-flex min-h-12 items-center whitespace-nowrap rounded-sm px-1 text-base font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {pickLocale(s.modalTrigger, currentLang)}
           </button>
@@ -292,7 +292,7 @@ export function WarningSignsEmergencyCard({
                 ref={closeRef}
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="flex min-h-12 min-w-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="press-row flex min-h-12 min-w-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={pickLocale(s.closeAria, currentLang)}
               >
                 <svg
@@ -340,7 +340,7 @@ export function WarningSignsEmergencyCard({
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="press-row inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {pickLocale(s.closeBtn, currentLang)}
               </button>
@@ -351,7 +351,7 @@ export function WarningSignsEmergencyCard({
                   setDialerOpen(true);
                 }}
                 aria-haspopup="dialog"
-                className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="press-on-dark inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <PhoneIcon className="h-4 w-4" aria-hidden="true" />
                 <span>{pickLocale(s.dialBtn, currentLang)}</span>

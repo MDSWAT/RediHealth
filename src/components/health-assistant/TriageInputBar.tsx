@@ -173,7 +173,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
         <button
           type="submit"
           disabled={!trimmed}
-          className="inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none sm:absolute sm:right-1 sm:top-1/2 sm:-translate-y-1/2"
+          className="press-solid inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none sm:absolute sm:right-1 sm:top-1/2 sm:-translate-y-1/2"
         >
           <span>{t.buttonLabel}</span>
           <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -182,7 +182,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
 
       <div aria-live="polite" aria-atomic="true">
         {previewPathway && previewTitle && (
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-2.5 rounded-xl border border-sapphire/25 bg-sapphire-soft/60 px-4 py-3">
+          <div className="fhs-enter mt-3 flex flex-wrap items-center justify-between gap-2.5 rounded-xl border border-sapphire/25 bg-sapphire-soft/60 px-4 py-3">
             <p className="min-w-0 text-xs leading-snug text-foreground sm:text-sm">
               <span className="text-muted-foreground">{t.routePrefix}</span>{" "}
               <span className="font-semibold text-sapphire">{previewTitle}</span>
@@ -190,7 +190,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
             <button
               type="button"
               onClick={() => onSubmitQuery(trimmed)}
-              className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-sapphire px-3.5 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="press-solid inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-sapphire px-3.5 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <span>{t.openRoute}</span>
               <ArrowRightIcon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -207,7 +207,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
             onClick={() => {
               activateQuickPrompt(prompt, setQuery, onSubmitQuery);
             }}
-            className="inline-flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border border-stone-200/90 bg-card px-3.5 py-2 text-left text-sm font-medium text-foreground shadow-2xs transition-[color,background-color,border-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:border-stone-800"
+            className="press-row inline-flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border border-stone-200/90 bg-card px-3.5 py-2 text-left text-sm font-medium text-foreground shadow-2xs transition-[color,background-color,border-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:border-stone-800"
           >
             <span className="min-w-0 truncate">{prompt}</span>
           </button>

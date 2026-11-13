@@ -27,6 +27,7 @@ const TOO_MANY: Record<Lang, string> = {
 
 const inputClass =
   "mt-1.5 block h-12 w-full rounded-lg border border-border-control bg-card px-3.5 text-base text-foreground " +
+  "transition-[border-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 motion-reduce:transition-none " +
   "placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 " +
   "focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background " +
   "aria-[invalid=true]:border-amber-care";
@@ -147,97 +148,99 @@ export function SignInForm({
 
   return (
     <div className="rounded-xl border border-border bg-card p-6 sm:p-10">
-      {stage === "email" ? (
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            void requestCode();
-          }}
-          noValidate
-        >
-          <label htmlFor="email" className="text-sm font-semibold text-foreground">
-            {form.emailLabel}
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            inputMode="email"
-            autoComplete="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            aria-invalid={Boolean(error)}
-            aria-describedby={error ? "email-error" : "email-hint"}
-            className={inputClass}
-            placeholder={form.emailPlaceholder}
-          />
-          {error ? (
-            <p id="email-error" role="alert" className="mt-2 text-sm text-amber-care dark:text-amber-care-border">
-              {error}
+      <div key={stage} className="fhs-enter">
+        {stage === "email" ? (
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              void requestCode();
+            }}
+            noValidate
+          >
+            <label htmlFor="email" className="text-sm font-semibold text-foreground">
+              {form.emailLabel}
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? "email-error" : "email-hint"}
+              className={inputClass}
+              placeholder={form.emailPlaceholder}
+            />
+            {error ? (
+              <p id="email-error" role="alert" className="mt-2 text-sm text-amber-care dark:text-amber-care-border">
+                {error}
+              </p>
+            ) : (
+              <p id="email-hint" className="mt-2 text-sm text-muted-foreground">
+                {form.emailHint}
+              </p>
+            )}
+            <div className="mt-7">
+              <Button type="submit" variant="action" size="lg" disabled={isSubmitting}>
+                <span className="min-w-0 truncate">{isSubmitting ? form.sendingCode : form.emailMeCode}</span>
+              </Button>
+            </div>
+          </form>
+        ) : (
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              void verifyCode();
+            }}
+            noValidate
+          >
+            <h2 className="text-xl font-semibold text-foreground">{form.checkEmailTitle}</h2>
+            <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+              {form.codeSentBody(email)}
             </p>
-          ) : (
-            <p id="email-hint" className="mt-2 text-sm text-muted-foreground">
-              {form.emailHint}
-            </p>
-          )}
-          <div className="mt-7">
-            <Button type="submit" variant="action" size="lg" disabled={isSubmitting}>
-              <span className="min-w-0 truncate">{isSubmitting ? form.sendingCode : form.emailMeCode}</span>
-            </Button>
-          </div>
-        </form>
-      ) : (
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            void verifyCode();
-          }}
-          noValidate
-        >
-          <h2 className="text-xl font-semibold text-foreground">{form.checkEmailTitle}</h2>
-          <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-            {form.codeSentBody(email)}
-          </p>
-          <label htmlFor="code" className="mt-6 block text-sm font-semibold text-foreground">
-            {form.codeLabel}
-          </label>
-          <input
-            id="code"
-            name="code"
-            type="text"
-            inputMode="numeric"
-            autoComplete="one-time-code"
-            maxLength={6}
-            value={code}
-            onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
-            aria-invalid={Boolean(error)}
-            aria-describedby={error ? "code-error" : undefined}
-            className={inputClass}
-            placeholder="123456"
-          />
-          {error ? (
-            <p id="code-error" role="alert" className="mt-2 text-sm text-amber-care dark:text-amber-care-border">
-              {error}
-            </p>
-          ) : null}
-          <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Button type="submit" variant="action" size="lg" disabled={isSubmitting}>
-              <span className="min-w-0 truncate">{isSubmitting ? form.signingIn : form.continueLabel}</span>
-            </Button>
-            <button
-              type="button"
-              className="min-h-[44px] max-w-full whitespace-nowrap text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              onClick={() => {
-                setCode("");
-                setError("");
-                setStage("email");
-              }}
-            >
-              <span className="min-w-0 truncate">{form.useDifferentEmail}</span>
-            </button>
-          </div>
-        </form>
-      )}
+            <label htmlFor="code" className="mt-6 block text-sm font-semibold text-foreground">
+              {form.codeLabel}
+            </label>
+            <input
+              id="code"
+              name="code"
+              type="text"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              maxLength={6}
+              value={code}
+              onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? "code-error" : undefined}
+              className={`${inputClass} font-medium tracking-[0.18em] tabular-nums`}
+              placeholder="123456"
+            />
+            {error ? (
+              <p id="code-error" role="alert" className="mt-2 text-sm text-amber-care dark:text-amber-care-border">
+                {error}
+              </p>
+            ) : null}
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <Button type="submit" variant="action" size="lg" disabled={isSubmitting}>
+                <span className="min-w-0 truncate">{isSubmitting ? form.signingIn : form.continueLabel}</span>
+              </Button>
+              <button
+                type="button"
+                className="press-row -mx-2.5 min-h-[44px] max-w-full whitespace-nowrap rounded-lg px-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                onClick={() => {
+                  setCode("");
+                  setError("");
+                  setStage("email");
+                }}
+              >
+                <span className="min-w-0 truncate">{form.useDifferentEmail}</span>
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
 
       <form onSubmit={requestPortalLink} className="mt-8 border-t border-border pt-6">
         <h2 className="text-base font-semibold text-foreground">{form.portalRecoveryTitle}</h2>

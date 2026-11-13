@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { FindHelpExplorer } from "@/components/find-help/FindHelpExplorer";
 import { findHelpTranslations } from "@/lib/i18n/find-help-translations";
@@ -14,9 +13,11 @@ import type { CountryCode, InstituteCategory } from "@/lib/medical-institutes";
 export function FindHelpPageContent({
   initialCountry,
   initialCategory = null,
+  detectedIpCountry = null,
 }: {
   initialCountry: CountryCode;
   initialCategory?: InstituteCategory | null;
+  detectedIpCountry?: CountryCode | null;
 }) {
   const { lang, t } = useLanguage();
   const basePage = findHelpTranslations[lang].page;
@@ -27,7 +28,11 @@ export function FindHelpPageContent({
       <section className="pt-2 pb-6 sm:pt-3 sm:pb-10">
         <Container>
           <AssistantNavigation />
-          <FindHelpExplorer initialCountry={initialCountry} initialCategory={initialCategory} />
+          <FindHelpExplorer
+            initialCountry={initialCountry}
+            initialCategory={initialCategory}
+            detectedIpCountry={detectedIpCountry}
+          />
         </Container>
       </section>
 
@@ -47,10 +52,10 @@ export function FindHelpPageContent({
               <div>
                 <Link
                   href={withLangPrefix("/mediatori", lang)}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-amber-care/35 bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-amber-care-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 dark:hover:bg-amber-care/20"
+                  className="group press-row inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-amber-care/35 bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-amber-care-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none dark:hover:bg-amber-care/20"
                 >
                   <span>{basePage.mediatorButton}</span>
-                  <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
               </div>
             </div>
@@ -64,9 +69,13 @@ export function FindHelpPageContent({
                 </p>
               </div>
               <div>
-                <Button href={withLangPrefix("/get-help", lang)} variant="secondary" size="lg" className="min-h-11 whitespace-nowrap rounded-lg">
-                  {page.ctaButton}
-                </Button>
+                <Link
+                  href={withLangPrefix("/get-help", lang)}
+                  className="group press-row inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
+                >
+                  <span>{page.ctaButton}</span>
+                  <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" />
+                </Link>
               </div>
             </div>
           </div>

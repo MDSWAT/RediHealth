@@ -461,9 +461,9 @@ export function RequestHelpForm({
                   type="button"
                   aria-pressed={active}
                   onClick={() => update("description", topic.text)}
-                  className={`inline-flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3.5 sm:text-sm ${
+                  className={`press-row inline-flex min-h-11 max-w-full items-center whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3.5 sm:text-sm ${
                     active
-                      ? "border-sapphire bg-sapphire-soft text-sapphire ring-1 ring-sapphire/30"
+                      ? "border-sapphire bg-sapphire-soft text-sapphire dark:border-sapphire-border dark:bg-sapphire/20 dark:text-paper"
                       : "border-border-control bg-card text-foreground hover:bg-muted"
                   }`}
                 >
@@ -505,7 +505,7 @@ export function RequestHelpForm({
         </div>
 
         <div>
-          <label className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+          <label className="-mx-2 flex min-h-11 items-start gap-2.5 rounded-lg border border-transparent px-2 py-1.5 text-sm leading-relaxed text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted/40 focus-within:ring-2 focus-within:ring-ring motion-reduce:transition-none">
             <input
               type="checkbox"
               name="privacyConsent"

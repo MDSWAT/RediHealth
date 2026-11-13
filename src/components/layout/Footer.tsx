@@ -111,14 +111,14 @@ export function Footer() {
             <button
               type="button"
               onClick={() => setDialerOpen(true)}
-              className="hero-focus -my-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-paper motion-reduce:transition-none"
+              className="hero-focus press-on-dark -my-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-paper motion-reduce:transition-none"
             >
               {tFooter.call112Button}
             </button>
             <button
               type="button"
               onClick={() => setEmergencySignsOpen(true)}
-              className="hero-focus -my-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm text-mist underline decoration-mist/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-paper hover:decoration-paper motion-reduce:transition-none"
+              className="hero-focus press-on-dark -my-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 text-mist underline decoration-mist/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-paper hover:decoration-paper motion-reduce:transition-none"
             >
               {tFooter.seeAlarmSigns}
             </button>

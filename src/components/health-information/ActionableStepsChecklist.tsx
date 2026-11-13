@@ -131,22 +131,31 @@ export function ActionableStepsChecklist({
           </p>
 
           {totalCount > 0 && (
-            <div className="mt-2.5 flex flex-wrap items-center gap-3 print:hidden">
-              <span className="text-base font-medium tabular-nums text-muted-foreground">
-                {pickLocale(s.completedBadge, currentLang)
-                  .replace("{completed}", String(completedCount))
-                  .replace("{total}", String(totalCount))}
-              </span>
-              {completedCount > 0 && (
-                <button
-                  type="button"
-                  onClick={resetChecks}
-                  className="inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2.5 text-base font-semibold text-sapphire underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-                >
-                  {RESET_LABELS[currentLang] ?? RESET_LABELS.ro}
-                </button>
-              )}
-            </div>
+            <>
+              <div className="mt-2.5 flex flex-wrap items-center gap-3 print:hidden">
+                <span className="text-base font-medium tabular-nums text-muted-foreground">
+                  {pickLocale(s.completedBadge, currentLang)
+                    .replace("{completed}", String(completedCount))
+                    .replace("{total}", String(totalCount))}
+                </span>
+                {completedCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={resetChecks}
+                    className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2.5 text-base font-semibold text-sapphire underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {RESET_LABELS[currentLang] ?? RESET_LABELS.ro}
+                  </button>
+                )}
+              </div>
+              <div className="mt-3 h-1 w-full overflow-hidden rounded-sm bg-muted print:hidden">
+                <div
+                  className="h-full w-full origin-left bg-sapphire transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none dark:bg-sapphire-border"
+                  style={{ transform: `scaleX(${steps.length > 0 ? completedCount / steps.length : 0})` }}
+                  aria-hidden="true"
+                />
+              </div>
+            </>
           )}
         </div>
 
@@ -174,14 +183,14 @@ export function ActionableStepsChecklist({
               <button
                 type="button"
                 onClick={() => toggleCheck(step.id)}
-                className="flex w-full items-start gap-4 px-5 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:px-6 sm:py-5"
+                className="press-row flex min-h-12 w-full items-start gap-4 px-5 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:px-6 sm:py-5"
                 aria-pressed={isChecked}
               >
                 <span
-                  className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-[5px] border transition-colors duration-[var(--dur-fast)] ${
+                  className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none ${
                     isChecked
-                      ? "border-foreground bg-foreground text-white"
-                      : "border-foreground/35 bg-card"
+                      ? "border-sapphire bg-sapphire text-white dark:border-sapphire-border dark:bg-sapphire-border dark:text-ink-950"
+                      : "border-border-control bg-background"
                   }`}
                   aria-hidden="true"
                 >

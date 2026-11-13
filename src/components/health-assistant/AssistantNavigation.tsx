@@ -81,7 +81,7 @@ ru: {
             key={href}
             href={withLangPrefix(href, lang)}
             aria-current={isActive ? "page" : undefined}
-            className={`inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-3 py-2.5 text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] sm:px-4 ${
+            className={`press-row inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-t-md border-b-2 px-3 py-2.5 text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:px-4 ${
               isActive
                 ? "border-sapphire font-semibold text-foreground"
                 : "border-transparent font-medium text-muted-foreground hover:border-border hover:text-foreground"

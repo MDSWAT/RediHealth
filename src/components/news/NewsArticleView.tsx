@@ -236,10 +236,10 @@ export function NewsArticleView({ id }: { id: string }) {
                   <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                   {placeLabel(article.county, articleCountry(article))}
                 </span>
-                <time dateTime={article.date} className="border-l border-border pl-3">
+                <time dateTime={article.date} className="border-l border-border pl-3 tabular-nums">
                   {formatNewsDate(article.date, lang)}
                 </time>
-                <span className="border-l border-border pl-3">
+                <span className="border-l border-border pl-3 tabular-nums">
                   {article.readTimeMinutes} {c.readTime}
                 </span>
               </>

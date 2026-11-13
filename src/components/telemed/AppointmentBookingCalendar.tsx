@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useReadAloud } from "@/components/health-check/readingTools";
 import { Container } from "@/components/ui/Container";
-import { ArrowLeftIcon, ArrowRightIcon, VolumeIcon } from "@/components/ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, CheckCircleIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { FamilyBookingSelector, type BookingPartyData } from "./FamilyBookingSelector";
 import { BookingSmsConfirmation, type BookingConfirmationData } from "./BookingSmsConfirmation";
@@ -46,6 +46,16 @@ export const calendarCopy = {
     monthNamesLong: ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"],
     sms: (date: string, time: string, link: string) =>
       `RediHealth: Запись подтверждена: врач позвонит вам ${date} в ${time}. В это время откройте ссылку, чтобы присоединиться к звонку: ${link}`,
+    summaryHeading: "Детали вашей записи",
+    summaryDayLabel: "Выбранный день",
+    summaryTimeLabel: "Выбранное время",
+    summaryTimePending: "Выберите свободное время слева",
+    howItWorksHeading: "Как проходит звонок",
+    howItWorksItems: [
+      ["Бесплатно и без приложения", "Вы получите ссылку по SMS и откроете звонок прямо в браузере."],
+      ["Конфиденциально", "Вы разговариваете напрямую с лицензированным врачом."],
+      ["Держите заметки рядом", "Подготовьте рецепт или упаковки лекарств, которые принимаете."],
+    ],
   },
 
   ro: {
@@ -75,6 +85,16 @@ export const calendarCopy = {
     monthNamesLong: ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"],
     sms: (date: string, time: string, link: string) =>
       `RediHealth: Ai un apel programat cu medicul ${date}, ora ${time}. La ora asta, deschide linkul ca să intri în apel: ${link}`,
+    summaryHeading: "Rezumatul programării",
+    summaryDayLabel: "Ziua aleasă",
+    summaryTimeLabel: "Ora aleasă",
+    summaryTimePending: "Alege o oră din stânga",
+    howItWorksHeading: "Cum decurge apelul",
+    howItWorksItems: [
+      ["Gratuit și fără aplicație", "Primești un link prin SMS și intri direct din browser."],
+      ["Confidențial", "Vorbești direct cu un medic cu drept de practică."],
+      ["Pregătește pe scurt", "Ține aproape rețeta sau lista cu medicamentele pe care le iei."],
+    ],
   },
   en: {
     morning: "Morning",
@@ -103,6 +123,16 @@ export const calendarCopy = {
     monthNamesLong: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     sms: (date: string, time: string, link: string) =>
       `RediHealth: You have a call with a doctor on ${date} at ${time}. At that time, open this link to join the call: ${link}`,
+    summaryHeading: "Your booking summary",
+    summaryDayLabel: "Chosen day",
+    summaryTimeLabel: "Chosen time",
+    summaryTimePending: "Pick a free time on the left",
+    howItWorksHeading: "How the call works",
+    howItWorksItems: [
+      ["Free and without an app", "You get a link by SMS and join right from your browser."],
+      ["Private consultation", "You speak directly with a licensed volunteer doctor."],
+      ["Keep your notes nearby", "Have your prescription or current medicines within reach."],
+    ],
   },
   sq: {
     morning: "Paradite",
@@ -131,6 +161,16 @@ export const calendarCopy = {
     monthNamesLong: ["janar", "shkurt", "mars", "prill", "maj", "qershor", "korrik", "gusht", "shtator", "tetor", "nëntor", "dhjetor"],
     sms: (date: string, time: string, link: string) =>
       `RediHealth: Ke një thirrje me mjekun ${date}, ora ${time}. Në atë orë, hap këtë lidhje që të hysh në thirrje: ${link}`,
+    summaryHeading: "Përmbledhja e rezervimit",
+    summaryDayLabel: "Dita e zgjedhur",
+    summaryTimeLabel: "Ora e zgjedhur",
+    summaryTimePending: "Zgjidh një orë majtas",
+    howItWorksHeading: "Si zhvillohet thirrja",
+    howItWorksItems: [
+      ["Falas dhe pa aplikacion", "Merr një lidhje me SMS dhe hyn drejtpërdrejt nga shfletuesi."],
+      ["Konfidenciale", "Flet drejtpërdrejt me një mjek vullnetar me licencë."],
+      ["Mbaj shënimet afër", "Mbaj pranë recetën ose kutitë e ilaçeve që përdor."],
+    ],
   },
   it: {
     morning: "Mattina",
@@ -159,6 +199,16 @@ export const calendarCopy = {
     monthNamesLong: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"],
     sms: (date: string, time: string, link: string) =>
       `RediHealth: Hai una chiamata con il medico ${date}, ore ${time}. A quell'ora, apri questo link per entrare nella chiamata: ${link}`,
+    summaryHeading: "Riepilogo della prenotazione",
+    summaryDayLabel: "Giorno scelto",
+    summaryTimeLabel: "Orario scelto",
+    summaryTimePending: "Scegli un orario qui a sinistra",
+    howItWorksHeading: "Come funziona la chiamata",
+    howItWorksItems: [
+      ["Gratuita e senza app", "Ricevi un link via SMS ed entri subito dal browser."],
+      ["Riservata", "Parli direttamente con un medico volontario abilitato."],
+      ["Tieni tutto vicino", "Prepara la ricetta o le scatole delle medicine che prendi."],
+    ],
   },
   hr: {
     morning: "Ujutro",
@@ -187,6 +237,16 @@ export const calendarCopy = {
     monthNamesLong: ["siječnja", "veljače", "ožujka", "travnja", "svibnja", "lipnja", "srpnja", "kolovoza", "rujna", "listopada", "studenoga", "prosinca"],
     sms: (date: string, time: string, link: string) =>
       `RediHealth: Imaš zakazan poziv s liječnikom ${date} u ${time}. U to vrijeme otvori ovu poveznicu za ulazak u poziv: ${link}`,
+    summaryHeading: "Sažetak rezervacije",
+    summaryDayLabel: "Odabrani dan",
+    summaryTimeLabel: "Odabrano vrijeme",
+    summaryTimePending: "Odaberi slobodan termin lijevo",
+    howItWorksHeading: "Kako izgleda poziv",
+    howItWorksItems: [
+      ["Besplatno i bez aplikacije", "Dobivaš poveznicu SMS porukom i ulaziš izravno u pregledniku."],
+      ["Povjerljivo", "Razgovaraš izravno s licenciranim liječnikom volonterom."],
+      ["Pripremi bilješke", "Drži pri ruci recept ili kutije lijekova koje uzimaš."],
+    ],
   },
   rom: {
     morning: "Javin",
@@ -215,6 +275,16 @@ export const calendarCopy = {
     monthNamesLong: ["yanuaro", "fevruaro", "marto", "aprilo", "mayo", "yunio", "yulio", "avgusto", "septembro", "oktombro", "noyembro", "dekembro"],
     sms: (date: string, time: string, link: string) =>
       `RediHealth: Si tut svato e doktoresa pe ${date}, ko ${time}. Ko odova chaso, putar kadava linko te khuves and-o svato: ${link}`,
+    summaryHeading: "Cho alosaripe pe xarno",
+    summaryDayLabel: "Alosardo dives",
+    summaryTimeLabel: "Alosardo chaso",
+    summaryTimePending: "Alosar ekh chaso stânga",
+    howItWorksHeading: "Sar nakhel o svato",
+    howItWorksItems: [
+      ["Bi lovesko thaj bi aplikaciyako", "Les ekh linko katar SMS thaj khuves direktno and-o browser."],
+      ["Chori thaj garado", "Des svato direktno ekhe doktoresa licencasa."],
+      ["Inker pashe tire lila", "Inker pashe e recepta vay e kutiye e drabenge kay les."],
+    ],
   },
 };
 
@@ -265,11 +335,11 @@ const AVAILABLE_TIME_SLOTS = [
 // Day and time pickers are one surface of cells split by hairlines (no grid of bordered boxes);
 // the chosen cell is filled with ink. The focus ring sits inside the cell so the surface does not clip it.
 const cellBase =
-  "whitespace-nowrap text-center transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring";
+  "press-row whitespace-nowrap text-center transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring";
 const cellOn = "bg-foreground text-background";
 const cellOff = "bg-card text-foreground hover:bg-muted";
 const nextButton =
-  "inline-flex min-h-12 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-foreground px-4 py-2.5 text-sm font-semibold text-background transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:px-5 sm:text-[0.9375rem]";
+  "group press-solid inline-flex min-h-12 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-foreground px-4 py-2.5 text-sm font-semibold text-background transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:px-5 sm:text-[0.9375rem]";
 
 /** Booking a voice call with a doctor: pick a day and time, give contact details, see the confirmation. */
 export function AppointmentBookingCalendar() {
@@ -375,7 +445,7 @@ export function AppointmentBookingCalendar() {
         type="button"
         onClick={() => (voice.speaking ? voice.stop() : voice.speak(parts))}
         aria-pressed={voice.speaking}
-        className="inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" />
         <span className="min-w-0 truncate">{voice.speaking ? copy.stop : copy.listen}</span>
@@ -389,29 +459,12 @@ export function AppointmentBookingCalendar() {
     </p>
   ) : null;
 
-  if (step === 3 && confirmationData) {
-    return (
-      <Container className="py-8 sm:py-10">
-        <div className="max-w-3xl">
-          <BookingSmsConfirmation
-            confirmation={confirmationData}
-            onReset={() => {
-              movedStep.current = true;
-              setStep(1);
-              setSelectedTime("");
-              setConfirmationData(null);
-            }}
-          />
-        </div>
-      </Container>
-    );
-  }
+  const howItWorksIcons = [PhoneIcon, CheckCircleIcon, CalendarIcon] as const;
 
   return (
     <Container className="py-8 sm:py-10">
-      <div className="max-w-3xl">
-        {/* Where you are in the booking */}
-        <ol className="mb-8 grid grid-cols-3 gap-2" aria-label={copy.stepOf(step)}>
+      {/* Where you are in the booking */}
+      <ol className="mb-8 grid grid-cols-3 gap-3" aria-label={copy.stepOf(step)}>
         {copy.steps.map((label, i) => {
           const n = i + 1;
           const reached = step >= n;
@@ -432,129 +485,191 @@ export function AppointmentBookingCalendar() {
         })}
       </ol>
 
-      {step === 1 && (
-        <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 ref={stepHeadingRef} tabIndex={-1} className="text-balance text-lg font-semibold text-foreground focus:outline-none">
-              {copy.chooseDay}
-            </h2>
-            {listenButton([copy.chooseDay, copy.availableHours(selectedDayObj.fullFormatted), copy.slotDuration])}
-          </div>
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.95fr)] lg:items-start lg:gap-8 xl:gap-10">
+        <div className="min-w-0">
+          {step === 1 && (
+            <div className="fhs-enter rounded-xl border border-border bg-card p-5 sm:p-7">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2 ref={stepHeadingRef} tabIndex={-1} className="text-balance text-lg font-semibold text-foreground focus:outline-none">
+                  {copy.chooseDay}
+                </h2>
+                {listenButton([copy.chooseDay, copy.availableHours(selectedDayObj.fullFormatted), copy.slotDuration])}
+              </div>
 
-          <div className="mt-4 grid grid-cols-7 divide-x divide-border overflow-hidden rounded-lg border border-border-control">
-            {days.map((d) => {
-              const isSelected = selectedDate === d.isoDate;
-              return (
-                <button
-                  key={d.isoDate}
-                  type="button"
-                  aria-pressed={isSelected}
-                  aria-label={d.fullFormatted}
-                  onClick={() => {
-                    setSelectedDate(d.isoDate);
-                    setSelectedTime("");
-                  }}
-                  className={cn(cellBase, "flex min-h-[64px] min-w-0 flex-col items-center justify-center px-0.5 py-2", isSelected ? cellOn : cellOff)}
-                >
-                  <span className={cn("max-w-full truncate text-xs", isSelected ? "text-background/80" : "text-muted-foreground")}>{d.dayName}</span>
-                  <span className="text-lg font-semibold tabular-nums leading-tight">{d.dayNum}</span>
-                  <span className={cn("max-w-full truncate text-[11px]", isSelected ? "text-background/80" : "text-muted-foreground")}>{d.monthName}</span>
+              <div className="mt-4 grid grid-cols-7 divide-x divide-border overflow-hidden rounded-lg border border-border-control">
+                {days.map((d) => {
+                  const isSelected = selectedDate === d.isoDate;
+                  return (
+                    <button
+                      key={d.isoDate}
+                      type="button"
+                      aria-pressed={isSelected}
+                      aria-label={d.fullFormatted}
+                      onClick={() => {
+                        setSelectedDate(d.isoDate);
+                        setSelectedTime("");
+                      }}
+                      className={cn(cellBase, "flex min-h-[68px] min-w-0 flex-col items-center justify-center px-0.5 py-2", isSelected ? cellOn : cellOff)}
+                    >
+                      <span className={cn("max-w-full truncate text-xs", isSelected ? "text-background/80" : "text-muted-foreground")}>{d.dayName}</span>
+                      <span className="text-lg font-semibold tabular-nums leading-tight">{d.dayNum}</span>
+                      <span className={cn("max-w-full truncate text-[11px]", isSelected ? "text-background/80" : "text-muted-foreground")}>{d.monthName}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-6 border-t border-border pt-5">
+                <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 className="text-balance text-sm font-semibold text-foreground">
+                    {copy.availableHours(selectedDayObj.fullFormatted)}
+                  </h3>
+                  <span className="text-xs text-muted-foreground">{copy.slotDuration}</span>
+                </div>
+
+                {([["morning", copy.morning], ["afternoon", copy.afternoon]] as const).map(([period, label]) => (
+                  <div key={period} className="mt-4 first:mt-0">
+                    <h4 className="mb-2 text-sm font-medium text-muted-foreground">{label}</h4>
+                    <div className={cn("grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-border-control bg-border", period === "morning" ? "sm:grid-cols-9" : "sm:grid-cols-6")}>
+                      {groupedSlots[period].map((slot) => {
+                        const isSelected = selectedTime === slot;
+                        return (
+                          <button
+                            key={slot}
+                            type="button"
+                            aria-pressed={isSelected}
+                            onClick={() => {
+                              setSelectedTime(slot);
+                              setError("");
+                            }}
+                            className={cn(cellBase, "min-h-12 whitespace-nowrap text-sm font-semibold tabular-nums", isSelected ? cellOn : cellOff)}
+                          >
+                            {slot}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {errorNote}
+
+              <div className="mt-6 flex justify-end border-t border-border pt-4">
+                <button type="button" onClick={handleNextToContact} className={nextButton}>
+                  <span className="min-w-0 truncate">{copy.continueToContact}</span>
+                  <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
                 </button>
-              );
-            })}
-          </div>
-
-          <div className="mt-6 border-t border-border pt-5">
-            <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <h3 className="text-balance text-sm font-semibold text-foreground">
-                {copy.availableHours(selectedDayObj.fullFormatted)}
-              </h3>
-              <span className="text-xs text-muted-foreground">{copy.slotDuration}</span>
+              </div>
             </div>
+          )}
 
-            {([["morning", copy.morning], ["afternoon", copy.afternoon]] as const).map(([period, label]) => (
-              <div key={period} className="mt-4 first:mt-0">
-                <h4 className="mb-2 text-sm font-medium text-muted-foreground">{label}</h4>
-                <div className={cn("grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-border-control bg-border", period === "morning" ? "sm:grid-cols-9" : "sm:grid-cols-6")}>
-                  {groupedSlots[period].map((slot) => {
-                    const isSelected = selectedTime === slot;
-                    return (
-                      <button
-                        key={slot}
-                        type="button"
-                        aria-pressed={isSelected}
-                        onClick={() => {
-                          setSelectedTime(slot);
-                          setError("");
-                        }}
-                        className={cn(cellBase, "min-h-[48px] whitespace-nowrap text-sm font-semibold tabular-nums", isSelected ? cellOn : cellOff)}
-                      >
-                        {slot}
-                      </button>
-                    );
-                  })}
+          {step === 2 && (
+            <div className="fhs-enter rounded-xl border border-border bg-card p-5 sm:p-7">
+              <div className="mb-5 flex flex-wrap items-start justify-between gap-3 border-b border-border pb-4">
+                <div>
+                  <h2 ref={stepHeadingRef} tabIndex={-1} className="text-balance text-lg font-semibold text-foreground focus:outline-none">
+                    {copy.contactTitle}
+                  </h2>
+                  <p className="mt-0.5 text-sm text-muted-foreground tabular-nums">{copy.bookingFor(selectedDayObj.fullFormatted, selectedTime)}</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  {listenButton([copy.contactTitle, copy.bookingFor(selectedDayObj.fullFormatted, selectedTime)])}
+                  <button
+                    type="button"
+                    onClick={() => goTo(1)}
+                    className="press-row min-h-11 max-w-full whitespace-nowrap rounded-sm text-sm font-medium text-sapphire underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <span className="min-w-0 truncate">{copy.changeTime}</span>
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
 
-          {errorNote}
+              <FamilyBookingSelector value={partyData} onChange={setPartyData} />
 
-          <div className="mt-6 flex justify-end border-t border-border pt-4">
-            <button type="button" onClick={handleNextToContact} className={nextButton}>
-              <span className="min-w-0 truncate">{copy.continueToContact}</span>
-              <ArrowRightIcon className="h-4 w-4 shrink-0" />
-            </button>
-          </div>
-        </div>
-      )}
+              {errorNote}
 
-      {step === 2 && (
-        <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
-          <div className="mb-5 flex flex-wrap items-start justify-between gap-3 border-b border-border pb-4">
-            <div>
-              <h2 ref={stepHeadingRef} tabIndex={-1} className="text-balance text-lg font-semibold text-foreground focus:outline-none">
-                {copy.contactTitle}
-              </h2>
-              <p className="mt-0.5 text-sm text-muted-foreground tabular-nums">{copy.bookingFor(selectedDayObj.fullFormatted, selectedTime)}</p>
+              <div className="mt-8 flex items-center justify-between gap-3 border-t border-border pt-5">
+                <button
+                  type="button"
+                  onClick={() => goTo(1)}
+                  className="press-row -mx-2 inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <ArrowLeftIcon className="h-4 w-4 shrink-0" />
+                  <span className="min-w-0 truncate">{copy.back}</span>
+                </button>
+
+                <button
+                  type="button"
+                  disabled={isSubmitting}
+                  onClick={handleConfirmBooking}
+                  className={nextButton}
+                >
+                  <span className="min-w-0 truncate">{isSubmitting ? copy.confirming : copy.confirmBooking}</span>
+                </button>
+              </div>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
-              {listenButton([copy.contactTitle, copy.bookingFor(selectedDayObj.fullFormatted, selectedTime)])}
-            <button
-              type="button"
-              onClick={() => goTo(1)}
-              className="min-h-11 max-w-full whitespace-nowrap rounded-sm text-sm font-medium text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <span className="min-w-0 truncate">{copy.changeTime}</span>
-            </button>
-            </div>
-          </div>
+          )}
 
-          <FamilyBookingSelector value={partyData} onChange={setPartyData} />
-
-          {errorNote}
-
-          <div className="mt-8 flex items-center justify-between gap-3 border-t border-border pt-5">
-            <button
-              type="button"
-              onClick={() => goTo(1)}
-              className="-mx-2 inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <ArrowLeftIcon className="h-4 w-4 shrink-0" />
-              <span className="min-w-0 truncate">{copy.back}</span>
-            </button>
-
-            <button
-              type="button"
-              disabled={isSubmitting}
-              onClick={handleConfirmBooking}
-              className={nextButton}
-            >
-              <span className="min-w-0 truncate">{isSubmitting ? copy.confirming : copy.confirmBooking}</span>
-            </button>
-          </div>
+          {step === 3 && confirmationData && (
+            <BookingSmsConfirmation
+              confirmation={confirmationData}
+              onReset={() => {
+                movedStep.current = true;
+                setStep(1);
+                setSelectedTime("");
+                setConfirmationData(null);
+              }}
+            />
+          )}
         </div>
-      )}
+
+        <aside className="space-y-6 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1.5rem)]">
+          <div className="rounded-xl border border-border bg-card p-5 sm:p-6">
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+              <h2 className="text-balance text-title text-foreground">{copy.summaryHeading}</h2>
+            </div>
+
+            <dl className="mt-4 divide-y divide-border text-sm">
+              <div className="flex items-baseline justify-between gap-4 py-2.5 first:pt-0">
+                <dt className="text-muted-foreground">{copy.summaryDayLabel}</dt>
+                <dd className="text-right font-semibold text-foreground tabular-nums">{selectedDayObj.fullFormatted}</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 py-2.5 last:pb-0">
+                <dt className="text-muted-foreground">{copy.summaryTimeLabel}</dt>
+                <dd
+                  className={cn(
+                    "text-right tabular-nums",
+                    selectedTime ? "font-semibold text-foreground" : "text-muted-foreground",
+                  )}
+                >
+                  {selectedTime ? `${selectedTime} (${copy.slotDuration})` : copy.summaryTimePending}
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <section aria-labelledby="booking-how-heading">
+            <h2 id="booking-how-heading" className="text-balance text-title text-foreground">
+              {copy.howItWorksHeading}
+            </h2>
+            <ul className="mt-3 divide-y divide-border rounded-xl border border-border bg-card">
+              {copy.howItWorksItems.map(([title, desc], i) => {
+                const Icon = howItWorksIcons[i] ?? CheckCircleIcon;
+                return (
+                  <li key={title} className="flex items-start gap-3 p-4">
+                    <Icon className="mt-0.5 h-5 w-5 shrink-0 text-sapphire" aria-hidden="true" />
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-foreground">{title}</p>
+                      <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        </aside>
       </div>
     </Container>
   );

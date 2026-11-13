@@ -128,11 +128,11 @@ export function ReadingLevelSwitcher({
       role="group"
       aria-label={ariaLabel}
       onKeyDown={handleKeyDown}
-      className={`relative inline-grid grid-cols-2 items-center rounded-xl border border-border bg-card p-1 shadow-2xs ${className}`}
+      className={`relative inline-grid grid-cols-2 items-center rounded-xl border border-border-control bg-card p-1 shadow-2xs ${className}`}
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-lg bg-sapphire shadow-xs transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none"
+        className="pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-lg bg-sapphire shadow-xs transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none dark:bg-sapphire-light"
         style={{
           transform: level === "complete" ? "translateX(100%)" : "translateX(0%)",
         }}
@@ -143,7 +143,7 @@ export function ReadingLevelSwitcher({
         type="button"
         onClick={() => handleSelect("simple")}
         aria-pressed={level === "simple"}
-        className={`relative z-10 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-base transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
+        className={`press-row relative z-10 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-base transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
           level === "simple"
             ? "font-semibold text-white"
             : "font-medium text-muted-foreground hover:text-foreground"
@@ -157,7 +157,7 @@ export function ReadingLevelSwitcher({
         type="button"
         onClick={() => handleSelect("complete")}
         aria-pressed={level === "complete"}
-        className={`relative z-10 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-base transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
+        className={`press-row relative z-10 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-base transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
           level === "complete"
             ? "font-semibold text-white"
             : "font-medium text-muted-foreground hover:text-foreground"

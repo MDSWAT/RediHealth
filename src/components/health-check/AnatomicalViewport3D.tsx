@@ -2987,7 +2987,7 @@ export function AnatomicalViewport3D({
         aria-hidden={decorative || undefined}
         aria-label={decorative ? undefined : labels.canvasAria}
         onKeyDown={handleKeyDown}
-        className={`block h-full w-full cursor-grab touch-pan-y outline-none active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire ${
+        className={`block h-full w-full cursor-grab touch-pan-y outline-none active:cursor-grabbing focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring ${
           modelReady ? "hc-reveal" : "opacity-0"
         }`}
       />

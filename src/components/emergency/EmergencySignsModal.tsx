@@ -135,7 +135,7 @@ export function EmergencySignsModal({
                         ...signs.map((s) => `${s.title}. ${s.description}`),
                       ])
                 }
-                className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
               >
                 <VolumeIcon className="h-4 w-4" aria-hidden="true" />
                 <span>{voice.speaking ? audio.stop : audio.listen}</span>
@@ -145,7 +145,7 @@ export function EmergencySignsModal({
               type="button"
               onClick={() => onOpenChange(false)}
               aria-label={e.closeSignsModalAria}
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="press-row flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
             >
               <CloseIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -188,7 +188,7 @@ export function EmergencySignsModal({
             <button
               type="button"
               onClick={() => setDialerGateOpen(true)}
-              className="flex min-h-14 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="press-on-dark flex min-h-14 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
             >
               <PhoneIcon className="h-4 w-4" aria-hidden="true" />
               <span>{e.call112}</span>

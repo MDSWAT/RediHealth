@@ -544,7 +544,7 @@ export function OfflineWorkspace() {
 
           <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-muted-foreground">
             <p>{copy.intro}</p>
-            <p>{copy.limits(OFFLINE_CACHE_LIMIT)}</p>
+            <p className="tabular-nums">{copy.limits(OFFLINE_CACHE_LIMIT)}</p>
           </div>
 
           {storageEstimate ? (
@@ -652,7 +652,7 @@ export function OfflineWorkspace() {
             {exists ? (
               <button
                 type="button"
-                className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 font-medium text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed"
+                className="press-row inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 font-medium text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none disabled:cursor-not-allowed"
                 disabled={busy}
                 onClick={() => void logout(true)}
               >
@@ -772,7 +772,7 @@ export function OfflineWorkspace() {
                   <button
                     type="button"
                     onClick={stayUnlocked}
-                    className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-border-control bg-card px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="press-row inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-border-control bg-card px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
                   >
                     {copy.stayUnlocked}
                   </button>
@@ -783,7 +783,7 @@ export function OfflineWorkspace() {
             <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
-                className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
+                className="crm-button press-row min-h-[44px] whitespace-nowrap rounded-lg text-xs motion-reduce:transition-none"
                 disabled={busy || !online}
                 onClick={() => void sync()}
               >
@@ -792,7 +792,7 @@ export function OfflineWorkspace() {
 
               <button
                 type="button"
-                className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
+                className="crm-button press-row min-h-[44px] whitespace-nowrap rounded-lg text-xs motion-reduce:transition-none"
                 disabled={busy}
                 onClick={lock}
               >
@@ -801,7 +801,7 @@ export function OfflineWorkspace() {
 
               <button
                 type="button"
-                className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
+                className="crm-button press-row min-h-[44px] whitespace-nowrap rounded-lg text-xs motion-reduce:transition-none"
                 disabled={busy}
                 onClick={() => void logout()}
               >
@@ -810,7 +810,7 @@ export function OfflineWorkspace() {
 
               {online ? (
                 <a
-                  className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-sapphire/25 bg-sapphire-soft px-3 py-2 text-xs font-semibold text-sapphire transition-colors hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="press-row inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-sapphire/25 bg-sapphire-soft px-3 py-2 text-xs font-semibold text-sapphire transition-colors hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
                   href={withLangPrefix("/panel", lang)}
                 >
                   {copy.openPanel}
@@ -822,7 +822,7 @@ export function OfflineWorkspace() {
                 aria-expanded={vaultDetailsOpen}
                 aria-controls={detailsPanelId}
                 onClick={() => setVaultDetailsOpen((prev) => !prev)}
-                className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-border-control bg-muted/50 px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="press-row inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg border border-border-control bg-muted/50 px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
               >
                 {copy.vaultDetailsToggle}
               </button>
@@ -850,7 +850,7 @@ export function OfflineWorkspace() {
                   {pending > 0 ? (
                     <button
                       type="button"
-                      className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-foreground underline underline-offset-4 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="press-row inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] hover:text-primary motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       disabled={busy}
                       onClick={() => void logout(true)}
                     >
@@ -900,7 +900,7 @@ export function OfflineWorkspace() {
                     </div>
                     <button
                       type="button"
-                      className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
+                      className="crm-button press-row min-h-[44px] whitespace-nowrap rounded-lg text-xs motion-reduce:transition-none"
                       disabled={!online || busy}
                       onClick={() => {
                         void getSnapshot(errors)
@@ -987,14 +987,14 @@ export function OfflineWorkspace() {
                 <div className="flex flex-wrap items-center gap-2.5">
                   <button
                     type="button"
-                    className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
+                    className="crm-button press-row min-h-[44px] whitespace-nowrap rounded-lg text-xs motion-reduce:transition-none"
                     onClick={() => void resolveConflict(false)}
                   >
                     {copy.useOnline}
                   </button>
                   <button
                     type="button"
-                    className="crm-button crm-primary min-h-[44px] whitespace-nowrap rounded-lg text-xs"
+                    className="crm-button crm-primary press-solid min-h-[44px] whitespace-nowrap rounded-lg text-xs motion-reduce:transition-none"
                     disabled={
                       !review.op.create &&
                       !review.snapshot.revisions[`${review.op.entity}:${review.op.id}`]
@@ -1005,7 +1005,7 @@ export function OfflineWorkspace() {
                   </button>
                   <button
                     type="button"
-                    className="crm-button min-h-[44px] whitespace-nowrap rounded-lg text-xs"
+                    className="crm-button press-row min-h-[44px] whitespace-nowrap rounded-lg text-xs motion-reduce:transition-none"
                     onClick={() => setReview(null)}
                   >
                     {copy.cancel}

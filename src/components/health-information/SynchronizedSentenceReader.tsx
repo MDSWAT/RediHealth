@@ -325,7 +325,7 @@ export function SynchronizedSentenceReader({
                         }
                       : undefined
                   }
-                  className={`box-decoration-clone rounded-xs transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire motion-reduce:transition-none ${
+                  className={`box-decoration-clone rounded-xs transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
                     sentencesClickable ? "cursor-pointer" : ""
                   } ${
                     isActive
@@ -362,7 +362,7 @@ export function SynchronizedSentenceReader({
                             openTermCard(seg.term!, e.currentTarget);
                           }
                         }}
-                        className="box-decoration-clone cursor-pointer rounded-xs border-b border-dashed border-sapphire font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                        className="box-decoration-clone cursor-pointer rounded-xs border-b border-dashed border-sapphire font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         title={pickLocale(
                           str.termTitleTemplate,
                           currentLang,
@@ -426,7 +426,7 @@ export function SynchronizedSentenceReader({
                 ref={popoverCloseRef}
                 type="button"
                 onClick={() => setActivePopoverTerm(null)}
-                className="-mr-2 -mt-1 flex min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="press-row -mr-2 -mt-1 flex min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={pickLocale(str.closeAria, currentLang)}
               >
                 <svg
@@ -462,7 +462,7 @@ export function SynchronizedSentenceReader({
                     str.listenPronunciationAria,
                     currentLang,
                   )}
-                  className="inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-2 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                  className="press-solid inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-2 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {isPlayingTermAudio ? (
                     <svg
@@ -508,7 +508,7 @@ export function SynchronizedSentenceReader({
               <button
                 type="button"
                 onClick={() => setActivePopoverTerm(null)}
-                className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-4 py-2 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="press-row inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {pickLocale(str.dismissButton, currentLang)}
               </button>

@@ -29,6 +29,13 @@ import {
   type InstituteCategory,
   type MedicalInstitute,
 } from "@/lib/medical-institutes";
+import {
+  readSavedFindHelpLocation,
+  resolveSmartLocation,
+  writeSavedFindHelpLocation,
+  type SmartCityOption,
+  type SmartLocationResolution,
+} from "@/lib/smart-location";
 
 function MapLoading() {
   const { lang, t } = useLanguage();
@@ -76,7 +83,42 @@ function isDesktopViewport() {
 
 type SearchArea =
   | { kind: "country"; country: CountryCode }
-  | { kind: "point"; lat: number; lng: number; source: "gps" | "area" | "city"; cityName?: string };
+  | {
+      kind: "point";
+      lat: number;
+      lng: number;
+      source: "gps" | "area" | "city";
+      cityName?: string;
+      country?: CountryCode;
+    };
+
+function areaFromSmartResolution(resolution: SmartLocationResolution): SearchArea {
+  if (resolution.mode === "city" && resolution.city) {
+    return {
+      kind: "point",
+      lat: resolution.city.lat,
+      lng: resolution.city.lng,
+      source: "city",
+      cityName: resolution.city.name,
+      country: resolution.country,
+    };
+  }
+  return { kind: "country", country: resolution.country };
+}
+
+function isSameSearchArea(a: SearchArea, b: SearchArea): boolean {
+  if (a.kind === "country" && b.kind === "country") return a.country === b.country;
+  if (a.kind === "point" && b.kind === "point") {
+    return (
+      a.source === b.source &&
+      a.lat === b.lat &&
+      a.lng === b.lng &&
+      a.cityName === b.cityName &&
+      a.country === b.country
+    );
+  }
+  return false;
+}
 
 type LocationStatus = "idle" | "locating" | "active" | "denied";
 type MobileViewMode = "list" | "map";
@@ -251,9 +293,11 @@ function FilterSwitch({
 export function FindHelpExplorer({
   initialCountry,
   initialCategory = null,
+  detectedIpCountry = null,
 }: {
   initialCountry: CountryCode;
   initialCategory?: InstituteCategory | null;
+  detectedIpCountry?: CountryCode | null;
 }) {
   const { t, lang } = useLanguage();
   const copy = findHelpTranslations[lang];
@@ -264,9 +308,19 @@ export function FindHelpExplorer({
   const [speechTarget, setSpeechTarget] = useState<"intro" | "rights" | null>(null);
   const activeSpeech = voice.speaking ? speechTarget : null;
 
-  const [area, setArea] = useState<SearchArea>({ kind: "country", country: initialCountry });
-  const [activeCountry, setActiveCountry] = useState<CountryCode>(initialCountry);
-  /** GPS worked but the nearest place is over 80 km away: we show the country and say why. */
+  const initialGuess = useMemo(
+    () => resolveSmartLocation({ lang, ipCountry: detectedIpCountry }),
+    [lang, detectedIpCountry],
+  );
+  const [area, setArea] = useState<SearchArea>(() => areaFromSmartResolution(initialGuess));
+  const [activeCountry, setActiveCountry] = useState<CountryCode>(() => initialGuess.country ?? initialCountry);
+  const [guessReason, setGuessReason] = useState<"language" | "region" | null>(() =>
+    initialGuess.reason === "saved" ? null : initialGuess.reason,
+  );
+  const [smartSuggestions, setSmartSuggestions] = useState<SmartCityOption[]>(() => initialGuess.suggestions);
+  const clientSmartGuessRef = useRef<SmartLocationResolution>(initialGuess);
+  const userPickedManuallyRef = useRef(false);
+  /** GPS worked but the nearest place is over 80 km away: we show the suggested hub and say why. */
   const [farFromServices, setFarFromServices] = useState(false);
   const [category, setCategory] = useState<InstituteCategory | null>(initialCategory);
   const [emergencyOnly, setEmergencyOnly] = useState(false);
@@ -313,7 +367,10 @@ export function FindHelpExplorer({
   const geolocationRequested = useRef(false);
 
   const locateUser = useCallback((isManual = false) => {
-    if (isManual) setManualLocateTried(true);
+    if (isManual) {
+      setManualLocateTried(true);
+      userPickedManuallyRef.current = true;
+    }
     if (typeof navigator === "undefined" || !navigator.geolocation) {
       setLocationStatus("denied");
       return;
@@ -325,12 +382,56 @@ export function FindHelpExplorer({
         setUserLocation(point);
         setLocationStatus("active");
         setFarFromServices(false);
+        setGuessReason(null);
         setArea({ kind: "point", ...point, source: "gps" });
       },
       () => setLocationStatus("denied"),
       { enableHighAccuracy: false, timeout: 15_000, maximumAge: 10 * 60_000 },
     );
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (cancelled) return;
+      const savedChoice = readSavedFindHelpLocation();
+      let timeZone: string | null = null;
+      try {
+        timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? null;
+      } catch {
+        timeZone = null;
+      }
+      const browserLocales =
+        typeof navigator !== "undefined"
+          ? navigator.languages?.length
+            ? navigator.languages
+            : navigator.language
+              ? [navigator.language]
+              : []
+          : [];
+      const resolved = resolveSmartLocation({
+        lang,
+        ipCountry: detectedIpCountry,
+        timeZone,
+        browserLocales,
+        savedChoice,
+      });
+      clientSmartGuessRef.current = resolved;
+      setSmartSuggestions(resolved.suggestions);
+      if (!userPickedManuallyRef.current) {
+        const targetArea = areaFromSmartResolution(resolved);
+        setArea((prev) => {
+          if (prev.kind === "point" && prev.source === "gps") return prev;
+          return isSameSearchArea(prev, targetArea) ? prev : targetArea;
+        });
+        setActiveCountry(resolved.country);
+        setGuessReason(resolved.reason === "saved" ? null : resolved.reason);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, detectedIpCountry]);
 
   useEffect(() => {
     if (geolocationRequested.current) return;
@@ -355,6 +456,7 @@ export function FindHelpExplorer({
   const isColdLoad = loading && settled === null;
   const isRevalidating = loading && settled !== null;
   const error = !loading && Boolean(settled?.failed);
+  const gpsActive = area.kind === "point" && area.source === "gps";
 
   useEffect(() => {
     const controller = new AbortController();
@@ -375,6 +477,25 @@ export function FindHelpExplorer({
     load()
       .then((data) => {
         if (controller.signal.aborted) return;
+        let fetchedMinDistance: number | null = null;
+        for (const item of data.institutes) {
+          if (item.distance_km != null && Number.isFinite(item.distance_km)) {
+            if (fetchedMinDistance === null || item.distance_km < fetchedMinDistance) {
+              fetchedMinDistance = item.distance_km;
+            }
+          }
+        }
+        const isDistantGpsResult = gpsActive && fetchedMinDistance !== null && fetchedMinDistance > 80;
+
+        if (isDistantGpsResult) {
+          const fallback = clientSmartGuessRef.current;
+          setFarFromServices(true);
+          setActiveCountry(fallback.country);
+          setGuessReason(fallback.reason === "saved" ? null : fallback.reason);
+          setArea(areaFromSmartResolution(fallback));
+          return;
+        }
+
         setInstitutes(data.institutes);
         if (data.country) setActiveCountry(data.country);
         setSelectedId(null);
@@ -396,29 +517,9 @@ export function FindHelpExplorer({
       });
 
     return () => controller.abort();
-  }, [requestQuery, requestKey]);
+  }, [requestQuery, requestKey, gpsActive]);
 
-  const nearestDistanceKm = useMemo(() => {
-    let min: number | null = null;
-    for (const item of institutes) {
-      if (item.distance_km != null && Number.isFinite(item.distance_km)) {
-        if (min === null || item.distance_km < min) {
-          min = item.distance_km;
-        }
-      }
-    }
-    return min;
-  }, [institutes]);
-
-  const gpsActive = area.kind === "point" && area.source === "gps";
-  const isDistantGps = gpsActive && !loading && nearestDistanceKm !== null && nearestDistanceKm > 80;
-  // What is selected must be what the map shows: when GPS lands far from any service (for example
-  // just over a border), switch to that country's places instead of a map of somewhere else.
-  if (isDistantGps) {
-    setFarFromServices(true);
-    setArea({ kind: "country", country: activeCountry });
-  }
-  const showFarNotice = farFromServices && area.kind === "country";
+  const showFarNotice = farFromServices && !gpsActive;
 
   const displayedInstitutes = useMemo(() => {
     return institutes.filter((item) => {
@@ -477,14 +578,36 @@ export function FindHelpExplorer({
   }
 
   function chooseCountry(country: CountryCode) {
+    userPickedManuallyRef.current = true;
+    setGuessReason(null);
     setFarFromServices(false);
     setActiveCountry(country);
     setArea({ kind: "country", country });
+    writeSavedFindHelpLocation({ mode: "country", country, chosenOnLang: lang });
   }
 
-  function chooseCity(city: CityPreset) {
+  function chooseCity(city: CityPreset & { country?: CountryCode }) {
+    const targetCountry = city.country ?? activeCountry;
+    userPickedManuallyRef.current = true;
+    setGuessReason(null);
     setFarFromServices(false);
-    setArea({ kind: "point", lat: city.lat, lng: city.lng, source: "city", cityName: city.name });
+    setActiveCountry(targetCountry);
+    setArea({
+      kind: "point",
+      lat: city.lat,
+      lng: city.lng,
+      source: "city",
+      cityName: city.name,
+      country: targetCountry,
+    });
+    writeSavedFindHelpLocation({
+      mode: "city",
+      country: targetCountry,
+      cityName: city.name,
+      lat: city.lat,
+      lng: city.lng,
+      chosenOnLang: lang,
+    });
   }
 
   function submitSearch(event: FormEvent) {
@@ -567,7 +690,7 @@ export function FindHelpExplorer({
   const allowOver80Km = area.kind === "point" && area.source === "city";
 
   const hasNotices =
-    (manualLocateTried && locationStatus === "denied" && area.kind === "country") ||
+    (manualLocateTried && locationStatus === "denied" && !gpsActive) ||
     showFarNotice ||
     emergencyOnly;
 
@@ -693,7 +816,7 @@ export function FindHelpExplorer({
                       key={city.name}
                       selected={activeCityName === city.name}
                       onSelect={() => {
-                        chooseCity(city);
+                        chooseCity({ ...city, country: activeCountry });
                       }}
                     >
                       {city.name}
@@ -762,6 +885,75 @@ export function FindHelpExplorer({
           </div>
         </div>
 
+        {/* Smart language/region location hint + 1-tap city/country switch */}
+        <div className="mt-3 flex flex-col gap-2 border-t border-border/70 pt-3 lg:flex-row lg:items-center lg:justify-between">
+          <p className="flex min-w-0 items-center gap-2 text-xs text-muted-foreground sm:text-sm">
+            <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+            <span className="min-w-0 truncate">
+              {gpsActive
+                ? copy.locationActive
+                : guessReason === "region" && activeCityName
+                  ? copy.suggestedByRegion(activeCityName, copy.countries[activeCountry])
+                  : guessReason === "language" && activeCityName
+                    ? copy.suggestedByLanguage(activeCityName, copy.countries[activeCountry])
+                    : locationSummary}
+            </span>
+          </p>
+
+          <div
+            role="group"
+            aria-label={copy.quickSuggestionsLabel}
+            className="flex flex-nowrap items-center gap-2 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {!gpsActive && locationStatus !== "locating" && (
+              <button
+                type="button"
+                onClick={() => locateUser(true)}
+                className="press-row inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-sapphire/35 bg-sapphire-soft/55 px-3 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                <span>{copy.useMyLocation}</span>
+              </button>
+            )}
+
+            {smartSuggestions.map((city) => {
+              const isSelected =
+                area.kind === "point" &&
+                area.source === "city" &&
+                area.cityName === city.name &&
+                (area.country ?? activeCountry) === city.country;
+              return (
+                <button
+                  key={`${city.country}:${city.name}`}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => chooseCity(city)}
+                  className={`press-row inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    isSelected
+                      ? "border-sapphire bg-sapphire text-white shadow-2xs"
+                      : "border-border-control bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/40"
+                  }`}
+                >
+                  {city.name}
+                </button>
+              );
+            })}
+
+            <button
+              type="button"
+              aria-pressed={area.kind === "country" && area.country === activeCountry}
+              onClick={() => chooseCountry(activeCountry)}
+              className={`press-row inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                area.kind === "country" && area.country === activeCountry
+                  ? "border-sapphire bg-sapphire text-white shadow-2xs"
+                  : "border-border-control bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/40"
+              }`}
+            >
+              {copy.wholeCountryOption(copy.countries[activeCountry])}
+            </button>
+          </div>
+        </div>
+
         {/* Announces where the results are from; the dropdown trigger shows the short version. */}
         <p className="sr-only" aria-live="polite">
           {locationSummary}
@@ -769,7 +961,7 @@ export function FindHelpExplorer({
 
         {hasNotices && (
           <div className="mt-3 space-y-2.5 border-t border-border/70 pt-3">
-            {manualLocateTried && locationStatus === "denied" && area.kind === "country" && (
+            {manualLocateTried && locationStatus === "denied" && !gpsActive && (
               <p className="text-sm text-muted-foreground" role="status">
                 {copy.locationDenied}
               </p>
@@ -1091,6 +1283,8 @@ export function FindHelpExplorer({
                 youAreHereLabel={copy.youAreHere}
                 clusterLabel={copy.resultsCount}
                 onSearchArea={(center) => {
+                  userPickedManuallyRef.current = true;
+                  setGuessReason(null);
                   setFarFromServices(false);
                   setArea({ kind: "point", ...center, source: "area" });
                 }}

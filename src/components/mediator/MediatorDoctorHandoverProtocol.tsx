@@ -371,7 +371,7 @@ export function MediatorDoctorHandoverProtocol({
                   rows={4}
                   value={mediatorNotes}
                   onChange={(e) => setMediatorNotes(e.target.value)}
-                  className="w-full rounded-md border border-white/20 bg-black/40 p-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  className="w-full rounded-md border border-white/20 bg-black/40 p-2 text-xs text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
             </div>
@@ -418,7 +418,7 @@ export function MediatorDoctorHandoverProtocol({
               aria-label={copy.nameLabel}
               value={patientName}
               onChange={(e) => setPatientName(e.target.value)}
-              className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground"
+              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
@@ -431,7 +431,7 @@ export function MediatorDoctorHandoverProtocol({
               aria-label={copy.ageLabel}
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground"
+              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
         </div>
@@ -469,7 +469,7 @@ export function MediatorDoctorHandoverProtocol({
             aria-label={copy.reasonLabel}
             value={reason}
             onChange={(e) => setReason(e.target.value)}
-            className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground"
+            className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -488,7 +488,7 @@ export function MediatorDoctorHandoverProtocol({
             aria-label={copy.languageBarrier}
             checked={languageBarrier}
             onChange={(e) => setLanguageBarrier(e.target.checked)}
-            className="h-4 w-4 rounded border-border text-sapphire focus:ring-sapphire"
+            className="h-5 w-5 rounded border-border-control accent-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
         </div>
 
@@ -501,7 +501,7 @@ export function MediatorDoctorHandoverProtocol({
             rows={2}
             value={mediatorNotes}
             onChange={(e) => setMediatorNotes(e.target.value)}
-            className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground"
+            className="w-full rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -510,7 +510,7 @@ export function MediatorDoctorHandoverProtocol({
             type="button"
             disabled={isTransmitting}
             onClick={handleStartHandover}
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="press-solid inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
           >
             <VideoIcon className="h-4 w-4" />
             {isTransmitting ? copy.submitting : copy.submit}

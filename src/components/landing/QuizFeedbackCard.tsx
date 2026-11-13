@@ -67,7 +67,7 @@ export function QuizFeedbackCard({
   }, [focusOnMount]);
 
   return (
-    <div className="mt-5 border-t border-sapphire-border/70 pt-5 transition-[opacity,transform] duration-(--dur-base) ease-(--ease-out-calm) starting:translate-y-1.5 starting:opacity-0 motion-reduce:transition-none dark:border-white/10">
+    <div className="fhs-enter mt-5 border-t border-border/90 pt-5 transition-[opacity,transform] duration-(--dur-base) ease-(--ease-out-calm) starting:translate-y-1.5 starting:opacity-0 motion-reduce:transition-none dark:border-white/15">
       <div className="flex items-center gap-2.5">
         <DrawnMark
           path={isMatch ? "M6 10.4 8.7 13 14 7.4" : "M7 7l6 6M13 7l-6 6"}

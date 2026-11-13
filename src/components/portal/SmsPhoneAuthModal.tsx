@@ -444,7 +444,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                       copy.fallbackLinkText,
                     ])
               }
-              className="inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground hover:bg-muted"
+              className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
               <span className="min-w-0 truncate">{voice.speaking ? listenText.stop : listenText.listen}</span>
@@ -582,7 +582,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                       return (
                         <div
                           key={slot}
-                          className={`flex h-16 items-center justify-center rounded-xl border-2 text-2xl font-bold tabular-nums transition-colors duration-(--dur-fast) ease-(--ease-out-calm) ${
+                          className={`flex h-16 items-center justify-center rounded-xl border-2 text-2xl font-bold tabular-nums transition-[border-color,box-shadow,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
                             isActiveSlot
                               ? "border-sapphire bg-sapphire-soft text-foreground ring-2 ring-sapphire/25 dark:border-sapphire-border dark:bg-sapphire/25 dark:text-paper"
                               : digit
@@ -639,7 +639,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
         <div className="mt-6 border-t border-border/80 pt-4 dark:border-white/10">
           <Link
             href={withLangPrefix("/mediatori#solicita", lang)}
-            className={`press-row -mx-2 flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-xl px-2 text-sm font-medium text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/60 hover:text-foreground dark:text-mist dark:hover:bg-white/[0.06] dark:hover:text-paper sm:text-[0.9375rem] ${FOCUS_RING}`}
+            className={`press-row -mx-1 flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-md px-1 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/60 hover:text-foreground dark:text-mist dark:hover:bg-white/[0.06] dark:hover:text-paper sm:text-[0.9375rem] ${FOCUS_RING}`}
           >
             <span className="flex min-w-0 items-center gap-2.5">
               <UsersIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-amber-care" />

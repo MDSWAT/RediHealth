@@ -223,7 +223,7 @@ const COPY: Record<Lang, TrustCopy> = {
 // Amber marks the health mediators, here as everywhere else; the other partners are sapphire.
 const SOURCE_TILES: Record<SourceId, { icon: NavIcon; tone: IconTileTone }> = {
   oms: { icon: GlobeIcon, tone: "sapphire-soft" },
-  mediatori: { icon: NAV_LINK_ICONS["/mediatori"], tone: "sapphire-soft" },
+  mediatori: { icon: NAV_LINK_ICONS["/mediatori"], tone: "amber" },
   redi: { icon: HandHelpingIcon, tone: "sapphire-soft" },
 };
 
@@ -268,7 +268,7 @@ export function TrustSection() {
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="-my-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-sm text-body font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:focus-visible:ring-paper"
+                          className="-my-2 -mx-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 text-body font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/50 hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-white/10 dark:focus-visible:ring-paper"
                         >
                           {item.hrefLabel}
                           <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0 -rotate-45" />
@@ -295,8 +295,8 @@ export function TrustSection() {
               <li key={title}>
                 <div className="border-t-2 border-foreground/80 pt-5 dark:border-paper/80">
                   <Icon aria-hidden="true" className="h-6 w-6 text-sapphire dark:text-sapphire-border" />
-                  <p className="mt-3 text-lead font-semibold">{title}</p>
-                  <p className="mt-2 text-pretty text-body text-muted-foreground dark:text-mist">
+                  <p className="mt-3 text-lead font-semibold tabular-nums">{title}</p>
+                  <p className="mt-2 text-pretty text-body tabular-nums text-muted-foreground dark:text-mist">
                     {description}
                   </p>
                 </div>

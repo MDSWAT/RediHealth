@@ -26,13 +26,15 @@ describe("Workspace and pages design consistency", () => {
 
     const calSrc = read("components/telemed/AppointmentBookingCalendar.tsx");
     expect(calSrc).toContain('<Container className="py-8 sm:py-10">');
-    expect(calSrc).toContain("max-w-3xl");
+    expect(calSrc).not.toContain("max-w-3xl");
+    expect(calSrc).toContain("lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.95fr)]");
+    expect(calSrc).toContain("lg:sticky lg:top-[calc(var(--chrome-h,0px)+1.5rem)]");
     expect(calSrc).toContain("border-border-control");
     expect(calSrc).not.toContain("mx-auto max-w-2xl");
     expect(calSrc).not.toContain("rounded-full");
 
     const smsSrc = read("components/telemed/BookingSmsConfirmation.tsx");
-    expect(smsSrc).toContain("max-w-2xl");
+    expect(smsSrc).not.toContain("max-w-2xl");
     expect(smsSrc).not.toContain("mx-auto max-w-xl");
     expect(smsSrc).toContain("border-border-control");
     expect(smsSrc).toContain("press-row");

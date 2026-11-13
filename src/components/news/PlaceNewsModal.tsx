@@ -65,7 +65,7 @@ const COPY: Record<Lang, {
     tabsLabel: "Типы новостей",
     local: "Местный",
     national: "Вся страна",
-    count: (n) => (n === 1 ? "1 news item" : `${n} новости`),
+    count: (n) => (n === 1 ? "1 новость" : `${n} новости`),
     noLocal: (p) => `Нет новостей для ${p} еще. Ниже новости по всей стране.`,
     highAlert: "Оповещение о здоровье",
     seasonalAlert: "Сезонное предупреждение",
@@ -366,7 +366,7 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
               type="button"
               onClick={onClose}
               aria-label={c.close}
-              className="-mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row -mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <CloseIcon className="h-5 w-5" />
             </button>
@@ -388,7 +388,7 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
                     onClick={() => setTab(x.key)}
                     onKeyDown={(e) => onTabKeyDown(e, i)}
                     className={cn(
-                      "relative flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
+                      "press-row relative flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
                       selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                     )}
                   >
@@ -612,7 +612,7 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
         <div className="flex flex-wrap items-center gap-2">
           <Link
             href={withLangPrefix("/medic-online", lang)}
-            className="inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg bg-card px-3 text-xs font-semibold text-sapphire shadow-[0_1px_2px_rgb(15_23_42/0.08)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft dark:text-sapphire-border dark:hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="press-solid inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg bg-card px-3 text-xs font-semibold text-sapphire shadow-[0_1px_2px_rgb(15_23_42/0.08)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
             {np.handoverTelemed}

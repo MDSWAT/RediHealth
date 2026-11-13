@@ -17,37 +17,37 @@ const PRESCRIPTION_DOCTOR_BRIDGE_COPY: Record<
   ru: {
     heading: "Не уверены в своем рецепте?",
     body: "Не уверены, что эти лекарства безопасны с другими таблетками, которые вы принимаете? Прежде чем начать, поговорите с врачом онлайн бесплатно.",
-    buttonText: "Поговорите с врачом о вашем рецепте",
+    buttonText: "Спросить врача онлайн",
   },
   en: {
     heading: "Not sure about your prescription?",
     body: "Not sure these medicines are safe with other pills you take? Talk to a doctor online for free before you start them.",
-    buttonText: "Talk to a doctor about your prescription",
+    buttonText: "Ask a doctor online",
   },
   ro: {
     heading: "Nu înțelegi ceva din rețetă?",
     body: "Nu știi dacă aceste medicamente merg cu alte pastile pe care le iei? Vorbește gratuit cu un medic online înainte să le iei.",
-    buttonText: "Vorbește cu un medic despre rețetă",
+    buttonText: "Întreabă un medic online",
   },
   sq: {
     heading: "Nuk e kupton diçka në recetë?",
     body: "Nuk je i sigurt nëse këto ilaçe shkojnë me ilaçet e tjera që merr? Fol falas me një mjek online para se t'i fillosh.",
-    buttonText: "Fol me një mjek për recetën",
+    buttonText: "Pyet një mjek online",
   },
   it: {
     heading: "Hai dubbi sulla ricetta?",
     body: "Non sai se questi farmaci vanno bene insieme ad altri che prendi? Parla gratuitamente con un medico online prima di iniziarli.",
-    buttonText: "Parla della ricetta con un medico",
+    buttonText: "Chiedi a un medico online",
   },
   hr: {
     heading: "Nešto ti nije jasno na receptu?",
     body: "Nisi siguran ili sigurna idu li ovi lijekovi uz druge tablete koje uzimaš? Razgovaraj besplatno s liječnikom online prije nego što ih počneš uzimati.",
-    buttonText: "Razgovaraj s liječnikom o receptu",
+    buttonText: "Pitaj liječnika online",
   },
   rom: {
     heading: "Na haljares vareso and-i receta?",
     body: "Na dzanes te djan kadala drabura avre xapensa so les? Vorbin bi lovengo jekhe doktorestar online angla te nachaves len.",
-    buttonText: "Vorbin jekhe doktorestar vash i receta",
+    buttonText: "Phuch doktores online",
   },
 };
 
@@ -70,7 +70,7 @@ export function PrescriptionDoctorBridge({ className = "" }: PrescriptionDoctorB
         </div>
         <Link
           href={targetUrl}
-          className="inline-flex min-h-[48px] w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 print:hidden sm:w-auto"
+          className="press-solid inline-flex min-h-[48px] w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden sm:w-auto"
         >
           <StethoscopeIcon className="h-4 w-4 shrink-0" />
           <span>{t.buttonText}</span>

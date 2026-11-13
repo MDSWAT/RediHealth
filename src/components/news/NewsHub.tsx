@@ -214,7 +214,7 @@ export function NewsHub() {
         <Container>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{np.heroTitle}</h1>
+              <h1 className="text-balance text-page text-foreground">{np.heroTitle}</h1>
               <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">{np.heroSubtitle}</p>
             </div>
             <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap">
@@ -278,18 +278,25 @@ export function NewsHub() {
 
       <div className="py-8 sm:py-12">
         <Container>
-          {showMap && (
-            <div id="news-county-map" className="mb-10">
-              <RomaniaCountyMap
-                selectedCounty={selectedAreaForMap}
-                onSelectCounty={selectArea}
-                activeHubs={hubs}
-                countries={mapCountries}
-                activeCountry={activeCountry}
-                onCountryChange={setSelectedMapCountry}
-              />
+          <div
+            id="news-county-map"
+            data-open={showMap ? "true" : "false"}
+            aria-hidden={!showMap}
+            className="calm-collapse"
+          >
+            <div className="calm-collapse-inner" inert={!showMap || undefined}>
+              <div className="pb-10">
+                <RomaniaCountyMap
+                  selectedCounty={selectedAreaForMap}
+                  onSelectCounty={selectArea}
+                  activeHubs={hubs}
+                  countries={mapCountries}
+                  activeCountry={activeCountry}
+                  onCountryChange={setSelectedMapCountry}
+                />
+              </div>
             </div>
-          )}
+          </div>
 
           <section aria-labelledby="news-latest-heading">
             <div className="flex items-baseline justify-between gap-3 border-b border-border pb-2">
@@ -310,7 +317,7 @@ export function NewsHub() {
                 <li key={article.id}>
                   <Link
                     href={withLangPrefix(`${basePath}/${article.slug}`, lang)}
-                    className="group flex flex-col gap-1 py-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                    className="group press-row -mx-2.5 flex min-h-12 flex-col gap-1 rounded-lg px-2.5 py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/45 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
                   >
                     <span lang={article.language} className="text-[15px] font-medium leading-snug text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire dark:group-hover:text-sapphire-border">
                       {article.title}
@@ -341,7 +348,7 @@ export function NewsHub() {
             <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
               <Link
                 href={withLangPrefix("/medic-online", lang)}
-                className="inline-flex min-h-[48px] max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="press-solid inline-flex min-h-[48px] max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <StethoscopeIcon className="h-4 w-4 shrink-0" />
                 <span className="min-w-0 truncate">{np.handoverTelemed}</span>

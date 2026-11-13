@@ -718,9 +718,9 @@ const fieldClass =
 const fileClass =
   "w-full text-sm text-foreground file:mr-3 file:min-h-[40px] file:rounded-lg file:border-0 file:bg-muted file:px-3 file:text-sm file:font-semibold file:text-foreground hover:file:bg-muted/70";
 const primaryButton =
-  "inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
+  "press-solid inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
 const secondaryButton =
-  "inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground";
+  "press-row inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground";
 
 function SectionTitle({ title, count }: { title: string; count?: number }) {
   return (
@@ -881,7 +881,7 @@ export function PatientPortalView({
               <button
                 type="button"
                 onClick={() => setActiveTab("home")}
-                className="-ml-2 mb-3 inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="press-row -ml-2 mb-3 inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <ArrowLeftIcon className="h-4 w-4 shrink-0" />
                 {t.backHome}
@@ -937,7 +937,7 @@ export function PatientPortalView({
                     <button
                       type="button"
                       onClick={onClick}
-                      className="group flex min-h-[64px] w-full items-center gap-4 px-1 py-4 text-left transition-colors duration-[var(--dur-fast)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                      className="press-row group flex min-h-[64px] w-full items-center gap-4 px-1 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
                     >
                       <Icon aria-hidden="true" className="h-5 w-5 shrink-0 text-sapphire" />
                       <span className="min-w-0 flex-1">
@@ -1155,7 +1155,7 @@ export function PatientPortalView({
                                         <button
                                           type="button"
                                           onClick={() => removeCompletionPhotoDraft(photoItem.id)}
-                                          className="min-h-[44px] shrink-0 whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                          className="press-row min-h-[44px] shrink-0 whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:underline dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                         >
                                           {t.cancel}
                                         </button>

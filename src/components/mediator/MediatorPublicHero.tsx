@@ -23,7 +23,7 @@ export const heroCopy = {
     title: "Медиатор по вопросам здоровья может помочь вам",
     subtitle: "Медицинский посредник поможет вам обратиться к врачу, получить документы, удостоверяющие личность и медицинскую страховку, а также присмотреть за вашими детьми, бабушками и дедушками.",
     ctaRequest: "Попросите посредника",
-    ctaSignIn: "Вход в Медиатор",
+    ctaSignIn: "Вход для медиаторов",
     card1Title: "Запись и посещение врача",
     card1Desc: "Они идут с вами к семейному врачу, помогают записаться на прием и объясняют ваши рецепты.",
     card2Title: "Документы и страховка",
@@ -121,7 +121,7 @@ export function MediatorPublicHero() {
       <section className="border-b border-border bg-background py-10 sm:py-16">
         <Container>
           <div className="max-w-3xl">
-            <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            <h1 className="text-balance text-page text-foreground">
               {copy.title}
             </h1>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{copy.subtitle}</p>
@@ -131,7 +131,7 @@ export function MediatorPublicHero() {
                 type="button"
                 onClick={() => setModalOpen(true)}
                 aria-haspopup="dialog"
-                className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+                className="press-solid inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <UsersIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{copy.ctaRequest}</span>
@@ -139,7 +139,7 @@ export function MediatorPublicHero() {
 
               <Link
                 href={withLangPrefix("/sign-in", lang)}
-                className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-5 py-3 text-center text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-5 py-3 text-center text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 {copy.ctaSignIn}
               </Link>

@@ -206,4 +206,27 @@ describe("Zero two-line buttons across all 7 locales", () => {
       }
     }
   });
+
+  it("allows both HealthCheckExplorer desktop result columns to scroll smoothly without trapping wheel scroll", () => {
+    const source = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
+    expect(source).not.toContain("overscroll-contain");
+
+    const leftColumnMatch = source.match(/<div\s+className="([^"]*lg:col-span-7[^"]*)"/);
+    expect(leftColumnMatch).not.toBeNull();
+    const leftClasses = leftColumnMatch![1];
+    expect(leftClasses).toContain("lg:sticky");
+    expect(leftClasses).toContain("lg:top-[calc(var(--chrome-h,0px)+1rem)]");
+    expect(leftClasses).toContain("lg:max-h-[calc(100dvh-var(--chrome-h,0px)-2rem)]");
+    expect(leftClasses).toContain("lg:overflow-y-auto");
+    expect(leftClasses).toContain("lg:overscroll-auto");
+
+    const rightColumnMatch = source.match(/<div\s+className="([^"]*lg:col-span-5[^"]*)"/);
+    expect(rightColumnMatch).not.toBeNull();
+    const rightClasses = rightColumnMatch![1];
+    expect(rightClasses).toContain("lg:sticky");
+    expect(rightClasses).toContain("lg:top-[calc(var(--chrome-h,0px)+1rem)]");
+    expect(rightClasses).toContain("lg:max-h-[calc(100dvh-var(--chrome-h,0px)-2rem)]");
+    expect(rightClasses).toContain("lg:overflow-y-auto");
+    expect(rightClasses).toContain("lg:overscroll-auto");
+  });
 });

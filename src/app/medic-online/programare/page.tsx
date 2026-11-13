@@ -32,7 +32,7 @@ export default async function AppointmentBookingPage() {
     <main id="main-content" className="min-h-screen bg-background">
       <div className="border-b border-border bg-card py-6 sm:py-8">
         <Container>
-          <div className="max-w-2xl">
+          <div>
             <Link
               href={withLangPrefix("/medic-online", lang)}
               className="mb-2 inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-sm text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -41,7 +41,7 @@ export default async function AppointmentBookingPage() {
               {mp.backToDoctorOnline}
             </Link>
             <h1 className="text-balance text-page text-foreground">{mp.bookingTitle}</h1>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground sm:text-base">{mp.bookingSubtitle}</p>
+            <p className="mt-1.5 max-w-[65ch] text-sm leading-relaxed text-muted-foreground sm:text-base">{mp.bookingSubtitle}</p>
           </div>
         </Container>
       </div>

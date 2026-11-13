@@ -425,7 +425,7 @@ export function RomanianDualRegisterGlossary({
                           <span>{cleanCatLabel}</span>
                         </span>
                         {isTopicMatch && (
-                          <span className="inline-flex items-center rounded-md bg-sapphire-soft px-2.5 py-0.5 text-[11.5px] font-semibold text-sapphire ring-1 ring-inset ring-sapphire-border">
+                          <span className="text-xs font-semibold text-sapphire dark:text-sapphire-border">
                             {extras.inThisGuide}
                           </span>
                         )}

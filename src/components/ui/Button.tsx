@@ -20,14 +20,14 @@ const base =
 // ("secondary", the default) or the quieter outline and ghost.
 const variants: Record<Variant, string> = {
   primary:
-    "bg-primary text-white shadow-(--hairline-refraction) hover:bg-primary-hover active:bg-primary-active disabled:bg-muted",
+    "bg-primary text-white shadow-(--hairline-refraction) press-solid hover:bg-primary-hover active:bg-primary-active disabled:bg-muted",
   action:
     "bg-sapphire text-white shadow-(--hairline-refraction) hover:bg-sapphire-light press-solid disabled:bg-muted",
   secondary:
-    "bg-foreground text-white shadow-(--hairline-refraction) hover:bg-foreground/90 active:bg-foreground/85 disabled:bg-muted",
+    "bg-foreground text-white shadow-(--hairline-refraction) press-solid hover:bg-foreground/90 active:bg-foreground/85 dark:bg-paper dark:text-ink-950 dark:hover:bg-paper/90 disabled:bg-muted",
   outline:
     "border border-border-control bg-card text-foreground shadow-(--shadow-card-rest) hover:border-foreground/40 hover:bg-muted/70 hover:shadow-(--shadow-card-hover) active:bg-muted disabled:bg-muted",
-  ghost: "text-foreground hover:bg-muted active:bg-muted/80",
+  ghost: "press-row text-foreground hover:bg-muted active:bg-muted/80",
 };
 
 const sizes: Record<Size, string> = {

@@ -47,7 +47,7 @@ export const expiredCopy: Record<Lang, { title: string; body: string; action: st
   rom: {
     title: "O linko andar o SMS nakhlo",
     body: "Naj problema. Kher andre akana le nomerosa e telefonosko thaj bichhalas tuke kodo ko SMS. Na trebul tuke email vay parola.",
-    action: "Kher andre le nomerosa e telefonosko",
+    action: "Kher andre telefonosa",
     help: "Trebul tuke zhutipen? Mang mediatores",
   },
 };
@@ -59,22 +59,22 @@ export function PortalLinkExpired() {
   return (
     <main id="main-content" className="flex flex-1 items-center py-20 sm:py-28">
       <Container>
-        <div className="mx-auto max-w-xl text-center">
+        <div className="fhs-enter mx-auto max-w-xl text-center">
           <ClockIcon className="mx-auto h-8 w-8 text-muted-foreground" />
-          <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-6 text-balance text-page text-foreground">
             {text.title}
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{text.body}</p>
           <div className="mt-8 flex flex-col items-center gap-3">
             <Link
               href={withLangPrefix("/contul-meu", lang)}
-              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-6 text-base font-semibold text-white transition-colors hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+              className="press-solid inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {text.action}
             </Link>
             <Link
               href={withLangPrefix("/mediatori#solicita", lang)}
-              className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire dark:text-sapphire-border"
+              className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-sapphire underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
             >
               {text.help}
             </Link>

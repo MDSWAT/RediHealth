@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -64,15 +66,15 @@ export default function NotFound() {
   return (
     <main id="main-content" className="flex flex-1 items-center py-16 sm:py-24">
       <Container>
-        <div className="mx-auto max-w-2xl text-center">
+        <section className="fhs-enter mx-auto max-w-2xl text-center">
           <MissingRoute />
-          <h1 className="mt-8 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-8 text-balance text-page text-foreground">
             {page.title}
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
             {page.subtitle}
           </p>
-          <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+          <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-nowrap sm:justify-center">
             <Button
               type="button"
               variant="action"
@@ -84,24 +86,31 @@ export default function NotFound() {
             <Button href={withLangPrefix("/", lang)} variant="secondary" className="min-h-12 whitespace-nowrap">
               {page.backHome}
             </Button>
-            <Button href={withLangPrefix("/health-assistant", lang)} variant="outline" className="min-h-12 whitespace-nowrap">
-              {rescue.assistantLabel}
-            </Button>
-            <Button href={withLangPrefix("/medic-online", lang)} variant="outline" className="min-h-12 whitespace-nowrap">
-              {rescue.doctorLabel}
-            </Button>
-            <Button href={withLangPrefix("/find-help", lang)} variant="outline" className="min-h-12 whitespace-nowrap">
-              {rescue.findHelpLabel}
-            </Button>
-            <Button
-              href={withLangPrefix("/health-information", lang)}
-              variant="outline"
-              className="min-h-12 whitespace-nowrap"
-            >
-              {page.exploreHealth}
-            </Button>
           </div>
-        </div>
+          <nav
+            aria-label={page.title}
+            className="mt-6 grid grid-cols-1 gap-2.5 border-t border-border pt-6 sm:grid-cols-2"
+          >
+            {[
+              { href: "/health-assistant", label: rescue.assistantLabel },
+              { href: "/medic-online", label: rescue.doctorLabel },
+              { href: "/find-help", label: rescue.findHelpLabel },
+              { href: "/health-information", label: page.exploreHealth },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={withLangPrefix(item.href, lang)}
+                className="group press-row inline-flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+              >
+                <span>{item.label}</span>
+                <ArrowRightIcon
+                  className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 group-hover:text-sapphire motion-reduce:transform-none motion-reduce:transition-none"
+                  aria-hidden="true"
+                />
+              </Link>
+            ))}
+          </nav>
+        </section>
       </Container>
     </main>
   );
