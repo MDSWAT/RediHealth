@@ -78,7 +78,7 @@ export function WhyItMattersInfographic({
           >
             {pickLocale(s.heading, currentLang)}
           </h2>
-          <p className="mt-1.5 text-base text-muted-foreground">
+          <p className="mt-1.5 text-body text-muted-foreground">
             {pickLocale(s.subtitleTemplate, currentLang).replace(
               "{topic}",
               topicTitle.toLowerCase(),
@@ -96,10 +96,10 @@ export function WhyItMattersInfographic({
       <ul className="mt-5 divide-y divide-border rounded-xl border border-border bg-card px-6 py-2 sm:px-8">
         {facts.map((fact, idx) => (
           <li key={idx} className="flex items-start gap-4 py-4 sm:py-5">
-            <span className="mt-0.5 shrink-0 text-lg font-semibold tabular-nums text-sapphire">
+            <span className="mt-0.5 shrink-0 text-title font-semibold tabular-nums text-sapphire">
               {idx + 1}.
             </span>
-            <p className="text-[1.0625rem] leading-[1.7] text-foreground sm:text-[1.125rem]">
+            <p className="text-reading text-foreground">
               {fact}
             </p>
           </li>

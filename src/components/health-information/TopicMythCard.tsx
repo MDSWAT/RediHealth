@@ -92,7 +92,7 @@ export function TopicMythCard({
         />
       </div>
 
-      <p className="mt-3 max-w-prose text-lg font-medium leading-snug text-foreground text-balance sm:text-xl">
+      <p className="mt-3 max-w-(--measure-reading) text-title font-medium leading-snug text-foreground text-balance">
         {quotes[0]}
         {myth.statement}
         {quotes[1]}
@@ -114,7 +114,7 @@ export function TopicMythCard({
               aria-pressed={chosen}
               onClick={() => setSelectedAnswer(value)}
               className={cn(
-                "inline-flex min-h-12 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border px-5 py-2.5 text-sm font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:text-[0.9375rem]",
+                "inline-flex min-h-12 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border px-5 py-2.5 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
                 !hasAnswered &&
                   "border-border-control bg-card text-foreground press-row hover:border-sapphire/50 hover:bg-sapphire-soft/50",
                 hasAnswered &&
@@ -207,7 +207,7 @@ export function TopicMythCard({
         >
           <p
             className={cn(
-              "text-base font-semibold",
+              "text-body font-semibold",
               isMatch
                 ? "text-sapphire dark:text-sapphire-border"
                 : "text-foreground dark:text-paper",
@@ -216,12 +216,12 @@ export function TopicMythCard({
             {isMatch ? pickLocale(s.correctBadge, currentLang) : myth.statusTag}
           </p>
 
-          <p className="text-[1.0625rem] leading-[1.7] text-foreground sm:text-[1.125rem]">
+          <p className="text-reading text-foreground">
             {myth.explanation}
           </p>
 
           {/* Source only: no reviewer name is shown until a real medical reviewer is confirmed. */}
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body text-muted-foreground">
             {pickLocale(s.sourcePrefix, currentLang)} {myth.source}
           </p>
 

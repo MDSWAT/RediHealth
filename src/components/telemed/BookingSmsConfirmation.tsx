@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { CalendarIcon, PhoneIcon } from "@/components/ui/icons";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -191,38 +191,22 @@ export function BookingSmsConfirmation({
 
   return (
     <div className="fhs-enter w-full rounded-xl border border-border bg-card p-6 sm:p-8">
-      <div className="flex items-start gap-3">
-        {/* The confirmation mark draws itself once: ring first, then the tick (static under reduced motion). */}
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          className="mt-0.5 h-6 w-6 shrink-0 text-sapphire dark:text-sapphire-border"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="9.25" pathLength={1} className="stroke-draw" transform="rotate(-90 12 12)" />
-          <path d="m8 12.25 2.75 2.75L16.25 9.5" pathLength={1} className="stroke-draw" style={{ animationDelay: "360ms" }} />
-        </svg>
-        <h2 ref={headingRef} tabIndex={-1} className="text-balance text-2xl font-semibold tracking-tight text-foreground focus:outline-none">{copy.title}</h2>
-      </div>
+      <h2 ref={headingRef} tabIndex={-1} className="text-balance text-section font-semibold text-foreground focus:outline-none">{copy.title}</h2>
 
-      <p className="mt-2 text-base font-medium text-foreground tabular-nums">
+      <p className="mt-2 text-body font-medium text-foreground tabular-nums">
         {confirmation.formattedDate}, {copy.atHour} {confirmation.time}
       </p>
 
-      <dl className="mt-5 grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 border-y border-border py-4 text-sm">
+      <dl className="mt-5 grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 border-y border-border py-4 text-meta">
         <dt className="text-muted-foreground">{copy.codeLabel}</dt>
-        <dd className="font-mono text-lg font-semibold text-foreground">{confirmation.bookingCode}</dd>
+        <dd className="font-mono text-title font-semibold text-foreground">{confirmation.bookingCode}</dd>
         <dt className="text-muted-foreground">{copy.forPatient}</dt>
         <dd className="text-foreground">{confirmation.patientName}</dd>
       </dl>
 
       <div className="mt-5 flex items-start gap-3">
         <PhoneIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
-        <div className="text-sm leading-relaxed">
+        <div className="text-body">
           <p className="font-semibold text-foreground">{copy.smsTitle(confirmation.patientPhone)}</p>
           <p className="mt-1 text-muted-foreground">{confirmation.smsMessage}</p>
           {confirmation.whatsappSent && <p className="mt-1 text-muted-foreground">{copy.whatsAppSent}</p>}
@@ -230,24 +214,29 @@ export function BookingSmsConfirmation({
       </div>
 
       <div className="mt-8 space-y-2.5">
-        <Link
+        <Button
           href={withLangPrefix(`/medic-online/meet/${confirmation.magicRoomId}`, lang)}
-          className="press-solid inline-flex min-h-[44px] w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]"
+          variant="action"
+          size="md"
+          fullWidth
+          className="sm:px-5"
         >
           <PhoneIcon className="h-4 w-4 shrink-0" />
-          <span className="min-w-0 truncate">{copy.openRoom}</span>
-        </Link>
+          <span>{copy.openRoom}</span>
+        </Button>
 
         {confirmation.startsAt ? (
           <div className="flex flex-nowrap items-center gap-2">
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="md"
               onClick={handleDownloadCalendar}
-              className="press-row inline-flex min-h-11 min-w-0 max-w-full flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-4 sm:text-[0.9375rem]"
+              className="min-w-0 flex-1 px-3.5 sm:px-4"
             >
               <CalendarIcon className="h-4 w-4 shrink-0" />
               {copy.addToCalendar}
-            </button>
+            </Button>
 
             <FamilyShareButton
               iconOnly
@@ -273,9 +262,9 @@ export function BookingSmsConfirmation({
             <button
               type="button"
               onClick={onReset}
-              className="press-row inline-flex min-h-[44px] max-w-full items-center justify-center whitespace-nowrap rounded-sm px-2 text-sm font-medium text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground hover:decoration-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-[0.9375rem]"
+              className="press-row inline-flex min-h-[44px] max-w-full items-center justify-center whitespace-nowrap rounded-sm px-2 text-body font-medium text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground hover:decoration-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <span className="min-w-0 truncate">{copy.anotherBooking}</span>
+              <span>{copy.anotherBooking}</span>
             </button>
           </div>
         )}

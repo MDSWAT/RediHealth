@@ -4,22 +4,21 @@ import { UniversalEmergencyBanner } from "@/components/layout/UniversalEmergency
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getSession } from "next-auth/react";
-import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { IconTile } from "@/components/ui/IconTile";
 import { Logo } from "@/components/ui/Logo";
 import {
   AlertCircleIcon,
   CloseIcon,
+  DownloadIcon,
   ExternalLinkIcon,
   GlobeIcon,
   MenuIcon,
   MessageDotsIcon,
   PhoneIcon,
-  ArrowRightIcon,
-  ChevronDownIcon,
   ChevronRightIcon,
+  RefreshIcon,
   SearchIcon,
   UserIcon,
 } from "@/components/ui/icons";
@@ -28,16 +27,24 @@ import { ComfortMenu } from "@/components/layout/ComfortMenu";
 import { LanguageSelector } from "@/components/layout/LanguageSelector";
 import { openReportIssue, reportIssueCopy } from "@/components/layout/ReportIssueWidget";
 import { NAV_LINK_ICONS, type NavLinkHref } from "@/components/layout/nav-links";
+import {
+  capsuleDivider,
+  capsuleItem,
+  capsuleSurface,
+} from "@/components/layout/chrome-capsule";
+import { CapsuleGlidePlate, useCapsuleGlide } from "@/components/layout/CapsuleGlide";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { openSmartSearch } from "@/components/search/smart-search-events";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { cn } from "@/lib/cn";
 import { feedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix, stripLangFromPathname } from "@/lib/i18n/routing";
 import { getSmartSearchCopy } from "@/lib/i18n/smart-search-copy";
 import { translations } from "@/lib/i18n/translations";
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
+import { applyPwaUpdate, openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
 
 const FOCUSABLE_SELECTOR =
   'a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])';
@@ -49,30 +56,27 @@ const DRAWER_ROW_MOTION =
   "press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none";
 
 /**
- * Site header: five patient-first destinations on xl+, compact utility actions
- * (language ISO selector, 44px account link, and split "Start here" CTA with
- * keyboard/touch mediator toggle) from md+ upward, and below xl a focus-trapped menu
- * that opens under the bar: 112 card, language row, destinations, "Start here",
- * health mediators, account.
+ * Site header: six plain-text destinations on 2xl+ (including health mediators),
+ * compact utility actions (search trigger, comfort menu, language ISO selector,
+ * 44px account link) from md+ upward, and below 2xl a focus-trapped menu drawer.
  */
 export function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
-  const startMenuWrapperRef = useRef<HTMLDivElement>(null);
-  const startToggleRef = useRef<HTMLButtonElement>(null);
-  const startMenuId = useId();
+  const { trackRef: glideTrackRef, plateRef: glidePlateRef } = useCapsuleGlide<HTMLDivElement>();
 
   // Publish the header's height while it is pinned, so in-page sticky columns sit below it.
   useEffect(() => {
     const el = headerRef.current;
     if (!el) return;
     const root = document.documentElement;
-    // Constant height (h-16) prevents sticky scroll-height oscillation across scroll thresholds.
+    // Constant height per breakpoint (h-14 below md, md:h-16 above) prevents scroll-height oscillation.
     const publish = () => {
       const pinned = getComputedStyle(el).position === "sticky";
       const strip = el.querySelector<HTMLElement>(".emergency-banner")?.offsetHeight ?? 0;
-      const height = pinned ? `${strip + 64}px` : "0px";
+      const bar = window.matchMedia("(min-width: 768px)").matches ? 64 : 56;
+      const height = pinned ? `${strip + bar}px` : "0px";
       root.style.setProperty("--site-header-h", height);
       root.style.setProperty("--site-header-slim-h", height);
     };
@@ -90,20 +94,29 @@ export function Header() {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDrawerSection, setOpenDrawerSection] = useState<"language" | "comfort" | null>(null);
-  const [openHeaderMenu, setOpenHeaderMenu] = useState<"comfort" | "language" | "start" | null>(null);
+  const [openHeaderMenu, setOpenHeaderMenu] = useState<"comfort" | "language" | null>(null);
   const [drawerHeight, setDrawerHeight] = useState<number | null>(null);
   const [authenticated, setAuthenticated] = useState(false);
   const [dialerOpen, setDialerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname() || "/";
   const currentPath = stripLangFromPathname(pathname);
   const { lang, t: rawT } = useLanguage();
   const t = rawT ?? translations[lang || "ro"] ?? translations.ro;
   const tHeader = t.header;
   const chrome = getChromeCopy(lang);
   const searchCopy = getSmartSearchCopy(lang);
+  const pwa = usePwaSnapshot();
+  const pwaCopy = getPwaCopy(lang);
+  const showInstallTrigger = !pwa.isStandalone && !pwa.hasUpdate;
+  const pwaTriggerLabel = showInstallTrigger
+    ? pwaCopy.installButton
+    : pwa.isRefreshing
+      ? pwaCopy.refreshingApp
+      : pwa.hasUpdate
+        ? pwaCopy.updateNow
+        : pwaCopy.refreshApp;
 
-  const startMenuOpen = openHeaderMenu === "start";
   const isTransparent = currentPath === "/" && !scrolled && !mobileOpen;
 
   useEffect(() => {
@@ -114,27 +127,6 @@ export function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (!startMenuOpen) return;
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpenHeaderMenu(null);
-        startToggleRef.current?.focus();
-      }
-    };
-    const handlePointerDown = (event: PointerEvent) => {
-      if (startMenuWrapperRef.current && !startMenuWrapperRef.current.contains(event.target as Node)) {
-        setOpenHeaderMenu((prev) => (prev === "start" ? null : prev));
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("pointerdown", handlePointerDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("pointerdown", handlePointerDown);
-    };
-  }, [startMenuOpen]);
 
   useEffect(() => {
     if (typeof document === "undefined" || !document.cookie.includes("session-token")) {
@@ -153,7 +145,7 @@ export function Header() {
     document.body.style.overflow = "hidden";
 
     const fit = () => {
-      if (window.innerWidth >= 1280) {
+      if (window.innerWidth >= 1536) {
         setOpenDrawerSection(null);
         setMobileOpen(false);
         return;
@@ -237,6 +229,11 @@ export function Header() {
     { label: tHeader.navStiri, href: "/stiri", subtext: tHeader.navStiriSub },
   ];
 
+  const desktopLinks: { label: string; href: NavLinkHref; subtext: string }[] = [
+    ...primaryLinks,
+    { label: tHeader.forMediators, href: "/mediatori", subtext: tHeader.forMediatorsSub },
+  ];
+
   const isGuidanceRoute =
     currentPath === "/health-assistant" ||
     currentPath.startsWith("/health-assistant/") ||
@@ -256,7 +253,7 @@ export function Header() {
 
   const isMediatorsActive = isActiveHref("/mediatori");
   const isPortalActive = isActiveHref(portalLink.href);
-  const containerSize = "workspace";
+  const containerSize = "default";
 
   return (
     <>
@@ -274,8 +271,12 @@ export function Header() {
       >
         {/* The 112 line rides on top of the bar, so it stays in view while the page scrolls. */}
         <UniversalEmergencyBanner tone={isTransparent ? "dark" : "light"} size={containerSize} />
-        <Container size={containerSize}>
-          <div className="flex h-16 items-center justify-between gap-3 xl:gap-5">
+        <Container
+          size={containerSize}
+          data-header-bar=""
+          className="max-w-[80rem] max-sm:px-3 max-[359px]:px-2 2xl:max-w-[96rem] 2xl:px-5"
+        >
+          <div className="flex h-14 md:h-16 items-center justify-between gap-1 sm:gap-3 2xl:gap-2">
             <Logo
               className="shrink-0 whitespace-nowrap"
               tone={isTransparent ? "light" : "default"}
@@ -283,10 +284,10 @@ export function Header() {
               label={chrome.homeLink}
             />
 
-            {/* Desktop destinations (from 1280px: five links fit comfortably alongside utilities) */}
-            <nav aria-label={chrome.primaryNav} className="hidden shrink-0 xl:block">
-              <ul className="flex items-center gap-1">
-                {primaryLinks.map((link) => {
+            {/* Desktop destinations (from 1536px: six plain links fit cleanly alongside utilities in all 7 locales) */}
+            <nav aria-label={chrome.primaryNav} className="hidden min-w-0 2xl:block">
+              <ul className="flex items-center gap-0.5">
+                {desktopLinks.map((link) => {
                   const isActive = isActiveHref(link.href);
 
                   return (
@@ -296,7 +297,7 @@ export function Header() {
                         onClick={() => setOpenHeaderMenu(null)}
                         aria-current={isActive ? "page" : undefined}
                         className={cn(
-                          "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-3.5 py-1.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+                          "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-2 py-1.5 min-[1400px]:px-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
                           isTransparent
                             ? isActive
                               ? "font-semibold text-white focus-visible:ring-paper/70"
@@ -306,7 +307,7 @@ export function Header() {
                               : "font-medium text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
                         )}
                       >
-                        <span className="whitespace-nowrap text-sm">{link.label}</span>
+                        <span className="whitespace-nowrap text-body">{link.label}</span>
                         <span className="sr-only">{link.subtext}</span>
                       </Link>
                     </li>
@@ -315,26 +316,39 @@ export function Header() {
               </ul>
             </nav>
 
-            <div className="flex shrink-0 items-center gap-0.5 md:gap-1.5 xl:gap-2">
-              {/* Compact utility cluster surfaced from md (768px) upward */}
-              <div className="hidden shrink-0 items-center gap-1.5 md:flex xl:gap-2">
+            {/* One capsule holds every utility: no control carries a box of its own. */}
+            <div ref={glideTrackRef} className={cn(capsuleSurface(isTransparent), "shrink-0")}>
+              <CapsuleGlidePlate plateRef={glidePlateRef} onHero={isTransparent} />
+              <div className="hidden shrink-0 items-center gap-0.5 md:flex">
                 <button
                   type="button"
                   onClick={() => {
                     setOpenHeaderMenu(null);
                     openSmartSearch();
                   }}
-                  aria-label={searchCopy.triggerLabel}
-                  className={cn(
-                    "inline-flex h-11 min-h-11 min-w-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg border px-2.5 text-[13.5px] font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 xl:px-3",
-                    isTransparent
-                      ? "press-on-dark border-white/20 bg-white/10 text-white/95 hover:bg-white/18 focus-visible:ring-paper/70"
-                      : "press-row border-border-control/75 bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/25 focus-visible:ring-ring dark:border-paper/14 dark:bg-ink-950 dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper",
-                  )}
+                  aria-keyshortcuts="Meta+k Control+k /"
+                  aria-label={`${searchCopy.triggerLabel} (Ctrl+K)`}
+                  title={`${searchCopy.triggerLabel} (Ctrl+K)`}
+                  data-capsule-item=""
+                  data-search-trigger=""
+                  data-testid="header-search-trigger"
+                  className={cn(capsuleItem(isTransparent), "pl-3.5 pr-3 text-body")}
                 >
-                  <SearchIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  <span className="whitespace-nowrap">{searchCopy.triggerLabel}</span>
+                  <SearchIcon className="h-4.5 w-4.5 shrink-0 opacity-85" aria-hidden="true" />
+                  <span>{searchCopy.triggerLabel}</span>
+                  <kbd
+                    aria-hidden="true"
+                    className={cn(
+                      "hidden min-w-5 items-center justify-center rounded border px-1 py-0.5 font-sans text-meta font-medium leading-none lg:inline-flex",
+                      isTransparent
+                        ? "border-white/20 bg-white/10 text-paper/75"
+                        : "border-ink-950/12 bg-white/80 text-foreground/65 dark:border-white/15 dark:bg-white/10 dark:text-paper/75",
+                    )}
+                  >
+                    /
+                  </kbd>
                 </button>
+                <span aria-hidden="true" className={capsuleDivider(isTransparent)} />
                 <ComfortMenu
                   tone={isTransparent ? "light" : "default"}
                   open={openHeaderMenu === "comfort"}
@@ -351,196 +365,68 @@ export function Header() {
                   }
                   onNavigate={() => setOpenHeaderMenu(null)}
                 />
+                <span aria-hidden="true" className={capsuleDivider(isTransparent)} />
 
+                {/* Direct 1-click Account and PWA install/update peer segments inside the capsule. */}
                 <Link
                   href={withLangPrefix(portalLink.href, lang)}
                   onClick={() => setOpenHeaderMenu(null)}
-                  title={portalLink.label}
-                  aria-label={portalLink.label}
                   aria-current={isPortalActive ? "page" : undefined}
-                  className={cn(
-                    "press-row tab-ink relative inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg px-0 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
-                    isTransparent
-                      ? isPortalActive
-                        ? "font-semibold text-white focus-visible:ring-paper/70"
-                        : "text-paper/85 hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
-                      : isPortalActive
-                        ? "bg-sapphire-soft/50 text-sapphire hover:bg-sapphire-soft focus-visible:ring-ring dark:bg-white/10 dark:text-paper dark:hover:bg-white/15 dark:focus-visible:ring-paper"
-                        : "text-foreground/80 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
-                  )}
+                  aria-label={portalLink.label}
+                  title={portalLink.label}
+                  data-capsule-item=""
+                  className={cn(capsuleItem(isTransparent, isPortalActive), "w-11")}
                 >
-                  <UserIcon className="h-5 w-5 shrink-0" />
-                  <span className="sr-only">{portalLink.label}</span>
+                  <UserIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
                 </Link>
 
-                {/* Split "Start here" CTA + accessible mediator disclosure toggle */}
-                <div
-                  ref={startMenuWrapperRef}
-                  className="relative inline-flex items-center"
-                  onBlur={(event) => {
-                    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                      setOpenHeaderMenu((prev) => (prev === "start" ? null : prev));
+                <button
+                  type="button"
+                  disabled={!showInstallTrigger && pwa.isRefreshing}
+                  onClick={() => {
+                    setOpenHeaderMenu(null);
+                    if (showInstallTrigger) {
+                      void openPwaInstall();
+                    } else {
+                      void applyPwaUpdate();
                     }
                   }}
+                  aria-label={pwaTriggerLabel}
+                  title={pwaTriggerLabel}
+                  data-capsule-item=""
+                  className={cn(
+                    capsuleItem(isTransparent, pwa.hasUpdate),
+                    "w-11 disabled:cursor-wait disabled:opacity-70",
+                  )}
                 >
-                  <div
-                    className={cn(
-                      "inline-flex items-center rounded-xl border shadow-xs transition-[background-color,border-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:shadow-md",
-                      isTransparent
-                        ? "border-transparent bg-paper text-foreground hover:bg-white"
-                        : "border-ink-950/10 bg-ink-950 text-white hover:bg-ink-900 dark:border-white/10 dark:bg-paper dark:text-ink-950 dark:hover:bg-white",
-                    )}
-                  >
-                    <Link
-                      href={withLangPrefix("/health-assistant#triage", lang)}
-                      onClick={() => setOpenHeaderMenu(null)}
-                      className={cn(
-                        "inline-flex min-h-11 items-center whitespace-nowrap rounded-l-xl pl-4 pr-3 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                        isTransparent
-                          ? "press-row hover:text-sapphire"
-                          : "press-on-dark hover:text-white/85 dark:hover:text-ink-950/80",
-                      )}
-                    >
-                      <span>{tHeader.startHere}</span>
-                    </Link>
-
-                    {/* Integrated hair-width vertical divider */}
-                    <span
-                      aria-hidden="true"
-                      className={cn(
-                        "h-4 w-px shrink-0 transition-opacity duration-[var(--dur-fast)] motion-reduce:transition-none",
-                        isTransparent ? "bg-foreground/15" : "bg-white/20 dark:bg-ink-950/20",
-                      )}
-                    />
-
-                    <button
-                      ref={startToggleRef}
-                      type="button"
-                      aria-expanded={startMenuOpen}
-                      aria-controls={startMenuId}
-                      aria-label={tHeader.forMediators}
-                      onClick={() =>
-                        setOpenHeaderMenu((prev) => (prev === "start" ? null : "start"))
-                      }
-                      className={cn(
-                        "inline-flex min-h-11 w-10 items-center justify-center whitespace-nowrap rounded-r-xl pr-0.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                        isTransparent
-                          ? "press-row hover:text-sapphire"
-                          : "press-on-dark hover:text-white/85 dark:hover:text-ink-950/80",
-                      )}
-                    >
-                      <ChevronDownIcon
-                        className={cn(
-                          "h-3.5 w-3.5 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
-                          startMenuOpen && "rotate-180",
-                        )}
-                      />
-                    </button>
-                  </div>
-
-                  <div
-                    id={startMenuId}
-                    inert={!startMenuOpen}
-                    className={cn(
-                      "absolute right-0 top-full z-50 pt-2 transition-[opacity,transform,visibility] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
-                      startMenuOpen
-                        ? "visible translate-y-0 opacity-100"
-                        : "pointer-events-none invisible -translate-y-1.5 opacity-0",
-                    )}
-                  >
-                    <div className="w-80 rounded-(--radius-surface) border border-border bg-card p-2 text-left text-foreground shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-900">
-                      <Link
-                        href={withLangPrefix("/health-assistant#triage", lang)}
-                        onClick={() => setOpenHeaderMenu(null)}
-                        style={{ "--i": 0 } as CSSProperties}
-                        className={cn(
-                          startMenuOpen && "list-in",
-                          "group press-row flex min-h-12 items-center gap-3.5 rounded-(--radius-control) p-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5",
-                        )}
-                      >
-                        <IconTile
-                          icon={NAV_LINK_ICONS["/health-assistant"]}
-                          size={40}
-                          className="transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
-                        />
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none group-hover:text-sapphire dark:group-hover:text-sapphire-light">
-                            {tHeader.navCere}
-                          </span>
-                          <span className="mt-0.5 block text-xs leading-normal text-muted-foreground">
-                            {tHeader.navCereSub}
-                          </span>
-                        </span>
-                        <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:text-sapphire" />
-                      </Link>
-
-                      <Link
-                        href={withLangPrefix("/mediatori", lang)}
-                        onClick={() => setOpenHeaderMenu(null)}
-                        style={{ "--i": 1 } as CSSProperties}
-                        className={cn(
-                          startMenuOpen && "list-in",
-                          "group press-row mt-1 flex min-h-12 items-center gap-3.5 rounded-(--radius-control) p-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:hover:bg-white/5",
-                        )}
-                      >
-                        <IconTile
-                          icon={NAV_LINK_ICONS["/mediatori"]}
-                          tone="amber"
-                          size={40}
-                          className="transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
-                        />
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none group-hover:text-amber-care dark:group-hover:text-amber-care-border">
-                            {tHeader.forMediators}
-                          </span>
-                          <span className="mt-0.5 block text-xs leading-normal text-muted-foreground">
-                            {tHeader.forMediatorsSub}
-                          </span>
-                        </span>
-                        <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:text-amber-care" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                  {showInstallTrigger ? (
+                    <DownloadIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                  ) : (
+                    <RefreshIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                  )}
+                </button>
               </div>
 
-              {/* Mobile quick search & comfort controls (hidden once the drawer opens) */}
+              {/* Mobile comfort control (search lives as the first row inside the drawer) */}
               {!mobileOpen && (
                 <div className="flex items-center gap-0.5 md:hidden">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setOpenHeaderMenu(null);
-                      openSmartSearch();
-                    }}
-                    aria-label={searchCopy.triggerLabel}
-                    title={searchCopy.triggerLabel}
-                    className={cn(
-                      "inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center whitespace-nowrap rounded-lg transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
-                      isTransparent
-                        ? "press-on-dark text-paper/90 hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
-                        : "press-row text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/85 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
-                    )}
-                  >
-                    <SearchIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
-                  </button>
-                  <ComfortMenu tone={isTransparent ? "light" : "default"} />
+                  <ComfortMenu tone={isTransparent ? "light" : "default"} showLabel />
                 </div>
               )}
 
-              {/* Menu button (phones, tablets and small laptops below xl) */}
+              {/* Menu button (phones, tablets and laptops below 2xl) */}
               <button
                 ref={menuButtonRef}
                 type="button"
+                data-capsule-item=""
+                data-header-trigger=""
+                title={mobileOpen ? tHeader.closeMenu : tHeader.openMenu}
                 className={cn(
-                  "inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center whitespace-nowrap rounded-lg transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 xl:hidden",
-                  isTransparent
-                    ? "text-paper/90 press-on-dark hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
-                    : "text-foreground/85 press-row hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/85 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
+                  capsuleItem(isTransparent, mobileOpen),
+                  "gap-1.5 px-2.5 whitespace-nowrap text-meta font-semibold max-[359px]:gap-1 max-[359px]:px-2 2xl:hidden",
                 )}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
-                aria-label={mobileOpen ? tHeader.closeMenu : tHeader.openMenu}
                 onClick={() => {
                   setOpenHeaderMenu(null);
                   setMobileOpen((open) => {
@@ -551,10 +437,11 @@ export function Header() {
               >
                 {/* The glyph hands over in place (keyed, so each swap replays a short settle). */}
                 {mobileOpen ? (
-                  <CloseIcon key="close" className="h-6 w-6" />
+                  <CloseIcon key="close" className="h-5 w-5 shrink-0" aria-hidden="true" />
                 ) : (
-                  <MenuIcon key="menu" className="h-6 w-6" />
+                  <MenuIcon key="menu" className="h-5 w-5 shrink-0" aria-hidden="true" />
                 )}
+                <span>{mobileOpen ? chrome.closeWord : chrome.menuWord}</span>
               </button>
             </div>
           </div>
@@ -566,7 +453,7 @@ export function Header() {
           onClick={closeMobileAndRestoreFocus}
           style={{ top: "var(--site-header-h, 4rem)" }}
           className={cn(
-            "fixed inset-x-0 bottom-0 z-40 bg-ink-950/45 transition-[opacity,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none print:hidden xl:hidden",
+            "fixed inset-x-0 bottom-0 z-40 bg-ink-950/45 transition-[opacity,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none print:hidden 2xl:hidden",
             mobileOpen ? "visible opacity-100" : "pointer-events-none invisible opacity-0",
           )}
         />
@@ -581,7 +468,7 @@ export function Header() {
           inert={!mobileOpen}
           style={{ height: drawerHeight ?? "calc(100dvh - var(--site-header-h, 4rem))" }}
           className={cn(
-            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-paper text-foreground shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-950 dark:text-paper print:hidden xl:hidden",
+            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-paper text-foreground shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-950 dark:text-paper print:hidden 2xl:hidden",
             "transition-[opacity,translate,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
             mobileOpen
               ? "visible translate-y-0 opacity-100"
@@ -598,12 +485,12 @@ export function Header() {
               style={{ "--i": 0 } as CSSProperties}
               className={cn(
                 mobileOpen && "list-in",
-                "flex min-h-12 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-xl border border-ink-900/12 bg-white px-3.5 py-2.5 text-left text-ink-900 press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-ink-900/20 hover:bg-ink-900/[0.02] dark:border-paper/14 dark:bg-ink-900 dark:text-paper dark:hover:bg-white/[0.06]",
+                "flex min-h-12 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-xl md:hidden bg-ink-950/[0.05] px-3.5 py-2.5 text-left text-ink-900 press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-ink-950/[0.09] dark:bg-white/8 dark:text-paper dark:hover:bg-white/12",
                 DRAWER_FOCUS,
               )}
             >
               <SearchIcon className="h-4.5 w-4.5 shrink-0 text-ink-900/50 dark:text-paper/55" aria-hidden="true" />
-              <span className="min-w-0 flex-1 overflow-hidden text-ellipsis text-[15px] text-ink-900/65 dark:text-paper/65">
+              <span className="min-w-0 flex-1 overflow-hidden text-ellipsis text-body text-ink-900/65 dark:text-paper/65">
                 {searchCopy.triggerPlaceholder}
               </span>
             </button>
@@ -626,7 +513,7 @@ export function Header() {
                         aria-current={isActive ? "page" : undefined}
                         onClick={closeMobile}
                         className={cn(
-                          "group flex min-h-12 items-center gap-3 rounded-lg px-2.5 py-2.5",
+                          "group flex min-h-14 items-center gap-3 rounded-lg px-2.5 py-2.5",
                           DRAWER_ROW_MOTION,
                           DRAWER_FOCUS,
                           isActive
@@ -639,22 +526,26 @@ export function Header() {
                             "h-4.5 w-4.5 shrink-0 transition-colors duration-(--dur-fast)",
                             isActive
                               ? "text-sapphire dark:text-sapphire-border"
-                              : "text-ink-900/50 group-hover:text-foreground dark:text-paper/55 dark:group-hover:text-paper",
+                              : "text-ink-900/55 group-hover:text-foreground dark:text-paper/60 dark:group-hover:text-paper",
                           )}
                           aria-hidden="true"
                         />
-                        <span
-                          className={cn(
-                            "min-w-0 flex-1 text-[16px] leading-snug",
-                            isActive
-                              ? "font-semibold text-sapphire dark:text-paper"
-                              : "font-medium text-foreground dark:text-paper",
-                          )}
-                        >
-                          {link.label}
-                          <span className="sr-only"> — {link.subtext}</span>
+                        <span className="min-w-0 flex-1">
+                          <span
+                            className={cn(
+                              "block text-body leading-snug",
+                              isActive
+                                ? "font-semibold text-sapphire dark:text-paper"
+                                : "font-medium text-foreground dark:text-paper",
+                            )}
+                          >
+                            {link.label}
+                          </span>
+                          <span className="mt-0.5 block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
+                            {link.subtext}
+                          </span>
                         </span>
-                        <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35" />
+                        <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
                       </Link>
                     </li>
                   );
@@ -667,7 +558,9 @@ export function Header() {
               style={{ "--i": primaryLinks.length + 1 } as CSSProperties}
               className={cn(mobileOpen && "list-in", "border-t border-ink-900/10 pt-2 dark:border-white/10")}
             >
-              <div className="divide-y divide-ink-900/8 dark:divide-white/10">
+              {/* Account, language, text and install already sit in the bar from md up, so they are phone-only here. */}
+              <ul>
+                <li className="md:hidden">
                 <Link
                   href={withLangPrefix(portalLink.href, lang)}
                   aria-current={isPortalActive ? "page" : undefined}
@@ -692,7 +585,7 @@ export function Header() {
                   />
                   <span
                     className={cn(
-                      "min-w-0 flex-1 text-[15.5px] leading-snug",
+                      "min-w-0 flex-1 text-body leading-snug",
                       isPortalActive
                         ? "font-semibold text-sapphire dark:text-paper"
                         : "font-medium text-foreground dark:text-paper",
@@ -700,9 +593,11 @@ export function Header() {
                   >
                     {portalLink.label}
                   </span>
-                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35" />
+                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-foreground motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
                 </Link>
+                </li>
 
+                <li className="border-t border-ink-900/8 dark:border-white/10 md:border-t-0">
                 <Link
                   href={withLangPrefix("/mediatori", lang)}
                   aria-current={isMediatorsActive ? "page" : undefined}
@@ -720,25 +615,29 @@ export function Header() {
                     const MediatorIcon = NAV_LINK_ICONS["/mediatori"];
                     return (
                       <MediatorIcon
-                        className="h-4.5 w-4.5 shrink-0 text-amber-care dark:text-amber-200"
+                        className="h-4.5 w-4.5 shrink-0 text-amber-care dark:text-amber-care-border"
                         aria-hidden="true"
                       />
                     );
                   })()}
-                  <span
-                    className={cn(
-                      "min-w-0 flex-1 text-[15.5px] leading-snug",
-                      isMediatorsActive
-                        ? "font-semibold text-foreground dark:text-paper"
-                        : "font-medium text-foreground dark:text-paper",
-                    )}
-                  >
-                    {tHeader.forMediators}
-                    <span className="sr-only"> — {tHeader.forMediatorsSub}</span>
+                  <span className="min-w-0 flex-1">
+                    <span
+                      className={cn(
+                        "block text-body leading-snug text-foreground dark:text-paper",
+                        isMediatorsActive ? "font-semibold" : "font-medium",
+                      )}
+                    >
+                      {tHeader.forMediators}
+                    </span>
+                    <span className="mt-0.5 block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
+                      {tHeader.forMediatorsSub}
+                    </span>
                   </span>
-                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35" />
+                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-foreground motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
                 </Link>
+                </li>
 
+                <li className="border-t border-ink-900/8 dark:border-white/10 md:hidden">
                 <LanguageSelector
                   variant="drawer"
                   listRow
@@ -748,7 +647,9 @@ export function Header() {
                   }
                   onNavigate={closeMobile}
                 />
+                </li>
 
+                <li className="border-t border-ink-900/8 dark:border-white/10 md:hidden">
                 <ComfortMenu
                   variant="drawer"
                   collapsible
@@ -758,7 +659,45 @@ export function Header() {
                   }
                   onDone={closeMobile}
                 />
-              </div>
+                </li>
+
+                <li className="border-t border-ink-900/8 dark:border-white/10 md:hidden">
+                <button
+                  type="button"
+                  disabled={!showInstallTrigger && pwa.isRefreshing}
+                  onClick={() => {
+                    closeMobile();
+                    if (showInstallTrigger) {
+                      void openPwaInstall();
+                    } else {
+                      void applyPwaUpdate();
+                    }
+                  }}
+                  className={cn(
+                    "group flex min-h-12 w-full items-center gap-3 whitespace-nowrap rounded-lg px-2.5 py-2.5 text-left",
+                    DRAWER_ROW_MOTION,
+                    DRAWER_FOCUS,
+                    "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05] disabled:cursor-wait disabled:opacity-75",
+                  )}
+                >
+                  {showInstallTrigger ? (
+                    <DownloadIcon
+                      className="h-4.5 w-4.5 shrink-0 text-ink-900/50 transition-colors duration-(--dur-fast) group-hover:text-foreground dark:text-paper/55 dark:group-hover:text-paper"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <RefreshIcon
+                      className="h-4.5 w-4.5 shrink-0 text-ink-900/50 transition-colors duration-(--dur-fast) group-hover:text-foreground dark:text-paper/55 dark:group-hover:text-paper"
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span className="min-w-0 flex-1 text-body font-medium leading-snug text-foreground dark:text-paper">
+                    {pwaTriggerLabel}
+                  </span>
+                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-foreground motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
+                </button>
+                </li>
+              </ul>
             </div>
 
             {/* Bottom 112 emergency row and quiet utility links */}
@@ -767,7 +706,7 @@ export function Header() {
               className={cn(mobileOpen && "list-in", "mt-auto space-y-2 border-t border-ink-900/10 pt-3 dark:border-white/10")}
             >
               <div className="flex min-h-11 items-center justify-between gap-3 px-2.5 py-1">
-                <p className="text-sm font-medium text-foreground dark:text-paper">
+                <p className="text-body font-medium text-foreground dark:text-paper">
                   {chrome.emergencyQuestion}
                 </p>
                 <Button
@@ -778,9 +717,9 @@ export function Header() {
                     setMobileOpen(false);
                     setDialerOpen(true);
                   }}
-                  className="min-h-11 shrink-0 rounded-lg px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap shadow-none dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
+                  className="min-h-12 shrink-0 rounded-lg px-3.5 py-1.5 text-body font-semibold whitespace-nowrap shadow-none dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
                 >
-                  <PhoneIcon className="h-3.5 w-3.5" />
+                  <PhoneIcon className="h-4 w-4" />
                   <span>{tHeader.call112}</span>
                 </Button>
               </div>
@@ -792,7 +731,7 @@ export function Header() {
                   rel="noopener noreferrer"
                   onClick={closeMobile}
                   className={cn(
-                    "group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
+                    "group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 py-1.5 text-body font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                   )}
@@ -811,7 +750,7 @@ export function Header() {
                     openSiteFeedback();
                   }}
                   className={cn(
-                    "group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
+                    "group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 py-1.5 text-body font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                   )}
@@ -835,7 +774,7 @@ export function Header() {
                     }
                   }}
                   className={cn(
-                    "group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
+                    "group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 py-1.5 text-body font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                   )}

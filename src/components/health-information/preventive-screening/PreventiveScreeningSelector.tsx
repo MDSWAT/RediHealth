@@ -10,6 +10,7 @@ import {
   type SexFilterId,
 } from "./screening-copy";
 import { PreventiveScreeningScene, SCREENING_SCENE_GEOMETRY as G } from "./PreventiveScreeningScene";
+import { Button } from "@/components/ui/Button";
 import { ChevronDownIcon, PrinterIcon } from "@/components/ui/icons";
 
 interface PreventiveScreeningSelectorProps {
@@ -132,7 +133,7 @@ function sceneLabelStyle(x: number, y: number, ax: "start" | "center" | "end", a
 }
 
 const SCENE_LABEL =
-  "pointer-events-none absolute whitespace-nowrap rounded-sm bg-card px-1 text-[11px] font-semibold leading-4 transition-opacity duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] motion-reduce:transition-none sm:text-xs";
+  "pointer-events-none absolute whitespace-nowrap rounded-sm bg-card px-1 text-body font-semibold transition-opacity duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] motion-reduce:transition-none";
 
 const AGE_BRACKETS: AgeBracketId[] = ["18-39", "40-49", "50-69", "70+"];
 const SEX_FILTERS: SexFilterId[] = ["all", "female", "male"];
@@ -198,7 +199,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
 
   const segment = (selected: boolean) =>
     cn(
-      "min-h-[44px] rounded-lg border px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+      "min-h-[44px] rounded-lg border px-3 py-2 text-body font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
       selected
         ? "border-foreground bg-surface-subtle text-foreground"
         : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
@@ -211,10 +212,10 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
       data-print-screening-card
     >
       <div>
-        <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+        <h3 className="text-section font-bold text-foreground">
           {copy.sectionTitle}
         </h3>
-        <p className="mt-1.5 max-w-[70ch] text-sm leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-1.5 max-w-(--measure-reading) text-body text-muted-foreground">
           {copy.sectionSubtitle}
         </p>
       </div>
@@ -242,7 +243,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
               onClick={() => setActiveTab(tab.key)}
               onKeyDown={onTabKeyDown}
               className={cn(
-                "-mb-px inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                "-mb-px inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-body font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                 selected
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
@@ -250,7 +251,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
             >
               <span>{tab.label}</span>
               {tab.count !== undefined && (
-                <span className="text-sm font-medium tabular-nums text-muted-foreground">{tab.count}</span>
+                <span className="text-meta font-medium tabular-nums text-muted-foreground">{tab.count}</span>
               )}
             </button>
           );
@@ -263,7 +264,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
             {/* Filters */}
             <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-x-8 print:hidden">
               <fieldset className="min-w-0">
-                <legend id={`${id}-age`} className="mb-1.5 text-xs font-semibold text-muted-foreground">{copy.filterAgeLabel}</legend>
+                <legend id={`${id}-age`} className="mb-1.5 text-meta font-medium text-muted-foreground">{copy.filterAgeLabel}</legend>
                 <div role="radiogroup" aria-labelledby={`${id}-age`} className="flex flex-wrap gap-2">
                   {AGE_BRACKETS.map((bracket) => (
                     <button
@@ -280,7 +281,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                 </div>
               </fieldset>
               <fieldset className="min-w-0">
-                <legend id={`${id}-sex`} className="mb-1.5 text-xs font-semibold text-muted-foreground">{copy.filterSexLabel}</legend>
+                <legend id={`${id}-sex`} className="mb-1.5 text-meta font-medium text-muted-foreground">{copy.filterSexLabel}</legend>
                 <div role="radiogroup" aria-labelledby={`${id}-sex`} className="flex flex-wrap gap-2">
                   {SEX_FILTERS.map((sex) => (
                     <button
@@ -300,7 +301,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
 
             {/* Checks */}
             {filteredInvestigations.length === 0 ? (
-              <p className="border-t border-border pt-6 text-sm text-muted-foreground">{copy.noResultsMessage}</p>
+              <p className="border-t border-border pt-6 text-body text-muted-foreground">{copy.noResultsMessage}</p>
             ) : (
               <ul className="divide-y divide-border border-t border-border">
                 {filteredInvestigations.map((inv) => {
@@ -309,11 +310,11 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                   return (
                     <li key={inv.id} className="py-5 break-inside-avoid">
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                        <h4 className="text-base font-bold leading-snug text-foreground">{inv.title}</h4>
+                        <h4 className="text-body font-bold leading-snug text-foreground">{inv.title}</h4>
                         <label
                           htmlFor={checkboxId}
                           className={cn(
-                            "inline-flex min-h-[44px] shrink-0 cursor-pointer items-center gap-2.5 self-start rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] print:hidden",
+                            "inline-flex min-h-[44px] shrink-0 cursor-pointer items-center gap-2.5 self-start rounded-lg border px-3.5 py-2 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] print:hidden",
                             isChecked
                               ? "border-foreground bg-surface-subtle text-foreground"
                               : "border-border bg-card text-foreground hover:bg-surface-subtle/50",
@@ -330,7 +331,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                         </label>
                       </div>
 
-                      <dl className="mt-3 grid gap-x-6 gap-y-1.5 text-sm sm:grid-cols-[max-content_minmax(0,1fr)]">
+                      <dl className="mt-3 grid gap-x-6 gap-y-1.5 text-meta sm:grid-cols-[max-content_minmax(0,1fr)]">
                         <dt className="font-medium text-muted-foreground">{copy.frequencyLabel}</dt>
                         <dd className="text-foreground">{inv.frequency}</dd>
                         <dt className="font-medium text-muted-foreground">{copy.cnasLabel}</dt>
@@ -340,17 +341,17 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                       </dl>
 
                       <details className="group mt-3">
-                        <summary className="inline-flex min-h-[44px] cursor-pointer list-none items-center gap-1.5 text-sm font-semibold text-foreground underline underline-offset-4 hover:text-muted-foreground [&::-webkit-details-marker]:hidden print:hidden">
+                        <summary className="inline-flex min-h-[44px] cursor-pointer list-none items-center gap-1.5 text-body font-medium text-foreground underline underline-offset-4 hover:text-muted-foreground [&::-webkit-details-marker]:hidden print:hidden">
                           {ui.details}
                           <ChevronDownIcon className="h-4 w-4 transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
                         </summary>
-                        <div className="mt-2 space-y-2 border-l border-border pl-4 text-sm leading-relaxed">
+                        <div className="mt-2 space-y-2 border-l border-border pl-4 text-body">
                           <p>
-                            <span className="font-semibold text-foreground">{copy.earlyBenefitLabel}. </span>
+                            <span className="font-medium text-foreground">{copy.earlyBenefitLabel}. </span>
                             <span className="text-muted-foreground">{inv.earlyBenefit}</span>
                           </p>
                           <p>
-                            <span className="font-semibold text-foreground">{copy.doctorQuestionLabel}: </span>
+                            <span className="font-medium text-foreground">{copy.doctorQuestionLabel}: </span>
                             <span className="text-muted-foreground">
                               {ui.quote[0]}
                               {inv.doctorQuestion}
@@ -415,9 +416,9 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                   </span>
                 </div>
               </div>
-              <p className="mt-2 text-xs text-muted-foreground" aria-live="polite">
+              <p className="mt-2 text-meta text-muted-foreground" aria-live="polite">
                 {ui.step.replace("{n}", String(timelineStep + 1)).replace("{total}", String(copy.timelineSteps.length))}:{" "}
-                <span className="font-semibold text-foreground">{copy.timelineSteps[timelineStep]?.title}</span>
+                <span className="font-medium text-foreground">{copy.timelineSteps[timelineStep]?.title}</span>
               </p>
             </div>
             <ol className="divide-y divide-border border-y border-border lg:col-span-5">
@@ -436,15 +437,15 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                     >
                       <span
                         className={cn(
-                          "flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-bold tabular-nums",
+                          "flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-meta font-bold tabular-nums",
                           isActive ? "bg-foreground text-white" : "bg-surface-subtle text-muted-foreground",
                         )}
                       >
                         {idx + 1}
                       </span>
                       <span>
-                        <span className="block text-sm font-semibold text-foreground">{stepItem.title}</span>
-                        <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{stepItem.description}</span>
+                        <span className="block text-meta font-semibold text-foreground">{stepItem.title}</span>
+                        <span className="mt-0.5 block text-body text-muted-foreground">{stepItem.description}</span>
                       </span>
                     </button>
                   </li>
@@ -458,8 +459,8 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
           <div className="border-t border-border pt-6">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <h4 className="text-base font-bold text-foreground">{copy.checklistTitle}</h4>
-                <p className="mt-0.5 text-sm text-muted-foreground">
+                <h4 className="text-body font-bold text-foreground">{copy.checklistTitle}</h4>
+                <p className="mt-0.5 text-body text-muted-foreground">
                   {checkedIds.length > 0
                     ? copy.checklistCounter
                         .replace("{completed}", String(checkedInvestigations.length))
@@ -468,24 +469,26 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                 </p>
               </div>
               {checkedInvestigations.length > 0 && (
-                <button
+                <Button
                   type="button"
+                  variant="outline"
+                  size="md"
                   onClick={handlePrintChecklist}
-                  className="inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 self-start whitespace-nowrap rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle print:hidden"
+                  className="shrink-0 self-start print:hidden"
                 >
                   <PrinterIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                   {copy.printChecklistButton}
-                </button>
+                </Button>
               )}
             </div>
 
             {checkedInvestigations.length === 0 ? (
               <div className="mt-6 border-t border-border pt-6">
-                <p className="text-sm text-muted-foreground">{copy.checklistEmpty}</p>
+                <p className="text-body text-muted-foreground">{copy.checklistEmpty}</p>
                 <button
                   type="button"
                   onClick={() => setActiveTab("recommendations")}
-                  className="mt-3 inline-flex min-h-[44px] items-center whitespace-nowrap text-sm font-semibold text-foreground underline underline-offset-4 hover:text-muted-foreground print:hidden"
+                  className="mt-3 inline-flex min-h-[44px] items-center whitespace-nowrap text-body font-medium text-foreground underline underline-offset-4 hover:text-muted-foreground print:hidden"
                 >
                   {copy.tabRecommendations}
                 </button>
@@ -496,16 +499,16 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                   <li key={inv.id} className="py-4 break-inside-avoid">
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                       <div className="space-y-1.5">
-                        <p className="text-base font-bold text-foreground">{inv.title}</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-body font-bold text-foreground">{inv.title}</p>
+                        <p className="text-body text-muted-foreground">
                           {inv.frequency} — {inv.cnasBadge}
                         </p>
-                        <p className="text-xs leading-relaxed text-muted-foreground">
-                          <span className="font-semibold text-foreground">{copy.preparationLabel}: </span>
+                        <p className="text-meta text-muted-foreground">
+                          <span className="font-medium text-foreground">{copy.preparationLabel}: </span>
                           {inv.preparation}
                         </p>
-                        <p className="text-xs leading-relaxed text-muted-foreground">
-                          <span className="font-semibold text-foreground">{copy.doctorQuestionLabel}: </span>
+                        <p className="text-meta text-muted-foreground">
+                          <span className="font-medium text-foreground">{copy.doctorQuestionLabel}: </span>
                           {ui.quote[0]}
                           {inv.doctorQuestion}
                           {ui.quote[1]}
@@ -514,7 +517,7 @@ export function PreventiveScreeningSelector({ lang, className = "" }: Preventive
                       <button
                         type="button"
                         onClick={() => toggleCheck(inv.id)}
-                        className="inline-flex min-h-[44px] shrink-0 items-center self-start whitespace-nowrap text-xs font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground sm:self-center print:hidden"
+                        className="inline-flex min-h-[44px] shrink-0 items-center self-start whitespace-nowrap text-body font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground sm:self-center print:hidden"
                       >
                         {ui.remove}
                       </button>

@@ -189,7 +189,7 @@ export function FamilyShareButton({
           iconOnly
             ? "press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-xl border border-border-control bg-card p-0 text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             : `press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/35 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                compact ? "px-3 py-2 text-xs sm:text-sm" : "px-4 py-2 text-sm"
+                compact ? "px-3 py-2 text-body" : "px-4 py-2 text-body"
               }`
         }
       >
@@ -202,9 +202,9 @@ export function FamilyShareButton({
           id={menuId}
           role="dialog"
           aria-label={copy.menuLabel}
-          className={`fhs-enter absolute top-full z-40 mt-2 w-64 max-w-[calc(100vw-2rem)] rounded-2xl border border-stone-200/90 bg-card/98 p-2 shadow-xl shadow-ink-950/10 backdrop-blur-md dark:border-stone-800 dark:bg-ink-900/98 ${alignClass}`}
+          className={`fhs-enter absolute top-full z-40 mt-2 w-64 max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card/98 p-2 shadow-xl shadow-ink-950/10 backdrop-blur-md dark:border-ink-800 dark:bg-ink-900/98 ${alignClass}`}
         >
-          <p className="px-2.5 py-1.5 text-xs font-medium text-muted-foreground">
+          <p className="px-2.5 py-1.5 text-meta font-medium text-muted-foreground">
             {copy.menuLabel}
           </p>
 
@@ -214,7 +214,7 @@ export function FamilyShareButton({
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <MessageDotsIcon className="h-4 w-4 shrink-0 text-sapphire" />
               <span className="min-w-0 truncate">{copy.whatsapp}</span>
@@ -223,7 +223,7 @@ export function FamilyShareButton({
             <a
               href={`sms:?body=${encodedText}`}
               onClick={() => setOpen(false)}
-              className="flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <MessageDotsIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
               <span className="min-w-0 truncate">{copy.sms}</span>
@@ -232,7 +232,7 @@ export function FamilyShareButton({
             <button
               type="button"
               onClick={() => void handleCopy()}
-              className="flex min-h-11 w-full max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-left text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex min-h-11 w-full max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-left text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copied ? (
                 <CheckCircleIcon className="h-4 w-4 shrink-0 text-sapphire" />
@@ -246,7 +246,7 @@ export function FamilyShareButton({
               <button
                 type="button"
                 onClick={() => void handleNativeShare()}
-                className="flex min-h-11 w-full max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-left text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="flex min-h-11 w-full max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-left text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <ShareIcon className="h-4 w-4 shrink-0 text-sapphire" />
                 <span className="min-w-0 truncate">{copy.deviceShare}</span>

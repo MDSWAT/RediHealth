@@ -1,14 +1,9 @@
 "use client";
 
-import type { CSSProperties } from "react";
-import Link from "next/link";
-import { ArrowRightIcon } from "@/components/ui/icons";
+import { ChevronRightIcon } from "@/components/ui/icons";
 import { PathwayId } from "@/lib/triage-state";
 import { TriageInputBar } from "@/components/health-assistant/TriageInputBar";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
-import { useLanguage } from "@/lib/i18n/language-context";
-import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
-import type { Lang } from "@/lib/i18n/translations";
 import {
   stepHeading,
   stepLead,
@@ -20,39 +15,12 @@ interface TriageDecisionTreeProps {
   plainLanguage: boolean;
 }
 
-const ACTION_LABELS: Record<
-  Lang,
-  {
-    startSymptoms: string;
-  }
-> = {
-"ru": {"startSymptoms":"Проверить симптомы"},
-
-  ro: {
-    startSymptoms: "Începe verificarea",
-  },
-  en: {
-    startSymptoms: "Start symptom check",
-  },
-  sq: {
-    startSymptoms: "Fillo kontrollin",
-  },
-  it: {
-    startSymptoms: "Inizia controllo",
-  },
-  hr: {
-    startSymptoms: "Pokreni provjeru",
-  },
-  rom: {
-    startSymptoms: "Nachav o dikhiben",
-  },
-};
-
-const SECONDARY_PATHWAY_CARDS: {
-  id: Exclude<PathwayId, "symptoms">;
+const PATHWAY_OPTIONS: {
+  id: PathwayId;
   /** A health mediator (a person) helps on this path; said in one line under the option. */
   mediator?: boolean;
 }[] = [
+  { id: "symptoms" },
   { id: "prescription" },
   { id: "risk" },
   { id: "learn" },
@@ -65,10 +33,6 @@ export function TriageDecisionTree({
   plainLanguage,
 }: TriageDecisionTreeProps) {
   const { tree } = useAssistantCopy();
-  const { lang } = useLanguage();
-  const actionLabels = ACTION_LABELS[lang] || ACTION_LABELS[DEFAULT_LANG];
-
-  const symptomsOption = tree.options.symptoms;
 
   return (
     <div>
@@ -77,79 +41,44 @@ export function TriageDecisionTree({
       </h2>
       <p className={stepLead}>{tree.lead}</p>
 
-      {/* Primary entry: symptoms check — crisp sapphire-tinted instrument surface */}
-      <div className="surface-spotlight mt-5 overflow-hidden rounded-xl border border-sapphire/25 bg-sapphire-soft/40 dark:border-sapphire/35 dark:bg-sapphire/15">
-        <button
-          type="button"
-          data-triage-option="symptoms"
-          onClick={() => onSelectPathway("symptoms")}
-          className="press-row group relative flex w-full flex-col gap-4 p-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:flex-row sm:items-center sm:justify-between sm:p-5"
-        >
-          <span className="min-w-0 flex-1">
-            <span className="block text-lg font-semibold leading-snug tracking-[-0.015em] text-foreground sm:text-xl">
-              {plainLanguage ? symptomsOption.plainTitle : symptomsOption.title}
-            </span>
-            <span className="mt-1 block text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
-              {symptomsOption.subtitle}
-            </span>
-          </span>
-
-          <span className="inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-sapphire px-5 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-sapphire-light motion-reduce:transition-none sm:w-auto sm:text-[15px]">
-            <span>{actionLabels.startSymptoms}</span>
-            <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
-          </span>
-        </button>
-
-        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 border-t border-sapphire/15 bg-card/70 px-4 py-2.5 text-sm sm:px-5 dark:bg-card/30">
-          <span className="text-muted-foreground">{tree.bodyMapPrompt}</span>
-          <Link
-            href={withLangPrefix("/health-check", lang)}
-            className="group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg font-semibold text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-light"
-          >
-            <span className="link-draw">{tree.bodyMapLink}</span>
-            <ArrowRightIcon className="arrow-travel h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
-      </div>
-
-      {/* The other four needs: calm tactile cards matching DESIGN.md */}
-      <div className="mt-3.5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {SECONDARY_PATHWAY_CARDS.map(({ id, mediator }, index) => {
+      {/* Flat five-row pathway list matching the hero row recipe */}
+      <ul className="mt-5">
+        {PATHWAY_OPTIONS.map(({ id, mediator }) => {
           const option = tree.options[id];
           return (
-            <button
+            <li
               key={id}
-              type="button"
-              data-triage-option={id}
-              onClick={() => onSelectPathway(id)}
-              style={{ "--i": index + 1 } as CSSProperties}
-              className="list-in card-interactive press-row group relative flex w-full flex-col justify-between rounded-xl border border-stone-200/90 bg-card p-4 text-left hover:bg-sapphire-soft/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:p-5 dark:border-stone-800 dark:hover:border-sapphire/50"
+              className="border-b border-ink-950/[0.08] last:border-b-0 dark:border-ink-800"
             >
-              <div className="flex w-full items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <span className="block text-base font-semibold leading-snug tracking-[-0.01em] text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light sm:text-[17px]">
+              <button
+                type="button"
+                data-triage-option={id}
+                onClick={() => onSelectPathway(id)}
+                className="press-row group relative -mx-2 flex min-h-[56px] w-[calc(100%+1rem)] items-center justify-between gap-3.5 rounded-xl px-2 py-2.5 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:-mx-3 sm:min-h-[58px] sm:w-[calc(100%+1.5rem)] sm:px-3"
+              >
+                <span className="min-w-0 flex-1">
+                  <span className="block text-title font-semibold leading-snug text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light">
                     {plainLanguage ? option.plainTitle : option.title}
                   </span>
-                  <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
+                  <span className="mt-0.5 block text-body text-muted-foreground">
                     {option.subtitle}
                   </span>
-                </div>
+                  {mediator && (
+                    <span className="mt-1 block text-meta font-semibold text-amber-care">
+                      {tree.mediatorTag}
+                    </span>
+                  )}
+                </span>
 
-                <ArrowRightIcon
-                  className="arrow-travel mt-1 h-4 w-4 shrink-0 text-stone-400 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire dark:group-hover:text-sapphire-light"
+                <ChevronRightIcon
+                  className="h-5 w-5 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none dark:group-hover:text-sapphire-light"
                   aria-hidden="true"
                 />
-              </div>
-
-              {mediator && (
-                <p className="mt-3 w-full text-xs font-semibold text-amber-care">
-                  {tree.mediatorTag}
-                </p>
-              )}
-            </button>
+              </button>
+            </li>
           );
         })}
-      </div>
+      </ul>
 
       <TriageInputBar onSubmitQuery={onSubmitIntentQuery} plainLanguage={plainLanguage} />
     </div>

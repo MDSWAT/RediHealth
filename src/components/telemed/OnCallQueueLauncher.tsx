@@ -4,7 +4,9 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useReadAloud } from "@/components/health-check/readingTools";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { ListenButton } from "@/components/ui/ListenButton";
 import { ArrowLeftIcon, CalendarIcon, ClockIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { playSoundCheck } from "./sound-check";
@@ -24,7 +26,7 @@ function useSafeLanguage() {
 export const queueCopy = {
   ru: {
     listen: "Слушать",
-    stop: "Остановить",
+    stop: "Стоп",
     back: "Назад",
     doctorWillTakeYou: "Дежурный врач скоро примет вас",
     stayOnPage: "Держите эту страницу открытой. Когда врач будет готов, вы услышите короткий звук.",
@@ -149,7 +151,7 @@ export const queueCopy = {
     ],
   },
   hr: {
-    listen: "Slušaj",
+    listen: "Poslušaj",
     stop: "Zaustavi",
     back: "Natrag",
     doctorWillTakeYou: "Dežurni liječnik uskoro će te primiti",
@@ -174,8 +176,8 @@ export const queueCopy = {
     ],
   },
   rom: {
-    listen: "Shun",
-    stop: "Ushtav",
+    listen: "Ashun",
+    stop: "Achav",
     back: "Palpale",
     doctorWillTakeYou: "O doktori kay si pe buchi ka lel tut sigo",
     stayOnPage: "Ma phand kadi rig. Ka shunes xarno avazi kana o doktori si gata.",
@@ -249,24 +251,20 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
   return (
     <main id="main-content" className="flex-1 bg-background py-8 sm:py-12">
       <Container>
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="btn-row mb-4 flex flex-wrap items-center justify-between gap-3">
           <Link
             href={withLangPrefix("/medic-online", lang)}
-            className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-body font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-            <span className="min-w-0 truncate">{copy.back}</span>
+            <span>{copy.back}</span>
           </Link>
           {voice.available ? (
-            <button
-              type="button"
-              onClick={() => (voice.speaking ? voice.stop() : voice.speak(readParts))}
-              aria-pressed={voice.speaking}
-              className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" />
-              <span className="min-w-0 truncate">{voice.speaking ? copy.stop : copy.listen}</span>
-            </button>
+            <ListenButton
+              uiLang={lang}
+              isPlaying={voice.speaking}
+              onToggle={() => (voice.speaking ? voice.stop() : voice.speak(readParts))}
+            />
           ) : null}
         </div>
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
@@ -274,20 +272,20 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
             {isOnDuty ? (
               <>
                 <h1 className="text-balance text-page text-foreground">{copy.doctorWillTakeYou}</h1>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">{copy.stayOnPage}</p>
+                <p className="mt-2 text-body text-muted-foreground">{copy.stayOnPage}</p>
 
                 <div className="mt-6 border-t border-border pt-6">
                   <div role="status" aria-live="polite" aria-atomic="true">
                     {/* Each change of place eases in where the last one stood: the wait reads as calm progress. */}
                     {doctorConnected ? (
-                      <div key="ready" className="swap-in border-l-2 border-sapphire pl-3 dark:border-sapphire-border">
-                        <p className="text-lg font-semibold text-foreground">{copy.doctorReady}</p>
-                        <p className="mt-0.5 text-sm text-muted-foreground">{copy.pressButtonBelow}</p>
+                      <div key="ready" className="swap-in">
+                        <p className="text-title font-semibold text-foreground">{copy.doctorReady}</p>
+                        <p className="mt-0.5 text-body text-muted-foreground">{copy.pressButtonBelow}</p>
                       </div>
                     ) : (
-                      <div key={`place-${position}`} className="swap-in border-l-2 border-border pl-3">
-                        <p className="text-lg font-semibold text-foreground tabular-nums">{copy.positionText(position)}</p>
-                        <p className="mt-0.5 text-sm text-muted-foreground">{copy.estimatedTime(position)}</p>
+                      <div key={`place-${position}`} className="swap-in">
+                        <p className="text-title font-semibold text-foreground tabular-nums">{copy.positionText(position)}</p>
+                        <p className="mt-0.5 text-body text-muted-foreground">{copy.estimatedTime(position)}</p>
                       </div>
                     )}
                   </div>
@@ -300,17 +298,17 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
                   </div>
                 </div>
 
-                <button
+                <Button
                   type="button"
+                  variant="action"
+                  size="lg"
+                  fullWidth
                   onClick={() => router.push(withLangPrefix(`/medic-online/meet/${roomId.current}`, lang))}
-                  className={cn(
-                    "press-solid mt-6 inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]",
-                    "bg-sapphire hover:bg-sapphire-light",
-                  )}
+                  className="mt-6 sm:px-5"
                 >
                   <PhoneIcon className="h-5 w-5 shrink-0" />
                   <span className="min-w-0 truncate">{doctorConnected ? copy.enterNow : copy.connectCall}</span>
-                </button>
+                </Button>
               </>
             ) : (
               <>
@@ -318,36 +316,41 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
                   <ClockIcon aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-muted-foreground" />
                   <div>
                     <h1 className="text-balance text-page text-foreground">{copy.closedTitle}</h1>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground tabular-nums sm:text-base">{copy.closedBody}</p>
+                    <p className="mt-2 text-body text-muted-foreground tabular-nums">{copy.closedBody}</p>
                   </div>
                 </div>
-                <Link
+                <Button
                   href={withLangPrefix("/medic-online/programare", lang)}
-                  className="press-solid mt-6 inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]"
+                  variant="action"
+                  size="lg"
+                  fullWidth
+                  className="mt-6 sm:px-5"
                 >
                   <CalendarIcon className="h-5 w-5 shrink-0" />
                   <span className="min-w-0 truncate">{copy.book}</span>
-                </Link>
+                </Button>
               </>
             )}
 
             <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-              <span className="text-sm text-muted-foreground" aria-live="polite">
+              <span className="text-meta text-muted-foreground" aria-live="polite">
                 <span key={soundTested ? "ok" : "check"} className={soundTested ? "swap-in inline-block font-medium text-foreground" : "inline-block"}>
                   {soundTested ? copy.soundSuccess : copy.checkVolume}
                 </span>
               </span>
-              <button
+              <Button
                 type="button"
+                variant="outline"
+                size="md"
                 onClick={() => {
                   playSoundCheck();
                   setSoundTested(true);
                 }}
-                className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-background px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="gap-1.5 px-3.5 py-1.5 font-medium"
               >
                 <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" />
                 <span className="min-w-0 truncate">{copy.testSoundButton}</span>
-              </button>
+              </Button>
             </div>
           </section>
 
@@ -369,13 +372,13 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
                       {/* Done reads by a strike that eases in, not by colour alone. */}
                       <span
                         className={cn(
-                          "block text-sm font-semibold line-through decoration-[1.5px] transition-[color,text-decoration-color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+                          "block text-meta font-semibold line-through decoration-[1.5px] transition-[color,text-decoration-color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
                           prepChecks[i] ? "text-muted-foreground decoration-muted-foreground" : "text-foreground decoration-transparent",
                         )}
                       >
                         {title}
                       </span>
-                      <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{desc}</span>
+                      <span className="mt-0.5 block text-body text-muted-foreground">{desc}</span>
                     </span>
                   </label>
                 </li>

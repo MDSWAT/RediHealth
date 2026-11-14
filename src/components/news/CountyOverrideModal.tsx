@@ -285,7 +285,7 @@ export function CountyOverrideModal({
           onClick={() => handleSelect(area, itemCountry)}
           aria-pressed={selected}
           className={cn(
-            "flex min-h-[48px] w-full items-center justify-between gap-3 px-5 py-2.5 text-left text-sm text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+            "flex min-h-[48px] w-full items-center justify-between gap-3 px-5 py-2.5 text-left text-body text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
             selected && "bg-sapphire-soft/50 font-semibold",
           )}
         >
@@ -307,7 +307,7 @@ export function CountyOverrideModal({
       aria-describedby="county-modal-subtitle"
       className="fixed inset-x-0 top-(--sheet-vv-top,0px) z-[80] flex h-(--sheet-vv-height,100dvh) items-end justify-center sm:inset-0 sm:h-auto sm:items-center sm:p-4"
     >
-      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-slate-950/55" onClick={close} aria-hidden="true" />
+      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-ink-950/55" onClick={close} aria-hidden="true" />
 
       <div
         ref={panelRef}
@@ -317,10 +317,10 @@ export function CountyOverrideModal({
         <div className="shrink-0 border-b border-border px-5 pt-4 pb-3 sm:pt-5 sm:pb-4">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <h2 id="county-modal-title" className="text-lg font-semibold text-foreground">
+              <h2 id="county-modal-title" className="text-title font-semibold text-foreground">
                 {modalTitle}
               </h2>
-              <p id="county-modal-subtitle" className="mt-0.5 text-sm text-muted-foreground">
+              <p id="county-modal-subtitle" className="mt-0.5 text-body text-muted-foreground">
                 {modalSubtitle}
               </p>
             </div>
@@ -349,7 +349,7 @@ export function CountyOverrideModal({
                     aria-pressed={active}
                     onClick={() => setCountryOverride(c)}
                     className={cn(
-                      "press-row -mb-px min-h-11 whitespace-nowrap border-b-2 px-0.5 text-sm transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                      "press-row -mb-px min-h-11 whitespace-nowrap border-b-2 px-0.5 text-body transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                       active
                         ? "border-foreground font-semibold text-foreground"
                         : "border-transparent font-medium text-muted-foreground hover:text-foreground",
@@ -373,7 +373,7 @@ export function CountyOverrideModal({
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder={searchPlaceholder}
               aria-label={searchPlaceholder}
-              className="field-focus min-h-11 w-full rounded-lg border border-border-control bg-background py-2.5 pl-9 pr-3 text-base text-foreground placeholder:text-muted-foreground sm:text-sm"
+              className="field-focus min-h-11 w-full rounded-lg border border-border-control bg-background py-2.5 pl-9 pr-3 text-body text-foreground placeholder:text-muted-foreground"
             />
           </div>
         </div>
@@ -385,7 +385,7 @@ export function CountyOverrideModal({
               {groups.map((group) => (
                 <div key={group.country}>
                   {group.heading && (
-                    <p className="border-b border-border bg-muted/30 px-5 py-2 text-xs font-semibold text-muted-foreground">
+                    <p className="border-b border-border bg-muted/30 px-5 py-2 text-meta font-semibold text-muted-foreground">
                       {group.heading}
                     </p>
                   )}
@@ -396,7 +396,7 @@ export function CountyOverrideModal({
               ))}
             </div>
           ) : (
-            <p role="status" className="swap-in px-5 py-8 text-center text-sm text-muted-foreground">
+            <p role="status" className="swap-in px-5 py-8 text-center text-body text-muted-foreground">
               {nr.noCountyFound} {quoteTerm(searchTerm.trim(), lang)}.
             </p>
           )}

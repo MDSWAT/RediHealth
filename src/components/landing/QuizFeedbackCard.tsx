@@ -79,12 +79,12 @@ export function QuizFeedbackCard({
             isMatch ? "text-sapphire dark:text-sapphire-border" : "text-foreground dark:text-paper",
           )}
         />
-        <p ref={verdictRef} tabIndex={-1} className="text-[17px] font-semibold leading-snug text-foreground outline-none dark:text-paper">
+        <p ref={verdictRef} tabIndex={-1} className="text-title font-semibold leading-snug text-foreground outline-none dark:text-paper">
           {isMatch ? q.correctAnswerTag : myth.statusTag}
         </p>
       </div>
 
-      <p style={step(1)} className="list-in mt-2.5 max-w-[60ch] text-pretty text-body leading-relaxed text-foreground/90 dark:text-paper/90">
+      <p style={step(1)} className="list-in mt-2.5 max-w-(--measure-reading) text-pretty text-body leading-relaxed text-foreground/90 dark:text-paper/90">
         {myth.explanation}
       </p>
 

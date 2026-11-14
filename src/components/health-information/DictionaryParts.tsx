@@ -254,11 +254,11 @@ export function DictionaryDrawerFrame({
               <div className="min-w-0 flex-1">
                 <h2
                   id={labelledBy}
-                  className="text-xl font-semibold tracking-[-0.015em] text-foreground text-balance sm:text-[22px]"
+                  className="text-title font-semibold text-foreground text-balance"
                 >
                   {title}
                 </h2>
-                <p className="mt-1 text-sm leading-snug text-muted-foreground text-pretty">
+                <p className="mt-1 text-body leading-snug text-muted-foreground text-pretty">
                   {subtitle}
                 </p>
               </div>
@@ -270,13 +270,13 @@ export function DictionaryDrawerFrame({
                   aria-label={utilCopy.largeTextAria}
                   title={utilCopy.largeTextAria}
                   className={cn(
-                    "inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-3 text-xs font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-3 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     largeText
                       ? "press-solid border-sapphire bg-sapphire text-white shadow-xs"
                       : "press-row border-border-control bg-card text-foreground hover:bg-muted",
                   )}
                 >
-                  <span aria-hidden="true" className="text-[13px] font-bold tracking-tight">
+                  <span aria-hidden="true" className="text-body font-bold">
                     A+
                   </span>
                   <span className="hidden sm:inline">{utilCopy.largeTextLabel}</span>
@@ -335,7 +335,7 @@ export function DictionarySearch({
         placeholder={placeholder}
         aria-label={placeholder}
         className={cn(
-          "field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-surface-card/70 pl-10 text-base text-foreground placeholder:text-muted-foreground/80 motion-reduce:transition-none focus:bg-card [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
+          "field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-surface-card/70 pl-10 text-body text-foreground placeholder:text-muted-foreground/80 motion-reduce:transition-none focus:bg-card [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
           value.length > 0 ? "pr-12" : "pr-4",
         )}
       />
@@ -360,7 +360,7 @@ export function DictionarySearch({
 }
 
 /**
- * Multi-line wrapping category pills with semantic icons and live tabular counts.
+ * Multi-line wrapping category filter buttons with semantic icons and plain tabular counts.
  * Eliminates horizontal overflow so every category is visible at a glance on all viewports.
  */
 export function DictionaryFilters<T extends string>({
@@ -397,7 +397,7 @@ export function DictionaryFilters<T extends string>({
             aria-pressed={isSelected}
             onClick={() => onSelect(option.value)}
             className={cn(
-              "inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-[13px] font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 sm:px-3.5",
+              "inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-body font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 sm:px-3.5",
               isEmergency
                 ? isSelected
                   ? "border-primary bg-primary text-white shadow-xs active:bg-primary-active"
@@ -426,12 +426,12 @@ export function DictionaryFilters<T extends string>({
             {typeof option.count === "number" && (
               <span
                 className={cn(
-                  "rounded-md px-1.5 py-0.5 text-[11px] font-bold tabular-nums leading-none",
+                  "text-meta font-medium tabular-nums leading-none",
                   isSelected
-                    ? "bg-white/20 text-white"
+                    ? "text-white/80"
                     : isEmergency
-                      ? "bg-primary/12 text-primary"
-                      : "bg-muted text-muted-foreground",
+                      ? "text-primary"
+                      : "text-muted-foreground",
                 )}
               >
                 {option.count}
@@ -477,7 +477,7 @@ export function DictionarySpeakButton({
       aria-pressed={speaking}
       title={label}
       className={cn(
-        "inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl border px-3.5 py-1.5 text-[13px] font-semibold leading-none transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
+        "inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl border px-3.5 py-1.5 text-body font-semibold leading-none transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
         isEmergency
           ? speaking
             ? "border-primary bg-primary text-white shadow-xs hover:bg-primary-hover active:bg-primary-active"

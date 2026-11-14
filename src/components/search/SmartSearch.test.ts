@@ -548,7 +548,8 @@ describe("CLAUDE.md and MobileMenu source invariants", () => {
     expect(modalSource).toContain("relatedQuestions");
     expect(modalSource).toContain("useCalmReducedMotion");
     expect(modalSource).toContain("useSheetDialog");
-    expect(modalSource).toContain("has-[input:focus-visible]:outline-ring");
+    // Focus is drawn as a sapphire rule along the search bar's lower edge.
+    expect(modalSource).toContain("has-[input:focus-visible]:shadow-[inset_0_-2px_0_var(--color-sapphire)]");
     expect(modalSource).toContain('style={{ outline: "none" }}');
   });
 

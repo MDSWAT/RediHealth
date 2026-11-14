@@ -117,6 +117,7 @@ export function prefersCalmOrReducedMotion(): boolean {
 
 export function setTextScale(next: TextScale) {
   if (typeof window === "undefined") return;
+  if (getTextScaleSnapshot() === next) return;
   try {
     window.localStorage.setItem(TEXT_SCALE_KEY, next);
     window.localStorage.setItem(LEGACY_LARGE_TEXT_KEY, next === "normal" ? "0" : "1");
@@ -129,6 +130,7 @@ export function setTextScale(next: TextScale) {
 
 export function setCalmMotion(next: boolean) {
   if (typeof window === "undefined") return;
+  if (getCalmMotionSnapshot() === next) return;
   try {
     window.localStorage.setItem(CALM_MOTION_KEY, next ? "1" : "0");
   } catch {
@@ -140,6 +142,7 @@ export function setCalmMotion(next: boolean) {
 
 export function setReadingLevel(next: ReadingLevel) {
   if (typeof window === "undefined") return;
+  if (getReadingLevelSnapshot() === next) return;
   try {
     window.localStorage.setItem(READING_LEVEL_KEY, next);
     window.localStorage.setItem(LEGACY_PLAIN_LANGUAGE_KEY, next === "simple" ? "true" : "false");

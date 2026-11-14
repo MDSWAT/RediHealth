@@ -20,8 +20,9 @@ import {
   UserIcon,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/Button";
 import { speechEngine } from "@/lib/audio/speech-engine";
-import { isVoiceEnabled, useVoiceEnabled } from "@/lib/audio/voice-availability";
+import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 import { HEALTH_DETAIL_SHARED_STRINGS } from "@/lib/i18n/health-myths";
@@ -232,11 +233,7 @@ export function RomanesGlossaryDrawer({
   const tabFallback =
     DICTIONARY_TAB_LABELS[currentLang] ?? DICTIONARY_TAB_LABELS.ro;
 
-  const ctxVoice = useVoiceEnabled();
-  const voiceEnabled =
-    lang !== undefined
-      ? isVoiceEnabled(lang)
-      : ctxVoice && isVoiceEnabled(currentLang);
+  const voiceEnabled = isVoiceEnabled("rom");
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -341,7 +338,7 @@ export function RomanesGlossaryDrawer({
     speechEngine.stop();
     setSpeakingId(term.id);
     speechEngine.speak(term.audioPronunciationText, {
-      lang: "ro-RO",
+      lang: "rom",
       onEnd: () => setSpeakingId((prev) => (prev === term.id ? null : prev)),
       onError: () => setSpeakingId((prev) => (prev === term.id ? null : prev)),
     });
@@ -419,7 +416,7 @@ export function RomanesGlossaryDrawer({
         <div className="mt-3 mb-3.5 flex flex-wrap items-center justify-between gap-2 border-b border-border/80 pb-2.5">
           <p
             role="status"
-            className="text-xs font-semibold tabular-nums text-muted-foreground"
+            className="text-meta font-semibold tabular-nums text-muted-foreground"
           >
             {countText}
           </p>
@@ -427,7 +424,7 @@ export function RomanesGlossaryDrawer({
             <button
               type="button"
               onClick={handleResetFilters}
-              className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg bg-sapphire-soft px-3.5 py-2 text-xs font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg bg-sapphire-soft px-3.5 py-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {util.resetFilters}
             </button>
@@ -437,17 +434,19 @@ export function RomanesGlossaryDrawer({
         {/* Community lexicon specimen cards */}
         {filteredTerms.length === 0 ? (
           <div className="swap-in rounded-2xl border border-dashed border-border bg-surface-subtle/50 px-5 py-10 text-center">
-            <p className="text-base text-muted-foreground">
+            <p className="text-body text-muted-foreground">
               {pickLocale(s.emptyState, currentLang)}
             </p>
             {isFiltered && (
-              <button
+              <Button
                 type="button"
+                variant="action"
+                size="md"
                 onClick={handleResetFilters}
-                className="press-solid mt-4 inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-4 py-2 text-sm font-semibold text-white transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="mt-4"
               >
                 {util.resetFilters}
-              </button>
+              </Button>
             )}
           </div>
         ) : (
@@ -486,16 +485,14 @@ export function RomanesGlossaryDrawer({
                       <div className="flex flex-wrap items-center gap-2">
                         <span
                           className={cn(
-                            "inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-[11.5px] font-semibold",
-                            isEmergency
-                              ? "bg-primary text-white"
-                              : "bg-amber-care-soft/75 text-obsidian-navy ring-1 ring-inset ring-amber-care-border",
+                            "inline-flex items-center gap-1.5 text-meta font-semibold",
+                            isEmergency ? "text-primary" : "text-foreground",
                           )}
                         >
                           <CatIcon className="h-3.5 w-3.5 shrink-0" />
                           <span>{categoryLabel}</span>
                         </span>
-                        <span className="font-mono text-xs font-medium tabular-nums text-muted-foreground">
+                        <span className="font-mono text-meta font-medium tabular-nums text-muted-foreground">
                           #{String(specimenNum).padStart(2, "0")}
                         </span>
                       </div>
@@ -532,7 +529,7 @@ export function RomanesGlossaryDrawer({
                         : "border-border/90 bg-surface-subtle/90",
                     )}
                   >
-                    <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                    <span className="flex items-center gap-1.5 text-meta font-medium text-muted-foreground">
                       <StethoscopeIcon
                         className={cn(
                           "h-3.5 w-3.5 shrink-0",
@@ -565,7 +562,7 @@ export function RomanesGlossaryDrawer({
 
                   {/* Syllable rhythm pronunciation pills */}
                   <div className="mt-3.5 flex flex-wrap items-center gap-x-2 gap-y-1.5 border-t border-border/70 pt-3">
-                    <span className="text-xs font-semibold text-muted-foreground">
+                    <span className="text-meta font-semibold text-muted-foreground">
                       {pronunciationHeading}
                       <span className="sr-only">
                         {" "}
@@ -582,7 +579,7 @@ export function RomanesGlossaryDrawer({
                           className="inline-flex flex-wrap items-center gap-0.5"
                         >
                           {wordObj.prefix && (
-                            <span className="text-xs font-medium text-muted-foreground">
+                            <span className="text-meta font-medium text-muted-foreground">
                               {wordObj.prefix}
                             </span>
                           )}
@@ -592,17 +589,17 @@ export function RomanesGlossaryDrawer({
                               className="inline-flex items-center gap-0.5"
                             >
                               {sylIdx > 0 && (
-                                <span className="text-[11px] font-bold text-sapphire/60">
+                                <span className="text-meta font-bold text-sapphire/60">
                                   {" — "}
                                 </span>
                               )}
-                              <span className="rounded-md border border-sapphire-border bg-sapphire-soft/85 px-2 py-0.5 font-mono text-xs font-semibold text-sapphire">
+                              <span className="rounded-md border border-sapphire-border bg-sapphire-soft/85 px-2 py-0.5 font-mono text-meta font-semibold text-sapphire">
                                 {syllable}
                               </span>
                             </span>
                           ))}
                           {wordObj.suffix && (
-                            <span className="text-xs font-medium text-muted-foreground">
+                            <span className="text-meta font-medium text-muted-foreground">
                               {wordObj.suffix}
                             </span>
                           )}

@@ -243,7 +243,7 @@ export function RegionalHealthRibbon() {
       <div key={activeHeadline.slug} className={`min-w-0 flex-1 ${paused ? "swap-in" : ""}`}>
         <Link
           href={withLangPrefix(`${newsBasePath}/${activeHeadline.slug}`, lang)}
-          className="inline-flex min-h-11 max-w-full items-center gap-2.5 rounded-lg px-1.5 text-paper/95 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-paper motion-reduce:transition-none"
+          className="flex min-h-11 min-w-0 max-w-full items-center gap-2.5 rounded-lg px-1.5 text-paper/95 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-paper motion-reduce:transition-none"
         >
           {activeHeadline.categoryLabel && (
             <>
@@ -262,9 +262,9 @@ export function RegionalHealthRibbon() {
         aria-label={nr.ariaLabel}
         className="w-full bg-transparent py-2 text-paper md:py-1.5"
       >
-        <Container className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-0.5 text-sm md:flex md:items-center md:justify-between md:gap-4">
+        <Container className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-meta md:flex-nowrap md:gap-4">
           {/* Row 1 left on phones, start from md: the county or region, a button that changes it. */}
-          <div className="order-1 flex min-w-0 items-center gap-2 md:shrink-0">
+          <div className="order-1 flex min-w-0 max-w-full items-center gap-2 md:shrink-0">
             <button
               type="button"
               onClick={() => setModalOpen(true)}
@@ -272,7 +272,7 @@ export function RegionalHealthRibbon() {
             >
               <PinIcon className="h-3.5 w-3.5 shrink-0 text-paper/80" />
               <span className="truncate">{areaDisplay}</span>
-              <span className="shrink-0 text-xs font-normal text-mist underline decoration-paper/35 underline-offset-2">
+              <span className="shrink-0 text-meta font-normal text-mist underline decoration-paper/35 underline-offset-2">
                 {nr.changeLabel}
               </span>
             </button>
@@ -280,7 +280,7 @@ export function RegionalHealthRibbon() {
 
           {/* Row 2 on phones: calm stationary single-headline bar with 44px steppers.
               Middle from md: calm single headline when paused/calm-mode, otherwise the ticker. */}
-          <div className="order-3 col-span-2 flex min-w-0 items-center gap-1 border-t border-white/10 pt-1 md:order-2 md:flex-1 md:border-t-0 md:pt-0">
+          <div className="order-3 flex w-full basis-full min-w-0 items-center gap-1 border-t border-white/10 pt-1 md:order-2 md:w-auto md:basis-auto md:flex-1 md:border-t-0 md:pt-0">
             {items.length === 0 ? (
               <span className="block min-w-0 truncate py-2 text-mist">{nr.noActiveAlerts}</span>
             ) : (
@@ -355,7 +355,7 @@ export function RegionalHealthRibbon() {
           {/* Row 1 right on phones (refined translucent dark-glass pill), solid warm-paper button from md. */}
           <Link
             href={withLangPrefix(newsBasePath, lang)}
-            className="press-solid order-2 inline-flex min-h-11 shrink-0 max-w-full items-center justify-self-end whitespace-nowrap rounded-(--radius-control) border border-white/18 bg-white/[0.08] px-3.5 text-sm font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 motion-reduce:transition-none md:order-3 md:border-transparent md:bg-paper md:text-ink-950 md:shadow-(--hairline-refraction) md:hover:bg-paper/90"
+            className="press-solid order-2 inline-flex min-h-11 shrink-0 max-w-full items-center justify-self-end whitespace-nowrap ml-auto rounded-(--radius-control) border border-white/18 bg-white/[0.08] px-2.5 text-body font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 motion-reduce:transition-none sm:px-3.5 md:order-3 md:ml-0 md:border-transparent md:bg-paper md:text-ink-950 md:shadow-(--hairline-refraction) md:hover:bg-paper/90"
           >
             <span className="min-w-0 truncate">{nr.viewAllNews}</span>
           </Link>

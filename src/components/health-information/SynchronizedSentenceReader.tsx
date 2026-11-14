@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useEffect, useState, useCallback } from "react";
-import { speechEngine, formatSpeechText } from "@/lib/audio/speech-engine";
+import { Button } from "@/components/ui/Button";
+import { speechEngine, formatSpeechText, splitSpeechSentences } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled, useVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
@@ -157,6 +158,7 @@ export function SynchronizedSentenceReader({
   const ctxVoice = useVoiceEnabled();
   const voiceEnabled =
     lang !== undefined ? isVoiceEnabled(lang) : ctxVoice && isVoiceEnabled(currentLang);
+  const romaniVoiceEnabled = isVoiceEnabled("rom");
   // Sentences are interactive only when a handler exists or they can be read aloud.
   const sentencesClickable = Boolean(onSentenceClick) || voiceEnabled;
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -242,7 +244,8 @@ export function SynchronizedSentenceReader({
   // Split all paragraphs into sentences while preserving paragraph grouping
   let globalSentenceCounter = 0;
   const parsedParagraphs = paragraphs.map((para) => {
-    const sentences = para.match(/[^.!?]+[.!?]+(\s|$)|[^.!?]+$/g) || [para];
+    const spans = splitSpeechSentences(para);
+    const sentences = spans.length > 0 ? spans.map((span) => span.text) : [para];
     return sentences.map((sent) => {
       const idx = globalSentenceCounter++;
       return {
@@ -266,7 +269,7 @@ export function SynchronizedSentenceReader({
       const reduce = prefersCalmOrReducedMotion();
       activeEl.scrollIntoView({
         behavior: reduce ? "auto" : "smooth",
-        block: "center",
+        block: "nearest",
       });
     }
   }, [activeSentenceIndex]);
@@ -287,13 +290,13 @@ export function SynchronizedSentenceReader({
   };
 
   const handleSpeakPopoverTerm = () => {
-    if (!activePopoverTerm || !voiceEnabled) return;
+    if (!activePopoverTerm || !romaniVoiceEnabled) return;
     setIsPlayingTermAudio(true);
     speechEngine.speak(
-      formatSpeechText(activePopoverTerm.audioPronunciationText, speechLang),
+      formatSpeechText(activePopoverTerm.audioPronunciationText, "rom"),
       {
-        lang: speechLang,
-        rate: 0.9,
+        lang: "rom",
+        rate: 1.0,
         onEnd: () => setIsPlayingTermAudio(false),
         onError: () => setIsPlayingTermAudio(false),
       },
@@ -304,7 +307,7 @@ export function SynchronizedSentenceReader({
     <>
       <div
         ref={containerRef}
-        className={`space-y-5 max-w-[65ch] text-[1.125rem] leading-[1.75] text-foreground ${className}`}
+        className={`space-y-5 max-w-(--measure-reading) text-reading text-foreground ${className}`}
       >
         {parsedParagraphs.map((paraSentences, pIdx) => (
           <p key={pIdx}>
@@ -414,13 +417,13 @@ export function SynchronizedSentenceReader({
             {/* Header */}
             <div className="flex items-start justify-between gap-3 border-b border-border/60 pb-3">
               <div>
-                <span className="block text-sm font-semibold text-sapphire">
+                <span className="block text-body font-semibold text-sapphire">
                   {pickLocale(str.popoverBadge, currentLang)}
                 </span>
-                <h2 className="mt-1.5 text-xl font-semibold text-foreground">
+                <h2 className="mt-1.5 text-section font-semibold text-foreground">
                   {activePopoverTerm.romanesTerm}
                 </h2>
-                <p className="mt-1 text-base text-muted-foreground">
+                <p className="mt-1 text-body text-muted-foreground">
                   {pickLocale(str.romanianLabel, currentLang)}{" "}
                   <strong className="text-foreground">
                     {(activePopoverTerm as LocalizedRomanesTerm).termByLang?.[
@@ -454,27 +457,28 @@ export function SynchronizedSentenceReader({
             {/* Phonetic guide and audio pronunciation trigger */}
             <div className="mt-3.5 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border/60 bg-surface-subtle p-3">
               <div>
-                <span className="block text-sm font-medium text-muted-foreground">
+                <span className="block text-meta font-medium text-muted-foreground">
                   {pickLocale(str.phoneticGuide, currentLang)}
                 </span>
-                <span className="text-base font-semibold text-sapphire">
+                <span className="text-body font-semibold text-sapphire">
                   [{activePopoverTerm.phoneticPronunciation}]
                 </span>
               </div>
 
-              {voiceEnabled && (
-                <button
+              {romaniVoiceEnabled && (
+                <Button
                   type="button"
+                  variant="action"
+                  size="lg"
                   onClick={handleSpeakPopoverTerm}
                   aria-label={pickLocale(
                     str.listenPronunciationAria,
                     currentLang,
                   )}
-                  className="press-solid inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-4 py-2 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {isPlayingTermAudio ? (
                     <svg
-                      className="h-4 w-4"
+                      className="h-4 w-4 shrink-0"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                       aria-hidden="true"
@@ -484,7 +488,7 @@ export function SynchronizedSentenceReader({
                     </svg>
                   ) : (
                     <svg
-                      className="h-4 w-4"
+                      className="h-4 w-4 shrink-0"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -501,25 +505,26 @@ export function SynchronizedSentenceReader({
                   <span>
                     {pickLocale(str.listenPronunciationButton, currentLang)}
                   </span>
-                </button>
+                </Button>
               )}
             </div>
 
             {/* Meaning and plain explanation */}
-            <p className="mt-3 text-base leading-relaxed text-foreground">
+            <p className="mt-3 text-body text-foreground">
               {(activePopoverTerm as LocalizedRomanesTerm).explanationByLang?.[
                 currentLang
               ] ?? activePopoverTerm.explanation}
             </p>
 
             <div className="mt-4 flex justify-end border-t border-border/50 pt-3">
-              <button
+              <Button
                 type="button"
+                variant="outline"
+                size="lg"
                 onClick={() => setActivePopoverTerm(null)}
-                className="press-row inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {pickLocale(str.dismissButton, currentLang)}
-              </button>
+              </Button>
             </div>
           </div>
         </>

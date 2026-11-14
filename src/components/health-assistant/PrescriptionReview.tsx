@@ -5,6 +5,9 @@ import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { ListenButton } from "@/components/ui/ListenButton";
+import { PageHeader } from "@/components/ui/PageHeader";
 import {
   AlertCircleIcon,
   ArrowRightIcon,
@@ -15,10 +18,10 @@ import {
   TrashIcon,
 } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
-import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
+import { AssistantNavigation, AssistantOtherTools } from "@/components/health-assistant/AssistantNavigation";
 import { getPrescriptionDoctorBridgeCopy } from "@/components/health-assistant/PrescriptionDoctorBridge";
 import { PrescriptionStructuredResult } from "@/components/health-assistant/PrescriptionStructuredResult";
-import { useLargeText, useReadAloud } from "@/components/health-check/readingTools";
+import { useReadAloud } from "@/components/health-check/readingTools";
 import { prefersCalmOrReducedMotion, useReadingLevel } from "@/lib/comfort-preferences";
 import { Container } from "@/components/ui/Container";
 import type { PrescribedMedicineItem } from "@/lib/health-assistant";
@@ -52,11 +55,8 @@ interface PrescriptionReviewCopy {
   removePhoto: string;
   photoReady: string;
   retakeLight: string;
-  guidanceHeading: string;
+  tipLine: string;
   dragOrBrowse: string;
-  tipFlat: string;
-  tipLight: string;
-  tipFull: string;
   skeletonHeading: string;
   qualityWarning: string;
   stepTwoBadge: string;
@@ -72,51 +72,13 @@ interface PrescriptionReviewCopy {
   fileErr: string;
   readErr: string;
   reviewErr: string;
+  reviewErrLink: string;
   rateLimitErr: string;
   previewAlt: string;
 }
 
 class ReadError extends Error {}
 
-/* Tip icons share one grid (24px), one stroke weight and one color so the row reads as a set. */
-const tipIconProps = {
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.8,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-  "aria-hidden": true,
-  className: "h-5 w-5 shrink-0",
-};
-
-function TipFlatIcon() {
-  return (
-    <svg {...tipIconProps}>
-      <path d="M6 8h12l2.5 9h-17L6 8Z" />
-      <path d="M8.5 11.5h5M8 14h8" />
-      <path d="M2 20h20" />
-    </svg>
-  );
-}
-
-function TipLightIcon() {
-  return (
-    <svg {...tipIconProps}>
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" />
-    </svg>
-  );
-}
-
-function TipFullIcon() {
-  return (
-    <svg {...tipIconProps}>
-      <path d="M3 7.5V5a2 2 0 0 1 2-2h2.5M16.5 3H19a2 2 0 0 1 2 2v2.5M21 16.5V19a2 2 0 0 1-2 2h-2.5M7.5 21H5a2 2 0 0 1-2-2v-2.5" />
-      <path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4" />
-    </svg>
-  );
-}
 
 function ReasonChipIcon({ reason }: { reason: ReasonChipKey }) {
   switch (reason) {
@@ -196,25 +158,6 @@ function ReasonChipIcon({ reason }: { reason: ReasonChipKey }) {
   }
 }
 
-function SpeakerHeaderSvg() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
-      <path
-        d="M4 7.75h2.8L10.75 4.5v11L6.8 12.25H4a1 1 0 0 1-1-1v-2.5a1 1 0 0 1 1-1Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M13.5 7.5a3.4 3.4 0 0 1 0 5M15.6 5.5a6.2 6.2 0 0 1 0 9"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
 function ArrowRightSvg() {
   return (
     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0">
@@ -232,7 +175,6 @@ function ArrowRightSvg() {
 export function PrescriptionReview() {
   const executeCaptcha = useRecaptcha();
   const { lang } = useLanguage();
-  const [largeText, toggleLargeText] = useLargeText();
   const voice = useReadAloud(lang);
   const [readingLevel] = useReadingLevel();
   const assistantCopy = useAssistantCopy();
@@ -249,8 +191,8 @@ export function PrescriptionReview() {
 "stepOneBadge": "Шаг 1 из 2",
 "photoReady": "Фото готово",
 "retakeLight": "Переснять при хорошем освещении",
-"guidanceHeading": "Как сделать чёткое фото",
-"dragOrBrowse": "или перетащите фото сюда (JPEG, PNG или WebP)",
+"tipLine": "Положите лист ровно при дневном свете, чтобы была видна вся страница.",
+"dragOrBrowse": "или перетащите фото сюда",
 "stepTwoBadge": "Шаг 2 из 2",
 "reasons": {"feverPain":"Температура или боль","coughCold":"Кашель или простуда","heartBp":"Сердце или давление","stomach":"Желудок или пищеварение","child":"Для ребёнка","notSure":"Не знаю"},
 "noteLabel": "Или кратко опишите своими словами (необязательно)",
@@ -268,12 +210,9 @@ export function PrescriptionReview() {
 
 
 "removePhoto": "Удалить фото",
-"tipFlat": "Положите лист ровно на стол",
-"tipLight": "Используйте дневной свет без бликов вспышки",
-"tipFull": "Сфотографируйте всю страницу и названия лекарств",
 "skeletonHeading": "Подготовка понятного объяснения…",
 
-      title: "Обзор рецепта",
+      title: "Объяснить рецепт",
       subtitle: "Сфотографируйте свой рецепт. Ассистент читает текст и объясняет его простыми словами. Всегда уточняйте это у своего фармацевта или врача.",
       dropTitle: "Сфотографируйте свой рецепт.",
       cameraCapture: "Сфотографироваться",
@@ -288,15 +227,16 @@ export function PrescriptionReview() {
       reviewing: "Читая ваш рецепт…",
       reviewingHint: "Это может занять до минуты. Держите эту страницу открытой.",
       uploadReqErr: "Чтобы продолжить, сделайте или загрузите фотографию вашего рецепта.",
-      fileErr: "Выберите изображение в формате JPEG, PNG или WebP размером менее 8 МБ.",
+      fileErr: "Этот файл не удаётся открыть как фото. Сделайте новое фото.",
       readErr: "Нам не удалось прочитать этот файл изображения. Попробуйте другое фото.",
-      reviewErr: "Мы не смогли прочитать этот рецепт. Пожалуйста, повторите попытку через несколько минут.",
-      rateLimitErr: "Слишком много запросов за короткое время. Пожалуйста, подождите немного и повторите попытку.",
+      reviewErr: "Не удалось прочитать рецепт. Покажите его фармацевту или",
+      reviewErrLink: "попросите помощи у человека",
+      rateLimitErr: "Подождите одну минуту и попробуйте снова.",
       previewAlt: "Фотография выбранного вами рецепта",
     },
 
     en: {
-      title: "Prescription review",
+      title: "Explain my prescription",
       subtitle:
         "Photograph your prescription and we explain it clearly. Always check with your pharmacist or doctor.",
       listenPage: "Listen",
@@ -309,11 +249,8 @@ export function PrescriptionReview() {
       removePhoto: "Remove photo",
       photoReady: "Photo is ready",
       retakeLight: "Take another photo in good light",
-      guidanceHeading: "Tips for a clear photo",
-      dragOrBrowse: "or drag your photo here (JPEG, PNG or WebP)",
-      tipFlat: "Lay it flat",
-      tipLight: "Use daylight",
-      tipFull: "Show the whole page",
+      tipLine: "Lay it flat, in daylight, with the whole page showing.",
+      dragOrBrowse: "or drag a photo here",
       skeletonHeading: "Preparing clear explanation…",
       qualityWarning:
         "The photo looks a little dark or blurry. Try again in daylight so the text is easy to read.",
@@ -334,14 +271,15 @@ export function PrescriptionReview() {
       reviewing: "Reading prescription…",
       reviewingHint: "This can take up to a minute. Keep this page open.",
       uploadReqErr: "Take or upload a photo of your prescription to continue.",
-      fileErr: "Choose a JPEG, PNG or WebP image smaller than 8 MB.",
+      fileErr: "This file is not a photo we can open. Take a new photo instead.",
       readErr: "We could not read that image file. Try another photo.",
-      reviewErr: "We could not read this prescription. Please try again in a few minutes.",
-      rateLimitErr: "Too many requests in a short time. Please wait a little and try again.",
+      reviewErr: "We could not read this prescription. Show it to your pharmacist, or",
+      reviewErrLink: "ask a person for help",
+      rateLimitErr: "Please wait one minute, then try again.",
       previewAlt: "Photo of the prescription you selected",
     },
     ro: {
-      title: "Verificarea rețetei",
+      title: "Explică-mi rețeta",
       subtitle:
         "Fă o poză rețetei și ți-o explicăm pe înțeles. Verifică mereu cu farmacistul sau medicul.",
       listenPage: "Ascultă",
@@ -354,11 +292,8 @@ export function PrescriptionReview() {
       removePhoto: "Șterge poza",
       photoReady: "Poza este pregătită",
       retakeLight: "Fă altă poză la lumină",
-      guidanceHeading: "Recomandări pentru o poză ușor de citit",
-      dragOrBrowse: "sau trage poza aici (JPEG, PNG sau WebP)",
-      tipFlat: "Pune foaia pe masă",
-      tipLight: "Folosește lumina zilei",
-      tipFull: "Prinde toată pagina",
+      tipLine: "Pune foaia întinsă pe masă, la lumină naturală, cu toată pagina în cadru.",
+      dragOrBrowse: "sau trage o poză aici",
       skeletonHeading: "Pregătim explicația pe înțeles…",
       qualityWarning:
         "Poza pare întunecată sau neclară. Încearcă din nou la lumina zilei, ca textul să se vadă bine.",
@@ -379,14 +314,15 @@ export function PrescriptionReview() {
       reviewing: "Se citește rețeta…",
       reviewingHint: "Poate dura până la un minut. Lasă pagina deschisă.",
       uploadReqErr: "Fă sau încarcă o poză a rețetei ca să continui.",
-      fileErr: "Alege o imagine JPEG, PNG sau WebP mai mică de 8 MB.",
+      fileErr: "Acest fișier nu este o poză pe care o putem deschide. Fă o poză nouă.",
       readErr: "Nu am putut deschide poza. Încearcă altă poză.",
-      reviewErr: "Nu am putut citi această rețetă. Încearcă din nou peste câteva minute.",
-      rateLimitErr: "Prea multe cereri într-un timp scurt. Așteaptă puțin și încearcă din nou.",
+      reviewErr: "Nu am putut citi această rețetă. Arat-o farmacistului sau",
+      reviewErrLink: "cere ajutor unei persoane",
+      rateLimitErr: "Așteaptă un minut, apoi încearcă din nou.",
       previewAlt: "Poza rețetei alese",
     },
     sq: {
-      title: "Verifikimi i recetës",
+      title: "Shpjego recetën time",
       subtitle:
         "Fotografo recetën dhe ta shpjegojmë qartë. Kontrolloje gjithmonë me farmacistin ose mjekun.",
       listenPage: "Dëgjo",
@@ -399,11 +335,8 @@ export function PrescriptionReview() {
       removePhoto: "Hiq foton",
       photoReady: "Fotoja është gati",
       retakeLight: "Bëj një foto tjetër në dritë",
-      guidanceHeading: "Këshilla për një foto të qartë",
-      dragOrBrowse: "ose tërhiq foton këtu (JPEG, PNG ose WebP)",
-      tipFlat: "Shtrije mbi tavolinë",
-      tipLight: "Përdor dritën e ditës",
-      tipFull: "Përfshi gjithë faqen",
+      tipLine: "Shtrije fletën drejt, në dritë të ditës, me gjithë faqen të dukshme.",
+      dragOrBrowse: "ose tërhiq një foto këtu",
       skeletonHeading: "Po përgatitet shpjegimi i qartë…",
       qualityWarning:
         "Fotoja duket pak e errët ose e paqartë. Provo përsëri në dritë natyrale, që teksti të lexohet mirë.",
@@ -424,14 +357,15 @@ export function PrescriptionReview() {
       reviewing: "Po lexohet receta…",
       reviewingHint: "Mund të zgjasë deri në një minutë. Mbaje faqen të hapur.",
       uploadReqErr: "Bëj ose ngarko një foto të recetës për të vazhduar.",
-      fileErr: "Zgjidh një imazh JPEG, PNG ose WebP më të vogël se 8 MB.",
+      fileErr: "Ky skedar nuk është një foto që mund ta hapim. Bëj një foto të re.",
       readErr: "Nuk mundëm ta hapim këtë foto. Provo një foto tjetër.",
-      reviewErr: "Nuk mundëm ta lexojmë këtë recetë. Provo përsëri pas pak minutash.",
-      rateLimitErr: "Shumë kërkesa në pak kohë. Prit pak dhe provo përsëri.",
+      reviewErr: "Nuk mundëm ta lexojmë këtë recetë. Tregoja farmacistit ose",
+      reviewErrLink: "kërko ndihmë nga një person",
+      rateLimitErr: "Të lutem prit një minutë, pastaj provo përsëri.",
       previewAlt: "Foto e recetës që zgjodhe",
     },
     it: {
-      title: "Revisione della ricetta",
+      title: "Spiegami la ricetta",
       subtitle:
         "Fotografa la ricetta e te la spieghiamo con chiarezza. Verifica sempre con il farmacista o il medico.",
       listenPage: "Ascolta",
@@ -444,11 +378,8 @@ export function PrescriptionReview() {
       removePhoto: "Rimuovi foto",
       photoReady: "La foto è pronta",
       retakeLight: "Scatta un'altra foto alla luce",
-      guidanceHeading: "Consigli per una foto chiara",
-      dragOrBrowse: "oppure trascina la foto qui (JPEG, PNG o WebP)",
-      tipFlat: "Stendila sul tavolo",
-      tipLight: "Usa la luce del giorno",
-      tipFull: "Inquadra tutta la pagina",
+      tipLine: "Stendi il foglio in piano, alla luce del giorno, con tutta la pagina visibile.",
+      dragOrBrowse: "oppure trascina una foto qui",
       skeletonHeading: "Preparazione della spiegazione chiara…",
       qualityWarning:
         "La foto sembra un po' scura o sfocata. Riprova con la luce naturale, così il testo si legge correttamente.",
@@ -469,14 +400,15 @@ export function PrescriptionReview() {
       reviewing: "Lettura ricetta…",
       reviewingHint: "Può richiedere fino a un minuto. Tieni aperta questa pagina.",
       uploadReqErr: "Scatta o carica una foto della ricetta per continuare.",
-      fileErr: "Scegli un'immagine JPEG, PNG o WebP più piccola di 8 MB.",
+      fileErr: "Questo file non è una foto che possiamo aprire. Scatta una nuova foto.",
       readErr: "Non siamo riusciti a leggere il file dell'immagine. Prova con un'altra foto.",
-      reviewErr: "Non siamo riusciti a leggere questa ricetta. Riprova tra qualche minuto.",
-      rateLimitErr: "Troppe richieste in poco tempo. Attendi un po' e riprova.",
+      reviewErr: "Non siamo riusciti a leggere questa ricetta. Mostrala al tuo farmacista, oppure",
+      reviewErrLink: "chiedi aiuto a una persona",
+      rateLimitErr: "Attendi un minuto, poi riprova.",
       previewAlt: "Foto della ricetta selezionata",
     },
     hr: {
-      title: "Provjera recepta",
+      title: "Objasni mi recept",
       subtitle:
         "Fotografiraj recept i objasnit ćemo ti ga jasno. Uvijek provjeri s ljekarnikom ili liječnikom.",
       listenPage: "Poslušaj",
@@ -489,11 +421,8 @@ export function PrescriptionReview() {
       removePhoto: "Ukloni fotografiju",
       photoReady: "Fotografija je spremna",
       retakeLight: "Snimi drugu fotografiju na svjetlu",
-      guidanceHeading: "Savjeti za jasnu fotografiju",
-      dragOrBrowse: "ili povuci fotografiju ovdje (JPEG, PNG ili WebP)",
-      tipFlat: "Položi ga ravno",
-      tipLight: "Koristi dnevno svjetlo",
-      tipFull: "Snimi cijelu stranicu",
+      tipLine: "Položi list ravno, na dnevnom svjetlu, tako da se vidi cijela stranica.",
+      dragOrBrowse: "ili povuci fotografiju ovdje",
       skeletonHeading: "Pripremamo jasno objašnjenje…",
       qualityWarning:
         "Fotografija izgleda pomalo tamno ili mutno. Pokušaj ponovno na dnevnom svjetlu kako bi tekst bio čitljiv.",
@@ -514,18 +443,19 @@ export function PrescriptionReview() {
       reviewing: "Čitanje recepta u tijeku…",
       reviewingHint: "Ovo može potrajati do jedne minute. Ostavi ovu stranicu otvorenom.",
       uploadReqErr: "Snimi ili učitaj fotografiju recepta za nastavak.",
-      fileErr: "Odaberi JPEG, PNG ili WebP sliku manju od 8 MB.",
+      fileErr: "Ova datoteka nije fotografija koju možemo otvoriti. Snimi novu fotografiju.",
       readErr: "Nismo uspjeli otvoriti tu slikovnu datoteku. Pokušaj s drugom fotografijom.",
-      reviewErr: "Nismo uspjeli pročitati ovaj recept. Pokušaj ponovno za nekoliko minuta.",
-      rateLimitErr: "Previše zahtjeva u kratkom vremenu. Pričekaj malo pa pokušaj ponovno.",
+      reviewErr: "Nismo uspjeli pročitati ovaj recept. Pokaži ga ljekarniku ili",
+      reviewErrLink: "zatraži pomoć osobe",
+      rateLimitErr: "Pričekaj jednu minutu, pa pokušaj ponovno.",
       previewAlt: "Fotografija odabranog recepta",
     },
     rom: {
-      title: "Dikh i receta",
+      title: "Xatyar mange i receta",
       subtitle:
         "Ker poza chire recetake thaj shpjeginas la tuke chaches. Dikh la svako data le farmacistosa vaj le doktoresa.",
       listenPage: "Ashun",
-      stopListening: "Astav",
+      stopListening: "Achav",
       largeTextLabel: "Maj baro ramovimos",
       stepOneBadge: "Pasho 1 katar 2",
       dropTitle: "Thov i receta",
@@ -534,11 +464,8 @@ export function PrescriptionReview() {
       removePhoto: "Khos i poza",
       photoReady: "I poza si gata",
       retakeLight: "Ker aver poza ko vudud",
-      guidanceHeading: "Sfaturya te avel i poza lachi",
-      dragOrBrowse: "vaj thov i poza kathe (JPEG, PNG vaj WebP)",
-      tipFlat: "Thov o lil pe skafidi",
-      tipLight: "Hasnisar divesko vudud",
-      tipFull: "Le sasti rig",
+      tipLine: "Thov o lil pre masi, and-o divesko vudud, te dikhel pe sasti rig.",
+      dragOrBrowse: "vaj thov jekh poza kathe",
       skeletonHeading: "Pregatisaras o chacho shpjegimos…",
       qualityWarning:
         "I poza dikljol xantsi kali vaj na uzi. Zumav pale ko divesko vudud kaste ginavel pe o teksto mishto.",
@@ -559,10 +486,11 @@ export function PrescriptionReview() {
       reviewing: "Ginavel pe i receta…",
       reviewingHint: "Shaj djal dji ko jekh minuto. Mekh kadaja rig puterdi.",
       uploadReqErr: "Ker vaj thov jekh poza e recetaki te djas maj dur.",
-      fileErr: "Alosar jekh poza JPEG, PNG vaj WebP maj tikni katar 8 MB.",
+      fileErr: "Kadava fajlo naj poza kaj shaj phuteras la. Ker jekh nevi poza.",
       readErr: "Nashti phuterdas kadaja poza. Zumav aver poza.",
-      reviewErr: "Nashti ginadas kadaja receta. Zumav pale pala nesave minutia.",
-      rateLimitErr: "But mangimata and-o skurto vrama. Azhuker xantsi thaj zumav pale.",
+      reviewErr: "Nashti ginadas kadaja receta. Sikav la ke farmacisto vaj",
+      reviewErrLink: "mang zhutimos katar ekh manush",
+      rateLimitErr: "Azhuker jekh minuta, porme zumav pale.",
       previewAlt: "Poza katar i alosardi receta",
     },
   };
@@ -579,7 +507,37 @@ export function PrescriptionReview() {
   const [context, setContext] = useState("");
   const [result, setResult] = useState<ReviewResponse | null>(null);
   const [qualityState, setQualityState] = useState<"idle" | "checking" | "good" | "warn">("idle");
-  const [error, setError] = useState("");
+  const [errorKind, setErrorKind] = useState<"file" | "uploadReq" | "read" | "rateLimit" | "review" | null>(null);
+  const errorMessages = {
+    file: t.fileErr,
+    uploadReq: t.uploadReqErr,
+    read: t.readErr,
+    rateLimit: t.rateLimitErr,
+    review: t.reviewErr,
+  };
+  const errorAlert = errorKind ? (
+    <div
+      role="alert"
+      className="swap-in flex items-start gap-2.5 rounded-lg border border-border bg-card p-3.5 text-body font-medium text-foreground dark:border-ink-800 dark:bg-ink-900"
+    >
+      <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
+      <span>
+        {errorMessages[errorKind]}
+        {errorKind === "review" ? (
+          <>
+            {" "}
+            <Link
+              href={withLangPrefix("/get-help?mode=mediator", lang)}
+              className="rounded-xs font-semibold text-foreground underline decoration-amber-care decoration-2 underline-offset-4 transition-colors duration-[var(--dur-fast)] hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
+            >
+              {t.reviewErrLink}
+            </Link>
+            .
+          </>
+        ) : null}
+      </span>
+    </div>
+  ) : null;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -660,7 +618,7 @@ export function PrescriptionReview() {
       voice.stop();
       return;
     }
-    voice.speak([t.title, t.subtitle, t.tipFlat, t.tipLight, t.tipFull]);
+    voice.speak([t.title, t.subtitle, t.tipLine]);
   }
 
   function toggleReasonChip(reason: ReasonChipKey) {
@@ -681,14 +639,14 @@ export function PrescriptionReview() {
     setFile(null);
     setPreview(null);
     setQualityState("idle");
-    setError("");
+    setErrorKind(null);
     setResult(null);
     if (cameraInput.current) cameraInput.current.value = "";
     if (galleryInput.current) galleryInput.current.value = "";
   }
 
   function handleFileSelected(selected: File | null) {
-    setError("");
+    setErrorKind(null);
     setResult(null);
     if (!selected) return;
 
@@ -697,7 +655,7 @@ export function PrescriptionReview() {
       setFile(null);
       setPreview(null);
       setQualityState("idle");
-      setError(t.fileErr);
+      setErrorKind("file");
       return;
     }
 
@@ -711,11 +669,11 @@ export function PrescriptionReview() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!file) {
-      setError(t.uploadReqErr);
+      setErrorKind("uploadReq");
       return;
     }
 
-    setError("");
+    setErrorKind(null);
     setResult(null);
     setIsSubmitting(true);
 
@@ -753,12 +711,12 @@ export function PrescriptionReview() {
 
       // Server errors are written in English; the person always sees a message in their language.
       if (!response.ok) {
-        setError(response.status === 429 ? t.rateLimitErr : t.reviewErr);
+        setErrorKind(response.status === 429 ? "rateLimit" : "review");
         return;
       }
       setResult((await response.json()) as ReviewResponse);
     } catch (caughtError) {
-      setError(caughtError instanceof ReadError ? t.readErr : t.reviewErr);
+      setErrorKind(caughtError instanceof ReadError ? "read" : "review");
     } finally {
       setIsSubmitting(false);
     }
@@ -770,55 +728,25 @@ export function PrescriptionReview() {
   return (
     <main
       id="main-content"
-      className={`flex-1 pt-2 pb-10 sm:pt-3 sm:pb-14 ${largeText ? "hc-large-text" : ""}`}
+      className="flex-1 pt-2 pb-10 sm:pt-3 sm:pb-14"
     >
       <Container>
         <AssistantNavigation />
 
-        <header className="flex flex-col gap-3.5 sm:flex-row sm:items-end sm:justify-between print:hidden">
-          <div className="min-w-0">
-            <h1 className="text-2xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-3xl">
-              {t.title}
-            </h1>
-            <p className="mt-1.5 max-w-[62ch] text-base leading-relaxed text-muted-foreground">
-              {t.subtitle}
-            </p>
-          </div>
-
-          <div className="flex shrink-0 flex-wrap items-center gap-2">
-            {voice.available ? (
-              <button
-                type="button"
-                onClick={handleHeaderListen}
-                aria-pressed={voice.speaking}
-                className={`inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                  voice.speaking
-                    ? "border-sapphire bg-sapphire-soft text-sapphire dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-sapphire-border"
-                    : "border-border bg-card text-foreground hover:bg-muted"
-                }`}
-              >
-                <SpeakerHeaderSvg />
-                <span>{voice.speaking ? t.stopListening : t.listenPage}</span>
-              </button>
-            ) : null}
-
-            <button
-              type="button"
-              onClick={toggleLargeText}
-              aria-pressed={largeText}
-              className={`inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                largeText
-                  ? "border-sapphire bg-sapphire-soft text-sapphire dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-sapphire-border"
-                  : "border-border bg-card text-foreground hover:bg-muted"
-              }`}
-            >
-              <span aria-hidden="true" className="font-bold text-sapphire dark:text-sapphire-border">
-                A+
-              </span>
-              <span>{t.largeTextLabel}</span>
-            </button>
-          </div>
-        </header>
+        <PageHeader
+          className="print:hidden"
+          title={t.title}
+          lead={t.subtitle}
+          actions={
+            voice.available ? (
+              <ListenButton
+                uiLang={lang}
+                isPlaying={voice.speaking}
+                onToggle={handleHeaderListen}
+              />
+            ) : undefined
+          }
+        />
 
         <div className="mt-5 grid gap-6 sm:mt-6 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem] xl:gap-8 print:block">
           <div className="min-w-0 space-y-6">
@@ -826,7 +754,7 @@ export function PrescriptionReview() {
               <form onSubmit={handleSubmit} className="space-y-6 p-5 sm:p-8" aria-busy={isSubmitting}>
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
-                    <p className="whitespace-nowrap text-sm font-medium text-muted-foreground tabular-nums">
+                    <p className="whitespace-nowrap text-meta font-medium text-muted-foreground tabular-nums">
                       {currentStepLabel}
                     </p>
                   </div>
@@ -875,7 +803,7 @@ export function PrescriptionReview() {
             {/* Step 1: Visual capture dropzone */}
             {preview ? (
               <div className="swap-in rounded-2xl border border-border bg-surface-subtle/30 p-5 text-center sm:p-7">
-                <p className="text-sm font-semibold text-foreground">{t.photoReady}</p>
+                <p className="text-body font-semibold text-foreground">{t.photoReady}</p>
 
                 <figure className="mt-4 flex flex-col items-center">
                   <img
@@ -884,40 +812,45 @@ export function PrescriptionReview() {
                     className="max-h-80 w-auto rounded-xl border border-border bg-card object-contain shadow-xs"
                   />
                   {file?.name ? (
-                    <figcaption className="mt-2 max-w-full truncate text-xs text-muted-foreground">
+                    <figcaption className="mt-2 max-w-full truncate text-meta text-muted-foreground">
                       {file.name}
                     </figcaption>
                   ) : null}
                 </figure>
 
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="md"
                     onClick={() => cameraInput.current?.click()}
-                    className="press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900"
+                    className="dark:bg-ink-900"
                   >
                     <CameraIcon className="h-4 w-4 shrink-0" />
                     <span className="min-w-0 truncate">{t.retakeLight}</span>
-                  </button>
+                  </Button>
 
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="md"
                     onClick={() => galleryInput.current?.click()}
-                    className="press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900"
+                    className="dark:bg-ink-900"
                   >
                     <ImageIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
-                    <span className="min-w-0 truncate">{t.galleryUpload}</span>
-                  </button>
+                    <span>{t.galleryUpload}</span>
+                  </Button>
 
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="md"
                     onClick={handleRemovePhoto}
                     disabled={isSubmitting}
-                    className="press-row inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-rose-200 bg-rose-50/60 px-4 py-2 text-sm font-semibold text-rose-700 transition-colors hover:bg-rose-100/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 disabled:cursor-not-allowed disabled:opacity-60 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-300 dark:hover:bg-rose-950/60"
                   >
                     <TrashIcon className="h-4 w-4 shrink-0" />
                     <span>{t.removePhoto}</span>
-                  </button>
+                  </Button>
                 </div>
               </div>
             ) : (
@@ -952,93 +885,46 @@ export function PrescriptionReview() {
                   <CameraIcon className="h-7 w-7" />
                 </div>
 
-                <h2
-                  className={`mt-3.5 font-semibold text-foreground text-balance ${
-                    largeText ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"
-                  }`}
-                >
+                <h2 className="mt-3.5 text-title font-semibold text-foreground text-balance">
                   {t.dropTitle}
                 </h2>
 
-                <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
-                  {t.dragOrBrowse}
+                <p className="mt-1.5 text-body leading-relaxed text-muted-foreground">
+                  {t.tipLine}
                 </p>
 
                 {/* Primary interactive action buttons: clearly identifiable as buttons */}
                 <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <button
+                  <Button
                     type="button"
+                    variant="action"
+                    size="lg"
                     onClick={() => cameraInput.current?.click()}
-                    className="press-solid inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-auto sm:px-6 sm:text-[0.9375rem]"
+                    className="min-h-13 w-full sm:w-auto sm:px-6"
                   >
                     <CameraIcon className="h-5 w-5 shrink-0" />
-                    <span className="min-w-0 truncate">{t.cameraCapture}</span>
-                  </button>
+                    <span>{t.cameraCapture}</span>
+                  </Button>
 
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="lg"
                     onClick={() => galleryInput.current?.click()}
-                    className="press-row inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-5 py-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900 sm:w-auto sm:px-6 sm:text-[0.9375rem]"
+                    className="min-h-13 w-full dark:bg-ink-900 sm:w-auto sm:px-6"
                   >
                     <ImageIcon className="h-5 w-5 shrink-0 text-muted-foreground" />
-                    <span className="min-w-0 truncate">{t.galleryUpload}</span>
-                  </button>
+                    <span>{t.galleryUpload}</span>
+                  </Button>
                 </div>
 
-                {/* Informational Guidance Box: clearly labeled and non-interactive */}
-                <div className="mt-6 rounded-xl border border-sapphire-border/40 bg-card/85 p-4 text-left shadow-2xs dark:border-white/10 dark:bg-ink-900/60 sm:p-4.5">
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-md bg-sapphire-soft text-sapphire dark:bg-sapphire/20 dark:text-sapphire-light">
-                      <svg viewBox="0 0 16 16" fill="currentColor" className="h-3 w-3" aria-hidden="true">
-                        <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 3.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm1.25 7.25h-2.5a.75.75 0 0 1 0-1.5h.5V7.75h-.5a.75.75 0 0 1 0-1.5h1.75a.75.75 0 0 1 .75.75v3.25h.5a.75.75 0 0 1 0 1.5Z" />
-                      </svg>
-                    </span>
-                    <p className="text-xs font-semibold text-foreground sm:text-sm">
-                      {t.guidanceHeading}
-                    </p>
-                  </div>
-
-                  <div className="mt-3 grid gap-3 sm:grid-cols-3">
-                    <div className="flex items-start gap-2.5">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-subtle text-sapphire dark:bg-white/10 dark:text-sapphire-light">
-                        <TipFlatIcon />
-                      </span>
-                      <span className="text-xs leading-snug text-muted-foreground sm:text-sm">
-                        {t.tipFlat}
-                      </span>
-                    </div>
-
-                    <div className="flex items-start gap-2.5">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-subtle text-sapphire dark:bg-white/10 dark:text-sapphire-light">
-                        <TipLightIcon />
-                      </span>
-                      <span className="text-xs leading-snug text-muted-foreground sm:text-sm">
-                        {t.tipLight}
-                      </span>
-                    </div>
-
-                    <div className="flex items-start gap-2.5">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-subtle text-sapphire dark:bg-white/10 dark:text-sapphire-light">
-                        <TipFullIcon />
-                      </span>
-                      <span className="text-xs leading-snug text-muted-foreground sm:text-sm">
-                        {t.tipFull}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <p className="mt-3 hidden text-meta text-muted-foreground lg:block">
+                  {t.dragOrBrowse}
+                </p>
               </div>
             )}
 
-            {error && !preview ? (
-              <div
-                role="alert"
-                className="swap-in flex items-start gap-2.5 rounded-lg border border-amber-care-border bg-amber-care-soft/60 p-3.5 text-sm font-medium leading-relaxed text-foreground dark:border-amber-care/40 dark:bg-amber-care/15"
-              >
-                <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
-                <span>{error}</span>
-              </div>
-            ) : null}
+            {!preview ? errorAlert : null}
 
             {/* Step 2: Revealed smoothly ONLY after a photo is selected */}
             {preview ? (
@@ -1052,37 +938,33 @@ export function PrescriptionReview() {
                     role="status"
                     className="flex flex-col gap-3 rounded-xl border border-amber-care-border bg-amber-care-soft/60 p-4 text-left dark:border-amber-care/40 dark:bg-amber-care/15 sm:flex-row sm:items-center sm:justify-between"
                   >
-                    <p className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+                    <p className="flex items-start gap-2.5 text-body text-foreground">
                       <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
                       <span>{t.qualityWarning}</span>
                     </p>
                     <button
                       type="button"
                       onClick={() => cameraInput.current?.click()}
-                      className="inline-flex min-h-11 max-w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-amber-care-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-amber-care/50"
+                      className="inline-flex min-h-11 max-w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-amber-care-border bg-card px-4 py-2 text-body font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-amber-care/50"
                     >
                       <CameraIcon className="h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
                       <span className="min-w-0 truncate">{t.retakeLight}</span>
                     </button>
                   </div>
                 ) : qualityState === "good" ? (
-                  <p role="status" className="text-sm font-semibold text-live-sage">
+                  <p role="status" className="text-body font-semibold text-live-sage">
                     {t.photoReady}
                   </p>
                 ) : null}
 
                 {/* 1-tap visual reason chips + optional note */}
                 <div>
-                  <h3
-                    className={`font-semibold text-foreground ${
-                      largeText ? "text-lg sm:text-xl" : "text-base sm:text-lg"
-                    }`}
-                  >
+                  <h3 className="text-title font-semibold text-foreground">
                     {t.whyLabel}
                   </h3>
                   <p
                     id="prescription-context-hint"
-                    className={`mt-1 text-muted-foreground ${largeText ? "text-base" : "text-sm"}`}
+                    className="mt-1 text-body text-muted-foreground"
                   >
                     {t.whyHint}
                   </p>
@@ -1097,9 +979,7 @@ export function PrescriptionReview() {
                           onClick={() => toggleReasonChip(reasonKey)}
                           aria-pressed={active}
                           style={{ "--i": index } as CSSProperties}
-                          className={`list-in press-row flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-left font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                            largeText ? "text-base" : "text-sm"
-                          } ${
+                          className={`list-in press-row flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                             active
                               ? "border-sapphire bg-sapphire-soft font-semibold text-foreground dark:border-sapphire/65 dark:bg-sapphire/20 dark:text-foreground"
                               : "border-border bg-background text-foreground hover:bg-muted"
@@ -1125,9 +1005,7 @@ export function PrescriptionReview() {
 
                   <div className="mt-4">
                     <label
-                      className={`block font-medium text-muted-foreground ${
-                        largeText ? "text-sm" : "text-xs sm:text-sm"
-                      }`}
+                      className="block text-body font-medium text-muted-foreground"
                       htmlFor="prescription-context"
                     >
                       {t.noteLabel}
@@ -1140,32 +1018,24 @@ export function PrescriptionReview() {
                       value={context}
                       onChange={(event) => setContext(event.target.value)}
                       placeholder={t.whyPh}
-                      className={`field-focus mt-1.5 w-full resize-none rounded-lg border border-border-control bg-background p-3 text-foreground placeholder:text-muted-foreground ${
-                        largeText ? "text-base" : "text-sm"
-                      }`}
+                      className="field-focus mt-1.5 w-full resize-none rounded-lg border border-border-control bg-background p-3 text-body text-foreground placeholder:text-muted-foreground"
                     />
                   </div>
                 </div>
 
-                {error ? (
-                  <div
-                    role="alert"
-                    className="swap-in flex items-start gap-2.5 rounded-lg border border-amber-care-border bg-amber-care-soft/60 p-3.5 text-sm font-medium leading-relaxed text-foreground dark:border-amber-care/40 dark:bg-amber-care/15"
-                  >
-                    <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
-                    <span>{error}</span>
-                  </div>
-                ) : null}
+                {errorAlert}
 
                 <div className="sticky bottom-0 z-10 -mx-5 border-t border-border bg-card/95 px-5 py-3.5 backdrop-blur-xs sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
-                  <button
+                  <Button
                     type="submit"
+                    variant="action"
+                    size="lg"
                     disabled={isSubmitting || !file}
-                    className="group press-solid inline-flex min-h-13 w-full max-w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-xl bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground sm:w-auto sm:px-7 sm:text-[0.9375rem]"
+                    className="min-h-13 w-full sm:w-auto sm:px-7"
                   >
                     <span className="min-w-0 truncate">{isSubmitting ? t.reviewing : t.reviewButton}</span>
                     {!isSubmitting ? <ArrowRightSvg /> : null}
-                  </button>
+                  </Button>
 
                   {/* Honest progress: a calm indeterminate line, no fake percentages or scanning effects. */}
                   <div role="status" aria-live="polite" className={isSubmitting ? "mt-3" : ""}>
@@ -1174,7 +1044,7 @@ export function PrescriptionReview() {
                         <div className="h-1.5 w-full overflow-hidden rounded-md bg-muted sm:max-w-xs" aria-hidden="true">
                           <div className="assistant-reading-bar h-full w-2/5 rounded-md bg-sapphire dark:bg-sapphire-border" />
                         </div>
-                        <p className="mt-2 text-sm text-muted-foreground">{t.reviewingHint}</p>
+                        <p className="mt-2 text-body text-muted-foreground">{t.reviewingHint}</p>
                       </>
                     ) : null}
                   </div>
@@ -1189,7 +1059,7 @@ export function PrescriptionReview() {
             aria-label={t.skeletonHeading}
             className="rounded-2xl border border-border bg-card p-5 shadow-xs print:hidden sm:p-8"
           >
-            <p className="text-sm font-semibold text-foreground">{t.skeletonHeading}</p>
+            <p className="text-body font-semibold text-foreground">{t.skeletonHeading}</p>
             <div className="mt-4 space-y-3" aria-hidden="true">
               {[0, 1].map((row) => (
                 <div
@@ -1231,7 +1101,7 @@ export function PrescriptionReview() {
 
           <aside className="min-w-0 space-y-4 lg:sticky lg:top-[calc(var(--site-header-h,4rem)+1.5rem)] print:hidden">
             <div className="rounded-2xl border border-border bg-card p-5 shadow-xs sm:p-6">
-              <h2 className="text-balance text-base font-semibold text-foreground">
+              <h2 className="text-balance text-body font-semibold text-foreground">
                 {assistantCopy.rx.rulesHeading}
               </h2>
               <ol className="mt-4 space-y-3">
@@ -1239,43 +1109,51 @@ export function PrescriptionReview() {
                   <li key={rule} className="flex items-start gap-3">
                     <span
                       aria-hidden="true"
-                      className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-xs font-semibold text-sapphire tabular-nums dark:bg-sapphire/20 dark:text-sapphire-light"
+                      className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-meta font-semibold text-sapphire tabular-nums dark:bg-sapphire/20 dark:text-sapphire-light"
                     >
                       {index + 1}
                     </span>
-                    <span className="text-sm leading-relaxed text-muted-foreground">{rule}</span>
+                    <span className="text-body text-muted-foreground">{rule}</span>
                   </li>
                 ))}
               </ol>
-              <Link
+              <Button
                 href={withLangPrefix("/find-help?category=pharmacy", lang)}
-                className="group press-row mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-900"
+                variant="outline"
+                size="md"
+                fullWidth
+                className="mt-5 hover:border-sapphire hover:bg-sapphire-soft/45 dark:bg-ink-900"
               >
                 <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
                 <span className="min-w-0 truncate">{helpLinks.nav}</span>
-                <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-              </Link>
+                <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none" aria-hidden="true" />
+              </Button>
             </div>
 
             <div className="rounded-2xl border border-border bg-surface-subtle/60 p-5 shadow-xs dark:bg-card sm:p-6">
               <div className="min-w-0">
-                <h2 className="text-balance text-base font-semibold text-foreground">
+                <h2 className="text-balance text-body font-semibold text-foreground">
                   {doctorBridge.heading}
                 </h2>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-1.5 text-body text-muted-foreground">
                   {doctorBridge.body}
                 </p>
               </div>
-              <Link
+              <Button
                 href={withLangPrefix("/medic-online?source=prescription", lang)}
-                className="group press-solid mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-sapphire px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                variant="action"
+                size="md"
+                fullWidth
+                className="mt-5"
               >
                 <span className="min-w-0 truncate">{headerCopy.navMedic}</span>
-                <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
-              </Link>
+                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              </Button>
             </div>
           </aside>
         </div>
+
+        <AssistantOtherTools />
       </Container>
     </main>
   );

@@ -16,6 +16,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "motion/react";
+import { Button } from "@/components/ui/Button";
 import {
   ActivityIcon,
   ArrowRightIcon,
@@ -537,7 +538,7 @@ export function SmartSearchModal() {
       <div
         aria-hidden="true"
         onClick={handleClose}
-        className="scrim-in fixed inset-0 -z-10 bg-ink-950/35"
+        className="scrim-in fixed inset-0 -z-10 bg-ink-950/45"
       />
 
       <motion.div
@@ -546,7 +547,7 @@ export function SmartSearchModal() {
         initial={reducedMotion ? false : { opacity: 0, y: ENTRANCE_OFFSET_PX }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: reducedMotion ? 0 : DURATION.slow, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto flex max-h-[92%] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-ink-900/12 bg-white text-foreground shadow-[0_24px_64px_-16px_rgba(12,24,48,0.22)] md:max-h-[80vh] md:rounded-2xl dark:border-paper/15 dark:bg-ink-950 dark:text-paper"
+        className="mx-auto flex max-h-[92%] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-transparent bg-white text-foreground shadow-[0_28px_72px_-18px_rgba(12,24,48,0.38)] md:max-h-[80vh] md:rounded-2xl dark:border-paper/15 dark:bg-ink-950 dark:text-paper"
       >
         <h2 id={dialogTitleId} className="sr-only">
           {copy.modalLabel}
@@ -557,8 +558,9 @@ export function SmartSearchModal() {
         </div>
 
         {/* Google-like search header bar */}
-        <div className="shrink-0 border-b border-ink-900/10 px-4 py-2.5 dark:border-paper/10 sm:px-5">
-          <div className="flex min-h-[48px] items-center gap-2.5 rounded-xl px-2.5 has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-offset-2 has-[input:focus-visible]:outline-ring">
+        {/* Focus shows as a sapphire rule along the bar's own edge, not a second box drawn inside the panel. */}
+        <div className="shrink-0 border-b border-ink-900/10 px-4 py-2 transition-shadow duration-(--dur-fast) ease-(--ease-out-calm) has-[input:focus-visible]:shadow-[inset_0_-2px_0_var(--color-sapphire)] motion-reduce:transition-none dark:border-paper/10 dark:has-[input:focus-visible]:shadow-[inset_0_-2px_0_var(--color-sapphire-border)] sm:px-5">
+          <div className="flex min-h-[52px] items-center gap-3 pl-1.5">
             <SearchIcon
               className="h-5 w-5 shrink-0 text-sapphire dark:text-sapphire-border"
               aria-hidden="true"
@@ -568,7 +570,7 @@ export function SmartSearchModal() {
               {ghostSuffix ? (
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 flex items-center overflow-hidden pr-1 whitespace-pre text-[16px] leading-normal font-normal tracking-normal"
+                  className="pointer-events-none absolute inset-0 flex items-center overflow-hidden pr-1 whitespace-pre text-body font-normal"
                 >
                   <span className="invisible">{query}</span>
                   <span className="text-ink-900/35 dark:text-paper/35">{ghostSuffix}</span>
@@ -597,7 +599,7 @@ export function SmartSearchModal() {
                 autoCorrect="off"
                 spellCheck={false}
                 style={{ outline: "none" }}
-                className="relative z-10 min-h-[44px] w-full bg-transparent pr-1 text-[16px] leading-normal font-normal tracking-normal text-foreground placeholder:text-ink-900/45 focus:outline-none focus-visible:outline-none dark:text-paper dark:placeholder:text-paper/45 [&::-webkit-search-cancel-button]:hidden"
+                className="relative z-10 min-h-[44px] w-full bg-transparent pr-1 text-body font-normal text-foreground caret-sapphire placeholder:text-muted-foreground focus:outline-none focus-visible:outline-none dark:text-paper dark:caret-sapphire-border dark:placeholder:text-mist [&::-webkit-search-cancel-button]:hidden"
               />
             </div>
 
@@ -609,7 +611,7 @@ export function SmartSearchModal() {
                     applyQuery("", true);
                     inputRef.current?.focus();
                   }}
-                  className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg px-2.5 text-xs font-medium whitespace-nowrap text-ink-900/60 transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-paper/65 dark:hover:bg-paper/[0.08] dark:hover:text-paper"
+                  className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg px-2.5 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.08] dark:hover:text-paper"
                 >
                   {copy.clearLabel}
                 </button>
@@ -624,7 +626,7 @@ export function SmartSearchModal() {
               type="button"
               onClick={handleClose}
               aria-label={copy.closeLabel}
-              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-ink-900/60 transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-paper/65 dark:hover:bg-paper/[0.08] dark:hover:text-paper"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.08] dark:hover:text-paper"
             >
               <CloseIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -657,14 +659,14 @@ export function SmartSearchModal() {
                   className={cn(
                     // tab-ink: the marker under the chosen tab draws out from its centre; the label sits
                     // exactly over it (px-3 matches the marker's 0.75rem inset).
-                    "tab-ink inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-3 text-[13.5px] font-medium whitespace-nowrap transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none",
+                    "tab-ink inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-3 text-body font-medium whitespace-nowrap transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none",
                     isSelected
                       ? "text-sapphire dark:text-sapphire-border"
-                      : "text-ink-900/60 hover:text-foreground dark:text-paper/65 dark:hover:text-paper",
+                      : "text-muted-foreground hover:text-foreground dark:text-mist dark:hover:text-paper",
                   )}
                 >
                   <span>{copy.categories[cat]}</span>
-                  <span className="text-xs font-normal tabular-nums text-ink-900/45 dark:text-paper/45">
+                  <span className="text-meta font-normal tabular-nums text-muted-foreground dark:text-mist">
                     {count}
                   </span>
                 </button>
@@ -684,14 +686,14 @@ export function SmartSearchModal() {
               {/* Zero-keystroke Google autocomplete suggestions */}
               <section aria-label={contextual.contextLabel}>
                 <div className="mb-1 flex min-h-[32px] items-center justify-between gap-2 px-2">
-                  <p className="text-xs font-medium text-ink-900/55 dark:text-paper/55">
+                  <p className="text-meta font-medium text-muted-foreground dark:text-mist">
                     {recentSearches.length > 0 ? copy.recentSearchesLabel : contextual.contextLabel}
                   </p>
                   {recentSearches.length > 0 ? (
                     <button
                       type="button"
                       onClick={clearRecentSearches}
-                      className="inline-flex min-h-11 items-center rounded-lg px-2 text-xs font-medium whitespace-nowrap text-ink-900/55 transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-paper/60 dark:hover:bg-paper/[0.06] dark:hover:text-paper"
+                      className="inline-flex min-h-11 items-center rounded-lg px-2 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.06] dark:hover:text-paper"
                     >
                       {copy.clearRecentLabel}
                     </button>
@@ -724,10 +726,10 @@ export function SmartSearchModal() {
                           )}
                         >
                           <RowIcon
-                            className="h-4 w-4 shrink-0 text-ink-900/45 dark:text-paper/45"
+                            className="h-4 w-4 shrink-0 text-muted-foreground dark:text-mist"
                             aria-hidden="true"
                           />
-                          <span className="min-w-0 flex-1 text-[15px] leading-snug text-foreground dark:text-paper">
+                          <span className="min-w-0 flex-1 text-body leading-snug text-foreground dark:text-paper">
                             {row.query}
                           </span>
                         </button>
@@ -744,7 +746,7 @@ export function SmartSearchModal() {
               >
                 <p
                   id={`${baseId}-journeys`}
-                  className="px-2 pb-1.5 text-xs font-medium text-ink-900/55 dark:text-paper/55"
+                  className="px-2 pb-1.5 text-meta font-medium text-muted-foreground dark:text-mist"
                 >
                   {copy.journeysHeading}
                 </p>
@@ -778,13 +780,13 @@ export function SmartSearchModal() {
                               className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
                               aria-hidden="true"
                             />
-                            <span className="min-w-0 text-[15px] leading-snug font-medium text-foreground dark:text-paper">
+                            <span className="min-w-0 text-body leading-snug font-medium text-foreground dark:text-paper">
                               {journey.title}
                             </span>
                           </span>
                           <ChevronDownIcon
                             className={cn(
-                              "h-4 w-4 shrink-0 text-ink-900/45 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-paper/45",
+                              "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-mist",
                               isExpanded && "rotate-180",
                             )}
                             aria-hidden="true"
@@ -800,8 +802,8 @@ export function SmartSearchModal() {
                           )}
                         >
                           <div className="overflow-hidden" inert={!isExpanded}>
-                            <div className="space-y-3 px-2.5 pt-0.5 pb-3.5 pl-9">
-                              <p className="text-[14px] leading-relaxed text-ink-900/70 dark:text-paper/70">
+                            <div className="space-y-3 px-2.5 pt-0.5 pb-3.5 sm:pl-9">
+                              <p className="text-body text-muted-foreground dark:text-mist">
                                 {journey.summary}
                               </p>
 
@@ -814,7 +816,7 @@ export function SmartSearchModal() {
                                       applyQuery(qItem.query, true);
                                       inputRef.current?.focus();
                                     }}
-                                    className="inline-flex min-h-11 items-center rounded-lg bg-ink-900/[0.04] px-3 text-[13.5px] font-medium whitespace-nowrap text-foreground transition-colors hover:bg-ink-900/[0.08] dark:bg-paper/[0.06] dark:text-paper dark:hover:bg-paper/[0.12]"
+                                    className="inline-flex min-h-11 items-center rounded-lg bg-ink-900/[0.04] px-2.5 text-body font-medium whitespace-nowrap text-foreground transition-colors hover:bg-ink-900/[0.08] sm:px-3 dark:bg-paper/[0.06] dark:text-paper dark:hover:bg-paper/[0.12]"
                                   >
                                     {qItem.label}
                                   </button>
@@ -829,10 +831,10 @@ export function SmartSearchModal() {
                                       key={action.href}
                                       href={actionHref}
                                       onClick={() => handleFollowLink(actionHref, false)}
-                                      className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                                      className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
                                     >
-                                      <span className="link-draw">{action.label}</span>
-                                      <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                      <span>{action.label}</span>
+                                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                                     </Link>
                                   );
                                 })}
@@ -852,31 +854,33 @@ export function SmartSearchModal() {
               {catalogResponse.isEmergency ? (
                 <div
                   role="alert"
-                  className="rounded-xl border border-rose-300 bg-rose-50/95 p-4 dark:border-rose-700/60 dark:bg-rose-950/45"
+                  className="rounded-xl border border-primary/35 bg-primary-soft p-4 dark:border-ruby-300/40 dark:bg-primary/15"
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="space-y-1">
-                      <p className="text-[15px] font-semibold text-rose-900 dark:text-rose-100">
+                      <p className="text-body font-semibold text-foreground dark:text-paper">
                         {copy.emergencyTitle}
                       </p>
-                      <p className="text-[13.5px] leading-relaxed text-rose-900/85 dark:text-rose-100/85">
+                      <p className="text-body text-foreground dark:text-paper">
                         {copy.emergencyBody}
                       </p>
                     </div>
-                    <a
+                    <Button
                       href="tel:112"
-                      className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-rose-700 px-4 text-[14px] font-semibold whitespace-nowrap text-white transition-colors hover:bg-rose-800"
+                      variant="primary"
+                      size="md"
+                      className="shrink-0"
                     >
                       <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                       <span>{copy.emergencyCallLabel}</span>
-                    </a>
+                    </Button>
                   </div>
                 </div>
               ) : null}
 
               {/* Did you mean correction */}
               {catalogResponse.didYouMean ? (
-                <p className="px-1 text-[14px] text-ink-900/70 dark:text-paper/70">
+                <p className="px-1 text-body text-muted-foreground dark:text-mist">
                   <span>{copy.didYouMeanPrefix} </span>
                   <button
                     type="button"
@@ -884,9 +888,9 @@ export function SmartSearchModal() {
                       applyQuery(catalogResponse.didYouMean!, true);
                       inputRef.current?.focus();
                     }}
-                    className="group inline-flex min-h-11 items-center font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                    className="group inline-flex min-h-11 items-center font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                   >
-                    <span className="link-draw">{catalogResponse.didYouMean}</span>
+                    <span>{catalogResponse.didYouMean}</span>
                   </button>
                 </p>
               ) : null}
@@ -895,13 +899,13 @@ export function SmartSearchModal() {
               {overview && overviewBody ? (
                 <section
                   aria-label={copy.aiAnswerTitle}
-                  className="rounded-xl border border-sapphire/15 bg-sapphire/[0.03] px-4 py-3.5 dark:border-sapphire-border/20 dark:bg-sapphire/[0.08]"
+                  className="rounded-xl bg-sapphire-soft/70 px-4 pt-3.5 pb-2 dark:bg-white/[0.06]"
                 >
                   {/* Keyed: when the fuller answer replaces the catalogue lead, it settles in instead of snapping. */}
                   <p
                     key={activeAiAnswer ? "answer" : "lead"}
                     className={cn(
-                      "text-[14.5px] leading-relaxed text-foreground dark:text-paper",
+                      "text-body text-foreground dark:text-paper",
                       activeAiAnswer && "swap-in",
                     )}
                   >
@@ -912,10 +916,10 @@ export function SmartSearchModal() {
                     <Link
                       href={overview.primaryAction.href}
                       onClick={() => handleFollowLink(overview.primaryAction.href, true)}
-                      className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                      className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                     >
-                      <span className="link-draw">{overview.primaryAction.label}</span>
-                      <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                      <span>{overview.primaryAction.label}</span>
+                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                     </Link>
 
                     {hasOverviewDetails ? (
@@ -927,7 +931,7 @@ export function SmartSearchModal() {
                           lastExpandedControlIdRef.current = `${baseId}-overview-steps`;
                           setExpandedOverview((prev) => !prev);
                         }}
-                        className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-[13.5px] font-medium whitespace-nowrap text-ink-900/70 transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-paper/75 dark:hover:bg-paper/[0.06] dark:hover:text-paper"
+                        className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.06] dark:hover:text-paper"
                       >
                         <span>
                           {expandedOverview
@@ -957,7 +961,7 @@ export function SmartSearchModal() {
                       <div className="overflow-hidden" inert={!expandedOverview}>
                         <div className="mt-2 space-y-2.5 border-t border-sapphire/12 pt-3 dark:border-sapphire-border/15">
                           {overview.steps.length > 0 ? (
-                            <ol className="list-decimal space-y-1.5 pl-5 text-[13.5px] leading-relaxed text-ink-900/80 dark:text-paper/80">
+                            <ol className="list-decimal space-y-1.5 pl-5 text-body text-foreground dark:text-paper">
                               {overview.steps.map((step) => (
                                 <li key={step}>{step}</li>
                               ))}
@@ -965,7 +969,7 @@ export function SmartSearchModal() {
                           ) : null}
 
                           {activeAiAnswer ? (
-                            <p className="text-[12.5px] text-ink-900/55 dark:text-paper/55">
+                            <p className="text-meta text-muted-foreground dark:text-mist">
                               {copy.aiAnswerDisclaimer}
                             </p>
                           ) : null}
@@ -980,10 +984,10 @@ export function SmartSearchModal() {
                                     applyQuery(follow, true);
                                     inputRef.current?.focus();
                                   }}
-                                  className="group inline-flex min-h-11 items-center gap-1.5 text-[13px] font-medium whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                                  className="group inline-flex min-h-11 items-center gap-1.5 text-body font-medium whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                                 >
                                   <SearchIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                                  <span className="link-draw">{follow}</span>
+                                  <span>{follow}</span>
                                 </button>
                               ))}
                             </div>
@@ -998,31 +1002,33 @@ export function SmartSearchModal() {
               {/* Clean single-column Google result rows */}
               {results.length === 0 ? (
                 <div className="swap-in rounded-xl border border-ink-900/10 px-5 py-7 text-center dark:border-paper/10">
-                  <p className="text-[16px] font-semibold text-foreground dark:text-paper">
+                  <p className="text-body font-semibold text-foreground dark:text-paper">
                     {copy.emptyTitle}
                   </p>
-                  <p className="mx-auto mt-1.5 max-w-md text-[14px] leading-relaxed text-ink-900/70 dark:text-paper/70">
+                  <p className="mx-auto mt-1.5 max-w-md text-body text-muted-foreground dark:text-mist">
                     {copy.emptyBody}
                   </p>
                   <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-                    <button
+                    <Button
                       type="button"
+                      variant="outline"
+                      size="md"
                       onClick={() => {
                         applyQuery("", true);
                         inputRef.current?.focus();
                       }}
-                      className="inline-flex min-h-11 items-center rounded-lg border border-ink-900/15 px-4 text-[14px] font-medium whitespace-nowrap text-foreground transition-colors hover:bg-ink-900/[0.04] dark:border-paper/15 dark:text-paper dark:hover:bg-paper/[0.06]"
                     >
                       {copy.emptyFallbackAction}
-                    </button>
-                    <Link
+                    </Button>
+                    <Button
                       href={assistantHref}
+                      variant="action"
+                      size="md"
                       onClick={() => handleFollowLink(assistantHref, false)}
-                      className="group press-solid inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-sapphire px-4 text-[14px] font-semibold whitespace-nowrap text-white transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire/90 motion-reduce:transition-none"
                     >
                       <span>{copy.askAssistantLabel}</span>
                       <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
-                    </Link>
+                    </Button>
                   </div>
                 </div>
               ) : (
@@ -1041,8 +1047,8 @@ export function SmartSearchModal() {
                         onMouseEnter={() => setActiveIndex(idx)}
                         style={{ "--i": idx } as CSSProperties}
                         className={cn(
-                          "list-in rounded-lg px-2 py-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-                          isHighlighted && "bg-ink-900/[0.025] dark:bg-paper/[0.04]",
+                          "list-in rounded-lg px-2.5 py-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+                          isHighlighted && "bg-ink-900/[0.035] dark:bg-paper/[0.05]",
                         )}
                       >
                         <div className="flex items-start justify-between gap-2">
@@ -1051,10 +1057,10 @@ export function SmartSearchModal() {
                             onClick={() => handleFollowLink(result.href, true)}
                             className="group min-w-0 flex-1 py-0.5"
                           >
-                            <h3 className="text-[16px] leading-snug font-semibold text-sapphire dark:text-sapphire-border">
-                              <span className="link-draw [box-decoration-break:clone]">{result.title}</span>
+                            <h3 className="text-body leading-snug font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border">
+                              {result.title}
                             </h3>
-                            <p className="mt-0.5 text-[14px] leading-relaxed text-ink-900/75 dark:text-paper/75">
+                            <p className="mt-1 text-body text-muted-foreground dark:text-mist">
                               {result.summary}
                             </p>
                           </Link>
@@ -1070,7 +1076,7 @@ export function SmartSearchModal() {
                                 prev === result.id ? null : result.id,
                               );
                             }}
-                            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-ink-900/50 transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-paper/55 dark:hover:bg-paper/[0.08] dark:hover:text-paper"
+                            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.08] dark:hover:text-paper"
                           >
                             <ChevronDownIcon
                               className={cn(
@@ -1093,13 +1099,13 @@ export function SmartSearchModal() {
                           <div className="overflow-hidden" inert={!isExpanded}>
                             <div className="mt-2 space-y-2.5 border-t border-ink-900/8 pt-2.5 pb-1 dark:border-paper/10">
                               {result.summary.length > 110 || result.nextSteps.length === 0 ? (
-                                <p className="text-[14px] leading-relaxed text-ink-900/80 dark:text-paper/80">
+                                <p className="text-body text-foreground dark:text-paper">
                                   {result.summary}
                                 </p>
                               ) : null}
 
                               {result.nextSteps.length > 0 ? (
-                                <ul className="list-disc space-y-1 pl-5 text-[13.5px] leading-relaxed text-ink-900/75 dark:text-paper/75">
+                                <ul className="list-disc space-y-1 pl-5 text-body text-foreground dark:text-paper">
                                   {result.nextSteps.map((step) => (
                                     <li key={step}>{step}</li>
                                   ))}
@@ -1111,7 +1117,7 @@ export function SmartSearchModal() {
                                   <button
                                     type="button"
                                     onClick={() => handleToggleSpeech(result)}
-                                    className="inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-medium whitespace-nowrap text-ink-900/75 transition-colors hover:text-foreground dark:text-paper/75 dark:hover:text-paper"
+                                    className="inline-flex min-h-11 items-center gap-1.5 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:text-foreground dark:text-mist dark:hover:text-paper"
                                   >
                                     {isThisSpeaking ? (
                                       <VolumeMuteIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -1127,10 +1133,10 @@ export function SmartSearchModal() {
                                 <Link
                                   href={result.href}
                                   onClick={() => handleFollowLink(result.href, true)}
-                                  className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                                  className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                                 >
-                                  <span className="link-draw">{copy.openPageLabel}</span>
-                                  <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                  <span>{copy.openPageLabel}</span>
+                                  <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                                 </Link>
                               </div>
                             </div>
@@ -1150,7 +1156,7 @@ export function SmartSearchModal() {
                 >
                   <p
                     id={`${baseId}-related`}
-                    className="px-2 pb-1 text-xs font-medium text-ink-900/55 dark:text-paper/55"
+                    className="px-2 pb-1 text-meta font-medium text-muted-foreground dark:text-mist"
                   >
                     {copy.relatedQuestionsHeading}
                   </p>
@@ -1171,12 +1177,12 @@ export function SmartSearchModal() {
                             }}
                             className="flex min-h-11 w-full items-center justify-between gap-3 rounded-lg px-2 py-2 text-left transition-colors hover:bg-ink-900/[0.03] dark:hover:bg-paper/[0.05]"
                           >
-                            <span className="min-w-0 flex-1 text-[14.5px] leading-snug font-medium text-foreground dark:text-paper">
+                            <span className="min-w-0 flex-1 text-body leading-snug font-medium text-foreground dark:text-paper">
                               {rq.question}
                             </span>
                             <ChevronDownIcon
                               className={cn(
-                                "h-4 w-4 shrink-0 text-ink-900/45 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-paper/45",
+                                "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-mist",
                                 isExpanded && "rotate-180",
                               )}
                               aria-hidden="true"
@@ -1193,18 +1199,18 @@ export function SmartSearchModal() {
                           >
                             <div className="overflow-hidden" inert={!isExpanded}>
                               <div className="space-y-2 px-2 pt-0.5 pb-3.5">
-                                <p className="text-[13.5px] leading-relaxed text-ink-900/75 dark:text-paper/75">
+                                <p className="text-body text-muted-foreground dark:text-mist">
                                   {rq.answer}
                                 </p>
                                 {rq.href ? (
                                   <Link
                                     href={rq.href}
                                     onClick={() => handleFollowLink(rq.href!, true)}
-                                    className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                                    className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                                   >
-                                    <span className="link-draw">{rq.linkLabel ?? copy.openPageLabel}</span>
+                                    <span>{rq.linkLabel ?? copy.openPageLabel}</span>
                                     <ArrowRightIcon
-                                      className="arrow-travel h-3.5 w-3.5 shrink-0"
+                                      className="h-3.5 w-3.5 shrink-0"
                                       aria-hidden="true"
                                     />
                                   </Link>

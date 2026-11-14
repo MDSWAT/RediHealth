@@ -1,19 +1,20 @@
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { ArrowRightIcon, ChevronDownIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
-/** Unified centered editorial reading container width across every health reading route. */
-export const HEALTH_ARTICLE_CONTAINER_CLASS = "mx-auto w-full max-w-3xl";
+/** Unified left-aligned editorial reading column width across every health reading route. */
+export const HEALTH_ARTICLE_CONTAINER_CLASS = "w-full max-w-3xl";
 
-/** Elderly-first WCAG 2.2 AAA body prose scale: 18px base, 1.75 leading, <= 65ch measure. */
+/** Elderly-first WCAG 2.2 AAA body prose scale: 18px base, 1.75 leading, 36rem unified reading measure. */
 export const HEALTH_ARTICLE_PROSE_CLASS =
-  "max-w-[65ch] text-[1.125rem] leading-[1.75] text-foreground";
+  "max-w-(--measure-reading) text-reading text-foreground";
 
 /** Consistent section heading scale and scroll offset under the top bar. */
 export const HEALTH_ARTICLE_SECTION_H2_CLASS =
-  "scroll-mt-28 text-2xl font-semibold leading-snug tracking-tight text-foreground sm:text-[1.625rem]";
+  "scroll-mt-28 text-section font-semibold leading-snug text-foreground";
 
 export interface HealthArticleShellProps {
   children: ReactNode;
@@ -51,7 +52,7 @@ export function HealthArticleBackLink({
     <nav aria-label={navAriaLabel ?? label} className={cn("mb-6 print:hidden", className)}>
       <Link
         href={href}
-        className="-ml-2 inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-lg px-2 text-base font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="-ml-2 inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-lg px-2 text-body font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         <ArrowRightIcon className="h-4 w-4 shrink-0 rotate-180" aria-hidden="true" />
         <span>{label}</span>
@@ -69,6 +70,7 @@ export interface HealthArticleHeaderProps {
   noticeLang?: string;
   meta?: ReactNode;
   actions?: ReactNode;
+  afterActions?: ReactNode;
   reviewNote?: string;
   className?: string;
 }
@@ -83,55 +85,54 @@ export function HealthArticleHeader({
   noticeLang,
   meta,
   actions,
+  afterActions,
   reviewNote,
   className,
 }: HealthArticleHeaderProps) {
+  const above =
+    languageNotice || meta ? (
+      <>
+        {languageNotice && (
+          <p
+            role="note"
+            lang={noticeLang}
+            className="mb-5 max-w-(--measure-reading) text-lead text-foreground"
+          >
+            {languageNotice}
+          </p>
+        )}
+
+        {meta && (
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-meta text-muted-foreground tabular-nums print:hidden">
+            {meta}
+          </div>
+        )}
+      </>
+    ) : undefined;
+
+  const below =
+    reviewNote || afterActions ? (
+      <>
+        {reviewNote && (
+          <p className="mt-3 max-w-(--measure-reading) text-body text-muted-foreground">
+            {reviewNote}
+          </p>
+        )}
+        {afterActions && <div className="mt-3 print:hidden">{afterActions}</div>}
+      </>
+    ) : undefined;
+
   return (
-    <header className={cn("border-b border-border pb-7 sm:pb-8", className)}>
-      {languageNotice && (
-        <p
-          role="note"
-          lang={noticeLang}
-          className="mb-5 rounded-r-lg border-l-2 border-sapphire bg-surface-subtle/70 py-2.5 pl-4 pr-3 text-base leading-relaxed text-foreground"
-        >
-          {languageNotice}
-        </p>
-      )}
-
-      {meta && (
-        <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-muted-foreground tabular-nums print:hidden">
-          {meta}
-        </div>
-      )}
-
-      <h1
-        lang={titleLang}
-        className="text-balance text-3xl font-semibold leading-[1.18] tracking-tight text-foreground sm:text-[2.375rem]"
-      >
-        {title}
-      </h1>
-
-      {lead && (
-        <p
-          lang={leadLang}
-          className="mt-4 max-w-[65ch] text-pretty text-lg leading-[1.65] text-foreground sm:text-[1.25rem]"
-        >
-          {lead}
-        </p>
-      )}
-
-      {reviewNote && (
-        <p className="mt-3 max-w-[65ch] text-sm leading-relaxed text-muted-foreground">
-          {reviewNote}
-        </p>
-      )}
-
-      {actions && (
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 print:hidden">
-          {actions}
-        </div>
-      )}
-    </header>
+    <PageHeader
+      above={above}
+      title={title}
+      titleLang={titleLang}
+      lead={lead}
+      leadLang={leadLang}
+      actions={actions}
+      below={below}
+      className={cn("border-b border-border pt-0 pb-7 sm:pt-0 sm:pb-8", className)}
+    />
   );
 }
 
@@ -163,7 +164,7 @@ export function HealthArticleToc({
         className,
       )}
     >
-      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-5 py-3 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
+      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-5 py-3 text-body font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
         <span>{title}</span>
         <ChevronDownIcon
           className="h-5 w-5 shrink-0 text-muted-foreground transition-[transform,color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] group-open/toc:rotate-180 group-open/toc:text-sapphire motion-reduce:transition-none"
@@ -182,15 +183,15 @@ export function HealthArticleToc({
             >
               <a
                 href={item.href}
-                className="group flex min-h-11 items-baseline gap-3 py-2 text-base font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire focus-visible:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                className="group flex min-h-11 items-baseline gap-3 py-2 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire focus-visible:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
               >
                 <span
                   aria-hidden="true"
-                  className="w-6 shrink-0 text-sm font-semibold tabular-nums text-muted-foreground"
+                  className="w-6 shrink-0 text-meta font-semibold tabular-nums text-muted-foreground"
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="link-draw">{item.label}</span>
+                <span>{item.label}</span>
               </a>
             </li>
           ))}
@@ -235,7 +236,7 @@ export function HealthArticleRelatedList({
     >
       <h2
         id={headingId}
-        className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl"
+        className="text-section font-semibold text-foreground"
       >
         {heading}
       </h2>
@@ -251,21 +252,21 @@ export function HealthArticleRelatedList({
                 <span
                   lang={item.titleLang}
                   className={cn(
-                    "link-draw inline box-decoration-clone text-[1.0625rem] leading-snug group-hover:text-sapphire sm:text-lg",
+                    "inline text-title leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none",
                     item.emphasized ? "font-semibold" : "font-medium",
                   )}
                 >
                   {item.title}
                 </span>
                 {item.meta && (
-                  <span className="mt-1 block text-sm leading-snug text-muted-foreground">
+                  <span className="mt-1 block text-meta leading-snug text-muted-foreground">
                     {item.meta}
                   </span>
                 )}
               </span>
 
               <ArrowRightIcon
-                className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
+                className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
                 aria-hidden="true"
               />
             </Link>

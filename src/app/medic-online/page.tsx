@@ -162,10 +162,10 @@ export default async function MedicOnlinePage() {
       <section aria-labelledby="medic-steps-heading" className="border-b border-border bg-card py-14 sm:py-20">
         <Container>
           <div className="max-w-2xl">
-            <h2 id="medic-steps-heading" className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            <h2 id="medic-steps-heading" className="text-balance text-section font-semibold text-foreground">
               {c.stepsTitle}
             </h2>
-            <p className="mt-2 text-base leading-relaxed text-muted-foreground">{c.stepsSubtitle}</p>
+            <p className="mt-2 text-body text-muted-foreground">{c.stepsSubtitle}</p>
           </div>
 
           <ol className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
@@ -178,11 +178,11 @@ export default async function MedicOnlinePage() {
                 key={title}
                 className="rounded-xl border border-border bg-background p-6"
               >
-                <span className="text-sm font-semibold tabular-nums text-sapphire">{num}</span>
-                <h3 className="mt-3 text-balance text-lg font-semibold tracking-tight text-foreground">
+                <span className="text-meta font-semibold tabular-nums text-sapphire">{num}</span>
+                <h3 className="mt-3 text-balance text-title font-semibold text-foreground">
                   {title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-body text-muted-foreground">
                   {desc}
                 </p>
               </li>
@@ -196,15 +196,15 @@ export default async function MedicOnlinePage() {
         <Container>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] md:items-start md:gap-12">
             <div className="max-w-xl">
-              <h2 id="medic-team-heading" className="text-balance text-xl font-semibold text-foreground">
+              <h2 id="medic-team-heading" className="text-balance text-section font-semibold text-foreground">
                 {c.heading}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">{c.desc}</p>
+              <p className="mt-2 text-body text-muted-foreground">{c.desc}</p>
             </div>
 
             <div className="border-t border-border pt-4 md:border-l md:border-t-0 md:pl-6 md:pt-0">
-              <p className="text-sm font-semibold text-foreground">{c.privacyTitle}</p>
-              <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{c.privacyDesc}</p>
+              <p className="text-body font-semibold text-foreground">{c.privacyTitle}</p>
+              <p className="mt-0.5 text-body text-muted-foreground">{c.privacyDesc}</p>
             </div>
           </div>
         </Container>

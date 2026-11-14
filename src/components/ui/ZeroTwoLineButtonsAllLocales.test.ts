@@ -3,9 +3,10 @@ import { resolve } from "node:path";
 import { createElement, type ComponentProps, type ComponentType, type ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { FindHelpPrompt } from "@/components/find-help/FindHelpPrompt";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { ASSISTANT_COPY } from "@/components/health-assistant/assistant-copy";
+import { BODY_MAP_COPY } from "@/components/health-check/AnatomicalBodyMap";
+import { AREA_VIEW_SWITCH_COPY } from "@/components/health-check/HealthCheckExplorer";
 import { COPY } from "@/components/health-check/health-check-copy";
 import { TopicNextSteps } from "@/components/health-information/TopicNextSteps";
 import { contulMeuCopy } from "@/components/portal/contul-meu-copy";
@@ -102,7 +103,6 @@ describe("Zero two-line buttons across all 7 locales", () => {
         ["healthCheckTranslations.ui.scheduleDoctor", hcUi.scheduleDoctor],
         ["healthCheckTranslations.ui.readEducationalTopic", hcUi.readEducationalTopic],
         ["ASSISTANT_COPY.machine.back", assistant.machine.back],
-        ["ASSISTANT_COPY.tree.bodyMapLink", assistant.tree.bodyMapLink],
         ["ASSISTANT_COPY.learn.readGuide", assistant.learn.readGuide],
         ["ASSISTANT_COPY.learn.browseGuides", assistant.learn.browseGuides],
         ["ASSISTANT_COPY.risk.quickButton", assistant.risk.quickButton],
@@ -119,6 +119,14 @@ describe("Zero two-line buttons across all 7 locales", () => {
         ["ASSISTANT_COPY.result.stopMedicine", assistant.result.stopMedicine],
         ["ASSISTANT_COPY.result.print", assistant.result.print],
         ["contulMeuCopy.backHome", portal.backHome],
+        ["AREA_VIEW_SWITCH_COPY.list", AREA_VIEW_SWITCH_COPY[lang].list],
+        ["AREA_VIEW_SWITCH_COPY.bodyPicture", AREA_VIEW_SWITCH_COPY[lang].bodyPicture],
+        ["BODY_MAP_COPY.inside", BODY_MAP_COPY[lang].inside],
+        ["BODY_MAP_COPY.layers.surface", BODY_MAP_COPY[lang].layers.surface],
+        ["BODY_MAP_COPY.layers.muscular", BODY_MAP_COPY[lang].layers.muscular],
+        ["BODY_MAP_COPY.layers.skeletal", BODY_MAP_COPY[lang].layers.skeletal],
+        ["BODY_MAP_COPY.layers.organs", BODY_MAP_COPY[lang].layers.organs],
+        ["BODY_MAP_COPY.layers.hybrid", BODY_MAP_COPY[lang].layers.hybrid],
       ];
 
       for (const [key, value] of buttonStrings) {
@@ -129,11 +137,8 @@ describe("Zero two-line buttons across all 7 locales", () => {
     }
   });
 
-  it("SSR-renders FindHelpPrompt, TopicNextSteps, UniversalDoctorExit, and Button with whitespace-nowrap in all 7 locales", () => {
+  it("SSR-renders TopicNextSteps, UniversalDoctorExit, and Button with whitespace-nowrap in all 7 locales", () => {
     for (const lang of ALL_LANGS) {
-      const findHelpHtml = renderWithLang(lang, createElement(FindHelpPrompt, { lang }));
-      assertInteractiveTagsSingleLine(findHelpHtml, `FindHelpPrompt(${lang})`);
-
       const nextStepsHtml = renderWithLang(lang, createElement(TopicNextSteps, { lang }));
       assertInteractiveTagsSingleLine(nextStepsHtml, `TopicNextSteps(${lang})`);
 
@@ -145,19 +150,19 @@ describe("Zero two-line buttons across all 7 locales", () => {
         createElement(
           "div",
           null,
-          createElement(ButtonCompat, { variant: "primary", size: "sm" }, ASSISTANT_COPY[lang].gate.callNow),
+          createElement(ButtonCompat, { variant: "primary", size: "md" }, ASSISTANT_COPY[lang].gate.callNow),
           createElement(ButtonCompat, { variant: "action", size: "md" }, ASSISTANT_COPY[lang].rx.submit),
           createElement(
             ButtonCompat,
             {
-              variant: "secondary",
+              variant: "action",
               size: "lg",
               href: `/${lang}/medic-online`,
             },
             findHelpLinks(lang).nearestPharmacy,
           ),
           createElement(ButtonCompat, { variant: "outline", size: "md" }, COPY[lang].change),
-          createElement(ButtonCompat, { variant: "ghost", size: "sm" }, contulMeuCopy[lang].backHome),
+          createElement(ButtonCompat, { variant: "ghost", size: "md" }, contulMeuCopy[lang].backHome),
         ),
       );
       assertInteractiveTagsSingleLine(buttonHtml, `Button(${lang})`);
@@ -185,10 +190,14 @@ describe("Zero two-line buttons across all 7 locales", () => {
       /const renderRoutingStack = [\s\S]*?(?=\n\s*async function handleCopyDiagnosticSheet)/,
     );
     expect(routingStackMatch).not.toBeNull();
-    const routingLinkOpeningTags = Array.from(routingStackMatch![0].matchAll(/<Link\b[\s\S]*?>/g));
+    const routingLinkOpeningTags = Array.from(routingStackMatch![0].matchAll(/<(?:Link|Button)\b[\s\S]*?>/g));
     expect(routingLinkOpeningTags.length).toBeGreaterThanOrEqual(3);
+    const buttonSource = readSrc("src/components/ui/Button.tsx");
+    expect(buttonSource).toContain("whitespace-nowrap");
     for (const [linkTag] of routingLinkOpeningTags) {
-      expect(linkTag).toContain("whitespace-nowrap");
+      if (!linkTag.startsWith("<Button")) {
+        expect(linkTag).toContain("whitespace-nowrap");
+      }
     }
   });
 

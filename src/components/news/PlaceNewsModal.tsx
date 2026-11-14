@@ -4,6 +4,7 @@ import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/Button";
 import { ArrowRightIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
 import {
   ALL_ALBANIA,
@@ -347,7 +348,7 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
       aria-labelledby={titleId}
       className="fixed inset-x-0 top-(--sheet-vv-top,0px) z-[80] flex h-(--sheet-vv-height,100dvh) items-end justify-center sm:inset-0 sm:h-auto sm:items-center sm:p-4"
     >
-      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-slate-950/55" onClick={onClose} aria-hidden="true" />
+      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-ink-950/55" onClick={onClose} aria-hidden="true" />
 
       <div
         ref={panelRef}
@@ -357,10 +358,10 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
         <div className="shrink-0 border-b border-border px-5 pt-5 sm:px-7 sm:pt-6">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <h2 id={titleId} className="text-xl font-semibold tracking-tight text-balance">
+              <h2 id={titleId} className="text-title font-semibold text-balance">
                 {title}
               </h2>
-              <p className="mt-1 text-sm text-muted-foreground tabular-nums">{c.count(all.length)}</p>
+              <p className="mt-1 text-body text-muted-foreground tabular-nums">{c.count(all.length)}</p>
             </div>
             <button
               type="button"
@@ -388,14 +389,14 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
                     onClick={() => setTab(x.key)}
                     onKeyDown={(e) => onTabKeyDown(e, i)}
                     className={cn(
-                      "press-row relative flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
+                      "press-row relative flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
                       selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                     )}
                   >
                     {x.label}
                     <span
                       className={cn(
-                        "text-xs tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
+                        "text-meta tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
                         selected ? "font-semibold text-foreground/75" : "text-muted-foreground/80",
                       )}
                     >
@@ -425,14 +426,14 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
         >
           {all.length === 0 ? (
             <div className="py-12 text-center">
-              <p className="text-base font-semibold">{np.emptyTitle}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{np.emptySubtitle}</p>
+              <p className="text-body font-semibold">{np.emptyTitle}</p>
+              <p className="mt-1 text-body text-muted-foreground">{np.emptySubtitle}</p>
             </div>
           ) : (
             // Keyed on the tab: the filtered list replaces the last one in place, items in order.
             <div key={tab} className="swap-in">
               {groups.local.length === 0 && tab === "all" && (
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.noLocal(noteName)}</p>
+                <p className="mt-3 text-body text-muted-foreground">{c.noLocal(noteName)}</p>
               )}
               {local.length > 0 && (
                 <NewsList heading={showHeadings ? c.local : undefined} items={local} showRegion={placeIsNational} {...itemProps} />
@@ -467,7 +468,7 @@ function NewsList({ heading, items, ...rest }: ItemProps & { heading?: string; i
   return (
     <section className="mt-5 first:mt-3">
       {heading && (
-        <h3 className="mb-1 flex items-baseline gap-2 text-[13px] font-semibold text-foreground">
+        <h3 className="mb-1 flex items-baseline gap-2 text-body font-semibold text-foreground">
           {heading}
           <span className="font-normal text-muted-foreground tabular-nums">{items.length}</span>
         </h3>
@@ -510,7 +511,7 @@ function Meta({
               ? np.allCounties
               : placeName(a.county, lang);
   return (
-    <p className="flex flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground tabular-nums">
+    <p className="flex flex-wrap items-center gap-x-1.5 text-meta text-muted-foreground tabular-nums">
       {lead ?? (showCategory && <span className="font-semibold text-foreground/80">{labels[a.category] ?? a.category}</span>)}
       {(lead || showCategory) && <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />}
       {showRegion && (
@@ -534,18 +535,18 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
   return (
     <article className="group relative -mx-3 rounded-xl px-3 py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 has-[a:focus-visible]:bg-muted/50">
       <Meta {...props} />
-      <h4 lang={a.language} className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-pretty">
+      <h4 lang={a.language} className="mt-1.5 text-body font-semibold leading-snug text-pretty">
         <Link
           href={withLangPrefix(`${basePath}/${a.slug}`, lang)}
-          className="link-draw outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-2 focus-visible:after:ring-ring"
+          className="outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire motion-reduce:transition-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-2 focus-visible:after:ring-ring"
         >
           {a.title}
         </Link>
       </h4>
-      <p lang={a.language} className="mt-1 text-sm leading-relaxed text-muted-foreground text-pretty">{a.summary}</p>
+      <p lang={a.language} className="mt-1 text-body text-muted-foreground text-pretty">{a.summary}</p>
 
       {caravan && (
-        <dl lang={a.language} className="mt-2.5 space-y-1 text-sm text-foreground">
+        <dl lang={a.language} className="mt-2.5 space-y-1 text-body text-foreground">
           <div className="flex items-start gap-2">
             <dt className="sr-only">{c.where}</dt>
             <PinIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
@@ -567,10 +568,10 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
         </dl>
       )}
 
-      <div className="mt-3 flex justify-end text-xs">
+      <div className="mt-3 flex justify-end text-meta">
         <span aria-hidden="true" className="inline-flex shrink-0 items-center gap-1 font-semibold text-sapphire dark:text-sapphire-border">
           {c.read}
-          <ArrowRightIcon className="arrow-travel h-3.5 w-3.5" />
+          <ArrowRightIcon className="h-3.5 w-3.5" />
         </span>
       </div>
     </article>
@@ -595,20 +596,20 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
           </span>
         }
       />
-      <h4 lang={a.language} className="mt-2 text-[17px] font-semibold leading-snug tracking-tight text-foreground text-pretty">
+      <h4 lang={a.language} className="mt-2 text-title font-semibold leading-snug text-foreground text-pretty">
         <Link href={href} className="rounded-sm underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           {a.title}
         </Link>
       </h4>
-      <p lang={a.language} className="mt-1 text-sm leading-relaxed text-foreground/80 text-pretty">{a.summary}</p>
+      <p lang={a.language} className="mt-1 text-body text-foreground/80 text-pretty">{a.summary}</p>
 
       {a.preventiveSteps && a.preventiveSteps.length > 0 && (
         <>
-          <p className="mt-4 text-xs font-semibold text-foreground">{c.measures}</p>
-          <ol lang={a.language} className="mt-2 space-y-1.5 text-sm text-foreground">
+          <p className="mt-4 text-meta font-semibold text-foreground">{c.measures}</p>
+          <ol lang={a.language} className="mt-2 space-y-1.5 text-body text-foreground">
             {a.preventiveSteps.map((step, i) => (
               <li key={i} className="flex items-baseline gap-2.5">
-                <span aria-hidden="true" className={cn("w-3 shrink-0 text-right text-xs font-semibold tabular-nums", tone.icon)}>
+                <span aria-hidden="true" className={cn("w-3 shrink-0 text-right text-body font-semibold tabular-nums", tone.icon)}>
                   {i + 1}
                 </span>
                 <span>{step}</span>
@@ -620,20 +621,24 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
 
       <div className={cn("mt-4 border-t pt-3", tone.rule)}>
         <div className="flex flex-wrap items-center gap-2">
-          <Link
+          <Button
             href={withLangPrefix("/medic-online", lang)}
-            className="press-solid inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg bg-card px-3 text-xs font-semibold text-sapphire shadow-[0_1px_2px_rgb(15_23_42/0.08)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            variant="outline"
+            size="md"
+            className="text-sapphire dark:text-sapphire-border"
           >
             <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
             {np.handoverTelemed}
-          </Link>
-          <Link
+          </Button>
+          <Button
             href={href}
-            className="group inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            variant="ghost"
+            size="md"
+            className="gap-1 hover:text-sapphire dark:hover:text-sapphire-border"
           >
             {c.readGuide}
-            <ArrowRightIcon aria-hidden="true" className="arrow-travel h-3.5 w-3.5 shrink-0" />
-          </Link>
+            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
+          </Button>
         </div>
       </div>
     </article>

@@ -29,6 +29,12 @@ export type FindHelpCopy = {
   distantLocationNotice: (country: string) => string;
   showingCountry: (country: string) => string;
   nearCity: (city: string) => string;
+  nearPlace: (place: string) => string;
+  allPlaces: string;
+  change: string;
+  filtersTitle: string;
+  showPlaces: (count: number) => string;
+  fromCentre: (distance: string, city: string) => string;
   suggestedByLanguage: (city: string, country: string) => string;
   suggestedByRegion: (city: string, country: string) => string;
   quickSuggestionsLabel: string;
@@ -58,6 +64,7 @@ export type FindHelpCopy = {
   closePreview: string;
   emergency: string;
   callAction: string;
+  callNumber: (phone: string) => string;
   directions: string;
   website: string;
   youAreHere: string;
@@ -145,6 +152,7 @@ function russianPlaceCount(count: number): string {
 export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
   ru: {
     callAction: "Позвонить",
+    callNumber: (phone) => `Позвонить ${phone}`,
 "metersWalkAway": (meters, minutes) => `В ${meters} м (около ${minutes} мин пешком)`,
 "closedNowLive": "Сейчас закрыто",
 "listen": "Слушать",
@@ -161,6 +169,12 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
 "distantLocationNotice": (country) => `Вы находитесь далеко от выбранной страны: ${country}.`,
 "showingCountry": (country) => `Показаны места: ${country}`,
 "nearCity": (city) => `Рядом с городом ${city}`,
+"nearPlace": (place) => `Рядом: ${place}`,
+"allPlaces": "все места",
+"change": "Изменить",
+"filtersTitle": "Фильтры",
+"showPlaces": (count) => `Показать ${russianPlaceCount(count)}`,
+"fromCentre": (distance, city) => `примерно в ${distance} от центра города ${city}`,
 "suggestedByLanguage": (city, country) => `Предложено по языку: ${city}, ${country}`,
 "suggestedByRegion": (city, country) => `Предложено для вашего региона: ${city}, ${country}`,
 "quickSuggestionsLabel": "Быстрый выбор места",
@@ -184,7 +198,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
 "viewMap": "Карта",
 "viewList": "Список",
 "closePreview": "Закрыть",
-"page": {"heroParagraph":"Медицинские службы рядом с вами на карте. Выберите место, чтобы увидеть адрес и телефон.","listTitle":"Аптеки, клиники и больницы","listSubtitle":"Выберите место, чтобы увидеть его на карте.","loadingMap":"Загрузка карты…","mapAttribution":"Данные карты © участники OpenStreetMap.","ctaTitle":"Не знаете, куда обратиться?","ctaBody":"Мы поможем выбрать врача или службу. В экстренной ситуации сразу звоните 112.","ctaButton":"Попросить помощь","mediatorTag":"Медицинский посредник сообщества","mediatorTitle":"Нужна помощь с регистрацией или разговором в приемной?","mediatorBody":"Посредник объяснит, какие документы нужны, поможет зарегистрироваться у семейного врача и поддержит при отказе.","mediatorButton":"Найти медицинского посредника"},
+"page": {"heroParagraph":"Медицинские службы рядом с вами на карте. Выберите место, чтобы увидеть адрес и телефон.","listTitle":"Аптеки и клиники","listSubtitle":"Выберите место, чтобы увидеть его на карте.","loadingMap":"Загрузка карты…","mapAttribution":"Данные карты © участники OpenStreetMap.","ctaTitle":"Не знаете, куда обратиться?","ctaBody":"Мы поможем выбрать врача или службу. В экстренной ситуации сразу звоните 112.","ctaButton":"Попросить помощь","mediatorTag":"Медицинский посредник сообщества","mediatorTitle":"Нужна помощь с регистрацией или разговором в приемной?","mediatorBody":"Посредник объяснит, какие документы нужны, поможет зарегистрироваться у семейного врача и поддержит при отказе.","mediatorButton":"Найти посредника"},
 
     countries: {
 
@@ -203,7 +217,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     countryLabel: "Страна",
     categoryLabel: "Тип",
     searchPlaceholder: "Поиск по названию, городу или адресу",
-    searchHint: "Название, город или адрес",
+    searchHint: "напр. Бухарест",
     searchButton: "Поиск",
     useMyLocation: "Использовать мое местоположение",
     locating: "Поиск вашего местоположения…",
@@ -219,7 +233,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     kmAway: (km) => `${km} км`,
     open24h: "Открыто 24 часа",
     emergency: "Неотложная помощь",
-    directions: "Построить маршрут",
+    directions: "Маршрут",
     website: "Веб-сайт",
     youAreHere: "Вы здесь",
 
@@ -247,7 +261,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     mapArea: "Map area",
     categoryLabel: "Type",
     searchPlaceholder: "Search by name, city or address",
-    searchHint: "Name, city or address",
+    searchHint: "e.g. Bucharest",
     searchButton: "Search",
     useMyLocation: "Use my location",
     locating: "Finding your location…",
@@ -275,7 +289,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     openNowLive: "Open now",
     closedNowLive: "Closed now",
     openNowFilter: "Open now",
-    emergencyWalkInFilter: "Emergency department",
+    emergencyWalkInFilter: "Emergency care",
     emergencyRightsCallout:
       "By law, hospital emergency departments assess urgent cases free of charge, even without health insurance or an identity card.",
     listen: "Listen",
@@ -290,6 +304,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     closePreview: "Close",
     emergency: "Emergency",
     callAction: "Call",
+    callNumber: (phone) => `Call ${phone}`,
     directions: "Directions",
     website: "Website",
     youAreHere: "You are here",
@@ -299,21 +314,27 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     legendCluster: "Several places: tap to zoom in",
     showMore: (remaining) => (remaining === 1 ? "Show 1 more place" : `Show ${remaining} more places`),
     resultsCount: (count) => (count === 1 ? "1 place" : `${count} places`),
+    nearPlace: (place) => `Near ${place}`,
+    allPlaces: "all places",
+    change: "Change",
+    filtersTitle: "Filters",
+    showPlaces: (count) => (count === 1 ? "Show 1 place" : `Show ${count} places`),
+    fromCentre: (distance, city) => `about ${distance} from ${city} centre`,
     hoursTokens: { Mo: "Mon", Tu: "Tue", We: "Wed", Th: "Thu", Fr: "Fri", Sa: "Sat", Su: "Sun", PH: "Public holidays", off: "closed" },
     page: {
       heroParagraph: "See health services near you on the map. Tap a place to see its address and phone number.",
-      listTitle: "Pharmacies, clinics and hospitals",
+      listTitle: "Pharmacies and clinics",
       listSubtitle: "Tap a place to see it on the map.",
       loadingMap: "Loading map…",
       mapAttribution: "Map data © OpenStreetMap contributors.",
       ctaTitle: "Not sure where to go?",
       ctaBody: "If you don't know which doctor to see or where to go, we can guide you. In an emergency, call 112 right away.",
-      ctaButton: "Ask for help",
+      ctaButton: "Ask a person",
       mediatorTag: "Community health mediator",
       mediatorTitle: "Need help registering or speaking at reception?",
       mediatorBody:
         "A community health mediator can explain which documents you need, help you register with a family doctor, and support you if you are turned away.",
-      mediatorButton: "Find a health mediator",
+      mediatorButton: "Find a mediator",
     },
   },
   ro: {
@@ -333,7 +354,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     mapArea: "Zona de pe hartă",
     categoryLabel: "Tip",
     searchPlaceholder: "Caută după nume, oraș sau adresă",
-    searchHint: "Nume, oraș sau adresă",
+    searchHint: "de ex. București",
     searchButton: "Caută",
     useMyLocation: "Folosește locația mea",
     locating: "Căutăm unde ești…",
@@ -376,6 +397,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     closePreview: "Închide",
     emergency: "Urgențe",
     callAction: "Sună",
+    callNumber: (phone) => `Sună la ${phone}`,
     directions: "Traseu",
     website: "Site web",
     youAreHere: "Ești aici",
@@ -392,10 +414,23 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     // Romanian plural: 1 loc, 2–19 locuri, 20+ (and x00) „de locuri”.
     resultsCount: (count) =>
       count === 1 ? "1 loc" : count % 100 === 0 || count % 100 >= 20 ? `${count} de locuri` : `${count} locuri`,
+    nearPlace: (place) => `Lângă ${place}`,
+    allPlaces: "toate locurile",
+    change: "Schimbă",
+    filtersTitle: "Filtre",
+    showPlaces: (count) =>
+      count === 0
+        ? "Arată 0 locuri"
+        : count === 1
+          ? "Arată 1 loc"
+          : count % 100 === 0 || count % 100 >= 20
+            ? `Arată ${count} de locuri`
+            : `Arată ${count} locuri`,
+    fromCentre: (distance, city) => `la circa ${distance} de centrul orașului ${city}`,
     hoursTokens: { Mo: "Lu", Tu: "Ma", We: "Mi", Th: "Jo", Fr: "Vi", Sa: "Sâ", Su: "Du", PH: "Sărbători legale", off: "închis" },
     page: {
       heroParagraph: "Vezi pe hartă unitățile medicale din apropiere. Apasă pe un loc ca să vezi adresa și telefonul.",
-      listTitle: "Farmacii, clinici și spitale",
+      listTitle: "Farmacii și clinici",
       listSubtitle: "Apasă pe un loc ca să-l vezi pe hartă.",
       loadingMap: "Se încarcă harta…",
       mapAttribution: "Date hartă © contribuitori OpenStreetMap.",
@@ -406,7 +441,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       mediatorTitle: "Ai nevoie de sprijin la înscriere sau la ghișeu?",
       mediatorBody:
         "Un mediator sanitar îți explică ce acte îți trebuie, te ajută să te înscrii la medicul de familie și îți apără drepturile dacă ești refuzat.",
-      mediatorButton: "Găsește un mediator sanitar",
+      mediatorButton: "Caută mediator",
     },
   },
   sq: {
@@ -426,7 +461,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     mapArea: "Zona në hartë",
     categoryLabel: "Lloji",
     searchPlaceholder: "Kërko sipas emrit, qytetit ose adresës",
-    searchHint: "Emri, qyteti ose adresa",
+    searchHint: "p.sh. Bukuresht",
     searchButton: "Kërko",
     useMyLocation: "Përdor vendndodhjen time",
     locating: "Po kërkojmë ku je…",
@@ -469,6 +504,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     closePreview: "Mbyll",
     emergency: "Urgjencë",
     callAction: "Telefono",
+    callNumber: (phone) => `Telefono ${phone}`,
     directions: "Udhëzime",
     website: "Faqja web",
     youAreHere: "Ti je këtu",
@@ -478,10 +514,16 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     legendCluster: "Disa vende: prek për ta zmadhuar",
     showMore: (remaining) => (remaining === 1 ? "Shfaq edhe 1 vend" : `Shfaq edhe ${remaining} vende`),
     resultsCount: (count) => (count === 1 ? "1 vend" : `${count} vende`),
+    nearPlace: (place) => `Pranë ${place}`,
+    allPlaces: "të gjitha vendet",
+    change: "Ndrysho",
+    filtersTitle: "Filtra",
+    showPlaces: (count) => (count === 1 ? "Shfaq 1 vend" : `Shfaq ${count} vende`),
+    fromCentre: (distance, city) => `rreth ${distance} nga qendra e qytetit ${city}`,
     hoursTokens: { Mo: "Hën", Tu: "Mar", We: "Mër", Th: "Enj", Fr: "Pre", Sa: "Sht", Su: "Die", PH: "Festat zyrtare", off: "mbyllur" },
     page: {
       heroParagraph: "Shiko në hartë shërbimet shëndetësore pranë teje. Prek një vend për të parë adresën dhe telefonin.",
-      listTitle: "Farmaci, klinika dhe spitale",
+      listTitle: "Farmaci dhe klinika",
       listSubtitle: "Prek një vend për ta parë në hartë.",
       loadingMap: "Duke ngarkuar hartën…",
       mapAttribution: "Të dhënat e hartës © kontribuesit e OpenStreetMap.",
@@ -492,7 +534,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       mediatorTitle: "Të duhet ndihmë për regjistrim ose në sportel?",
       mediatorBody:
         "Një mediator shëndetësor të shpjegon dokumentet që të duhen, të ndihmon të regjistrohesh te mjeku i familjes dhe të mbron nëse të refuzojnë.",
-      mediatorButton: "Gjej një mediator shëndetësor",
+      mediatorButton: "Gjej mediator",
     },
   },
   it: {
@@ -512,7 +554,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     mapArea: "Zona della mappa",
     categoryLabel: "Tipo",
     searchPlaceholder: "Cerca per nome, città o indirizzo",
-    searchHint: "Nome, città o indirizzo",
+    searchHint: "es. Bucarest",
     searchButton: "Cerca",
     useMyLocation: "Usa la mia posizione",
     locating: "Cerchiamo dove sei…",
@@ -555,6 +597,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     closePreview: "Chiudi",
     emergency: "Pronto soccorso",
     callAction: "Chiama",
+    callNumber: (phone) => `Chiama ${phone}`,
     directions: "Indicazioni",
     website: "Sito web",
     youAreHere: "Sei qui",
@@ -564,10 +607,16 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     legendCluster: "Più posti: tocca per ingrandire",
     showMore: (remaining) => (remaining === 1 ? "Mostra un altro posto" : `Mostra altri ${remaining} posti`),
     resultsCount: (count) => (count === 1 ? "1 posto" : `${count} posti`),
+    nearPlace: (place) => `Vicino a ${place}`,
+    allPlaces: "tutti i luoghi",
+    change: "Cambia",
+    filtersTitle: "Filtri",
+    showPlaces: (count) => (count === 1 ? "Mostra 1 posto" : `Mostra ${count} posti`),
+    fromCentre: (distance, city) => `a circa ${distance} dal centro di ${city}`,
     hoursTokens: { Mo: "Lun", Tu: "Mar", We: "Mer", Th: "Gio", Fr: "Ven", Sa: "Sab", Su: "Dom", PH: "Festivi", off: "chiuso" },
     page: {
       heroParagraph: "Guarda sulla mappa i servizi sanitari vicino a te. Tocca un luogo per vedere indirizzo e telefono.",
-      listTitle: "Farmacie, ambulatori e ospedali",
+      listTitle: "Farmacie e ambulatori",
       listSubtitle: "Tocca un luogo per vederlo sulla mappa.",
       loadingMap: "Caricamento mappa…",
       mapAttribution: "Dati mappa © collaboratori di OpenStreetMap.",
@@ -578,7 +627,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       mediatorTitle: "Ti serve aiuto per l'iscrizione o allo sportello?",
       mediatorBody:
         "Un mediatore sanitario ti spiega quali documenti servono, ti aiuta a iscriverti dal medico di base e ti sostiene se vieni respinto.",
-      mediatorButton: "Trova un mediatore sanitario",
+      mediatorButton: "Trova mediatore",
     },
   },
   hr: {
@@ -598,7 +647,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     mapArea: "Područje karte",
     categoryLabel: "Vrsta",
     searchPlaceholder: "Pretraži po nazivu, gradu ili adresi",
-    searchHint: "Naziv, grad ili adresa",
+    searchHint: "npr. Zagreb",
     searchButton: "Traži",
     useMyLocation: "Koristi moju lokaciju",
     locating: "Tražimo tvoju lokaciju…",
@@ -641,6 +690,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     closePreview: "Zatvori",
     emergency: "Hitni prijem",
     callAction: "Nazovi",
+    callNumber: (phone) => `Nazovi ${phone}`,
     directions: "Upute",
     website: "Web stranica",
     youAreHere: "Ovdje si",
@@ -650,10 +700,16 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     legendCluster: "Više mjesta: dodirni za povećanje",
     showMore: (remaining) => `Prikaži još ${croatianPlural(remaining, "mjesto", "mjesta", "mjesta")}`,
     resultsCount: (count) => croatianPlural(count, "mjesto", "mjesta", "mjesta"),
+    nearPlace: (place) => `Blizu: ${place}`,
+    allPlaces: "sva mjesta",
+    change: "Promijeni",
+    filtersTitle: "Filteri",
+    showPlaces: (count) => `Prikaži ${croatianPlural(count, "mjesto", "mjesta", "mjesta")}`,
+    fromCentre: (distance, city) => `oko ${distance} od centra grada ${city}`,
     hoursTokens: { Mo: "Pon", Tu: "Uto", We: "Sri", Th: "Čet", Fr: "Pet", Sa: "Sub", Su: "Ned", PH: "Praznici", off: "zatvoreno" },
     page: {
       heroParagraph: "Pogledaj zdravstvene ustanove u blizini na karti. Dodirni mjesto za adresu i broj telefona.",
-      listTitle: "Ljekarne, klinike i bolnice",
+      listTitle: "Ljekarne i klinike",
       listSubtitle: "Dodirni mjesto za prikaz na karti.",
       loadingMap: "Učitavanje karte…",
       mapAttribution: "Podaci karte © OpenStreetMap suradnici.",
@@ -664,7 +720,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
       mediatorTitle: "Trebaš pomoć pri upisu ili na šalteru?",
       mediatorBody:
         "Zdravstveni medijator objašnjava potrebne dokumente, pomaže pri upisu kod obiteljskog liječnika i štiti tvoja prava ako naiđeš na prepreke.",
-      mediatorButton: "Pronađi zdravstvenog medijatora",
+      mediatorButton: "Nađi medijatora",
     },
   },
   rom: {
@@ -684,7 +740,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     mapArea: "Zona pi mapa",
     categoryLabel: "Felo",
     searchPlaceholder: "Rod pala anav, foro vaj adresa",
-    searchHint: "Anav, foro vaj adresa",
+    searchHint: "misal: Bukuresht",
     searchButton: "Rod",
     useMyLocation: "Le miro than",
     locating: "Rodas kai san…",
@@ -716,7 +772,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     emergencyRightsCallout:
       "Pala o zakono, e urgenciyake thana ande spitale dikhen bi lovengo sakone manushes ande urgenciya, vi bi asigurimasko vaj bi buletinesko.",
     listen: "Ashun",
-    stopListening: "Achhav",
+    stopListening: "Achav",
     largeText: "Maj baro teksto",
     spokenIntro:
       "Alosar tele o znako vash farmaciya, spitalo, familiyako doktori, klinika vaj dentisto. Shay te rodes vi urgenciya bi sastipaske kartako.",
@@ -727,6 +783,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     closePreview: "Phandav",
     emergency: "Urgenciya",
     callAction: "Akhar",
+    callNumber: (phone) => `Akhar ${phone}`,
     directions: "Drom",
     website: "Web rig",
     youAreHere: "Kathe san",
@@ -736,21 +793,27 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     legendCluster: "But thana: azba te bares la mapa",
     showMore: (remaining) => (remaining === 1 ? "Sikav maj 1 than" : `Sikav maj ${remaining} thana`),
     resultsCount: (count) => (count === 1 ? "1 than" : `${count} thana`),
+    nearPlace: (place) => `Paše ${place}`,
+    allPlaces: "sa le thana",
+    change: "Paruv",
+    filtersTitle: "Filterura",
+    showPlaces: (count) => (count === 1 ? "Sikav 1 than" : `Sikav ${count} thana`),
+    fromCentre: (distance, city) => `paše ${distance} katar o centro le forosko ${city}`,
     hoursTokens: { Mo: "Luy", Tu: "Mar", We: "Tet", Th: "Zho", Fr: "Par", Sa: "Sav", Su: "Kur", PH: "Bare divesa", off: "phanglo" },
     page: {
       heroParagraph: "Dikh pe mapa e sastipaske thana pashe tuke. Azba jekh than te dikhes i adresa thaj o telefono.",
-      listTitle: "Farmaciye, klinike thaj spitale",
+      listTitle: "Farmaciye thaj klinike",
       listSubtitle: "Azba jekh than te dikhes les pe mapa.",
       loadingMap: "Pharel pes i mapa…",
       mapAttribution: "Mapa © OpenStreetMap.",
       ctaTitle: "Na zhanes kai te zhas?",
       ctaBody: "Te na zhanes kaste doktori vaj kai te zhas, shay sikavas tuke o drom. Ande urgenciya, akhar sigo pe 112.",
-      ctaButton: "Mang azhutimos",
+      ctaButton: "Mang zhutimos",
       mediatorTag: "Sastipnasko mediatori",
       mediatorTitle: "Trebul tuke azhutimos ko ramovimos vaj ko ghishevo?",
       mediatorBody:
         "Jekh sastipnasko mediatori sikavel tuke save lila trebun, azhutinel tut te ramos tut ko familiyako doktori thaj arakhel tire chachimata.",
-      mediatorButton: "Arakh jekh sastipnasko mediatori",
+      mediatorButton: "Arakh mediatori",
     },
   },
 };
@@ -861,14 +924,19 @@ export function formatHumanDistance(
   distanceKm: number | null | undefined,
   copy: FindHelpCopy,
   numberLocale: string,
-  options?: { allowOver80Km?: boolean },
+  options?: { allowOver80Km?: boolean; centerCity?: string | null },
 ): string | null {
   if (distanceKm == null || !Number.isFinite(distanceKm) || distanceKm < 0) return null;
   if (distanceKm > 80 && !options?.allowOver80Km) return null;
 
+  const isRussian = numberLocale === "ru";
+
   if (distanceKm < 1) {
     const roundedMeters = Math.max(10, Math.round((distanceKm * 1000) / 10) * 10);
     if (roundedMeters < 1000) {
+      if (options?.centerCity) {
+        return copy.fromCentre(`${roundedMeters} ${isRussian ? "м" : "m"}`, options.centerCity);
+      }
       const walkMinutes = Math.max(1, Math.round(roundedMeters / 75));
       return copy.metersWalkAway(roundedMeters, walkMinutes);
     }
@@ -878,5 +946,8 @@ export function formatHumanDistance(
     minimumFractionDigits: distanceKm < 10 ? 1 : 0,
     maximumFractionDigits: 1,
   });
+  if (options?.centerCity) {
+    return copy.fromCentre(`${formattedKm} ${isRussian ? "км" : "km"}`, options.centerCity);
+  }
   return copy.kmAway(formattedKm);
 }

@@ -3012,12 +3012,12 @@ export function AnatomicalViewport3D({
               style={{ transform: `scaleX(${loadProgress / 100})` }}
             />
           </div>
-          <p className="text-sm text-muted-foreground">{labels.loadingTitle}</p>
+          <p className="text-body text-muted-foreground">{labels.loadingTitle}</p>
         </div>
       )}
 
       {loadError && (
-        <div className="absolute inset-x-3 top-3 z-20 rounded-xl border border-border bg-card p-3 text-sm text-foreground">
+        <div className="absolute inset-x-3 top-3 z-20 rounded-xl border border-border bg-card p-3 text-body text-foreground">
           {loadError}
         </div>
       )}
@@ -3028,9 +3028,9 @@ export function AnatomicalViewport3D({
           style={{ left: `${hoverBadge.x}px`, top: `${hoverBadge.y}px` }}
           className="popover-in pointer-events-none absolute z-30 max-w-[235px] rounded-lg bg-foreground px-3 py-2 text-white shadow-lg"
         >
-          <span className="block text-sm font-semibold leading-snug">{hoverBadge.name}</span>
+          <span className="block text-body font-semibold leading-snug">{hoverBadge.name}</span>
           {hoverBadge.areaLabel && (
-            <span className="mt-0.5 block text-sm text-mist">{hoverBadge.areaLabel}</span>
+            <span className="mt-0.5 block text-body text-mist">{hoverBadge.areaLabel}</span>
           )}
         </div>
       )}

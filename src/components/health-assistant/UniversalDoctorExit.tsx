@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { StethoscopeIcon } from "@/components/ui/icons";
-import { primaryButton, secondaryButton } from "@/components/health-assistant/step-ui";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -82,22 +81,16 @@ ru: {
 
   return (
     <section className={`mt-8 border-t border-border pt-6 ${className}`}>
-      <h3 className="text-lg font-semibold leading-snug text-foreground">{title || t.heading}</h3>
-      <p className="mt-1.5 max-w-prose text-base leading-relaxed text-muted-foreground">{description || t.body}</p>
+      <h3 className="text-title font-semibold leading-snug text-foreground">{title || t.heading}</h3>
+      <p className="mt-1.5 max-w-(--measure-reading) text-body text-muted-foreground">{description || t.body}</p>
       <div className="mt-4 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-        <Link
-          href={consultUrl}
-          className={`group ${primaryButton} whitespace-nowrap text-sm duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none sm:text-[0.9375rem]`}
-        >
+        <Button href={consultUrl} variant="action" size="lg">
           <StethoscopeIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
           <span className="min-w-0 truncate">{t.bookOnline}</span>
-        </Link>
-        <Link
-          href={onCallUrl}
-          className={`group ${secondaryButton} whitespace-nowrap text-sm duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none sm:text-[0.9375rem]`}
-        >
+        </Button>
+        <Button href={onCallUrl} variant="outline" size="lg">
           <span className="min-w-0 truncate">{t.checkOnCall}</span>
-        </Link>
+        </Button>
       </div>
     </section>
   );

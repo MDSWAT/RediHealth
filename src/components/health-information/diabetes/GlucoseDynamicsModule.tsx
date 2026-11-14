@@ -1152,7 +1152,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
   const peakIndex = Math.round(peak.minute / 60);
 
   const stepButtonClass =
-    "inline-flex min-h-[44px] min-w-[44px] items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+    "inline-flex min-h-[44px] min-w-[44px] items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-3 text-body font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
   return (
     <section
@@ -1160,15 +1160,15 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
       className="space-y-8"
     >
       <header className="space-y-2">
-        <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{ui.title}</h3>
-        <p className="max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-base">{ui.description}</p>
+        <h3 className="text-section text-foreground">{ui.title}</h3>
+        <p className="max-w-(--measure-reading) text-body text-muted-foreground">{ui.description}</p>
       </header>
 
       {/* Part 1: curves by scenario */}
       <div className="space-y-5 border-t border-border pt-6">
         <div>
-          <h4 className="text-base font-semibold text-foreground sm:text-lg">{ui.chartSectionTitle}</h4>
-          <p className="mt-0.5 text-sm text-muted-foreground">{ui.chartSectionSubtitle}</p>
+          <h4 className="text-title text-foreground">{ui.chartSectionTitle}</h4>
+          <p className="mt-0.5 text-body text-muted-foreground">{ui.chartSectionSubtitle}</p>
         </div>
 
         <div role="radiogroup" aria-label={ui.scenarioSelectAria} className={ROW_LIST_CLASS}>
@@ -1189,8 +1189,8 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
                   className="sr-only"
                 />
                 <span className={radioDotClass(isSelected)} aria-hidden="true" />
-                <span className="min-w-0 flex-1 text-sm font-semibold leading-snug text-foreground">{loc.title}</span>
-                <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+                <span className="min-w-0 flex-1 text-meta font-semibold leading-snug text-foreground">{loc.title}</span>
+                <span className="shrink-0 text-meta tabular-nums text-muted-foreground">
                   {ui.peakLabel} {curvePeak(sc.points).value} mg/dL
                 </span>
               </label>
@@ -1331,7 +1331,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
             </LazyMotion>
 
             {/* Legend for the bands drawn on the chart */}
-            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 border-t border-border/60 pt-2.5 text-xs text-muted-foreground">
+            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 border-t border-border/60 pt-2.5 text-body text-muted-foreground">
               <li className="flex items-center gap-2">
                 <span className="h-2.5 w-3.5 rounded-xs bg-live-sage-soft ring-1 ring-live-sage/30" aria-hidden="true" />
                 {ui.optimalRangeLabel}
@@ -1347,14 +1347,14 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
           <div className="space-y-3 border-t border-border pt-5">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <h5 className="text-sm font-semibold text-foreground">{ui.scrubberHeading}</h5>
-                <p className="text-sm text-muted-foreground">{ui.scrubberSubtitle}</p>
+                <h5 className="text-body font-semibold text-foreground">{ui.scrubberHeading}</h5>
+                <p className="text-body text-muted-foreground">{ui.scrubberSubtitle}</p>
               </div>
-              <p className="shrink-0 text-sm text-muted-foreground" aria-live="polite">
+              <p className="shrink-0 text-body text-muted-foreground" aria-live="polite">
                 {ui.scrubberLabel}{" "}
-                <strong className="font-semibold tabular-nums text-foreground">{scrubbedMinute} min</strong>
+                <span className="tabular-nums text-foreground">{scrubbedMinute} min</span>
                 {" — "}
-                <strong className="font-semibold tabular-nums text-foreground">{scrubbedGlucose} mg/dL</strong>
+                <span className="tabular-nums text-foreground">{scrubbedGlucose} mg/dL</span>
               </p>
             </div>
 
@@ -1369,7 +1369,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               aria-valuetext={`${scrubbedMinute} min, ${scrubbedGlucose} mg/dL`}
               className="h-2 w-full cursor-pointer accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
-            <div className="flex justify-between text-xs tabular-nums text-muted-foreground" aria-hidden="true">
+            <div className="flex justify-between text-body tabular-nums text-muted-foreground" aria-hidden="true">
               <span>0 min</span>
               <span>1 h</span>
               <span>2 h</span>
@@ -1377,27 +1377,27 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               <span>4 h</span>
             </div>
 
-            <p className="text-sm text-foreground">
+            <p className="text-body text-foreground">
               <span className="text-muted-foreground">{ui.scrubberPhaseLabel}</span>{" "}
-              <span className="font-semibold">{currentPhase}</span>
+              <span>{currentPhase}</span>
             </p>
           </div>
 
           {/* What this scenario means */}
           <div className="space-y-3 border-t border-border pt-5">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <span className="text-sm font-semibold text-foreground">
+              <span className="text-body text-foreground">
                 {activeScenario.badge}
               </span>
-              <span className="text-sm text-muted-foreground">
-                {ui.peakEstimated}: <strong className="font-semibold tabular-nums text-foreground">{peak.value} mg/dL</strong> {ui.atTime}{" "}
+              <span className="text-meta text-muted-foreground">
+                {ui.peakEstimated}: <span className="tabular-nums text-foreground">{peak.value} mg/dL</span> {ui.atTime}{" "}
                 <span className="tabular-nums">{peak.minute} min</span>
               </span>
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <p className="text-sm leading-relaxed text-foreground">{activeScenario.description}</p>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                <strong className="font-semibold text-foreground">{ui.physioExplanation}:</strong> {activeScenario.clinicalNote}
+              <p className="text-body text-foreground">{activeScenario.description}</p>
+              <p className="text-body text-muted-foreground">
+                <span className="text-foreground">{ui.physioExplanation}:</span> {activeScenario.clinicalNote}
               </p>
             </div>
           </div>
@@ -1407,19 +1407,19 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
       {/* Part 2: what a single reading means */}
       <div className="space-y-6 border-t border-border pt-6">
         <div>
-          <h4 className="text-base font-semibold text-foreground sm:text-lg">{ui.simulatorTitle}</h4>
-          <p className="mt-0.5 text-sm text-muted-foreground">{ui.simulatorSubtitle}</p>
+          <h4 className="text-title text-foreground">{ui.simulatorTitle}</h4>
+          <p className="mt-0.5 text-body text-muted-foreground">{ui.simulatorSubtitle}</p>
         </div>
 
         <div className="space-y-5">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <label htmlFor="glucose-level-slider" className="text-sm font-medium text-muted-foreground">
+              <label htmlFor="glucose-level-slider" className="text-body font-medium text-muted-foreground">
                 {ui.selectedValueLabel}
               </label>
               <div className="mt-0.5 flex items-baseline gap-1.5">
-                <span className="text-3xl font-semibold tabular-nums tracking-tight text-foreground">{sliderValue}</span>
-                <span className="text-sm font-medium text-muted-foreground">mg/dL</span>
+                <span className="text-page tabular-nums text-foreground">{sliderValue}</span>
+                <span className="text-meta font-medium text-muted-foreground">mg/dL</span>
               </div>
             </div>
             <div className="flex items-center gap-1.5">
@@ -1460,7 +1460,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
               aria-valuetext={ui.valueText.replace("{value}", String(sliderValue)).replace("{label}", interpretation.label)}
               className="h-2 w-full cursor-pointer accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
-            <div className="relative mt-2 h-4 text-xs tabular-nums text-muted-foreground" aria-hidden="true">
+            <div className="relative mt-2 h-4 text-body tabular-nums text-muted-foreground" aria-hidden="true">
               <span className="absolute left-0 hidden sm:inline">{SLIDER_MIN}</span>
               {ZONE_TICKS.map((v) => (
                 <span key={v} className="absolute -translate-x-1/2" style={{ left: `${pct(v)}%` }}>
@@ -1481,7 +1481,7 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
                 />
               ))}
             </div>
-            <div className="relative mt-1.5 h-5 text-xs font-semibold text-foreground" aria-hidden="true">
+            <div className="relative mt-1.5 h-5 text-body text-foreground" aria-hidden="true">
               <span className="absolute whitespace-nowrap" style={zoneLabelStyle}>
                 {ui.zoneNames[activeZone]}
               </span>
@@ -1490,34 +1490,34 @@ export function GlucoseDynamicsModule({ lang: propLang }: GlucoseDynamicsModuleP
 
           <div className="space-y-4 border-t border-border pt-5" aria-live="polite">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="text-base font-semibold text-foreground">
+              <span className="text-body text-muted-foreground">
                 {ui.physioReactionTitle} {sliderValue} mg/dL
               </span>
-              <span className={`rounded-md border px-2.5 py-1 text-xs font-semibold text-foreground ${interpretation.toneClass}`}>
+              <span className={`rounded-md border px-2.5 py-1 text-meta font-semibold text-foreground ${interpretation.toneClass}`}>
                 {interpretation.label}
               </span>
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div className="space-y-1">
-                <h5 className="text-sm font-semibold text-foreground">{ui.symptomsHeading}</h5>
-                <p className="text-sm leading-relaxed text-muted-foreground">{interpretation.symptoms}</p>
+                <h5 className="text-body font-semibold text-foreground">{ui.symptomsHeading}</h5>
+                <p className="text-body text-muted-foreground">{interpretation.symptoms}</p>
               </div>
 
               <div className="space-y-1">
-                <h5 className="text-sm font-semibold text-foreground">{ui.guidanceHeading}</h5>
-                <p className="text-sm leading-relaxed text-muted-foreground">{interpretation.guidance}</p>
+                <h5 className="text-body font-semibold text-foreground">{ui.guidanceHeading}</h5>
+                <p className="text-body text-muted-foreground">{interpretation.guidance}</p>
               </div>
             </div>
 
             {/* 15/15 rule for hypoglycaemia, 112 for severe hyperglycaemia */}
             {interpretation.emergencyRule && (
               <div className="space-y-1.5 border-t border-border pt-4">
-                <div className="flex items-center gap-2 text-sm font-semibold text-primary">
+                <div className="flex items-center gap-2 text-body font-semibold text-primary">
                   <AlertCircleIcon className="h-4 w-4 shrink-0" />
                   {ui.emergencyActionHeading}
                 </div>
-                <p className="text-sm leading-relaxed text-foreground">{interpretation.emergencyRule}</p>
+                <p className="text-body text-foreground">{interpretation.emergencyRule}</p>
               </div>
             )}
           </div>

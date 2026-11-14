@@ -3,6 +3,7 @@
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { LazyMotion, domAnimation } from "motion/react";
 import type { Lang } from "@/lib/i18n/translations";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/ui/icons";
 import {
@@ -28,12 +29,6 @@ export interface ActivityEveryMoveCountsModuleProps {
 type Mode = "stepper" | "ring";
 const MODES: Mode[] = ["stepper", "ring"];
 
-/** Step navigation, as on every explainer: Back is a quiet text button, Next is ink-filled. */
-const BACK_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground/50 disabled:hover:bg-transparent";
-const NEXT_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
-
 /** Day labels and minute labels share the chart's geometry, as percentages of its box. */
 const pctX = (units: number) => `${(units / ACTIVITY_VIEWBOX.width) * 100}%`;
 const pctY = (units: number) => `${(units / ACTIVITY_VIEWBOX.height) * 100}%`;
@@ -44,7 +39,7 @@ const DAY_ROW_STYLE = {
   columnGap: pctX(ACTIVITY_COL_GAP),
   gridTemplateColumns: `repeat(${ACTIVITY_DAYS}, minmax(0, 1fr))`,
 } as const;
-const MINUTE_LABEL = "absolute left-0 -translate-y-1/2 text-[11px] font-medium leading-none tabular-nums text-muted-foreground";
+const MINUTE_LABEL = "absolute left-0 -translate-y-1/2 text-meta font-medium leading-none tabular-nums text-muted-foreground";
 
 /** Legend swatches, drawn like the four layers of the chart. */
 function LayerSwatch({ layer }: { layer: number }) {
@@ -115,10 +110,10 @@ export function ActivityEveryMoveCountsModule({
       data-testid="activity-module"
     >
       <div>
-        <h3 id={`${id}-title`} className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+        <h3 id={`${id}-title`} className="text-section font-bold text-foreground">
           {copy.title}
         </h3>
-        <p className="mt-1.5 max-w-[65ch] text-sm leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mt-1.5 max-w-(--measure-reading) text-body text-muted-foreground">
           {copy.subtitle}
         </p>
       </div>
@@ -145,7 +140,7 @@ export function ActivityEveryMoveCountsModule({
               onClick={() => setActiveMode(mode)}
               onKeyDown={onTabKeyDown}
               className={cn(
-                "-mb-px flex min-h-11 shrink-0 items-end gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                "-mb-px flex min-h-11 shrink-0 items-end gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-body font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                 selected
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
@@ -186,17 +181,17 @@ export function ActivityEveryMoveCountsModule({
                   >
                     <span
                       className={cn(
-                        "flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-bold tabular-nums",
+                        "flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-meta font-bold tabular-nums",
                         selected ? "bg-foreground text-white" : "bg-surface-subtle text-muted-foreground",
                       )}
                     >
                       {index + 1}
                     </span>
                     <div className="min-w-0">
-                      <span className="block text-sm font-semibold leading-snug text-foreground">
+                      <span className="block text-body font-semibold leading-snug text-foreground">
                         {s.title}
                       </span>
-                      <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">
+                      <span className="mt-0.5 block text-meta leading-snug text-muted-foreground">
                         {s.timeBadge}
                       </span>
                     </div>
@@ -224,15 +219,15 @@ export function ActivityEveryMoveCountsModule({
                     ))}
                   </div>
                 </div>
-                <div aria-hidden="true" className="mt-1.5 grid text-center text-xs font-semibold text-muted-foreground" style={DAY_ROW_STYLE}>
+                <div aria-hidden="true" className="mt-1.5 grid text-center text-meta font-semibold text-muted-foreground" style={DAY_ROW_STYLE}>
                   {copy.stepper.dayInitials.map((initial, day) => (
                     <span key={day}>{initial}</span>
                   ))}
                 </div>
               </div>
               <figcaption className="mt-4 border-t border-border pt-3">
-                <p className="text-xs text-muted-foreground">{copy.stepper.weekCaption}</p>
-                <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1.5 text-sm sm:grid-cols-2">
+                <p className="text-meta text-muted-foreground">{copy.stepper.weekCaption}</p>
+                <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1.5 text-body sm:grid-cols-2">
                   {stages.map((s, layer) => (
                     <li
                       key={s.id}
@@ -256,35 +251,48 @@ export function ActivityEveryMoveCountsModule({
             {/* Hairline-divided 2-column step breakdown */}
             <div aria-live="polite" className="space-y-4 border-t border-border pt-5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h4 className="text-base font-bold leading-snug text-foreground">{stage.title}</h4>
-                <span className="text-xs font-medium text-muted-foreground">{stage.timeBadge}</span>
+                <h4 className="text-body font-bold leading-snug text-foreground">{stage.title}</h4>
+                <span className="text-meta font-medium text-muted-foreground">{stage.timeBadge}</span>
               </div>
               <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
-                  <dt className="text-sm font-semibold text-foreground">{copy.stepper.whyLabel}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{stage.physiology}</dd>
+                  <dt className="text-meta font-semibold text-foreground">{copy.stepper.whyLabel}</dt>
+                  <dd className="mt-1 text-meta text-muted-foreground">{stage.physiology}</dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-foreground">{copy.stepper.practicalTipLabel}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{stage.action}</dd>
+                  <dt className="text-meta font-semibold text-foreground">{copy.stepper.practicalTipLabel}</dt>
+                  <dd className="mt-1 text-meta text-muted-foreground">{stage.action}</dd>
                 </div>
               </dl>
             </div>
 
             {/* Footer navigation bar */}
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-              <span className="text-xs font-medium tabular-nums text-muted-foreground">
+              <span className="text-meta font-medium tabular-nums text-muted-foreground">
                 {copy.stepper.stepOfTemplate.replace("{n}", String(stageIdx + 1)).replace("{total}", String(stages.length))}
               </span>
               <div className="flex items-center gap-2">
-                <button type="button" onClick={() => selectStage(stageIdx - 1)} disabled={stageIdx === 0} className={BACK_BUTTON}>
-                  <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="md"
+                  onClick={() => selectStage(stageIdx - 1)}
+                  disabled={stageIdx === 0}
+                  className="px-3 text-muted-foreground hover:text-foreground"
+                >
+                  <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                   {copy.stepper.prevButton}
-                </button>
-                <button type="button" onClick={() => selectStage(stageIdx + 1)} disabled={stageIdx === last} className={NEXT_BUTTON}>
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="md"
+                  onClick={() => selectStage(stageIdx + 1)}
+                  disabled={stageIdx === last}
+                >
                   {copy.stepper.nextButton}
-                  <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-                </button>
+                  <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </Button>
               </div>
             </div>
           </>
@@ -295,8 +303,8 @@ export function ActivityEveryMoveCountsModule({
 
       {/* Calm, proportionate effort guidance + WHO source attribution */}
       <div className="space-y-2 border-t border-border pt-5">
-        <p className="max-w-[70ch] text-sm leading-relaxed text-muted-foreground">{copy.safetyDisclaimer}</p>
-        <p className="text-xs leading-snug text-muted-foreground">{copy.credit}</p>
+        <p className="max-w-(--measure-reading) text-body text-muted-foreground">{copy.safetyDisclaimer}</p>
+        <p className="text-meta leading-snug text-muted-foreground">{copy.credit}</p>
       </div>
     </section>
   );

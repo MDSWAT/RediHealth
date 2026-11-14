@@ -82,10 +82,6 @@ export function stepCellClass(current: boolean): string {
   }`;
 }
 
-/** Step navigation: Back is a neutral text button, Next is ink filled. */
-export const BACK_BUTTON_CLASS = `inline-flex min-h-[44px] items-center rounded-lg px-3 text-sm font-semibold text-muted-foreground hover:text-foreground ${FEEDBACK}`;
-export const NEXT_BUTTON_CLASS = `inline-flex min-h-[44px] items-center rounded-lg bg-foreground px-4 text-sm font-semibold text-white hover:bg-ink-800 ${FEEDBACK}`;
-
 /** Step number in a stepper row: filled ink for the current step, quiet otherwise. */
 export function stepNumberClass(current: boolean): string {
   return `flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${

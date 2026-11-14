@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ClockIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -66,22 +66,26 @@ export function PortalLinkExpired() {
           <h1 className="list-in mt-6 text-balance text-page text-foreground" style={{ "--i": 1 } as CSSProperties}>
             {text.title}
           </h1>
-          <p className="list-in mx-auto mt-5 max-w-[52ch] text-lg leading-relaxed text-muted-foreground" style={{ "--i": 2 } as CSSProperties}>
+          <p className="list-in mx-auto mt-5 max-w-(--measure-lead) text-lead text-muted-foreground" style={{ "--i": 2 } as CSSProperties}>
             {text.body}
           </p>
           <div className="list-in mt-8 flex flex-col items-center gap-3" style={{ "--i": 3 } as CSSProperties}>
-            <Link
+            <Button
               href={withLangPrefix("/contul-meu", lang)}
-              className="press-solid inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              variant="action"
+              size="lg"
+              className="px-6"
             >
               {text.action}
-            </Link>
-            <Link
+            </Button>
+            <Button
               href={withLangPrefix("/mediatori#solicita", lang)}
-              className="group press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
+              variant="ghost"
+              size="md"
+              className="text-sapphire hover:text-sapphire-light dark:text-sapphire-border dark:hover:text-paper"
             >
-              <span className="link-draw">{text.help}</span>
-            </Link>
+              <span>{text.help}</span>
+            </Button>
           </div>
         </div>
       </Container>

@@ -3,6 +3,7 @@
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { LazyMotion, domAnimation } from "motion/react";
 import type { Lang } from "@/lib/i18n/translations";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/ui/icons";
 import { BreathingLungsScene } from "./BreathingLungsScene";
@@ -12,12 +13,6 @@ export interface CessationRecoveryTimelineProps {
   lang: Lang;
   className?: string;
 }
-
-/** Step navigation, as on every explainer: Back is a quiet text button, Next is ink-filled. */
-const BACK_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground/50 disabled:hover:bg-transparent";
-const NEXT_BUTTON =
-  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-foreground px-4 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
 
 /** What happens after the last cigarette: five time points, one calm lung diagram. */
 export function CessationRecoveryTimeline({ lang, className = "" }: CessationRecoveryTimelineProps) {
@@ -47,10 +42,10 @@ export function CessationRecoveryTimeline({ lang, className = "" }: CessationRec
 
   return (
     <section className={className} aria-labelledby={titleId} data-testid="cessation-recovery-timeline">
-      <h3 id={titleId} className="text-xl font-semibold tracking-tight text-foreground text-balance">
+      <h3 id={titleId} className="text-title font-semibold text-foreground text-balance">
         {copy.componentTitle}
       </h3>
-      <p className="mt-1.5 max-w-[65ch] text-base leading-relaxed text-muted-foreground text-pretty">
+      <p className="mt-1.5 max-w-(--measure-reading) text-body text-muted-foreground text-pretty">
         {copy.componentSubtitle}
       </p>
 
@@ -75,7 +70,7 @@ export function CessationRecoveryTimeline({ lang, className = "" }: CessationRec
               onClick={() => select(index)}
               onKeyDown={onOptionKeyDown}
               className={cn(
-                "min-h-11 flex-1 whitespace-nowrap rounded-lg border border-border px-2.5 py-2 text-center text-xs font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:flex-none sm:rounded-none sm:border-0 sm:px-1.5 sm:text-sm",
+                "min-h-11 flex-1 whitespace-nowrap rounded-lg border border-border px-2.5 py-2 text-center text-body font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:flex-none sm:rounded-none sm:border-0 sm:px-1.5",
                 selected
                   ? "border-foreground bg-foreground text-background"
                   : "bg-card text-muted-foreground hover:bg-surface-subtle/60 hover:text-foreground",
@@ -101,17 +96,17 @@ export function CessationRecoveryTimeline({ lang, className = "" }: CessationRec
 
         <div aria-live="polite" className="space-y-4">
           <div>
-            <p className="text-sm font-medium tabular-nums text-muted-foreground">{current.badge}</p>
-            <h4 className="mt-0.5 text-lg font-semibold leading-snug text-foreground text-balance">{current.title}</h4>
+            <p className="text-body font-medium tabular-nums text-muted-foreground">{current.badge}</p>
+            <h4 className="mt-0.5 text-title font-semibold leading-snug text-foreground text-balance">{current.title}</h4>
           </div>
           <dl className="divide-y divide-border border-t border-border">
             <div className="py-3">
-              <dt className="text-sm font-semibold text-foreground">{copy.patientFeelHeading}</dt>
-              <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{current.patientFeel}</dd>
+              <dt className="text-meta font-semibold text-foreground">{copy.patientFeelHeading}</dt>
+              <dd className="mt-1 text-meta text-muted-foreground">{current.patientFeel}</dd>
             </div>
             <div className="py-3">
-              <dt className="text-sm font-semibold text-foreground">{copy.clinicalMetricHeading}</dt>
-              <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{current.clinicalMetric}</dd>
+              <dt className="text-meta font-semibold text-foreground">{copy.clinicalMetricHeading}</dt>
+              <dd className="mt-1 text-meta text-muted-foreground">{current.clinicalMetric}</dd>
             </div>
           </dl>
         </div>
@@ -119,23 +114,36 @@ export function CessationRecoveryTimeline({ lang, className = "" }: CessationRec
 
       <div>
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-          <span className="text-xs font-medium tabular-nums text-muted-foreground">
+          <span className="text-meta font-medium tabular-nums text-muted-foreground">
             {copy.stepOfTemplate.replace("{n}", String(activeStep + 1)).replace("{total}", String(milestones.length))}
           </span>
           <div className="flex items-center gap-2">
-            <button type="button" onClick={() => select(activeStep - 1)} disabled={activeStep === 0} className={BACK_BUTTON}>
-              <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
+            <Button
+              type="button"
+              variant="ghost"
+              size="md"
+              onClick={() => select(activeStep - 1)}
+              disabled={activeStep === 0}
+              className="px-3 text-muted-foreground hover:text-foreground"
+            >
+              <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               {copy.prevStepLabel}
-            </button>
-            <button type="button" onClick={() => select(activeStep + 1)} disabled={activeStep === last} className={NEXT_BUTTON}>
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="md"
+              onClick={() => select(activeStep + 1)}
+              disabled={activeStep === last}
+            >
               {copy.nextStepLabel}
-              <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
-            </button>
+              <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+            </Button>
           </div>
         </div>
       </div>
 
-      <p className="mt-4 text-xs leading-snug text-muted-foreground">{copy.credit}</p>
+      <p className="mt-4 text-meta leading-snug text-muted-foreground">{copy.credit}</p>
     </section>
   );
 }

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { BookIcon } from "@/components/ui/icons";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
 import { ArticleListenButton } from "./ArticleListenButton";
 import { HealthInformationTopicGrid } from "./HealthInformationTopicGrid";
@@ -21,68 +23,84 @@ export const HEALTH_HUB_EXPLORER_COPY: Record<
   Lang,
   {
     exploreAria: string;
+    onThisPage: string;
     guides: string;
     articles: string;
     topics: string;
     myths: string;
-    dictionary: string;
+    feelingUnwell: string;
+    checkSymptom: string;
   }
 > = {
   ro: {
     exploreAria: "Explorează secțiunile bibliotecii de sănătate",
-    guides: "Ghiduri de prevenție",
-    articles: "Articole detaliate",
-    topics: "Subiecte medicale A–Z",
-    myths: "Mituri și adevăr",
-    dictionary: "Dicționar medical",
+    onThisPage: "Pe această pagină",
+    guides: "Ghiduri",
+    articles: "Articole",
+    topics: "Subiecte A–Z",
+    myths: "Mituri",
+    feelingUnwell: "Te simți rău?",
+    checkSymptom: "Verifică un simptom",
   },
   en: {
     exploreAria: "Explore health library sections",
-    guides: "Prevention guides",
-    articles: "Detailed articles",
-    topics: "Medical topics A–Z",
-    myths: "Myths and facts",
-    dictionary: "Medical dictionary",
+    onThisPage: "On this page",
+    guides: "Guides",
+    articles: "Articles",
+    topics: "Topics A–Z",
+    myths: "Myths",
+    feelingUnwell: "Feeling unwell?",
+    checkSymptom: "Check a symptom",
   },
   sq: {
     exploreAria: "Eksploro seksionet e bibliotekës shëndetësore",
-    guides: "Udhëzues parandalimi",
-    articles: "Artikuj të hollësishëm",
-    topics: "Tema mjekësore A–Z",
-    myths: "Mite dhe fakte",
-    dictionary: "Fjalori mjekësor",
+    onThisPage: "Në këtë faqe",
+    guides: "Udhëzues",
+    articles: "Artikuj",
+    topics: "Tema A–Z",
+    myths: "Mite",
+    feelingUnwell: "Ndihesh keq?",
+    checkSymptom: "Kontrollo një simptomë",
   },
   it: {
     exploreAria: "Esplora le sezioni della libreria sanitaria",
-    guides: "Guide alla prevenzione",
-    articles: "Articoli approfonditi",
-    topics: "Argomenti medici A–Z",
-    myths: "Miti e realtà",
-    dictionary: "Dizionario medico",
+    onThisPage: "In questa pagina",
+    guides: "Guide",
+    articles: "Articoli",
+    topics: "Argomenti A–Z",
+    myths: "Miti",
+    feelingUnwell: "Non ti senti bene?",
+    checkSymptom: "Controlla un sintomo",
   },
   hr: {
     exploreAria: "Istraži odjeljke zdravstvene knjižnice",
-    guides: "Vodiči za prevenciju",
-    articles: "Detaljni članci",
-    topics: "Medicinske teme A–Z",
-    myths: "Mitovi i činjenice",
-    dictionary: "Medicinski rječnik",
+    onThisPage: "Na ovoj stranici",
+    guides: "Vodiči",
+    articles: "Članci",
+    topics: "Teme A–Z",
+    myths: "Mitovi",
+    feelingUnwell: "Osjećate se loše?",
+    checkSymptom: "Provjeri simptom",
   },
   rom: {
     exploreAria: "Dikh e sekciye e sastipnaska bibliotekake",
-    guides: "Sikavimata vash prevenimos",
-    articles: "Detaljime artikolura",
-    topics: "Sastipnaske teme A–Z",
-    myths: "Mitura thaj chachimos",
-    dictionary: "Doktorengo lavustik",
+    onThisPage: "Pe kadaja patrin",
+    guides: "Sikavimata",
+    articles: "Artikolura",
+    topics: "Teme A–Z",
+    myths: "Mitura",
+    feelingUnwell: "Nakhli tut mishto?",
+    checkSymptom: "Dikh e simptome",
   },
   ru: {
     exploreAria: "Разделы библиотеки здоровья",
-    guides: "Путеводители по профилактике",
-    articles: "Подробные статьи",
-    topics: "Медицинские темы А–Я",
-    myths: "Мифы и факты",
-    dictionary: "Медицинский словарь",
+    onThisPage: "На этой странице",
+    guides: "Руководства",
+    articles: "Статьи",
+    topics: "Темы А–Я",
+    myths: "Мифы",
+    feelingUnwell: "Плохо себя чувствуете?",
+    checkSymptom: "Проверьте симптом",
   },
 };
 
@@ -129,33 +147,43 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
   };
 
   const explorerLinkClass =
-    "press-row inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+    "inline-flex min-h-11 items-center whitespace-nowrap rounded-sm text-body font-medium text-sapphire underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border";
 
   return (
     <main id="main-content" className="flex-1 bg-background">
-      <section className="pb-12 pt-8 sm:pb-16 sm:pt-12">
+      <section className="pb-12 sm:pb-16">
         <Container>
-          <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div className="max-w-3xl">
-              <h1 className="text-[34px] font-semibold leading-[1.08] tracking-[-0.03em] text-foreground text-balance sm:text-5xl">
-                {page.heroTitle}
-              </h1>
-              <p className="mt-3 max-w-[60ch] text-lg leading-relaxed text-muted-foreground text-pretty">
-                {page.heroSubtitle}
-              </p>
-            </div>
-            <div className="shrink-0 self-start sm:self-end">
+          <PageHeader
+            title={page.heroTitle}
+            lead={
+              <>
+                {page.heroSubtitle}{" "}
+                <span>
+                  {explorer.feelingUnwell}{" "}
+                  <Link
+                    href={withLangPrefix("/health-check", lang)}
+                    className="inline-flex min-h-11 items-center rounded-sm font-semibold text-sapphire underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:hover:text-white"
+                  >
+                    {t.healthInfoPage?.tabs?.triage ?? explorer.checkSymptom}
+                  </Link>
+                </span>
+              </>
+            }
+            actions={
               <ArticleListenButton
                 uiLang={lang}
                 textToSpeak={`${page.heroTitle}. ${page.heroSubtitle}`}
               />
-            </div>
-          </header>
+            }
+          />
 
           <nav
             aria-label={explorer.exploreAria}
-            className="no-scrollbar -mx-4 mt-6 flex flex-nowrap gap-2 overflow-x-auto px-4 pb-1 [mask-image:linear-gradient(to_right,black_calc(100%-2.5rem),transparent)] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:[mask-image:none]"
+            className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1"
           >
+            <span className="text-body font-medium text-muted-foreground">
+              {explorer.onThisPage}:
+            </span>
             <a href="#health-guides" className={explorerLinkClass}>
               {explorer.guides}
             </a>
@@ -168,14 +196,6 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
             <a href="#myths-quiz" className={explorerLinkClass}>
               {explorer.myths}
             </a>
-            <button
-              type="button"
-              onClick={() => setOpenDrawer("dictionary")}
-              className={explorerLinkClass}
-            >
-              <BookIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-              <span>{explorer.dictionary}</span>
-            </button>
           </nav>
 
           <HealthInformationTopicGrid

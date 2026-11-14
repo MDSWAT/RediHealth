@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -119,31 +119,24 @@ describe("hero copy", () => {
     }
   });
 
-  it("asks a different true-or-false question than the myth quiz further down the page", async () => {
-    const { getHealthMyths } = await import("@/lib/i18n/health-myths");
-    // Word stems of a statement; a large overlap means the same myth asked twice on one page.
-    const stems = (text: string) =>
-      new Set(
-        text
-          .toLowerCase()
-          .split(/[^\p{L}]+/u)
-          .filter((word) => word.length >= 3)
-          .map((word) => word.slice(0, 4)),
-      );
-    for (const lang of LANGS) {
-      const hero = stems(heroCopy[lang].panel.needs.learn.quiz!.statement);
-      for (const myth of getHealthMyths(lang)) {
-        const other = stems(myth.statement);
-        const shared = [...other].filter((stem) => hero.has(stem)).length;
-        const overlap = shared / new Set([...hero, ...other]).size;
-        expect(overlap, `${lang}: ${myth.statement}`).toBeLessThan(0.34);
-      }
+  it("orders needs by urgency with doctor online in the six choices and removes the inline quiz (P35)", () => {
+    expect(HERO_NEED_ORDER).toEqual(["problem", "risk", "doctor", "nearby", "prescription", "navigate"]);
+    const panelSrc = readFileSync(path.resolve(__dirname, "hero/TriagePanel.tsx"), "utf8");
+    expect(panelSrc).toContain("doctor: StethoscopeIcon");
+    expect(panelSrc).toContain("!isDoctor");
+    expect(panelSrc).not.toContain("<Quiz");
+
+    for (const lang of ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const) {
+      const doctor = heroCopy[lang].panel.needs.doctor;
+      expect(doctor.action.href, lang).toBe("/medic-online");
+      expect(doctor.points, lang).toHaveLength(3);
+      expect("quiz" in doctor, lang).toBe(false);
     }
   });
 
   it("keeps links in the visitor's language except tel: and the staff panel", () => {
     expect(localHref("/health-check", "ro")).toBe("/ro/health-check");
-    expect(localHref("/get-help?mode=doctor", "it")).toBe("/it/get-help?mode=doctor");
+    expect(localHref("/get-help?mode=mediator", "it")).toBe("/it/get-help?mode=mediator");
     expect(localHref("tel:112", "en")).toBe("tel:112");
     expect(localHref("/panel", "sq")).toBe("/panel");
   });
@@ -164,7 +157,8 @@ describe("hero render", () => {
     expect(html).not.toContain("<dialog");
     expect(html).toContain('href="tel:112"');
     expect(html).toContain(`href="/${lang}/mediatori"`);
-    expect(html).toContain(`href="/${lang}/health-information"`);
+    expect(html).toContain(`href="/${lang}/medic-online"`);
+    expect(html).not.toContain(`href="/${lang}/health-information"`);
   });
 
   it("renders no Romanian characters on the English page", () => {
@@ -177,13 +171,17 @@ describe("hero render", () => {
     expect(html).not.toMatch(/rounded-full[^"]*px-2\.5[^"]*py-0\.5/); // no badge pills
   });
 
-  it("renders every panel view in one grid cell, with only the first one active", () => {
-    // Stacking all views makes the panel as tall as its tallest view, so
-    // switching steps can never resize the panel or the hero.
+  it("renders non-direct panel views in one grid cell and links risk/prescription directly (P29)", () => {
+    // Direct rows act straight from Step 1; only views with content stay stacked in the grid cell.
+    const viewNeeds = HERO_NEED_ORDER.filter((id) => !heroCopy.en.panel.needs[id].direct);
     const html = renderHero("en");
-    expect(html.match(/class="triage-view /g)).toHaveLength(1 + HERO_NEED_ORDER.length);
+    expect(viewNeeds).toEqual(["problem", "doctor", "nearby", "navigate"]);
+    expect(html.match(/class="triage-view /g)).toHaveLength(1 + viewNeeds.length);
     expect(html.match(/data-active="true"/g)).toHaveLength(1);
-    expect(html.match(/\binert=""/g)).toHaveLength(HERO_NEED_ORDER.length);
+    expect(html.match(/\binert=""/g)).toHaveLength(viewNeeds.length);
+    expect(html).toMatch(/<a[^>]*id="triage-option-risk"[^>]*href="\/en\/health-check"/);
+    expect(html).toMatch(/<a[^>]*id="triage-option-prescription"[^>]*href="\/en\/prescription-review"/);
+    expect(heroCopy.en.panel.needs.nearby.action.label).toBe("See places near you");
   });
 
   it("fills the first screen below the sticky header", () => {
@@ -191,15 +189,17 @@ describe("hero render", () => {
     expect(renderHero("en")).toMatch(/min-h-\[calc\(100svh-var\(--site-header-h\)\)\]/);
   });
 
-  it.each(LANGS)("leaves the three steps to the help card in %s", (lang) => {
-    // The steps moved into "Find out what to do", so the hero stays short enough for a laptop screen.
+  it.each(LANGS)("keeps the hero column compact without an inline step list in %s", (lang) => {
     expect(renderHero(lang)).not.toMatch(/<ol\b/);
     expect(heroCopy[lang].journey).toHaveLength(3);
   });
 
-  it("renders the three steps inside the help options' lead card", () => {
-    const help = readFileSync(path.resolve(__dirname, "HelpOptions.tsx"), "utf8");
-    expect(help).toMatch(/<CarePath steps=\{\(heroCopy\[lang\] \?\? heroCopy\.ro\)\.journey\}/);
+  it("makes the hero panel the only router on the home page (P06)", () => {
+    const pageSrc = readFileSync(path.resolve(__dirname, "../../app/page.tsx"), "utf8");
+    expect(pageSrc).not.toContain("HelpOptions");
+    expect(pageSrc).toMatch(/<Hero\s*\/>[\s\S]*<RegionalHealthRibbon\s*\/>[\s\S]*<HealthTopics\s*\/>/);
+    expect(existsSync(path.resolve(__dirname, "HelpOptions.tsx"))).toBe(false);
+    expect(existsSync(path.resolve(__dirname, "HelpOptionsMediatorBand.tsx"))).toBe(false);
   });
 
   it("sets the headline as one plain sentence: no per-word spans, no aria-label override", () => {
@@ -215,7 +215,9 @@ describe("hero render", () => {
     // included, so the hero does not repeat it.
     // The triage panel keeps its own 112 action; the headline column has none.
     const html = renderHero(lang);
-    const column = html.slice(html.indexOf("hero-enter"), html.indexOf('id="triage"'));
+    const column = html.slice(html.indexOf("hero-grid"), html.indexOf('id="triage"'));
+    expect(column).toContain('id="hero-title"');
+    expect(column).not.toContain("hero-enter");
     expect(column).not.toContain('href="tel:112"');
   });
 
@@ -238,7 +240,7 @@ describe("hero render", () => {
 
 describe("landing interaction rules", () => {
   const landingDir = path.resolve(__dirname);
-  const sources = ["Hero.tsx", "hero/CarePath.tsx", "hero/TriagePanel.tsx", "HelpOptions.tsx", "HelpOptionsMediatorBand.tsx", "HealthTopics.tsx", "TrueFalseQuizSection.tsx", "QuizFeedbackCard.tsx", "MythCardCarousel.tsx", "MythCategoryFilter.tsx", "TrustSection.tsx"].map(
+  const sources = ["Hero.tsx", "hero/TriagePanel.tsx", "HealthTopics.tsx", "TrueFalseQuizSection.tsx", "QuizFeedbackCard.tsx", "MythCardCarousel.tsx", "MythCategoryFilter.tsx", "TrustSection.tsx"].map(
     (file) => [file, readFileSync(path.join(landingDir, file), "utf8")] as const,
   );
 
@@ -254,10 +256,13 @@ describe("landing interaction rules", () => {
     expect(hero).not.toMatch(/hero-scroll|will-change|translate3d|addEventListener\("scroll"/);
   });
 
-  it("shows the hero photo as an ambient top wash on phones and full-bleed from lg, loaded eagerly", () => {
+  it("keeps the hero photo desktop-only via getImageProps and <picture> source while hiding WheelBackdrop below lg", () => {
     const hero = sources.find(([file]) => file === "Hero.tsx")![1];
     expect(hero).toMatch(/absolute inset-x-0 top-0 -z-30 h-56 lg:inset-0 lg:h-auto/);
-    expect(hero).toMatch(/loading="eager"\s+fetchPriority="high"/);
+    expect(hero).toMatch(/getImageProps\(/);
+    expect(hero).toMatch(/<source\s+media="\(min-width: 1024px\)"/);
+    expect(hero).toMatch(/loading:\s*"eager"[\s\S]*fetchPriority:\s*"high"/);
+    expect(hero).toMatch(/hidden lg:block[\s\S]*<WheelBackdrop placement="hero"/);
     expect(hero).not.toMatch(/\bpriority\b|\bquality=/);
     // Phones read every line on solid ink: both full-bleed scrims exist from lg only.
     expect(hero.match(/-z-20 hidden bg-\[linear-gradient[^"]*lg:block/g)).toHaveLength(2);
@@ -267,19 +272,6 @@ describe("landing interaction rules", () => {
     const hero = sources.find(([file]) => file === "Hero.tsx")![1];
     expect(hero).toMatch(/<div id="triage" className="scroll-mt-24">/);
     expect(hero).not.toMatch(/id="triage" className="[^"]*hidden/);
-  });
-
-  it("numbers the hero steps for screen readers and shows figures without a leading zero", () => {
-    const carePath = sources.find(([file]) => file === "hero/CarePath.tsx")![1];
-    expect(carePath).toMatch(/<ol\b/);
-    expect(carePath).toMatch(/<span className="sr-only">\{index \+ 1\}\. <\/span>/);
-    expect(carePath).not.toMatch(/padStart/);
-  });
-
-  it("shows a phone, not a camera, for the voice-only online doctor", () => {
-    const carePath = sources.find(([file]) => file === "hero/CarePath.tsx")![1];
-    expect(carePath).not.toMatch(/VideoIcon|CameraIcon/);
-    expect(carePath).toMatch(/PhoneIcon/);
   });
 
   it("exposes quiz keys through aria-keyshortcuts, with 'r' for the Albanian 'e rreme'", () => {
@@ -301,30 +293,18 @@ describe("landing accent roles and one source of copy", () => {
     expect(panel).toMatch(/outline-ring/);
   });
 
-  it("sets the mediator band link in sapphire, not amber", () => {
-    const band = read("HelpOptionsMediatorBand.tsx");
-    expect(band).not.toMatch(/(text|decoration)-amber/);
-    expect(band).toMatch(/text-sapphire/);
+  it("renders the triage footer mediator link as plain text without decorative UsersIcon (P06)", () => {
+    const panel = read("hero/TriagePanel.tsx");
+    expect(panel).not.toContain("UsersIcon");
+    expect(panel).toContain('href={localHref("/mediatori", lang)}');
+    for (const lang of ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const) {
+      expect(heroCopy[lang].panel.mediators.length, lang).toBeLessThanOrEqual(24);
+    }
+    expect(heroCopy.en.panel.mediators).toBe("Ask a mediator");
   });
 
-  it("keeps the mediator band neutral, with amber only on its plate", () => {
-    // The news ticker above is already pale yellow, so the band does not repeat a yellow ground.
-    const band = read("HelpOptionsMediatorBand.tsx");
-    expect(band).not.toMatch(/bg-amber-care-soft/);
-    expect(band).toMatch(/<IconTile[^>]*tone="amber"/);
-  });
-
-  it("leads the help options with the assistant without reordering the copy", () => {
-    const options = read("HelpOptions.tsx");
-    expect(options).toMatch(/const ORDER = \[1, 0, 2, 3\] as const/);
-    expect(options).toMatch(/NAV_LINK_ICONS\[/); // one glyph per destination, shared with the header
-    expect(options).not.toMatch(/onPointerMove|surface-spotlight|useCalmReducedMotion/);
-    expect(options).not.toMatch(/aria-label/); // a link's name is its visible text
-    expect(options).not.toMatch(/rounded-full|animate-ping|live-sage/); // no status or badge pills
-  });
-
-  it("sets hero, help options and topics in the type scale and palette tokens", () => {
-    for (const file of ["Hero.tsx", "hero/CarePath.tsx", "HelpOptions.tsx", "HelpOptionsMediatorBand.tsx", "HealthTopics.tsx"]) {
+  it("sets hero and topics in the type scale and palette tokens", () => {
+    for (const file of ["Hero.tsx", "HealthTopics.tsx"]) {
       const source = read(file);
       expect(source, file).not.toMatch(/font-(mono|serif)/);
       expect(source, file).not.toMatch(/text-\[\d/); // no arbitrary font sizes
@@ -360,11 +340,11 @@ describe("landing accent roles and one source of copy", () => {
   });
 
   it("calls health mediators 'mediator' in Albanian, never 'ndërmjetës'", () => {
-    for (const file of ["Hero.tsx", "HelpOptions.tsx", "HelpOptionsMediatorBand.tsx", "TrustSection.tsx"]) {
+    for (const file of ["Hero.tsx", "hero/TriagePanel.tsx", "TrustSection.tsx"]) {
       expect(read(file), file).not.toMatch(/ndërmjetës/i);
     }
     expect(JSON.stringify(heroCopy.sq)).not.toMatch(/ndërmjetës/i);
-    expect(heroCopy.sq.panel.mediators).toMatch(/mediator/);
+    expect(heroCopy.sq.panel.mediators).toMatch(/mediator/i);
   });
   it("keeps hover hints and behavioural subtitles short enough for one line across all languages", () => {
     for (const [lang, copy] of Object.entries(heroCopy)) {
@@ -408,14 +388,13 @@ describe("hero motion safety", () => {
     expect(heroRules).not.toMatch(/var\(--i/); // no per-item stagger delays
   });
 
-  it("enters once with the shared calm tokens and an 8px offset", () => {
+  it("renders the hero headline visible on first paint with the shared calm ease token", () => {
     expect(heroRules).toMatch(/--hero-ease:\s*var\(--ease-out-calm\)/);
-    expect(heroRules).toMatch(/\.hero-enter\s*{[^}]*var\(--dur-slow\)/);
-    expect(heroRules).toMatch(/@keyframes hero-enter\s*{\s*from\s*{\s*opacity:\s*0;\s*transform:\s*translateY\(8px\)/);
+    expect(heroRules).not.toMatch(/\.hero-enter|@keyframes\s+hero-enter/);
   });
 
   it("goes static under reduced motion", () => {
-    expect(heroRules).toMatch(/prefers-reduced-motion: reduce\)\s*{\s*\.hero-enter\s*{\s*animation: none/);
+    expect(heroRules).toMatch(/prefers-reduced-motion: reduce[\s\S]*\.quiz-result/);
     expect(heroRules).toMatch(/prefers-reduced-motion: reduce[\s\S]*\.triage-view/);
   });
 

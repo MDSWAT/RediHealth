@@ -75,13 +75,13 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
           <li key={item.title} className="flex gap-3">
             <span
               aria-hidden="true"
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-sm font-semibold tabular-nums text-sapphire"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-meta font-semibold tabular-nums text-sapphire"
             >
               {idx + 1}
             </span>
             <div className="min-w-0 pt-1">
-              <p className="text-base font-semibold text-foreground">{item.title}</p>
-              <p className="mt-1 max-w-prose text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              <p className="text-body font-semibold text-foreground">{item.title}</p>
+              <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground">{item.body}</p>
             </div>
           </li>
         ))}
@@ -91,7 +91,7 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
 
       <section className="mt-8 border-t border-border pt-6">
         <h3 className={subHeading}>{nav.mediatorTitle}</h3>
-        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{nav.mediatorBody}</p>
+        <p className="mt-1 text-body text-muted-foreground">{nav.mediatorBody}</p>
         {/* Mediators read requests in Romanian, so the scenario is sent in Romanian on every page. */}
         <MediatorRequestModal className="mt-4" defaultScenario={getAssistantCopy("ro").nav.scenarios[currentId].title} />
       </section>

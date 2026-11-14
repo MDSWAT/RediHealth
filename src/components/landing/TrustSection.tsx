@@ -9,8 +9,6 @@ import { ArrowRightIcon, GlobeIcon, HandHelpingIcon, CheckCircleIcon, HeartIcon,
 import { NAV_LINK_ICONS, type NavIcon } from "@/components/layout/nav-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
-import { STAGGER_EDITORIAL_S } from "@/lib/motion/tokens";
-import { revealDelay } from "./reveal-delay";
 
 /** The promises, in order: free for everyone, data stays private, clear guidance. */
 const PROMISE_ICONS = [HeartIcon, LockIcon, MessageDotsIcon];
@@ -243,67 +241,61 @@ export function TrustSection() {
   return (
     <Section tone="paper">
       <Container>
-        <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-12">
-          <Reveal className="lg:col-span-4">
-            <SectionHeading
-              as="h2"
-              align="left"
-              title={copy.title}
-              subtitle={copy.subtitle}
-            />
-          </Reveal>
+        <Reveal>
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-12">
+            <div className="lg:col-span-4">
+              <SectionHeading
+                as="h2"
+                align="left"
+                title={copy.title}
+                subtitle={copy.subtitle}
+              />
+            </div>
 
-          <div className="lg:col-span-8">
-            <ul className="divide-y divide-border border-y border-border sm:overflow-hidden sm:rounded-(--radius-surface) sm:border sm:bg-card sm:shadow-(--shadow-card-rest) dark:divide-white/10 dark:border-white/10 dark:sm:bg-ink-800">
-              {copy.sources.map((item, index) => (
-                <li key={item.id} className="py-5 sm:p-6">
-                  {/* Every row the same: blue tile, name, one line. A partner's website, where there is
-                      one, is a plain link under that line rather than a button only one row has.
-                      The rows settle in one after another, a beat behind the heading. */}
-                  <Reveal delay={revealDelay(index + 1)} className="flex min-w-0 items-start gap-4">
-                    <IconTile size={40} {...SOURCE_TILES[item.id]} />
-                    <div className="min-w-0">
-                      <h3 className="text-balance text-title">{item.name}</h3>
-                      <p className="mt-1.5 max-w-[56ch] text-pretty text-body text-muted-foreground dark:text-mist">
-                        {item.role}
-                      </p>
-                      {item.href && (
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group -my-2 -mx-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-white/10 dark:focus-visible:ring-paper"
-                        >
-                          <span className="link-draw">{item.hrefLabel}</span>
-                          <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0 -rotate-45" />
-                          <span className="sr-only"> ({copy.newTab})</span>
-                        </a>
-                      )}
+            <div className="lg:col-span-8">
+              <ul className="divide-y divide-border border-y border-border sm:overflow-hidden sm:rounded-(--radius-surface) sm:border sm:bg-card sm:shadow-(--shadow-card-rest) dark:divide-white/10 dark:border-white/10 dark:sm:bg-ink-800">
+                {copy.sources.map((item) => (
+                  <li key={item.id} className="py-5 sm:p-6">
+                    {/* Every row the same: blue tile, name, one line. A partner's website, where there is
+                        one, is a plain link under that line rather than a button only one row has. */}
+                    <div className="flex min-w-0 items-start gap-4">
+                      <IconTile size={40} {...SOURCE_TILES[item.id]} />
+                      <div className="min-w-0">
+                        <h3 className="text-balance text-title">{item.name}</h3>
+                        <p className="mt-1.5 max-w-(--measure-reading) text-pretty text-body text-muted-foreground dark:text-mist">
+                          {item.role}
+                        </p>
+                        {item.href && (
+                          <a
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group -my-2 -mx-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-white/10 dark:focus-visible:ring-paper"
+                          >
+                            <span>{item.hrefLabel}</span>
+                            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0 -rotate-45" />
+                            <span className="sr-only"> ({copy.newTab})</span>
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </Reveal>
-                </li>
-              ))}
-            </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
 
-        <div className="mt-14 sm:mt-16">
-          <Reveal>
+          <div className="mt-14 sm:mt-16">
             <h3 className="text-balance text-title font-bold">{copy.commitmentsTitle}</h3>
-          </Reveal>
-          {/* Three promises, not steps: an icon each, no numbers. */}
-          <ul className="mt-6 grid gap-8 sm:grid-cols-3 lg:gap-10">
-            {t.landing.trustSection.commitments.map(({ title, description }, index) => {
-              const Icon = PROMISE_ICONS[index] ?? CheckCircleIcon;
-              return (
-              <li key={title}>
-                {/* Each promise draws its heavy rule first, then its words settle in under it; the
-                    three follow one another left to right. */}
-                <Reveal stagger="editorial" delay={STAGGER_EDITORIAL_S * index}>
+            {/* Three promises, not steps: an icon each, no numbers. */}
+            <ul className="mt-6 grid gap-8 sm:grid-cols-3 lg:gap-10">
+              {t.landing.trustSection.commitments.map(({ title, description }, index) => {
+                const Icon = PROMISE_ICONS[index] ?? CheckCircleIcon;
+                return (
+                <li key={title}>
                   <span
                     aria-hidden="true"
-                    style={{ animationDelay: `${Math.round(STAGGER_EDITORIAL_S * index * 1000)}ms` }}
-                    className="rule-draw block h-0.5 bg-foreground/80 dark:bg-paper/80"
+                    className="block h-0.5 bg-foreground/80 dark:bg-paper/80"
                   />
                   <div className="pt-5">
                     <Icon aria-hidden="true" className="h-6 w-6 text-sapphire dark:text-sapphire-border" />
@@ -312,12 +304,12 @@ export function TrustSection() {
                       {description}
                     </p>
                   </div>
-                </Reveal>
-              </li>
-              );
-            })}
-          </ul>
-        </div>
+                </li>
+                );
+              })}
+            </ul>
+          </div>
+        </Reveal>
       </Container>
     </Section>
   );

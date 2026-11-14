@@ -82,7 +82,7 @@ export function MedicalSafetyDisclaimer({
       } ${className}`}
     >
       <ShieldIcon className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-      <p className="max-w-[65ch] text-pretty text-base leading-relaxed text-foreground/85">
+      <p className="max-w-(--measure-reading) text-pretty text-body text-foreground/85">
         <span className="font-semibold text-foreground">{copy.badge}.</span> {copy.body}
       </p>
     </section>

@@ -2,15 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { ListenButton } from "@/components/ui/ListenButton";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { useReadAloud } from "@/components/health-check/readingTools";
-import { CheckIcon, PinIcon, VolumeIcon } from "@/components/ui/icons";
+import { PinIcon, VolumeIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { DUTY_HOURS, useOnCallStatus } from "./OnCallStatusBanner";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
 import { playSoundCheck } from "./sound-check";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
-import { HEALTH_DETAIL_SHARED_STRINGS } from "@/lib/i18n/health-myths";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
 function useSafeLanguage() {
@@ -76,7 +78,7 @@ export const heroCopy: Record<Lang, HeroFeatureCopy> = {
     offDutyAction: "Vezi ce să pregătești",
   },
   en: {
-    soundTest: "Test sound",
+    soundTest: "Test your sound",
     soundOk: "Sound works",
     freeTitle: "Free for anyone",
     freeDesc: "No card, account or payment needed",
@@ -162,9 +164,6 @@ export const heroCopy: Record<Lang, HeroFeatureCopy> = {
   },
 };
 
-const primaryLink =
-  "inline-flex min-h-12 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:px-5 sm:text-[0.9375rem]";
-
 /**
  * Doctor online: the two ways to talk to a doctor on one surface, then the pharmacy as a
  * hairline row of the same surface. The on-call status lives in the on-call cell itself
@@ -178,136 +177,114 @@ export function MedicOnlineHero() {
   const findHelp = findHelpLinks(lang);
   const [soundChecked, setSoundChecked] = useState(false);
   const voice = useReadAloud(lang);
-  const voiceStrings = HEALTH_DETAIL_SHARED_STRINGS.topicHero;
-  const listenLabel = voiceStrings.listenGuide[lang] ?? voiceStrings.listenGuide.ro;
-  const stopLabel = voiceStrings.stopAudio[lang] ?? voiceStrings.stopAudio.ro;
   // Outside duty hours the booking is the useful action, so it takes the primary style.
   const { isOnDuty } = useOnCallStatus();
-  const primaryStyle = "press-solid motion-reduce:transition-none bg-sapphire text-white hover:bg-sapphire-light";
-  const secondaryStyle = "press-row motion-reduce:transition-none border border-border-control bg-background text-foreground hover:bg-muted";
 
   return (
-    <section className="border-b border-border bg-background py-10 sm:py-16">
+    <section className="border-b border-border bg-background pb-10 sm:pb-16">
       <Container>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-3xl">
-            <h1 className="text-balance text-page text-foreground">{mp.heroTitle}</h1>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">{mp.heroSubtitle}</p>
-          </div>
-          {voice.available && (
-            <button
-              type="button"
-              aria-pressed={voice.speaking}
-              onClick={() => {
-                if (voice.speaking) {
-                  voice.stop();
-                } else {
-                  voice.speak([mp.heroTitle, mp.heroSubtitle]);
-                }
-              }}
-              className={`press-row inline-flex min-h-11 max-w-full shrink-0 items-center gap-2 self-start whitespace-nowrap rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:self-end ${
-                voice.speaking
-                  ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                  : "border-sapphire/30 bg-sapphire-soft/65 text-sapphire hover:border-sapphire hover:bg-sapphire-soft"
-              }`}
-            >
-              {voice.speaking ? (
-                <span aria-hidden="true" className="block h-3 w-3 rounded-xs bg-current" />
-              ) : (
-                <VolumeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-              )}
-              <span className="min-w-0 truncate">{voice.speaking ? stopLabel : listenLabel}</span>
-            </button>
-          )}
-        </div>
+        <PageHeader
+          title={mp.heroTitle}
+          lead={mp.heroSubtitle}
+          actions={
+            voice.available ? (
+              <ListenButton
+                uiLang={lang}
+                isPlaying={voice.speaking}
+                onToggle={() => {
+                  if (voice.speaking) {
+                    voice.stop();
+                  } else {
+                    voice.speak([mp.heroTitle, mp.heroSubtitle]);
+                  }
+                }}
+              />
+            ) : undefined
+          }
+        />
 
         {/* The two ways in share one surface, split by a hairline: no row of look-alike cards. */}
         {/* The page's one lit surface: a soft pointer light and top-edge highlight on fine pointers. */}
-        <div className="surface-spotlight mt-8 divide-y divide-border rounded-xl border border-border bg-card shadow-(--shadow-card-rest)">
+        <div className="mt-8 divide-y divide-border rounded-xl border border-border bg-card shadow-(--shadow-card-rest)">
           <div className="grid grid-cols-1 divide-y divide-border md:grid-cols-2 md:divide-x md:divide-y-0">
             <div className="flex flex-col p-6">
               {isOnDuty && (
-                <p role="status" className="mb-3 border-l-2 border-live-sage pl-2.5 text-sm font-medium text-foreground tabular-nums">
+                <p role="status" className="mb-3 text-body font-semibold text-foreground tabular-nums">
                   {c.onDuty}
                 </p>
               )}
-              <h2 className="text-balance text-xl font-semibold tracking-tight text-foreground tabular-nums">
+              <h2 className="text-balance text-section font-semibold text-foreground tabular-nums">
                 {isOnDuty ? mp.cardOnCallTitle : c.offDutyTitle}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground tabular-nums">{isOnDuty ? mp.cardOnCallSubtitle : c.offDuty}</p>
-              <div className="mt-auto flex flex-nowrap items-center gap-2.5 pt-6">
-                <Link href={withLangPrefix("/medic-online/asteptare", lang)} className={`${primaryLink} min-w-0 flex-1 sm:flex-initial ${isOnDuty ? primaryStyle : secondaryStyle}`}>
-                  {isOnDuty ? mp.cardOnCallAction : c.offDutyAction}
-                </Link>
+              <p className="mt-2 text-body text-muted-foreground tabular-nums">{isOnDuty ? mp.cardOnCallSubtitle : c.offDuty}</p>
+              <div className="mt-auto flex flex-col items-start gap-2 pt-6">
+                <div className="flex w-full flex-nowrap items-center">
+                  <Button
+                    href={withLangPrefix("/medic-online/asteptare", lang)}
+                    variant={isOnDuty ? "action" : "outline"}
+                    size="lg"
+                    className="w-full sm:w-auto"
+                  >
+                    {isOnDuty ? mp.cardOnCallAction : c.offDutyAction}
+                  </Button>
+                </div>
                 <button
                   type="button"
                   onClick={() => {
                     playSoundCheck();
                     setSoundChecked(true);
                   }}
-                  aria-label={soundChecked ? c.soundOk : c.soundTest}
-                  title={soundChecked ? c.soundOk : c.soundTest}
-                  className={`press-row inline-flex h-12 w-12 min-h-12 min-w-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                    soundChecked
-                      ? "border-sapphire bg-sapphire-soft text-sapphire dark:text-sapphire-border"
-                      : "border-border-control bg-background text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/35 hover:text-sapphire"
-                  }`}
+                  className="press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-sm text-body font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:decoration-sapphire-border/40"
                 >
-                  {/* The icon is the control; after the test it eases into its played state instead of snapping. */}
-                  <span key={soundChecked ? "ok" : "test"} className={soundChecked ? "swap-in inline-flex" : "inline-flex"}>
-                    {soundChecked ? <CheckIcon className="h-4.5 w-4.5 shrink-0" /> : <VolumeIcon className="h-4.5 w-4.5 shrink-0" />}
-                  </span>
-                  <span className="sr-only" aria-live="polite">
-                    {soundChecked ? c.soundOk : c.soundTest}
-                  </span>
+                  <VolumeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span aria-live="polite">{soundChecked ? c.soundOk : c.soundTest}</span>
                 </button>
               </div>
             </div>
 
             <div className="flex flex-col p-6">
-              <h2 className="text-balance text-xl font-semibold tracking-tight text-foreground">
+              <h2 className="text-balance text-section font-semibold text-foreground">
                 {mp.cardBookingTitle}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{mp.cardBookingSubtitle}</p>
+              <p className="mt-2 text-body text-muted-foreground">{mp.cardBookingSubtitle}</p>
               <div className="mt-auto pt-6">
-                <Link
+                <Button
                   href={withLangPrefix("/medic-online/programare", lang)}
-                  className={`${primaryLink} w-full sm:w-auto ${isOnDuty ? secondaryStyle : primaryStyle}`}
+                  variant={isOnDuty ? "outline" : "action"}
+                  size="lg"
+                  className="w-full sm:w-auto"
                 >
                   {mp.cardBookingAction}
-                </Link>
+                </Button>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Many questions do not need a doctor: the pharmacy, as a quiet row of the same surface. */}
-          <div className="flex flex-col gap-2 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-base font-semibold text-foreground">{findHelp.noDoctorNeeded}</p>
-              <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{findHelp.pharmacyFirstHint}</p>
-            </div>
-            <Link
-              href={withLangPrefix(findHelpHref("pharmacy"), lang)}
-              className="group -mx-2 inline-flex min-h-[44px] max-w-full shrink-0 items-center gap-2 self-start whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border sm:self-auto"
-            >
-              <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-              <span className="link-draw min-w-0 truncate">{findHelp.nearestPharmacy}</span>
-            </Link>
-          </div>
+        {/* Many questions do not need a doctor: the pharmacy, as a single quiet line below the card. */}
+        <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="text-body text-muted-foreground">{findHelp.noDoctorNeeded}</span>
+          <Link
+            href={withLangPrefix(findHelpHref("pharmacy"), lang)}
+            className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-sm text-body font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:decoration-sapphire-border/40"
+          >
+            <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+            <span>{findHelp.nearestPharmacy}</span>
+          </Link>
         </div>
 
         <ul className="mt-8 grid grid-cols-1 gap-6 border-t border-border pt-6 sm:grid-cols-3 sm:gap-8">
           <li>
-            <p className="text-sm font-semibold text-foreground sm:text-base">{c.freeTitle}</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.freeDesc}</p>
+            <p className="text-body font-semibold text-foreground">{c.freeTitle}</p>
+            <p className="mt-1 text-body text-muted-foreground">{c.freeDesc}</p>
           </li>
           <li>
-            <p className="text-sm font-semibold text-foreground sm:text-base">{c.browserTitle}</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.browserDesc}</p>
+            <p className="text-body font-semibold text-foreground">{c.browserTitle}</p>
+            <p className="mt-1 text-body text-muted-foreground">{c.browserDesc}</p>
           </li>
           <li>
-            <p className="text-sm font-semibold text-foreground sm:text-base">{c.smsTitle}</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.smsDesc}</p>
+            <p className="text-body font-semibold text-foreground">{c.smsTitle}</p>
+            <p className="mt-1 text-body text-muted-foreground">{c.smsDesc}</p>
           </li>
         </ul>
       </Container>

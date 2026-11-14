@@ -11,26 +11,38 @@ import React, {
 } from "react";
 import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { translations, type Lang } from "@/lib/i18n/translations";
+import { translations } from "@/lib/i18n/translations";
 import { ROMANIA_COUNTIES_MAP, type CountryMap, type MapArea } from "@/lib/geo/romania-counties";
 import { MOLDOVA_REGIONS_MAP } from "@/lib/geo/moldova-regions";
 import { CROATIA_COUNTIES_MAP } from "@/lib/geo/croatia-counties";
 import { ITALY_REGIONS_MAP } from "@/lib/geo/italy-regions";
 import { ALBANIA_COUNTIES_MAP } from "@/lib/geo/albania-counties";
-import { ALBANIA_WIDE, CROATIA_WIDE, ITALY_WIDE, MOLDOVA_WIDE } from "@/lib/data/news";
 import { placeName } from "@/components/news/news-format";
 import { useCalmReducedMotion } from "@/lib/motion/tokens";
+import {
+  ALL_ALBANIA,
+  ALL_CROATIA,
+  ALL_ITALY,
+  ALL_MOLDOVA,
+  ALL_ROMANIA,
+  EXTRA_MAP_COPY,
+  countryAllValue,
+  mapCountriesForLang,
+  type MapCountry,
+  type RomaniaCountyMapProps,
+} from "./romania-county-map-helpers";
 
-/** The value that means "no county chosen": national news, every hub in Romania. */
-const ALL_ROMANIA = "Toate județele";
-
-/** Country-wide sentinel values matching `src/lib/data/news.ts`. */
-export const ALL_ITALY = ITALY_WIDE;
-export const ALL_MOLDOVA = MOLDOVA_WIDE;
-export const ALL_CROATIA = CROATIA_WIDE;
-export const ALL_ALBANIA = ALBANIA_WIDE;
-
-export type MapCountry = "ro" | "md" | "it" | "hr" | "al";
+export {
+  ALL_ALBANIA,
+  ALL_CROATIA,
+  ALL_ITALY,
+  ALL_MOLDOVA,
+  EXTRA_MAP_COPY,
+  countryAllValue,
+  mapCountriesForLang,
+  type MapCountry,
+  type RomaniaCountyMapProps,
+};
 
 const MAPS: Record<MapCountry, CountryMap> = {
   ro: ROMANIA_COUNTIES_MAP,
@@ -65,233 +77,6 @@ const ROMANIA_LABEL_OVERRIDES: Record<string, { pos: [number, number]; fontSize:
 
 const MUNICIPALITY_PLACES = new Set(["București", "Chișinău", "Bălți", "Bender", "Grad Zagreb"]);
 
-type ExtraMapCopy = {
-  moldova: string;
-  croatia: string;
-  albania: string;
-  allMoldova: string;
-  allCroatia: string;
-  allAlbania: string;
-  moldovaTitle: string;
-  moldovaSubtitle: string;
-  moldovaMapAriaLabel: string;
-  croatiaTitle: string;
-  croatiaSubtitle: string;
-  croatiaMapAriaLabel: string;
-  albaniaTitle: string;
-  albaniaSubtitle: string;
-  albaniaMapAriaLabel: string;
-  selectedRaionPrefix: string;
-  selectedZupanijaPrefix: string;
-  selectedQarkPrefix: string;
-  placePrefix: string;
-  recentRaioaneLabel: string;
-  recentZupanijeLabel: string;
-  recentQarqeLabel: string;
-  pickMoldovaLabel: string;
-  pickCroatiaLabel: string;
-  pickItalyLabel: string;
-  pickAlbaniaLabel: string;
-};
-
-export const EXTRA_MAP_COPY: Record<Lang, ExtraMapCopy> = {
-"ru": {
-"albania": "Албания",
-"allAlbania": "Вся Албания",
-"albaniaTitle": "Выберите регион Албании",
-"albaniaSubtitle": "Выберите место на карте или в списке для медицинских новостей и выездных клиник.",
-"albaniaMapAriaLabel": "Карта регионов Албании",
-"selectedQarkPrefix": "Выбранный регион:",
-"recentQarqeLabel": "Регионы с местными новостями",
-"pickAlbaniaLabel": "Или выберите регион из списка",
-"moldova":"Молдова","croatia":"Хорватия","allMoldova":"Вся Молдова","allCroatia":"Вся Хорватия","moldovaTitle":"Выберите район Молдовы","moldovaSubtitle":"Выберите место на карте или в списке для местных медицинских новостей и выездных клиник.","moldovaMapAriaLabel":"Карта районов и муниципиев Молдовы","croatiaTitle":"Выберите жупанию Хорватии","croatiaSubtitle":"Выберите место на карте или в списке для медицинских новостей и выездных клиник.","croatiaMapAriaLabel":"Карта жупаний Хорватии","selectedRaionPrefix":"Выбранный район:","selectedZupanijaPrefix":"Выбранная жупания:","placePrefix":"Выбранное место:","recentRaioaneLabel":"Районы с местными новостями","recentZupanijeLabel":"Жупании с местными новостями","pickMoldovaLabel":"Или выберите район из списка","pickCroatiaLabel":"Или выберите жупанию из списка","pickItalyLabel":"Или выберите регион из списка"},
-
-  ro: {
-    moldova: "Moldova",
-    croatia: "Croația",
-    albania: "Albania",
-    allMoldova: "Toată Moldova",
-    allCroatia: "Toată Croația",
-    allAlbania: "Toată Albania",
-    moldovaTitle: "Alege un raion din Moldova",
-    moldovaSubtitle: "Apasă pe hartă sau alege din listă pentru știri și caravane locale.",
-    moldovaMapAriaLabel: "Harta raioanelor și municipiilor din Republica Moldova",
-    croatiaTitle: "Alege un comitat din Croația",
-    croatiaSubtitle: "Apasă pe hartă sau alege din listă pentru alerte și clinici mobile.",
-    croatiaMapAriaLabel: "Harta comitatelor din Croația",
-    albaniaTitle: "Alege o regiune din Albania",
-    albaniaSubtitle: "Apasă pe hartă sau alege din listă pentru alerte și caravane medicale.",
-    albaniaMapAriaLabel: "Harta regiunilor din Albania",
-    selectedRaionPrefix: "Raionul ales:",
-    selectedZupanijaPrefix: "Comitatul ales:",
-    selectedQarkPrefix: "Regiunea aleasă:",
-    placePrefix: "Locul ales:",
-    recentRaioaneLabel: "Raioane cu știri locale",
-    recentZupanijeLabel: "Comitate cu știri locale",
-    recentQarqeLabel: "Regiuni cu știri locale",
-    pickMoldovaLabel: "Sau alege un raion din listă",
-    pickCroatiaLabel: "Sau alege un comitat din listă",
-    pickItalyLabel: "Sau alege o regiune din listă",
-    pickAlbaniaLabel: "Sau alege o regiune din listă",
-  },
-  en: {
-    moldova: "Moldova",
-    croatia: "Croatia",
-    albania: "Albania",
-    allMoldova: "All of Moldova",
-    allCroatia: "All of Croatia",
-    allAlbania: "All of Albania",
-    moldovaTitle: "Choose a district in Moldova",
-    moldovaSubtitle: "Tap the map or pick from the list for local health alerts and mobile clinics.",
-    moldovaMapAriaLabel: "Map of districts and municipalities of Moldova",
-    croatiaTitle: "Choose a county in Croatia",
-    croatiaSubtitle: "Tap the map or pick from the list for local health alerts and mobile clinics.",
-    croatiaMapAriaLabel: "Map of counties of Croatia",
-    albaniaTitle: "Choose a county in Albania",
-    albaniaSubtitle: "Tap the map or pick from the list for local health alerts and mobile clinics.",
-    albaniaMapAriaLabel: "Map of the 12 counties of Albania",
-    selectedRaionPrefix: "Chosen district:",
-    selectedZupanijaPrefix: "Chosen county:",
-    selectedQarkPrefix: "Chosen county:",
-    placePrefix: "Chosen place:",
-    recentRaioaneLabel: "Districts with local news",
-    recentZupanijeLabel: "Counties with local news",
-    recentQarqeLabel: "Counties with local news",
-    pickMoldovaLabel: "Or pick a district from the list",
-    pickCroatiaLabel: "Or pick a county from the list",
-    pickItalyLabel: "Or pick a region from the list",
-    pickAlbaniaLabel: "Or pick a county from the list",
-  },
-  sq: {
-    moldova: "Moldavia",
-    croatia: "Kroacia",
-    albania: "Shqipëria",
-    allMoldova: "Gjithë Moldavia",
-    allCroatia: "Gjithë Kroacia",
-    allAlbania: "Gjithë Shqipëria",
-    moldovaTitle: "Zgjidh një rajon në Moldavi",
-    moldovaSubtitle: "Prek hartën ose zgjidh nga lista për njoftime dhe karvane mjekësore.",
-    moldovaMapAriaLabel: "Harta e rajoneve të Moldavisë",
-    croatiaTitle: "Zgjidh një qark në Kroaci",
-    croatiaSubtitle: "Prek hartën ose zgjidh nga lista për njoftime dhe klinika lëvizëse.",
-    croatiaMapAriaLabel: "Harta e qarqeve të Kroacisë",
-    albaniaTitle: "Harta e qarqeve të Shqipërisë",
-    albaniaSubtitle: "Prek një qark në hartë ose zgjidh nga lista për njoftimet dhe karvanet mjekësore pranë teje.",
-    albaniaMapAriaLabel: "Harta e 12 qarqeve të Shqipërisë",
-    selectedRaionPrefix: "Rajoni i zgjedhur:",
-    selectedZupanijaPrefix: "Qarku i zgjedhur:",
-    selectedQarkPrefix: "Qarku i zgjedhur:",
-    placePrefix: "Vendi i zgjedhur:",
-    recentRaioaneLabel: "Rajone me lajme lokale",
-    recentZupanijeLabel: "Qarqe me lajme lokale",
-    recentQarqeLabel: "Qarqe me njoftime lokale",
-    pickMoldovaLabel: "Ose zgjidh një rajon nga lista",
-    pickCroatiaLabel: "Ose zgjidh një qark nga lista",
-    pickItalyLabel: "Ose zgjidh një rajon nga lista",
-    pickAlbaniaLabel: "Ose zgjidh një qark nga lista",
-  },
-  it: {
-    moldova: "Moldavia",
-    croatia: "Croazia",
-    albania: "Albania",
-    allMoldova: "Tutta la Moldavia",
-    allCroatia: "Tutta la Croazia",
-    allAlbania: "Tutta l'Albania",
-    moldovaTitle: "Scegli un distretto della Moldavia",
-    moldovaSubtitle: "Tocca la mappa o scegli dall'elenco per avvisi e ambulatori mobili.",
-    moldovaMapAriaLabel: "Mappa dei distretti della Moldavia",
-    croatiaTitle: "Scegli una regione della Croazia",
-    croatiaSubtitle: "Tocca la mappa o scegli dall'elenco per avvisi e ambulatori mobili.",
-    croatiaMapAriaLabel: "Mappa delle regioni della Croazia",
-    albaniaTitle: "Scegli una prefettura dell'Albania",
-    albaniaSubtitle: "Tocca la mappa o scegli dall'elenco per avvisi e ambulatori mobili.",
-    albaniaMapAriaLabel: "Mappa delle prefetture dell'Albania",
-    selectedRaionPrefix: "Distretto scelto:",
-    selectedZupanijaPrefix: "Regione scelta:",
-    selectedQarkPrefix: "Prefettura scelta:",
-    placePrefix: "Luogo scelto:",
-    recentRaioaneLabel: "Distretti con notizie locali",
-    recentZupanijeLabel: "Regioni con notizie locali",
-    recentQarqeLabel: "Prefetture con notizie locali",
-    pickMoldovaLabel: "Oppure scegli un distretto dall'elenco",
-    pickCroatiaLabel: "Oppure scegli una regione dall'elenco",
-    pickItalyLabel: "Oppure scegli una regione dall'elenco",
-    pickAlbaniaLabel: "Oppure scegli una prefettura dall'elenco",
-  },
-  hr: {
-    moldova: "Moldavija",
-    croatia: "Hrvatska",
-    albania: "Albanija",
-    allMoldova: "Cijela Moldavija",
-    allCroatia: "Sve županije",
-    allAlbania: "Cijela Albanija",
-    moldovaTitle: "Odaberi rajon u Moldaviji",
-    moldovaSubtitle: "Dodirni kartu ili odaberi s popisa za lokalne zdravstvene obavijesti.",
-    moldovaMapAriaLabel: "Karta rajona i općina u Moldaviji",
-    croatiaTitle: "Odaberi svoju županiju",
-    croatiaSubtitle: "Dodirni županiju na karti ili je odaberi s popisa za lokalne obavijesti i mobilne ambulante.",
-    croatiaMapAriaLabel: "Karta hrvatskih županija",
-    albaniaTitle: "Odaberi okrug u Albaniji",
-    albaniaSubtitle: "Dodirni kartu ili odaberi s popisa za lokalne zdravstvene obavijesti.",
-    albaniaMapAriaLabel: "Karta okruga u Albaniji",
-    selectedRaionPrefix: "Odabrani rajon:",
-    selectedZupanijaPrefix: "Odabrana županija:",
-    selectedQarkPrefix: "Odabrani okrug:",
-    placePrefix: "Odabrano mjesto:",
-    recentRaioaneLabel: "Rajoni s lokalnim vijestima",
-    recentZupanijeLabel: "Županije s lokalnim vijestima",
-    recentQarqeLabel: "Okruzi s lokalnim vijestima",
-    pickMoldovaLabel: "Ili odaberi rajon s popisa",
-    pickCroatiaLabel: "Ili odaberi županiju s popisa",
-    pickItalyLabel: "Ili odaberi regiju s popisa",
-    pickAlbaniaLabel: "Ili odaberi okrug s popisa",
-  },
-  rom: {
-    moldova: "Moldova",
-    croatia: "Kroatiya",
-    albania: "Shchiperiya",
-    allMoldova: "Sasti Moldova",
-    allCroatia: "Sasti Kroatiya",
-    allAlbania: "Sasti Shchiperiya",
-    moldovaTitle: "Alosar yekh rayono and-i Moldova",
-    moldovaSubtitle: "Thov o nay pe harta vay alosar katar i lista vash lokalne sastipnaske nevimata.",
-    moldovaMapAriaLabel: "I harta e rayonengi and-i Moldova",
-    croatiaTitle: "Alosar yekh zhupaniya and-i Kroatiya",
-    croatiaSubtitle: "Thov o nay pe harta vay alosar katar i lista vash lokalne nevimata thaj mobilne klinike.",
-    croatiaMapAriaLabel: "I harta e zhupaniyengi and-i Kroatiya",
-    albaniaTitle: "Alosar yekh qarko and-i Shchiperiya",
-    albaniaSubtitle: "Thov o nay pe harta vay alosar katar i lista vash lokalne nevimata thaj mobilne klinike.",
-    albaniaMapAriaLabel: "I harta e qarkongi and-i Shchiperiya",
-    selectedRaionPrefix: "Alosardo rayono:",
-    selectedZupanijaPrefix: "Alosardi zhupaniya:",
-    selectedQarkPrefix: "Alosardo qarko:",
-    placePrefix: "Alosardo than:",
-    recentRaioaneLabel: "Rayonurya lokalne nevimatenca",
-    recentZupanijeLabel: "Zhupaniye lokalne nevimatenca",
-    recentQarqeLabel: "Qarkurya lokalne nevimatenca",
-    pickMoldovaLabel: "Vay alosar yekh rayono katar i lista",
-    pickCroatiaLabel: "Vay alosar yekh zhupaniya katar i lista",
-    pickItalyLabel: "Vay alosar yekh regiyona katar i lista",
-    pickAlbaniaLabel: "Vay alosar yekh qarko katar i lista",
-  },
-};
-
-/** Conditional map display rule by active UI language: `it` -> Italy, `hr` -> Croatia, `sq` -> Albania, others -> Romania + Moldova. */
-export function mapCountriesForLang(lang: Lang): MapCountry[] {
-  if (lang === "it") return ["it"];
-  if (lang === "hr") return ["hr"];
-  if (lang === "sq") return ["al"];
-  return ["ro", "md"];
-}
-
-export function countryAllValue(country: MapCountry): string {
-  if (country === "it") return ALL_ITALY;
-  if (country === "md") return ALL_MOLDOVA;
-  if (country === "hr") return ALL_CROATIA;
-  if (country === "al") return ALL_ALBANIA;
-  return ALL_ROMANIA;
-}
-
 function useSafeLanguage() {
   try {
     const ctx = useLanguage();
@@ -302,19 +87,6 @@ function useSafeLanguage() {
     return { lang: "ro" as const, m: translations.ro.countyMap };
   }
 }
-
-export type RomaniaCountyMapProps = {
-  selectedCounty: string;
-  onSelectCounty: (county: string, country: MapCountry) => void;
-  /** Areas with recent news or a mediator hub; drawn darker and listed under the map. */
-  activeHubs?: string[];
-  /** Which country maps to offer. With more than one, an underline switch appears above the map. */
-  countries?: MapCountry[];
-  /** Optional controlled/synced map country when parent coordinates feed and map together. */
-  activeCountry?: MapCountry;
-  onCountryChange?: (country: MapCountry) => void;
-  className?: string;
-};
 
 /** True for an Italian region name; those are not Romanian counties and are not saved as one. */
 export function isItalianRegion(name: string): boolean {
@@ -607,8 +379,8 @@ export function RomaniaCountyMap({
     <div className={cn("rounded-xl border border-border bg-card p-4 sm:p-6", className)}>
       <div className="flex flex-col gap-3 border-b border-border pb-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
-          <h2 className="text-base font-semibold text-foreground">{titleText}</h2>
-          <p className="mt-0.5 text-sm text-muted-foreground text-pretty">{subtitleText}</p>
+          <h2 className="text-body font-semibold text-foreground">{titleText}</h2>
+          <p className="mt-0.5 text-body text-muted-foreground text-pretty">{subtitleText}</p>
         </div>
 
         <div className="flex shrink-0 flex-wrap items-center gap-3">
@@ -626,7 +398,7 @@ export function RomaniaCountyMap({
                   aria-pressed={country === c}
                   onClick={() => switchCountry(c)}
                   className={cn(
-                    "-mb-px min-h-[44px] whitespace-nowrap border-b-2 px-0.5 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                    "-mb-px min-h-[44px] whitespace-nowrap border-b-2 px-0.5 text-body transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                     country === c
                       ? "border-foreground font-semibold text-foreground"
                       : "border-transparent font-medium text-muted-foreground hover:text-foreground",
@@ -642,7 +414,7 @@ export function RomaniaCountyMap({
             aria-pressed={isAll}
             onClick={() => chooseArea(allValue, country)}
             className={cn(
-              "min-h-[44px] whitespace-nowrap rounded-lg border px-3 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              "min-h-[44px] whitespace-nowrap rounded-lg border px-3 text-body font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               isAll ? "border-foreground bg-foreground text-background" : "border-border bg-background text-foreground hover:bg-muted",
             )}
           >
@@ -700,12 +472,12 @@ export function RomaniaCountyMap({
                   selected
                     ? "fill-sapphire-border stroke-foreground dark:fill-sapphire-light"
                     : isFocused
-                      ? "fill-sapphire-soft stroke-sapphire dark:fill-slate-600 dark:stroke-paper"
+                      ? "fill-sapphire-soft stroke-sapphire dark:fill-ink-800 dark:stroke-paper"
                       : isHovered
-                        ? "fill-slate-300 dark:fill-slate-500"
+                        ? "fill-border-control/45 dark:fill-sapphire/50"
                         : hub
                           ? "fill-sapphire-border dark:fill-sapphire-light"
-                          : "fill-slate-200 dark:fill-slate-700",
+                          : "fill-border dark:fill-ink-800",
                 )}
                 style={{ strokeWidth: selected || isFocused ? layout.strokeSelected : layout.strokeBase }}
               >
@@ -728,7 +500,7 @@ export function RomaniaCountyMap({
                 aria-hidden="true"
                 className={cn(
                   "pointer-events-none hidden font-semibold tabular-nums sm:block",
-                  area.name === effectiveSelected ? "fill-foreground" : "fill-slate-600 dark:fill-slate-300",
+                  area.name === effectiveSelected ? "fill-foreground" : "fill-muted-foreground dark:fill-mist",
                 )}
                 style={{ fontSize: fSize }}
               >
@@ -744,14 +516,14 @@ export function RomaniaCountyMap({
             style={{
               transform: `translate3d(${tooltipPos.x}px, ${tooltipPos.y}px, 0)`,
             }}
-            className="pointer-events-none absolute left-0 top-0 z-20 hidden items-center gap-2 rounded-lg border border-border bg-card/95 px-2.5 py-1.5 text-xs font-semibold text-foreground shadow-(--shadow-card-hover) backdrop-blur-xs will-change-transform sm:inline-flex"
+            className="pointer-events-none absolute left-0 top-0 z-20 hidden items-center gap-2 rounded-lg border border-border bg-card/95 px-2.5 py-1.5 text-meta font-semibold text-foreground shadow-(--shadow-card-hover) backdrop-blur-xs will-change-transform sm:inline-flex"
           >
             <span>{label(shownHover)}</span>
           </div>
         )}
       </div>
 
-      <p className="mt-3 min-h-6 text-sm text-muted-foreground" aria-live="polite">
+      <p className="mt-3 min-h-6 text-body text-muted-foreground" aria-live="polite">
         {shown ? (
           <>
             {prefix} <strong className="font-semibold text-foreground">{label(shown)}</strong>
@@ -767,7 +539,7 @@ export function RomaniaCountyMap({
       <div className="mt-4 grid gap-4 border-t border-border pt-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
         {visibleHubs.length > 0 ? (
           <div className="min-w-0">
-            <p className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
+            <p className="mb-2 flex items-center gap-2 text-body text-muted-foreground">
               <span aria-hidden="true" className="inline-block h-3 w-3 rounded-sm bg-sapphire-border dark:bg-sapphire-light" />
               {recentHubsLabel}
             </p>
@@ -779,7 +551,7 @@ export function RomaniaCountyMap({
                   aria-pressed={effectiveSelected === hub}
                   onClick={() => chooseArea(hub, country)}
                   className={cn(
-                    "min-h-[44px] whitespace-nowrap rounded-lg border px-3 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "min-h-[44px] whitespace-nowrap rounded-lg border px-3 text-body font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     effectiveSelected === hub
                       ? "border-sapphire bg-sapphire text-white"
                       : "border-border bg-background text-foreground hover:bg-muted",
@@ -795,14 +567,14 @@ export function RomaniaCountyMap({
         )}
 
         <div>
-          <label htmlFor={selectId} className="mb-1 block text-sm text-muted-foreground">
+          <label htmlFor={selectId} className="mb-1 block text-body text-muted-foreground">
             {pickLabelText}
           </label>
           <select
             id={selectId}
             value={selectedInThisMap ? effectiveSelected : ""}
             onChange={(e) => chooseArea(e.target.value || allValue, country)}
-            className="min-h-[44px] w-full rounded-lg border border-border bg-background px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-64"
+            className="min-h-[44px] w-full rounded-lg border border-border bg-background px-3 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-64"
           >
             <option value="">{allLabel}</option>
             {sortedAreas.map((a) => (

@@ -123,7 +123,7 @@ export function ActionableStepsChecklist({
           <h2 id="steps-heading" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
             {pickLocale(s.heading, currentLang)}
           </h2>
-          <p className="mt-1.5 text-base text-muted-foreground">
+          <p className="mt-1.5 text-body text-muted-foreground">
             {pickLocale(s.subtitleTemplate, currentLang).replace(
               "{topic}",
               topicTitle.toLowerCase(),
@@ -133,7 +133,7 @@ export function ActionableStepsChecklist({
           {totalCount > 0 && (
             <>
               <div className="mt-2.5 flex flex-wrap items-center gap-3 print:hidden">
-                <span className="text-base font-medium tabular-nums text-muted-foreground">
+                <span className="text-body font-medium tabular-nums text-muted-foreground">
                   {pickLocale(s.completedBadge, currentLang)
                     .replace("{completed}", String(completedCount))
                     .replace("{total}", String(totalCount))}
@@ -142,7 +142,7 @@ export function ActionableStepsChecklist({
                   <button
                     type="button"
                     onClick={resetChecks}
-                    className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2.5 text-base font-semibold text-sapphire underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2.5 text-body font-semibold text-sapphire underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {RESET_LABELS[currentLang] ?? RESET_LABELS.ro}
                   </button>
@@ -212,13 +212,13 @@ export function ActionableStepsChecklist({
 
                 <div>
                   <h3
-                    className={`text-lg font-semibold leading-snug transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                    className={`text-title font-semibold leading-snug transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
                       isChecked ? "text-muted-foreground" : "text-foreground"
                     }`}
                   >
                     {step.title}
                   </h3>
-                  <p className="mt-1.5 text-base leading-[1.65] text-foreground/90">
+                  <p className="mt-1.5 text-body text-foreground/90">
                     {step.description}
                   </p>
                 </div>

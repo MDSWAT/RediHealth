@@ -17,6 +17,7 @@ import {
   PrinterIcon,
   UserIcon,
 } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { Container } from "@/components/ui/Container";
 import { getTreatmentEntries, sortTreatments } from "@/lib/treatments";
@@ -710,22 +711,18 @@ const portalTranslations = {
   },
 } satisfies Record<Lang, Record<string, unknown>>;
 
-const labelClass = "mb-1.5 block text-sm font-semibold text-foreground";
+const labelClass = "mb-1.5 block text-body font-semibold text-foreground";
 const fieldClass =
-  "field-focus w-full rounded-lg border border-border-control bg-background text-base text-foreground placeholder:text-muted-foreground sm:text-sm";
+  "field-focus w-full rounded-lg border border-border-control bg-background text-body text-foreground placeholder:text-muted-foreground";
 // An empty list says so in a quiet framed block, so it reads as a state and not as missing content.
 const emptyStateClass =
-  "swap-in rounded-lg border border-dashed border-border-control px-4 py-6 text-center text-sm leading-relaxed text-muted-foreground";
+  "swap-in rounded-lg border border-dashed border-border-control px-4 py-6 text-center text-body text-muted-foreground";
 const fileClass =
-  "w-full text-sm text-foreground file:mr-3 file:min-h-[40px] file:rounded-lg file:border-0 file:bg-muted file:px-3 file:text-sm file:font-semibold file:text-foreground hover:file:bg-muted/70";
-const primaryButton =
-  "press-solid inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground";
-const secondaryButton =
-  "press-row inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:text-muted-foreground";
+  "w-full text-body text-foreground file:mr-3 file:min-h-[40px] file:rounded-lg file:border-0 file:bg-muted file:px-3 file:font-semibold file:text-foreground hover:file:bg-muted/70";
 
 function SectionTitle({ title, count }: { title: string; count?: number }) {
   return (
-    <h2 className="mb-2 text-balance text-lg font-semibold text-foreground">
+    <h2 className="mb-2 text-balance text-title font-semibold text-foreground">
       {title}
       {count !== undefined ? <span className="ml-2 font-normal text-muted-foreground tabular-nums">{count}</span> : null}
     </h2>
@@ -869,7 +866,7 @@ export function PatientPortalView({
     <main id="main-content" className="min-h-screen bg-background py-6 sm:py-10">
       <Container>
         {/* Calm, always-visible reminder: this page is not for emergencies. */}
-        <p className="mb-4 flex items-start gap-2.5 rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted-foreground">
+        <p className="mb-4 flex items-start gap-2.5 rounded-xl border border-border bg-card px-4 py-3 text-body text-muted-foreground">
           <PhoneIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
           <span>
             <strong className="font-semibold text-foreground">{t.emergencyTitle}</strong> {t.emergencyBody}
@@ -882,7 +879,7 @@ export function PatientPortalView({
               <button
                 type="button"
                 onClick={() => setActiveTab("home")}
-                className="press-row -ml-2 mb-3 inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="press-row -ml-2 mb-3 inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-body font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <ArrowLeftIcon className="h-4 w-4 shrink-0" />
                 {t.backHome}
@@ -890,14 +887,14 @@ export function PatientPortalView({
             ) : null}
 
             <h1 className="text-balance text-page text-foreground">{patient.full_name}</h1>
-            <p className="mt-1 text-sm text-muted-foreground">{t.homeTitle}</p>
+            <p className="mt-1 text-body text-muted-foreground">{t.homeTitle}</p>
 
             <details className="group mt-4 border-t border-border pt-3">
-              <summary className="flex min-h-[44px] cursor-pointer list-none items-center gap-2 text-sm font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+              <summary className="flex min-h-[44px] cursor-pointer list-none items-center gap-2 text-body font-semibold text-foreground [&::-webkit-details-marker]:hidden">
                 <ChevronRightIcon aria-hidden="true" className="h-4 w-4 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-open:rotate-90 motion-reduce:transition-none" />
                 {t.contactDetails}
               </summary>
-              <dl className="mt-2 grid gap-x-6 gap-y-2 pb-1 text-sm sm:grid-cols-2">
+              <dl className="mt-2 grid gap-x-6 gap-y-2 pb-1 text-body sm:grid-cols-2">
                 <div className="flex items-center gap-2">
                   <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <dt className="text-muted-foreground">{t.phone}</dt>
@@ -923,14 +920,14 @@ export function PatientPortalView({
           </header>
 
           {errorMessage ? (
-            <p key={errorMessage} role="alert" className="swap-in border-b border-amber-care-border bg-amber-care-soft/40 px-4 py-3 text-sm font-medium text-foreground dark:bg-amber-care/10 sm:px-8">
+            <p key={errorMessage} role="alert" className="swap-in border-b border-amber-care-border bg-amber-care-soft/40 px-4 py-3 text-body font-medium text-foreground dark:bg-amber-care/10 sm:px-8">
               {errorMessage}
             </p>
           ) : null}
 
           {activeTab === "home" ? (
             <section aria-label={t.homeIntro} className="px-4 py-5 sm:px-8 sm:py-6">
-              <p className="text-sm text-muted-foreground">{t.homeIntro}</p>
+              <p className="text-body text-muted-foreground">{t.homeIntro}</p>
               <ul className="mt-3 divide-y divide-border border-y border-border">
                 {homeActions.map(({ key, Icon, title, hint, onClick }, index) => (
                   <li key={key} className="list-in" style={{ "--i": index } as CSSProperties}>
@@ -941,10 +938,10 @@ export function PatientPortalView({
                     >
                       <Icon aria-hidden="true" className="h-5 w-5 shrink-0 text-sapphire" />
                       <span className="min-w-0 flex-1">
-                        <span className="block font-semibold text-foreground"><span className="link-draw">{title}</span></span>
-                        <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">{hint}</span>
+                        <span className="block font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">{title}</span>
+                        <span className="mt-0.5 block text-body text-muted-foreground">{hint}</span>
                       </span>
-                      <ChevronRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground" />
+                      <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none" />
                     </button>
                   </li>
                 ))}
@@ -955,15 +952,15 @@ export function PatientPortalView({
           {activeTab === "actions" && activeAction === "symptoms" ? (
             <section className="swap-in px-4 py-5 sm:px-8 sm:py-6">
               <SectionTitle title={t.symptomsTitle} />
-              <p className="mb-4 text-sm text-muted-foreground">{t.actionHint}</p>
+              <p className="mb-4 text-body text-muted-foreground">{t.actionHint}</p>
 
               {symptomsSavedMsg ? (
-                <p role="status" className="swap-in mb-4 border-l-2 border-sapphire pl-3 text-sm font-medium text-foreground dark:border-sapphire-border">
+                <p role="status" className="swap-in mb-4 text-body font-semibold text-foreground">
                   {t.symptomsSaved}
                 </p>
               ) : null}
 
-              <form onSubmit={handleUpdateSymptoms} className="grid grid-cols-1 gap-4 text-sm">
+              <form onSubmit={handleUpdateSymptoms} className="grid grid-cols-1 gap-4 text-body">
                 <div>
                   <label htmlFor="portal-symptoms" className={labelClass}>{t.howFeeling}</label>
                   <textarea
@@ -992,9 +989,9 @@ export function PatientPortalView({
                 </div>
 
                 <div>
-                  <button type="submit" disabled={isSavingSymptoms} className={`${primaryButton} w-full sm:w-auto`}>
+                  <Button type="submit" variant="action" size="md" disabled={isSavingSymptoms} className="w-full px-5 sm:w-auto">
                     {isSavingSymptoms ? t.saving : t.updateSymptoms}
-                  </button>
+                  </Button>
                 </div>
               </form>
             </section>
@@ -1004,19 +1001,21 @@ export function PatientPortalView({
             <section className="swap-in px-4 py-5 sm:px-8 sm:py-6">
               <div className="mb-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <SectionTitle title={t.followupsTitle} count={sortedFollowups.length} />
-                <button
+                <Button
                   type="button"
+                  variant="action"
+                  size="md"
                   aria-expanded={showAddFollowup}
                   onClick={() => setShowAddFollowup(!showAddFollowup)}
-                  className={`${primaryButton} w-full gap-1.5 sm:w-auto`}
+                  className="w-full gap-1.5 px-5 sm:w-auto"
                 >
-                  <PlusIcon aria-hidden="true" className="h-4 w-4" />
+                  <PlusIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
                   <span>{t.requestFollowup}</span>
-                </button>
+                </Button>
               </div>
 
               {showAddFollowup ? (
-                <form onSubmit={handleAddFollowup} className="swap-in mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-sm">
+                <form onSubmit={handleAddFollowup} className="swap-in mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-body">
                   <div>
                     <label htmlFor="portal-followup-title" className={labelClass}>{t.followupTitle}</label>
                     <input
@@ -1056,12 +1055,12 @@ export function PatientPortalView({
                   </div>
 
                   <div className="flex flex-col-reverse items-stretch gap-2 sm:flex-row sm:items-center sm:justify-end">
-                    <button type="button" onClick={() => setShowAddFollowup(false)} className={secondaryButton}>
+                    <Button type="button" variant="outline" size="md" onClick={() => setShowAddFollowup(false)}>
                       {t.cancel}
-                    </button>
-                    <button type="submit" disabled={isSavingFollowup} className={primaryButton}>
+                    </Button>
+                    <Button type="submit" variant="action" size="md" disabled={isSavingFollowup} className="px-5">
                       {isSavingFollowup ? t.submitting : t.submitRequest}
-                    </button>
+                    </Button>
                   </div>
                 </form>
               ) : null}
@@ -1069,7 +1068,7 @@ export function PatientPortalView({
               {sortedFollowups.length > 0 ? (
                 <ul className="divide-y divide-border border-y border-border">
                   {sortedFollowups.map((item) => (
-                    <li key={item.id} className="py-4 text-sm">
+                    <li key={item.id} className="py-4 text-body">
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                         <div className="flex min-w-0 items-start gap-3">
                           <ClockIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
@@ -1082,7 +1081,7 @@ export function PatientPortalView({
                           </div>
                         </div>
                         <span
-                          className={`inline-flex w-fit shrink-0 text-xs font-semibold ${
+                          className={`inline-flex w-fit shrink-0 text-meta font-semibold ${
                             item.status === "completed" ? "text-sapphire dark:text-sapphire-border" : "text-muted-foreground"
                           }`}
                         >
@@ -1139,17 +1138,17 @@ export function PatientPortalView({
                                   onChange={handleCompletionPhotoFileChange}
                                   className={fileClass}
                                 />
-                                <button type="button" disabled={!completionPhotoData} onClick={addCompletionPhotoDraft} className={secondaryButton}>
+                                <Button type="button" variant="outline" size="md" disabled={!completionPhotoData} onClick={addCompletionPhotoDraft}>
                                   {t.addAttachment}
-                                </button>
+                                </Button>
                               </div>
 
                               {completionPhotos.length > 0 ? (
                                 <div>
-                                  <p className="mb-1 text-sm font-semibold text-foreground">{t.attachments}</p>
+                                  <p className="mb-1 text-body font-semibold text-foreground">{t.attachments}</p>
                                   <ul className="divide-y divide-border rounded-lg border border-border">
                                     {completionPhotos.map((photoItem) => (
-                                      <li key={photoItem.id} className="flex items-center justify-between gap-3 px-3 py-1 text-sm">
+                                      <li key={photoItem.id} className="flex items-center justify-between gap-3 px-3 py-1 text-body">
                                         <span className="truncate text-foreground">{photoItem.name}</span>
                                         <button
                                           type="button"
@@ -1165,22 +1164,22 @@ export function PatientPortalView({
                               ) : null}
 
                               <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-                                <button type="button" onClick={closeCompletionForm} className={secondaryButton}>
+                                <Button type="button" variant="outline" size="md" onClick={closeCompletionForm}>
                                   {t.cancel}
-                                </button>
-                                <button type="submit" disabled={isSavingCompletion} className={primaryButton}>
+                                </Button>
+                                <Button type="submit" variant="action" size="md" disabled={isSavingCompletion} className="px-5">
                                   {isSavingCompletion ? t.completing : t.markCompleted}
-                                </button>
+                                </Button>
                               </div>
                             </form>
                           ) : (
-                            <button type="button" onClick={() => openCompletionForm(item.id)} className={secondaryButton}>
+                            <Button type="button" variant="outline" size="md" onClick={() => openCompletionForm(item.id)}>
                               {t.completeFollowup}
-                            </button>
+                            </Button>
                           )}
                         </div>
                       ) : (
-                        <div className="mt-2 pl-7 text-sm text-muted-foreground">
+                        <div className="mt-2 pl-7 text-body text-muted-foreground">
                           {item.completed_at ? <p className="tabular-nums">{`${t.completedOn} ${fmtDate(item.completed_at)}`}</p> : null}
                           {item.completion_notes ? <p className="mt-1 break-words text-foreground">{item.completion_notes}</p> : null}
                           {item.completion_photos && item.completion_photos.length > 0 ? (
@@ -1188,7 +1187,7 @@ export function PatientPortalView({
                               {item.completion_photos.map((photoItem) => (
                                 <figure key={photoItem.id} className="overflow-hidden rounded-lg border border-border bg-card">
                                   <img src={photoItem.data_url} alt={photoItem.name} className="h-16 w-full object-cover" />
-                                  <figcaption className="truncate px-2 py-1 text-xs text-foreground">{photoItem.name}</figcaption>
+                                  <figcaption className="truncate px-2 py-1 text-meta text-foreground">{photoItem.name}</figcaption>
                                 </figure>
                               ))}
                             </div>
@@ -1232,14 +1231,15 @@ export function PatientPortalView({
                   .join("\n\n");
                 return (
                   <div className="mb-4 flex flex-nowrap items-center gap-2 print:hidden">
-                    <button
+                    <Button
                       type="button"
+                      variant="outline"
+                      size="md"
                       onClick={() => window.print()}
-                      className="press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       <PrinterIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
                       <span>{planLabels[lang]?.print ?? planLabels.ro.print}</span>
-                    </button>
+                    </Button>
                     <FamilyShareButton
                       iconOnly
                       align="right"
@@ -1258,7 +1258,7 @@ export function PatientPortalView({
             <section className="px-4 py-5 sm:px-8 sm:py-6">
               <SectionTitle title={t.photosTitle} count={patient.photos?.length || 0} />
 
-              <form onSubmit={handleUploadPhoto} className="mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-sm">
+              <form onSubmit={handleUploadPhoto} className="mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-meta">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="portal-photo-file" className={labelClass}>{t.selectImage}</label>
@@ -1292,14 +1292,14 @@ export function PatientPortalView({
                 {newPhotoData ? (
                   <div className="flex items-center gap-3">
                     <img src={newPhotoData} alt={t.photoPreview} className="h-12 w-12 rounded-md border border-border object-cover" />
-                    <span className="text-sm font-medium text-foreground">{t.readyPhoto}</span>
+                    <span className="text-body font-medium text-foreground">{t.readyPhoto}</span>
                   </div>
                 ) : null}
 
                 <div className="flex justify-end">
-                  <button type="submit" disabled={!newPhotoData || isSavingPhoto} className={`${primaryButton} w-full sm:w-auto`}>
+                  <Button type="submit" variant="action" size="md" disabled={!newPhotoData || isSavingPhoto} className="w-full px-5 sm:w-auto">
                     {isSavingPhoto ? t.uploading : t.attachPhoto}
-                  </button>
+                  </Button>
                 </div>
               </form>
 
@@ -1310,7 +1310,7 @@ export function PatientPortalView({
                       <div className="aspect-square w-full overflow-hidden bg-muted">
                         <img src={item.data_url} alt={item.name} className="h-full w-full object-cover" />
                       </div>
-                      <div className="p-2 text-xs">
+                      <div className="p-2 text-meta">
                         <p className="truncate font-semibold text-foreground" title={item.name}>{item.name}</p>
                         <p className="text-muted-foreground tabular-nums">{fmtDate(item.date)}</p>
                         {item.notes ? <p className="mt-1 text-muted-foreground">{item.notes}</p> : null}
@@ -1333,10 +1333,10 @@ export function PatientPortalView({
                   {notesLog.map((entry) => (
                     <li key={entry.id} className="py-3">
                       <div className="flex items-baseline justify-between gap-3">
-                        <p className="text-sm font-semibold text-foreground">{entry.title}</p>
-                        <p className="shrink-0 text-xs text-muted-foreground tabular-nums">{fmtDate(entry.date)}</p>
+                        <p className="text-body font-semibold text-foreground">{entry.title}</p>
+                        <p className="shrink-0 text-meta text-muted-foreground tabular-nums">{fmtDate(entry.date)}</p>
                       </div>
-                      <p className="mt-1 whitespace-pre-wrap break-words text-sm text-foreground">{entry.text}</p>
+                      <p className="mt-1 whitespace-pre-wrap break-words text-body text-foreground">{entry.text}</p>
                     </li>
                   ))}
                 </ul>

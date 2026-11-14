@@ -44,7 +44,10 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   // Browser bar matches the page ground; a red bar on every page read as an alarm.
-  themeColor: "#fcfbf9",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fcfbf9" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a1226" },
+  ],
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -55,6 +58,18 @@ export async function generateMetadata(): Promise<Metadata> {
     title: site.title,
     description: site.description,
     applicationName: "RediHealth",
+    appleWebApp: {
+      capable: true,
+      title: "RediHealth",
+      statusBarStyle: "default",
+    },
+    formatDetection: {
+      telephone: false,
+    },
+    // Next.js 16 emits mobile-web-app-capable from appleWebApp.capable; add apple-mobile-web-app-capable for iOS standalone mode.
+    other: {
+      "apple-mobile-web-app-capable": "yes",
+    },
     openGraph: {
       type: "website",
       siteName: "RediHealth",
@@ -94,7 +109,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       >
         <a
           href="#main-content"
-          className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[100] focus-visible:rounded-lg focus-visible:bg-foreground focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-semibold focus-visible:text-white"
+          className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[100] focus-visible:rounded-lg focus-visible:bg-foreground focus-visible:px-4 focus-visible:py-2 focus-visible:text-body focus-visible:font-semibold focus-visible:text-white"
         >
           {siteMetadata[lang].skipLink}
         </a>

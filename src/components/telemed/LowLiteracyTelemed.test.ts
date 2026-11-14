@@ -61,11 +61,19 @@ describe("Scenario 7: online doctor hero and waiting room", () => {
     expect(html).not.toContain("rounded-full");
   });
 
-  it("renders the hero without rounded-full pills and with min-h-12 CTAs", () => {
+  it("renders the hero without rounded-full pills, with min-h-12 CTAs, text sound link, and pharmacy outside card", () => {
     const html = renderToStaticMarkup(createElement(MedicOnlineHero));
     expect(html).not.toContain("rounded-full");
     expect(html).toContain("min-h-12");
     expect(html).toContain("whitespace-nowrap");
+    expect(html).toContain(heroCopy.ro.soundTest);
+    expect(heroCopy.en.soundTest).toBe("Test your sound");
+    expect(html).not.toContain("w-12 min-h-12 min-w-12");
+    const heroSource = read("MedicOnlineHero.tsx");
+    expect(heroSource).not.toContain("CheckIcon");
+    expect(heroSource.indexOf("findHelp.nearestPharmacy")).toBeGreaterThan(
+      heroSource.indexOf("{mp.cardBookingAction}"),
+    );
   });
 
   it("source uses useReadAloud in the queue launcher", () => {

@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon } from "@/components/ui/icons";
+import { ListenButton } from "@/components/ui/ListenButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -16,13 +17,11 @@ import {
   CloseIcon,
   FemaleBodyIcon,
   FrontViewIcon,
-  ListenIcon,
   MusclesIcon,
   OrgansIcon,
   ResetViewIcon,
   SkinIcon,
   SlidersIcon,
-  StopListenIcon,
   WholeBodyIcon,
   ZoomInIcon,
   ZoomOutIcon,
@@ -97,6 +96,8 @@ export interface AnatomicalBodyMapProps {
   compact?: boolean;
   /** Suppress the extra mobile literacy block below the stage when an Assistant step card docks directly beneath it. */
   hideMobileLiteracyCard?: boolean;
+  /** When true (phones in List mode), render nothing and avoid mounting AnatomicalViewport3D or fetching 3D assets. */
+  deferred?: boolean;
 }
 
 const COPY: Record<
@@ -120,6 +121,8 @@ const COPY: Record<
     liteLoad: string;
     options: string;
     layer: string;
+    inside: string;
+    turnBody: string;
     layers: Record<LayerModeId, string>;
     search: string;
     searchPlaceholder: string;
@@ -174,6 +177,8 @@ const COPY: Record<
     liteLoad: "Показать 3D-тело",
     options: "Варианты модели",
     layer: "Что показать",
+    inside: "Внутри",
+    turnBody: "Повернуть тело",
     layers: {
 "skeletal": "Кости",
 
@@ -205,6 +210,8 @@ const COPY: Record<
     liteLoad: "Arată corpul 3D",
     options: "Caută și opțiuni model",
     layer: "Ce se vede",
+    inside: "Interior",
+    turnBody: "Rotește corpul",
     layers: { surface: "Piele", muscular: "Mușchi", skeletal: "Oase", organs: "Organe", hybrid: "Tot corpul" },
     search: "Caută o parte a corpului",
     searchPlaceholder: "de exemplu sân, ovar, inimă, genunchi",
@@ -238,6 +245,8 @@ const COPY: Record<
     liteLoad: "Show the 3D body",
     options: "Search and model options",
     layer: "What to show",
+    inside: "Inside",
+    turnBody: "Turn the body",
     layers: { surface: "Skin", muscular: "Muscles", skeletal: "Bones", organs: "Organs", hybrid: "Whole body" },
     search: "Find a body part",
     searchPlaceholder: "for example breast, ovary, heart, knee",
@@ -271,6 +280,8 @@ const COPY: Record<
     liteLoad: "Shfaq trupin 3D",
     options: "Kërko dhe opsione të modelit",
     layer: "Çfarë shfaqet",
+    inside: "Brenda",
+    turnBody: "Rrotullo trupin",
     layers: { surface: "Lëkura", muscular: "Muskujt", skeletal: "Kockat", organs: "Organet", hybrid: "I gjithë trupi" },
     search: "Kërko një pjesë të trupit",
     searchPlaceholder: "për shembull gji, vezore, zemra, gjuri",
@@ -304,6 +315,8 @@ const COPY: Record<
     liteLoad: "Mostra il corpo 3D",
     options: "Cerca e opzioni del modello",
     layer: "Cosa mostrare",
+    inside: "Dentro",
+    turnBody: "Gira il corpo",
     layers: { surface: "Pelle", muscular: "Muscoli", skeletal: "Ossa", organs: "Organi", hybrid: "Tutto il corpo" },
     search: "Cerca una parte del corpo",
     searchPlaceholder: "per esempio seno, ovaio, cuore, ginocchio",
@@ -337,6 +350,8 @@ const COPY: Record<
     liteLoad: "Prikaži 3D tijelo",
     options: "Pretraži i opcije modela",
     layer: "Što prikazati",
+    inside: "Unutra",
+    turnBody: "Okreni tijelo",
     layers: { surface: "Koža", muscular: "Mišići", skeletal: "Kosti", organs: "Organi", hybrid: "Cijelo tijelo" },
     search: "Potraži dio tijela",
     searchPlaceholder: "na primjer dojka, jajnik, srce, koljeno",
@@ -370,6 +385,8 @@ const COPY: Record<
     liteLoad: "Sikav o 3D trupo",
     options: "Rode thaj opcie e modeloske",
     layer: "So dikljol",
+    inside: "Andre",
+    turnBody: "Bolde o trupo",
     layers: { surface: "Morti", muscular: "Muskulura", skeletal: "Kokala", organs: "Organura", hybrid: "Sasto trupo" },
     search: "Rode jekh kotor e truposko",
     searchPlaceholder: "misal chuchi, ilo, chang",
@@ -377,7 +394,7 @@ const COPY: Record<
     left: "stingo",
     right: "chacho",
     listen: "Ashun",
-    stopListen: "Achhav",
+    stopListen: "Achav",
     whyHurt: "Sostar shaj te dukhal?",
     hideWhy: "Garav",
     dismissInfo: "Phandav",
@@ -385,6 +402,8 @@ const COPY: Record<
     referredTo: "I dukh shaj te djal vi ko",
   },
 };
+
+export const BODY_MAP_COPY = COPY;
 
 /** Organs that already read on the skin view: they have their own zone on the body surface. */
 const SURFACE_ORGANS: ReadonlySet<SubRegionId> = new Set<SubRegionId>([
@@ -431,12 +450,14 @@ function DirectionPad({
   onMove,
   onReset,
   onAnnounce,
+  size = "desktop",
   className = "",
 }: {
   labels: Record<PadMove | "reset", string>;
   onMove: (move: PadMove) => void;
   onReset: () => void;
   onAnnounce?: (label: string) => void;
+  size?: "desktop" | "panel";
   className?: string;
 }) {
   const repeatRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -446,10 +467,11 @@ function DirectionPad({
   };
   useEffect(() => stop, []);
 
-  const tip =
-    "pointer-events-none absolute right-full top-1/2 mr-2 hidden -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-sm transition-[opacity,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/pad:translate-x-0 group-hover/pad:opacity-100 group-focus-visible/pad:translate-x-0 group-focus-visible/pad:opacity-100 sm:block";
-  const btn =
-    "group/pad relative inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground active:bg-sapphire-soft active:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring touch-none select-none";
+  const isPanel = size === "panel";
+  const btn = isPanel
+    ? "relative inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border-control bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted active:bg-sapphire-soft active:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring touch-none select-none"
+    : "relative inline-flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground active:bg-sapphire-soft active:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring touch-none select-none";
+  const iconSize = isPanel ? "h-5 w-5" : "h-4 w-4";
 
   const moveButton = (move: PadMove, Icon: typeof ChevronLeftIcon, iconClass: string, area: string) => (
     <button
@@ -477,10 +499,7 @@ function DirectionPad({
         if (e.detail === 0) onMove(move);
       }}
     >
-      <Icon className={`h-4 w-4 ${iconClass}`} aria-hidden="true" />
-      <span aria-hidden="true" className={tip}>
-        {labels[move]}
-      </span>
+      <Icon className={`${iconSize} ${iconClass}`} aria-hidden="true" />
     </button>
   );
 
@@ -488,7 +507,11 @@ function DirectionPad({
     <div
       role="group"
       aria-label={`${labels.up}, ${labels.down}, ${labels.left}, ${labels.right}`}
-      className={`grid grid-cols-3 grid-rows-3 rounded-2xl border border-border/90 bg-card/92 p-0.5 shadow-xs backdrop-blur-md [grid-template-areas:'._up_.'_'left_mid_right'_'._down_.'] ${className}`}
+      className={
+        isPanel
+          ? `inline-grid w-fit grid-cols-3 grid-rows-3 gap-2 rounded-2xl border border-border bg-muted/40 p-1.5 [grid-template-areas:'._up_.'_'left_mid_right'_'._down_.'] ${className}`
+          : `grid grid-cols-3 grid-rows-3 rounded-2xl border border-border/90 bg-card/92 p-0.5 shadow-xs backdrop-blur-md [grid-template-areas:'._up_.'_'left_mid_right'_'._down_.'] ${className}`
+      }
     >
       {moveButton("up", ChevronDownIcon, "rotate-180", "up")}
       {moveButton("left", ChevronLeftIcon, "", "left")}
@@ -502,10 +525,7 @@ function DirectionPad({
           onAnnounce?.(labels.reset);
         }}
       >
-        <ResetViewIcon className="h-3.5 w-3.5" aria-hidden="true" />
-        <span aria-hidden="true" className={tip}>
-          {labels.reset}
-        </span>
+        <ResetViewIcon className={isPanel ? "h-4.5 w-4.5" : "h-3.5 w-3.5"} aria-hidden="true" />
       </button>
       {moveButton("right", ChevronRightIcon, "", "right")}
       {moveButton("down", ChevronDownIcon, "", "down")}
@@ -513,7 +533,88 @@ function DirectionPad({
   );
 }
 
+function LayerSelectorRows({
+  activeLayer,
+  labels,
+  onSelect,
+}: {
+  activeLayer: LayerModeId;
+  labels: Record<LayerModeId, string>;
+  onSelect: (id: LayerModeId) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      {LAYER_ORDER.map((id) => {
+        const active = activeLayer === id;
+        const Icon = LAYER_ICON[id];
+        return (
+          <button
+            key={id}
+            type="button"
+            aria-pressed={active}
+            onClick={() => onSelect(id)}
+            className={`flex min-h-11 w-full items-center gap-2 whitespace-nowrap rounded-xl border px-3 py-2 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              active
+                ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
+                : "border-border-control bg-card text-foreground hover:bg-muted"
+            }`}
+          >
+            <Icon className="h-4.5 w-4.5 shrink-0" />
+            <span>{labels[id]}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function StageOverlayPortal({ portal, children }: { portal: boolean; children: ReactNode }) {
+  if (portal && typeof document !== "undefined") return createPortal(children, document.body);
+  return <>{children}</>;
+}
+
+/** Closes a floating stage panel on Escape or outside pointer down, restoring opener focus. */
+function useDismissiblePanel(
+  open: boolean,
+  panelRef: RefObject<HTMLDivElement | null>,
+  openerRef: RefObject<HTMLButtonElement | null>,
+  onDismiss: () => void,
+) {
+  useEffect(() => {
+    if (!open) return;
+    panelRef.current?.querySelector<HTMLElement>("input, button")?.focus({ preventScroll: true });
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onDismiss();
+        openerRef.current?.focus();
+      }
+    };
+    const onPointerDown = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as Node | null;
+      if (!target) return;
+      if (panelRef.current?.contains(target) || openerRef.current?.contains(target)) return;
+      onDismiss();
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown, { passive: true });
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+    };
+  }, [open, panelRef, openerRef, onDismiss]);
+}
+
 export function AnatomicalBodyMap({
+  deferred = false,
+  ...props
+}: AnatomicalBodyMapProps) {
+  if (deferred) return null;
+  return <AnatomicalBodyMapContent {...props} />;
+}
+
+function AnatomicalBodyMapContent({
   selectedPart,
   onSelectPart,
   selectedSubRegion = null,
@@ -535,17 +636,21 @@ export function AnatomicalBodyMap({
   lang,
   compact = false,
   hideMobileLiteracyCard = false,
-}: AnatomicalBodyMapProps) {
+}: Omit<AnatomicalBodyMapProps, "deferred">) {
   const activeLang = useSafeLanguage(lang);
   const dict = getHealthCheckTranslations(activeLang);
   const t = COPY[activeLang] ?? COPY[DEFAULT_LANG];
   const searchId = useId();
   const panelId = useId();
+  const layerMenuId = useId();
   const cameraRef = useRef<ViewportCameraApi | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLButtonElement>(null);
+  const layerPanelRef = useRef<HTMLDivElement>(null);
+  const insideOpenerRef = useRef<HTMLButtonElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [panelOpen, setPanelOpen] = useState(false);
+  const [layerOpen, setLayerOpen] = useState(false);
   const isDesktopLayout = useSyncExternalStore(subscribeDesktopLayout, readDesktopLayout, () => true);
   const [internalProfile, setInternalProfile] = useState<BodyAnatomyProfile>("general");
   const activeBodyProfile: BodyAnatomyProfile =
@@ -735,31 +840,27 @@ export function AnatomicalBodyMap({
       });
   }, [effectiveSubRegion, activeBodyProfile, activeLang]);
 
-  // Panel: Escape or outside click closes, focus moves to search input on open and back to opener on close.
-  useEffect(() => {
-    if (!panelOpen) return;
-    panelRef.current?.querySelector<HTMLElement>("input, button")?.focus({ preventScroll: true });
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setPanelOpen(false);
-        openerRef.current?.focus();
-      }
-    };
-    const onPointerDown = (e: MouseEvent | TouchEvent) => {
-      const target = e.target as Node | null;
-      if (!target) return;
-      if (panelRef.current?.contains(target) || openerRef.current?.contains(target)) return;
-      setPanelOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("mousedown", onPointerDown);
-    document.addEventListener("touchstart", onPointerDown, { passive: true });
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("mousedown", onPointerDown);
-      document.removeEventListener("touchstart", onPointerDown);
-    };
-  }, [panelOpen]);
+  const dismissPanel = useCallback(() => setPanelOpen(false), []);
+  const dismissLayerMenu = useCallback(() => setLayerOpen(false), []);
+  useDismissiblePanel(panelOpen, panelRef, openerRef, dismissPanel);
+  useDismissiblePanel(layerOpen, layerPanelRef, insideOpenerRef, dismissLayerMenu);
+
+  const handlePadMove = (move: PadMove) => {
+    const cam = cameraRef.current;
+    if (!cam) return;
+    if (move === "up") cam.panUp();
+    else if (move === "down") cam.panDown();
+    else {
+      setFreeView(true);
+      if (move === "left") cam.rotateLeft();
+      else cam.rotateRight();
+    }
+  };
+  const handlePadReset = () => {
+    setUserAngle(null);
+    setFreeView(false);
+    cameraRef.current?.resetCamera();
+  };
 
   const cameraButton = (label: string, Icon: typeof ZoomInIcon, action: keyof ViewportCameraApi) => (
     <button
@@ -779,7 +880,12 @@ export function AnatomicalBodyMap({
     openerRef.current?.focus({ preventScroll: true });
   };
 
-  const sectionTitle = "mb-1.5 text-sm font-semibold text-foreground";
+  const closeLayerMenu = () => {
+    setLayerOpen(false);
+    insideOpenerRef.current?.focus({ preventScroll: true });
+  };
+
+  const sectionTitle = "mb-1.5 text-body font-semibold text-foreground";
 
   /**
    * Body Literacy Card. From lg it is a bar above the stage ("bar"), so it never covers the
@@ -805,20 +911,20 @@ export function AnatomicalBodyMap({
       >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-sm font-semibold leading-snug text-foreground">
+            <p className="text-body font-semibold leading-snug text-foreground">
               {hudLocalized.label}
               {hudSideLabel}
             </p>
-            <p className="mt-0.5 text-xs text-muted-foreground">
+            <p className="mt-0.5 text-meta text-muted-foreground">
               {hudLocalized.tissueLabel}
             </p>
           </div>
-          <div className="flex shrink-0 items-center gap-1.5">
+          <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5">
             <button
               type="button"
               aria-expanded={literacyOpen}
               onClick={() => setLiteracyOpen((v) => !v)}
-              className="inline-flex h-8 max-w-full items-center gap-1 whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex h-8 max-w-full items-center gap-1 whitespace-nowrap rounded-lg px-2 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <span className="min-w-0 truncate">{literacyOpen ? t.hideWhy : t.whyHurt}</span>
               <ChevronDownIcon
@@ -826,24 +932,12 @@ export function AnatomicalBodyMap({
               />
             </button>
             {voice.available && (
-              <button
-                type="button"
-                onClick={() => (voice.speaking ? voice.stop() : voice.speak(speechParts))}
-                aria-label={`${voice.speaking ? t.stopListen : t.listen}: ${hudLocalized.label}`}
-                aria-pressed={voice.speaking}
-                className={`inline-flex h-8 shrink-0 items-center gap-1 whitespace-nowrap rounded-lg border px-2 text-xs font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                  voice.speaking
-                    ? "border-sapphire bg-sapphire-soft text-sapphire"
-                    : "border-border-control bg-card text-foreground hover:bg-muted"
-                }`}
-              >
-                {voice.speaking ? (
-                  <StopListenIcon className="h-3.5 w-3.5 shrink-0" />
-                ) : (
-                  <ListenIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
-                )}
-                <span>{voice.speaking ? t.stopListen : t.listen}</span>
-              </button>
+              <ListenButton
+                uiLang={activeLang}
+                isPlaying={voice.speaking}
+                onToggle={() => (voice.speaking ? voice.stop() : voice.speak(speechParts))}
+                ariaLabel={`${voice.speaking ? t.stopListen : t.listen}: ${hudLocalized.label}`}
+              />
             )}
             <button
               type="button"
@@ -861,7 +955,7 @@ export function AnatomicalBodyMap({
         </div>
 
         {literacyOpen && (
-          <div className="mt-2 max-w-prose space-y-2 border-t border-border/80 pt-2 text-xs leading-relaxed text-foreground">
+          <div className="mt-2 max-w-(--measure-reading) space-y-2 border-t border-border/80 pt-2 text-meta text-foreground">
             <p className="text-muted-foreground">{hudLocalized.summary}</p>
             <p>
               <span className="font-semibold text-foreground">{t.whatItDoes}: </span>
@@ -869,7 +963,7 @@ export function AnatomicalBodyMap({
             </p>
             <p className="text-muted-foreground">{hudLocalized.clinicalNotes}</p>
             {referredLabels.length > 0 && (
-              <p className="border-l-2 border-border pl-2.5 text-xs text-muted-foreground">
+              <p className="text-meta text-muted-foreground">
                 <span className="font-semibold text-foreground">{t.referredTo}: </span>
                 <span>{referredLabels.join(", ")}.</span>
               </p>
@@ -884,7 +978,7 @@ export function AnatomicalBodyMap({
     <div className={`w-full ${className}`}>
       {!bodyShown ? (
         // No 3D body (data saver, or a device that cannot draw it): one plain line above the list.
-        <p className="flex flex-wrap items-baseline gap-x-3 text-sm leading-relaxed text-muted-foreground">
+        <p className="flex flex-wrap items-baseline gap-x-3 text-body text-muted-foreground">
           <span>{unavailable ?? t.liteNote}</span>
           {lite && !unavailable && (
             <button
@@ -906,7 +1000,7 @@ export function AnatomicalBodyMap({
                 {/* Compact label pill inside the stage below lg; from lg the card is a bar above the stage. */}
                 <div
                   aria-hidden="true"
-                  className="lg:hidden pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-6.5rem)] rounded-xl border border-border/90 bg-card/92 px-2.5 py-1.5 text-xs font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md"
+                  className="lg:hidden pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-6.5rem)] rounded-xl border border-border/90 bg-card/92 px-2.5 py-1.5 text-meta font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md"
                 >
                   {hudLocalized.label}
                   {hudSideLabel}
@@ -915,7 +1009,7 @@ export function AnatomicalBodyMap({
             ) : selectionLabel ? (
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-6.5rem)] rounded-xl border border-border bg-card/92 px-2.5 py-1.5 text-xs font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md lg:left-3 lg:top-3 lg:max-w-[calc(100%-11rem)] lg:px-3 lg:text-sm"
+                className="pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-6.5rem)] rounded-xl border border-border bg-card/92 px-2.5 py-1.5 text-body font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md lg:left-3 lg:top-3 lg:max-w-[calc(100%-11rem)] lg:px-3"
               >
                 {selectionLabel}
               </div>
@@ -932,8 +1026,11 @@ export function AnatomicalBodyMap({
                   aria-controls={panelId}
                   aria-label={t.open}
                   title={t.open}
-                  onClick={() => setPanelOpen((open) => !open)}
-                  className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-border/90 bg-card/95 px-3 text-xs font-semibold text-foreground shadow-xs backdrop-blur-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                  onClick={() => {
+                    setLayerOpen(false);
+                    setPanelOpen((open) => !open);
+                  }}
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-border/90 bg-card/95 px-3 text-body font-semibold text-foreground shadow-xs backdrop-blur-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <SearchIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
                   <span className="whitespace-nowrap">{t.open}</span>
@@ -950,7 +1047,7 @@ export function AnatomicalBodyMap({
                   mobileHint.visible ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
                 }`}
               >
-                <span className="inline-block max-w-full truncate rounded-lg border border-border/90 bg-card/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-xs backdrop-blur-md">
+                <span className="inline-block max-w-full truncate rounded-lg border border-border/90 bg-card/95 px-2.5 py-1 text-meta font-semibold text-foreground shadow-xs backdrop-blur-md">
                   {mobileHint.text}
                 </span>
               </div>
@@ -984,8 +1081,8 @@ export function AnatomicalBodyMap({
             </AnatomicalViewport3D>
             </div>
 
-            {showTools && panelOpen && (() => {
-              const dialogOverlay = (
+            {showTools && panelOpen && (
+              <StageOverlayPortal portal={!isDesktopLayout}>
                 <div
                   onClick={(e) => {
                     if (e.target === e.currentTarget) closePanel();
@@ -1000,7 +1097,7 @@ export function AnatomicalBodyMap({
                     className="hc-sheet pointer-events-auto w-full max-w-md max-h-[min(42rem,88dvh)] overflow-y-auto rounded-2xl border border-border bg-card p-3.5 shadow-xl sm:max-w-lg sm:p-4 lg:absolute lg:right-3 lg:top-13 lg:z-40 lg:w-[min(27.5rem,calc(100%-1.5rem))] lg:max-h-[calc(100%-3.75rem)] lg:p-3.5"
                   >
                     <div className="mb-2 flex items-center justify-between gap-2">
-                      <p className="text-sm font-semibold text-foreground">{t.options}</p>
+                      <p className="text-body font-semibold text-foreground">{t.options}</p>
                       <button
                         type="button"
                         aria-label={t.close}
@@ -1024,13 +1121,13 @@ export function AnatomicalBodyMap({
                           onChange={(e) => setSearchQuery(e.target.value)}
                           placeholder={t.searchPlaceholder}
                           autoComplete="off"
-                          className="field-focus min-h-11 w-full rounded-xl border border-border-control bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+                          className="field-focus min-h-11 w-full rounded-xl border border-border-control bg-card pl-9 pr-3 text-body text-foreground placeholder:text-muted-foreground focus:outline-none"
                         />
                       </div>
                       {searchQuery.trim().length >= 2 && (
                         <ul className="popover-in mt-2 max-h-44 divide-y divide-border overflow-y-auto rounded-xl border border-border bg-card">
                           {searchResults.length === 0 ? (
-                            <li className="px-3 py-2 text-xs text-muted-foreground">{t.noResults}</li>
+                            <li className="px-3 py-2 text-body text-muted-foreground">{t.noResults}</li>
                           ) : (
                             searchResults.map((item, index) => (
                               <li
@@ -1045,7 +1142,7 @@ export function AnatomicalBodyMap({
                                     setSearchQuery("");
                                     setPanelOpen(false);
                                   }}
-                                  className="press-row flex min-h-11 w-full items-center justify-between gap-2 whitespace-nowrap px-3 py-2 text-left text-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                                  className="press-row flex min-h-11 w-full items-center justify-between gap-2 whitespace-nowrap px-3 py-2 text-left text-body transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
                                 >
                                   <span className="min-w-0 truncate font-medium text-foreground">{item.label}</span>
                                   <span className="shrink-0 text-muted-foreground">{dict.bodyParts[item.macroPart].title}</span>
@@ -1076,7 +1173,7 @@ export function AnatomicalBodyMap({
                                 setBodyProfile(id);
                                 closePanel();
                               }}
-                              className={`flex min-h-11 flex-1 items-center gap-2 whitespace-nowrap rounded-xl border px-3 py-2 text-left text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                              className={`flex min-h-11 flex-1 items-center gap-2 whitespace-nowrap rounded-xl border px-3 py-2 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                                 active
                                   ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
                                   : "border-border-control bg-card text-foreground hover:bg-muted"
@@ -1092,32 +1189,16 @@ export function AnatomicalBodyMap({
 
                     <div role="group" aria-label={t.layer} className="mt-2.5">
                       <p className={sectionTitle}>{t.layer}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {LAYER_ORDER.map((id) => {
-                          const active = effectiveLayerMode === id;
-                          const Icon = LAYER_ICON[id];
-                          return (
-                            <button
-                              key={id}
-                              type="button"
-                              aria-pressed={active}
-                              onClick={() => {
-                                setUserOverrodeLayer(true);
-                                setLayerMode(id);
-                                closePanel();
-                              }}
-                              className={`flex min-h-11 flex-1 items-center gap-2 whitespace-nowrap rounded-xl border px-3 py-2 text-left text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                                active
-                                  ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-                                  : "border-border-control bg-card text-foreground hover:bg-muted"
-                              }`}
-                            >
-                              <Icon className="h-4.5 w-4.5 shrink-0" />
-                              <span>{t.layers[id]}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
+                      <LayerSelectorRows
+                        activeLayer={effectiveLayerMode}
+                        labels={t.layers}
+                        onSelect={(id) => {
+                          setUserOverrodeLayer(true);
+                          setLayerMode(id);
+                          announceMobileHint(t.layers[id]);
+                          closePanel();
+                        }}
+                      />
                     </div>
 
                     <div role="group" aria-label={t.camera} className="mt-2.5">
@@ -1128,43 +1209,160 @@ export function AnatomicalBodyMap({
                         {cameraButton(t.resetView, ResetViewIcon, "resetCamera")}
                       </div>
                     </div>
+
+                    {!isDesktopLayout && (
+                      <div role="group" aria-label={t.turnBody} className="mt-2.5">
+                        <p className={sectionTitle}>{t.turnBody}</p>
+                        <DirectionPad
+                          size="panel"
+                          labels={{ up: t.moveUp, down: t.moveDown, left: t.turnLeft, right: t.turnRight, reset: t.resetView }}
+                          onMove={handlePadMove}
+                          onReset={handlePadReset}
+                          onAnnounce={announceMobileHint}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
-              );
-              return !isDesktopLayout && typeof document !== "undefined"
-                ? createPortal(dialogOverlay, document.body)
-                : dialogOverlay;
-            })()}
+              </StageOverlayPortal>
+            )}
 
-            {showTools && (
+            {showTools && layerOpen && !isDesktopLayout && (
+              <StageOverlayPortal portal>
+                <div
+                  onClick={(e) => {
+                    if (e.target === e.currentTarget) closeLayerMenu();
+                  }}
+                  className="fixed inset-0 z-[60] flex items-end justify-center bg-black/50 p-3 sm:items-center"
+                >
+                  <div
+                    ref={layerPanelRef}
+                    id={layerMenuId}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={t.layer}
+                    className="hc-sheet pointer-events-auto w-full max-w-md max-h-[min(32rem,80dvh)] overflow-y-auto rounded-2xl border border-border bg-card p-3.5 shadow-xl sm:max-w-lg sm:p-4"
+                  >
+                    <div className="mb-2 flex items-center justify-between gap-2">
+                      <p className="text-body font-semibold text-foreground">{t.layer}</p>
+                      <button
+                        type="button"
+                        aria-label={t.close}
+                        onClick={closeLayerMenu}
+                        className="press-row -my-1.5 -mr-1.5 flex h-11 w-11 items-center justify-center rounded-xl text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        <CloseIcon className="h-4 w-4" />
+                      </button>
+                    </div>
+                    <LayerSelectorRows
+                      activeLayer={effectiveLayerMode}
+                      labels={t.layers}
+                      onSelect={(id) => {
+                        setUserOverrodeLayer(true);
+                        setLayerMode(id);
+                        announceMobileHint(t.layers[id]);
+                        closeLayerMenu();
+                      }}
+                    />
+                  </div>
+                </div>
+              </StageOverlayPortal>
+            )}
+
+            {showTools && isDesktopLayout && (
               <DirectionPad
-                className="absolute right-2.5 top-1/2 z-30 -translate-y-1/2 lg:right-3"
+                size="desktop"
+                className="hidden lg:grid absolute right-2.5 top-1/2 z-30 -translate-y-1/2 lg:right-3"
                 labels={{ up: t.moveUp, down: t.moveDown, left: t.turnLeft, right: t.turnRight, reset: t.resetView }}
-                onMove={(move) => {
-                  const cam = cameraRef.current;
-                  if (!cam) return;
-                  if (move === "up") cam.panUp();
-                  else if (move === "down") cam.panDown();
-                  else {
-                    setFreeView(true);
-                    if (move === "left") cam.rotateLeft();
-                    else cam.rotateRight();
-                  }
-                }}
-                onReset={() => {
-                  setUserAngle(null);
-                  setFreeView(false);
-                  cameraRef.current?.resetCamera();
-                }}
+                onMove={handlePadMove}
+                onReset={handlePadReset}
                 onAnnounce={announceMobileHint}
               />
             )}
 
-            {showTools && (
+            {showTools && !isDesktopLayout && (
               <div
                 role="toolbar"
                 aria-label={`${t.views}, ${t.camera}, ${t.layer}`}
-                className="absolute inset-x-2 bottom-4 z-30 mx-auto w-fit max-w-[calc(100%-1rem)] rounded-xl border border-border/90 bg-card/95 p-1 shadow-xs backdrop-blur-md lg:bottom-3 lg:shadow-sm"
+                className="absolute inset-x-1 bottom-5 z-30 mx-auto w-fit max-w-[calc(100%-0.5rem)] rounded-xl border border-border/90 bg-card/95 p-0.5 shadow-xs backdrop-blur-md sm:inset-x-2 sm:max-w-[calc(100%-1rem)] sm:p-1"
+              >
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {(["front", "back"] as const).map((preset) => {
+                    const active = !freeView && viewAngle === preset;
+                    const label = preset === "front" ? dict.ui.viewer3D.front : dict.ui.viewer3D.back;
+                    return (
+                      <button
+                        key={preset}
+                        type="button"
+                        aria-pressed={active}
+                        onClick={() => {
+                          setUserAngle(preset);
+                          setFreeView(false);
+                          setViewRequest((n) => n + 1);
+                          announceMobileHint(label);
+                        }}
+                        className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                          active
+                            ? "bg-sapphire-soft text-sapphire"
+                            : "text-foreground/80 hover:bg-muted hover:text-foreground"
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    );
+                  })}
+
+                  <button
+                    ref={insideOpenerRef}
+                    type="button"
+                    aria-expanded={layerOpen}
+                    aria-controls={layerMenuId}
+                    onClick={() => {
+                      setPanelOpen(false);
+                      setLayerOpen((open) => !open);
+                    }}
+                    className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      layerOpen || effectiveLayerMode !== "surface"
+                        ? "bg-sapphire-soft text-sapphire"
+                        : "text-foreground/80 hover:bg-muted hover:text-foreground"
+                    }`}
+                  >
+                    {t.inside}
+                  </button>
+
+                  <button
+                    type="button"
+                    aria-label={t.zoomOut}
+                    title={t.zoomOut}
+                    onClick={() => {
+                      cameraRef.current?.zoomOut();
+                      announceMobileHint(t.zoomOut);
+                    }}
+                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <ZoomOutIcon className="h-5 w-5 shrink-0" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label={t.zoomIn}
+                    title={t.zoomIn}
+                    onClick={() => {
+                      cameraRef.current?.zoomIn();
+                      announceMobileHint(t.zoomIn);
+                    }}
+                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <ZoomInIcon className="h-5 w-5 shrink-0" />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {showTools && isDesktopLayout && (
+              <div
+                role="toolbar"
+                aria-label={`${t.views}, ${t.camera}, ${t.layer}`}
+                className="absolute inset-x-2 bottom-3 z-30 mx-auto w-fit max-w-[calc(100%-1rem)] rounded-xl border border-border/90 bg-card/95 p-1 shadow-sm backdrop-blur-md"
               >
                 <div className="flex flex-wrap items-center justify-center gap-1">
                   <div className="flex shrink-0 items-center gap-1">
@@ -1184,7 +1382,7 @@ export function AnatomicalBodyMap({
                             setViewRequest((n) => n + 1);
                             announceMobileHint(label);
                           }}
-                          className={`inline-flex h-9 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-2.5 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                          className={`inline-flex h-9 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-2.5 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                             active
                               ? "bg-sapphire-soft text-sapphire"
                               : "text-foreground/80 hover:bg-muted hover:text-foreground"
@@ -1236,25 +1434,20 @@ export function AnatomicalBodyMap({
                           key={id}
                           type="button"
                           aria-label={label}
+                          title={label}
                           aria-pressed={active}
                           onClick={() => {
                             setUserOverrodeLayer(true);
                             setLayerMode(id);
                             announceMobileHint(label);
                           }}
-                          className={`group/tool relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                          className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                             active
                               ? "bg-sapphire-soft text-sapphire"
                               : "text-muted-foreground hover:bg-muted hover:text-foreground"
                           }`}
                         >
                           <Icon className="h-4 w-4 shrink-0" />
-                          <span
-                            aria-hidden="true"
-                            className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background opacity-0 shadow-sm transition-[opacity,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover/tool:translate-y-0 group-hover/tool:opacity-100 group-focus-visible/tool:translate-y-0 group-focus-visible/tool:opacity-100 sm:block"
-                          >
-                            {label}
-                          </span>
                         </button>
                       );
                     })}
@@ -1268,7 +1461,7 @@ export function AnatomicalBodyMap({
       )}
 
       {showTools && bodyShown && (
-        <p className={`mt-3 text-sm leading-snug text-muted-foreground ${toolsClassName}`}>
+        <p className={`mt-3 text-body leading-snug text-muted-foreground ${toolsClassName}`}>
           {dict.ui.viewer3D.tip}
         </p>
       )}

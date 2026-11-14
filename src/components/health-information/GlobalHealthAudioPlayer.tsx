@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import { speechEngine, formatSpeechText } from "@/lib/audio/speech-engine";
+import { useState, useEffect, useCallback, useRef, useMemo, useSyncExternalStore } from "react";
+import { speechEngine, formatSpeechText, splitSpeechSentences } from "@/lib/audio/speech-engine";
 import { playEarcon } from "@/lib/audio/earcon";
 import { isVoiceEnabled, useVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { Button } from "@/components/ui/Button";
 import { CloseIcon } from "@/components/ui/icons";
 import type { Lang } from "@/lib/i18n/translations";
 import {
@@ -34,56 +35,63 @@ const STEP_COPY: Record<
   {
     prevSentenceAria: string;
     nextSentenceAria: string;
-    prevLabel: string;
-    nextLabel: string;
     expandAria: string;
   }
 > = {
-"ru": {"prevSentenceAria":"Предыдущее предложение","nextSentenceAria":"Следующее предложение","prevLabel":"−1 предл.","nextLabel":"+1 предл.","expandAria":"Развернуть аудиоплеер"},
-
+  ru: {
+    prevSentenceAria: "Предыдущее предложение",
+    nextSentenceAria: "Следующее предложение",
+    expandAria: "Развернуть аудиоплеер",
+  },
   ro: {
     prevSentenceAria: "Propoziția anterioară",
     nextSentenceAria: "Propoziția următoare",
-    prevLabel: "-1 prop.",
-    nextLabel: "+1 prop.",
     expandAria: "Extinde cititorul audio",
   },
   en: {
     prevSentenceAria: "Previous sentence",
     nextSentenceAria: "Next sentence",
-    prevLabel: "-1 sent.",
-    nextLabel: "+1 sent.",
     expandAria: "Expand audio player",
   },
   sq: {
     prevSentenceAria: "Fjalia e mëparshme",
     nextSentenceAria: "Fjalia tjetër",
-    prevLabel: "-1 fjali",
-    nextLabel: "+1 fjali",
     expandAria: "Zgjero lexuesin audio",
   },
   it: {
     prevSentenceAria: "Frase precedente",
     nextSentenceAria: "Frase successiva",
-    prevLabel: "-1 frase",
-    nextLabel: "+1 frase",
     expandAria: "Espandi lettore audio",
   },
   hr: {
     prevSentenceAria: "Prethodna rečenica",
     nextSentenceAria: "Sljedeća rečenica",
-    prevLabel: "-1 reč.",
-    nextLabel: "+1 reč.",
     expandAria: "Proširi audio reproduktor",
   },
   rom: {
     prevSentenceAria: "Angluni vorba",
     nextSentenceAria: "Avutni vorba",
-    prevLabel: "-1 vorba",
-    nextLabel: "+1 vorba",
     expandAria: "Putar o audio",
   },
 };
+
+const COMPACT_MEDIA_QUERY = "(max-width: 639.98px)";
+
+function subscribeCompactViewport(onStoreChange: () => void): () => void {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return () => {};
+  }
+  const mql = window.matchMedia(COMPACT_MEDIA_QUERY);
+  mql.addEventListener("change", onStoreChange);
+  return () => mql.removeEventListener("change", onStoreChange);
+}
+
+function getCompactViewportSnapshot(): boolean {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return false;
+  }
+  return window.matchMedia(COMPACT_MEDIA_QUERY).matches;
+}
 
 function useSafeLanguageContext(): { lang: Lang } {
   try {
@@ -105,32 +113,6 @@ function pickSpeechLang(lang: Lang): string {
     (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ??
     (lang === "hr" ? "hr-HR" : "ro-RO")
   );
-}
-
-interface ParsedSentenceSpan {
-  startChar: number;
-  endChar: number;
-  text: string;
-}
-
-function splitSpeechSentences(text: string): ParsedSentenceSpan[] {
-  const spans: ParsedSentenceSpan[] = [];
-  const regex = /[^.!?]+[.!?]+(\s+|$)|[^.!?]+$/g;
-  let match: RegExpExecArray | null;
-  while ((match = regex.exec(text)) !== null) {
-    const raw = match[0];
-    if (raw.trim().length > 0) {
-      spans.push({
-        startChar: match.index,
-        endChar: match.index + raw.length,
-        text: raw,
-      });
-    }
-  }
-  if (spans.length === 0 && text.length > 0) {
-    spans.push({ startChar: 0, endChar: text.length, text });
-  }
-  return spans;
 }
 
 const PLAY_SWAP_CLASS =
@@ -160,17 +142,25 @@ export function GlobalHealthAudioPlayer({
     lang !== undefined ? isVoiceEnabled(lang) : ctxVoice && isVoiceEnabled(currentLang);
   // No voice in this language (e.g. sq): the player never opens, so no speech can start.
   const isActive = isOpen && voiceEnabled;
+  const isPhoneViewport = useSyncExternalStore(
+    subscribeCompactViewport,
+    getCompactViewportSnapshot,
+    () => false,
+  );
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState<number>(1.0);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [viewOverride, setViewOverride] = useState<"compact" | "expanded" | null>(null);
   const [progressPercent, setProgressPercent] = useState(0);
+  const isCompact = viewOverride !== null ? viewOverride === "compact" : isPhoneViewport;
 
   const onCloseRef = useRef(onClose);
   const onSentenceChangeRef = useRef(onActiveSentenceIndexChange);
   const speedRef = useRef(speed);
   const lastSentenceRef = useRef<number>(0);
   const currentOffsetRef = useRef<number>(0);
+  const playbackGenRef = useRef(0);
   const scrubberRef = useRef<HTMLDivElement | null>(null);
+  const playerRootRef = useRef<HTMLDivElement | null>(null);
   const isDraggingRef = useRef(false);
   const scrubRafRef = useRef<number | null>(null);
 
@@ -235,18 +225,6 @@ export function GlobalHealthAudioPlayer({
     return [];
   }, [chapterMarkers, formattedNarration, sentences, speechLang]);
 
-  const currentChapterLabel = useMemo(() => {
-    if (sectionTicks.length === 0) return "";
-    const currentRatio = progressPercent / 100;
-    let activeLabel = "";
-    for (const tick of sectionTicks) {
-      if (currentRatio + 0.01 >= tick.ratio && tick.label) {
-        activeLabel = tick.label;
-      }
-    }
-    return activeLabel;
-  }, [progressPercent, sectionTicks]);
-
   const getSentenceIndexAtOffset = useCallback(
     (charOffset: number): number => {
       if (sentences.length === 0) return 0;
@@ -266,6 +244,7 @@ export function GlobalHealthAudioPlayer({
       const clampedOffset = Math.max(0, Math.min(totalChars - 1, offsetChar));
       currentOffsetRef.current = clampedOffset;
       const remainingText = formattedNarration.slice(clampedOffset);
+      const gen = ++playbackGenRef.current;
 
       setIsPlaying(true);
       speechEngine.speak(remainingText, {
@@ -291,11 +270,15 @@ export function GlobalHealthAudioPlayer({
           }
         },
         onEnd: () => {
+          if (gen !== playbackGenRef.current) return;
           setIsPlaying(false);
-          setProgressPercent(100);
-          currentOffsetRef.current = totalChars;
+          if (speechEngine.getLastEndReason() === "completed") {
+            setProgressPercent(100);
+            currentOffsetRef.current = totalChars;
+          }
         },
         onError: () => {
+          if (gen !== playbackGenRef.current) return;
           setIsPlaying(false);
         },
       });
@@ -317,23 +300,61 @@ export function GlobalHealthAudioPlayer({
       return () => {
         unregister();
         clearTimeout(playTimer);
+        playbackGenRef.current += 1;
         speechEngine.stop();
       };
     } else {
+      playbackGenRef.current += 1;
       speechEngine.stop();
       lastSentenceRef.current = -1;
       currentOffsetRef.current = 0;
       const stopTimer = setTimeout(() => {
         setIsPlaying(false);
         setProgressPercent(0);
+        setViewOverride(null);
       }, 0);
       return () => clearTimeout(stopTimer);
     }
   }, [isActive, startSpeechFromOffset]);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const root = document.documentElement;
+    if (!isActive) {
+      root.style.removeProperty("--player-h");
+      root.removeAttribute("data-audio-player-open");
+      return;
+    }
+
+    root.setAttribute("data-audio-player-open", "true");
+    const syncHeight = () => {
+      const el = playerRootRef.current;
+      if (!el) return;
+      const height = Math.ceil(el.getBoundingClientRect().height);
+      if (height > 0) {
+        root.style.setProperty("--player-h", `${height}px`);
+      }
+    };
+
+    syncHeight();
+    let observer: ResizeObserver | null = null;
+    if (playerRootRef.current && typeof ResizeObserver !== "undefined") {
+      observer = new ResizeObserver(syncHeight);
+      observer.observe(playerRootRef.current);
+    }
+
+    return () => {
+      observer?.disconnect();
+      root.style.removeProperty("--player-h");
+      root.removeAttribute("data-audio-player-open");
+    };
+  }, [isActive, isCompact]);
+
   const handleClose = () => {
     playEarcon("stop");
+    playbackGenRef.current += 1;
     speechEngine.stop();
+    setViewOverride(null);
     onCloseRef.current();
   };
 
@@ -365,6 +386,7 @@ export function GlobalHealthAudioPlayer({
     speechEngine.setRate(newSpeed);
     if (isPlaying) {
       const charOffset = currentOffsetRef.current;
+      playbackGenRef.current += 1;
       speechEngine.stop();
       startSpeechFromOffset(charOffset, newSpeed);
     }
@@ -383,6 +405,7 @@ export function GlobalHealthAudioPlayer({
     lastSentenceRef.current = sentenceIdx;
     onSentenceChangeRef.current?.(sentenceIdx);
 
+    playbackGenRef.current += 1;
     speechEngine.stop();
     if (isPlaying) {
       startSpeechFromOffset(alignedOffset, speedRef.current);
@@ -406,6 +429,7 @@ export function GlobalHealthAudioPlayer({
     lastSentenceRef.current = nextIdx;
     onSentenceChangeRef.current?.(nextIdx);
 
+    playbackGenRef.current += 1;
     speechEngine.stop();
     if (isPlaying) {
       startSpeechFromOffset(targetOffset, speedRef.current);
@@ -462,102 +486,143 @@ export function GlobalHealthAudioPlayer({
 
   if (!isActive) return null;
 
-  if (isMinimized) {
-    return (
-      <div className="hh-dialog fixed bottom-4 right-4 z-40 flex items-center gap-1 rounded-lg border border-sapphire-border bg-card p-1.5 shadow-lg">
-        <button
-          type="button"
-          onClick={handleTogglePlay}
-          aria-label={
-            isPlaying
-              ? pickLocale(s.pauseAria, currentLang)
-              : pickLocale(s.playAria, currentLang)
-          }
-          className="press-solid flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-sapphire text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          {isPlaying ? (
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <rect x="6" y="4" width="4" height="16" />
-              <rect x="14" y="4" width="4" height="16" />
-            </svg>
-          ) : (
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <polygon points="5 3 19 12 5 21 5 3" />
-            </svg>
-          )}
-        </button>
+  const nextSpeed = speed === 0.85 ? 1.0 : 0.85;
+  const nextSpeedLabel =
+    speed === 0.85 ? pickLocale(s.normal, currentLang) : pickLocale(s.slower, currentLang);
+  const nextSpeedTitle =
+    speed === 0.85
+      ? pickLocale(s.normalSpeedTitle, currentLang)
+      : pickLocale(s.calmSpeedTitle, currentLang);
 
-        <button
-          type="button"
-          onClick={() => setIsMinimized(false)}
-          aria-label={stepUi.expandAria}
-          className="press-row inline-flex min-h-[44px] items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          <span className="tabular-nums">
-            {pickLocale(s.minimizedText, currentLang).replace(
-              "{progressPercent}",
-              String(progressPercent),
+  if (isCompact) {
+    return (
+      <div
+        ref={playerRootRef}
+        role="region"
+        aria-label={pickLocale(s.playerAria, currentLang)}
+        data-bottom-bar=""
+        data-audio-compact="true"
+        className={`hh-dialog fixed inset-x-0 bottom-0 z-40 flex min-h-16 items-center border-t border-border bg-card px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] min-[360px]:px-2.5 sm:px-4 ${className}`}
+      >
+        <div className="mx-auto flex w-full max-w-4xl items-center gap-1 min-[360px]:gap-1.5 sm:gap-3">
+          {/* Play/Pause with word */}
+          <button
+            type="button"
+            onClick={handleTogglePlay}
+            title={
+              isPlaying
+                ? pickLocale(s.pauseAria, currentLang)
+                : pickLocale(s.playAria, currentLang)
+            }
+            className="press-solid inline-flex min-h-11 shrink-0 items-center justify-center gap-1 min-[360px]:gap-1.5 rounded-(--radius-control) bg-sapphire px-2 text-body font-semibold whitespace-nowrap text-white shadow-(--hairline-refraction) transition-[background-color,box-shadow,opacity] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background min-[360px]:px-2.5 sm:px-3.5"
+          >
+            {isPlaying ? (
+              <svg
+                className="h-3.5 w-3.5 shrink-0 min-[360px]:h-4 min-[360px]:w-4"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <rect x="6" y="4" width="4" height="16" />
+                <rect x="14" y="4" width="4" height="16" />
+              </svg>
+            ) : (
+              <svg
+                className="h-3.5 w-3.5 shrink-0 min-[360px]:h-4 min-[360px]:w-4"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg>
             )}
-          </span>
-        </button>
+            <span>
+              {isPlaying
+                ? pickLocale(s.pauseButton, currentLang)
+                : pickLocale(s.playButton, currentLang)}
+            </span>
+          </button>
+
+          {/* Guide title (opens expanded controls) */}
+          <button
+            type="button"
+            onClick={() => setViewOverride("expanded")}
+            aria-label={`${title} — ${pickLocale(s.moreControls, currentLang)}`}
+            title={stepUi.expandAria}
+            className="press-row flex min-h-11 min-w-0 flex-1 items-center gap-1 rounded-(--radius-control) px-1 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background min-[360px]:gap-1.5 min-[360px]:px-2"
+          >
+            <span className="min-w-0 flex-1 truncate text-body font-semibold text-foreground">
+              {title}
+            </span>
+            <span className="hidden shrink-0 whitespace-nowrap text-meta font-semibold text-sapphire dark:text-sapphire-border sm:inline">
+              {pickLocale(s.moreControls, currentLang)}
+            </span>
+            <svg
+              className="h-4 w-4 shrink-0 text-muted-foreground"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M18 15l-6-6-6 6" />
+            </svg>
+          </button>
+
+          {/* Slower / Normal toggle */}
+          <button
+            type="button"
+            onClick={() => handleSetSpeed(nextSpeed)}
+            title={nextSpeedTitle}
+            className="press-row inline-flex min-h-11 shrink-0 items-center justify-center rounded-(--radius-control) border border-border-control bg-background px-2 text-body font-semibold whitespace-nowrap text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background min-[360px]:px-2.5 sm:px-3"
+          >
+            {nextSpeedLabel}
+          </button>
+
+          {/* Close */}
+          <button
+            type="button"
+            onClick={handleClose}
+            aria-label={pickLocale(s.closeAria, currentLang)}
+            className="press-row flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-(--radius-control) text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            <CloseIcon className="h-5 w-5" />
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
     <div
+      ref={playerRootRef}
       role="region"
       aria-label={pickLocale(s.playerAria, currentLang)}
-      className={`hh-dialog fixed bottom-4 inset-x-4 z-40 mx-auto max-w-xl rounded-lg border border-border bg-card p-3.5 shadow-xl sm:p-4 ${className}`}
+      data-bottom-bar=""
+      data-audio-compact="false"
+      className={`hh-dialog fixed inset-x-0 bottom-0 z-40 rounded-t-lg border-t border-border bg-card p-3.5 pb-[max(0.875rem,env(safe-area-inset-bottom))] shadow-xl sm:inset-x-4 sm:bottom-4 sm:mx-auto sm:max-w-xl sm:rounded-lg sm:border sm:p-4 ${className}`}
     >
-      {/* Top row: Title, vocal cadence, and minimize/close */}
+      {/* Top row: Title, reading duration, and minimize/close */}
       <div className="flex items-center justify-between gap-3 border-b border-border/50 pb-2.5">
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
-              <p className="truncate text-xs font-semibold leading-snug text-foreground">
-              {title}
-            </p>
-          </div>
-          <div className="mt-0.5 flex flex-wrap items-center gap-2">
-            <p className="text-xs text-muted-foreground">
-              {pickLocale(s.durationSubtitle, currentLang).replace(
-                "{durationMinutes}",
-                String(durationMinutes),
-              )}
-            </p>
-            {currentChapterLabel && (
-              <span className="border-l border-border pl-2 text-[11px] font-medium text-sapphire dark:text-sapphire-border">
-                {currentChapterLabel}
-              </span>
+          <p className="truncate text-body font-semibold leading-snug text-foreground">
+            {title}
+          </p>
+          <p className="mt-0.5 text-meta text-muted-foreground">
+            {pickLocale(s.durationSubtitle, currentLang).replace(
+              "{durationMinutes}",
+              String(durationMinutes),
             )}
-            {speechEngine.isFallbackVoice() && (
-              <span className="border-l border-border pl-2 text-[11px] font-medium text-muted-foreground">
-                {pickLocale(s.fallbackVoice, currentLang)}
-              </span>
-            )}
-            {speechEngine.getTier() === "transcript" && (
-              <span className="border-l border-border pl-2 text-[11px] font-medium text-amber-care dark:text-amber-care-border">
-                {pickLocale(s.transcriptMode, currentLang)}
-              </span>
-            )}
-          </div>
+          </p>
         </div>
 
         <div className="flex shrink-0 items-center gap-1">
           <button
             type="button"
-            onClick={() => setIsMinimized(true)}
-            className="press-row flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            onClick={() => setViewOverride("compact")}
+            className="press-row flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-(--radius-control) text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={pickLocale(s.minimizeAria, currentLang)}
           >
             <svg
@@ -575,7 +640,7 @@ export function GlobalHealthAudioPlayer({
           <button
             type="button"
             onClick={handleClose}
-            className="press-row flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="press-row flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-(--radius-control) text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-label={pickLocale(s.closeAria, currentLang)}
           >
             <CloseIcon className="h-5 w-5" />
@@ -585,7 +650,7 @@ export function GlobalHealthAudioPlayer({
 
       {/* Chapter-segmented rAF pointer-drag scrubber */}
       <div className="my-3">
-        <div className="mb-1.5 flex items-center justify-between text-xs font-medium text-muted-foreground tabular-nums">
+        <div className="mb-1.5 flex items-center justify-between text-meta font-medium text-muted-foreground tabular-nums">
           <span key={isPlaying ? "playing" : "paused"} className="swap-in">
             {isPlaying
               ? pickLocale(s.statusPlaying, currentLang)
@@ -663,14 +728,15 @@ export function GlobalHealthAudioPlayer({
         </div>
       </div>
 
-      {/* Controls row: -1 / +1 sentence step, play/pause, speed */}
+      {/* Controls row: Back / Next sentence step, play/pause, speed */}
       <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
-        <div className="inline-flex items-center gap-1.5">
+        <div className="inline-flex items-center gap-2">
           <button
             type="button"
             onClick={() => handleStepSentence(-1)}
-            className="press-row inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-border-control bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label={stepUi.prevSentenceAria}
+            className="press-row inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-3 py-2 text-body font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={`${pickLocale(s.backSentence, currentLang)} — ${stepUi.prevSentenceAria}`}
+            title={stepUi.prevSentenceAria}
           >
             <svg
               className="h-4 w-4 shrink-0"
@@ -685,16 +751,17 @@ export function GlobalHealthAudioPlayer({
               <polygon points="19 20 9 12 19 4 19 20" />
               <line x1="5" y1="19" x2="5" y2="5" />
             </svg>
-            <span className="hidden tabular-nums sm:inline">{stepUi.prevLabel}</span>
+            <span>{pickLocale(s.backSentence, currentLang)}</span>
           </button>
 
           <button
             type="button"
             onClick={() => handleStepSentence(1)}
-            className="press-row inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-border-control bg-card px-2.5 py-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label={stepUi.nextSentenceAria}
+            className="press-row inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-3 py-2 text-body font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={`${pickLocale(s.nextSentence, currentLang)} — ${stepUi.nextSentenceAria}`}
+            title={stepUi.nextSentenceAria}
           >
-            <span className="hidden tabular-nums sm:inline">{stepUi.nextLabel}</span>
+            <span>{pickLocale(s.nextSentence, currentLang)}</span>
             <svg
               className="h-4 w-4 shrink-0"
               viewBox="0 0 24 24"
@@ -712,11 +779,13 @@ export function GlobalHealthAudioPlayer({
         </div>
 
         {/* Play/Pause Button */}
-        <button
+        <Button
           type="button"
+          variant="action"
+          size="lg"
           onClick={handleTogglePlay}
-          className="press-solid inline-flex min-h-[48px] min-w-[48px] items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label={
+          className="min-w-[48px] shadow-xs"
+          title={
             isPlaying
               ? pickLocale(s.pauseAria, currentLang)
               : pickLocale(s.playAria, currentLang)
@@ -747,48 +816,17 @@ export function GlobalHealthAudioPlayer({
               <span>{pickLocale(s.pauseButton, currentLang)}</span>
             </span>
           </span>
-        </button>
+        </Button>
 
-        {/* Voice speed */}
-        <div
-          role="group"
-          aria-label={pickLocale(s.speedGroupAria, currentLang)}
-          className="inline-flex items-center gap-1 rounded-lg border border-border-control bg-muted/40 p-1"
+        {/* Slower / Normal toggle (words only, no x numbers) */}
+        <button
+          type="button"
+          onClick={() => handleSetSpeed(nextSpeed)}
+          title={nextSpeedTitle}
+          className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-(--radius-control) border border-border-control bg-background px-3.5 py-2 text-body font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
-          <button
-            type="button"
-            onClick={() => handleSetSpeed(0.85)}
-            aria-pressed={speed === 0.85}
-            className={`press-row inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-              speed === 0.85
-                ? "bg-card font-bold text-sapphire shadow-xs"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-            title={pickLocale(s.calmSpeedTitle, currentLang)}
-          >
-            <span className="tabular-nums">0.85x</span>
-            <span className="hidden text-xs font-normal text-muted-foreground sm:inline">
-              {pickLocale(s.calmSpeed, currentLang)}
-            </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleSetSpeed(1.0)}
-            aria-pressed={speed === 1.0}
-            className={`press-row inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-1 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-              speed === 1.0
-                ? "bg-card font-bold text-sapphire shadow-xs"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-            title={pickLocale(s.normalSpeedTitle, currentLang)}
-          >
-            <span className="tabular-nums">1.0x</span>
-            <span className="hidden text-xs font-normal text-muted-foreground sm:inline">
-              {pickLocale(s.normalSpeed, currentLang)}
-            </span>
-          </button>
-        </div>
+          {nextSpeedLabel}
+        </button>
       </div>
     </div>
   );

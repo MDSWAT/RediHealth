@@ -64,7 +64,7 @@ export function SmokingInteractiveHub({
               onClick={() => setActiveTab(tab)}
               onKeyDown={onTabKeyDown}
               className={cn(
-                "-mb-px flex min-h-11 shrink-0 items-end gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+                "-mb-px flex min-h-11 shrink-0 items-end gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-body font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                 selected
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",

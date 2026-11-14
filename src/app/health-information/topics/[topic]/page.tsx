@@ -113,7 +113,7 @@ export default async function HealthSummaryPage({ params }: Props) {
             <h2 id="summary-questions" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
               {copy.questions}
             </h2>
-            <ul className="mt-4 max-w-[65ch] list-disc space-y-3.5 pl-6 text-[1.125rem] leading-[1.7] text-foreground">
+            <ul className="mt-4 max-w-(--measure-reading) list-disc space-y-3.5 pl-6 text-reading text-foreground">
               {summary.questions.map((question) => (
                 <li key={question}>{question}</li>
               ))}
@@ -137,19 +137,19 @@ export default async function HealthSummaryPage({ params }: Props) {
           <TopicNextSteps lang={lang} topicTitle={summary.title} className="mt-12" />
 
           <footer className="mt-12 border-t border-border pt-8" aria-labelledby="summary-source">
-            <h2 id="summary-source" className="text-lg font-semibold text-foreground">
+            <h2 id="summary-source" className="text-title font-semibold text-foreground">
               {copy.sourceHeading}
             </h2>
-            <p className="mt-3 max-w-[65ch] text-base leading-relaxed text-muted-foreground">
+            <p className="mt-3 max-w-(--measure-reading) text-body text-muted-foreground">
               {copy.authorship}
             </p>
-            <p className="mt-3 max-w-[65ch] text-base leading-relaxed text-muted-foreground">
+            <p className="mt-3 max-w-(--measure-reading) text-body text-muted-foreground">
               {copy.sourceText}
             </p>
             <a
               href={summary.sourceUrl}
               hrefLang="en"
-              className="mt-3 inline-flex min-h-11 items-center gap-2 text-base font-semibold text-sapphire underline underline-offset-4 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="mt-3 inline-flex min-h-11 items-center gap-2 text-body font-semibold text-sapphire underline underline-offset-4 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.sourceLink}
               <ArrowRightIcon className="h-4 w-4 shrink-0 -rotate-45" aria-hidden="true" />

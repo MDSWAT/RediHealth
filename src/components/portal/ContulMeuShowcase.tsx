@@ -53,7 +53,7 @@ export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }
         <div className="fhs-enter mx-auto w-full max-w-[460px] py-6 sm:py-12">
           <Link
             href={withLangPrefix("/", lang)}
-            className="press-row -ml-2 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-(--radius-control) px-2 text-base font-semibold text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-mist dark:hover:text-paper"
+            className="press-row -ml-2 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-(--radius-control) px-2 text-body font-semibold text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-mist dark:hover:text-paper"
           >
             <ArrowLeftIcon aria-hidden="true" className="h-5 w-5 shrink-0" />
             <span>{copy.backHome}</span>
@@ -68,7 +68,7 @@ export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }
               {copy.previewRegionLabel}
             </h2>
 
-            <ul className="space-y-2.5 px-1 text-[15px] text-muted-foreground dark:text-mist">
+            <ul className="space-y-2.5 px-1 text-body text-muted-foreground dark:text-mist">
               {copy.features.map((feature) => {
                 const Icon = FEATURE_ICONS[feature.id];
                 return (
@@ -83,7 +83,7 @@ export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }
               })}
             </ul>
 
-            <p className="mt-4 flex items-start gap-2 px-1 text-sm leading-relaxed text-muted-foreground/85 dark:text-mist/80">
+            <p className="mt-4 flex items-start gap-2 px-1 text-body text-muted-foreground/85 dark:text-mist/80">
               <ShieldIcon
                 aria-hidden="true"
                 className="mt-0.5 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"

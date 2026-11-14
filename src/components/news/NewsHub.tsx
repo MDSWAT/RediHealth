@@ -1,29 +1,44 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState, useSyncExternalStore } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { ListenButton } from "@/components/ui/ListenButton";
+import { PageHeader } from "@/components/ui/PageHeader";
 import {
   ALL_ALBANIA,
   ALL_CROATIA,
   ALL_ITALY,
   ALL_MOLDOVA,
   EXTRA_MAP_COPY,
-  RomaniaCountyMap,
   countryAllValue,
   mapCountriesForLang,
   type MapCountry,
-} from "@/components/ui/RomaniaCountyMap";
+} from "@/components/ui/romania-county-map-helpers";
 import { useUserCounty } from "@/lib/geo-ip";
 import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
 import { PlaceNewsModal } from "@/components/news/PlaceNewsModal";
 import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
-import { ArrowRightIcon, PinIcon, SearchIcon, StethoscopeIcon, UsersIcon, VolumeIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, PinIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
 import { useReadAloud } from "@/components/health-check/readingTools";
-import { openSmartSearch } from "@/components/search/smart-search-events";
-import { getSmartSearchCopy } from "@/lib/i18n/smart-search-copy";
-import { HEALTH_DETAIL_SHARED_STRINGS } from "@/lib/i18n/health-myths";
+
+const RomaniaCountyMap = dynamic(
+  () => import("@/components/ui/RomaniaCountyMap").then((m) => m.RomaniaCountyMap),
+  { ssr: false, loading: () => null },
+);
+
+function subscribeDesktopLayout(onChange: () => void) {
+  const mql = window.matchMedia("(min-width: 1024px)");
+  mql.addEventListener("change", onChange);
+  return () => mql.removeEventListener("change", onChange);
+}
+
+function readDesktopLayout() {
+  return window.matchMedia("(min-width: 1024px)").matches;
+}
 import {
   ALBANIA_WIDE,
   CROATIA_WIDE,
@@ -86,7 +101,7 @@ ru: {
 };
 
 const utilityButton =
-  "press-row inline-flex min-h-11 items-center gap-2 rounded-lg border border-border-control max-w-full bg-card px-3.5 py-2 text-sm font-medium text-foreground whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-4";
+  "press-row inline-flex min-h-11 items-center gap-2 rounded-lg border border-border-control max-w-full bg-card px-3.5 py-2 text-body font-medium text-foreground whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-4";
 
 /**
  * NewsHub: the regional news page. Conditional maps follow the active language:
@@ -101,11 +116,7 @@ export function NewsHub() {
   const np = t.newsPage;
   const c = COPY[lang] ?? COPY.ro;
   const extra = EXTRA_MAP_COPY[lang] ?? EXTRA_MAP_COPY.ro;
-  const searchCopy = getSmartSearchCopy(lang);
   const voice = useReadAloud(lang);
-  const voiceStrings = HEALTH_DETAIL_SHARED_STRINGS.topicHero;
-  const listenLabel = voiceStrings.listenGuide[lang] ?? voiceStrings.listenGuide.ro;
-  const stopLabel = voiceStrings.stopAudio[lang] ?? voiceStrings.stopAudio.ro;
   const { county, setCounty } = useUserCounty();
 
   const mapCountries = useMemo(() => mapCountriesForLang(lang), [lang]);
@@ -122,7 +133,9 @@ export function NewsHub() {
   // Modal state carries both the chosen place and its country so shared names ("Călărași") never collide.
   const [modalState, setModalState] = useState<{ place: string; country: NewsCountry } | null>(null);
   const [countyModalOpen, setCountyModalOpen] = useState(false);
-  const [showMap, setShowMap] = useState(true);
+  const isDesktopLayout = useSyncExternalStore(subscribeDesktopLayout, readDesktopLayout, () => false);
+  const [mapOverride, setMapOverride] = useState<boolean | null>(null);
+  const showMap = mapOverride ?? isDesktopLayout;
 
   const selectedAreaForMap =
     activeCountry === "ro"
@@ -210,59 +223,33 @@ export function NewsHub() {
 
   return (
     <main id="main-content" className="flex-1 bg-background pb-12 sm:pb-16">
-      <header className="border-b border-border bg-card py-10 sm:py-14">
-        <Container>
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <h1 className="text-balance text-page text-foreground">{np.heroTitle}</h1>
-              <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">{np.heroSubtitle}</p>
-            </div>
-            <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap">
-              <button
-                type="button"
-                onClick={() => openSmartSearch()}
-                aria-label={searchCopy.triggerLabel}
-                title={searchCopy.triggerLabel}
-                className="press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <SearchIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                <span className="sr-only">{searchCopy.triggerLabel}</span>
-              </button>
+      <Container>
+        <PageHeader
+          title={np.heroTitle}
+          lead={np.heroSubtitle}
+          actions={
+            <>
               {voice.available && (
-                <button
-                  type="button"
-                  aria-pressed={voice.speaking}
-                  aria-label={voice.speaking ? stopLabel : listenLabel}
-                  title={voice.speaking ? stopLabel : listenLabel}
-                  onClick={() => {
+                <ListenButton
+                  uiLang={lang}
+                  isPlaying={voice.speaking}
+                  onToggle={() => {
                     if (voice.speaking) {
                       voice.stop();
                     } else {
                       voice.speak([np.heroTitle, np.heroSubtitle]);
                     }
                   }}
-                  className={`press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                    voice.speaking
-                      ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                      : "border-border-control bg-card text-foreground hover:bg-muted"
-                  }`}
-                >
-                  {voice.speaking ? (
-                    <span aria-hidden="true" className="block h-3 w-3 rounded-xs bg-current" />
-                  ) : (
-                    <VolumeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  )}
-                  <span className="sr-only">{voice.speaking ? stopLabel : listenLabel}</span>
-                </button>
+                />
               )}
               <button
                 type="button"
-                onClick={() => setShowMap((prev) => !prev)}
+                onClick={() => setMapOverride((prev) => !(prev ?? isDesktopLayout))}
                 aria-expanded={showMap}
                 aria-controls="news-county-map"
                 className={utilityButton}
               >
-                <span className="min-w-0 truncate">{showMap ? c.hideMap : c.showMap}</span>
+                {showMap ? c.hideMap : c.showMap}
               </button>
               <button type="button" onClick={() => setCountyModalOpen(true)} className={utilityButton}>
                 <PinIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
@@ -271,12 +258,12 @@ export function NewsHub() {
                   {changeActionLabel}
                 </span>
               </button>
-            </div>
-          </div>
-        </Container>
-      </header>
+            </>
+          }
+        />
+      </Container>
 
-      <div className="py-8 sm:py-12">
+      <div className="pt-6 pb-8 sm:pt-8 sm:pb-12">
         <Container>
           <div
             id="news-county-map"
@@ -286,30 +273,32 @@ export function NewsHub() {
           >
             <div className="calm-collapse-inner" inert={!showMap || undefined}>
               <div className="pb-10">
-                <RomaniaCountyMap
-                  selectedCounty={selectedAreaForMap}
-                  onSelectCounty={selectArea}
-                  activeHubs={hubs}
-                  countries={mapCountries}
-                  activeCountry={activeCountry}
-                  onCountryChange={setSelectedMapCountry}
-                />
+                {showMap && (
+                  <RomaniaCountyMap
+                    selectedCounty={selectedAreaForMap}
+                    onSelectCounty={selectArea}
+                    activeHubs={hubs}
+                    countries={mapCountries}
+                    activeCountry={activeCountry}
+                    onCountryChange={setSelectedMapCountry}
+                  />
+                )}
               </div>
             </div>
           </div>
 
           <section aria-labelledby="news-latest-heading">
             <div className="flex items-baseline justify-between gap-3 border-b border-border pb-2">
-              <h2 id="news-latest-heading" className="text-base font-semibold text-foreground">
+              <h2 id="news-latest-heading" className="text-body font-semibold text-foreground">
                 {c.latest}
               </h2>
               <button
                 type="button"
                 onClick={() => setModalState({ place: countryAllValue(activeCountry), country: activeCountry })}
-                className="group inline-flex min-h-[44px] max-w-full shrink-0 items-center gap-1 whitespace-nowrap rounded-sm text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="group inline-flex min-h-[44px] max-w-full shrink-0 items-center gap-1 whitespace-nowrap rounded-sm text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <span className="min-w-0 truncate">{np.resetFilter}</span>
-                <ArrowRightIcon aria-hidden="true" className="arrow-travel h-3.5 w-3.5 shrink-0" />
+                <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
               </button>
             </div>
             {/* Keyed on the country: switching the map re-lists the latest items in order, not all at once. */}
@@ -320,10 +309,10 @@ export function NewsHub() {
                     href={withLangPrefix(`${basePath}/${article.slug}`, lang)}
                     className="group press-row -mx-2.5 flex min-h-12 flex-col gap-1 rounded-lg px-2.5 py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/45 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
                   >
-                    <span lang={article.language} className="text-[15px] font-medium leading-snug text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire dark:group-hover:text-sapphire-border">
-                      <span className="link-draw">{article.title}</span>
+                    <span lang={article.language} className="text-body font-medium leading-snug text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none dark:group-hover:text-sapphire-border">
+                      <span>{article.title}</span>
                     </span>
-                    <span className="shrink-0 text-xs text-muted-foreground tabular-nums">
+                    <span className="shrink-0 text-meta text-muted-foreground tabular-nums">
                       {categoryLabels[article.category] ?? article.category}
                       <span aria-hidden="true" className="mx-1.5 inline-block h-3 w-px align-middle bg-border" />
                       {placeLabel(article.county, articleCountry(article))}
@@ -336,8 +325,8 @@ export function NewsHub() {
             </ul>
             {latest.length === 0 && (
               <div key={`empty-${activeCountry}`} className="swap-in border-b border-border py-8">
-                <p className="text-base font-semibold text-foreground">{np.emptyTitle}</p>
-                <p className="mt-1 max-w-prose text-sm leading-relaxed text-muted-foreground">{np.emptySubtitle}</p>
+                <p className="text-body font-semibold text-foreground">{np.emptyTitle}</p>
+                <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground">{np.emptySubtitle}</p>
               </div>
             )}
           </section>
@@ -347,26 +336,28 @@ export function NewsHub() {
             className="mt-12 flex flex-col gap-5 rounded-xl border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"
           >
             <div className="max-w-xl space-y-1">
-              <h2 id="news-handover-heading" className="text-balance text-lg font-semibold text-foreground">
+              <h2 id="news-handover-heading" className="text-balance text-title font-semibold text-foreground">
                 {np.handoverTitle}
               </h2>
-              <p className="text-sm leading-relaxed text-muted-foreground">{np.handoverSubtitle}</p>
+              <p className="text-body text-muted-foreground">{np.handoverSubtitle}</p>
             </div>
             <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
-              <Link
+              <Button
                 href={withLangPrefix("/medic-online", lang)}
-                className="press-solid inline-flex min-h-[48px] max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                variant="action"
+                size="lg"
               >
                 <StethoscopeIcon className="h-4 w-4 shrink-0" />
                 <span className="min-w-0 truncate">{np.handoverTelemed}</span>
-              </Link>
-              <Link
+              </Button>
+              <Button
                 href={withLangPrefix("/mediatori", lang)}
-                className="press-row inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border border-border-control max-w-full bg-card px-5 py-2.5 text-sm font-semibold text-foreground whitespace-nowrap transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                variant="outline"
+                size="lg"
               >
                 <UsersIcon className="h-4 w-4 shrink-0 text-sapphire" />
                 <span className="min-w-0 truncate">{np.handoverMediator}</span>
-              </Link>
+              </Button>
             </div>
           </section>
         </Container>

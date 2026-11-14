@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { CAPSULE_OUTLINE, CAPSULE_SHAPE } from "@/components/layout/chrome-capsule";
 import { useLanguage } from "@/lib/i18n/language-context";
 import {
   getReadingLevelSnapshot,
@@ -49,7 +50,7 @@ export const READING_LEVEL_COPY: Record<
   },
   en: {
     ariaLabel: "Reading mode",
-    simple: "Easy",
+    simple: "Simple",
     complete: "Detailed",
   },
   sq: {
@@ -80,7 +81,7 @@ export const READING_LEVEL_COPY: Record<
  * answers the pointer with a faint tint before it is chosen. Both are still under reduced motion.
  */
 const SEGMENT_CLASS =
-  "press-row relative z-10 inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-base transition-[color,background-color] duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none";
+  "press-row relative z-10 inline-flex min-h-11 items-center justify-center whitespace-nowrap px-2.5 py-2 text-body transition-[color,background-color] duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:min-h-12 sm:px-4";
 const SEGMENT_IDLE_CLASS =
   "font-medium text-muted-foreground hover:bg-sapphire-soft/50 hover:text-foreground dark:hover:bg-white/5";
 
@@ -101,15 +102,22 @@ export function ReadingLevelSwitcher({
 
   // Restore the reader's last choice on mount and keep in sync when changed from Header ComfortMenu.
   const latestRef = useRef({ level, onChange });
+  const syncingRef = useRef(false);
   useEffect(() => {
     latestRef.current = { level, onChange };
   }, [level, onChange]);
 
   useEffect(() => {
     const syncFromStore = () => {
+      if (syncingRef.current) return;
       const stored = getReadingLevelSnapshot();
       if (stored !== latestRef.current.level) {
-        latestRef.current.onChange(stored);
+        syncingRef.current = true;
+        try {
+          latestRef.current.onChange(stored);
+        } finally {
+          syncingRef.current = false;
+        }
       }
     };
     syncFromStore();
@@ -117,7 +125,9 @@ export function ReadingLevelSwitcher({
   }, []);
 
   const handleSelect = (newLevel: "simple" | "complete") => {
-    onChange(newLevel);
+    if (newLevel !== level) {
+      onChange(newLevel);
+    }
     setReadingLevel(newLevel);
   };
 
@@ -138,11 +148,12 @@ export function ReadingLevelSwitcher({
       role="group"
       aria-label={ariaLabel}
       onKeyDown={handleKeyDown}
-      className={`relative inline-grid grid-cols-2 items-center rounded-xl border border-border-control bg-card p-1 shadow-2xs ${className}`}
+      data-capsule-switch=""
+      className={`relative inline-grid grid-cols-2 items-center p-1 ${CAPSULE_SHAPE} ${CAPSULE_OUTLINE} ${className}`}
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-lg bg-sapphire shadow-xs transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none dark:bg-sapphire-light"
+        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] ${CAPSULE_SHAPE} bg-sapphire shadow-xs transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none dark:bg-sapphire-light`}
         style={{
           transform: level === "complete" ? "translateX(100%)" : "translateX(0%)",
         }}
@@ -153,7 +164,7 @@ export function ReadingLevelSwitcher({
         type="button"
         onClick={() => handleSelect("simple")}
         aria-pressed={level === "simple"}
-        className={`${SEGMENT_CLASS} ${
+        className={`${SEGMENT_CLASS} ${CAPSULE_SHAPE} ${
           level === "simple"
             ? "font-semibold text-white"
             : SEGMENT_IDLE_CLASS
@@ -167,7 +178,7 @@ export function ReadingLevelSwitcher({
         type="button"
         onClick={() => handleSelect("complete")}
         aria-pressed={level === "complete"}
-        className={`${SEGMENT_CLASS} ${
+        className={`${SEGMENT_CLASS} ${CAPSULE_SHAPE} ${
           level === "complete"
             ? "font-semibold text-white"
             : SEGMENT_IDLE_CLASS

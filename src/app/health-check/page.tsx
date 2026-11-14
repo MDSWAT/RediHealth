@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HealthCheckPage() {
   return (
     <main id="main-content" className="flex-1 pt-2 pb-[max(1rem,env(safe-area-inset-bottom))] sm:pt-3 sm:pb-6 lg:pb-8">
-      <Container size="workspace">
+      <Container>
         <HealthCheckExplorer />
       </Container>
     </main>

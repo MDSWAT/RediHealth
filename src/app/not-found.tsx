@@ -1,9 +1,9 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -14,13 +14,13 @@ const rescueCopy: Record<
   Lang,
   { searchLabel: string; assistantLabel: string; doctorLabel: string; findHelpLabel: string }
 > = {
-  ro: { searchLabel: "Caută pe site", assistantLabel: "Asistent de sănătate", doctorLabel: "Medic online", findHelpLabel: "Găsește ajutor" },
-  en: { searchLabel: "Search the site", assistantLabel: "Health assistant", doctorLabel: "Online doctor", findHelpLabel: "Find help" },
-  sq: { searchLabel: "Kërko në faqe", assistantLabel: "Asistent shëndetësor", doctorLabel: "Mjek online", findHelpLabel: "Gjej ndihmë" },
-  it: { searchLabel: "Cerca nel sito", assistantLabel: "Assistente sanitario", doctorLabel: "Medico online", findHelpLabel: "Trova aiuto" },
-  hr: { searchLabel: "Pretraži stranicu", assistantLabel: "Zdravstveni asistent", doctorLabel: "Liječnik online", findHelpLabel: "Pronađi pomoć" },
-  rom: { searchLabel: "Rod pe sajt", assistantLabel: "Sastipnasko asistento", doctorLabel: "Doktori online", findHelpLabel: "Rod zhutimos" },
-  ru: { searchLabel: "Искать на сайте", assistantLabel: "Помощник по здоровью", doctorLabel: "Врач онлайн", findHelpLabel: "Найти помощь" },
+  ro: { searchLabel: "Caută pe site", assistantLabel: "Asistent virtual", doctorLabel: "Vorbește cu un medic", findHelpLabel: "Farmacii și clinici" },
+  en: { searchLabel: "Search the site", assistantLabel: "Health assistant", doctorLabel: "Talk to a doctor", findHelpLabel: "Pharmacies and clinics" },
+  sq: { searchLabel: "Kërko në faqe", assistantLabel: "Asistent shëndetësor", doctorLabel: "Fol me një mjek", findHelpLabel: "Farmaci dhe klinika" },
+  it: { searchLabel: "Cerca nel sito", assistantLabel: "Assistente sanitario", doctorLabel: "Parla con un medico", findHelpLabel: "Farmacie e ambulatori" },
+  hr: { searchLabel: "Pretraži stranicu", assistantLabel: "Zdravstveni asistent", doctorLabel: "Razgovaraj s liječnikom", findHelpLabel: "Ljekarne i klinike" },
+  rom: { searchLabel: "Rod pe sajt", assistantLabel: "Sastipnasko azhutitori", doctorLabel: "Vaker ekhe doktoreya", findHelpLabel: "Farmaciye thaj klinike" },
+  ru: { searchLabel: "Искать на сайте", assistantLabel: "Помощник по здоровью", doctorLabel: "Поговорите с врачом", findHelpLabel: "Аптеки и клиники" },
 };
 
 function useSafeLanguage() {
@@ -40,7 +40,7 @@ function MissingRoute() {
   return (
     <svg
       viewBox="0 0 200 56"
-      className="mx-auto h-14 w-[200px] text-muted-foreground/60"
+      className="h-14 w-[200px] text-muted-foreground/60"
       fill="none"
       aria-hidden="true"
       focusable="false"
@@ -65,51 +65,49 @@ export default function NotFound() {
   const rescue = rescueCopy[lang];
 
   return (
-    <main id="main-content" className="flex flex-1 items-center py-16 sm:py-24">
-      <Container>
-        <section className="fhs-enter mx-auto max-w-2xl text-center">
-          <MissingRoute />
-          <h1 className="mt-8 text-balance text-page text-foreground">
-            {page.title}
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
-            {page.subtitle}
-          </p>
-          <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-nowrap sm:justify-center">
-            <Button
-              type="button"
-              variant="action"
-              onClick={() => openSmartSearch()}
-              className="min-h-12 whitespace-nowrap"
-            >
-              {rescue.searchLabel}
-            </Button>
-            <Button href={withLangPrefix("/", lang)} variant="secondary" className="min-h-12 whitespace-nowrap">
-              {page.backHome}
-            </Button>
-          </div>
+    <main id="main-content" className="flex flex-1 items-center pb-16 sm:pb-24">
+      <Container className="max-sm:px-2.5">
+        <section className="fhs-enter max-w-2xl">
+          <PageHeader
+            align="start"
+            above={<MissingRoute />}
+            title={page.title}
+            lead={page.subtitle}
+            actions={
+              <>
+                <Button
+                  type="button"
+                  variant="action"
+                  size="lg"
+                  onClick={() => openSmartSearch()}
+                >
+                  {rescue.searchLabel}
+                </Button>
+                <Button href={withLangPrefix("/", lang)} variant="outline" size="lg">
+                  {page.backHome}
+                </Button>
+              </>
+            }
+          />
           <nav
             aria-label={page.title}
             className="relative mt-8 grid grid-cols-1 gap-2.5 pt-6 sm:grid-cols-2"
           >
-            <span aria-hidden="true" className="rule-draw absolute inset-x-0 top-0 h-px bg-border" style={{ animationDelay: "420ms" }} />
+            <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-border" />
             {[
               { href: "/health-assistant", label: rescue.assistantLabel },
               { href: "/medic-online", label: rescue.doctorLabel },
               { href: "/find-help", label: rescue.findHelpLabel },
               { href: "/health-information", label: page.exploreHealth },
-            ].map((item, index) => (
-              // The four ways on arrive one after another once the route has drawn; each is a card
-              // whose label underline draws and whose arrow hands off on hover.
+            ].map((item) => (
               <Link
                 key={item.href}
                 href={withLangPrefix(item.href, lang)}
-                className="card-interactive list-in group press-row inline-flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-3 text-left text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                style={{ "--i": index + 4 } as CSSProperties}
+                className="card-interactive group press-row inline-flex min-h-12 items-center justify-between gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-2.5 py-3 text-left text-body font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:gap-3 sm:px-4"
               >
-                <span className="link-draw">{item.label}</span>
+                <span className="transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">{item.label}</span>
                 <ArrowRightIcon
-                  className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
+                  className="hidden h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none sm:inline-block"
                   aria-hidden="true"
                 />
               </Link>

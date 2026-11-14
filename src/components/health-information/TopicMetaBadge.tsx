@@ -1,6 +1,5 @@
 "use client";
 
-import { VolumeIcon } from "@/components/ui/icons";
 import { useVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -43,7 +42,7 @@ export function TopicMetaBadge({
   if (compact) {
     // Cards: one quiet line of text, no icons, middle dots, or colour.
     return (
-      <p className={`text-sm text-muted-foreground tabular-nums ${className}`}>
+      <p className={`text-body text-muted-foreground tabular-nums ${className}`}>
         {pickLocale(s.readMinutesShort, currentLang).replace("{minutes}", String(readMinutes))}
         {voiceEnabled && (
           <>
@@ -56,34 +55,18 @@ export function TopicMetaBadge({
   }
 
   return (
-    <div
-      className={`flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-muted-foreground ${
+    <p
+      className={`text-meta text-muted-foreground tabular-nums ${
         bordered ? "border-b border-border/40 pb-2.5" : ""
       } ${className}`}
     >
-      <span className="inline-flex items-center gap-1.5 tabular-nums">
-        <svg
-          className="h-4 w-4 shrink-0 text-sapphire"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <circle cx="12" cy="12" r="10" />
-          <polyline points="12 6 12 12 16 14" />
-        </svg>
-        <span>{pickLocale(s.readMinutesLong, currentLang).replace("{minutes}", String(readMinutes))}</span>
-      </span>
-
+      {pickLocale(s.readMinutesLong, currentLang).replace("{minutes}", String(readMinutes))}
       {voiceEnabled && (
-        <span className="inline-flex items-center gap-1.5 tabular-nums">
-          <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-          <span>{pickLocale(s.audioMinutesLong, currentLang).replace("{minutes}", String(audioMinutes))}</span>
-        </span>
+        <>
+          <span>, </span>
+          {pickLocale(s.audioMinutesLong, currentLang).replace("{minutes}", String(audioMinutes))}
+        </>
       )}
-    </div>
+    </p>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { ChevronDownIcon, CloseIcon } from "@/components/ui/icons";
+import { CAPSULE_PANEL, capsuleItem } from "@/components/layout/chrome-capsule";
 import { cn } from "@/lib/cn";
 import {
   resetComfortPreferences,
@@ -15,6 +16,7 @@ import type { Lang } from "@/lib/i18n/translations";
 
 type ComfortCopy = {
   buttonLabel: string;
+  comfortShort: string;
   title: string;
   textSizeLabel: string;
   scaleNormal: string;
@@ -33,6 +35,7 @@ type ComfortCopy = {
 export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
   ro: {
     buttonLabel: "Scris și confort",
+    comfortShort: "Text mare",
     title: "Citește mai ușor",
     textSizeLabel: "Mărimea scrisului",
     scaleNormal: "Obișnuit",
@@ -44,27 +47,29 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     motionLabel: "Mișcări pe ecran",
     calmMotionToggle: "Oprește elementele care se mișcă",
     calmMotionHelp: "Paginile și știrile rămân nemișcate, fără efecte de derulare.",
-    reset: "Revino la setările obișnuite",
+    reset: "Resetează",
     close: "Închide",
   },
   en: {
     buttonLabel: "Text and comfort",
+    comfortShort: "Text size",
     title: "Easier reading",
     textSizeLabel: "Text size",
     scaleNormal: "Normal",
     scaleLarge: "Large",
     scaleXl: "Extra large",
     explanationLabel: "Reading mode",
-    simpleLabel: "Easy",
+    simpleLabel: "Simple",
     completeLabel: "Detailed",
     motionLabel: "Screen motion",
     calmMotionToggle: "Stop moving screen elements",
     calmMotionHelp: "Keeps news tickers and sections still while you read.",
-    reset: "Reset to standard settings",
+    reset: "Reset settings",
     close: "Close",
   },
   sq: {
     buttonLabel: "Shkrimi dhe leximi",
+    comfortShort: "Teksti",
     title: "Lexim më i lehtë",
     textSizeLabel: "Madhësia e shkrimit",
     scaleNormal: "Normale",
@@ -76,11 +81,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     motionLabel: "Lëvizjet në ekran",
     calmMotionToggle: "Ndalo elementet që lëvizin",
     calmMotionHelp: "Lajmet dhe faqet qëndrojnë të qeta ndërsa lexon.",
-    reset: "Kthe cilësimet fillestare",
+    reset: "Kthe cilësimet",
     close: "Mbyll",
   },
   it: {
     buttonLabel: "Testo e lettura",
+    comfortShort: "Testo",
     title: "Leggi più facilmente",
     textSizeLabel: "Grandezza del testo",
     scaleNormal: "Normale",
@@ -92,11 +98,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     motionLabel: "Movimenti sullo schermo",
     calmMotionToggle: "Ferma gli elementi in movimento",
     calmMotionHelp: "Notizie e sezioni restano ferme mentre leggi.",
-    reset: "Ripristina impostazioni iniziali",
+    reset: "Ripristina tutto",
     close: "Chiudi",
   },
   hr: {
     buttonLabel: "Tekst i čitanje",
+    comfortShort: "Tekst",
     title: "Lakše čitanje",
     textSizeLabel: "Veličina slova",
     scaleNormal: "Uobičajeno",
@@ -108,11 +115,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     motionLabel: "Pokreti na zaslonu",
     calmMotionToggle: "Zaustavi pokretne elemente",
     calmMotionHelp: "Vijesti i stranice ostaju mirne dok čitaš.",
-    reset: "Vrati zadane postavke",
+    reset: "Vrati zadano",
     close: "Zatvori",
   },
   rom: {
     buttonLabel: "Lekhipen thaj dikhipen",
+    comfortShort: "Lil",
     title: "Mai lokho drabaripe",
     textSizeLabel: "Baripen le alfabetosko",
     scaleNormal: "Normalno",
@@ -124,11 +132,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     motionLabel: "Miškipen pe ekrano",
     calmMotionToggle: "Ačhav so miškisajvel",
     calmMotionHelp: "E nevimata thaj e riga ačhon phandade kana drabares.",
-    reset: "Risar kal purane setimata",
+    reset: "Risar setimata",
     close: "Phandav",
   },
   ru: {
     buttonLabel: "Текст и чтение",
+    comfortShort: "Шрифт",
     title: "Удобнее читать",
     textSizeLabel: "Размер текста",
     scaleNormal: "Обычный",
@@ -140,7 +149,7 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     motionLabel: "Движение на экране",
     calmMotionToggle: "Остановить движущиеся элементы",
     calmMotionHelp: "Строка новостей и блоки остаются неподвижными при чтении.",
-    reset: "Сбросить настройки",
+    reset: "Сбросить",
     close: "Закрыть",
   },
 };
@@ -148,6 +157,7 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
 type ComfortMenuProps = {
   variant?: "header" | "drawer";
   tone?: "light" | "default";
+  showLabel?: boolean;
   collapsible?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -157,6 +167,7 @@ type ComfortMenuProps = {
 export function ComfortMenu({
   variant = "header",
   tone = "default",
+  showLabel = false,
   collapsible = false,
   open,
   onOpenChange,
@@ -196,6 +207,7 @@ export function ComfortMenu({
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const scaleRadioRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const panelId = useId();
 
   const isCustomized = textScale !== "normal" || calmMotion || readingLevel === "complete";
@@ -236,34 +248,58 @@ export function ComfortMenu({
     };
   }, [isOpen, variant, collapsible, setOpen]);
 
-  const scaleOptions: { value: TextScale; glyph: string; label: string }[] = [
-    { value: "normal", glyph: "A", label: copy.scaleNormal },
-    { value: "large", glyph: "A+", label: copy.scaleLarge },
-    { value: "xl", glyph: "A++", label: copy.scaleXl },
+  const scaleOptions: { value: TextScale; previewSize: string; label: string }[] = [
+    { value: "normal", previewSize: "1rem", label: copy.scaleNormal },
+    { value: "large", previewSize: "1.14rem", label: copy.scaleLarge },
+    { value: "xl", previewSize: "1.26rem", label: copy.scaleXl },
   ];
 
+  function handleScaleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>, idx: number) {
+    let targetIdx: number | null = null;
+    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+      targetIdx = (idx + 1) % scaleOptions.length;
+    } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+      targetIdx = (idx - 1 + scaleOptions.length) % scaleOptions.length;
+    } else if (event.key === "Home") {
+      targetIdx = 0;
+    } else if (event.key === "End") {
+      targetIdx = scaleOptions.length - 1;
+    }
+    if (targetIdx === null) return;
+    event.preventDefault();
+    setTextScale(scaleOptions[targetIdx].value);
+    scaleRadioRefs.current[targetIdx]?.focus();
+  }
+
   const controlsBody = (
-    <div className="space-y-3.5 text-left">
+    <div className="space-y-4 text-left">
       <div style={{ "--i": 0 } as CSSProperties} className={cn(isOpen && "list-in")}>
-        <p className="text-xs font-semibold text-muted-foreground dark:text-mist">{copy.textSizeLabel}</p>
-        <div role="group" aria-label={copy.textSizeLabel} className="mt-1.5 grid grid-cols-3 gap-1.5">
-          {scaleOptions.map((option) => {
+        <p className="text-body font-semibold text-foreground dark:text-paper">{copy.textSizeLabel}</p>
+        <div role="radiogroup" aria-label={copy.textSizeLabel} className="mt-1.5 flex flex-col gap-1.5">
+          {scaleOptions.map((option, idx) => {
             const active = textScale === option.value;
             return (
               <button
                 key={option.value}
+                ref={(el) => {
+                  scaleRadioRefs.current[idx] = el;
+                }}
                 type="button"
-                aria-pressed={active}
+                role="radio"
+                aria-checked={active}
+                tabIndex={active ? 0 : -1}
                 onClick={() => setTextScale(option.value)}
+                onKeyDown={(event) => handleScaleKeyDown(event, idx)}
                 className={cn(
-                  "press-row flex min-h-12 min-w-0 flex-col items-center justify-center whitespace-nowrap rounded-xl border px-1.5 py-1.5 text-center transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+                  "press-row flex min-h-12 w-full items-center justify-start whitespace-nowrap rounded-xl border px-3 py-2 text-left text-body font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:px-3.5",
                   active
-                    ? "border-sapphire bg-sapphire-soft/75 text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
+                    ? "border-sapphire bg-sapphire-soft/75 font-semibold text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
                     : "border-border-control bg-muted/35 text-foreground hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
                 )}
               >
-                <span className="text-sm font-bold leading-none tabular-nums">{option.glyph}</span>
-                <span className="mt-1 max-w-full truncate text-[11px] font-medium leading-tight">{option.label}</span>
+                <span style={{ fontSize: option.previewSize }} className="leading-snug">
+                  {option.label}
+                </span>
               </button>
             );
           })}
@@ -271,8 +307,8 @@ export function ComfortMenu({
       </div>
 
       <div style={{ "--i": 1 } as CSSProperties} className={cn(isOpen && "list-in")}>
-        <p className="text-xs font-semibold text-muted-foreground dark:text-mist">{copy.explanationLabel}</p>
-        <div role="group" aria-label={copy.explanationLabel} className="mt-1.5 grid grid-cols-2 gap-1.5">
+        <p className="text-body font-semibold text-foreground dark:text-paper">{copy.explanationLabel}</p>
+        <div role="group" aria-label={copy.explanationLabel} className="mt-1.5 flex flex-col gap-1.5">
           {(
             [
               { value: "simple", label: copy.simpleLabel },
@@ -287,37 +323,40 @@ export function ComfortMenu({
                 aria-pressed={active}
                 onClick={() => setReadingLevel(option.value)}
                 className={cn(
-                  "press-row flex min-h-12 min-w-0 items-center justify-center whitespace-nowrap rounded-xl border px-2.5 py-1.5 text-center text-[13px] font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+                  "press-row flex min-h-12 w-full items-center justify-start whitespace-nowrap rounded-xl border px-3 py-2 text-left text-body font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:px-3.5",
                   active
                     ? "border-sapphire bg-sapphire-soft/75 text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
                     : "border-border-control bg-muted/35 text-foreground hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
                 )}
               >
-                <span className="min-w-0 truncate">{option.label}</span>
+                <span>{option.label}</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      <div style={{ "--i": 2 } as CSSProperties} className={cn(isOpen && "list-in", "pt-0.5")}>
+      <div
+        style={{ "--i": 2 } as CSSProperties}
+        className={cn(isOpen && "list-in", "border-t border-border/70 pt-2 dark:border-white/10")}
+      >
         <button
           type="button"
           role="switch"
           aria-checked={calmMotion}
           onClick={() => setCalmMotion(!calmMotion)}
           className={cn(
-            "press-row flex min-h-11 w-full items-center justify-between gap-3 rounded-xl border px-3 py-2 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+            "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-xl border px-3 py-2 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
             calmMotion
               ? "border-sapphire bg-sapphire-soft/60 dark:border-paper dark:bg-white/12"
               : "border-border-control bg-muted/35 hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10",
           )}
         >
           <span className="min-w-0 flex-1">
-            <span className="block text-xs font-semibold text-foreground dark:text-paper">
+            <span className="block text-body font-semibold text-foreground dark:text-paper">
               {copy.calmMotionToggle}
             </span>
-            <span className="mt-0.5 block text-[11px] leading-snug text-muted-foreground dark:text-mist">
+            <span className="mt-0.5 block text-meta leading-snug text-muted-foreground dark:text-mist">
               {copy.calmMotionHelp}
             </span>
           </span>
@@ -325,7 +364,7 @@ export function ComfortMenu({
             aria-hidden="true"
             className={cn(
               "inline-flex h-6 w-11 shrink-0 items-center justify-start rounded-md p-0.5 transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-              calmMotion ? "bg-sapphire" : "bg-ink-950/20 dark:bg-white/25",
+              calmMotion ? "bg-sapphire dark:bg-sapphire-border" : "bg-border-control dark:bg-white/30",
             )}
           >
             {/* The thumb travels the track (20px) rather than jumping between ends. */}
@@ -346,9 +385,9 @@ export function ComfortMenu({
             resetComfortPreferences();
             onDone?.();
           }}
-          className="inline-flex min-h-11 w-full items-center justify-center max-w-full whitespace-nowrap rounded-lg px-3 text-xs font-semibold text-sapphire underline decoration-sapphire/35 underline-offset-4 transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-sapphire-soft/45 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-paper dark:hover:bg-white/10"
+          className="inline-flex min-h-11 w-full items-center justify-center max-w-full whitespace-nowrap rounded-lg px-2 text-body font-semibold text-sapphire underline decoration-sapphire/35 underline-offset-4 transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-sapphire-soft/45 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-paper dark:hover:bg-white/10"
         >
-          <span className="min-w-0 truncate">{copy.reset}</span>
+          {copy.reset}
         </button>
       )}
     </div>
@@ -376,20 +415,20 @@ export function ComfortMenu({
           <span
             aria-hidden="true"
             className={cn(
-              "inline-flex w-4.5 shrink-0 items-center justify-center text-[13.5px] font-bold tracking-tight transition-colors duration-(--dur-fast)",
+              "inline-flex w-4.5 shrink-0 items-center justify-center text-body font-bold transition-colors duration-(--dur-fast)",
               isOpen || isCustomized
                 ? "text-sapphire dark:text-sapphire-border"
-                : "text-ink-900/50 group-hover:text-foreground dark:text-paper/55 dark:group-hover:text-paper",
+                : "text-muted-foreground group-hover:text-foreground dark:text-mist dark:group-hover:text-paper",
             )}
           >
             Aa
           </span>
-          <span className="min-w-0 flex-1 truncate text-[15.5px] font-medium leading-snug text-foreground dark:text-paper">
+          <span className="min-w-0 flex-1 truncate text-body font-medium leading-snug text-foreground dark:text-paper">
             {copy.buttonLabel}
           </span>
           <span
             className={cn(
-              "shrink-0 whitespace-nowrap text-sm font-medium",
+              "shrink-0 whitespace-nowrap text-body font-medium",
               textScale !== "normal"
                 ? "font-semibold text-sapphire dark:text-paper"
                 : "text-muted-foreground dark:text-mist",
@@ -399,7 +438,7 @@ export function ComfortMenu({
           </span>
           <ChevronDownIcon
             className={cn(
-              "h-4 w-4 shrink-0 text-ink-900/35 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-paper/35",
+              "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-mist",
               isOpen && "rotate-180 text-sapphire dark:text-paper",
             )}
           />
@@ -424,21 +463,8 @@ export function ComfortMenu({
 
   if (variant === "drawer") {
     return (
-      <section
-        aria-label={copy.title}
-        className="rounded-xl border border-border/75 bg-muted/25 p-3 dark:border-white/12 dark:bg-white/5"
-      >
-        <div className="mb-2.5 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span
-              aria-hidden="true"
-              className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-sapphire-soft text-xs font-bold text-sapphire dark:bg-white/15 dark:text-paper"
-            >
-              Aa
-            </span>
-            <p className="text-[13.5px] font-semibold text-foreground dark:text-paper">{copy.buttonLabel}</p>
-          </div>
-        </div>
+      <section aria-label={copy.title} className="space-y-2.5 pt-2">
+        <p className="text-body font-semibold text-foreground dark:text-paper">{copy.buttonLabel}</p>
         {controlsBody}
       </section>
     );
@@ -451,26 +477,26 @@ export function ComfortMenu({
         type="button"
         aria-expanded={isOpen}
         aria-controls={panelId}
-        aria-label={copy.buttonLabel}
+        aria-label={showLabel ? undefined : copy.buttonLabel}
         title={copy.buttonLabel}
+        data-capsule-item=""
+        data-header-trigger={showLabel ? "" : undefined}
         onClick={() => setOpen((prev) => !prev)}
         className={cn(
-          "press-row relative inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center whitespace-nowrap rounded-lg px-0 text-sm font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 motion-reduce:transition-none",
-          tone === "light"
-            ? "text-paper/90 hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
-            : "text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/85 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
-          !isOpen &&
-            hasComfortBoost &&
-            (tone === "light"
-              ? "bg-white/12 text-white"
-              : "bg-sapphire-soft/75 text-sapphire dark:bg-white/12 dark:text-paper"),
-          isOpen && (tone === "light" ? "bg-white/15 text-white" : "bg-muted text-foreground dark:bg-white/15"),
+          capsuleItem(tone === "light", isOpen || hasComfortBoost),
+          showLabel
+            ? "gap-1.5 px-2.5 text-meta font-semibold max-[359px]:px-2"
+            : "w-11",
         )}
       >
-        <span aria-hidden="true" className="text-[15px] font-bold tracking-tight">
+        <span
+          aria-hidden="true"
+          data-comfort-glyph={showLabel ? "" : undefined}
+          className={cn("text-body font-bold leading-none", showLabel && "max-[359px]:hidden")}
+        >
           Aa
         </span>
-        <span className="sr-only">{copy.buttonLabel}</span>
+        {showLabel ? <span>{copy.comfortShort}</span> : <span className="sr-only">{copy.buttonLabel}</span>}
       </button>
 
       <div
@@ -478,14 +504,12 @@ export function ComfortMenu({
         role="dialog"
         aria-label={copy.title}
         inert={!isOpen}
-        className={cn(
-          "fixed inset-x-3 top-[calc(var(--site-header-h,4rem)+0.5rem)] z-50 transition-[opacity,transform,visibility] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:pt-2",
-          isOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1.5 opacity-0",
-        )}
+        data-open={isOpen}
+        className="capsule-panel fixed inset-x-2 top-[calc(var(--site-header-h,4rem)+0.5rem)] z-50 sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:pt-3"
       >
-        <div className="w-auto rounded-(--radius-surface) border border-border bg-card p-4 text-foreground shadow-(--shadow-card-hover) sm:w-84 dark:border-white/10 dark:bg-ink-900 dark:text-paper">
+        <div className={cn(CAPSULE_PANEL, "w-auto max-w-full overflow-x-hidden p-2.5 sm:w-84 sm:p-4")}>
           <div className="mb-3 flex items-center justify-between gap-2 border-b border-border/70 pb-2.5 dark:border-white/10">
-            <h2 className="text-sm font-semibold text-foreground dark:text-paper">{copy.title}</h2>
+            <h2 className="text-body font-semibold text-foreground dark:text-paper">{copy.title}</h2>
             <button
               type="button"
               onClick={() => {

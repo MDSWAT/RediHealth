@@ -29,10 +29,10 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
 
   return (
     <section aria-labelledby={headingId} className={className}>
-      <h4 id={headingId} className="text-lg font-semibold text-foreground">
+      <h4 id={headingId} className="text-title font-semibold text-foreground">
         {copy.heading}
       </h4>
-      <p className="mt-1 max-w-prose text-sm leading-relaxed text-muted-foreground">{copy.intro}</p>
+      <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground">{copy.intro}</p>
 
       <div className="mt-5 grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:items-start">
         <figure className="relative">
@@ -63,13 +63,13 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
               </svg>
             )}
           </button>
-          <figcaption className="mt-2 text-xs leading-relaxed text-muted-foreground">
+          <figcaption className="mt-2 text-meta text-muted-foreground">
             {copy.ecgCaption}
           </figcaption>
         </figure>
 
         <div>
-          <p id={listLabelId} className="text-sm font-semibold text-foreground">
+          <p id={listLabelId} className="text-body font-semibold text-foreground">
             {copy.partsLabel}
           </p>
           <ul aria-labelledby={listLabelId} className="mt-2 divide-y divide-border border-y border-border">
@@ -87,7 +87,7 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
                   >
                     <span
                       aria-hidden="true"
-                      className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-xs font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+                      className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-meta font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
                         open
                           ? "border-foreground bg-foreground text-background"
                           : "border-border text-muted-foreground"
@@ -96,8 +96,8 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
                       {part.marker}
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-sm font-semibold text-foreground">{part.name[lang]}</span>
-                      <span className="mt-0.5 block text-sm leading-relaxed text-muted-foreground">
+                      <span className="block text-meta font-semibold text-foreground">{part.name[lang]}</span>
+                      <span className="mt-0.5 block text-body text-muted-foreground">
                         {part.role[lang]}
                       </span>
                     </span>
@@ -110,7 +110,7 @@ export function HeartAnatomyPanel({ lang, className = "" }: HeartAnatomyPanelPro
                     }`}
                   >
                     <div className="min-h-0 overflow-hidden">
-                      <p className="pb-3 pl-11 pr-2.5 text-sm leading-relaxed text-foreground">
+                      <p className="pb-3 pl-11 pr-2.5 text-body text-foreground">
                         <strong className="font-semibold">{copy.whenHighLabel}</strong> {part.whenHigh[lang]}
                       </p>
                     </div>

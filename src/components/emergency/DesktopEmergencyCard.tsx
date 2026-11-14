@@ -64,17 +64,17 @@ export function DesktopEmergencyCard({
 
         <div className="min-w-0 space-y-3 pr-8">
           <div>
-            <h3 id={titleId} className="text-lg font-semibold tracking-tight text-foreground">
+            <h3 id={titleId} className="text-title font-semibold text-foreground">
               {e.desktopDialTitle}
             </h3>
-            <p className="mt-0.5 text-sm text-muted-foreground">{e.desktopDialSubtitle}</p>
+            <p className="mt-0.5 text-body text-muted-foreground">{e.desktopDialSubtitle}</p>
           </div>
 
-          <p className="text-4xl font-semibold tracking-tight tabular-nums text-primary">112</p>
+          <p className="text-display font-semibold tabular-nums text-primary">112</p>
 
-          <p className="text-sm leading-relaxed text-muted-foreground">{e.desktopFreeNote}</p>
+          <p className="text-body text-muted-foreground">{e.desktopFreeNote}</p>
 
-          <p className="border-t border-border pt-3 text-sm leading-relaxed text-muted-foreground">
+          <p className="border-t border-border pt-3 text-body text-muted-foreground">
             {e.desktopRuralNote}
           </p>
         </div>

@@ -133,7 +133,7 @@ export function MythCategoryFilter({
               aria-pressed={isActive}
               onClick={() => onSelect(cat.slug)}
               className={cn(
-                "relative flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border px-3.5 py-2 text-sm transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none lg:-ml-px lg:min-h-10 lg:rounded-none lg:border-0 lg:border-l-2 lg:bg-transparent lg:px-0 lg:py-1.5 lg:pl-4 lg:text-[15px] dark:focus-visible:ring-paper",
+                "relative flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border px-3.5 py-2 text-body transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none lg:-ml-px lg:min-h-10 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-1.5 lg:pl-4 dark:focus-visible:ring-paper",
                 isActive
                   ? "border-sapphire bg-sapphire font-semibold text-paper dark:border-paper dark:bg-paper dark:text-ink-950 lg:border-transparent lg:bg-transparent lg:text-foreground dark:lg:border-transparent dark:lg:bg-transparent dark:lg:text-paper"
                   : "border-border-control bg-card font-medium text-foreground hover:border-sapphire/40 hover:text-foreground active:text-foreground dark:border-ink-700 dark:bg-ink-900 dark:text-mist dark:hover:border-ink-500 dark:hover:text-paper dark:active:text-paper lg:border-transparent lg:bg-transparent lg:text-muted-foreground dark:lg:border-transparent dark:lg:bg-transparent",

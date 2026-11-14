@@ -1,19 +1,23 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type CSSProperties, type FormEvent, type MouseEvent, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
-import { useLargeText, useReadAloud } from "@/components/health-check/readingTools";
+import { useReadAloud } from "@/components/health-check/readingTools";
+import { useSheetDialog } from "@/components/news/use-sheet-dialog";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
-import { AlertCircleIcon, ClockIcon, GlobeIcon, PhoneIcon, PinIcon, SearchIcon, XIcon } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
+import { ListenButton } from "@/components/ui/ListenButton";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { AlertCircleIcon, CheckIcon, ClockIcon, GlobeIcon, PhoneIcon, PinIcon, SearchIcon, XIcon } from "@/components/ui/icons";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
+import { LocationFilterPopover } from "@/components/find-help/LocationFilterPopover";
 import {
   FilterDropdown,
-  FilterMenuGroup as MenuGroup,
   FilterMenuOption as MenuOption,
 } from "@/components/ui/FilterDropdown";
 import { useLanguage } from "@/lib/i18n/language-context";
 import {
-  REGIONAL_CITY_PRESETS,
   type CityPreset,
   findHelpTranslations,
   formatHumanDistance,
@@ -22,7 +26,6 @@ import {
   isInstituteOpenNow,
 } from "@/lib/i18n/find-help-translations";
 import {
-  SUPPORTED_COUNTRIES,
   directionsUrl,
   primaryPhoneHref,
   type CountryCode,
@@ -33,7 +36,6 @@ import {
   readSavedFindHelpLocation,
   resolveSmartLocation,
   writeSavedFindHelpLocation,
-  type SmartCityOption,
   type SmartLocationResolution,
 } from "@/lib/smart-location";
 
@@ -43,7 +45,7 @@ function MapLoading() {
   // The map surface itself shimmers while the tiles load, so the frame never reads as broken.
   return (
     <div role="status" className="skeleton-sheen relative flex h-full items-center justify-center !rounded-none">
-      <span className="text-sm font-medium text-muted-foreground">{label}</span>
+      <span className="text-meta font-medium text-muted-foreground">{label}</span>
     </div>
   );
 }
@@ -214,23 +216,6 @@ function CategoryIcon({
   }
 }
 
-function SpeakerIcon({ playing, className = "h-4 w-4" }: { playing: boolean; className?: string }) {
-  if (playing) {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-        <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <path d="M11 5 6 9H3v6h3l5 4V5Z" />
-      <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-      <path d="M18.5 5.5a9 9 0 0 1 0 13" />
-    </svg>
-  );
-}
-
 function ListViewIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
@@ -252,55 +237,142 @@ function MapViewIcon({ className = "h-5 w-5" }: { className?: string }) {
 }
 
 const primaryFilledActionClass =
-  "press-solid inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-sapphire bg-sapphire px-3.5 py-2 text-sm font-semibold text-white shadow-2xs " +
+  "press-solid flex min-h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-sapphire bg-sapphire px-3 py-2 text-body font-semibold text-white shadow-2xs max-[359px]:gap-1.5 max-[359px]:px-2 " +
   "transition-[color,background-color,border-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none " +
   "hover:border-sapphire-light hover:bg-sapphire-light hover:shadow-xs " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1";
 
-const iconActionClass =
-  "press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-border-control bg-card text-foreground shadow-2xs " +
+const secondaryActionClass =
+  "press-row inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-3 py-2 text-body font-semibold text-foreground shadow-2xs " +
   "transition-[color,background-color,border-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none " +
-  "hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire " +
+  "hover:border-sapphire/50 hover:bg-sapphire-soft/35 hover:text-sapphire " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1";
 
-/** On/off filters look and announce as switches, so the off state still reads as a control. */
-function FilterSwitch({
+export function PlaceCardActions({
+  institute,
+  hasPhone,
+  phoneHref,
+  displayPhone,
+  shareText,
+  copy,
+  lang,
+  stopPropagation = false,
+}: {
+  institute: MedicalInstitute;
+  hasPhone: boolean;
+  phoneHref: string | null;
+  displayPhone: string | null | undefined;
+  shareText: string;
+  copy: (typeof findHelpTranslations)[keyof typeof findHelpTranslations];
+  lang: keyof typeof findHelpTranslations;
+  stopPropagation?: boolean;
+}) {
+  const handleLinkClick = stopPropagation
+    ? (event: MouseEvent<HTMLAnchorElement>) => event.stopPropagation()
+    : undefined;
+  const callLabel = hasPhone && displayPhone ? copy.callNumber(displayPhone) : null;
+
+  return (
+    <div className="mt-3.5 flex flex-col gap-2">
+      {hasPhone && phoneHref && callLabel ? (
+        <a
+          href={phoneHref}
+          aria-label={callLabel}
+          title={callLabel}
+          data-call-action=""
+          className={primaryFilledActionClass}
+          onClick={handleLinkClick}
+        >
+          <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <span className="tabular-nums">{callLabel}</span>
+        </a>
+      ) : (
+        <a
+          href={directionsUrl(institute)}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={copy.directions}
+          title={copy.directions}
+          className={primaryFilledActionClass}
+          onClick={handleLinkClick}
+        >
+          <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <span>{copy.directions}</span>
+        </a>
+      )}
+
+      <div className="flex flex-wrap items-center gap-2">
+        {hasPhone && phoneHref ? (
+          <a
+            href={directionsUrl(institute)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={copy.directions}
+            title={copy.directions}
+            className={secondaryActionClass}
+            onClick={handleLinkClick}
+          >
+            <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+            <span>{copy.directions}</span>
+          </a>
+        ) : null}
+        {institute.website ? (
+          <a
+            href={institute.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={copy.website}
+            title={copy.website}
+            className={secondaryActionClass}
+            onClick={handleLinkClick}
+          >
+            <GlobeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+            <span>{copy.website}</span>
+          </a>
+        ) : null}
+        <div
+          className="shrink-0"
+          onClick={stopPropagation ? (event) => event.stopPropagation() : undefined}
+        >
+          <FamilyShareButton
+            compact
+            lang={lang}
+            title={institute.name}
+            text={shareText}
+            url={directionsUrl(institute)}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Clean checkable filter toggle button with pressed state and trailing check icon. */
+function FilterToggleButton({
   checked,
   onToggle,
-  icon,
+  renderIcon,
   label,
 }: {
   checked: boolean;
   onToggle: () => void;
-  icon: ReactNode;
+  renderIcon: (checked: boolean) => ReactNode;
   label: string;
 }) {
   return (
     <button
       type="button"
-      role="switch"
-      aria-checked={checked}
+      aria-pressed={checked}
       onClick={onToggle}
-      className={`press-row flex min-h-12 max-w-full flex-auto items-center justify-between gap-3 rounded-xl border px-3.5 py-2 text-left text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:flex-initial ${
-        checked ? "border-sapphire bg-sapphire-soft/45" : "border-border-control bg-card hover:border-sapphire"
+      className={`inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2 text-body transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+        checked
+          ? "press-solid border-sapphire bg-sapphire font-semibold text-white shadow-2xs hover:border-sapphire-light hover:bg-sapphire-light"
+          : "press-row border-border-control bg-card font-medium text-foreground hover:border-sapphire hover:bg-sapphire-soft/35"
       }`}
     >
-      <span className="flex min-w-0 items-center gap-2">
-        {icon}
-        <span className="min-w-0 truncate whitespace-nowrap">{label}</span>
-      </span>
-      <span
-        aria-hidden="true"
-        className={`relative h-5 w-9 shrink-0 rounded-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
-          checked ? "bg-sapphire" : "bg-border-control"
-        }`}
-      >
-        <span
-          className={`absolute left-0.5 top-0.5 h-4 w-4 rounded-sm bg-white shadow-2xs motion-safe:transition-transform motion-safe:duration-[var(--dur-fast)] motion-safe:ease-[var(--ease-out-calm)] ${
-            checked ? "translate-x-4" : ""
-          }`}
-        />
-      </span>
+      {renderIcon(checked)}
+      <span>{label}</span>
+      {checked ? <CheckIcon className="h-4 w-4 shrink-0 text-white" aria-hidden="true" /> : null}
     </button>
   );
 }
@@ -318,7 +390,6 @@ export function FindHelpExplorer({
   const copy = findHelpTranslations[lang];
   const page = t?.findHelpPage ?? copy.page;
 
-  const [largeText, toggleLargeText] = useLargeText();
   const voice = useReadAloud(lang);
   const [speechTarget, setSpeechTarget] = useState<"intro" | "rights" | null>(null);
   const activeSpeech = voice.speaking ? speechTarget : null;
@@ -332,7 +403,6 @@ export function FindHelpExplorer({
   const [guessReason, setGuessReason] = useState<"language" | "region" | null>(() =>
     initialGuess.reason === "saved" ? null : initialGuess.reason,
   );
-  const [smartSuggestions, setSmartSuggestions] = useState<SmartCityOption[]>(() => initialGuess.suggestions);
   const clientSmartGuessRef = useRef<SmartLocationResolution>(initialGuess);
   const userPickedManuallyRef = useRef(false);
   /** GPS worked but the nearest place is over 80 km away: we show the suggested hub and say why. */
@@ -370,6 +440,23 @@ export function FindHelpExplorer({
   }, []);
 
   const [mobileView, setMobileView] = useState<MobileViewMode>("list");
+  const [filterSheetOpen, setFilterSheetOpen] = useState(false);
+  const filterSheetPanelRef = useRef<HTMLDivElement>(null);
+  const filterSheetTitleId = useId();
+  const desktopSearchInputId = useId();
+  const sheetSearchInputId = useId();
+  const closeFilterSheet = useCallback(() => setFilterSheetOpen(false), []);
+  useSheetDialog(filterSheetOpen, filterSheetPanelRef, closeFilterSheet);
+  useEffect(() => {
+    if (!filterSheetOpen || typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onChange = (event: MediaQueryListEvent) => {
+      if (event.matches) setFilterSheetOpen(false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [filterSheetOpen]);
+  const statusRowRef = useRef<HTMLDivElement>(null);
   const mapColumnRef = useRef<HTMLDivElement>(null);
   const listColumnRef = useRef<HTMLDivElement>(null);
   const [mobilePreviewId, setMobilePreviewId] = useState<string | null>(null);
@@ -432,7 +519,6 @@ export function FindHelpExplorer({
         savedChoice,
       });
       clientSmartGuessRef.current = resolved;
-      setSmartSuggestions(resolved.suggestions);
       if (!userPickedManuallyRef.current) {
         const targetArea = areaFromSmartResolution(resolved);
         setArea((prev) => {
@@ -454,6 +540,19 @@ export function FindHelpExplorer({
     locateUser(false);
   }, [locateUser]);
 
+  useEffect(() => {
+    const trimmed = searchInput.trim();
+    if (searchInput === "") {
+      if (search !== "") queueMicrotask(() => setSearch(""));
+      return;
+    }
+    if (trimmed === search) return;
+    const timer = window.setTimeout(() => {
+      setSearch(trimmed);
+    }, 280);
+    return () => window.clearTimeout(timer);
+  }, [searchInput, search]);
+
   const requestQuery = useMemo(() => {
     const params = new URLSearchParams();
     if (area.kind === "country") {
@@ -461,6 +560,9 @@ export function FindHelpExplorer({
     } else {
       params.set("lat", area.lat.toFixed(5));
       params.set("lng", area.lng.toFixed(5));
+      if (area.source === "city" && area.country) {
+        params.set("country", area.country);
+      }
     }
     if (category) params.set("category", category);
     if (search) params.set("q", search);
@@ -556,7 +658,7 @@ export function FindHelpExplorer({
         setMobilePreviewId(id);
       }
     },
-    [displayedInstitutes, visibleCount],
+    [displayedInstitutes, visibleCount, setMobilePreviewId],
   );
 
   useEffect(() => {
@@ -574,7 +676,7 @@ export function FindHelpExplorer({
     window.requestAnimationFrame(() => {
       const behavior: ScrollBehavior = prefersReducedMotion() ? "auto" : "smooth";
       if (next === "map") {
-        mapColumnRef.current?.scrollIntoView({ block: "start", behavior });
+        (statusRowRef.current ?? mapColumnRef.current)?.scrollIntoView({ block: "start", behavior });
         return;
       }
       const row = focusId ? itemRefs.current.get(focusId) : null;
@@ -638,17 +740,16 @@ export function FindHelpExplorer({
     setSearchInput("");
   }
 
-  const cityPresets = REGIONAL_CITY_PRESETS[activeCountry] ?? [];
   const activeCityName = area.kind === "point" && area.source === "city" ? area.cityName ?? null : null;
 
-  /** What the "Where" dropdown shows: short, so it fits half a phone screen. */
+  /** What the "Where" trigger shows: includes country whenever a city is selected. */
   const locationValue =
     locationStatus === "locating"
       ? copy.locating
       : gpsActive
         ? copy.myLocation
         : activeCityName
-          ? activeCityName
+          ? `${activeCityName}, ${copy.countries[activeCountry]}`
           : area.kind === "country"
             ? copy.countries[area.country]
             : copy.mapArea;
@@ -707,166 +808,128 @@ export function FindHelpExplorer({
 
   const numberLocale = lang === "rom" ? "ro" : lang;
   const allowOver80Km = area.kind === "point" && area.source === "city";
+  const distanceOriginCity = !gpsActive ? activeCityName : null;
+
+  const mobileLocationSummary =
+    locationStatus === "locating"
+      ? copy.locating
+      : gpsActive
+        ? copy.locationActive
+        : activeCityName
+          ? copy.nearPlace(activeCityName)
+          : area.kind === "country"
+            ? copy.showingCountry(copy.countries[area.country])
+            : copy.placesInArea;
+  const mobileFilterSummary = [
+    mobileLocationSummary,
+    category ? copy.categories[category] : copy.allPlaces,
+    emergencyOnly ? copy.emergencyWalkInFilter : null,
+    openNowOnly ? copy.openNowFilter : null,
+    search || null,
+  ]
+    .filter(Boolean)
+    .join(", ");
 
   const hasNotices =
     (manualLocateTried && locationStatus === "denied" && !gpsActive) ||
     showFarNotice ||
     emergencyOnly;
 
-  return (
-    <div>
-      {/* Row 1: Full-width page header with clean right-aligned utility actions */}
-      <header className="flex flex-col gap-3.5 sm:flex-row sm:items-end sm:justify-between">
-        <div className="min-w-0">
-          <h1 className="max-w-[28ch] text-balance text-2xl font-semibold tracking-[-0.02em] text-foreground sm:text-3xl">
-            {page.listTitle}
-          </h1>
-          <p className="mt-1.5 max-w-[60ch] text-base leading-relaxed text-muted-foreground">
-            {page.listSubtitle}
-          </p>
-        </div>
-
-        <div className="flex shrink-0 flex-nowrap items-center gap-2">
-          {voice.available && (
-            <button
-              type="button"
-              aria-pressed={activeSpeech === "intro"}
-              onClick={toggleIntroSpeech}
-              className={`press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
-                activeSpeech === "intro"
-                  ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                  : "border-sapphire/30 bg-sapphire-soft/65 text-sapphire hover:border-sapphire hover:bg-sapphire-soft"
-              }`}
-            >
-              <SpeakerIcon playing={activeSpeech === "intro"} className="h-4 w-4 shrink-0" />
-              <span>{activeSpeech === "intro" ? copy.stopListening : copy.listen}</span>
-            </button>
-          )}
-
-          <button
-            type="button"
-            aria-pressed={largeText}
-            aria-label={copy.largeText}
-            title={copy.largeText}
-            onClick={toggleLargeText}
-            className={`press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-xl border text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
-              largeText
-                ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                : "border-border-control bg-card text-foreground shadow-2xs hover:border-sapphire hover:bg-sapphire-soft/40"
-            }`}
-          >
-            <span aria-hidden="true" className="font-bold tracking-tight">
-              A+
-            </span>
-            <span className="sr-only">{copy.largeText}</span>
-          </button>
-        </div>
-      </header>
-
-      {/* Row 2: Full-width elevated horizontal filter toolbar */}
-      <section
-        aria-label={copy.searchPlaceholder}
-        className="mt-4 rounded-2xl border border-stone-200/90 bg-card p-3.5 shadow-(--shadow-card-rest) sm:p-4 dark:border-stone-800"
+  const renderFilterFields = (searchId: string, layout: "desktop" | "sheet") => {
+    const isSheet = layout === "sheet";
+    return (
+      <div
+        className={
+          isSheet
+            ? "flex flex-col gap-4"
+            : "grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,0.85fr)] xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,0.85fr)_auto_auto] xl:items-end"
+        }
       >
-        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] xl:grid-cols-[minmax(0,1.45fr)_minmax(0,0.9fr)_minmax(0,0.9fr)_auto_auto] xl:items-center">
-          <form onSubmit={submitSearch} className="flex flex-nowrap items-center gap-2 sm:col-span-2 lg:col-span-1" role="search">
-            <label className="relative min-w-0 flex-1">
-              <span className="sr-only">{copy.searchPlaceholder}</span>
-              <input
-                type="search"
-                name="q"
-                value={searchInput}
-                onChange={(event) => {
-                  setSearchInput(event.target.value);
-                  if (!event.target.value) setSearch("");
+        <form
+          onSubmit={(event) => {
+            submitSearch(event);
+          }}
+          className={isSheet ? "min-w-0" : "col-span-1 min-w-0 sm:col-span-2 lg:col-span-1"}
+          role="search"
+        >
+          <label htmlFor={searchId} className="mb-1.5 block text-meta font-medium text-foreground">
+            {copy.searchPlaceholder}
+          </label>
+          <div className="relative min-w-0">
+            <input
+              id={searchId}
+              type="search"
+              name="q"
+              value={searchInput}
+              onChange={(event) => {
+                const next = event.target.value;
+                setSearchInput(next);
+                if (!next) setSearch("");
+              }}
+              placeholder={copy.searchHint}
+              className={`field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-background/60 pl-10 text-body placeholder:text-muted-foreground hover:bg-card focus-visible:bg-card dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
+                searchInput ? "pr-12" : "pr-3.5"
+              }`}
+            />
+            {/* After the input so it can follow its focus: the glass takes the focus colour with the edge. */}
+            <SearchIcon
+              className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none peer-focus-visible:text-sapphire dark:peer-focus-visible:text-sapphire-border"
+              aria-hidden="true"
+            />
+            {searchInput && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchInput("");
+                  setSearch("");
                 }}
-                placeholder={copy.searchHint}
-                className={`field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-card pl-10 text-base placeholder:text-muted-foreground sm:text-sm ${
-                  searchInput ? "pr-12" : "pr-3"
-                }`}
-              />
-              {/* After the input so it can follow its focus: the glass takes the focus colour with the edge. */}
-              <SearchIcon
-                className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none peer-focus-visible:text-sapphire dark:peer-focus-visible:text-sapphire-border"
-                aria-hidden="true"
-              />
-              {searchInput && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchInput("");
-                    setSearch("");
-                  }}
-                  aria-label={copy.clearFilters}
-                  title={copy.clearFilters}
-                  className="absolute right-1 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                </button>
-              )}
-            </label>
-            <button
-              type="submit"
-              aria-label={copy.searchButton}
-              title={copy.searchButton}
-              className="press-solid inline-flex h-12 w-12 min-h-12 min-w-12 shrink-0 items-center justify-center rounded-xl bg-sapphire text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
-              <SearchIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-              <span className="sr-only">{copy.searchButton}</span>
-            </button>
-          </form>
-
-          <FilterDropdown
-            label={copy.locationLabel}
-            value={locationValue}
-            icon={<PinIcon className="h-5 w-5" aria-hidden="true" />}
-          >
-            <div className="space-y-2">
-              <MenuOption
-                selected={gpsActive}
-                icon={<PinIcon className="h-4.5 w-4.5" aria-hidden="true" />}
-                onSelect={() => locateUser(true)}
+                aria-label={copy.clearFilters}
+                title={copy.clearFilters}
+                className="absolute right-1 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                {copy.useMyLocation}
-              </MenuOption>
-              {cityPresets.length > 0 && (
-                <MenuGroup label={copy.cityQuickJumpLabel}>
-                  {cityPresets.map((city) => (
-                    <MenuOption
-                      key={city.name}
-                      selected={activeCityName === city.name}
-                      onSelect={() => {
-                        chooseCity({ ...city, country: activeCountry });
-                      }}
-                    >
-                      {city.name}
-                    </MenuOption>
-                  ))}
-                </MenuGroup>
-              )}
-              <MenuGroup label={copy.countryLabel}>
-                {SUPPORTED_COUNTRIES.map((country) => (
-                  <MenuOption
-                    key={country}
-                    selected={area.kind === "country" && area.country === country}
-                    onSelect={() => {
-                      chooseCountry(country);
-                    }}
-                  >
-                    {copy.countries[country]}
-                  </MenuOption>
-                ))}
-              </MenuGroup>
-            </div>
-          </FilterDropdown>
+                <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              </button>
+            )}
+          </div>
+        </form>
 
+        <div className="min-w-0">
+          {isSheet ? (
+            <p className="mb-1.5 text-meta font-medium text-foreground">{copy.locationLabel}</p>
+          ) : null}
+          <LocationFilterPopover
+            label={copy.locationLabel}
+            displayValue={locationValue}
+            activeCountry={activeCountry}
+            wholeCountrySelected={area.kind === "country" && area.country === activeCountry && !gpsActive}
+            activeCityName={activeCityName}
+            gpsActive={gpsActive}
+            locating={locationStatus === "locating"}
+            countries={copy.countries}
+            countryGroupLabel={copy.countryLabel}
+            cityGroupLabel={copy.cityQuickJumpLabel}
+            useMyLocationLabel={copy.useMyLocation}
+            locatingLabel={copy.locating}
+            wholeCountryOption={copy.wholeCountryOption}
+            onSelectCountry={chooseCountry}
+            onSelectCity={chooseCity}
+            onLocateUser={() => locateUser(true)}
+          />
+        </div>
+
+        <div className={isSheet ? "min-w-0" : "col-span-1 min-w-0"}>
+          {isSheet ? (
+            <p className="mb-1.5 text-meta font-medium text-foreground">{copy.categoryLabel}</p>
+          ) : null}
           <FilterDropdown
             label={copy.categoryLabel}
             value={category ? copy.categories[category] : copy.allCategories}
             icon={<CategoryIcon category={category} className="h-5 w-5" />}
-            align="right"
+            align={isSheet ? "left" : "right"}
+            hideLabel={isSheet}
+            inlineLabel={!isSheet}
           >
-            <div className="grid gap-0.5 sm:grid-cols-2">
+            <div className="space-y-0.5">
               {WAYFINDING_CATEGORIES.map((item) => (
                 <MenuOption
                   key={item ?? "all"}
@@ -881,146 +944,191 @@ export function FindHelpExplorer({
               ))}
             </div>
           </FilterDropdown>
-
-          <div className="flex flex-wrap gap-2.5 sm:col-span-2 lg:col-span-3 xl:contents">
-            <FilterSwitch
-              checked={emergencyOnly}
-              onToggle={() => {
-                const next = !emergencyOnly;
-                setEmergencyOnly(next);
-                // Emergency departments are in hospitals and some clinics, never in a pharmacy or a
-                // dentist: widen the kind of place so turning this on never ends in an empty list.
-                if (next && category && category !== "hospital") setCategory(null);
-              }}
-              icon={<AlertCircleIcon className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />}
-              label={copy.emergencyWalkInFilter}
-            />
-
-            <FilterSwitch
-              checked={openNowOnly}
-              onToggle={() => setOpenNowOnly((prev) => !prev)}
-              icon={<ClockIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />}
-              label={copy.openNowFilter}
-            />
-          </div>
         </div>
 
-        {/* Smart language/region location hint + 1-tap city/country switch */}
-        <div className="mt-3 flex flex-col gap-2 border-t border-border/70 pt-3 lg:flex-row lg:items-center lg:justify-between">
-          <p className="flex min-w-0 items-center gap-2 text-xs text-muted-foreground sm:text-sm">
-            <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-            <span className="min-w-0 truncate">
-              {gpsActive
-                ? copy.locationActive
-                : guessReason === "region" && activeCityName
-                  ? copy.suggestedByRegion(activeCityName, copy.countries[activeCountry])
-                  : guessReason === "language" && activeCityName
-                    ? copy.suggestedByLanguage(activeCityName, copy.countries[activeCountry])
-                    : locationSummary}
-            </span>
-          </p>
-
-          <div
-            role="group"
-            aria-label={copy.quickSuggestionsLabel}
-            className="flex flex-nowrap items-center gap-2 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {!gpsActive && locationStatus !== "locating" && (
-              <button
-                type="button"
-                onClick={() => locateUser(true)}
-                className="press-row inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-sapphire/35 bg-sapphire-soft/55 px-3 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                <span>{copy.useMyLocation}</span>
-              </button>
+        <div className={isSheet ? "flex flex-wrap gap-2" : "col-span-1 flex flex-wrap gap-2 sm:col-span-2 lg:col-span-3 xl:contents"}>
+          <FilterToggleButton
+            checked={emergencyOnly}
+            onToggle={() => {
+              const next = !emergencyOnly;
+              setEmergencyOnly(next);
+              // Emergency departments are in hospitals and some clinics, never in a pharmacy or a
+              // dentist: widen the kind of place so turning this on never ends in an empty list.
+              if (next && category && category !== "hospital") setCategory(null);
+            }}
+            renderIcon={(active) => (
+              <AlertCircleIcon
+                className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-primary"}`}
+                aria-hidden="true"
+              />
             )}
+            label={copy.emergencyWalkInFilter}
+          />
 
-            {smartSuggestions.map((city) => {
-              const isSelected =
-                area.kind === "point" &&
-                area.source === "city" &&
-                area.cityName === city.name &&
-                (area.country ?? activeCountry) === city.country;
-              return (
-                <button
-                  key={`${city.country}:${city.name}`}
-                  type="button"
-                  aria-pressed={isSelected}
-                  onClick={() => chooseCity(city)}
-                  className={`press-row inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                    isSelected
-                      ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                      : "border-border-control bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/40"
-                  }`}
-                >
-                  {city.name}
-                </button>
-              );
-            })}
+          <FilterToggleButton
+            checked={openNowOnly}
+            onToggle={() => setOpenNowOnly((prev) => !prev)}
+            renderIcon={(active) => (
+              <ClockIcon
+                className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-sapphire"}`}
+                aria-hidden="true"
+              />
+            )}
+            label={copy.openNowFilter}
+          />
+        </div>
+      </div>
+    );
+  };
 
+  const noticesBlock = hasNotices ? (
+    <div className="mt-3 space-y-2.5 border-t border-border/70 pt-3">
+      {manualLocateTried && locationStatus === "denied" && !gpsActive && (
+        <p className="text-body text-muted-foreground" role="status">
+          {copy.locationDenied}
+        </p>
+      )}
+
+      {showFarNotice && (
+        <p className="flex items-start gap-2.5 text-body font-medium text-foreground">
+          <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" aria-hidden="true" />
+          <span>{copy.distantLocationNotice(copy.countries[activeCountry])}</span>
+        </p>
+      )}
+
+      {emergencyOnly && (
+        <div
+          role="note"
+          className="rounded-xl border border-sapphire/25 bg-sapphire-soft/60 p-3.5 text-body text-foreground"
+        >
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="flex-1">{copy.emergencyRightsCallout}</p>
+            {voice.available && (
+              <ListenButton
+                uiLang={lang}
+                isPlaying={activeSpeech === "rights"}
+                onToggle={toggleRightsSpeech}
+                className="shrink-0 self-start"
+              />
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  ) : null;
+
+  return (
+    <div>
+      {/* Row 1: Unified page header with utility actions */}
+      <PageHeader
+        title={page.listTitle}
+        lead={page.listSubtitle}
+        actions={
+          voice.available ? (
+            <ListenButton
+              uiLang={lang}
+              isPlaying={activeSpeech === "intro"}
+              onToggle={toggleIntroSpeech}
+            />
+          ) : undefined
+        }
+      />
+
+      {/* Row 2: Phones fold filters into one summary row; lg+ renders the full elevated toolbar */}
+      <section aria-label={copy.searchPlaceholder} className="mt-4">
+        <div className="rounded-2xl border border-border bg-card p-3 shadow-(--shadow-card-rest) dark:border-ink-800 lg:hidden">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex min-w-0 flex-1 items-start gap-2.5">
+              <PinIcon className="mt-1 h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+              <div className="min-w-0 flex-1">
+                <p className="text-body font-medium leading-snug text-foreground">
+                  {mobileFilterSummary}
+                </p>
+                {!isColdLoad && !error ? (
+                  <p className="mt-0.5 text-meta tabular-nums text-muted-foreground">
+                    {loading ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
+                  </p>
+                ) : null}
+              </div>
+            </div>
             <button
               type="button"
-              aria-pressed={area.kind === "country" && area.country === activeCountry}
-              onClick={() => chooseCountry(activeCountry)}
-              className={`press-row inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                area.kind === "country" && area.country === activeCountry
-                  ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                  : "border-border-control bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/40"
-              }`}
+              aria-haspopup="dialog"
+              aria-expanded={filterSheetOpen}
+              aria-label={`${copy.change}: ${mobileFilterSummary}`}
+              onClick={() => setFilterSheetOpen(true)}
+              className="press-row inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 py-2 text-body font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
             >
-              {copy.wholeCountryOption(copy.countries[activeCountry])}
+              {copy.change}
             </button>
           </div>
+          {noticesBlock}
+        </div>
+
+        <div className="hidden rounded-2xl border border-border bg-card p-4 shadow-(--shadow-card-rest) dark:border-ink-800 lg:block">
+          {renderFilterFields(desktopSearchInputId, "desktop")}
+
+          {/* Calm, compact status and active-filter strip */}
+          <div
+            ref={statusRowRef}
+            className="mt-3 flex scroll-mt-[calc(var(--chrome-h,0px)+0.75rem)] flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border/70 pt-2.5"
+          >
+            <p className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-meta text-muted-foreground">
+              <PinIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" aria-hidden="true" />
+              <span>
+                {gpsActive
+                  ? copy.locationActive
+                  : guessReason === "region" && activeCityName
+                    ? copy.suggestedByRegion(activeCityName, copy.countries[activeCountry])
+                    : guessReason === "language" && activeCityName
+                      ? copy.suggestedByLanguage(activeCityName, copy.countries[activeCountry])
+                      : activeCityName
+                        ? `${copy.nearCity(activeCityName)}, ${copy.countries[activeCountry]}`
+                        : locationSummary}
+              </span>
+              {!isColdLoad && !error ? (
+                <>
+                  <span aria-hidden="true" className="h-3.5 w-px bg-border" />
+                  <span role="status" className="tabular-nums text-muted-foreground">
+                    {loading ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
+                  </span>
+                </>
+              ) : null}
+            </p>
+
+            {(area.kind === "point" || filtered) && (
+              <div className="flex flex-wrap items-center gap-2">
+                {area.kind === "point" && (
+                  <button
+                    type="button"
+                    onClick={() => chooseCountry(activeCountry)}
+                    className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg border border-border-control bg-card px-3 py-1.5 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {copy.wholeCountryOption(copy.countries[activeCountry])}
+                  </button>
+                )}
+
+                {filtered && (
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border-control bg-card px-3 py-1.5 text-body font-medium text-sapphire press-row whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <XIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <span>{copy.clearFilters}</span>
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+
+          {noticesBlock}
         </div>
 
         {/* Announces where the results are from; the dropdown trigger shows the short version. */}
         <p className="sr-only" aria-live="polite">
           {locationSummary}
         </p>
-
-        {hasNotices && (
-          <div className="mt-3 space-y-2.5 border-t border-border/70 pt-3">
-            {manualLocateTried && locationStatus === "denied" && !gpsActive && (
-              <p className="text-sm text-muted-foreground" role="status">
-                {copy.locationDenied}
-              </p>
-            )}
-
-            {showFarNotice && (
-              <p className="flex items-start gap-2.5 border-l-2 border-amber-care py-0.5 pl-3 text-sm leading-relaxed text-foreground">
-                <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care" aria-hidden="true" />
-                <span>{copy.distantLocationNotice(copy.countries[activeCountry])}</span>
-              </p>
-            )}
-
-            {emergencyOnly && (
-              <div
-                role="note"
-                className="rounded-xl border border-sapphire/25 bg-sapphire-soft/60 p-3.5 text-sm leading-relaxed text-foreground"
-              >
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <p className="flex-1">{copy.emergencyRightsCallout}</p>
-                  {voice.available && (
-                    <button
-                      type="button"
-                      aria-pressed={activeSpeech === "rights"}
-                      onClick={toggleRightsSpeech}
-                      className={`inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start whitespace-nowrap rounded-xl border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                        activeSpeech === "rights"
-                          ? "border-sapphire bg-sapphire text-white"
-                          : "border-sapphire/35 bg-card text-sapphire hover:border-sapphire hover:bg-sapphire hover:text-white"
-                      }`}
-                    >
-                      <SpeakerIcon playing={activeSpeech === "rights"} className="h-4 w-4 shrink-0" />
-                      <span>{activeSpeech === "rights" ? copy.stopListening : copy.listen}</span>
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-        )}
       </section>
 
       {/* Row 3: Aligned two-column workspace — results list and sticky map share the same top edge */}
@@ -1038,10 +1146,7 @@ export function FindHelpExplorer({
               <span className="sr-only">{copy.loading}</span>
               {/* Shaped like the result rows (kind, name, address, hours, call and directions), so the
                   list lands in place instead of replacing a different shape. */}
-              <div className="mb-3 flex min-h-11 items-center" aria-hidden="true">
-                <div className="skeleton-sheen h-4 w-28" />
-              </div>
-              <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-stone-200/90 bg-card shadow-2xs dark:border-stone-800">
+              <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-2xs dark:border-ink-800">
                 {COLD_LOAD_SKELETON_WIDTHS.map((spec, idx) => (
                   <li
                     key={idx}
@@ -1067,42 +1172,48 @@ export function FindHelpExplorer({
             // The directory did not answer (a network drop, or the server's database is unreachable).
             // One clear next step, with the failure stated plainly and nothing alarming around it.
             <div
-              className="swap-in rounded-2xl border border-stone-200/90 bg-card px-5 py-6 shadow-2xs sm:px-6 sm:py-7 dark:border-stone-800"
+              className="swap-in rounded-2xl border border-border bg-card px-5 py-6 shadow-2xs sm:px-6 sm:py-7 dark:border-ink-800"
               role="alert"
             >
-              <p className="max-w-[44ch] text-base font-semibold leading-snug text-foreground">{copy.loadError}</p>
-              <button
+              <p className="max-w-(--measure-lead) text-body font-medium leading-snug text-foreground">{copy.loadError}</p>
+              <Button
                 type="button"
+                variant="action"
+                size="md"
                 onClick={() => setReloadKey((value) => value + 1)}
-                className={`${primaryFilledActionClass} mt-4`}
+                className="mt-4"
               >
                 <RetryIcon className="h-4 w-4 shrink-0" />
                 <span>{copy.retry}</span>
-              </button>
+              </Button>
             </div>
           ) : displayedInstitutes.length === 0 ? (
             <div
-              className="swap-in rounded-2xl border border-stone-200/90 bg-card px-5 py-6 shadow-2xs sm:px-6 sm:py-7 dark:border-stone-800"
+              className="swap-in rounded-2xl border border-border bg-card px-5 py-6 shadow-2xs sm:px-6 sm:py-7 dark:border-ink-800"
               role="status"
             >
-              <p className="max-w-[44ch] text-base font-semibold leading-snug text-foreground">{copy.noResults}</p>
+              <p className="max-w-(--measure-lead) text-body font-medium leading-snug text-foreground">{copy.noResults}</p>
               {filtered ? (
-                <button
+                <Button
                   type="button"
+                  variant="action"
+                  size="md"
                   onClick={clearFilters}
-                  className={`${primaryFilledActionClass} mt-4`}
+                  className="mt-4"
                 >
                   {copy.clearFilters}
-                </button>
+                </Button>
               ) : area.kind === "point" ? (
                 // Nothing near this point and nothing to clear: widen to the whole country.
-                <button
+                <Button
                   type="button"
+                  variant="action"
+                  size="md"
                   onClick={() => chooseCountry(activeCountry)}
-                  className={`${primaryFilledActionClass} mt-4`}
+                  className="mt-4"
                 >
                   {copy.wholeCountryOption(copy.countries[activeCountry])}
-                </button>
+                </Button>
               ) : null}
             </div>
           ) : (
@@ -1111,24 +1222,9 @@ export function FindHelpExplorer({
                 isRevalidating ? "pointer-events-none opacity-60" : "opacity-100"
               }`}
             >
-              <div className="mb-3 flex min-h-11 flex-wrap items-center justify-between gap-2">
-                <p className="text-sm font-medium text-muted-foreground" role="status">
-                  {isRevalidating ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
-                </p>
-                {filtered ? (
-                  <button
-                    type="button"
-                    onClick={clearFilters}
-                    className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border-control bg-card px-3.5 py-2 text-xs font-semibold text-sapphire press-row whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    {copy.clearFilters}
-                  </button>
-                ) : null}
-              </div>
-
               <ul
                 key={resultSetKey}
-                className="divide-y divide-border overflow-hidden rounded-2xl border border-stone-200/90 bg-card shadow-2xs dark:border-stone-800"
+                className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-2xs dark:border-ink-800"
               >
                 {displayedInstitutes.slice(0, visibleCount).map((institute, index) => {
                   const active = institute.id === selectedId;
@@ -1142,7 +1238,10 @@ export function FindHelpExplorer({
                   const hasPhone = Boolean(institute.phone && phoneHref && displayPhone);
                   const distanceLabel =
                     area.kind === "point"
-                      ? formatHumanDistance(institute.distance_km, copy, numberLocale, { allowOver80Km })
+                      ? formatHumanDistance(institute.distance_km, copy, numberLocale, {
+                          allowOver80Km,
+                          centerCity: distanceOriginCity,
+                        })
                       : null;
 
                   return (
@@ -1157,20 +1256,20 @@ export function FindHelpExplorer({
                       }}
                     >
                       <article
+                        aria-current={active ? "true" : undefined}
                         onClick={() => showInstitute(institute.id)}
                         onMouseEnter={() => scheduleHoverChange(institute.id)}
                         onMouseLeave={() => scheduleHoverChange(null)}
-                        // The selected place carries a sapphire edge that eases in; a pin hovered on the
-                        // map lights the same row with a fainter edge, so list and map read as one.
-                        className={`group cursor-pointer px-4 py-4 transition-[background-color,box-shadow] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none sm:px-5 ${
+                        // The selected place carries a soft sapphire fill plus aria-current; hover echoes it quietly.
+                        className={`group cursor-pointer px-3 py-4 transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none min-[360px]:px-4 sm:px-5 ${
                           active
-                            ? "bg-sapphire-soft shadow-[inset_3px_0_0_0_var(--color-sapphire)] dark:shadow-[inset_3px_0_0_0_var(--color-sapphire-border)]"
+                            ? "bg-sapphire-soft"
                             : hovered
-                              ? "bg-sapphire-soft/45 shadow-[inset_3px_0_0_0_color-mix(in_oklab,var(--color-sapphire)_45%,transparent)]"
-                              : "shadow-[inset_0_0_0_0_transparent] hover:bg-muted/50"
+                              ? "bg-sapphire-soft/45"
+                              : "hover:bg-muted/50"
                         }`}
                       >
-                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta">
                           <span className="inline-flex items-center gap-1.5 font-medium text-muted-foreground">
                             <CategoryIcon category={institute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire" />
                             <span>{copy.categories[institute.category]}</span>
@@ -1178,14 +1277,14 @@ export function FindHelpExplorer({
                           {institute.emergency ? (
                             <>
                               <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                              <span className="font-semibold text-primary">
+                              <span className="font-medium text-primary">
                                 {copy.emergency}
                               </span>
                             </>
                           ) : null}
                         </div>
 
-                        <h3 className="mt-1 text-base font-semibold leading-snug text-foreground sm:text-lg">
+                        <h3 className="mt-1 text-title font-semibold leading-snug text-foreground">
                           <button
                             type="button"
                             aria-pressed={active}
@@ -1195,38 +1294,36 @@ export function FindHelpExplorer({
                               event.stopPropagation();
                               showInstitute(institute.id);
                             }}
-                            className="inline-flex min-h-11 items-center rounded-md py-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            className="inline-flex min-h-11 items-center rounded-md py-1 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                           >
-                            <span className="link-draw">{institute.name}</span>
+                            <span>{institute.name}</span>
                           </button>
                         </h3>
 
                         {location ? (
-                          <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{location}</p>
+                          <p className="mt-0.5 text-body text-muted-foreground">{location}</p>
                         ) : null}
 
                         {distanceLabel ? (
-                          <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium tabular-nums text-sapphire">
+                          <p className="mt-1 inline-flex items-center gap-1.5 text-body font-medium tabular-nums text-sapphire">
                             <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                             <span>{distanceLabel}</span>
                           </p>
                         ) : null}
 
                         {hours ? (
-                          <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                          <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-body">
                             {openNow ? (
                               <>
-                                <span className="inline-flex items-center gap-1 text-xs font-semibold text-foreground">
-                                  <ClockIcon className="h-3.5 w-3.5 shrink-0 text-live-sage" aria-hidden="true" />
-                                  <span>{copy.openNowLive}</span>
+                                <span className="text-body font-semibold text-foreground">
+                                  {copy.openNowLive}
                                 </span>
                                 <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
                               </>
                             ) : hasSchedule ? (
                               <>
-                                <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
-                                  <ClockIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                                  <span>{copy.closedNowLive}</span>
+                                <span className="text-body font-medium text-muted-foreground">
+                                  {copy.closedNowLive}
                                 </span>
                                 <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
                               </>
@@ -1235,71 +1332,34 @@ export function FindHelpExplorer({
                           </div>
                         ) : null}
 
-                        <div className="mt-3.5 flex flex-nowrap items-center gap-2">
-                          {hasPhone && phoneHref ? (
-                            <a
-                              href={phoneHref}
-                              aria-label={`${copy.callAction}: ${displayPhone}`}
-                              title={`${copy.callAction}: ${displayPhone}`}
-                              className={`${primaryFilledActionClass} min-w-0 flex-1 sm:flex-initial`}
-                              onClick={(event) => event.stopPropagation()}
-                            >
-                              <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                              <span className="truncate font-semibold tabular-nums">{displayPhone}</span>
-                            </a>
-                          ) : null}
-                          <a
-                            href={directionsUrl(institute)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={hasPhone ? copy.directions : undefined}
-                            title={hasPhone ? copy.directions : undefined}
-                            className={hasPhone ? iconActionClass : `${primaryFilledActionClass} min-w-0 flex-1 sm:flex-initial`}
-                            onClick={(event) => event.stopPropagation()}
-                          >
-                            <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                            <span className={hasPhone ? "sr-only" : "truncate"}>{copy.directions}</span>
-                          </a>
-                          {institute.website ? (
-                            <a
-                              href={institute.website}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={copy.website}
-                              title={copy.website}
-                              className={iconActionClass}
-                              onClick={(event) => event.stopPropagation()}
-                            >
-                              <GlobeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                              <span className="sr-only">{copy.website}</span>
-                            </a>
-                          ) : null}
-                          <div className="shrink-0" onClick={(event) => event.stopPropagation()}>
-                            <FamilyShareButton
-                              iconOnly
-                              align="right"
-                              lang={lang}
-                              title={institute.name}
-                              text={[location, institute.phone, hours].filter(Boolean).join("\n")}
-                              url={directionsUrl(institute)}
-                            />
-                          </div>
-                        </div>
+                        <PlaceCardActions
+                          institute={institute}
+                          hasPhone={hasPhone}
+                          phoneHref={phoneHref}
+                          displayPhone={displayPhone}
+                          shareText={[location, institute.phone, hours].filter(Boolean).join("\n")}
+                          copy={copy}
+                          lang={lang}
+                          stopPropagation
+                        />
                       </article>
                     </li>
                   );
                 })}
               </ul>
               {displayedInstitutes.length > visibleCount ? (
-                <button
+                <Button
                   type="button"
+                  variant="outline"
+                  size="md"
+                  fullWidth
                   onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
-                  className="mt-3 inline-flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-xl border border-stone-200/90 bg-card px-4 text-sm font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-stone-800"
+                  className="mt-3"
                 >
                   <span className="min-w-0 truncate">
                     {copy.showMore(Math.min(PAGE_SIZE, displayedInstitutes.length - visibleCount))}
                   </span>
-                </button>
+                </Button>
               ) : null}
             </div>
           )}
@@ -1308,16 +1368,16 @@ export function FindHelpExplorer({
         {/* Map column: sticky on lg:, aligned with top of results list */}
         <div
           ref={mapColumnRef}
-          className={`scroll-mt-[calc(var(--chrome-h,0px)+0.75rem)] lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-start-2 lg:row-start-1 lg:self-start ${
+          className={`scroll-mt-[calc(var(--chrome-h,0px)+0.75rem)] pb-24 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-start-2 lg:row-start-1 lg:self-start lg:pb-0 ${
             mobileView === "list" ? "hidden lg:block" : "block"
           }`}
         >
-          <div className="overflow-hidden rounded-2xl border border-stone-200/90 bg-card shadow-(--shadow-card-rest) dark:border-stone-800">
+          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-(--shadow-card-rest) dark:border-ink-800">
             <div
               className={`w-full lg:h-[min(42rem,calc(100dvh-var(--chrome-h,0px)-7.5rem))] lg:min-h-[24rem] ${
                 mobilePreviewInstitute
-                  ? "h-[min(46dvh,24rem)]"
-                  : "h-[max(20rem,calc(100dvh-var(--chrome-h,0px)-7.5rem))]"
+                  ? "h-[min(46svh,24rem)]"
+                  : "h-[min(62svh,30rem)]"
               }`}
             >
               <InstitutesMap
@@ -1351,7 +1411,7 @@ export function FindHelpExplorer({
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta">
                     <span className="inline-flex items-center gap-1.5 font-medium text-muted-foreground">
                       <CategoryIcon category={mobilePreviewInstitute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire" />
                       <span>{copy.categories[mobilePreviewInstitute.category]}</span>
@@ -1359,13 +1419,13 @@ export function FindHelpExplorer({
                     {mobilePreviewInstitute.emergency && (
                       <>
                         <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                        <span className="font-semibold text-primary">
+                        <span className="font-medium text-primary">
                           {copy.emergency}
                         </span>
                       </>
                     )}
                   </div>
-                  <h3 className="mt-1.5 text-base font-semibold leading-snug text-foreground">
+                  <h3 className="mt-1.5 text-title leading-snug text-foreground">
                     {mobilePreviewInstitute.name}
                   </h3>
                 </div>
@@ -1394,33 +1454,34 @@ export function FindHelpExplorer({
                 );
                 const previewDistance =
                   area.kind === "point"
-                    ? formatHumanDistance(mobilePreviewInstitute.distance_km, copy, numberLocale, { allowOver80Km })
+                    ? formatHumanDistance(mobilePreviewInstitute.distance_km, copy, numberLocale, {
+                        allowOver80Km,
+                        centerCity: distanceOriginCity,
+                      })
                     : null;
 
                 return (
                   <>
-                    {previewLoc && <p className="mt-1 text-sm text-muted-foreground">{previewLoc}</p>}
+                    {previewLoc && <p className="mt-1 text-body text-muted-foreground">{previewLoc}</p>}
                     {previewDistance && (
-                      <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium tabular-nums text-sapphire">
+                      <p className="mt-1 inline-flex items-center gap-1.5 text-body font-medium tabular-nums text-sapphire">
                         <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                         <span>{previewDistance}</span>
                       </p>
                     )}
                     {previewHours && (
-                      <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                      <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-body">
                         {previewOpenNow ? (
                           <>
-                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-foreground">
-                              <ClockIcon className="h-3.5 w-3.5 shrink-0 text-live-sage" aria-hidden="true" />
-                              <span>{copy.openNowLive}</span>
+                            <span className="text-body font-medium text-foreground">
+                              {copy.openNowLive}
                             </span>
                             <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
                           </>
                         ) : previewHasSchedule ? (
                           <>
-                            <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
-                              <ClockIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                              <span>{copy.closedNowLive}</span>
+                            <span className="text-body font-medium text-muted-foreground">
+                              {copy.closedNowLive}
                             </span>
                             <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
                           </>
@@ -1428,51 +1489,15 @@ export function FindHelpExplorer({
                         <span className="text-muted-foreground">{previewHours}</span>
                       </div>
                     )}
-                    <div className="mt-3.5 flex flex-nowrap items-center gap-2">
-                      {hasPreviewPhone && previewPhoneHref && (
-                        <a
-                          href={previewPhoneHref}
-                          aria-label={`${copy.callAction}: ${previewDisplayPhone}`}
-                          title={`${copy.callAction}: ${previewDisplayPhone}`}
-                          className={`${primaryFilledActionClass} min-w-0 flex-1 sm:flex-initial`}
-                        >
-                          <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                          <span className="truncate font-semibold tabular-nums">{previewDisplayPhone}</span>
-                        </a>
-                      )}
-                      <a
-                        href={directionsUrl(mobilePreviewInstitute)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={hasPreviewPhone ? copy.directions : undefined}
-                        title={hasPreviewPhone ? copy.directions : undefined}
-                        className={hasPreviewPhone ? iconActionClass : `${primaryFilledActionClass} min-w-0 flex-1 sm:flex-initial`}
-                      >
-                        <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                        <span className={hasPreviewPhone ? "sr-only" : "truncate"}>{copy.directions}</span>
-                      </a>
-                      {mobilePreviewInstitute.website && (
-                        <a
-                          href={mobilePreviewInstitute.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={copy.website}
-                          title={copy.website}
-                          className={iconActionClass}
-                        >
-                          <GlobeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                          <span className="sr-only">{copy.website}</span>
-                        </a>
-                      )}
-                      <FamilyShareButton
-                        iconOnly
-                        align="right"
-                        lang={lang}
-                        title={mobilePreviewInstitute.name}
-                        text={[previewLoc, mobilePreviewInstitute.phone, previewHours].filter(Boolean).join("\n")}
-                        url={directionsUrl(mobilePreviewInstitute)}
-                      />
-                    </div>
+                    <PlaceCardActions
+                      institute={mobilePreviewInstitute}
+                      hasPhone={hasPreviewPhone}
+                      phoneHref={previewPhoneHref}
+                      displayPhone={previewDisplayPhone}
+                      shareText={[previewLoc, mobilePreviewInstitute.phone, previewHours].filter(Boolean).join("\n")}
+                      copy={copy}
+                      lang={lang}
+                    />
                   </>
                 );
               })()}
@@ -1480,7 +1505,7 @@ export function FindHelpExplorer({
           )}
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
-            <ul aria-label={copy.mapLegendLabel} className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted-foreground">
+            <ul aria-label={copy.mapLegendLabel} className="flex flex-wrap items-center gap-x-5 gap-y-1 text-body text-muted-foreground">
               <li className="inline-flex items-center gap-2">
                 <span className="h-2.5 w-2.5 flex-none rounded-xs bg-sapphire" aria-hidden="true" />
                 {copy.legendPlace}
@@ -1491,7 +1516,7 @@ export function FindHelpExplorer({
               </li>
               <li className="inline-flex items-center gap-2">
                 <span
-                  className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-sm bg-sapphire text-[10px] font-semibold text-white tabular-nums"
+                  className="inline-flex h-5 w-5 flex-none items-center justify-center rounded-sm bg-sapphire text-meta font-medium text-white tabular-nums"
                   aria-hidden="true"
                 >
                   3
@@ -1509,11 +1534,20 @@ export function FindHelpExplorer({
               href="https://www.openstreetmap.org/copyright"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-md text-xs text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-md text-body text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {page.mapAttribution}
             </a>
           </div>
+
+          <button
+            type="button"
+            onClick={() => switchMobileView("list", selectedId)}
+            className="press-row mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none lg:hidden"
+          >
+            <ListViewIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+            <span>{copy.viewList}</span>
+          </button>
         </div>
       </div>
 
@@ -1521,7 +1555,7 @@ export function FindHelpExplorer({
       <nav
         aria-label={copy.viewModeLabel}
         data-bottom-bar
-        className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-card/95 px-4 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur-sm lg:hidden print:hidden"
+        className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-card/95 px-2.5 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur-sm sm:px-4 lg:hidden print:hidden"
       >
         <div className="relative mx-auto grid max-w-md grid-cols-2 gap-1 rounded-xl border border-border-control bg-surface-subtle p-1">
           {/* One sapphire plate that slides to the chosen view, instead of two backgrounds swapping. */}
@@ -1544,11 +1578,11 @@ export function FindHelpExplorer({
                 type="button"
                 aria-pressed={active}
                 onClick={() => switchMobileView(id, id === "list" ? selectedId : null)}
-                className={`relative inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 text-sm font-semibold transition-[color,background-color,filter] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface-subtle ${
+                className={`relative inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-body font-semibold transition-[color,background-color,filter] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface-subtle max-[359px]:gap-1 max-[359px]:px-1.5 sm:gap-2 sm:px-4 ${
                   active ? "text-white press-solid" : "text-foreground hover:bg-card/70 press-row"
                 }`}
               >
-                <Icon className="h-5 w-5 shrink-0" />
+                <Icon className="h-4 w-4 shrink-0 sm:h-5 sm:w-5" />
                 <span>{label}</span>
                 {id === "list" && !loading && displayedInstitutes.length > 0 ? (
                   <span className={`tabular-nums ${active ? "text-white/80" : "text-muted-foreground"}`}>
@@ -1560,6 +1594,86 @@ export function FindHelpExplorer({
           })}
         </div>
       </nav>
+
+      {filterSheetOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={filterSheetTitleId}
+            className="fixed inset-x-0 top-(--sheet-vv-top,0px) z-[80] flex h-(--sheet-vv-height,100dvh) items-end justify-center lg:hidden"
+          >
+            <div
+              className="fixed inset-0 -z-10 bg-ink-950/55"
+              onClick={closeFilterSheet}
+              aria-hidden="true"
+            />
+
+            <div
+              ref={filterSheetPanelRef}
+              tabIndex={-1}
+              className="sheet-in relative flex max-h-[min(88dvh,calc(var(--sheet-vv-height,100dvh)-0.75rem))] w-full flex-col overflow-hidden rounded-t-2xl border-t border-border bg-card text-foreground shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] focus:outline-none dark:border-ink-800"
+            >
+              <div className="flex items-center justify-between gap-3 border-b border-border/80 px-4 py-3 dark:border-ink-800">
+                <h2 id={filterSheetTitleId} className="text-section text-foreground">
+                  {copy.filtersTitle}
+                </h2>
+                <button
+                  type="button"
+                  aria-label={copy.closePreview}
+                  onClick={closeFilterSheet}
+                  className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-border-control bg-card text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
+                {renderFilterFields(sheetSearchInputId, "sheet")}
+
+                {(area.kind === "point" || filtered) && (
+                  <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-border/70 pt-3">
+                    {area.kind === "point" && (
+                      <button
+                        type="button"
+                        onClick={() => chooseCountry(activeCountry)}
+                        className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-xl border border-border-control bg-card px-3 py-2 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        {copy.wholeCountryOption(copy.countries[activeCountry])}
+                      </button>
+                    )}
+
+                    {filtered && (
+                      <button
+                        type="button"
+                        onClick={clearFilters}
+                        className="press-row inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-3 py-2 text-body font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        <XIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                        <span>{copy.clearFilters}</span>
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <div className="border-t border-border/80 bg-card px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] dark:border-ink-800">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearch(searchInput.trim());
+                    closeFilterSheet();
+                  }}
+                  className="press-solid inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-xl border border-sapphire bg-sapphire px-4 py-2 text-body font-semibold text-white shadow-2xs transition-[color,background-color,border-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire-light hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
+                >
+                  {loading ? copy.loading : copy.showPlaces(displayedInstitutes.length)}
+                </button>
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { healthArticleIndex, healthArticlePath } from "@/lib/data/health-article-index";
+import { formatHealthArticleTitle, healthArticleIndex, healthArticlePath } from "@/lib/data/health-article-index";
 import { getHealthSummary } from "@/lib/data/health-summaries";
 import {
   healthSummaryPath,
@@ -1047,7 +1047,7 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
     if (seenHrefs.has(href)) continue;
     seenHrefs.add(href);
 
-    const title = article.titles[lang] ?? article.titles.en;
+    const title = formatHealthArticleTitle(article, lang);
     const primaryAreaId = article.areaIds[0];
     const areaTitle = primaryAreaId ? areaTitleById.get(primaryAreaId) : undefined;
     const areaSummary = primaryAreaId ? getHealthSummary(lang, primaryAreaId) : undefined;

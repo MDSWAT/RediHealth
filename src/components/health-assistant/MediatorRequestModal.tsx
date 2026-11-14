@@ -2,13 +2,14 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { Button } from "@/components/ui/Button";
 import { HandHelpingIcon, XIcon } from "@/components/ui/icons";
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
-import { primaryButton, secondaryButton, textInput } from "@/components/health-assistant/step-ui";
+import { textInput } from "@/components/health-assistant/step-ui";
 
 interface MediatorRequestModalProps {
   /** Scenario title sent to the mediator inbox (mediators read it in Romanian). */
@@ -332,16 +333,18 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
 
   return (
     <div className={className}>
-      <button
+      <Button
         ref={triggerRef}
         type="button"
+        variant="outline"
+        size="lg"
         data-mediator-trigger
         onClick={() => setIsOpen(true)}
-        className="inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-amber-care bg-card px-4 py-2.5 text-center text-sm font-semibold text-amber-care press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-amber-care-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto sm:px-5 sm:text-[0.9375rem]"
+        className="w-full border-amber-care text-amber-care hover:border-amber-care hover:bg-amber-care-soft/40 sm:w-auto sm:px-5"
       >
         <HandHelpingIcon className="h-4 w-4 shrink-0" />
         <span className="min-w-0 truncate">{t.trigger}</span>
-      </button>
+      </Button>
 
       {/* Portal: the triage step wrapper animates transform, which would trap a fixed overlay inside the card. */}
       {isOpen &&
@@ -365,14 +368,14 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
 
               {!submitted ? (
                 <form onSubmit={handleSubmit} noValidate>
-                  <h2 id={`${ids}-title`} className="pr-10 text-lg font-semibold text-foreground">
+                  <h2 id={`${ids}-title`} className="pr-10 text-title font-semibold text-foreground">
                     {t.title}
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.subtitle}</p>
+                  <p className="mt-2 text-body text-muted-foreground">{t.subtitle}</p>
 
                   <div className="mt-5 space-y-4">
                     <div>
-                      <label htmlFor={`${ids}-name`} className="mb-1 block text-sm font-semibold text-foreground">
+                      <label htmlFor={`${ids}-name`} className="mb-1 block text-body font-semibold text-foreground">
                         {t.nameLabel}
                       </label>
                       <input
@@ -388,7 +391,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                     </div>
 
                     <div>
-                      <label htmlFor={`${ids}-phone`} className="mb-1 block text-sm font-semibold text-foreground">
+                      <label htmlFor={`${ids}-phone`} className="mb-1 block text-body font-semibold text-foreground">
                         {t.phoneLabel} <span className="text-primary" aria-hidden="true">*</span>
                         <span className="sr-only"> ({t.required})</span>
                       </label>
@@ -407,7 +410,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
 
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
-                        <label htmlFor={`${ids}-county`} className="mb-1 block text-sm font-semibold text-foreground">
+                        <label htmlFor={`${ids}-county`} className="mb-1 block text-body font-semibold text-foreground">
                           {t.countyLabel} <span className="text-primary" aria-hidden="true">*</span>
                           <span className="sr-only"> ({t.required})</span>
                         </label>
@@ -427,7 +430,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                         </select>
                       </div>
                       <div>
-                        <label htmlFor={`${ids}-location`} className="mb-1 block text-sm font-semibold text-foreground">
+                        <label htmlFor={`${ids}-location`} className="mb-1 block text-body font-semibold text-foreground">
                           {t.locationLabel}
                         </label>
                         <input
@@ -442,7 +445,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                       </div>
                     </div>
 
-                    <label className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+                    <label className="flex items-start gap-2.5 text-body text-foreground">
                       <input
                         type="checkbox"
                         required
@@ -466,57 +469,47 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                   </div>
 
                   {errorMessage && (
-                    <p role="alert" className="mt-4 text-sm font-medium text-red-700 dark:text-red-300">
+                    <p role="alert" className="mt-4 text-body font-medium text-primary dark:text-ruby-300">
                       {errorMessage}
                     </p>
                   )}
 
                   <div className="mt-6 flex flex-col-reverse items-stretch justify-end gap-3 sm:flex-row sm:items-center">
-                    <button
+                    <Button
                       type="button"
+                      variant="outline"
+                      size="lg"
                       onClick={handleClose}
-                      className={secondaryButton}
                     >
                       {t.cancel}
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       type="submit"
+                      variant="action"
+                      size="lg"
                       disabled={isSubmitting}
                       aria-busy={isSubmitting}
-                      className={primaryButton}
                     >
                       {isSubmitting ? t.submitting : t.submitButton}
-                    </button>
+                    </Button>
                   </div>
                 </form>
               ) : (
                 <div className="swap-in py-2" role="status">
-                  {/* The confirmation mark draws itself once (static under reduced motion / Calm Motion). */}
-                  <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    className="h-7 w-7 text-sapphire dark:text-sapphire-border"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="9.25" opacity="0.35" />
-                    <path className="stroke-draw" pathLength={1} d="m7.75 12.25 2.9 2.9 5.6-6.1" />
-                  </svg>
-                  <h2 id={`${ids}-title`} className="mt-3 text-lg font-semibold text-foreground">
+                  <h2 id={`${ids}-title`} className="text-title font-semibold text-foreground">
                     {t.successTitle}
                   </h2>
-                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">{t.successMessage}</p>
-                  <button
+                  <p className="mt-2 max-w-sm text-body text-muted-foreground">{t.successMessage}</p>
+                  <Button
                     ref={closeRef}
                     type="button"
+                    variant="action"
+                    size="lg"
                     onClick={handleClose}
-                    className={`mt-6 ${primaryButton}`}
+                    className="mt-6"
                   >
                     {t.close}
-                  </button>
+                  </Button>
                 </div>
               )}
             </div>

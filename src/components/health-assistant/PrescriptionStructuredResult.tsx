@@ -7,6 +7,7 @@ import {
   PhoneIcon,
   PrinterIcon,
 } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { PrescriptionAudioPlayer } from "@/components/health-assistant/PrescriptionAudioPlayer";
 import { PrescriptionDoctorBridge } from "@/components/health-assistant/PrescriptionDoctorBridge";
@@ -188,7 +189,7 @@ function stripUnclearForSpeech(text: string): string {
   return text.replace(UNCLEAR_CAPTURE_REGEX, "").replace(/\s{2,}/g, " ").trim();
 }
 
-function buildMedicineSpeechParts(
+export function buildMedicineSpeechParts(
   med: PrescribedMedicineItem,
   resultCopy: AssistantCopy["result"]
 ): string[] {
@@ -196,7 +197,11 @@ function buildMedicineSpeechParts(
   const cleanName = stripUnclearForSpeech(med.name);
   const cleanStrength = med.strength ? stripUnclearForSpeech(med.strength) : "";
   if (cleanName) {
-    parts.push(cleanStrength ? `${cleanName}, ${cleanStrength}.` : `${cleanName}.`);
+    parts.push(
+      cleanStrength
+        ? `${cleanName}, ${resultCopy.strengthLabel}: ${cleanStrength}.`
+        : `${cleanName}.`
+    );
   }
   if (med.purpose) {
     const cleanPurpose = stripUnclearForSpeech(med.purpose);
@@ -215,10 +220,13 @@ function buildMedicineSpeechParts(
     parts.push(`${resultCopy.scheduleSlots.bedtime}: ${stripUnclearForSpeech(med.bedtime)}.`);
   }
   if (med.foodTiming && med.foodTiming !== "any") {
-    parts.push(`${resultCopy.foodTiming[med.foodTiming]}.`);
+    parts.push(resultCopy.foodTimingSentence[med.foodTiming]);
   }
   if (med.duration) {
-    parts.push(`${resultCopy.durationLabel(stripUnclearForSpeech(med.duration))}.`);
+    const cleanDuration = stripUnclearForSpeech(med.duration);
+    if (cleanDuration) {
+      parts.push(resultCopy.durationSentence(cleanDuration));
+    }
   }
   if (med.warnings?.length) {
     for (const warning of med.warnings) {
@@ -227,9 +235,25 @@ function buildMedicineSpeechParts(
     }
   }
   if (isMedicineUnclear(med)) {
-    parts.push(resultCopy.unclearBadge);
+    const spokenName = cleanName || med.name.trim();
+    if (spokenName) {
+      parts.push(resultCopy.unclearDoseSentence(spokenName));
+    }
   }
   return parts;
+}
+
+export function buildPrescriptionSpeechText(
+  medicines: PrescribedMedicineItem[],
+  aiMessage: string,
+  resultCopy: AssistantCopy["result"],
+  rules: string[]
+): string {
+  const medicinesSpeech = medicines
+    .flatMap((med) => buildMedicineSpeechParts(med, resultCopy))
+    .join(" ");
+  const summary = [medicinesSpeech, aiMessage.trim()].filter(Boolean).join(" ");
+  return resultCopy.speech(summary, rules.join(" "));
 }
 
 function renderWithUnclearHighlights(text: string): ReactNode {
@@ -241,7 +265,7 @@ function renderWithUnclearHighlights(text: string): ReactNode {
       return (
         <mark
           key={`${part}-${index}`}
-          className="bg-amber-care-soft px-1 font-semibold text-foreground dark:bg-amber-care/20"
+          className="bg-amber-care-soft px-1 text-foreground dark:bg-amber-care/20"
         >
           {part}
         </mark>
@@ -414,9 +438,9 @@ export function PrescriptionStructuredResult({
 
   const message = aiMessage?.trim() ?? "";
   const transcript = prescriptionText?.trim() ?? "";
-  const speechText = result.speech(message, rx.rules.join(" "));
   const explanationBlocks = splitExplanationIntoBlocks(message);
   const validMedicines = medicines?.filter((med) => Boolean(med.name?.trim())) ?? [];
+  const speechText = buildPrescriptionSpeechText(validMedicines, message, result, rx.rules);
 
   const hasUnclearContent =
     containsUnclearMarker(message) ||
@@ -508,8 +532,8 @@ export function PrescriptionStructuredResult({
         className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between"
       >
         <div>
-          <h2 className="text-xl font-semibold text-foreground">{result.heading}</h2>
-          <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">{result.lead}</p>
+          <h2 className="text-section text-foreground">{result.heading}</h2>
+          <p className="mt-1 max-w-xl text-body text-muted-foreground">{result.lead}</p>
         </div>
         <div className="flex shrink-0 flex-nowrap items-center gap-2 print:hidden">
           <PrescriptionAudioPlayer speechText={speechText} />
@@ -532,28 +556,25 @@ export function PrescriptionStructuredResult({
           role="alert"
           className="mt-6 flex flex-col gap-3 rounded-lg border border-primary/30 bg-primary-soft/55 p-4 dark:border-primary/40 dark:bg-primary/15 sm:flex-row sm:items-center sm:justify-between"
         >
-          <p className="flex items-start gap-2.5 text-sm font-medium leading-relaxed text-foreground">
+          <p className="flex items-start gap-2.5 text-body font-medium text-foreground">
             <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
             <span>{result.emergency}</span>
           </p>
-          <a
-            href="tel:112"
-            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          >
-            <PhoneIcon className="h-4 w-4" />
+          <Button href="tel:112" variant="primary" size="md" className="shrink-0">
+            <PhoneIcon className="h-4 w-4 shrink-0" />
             <span>{symptoms.callNow}</span>
-          </a>
+          </Button>
         </div>
       ) : null}
 
       {hasUnclearContent ? (
         <div
           role="status"
-          className="mt-6 rounded-xl border border-amber-care-border border-l-4 border-l-amber-care bg-amber-care-soft/65 p-4 sm:p-5 dark:border-amber-care/45 dark:bg-amber-care/15 print:break-inside-avoid"
+          className="mt-6 rounded-xl border border-amber-care-border bg-amber-care-soft/65 p-4 sm:p-5 dark:border-amber-care/45 dark:bg-amber-care/15 print:break-inside-avoid"
         >
           <div className="min-w-0">
-            <h3 className="text-balance text-base font-semibold text-foreground">{result.pharmacistBannerTitle}</h3>
-            <p className="mt-1 text-sm leading-relaxed text-foreground/90">{result.pharmacistBannerBody}</p>
+            <h3 className="text-balance text-title font-semibold text-foreground">{result.pharmacistBannerTitle}</h3>
+            <p className="mt-1 text-body text-foreground/90">{result.pharmacistBannerBody}</p>
           </div>
         </div>
       ) : null}
@@ -562,8 +583,8 @@ export function PrescriptionStructuredResult({
         {validMedicines.length > 0 ? (
           <section className="mt-6">
           <div className="mb-3.5">
-            <h3 className="text-base font-semibold text-foreground">{result.medicinesHeading}</h3>
-            <p className="mt-0.5 text-sm text-muted-foreground">{result.medicinesLead}</p>
+            <h3 className="text-title text-foreground">{result.medicinesHeading}</h3>
+            <p className="mt-0.5 text-body text-muted-foreground">{result.medicinesLead}</p>
           </div>
 
           <div
@@ -583,7 +604,7 @@ export function PrescriptionStructuredResult({
                   derivedSlots.bedtime
               );
               const hasFoodRule = Boolean(med.foodTiming && med.foodTiming !== "any");
-              const hasBadges = hasFoodRule || Boolean(med.duration) || medUnclear;
+              const hasCareSentences = hasFoodRule || Boolean(med.duration);
               const isCardSpeaking = voice.speaking && activeSpeechCard === index;
 
               const slots = [
@@ -621,18 +642,16 @@ export function PrescriptionStructuredResult({
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-                        <h4 className="text-lg font-semibold leading-snug text-foreground break-words">
-                          {renderWithUnclearHighlights(med.name)}
-                        </h4>
-                        {med.strength ? (
-                          <span className="text-sm font-medium text-muted-foreground tabular-nums">
-                            {renderWithUnclearHighlights(med.strength)}
-                          </span>
-                        ) : null}
-                      </div>
+                      <h4 className="text-title leading-snug text-foreground break-words">
+                        {renderWithUnclearHighlights(med.name)}
+                      </h4>
+                      {med.strength ? (
+                        <p className="mt-0.5 text-body font-medium text-muted-foreground tabular-nums">
+                          {result.strengthLabel}: {renderWithUnclearHighlights(med.strength)}
+                        </p>
+                      ) : null}
                       {med.purpose ? (
-                        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                        <p className="mt-1.5 text-body text-muted-foreground">
                           {renderWithUnclearHighlights(med.purpose)}
                         </p>
                       ) : null}
@@ -644,7 +663,7 @@ export function PrescriptionStructuredResult({
                         onClick={() => handleToggleCardSpeech(index, med)}
                         aria-pressed={isCardSpeaking}
                         aria-label={result.listenMedicineAria(stripUnclearForSpeech(med.name) || med.name)}
-                        className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg border px-3.5 py-2 text-sm font-semibold whitespace-nowrap press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring print:hidden ${
+                        className={`inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg border px-3.5 py-2 text-body font-semibold whitespace-nowrap press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring print:hidden ${
                           isCardSpeaking
                             ? "border-sapphire bg-sapphire-soft text-obsidian-navy dark:border-sapphire/60 dark:bg-sapphire/20 dark:text-foreground"
                             : "border-border bg-card text-foreground hover:bg-muted"
@@ -678,10 +697,10 @@ export function PrescriptionStructuredResult({
                                 }`}
                               />
                               <span
-                                className={`text-sm ${
+                                className={`text-body ${
                                   active
-                                    ? "font-semibold text-obsidian-navy dark:text-foreground"
-                                    : "font-medium text-muted-foreground"
+                                    ? "font-medium text-obsidian-navy dark:text-foreground"
+                                    : "text-muted-foreground"
                                 }`}
                               >
                                 {label}
@@ -689,12 +708,12 @@ export function PrescriptionStructuredResult({
                             </div>
 
                             {value ? (
-                              <div className="mt-2 flex items-start gap-1.5 text-sm font-semibold leading-snug text-foreground break-words">
+                              <div className="mt-2 flex items-start gap-1.5 text-body font-semibold leading-snug text-foreground break-words">
                                 <PillCapsuleSvg className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
                                 <span>{renderWithUnclearHighlights(value)}</span>
                               </div>
                             ) : (
-                              <p className="mt-2 text-sm font-medium text-muted-foreground">
+                              <p className="mt-2 text-body text-muted-foreground">
                                 <span aria-hidden="true">—</span>
                                 <span className="sr-only">{result.noDoseAria}</span>
                               </p>
@@ -705,36 +724,22 @@ export function PrescriptionStructuredResult({
                     </div>
                   ) : null}
 
-                  {hasBadges ? (
-                    <div className="mt-2.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs">
-                      {med.foodTiming && med.foodTiming !== "any" ? (
-                        <span className="font-medium text-muted-foreground">
-                          {result.foodTiming[med.foodTiming]}
-                        </span>
-                      ) : null}
+                  {hasCareSentences ? (
+                    <p className="mt-3 text-body leading-relaxed tabular-nums text-foreground">
+                      {med.foodTiming && med.foodTiming !== "any"
+                        ? result.foodTimingSentence[med.foodTiming]
+                        : null}
+                      {med.foodTiming && med.foodTiming !== "any" && med.duration ? " " : null}
+                      {med.duration
+                        ? renderWithUnclearHighlights(result.durationSentence(med.duration))
+                        : null}
+                    </p>
+                  ) : null}
 
-                      {med.duration ? (
-                        <>
-                          {med.foodTiming && med.foodTiming !== "any" ? (
-                            <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                          ) : null}
-                          <span className="font-medium text-muted-foreground tabular-nums">
-                            {renderWithUnclearHighlights(result.durationLabel(med.duration))}
-                          </span>
-                        </>
-                      ) : null}
-
-                      {medUnclear ? (
-                        <>
-                          {(med.foodTiming && med.foodTiming !== "any") || med.duration ? (
-                            <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                          ) : null}
-                          <span className="font-semibold text-amber-care dark:text-amber-care-border">
-                            {result.unclearBadge}
-                          </span>
-                        </>
-                      ) : null}
-                    </div>
+                  {medUnclear ? (
+                    <p className="mt-2 text-body font-semibold text-amber-care dark:text-amber-care-border">
+                      {renderWithUnclearHighlights(result.unclearDoseSentence(med.name))}
+                    </p>
                   ) : null}
 
                   {med.warnings && med.warnings.length > 0 ? (
@@ -742,7 +747,7 @@ export function PrescriptionStructuredResult({
                       {med.warnings.map((warning, warningIdx) => (
                         <li
                           key={warningIdx}
-                          className="flex items-start gap-2 text-sm leading-relaxed text-foreground"
+                          className="flex items-start gap-2 text-body text-foreground"
                         >
                           <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
                           <span>{renderWithUnclearHighlights(warning)}</span>
@@ -759,13 +764,13 @@ export function PrescriptionStructuredResult({
 
       {explanationBlocks.length > 0 ? (
         <section className="mt-6">
-          <h3 className="text-sm font-semibold text-foreground">{result.assistantHeading}</h3>
+          <h3 className="text-title text-foreground">{result.assistantHeading}</h3>
           <div className="mt-3 space-y-3">
             {explanationBlocks.map((block, index) => (
               <div
                 key={index}
                 style={{ "--i": index + validMedicines.length } as CSSProperties}
-                className="list-in rounded-lg border border-border bg-background p-4 whitespace-pre-line text-base leading-relaxed text-foreground"
+                className="list-in rounded-lg border border-border bg-background p-4 whitespace-pre-line text-body text-foreground"
               >
                 {renderWithUnclearHighlights(block)}
               </div>
@@ -780,13 +785,13 @@ export function PrescriptionStructuredResult({
           onToggle={(event) => setTranscriptOpen(event.currentTarget.open)}
           className="group mt-6 rounded-lg border border-border bg-background/60 p-4 print:[&>div]:block print:[&_pre]:block"
         >
-          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-md text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire motion-reduce:transition-none dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-md text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire motion-reduce:transition-none dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
             <span>{result.transcriptHeading}</span>
             <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-open:rotate-180 motion-reduce:transition-none print:hidden" />
           </summary>
           <div className="swap-in mt-2 border-t border-border pt-3">
-            <p className="text-sm text-muted-foreground">{result.transcriptNote}</p>
-            <pre className="mt-2.5 overflow-x-auto rounded-lg border border-border bg-muted/50 p-4 whitespace-pre-wrap font-mono text-sm leading-relaxed text-foreground">
+            <p className="text-body text-muted-foreground">{result.transcriptNote}</p>
+            <pre className="mt-2.5 overflow-x-auto rounded-lg border border-border bg-muted/50 p-4 whitespace-pre-wrap font-mono text-body text-foreground">
               {renderWithUnclearHighlights(transcript)}
             </pre>
           </div>
@@ -794,8 +799,8 @@ export function PrescriptionStructuredResult({
       ) : null}
 
       <section className="mt-8 border-t border-border pt-6">
-        <h3 className="text-sm font-semibold text-foreground">{result.rulesHeading}</h3>
-        <ol className="mt-3 list-decimal space-y-2.5 pl-5 text-sm leading-relaxed text-foreground marker:font-semibold marker:text-sapphire marker:tabular-nums dark:marker:text-sapphire-border">
+        <h3 className="text-meta font-medium text-foreground">{result.rulesHeading}</h3>
+        <ol className="mt-3 list-decimal space-y-2.5 pl-5 text-body text-foreground marker:font-medium marker:text-sapphire marker:tabular-nums dark:marker:text-sapphire-border">
           {rx.rules.map((rule) => (
             <li key={rule} className="pl-1">
               {rule}
@@ -819,7 +824,7 @@ export function PrescriptionStructuredResult({
 
           <table className="mt-4 w-full border-collapse border-2 border-black text-left text-base">
             <thead>
-              <tr className="border-b-2 border-black bg-neutral-100">
+              <tr className="border-b-2 border-foreground bg-muted dark:border-paper dark:bg-ink-900">
                 <th scope="col" className="border-r border-black px-3 py-2.5 font-bold">
                   {fridge.medicineCol}
                 </th>

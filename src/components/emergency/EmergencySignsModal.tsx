@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { CloseIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
+import { ListenButton } from "@/components/ui/ListenButton";
+import { CloseIcon, PhoneIcon } from "@/components/ui/icons";
 import { useReadAloud } from "@/components/health-check/readingTools";
 import { useModalAutoScroll } from "@/components/news/use-sheet-dialog";
 import { DispatcherScriptAccordion } from "@/components/emergency/DispatcherScriptAccordion";
@@ -96,7 +98,7 @@ export function EmergencySignsModal({
         aria-modal="true"
         aria-labelledby="emergency-signs-title"
         aria-describedby="emergency-signs-description"
-        className="scrim-in fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4"
+        className="scrim-in fixed inset-0 z-[100] flex items-end justify-center bg-ink-950/70 p-0 sm:items-center sm:p-4"
       >
         <div
           className="fixed inset-0 -z-10"
@@ -113,21 +115,23 @@ export function EmergencySignsModal({
             <div className="min-w-0">
               <h2
                 id="emergency-signs-title"
-                className="text-lg font-semibold tracking-tight sm:text-xl"
+                className="text-title font-semibold"
               >
                 {e.signsModalTitle}
               </h2>
-              <p id="emergency-signs-description" className="mt-1 text-sm leading-relaxed text-muted-foreground">
+              <p id="emergency-signs-description" className="mt-1 text-meta text-muted-foreground">
                 {e.signsModalSubtitle}
               </p>
             </div>
 
             <div className="-mr-2 -mt-1 flex shrink-0 items-center gap-2">
             {voice.available ? (
-              <button
-                type="button"
-                aria-pressed={voice.speaking}
-                onClick={() =>
+              <ListenButton
+                uiLang={lang}
+                isPlaying={voice.speaking}
+                label={audio.listen}
+                stopLabel={audio.stop}
+                onToggle={() =>
                   voice.speaking
                     ? voice.stop()
                     : voice.speak([
@@ -136,11 +140,7 @@ export function EmergencySignsModal({
                         ...signs.map((s) => `${s.title}. ${s.description}`),
                       ])
                 }
-                className="press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
-              >
-                <VolumeIcon className="h-4 w-4" aria-hidden="true" />
-                <span>{voice.speaking ? audio.stop : audio.listen}</span>
-              </button>
+              />
             ) : null}
             <button
               type="button"
@@ -167,13 +167,13 @@ export function EmergencySignsModal({
                 >
                   <span
                     aria-hidden="true"
-                    className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary-soft text-xs font-semibold tabular-nums text-primary"
+                    className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary-soft text-meta font-semibold tabular-nums text-primary"
                   >
                     {index + 1}
                   </span>
                   <div className="min-w-0">
-                    <h3 className="text-[15px] font-semibold leading-snug">{sign.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    <h3 className="text-body font-semibold leading-snug">{sign.title}</h3>
+                    <p className="mt-1 text-meta text-muted-foreground">
                       {sign.description}
                     </p>
                   </div>
@@ -187,18 +187,20 @@ export function EmergencySignsModal({
           </div>
 
           <div className="flex shrink-0 flex-col-reverse gap-2 border-t border-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-7">
-            <span className="text-center text-[13px] text-muted-foreground sm:text-left">
+            <span className="text-center text-meta text-muted-foreground sm:text-left">
               {e.freeServiceNotice}
             </span>
 
-            <button
+            <Button
               type="button"
+              variant="primary"
+              size="lg"
               onClick={() => setDialerGateOpen(true)}
-              className="press-solid flex min-h-14 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
+              className="min-h-14 shrink-0 px-6"
             >
-              <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+              <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               <span>{e.call112}</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { BRAND_NAME, LOGO_SRC } from "@/components/ui/Logo";
+import { PALETTE } from "@/lib/palette-constants";
 
 export interface PrintableQr {
   size: number;
@@ -68,8 +69,8 @@ export function buildPrintSummaryHtml(summary: PrintableSummary, logoUrl: string
       ? `<div class="qr-handoff">
           <div class="qr-frame">
             <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 ${qrSize} ${qrSize}" shape-rendering="crispEdges" role="img" aria-label="${escape(summary.qr.title)}">
-              <rect width="${qrSize}" height="${qrSize}" fill="#ffffff" />
-              <path d="${escape(summary.qr.path)}" fill="#0b132b" />
+              <rect width="${qrSize}" height="${qrSize}" fill="${PALETTE.card}" />
+              <path d="${escape(summary.qr.path)}" fill="${PALETTE.obsidianNavy}" />
             </svg>
           </div>
           <div class="qr-copy">
@@ -90,34 +91,34 @@ export function buildPrintSummaryHtml(summary: PrintableSummary, logoUrl: string
   @page { size: A4; margin: 0; }
   :root { color-scheme: light; }
   * { box-sizing: border-box; }
-  html { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { margin: 0; padding: 13mm 15mm; background: #fff; color: #0b132b; font: 11pt/1.45 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-  header { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1.5px solid #0b132b; }
+  html { background: ${PALETTE.card}; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; padding: 13mm 15mm; background: ${PALETTE.card}; color: ${PALETTE.obsidianNavy}; font: 11pt/1.45 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  header { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1.5px solid ${PALETTE.obsidianNavy}; }
   header img { width: 28px; height: 28px; }
   header span { font-size: 14pt; font-weight: 600; letter-spacing: -0.01em; }
   h1 { margin: 14px 0 2px; font-size: 18.5pt; line-height: 1.2; }
-  .meta { margin: 0 0 12px; color: #475569; font-size: 9.75pt; }
+  .meta { margin: 0 0 12px; color: ${PALETTE.mutedForeground}; font-size: 9.75pt; }
   .clinical-grid { display: grid; grid-template-columns: 1fr 196px; gap: 16px; align-items: start; }
-  dl { margin: 0; border-top: 1px solid #e2e8f0; min-width: 0; }
-  .row { display: grid; grid-template-columns: 36% 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid #e2e8f0; break-inside: avoid; page-break-inside: avoid; }
-  dt { color: #475569; font-size: 9.75pt; }
+  dl { margin: 0; border-top: 1px solid ${PALETTE.border}; min-width: 0; }
+  .row { display: grid; grid-template-columns: 36% 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid ${PALETTE.border}; break-inside: avoid; page-break-inside: avoid; }
+  dt { color: ${PALETTE.mutedForeground}; font-size: 9.75pt; }
   dd { margin: 0; font-weight: 600; overflow-wrap: break-word; }
-  .pain-map { padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; background: #f8fafc; break-inside: avoid; page-break-inside: avoid; }
-  .pain-map-heading { margin: 0 0 6px; font-size: 9pt; font-weight: 700; color: #334155; }
+  .pain-map { padding: 10px; border: 1px solid ${PALETTE.borderControl}; border-radius: 8px; background: ${PALETTE.surfaceCard}; break-inside: avoid; page-break-inside: avoid; }
+  .pain-map-heading { margin: 0 0 6px; font-size: 9pt; font-weight: 700; color: ${PALETTE.ink800}; }
   .pain-map-figure svg { display: block; width: 100%; height: auto; }
-  .pain-map-primary { margin: 6px 0 0; font-size: 9.75pt; font-weight: 700; color: #0b132b; line-height: 1.3; overflow-wrap: break-word; }
-  .pain-map-secondary { margin: 2px 0 0; font-size: 8.75pt; font-weight: 500; color: #475569; line-height: 1.3; overflow-wrap: break-word; }
+  .pain-map-primary { margin: 6px 0 0; font-size: 9.75pt; font-weight: 700; color: ${PALETTE.obsidianNavy}; line-height: 1.3; overflow-wrap: break-word; }
+  .pain-map-secondary { margin: 2px 0 0; font-size: 8.75pt; font-weight: 500; color: ${PALETTE.mutedForeground}; line-height: 1.3; overflow-wrap: break-word; }
   .note { margin: 10px 0 0; }
-  .status { margin: 11px 0 0; font-weight: 600; color: #475569; }
-  .status.urgent { color: #c62f3c; }
-  .qr-handoff { display: flex; align-items: center; gap: 14px; margin-top: 14px; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; break-inside: avoid; page-break-inside: avoid; }
-  .qr-frame { flex-shrink: 0; padding: 4px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; line-height: 0; }
+  .status { margin: 11px 0 0; font-weight: 600; color: ${PALETTE.mutedForeground}; }
+  .status.urgent { color: ${PALETTE.primary}; }
+  .qr-handoff { display: flex; align-items: center; gap: 14px; margin-top: 14px; padding: 10px 12px; border: 1px solid ${PALETTE.borderControl}; border-radius: 8px; break-inside: avoid; page-break-inside: avoid; }
+  .qr-frame { flex-shrink: 0; padding: 4px; border: 1px solid ${PALETTE.border}; border-radius: 6px; background: ${PALETTE.card}; line-height: 0; }
   .qr-frame svg { display: block; width: 96px; height: 96px; }
   .qr-copy { min-width: 0; }
-  .qr-title { margin: 0; font-size: 10.25pt; font-weight: 600; color: #0b132b; }
-  .qr-detail { margin: 4px 0 0; padding: 4px 8px; border-left: 2.5px solid #1d4ed8; background: #f1f5f9; font-size: 9.75pt; font-weight: 700; color: #0b132b; line-height: 1.35; overflow-wrap: break-word; }
-  .qr-hint { margin: 4px 0 0; font-size: 9pt; line-height: 1.38; color: #475569; }
-  footer { margin-top: 14px; padding-top: 9px; border-top: 1px solid #e2e8f0; color: #475569; font-size: 9pt; }
+  .qr-title { margin: 0; font-size: 10.25pt; font-weight: 600; color: ${PALETTE.obsidianNavy}; }
+  .qr-detail { margin: 4px 0 0; padding: 4px 8px; border-left: 2.5px solid ${PALETTE.sapphire}; background: ${PALETTE.surfaceSubtle}; font-size: 9.75pt; font-weight: 700; color: ${PALETTE.obsidianNavy}; line-height: 1.35; overflow-wrap: break-word; }
+  .qr-hint { margin: 4px 0 0; font-size: 9pt; line-height: 1.38; color: ${PALETTE.mutedForeground}; }
+  footer { margin-top: 14px; padding-top: 9px; border-top: 1px solid ${PALETTE.border}; color: ${PALETTE.mutedForeground}; font-size: 9pt; }
 </style>
 </head>
 <body>

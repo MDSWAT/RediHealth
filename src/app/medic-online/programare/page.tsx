@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { ArrowLeftIcon } from "@/components/ui/icons";
 import { AppointmentBookingCalendar } from "@/components/telemed/AppointmentBookingCalendar";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
@@ -30,21 +31,21 @@ export default async function AppointmentBookingPage() {
 
   return (
     <main id="main-content" className="min-h-screen bg-background">
-      <div className="border-b border-border bg-card py-6 sm:py-8">
-        <Container>
-          <div>
+      <Container>
+        <PageHeader
+          above={
             <Link
               href={withLangPrefix("/medic-online", lang)}
-              className="mb-2 inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-sm text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-sm text-body font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <ArrowLeftIcon className="h-4 w-4" />
               {mp.backToDoctorOnline}
             </Link>
-            <h1 className="text-balance text-page text-foreground">{mp.bookingTitle}</h1>
-            <p className="mt-1.5 max-w-[65ch] text-sm leading-relaxed text-muted-foreground sm:text-base">{mp.bookingSubtitle}</p>
-          </div>
-        </Container>
-      </div>
+          }
+          title={mp.bookingTitle}
+          lead={mp.bookingSubtitle}
+        />
+      </Container>
 
       <AppointmentBookingCalendar />
     </main>

@@ -11,25 +11,31 @@ type SectionHeadingProps = {
   eyebrow?: ReactNode;
   align?: "left" | "center";
   as?: "h1" | "h2" | "h3";
+  size?: "section" | "page";
   action?: ReactNode;
   className?: string;
   titleClassName?: string;
 };
 
 /**
- * Section title (700, fluid `text-section`) with an optional lead (`text-lead`, 52ch measure) and an
- * optional action beside it from `sm`. Inside a Section it follows the ground: paper and mist on
- * the ink tone, and on every tone once `.dark` turns the grounds dark.
+ * Section title (700, fluid `text-section` unless `size="page"` or `titleClassName` specifies `text-page`)
+ * with an optional lead (`text-lead`, `--measure-lead` 34rem) and an optional action beside it from `sm`.
+ * Inside a Section it follows the ground: paper and mist on the ink tone, and on every tone
+ * once `.dark` turns the grounds dark.
  */
 export function SectionHeading({
   title,
   subtitle,
   align = "left",
   as: Heading = "h2",
+  size = "section",
   action,
   className,
   titleClassName,
 }: SectionHeadingProps) {
+  const hasExplicitSize =
+    size === "page" || Boolean(titleClassName && /\btext-(display|page|section|title|lead|reading|body|meta)\b/.test(titleClassName));
+  const sizeClass = hasExplicitSize ? (size === "page" && !titleClassName?.includes("text-") ? "text-page" : undefined) : "text-section";
   const copyBlock = (
     <div
       className={cn(
@@ -40,7 +46,8 @@ export function SectionHeading({
     >
       <Heading
         className={cn(
-          "text-balance text-section text-foreground in-data-[tone=ink]:text-paper dark:in-data-tone:text-paper",
+          "text-balance text-foreground in-data-[tone=ink]:text-paper dark:in-data-tone:text-paper",
+          sizeClass,
           titleClassName,
         )}
       >
@@ -49,7 +56,7 @@ export function SectionHeading({
       {subtitle ? (
         <p
           className={cn(
-            "mt-3.5 max-w-[52ch] text-pretty text-lead text-muted-foreground in-data-[tone=ink]:text-mist dark:in-data-tone:text-mist",
+            "mt-3.5 max-w-(--measure-lead) text-pretty text-lead text-muted-foreground in-data-[tone=ink]:text-mist dark:in-data-tone:text-mist",
             align === "center" && "mx-auto",
           )}
         >

@@ -97,7 +97,6 @@ describe("Single-line icon actions & cross-page filter consistency", () => {
 
   it("enforces flex-nowrap single-line action rows across utility bars and cards", () => {
     const files = [
-      "src/components/find-help/FindHelpExplorer.tsx",
       "src/components/health-check/TriageSummaryCard.tsx",
       "src/components/health-check/HealthCheckExplorer.tsx",
       "src/components/telemed/MedicOnlineHero.tsx",
@@ -110,11 +109,20 @@ describe("Single-line icon actions & cross-page filter consistency", () => {
       expect(readSrc(file), `${file} missing flex-nowrap single-line action row`).toContain("flex-nowrap");
     }
 
+    const findHelpSource = readSrc("src/components/find-help/FindHelpExplorer.tsx");
+    expect(findHelpSource).toContain("flex min-h-12 w-full items-center justify-center gap-2 whitespace-nowrap");
+    expect(findHelpSource).toContain("inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap");
+    expect(findHelpSource).toContain("flex flex-wrap items-center gap-2");
+    expect(findHelpSource).not.toContain("truncate font-semibold");
+    expect(findHelpSource).not.toContain("iconActionClass");
+
     const hcSource = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
     const routingMatch = hcSource.match(
       /const renderRoutingStack = [\s\S]*?(?=\n\s*async function handleCopyDiagnosticSheet)/,
     );
-    expect(routingMatch?.[0]).toContain("flex-nowrap");
+    expect(routingMatch?.[0]).toContain("sm:flex-wrap");
+    expect(routingMatch?.[0]).toContain("<Button");
+    expect(readSrc("src/components/ui/Button.tsx")).toContain("whitespace-nowrap");
 
     const summarySource = readSrc("src/components/health-check/TriageSummaryCard.tsx");
     expect(summarySource).toContain("sm:flex-nowrap");

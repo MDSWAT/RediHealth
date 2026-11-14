@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
+import { Button } from "@/components/ui/Button";
 import { CheckCircleIcon, CopyIcon, PrinterIcon, VolumeIcon } from "@/components/ui/icons";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { useReadAloud } from "./readingTools";
@@ -472,6 +473,7 @@ export function TriageSummaryCard({
     [doctorNotes, recommendationDetail],
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- preserved intact per audio-caller cleanup spec
   const formattedSummary = [
     `${t.title} (${currentDate}):`,
     ...rows.map((r) => `${r.label}: ${r.value}`),
@@ -718,22 +720,18 @@ export function TriageSummaryCard({
   const focusRing =
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
-  const primaryActionBtn = `press-solid inline-flex min-h-11 w-full min-w-0 items-center justify-center whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light sm:w-auto sm:flex-1 ${focusRing}`;
-
   const iconActionBtn = `press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-border-control bg-card text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire ${focusRing}`;
 
   const iconActiveBtn = `press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-sapphire bg-sapphire-soft text-sapphire shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${focusRing}`;
 
-  const modalCloseBtn = `press-row inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-5 text-sm font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 hover:bg-sapphire-soft/30 ${focusRing}`;
-
   return (
     <section className={`select-text ${bare ? "pt-2.5" : "border-t border-border pt-6"} ${className}`}>
       {bare ? (
-        <p className="text-xs font-medium text-muted-foreground tabular-nums">{currentDate}</p>
+        <p className="text-meta font-medium text-muted-foreground tabular-nums">{currentDate}</p>
       ) : (
         <div className="flex items-baseline justify-between gap-4">
-          <h3 className="text-base font-semibold text-foreground">{dict.ui.summaryHeading}</h3>
-          <span className="text-xs font-medium text-muted-foreground tabular-nums">{currentDate}</span>
+          <h3 className="text-body font-semibold text-foreground">{dict.ui.summaryHeading}</h3>
+          <span className="text-meta font-medium text-muted-foreground tabular-nums">{currentDate}</span>
         </div>
       )}
 
@@ -744,12 +742,12 @@ export function TriageSummaryCard({
             dangerouslySetInnerHTML={{ __html: inlinePainDiagramSvg }}
           />
           <div className="min-w-0">
-            <p className="text-xs font-medium text-muted-foreground">
+            <p className="text-meta font-medium text-muted-foreground">
               {(PAIN_DIAGRAM_COPY[activeLang] ?? PAIN_DIAGRAM_COPY.ro).heading}
             </p>
-            <p className="mt-0.5 text-[15px] font-semibold leading-snug text-foreground">{bodyArea}</p>
+            <p className="mt-0.5 text-body font-semibold leading-snug text-foreground">{bodyArea}</p>
             {anatomicalStructure && (
-              <p className="mt-0.5 text-[13px] font-medium text-muted-foreground">{anatomicalStructure}</p>
+              <p className="mt-0.5 text-meta font-medium text-muted-foreground">{anatomicalStructure}</p>
             )}
           </div>
         </div>
@@ -762,20 +760,20 @@ export function TriageSummaryCard({
             style={{ "--i": index } as CSSProperties}
             className="list-in grid grid-cols-[minmax(7rem,38%)_1fr] items-baseline gap-3 px-4 py-3 even:bg-surface-subtle/45"
           >
-            <dt className="text-[13px] font-medium text-muted-foreground">{row.label}</dt>
-            <dd className="text-[15px] font-semibold leading-snug text-foreground">{row.value}</dd>
+            <dt className="text-meta font-semibold text-foreground">{row.label}</dt>
+            <dd className="text-body leading-snug text-foreground">{row.value}</dd>
           </div>
         ))}
       </dl>
 
       {clinicalMechanism && (
-        <p className="mt-3 select-text text-base leading-relaxed text-muted-foreground">{clinicalMechanism}</p>
+        <p className="mt-3 select-text text-body text-muted-foreground">{clinicalMechanism}</p>
       )}
 
       {selfCareTips.length > 0 && (
         <div className="mt-4 select-text">
-          <p className="text-sm font-semibold text-foreground">{dict.ui.safeSelfCareHeading}</p>
-          <ul className="mt-1.5 list-disc space-y-1 pl-5 text-base text-foreground/85 marker:text-muted-foreground">
+          <p className="text-body font-semibold text-foreground">{dict.ui.safeSelfCareHeading}</p>
+          <ul className="mt-1.5 list-disc space-y-1 pl-5 text-body text-foreground/85 marker:text-muted-foreground">
             {selfCareTips.map((tip, idx) => (
               <li key={idx}>{tip}</li>
             ))}
@@ -825,9 +823,9 @@ export function TriageSummaryCard({
             </svg>
           </button>
           <div className="min-w-0">
-            <p className="text-xs font-semibold text-foreground sm:text-sm">{t.qrTitle}</p>
+            <p className="text-body font-semibold text-foreground">{t.qrTitle}</p>
             {recommendationDetail && (
-              <p className="mt-1.5 rounded-xl bg-sapphire-soft/65 px-2.5 py-1.5 text-xs font-semibold leading-snug text-foreground dark:bg-sapphire/15">
+              <p className="mt-1.5 rounded-xl bg-sapphire-soft/65 px-2.5 py-1.5 text-meta font-semibold leading-snug text-foreground dark:bg-sapphire/15">
                 {recommendationDetail}
               </p>
             )}
@@ -838,7 +836,7 @@ export function TriageSummaryCard({
                 id={inlineQrHintId}
                 role="tooltip"
                 data-qr-hint="inline"
-                className="popover-in rounded-xl border border-stone-200/90 bg-card p-3.5 text-xs leading-relaxed text-foreground shadow-lg dark:border-stone-800"
+                className="popover-in rounded-xl border border-border bg-card p-3.5 text-meta text-foreground shadow-lg dark:border-ink-800"
               >
                 {t.qrHint}
               </div>
@@ -848,9 +846,9 @@ export function TriageSummaryCard({
       )}
 
       <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-nowrap sm:items-center sm:gap-2 print:hidden">
-        <button type="button" onClick={() => setOpen(true)} className={primaryActionBtn}>
+        <Button type="button" variant="action" size="md" onClick={() => setOpen(true)} className="w-full min-w-0 sm:w-auto sm:flex-1">
           <span>{dict.ui.showDoctor}</span>
-        </button>
+        </Button>
         <div className="flex w-full flex-nowrap items-center justify-center gap-2 sm:w-auto sm:shrink-0 sm:justify-end">
           {voice.available && (
             <button
@@ -862,7 +860,15 @@ export function TriageSummaryCard({
                 if (voice.speaking) {
                   voice.stop();
                 } else {
-                  voice.speak([formattedSummary]);
+                  voice.speak(
+                    [
+                      `${t.title} (${currentDate})`,
+                      ...rows.map((r) => `${r.label}: ${r.value}`),
+                      ...extraRecLine,
+                      ...doctorNotes,
+                      warningNotice,
+                    ].filter(Boolean),
+                  );
                 }
               }}
               className={voice.speaking ? iconActiveBtn : iconActionBtn}
@@ -908,7 +914,7 @@ export function TriageSummaryCard({
         </div>
       </div>
       {copyState === "failed" && (
-        <p role="status" className="mt-2 text-sm font-medium text-primary">
+        <p role="status" className="mt-2 text-body font-medium text-primary">
           {t.copyFailed}
         </p>
       )}
@@ -940,7 +946,7 @@ export function TriageSummaryCard({
                       type="button"
                       aria-pressed={!showRomanian}
                       onClick={() => setShowRomanian(false)}
-                      className={`inline-flex min-h-11 min-w-0 flex-1 items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 sm:text-sm ${
+                      className={`inline-flex min-h-11 min-w-0 flex-1 items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 ${
                         !showRomanian
                           ? "bg-card text-sapphire shadow-2xs"
                           : "text-muted-foreground hover:text-foreground"
@@ -952,7 +958,7 @@ export function TriageSummaryCard({
                       type="button"
                       aria-pressed={showRomanian}
                       onClick={() => setShowRomanian(true)}
-                      className={`inline-flex min-h-11 min-w-0 flex-1 items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 sm:text-sm ${
+                      className={`inline-flex min-h-11 min-w-0 flex-1 items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 ${
                         showRomanian
                           ? "bg-card text-sapphire shadow-2xs"
                           : "text-muted-foreground hover:text-foreground"
@@ -971,10 +977,10 @@ export function TriageSummaryCard({
                 {/* Switching between the reader's language and Romanian settles the new text in place. */}
                 <div key={activeDialogLang} className="swap-in">
                 <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-3.5">
-                  <h3 className="text-xl font-semibold text-foreground sm:text-2xl">
+                  <h3 className="text-section font-semibold text-foreground">
                     {activeDialogCopy.patientSummary}
                   </h3>
-                  <p className="text-xs font-medium text-muted-foreground tabular-nums sm:text-sm">
+                  <p className="text-meta font-medium text-muted-foreground tabular-nums">
                     {activeDialogCopy.screenFor} — {activeDialogDate}
                   </p>
                 </div>
@@ -986,14 +992,14 @@ export function TriageSummaryCard({
                       dangerouslySetInnerHTML={{ __html: dialogPainDiagramSvg }}
                     />
                     <div className="min-w-0">
-                      <p className="text-xs font-medium text-muted-foreground">
+                      <p className="text-meta font-medium text-muted-foreground">
                         {(PAIN_DIAGRAM_COPY[activeDialogLang] ?? PAIN_DIAGRAM_COPY.ro).heading}
                       </p>
-                      <p className="mt-1 text-base font-semibold leading-snug text-foreground sm:text-lg">
+                      <p className="mt-1 text-lead font-semibold leading-snug text-foreground">
                         {getHealthCheckTranslations(activeDialogLang).bodyParts[painLocation.part].title}
                       </p>
                       {dialogSecondaryLocation && (
-                        <p className="mt-0.5 text-sm font-medium text-muted-foreground">
+                        <p className="mt-0.5 text-body font-medium text-muted-foreground">
                           {dialogSecondaryLocation}
                         </p>
                       )}
@@ -1007,8 +1013,8 @@ export function TriageSummaryCard({
                       key={row.label}
                       className="grid grid-cols-[minmax(7rem,38%)_1fr] items-baseline gap-3 px-4 py-3 even:bg-surface-subtle/45"
                     >
-                      <dt className="text-xs font-medium text-muted-foreground sm:text-sm">{row.label}</dt>
-                      <dd className="text-base font-semibold leading-snug text-foreground">{row.value}</dd>
+                      <dt className="text-meta font-semibold text-foreground">{row.label}</dt>
+                      <dd className="text-body leading-snug text-foreground">{row.value}</dd>
                     </div>
                   ))}
                 </dl>
@@ -1016,7 +1022,7 @@ export function TriageSummaryCard({
                 {screenNotes.length > 0 && (
                   <div className="mt-3.5 space-y-2 rounded-2xl bg-surface-subtle/55 p-4">
                     {screenNotes.map((note, i) => (
-                      <p key={i} className="text-sm leading-relaxed text-foreground sm:text-base">
+                      <p key={i} className="text-body text-foreground">
                         {note}
                       </p>
                     ))}
@@ -1024,7 +1030,7 @@ export function TriageSummaryCard({
                 )}
 
                 <p
-                  className={`mt-3.5 rounded-xl border px-4 py-2.5 text-sm font-semibold sm:text-base ${
+                  className={`mt-3.5 rounded-xl border px-4 py-2.5 text-body font-semibold ${
                     redFlagNoticed
                       ? "border-primary/30 bg-primary-soft text-primary"
                       : "border-border bg-surface-subtle/45 text-muted-foreground"
@@ -1075,9 +1081,9 @@ export function TriageSummaryCard({
                       </svg>
                     </button>
                     <div className="min-w-0 text-center sm:text-left">
-                      <p className="text-sm font-semibold text-foreground">{activeDialogCopy.qrTitle}</p>
+                      <p className="text-body font-semibold text-foreground">{activeDialogCopy.qrTitle}</p>
                       {activeRecommendationDetail && (
-                        <p className="mt-1.5 rounded-xl bg-sapphire-soft/65 px-2.5 py-1.5 text-xs font-semibold leading-snug text-foreground dark:bg-sapphire/15">
+                        <p className="mt-1.5 rounded-xl bg-sapphire-soft/65 px-2.5 py-1.5 text-meta font-semibold leading-snug text-foreground dark:bg-sapphire/15">
                           {activeRecommendationDetail}
                         </p>
                       )}
@@ -1088,7 +1094,7 @@ export function TriageSummaryCard({
                           id={dialogQrHintId}
                           role="tooltip"
                           data-qr-hint="dialog"
-                          className="popover-in rounded-xl border border-stone-200/90 bg-card p-3.5 text-xs leading-relaxed text-foreground shadow-lg dark:border-stone-800"
+                          className="popover-in rounded-xl border border-border bg-card p-3.5 text-meta text-foreground shadow-lg dark:border-ink-800"
                         >
                           {activeDialogCopy.qrHint}
                         </div>
@@ -1140,14 +1146,16 @@ export function TriageSummaryCard({
                     <span className="sr-only">{activeDialogCopy.savePdf}</span>
                   </button>
                 </div>
-                <button
+                <Button
                   type="button"
+                  variant="outline"
+                  size="md"
                   data-autofocus
                   onClick={() => setOpen(false)}
-                  className={modalCloseBtn}
+                  className="px-5"
                 >
                   <span className="min-w-0 truncate">{activeDialogCopy.close}</span>
-                </button>
+                </Button>
               </div>
             </div>
           </div>,

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/Button";
 import { PhoneIcon, CloseIcon } from "@/components/ui/icons";
 import { DesktopEmergencyCard } from "@/components/emergency/DesktopEmergencyCard";
 import styles from "@/components/emergency/EmergencyOverlay.module.css";
@@ -90,7 +91,7 @@ export function EmergencyDialerGate({
       role="dialog"
       aria-modal="true"
       aria-labelledby="dialer-gate-title"
-      className="scrim-in fixed inset-0 z-[110] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4"
+      className="scrim-in fixed inset-0 z-[110] flex items-end justify-center bg-ink-950/70 p-0 sm:items-center sm:p-4"
     >
       <div
         className="fixed inset-0 -z-10"
@@ -105,7 +106,7 @@ export function EmergencyDialerGate({
           className={cn(styles.panel, "relative w-full max-w-lg rounded-t-xl bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl focus:outline-none sm:rounded-xl sm:p-6")}
         >
           <div className="flex items-start justify-between gap-3">
-            <h2 id="dialer-gate-title" className="pt-1 text-lg font-semibold tracking-tight text-foreground">
+            <h2 id="dialer-gate-title" className="pt-1 text-title font-semibold text-foreground">
               {e.dialerGateTitle}
             </h2>
             <button
@@ -119,27 +120,32 @@ export function EmergencyDialerGate({
           </div>
 
           <div className="mt-3 space-y-3">
-            <p className="text-sm leading-relaxed text-foreground">{e.dialerNotice}</p>
-            <p className="text-sm text-muted-foreground">{e.dialerFreeNote}</p>
+            <p className="text-body text-foreground">{e.dialerNotice}</p>
+            <p className="text-body text-muted-foreground">{e.dialerFreeNote}</p>
           </div>
 
           <div className="mt-6 flex flex-col gap-3">
-            <a
+            <Button
               href="tel:112"
+              variant="primary"
+              size="lg"
+              fullWidth
               onClick={() => onOpenChange(false)}
-              className="press-solid flex min-h-14 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
+              className="min-h-14 px-6"
             >
-              <PhoneIcon className="h-5 w-5" aria-hidden="true" />
+              <PhoneIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
               <span>{e.openDialerButton}</span>
-            </a>
+            </Button>
 
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="lg"
+              fullWidth
               onClick={() => onOpenChange(false)}
-              className="press-row flex min-h-12 whitespace-nowrap w-full items-center justify-center rounded-lg border border-border-control bg-card text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
             >
               {e.cancelButton}
-            </button>
+            </Button>
           </div>
         </div>
       ) : (

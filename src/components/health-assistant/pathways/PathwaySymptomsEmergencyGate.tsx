@@ -1,12 +1,10 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
 import { PhoneIcon } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import {
-  dangerOutlineButton,
   dangerPanel,
-  emergencyButton,
-  secondaryButton,
   stepHeading,
 } from "@/components/health-assistant/step-ui";
 
@@ -30,7 +28,7 @@ export function PathwaySymptomsEmergencyGate({
         <h2 className={stepHeading}>
           {plainLanguage ? gate.plainHeading : gate.heading}
         </h2>
-        <ul className="mt-4 space-y-2 pl-5 text-base leading-relaxed text-foreground">
+        <ul className="mt-4 space-y-2 pl-5 text-body text-foreground">
           {signs.map((sign) => (
             <li key={sign} className="list-disc marker:text-primary">
               {sign}
@@ -39,36 +37,41 @@ export function PathwaySymptomsEmergencyGate({
         </ul>
 
         <div className="mt-6 space-y-3">
-          <a
+          <Button
             href="tel:112"
-            className={`w-full whitespace-nowrap ${emergencyButton}`}
+            variant="primary"
+            size="lg"
+            fullWidth
           >
             <PhoneIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
             <span className="min-w-0 truncate">{gate.callNow}</span>
-          </a>
+          </Button>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="lg"
               data-gate-emergency
               onClick={onSelectEmergency}
-              className={`max-w-full ${dangerOutlineButton}`}
+              className="border-primary/40 text-primary hover:border-primary hover:bg-primary-soft/70 focus-visible:ring-primary"
             >
               <span className="min-w-0 truncate">{gate.yesSeeTips}</span>
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="outline"
+              size="lg"
               data-gate-mild
               onClick={onSelectMild}
-              className={`max-w-full ${secondaryButton}`}
             >
               <span className="min-w-0 truncate">{gate.noNoneOfThese}</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
 
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{gate.note}</p>
+      <p className="mt-3 text-body text-muted-foreground">{gate.note}</p>
     </div>
   );
 }

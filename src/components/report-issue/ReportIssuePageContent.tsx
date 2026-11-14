@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -189,18 +189,14 @@ export function ReportIssuePageContent() {
   const detailInvalid = error === t.detailError && trimmedLength < 10;
 
   return (
-    <main id="main-content" className="flex-1">
-      <section className="border-b border-border bg-muted/40 py-10 sm:py-14">
-        <Container>
-          <SectionHeading as="h1" title={t.title} subtitle={t.subtitle} titleClassName="text-page" />
-        </Container>
-      </section>
+    <main id="main-content" className="flex-1 pb-12 sm:pb-16">
+      <Container>
+        <PageHeader title={t.title} lead={t.subtitle} />
 
-      <section className="py-10 sm:py-14">
-        <Container>
+        <div className="mt-6">
           <form onSubmit={onSubmit} className="max-w-2xl space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6">
             <div>
-              <label htmlFor="report-email" className="mb-1.5 block text-sm font-semibold text-foreground">{t.emailLabel}</label>
+              <label htmlFor="report-email" className="mb-1.5 block text-body font-semibold text-foreground">{t.emailLabel}</label>
               <input
                 id="report-email"
                 type="email"
@@ -208,12 +204,12 @@ export function ReportIssuePageContent() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder={t.emailPlaceholder}
-                className="field-focus min-h-12 w-full rounded-lg border border-border-control bg-background px-3.5 py-2 text-base text-foreground placeholder:text-muted-foreground sm:text-sm"
+                className="field-focus min-h-12 w-full rounded-lg border border-border-control bg-background px-3.5 py-2 text-body text-foreground placeholder:text-muted-foreground"
               />
             </div>
 
             <div>
-              <label htmlFor="report-message" className="mb-1.5 block text-sm font-semibold text-foreground">{t.issueLabel}</label>
+              <label htmlFor="report-message" className="mb-1.5 block text-body font-semibold text-foreground">{t.issueLabel}</label>
               <textarea
                 id="report-message"
                 required
@@ -224,7 +220,7 @@ export function ReportIssuePageContent() {
                 aria-invalid={detailInvalid}
                 aria-describedby={detailInvalid ? "report-message-error report-message-hint" : "report-message-hint"}
                 placeholder={t.issuePlaceholder}
-                className="field-focus w-full rounded-lg border border-border-control bg-background px-3.5 py-2.5 text-base text-foreground placeholder:text-muted-foreground sm:text-sm"
+                className="field-focus w-full rounded-lg border border-border-control bg-background px-3.5 py-2.5 text-body text-foreground placeholder:text-muted-foreground"
               />
               {/* A hairline under the field fills toward the 10-character minimum, so "how much more"
                   is visible without counting; the words beside it say the same thing. */}
@@ -236,26 +232,26 @@ export function ReportIssuePageContent() {
                   style={{ transform: `scaleX(${Math.min(trimmedLength, 10) / 10})` }}
                 />
               </span>
-              <p id="report-message-hint" className="mt-1.5 flex items-center justify-between gap-3 text-xs text-muted-foreground tabular-nums">
+              <p id="report-message-hint" className="mt-1.5 flex items-center justify-between gap-3 text-meta text-muted-foreground tabular-nums">
                 <span>{t.messageHint}</span>
                 <span key={trimmedLength >= 10 ? "ready" : "count"} className={trimmedLength >= 10 ? "swap-in font-semibold text-foreground" : undefined}>
                   {trimmedLength >= 10 ? t.readyHint : `${trimmedLength}/10`}
                 </span>
               </p>
               {detailInvalid ? (
-                <p id="report-message-error" role="alert" className="swap-in mt-1.5 text-sm font-medium text-primary">
+                <p id="report-message-error" role="alert" className="swap-in mt-1.5 text-body font-medium text-primary">
                   {error}
                 </p>
               ) : null}
             </div>
 
             {error && error !== t.detailError ? (
-              <p role="alert" className="swap-in border-l-2 border-primary py-0.5 pl-3 text-sm font-medium leading-relaxed text-foreground">
+              <p role="alert" className="swap-in text-body font-semibold text-foreground">
                 {error}
               </p>
             ) : null}
             {success ? (
-              <p role="status" className="swap-in border-l-2 border-live-sage py-0.5 pl-3 text-sm font-medium leading-relaxed text-foreground">
+              <p role="status" className="swap-in text-body font-semibold text-foreground">
                 {success}
               </p>
             ) : null}
@@ -266,8 +262,8 @@ export function ReportIssuePageContent() {
               </Button>
             </div>
           </form>
-        </Container>
-      </section>
+        </div>
+      </Container>
     </main>
   );
 }

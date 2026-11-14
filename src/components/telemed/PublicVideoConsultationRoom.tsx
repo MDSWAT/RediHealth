@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { CheckCircleIcon, CheckIcon, PhoneIcon, StethoscopeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -209,23 +210,27 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
           <div className="flex items-start gap-3">
             <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
             <div>
-              <h1 className="text-xl font-semibold text-foreground">{copy.endedTitle}</h1>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{copy.endedDesc}</p>
+              <h1 className="text-page font-semibold text-foreground">{copy.endedTitle}</h1>
+              <p className="mt-1.5 text-body text-muted-foreground">{copy.endedDesc}</p>
             </div>
           </div>
           <div className="mt-6 space-y-3">
-            <Link
+            <Button
               href={withLangPrefix("/contul-meu", lang)}
-              className="inline-flex min-h-[44px] w-full items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              variant="action"
+              size="md"
+              fullWidth
             >
               {copy.seeAdvice}
-            </Link>
-            <Link
+            </Button>
+            <Button
               href={withLangPrefix("/medic-online", lang)}
-              className="inline-flex min-h-[44px] w-full items-center justify-center whitespace-nowrap rounded-lg border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              variant="outline"
+              size="md"
+              fullWidth
             >
               {copy.backHome}
-            </Link>
+            </Button>
           </div>
         </div>
       </main>
@@ -237,10 +242,10 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
       <main id="main-content" className="flex min-h-[70dvh] items-center justify-center bg-background px-4 py-10 sm:py-16">
         <div className="w-full max-w-lg rounded-xl border border-border bg-card p-6 sm:p-8">
           <PhoneIcon className="h-6 w-6 text-sapphire" />
-          <h1 className="mt-4 text-balance text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{copy.permTitle}</h1>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{copy.permDesc}</p>
+          <h1 className="mt-4 text-balance text-page font-semibold text-foreground">{copy.permTitle}</h1>
+          <p className="mt-2 text-body text-muted-foreground">{copy.permDesc}</p>
 
-          <ul className="mt-6 space-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
+          <ul className="mt-6 space-y-2 border-t border-border pt-5 text-body text-muted-foreground">
             {[copy.permFree, copy.permNoRecording, copy.permHeadphones].map((line) => (
               <li key={line} className="flex items-start gap-2">
                 <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" />
@@ -250,16 +255,18 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
           </ul>
 
           <div className="mt-8 flex flex-col items-center gap-2">
-            <button
+            <Button
               type="button"
+              variant="action"
+              size="lg"
+              fullWidth
               onClick={requestMediaPermissions}
-              className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {copy.permAllow}
-            </button>
+            </Button>
             <Link
               href={withLangPrefix("/medic-online", lang)}
-              className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-sm px-2 text-sm text-muted-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-sm px-2 text-body text-muted-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.permCancel}
             </Link>
@@ -274,24 +281,24 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
       role="dialog"
       aria-modal="true"
       aria-label={copy.callTitle}
-      className="fixed inset-0 z-[60] flex h-[100dvh] w-full flex-col overflow-hidden bg-slate-950 text-white"
+      className="fixed inset-0 z-[60] flex h-[100dvh] w-full flex-col overflow-hidden bg-ink-950 text-paper"
     >
-      <header className="flex shrink-0 items-center gap-3 border-b border-white/10 bg-slate-950 px-4 py-2 pt-[max(0.5rem,env(safe-area-inset-top))]">
+      <header className="flex shrink-0 items-center gap-3 border-b border-paper/10 bg-ink-950 px-4 py-2 pt-[max(0.5rem,env(safe-area-inset-top))]">
         <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-live-sage" />
         <div className="min-w-0 flex-1">
-          <h1 className="truncate text-sm font-semibold text-white">{doctorName ?? copy.callTitle}</h1>
-          <p className="truncate text-xs text-slate-400">{copy.statusLine(patientName, roomId)}</p>
+          <h1 className="truncate text-body font-semibold text-paper">{doctorName ?? copy.callTitle}</h1>
+          <p className="truncate text-meta text-mist">{copy.statusLine(patientName, roomId)}</p>
         </div>
         <a
           href="tel:112"
-          className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-red-300 transition-colors duration-[var(--dur-fast)] hover:text-red-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+          className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-body font-semibold text-ruby-300 transition-colors duration-[var(--dur-fast)] hover:text-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70"
         >
           <PhoneIcon className="h-4 w-4" />
           {copy.emergency}
         </a>
       </header>
 
-      <main id="main-content" className="relative min-h-0 flex-1 bg-slate-950">
+      <main id="main-content" className="relative min-h-0 flex-1 bg-ink-950">
         <iframe
           src={jitsiUrl}
           title={copy.callTitle}
@@ -302,16 +309,16 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
 
       <div
         data-room-dock
-        className="flex shrink-0 items-center justify-between gap-3 border-t border-white/10 bg-slate-950 px-4 py-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))]"
+        className="flex shrink-0 items-center justify-between gap-3 border-t border-paper/10 bg-ink-950 px-4 py-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))]"
       >
-        <p className="flex min-w-0 items-center gap-2 text-xs text-slate-400">
+        <p className="flex min-w-0 items-center gap-2 text-meta text-mist">
           <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
           <span>{copy.voiceOnly}</span>
         </p>
         <button
           type="button"
           onClick={() => setCallEnded(true)}
-          className="inline-flex min-h-[44px] shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-white px-4 text-sm font-semibold text-slate-950 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          className="inline-flex min-h-[44px] shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-card px-4 text-body font-semibold text-ink-950 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
         >
           {copy.endCall}
         </button>

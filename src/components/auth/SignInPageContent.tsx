@@ -1,6 +1,7 @@
 "use client";
 
 import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { LockIcon } from "@/components/ui/icons";
 import { SignInForm } from "@/components/auth/SignInForm";
 import Link from "next/link";
@@ -65,34 +66,24 @@ export function SignInPageContent({
         : undefined;
 
   return (
-    <main id="main-content" className="flex-1">
-      <section className="border-b border-border bg-muted/40 py-10 sm:py-14">
-        <Container>
-          <div className="max-w-2xl">
-            <LockIcon className="h-7 w-7 text-sapphire" aria-hidden="true" />
-            <h1 className="mt-4 text-balance text-page text-foreground">
-              {page.heroTitle}
-            </h1>
-            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-              {googleConfigured ? page.heroParagraphWithGoogle : page.heroParagraphNoGoogle}
-            </p>
-          </div>
-        </Container>
-      </section>
+    <main id="main-content" className="flex-1 pb-12 sm:pb-16">
+      <Container>
+        <PageHeader
+          above={<LockIcon className="h-7 w-7 text-sapphire" aria-hidden="true" />}
+          title={page.heroTitle}
+          lead={googleConfigured ? page.heroParagraphWithGoogle : page.heroParagraphNoGoogle}
+        />
 
-      <section className="py-10 sm:py-14">
-        <Container>
-          <div className="max-w-xl">
-            <SignInForm
-              googleConfigured={googleConfigured}
-              initialError={initialErrorMessage}
-            />
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+        <div className="mt-6 max-w-xl">
+          <SignInForm
+            googleConfigured={googleConfigured}
+            initialError={initialErrorMessage}
+          />
+          <p className="mt-5 text-body text-muted-foreground">
               {termsWithLinks(page.terms, lang)}
-            </p>
-          </div>
-        </Container>
-      </section>
+          </p>
+        </div>
+      </Container>
     </main>
   );
 }

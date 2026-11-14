@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { errorTranslations } from "@/lib/i18n/error-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -16,7 +17,7 @@ function PausedRoute() {
   return (
     <svg
       viewBox="0 0 200 40"
-      className="mx-auto h-10 w-[200px] text-muted-foreground/60"
+      className="h-10 w-[200px] text-muted-foreground/60"
       fill="none"
       aria-hidden="true"
       focusable="false"
@@ -52,32 +53,33 @@ export default function ErrorPage({
   }, [error]);
 
   return (
-    <main id="main-content" className="flex flex-1 items-center py-20 sm:py-28">
+    <main id="main-content" className="flex flex-1 items-center pb-16 sm:pb-24">
       <Container>
-        <section role="alert" className="fhs-enter mx-auto max-w-xl text-center">
-          <PausedRoute />
-          <h1 className="mt-8 text-balance text-page text-foreground">
-            {copy.title}
-          </h1>
-          <p className="mx-auto mt-4 max-w-md text-pretty text-lg leading-relaxed text-muted-foreground">{copy.body}</p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button
-              size="lg"
-              variant="secondary"
-              onClick={() => retry()}
-              className="whitespace-nowrap press-solid motion-reduce:transition-none"
-            >
-              {copy.retry}
-            </Button>
-            <Button
-              href={withLangPrefix("/", lang)}
-              size="lg"
-              variant="outline"
-              className="whitespace-nowrap press-row motion-reduce:transition-none"
-            >
-              {copy.home}
-            </Button>
-          </div>
+        <section role="alert" className="fhs-enter max-w-xl">
+          <PageHeader
+            align="start"
+            above={<PausedRoute />}
+            title={copy.title}
+            lead={copy.body}
+            actions={
+              <>
+                <Button
+                  size="lg"
+                  variant="action"
+                  onClick={() => retry()}
+                >
+                  {copy.retry}
+                </Button>
+                <Button
+                  href={withLangPrefix("/", lang)}
+                  size="lg"
+                  variant="outline"
+                >
+                  {copy.home}
+                </Button>
+              </>
+            }
+          />
         </section>
       </Container>
     </main>

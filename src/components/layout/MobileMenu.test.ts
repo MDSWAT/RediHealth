@@ -1,8 +1,12 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { chromeCopy } from "@/components/layout/chrome-copy";
 import { COMFORT_COPY } from "@/components/layout/ComfortMenu";
 import { languageSelectorCopy } from "@/components/layout/LanguageSelector";
+import { Container } from "@/components/ui/Container";
 import type { Lang } from "@/lib/i18n/translations";
 
 const LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
@@ -34,9 +38,11 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(HEADER_SOURCE).toContain("gap-0.5 md:hidden");
   });
 
-  it("keeps primary navigation and mediator subtitles accessible inside sr-only", () => {
-    expect(MOBILE_MENU_SOURCE).toContain('<span className="sr-only"> — {link.subtext}</span>');
-    expect(MOBILE_MENU_SOURCE).toContain('<span className="sr-only"> — {tHeader.forMediatorsSub}</span>');
+  it("shows primary navigation and mediator subtitles visibly without sr-only or line clipping", () => {
+    expect(MOBILE_MENU_SOURCE).toContain("{link.subtext}");
+    expect(MOBILE_MENU_SOURCE).toContain("{tHeader.forMediatorsSub}");
+    expect(MOBILE_MENU_SOURCE).toContain("text-meta font-normal leading-snug text-muted-foreground");
+    expect(MOBILE_MENU_SOURCE).not.toContain("sr-only");
     expect(MOBILE_MENU_SOURCE).not.toContain("line-clamp-1");
   });
 
@@ -61,5 +67,33 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
         expect(value[0], `${lang}: "${value}"`).toBe(value[0].toLocaleUpperCase());
       }
     }
+  });
+
+  it("shows single-line words on phone comfort & menu triggers and keeps search in the drawer (P27)", () => {
+    const mobileClusterStart = HEADER_SOURCE.indexOf("{!mobileOpen &&");
+    const mobileBarSlice = HEADER_SOURCE.slice(mobileClusterStart, mobileMenuStart);
+    expect(mobileClusterStart).toBeGreaterThan(-1);
+    expect(mobileBarSlice).not.toContain("openSmartSearch()");
+    expect(mobileBarSlice).toContain("<ComfortMenu tone={isTransparent ? \"light\" : \"default\"} showLabel />");
+    expect(mobileBarSlice).toContain("chrome.closeWord : chrome.menuWord");
+    expect(mobileBarSlice).toContain("whitespace-nowrap");
+    expect(MOBILE_MENU_SOURCE).toContain("openSmartSearch()");
+
+    for (const lang of LANGS) {
+      const comfortShort = COMFORT_COPY[lang].comfortShort;
+      const { menuWord, closeWord } = chromeCopy[lang];
+      expect(comfortShort.length, `${lang}.comfortShort`).toBeLessThanOrEqual(10);
+      for (const word of [comfortShort, menuWord, closeWord]) {
+        expect(word.length, `${lang}: "${word}"`).toBeGreaterThan(0);
+        expect(word, `${lang}: "${word}"`).not.toContain("&");
+        expect(word[0], `${lang}: "${word}"`).toBe(word[0].toLocaleUpperCase());
+      }
+    }
+
+    expect(HEADER_SOURCE).toContain('data-header-bar=""');
+    const containerHtml = renderToStaticMarkup(
+      createElement(Container, { "data-header-bar": "", className: "max-[359px]:px-2" }, "ok"),
+    );
+    expect(containerHtml).toContain("data-header-bar=");
   });
 });

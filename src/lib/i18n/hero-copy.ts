@@ -1,4 +1,5 @@
 import type { Lang } from "@/lib/i18n/translations";
+import { PLAIN_ALARM_SIGNS } from "@/lib/i18n/emergency-signs";
 import { withLangPrefix } from "@/lib/i18n/routing";
 
 /**
@@ -11,32 +12,20 @@ import { withLangPrefix } from "@/lib/i18n/routing";
  * - every answer is short: a title, one line or a short list, one action.
  */
 
-export type HeroNeedId = "learn" | "risk" | "nearby" | "problem" | "prescription" | "navigate";
+export type HeroNeedId = "problem" | "risk" | "doctor" | "nearby" | "prescription" | "navigate";
 
 export type HeroNeedPoint = { label?: string; text: string };
-
-/** A one-tap true or false check: the concept's "what is true and what is not". */
-export type HeroQuiz = {
-  prompt: string;
-  statement: string;
-  trueLabel: string;
-  falseLabel: string;
-  /** The correct answer to the statement. */
-  answer: boolean;
-  correct: string;
-  incorrect: string;
-  explanation: string;
-};
 
 export type HeroNeed = {
   /** Button label on step 1, phrased the way a person would say it. */
   label: string;
   /** Short behavioural preview shown in the panel subtitle on hover, focus, or selection. */
   hint: string;
+  /** P29: When true, Step 1 links straight to `action.href` without opening a middle card. */
+  direct?: boolean;
   title: string;
   body?: string;
   points?: HeroNeedPoint[];
-  quiz?: HeroQuiz;
   action: { label: string; href: string };
 };
 
@@ -65,13 +54,10 @@ export type HeroCopy = {
     /** Footer link on step 1, to the health mediators' page. */
     mediators: string;
     question: string;
-    /** Dynamic subtitle states driven by live user behaviour. */
+    /** Static footer subtitle plus live speaking indicator. */
     subtitles: {
       default: string;
       speaking: string;
-      mediators: string;
-      returned: string;
-      idle: string;
     };
     back: string;
     step: (current: number, total: number) => string;
@@ -84,7 +70,7 @@ export type HeroCopy = {
   };
 };
 
-export const HERO_NEED_ORDER: HeroNeedId[] = ["learn", "risk", "nearby", "problem", "prescription", "navigate"];
+export const HERO_NEED_ORDER: HeroNeedId[] = ["problem", "risk", "doctor", "nearby", "prescription", "navigate"];
 
 /**
  * Keeps hero links in the visitor's language, matching the header's links.
@@ -98,13 +84,7 @@ export function localHref(href: string, lang: Lang): string {
 const en: HeroCopy = {
   emergency: {
     close: "Close",
-    alarmSigns: [
-      "Chest pain or pressure",
-      "Hard to breathe",
-      "Face drooping, weakness or slurred speech",
-      "Fainting or confusion",
-      "Heavy bleeding",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.en,
     callLead: "In a medical emergency,",
     callLink: "call 112",
   },
@@ -113,47 +93,40 @@ const en: HeroCopy = {
   journey: ["Say what worries you", "Get clear next steps", "Talk to a doctor"],
   primaryCta: "Tell us what worries you",
   panel: {
-    label: "Assistant",
-    listen: "Read aloud",
-    stopListening: "Stop reading",
+    label: "Health assistant",
+    listen: "Listen",
+    stopListening: "Stop",
     fallbackVoice: "backup voice",
-    mediators: "For health mediators",
+    mediators: "Ask a mediator",
     question: "How can we help you today?",
     subtitles: {
       default: "Free and private, instant next step.",
       speaking: "Reading the options aloud.",
-      mediators: "Field tools for health mediators.",
-      returned: "Pick another option anytime.",
-      idle: "Not sure? Try the last option above.",
     },
     back: "Back",
     step: (current, total) => `Step ${current} of ${total}`,
     doctorPrompt: "Want to talk to a doctor?",
-    doctorLink: "Book a call",
-    problemDoctorPrompt: "No alarm signs?",
-    problemDoctorLink: "Talk to a doctor online",
+    doctorLink: "Talk to a doctor",
+    problemDoctorPrompt: "None of these?",
+    problemDoctorLink: "Talk to a doctor",
     needs: {
-      learn: {
-        label: "Read simple health guides",
-        hint: "Short lessons on blood pressure and care.",
-        title: "Short lessons about your health",
-        quiz: {
-          prompt: "True or false?",
-          statement: "Once your blood pressure is back to normal, you can stop the pills.",
-          trueLabel: "True",
-          falseLabel: "False",
-          answer: false,
-          correct: "That's right.",
-          incorrect: "Not quite.",
-          explanation: "Your blood pressure is normal because of the pills. Do not stop them without talking to your doctor.",
-        },
-        action: { label: "Start a lesson", href: "/health-information" },
+      doctor: {
+        label: "Talk to a doctor online",
+        hint: "Free phone call with a doctor.",
+        title: "Talk to a doctor from home",
+        points: [
+          { text: "Free, no card or account needed." },
+          { text: "The doctor calls you on the phone." },
+          { text: "Every day, 08:00 to 20:00." },
+        ],
+        action: { label: "Talk to a doctor now", href: "/medic-online" },
       },
       risk: {
         label: "Check my symptoms",
-        hint: "Point where it hurts in 3 quick steps.",
+        hint: "Point where it hurts in a few short steps.",
+        direct: true,
         title: "Show us where it hurts",
-        body: "Tap where it hurts, answer 3 questions and see what to do next.",
+        body: "Tap where it hurts, answer a few short questions and see what to do next.",
         action: { label: "Start the check", href: "/health-check" },
       },
       nearby: {
@@ -165,7 +138,7 @@ const en: HeroCopy = {
           { text: "See family doctors, clinics and hospitals on the map." },
           { text: "Choose your country or use your location." },
         ],
-        action: { label: "Open the map", href: "/find-help" },
+        action: { label: "See places near you", href: "/find-help" },
       },
       problem: {
         label: "I feel unwell right now",
@@ -177,6 +150,7 @@ const en: HeroCopy = {
       prescription: {
         label: "Understand my prescription",
         hint: "Snap a photo to understand each pill.",
+        direct: true,
         title: "Your prescription, explained",
         body: "Take a photo. We explain each medicine: what it is for and when to take it.",
         action: { label: "Explain my prescription", href: "/prescription-review" },
@@ -190,7 +164,7 @@ const en: HeroCopy = {
           { text: "Bring your identity card." },
           { text: "Emergency care at the hospital is free for everyone." },
         ],
-        action: { label: "Get help from a person", href: "/get-help?mode=mediator" },
+        action: { label: "Ask a person", href: "/get-help?mode=mediator" },
       },
     },
   },
@@ -199,13 +173,7 @@ const en: HeroCopy = {
 const ro: HeroCopy = {
   emergency: {
     close: "Închide",
-    alarmSigns: [
-      "Durere sau apăsare în piept",
-      "Respiri foarte greu",
-      "Gura strâmbă, slăbiciune sau vorbire greoaie",
-      "Leșin sau confuzie",
-      "Sângerare puternică",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.ro,
     callLead: "Pentru o urgență medicală,",
     callLink: "sună la 112",
   },
@@ -215,46 +183,39 @@ const ro: HeroCopy = {
   primaryCta: "Spune-ne ce te îngrijorează",
   panel: {
     label: "Asistent",
-    listen: "Citește cu voce tare",
-    stopListening: "Oprește citirea",
+    listen: "Ascultă",
+    stopListening: "Oprește",
     fallbackVoice: "voce de rezervă",
-    mediators: "Pentru mediatori sanitari",
+    mediators: "Cere un mediator",
     question: "Cu ce te putem ajuta astăzi?",
     subtitles: {
       default: "Gratuit și fără cont, răspuns imediat.",
       speaking: "Citim opțiunile cu voce tare.",
-      mediators: "Instrumente pentru mediatorii din teren.",
-      returned: "Poți alege oricând altă situație.",
-      idle: "Nu știi ce să alegi? Începe cu ultima.",
     },
     back: "Înapoi",
     step: (current, total) => `Pasul ${current} din ${total}`,
     doctorPrompt: "Vrei să vorbești cu un medic?",
-    doctorLink: "Programează un apel",
-    problemDoctorPrompt: "Nu ai semne de alarmă?",
-    problemDoctorLink: "Vorbește cu un medic online",
+    doctorLink: "Vorbește cu un medic",
+    problemDoctorPrompt: "Niciunul dintre acestea?",
+    problemDoctorLink: "Vorbește cu un medic",
     needs: {
-      learn: {
-        label: "Citește ghiduri simple de sănătate",
-        hint: "Lecții scurte despre tensiune și diabet.",
-        title: "Lecții scurte despre sănătate",
-        quiz: {
-          prompt: "Adevărat sau fals?",
-          statement: "Dacă tensiunea ți-a revenit la normal, poți opri pastilele.",
-          trueLabel: "Adevărat",
-          falseLabel: "Fals",
-          answer: false,
-          correct: "Corect.",
-          incorrect: "Nu chiar.",
-          explanation: "Tensiunea e normală tocmai datorită pastilelor. Nu le opri fără să vorbești cu medicul.",
-        },
-        action: { label: "Începe o lecție", href: "/health-information" },
+      doctor: {
+        label: "Vorbește cu un medic online",
+        hint: "Apel gratuit la telefon cu un medic.",
+        title: "Vorbește cu un medic de acasă",
+        points: [
+          { text: "Gratuit, fără card și fără cont." },
+          { text: "Medicul te sună la telefon." },
+          { text: "Zilnic, între 08:00 și 20:00." },
+        ],
+        action: { label: "Vorbește cu un medic", href: "/medic-online" },
       },
       risk: {
-        label: "Verifică ce simptome ai",
-        hint: "Arăți unde te doare în 3 pași scurți.",
+        label: "Verifică simptomele",
+        hint: "Arăți unde te doare în câțiva pași scurți.",
+        direct: true,
         title: "Arată unde te doare",
-        body: "Atinge locul unde te doare, răspunde la 3 întrebări și vezi ce faci mai departe.",
+        body: "Atinge locul unde te doare, răspunde la câteva întrebări scurte și vezi ce faci mai departe.",
         action: { label: "Începe verificarea", href: "/health-check" },
       },
       nearby: {
@@ -266,7 +227,7 @@ const ro: HeroCopy = {
           { text: "Vezi pe hartă medici de familie, clinici și spitale." },
           { text: "Alege țara sau folosește locația ta." },
         ],
-        action: { label: "Deschide harta", href: "/find-help" },
+        action: { label: "Vezi locuri lângă tine", href: "/find-help" },
       },
       problem: {
         label: "Nu mă simt bine acum",
@@ -278,6 +239,7 @@ const ro: HeroCopy = {
       prescription: {
         label: "Înțelege o rețetă medicală",
         hint: "Faci o poză rețetei și îți explicăm.",
+        direct: true,
         title: "Rețeta ta, explicată",
         body: "Fă o poză rețetei. Îți explicăm fiecare medicament: la ce folosește și când îl iei.",
         action: { label: "Explică-mi rețeta", href: "/prescription-review" },
@@ -291,7 +253,7 @@ const ro: HeroCopy = {
           { text: "Ia buletinul cu tine." },
           { text: "Urgențele la spital sunt gratuite pentru toți." },
         ],
-        action: { label: "Cere ajutor de la un om", href: "/get-help?mode=mediator" },
+        action: { label: "Cere ajutor", href: "/get-help?mode=mediator" },
       },
     },
   },
@@ -300,13 +262,7 @@ const ro: HeroCopy = {
 const sq: HeroCopy = {
   emergency: {
     close: "Mbyll",
-    alarmSigns: [
-      "Dhimbje ose shtrëngim në gjoks",
-      "Merr frymë me vështirësi",
-      "Fytyrë e shtrembër, dobësi ose të folur e paqartë",
-      "Të fikët ose konfuzion",
-      "Gjakderdhje e rëndë",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.sq,
     callLead: "Në rast urgjence mjekësore,",
     callLink: "telefono 112",
   },
@@ -315,47 +271,40 @@ const sq: HeroCopy = {
   journey: ["Thua çfarë të shqetëson", "Merr hapat e radhës", "Flet me një mjek"],
   primaryCta: "Na trego çfarë të shqetëson",
   panel: {
-    label: "Asistent",
-    listen: "Lexo me zë",
-    stopListening: "Ndalo leximin",
+    label: "Asistent shëndetësor",
+    listen: "Dëgjo",
+    stopListening: "Ndalo",
     fallbackVoice: "zë rezervë",
-    mediators: "Për mediatorët shëndetësorë",
+    mediators: "Kërko një mediator",
     question: "Si mund të të ndihmojmë sot?",
     subtitles: {
       default: "Falas dhe pa llogari, hapi tjetër direkt.",
       speaking: "Po i lexojmë zgjedhjet me zë.",
-      mediators: "Mjete pune për mediatorët në terren.",
-      returned: "Zgjidh një situatë tjetër kur të duash.",
-      idle: "Nuk je i sigurt? Provo zgjedhjen e fundit.",
     },
     back: "Kthehu",
     step: (current, total) => `Hapi ${current} nga ${total}`,
     doctorPrompt: "Do të flasësh me një mjek?",
-    doctorLink: "Rezervo një thirrje",
-    problemDoctorPrompt: "Nuk ke shenja alarmi?",
-    problemDoctorLink: "Fol me një mjek online",
+    doctorLink: "Fol me një mjek",
+    problemDoctorPrompt: "Asnjë nga këto?",
+    problemDoctorLink: "Fol me një mjek",
     needs: {
-      learn: {
-        label: "Lexo udhëzues të thjeshtë shëndeti",
-        hint: "Mësime të shkurtra për tension dhe diabet.",
-        title: "Mësime të shkurtra për shëndetin",
-        quiz: {
-          prompt: "E vërtetë apo e rreme?",
-          statement: "Nëse presioni të është kthyer në normal, mund t'i lësh ilaçet.",
-          trueLabel: "E vërtetë",
-          falseLabel: "E rreme",
-          answer: false,
-          correct: "Saktë.",
-          incorrect: "Jo tamam.",
-          explanation: "Presioni është normal pikërisht falë ilaçeve. Mos i lër pa folur me mjekun.",
-        },
-        action: { label: "Fillo një mësim", href: "/health-information" },
+      doctor: {
+        label: "Fol me një mjek online",
+        hint: "Telefonatë falas me një mjek.",
+        title: "Fol me një mjek nga shtëpia",
+        points: [
+          { text: "Falas, pa kartë dhe pa llogari." },
+          { text: "Mjeku të telefonon në telefon." },
+          { text: "Çdo ditë, nga 08:00 në 20:00." },
+        ],
+        action: { label: "Fol me një mjek tani", href: "/medic-online" },
       },
       risk: {
-        label: "Kontrollo simptomat e tua",
-        hint: "Trego ku të dhemb në 3 hapa të shkurtër.",
+        label: "Kontrollo simptomat",
+        hint: "Trego ku të dhemb në disa hapa të shkurtër.",
+        direct: true,
         title: "Trego ku të dhemb",
-        body: "Prek ku të dhemb, përgjigju 3 pyetjeve dhe shiko çfarë të bësh më pas.",
+        body: "Prek ku të dhemb, përgjigju disa pyetjeve të shkurtra dhe shiko çfarë të bësh më pas.",
         action: { label: "Fillo kontrollin", href: "/health-check" },
       },
       nearby: {
@@ -367,7 +316,7 @@ const sq: HeroCopy = {
           { text: "Shiko në hartë mjekë familjeje, klinika dhe spitale." },
           { text: "Zgjidh vendin ose përdor vendndodhjen tënde." },
         ],
-        action: { label: "Hap hartën", href: "/find-help" },
+        action: { label: "Shiko vende pranë teje", href: "/find-help" },
       },
       problem: {
         label: "Nuk ndihem mirë tani",
@@ -379,9 +328,10 @@ const sq: HeroCopy = {
       prescription: {
         label: "Kupto recetën mjekësore",
         hint: "Bëji foto recetës për çdo shpjegim.",
+        direct: true,
         title: "Receta jote, e shpjeguar",
         body: "Bëji një foto recetës. Të shpjegojmë çdo ilaç: për çfarë shërben dhe kur merret.",
-        action: { label: "Më shpjego recetën", href: "/prescription-review" },
+        action: { label: "Shpjego recetën time", href: "/prescription-review" },
       },
       navigate: {
         label: "Nuk di ku të shkoj",
@@ -392,7 +342,7 @@ const sq: HeroCopy = {
           { text: "Merr kartën e identitetit me vete." },
           { text: "Urgjenca në spital është falas për të gjithë." },
         ],
-        action: { label: "Kërko ndihmë nga një person", href: "/get-help?mode=mediator" },
+        action: { label: "Kërko ndihmë", href: "/get-help?mode=mediator" },
       },
     },
   },
@@ -401,13 +351,7 @@ const sq: HeroCopy = {
 const it: HeroCopy = {
   emergency: {
     close: "Chiudi",
-    alarmSigns: [
-      "Dolore o oppressione al petto",
-      "Fatica a respirare",
-      "Bocca storta, debolezza o difficoltà a parlare",
-      "Svenimento o confusione",
-      "Forte sanguinamento",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.it,
     callLead: "In caso di emergenza medica,",
     callLink: "chiama il 112",
   },
@@ -416,47 +360,40 @@ const it: HeroCopy = {
   journey: ["Dici cosa ti preoccupa", "Ricevi i passi da seguire", "Parli con un medico"],
   primaryCta: "Dicci cosa ti preoccupa",
   panel: {
-    label: "Assistente",
-    listen: "Leggi ad alta voce",
-    stopListening: "Interrompi la lettura",
+    label: "Assistente sanitario",
+    listen: "Ascolta",
+    stopListening: "Ferma",
     fallbackVoice: "voce di riserva",
-    mediators: "Per i mediatori sanitari",
+    mediators: "Chiedi un mediatore",
     question: "Come possiamo aiutarti oggi?",
     subtitles: {
       default: "Gratuito e riservato, aiuto immediato.",
       speaking: "Leggiamo le opzioni ad alta voce.",
-      mediators: "Strumenti sul campo per i mediatori.",
-      returned: "Scegli un'altra opzione quando vuoi.",
-      idle: "In dubbio? Prova l'ultima opzione.",
     },
     back: "Indietro",
     step: (current, total) => `Passo ${current} di ${total}`,
     doctorPrompt: "Vuoi parlare con un medico?",
-    doctorLink: "Prenota una chiamata",
-    problemDoctorPrompt: "Nessun segnale di allarme?",
-    problemDoctorLink: "Parla con un medico online",
+    doctorLink: "Parla con un medico",
+    problemDoctorPrompt: "Nessuno di questi?",
+    problemDoctorLink: "Parla con un medico",
     needs: {
-      learn: {
-        label: "Leggi guide semplici sulla salute",
-        hint: "Guide brevi su pressione e diabete.",
-        title: "Brevi lezioni sulla salute",
-        quiz: {
-          prompt: "Vero o falso?",
-          statement: "Se la pressione è tornata normale, puoi smettere di prendere le pastiglie.",
-          trueLabel: "Vero",
-          falseLabel: "Falso",
-          answer: false,
-          correct: "Esatto.",
-          incorrect: "Non proprio.",
-          explanation: "La pressione è normale proprio grazie alle pastiglie. Non smettere senza parlarne con il medico.",
-        },
-        action: { label: "Inizia una lezione", href: "/health-information" },
+      doctor: {
+        label: "Parla con un medico online",
+        hint: "Chiamata gratuita con un medico.",
+        title: "Parla con un medico da casa",
+        points: [
+          { text: "Gratis, senza tessera né account." },
+          { text: "Il medico ti chiama al telefono." },
+          { text: "Tutti i giorni, dalle 08:00 alle 20:00." },
+        ],
+        action: { label: "Parla ora con un medico", href: "/medic-online" },
       },
       risk: {
-        label: "Controlla i tuoi sintomi",
-        hint: "Indica dove fa male in 3 brevi passi.",
+        label: "Controlla i sintomi",
+        hint: "Indica dove fa male in pochi brevi passi.",
+        direct: true,
         title: "Indica dove fa male",
-        body: "Tocca dove fa male, rispondi a 3 domande e vedi cosa fare dopo.",
+        body: "Tocca dove fa male, rispondi ad alcune domande brevi e vedi cosa fare dopo.",
         action: { label: "Inizia il controllo", href: "/health-check" },
       },
       nearby: {
@@ -468,7 +405,7 @@ const it: HeroCopy = {
           { text: "Vedi sulla mappa medici di base, ambulatori e ospedali." },
           { text: "Scegli il paese o usa la tua posizione." },
         ],
-        action: { label: "Apri la mappa", href: "/find-help" },
+        action: { label: "Vedi luoghi vicini a te", href: "/find-help" },
       },
       problem: {
         label: "Non mi sento bene adesso",
@@ -480,6 +417,7 @@ const it: HeroCopy = {
       prescription: {
         label: "Capisci la tua ricetta medica",
         hint: "Scatta una foto per capire la ricetta.",
+        direct: true,
         title: "La tua ricetta, spiegata",
         body: "Fai una foto alla ricetta. Ti spieghiamo ogni farmaco: a cosa serve e quando prenderlo.",
         action: { label: "Spiegami la ricetta", href: "/prescription-review" },
@@ -493,7 +431,7 @@ const it: HeroCopy = {
           { text: "Porta la carta d'identità." },
           { text: "Il pronto soccorso in ospedale è gratuito per tutti." },
         ],
-        action: { label: "Chiedi aiuto a una persona", href: "/get-help?mode=mediator" },
+        action: { label: "Chiedi aiuto", href: "/get-help?mode=mediator" },
       },
     },
   },
@@ -502,13 +440,7 @@ const it: HeroCopy = {
 const hr: HeroCopy = {
   emergency: {
     close: "Zatvori",
-    alarmSigns: [
-      "Bol ili pritisak u prsima",
-      "Teško disanje ili nedostatak zraka",
-      "Iskrivljeno lice, slabost ili nerazgovijetan govor",
-      "Nesvjestica ili zbunjenost",
-      "Jako krvarenje",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.hr,
     callLead: "U hitnom medicinskom slučaju,",
     callLink: "nazovi 112",
   },
@@ -517,47 +449,40 @@ const hr: HeroCopy = {
   journey: ["Reci što te brine", "Dobij jasne sljedeće korake", "Razgovaraj s liječnikom"],
   primaryCta: "Reci nam što te brine",
   panel: {
-    label: "Asistent",
-    listen: "Čitaj naglas",
-    stopListening: "Zaustavi čitanje",
+    label: "Zdravstveni asistent",
+    listen: "Poslušaj",
+    stopListening: "Zaustavi",
     fallbackVoice: "rezervni glas",
-    mediators: "Za zdravstvene medijatore",
+    mediators: "Zatraži medijatora",
     question: "Kako ti danas možemo pomoći?",
     subtitles: {
       default: "Besplatno i povjerljivo, sljedeći korak.",
       speaking: "Čitamo opcije naglas.",
-      mediators: "Alati za zdravstvene medijatore.",
-      returned: "Odaberi drugu opciju kad želiš.",
-      idle: "Nisi siguran? Probaj zadnju opciju.",
     },
     back: "Natrag",
     step: (current, total) => `Korak ${current} od ${total}`,
     doctorPrompt: "Želiš li razgovarati s liječnikom?",
-    doctorLink: "Dogovori poziv",
-    problemDoctorPrompt: "Nemaš znakove uzbune?",
-    problemDoctorLink: "Razgovaraj s liječnikom online",
+    doctorLink: "Razgovaraj s liječnikom",
+    problemDoctorPrompt: "Ništa od toga?",
+    problemDoctorLink: "Razgovaraj s liječnikom",
     needs: {
-      learn: {
-        label: "Čitaj jednostavne vodiče o zdravlju",
-        hint: "Kratke lekcije o tlaku i dijabetesu.",
-        title: "Kratke lekcije o zdravlju",
-        quiz: {
-          prompt: "Točno ili netočno?",
-          statement: "Kad se krvni tlak vrati u normalu, možeš prestati piti tablete.",
-          trueLabel: "Točno",
-          falseLabel: "Netočno",
-          answer: false,
-          correct: "Tako je.",
-          incorrect: "Nije baš tako.",
-          explanation: "Krvni tlak je normalan upravo zbog tableta. Nemoj ih prestati uzimati bez razgovora s liječnikom.",
-        },
-        action: { label: "Započni lekciju", href: "/health-information" },
+      doctor: {
+        label: "Razgovaraj s liječnikom online",
+        hint: "Besplatan telefonski poziv s liječnikom.",
+        title: "Razgovaraj s liječnikom od kuće",
+        points: [
+          { text: "Besplatno, bez kartice i računa." },
+          { text: "Liječnik te zove na telefon." },
+          { text: "Svaki dan, od 08:00 do 20:00." },
+        ],
+        action: { label: "Razgovaraj s liječnikom", href: "/medic-online" },
       },
       risk: {
-        label: "Provjeri svoje simptome",
-        hint: "Pokaži gdje boli u 3 kratka koraka.",
+        label: "Provjeri simptome",
+        hint: "Pokaži gdje boli u nekoliko kratkih koraka.",
+        direct: true,
         title: "Pokaži gdje te boli",
-        body: "Dodirni gdje boli, odgovori na 3 pitanja i saznaj što dalje.",
+        body: "Dodirni gdje boli, odgovori na nekoliko kratkih pitanja i saznaj što dalje.",
         action: { label: "Pokreni provjeru", href: "/health-check" },
       },
       nearby: {
@@ -569,7 +494,7 @@ const hr: HeroCopy = {
           { text: "Pogledaj na karti obiteljske liječnike, klinike i bolnice." },
           { text: "Odaberi državu ili koristi svoju lokaciju." },
         ],
-        action: { label: "Otvori kartu", href: "/find-help" },
+        action: { label: "Vidi mjesta u blizini", href: "/find-help" },
       },
       problem: {
         label: "Ne osjećam se dobro sada",
@@ -581,6 +506,7 @@ const hr: HeroCopy = {
       prescription: {
         label: "Razumij svoj liječnički recept",
         hint: "Uslikaj recept za jasno objašnjenje.",
+        direct: true,
         title: "Tvoj recept jednostavnim riječima",
         body: "Fotografiraj recept. Objašnjavamo svaki lijek: čemu služi i kada se uzima.",
         action: { label: "Objasni mi recept", href: "/prescription-review" },
@@ -594,7 +520,7 @@ const hr: HeroCopy = {
           { text: "Ponesi osobnu iskaznicu." },
           { text: "Hitna pomoć u bolnici besplatna je za sve." },
         ],
-        action: { label: "Zatraži pomoć osobe", href: "/get-help?mode=mediator" },
+        action: { label: "Zatraži pomoć", href: "/get-help?mode=mediator" },
       },
     },
   },
@@ -603,13 +529,7 @@ const hr: HeroCopy = {
 const rom: HeroCopy = {
   emergency: {
     close: "Phandav",
-    alarmSigns: [
-      "Dukh vay tasavipe ando kolin",
-      "Phari phurdinimos",
-      "Bango muy, kovlipe vay pharo vakeripe",
-      "Peripe vay bisterdipe",
-      "Zuralo ratvalo thavdipe",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.rom,
     callLead: "Ki sastipnaski sigardiari,",
     callLink: "akhar ko 112",
   },
@@ -618,47 +538,40 @@ const rom: HeroCopy = {
   journey: ["Phen so daravel tut", "Le chache pasha", "Vaker ekhe doktoreya"],
   primaryCta: "Phen amenge so daravel tut",
   panel: {
-    label: "Asistento",
-    listen: "Gin glasosa",
-    stopListening: "Astav o ginipe",
+    label: "Sastipnasko azhutitori",
+    listen: "Ashun",
+    stopListening: "Achav",
     fallbackVoice: "rezervno glaso",
-    mediators: "Vash e sastipnaske mediatorya",
+    mediators: "Mang ekhe mediatore",
     question: "So shay te zhutisaras tut adyes?",
     subtitles: {
       default: "Bi lovesko thaj garavdo, sigo pash.",
       speaking: "Ginas e opciye glasosa.",
-      mediators: "Instrumentya mediatoryenge po than.",
-      returned: "Alosar aver opciya kana kames.",
-      idle: "Na zhanes? Alosar i palutni opciya.",
     },
     back: "Palpale",
     step: (current, total) => `Pash ${current} katar ${total}`,
     doctorPrompt: "Kames te vakeres ekhe doktoreya?",
-    doctorLink: "Programisar ekh akharipe",
-    problemDoctorPrompt: "Nane tut daravne semnya?",
-    problemDoctorLink: "Vaker ekhe doktoreya online",
+    doctorLink: "Vaker ekhe doktoreya",
+    problemDoctorPrompt: "Nijekh katar kadala?",
+    problemDoctorLink: "Vaker ekhe doktoreya",
     needs: {
-      learn: {
-        label: "Gin loke sastipnaske lekciye",
-        hint: "Khurdeline lekciye vash rat thaj zahari.",
-        title: "Khurdeline lekciye vash cho sastipen",
-        quiz: {
-          prompt: "Chacho vay xoxamno?",
-          statement: "Kana o rat phurdel normalno palem, shay te mukhes e draba.",
-          trueLabel: "Chacho",
-          falseLabel: "Xoxamno",
-          answer: false,
-          correct: "Chaches si.",
-          incorrect: "Na chaches.",
-          explanation: "O rat phurdel normalno numay katar e draba. Ma mukh len bi te vakeres che doktoreya.",
-        },
-        action: { label: "Shird ekh lekciya", href: "/health-information" },
+      doctor: {
+        label: "Vaker ekhe doktoreya online",
+        hint: "Bi lovesko akharipe po telefono.",
+        title: "Vaker ekhe doktoreya kheral",
+        points: [
+          { text: "Bi lovesko, bi kartako thaj bi kontosko." },
+          { text: "O doktori akharel tut po telefono." },
+          { text: "Sako dives, katar 08:00 zhi 20:00." },
+        ],
+        action: { label: "Vaker ekhe doktoreya", href: "/medic-online" },
       },
       risk: {
-        label: "Dikh che simptome",
-        hint: "Sikav kay dukhal ande 3 pasha.",
+        label: "Dikh e simptome",
+        hint: "Sikav kay dukhal ande nekobor skurte pasha.",
+        direct: true,
         title: "Sikav kay dukhal tut",
-        body: "Azba kay dukhal, de palpale pe 3 phuchimata thaj dikh so te keres may dur.",
+        body: "Azba kay dukhal, de palpale pe nekobor skurte phuchimata thaj dikh so te keres may dur.",
         action: { label: "Shird o dikhiben", href: "/health-check" },
       },
       nearby: {
@@ -670,7 +583,7 @@ const rom: HeroCopy = {
           { text: "Dikh pi mapa familiyake doktorya, klinike thaj bolnitse." },
           { text: "Alosar o them vay labar cho than." },
         ],
-        action: { label: "Putar i mapa", href: "/find-help" },
+        action: { label: "Dikh thana pashal tute", href: "/find-help" },
       },
       problem: {
         label: "Na xatyarav man mishto akana",
@@ -682,9 +595,10 @@ const rom: HeroCopy = {
       prescription: {
         label: "Xatyar chi doktoreski receta",
         hint: "Ker chitro te xatyares sako drab.",
+        direct: true,
         title: "Chi receta, ashkardi",
         body: "Ker ekh chitro e recetake. Ashkaras sako drab: soske si thaj kana te les la.",
-        action: { label: "Ashkar miri receta", href: "/prescription-review" },
+        action: { label: "Xatyar mange i receta", href: "/prescription-review" },
       },
       navigate: {
         label: "Na zhanav kay te zhav",
@@ -695,7 +609,7 @@ const rom: HeroCopy = {
           { text: "Ingar tusa chi buletina." },
           { text: "I sigardiari ki bolnitsa si bi lovesko savorenge." },
         ],
-        action: { label: "Mang zhutimos katar ekh manush", href: "/get-help?mode=mediator" },
+        action: { label: "Mang zhutimos", href: "/get-help?mode=mediator" },
       },
     },
   },
@@ -705,13 +619,7 @@ export const heroCopy: Record<Lang, HeroCopy> = {
 ru: {
   emergency: {
     close: "Закрыть",
-    alarmSigns: [
-      "Боль или давление в груди",
-      "Трудно дышать",
-      "Перекос лица, слабость или невнятная речь",
-      "Обморок или спутанность сознания",
-      "Сильное кровотечение",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.ru,
     callLead: "В экстренном случае",
     callLink: "звоните 112",
   },
@@ -720,47 +628,40 @@ ru: {
   journey: ["Расскажите, что вас беспокоит", "Узнайте, что делать дальше", "Поговорите с врачом"],
   primaryCta: "Расскажите, что вас беспокоит",
   panel: {
-    label: "Ассистент",
-    listen: "Читать вслух",
-    stopListening: "Остановить чтение",
+    label: "Помощник по здоровью",
+    listen: "Слушать",
+    stopListening: "Стоп",
     fallbackVoice: "резервный голос",
-    mediators: "Для медицинских медиаторов",
+    mediators: "Обратиться к медиатору",
     question: "Чем мы можем помочь сегодня?",
     subtitles: {
       default: "Бесплатно и анонимно, быстрый ответ.",
       speaking: "Читаем варианты вслух.",
-      mediators: "Инструменты для медицинских медиаторов.",
-      returned: "Выберите другой пункт в любой момент.",
-      idle: "Не уверены? Выберите последний пункт.",
     },
     back: "Назад",
     step: (current, total) => `Шаг ${current} из ${total}`,
     doctorPrompt: "Хотите поговорить с врачом?",
-    doctorLink: "Записаться на звонок",
-    problemDoctorPrompt: "Нет опасных симптомов?",
-    problemDoctorLink: "Поговорите с врачом онлайн",
+    doctorLink: "Поговорите с врачом",
+    problemDoctorPrompt: "Ничего из этого?",
+    problemDoctorLink: "Поговорите с врачом",
     needs: {
-      learn: {
-        label: "Читать простые гиды о здоровье",
-        hint: "Короткие уроки о давлении и диабете.",
-        title: "Короткие уроки о здоровье",
-        quiz: {
-          prompt: "Правда или ложь?",
-          statement: "Если давление пришло в норму, можно бросить таблетки.",
-          trueLabel: "Правда",
-          falseLabel: "Ложь",
-          answer: false,
-          correct: "Верно.",
-          incorrect: "Не совсем.",
-          explanation: "Давление в норме именно благодаря таблеткам. Не бросайте их без совета врача.",
-        },
-        action: { label: "Начать урок", href: "/health-information" },
+      doctor: {
+        label: "Поговорить с врачом онлайн",
+        hint: "Бесплатный звонок врача по телефону.",
+        title: "Поговорите с врачом из дома",
+        points: [
+          { text: "Бесплатно, без карты и аккаунта." },
+          { text: "Врач сам позвонит вам по телефону." },
+          { text: "Каждый день с 08:00 до 20:00." },
+        ],
+        action: { label: "Поговорить с врачом", href: "/medic-online" },
       },
       risk: {
-        label: "Проверить свои симптомы",
-        hint: "Покажите, где болит, за 3 шага.",
+        label: "Проверить симптомы",
+        hint: "Покажите, где болит, за несколько шагов.",
+        direct: true,
         title: "Покажите, где болит",
-        body: "Нажмите, где болит, ответьте на 3 вопроса и узнайте, что делать дальше.",
+        body: "Нажмите, где болит, ответьте на несколько коротких вопросов и узнайте, что делать дальше.",
         action: { label: "Начать проверку", href: "/health-check" },
       },
       nearby: {
@@ -772,10 +673,10 @@ ru: {
           { text: "Смотрите семейных врачей, клиники и больницы на карте." },
           { text: "Выберите страну или укажите, где вы находитесь." },
         ],
-        action: { label: "Открыть карту", href: "/find-help" },
+        action: { label: "Показать места рядом", href: "/find-help" },
       },
       problem: {
-        label: "Мне сейчас нездоровится",
+        label: "Мне сейчас плохо",
         hint: "Признаки для 112 или врач онлайн.",
         title: "Сначала проверьте опасные симптомы",
         body: "Сразу звоните 112, если есть хотя бы один из признаков:",
@@ -784,9 +685,10 @@ ru: {
       prescription: {
         label: "Разобрать рецепт врача",
         hint: "Сфотографируйте рецепт для разбора.",
+        direct: true,
         title: "Ваш рецепт простыми словами",
         body: "Сфотографируйте рецепт. Мы объясним, зачем нужно каждое лекарство и когда его принимать.",
-        action: { label: "Разобрать рецепт", href: "/prescription-review" },
+        action: { label: "Объяснить рецепт", href: "/prescription-review" },
       },
       navigate: {
         label: "Не знаю, куда обратиться",
@@ -797,7 +699,7 @@ ru: {
           { text: "Возьмите с собой удостоверение личности." },
           { text: "Скорая помощь в больнице бесплатна для всех." },
         ],
-        action: { label: "Попросить помощь человека", href: "/get-help?mode=mediator" },
+        action: { label: "Попросить помощь", href: "/get-help?mode=mediator" },
       },
     },
   },

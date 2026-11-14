@@ -90,10 +90,10 @@ describe("Scenario 2: colloquial, phonetic, dental, pediatric and no-ID queries"
 describe("Scenario 3: prescription listen button and schedule clarity", () => {
   const src = readSrc("src/components/health-assistant/PrescriptionStructuredResult.tsx");
   it("has a 44px listen button with readable text", () => {
-    expect(src).toContain("inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg border px-3.5 py-2 text-sm font-semibold whitespace-nowrap");
+    expect(src).toContain("inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start rounded-lg border px-3.5 py-2 text-body font-semibold whitespace-nowrap");
   });
   it("uses larger slot icons and labels", () => {
     expect(src).toContain('className={`h-5 w-5 shrink-0 ${');
-    expect(src).toContain("className={`text-sm ${");
+    expect(src).toContain("className={`text-body ${");
   });
 });

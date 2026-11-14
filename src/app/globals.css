@@ -90,6 +90,9 @@
   --text-lead: 1.125rem;
   --text-lead--line-height: 1.55;
   --text-lead--font-weight: 400;
+  --text-reading: 1.125rem;
+  --text-reading--line-height: 1.65;
+  --text-reading--font-weight: 400;
   --text-body: 1rem;
   --text-body--line-height: 1.6;
   --text-body--font-weight: 400;
@@ -137,12 +140,20 @@
   /* Height of the pinned site chrome. Only the header pins (sticky at top 0; the 112 bar
      scrolls away), so this is the header height it publishes, or 0 when it is not pinned. */
   --chrome-h: var(--site-header-h, 0px);
+  /* Unified reading and lead measures in rem (66-70 chars at 16-18px in Atkinson Hyperlegible Next). */
+  --measure-reading: 36rem;
+  --measure-lead: 34rem;
 }
 
 html {
   scroll-padding-top: calc(var(--chrome-h) + 0.75rem);
+  scroll-padding-bottom: calc(var(--player-h, 0px) + 0.75rem);
   /* Old Android paints a grey rectangle over rounded targets; the press utilities below answer taps instead. */
   -webkit-tap-highlight-color: transparent;
+}
+
+html[data-audio-player-open="true"] main {
+  padding-bottom: calc(var(--player-h, 0px) + 1rem);
 }
 
 /*
@@ -219,32 +230,6 @@ h2 {
 
 .myth-buster-panel {
   border-radius: 8px;
-}
-
-/* Subtle interactive surface illumination; gated strictly to fine pointers and full motion. */
-.surface-spotlight {
-  position: relative;
-}
-
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .surface-spotlight::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    opacity: 0;
-    background: radial-gradient(
-      360px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-      oklch(0.35 0.07 252 / 0.055),
-      transparent 70%
-    );
-    transition: opacity var(--dur-base) var(--ease-out-calm);
-  }
-
-  .surface-spotlight:hover::before {
-    opacity: 1;
-  }
 }
 
 /* Directional 8px settle when stepping between myth cards in MythCardCarousel. */
@@ -468,24 +453,6 @@ h2 {
   }
 }
 
-/* Hero entrance: the copy column fades in once from 8px. The triage panel is a
-   tool, so it is simply there (no entrance). No word reveal, no blur, no scale,
-   no stagger. */
-@keyframes hero-enter {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.hero-enter {
-  animation: hero-enter var(--dur-slow) var(--hero-ease) both;
-}
-
 /* Quiz result: space reserved, revealed on answer, mark draws itself in. */
 .quiz-result {
   visibility: hidden;
@@ -518,10 +485,6 @@ h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-enter {
-    animation: none;
-  }
-
   .quiz-result,
   .quiz-result.is-shown {
     transform: none;
@@ -918,12 +881,18 @@ h2 {
 
 
 /*
- * Height of the sticky site header (its 112 line, 2rem, plus the bar, 4rem or 5rem from xl), for
- * the first paint. The header publishes its measured height over this once it runs, including
- * after the 112 line is closed. Only where the header exists: chromeless pages keep 0.
+ * Height of the sticky site header (its 112 strip, 2.75rem, plus the bar, 3.5rem below md or
+ * 4rem from md up, plus 1px border), for the first paint. The header publishes its measured
+ * height over this once it runs, including after the 112 strip is closed.
  */
 :root:has(.site-header) {
-  --site-header-h: 6rem;
+  --site-header-h: 6.3125rem;
+}
+
+@media (min-width: 768px) {
+  :root:has(.site-header) {
+    --site-header-h: 6.8125rem;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -973,7 +942,7 @@ h2 {
   }
 
   .hero-panel h2 {
-    font-size: 19px;
+    font-size: 1.1875rem;
   }
 
   .hero-panel ul {
@@ -983,10 +952,6 @@ h2 {
   .hero-panel > .grid > * {
     padding-top: 0.75rem;
     padding-bottom: 1rem;
-  }
-
-  .hero-enter > ol {
-    margin-top: 1.5rem;
   }
 }
 
@@ -1016,24 +981,74 @@ html[data-calm-motion] *::after {
   }
 }
 
-/* Comfort text scales (large 114%, xl 126%): cap single-line buttons and links to container width on narrow mobile */
+/* Comfort text scales (large 114%, xl 126%): cap single-line buttons to container width, cap header icon buttons, and stack .btn-row children on narrow mobile */
 html[data-text-scale="large"] :is(button, a).whitespace-nowrap,
 html[data-text-scale="xl"] :is(button, a).whitespace-nowrap {
   max-width: 100%;
 }
 
-@media (max-width: 639.98px) {
-  html[data-text-scale="large"] :is(button, a).whitespace-nowrap,
-  html[data-text-scale="xl"] :is(button, a).whitespace-nowrap {
-    overflow: hidden;
-    text-overflow: ellipsis;
+html[data-text-scale="large"] .site-header :is(button, a)[class~="w-11"],
+html[data-text-scale="xl"] .site-header :is(button, a)[class~="w-11"] {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+}
+
+@media (max-width: 359.98px) {
+  html[data-text-scale="large"] [data-bottom-bar] button,
+  html[data-text-scale="xl"] [data-bottom-bar] button {
+    font-size: 16px;
+    gap: 4px;
+    padding-inline: 6px;
   }
 
-  html[data-text-scale="large"] :is(button, a).whitespace-nowrap > span:not(.sr-only):not(.shrink-0),
-  html[data-text-scale="xl"] :is(button, a).whitespace-nowrap > span:not(.sr-only):not(.shrink-0) {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  html[data-text-scale="large"] [data-call-action],
+  html[data-text-scale="xl"] [data-call-action] {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 419.98px) {
+  html[data-text-scale="large"] .site-header [data-header-bar],
+  html[data-text-scale="xl"] .site-header [data-header-bar] {
+    padding-inline: 8px;
+  }
+
+  html[data-text-scale="large"] .site-header [data-header-bar] [data-comfort-glyph],
+  html[data-text-scale="xl"] .site-header [data-header-bar] [data-comfort-glyph] {
+    display: none;
+  }
+
+  html[data-text-scale="large"] .site-header [data-header-bar] img,
+  html[data-text-scale="xl"] .site-header [data-header-bar] img {
+    width: 24px;
+    height: 24px;
+  }
+
+  html[data-text-scale="large"] .site-header [data-header-bar] > div > a > span,
+  html[data-text-scale="xl"] .site-header [data-header-bar] > div > a > span {
+    font-size: 15px;
+  }
+
+  html[data-text-scale="large"] .site-header [data-header-bar] [data-header-trigger],
+  html[data-text-scale="xl"] .site-header [data-header-bar] [data-header-trigger] {
+    font-size: 15px;
+    padding-inline: 6px;
+    gap: 4px;
+  }
+
+  html[data-text-scale="large"] .site-header [data-header-bar] [data-header-trigger] svg,
+  html[data-text-scale="xl"] .site-header [data-header-bar] [data-header-trigger] svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 639.98px) {
+  html[data-text-scale="large"] .btn-row > *,
+  html[data-text-scale="xl"] .btn-row > * {
+    flex: 1 1 100%;
   }
 }
 
@@ -1201,50 +1216,7 @@ html[data-text-scale="xl"] :is(button, a).whitespace-nowrap {
   }
 }
 
-/*
- * edge-light: a hairline along the top edge of a surface that brightens under the pointer.
- * Pairs with .surface-spotlight (both read --spot-x, published by PointerSpotlight.tsx).
- */
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .surface-spotlight::after {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 1px;
-    border-radius: inherit;
-    pointer-events: none;
-    opacity: 0;
-    background: linear-gradient(
-      90deg,
-      transparent calc(var(--spot-x, 50%) - 9rem),
-      color-mix(in oklab, var(--color-sapphire) 55%, transparent) var(--spot-x, 50%),
-      transparent calc(var(--spot-x, 50%) + 9rem)
-    );
-    transition: opacity var(--dur-base) var(--ease-out-calm);
-  }
-
-  .surface-spotlight:hover::after {
-    opacity: 1;
-  }
-
-  .dark .surface-spotlight::before {
-    background: radial-gradient(
-      360px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-      oklch(1 0 0 / 0.06),
-      transparent 70%
-    );
-  }
-
-  .dark .surface-spotlight::after,
-  [data-tone="ink"] .surface-spotlight::after {
-    background: linear-gradient(
-      90deg,
-      transparent calc(var(--spot-x, 50%) - 9rem),
-      oklch(1 0 0 / 0.45) var(--spot-x, 50%),
-      transparent calc(var(--spot-x, 50%) + 9rem)
-    );
-  }
-}
+/* card-interactive above handles hover elevation and border colour cleanly. */
 
 /*
  * Reveal variants (Reveal.tsx `variant`). "rise" is the default above. "mask" uncovers media
@@ -1626,4 +1598,60 @@ html[data-text-scale="xl"] :is(button, a).whitespace-nowrap {
   .read-progress {
     display: none !important;
   }
+}
+
+/*
+ * Header capsule and in-page capsule menus (src/components/layout/chrome-capsule.ts).
+ * capsule-plate: the single highlight that glides between segments (CapsuleGlide.tsx).
+ * capsule-panel: a panel that opens out of the segment that owns it (--panel-origin, top right by
+ * default), so it is clear which control it belongs to. Both hold still under reduced motion and
+ * in-app Calm motion.
+ */
+.capsule-plate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--dur-base) var(--ease-out-calm),
+    width var(--dur-base) var(--ease-out-calm),
+    height var(--dur-base) var(--ease-out-calm),
+    opacity var(--dur-fast) var(--ease-out-calm);
+}
+
+.capsule-panel {
+  transform-origin: var(--panel-origin, top right);
+  transition:
+    opacity var(--dur-fast) var(--ease-out-calm),
+    transform var(--dur-base) var(--ease-out-calm),
+    visibility var(--dur-fast);
+}
+
+.capsule-panel[data-open="false"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-0.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capsule-plate,
+  .capsule-panel {
+    transition: none;
+  }
+
+  .capsule-panel[data-open="false"] {
+    transform: none;
+  }
+}
+
+html[data-calm-motion] .capsule-plate,
+html[data-calm-motion] .capsule-panel {
+  transition: none;
+}
+
+html[data-calm-motion] .capsule-panel[data-open="false"] {
+  transform: none;
 }

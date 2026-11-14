@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/Button";
 import { VideoIcon, AlertCircleIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -314,16 +315,16 @@ export function MediatorDoctorHandoverProtocol({
   if (isCallActive) {
     // Split tablet view: Top/Left video call with online physician, Bottom/Right mediator translation aid & live notes
     return (
-      <div className="rounded-xl border border-border bg-slate-950 text-white overflow-hidden shadow-lg">
-        <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 bg-slate-900">
-          <span className="text-xs font-bold text-white">
+      <div className="rounded-xl border border-border bg-ink-950 text-paper overflow-hidden shadow-lg">
+        <div className="flex items-center justify-between border-b border-paper/10 px-4 py-3 bg-ink-900">
+          <span className="text-meta font-bold text-white">
             {copy.liveStatus}
           </span>
 
           <button
             type="button"
             onClick={() => setIsCallActive(false)}
-            className="whitespace-nowrap rounded-md border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="whitespace-nowrap rounded-md border border-white/30 bg-white/10 px-3 py-1 text-body font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {copy.endCall}
           </button>
@@ -341,29 +342,29 @@ export function MediatorDoctorHandoverProtocol({
           </div>
 
           {/* Mediator side-dock for translation & notes */}
-          <div className="border-t lg:border-t-0 lg:border-l border-white/10 bg-slate-900 p-4 flex flex-col justify-between">
+          <div className="border-t lg:border-t-0 lg:border-l border-paper/10 bg-ink-900 p-4 flex flex-col justify-between">
             <div>
-              <p className="text-xs font-bold text-sapphire-border">
+              <p className="text-meta font-bold text-sapphire-border">
                 {copy.sidePanelLabel}
               </p>
-              <h3 className="mt-1 text-sm font-bold text-white">
+              <h3 className="mt-1 text-body font-bold text-paper">
                 {copy.patientLine(patientName, age)}
               </h3>
 
               {languageBarrier && (
-                <div className="mt-3 rounded-md border border-amber-500/30 bg-amber-500/10 p-2 text-xs text-amber-200">
+                <div className="mt-3 rounded-md border border-amber-care/40 bg-amber-care/15 p-2 text-meta text-amber-care-border">
                   {copy.translation} <strong>{translationLanguage}</strong>
                 </div>
               )}
 
-              <div className="mt-3 space-y-1 text-xs text-slate-300 font-mono bg-white/5 p-2.5 rounded-md border border-white/10">
+              <div className="mt-3 space-y-1 text-meta text-mist font-mono bg-paper/5 p-2.5 rounded-md border border-paper/10">
                 <p>{copy.bp}: {initialVitals.bloodPressure || "--"}</p>
                 <p>{copy.pulse}: {initialVitals.pulse || "--"} | SpO2: {initialVitals.spo2 || "--"}</p>
                 <p>{copy.glucose}: {initialVitals.glucose || "--"}</p>
               </div>
 
               <div className="mt-3">
-                <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+                <label className="block text-meta font-semibold text-mist mb-1">
                   {copy.liveNotesLabel}
                 </label>
                 <textarea
@@ -371,12 +372,12 @@ export function MediatorDoctorHandoverProtocol({
                   rows={4}
                   value={mediatorNotes}
                   onChange={(e) => setMediatorNotes(e.target.value)}
-                  className="w-full rounded-md border border-white/20 bg-black/40 p-2 text-xs text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full rounded-md border border-paper/20 bg-ink-950/60 p-2 text-body text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
             </div>
 
-            <p className="mt-4 text-[11px] text-slate-400 leading-relaxed border-t border-white/10 pt-2">
+            <p className="mt-4 text-meta text-mist border-t border-paper/10 pt-2">
               {copy.tabletTip}
             </p>
           </div>
@@ -390,18 +391,21 @@ export function MediatorDoctorHandoverProtocol({
       <div className="flex items-center gap-2 pb-3 mb-4 border-b border-border">
         <VideoIcon className="h-5 w-5 text-sapphire" />
         <div>
-          <h2 className="text-base font-bold text-foreground">
+          <h2 className="text-body font-bold text-foreground">
             {copy.title}
           </h2>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-meta text-muted-foreground">
             {copy.subtitle}
           </p>
         </div>
       </div>
 
       {errorMessage && (
-        <div className="mb-4 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-xs text-red-600 font-medium flex items-center gap-2">
-          <AlertCircleIcon className="h-4 w-4 shrink-0" />
+        <div
+          role="alert"
+          className="mb-4 rounded-lg border border-primary/30 bg-primary-soft/75 p-3 text-body font-medium text-foreground dark:border-ruby-300/35 dark:bg-primary/15 dark:text-paper flex items-center gap-2"
+        >
+          <AlertCircleIcon className="h-4 w-4 shrink-0 text-primary dark:text-ruby-300" />
           <span>{errorMessage}</span>
         </div>
       )}
@@ -410,7 +414,7 @@ export function MediatorDoctorHandoverProtocol({
       <div className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-1">
+            <label className="block text-meta font-semibold text-foreground mb-1">
               {copy.nameLabel}
             </label>
             <input
@@ -418,12 +422,12 @@ export function MediatorDoctorHandoverProtocol({
               aria-label={copy.nameLabel}
               value={patientName}
               onChange={(e) => setPatientName(e.target.value)}
-              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-1">
+            <label className="block text-meta font-semibold text-foreground mb-1">
               {copy.ageLabel}
             </label>
             <input
@@ -431,17 +435,17 @@ export function MediatorDoctorHandoverProtocol({
               aria-label={copy.ageLabel}
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
         </div>
 
         {/* Vitals Summary Pill Row */}
         <div className="rounded-lg border border-border bg-muted/30 p-3.5">
-          <span className="text-[11px] font-semibold text-muted-foreground">
+          <span className="text-meta font-semibold text-muted-foreground">
             {copy.vitalsLabel}
           </span>
-          <div className="mt-2 flex flex-wrap gap-2 text-xs font-mono font-bold text-foreground">
+          <div className="mt-2 flex flex-wrap gap-2 text-meta font-mono font-bold text-foreground">
             <span className="rounded-md border border-border bg-background px-2.5 py-1">
               {copy.bp}: {initialVitals.bloodPressure || "--"}
             </span>
@@ -461,7 +465,7 @@ export function MediatorDoctorHandoverProtocol({
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-foreground mb-1">
+          <label className="block text-meta font-semibold text-foreground mb-1">
             {copy.reasonLabel}
           </label>
           <input
@@ -469,17 +473,17 @@ export function MediatorDoctorHandoverProtocol({
             aria-label={copy.reasonLabel}
             value={reason}
             onChange={(e) => setReason(e.target.value)}
-            className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
         {/* Language barrier toggle */}
         <div className="rounded-lg border border-border bg-background p-3 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-foreground">
+            <p className="text-meta font-semibold text-foreground">
               {copy.languageBarrier}
             </p>
-            <p className="text-[11px] text-muted-foreground">
+            <p className="text-meta text-muted-foreground">
               {copy.languageHelp}
             </p>
           </div>
@@ -493,7 +497,7 @@ export function MediatorDoctorHandoverProtocol({
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-foreground mb-1">
+          <label className="block text-meta font-medium text-foreground mb-1">
             {copy.notesLabel}
           </label>
           <textarea
@@ -501,20 +505,22 @@ export function MediatorDoctorHandoverProtocol({
             rows={2}
             value={mediatorNotes}
             onChange={(e) => setMediatorNotes(e.target.value)}
-            className="w-full rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
         <div className="pt-2">
-          <button
+          <Button
             type="button"
+            variant="action"
+            size="md"
+            fullWidth
             disabled={isTransmitting}
             onClick={handleStartHandover}
-            className="press-solid inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
           >
-            <VideoIcon className="h-4 w-4" />
+            <VideoIcon className="h-4 w-4 shrink-0" />
             {isTransmitting ? copy.submitting : copy.submit}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

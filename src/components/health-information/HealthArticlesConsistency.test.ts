@@ -87,10 +87,10 @@ describe("unified layout and elderly WCAG consistency across health reading surf
           "data-health-article-column",
         );
         expect(html, `${surfaceName} (${lang}) missing 18px prose`).toContain(
-          "text-[1.125rem] leading-[1.75] text-foreground",
+          "text-reading text-foreground",
         );
         expect(html, `${surfaceName} (${lang}) missing measure constraint`).toContain(
-          "max-w-[65ch]",
+          "max-w-(--measure-reading)",
         );
         expect(html, `${surfaceName} (${lang}) missing TopicNextSteps`).toContain(
           'id="next-steps-heading"',
@@ -109,9 +109,12 @@ describe("unified layout and elderly WCAG consistency across health reading surf
         expect(html, `${surfaceName} (${lang}) must not use fixed bottom bar`).not.toContain(
           "data-bottom-bar",
         );
-        expect(html, `${surfaceName} (${lang}) must not use rounded-full pills`).not.toContain(
-          "rounded-full",
-        );
+        {
+          // Pill shapes are allowed only inside two-way capsule switches (track, thumb, two options).
+          const pillCount = html.split("rounded-full").length - 1;
+          const switchCount = html.split("data-capsule-switch").length - 1;
+          expect(pillCount, `${surfaceName} (${lang}) must not use rounded-full pills`).toBe(switchCount * 4);
+        }
         expect(html, `${surfaceName} (${lang}) must not use middle dot separators`).not.toContain(
           "\u00b7",
         );

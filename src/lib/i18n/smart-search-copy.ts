@@ -2051,8 +2051,8 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         summary: "Descrie ce simți sau verifică zona dureroasă pentru pași clari.",
         queries: [
           { label: "Febră la copil", query: "Febră și frisoane la copil" },
-          { label: "Durere în gât și tuse", query: "Durere în gât și tuse" },
-          { label: "Tensiune sau amețeală", query: "Tensiune arterială sau amețeală" },
+          { label: "Gât dureros și tuse", query: "Durere în gât și tuse" },
+          { label: "Tensiune, amețeală", query: "Tensiune arterială sau amețeală" },
         ],
         actions: [
           { label: "Verifică pe corp", href: "/health-check" },
@@ -2069,7 +2069,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
           { label: "Consult video online", query: "Consultație medic online" },
         ],
         actions: [
-          { label: "Hartă servicii locale", href: "/find-help" },
+          { label: "Servicii locale", href: "/find-help" },
           { label: "Medic online", href: "/medic-online" },
         ],
       },
@@ -2080,7 +2080,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         queries: [
           { label: "Explică-mi rețeta", query: "Explică-mi rețeta medicală" },
           { label: "Antibiotic și dozaj", query: "Mituri despre vaccinuri și antibiotice" },
-          { label: "Analize medicale uzuale", query: "Dicționar analize și termeni medicali" },
+          { label: "Analize uzuale", query: "Dicționar analize și termeni medicali" },
         ],
         actions: [
           { label: "Verifică o rețetă", href: "/prescription-review" },
@@ -2092,13 +2092,13 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Fără asigurare și sprijin",
         summary: "Află ce servicii sunt gratuite fără card CNAS și cere ajutor.",
         queries: [
-          { label: "Drepturi fără card CNAS", query: "Fără asigurare medicală CNAS" },
-          { label: "Sprijin mediator sanitar", query: "Mediator sanitar și sprijin local" },
-          { label: "Caravane medicale gratuite", query: "Caravane medicale și analize gratuite" },
+          { label: "Fără card CNAS", query: "Fără asigurare medicală CNAS" },
+          { label: "Sprijin mediator", query: "Mediator sanitar și sprijin local" },
+          { label: "Caravane gratuite", query: "Caravane medicale și analize gratuite" },
         ],
         actions: [
           { label: "Mediatori sanitari", href: "/mediatori" },
-          { label: "Ghid acces și drepturi", href: "/get-help" },
+          { label: "Acces și drepturi", href: "/get-help" },
         ],
       },
     ],
@@ -2126,14 +2126,14 @@ const COPY: Record<Lang, SmartSearchCopy> = {
     popularQueries: [
       "Fever and chills in a child",
       "Open pharmacy near me",
-      "See a doctor without insurance card",
+      "Doctor without insurance",
       "Sore throat and cough",
       "Explain my prescription medicine",
       "Myths about vaccines and antibiotics",
     ],
     starterChips: [
       { label: "Open pharmacy", query: "Open pharmacy near me" },
-      { label: "No insurance card", query: "See a doctor without insurance card" },
+      { label: "No insurance card", query: "Doctor without insurance" },
       { label: "Child fever", query: "Fever and chills in a child" },
       { label: "Explain prescription", query: "Explain my prescription medicine" },
       { label: "Vaccine myths", query: "Myths about vaccines and antibiotics" },
@@ -2209,12 +2209,12 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         summary: "Describe what hurts or tap the body map to find calm next steps.",
         queries: [
           { label: "Fever in a child", query: "Fever and chills in a child" },
-          { label: "Sore throat and cough", query: "Sore throat and cough" },
-          { label: "Dizziness or blood pressure", query: "High blood pressure and dizziness" },
+          { label: "Sore throat, cough", query: "Sore throat and cough" },
+          { label: "High blood pressure", query: "High blood pressure and dizziness" },
         ],
         actions: [
           { label: "Body symptom check", href: "/health-check" },
-          { label: "Open health assistant", href: "/health-assistant" },
+          { label: "Health assistant", href: "/health-assistant" },
         ],
       },
       {
@@ -2222,9 +2222,9 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Find nearby care",
         summary: "Locate open pharmacies, family doctors, and urgent emergency rooms.",
         queries: [
-          { label: "Open pharmacy nearby", query: "Open pharmacy near me" },
-          { label: "Register with a doctor", query: "Register with a family doctor" },
-          { label: "Talk to a doctor online", query: "Online doctor consultation" },
+          { label: "Open pharmacy", query: "Open pharmacy near me" },
+          { label: "Family doctor", query: "Register with a family doctor" },
+          { label: "Online doctor", query: "Online doctor consultation" },
         ],
         actions: [
           { label: "Nearby services map", href: "/find-help" },
@@ -2236,8 +2236,8 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Understand prescriptions",
         summary: "Check medicine instructions and translate complex clinical terms.",
         queries: [
-          { label: "Explain my prescription", query: "Explain my prescription medicine" },
-          { label: "Antibiotics and vaccines", query: "Myths about vaccines and antibiotics" },
+          { label: "Read prescription", query: "Explain my prescription medicine" },
+          { label: "Vaccine myths", query: "Myths about vaccines and antibiotics" },
           { label: "Lab test terms", query: "Plain language medical glossary" },
         ],
         actions: [
@@ -2250,9 +2250,9 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Uninsured care and help",
         summary: "See free care available without a health card or request local support.",
         queries: [
-          { label: "Care without a CNAS card", query: "See a doctor without insurance card" },
-          { label: "Health mediator support", query: "Health mediator and community support" },
-          { label: "Free mobile clinic visits", query: "Mobile medical clinics and screening" },
+          { label: "No CNAS card care", query: "Doctor without insurance" },
+          { label: "Mediator support", query: "Health mediator and community support" },
+          { label: "Free mobile clinics", query: "Mobile medical clinics and screening" },
         ],
         actions: [
           { label: "Health mediators", href: "/mediatori" },
@@ -2366,8 +2366,8 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         summary: "Përshkruaj si ndihesh ose zgjidh zonën e dhimbjes për hapa të qartë.",
         queries: [
           { label: "Ethe te fëmija", query: "Ethe dhe dridhje te fëmija" },
-          { label: "Dhimbje fyti dhe kollë", query: "Dhimbje fyti dhe kollë" },
-          { label: "Marramendje dhe tension", query: "Tensioni i gjakut dhe marramendje" },
+          { label: "Dhimbje fyti, kollë", query: "Dhimbje fyti dhe kollë" },
+          { label: "Tension i lartë", query: "Tensioni i gjakut dhe marramendje" },
         ],
         actions: [
           { label: "Kontrollo në trup", href: "/health-check" },
@@ -2379,9 +2379,9 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Gjej kujdes mjekësor afër",
         summary: "Shiko farmacitë e hapura, mjekët e familjes dhe urgjencat pranë teje.",
         queries: [
-          { label: "Farmaci e hapur afër", query: "Farmaci e hapur afër meje" },
+          { label: "Farmaci afër", query: "Farmaci e hapur afër meje" },
           { label: "Mjeku i familjes", query: "Regjistrimi te mjeku i familjes" },
-          { label: "Konsultë mjeku online", query: "Konsultë mjekësore online" },
+          { label: "Konsultë online", query: "Konsultë mjekësore online" },
         ],
         actions: [
           { label: "Harta e shërbimeve", href: "/find-help" },
@@ -2394,7 +2394,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         summary: "Kupto udhëzimet e barnave dhe fjalët e vështira mjekësore.",
         queries: [
           { label: "Shpjego recetën time", query: "Shpjego recetën time mjekësore" },
-          { label: "Antibiotikët dhe vaksinat", query: "Mite për vaksinat dhe antibiotikët" },
+          { label: "Mite vaksinash", query: "Mite për vaksinat dhe antibiotikët" },
           { label: "Fjalori mjekësor", query: "Fjalor mjekësor i thjeshtë" },
         ],
         actions: [
@@ -2407,12 +2407,12 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Pa sigurim dhe mbështetje",
         summary: "Mëso çfarë shërbimesh ke falas pa kartë sigurimi dhe gjej mediator.",
         queries: [
-          { label: "Mjek pa kartë sigurimi", query: "Mjek pa kartë sigurimi shëndetësor" },
-          { label: "Mbështetje nga mediatori", query: "Mediator shëndetësor dhe ndihmë lokale" },
-          { label: "Klinika lëvizëse falas", query: "Klinika lëvizëse dhe analiza falas" },
+          { label: "Pa kartë sigurimi", query: "Mjek pa kartë sigurimi shëndetësor" },
+          { label: "Ndihmë mediatori", query: "Mediator shëndetësor dhe ndihmë lokale" },
+          { label: "Klinika falas", query: "Klinika lëvizëse dhe analiza falas" },
         ],
         actions: [
-          { label: "Mediatorët shëndetësorë", href: "/mediatori" },
+          { label: "Gjej mediator", href: "/mediatori" },
           { label: "Të drejtat e aksesit", href: "/get-help" },
         ],
       },
@@ -2528,7 +2528,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         ],
         actions: [
           { label: "Mappa dei sintomi", href: "/health-check" },
-          { label: "Chiedi all'assistente", href: "/health-assistant" },
+          { label: "Chiedi aiuto", href: "/health-assistant" },
         ],
       },
       {
@@ -2536,7 +2536,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Trova assistenza vicina",
         summary: "Individua farmacie aperte, medici di base e pronto soccorso vicini.",
         queries: [
-          { label: "Farmacia aperta vicina", query: "Farmacia aperta vicino a me" },
+          { label: "Farmacia vicina", query: "Farmacia aperta vicino a me" },
           { label: "Medico di famiglia", query: "Iscrizione al medico di famiglia" },
           { label: "Visita medica online", query: "Consulenza medica online" },
         ],
@@ -2550,9 +2550,9 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Capire ricette e termini",
         summary: "Leggi le indicazioni dei farmaci e traduci i termini clinici difficili.",
         queries: [
-          { label: "Spiega la mia ricetta", query: "Spiega la mia ricetta medica" },
-          { label: "Vaccini e antibiotici", query: "Miti su vaccini e antibiotici" },
-          { label: "Termini delle analisi", query: "Dizionario medico semplice" },
+          { label: "Spiega ricetta", query: "Spiega la mia ricetta medica" },
+          { label: "Miti vaccini", query: "Miti su vaccini e antibiotici" },
+          { label: "Analisi e termini", query: "Dizionario medico semplice" },
         ],
         actions: [
           { label: "Controlla la ricetta", href: "/prescription-review" },
@@ -2566,7 +2566,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         queries: [
           { label: "Cure senza tessera", query: "Medico senza tessera sanitaria" },
           { label: "Aiuto dal mediatore", query: "Mediatore sanitario e supporto locale" },
-          { label: "Cliniche mobili gratuite", query: "Cliniche mobili e visite gratuite" },
+          { label: "Cliniche mobili", query: "Cliniche mobili e visite gratuite" },
         ],
         actions: [
           { label: "Mediatori sanitari", href: "/mediatori" },
@@ -2694,9 +2694,9 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Pronađi skrb u blizini",
         summary: "Pronađi dežurne ljekarne, obiteljske liječnike i hitne ambulante.",
         queries: [
-          { label: "Otvorena ljekarna blizu", query: "Otvorena ljekarna u blizini" },
+          { label: "Ljekarna u blizini", query: "Otvorena ljekarna u blizini" },
           { label: "Obiteljski liječnik", query: "Prijava kod obiteljskog liječnika" },
-          { label: "Pregled liječnika online", query: "Online savjetovanje s liječnikom" },
+          { label: "Liječnik online", query: "Online savjetovanje s liječnikom" },
         ],
         actions: [
           { label: "Karta lokalne pomoći", href: "/find-help" },
@@ -2709,7 +2709,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         summary: "Provjeri upute za lijekove i prevedi složene medicinske pojmove.",
         queries: [
           { label: "Objasni moj recept", query: "Objasni mi moj liječnički recept" },
-          { label: "Cjepiva i antibiotici", query: "Mitovi o cjepivima i antibioticima" },
+          { label: "Mitovi o cjepivima", query: "Mitovi o cjepivima i antibioticima" },
           { label: "Nalazi i pojmovi", query: "Jednostavan medicinski rječnik" },
         ],
         actions: [
@@ -2724,11 +2724,11 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         queries: [
           { label: "Pomoć bez iskaznice", query: "Liječnik bez zdravstvene iskaznice" },
           { label: "Podrška medijatora", query: "Zdravstveni medijator i podrška" },
-          { label: "Besplatne mobilne klinike", query: "Mobilne klinike i besplatni pregledi" },
+          { label: "Mobilne klinike", query: "Mobilne klinike i besplatni pregledi" },
         ],
         actions: [
-          { label: "Zdravstveni medijatori", href: "/mediatori" },
-          { label: "Prava i pristup skrbi", href: "/get-help" },
+          { label: "Nađi medijatora", href: "/mediatori" },
+          { label: "Prava i skrb", href: "/get-help" },
         ],
       },
     ],
@@ -2836,8 +2836,8 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         summary: "Phen sar simtut vaj dikh pe trupo kaj dukhal te arakhes riga.",
         queries: [
           { label: "Tato ke ćhavo", query: "Tato thaj izdran ke ćhavo" },
-          { label: "Dukhal o kărlo thaj xas", query: "Dukhal o kărlo thaj xas" },
-          { label: "Tensiune vaj dukh śero", query: "Tensiune thaj dukh pe śero" },
+          { label: "Dukhal kărlo, xas", query: "Dukhal o kărlo thaj xas" },
+          { label: "Tensiune, dukh śero", query: "Tensiune thaj dukh pe śero" },
         ],
         actions: [
           { label: "Dikh pe trupo", href: "/health-check" },
@@ -2849,7 +2849,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Arakh sastipe paśa tute",
         summary: "Arakh farmacie puterde, doktorea familiake thaj urgentni thana.",
         queries: [
-          { label: "Farmacia puterdi paśe", query: "Farmacia puterdi paśa mande" },
+          { label: "Farmacia paśe", query: "Farmacia puterdi paśa mande" },
           { label: "Doktoro familiako", query: "Doktoro familiako thaj vizita" },
           { label: "Doktoro online", query: "Konsultacia doktoro online" },
         ],
@@ -2864,7 +2864,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         summary: "Sikhav sar len pe drab thaj haćar lava doktorenge.",
         queries: [
           { label: "Sikav miri receta", query: "Sikav mange miri receta" },
-          { label: "Vakcine thaj antibiotikură", query: "Paramiśă palal vakcine thaj antibiotikură" },
+          { label: "Paramiśă vakcine", query: "Paramiśă palal vakcine thaj antibiotikură" },
           { label: "Alavari doktorenge", query: "Alavari sastimasko thaj analize" },
         ],
         actions: [
@@ -2877,13 +2877,13 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Bi kartelako thaj ažutipe",
         summary: "Dikh save śerviśură si biphokinimasko bi kartelako CNAS thaj mang ažutipe.",
         queries: [
-          { label: "Doktoro bi kartelako CNAS", query: "Doktoro bi asigurareako CNAS" },
+          { label: "Bi kartelako CNAS", query: "Doktoro bi asigurareako CNAS" },
           { label: "Mediatoro sastimasko", query: "Mediatoro sastimasko thaj ažutipe" },
-          { label: "Karavane biphokinimasko", query: "Karavane medikale thaj analize" },
+          { label: "Karavane medikale", query: "Karavane medikale thaj analize" },
         ],
         actions: [
           { label: "Mediatora sastimaske", href: "/mediatori" },
-          { label: "Čačimata thaj ažutipe", href: "/get-help" },
+          { label: "Čačimata, ažutipe", href: "/get-help" },
         ],
       },
     ],
@@ -2994,12 +2994,12 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         summary: "Опишите самочувствие или отметьте зону боли, чтобы увидеть дальнейшие шаги.",
         queries: [
           { label: "Жар у ребёнка", query: "Жар и озноб у ребёнка" },
-          { label: "Боль в горле и кашель", query: "Боль в горле и кашель" },
+          { label: "Боль в горле", query: "Боль в горле и кашель" },
           { label: "Давление и слабость", query: "Давление и головокружение" },
         ],
         actions: [
           { label: "Проверка на теле", href: "/health-check" },
-          { label: "Спросить ассистента", href: "/health-assistant" },
+          { label: "Вопрос ассистенту", href: "/health-assistant" },
         ],
       },
       {
@@ -3007,7 +3007,7 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Найти помощь рядом",
         summary: "Найдите дежурные аптеки, семейных врачей и приёмные отделения поблизости.",
         queries: [
-          { label: "Аптека открытая рядом", query: "Открытая аптека рядом со мной" },
+          { label: "Аптека рядом", query: "Открытая аптека рядом со мной" },
           { label: "Семейный врач", query: "Запись к семейному врачу" },
           { label: "Врач онлайн", query: "Онлайн-консультация врача" },
         ],
@@ -3021,13 +3021,13 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Понять рецепт и термины",
         summary: "Проверьте назначение лекарств и переведите сложные медицинские слова.",
         queries: [
-          { label: "Объяснить мой рецепт", query: "Объясни мой медицинский рецепт" },
-          { label: "Прививки и антибиотики", query: "Мифы о вакцинах и антибиотиках" },
+          { label: "Разобрать рецепт", query: "Объясни мой медицинский рецепт" },
+          { label: "Мифы о прививках", query: "Мифы о вакцинах и антибиотиках" },
           { label: "Словарь анализов", query: "Медицинский словарь простыми словами" },
         ],
         actions: [
           { label: "Проверить рецепт", href: "/prescription-review" },
-          { label: "Медицинский словарь", href: "/health-information#medical-glossary" },
+          { label: "Словарь терминов", href: "/health-information#medical-glossary" },
         ],
       },
       {
@@ -3035,12 +3035,12 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         title: "Без полиса и поддержка",
         summary: "Узнайте о бесплатной помощи без карты CNAS и обратитесь к медиатору.",
         queries: [
-          { label: "Помощь без карты CNAS", query: "Врач без медицинской страховки CNAS" },
+          { label: "Без карты CNAS", query: "Врач без медицинской страховки CNAS" },
           { label: "Помощь медиатора", query: "Медицинский медиатор и поддержка" },
           { label: "Выездные клиники", query: "Мобильные клиники и бесплатные анализы" },
         ],
         actions: [
-          { label: "Медицинские медиаторы", href: "/mediatori" },
+          { label: "Медиаторы", href: "/mediatori" },
           { label: "Права и доступ", href: "/get-help" },
         ],
       },

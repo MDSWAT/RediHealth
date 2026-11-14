@@ -77,27 +77,27 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
       aria-label={copy.title}
       data-testid="salt-intake-calculator"
     >
-      <h3 className="text-lg font-semibold text-foreground">{copy.title}</h3>
-      <p className="mt-1 max-w-prose text-sm leading-relaxed text-muted-foreground">{copy.subtitle}</p>
-      <p className="mt-2 text-sm font-medium text-foreground">{copy.whoLimitLabel}</p>
+      <h3 className="text-title font-semibold text-foreground">{copy.title}</h3>
+      <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground">{copy.subtitle}</p>
+      <p className="mt-2 text-body font-medium text-foreground">{copy.whoLimitLabel}</p>
 
       {/* Running total, status, and gauge */}
       <div className="mt-5 border-t border-border pt-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-medium text-muted-foreground">{copy.currentIntakeLabel}</p>
+            <p className="text-meta font-medium text-muted-foreground">{copy.currentIntakeLabel}</p>
             <div className="mt-0.5 flex items-baseline gap-2" aria-live="polite" aria-atomic="true">
-              <span className="text-3xl font-semibold tabular-nums tracking-tight text-foreground">
+              <span className="text-page font-semibold tabular-nums text-foreground">
                 {grams.format(totalSalt)}
               </span>
-              <span className="text-sm font-medium text-muted-foreground">{copy.unitPerDay}</span>
-              <span className="text-xs text-muted-foreground">
+              <span className="text-meta font-medium text-muted-foreground">{copy.unitPerDay}</span>
+              <span className="text-meta text-muted-foreground">
                 ({copy.teaspoonFullLabel.replace("{percent}", String(percentageOfWho))})
               </span>
             </div>
           </div>
 
-          <span className={`self-start text-sm font-semibold sm:self-auto ${style.badge}`}>
+          <span className={`self-start text-body font-semibold sm:self-auto ${style.badge}`}>
             {zoneTitle}
           </span>
         </div>
@@ -125,7 +125,7 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
               aria-hidden="true"
             />
           </div>
-          <div className="relative mt-1.5 flex items-center justify-between text-xs tabular-nums text-muted-foreground" aria-hidden="true">
+          <div className="relative mt-1.5 flex items-center justify-between text-meta tabular-nums text-muted-foreground" aria-hidden="true">
             <span>0 g</span>
             <span className="absolute -translate-x-1/2 whitespace-nowrap font-medium text-foreground/80" style={{ left: `${(WHO_LIMIT_G / GAUGE_MAX_G) * 100}%` }}>
               {copy.limitMarkerLabel}
@@ -134,18 +134,18 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
           </div>
         </div>
 
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{zoneDesc}</p>
+        <p className="mt-3 text-body text-muted-foreground">{zoneDesc}</p>
       </div>
 
       {/* Foods */}
       <div className="mt-6 border-t border-border pt-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <h4 className="text-sm font-semibold text-foreground">{copy.foodsHeading}</h4>
+          <h4 className="text-body font-semibold text-foreground">{copy.foodsHeading}</h4>
           {selectedIds.length > 0 && (
             <button
               type="button"
               onClick={() => setSelectedIds([])}
-              className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-body font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.resetLabel}
             </button>
@@ -167,10 +167,10 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
                   {isSelected && <CheckIcon className="h-3 w-3" />}
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-sm font-semibold leading-snug text-foreground">{item.name}</span>
-                  <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">{item.portion}</span>
+                  <span className="block text-meta font-semibold leading-snug text-foreground">{item.name}</span>
+                  <span className="mt-0.5 block text-meta leading-snug text-muted-foreground">{item.portion}</span>
                 </span>
-                <span className="shrink-0 text-sm font-semibold tabular-nums text-foreground">
+                <span className="shrink-0 text-meta font-semibold tabular-nums text-foreground">
                   +{grams.format(item.saltGrams)} g
                 </span>
               </button>
@@ -182,22 +182,22 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
       {/* Swaps for what was chosen */}
       {selectedItems.length > 0 && (
         <div className="mt-6 border-t border-border pt-5">
-          <h4 className="text-sm font-semibold text-foreground">{copy.swapsSectionTitle}</h4>
-          <p className="mt-0.5 text-sm text-muted-foreground">{copy.swapsSectionSubtitle}</p>
+          <h4 className="text-body font-semibold text-foreground">{copy.swapsSectionTitle}</h4>
+          <p className="mt-0.5 text-body text-muted-foreground">{copy.swapsSectionSubtitle}</p>
 
           <ul className="mt-3 divide-y divide-border">
             {selectedItems.map((item) => (
               <li key={`swap-${item.id}`} className="py-3 first:pt-0 last:pb-0">
-                <p className="text-xs text-muted-foreground">
+                <p className="text-body text-muted-foreground">
                   {copy.swapInsteadOf}: {item.name} (+{grams.format(item.saltGrams)} g)
                 </p>
-                <p className="mt-1 flex items-start gap-1.5 text-sm font-semibold leading-snug text-foreground">
+                <p className="mt-1 flex items-start gap-1.5 text-body font-semibold leading-snug text-foreground">
                   <ArrowRightIcon className="mt-0.5 h-4 w-4 shrink-0 text-live-sage" />
                   <span>
                     {item.swapName} (+{grams.format(item.swapSaltGrams)} g)
                   </span>
                 </p>
-                <p className="mt-1 pl-[22px] text-sm leading-relaxed text-muted-foreground">{item.swapSavingsDesc}</p>
+                <p className="mt-1 pl-[22px] text-body text-muted-foreground">{item.swapSavingsDesc}</p>
               </li>
             ))}
           </ul>

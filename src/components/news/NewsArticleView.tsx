@@ -12,7 +12,6 @@ import {
 } from "@/components/health-information/HealthArticleShell";
 import { TopicNextSteps } from "@/components/health-information/TopicNextSteps";
 import { ClockIcon, PinIcon } from "@/components/ui/icons";
-import { Reveal } from "@/components/ui/Reveal";
 import { EXTRA_MAP_COPY } from "@/components/ui/RomaniaCountyMap";
 import { formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
 import {
@@ -251,8 +250,6 @@ export function NewsArticleView({ id }: { id: string }) {
               <ArticleListenButton
                 uiLang={lang}
                 contentLang={article.language ?? lang}
-                listenLabel={np.playAudio}
-                stopLabel={np.pauseAudio}
                 textToSpeak={`${article.title}. ${article.summary}. ${article.content.join(" ")}`}
               />
             }
@@ -265,20 +262,19 @@ export function NewsArticleView({ id }: { id: string }) {
           </div>
 
           {article.caravanDetails && (
-            <Reveal>
             <section
               aria-labelledby="article-caravan"
               className="mt-10 rounded-xl border border-border bg-card p-6 sm:p-7"
             >
               <h2
                 id="article-caravan"
-                className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl"
+                className="text-section font-semibold text-foreground"
               >
                 {c.caravanHeading}
               </h2>
               <dl
                 lang={article.language}
-                className="mt-4 space-y-3 text-[1.0625rem] leading-[1.7] text-foreground sm:text-[1.125rem]"
+                className="mt-4 space-y-3 text-reading text-foreground"
               >
                 <div className="flex items-start gap-2.5">
                   <dt className="sr-only">{c.where}</dt>
@@ -307,31 +303,29 @@ export function NewsArticleView({ id }: { id: string }) {
                 )}
               </dl>
             </section>
-            </Reveal>
           )}
 
           {article.preventiveSteps && article.preventiveSteps.length > 0 && (
-            <Reveal>
             <section
               aria-labelledby="article-prevention"
               className="mt-10 rounded-xl border border-border bg-card p-6 sm:p-7"
             >
               <h2
                 id="article-prevention"
-                className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl"
+                className="text-section font-semibold text-foreground"
               >
                 {c.prevention}
               </h2>
               {/* Numbered steps read as an order to follow; a hairline separates them instead of check marks. */}
               <ol
                 lang={article.language}
-                className="mt-4 divide-y divide-border text-[1.0625rem] leading-[1.7] text-foreground sm:text-[1.125rem]"
+                className="mt-4 divide-y divide-border text-reading text-foreground"
               >
                 {article.preventiveSteps.map((step, idx) => (
                   <li key={idx} className="flex items-baseline gap-4 py-3 first:pt-0 last:pb-0">
                     <span
                       aria-hidden="true"
-                      className="w-5 shrink-0 text-right text-base font-semibold tabular-nums text-sapphire dark:text-sapphire-border"
+                      className="w-5 shrink-0 text-right text-body font-semibold tabular-nums text-sapphire dark:text-sapphire-border"
                     >
                       {idx + 1}
                     </span>
@@ -340,11 +334,10 @@ export function NewsArticleView({ id }: { id: string }) {
                 ))}
               </ol>
             </section>
-            </Reveal>
           )}
 
           {tags.length > 0 && (
-            <p className="mt-8 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-8 text-body text-muted-foreground">
               <span className="font-semibold text-foreground">{c.topics}:</span> {tags.join(", ")}
             </p>
           )}

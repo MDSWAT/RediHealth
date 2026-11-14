@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useState } from "react";
 import type { Lang } from "@/lib/i18n/translations";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { SMOKING_COACH_COPY } from "./smoking-copy";
 
@@ -13,9 +14,6 @@ export interface SmokingHabitCoachProps {
 const TOTAL_SECONDS = 180;
 const RING_RADIUS = 52;
 const RING_LENGTH = 2 * Math.PI * RING_RADIUS;
-
-const BUTTON =
-  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 function formatTime(totalSec: number) {
   const mins = Math.floor(totalSec / 60);
@@ -66,24 +64,24 @@ export function SmokingHabitCoach({ lang, className = "" }: SmokingHabitCoachPro
 
   return (
     <section className={className} aria-labelledby={titleId} data-testid="smoking-habit-coach">
-      <h3 id={titleId} className="text-xl font-semibold tracking-tight text-foreground text-balance">
+      <h3 id={titleId} className="text-title font-semibold text-foreground text-balance">
         {copy.coachHeading}
       </h3>
-      <p className="mt-1.5 max-w-[65ch] text-base leading-relaxed text-muted-foreground text-pretty">
+      <p className="mt-1.5 max-w-(--measure-reading) text-body text-muted-foreground text-pretty">
         {copy.coachSubtitle}
       </p>
 
       <div className="mt-6 grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
         {/* Four steps */}
         <div>
-          <h4 className="text-base font-semibold text-foreground">{copy.protocolTitle}</h4>
+          <h4 className="text-body font-semibold text-foreground">{copy.protocolTitle}</h4>
           <ol className="mt-3 divide-y divide-border border-y border-border">
             {copy.steps.map((step, index) => (
               <li key={step.name} className="flex gap-3 py-3">
-                <span className="w-5 shrink-0 text-base font-semibold tabular-nums text-muted-foreground">
+                <span className="w-5 shrink-0 text-body font-semibold tabular-nums text-muted-foreground">
                   {index + 1}
                 </span>
-                <p className="text-base leading-relaxed">
+                <p className="text-body">
                   <span className="font-semibold text-foreground">{step.name}. </span>
                   <span className="text-muted-foreground">{step.desc}</span>
                 </p>
@@ -94,7 +92,7 @@ export function SmokingHabitCoach({ lang, className = "" }: SmokingHabitCoachPro
 
         {/* 3-minute timer */}
         <div className="flex flex-col items-center text-center md:w-56">
-          <h4 className="text-base font-semibold text-foreground">{copy.timerHeading}</h4>
+          <h4 className="text-body font-semibold text-foreground">{copy.timerHeading}</h4>
           <div className="relative mt-3 flex h-36 w-36 items-center justify-center">
             <svg className="h-full w-full -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
               <circle cx="60" cy="60" r={RING_RADIUS} fill="none" stroke="var(--color-border)" strokeWidth="4" />
@@ -111,39 +109,43 @@ export function SmokingHabitCoach({ lang, className = "" }: SmokingHabitCoachPro
                 style={{ strokeDashoffset: (RING_LENGTH * elapsed) / TOTAL_SECONDS }}
               />
             </svg>
-            <span className="absolute text-2xl font-semibold tabular-nums text-foreground" aria-hidden="true">
+            <span className="absolute text-section font-semibold tabular-nums text-foreground" aria-hidden="true">
               {formatTime(secondsLeft)}
             </span>
           </div>
-          <p role="status" className="mt-3 min-h-[3lh] text-sm leading-relaxed text-muted-foreground text-pretty">
+          <p role="status" className="mt-3 min-h-[3lh] text-body text-muted-foreground text-pretty">
             {hasStarted ? currentCue : copy.timerCues[0]}
           </p>
           <div className="mt-3 flex flex-wrap justify-center gap-2">
             {isTimerRunning ? (
-              <button
+              <Button
                 type="button"
+                variant="outline"
+                size="md"
                 onClick={() => setIsTimerRunning(false)}
-                className={cn(BUTTON, "border border-border text-foreground hover:bg-muted")}
               >
                 {copy.timerPause}
-              </button>
+              </Button>
             ) : (
-              <button
+              <Button
                 type="button"
+                variant="outline"
+                size="md"
                 onClick={startTimer}
-                className={cn(BUTTON, "bg-foreground text-background hover:bg-ink-800")}
               >
                 {copy.timerStart}
-              </button>
+              </Button>
             )}
             {hasStarted && (
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="md"
                 onClick={resetTimer}
-                className={cn(BUTTON, "text-muted-foreground underline underline-offset-4 hover:text-foreground")}
+                className="text-muted-foreground underline underline-offset-4 hover:text-foreground"
               >
                 {copy.timerReset}
-              </button>
+              </Button>
             )}
           </div>
         </div>
@@ -151,7 +153,7 @@ export function SmokingHabitCoach({ lang, className = "" }: SmokingHabitCoachPro
 
       {/* Common moments */}
       <div className="mt-8 border-t border-border pt-6">
-        <h4 className="text-base font-semibold text-foreground">{copy.triggerSectionHeading}</h4>
+        <h4 className="text-body font-semibold text-foreground">{copy.triggerSectionHeading}</h4>
         <div className="mt-3 flex flex-wrap gap-2">
           {copy.triggers.map((trigger) => {
             const isSelected = trigger.id === activeTrigger?.id;
@@ -162,7 +164,7 @@ export function SmokingHabitCoach({ lang, className = "" }: SmokingHabitCoachPro
                 onClick={() => setSelectedTriggerId(trigger.id)}
                 aria-pressed={isSelected}
                 className={cn(
-                  "min-h-[44px] whitespace-nowrap rounded-lg border px-3.5 py-2 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "min-h-[44px] whitespace-nowrap rounded-lg border px-3.5 py-2 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isSelected
                     ? "border-foreground bg-surface-subtle text-foreground"
                     : "border-border bg-card text-foreground hover:border-foreground/30 hover:bg-surface-subtle/50",
@@ -174,7 +176,7 @@ export function SmokingHabitCoach({ lang, className = "" }: SmokingHabitCoachPro
           })}
         </div>
         {activeTrigger && (
-          <p aria-live="polite" className="mt-4 max-w-[65ch] text-base leading-relaxed">
+          <p aria-live="polite" className="mt-4 max-w-(--measure-reading) text-body">
             <span className="font-semibold text-foreground">{copy.triggerStrategyHeading}: </span>
             <span className="text-muted-foreground">{activeTrigger.strategy}</span>
           </p>

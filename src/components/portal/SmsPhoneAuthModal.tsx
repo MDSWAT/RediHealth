@@ -7,30 +7,24 @@ import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowRightIcon,
   ChevronRightIcon,
-  VolumeIcon,
+  DownloadIcon,
   PhoneIcon,
   UsersIcon,
 } from "@/components/ui/icons";
 import { useReadAloud } from "@/components/health-check/readingTools";
+import { Button } from "@/components/ui/Button";
+import { ListenButton } from "@/components/ui/ListenButton";
 import { contulMeuCopy } from "@/components/portal/contul-meu-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
 import { useCalmReducedMotion } from "@/lib/motion/tokens";
+import { openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
 
 export function normalizePortalPhone(raw: string): string {
   return raw.trim().replace(/[\s().-]+/g, "");
 }
-
-const listenCopy: Record<Lang, { listen: string; stop: string }> = {
-  ro: { listen: "Ascultă", stop: "Oprește" },
-  en: { listen: "Listen", stop: "Stop" },
-  sq: { listen: "Dëgjo", stop: "Ndalo" },
-  it: { listen: "Ascolta", stop: "Ferma" },
-  hr: { listen: "Slušaj", stop: "Zaustavi" },
-  rom: { listen: "Ashun", stop: "Ačhav" },
-  ru: { listen: "Слушать", stop: "Остановить" },
-};
 
 function useSafeLanguage(initialLang: Lang) {
   try {
@@ -49,6 +43,7 @@ const authModalCopy: Record<
   {
     step2Subtitle: (phone: string) => string;
     invalidPhoneError: string;
+    incompleteCodeError: string;
     tooManyAttempts: string;
     smsSent: string;
     smsSwitchHint: string;
@@ -65,6 +60,7 @@ const authModalCopy: Record<
   ru: {
     step2Subtitle: (p) => `Мы отправили 4-значный код на ${p}. Введите его ниже.`,
     invalidPhoneError: "Напишите номер телефона, например 0721 000 000.",
+    incompleteCodeError: "Введите 4 цифры из SMS.",
     tooManyAttempts: "Слишком много попыток. Подождите минуту и повторите попытку.",
     smsSent: "Мы отправили вам код в текстовом сообщении.",
     smsSwitchHint: "Можете открыть SMS на телефоне, чтобы посмотреть код. Эта страница останется открытой.",
@@ -80,6 +76,7 @@ const authModalCopy: Record<
   ro: {
     step2Subtitle: (p) => `Am trimis un cod de 4 cifre la ${p}. Scrie-l mai jos.`,
     invalidPhoneError: "Scrie un număr de telefon, de exemplu 0721 000 000.",
+    incompleteCodeError: "Scrie cele 4 cifre din SMS.",
     tooManyAttempts: "Ai încercat de prea multe ori. Așteaptă un minut și încearcă din nou.",
     smsSent: "Ți-am trimis codul prin SMS.",
     smsSwitchHint: "Poți deschide mesajele SMS pe telefon ca să vezi codul. Această pagină rămâne deschisă și te așteaptă.",
@@ -95,6 +92,7 @@ const authModalCopy: Record<
   en: {
     step2Subtitle: (p) => `We sent a 4-digit code to ${p}. Type it below.`,
     invalidPhoneError: "Write a phone number, for example 0721 000 000.",
+    incompleteCodeError: "Enter the 4 numbers from the SMS.",
     tooManyAttempts: "Too many tries. Wait a minute and try again.",
     smsSent: "We sent you the code by text message.",
     smsSwitchHint: "You can open your SMS messages to check the code. This page stays open waiting for you.",
@@ -110,6 +108,7 @@ const authModalCopy: Record<
   sq: {
     step2Subtitle: (p) => `Të dërguam një kod me 4 shifra në ${p}. Shkruaje më poshtë.`,
     invalidPhoneError: "Shkruaj një numër telefoni, për shembull 0721 000 000.",
+    incompleteCodeError: "Shkruaj 4 shifrat nga SMS-ja.",
     tooManyAttempts: "Provove shumë herë. Prit një minutë dhe provo përsëri.",
     smsSent: "Ta dërguam kodin me SMS.",
     smsSwitchHint: "Mund t'i hapësh mesazhet SMS në telefon për të parë kodin. Kjo faqe mbetet e hapur.",
@@ -125,6 +124,7 @@ const authModalCopy: Record<
   it: {
     step2Subtitle: (p) => `Ti abbiamo mandato un codice di 4 cifre al ${p}. Scrivilo qui sotto.`,
     invalidPhoneError: "Scrivi un numero di telefono, per esempio 0721 000 000.",
+    incompleteCodeError: "Scrivi le 4 cifre dell'SMS.",
     tooManyAttempts: "Troppi tentativi. Aspetta un minuto e riprova.",
     smsSent: "Ti abbiamo mandato il codice via SMS.",
     smsSwitchHint: "Puoi aprire i messaggi SMS sul telefono per leggere il codice. Questa pagina resta aperta.",
@@ -140,6 +140,7 @@ const authModalCopy: Record<
   hr: {
     step2Subtitle: (p) => `Poslali smo četveroznamenkasti kod na broj ${p}. Upiši ga niže.`,
     invalidPhoneError: "Upiši broj telefona, na primjer 091 000 0000.",
+    incompleteCodeError: "Upiši 4 broja iz SMS-a.",
     tooManyAttempts: "Previše pokušaja. Pričekaj minutu pa pokušaj ponovno.",
     smsSent: "Poslali smo ti kod SMS porukom.",
     smsSwitchHint: "Možeš otvoriti SMS poruke na telefonu kako bi vidio kod. Ova stranica ostaje otvorena.",
@@ -155,6 +156,7 @@ const authModalCopy: Record<
   rom: {
     step2Subtitle: (p) => `Bichhaldyam kodo katar 4 gina pe ${p}. Lekhav les tele.`,
     invalidPhoneError: "Lekhav telefonesko gin, misal 0721 000 000.",
+    incompleteCodeError: "Lekhav e 4 gina katar o SMS.",
     tooManyAttempts: "But zumavimata. Azhuker ekh minuta thaj zumav palem.",
     smsSent: "Bichhaldyam tuke o kodo katar SMS.",
     smsSwitchHint: "Shaj putres e SMS mesažurya te dikhes o kodo. Kadi rig achhol putardi tuke.",
@@ -173,12 +175,9 @@ const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card dark:focus-visible:ring-offset-ink-900";
 
 const FIELD =
-  "field-focus min-h-14 w-full rounded-xl border border-border-control bg-white text-xl font-semibold tabular-nums text-foreground placeholder:font-normal placeholder:text-muted-foreground dark:border-white/15 dark:bg-ink-950 dark:text-paper dark:placeholder:text-mist/60";
+  "field-focus min-h-14 w-full rounded-xl border border-border-control bg-white text-title font-semibold tabular-nums text-foreground placeholder:font-normal placeholder:text-muted-foreground dark:border-white/15 dark:bg-ink-950 dark:text-paper dark:placeholder:text-mist/60";
 
-const SUBMIT_BUTTON =
-  `group press-solid inline-flex min-h-14 w-full max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-sapphire px-4 text-sm font-semibold text-white transition-[background-color,filter] duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-light disabled:cursor-not-allowed disabled:bg-foreground/15 disabled:text-foreground/45 dark:disabled:bg-white/15 dark:disabled:text-white/45 motion-reduce:transition-none sm:px-5 sm:text-[0.9375rem] ${FOCUS_RING}`;
-
-const FIELD_LABEL = "text-base font-semibold text-foreground dark:text-paper";
+const FIELD_LABEL = "text-body font-semibold text-foreground dark:text-paper";
 const CALM_EASE: [number, number, number, number] = [0.25, 1, 0.5, 1];
 
 /**
@@ -192,7 +191,9 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
   const lang = activeLang ?? initialLang;
   const copy = authModalCopy[lang] ?? authModalCopy.ro;
   const voice = useReadAloud(lang);
-  const listenText = listenCopy[lang] ?? listenCopy.ro;
+  const pwa = usePwaSnapshot();
+  const showInstall = !pwa.isStandalone;
+  const installLabel = getPwaCopy(lang).installButton;
   const surfaceCopy = contulMeuCopy[lang] ?? contulMeuCopy.ro;
   const page = t.accountAuthPage ?? translations[lang].accountAuthPage;
   const calmMotion = useCalmReducedMotion();
@@ -297,6 +298,11 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
   };
 
   const verifyOtp = async (code: string) => {
+    if (!/^\d{4}$/.test(code.trim())) {
+      setError(copy.incompleteCodeError);
+      otpInputRef.current?.focus();
+      return;
+    }
     setError("");
     setIsLoading(true);
     try {
@@ -428,32 +434,42 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
       </div>
 
       <div className="relative z-10 p-6 sm:p-8">
-        {voice.available ? (
-          <div className="mb-4 flex items-center justify-end gap-3">
-            <button
-              type="button"
-              onClick={() =>
-                voice.speaking
-                  ? voice.stop()
-                  : voice.speak([
-                      step === 1 ? page.title : surfaceCopy.card.step2Heading,
-                      activeSubtitle,
-                      copy.fallbackQuestion,
-                      copy.fallbackLinkText,
-                    ])
-              }
-              className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-              <span className="min-w-0 truncate">{voice.speaking ? listenText.stop : listenText.listen}</span>
-            </button>
+        {/* Install sits beside Listen: people who open their record are the ones who come back, so this is where it earns its place. */}
+        {showInstall || voice.available ? (
+          <div className="mb-4 flex flex-wrap items-center justify-end gap-2">
+            {showInstall ? (
+              <button
+                type="button"
+                onClick={() => void openPwaInstall()}
+                className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-body font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <DownloadIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+                <span>{installLabel}</span>
+              </button>
+            ) : null}
+            {voice.available ? (
+              <ListenButton
+                uiLang={lang}
+                isPlaying={voice.speaking}
+                onToggle={() =>
+                  voice.speaking
+                    ? voice.stop()
+                    : voice.speak([
+                        step === 1 ? page.title : surfaceCopy.card.step2Heading,
+                        activeSubtitle,
+                        copy.fallbackQuestion,
+                        copy.fallbackLinkText,
+                      ])
+                }
+              />
+            ) : null}
           </div>
         ) : null}
         <p aria-live="polite" className="sr-only">
           {stepText}
         </p>
 
-        <h1 className="text-balance text-xl font-semibold leading-tight tracking-[-0.02em] text-foreground sm:text-2xl dark:text-paper">
+        <h1 className="text-balance text-page font-semibold leading-tight text-foreground dark:text-paper">
           {step === 1 ? page.title : surfaceCopy.card.step2Heading}
         </h1>
 
@@ -464,7 +480,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
             animate={{ opacity: 1, y: 0 }}
             exit={calmMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
             transition={{ duration: calmMotion ? 0 : 0.16, ease: CALM_EASE }}
-            className="mt-2 text-base leading-relaxed text-muted-foreground dark:text-mist"
+            className="mt-2 text-body text-muted-foreground dark:text-mist"
           >
             {activeSubtitle}
           </motion.p>
@@ -475,7 +491,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
             id="auth-phone-error"
             role="alert"
             key={error}
-            className="swap-in mt-4 rounded-xl border border-primary/35 border-l-4 border-l-primary bg-primary-soft p-3 text-body text-foreground dark:bg-primary/15 dark:text-paper"
+            className="swap-in mt-4 rounded-xl border border-primary/40 bg-primary-soft p-3 text-body font-semibold text-foreground dark:bg-primary/15 dark:text-paper"
           >
             {error}
           </p>
@@ -531,10 +547,10 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                   />
                 </div>
               </div>
-              <button type="submit" disabled={isLoading} className={SUBMIT_BUTTON}>
-                <span className="min-w-0 truncate">{isLoading ? copy.sending : page.sendCode}</span>
+              <Button type="submit" variant="action" size="lg" fullWidth disabled={isLoading} className="min-h-14 sm:px-5">
+                <span>{isLoading ? copy.sending : page.sendCode}</span>
                 {!isLoading && <ArrowRightIcon aria-hidden="true" className="arrow-travel h-5 w-5 shrink-0" />}
-              </button>
+              </Button>
             </motion.form>
           ) : (
             <motion.div
@@ -563,8 +579,8 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                     onFocus={() => setOtpFocused(true)}
                     onBlur={() => setOtpFocused(false)}
                     aria-invalid={Boolean(error)}
-                    aria-describedby="auth-otp-switch-hint"
-                    className="peer absolute inset-0 z-10 h-full w-full cursor-text opacity-0"
+                    aria-describedby={error ? "auth-phone-error auth-otp-switch-hint" : "auth-otp-switch-hint"}
+                    className="peer absolute inset-0 z-10 h-full w-full cursor-text text-body opacity-0"
                   />
                   <div aria-hidden="true" className="grid grid-cols-4 gap-3">
                     {[0, 1, 2, 3].map((slot) => {
@@ -573,7 +589,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                       return (
                         <div
                           key={slot}
-                          className={`flex h-16 items-center justify-center rounded-xl border-2 text-2xl font-bold tabular-nums transition-[border-color,box-shadow,background-color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                          className={`flex h-16 items-center justify-center rounded-xl border-2 text-section font-bold tabular-nums transition-[border-color,box-shadow,background-color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
                             isActiveSlot
                               ? "border-sapphire bg-sapphire-soft text-foreground shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-sapphire)_16%,transparent)] dark:border-sapphire-border dark:bg-sapphire/25 dark:text-paper"
                               : digit
@@ -594,22 +610,25 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                     })}
                   </div>
                 </div>
-                <p id="auth-otp-switch-hint" className="mt-2.5 text-sm leading-relaxed text-muted-foreground dark:text-mist">
+                <p id="auth-otp-switch-hint" className="mt-2.5 text-body text-muted-foreground dark:text-mist">
                   {copy.smsSwitchHint}
                 </p>
               </div>
 
-              <button
+              <Button
                 type="button"
-                disabled={isLoading || otpCode.length < 4}
+                variant="action"
+                size="lg"
+                fullWidth
+                disabled={isLoading}
                 onClick={() => verifyOtp(otpCode)}
-                className={SUBMIT_BUTTON}
+                className="min-h-14 sm:px-5"
               >
-                <span className="min-w-0 truncate">{isLoading ? copy.verifying : page.verifyCode}</span>
+                <span>{isLoading ? copy.verifying : page.verifyCode}</span>
                 {!isLoading && <ArrowRightIcon aria-hidden="true" className="arrow-travel h-5 w-5 shrink-0" />}
-              </button>
+              </Button>
 
-              <div className="-mx-2 flex flex-wrap items-center justify-between gap-2 text-sm">
+              <div className="btn-row -mx-2 flex flex-wrap items-center justify-between gap-3 text-body">
                 <button
                   type="button"
                   onClick={() => {
@@ -619,7 +638,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                   }}
                   className={`press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground hover:decoration-current dark:text-mist dark:decoration-white/25 dark:hover:text-paper ${FOCUS_RING}`}
                 >
-                  <span className="min-w-0 truncate">{copy.changeNumber}</span>
+                  <span>{copy.changeNumber}</span>
                 </button>
                 <button
                   type="button"
@@ -627,7 +646,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                   disabled={isLoading}
                   className={`group press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 font-semibold text-sapphire disabled:cursor-not-allowed disabled:text-foreground/45 dark:text-sapphire-border dark:disabled:text-white/45 ${FOCUS_RING}`}
                 >
-                  <span className="link-draw min-w-0 truncate group-disabled:bg-none">{copy.resendSms}</span>
+                  <span>{copy.resendSms}</span>
                 </button>
               </div>
             </motion.div>
@@ -637,13 +656,13 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
         <div className="mt-6 border-t border-border/80 pt-4 dark:border-white/10">
           <Link
             href={withLangPrefix("/mediatori#solicita", lang)}
-            className={`group press-row -mx-1 flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-md px-1 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/60 hover:text-foreground dark:text-mist dark:hover:bg-white/[0.06] dark:hover:text-paper sm:text-[0.9375rem] ${FOCUS_RING}`}
+            className={`group press-row -mx-1 flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-md px-1 text-body font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/60 hover:text-foreground dark:text-mist dark:hover:bg-white/[0.06] dark:hover:text-paper ${FOCUS_RING}`}
           >
             <span className="flex min-w-0 items-center gap-2.5">
               <UsersIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-amber-care" />
               <span className="min-w-0 truncate">{copy.fallbackLinkText}</span>
             </span>
-            <ChevronRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0" />
+            <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
           </Link>
         </div>
       </div>

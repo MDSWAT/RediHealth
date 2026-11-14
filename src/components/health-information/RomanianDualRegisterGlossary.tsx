@@ -19,6 +19,7 @@ import {
   StethoscopeIcon,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/Button";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -345,7 +346,7 @@ export function RomanianDualRegisterGlossary({
         <div className="mt-3 mb-3.5 flex flex-wrap items-center justify-between gap-2 border-b border-border/80 pb-2.5">
           <p
             role="status"
-            className="text-xs font-semibold tabular-nums text-muted-foreground"
+            className="text-meta font-semibold tabular-nums text-muted-foreground"
           >
             {countText}
           </p>
@@ -353,7 +354,7 @@ export function RomanianDualRegisterGlossary({
             <button
               type="button"
               onClick={handleResetFilters}
-              className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg bg-sapphire-soft px-3.5 py-2 text-xs font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg bg-sapphire-soft px-3.5 py-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {util.resetFilters}
             </button>
@@ -363,15 +364,17 @@ export function RomanianDualRegisterGlossary({
         {/* 3-band editorial dual-register specimen cards */}
         {filteredEntries.length === 0 ? (
           <div className="swap-in rounded-2xl border border-dashed border-border bg-surface-subtle/50 px-5 py-10 text-center">
-            <p className="text-base text-muted-foreground">{copy.emptyState}</p>
+            <p className="text-body text-muted-foreground">{copy.emptyState}</p>
             {isFiltered && (
-              <button
+              <Button
                 type="button"
+                variant="action"
+                size="md"
                 onClick={handleResetFilters}
-                className="press-solid mt-4 inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-4 py-2 text-sm font-semibold text-white transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="mt-4"
               >
                 {util.resetFilters}
-              </button>
+              </Button>
             )}
           </div>
         ) : (
@@ -416,27 +419,27 @@ export function RomanianDualRegisterGlossary({
                       <div className="flex flex-wrap items-center gap-1.5">
                         <span
                           className={cn(
-                            "inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-[11.5px] font-semibold",
+                            "inline-flex items-center gap-1.5 text-meta font-semibold",
                             isEmergencyTerm
-                              ? "bg-primary text-white"
-                              : "bg-card text-sapphire ring-1 ring-inset ring-border",
+                              ? "text-primary"
+                              : "text-sapphire dark:text-sapphire-border",
                           )}
                         >
                           <CatIcon className="h-3.5 w-3.5 shrink-0" />
                           <span>{cleanCatLabel}</span>
                         </span>
                         {isTopicMatch && (
-                          <span className="text-xs font-semibold text-sapphire dark:text-sapphire-border">
+                          <span className="text-meta font-semibold text-sapphire dark:text-sapphire-border">
                             {extras.inThisGuide}
                           </span>
                         )}
                       </div>
-                      <span className="font-mono text-xs font-medium tabular-nums text-muted-foreground">
+                      <span className="font-mono text-meta font-medium tabular-nums text-muted-foreground">
                         #{String(specimenNum).padStart(2, "0")}
                       </span>
                     </div>
 
-                    <span className="mt-2 block text-xs font-medium text-muted-foreground">
+                    <span className="mt-2 block text-meta font-medium text-muted-foreground">
                       {copy.formalLabel}
                     </span>
                     <p
@@ -458,7 +461,7 @@ export function RomanianDualRegisterGlossary({
                     {/* Band 2: Visual translation bridge + plain-language heading + tactile speak pill */}
                     <div
                       className={cn(
-                        "flex items-center gap-2 text-xs font-semibold",
+                        "flex items-center gap-2 text-meta font-semibold",
                         isEmergencyTerm ? "text-primary" : "text-sapphire",
                       )}
                       aria-hidden="true"
@@ -519,16 +522,16 @@ export function RomanianDualRegisterGlossary({
 
                     <div
                       className={cn(
-                        "mt-3.5 flex items-start gap-2.5 rounded-r-xl border-l-[3px] px-3.5 py-2.5",
+                        "mt-3.5 flex items-start gap-2.5 rounded-xl border px-3.5 py-2.5",
                         isEmergencyTerm
-                          ? "border-primary bg-primary-soft/45"
-                          : "border-sapphire bg-sapphire-soft/55",
+                          ? "border-primary/40 bg-primary-soft/45"
+                          : "border-sapphire-border bg-sapphire-soft/55 dark:border-sapphire/40",
                       )}
                     >
                       <WatchpointIcon
                         className={cn(
                           "mt-0.5 h-4 w-4 shrink-0",
-                          isEmergencyTerm ? "text-primary" : "text-sapphire",
+                          isEmergencyTerm ? "text-primary" : "text-sapphire dark:text-sapphire-border",
                         )}
                       />
                       <p

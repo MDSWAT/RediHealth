@@ -3,10 +3,9 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { LazyMotion, domAnimation, m, useInView, useReducedMotion } from "motion/react";
 import { DURATION, EASE_IN_OUT, EASE_OUT } from "@/lib/motion/tokens";
+import { Button } from "@/components/ui/Button";
 import { LanguageContext } from "@/lib/i18n/language-context";
 import {
-  BACK_BUTTON_CLASS,
-  NEXT_BUTTON_CLASS,
   ROW_CLASS,
   ROW_LIST_CLASS,
   STEP_LIST_CLASS,
@@ -1705,22 +1704,19 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
   const gateIsOpen = currentStepIndex === 3 && activeMode !== "type1";
   const energised = activeMode === "healthy" && currentStepIndex === 3;
 
-  const playClass =
-    "inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
-
   return (
     <section
       aria-label={ui.moduleAriaLabel}
       className="space-y-8"
     >
       <header className="space-y-2">
-        <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{ui.title}</h3>
-        <p className="max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-base">{ui.description}</p>
+        <h3 className="text-section text-foreground">{ui.title}</h3>
+        <p className="max-w-(--measure-reading) text-body text-muted-foreground">{ui.description}</p>
       </header>
 
       {/* Condition switcher */}
       <div className="space-y-3 border-t border-border pt-6">
-        <p className="text-sm font-semibold text-foreground">{ui.modeSelectorPrompt}</p>
+        <p className="text-body text-muted-foreground">{ui.modeSelectorPrompt}</p>
         <div role="radiogroup" aria-label={ui.modeSelectAria} className={`${ROW_LIST_CLASS} sm:grid-cols-3 sm:gap-x-6`}>
           {(["healthy", "type1", "type2"] as InsulinMode[]).map((mode) => {
             const isSelected = activeMode === mode;
@@ -1736,14 +1732,14 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
                 />
                 <span className={`mt-0.5 ${radioDotClass(isSelected)}`} aria-hidden="true" />
                 <span className="min-w-0">
-                  <span className="block text-sm font-semibold leading-snug text-foreground">{modes[mode].modeName}</span>
-                  <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">{modes[mode].badge}</span>
+                  <span className="block text-meta font-semibold leading-snug text-foreground">{modes[mode].modeName}</span>
+                  <span className="mt-0.5 block text-meta leading-snug text-muted-foreground">{modes[mode].badge}</span>
                 </span>
               </label>
             );
           })}
         </div>
-        <p className="max-w-prose pt-1 text-sm leading-relaxed text-foreground">{activeModeData.overview}</p>
+        <p className="max-w-(--measure-reading) pt-1 text-body text-foreground">{activeModeData.overview}</p>
       </div>
 
       {/* Steps and cell diagram */}
@@ -1771,7 +1767,7 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
                 >
                   <span className={stepNumberClass(isCurrent)}>{st.stepNumber}</span>
                   <span
-                    className={`min-w-0 text-sm leading-snug break-words ${
+                    className={`min-w-0 text-meta leading-snug break-words ${
                       isCurrent ? "font-semibold text-foreground" : "font-medium text-muted-foreground group-hover:text-foreground"
                     }`}
                   >
@@ -1790,8 +1786,8 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
           </LazyMotion>
 
           <div className="mt-4 border-t border-border pt-3.5">
-            <p className="text-xs font-semibold text-muted-foreground">{ui.legendTitle}</p>
-            <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1.5 text-xs leading-snug text-foreground sm:grid-cols-2">
+            <p className="text-meta text-muted-foreground">{ui.legendTitle}</p>
+            <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1.5 text-body leading-snug text-foreground sm:grid-cols-2">
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-3 w-3 shrink-0 rounded-sm border border-muted-foreground bg-surface-subtle" aria-hidden="true" />
                 <span>
@@ -1862,61 +1858,64 @@ export function InsulinMechanicsModule({ lang: propLang }: InsulinMechanicsModul
         {/* Stage explanation */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2" aria-live="polite">
           <div className="space-y-2">
-            <h5 className="text-sm font-semibold text-foreground">{ui.organBloodBehavior}</h5>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              <strong className="font-semibold text-foreground">{ui.pancreasLabel}</strong> {currentStep.pancreasState}
+            <h5 className="text-body font-semibold text-foreground">{ui.organBloodBehavior}</h5>
+            <p className="text-body text-muted-foreground">
+              <span className="text-foreground">{ui.pancreasLabel}</span> {currentStep.pancreasState}
             </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              <strong className="font-semibold text-foreground">{ui.bloodFlowLabel}</strong> {currentStep.bloodState}
+            <p className="text-body text-muted-foreground">
+              <span className="text-foreground">{ui.bloodFlowLabel}</span> {currentStep.bloodState}
             </p>
           </div>
           <div className="space-y-2">
-            <h5 className="text-sm font-semibold text-foreground">{ui.cellularBehavior}</h5>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              <strong className="font-semibold text-foreground">{ui.receptorLabel}</strong> {currentStep.receptorState}
+            <h5 className="text-body font-semibold text-foreground">{ui.cellularBehavior}</h5>
+            <p className="text-body text-muted-foreground">
+              <span className="text-foreground">{ui.receptorLabel}</span> {currentStep.receptorState}
             </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              <strong className="font-semibold text-foreground">{ui.glut4Label}</strong> {currentStep.glut4State}
+            <p className="text-body text-muted-foreground">
+              <span className="text-foreground">{ui.glut4Label}</span> {currentStep.glut4State}
             </p>
           </div>
         </div>
 
         <div className="border-t border-border pt-4">
-          <p className="text-sm leading-relaxed text-foreground">
-            <strong className="font-semibold text-foreground">{ui.clinicalConclusion}:</strong>{" "}
+          <p className="text-body text-foreground">
+            {ui.clinicalConclusion}:{" "}
             <span className="text-muted-foreground">{currentStep.clinicalSummary}</span>
           </p>
         </div>
 
         {/* Footer step transport bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-          <span className="text-xs font-medium tabular-nums text-muted-foreground">
+          <span className="text-meta font-medium tabular-nums text-muted-foreground">
             {ui.stageLabel} {currentStep.stepNumber} {ui.ofFour}
           </span>
           <div className="flex flex-wrap items-center gap-2">
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="md"
               onClick={() => setIsPlaying(!isPlaying)}
               aria-pressed={isPlaying}
-              className={playClass}
               aria-label={isPlaying ? ui.pauseAria : ui.playAutoAria}
             >
               {isPlaying ? ui.pause : ui.playAuto}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="ghost"
+              size="md"
               onClick={() => setCurrentStepIndex((prev) => (prev - 1 + 4) % 4)}
-              className={BACK_BUTTON_CLASS}
             >
               {ui.prevStep}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="action"
+              size="md"
               onClick={() => setCurrentStepIndex((prev) => (prev + 1) % 4)}
-              className={NEXT_BUTTON_CLASS}
             >
               {ui.nextStep}
-            </button>
+            </Button>
           </div>
         </div>
       </div>

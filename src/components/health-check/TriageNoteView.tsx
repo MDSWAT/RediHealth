@@ -1,18 +1,16 @@
 "use client";
 
 import { readPublicOrigin, SERVER_PUBLIC_ORIGIN } from "@/components/health-check/public-origin";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useSyncExternalStore, type CSSProperties } from "react";
 import {
   dangerPanel,
-  emergencyButton,
-  primaryButton,
   softPanel,
   stepHeading,
   stepLead,
 } from "@/components/health-assistant/step-ui";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { AlertCircleIcon, ArrowRightIcon, PhoneIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
@@ -355,14 +353,14 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
       <Container className="max-w-3xl">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3 px-0.5 print:hidden">
           <Logo href={withLangPrefix("/", activeLang)} label={chrome.homeLink} />
-          <span className="text-xs font-medium text-muted-foreground">{noteCopy.eyebrow}</span>
+          <span className="text-body font-medium text-muted-foreground">{noteCopy.eyebrow}</span>
         </div>
 
         <div className="rounded-2xl border border-border bg-card p-5 sm:p-8">
           {structuredProps ? (
             <>
               <header className="list-in border-b border-border pb-4">
-                <p className="text-xs font-semibold text-sapphire sm:text-sm">
+                <p className="text-body font-semibold text-sapphire">
                   {tSummary.screenFor}
                 </p>
                 <h1 className={`mt-1 ${stepHeading}`}>{tSummary.patientSummary}</h1>
@@ -373,35 +371,37 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                   <div className="flex items-start gap-3">
                     <AlertCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                     <div className="min-w-0 flex-1">
-                      <p className="text-base font-semibold leading-snug text-primary">
+                      <p className="text-body font-semibold leading-snug text-primary">
                         {structuredProps.recommendationTitle || dict.ui.emergency.title}
                       </p>
-                      <p className="mt-1 text-sm leading-relaxed text-foreground sm:text-base">
+                      <p className="mt-1 text-body text-foreground">
                         {dict.ui.emergency.description}
                       </p>
                       {structuredProps.urgentReason && (
-                        <p className="mt-1.5 text-sm font-medium text-foreground">
+                        <p className="mt-1.5 text-body font-medium text-foreground">
                           {dict.ui.emergency.whyEmergencyPrefix} {structuredProps.urgentReason}
                         </p>
                       )}
                     </div>
                   </div>
-                  <a
+                  <Button
                     href="tel:112"
-                    className={`mt-4 w-full whitespace-nowrap text-sm sm:text-[0.9375rem] print:hidden sm:w-auto ${emergencyButton}`}
+                    variant="primary"
+                    size="lg"
+                    className="mt-4 w-full sm:w-auto print:hidden"
                   >
                     <PhoneIcon className="h-4 w-4 shrink-0" />
                     <span className="min-w-0 truncate">{dict.ui.emergency.call112Now}</span>
-                  </a>
+                  </Button>
                 </div>
               ) : (
                 structuredProps.recommendationDetail && (
                   <div style={{ "--i": 1 } as CSSProperties} className={`list-in mt-4 ${softPanel}`}>
-                    <p className="text-base font-semibold leading-snug text-foreground">
+                    <p className="text-body font-semibold leading-snug text-foreground">
                       {structuredProps.recommendationDetail}
                     </p>
                     {structuredProps.recommendationIntro && (
-                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      <p className="mt-1 text-body text-muted-foreground">
                         {structuredProps.recommendationIntro}
                       </p>
                     )}
@@ -410,7 +410,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               )}
 
               {structuredProps.isChild && (
-                <p className="mt-3.5 rounded-xl border border-amber-care-border bg-amber-care-soft/60 px-4 py-3 text-sm font-medium leading-relaxed text-foreground">
+                <p className="mt-3.5 rounded-xl border border-amber-care-border bg-amber-care-soft/60 px-4 py-3 text-body font-medium text-foreground">
                   {c.childNote}
                 </p>
               )}
@@ -442,23 +442,25 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               />
 
               <div style={{ "--i": 3 } as CSSProperties} className="list-in mt-6 border-t border-border pt-5 print:hidden">
-                <Link
+                <Button
                   href={structuredProps.reproducePath}
-                  className={`${primaryButton} w-full whitespace-nowrap text-sm sm:w-auto sm:text-[0.9375rem]`}
+                  variant="action"
+                  size="lg"
+                  className="w-full sm:w-auto"
                 >
                   <span className="min-w-0 truncate">{noteCopy.openFullCheck}</span>
                   <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
-                </Link>
+                </Button>
               </div>
 
-              <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-meta text-muted-foreground">
                 {dict.ui.disclaimer}
               </p>
             </>
           ) : fallback ? (
             <>
               <header className="list-in border-b border-border pb-4">
-                <p className="text-xs font-semibold text-sapphire sm:text-sm">
+                <p className="text-body font-semibold text-sapphire">
                   {tSummary.screenFor}
                 </p>
                 <h1 className={`mt-1 ${stepHeading}`}>{tSummary.patientSummary}</h1>
@@ -469,26 +471,28 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                   <div className="flex items-start gap-3">
                     <AlertCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                     <div className="min-w-0 flex-1">
-                      <p className="text-base font-semibold leading-snug text-primary">
+                      <p className="text-body font-semibold leading-snug text-primary">
                         {dict.ui.emergency.title}
                       </p>
-                      <p className="mt-1 text-sm leading-relaxed text-foreground sm:text-base">
+                      <p className="mt-1 text-body text-foreground">
                         {dict.ui.emergency.description}
                       </p>
                     </div>
                   </div>
-                  <a
+                  <Button
                     href="tel:112"
-                    className={`mt-4 w-full whitespace-nowrap text-sm sm:text-[0.9375rem] print:hidden sm:w-auto ${emergencyButton}`}
+                    variant="primary"
+                    size="lg"
+                    className="mt-4 w-full sm:w-auto print:hidden"
                   >
                     <PhoneIcon className="h-4 w-4 shrink-0" />
                     <span className="min-w-0 truncate">{dict.ui.emergency.call112Now}</span>
-                  </a>
+                  </Button>
                 </div>
               ) : (
                 fallback.recommendationDetail && (
                   <div style={{ "--i": 1 } as CSSProperties} className={`list-in mt-4 ${softPanel}`}>
-                    <p className="text-base font-semibold leading-snug text-foreground">
+                    <p className="text-body font-semibold leading-snug text-foreground">
                       {fallback.recommendationDetail}
                     </p>
                   </div>
@@ -512,16 +516,18 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               />
 
               <div style={{ "--i": 3 } as CSSProperties} className="list-in mt-6 border-t border-border pt-5 print:hidden">
-                <Link
+                <Button
                   href={withLangPrefix("/health-check", activeLang)}
-                  className={`${primaryButton} w-full whitespace-nowrap text-sm sm:w-auto sm:text-[0.9375rem]`}
+                  variant="action"
+                  size="lg"
+                  className="w-full sm:w-auto"
                 >
                   <span className="min-w-0 truncate">{noteCopy.startCheck}</span>
                   <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
-                </Link>
+                </Button>
               </div>
 
-              <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-meta text-muted-foreground">
                 {dict.ui.disclaimer}
               </p>
             </>
@@ -530,13 +536,15 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               <h1 className={stepHeading}>{noteCopy.emptyTitle}</h1>
               <p className={stepLead}>{noteCopy.emptyBody}</p>
               <div className="mt-6">
-                <Link
+                <Button
                   href={withLangPrefix("/health-check", activeLang)}
-                  className={`${primaryButton} w-full whitespace-nowrap text-sm sm:w-auto sm:text-[0.9375rem]`}
+                  variant="action"
+                  size="lg"
+                  className="w-full sm:w-auto"
                 >
                   <span className="min-w-0 truncate">{noteCopy.startCheck}</span>
                   <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
-                </Link>
+                </Button>
               </div>
             </div>
           )}

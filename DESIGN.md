@@ -33,6 +33,7 @@ Defined in `src/app/globals.css` (`@theme`):
 ## 3. Typography, Scale & Global Comfort Scaling
 
 - **Display / Section / Title / Body**: Fluid tokens (`--text-display` `clamp(2rem, 1.2rem + 2.3vw, 3.25rem)`, `--text-section`, `--text-title`, `--text-body`, `--text-meta`) defined in `src/app/globals.css`.
+- **Weight hierarchy:** `text-display`, `text-page`, and `text-section` carry weight `700` from tokens. Spend weight `600` (`text-title` / `font-semibold`) only on `text-title` / `<h3>` headings, button labels, field labels, and at most one key fact per row or card; keep values, notes, list items, and descriptions at weight `400` (`font-normal`) or `500` (`text-meta`).
 - **No arbitrary micro-labels:** Do not downgrade sibling card headings or add tiny pill badges inside hero cards.
 - **Persistent Comfort Menu (`src/components/layout/ComfortMenu.tsx` + `src/lib/comfort-preferences.ts`):**
   - `textScale`: `"normal"` (`100%`), `"large"` (`114%`), `"xl"` (`126%`) applied via `html[data-text-scale]` root font scaling.
@@ -68,6 +69,26 @@ Enforced across all 7 locales (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`) and au
 
 ## 6. Component Architecture Rules
 
+- **Action Buttons (`src/components/ui/Button.tsx`):** Every action `<button>`, submit button, and CTA link uses `<Button>` with `rounded-(--radius-control)`, `text-body`, fluid `min-h-11` (`md`) or `min-h-12` (`lg`) growth (no fixed `h-*`), and strict variant roles: `primary` (red — 112/emergency only), `action` (sapphire — the one main next step of a screen), `outline` (default — all other action buttons), and `ghost` (quiet row or dialog actions). Never hand-roll solid `bg-sapphire` / `bg-primary` / `bg-foreground` action buttons or use the retired `secondary` variant.
+- **Public Page Headers (`src/components/ui/PageHeader.tsx`):** Every public page header (excluding the landing home hero `#hero-title` and full-screen portal states) uses `<PageHeader>` with `align="start"` flush-left alignment—including `src/app/error.tsx` and `src/app/not-found.tsx`—`text-page` `<h1>`, `text-lead` lead at `--measure-lead` (`34rem`) with `mt-3` (12px) gap, `mt-5` (20px) action slot gap, `pt-6 sm:pt-10` top padding, and no decorative header band.
+- **Containers & Reading Measures (`src/components/ui/Container.tsx`, `src/app/globals.css`):** `Container` provides `default` (`max-w-[80rem]`) and `narrow` (`max-w-[48rem]`) widths with unified gutters (`px-5 sm:px-6 lg:px-8`). Long running text uses `max-w-(--measure-reading)` (`--measure-reading: 36rem`) and leads / short fixed-measure headings use `max-w-(--measure-lead)` (`--measure-lead: 34rem`), left-aligned on the container edge with `PageHeader`.
 - **Family & Caregiver Sharing (`src/components/ui/FamilyShareButton.tsx`):** Consistent 1-tap WhatsApp, SMS, Copy text, and Web Share menu across prescriptions, triage summaries, telemedicine confirmations, clinic finder cards, and the patient portal.
 - **Print-First Clinical Sheets (`data-print-mode="fridge-sheet"`):** Printing structured prescriptions hides dense screen chrome and outputs a high-contrast large-print daily medication schedule.
 - **Minimum Touch Ergonomics:** Interactive rows and buttons maintain `min-h-11` (`44px+`) hit targets with clear `focus-visible` sapphire outlines (`outline-ring`).
+
+---
+
+## 7. Header Capsule & In-Page Capsule Menus
+
+One pattern for every menu bar, defined in `src/components/layout/chrome-capsule.ts`.
+
+- **Header capsule:** search, text size, language, account and the `Start here` action are segments of one fully rounded bar (`capsuleSurface`, `capsuleItem`, `capsuleDivider`, `capsuleAction`). No segment carries a box of its own. Below `xl` the bar also holds the menu button; on phones it holds search, text size and the menu button.
+- **Outline only:** the bar has no fill. Its only mark is a half-pixel hairline: white while the header floats over the dark landing hero, neutral grey (`ink-950/40`) once the header is solid. Nothing in the bar is red; `--color-primary` stays reserved for 112.
+- **One gliding highlight:** a single plate (`CapsuleGlide.tsx`, `.capsule-plate`) moves to the segment under the mouse or keyboard focus. Segments have no hover fill of their own. Touch keeps the existing press feedback.
+- **Panels open from their segment:** text size, language, account and `Start here` panels share `CAPSULE_PANEL` and the `.capsule-panel` motion (scale and fade from the top-right corner under the trigger). The search overlay grows from the search segment on `md+`.
+- **Account segment:** one segment opens a panel with the account link and the install or update action, each with a text label.
+- **In-page capsule menus:** menus that switch between sibling pages or sections (`AssistantNavigation`, the guides section menu in `HealthInformationPageContent`) use `CAPSULE_TABS` and `capsuleTab`, with the same hairline and gliding plate. The current destination sits on a soft plate.
+- **Two-way switches:** `ReadingLevelSwitcher` and `DictionaryTabs` use the capsule shape and hairline (`CAPSULE_SHAPE`, `CAPSULE_OUTLINE`) with their sliding sapphire thumb. Each marks its root with `data-capsule-switch`; tests allow pill shapes on reading pages only inside these switches.
+- **Where the capsule is not used:** status labels, counts and categories never get a capsule (see the UI rules in `CLAUDE.md`). Wrapping filter chips keep their rounded-rectangle shape.
+- **Motion:** plate and panel motion stop under `prefers-reduced-motion` and the in-app Calm motion toggle.
+- **Dev note:** `public/offline-worker.js` does not serve cached `/_next/static/` files on localhost, so UI changes show without clearing the service worker.

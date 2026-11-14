@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { Button } from "@/components/ui/Button";
 import { PhoneIcon } from "@/components/ui/icons";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { HEALTH_ARTICLE_SECTION_H2_CLASS } from "./HealthArticleShell";
@@ -172,7 +173,7 @@ export function WarningSignsEmergencyCard({
     <>
       <section
         aria-labelledby="warning-signs-heading"
-        className={`rounded-xl border border-border border-l-4 border-l-primary bg-card p-6 sm:p-8 break-inside-avoid ${className}`}
+        className={`rounded-xl border border-primary/40 bg-card p-6 sm:p-8 break-inside-avoid ${className}`}
       >
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
@@ -182,7 +183,7 @@ export function WarningSignsEmergencyCard({
             >
               {pickLocale(s.heading, currentLang)}
             </h2>
-            <p className="mt-1.5 text-base font-medium leading-normal text-foreground">
+            <p className="mt-1.5 text-body font-medium text-foreground">
               {pickLocale(s.subtitleWarning, currentLang)}
             </p>
           </div>
@@ -196,7 +197,7 @@ export function WarningSignsEmergencyCard({
           </div>
         </div>
 
-        <p className="mt-4 text-base leading-relaxed text-foreground/90">
+        <p className="mt-4 text-body text-foreground/90">
           {pickLocale(s.prompt, currentLang).replace(
             "{topic}",
             topicTitle.toLowerCase(),
@@ -211,11 +212,11 @@ export function WarningSignsEmergencyCard({
           {warningSigns.map((sign, idx) => (
             <li
               key={idx}
-              className="grid grid-cols-[2rem_minmax(0,1fr)] items-baseline gap-x-3 py-3.5 text-[1.0625rem] font-medium leading-[1.65] text-foreground sm:text-[1.125rem]"
+              className="grid grid-cols-[2rem_minmax(0,1fr)] items-baseline gap-x-3 py-3.5 text-reading font-medium text-foreground"
             >
               <span
                 aria-hidden="true"
-                className="text-base font-semibold tabular-nums text-primary dark:text-red-300"
+                className="text-body font-semibold tabular-nums text-primary dark:text-ruby-300"
               >
                 {String(idx + 1).padStart(2, "0")}
               </span>
@@ -225,22 +226,24 @@ export function WarningSignsEmergencyCard({
         </ol>
 
         <div className="mt-6 flex flex-col items-start gap-x-6 gap-y-2 sm:flex-row sm:items-center print:hidden">
-          <button
+          <Button
             type="button"
+            variant="primary"
+            size="lg"
             onClick={() => setDialerOpen(true)}
             aria-haspopup="dialog"
-            className="press-on-dark inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
+            className="w-full shrink-0 px-6 sm:w-auto"
           >
-            <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+            <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span>{pickLocale(s.dialBtn, currentLang)}</span>
-          </button>
+          </Button>
 
           <button
             ref={triggerRef}
             type="button"
             onClick={() => setIsModalOpen(true)}
             aria-haspopup="dialog"
-            className="press-row inline-flex min-h-12 items-center whitespace-nowrap rounded-sm px-1 text-base font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="press-row inline-flex min-h-12 items-center whitespace-nowrap rounded-sm px-1 text-body font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {pickLocale(s.modalTrigger, currentLang)}
           </button>
@@ -271,13 +274,13 @@ export function WarningSignsEmergencyCard({
               <div>
                 <h3
                   id="emergency-modal-title"
-                  className="text-xl font-semibold tracking-tight text-foreground"
+                  className="text-title font-semibold text-foreground"
                 >
                   {pickLocale(s.modalTitle, currentLang)}
                 </h3>
                 <p
                   id="emergency-modal-desc"
-                  className="mt-1 text-base text-muted-foreground"
+                  className="mt-1 text-body text-muted-foreground"
                 >
                   {pickLocale(s.modalSubtitle, currentLang)}{" "}
                   {pickLocale(s.subtitleWarning, currentLang)}
@@ -306,7 +309,7 @@ export function WarningSignsEmergencyCard({
             </div>
 
             <div className="mt-4">
-              <p className="text-base font-semibold text-foreground">
+              <p className="text-body font-semibold text-foreground">
                 {pickLocale(s.dispatchTitle, currentLang)}
               </p>
 
@@ -318,14 +321,14 @@ export function WarningSignsEmergencyCard({
                     className="list-in flex flex-col rounded-lg border border-border bg-surface-subtle/60 p-3.5"
                   >
                     <div className="flex items-baseline gap-2">
-                      <span className="text-sm font-bold tabular-nums text-primary">
+                      <span className="text-meta font-bold tabular-nums text-primary">
                         {String(idx + 1).padStart(2, "0")}.
                       </span>
-                      <span className="text-sm font-semibold text-foreground">
+                      <span className="text-body font-semibold text-foreground">
                         {urgencyUi.cardLabels[idx]}
                       </span>
                     </div>
-                    <p className="mt-2 text-base leading-relaxed text-foreground/90">
+                    <p className="mt-2 text-body text-foreground/90">
                       {stepText}
                     </p>
                   </li>
@@ -334,25 +337,28 @@ export function WarningSignsEmergencyCard({
             </div>
 
             <div className="mt-6 flex flex-col-reverse gap-2.5 border-t border-border pt-4 sm:flex-row sm:justify-end">
-              <button
+              <Button
                 type="button"
+                variant="outline"
+                size="lg"
                 onClick={() => setIsModalOpen(false)}
-                className="press-row inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {pickLocale(s.closeBtn, currentLang)}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant="primary"
+                size="lg"
                 onClick={() => {
                   setIsModalOpen(false);
                   setDialerOpen(true);
                 }}
                 aria-haspopup="dialog"
-                className="press-on-dark inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-primary-hover active:bg-primary-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="px-6"
               >
-                <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+                <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{pickLocale(s.dialBtn, currentLang)}</span>
-              </button>
+              </Button>
             </div>
           </div>
         </div>

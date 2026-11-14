@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { StethoscopeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
@@ -65,16 +65,18 @@ export function PrescriptionDoctorBridge({ className = "" }: PrescriptionDoctorB
     <section className={`mt-8 border-t border-border pt-6 ${className}`}>
       <div className="flex flex-col items-start gap-4">
         <div>
-          <h3 className="text-balance text-base font-semibold text-foreground">{t.heading}</h3>
-          <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">{t.body}</p>
+          <h3 className="text-balance text-body font-semibold text-foreground">{t.heading}</h3>
+          <p className="mt-1 max-w-xl text-body text-muted-foreground">{t.body}</p>
         </div>
-        <Link
+        <Button
           href={targetUrl}
-          className="press-solid inline-flex min-h-[48px] w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 print:hidden sm:w-auto"
+          variant="action"
+          size="lg"
+          className="w-full shrink-0 sm:w-auto print:hidden"
         >
           <StethoscopeIcon className="h-4 w-4 shrink-0" />
           <span>{t.buttonText}</span>
-        </Link>
+        </Button>
       </div>
     </section>
   );

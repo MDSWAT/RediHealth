@@ -245,12 +245,6 @@ export function ReportIssueWidget() {
     if (!open && dialog.open) dialog.close();
   }, [open]);
 
-  function openDialog() {
-    setError(null);
-    setSuccess(null);
-    setOpen(true);
-  }
-
   useEffect(() => {
     const handleOpen = (event: Event) => {
       event.preventDefault();
@@ -316,28 +310,10 @@ export function ReportIssueWidget() {
   }
 
   const fieldClass =
-    "field-focus w-full rounded-lg border bg-background text-base text-foreground placeholder:text-muted-foreground/80 sm:text-sm";
+    "field-focus w-full rounded-lg border bg-background text-body text-foreground placeholder:text-muted-foreground/80";
 
   return (
     <>
-      {/* From 1024px only: on phones and tablets it covered body text and the topic action bar; the footer link opens the same form there. */}
-      <button
-        type="button"
-        onClick={openDialog}
-        aria-label={t.trigger}
-        aria-haspopup="dialog"
-        className="report-issue-trigger group press-row fixed bottom-3 right-3 z-30 hidden h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground shadow-xs transition-[color,background-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) hover:shadow-(--shadow-card-hover) motion-reduce:transition-none lg:flex hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      >
-        <AlertCircleIcon className="h-[18px] w-[18px]" aria-hidden="true" />
-        {/* Label on hover or keyboard focus only, above the icon so adjacent bottom-right controls stay clear. */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute right-0 bottom-full mb-2 translate-y-1 whitespace-nowrap rounded-md bg-ink-950 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-xs transition-[opacity,translate] duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 motion-reduce:transition-none"
-        >
-          {t.trigger}
-        </span>
-      </button>
-
       <dialog
         ref={dialogRef}
         aria-labelledby={dialogTitleId}
@@ -356,10 +332,10 @@ export function ReportIssueWidget() {
         <div className="flex max-h-[90dvh] flex-col overflow-y-auto rounded-t-xl border-t border-border bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl sm:rounded-xl sm:border sm:pb-5">
           <div className="mb-4 flex items-start justify-between gap-3 border-b border-border pb-4">
             <div className="min-w-0">
-              <h2 id={dialogTitleId} className="text-lg font-semibold text-foreground">
+              <h2 id={dialogTitleId} className="text-title font-semibold text-foreground">
                 {t.modalTitle}
               </h2>
-              <p id={dialogBodyId} className="mt-0.5 text-sm text-muted-foreground">
+              <p id={dialogBodyId} className="mt-0.5 text-body text-muted-foreground">
                 {t.modalBody}
               </p>
             </div>
@@ -375,7 +351,7 @@ export function ReportIssueWidget() {
 
           <form onSubmit={submitReport} noValidate className="space-y-4">
             <div>
-              <label htmlFor={emailId} className="mb-1.5 block text-sm font-medium text-foreground">
+              <label htmlFor={emailId} className="mb-1.5 block text-body font-medium text-foreground">
                 {t.emailLabel}
               </label>
               <div className="group relative">
@@ -397,7 +373,7 @@ export function ReportIssueWidget() {
             </div>
 
             <div>
-              <label htmlFor={messageId} className="mb-1.5 block text-sm font-medium text-foreground">
+              <label htmlFor={messageId} className="mb-1.5 block text-body font-medium text-foreground">
                 {t.messageLabel}
               </label>
               <textarea
@@ -414,13 +390,13 @@ export function ReportIssueWidget() {
             </div>
 
             {error ? (
-              <p id={errorId} role="alert" className="swap-in flex items-start gap-2 rounded-lg border border-primary/30 bg-primary-soft/50 px-3 py-2 text-sm text-primary-active">
+              <p id={errorId} role="alert" className="swap-in flex items-start gap-2 rounded-lg border border-primary/30 bg-primary-soft/50 px-3 py-2 text-body text-primary-active">
                 <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>{error.text}</span>
               </p>
             ) : null}
             {success ? (
-              <p role="status" className="swap-in rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm font-medium text-foreground">
+              <p role="status" className="swap-in rounded-lg border border-border bg-muted/50 px-3 py-2 text-body font-medium text-foreground">
                 {success}
               </p>
             ) : null}
@@ -429,7 +405,7 @@ export function ReportIssueWidget() {
               <Button type="button" variant="ghost" onClick={() => setOpen(false)}>
                 {t.cancel}
               </Button>
-              <Button type="submit" variant="secondary" disabled={isSubmitting}>
+              <Button type="submit" variant="action" disabled={isSubmitting}>
                 {isSubmitting ? t.sending : t.send}
               </Button>
             </div>

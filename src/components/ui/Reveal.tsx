@@ -74,6 +74,7 @@ export function Reveal({ children, className, delay = 0, variant = "rise", stagg
 
   useEffect(() => {
     if (reducedMotion) return;
+    if (window.matchMedia("(max-width: 767px)").matches) return;
     const el = ref.current;
     const observer = getSharedObserver();
     if (!el || !observer) return;

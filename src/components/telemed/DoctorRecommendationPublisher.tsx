@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/Button";
 import { CheckCircleIcon, AlertCircleIcon, FileTextIcon } from "@/components/ui/icons";
 import type { CareRecommendationRecord } from "@/lib/types/telemetry";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -286,25 +287,28 @@ export function DoctorRecommendationPublisher({
       <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border">
         <FileTextIcon className="h-5 w-5 text-sapphire" />
         <div>
-          <h2 className="text-sm font-bold text-foreground">
+          <h2 className="text-body font-bold text-foreground">
             {copy.title}
           </h2>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-meta text-muted-foreground">
             {copy.subtitle(patientName)}
           </p>
         </div>
       </div>
 
       {statusMessage && (
-        <div className="mb-4 rounded-lg bg-sapphire-soft border border-sapphire-border/40 p-3 text-xs text-sapphire font-medium flex items-center gap-2">
+        <div className="mb-4 rounded-lg bg-sapphire-soft border border-sapphire-border/40 p-3 text-meta text-sapphire font-medium flex items-center gap-2">
           <CheckCircleIcon className="h-4 w-4 shrink-0" />
           <span>{statusMessage}</span>
         </div>
       )}
 
       {errorMessage && (
-        <div className="mb-4 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-xs text-red-600 font-medium flex items-center gap-2">
-          <AlertCircleIcon className="h-4 w-4 shrink-0" />
+        <div
+          role="alert"
+          className="mb-4 rounded-lg border border-primary/30 bg-primary-soft/75 p-3 text-body font-medium text-foreground dark:border-ruby-300/35 dark:bg-primary/15 dark:text-paper flex items-center gap-2"
+        >
+          <AlertCircleIcon className="h-4 w-4 shrink-0 text-primary dark:text-ruby-300" />
           <span>{errorMessage}</span>
         </div>
       )}
@@ -312,7 +316,7 @@ export function DoctorRecommendationPublisher({
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Diagnostic */}
         <div>
-          <label className="block text-xs font-semibold text-foreground mb-1">
+          <label className="block text-meta font-semibold text-foreground mb-1">
             {copy.diagnosisLabel}
           </label>
           <input
@@ -321,24 +325,24 @@ export function DoctorRecommendationPublisher({
             value={primaryDiagnosis}
             onChange={(e) => setPrimaryDiagnosis(e.target.value)}
             placeholder={copy.diagnosisPlaceholder}
-            className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
         {/* Action steps */}
         <div>
-          <label className="block text-xs font-semibold text-foreground mb-1">
+          <label className="block text-meta font-semibold text-foreground mb-1">
             {copy.stepsLabel}
           </label>
           <div className="space-y-2 mb-2">
             {steps.map((st, i) => (
-              <div key={i} className="flex items-center gap-2 rounded-md border border-border bg-muted/30 p-2 text-xs">
+              <div key={i} className="flex items-center gap-2 rounded-md border border-border bg-muted/30 p-2 text-meta">
                 <span className="font-bold text-sapphire">{i + 1}.</span>
                 <span className="flex-1 text-foreground">{st}</span>
                 <button
                   type="button"
                   onClick={() => handleRemoveStep(i)}
-                  className="text-muted-foreground hover:text-red-600 px-1"
+                  className="text-muted-foreground hover:text-foreground dark:hover:text-paper px-1"
                   aria-label={copy.removeStep}
                 >
                   ✕
@@ -354,37 +358,38 @@ export function DoctorRecommendationPublisher({
               onChange={(e) => setNewStepText(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), handleAddStep())}
               placeholder={copy.newStepPlaceholder}
-              className="flex-1 min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex-1 min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="md"
               onClick={handleAddStep}
-              className="press-row min-h-[44px] whitespace-nowrap rounded-lg border border-border-control bg-muted px-4 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copy.addStep}
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* Warning signs */}
         <div>
-          <label className="block text-xs font-semibold text-foreground mb-1">
+          <label className="block text-meta font-semibold text-foreground mb-1">
             {copy.warningsLabel}
           </label>
-          <p className="text-[11px] text-muted-foreground mb-1.5">
+          <p className="text-meta text-muted-foreground mb-1.5">
             {copy.warningsHelp}
           </p>
           <div className="flex flex-wrap gap-2">
             {warningSigns.map((sign, i) => (
               <span
                 key={i}
-                className="inline-flex items-center gap-1.5 rounded-md border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs text-amber-800 dark:text-amber-300 font-medium"
+                className="inline-flex items-center gap-1.5 rounded-md border border-amber-care-border bg-amber-care-soft/80 px-2.5 py-1 text-meta text-amber-care-hover font-medium dark:border-amber-care/40 dark:bg-amber-care/15 dark:text-amber-care-border"
               >
                 {sign}
                 <button
                   type="button"
                   onClick={() => setWarningSigns((prev) => prev.filter((_, idx) => idx !== i))}
-                  className="text-amber-700 hover:text-amber-900 ml-1 font-bold"
+                  className="text-amber-care hover:text-amber-care-hover dark:text-amber-care-border dark:hover:text-paper ml-1 font-bold"
                   aria-label={copy.removeWarning}
                 >
                   ✕
@@ -397,19 +402,19 @@ export function DoctorRecommendationPublisher({
         {/* Control Date */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-1">
+            <label className="block text-meta font-semibold text-foreground mb-1">
               {copy.controlLabel}
             </label>
             <input
               type="date"
               value={controlDate}
               onChange={(e) => setControlDate(e.target.value)}
-              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-1">
+            <label className="block text-meta font-semibold text-foreground mb-1">
               {copy.channelLabel}
             </label>
             <div className="flex items-center gap-2 min-h-[44px] pt-1">
@@ -420,7 +425,7 @@ export function DoctorRecommendationPublisher({
                 onChange={(e) => setSendSms(e.target.checked)}
                 className="h-5 w-5 rounded border-border-control accent-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               />
-              <label htmlFor="sendSmsRec" className="text-xs text-foreground font-medium cursor-pointer">
+              <label htmlFor="sendSmsRec" className="text-body text-foreground font-medium cursor-pointer">
                 {copy.smsLabel}
               </label>
             </div>
@@ -429,13 +434,15 @@ export function DoctorRecommendationPublisher({
 
         {/* Action button */}
         <div className="pt-2">
-          <button
+          <Button
             type="submit"
+            variant="action"
+            size="md"
+            fullWidth
             disabled={isSubmitting}
-            className="press-solid inline-flex min-h-[44px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60"
           >
             {isSubmitting ? copy.sending : copy.submit}
-          </button>
+          </Button>
         </div>
       </form>
     </div>
