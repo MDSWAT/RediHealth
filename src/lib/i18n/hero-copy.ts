@@ -65,13 +65,10 @@ export type HeroCopy = {
     /** Footer link on step 1, to the health mediators' page. */
     mediators: string;
     question: string;
-    /** Dynamic subtitle states driven by live user behaviour. */
+    /** Static footer subtitle plus live speaking indicator. */
     subtitles: {
       default: string;
       speaking: string;
-      mediators: string;
-      returned: string;
-      idle: string;
     };
     back: string;
     step: (current: number, total: number) => string;
@@ -122,9 +119,6 @@ const en: HeroCopy = {
     subtitles: {
       default: "Free and private, instant next step.",
       speaking: "Reading the options aloud.",
-      mediators: "Field tools for health mediators.",
-      returned: "Pick another option anytime.",
-      idle: "Not sure? Try the last option above.",
     },
     back: "Back",
     step: (current, total) => `Step ${current} of ${total}`,
@@ -223,9 +217,6 @@ const ro: HeroCopy = {
     subtitles: {
       default: "Gratuit și fără cont, răspuns imediat.",
       speaking: "Citim opțiunile cu voce tare.",
-      mediators: "Instrumente pentru mediatorii din teren.",
-      returned: "Poți alege oricând altă situație.",
-      idle: "Nu știi ce să alegi? Începe cu ultima.",
     },
     back: "Înapoi",
     step: (current, total) => `Pasul ${current} din ${total}`,
@@ -324,9 +315,6 @@ const sq: HeroCopy = {
     subtitles: {
       default: "Falas dhe pa llogari, hapi tjetër direkt.",
       speaking: "Po i lexojmë zgjedhjet me zë.",
-      mediators: "Mjete pune për mediatorët në terren.",
-      returned: "Zgjidh një situatë tjetër kur të duash.",
-      idle: "Nuk je i sigurt? Provo zgjedhjen e fundit.",
     },
     back: "Kthehu",
     step: (current, total) => `Hapi ${current} nga ${total}`,
@@ -425,9 +413,6 @@ const it: HeroCopy = {
     subtitles: {
       default: "Gratuito e riservato, aiuto immediato.",
       speaking: "Leggiamo le opzioni ad alta voce.",
-      mediators: "Strumenti sul campo per i mediatori.",
-      returned: "Scegli un'altra opzione quando vuoi.",
-      idle: "In dubbio? Prova l'ultima opzione.",
     },
     back: "Indietro",
     step: (current, total) => `Passo ${current} di ${total}`,
@@ -526,9 +511,6 @@ const hr: HeroCopy = {
     subtitles: {
       default: "Besplatno i povjerljivo, sljedeći korak.",
       speaking: "Čitamo opcije naglas.",
-      mediators: "Alati za zdravstvene medijatore.",
-      returned: "Odaberi drugu opciju kad želiš.",
-      idle: "Nisi siguran? Probaj zadnju opciju.",
     },
     back: "Natrag",
     step: (current, total) => `Korak ${current} od ${total}`,
@@ -627,9 +609,6 @@ const rom: HeroCopy = {
     subtitles: {
       default: "Bi lovesko thaj garavdo, sigo pash.",
       speaking: "Ginas e opciye glasosa.",
-      mediators: "Instrumentya mediatoryenge po than.",
-      returned: "Alosar aver opciya kana kames.",
-      idle: "Na zhanes? Alosar i palutni opciya.",
     },
     back: "Palpale",
     step: (current, total) => `Pash ${current} katar ${total}`,
@@ -729,9 +708,6 @@ ru: {
     subtitles: {
       default: "Бесплатно и анонимно, быстрый ответ.",
       speaking: "Читаем варианты вслух.",
-      mediators: "Инструменты для медицинских медиаторов.",
-      returned: "Выберите другой пункт в любой момент.",
-      idle: "Не уверены? Выберите последний пункт.",
     },
     back: "Назад",
     step: (current, total) => `Шаг ${current} из ${total}`,

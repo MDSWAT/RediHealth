@@ -13,7 +13,7 @@ import { TriagePanel } from "./hero/TriagePanel";
  * - Two columns on a shared grid on desktop: headline and steps align to the panel's question and footer.
  * - Phones and tablets: an ambient top header wash fades smoothly into solid ink behind the headline
  *   and inline triage panel. Desktop: the same photo is full-bleed behind ink scrims. It never moves.
- * - Entrance: the copy column settles once (globals.css `.hero-enter`), nothing staggers.
+ * - Static on first paint: the headline copy column and triage panel render visibly immediately.
  */
 export function Hero() {
   const { lang } = useLanguage();
@@ -64,7 +64,7 @@ export function Hero() {
       <Container className="hero-grid grid flex-1 content-start gap-y-5 pb-6 pt-3 sm:gap-y-7 sm:py-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:content-center lg:gap-x-12 lg:py-12 xl:gap-x-16">
         {/* Desktop: the headline block sits in the vertical middle of the panel beside it (a touch above
             centre, which reads as centred), whatever the typeface or the language's line count. */}
-        <div className="hero-enter flex flex-col lg:justify-center">
+        <div className="flex flex-col lg:justify-center">
           <div className="max-w-xl">
             <h1 id="hero-title" className="hero-title text-balance font-bold text-paper">
               {copy.title}

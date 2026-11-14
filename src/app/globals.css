@@ -442,24 +442,6 @@ h2 {
   }
 }
 
-/* Hero entrance: the copy column fades in once from 8px. The triage panel is a
-   tool, so it is simply there (no entrance). No word reveal, no blur, no scale,
-   no stagger. */
-@keyframes hero-enter {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.hero-enter {
-  animation: hero-enter var(--dur-slow) var(--hero-ease) both;
-}
-
 /* Quiz result: space reserved, revealed on answer, mark draws itself in. */
 .quiz-result {
   visibility: hidden;
@@ -492,10 +474,6 @@ h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-enter {
-    animation: none;
-  }
-
   .quiz-result,
   .quiz-result.is-shown {
     transform: none;
@@ -963,10 +941,6 @@ h2 {
   .hero-panel > .grid > * {
     padding-top: 0.75rem;
     padding-bottom: 1rem;
-  }
-
-  .hero-enter > ol {
-    margin-top: 1.5rem;
   }
 }
 

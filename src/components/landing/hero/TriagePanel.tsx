@@ -1,17 +1,15 @@
 "use client";
 
 import {
-  useCallback,
   useEffect,
   useRef,
   useState,
   type ComponentType,
   type FocusEvent,
-  type PointerEvent,
   type SVGProps,
 } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import {
   ActivityIcon,
   ArrowLeftIcon,
@@ -32,7 +30,7 @@ import type { Lang } from "@/lib/i18n/translations";
 import { toSentences, useSpeech } from "./use-speech";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { playEarcon } from "@/lib/audio/earcon";
-import { DURATION, EASE_OUT, useCalmReducedMotion } from "@/lib/motion/tokens";
+import { useCalmReducedMotion } from "@/lib/motion/tokens";
 
 const NEED_ICONS: Record<HeroNeedId, ComponentType<SVGProps<SVGSVGElement>>> = {
   learn: BookIcon,
@@ -64,22 +62,13 @@ type TriagePanelProps = {
  * tall as its tallest view: switching steps never resizes it or the hero.
  * Inactive views are `inert`, so keyboards and screen readers skip them.
  */
-type SubtitleTone = "neutral" | "sapphire" | "amber";
-type SubtitleState = {
-  key: string;
-  text: string;
-  tone: SubtitleTone;
-};
-
 export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
   const [view, setView] = useState<View>("question");
   const [dir, setDir] = useState<Direction>("forward");
   // Bumped on every navigation so per-visit state (the quiz) starts fresh.
   const [visit, setVisit] = useState(0);
   const [hoveredNeed, setHoveredNeed] = useState<HeroNeedId | null>(null);
-  const [hoveredMediators, setHoveredMediators] = useState(false);
   const [lastVisitedNeed, setLastVisitedNeed] = useState<HeroNeedId | null>(null);
-  const [idleNudge, setIdleNudge] = useState(false);
 
   const calmMotion = useCalmReducedMotion();
   const { available: canSpeak, speaking, isFallback, speak, stop } = useSpeech(lang);
@@ -87,121 +76,16 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
   const voiceEnabled = isVoiceEnabled(lang);
   const hasInteracted = useRef(false);
 
-  const panelRef = useRef<HTMLElement>(null);
-  const floatRef = useRef({ tx: 0, ty: 0, cx: 0, cy: 0, rafId: 0 });
-
-  const stepFloat = useCallback(function tick() {
-    const el = panelRef.current;
-    const state = floatRef.current;
-    if (!el) {
-      state.rafId = 0;
-      return;
-    }
-
-    state.cx += (state.tx - state.cx) * 0.14;
-    state.cy += (state.ty - state.cy) * 0.14;
-
-    const settledX = Math.abs(state.tx - state.cx) < 0.04;
-    const settledY = Math.abs(state.ty - state.cy) < 0.04;
-
-    if (settledX && settledY) {
-      state.cx = state.tx;
-      state.cy = state.ty;
-      el.style.transform =
-        state.tx === 0 && state.ty === 0
-          ? ""
-          : `translate3d(${state.cx.toFixed(2)}px, ${state.cy.toFixed(2)}px, 0)`;
-      state.rafId = 0;
-      return;
-    }
-
-    el.style.transform = `translate3d(${state.cx.toFixed(2)}px, ${state.cy.toFixed(2)}px, 0)`;
-    state.rafId = window.requestAnimationFrame(tick);
-  }, []);
-
-  useEffect(() => {
-    const el = panelRef.current;
-    const state = floatRef.current;
-    if (calmMotion) {
-      if (state.rafId) {
-        window.cancelAnimationFrame(state.rafId);
-        state.rafId = 0;
-      }
-      state.tx = 0;
-      state.ty = 0;
-      state.cx = 0;
-      state.cy = 0;
-      if (el) {
-        el.style.transform = "";
-        el.style.setProperty("--panel-spot-alpha", "0");
-      }
-    }
-    return () => {
-      if (state.rafId) {
-        window.cancelAnimationFrame(state.rafId);
-        state.rafId = 0;
-      }
-    };
-  }, [calmMotion]);
-
-  const handlePanelPointerMove = useCallback(
-    (event: PointerEvent<HTMLElement>) => {
-      if (calmMotion || event.pointerType !== "mouse") return;
-      const el = panelRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) return;
-
-      const nx = Math.max(-0.5, Math.min(0.5, (event.clientX - rect.left) / rect.width - 0.5));
-      const ny = Math.max(-0.5, Math.min(0.5, (event.clientY - rect.top) / rect.height - 0.5));
-
-      floatRef.current.tx = nx * 11;
-      floatRef.current.ty = ny * 9;
-
-      el.style.setProperty("--panel-spot-x", `${((nx + 0.5) * 100).toFixed(1)}%`);
-      el.style.setProperty("--panel-spot-y", `${((ny + 0.5) * 100).toFixed(1)}%`);
-      el.style.setProperty("--panel-spot-alpha", "1");
-
-      if (!floatRef.current.rafId) {
-        floatRef.current.rafId = window.requestAnimationFrame(stepFloat);
-      }
-    },
-    [calmMotion, stepFloat],
-  );
-
-  const handlePanelPointerLeave = useCallback(() => {
-    const el = panelRef.current;
-    floatRef.current.tx = 0;
-    floatRef.current.ty = 0;
-    if (el) {
-      el.style.setProperty("--panel-spot-alpha", "0");
-    }
-    if (!calmMotion && !floatRef.current.rafId) {
-      floatRef.current.rafId = window.requestAnimationFrame(stepFloat);
-    }
-  }, [calmMotion, stepFloat]);
-
   // After a user picks or goes back, move focus to the new heading so screen
   // readers announce it. Skipped on first render so we never steal focus.
   useEffect(() => {
     if (hasInteracted.current) document.getElementById(headingId(view))?.focus({ preventScroll: true });
   }, [view]);
 
-  // Gentle hesitation cue: after 7s on Step 1 without picking anything, softly point to guidance.
-  useEffect(() => {
-    if (view !== "question" || lastVisitedNeed !== null || hoveredNeed !== null || hoveredMediators || speaking || idleNudge) {
-      return;
-    }
-    const timer = window.setTimeout(() => setIdleNudge(true), 7000);
-    return () => window.clearTimeout(timer);
-  }, [view, lastVisitedNeed, hoveredNeed, hoveredMediators, speaking, idleNudge]);
-
   const go = (next: View) => {
     hasInteracted.current = true;
     stop();
-    setIdleNudge(false);
     setHoveredNeed(null);
-    setHoveredMediators(false);
     if (next !== "question") {
       setLastVisitedNeed(next);
     }
@@ -219,7 +103,6 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
   };
 
   const handleToggleSound = () => {
-    setIdleNudge(false);
     if (speaking) {
       playEarcon("stop");
       stop();
@@ -229,48 +112,14 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
     }
   };
 
-  const handleHoverNeed = useCallback((id: HeroNeedId | null) => {
-    if (id !== null) setIdleNudge(false);
-    setHoveredNeed(id);
-  }, []);
-
-  const handleHoverMediators = useCallback((active: boolean) => {
-    if (active) setIdleNudge(false);
-    setHoveredMediators(active);
-  }, []);
-
   const step = view === "question" ? 1 : 2;
-  const progressScale = step === 2 ? 1 : hoveredNeed !== null || speaking ? 0.62 : 0.34;
-
-  const behaviouralSubtitle: SubtitleState = speaking
-    ? { key: "speaking", text: copy.subtitles.speaking, tone: "sapphire" }
-    : hoveredNeed
-      ? { key: `need-${hoveredNeed}`, text: copy.needs[hoveredNeed].hint, tone: "sapphire" }
-      : hoveredMediators
-        ? { key: "mediators", text: copy.subtitles.mediators, tone: "amber" }
-        : lastVisitedNeed
-          ? { key: `returned-${lastVisitedNeed}`, text: copy.subtitles.returned, tone: "sapphire" }
-          : idleNudge
-            ? { key: "idle", text: copy.subtitles.idle, tone: "amber" }
-            : { key: "default", text: copy.subtitles.default, tone: "neutral" };
+  const progressScale = step === 2 ? 1 : 0.5;
 
   return (
     <section
-      ref={panelRef}
       aria-labelledby={headingId(view)}
-      onPointerMove={handlePanelPointerMove}
-      onPointerLeave={handlePanelPointerLeave}
       className="hero-panel relative overflow-hidden rounded-2xl bg-paper text-ink-950 ring-1 ring-white/15 shadow-[0_28px_70px_-32px_rgba(2,6,23,0.78),0_4px_16px_-4px_rgba(2,6,23,0.25)] lg:ml-auto lg:max-w-[468px]"
     >
-      {/* Subtle pointer-reactive sheen over the warm-paper surface on desktop pointers */}
-      <div
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(380px circle at var(--panel-spot-x, 50%) var(--panel-spot-y, 0%), rgba(29, 53, 87, 0.06), transparent 70%)",
-        }}
-        className="pointer-events-none absolute inset-0 rounded-2xl opacity-(--panel-spot-alpha,0) transition-opacity duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:hidden"
-      />
 
       <header className="relative flex h-14 items-center justify-between gap-3 border-b border-ink-950/[0.08] px-5 sm:h-15 sm:px-7">
         <div className="flex min-w-0 items-center gap-2.5">
@@ -318,7 +167,7 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
             </span>
           )}
         </div>
-        {/* 2px GPU-composited progress hairline with hover anticipation */}
+        {/* 2px GPU-composited progress hairline */}
         <span
           aria-hidden="true"
           style={{ transform: `scaleX(${progressScale})` }}
@@ -348,13 +197,10 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
                   copy={copy}
                   lang={lang}
                   speaking={speaking}
-                  subtitle={behaviouralSubtitle}
                   hoveredNeed={hoveredNeed}
                   lastVisitedNeed={lastVisitedNeed}
-                  idleNudge={idleNudge}
                   calmMotion={calmMotion}
-                  onHoverNeed={handleHoverNeed}
-                  onHoverMediators={handleHoverMediators}
+                  onHoverNeed={setHoveredNeed}
                   onChoose={go}
                 />
               ) : (
@@ -383,25 +229,19 @@ function QuestionView({
   copy,
   lang,
   speaking,
-  subtitle,
   hoveredNeed,
   lastVisitedNeed,
-  idleNudge,
   calmMotion,
   onHoverNeed,
-  onHoverMediators,
   onChoose,
 }: {
   copy: HeroCopy["panel"];
   lang: Lang;
   speaking: boolean;
-  subtitle: SubtitleState;
   hoveredNeed: HeroNeedId | null;
   lastVisitedNeed: HeroNeedId | null;
-  idleNudge: boolean;
   calmMotion: boolean;
   onHoverNeed: (id: HeroNeedId | null) => void;
-  onHoverMediators: (active: boolean) => void;
   onChoose: (id: HeroNeedId) => void;
 }) {
   const [plate, setPlate] = useState<{ y: number; h: number; visible: boolean }>({
@@ -456,14 +296,13 @@ function QuestionView({
               : { type: "spring", stiffness: 440, damping: 34, mass: 0.55 }
           }
           style={{ height: plate.h }}
-          className="pointer-events-none absolute -inset-x-3 top-0 z-0 rounded-xl border border-sapphire/18 bg-sapphire-soft/90 shadow-[0_8px_20px_-10px_rgba(29,53,87,0.22),inset_0_1px_0_rgba(255,255,255,0.85)]"
+          className="pointer-events-none absolute -inset-x-3 top-0 z-0 rounded-xl bg-sapphire-soft"
         />
 
         {HERO_NEED_ORDER.map((id, index) => {
           const Icon = NEED_ICONS[id];
           const isHovered = hoveredNeed === id;
           const isPrevious = !hoveredNeed && lastVisitedNeed === id;
-          const isNudgeTarget = !hoveredNeed && idleNudge && id === "navigate";
           const nextId = HERO_NEED_ORDER[index + 1];
           // Dissolve the row divider above/below the hovered plate so lines never cut across it.
           const hideDivider = isHovered || (hoveredNeed !== null && nextId === hoveredNeed);
@@ -489,24 +328,17 @@ function QuestionView({
               >
                 <span
                   className={cn(
-                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-[background-color,color,transform,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
                     isHovered
-                      ? "translate-x-0.5 bg-sapphire text-white shadow-2xs"
-                      : isNudgeTarget
-                        ? "bg-amber-care-soft text-amber-care ring-1 ring-amber-care/30"
-                        : isPrevious
-                          ? "bg-sapphire-soft text-sapphire ring-1 ring-sapphire/25"
-                          : "bg-ink-950/[0.045] text-ink-950/70",
+                      ? "bg-sapphire text-white"
+                      : isPrevious
+                        ? "bg-sapphire-soft text-sapphire ring-1 ring-sapphire/25"
+                        : "bg-ink-950/[0.045] text-ink-950/70",
                   )}
                 >
                   <Icon className="h-[19px] w-[19px]" />
                 </span>
-                <span
-                  className={cn(
-                    "flex-1 text-[16px] font-medium leading-snug text-ink-950 transition-[color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
-                    isHovered && "translate-x-0.5",
-                  )}
-                >
+                <span className="flex-1 text-[16px] font-medium leading-snug text-ink-950 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none">
                   {copy.needs[id].label}
                 </span>
                 <ChevronRightIcon
@@ -522,45 +354,20 @@ function QuestionView({
       </ul>
 
       <div className="mt-auto">
-        {speaking && (
-          <div className="swap-in mt-3 flex min-h-5 items-center text-[13px] font-medium text-sapphire lg:hidden">
-            <span>{copy.subtitles.speaking}</span>
-          </div>
-        )}
-
-        <div className="mt-3 hidden min-h-5 items-center gap-2 text-[13px] text-stone-500 lg:flex">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.span
-              key={subtitle.key}
-              // A plain line of text that hands over to the next one: the old line lifts away
-              // quickly, the new one settles in on the shared tokens. No icon decorates it.
-              initial={calmMotion ? false : { opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: DURATION.base, ease: EASE_OUT } }}
-              exit={calmMotion ? undefined : { opacity: 0, y: -4, transition: { duration: DURATION.fast * 0.75, ease: EASE_OUT } }}
-              transition={calmMotion ? { duration: 0 } : undefined}
-              className={cn(
-                "flex min-w-0 items-center",
-                subtitle.tone === "amber"
-                  ? "font-medium text-amber-care-hover"
-                  : subtitle.tone === "sapphire"
-                    ? "font-medium text-ink-950"
-                    : "text-stone-500",
-              )}
-            >
-              <span>{subtitle.text}</span>
-            </motion.span>
-          </AnimatePresence>
-        </div>
+        <p
+          className={cn(
+            "mt-3 flex min-h-5 items-center text-[13px]",
+            speaking ? "font-medium text-sapphire" : "text-ink-950/70",
+          )}
+        >
+          {speaking ? copy.subtitles.speaking : copy.subtitles.default}
+        </p>
 
         <div className="mt-3 border-t border-ink-950/[0.08] pt-2.5">
           <Link
             href={localHref("/mediatori", lang)}
-            onPointerEnter={() => onHoverMediators(true)}
-            onPointerLeave={() => onHoverMediators(false)}
-            onFocus={() => onHoverMediators(true)}
-            onBlur={() => onHoverMediators(false)}
             className={cn(
-              "group -mx-2 flex min-h-11 w-[calc(100%+1rem)] max-w-[calc(100%+1rem)] items-center justify-between gap-2 whitespace-nowrap rounded-xl px-2 text-[14px] font-medium text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-950/[0.04] hover:text-ink-950 motion-reduce:transition-none",
+              "group -mx-2 flex min-h-11 w-[calc(100%+1rem)] max-w-[calc(100%+1rem)] items-center justify-between gap-2 whitespace-nowrap rounded-xl px-2 text-[14px] font-medium text-ink-950/75 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-950/[0.04] hover:text-ink-950 motion-reduce:transition-none",
               focusRing,
             )}
           >

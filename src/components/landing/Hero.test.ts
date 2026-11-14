@@ -215,7 +215,9 @@ describe("hero render", () => {
     // included, so the hero does not repeat it.
     // The triage panel keeps its own 112 action; the headline column has none.
     const html = renderHero(lang);
-    const column = html.slice(html.indexOf("hero-enter"), html.indexOf('id="triage"'));
+    const column = html.slice(html.indexOf("hero-grid"), html.indexOf('id="triage"'));
+    expect(column).toContain('id="hero-title"');
+    expect(column).not.toContain("hero-enter");
     expect(column).not.toContain('href="tel:112"');
   });
 
@@ -408,14 +410,13 @@ describe("hero motion safety", () => {
     expect(heroRules).not.toMatch(/var\(--i/); // no per-item stagger delays
   });
 
-  it("enters once with the shared calm tokens and an 8px offset", () => {
+  it("renders the hero headline visible on first paint with the shared calm ease token", () => {
     expect(heroRules).toMatch(/--hero-ease:\s*var\(--ease-out-calm\)/);
-    expect(heroRules).toMatch(/\.hero-enter\s*{[^}]*var\(--dur-slow\)/);
-    expect(heroRules).toMatch(/@keyframes hero-enter\s*{\s*from\s*{\s*opacity:\s*0;\s*transform:\s*translateY\(8px\)/);
+    expect(heroRules).not.toMatch(/\.hero-enter|@keyframes\s+hero-enter/);
   });
 
   it("goes static under reduced motion", () => {
-    expect(heroRules).toMatch(/prefers-reduced-motion: reduce\)\s*{\s*\.hero-enter\s*{\s*animation: none/);
+    expect(heroRules).toMatch(/prefers-reduced-motion: reduce[\s\S]*\.quiz-result/);
     expect(heroRules).toMatch(/prefers-reduced-motion: reduce[\s\S]*\.triage-view/);
   });
 
