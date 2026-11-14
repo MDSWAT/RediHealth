@@ -27,14 +27,14 @@ export const calendarCopy = {
     steps: ["День и время", "Ваш телефон", "Готово"],
     stepOf: (n: number) => `Шаг ${n} из 3`,
     chooseDay: "Выберите день",
-    availableHours: (formatted: string) => `Свободное время, ${formatted}`,
+    availableHours: (formatted: string) => `Время на выбор, ${formatted}`,
     slotDuration: "Звонок длится 20 минут",
     continueToContact: "Продолжить",
     contactTitle: "Куда мы отправляем подтверждение",
     bookingFor: (formatted: string, time: string) => `Звонок: ${formatted} в ${time}`,
     changeTime: "Изменить время",
     back: "Назад",
-    confirmBooking: "Забронировать",
+    confirmBooking: "Заказать звонок",
     confirming: "Бронирование…",
     errorSelectTime: "Выберите время.",
     errorName: "Напишите имя человека, который разговаривает с врачом.",
@@ -49,7 +49,7 @@ export const calendarCopy = {
     summaryHeading: "Детали вашей записи",
     summaryDayLabel: "Выбранный день",
     summaryTimeLabel: "Выбранное время",
-    summaryTimePending: "Выберите свободное время слева",
+    summaryTimePending: "Сначала выберите время",
     howItWorksHeading: "Как проходит звонок",
     howItWorksItems: [
       ["Бесплатно и без приложения", "Вы получите ссылку по SMS и откроете звонок прямо в браузере."],
@@ -66,14 +66,14 @@ export const calendarCopy = {
     steps: ["Ziua și ora", "Telefonul tău", "Gata"],
     stepOf: (n: number) => `Pasul ${n} din 3`,
     chooseDay: "Alege ziua",
-    availableHours: (formatted: string) => `Ore libere, ${formatted}`,
-    slotDuration: "Un apel durează 20 min",
+    availableHours: (formatted: string) => `Ore pe care le poți alege, ${formatted}`,
+    slotDuration: "Un apel durează 20 de minute",
     continueToContact: "Continuă",
     contactTitle: "Unde îți trimitem confirmarea",
     bookingFor: (formatted: string, time: string) => `Programare: ${formatted}, ora ${time}`,
     changeTime: "Schimbă ora",
     back: "Înapoi",
-    confirmBooking: "Confirmă programarea",
+    confirmBooking: "Programează apelul",
     confirming: "Se confirmă…",
     errorSelectTime: "Alege o oră.",
     errorName: "Scrie numele celui care vorbește cu medicul.",
@@ -88,7 +88,7 @@ export const calendarCopy = {
     summaryHeading: "Rezumatul programării",
     summaryDayLabel: "Ziua aleasă",
     summaryTimeLabel: "Ora aleasă",
-    summaryTimePending: "Alege o oră din stânga",
+    summaryTimePending: "Alege mai întâi o oră",
     howItWorksHeading: "Cum decurge apelul",
     howItWorksItems: [
       ["Gratuit și fără aplicație", "Primești un link prin SMS și intri direct din browser."],
@@ -104,14 +104,14 @@ export const calendarCopy = {
     steps: ["Day and time", "Your phone", "Done"],
     stepOf: (n: number) => `Step ${n} of 3`,
     chooseDay: "Choose a day",
-    availableHours: (formatted: string) => `Free times, ${formatted}`,
-    slotDuration: "A call lasts 20 min",
+    availableHours: (formatted: string) => `Times you can choose, ${formatted}`,
+    slotDuration: "A call lasts 20 minutes",
     continueToContact: "Continue",
     contactTitle: "Where we send the confirmation",
     bookingFor: (formatted: string, time: string) => `Call: ${formatted} at ${time}`,
     changeTime: "Change time",
     back: "Back",
-    confirmBooking: "Book",
+    confirmBooking: "Book the call",
     confirming: "Booking…",
     errorSelectTime: "Choose a time.",
     errorName: "Write the name of the person who talks to the doctor.",
@@ -126,7 +126,7 @@ export const calendarCopy = {
     summaryHeading: "Your booking summary",
     summaryDayLabel: "Chosen day",
     summaryTimeLabel: "Chosen time",
-    summaryTimePending: "Pick a free time on the left",
+    summaryTimePending: "Choose a time first",
     howItWorksHeading: "How the call works",
     howItWorksItems: [
       ["Free and without an app", "You get a link by SMS and join right from your browser."],
@@ -142,14 +142,14 @@ export const calendarCopy = {
     steps: ["Dita dhe ora", "Telefoni yt", "Gati"],
     stepOf: (n: number) => `Hapi ${n} nga 3`,
     chooseDay: "Zgjidh ditën",
-    availableHours: (formatted: string) => `Orë të lira, ${formatted}`,
-    slotDuration: "Një thirrje zgjat 20 min",
+    availableHours: (formatted: string) => `Orë që mund të zgjedhësh, ${formatted}`,
+    slotDuration: "Një thirrje zgjat 20 minuta",
     continueToContact: "Vazhdo",
     contactTitle: "Ku ta dërgojmë konfirmimin",
     bookingFor: (formatted: string, time: string) => `Thirrja: ${formatted}, ora ${time}`,
     changeTime: "Ndrysho orën",
     back: "Kthehu",
-    confirmBooking: "Cakto thirrjen",
+    confirmBooking: "Rezervo thirrjen",
     confirming: "Po caktohet…",
     errorSelectTime: "Zgjidh një orë.",
     errorName: "Shkruaj emrin e atij që flet me mjekun.",
@@ -164,7 +164,7 @@ export const calendarCopy = {
     summaryHeading: "Përmbledhja e rezervimit",
     summaryDayLabel: "Dita e zgjedhur",
     summaryTimeLabel: "Ora e zgjedhur",
-    summaryTimePending: "Zgjidh një orë majtas",
+    summaryTimePending: "Zgjidh një orë së pari",
     howItWorksHeading: "Si zhvillohet thirrja",
     howItWorksItems: [
       ["Falas dhe pa aplikacion", "Merr një lidhje me SMS dhe hyn drejtpërdrejt nga shfletuesi."],
@@ -180,14 +180,14 @@ export const calendarCopy = {
     steps: ["Giorno e ora", "Il tuo telefono", "Fatto"],
     stepOf: (n: number) => `Passo ${n} di 3`,
     chooseDay: "Scegli il giorno",
-    availableHours: (formatted: string) => `Orari liberi, ${formatted}`,
-    slotDuration: "Una chiamata dura 20 min",
+    availableHours: (formatted: string) => `Orari tra cui scegliere, ${formatted}`,
+    slotDuration: "Una chiamata dura 20 minuti",
     continueToContact: "Continua",
     contactTitle: "Dove ti mandiamo la conferma",
     bookingFor: (formatted: string, time: string) => `Chiamata: ${formatted}, ore ${time}`,
     changeTime: "Cambia orario",
     back: "Indietro",
-    confirmBooking: "Prenota",
+    confirmBooking: "Prenota la chiamata",
     confirming: "Prenotazione…",
     errorSelectTime: "Scegli un orario.",
     errorName: "Scrivi il nome di chi parla con il medico.",
@@ -202,7 +202,7 @@ export const calendarCopy = {
     summaryHeading: "Riepilogo della prenotazione",
     summaryDayLabel: "Giorno scelto",
     summaryTimeLabel: "Orario scelto",
-    summaryTimePending: "Scegli un orario qui a sinistra",
+    summaryTimePending: "Scegli prima un orario",
     howItWorksHeading: "Come funziona la chiamata",
     howItWorksItems: [
       ["Gratuita e senza app", "Ricevi un link via SMS ed entri subito dal browser."],
@@ -218,14 +218,14 @@ export const calendarCopy = {
     steps: ["Dan i vrijeme", "Tvoj telefon", "Gotovo"],
     stepOf: (n: number) => `Korak ${n} od 3`,
     chooseDay: "Odaberi dan",
-    availableHours: (formatted: string) => `Slobodni termini, ${formatted}`,
-    slotDuration: "Poziv traje 20 min",
+    availableHours: (formatted: string) => `Termini koje možeš odabrati, ${formatted}`,
+    slotDuration: "Poziv traje 20 minuta",
     continueToContact: "Nastavi",
     contactTitle: "Kamo šaljemo potvrdu",
     bookingFor: (formatted: string, time: string) => `Poziv: ${formatted} u ${time}`,
     changeTime: "Promijeni vrijeme",
     back: "Natrag",
-    confirmBooking: "Potvrdi termin",
+    confirmBooking: "Zakaži poziv",
     confirming: "Potvrđivanje…",
     errorSelectTime: "Odaberi vrijeme.",
     errorName: "Upiši ime osobe koja će razgovarati s liječnikom.",
@@ -240,7 +240,7 @@ export const calendarCopy = {
     summaryHeading: "Sažetak rezervacije",
     summaryDayLabel: "Odabrani dan",
     summaryTimeLabel: "Odabrano vrijeme",
-    summaryTimePending: "Odaberi slobodan termin lijevo",
+    summaryTimePending: "Prvo odaberi termin",
     howItWorksHeading: "Kako izgleda poziv",
     howItWorksItems: [
       ["Besplatno i bez aplikacije", "Dobivaš poveznicu SMS porukom i ulaziš izravno u pregledniku."],
@@ -256,14 +256,14 @@ export const calendarCopy = {
     steps: ["Dives thaj chaso", "Cho telefono", "Gata"],
     stepOf: (n: number) => `Phiripen ${n} katar 3`,
     chooseDay: "Alosar o dives",
-    availableHours: (formatted: string) => `Mukhle chasurya, ${formatted}`,
-    slotDuration: "Ekh svato inkerel 20 min",
+    availableHours: (formatted: string) => `Chasurya kaj shaj alosares, ${formatted}`,
+    slotDuration: "Ekh svato inkerel 20 minutya",
     continueToContact: "Zha may dur",
     contactTitle: "Kay bichhalas o chacharipe",
     bookingFor: (formatted: string, time: string) => `Svato: ${formatted}, ko ${time}`,
     changeTime: "Paruv o chaso",
     back: "Palpale",
-    confirmBooking: "Chachar e vrama",
+    confirmBooking: "Chachar o svato",
     confirming: "Chacharel pes…",
     errorSelectTime: "Alosar ekh chaso.",
     errorName: "Lekhav o anav okolesko kay ka del svato e doktoresa.",
@@ -278,7 +278,7 @@ export const calendarCopy = {
     summaryHeading: "Cho alosaripe pe xarno",
     summaryDayLabel: "Alosardo dives",
     summaryTimeLabel: "Alosardo chaso",
-    summaryTimePending: "Alosar ekh chaso stânga",
+    summaryTimePending: "Alosar may anglal ekh chaso",
     howItWorksHeading: "Sar nakhel o svato",
     howItWorksItems: [
       ["Bi lovesko thaj bi aplikaciyako", "Les ekh linko katar SMS thaj khuves direktno and-o browser."],
@@ -595,14 +595,14 @@ export function AppointmentBookingCalendar() {
 
               {errorNote}
 
-              <div className="mt-8 flex items-center justify-between gap-3 border-t border-border pt-5">
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5">
                 <button
                   type="button"
                   onClick={() => goTo(1)}
                   className="press-row -mx-2 inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <ArrowLeftIcon className="h-4 w-4 shrink-0" />
-                  <span className="min-w-0 truncate">{copy.back}</span>
+                  <span>{copy.back}</span>
                 </button>
 
                 <button
@@ -611,7 +611,7 @@ export function AppointmentBookingCalendar() {
                   onClick={handleConfirmBooking}
                   className={nextButton}
                 >
-                  <span className="min-w-0 truncate">{isSubmitting ? copy.confirming : copy.confirmBooking}</span>
+                  <span>{isSubmitting ? copy.confirming : copy.confirmBooking}</span>
                 </button>
               </div>
             </div>
