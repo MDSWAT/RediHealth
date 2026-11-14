@@ -443,7 +443,7 @@ export function TriageStateMachine({
                     onClick={() => handleTrailSelect(item.action, item.stepsBack)}
                     className="group -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-1.5 py-1.5 font-medium text-sapphire press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <span className="link-draw">{item.label}</span>
+                    <span className="transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light motion-reduce:transition-none">{item.label}</span>
                   </button>
                 </li>
               ))}

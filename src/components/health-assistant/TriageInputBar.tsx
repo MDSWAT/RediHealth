@@ -196,7 +196,7 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
               className="group press-solid inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-sapphire px-3.5 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <span>{t.openRoute}</span>
-              <ArrowRightIcon className="arrow-travel h-3.5 w-3.5" aria-hidden="true" />
+              <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             </button>
           </div>
         )}

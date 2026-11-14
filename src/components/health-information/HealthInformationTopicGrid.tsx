@@ -243,7 +243,7 @@ export function HealthInformationTopicGrid({
         >
           <StethoscopeIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
           <span className="min-w-0 truncate">{checkSymptomLabel}</span>
-          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+          <ArrowRightIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
         </Link>
       </div>
 
@@ -399,7 +399,7 @@ function CardFooter({ readMinutes, audioMinutes, lang, actionLabel }: Pick<Topic
     <div className="mt-auto flex items-center justify-between gap-3 pt-5">
       <TopicMetaBadge readMinutes={readMinutes} audioMinutes={audioMinutes} compact bordered={false} lang={lang} />
       <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire transition-[background-color,color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-sapphire group-hover:text-white motion-reduce:transition-none">
-        <ArrowRightIcon aria-hidden="true" className="arrow-travel h-4 w-4" />
+        <ArrowRightIcon aria-hidden="true" className="h-4 w-4" />
       </span>
       <span className="sr-only">{actionLabel}</span>
     </div>
@@ -423,8 +423,8 @@ function TopicCard(props: TopicCardProps & { priority?: boolean }) {
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <CardCategory topic={topic} label={categoryLabel} />
-        <h3 className="mt-2 text-xl font-semibold leading-snug tracking-[-0.015em] text-foreground text-balance">
-          <span className="link-draw box-decoration-clone">{topic.title}</span>
+        <h3 className="mt-2 text-xl font-semibold leading-snug tracking-[-0.015em] text-foreground text-balance transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">
+          {topic.title}
         </h3>
         <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground text-pretty">{topic.description}</p>
 
@@ -475,8 +475,8 @@ function LeadTopicCard(props: TopicCardProps & { wide?: boolean }) {
 
       <div className={`flex flex-1 flex-col p-6 sm:p-7 ${wide ? "lg:col-span-6 lg:p-9" : ""}`}>
         <CardCategory topic={topic} label={categoryLabel} />
-        <h3 className="mt-2 text-2xl font-semibold leading-tight tracking-[-0.02em] text-foreground text-balance sm:text-[28px]">
-          <span className="link-draw box-decoration-clone">{topic.title}</span>
+        <h3 className="mt-2 text-2xl font-semibold leading-tight tracking-[-0.02em] text-foreground text-balance transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none sm:text-[28px]">
+          {topic.title}
         </h3>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground text-pretty">{topic.description}</p>
 

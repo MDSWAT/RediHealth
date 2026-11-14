@@ -274,7 +274,7 @@ export function TrustSection() {
                           rel="noopener noreferrer"
                           className="group -my-2 -mx-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-white/10 dark:focus-visible:ring-paper"
                         >
-                          <span className="link-draw">{item.hrefLabel}</span>
+                          <span>{item.hrefLabel}</span>
                           <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0 -rotate-45" />
                           <span className="sr-only"> ({copy.newTab})</span>
                         </a>

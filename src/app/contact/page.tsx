@@ -33,7 +33,7 @@ export default async function ContactPage() {
                 className="group press-row mt-1 inline-flex min-h-11 items-center gap-2.5 rounded-sm text-lg font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-sapphire-light dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
               >
                 <MailIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
-                <span className="link-draw">support@redihealth.app</span>
+                <span>support@redihealth.app</span>
               </a>
             </div>
 

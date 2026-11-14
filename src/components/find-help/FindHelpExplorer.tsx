@@ -1136,9 +1136,9 @@ export function FindHelpExplorer({
                               event.stopPropagation();
                               showInstitute(institute.id);
                             }}
-                            className="inline-flex min-h-11 items-center rounded-md py-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            className="inline-flex min-h-11 items-center rounded-md py-1 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                           >
-                            <span className="link-draw">{institute.name}</span>
+                            <span>{institute.name}</span>
                           </button>
                         </h3>
 

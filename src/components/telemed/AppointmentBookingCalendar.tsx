@@ -586,7 +586,7 @@ export function AppointmentBookingCalendar() {
                     onClick={() => goTo(1)}
                     className="group press-row min-h-11 max-w-full whitespace-nowrap rounded-sm text-sm font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <span className="link-draw min-w-0 truncate">{copy.changeTime}</span>
+                    <span className="min-w-0 truncate hover:text-sapphire-light">{copy.changeTime}</span>
                   </button>
                 </div>
               </div>

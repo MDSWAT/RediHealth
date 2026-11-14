@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getHealthTopicsList } from "@/lib/i18n/health-information-topics";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
-import { HIGHLIGHT_ANGLE, WHEEL_ORDER } from "./health-topics-wheel-config";
+import { WHEEL_ORDER } from "./health-topics-wheel-config";
 import { INNER_STARS, OUTER_STARS, WHEEL_NODE_ORBIT, WHEEL_VIEW, WHEEL_VIEW_BOX, WheelSpokes, WheelStars } from "./HealthTopicsWheelArt";
 import { WHEEL_ICONS } from "./HealthTopicsWheelIcons";
 import styles from "./HealthTopicsWheel.module.css";
@@ -11,10 +11,9 @@ const VIEW = WHEEL_VIEW;
 const NODE_ORBIT = WHEEL_NODE_ORBIT;
 
 /**
- * Animated topic wheel: the outer star ring (carrying the eight topic buttons)
- * turns clockwise, the inner star ring turns counter-clockwise and the Roma
- * wheel at the centre spins. Each button lights up as it passes the upper-left
- * position. Pure CSS, so it stays a Server Component.
+ * Static topic wheel: eight topic buttons arranged around the outer star ring,
+ * framing the inner star ring and the Roma wheel at the centre. Pure CSS, so it
+ * stays a Server Component.
  */
 export async function HealthTopicsWheel({ className, label = "Health topics" }: { className?: string; label?: string }) {
   const lang = await getRequestLang();
@@ -26,7 +25,7 @@ export async function HealthTopicsWheel({ className, label = "Health topics" }: 
 
   return (
     <nav className={[styles.wheel, className].filter(Boolean).join(" ")} aria-label={label}>
-      <div className={`${styles.layer} ${styles.outer}`} data-wheel-ring="">
+      <div className={styles.layer}>
         <svg className={styles.layer} viewBox={viewBox} aria-hidden="true" focusable="false">
           <WheelStars stars={OUTER_STARS} className={styles.star} />
         </svg>
@@ -37,8 +36,6 @@ export async function HealthTopicsWheel({ className, label = "Health topics" }: 
             const angle = ((degrees - 90) * Math.PI) / 180;
             const x = 50 + (NODE_ORBIT / VIEW) * 100 * Math.cos(angle);
             const y = 50 + (NODE_ORBIT / VIEW) * 100 * Math.sin(angle);
-            /* Fraction of a turn until this button reaches the highlight angle. */
-            const untilHighlight = (((HIGHLIGHT_ANGLE - degrees) % 360) + 360) % 360 / 360;
             return (
               <li key={slug}>
                 <Link
@@ -49,16 +46,12 @@ export async function HealthTopicsWheel({ className, label = "Health topics" }: 
                     {
                       "--x": `${x.toFixed(3)}%`,
                       "--y": `${y.toFixed(3)}%`,
-                      "--hl-phase": (1 - untilHighlight).toFixed(4),
                     } as React.CSSProperties
                   }
                   aria-label={title}
                 >
-                  <span className={styles.face} data-wheel-clock="">
+                  <span className={styles.face}>
                     <span className={styles.rest}>
-                      <Icon className={styles.icon} />
-                    </span>
-                    <span className={styles.lit} data-wheel-clock="">
                       <Icon className={styles.icon} />
                     </span>
                     <span className={styles.label} aria-hidden="true">

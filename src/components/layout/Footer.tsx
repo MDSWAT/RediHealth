@@ -96,8 +96,7 @@ export function Footer() {
                             href={withLangPrefix(link.href, lang)}
                             className="group hero-focus -mx-2 flex min-h-11 items-center rounded-(--radius-control) px-2 py-2.5 text-body leading-snug break-words text-mist press-on-dark hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
                           >
-                            {/* The underline draws under the label on hover or keyboard focus. */}
-                            <span className="link-draw [box-decoration-break:clone]">{link.label}</span>
+                            <span className="min-w-0 [overflow-wrap:anywhere]">{link.label}</span>
                           </Link>
                         </li>
                       ))}

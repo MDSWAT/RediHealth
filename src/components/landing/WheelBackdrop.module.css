@@ -6,7 +6,6 @@
   pointer-events: none;
   color: var(--color-paper);
   opacity: 0.1;
-  --backdrop-outer-dur: 240s;
   /* Icon cut-outs and the disc behind each icon take the ground colour. */
   --wheel-face-bg: var(--color-ink-950);
 }
@@ -82,12 +81,9 @@
   height: 100%;
 }
 
-.outer {
-  animation: hero-wheel-spin var(--backdrop-outer-dur) linear infinite;
-}
-
+.outer,
 .inner {
-  animation: hero-wheel-spin 160s linear infinite reverse;
+  /* Static drawing layers */
 }
 
 .hub {
@@ -97,7 +93,6 @@
   width: 14.8%;
   height: 14.8%;
   translate: -50% -50%;
-  animation: hero-wheel-spin 90s linear infinite;
 }
 
 .star {
@@ -107,7 +102,7 @@
   stroke-miterlimit: 8;
 }
 
-/* Sits on the outer ring, so it travels with it. */
+/* Sits on the outer ring. */
 .node {
   position: absolute;
   left: var(--x);
@@ -117,8 +112,7 @@
   translate: -50% -50%;
 }
 
-/* Counter-rotates at the ring's speed so the icon stays upright. The ground-colour disc hides
-   the star lines behind it; the whole backdrop shares one opacity, so the disc itself is unseen. */
+/* Counter-disc matching the ground colour so star lines behind the icon stay hidden. */
 .face {
   display: grid;
   place-items: center;
@@ -127,18 +121,11 @@
   border: 0.45cqw solid currentColor;
   border-radius: 50%;
   background: var(--wheel-face-bg);
-  animation: hero-wheel-spin var(--backdrop-outer-dur) linear infinite reverse;
 }
 
 .icon {
   width: 50%;
   height: 50%;
-}
-
-@keyframes hero-wheel-spin {
-  to {
-    rotate: 360deg;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

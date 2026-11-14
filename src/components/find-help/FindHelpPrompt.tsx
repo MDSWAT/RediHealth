@@ -42,7 +42,7 @@ export function FindHelpPrompt({ lang: langProp, className }: { lang?: Lang; cla
           className="group press-row inline-flex min-h-11 max-w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:text-[0.9375rem]"
         >
           <span className="min-w-0 truncate">{copy.nearbyPlace}</span>
-          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire motion-reduce:transition-none" aria-hidden="true" />
+          <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire motion-reduce:transition-none" aria-hidden="true" />
         </Link>
       </div>
     </div>

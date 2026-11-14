@@ -262,8 +262,8 @@ export function HelpOptions() {
               </div>
 
               <span className="mt-7 inline-flex min-h-11 self-start items-center gap-2.5 whitespace-nowrap rounded-(--radius-control) bg-paper px-5 py-2.5 text-base font-semibold text-ink-950 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:bg-white">
-                <span className="link-draw">{lead.cta}</span>
-                <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
+                <span>{lead.cta}</span>
+                <ArrowRightIcon className="h-4 w-4 shrink-0" />
               </span>
             </Link>
           </div>
@@ -293,8 +293,8 @@ export function HelpOptions() {
                   </div>
 
                   <span className="ml-15.5 inline-flex min-h-11 shrink-0 self-start items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) bg-sapphire-soft px-3.5 py-2 text-base font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire-light sm:ml-0 sm:min-h-11 sm:self-center sm:bg-transparent sm:px-0 sm:py-0 dark:bg-white/10 dark:text-sapphire-border dark:group-hover:text-paper dark:sm:bg-transparent">
-                    <span className="link-draw">{cta}</span>
-                    <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
+                    <span>{cta}</span>
+                    <ArrowRightIcon className="h-4 w-4 shrink-0" />
                   </span>
                 </Link>
               </li>

@@ -1878,7 +1878,7 @@ export function HealthCheckExplorer() {
         <span className="min-w-0 truncate">{label}</span>
       </span>
       <ArrowRightIcon
-        className="arrow-travel h-4.5 w-4.5 shrink-0 text-sapphire"
+        className="h-4.5 w-4.5 shrink-0 text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire-light motion-reduce:transition-none"
         aria-hidden="true"
       />
     </Link>
@@ -2271,7 +2271,7 @@ export function HealthCheckExplorer() {
                         onClick={() => goToStep(item.target)}
                         className="group press-row -my-1.5 inline-flex min-h-11 items-center rounded-md max-w-full py-1.5 font-medium whitespace-nowrap text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
-                        <span className="link-draw max-w-[11rem] truncate sm:max-w-[16rem]">{item.label}</span>
+                        <span className="max-w-[11rem] truncate sm:max-w-[16rem]">{item.label}</span>
                       </button>
                     </li>
                   ))}
@@ -3021,7 +3021,7 @@ export function HealthCheckExplorer() {
                               {c.readAbout}: {topicMapping.title}
                             </span>
                             <ArrowRightIcon
-                              className="arrow-travel h-4.5 w-4.5 shrink-0 text-sapphire"
+                              className="h-4.5 w-4.5 shrink-0 text-sapphire"
                               aria-hidden="true"
                             />
                           </Link>

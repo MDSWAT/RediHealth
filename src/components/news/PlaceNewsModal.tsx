@@ -537,7 +537,7 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
       <h4 lang={a.language} className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-pretty">
         <Link
           href={withLangPrefix(`${basePath}/${a.slug}`, lang)}
-          className="link-draw outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-2 focus-visible:after:ring-ring"
+          className="outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire motion-reduce:transition-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-2 focus-visible:after:ring-ring"
         >
           {a.title}
         </Link>
@@ -570,7 +570,7 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
       <div className="mt-3 flex justify-end text-xs">
         <span aria-hidden="true" className="inline-flex shrink-0 items-center gap-1 font-semibold text-sapphire dark:text-sapphire-border">
           {c.read}
-          <ArrowRightIcon className="arrow-travel h-3.5 w-3.5" />
+          <ArrowRightIcon className="h-3.5 w-3.5" />
         </span>
       </div>
     </article>
@@ -632,7 +632,7 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
             className="group inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap rounded-lg px-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {c.readGuide}
-            <ArrowRightIcon aria-hidden="true" className="arrow-travel h-3.5 w-3.5 shrink-0" />
+            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
           </Link>
         </div>
       </div>

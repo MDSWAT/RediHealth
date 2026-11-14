@@ -100,7 +100,7 @@ export async function HealthTopics() {
                     </div>
                     <div className="min-w-0 px-1 pb-1 pt-2 sm:p-4">
                       <h3 className="text-balance wrap-break-word text-base font-semibold leading-snug text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper dark:group-hover:text-sapphire-border">
-                        <span className="link-draw">{topicTitle}</span>
+                        {topicTitle}
                       </h3>
                       <p className="mt-1 hidden text-pretty text-body text-muted-foreground sm:block dark:text-mist">
                         {description}

@@ -627,7 +627,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                   disabled={isLoading}
                   className={`group press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 font-semibold text-sapphire disabled:cursor-not-allowed disabled:text-foreground/45 dark:text-sapphire-border dark:disabled:text-white/45 ${FOCUS_RING}`}
                 >
-                  <span className="link-draw min-w-0 truncate group-disabled:bg-none">{copy.resendSms}</span>
+                  <span className="min-w-0 truncate">{copy.resendSms}</span>
                 </button>
               </div>
             </motion.div>
@@ -643,7 +643,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
               <UsersIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-amber-care" />
               <span className="min-w-0 truncate">{copy.fallbackLinkText}</span>
             </span>
-            <ChevronRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0" />
+            <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
           </Link>
         </div>
       </div>

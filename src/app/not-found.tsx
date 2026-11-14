@@ -107,9 +107,9 @@ export default function NotFound() {
                 className="card-interactive list-in group press-row inline-flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-lg border border-border-control bg-card px-4 py-3 text-left text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 style={{ "--i": index + 4 } as CSSProperties}
               >
-                <span className="link-draw">{item.label}</span>
+                <span className="transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">{item.label}</span>
                 <ArrowRightIcon
-                  className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
+                  className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
                   aria-hidden="true"
                 />
               </Link>

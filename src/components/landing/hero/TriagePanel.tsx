@@ -511,7 +511,7 @@ function QuestionView({
                 </span>
                 <ChevronRightIcon
                   className={cn(
-                    "arrow-travel h-5 w-5 shrink-0 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+                    "h-5 w-5 shrink-0 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
                     isHovered ? "text-sapphire" : "text-ink-950/35",
                   )}
                 />
@@ -568,7 +568,7 @@ function QuestionView({
               <UsersIcon className="h-4 w-4 shrink-0 text-amber-care/85 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-amber-care motion-reduce:transition-none" />
               <span className="min-w-0 truncate">{copy.mediators}</span>
             </span>
-            <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-950/35 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-ink-950 motion-reduce:transition-none" />
+            <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-950/35 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-ink-950 motion-reduce:transition-none" />
           </Link>
         </div>
       </div>

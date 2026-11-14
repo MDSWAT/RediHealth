@@ -145,8 +145,8 @@ export function HealthArticleDirectory({ areaId }: { areaId?: string }) {
                 className="press-row group flex min-h-16 items-center justify-between gap-4 py-3.5 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
               >
                 <span className="min-w-0">
-                  <span className="block text-[1.0625rem] font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire sm:text-lg">
-                    <span className="link-draw box-decoration-clone">{item.titles[lang]}</span>
+                  <span className="block text-[1.0625rem] font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none sm:text-lg">
+                    <span>{item.titles[lang]}</span>
                   </span>
                   <span className="mt-1 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
                     <VolumeIcon className="h-3.5 w-3.5 shrink-0 text-sapphire/80" aria-hidden="true" />
@@ -154,7 +154,7 @@ export function HealthArticleDirectory({ areaId }: { areaId?: string }) {
                   </span>
                 </span>
                 <ArrowRightIcon
-                  className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
+                  className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
                   aria-hidden="true"
                 />
               </Link>

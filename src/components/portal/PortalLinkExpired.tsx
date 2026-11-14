@@ -78,9 +78,9 @@ export function PortalLinkExpired() {
             </Link>
             <Link
               href={withLangPrefix("/mediatori#solicita", lang)}
-              className="group press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
+              className="group press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:hover:text-paper"
             >
-              <span className="link-draw">{text.help}</span>
+              <span>{text.help}</span>
             </Link>
           </div>
         </div>

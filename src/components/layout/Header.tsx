@@ -96,7 +96,7 @@ export function Header() {
   const [authenticated, setAuthenticated] = useState(false);
   const [dialerOpen, setDialerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname() || "/";
   const currentPath = stripLangFromPathname(pathname);
   const { lang, t: rawT } = useLanguage();
   const t = rawT ?? translations[lang || "ro"] ?? translations.ro;
@@ -472,7 +472,7 @@ export function Header() {
                             {tHeader.navCereSub}
                           </span>
                         </span>
-                        <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:text-sapphire" />
+                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:text-sapphire" />
                       </Link>
 
                       <Link
@@ -498,7 +498,7 @@ export function Header() {
                             {tHeader.forMediatorsSub}
                           </span>
                         </span>
-                        <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:text-amber-care" />
+                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none group-hover:text-amber-care" />
                       </Link>
                     </div>
                   </div>
@@ -655,7 +655,7 @@ export function Header() {
                           {link.label}
                           <span className="sr-only"> — {link.subtext}</span>
                         </span>
-                        <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35" />
+                        <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
                       </Link>
                     </li>
                   );
@@ -701,7 +701,7 @@ export function Header() {
                   >
                     {portalLink.label}
                   </span>
-                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35" />
+                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-foreground motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
                 </Link>
 
                 <Link
@@ -737,7 +737,7 @@ export function Header() {
                     {tHeader.forMediators}
                     <span className="sr-only"> — {tHeader.forMediatorsSub}</span>
                   </span>
-                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-ink-900/35 dark:text-paper/35" />
+                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-foreground motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
                 </Link>
 
                 <LanguageSelector

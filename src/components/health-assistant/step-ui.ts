@@ -32,8 +32,8 @@ export const optionTitle = "block text-base font-semibold leading-snug text-fore
 
 export const optionDesc = "mt-1 block text-sm leading-relaxed text-muted-foreground";
 
-/** The arrow hands off (leaves right, returns from the left) on hover; see `arrow-travel` in globals.css. */
-export const optionArrow = `arrow-travel mt-1 h-4.5 w-4.5 shrink-0 text-stone-400 transition-colors ${motion} group-hover:text-sapphire`;
+/** Row arrow indicator; transitions colour calmly on hover. */
+export const optionArrow = `mt-1 h-4.5 w-4.5 shrink-0 text-stone-400 transition-colors ${motion} motion-reduce:transition-none group-hover:text-sapphire`;
 
 const buttonBase = `group inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-center text-sm font-semibold transition-[background-color,border-color] sm:px-5 sm:text-[0.9375rem] ${motion}`;
 

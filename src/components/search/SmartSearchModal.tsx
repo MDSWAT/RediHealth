@@ -831,8 +831,8 @@ export function SmartSearchModal() {
                                       onClick={() => handleFollowLink(actionHref, false)}
                                       className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
                                     >
-                                      <span className="link-draw">{action.label}</span>
-                                      <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                      <span>{action.label}</span>
+                                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                                     </Link>
                                   );
                                 })}
@@ -884,9 +884,9 @@ export function SmartSearchModal() {
                       applyQuery(catalogResponse.didYouMean!, true);
                       inputRef.current?.focus();
                     }}
-                    className="group inline-flex min-h-11 items-center font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                    className="group inline-flex min-h-11 items-center font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                   >
-                    <span className="link-draw">{catalogResponse.didYouMean}</span>
+                    <span>{catalogResponse.didYouMean}</span>
                   </button>
                 </p>
               ) : null}
@@ -912,10 +912,10 @@ export function SmartSearchModal() {
                     <Link
                       href={overview.primaryAction.href}
                       onClick={() => handleFollowLink(overview.primaryAction.href, true)}
-                      className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                      className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                     >
-                      <span className="link-draw">{overview.primaryAction.label}</span>
-                      <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                      <span>{overview.primaryAction.label}</span>
+                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                     </Link>
 
                     {hasOverviewDetails ? (
@@ -980,10 +980,10 @@ export function SmartSearchModal() {
                                     applyQuery(follow, true);
                                     inputRef.current?.focus();
                                   }}
-                                  className="group inline-flex min-h-11 items-center gap-1.5 text-[13px] font-medium whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                                  className="group inline-flex min-h-11 items-center gap-1.5 text-[13px] font-medium whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                                 >
                                   <SearchIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                                  <span className="link-draw">{follow}</span>
+                                  <span>{follow}</span>
                                 </button>
                               ))}
                             </div>
@@ -1051,8 +1051,8 @@ export function SmartSearchModal() {
                             onClick={() => handleFollowLink(result.href, true)}
                             className="group min-w-0 flex-1 py-0.5"
                           >
-                            <h3 className="text-[16px] leading-snug font-semibold text-sapphire dark:text-sapphire-border">
-                              <span className="link-draw [box-decoration-break:clone]">{result.title}</span>
+                            <h3 className="text-[16px] leading-snug font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border">
+                              {result.title}
                             </h3>
                             <p className="mt-0.5 text-[14px] leading-relaxed text-ink-900/75 dark:text-paper/75">
                               {result.summary}
@@ -1127,10 +1127,10 @@ export function SmartSearchModal() {
                                 <Link
                                   href={result.href}
                                   onClick={() => handleFollowLink(result.href, true)}
-                                  className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                                  className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                                 >
-                                  <span className="link-draw">{copy.openPageLabel}</span>
-                                  <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                  <span>{copy.openPageLabel}</span>
+                                  <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                                 </Link>
                               </div>
                             </div>
@@ -1200,11 +1200,11 @@ export function SmartSearchModal() {
                                   <Link
                                     href={rq.href}
                                     onClick={() => handleFollowLink(rq.href!, true)}
-                                    className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                                    className="group inline-flex min-h-11 items-center gap-1.5 text-[13.5px] font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                                   >
-                                    <span className="link-draw">{rq.linkLabel ?? copy.openPageLabel}</span>
+                                    <span>{rq.linkLabel ?? copy.openPageLabel}</span>
                                     <ArrowRightIcon
-                                      className="arrow-travel h-3.5 w-3.5 shrink-0"
+                                      className="h-3.5 w-3.5 shrink-0"
                                       aria-hidden="true"
                                     />
                                   </Link>

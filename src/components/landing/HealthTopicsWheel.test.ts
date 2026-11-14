@@ -5,33 +5,30 @@ import { litProgress, litTopicIndex, WHEEL_ORDER } from "./health-topics-wheel-c
 
 const readLandingFile = (name: string) => readFileSync(path.resolve(__dirname, name), "utf8");
 
-describe("HealthTopicsWheel hover pause and persistent selection", () => {
+describe("HealthTopicsWheel static resting state and persistent selection", () => {
   const wheelCss = readLandingFile("HealthTopicsWheel.module.css");
   const spotlightTsx = readLandingFile("HealthTopicsSpotlight.tsx");
 
-  it("pauses all animated wheel layers on wheel hover, focus-within, and data-wheel-held", () => {
-    const layers = [".outer", ".inner", ".hub", ".face", ".lit"];
-    const triggers = [".wheel:hover", ".wheel:focus-within", ":global([data-wheel-held])"];
+  it("renders a static wheel without spin/highlight loops and uses sapphire on hover, focus, and picked nodes", () => {
+    expect(wheelCss).not.toContain("@keyframes wheel-spin");
+    expect(wheelCss).not.toContain("@keyframes wheel-highlight");
+    expect(wheelCss).not.toContain(".lit");
+    expect(wheelCss).not.toContain("animation:");
+    expect(wheelCss).not.toContain("scale:");
 
-    for (const trigger of triggers) {
-      for (const layer of layers) {
-        expect(wheelCss).toContain(`${trigger} ${layer}`);
-      }
-    }
-
+    expect(wheelCss).toContain("--wheel-face-bg: var(--color-sapphire);");
+    expect(wheelCss).toContain("var(--color-ring)");
     expect(wheelCss).toMatch(/\.node\[data-picked\]\s*\{[^}]*z-index:\s*1/);
     expect(wheelCss).toMatch(/\.node:hover,\s*\.node:focus-visible\s*\{[^}]*z-index:\s*2/);
-    expect(wheelCss).toContain("animation-play-state: paused;");
   });
 
   it("persists topic selection via data-picked after pointer leaves or focus shifts inside spotlight", () => {
-    expect(spotlightTsx).toContain("data-wheel-held={held ? \"\" : undefined}");
+    expect(spotlightTsx).not.toContain("data-wheel-held");
     expect(spotlightTsx).toContain('node.toggleAttribute("data-picked", node.dataset.topic === slug)');
     expect(spotlightTsx).toContain("onPointerOver={(event) => selectFromWheelTarget(event.target)}");
     expect(spotlightTsx).toContain("onFocus={(event) => selectFromWheelTarget(event.target)}");
-    expect(spotlightTsx).toContain("onPointerEnter={() => selectTopic(slug, true)}");
-    expect(spotlightTsx).toContain("onFocus={() => selectTopic(slug, true)}");
-    expect(spotlightTsx).toContain("onPointerLeave={() => setHeld(false)}");
+    expect(spotlightTsx).toContain("onPointerEnter={() => selectTopic(slug)}");
+    expect(spotlightTsx).toContain("onFocus={() => selectTopic(slug)}");
     expect(spotlightTsx).not.toMatch(/selectTopic\(\s*null/);
     expect(spotlightTsx).not.toMatch(/setPicked\(\s*null/);
     expect(spotlightTsx).not.toContain("targeted");
