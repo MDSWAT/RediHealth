@@ -11,13 +11,12 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   CloseIcon,
-  MessageDotsIcon,
   ShieldIcon,
 } from "@/components/ui/icons";
 import { feedbackWidgetCopy, type FeedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
-import { CLINICAL_SETTLE_SPRING, DURATION, EASE_IN_OUT, EASE_OUT, useCalmReducedMotion } from "@/lib/motion/tokens";
+import { CLINICAL_SETTLE_SPRING, DURATION, EASE_OUT, useCalmReducedMotion } from "@/lib/motion/tokens";
 import {
   AGE_GROUP_OPTIONS,
   GENDER_OPTIONS,
@@ -47,6 +46,27 @@ const SNOOZE_STEPS_MS = [
 const SCHEDULE_STORAGE_KEY = "redihealth:feedback-schedule:v2";
 const DRAFT_SESSION_KEY = "redihealth:feedback-draft:v2";
 const OPEN_FEEDBACK_EVENT = "redi:feedback-open";
+
+const AUTO_INVITE_PATHS = new Set(["/", "/health-information", "/about"]);
+
+function isGuideDetailPath(barePath: string): boolean {
+  return barePath.startsWith("/health-information/") && barePath !== "/health-information";
+}
+
+function hasReachedGuideEnd(): boolean {
+  if (typeof window === "undefined") return false;
+  const target =
+    document.querySelector("article") ??
+    document.querySelector("main") ??
+    document.documentElement;
+  return target.getBoundingClientRect().bottom <= window.innerHeight + 160;
+}
+
+function isAutoInviteAllowedPath(barePath: string): boolean {
+  if (AUTO_INVITE_PATHS.has(barePath)) return true;
+  if (isGuideDetailPath(barePath)) return hasReachedGuideEnd();
+  return false;
+}
 
 type StepIndex = 0 | 1 | 2;
 
@@ -214,7 +234,6 @@ export function FeedbackWidget() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [draftHydrated, setDraftHydrated] = useState(false);
-  const [mobileScrollTucked, setMobileScrollTucked] = useState(false);
 
   const dialogRef = useRef<HTMLDialogElement>(null);
   const questionRefs = useRef<Partial<Record<RatingKey, HTMLFieldSetElement | null>>>({});
@@ -230,7 +249,6 @@ export function FeedbackWidget() {
   const errorId = useId();
 
   const barePath = stripLangFromPathname(pathname);
-  const isClinicalTaskSurface = barePath === "/health-check" || barePath === "/prescription-review";
   const isConsultationOrPortal =
     barePath.startsWith("/medic-online/meet") || barePath.startsWith("/patient-portal");
 
@@ -253,56 +271,13 @@ export function FeedbackWidget() {
     });
   }, []);
 
-  // Reset settle grace on route navigation so page transitions feel calm
+  // Reset settle grace on route navigation and hide any open invite card on disallowed surfaces
   useEffect(() => {
     pageMountedAtRef.current = Date.now();
-  }, [pathname]);
-
-  // On mobile (< 640px), gently tuck the side tab into the right edge past ~10% scroll
-  // so reading stays completely unobstructed, and glide it back in when returning near the top.
-  useEffect(() => {
-    if (typeof window === "undefined" || isConsultationOrPortal) return;
-
-    const mobileMedia = window.matchMedia("(max-width: 639px)");
-    let rafId: number | null = null;
-
-    const syncScrollVisibility = () => {
-      rafId = null;
-      if (!mobileMedia.matches) {
-        setMobileScrollTucked(false);
-        return;
-      }
-      const docEl = document.documentElement;
-      const scrollable = docEl.scrollHeight - window.innerHeight;
-      if (scrollable <= 80) {
-        setMobileScrollTucked(false);
-        return;
-      }
-      const hideThreshold = Math.max(56, Math.min(scrollable * 0.1, window.innerHeight * 0.35));
-      const showThreshold = hideThreshold * 0.65;
-      const y = window.scrollY;
-      setMobileScrollTucked((prev) => (prev ? y > showThreshold : y >= hideThreshold));
-    };
-
-    const scheduleSync = () => {
-      if (rafId !== null) return;
-      rafId = window.requestAnimationFrame(syncScrollVisibility);
-    };
-
-    scheduleSync();
-    window.addEventListener("scroll", scheduleSync, { passive: true });
-    window.addEventListener("resize", scheduleSync, { passive: true });
-    mobileMedia.addEventListener("change", scheduleSync);
-
-    return () => {
-      if (rafId !== null) {
-        window.cancelAnimationFrame(rafId);
-      }
-      window.removeEventListener("scroll", scheduleSync);
-      window.removeEventListener("resize", scheduleSync);
-      mobileMedia.removeEventListener("change", scheduleSync);
-    };
-  }, [pathname, isConsultationOrPortal]);
+    if (!AUTO_INVITE_PATHS.has(barePath) && !isGuideDetailPath(barePath)) {
+      queueMicrotask(() => setInviteVisible(false));
+    }
+  }, [pathname, barePath]);
 
   // Persist in-session draft automatically until submitted
   useEffect(() => {
@@ -431,12 +406,12 @@ export function FeedbackWidget() {
       });
 
       if (document.visibilityState !== "visible") return;
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
+      if (!isAutoInviteAllowedPath(barePath)) return;
       if (now - pageMountedAtRef.current < PAGE_SETTLE_GRACE_MS) return;
       if (nextActiveMs < INITIAL_EXPLORE_MS) return;
       if (schedule.snoozedUntil > now) return;
-      if (document.querySelector("dialog[open]")) return;
-      // Avoid covering mobile bottom sheets on interactive symptom/prescription tools
-      if (isClinicalTaskSurface && window.matchMedia("(max-width: 1023px)").matches) return;
+      if (document.querySelector("dialog[open], [data-bottom-bar], .hh-dialog")) return;
 
       setInviteVisible(true);
     };
@@ -448,7 +423,7 @@ export function FeedbackWidget() {
       window.clearInterval(intervalId);
       window.clearTimeout(settleTimerId);
     };
-  }, [modalOpen, submitted, isConsultationOrPortal, isClinicalTaskSurface, pathname]);
+  }, [modalOpen, submitted, isConsultationOrPortal, barePath, pathname]);
 
   // Native <dialog> synchronization (focus trap, Escape key, inert background)
   useEffect(() => {
@@ -598,46 +573,7 @@ export function FeedbackWidget() {
 
   return (
     <>
-      {/* Permanent right-edge "Feedback" side tab ("buton feedback într-o parte"):
-          Flush against the right edge on both desktop and mobile; on mobile (< 640px),
-          gently glides into the right edge past ~10% scroll and returns near the top. */}
-      {!isConsultationOrPortal ? (
-        <div className="pointer-events-none fixed right-0 top-[35%] z-30 -translate-y-1/2 overflow-hidden py-4 pl-4 sm:top-1/2 max-lg:hidden">
-          <AnimatePresence initial={false}>
-            {!inviteVisible && !modalOpen && !mobileScrollTucked ? (
-              <motion.button
-                key="feedback-side-tab"
-                type="button"
-                onClick={() => {
-                  setSubmitted(false);
-                  openModal();
-                }}
-                aria-label={t.footerLink}
-                aria-haspopup="dialog"
-                initial={reducedMotion ? { opacity: 0 } : { opacity: 0, x: "104%" }}
-                animate={{
-                  opacity: 1,
-                  x: 0,
-                  transition: reducedMotion ? { duration: DURATION.fast } : CLINICAL_SETTLE_SPRING,
-                }}
-                exit={
-                  reducedMotion
-                    ? { opacity: 0, transition: { duration: DURATION.fast } }
-                    : { opacity: 0, x: "105%", transition: { duration: 0.32, ease: EASE_IN_OUT } }
-                }
-                className="feedback-trigger pointer-events-auto group flex flex-col items-center gap-1 rounded-l-xl border border-r-0 border-sapphire/30 bg-card px-1.5 py-2 text-[11px] font-semibold text-sapphire shadow-[0_8px_24px_-6px_rgba(15,23,42,0.2)] transition-[background-color,color,border-color,padding] duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire hover:bg-sapphire hover:pr-2.5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:gap-1.5 sm:px-2.5 sm:py-3 sm:text-xs dark:border-white/16 dark:bg-ink-900 dark:text-paper dark:hover:bg-sapphire"
-              >
-                <MessageDotsIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                <span className="[writing-mode:vertical-rl] rotate-180 tracking-wide whitespace-nowrap">
-                  {t.compactTriggerLabel}
-                </span>
-              </motion.button>
-            ) : null}
-          </AnimatePresence>
-        </div>
-      ) : null}
-
-      {/* Calm, non-disruptive floating invitation card after 2.5 minutes of active browsing */}
+      {/* Calm, non-disruptive floating invitation card after 2.5 minutes of active browsing (desktop allow-list only) */}
       <AnimatePresence>
         {inviteVisible && !modalOpen ? (
           <motion.aside
@@ -647,16 +583,15 @@ export function FeedbackWidget() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
             transition={reducedMotion ? { duration: 0 } : CLINICAL_SETTLE_SPRING}
-            className="feedback-invite-card fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 mx-auto max-w-sm overflow-hidden rounded-2xl border border-sapphire/25 bg-card text-foreground shadow-[0_18px_42px_-12px_rgba(15,23,42,0.24)] sm:inset-x-auto sm:right-3 sm:bottom-16 sm:mx-0 sm:w-[22rem] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
+            className="feedback-invite-card max-lg:hidden fixed bottom-4 right-4 z-30 w-[24rem] overflow-hidden rounded-2xl border border-sapphire/25 bg-card text-foreground shadow-[0_18px_42px_-12px_rgba(15,23,42,0.24)] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
           >
-            <div aria-hidden="true" className="h-1 w-full bg-sapphire" />
             <div className="p-4">
               <div className="flex items-start justify-between gap-2.5">
                 <div className="min-w-0">
-                  <h2 className="text-sm font-semibold leading-snug text-foreground dark:text-paper">
+                  <h2 className="text-body font-semibold leading-snug text-foreground dark:text-paper">
                     {t.inviteTitle}
                   </h2>
-                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground dark:text-mist">
+                  <p className="mt-1 text-body leading-relaxed text-muted-foreground dark:text-mist">
                     {t.inviteBody}
                   </p>
                 </div>
@@ -672,8 +607,8 @@ export function FeedbackWidget() {
               </div>
 
               {/* Instant 1–5 usefulness tap strip that jumps straight into Step 1 */}
-              <div className="mt-3 rounded-xl border border-border/80 bg-surface-subtle/80 p-2.5 dark:border-white/10 dark:bg-ink-900/90">
-                <p className="text-[11px] font-medium text-muted-foreground dark:text-mist">
+              <div className="mt-3">
+                <p className="text-body font-medium text-muted-foreground dark:text-mist">
                   {t.inviteQuickScaleHint}
                 </p>
                 <div
@@ -687,30 +622,30 @@ export function FeedbackWidget() {
                       type="button"
                       onClick={() => openModal(score)}
                       aria-label={t.scaleValueLabels[idx]}
-                      className="press-solid flex min-h-11 items-center justify-center rounded-lg border border-border-control/80 bg-card text-sm font-semibold tabular-nums text-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/15 dark:bg-ink-800 dark:text-paper"
+                      className="press-solid flex min-h-11 items-center justify-center rounded-lg border border-border-control/80 bg-card text-base font-semibold tabular-nums text-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/15 dark:bg-ink-800 dark:text-paper"
                     >
                       {score}
                     </button>
                   ))}
                 </div>
-                <div className="mt-1 flex items-center justify-between text-[11px] text-muted-foreground dark:text-mist">
+                <div className="mt-1.5 flex items-center justify-between gap-2 text-body text-muted-foreground dark:text-mist">
                   <span>{t.scaleLow}</span>
                   <span>{t.scaleHigh}</span>
                 </div>
               </div>
 
-              <div className="mt-3 flex items-center justify-between gap-2">
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                 <button
                   type="button"
                   onClick={snoozeInvite}
-                  className="inline-flex min-h-11 items-center rounded-lg px-2.5 text-xs font-medium whitespace-nowrap text-muted-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="inline-flex min-h-11 items-center rounded-lg px-2.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {t.inviteLaterCta}
                 </button>
                 <button
                   type="button"
                   onClick={() => openModal()}
-                  className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-sapphire px-3.5 text-xs font-semibold whitespace-nowrap text-white transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-sapphire/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-sapphire px-3.5 text-sm font-semibold whitespace-nowrap text-white transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-sapphire/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <span>{t.inviteOpenCta}</span>
                   <ArrowRightIcon className="h-3.5 w-3.5" />

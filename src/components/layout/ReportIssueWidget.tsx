@@ -245,12 +245,6 @@ export function ReportIssueWidget() {
     if (!open && dialog.open) dialog.close();
   }, [open]);
 
-  function openDialog() {
-    setError(null);
-    setSuccess(null);
-    setOpen(true);
-  }
-
   useEffect(() => {
     const handleOpen = (event: Event) => {
       event.preventDefault();
@@ -320,24 +314,6 @@ export function ReportIssueWidget() {
 
   return (
     <>
-      {/* From 1024px only: on phones and tablets it covered body text and the topic action bar; the footer link opens the same form there. */}
-      <button
-        type="button"
-        onClick={openDialog}
-        aria-label={t.trigger}
-        aria-haspopup="dialog"
-        className="report-issue-trigger group press-row fixed bottom-3 right-3 z-30 hidden h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground shadow-xs transition-[color,background-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) hover:shadow-(--shadow-card-hover) motion-reduce:transition-none lg:flex hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      >
-        <AlertCircleIcon className="h-[18px] w-[18px]" aria-hidden="true" />
-        {/* Label on hover or keyboard focus only, above the icon so adjacent bottom-right controls stay clear. */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute right-0 bottom-full mb-2 translate-y-1 whitespace-nowrap rounded-md bg-ink-950 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-xs transition-[opacity,translate] duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 motion-reduce:transition-none"
-        >
-          {t.trigger}
-        </span>
-      </button>
-
       <dialog
         ref={dialogRef}
         aria-labelledby={dialogTitleId}
