@@ -157,6 +157,7 @@ export function SynchronizedSentenceReader({
   const ctxVoice = useVoiceEnabled();
   const voiceEnabled =
     lang !== undefined ? isVoiceEnabled(lang) : ctxVoice && isVoiceEnabled(currentLang);
+  const romaniVoiceEnabled = isVoiceEnabled("rom");
   // Sentences are interactive only when a handler exists or they can be read aloud.
   const sentencesClickable = Boolean(onSentenceClick) || voiceEnabled;
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -287,13 +288,13 @@ export function SynchronizedSentenceReader({
   };
 
   const handleSpeakPopoverTerm = () => {
-    if (!activePopoverTerm || !voiceEnabled) return;
+    if (!activePopoverTerm || !romaniVoiceEnabled) return;
     setIsPlayingTermAudio(true);
     speechEngine.speak(
-      formatSpeechText(activePopoverTerm.audioPronunciationText, speechLang),
+      formatSpeechText(activePopoverTerm.audioPronunciationText, "rom"),
       {
-        lang: speechLang,
-        rate: 0.9,
+        lang: "rom",
+        rate: 1.0,
         onEnd: () => setIsPlayingTermAudio(false),
         onError: () => setIsPlayingTermAudio(false),
       },
@@ -462,7 +463,7 @@ export function SynchronizedSentenceReader({
                 </span>
               </div>
 
-              {voiceEnabled && (
+              {romaniVoiceEnabled && (
                 <button
                   type="button"
                   onClick={handleSpeakPopoverTerm}

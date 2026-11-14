@@ -31,34 +31,6 @@ const inputClass =
 /** Field messages ease in under their field instead of snapping the form taller. */
 const fieldErrorClass = "swap-in mt-1.5 text-sm font-medium text-primary";
 
-/** The confirmation mark: a ring, then the tick, each drawn once (static under reduced motion). */
-function SentMark() {
-  return (
-    <svg viewBox="0 0 28 28" fill="none" className="h-7 w-7 text-live-sage" aria-hidden="true" focusable="false">
-      <circle
-        className="stroke-draw"
-        pathLength={1}
-        cx="14"
-        cy="14"
-        r="12"
-        transform="rotate(-90 14 14)"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-      <path
-        className="stroke-draw"
-        style={{ animationDelay: "360ms" }}
-        pathLength={1}
-        d="m9 14.5 3.25 3.25L19 11"
-        stroke="currentColor"
-        strokeWidth="2.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export const QUICK_HELP_TOPICS: Record<Lang, { id: string; label: string; text: string }[]> = {
   ro: [
     { id: "pain", label: "Durere sau febră", text: "Am durere sau febră și am nevoie de ajutor." },
@@ -274,11 +246,10 @@ export function RequestHelpForm({
   if (submitted) {
     return (
       <div className="fhs-enter rounded-xl border border-border bg-card p-6 sm:p-10">
-        <SentMark />
         <h2
           ref={successHeadingRef}
           tabIndex={-1}
-          className="mt-4 text-2xl font-semibold tracking-tight text-foreground focus:outline-none"
+          className="text-2xl font-semibold tracking-tight text-foreground focus:outline-none"
         >
           {form.successTitle}
         </h2>

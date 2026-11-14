@@ -54,7 +54,7 @@ export function PrescriptionAudioPlayer({ speechText, className = "" }: Prescrip
     rom: {
       listen: "Ashun o shpjegimos",
       stop: "Astav",
-      speechLang: "ro-RO",
+      speechLang: "rom",
     },
   } satisfies Record<Lang, { listen: string; stop: string; speechLang: string }>;
   const t = dict[lang] || dict[DEFAULT_LANG];

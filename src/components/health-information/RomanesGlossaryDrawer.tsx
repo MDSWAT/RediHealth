@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { speechEngine } from "@/lib/audio/speech-engine";
-import { isVoiceEnabled, useVoiceEnabled } from "@/lib/audio/voice-availability";
+import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 import { HEALTH_DETAIL_SHARED_STRINGS } from "@/lib/i18n/health-myths";
@@ -232,11 +232,7 @@ export function RomanesGlossaryDrawer({
   const tabFallback =
     DICTIONARY_TAB_LABELS[currentLang] ?? DICTIONARY_TAB_LABELS.ro;
 
-  const ctxVoice = useVoiceEnabled();
-  const voiceEnabled =
-    lang !== undefined
-      ? isVoiceEnabled(lang)
-      : ctxVoice && isVoiceEnabled(currentLang);
+  const voiceEnabled = isVoiceEnabled("rom");
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -341,7 +337,7 @@ export function RomanesGlossaryDrawer({
     speechEngine.stop();
     setSpeakingId(term.id);
     speechEngine.speak(term.audioPronunciationText, {
-      lang: "ro-RO",
+      lang: "rom",
       onEnd: () => setSpeakingId((prev) => (prev === term.id ? null : prev)),
       onError: () => setSpeakingId((prev) => (prev === term.id ? null : prev)),
     });
@@ -486,10 +482,8 @@ export function RomanesGlossaryDrawer({
                       <div className="flex flex-wrap items-center gap-2">
                         <span
                           className={cn(
-                            "inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-[11.5px] font-semibold",
-                            isEmergency
-                              ? "bg-primary text-white"
-                              : "bg-amber-care-soft/75 text-obsidian-navy ring-1 ring-inset ring-amber-care-border",
+                            "inline-flex items-center gap-1.5 text-xs font-semibold",
+                            isEmergency ? "text-primary" : "text-foreground",
                           )}
                         >
                           <CatIcon className="h-3.5 w-3.5 shrink-0" />

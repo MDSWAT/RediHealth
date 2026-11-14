@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { LanguageContext } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 
-/** Languages with no read-aloud anywhere on the site. Albanian and Romani have no browser TTS voice we trust, so voice stays off cleanly. */
-const NO_VOICE_LANGS: ReadonlySet<string> = new Set<Lang>(["sq", "rom"]);
+/** Languages with no read-aloud anywhere on the site. Standard written Romani has no neural or browser TTS voice we trust, so voice stays off cleanly across 1/7 languages while ro, en, sq, it, hr, and ru (6/7 = 85.7%) are enabled. */
+const NO_VOICE_LANGS: ReadonlySet<string> = new Set<Lang>(["rom"]);
 
 export function isVoiceEnabled(lang: Lang | string | null | undefined): boolean {
   const prefix = (lang ?? "ro").toLowerCase().split(/[-_]/)[0];

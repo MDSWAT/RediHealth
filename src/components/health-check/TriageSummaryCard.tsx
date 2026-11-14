@@ -472,6 +472,7 @@ export function TriageSummaryCard({
     [doctorNotes, recommendationDetail],
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- preserved intact per audio-caller cleanup spec
   const formattedSummary = [
     `${t.title} (${currentDate}):`,
     ...rows.map((r) => `${r.label}: ${r.value}`),
@@ -862,7 +863,15 @@ export function TriageSummaryCard({
                 if (voice.speaking) {
                   voice.stop();
                 } else {
-                  voice.speak([formattedSummary]);
+                  voice.speak(
+                    [
+                      `${t.title} (${currentDate})`,
+                      ...rows.map((r) => `${r.label}: ${r.value}`),
+                      ...extraRecLine,
+                      ...doctorNotes,
+                      warningNotice,
+                    ].filter(Boolean),
+                  );
                 }
               }}
               className={voice.speaking ? iconActiveBtn : iconActionBtn}

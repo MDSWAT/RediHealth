@@ -157,10 +157,8 @@ export function DictionaryTabs({
             {typeof count === "number" && (
               <span
                 className={cn(
-                  "shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-bold tabular-nums leading-none transition-colors duration-(--dur-fast) motion-reduce:transition-none",
-                  isSelected
-                    ? "bg-white/20 text-white"
-                    : "bg-card text-muted-foreground ring-1 ring-inset ring-border/70",
+                  "shrink-0 text-xs font-medium tabular-nums leading-none transition-colors duration-(--dur-fast) motion-reduce:transition-none",
+                  isSelected ? "text-white/80" : "text-muted-foreground",
                 )}
               >
                 {count}

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CheckCircleIcon, VolumeIcon, VolumeMuteIcon } from "@/components/ui/icons";
-import { speechEngine } from "@/lib/audio/speech-engine";
+import { formatSpeechText, speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
@@ -119,7 +119,7 @@ ru: {
       ],
       listenLabel: "Ashun chire chachimata",
       stopLabel: "Astav",
-      speechLang: "ro-RO",
+      speechLang: "rom",
     },
   };
   const t = content[lang] || content[DEFAULT_LANG];
@@ -139,11 +139,14 @@ ru: {
     } else {
       setIsPlaying(true);
       // Read the card in the page language, not a fixed Romanian text.
-      speechEngine.speak([t.heading, t.body, ...t.keyRights].join(" "), {
-        lang: t.speechLang,
-        onEnd: () => setIsPlaying(false),
-        onError: () => setIsPlaying(false),
-      });
+      speechEngine.speak(
+        formatSpeechText([t.heading, t.body, ...t.keyRights].join(" "), t.speechLang),
+        {
+          lang: t.speechLang,
+          onEnd: () => setIsPlaying(false),
+          onError: () => setIsPlaying(false),
+        },
+      );
     }
   }
 

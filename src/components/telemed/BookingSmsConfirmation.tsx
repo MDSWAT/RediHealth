@@ -191,23 +191,7 @@ export function BookingSmsConfirmation({
 
   return (
     <div className="fhs-enter w-full rounded-xl border border-border bg-card p-6 sm:p-8">
-      <div className="flex items-start gap-3">
-        {/* The confirmation mark draws itself once: ring first, then the tick (static under reduced motion). */}
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          className="mt-0.5 h-6 w-6 shrink-0 text-sapphire dark:text-sapphire-border"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="9.25" pathLength={1} className="stroke-draw" transform="rotate(-90 12 12)" />
-          <path d="m8 12.25 2.75 2.75L16.25 9.5" pathLength={1} className="stroke-draw" style={{ animationDelay: "360ms" }} />
-        </svg>
-        <h2 ref={headingRef} tabIndex={-1} className="text-balance text-2xl font-semibold tracking-tight text-foreground focus:outline-none">{copy.title}</h2>
-      </div>
+      <h2 ref={headingRef} tabIndex={-1} className="text-balance text-2xl font-semibold tracking-tight text-foreground focus:outline-none">{copy.title}</h2>
 
       <p className="mt-2 text-base font-medium text-foreground tabular-nums">
         {confirmation.formattedDate}, {copy.atHour} {confirmation.time}

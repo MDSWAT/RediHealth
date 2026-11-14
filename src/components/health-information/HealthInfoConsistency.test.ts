@@ -38,13 +38,19 @@ describe("health information, glossary, myth card, and topic grid design consist
     expect(parts).toContain("border-border-control");
     expect(parts).toContain("press-row");
     expect(parts).toContain("rounded-xl");
-    expect(parts).toContain("rounded-md");
     expect(parts).toContain("rounded-xs");
+    // Filter counts are plain tabular text, never a tinted capsule.
+    expect(parts).not.toContain("rounded-md px-1.5 py-0.5");
+    expect(parts).not.toContain("bg-white/20");
+    expect(parts).toContain("tabular-nums");
     expect(parts).not.toContain("min-h-[40px]");
     expect(parts).not.toContain("h-9 w-9");
 
     const tabs = readSrc("src/components/health-information/DictionaryTabs.tsx");
-    expect(tabs).toContain("rounded-md");
+    // Tab counts are plain tabular text, never a tinted capsule.
+    expect(tabs).not.toContain("rounded-md px-1.5 py-0.5");
+    expect(tabs).not.toContain("bg-white/20");
+    expect(tabs).toContain("tabular-nums");
     expect(tabs).not.toContain("min-h-[42px]");
 
     for (const drawerFile of [
@@ -53,13 +59,14 @@ describe("health information, glossary, myth card, and topic grid design consist
     ]) {
       const drawer = readSrc(drawerFile);
       expect(drawer).toContain("rounded-lg");
-      expect(drawer).toContain("rounded-md");
+      // Category labels are plain text, never a tinted capsule.
+      expect(drawer).not.toContain("rounded-md px-2.5 py-0.5");
       expect(drawer).not.toContain("min-h-[32px]");
       expect(drawer).not.toContain("min-h-[42px]");
     }
   });
 
-  it("renders >=44px dictionary controls, rounded-xl filters/speak buttons, and rounded-md badges", () => {
+  it("renders >=44px dictionary controls, rounded-xl filters/speak buttons, and plain-text counts and categories", () => {
     const searchHtml = renderToStaticMarkup(
       createElement(DictionarySearch, {
         value: "tensiune",
@@ -88,7 +95,10 @@ describe("health information, glossary, myth card, and topic grid design consist
     );
     expect(filtersHtml).toContain("min-h-11");
     expect(filtersHtml).toContain("rounded-xl");
-    expect(filtersHtml).toContain("rounded-md");
+    expect(filtersHtml).not.toContain("rounded-md");
+    expect(filtersHtml).not.toContain("bg-white/20");
+    expect(filtersHtml).toContain("tabular-nums");
+    for (const count of [">12<", ">5<", ">3<"]) expect(filtersHtml).toContain(count);
     expect(filtersHtml).toContain("border-border-control");
     expect(filtersHtml).toContain("press-row");
     expect(filtersHtml).toContain("focus-visible:ring-ring");
@@ -102,7 +112,7 @@ describe("health information, glossary, myth card, and topic grid design consist
       ),
     );
     expect(romanesHtml).toContain("min-h-11");
-    expect(romanesHtml).toContain("rounded-md");
+    expect(romanesHtml).not.toContain("rounded-md px-2.5 py-0.5");
     expect(romanesHtml).toContain("focus-visible:ring-ring");
     expect(romanesHtml).not.toContain("rounded-full");
 
@@ -119,7 +129,7 @@ describe("health information, glossary, myth card, and topic grid design consist
       ),
     );
     expect(dualHtml).toContain("min-h-11");
-    expect(dualHtml).toContain("rounded-md");
+    expect(dualHtml).not.toContain("rounded-md");
     expect(dualHtml).toContain("focus-visible:ring-ring");
     expect(dualHtml).not.toContain("rounded-full");
 
@@ -147,7 +157,10 @@ describe("health information, glossary, myth card, and topic grid design consist
       }),
     );
     expect(tabsHtml).toContain("min-h-11");
-    expect(tabsHtml).toContain("rounded-md");
+    expect(tabsHtml).not.toContain("rounded-md");
+    expect(tabsHtml).toContain("tabular-nums");
+    expect(tabsHtml).toContain(">24<");
+    expect(tabsHtml).toContain(">16<");
     expect(tabsHtml).toContain("focus-visible:ring-ring");
     expect(tabsHtml).not.toContain("rounded-full");
   });

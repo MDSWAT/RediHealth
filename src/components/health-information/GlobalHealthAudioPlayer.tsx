@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import { speechEngine, formatSpeechText } from "@/lib/audio/speech-engine";
+import { speechEngine, formatSpeechText, type SpeechEngineState } from "@/lib/audio/speech-engine";
 import { playEarcon } from "@/lib/audio/earcon";
 import { isVoiceEnabled, useVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -164,6 +164,11 @@ export function GlobalHealthAudioPlayer({
   const [speed, setSpeed] = useState<number>(1.0);
   const [isMinimized, setIsMinimized] = useState(false);
   const [progressPercent, setProgressPercent] = useState(0);
+  const [engineState, setEngineState] = useState<SpeechEngineState>(() =>
+    speechEngine.getState(),
+  );
+
+  useEffect(() => speechEngine.subscribeState(setEngineState), []);
 
   const onCloseRef = useRef(onClose);
   const onSentenceChangeRef = useRef(onActiveSentenceIndexChange);
@@ -540,12 +545,12 @@ export function GlobalHealthAudioPlayer({
                 {currentChapterLabel}
               </span>
             )}
-            {speechEngine.isFallbackVoice() && (
+            {engineState.isFallbackVoice && (
               <span className="border-l border-border pl-2 text-[11px] font-medium text-muted-foreground">
                 {pickLocale(s.fallbackVoice, currentLang)}
               </span>
             )}
-            {speechEngine.getTier() === "transcript" && (
+            {engineState.activeTier === "transcript" && (
               <span className="border-l border-border pl-2 text-[11px] font-medium text-amber-care dark:text-amber-care-border">
                 {pickLocale(s.transcriptMode, currentLang)}
               </span>

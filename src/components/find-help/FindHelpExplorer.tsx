@@ -4,16 +4,15 @@ import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, 
 import dynamic from "next/dynamic";
 import { useLargeText, useReadAloud } from "@/components/health-check/readingTools";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
-import { AlertCircleIcon, ClockIcon, GlobeIcon, PhoneIcon, PinIcon, SearchIcon, XIcon } from "@/components/ui/icons";
+import { AlertCircleIcon, CheckIcon, ClockIcon, GlobeIcon, PhoneIcon, PinIcon, SearchIcon, XIcon } from "@/components/ui/icons";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
+import { LocationFilterPopover } from "@/components/find-help/LocationFilterPopover";
 import {
   FilterDropdown,
-  FilterMenuGroup as MenuGroup,
   FilterMenuOption as MenuOption,
 } from "@/components/ui/FilterDropdown";
 import { useLanguage } from "@/lib/i18n/language-context";
 import {
-  REGIONAL_CITY_PRESETS,
   type CityPreset,
   findHelpTranslations,
   formatHumanDistance,
@@ -22,7 +21,6 @@ import {
   isInstituteOpenNow,
 } from "@/lib/i18n/find-help-translations";
 import {
-  SUPPORTED_COUNTRIES,
   directionsUrl,
   primaryPhoneHref,
   type CountryCode,
@@ -33,7 +31,6 @@ import {
   readSavedFindHelpLocation,
   resolveSmartLocation,
   writeSavedFindHelpLocation,
-  type SmartCityOption,
   type SmartLocationResolution,
 } from "@/lib/smart-location";
 
@@ -263,44 +260,32 @@ const iconActionClass =
   "hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1";
 
-/** On/off filters look and announce as switches, so the off state still reads as a control. */
-function FilterSwitch({
+/** Clean checkable filter toggle button with pressed state and trailing check icon. */
+function FilterToggleButton({
   checked,
   onToggle,
-  icon,
+  renderIcon,
   label,
 }: {
   checked: boolean;
   onToggle: () => void;
-  icon: ReactNode;
+  renderIcon: (checked: boolean) => ReactNode;
   label: string;
 }) {
   return (
     <button
       type="button"
-      role="switch"
-      aria-checked={checked}
+      aria-pressed={checked}
       onClick={onToggle}
-      className={`press-row flex min-h-12 max-w-full flex-auto items-center justify-between gap-3 rounded-xl border px-3.5 py-2 text-left text-sm font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:flex-initial ${
-        checked ? "border-sapphire bg-sapphire-soft/45" : "border-border-control bg-card hover:border-sapphire"
+      className={`inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2 text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+        checked
+          ? "press-solid border-sapphire bg-sapphire font-semibold text-white shadow-2xs hover:border-sapphire-light hover:bg-sapphire-light"
+          : "press-row border-border-control bg-card font-medium text-foreground hover:border-sapphire hover:bg-sapphire-soft/35"
       }`}
     >
-      <span className="flex min-w-0 items-center gap-2">
-        {icon}
-        <span className="min-w-0 truncate whitespace-nowrap">{label}</span>
-      </span>
-      <span
-        aria-hidden="true"
-        className={`relative h-5 w-9 shrink-0 rounded-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
-          checked ? "bg-sapphire" : "bg-border-control"
-        }`}
-      >
-        <span
-          className={`absolute left-0.5 top-0.5 h-4 w-4 rounded-sm bg-white shadow-2xs motion-safe:transition-transform motion-safe:duration-[var(--dur-fast)] motion-safe:ease-[var(--ease-out-calm)] ${
-            checked ? "translate-x-4" : ""
-          }`}
-        />
-      </span>
+      {renderIcon(checked)}
+      <span>{label}</span>
+      {checked ? <CheckIcon className="h-4 w-4 shrink-0 text-white" aria-hidden="true" /> : null}
     </button>
   );
 }
@@ -332,7 +317,6 @@ export function FindHelpExplorer({
   const [guessReason, setGuessReason] = useState<"language" | "region" | null>(() =>
     initialGuess.reason === "saved" ? null : initialGuess.reason,
   );
-  const [smartSuggestions, setSmartSuggestions] = useState<SmartCityOption[]>(() => initialGuess.suggestions);
   const clientSmartGuessRef = useRef<SmartLocationResolution>(initialGuess);
   const userPickedManuallyRef = useRef(false);
   /** GPS worked but the nearest place is over 80 km away: we show the suggested hub and say why. */
@@ -432,7 +416,6 @@ export function FindHelpExplorer({
         savedChoice,
       });
       clientSmartGuessRef.current = resolved;
-      setSmartSuggestions(resolved.suggestions);
       if (!userPickedManuallyRef.current) {
         const targetArea = areaFromSmartResolution(resolved);
         setArea((prev) => {
@@ -454,6 +437,19 @@ export function FindHelpExplorer({
     locateUser(false);
   }, [locateUser]);
 
+  useEffect(() => {
+    const trimmed = searchInput.trim();
+    if (searchInput === "") {
+      if (search !== "") queueMicrotask(() => setSearch(""));
+      return;
+    }
+    if (trimmed === search) return;
+    const timer = window.setTimeout(() => {
+      setSearch(trimmed);
+    }, 280);
+    return () => window.clearTimeout(timer);
+  }, [searchInput, search]);
+
   const requestQuery = useMemo(() => {
     const params = new URLSearchParams();
     if (area.kind === "country") {
@@ -461,6 +457,9 @@ export function FindHelpExplorer({
     } else {
       params.set("lat", area.lat.toFixed(5));
       params.set("lng", area.lng.toFixed(5));
+      if (area.source === "city" && area.country) {
+        params.set("country", area.country);
+      }
     }
     if (category) params.set("category", category);
     if (search) params.set("q", search);
@@ -638,17 +637,16 @@ export function FindHelpExplorer({
     setSearchInput("");
   }
 
-  const cityPresets = REGIONAL_CITY_PRESETS[activeCountry] ?? [];
   const activeCityName = area.kind === "point" && area.source === "city" ? area.cityName ?? null : null;
 
-  /** What the "Where" dropdown shows: short, so it fits half a phone screen. */
+  /** What the "Where" trigger shows: includes country whenever a city is selected. */
   const locationValue =
     locationStatus === "locating"
       ? copy.locating
       : gpsActive
         ? copy.myLocation
         : activeCityName
-          ? activeCityName
+          ? `${activeCityName}, ${copy.countries[activeCountry]}`
           : area.kind === "country"
             ? copy.countries[area.country]
             : copy.mapArea;
@@ -768,21 +766,22 @@ export function FindHelpExplorer({
         aria-label={copy.searchPlaceholder}
         className="mt-4 rounded-2xl border border-stone-200/90 bg-card p-3.5 shadow-(--shadow-card-rest) sm:p-4 dark:border-stone-800"
       >
-        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] xl:grid-cols-[minmax(0,1.45fr)_minmax(0,0.9fr)_minmax(0,0.9fr)_auto_auto] xl:items-center">
-          <form onSubmit={submitSearch} className="flex flex-nowrap items-center gap-2 sm:col-span-2 lg:col-span-1" role="search">
-            <label className="relative min-w-0 flex-1">
+        <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,0.85fr)] xl:grid-cols-[minmax(15rem,1.35fr)_minmax(12rem,1fr)_minmax(10rem,0.85fr)_auto_auto] xl:items-center">
+          <form onSubmit={submitSearch} className="col-span-2 min-w-0 lg:col-span-1" role="search">
+            <label className="relative block min-w-0">
               <span className="sr-only">{copy.searchPlaceholder}</span>
               <input
                 type="search"
                 name="q"
                 value={searchInput}
                 onChange={(event) => {
-                  setSearchInput(event.target.value);
-                  if (!event.target.value) setSearch("");
+                  const next = event.target.value;
+                  setSearchInput(next);
+                  if (!next) setSearch("");
                 }}
                 placeholder={copy.searchHint}
-                className={`field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-card pl-10 text-base placeholder:text-muted-foreground sm:text-sm ${
-                  searchInput ? "pr-12" : "pr-3"
+                className={`field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-background/60 pl-10 text-base placeholder:text-muted-foreground hover:bg-card focus-visible:bg-card sm:text-sm dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
+                  searchInput ? "pr-12" : "pr-3.5"
                 }`}
               />
               {/* After the input so it can follow its focus: the glass takes the focus colour with the edge. */}
@@ -799,74 +798,42 @@ export function FindHelpExplorer({
                   }}
                   aria-label={copy.clearFilters}
                   title={copy.clearFilters}
-                  className="absolute right-1 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="absolute right-1 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 </button>
               )}
             </label>
-            <button
-              type="submit"
-              aria-label={copy.searchButton}
-              title={copy.searchButton}
-              className="press-solid inline-flex h-12 w-12 min-h-12 min-w-12 shrink-0 items-center justify-center rounded-xl bg-sapphire text-white shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
-              <SearchIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-              <span className="sr-only">{copy.searchButton}</span>
-            </button>
           </form>
 
-          <FilterDropdown
+          <LocationFilterPopover
             label={copy.locationLabel}
-            value={locationValue}
-            icon={<PinIcon className="h-5 w-5" aria-hidden="true" />}
-          >
-            <div className="space-y-2">
-              <MenuOption
-                selected={gpsActive}
-                icon={<PinIcon className="h-4.5 w-4.5" aria-hidden="true" />}
-                onSelect={() => locateUser(true)}
-              >
-                {copy.useMyLocation}
-              </MenuOption>
-              {cityPresets.length > 0 && (
-                <MenuGroup label={copy.cityQuickJumpLabel}>
-                  {cityPresets.map((city) => (
-                    <MenuOption
-                      key={city.name}
-                      selected={activeCityName === city.name}
-                      onSelect={() => {
-                        chooseCity({ ...city, country: activeCountry });
-                      }}
-                    >
-                      {city.name}
-                    </MenuOption>
-                  ))}
-                </MenuGroup>
-              )}
-              <MenuGroup label={copy.countryLabel}>
-                {SUPPORTED_COUNTRIES.map((country) => (
-                  <MenuOption
-                    key={country}
-                    selected={area.kind === "country" && area.country === country}
-                    onSelect={() => {
-                      chooseCountry(country);
-                    }}
-                  >
-                    {copy.countries[country]}
-                  </MenuOption>
-                ))}
-              </MenuGroup>
-            </div>
-          </FilterDropdown>
+            displayValue={locationValue}
+            activeCountry={activeCountry}
+            wholeCountrySelected={area.kind === "country" && area.country === activeCountry && !gpsActive}
+            activeCityName={activeCityName}
+            gpsActive={gpsActive}
+            locating={locationStatus === "locating"}
+            countries={copy.countries}
+            countryGroupLabel={copy.countryLabel}
+            cityGroupLabel={copy.cityQuickJumpLabel}
+            useMyLocationLabel={copy.useMyLocation}
+            locatingLabel={copy.locating}
+            wholeCountryOption={copy.wholeCountryOption}
+            onSelectCountry={chooseCountry}
+            onSelectCity={chooseCity}
+            onLocateUser={() => locateUser(true)}
+          />
 
           <FilterDropdown
             label={copy.categoryLabel}
             value={category ? copy.categories[category] : copy.allCategories}
             icon={<CategoryIcon category={category} className="h-5 w-5" />}
             align="right"
+            inlineLabel
+            className="col-span-1"
           >
-            <div className="grid gap-0.5 sm:grid-cols-2">
+            <div className="space-y-0.5">
               {WAYFINDING_CATEGORIES.map((item) => (
                 <MenuOption
                   key={item ?? "all"}
@@ -882,8 +849,8 @@ export function FindHelpExplorer({
             </div>
           </FilterDropdown>
 
-          <div className="flex flex-wrap gap-2.5 sm:col-span-2 lg:col-span-3 xl:contents">
-            <FilterSwitch
+          <div className="col-span-2 flex flex-wrap gap-2 lg:col-span-3 xl:contents">
+            <FilterToggleButton
               checked={emergencyOnly}
               onToggle={() => {
                 const next = !emergencyOnly;
@@ -892,86 +859,78 @@ export function FindHelpExplorer({
                 // dentist: widen the kind of place so turning this on never ends in an empty list.
                 if (next && category && category !== "hospital") setCategory(null);
               }}
-              icon={<AlertCircleIcon className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />}
+              renderIcon={(active) => (
+                <AlertCircleIcon
+                  className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-primary"}`}
+                  aria-hidden="true"
+                />
+              )}
               label={copy.emergencyWalkInFilter}
             />
 
-            <FilterSwitch
+            <FilterToggleButton
               checked={openNowOnly}
               onToggle={() => setOpenNowOnly((prev) => !prev)}
-              icon={<ClockIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />}
+              renderIcon={(active) => (
+                <ClockIcon
+                  className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-sapphire"}`}
+                  aria-hidden="true"
+                />
+              )}
               label={copy.openNowFilter}
             />
           </div>
         </div>
 
-        {/* Smart language/region location hint + 1-tap city/country switch */}
-        <div className="mt-3 flex flex-col gap-2 border-t border-border/70 pt-3 lg:flex-row lg:items-center lg:justify-between">
-          <p className="flex min-w-0 items-center gap-2 text-xs text-muted-foreground sm:text-sm">
-            <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-            <span className="min-w-0 truncate">
+        {/* Calm, compact status and active-filter strip */}
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border/70 pt-2.5">
+          <p className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground sm:text-sm">
+            <PinIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" aria-hidden="true" />
+            <span>
               {gpsActive
                 ? copy.locationActive
                 : guessReason === "region" && activeCityName
                   ? copy.suggestedByRegion(activeCityName, copy.countries[activeCountry])
                   : guessReason === "language" && activeCityName
                     ? copy.suggestedByLanguage(activeCityName, copy.countries[activeCountry])
-                    : locationSummary}
+                    : activeCityName
+                      ? `${copy.nearCity(activeCityName)}, ${copy.countries[activeCountry]}`
+                      : locationSummary}
             </span>
+            {!isColdLoad && !error ? (
+              <>
+                <span aria-hidden="true" className="h-3.5 w-px bg-border" />
+                <span role="status" className="tabular-nums text-muted-foreground">
+                  {loading ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
+                </span>
+              </>
+            ) : null}
           </p>
 
-          <div
-            role="group"
-            aria-label={copy.quickSuggestionsLabel}
-            className="flex flex-nowrap items-center gap-2 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {!gpsActive && locationStatus !== "locating" && (
-              <button
-                type="button"
-                onClick={() => locateUser(true)}
-                className="press-row inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-sapphire/35 bg-sapphire-soft/55 px-3 text-xs font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                <span>{copy.useMyLocation}</span>
-              </button>
-            )}
-
-            {smartSuggestions.map((city) => {
-              const isSelected =
-                area.kind === "point" &&
-                area.source === "city" &&
-                area.cityName === city.name &&
-                (area.country ?? activeCountry) === city.country;
-              return (
+          {(area.kind === "point" || filtered) && (
+            <div className="flex flex-wrap items-center gap-2">
+              {area.kind === "point" && (
                 <button
-                  key={`${city.country}:${city.name}`}
                   type="button"
-                  aria-pressed={isSelected}
-                  onClick={() => chooseCity(city)}
-                  className={`press-row inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                    isSelected
-                      ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                      : "border-border-control bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/40"
-                  }`}
+                  onClick={() => chooseCountry(activeCountry)}
+                  className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg border border-border-control bg-card px-3 py-1.5 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
-                  {city.name}
+                  {copy.wholeCountryOption(copy.countries[activeCountry])}
                 </button>
-              );
-            })}
+              )}
 
-            <button
-              type="button"
-              aria-pressed={area.kind === "country" && area.country === activeCountry}
-              onClick={() => chooseCountry(activeCountry)}
-              className={`press-row inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                area.kind === "country" && area.country === activeCountry
-                  ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                  : "border-border-control bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/40"
-              }`}
-            >
-              {copy.wholeCountryOption(copy.countries[activeCountry])}
-            </button>
-          </div>
+              {filtered && (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border-control bg-card px-3 py-1.5 text-xs font-semibold text-sapphire press-row whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <XIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  <span>{copy.clearFilters}</span>
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Announces where the results are from; the dropdown trigger shows the short version. */}
@@ -1038,9 +997,6 @@ export function FindHelpExplorer({
               <span className="sr-only">{copy.loading}</span>
               {/* Shaped like the result rows (kind, name, address, hours, call and directions), so the
                   list lands in place instead of replacing a different shape. */}
-              <div className="mb-3 flex min-h-11 items-center" aria-hidden="true">
-                <div className="skeleton-sheen h-4 w-28" />
-              </div>
               <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-stone-200/90 bg-card shadow-2xs dark:border-stone-800">
                 {COLD_LOAD_SKELETON_WIDTHS.map((spec, idx) => (
                   <li
@@ -1111,21 +1067,6 @@ export function FindHelpExplorer({
                 isRevalidating ? "pointer-events-none opacity-60" : "opacity-100"
               }`}
             >
-              <div className="mb-3 flex min-h-11 flex-wrap items-center justify-between gap-2">
-                <p className="text-sm font-medium text-muted-foreground" role="status">
-                  {isRevalidating ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
-                </p>
-                {filtered ? (
-                  <button
-                    type="button"
-                    onClick={clearFilters}
-                    className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border-control bg-card px-3.5 py-2 text-xs font-semibold text-sapphire press-row whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    {copy.clearFilters}
-                  </button>
-                ) : null}
-              </div>
-
               <ul
                 key={resultSetKey}
                 className="divide-y divide-border overflow-hidden rounded-2xl border border-stone-200/90 bg-card shadow-2xs dark:border-stone-800"

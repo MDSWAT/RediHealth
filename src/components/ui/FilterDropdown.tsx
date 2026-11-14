@@ -11,6 +11,8 @@ export interface FilterDropdownProps {
   align?: "left" | "right";
   /** Renders a compact single-line value inside the trigger instead of a stacked field label. */
   hideLabel?: boolean;
+  /** Renders `{label}: {value}` on a single horizontal baseline inside the trigger. */
+  inlineLabel?: boolean;
   id?: string;
   className?: string;
   children?: ReactNode;
@@ -26,6 +28,7 @@ export function FilterDropdown({
   icon,
   align = "left",
   hideLabel = false,
+  inlineLabel = false,
   id,
   className,
   children,
@@ -83,6 +86,11 @@ export function FilterDropdown({
         <span className="min-w-0 flex-1">
           {hideLabel ? (
             <span className="block truncate text-sm font-semibold text-foreground">{value}</span>
+          ) : inlineLabel ? (
+            <span className="flex min-w-0 items-baseline gap-1.5 truncate text-sm">
+              <span className="hidden shrink-0 text-muted-foreground sm:inline">{label}:</span>
+              <span className="min-w-0 truncate font-semibold text-foreground">{value}</span>
+            </span>
           ) : (
             <>
               <span className="block truncate text-xs text-muted-foreground">{label}</span>
@@ -102,7 +110,7 @@ export function FilterDropdown({
         <div
           id={panelId}
           className={cn(
-            "fhs-enter absolute top-full z-30 mt-2 max-h-[min(70dvh,28rem)] w-[min(calc(100vw-2.5rem),24rem)] overflow-y-auto overscroll-contain rounded-2xl border border-border-control/80 bg-card/98 p-2 shadow-xl shadow-ink-950/10 backdrop-blur-md sm:w-88 dark:border-white/12 dark:bg-ink-900/98",
+            "fhs-enter absolute top-full z-30 mt-2 max-h-[min(70dvh,28rem)] w-[min(calc(100vw-2.5rem),24rem)] overflow-y-auto overscroll-contain [scrollbar-width:thin] rounded-2xl border border-border-control/80 bg-card/98 p-2 shadow-xl shadow-ink-950/10 backdrop-blur-md sm:w-88 dark:border-white/12 dark:bg-ink-900/98",
             align === "right" ? "right-0" : "left-0",
           )}
           onClick={(event) => {

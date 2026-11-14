@@ -3,9 +3,10 @@ import { getHealthCheckTranslations } from "@/lib/i18n/health-check-translations
 import { COPY } from "@/components/health-check/health-check-copy";
 
 /**
- * Languages that get pre-recorded Piper audio. Romanian is not here: Piper's only Romanian voice
- * (ro_RO-mihai-medium) drops the first sound of most phrases, so Romanian uses the best voice on
- * the device instead. Albanian has no read-aloud at all.
+ * Languages that have legacy pre-recorded Piper fallback audio when neural TTS is unavailable.
+ * Romanian is not here: Piper's only Romanian voice (ro_RO-mihai-medium) drops the first sound
+ * of most phrases, so Romanian uses neural TTS or the best matching voice on the device instead.
+ * Albanian uses neural TTS or a matching device voice; Romani stays disabled.
  */
 export const VOICE_LANGS = ["en", "it"] as const satisfies readonly Lang[];
 export type VoiceLang = (typeof VOICE_LANGS)[number];
@@ -39,7 +40,7 @@ const RO_SMALL_NUMBERS: Record<string, string> = {
  * (wrong gender in Romanian) or skip the dash, and say 112 as "one hundred and twelve".
  */
 export function spokenForm(lang: Lang, text: string): string {
-  let t = normaliseSegment(text);
+  let t = normaliseSegment(text.replace(/https?:\/\/\S+/gi, " "));
   if (lang === "ro") {
     t = t
       .replace(/\bDe (\d)–(\d) /g, "Între $1 și $2 ")
@@ -49,6 +50,8 @@ export function spokenForm(lang: Lang, text: string): string {
       .replace(/(^|[^\d])([1-9])(?=\s+\p{L})/gu, (_m, pre: string, d: string) => pre + RO_SMALL_NUMBERS[d]);
   } else if (lang === "en") {
     t = t.replace(/(\d)–(\d)/g, "$1 to $2").replace(/\b112\b/g, "one one two");
+  } else if (lang === "sq") {
+    t = t.replace(/(\d)–(\d)/g, "nga $1 deri në $2").replace(/\b112\b/g, "një një dy");
   } else if (lang === "it") {
     t = t.replace(/\b(\d)–(\d)/g, "da $1 a $2").replace(/\b112\b/g, "uno uno due");
   } else if (lang === "hr") {

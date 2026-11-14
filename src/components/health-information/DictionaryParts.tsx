@@ -360,7 +360,7 @@ export function DictionarySearch({
 }
 
 /**
- * Multi-line wrapping category pills with semantic icons and live tabular counts.
+ * Multi-line wrapping category filter buttons with semantic icons and plain tabular counts.
  * Eliminates horizontal overflow so every category is visible at a glance on all viewports.
  */
 export function DictionaryFilters<T extends string>({
@@ -426,12 +426,12 @@ export function DictionaryFilters<T extends string>({
             {typeof option.count === "number" && (
               <span
                 className={cn(
-                  "rounded-md px-1.5 py-0.5 text-[11px] font-bold tabular-nums leading-none",
+                  "text-xs font-medium tabular-nums leading-none",
                   isSelected
-                    ? "bg-white/20 text-white"
+                    ? "text-white/80"
                     : isEmergency
-                      ? "bg-primary/12 text-primary"
-                      : "bg-muted text-muted-foreground",
+                      ? "text-primary"
+                      : "text-muted-foreground",
                 )}
               >
                 {option.count}

@@ -109,7 +109,7 @@ export function ArticleListenButton({
     setIsPlayingLocal(true);
     speechEngine.speak(formatSpeechText(textToSpeak, speechLang), {
       lang: speechLang,
-      rate: 0.95,
+      rate: 1.0,
       onEnd: () => {
         playingLocalRef.current = false;
         setIsPlayingLocal(false);

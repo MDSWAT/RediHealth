@@ -491,21 +491,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                 </form>
               ) : (
                 <div className="swap-in py-2" role="status">
-                  {/* The confirmation mark draws itself once (static under reduced motion / Calm Motion). */}
-                  <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    className="h-7 w-7 text-sapphire dark:text-sapphire-border"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="9.25" opacity="0.35" />
-                    <path className="stroke-draw" pathLength={1} d="m7.75 12.25 2.9 2.9 5.6-6.1" />
-                  </svg>
-                  <h2 id={`${ids}-title`} className="mt-3 text-lg font-semibold text-foreground">
+                  <h2 id={`${ids}-title`} className="text-lg font-semibold text-foreground">
                     {t.successTitle}
                   </h2>
                   <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">{t.successMessage}</p>

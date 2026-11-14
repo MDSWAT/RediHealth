@@ -416,10 +416,10 @@ export function RomanianDualRegisterGlossary({
                       <div className="flex flex-wrap items-center gap-1.5">
                         <span
                           className={cn(
-                            "inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-[11.5px] font-semibold",
+                            "inline-flex items-center gap-1.5 text-xs font-semibold",
                             isEmergencyTerm
-                              ? "bg-primary text-white"
-                              : "bg-card text-sapphire ring-1 ring-inset ring-border",
+                              ? "text-primary"
+                              : "text-sapphire dark:text-sapphire-border",
                           )}
                         >
                           <CatIcon className="h-3.5 w-3.5 shrink-0" />

@@ -10,7 +10,24 @@ export function meetingOriginFromEnv(): string {
   return `https://${host}`;
 }
 
+function ttsPublicOriginFromEnv(): string {
+  const raw = process.env.TTS_PUBLIC_BASE_URL?.trim();
+  if (!raw) return "";
+  try {
+    const parsed = new URL(raw);
+    if (parsed.protocol === "https:" || parsed.protocol === "http:") {
+      return parsed.origin;
+    }
+  } catch {
+    // Ignore invalid TTS_PUBLIC_BASE_URL values so CSP generation never throws.
+  }
+  return "";
+}
+
 export function buildContentSecurityPolicy({ nonce, isDevelopment, meetingOrigin }: CspOptions): string {
+  const ttsOrigin = ttsPublicOriginFromEnv();
+  const ttsOriginSuffix = ttsOrigin ? ` ${ttsOrigin}` : "";
+
   const directives = [
     "default-src 'self'",
     // 'wasm-unsafe-eval' allows Three.js MeshoptDecoder to instantiate its WebAssembly geometry
@@ -21,9 +38,9 @@ export function buildContentSecurityPolicy({ nonce, isDevelopment, meetingOrigin
     "img-src 'self' data: blob: https:",
     "font-src 'self' data:",
     "worker-src 'self' blob:",
-    "connect-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/",
+    `connect-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/${ttsOriginSuffix}`,
     `frame-src ${[...new Set([meetingOrigin, "https://meet.jit.si", "https://www.google.com/recaptcha/", "https://recaptcha.google.com/recaptcha/"])].join(" ")}`,
-    "media-src 'self' blob:",
+    `media-src 'self' blob:${ttsOriginSuffix}`,
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
