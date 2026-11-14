@@ -292,6 +292,7 @@ export function TriageStateMachine({
   }, [viewKey]);
 
   const stepLabel = copy.machine.stepOf(displayStep, totalSteps);
+  const accessibleStepText = state.pathway ? stepLabel : copy.machine.intro;
 
   // Build clickable Selected Answers Trail chips (pure serializable render data)
   const trailItems: { key: string; label: string; action: TrailActionType; stepsBack: number }[] = [];
@@ -385,10 +386,7 @@ export function TriageStateMachine({
                 <span>{copy.machine.back}</span>
               </button>
               <span className="shrink-0 whitespace-nowrap text-xs font-medium text-muted-foreground tabular-nums sm:text-sm">
-                <span key={displayStep} aria-hidden="true" className="swap-in inline-block sm:hidden">
-                  {displayStep} / {totalSteps}
-                </span>
-                <span className="sr-only sm:not-sr-only">{stepLabel}</span>
+                {stepLabel}
               </span>
             </>
           ) : (
@@ -396,8 +394,8 @@ export function TriageStateMachine({
               {/* Decorative 20px SVG mark matching hero instrument header */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/Icons/Logo.svg" alt="" width={20} height={20} className="h-5 w-5 shrink-0" />
-              <p className="shrink-0 whitespace-nowrap text-sm font-semibold text-foreground tabular-nums">
-                {stepLabel}
+              <p className="shrink-0 whitespace-nowrap text-sm font-semibold text-foreground">
+                {copy.machine.intro}
               </p>
             </div>
           )}
@@ -416,7 +414,7 @@ export function TriageStateMachine({
           aria-valuenow={displayStep}
           aria-valuemin={1}
           aria-valuemax={totalSteps}
-          aria-valuetext={stepLabel}
+          aria-valuetext={accessibleStepText}
         >
           {/* Fills with a long-tailed ease on the compositor (scaleX), never a width relayout. */}
           <div
@@ -537,7 +535,7 @@ export function TriageStateMachine({
       </div>
 
       <p className="sr-only" aria-live="polite" aria-atomic="true">
-        {stepLabel}
+        {accessibleStepText}
       </p>
     </section>
   );

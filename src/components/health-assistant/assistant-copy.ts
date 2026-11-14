@@ -2370,7 +2370,7 @@ ru: {
 "selectedTrailLabel": "Выбранные ответы",
 
     back: "Назад",
-    intro: "Руководство из 3 шагов",
+    intro: "Пошаговое руководство",
     stepOf: (step, total = 3) => `Шаг ${step} из ${total}`,
     progressLabel: "Путеводитель по прогрессу",
   },

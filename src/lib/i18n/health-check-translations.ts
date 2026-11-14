@@ -128,7 +128,7 @@ const rawTranslations = {
     "ui": {
       "eyebrow": "Проверка здоровья",
       "heading": "Проверьте свои симптомы",
-      "subtitle": "Покажите на теле, где болит, и ответьте на 3 вопроса. Тогда посмотрим, что делать дальше.",
+      "subtitle": "Покажите на теле, где болит, и ответьте на несколько коротких вопросов. Тогда посмотрим, что делать дальше.",
       "resetButton": "Начать сначала",
       "backButton": "Назад",
       "nextButton": "Продолжить",
@@ -672,7 +672,7 @@ const rawTranslations = {
     "ui": {
       "eyebrow": "Verificare de sănătate",
       "heading": "Verifică simptomele",
-      "subtitle": "Arată pe corp unde te doare și răspunde la 3 întrebări. Apoi afli ce poți face.",
+      "subtitle": "Arată pe corp unde te doare și răspunde la câteva întrebări scurte. Apoi afli ce poți face.",
       "resetButton": "De la capăt",
       "backButton": "Înapoi",
       "nextButton": "Continuă",
@@ -1217,7 +1217,7 @@ const rawTranslations = {
     "ui": {
       "eyebrow": "Health check",
       "heading": "Check your symptoms",
-      "subtitle": "Show on the body where it hurts and answer 3 questions. Then see what to do next.",
+      "subtitle": "Show on the body where it hurts and answer a few short questions. Then see what to do next.",
       "resetButton": "Start over",
       "backButton": "Back",
       "nextButton": "Continue",
@@ -1762,7 +1762,7 @@ const rawTranslations = {
     "ui": {
       "eyebrow": "Kontroll shëndetësor",
       "heading": "Kontrollo simptomat",
-      "subtitle": "Trego në trup ku të dhemb dhe përgjigju 3 pyetjeve. Pastaj shiko çfarë të bësh.",
+      "subtitle": "Trego në trup ku të dhemb dhe përgjigju disa pyetjeve të shkurtra. Pastaj shiko çfarë të bësh.",
       "resetButton": "Fillo nga e para",
       "backButton": "Kthehu",
       "nextButton": "Vazhdo",
@@ -2307,7 +2307,7 @@ const rawTranslations = {
     "ui": {
       "eyebrow": "Controllo dei sintomi",
       "heading": "Controlla i sintomi",
-      "subtitle": "Indica sul corpo dove ti fa male e rispondi a 3 domande. Poi vedi cosa fare.",
+      "subtitle": "Indica sul corpo dove ti fa male e rispondi ad alcune domande brevi. Poi vedi cosa fare.",
       "resetButton": "Ricomincia",
       "backButton": "Indietro",
       "nextButton": "Continua",
@@ -2852,7 +2852,7 @@ const rawTranslations = {
     "ui": {
       "eyebrow": "Provjera zdravlja",
       "heading": "Provjeri simptome",
-      "subtitle": "Pokaži na tijelu gdje te boli i odgovori na 3 pitanja. Zatim saznaj što učiniti.",
+      "subtitle": "Pokaži na tijelu gdje te boli i odgovori na nekoliko kratkih pitanja. Zatim saznaj što učiniti.",
       "resetButton": "Ispočetka",
       "backButton": "Natrag",
       "nextButton": "Nastavi",
@@ -3397,7 +3397,7 @@ const rawTranslations = {
     "ui": {
       "eyebrow": "Dikhiben e sastipnasko",
       "heading": "Dikh tire simptomura",
-      "subtitle": "Sikav pe trupo kaj dukhal tut thaj de atveto pe 3 phuchimata. Porme dikh so te keres.",
+      "subtitle": "Sikav pe trupo kaj dukhal tut thaj de atveto pe nekobor skurte phuchimata. Porme dikh so te keres.",
       "resetButton": "Katar o anglunipen",
       "backButton": "Palpale",
       "nextButton": "Dzha maj dur",

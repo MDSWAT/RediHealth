@@ -151,9 +151,9 @@ const en: HeroCopy = {
       },
       risk: {
         label: "Check my symptoms",
-        hint: "Point where it hurts in 3 quick steps.",
+        hint: "Point where it hurts in a few short steps.",
         title: "Show us where it hurts",
-        body: "Tap where it hurts, answer 3 questions and see what to do next.",
+        body: "Tap where it hurts, answer a few short questions and see what to do next.",
         action: { label: "Start the check", href: "/health-check" },
       },
       nearby: {
@@ -252,9 +252,9 @@ const ro: HeroCopy = {
       },
       risk: {
         label: "Verifică ce simptome ai",
-        hint: "Arăți unde te doare în 3 pași scurți.",
+        hint: "Arăți unde te doare în câțiva pași scurți.",
         title: "Arată unde te doare",
-        body: "Atinge locul unde te doare, răspunde la 3 întrebări și vezi ce faci mai departe.",
+        body: "Atinge locul unde te doare, răspunde la câteva întrebări scurte și vezi ce faci mai departe.",
         action: { label: "Începe verificarea", href: "/health-check" },
       },
       nearby: {
@@ -353,9 +353,9 @@ const sq: HeroCopy = {
       },
       risk: {
         label: "Kontrollo simptomat e tua",
-        hint: "Trego ku të dhemb në 3 hapa të shkurtër.",
+        hint: "Trego ku të dhemb në disa hapa të shkurtër.",
         title: "Trego ku të dhemb",
-        body: "Prek ku të dhemb, përgjigju 3 pyetjeve dhe shiko çfarë të bësh më pas.",
+        body: "Prek ku të dhemb, përgjigju disa pyetjeve të shkurtra dhe shiko çfarë të bësh më pas.",
         action: { label: "Fillo kontrollin", href: "/health-check" },
       },
       nearby: {
@@ -454,9 +454,9 @@ const it: HeroCopy = {
       },
       risk: {
         label: "Controlla i tuoi sintomi",
-        hint: "Indica dove fa male in 3 brevi passi.",
+        hint: "Indica dove fa male in pochi brevi passi.",
         title: "Indica dove fa male",
-        body: "Tocca dove fa male, rispondi a 3 domande e vedi cosa fare dopo.",
+        body: "Tocca dove fa male, rispondi ad alcune domande brevi e vedi cosa fare dopo.",
         action: { label: "Inizia il controllo", href: "/health-check" },
       },
       nearby: {
@@ -555,9 +555,9 @@ const hr: HeroCopy = {
       },
       risk: {
         label: "Provjeri svoje simptome",
-        hint: "Pokaži gdje boli u 3 kratka koraka.",
+        hint: "Pokaži gdje boli u nekoliko kratkih koraka.",
         title: "Pokaži gdje te boli",
-        body: "Dodirni gdje boli, odgovori na 3 pitanja i saznaj što dalje.",
+        body: "Dodirni gdje boli, odgovori na nekoliko kratkih pitanja i saznaj što dalje.",
         action: { label: "Pokreni provjeru", href: "/health-check" },
       },
       nearby: {
@@ -656,9 +656,9 @@ const rom: HeroCopy = {
       },
       risk: {
         label: "Dikh che simptome",
-        hint: "Sikav kay dukhal ande 3 pasha.",
+        hint: "Sikav kay dukhal ande nekobor skurte pasha.",
         title: "Sikav kay dukhal tut",
-        body: "Azba kay dukhal, de palpale pe 3 phuchimata thaj dikh so te keres may dur.",
+        body: "Azba kay dukhal, de palpale pe nekobor skurte phuchimata thaj dikh so te keres may dur.",
         action: { label: "Shird o dikhiben", href: "/health-check" },
       },
       nearby: {
@@ -758,9 +758,9 @@ ru: {
       },
       risk: {
         label: "Проверить свои симптомы",
-        hint: "Покажите, где болит, за 3 шага.",
+        hint: "Покажите, где болит, за несколько шагов.",
         title: "Покажите, где болит",
-        body: "Нажмите, где болит, ответьте на 3 вопроса и узнайте, что делать дальше.",
+        body: "Нажмите, где болит, ответьте на несколько коротких вопросов и узнайте, что делать дальше.",
         action: { label: "Начать проверку", href: "/health-check" },
       },
       nearby: {

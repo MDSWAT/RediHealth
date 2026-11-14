@@ -147,26 +147,6 @@ function firstSentence(text: string): string {
   return match ? match[0] : text;
 }
 
-/** Key letter badge (desktop): replaces the radio circle, like a form's A/B/C keys. */
-function KeyBadge({ letter, checked, urgent = false }: { letter: string; checked: boolean; urgent?: boolean }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={`hidden h-6 w-6 shrink-0 items-center justify-center rounded-md border text-xs font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] lg:inline-flex ${
-        checked
-          ? urgent
-            ? "border-primary bg-primary text-white"
-            : "border-sapphire bg-sapphire text-white"
-          : urgent
-            ? "border-primary/40 bg-card text-primary"
-            : "border-border-control/60 bg-card text-muted-foreground"
-      }`}
-    >
-      {letter}
-    </span>
-  );
-}
-
 /** iOS-style check on the right of a chosen row (phones). */
 function RowCheck({ urgent = false }: { urgent?: boolean }) {
   return (
@@ -402,7 +382,6 @@ function AreaOptionCard({
           : "lg:border-border lg:bg-card lg:hover:border-sapphire/50 lg:hover:bg-sapphire-soft/25"
       }`}
     >
-      {hotkey && <KeyBadge letter={hotkey} checked={checked} />}
       <span
         aria-hidden="true"
         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
@@ -742,30 +721,24 @@ function OptionRow({
               : "lg:border-border lg:bg-card lg:hover:border-sapphire/50 lg:hover:bg-sapphire-soft/25"
         }`}
       >
-        {hotkey ? (
-          <span className="mt-0.5 hidden lg:inline-flex">
-            <KeyBadge letter={hotkey} checked={checked} urgent={urgent} />
-          </span>
-        ) : (
+        <span
+          aria-hidden="true"
+          className={`mt-1 hidden h-[18px] w-[18px] shrink-0 items-center justify-center rounded-sm border-[1.5px] lg:flex ${
+            checked
+              ? urgent
+                ? "border-primary"
+                : "border-sapphire"
+              : urgent
+                ? "border-primary/65"
+                : "border-foreground/45"
+          }`}
+        >
           <span
-            aria-hidden="true"
-            className={`mt-1 hidden h-[18px] w-[18px] shrink-0 items-center justify-center rounded-sm border-[1.5px] lg:flex ${
-              checked
-                ? urgent
-                  ? "border-primary"
-                  : "border-sapphire"
-                : urgent
-                  ? "border-primary/65"
-                  : "border-foreground/45"
-            }`}
-          >
-            <span
-              className={`h-2 w-2 rounded-xs transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
-                urgent ? "bg-primary" : "bg-sapphire"
-              } ${checked ? "opacity-100" : "opacity-0"}`}
-            />
-          </span>
-        )}
+            className={`h-2 w-2 rounded-xs transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+              urgent ? "bg-primary" : "bg-sapphire"
+            } ${checked ? "opacity-100" : "opacity-0"}`}
+          />
+        </span>
         {iconBadge}
         <span className="min-w-0 flex-1 self-center">
           <span className="flex flex-wrap items-center gap-x-2.5 gap-y-0.5">
@@ -2033,10 +2006,12 @@ export function HealthCheckExplorer() {
           <h1 className="text-2xl font-semibold tracking-[-0.025em] text-foreground text-balance sm:text-3xl">
             {dict.ui.heading}
           </h1>
-          <p className="mt-1.5 max-w-[62ch] text-base leading-relaxed text-muted-foreground">
-            <span className="lg:hidden">{dict.ui.subtitle}</span>
-            <span className="hidden lg:inline">{firstSentence(dict.ui.subtitle)}</span>
-          </p>
+          {stepId === "area" && (
+            <p className="mt-1.5 max-w-[62ch] text-base leading-relaxed text-muted-foreground">
+              <span className="lg:hidden">{dict.ui.subtitle}</span>
+              <span className="hidden lg:inline">{firstSentence(dict.ui.subtitle)}</span>
+            </p>
+          )}
 
           {bodyShown && stepId === "area" && (
             <div
@@ -2197,18 +2172,10 @@ export function HealthCheckExplorer() {
                     <ChevronRightIcon className="h-5 w-5 rotate-180 lg:hidden" aria-hidden="true" />
                     <ArrowLeftIcon className="hidden h-4 w-4 lg:block" aria-hidden="true" />
                     <span>{dict.ui.backButton}</span>
-                    {/* Desktop: the key that goes back. */}
-                    <kbd
-                      aria-hidden="true"
-                      className="hidden rounded-md border border-border bg-muted px-1.5 py-0.5 font-sans text-[0.6875rem] font-semibold leading-none text-foreground lg:inline"
-                    >
-                      ⌫
-                    </kbd>
                   </button>
                 ) : null}
-                <p className="shrink-0 whitespace-nowrap text-xs font-medium text-muted-foreground tabular-nums sm:text-sm">
-                  <span key={displayStep} aria-hidden="true" className="swap-in inline-block sm:hidden">{displayStep}/{totalSteps}</span>
-                  <span className="sr-only sm:not-sr-only">{stepIndicatorText}</span>
+                <p className="shrink-0 whitespace-nowrap text-sm font-medium text-muted-foreground tabular-nums">
+                  {stepIndicatorText}
                 </p>
               </div>
 
@@ -2734,7 +2701,6 @@ export function HealthCheckExplorer() {
                         >
                           <span className="flex w-full items-center justify-between gap-2">
                             <SeverityComfortVisual severityKey={key} checked={checked} />
-                            <KeyBadge letter={String(index + 1)} checked={checked} urgent={urgent} />
                           </span>
                           <span className="whitespace-nowrap text-sm font-semibold leading-snug text-foreground">
                             {dict.severity[key].title}
@@ -2780,7 +2746,6 @@ export function HealthCheckExplorer() {
                               : "border-border bg-card hover:border-sapphire/50 hover:bg-sapphire-soft/25"
                           }`}
                         >
-                          <KeyBadge letter={HOTKEYS[index]} checked={checked} />
                           <DurationHorizonVisual durationKey={key} checked={checked} />
                           <span className="whitespace-nowrap text-sm font-semibold leading-snug text-foreground">
                             {dict.duration[key].label}
