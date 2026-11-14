@@ -69,6 +69,7 @@ export interface HealthArticleHeaderProps {
   noticeLang?: string;
   meta?: ReactNode;
   actions?: ReactNode;
+  afterActions?: ReactNode;
   reviewNote?: string;
   className?: string;
 }
@@ -83,6 +84,7 @@ export function HealthArticleHeader({
   noticeLang,
   meta,
   actions,
+  afterActions,
   reviewNote,
   className,
 }: HealthArticleHeaderProps) {
@@ -131,6 +133,8 @@ export function HealthArticleHeader({
           {actions}
         </div>
       )}
+
+      {afterActions && <div className="mt-3 print:hidden">{afterActions}</div>}
     </header>
   );
 }

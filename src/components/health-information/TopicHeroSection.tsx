@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentType, SVGProps } from "react";
+import type { ComponentType, ReactNode, SVGProps } from "react";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -30,6 +30,7 @@ export interface TopicHeroSectionProps {
   onListenClick: () => void;
   onStopClick?: () => void;
   isPlayingAudio?: boolean;
+  afterActions?: ReactNode;
   className?: string;
   lang?: Lang;
 }
@@ -58,6 +59,7 @@ export function TopicHeroSection({
   onListenClick,
   onStopClick,
   isPlayingAudio = false,
+  afterActions,
   className = "",
   lang,
 }: TopicHeroSectionProps) {
@@ -114,6 +116,7 @@ export function TopicHeroSection({
                 />
               </>
             }
+            afterActions={afterActions}
           />
         </div>
       </Container>

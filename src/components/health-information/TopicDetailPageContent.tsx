@@ -45,11 +45,8 @@ interface TopicPageUiStrings {
   whyItMattersAudioPrefix: string;
   stepsAudioPrefix: string;
   warningSignsAudioPrefix: string;
-  dualGlossaryTitle: string;
-  dualGlossaryDescription: string;
+  dictionaryPrompt: string;
   dualGlossaryCta: string;
-  romanesGlossaryTitle: string;
-  romanesGlossaryDescription: string;
   romanesGlossaryCta: string;
   listenGuideLabel: string;
   onlineDoctorLabel: string;
@@ -60,9 +57,6 @@ interface TopicPageUiStrings {
   tocOverview: string;
   tocExplainer: string;
   tocMyth: string;
-  clinicalContextBadge: string;
-  clinicalPriorityLabel: string;
-  clinicalAlertLabel: string;
 }
 
 const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
@@ -72,20 +66,12 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocOverview: "Обзор",
     tocExplainer: "Наглядное объяснение",
     tocMyth: "Правда или миф",
-    clinicalContextBadge: "Подробная медицинская информация",
-    clinicalPriorityLabel: "Рекомендуемая первая привычка:",
-    clinicalAlertLabel: "Важный признак для наблюдения:",
     whyItMattersAudioPrefix: "Почему это важно",
     stepsAudioPrefix: "Что вы можете сделать",
     warningSignsAudioPrefix: "Когда получить помощь",
-    dualGlossaryTitle: "Медицинский словарь",
-    dualGlossaryDescription:
-      "22 термина из рецептов и направлений простыми словами.",
+    dictionaryPrompt: "Сложные слова?",
     dualGlossaryCta: "Открыть словарь",
-    romanesGlossaryTitle: "Медицинские слова на цыганском языке",
-    romanesGlossaryDescription:
-      "Слова в этом руководстве также на цыганском языке.",
-    romanesGlossaryCta: "Смотрите слова",
+    romanesGlossaryCta: "Слова на цыганском",
     listenGuideLabel: "Слушайте руководство",
     onlineDoctorLabel: "Онлайн врач",
     ariaSentenceSection: "Текст руководства",
@@ -95,14 +81,9 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     whyItMattersAudioPrefix: "De ce contează",
     stepsAudioPrefix: "Ce poți face",
     warningSignsAudioPrefix: "Când ai nevoie de ajutor",
-    dualGlossaryTitle: "Dicționar medical",
-    dualGlossaryDescription:
-      "22 de termeni de pe rețete și bilete de trimitere, explicați pe scurt.",
+    dictionaryPrompt: "Cuvinte grele?",
     dualGlossaryCta: "Deschide dicționarul",
-    romanesGlossaryTitle: "Cuvinte medicale în romani",
-    romanesGlossaryDescription:
-      "Cuvintele din acest ghid, spuse și în limba romani.",
-    romanesGlossaryCta: "Vezi cuvintele",
+    romanesGlossaryCta: "Cuvinte în romani",
     listenGuideLabel: "Ascultă ghidul",
     onlineDoctorLabel: "Medic online",
     ariaSentenceSection: "Textul ghidului",
@@ -112,22 +93,14 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocOverview: "Introducere",
     tocExplainer: "Ghid vizual",
     tocMyth: "Adevărat sau fals",
-    clinicalContextBadge: "Sinteză clinică extinsă",
-    clinicalPriorityLabel: "Primul pas recomandat:",
-    clinicalAlertLabel: "Semn de urmărit atent:",
   },
   en: {
     whyItMattersAudioPrefix: "Why it matters",
     stepsAudioPrefix: "What you can do",
     warningSignsAudioPrefix: "When to get help",
-    dualGlossaryTitle: "Medical dictionary",
-    dualGlossaryDescription:
-      "22 terms from prescriptions and referrals, explained clearly.",
+    dictionaryPrompt: "Hard words?",
     dualGlossaryCta: "Open the dictionary",
-    romanesGlossaryTitle: "Medical words in Romani",
-    romanesGlossaryDescription:
-      "The words in this guide, also in Romani.",
-    romanesGlossaryCta: "See the words",
+    romanesGlossaryCta: "Words in Romani",
     listenGuideLabel: "Listen to the guide",
     onlineDoctorLabel: "Online doctor",
     ariaSentenceSection: "Guide text",
@@ -137,22 +110,14 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocOverview: "Overview",
     tocExplainer: "Visual guide",
     tocMyth: "True or false",
-    clinicalContextBadge: "Extended clinical context",
-    clinicalPriorityLabel: "Recommended first habit:",
-    clinicalAlertLabel: "Key sign to watch closely:",
   },
   sq: {
     whyItMattersAudioPrefix: "Pse ka rëndësi",
     stepsAudioPrefix: "Çfarë mund të bësh",
     warningSignsAudioPrefix: "Kur të duhet ndihmë",
-    dualGlossaryTitle: "Fjalor mjekësor",
-    dualGlossaryDescription:
-      "22 terma nga recetat dhe fletët e referimit, të shpjeguar qartë.",
+    dictionaryPrompt: "Fjalë të vështira?",
     dualGlossaryCta: "Hap fjalorin",
-    romanesGlossaryTitle: "Fjalë mjekësore në gjuhën rome",
-    romanesGlossaryDescription:
-      "Fjalët e këtij udhëzuesi, edhe në gjuhën rome.",
-    romanesGlossaryCta: "Shiko fjalët",
+    romanesGlossaryCta: "Fjalë në gjuhën rome",
     listenGuideLabel: "Dëgjo udhëzuesin",
     onlineDoctorLabel: "Mjeku online",
     ariaSentenceSection: "Teksti i udhëzuesit",
@@ -162,22 +127,14 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocOverview: "Hyrje",
     tocExplainer: "Udhëzues pamor",
     tocMyth: "E vërtetë apo e gabuar",
-    clinicalContextBadge: "Përmbledhje klinike e zgjeruar",
-    clinicalPriorityLabel: "Hapi i parë i këshilluar:",
-    clinicalAlertLabel: "Shenja që duhet ndjekur me kujdes:",
   },
   it: {
     whyItMattersAudioPrefix: "Perché è importante",
     stepsAudioPrefix: "Cosa puoi fare",
     warningSignsAudioPrefix: "Quando chiedere aiuto",
-    dualGlossaryTitle: "Dizionario medico",
-    dualGlossaryDescription:
-      "22 termini di ricette e impegnative, spiegati con chiarezza.",
+    dictionaryPrompt: "Parole difficili?",
     dualGlossaryCta: "Apri il dizionario",
-    romanesGlossaryTitle: "Parole mediche in romanì",
-    romanesGlossaryDescription:
-      "Le parole di questa guida, anche in romanì.",
-    romanesGlossaryCta: "Vedi le parole",
+    romanesGlossaryCta: "Parole in romanì",
     listenGuideLabel: "Ascolta la guida",
     onlineDoctorLabel: "Medico online",
     ariaSentenceSection: "Testo della guida",
@@ -187,22 +144,14 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocOverview: "Panoramica",
     tocExplainer: "Guida visiva",
     tocMyth: "Vero o falso",
-    clinicalContextBadge: "Contesto clinico esteso",
-    clinicalPriorityLabel: "Primo passo consigliato:",
-    clinicalAlertLabel: "Segnale da osservare con attenzione:",
   },
   hr: {
     whyItMattersAudioPrefix: "Zašto je važno",
     stepsAudioPrefix: "Što možeš učiniti",
     warningSignsAudioPrefix: "Kada potražiti pomoć",
-    dualGlossaryTitle: "Medicinski rječnik",
-    dualGlossaryDescription:
-      "22 pojma s recepata i uputnica, jasno objašnjena.",
+    dictionaryPrompt: "Teške riječi?",
     dualGlossaryCta: "Otvori rječnik",
-    romanesGlossaryTitle: "Medicinske riječi na romskom",
-    romanesGlossaryDescription:
-      "Riječi iz ovog vodiča, objašnjene i na romskom jeziku.",
-    romanesGlossaryCta: "Pogledaj riječi",
+    romanesGlossaryCta: "Riječi na romskom",
     listenGuideLabel: "Poslušaj vodič",
     onlineDoctorLabel: "Liječnik online",
     ariaSentenceSection: "Tekst vodiča",
@@ -212,22 +161,14 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocOverview: "Uvod",
     tocExplainer: "Vizualni vodič",
     tocMyth: "Točno ili netočno",
-    clinicalContextBadge: "Prošireni klinički kontekst",
-    clinicalPriorityLabel: "Preporučeni prvi korak:",
-    clinicalAlertLabel: "Znak na koji treba paziti:",
   },
   rom: {
     whyItMattersAudioPrefix: "Sostar si baro",
     stepsAudioPrefix: "So shay te keres",
     warningSignsAudioPrefix: "Kana trebul zhutimos",
-    dualGlossaryTitle: "Doktorengo lavustik",
-    dualGlossaryDescription:
-      "22 lava katar le retsete thaj le lila, ashkarde mishto.",
+    dictionaryPrompt: "Phare lava?",
     dualGlossaryCta: "Phuter o lavustik",
-    romanesGlossaryTitle: "Doktorenge lava pe romani chib",
-    romanesGlossaryDescription:
-      "Le lava katar kadava sikavimos, phende vi pe romani chib.",
-    romanesGlossaryCta: "Dikh le lava",
+    romanesGlossaryCta: "Lava pe romani chib",
     listenGuideLabel: "Ashun o sikavimos",
     onlineDoctorLabel: "Doktori online",
     ariaSentenceSection: "O teksto le sikavimasko",
@@ -237,9 +178,6 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocOverview: "Angluno lav",
     tocExplainer: "Vizualno sikavimos",
     tocMyth: "Chacho vay xoxamno",
-    clinicalContextBadge: "Baro sastipnasko sikavimos",
-    clinicalPriorityLabel: "Angluno lačho phirimos:",
-    clinicalAlertLabel: "Semno savo trebul dikhlo:",
   },
 };
 
@@ -278,10 +216,6 @@ export function TopicDetailPageContent({
   );
 
   const ui = TOPIC_PAGE_UI_STRINGS[lang] ?? TOPIC_PAGE_UI_STRINGS.ro;
-  const dualGlossaryDescription = ui.dualGlossaryDescription.replace(
-    /\b22\b/g,
-    String(ROMANIAN_MEDICAL_GLOSSARY.length),
-  );
   const tabCopy = DICTIONARY_TAB_LABELS[lang] ?? DICTIONARY_TAB_LABELS.ro;
   const drawerTabs = useMemo(
     () => ({
@@ -299,7 +233,10 @@ export function TopicDetailPageContent({
   const audioMinutes = timing?.audioMinutes ?? 2;
   const effectiveAudioMinutes =
     readingLevel === "complete" ? audioMinutes + 1 : audioMinutes;
-  const closeAudioPlayer = useCallback(() => setIsAudioPlayerOpen(false), []);
+  const closeAudioPlayer = useCallback(() => {
+    setIsAudioPlayerOpen(false);
+    setActiveSentenceIndex(null);
+  }, []);
   const followNarration = useCallback(
     (idx: number) => setActiveSentenceIndex(Math.max(0, idx - 1)),
     [],
@@ -338,10 +275,6 @@ export function TopicDetailPageContent({
     [ui],
   );
 
-  const firstRecommendation = topic.recommendations[0];
-  const firstWarningSign = topic.warningSigns[0];
-  const isComplete = readingLevel === "complete";
-
   return (
     <div className="bg-background">
       {/* A long read: a hairline under the header fills as the guide is read. */}
@@ -358,6 +291,28 @@ export function TopicDetailPageContent({
         onListenClick={() => setIsAudioPlayerOpen(true)}
         onStopClick={closeAudioPlayer}
         isPlayingAudio={isAudioPlayerOpen}
+        afterActions={
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+            <span>{ui.dictionaryPrompt}</span>
+            <button
+              type="button"
+              onClick={() => setOpenDrawer("dictionary")}
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+            >
+              {ui.dualGlossaryCta}
+            </button>
+            <span aria-hidden="true" className="text-muted-foreground">
+              /
+            </span>
+            <button
+              type="button"
+              onClick={() => setOpenDrawer("romanes")}
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+            >
+              {ui.romanesGlossaryCta}
+            </button>
+          </p>
+        }
         lang={lang}
       />
 
@@ -377,7 +332,7 @@ export function TopicDetailPageContent({
               className="mt-0"
             />
 
-            {/* Lead paragraph and zero-CLS clinical context callout in Complete mode */}
+            {/* Lead paragraph */}
             <section
               id="section-overview"
               aria-label={ui.ariaSentenceSection}
@@ -388,42 +343,6 @@ export function TopicDetailPageContent({
                 activeSentenceIndex={activeSentenceIndex}
                 lang={lang}
               />
-
-              <div
-                aria-hidden={!isComplete}
-                className={`max-w-[65ch] grid transition-[grid-template-rows,opacity,margin] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
-                  isComplete
-                    ? "mt-5 grid-rows-[1fr] opacity-100"
-                    : "mt-0 grid-rows-[0fr] opacity-0"
-                }`}
-              >
-                <div className="overflow-hidden">
-                  <div className="rounded-r-lg border-l-2 border-sapphire bg-surface-subtle/70 p-4 sm:p-5">
-                    <p className="text-sm font-semibold text-sapphire">
-                      {ui.clinicalContextBadge}
-                    </p>
-
-                    {firstRecommendation && (
-                      <p className="mt-2.5 text-base leading-relaxed text-foreground">
-                        <strong className="font-semibold text-foreground">
-                          {ui.clinicalPriorityLabel}{" "}
-                        </strong>
-                        {firstRecommendation.title} —{" "}
-                        {firstRecommendation.description}
-                      </p>
-                    )}
-
-                    {firstWarningSign && (
-                      <p className="mt-2 text-base leading-relaxed text-foreground">
-                        <strong className="font-semibold text-foreground">
-                          {ui.clinicalAlertLabel}{" "}
-                        </strong>
-                        {firstWarningSign}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
             </section>
 
             {/* Why it matters */}
@@ -485,50 +404,6 @@ export function TopicDetailPageContent({
                 <TopicMythCard myth={topicMyth} lang={lang} />
               </Reveal>
             </div>
-
-            {/* Calm hairline glossary helpers */}
-            <Reveal className="print:hidden">
-              <section
-                aria-label={ui.dualGlossaryTitle}
-                className="divide-y divide-border rounded-xl border border-border bg-card print:hidden"
-              >
-                <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-                  <div className="max-w-xl">
-                    <h2 className="text-lg font-semibold leading-snug text-foreground">
-                      {ui.dualGlossaryTitle}
-                    </h2>
-                    <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">
-                      {dualGlossaryDescription}
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setOpenDrawer("dictionary")}
-                    className="press-solid inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-sapphire px-5 py-2.5 text-base font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                  >
-                    {ui.dualGlossaryCta}
-                  </button>
-                </div>
-
-                <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-                  <div className="max-w-xl">
-                    <h2 className="text-lg font-semibold leading-snug text-foreground">
-                      {ui.romanesGlossaryTitle}
-                    </h2>
-                    <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">
-                      {ui.romanesGlossaryDescription}
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setOpenDrawer("romanes")}
-                    className="press-row inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-5 py-2.5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    {ui.romanesGlossaryCta}
-                  </button>
-                </div>
-              </section>
-            </Reveal>
 
             {/* Related topics */}
             <RelatedTopicsCarousel topics={relatedTopics} lang={lang} />
